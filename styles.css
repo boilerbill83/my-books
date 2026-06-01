@@ -185,10 +185,10 @@ section { padding: 16px 0; }
   box-shadow: 3px 10px 24px rgba(44,26,14,0.16);
 }
 
-/* ── BOOK COVER — fixed height, not aspect-ratio ── */
+/* ── BOOK COVER ── */
 .book-cover {
   width: 100%;
-  height: 160px;
+  height: 200px;
   overflow: hidden;
   background: var(--bg-subtle);
   flex-shrink: 0;
@@ -290,12 +290,60 @@ section { padding: 16px 0; }
   font-size: 0.75rem;
   color: var(--text-muted);
   line-height: 1.45;
-  /* clamp to 2 lines so cards stay uniform height */
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
+
+/* metadata chips (year, pages, rating, publisher) */
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 1px;
+}
+.meta-chip {
+  font-size: 0.67rem;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  padding: 2px 7px;
+  border-radius: 8px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.meta-chip.pub {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* theme chips */
+.theme-row { display: flex; flex-wrap: wrap; gap: 4px; }
+.theme-chip {
+  font-size: 0.63rem;
+  font-weight: 500;
+  background: #ede8ff;
+  color: #5b21b6;
+  padding: 1px 7px;
+  border-radius: 8px;
+  text-transform: capitalize;
+}
+
+/* similar-to row */
+.sim-row {
+  font-size: 0.71rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.sim-label { font-weight: 600; color: var(--text); }
+.sim-name  { font-style: italic; }
+
+/* type badge (fiction / nonfiction) */
+.type-tag {
+  font-size: 0.62rem;
+  padding: 1px 6px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.type-tag.fiction    { background: #d1fae5; color: #065f46; }
+.type-tag.nonfiction { background: #fef3c7; color: #92400e; }
 
 .card-actions {
   display: flex;

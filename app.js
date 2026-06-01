@@ -174,8 +174,32 @@ function renderRecommendations() {
     const shelfBadge = book.fromToRead
       ? `<span class="shelf-tag to-read">on your list</span>`
       : `<span class="shelf-tag">curated pick</span>`;
+    const typeBadge = book.type
+      ? `<span class="type-tag ${book.type}">${book.type}</span>`
+      : '';
     const goodreadsUrl = book.goodreadsUrl
       || `https://www.goodreads.com/search?q=${encodeURIComponent(book.title + ' ' + book.author)}`;
+
+    // metadata chips
+    const meta = [];
+    if (book.year)                      meta.push(`<span class="meta-chip">📅 ${book.year}</span>`);
+    if (book.pages)                     meta.push(`<span class="meta-chip">📄 ${book.pages} pp</span>`);
+    if (Number(book.avgRating) > 0)     meta.push(`<span class="meta-chip">⭐ ${Number(book.avgRating).toFixed(1)} avg</span>`);
+    if (book.publisher)                 meta.push(`<span class="meta-chip pub">${esc(book.publisher)}</span>`);
+    const metaRow = meta.length ? `<div class="meta-row">${meta.join('')}</div>` : '';
+
+    // themes
+    const themes = (book.themes || []).slice(0, 3);
+    const themeRow = themes.length
+      ? `<div class="theme-row">${themes.map(t => `<span class="theme-chip">${t}</span>`).join('')}</div>`
+      : '';
+
+    // similar-to authors (for curated picks)
+    const simAuthors = (book.similarToAuthors || []).slice(0, 2);
+    const simRow = simAuthors.length
+      ? `<div class="sim-row"><span class="sim-label">Fans of:</span> ${simAuthors.map(a => `<span class="sim-name">${esc(a)}</span>`).join(', ')}</div>`
+      : '';
+
     return `
       <article class="book-card">
         ${coverHtml(book)}
@@ -183,16 +207,20 @@ function renderRecommendations() {
           <div class="card-meta">
             <span class="rank-badge">#${book.rank}</span>
             ${shelfBadge}
+            ${typeBadge}
           </div>
           <div class="card-title">${esc(book.title)}</div>
           <div class="card-author">${esc(book.author)}</div>
+          ${metaRow}
+          ${themeRow}
+          ${simRow}
           <div class="score-row">
             <span class="score-pill" title="Likelihood you'll enjoy this">Match ${book.matchScore}</span>
             <span class="score-pill" title="Prediction confidence">Conf ${book.confidenceScore}</span>
           </div>
           <p class="card-reason">${book.reason}</p>
           <div class="card-actions">
-            <a class="link-button primary" href="${esc(goodreadsUrl)}" target="_blank" rel="noreferrer">View on Goodreads</a>
+            <a class="link-button primary" href="${esc(goodreadsUrl)}" target="_blank" rel="noreferrer">Goodreads</a>
             <button class="danger-button" data-key="${esc(book.bookKey)}">Dismiss</button>
           </div>
         </div>
