@@ -1,5 +1,5 @@
 
-import { rankRecommendations } from './engine.js';
+import { rankRecommendations, scoreBooks } from './engine.js';
 
 const state = {
   goodreads:  null,
@@ -21,9 +21,11 @@ const onThisDay           = document.getElementById('onThisDay');
 const bookshelfBar        = document.getElementById('bookshelfBar');
 const recommendationsGrid = document.getElementById('recommendationsGrid');
 const refreshButton       = document.getElementById('refreshButton');
-const dismissDialog       = document.getElementById('dismissDialog');
-const dismissBookLabel    = document.getElementById('dismissBookLabel');
-const dismissForm         = document.getElementById('dismissForm');
+const dismissDialog            = document.getElementById('dismissDialog');
+const dismissBookLabel         = document.getElementById('dismissBookLabel');
+const dismissForm              = document.getElementById('dismissForm');
+const currentlyReadingSection  = document.getElementById('currentlyReadingSection');
+const currentlyReadingGrid     = document.getElementById('currentlyReadingGrid');
 
 // ── Utilities ──────────────────────────────────────────────────────────────
 
@@ -93,6 +95,89 @@ function attachCoverFallbacks() {
       );
     });
   });
+}
+
+// ── Currently Reading ──────────────────────────────────────────────────────
+
+const GOODREADS_RSS = 'https://www.goodreads.com/review/list_rss/37243238?shelf=currently-reading';
+
+function parseGoodreadsRSS(xmlText) {
+  const doc   = new DOMParser().parseFromString(xmlText, 'application/xml');
+  const items = Array.from(doc.getElementsByTagName('item'));
+  return items.map(item => {
+    const text    = tag => item.getElementsByTagName(tag)[0]?.textContent?.trim() || '';
+    const rawTitle = text('title');
+    const author   = text('author_name');
+    const title    = rawTitle.replace(/ by .+$/, '').trim() || rawTitle;
+    const coverUrl = text('book_large_image_url');
+    const isbn     = text('isbn');
+    const avgRating = text('average_rating');
+    const yearRaw  = text('book_published');
+    const bookEl   = item.getElementsByTagName('book')[0];
+    const pagesRaw = bookEl ? bookEl.getElementsByTagName('num_pages')[0]?.textContent?.trim() : '';
+    return {
+      title,
+      author,
+      coverUrl:   coverUrl || null,
+      isbn:       isbn || null,
+      avgRating:  avgRating ? Number(avgRating) : null,
+      year:       yearRaw ? parseInt(yearRaw) : null,
+      pages:      pagesRaw ? parseInt(pagesRaw) : null,
+      shelf:      'currently-reading'
+    };
+  }).filter(b => b.title && b.author);
+}
+
+async function fetchCurrentlyReading() {
+  try {
+    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(GOODREADS_RSS)}`;
+    const resp  = await fetch(proxy, { signal: AbortSignal.timeout(8000) });
+    if (!resp.ok) throw new Error(resp.statusText);
+    const data  = await resp.json();
+    const books = parseGoodreadsRSS(data.contents || '');
+    if (books.length) return books;
+  } catch (_) { /* fall through */ }
+  return (state.goodreads.books || []).filter(b => b.shelf === 'currently-reading');
+}
+
+function renderCurrentlyReading(books) {
+  if (!currentlyReadingSection || !currentlyReadingGrid || !books.length) {
+    if (currentlyReadingSection) currentlyReadingSection.hidden = true;
+    return;
+  }
+  const scored = scoreBooks(books, state.goodreads, state.feedback, state.history);
+  currentlyReadingSection.hidden = false;
+
+  currentlyReadingGrid.innerHTML = scored.map(book => {
+    const color    = hashColor(book.bookKey || book.title);
+    const coverSrc = book.coverUrl
+      || ((book.isbn13 || book.isbn) ? `https://covers.openlibrary.org/b/isbn/${book.isbn13 || book.isbn}-M.jpg` : '');
+    const coverEl  = coverSrc
+      ? `<img src="${esc(coverSrc)}" alt="${esc(book.title)} cover" class="cr-cover-img" loading="lazy"
+             onerror="this.style.display='none'" />`
+      : `<span style="font-size:1.8rem">📖</span>`;
+
+    const meta = [];
+    if (book.year)  meta.push(`📅 ${book.year}`);
+    if (book.pages) meta.push(`📄 ${book.pages} pp`);
+    if (Number(book.avgRating) > 0) meta.push(`⭐ ${Number(book.avgRating).toFixed(1)}`);
+
+    return `
+      <div class="cr-card card">
+        <div class="cr-cover-wrap" style="background:${color}">${coverEl}</div>
+        <div class="cr-info">
+          <div class="cr-eyebrow">Currently Reading</div>
+          <div class="cr-title">${esc(book.title)}</div>
+          <div class="cr-author">by ${esc(book.author)}</div>
+          ${meta.length ? `<div class="cr-meta">${meta.join(' &nbsp;·&nbsp; ')}</div>` : ''}
+          <div class="cr-scores">
+            <span class="score-pill" title="Likelihood you'll enjoy this">Match ${book.matchScore}</span>
+            <span class="score-pill" title="Prediction confidence">Conf ${book.confidenceScore}</span>
+          </div>
+          <p class="cr-reason">${book.reason}</p>
+        </div>
+      </div>`;
+  }).join('');
 }
 
 // ── Analytics tiles ────────────────────────────────────────────────────────
@@ -475,7 +560,9 @@ dismissForm.addEventListener('submit', e => {
 async function initialize() {
   setStatus('Loading…', 'loading');
   await load();
+  const crBooks = await fetchCurrentlyReading();
   recompute();
+  renderCurrentlyReading(crBooks);
   const readCount = state.goodreads.meta?.readCount || 0;
   setStatus(
     `${readCount} books read · ${state.ranking.selected.length} recommendations available`,

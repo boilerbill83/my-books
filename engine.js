@@ -159,6 +159,24 @@ function reason(candidate, idx) {
     : 'Recommended because it aligns with your overall reading profile.';
 }
 
+// Score a list of books without exclusion filtering (used for currently-reading)
+export function scoreBooks(candidates, goodreads, feedback, history) {
+  const idx     = buildIndexes(goodreads, feedback);
+  const profile = summarize(goodreads);
+  const showMap = new Map((history.history || []).map(h => [h.bookKey, h.timesShown || 0]));
+  return candidates.map(c => {
+    const k      = c.bookKey || bookKey(c.title, c.author);
+    const asCand = { ...c, fromToRead: true, similarToAuthors: [], similarToTitles: [], themes: [] };
+    return {
+      ...c,
+      bookKey:         k,
+      matchScore:      matchScore(asCand, idx, profile, showMap.get(k) || 0),
+      confidenceScore: confidenceScore(asCand, idx),
+      reason:          reason(asCand, idx)
+    };
+  });
+}
+
 export function rankRecommendations(goodreads, feedback, candidatePool, history) {
   const idx     = buildIndexes(goodreads, feedback);
   const profile = summarize(goodreads);

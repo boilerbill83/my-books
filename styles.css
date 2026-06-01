@@ -471,3 +471,56 @@ section { padding: 14px 0; }
 }
 .reason-list label:hover { border-color: var(--accent); background: var(--bg-subtle); }
 .dialog-actions { display: flex; justify-content: flex-end; }
+
+/* ── CURRENTLY READING ── */
+#currentlyReadingSection { padding: 14px 0 4px; }
+#currentlyReadingSection .card-heading { margin-bottom: 10px; }
+
+.cr-grid { display: flex; flex-direction: column; gap: 12px; }
+
+.cr-card {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 16px 20px;
+  border-left: 4px solid var(--accent);
+}
+
+.cr-cover-wrap {
+  width: 88px;
+  height: 130px;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-card);
+}
+.cr-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cr-info  { display: flex; flex-direction: column; gap: 5px; flex: 1; }
+
+.cr-eyebrow {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--accent);
+  font-weight: 700;
+}
+.cr-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+}
+.cr-author { font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+.cr-meta   { font-size: 0.78rem; color: var(--text-muted); }
+.cr-scores { display: flex; gap: 5px; flex-wrap: wrap; }
+.cr-reason { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
