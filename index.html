@@ -1,101 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>my-books</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Goodreads-powered recommendation lab</p>
+          <h1>my-books</h1>
+          <p class="subtitle">
+            A bookish dashboard for reading insights, high-fit recommendations, and GitHub-backed feedback.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <button id="importButton" class="ghost-button">Import Goodreads CSV</button>
+          <button id="settingsButton" class="ghost-button">GitHub connection</button>
+        </div>
+      </header>
 
-export function parseCsv(text) {
-  const rows = [];
-  const lines = text.replace(/
-/g, '
-').replace(//g, '
-').split('
-').filter(Boolean);
-  if (!lines.length) return rows;
-  const headers = splitCsvLine(lines[0]);
-  for (const line of lines.slice(1)) {
-    const cols = splitCsvLine(line);
-    const row = {};
-    headers.forEach((header, idx) => { row[header] = cols[idx] || ''; });
-    rows.push(row);
-  }
-  return rows;
-}
+      <section class="status-bar" id="statusBar">
+        <span class="status-dot offline"></span>
+        <span id="statusText">Working in read-only mode using repo data.</span>
+      </section>
 
-function splitCsvLine(line) {
-  const result = [];
-  let current = '';
-  let inQuotes = false;
-  for (let i = 0; i < line.length; i += 1) {
-    const char = line[i];
-    const next = line[i + 1];
-    if (char === '"') {
-      if (inQuotes && next === '"') {
-        current += '"';
-        i += 1;
-      } else {
-        inQuotes = !inQuotes;
-      }
-    } else if (char === ',' && !inQuotes) {
-      result.push(current);
-      current = '';
-    } else {
-      current += char;
-    }
-  }
-  result.push(current);
-  return result;
-}
+      <section id="importPanel" class="card import-panel hidden">
+        <div class="section-header">
+          <div>
+            <h2>Import Goodreads CSV</h2>
+            <p>Use your exported Goodreads CSV to populate <code>data/goodreadsData.json</code> directly from the browser.</p>
+          </div>
+        </div>
+        <div class="import-grid">
+          <input id="csvFileInput" type="file" accept=".csv,text/csv" />
+          <button id="processCsvButton" class="primary-button">Process file</button>
+          <button id="saveImportedDataButton" class="ghost-button">Save imported data to repo</button>
+        </div>
+        <p id="importStatus" class="helper-text">No Goodreads data loaded yet. Import a CSV to get started.</p>
+      </section>
 
-function normalizeText(value) {
-  return String(value || '')
-    .replace(/&amp;/gi, '&')
-    .toLowerCase()
-    .trim()
-    .replace(/\s*\([^)]*\)/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '');
-}
+      <section class="analytics">
+        <div id="analyticsTiles" class="tile-grid"></div>
+      </section>
 
-function bookKey(title, author) {
-  return `${normalizeText(title)}|${normalizeText(author)}`;
-}
+      <section class="insights-section card">
+        <div class="section-header">
+          <h2>Reading insights</h2>
+          <p>Fast signal only — no charts.</p>
+        </div>
+        <ul id="insightsList" class="insights-list"></ul>
+      </section>
 
-export function transformGoodreadsRows(rows) {
-  const rank = { read: 3, 'currently-reading': 2, 'to-read': 1 };
-  const best = new Map();
-  for (const row of rows) {
-    const title = row.Title || row.title || '';
-    const author = row.Author || row.author || '';
-    const shelf = String(row['Exclusive Shelf'] || row.shelf || '').toLowerCase().trim();
-    const candidate = {
-      bookKey: bookKey(title, author),
-      title,
-      author,
-      shelf,
-      myRating: Number(row['My Rating']) || null,
-      pages: Number(row['Number of Pages']) || null,
-      dateRead: row['Date Read'] || null,
-      dateAdded: row['Date Added'] || null,
-      bookshelves: String(row.Bookshelves || '').split(',').map(x => x.trim()).filter(Boolean)
-    };
-    const existing = best.get(candidate.bookKey);
-    const candScore = [rank[candidate.shelf] || 0, candidate.myRating || -1, candidate.dateRead || '', candidate.dateAdded || ''];
-    const existingScore = existing ? [rank[existing.shelf] || 0, existing.myRating || -1, existing.dateRead || '', existing.dateAdded || ''] : null;
-    if (!existing || String(candScore) > String(existingScore)) best.set(candidate.bookKey, candidate);
-  }
-  const books = [...best.values()];
-  const read = books.filter(b => b.shelf === 'read').map(b => b.bookKey);
-  const toRead = books.filter(b => b.shelf === 'to-read').map(b => b.bookKey);
-  const currentlyReading = books.filter(b => b.shelf === 'currently-reading').map(b => b.bookKey);
-  const fiveStar = books.filter(b => b.shelf === 'read' && b.myRating === 5).map(b => b.bookKey);
-  return {
-    meta: {
-      sourceFile: 'goodreads_library_export.csv',
-      generatedAt: new Date().toISOString(),
-      bookCount: books.length,
-      readCount: read.length,
-      toReadCount: toRead.length,
-      currentlyReadingCount: currentlyReading.length,
-      fiveStarCount: fiveStar.length
-    },
-    books,
-    indexes: { read, toRead, currentlyReading, fiveStar }
-  };
-}
+      <section class="recommendations-section card">
+        <div class="section-header">
+          <div>
+            <h2>Top recommendations</h2>
+            <p>All 10 visible at once. Dismiss to replace from the same category queue.</p>
+          </div>
+          <button id="refreshButton" class="ghost-button">Refresh recommendations</button>
+        </div>
+        <div id="recommendationsGrid" class="recommendations-grid"></div>
+      </section>
+    </div>
+
+    <dialog id="settingsDialog" class="dialog">
+      <form method="dialog" class="dialog-body">
+        <div class="dialog-header">
+          <h3>GitHub connection</h3>
+          <button class="ghost-button">Close</button>
+        </div>
+        <p class="dialog-copy">Paste your GitHub settings to enable write-back for dismissals, hides, and recommendation history. Public repo reads work without this.</p>
+        <label>GitHub token
+          <input id="githubToken" type="password" autocomplete="off" placeholder="Paste Personal Access Token" />
+        </label>
+        <label>Owner
+          <input id="repoOwner" type="text" value="boilerbill83" />
+        </label>
+        <label>Repository
+          <input id="repoName" type="text" value="my-books" />
+        </label>
+        <label>Branch
+          <input id="repoBranch" type="text" value="main" />
+        </label>
+        <div class="dialog-actions">
+          <button id="saveSettingsButton" value="default" class="primary-button">Save connection</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="dismissDialog" class="dialog">
+      <form method="dialog" class="dialog-body">
+        <div class="dialog-header">
+          <h3>Dismiss recommendation</h3>
+          <button class="ghost-button">Close</button>
+        </div>
+        <p id="dismissPrompt" class="dialog-copy"></p>
+        <div class="reason-list">
+          <label><input type="radio" name="dismissReason" value="already_aware_not_interested" checked /> Already aware / not interested</label>
+          <label><input type="radio" name="dismissReason" value="wrong_genre_or_vibe" /> Wrong genre or vibe</label>
+          <label><input type="radio" name="dismissReason" value="too_similar" /> Too similar to something already read</label>
+          <label><input type="radio" name="dismissReason" value="not_in_the_mood" /> Not in the mood right now</label>
+          <label><input type="radio" name="dismissReason" value="author_or_topic_not_appealing" /> Author or topic not appealing</label>
+        </div>
+        <div class="dialog-actions">
+          <button id="confirmDismissButton" class="primary-button" value="default">Save dismissal</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
+``
