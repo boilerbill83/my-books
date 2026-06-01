@@ -15,7 +15,10 @@ const state = {
 const statusDot           = document.getElementById('statusDot');
 const statusText          = document.getElementById('statusText');
 const analyticsTiles      = document.getElementById('analyticsTiles');
+const ratingDonut         = document.getElementById('ratingDonut');
 const insightsList        = document.getElementById('insightsList');
+const onThisDay           = document.getElementById('onThisDay');
+const bookshelfBar        = document.getElementById('bookshelfBar');
 const recommendationsGrid = document.getElementById('recommendationsGrid');
 const refreshButton       = document.getElementById('refreshButton');
 const dismissDialog       = document.getElementById('dismissDialog');
@@ -39,11 +42,18 @@ function hashColor(str) {
   const palette = [
     '#5c3317','#1a3a5c','#2c5f2e','#4a1c40',
     '#1c4a3e','#3d1a1a','#2d3561','#4a3728',
-    '#1e3a5f','#3c2415','#3b2314','#1f3d3c'
+    '#1e3a5f','#3c2415','#3b2314','#1f3d3c',
+    '#4a2040','#163d2f','#2a1f4f','#3d2f1a'
   ];
   let h = 0;
   for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) & 0x7fffffff;
   return palette[h % palette.length];
+}
+
+function starsHtml(rating, max = 5) {
+  const n = Math.round(Number(rating) || 0);
+  if (!n) return '';
+  return `<span class="stars-gold">${'★'.repeat(Math.min(n, max))}${'☆'.repeat(Math.max(0, max - n))}</span>`;
 }
 
 function makePlaceholder(title, author, color) {
@@ -85,7 +95,7 @@ function attachCoverFallbacks() {
   });
 }
 
-// ── Analytics ──────────────────────────────────────────────────────────────
+// ── Analytics tiles ────────────────────────────────────────────────────────
 
 function tile(label, value) {
   return `<div class="tile">
@@ -106,7 +116,61 @@ function renderAnalytics() {
   ].join('');
 }
 
-// ── Insights (randomised on every render) ─────────────────────────────────
+// ── Rating donut chart (visual appeal #5) ─────────────────────────────────
+
+function renderDonut() {
+  if (!ratingDonut) return;
+  const readBooks = (state.goodreads.books || [])
+    .filter(b => b.shelf === 'read' && b.myRating > 0);
+  const counts = [0, 0, 0, 0, 0];
+  for (const b of readBooks) {
+    const r = b.myRating;
+    if (r >= 1 && r <= 5) counts[r - 1]++;
+  }
+  const total = counts.reduce((a, b) => a + b, 0);
+  if (!total) { ratingDonut.hidden = true; return; }
+
+  const colors  = ['#94a3b8', '#60a5fa', '#34d399', '#fbbf24', '#c9911e'];
+  const R = 36, cx = 50, cy = 50, C = 2 * Math.PI * R;
+
+  let cum = 0;
+  const segs = counts.map((count, i) => {
+    if (!count) { cum += count / total; return ''; }
+    const pct = count / total;
+    const d   = pct * C;
+    const off = C * (0.25 - cum);
+    cum += pct;
+    return `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none"
+      stroke="${colors[i]}" stroke-width="13"
+      stroke-dasharray="${d.toFixed(2)} ${(C - d).toFixed(2)}"
+      stroke-dashoffset="${off.toFixed(2)}" />`;
+  }).join('');
+
+  const fivePct = Math.round(counts[4] / total * 100);
+
+  const legendRows = counts.map((c, i) => c ? `
+    <div class="legend-row">
+      <span class="legend-dot" style="background:${colors[i]}"></span>
+      <span class="legend-stars">${'★'.repeat(i + 1)}</span>
+      <span class="legend-count">${c}</span>
+      <span class="legend-pct">${Math.round(c / total * 100)}%</span>
+    </div>` : '').filter(Boolean).join('');
+
+  ratingDonut.innerHTML = `
+    <div class="donut-label">Your rating breakdown</div>
+    <div class="donut-inner">
+      <svg viewBox="0 0 100 100" width="90" height="90">
+        <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#f4ede0" stroke-width="13" />
+        ${segs}
+        <text x="${cx}" y="46" text-anchor="middle" font-family="'Playfair Display',serif"
+              font-size="13" font-weight="bold" fill="#2c1a0e">${fivePct}%</text>
+        <text x="${cx}" y="57" text-anchor="middle" font-size="7" fill="#8b6f5a">5-star</text>
+      </svg>
+      <div class="donut-legend">${legendRows}</div>
+    </div>`;
+}
+
+// ── Insights (randomised) ──────────────────────────────────────────────────
 
 function buildInsightPool() {
   const p    = state.ranking.profile;
@@ -133,7 +197,6 @@ function buildInsightPool() {
     pool.push(`<strong>${pct}%</strong> of the books you've read earned a five-star rating from you.`);
   }
 
-  // Random 5-star spotlights
   const fiveStars = (g.books || []).filter(b => b.myRating === 5 && b.shelf === 'read');
   if (fiveStars.length) {
     const pick = fiveStars[Math.floor(Math.random() * fiveStars.length)];
@@ -156,6 +219,78 @@ function renderInsights() {
   insightsList.innerHTML = pool.slice(0, 4).map(x => `<li>${x}</li>`).join('');
 }
 
+// ── On This Day spotlight (usefulness #2) ─────────────────────────────────
+
+function renderOnThisDay() {
+  if (!onThisDay) return;
+  const today = new Date();
+  const mm    = String(today.getMonth() + 1).padStart(2, '0');
+  const dd    = String(today.getDate()).padStart(2, '0');
+  const suffix      = `/${mm}/${dd}`;
+  const thisYear    = String(today.getFullYear());
+  const monthLabel  = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+
+  const matches = (state.goodreads.books || []).filter(b =>
+    b.shelf === 'read' && b.dateRead &&
+    b.dateRead.endsWith(suffix) &&
+    !b.dateRead.startsWith(thisYear)
+  );
+
+  if (!matches.length) { onThisDay.hidden = true; return; }
+
+  const book     = matches[Math.floor(Math.random() * matches.length)];
+  const year     = parseInt(book.dateRead.slice(0, 4));
+  const yearsAgo = today.getFullYear() - year;
+  const color    = hashColor(book.bookKey || book.title);
+  const isbn     = book.isbn13 || book.isbn;
+  const coverUrl = isbn ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg` : '';
+
+  onThisDay.hidden   = false;
+  onThisDay.innerHTML = `
+    <div class="otd-card card">
+      <div class="otd-header">
+        <span class="otd-icon">📅</span>
+        <div>
+          <div class="otd-eyebrow">On This Day — ${monthLabel}</div>
+          <div class="otd-sub">${yearsAgo} year${yearsAgo !== 1 ? 's' : ''} ago you finished:</div>
+        </div>
+      </div>
+      <div class="otd-body">
+        <div class="otd-cover" style="background:${color}">
+          ${coverUrl ? `<img src="${esc(coverUrl)}" alt="" onerror="this.style.display='none'" />` : ''}
+          <span class="otd-book-icon">📖</span>
+        </div>
+        <div class="otd-info">
+          <div class="otd-title">${esc(book.title)}</div>
+          <div class="otd-author">by ${esc(book.author)}</div>
+          ${book.myRating ? `<div class="otd-stars">${starsHtml(book.myRating)}</div>` : ''}
+          <div class="otd-meta">
+            ${book.year ? `${book.year}` : ''}${book.year && book.pages ? ' · ' : ''}${book.pages ? `${book.pages} pages` : ''}
+          </div>
+          ${matches.length > 1 ? `<div class="otd-more">+${matches.length - 1} more book${matches.length > 2 ? 's' : ''} finished on this date</div>` : ''}
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── Bookshelf bar (visual appeal #2) ──────────────────────────────────────
+
+function renderBookshelf() {
+  if (!bookshelfBar) return;
+  const books = (state.goodreads.books || [])
+    .filter(b => b.shelf === 'read')
+    .slice(0, 100);
+
+  bookshelfBar.innerHTML = books.map((b, i) => {
+    const color = hashColor(b.bookKey || b.title);
+    const h     = 26 + (b.title.length * 3 + i * 7) % 26; // 26–52 px tall
+    const w     = 11 + (b.author.length + i * 4) % 12;    // 11–23 px wide
+    return `<div class="book-spine"
+      style="height:${h}px;width:${w}px;background:${color}"
+      title="${esc(b.title)} — ${esc(b.author)}"></div>`;
+  }).join('');
+}
+
 // ── Recommendations ────────────────────────────────────────────────────────
 
 function renderRecommendations() {
@@ -175,28 +310,32 @@ function renderRecommendations() {
       ? `<span class="shelf-tag to-read">on your list</span>`
       : `<span class="shelf-tag">curated pick</span>`;
     const typeBadge = book.type
-      ? `<span class="type-tag ${book.type}">${book.type}</span>`
-      : '';
+      ? `<span class="type-tag ${book.type}">${book.type}</span>` : '';
     const goodreadsUrl = book.goodreadsUrl
       || `https://www.goodreads.com/search?q=${encodeURIComponent(book.title + ' ' + book.author)}`;
 
     // metadata chips
     const meta = [];
-    if (book.year)                      meta.push(`<span class="meta-chip">📅 ${book.year}</span>`);
-    if (book.pages)                     meta.push(`<span class="meta-chip">📄 ${book.pages} pp</span>`);
-    if (Number(book.avgRating) > 0)     meta.push(`<span class="meta-chip">⭐ ${Number(book.avgRating).toFixed(1)} avg</span>`);
-    if (book.publisher)                 meta.push(`<span class="meta-chip pub">${esc(book.publisher)}</span>`);
+    if (book.year) meta.push(`<span class="meta-chip">📅 ${book.year}</span>`);
+    if (book.pages) meta.push(`<span class="meta-chip">📄 ${book.pages} pp</span>`);
+    if (Number(book.avgRating) > 0) {
+      const n    = Number(book.avgRating);
+      const full = Math.round(n);
+      const stars = '★'.repeat(Math.min(full, 5)) + '☆'.repeat(Math.max(0, 5 - full));
+      meta.push(`<span class="meta-chip"><span class="chip-stars">${stars}</span> ${n.toFixed(1)}</span>`);
+    }
+    if (book.publisher) meta.push(`<span class="meta-chip pub">${esc(book.publisher)}</span>`);
     const metaRow = meta.length ? `<div class="meta-row">${meta.join('')}</div>` : '';
 
     // themes
-    const themes = (book.themes || []).slice(0, 3);
+    const themes   = (book.themes || []).slice(0, 3);
     const themeRow = themes.length
       ? `<div class="theme-row">${themes.map(t => `<span class="theme-chip">${t}</span>`).join('')}</div>`
       : '';
 
-    // similar-to authors (for curated picks)
+    // similar-to
     const simAuthors = (book.similarToAuthors || []).slice(0, 2);
-    const simRow = simAuthors.length
+    const simRow     = simAuthors.length
       ? `<div class="sim-row"><span class="sim-label">Fans of:</span> ${simAuthors.map(a => `<span class="sim-name">${esc(a)}</span>`).join(', ')}</div>`
       : '';
 
@@ -254,8 +393,12 @@ function recompute() {
     [...external, ...toReadCands],
     state.history
   );
+
   renderAnalytics();
+  renderDonut();
   renderInsights();
+  renderOnThisDay();
+  renderBookshelf();
   renderRecommendations();
 }
 
@@ -292,7 +435,7 @@ function dismiss(reasonCode) {
   let row = state.history.history.find(x => x.bookKey === book.bookKey);
   if (!row) {
     state.history.history.push({
-      bookKey:        book.bookKey,
+      bookKey: book.bookKey,
       firstShownDate: new Date().toISOString(),
       lastShownDate:  new Date().toISOString(),
       timesShown: 1, timesDismissed: 1, timesSaved: 0, timesClicked: 0
@@ -309,9 +452,16 @@ function dismiss(reasonCode) {
 
 // ── Event wiring ───────────────────────────────────────────────────────────
 
+// Animated refresh (visual appeal #1)
 refreshButton.addEventListener('click', () => {
-  state.page++;
-  renderRecommendations();
+  recommendationsGrid.classList.add('fade-out');
+  setTimeout(() => {
+    state.page++;
+    renderRecommendations();
+    // force reflow so removing the class triggers the transition back in
+    void recommendationsGrid.offsetHeight;
+    recommendationsGrid.classList.remove('fade-out');
+  }, 220);
 });
 
 dismissForm.addEventListener('submit', e => {

@@ -27,9 +27,10 @@
       <!-- ===== MAIN CONTENT ===== -->
       <div class="container">
 
-        <!-- Analytics tiles -->
+        <!-- Analytics tiles + rating donut -->
         <section class="analytics">
           <div id="analyticsTiles" class="tile-grid"></div>
+          <div id="ratingDonut" class="donut-strip card"></div>
         </section>
 
         <!-- Reading insights -->
@@ -40,12 +41,17 @@
           </div>
         </section>
 
+        <!-- On This Day (hidden until data is available) -->
+        <section id="onThisDay" hidden></section>
+
         <!-- What Should I Read Next -->
         <section class="recommendations-section">
           <div class="section-header">
             <h3 class="card-heading">📚 What Should I Read Next?</h3>
             <button id="refreshButton" class="primary-button">Refresh ↻</button>
           </div>
+          <!-- decorative bookshelf bar -->
+          <div id="bookshelfBar" class="bookshelf-bar" aria-hidden="true"></div>
           <div id="recommendationsGrid" class="recs-grid"></div>
         </section>
 
