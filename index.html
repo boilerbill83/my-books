@@ -1,0 +1,101 @@
+
+export function parseCsv(text) {
+  const rows = [];
+  const lines = text.replace(/
+/g, '
+').replace(//g, '
+').split('
+').filter(Boolean);
+  if (!lines.length) return rows;
+  const headers = splitCsvLine(lines[0]);
+  for (const line of lines.slice(1)) {
+    const cols = splitCsvLine(line);
+    const row = {};
+    headers.forEach((header, idx) => { row[header] = cols[idx] || ''; });
+    rows.push(row);
+  }
+  return rows;
+}
+
+function splitCsvLine(line) {
+  const result = [];
+  let current = '';
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i += 1) {
+    const char = line[i];
+    const next = line[i + 1];
+    if (char === '"') {
+      if (inQuotes && next === '"') {
+        current += '"';
+        i += 1;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (char === ',' && !inQuotes) {
+      result.push(current);
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  result.push(current);
+  return result;
+}
+
+function normalizeText(value) {
+  return String(value || '')
+    .replace(/&amp;/gi, '&')
+    .toLowerCase()
+    .trim()
+    .replace(/\s*\([^)]*\)/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+function bookKey(title, author) {
+  return `${normalizeText(title)}|${normalizeText(author)}`;
+}
+
+export function transformGoodreadsRows(rows) {
+  const rank = { read: 3, 'currently-reading': 2, 'to-read': 1 };
+  const best = new Map();
+  for (const row of rows) {
+    const title = row.Title || row.title || '';
+    const author = row.Author || row.author || '';
+    const shelf = String(row['Exclusive Shelf'] || row.shelf || '').toLowerCase().trim();
+    const candidate = {
+      bookKey: bookKey(title, author),
+      title,
+      author,
+      shelf,
+      myRating: Number(row['My Rating']) || null,
+      pages: Number(row['Number of Pages']) || null,
+      dateRead: row['Date Read'] || null,
+      dateAdded: row['Date Added'] || null,
+      bookshelves: String(row.Bookshelves || '').split(',').map(x => x.trim()).filter(Boolean)
+    };
+    const existing = best.get(candidate.bookKey);
+    const candScore = [rank[candidate.shelf] || 0, candidate.myRating || -1, candidate.dateRead || '', candidate.dateAdded || ''];
+    const existingScore = existing ? [rank[existing.shelf] || 0, existing.myRating || -1, existing.dateRead || '', existing.dateAdded || ''] : null;
+    if (!existing || String(candScore) > String(existingScore)) best.set(candidate.bookKey, candidate);
+  }
+  const books = [...best.values()];
+  const read = books.filter(b => b.shelf === 'read').map(b => b.bookKey);
+  const toRead = books.filter(b => b.shelf === 'to-read').map(b => b.bookKey);
+  const currentlyReading = books.filter(b => b.shelf === 'currently-reading').map(b => b.bookKey);
+  const fiveStar = books.filter(b => b.shelf === 'read' && b.myRating === 5).map(b => b.bookKey);
+  return {
+    meta: {
+      sourceFile: 'goodreads_library_export.csv',
+      generatedAt: new Date().toISOString(),
+      bookCount: books.length,
+      readCount: read.length,
+      toReadCount: toRead.length,
+      currentlyReadingCount: currentlyReading.length,
+      fiveStarCount: fiveStar.length
+    },
+    books,
+    indexes: { read, toRead, currentlyReading, fiveStar }
+  };
+}

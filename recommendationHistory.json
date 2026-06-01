@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "sourceFile": null,
+    "generatedAt": null,
+    "bookCount": 0,
+    "readCount": 0,
+    "toReadCount": 0,
+    "currentlyReadingCount": 0,
+    "fiveStarCount": 0,
+    "notes": "Import your Goodreads CSV from the app and save it back to this file."
+  },
+  "books": [],
+  "indexes": {
+    "read": [],
+    "toRead": [],
+    "currentlyReading": [],
+    "fiveStar": []
+  }
+}
