@@ -1,42 +1,75 @@
-# my-books
 
-A browser-based Goodreads recommendation app designed to run from GitHub Pages.
+// SECURITY NOTE: Never commit a real GitHub token here.
+// Set writeEnabled = true and replace the token value only in a local,
+// gitignored copy of this file, or pass it via the settings dialog at runtime.
+const CONFIG = {
+  owner:        'boilerbill83',
+  repo:         'my-books',
+  branch:       'main',
+  token:        '__REPLACE_WITH_GITHUB_TOKEN__',
+  writeEnabled: false
+};
 
-## Included
+export function isWriteConfigured() {
+  return Boolean(CONFIG.writeEnabled && CONFIG.token && !CONFIG.token.includes('__REPLACE'));
+}
 
-- `index.html` — app shell
-- `styles.css` — bookish/nerdy styling
-- `app.js` — orchestration, rendering, dismiss flow, CSV import
-- `storage.js` — local loading + optional GitHub write-back helpers
-- `importer.js` — Goodreads CSV parser + transformer
-- `engine.js` — normalization, analytics, filtering, scoring, ranking
-- `data/goodreadsData.json` — placeholder Goodreads data file
-- `data/feedbackData.json` — seeded dislike/exclusion data
-- `data/recommendationHistory.json` — starter history file
-- `data/candidatePool.json` — starter recommendation catalog
+function contentsUrl(path) {
+  return `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`;
+}
 
-## Setup
+async function requestJson(url, options = {}) {
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`${response.status} ${response.statusText}: ${text}`);
+  }
+  return response.json();
+}
 
-1. Create the GitHub repo: `boilerbill83/my-books`
-2. Upload all files from this zip.
-3. Enable GitHub Pages from the `main` branch root.
-4. Open the site.
-5. Click **Import Goodreads CSV** to load your Goodreads export.
-6. If you want write-back, update `storage.js`:
-   - replace `__REPLACE_WITH_GITHUB_TOKEN__` with your token locally
-   - change `writeEnabled` to `true`
+export async function fetchLocalJson(path) {
+  const response = await fetch(path, { cache: 'no-store' });
+  if (!response.ok) throw new Error(`Failed to load ${path}`);
+  return response.json();
+}
 
-## What already works
+export async function fetchRepoJson(path) {
+  const response = await requestJson(contentsUrl(path), {
+    headers: {
+      Authorization: `Bearer ${CONFIG.token}`,
+      Accept: 'application/vnd.github+json'
+    }
+  });
+  const decoded = atob((response.content || '').replace(/\n/g, ''));
+  return { content: JSON.parse(decoded), sha: response.sha };
+}
 
-- Goodreads CSV import in-browser
-- Analytics tiles and short insights
-- 10 recommendations at once (where the candidate pool supports it)
-- Match and Confidence scores
-- Dismiss with reason picker
-- Feedback and history model ready for GitHub persistence
+async function putRepoJson(path, content, sha, message) {
+  return requestJson(contentsUrl(path), {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${CONFIG.token}`,
+      Accept: 'application/vnd.github+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      message,
+      content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))),
+      sha,
+      branch: CONFIG.branch
+    })
+  });
+}
 
-## Notes
-
-- The candidate pool is a starter list, not a full catalog.
-- The Goodreads file in `/data` starts as a placeholder until you import your CSV.
-- Seeded negative books are already loaded into `feedbackData.json`.
+export async function safeUpdateRepoJson(path, updateFn, message = 'Update app data') {
+  if (!isWriteConfigured()) throw new Error('GitHub write mode is not enabled in storage.js');
+  const firstRead = await fetchRepoJson(path);
+  const updated   = updateFn(structuredClone(firstRead.content));
+  try {
+    return await putRepoJson(path, updated, firstRead.sha, message);
+  } catch {
+    const latest  = await fetchRepoJson(path);
+    const retried = updateFn(structuredClone(latest.content));
+    return putRepoJson(path, retried, latest.sha, message + ' (retry)');
+  }
+}

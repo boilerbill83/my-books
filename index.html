@@ -4,75 +4,98 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>my-books</title>
+    <meta name="description" content="Goodreads-powered reading recommendations" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="app-shell">
+
+      <!-- ===== HERO HEADER ===== -->
       <header class="hero">
-        <div>
-          <p class="eyebrow">Goodreads-powered recommendation lab</p>
-          <h1>my-books</h1>
-          <p class="subtitle">
-            A bookish dashboard for reading insights, high-fit recommendations, and GitHub-backed feedback.
-          </p>
-        </div>
-        <div class="hero-actions">
-          <button id="importButton" class="ghost-button">Import Goodreads CSV</button>
-          <button id="settingsButton" class="ghost-button">GitHub connection</button>
+        <div class="container">
+          <div>
+            <p class="eyebrow">Goodreads-powered recommendation lab</p>
+            <h1>my&#8209;books</h1>
+            <p class="subtitle">
+              Reading insights, high-fit recommendations, and GitHub-backed feedback.
+            </p>
+          </div>
+          <div class="hero-actions">
+            <button id="importButton" class="ghost-button">Import Goodreads CSV</button>
+            <button id="settingsButton" class="ghost-button">GitHub connection</button>
+          </div>
         </div>
       </header>
 
+      <!-- ===== STATUS BAR ===== -->
       <section class="status-bar" id="statusBar">
-        <span class="status-dot offline"></span>
-        <span id="statusText">Working in read-only mode using repo data.</span>
+        <div class="container">
+          <span class="status-dot offline" id="statusDot"></span>
+          <span id="statusText">Working in read-only mode using repo data.</span>
+        </div>
       </section>
 
-      <section id="importPanel" class="card import-panel hidden">
-        <div class="section-header">
-          <div>
-            <h2>Import Goodreads CSV</h2>
-            <p>Use your exported Goodreads CSV to populate <code>data/goodreadsData.json</code> directly from the browser.</p>
+      <!-- ===== MAIN CONTENT ===== -->
+      <div class="container">
+
+        <!-- Import panel (hidden by default) -->
+        <section id="importPanel" class="card import-panel hidden">
+          <div class="section-header">
+            <div>
+              <h2>Import Goodreads CSV</h2>
+              <p>Use your exported Goodreads CSV to populate <code>data/goodreadsData.json</code> directly from the browser.</p>
+            </div>
           </div>
-        </div>
-        <div class="import-grid">
-          <input id="csvFileInput" type="file" accept=".csv,text/csv" />
-          <button id="processCsvButton" class="primary-button">Process file</button>
-          <button id="saveImportedDataButton" class="ghost-button">Save imported data to repo</button>
-        </div>
-        <p id="importStatus" class="helper-text">No Goodreads data loaded yet. Import a CSV to get started.</p>
-      </section>
-
-      <section class="analytics">
-        <div id="analyticsTiles" class="tile-grid"></div>
-      </section>
-
-      <section class="insights-section card">
-        <div class="section-header">
-          <h2>Reading insights</h2>
-          <p>Fast signal only — no charts.</p>
-        </div>
-        <ul id="insightsList" class="insights-list"></ul>
-      </section>
-
-      <section class="recommendations-section card">
-        <div class="section-header">
-          <div>
-            <h2>Top recommendations</h2>
-            <p>All 10 visible at once. Dismiss to replace from the same category queue.</p>
+          <div class="import-grid">
+            <input id="csvFileInput" type="file" accept=".csv,text/csv" />
+            <button id="processCsvButton" class="primary-button">Process file</button>
+            <button id="saveImportedDataButton" class="ghost-button">Save to repo</button>
           </div>
-          <button id="refreshButton" class="ghost-button">Refresh recommendations</button>
-        </div>
-        <div id="recommendationsGrid" class="recommendations-grid"></div>
-      </section>
-    </div>
+          <p id="importStatus" class="helper-text">No Goodreads data loaded yet. Import a CSV to get started.</p>
+        </section>
 
+        <!-- Analytics tiles -->
+        <section class="analytics">
+          <div id="analyticsTiles" class="tile-grid"></div>
+        </section>
+
+        <!-- Reading insights -->
+        <section class="insights-section card">
+          <div class="section-header">
+            <div>
+              <h2>Reading insights</h2>
+              <p>Fast signal only — no charts.</p>
+            </div>
+          </div>
+          <ul id="insightsList" class="insights-list"></ul>
+        </section>
+
+        <!-- Recommendations -->
+        <section class="recommendations-section card">
+          <div class="section-header">
+            <div>
+              <h2>Top recommendations</h2>
+              <p>All 10 visible at once. Dismiss to replace from the same category queue.</p>
+            </div>
+            <button id="refreshButton" class="ghost-button">Refresh recommendations</button>
+          </div>
+          <div id="recommendationsGrid" class="recommendations-grid"></div>
+        </section>
+
+      </div><!-- /.container -->
+    </div><!-- /.app-shell -->
+
+    <!-- ===== SETTINGS DIALOG ===== -->
     <dialog id="settingsDialog" class="dialog">
       <form method="dialog" class="dialog-body">
         <div class="dialog-header">
           <h3>GitHub connection</h3>
-          <button class="ghost-button">Close</button>
+          <button type="submit">Close</button>
         </div>
-        <p class="dialog-copy">Paste your GitHub settings to enable write-back for dismissals, hides, and recommendation history. Public repo reads work without this.</p>
+        <p class="dialog-copy">Paste your GitHub settings to enable write-back for dismissals and recommendation history. Public repo reads work without this.</p>
         <label>GitHub token
           <input id="githubToken" type="password" autocomplete="off" placeholder="Paste Personal Access Token" />
         </label>
@@ -86,27 +109,29 @@
           <input id="repoBranch" type="text" value="main" />
         </label>
         <div class="dialog-actions">
-          <button id="saveSettingsButton" value="default" class="primary-button">Save connection</button>
+          <button id="saveSettingsButton" type="button" class="primary-button">Save connection</button>
         </div>
       </form>
     </dialog>
 
+    <!-- ===== DISMISS DIALOG ===== -->
     <dialog id="dismissDialog" class="dialog">
-      <form method="dialog" class="dialog-body">
+      <form id="dismissForm" method="dialog" class="dialog-body">
         <div class="dialog-header">
           <h3>Dismiss recommendation</h3>
-          <button class="ghost-button">Close</button>
+          <button type="submit">Close</button>
         </div>
-        <p id="dismissPrompt" class="dialog-copy"></p>
+        <p id="dismissBookLabel"></p>
+        <p class="dialog-copy" style="padding-top:0">Why are you dismissing this one?</p>
         <div class="reason-list">
           <label><input type="radio" name="dismissReason" value="already_aware_not_interested" checked /> Already aware / not interested</label>
           <label><input type="radio" name="dismissReason" value="wrong_genre_or_vibe" /> Wrong genre or vibe</label>
-          <label><input type="radio" name="dismissReason" value="too_similar" /> Too similar to something already read</label>
+          <label><input type="radio" name="dismissReason" value="too_similar" /> Too similar to something I read</label>
           <label><input type="radio" name="dismissReason" value="not_in_the_mood" /> Not in the mood right now</label>
           <label><input type="radio" name="dismissReason" value="author_or_topic_not_appealing" /> Author or topic not appealing</label>
         </div>
         <div class="dialog-actions">
-          <button id="confirmDismissButton" class="primary-button" value="default">Save dismissal</button>
+          <button id="confirmDismissButton" class="primary-button" value="default" type="submit">Save dismissal</button>
         </div>
       </form>
     </dialog>
@@ -114,4 +139,3 @@
     <script type="module" src="./app.js"></script>
   </body>
 </html>
-``
