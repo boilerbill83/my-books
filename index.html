@@ -13,20 +13,16 @@
   <body>
     <div class="app-shell">
 
-      <!-- ===== HERO ===== -->
-      <header class="hero">
-        <div class="hero-logo-wrap">
-          <img src="./PNG image.png" alt="Bill's Books" class="hero-logo" />
+      <!-- ===== COMPACT HEADER ===== -->
+      <header class="site-header">
+        <div class="container header-inner">
+          <img src="./PNG image.png" alt="Bill's Books" class="site-logo" />
+          <div class="header-status">
+            <span class="status-dot" id="statusDot"></span>
+            <span id="statusText">Loading…</span>
+          </div>
         </div>
       </header>
-
-      <!-- ===== STATUS BAR ===== -->
-      <div class="status-bar">
-        <div class="container">
-          <span class="status-dot" id="statusDot"></span>
-          <span id="statusText">Loading…</span>
-        </div>
-      </div>
 
       <!-- ===== MAIN CONTENT ===== -->
       <div class="container">
@@ -37,14 +33,9 @@
         </section>
 
         <!-- Reading insights -->
-        <section>
+        <section class="insights-section">
           <div class="card">
-            <div class="section-header">
-              <div>
-                <h2>📖 Reading Insights</h2>
-                <p class="section-sub">Refreshes with new facts every page load.</p>
-              </div>
-            </div>
+            <h3 class="card-heading">📖 Reading Insights</h3>
             <ul id="insightsList" class="insights-list"></ul>
           </div>
         </section>
@@ -52,19 +43,14 @@
         <!-- What Should I Read Next -->
         <section class="recommendations-section">
           <div class="section-header">
-            <div>
-              <h2>📚 What Should I Read Next?</h2>
-              <p class="section-sub">Top picks from your to-read list and curated candidates.</p>
-            </div>
-          </div>
-          <div id="recommendationsGrid" class="recs-grid"></div>
-          <div class="refresh-row">
+            <h3 class="card-heading">📚 What Should I Read Next?</h3>
             <button id="refreshButton" class="primary-button">Refresh ↻</button>
           </div>
+          <div id="recommendationsGrid" class="recs-grid"></div>
         </section>
 
-      </div><!-- /.container -->
-    </div><!-- /.app-shell -->
+      </div>
+    </div>
 
     <!-- ===== DISMISS DIALOG ===== -->
     <dialog id="dismissDialog" class="dialog">
