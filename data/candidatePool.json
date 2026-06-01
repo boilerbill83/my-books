@@ -1,0 +1,536 @@
+{
+  "meta": {
+    "count": 24
+  },
+  "candidates": [
+    {
+      "title": "The One",
+      "author": "John Marrs",
+      "type": "fiction",
+      "pages": 416,
+      "themes": [
+        "speculative",
+        "thriller",
+        "high-concept"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Andy Weir"
+      ],
+      "similarToTitles": [
+        "Dark Matter",
+        "Recursion",
+        "Project Hail Mary"
+      ],
+      "bookKey": "the-one|john-marrs",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=The+One+John+Marrs",
+      "buyUrl": "https://www.amazon.com/s?k=The+One+John+Marrs"
+    },
+    {
+      "title": "Wrong Place Wrong Time",
+      "author": "Gillian McAllister",
+      "type": "fiction",
+      "pages": 336,
+      "themes": [
+        "thriller",
+        "time-slip",
+        "high-concept"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Freida McFadden"
+      ],
+      "similarToTitles": [
+        "Dark Matter",
+        "Upgrade"
+      ],
+      "bookKey": "wrong-place-wrong-time|gillian-mcallister",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=Wrong+Place+Wrong+Time+Gillian+McAllister",
+      "buyUrl": "https://www.amazon.com/s?k=Wrong+Place+Wrong+Time+Gillian+McAllister"
+    },
+    {
+      "title": "Kill for Me, Kill for You",
+      "author": "Steve Cavanagh",
+      "type": "fiction",
+      "pages": 320,
+      "themes": [
+        "thriller",
+        "legal",
+        "twisty"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Freida McFadden"
+      ],
+      "similarToTitles": [
+        "The Housemaid",
+        "A Time to Kill"
+      ],
+      "bookKey": "kill-for-me-kill-for-you|steve-cavanagh",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=Kill+for+Me,+Kill+for+You+Steve+Cavanagh",
+      "buyUrl": "https://www.amazon.com/s?k=Kill+for+Me,+Kill+for+You+Steve+Cavanagh"
+    },
+    {
+      "title": "The Last Flight",
+      "author": "Julie Clark",
+      "type": "fiction",
+      "pages": 320,
+      "themes": [
+        "thriller",
+        "domestic",
+        "fast-paced"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Freida McFadden"
+      ],
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "The Housemaid"
+      ],
+      "bookKey": "the-last-flight|julie-clark",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=The+Last+Flight+Julie+Clark",
+      "buyUrl": "https://www.amazon.com/s?k=The+Last+Flight+Julie+Clark"
+    },
+    {
+      "title": "Listen for the Lie",
+      "author": "Amy Tintera",
+      "type": "fiction",
+      "pages": 352,
+      "themes": [
+        "thriller",
+        "darkly-funny",
+        "mystery"
+      ],
+      "similarToAuthors": [
+        "Jeneva Rose",
+        "Freida McFadden"
+      ],
+      "similarToTitles": [
+        "The Perfect Marriage",
+        "Ward D"
+      ],
+      "bookKey": "listen-for-the-lie|amy-tintera",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=Listen+for+the+Lie+Amy+Tintera",
+      "buyUrl": "https://www.amazon.com/s?k=Listen+for+the+Lie+Amy+Tintera"
+    },
+    {
+      "title": "The Only One Left",
+      "author": "Riley Sager",
+      "type": "fiction",
+      "pages": 384,
+      "themes": [
+        "thriller",
+        "gothic",
+        "mystery"
+      ],
+      "similarToAuthors": [
+        "Alice Feeney",
+        "Jennifer Hillier"
+      ],
+      "similarToTitles": [
+        "Beautiful Ugly",
+        "Creep"
+      ],
+      "bookKey": "the-only-one-left|riley-sager",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=The+Only+One+Left+Riley+Sager",
+      "buyUrl": "https://www.amazon.com/s?k=The+Only+One+Left+Riley+Sager"
+    },
+    {
+      "title": "Starter Villain",
+      "author": "John Scalzi",
+      "type": "fiction",
+      "pages": 264,
+      "themes": [
+        "speculative",
+        "funny",
+        "fast-paced"
+      ],
+      "similarToAuthors": [
+        "Andy Weir",
+        "Blake Crouch"
+      ],
+      "similarToTitles": [
+        "Project Hail Mary",
+        "Upgrade"
+      ],
+      "bookKey": "starter-villain|john-scalzi",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=Starter+Villain+John+Scalzi",
+      "buyUrl": "https://www.amazon.com/s?k=Starter+Villain+John+Scalzi"
+    },
+    {
+      "title": "Wool",
+      "author": "Hugh Howey",
+      "type": "fiction",
+      "pages": 528,
+      "themes": [
+        "speculative",
+        "mystery",
+        "series-start"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Andy Weir"
+      ],
+      "similarToTitles": [
+        "Dark Matter",
+        "Project Hail Mary"
+      ],
+      "bookKey": "wool|hugh-howey",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=Wool+Hugh+Howey",
+      "buyUrl": "https://www.amazon.com/s?k=Wool+Hugh+Howey"
+    },
+    {
+      "title": "A Flicker in the Dark",
+      "author": "Stacy Willingham",
+      "type": "fiction",
+      "pages": 368,
+      "themes": [
+        "thriller",
+        "psychological",
+        "dark"
+      ],
+      "similarToAuthors": [
+        "Jennifer Hillier",
+        "Alice Feeney"
+      ],
+      "similarToTitles": [
+        "Creep",
+        "Beautiful Ugly"
+      ],
+      "bookKey": "a-flicker-in-the-dark|stacy-willingham",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=A+Flicker+in+the+Dark+Stacy+Willingham",
+      "buyUrl": "https://www.amazon.com/s?k=A+Flicker+in+the+Dark+Stacy+Willingham"
+    },
+    {
+      "title": "The Plot",
+      "author": "Jean Hanff Korelitz",
+      "type": "fiction",
+      "pages": 320,
+      "themes": [
+        "literary",
+        "thriller",
+        "meta"
+      ],
+      "similarToAuthors": [
+        "Taylor Jenkins Reid",
+        "Jennifer Hillier"
+      ],
+      "similarToTitles": [
+        "Daisy Jones & The Six",
+        "Creep"
+      ],
+      "bookKey": "the-plot|jean-hanff-korelitz",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=The+Plot+Jean+Hanff+Korelitz",
+      "buyUrl": "https://www.amazon.com/s?k=The+Plot+Jean+Hanff+Korelitz"
+    },
+    {
+      "title": "The Chain",
+      "author": "Adrian McKinty",
+      "type": "fiction",
+      "pages": 384,
+      "themes": [
+        "thriller",
+        "high-concept",
+        "fast-paced"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "B.A. Paris"
+      ],
+      "similarToTitles": [
+        "The Housemaid",
+        "Behind Closed Doors"
+      ],
+      "bookKey": "the-chain|adrian-mckinty",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=The+Chain+Adrian+McKinty",
+      "buyUrl": "https://www.amazon.com/s?k=The+Chain+Adrian+McKinty"
+    },
+    {
+      "title": "The Drift",
+      "author": "C.J. Tudor",
+      "type": "fiction",
+      "pages": 368,
+      "themes": [
+        "thriller",
+        "speculative",
+        "survival"
+      ],
+      "similarToAuthors": [
+        "Stephen King",
+        "Blake Crouch"
+      ],
+      "similarToTitles": [
+        "The Institute",
+        "Dark Matter"
+      ],
+      "bookKey": "the-drift|c-j-tudor",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=The+Drift+C.J.+Tudor",
+      "buyUrl": "https://www.amazon.com/s?k=The+Drift+C.J.+Tudor"
+    },
+    {
+      "title": "The Passengers",
+      "author": "John Marrs",
+      "type": "fiction",
+      "pages": 352,
+      "themes": [
+        "speculative",
+        "thriller",
+        "tech"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Andy Weir"
+      ],
+      "similarToTitles": [
+        "Upgrade",
+        "Project Hail Mary"
+      ],
+      "bookKey": "the-passengers|john-marrs",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=The+Passengers+John+Marrs",
+      "buyUrl": "https://www.amazon.com/s?k=The+Passengers+John+Marrs"
+    },
+    {
+      "title": "Several People Are Typing",
+      "author": "Calvin Kasulke",
+      "type": "fiction",
+      "pages": 256,
+      "themes": [
+        "office",
+        "speculative",
+        "funny"
+      ],
+      "similarToAuthors": [
+        "Chuck Klosterman",
+        "Blake Crouch"
+      ],
+      "similarToTitles": [
+        "Upgrade",
+        "Clusterf*ck"
+      ],
+      "bookKey": "several-people-are-typing|calvin-kasulke",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=Several+People+Are+Typing+Calvin+Kasulke",
+      "buyUrl": "https://www.amazon.com/s?k=Several+People+Are+Typing+Calvin+Kasulke"
+    },
+    {
+      "title": "The Echo Wife",
+      "author": "Sarah Gailey",
+      "type": "fiction",
+      "pages": 256,
+      "themes": [
+        "speculative",
+        "thriller",
+        "dark"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Jennifer Hillier"
+      ],
+      "similarToTitles": [
+        "Upgrade",
+        "Creep"
+      ],
+      "bookKey": "the-echo-wife|sarah-gailey",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=The+Echo+Wife+Sarah+Gailey",
+      "buyUrl": "https://www.amazon.com/s?k=The+Echo+Wife+Sarah+Gailey"
+    },
+    {
+      "title": "The Measure",
+      "author": "Nikki Erlick",
+      "type": "fiction",
+      "pages": 368,
+      "themes": [
+        "speculative",
+        "accessible",
+        "book-club"
+      ],
+      "similarToAuthors": [
+        "Taylor Jenkins Reid",
+        "Blake Crouch"
+      ],
+      "similarToTitles": [
+        "One True Loves",
+        "Dark Matter"
+      ],
+      "bookKey": "the-measure|nikki-erlick",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=The+Measure+Nikki+Erlick",
+      "buyUrl": "https://www.amazon.com/s?k=The+Measure+Nikki+Erlick"
+    },
+    {
+      "title": "The Kaiju Preservation Society",
+      "author": "John Scalzi",
+      "type": "fiction",
+      "pages": 272,
+      "themes": [
+        "speculative",
+        "funny",
+        "adventure"
+      ],
+      "similarToAuthors": [
+        "Andy Weir",
+        "Blake Crouch"
+      ],
+      "similarToTitles": [
+        "Project Hail Mary",
+        "Upgrade"
+      ],
+      "bookKey": "the-kaiju-preservation-society|john-scalzi",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=The+Kaiju+Preservation+Society+John+Scalzi",
+      "buyUrl": "https://www.amazon.com/s?k=The+Kaiju+Preservation+Society+John+Scalzi"
+    },
+    {
+      "title": "Empire of Pain",
+      "author": "Patrick Radden Keefe",
+      "type": "nonfiction",
+      "pages": 560,
+      "themes": [
+        "investigative",
+        "business",
+        "history"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "David Grann"
+      ],
+      "similarToTitles": [
+        "Going Infinite",
+        "The Big Short"
+      ],
+      "bookKey": "empire-of-pain|patrick-radden-keefe",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=Empire+of+Pain+Patrick+Radden+Keefe",
+      "buyUrl": "https://www.amazon.com/s?k=Empire+of+Pain+Patrick+Radden+Keefe"
+    },
+    {
+      "title": "Chip War",
+      "author": "Chris Miller",
+      "type": "nonfiction",
+      "pages": 480,
+      "themes": [
+        "technology",
+        "business",
+        "history"
+      ],
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Ashlee Vance"
+      ],
+      "similarToTitles": [
+        "Steve Jobs",
+        "Elon Musk"
+      ],
+      "bookKey": "chip-war|chris-miller",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=Chip+War+Chris+Miller",
+      "buyUrl": "https://www.amazon.com/s?k=Chip+War+Chris+Miller"
+    },
+    {
+      "title": "The Founders",
+      "author": "Jimmy Soni",
+      "type": "nonfiction",
+      "pages": 448,
+      "themes": [
+        "technology",
+        "business",
+        "startup"
+      ],
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Brad Stone"
+      ],
+      "similarToTitles": [
+        "The Everything Store",
+        "Elon Musk"
+      ],
+      "bookKey": "the-founders|jimmy-soni",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=The+Founders+Jimmy+Soni",
+      "buyUrl": "https://www.amazon.com/s?k=The+Founders+Jimmy+Soni"
+    },
+    {
+      "title": "The Wager",
+      "author": "David Grann",
+      "type": "nonfiction",
+      "pages": 352,
+      "themes": [
+        "history",
+        "adventure",
+        "narrative-nonfiction"
+      ],
+      "similarToAuthors": [
+        "David Grann",
+        "Michael Lewis"
+      ],
+      "similarToTitles": [
+        "Killers of the Flower Moon",
+        "Moneyball"
+      ],
+      "bookKey": "the-wager|david-grann",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=The+Wager+David+Grann",
+      "buyUrl": "https://www.amazon.com/s?k=The+Wager+David+Grann"
+    },
+    {
+      "title": "American Kingpin",
+      "author": "Nick Bilton",
+      "type": "nonfiction",
+      "pages": 304,
+      "themes": [
+        "technology",
+        "crime",
+        "narrative-nonfiction"
+      ],
+      "similarToAuthors": [
+        "Nick Bilton",
+        "Ben Mezrich"
+      ],
+      "similarToTitles": [
+        "Hatching Twitter",
+        "The Antisocial Network"
+      ],
+      "bookKey": "american-kingpin|nick-bilton",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=American+Kingpin+Nick+Bilton",
+      "buyUrl": "https://www.amazon.com/s?k=American+Kingpin+Nick+Bilton"
+    },
+    {
+      "title": "Shoe Dog",
+      "author": "Phil Knight",
+      "type": "nonfiction",
+      "pages": 400,
+      "themes": [
+        "business",
+        "memoir",
+        "brand"
+      ],
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Michael Lewis"
+      ],
+      "similarToTitles": [
+        "Steve Jobs",
+        "Going Infinite"
+      ],
+      "bookKey": "shoe-dog|phil-knight",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=Shoe+Dog+Phil+Knight",
+      "buyUrl": "https://www.amazon.com/s?k=Shoe+Dog+Phil+Knight"
+    },
+    {
+      "title": "The Raging 2020s",
+      "author": "Alec Ross",
+      "type": "nonfiction",
+      "pages": 304,
+      "themes": [
+        "technology",
+        "business",
+        "future"
+      ],
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Michael Lewis"
+      ],
+      "similarToTitles": [
+        "The Code Breaker",
+        "Going Infinite"
+      ],
+      "bookKey": "the-raging-2020s|alec-ross",
+      "goodreadsUrl": "https://www.goodreads.com/search?q=The+Raging+2020s+Alec+Ross",
+      "buyUrl": "https://www.amazon.com/s?k=The+Raging+2020s+Alec+Ross"
+    }
+  ]
+}
