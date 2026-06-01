@@ -62,44 +62,54 @@ function summarize(goodreads) {
 
   const sortedPages = [...pages].sort((a, b) => a - b);
   return {
-    booksRead:         readBooks.length,
-    fiveStarBooks:     fiveStar.length,
-    avgRating:         readBooks.length
+    booksRead:          readBooks.length,
+    fiveStarBooks:      fiveStar.length,
+    avgRating:          readBooks.length
       ? (readBooks.reduce((s, b) => s + (Number(b.myRating) || 0), 0) / readBooks.length).toFixed(2)
       : '0.00',
-    favoriteAuthors:   [...byAuthor.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3),
-    medianPages:       sortedPages.length ? sortedPages[Math.floor(sortedPages.length / 2)] : null,
-    mostRecentReadYear:[...years.keys()].sort().slice(-1)[0] || 'n/a'
+    favoriteAuthors:    [...byAuthor.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3),
+    medianPages:        sortedPages.length ? sortedPages[Math.floor(sortedPages.length / 2)] : null,
+    mostRecentReadYear: [...years.keys()].sort().slice(-1)[0] || 'n/a'
   };
 }
 
 function isExcluded(candidate, idx) {
-  const k        = bookKey(candidate.title, candidate.author);
-  if (idx.read.has(k) || idx.toRead.has(k) || idx.currentlyReading.has(k)) return true;
+  const k        = candidate.bookKey || bookKey(candidate.title, candidate.author);
   const feedback = idx.excluded.get(k);
-  return Boolean(feedback?.explicitHide || feedback?.excludeFromRecommendations);
+  if (feedback?.explicitHide || feedback?.excludeFromRecommendations) return true;
+  // to-read shelf books are never auto-excluded — user already wants to read them
+  if (candidate.fromToRead) return false;
+  return idx.read.has(k) || idx.currentlyReading.has(k);
 }
 
 function matchScore(candidate, idx, profile, timesShown) {
   let score = 55;
 
-  for (const a of candidate.similarToAuthors || []) {
-    score += (idx.fiveStarAuthors.get(a) || 0) * 4;
-    score += (idx.allReadAuthors.get(a)   || 0) * 0.5;
+  if (candidate.fromToRead) {
+    score += 10; // base boost — user already expressed interest
+    score += (idx.fiveStarAuthors.get(candidate.author) || 0) * 6;
+    score += (idx.allReadAuthors.get(candidate.author)   || 0) * 1.5;
+    const avg = Number(candidate.avgRating) || 0;
+    if (avg > 0) score += (avg - 3.5) * 6;
+  } else {
+    for (const a of candidate.similarToAuthors || []) {
+      score += (idx.fiveStarAuthors.get(a) || 0) * 4;
+      score += (idx.allReadAuthors.get(a)   || 0) * 0.5;
+    }
+    for (const t of candidate.similarToTitles || []) {
+      if (idx.fiveStarTitles.has(t)) score += 8;
+    }
+    if (profile.medianPages && candidate.pages) {
+      const delta = Math.abs(candidate.pages - profile.medianPages);
+      if (delta <= 50)       score += 6;
+      else if (delta <= 100) score += 3;
+      else if (delta >= 220) score -= 4;
+    }
+    if ((candidate.themes || []).includes('speculative')) score += 2;
+    if ((candidate.themes || []).includes('thriller'))    score += 2;
+    if ((candidate.themes || []).includes('technology'))  score += 2;
+    if ((candidate.themes || []).includes('business'))    score += 1;
   }
-  for (const t of candidate.similarToTitles || []) {
-    if (idx.fiveStarTitles.has(t)) score += 8;
-  }
-  if (profile.medianPages && candidate.pages) {
-    const delta = Math.abs(candidate.pages - profile.medianPages);
-    if (delta <= 50)       score += 6;
-    else if (delta <= 100) score += 3;
-    else if (delta >= 220) score -= 4;
-  }
-  if ((candidate.themes || []).includes('speculative')) score += 2;
-  if ((candidate.themes || []).includes('thriller'))    score += 2;
-  if ((candidate.themes || []).includes('technology'))  score += 2;
-  if ((candidate.themes || []).includes('business'))    score += 1;
 
   if (timesShown === 1)      score -= 10;
   else if (timesShown === 2) score -= 25;
@@ -109,6 +119,13 @@ function matchScore(candidate, idx, profile, timesShown) {
 }
 
 function confidenceScore(candidate, idx) {
+  if (candidate.fromToRead) {
+    let score = 55;
+    if (idx.fiveStarAuthors.has(candidate.author))    score += 20;
+    else if (idx.allReadAuthors.has(candidate.author)) score += 10;
+    if (candidate.pages) score += 4;
+    return Math.max(0, Math.min(100, Math.round(score)));
+  }
   let score = 58;
   if ((candidate.similarToAuthors || []).length >= 2) score += 8;
   if ((candidate.similarToTitles  || []).length >= 2) score += 8;
@@ -122,6 +139,15 @@ function confidenceScore(candidate, idx) {
 }
 
 function reason(candidate, idx) {
+  if (candidate.fromToRead) {
+    const fiveCount = idx.fiveStarAuthors.get(candidate.author) || 0;
+    const readCount = idx.allReadAuthors.get(candidate.author)   || 0;
+    if (fiveCount > 0)
+      return `On your to-read list — you've given ${candidate.author} five stars before (${fiveCount} time${fiveCount > 1 ? 's' : ''}).`;
+    if (readCount > 0)
+      return `On your to-read list — you've read ${readCount} other book${readCount > 1 ? 's' : ''} by ${candidate.author}.`;
+    return `On your to-read list — sounds like it could be your next great read.`;
+  }
   const authorMatches = (candidate.similarToAuthors || []).filter(a => idx.fiveStarAuthors.has(a));
   const titleMatches  = (candidate.similarToTitles  || []).filter(t => idx.fiveStarTitles.has(t));
   const parts = [];
@@ -140,7 +166,9 @@ export function rankRecommendations(goodreads, feedback, candidatePool, history)
   const viable  = (candidatePool || []).filter(c => !isExcluded(c, idx));
 
   const scored = viable.map(c => {
-    const k = bookKey(c.title, c.author);
+    const k = c.fromToRead
+      ? (c.bookKey || bookKey(c.title, c.author))
+      : bookKey(c.title, c.author);
     return {
       ...c,
       bookKey:         k,
@@ -150,17 +178,9 @@ export function rankRecommendations(goodreads, feedback, candidatePool, history)
     };
   }).sort((a, b) => (b.matchScore - a.matchScore) || (b.confidenceScore - a.confidenceScore));
 
-  const fiction    = scored.filter(x => x.type === 'fiction').slice(0, 7);
-  const nonfiction = scored.filter(x => x.type === 'nonfiction').slice(0, 3);
-  const selected   = [...fiction, ...nonfiction]
-    .sort((a, b) => (b.matchScore - a.matchScore) || (b.confidenceScore - a.confidenceScore))
-    .map((x, i) => ({ ...x, rank: i + 1 }));
-
   return {
-    selected,
+    selected:      scored.map((x, i) => ({ ...x, rank: i + 1 })),
     profile,
-    eligibleCount:  viable.length,
-    fictionPool:    scored.filter(x => x.type === 'fiction').length,
-    nonfictionPool: scored.filter(x => x.type === 'nonfiction').length
+    eligibleCount: viable.length
   };
 }
