@@ -1,0 +1,474 @@
+{
+  "candidates": [
+    {
+      "title": "A Calamity of Souls",
+      "author": "David Baldacci",
+      "year": 2024,
+      "pages": 400,
+      "avgRating": 4.2,
+      "isbn13": "9781538765029",
+      "themes": [
+        "legal thriller",
+        "racial injustice",
+        "courtroom"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow"
+      ],
+      "type": "fiction",
+      "publisher": "Grand Central Publishing"
+    },
+    {
+      "title": "Suspect",
+      "author": "Scott Turow",
+      "year": 2022,
+      "pages": 439,
+      "avgRating": 3.8,
+      "isbn13": "9781538706329",
+      "themes": [
+        "legal thriller",
+        "police scandal",
+        "courtroom"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow"
+      ],
+      "type": "fiction",
+      "publisher": "Grand Central Publishing"
+    },
+    {
+      "title": "Southern Man",
+      "author": "Greg Iles",
+      "year": 2024,
+      "pages": 912,
+      "avgRating": 4.1,
+      "themes": [
+        "legal thriller",
+        "Southern noir",
+        "racial politics"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "David Baldacci"
+      ],
+      "type": "fiction",
+      "publisher": "William Morrow"
+    },
+    {
+      "title": "Goodbye Girl",
+      "author": "James Grippando",
+      "year": 2024,
+      "pages": 320,
+      "avgRating": 3.87,
+      "isbn13": "9780063223844",
+      "themes": [
+        "legal thriller",
+        "music industry",
+        "digital piracy"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Steve Cavanagh"
+      ],
+      "type": "fiction",
+      "publisher": "HarperCollins"
+    },
+    {
+      "title": "The Waiting",
+      "author": "Michael Connelly",
+      "year": 2024,
+      "pages": 416,
+      "avgRating": 4.35,
+      "themes": [
+        "detective thriller",
+        "serial killer",
+        "police procedural"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "James Patterson"
+      ],
+      "type": "fiction",
+      "publisher": "Little, Brown and Company"
+    },
+    {
+      "title": "Desert Star",
+      "author": "Michael Connelly",
+      "year": 2022,
+      "pages": 400,
+      "avgRating": 4.47,
+      "isbn13": "9780316421461",
+      "themes": [
+        "detective thriller",
+        "cold case",
+        "police procedural"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "James Patterson"
+      ],
+      "type": "fiction",
+      "publisher": "Little, Brown and Company"
+    },
+    {
+      "title": "The Lightning Rod",
+      "author": "Brad Meltzer",
+      "year": 2022,
+      "pages": 400,
+      "avgRating": 3.93,
+      "themes": [
+        "government thriller",
+        "military conspiracy",
+        "suspense"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Brad Meltzer"
+      ],
+      "type": "fiction",
+      "publisher": "William Morrow"
+    },
+    {
+      "title": "All the Sinners Bleed",
+      "author": "S.A. Cosby",
+      "year": 2023,
+      "pages": 352,
+      "avgRating": 4.18,
+      "isbn13": "9781250831910",
+      "themes": [
+        "Southern noir",
+        "serial killer",
+        "race and justice"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "James Patterson"
+      ],
+      "type": "fiction",
+      "publisher": "Flatiron Books"
+    },
+    {
+      "title": "Bright Young Women",
+      "author": "Jessica Knoll",
+      "year": 2023,
+      "pages": 400,
+      "avgRating": 3.98,
+      "isbn13": "9781501153235",
+      "themes": [
+        "psychological thriller",
+        "true crime",
+        "feminist suspense"
+      ],
+      "similarToAuthors": [
+        "Gillian Flynn",
+        "Freida McFadden"
+      ],
+      "type": "fiction",
+      "publisher": "Simon & Schuster"
+    },
+    {
+      "title": "The It Girl",
+      "author": "Ruth Ware",
+      "year": 2022,
+      "pages": 423,
+      "avgRating": 3.84,
+      "isbn13": "9781982155261",
+      "themes": [
+        "psychological thriller",
+        "Oxford campus",
+        "cold case murder"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Freida McFadden"
+      ],
+      "type": "fiction",
+      "publisher": "Scout Press"
+    },
+    {
+      "title": "One Perfect Couple",
+      "author": "Ruth Ware",
+      "year": 2024,
+      "pages": 395,
+      "avgRating": 3.9,
+      "isbn13": "9781668025598",
+      "themes": [
+        "psychological thriller",
+        "survival",
+        "reality TV island"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Lucy Foley"
+      ],
+      "type": "fiction",
+      "publisher": "Simon & Schuster"
+    },
+    {
+      "title": "The Midnight Feast",
+      "author": "Lucy Foley",
+      "year": 2024,
+      "pages": 416,
+      "avgRating": 3.9,
+      "isbn13": "9780008385057",
+      "themes": [
+        "psychological thriller",
+        "luxury resort",
+        "dark secrets"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Ruth Ware"
+      ],
+      "type": "fiction",
+      "publisher": "HarperCollins"
+    },
+    {
+      "title": "What Happened to Nina?",
+      "author": "Dervla McTiernan",
+      "year": 2024,
+      "pages": 336,
+      "avgRating": 4.05,
+      "isbn13": "9780063042254",
+      "themes": [
+        "psychological thriller",
+        "missing person",
+        "family dynamics"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "B.A. Paris"
+      ],
+      "type": "fiction",
+      "publisher": "William Morrow"
+    },
+    {
+      "title": "House of Glass",
+      "author": "Sarah Pekkanen",
+      "year": 2024,
+      "pages": 341,
+      "avgRating": 3.81,
+      "themes": [
+        "domestic thriller",
+        "custody battle",
+        "dark family secrets"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Freida McFadden"
+      ],
+      "type": "fiction",
+      "publisher": "St. Martin's Press"
+    },
+    {
+      "title": "My Husband",
+      "author": "Maud Ventura",
+      "year": 2023,
+      "pages": 288,
+      "avgRating": 3.9,
+      "themes": [
+        "domestic thriller",
+        "marital obsession",
+        "unreliable narrator"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Gillian Flynn"
+      ],
+      "type": "fiction",
+      "publisher": "Harper Perennial"
+    },
+    {
+      "title": "Say Nothing: A True Story of Murder and Memory in Northern Ireland",
+      "author": "Patrick Radden Keefe",
+      "year": 2019,
+      "pages": 441,
+      "avgRating": 4.47,
+      "isbn13": "9780385521314",
+      "themes": [
+        "narrative nonfiction",
+        "true crime",
+        "IRA history"
+      ],
+      "similarToAuthors": [
+        "David Grann",
+        "Michael Finkel"
+      ],
+      "type": "nonfiction",
+      "publisher": "Doubleday"
+    },
+    {
+      "title": "Master Slave Husband Wife: An Epic Journey from Slavery to Freedom",
+      "author": "Ilyon Woo",
+      "year": 2023,
+      "pages": 416,
+      "avgRating": 3.94,
+      "isbn13": "9781501191053",
+      "themes": [
+        "narrative nonfiction",
+        "antebellum history",
+        "escape adventure"
+      ],
+      "similarToAuthors": [
+        "David Grann",
+        "Jon Krakauer"
+      ],
+      "type": "nonfiction",
+      "publisher": "Simon & Schuster"
+    },
+    {
+      "title": "The Covenant of Water",
+      "author": "Abraham Verghese",
+      "year": 2023,
+      "pages": 724,
+      "avgRating": 4.4,
+      "isbn13": "9780802162175",
+      "themes": [
+        "literary fiction",
+        "multigenerational saga",
+        "India"
+      ],
+      "similarToAuthors": [
+        "Kristin Hannah",
+        "Taylor Jenkins Reid"
+      ],
+      "type": "fiction",
+      "publisher": "Grove Press"
+    },
+    {
+      "title": "The Women",
+      "author": "Kristin Hannah",
+      "year": 2024,
+      "pages": 471,
+      "avgRating": 4.62,
+      "isbn13": "9781250178633",
+      "themes": [
+        "historical fiction",
+        "Vietnam War nurses",
+        "female resilience"
+      ],
+      "similarToAuthors": [
+        "Kristin Hannah",
+        "Taylor Jenkins Reid"
+      ],
+      "type": "fiction",
+      "publisher": "St. Martin's Press"
+    },
+    {
+      "title": "The Frozen River",
+      "author": "Ariel Lawhon",
+      "year": 2023,
+      "pages": 432,
+      "avgRating": 4.38,
+      "isbn13": "9780385546874",
+      "themes": [
+        "historical fiction",
+        "murder mystery",
+        "18th-century America"
+      ],
+      "similarToAuthors": [
+        "Kristin Hannah",
+        "Taylor Jenkins Reid"
+      ],
+      "type": "fiction",
+      "publisher": "Doubleday"
+    },
+    {
+      "title": "James",
+      "author": "Percival Everett",
+      "year": 2024,
+      "pages": 303,
+      "avgRating": 4.39,
+      "isbn13": "9780385550369",
+      "themes": [
+        "literary fiction",
+        "reimagined classic",
+        "race and identity"
+      ],
+      "similarToAuthors": [
+        "Gabrielle Zevin",
+        "James McBride"
+      ],
+      "type": "fiction",
+      "publisher": "Doubleday"
+    },
+    {
+      "title": "Hello Beautiful",
+      "author": "Ann Napolitano",
+      "year": 2023,
+      "pages": 387,
+      "avgRating": 4.04,
+      "isbn13": "9780593243732",
+      "themes": [
+        "literary fiction",
+        "family saga",
+        "generational trauma"
+      ],
+      "similarToAuthors": [
+        "Kristin Hannah",
+        "Taylor Jenkins Reid"
+      ],
+      "type": "fiction",
+      "publisher": "Dial Press"
+    },
+    {
+      "title": "The Heaven & Earth Grocery Store",
+      "author": "James McBride",
+      "year": 2023,
+      "pages": 400,
+      "avgRating": 3.81,
+      "isbn13": "9780593422946",
+      "themes": [
+        "literary fiction",
+        "historical community",
+        "race in America"
+      ],
+      "similarToAuthors": [
+        "Kristin Hannah",
+        "Gabrielle Zevin"
+      ],
+      "type": "fiction",
+      "publisher": "Riverhead Books"
+    },
+    {
+      "title": "Number Go Up: Inside Crypto's Wild Rise and Staggering Fall",
+      "author": "Zeke Faux",
+      "year": 2023,
+      "pages": 304,
+      "avgRating": 4.2,
+      "isbn13": "9780593443811",
+      "themes": [
+        "finance nonfiction",
+        "crypto",
+        "investigative narrative"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Ben Mezrich"
+      ],
+      "type": "nonfiction",
+      "publisher": "Crown Currency"
+    },
+    {
+      "title": "The Chaos Machine: The Inside Story of How Social Media Rewired Our Minds and Our World",
+      "author": "Max Fisher",
+      "year": 2022,
+      "pages": 400,
+      "avgRating": 4.27,
+      "isbn13": "9780316703321",
+      "themes": [
+        "tech nonfiction",
+        "social media",
+        "algorithmic radicalization"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Walter Isaacson"
+      ],
+      "type": "nonfiction",
+      "publisher": "Little, Brown"
+    }
+  ]
+}
