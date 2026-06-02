@@ -13,10 +13,9 @@
   <body>
     <div class="app-shell">
 
-      <!-- ===== COMPACT HEADER ===== -->
+      <!-- ===== SLIM HEADER (status only) ===== -->
       <header class="site-header">
         <div class="container header-inner">
-          <img src="./PNG image.png" alt="Bill's Books" class="site-logo" />
           <div class="header-status">
             <span class="status-dot" id="statusDot"></span>
             <span id="statusText">Loading…</span>
@@ -27,10 +26,17 @@
       <!-- ===== MAIN CONTENT ===== -->
       <div class="container">
 
-        <!-- Currently Reading -->
-        <section id="currentlyReadingSection" hidden>
-          <h3 class="card-heading">📖 Currently Reading</h3>
-          <div id="currentlyReadingGrid" class="cr-grid"></div>
+        <!-- Logo + Currently Reading (side-by-side) -->
+        <section id="currentlyReadingSection">
+          <div class="cr-top-layout">
+            <div class="cr-logo-col">
+              <img src="./PNG image.png" alt="Bill's Books" class="site-logo" />
+            </div>
+            <div class="cr-books-col">
+              <h3 class="card-heading">📖 Currently Reading</h3>
+              <div id="currentlyReadingGrid" class="cr-grid"></div>
+            </div>
+          </div>
         </section>
 
         <!-- Analytics tiles + rating donut -->
@@ -55,6 +61,18 @@
           <div class="section-header">
             <h3 class="card-heading">📚 What Should I Read Next?</h3>
             <button id="refreshButton" class="primary-button">Refresh ↻</button>
+          </div>
+          <div class="filter-bar">
+            <span class="filter-label">Include:</span>
+            <label class="filter-check">
+              <input type="checkbox" id="filterToRead" checked />
+              <span>My to-read list</span>
+            </label>
+            <label class="filter-check">
+              <input type="checkbox" id="filterOnlineFinds" checked />
+              <span>Online finds</span>
+            </label>
+            <span class="pool-count" id="poolCount"></span>
           </div>
           <!-- decorative bookshelf bar -->
           <div id="bookshelfBar" class="bookshelf-bar" aria-hidden="true"></div>

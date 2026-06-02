@@ -24,8 +24,10 @@ const refreshButton       = document.getElementById('refreshButton');
 const dismissDialog            = document.getElementById('dismissDialog');
 const dismissBookLabel         = document.getElementById('dismissBookLabel');
 const dismissForm              = document.getElementById('dismissForm');
-const currentlyReadingSection  = document.getElementById('currentlyReadingSection');
 const currentlyReadingGrid     = document.getElementById('currentlyReadingGrid');
+const filterToRead             = document.getElementById('filterToRead');
+const filterOnlineFinds        = document.getElementById('filterOnlineFinds');
+const poolCountEl              = document.getElementById('poolCount');
 
 // ── Utilities ──────────────────────────────────────────────────────────────
 
@@ -141,12 +143,9 @@ async function fetchCurrentlyReading() {
 }
 
 function renderCurrentlyReading(books) {
-  if (!currentlyReadingSection || !currentlyReadingGrid || !books.length) {
-    if (currentlyReadingSection) currentlyReadingSection.hidden = true;
-    return;
-  }
+  if (!currentlyReadingGrid) return;
+  if (!books.length) { currentlyReadingGrid.innerHTML = ''; return; }
   const scored = scoreBooks(books, state.goodreads, state.feedback, state.history);
-  currentlyReadingSection.hidden = false;
 
   currentlyReadingGrid.innerHTML = scored.map(book => {
     const color    = hashColor(book.bookKey || book.title);
@@ -467,15 +466,20 @@ function renderRecommendations() {
 // ── Data & Recompute ───────────────────────────────────────────────────────
 
 function recompute() {
-  const external    = state.candidates || [];
-  const toReadCands = (state.goodreads.books || [])
-    .filter(b => b.shelf === 'to-read')
-    .map(b => ({ ...b, fromToRead: true, similarToAuthors: [], similarToTitles: [], themes: [] }));
+  const external    = filterOnlineFinds?.checked !== false ? (state.candidates || []) : [];
+  const toReadCands = filterToRead?.checked !== false
+    ? (state.goodreads.books || [])
+        .filter(b => b.shelf === 'to-read')
+        .map(b => ({ ...b, fromToRead: true, similarToAuthors: [], similarToTitles: [], themes: [] }))
+    : [];
+
+  const allCands = [...external, ...toReadCands];
+  if (poolCountEl) poolCountEl.textContent = `${allCands.length.toLocaleString()} in pool`;
 
   state.ranking = rankRecommendations(
     state.goodreads,
     state.feedback,
-    [...external, ...toReadCands],
+    allCands,
     state.history
   );
 
@@ -489,16 +493,21 @@ function recompute() {
 
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [goodreads, feedback, history, candidates] = await Promise.all([
+  const [goodreads, feedback, history, candIndex] = await Promise.all([
     get('./data/goodreadsData.json'),
     get('./data/feedbackData.json'),
     get('./data/recommendationHistory.json'),
-    get('./data/candidatePool.json')
+    get('./data/candidateIndex.json').catch(() => ['candidatePool.json'])
   ]);
-  state.goodreads  = goodreads;
-  state.feedback   = feedback;
-  state.history    = history;
-  state.candidates = candidates.candidates || [];
+  state.goodreads = goodreads;
+  state.feedback  = feedback;
+  state.history   = history;
+
+  const files  = Array.isArray(candIndex) ? candIndex : ['candidatePool.json'];
+  const arrays = await Promise.all(
+    files.map(f => get(`./data/${f}`).then(d => d.candidates || []).catch(() => []))
+  );
+  state.candidates = arrays.flat();
 }
 
 // ── Dismiss (local-only) ───────────────────────────────────────────────────
@@ -536,6 +545,11 @@ function dismiss(reasonCode) {
 }
 
 // ── Event wiring ───────────────────────────────────────────────────────────
+
+// Filter checkboxes reset page and recompute
+[filterToRead, filterOnlineFinds].forEach(el => {
+  el?.addEventListener('change', () => { state.page = 0; recompute(); });
+});
 
 // Animated refresh (visual appeal #1)
 refreshButton.addEventListener('click', () => {

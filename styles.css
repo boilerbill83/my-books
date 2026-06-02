@@ -28,21 +28,23 @@ body {
 .app-shell { min-height: 100vh; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-/* ── COMPACT HEADER ── */
+/* ── SLIM HEADER (status only) ── */
 .site-header {
   background: var(--bg-subtle);
-  border-bottom: 2px solid var(--border);
-  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  padding: 5px 0;
 }
 .header-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 16px;
 }
+
+/* ── LOGO (now lives beside Currently Reading) ── */
 .site-logo {
-  height: 90px;
-  width: auto;
+  width: 160px;
+  height: auto;
   display: block;
   filter: drop-shadow(0 2px 8px rgba(44,26,14,0.15));
 }
@@ -238,6 +240,44 @@ section { padding: 14px 0; }
 
 /* ── RECOMMENDATIONS ── */
 .recommendations-section { padding: 12px 0 32px; }
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  padding: 7px 12px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.filter-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+}
+.filter-check {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.filter-check input[type="checkbox"] {
+  accent-color: var(--accent);
+  width: 14px; height: 14px;
+  cursor: pointer;
+}
+.pool-count {
+  margin-left: auto;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
 
 /* ── BOOKSHELF BAR (visual appeal #2) ── */
 .bookshelf-bar {
@@ -473,8 +513,21 @@ section { padding: 14px 0; }
 .dialog-actions { display: flex; justify-content: flex-end; }
 
 /* ── CURRENTLY READING ── */
-#currentlyReadingSection { padding: 14px 0 4px; }
-#currentlyReadingSection .card-heading { margin-bottom: 10px; }
+#currentlyReadingSection { padding: 10px 0 4px; }
+
+.cr-top-layout {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+}
+.cr-logo-col  { flex-shrink: 0; padding-top: 2px; }
+.cr-books-col { flex: 1; min-width: 0; }
+.cr-books-col .card-heading { margin-bottom: 8px; }
+
+@media (max-width: 600px) {
+  .cr-top-layout { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .site-logo { width: 120px; }
+}
 
 .cr-grid { display: flex; flex-direction: column; gap: 12px; }
 
