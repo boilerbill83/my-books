@@ -1,0 +1,533 @@
+{
+  "candidates": [
+    {
+      "title": "What Happened to the Bennetts",
+      "author": "Lisa Scottoline",
+      "year": 2022,
+      "pages": 391,
+      "avgRating": 3.85,
+      "isbn13": "9780525539674",
+      "themes": [
+        "witness protection",
+        "family in danger",
+        "legal thriller"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Harlan Coben"
+      ],
+      "type": "fiction",
+      "publisher": "G.P. Putnam's Sons"
+    },
+    {
+      "title": "Motion to Suppress",
+      "author": "Perri O'Shaughnessy",
+      "year": 1995,
+      "pages": 420,
+      "avgRating": 3.93,
+      "isbn13": "9780385314107",
+      "themes": [
+        "legal thriller",
+        "courtroom",
+        "murder defense"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Lisa Scottoline"
+      ],
+      "type": "fiction",
+      "publisher": "Delacorte Press"
+    },
+    {
+      "title": "Invasion of Privacy",
+      "author": "Perri O'Shaughnessy",
+      "year": 1996,
+      "pages": 419,
+      "avgRating": 3.93,
+      "isbn13": "9780385314138",
+      "themes": [
+        "legal thriller",
+        "courtroom",
+        "serial killer"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Lisa Scottoline"
+      ],
+      "type": "fiction",
+      "publisher": "Delacorte Press"
+    },
+    {
+      "title": "Blood Defense",
+      "author": "Marcia Clark",
+      "year": 2016,
+      "pages": 368,
+      "avgRating": 3.85,
+      "isbn13": "9781503954007",
+      "themes": [
+        "legal thriller",
+        "criminal defense",
+        "courtroom"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Lisa Scottoline"
+      ],
+      "type": "fiction",
+      "publisher": "Thomas & Mercer"
+    },
+    {
+      "title": "Defending Jacob",
+      "author": "William Landay",
+      "year": 2012,
+      "pages": 432,
+      "avgRating": 4.05,
+      "isbn13": "9780385344227",
+      "themes": [
+        "legal thriller",
+        "courtroom",
+        "family crisis"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow"
+      ],
+      "type": "fiction",
+      "publisher": "Delacorte Press"
+    },
+    {
+      "title": "The Good Daughter",
+      "author": "Karin Slaughter",
+      "year": 2017,
+      "pages": 528,
+      "avgRating": 4.06,
+      "isbn13": "9780062430243",
+      "themes": [
+        "legal thriller",
+        "family secrets",
+        "psychological suspense"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Gillian Flynn"
+      ],
+      "type": "fiction",
+      "publisher": "William Morrow"
+    },
+    {
+      "title": "Pretty Girls",
+      "author": "Karin Slaughter",
+      "year": 2015,
+      "pages": 416,
+      "avgRating": 4.0,
+      "isbn13": "9780062499554",
+      "themes": [
+        "missing persons",
+        "family secrets",
+        "psychological suspense"
+      ],
+      "similarToAuthors": [
+        "Gillian Flynn",
+        "Jennifer Hillier"
+      ],
+      "type": "fiction",
+      "publisher": "William Morrow"
+    },
+    {
+      "title": "I Let You Go",
+      "author": "Clare Mackintosh",
+      "year": 2014,
+      "pages": 368,
+      "avgRating": 4.04,
+      "isbn13": "9780751554151",
+      "themes": [
+        "psychological thriller",
+        "hit-and-run",
+        "unreliable narrator"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "B.A. Paris"
+      ],
+      "type": "fiction",
+      "publisher": "Sphere"
+    },
+    {
+      "title": "Strange Sally Diamond",
+      "author": "Liz Nugent",
+      "year": 2023,
+      "pages": 384,
+      "avgRating": 4.12,
+      "isbn13": "9781844885961",
+      "themes": [
+        "psychological thriller",
+        "dark secrets",
+        "isolated protagonist"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "Alice Feeney"
+      ],
+      "type": "fiction",
+      "publisher": "Sandycove"
+    },
+    {
+      "title": "House of Correction",
+      "author": "Nicci French",
+      "year": 2020,
+      "pages": 528,
+      "avgRating": 3.81,
+      "isbn13": "9781398501720",
+      "themes": [
+        "psychological thriller",
+        "prison",
+        "murder defense",
+        "courtroom"
+      ],
+      "similarToAuthors": [
+        "Clare Mackintosh",
+        "Freida McFadden"
+      ],
+      "type": "fiction",
+      "publisher": "Simon & Schuster UK"
+    },
+    {
+      "title": "The 7½ Deaths of Evelyn Hardcastle",
+      "author": "Stuart Turton",
+      "year": 2018,
+      "pages": 497,
+      "avgRating": 3.93,
+      "isbn13": "9781408889558",
+      "themes": [
+        "locked-room mystery",
+        "time loop",
+        "country house murder"
+      ],
+      "similarToAuthors": [
+        "Agatha Christie",
+        "Shari Lapena"
+      ],
+      "type": "fiction",
+      "publisher": "Raven Books"
+    },
+    {
+      "title": "Haven't They Grown",
+      "author": "Sophie Hannah",
+      "year": 2020,
+      "pages": 352,
+      "avgRating": 3.89,
+      "isbn13": "9781444776188",
+      "themes": [
+        "psychological thriller",
+        "domestic suspense",
+        "obsession"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "B.A. Paris"
+      ],
+      "type": "fiction",
+      "publisher": "Hodder & Stoughton"
+    },
+    {
+      "title": "All Systems Red",
+      "author": "Martha Wells",
+      "year": 2017,
+      "pages": 152,
+      "avgRating": 4.08,
+      "isbn13": "9780765397539",
+      "themes": [
+        "sci-fi",
+        "artificial intelligence",
+        "space exploration",
+        "humor"
+      ],
+      "similarToAuthors": [
+        "Andy Weir",
+        "John Scalzi"
+      ],
+      "type": "fiction",
+      "publisher": "Tor.com"
+    },
+    {
+      "title": "The Fifth Season",
+      "author": "N.K. Jemisin",
+      "year": 2015,
+      "pages": 512,
+      "avgRating": 4.28,
+      "isbn13": "9780316229296",
+      "themes": [
+        "speculative fiction",
+        "dystopia",
+        "world-building",
+        "apocalypse"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Adrian Tchaikovsky"
+      ],
+      "type": "fiction",
+      "publisher": "Orbit"
+    },
+    {
+      "title": "Alien Clay",
+      "author": "Adrian Tchaikovsky",
+      "year": 2024,
+      "pages": 390,
+      "avgRating": 3.89,
+      "isbn13": "9781035013746",
+      "themes": [
+        "hard sci-fi",
+        "alien biology",
+        "political prisoner",
+        "evolution"
+      ],
+      "similarToAuthors": [
+        "Andy Weir",
+        "Blake Crouch"
+      ],
+      "type": "fiction",
+      "publisher": "Tor"
+    },
+    {
+      "title": "Book Lovers",
+      "author": "Emily Henry",
+      "year": 2022,
+      "pages": 416,
+      "avgRating": 4.09,
+      "isbn13": "9780593334836",
+      "themes": [
+        "romance",
+        "literary fiction",
+        "bookish characters",
+        "emotional"
+      ],
+      "similarToAuthors": [
+        "Taylor Jenkins Reid",
+        "Jojo Moyes"
+      ],
+      "type": "fiction",
+      "publisher": "Berkley"
+    },
+    {
+      "title": "Happy Place",
+      "author": "Emily Henry",
+      "year": 2023,
+      "pages": 400,
+      "avgRating": 3.94,
+      "isbn13": "9780593441275",
+      "themes": [
+        "romance",
+        "emotional fiction",
+        "second chance",
+        "secrets"
+      ],
+      "similarToAuthors": [
+        "Taylor Jenkins Reid",
+        "Jojo Moyes"
+      ],
+      "type": "fiction",
+      "publisher": "Berkley"
+    },
+    {
+      "title": "Funny Story",
+      "author": "Emily Henry",
+      "year": 2024,
+      "pages": 400,
+      "avgRating": 4.18,
+      "isbn13": "9780593441282",
+      "themes": [
+        "romance",
+        "humor",
+        "emotional fiction",
+        "found family"
+      ],
+      "similarToAuthors": [
+        "Taylor Jenkins Reid",
+        "Jojo Moyes"
+      ],
+      "type": "fiction",
+      "publisher": "Berkley"
+    },
+    {
+      "title": "Anxious People",
+      "author": "Fredrik Backman",
+      "year": 2019,
+      "pages": 352,
+      "avgRating": 4.16,
+      "isbn13": "9781982121211",
+      "themes": [
+        "literary fiction",
+        "humor",
+        "human connection",
+        "emotional"
+      ],
+      "similarToAuthors": [
+        "Taylor Jenkins Reid",
+        "Nick Hornby"
+      ],
+      "type": "fiction",
+      "publisher": "Atria Books"
+    },
+    {
+      "title": "Think Again",
+      "author": "Adam Grant",
+      "year": 2021,
+      "pages": 307,
+      "avgRating": 4.11,
+      "isbn13": "9781984878106",
+      "themes": [
+        "psychology",
+        "decision-making",
+        "intellectual humility",
+        "business"
+      ],
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Charles Duhigg"
+      ],
+      "type": "nonfiction",
+      "publisher": "Viking"
+    },
+    {
+      "title": "Hidden Potential",
+      "author": "Adam Grant",
+      "year": 2023,
+      "pages": 304,
+      "avgRating": 4.07,
+      "isbn13": "9780593653142",
+      "themes": [
+        "psychology",
+        "achievement",
+        "growth mindset",
+        "business"
+      ],
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Charles Duhigg"
+      ],
+      "type": "nonfiction",
+      "publisher": "Viking"
+    },
+    {
+      "title": "Supercommunicators",
+      "author": "Charles Duhigg",
+      "year": 2024,
+      "pages": 279,
+      "avgRating": 3.98,
+      "isbn13": "9780593243916",
+      "themes": [
+        "communication",
+        "psychology",
+        "connection",
+        "business"
+      ],
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Michael Lewis"
+      ],
+      "type": "nonfiction",
+      "publisher": "Random House"
+    },
+    {
+      "title": "Masters of Doom",
+      "author": "David Kushner",
+      "year": 2003,
+      "pages": 335,
+      "avgRating": 4.3,
+      "isbn13": "9780375505249",
+      "themes": [
+        "tech narrative",
+        "video game history",
+        "entrepreneurship",
+        "Silicon Valley"
+      ],
+      "similarToAuthors": [
+        "Ben Mezrich",
+        "Michael Lewis"
+      ],
+      "type": "nonfiction",
+      "publisher": "Random House"
+    },
+    {
+      "title": "The Splendid and the Vile",
+      "author": "Erik Larson",
+      "year": 2020,
+      "pages": 546,
+      "avgRating": 4.28,
+      "isbn13": "9780385348737",
+      "themes": [
+        "narrative nonfiction",
+        "WWII",
+        "Churchill",
+        "leadership"
+      ],
+      "similarToAuthors": [
+        "David Grann",
+        "Jon Krakauer"
+      ],
+      "type": "nonfiction",
+      "publisher": "Doubleday"
+    },
+    {
+      "title": "The Devil in the White City",
+      "author": "Erik Larson",
+      "year": 2003,
+      "pages": 464,
+      "avgRating": 3.99,
+      "isbn13": "9780375725609",
+      "themes": [
+        "narrative nonfiction",
+        "true crime",
+        "serial killer",
+        "Chicago World's Fair"
+      ],
+      "similarToAuthors": [
+        "David Grann",
+        "Jon Krakauer"
+      ],
+      "type": "nonfiction",
+      "publisher": "Crown"
+    },
+    {
+      "title": "Destiny of the Republic",
+      "author": "Candice Millard",
+      "year": 2011,
+      "pages": 339,
+      "avgRating": 4.24,
+      "isbn13": "9780385526265",
+      "themes": [
+        "narrative nonfiction",
+        "presidential history",
+        "medicine",
+        "James Garfield"
+      ],
+      "similarToAuthors": [
+        "David Grann",
+        "Erik Larson"
+      ],
+      "type": "nonfiction",
+      "publisher": "Doubleday"
+    },
+    {
+      "title": "Hidden Valley Road",
+      "author": "Robert Kolker",
+      "year": 2020,
+      "pages": 377,
+      "avgRating": 4.15,
+      "isbn13": "9780385543767",
+      "themes": [
+        "narrative nonfiction",
+        "mental illness",
+        "family",
+        "schizophrenia"
+      ],
+      "similarToAuthors": [
+        "Jon Krakauer",
+        "Michael Finkel"
+      ],
+      "type": "nonfiction",
+      "publisher": "Doubleday"
+    }
+  ]
+}
