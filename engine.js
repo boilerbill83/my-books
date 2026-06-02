@@ -82,19 +82,24 @@ function isExcluded(candidate, idx) {
   return idx.read.has(k) || idx.currentlyReading.has(k);
 }
 
+// Max points any single author can contribute — prevents one prolific 5-star author
+// from dominating the entire score and saturating the ceiling.
+const AUTHOR_CONTRIB_CAP = 15;
+
 function matchScore(candidate, idx, profile, timesShown) {
   let score = 55;
 
   if (candidate.fromToRead) {
     score += 10; // base boost — user already expressed interest
-    score += (idx.fiveStarAuthors.get(candidate.author) || 0) * 6;
-    score += (idx.allReadAuthors.get(candidate.author)   || 0) * 1.5;
+    score += Math.min(AUTHOR_CONTRIB_CAP,     (idx.fiveStarAuthors.get(candidate.author) || 0) * 6);
+    score += Math.min(AUTHOR_CONTRIB_CAP / 2, (idx.allReadAuthors.get(candidate.author)  || 0) * 1.5);
     const avg = Number(candidate.avgRating) || 0;
     if (avg > 0) score += (avg - 3.5) * 6;
   } else {
     for (const a of candidate.similarToAuthors || []) {
-      score += (idx.fiveStarAuthors.get(a) || 0) * 4;
-      score += (idx.allReadAuthors.get(a)   || 0) * 0.5;
+      const contrib = (idx.fiveStarAuthors.get(a) || 0) * 4
+                    + (idx.allReadAuthors.get(a)   || 0) * 0.5;
+      score += Math.min(AUTHOR_CONTRIB_CAP, contrib);
     }
     for (const t of candidate.similarToTitles || []) {
       if (idx.fiveStarTitles.has(t)) score += 8;
