@@ -187,6 +187,30 @@ function parseGoodreadsRSS(xmlText) {
 }
 
 async function fetchCurrentlyReading() {
+  // rss2json parses Goodreads RSS server-side and returns JSON — no domain registration needed
+  try {
+    const url  = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(GOODREADS_RSS)}`;
+    const resp = await fetch(url, { signal: AbortSignal.timeout(8000) });
+    if (!resp.ok) throw new Error(resp.statusText);
+    const data = await resp.json();
+    if (data.status !== 'ok' || !data.items?.length) throw new Error('empty');
+    const books = data.items.map(item => {
+      const rawTitle = item.title || '';
+      const title    = rawTitle.replace(/ by .+$/, '').trim() || rawTitle;
+      return {
+        title,
+        author:    item.author || '',
+        coverUrl:  item.thumbnail || null,
+        isbn:      null,
+        avgRating: null,
+        year:      null,
+        pages:     null,
+        shelf:     'currently-reading'
+      };
+    }).filter(b => b.title && b.author);
+    if (books.length) return books;
+  } catch (_) { /* fall through */ }
+  // Fallback: allorigins (worked previously, may require domain registration now)
   try {
     const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(GOODREADS_RSS)}`;
     const resp  = await fetch(proxy, { signal: AbortSignal.timeout(8000) });
@@ -209,8 +233,8 @@ function renderCurrentlyReading(books) {
       || ((book.isbn13 || book.isbn) ? `https://covers.openlibrary.org/b/isbn/${book.isbn13 || book.isbn}-M.jpg` : '');
     const coverEl  = coverSrc
       ? `<img src="${esc(coverSrc)}" alt="${esc(book.title)} cover" class="cr-cover-img" loading="lazy"
-             onerror="this.outerHTML='<span style=\\"font-size:1.8rem\\">📖</span>'" />`
-      : `<span style="font-size:1.8rem">📖</span>`;
+             onerror="this.style.display='none';this.parentElement.querySelector('.cr-cover-fallback').style.display=''" />`
+      : '';
 
     const meta = [];
     if (book.year)  meta.push(`📅 ${book.year}`);
@@ -219,7 +243,7 @@ function renderCurrentlyReading(books) {
 
     return `
       <div class="cr-card card">
-        <div class="cr-cover-wrap" style="background:${color}">${coverEl}</div>
+        <div class="cr-cover-wrap" style="background:${color}">${coverEl}<span class="cr-cover-fallback" style="font-size:1.8rem${coverEl ? ';display:none' : ''}">📖</span></div>
         <div class="cr-info">
           <div class="cr-eyebrow">Currently Reading</div>
           <div class="cr-title">${esc(book.title)}</div>
