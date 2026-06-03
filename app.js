@@ -73,15 +73,18 @@ function makePlaceholder(title, author, color) {
 function coverHtml(book) {
   const color = hashColor(book.bookKey || book.title);
   const isbn  = book.isbn13 || book.isbn;
-  if (isbn) {
-    const url = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
+  // Prefer explicit coverUrl, then ISBN-based OL lookup, then async Google Books
+  const staticUrl = book.coverUrl
+    || (isbn ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg` : null);
+
+  if (staticUrl) {
     return `<div class="book-cover">
-      <img src="${esc(url)}" alt="${esc(book.title)} cover"
+      <img src="${esc(staticUrl)}" alt="${esc(book.title)} cover"
            data-title="${esc(book.title)}" data-author="${esc(book.author)}"
            data-color="${color}" class="cover-img" loading="lazy" />
     </div>`;
   }
-  // No ISBN — render placeholder and tag for async Open Library lookup
+  // No static cover — render placeholder and tag for async lookup
   return `<div class="book-cover" data-lookup="1"
        data-bookkey="${esc(book.bookKey || book.title)}"
        data-title="${esc(book.title)}" data-author="${esc(book.author)}"
