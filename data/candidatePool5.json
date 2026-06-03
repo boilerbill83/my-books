@@ -24,7 +24,11 @@
         "Lisa Scottoline"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 #1 upvoted series starter for Grisham fans wanting something lighter and funnier"
+      "redditSource": "r/suggestmeabook \u2014 #1 upvoted series starter for Grisham fans wanting something lighter and funnier",
+      "similarToTitles": [
+        "The Firm (The Firm, #1)",
+        "The Client"
+      ]
     },
     {
       "title": "The Stranger",
@@ -46,7 +50,11 @@
         "Gillian Flynn"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 top Coben standalone after Tell No One; Netflix adaptation drove major Reddit discussion in 2020"
+      "redditSource": "r/suggestmeabook \u2014 top Coben standalone after Tell No One; Netflix adaptation drove major Reddit discussion in 2020",
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "Never Lie"
+      ]
     },
     {
       "title": "Gone for Good",
@@ -68,7 +76,11 @@
         "Riley Sager"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 consistently upvoted Coben standalone for psychological thriller fans"
+      "redditSource": "r/suggestmeabook \u2014 consistently upvoted Coben standalone for psychological thriller fans",
+      "similarToTitles": [
+        "The Silent Patient",
+        "Never Lie"
+      ]
     },
     {
       "title": "In a Dark, Dark Wood",
@@ -90,7 +102,11 @@
         "Riley Sager"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 top Ruth Ware recommendation for fans of The Housemaid and domestic thrillers"
+      "redditSource": "r/suggestmeabook \u2014 top Ruth Ware recommendation for fans of The Housemaid and domestic thrillers",
+      "similarToTitles": [
+        "The Guest List",
+        "Behind Closed Doors"
+      ]
     },
     {
       "title": "The Turn of the Key",
@@ -112,7 +128,11 @@
         "Alice Feeney"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 highly upvoted smart-home horror-thriller with a Turn of the Screw vibe"
+      "redditSource": "r/suggestmeabook \u2014 highly upvoted smart-home horror-thriller with a Turn of the Screw vibe",
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "The Silent Patient"
+      ]
     },
     {
       "title": "One by One",
@@ -134,7 +154,11 @@
         "Alice Feeney"
       ],
       "type": "fiction",
-      "redditSource": "r/books \u2014 recommended alongside And Then There Were None for modern locked-room thriller fans"
+      "redditSource": "r/books \u2014 recommended alongside And Then There Were None for modern locked-room thriller fans",
+      "similarToTitles": [
+        "The Guest List",
+        "The Chain"
+      ]
     },
     {
       "title": "The Good Girl",
@@ -156,7 +180,11 @@
         "B.A. Paris"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 consistently recommended for Gone Girl fans; debut thriller with big twists"
+      "redditSource": "r/suggestmeabook \u2014 consistently recommended for Gone Girl fans; debut thriller with big twists",
+      "similarToTitles": [
+        "The Silent Patient",
+        "Behind Closed Doors"
+      ]
     },
     {
       "title": "Daisy Darker",
@@ -178,7 +206,11 @@
         "Riley Sager"
       ],
       "type": "fiction",
-      "redditSource": "r/books \u2014 praised as Alice Feeney's best; Christie-style And Then There Were None mystery on a tidal island"
+      "redditSource": "r/books \u2014 praised as Alice Feeney's best; Christie-style And Then There Were None mystery on a tidal island",
+      "similarToTitles": [
+        "The Guest List",
+        "The Silent Patient"
+      ]
     },
     {
       "title": "Red Rising",
@@ -200,7 +232,11 @@
         "Hugh Howey"
       ],
       "type": "fiction",
-      "redditSource": "r/books, r/scifi \u2014 Reddit's #1 recommended sci-fi series for action and thriller fans; consistently top-upvoted series starter"
+      "redditSource": "r/books, r/scifi \u2014 Reddit's #1 recommended sci-fi series for action and thriller fans; consistently top-upvoted series starter",
+      "similarToTitles": [
+        "Dark Matter",
+        "Upgrade"
+      ]
     },
     {
       "title": "Piranesi",
@@ -221,7 +257,11 @@
         "Anthony Doerr"
       ],
       "type": "fiction",
-      "redditSource": "r/books \u2014 Hugo Award winner 2021; r/books top pick for literary mystery readers who love reality-bending stories"
+      "redditSource": "r/books \u2014 Hugo Award winner 2021; r/books top pick for literary mystery readers who love reality-bending stories",
+      "similarToTitles": [
+        "Dark Matter",
+        "Recursion"
+      ]
     },
     {
       "title": "The Nightingale",
@@ -243,7 +283,11 @@
         "Taylor Jenkins Reid"
       ],
       "type": "fiction",
-      "redditSource": "r/books \u2014 one of Reddit's most-upvoted historical fiction books of all time; emotional and gripping"
+      "redditSource": "r/books \u2014 one of Reddit's most-upvoted historical fiction books of all time; emotional and gripping",
+      "similarToTitles": [
+        "The Great Alone",
+        "Where the Crawdads Sing"
+      ]
     },
     {
       "title": "Cloud Cuckoo Land",
@@ -266,7 +310,11 @@
         "Taylor Jenkins Reid"
       ],
       "type": "fiction",
-      "redditSource": "r/books \u2014 Pulitzer Prize finalist 2022; r/books annual top fiction pick for All the Light fans"
+      "redditSource": "r/books \u2014 Pulitzer Prize finalist 2022; r/books annual top fiction pick for All the Light fans",
+      "similarToTitles": [
+        "The Seven Husbands of Evelyn Hugo",
+        "Where the Crawdads Sing"
+      ]
     },
     {
       "title": "A Gentleman in Moscow",
@@ -288,7 +336,11 @@
         "Tom Perrotta"
       ],
       "type": "fiction",
-      "redditSource": "r/books \u2014 one of Reddit's all-time top-upvoted literary fiction recommendations; beloved for wit and scope"
+      "redditSource": "r/books \u2014 one of Reddit's all-time top-upvoted literary fiction recommendations; beloved for wit and scope",
+      "similarToTitles": [
+        "Remarkably Bright Creatures",
+        "The Seven Husbands of Evelyn Hugo"
+      ]
     },
     {
       "title": "Tomorrow and Tomorrow and Tomorrow",
@@ -309,7 +361,11 @@
         "Amor Towles"
       ],
       "type": "fiction",
-      "redditSource": "r/books \u2014 #1 most-discussed novel on r/books in 2022; multiple awards shortlists and r/books annual Best Of"
+      "redditSource": "r/books \u2014 #1 most-discussed novel on r/books in 2022; multiple awards shortlists and r/books annual Best Of",
+      "similarToTitles": [
+        "Daisy Jones & The Six",
+        "Remarkably Bright Creatures"
+      ]
     },
     {
       "title": "In Cold Blood",
@@ -331,7 +387,11 @@
         "Lawrence Wright"
       ],
       "type": "nonfiction",
-      "redditSource": "r/truecrime, r/books \u2014 the original true crime classic; Reddit's all-time #1 true crime nonfiction recommendation"
+      "redditSource": "r/truecrime, r/books \u2014 the original true crime classic; Reddit's all-time #1 true crime nonfiction recommendation",
+      "similarToTitles": [
+        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road"
+      ]
     },
     {
       "title": "Midnight in the Garden of Good and Evil",
@@ -353,7 +413,11 @@
         "Truman Capote"
       ],
       "type": "nonfiction",
-      "redditSource": "r/truecrime, r/books \u2014 Reddit's top 'true crime with atmosphere'; endlessly recommended for character-rich crime nonfiction"
+      "redditSource": "r/truecrime, r/books \u2014 Reddit's top 'true crime with atmosphere'; endlessly recommended for character-rich crime nonfiction",
+      "similarToTitles": [
+        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road"
+      ]
     },
     {
       "title": "Catch and Kill",
@@ -375,7 +439,11 @@
         "Nick Bilton"
       ],
       "type": "nonfiction",
-      "redditSource": "r/nonfiction \u2014 Reddit's top investigative journalism read alongside Bad Blood; Pulitzer Prize-winning reporting"
+      "redditSource": "r/nonfiction \u2014 Reddit's top investigative journalism read alongside Bad Blood; Pulitzer Prize-winning reporting",
+      "similarToTitles": [
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "Going Infinite: The Rise and Fall of a New Tycoon"
+      ]
     },
     {
       "title": "Lost Girls",
@@ -399,7 +467,11 @@
         "Jon Krakauer"
       ],
       "type": "nonfiction",
-      "redditSource": "r/truecrime \u2014 consistently recommended for victim-centered true crime; humanizes victims rather than sensationalizing crime"
+      "redditSource": "r/truecrime \u2014 consistently recommended for victim-centered true crime; humanizes victims rather than sensationalizing crime",
+      "similarToTitles": [
+        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America"
+      ]
     },
     {
       "title": "Going Clear",
@@ -421,7 +493,11 @@
         "Ben Mezrich"
       ],
       "type": "nonfiction",
-      "redditSource": "r/nonfiction, r/books \u2014 Reddit's top-recommended cult investigation; HBO documentary companion; consistently upvoted"
+      "redditSource": "r/nonfiction, r/books \u2014 Reddit's top-recommended cult investigation; HBO documentary companion; consistently upvoted",
+      "similarToTitles": [
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America"
+      ]
     },
     {
       "title": "The Boys in the Boat",
@@ -444,7 +520,11 @@
         "Michael Lewis"
       ],
       "type": "nonfiction",
-      "redditSource": "r/books, r/nonfiction \u2014 one of Reddit's most-upvoted sports narratives; major film adaptation 2023"
+      "redditSource": "r/books, r/nonfiction \u2014 one of Reddit's most-upvoted sports narratives; major film adaptation 2023",
+      "similarToTitles": [
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission"
+      ]
     },
     {
       "title": "Endurance",
@@ -466,7 +546,11 @@
         "David Grann"
       ],
       "type": "nonfiction",
-      "redditSource": "r/books, r/nonfiction \u2014 Reddit's all-time #1 survival nonfiction recommendation; harrowing and impossible-to-put-down"
+      "redditSource": "r/books, r/nonfiction \u2014 Reddit's all-time #1 survival nonfiction recommendation; harrowing and impossible-to-put-down",
+      "similarToTitles": [
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission"
+      ]
     },
     {
       "title": "Black Hawk Down",
@@ -488,7 +572,11 @@
         "Sebastian Junger"
       ],
       "type": "nonfiction",
-      "redditSource": "r/books, r/nonfiction \u2014 Reddit's top military narrative journalism recommendation; reads like a thriller"
+      "redditSource": "r/books, r/nonfiction \u2014 Reddit's top military narrative journalism recommendation; reads like a thriller",
+      "similarToTitles": [
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+        "The Bomber Mafia: A Dream, a Temptation, and the Longest Night of the Second World War"
+      ]
     },
     {
       "title": "The Spy and the Traitor",
@@ -510,7 +598,11 @@
         "Erik Larson"
       ],
       "type": "nonfiction",
-      "redditSource": "r/nonfiction, r/books \u2014 Reddit's #1 espionage nonfiction recommendation; consistently upvoted as 'reads like a spy novel'"
+      "redditSource": "r/nonfiction, r/books \u2014 Reddit's #1 espionage nonfiction recommendation; consistently upvoted as 'reads like a spy novel'",
+      "similarToTitles": [
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession"
+      ]
     },
     {
       "title": "The Predators' Ball",
@@ -532,7 +624,11 @@
         "Michael Lewis"
       ],
       "type": "nonfiction",
-      "redditSource": "r/nonfiction, r/books \u2014 Reddit companion to Barbarians at the Gate for 1980s Wall Street readers"
+      "redditSource": "r/nonfiction, r/books \u2014 Reddit companion to Barbarians at the Gate for 1980s Wall Street readers",
+      "similarToTitles": [
+        "The Big Short: Inside the Doomsday Machine",
+        "Flash Boys: A Wall Street Revolt"
+      ]
     },
     {
       "title": "The Feather Thief",
@@ -554,7 +650,11 @@
         "Nick Bilton"
       ],
       "type": "nonfiction",
-      "redditSource": "r/books \u2014 Reddit's beloved 'truth is stranger than fiction' heist nonfiction; widely recommended in r/suggestmeabook"
+      "redditSource": "r/books \u2014 Reddit's beloved 'truth is stranger than fiction' heist nonfiction; widely recommended in r/suggestmeabook",
+      "similarToTitles": [
+        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road"
+      ]
     }
   ]
 }

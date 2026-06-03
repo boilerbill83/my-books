@@ -23,7 +23,11 @@
         "Liz Moore"
       ],
       "type": "fiction",
-      "redditSource": "r/books Best Mystery/Thriller of 2024 (upvote winner)"
+      "redditSource": "r/books Best Mystery/Thriller of 2024 (upvote winner)",
+      "similarToTitles": [
+        "Sharp Objects",
+        "Where the Crawdads Sing"
+      ]
     },
     {
       "title": "In the Woods",
@@ -44,7 +48,11 @@
         "Liz Moore"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 consistently top pick for psychological thriller fans"
+      "redditSource": "r/suggestmeabook \u2014 consistently top pick for psychological thriller fans",
+      "similarToTitles": [
+        "Dark Places",
+        "Sharp Objects"
+      ]
     },
     {
       "title": "The Likeness",
@@ -64,7 +72,11 @@
         "Kate Atkinson"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 Dublin Murder Squad #2, highly upvoted as sequel to In the Woods"
+      "redditSource": "r/suggestmeabook \u2014 Dublin Murder Squad #2, highly upvoted as sequel to In the Woods",
+      "similarToTitles": [
+        "Sharp Objects",
+        "The Silent Patient"
+      ]
     },
     {
       "title": "Long Bright River",
@@ -84,7 +96,11 @@
         "Gillian Flynn"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 recommended alongside The God of the Woods for Liz Moore fans"
+      "redditSource": "r/suggestmeabook \u2014 recommended alongside The God of the Woods for Liz Moore fans",
+      "similarToTitles": [
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+        "Sharp Objects"
+      ]
     },
     {
       "title": "The Lincoln Lawyer",
@@ -105,7 +121,11 @@
         "David Baldacci"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 #1 upvoted legal thriller for John Grisham fans"
+      "redditSource": "r/suggestmeabook \u2014 #1 upvoted legal thriller for John Grisham fans",
+      "similarToTitles": [
+        "The Firm (The Firm, #1)",
+        "Presumed Innocent"
+      ]
     },
     {
       "title": "My Sister's Grave",
@@ -125,7 +145,11 @@
         "Scott Turow"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 widely recommended for Grisham fans by former litigator author"
+      "redditSource": "r/suggestmeabook \u2014 widely recommended for Grisham fans by former litigator author",
+      "similarToTitles": [
+        "Presumed Innocent",
+        "The Client"
+      ]
     },
     {
       "title": "Everywhere That Mary Went",
@@ -145,7 +169,11 @@
         "Scott Turow"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 top suggestion for female-led legal thrillers"
+      "redditSource": "r/suggestmeabook \u2014 top suggestion for female-led legal thrillers",
+      "similarToTitles": [
+        "Presumed Innocent",
+        "The Client"
+      ]
     },
     {
       "title": "Culpability",
@@ -165,7 +193,11 @@
         "Scott Turow"
       ],
       "type": "fiction",
-      "redditSource": "r/books \u2014 2025 legal thriller with contemporary AI courtroom drama"
+      "redditSource": "r/books \u2014 2025 legal thriller with contemporary AI courtroom drama",
+      "similarToTitles": [
+        "The Firm (The Firm, #1)",
+        "Presumed Innocent"
+      ]
     },
     {
       "title": "The Gone World",
@@ -185,7 +217,11 @@
         "Andy Weir"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 top recommendation for Blake Crouch / Dark Matter fans"
+      "redditSource": "r/suggestmeabook \u2014 top recommendation for Blake Crouch / Dark Matter fans",
+      "similarToTitles": [
+        "Dark Matter",
+        "Recursion"
+      ]
     },
     {
       "title": "The Future",
@@ -205,7 +241,11 @@
         "Andy Weir"
       ],
       "type": "fiction",
-      "redditSource": "r/books \u2014 recommended for Blake Crouch / Upgrade fans in 2024 thread"
+      "redditSource": "r/books \u2014 recommended for Blake Crouch / Upgrade fans in 2024 thread",
+      "similarToTitles": [
+        "Upgrade",
+        "Dark Matter"
+      ]
     },
     {
       "title": "The Girl Before",
@@ -226,7 +266,11 @@
         "Alice Feeney"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 high-upvote recommendation for domestic thriller fans"
+      "redditSource": "r/suggestmeabook \u2014 high-upvote recommendation for domestic thriller fans",
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "The Silent Patient"
+      ]
     },
     {
       "title": "No Exit",
@@ -246,7 +290,11 @@
         "Riley Sager"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 consistently recommended for fans of The Housemaid"
+      "redditSource": "r/suggestmeabook \u2014 consistently recommended for fans of The Housemaid",
+      "similarToTitles": [
+        "The Chain",
+        "The Housemaid (The Housemaid, #1)"
+      ]
     },
     {
       "title": "A Simple Favor",
@@ -266,7 +314,11 @@
         "Gillian Flynn"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 top pick for Gone Girl / Housemaid fans"
+      "redditSource": "r/suggestmeabook \u2014 top pick for Gone Girl / Housemaid fans",
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "The Silent Patient"
+      ]
     },
     {
       "title": "You Will Never Be Me",
@@ -286,7 +338,11 @@
         "Alice Feeney"
       ],
       "type": "fiction",
-      "redditSource": "r/books \u2014 CrimeReads top psychological thriller of 2024, Reddit recommended"
+      "redditSource": "r/books \u2014 CrimeReads top psychological thriller of 2024, Reddit recommended",
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "Never Lie"
+      ]
     },
     {
       "title": "Don't Let Him In",
@@ -307,7 +363,11 @@
         "Liane Moriarty"
       ],
       "type": "fiction",
-      "redditSource": "r/books \u2014 2025 release, widely discussed on Reddit thriller communities"
+      "redditSource": "r/books \u2014 2025 release, widely discussed on Reddit thriller communities",
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "Never Lie"
+      ]
     },
     {
       "title": "The Twyford Code",
@@ -327,7 +387,11 @@
         "Anthony Horowitz"
       ],
       "type": "fiction",
-      "redditSource": "r/books \u2014 frequently recommended as unique format mystery on Reddit"
+      "redditSource": "r/books \u2014 frequently recommended as unique format mystery on Reddit",
+      "similarToTitles": [
+        "The Guest List",
+        "The Silent Patient"
+      ]
     },
     {
       "title": "North Woods",
@@ -348,7 +412,11 @@
         "Tom Perrotta"
       ],
       "type": "fiction",
-      "redditSource": "r/books \u2014 recommended for God of the Woods fans on Reddit in 2024"
+      "redditSource": "r/books \u2014 recommended for God of the Woods fans on Reddit in 2024",
+      "similarToTitles": [
+        "Where the Crawdads Sing",
+        "Remarkably Bright Creatures"
+      ]
     },
     {
       "title": "What Have You Done",
@@ -368,7 +436,11 @@
         "B.A. Paris"
       ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook \u2014 2024 Shari Lapena thriller, recommended for domestic thriller fans"
+      "redditSource": "r/suggestmeabook \u2014 2024 Shari Lapena thriller, recommended for domestic thriller fans",
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "The Silent Patient"
+      ]
     },
     {
       "title": "Bad Blood",
@@ -389,7 +461,11 @@
         "Nick Bilton"
       ],
       "type": "nonfiction",
-      "redditSource": "r/nonfiction, r/books \u2014 consistently #1 upvoted recommendation for Michael Lewis fans"
+      "redditSource": "r/nonfiction, r/books \u2014 consistently #1 upvoted recommendation for Michael Lewis fans",
+      "similarToTitles": [
+        "Going Infinite: The Rise and Fall of a New Tycoon",
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road"
+      ]
     },
     {
       "title": "Barbarians at the Gate",
@@ -409,7 +485,11 @@
         "Andrew Ross Sorkin"
       ],
       "type": "nonfiction",
-      "redditSource": "r/books, r/nonfiction \u2014 classic finance narrative, Reddit perennial recommendation"
+      "redditSource": "r/books, r/nonfiction \u2014 classic finance narrative, Reddit perennial recommendation",
+      "similarToTitles": [
+        "The Big Short: Inside the Doomsday Machine",
+        "Flash Boys: A Wall Street Revolt"
+      ]
     },
     {
       "title": "Too Big to Fail",
@@ -429,7 +509,11 @@
         "Bryan Burrough"
       ],
       "type": "nonfiction",
-      "redditSource": "r/books \u2014 top upvoted recommendation for Big Short / Michael Lewis fans"
+      "redditSource": "r/books \u2014 top upvoted recommendation for Big Short / Michael Lewis fans",
+      "similarToTitles": [
+        "The Big Short: Inside the Doomsday Machine",
+        "Flash Boys: A Wall Street Revolt"
+      ]
     },
     {
       "title": "When Genius Failed",
@@ -449,7 +533,11 @@
         "Andrew Ross Sorkin"
       ],
       "type": "nonfiction",
-      "redditSource": "r/investing, r/books \u2014 widely upvoted for finance nonfiction readers"
+      "redditSource": "r/investing, r/books \u2014 widely upvoted for finance nonfiction readers",
+      "similarToTitles": [
+        "The Big Short: Inside the Doomsday Machine",
+        "The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution"
+      ]
     },
     {
       "title": "The Smartest Guys in the Room",
@@ -470,7 +558,11 @@
         "Nick Bilton"
       ],
       "type": "nonfiction",
-      "redditSource": "r/nonfiction \u2014 frequently cited alongside Bad Blood for corporate scandal readers"
+      "redditSource": "r/nonfiction \u2014 frequently cited alongside Bad Blood for corporate scandal readers",
+      "similarToTitles": [
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "Going Infinite: The Rise and Fall of a New Tycoon"
+      ]
     },
     {
       "title": "More Money Than God",
@@ -490,7 +582,11 @@
         "Roger Lowenstein"
       ],
       "type": "nonfiction",
-      "redditSource": "r/books \u2014 recommended for Michael Lewis readers on Reddit"
+      "redditSource": "r/books \u2014 recommended for Michael Lewis readers on Reddit",
+      "similarToTitles": [
+        "The Big Short: Inside the Doomsday Machine",
+        "The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution"
+      ]
     },
     {
       "title": "Killers of the Flower Moon",
@@ -512,7 +608,11 @@
         "Hampton Sides"
       ],
       "type": "nonfiction",
-      "redditSource": "r/books, r/truecrime \u2014 perennial Reddit top pick; Scorsese film drove massive Reddit discussion"
+      "redditSource": "r/books, r/truecrime \u2014 perennial Reddit top pick; Scorsese film drove massive Reddit discussion",
+      "similarToTitles": [
+        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road"
+      ]
     }
   ]
 }

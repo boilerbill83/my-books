@@ -20,7 +20,11 @@
         "Harlan Coben"
       ],
       "type": "fiction",
-      "publisher": "G.P. Putnam's Sons"
+      "publisher": "G.P. Putnam's Sons",
+      "similarToTitles": [
+        "The Firm (The Firm, #1)",
+        "The Client"
+      ]
     },
     {
       "title": "Motion to Suppress",
@@ -39,7 +43,11 @@
         "Lisa Scottoline"
       ],
       "type": "fiction",
-      "publisher": "Delacorte Press"
+      "publisher": "Delacorte Press",
+      "similarToTitles": [
+        "Presumed Innocent",
+        "The Client"
+      ]
     },
     {
       "title": "Invasion of Privacy",
@@ -58,7 +66,11 @@
         "Lisa Scottoline"
       ],
       "type": "fiction",
-      "publisher": "Delacorte Press"
+      "publisher": "Delacorte Press",
+      "similarToTitles": [
+        "Presumed Innocent",
+        "The Client"
+      ]
     },
     {
       "title": "Blood Defense",
@@ -77,7 +89,11 @@
         "Lisa Scottoline"
       ],
       "type": "fiction",
-      "publisher": "Thomas & Mercer"
+      "publisher": "Thomas & Mercer",
+      "similarToTitles": [
+        "Presumed Innocent",
+        "A Time to Kill (Jake Brigance, #1)"
+      ]
     },
     {
       "title": "Defending Jacob",
@@ -96,7 +112,11 @@
         "Scott Turow"
       ],
       "type": "fiction",
-      "publisher": "Delacorte Press"
+      "publisher": "Delacorte Press",
+      "similarToTitles": [
+        "Presumed Innocent",
+        "The Silent Patient"
+      ]
     },
     {
       "title": "The Good Daughter",
@@ -115,7 +135,11 @@
         "Gillian Flynn"
       ],
       "type": "fiction",
-      "publisher": "William Morrow"
+      "publisher": "William Morrow",
+      "similarToTitles": [
+        "Sharp Objects",
+        "Dark Places"
+      ]
     },
     {
       "title": "Pretty Girls",
@@ -134,7 +158,11 @@
         "Jennifer Hillier"
       ],
       "type": "fiction",
-      "publisher": "William Morrow"
+      "publisher": "William Morrow",
+      "similarToTitles": [
+        "Sharp Objects",
+        "Dark Places"
+      ]
     },
     {
       "title": "I Let You Go",
@@ -153,7 +181,11 @@
         "B.A. Paris"
       ],
       "type": "fiction",
-      "publisher": "Sphere"
+      "publisher": "Sphere",
+      "similarToTitles": [
+        "The Silent Patient",
+        "Behind Closed Doors"
+      ]
     },
     {
       "title": "Strange Sally Diamond",
@@ -172,7 +204,11 @@
         "Alice Feeney"
       ],
       "type": "fiction",
-      "publisher": "Sandycove"
+      "publisher": "Sandycove",
+      "similarToTitles": [
+        "The Silent Patient",
+        "Never Lie"
+      ]
     },
     {
       "title": "House of Correction",
@@ -192,7 +228,11 @@
         "Freida McFadden"
       ],
       "type": "fiction",
-      "publisher": "Simon & Schuster UK"
+      "publisher": "Simon & Schuster UK",
+      "similarToTitles": [
+        "The Silent Patient",
+        "Presumed Innocent"
+      ]
     },
     {
       "title": "The 7\u00bd Deaths of Evelyn Hardcastle",
@@ -211,7 +251,11 @@
         "Shari Lapena"
       ],
       "type": "fiction",
-      "publisher": "Raven Books"
+      "publisher": "Raven Books",
+      "similarToTitles": [
+        "The Guest List",
+        "The Silent Patient"
+      ]
     },
     {
       "title": "Haven't They Grown",
@@ -230,7 +274,11 @@
         "B.A. Paris"
       ],
       "type": "fiction",
-      "publisher": "Hodder & Stoughton"
+      "publisher": "Hodder & Stoughton",
+      "similarToTitles": [
+        "The Silent Patient",
+        "Behind Closed Doors"
+      ]
     },
     {
       "title": "All Systems Red",
@@ -250,7 +298,11 @@
         "John Scalzi"
       ],
       "type": "fiction",
-      "publisher": "Tor.com"
+      "publisher": "Tor.com",
+      "similarToTitles": [
+        "Project Hail Mary",
+        "The Martian"
+      ]
     },
     {
       "title": "The Fifth Season",
@@ -270,7 +322,11 @@
         "Adrian Tchaikovsky"
       ],
       "type": "fiction",
-      "publisher": "Orbit"
+      "publisher": "Orbit",
+      "similarToTitles": [
+        "Dark Matter",
+        "Recursion"
+      ]
     },
     {
       "title": "Alien Clay",
@@ -290,7 +346,11 @@
         "Blake Crouch"
       ],
       "type": "fiction",
-      "publisher": "Tor"
+      "publisher": "Tor",
+      "similarToTitles": [
+        "Project Hail Mary",
+        "Dark Matter"
+      ]
     },
     {
       "title": "Book Lovers",
@@ -310,7 +370,11 @@
         "Jojo Moyes"
       ],
       "type": "fiction",
-      "publisher": "Berkley"
+      "publisher": "Berkley",
+      "similarToTitles": [
+        "Daisy Jones & The Six",
+        "Malibu Rising"
+      ]
     },
     {
       "title": "Happy Place",
@@ -330,7 +394,11 @@
         "Jojo Moyes"
       ],
       "type": "fiction",
-      "publisher": "Berkley"
+      "publisher": "Berkley",
+      "similarToTitles": [
+        "Daisy Jones & The Six",
+        "After I Do"
+      ]
     },
     {
       "title": "Funny Story",
@@ -350,7 +418,11 @@
         "Jojo Moyes"
       ],
       "type": "fiction",
-      "publisher": "Berkley"
+      "publisher": "Berkley",
+      "similarToTitles": [
+        "Romantic Comedy",
+        "After I Do"
+      ]
     },
     {
       "title": "Anxious People",
@@ -370,7 +442,11 @@
         "Nick Hornby"
       ],
       "type": "fiction",
-      "publisher": "Atria Books"
+      "publisher": "Atria Books",
+      "similarToTitles": [
+        "Remarkably Bright Creatures",
+        "The Rosie Project (Don Tillman, #1)"
+      ]
     },
     {
       "title": "Think Again",
@@ -390,7 +466,11 @@
         "Charles Duhigg"
       ],
       "type": "nonfiction",
-      "publisher": "Viking"
+      "publisher": "Viking",
+      "similarToTitles": [
+        "Educated",
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed"
+      ]
     },
     {
       "title": "Hidden Potential",
@@ -410,7 +490,11 @@
         "Charles Duhigg"
       ],
       "type": "nonfiction",
-      "publisher": "Viking"
+      "publisher": "Viking",
+      "similarToTitles": [
+        "Educated",
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed"
+      ]
     },
     {
       "title": "Supercommunicators",
@@ -431,7 +515,11 @@
       ],
       "type": "nonfiction",
       "publisher": "Random House",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1702893819i/157981748.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1702893819i/157981748.jpg",
+      "similarToTitles": [
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
+        "Educated"
+      ]
     },
     {
       "title": "Masters of Doom",
@@ -451,7 +539,11 @@
         "Michael Lewis"
       ],
       "type": "nonfiction",
-      "publisher": "Random House"
+      "publisher": "Random House",
+      "similarToTitles": [
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Steve Jobs"
+      ]
     },
     {
       "title": "The Splendid and the Vile",
@@ -471,7 +563,11 @@
         "Jon Krakauer"
       ],
       "type": "nonfiction",
-      "publisher": "Doubleday"
+      "publisher": "Doubleday",
+      "similarToTitles": [
+        "The Bomber Mafia: A Dream, a Temptation, and the Longest Night of the Second World War",
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission"
+      ]
     },
     {
       "title": "The Devil in the White City",
@@ -491,7 +587,11 @@
         "Jon Krakauer"
       ],
       "type": "nonfiction",
-      "publisher": "Crown"
+      "publisher": "Crown",
+      "similarToTitles": [
+        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road"
+      ]
     },
     {
       "title": "Destiny of the Republic",
@@ -511,7 +611,11 @@
         "Erik Larson"
       ],
       "type": "nonfiction",
-      "publisher": "Doubleday"
+      "publisher": "Doubleday",
+      "similarToTitles": [
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+        "The Bomber Mafia: A Dream, a Temptation, and the Longest Night of the Second World War"
+      ]
     },
     {
       "title": "Hidden Valley Road",
@@ -531,7 +635,11 @@
         "Michael Finkel"
       ],
       "type": "nonfiction",
-      "publisher": "Doubleday"
+      "publisher": "Doubleday",
+      "similarToTitles": [
+        "When Breath Becomes Air",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America"
+      ]
     }
   ]
 }

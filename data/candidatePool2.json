@@ -20,7 +20,11 @@
         "Scott Turow"
       ],
       "type": "fiction",
-      "publisher": "Grand Central Publishing"
+      "publisher": "Grand Central Publishing",
+      "similarToTitles": [
+        "A Time to Kill (Jake Brigance, #1)",
+        "Presumed Innocent"
+      ]
     },
     {
       "title": "Suspect",
@@ -39,7 +43,11 @@
         "Scott Turow"
       ],
       "type": "fiction",
-      "publisher": "Grand Central Publishing"
+      "publisher": "Grand Central Publishing",
+      "similarToTitles": [
+        "Presumed Innocent",
+        "The Firm (The Firm, #1)"
+      ]
     },
     {
       "title": "Southern Man",
@@ -57,7 +65,11 @@
         "David Baldacci"
       ],
       "type": "fiction",
-      "publisher": "William Morrow"
+      "publisher": "William Morrow",
+      "similarToTitles": [
+        "The Boys from Biloxi",
+        "A Time to Kill (Jake Brigance, #1)"
+      ]
     },
     {
       "title": "Goodbye Girl",
@@ -76,7 +88,11 @@
         "Steve Cavanagh"
       ],
       "type": "fiction",
-      "publisher": "HarperCollins"
+      "publisher": "HarperCollins",
+      "similarToTitles": [
+        "The Client",
+        "The Firm (The Firm, #1)"
+      ]
     },
     {
       "title": "The Waiting",
@@ -94,7 +110,11 @@
         "James Patterson"
       ],
       "type": "fiction",
-      "publisher": "Little, Brown and Company"
+      "publisher": "Little, Brown and Company",
+      "similarToTitles": [
+        "The Outsider",
+        "Dark Places"
+      ]
     },
     {
       "title": "Desert Star",
@@ -113,7 +133,11 @@
         "James Patterson"
       ],
       "type": "fiction",
-      "publisher": "Little, Brown and Company"
+      "publisher": "Little, Brown and Company",
+      "similarToTitles": [
+        "The Outsider",
+        "Dark Places"
+      ]
     },
     {
       "title": "The Lightning Rod",
@@ -131,7 +155,11 @@
         "Brad Meltzer"
       ],
       "type": "fiction",
-      "publisher": "William Morrow"
+      "publisher": "William Morrow",
+      "similarToTitles": [
+        "The President Is Missing",
+        "The President's Daughter"
+      ]
     },
     {
       "title": "All the Sinners Bleed",
@@ -151,7 +179,11 @@
       ],
       "type": "fiction",
       "publisher": "Flatiron Books",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1663544598i/61884832.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1663544598i/61884832.jpg",
+      "similarToTitles": [
+        "A Time to Kill (Jake Brigance, #1)",
+        "Dark Places"
+      ]
     },
     {
       "title": "Bright Young Women",
@@ -170,7 +202,11 @@
         "Freida McFadden"
       ],
       "type": "fiction",
-      "publisher": "Simon & Schuster"
+      "publisher": "Simon & Schuster",
+      "similarToTitles": [
+        "Sharp Objects",
+        "Dark Places"
+      ]
     },
     {
       "title": "The It Girl",
@@ -189,7 +225,11 @@
         "Freida McFadden"
       ],
       "type": "fiction",
-      "publisher": "Scout Press"
+      "publisher": "Scout Press",
+      "similarToTitles": [
+        "The Guest List",
+        "The Silent Patient"
+      ]
     },
     {
       "title": "One Perfect Couple",
@@ -208,7 +248,11 @@
         "Lucy Foley"
       ],
       "type": "fiction",
-      "publisher": "Simon & Schuster"
+      "publisher": "Simon & Schuster",
+      "similarToTitles": [
+        "The Guest List",
+        "The Chain"
+      ]
     },
     {
       "title": "The Midnight Feast",
@@ -227,7 +271,11 @@
         "Ruth Ware"
       ],
       "type": "fiction",
-      "publisher": "HarperCollins"
+      "publisher": "HarperCollins",
+      "similarToTitles": [
+        "The Guest List",
+        "The Silent Patient"
+      ]
     },
     {
       "title": "What Happened to Nina?",
@@ -246,7 +294,11 @@
         "B.A. Paris"
       ],
       "type": "fiction",
-      "publisher": "William Morrow"
+      "publisher": "William Morrow",
+      "similarToTitles": [
+        "The Silent Patient",
+        "Never Lie"
+      ]
     },
     {
       "title": "House of Glass",
@@ -264,7 +316,11 @@
         "Freida McFadden"
       ],
       "type": "fiction",
-      "publisher": "St. Martin's Press"
+      "publisher": "St. Martin's Press",
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "Never Lie"
+      ]
     },
     {
       "title": "My Husband",
@@ -282,7 +338,11 @@
         "Gillian Flynn"
       ],
       "type": "fiction",
-      "publisher": "Harper Perennial"
+      "publisher": "Harper Perennial",
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "Verity"
+      ]
     },
     {
       "title": "Say Nothing: A True Story of Murder and Memory in Northern Ireland",
@@ -301,7 +361,11 @@
         "Michael Finkel"
       ],
       "type": "nonfiction",
-      "publisher": "Doubleday"
+      "publisher": "Doubleday",
+      "similarToTitles": [
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America"
+      ]
     },
     {
       "title": "Master Slave Husband Wife: An Epic Journey from Slavery to Freedom",
@@ -320,7 +384,11 @@
         "Jon Krakauer"
       ],
       "type": "nonfiction",
-      "publisher": "Simon & Schuster"
+      "publisher": "Simon & Schuster",
+      "similarToTitles": [
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+        "Educated"
+      ]
     },
     {
       "title": "The Covenant of Water",
@@ -339,7 +407,11 @@
         "Taylor Jenkins Reid"
       ],
       "type": "fiction",
-      "publisher": "Grove Press"
+      "publisher": "Grove Press",
+      "similarToTitles": [
+        "The Seven Husbands of Evelyn Hugo",
+        "Where the Crawdads Sing"
+      ]
     },
     {
       "title": "The Women",
@@ -358,7 +430,11 @@
         "Taylor Jenkins Reid"
       ],
       "type": "fiction",
-      "publisher": "St. Martin's Press"
+      "publisher": "St. Martin's Press",
+      "similarToTitles": [
+        "The Great Alone",
+        "Where the Crawdads Sing"
+      ]
     },
     {
       "title": "The Frozen River",
@@ -377,7 +453,11 @@
         "Taylor Jenkins Reid"
       ],
       "type": "fiction",
-      "publisher": "Doubleday"
+      "publisher": "Doubleday",
+      "similarToTitles": [
+        "Where the Crawdads Sing",
+        "The Great Alone"
+      ]
     },
     {
       "title": "James",
@@ -396,7 +476,11 @@
         "James McBride"
       ],
       "type": "fiction",
-      "publisher": "Doubleday"
+      "publisher": "Doubleday",
+      "similarToTitles": [
+        "The Seven Husbands of Evelyn Hugo",
+        "American Dirt"
+      ]
     },
     {
       "title": "Hello Beautiful",
@@ -415,7 +499,11 @@
         "Taylor Jenkins Reid"
       ],
       "type": "fiction",
-      "publisher": "Dial Press"
+      "publisher": "Dial Press",
+      "similarToTitles": [
+        "The Seven Husbands of Evelyn Hugo",
+        "Malibu Rising"
+      ]
     },
     {
       "title": "The Heaven & Earth Grocery Store",
@@ -434,7 +522,11 @@
         "Gabrielle Zevin"
       ],
       "type": "fiction",
-      "publisher": "Riverhead Books"
+      "publisher": "Riverhead Books",
+      "similarToTitles": [
+        "American Dirt",
+        "Where the Crawdads Sing"
+      ]
     },
     {
       "title": "Number Go Up: Inside Crypto's Wild Rise and Staggering Fall",
@@ -454,7 +546,11 @@
       ],
       "type": "nonfiction",
       "publisher": "Crown Currency",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1687140968i/123276708.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1687140968i/123276708.jpg",
+      "similarToTitles": [
+        "Going Infinite: The Rise and Fall of a New Tycoon",
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road"
+      ]
     },
     {
       "title": "The Chaos Machine: The Inside Story of How Social Media Rewired Our Minds and Our World",
@@ -474,7 +570,11 @@
       ],
       "type": "nonfiction",
       "publisher": "Little, Brown",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1632076475i/58950736.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1632076475i/58950736.jpg",
+      "similarToTitles": [
+        "Elon Musk",
+        "The Everything Store: Jeff Bezos and the Age of Amazon"
+      ]
     }
   ]
 }
