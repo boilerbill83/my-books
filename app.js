@@ -114,13 +114,15 @@ const coverCache = new Map();
 async function fetchOLCover(bookKey, title, author) {
   if (coverCache.has(bookKey)) return coverCache.get(bookKey);
   try {
-    const params = new URLSearchParams({ title, author, limit: 1, fields: 'cover_i' });
-    const res = await fetch(`https://openlibrary.org/search.json?${params}`,
-      { signal: AbortSignal.timeout(6000) });
+    const q = encodeURIComponent(`intitle:${title} inauthor:${author}`);
+    const res = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${q}&maxResults=1&printType=books`,
+      { signal: AbortSignal.timeout(6000) }
+    );
     if (!res.ok) throw new Error(res.statusText);
     const data = await res.json();
-    const id   = data.docs?.[0]?.cover_i;
-    const url  = id ? `https://covers.openlibrary.org/b/id/${id}-M.jpg` : null;
+    let url = data.items?.[0]?.volumeInfo?.imageLinks?.thumbnail ?? null;
+    if (url) url = url.replace('http://', 'https://').replace('zoom=1', 'zoom=2');
     coverCache.set(bookKey, url);
     return url;
   } catch {
