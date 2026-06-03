@@ -296,7 +296,8 @@
       "isbn": "1668170612",
       "isbn13": "9781668170618",
       "publisher": "Simon & Schuster Audio",
-      "year": 2026
+      "year": 2026,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1527495506i/38926465.jpg"
     },
     {
       "bookKey": "creep|jennifer-hillier",
@@ -408,7 +409,8 @@
       "isbn": "1538773031",
       "isbn13": "9781538773031",
       "publisher": "Grand Central Publishing",
-      "year": 2026
+      "year": 2026,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1777552865i/242445475.jpg"
     },
     {
       "bookKey": "the-divorce|freida-mcfadden",
@@ -424,7 +426,8 @@
       "isbn": "1464249636",
       "isbn13": "9781464249631",
       "publisher": "Poisoned Pen Press",
-      "year": 2026
+      "year": 2026,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1769708783i/244403162.jpg"
     },
     {
       "bookKey": "peck-peck|bonnie-garmus",
@@ -680,7 +683,8 @@
       "isbn": "0385550545",
       "isbn13": "9780385550543",
       "publisher": "Doubleday",
-      "year": 2026
+      "year": 2026,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1773198632i/248286863.jpg"
     },
     {
       "bookKey": "she-didn-t-see-it-coming|shari-lapena",
@@ -888,7 +892,8 @@
       "isbn": "1439180644",
       "isbn13": "9781439180648",
       "publisher": "Simon & Schuster",
-      "year": 2009
+      "year": 2009,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1347383517i/7076139.jpg"
     },
     {
       "bookKey": "what-it-takes-lessons-in-the-pursuit-of-excellence|stephen-a-schwarzman",
@@ -1112,7 +1117,8 @@
       "isbn": "0593490649",
       "isbn13": "9780593490648",
       "publisher": "Penguin Press",
-      "year": 2026
+      "year": 2026,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1753931256i/239522729.jpg"
     },
     {
       "bookKey": "a-violent-masterpiece|jordan-harper",
@@ -1240,7 +1246,8 @@
       "isbn": "1662520204",
       "isbn13": "9781662520204",
       "publisher": "Montlake",
-      "year": 2025
+      "year": 2025,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1742785775i/226943312.jpg"
     },
     {
       "bookKey": "the-age-of-ai-and-our-human-future|henry-kissinger",
@@ -1272,7 +1279,8 @@
       "isbn": "1464260915",
       "isbn13": "9781464260919",
       "publisher": "Poisoned Pen Press",
-      "year": 2025
+      "year": 2025,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1747844349i/231819058.jpg"
     },
     {
       "bookKey": "children-of-time|adrian-tchaikovsky",
@@ -1725,7 +1733,7 @@
     {
       "bookKey": "1929-inside-the-greatest-crash-in-history-and-how-it-shattered-a-nation|andrew-ross-sorkin",
       "bookId": "211179569",
-      "title": "1929: Inside the Greatest Crash in History – and How It Shattered a Nation",
+      "title": "1929: Inside the Greatest Crash in History \u2013 and How It Shattered a Nation",
       "author": "Andrew Ross Sorkin",
       "shelf": "to-read",
       "myRating": 0,
@@ -1773,7 +1781,7 @@
     {
       "bookKey": "your-table-is-ready-tales-of-a-new-york-city-ma-tre-d|michael-cecchi-azzolina",
       "bookId": "59808190",
-      "title": "Your Table Is Ready: Tales of a New York City Maître D'",
+      "title": "Your Table Is Ready: Tales of a New York City Ma\u00eetre D'",
       "author": "Michael Cecchi-Azzolina",
       "shelf": "to-read",
       "myRating": 0,
@@ -1789,7 +1797,7 @@
     {
       "bookKey": "the-last-shot-city-streets-basketball-dreams-a-poignant-biography-of-young-athletes-inner-city-basketball-and-the-fight-to-escape-poverty|darcy-frey",
       "bookId": "44628",
-      "title": "The Last Shot: City Streets, Basketball Dreams – A Poignant Biography of Young Athletes, Inner-City Basketball, and the Fight to Escape Poverty",
+      "title": "The Last Shot: City Streets, Basketball Dreams \u2013 A Poignant Biography of Young Athletes, Inner-City Basketball, and the Fight to Escape Poverty",
       "author": "Darcy Frey",
       "shelf": "to-read",
       "myRating": 0,
@@ -3784,7 +3792,8 @@
       "isbn": "1668208792",
       "isbn13": "9781668208793",
       "publisher": "Scribner",
-      "year": 2025
+      "year": 2025,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1750964365i/57213544.jpg"
     },
     {
       "bookKey": "pearl-harbor-warning-and-decision|roberta-wohlstetter",
@@ -3848,7 +3857,8 @@
       "isbn": "1464227314",
       "isbn13": "9781464227318",
       "publisher": "Poisoned Pen Press",
-      "year": 2025
+      "year": 2025,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1734361066i/221733722.jpg"
     },
     {
       "bookKey": "accidentally-on-purpose|kristen-kish",
@@ -3976,7 +3986,8 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Hollywood Upstairs Press",
-      "year": 2025
+      "year": 2025,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1720712855i/216223604.jpg"
     },
     {
       "bookKey": "the-perfect-assassin|james-patterson",
@@ -4600,7 +4611,8 @@
       "isbn": "1728296226",
       "isbn13": "9781728296227",
       "publisher": "Poisoned Pen Press",
-      "year": 2024
+      "year": 2024,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1711205083i/208503280.jpg"
     },
     {
       "bookKey": "th1rt3en|steve-cavanagh",
@@ -4632,7 +4644,8 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Hollywood Upstairs Press",
-      "year": 2022
+      "year": 2022,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1653271523i/61149872.jpg"
     },
     {
       "bookKey": "razorblade-tears|s-a-cosby",
@@ -5741,7 +5754,7 @@
     {
       "bookKey": "the-formula-how-rogues-geniuses-and-speed-freaks-reengineered-f1-into-the-world-s-fastest-growing-sport-a-high-octane-history-of-formula-1-s-rise-in-america|joshua-robinson",
       "bookId": "177317614",
-      "title": "The Formula: How Rogues, Geniuses, and Speed Freaks Reengineered F1 into the World's Fastest-Growing Sport—A High-Octane History of Formula 1's Rise in America",
+      "title": "The Formula: How Rogues, Geniuses, and Speed Freaks Reengineered F1 into the World's Fastest-Growing Sport\u2014A High-Octane History of Formula 1's Rise in America",
       "author": "Joshua Robinson",
       "shelf": "read",
       "myRating": 5,
@@ -6045,7 +6058,7 @@
     {
       "bookKey": "the-three-body-problem|liu-cixin",
       "bookId": "58709846",
-      "title": "The Three-Body Problem (Remembrance of Earth’s Past, #1)",
+      "title": "The Three-Body Problem (Remembrance of Earth\u2019s Past, #1)",
       "author": "Liu Cixin",
       "shelf": "read",
       "myRating": 2,
@@ -6104,7 +6117,8 @@
       "isbn": "1476770387",
       "isbn13": "9781476770383",
       "publisher": "Scribner",
-      "year": 2014
+      "year": 2014,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1510335323i/20926278.jpg"
     },
     {
       "bookKey": "refund-stories|karen-e-bender",
@@ -6520,7 +6534,8 @@
       "isbn": "0684837714",
       "isbn13": "9780684837710",
       "publisher": "Simon & Schuster",
-      "year": 1997
+      "year": 1997,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1327870158i/10885.jpg"
     },
     {
       "bookKey": "kissinger-a-biography|walter-isaacson",
@@ -6536,7 +6551,8 @@
       "isbn": "0743286979",
       "isbn13": "9780743286978",
       "publisher": "Simon & Schuster",
-      "year": 2005
+      "year": 2005,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1427963811i/10887.jpg"
     },
     {
       "bookKey": "yellowface|r-f-kuang",
@@ -6680,7 +6696,8 @@
       "isbn": "150116340X",
       "isbn13": "9781501163401",
       "publisher": "Scribner",
-      "year": 2017
+      "year": 2017,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1510335748i/34466922.jpg"
     },
     {
       "bookKey": "truly-madly-guilty|liane-moriarty",
@@ -6888,7 +6905,8 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Signet",
-      "year": 2007
+      "year": 2007,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1331317781i/813214.jpg"
     },
     {
       "bookKey": "the-rocket-that-fell-to-earth-roger-clemens-and-the-rage-for-baseball-immortality|jeff-pearlman",
@@ -7704,7 +7722,8 @@
       "isbn": "1587678225",
       "isbn13": "9781587678226",
       "publisher": "Cemetery Dance Publications",
-      "year": 2023
+      "year": 2023,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1641893299i/60102274.jpg"
     },
     {
       "bookKey": "my-name-is-lucy-barton|elizabeth-strout",
@@ -7949,7 +7968,7 @@
     {
       "bookKey": "stolen-focus-why-you-can-t-pay-attention-and-how-to-think-deeply-again|johann-hari",
       "bookId": "57933306",
-      "title": "Stolen Focus: Why You Can't Pay Attention— and How to Think Deeply Again",
+      "title": "Stolen Focus: Why You Can't Pay Attention\u2014 and How to Think Deeply Again",
       "author": "Johann Hari",
       "shelf": "to-read",
       "myRating": 0,
@@ -8584,7 +8603,8 @@
       "isbn": "0316411728",
       "isbn13": "9780316411721",
       "publisher": "jimmy patterson",
-      "year": 2022
+      "year": 2022,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1647948485i/60420291.jpg"
     },
     {
       "bookKey": "the-paris-apartment|lucy-foley",
@@ -8701,7 +8721,7 @@
     {
       "bookKey": "the-infiltrator-my-secret-life-inside-the-dirty-banks-behind-pablo-escobar-s-medell-n-cartel|robert-mazur",
       "bookId": "6657841",
-      "title": "The Infiltrator: My Secret Life Inside the Dirty Banks Behind Pablo Escobar's Medellín Cartel",
+      "title": "The Infiltrator: My Secret Life Inside the Dirty Banks Behind Pablo Escobar's Medell\u00edn Cartel",
       "author": "Robert Mazur",
       "shelf": "to-read",
       "myRating": 0,
@@ -10014,7 +10034,7 @@
       "bookKey": "the-best-american-food-writing-2020|j-kenji-l-pez-alt",
       "bookId": "53715111",
       "title": "The Best American Food Writing 2020 (The Best American Series)",
-      "author": "J. Kenji López-Alt",
+      "author": "J. Kenji L\u00f3pez-Alt",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 0.0,
@@ -10461,7 +10481,7 @@
     {
       "bookKey": "the-answer-is-reflections-on-my-life|alex-trebek",
       "bookId": "52854193",
-      "title": "The Answer Is…: Reflections on My Life",
+      "title": "The Answer Is\u2026: Reflections on My Life",
       "author": "Alex Trebek",
       "shelf": "to-read",
       "myRating": 0,
@@ -10664,7 +10684,8 @@
       "isbn": "1439184461",
       "isbn13": "9781439184462",
       "publisher": "Scribner",
-      "year": 2011
+      "year": 2011,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1348198773i/10373933.jpg"
     },
     {
       "bookKey": "downtown-owl|chuck-klosterman",
@@ -10680,7 +10701,8 @@
       "isbn": "1416544186",
       "isbn13": "9781416544180",
       "publisher": "Scribner",
-      "year": 2008
+      "year": 2008,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1348123580i/2159007.jpg"
     },
     {
       "bookKey": "fargo-rock-city-a-heavy-metal-odyssey-in-rural-north-dakota|chuck-klosterman",
@@ -10877,7 +10899,7 @@
     {
       "bookKey": "talking-to-strangers-what-we-should-know-about-the-people-we-don-t-know|malcolm-gladwell",
       "bookId": "43854293",
-      "title": "Talking to Strangers: What We Should Know About the People We Don’t Know",
+      "title": "Talking to Strangers: What We Should Know About the People We Don\u2019t Know",
       "author": "Malcolm Gladwell",
       "shelf": "read",
       "myRating": 4,
@@ -12413,7 +12435,7 @@
     {
       "bookKey": "rigged-the-true-story-of-an-ivy-league-kid-who-changed-the-world-of-oil-from-wall-street-to-dubai-a-brooklyn-to-harvard-high-stakes-adventure|ben-mezrich",
       "bookId": "3242976",
-      "title": "Rigged: The True Story of an Ivy League Kid Who Changed the World of Oil, from Wall Street to Dubai – A Brooklyn-to-Harvard High-Stakes Adventure (P.S.)",
+      "title": "Rigged: The True Story of an Ivy League Kid Who Changed the World of Oil, from Wall Street to Dubai \u2013 A Brooklyn-to-Harvard High-Stakes Adventure (P.S.)",
       "author": "Ben Mezrich",
       "shelf": "read",
       "myRating": 3,

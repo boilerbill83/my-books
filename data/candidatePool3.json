@@ -192,7 +192,7 @@
       "publisher": "Simon & Schuster UK"
     },
     {
-      "title": "The 7½ Deaths of Evelyn Hardcastle",
+      "title": "The 7\u00bd Deaths of Evelyn Hardcastle",
       "author": "Stuart Turton",
       "year": 2018,
       "pages": 497,
@@ -427,7 +427,8 @@
         "Michael Lewis"
       ],
       "type": "nonfiction",
-      "publisher": "Random House"
+      "publisher": "Random House",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1702893819i/157981748.jpg"
     },
     {
       "title": "Masters of Doom",

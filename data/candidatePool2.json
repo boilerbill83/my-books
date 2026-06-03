@@ -147,7 +147,8 @@
         "James Patterson"
       ],
       "type": "fiction",
-      "publisher": "Flatiron Books"
+      "publisher": "Flatiron Books",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1663544598i/61884832.jpg"
     },
     {
       "title": "Bright Young Women",
@@ -449,7 +450,8 @@
         "Ben Mezrich"
       ],
       "type": "nonfiction",
-      "publisher": "Crown Currency"
+      "publisher": "Crown Currency",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1687140968i/123276708.jpg"
     },
     {
       "title": "The Chaos Machine: The Inside Story of How Social Media Rewired Our Minds and Our World",
@@ -468,7 +470,8 @@
         "Walter Isaacson"
       ],
       "type": "nonfiction",
-      "publisher": "Little, Brown"
+      "publisher": "Little, Brown",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1632076475i/58950736.jpg"
     }
   ]
 }

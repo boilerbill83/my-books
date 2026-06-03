@@ -26,7 +26,8 @@
       ],
       "bookKey": "the-one|john-marrs",
       "goodreadsUrl": "https://www.goodreads.com/book/show/40670312-the-one",
-      "buyUrl": "https://www.amazon.com/s?k=The+One+John+Marrs"
+      "buyUrl": "https://www.amazon.com/s?k=The+One+John+Marrs",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1612001976i/40670312.jpg"
     },
     {
       "title": "Wrong Place Wrong Time",
@@ -50,7 +51,8 @@
       ],
       "bookKey": "wrong-place-wrong-time|gillian-mcallister",
       "goodreadsUrl": "https://www.goodreads.com/book/show/59947696-wrong-place-wrong-time",
-      "buyUrl": "https://www.amazon.com/s?k=Wrong+Place+Wrong+Time+Gillian+McAllister"
+      "buyUrl": "https://www.amazon.com/s?k=Wrong+Place+Wrong+Time+Gillian+McAllister",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1659457434i/59947696.jpg"
     },
     {
       "title": "Kill for Me, Kill for You",
@@ -98,7 +100,8 @@
       ],
       "bookKey": "the-last-flight|julie-clark",
       "goodreadsUrl": "https://www.goodreads.com/book/show/52652923-the-last-flight",
-      "buyUrl": "https://www.amazon.com/s?k=The+Last+Flight+Julie+Clark"
+      "buyUrl": "https://www.amazon.com/s?k=The+Last+Flight+Julie+Clark",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1617291197i/52652923.jpg"
     },
     {
       "title": "Listen for the Lie",
@@ -122,7 +125,8 @@
       ],
       "bookKey": "listen-for-the-lie|amy-tintera",
       "goodreadsUrl": "https://www.goodreads.com/book/show/127279000-listen-for-the-lie",
-      "buyUrl": "https://www.amazon.com/s?k=Listen+for+the+Lie+Amy+Tintera"
+      "buyUrl": "https://www.amazon.com/s?k=Listen+for+the+Lie+Amy+Tintera",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1711398419i/127279000.jpg"
     },
     {
       "title": "The Only One Left",
@@ -146,7 +150,8 @@
       ],
       "bookKey": "the-only-one-left|riley-sager",
       "goodreadsUrl": "https://www.goodreads.com/book/show/62703226-the-only-one-left",
-      "buyUrl": "https://www.amazon.com/s?k=The+Only+One+Left+Riley+Sager"
+      "buyUrl": "https://www.amazon.com/s?k=The+Only+One+Left+Riley+Sager",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1668181003i/62703226.jpg"
     },
     {
       "title": "Starter Villain",
@@ -170,7 +175,8 @@
       ],
       "bookKey": "starter-villain|john-scalzi",
       "goodreadsUrl": "https://www.goodreads.com/book/show/61885029-starter-villain",
-      "buyUrl": "https://www.amazon.com/s?k=Starter+Villain+John+Scalzi"
+      "buyUrl": "https://www.amazon.com/s?k=Starter+Villain+John+Scalzi",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1683564155i/61885029.jpg"
     },
     {
       "title": "Wool",
@@ -194,7 +200,8 @@
       ],
       "bookKey": "wool|hugh-howey",
       "goodreadsUrl": "https://www.goodreads.com/book/show/13453029-wool-omnibus",
-      "buyUrl": "https://www.amazon.com/s?k=Wool+Hugh+Howey"
+      "buyUrl": "https://www.amazon.com/s?k=Wool+Hugh+Howey",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1327889474i/12287209.jpg"
     },
     {
       "title": "A Flicker in the Dark",
@@ -290,7 +297,8 @@
       ],
       "bookKey": "the-drift|c-j-tudor",
       "goodreadsUrl": "https://www.goodreads.com/book/show/60965424-the-drift",
-      "buyUrl": "https://www.amazon.com/s?k=The+Drift+C.J.+Tudor"
+      "buyUrl": "https://www.amazon.com/s?k=The+Drift+C.J.+Tudor",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1673872095i/60965424.jpg"
     },
     {
       "title": "The Passengers",
@@ -314,7 +322,8 @@
       ],
       "bookKey": "the-passengers|john-marrs",
       "goodreadsUrl": "https://www.goodreads.com/book/show/40718386-the-passengers",
-      "buyUrl": "https://www.amazon.com/s?k=The+Passengers+John+Marrs"
+      "buyUrl": "https://www.amazon.com/s?k=The+Passengers+John+Marrs",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1545308633i/40718386.jpg"
     },
     {
       "title": "Several People Are Typing",
@@ -338,7 +347,8 @@
       ],
       "bookKey": "several-people-are-typing|calvin-kasulke",
       "goodreadsUrl": "https://www.goodreads.com/book/show/54468020-several-people-are-typing",
-      "buyUrl": "https://www.amazon.com/s?k=Several+People+Are+Typing+Calvin+Kasulke"
+      "buyUrl": "https://www.amazon.com/s?k=Several+People+Are+Typing+Calvin+Kasulke",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1627964160i/54468020.jpg"
     },
     {
       "title": "The Echo Wife",
@@ -346,7 +356,7 @@
       "type": "fiction",
       "year": 2021,
       "pages": 256,
-      "avgRating": 3.60,
+      "avgRating": 3.6,
       "themes": [
         "speculative",
         "thriller",
@@ -410,7 +420,8 @@
       ],
       "bookKey": "the-kaiju-preservation-society|john-scalzi",
       "goodreadsUrl": "https://www.goodreads.com/book/show/57693406-the-kaiju-preservation-society",
-      "buyUrl": "https://www.amazon.com/s?k=The+Kaiju+Preservation+Society+John+Scalzi"
+      "buyUrl": "https://www.amazon.com/s?k=The+Kaiju+Preservation+Society+John+Scalzi",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1624897234i/57693406.jpg"
     },
     {
       "title": "Empire of Pain",
@@ -458,7 +469,8 @@
       ],
       "bookKey": "chip-war|chris-miller",
       "goodreadsUrl": "https://www.goodreads.com/book/show/60321447-chip-war",
-      "buyUrl": "https://www.amazon.com/s?k=Chip+War+Chris+Miller"
+      "buyUrl": "https://www.amazon.com/s?k=Chip+War+Chris+Miller",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1662566820i/60321447.jpg"
     },
     {
       "title": "The Founders",
@@ -482,7 +494,8 @@
       ],
       "bookKey": "the-founders|jimmy-soni",
       "goodreadsUrl": "https://www.goodreads.com/book/show/54304287-the-founders",
-      "buyUrl": "https://www.amazon.com/s?k=The+Founders+Jimmy+Soni"
+      "buyUrl": "https://www.amazon.com/s?k=The+Founders+Jimmy+Soni",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1643707855i/54304287.jpg"
     },
     {
       "title": "The Wager",
@@ -506,7 +519,8 @@
       ],
       "bookKey": "the-wager|david-grann",
       "goodreadsUrl": "https://www.goodreads.com/book/show/61714633-the-wager",
-      "buyUrl": "https://www.amazon.com/s?k=The+Wager+David+Grann"
+      "buyUrl": "https://www.amazon.com/s?k=The+Wager+David+Grann",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1659407155i/61714633.jpg"
     },
     {
       "title": "American Kingpin",
@@ -530,7 +544,8 @@
       ],
       "bookKey": "american-kingpin|nick-bilton",
       "goodreadsUrl": "https://www.goodreads.com/book/show/31920777-american-kingpin",
-      "buyUrl": "https://www.amazon.com/s?k=American+Kingpin+Nick+Bilton"
+      "buyUrl": "https://www.amazon.com/s?k=American+Kingpin+Nick+Bilton",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1578216397i/31920777.jpg"
     },
     {
       "title": "Shoe Dog",
@@ -578,7 +593,8 @@
       ],
       "bookKey": "the-raging-2020s|alec-ross",
       "goodreadsUrl": "https://www.goodreads.com/book/show/56347315-the-raging-2020s",
-      "buyUrl": "https://www.amazon.com/s?k=The+Raging+2020s+Alec+Ross"
+      "buyUrl": "https://www.amazon.com/s?k=The+Raging+2020s+Alec+Ross",
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1616687137i/56347315.jpg"
     }
   ]
 }
