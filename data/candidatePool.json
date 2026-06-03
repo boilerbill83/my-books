@@ -1,6 +1,6 @@
 {
   "meta": {
-    "count": 24
+    "count": 13
   },
   "candidates": [
     {
@@ -53,30 +53,6 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/59947696-wrong-place-wrong-time",
       "buyUrl": "https://www.amazon.com/s?k=Wrong+Place+Wrong+Time+Gillian+McAllister",
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1659457434i/59947696.jpg"
-    },
-    {
-      "title": "Kill for Me, Kill for You",
-      "author": "Steve Cavanagh",
-      "type": "fiction",
-      "year": 2023,
-      "pages": 320,
-      "avgRating": 4.12,
-      "themes": [
-        "thriller",
-        "legal",
-        "twisty"
-      ],
-      "similarToAuthors": [
-        "John Grisham",
-        "Freida McFadden"
-      ],
-      "similarToTitles": [
-        "The Housemaid",
-        "A Time to Kill"
-      ],
-      "bookKey": "kill-for-me-kill-for-you|steve-cavanagh",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/123113649-kill-for-me-kill-for-you",
-      "buyUrl": "https://www.amazon.com/s?k=Kill+for+Me,+Kill+for+You+Steve+Cavanagh"
     },
     {
       "title": "The Last Flight",
@@ -204,78 +180,6 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1327889474i/12287209.jpg"
     },
     {
-      "title": "A Flicker in the Dark",
-      "author": "Stacy Willingham",
-      "type": "fiction",
-      "year": 2022,
-      "pages": 368,
-      "avgRating": 3.94,
-      "themes": [
-        "thriller",
-        "psychological",
-        "dark"
-      ],
-      "similarToAuthors": [
-        "Jennifer Hillier",
-        "Alice Feeney"
-      ],
-      "similarToTitles": [
-        "Creep",
-        "Beautiful Ugly"
-      ],
-      "bookKey": "a-flicker-in-the-dark|stacy-willingham",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/57693172-a-flicker-in-the-dark",
-      "buyUrl": "https://www.amazon.com/s?k=A+Flicker+in+the+Dark+Stacy+Willingham"
-    },
-    {
-      "title": "The Plot",
-      "author": "Jean Hanff Korelitz",
-      "type": "fiction",
-      "year": 2021,
-      "pages": 320,
-      "avgRating": 3.74,
-      "themes": [
-        "literary",
-        "thriller",
-        "meta"
-      ],
-      "similarToAuthors": [
-        "Taylor Jenkins Reid",
-        "Jennifer Hillier"
-      ],
-      "similarToTitles": [
-        "Daisy Jones & The Six",
-        "Creep"
-      ],
-      "bookKey": "the-plot|jean-hanff-korelitz",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/57721481-the-plot",
-      "buyUrl": "https://www.amazon.com/s?k=The+Plot+Jean+Hanff+Korelitz"
-    },
-    {
-      "title": "The Chain",
-      "author": "Adrian McKinty",
-      "type": "fiction",
-      "year": 2019,
-      "pages": 384,
-      "avgRating": 3.77,
-      "themes": [
-        "thriller",
-        "high-concept",
-        "fast-paced"
-      ],
-      "similarToAuthors": [
-        "Freida McFadden",
-        "B.A. Paris"
-      ],
-      "similarToTitles": [
-        "The Housemaid",
-        "Behind Closed Doors"
-      ],
-      "bookKey": "the-chain|adrian-mckinty",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/42779092-the-chain",
-      "buyUrl": "https://www.amazon.com/s?k=The+Chain+Adrian+McKinty"
-    },
-    {
       "title": "The Drift",
       "author": "C.J. Tudor",
       "type": "fiction",
@@ -351,54 +255,6 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1627964160i/54468020.jpg"
     },
     {
-      "title": "The Echo Wife",
-      "author": "Sarah Gailey",
-      "type": "fiction",
-      "year": 2021,
-      "pages": 256,
-      "avgRating": 3.6,
-      "themes": [
-        "speculative",
-        "thriller",
-        "dark"
-      ],
-      "similarToAuthors": [
-        "Blake Crouch",
-        "Jennifer Hillier"
-      ],
-      "similarToTitles": [
-        "Upgrade",
-        "Creep"
-      ],
-      "bookKey": "the-echo-wife|sarah-gailey",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/52379735-the-echo-wife",
-      "buyUrl": "https://www.amazon.com/s?k=The+Echo+Wife+Sarah+Gailey"
-    },
-    {
-      "title": "The Measure",
-      "author": "Nikki Erlick",
-      "type": "fiction",
-      "year": 2022,
-      "pages": 368,
-      "avgRating": 3.95,
-      "themes": [
-        "speculative",
-        "accessible",
-        "book-club"
-      ],
-      "similarToAuthors": [
-        "Taylor Jenkins Reid",
-        "Blake Crouch"
-      ],
-      "similarToTitles": [
-        "One True Loves",
-        "Dark Matter"
-      ],
-      "bookKey": "the-measure|nikki-erlick",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/58884736-the-measure",
-      "buyUrl": "https://www.amazon.com/s?k=The+Measure+Nikki+Erlick"
-    },
-    {
       "title": "The Kaiju Preservation Society",
       "author": "John Scalzi",
       "type": "fiction",
@@ -446,130 +302,6 @@
       "bookKey": "empire-of-pain|patrick-radden-keefe",
       "goodreadsUrl": "https://www.goodreads.com/book/show/43868109-empire-of-pain",
       "buyUrl": "https://www.amazon.com/s?k=Empire+of+Pain+Patrick+Radden+Keefe"
-    },
-    {
-      "title": "Chip War",
-      "author": "Chris Miller",
-      "type": "nonfiction",
-      "year": 2022,
-      "pages": 480,
-      "avgRating": 4.36,
-      "themes": [
-        "technology",
-        "business",
-        "history"
-      ],
-      "similarToAuthors": [
-        "Walter Isaacson",
-        "Ashlee Vance"
-      ],
-      "similarToTitles": [
-        "Steve Jobs",
-        "Elon Musk"
-      ],
-      "bookKey": "chip-war|chris-miller",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/60321447-chip-war",
-      "buyUrl": "https://www.amazon.com/s?k=Chip+War+Chris+Miller",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1662566820i/60321447.jpg"
-    },
-    {
-      "title": "The Founders",
-      "author": "Jimmy Soni",
-      "type": "nonfiction",
-      "year": 2022,
-      "pages": 448,
-      "avgRating": 4.23,
-      "themes": [
-        "technology",
-        "business",
-        "startup"
-      ],
-      "similarToAuthors": [
-        "Walter Isaacson",
-        "Brad Stone"
-      ],
-      "similarToTitles": [
-        "The Everything Store",
-        "Elon Musk"
-      ],
-      "bookKey": "the-founders|jimmy-soni",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/54304287-the-founders",
-      "buyUrl": "https://www.amazon.com/s?k=The+Founders+Jimmy+Soni",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1643707855i/54304287.jpg"
-    },
-    {
-      "title": "The Wager",
-      "author": "David Grann",
-      "type": "nonfiction",
-      "year": 2023,
-      "pages": 352,
-      "avgRating": 4.14,
-      "themes": [
-        "history",
-        "adventure",
-        "narrative nonfiction"
-      ],
-      "similarToAuthors": [
-        "David Grann",
-        "Michael Lewis"
-      ],
-      "similarToTitles": [
-        "Killers of the Flower Moon",
-        "Moneyball"
-      ],
-      "bookKey": "the-wager|david-grann",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/61714633-the-wager",
-      "buyUrl": "https://www.amazon.com/s?k=The+Wager+David+Grann",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1659407155i/61714633.jpg"
-    },
-    {
-      "title": "American Kingpin",
-      "author": "Nick Bilton",
-      "type": "nonfiction",
-      "year": 2017,
-      "pages": 304,
-      "avgRating": 4.39,
-      "themes": [
-        "technology",
-        "true crime",
-        "narrative nonfiction"
-      ],
-      "similarToAuthors": [
-        "Nick Bilton",
-        "Ben Mezrich"
-      ],
-      "similarToTitles": [
-        "Hatching Twitter",
-        "The Antisocial Network"
-      ],
-      "bookKey": "american-kingpin|nick-bilton",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/31920777-american-kingpin",
-      "buyUrl": "https://www.amazon.com/s?k=American+Kingpin+Nick+Bilton",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1578216397i/31920777.jpg"
-    },
-    {
-      "title": "Shoe Dog",
-      "author": "Phil Knight",
-      "type": "nonfiction",
-      "year": 2016,
-      "pages": 400,
-      "avgRating": 4.44,
-      "themes": [
-        "business",
-        "memoir",
-        "brand"
-      ],
-      "similarToAuthors": [
-        "Walter Isaacson",
-        "Michael Lewis"
-      ],
-      "similarToTitles": [
-        "Steve Jobs",
-        "Going Infinite"
-      ],
-      "bookKey": "shoe-dog|phil-knight",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/27220736-shoe-dog",
-      "buyUrl": "https://www.amazon.com/s?k=Shoe+Dog+Phil+Knight"
     },
     {
       "title": "The Raging 2020s",
