@@ -1,6 +1,6 @@
 {
   "meta": {
-    "source": "Reddit (r/suggestmeabook, r/books, r/nonfiction) — June 2026",
+    "source": "Reddit (r/suggestmeabook, r/books, r/nonfiction) \u2014 June 2026",
     "count": 25
   },
   "candidates": [
@@ -11,8 +11,17 @@
       "pages": 512,
       "avgRating": 4.3,
       "isbn13": "9780593312742",
-      "themes": ["mystery", "small-town crime", "coming of age", "1970s"],
-      "similarToAuthors": ["Gillian Flynn", "Tana French", "Liz Moore"],
+      "themes": [
+        "mystery",
+        "small-town crime",
+        "coming of age",
+        "1970s"
+      ],
+      "similarToAuthors": [
+        "Gillian Flynn",
+        "Tana French",
+        "Liz Moore"
+      ],
       "type": "fiction",
       "redditSource": "r/books Best Mystery/Thriller of 2024 (upvote winner)"
     },
@@ -23,10 +32,19 @@
       "pages": 429,
       "avgRating": 4.0,
       "isbn13": "9780670038602",
-      "themes": ["detective", "psychological thriller", "missing persons", "Ireland"],
-      "similarToAuthors": ["Gillian Flynn", "Kate Atkinson", "Liz Moore"],
+      "themes": [
+        "detective",
+        "psychological thriller",
+        "missing persons",
+        "Ireland"
+      ],
+      "similarToAuthors": [
+        "Gillian Flynn",
+        "Kate Atkinson",
+        "Liz Moore"
+      ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook — consistently top pick for psychological thriller fans"
+      "redditSource": "r/suggestmeabook \u2014 consistently top pick for psychological thriller fans"
     },
     {
       "title": "The Likeness",
@@ -35,10 +53,18 @@
       "pages": 466,
       "avgRating": 4.1,
       "isbn13": "9780670018864",
-      "themes": ["detective", "identity", "mystery", "Ireland"],
-      "similarToAuthors": ["Gillian Flynn", "Kate Atkinson"],
+      "themes": [
+        "detective",
+        "identity",
+        "mystery",
+        "Ireland"
+      ],
+      "similarToAuthors": [
+        "Gillian Flynn",
+        "Kate Atkinson"
+      ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook — Dublin Murder Squad #2, highly upvoted as sequel to In the Woods"
+      "redditSource": "r/suggestmeabook \u2014 Dublin Murder Squad #2, highly upvoted as sequel to In the Woods"
     },
     {
       "title": "Long Bright River",
@@ -47,10 +73,18 @@
       "pages": 482,
       "avgRating": 4.0,
       "isbn13": "9780525508977",
-      "themes": ["opioid crisis", "sisters", "detective", "Philadelphia"],
-      "similarToAuthors": ["Tana French", "Gillian Flynn"],
+      "themes": [
+        "opioid crisis",
+        "sisters",
+        "detective",
+        "Philadelphia"
+      ],
+      "similarToAuthors": [
+        "Tana French",
+        "Gillian Flynn"
+      ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook — recommended alongside The God of the Woods for Liz Moore fans"
+      "redditSource": "r/suggestmeabook \u2014 recommended alongside The God of the Woods for Liz Moore fans"
     },
     {
       "title": "The Lincoln Lawyer",
@@ -59,10 +93,19 @@
       "pages": 404,
       "avgRating": 4.2,
       "isbn13": "9780316734936",
-      "themes": ["legal thriller", "defense attorney", "Los Angeles", "courtroom"],
-      "similarToAuthors": ["John Grisham", "Scott Turow", "David Baldacci"],
+      "themes": [
+        "legal thriller",
+        "defense attorney",
+        "Los Angeles",
+        "courtroom"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow",
+        "David Baldacci"
+      ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook — #1 upvoted legal thriller for John Grisham fans"
+      "redditSource": "r/suggestmeabook \u2014 #1 upvoted legal thriller for John Grisham fans"
     },
     {
       "title": "My Sister's Grave",
@@ -71,10 +114,18 @@
       "pages": 376,
       "avgRating": 4.2,
       "isbn13": "9781477825877",
-      "themes": ["legal thriller", "cold case", "sister", "Pacific Northwest"],
-      "similarToAuthors": ["John Grisham", "Scott Turow"],
+      "themes": [
+        "legal thriller",
+        "cold case",
+        "sister",
+        "Pacific Northwest"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow"
+      ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook — widely recommended for Grisham fans by former litigator author"
+      "redditSource": "r/suggestmeabook \u2014 widely recommended for Grisham fans by former litigator author"
     },
     {
       "title": "Everywhere That Mary Went",
@@ -83,10 +134,18 @@
       "pages": 256,
       "avgRating": 3.8,
       "isbn13": "9780061093739",
-      "themes": ["legal thriller", "stalker", "female lawyer", "courtroom"],
-      "similarToAuthors": ["John Grisham", "Scott Turow"],
+      "themes": [
+        "legal thriller",
+        "stalker",
+        "female lawyer",
+        "courtroom"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow"
+      ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook — top suggestion for female-led legal thrillers"
+      "redditSource": "r/suggestmeabook \u2014 top suggestion for female-led legal thrillers"
     },
     {
       "title": "Culpability",
@@ -95,10 +154,18 @@
       "pages": 352,
       "avgRating": 3.9,
       "isbn13": "9780593652923",
-      "themes": ["legal thriller", "AI", "self-driving cars", "tech"],
-      "similarToAuthors": ["John Grisham", "Scott Turow"],
+      "themes": [
+        "legal thriller",
+        "AI",
+        "self-driving cars",
+        "tech"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow"
+      ],
       "type": "fiction",
-      "redditSource": "r/books — 2025 legal thriller with contemporary AI courtroom drama"
+      "redditSource": "r/books \u2014 2025 legal thriller with contemporary AI courtroom drama"
     },
     {
       "title": "The Gone World",
@@ -107,10 +174,18 @@
       "pages": 368,
       "avgRating": 3.8,
       "isbn13": "9780399586125",
-      "themes": ["time travel", "NCIS", "murder mystery", "sci-fi"],
-      "similarToAuthors": ["Blake Crouch", "Andy Weir"],
+      "themes": [
+        "time travel",
+        "NCIS",
+        "murder mystery",
+        "sci-fi"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Andy Weir"
+      ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook — top recommendation for Blake Crouch / Dark Matter fans"
+      "redditSource": "r/suggestmeabook \u2014 top recommendation for Blake Crouch / Dark Matter fans"
     },
     {
       "title": "The Future",
@@ -119,10 +194,18 @@
       "pages": 384,
       "avgRating": 3.7,
       "isbn13": "9780593537374",
-      "themes": ["AI", "tech billionaires", "dystopia", "survival"],
-      "similarToAuthors": ["Blake Crouch", "Andy Weir"],
+      "themes": [
+        "AI",
+        "tech billionaires",
+        "dystopia",
+        "survival"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Andy Weir"
+      ],
       "type": "fiction",
-      "redditSource": "r/books — recommended for Blake Crouch / Upgrade fans in 2024 thread"
+      "redditSource": "r/books \u2014 recommended for Blake Crouch / Upgrade fans in 2024 thread"
     },
     {
       "title": "The Girl Before",
@@ -131,10 +214,19 @@
       "pages": 320,
       "avgRating": 3.8,
       "isbn13": "9781101965191",
-      "themes": ["psychological thriller", "obsession", "house", "two timelines"],
-      "similarToAuthors": ["Freida McFadden", "B.A. Paris", "Alice Feeney"],
+      "themes": [
+        "psychological thriller",
+        "obsession",
+        "house",
+        "two timelines"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "B.A. Paris",
+        "Alice Feeney"
+      ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook — high-upvote recommendation for domestic thriller fans"
+      "redditSource": "r/suggestmeabook \u2014 high-upvote recommendation for domestic thriller fans"
     },
     {
       "title": "No Exit",
@@ -143,10 +235,18 @@
       "pages": 291,
       "avgRating": 4.0,
       "isbn13": "9780062875204",
-      "themes": ["trapped", "snowstorm", "thriller", "fast-paced"],
-      "similarToAuthors": ["Freida McFadden", "Riley Sager"],
+      "themes": [
+        "trapped",
+        "snowstorm",
+        "thriller",
+        "fast-paced"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "Riley Sager"
+      ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook — consistently recommended for fans of The Housemaid"
+      "redditSource": "r/suggestmeabook \u2014 consistently recommended for fans of The Housemaid"
     },
     {
       "title": "A Simple Favor",
@@ -155,10 +255,18 @@
       "pages": 304,
       "avgRating": 3.8,
       "isbn13": "9780062664167",
-      "themes": ["missing woman", "secrets", "friendship", "psychological thriller"],
-      "similarToAuthors": ["Freida McFadden", "Gillian Flynn"],
+      "themes": [
+        "missing woman",
+        "secrets",
+        "friendship",
+        "psychological thriller"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "Gillian Flynn"
+      ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook — top pick for Gone Girl / Housemaid fans"
+      "redditSource": "r/suggestmeabook \u2014 top pick for Gone Girl / Housemaid fans"
     },
     {
       "title": "You Will Never Be Me",
@@ -167,10 +275,18 @@
       "pages": 352,
       "avgRating": 3.7,
       "isbn13": "9780593548592",
-      "themes": ["influencers", "rivalry", "psychological thriller", "social media"],
-      "similarToAuthors": ["Freida McFadden", "Alice Feeney"],
+      "themes": [
+        "influencers",
+        "rivalry",
+        "psychological thriller",
+        "social media"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "Alice Feeney"
+      ],
       "type": "fiction",
-      "redditSource": "r/books — CrimeReads top psychological thriller of 2024, Reddit recommended"
+      "redditSource": "r/books \u2014 CrimeReads top psychological thriller of 2024, Reddit recommended"
     },
     {
       "title": "Don't Let Him In",
@@ -179,10 +295,19 @@
       "pages": 368,
       "avgRating": 3.9,
       "isbn13": "9781668037348",
-      "themes": ["domestic thriller", "deception", "secrets", "danger"],
-      "similarToAuthors": ["Freida McFadden", "B.A. Paris", "Liane Moriarty"],
+      "themes": [
+        "domestic thriller",
+        "deception",
+        "secrets",
+        "danger"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "B.A. Paris",
+        "Liane Moriarty"
+      ],
       "type": "fiction",
-      "redditSource": "r/books — 2025 release, widely discussed on Reddit thriller communities"
+      "redditSource": "r/books \u2014 2025 release, widely discussed on Reddit thriller communities"
     },
     {
       "title": "The Twyford Code",
@@ -191,10 +316,18 @@
       "pages": 368,
       "avgRating": 3.9,
       "isbn13": "9781982195052",
-      "themes": ["mystery", "treasure hunt", "voice memos", "epistolary"],
-      "similarToAuthors": ["Alice Feeney", "Anthony Horowitz"],
+      "themes": [
+        "mystery",
+        "treasure hunt",
+        "voice memos",
+        "epistolary"
+      ],
+      "similarToAuthors": [
+        "Alice Feeney",
+        "Anthony Horowitz"
+      ],
       "type": "fiction",
-      "redditSource": "r/books — frequently recommended as unique format mystery on Reddit"
+      "redditSource": "r/books \u2014 frequently recommended as unique format mystery on Reddit"
     },
     {
       "title": "North Woods",
@@ -203,10 +336,19 @@
       "pages": 352,
       "avgRating": 3.9,
       "isbn13": "9780593535516",
-      "themes": ["multigenerational", "New England", "nature", "literary mystery"],
-      "similarToAuthors": ["Liz Moore", "Anthony Doerr"],
+      "themes": [
+        "multigenerational",
+        "New England",
+        "nature",
+        "literary mystery"
+      ],
+      "similarToAuthors": [
+        "Liz Moore",
+        "Anthony Doerr",
+        "Tom Perrotta"
+      ],
       "type": "fiction",
-      "redditSource": "r/books — recommended for God of the Woods fans on Reddit in 2024"
+      "redditSource": "r/books \u2014 recommended for God of the Woods fans on Reddit in 2024"
     },
     {
       "title": "What Have You Done",
@@ -215,10 +357,18 @@
       "pages": 320,
       "avgRating": 3.7,
       "isbn13": "9780593640128",
-      "themes": ["psychological thriller", "small town", "murder", "secrets"],
-      "similarToAuthors": ["Freida McFadden", "B.A. Paris"],
+      "themes": [
+        "psychological thriller",
+        "small town",
+        "murder",
+        "secrets"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "B.A. Paris"
+      ],
       "type": "fiction",
-      "redditSource": "r/suggestmeabook — 2024 Shari Lapena thriller, recommended for domestic thriller fans"
+      "redditSource": "r/suggestmeabook \u2014 2024 Shari Lapena thriller, recommended for domestic thriller fans"
     },
     {
       "title": "Bad Blood",
@@ -227,10 +377,19 @@
       "pages": 352,
       "avgRating": 4.4,
       "isbn13": "9781524731656",
-      "themes": ["Theranos", "Silicon Valley fraud", "corporate crime", "investigative journalism"],
-      "similarToAuthors": ["Michael Lewis", "Ben Mezrich", "Nick Bilton"],
+      "themes": [
+        "Theranos",
+        "Silicon Valley fraud",
+        "corporate crime",
+        "investigative journalism"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Ben Mezrich",
+        "Nick Bilton"
+      ],
       "type": "nonfiction",
-      "redditSource": "r/nonfiction, r/books — consistently #1 upvoted recommendation for Michael Lewis fans"
+      "redditSource": "r/nonfiction, r/books \u2014 consistently #1 upvoted recommendation for Michael Lewis fans"
     },
     {
       "title": "Barbarians at the Gate",
@@ -239,10 +398,18 @@
       "pages": 582,
       "avgRating": 4.2,
       "isbn13": "9780061991226",
-      "themes": ["LBO", "RJR Nabisco", "Wall Street", "corporate takeover"],
-      "similarToAuthors": ["Michael Lewis", "Andrew Ross Sorkin"],
+      "themes": [
+        "LBO",
+        "RJR Nabisco",
+        "Wall Street",
+        "corporate takeover"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Andrew Ross Sorkin"
+      ],
       "type": "nonfiction",
-      "redditSource": "r/books, r/nonfiction — classic finance narrative, Reddit perennial recommendation"
+      "redditSource": "r/books, r/nonfiction \u2014 classic finance narrative, Reddit perennial recommendation"
     },
     {
       "title": "Too Big to Fail",
@@ -251,10 +418,18 @@
       "pages": 624,
       "avgRating": 4.1,
       "isbn13": "9780670021253",
-      "themes": ["2008 financial crisis", "Wall Street", "government bailout", "banking"],
-      "similarToAuthors": ["Michael Lewis", "Bryan Burrough"],
+      "themes": [
+        "2008 financial crisis",
+        "Wall Street",
+        "government bailout",
+        "banking"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Bryan Burrough"
+      ],
       "type": "nonfiction",
-      "redditSource": "r/books — top upvoted recommendation for Big Short / Michael Lewis fans"
+      "redditSource": "r/books \u2014 top upvoted recommendation for Big Short / Michael Lewis fans"
     },
     {
       "title": "When Genius Failed",
@@ -263,10 +438,18 @@
       "pages": 264,
       "avgRating": 4.0,
       "isbn13": "9780375758256",
-      "themes": ["hedge fund", "LTCM collapse", "Wall Street", "Nobel Prize"],
-      "similarToAuthors": ["Michael Lewis", "Andrew Ross Sorkin"],
+      "themes": [
+        "hedge fund",
+        "LTCM collapse",
+        "Wall Street",
+        "Nobel Prize"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Andrew Ross Sorkin"
+      ],
       "type": "nonfiction",
-      "redditSource": "r/investing, r/books — widely upvoted for finance nonfiction readers"
+      "redditSource": "r/investing, r/books \u2014 widely upvoted for finance nonfiction readers"
     },
     {
       "title": "The Smartest Guys in the Room",
@@ -275,10 +458,19 @@
       "pages": 464,
       "avgRating": 4.1,
       "isbn13": "9781591840534",
-      "themes": ["Enron", "corporate fraud", "energy", "Wall Street"],
-      "similarToAuthors": ["Michael Lewis", "John Carreyrou", "Nick Bilton"],
+      "themes": [
+        "Enron",
+        "corporate fraud",
+        "energy",
+        "Wall Street"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "John Carreyrou",
+        "Nick Bilton"
+      ],
       "type": "nonfiction",
-      "redditSource": "r/nonfiction — frequently cited alongside Bad Blood for corporate scandal readers"
+      "redditSource": "r/nonfiction \u2014 frequently cited alongside Bad Blood for corporate scandal readers"
     },
     {
       "title": "More Money Than God",
@@ -287,10 +479,18 @@
       "pages": 482,
       "avgRating": 4.0,
       "isbn13": "9781594202551",
-      "themes": ["hedge funds", "Wall Street", "investing", "finance history"],
-      "similarToAuthors": ["Michael Lewis", "Roger Lowenstein"],
+      "themes": [
+        "hedge funds",
+        "Wall Street",
+        "investing",
+        "finance history"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Roger Lowenstein"
+      ],
       "type": "nonfiction",
-      "redditSource": "r/books — recommended for Michael Lewis readers on Reddit"
+      "redditSource": "r/books \u2014 recommended for Michael Lewis readers on Reddit"
     },
     {
       "title": "Killers of the Flower Moon",
@@ -299,10 +499,20 @@
       "pages": 338,
       "avgRating": 4.2,
       "isbn13": "9780385534246",
-      "themes": ["Osage Nation", "FBI", "oil", "true crime", "1920s murder"],
-      "similarToAuthors": ["David Grann", "Erik Larson", "Hampton Sides"],
+      "themes": [
+        "Osage Nation",
+        "FBI",
+        "oil",
+        "true crime",
+        "1920s murder"
+      ],
+      "similarToAuthors": [
+        "David Grann",
+        "Erik Larson",
+        "Hampton Sides"
+      ],
       "type": "nonfiction",
-      "redditSource": "r/books, r/truecrime — perennial Reddit top pick; Scorsese film drove massive Reddit discussion"
+      "redditSource": "r/books, r/truecrime \u2014 perennial Reddit top pick; Scorsese film drove massive Reddit discussion"
     }
   ]
 }
