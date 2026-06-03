@@ -292,6 +292,61 @@ section { padding: 14px 0; }
   align-self: center;
 }
 
+/* ── THEME FILTER CHIPS ── */
+.theme-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  min-height: 0;
+  margin-bottom: 10px;
+  padding: 0 2px;
+}
+.theme-filter-bar:empty { display: none; }
+.theme-filter-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.theme-filter-chip {
+  font-size: 0.72rem;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  padding: 3px 11px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.theme-filter-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.theme-filter-chip.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.theme-clear-btn {
+  font-size: 0.68rem;
+  font-family: var(--font-sans);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-decoration: underline;
+  margin-left: 2px;
+}
+.theme-clear-btn:hover { color: var(--accent); }
+
 /* ── BOOKSHELF BAR (visual appeal #2) ── */
 .bookshelf-bar {
   display: flex;

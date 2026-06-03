@@ -2,13 +2,14 @@
 import { rankRecommendations, scoreBooks } from './engine.js';
 
 const state = {
-  goodreads:  null,
-  feedback:   null,
-  history:    null,
-  candidates: null,
-  ranking:    null,
-  pending:    null,
-  page:       0
+  goodreads:    null,
+  feedback:     null,
+  history:      null,
+  candidates:   null,
+  ranking:      null,
+  pending:      null,
+  page:         0,
+  activeThemes: new Set()
 };
 
 // DOM refs
@@ -30,6 +31,59 @@ const filterOnlineFinds        = document.getElementById('filterOnlineFinds');
 const filterFiction            = document.getElementById('filterFiction');
 const filterNonfiction         = document.getElementById('filterNonfiction');
 const poolCountEl              = document.getElementById('poolCount');
+const themeFilterBar           = document.getElementById('themeFilterBar');
+
+const THEME_MACROS = [
+  { label: 'Legal',      keys: ['legal', 'courtroom', 'attorney', 'lawyer'] },
+  { label: 'Thriller',   keys: ['thriller', 'suspense'] },
+  { label: 'Mystery',    keys: ['mystery', 'detective', 'whodunit', 'cold case'] },
+  { label: 'Sci-Fi',     keys: ['speculative', 'sci-fi', 'dystopia', 'time travel', 'time-slip'] },
+  { label: 'Historical', keys: ['historical', 'wwii', 'history', 'multigenerational', 'antebellum'] },
+  { label: 'True Crime', keys: ['true crime', 'serial killer', 'investigative journalism'] },
+  { label: 'Finance',    keys: ['finance', 'wall street', 'crypto', 'hedge', 'investing', 'junk bond', 'lbo'] },
+  { label: 'Literary',   keys: ['literary'] },
+  { label: 'Survival',   keys: ['survival', 'expedition', 'adventure'] },
+  { label: 'Funny',      keys: ['funny', 'humor', 'comedy'] },
+];
+
+function bookMatchesMacro(book, macro) {
+  const themes = (book.themes || []).map(t => String(t).toLowerCase());
+  return macro.keys.some(k => themes.some(t => t.includes(k)));
+}
+
+function renderThemeChips(books) {
+  if (!themeFilterBar) return;
+  const available = THEME_MACROS.filter(m => books.some(b => !b.fromToRead && bookMatchesMacro(b, m)));
+  if (!available.length) { themeFilterBar.innerHTML = ''; return; }
+
+  const hasActive = state.activeThemes.size > 0;
+  const clearBtn  = hasActive
+    ? `<button class="theme-clear-btn" id="themeClearBtn">Clear</button>` : '';
+
+  themeFilterBar.innerHTML =
+    `<span class="theme-filter-label">Genre</span>` +
+    available.map(m => {
+      const active = state.activeThemes.has(m.label) ? ' active' : '';
+      return `<button class="theme-filter-chip${active}" data-label="${esc(m.label)}">${esc(m.label)}</button>`;
+    }).join('') +
+    clearBtn;
+
+  themeFilterBar.querySelectorAll('.theme-filter-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const label = btn.dataset.label;
+      if (state.activeThemes.has(label)) state.activeThemes.delete(label);
+      else                               state.activeThemes.add(label);
+      state.page = 0;
+      recompute();
+    });
+  });
+
+  document.getElementById('themeClearBtn')?.addEventListener('click', () => {
+    state.activeThemes.clear();
+    state.page = 0;
+    recompute();
+  });
+}
 
 // ── Utilities ──────────────────────────────────────────────────────────────
 
@@ -567,6 +621,13 @@ function recompute() {
     });
   }
 
+  // Build genre chips from the source/type-filtered pool, then apply theme filter
+  renderThemeChips(allCands);
+  if (state.activeThemes.size > 0) {
+    const active = THEME_MACROS.filter(m => state.activeThemes.has(m.label));
+    allCands = allCands.filter(b => b.fromToRead || active.some(m => bookMatchesMacro(b, m)));
+  }
+
   if (poolCountEl) poolCountEl.textContent = `${allCands.length.toLocaleString()} in pool`;
 
   state.ranking = rankRecommendations(
@@ -639,9 +700,9 @@ function dismiss(reasonCode) {
 
 // ── Event wiring ───────────────────────────────────────────────────────────
 
-// Filter checkboxes reset page and recompute
+// Filter checkboxes reset page and theme selection, then recompute
 [filterToRead, filterOnlineFinds, filterFiction, filterNonfiction].forEach(el => {
-  el?.addEventListener('change', () => { state.page = 0; recompute(); });
+  el?.addEventListener('change', () => { state.activeThemes.clear(); state.page = 0; recompute(); });
 });
 
 // Animated refresh (visual appeal #1)
