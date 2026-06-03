@@ -78,7 +78,7 @@ function coverHtml(book) {
     || (isbn ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg` : null);
 
   if (staticUrl) {
-    return `<div class="book-cover">
+    return `<div class="book-cover" style="background:${color}">
       <img src="${esc(staticUrl)}" alt="${esc(book.title)} cover"
            data-title="${esc(book.title)}" data-author="${esc(book.author)}"
            data-color="${color}" class="cover-img" loading="lazy" />
@@ -209,7 +209,7 @@ function renderCurrentlyReading(books) {
       || ((book.isbn13 || book.isbn) ? `https://covers.openlibrary.org/b/isbn/${book.isbn13 || book.isbn}-M.jpg` : '');
     const coverEl  = coverSrc
       ? `<img src="${esc(coverSrc)}" alt="${esc(book.title)} cover" class="cr-cover-img" loading="lazy"
-             onerror="this.style.display='none'" />`
+             onerror="this.outerHTML='<span style=\\"font-size:1.8rem\\">📖</span>'" />`
       : `<span style="font-size:1.8rem">📖</span>`;
 
     const meta = [];
