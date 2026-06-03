@@ -43,7 +43,7 @@ body {
 
 /* ── LOGO (now lives beside Currently Reading) ── */
 .site-logo {
-  width: 160px;
+  width: 192px;
   height: auto;
   display: block;
   filter: drop-shadow(0 2px 8px rgba(44,26,14,0.15));
@@ -277,6 +277,19 @@ section { padding: 14px 0; }
   font-size: 0.72rem;
   color: var(--text-muted);
   font-style: italic;
+}
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.filter-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+  flex-shrink: 0;
+  align-self: center;
 }
 
 /* ── BOOKSHELF BAR (visual appeal #2) ── */
@@ -526,7 +539,7 @@ section { padding: 14px 0; }
 
 @media (max-width: 600px) {
   .cr-top-layout { flex-direction: column; align-items: flex-start; gap: 10px; }
-  .site-logo { width: 120px; }
+  .site-logo { width: 144px; }
 }
 
 .cr-grid { display: flex; flex-direction: column; gap: 12px; }

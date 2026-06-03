@@ -27,6 +27,8 @@ const dismissForm              = document.getElementById('dismissForm');
 const currentlyReadingGrid     = document.getElementById('currentlyReadingGrid');
 const filterToRead             = document.getElementById('filterToRead');
 const filterOnlineFinds        = document.getElementById('filterOnlineFinds');
+const filterFiction            = document.getElementById('filterFiction');
+const filterNonfiction         = document.getElementById('filterNonfiction');
 const poolCountEl              = document.getElementById('poolCount');
 
 // ── Utilities ──────────────────────────────────────────────────────────────
@@ -79,7 +81,13 @@ function coverHtml(book) {
            data-color="${color}" class="cover-img" loading="lazy" />
     </div>`;
   }
-  return `<div class="book-cover">${makePlaceholder(book.title, book.author, color)}</div>`;
+  // No ISBN — render placeholder and tag for async Open Library lookup
+  return `<div class="book-cover" data-lookup="1"
+       data-bookkey="${esc(book.bookKey || book.title)}"
+       data-title="${esc(book.title)}" data-author="${esc(book.author)}"
+       data-color="${esc(color)}">
+    ${makePlaceholder(book.title, book.author, color)}
+  </div>`;
 }
 
 function attachCoverFallbacks() {
@@ -97,6 +105,49 @@ function attachCoverFallbacks() {
       );
     });
   });
+}
+
+// ── Open Library cover lookup ──────────────────────────────────────────────
+
+const coverCache = new Map();
+
+async function fetchOLCover(bookKey, title, author) {
+  if (coverCache.has(bookKey)) return coverCache.get(bookKey);
+  try {
+    const params = new URLSearchParams({ title, author, limit: 1, fields: 'cover_i' });
+    const res = await fetch(`https://openlibrary.org/search.json?${params}`,
+      { signal: AbortSignal.timeout(6000) });
+    if (!res.ok) throw new Error(res.statusText);
+    const data = await res.json();
+    const id   = data.docs?.[0]?.cover_i;
+    const url  = id ? `https://covers.openlibrary.org/b/id/${id}-M.jpg` : null;
+    coverCache.set(bookKey, url);
+    return url;
+  } catch {
+    coverCache.set(bookKey, null);
+    return null;
+  }
+}
+
+async function enhanceCovers() {
+  const wraps = Array.from(document.querySelectorAll('.book-cover[data-lookup]'));
+  await Promise.all(wraps.map(async wrap => {
+    const { bookkey, title, author, color } = wrap.dataset;
+    const url = await fetchOLCover(bookkey, title, author);
+    if (!url || !wrap.isConnected) return;
+    wrap.innerHTML = `<img src="${esc(url)}" alt="${esc(title)} cover"
+      data-title="${esc(title)}" data-author="${esc(author)}"
+      data-color="${esc(color)}" class="cover-img" loading="lazy" />`;
+    const img = wrap.querySelector('img');
+    if (img) {
+      img.addEventListener('load', () => {
+        if (img.naturalWidth <= 1) wrap.innerHTML = makePlaceholder(title, author, color);
+      });
+      img.addEventListener('error', () => {
+        wrap.innerHTML = makePlaceholder(title, author, color);
+      });
+    }
+  }));
 }
 
 // ── Currently Reading ──────────────────────────────────────────────────────
@@ -451,6 +502,7 @@ function renderRecommendations() {
   }).join('');
 
   attachCoverFallbacks();
+  enhanceCovers();
 
   recommendationsGrid.querySelectorAll('.danger-button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -473,7 +525,19 @@ function recompute() {
         .map(b => ({ ...b, fromToRead: true, similarToAuthors: [], similarToTitles: [], themes: [] }))
     : [];
 
-  const allCands = [...external, ...toReadCands];
+  const showFiction    = filterFiction?.checked !== false;
+  const showNonfiction = filterNonfiction?.checked !== false;
+
+  let allCands = [...external, ...toReadCands];
+  if (!showFiction || !showNonfiction) {
+    allCands = allCands.filter(b => {
+      const t = String(b.type || '').toLowerCase();
+      if ((t === 'nonfiction' || t === 'non-fiction') && !showNonfiction) return false;
+      if (t === 'fiction' && !showFiction) return false;
+      return true;
+    });
+  }
+
   if (poolCountEl) poolCountEl.textContent = `${allCands.length.toLocaleString()} in pool`;
 
   state.ranking = rankRecommendations(
@@ -547,7 +611,7 @@ function dismiss(reasonCode) {
 // ── Event wiring ───────────────────────────────────────────────────────────
 
 // Filter checkboxes reset page and recompute
-[filterToRead, filterOnlineFinds].forEach(el => {
+[filterToRead, filterOnlineFinds, filterFiction, filterNonfiction].forEach(el => {
   el?.addEventListener('change', () => { state.page = 0; recompute(); });
 });
 
