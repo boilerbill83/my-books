@@ -63,10 +63,10 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "In Good Faith",
-        "A Time to Kill",
+        "In Good Faith: A Joe Dillard Novel (Joe Dillard Series Book 2)",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Client",
-        "The Last Chance Lawyer"
+        "The Last Chance Lawyer (Daniel Pike #1)"
       ]
     },
     {
@@ -91,10 +91,10 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "An Innocent Client",
-        "A Time to Kill",
+        "An Innocent Client (Joe Dillard, #1)",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Client",
-        "The Last Chance Lawyer"
+        "The Last Chance Lawyer (Daniel Pike #1)"
       ]
     },
     {
@@ -118,10 +118,10 @@
         "humor"
       ],
       "similarToTitles": [
-        "Sex, Drugs, and Cocoa Puffs",
-        "I Wear the Black Hat",
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
         "Yearbook",
-        "The Storyteller"
+        "The Storyteller: Tales of Life and Music"
       ]
     },
     {
@@ -145,8 +145,8 @@
         "domestic suspense"
       ],
       "similarToTitles": [
-        "The Housemaid",
-        "The Housemaid's Secret",
+        "The Housemaid (The Housemaid, #1)",
+        "The Housemaid's Secret (The Housemaid, #2)",
         "The Boyfriend",
         "The Divorce",
         "The Crash"
@@ -173,7 +173,7 @@
         "suspense"
       ],
       "similarToTitles": [
-        "The Housemaid",
+        "The Housemaid (The Housemaid, #1)",
         "The Teacher",
         "Never Lie",
         "The Inmate",
@@ -259,8 +259,8 @@
         "domestic suspense"
       ],
       "similarToTitles": [
-        "The Housemaid",
-        "The Housemaid's Secret",
+        "The Housemaid (The Housemaid, #1)",
+        "The Housemaid's Secret (The Housemaid, #2)",
         "The Boyfriend",
         "The Crash",
         "Never Lie"
@@ -287,9 +287,9 @@
         "crime"
       ],
       "similarToTitles": [
-        "Creep (Creep",
+        "Creep (Creep, #1)",
         "Little Secrets",
-        "The Housemaid",
+        "The Housemaid (The Housemaid, #1)",
         "Behind Closed Doors",
         "The Silent Patient"
       ]
@@ -405,9 +405,9 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Super Pumped",
-        "Elon Musk: Tesla",
-        "Empire of AI",
+        "Super Pumped: The Battle for Uber",
+        "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future",
+        "Empire of AI: Dreams and Nightmares in Sam Altman's OpenAI",
         "Steve Jobs"
       ]
     },
@@ -493,9 +493,9 @@
         "sports"
       ],
       "similarToTitles": [
-        "Sex, Drugs, and Cocoa Puffs",
-        "I Wear the Black Hat",
-        "The Nineties",
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
+        "The Nineties: A Book",
         "Downtown Owl"
       ]
     },
@@ -551,9 +551,9 @@
         "crime"
       ],
       "similarToTitles": [
-        "Freak (Creep",
+        "Freak (Creep #2)",
         "Little Secrets",
-        "The Housemaid",
+        "The Housemaid (The Housemaid, #1)",
         "The Silent Patient",
         "Never Lie"
       ]
@@ -610,10 +610,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Super Pumped",
-        "Empire of AI",
-        "Elon Musk: Tesla",
-        "The Everything Store"
+        "Super Pumped: The Battle for Uber",
+        "Empire of AI: Dreams and Nightmares in Sam Altman's OpenAI",
+        "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future",
+        "The Everything Store: Jeff Bezos and the Age of Amazon"
       ]
     },
     {
@@ -975,13 +975,14 @@
       "publisher": "Celadon Books",
       "year": 2025,
       "themes": [
-        "narrative nonfiction"
+        "narrative nonfiction",
+        "business"
       ],
       "similarToTitles": [
-        "Evicted",
-        "The Secret Life of Groceries",
+        "Evicted: Poverty and Profit in the American City",
+        "The Secret Life of Groceries: The Dark Miracle of the American Supermarket",
         "Shoe Dog",
-        "The Everything Store"
+        "The Everything Store: Jeff Bezos and the Age of Amazon"
       ]
     },
     {
@@ -1436,9 +1437,9 @@
         "business"
       ],
       "similarToTitles": [
-        "Dopesick",
-        "Evicted",
-        "The Secret Life of Groceries"
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+        "Evicted: Poverty and Profit in the American City",
+        "The Secret Life of Groceries: The Dark Miracle of the American Supermarket"
       ]
     },
     {
@@ -1463,7 +1464,7 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Formula: How Rogues, Geniuses, and Speed Freaks Reengineered F1 into the World's Fastest-Growing Sport—A High-Octane History of Formula 1's Rise in America",
+        "The Formula: How Rogues, Geniuses, and Speed Freaks Reengineered F1 into the World's Fastest-Growing Sport\u2014A High-Octane History of Formula 1's Rise in America",
         "Super Pumped: The Battle for Uber"
       ],
       "similarToAuthors": [
@@ -1794,7 +1795,7 @@
       "similarToTitles": [
         "The Silent Patient",
         "Behind Closed Doors",
-        "The Housemaid",
+        "The Housemaid (The Housemaid, #1)",
         "Verity",
         "The Breakdown"
       ]
@@ -1822,7 +1823,7 @@
       "similarToTitles": [
         "The Running Man",
         "The Postmortal",
-        "World War Z",
+        "World War Z: An Oral History of the Zombie War",
         "The Stand"
       ]
     },
@@ -1873,10 +1874,10 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "A Time to Kill",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Client",
-        "The Firm",
-        "Partners: A Rogue Lawyer Short Story",
+        "The Firm (The Firm, #1)",
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)",
         "The French Illusion"
       ]
     },
@@ -1899,7 +1900,7 @@
       "themes": [
         "historical",
         "thriller",
-        "wwii"
+        "military"
       ],
       "similarToTitles": [
         "The Great Alone",
@@ -1932,10 +1933,10 @@
       ],
       "similarToTitles": [
         "Steve Jobs",
-        "The Innovators",
-        "American Sketches",
-        "Kissinger",
-        "The Wise Men"
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
+        "American Sketches: Great Leaders, Creative Thinkers, and Heroes of a Hurricane",
+        "Kissinger: A Biography",
+        "The Wise Men: Six Friends and the World They Made"
       ]
     },
     {
@@ -2428,10 +2429,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Three-Ring Circus",
-        "Boys Will Be Boys",
-        "The Last Folk Hero",
-        "Dream Team"
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Boys Will Be Boys: The Glory Days and Party Nights of the Dallas Cowboys Dynasty",
+        "The Last Folk Hero: The Life and Myth of Bo Jackson",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever"
       ]
     },
     {
@@ -2486,7 +2487,7 @@
       "similarToTitles": [
         "Recursion",
         "Dark Matter",
-        "Summer Frost",
+        "Summer Frost (Forward Collection, #2)",
         "The Egg"
       ]
     },
@@ -2539,7 +2540,7 @@
         "Recursion",
         "Dark Matter",
         "The Egg",
-        "You Have Arrived at Your Destination"
+        "You Have Arrived at Your Destination (Forward Collection, #4)"
       ]
     },
     {
@@ -2589,7 +2590,7 @@
       "themes": [
         "thriller",
         "suspense",
-        "espionage"
+        "spy"
       ],
       "similarToTitles": [
         "The Silent Patient",
@@ -2684,9 +2685,9 @@
         "crime"
       ],
       "similarToTitles": [
-        "Along Came a Spider",
-        "Kiss the Girls",
-        "12 Months to Live",
+        "Along Came a Spider (Alex Cross, #1)",
+        "Kiss the Girls (Alex Cross, #2)",
+        "12 Months to Live (Jane Smith, #1)",
         "The Jailhouse Lawyer"
       ]
     },
@@ -2866,10 +2867,10 @@
         "psychological"
       ],
       "similarToTitles": [
-        "Holly",
+        "Holly (Holly Gibney, #3)",
         "The Outsider",
         "Billy Summers",
-        "Mr. Mercedes",
+        "Mr. Mercedes (Bill Hodges #1)",
         "Revival"
       ]
     },
@@ -2952,10 +2953,10 @@
         "food"
       ],
       "similarToTitles": [
-        "Your Table Is Ready",
+        "Your Table Is Ready: Tales of a New York City Ma\u00eetre D'",
         "Eat a Peach",
         "Yes, Chef",
-        "Save Me the Plums"
+        "Save Me the Plums: My Gourmet Memoir"
       ]
     },
     {
@@ -3070,8 +3071,8 @@
       ],
       "similarToTitles": [
         "A Promised Land",
-        "The Fifth Risk",
-        "Careless People"
+        "The Fifth Risk: Undoing Democracy",
+        "Careless People: A Cautionary Tale of Power, Greed, and Lost Idealism"
       ]
     },
     {
@@ -3127,7 +3128,7 @@
       ],
       "similarToTitles": [
         "The Perfect Marriage",
-        "The Perfect Divorce",
+        "The Perfect Divorce (Perfect, #2)",
         "Home Is Where the Bodies Are",
         "Behind Closed Doors"
       ]
@@ -3184,16 +3185,16 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Innocent Man",
-        "Just Mercy",
-        "A Time to Kill",
+        "The Innocent Man: Murder and Injustice in a Small Town",
+        "Just Mercy: A Story of Justice and Redemption",
+        "A Time to Kill (Jake Brigance, #1)",
         "Presumed Innocent"
       ]
     },
     {
       "bookKey": "1929-inside-the-greatest-crash-in-history-and-how-it-shattered-a-nation|andrew-ross-sorkin",
       "bookId": "211179569",
-      "title": "1929: Inside the Greatest Crash in History – and How It Shattered a Nation",
+      "title": "1929: Inside the Greatest Crash in History \u2013 and How It Shattered a Nation",
       "author": "Andrew Ross Sorkin",
       "shelf": "to-read",
       "myRating": 0,
@@ -3241,10 +3242,10 @@
         "thriller"
       ],
       "similarToTitles": [
-        "Rich Blood",
-        "A Time to Kill",
+        "Rich Blood (Jason Rich, #1)",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Client",
-        "An Innocent Client"
+        "An Innocent Client (Joe Dillard, #1)"
       ]
     },
     {
@@ -3281,7 +3282,7 @@
     {
       "bookKey": "your-table-is-ready-tales-of-a-new-york-city-ma-tre-d|michael-cecchi-azzolina",
       "bookId": "59808190",
-      "title": "Your Table Is Ready: Tales of a New York City Maître D'",
+      "title": "Your Table Is Ready: Tales of a New York City Ma\u00eetre D'",
       "author": "Michael Cecchi-Azzolina",
       "shelf": "to-read",
       "myRating": 0,
@@ -3311,7 +3312,7 @@
     {
       "bookKey": "the-last-shot-city-streets-basketball-dreams-a-poignant-biography-of-young-athletes-inner-city-basketball-and-the-fight-to-escape-poverty|darcy-frey",
       "bookId": "44628",
-      "title": "The Last Shot: City Streets, Basketball Dreams – A Poignant Biography of Young Athletes, Inner-City Basketball, and the Fight to Escape Poverty",
+      "title": "The Last Shot: City Streets, Basketball Dreams \u2013 A Poignant Biography of Young Athletes, Inner-City Basketball, and the Fight to Escape Poverty",
       "author": "Darcy Frey",
       "shelf": "to-read",
       "myRating": 0,
@@ -3421,8 +3422,8 @@
         "contemporary"
       ],
       "similarToTitles": [
-        "The Midnight Library",
-        "The Midnight Train",
+        "The Midnight Library (The Midnight World, #1)",
+        "The Midnight Train (The Midnight World, #2)",
         "The Humans",
         "This Time Tomorrow"
       ]
@@ -3449,9 +3450,9 @@
       ],
       "similarToTitles": [
         "The Perfect Marriage",
-        "The Perfect Divorce",
+        "The Perfect Divorce (Perfect, #2)",
         "Dating After the End of the World",
-        "The Housemaid"
+        "The Housemaid (The Housemaid, #1)"
       ]
     },
     {
@@ -3568,11 +3569,11 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "Sycamore Row",
-        "A Time for Mercy",
+        "Sycamore Row (Jake Brigance, #2)",
+        "A Time for Mercy (Jake Brigance, #3)",
         "The Client",
-        "The Firm",
-        "Partners: A Rogue Lawyer Short Story"
+        "The Firm (The Firm, #1)",
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -3599,7 +3600,7 @@
         "The Client",
         "The Rainmaker",
         "The Litigators",
-        "A Time to Kill",
+        "A Time to Kill (Jake Brigance, #1)",
         "The French Illusion"
       ]
     },
@@ -3624,11 +3625,11 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "A Time to Kill",
-        "The Firm",
+        "A Time to Kill (Jake Brigance, #1)",
+        "The Firm (The Firm, #1)",
         "The Rainmaker",
-        "Sycamore Row",
-        "Partners: A Rogue Lawyer Short Story"
+        "Sycamore Row (Jake Brigance, #2)",
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -3653,7 +3654,7 @@
       ],
       "similarToTitles": [
         "The Firm (The Firm, #1)",
-        "A Time to Kill",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Client",
         "The Rainmaker"
       ]
@@ -3679,11 +3680,11 @@
         "music history"
       ],
       "similarToTitles": [
-        "I Wear the Black Hat",
-        "Killing Yourself to Live",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
+        "Killing Yourself to Live: 85% of a True Story",
         "Downtown Owl",
         "Football",
-        "Fargo Rock City"
+        "Fargo Rock City: A Heavy Metal Odyssey in Rural North Dakota"
       ]
     },
     {
@@ -3706,11 +3707,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Trading Bases",
-        "The Extra 2%",
-        "The Hot Hand",
-        "The Only Rule Is It Has to Work",
-        "You Can't Lose Them All"
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "The Hot Hand: The Mystery and Science of Streaks",
+        "The Only Rule Is It Has to Work: Our Wild Experiment Building a New Kind of Baseball Team",
+        "You Can't Lose Them All: Tales of a Degenerate Gambler and His Ridiculous Friends"
       ]
     },
     {
@@ -3734,11 +3735,11 @@
         "finance"
       ],
       "similarToTitles": [
-        "Bitcoin Billionaires",
-        "The Dumb Money",
-        "Hatching Twitter",
-        "Super Pumped",
-        "Checkmate"
+        "Bitcoin Billionaires: A True Story of Genius, Betrayal, and Redemption",
+        "The Dumb Money: The GameStop Short Squeeze and the Ragtag Group of Amateur Traders That Brought Wall Street to Its Knees (Previously Published as The Antisocial Network)",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
+        "Super Pumped: The Battle for Uber",
+        "Checkmate: Genius, Lies, Ambition, and the Biggest Scandal in Chess"
       ]
     },
     {
@@ -3763,10 +3764,10 @@
       ],
       "similarToTitles": [
         "Elon Musk",
-        "The Innovators",
-        "The Code Breaker",
-        "Kissinger",
-        "American Sketches"
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
+        "The Code Breaker: Jennifer Doudna, Gene Editing, and the Future of the Human Race",
+        "Kissinger: A Biography",
+        "American Sketches: Great Leaders, Creative Thinkers, and Heroes of a Hurricane"
       ]
     },
     {
@@ -3790,7 +3791,7 @@
         "literary"
       ],
       "similarToTitles": [
-        "World War Z",
+        "World War Z: An Oral History of the Zombie War",
         "The Long Walk",
         "Station Eleven",
         "Dark Matter",
@@ -3818,11 +3819,11 @@
         "finance"
       ],
       "similarToTitles": [
-        "The Hot Hand",
-        "Trading Bases",
-        "The Only Rule Is It Has to Work",
+        "The Hot Hand: The Mystery and Science of Streaks",
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
+        "The Only Rule Is It Has to Work: Our Wild Experiment Building a New Kind of Baseball Team",
         "The Midrange Theory",
-        "Everybody Lies"
+        "Everybody Lies: Big Data, New Data, and What the Internet Can Tell Us About Who We Really Are"
       ]
     },
     {
@@ -3846,11 +3847,11 @@
         "business"
       ],
       "similarToTitles": [
-        "Amazon Unbound",
-        "Super Pumped",
-        "Hatching Twitter",
-        "The Everything War",
-        "Elon Musk: Tesla"
+        "Amazon Unbound: Jeff Bezos and the Invention of a Global Empire",
+        "Super Pumped: The Battle for Uber",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
+        "The Everything War: Amazon's Ruthless Quest to Own the World and Remake Corporate Power",
+        "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future"
       ]
     },
     {
@@ -3874,11 +3875,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Three-Ring Circus",
-        "Blood in the Garden",
-        "Return of the King",
-        "Wilt",
-        "Loose Balls"
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks",
+        "Return of the King: LeBron James, The Cleveland Cavaliers and the Greatest Comeback in NBA History",
+        "Wilt: Larger Than Life",
+        "Loose Balls: The Short, Wild Life of the American Basketball Association"
       ]
     },
     {
@@ -3902,11 +3903,11 @@
         "business"
       ],
       "similarToTitles": [
-        "Super Pumped",
-        "The Everything Store",
-        "Things a Little Bird Told Me",
-        "Burn Book",
-        "Traffic"
+        "Super Pumped: The Battle for Uber",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Things a Little Bird Told Me: Confessions of the Creative Mind",
+        "Burn Book: A Tech Love Story",
+        "Traffic: Genius, Rivalry, and Delusion in the Billion-Dollar Race to Go Viral"
       ]
     },
     {
@@ -3930,10 +3931,10 @@
         "music history"
       ],
       "similarToTitles": [
-        "Sex, Drugs, and Cocoa Puffs",
-        "Killing Yourself to Live",
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "Killing Yourself to Live: 85% of a True Story",
         "The Visible Man",
-        "Chuck Klosterman IV"
+        "Chuck Klosterman IV: A Decade of Curious People and Dangerous Ideas"
       ]
     },
     {
@@ -3957,11 +3958,11 @@
         "humor"
       ],
       "similarToTitles": [
-        "Molly's Game",
-        "Flash Boys",
-        "Trading Bases",
-        "Gambler",
-        "You Can't Lose Them All"
+        "Molly's Game: From Hollywood's Elite to Wall Street's Billionaire Boys Club, My High-Stakes Adventure in the World of Underground Poker",
+        "Flash Boys: A Wall Street Revolt",
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
+        "Gambler: Secrets from a Life at Risk",
+        "You Can't Lose Them All: Tales of a Degenerate Gambler and His Ridiculous Friends"
       ]
     },
     {
@@ -3985,11 +3986,11 @@
         "memoir"
       ],
       "similarToTitles": [
-        "Hatching Twitter",
-        "The Everything Store",
-        "Super Pumped",
-        "Burn Book",
-        "Traffic"
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Super Pumped: The Battle for Uber",
+        "Burn Book: A Tech Love Story",
+        "Traffic: Genius, Rivalry, and Delusion in the Billion-Dollar Race to Go Viral"
       ]
     },
     {
@@ -4013,10 +4014,10 @@
         "tech history"
       ],
       "similarToTitles": [
-        "The Big Short",
-        "Going Infinite",
-        "The Man Who Solved the Market",
-        "Flash Crash",
+        "The Big Short: Inside the Doomsday Machine",
+        "Going Infinite: The Rise and Fall of a New Tycoon",
+        "The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution",
+        "Flash Crash: A Trading Savant, a Global Manhunt, and the Most Mysterious Market Crash in History",
         "Den of Thieves"
       ]
     },
@@ -4041,10 +4042,10 @@
         "biography"
       ],
       "similarToTitles": [
-        "A Hope in the Unseen",
-        "Unbroken",
-        "Three-Ring Circus",
-        "Dream Team",
+        "A Hope in the Unseen: An American Odyssey from the Inner City to the Ivy League",
+        "Unbroken: A World War II Story of Survival, Resilience and Redemption",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
         "Shoe Dog"
       ]
     },
@@ -4071,9 +4072,9 @@
       "similarToTitles": [
         "Steve Jobs",
         "Elon Musk",
-        "The Code Breaker",
-        "The Wise Men",
-        "Kissinger"
+        "The Code Breaker: Jennifer Doudna, Gene Editing, and the Future of the Human Race",
+        "The Wise Men: Six Friends and the World They Made",
+        "Kissinger: A Biography"
       ]
     },
     {
@@ -4097,11 +4098,11 @@
         "memoir"
       ],
       "similarToTitles": [
-        "Beyond the Pale",
+        "Beyond the Pale: The Story of Sierra Nevada Brewing Co.",
         "Shoe Dog",
         "Eat a Peach",
-        "Bitter Brew",
-        "Franklin Barbecue"
+        "Bitter Brew: The Rise and Fall of Anheuser-Busch and America's Kings of Beer",
+        "Franklin Barbecue: A Meat-Smoking Manifesto [A Cookbook]"
       ]
     },
     {
@@ -4126,9 +4127,9 @@
       ],
       "similarToTitles": [
         "Steve Jobs",
-        "The Everything Store",
-        "Amazon Unbound",
-        "Super Pumped",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Amazon Unbound: Jeff Bezos and the Invention of a Global Empire",
+        "Super Pumped: The Battle for Uber",
         "Power Play: Tesla, Elon Musk, and the Bet of the Century"
       ]
     },
@@ -4157,7 +4158,7 @@
         "Artemis",
         "Recursion",
         "Dark Matter",
-        "We Are Legion (We Are Bob)"
+        "We Are Legion (We Are Bob) (Bobiverse, #1)"
       ]
     },
     {
@@ -4181,10 +4182,10 @@
         "true crime"
       ],
       "similarToTitles": [
-        "Flash Boys",
-        "Going Infinite",
-        "The Man Who Solved the Market",
-        "Flash Crash",
+        "Flash Boys: A Wall Street Revolt",
+        "Going Infinite: The Rise and Fall of a New Tycoon",
+        "The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution",
+        "Flash Crash: A Trading Savant, a Global Manhunt, and the Most Mysterious Market Crash in History",
         "Den of Thieves"
       ]
     },
@@ -4208,10 +4209,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Maybe You Should Talk to Someone",
-        "The Council of Dads",
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
+        "The Council of Dads: My Daughters, My Illness, and the Men Who Could Be Me",
         "Educated",
-        "Riding the Lightning",
+        "Riding the Lightning: A Year in the Life of a New York City Paramedic",
         "The Glass Castle"
       ]
     },
@@ -4236,11 +4237,11 @@
         "tech history"
       ],
       "similarToTitles": [
-        "Flash Crash",
-        "The Art Thief",
-        "Going Infinite",
-        "Molly's Game",
-        "Inside the Cartel"
+        "Flash Crash: A Trading Savant, a Global Manhunt, and the Most Mysterious Market Crash in History",
+        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
+        "Going Infinite: The Rise and Fall of a New Tycoon",
+        "Molly's Game: From Hollywood's Elite to Wall Street's Billionaire Boys Club, My High-Stakes Adventure in the World of Underground Poker",
+        "Inside the Cartel: How an Undercover FBI Agent Smuggled Cocaine, Laundered Cash, and Dismantled a Colombian Narco-Empire"
       ]
     },
     {
@@ -4265,7 +4266,7 @@
       "similarToTitles": [
         "Me",
         "Born to Run",
-        "The Storyteller",
+        "The Storyteller: Tales of Life and Music",
         "Yearbook",
         "Comedy Comedy Comedy Drama"
       ]
@@ -4319,11 +4320,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Ghost Soldiers",
-        "Freedom's Forge",
-        "Unbroken",
-        "Madhouse at the End of the Earth",
-        "The Wager"
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+        "Freedom's Forge: How American Business Produced Victory in World War II",
+        "Unbroken: A World War II Story of Survival, Resilience and Redemption",
+        "Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night",
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder"
       ]
     },
     {
@@ -4347,11 +4348,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Ghost Soldiers",
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
         "A Promised Land",
-        "Freedom's Forge",
-        "Unbroken",
-        "Pearl Harbor"
+        "Freedom's Forge: How American Business Produced Victory in World War II",
+        "Unbroken: A World War II Story of Survival, Resilience and Redemption",
+        "Pearl Harbor: Warning and Decision"
       ]
     },
     {
@@ -4375,11 +4376,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Ghost Soldiers",
-        "The Arsenal of Democracy",
-        "Freedom's Forge",
-        "The Wager",
-        "Where Men Win Glory"
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+        "The Arsenal of Democracy: FDR, Detroit, and an Epic Quest to Arm an America at War",
+        "Freedom's Forge: How American Business Produced Victory in World War II",
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
+        "Where Men Win Glory: The Odyssey of Pat Tillman"
       ]
     },
     {
@@ -4402,11 +4403,11 @@
         "social commentary"
       ],
       "similarToTitles": [
-        "Maid",
-        "Dopesick",
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
         "The Glass Castle",
-        "Paradise",
-        "Amity and Prosperity"
+        "Paradise: One Town's Struggle to Survive an American Wildfire",
+        "Amity and Prosperity: One Family and the Fracturing of America"
       ]
     },
     {
@@ -4430,7 +4431,7 @@
       ],
       "similarToTitles": [
         "The Glass Castle",
-        "Maid",
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive",
         "The Liars' Club",
         "When Breath Becomes Air",
         "Three Women"
@@ -4456,9 +4457,9 @@
         "history"
       ],
       "similarToTitles": [
-        "Evicted",
-        "Paradise",
-        "One Day: The Extraordinary Story",
+        "Evicted: Poverty and Profit in the American City",
+        "Paradise: One Town's Struggle to Survive an American Wildfire",
+        "One Day: The Extraordinary Story of an Ordinary 24 Hours in America",
         "The Lost City of the Monkey God"
       ]
     },
@@ -4487,7 +4488,7 @@
         "Termination Shock",
         "The Martian",
         "Project Hail Mary",
-        "Children of Time"
+        "Children of Time (Children of Time, #1)"
       ]
     },
     {
@@ -4539,10 +4540,10 @@
         "psychological"
       ],
       "similarToTitles": [
-        "Holly",
-        "Never Flinch",
+        "Holly (Holly Gibney, #3)",
+        "Never Flinch (Holly Gibney, #4)",
         "Billy Summers",
-        "Mr. Mercedes",
+        "Mr. Mercedes (Bill Hodges #1)",
         "The Life of Chuck"
       ]
     },
@@ -4568,10 +4569,10 @@
       ],
       "similarToTitles": [
         "A Promised Land",
-        "The Nine",
+        "The Nine: Inside the Secret World of the Supreme Court",
         "While Justice Sleeps",
-        "The Presidents Club",
-        "The Genome Defense"
+        "The Presidents Club: Inside the World's Most Exclusive Fraternity",
+        "The Genome Defense: Inside the Epic Legal Battle to Determine Who Owns Your DNA"
       ]
     },
     {
@@ -4595,11 +4596,11 @@
         "tech history"
       ],
       "similarToTitles": [
-        "The Accidental Billionaires",
-        "The Dumb Money",
-        "Flash Crash",
-        "Digital Gold",
-        "Checkmate"
+        "The Accidental Billionaires: The Founding of Facebook, a Tale of Sex, Money, Genius, and Betrayal",
+        "The Dumb Money: The GameStop Short Squeeze and the Ragtag Group of Amateur Traders That Brought Wall Street to Its Knees (Previously Published as The Antisocial Network)",
+        "Flash Crash: A Trading Savant, a Global Manhunt, and the Most Mysterious Market Crash in History",
+        "Digital Gold: Bitcoin and the Inside Story of the Misfits and Millionaires Trying to Reinvent Money",
+        "Checkmate: Genius, Lies, Ambition, and the Biggest Scandal in Chess"
       ]
     },
     {
@@ -4651,8 +4652,8 @@
         "romance"
       ],
       "similarToTitles": [
-        "The Rosie Effect",
-        "The Rosie Result",
+        "The Rosie Effect (Don Tillman, #2)",
+        "The Rosie Result (Don Tillman, #3)",
         "Romantic Comedy",
         "Lessons in Chemistry",
         "My Friends"
@@ -4679,11 +4680,11 @@
         "social commentary"
       ],
       "similarToTitles": [
-        "Evicted",
+        "Evicted: Poverty and Profit in the American City",
         "The Glass Castle",
         "Educated",
-        "Paper Girl",
-        "Amity and Prosperity"
+        "Paper Girl: A Memoir of Home and Family in a Fractured America",
+        "Amity and Prosperity: One Family and the Fracturing of America"
       ]
     },
     {
@@ -4707,11 +4708,11 @@
         "business"
       ],
       "similarToTitles": [
-        "Hatching Twitter",
-        "The Everything Store",
-        "Amazon Unbound",
-        "Burn Book",
-        "Empire of AI"
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Amazon Unbound: Jeff Bezos and the Invention of a Global Empire",
+        "Burn Book: A Tech Love Story",
+        "Empire of AI: Dreams and Nightmares in Sam Altman's OpenAI"
       ]
     },
     {
@@ -4736,10 +4737,10 @@
       ],
       "similarToTitles": [
         "When Breath Becomes Air",
-        "Hidden Valley Road",
+        "Hidden Valley Road: Inside the Mind of an American Family",
         "The Glass Castle",
-        "Bittersweet",
-        "Good Morning, Monster"
+        "Bittersweet: How Sorrow and Longing Make Us Whole",
+        "Good Morning, Monster: A Therapist Shares Four Heroic Stories of Emotional Recovery"
       ]
     },
     {
@@ -4766,7 +4767,7 @@
         "Sharp Objects",
         "The Woman in the Window",
         "The Silent Patient",
-        "I'll Be Gone in the Dark",
+        "I'll Be Gone in the Dark: One Woman's Obsessive Search for the Golden State Killer",
         "Verity"
       ]
     },
@@ -4790,8 +4791,8 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Class",
-        "Evicted",
+        "Class: A Memoir of Motherhood, Hunger, and Higher Education",
+        "Evicted: Poverty and Profit in the American City",
         "Educated",
         "The Glass Castle",
         "The Liars' Club"
@@ -4819,9 +4820,9 @@
       ],
       "similarToTitles": [
         "Shoe Dog",
-        "The Everything Store",
-        "Super Pumped",
-        "Hatching Twitter",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Super Pumped: The Battle for Uber",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
         "Steve Jobs"
       ]
     },
@@ -4850,7 +4851,7 @@
         "Upgrade",
         "Project Hail Mary",
         "The Martian",
-        "Constance"
+        "Constance (Constance, #1)"
       ]
     },
     {
@@ -4904,8 +4905,8 @@
       "similarToTitles": [
         "The Glass Castle",
         "Educated",
-        "The Council of Dads",
-        "Maid"
+        "The Council of Dads: My Daughters, My Illness, and the Men Who Could Be Me",
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive"
       ]
     },
     {
@@ -4929,10 +4930,10 @@
         "music history"
       ],
       "similarToTitles": [
-        "Sex, Drugs, and Cocoa Puffs",
-        "I Wear the Black Hat",
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
         "Downtown Owl",
-        "Fargo Rock City"
+        "Fargo Rock City: A Heavy Metal Odyssey in Rural North Dakota"
       ]
     },
     {
@@ -4960,7 +4961,7 @@
         "Eat a Peach",
         "Bourdain: The Definitive Oral Biography",
         "Crying in H Mart",
-        "L.A. Son"
+        "L.A. Son: My Life, My City, My Food"
       ]
     },
     {
@@ -4987,7 +4988,7 @@
         "Momofuku: A Cookbook",
         "Yes, Chef",
         "Bourdain: The Definitive Oral Biography",
-        "Blood, Bones, and Butter",
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
         "Why I Cook"
       ]
     },
@@ -5013,7 +5014,7 @@
       ],
       "similarToTitles": [
         "Born to Run",
-        "The Storyteller",
+        "The Storyteller: Tales of Life and Music",
         "A Life in Parts",
         "Daisy Jones & The Six",
         "Yearbook"
@@ -5040,11 +5041,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Everything Store",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
         "Steve Jobs",
-        "Amazon Unbound",
-        "Built from Scratch",
-        "What It Takes"
+        "Amazon Unbound: Jeff Bezos and the Invention of a Global Empire",
+        "Built from Scratch: How a Couple of Regular Guys Grew The Home Depot from Nothing to $30 Billion",
+        "What It Takes: Lessons in the Pursuit of Excellence"
       ]
     },
     {
@@ -5095,11 +5096,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Dream Team",
-        "Blood in the Garden",
-        "Boys Will Be Boys",
-        "Football for a Buck",
-        "Sweetness"
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks",
+        "Boys Will Be Boys: The Glory Days and Party Nights of the Dallas Cowboys Dynasty",
+        "Football For A Buck: The Crazy Rise and Crazier Demise of the USFL",
+        "Sweetness: The Enigmatic Life of Walter Payton"
       ]
     },
     {
@@ -5123,11 +5124,11 @@
         "history"
       ],
       "similarToTitles": [
-        "The Presidents Club",
-        "Kissinger",
-        "The Chief",
-        "The Accidental President",
-        "Ten Letters"
+        "The Presidents Club: Inside the World's Most Exclusive Fraternity",
+        "Kissinger: A Biography",
+        "The Chief: The Life and Turbulent Times of Chief Justice John Roberts",
+        "The Accidental President: Harry S. Truman and the Four Months That Changed the World",
+        "Ten Letters: The American People in the Obama Years"
       ]
     },
     {
@@ -5151,7 +5152,7 @@
         "thriller"
       ],
       "similarToTitles": [
-        "World War Z",
+        "World War Z: An Oral History of the Zombie War",
         "The Postmortal",
         "Billy Summers",
         "Sleeping Beauties",
@@ -5179,7 +5180,7 @@
         "contemporary"
       ],
       "similarToTitles": [
-        "The Midnight Train",
+        "The Midnight Train (The Midnight World, #2)",
         "The Humans",
         "This Time Tomorrow",
         "The Invisible Life of Addie LaRue",
@@ -5207,11 +5208,11 @@
         "suspense"
       ],
       "similarToTitles": [
-        "Kiss the Girls",
-        "12 Months to Live",
+        "Kiss the Girls (Alex Cross, #2)",
+        "12 Months to Live (Jane Smith, #1)",
         "The Girl in the Castle",
-        "Juror #3",
-        "The Perfect Assassin"
+        "Juror #3 (Ruby Bozarth, #1)",
+        "The Perfect Assassin (Doc Savage, #1)"
       ]
     },
     {
@@ -5239,7 +5240,7 @@
         "Artemis",
         "Recursion",
         "Dark Matter",
-        "Children of Time"
+        "Children of Time (Children of Time, #1)"
       ]
     },
     {
@@ -5262,10 +5263,10 @@
         "business"
       ],
       "similarToTitles": [
-        "Blood, Bones, and Butter",
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
         "Yes, Chef",
         "Bourdain: The Definitive Oral Biography",
-        "Franklin Barbecue"
+        "Franklin Barbecue: A Meat-Smoking Manifesto [A Cookbook]"
       ]
     },
     {
@@ -5289,11 +5290,11 @@
         "business"
       ],
       "similarToTitles": [
-        "The Everything Store",
-        "Super Pumped",
-        "Hatching Twitter",
-        "The Everything War",
-        "Elon Musk: Tesla"
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Super Pumped: The Battle for Uber",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
+        "The Everything War: Amazon's Ruthless Quest to Own the World and Remake Corporate Power",
+        "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future"
       ]
     },
     {
@@ -5317,11 +5318,11 @@
         "sports"
       ],
       "similarToTitles": [
-        "Franklin Barbecue",
-        "Beyond the Pale",
-        "The Lagunitas Story",
-        "The Cost of These Dreams",
-        "Bitter Brew"
+        "Franklin Barbecue: A Meat-Smoking Manifesto [A Cookbook]",
+        "Beyond the Pale: The Story of Sierra Nevada Brewing Co.",
+        "The Lagunitas Story: So you want to start a brewery..?",
+        "The Cost of These Dreams: Sports Stories and Other Serious Business",
+        "Bitter Brew: The Rise and Fall of Anheuser-Busch and America's Kings of Beer"
       ]
     },
     {
@@ -5344,11 +5345,11 @@
         "true crime"
       ],
       "similarToTitles": [
-        "Fire Weather",
-        "Evicted",
-        "Dopesick",
-        "Chesapeake Requiem",
-        "Amity and Prosperity"
+        "Fire Weather: A True Story from a Hotter World",
+        "Evicted: Poverty and Profit in the American City",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+        "Chesapeake Requiem: A Year With the Watermen of Vanishing Tangier Island",
+        "Amity and Prosperity: One Family and the Fracturing of America"
       ]
     },
     {
@@ -5402,8 +5403,8 @@
         "Yes, Chef",
         "Eat a Peach",
         "Notes from a Young Black Chef",
-        "Save Me the Plums",
-        "Blood, Bones, and Butter"
+        "Save Me the Plums: My Gourmet Memoir",
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef"
       ]
     },
     {
@@ -5455,10 +5456,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Ghost Soldiers",
-        "The Arsenal of Democracy",
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+        "The Arsenal of Democracy: FDR, Detroit, and an Epic Quest to Arm an America at War",
         "Into Thin Air",
-        "A Hope in the Unseen"
+        "A Hope in the Unseen: An American Odyssey from the Inner City to the Ivy League"
       ]
     },
     {
@@ -5481,11 +5482,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "A Hollywood Ending",
-        "Return of the King",
-        "Dream Team",
-        "Blood in the Garden",
-        "Giannis"
+        "A Hollywood Ending: The Dreams and Drama of the LeBron Lakers",
+        "Return of the King: LeBron James, The Cleveland Cavaliers and the Greatest Comeback in NBA History",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks",
+        "Giannis: The Improbable Rise of an NBA MVP"
       ]
     },
     {
@@ -5504,13 +5505,14 @@
       "publisher": "Blue Rider Press",
       "year": 2019,
       "themes": [
-        "narrative nonfiction"
+        "narrative nonfiction",
+        "history"
       ],
       "similarToTitles": [
-        "The Fiddler in the Subway",
-        "Chesapeake Requiem",
-        "The Day the World Came to Town",
-        "Evicted"
+        "The Fiddler in the Subway: The Story of the World-Class Violinist Who Played for Handouts. . . And Other Virtuoso Performances by America's Foremost Feature Writer",
+        "Chesapeake Requiem: A Year With the Watermen of Vanishing Tangier Island",
+        "The Day the World Came to Town: 9/11 in Gander, Newfoundland",
+        "Evicted: Poverty and Profit in the American City"
       ]
     },
     {
@@ -5562,10 +5564,10 @@
       ],
       "similarToTitles": [
         "Educated",
-        "Maid",
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive",
         "The Liars' Club",
         "When Breath Becomes Air",
-        "A Hope in the Unseen"
+        "A Hope in the Unseen: An American Odyssey from the Inner City to the Ivy League"
       ]
     },
     {
@@ -5620,7 +5622,7 @@
         "Recursion",
         "Dark Matter",
         "Project Hail Mary",
-        "Children of Time"
+        "Children of Time (Children of Time, #1)"
       ]
     },
     {
@@ -5645,7 +5647,7 @@
       "similarToTitles": [
         "The Storied Life of A.J. Fikry",
         "Lessons in Chemistry",
-        "The Midnight Library",
+        "The Midnight Library (The Midnight World, #1)",
         "Remarkably Bright Creatures",
         "Tom Lake"
       ]
@@ -5726,9 +5728,9 @@
       ],
       "similarToTitles": [
         "When Breath Becomes Air",
-        "Maybe You Should Talk to Someone",
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
         "Twas the Nightshift Before Christmas",
-        "The Council of Dads"
+        "The Council of Dads: My Daughters, My Illness, and the Men Who Could Be Me"
       ]
     },
     {
@@ -5752,11 +5754,11 @@
         "tech history"
       ],
       "similarToTitles": [
-        "Flash Boys",
-        "Flash Crash",
-        "Bitcoin Billionaires",
-        "The Accidental Billionaires",
-        "The Trolls of Wall Street"
+        "Flash Boys: A Wall Street Revolt",
+        "Flash Crash: A Trading Savant, a Global Manhunt, and the Most Mysterious Market Crash in History",
+        "Bitcoin Billionaires: A True Story of Genius, Betrayal, and Redemption",
+        "The Accidental Billionaires: The Founding of Facebook, a Tale of Sex, Money, Genius, and Betrayal",
+        "The Trolls of Wall Street: How the Outcasts and Insurgents Are Hacking the Markets"
       ]
     },
     {
@@ -5780,10 +5782,10 @@
         "suspense"
       ],
       "similarToTitles": [
-        "Dark Angel",
-        "Along Came a Spider",
+        "Dark Angel (Letty Davenport, #2)",
+        "Along Came a Spider (Alex Cross, #1)",
         "The Chain",
-        "Hard to Break"
+        "Hard to Break (Michael Gannon, #3)"
       ]
     },
     {
@@ -5836,10 +5838,10 @@
       ],
       "similarToTitles": [
         "Steve Jobs",
-        "The Innovators",
-        "The Code Breaker",
-        "Elon Musk: Tesla",
-        "American Sketches"
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
+        "The Code Breaker: Jennifer Doudna, Gene Editing, and the Future of the Human Race",
+        "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future",
+        "American Sketches: Great Leaders, Creative Thinkers, and Heroes of a Hurricane"
       ]
     },
     {
@@ -5891,7 +5893,7 @@
         "YA"
       ],
       "similarToTitles": [
-        "Another Day",
+        "Another Day (Every Day, #2)",
         "The Perks of Being a Wallflower",
         "Looking for Alaska",
         "Paper Towns",
@@ -5919,11 +5921,11 @@
         "adventure"
       ],
       "similarToTitles": [
-        "The Lost City of Z",
-        "Ghost Soldiers",
-        "Unbroken",
-        "Madhouse at the End of the Earth",
-        "Neptune's Fortune"
+        "The Lost City of Z: A Tale of Deadly Obsession in the Amazon",
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+        "Unbroken: A World War II Story of Survival, Resilience and Redemption",
+        "Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night",
+        "Neptune's Fortune: The Billion-Dollar Shipwreck and the Ghosts of the Spanish Empire"
       ]
     },
     {
@@ -5947,11 +5949,11 @@
         "adventure"
       ],
       "similarToTitles": [
-        "The Wager",
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
         "Into Thin Air",
-        "Ghost Soldiers",
-        "Madhouse at the End of the Earth",
-        "In the Kingdom of Ice"
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+        "Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night",
+        "In the Kingdom of Ice: The Grand and Terrible Polar Voyage of the USS Jeannette"
       ]
     },
     {
@@ -5974,7 +5976,7 @@
         "literary"
       ],
       "similarToTitles": [
-        "The Midnight Library",
+        "The Midnight Library (The Midnight World, #1)",
         "Recursion",
         "Dark Matter",
         "Cassandra in Reverse",
@@ -6002,10 +6004,10 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "The Last Trial",
-        "Pleading Guilty",
-        "A Time to Kill",
-        "The Firm",
+        "The Last Trial (Kindle County Legal Thriller #11)",
+        "Pleading Guilty (Kindle County, #3)",
+        "A Time to Kill (Jake Brigance, #1)",
+        "The Firm (The Firm, #1)",
         "The Rainmaker"
       ]
     },
@@ -6033,7 +6035,7 @@
         "A Promised Land",
         "The Glass Castle",
         "Educated",
-        "Maid"
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive"
       ]
     },
     {
@@ -6057,7 +6059,7 @@
         "historical"
       ],
       "similarToTitles": [
-        "The Midnight Library",
+        "The Midnight Library (The Midnight World, #1)",
         "Tomorrow, and Tomorrow, and Tomorrow",
         "The Measure",
         "Cassandra in Reverse",
@@ -6086,7 +6088,7 @@
       ],
       "similarToTitles": [
         "Bossypants",
-        "Not That Kind of Girl",
+        "Not That Kind of Girl: A Young Woman Tells You What She's \"Learned\"",
         "Yearbook",
         "Scrappy Little Nobody"
       ]
@@ -6112,11 +6114,11 @@
         "history"
       ],
       "similarToTitles": [
-        "The Wager",
-        "Ghost Soldiers",
-        "Madhouse at the End of the Earth",
-        "Under the Banner of Heaven",
-        "Where Men Win Glory"
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+        "Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night",
+        "Under the Banner of Heaven: A Story of Violent Faith",
+        "Where Men Win Glory: The Odyssey of Pat Tillman"
       ]
     },
     {
@@ -6143,7 +6145,7 @@
         "The Silent Patient",
         "Behind Closed Doors",
         "Verity",
-        "The Housemaid",
+        "The Housemaid (The Housemaid, #1)",
         "Into the Water"
       ]
     },
@@ -6196,7 +6198,7 @@
         "domestic suspense"
       ],
       "similarToTitles": [
-        "The Housemaid's Secret",
+        "The Housemaid's Secret (The Housemaid, #2)",
         "Never Lie",
         "The Teacher",
         "The Boyfriend",
@@ -6225,7 +6227,7 @@
       "similarToTitles": [
         "Romantic Comedy",
         "Lessons in Chemistry",
-        "The Rosie Project",
+        "The Rosie Project (Don Tillman, #1)",
         "The Wedding People",
         "Good Material"
       ]
@@ -6252,9 +6254,9 @@
       ],
       "similarToTitles": [
         "Steve Jobs",
-        "Elon Musk: Tesla",
-        "The Everything Store",
-        "The Innovators",
+        "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
         "How to Prevent the Next Pandemic"
       ]
     },
@@ -6279,11 +6281,11 @@
         "psychological"
       ],
       "similarToTitles": [
-        "The Perfect Divorce",
+        "The Perfect Divorce (Perfect, #2)",
         "Home Is Where the Bodies Are",
         "Dating After the End of the World",
         "Behind Closed Doors",
-        "The Housemaid"
+        "The Housemaid (The Housemaid, #1)"
       ]
     },
     {
@@ -6369,10 +6371,10 @@
         "political"
       ],
       "similarToTitles": [
-        "The Premonition",
-        "The Big Short",
-        "Flash Boys",
-        "Going Infinite"
+        "The Premonition: A Pandemic Story",
+        "The Big Short: Inside the Doomsday Machine",
+        "Flash Boys: A Wall Street Revolt",
+        "Going Infinite: The Rise and Fall of a New Tycoon"
       ]
     },
     {
@@ -6398,7 +6400,7 @@
         "A Life in Parts",
         "Me",
         "Robin",
-        "The Storyteller"
+        "The Storyteller: Tales of Life and Music"
       ]
     },
     {
@@ -6728,7 +6730,7 @@
       "similarToTitles": [
         "A Life in Parts",
         "Me",
-        "The Storyteller",
+        "The Storyteller: Tales of Life and Music",
         "Robin"
       ]
     },
@@ -6753,7 +6755,7 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "The Firm",
+        "The Firm (The Firm, #1)",
         "The Partner",
         "The Broker",
         "The Boys from Biloxi",
@@ -7152,11 +7154,11 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "A Time to Kill",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Client",
         "The Rainmaker",
         "The Runaway Jury",
-        "Partners: A Rogue Lawyer Short Story"
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -7212,10 +7214,10 @@
         "suspense"
       ],
       "similarToTitles": [
-        "Along Came a Spider",
-        "Kiss the Girls",
-        "12 Months to Live",
-        "The Idaho Four"
+        "Along Came a Spider (Alex Cross, #1)",
+        "Kiss the Girls (Alex Cross, #2)",
+        "12 Months to Live (Jane Smith, #1)",
+        "The Idaho Four: An American Tragedy (James Patterson True Crime, 3)"
       ]
     },
     {
@@ -7239,11 +7241,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Ghost Soldiers",
-        "The Arsenal of Democracy",
-        "Unbroken",
-        "Freedom's Forge",
-        "Pearl Harbor"
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+        "The Arsenal of Democracy: FDR, Detroit, and an Epic Quest to Arm an America at War",
+        "Unbroken: A World War II Story of Survival, Resilience and Redemption",
+        "Freedom's Forge: How American Business Produced Victory in World War II",
+        "Pearl Harbor: Warning and Decision"
       ]
     },
     {
@@ -7353,7 +7355,7 @@
       "themes": [
         "literary",
         "speculative",
-        "survival"
+        "adventure"
       ],
       "similarToTitles": [
         "The Great Alone",
@@ -7417,7 +7419,7 @@
         "domestic suspense"
       ],
       "similarToTitles": [
-        "The Housemaid",
+        "The Housemaid (The Housemaid, #1)",
         "Never Lie",
         "Ward D",
         "The Inmate",
@@ -7535,8 +7537,8 @@
         "Care and Feeding",
         "Eat a Peach",
         "Yes, Chef",
-        "Hungry:",
-        "Blood, Bones, and Butter"
+        "Hungry: Eating, Road-Tripping, and Risking It All with the Greatest Chef in the World",
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef"
       ]
     },
     {
@@ -7892,11 +7894,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Blood and Thunder",
-        "In the Kingdom of Ice",
-        "The Wide Wide Sea",
-        "Unbroken",
-        "The Arsenal of Democracy"
+        "Blood and Thunder: An Epic of the American West",
+        "In the Kingdom of Ice: The Grand and Terrible Polar Voyage of the USS Jeannette",
+        "The Wide Wide Sea: Imperial Ambition, First Contact and the Fateful Final Voyage of Captain James Cook",
+        "Unbroken: A World War II Story of Survival, Resilience and Redemption",
+        "The Arsenal of Democracy: FDR, Detroit, and an Epic Quest to Arm an America at War"
       ]
     },
     {
@@ -7923,7 +7925,7 @@
         "Looking for Alaska",
         "Turtles All the Way Down",
         "The Perks of Being a Wallflower",
-        "Every Day"
+        "Every Day (Every Day, #1)"
       ]
     },
     {
@@ -7965,7 +7967,7 @@
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.1,
-      "pages": 1,
+      "pages": 0,
       "dateRead": null,
       "dateAdded": "2025/03/05",
       "isbn": null,
@@ -8044,7 +8046,7 @@
         "Seveneves",
         "Project Hail Mary",
         "The Mountain in the Sea",
-        "Children of Time"
+        "Children of Time (Children of Time, #1)"
       ]
     },
     {
@@ -8068,7 +8070,7 @@
         "domestic suspense"
       ],
       "similarToTitles": [
-        "The Housemaid",
+        "The Housemaid (The Housemaid, #1)",
         "The Teacher",
         "Ward D",
         "The Boyfriend",
@@ -8156,10 +8158,10 @@
         "suspense"
       ],
       "similarToTitles": [
-        "The Blackbriar Genesis",
+        "The Blackbriar Genesis (Blackbriar #1)",
         "The Chain",
-        "Along Came a Spider",
-        "Dark Angel"
+        "Along Came a Spider (Alex Cross, #1)",
+        "Dark Angel (Letty Davenport, #2)"
       ]
     },
     {
@@ -8186,7 +8188,7 @@
         "Paper Towns",
         "Turtles All the Way Down",
         "The Perks of Being a Wallflower",
-        "Every Day"
+        "Every Day (Every Day, #1)"
       ]
     },
     {
@@ -8301,7 +8303,7 @@
         "domestic suspense"
       ],
       "similarToTitles": [
-        "The Housemaid",
+        "The Housemaid (The Housemaid, #1)",
         "Ward D",
         "The Teacher",
         "The Divorce",
@@ -8513,10 +8515,10 @@
         "spy"
       ],
       "similarToTitles": [
-        "The Elias Network",
+        "The Elias Network (Caspian Anderson, #1)",
         "The Chain",
-        "Dark Angel",
-        "Along Came a Spider"
+        "Dark Angel (Letty Davenport, #2)",
+        "Along Came a Spider (Alex Cross, #1)"
       ]
     },
     {
@@ -8571,7 +8573,7 @@
       ],
       "similarToTitles": [
         "Anatomy of an Alibi",
-        "The Housemaid",
+        "The Housemaid (The Housemaid, #1)",
         "Behind Closed Doors",
         "Verity",
         "The Perfect Marriage"
@@ -8744,8 +8746,8 @@
         "sci-fi"
       ],
       "similarToTitles": [
-        "Randomize",
-        "Summer Frost",
+        "Randomize (Forward Collection, #6)",
+        "Summer Frost (Forward Collection, #2)",
         "The Martian",
         "Project Hail Mary"
       ]
@@ -8771,10 +8773,10 @@
         "true crime"
       ],
       "similarToTitles": [
-        "Flash Boys",
-        "The Big Short",
-        "The Man Who Solved the Market",
-        "Going Infinite",
+        "Flash Boys: A Wall Street Revolt",
+        "The Big Short: Inside the Doomsday Machine",
+        "The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution",
+        "Going Infinite: The Rise and Fall of a New Tycoon",
         "Den of Thieves"
       ]
     },
@@ -8826,9 +8828,9 @@
         "adventure"
       ],
       "similarToTitles": [
-        "Ghost Soldiers",
-        "The Wager",
-        "Madhouse at the End of the Earth",
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
+        "Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night",
         "Into Thin Air"
       ]
     },
@@ -8884,7 +8886,7 @@
       ],
       "similarToTitles": [
         "Me",
-        "The Storyteller",
+        "The Storyteller: Tales of Life and Music",
         "A Life in Parts",
         "Yearbook"
       ]
@@ -8973,8 +8975,8 @@
       ],
       "similarToTitles": [
         "The Outsider",
-        "Holly",
-        "Mr. Mercedes",
+        "Holly (Holly Gibney, #3)",
+        "Mr. Mercedes (Bill Hodges #1)",
         "Billy Summers"
       ]
     },
@@ -8998,10 +9000,10 @@
         "literary"
       ],
       "similarToTitles": [
-        "Not That Kind of Girl",
-        "Stay True",
+        "Not That Kind of Girl: A Young Woman Tells You What She's \"Learned\"",
+        "Stay True: A Memoir (Pulitzer Prize Winner)",
         "A Life in Parts",
-        "Maid"
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive"
       ]
     },
     {
@@ -9148,10 +9150,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Hatching Twitter",
-        "Super Pumped",
-        "The Everything Store",
-        "The Accidental Billionaires"
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
+        "Super Pumped: The Battle for Uber",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "The Accidental Billionaires: The Founding of Facebook, a Tale of Sex, Money, Genius, and Betrayal"
       ]
     },
     {
@@ -9206,10 +9208,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Framed",
-        "Just Mercy",
-        "A Time to Kill",
-        "Under the Banner of Heaven"
+        "Framed: Astonishing True Stories of Wrongful Convictions",
+        "Just Mercy: A Story of Justice and Redemption",
+        "A Time to Kill (Jake Brigance, #1)",
+        "Under the Banner of Heaven: A Story of Violent Faith"
       ]
     },
     {
@@ -9358,7 +9360,7 @@
       "similarToTitles": [
         "The Wishing Game",
         "The Storied Life of A.J. Fikry",
-        "The Midnight Library",
+        "The Midnight Library (The Midnight World, #1)",
         "Remarkably Bright Creatures"
       ]
     },
@@ -9384,9 +9386,9 @@
       ],
       "similarToTitles": [
         "Nuclear War: A Scenario",
-        "Ghost Soldiers",
-        "The Arsenal of Democracy",
-        "Unbroken"
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+        "The Arsenal of Democracy: FDR, Detroit, and an Epic Quest to Arm an America at War",
+        "Unbroken: A World War II Story of Survival, Resilience and Redemption"
       ]
     },
     {
@@ -9441,7 +9443,7 @@
         "She Rides Shotgun",
         "A Violent Masterpiece",
         "Blacktop Wasteland",
-        "The Last Good Kiss",
+        "The Last Good Kiss (C.W. Sughrue, #1)",
         "Hard Cash Valley"
       ]
     },
@@ -9497,9 +9499,9 @@
       ],
       "similarToTitles": [
         "Presumed Innocent",
-        "The Last Trial",
-        "The Burden of Proof",
-        "A Time to Kill"
+        "The Last Trial (Kindle County Legal Thriller #11)",
+        "The Burden of Proof (Kindle County, #2)",
+        "A Time to Kill (Jake Brigance, #1)"
       ]
     },
     {
@@ -9612,8 +9614,8 @@
         "crime"
       ],
       "similarToTitles": [
-        "Desert Places",
-        "Pines: Wayward Pines",
+        "Desert Places (Andrew Z. Thomas/Luther Kite #1)",
+        "Pines: Wayward Pines: 1 (The Wayward Pines Trilogy)",
         "Recursion",
         "Dark Matter"
       ]
@@ -9673,7 +9675,7 @@
         "Behind Closed Doors",
         "The Silent Patient",
         "Verity",
-        "The Housemaid"
+        "The Housemaid (The Housemaid, #1)"
       ]
     },
     {
@@ -9698,8 +9700,8 @@
       "similarToTitles": [
         "Yes, Chef",
         "Eat a Peach",
-        "Blood, Bones, and Butter",
-        "L.A. Son"
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
+        "L.A. Son: My Life, My City, My Food"
       ]
     },
     {
@@ -9756,7 +9758,7 @@
       "similarToTitles": [
         "The President Is Missing",
         "The First Gentleman",
-        "The Plot",
+        "The Plot (The Book Series, #1)",
         "The Silent Patient"
       ]
     },
@@ -9780,9 +9782,9 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Phil:",
+        "Phil: The Rip-Roaring (and Unauthorized!) Biography of Golf's Most Colorful Superstar",
         "Tiger Woods",
-        "Charlie Hustle",
+        "Charlie Hustle: The Rise and Fall of Pete Rose, and the Last Glory Days of Baseball",
         "Open"
       ]
     },
@@ -9806,10 +9808,10 @@
         "true crime"
       ],
       "similarToTitles": [
-        "Dopesick",
-        "Methland",
-        "Evicted",
-        "The Poisoned City"
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+        "Methland: The Death and Life of an American Small Town",
+        "Evicted: Poverty and Profit in the American City",
+        "The Poisoned City: Flint's Water and the American Urban Tragedy"
       ]
     },
     {
@@ -9864,7 +9866,7 @@
       ],
       "similarToTitles": [
         "The Storied Life of A.J. Fikry",
-        "The Midnight Library",
+        "The Midnight Library (The Midnight World, #1)",
         "Lessons in Chemistry",
         "The Wishing Game",
         "Tom Lake"
@@ -9892,9 +9894,9 @@
       ],
       "similarToTitles": [
         "Into Thin Air",
-        "Ghost Soldiers",
-        "The Wager",
-        "The Lost City of Z"
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
+        "The Lost City of Z: A Tale of Deadly Obsession in the Amazon"
       ]
     },
     {
@@ -9948,7 +9950,7 @@
         "Turtles All the Way Down",
         "Looking for Alaska",
         "Paper Towns",
-        "Everything Is Tuberculosis"
+        "Everything Is Tuberculosis: The History and Persistence of Our Deadliest Infection"
       ]
     },
     {
@@ -9972,10 +9974,10 @@
         "suspense"
       ],
       "similarToTitles": [
-        "Camino Island",
-        "Camino Winds",
+        "Camino Island (Camino Island, #1)",
+        "Camino Winds (Camino Island, #2)",
         "The Boys from Biloxi",
-        "The Exchange",
+        "The Exchange (The Firm, #2)",
         "The French Illusion"
       ]
     },
@@ -10031,9 +10033,9 @@
         "crime"
       ],
       "similarToTitles": [
-        "Th1rt3en",
+        "Th1rt3en (Eddie Flynn, #4)",
         "The Outsider",
-        "The Plot",
+        "The Plot (The Book Series, #1)",
         "The Silent Patient",
         "The Flight Attendant"
       ]
@@ -10060,9 +10062,9 @@
       ],
       "similarToTitles": [
         "Presumed Innocent",
-        "Pleading Guilty",
-        "The Last Trial",
-        "A Time to Kill"
+        "Pleading Guilty (Kindle County, #3)",
+        "The Last Trial (Kindle County Legal Thriller #11)",
+        "A Time to Kill (Jake Brigance, #1)"
       ]
     },
     {
@@ -10329,7 +10331,7 @@
         "Yes, Chef",
         "Bourdain: The Definitive Oral Biography",
         "Crying in H Mart",
-        "Blood, Bones, and Butter"
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef"
       ]
     },
     {
@@ -10382,16 +10384,16 @@
         "literary"
       ],
       "similarToTitles": [
-        "The Art Thief",
-        "The Secret Life of Groceries",
-        "Evicted",
-        "Chesapeake Requiem"
+        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
+        "The Secret Life of Groceries: The Dark Miracle of the American Supermarket",
+        "Evicted: Poverty and Profit in the American City",
+        "Chesapeake Requiem: A Year With the Watermen of Vanishing Tangier Island"
       ]
     },
     {
       "bookKey": "the-formula-how-rogues-geniuses-and-speed-freaks-reengineered-f1-into-the-world-s-fastest-growing-sport-a-high-octane-history-of-formula-1-s-rise-in-america|joshua-robinson",
       "bookId": "177317614",
-      "title": "The Formula: How Rogues, Geniuses, and Speed Freaks Reengineered F1 into the World's Fastest-Growing Sport—A High-Octane History of Formula 1's Rise in America",
+      "title": "The Formula: How Rogues, Geniuses, and Speed Freaks Reengineered F1 into the World's Fastest-Growing Sport\u2014A High-Octane History of Formula 1's Rise in America",
       "author": "Joshua Robinson",
       "shelf": "read",
       "myRating": 5,
@@ -10408,8 +10410,8 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Three-Ring Circus",
-        "Dream Team",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
         "Open",
         "Shoe Dog",
         "Tiger Woods"
@@ -10461,7 +10463,7 @@
         "contemporary"
       ],
       "similarToTitles": [
-        "The Midnight Library",
+        "The Midnight Library (The Midnight World, #1)",
         "How to Stop Time",
         "Recursion",
         "This Time Tomorrow"
@@ -10487,10 +10489,10 @@
         "horror"
       ],
       "similarToTitles": [
-        "Holly",
+        "Holly (Holly Gibney, #3)",
         "The Outsider",
         "Billy Summers",
-        "Mr. Mercedes"
+        "Mr. Mercedes (Bill Hodges #1)"
       ]
     },
     {
@@ -10729,7 +10731,7 @@
       ],
       "similarToTitles": [
         "The Storied Life of A.J. Fikry",
-        "The Midnight Library",
+        "The Midnight Library (The Midnight World, #1)",
         "Remarkably Bright Creatures",
         "Lessons in Chemistry",
         "Tomorrow, and Tomorrow, and Tomorrow"
@@ -10756,9 +10758,9 @@
         "literary"
       ],
       "similarToTitles": [
-        "Blood in the Garden",
-        "Dream Team",
-        "Three-Ring Circus"
+        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty"
       ]
     },
     {
@@ -10937,17 +10939,17 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Heartland",
+        "Heartland: A Forgotten Place, an Impossible Dream, and the Miracle of Larry Bird",
         "Tiger Woods",
-        "The Last Folk Hero",
-        "Three-Ring Circus",
-        "Dream Team"
+        "The Last Folk Hero: The Life and Myth of Bo Jackson",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever"
       ]
     },
     {
       "bookKey": "the-three-body-problem|liu-cixin",
       "bookId": "58709846",
-      "title": "The Three-Body Problem (Remembrance of Earth’s Past, #1)",
+      "title": "The Three-Body Problem (Remembrance of Earth\u2019s Past, #1)",
       "author": "Liu Cixin",
       "shelf": "read",
       "myRating": 2,
@@ -10967,7 +10969,7 @@
         "Seveneves",
         "The Martian",
         "Recursion",
-        "Children of Time"
+        "Children of Time (Children of Time, #1)"
       ]
     },
     {
@@ -11021,8 +11023,8 @@
         "contemporary"
       ],
       "similarToTitles": [
-        "Rich Blood",
-        "A Time to Kill",
+        "Rich Blood (Jason Rich, #1)",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Client",
         "The Boomerang"
       ]
@@ -11111,10 +11113,10 @@
       ],
       "similarToTitles": [
         "The Outsider",
-        "Holly",
+        "Holly (Holly Gibney, #3)",
         "Billy Summers",
         "The Institute",
-        "Mr. Mercedes"
+        "Mr. Mercedes (Bill Hodges #1)"
       ]
     },
     {
@@ -11141,7 +11143,7 @@
         "Remarkably Bright Creatures",
         "The Wishing Game",
         "Lessons in Chemistry",
-        "The Midnight Library"
+        "The Midnight Library (The Midnight World, #1)"
       ]
     },
     {
@@ -11165,7 +11167,7 @@
       ],
       "similarToTitles": [
         "Hello, Goodbye, and Everything in Between",
-        "Every Day",
+        "Every Day (Every Day, #1)",
         "Looking for Alaska",
         "The Perks of Being a Wallflower"
       ]
@@ -11314,11 +11316,11 @@
         "suspense"
       ],
       "similarToTitles": [
-        "The Maid's Secret",
-        "The Mistletoe Mystery",
-        "The Maid",
+        "The Maid's Secret (Molly the Maid, #3)",
+        "The Mistletoe Mystery (Molly the Maid, #2.5)",
+        "The Maid (Molly the Maid, #1)",
         "The Silent Patient",
-        "The Plot"
+        "The Plot (The Book Series, #1)"
       ]
     },
     {
@@ -11373,7 +11375,7 @@
         "contemporary"
       ],
       "similarToTitles": [
-        "Another Day",
+        "Another Day (Every Day, #2)",
         "The Perks of Being a Wallflower",
         "Looking for Alaska",
         "Paper Towns",
@@ -11401,7 +11403,7 @@
         "YA"
       ],
       "similarToTitles": [
-        "Another Day",
+        "Another Day (Every Day, #2)",
         "The Perks of Being a Wallflower",
         "Looking for Alaska",
         "Paper Towns",
@@ -11429,10 +11431,10 @@
         "history"
       ],
       "similarToTitles": [
-        "Flash Crash",
-        "American Kingpin",
-        "Neptune's Fortune",
-        "Chasing the Thrill"
+        "Flash Crash: A Trading Savant, a Global Manhunt, and the Most Mysterious Market Crash in History",
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "Neptune's Fortune: The Billion-Dollar Shipwreck and the Ghosts of the Spanish Empire",
+        "Chasing the Thrill: Obsession, Death, and Glory in America's Most Extraordinary Treasure Hunt"
       ]
     },
     {
@@ -11487,10 +11489,10 @@
         "history"
       ],
       "similarToTitles": [
-        "The Innovators",
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
         "Steve Jobs",
-        "Elon Musk: Tesla",
-        "AI Valley"
+        "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future",
+        "AI Valley: Microsoft, Google, and the Trillion-Dollar Race to Cash In on Artificial Intelligence"
       ]
     },
     {
@@ -11514,8 +11516,8 @@
       ],
       "similarToTitles": [
         "Me",
-        "Not That Kind of Girl",
-        "The Storyteller",
+        "Not That Kind of Girl: A Young Woman Tells You What She's \"Learned\"",
+        "The Storyteller: Tales of Life and Music",
         "Born to Run"
       ]
     },
@@ -11539,7 +11541,7 @@
         "thriller"
       ],
       "similarToTitles": [
-        "The One",
+        "The One (Dark Future #1)",
         "The Family Experiment",
         "The Measure",
         "Recursion"
@@ -11565,10 +11567,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Accidental Billionaires",
-        "Super Pumped",
-        "Hatching Twitter",
-        "Burn Book"
+        "The Accidental Billionaires: The Founding of Facebook, a Tale of Sex, Money, Genius, and Betrayal",
+        "Super Pumped: The Battle for Uber",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
+        "Burn Book: A Tech Love Story"
       ]
     },
     {
@@ -11620,10 +11622,10 @@
       ],
       "similarToTitles": [
         "The Outsider",
-        "Never Flinch",
+        "Never Flinch (Holly Gibney, #4)",
         "Billy Summers",
-        "Mr. Mercedes",
-        "Gwendy's Final Task"
+        "Mr. Mercedes (Bill Hodges #1)",
+        "Gwendy's Final Task (The Button Box, #3)"
       ]
     },
     {
@@ -11735,7 +11737,7 @@
         "adventure"
       ],
       "similarToTitles": [
-        "A Walk in the Woods",
+        "A Walk in the Woods: Rediscovering America on the Appalachian Trail",
         "A Short History of Nearly Everything",
         "Into Thin Air"
       ]
@@ -11761,11 +11763,11 @@
         "true crime"
       ],
       "similarToTitles": [
-        "Flash Boys",
-        "The Big Short",
-        "The Man Who Solved the Market",
-        "Bitcoin Billionaires",
-        "The Trolls of Wall Street"
+        "Flash Boys: A Wall Street Revolt",
+        "The Big Short: Inside the Doomsday Machine",
+        "The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution",
+        "Bitcoin Billionaires: A True Story of Genius, Betrayal, and Redemption",
+        "The Trolls of Wall Street: How the Outcasts and Insurgents Are Hacking the Markets"
       ]
     },
     {
@@ -12314,10 +12316,10 @@
         "suspense"
       ],
       "similarToTitles": [
-        "The Investigator",
-        "Along Came a Spider",
+        "The Investigator (Letty Davenport, #1)",
+        "Along Came a Spider (Alex Cross, #1)",
         "The Chain",
-        "Hard to Break"
+        "Hard to Break (Michael Gannon, #3)"
       ]
     },
     {
@@ -12646,7 +12648,7 @@
       "themes": [
         "thriller",
         "speculative",
-        "tech"
+        "high-concept"
       ],
       "similarToTitles": [
         "Recursion",
@@ -12711,9 +12713,9 @@
       ],
       "similarToTitles": [
         "Educated",
-        "Maid",
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive",
         "Where the Crawdads Sing",
-        "Dopesick"
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America"
       ]
     },
     {
@@ -12853,8 +12855,7 @@
       "type": "fiction",
       "themes": [
         "thriller",
-        "mystery",
-        "detective"
+        "mystery"
       ],
       "similarToTitles": [
         "The Outsider",
@@ -12888,7 +12889,7 @@
       ],
       "similarToTitles": [
         "The Postmortal",
-        "World War Z",
+        "World War Z: An Oral History of the Zombie War",
         "Station Eleven",
         "The Stand"
       ]
@@ -12916,7 +12917,7 @@
       "similarToTitles": [
         "Into Thin Air",
         "The Lost City of the Monkey God",
-        "The Wager",
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
         "A Short History of Nearly Everything"
       ]
     },
@@ -13145,9 +13146,9 @@
       ],
       "similarToTitles": [
         "Shoe Dog",
-        "The Everything Store",
-        "Super Pumped",
-        "That Will Never Work"
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Super Pumped: The Battle for Uber",
+        "That Will Never Work: The Birth of Netflix and the Amazing Life of an Idea"
       ]
     },
     {
@@ -13204,7 +13205,7 @@
         "Little Children",
         "Tracy Flick Can't Win",
         "Normal People",
-        "Bad Haircut"
+        "Bad Haircut: Stories from the Seventies"
       ]
     },
     {
@@ -13229,10 +13230,10 @@
       ],
       "similarToTitles": [
         "Tiger Woods",
-        "The Last Folk Hero",
-        "Charlie Hustle",
-        "Dream Team",
-        "Three-Ring Circus"
+        "The Last Folk Hero: The Life and Myth of Bo Jackson",
+        "Charlie Hustle: The Rise and Fall of Pete Rose, and the Last Glory Days of Baseball",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty"
       ]
     },
     {
@@ -13379,7 +13380,7 @@
       ],
       "similarToTitles": [
         "The Chain",
-        "The Cold Cold Ground",
+        "The Cold Cold Ground (Detective Sean Duffy, #1)",
         "The Silent Patient",
         "Behind Closed Doors"
       ]
@@ -13402,8 +13403,7 @@
       "type": "fiction",
       "themes": [
         "mystery",
-        "thriller",
-        "detective"
+        "thriller"
       ],
       "similarToTitles": [
         "The Chain",
@@ -13436,7 +13436,7 @@
         "psychological"
       ],
       "similarToTitles": [
-        "The Cold Cold Ground",
+        "The Cold Cold Ground (Detective Sean Duffy, #1)",
         "The Silent Patient",
         "Behind Closed Doors",
         "All Her Fault",
@@ -13464,10 +13464,10 @@
         "historical"
       ],
       "similarToTitles": [
-        "A Time to Kill",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Reckoning",
-        "Sycamore Row",
-        "A Time for Mercy",
+        "Sycamore Row (Jake Brigance, #2)",
+        "A Time for Mercy (Jake Brigance, #3)",
         "The French Illusion"
       ]
     },
@@ -13554,9 +13554,9 @@
         "history"
       ],
       "similarToTitles": [
-        "A Walk in the Woods",
-        "The Lost Continent",
-        "Seeing Further"
+        "A Walk in the Woods: Rediscovering America on the Appalachian Trail",
+        "The Lost Continent: Travels in Small Town America",
+        "Seeing Further: The Story of Science and the Royal Society"
       ]
     },
     {
@@ -13582,7 +13582,7 @@
         "Little Children",
         "Tracy Flick Can't Win",
         "Normal People",
-        "Bad Haircut"
+        "Bad Haircut: Stories from the Seventies"
       ]
     },
     {
@@ -13637,10 +13637,10 @@
         "business"
       ],
       "similarToTitles": [
-        "Elon Musk: Tesla",
-        "The Space Barons",
-        "Hatching Twitter",
-        "Super Pumped",
+        "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future",
+        "The Space Barons: Elon Musk, Jeff Bezos, and the Quest to Colonize the Cosmos",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
+        "Super Pumped: The Battle for Uber",
         "Steve Jobs"
       ]
     },
@@ -13726,10 +13726,10 @@
         "political"
       ],
       "similarToTitles": [
-        "The Premonition",
-        "The Fifth Risk",
-        "Flash Boys",
-        "Going Infinite"
+        "The Premonition: A Pandemic Story",
+        "The Fifth Risk: Undoing Democracy",
+        "Flash Boys: A Wall Street Revolt",
+        "Going Infinite: The Rise and Fall of a New Tycoon"
       ]
     },
     {
@@ -13784,9 +13784,9 @@
         "suspense"
       ],
       "similarToTitles": [
-        "Run for Cover",
-        "Stop at Nothing",
-        "Dark Angel",
+        "Run for Cover (Michael Gannon, #2)",
+        "Stop at Nothing (Michael Gannon, #1)",
+        "Dark Angel (Letty Davenport, #2)",
         "The Chain"
       ]
     },
@@ -13811,11 +13811,11 @@
         "suspense"
       ],
       "similarToTitles": [
-        "Stop at Nothing",
-        "Hard to Break",
+        "Stop at Nothing (Michael Gannon, #1)",
+        "Hard to Break (Michael Gannon, #3)",
         "The Chain",
-        "Dark Angel",
-        "Along Came a Spider"
+        "Dark Angel (Letty Davenport, #2)",
+        "Along Came a Spider (Alex Cross, #1)"
       ]
     },
     {
@@ -13839,10 +13839,10 @@
         "suspense"
       ],
       "similarToTitles": [
-        "Run for Cover",
-        "Hard to Break",
+        "Run for Cover (Michael Gannon, #2)",
+        "Hard to Break (Michael Gannon, #3)",
         "The Chain",
-        "Dark Angel"
+        "Dark Angel (Letty Davenport, #2)"
       ]
     },
     {
@@ -13866,7 +13866,7 @@
         "contemporary"
       ],
       "similarToTitles": [
-        "The Midnight Library",
+        "The Midnight Library (The Midnight World, #1)",
         "The Invisible Life of Addie LaRue",
         "This Time Tomorrow",
         "Cassandra in Reverse",
@@ -13896,7 +13896,7 @@
         "Tracy Flick Can't Win",
         "Normal People",
         "Lessons in Chemistry",
-        "Bad Haircut",
+        "Bad Haircut: Stories from the Seventies",
         "Beautiful World, Where Are You"
       ]
     },
@@ -13921,10 +13921,10 @@
         "social commentary"
       ],
       "similarToTitles": [
-        "Evicted",
-        "Maid",
-        "Dopesick",
-        "Amity and Prosperity"
+        "Evicted: Poverty and Profit in the American City",
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+        "Amity and Prosperity: One Family and the Fracturing of America"
       ]
     },
     {
@@ -14060,7 +14060,7 @@
         "Little Children",
         "Tracy Flick Can't Win",
         "Normal People",
-        "Bad Haircut"
+        "Bad Haircut: Stories from the Seventies"
       ]
     },
     {
@@ -14207,7 +14207,7 @@
         "Little Children",
         "Normal People",
         "Lessons in Chemistry",
-        "Bad Haircut"
+        "Bad Haircut: Stories from the Seventies"
       ]
     },
     {
@@ -14232,7 +14232,7 @@
       ],
       "similarToTitles": [
         "Abandon",
-        "Pines: Wayward Pines",
+        "Pines: Wayward Pines: 1 (The Wayward Pines Trilogy)",
         "Recursion",
         "Dark Matter"
       ]
@@ -14343,11 +14343,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Three-Ring Circus",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
         "Tiger Woods",
-        "Dream Team",
-        "Sweetness",
-        "The Rocket That Fell to Earth"
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Sweetness: The Enigmatic Life of Walter Payton",
+        "The Rocket That Fell to Earth: Roger Clemens and the Rage for Baseball Immortality"
       ]
     },
     {
@@ -14371,8 +14371,8 @@
         "high-concept"
       ],
       "similarToTitles": [
-        "Pines: Wayward Pines",
-        "Wayward: Wayward Pines",
+        "Pines: Wayward Pines: 1 (The Wayward Pines Trilogy)",
+        "Wayward: Wayward Pines: 2 (The Wayward Pines Trilogy)",
         "Recursion",
         "Dark Matter",
         "The Institute"
@@ -14399,8 +14399,8 @@
         "high-concept"
       ],
       "similarToTitles": [
-        "Pines: Wayward Pines",
-        "The Last Town",
+        "Pines: Wayward Pines: 1 (The Wayward Pines Trilogy)",
+        "The Last Town (Wayward Pines #3)",
         "Recursion",
         "Dark Matter"
       ]
@@ -14408,7 +14408,7 @@
     {
       "bookKey": "stolen-focus-why-you-can-t-pay-attention-and-how-to-think-deeply-again|johann-hari",
       "bookId": "57933306",
-      "title": "Stolen Focus: Why You Can't Pay Attention— and How to Think Deeply Again",
+      "title": "Stolen Focus: Why You Can't Pay Attention\u2014 and How to Think Deeply Again",
       "author": "Johann Hari",
       "shelf": "to-read",
       "myRating": 0,
@@ -14458,7 +14458,7 @@
       ],
       "similarToTitles": [
         "American Fantasy",
-        "The Midnight Library",
+        "The Midnight Library (The Midnight World, #1)",
         "How to Stop Time",
         "Cassandra in Reverse",
         "Tomorrow, and Tomorrow, and Tomorrow"
@@ -14485,9 +14485,9 @@
         "contemporary"
       ],
       "similarToTitles": [
-        "The Mystery Guest",
-        "The Maid's Secret",
-        "The Mistletoe Mystery",
+        "The Mystery Guest (Molly the Maid, #2)",
+        "The Maid's Secret (Molly the Maid, #3)",
+        "The Mistletoe Mystery (Molly the Maid, #2.5)",
         "The Silent Patient"
       ]
     },
@@ -14512,8 +14512,8 @@
         "high-concept"
       ],
       "similarToTitles": [
-        "Wayward: Wayward Pines",
-        "The Last Town",
+        "Wayward: Wayward Pines: 2 (The Wayward Pines Trilogy)",
+        "The Last Town (Wayward Pines #3)",
         "Recursion",
         "Dark Matter",
         "The Outsider"
@@ -14706,10 +14706,10 @@
         "speculative"
       ],
       "similarToTitles": [
-        "Holly",
+        "Holly (Holly Gibney, #3)",
         "The Outsider",
         "Billy Summers",
-        "Mr. Mercedes"
+        "Mr. Mercedes (Bill Hodges #1)"
       ]
     },
     {
@@ -14733,8 +14733,8 @@
       ],
       "similarToTitles": [
         "Normal People",
-        "Maid",
-        "Evicted",
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive",
+        "Evicted: Poverty and Profit in the American City",
         "Lessons in Chemistry"
       ]
     },
@@ -14760,9 +14760,9 @@
       ],
       "similarToTitles": [
         "The Outsider",
-        "Holly",
-        "Never Flinch",
-        "Mr. Mercedes",
+        "Holly (Holly Gibney, #3)",
+        "Never Flinch (Holly Gibney, #4)",
+        "Mr. Mercedes (Bill Hodges #1)",
         "The Life of Chuck"
       ]
     },
@@ -14904,9 +14904,9 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Blood in the Garden",
-        "Inside the NBA Bubble",
-        "Dream Team"
+        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks",
+        "Inside the NBA Bubble: A Championship Season under Quarantine",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever"
       ]
     },
     {
@@ -14925,12 +14925,13 @@
       "publisher": "Bloomsbury USA",
       "year": 2006,
       "themes": [
-        "food"
+        "food",
+        "memoir"
       ],
       "similarToTitles": [
         "Yes, Chef",
         "Eat a Peach",
-        "Blood, Bones, and Butter"
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef"
       ]
     },
     {
@@ -14953,10 +14954,10 @@
         "biography"
       ],
       "similarToTitles": [
-        "Three-Ring Circus",
-        "The Last Folk Hero",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "The Last Folk Hero: The Life and Myth of Bo Jackson",
         "Tiger Woods",
-        "Boys Will Be Boys"
+        "Boys Will Be Boys: The Glory Days and Party Nights of the Dallas Cowboys Dynasty"
       ]
     },
     {
@@ -15040,8 +15041,8 @@
         "food"
       ],
       "similarToTitles": [
-        "Cork Dork",
-        "Save Me the Plums",
+        "Cork Dork: A Wine-Fueled Adventure Among the Obsessive Sommeliers, Big Bottle Hunters, and Rogue Scientists Who Taught Me to Live for Taste",
+        "Save Me the Plums: My Gourmet Memoir",
         "Eat a Peach",
         "Bourdain: The Definitive Oral Biography"
       ]
@@ -15322,9 +15323,9 @@
       ],
       "similarToTitles": [
         "Tiger Woods",
-        "The Last Folk Hero",
-        "Charlie Hustle",
-        "Sweetness"
+        "The Last Folk Hero: The Life and Myth of Bo Jackson",
+        "Charlie Hustle: The Rise and Fall of Pete Rose, and the Last Glory Days of Baseball",
+        "Sweetness: The Enigmatic Life of Walter Payton"
       ]
     },
     {
@@ -15351,8 +15352,8 @@
         "Tiger Woods",
         "Open",
         "Shoe Dog",
-        "Three-Ring Circus",
-        "The Last Folk Hero"
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "The Last Folk Hero: The Life and Myth of Bo Jackson"
       ]
     },
     {
@@ -15377,7 +15378,7 @@
       ],
       "similarToTitles": [
         "The Silent Patient",
-        "The Housemaid",
+        "The Housemaid (The Housemaid, #1)",
         "Behind Closed Doors",
         "Local Woman Missing",
         "Listen for the Lie"
@@ -15433,7 +15434,7 @@
         "Looking for Alaska",
         "Paper Towns",
         "The Perks of Being a Wallflower",
-        "Every Day"
+        "Every Day (Every Day, #1)"
       ]
     },
     {
@@ -15457,10 +15458,10 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "The Judge's List",
-        "A Time to Kill",
-        "The Firm",
-        "Partners: A Rogue Lawyer Short Story"
+        "The Judge's List (The Whistler #2)",
+        "A Time to Kill (Jake Brigance, #1)",
+        "The Firm (The Firm, #1)",
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -15484,10 +15485,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Dream Team",
-        "Blood in the Garden",
-        "Tanking to the Top",
-        "Three-Ring Circus"
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks",
+        "Tanking to the Top: The Philadelphia 76ers and the Most Audacious Process in the History of Professional Sports",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty"
       ]
     },
     {
@@ -15574,9 +15575,9 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Maybe You Should Talk to Someone",
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
         "When Breath Becomes Air",
-        "Hidden Valley Road",
+        "Hidden Valley Road: Inside the Mind of an American Family",
         "Educated"
       ]
     },
@@ -15686,10 +15687,10 @@
         "thriller"
       ],
       "similarToTitles": [
-        "American Kingpin",
-        "The Art Thief",
-        "Methland",
-        "Inside the Cartel"
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
+        "Methland: The Death and Life of an American Small Town",
+        "Inside the Cartel: How an Undercover FBI Agent Smuggled Cocaine, Laundered Cash, and Dismantled a Colombian Narco-Empire"
       ]
     },
     {
@@ -15725,7 +15726,7 @@
     {
       "bookKey": "the-infiltrator-my-secret-life-inside-the-dirty-banks-behind-pablo-escobar-s-medell-n-cartel|robert-mazur",
       "bookId": "6657841",
-      "title": "The Infiltrator: My Secret Life Inside the Dirty Banks Behind Pablo Escobar's Medellín Cartel",
+      "title": "The Infiltrator: My Secret Life Inside the Dirty Banks Behind Pablo Escobar's Medell\u00edn Cartel",
       "author": "Robert Mazur",
       "shelf": "to-read",
       "myRating": 0,
@@ -15800,13 +15801,14 @@
       "publisher": "Simon & Schuster",
       "year": 2022,
       "themes": [
-        "humor"
+        "humor",
+        "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Big Fan",
-        "Sex, Drugs, and Cocoa Puffs",
+        "Big Fan: Two Friends, 82,490 Miles, and the Wild, Wonderful Sports We Love",
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
         "Yearbook",
-        "I Wear the Black Hat"
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)"
       ]
     },
     {
@@ -15887,10 +15889,10 @@
         "adventure"
       ],
       "similarToTitles": [
-        "The Accidental Billionaires",
-        "Bitcoin Billionaires",
-        "Checkmate",
-        "Flash Crash"
+        "The Accidental Billionaires: The Founding of Facebook, a Tale of Sex, Money, Genius, and Betrayal",
+        "Bitcoin Billionaires: A True Story of Genius, Betrayal, and Redemption",
+        "Checkmate: Genius, Lies, Ambition, and the Biggest Scandal in Chess",
+        "Flash Crash: A Trading Savant, a Global Manhunt, and the Most Mysterious Market Crash in History"
       ]
     },
     {
@@ -16099,11 +16101,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Dream Team",
-        "Three-Ring Circus",
-        "Giannis",
-        "Return of the King",
-        "Loose Balls"
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Giannis: The Improbable Rise of an NBA MVP",
+        "Return of the King: LeBron James, The Cleveland Cavaliers and the Greatest Comeback in NBA History",
+        "Loose Balls: The Short, Wild Life of the American Basketball Association"
       ]
     },
     {
@@ -16189,7 +16191,7 @@
       ],
       "similarToTitles": [
         "Clean Hands",
-        "Every Man a Menace",
+        "Every Man a Menace: A Novel",
         "She Rides Shotgun",
         "Blacktop Wasteland",
         "A Violent Masterpiece"
@@ -16215,8 +16217,8 @@
         "history"
       ],
       "similarToTitles": [
-        "Dopesick",
-        "The Premonition",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+        "The Premonition: A Pandemic Story",
         "When Breath Becomes Air",
         "The End of October"
       ]
@@ -16242,8 +16244,8 @@
         "humor"
       ],
       "similarToTitles": [
-        "Sex, Drugs, and Cocoa Puffs",
-        "I Wear the Black Hat",
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
         "Eating the Dinosaur",
         "Downtown Owl"
       ]
@@ -16268,10 +16270,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Someone Could Get Hurt",
+        "Someone Could Get Hurt: A Memoir of Twenty-First-Century Parenthood",
         "The Glass Castle",
         "Educated",
-        "Maid"
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive"
       ]
     },
     {
@@ -16295,11 +16297,11 @@
         "adventure"
       ],
       "similarToTitles": [
-        "Neptune's Fortune",
-        "The Wager",
+        "Neptune's Fortune: The Billion-Dollar Shipwreck and the Ghosts of the Spanish Empire",
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
         "Into Thin Air",
-        "Ghost Soldiers",
-        "In the Kingdom of Ice"
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+        "In the Kingdom of Ice: The Grand and Terrible Polar Voyage of the USS Jeannette"
       ]
     },
     {
@@ -16323,7 +16325,7 @@
       ],
       "similarToTitles": [
         "Yearbook",
-        "Born Standing Up",
+        "Born Standing Up: A Comic's Life",
         "A Life in Parts",
         "Comedy Comedy Comedy Drama"
       ]
@@ -16349,10 +16351,10 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "A Time to Kill",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Client",
-        "Framed",
-        "Partners: A Rogue Lawyer Short Story"
+        "Framed: Astonishing True Stories of Wrongful Convictions",
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -16406,10 +16408,10 @@
         "history"
       ],
       "similarToTitles": [
-        "One Day: The Extraordinary Story",
-        "Chesapeake Requiem",
-        "A Hope in the Unseen",
-        "The Council of Dads"
+        "One Day: The Extraordinary Story of an Ordinary 24 Hours in America",
+        "Chesapeake Requiem: A Year With the Watermen of Vanishing Tangier Island",
+        "A Hope in the Unseen: An American Odyssey from the Inner City to the Ivy League",
+        "The Council of Dads: My Daughters, My Illness, and the Men Who Could Be Me"
       ]
     },
     {
@@ -16433,10 +16435,10 @@
         "crime"
       ],
       "similarToTitles": [
-        "Flash Boys",
-        "The Big Short",
-        "Going Infinite",
-        "The Man Who Solved the Market"
+        "Flash Boys: A Wall Street Revolt",
+        "The Big Short: Inside the Doomsday Machine",
+        "Going Infinite: The Rise and Fall of a New Tycoon",
+        "The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution"
       ]
     },
     {
@@ -16460,10 +16462,10 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "A Criminal Defense",
-        "A Killer's Alibi",
-        "A Criminal Justice",
-        "A Time to Kill"
+        "A Criminal Defense (Philadelphia Legal, #1)",
+        "A Killer's Alibi (Philadelphia Legal, #3)",
+        "A Criminal Justice (Philadelphia Legal, #4)",
+        "A Time to Kill (Jake Brigance, #1)"
       ]
     },
     {
@@ -16487,10 +16489,10 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "An Engineered Injustice",
-        "A Killer's Alibi",
-        "A Criminal Justice",
-        "A Time to Kill"
+        "An Engineered Injustice (Philadelphia Legal, #2)",
+        "A Killer's Alibi (Philadelphia Legal, #3)",
+        "A Criminal Justice (Philadelphia Legal, #4)",
+        "A Time to Kill (Jake Brigance, #1)"
       ]
     },
     {
@@ -16545,7 +16547,7 @@
       ],
       "similarToTitles": [
         "When Breath Becomes Air",
-        "Maybe You Should Talk to Someone",
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
         "The Last Lecture",
         "Educated"
       ]
@@ -16571,10 +16573,10 @@
         "crime"
       ],
       "similarToTitles": [
-        "Along Came a Spider",
-        "Kiss the Girls",
-        "Juror #3",
-        "12 Months to Live"
+        "Along Came a Spider (Alex Cross, #1)",
+        "Kiss the Girls (Alex Cross, #2)",
+        "Juror #3 (Ruby Bozarth, #1)",
+        "12 Months to Live (Jane Smith, #1)"
       ]
     },
     {
@@ -16722,7 +16724,7 @@
         "The Silent Patient",
         "Behind Closed Doors",
         "Verity",
-        "The Housemaid"
+        "The Housemaid (The Housemaid, #1)"
       ]
     },
     {
@@ -16777,10 +16779,10 @@
         "political"
       ],
       "similarToTitles": [
-        "Rogue Justice",
-        "A Time to Kill",
+        "Rogue Justice (Avery Keene, #2)",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Client",
-        "The Chief"
+        "The Chief: The Life and Turbulent Times of Chief Justice John Roberts"
       ]
     },
     {
@@ -16834,11 +16836,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Hot Hand",
-        "The Extra 2%",
-        "Trading Bases",
+        "The Hot Hand: The Mystery and Science of Streaks",
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
         "The Midrange Theory",
-        "Dream Team"
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever"
       ]
     },
     {
@@ -16920,7 +16922,7 @@
       ],
       "similarToTitles": [
         "Eat a Peach",
-        "Blood, Bones, and Butter",
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
         "Yes, Chef",
         "Bourdain: The Definitive Oral Biography"
       ]
@@ -16976,11 +16978,11 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "The Whistler",
+        "The Whistler (The Whistler, #1)",
         "The Litigators",
         "The Runaway Jury",
         "The Last Juror",
-        "Partners: A Rogue Lawyer Short Story"
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -17031,11 +17033,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Dream Team",
-        "Three-Ring Circus",
-        "Blood in the Garden",
-        "A Hollywood Ending",
-        "Return of the King"
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks",
+        "A Hollywood Ending: The Dreams and Drama of the LeBron Lakers",
+        "Return of the King: LeBron James, The Cleveland Cavaliers and the Greatest Comeback in NBA History"
       ]
     },
     {
@@ -17258,8 +17260,7 @@
       "year": 2021,
       "themes": [
         "memoir",
-        "humor",
-        "comedy"
+        "humor"
       ],
       "similarToTitles": [
         "Comedy Comedy Comedy Drama",
@@ -17290,9 +17291,9 @@
         "business"
       ],
       "similarToTitles": [
-        "Flash Boys",
-        "The Big Short",
-        "Flash Crash",
+        "Flash Boys: A Wall Street Revolt",
+        "The Big Short: Inside the Doomsday Machine",
+        "Flash Crash: A Trading Savant, a Global Manhunt, and the Most Mysterious Market Crash in History",
         "Den of Thieves"
       ]
     },
@@ -17403,12 +17404,13 @@
       "publisher": "Bantam",
       "year": 2012,
       "themes": [
-        "psychology"
+        "psychology",
+        "narrative nonfiction"
       ],
       "similarToTitles": [
         "Thinking, Fast and Slow",
-        "Quiet:",
-        "Maybe You Should Talk to Someone"
+        "Quiet: The Power of Introverts in a World That Can't Stop Talking",
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed"
       ]
     },
     {
@@ -17462,9 +17464,9 @@
         "crime"
       ],
       "similarToTitles": [
-        "Along Came a Spider",
-        "Kiss the Girls",
-        "12 Months to Live"
+        "Along Came a Spider (Alex Cross, #1)",
+        "Kiss the Girls (Alex Cross, #2)",
+        "12 Months to Live (Jane Smith, #1)"
       ]
     },
     {
@@ -17549,10 +17551,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Blood in the Garden",
-        "Dream Team",
-        "Inside the NBA Bubble",
-        "Three-Ring Circus"
+        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Inside the NBA Bubble: A Championship Season under Quarantine",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty"
       ]
     },
     {
@@ -17575,10 +17577,10 @@
         "true crime"
       ],
       "similarToTitles": [
-        "Dopesick",
-        "The Premonition",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+        "The Premonition: A Pandemic Story",
         "The End of October",
-        "Five Days at Memorial"
+        "Five Days at Memorial: Life and Death in a Storm-Ravaged Hospital"
       ]
     },
     {
@@ -17659,10 +17661,10 @@
         "crime"
       ],
       "similarToTitles": [
-        "Along Came a Spider",
-        "Kiss the Girls",
-        "Tiger Tiger",
-        "12 Months to Live"
+        "Along Came a Spider (Alex Cross, #1)",
+        "Kiss the Girls (Alex Cross, #2)",
+        "Tiger Tiger: His Life as It's Never Been Told Before",
+        "12 Months to Live (Jane Smith, #1)"
       ]
     },
     {
@@ -17685,10 +17687,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Chief",
+        "The Chief: The Life and Turbulent Times of Chief Justice John Roberts",
         "While Justice Sleeps",
-        "A Time to Kill",
-        "The Genome Defense"
+        "A Time to Kill (Jake Brigance, #1)",
+        "The Genome Defense: Inside the Epic Legal Battle to Determine Who Owns Your DNA"
       ]
     },
     {
@@ -17711,9 +17713,9 @@
         "political"
       ],
       "similarToTitles": [
-        "The Big Short",
-        "Flash Boys",
-        "Dopesick",
+        "The Big Short: Inside the Doomsday Machine",
+        "Flash Boys: A Wall Street Revolt",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
         "The End of October"
       ]
     },
@@ -17797,6 +17799,7 @@
       "type": "nonfiction",
       "themes": [
         "memoir",
+        "food",
         "narrative nonfiction"
       ],
       "similarToTitles": [
@@ -17830,9 +17833,9 @@
         "high-concept"
       ],
       "similarToTitles": [
-        "The Premonition",
+        "The Premonition: A Pandemic Story",
         "Mr. Texas",
-        "Dopesick",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
         "The Flight Attendant"
       ]
     },
@@ -17857,11 +17860,11 @@
         "psychology"
       ],
       "similarToTitles": [
-        "The Extra 2%",
-        "Trading Bases",
-        "The Only Rule Is It Has to Work",
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
+        "The Only Rule Is It Has to Work: Our Wild Experiment Building a New Kind of Baseball Team",
         "The Midrange Theory",
-        "Everybody Lies"
+        "Everybody Lies: Big Data, New Data, and What the Internet Can Tell Us About Who We Really Are"
       ]
     },
     {
@@ -17885,11 +17888,11 @@
         "suspense"
       ],
       "similarToTitles": [
-        "Along Came a Spider",
+        "Along Came a Spider (Alex Cross, #1)",
         "The Jailhouse Lawyer",
-        "12 Months to Live",
+        "12 Months to Live (Jane Smith, #1)",
         "The Girl in the Castle",
-        "The Idaho Four"
+        "The Idaho Four: An American Tragedy (James Patterson True Crime, 3)"
       ]
     },
     {
@@ -17915,7 +17918,7 @@
       "similarToTitles": [
         "The President's Daughter",
         "The First Gentleman",
-        "The Plot",
+        "The Plot (The Book Series, #1)",
         "The Chain"
       ]
     },
@@ -18004,9 +18007,9 @@
       "similarToTitles": [
         "Steve Jobs",
         "Elon Musk",
-        "The Innovators",
-        "Source Code",
-        "American Sketches"
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
+        "Source Code: My Beginnings",
+        "American Sketches: Great Leaders, Creative Thinkers, and Heroes of a Hurricane"
       ]
     },
     {
@@ -18071,7 +18074,7 @@
       "bookKey": "the-best-american-food-writing-2020|j-kenji-l-pez-alt",
       "bookId": "53715111",
       "title": "The Best American Food Writing 2020 (The Best American Series)",
-      "author": "J. Kenji López-Alt",
+      "author": "J. Kenji L\u00f3pez-Alt",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 0.0,
@@ -18083,11 +18086,12 @@
       "publisher": "Mariner Books",
       "year": 2020,
       "themes": [
-        "food"
+        "food",
+        "narrative nonfiction"
       ],
       "similarToTitles": [
         "Eat a Peach",
-        "Blood, Bones, and Butter",
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
         "Yes, Chef"
       ]
     },
@@ -18112,11 +18116,11 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "A Time to Kill",
-        "Sycamore Row",
+        "A Time to Kill (Jake Brigance, #1)",
+        "Sycamore Row (Jake Brigance, #2)",
         "The Boys from Biloxi",
         "The Client",
-        "Partners: A Rogue Lawyer Short Story"
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -18193,11 +18197,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Dream Team",
-        "Blood in the Garden",
-        "Three-Ring Circus",
-        "Return of the King",
-        "Giannis"
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Return of the King: LeBron James, The Cleveland Cavaliers and the Greatest Comeback in NBA History",
+        "Giannis: The Improbable Rise of an NBA MVP"
       ]
     },
     {
@@ -18282,8 +18286,8 @@
         "memoir"
       ],
       "similarToTitles": [
-        "The Everything Store",
-        "Amazon Unbound",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Amazon Unbound: Jeff Bezos and the Invention of a Global Empire",
         "Shoe Dog",
         "Steve Jobs"
       ]
@@ -18309,9 +18313,9 @@
       ],
       "similarToTitles": [
         "Crying in H Mart",
-        "Save Me the Plums",
+        "Save Me the Plums: My Gourmet Memoir",
         "Eat a Peach",
-        "Blood, Bones, and Butter"
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef"
       ]
     },
     {
@@ -18330,13 +18334,14 @@
       "publisher": "Atria Books",
       "year": 2014,
       "themes": [
-        "food"
+        "food",
+        "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Franklin Barbecue",
+        "Franklin Barbecue: A Meat-Smoking Manifesto [A Cookbook]",
         "Eat a Peach",
         "Yes, Chef",
-        "Blood, Bones, and Butter"
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef"
       ]
     },
     {
@@ -18386,11 +18391,12 @@
       "publisher": "Grand Central Publishing",
       "year": 2020,
       "themes": [
-        "humor"
+        "humor",
+        "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Sex, Drugs, and Cocoa Puffs",
-        "I Wear the Black Hat",
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
         "Yearbook",
         "The Wreckage of My Presence"
       ]
@@ -18415,10 +18421,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Super Pumped",
-        "The Accidental Billionaires",
-        "Hatching Twitter",
-        "The Everything Store"
+        "Super Pumped: The Battle for Uber",
+        "The Accidental Billionaires: The Founding of Facebook, a Tale of Sex, Money, Genius, and Betrayal",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
+        "The Everything Store: Jeff Bezos and the Age of Amazon"
       ]
     },
     {
@@ -18438,7 +18444,8 @@
       "year": 2020,
       "type": "nonfiction",
       "themes": [
-        "narrative nonfiction"
+        "narrative nonfiction",
+        "food"
       ],
       "similarToTitles": [
         "Pappyland: A Story of Family, Fine Bourbon, and the Things That Last",
@@ -18472,9 +18479,9 @@
       ],
       "similarToTitles": [
         "Shoe Dog",
-        "The Ride of a Lifetime",
-        "Built from Scratch",
-        "The Everything Store"
+        "The Ride of a Lifetime: Lessons Learned from 15 Years as CEO of the Walt Disney Company",
+        "Built from Scratch: How a Couple of Regular Guys Grew The Home Depot from Nothing to $30 Billion",
+        "The Everything Store: Jeff Bezos and the Age of Amazon"
       ]
     },
     {
@@ -18704,10 +18711,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Three-Ring Circus",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
         "Tiger Woods",
-        "Dream Team",
-        "Pappyland"
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Pappyland: A Story of Family, Fine Bourbon, and the Things That Last"
       ]
     },
     {
@@ -18863,7 +18870,7 @@
     {
       "bookKey": "the-answer-is-reflections-on-my-life|alex-trebek",
       "bookId": "52854193",
-      "title": "The Answer Is…: Reflections on My Life",
+      "title": "The Answer Is\u2026: Reflections on My Life",
       "author": "Alex Trebek",
       "shelf": "to-read",
       "myRating": 0,
@@ -18942,7 +18949,7 @@
         "suspense"
       ],
       "similarToTitles": [
-        "Pines: Wayward Pines",
+        "Pines: Wayward Pines: 1 (The Wayward Pines Trilogy)",
         "Recursion",
         "Dark Matter",
         "The Long Walk"
@@ -18969,10 +18976,10 @@
         "business"
       ],
       "similarToTitles": [
-        "Hatching Twitter",
-        "Super Pumped",
-        "The Everything Store",
-        "Burn Book"
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
+        "Super Pumped: The Battle for Uber",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Burn Book: A Tech Love Story"
       ]
     },
     {
@@ -19023,7 +19030,7 @@
         "noir"
       ],
       "similarToTitles": [
-        "Every Man a Menace",
+        "Every Man a Menace: A Novel",
         "The White Van",
         "She Rides Shotgun",
         "Everybody Knows"
@@ -19050,9 +19057,9 @@
       ],
       "similarToTitles": [
         "Eat a Peach",
-        "Save Me the Plums",
-        "Blood, Bones, and Butter",
-        "Get the Picture"
+        "Save Me the Plums: My Gourmet Memoir",
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
+        "Get the Picture: A Mind-Bending Journey Among the Inspired Artists and Obsessive Art Fiends Who Taught Me How to See"
       ]
     },
     {
@@ -19076,7 +19083,7 @@
         "speculative"
       ],
       "similarToTitles": [
-        "World War Z",
+        "World War Z: An Oral History of the Zombie War",
         "Tiger Chair",
         "The Postmortal",
         "The Stand"
@@ -19104,9 +19111,9 @@
       ],
       "similarToTitles": [
         "Shoe Dog",
-        "The Everything Store",
-        "Sam Walton",
-        "What It Takes"
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Sam Walton: Made In America",
+        "What It Takes: Lessons in the Pursuit of Excellence"
       ]
     },
     {
@@ -19130,9 +19137,9 @@
         "crime"
       ],
       "similarToTitles": [
-        "Creep (Creep",
-        "Freak (Creep",
-        "The Housemaid",
+        "Creep (Creep, #1)",
+        "Freak (Creep #2)",
+        "The Housemaid (The Housemaid, #1)",
         "Behind Closed Doors",
         "None of This Is True"
       ]
@@ -19158,10 +19165,10 @@
       ],
       "similarToTitles": [
         "The Outsider",
-        "Never Flinch",
+        "Never Flinch (Holly Gibney, #4)",
         "Billy Summers",
-        "Mr. Mercedes",
-        "Gwendy's Final Task"
+        "Mr. Mercedes (Bill Hodges #1)",
+        "Gwendy's Final Task (The Button Box, #3)"
       ]
     },
     {
@@ -19314,8 +19321,8 @@
         "Eat a Peach",
         "Bourdain: The Definitive Oral Biography",
         "Notes from a Young Black Chef",
-        "Blood, Bones, and Butter",
-        "Taste"
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
+        "Taste: My Life Through Food"
       ]
     },
     {
@@ -19431,10 +19438,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Dream Team",
-        "Three-Ring Circus",
-        "Blood in the Garden",
-        "The Extra 2%"
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks",
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First"
       ]
     },
     {
@@ -19489,8 +19496,8 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "A Time to Kill",
-        "The Firm",
+        "A Time to Kill (Jake Brigance, #1)",
+        "The Firm (The Firm, #1)",
         "The Client",
         "Presumed Innocent"
       ]
@@ -19547,10 +19554,10 @@
         "suspense"
       ],
       "similarToTitles": [
-        "Camino Island",
-        "Camino Ghosts",
+        "Camino Island (Camino Island, #1)",
+        "Camino Ghosts (Camino Island, #3)",
         "The Boys from Biloxi",
-        "The Exchange",
+        "The Exchange (The Firm, #2)",
         "The French Illusion"
       ]
     },
@@ -19575,10 +19582,10 @@
         "true crime"
       ],
       "similarToTitles": [
-        "Framed",
-        "The Innocent Man",
-        "A Time to Kill",
-        "Under the Banner of Heaven"
+        "Framed: Astonishing True Stories of Wrongful Convictions",
+        "The Innocent Man: Murder and Injustice in a Small Town",
+        "A Time to Kill (Jake Brigance, #1)",
+        "Under the Banner of Heaven: A Story of Violent Faith"
       ]
     },
     {
@@ -19601,7 +19608,7 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Making of a Chef",
+        "The Making of a Chef: Mastering Heat at the Culinary Institute",
         "Eat a Peach",
         "Yes, Chef",
         "If You Can't Take the Heat"
@@ -19610,7 +19617,7 @@
     {
       "bookKey": "talking-to-strangers-what-we-should-know-about-the-people-we-don-t-know|malcolm-gladwell",
       "bookId": "43854293",
-      "title": "Talking to Strangers: What We Should Know About the People We Don’t Know",
+      "title": "Talking to Strangers: What We Should Know About the People We Don\u2019t Know",
       "author": "Malcolm Gladwell",
       "shelf": "read",
       "myRating": 4,
@@ -19627,10 +19634,10 @@
         "psychology"
       ],
       "similarToTitles": [
-        "The Tipping Point",
-        "The Bomber Mafia",
+        "The Tipping Point: How Little Things Can Make a Big Difference",
+        "The Bomber Mafia: A Dream, a Temptation, and the Longest Night of the Second World War",
         "Thinking, Fast and Slow",
-        "Everybody Lies"
+        "Everybody Lies: Big Data, New Data, and What the Internet Can Tell Us About Who We Really Are"
       ]
     },
     {
@@ -19654,9 +19661,9 @@
       ],
       "similarToTitles": [
         "Educated",
-        "Maid",
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive",
         "The Glass Castle",
-        "Hillbilly Elegy"
+        "Hillbilly Elegy: A Memoir of a Family and Culture in Crisis"
       ]
     },
     {
@@ -19680,10 +19687,10 @@
         "biography"
       ],
       "similarToTitles": [
-        "Flash Boys",
-        "The Big Short",
-        "Flash Crash",
-        "Going Infinite",
+        "Flash Boys: A Wall Street Revolt",
+        "The Big Short: Inside the Doomsday Machine",
+        "Flash Crash: A Trading Savant, a Global Manhunt, and the Most Mysterious Market Crash in History",
+        "Going Infinite: The Rise and Fall of a New Tycoon",
         "Den of Thieves"
       ]
     },
@@ -19708,10 +19715,10 @@
         "history"
       ],
       "similarToTitles": [
-        "Evicted",
-        "Chesapeake Requiem",
-        "One Day: The Extraordinary Story",
-        "Paradise"
+        "Evicted: Poverty and Profit in the American City",
+        "Chesapeake Requiem: A Year With the Watermen of Vanishing Tangier Island",
+        "One Day: The Extraordinary Story of an Ordinary 24 Hours in America",
+        "Paradise: One Town's Struggle to Survive an American Wildfire"
       ]
     },
     {
@@ -19734,10 +19741,10 @@
         "biography"
       ],
       "similarToTitles": [
-        "The Big Payback",
+        "The Big Payback: The History of the Business of Hip-Hop",
         "Daisy Jones & The Six",
-        "The Storyteller",
-        "Heartbreak Is the National Anthem"
+        "The Storyteller: Tales of Life and Music",
+        "Heartbreak Is the National Anthem: How Taylor Swift Reinvented Pop Music"
       ]
     },
     {
@@ -19787,10 +19794,10 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "A Time to Kill",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Boys from Biloxi",
-        "Sycamore Row",
-        "A Time for Mercy"
+        "Sycamore Row (Jake Brigance, #2)",
+        "A Time for Mercy (Jake Brigance, #3)"
       ]
     },
     {
@@ -19812,10 +19819,10 @@
         "food"
       ],
       "similarToTitles": [
-        "Franklin Barbecue",
+        "Franklin Barbecue: A Meat-Smoking Manifesto [A Cookbook]",
         "Momofuku: A Cookbook",
         "Yes, Chef",
-        "Think Like a Chef"
+        "Think Like a Chef: A Cookbook"
       ]
     },
     {
@@ -19838,7 +19845,7 @@
       ],
       "similarToTitles": [
         "Eat a Peach",
-        "Franklin Barbecue",
+        "Franklin Barbecue: A Meat-Smoking Manifesto [A Cookbook]",
         "Yes, Chef",
         "Why I Cook"
       ]
@@ -19862,9 +19869,9 @@
         "food"
       ],
       "similarToTitles": [
-        "Franklin Barbecue",
+        "Franklin Barbecue: A Meat-Smoking Manifesto [A Cookbook]",
         "Eat a Peach",
-        "Blood, Bones, and Butter",
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
         "Yes, Chef"
       ]
     },
@@ -19889,10 +19896,10 @@
         "speculative"
       ],
       "similarToTitles": [
-        "Sex, Drugs, and Cocoa Puffs",
-        "I Wear the Black Hat",
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
         "The Visible Man",
-        "Chuck Klosterman IV"
+        "Chuck Klosterman IV: A Decade of Curious People and Dangerous Ideas"
       ]
     },
     {
@@ -19919,8 +19926,8 @@
         "Eat a Peach",
         "Bourdain: The Definitive Oral Biography",
         "Yes, Chef",
-        "Blood, Bones, and Butter",
-        "Taste"
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
+        "Taste: My Life Through Food"
       ]
     },
     {
@@ -19946,7 +19953,7 @@
         "Ghost Lover",
         "Educated",
         "The Glass Castle",
-        "Maid",
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive",
         "Crying in H Mart"
       ]
     },
@@ -19969,9 +19976,9 @@
         "sports"
       ],
       "similarToTitles": [
-        "The Extra 2%",
-        "Trading Bases",
-        "The Only Rule Is It Has to Work"
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
+        "The Only Rule Is It Has to Work: Our Wild Experiment Building a New Kind of Baseball Team"
       ]
     },
     {
@@ -19995,11 +20002,11 @@
         "history"
       ],
       "similarToTitles": [
-        "Cheap Land Colorado",
-        "Maid",
-        "Evicted",
+        "Cheap Land Colorado: Off-Gridders at America's Edge",
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive",
+        "Evicted: Poverty and Profit in the American City",
         "The Glass Castle",
-        "A Hope in the Unseen"
+        "A Hope in the Unseen: An American Odyssey from the Inner City to the Ivy League"
       ]
     },
     {
@@ -20018,12 +20025,13 @@
       "publisher": "Clarkson Potter",
       "year": 2007,
       "themes": [
-        "food"
+        "food",
+        "narrative nonfiction"
       ],
       "similarToTitles": [
         "Why I Cook",
         "Eat a Peach",
-        "Franklin Barbecue",
+        "Franklin Barbecue: A Meat-Smoking Manifesto [A Cookbook]",
         "Yes, Chef"
       ]
     },
@@ -20048,8 +20056,8 @@
       ],
       "similarToTitles": [
         "Thinking, Fast and Slow",
-        "The Tipping Point",
-        "Talking to Strangers"
+        "The Tipping Point: How Little Things Can Make a Big Difference",
+        "Talking to Strangers: What We Should Know About the People We Don\u2019t Know"
       ]
     },
     {
@@ -20100,10 +20108,10 @@
       ],
       "similarToTitles": [
         "Eat a Peach",
-        "The Soul of a Chef",
-        "Franklin Barbecue",
+        "The Soul of a Chef: The Journey Toward Perfection",
+        "Franklin Barbecue: A Meat-Smoking Manifesto [A Cookbook]",
         "Why I Cook",
-        "Taste"
+        "Taste: My Life Through Food"
       ]
     },
     {
@@ -20127,10 +20135,10 @@
         "true crime"
       ],
       "similarToTitles": [
-        "Dopesick",
-        "Evicted",
-        "American Overdose",
-        "Janesville"
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+        "Evicted: Poverty and Profit in the American City",
+        "American Overdose: The Opioid Tragedy in Three Acts",
+        "Janesville: An American Story"
       ]
     },
     {
@@ -20154,8 +20162,8 @@
         "romance"
       ],
       "similarToTitles": [
-        "The Rosie Project",
-        "The Rosie Effect",
+        "The Rosie Project (Don Tillman, #1)",
+        "The Rosie Effect (Don Tillman, #2)",
         "Romantic Comedy",
         "Lessons in Chemistry",
         "Here One Moment"
@@ -20182,8 +20190,8 @@
         "romance"
       ],
       "similarToTitles": [
-        "The Rosie Project",
-        "The Rosie Result",
+        "The Rosie Project (Don Tillman, #1)",
+        "The Rosie Result (Don Tillman, #3)",
         "Romantic Comedy",
         "Lessons in Chemistry"
       ]
@@ -20208,10 +20216,10 @@
         "true crime"
       ],
       "similarToTitles": [
-        "Dopesick",
-        "Evicted",
-        "The Premonition",
-        "Paradise"
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+        "Evicted: Poverty and Profit in the American City",
+        "The Premonition: A Pandemic Story",
+        "Paradise: One Town's Struggle to Survive an American Wildfire"
       ]
     },
     {
@@ -20234,8 +20242,8 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Franklin Barbecue",
-        "Blood, Bones, and Butter",
+        "Franklin Barbecue: A Meat-Smoking Manifesto [A Cookbook]",
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
         "Eat a Peach",
         "Yes, Chef"
       ]
@@ -20264,8 +20272,8 @@
         "Eat a Peach",
         "Yes, Chef",
         "Bourdain: The Definitive Oral Biography",
-        "Save Me the Plums",
-        "Taste"
+        "Save Me the Plums: My Gourmet Memoir",
+        "Taste: My Life Through Food"
       ]
     },
     {
@@ -20289,10 +20297,10 @@
         "business"
       ],
       "similarToTitles": [
-        "Return of the King",
-        "Three-Ring Circus",
-        "Dream Team",
-        "A Hollywood Ending"
+        "Return of the King: LeBron James, The Cleveland Cavaliers and the Greatest Comeback in NBA History",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "A Hollywood Ending: The Dreams and Drama of the LeBron Lakers"
       ]
     },
     {
@@ -20342,10 +20350,10 @@
         "political"
       ],
       "similarToTitles": [
-        "Evicted",
-        "Dopesick",
+        "Evicted: Poverty and Profit in the American City",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
         "The Glass Castle",
-        "Maid"
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive"
       ]
     },
     {
@@ -20368,9 +20376,9 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Extra 2%",
-        "The Hot Hand",
-        "The Only Rule Is It Has to Work",
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "The Hot Hand: The Mystery and Science of Streaks",
+        "The Only Rule Is It Has to Work: Our Wild Experiment Building a New Kind of Baseball Team",
         "The Midrange Theory"
       ]
     },
@@ -20396,9 +20404,9 @@
       ],
       "similarToTitles": [
         "A Promised Land",
-        "The Accidental President",
-        "The Chief",
-        "The Presidents Club"
+        "The Accidental President: Harry S. Truman and the Four Months That Changed the World",
+        "The Chief: The Life and Turbulent Times of Chief Justice John Roberts",
+        "The Presidents Club: Inside the World's Most Exclusive Fraternity"
       ]
     },
     {
@@ -20421,8 +20429,8 @@
         "biography"
       ],
       "similarToTitles": [
-        "Maid",
-        "Evicted",
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive",
+        "Evicted: Poverty and Profit in the American City",
         "The Glass Castle",
         "Educated",
         "The Blind Side"
@@ -20450,9 +20458,9 @@
       "similarToTitles": [
         "Eat a Peach",
         "Yes, Chef",
-        "Franklin Barbecue",
-        "Blood, Bones, and Butter",
-        "Taste"
+        "Franklin Barbecue: A Meat-Smoking Manifesto [A Cookbook]",
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
+        "Taste: My Life Through Food"
       ]
     },
     {
@@ -20476,9 +20484,9 @@
       ],
       "similarToTitles": [
         "Educated",
-        "Maid",
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive",
         "The Glass Castle",
-        "A Hope in the Unseen"
+        "A Hope in the Unseen: An American Odyssey from the Inner City to the Ivy League"
       ]
     },
     {
@@ -20502,7 +20510,7 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Storyteller",
+        "The Storyteller: Tales of Life and Music",
         "Me",
         "Born to Run",
         "Daisy Jones & The Six"
@@ -20532,7 +20540,7 @@
         "Dark Places",
         "The Woman in the Window",
         "The Silent Patient",
-        "I'll Be Gone in the Dark",
+        "I'll Be Gone in the Dark: One Woman's Obsessive Search for the Golden State Killer",
         "Verity"
       ]
     },
@@ -20557,7 +20565,7 @@
         "contemporary"
       ],
       "similarToTitles": [
-        "A Time to Kill",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Client",
         "The Street Lawyer",
         "The French Illusion"
@@ -20584,10 +20592,10 @@
       ],
       "similarToTitles": [
         "If You Can't Take the Heat",
-        "The Soul of a Chef",
+        "The Soul of a Chef: The Journey Toward Perfection",
         "Eat a Peach",
         "Yes, Chef",
-        "Blood, Bones, and Butter"
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef"
       ]
     },
     {
@@ -20611,8 +20619,8 @@
         "mystery"
       ],
       "similarToTitles": [
-        "Diablo Mesa",
-        "The Plot",
+        "Diablo Mesa (Nora Kelly, #3)",
+        "The Plot (The Book Series, #1)",
         "The Silent Patient",
         "The Woman in the Window"
       ]
@@ -20637,10 +20645,10 @@
         "political"
       ],
       "similarToTitles": [
-        "Dopesick",
-        "Evicted",
-        "American Overdose",
-        "Amity and Prosperity"
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+        "Evicted: Poverty and Profit in the American City",
+        "American Overdose: The Opioid Tragedy in Three Acts",
+        "Amity and Prosperity: One Family and the Fracturing of America"
       ]
     },
     {
@@ -20663,10 +20671,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Elon Musk: Tesla",
-        "When the Heavens Went on Sale",
+        "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future",
+        "When the Heavens Went on Sale: The Misfits and Geniuses Racing to Put Space Within Reach",
         "Power Play: Tesla, Elon Musk, and the Bet of the Century",
-        "The Everything Store"
+        "The Everything Store: Jeff Bezos and the Age of Amazon"
       ]
     },
     {
@@ -20715,10 +20723,10 @@
         "political"
       ],
       "similarToTitles": [
-        "The Premonition",
-        "The Big Short",
-        "Flash Boys",
-        "The Undoing Project"
+        "The Premonition: A Pandemic Story",
+        "The Big Short: Inside the Doomsday Machine",
+        "Flash Boys: A Wall Street Revolt",
+        "The Undoing Project: A Friendship That Changed Our Minds"
       ]
     },
     {
@@ -20743,7 +20751,7 @@
       "similarToTitles": [
         "A Life in Parts",
         "Me",
-        "The Storyteller",
+        "The Storyteller: Tales of Life and Music",
         "Yearbook"
       ]
     },
@@ -20767,10 +20775,10 @@
         "biography"
       ],
       "similarToTitles": [
-        "Charlie Hustle",
+        "Charlie Hustle: The Rise and Fall of Pete Rose, and the Last Glory Days of Baseball",
         "Tiger Woods",
-        "Three-Ring Circus",
-        "The Book of Joe"
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "The Book of Joe: Trying Not to Suck at Baseball and Life"
       ]
     },
     {
@@ -20794,10 +20802,10 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "The Judge's List",
+        "The Judge's List (The Whistler #2)",
         "The Appeal",
         "The Rainmaker",
-        "Partners: A Rogue Lawyer Short Story"
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -20821,9 +20829,9 @@
       ],
       "similarToTitles": [
         "Bossypants",
-        "Sorry I'm Late",
+        "Sorry I'm Late, I Didn't Want to Come: One Introvert's Year of Saying Yes",
         "Scrappy Little Nobody",
-        "Not That Kind of Girl"
+        "Not That Kind of Girl: A Young Woman Tells You What She's \"Learned\""
       ]
     },
     {
@@ -20848,10 +20856,10 @@
       ],
       "similarToTitles": [
         "Open",
-        "Three-Ring Circus",
-        "The Last Folk Hero",
-        "Sweetness",
-        "Baddest Man"
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "The Last Folk Hero: The Life and Myth of Bo Jackson",
+        "Sweetness: The Enigmatic Life of Walter Payton",
+        "Baddest Man: The Making of Mike Tyson"
       ]
     },
     {
@@ -20875,10 +20883,10 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "The Whistler",
-        "A Time to Kill",
+        "The Whistler (The Whistler, #1)",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Client",
-        "Partners: A Rogue Lawyer Short Story"
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -20902,7 +20910,7 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "The Firm",
+        "The Firm (The Firm, #1)",
         "The Street Lawyer",
         "The Rainmaker",
         "The French Illusion"
@@ -20928,10 +20936,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Extra 2%",
-        "Trading Bases",
-        "The Only Rule Is It Has to Work",
-        "Charlie Hustle"
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
+        "The Only Rule Is It Has to Work: Our Wild Experiment Building a New Kind of Baseball Team",
+        "Charlie Hustle: The Rise and Fall of Pete Rose, and the Last Glory Days of Baseball"
       ]
     },
     {
@@ -20955,11 +20963,11 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "A Time to Kill",
-        "A Time for Mercy",
+        "A Time to Kill (Jake Brigance, #1)",
+        "A Time for Mercy (Jake Brigance, #3)",
         "The Boys from Biloxi",
         "The Client",
-        "Partners: A Rogue Lawyer Short Story"
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -20982,9 +20990,9 @@
         "YA"
       ],
       "similarToTitles": [
-        "A Time to Kill",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Client",
-        "The Firm"
+        "The Firm (The Firm, #1)"
       ]
     },
     {
@@ -21007,8 +21015,8 @@
         "YA"
       ],
       "similarToTitles": [
-        "Theodore Boone: Kid Lawyer",
-        "A Time to Kill",
+        "Theodore Boone: Kid Lawyer (Theodore Boone, #1)",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Client"
       ]
     },
@@ -21032,7 +21040,7 @@
         "literary"
       ],
       "similarToTitles": [
-        "A Time to Kill",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Boys from Biloxi",
         "Sparring Partners",
         "The French Illusion"
@@ -21137,10 +21145,10 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "A Time to Kill",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Client",
-        "The Firm",
-        "Partners: A Rogue Lawyer Short Story"
+        "The Firm (The Firm, #1)",
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -21191,8 +21199,8 @@
       ],
       "similarToTitles": [
         "The Boys from Biloxi",
-        "Sycamore Row",
-        "A Time to Kill",
+        "Sycamore Row (Jake Brigance, #2)",
+        "A Time to Kill (Jake Brigance, #1)",
         "The French Illusion"
       ]
     },
@@ -21247,9 +21255,9 @@
       "similarToTitles": [
         "The King of Torts",
         "The Rainmaker",
-        "A Time to Kill",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Litigators",
-        "Partners: A Rogue Lawyer Short Story"
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -21273,10 +21281,10 @@
         "crime"
       ],
       "similarToTitles": [
-        "The Firm",
-        "A Time to Kill",
+        "The Firm (The Firm, #1)",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Partner",
-        "Partners: A Rogue Lawyer Short Story"
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -21301,7 +21309,7 @@
       ],
       "similarToTitles": [
         "The Partner",
-        "The Firm",
+        "The Firm (The Firm, #1)",
         "The King of Torts",
         "The French Illusion"
       ]
@@ -21328,7 +21336,7 @@
       ],
       "similarToTitles": [
         "The Broker",
-        "The Firm",
+        "The Firm (The Firm, #1)",
         "The Partner",
         "The French Illusion"
       ]
@@ -21354,8 +21362,8 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "The Firm",
-        "The Exchange",
+        "The Firm (The Firm, #1)",
+        "The Exchange (The Firm, #2)",
         "The Broker",
         "The Rainmaker",
         "The French Illusion"
@@ -21382,10 +21390,10 @@
         "crime"
       ],
       "similarToTitles": [
-        "A Time to Kill",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Client",
         "The Boys from Biloxi",
-        "Partners: A Rogue Lawyer Short Story"
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -21413,7 +21421,7 @@
         "The Litigators",
         "The Street Lawyer",
         "The Last Juror",
-        "Partners: A Rogue Lawyer Short Story"
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -21437,10 +21445,10 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "The Firm",
+        "The Firm (The Firm, #1)",
         "The Rainmaker",
         "The Last Juror",
-        "The Judge's List",
+        "The Judge's List (The Whistler #2)",
         "The French Illusion"
       ]
     },
@@ -21465,9 +21473,9 @@
         "political"
       ],
       "similarToTitles": [
-        "The Firm",
+        "The Firm (The Firm, #1)",
         "The Client",
-        "A Time to Kill",
+        "A Time to Kill (Jake Brigance, #1)",
         "The French Illusion"
       ]
     },
@@ -21547,9 +21555,9 @@
         "crime"
       ],
       "similarToTitles": [
-        "Flash Boys",
-        "The Big Short",
-        "The Man Who Solved the Market",
+        "Flash Boys: A Wall Street Revolt",
+        "The Big Short: Inside the Doomsday Machine",
+        "The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution",
         "Den of Thieves"
       ]
     },
@@ -21569,12 +21577,13 @@
       "publisher": "Crown Archetype",
       "year": 2018,
       "themes": [
-        "narrative nonfiction"
+        "narrative nonfiction",
+        "history"
       ],
       "similarToTitles": [
-        "Boys Among Men",
-        "Blood in the Garden",
-        "Three-Ring Circus"
+        "Boys Among Men: How the Prep-to-Pro Generation Redefined the NBA and Sparked a Basketball Revolution",
+        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty"
       ]
     },
     {
@@ -21597,10 +21606,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The New New Thing",
-        "The Innovators",
-        "Super Pumped",
-        "Hatching Twitter"
+        "The New New Thing: A Silicon Valley Story",
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
+        "Super Pumped: The Battle for Uber",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal"
       ]
     },
     {
@@ -21623,9 +21632,9 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Flash Boys",
-        "The Big Short",
-        "Going Infinite",
+        "Flash Boys: A Wall Street Revolt",
+        "The Big Short: Inside the Doomsday Machine",
+        "Going Infinite: The Rise and Fall of a New Tycoon",
         "Den of Thieves"
       ]
     },
@@ -21651,8 +21660,8 @@
       "similarToTitles": [
         "Bossypants",
         "Unqualified",
-        "Sorry I'm Late",
-        "Not That Kind of Girl"
+        "Sorry I'm Late, I Didn't Want to Come: One Introvert's Year of Saying Yes",
+        "Not That Kind of Girl: A Young Woman Tells You What She's \"Learned\""
       ]
     },
     {
@@ -21676,11 +21685,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Charlie Hustle",
+        "Charlie Hustle: The Rise and Fall of Pete Rose, and the Last Glory Days of Baseball",
         "Tiger Woods",
-        "Three-Ring Circus",
-        "Pee Wees",
-        "Dream Team"
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Pee Wees: Confessions of a Hockey Parent",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever"
       ]
     },
     {
@@ -21704,9 +21713,9 @@
       ],
       "similarToTitles": [
         "Into Thin Air",
-        "The Wager",
-        "The Lost City of Z",
-        "Diablo Mesa"
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
+        "The Lost City of Z: A Tale of Deadly Obsession in the Amazon",
+        "Diablo Mesa (Nora Kelly, #3)"
       ]
     },
     {
@@ -21730,10 +21739,10 @@
         "thriller"
       ],
       "similarToTitles": [
-        "The Whistler",
-        "The Judge's List",
+        "The Whistler (The Whistler, #1)",
+        "The Judge's List (The Whistler #2)",
         "The Rainmaker",
-        "Partners: A Rogue Lawyer Short Story"
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -21756,10 +21765,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Quiet:",
-        "Bittersweet",
+        "Quiet: The Power of Introverts in a World That Can't Stop Talking",
+        "Bittersweet: How Sorrow and Longing Make Us Whole",
         "Thinking, Fast and Slow",
-        "Maybe You Should Talk to Someone"
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed"
       ]
     },
     {
@@ -21782,10 +21791,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Quiet Power",
-        "Bittersweet",
+        "Quiet Power: The Secret Strengths of Introverts",
+        "Bittersweet: How Sorrow and Longing Make Us Whole",
         "Thinking, Fast and Slow",
-        "Everybody Lies"
+        "Everybody Lies: Big Data, New Data, and What the Internet Can Tell Us About Who We Really Are"
       ]
     },
     {
@@ -21835,8 +21844,8 @@
         "humor"
       ],
       "similarToTitles": [
-        "Talking as Fast as I Can",
-        "Have I Told You This Already?",
+        "Talking as Fast as I Can: From Gilmore Girls to Gilmore Girls",
+        "Have I Told You This Already?: Stories I Don't Want to Forget to Remember",
         "Bossypants"
       ]
     },
@@ -21860,9 +21869,9 @@
         "humor"
       ],
       "similarToTitles": [
-        "Have I Told You This Already?",
+        "Have I Told You This Already?: Stories I Don't Want to Forget to Remember",
         "In Conclusion, Don't Worry About It",
-        "Not That Kind of Girl",
+        "Not That Kind of Girl: A Young Woman Tells You What She's \"Learned\"",
         "Bossypants"
       ]
     },
@@ -21887,9 +21896,9 @@
         "contemporary"
       ],
       "similarToTitles": [
-        "Camino Winds",
-        "Camino Ghosts",
-        "The Exchange",
+        "Camino Winds (Camino Island, #2)",
+        "Camino Ghosts (Camino Island, #3)",
+        "The Exchange (The Firm, #2)",
         "The French Illusion"
       ]
     },
@@ -21915,9 +21924,9 @@
       ],
       "similarToTitles": [
         "Educated",
-        "Maid",
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive",
         "The Glass Castle",
-        "Heartland"
+        "Heartland: A Memoir of Working Hard and Being Broke in the Richest Country on Earth"
       ]
     },
     {
@@ -21941,7 +21950,7 @@
       ],
       "similarToTitles": [
         "Jay-Z: Made in America",
-        "The Storyteller",
+        "The Storyteller: Tales of Life and Music",
         "Me",
         "Daisy Jones & The Six"
       ]
@@ -21967,7 +21976,7 @@
       ],
       "similarToTitles": [
         "Yearbook",
-        "Born Standing Up",
+        "Born Standing Up: A Comic's Life",
         "A Life in Parts",
         "Comedy Comedy Comedy Drama"
       ]
@@ -21993,10 +22002,10 @@
         "finance"
       ],
       "similarToTitles": [
-        "The Extra 2%",
-        "The Hot Hand",
-        "The Only Rule Is It Has to Work",
-        "Everybody Lies",
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "The Hot Hand: The Mystery and Science of Streaks",
+        "The Only Rule Is It Has to Work: Our Wild Experiment Building a New Kind of Baseball Team",
+        "Everybody Lies: Big Data, New Data, and What the Internet Can Tell Us About Who We Really Are",
         "The Midrange Theory"
       ]
     },
@@ -22020,10 +22029,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Extra 2%",
-        "Trading Bases",
-        "Charlie Hustle",
-        "The Only Rule Is It Has to Work"
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
+        "Charlie Hustle: The Rise and Fall of Pete Rose, and the Last Glory Days of Baseball",
+        "The Only Rule Is It Has to Work: Our Wild Experiment Building a New Kind of Baseball Team"
       ]
     },
     {
@@ -22045,9 +22054,9 @@
         "sports"
       ],
       "similarToTitles": [
-        "Trading Bases",
-        "The Extra 2%",
-        "The Only Rule Is It Has to Work"
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "The Only Rule Is It Has to Work: Our Wild Experiment Building a New Kind of Baseball Team"
       ]
     },
     {
@@ -22070,10 +22079,10 @@
         "humor"
       ],
       "similarToTitles": [
-        "Hatching Twitter",
-        "Super Pumped",
-        "Things a Little Bird Told Me",
-        "Burn Book"
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
+        "Super Pumped: The Battle for Uber",
+        "Things a Little Bird Told Me: Confessions of the Creative Mind",
+        "Burn Book: A Tech Love Story"
       ]
     },
     {
@@ -22097,9 +22106,9 @@
         "business"
       ],
       "similarToTitles": [
-        "Flash Boys",
-        "The Big Short",
-        "The Man Who Solved the Market",
+        "Flash Boys: A Wall Street Revolt",
+        "The Big Short: Inside the Doomsday Machine",
+        "The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution",
         "Den of Thieves"
       ]
     },
@@ -22123,10 +22132,10 @@
         "sports"
       ],
       "similarToTitles": [
-        "Sex, Drugs, and Cocoa Puffs",
-        "I Wear the Black Hat",
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
         "Yearbook",
-        "The Hot Hand"
+        "The Hot Hand: The Mystery and Science of Streaks"
       ]
     },
     {
@@ -22148,15 +22157,15 @@
         "sports"
       ],
       "similarToTitles": [
-        "The Extra 2%",
-        "Trading Bases",
-        "Dream Team"
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever"
       ]
     },
     {
       "bookKey": "rigged-the-true-story-of-an-ivy-league-kid-who-changed-the-world-of-oil-from-wall-street-to-dubai-a-brooklyn-to-harvard-high-stakes-adventure|ben-mezrich",
       "bookId": "3242976",
-      "title": "Rigged: The True Story of an Ivy League Kid Who Changed the World of Oil, from Wall Street to Dubai – A Brooklyn-to-Harvard High-Stakes Adventure (P.S.)",
+      "title": "Rigged: The True Story of an Ivy League Kid Who Changed the World of Oil, from Wall Street to Dubai \u2013 A Brooklyn-to-Harvard High-Stakes Adventure (P.S.)",
       "author": "Ben Mezrich",
       "shelf": "read",
       "myRating": 3,
@@ -22174,10 +22183,10 @@
         "adventure"
       ],
       "similarToTitles": [
-        "The Accidental Billionaires",
-        "Bitcoin Billionaires",
-        "Flash Boys",
-        "The Big Short"
+        "The Accidental Billionaires: The Founding of Facebook, a Tale of Sex, Money, Genius, and Betrayal",
+        "Bitcoin Billionaires: A True Story of Genius, Betrayal, and Redemption",
+        "Flash Boys: A Wall Street Revolt",
+        "The Big Short: Inside the Doomsday Machine"
       ]
     },
     {
@@ -22200,9 +22209,9 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Everything Store",
-        "Super Pumped",
-        "Hatching Twitter",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Super Pumped: The Battle for Uber",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
         "Steve Jobs"
       ]
     },
@@ -22227,10 +22236,10 @@
         "business"
       ],
       "similarToTitles": [
-        "Talking to Strangers",
-        "The Bomber Mafia",
+        "Talking to Strangers: What We Should Know About the People We Don\u2019t Know",
+        "The Bomber Mafia: A Dream, a Temptation, and the Longest Night of the Second World War",
         "Thinking, Fast and Slow",
-        "Everybody Lies"
+        "Everybody Lies: Big Data, New Data, and What the Internet Can Tell Us About Who We Really Are"
       ]
     },
     {
@@ -22280,10 +22289,10 @@
         "business"
       ],
       "similarToTitles": [
-        "The Innovators",
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
         "Steve Jobs",
-        "Chip War",
-        "AI Valley"
+        "Chip War: The Fight for the World's Most Critical Technology",
+        "AI Valley: Microsoft, Google, and the Trillion-Dollar Race to Cash In on Artificial Intelligence"
       ]
     },
     {
@@ -22302,12 +22311,13 @@
       "publisher": "Dutton Adult",
       "year": 2007,
       "themes": [
-        "sports"
+        "sports",
+        "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Extra 2%",
-        "Trading Bases",
-        "The Hot Hand"
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
+        "The Hot Hand: The Mystery and Science of Streaks"
       ]
     },
     {
@@ -22326,12 +22336,13 @@
       "publisher": "FisicalBook",
       "year": 2011,
       "themes": [
-        "business"
+        "business",
+        "narrative nonfiction"
       ],
       "similarToTitles": [
         "Shoe Dog",
-        "The Ride of a Lifetime",
-        "The Everything Store"
+        "The Ride of a Lifetime: Lessons Learned from 15 Years as CEO of the Walt Disney Company",
+        "The Everything Store: Jeff Bezos and the Age of Amazon"
       ]
     },
     {
@@ -22355,11 +22366,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Arsenal of Democracy",
-        "Ghost Soldiers",
-        "Unbroken",
-        "The Accidental President",
-        "Pearl Harbor"
+        "The Arsenal of Democracy: FDR, Detroit, and an Epic Quest to Arm an America at War",
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+        "Unbroken: A World War II Story of Survival, Resilience and Redemption",
+        "The Accidental President: Harry S. Truman and the Four Months That Changed the World",
+        "Pearl Harbor: Warning and Decision"
       ]
     },
     {
@@ -22383,8 +22394,8 @@
       ],
       "similarToTitles": [
         "When Breath Becomes Air",
-        "The Council of Dads",
-        "Maybe You Should Talk to Someone",
+        "The Council of Dads: My Daughters, My Illness, and the Men Who Could Be Me",
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
         "Educated"
       ]
     },
@@ -22409,10 +22420,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Bitcoin Billionaires",
-        "Flash Boys",
-        "The Trolls of Wall Street",
-        "Going Infinite"
+        "Bitcoin Billionaires: A True Story of Genius, Betrayal, and Redemption",
+        "Flash Boys: A Wall Street Revolt",
+        "The Trolls of Wall Street: How the Outcasts and Insurgents Are Hacking the Markets",
+        "Going Infinite: The Rise and Fall of a New Tycoon"
       ]
     },
     {
@@ -22436,11 +22447,11 @@
         "memoir"
       ],
       "similarToTitles": [
-        "The Lagunitas Story",
+        "The Lagunitas Story: So you want to start a brewery..?",
         "Shoe Dog",
         "Eat a Peach",
-        "Bitter Brew",
-        "Franklin Barbecue"
+        "Bitter Brew: The Rise and Fall of Anheuser-Busch and America's Kings of Beer",
+        "Franklin Barbecue: A Meat-Smoking Manifesto [A Cookbook]"
       ]
     },
     {
@@ -22464,11 +22475,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Ship It Holla Ballas",
-        "Flash Boys",
-        "The Man Who Solved the Market",
-        "Gambler",
-        "You Can't Lose Them All"
+        "Ship It Holla Ballas!: How a Bunch of 19-Year-Old College Dropouts Used the Internet to Become Poker's Loudest, Craziest, and Richest Crew",
+        "Flash Boys: A Wall Street Revolt",
+        "The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution",
+        "Gambler: Secrets from a Life at Risk",
+        "You Can't Lose Them All: Tales of a Degenerate Gambler and His Ridiculous Friends"
       ]
     },
     {
@@ -22492,9 +22503,9 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "A Time to Kill",
+        "A Time to Kill (Jake Brigance, #1)",
         "Presumed Innocent",
-        "The Last Trial",
+        "The Last Trial (Kindle County Legal Thriller #11)",
         "The Client"
       ]
     },
@@ -22518,10 +22529,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Chasing the Thrill",
-        "Trading Bases",
-        "Everybody Lies",
-        "You Can't Lose Them All"
+        "Chasing the Thrill: Obsession, Death, and Glory in America's Most Extraordinary Treasure Hunt",
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
+        "Everybody Lies: Big Data, New Data, and What the Internet Can Tell Us About Who We Really Are",
+        "You Can't Lose Them All: Tales of a Degenerate Gambler and His Ridiculous Friends"
       ]
     },
     {
@@ -22543,9 +22554,9 @@
         "sports"
       ],
       "similarToTitles": [
-        "The Extra 2%",
-        "Trading Bases",
-        "The Only Rule Is It Has to Work"
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
+        "The Only Rule Is It Has to Work: Our Wild Experiment Building a New Kind of Baseball Team"
       ]
     },
     {
@@ -22569,10 +22580,10 @@
         "history"
       ],
       "similarToTitles": [
-        "Evicted",
-        "Dopesick",
-        "Methland",
-        "Amity and Prosperity"
+        "Evicted: Poverty and Profit in the American City",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+        "Methland: The Death and Life of an American Small Town",
+        "Amity and Prosperity: One Family and the Fracturing of America"
       ]
     },
     {
@@ -22596,9 +22607,9 @@
       ],
       "similarToTitles": [
         "Eat a Peach",
-        "Blood, Bones, and Butter",
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
         "Yes, Chef",
-        "L.A. Son"
+        "L.A. Son: My Life, My City, My Food"
       ]
     },
     {
@@ -22622,10 +22633,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Everything Store",
-        "Amazon Unbound",
-        "Super Pumped",
-        "Hatching Twitter"
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Amazon Unbound: Jeff Bezos and the Invention of a Global Empire",
+        "Super Pumped: The Battle for Uber",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal"
       ]
     },
     {
@@ -22648,10 +22659,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Extra 2%",
-        "Trading Bases",
-        "The Hot Hand",
-        "The Only Rule Is It Has to Work"
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
+        "The Hot Hand: The Mystery and Science of Streaks",
+        "The Only Rule Is It Has to Work: Our Wild Experiment Building a New Kind of Baseball Team"
       ]
     },
     {
@@ -22674,10 +22685,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Charlie Hustle",
+        "Charlie Hustle: The Rise and Fall of Pete Rose, and the Last Glory Days of Baseball",
         "Tiger Woods",
-        "Three-Ring Circus",
-        "Dream Team"
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever"
       ]
     },
     {
@@ -22700,10 +22711,10 @@
         "psychology"
       ],
       "similarToTitles": [
-        "The Big Short",
-        "Flash Boys",
+        "The Big Short: Inside the Doomsday Machine",
+        "Flash Boys: A Wall Street Revolt",
         "Thinking, Fast and Slow",
-        "Everybody Lies"
+        "Everybody Lies: Big Data, New Data, and What the Internet Can Tell Us About Who We Really Are"
       ]
     },
     {
@@ -22726,11 +22737,11 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Hot Hand",
-        "The Extra 2%",
-        "Trading Bases",
-        "The Book of Joe",
-        "Big Fan"
+        "The Hot Hand: The Mystery and Science of Streaks",
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
+        "The Book of Joe: Trying Not to Suck at Baseball and Life",
+        "Big Fan: Two Friends, 82,490 Miles, and the Wild, Wonderful Sports We Love"
       ]
     },
     {
@@ -22782,9 +22793,9 @@
       ],
       "similarToTitles": [
         "Is This Anything?",
-        "Parks and Rec",
-        "Sex, Drugs, and Cocoa Puffs",
-        "So Fetch"
+        "Parks and Rec: The Underdog TV Show That Lit'rally Inspired a Vision for a Better America",
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "So Fetch: The Making of Mean Girls (and Why We Are Still So Obsessed with It)"
       ]
     },
     {
@@ -22808,10 +22819,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "That Will Never Work",
-        "Super Pumped",
-        "The Everything Store",
-        "Hatching Twitter"
+        "That Will Never Work: The Birth of Netflix and the Amazing Life of an Idea",
+        "Super Pumped: The Battle for Uber",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal"
       ]
     },
     {
@@ -22834,10 +22845,10 @@
         "humor"
       ],
       "similarToTitles": [
-        "Sex, Drugs, and Cocoa Puffs",
-        "I Wear the Black Hat",
-        "The Nineties",
-        "Chuck Klosterman IV"
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
+        "The Nineties: A Book",
+        "Chuck Klosterman IV: A Decade of Curious People and Dangerous Ideas"
       ]
     },
     {
@@ -22863,9 +22874,9 @@
       "similarToTitles": [
         "The Rainmaker",
         "The King of Torts",
-        "The Judge's List",
+        "The Judge's List (The Whistler #2)",
         "The Runaway Jury",
-        "Partners: A Rogue Lawyer Short Story"
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -22888,10 +22899,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "Dream Team",
-        "Blood in the Garden",
-        "Three-Ring Circus",
-        "Giannis"
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Giannis: The Improbable Rise of an NBA MVP"
       ]
     },
     {
@@ -22917,7 +22928,7 @@
         "Yes, Chef",
         "Momofuku: A Cookbook",
         "Notes from a Young Black Chef",
-        "Blood, Bones, and Butter",
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
         "Why I Cook"
       ]
     },
@@ -22943,8 +22954,8 @@
       ],
       "similarToTitles": [
         "The Partner",
-        "The Firm",
-        "The Exchange",
+        "The Firm (The Firm, #1)",
+        "The Exchange (The Firm, #2)",
         "The French Illusion"
       ]
     },
@@ -22970,7 +22981,7 @@
       "similarToTitles": [
         "Bleachers",
         "Sooley",
-        "Charlie Hustle",
+        "Charlie Hustle: The Rise and Fall of Pete Rose, and the Last Glory Days of Baseball",
         "The Boys from Biloxi"
       ]
     },
@@ -22994,10 +23005,10 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Tipping Point",
-        "Talking to Strangers",
-        "Everybody Lies",
-        "Quiet"
+        "The Tipping Point: How Little Things Can Make a Big Difference",
+        "Talking to Strangers: What We Should Know About the People We Don\u2019t Know",
+        "Everybody Lies: Big Data, New Data, and What the Internet Can Tell Us About Who We Really Are",
+        "Quiet: The Power of Introverts in a World That Can't Stop Talking"
       ]
     },
     {
@@ -23020,10 +23031,10 @@
         "humor"
       ],
       "similarToTitles": [
-        "The Tipping Point",
-        "Everybody Lies",
+        "The Tipping Point: How Little Things Can Make a Big Difference",
+        "Everybody Lies: Big Data, New Data, and What the Internet Can Tell Us About Who We Really Are",
         "Thinking, Fast and Slow",
-        "The Hot Hand"
+        "The Hot Hand: The Mystery and Science of Streaks"
       ]
     },
     {
@@ -23047,10 +23058,10 @@
         "crime"
       ],
       "similarToTitles": [
-        "A Time to Kill",
+        "A Time to Kill (Jake Brigance, #1)",
         "The Client",
         "The Street Lawyer",
-        "Partners: A Rogue Lawyer Short Story"
+        "Partners: A Rogue Lawyer Short Story (Kindle Single)"
       ]
     },
     {
@@ -23075,7 +23086,7 @@
       ],
       "similarToTitles": [
         "Famesick",
-        "Sorry I'm Late",
+        "Sorry I'm Late, I Didn't Want to Come: One Introvert's Year of Saying Yes",
         "Yearbook",
         "The Woman in Me",
         "Bossypants"
@@ -23101,10 +23112,10 @@
         "biography"
       ],
       "similarToTitles": [
-        "The Extra 2%",
-        "Charlie Hustle",
-        "Three-Ring Circus",
-        "Trading Bases"
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "Charlie Hustle: The Rise and Fall of Pete Rose, and the Last Glory Days of Baseball",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)"
       ]
     },
     {
@@ -23127,10 +23138,10 @@
         "history"
       ],
       "similarToTitles": [
-        "Methland",
-        "Dopesick",
-        "Chesapeake Requiem",
-        "Evicted"
+        "Methland: The Death and Life of an American Small Town",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+        "Chesapeake Requiem: A Year With the Watermen of Vanishing Tangier Island",
+        "Evicted: Poverty and Profit in the American City"
       ]
     },
     {
@@ -23155,8 +23166,8 @@
       ],
       "similarToTitles": [
         "Steve Jobs",
-        "Elon Musk: Tesla",
-        "The Everything Store",
+        "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
         "Shoe Dog"
       ]
     },
@@ -23179,10 +23190,10 @@
         "sports"
       ],
       "similarToTitles": [
-        "Trading Bases",
-        "The Extra 2%",
-        "The Only Rule Is It Has to Work",
-        "The Book of Joe"
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "The Only Rule Is It Has to Work: Our Wild Experiment Building a New Kind of Baseball Team",
+        "The Book of Joe: Trying Not to Suck at Baseball and Life"
       ]
     }
   ],
