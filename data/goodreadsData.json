@@ -104,6 +104,12 @@
         "thriller",
         "crime",
         "humor"
+      ],
+      "similarToTitles": [
+        "Sex, Drugs, and Cocoa Puffs",
+        "I Wear the Black Hat",
+        "Yearbook",
+        "The Storyteller"
       ]
     },
     {
@@ -125,6 +131,13 @@
         "thriller",
         "psychological",
         "domestic suspense"
+      ],
+      "similarToTitles": [
+        "The Housemaid",
+        "The Housemaid's Secret",
+        "The Boyfriend",
+        "The Divorce",
+        "The Crash"
       ]
     },
     {
@@ -146,6 +159,13 @@
         "thriller",
         "psychological",
         "suspense"
+      ],
+      "similarToTitles": [
+        "The Housemaid",
+        "The Teacher",
+        "Never Lie",
+        "The Inmate",
+        "The Tenant"
       ]
     },
     {
@@ -219,6 +239,13 @@
         "thriller",
         "psychological",
         "domestic suspense"
+      ],
+      "similarToTitles": [
+        "The Housemaid",
+        "The Housemaid's Secret",
+        "The Boyfriend",
+        "The Crash",
+        "Never Lie"
       ]
     },
     {
@@ -240,6 +267,13 @@
         "thriller",
         "psychological",
         "crime"
+      ],
+      "similarToTitles": [
+        "Creep (Creep",
+        "Little Secrets",
+        "The Housemaid",
+        "Behind Closed Doors",
+        "The Silent Patient"
       ]
     },
     {
@@ -485,6 +519,13 @@
         "thriller",
         "psychological",
         "crime"
+      ],
+      "similarToTitles": [
+        "Freak (Creep",
+        "Little Secrets",
+        "The Housemaid",
+        "The Silent Patient",
+        "Never Lie"
       ]
     },
     {
@@ -899,6 +940,12 @@
       "year": 2025,
       "themes": [
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Evicted",
+        "The Secret Life of Groceries",
+        "Shoe Dog",
+        "The Everything Store"
       ]
     },
     {
@@ -1198,6 +1245,13 @@
         "thriller",
         "domestic suspense",
         "psychological"
+      ],
+      "similarToTitles": [
+        "The Couple Next Door",
+        "Behind Closed Doors",
+        "The Breakdown",
+        "The Silent Patient",
+        "Verity"
       ]
     },
     {
@@ -1396,6 +1450,13 @@
         "speculative",
         "thriller",
         "literary"
+      ],
+      "similarToTitles": [
+        "Magic for Liars",
+        "Recursion",
+        "The Invisible Life of Addie LaRue",
+        "The Measure",
+        "The Mountain in the Sea"
       ]
     },
     {
@@ -1633,6 +1694,13 @@
         "thriller",
         "psychological",
         "domestic suspense"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "Behind Closed Doors",
+        "The Breakdown",
+        "Verity",
+        "No One Saw a Thing"
       ]
     },
     {
@@ -1653,6 +1721,13 @@
       "themes": [
         "thriller",
         "psychological"
+      ],
+      "similarToTitles": [
+        "Rock Paper Scissors",
+        "The Silent Patient",
+        "Behind Closed Doors",
+        "No One Saw a Thing",
+        "All Her Fault"
       ]
     },
     {
@@ -1674,6 +1749,13 @@
         "thriller",
         "mystery",
         "suspense"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "Behind Closed Doors",
+        "The Housemaid",
+        "Verity",
+        "The Breakdown"
       ]
     },
     {
@@ -1736,6 +1818,13 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "A Time to Kill",
+        "The Client",
+        "The Firm",
+        "Partners: A Rogue Lawyer Short Story",
+        "The French Illusion"
       ]
     },
     {
@@ -1787,6 +1876,13 @@
       "themes": [
         "narrative nonfiction",
         "history"
+      ],
+      "similarToTitles": [
+        "Steve Jobs",
+        "The Innovators",
+        "American Sketches",
+        "Kissinger",
+        "The Wise Men"
       ]
     },
     {
@@ -2388,6 +2484,13 @@
         "thriller",
         "psychological",
         "suspense"
+      ],
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "The Prisoner",
+        "The Silent Patient",
+        "Bring Me Back",
+        "The Therapist"
       ]
     },
     {
@@ -2618,6 +2721,13 @@
         "thriller",
         "domestic suspense",
         "psychological"
+      ],
+      "similarToTitles": [
+        "No One Saw a Thing",
+        "Behind Closed Doors",
+        "The Breakdown",
+        "The Silent Patient",
+        "The Couple Next Door"
       ]
     },
     {
@@ -2671,6 +2781,13 @@
         "thriller",
         "horror",
         "psychological"
+      ],
+      "similarToTitles": [
+        "Holly",
+        "The Outsider",
+        "Billy Summers",
+        "Mr. Mercedes",
+        "Revival"
       ]
     },
     {
@@ -2692,6 +2809,13 @@
         "thriller",
         "crime",
         "noir"
+      ],
+      "similarToTitles": [
+        "Razorblade Tears",
+        "She Rides Shotgun",
+        "Everybody Knows",
+        "A Violent Masterpiece",
+        "Hard Cash Valley"
       ]
     },
     {
@@ -2764,6 +2888,13 @@
         "thriller",
         "domestic suspense",
         "psychological"
+      ],
+      "similarToTitles": [
+        "The Perfect Marriage",
+        "Home Is Where the Bodies Are",
+        "Dating After the End of the World",
+        "Behind Closed Doors",
+        "Verity"
       ]
     },
     {
@@ -3002,6 +3133,12 @@
       "themes": [
         "legal",
         "thriller"
+      ],
+      "similarToTitles": [
+        "Rich Blood",
+        "A Time to Kill",
+        "The Client",
+        "An Innocent Client"
       ]
     },
     {
@@ -3197,6 +3334,12 @@
         "thriller",
         "domestic suspense",
         "psychological"
+      ],
+      "similarToTitles": [
+        "The Perfect Marriage",
+        "The Perfect Divorce",
+        "Dating After the End of the World",
+        "The Housemaid"
       ]
     },
     {
@@ -3311,6 +3454,13 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "Sycamore Row",
+        "A Time for Mercy",
+        "The Client",
+        "The Firm",
+        "Partners: A Rogue Lawyer Short Story"
       ]
     },
     {
@@ -3332,6 +3482,13 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "The Client",
+        "The Rainmaker",
+        "The Litigators",
+        "A Time to Kill",
+        "The French Illusion"
       ]
     },
     {
@@ -3353,6 +3510,13 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "A Time to Kill",
+        "The Firm",
+        "The Rainmaker",
+        "Sycamore Row",
+        "Partners: A Rogue Lawyer Short Story"
       ]
     },
     {
@@ -3374,6 +3538,12 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "The Firm (The Firm, #1)",
+        "A Time to Kill",
+        "The Client",
+        "The Rainmaker"
       ]
     },
     {
@@ -3395,6 +3565,13 @@
         "narrative nonfiction",
         "humor",
         "music history"
+      ],
+      "similarToTitles": [
+        "I Wear the Black Hat",
+        "Killing Yourself to Live",
+        "Downtown Owl",
+        "Football",
+        "Fargo Rock City"
       ]
     },
     {
@@ -3415,6 +3592,13 @@
       "themes": [
         "sports",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Trading Bases",
+        "The Extra 2%",
+        "The Hot Hand",
+        "The Only Rule Is It Has to Work",
+        "You Can't Lose Them All"
       ]
     },
     {
@@ -3436,6 +3620,13 @@
         "narrative nonfiction",
         "tech history",
         "finance"
+      ],
+      "similarToTitles": [
+        "Bitcoin Billionaires",
+        "The Dumb Money",
+        "Hatching Twitter",
+        "Super Pumped",
+        "Checkmate"
       ]
     },
     {
@@ -3457,6 +3648,13 @@
         "biography",
         "tech history",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Elon Musk",
+        "The Innovators",
+        "The Code Breaker",
+        "Kissinger",
+        "American Sketches"
       ]
     },
     {
@@ -3478,6 +3676,13 @@
         "speculative",
         "humor",
         "literary"
+      ],
+      "similarToTitles": [
+        "World War Z",
+        "The Long Walk",
+        "Station Eleven",
+        "Dark Matter",
+        "Tiger Chair"
       ]
     },
     {
@@ -3499,6 +3704,13 @@
         "sports",
         "narrative nonfiction",
         "finance"
+      ],
+      "similarToTitles": [
+        "The Hot Hand",
+        "Trading Bases",
+        "The Only Rule Is It Has to Work",
+        "The Midrange Theory",
+        "Everybody Lies"
       ]
     },
     {
@@ -3520,6 +3732,13 @@
         "narrative nonfiction",
         "tech history",
         "business"
+      ],
+      "similarToTitles": [
+        "Amazon Unbound",
+        "Super Pumped",
+        "Hatching Twitter",
+        "The Everything War",
+        "Elon Musk: Tesla"
       ]
     },
     {
@@ -3541,6 +3760,13 @@
         "sports",
         "history",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Three-Ring Circus",
+        "Blood in the Garden",
+        "Return of the King",
+        "Wilt",
+        "Loose Balls"
       ]
     },
     {
@@ -3562,6 +3788,13 @@
         "narrative nonfiction",
         "tech history",
         "business"
+      ],
+      "similarToTitles": [
+        "Super Pumped",
+        "The Everything Store",
+        "Things a Little Bird Told Me",
+        "Burn Book",
+        "Traffic"
       ]
     },
     {
@@ -3583,6 +3816,12 @@
         "narrative nonfiction",
         "humor",
         "music history"
+      ],
+      "similarToTitles": [
+        "Sex, Drugs, and Cocoa Puffs",
+        "Killing Yourself to Live",
+        "The Visible Man",
+        "Chuck Klosterman IV"
       ]
     },
     {
@@ -3604,6 +3843,13 @@
         "narrative nonfiction",
         "finance",
         "humor"
+      ],
+      "similarToTitles": [
+        "Molly's Game",
+        "Flash Boys",
+        "Trading Bases",
+        "Gambler",
+        "You Can't Lose Them All"
       ]
     },
     {
@@ -3625,6 +3871,13 @@
         "narrative nonfiction",
         "tech history",
         "memoir"
+      ],
+      "similarToTitles": [
+        "Hatching Twitter",
+        "The Everything Store",
+        "Super Pumped",
+        "Burn Book",
+        "Traffic"
       ]
     },
     {
@@ -3646,6 +3899,13 @@
         "narrative nonfiction",
         "finance",
         "tech history"
+      ],
+      "similarToTitles": [
+        "The Big Short",
+        "Going Infinite",
+        "The Man Who Solved the Market",
+        "Flash Crash",
+        "Den of Thieves"
       ]
     },
     {
@@ -3667,6 +3927,13 @@
         "sports",
         "narrative nonfiction",
         "biography"
+      ],
+      "similarToTitles": [
+        "A Hope in the Unseen",
+        "Unbroken",
+        "Three-Ring Circus",
+        "Dream Team",
+        "Shoe Dog"
       ]
     },
     {
@@ -3688,6 +3955,13 @@
         "narrative nonfiction",
         "tech history",
         "history"
+      ],
+      "similarToTitles": [
+        "Steve Jobs",
+        "Elon Musk",
+        "The Code Breaker",
+        "The Wise Men",
+        "Kissinger"
       ]
     },
     {
@@ -3709,6 +3983,13 @@
         "narrative nonfiction",
         "business",
         "memoir"
+      ],
+      "similarToTitles": [
+        "Beyond the Pale",
+        "Shoe Dog",
+        "Eat a Peach",
+        "Bitter Brew",
+        "Franklin Barbecue"
       ]
     },
     {
@@ -3730,6 +4011,13 @@
         "biography",
         "tech history",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Steve Jobs",
+        "The Everything Store",
+        "Amazon Unbound",
+        "Super Pumped",
+        "Power Play: Tesla, Elon Musk, and the Bet of the Century"
       ]
     },
     {
@@ -3751,6 +4039,13 @@
         "speculative",
         "sci-fi",
         "high-concept"
+      ],
+      "similarToTitles": [
+        "Project Hail Mary",
+        "Artemis",
+        "Recursion",
+        "Dark Matter",
+        "We Are Legion (We Are Bob)"
       ]
     },
     {
@@ -3772,6 +4067,13 @@
         "narrative nonfiction",
         "finance",
         "true crime"
+      ],
+      "similarToTitles": [
+        "Flash Boys",
+        "Going Infinite",
+        "The Man Who Solved the Market",
+        "Flash Crash",
+        "Den of Thieves"
       ]
     },
     {
@@ -3792,6 +4094,13 @@
       "themes": [
         "memoir",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Maybe You Should Talk to Someone",
+        "The Council of Dads",
+        "Educated",
+        "Riding the Lightning",
+        "The Glass Castle"
       ]
     },
     {
@@ -3813,6 +4122,13 @@
         "true crime",
         "narrative nonfiction",
         "tech history"
+      ],
+      "similarToTitles": [
+        "Flash Crash",
+        "The Art Thief",
+        "Going Infinite",
+        "Molly's Game",
+        "Inside the Cartel"
       ]
     },
     {
@@ -3833,6 +4149,13 @@
       "themes": [
         "memoir",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Me",
+        "Born to Run",
+        "The Storyteller",
+        "Yearbook",
+        "Comedy Comedy Comedy Drama"
       ]
     },
     {
@@ -3854,6 +4177,13 @@
         "speculative",
         "sci-fi",
         "high-concept"
+      ],
+      "similarToTitles": [
+        "The Martian",
+        "Project Hail Mary",
+        "Recursion",
+        "Dark Matter",
+        "Seveneves"
       ]
     },
     {
@@ -3875,6 +4205,13 @@
         "history",
         "military",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Ghost Soldiers",
+        "Freedom's Forge",
+        "Unbroken",
+        "Madhouse at the End of the Earth",
+        "The Wager"
       ]
     },
     {
@@ -3896,6 +4233,13 @@
         "history",
         "political",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Ghost Soldiers",
+        "A Promised Land",
+        "Freedom's Forge",
+        "Unbroken",
+        "Pearl Harbor"
       ]
     },
     {
@@ -3917,6 +4261,13 @@
         "history",
         "military",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Ghost Soldiers",
+        "The Arsenal of Democracy",
+        "Freedom's Forge",
+        "The Wager",
+        "Where Men Win Glory"
       ]
     },
     {
@@ -3937,6 +4288,13 @@
       "themes": [
         "narrative nonfiction",
         "social commentary"
+      ],
+      "similarToTitles": [
+        "Maid",
+        "Dopesick",
+        "The Glass Castle",
+        "Paradise",
+        "Amity and Prosperity"
       ]
     },
     {
@@ -3957,6 +4315,13 @@
       "themes": [
         "memoir",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Glass Castle",
+        "Maid",
+        "The Liars' Club",
+        "When Breath Becomes Air",
+        "Three Women"
       ]
     },
     {
@@ -3977,6 +4342,12 @@
       "themes": [
         "narrative nonfiction",
         "history"
+      ],
+      "similarToTitles": [
+        "Evicted",
+        "Paradise",
+        "One Day: The Extraordinary Story",
+        "The Lost City of the Monkey God"
       ]
     },
     {
@@ -3998,6 +4369,13 @@
         "speculative",
         "sci-fi",
         "high-concept"
+      ],
+      "similarToTitles": [
+        "Snow Crash",
+        "Termination Shock",
+        "The Martian",
+        "Project Hail Mary",
+        "Children of Time"
       ]
     },
     {
@@ -4019,6 +4397,13 @@
         "thriller",
         "psychological",
         "suspense"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "Behind Closed Doors",
+        "The Breakdown",
+        "Verity",
+        "Into the Water"
       ]
     },
     {
@@ -4040,6 +4425,13 @@
         "thriller",
         "horror",
         "psychological"
+      ],
+      "similarToTitles": [
+        "Holly",
+        "Never Flinch",
+        "Billy Summers",
+        "Mr. Mercedes",
+        "The Life of Chuck"
       ]
     },
     {
@@ -4061,6 +4453,13 @@
         "biography",
         "political",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "A Promised Land",
+        "The Nine",
+        "While Justice Sleeps",
+        "The Presidents Club",
+        "The Genome Defense"
       ]
     },
     {
@@ -4082,6 +4481,13 @@
         "narrative nonfiction",
         "finance",
         "tech history"
+      ],
+      "similarToTitles": [
+        "The Accidental Billionaires",
+        "The Dumb Money",
+        "Flash Crash",
+        "Digital Gold",
+        "Checkmate"
       ]
     },
     {
@@ -4103,6 +4509,13 @@
         "speculative",
         "horror",
         "thriller"
+      ],
+      "similarToTitles": [
+        "Tiger Chair",
+        "The Postmortal",
+        "The Stand",
+        "Station Eleven",
+        "The Long Walk"
       ]
     },
     {
@@ -4124,6 +4537,13 @@
         "contemporary",
         "humor",
         "romance"
+      ],
+      "similarToTitles": [
+        "The Rosie Effect",
+        "The Rosie Result",
+        "Romantic Comedy",
+        "Lessons in Chemistry",
+        "My Friends"
       ]
     },
     {
@@ -4145,6 +4565,13 @@
         "narrative nonfiction",
         "true crime",
         "social commentary"
+      ],
+      "similarToTitles": [
+        "Evicted",
+        "The Glass Castle",
+        "Educated",
+        "Paper Girl",
+        "Amity and Prosperity"
       ]
     },
     {
@@ -4166,6 +4593,13 @@
         "narrative nonfiction",
         "tech history",
         "business"
+      ],
+      "similarToTitles": [
+        "Hatching Twitter",
+        "The Everything Store",
+        "Amazon Unbound",
+        "Burn Book",
+        "Empire of AI"
       ]
     },
     {
@@ -4187,6 +4621,13 @@
         "memoir",
         "psychology",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "When Breath Becomes Air",
+        "Hidden Valley Road",
+        "The Glass Castle",
+        "Bittersweet",
+        "Good Morning, Monster"
       ]
     },
     {
@@ -4208,6 +4649,13 @@
         "thriller",
         "psychological",
         "crime"
+      ],
+      "similarToTitles": [
+        "Sharp Objects",
+        "The Woman in the Window",
+        "The Silent Patient",
+        "I'll Be Gone in the Dark",
+        "Verity"
       ]
     },
     {
@@ -4228,6 +4676,13 @@
       "themes": [
         "memoir",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Class",
+        "Evicted",
+        "Educated",
+        "The Glass Castle",
+        "The Liars' Club"
       ]
     },
     {
@@ -4249,6 +4704,13 @@
         "narrative nonfiction",
         "tech history",
         "business"
+      ],
+      "similarToTitles": [
+        "Shoe Dog",
+        "The Everything Store",
+        "Super Pumped",
+        "Hatching Twitter",
+        "Steve Jobs"
       ]
     },
     {
@@ -4270,6 +4732,13 @@
         "speculative",
         "thriller",
         "high-concept"
+      ],
+      "similarToTitles": [
+        "Dark Matter",
+        "Upgrade",
+        "Project Hail Mary",
+        "The Martian",
+        "Constance"
       ]
     },
     {
@@ -4291,6 +4760,13 @@
         "speculative",
         "thriller",
         "high-concept"
+      ],
+      "similarToTitles": [
+        "Recursion",
+        "Upgrade",
+        "Project Hail Mary",
+        "The Martian",
+        "Cassandra in Reverse"
       ]
     },
     {
@@ -4312,6 +4788,12 @@
         "memoir",
         "humor",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Glass Castle",
+        "Educated",
+        "The Council of Dads",
+        "Maid"
       ]
     },
     {
@@ -4333,6 +4815,12 @@
         "narrative nonfiction",
         "humor",
         "music history"
+      ],
+      "similarToTitles": [
+        "Sex, Drugs, and Cocoa Puffs",
+        "I Wear the Black Hat",
+        "Downtown Owl",
+        "Fargo Rock City"
       ]
     },
     {
@@ -4354,6 +4842,13 @@
         "memoir",
         "food",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Yes, Chef",
+        "Eat a Peach",
+        "Bourdain: The Definitive Oral Biography",
+        "Crying in H Mart",
+        "L.A. Son"
       ]
     },
     {
@@ -4375,6 +4870,13 @@
         "memoir",
         "food",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Momofuku: A Cookbook",
+        "Yes, Chef",
+        "Bourdain: The Definitive Oral Biography",
+        "Blood, Bones, and Butter",
+        "Why I Cook"
       ]
     },
     {
@@ -4396,6 +4898,13 @@
         "memoir",
         "biography",
         "music history"
+      ],
+      "similarToTitles": [
+        "Born to Run",
+        "The Storyteller",
+        "A Life in Parts",
+        "Daisy Jones & The Six",
+        "Yearbook"
       ]
     },
     {
@@ -4417,6 +4926,13 @@
         "memoir",
         "business",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Everything Store",
+        "Steve Jobs",
+        "Amazon Unbound",
+        "Built from Scratch",
+        "What It Takes"
       ]
     },
     {
@@ -4438,6 +4954,13 @@
         "thriller",
         "psychological",
         "suspense"
+      ],
+      "similarToTitles": [
+        "The Jackal's Mistress",
+        "The Silent Patient",
+        "Behind Closed Doors",
+        "Verity",
+        "The Chain"
       ]
     },
     {
@@ -4458,6 +4981,13 @@
       "themes": [
         "sports",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Dream Team",
+        "Blood in the Garden",
+        "Boys Will Be Boys",
+        "Football for a Buck",
+        "Sweetness"
       ]
     },
     {
@@ -4479,6 +5009,13 @@
         "memoir",
         "political",
         "history"
+      ],
+      "similarToTitles": [
+        "The Presidents Club",
+        "Kissinger",
+        "The Chief",
+        "The Accidental President",
+        "Ten Letters"
       ]
     },
     {
@@ -4500,6 +5037,13 @@
         "speculative",
         "horror",
         "thriller"
+      ],
+      "similarToTitles": [
+        "World War Z",
+        "The Postmortal",
+        "Billy Summers",
+        "Sleeping Beauties",
+        "The Running Man"
       ]
     },
     {
@@ -4521,6 +5065,13 @@
         "literary",
         "speculative",
         "contemporary"
+      ],
+      "similarToTitles": [
+        "The Midnight Train",
+        "The Humans",
+        "This Time Tomorrow",
+        "The Invisible Life of Addie LaRue",
+        "The Measure"
       ]
     },
     {
@@ -4542,6 +5093,13 @@
         "thriller",
         "crime",
         "suspense"
+      ],
+      "similarToTitles": [
+        "Kiss the Girls",
+        "12 Months to Live",
+        "The Girl in the Castle",
+        "Juror #3",
+        "The Perfect Assassin"
       ]
     },
     {
@@ -4563,6 +5121,13 @@
         "speculative",
         "sci-fi",
         "high-concept"
+      ],
+      "similarToTitles": [
+        "The Martian",
+        "Artemis",
+        "Recursion",
+        "Dark Matter",
+        "Children of Time"
       ]
     },
     {
@@ -4583,6 +5148,12 @@
       "themes": [
         "narrative nonfiction",
         "business"
+      ],
+      "similarToTitles": [
+        "Blood, Bones, and Butter",
+        "Yes, Chef",
+        "Bourdain: The Definitive Oral Biography",
+        "Franklin Barbecue"
       ]
     },
     {
@@ -4604,6 +5175,13 @@
         "narrative nonfiction",
         "tech history",
         "business"
+      ],
+      "similarToTitles": [
+        "The Everything Store",
+        "Super Pumped",
+        "Hatching Twitter",
+        "The Everything War",
+        "Elon Musk: Tesla"
       ]
     },
     {
@@ -4625,6 +5203,13 @@
         "narrative nonfiction",
         "history",
         "sports"
+      ],
+      "similarToTitles": [
+        "Franklin Barbecue",
+        "Beyond the Pale",
+        "The Lagunitas Story",
+        "The Cost of These Dreams",
+        "Bitter Brew"
       ]
     },
     {
@@ -4645,6 +5230,13 @@
       "themes": [
         "narrative nonfiction",
         "true crime"
+      ],
+      "similarToTitles": [
+        "Fire Weather",
+        "Evicted",
+        "Dopesick",
+        "Chesapeake Requiem",
+        "Amity and Prosperity"
       ]
     },
     {
@@ -4666,6 +5258,13 @@
         "thriller",
         "literary",
         "psychological"
+      ],
+      "similarToTitles": [
+        "The Latecomer",
+        "The Silent Patient",
+        "None of This Is True",
+        "Tomorrow, and Tomorrow, and Tomorrow",
+        "The Woman in the Window"
       ]
     },
     {
@@ -4686,6 +5285,13 @@
       "themes": [
         "memoir",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Yes, Chef",
+        "Eat a Peach",
+        "Notes from a Young Black Chef",
+        "Save Me the Plums",
+        "Blood, Bones, and Butter"
       ]
     },
     {
@@ -4707,6 +5313,13 @@
         "memoir",
         "music history",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Me",
+        "Born to Run",
+        "A Life in Parts",
+        "Daisy Jones & The Six",
+        "Yearbook"
       ]
     },
     {
@@ -4728,6 +5341,12 @@
         "memoir",
         "history",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Ghost Soldiers",
+        "The Arsenal of Democracy",
+        "Into Thin Air",
+        "A Hope in the Unseen"
       ]
     },
     {
@@ -4748,6 +5367,13 @@
       "themes": [
         "sports",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "A Hollywood Ending",
+        "Return of the King",
+        "Dream Team",
+        "Blood in the Garden",
+        "Giannis"
       ]
     },
     {
@@ -4767,6 +5393,12 @@
       "year": 2019,
       "themes": [
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Fiddler in the Subway",
+        "Chesapeake Requiem",
+        "The Day the World Came to Town",
+        "Evicted"
       ]
     },
     {
@@ -4788,6 +5420,13 @@
         "contemporary",
         "literary",
         "historical"
+      ],
+      "similarToTitles": [
+        "Daisy Jones & The Six",
+        "Malibu Rising",
+        "Carrie Soto Is Back",
+        "Atmosphere",
+        "Intermezzo"
       ]
     },
     {
@@ -4808,6 +5447,13 @@
       "themes": [
         "memoir",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Educated",
+        "Maid",
+        "The Liars' Club",
+        "When Breath Becomes Air",
+        "A Hope in the Unseen"
       ]
     },
     {
@@ -4829,6 +5475,13 @@
         "contemporary",
         "literary",
         "music history"
+      ],
+      "similarToTitles": [
+        "The Seven Husbands of Evelyn Hugo",
+        "Malibu Rising",
+        "Carrie Soto Is Back",
+        "Tom Lake",
+        "Atmosphere"
       ]
     },
     {
@@ -4850,6 +5503,12 @@
         "speculative",
         "sci-fi",
         "thriller"
+      ],
+      "similarToTitles": [
+        "Recursion",
+        "Dark Matter",
+        "Project Hail Mary",
+        "Children of Time"
       ]
     },
     {
@@ -4870,6 +5529,13 @@
       "themes": [
         "literary",
         "contemporary"
+      ],
+      "similarToTitles": [
+        "The Storied Life of A.J. Fikry",
+        "Lessons in Chemistry",
+        "The Midnight Library",
+        "Remarkably Bright Creatures",
+        "Tom Lake"
       ]
     },
     {
@@ -4891,6 +5557,12 @@
         "contemporary",
         "literary",
         "sports"
+      ],
+      "similarToTitles": [
+        "The Seven Husbands of Evelyn Hugo",
+        "Daisy Jones & The Six",
+        "Malibu Rising",
+        "Atmosphere"
       ]
     },
     {
@@ -4912,6 +5584,12 @@
         "thriller",
         "suspense",
         "high-concept"
+      ],
+      "similarToTitles": [
+        "Falling",
+        "Worst Case Scenario",
+        "The Chain",
+        "The Flight Attendant"
       ]
     },
     {
@@ -4933,6 +5611,12 @@
         "memoir",
         "humor",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "When Breath Becomes Air",
+        "Maybe You Should Talk to Someone",
+        "Twas the Nightshift Before Christmas",
+        "The Council of Dads"
       ]
     },
     {
@@ -4954,6 +5638,13 @@
         "narrative nonfiction",
         "finance",
         "tech history"
+      ],
+      "similarToTitles": [
+        "Flash Boys",
+        "Flash Crash",
+        "Bitcoin Billionaires",
+        "The Accidental Billionaires",
+        "The Trolls of Wall Street"
       ]
     },
     {
@@ -4975,6 +5666,12 @@
         "thriller",
         "crime",
         "suspense"
+      ],
+      "similarToTitles": [
+        "Dark Angel",
+        "Along Came a Spider",
+        "The Chain",
+        "Hard to Break"
       ]
     },
     {
@@ -4996,6 +5693,13 @@
         "thriller",
         "psychological",
         "domestic suspense"
+      ],
+      "similarToTitles": [
+        "The Breakdown",
+        "The Prisoner",
+        "Bring Me Back",
+        "The Dilemma",
+        "The Therapist"
       ]
     },
     {
@@ -5017,6 +5721,13 @@
         "biography",
         "tech history",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Steve Jobs",
+        "The Innovators",
+        "The Code Breaker",
+        "Elon Musk: Tesla",
+        "American Sketches"
       ]
     },
     {
@@ -5038,6 +5749,13 @@
         "literary",
         "contemporary",
         "humor"
+      ],
+      "similarToTitles": [
+        "Peck & Peck",
+        "Tomorrow, and Tomorrow, and Tomorrow",
+        "Remarkably Bright Creatures",
+        "The Wishing Game",
+        "Tom Lake"
       ]
     },
     {
@@ -5059,6 +5777,13 @@
         "contemporary",
         "speculative",
         "YA"
+      ],
+      "similarToTitles": [
+        "Another Day",
+        "The Perks of Being a Wallflower",
+        "Looking for Alaska",
+        "Paper Towns",
+        "Hello, Goodbye, and Everything in Between"
       ]
     },
     {
@@ -5080,6 +5805,13 @@
         "history",
         "narrative nonfiction",
         "adventure"
+      ],
+      "similarToTitles": [
+        "The Lost City of Z",
+        "Ghost Soldiers",
+        "Unbroken",
+        "Madhouse at the End of the Earth",
+        "Neptune's Fortune"
       ]
     },
     {
@@ -5101,6 +5833,13 @@
         "history",
         "narrative nonfiction",
         "adventure"
+      ],
+      "similarToTitles": [
+        "The Wager",
+        "Into Thin Air",
+        "Ghost Soldiers",
+        "Madhouse at the End of the Earth",
+        "In the Kingdom of Ice"
       ]
     },
     {
@@ -5121,6 +5860,13 @@
       "themes": [
         "speculative",
         "literary"
+      ],
+      "similarToTitles": [
+        "The Midnight Library",
+        "Recursion",
+        "Dark Matter",
+        "Cassandra in Reverse",
+        "The Measure"
       ]
     },
     {
@@ -5142,6 +5888,13 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "The Last Trial",
+        "Pleading Guilty",
+        "A Time to Kill",
+        "The Firm",
+        "The Rainmaker"
       ]
     },
     {
@@ -5163,6 +5916,12 @@
         "memoir",
         "political",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "A Promised Land",
+        "The Glass Castle",
+        "Educated",
+        "Maid"
       ]
     },
     {
@@ -5184,6 +5943,13 @@
         "literary",
         "speculative",
         "historical"
+      ],
+      "similarToTitles": [
+        "The Midnight Library",
+        "Tomorrow, and Tomorrow, and Tomorrow",
+        "The Measure",
+        "Cassandra in Reverse",
+        "This Time Tomorrow"
       ]
     },
     {
@@ -5205,6 +5971,12 @@
         "memoir",
         "humor",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Bossypants",
+        "Not That Kind of Girl",
+        "Yearbook",
+        "Scrappy Little Nobody"
       ]
     },
     {
@@ -5226,6 +5998,13 @@
         "narrative nonfiction",
         "adventure",
         "history"
+      ],
+      "similarToTitles": [
+        "The Wager",
+        "Ghost Soldiers",
+        "Madhouse at the End of the Earth",
+        "Under the Banner of Heaven",
+        "Where Men Win Glory"
       ]
     },
     {
@@ -5247,6 +6026,13 @@
         "thriller",
         "mystery",
         "suspense"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "Behind Closed Doors",
+        "Verity",
+        "The Housemaid",
+        "Into the Water"
       ]
     },
     {
@@ -5268,6 +6054,13 @@
         "speculative",
         "literary",
         "thriller"
+      ],
+      "similarToTitles": [
+        "The Echo Wife",
+        "The Measure",
+        "Recursion",
+        "Dark Matter",
+        "The Mountain in the Sea"
       ]
     },
     {
@@ -5289,6 +6082,13 @@
         "thriller",
         "psychological",
         "domestic suspense"
+      ],
+      "similarToTitles": [
+        "The Housemaid's Secret",
+        "Never Lie",
+        "The Teacher",
+        "The Boyfriend",
+        "The Divorce"
       ]
     },
     {
@@ -5309,6 +6109,13 @@
       "themes": [
         "contemporary",
         "humor"
+      ],
+      "similarToTitles": [
+        "Romantic Comedy",
+        "Lessons in Chemistry",
+        "The Rosie Project",
+        "The Wedding People",
+        "Good Material"
       ]
     },
     {
@@ -5330,6 +6137,13 @@
         "memoir",
         "tech history",
         "biography"
+      ],
+      "similarToTitles": [
+        "Steve Jobs",
+        "Elon Musk: Tesla",
+        "The Everything Store",
+        "The Innovators",
+        "How to Prevent the Next Pandemic"
       ]
     },
     {
@@ -5351,6 +6165,13 @@
         "thriller",
         "domestic suspense",
         "psychological"
+      ],
+      "similarToTitles": [
+        "The Perfect Divorce",
+        "Home Is Where the Bodies Are",
+        "Dating After the End of the World",
+        "Behind Closed Doors",
+        "The Housemaid"
       ]
     },
     {
@@ -5690,6 +6511,13 @@
         "thriller",
         "mystery",
         "suspense"
+      ],
+      "similarToTitles": [
+        "The Anniversary",
+        "The Silent Patient",
+        "The Breakdown",
+        "All Her Fault",
+        "Behind Closed Doors"
       ]
     },
     {
@@ -5793,6 +6621,13 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "The Firm",
+        "The Partner",
+        "The Broker",
+        "The Boys from Biloxi",
+        "The French Illusion"
       ]
     },
     {
@@ -6185,6 +7020,13 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "A Time to Kill",
+        "The Client",
+        "The Rainmaker",
+        "The Runaway Jury",
+        "Partners: A Rogue Lawyer Short Story"
       ]
     },
     {
@@ -6238,6 +7080,12 @@
         "thriller",
         "crime",
         "suspense"
+      ],
+      "similarToTitles": [
+        "Along Came a Spider",
+        "Kiss the Girls",
+        "12 Months to Live",
+        "The Idaho Four"
       ]
     },
     {
@@ -6259,6 +7107,13 @@
         "history",
         "military",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Ghost Soldiers",
+        "The Arsenal of Democracy",
+        "Unbroken",
+        "Freedom's Forge",
+        "Pearl Harbor"
       ]
     },
     {
@@ -6310,6 +7165,12 @@
         "contemporary",
         "literary",
         "romance"
+      ],
+      "similarToTitles": [
+        "The Seven Husbands of Evelyn Hugo",
+        "Daisy Jones & The Six",
+        "Carrie Soto Is Back",
+        "Malibu Rising"
       ]
     },
     {
@@ -6424,6 +7285,13 @@
         "thriller",
         "psychological",
         "domestic suspense"
+      ],
+      "similarToTitles": [
+        "The Housemaid",
+        "Never Lie",
+        "Ward D",
+        "The Inmate",
+        "The Crash"
       ]
     },
     {
@@ -6526,6 +7394,13 @@
         "biography",
         "food",
         "memoir"
+      ],
+      "similarToTitles": [
+        "Care and Feeding",
+        "Eat a Peach",
+        "Yes, Chef",
+        "Hungry:",
+        "Blood, Bones, and Butter"
       ]
     },
     {
@@ -6763,6 +7638,12 @@
         "thriller",
         "legal",
         "suspense"
+      ],
+      "similarToTitles": [
+        "Say Nothing",
+        "The Flight Attendant",
+        "The Chain",
+        "No One Will Miss Her"
       ]
     },
     {
@@ -6867,6 +7748,13 @@
         "history",
         "military",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Blood and Thunder",
+        "In the Kingdom of Ice",
+        "The Wide Wide Sea",
+        "Unbroken",
+        "The Arsenal of Democracy"
       ]
     },
     {
@@ -6888,6 +7776,12 @@
         "contemporary",
         "literary",
         "YA"
+      ],
+      "similarToTitles": [
+        "Looking for Alaska",
+        "Turtles All the Way Down",
+        "The Perks of Being a Wallflower",
+        "Every Day"
       ]
     },
     {
@@ -7002,6 +7896,13 @@
         "speculative",
         "literary",
         "sci-fi"
+      ],
+      "similarToTitles": [
+        "The Martian",
+        "Seveneves",
+        "Project Hail Mary",
+        "The Mountain in the Sea",
+        "Children of Time"
       ]
     },
     {
@@ -7023,6 +7924,13 @@
         "thriller",
         "psychological",
         "domestic suspense"
+      ],
+      "similarToTitles": [
+        "The Housemaid",
+        "The Teacher",
+        "Ward D",
+        "The Boyfriend",
+        "The Tenant"
       ]
     },
     {
@@ -7125,6 +8033,12 @@
         "contemporary",
         "literary",
         "YA"
+      ],
+      "similarToTitles": [
+        "Paper Towns",
+        "Turtles All the Way Down",
+        "The Perks of Being a Wallflower",
+        "Every Day"
       ]
     },
     {
@@ -7237,6 +8151,13 @@
         "thriller",
         "psychological",
         "domestic suspense"
+      ],
+      "similarToTitles": [
+        "The Housemaid",
+        "Ward D",
+        "The Teacher",
+        "The Divorce",
+        "The Crash"
       ]
     },
     {
@@ -7415,6 +8336,13 @@
         "thriller",
         "crime",
         "suspense"
+      ],
+      "similarToTitles": [
+        "She Rides Shotgun",
+        "Everybody Knows",
+        "Blacktop Wasteland",
+        "Clean Hands",
+        "Hard Cash Valley"
       ]
     },
     {
@@ -7486,6 +8414,13 @@
         "thriller",
         "domestic suspense",
         "mystery"
+      ],
+      "similarToTitles": [
+        "Anatomy of an Alibi",
+        "The Housemaid",
+        "Behind Closed Doors",
+        "Verity",
+        "The Perfect Marriage"
       ]
     },
     {
@@ -7641,6 +8576,12 @@
       "themes": [
         "speculative",
         "sci-fi"
+      ],
+      "similarToTitles": [
+        "Randomize",
+        "Summer Frost",
+        "The Martian",
+        "Project Hail Mary"
       ]
     },
     {
@@ -7662,6 +8603,13 @@
         "narrative nonfiction",
         "finance",
         "true crime"
+      ],
+      "similarToTitles": [
+        "Flash Boys",
+        "The Big Short",
+        "The Man Who Solved the Market",
+        "Going Infinite",
+        "Den of Thieves"
       ]
     },
     {
@@ -7704,6 +8652,12 @@
         "narrative nonfiction",
         "history",
         "adventure"
+      ],
+      "similarToTitles": [
+        "Ghost Soldiers",
+        "The Wager",
+        "Madhouse at the End of the Earth",
+        "Into Thin Air"
       ]
     },
     {
@@ -8240,6 +9194,13 @@
         "thriller",
         "crime",
         "noir"
+      ],
+      "similarToTitles": [
+        "Everybody Knows",
+        "A Violent Masterpiece",
+        "Blacktop Wasteland",
+        "Hard Cash Valley",
+        "Razorblade Tears"
       ]
     },
     {
@@ -8261,6 +9222,13 @@
         "thriller",
         "crime",
         "noir"
+      ],
+      "similarToTitles": [
+        "She Rides Shotgun",
+        "A Violent Masterpiece",
+        "Blacktop Wasteland",
+        "The Last Good Kiss",
+        "Hard Cash Valley"
       ]
     },
     {
@@ -8312,6 +9280,12 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "Presumed Innocent",
+        "The Last Trial",
+        "The Burden of Proof",
+        "A Time to Kill"
       ]
     },
     {
@@ -8394,6 +9368,13 @@
         "literary",
         "historical",
         "contemporary"
+      ],
+      "similarToTitles": [
+        "Where the Crawdads Sing",
+        "Lessons in Chemistry",
+        "The Invisible Life of Addie LaRue",
+        "Tom Lake",
+        "The God of the Woods"
       ]
     },
     {
@@ -8539,6 +9520,12 @@
         "political",
         "thriller",
         "suspense"
+      ],
+      "similarToTitles": [
+        "The President Is Missing",
+        "The First Gentleman",
+        "The Plot",
+        "The Silent Patient"
       ]
     },
     {
@@ -8630,6 +9617,13 @@
       "themes": [
         "literary",
         "contemporary"
+      ],
+      "similarToTitles": [
+        "The Storied Life of A.J. Fikry",
+        "The Midnight Library",
+        "Lessons in Chemistry",
+        "The Wishing Game",
+        "Tom Lake"
       ]
     },
     {
@@ -8672,6 +9666,13 @@
         "thriller",
         "speculative",
         "high-concept"
+      ],
+      "similarToTitles": [
+        "Dark Matter",
+        "Recursion",
+        "The Martian",
+        "Project Hail Mary",
+        "Upgrade"
       ]
     },
     {
@@ -8713,6 +9714,13 @@
         "thriller",
         "mystery",
         "suspense"
+      ],
+      "similarToTitles": [
+        "Camino Island",
+        "Camino Winds",
+        "The Boys from Biloxi",
+        "The Exchange",
+        "The French Illusion"
       ]
     },
     {
@@ -8765,6 +9773,13 @@
         "thriller",
         "legal",
         "crime"
+      ],
+      "similarToTitles": [
+        "Th1rt3en",
+        "The Outsider",
+        "The Plot",
+        "The Silent Patient",
+        "The Flight Attendant"
       ]
     },
     {
@@ -8951,6 +9966,13 @@
         "literary",
         "contemporary",
         "romance"
+      ],
+      "similarToTitles": [
+        "Normal People",
+        "Romantic Comedy",
+        "Lessons in Chemistry",
+        "Good Material",
+        "Tom Lake"
       ]
     },
     {
@@ -9033,6 +10055,13 @@
         "memoir",
         "food",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Eat a Peach",
+        "Yes, Chef",
+        "Bourdain: The Definitive Oral Biography",
+        "Crying in H Mart",
+        "Blood, Bones, and Butter"
       ]
     },
     {
@@ -9103,6 +10132,13 @@
       "themes": [
         "sports",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Three-Ring Circus",
+        "Dream Team",
+        "Open",
+        "Shoe Dog",
+        "Tiger Woods"
       ]
     },
     {
@@ -9399,6 +10435,13 @@
         "literary",
         "contemporary",
         "speculative"
+      ],
+      "similarToTitles": [
+        "The Storied Life of A.J. Fikry",
+        "The Midnight Library",
+        "Remarkably Bright Creatures",
+        "Lessons in Chemistry",
+        "Tomorrow, and Tomorrow, and Tomorrow"
       ]
     },
     {
@@ -9596,6 +10639,13 @@
         "sports",
         "biography",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Heartland",
+        "Tiger Woods",
+        "The Last Folk Hero",
+        "Three-Ring Circus",
+        "Dream Team"
       ]
     },
     {
@@ -9667,6 +10717,12 @@
       "themes": [
         "literary",
         "contemporary"
+      ],
+      "similarToTitles": [
+        "Rich Blood",
+        "A Time to Kill",
+        "The Client",
+        "The Boomerang"
       ]
     },
     {
@@ -9750,6 +10806,13 @@
         "literary",
         "speculative",
         "contemporary"
+      ],
+      "similarToTitles": [
+        "The Outsider",
+        "Holly",
+        "Billy Summers",
+        "The Institute",
+        "Mr. Mercedes"
       ]
     },
     {
@@ -9770,6 +10833,13 @@
       "themes": [
         "literary",
         "contemporary"
+      ],
+      "similarToTitles": [
+        "Tomorrow, and Tomorrow, and Tomorrow",
+        "Remarkably Bright Creatures",
+        "The Wishing Game",
+        "Lessons in Chemistry",
+        "The Midnight Library"
       ]
     },
     {
@@ -9790,6 +10860,12 @@
       "themes": [
         "contemporary",
         "romance"
+      ],
+      "similarToTitles": [
+        "Hello, Goodbye, and Everything in Between",
+        "Every Day",
+        "Looking for Alaska",
+        "The Perks of Being a Wallflower"
       ]
     },
     {
@@ -9934,6 +11010,13 @@
         "thriller",
         "mystery",
         "suspense"
+      ],
+      "similarToTitles": [
+        "The Maid's Secret",
+        "The Mistletoe Mystery",
+        "The Maid",
+        "The Silent Patient",
+        "The Plot"
       ]
     },
     {
@@ -9986,6 +11069,13 @@
         "YA",
         "speculative",
         "contemporary"
+      ],
+      "similarToTitles": [
+        "Another Day",
+        "The Perks of Being a Wallflower",
+        "Looking for Alaska",
+        "Paper Towns",
+        "Hello, Goodbye, and Everything in Between"
       ]
     },
     {
@@ -10007,6 +11097,13 @@
         "contemporary",
         "speculative",
         "YA"
+      ],
+      "similarToTitles": [
+        "Another Day",
+        "The Perks of Being a Wallflower",
+        "Looking for Alaska",
+        "Paper Towns",
+        "Hello, Goodbye, and Everything in Between"
       ]
     },
     {
@@ -10028,6 +11125,12 @@
         "narrative nonfiction",
         "true crime",
         "history"
+      ],
+      "similarToTitles": [
+        "Flash Crash",
+        "American Kingpin",
+        "Neptune's Fortune",
+        "Chasing the Thrill"
       ]
     },
     {
@@ -10182,6 +11285,13 @@
         "thriller",
         "horror",
         "psychological"
+      ],
+      "similarToTitles": [
+        "The Outsider",
+        "Never Flinch",
+        "Billy Summers",
+        "Mr. Mercedes",
+        "Gwendy's Final Task"
       ]
     },
     {
@@ -10306,6 +11416,13 @@
         "narrative nonfiction",
         "finance",
         "true crime"
+      ],
+      "similarToTitles": [
+        "Flash Boys",
+        "The Big Short",
+        "The Man Who Solved the Market",
+        "Bitcoin Billionaires",
+        "The Trolls of Wall Street"
       ]
     },
     {
@@ -10824,6 +11941,13 @@
         "thriller",
         "psychological",
         "suspense"
+      ],
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "The Breakdown",
+        "Verity",
+        "The Dilemma",
+        "The Therapist"
       ]
     },
     {
@@ -11523,6 +12647,13 @@
         "thriller",
         "psychological",
         "domestic suspense"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "Behind Closed Doors",
+        "The Breakdown",
+        "The Woman in the Window",
+        "Into the Water"
       ]
     },
     {
@@ -11544,6 +12675,13 @@
         "contemporary",
         "romance",
         "humor"
+      ],
+      "similarToTitles": [
+        "Lessons in Chemistry",
+        "One Day",
+        "Normal People",
+        "The Wedding People",
+        "Good Material"
       ]
     },
     {
@@ -11626,6 +12764,12 @@
         "narrative nonfiction",
         "business",
         "memoir"
+      ],
+      "similarToTitles": [
+        "Shoe Dog",
+        "The Everything Store",
+        "Super Pumped",
+        "That Will Never Work"
       ]
     },
     {
@@ -11698,6 +12842,13 @@
         "sports",
         "biography",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Tiger Woods",
+        "The Last Folk Hero",
+        "Charlie Hustle",
+        "Dream Team",
+        "Three-Ring Circus"
       ]
     },
     {
@@ -11893,6 +13044,13 @@
         "thriller",
         "suspense",
         "psychological"
+      ],
+      "similarToTitles": [
+        "The Cold Cold Ground",
+        "The Silent Patient",
+        "Behind Closed Doors",
+        "All Her Fault",
+        "A Violent Masterpiece"
       ]
     },
     {
@@ -11914,6 +13072,13 @@
         "legal",
         "thriller",
         "historical"
+      ],
+      "similarToTitles": [
+        "A Time to Kill",
+        "The Reckoning",
+        "Sycamore Row",
+        "A Time for Mercy",
+        "The French Illusion"
       ]
     },
     {
@@ -12069,6 +13234,13 @@
         "narrative nonfiction",
         "tech history",
         "business"
+      ],
+      "similarToTitles": [
+        "Elon Musk: Tesla",
+        "The Space Barons",
+        "Hatching Twitter",
+        "Super Pumped",
+        "Steve Jobs"
       ]
     },
     {
@@ -12224,6 +13396,13 @@
         "thriller",
         "crime",
         "suspense"
+      ],
+      "similarToTitles": [
+        "Stop at Nothing",
+        "Hard to Break",
+        "The Chain",
+        "Dark Angel",
+        "Along Came a Spider"
       ]
     },
     {
@@ -12245,6 +13424,12 @@
         "thriller",
         "crime",
         "suspense"
+      ],
+      "similarToTitles": [
+        "Run for Cover",
+        "Hard to Break",
+        "The Chain",
+        "Dark Angel"
       ]
     },
     {
@@ -12266,6 +13451,13 @@
         "speculative",
         "literary",
         "contemporary"
+      ],
+      "similarToTitles": [
+        "The Midnight Library",
+        "The Invisible Life of Addie LaRue",
+        "This Time Tomorrow",
+        "Cassandra in Reverse",
+        "Remarkably Bright Creatures"
       ]
     },
     {
@@ -12286,6 +13478,13 @@
       "themes": [
         "literary",
         "contemporary"
+      ],
+      "similarToTitles": [
+        "Tracy Flick Can't Win",
+        "Normal People",
+        "Lessons in Chemistry",
+        "Bad Haircut",
+        "Beautiful World, Where Are You"
       ]
     },
     {
@@ -12555,6 +13754,12 @@
         "literary",
         "contemporary",
         "political"
+      ],
+      "similarToTitles": [
+        "Little Children",
+        "Normal People",
+        "Lessons in Chemistry",
+        "Bad Haircut"
       ]
     },
     {
@@ -12670,6 +13875,13 @@
         "sports",
         "biography",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Three-Ring Circus",
+        "Tiger Woods",
+        "Dream Team",
+        "Sweetness",
+        "The Rocket That Fell to Earth"
       ]
     },
     {
@@ -12691,6 +13903,13 @@
         "speculative",
         "thriller",
         "high-concept"
+      ],
+      "similarToTitles": [
+        "Pines: Wayward Pines",
+        "Wayward: Wayward Pines",
+        "Recursion",
+        "Dark Matter",
+        "The Institute"
       ]
     },
     {
@@ -12712,6 +13931,12 @@
         "speculative",
         "thriller",
         "high-concept"
+      ],
+      "similarToTitles": [
+        "Pines: Wayward Pines",
+        "The Last Town",
+        "Recursion",
+        "Dark Matter"
       ]
     },
     {
@@ -12764,6 +13989,13 @@
         "literary",
         "speculative",
         "contemporary"
+      ],
+      "similarToTitles": [
+        "American Fantasy",
+        "The Midnight Library",
+        "How to Stop Time",
+        "Cassandra in Reverse",
+        "Tomorrow, and Tomorrow, and Tomorrow"
       ]
     },
     {
@@ -12806,6 +14038,13 @@
         "speculative",
         "thriller",
         "high-concept"
+      ],
+      "similarToTitles": [
+        "Wayward: Wayward Pines",
+        "The Last Town",
+        "Recursion",
+        "Dark Matter",
+        "The Outsider"
       ]
     },
     {
@@ -13010,6 +14249,13 @@
         "thriller",
         "crime",
         "literary"
+      ],
+      "similarToTitles": [
+        "The Outsider",
+        "Holly",
+        "Never Flinch",
+        "Mr. Mercedes",
+        "The Life of Chuck"
       ]
     },
     {
@@ -13031,6 +14277,13 @@
         "literary",
         "thriller",
         "contemporary"
+      ],
+      "similarToTitles": [
+        "Where the Crawdads Sing",
+        "The Great Alone",
+        "The Glass Castle",
+        "Exit West",
+        "Tom Lake"
       ]
     },
     {
@@ -13114,6 +14367,13 @@
         "thriller",
         "mystery",
         "suspense"
+      ],
+      "similarToTitles": [
+        "The Chain",
+        "The Silent Patient",
+        "Behind Closed Doors",
+        "All Her Fault",
+        "Say Nothing"
       ]
     },
     {
@@ -13336,6 +14596,12 @@
         "contemporary",
         "romance",
         "literary"
+      ],
+      "similarToTitles": [
+        "Maybe in Another Life",
+        "One True Loves",
+        "Malibu Rising",
+        "The Seven Husbands of Evelyn Hugo"
       ]
     },
     {
@@ -13409,6 +14675,13 @@
         "thriller",
         "psychological",
         "mystery"
+      ],
+      "similarToTitles": [
+        "The Fury",
+        "The Maidens",
+        "Behind Closed Doors",
+        "Verity",
+        "The Woman in the Window"
       ]
     },
     {
@@ -13429,6 +14702,12 @@
       "themes": [
         "contemporary",
         "romance"
+      ],
+      "similarToTitles": [
+        "After I Do",
+        "One True Loves",
+        "The Seven Husbands of Evelyn Hugo",
+        "Romantic Comedy"
       ]
     },
     {
@@ -13449,6 +14728,12 @@
       "themes": [
         "contemporary",
         "romance"
+      ],
+      "similarToTitles": [
+        "After I Do",
+        "Maybe in Another Life",
+        "The Seven Husbands of Evelyn Hugo",
+        "Malibu Rising"
       ]
     },
     {
@@ -13470,6 +14755,13 @@
         "literary",
         "thriller",
         "mystery"
+      ],
+      "similarToTitles": [
+        "The Great Alone",
+        "Lessons in Chemistry",
+        "Remarkably Bright Creatures",
+        "Tom Lake",
+        "The God of the Woods"
       ]
     },
     {
@@ -13512,6 +14804,13 @@
         "sports",
         "biography",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Tiger Woods",
+        "Open",
+        "Shoe Dog",
+        "Three-Ring Circus",
+        "The Last Folk Hero"
       ]
     },
     {
@@ -13533,6 +14832,13 @@
         "thriller",
         "mystery",
         "suspense"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "The Housemaid",
+        "Behind Closed Doors",
+        "Local Woman Missing",
+        "Listen for the Lie"
       ]
     },
     {
@@ -13553,6 +14859,12 @@
       "themes": [
         "contemporary",
         "literary"
+      ],
+      "similarToTitles": [
+        "The Seven Husbands of Evelyn Hugo",
+        "Daisy Jones & The Six",
+        "Carrie Soto Is Back",
+        "Tom Lake"
       ]
     },
     {
@@ -13574,6 +14886,12 @@
         "contemporary",
         "literary",
         "YA"
+      ],
+      "similarToTitles": [
+        "Looking for Alaska",
+        "Paper Towns",
+        "The Perks of Being a Wallflower",
+        "Every Day"
       ]
     },
     {
@@ -14190,6 +15508,13 @@
         "sports",
         "history",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Dream Team",
+        "Three-Ring Circus",
+        "Giannis",
+        "Return of the King",
+        "Loose Balls"
       ]
     },
     {
@@ -14272,6 +15597,13 @@
         "thriller",
         "crime",
         "noir"
+      ],
+      "similarToTitles": [
+        "Clean Hands",
+        "Every Man a Menace",
+        "She Rides Shotgun",
+        "Blacktop Wasteland",
+        "A Violent Masterpiece"
       ]
     },
     {
@@ -14292,6 +15624,12 @@
       "themes": [
         "narrative nonfiction",
         "history"
+      ],
+      "similarToTitles": [
+        "Dopesick",
+        "The Premonition",
+        "When Breath Becomes Air",
+        "The End of October"
       ]
     },
     {
@@ -14354,6 +15692,13 @@
         "history",
         "narrative nonfiction",
         "adventure"
+      ],
+      "similarToTitles": [
+        "Neptune's Fortune",
+        "The Wager",
+        "Into Thin Air",
+        "Ghost Soldiers",
+        "In the Kingdom of Ice"
       ]
     },
     {
@@ -14446,6 +15791,12 @@
       "themes": [
         "narrative nonfiction",
         "history"
+      ],
+      "similarToTitles": [
+        "One Day: The Extraordinary Story",
+        "Chesapeake Requiem",
+        "A Hope in the Unseen",
+        "The Council of Dads"
       ]
     },
     {
@@ -14560,6 +15911,12 @@
       "themes": [
         "memoir",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "When Breath Becomes Air",
+        "Maybe You Should Talk to Someone",
+        "The Last Lecture",
+        "Educated"
       ]
     },
     {
@@ -14581,6 +15938,12 @@
         "legal",
         "thriller",
         "crime"
+      ],
+      "similarToTitles": [
+        "Along Came a Spider",
+        "Kiss the Girls",
+        "Juror #3",
+        "12 Months to Live"
       ]
     },
     {
@@ -14633,6 +15996,13 @@
         "thriller",
         "mystery",
         "suspense"
+      ],
+      "similarToTitles": [
+        "The Paris Apartment",
+        "The Silent Patient",
+        "Behind Closed Doors",
+        "Verity",
+        "All Her Fault"
       ]
     },
     {
@@ -14715,6 +16085,13 @@
         "thriller",
         "mystery",
         "crime"
+      ],
+      "similarToTitles": [
+        "You Must Remember This",
+        "The Silent Patient",
+        "Behind Closed Doors",
+        "Verity",
+        "The Housemaid"
       ]
     },
     {
@@ -14818,6 +16195,13 @@
       "themes": [
         "sports",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Hot Hand",
+        "The Extra 2%",
+        "Trading Bases",
+        "The Midrange Theory",
+        "Dream Team"
       ]
     },
     {
@@ -14839,6 +16223,12 @@
         "thriller",
         "suspense",
         "high-concept"
+      ],
+      "similarToTitles": [
+        "Drowning",
+        "Worst Case Scenario",
+        "The Chain",
+        "The Flight Attendant"
       ]
     },
     {
@@ -14941,6 +16331,13 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "The Whistler",
+        "The Litigators",
+        "The Runaway Jury",
+        "The Last Juror",
+        "Partners: A Rogue Lawyer Short Story"
       ]
     },
     {
@@ -14962,6 +16359,12 @@
         "literary",
         "contemporary",
         "humor"
+      ],
+      "similarToTitles": [
+        "White Noise",
+        "Normal People",
+        "Beautiful World, Where Are You",
+        "The Amazing Adventures of Cavalier & Clay"
       ]
     },
     {
@@ -14983,6 +16386,13 @@
         "sports",
         "biography",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Dream Team",
+        "Three-Ring Circus",
+        "Blood in the Garden",
+        "A Hollywood Ending",
+        "Return of the King"
       ]
     },
     {
@@ -15189,6 +16599,13 @@
         "memoir",
         "humor",
         "comedy"
+      ],
+      "similarToTitles": [
+        "Comedy Comedy Comedy Drama",
+        "Entrances and Exits",
+        "Born to Run",
+        "Me",
+        "A Life in Parts"
       ]
     },
     {
@@ -15525,6 +16942,12 @@
         "sports",
         "contemporary",
         "literary"
+      ],
+      "similarToTitles": [
+        "The Boys from Biloxi",
+        "Calico Joe",
+        "Bleachers",
+        "The Reckoning"
       ]
     },
     {
@@ -15698,6 +17121,12 @@
         "thriller",
         "speculative",
         "high-concept"
+      ],
+      "similarToTitles": [
+        "The Premonition",
+        "Mr. Texas",
+        "Dopesick",
+        "The Flight Attendant"
       ]
     },
     {
@@ -15719,6 +17148,13 @@
         "sports",
         "narrative nonfiction",
         "psychology"
+      ],
+      "similarToTitles": [
+        "The Extra 2%",
+        "Trading Bases",
+        "The Only Rule Is It Has to Work",
+        "The Midrange Theory",
+        "Everybody Lies"
       ]
     },
     {
@@ -15740,6 +17176,13 @@
         "thriller",
         "crime",
         "suspense"
+      ],
+      "similarToTitles": [
+        "Along Came a Spider",
+        "The Jailhouse Lawyer",
+        "12 Months to Live",
+        "The Girl in the Castle",
+        "The Idaho Four"
       ]
     },
     {
@@ -15761,6 +17204,12 @@
         "political",
         "thriller",
         "suspense"
+      ],
+      "similarToTitles": [
+        "The President's Daughter",
+        "The First Gentleman",
+        "The Plot",
+        "The Chain"
       ]
     },
     {
@@ -15844,6 +17293,13 @@
         "narrative nonfiction",
         "tech history",
         "biography"
+      ],
+      "similarToTitles": [
+        "Steve Jobs",
+        "Elon Musk",
+        "The Innovators",
+        "Source Code",
+        "American Sketches"
       ]
     },
     {
@@ -15865,6 +17321,13 @@
         "thriller",
         "psychological",
         "suspense"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "Behind Closed Doors",
+        "The Breakdown",
+        "Verity",
+        "Local Woman Missing"
       ]
     },
     {
@@ -15935,6 +17398,13 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "A Time to Kill",
+        "Sycamore Row",
+        "The Boys from Biloxi",
+        "The Client",
+        "Partners: A Rogue Lawyer Short Story"
       ]
     },
     {
@@ -15997,6 +17467,13 @@
         "sports",
         "memoir",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Dream Team",
+        "Blood in the Garden",
+        "Three-Ring Circus",
+        "Return of the King",
+        "Giannis"
       ]
     },
     {
@@ -16679,6 +18156,12 @@
         "thriller",
         "speculative",
         "suspense"
+      ],
+      "similarToTitles": [
+        "Pines: Wayward Pines",
+        "Recursion",
+        "Dark Matter",
+        "The Long Walk"
       ]
     },
     {
@@ -16825,6 +18308,13 @@
         "thriller",
         "psychological",
         "crime"
+      ],
+      "similarToTitles": [
+        "Creep (Creep",
+        "Freak (Creep",
+        "The Housemaid",
+        "Behind Closed Doors",
+        "None of This Is True"
       ]
     },
     {
@@ -16845,6 +18335,13 @@
       "themes": [
         "thriller",
         "horror"
+      ],
+      "similarToTitles": [
+        "The Outsider",
+        "Never Flinch",
+        "Billy Summers",
+        "Mr. Mercedes",
+        "Gwendy's Final Task"
       ]
     },
     {
@@ -16992,6 +18489,13 @@
         "memoir",
         "food",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Eat a Peach",
+        "Bourdain: The Definitive Oral Biography",
+        "Notes from a Young Black Chef",
+        "Blood, Bones, and Butter",
+        "Taste"
       ]
     },
     {
@@ -17209,6 +18713,13 @@
         "thriller",
         "mystery",
         "suspense"
+      ],
+      "similarToTitles": [
+        "Camino Island",
+        "Camino Ghosts",
+        "The Boys from Biloxi",
+        "The Exchange",
+        "The French Illusion"
       ]
     },
     {
@@ -17311,6 +18822,13 @@
         "narrative nonfiction",
         "finance",
         "biography"
+      ],
+      "similarToTitles": [
+        "Flash Boys",
+        "The Big Short",
+        "Flash Crash",
+        "Going Infinite",
+        "Den of Thieves"
       ]
     },
     {
@@ -17372,6 +18890,12 @@
       "themes": [
         "speculative",
         "sci-fi"
+      ],
+      "similarToTitles": [
+        "The Egg",
+        "The Martian",
+        "Dark Matter",
+        "Recursion"
       ]
     },
     {
@@ -17393,6 +18917,12 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "A Time to Kill",
+        "The Boys from Biloxi",
+        "Sycamore Row",
+        "A Time for Mercy"
       ]
     },
     {
@@ -17412,6 +18942,12 @@
       "year": 2016,
       "themes": [
         "food"
+      ],
+      "similarToTitles": [
+        "Franklin Barbecue",
+        "Momofuku: A Cookbook",
+        "Yes, Chef",
+        "Think Like a Chef"
       ]
     },
     {
@@ -17471,6 +19007,12 @@
         "literary",
         "humor",
         "speculative"
+      ],
+      "similarToTitles": [
+        "Sex, Drugs, and Cocoa Puffs",
+        "I Wear the Black Hat",
+        "The Visible Man",
+        "Chuck Klosterman IV"
       ]
     },
     {
@@ -17492,6 +19034,13 @@
         "memoir",
         "food",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Eat a Peach",
+        "Bourdain: The Definitive Oral Biography",
+        "Yes, Chef",
+        "Blood, Bones, and Butter",
+        "Taste"
       ]
     },
     {
@@ -17512,6 +19061,13 @@
       "themes": [
         "narrative nonfiction",
         "contemporary"
+      ],
+      "similarToTitles": [
+        "Ghost Lover",
+        "Educated",
+        "The Glass Castle",
+        "Maid",
+        "Crying in H Mart"
       ]
     },
     {
@@ -17552,6 +19108,13 @@
         "narrative nonfiction",
         "true crime",
         "history"
+      ],
+      "similarToTitles": [
+        "Cheap Land Colorado",
+        "Maid",
+        "Evicted",
+        "The Glass Castle",
+        "A Hope in the Unseen"
       ]
     },
     {
@@ -17632,6 +19195,13 @@
         "business",
         "food",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Eat a Peach",
+        "The Soul of a Chef",
+        "Franklin Barbecue",
+        "Why I Cook",
+        "Taste"
       ]
     },
     {
@@ -17674,6 +19244,13 @@
         "contemporary",
         "humor",
         "romance"
+      ],
+      "similarToTitles": [
+        "The Rosie Project",
+        "The Rosie Effect",
+        "Romantic Comedy",
+        "Lessons in Chemistry",
+        "Here One Moment"
       ]
     },
     {
@@ -17695,6 +19272,12 @@
         "contemporary",
         "humor",
         "romance"
+      ],
+      "similarToTitles": [
+        "The Rosie Project",
+        "The Rosie Result",
+        "Romantic Comedy",
+        "Lessons in Chemistry"
       ]
     },
     {
@@ -17756,6 +19339,13 @@
         "memoir",
         "food",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Eat a Peach",
+        "Yes, Chef",
+        "Bourdain: The Definitive Oral Biography",
+        "Save Me the Plums",
+        "Taste"
       ]
     },
     {
@@ -17879,6 +19469,13 @@
       "themes": [
         "narrative nonfiction",
         "biography"
+      ],
+      "similarToTitles": [
+        "Maid",
+        "Evicted",
+        "The Glass Castle",
+        "Educated",
+        "The Blind Side"
       ]
     },
     {
@@ -17899,6 +19496,13 @@
       "themes": [
         "food",
         "memoir"
+      ],
+      "similarToTitles": [
+        "Eat a Peach",
+        "Yes, Chef",
+        "Franklin Barbecue",
+        "Blood, Bones, and Butter",
+        "Taste"
       ]
     },
     {
@@ -17940,6 +19544,12 @@
         "memoir",
         "music history",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Storyteller",
+        "Me",
+        "Born to Run",
+        "Daisy Jones & The Six"
       ]
     },
     {
@@ -17961,6 +19571,13 @@
         "thriller",
         "psychological",
         "crime"
+      ],
+      "similarToTitles": [
+        "Dark Places",
+        "The Woman in the Window",
+        "The Silent Patient",
+        "I'll Be Gone in the Dark",
+        "Verity"
       ]
     },
     {
@@ -18002,6 +19619,13 @@
       "themes": [
         "narrative nonfiction",
         "food"
+      ],
+      "similarToTitles": [
+        "If You Can't Take the Heat",
+        "The Soul of a Chef",
+        "Eat a Peach",
+        "Yes, Chef",
+        "Blood, Bones, and Butter"
       ]
     },
     {
@@ -18023,6 +19647,12 @@
         "thriller",
         "crime",
         "mystery"
+      ],
+      "similarToTitles": [
+        "Diablo Mesa",
+        "The Plot",
+        "The Silent Patient",
+        "The Woman in the Window"
       ]
     },
     {
@@ -18205,6 +19835,13 @@
         "sports",
         "biography",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Open",
+        "Three-Ring Circus",
+        "The Last Folk Hero",
+        "Sweetness",
+        "Baddest Man"
       ]
     },
     {
@@ -18288,6 +19925,13 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "A Time to Kill",
+        "A Time for Mercy",
+        "The Boys from Biloxi",
+        "The Client",
+        "Partners: A Rogue Lawyer Short Story"
       ]
     },
     {
@@ -18491,6 +20135,13 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "The Rainmaker",
+        "The Litigators",
+        "The Last Juror",
+        "The Runaway Jury",
+        "The French Illusion"
       ]
     },
     {
@@ -18512,6 +20163,13 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "The King of Torts",
+        "The Rainmaker",
+        "A Time to Kill",
+        "The Litigators",
+        "Partners: A Rogue Lawyer Short Story"
       ]
     },
     {
@@ -18596,6 +20254,13 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "The Firm",
+        "The Exchange",
+        "The Broker",
+        "The Rainmaker",
+        "The French Illusion"
       ]
     },
     {
@@ -18638,6 +20303,13 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "The Client",
+        "The Litigators",
+        "The Street Lawyer",
+        "The Last Juror",
+        "Partners: A Rogue Lawyer Short Story"
       ]
     },
     {
@@ -18659,6 +20331,13 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "The Firm",
+        "The Rainmaker",
+        "The Last Juror",
+        "The Judge's List",
+        "The French Illusion"
       ]
     },
     {
@@ -18722,6 +20401,13 @@
         "thriller",
         "crime",
         "noir"
+      ],
+      "similarToTitles": [
+        "She Rides Shotgun",
+        "Everybody Knows",
+        "Blacktop Wasteland",
+        "Clean Hands",
+        "Hard Cash Valley"
       ]
     },
     {
@@ -18843,6 +20529,13 @@
         "sports",
         "history",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Charlie Hustle",
+        "Tiger Woods",
+        "Three-Ring Circus",
+        "Pee Wees",
+        "Dream Team"
       ]
     },
     {
@@ -19088,6 +20781,13 @@
         "sports",
         "narrative nonfiction",
         "finance"
+      ],
+      "similarToTitles": [
+        "The Extra 2%",
+        "The Hot Hand",
+        "The Only Rule Is It Has to Work",
+        "Everybody Lies",
+        "The Midrange Theory"
       ]
     },
     {
@@ -19369,6 +21069,13 @@
         "history",
         "military",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Arsenal of Democracy",
+        "Ghost Soldiers",
+        "Unbroken",
+        "The Accidental President",
+        "Pearl Harbor"
       ]
     },
     {
@@ -19389,6 +21096,12 @@
       "themes": [
         "memoir",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "When Breath Becomes Air",
+        "The Council of Dads",
+        "Maybe You Should Talk to Someone",
+        "Educated"
       ]
     },
     {
@@ -19431,6 +21144,13 @@
         "narrative nonfiction",
         "business",
         "memoir"
+      ],
+      "similarToTitles": [
+        "The Lagunitas Story",
+        "Shoe Dog",
+        "Eat a Peach",
+        "Bitter Brew",
+        "Franklin Barbecue"
       ]
     },
     {
@@ -19452,6 +21172,13 @@
         "memoir",
         "true crime",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Ship It Holla Ballas",
+        "Flash Boys",
+        "The Man Who Solved the Market",
+        "Gambler",
+        "You Can't Lose Them All"
       ]
     },
     {
@@ -19614,6 +21341,12 @@
       "themes": [
         "sports",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Charlie Hustle",
+        "Tiger Woods",
+        "Three-Ring Circus",
+        "Dream Team"
       ]
     },
     {
@@ -19654,6 +21387,13 @@
       "themes": [
         "sports",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Hot Hand",
+        "The Extra 2%",
+        "Trading Bases",
+        "The Book of Joe",
+        "Big Fan"
       ]
     },
     {
@@ -19758,6 +21498,13 @@
         "legal",
         "thriller",
         "courtroom"
+      ],
+      "similarToTitles": [
+        "The Rainmaker",
+        "The King of Torts",
+        "The Judge's List",
+        "The Runaway Jury",
+        "Partners: A Rogue Lawyer Short Story"
       ]
     },
     {
@@ -19798,6 +21545,13 @@
       "themes": [
         "food",
         "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Yes, Chef",
+        "Momofuku: A Cookbook",
+        "Notes from a Young Black Chef",
+        "Blood, Bones, and Butter",
+        "Why I Cook"
       ]
     },
     {
@@ -19921,6 +21675,13 @@
         "memoir",
         "humor",
         "contemporary"
+      ],
+      "similarToTitles": [
+        "Famesick",
+        "Sorry I'm Late",
+        "Yearbook",
+        "The Woman in Me",
+        "Bossypants"
       ]
     },
     {
@@ -19961,6 +21722,12 @@
       "themes": [
         "narrative nonfiction",
         "history"
+      ],
+      "similarToTitles": [
+        "Methland",
+        "Dopesick",
+        "Chesapeake Requiem",
+        "Evicted"
       ]
     },
     {
@@ -20001,6 +21768,12 @@
       "year": 2015,
       "themes": [
         "sports"
+      ],
+      "similarToTitles": [
+        "Trading Bases",
+        "The Extra 2%",
+        "The Only Rule Is It Has to Work",
+        "The Book of Joe"
       ]
     }
   ],
