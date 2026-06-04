@@ -28,6 +28,7 @@ export function buildIndexes(goodreads, feedback) {
   const fiveStarThemes      = new Map();
   const allReadAuthors      = new Map();
   const authorRatingWeight  = new Map();
+  const reverseSimilar      = new Map();
   const excluded            = new Map();
 
   for (const book of goodreads.books || []) {
@@ -50,6 +51,9 @@ export function buildIndexes(goodreads, feedback) {
           const t = String(theme).toLowerCase();
           fiveStarThemes.set(t, (fiveStarThemes.get(t) || 0) + 1);
         }
+        for (const t of book.similarToTitles || []) {
+          reverseSimilar.set(t, (reverseSimilar.get(t) || 0) + 1);
+        }
       }
     } else if (shelf === 'to-read') {
       toRead.set(key, book);
@@ -62,7 +66,7 @@ export function buildIndexes(goodreads, feedback) {
     if (interaction?.bookKey) excluded.set(interaction.bookKey, interaction);
   }
 
-  return { read, toRead, currentlyReading, fiveStarTitles, fiveStarAuthors, fiveStarThemes, allReadAuthors, authorRatingWeight, excluded };
+  return { read, toRead, currentlyReading, fiveStarTitles, fiveStarAuthors, fiveStarThemes, allReadAuthors, authorRatingWeight, reverseSimilar, excluded };
 }
 
 function summarize(goodreads) {
@@ -177,6 +181,7 @@ function matchScoreFiction(candidate, idx, profile, timesShown) {
     for (const t of candidate.similarToTitles || []) {
       if (idx.fiveStarTitles.has(t)) score += 8;
     }
+    score += Math.min(12, (idx.reverseSimilar.get(candidate.title) || 0) * 6);
     score += themeBonus(candidate.themes, idx.fiveStarThemes);
     score += ratingsCountBonus(candidate.ratingsCount);
     const avg = Number(candidate.avgRating) || 0;
@@ -247,6 +252,7 @@ function matchScoreNonfiction(candidate, idx, profile, timesShown) {
     for (const t of candidate.similarToTitles || []) {
       if (idx.fiveStarTitles.has(t)) score += 8;
     }
+    score += Math.min(12, (idx.reverseSimilar.get(candidate.title) || 0) * 6);
     score += themeBonus(candidate.themes, idx.fiveStarThemes);
     score += ratingsCountBonus(candidate.ratingsCount);
     const avg = Number(candidate.avgRating) || 0;
