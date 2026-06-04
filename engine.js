@@ -160,6 +160,7 @@ function matchScoreFiction(candidate, idx, profile, timesShown) {
       if (idx.fiveStarTitles.has(t)) score += 8;
     }
     score += fictionThemeBonus(candidate.themes);
+    score += ratingsCountBonus(candidate.ratingsCount);
     const avg = Number(candidate.avgRating) || 0;
     if (avg > 0) score += (avg - 3.5) * 10;
   } else {
@@ -223,6 +224,7 @@ function matchScoreNonfiction(candidate, idx, profile, timesShown) {
       if (idx.fiveStarTitles.has(t)) score += 8;
     }
     score += nonfictionThemeBonus(candidate.themes);
+    score += ratingsCountBonus(candidate.ratingsCount);
     const avg = Number(candidate.avgRating) || 0;
     if (avg > 0) score += (avg - 3.5) * 10;
   } else {

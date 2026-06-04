@@ -39,7 +39,8 @@
       "similarToAuthors": [
         "Shari Lapena",
         "B.A. Paris"
-      ]
+      ],
+      "ratingsCount": 15000
     },
     {
       "bookKey": "an-innocent-client-a-joe-dillard-novel|scott-pratt",
@@ -166,7 +167,8 @@
       "similarToAuthors": [
         "Michael Lewis",
         "Ben Mezrich"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "the-housemaid-s-wedding|freida-mcfadden",
@@ -227,7 +229,8 @@
       "similarToAuthors": [
         "David Chang",
         "Marcus Samuelsson"
-      ]
+      ],
+      "ratingsCount": 7000
     },
     {
       "bookKey": "exit-party|emily-st-john-mandel",
@@ -256,7 +259,8 @@
       "similarToAuthors": [
         "V.E. Schwab",
         "Matt Haig"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "judge-stone|viola-davis",
@@ -286,7 +290,8 @@
       "similarToAuthors": [
         "John Grisham",
         "Scott Turow"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-scaling-curve-dario-amodei-anthropic-and-the-race-to-build-and-survive-superintelligence|claude-st-john",
@@ -331,7 +336,8 @@
       "similarToAuthors": [
         "Walter Isaacson",
         "Ashlee Vance"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "house-of-fidelity-the-rise-of-the-johnson-dynasty-and-the-company-that-changed-american-investing|justin-baer",
@@ -361,7 +367,8 @@
       "similarToAuthors": [
         "Michael Lewis",
         "Brad Stone"
-      ]
+      ],
+      "ratingsCount": 2000
     },
     {
       "bookKey": "eating-the-dinosaur|chuck-klosterman",
@@ -407,7 +414,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Chuck Klosterman"
-      ]
+      ],
+      "ratingsCount": 85000
     },
     {
       "bookKey": "creep|jennifer-hillier",
@@ -453,7 +461,8 @@
       "similarToAuthors": [
         "Stephen King",
         "Michael Ledwidge"
-      ]
+      ],
+      "ratingsCount": 2500
     },
     {
       "bookKey": "the-optimist-sam-altman-openai-and-the-race-to-invent-the-future|keach-hagey",
@@ -499,7 +508,8 @@
       "similarToAuthors": [
         "Mike Isaac",
         "Brad Stone"
-      ]
+      ],
+      "ratingsCount": 3500
     },
     {
       "bookKey": "famesick|lena-dunham",
@@ -528,7 +538,8 @@
       "similarToAuthors": [
         "Seth Rogen",
         "Chuck Klosterman"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "the-insomniacs|allison-winn-scotch",
@@ -558,7 +569,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Alex Michaelides"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "checkmate-genius-lies-ambition-and-the-biggest-scandal-in-chess|ben-mezrich",
@@ -589,7 +601,8 @@
       "similarToAuthors": [
         "Nick Bilton",
         "Brad Stone"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-divorce|freida-mcfadden",
@@ -620,7 +633,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Lisa Jewell"
-      ]
+      ],
+      "ratingsCount": 120000
     },
     {
       "bookKey": "peck-peck|bonnie-garmus",
@@ -649,7 +663,8 @@
       "similarToAuthors": [
         "Shelby Van Pelt",
         "Gabrielle Zevin"
-      ]
+      ],
+      "ratingsCount": 25000
     },
     {
       "bookKey": "monsters-in-the-archives-my-year-of-fear-with-stephen-king|caroline-bicks",
@@ -679,7 +694,8 @@
       "similarToAuthors": [
         "Bryan Cranston",
         "Dave Grohl"
-      ]
+      ],
+      "ratingsCount": 2500
     },
     {
       "bookKey": "american-fantasy|emma-straub",
@@ -710,7 +726,8 @@
       "similarToAuthors": [
         "Taylor Jenkins Reid",
         "V.E. Schwab"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "everyone-who-is-gone-is-here-the-united-states-central-america-and-the-making-of-a-crisis|jonathan-blitzer",
@@ -740,7 +757,8 @@
       "similarToAuthors": [
         "Matthew Desmond",
         "Barack Obama"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-running-man|richard-bachman",
@@ -771,7 +789,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Stephen King"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "the-break-up-retreat|camilla-sten",
@@ -801,7 +820,8 @@
       "similarToAuthors": [
         "Lucy Foley",
         "B.A. Paris"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "best-offer-wins|marisa-kashino",
@@ -847,7 +867,8 @@
       "similarToAuthors": [
         "John Grisham",
         "Scott Turow"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "last-night-in-montreal|emily-st-john-mandel",
@@ -877,7 +898,8 @@
       "similarToAuthors": [
         "V.E. Schwab",
         "Matt Haig"
-      ]
+      ],
+      "ratingsCount": 35000
     },
     {
       "bookKey": "this-land-is-your-land-a-road-trip-through-u-s-history|beverly-gage",
@@ -906,7 +928,8 @@
       "similarToAuthors": [
         "Barack Obama",
         "A.J. Baime"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "planet-money-a-guide-to-the-economic-forces-that-shape-your-life|alex-mayyasi",
@@ -936,7 +959,8 @@
       "similarToAuthors": [
         "Michael Lewis",
         "Brad Stone"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "the-anniversary|alex-finlay",
@@ -966,7 +990,8 @@
       "similarToAuthors": [
         "Alex Michaelides",
         "Ashley Elston"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "dissection-of-a-murder|jo-murray",
@@ -996,7 +1021,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Alex Michaelides"
-      ]
+      ],
+      "ratingsCount": 2500
     },
     {
       "bookKey": "the-midnight-train|matt-haig",
@@ -1026,7 +1052,8 @@
       "similarToAuthors": [
         "V.E. Schwab",
         "Blake Crouch"
-      ]
+      ],
+      "ratingsCount": 35000
     },
     {
       "bookKey": "yesteryear|caro-claire-burke",
@@ -1055,7 +1082,8 @@
       "similarToAuthors": [
         "Taylor Jenkins Reid",
         "V.E. Schwab"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "the-french-illusion|john-grisham",
@@ -1086,7 +1114,8 @@
       "similarToAuthors": [
         "Scott Turow",
         "Steve Cavanagh"
-      ]
+      ],
+      "ratingsCount": 25000
     },
     {
       "bookKey": "she-didn-t-see-it-coming|shari-lapena",
@@ -1133,7 +1162,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Alex Michaelides"
-      ]
+      ],
+      "ratingsCount": 300000
     },
     {
       "bookKey": "1929-inside-the-greatest-crash-in-wall-street-history-and-how-it-shattered-a-nation|andrew-ross-sorkin",
@@ -1163,7 +1193,8 @@
       "similarToAuthors": [
         "Michael Lewis",
         "Sebastian Mallaby"
-      ]
+      ],
+      "ratingsCount": 25000
     },
     {
       "bookKey": "heartland-a-forgotten-place-an-impossible-dream-and-the-miracle-of-larry-bird|keith-o-brien",
@@ -1194,7 +1225,8 @@
       "similarToAuthors": [
         "Jeff Pearlman",
         "Jack McCallum"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "the-everything-war-amazon-s-ruthless-quest-to-own-the-world-and-remake-corporate-power|dana-mattioli",
@@ -1224,7 +1256,8 @@
       "similarToAuthors": [
         "Brad Stone",
         "Mike Isaac"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "no-more-tears-the-dark-secrets-of-johnson-johnson|gardiner-harris",
@@ -1270,7 +1303,8 @@
       "similarToAuthors": [
         "Jeff Pearlman",
         "Mike Isaac"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "the-echo-wife|sarah-gailey",
@@ -1315,7 +1349,8 @@
       "similarToAuthors": [
         "Paul Kalanithi",
         "Bryan Cranston"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "loose-balls-the-short-wild-life-of-the-american-basketball-association|terry-pluto",
@@ -1346,7 +1381,8 @@
       "similarToAuthors": [
         "Jack McCallum",
         "Jeff Pearlman"
-      ]
+      ],
+      "ratingsCount": 7000
     },
     {
       "bookKey": "unhinged-habits-a-counterintuitive-guide-for-humans-to-have-more-by-doing-less|jonathan-goodman",
@@ -1375,7 +1411,8 @@
       "similarToAuthors": [
         "Lori Gottlieb",
         "Matthew Desmond"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "you-can-t-lose-them-all-tales-of-a-degenerate-gambler-and-his-ridiculous-friends|sal-iacono",
@@ -1404,7 +1441,8 @@
       "similarToAuthors": [
         "Ben Mezrich",
         "Chuck Klosterman"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "american-sketches-great-leaders-creative-thinkers-and-heroes-of-a-hurricane|walter-isaacson",
@@ -1435,7 +1473,8 @@
       "similarToAuthors": [
         "Brad Stone",
         "Ashlee Vance"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "what-it-takes-lessons-in-the-pursuit-of-excellence|stephen-a-schwarzman",
@@ -1465,7 +1504,8 @@
       "similarToAuthors": [
         "Phil Knight",
         "Brad Stone"
-      ]
+      ],
+      "ratingsCount": 28000
     },
     {
       "bookKey": "the-final-score|don-winslow",
@@ -1495,7 +1535,8 @@
       "similarToAuthors": [
         "Stephen King",
         "James Patterson"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "none-of-this-is-true|lisa-jewell",
@@ -1621,7 +1662,8 @@
       "similarToAuthors": [
         "Kristin Hannah",
         "Hampton Sides"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "the-greatest-sentence-ever-written|walter-isaacson",
@@ -1668,7 +1710,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Alex Michaelides"
-      ]
+      ],
+      "ratingsCount": 150000
     },
     {
       "bookKey": "neptune-s-fortune-the-billion-dollar-shipwreck-and-the-ghosts-of-the-spanish-empire|julian-sancton",
@@ -1698,7 +1741,8 @@
       "similarToAuthors": [
         "David Grann",
         "Hampton Sides"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "no-one-saw-a-thing|andrea-mara",
@@ -1728,7 +1772,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Shari Lapena"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "football|chuck-klosterman",
@@ -1758,7 +1803,8 @@
       "similarToAuthors": [
         "Jeff Pearlman",
         "Michael Lewis"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "a-violent-masterpiece|jordan-harper",
@@ -1789,7 +1835,8 @@
       "similarToAuthors": [
         "S.A. Cosby",
         "Jordan Harper"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "big-fan-two-friends-82-490-miles-and-the-wild-wonderful-sports-we-love|michael-schur",
@@ -1820,7 +1867,8 @@
       "similarToAuthors": [
         "Chuck Klosterman",
         "Sam Walker"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "parks-and-rec-the-underdog-tv-show-that-lit-rally-inspired-a-vision-for-a-better-america|jennifer-keishin-armstrong",
@@ -1850,7 +1898,8 @@
       "similarToAuthors": [
         "Chuck Klosterman",
         "Seth Rogen"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-amazing-adventures-of-cavalier-clay|michael-chabon",
@@ -1880,7 +1929,8 @@
       "similarToAuthors": [
         "Gabrielle Zevin",
         "V.E. Schwab"
-      ]
+      ],
+      "ratingsCount": 150000
     },
     {
       "bookKey": "den-of-thieves|james-b-stewart",
@@ -1910,7 +1960,8 @@
       "similarToAuthors": [
         "Michael Lewis",
         "Nick Bilton"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "rich-blood|robert-bailey",
@@ -1940,7 +1991,8 @@
       "similarToAuthors": [
         "John Grisham",
         "Scott Turow"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "we-are-legion|dennis-e-taylor",
@@ -1970,7 +2022,8 @@
       "similarToAuthors": [
         "Andy Weir",
         "Neal Stephenson"
-      ]
+      ],
+      "ratingsCount": 135000
     },
     {
       "bookKey": "dating-after-the-end-of-the-world|jeneva-rose",
@@ -2001,7 +2054,8 @@
       "similarToAuthors": [
         "Nikki Erlick",
         "V.E. Schwab"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-age-of-ai-and-our-human-future|henry-kissinger",
@@ -2030,7 +2084,8 @@
       "similarToAuthors": [
         "Walter Isaacson",
         "Ashlee Vance"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "the-intruder|freida-mcfadden",
@@ -2061,7 +2116,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Lisa Jewell"
-      ]
+      ],
+      "ratingsCount": 85000
     },
     {
       "bookKey": "children-of-time|adrian-tchaikovsky",
@@ -2092,7 +2148,8 @@
       "similarToAuthors": [
         "Neal Stephenson",
         "Andy Weir"
-      ]
+      ],
+      "ratingsCount": 200000
     },
     {
       "bookKey": "american-kings-a-biography-of-the-quarterback|seth-wickersham",
@@ -2137,7 +2194,8 @@
       "similarToAuthors": [
         "Barack Obama",
         "A.J. Baime"
-      ]
+      ],
+      "ratingsCount": 220000
     },
     {
       "bookKey": "you-have-arrived-at-your-destination|amor-towles",
@@ -2231,7 +2289,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Alex Michaelides"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "magic-for-liars|sarah-gailey",
@@ -2261,7 +2320,8 @@
       "similarToAuthors": [
         "Alex Michaelides",
         "V.E. Schwab"
-      ]
+      ],
+      "ratingsCount": 35000
     },
     {
       "bookKey": "careless-people-a-cautionary-tale-of-power-greed-and-lost-idealism|sarah-wynn-williams",
@@ -2292,7 +2352,8 @@
       "similarToAuthors": [
         "Mike Isaac",
         "Nick Bilton"
-      ]
+      ],
+      "ratingsCount": 120000
     },
     {
       "bookKey": "tiger-tiger-his-life-as-it-s-never-been-told-before|james-patterson",
@@ -2339,7 +2400,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Neal Stephenson"
-      ]
+      ],
+      "ratingsCount": 2500
     },
     {
       "bookKey": "the-idaho-four-an-american-tragedy|james-patterson",
@@ -2370,7 +2432,8 @@
       "similarToAuthors": [
         "Nick Bilton",
         "Beth Macy"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "the-compound|aisling-rawle",
@@ -2400,7 +2463,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Shari Lapena"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "all-her-fault|andrea-mara",
@@ -2447,7 +2511,8 @@
       "similarToAuthors": [
         "Ashlee Vance",
         "Walter Isaacson"
-      ]
+      ],
+      "ratingsCount": 42000
     },
     {
       "bookKey": "never-flinch|stephen-king",
@@ -2509,7 +2574,8 @@
       "similarToAuthors": [
         "Phil Knight",
         "Marc Randolph"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "i-regret-almost-everything|keith-mcnally",
@@ -2572,7 +2638,8 @@
       "similarToAuthors": [
         "Alex Michaelides",
         "Shari Lapena"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "a-heartbreaking-work-of-staggering-genius|dave-eggers",
@@ -2602,7 +2669,8 @@
       "similarToAuthors": [
         "Tara Westover",
         "Jeannette Walls"
-      ]
+      ],
+      "ratingsCount": 155000
     },
     {
       "bookKey": "2024-how-trump-retook-the-white-house-and-the-democrats-lost-america|josh-dawsey",
@@ -2648,7 +2716,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Alex Michaelides"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "you-shouldn-t-have-come-here|jeneva-rose",
@@ -2694,7 +2763,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Neal Stephenson"
-      ]
+      ],
+      "ratingsCount": 300000
     },
     {
       "bookKey": "framed-astonishing-true-stories-of-wrongful-convictions|john-grisham",
@@ -2740,7 +2810,8 @@
       "similarToAuthors": [
         "Michael Lewis",
         "Sebastian Mallaby"
-      ]
+      ],
+      "ratingsCount": 25000
     },
     {
       "bookKey": "the-boomerang|robert-bailey",
@@ -2786,7 +2857,8 @@
       "similarToAuthors": [
         "Stephen King",
         "Blake Crouch"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "your-table-is-ready-tales-of-a-new-york-city-ma-tre-d|michael-cecchi-azzolina",
@@ -2815,7 +2887,8 @@
       "similarToAuthors": [
         "David Chang",
         "Laurie Woolever"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "the-last-shot-city-streets-basketball-dreams-a-poignant-biography-of-young-athletes-inner-city-basketball-and-the-fight-to-escape-poverty|darcy-frey",
@@ -2844,7 +2917,8 @@
       "similarToAuthors": [
         "Jeff Pearlman",
         "Jack McCallum"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "twice|mitch-albom",
@@ -2874,7 +2948,8 @@
       "similarToAuthors": [
         "Matt Haig",
         "V.E. Schwab"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "remain|nicholas-sparks",
@@ -2904,7 +2979,8 @@
       "similarToAuthors": [
         "David Nicholls",
         "Jennifer E. Smith"
-      ]
+      ],
+      "ratingsCount": 25000
     },
     {
       "bookKey": "how-to-stop-time|matt-haig",
@@ -2965,7 +3041,8 @@
       "similarToAuthors": [
         "Barack Obama",
         "Matthew Desmond"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "burn-book-a-tech-love-story|kara-swisher",
@@ -2995,7 +3072,8 @@
       "similarToAuthors": [
         "Mike Isaac",
         "Nick Bilton"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "empire-of-ai-dreams-and-nightmares-in-sam-altman-s-openai|karen-hao",
@@ -3026,7 +3104,8 @@
       "similarToAuthors": [
         "Mike Isaac",
         "Walter Isaacson"
-      ]
+      ],
+      "ratingsCount": 85000
     },
     {
       "bookKey": "a-time-to-kill|john-grisham",
@@ -4641,7 +4720,8 @@
       "similarToAuthors": [
         "John Grisham",
         "Stephen King"
-      ]
+      ],
+      "ratingsCount": 42000
     },
     {
       "bookKey": "the-thursday-murder-club|richard-osman",
@@ -4671,7 +4751,8 @@
       "similarToAuthors": [
         "Alex Michaelides",
         "Graeme Simsion"
-      ]
+      ],
+      "ratingsCount": 500000
     },
     {
       "bookKey": "who-is-government-the-untold-story-of-public-service|michael-lewis",
@@ -4732,7 +4813,8 @@
       "similarToAuthors": [
         "Gabrielle Zevin",
         "John Green"
-      ]
+      ],
+      "ratingsCount": 2500
     },
     {
       "bookKey": "the-staircase-in-the-woods|chuck-wendig",
@@ -4762,7 +4844,8 @@
       "similarToAuthors": [
         "Stephen King",
         "Blake Crouch"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "oddbody|rose-keating",
@@ -4792,7 +4875,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Sarah Gailey"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "inside-the-cartel-how-an-undercover-fbi-agent-smuggled-cocaine-laundered-cash-and-dismantled-a-colombian-narco-empire|martin-suarez",
@@ -4822,7 +4906,8 @@
       "similarToAuthors": [
         "Nick Bilton",
         "Beth Macy"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "comedy-samurai-forty-years-of-blood-guts-and-laughter|larry-charles",
@@ -4852,7 +4937,8 @@
       "similarToAuthors": [
         "Seth Rogen",
         "Bryan Cranston"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "paper-girl-a-memoir-of-home-and-family-in-a-fractured-america|beth-macy",
@@ -4881,7 +4967,8 @@
       "similarToAuthors": [
         "Tara Westover",
         "Stephanie Land"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "a-hollywood-ending-the-dreams-and-drama-of-the-lebron-lakers|yaron-weitzman",
@@ -4911,7 +4998,8 @@
       "similarToAuthors": [
         "Jeff Pearlman",
         "Jack McCallum"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "the-return-of-ellie-black|emiko-jean",
@@ -4957,7 +5045,8 @@
       "similarToAuthors": [
         "Alex Michaelides",
         "Ashley Elston"
-      ]
+      ],
+      "ratingsCount": 35000
     },
     {
       "bookKey": "my-friends|fredrik-backman",
@@ -4987,7 +5076,8 @@
       "similarToAuthors": [
         "Shelby Van Pelt",
         "Matt Haig"
-      ]
+      ],
+      "ratingsCount": 35000
     },
     {
       "bookKey": "lorne-the-man-who-invented-saturday-night-live|susan-morrison",
@@ -5049,7 +5139,8 @@
       "similarToAuthors": [
         "Kristin Hannah",
         "Delia Owens"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "the-life-of-chuck|stephen-king",
@@ -5079,7 +5170,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Chuck Klosterman"
-      ]
+      ],
+      "ratingsCount": 45000
     },
     {
       "bookKey": "pearl-harbor-warning-and-decision|roberta-wohlstetter",
@@ -5109,7 +5201,8 @@
       "similarToAuthors": [
         "A.J. Baime",
         "Hampton Sides"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "shuttle-houston-my-life-in-the-center-seat-of-mission-control|paul-dye",
@@ -5139,7 +5232,8 @@
       "similarToAuthors": [
         "Ashlee Vance",
         "Jon Krakauer"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "baddest-man-the-making-of-mike-tyson|mark-kriegel",
@@ -5169,7 +5263,8 @@
       "similarToAuthors": [
         "Jeff Benedict",
         "Jeff Pearlman"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "the-tenant|freida-mcfadden",
@@ -5200,7 +5295,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Lisa Jewell"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "accidentally-on-purpose|kristen-kish",
@@ -5229,7 +5325,8 @@
       "similarToAuthors": [
         "David Chang",
         "Marcus Samuelsson"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "ask-for-andrea|noelle-w-ihli",
@@ -5259,7 +5356,8 @@
       "similarToAuthors": [
         "Stephen King",
         "B.A. Paris"
-      ]
+      ],
+      "ratingsCount": 28000
     },
     {
       "bookKey": "a-thousand-natural-shocks|omar-hussain",
@@ -5289,7 +5387,8 @@
       "similarToAuthors": [
         "Stephen King",
         "Blake Crouch"
-      ]
+      ],
+      "ratingsCount": 3000
     },
     {
       "bookKey": "on-tyranny-twenty-lessons-from-the-twentieth-century|timothy-snyder",
@@ -5318,7 +5417,8 @@
       "similarToAuthors": [
         "Barack Obama",
         "A.J. Baime"
-      ]
+      ],
+      "ratingsCount": 220000
     },
     {
       "bookKey": "we-used-to-live-here|marcus-kliewer",
@@ -5348,7 +5448,8 @@
       "similarToAuthors": [
         "Stephen King",
         "Max Brooks"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "i-who-have-never-known-men|jacqueline-harpman",
@@ -5378,7 +5479,8 @@
       "similarToAuthors": [
         "V.E. Schwab",
         "Matt Haig"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "the-firm|john-grisham",
@@ -5425,7 +5527,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Lisa Jewell"
-      ]
+      ],
+      "ratingsCount": 85000
     },
     {
       "bookKey": "the-perfect-assassin|james-patterson",
@@ -5486,7 +5589,8 @@
       "similarToAuthors": [
         "James Patterson",
         "John Grisham"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "atmosphere|taylor-jenkins-reid",
@@ -5532,7 +5636,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Neal Stephenson"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "wild-dark-shore|charlotte-mcconaghy",
@@ -5562,7 +5667,8 @@
       "similarToAuthors": [
         "Kristin Hannah",
         "Martin MacInnes"
-      ]
+      ],
+      "ratingsCount": 28000
     },
     {
       "bookKey": "bad-company-private-equity-and-the-death-of-the-american-dream|megan-greenwell",
@@ -5592,7 +5698,8 @@
       "similarToAuthors": [
         "Michael Lewis",
         "Mike Isaac"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "the-teacher|freida-mcfadden",
@@ -5638,7 +5745,8 @@
       "similarToAuthors": [
         "Alex Michaelides",
         "B.A. Paris"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "rita-hayworth-and-shawshank-redemption|stephen-king",
@@ -5683,7 +5791,8 @@
       "similarToAuthors": [
         "Ashlee Vance",
         "Walter Isaacson"
-      ]
+      ],
+      "ratingsCount": 85000
     },
     {
       "bookKey": "bourdain-the-definitive-oral-biography|laurie-woolever",
@@ -5729,7 +5838,8 @@
       "similarToAuthors": [
         "Jojo Moyes",
         "Jennifer E. Smith"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "the-gatekeepers-how-the-white-house-chiefs-of-staff-define-every-presidency|chris-whipple",
@@ -5759,7 +5869,8 @@
       "similarToAuthors": [
         "Barack Obama",
         "A.J. Baime"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "big-dumb-eyes-stories-from-a-simpler-mind|nate-bargatze",
@@ -5789,7 +5900,8 @@
       "similarToAuthors": [
         "Seth Rogen",
         "Bryan Cranston"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "ark|veronica-roth",
@@ -5819,7 +5931,8 @@
       "similarToAuthors": [
         "Andy Weir",
         "Blake Crouch"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "local-woman-missing|mary-kubica",
@@ -5849,7 +5962,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Alex Michaelides"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "an-innocent-client|scott-pratt",
@@ -5879,7 +5993,8 @@
       "similarToAuthors": [
         "John Grisham",
         "Scott Turow"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "say-nothing|brad-parks",
@@ -5908,7 +6023,8 @@
       "similarToAuthors": [
         "Michael Ledwidge",
         "John Grisham"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "interference|brad-parks",
@@ -5970,7 +6086,8 @@
       "similarToAuthors": [
         "A.J. Baime",
         "David Grann"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "in-the-kingdom-of-ice-the-grand-and-terrible-polar-voyage-of-the-uss-jeannette|hampton-sides",
@@ -6000,7 +6117,8 @@
       "similarToAuthors": [
         "David Grann",
         "Jon Krakauer"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "ghost-soldiers-the-epic-account-of-world-war-ii-s-greatest-rescue-mission|hampton-sides",
@@ -6062,7 +6180,8 @@
       "similarToAuthors": [
         "Brad Stone",
         "Walter Isaacson"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "legends-and-soles-the-memoir-of-an-american-original|sonny-vaccaro-armen-keteyian",
@@ -6092,7 +6211,8 @@
       "similarToAuthors": [
         "Phil Knight",
         "Jeff Pearlman"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "henry-j-kaiser-builder-in-the-modern-american-west|mark-s-foster",
@@ -6122,7 +6242,8 @@
       "similarToAuthors": [
         "A.J. Baime",
         "Arthur Herman"
-      ]
+      ],
+      "ratingsCount": 1500
     },
     {
       "bookKey": "in-ascension|martin-macinnes",
@@ -6183,7 +6304,8 @@
       "similarToAuthors": [
         "John Green",
         "David Levithan"
-      ]
+      ],
+      "ratingsCount": 2000000
     },
     {
       "bookKey": "care-and-feeding|laurie-woolever",
@@ -6212,7 +6334,8 @@
       "similarToAuthors": [
         "David Chang",
         "Marcus Samuelsson"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "the-elias-network|simon-gervais",
@@ -6274,7 +6397,8 @@
       "similarToAuthors": [
         "Ashlee Vance",
         "Jon Krakauer"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "be-ready-when-the-luck-happens|ina-garten",
@@ -6303,7 +6427,8 @@
       "similarToAuthors": [
         "David Chang",
         "Ruth Reichl"
-      ]
+      ],
+      "ratingsCount": 200000
     },
     {
       "bookKey": "the-maid-s-secret|nita-prose",
@@ -6332,7 +6457,8 @@
       "similarToAuthors": [
         "Alex Michaelides",
         "Graeme Simsion"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "the-housemaid-s-secret|freida-mcfadden",
@@ -6379,7 +6505,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Lisa Jewell"
-      ]
+      ],
+      "ratingsCount": 400000
     },
     {
       "bookKey": "th1rt3en|steve-cavanagh",
@@ -6409,7 +6536,8 @@
       "similarToAuthors": [
         "John Grisham",
         "Scott Turow"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "the-inmate|freida-mcfadden",
@@ -6440,7 +6568,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Lisa Jewell"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "razorblade-tears|s-a-cosby",
@@ -6470,7 +6599,8 @@
       "similarToAuthors": [
         "Jordan Harper",
         "James Patterson"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "the-god-of-the-woods|liz-moore",
@@ -6500,7 +6630,8 @@
       "similarToAuthors": [
         "Alex Michaelides",
         "Delia Owens"
-      ]
+      ],
+      "ratingsCount": 300000
     },
     {
       "bookKey": "cape-fear|john-d-macdonald",
@@ -6561,7 +6692,8 @@
       "similarToAuthors": [
         "Paul Kalanithi",
         "Walter Isaacson"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "first-lie-wins|ashley-elston",
@@ -6607,7 +6739,8 @@
       "similarToAuthors": [
         "Lori Gottlieb",
         "Tara Westover"
-      ]
+      ],
+      "ratingsCount": 500000
     },
     {
       "bookKey": "us|david-nicholls",
@@ -6653,7 +6786,8 @@
       "similarToAuthors": [
         "Nick Bilton",
         "Hampton Sides"
-      ]
+      ],
+      "ratingsCount": 300000
     },
     {
       "bookKey": "nuclear-war-a-scenario|annie-jacobsen",
@@ -6683,7 +6817,8 @@
       "similarToAuthors": [
         "A.J. Baime",
         "Hampton Sides"
-      ]
+      ],
+      "ratingsCount": 85000
     },
     {
       "bookKey": "sweet-sorrow|david-nicholls",
@@ -6793,7 +6928,8 @@
       "similarToAuthors": [
         "Kristin Hannah",
         "Delia Owens"
-      ]
+      ],
+      "ratingsCount": 250000
     },
     {
       "bookKey": "born-to-run|bruce-springsteen",
@@ -6839,7 +6975,8 @@
       "similarToAuthors": [
         "Taylor Jenkins Reid",
         "Delia Owens"
-      ]
+      ],
+      "ratingsCount": 200000
     },
     {
       "bookKey": "the-wide-wide-sea-imperial-ambition-first-contact-and-the-fateful-final-voyage-of-captain-james-cook|hampton-sides",
@@ -6869,7 +7006,8 @@
       "similarToAuthors": [
         "David Grann",
         "Jon Krakauer"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "the-institute|stephen-king",
@@ -6931,7 +7069,8 @@
       "similarToAuthors": [
         "Graeme Simsion",
         "Shelby Van Pelt"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "raised-by-a-serial-killer-discovering-the-truth-about-my-father|april-balascio",
@@ -6961,7 +7100,8 @@
       "similarToAuthors": [
         "Nick Bilton",
         "Beth Macy"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-small-and-the-mighty-twelve-unsung-americans-who-changed-the-course-of-history-from-the-founding-to-the-civil-rights-movement|sharon-mcmahon",
@@ -6991,7 +7131,8 @@
       "similarToAuthors": [
         "A.J. Baime",
         "Barack Obama"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "why-i-cook|tom-colicchio",
@@ -7020,7 +7161,8 @@
       "similarToAuthors": [
         "David Chang",
         "Marcus Samuelsson"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "the-founders-the-story-of-paypal-and-the-entrepreneurs-who-shaped-silicon-valley|jimmy-soni",
@@ -7066,7 +7208,8 @@
       "similarToAuthors": [
         "Seth Rogen",
         "Bryan Cranston"
-      ]
+      ],
+      "ratingsCount": 1000000
     },
     {
       "bookKey": "the-innocent-man-murder-and-injustice-in-a-small-town|john-grisham",
@@ -7112,7 +7255,8 @@
       "similarToAuthors": [
         "David Nicholls",
         "Curtis Sittenfeld"
-      ]
+      ],
+      "ratingsCount": 85000
     },
     {
       "bookKey": "here-one-moment|liane-moriarty",
@@ -7142,7 +7286,8 @@
       "similarToAuthors": [
         "Shelby Van Pelt",
         "Matt Haig"
-      ]
+      ],
+      "ratingsCount": 200000
     },
     {
       "bookKey": "intermezzo|sally-rooney",
@@ -7171,7 +7316,8 @@
       "similarToAuthors": [
         "David Nicholls",
         "Gabrielle Zevin"
-      ]
+      ],
+      "ratingsCount": 200000
     },
     {
       "bookKey": "the-wedding-people|alison-espach",
@@ -7201,7 +7347,8 @@
       "similarToAuthors": [
         "Curtis Sittenfeld",
         "David Nicholls"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "the-lost-story|meg-shaffer",
@@ -7294,7 +7441,8 @@
       "similarToAuthors": [
         "Chuck Klosterman",
         "Dave Grohl"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "pleading-guilty|scott-turow",
@@ -7340,7 +7488,8 @@
       "similarToAuthors": [
         "Lucy Foley",
         "Alex Michaelides"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "rejection|tony-tulathimutte",
@@ -7369,7 +7518,8 @@
       "similarToAuthors": [
         "Gabrielle Zevin",
         "Gary Shteyngart"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "the-great-alone|kristin-hannah",
@@ -7431,7 +7581,8 @@
       "similarToAuthors": [
         "V.E. Schwab",
         "Shelby Van Pelt"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "behind-closed-doors|lisa-renee-jones",
@@ -7493,7 +7644,8 @@
       "similarToAuthors": [
         "Phil Knight",
         "Bryan Cranston"
-      ]
+      ],
+      "ratingsCount": 500000
     },
     {
       "bookKey": "the-president-s-daughter|bill-clinton",
@@ -7571,7 +7723,8 @@
       "similarToAuthors": [
         "Walter Isaacson",
         "Ashlee Vance"
-      ]
+      ],
+      "ratingsCount": 150000
     },
     {
       "bookKey": "remarkably-bright-creatures|shelby-van-pelt",
@@ -7681,7 +7834,8 @@
       "similarToAuthors": [
         "Max Brooks",
         "Drew Magary"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "kill-for-me-kill-for-you|steve-cavanagh",
@@ -7743,7 +7897,8 @@
       "similarToAuthors": [
         "V.E. Schwab",
         "Jeanine Cummins"
-      ]
+      ],
+      "ratingsCount": 250000
     },
     {
       "bookKey": "atonement|ian-mcewan",
@@ -7773,7 +7928,8 @@
       "similarToAuthors": [
         "Kristin Hannah",
         "Delia Owens"
-      ]
+      ],
+      "ratingsCount": 600000
     },
     {
       "bookKey": "the-mistletoe-mystery|nita-prose",
@@ -7802,7 +7958,8 @@
       "similarToAuthors": [
         "Graeme Simsion",
         "Alex Michaelides"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "the-family-experiment|john-marrs",
@@ -7832,7 +7989,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Neal Stephenson"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "stories-of-your-life-and-others|ted-chiang",
@@ -7893,7 +8051,8 @@
       "similarToAuthors": [
         "V.E. Schwab",
         "Matt Haig"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "things-don-t-break-on-their-own|sarah-easter-collins",
@@ -7923,7 +8082,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Alex Michaelides"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "save-me-the-plums-my-gourmet-memoir|ruth-reichl",
@@ -7968,7 +8128,8 @@
       "similarToAuthors": [
         "Chuck Klosterman",
         "Bill Bryson"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-library-book|susan-orlean",
@@ -8078,7 +8239,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Neal Stephenson"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "tiger-chair|max-brooks",
@@ -8107,7 +8269,8 @@
       "similarToAuthors": [
         "Drew Magary",
         "Blake Crouch"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "cue-the-sun-the-invention-of-reality-tv|emily-nussbaum",
@@ -8136,7 +8299,8 @@
       "similarToAuthors": [
         "Chuck Klosterman",
         "Seth Rogen"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "return-of-the-king-lebron-james-the-cleveland-cavaliers-and-the-greatest-comeback-in-nba-history|brian-windhorst",
@@ -8166,7 +8330,8 @@
       "similarToAuthors": [
         "Jeff Pearlman",
         "Mirin Fader"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "rescued|david-rosenfelt",
@@ -8196,7 +8361,8 @@
       "similarToAuthors": [
         "John Grisham",
         "Alex Michaelides"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "how-to-know-a-person-the-art-of-seeing-others-deeply-and-being-deeply-seen|david-brooks",
@@ -8225,7 +8391,8 @@
       "similarToAuthors": [
         "Lori Gottlieb",
         "Tara Westover"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "seeing-further-the-story-of-science-and-the-royal-society|bill-bryson",
@@ -8255,7 +8422,8 @@
       "similarToAuthors": [
         "Walter Isaacson",
         "Ashlee Vance"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-wishing-game|meg-shaffer",
@@ -8317,7 +8485,8 @@
       "similarToAuthors": [
         "Lizzie Johnson",
         "Jon Krakauer"
-      ]
+      ],
+      "ratingsCount": 85000
     },
     {
       "bookKey": "the-last-of-his-kind-clayton-kershaw-and-the-burden-of-greatness|andy-mccullough",
@@ -8347,7 +8516,8 @@
       "similarToAuthors": [
         "Todd Zolecki",
         "Keith O'Brien"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "the-trolls-of-wall-street-how-the-outcasts-and-insurgents-are-hacking-the-markets|nathaniel-popper",
@@ -8377,7 +8547,8 @@
       "similarToAuthors": [
         "Ben Mezrich",
         "Michael Lewis"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "the-wright-brothers|david-mccullough",
@@ -8407,7 +8578,8 @@
       "similarToAuthors": [
         "A.J. Baime",
         "Hampton Sides"
-      ]
+      ],
+      "ratingsCount": 250000
     },
     {
       "bookKey": "the-best-minds-a-story-of-friendship-madness-and-the-tragedy-of-good-intentions|jonathan-rosen",
@@ -8437,7 +8609,8 @@
       "similarToAuthors": [
         "Lori Gottlieb",
         "Beth Macy"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "charlie-hustle-the-rise-and-fall-of-pete-rose-and-the-last-glory-days-of-baseball|keith-o-brien",
@@ -8499,7 +8672,8 @@
       "similarToAuthors": [
         "Chuck Klosterman",
         "Walter Isaacson"
-      ]
+      ],
+      "ratingsCount": 85000
     },
     {
       "bookKey": "the-golfer-s-carol|robert-bailey",
@@ -8546,7 +8720,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Chuck Klosterman"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "refund-stories|karen-e-bender",
@@ -8575,7 +8750,8 @@
       "similarToAuthors": [
         "V.E. Schwab",
         "Gabrielle Zevin"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "elevation|stephen-king",
@@ -8653,7 +8829,8 @@
       "similarToAuthors": [
         "David Levithan",
         "John Green"
-      ]
+      ],
+      "ratingsCount": 42000
     },
     {
       "bookKey": "if-you-can-t-take-the-heat|michael-ruhlman",
@@ -8682,7 +8859,8 @@
       "similarToAuthors": [
         "David Chang",
         "Marcus Samuelsson"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "influence-empire-the-story-of-tencent-and-china-s-tech-ambition|lulu-yilun-chen",
@@ -8712,7 +8890,8 @@
       "similarToAuthors": [
         "Mike Isaac",
         "Brad Stone"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "on-earth-as-it-is-on-television|emily-jane",
@@ -8742,7 +8921,8 @@
       "similarToAuthors": [
         "Drew Magary",
         "Max Brooks"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-mystery-guest|nita-prose",
@@ -8788,7 +8968,8 @@
       "similarToAuthors": [
         "Mike Isaac",
         "Michael Lewis"
-      ]
+      ],
+      "ratingsCount": 28000
     },
     {
       "bookKey": "someday|david-levithan",
@@ -8866,7 +9047,8 @@
       "similarToAuthors": [
         "Michael Lewis",
         "Gregory Zuckerman"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "chip-war-the-fight-for-the-world-s-most-critical-technology|chris-miller",
@@ -8992,7 +9174,8 @@
       "similarToAuthors": [
         "John Grisham",
         "Scott Turow"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "a-killer-s-alibi|william-l-myers-jr",
@@ -9022,7 +9205,8 @@
       "similarToAuthors": [
         "John Grisham",
         "Scott Turow"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "beautiful-world-where-are-you|sally-rooney",
@@ -9101,7 +9285,8 @@
       "similarToAuthors": [
         "A.J. Baime",
         "Brad Stone"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "kissinger-a-biography|walter-isaacson",
@@ -9132,7 +9317,8 @@
       "similarToAuthors": [
         "A.J. Baime",
         "Brad Stone"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "yellowface|r-f-kuang",
@@ -9162,7 +9348,8 @@
       "similarToAuthors": [
         "Jean Hanff Korelitz",
         "Colleen Hoover"
-      ]
+      ],
+      "ratingsCount": 350000
     },
     {
       "bookKey": "survival-of-the-thickest-essays|michelle-buteau",
@@ -9192,7 +9379,8 @@
       "similarToAuthors": [
         "Seth Rogen",
         "Bryan Cranston"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "skippy-dies|paul-murray",
@@ -9221,7 +9409,8 @@
       "similarToAuthors": [
         "John Green",
         "David Levithan"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "made-for-love|alissa-nutting",
@@ -9251,7 +9440,8 @@
       "similarToAuthors": [
         "Drew Magary",
         "Graeme Simsion"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "the-sellout|paul-beatty",
@@ -9281,7 +9471,8 @@
       "similarToAuthors": [
         "Chuck Klosterman",
         "Gary Shteyngart"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "black-sheep|rachel-harrison",
@@ -9311,7 +9502,8 @@
       "similarToAuthors": [
         "Stephen King",
         "Blake Crouch"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "entrances-and-exits|michael-richards",
@@ -9341,7 +9533,8 @@
       "similarToAuthors": [
         "Seth Rogen",
         "Bryan Cranston"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "still-me|jojo-moyes",
@@ -9371,7 +9564,8 @@
       "similarToAuthors": [
         "David Nicholls",
         "Jennifer E. Smith"
-      ]
+      ],
+      "ratingsCount": 200000
     },
     {
       "bookKey": "sleeping-beauties|stephen-king",
@@ -9402,7 +9596,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Chuck Klosterman"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "truly-madly-guilty|liane-moriarty",
@@ -9432,7 +9627,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Shelby Van Pelt"
-      ]
+      ],
+      "ratingsCount": 200000
     },
     {
       "bookKey": "mean-baby-a-memoir-of-growing-up|selma-blair",
@@ -9461,7 +9657,8 @@
       "similarToAuthors": [
         "Paul Kalanithi",
         "Bryan Cranston"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "the-dilemma|b-a-paris",
@@ -9491,7 +9688,8 @@
       "similarToAuthors": [
         "Shari Lapena",
         "Alex Michaelides"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "the-therapist|b-a-paris",
@@ -9521,7 +9719,8 @@
       "similarToAuthors": [
         "Shari Lapena",
         "Alex Michaelides"
-      ]
+      ],
+      "ratingsCount": 85000
     },
     {
       "bookKey": "bring-me-back|b-a-paris",
@@ -9551,7 +9750,8 @@
       "similarToAuthors": [
         "Shari Lapena",
         "Alex Michaelides"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "the-prisoner|b-a-paris",
@@ -9612,7 +9812,8 @@
       "similarToAuthors": [
         "Michael Finkel",
         "Tara Westover"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "so-fetch-the-making-of-mean-girls|jennifer-keishin-armstrong",
@@ -9641,7 +9842,8 @@
       "similarToAuthors": [
         "Chuck Klosterman",
         "Seth Rogen"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "come-and-get-it|kiley-reid",
@@ -9670,7 +9872,8 @@
       "similarToAuthors": [
         "Gary Shteyngart",
         "Gabrielle Zevin"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "born-standing-up-a-comic-s-life|steve-martin",
@@ -9700,7 +9903,8 @@
       "similarToAuthors": [
         "Seth Rogen",
         "Bryan Cranston"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "everybody-lies-big-data-new-data-and-what-the-internet-can-tell-us-about-who-we-really-are|seth-stephens-davidowitz",
@@ -9730,7 +9934,8 @@
       "similarToAuthors": [
         "Ben Cohen",
         "Michael Lewis"
-      ]
+      ],
+      "ratingsCount": 65000
     },
     {
       "bookKey": "the-mist|stephen-king",
@@ -9761,7 +9966,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Max Brooks"
-      ]
+      ],
+      "ratingsCount": 85000
     },
     {
       "bookKey": "the-rocket-that-fell-to-earth-roger-clemens-and-the-rage-for-baseball-immortality|jeff-pearlman",
@@ -9791,7 +9997,8 @@
       "similarToAuthors": [
         "Todd Zolecki",
         "Keith O'Brien"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-fury|alex-michaelides",
@@ -9821,7 +10028,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Shari Lapena"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "twas-the-nightshift-before-christmas|adam-kay",
@@ -9851,7 +10059,8 @@
       "similarToAuthors": [
         "Seth Rogen",
         "Bryan Cranston"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "cleo-mcdougal-regrets-nothing|allison-winn-scotch",
@@ -9880,7 +10089,8 @@
       "similarToAuthors": [
         "Curtis Sittenfeld",
         "David Nicholls"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "going-zero|anthony-mccarten",
@@ -9910,7 +10120,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Neal Stephenson"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "have-i-told-you-this-already-stories-i-don-t-want-to-forget-to-remember|lauren-graham",
@@ -9940,7 +10151,8 @@
       "similarToAuthors": [
         "Seth Rogen",
         "Bryan Cranston"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "demon-copperhead|barbara-kingsolver",
@@ -9985,7 +10197,8 @@
       "similarToAuthors": [
         "Gabrielle Zevin",
         "V.E. Schwab"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "a-flicker-in-the-dark|stacy-willingham",
@@ -10030,7 +10243,8 @@
       "similarToAuthors": [
         "Ben Mezrich",
         "Chuck Klosterman"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "the-husband-s-secret|liane-moriarty",
@@ -10060,7 +10274,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Shari Lapena"
-      ]
+      ],
+      "ratingsCount": 500000
     },
     {
       "bookKey": "mr-mercedes|stephen-king",
@@ -10091,7 +10306,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "James Patterson"
-      ]
+      ],
+      "ratingsCount": 200000
     },
     {
       "bookKey": "the-road|cormac-mccarthy",
@@ -10168,7 +10384,8 @@
       "similarToAuthors": [
         "Dave Grohl",
         "Bryan Cranston"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "the-liars-club|mary-karr",
@@ -10198,7 +10415,8 @@
       "similarToAuthors": [
         "Tara Westover",
         "Jeannette Walls"
-      ]
+      ],
+      "ratingsCount": 85000
     },
     {
       "bookKey": "verity|colleen-hoover",
@@ -10260,7 +10478,8 @@
       "similarToAuthors": [
         "Michael Lewis",
         "Gregory Zuckerman"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "class-a-memoir-of-motherhood-hunger-and-higher-education|stephanie-land",
@@ -10289,7 +10508,8 @@
       "similarToAuthors": [
         "Tara Westover",
         "Matthew Desmond"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "hangry-a-startup-journey|mike-evans",
@@ -10335,7 +10555,8 @@
       "similarToAuthors": [
         "Nikki Erlick",
         "V.E. Schwab"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "me-and-carlos|tom-perrotta",
@@ -10396,7 +10617,8 @@
       "similarToAuthors": [
         "Jean Hanff Korelitz",
         "Gary Shteyngart"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "the-last-chance-lawyer|william-bernhardt",
@@ -10426,7 +10648,8 @@
       "similarToAuthors": [
         "John Grisham",
         "Scott Turow"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "bad-haircut-stories-from-the-seventies|tom-perrotta",
@@ -10455,7 +10678,8 @@
       "similarToAuthors": [
         "John Green",
         "Gary Shteyngart"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "not-forever-but-for-now|chuck-palahniuk",
@@ -10485,7 +10709,8 @@
       "similarToAuthors": [
         "Chuck Klosterman",
         "Drew Magary"
-      ]
+      ],
+      "ratingsCount": 28000
     },
     {
       "bookKey": "the-island|adrian-mckinty",
@@ -10531,7 +10756,8 @@
       "similarToAuthors": [
         "Stephen King",
         "S.A. Cosby"
-      ]
+      ],
+      "ratingsCount": 28000
     },
     {
       "bookKey": "the-chain|adrian-mckinty",
@@ -10594,7 +10820,8 @@
       "similarToAuthors": [
         "Scott Turow",
         "Steve Cavanagh"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "the-mountain-in-the-sea|ray-nayler",
@@ -10624,7 +10851,8 @@
       "similarToAuthors": [
         "Neal Stephenson",
         "Andy Weir"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "a-short-history-of-nearly-everything|bill-bryson",
@@ -10686,7 +10914,8 @@
       "similarToAuthors": [
         "Mike Isaac",
         "Nick Bilton"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "when-the-heavens-went-on-sale-the-misfits-and-geniuses-racing-to-put-space-within-reach|ashlee-vance",
@@ -10732,7 +10961,8 @@
       "similarToAuthors": [
         "Walter Isaacson",
         "Ashlee Vance"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "rogue-justice|stacey-abrams",
@@ -10762,7 +10992,8 @@
       "similarToAuthors": [
         "John Grisham",
         "James Patterson"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-coming-storm|michael-lewis",
@@ -10808,7 +11039,8 @@
       "similarToAuthors": [
         "Seth Rogen",
         "Bryan Cranston"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "hard-to-break|michael-ledwidge",
@@ -10951,7 +11183,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Chuck Klosterman"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "my-name-is-lucy-barton|elizabeth-strout",
@@ -11029,7 +11262,8 @@
       "similarToAuthors": [
         "Jeff Pearlman",
         "Jack McCallum"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "ascension|nicholas-binge",
@@ -11059,7 +11293,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Neal Stephenson"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "white-noise|don-delillo",
@@ -11105,7 +11340,8 @@
       "similarToAuthors": [
         "Barack Obama",
         "A.J. Baime"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "tracy-flick-can-t-win|tom-perrotta",
@@ -11167,7 +11403,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Andy Weir"
-      ]
+      ],
+      "ratingsCount": 600000
     },
     {
       "bookKey": "the-rewind|allison-winn-scotch",
@@ -11277,7 +11514,8 @@
       "similarToAuthors": [
         "Lori Gottlieb",
         "Walter Isaacson"
-      ]
+      ],
+      "ratingsCount": 150000
     },
     {
       "bookKey": "this-time-tomorrow|emma-straub",
@@ -11387,7 +11625,8 @@
       "similarToAuthors": [
         "Alex Michaelides",
         "B.A. Paris"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "butts-a-backstory|heather-radke",
@@ -11416,7 +11655,8 @@
       "similarToAuthors": [
         "Chuck Klosterman",
         "Bill Bryson"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "once-upon-a-december|amy-e-reichert",
@@ -11542,7 +11782,8 @@
       "similarToAuthors": [
         "Walter Isaacson",
         "Scott Turow"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "the-book-of-joe-trying-not-to-suck-at-baseball-and-life|joe-maddon",
@@ -11572,7 +11813,8 @@
       "similarToAuthors": [
         "Tom Verducci",
         "Keith O'Brien"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "the-woods|harlan-coben",
@@ -11666,7 +11908,8 @@
       "similarToAuthors": [
         "Seth Rogen",
         "Bryan Cranston"
-      ]
+      ],
+      "ratingsCount": 28000
     },
     {
       "bookKey": "why-has-nobody-told-me-this-before-an-international-bestselling-guide-to-mental-health-and-emotional-resilience-from-a-clinical-psychologist|julie-smith",
@@ -11695,7 +11938,8 @@
       "similarToAuthors": [
         "Lori Gottlieb",
         "Tara Westover"
-      ]
+      ],
+      "ratingsCount": 200000
     },
     {
       "bookKey": "love-by-the-glass-tasting-notes-from-a-marriage|dorothy-j-gaiter",
@@ -11740,7 +11984,8 @@
       "similarToAuthors": [
         "Earl Swift",
         "Tara Westover"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "boys-will-be-boys-the-glory-days-and-party-nights-of-the-dallas-cowboys-dynasty|jeff-pearlman",
@@ -11770,7 +12015,8 @@
       "similarToAuthors": [
         "Jack McCallum",
         "Chris Herring"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "after-i-do|taylor-jenkins-reid",
@@ -11816,7 +12062,8 @@
       "similarToAuthors": [
         "Jeff Benedict",
         "Keith O'Brien"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "forever-interrupted|taylor-jenkins-reid",
@@ -12039,7 +12286,8 @@
       "similarToAuthors": [
         "John Grisham",
         "Alex Michaelides"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "the-paris-apartment|lucy-foley",
@@ -12069,7 +12317,8 @@
       "similarToAuthors": [
         "Alex Michaelides",
         "B.A. Paris"
-      ]
+      ],
+      "ratingsCount": 200000
     },
     {
       "bookKey": "good-morning-monster-a-therapist-shares-four-heroic-stories-of-emotional-recovery|catherine-gildiner",
@@ -12114,7 +12363,8 @@
       "similarToAuthors": [
         "Gabrielle Zevin",
         "Gary Shteyngart"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "hell-of-a-book|jason-mott",
@@ -12159,7 +12409,8 @@
       "similarToAuthors": [
         "Paul Kalanithi",
         "Adam Kay"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "tokyo-vice-an-american-reporter-on-the-police-beat-in-japan|jake-adelstein",
@@ -12204,7 +12455,8 @@
       "similarToAuthors": [
         "Chuck Klosterman",
         "Bill Bryson"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "the-infiltrator-my-secret-life-inside-the-dirty-banks-behind-pablo-escobar-s-medell-n-cartel|robert-mazur",
@@ -12234,7 +12486,8 @@
       "similarToAuthors": [
         "Nick Bilton",
         "Beth Macy"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "how-to-prevent-the-next-pandemic|bill-gates",
@@ -12264,7 +12517,8 @@
       "similarToAuthors": [
         "Walter Isaacson",
         "Ashlee Vance"
-      ]
+      ],
+      "ratingsCount": 28000
     },
     {
       "bookKey": "how-to-be-perfect-the-correct-answer-to-every-moral-question|michael-schur",
@@ -12310,7 +12564,8 @@
       "similarToAuthors": [
         "Gabrielle Zevin",
         "V.E. Schwab"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "point-b|drew-magary",
@@ -12371,7 +12626,8 @@
       "similarToAuthors": [
         "Gabrielle Zevin",
         "Gary Shteyngart"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "no-one-is-talking-about-this|patricia-lockwood",
@@ -12401,7 +12657,8 @@
       "similarToAuthors": [
         "Drew Magary",
         "Gary Shteyngart"
-      ]
+      ],
+      "ratingsCount": 85000
     },
     {
       "bookKey": "gwendy-s-final-task|stephen-king",
@@ -12432,7 +12689,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Chuck Klosterman"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-midrange-theory|seth-partnow",
@@ -12461,7 +12719,8 @@
       "similarToAuthors": [
         "Ben Cohen",
         "Sam Walker"
-      ]
+      ],
+      "ratingsCount": 3000
     },
     {
       "bookKey": "i-ll-be-gone-in-the-dark-one-woman-s-obsessive-search-for-the-golden-state-killer|michelle-mcnamara",
@@ -12491,7 +12750,8 @@
       "similarToAuthors": [
         "Nick Bilton",
         "Beth Macy"
-      ]
+      ],
+      "ratingsCount": 400000
     },
     {
       "bookKey": "into-the-water|paula-hawkins",
@@ -12521,7 +12781,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Alex Michaelides"
-      ]
+      ],
+      "ratingsCount": 500000
     },
     {
       "bookKey": "blood-in-the-garden-the-flagrant-history-of-the-1990s-new-york-knicks|chris-herring",
@@ -12566,7 +12827,8 @@
       "similarToAuthors": [
         "Barack Obama",
         "Gene Weingarten"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "built-to-fail-the-inside-story-of-blockbuster-s-inevitable-bust|alan-payne",
@@ -12596,7 +12858,8 @@
       "similarToAuthors": [
         "Marc Randolph",
         "Mike Isaac"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "the-white-van|patrick-hoffman",
@@ -12738,7 +13001,8 @@
       "similarToAuthors": [
         "John Grisham",
         "Scott Turow"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-day-the-world-came-to-town-9-11-in-gander-newfoundland|jim-defede",
@@ -12832,7 +13096,8 @@
       "similarToAuthors": [
         "B.A. Paris",
         "Shari Lapena"
-      ]
+      ],
+      "ratingsCount": 200000
     },
     {
       "bookKey": "the-council-of-dads-my-daughters-my-illness-and-the-men-who-could-be-me|bruce-feiler",
@@ -12894,7 +13159,8 @@
       "similarToAuthors": [
         "Alex Michaelides",
         "Stephen King"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-guest-list|lucy-foley",
@@ -12939,7 +13205,8 @@
       "similarToAuthors": [
         "Lori Gottlieb",
         "Tara Westover"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "comedy-comedy-comedy-drama|bob-odenkirk",
@@ -12969,7 +13236,8 @@
       "similarToAuthors": [
         "Seth Rogen",
         "Bryan Cranston"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "no-one-will-miss-her|kat-rosenfield",
@@ -13015,7 +13283,8 @@
       "similarToAuthors": [
         "Phil Knight",
         "Michael Lewis"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "while-justice-sleeps|stacey-abrams",
@@ -13061,7 +13330,8 @@
       "similarToAuthors": [
         "S.A. Cosby",
         "Jordan Harper"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "how-to-watch-basketball-like-a-genius-what-game-designers-economists-ballet-choreographers-and-theoretical-astrophysicists-reveal-about-the-greatest-game-on-earth|nick-greene",
@@ -13123,7 +13393,8 @@
       "similarToAuthors": [
         "V.E. Schwab",
         "Matt Haig"
-      ]
+      ],
+      "ratingsCount": 250000
     },
     {
       "bookKey": "dirt-adventures-in-lyon-as-a-chef-in-training-father-and-sleuth-looking-for-the-secret-of-french-cooking|bill-buford",
@@ -13168,7 +13439,8 @@
       "similarToAuthors": [
         "Lori Gottlieb",
         "Tara Westover"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-judge-s-list|john-grisham",
@@ -13262,7 +13534,8 @@
       "similarToAuthors": [
         "Max Brooks",
         "Drew Magary"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "taste-my-life-through-food|stanley-tucci",
@@ -13291,7 +13564,8 @@
       "similarToAuthors": [
         "David Chang",
         "Ruth Reichl"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "exhalation|ted-chiang",
@@ -13338,7 +13612,8 @@
       "similarToAuthors": [
         "John Grisham",
         "Scott Turow"
-      ]
+      ],
+      "ratingsCount": 28000
     },
     {
       "bookKey": "a-slow-fire-burning|paula-hawkins",
@@ -13383,7 +13658,8 @@
       "similarToAuthors": [
         "Bryan Cranston",
         "Seth Rogen"
-      ]
+      ],
+      "ratingsCount": 28000
     },
     {
       "bookKey": "yearbook|seth-rogen",
@@ -13444,7 +13720,8 @@
       "similarToAuthors": [
         "Chuck Klosterman",
         "Bill Bryson"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "the-wreckage-of-my-presence|casey-wilson",
@@ -13474,7 +13751,8 @@
       "similarToAuthors": [
         "Seth Rogen",
         "Bryan Cranston"
-      ]
+      ],
+      "ratingsCount": 28000
     },
     {
       "bookKey": "l-a-son-my-life-my-city-my-food|roy-choi",
@@ -13503,7 +13781,8 @@
       "similarToAuthors": [
         "David Chang",
         "Marcus Samuelsson"
-      ]
+      ],
+      "ratingsCount": 28000
     },
     {
       "bookKey": "emotional-intelligence|daniel-goleman",
@@ -13549,7 +13828,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Neal Stephenson"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "cat-mouse|james-patterson",
@@ -13595,7 +13875,8 @@
       "similarToAuthors": [
         "Neal Stephenson",
         "Andy Weir"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "if-you-tell-a-true-story-of-murder-family-secrets-and-the-unbreakable-bond-of-sisterhood|gregg-olsen",
@@ -13625,7 +13906,8 @@
       "similarToAuthors": [
         "Nick Bilton",
         "Beth Macy"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "bubbleball-inside-the-nba-s-fight-to-save-a-season|ben-golliver",
@@ -13687,7 +13969,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Andy Weir"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "sooley|john-grisham",
@@ -13781,7 +14064,8 @@
       "similarToAuthors": [
         "David Nicholls",
         "Jennifer E. Smith"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "the-great-influenza-the-story-of-the-deadliest-pandemic-in-history|john-m-barry",
@@ -13811,7 +14095,8 @@
       "similarToAuthors": [
         "A.J. Baime",
         "Hampton Sides"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "blood-bones-and-butter-the-inadvertent-education-of-a-reluctant-chef|gabrielle-hamilton",
@@ -13840,7 +14125,8 @@
       "similarToAuthors": [
         "David Chang",
         "Ruth Reichl"
-      ]
+      ],
+      "ratingsCount": 85000
     },
     {
       "bookKey": "the-end-of-october|lawrence-wright",
@@ -13934,7 +14220,8 @@
       "similarToAuthors": [
         "Wright Thompson",
         "Ken Grossman"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "built-from-scratch-how-a-couple-of-regular-guys-grew-the-home-depot-from-nothing-to-30-billion|bernie-marcus",
@@ -13964,7 +14251,8 @@
       "similarToAuthors": [
         "Phil Knight",
         "Marc Randolph"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-code-breaker-jennifer-doudna-gene-editing-and-the-future-of-the-human-race|walter-isaacson",
@@ -14025,7 +14313,8 @@
       "similarToAuthors": [
         "David Grann",
         "Michael Finkel"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "the-best-american-food-writing-2020|j-kenji-l-pez-alt",
@@ -14135,7 +14424,8 @@
       "similarToAuthors": [
         "V.E. Schwab",
         "Blake Crouch"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "think-again-the-power-of-knowing-what-you-don-t-know|adam-m-grant",
@@ -14165,7 +14455,8 @@
       "similarToAuthors": [
         "Lori Gottlieb",
         "Tara Westover"
-      ]
+      ],
+      "ratingsCount": 400000
     },
     {
       "bookKey": "invent-and-wander-the-collected-writings-of-jeff-bezos|jeff-bezos",
@@ -14243,7 +14534,8 @@
       "similarToAuthors": [
         "Brad Stone",
         "Mike Isaac"
-      ]
+      ],
+      "ratingsCount": 22000
     },
     {
       "bookKey": "shit-actually-the-definitive-100-objective-guide-to-modern-cinema|lindy-west",
@@ -14303,7 +14595,8 @@
       "similarToAuthors": [
         "Wright Thompson",
         "Ken Grossman"
-      ]
+      ],
+      "ratingsCount": 3000
     },
     {
       "bookKey": "sam-walton-made-in-america|sam-walton",
@@ -14349,7 +14642,8 @@
       "similarToAuthors": [
         "Chuck Klosterman",
         "Sam Walker"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "the-new-one-painfully-true-stories-from-a-reluctant-dad|mike-birbiglia",
@@ -14379,7 +14673,8 @@
       "similarToAuthors": [
         "Seth Rogen",
         "Drew Magary"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "talking-to-goats-the-moments-you-remember-and-the-stories-you-never-heard|jim-gray",
@@ -14409,7 +14704,8 @@
       "similarToAuthors": [
         "Jeff Pearlman",
         "Jack McCallum"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "greenlights|matthew-mcconaughey",
@@ -14471,7 +14767,8 @@
       "similarToAuthors": [
         "Mike Isaac",
         "Marc Randolph"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "football-for-a-buck-the-crazy-rise-and-crazier-demise-of-the-usfl|jeff-pearlman",
@@ -14501,7 +14798,8 @@
       "similarToAuthors": [
         "Jack McCallum",
         "Keith O'Brien"
-      ]
+      ],
+      "ratingsCount": 9000
     },
     {
       "bookKey": "the-cost-of-these-dreams-sports-stories-and-other-serious-business|wright-thompson",
@@ -14562,7 +14860,8 @@
       "similarToAuthors": [
         "Chuck Klosterman",
         "Seth Rogen"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "god-level-knowledge-darts-life-lessons-from-the-bronx|desus",
@@ -14592,7 +14891,8 @@
       "similarToAuthors": [
         "Seth Rogen",
         "Chuck Klosterman"
-      ]
+      ],
+      "ratingsCount": 6000
     },
     {
       "bookKey": "george-lucas-a-life|brian-jay-jones",
@@ -14622,7 +14922,8 @@
       "similarToAuthors": [
         "Walter Isaacson",
         "Ashlee Vance"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "where-men-win-glory-the-odyssey-of-pat-tillman|jon-krakauer",
@@ -14652,7 +14953,8 @@
       "similarToAuthors": [
         "A.J. Baime",
         "Hampton Sides"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "the-answer-is-reflections-on-my-life|alex-trebek",
@@ -14681,7 +14983,8 @@
       "similarToAuthors": [
         "Bryan Cranston",
         "Seth Rogen"
-      ]
+      ],
+      "ratingsCount": 55000
     },
     {
       "bookKey": "the-enigma-cube|douglas-e-richards",
@@ -14711,7 +15014,8 @@
       "similarToAuthors": [
         "Andy Weir",
         "Blake Crouch"
-      ]
+      ],
+      "ratingsCount": 12000
     },
     {
       "bookKey": "run|blake-crouch",
@@ -14885,7 +15189,8 @@
       "similarToAuthors": [
         "Jeff Pearlman",
         "Bill Bryson"
-      ]
+      ],
+      "ratingsCount": 28000
     },
     {
       "bookKey": "the-visible-man|chuck-klosterman",
@@ -14916,7 +15221,8 @@
       "similarToAuthors": [
         "Drew Magary",
         "Gary Shteyngart"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "downtown-owl|chuck-klosterman",
@@ -14946,7 +15252,8 @@
       "similarToAuthors": [
         "Tom Perrotta",
         "Gary Shteyngart"
-      ]
+      ],
+      "ratingsCount": 32000
     },
     {
       "bookKey": "fargo-rock-city-a-heavy-metal-odyssey-in-rural-north-dakota|chuck-klosterman",
@@ -14977,7 +15284,8 @@
       "similarToAuthors": [
         "Jeff Pearlman",
         "Bill Bryson"
-      ]
+      ],
+      "ratingsCount": 28000
     },
     {
       "bookKey": "yes-chef|marcus-samuelsson",
@@ -15022,7 +15330,8 @@
       "similarToAuthors": [
         "Matthew Desmond",
         "Lizzie Johnson"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "hidden-valley-road-inside-the-mind-of-an-american-family|robert-kolker",
@@ -15052,7 +15361,8 @@
       "similarToAuthors": [
         "Lori Gottlieb",
         "Beth Macy"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "player-piano|kurt-vonnegut-jr",
@@ -15082,7 +15392,8 @@
       "similarToAuthors": [
         "Drew Magary",
         "Max Brooks"
-      ]
+      ],
+      "ratingsCount": 110000
     },
     {
       "bookKey": "betaball-how-silicon-valley-and-science-built-one-of-the-greatest-basketball-teams-in-history|erik-malinowski",
@@ -15128,7 +15439,8 @@
       "similarToAuthors": [
         "John Grisham",
         "Steve Cavanagh"
-      ]
+      ],
+      "ratingsCount": 18000
     },
     {
       "bookKey": "the-holdout|graham-moore",
@@ -15174,7 +15486,8 @@
       "similarToAuthors": [
         "Blake Crouch",
         "Neal Stephenson"
-      ]
+      ],
+      "ratingsCount": 300000
     },
     {
       "bookKey": "camino-winds|john-grisham",
