@@ -53,7 +53,7 @@ function bookMatchesMacro(book, macro) {
 
 function renderThemeChips(books) {
   if (!themeFilterBar) return;
-  const available = THEME_MACROS.filter(m => books.some(b => !b.fromToRead && bookMatchesMacro(b, m)));
+  const available = THEME_MACROS.filter(m => books.some(b => bookMatchesMacro(b, m)));
   if (!available.length) { themeFilterBar.innerHTML = ''; return; }
 
   const hasActive = state.activeThemes.size > 0;
@@ -605,7 +605,7 @@ function recompute() {
   const toReadCands = filterToRead?.checked !== false
     ? (state.goodreads.books || [])
         .filter(b => b.shelf === 'to-read')
-        .map(b => ({ ...b, fromToRead: true, similarToAuthors: [], similarToTitles: [], themes: [] }))
+        .map(b => ({ ...b, fromToRead: true }))
     : [];
 
   const showFiction    = filterFiction?.checked !== false;
@@ -625,7 +625,7 @@ function recompute() {
   renderThemeChips(allCands);
   if (state.activeThemes.size > 0) {
     const active = THEME_MACROS.filter(m => state.activeThemes.has(m.label));
-    allCands = allCands.filter(b => b.fromToRead || active.some(m => bookMatchesMacro(b, m)));
+    allCands = allCands.filter(b => active.some(m => bookMatchesMacro(b, m)));
   }
 
   if (poolCountEl) poolCountEl.textContent = `${allCands.length.toLocaleString()} in pool`;

@@ -156,7 +156,10 @@ function matchScoreFiction(candidate, idx, profile, timesShown) {
     const authorKey = normAuthor(candidate.author);
     score += Math.min(AUTHOR_CONTRIB_CAP,     (idx.fiveStarAuthors.get(authorKey) || 0) * 6);
     score += Math.min(AUTHOR_CONTRIB_CAP / 2, (idx.allReadAuthors.get(authorKey)  || 0) * 1.5);
-    // Option B: stronger avgRating multiplier for to-read
+    for (const t of candidate.similarToTitles || []) {
+      if (idx.fiveStarTitles.has(t)) score += 8;
+    }
+    score += fictionThemeBonus(candidate.themes);
     const avg = Number(candidate.avgRating) || 0;
     if (avg > 0) score += (avg - 3.5) * 10;
   } else {
@@ -216,7 +219,10 @@ function matchScoreNonfiction(candidate, idx, profile, timesShown) {
     const authorKey = normAuthor(candidate.author);
     score += Math.min(AUTHOR_CONTRIB_CAP,     (idx.fiveStarAuthors.get(authorKey) || 0) * 6);
     score += Math.min(AUTHOR_CONTRIB_CAP / 2, (idx.allReadAuthors.get(authorKey)  || 0) * 1.5);
-    // Option B: stronger avgRating multiplier for to-read
+    for (const t of candidate.similarToTitles || []) {
+      if (idx.fiveStarTitles.has(t)) score += 8;
+    }
+    score += nonfictionThemeBonus(candidate.themes);
     const avg = Number(candidate.avgRating) || 0;
     if (avg > 0) score += (avg - 3.5) * 10;
   } else {
@@ -276,6 +282,8 @@ function confidenceScore(candidate, idx) {
     if (idx.fiveStarAuthors.has(authorKey))    score += 20;
     else if (idx.allReadAuthors.has(authorKey)) score += 10;
     if (candidate.pages) score += 4;
+    if ((candidate.similarToTitles || []).length >= 2)  score += 8;
+    if ((candidate.themes || []).length >= 2)            score += 4;
     return Math.max(0, Math.min(100, Math.round(score)));
   }
   if (isBBEBook(candidate)) {
