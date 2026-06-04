@@ -17,7 +17,7 @@
       "author": "Alafair Burke",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 287,
       "dateRead": null,
       "dateAdded": "2026/05/31",
@@ -25,7 +25,21 @@
       "isbn13": "9780593537084",
       "publisher": "Knopf",
       "year": 2025,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1713149394i/211399773.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1713149394i/211399773.jpg",
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "mystery",
+        "suspense"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "The Woman in the Window"
+      ],
+      "similarToAuthors": [
+        "Shari Lapena",
+        "B.A. Paris"
+      ]
     },
     {
       "bookKey": "an-innocent-client-a-joe-dillard-novel|scott-pratt",
@@ -131,14 +145,28 @@
       "author": "James J. Cramer",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 352,
       "dateRead": null,
       "dateAdded": "2026/05/21",
       "isbn": "0743224884",
       "isbn13": "9780743224888",
       "publisher": "Simon & Schuster",
-      "year": 2003
+      "year": 2003,
+      "type": "nonfiction",
+      "themes": [
+        "finance",
+        "wall street",
+        "biography"
+      ],
+      "similarToTitles": [
+        "Flash Boys: A Wall Street Revolt",
+        "The Big Short: Inside the Doomsday Machine"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Ben Mezrich"
+      ]
     },
     {
       "bookKey": "the-housemaid-s-wedding|freida-mcfadden",
@@ -179,14 +207,27 @@
       "author": "Eddie Huang",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.6,
       "pages": 240,
       "dateRead": null,
       "dateAdded": "2026/05/16",
       "isbn": "0399591907",
       "isbn13": "9780399591907",
       "publisher": "One World",
-      "year": 2026
+      "year": 2026,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Eat a Peach",
+        "Notes from a Young Black Chef"
+      ],
+      "similarToAuthors": [
+        "David Chang",
+        "Marcus Samuelsson"
+      ]
     },
     {
       "bookKey": "exit-party|emily-st-john-mandel",
@@ -195,14 +236,27 @@
       "author": "Emily St. John Mandel",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 320,
       "dateRead": null,
       "dateAdded": "2026/05/15",
       "isbn": "1035081318",
       "isbn13": "9781035081318",
       "publisher": "Picador",
-      "year": 2026
+      "year": 2026,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "speculative"
+      ],
+      "similarToTitles": [
+        "The Invisible Life of Addie LaRue",
+        "The Midnight Library (The Midnight World, #1)"
+      ],
+      "similarToAuthors": [
+        "V.E. Schwab",
+        "Matt Haig"
+      ]
     },
     {
       "bookKey": "judge-stone|viola-davis",
@@ -211,14 +265,28 @@
       "author": "Viola Davis",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 432,
       "dateRead": null,
       "dateAdded": "2026/05/15",
       "isbn": "0316579831",
       "isbn13": "9780316579834",
       "publisher": "Little, Brown and Company",
-      "year": 2026
+      "year": 2026,
+      "type": "fiction",
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ],
+      "similarToTitles": [
+        "A Time to Kill (Jake Brigance, #1)",
+        "Presumed Innocent"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow"
+      ]
     },
     {
       "bookKey": "the-scaling-curve-dario-amodei-anthropic-and-the-race-to-build-and-survive-superintelligence|claude-st-john",
@@ -243,14 +311,27 @@
       "author": "Joanna Stern",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 320,
       "dateRead": null,
       "dateAdded": "2026/05/08",
       "isbn": "0063446618",
       "isbn13": "9780063446618",
       "publisher": "Harper",
-      "year": 2026
+      "year": 2026,
+      "type": "nonfiction",
+      "themes": [
+        "tech history",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
+        "Elon Musk"
+      ],
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Ashlee Vance"
+      ]
     },
     {
       "bookKey": "house-of-fidelity-the-rise-of-the-johnson-dynasty-and-the-company-that-changed-american-investing|justin-baer",
@@ -259,14 +340,28 @@
       "author": "Justin  Baer",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 384,
       "dateRead": null,
       "dateAdded": "2026/05/07",
       "isbn": "1538766957",
       "isbn13": "9781538766958",
       "publisher": "Grand Central Publishing",
-      "year": 2026
+      "year": 2026,
+      "type": "nonfiction",
+      "themes": [
+        "finance",
+        "wall street",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Flash Boys: A Wall Street Revolt",
+        "The Big Short: Inside the Doomsday Machine"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Brad Stone"
+      ]
     },
     {
       "bookKey": "eating-the-dinosaur|chuck-klosterman",
@@ -291,7 +386,7 @@
       "author": "Stephen  King",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.3,
       "pages": 7,
       "dateRead": null,
       "dateAdded": "2026/03/06",
@@ -299,7 +394,20 @@
       "isbn13": "9781668170618",
       "publisher": "Simon & Schuster Audio",
       "year": 2026,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1527495506i/38926465.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1527495506i/38926465.jpg",
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "coming-of-age"
+      ],
+      "similarToTitles": [
+        "The Outsider",
+        "Billy Summers"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Chuck Klosterman"
+      ]
     },
     {
       "bookKey": "creep|jennifer-hillier",
@@ -324,14 +432,28 @@
       "author": "Bill Schweigart",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 416,
       "dateRead": null,
       "dateAdded": "2026/04/25",
       "isbn": "1368114571",
       "isbn13": "9781368114578",
       "publisher": "Hyperion Avenue",
-      "year": 2026
+      "year": 2026,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "military",
+        "suspense"
+      ],
+      "similarToTitles": [
+        "The Outsider",
+        "Billy Summers"
+      ],
+      "similarToAuthors": [
+        "Stephen King",
+        "Michael Ledwidge"
+      ]
     },
     {
       "bookKey": "the-optimist-sam-altman-openai-and-the-race-to-invent-the-future|keach-hagey",
@@ -356,14 +478,28 @@
       "author": "Gary Rivlin",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 320,
       "dateRead": null,
       "dateAdded": "2026/04/17",
       "isbn": "0063347490",
       "isbn13": "9780063347496",
       "publisher": "Harper Business",
-      "year": 2025
+      "year": 2025,
+      "type": "nonfiction",
+      "themes": [
+        "tech history",
+        "narrative nonfiction",
+        "business"
+      ],
+      "similarToTitles": [
+        "Super Pumped: The Battle for Uber",
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution"
+      ],
+      "similarToAuthors": [
+        "Mike Isaac",
+        "Brad Stone"
+      ]
     },
     {
       "bookKey": "famesick|lena-dunham",
@@ -372,14 +508,27 @@
       "author": "Lena Dunham",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.5,
       "pages": 288,
       "dateRead": null,
       "dateAdded": "2026/04/15",
       "isbn": "1460713052",
       "isbn13": "9781460713051",
       "publisher": "HarperCollins",
-      "year": 2026
+      "year": 2026,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "humor"
+      ],
+      "similarToTitles": [
+        "Yearbook",
+        "A Life in Parts"
+      ],
+      "similarToAuthors": [
+        "Seth Rogen",
+        "Chuck Klosterman"
+      ]
     },
     {
       "bookKey": "the-insomniacs|allison-winn-scotch",
@@ -388,14 +537,28 @@
       "author": "Allison Winn Scotch",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 396,
       "dateRead": null,
       "dateAdded": "2026/04/07",
       "isbn": "0593817931",
       "isbn13": "9780593817933",
       "publisher": "Berkley",
-      "year": 2026
+      "year": 2026,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "psychological",
+        "suspense"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "Before I Go to Sleep"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Alex Michaelides"
+      ]
     },
     {
       "bookKey": "checkmate-genius-lies-ambition-and-the-biggest-scandal-in-chess|ben-mezrich",
@@ -404,7 +567,7 @@
       "author": "Ben Mezrich",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 304,
       "dateRead": null,
       "dateAdded": "2026/04/07",
@@ -412,7 +575,21 @@
       "isbn13": "9781538773031",
       "publisher": "Grand Central Publishing",
       "year": 2026,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1777552865i/242445475.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1777552865i/242445475.jpg",
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "sports",
+        "true crime"
+      ],
+      "similarToTitles": [
+        "The Accidental Billionaires: The Founding of Facebook, a Tale of Sex, Money, Genius, and Betrayal",
+        "Bitcoin Billionaires: A True Story of Genius, Betrayal, and Redemption"
+      ],
+      "similarToAuthors": [
+        "Nick Bilton",
+        "Brad Stone"
+      ]
     },
     {
       "bookKey": "the-divorce|freida-mcfadden",
@@ -421,7 +598,7 @@
       "author": "Freida McFadden",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 368,
       "dateRead": null,
       "dateAdded": "2026/04/02",
@@ -429,7 +606,21 @@
       "isbn13": "9781464249631",
       "publisher": "Poisoned Pen Press",
       "year": 2026,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1769708783i/244403162.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1769708783i/244403162.jpg",
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "psychological",
+        "suspense"
+      ],
+      "similarToTitles": [
+        "Never Lie",
+        "The Teacher"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Lisa Jewell"
+      ]
     },
     {
       "bookKey": "peck-peck|bonnie-garmus",
@@ -438,14 +629,27 @@
       "author": "Bonnie Garmus",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 432,
       "dateRead": null,
       "dateAdded": "2026/04/02",
       "isbn": "166825106X",
       "isbn13": "9781668251065",
       "publisher": "Scribner",
-      "year": 2026
+      "year": 2026,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "humor"
+      ],
+      "similarToTitles": [
+        "Lessons in Chemistry",
+        "Remarkably Bright Creatures"
+      ],
+      "similarToAuthors": [
+        "Shelby Van Pelt",
+        "Gabrielle Zevin"
+      ]
     },
     {
       "bookKey": "monsters-in-the-archives-my-year-of-fear-with-stephen-king|caroline-bicks",
@@ -454,14 +658,28 @@
       "author": "Caroline Bicks",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 304,
       "dateRead": null,
       "dateAdded": "2026/04/02",
       "isbn": "0593736729",
       "isbn13": "9780593736722",
       "publisher": "Hogarth",
-      "year": 2026
+      "year": 2026,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "literary",
+        "biography"
+      ],
+      "similarToTitles": [
+        "A Life in Parts",
+        "The Storyteller: Tales of Life and Music"
+      ],
+      "similarToAuthors": [
+        "Bryan Cranston",
+        "Dave Grohl"
+      ]
     },
     {
       "bookKey": "american-fantasy|emma-straub",
@@ -470,7 +688,7 @@
       "author": "Emma Straub",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 294,
       "dateRead": null,
       "dateAdded": "2026/03/25",
@@ -478,7 +696,21 @@
       "isbn13": "9798217046867",
       "publisher": "Riverhead Books",
       "year": 2026,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1758250558i/239051491.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1758250558i/239051491.jpg",
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "speculative",
+        "contemporary"
+      ],
+      "similarToTitles": [
+        "This Time Tomorrow",
+        "The Invisible Life of Addie LaRue"
+      ],
+      "similarToAuthors": [
+        "Taylor Jenkins Reid",
+        "V.E. Schwab"
+      ]
     },
     {
       "bookKey": "everyone-who-is-gone-is-here-the-united-states-central-america-and-the-making-of-a-crisis|jonathan-blitzer",
@@ -487,7 +719,7 @@
       "author": "Jonathan Blitzer",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.2,
       "pages": 544,
       "dateRead": null,
       "dateAdded": "2024/12/28",
@@ -495,7 +727,20 @@
       "isbn13": "9781984880802",
       "publisher": "Penguin Press",
       "year": 2024,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1697736195i/145624514.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1697736195i/145624514.jpg",
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "history"
+      ],
+      "similarToTitles": [
+        "Evicted: Poverty and Profit in the American City",
+        "A Promised Land"
+      ],
+      "similarToAuthors": [
+        "Matthew Desmond",
+        "Barack Obama"
+      ]
     },
     {
       "bookKey": "the-running-man|richard-bachman",
@@ -504,7 +749,7 @@
       "author": "Richard  Bachman",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 352,
       "dateRead": null,
       "dateAdded": "2025/11/04",
@@ -512,7 +757,21 @@
       "isbn13": "9781668208120",
       "publisher": "Scribner",
       "year": 2025,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1660830795i/11607.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1660830795i/11607.jpg",
+      "type": "fiction",
+      "themes": [
+        "dystopia",
+        "thriller",
+        "speculative"
+      ],
+      "similarToTitles": [
+        "The Stand",
+        "The Outsider"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Stephen King"
+      ]
     },
     {
       "bookKey": "the-break-up-retreat|camilla-sten",
@@ -521,14 +780,28 @@
       "author": "Camilla Sten",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 320,
       "dateRead": null,
       "dateAdded": "2026/03/25",
       "isbn": "1250868521",
       "isbn13": "9781250868527",
       "publisher": "Minotaur Books",
-      "year": 2026
+      "year": 2026,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "psychological",
+        "suspense"
+      ],
+      "similarToTitles": [
+        "The Guest List",
+        "The Woman in the Window"
+      ],
+      "similarToAuthors": [
+        "Lucy Foley",
+        "B.A. Paris"
+      ]
     },
     {
       "bookKey": "best-offer-wins|marisa-kashino",
@@ -553,14 +826,28 @@
       "author": "J.J.  Miller",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 396,
       "dateRead": null,
       "dateAdded": "2026/03/19",
       "isbn": null,
       "isbn13": null,
       "publisher": "Innkeeper Publishing",
-      "year": 2025
+      "year": 2025,
+      "type": "fiction",
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ],
+      "similarToTitles": [
+        "A Time to Kill (Jake Brigance, #1)",
+        "The Street Lawyer"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow"
+      ]
     },
     {
       "bookKey": "last-night-in-montreal|emily-st-john-mandel",
@@ -569,14 +856,28 @@
       "author": "Emily St. John Mandel",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 240,
       "dateRead": null,
       "dateAdded": "2026/03/18",
       "isbn": "1101911956",
       "isbn13": "9781101911952",
       "publisher": "Vintage",
-      "year": 2015
+      "year": 2015,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "mystery",
+        "suspense"
+      ],
+      "similarToTitles": [
+        "The Invisible Life of Addie LaRue",
+        "The Midnight Library (The Midnight World, #1)"
+      ],
+      "similarToAuthors": [
+        "V.E. Schwab",
+        "Matt Haig"
+      ]
     },
     {
       "bookKey": "this-land-is-your-land-a-road-trip-through-u-s-history|beverly-gage",
@@ -585,14 +886,27 @@
       "author": "Beverly Gage",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 352,
       "dateRead": null,
       "dateAdded": "2026/03/18",
       "isbn": "1668033100",
       "isbn13": "9781668033104",
       "publisher": "Simon & Schuster",
-      "year": 2026
+      "year": 2026,
+      "type": "nonfiction",
+      "themes": [
+        "history",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "A Promised Land",
+        "The Accidental President: Harry S. Truman and the Four Months That Changed the World"
+      ],
+      "similarToAuthors": [
+        "Barack Obama",
+        "A.J. Baime"
+      ]
     },
     {
       "bookKey": "planet-money-a-guide-to-the-economic-forces-that-shape-your-life|alex-mayyasi",
@@ -601,14 +915,28 @@
       "author": "Alex Mayyasi",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 336,
       "dateRead": null,
       "dateAdded": "2026/03/18",
       "isbn": "1324078774",
       "isbn13": "9781324078777",
       "publisher": "W. W. Norton & Company",
-      "year": 2026
+      "year": 2026,
+      "type": "nonfiction",
+      "themes": [
+        "finance",
+        "narrative nonfiction",
+        "business"
+      ],
+      "similarToTitles": [
+        "Flash Boys: A Wall Street Revolt",
+        "The Big Short: Inside the Doomsday Machine"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Brad Stone"
+      ]
     },
     {
       "bookKey": "the-anniversary|alex-finlay",
@@ -617,14 +945,28 @@
       "author": "Alex Finlay",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 325,
       "dateRead": null,
       "dateAdded": "2026/03/18",
       "isbn": "1250360757",
       "isbn13": "9781250360755",
       "publisher": "Minotaur Books",
-      "year": 2026
+      "year": 2026,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "suspense",
+        "mystery"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "First Lie Wins"
+      ],
+      "similarToAuthors": [
+        "Alex Michaelides",
+        "Ashley Elston"
+      ]
     },
     {
       "bookKey": "dissection-of-a-murder|jo-murray",
@@ -633,14 +975,28 @@
       "author": "Jo Murray",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 416,
       "dateRead": null,
       "dateAdded": "2026/03/18",
       "isbn": null,
       "isbn13": "9798217177004",
       "publisher": "Dutton",
-      "year": 2026
+      "year": 2026,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "mystery",
+        "suspense"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "Before I Go to Sleep"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Alex Michaelides"
+      ]
     },
     {
       "bookKey": "the-midnight-train|matt-haig",
@@ -649,14 +1005,28 @@
       "author": "Matt Haig",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 296,
       "dateRead": null,
       "dateAdded": "2026/03/18",
       "isbn": "0593833376",
       "isbn13": "9780593833377",
       "publisher": "Viking",
-      "year": 2026
+      "year": 2026,
+      "type": "fiction",
+      "themes": [
+        "speculative",
+        "literary",
+        "philosophical"
+      ],
+      "similarToTitles": [
+        "The Midnight Library (The Midnight World, #1)",
+        "The Invisible Life of Addie LaRue"
+      ],
+      "similarToAuthors": [
+        "V.E. Schwab",
+        "Blake Crouch"
+      ]
     },
     {
       "bookKey": "yesteryear|caro-claire-burke",
@@ -665,14 +1035,27 @@
       "author": "Caro Claire Burke",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 400,
       "dateRead": null,
       "dateAdded": "2026/03/18",
       "isbn": null,
       "isbn13": null,
       "publisher": "Knopf",
-      "year": 2026
+      "year": 2026,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "historical"
+      ],
+      "similarToTitles": [
+        "The Invisible Life of Addie LaRue",
+        "The Seven Husbands of Evelyn Hugo"
+      ],
+      "similarToAuthors": [
+        "Taylor Jenkins Reid",
+        "V.E. Schwab"
+      ]
     },
     {
       "bookKey": "the-french-illusion|john-grisham",
@@ -681,7 +1064,7 @@
       "author": "John Grisham",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 352,
       "dateRead": null,
       "dateAdded": "2026/03/17",
@@ -689,7 +1072,21 @@
       "isbn13": "9780385550543",
       "publisher": "Doubleday",
       "year": 2026,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1773198632i/248286863.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1773198632i/248286863.jpg",
+      "type": "fiction",
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ],
+      "similarToTitles": [
+        "The Firm (The Firm, #1)",
+        "A Time to Kill (Jake Brigance, #1)"
+      ],
+      "similarToAuthors": [
+        "Scott Turow",
+        "Steve Cavanagh"
+      ]
     },
     {
       "bookKey": "she-didn-t-see-it-coming|shari-lapena",
@@ -714,7 +1111,7 @@
       "author": "Shari Lapena",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 308,
       "dateRead": null,
       "dateAdded": "2026/03/15",
@@ -722,7 +1119,21 @@
       "isbn13": "9780735221086",
       "publisher": "Pamela Dorman Books",
       "year": 2016,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1471502242i/28815474.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1471502242i/28815474.jpg",
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "psychological",
+        "suspense"
+      ],
+      "similarToTitles": [
+        "Before I Go to Sleep",
+        "Behind Closed Doors"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Alex Michaelides"
+      ]
     },
     {
       "bookKey": "1929-inside-the-greatest-crash-in-wall-street-history-and-how-it-shattered-a-nation|andrew-ross-sorkin",
@@ -731,14 +1142,28 @@
       "author": "Andrew Ross Sorkin",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 592,
       "dateRead": null,
       "dateAdded": "2026/03/12",
       "isbn": "0593296966",
       "isbn13": "9780593296967",
       "publisher": "Viking",
-      "year": 2025
+      "year": 2025,
+      "type": "nonfiction",
+      "themes": [
+        "finance",
+        "wall street",
+        "history"
+      ],
+      "similarToTitles": [
+        "The Big Short: Inside the Doomsday Machine",
+        "Flash Boys: A Wall Street Revolt"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Sebastian Mallaby"
+      ]
     },
     {
       "bookKey": "heartland-a-forgotten-place-an-impossible-dream-and-the-miracle-of-larry-bird|keith-o-brien",
@@ -747,7 +1172,7 @@
       "author": "Keith O'Brien",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.2,
       "pages": 384,
       "dateRead": null,
       "dateAdded": "2026/03/12",
@@ -755,7 +1180,21 @@
       "isbn13": "9781668211700",
       "publisher": "Atria Books",
       "year": 2026,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1761837989i/235992099.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1761837989i/235992099.jpg",
+      "type": "nonfiction",
+      "themes": [
+        "sports",
+        "biography",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty"
+      ],
+      "similarToAuthors": [
+        "Jeff Pearlman",
+        "Jack McCallum"
+      ]
     },
     {
       "bookKey": "the-everything-war-amazon-s-ruthless-quest-to-own-the-world-and-remake-corporate-power|dana-mattioli",
@@ -764,14 +1203,28 @@
       "author": "Dana Mattioli",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 393,
       "dateRead": null,
       "dateAdded": "2026/03/06",
       "isbn": "031626993X",
       "isbn13": "9780316269933",
       "publisher": "Little, Brown and Company",
-      "year": 2024
+      "year": 2024,
+      "type": "nonfiction",
+      "themes": [
+        "tech history",
+        "business",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Amazon Unbound: Jeff Bezos and the Invention of a Global Empire"
+      ],
+      "similarToAuthors": [
+        "Brad Stone",
+        "Mike Isaac"
+      ]
     },
     {
       "bookKey": "no-more-tears-the-dark-secrets-of-johnson-johnson|gardiner-harris",
@@ -796,14 +1249,28 @@
       "author": "Danny Funt",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 320,
       "dateRead": null,
       "dateAdded": "2026/03/03",
       "isbn": "166806202X",
       "isbn13": "9781668062029",
       "publisher": "Gallery Books",
-      "year": 2026
+      "year": 2026,
+      "type": "nonfiction",
+      "themes": [
+        "sports",
+        "business",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Formula: How Rogues, Geniuses, and Speed Freaks Reengineered F1 into the World's Fastest-Growing Sport\u2014A High-Octane History of Formula 1's Rise in America",
+        "Super Pumped: The Battle for Uber"
+      ],
+      "similarToAuthors": [
+        "Jeff Pearlman",
+        "Mike Isaac"
+      ]
     },
     {
       "bookKey": "the-echo-wife|sarah-gailey",
@@ -828,14 +1295,27 @@
       "author": "Christina Applegate",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 304,
       "dateRead": null,
       "dateAdded": "2026/02/26",
       "isbn": "031659492X",
       "isbn13": "9780316594929",
       "publisher": "Little, Brown & Co.",
-      "year": 2026
+      "year": 2026,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "When Breath Becomes Air",
+        "A Life in Parts"
+      ],
+      "similarToAuthors": [
+        "Paul Kalanithi",
+        "Bryan Cranston"
+      ]
     },
     {
       "bookKey": "loose-balls-the-short-wild-life-of-the-american-basketball-association|terry-pluto",
@@ -844,7 +1324,7 @@
       "author": "Terry Pluto",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.2,
       "pages": 450,
       "dateRead": null,
       "dateAdded": "2026/02/25",
@@ -852,7 +1332,21 @@
       "isbn13": "9780671749217",
       "publisher": "Simon & Schuster",
       "year": 1991,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1390452828i/227205.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1390452828i/227205.jpg",
+      "type": "nonfiction",
+      "themes": [
+        "sports",
+        "history",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty"
+      ],
+      "similarToAuthors": [
+        "Jack McCallum",
+        "Jeff Pearlman"
+      ]
     },
     {
       "bookKey": "unhinged-habits-a-counterintuitive-guide-for-humans-to-have-more-by-doing-less|jonathan-goodman",
@@ -861,14 +1355,27 @@
       "author": "Jonathan   Goodman",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 240,
       "dateRead": null,
       "dateAdded": "2026/01/29",
       "isbn": "1400253438",
       "isbn13": "9781400253432",
       "publisher": "HarperCollins Leadership",
-      "year": 2026
+      "year": 2026,
+      "type": "nonfiction",
+      "themes": [
+        "psychology",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
+        "Educated"
+      ],
+      "similarToAuthors": [
+        "Lori Gottlieb",
+        "Matthew Desmond"
+      ]
     },
     {
       "bookKey": "you-can-t-lose-them-all-tales-of-a-degenerate-gambler-and-his-ridiculous-friends|sal-iacono",
@@ -877,14 +1384,27 @@
       "author": "Sal Iacono",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 256,
       "dateRead": null,
       "dateAdded": "2026/01/25",
       "isbn": "1538735326",
       "isbn13": "9781538735329",
       "publisher": "Twelve",
-      "year": 2021
+      "year": 2021,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Molly's Game: From Hollywood's Elite to Wall Street's Billionaire Boys Club, My High-Stakes Adventure in the World of Underground Poker",
+        "Ship It Holla Ballas!: How a Bunch of 19-Year-Old College Dropouts Used the Internet to Become Poker's Loudest, Craziest, and Richest Crew"
+      ],
+      "similarToAuthors": [
+        "Ben Mezrich",
+        "Chuck Klosterman"
+      ]
     },
     {
       "bookKey": "american-sketches-great-leaders-creative-thinkers-and-heroes-of-a-hurricane|walter-isaacson",
@@ -893,7 +1413,7 @@
       "author": "Walter Isaacson",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 304,
       "dateRead": null,
       "dateAdded": "2026/01/24",
@@ -901,7 +1421,21 @@
       "isbn13": "9781439180648",
       "publisher": "Simon & Schuster",
       "year": 2009,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1347383517i/7076139.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1347383517i/7076139.jpg",
+      "type": "nonfiction",
+      "themes": [
+        "biography",
+        "history",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Steve Jobs",
+        "Elon Musk"
+      ],
+      "similarToAuthors": [
+        "Brad Stone",
+        "Ashlee Vance"
+      ]
     },
     {
       "bookKey": "what-it-takes-lessons-in-the-pursuit-of-excellence|stephen-a-schwarzman",
@@ -910,14 +1444,28 @@
       "author": "Stephen A. Schwarzman",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 400,
       "dateRead": null,
       "dateAdded": "2020/08/02",
       "isbn": "1508279144",
       "isbn13": "9781508279143",
       "publisher": "Simon & Schuster Audio",
-      "year": 2019
+      "year": 2019,
+      "type": "nonfiction",
+      "themes": [
+        "finance",
+        "business",
+        "biography"
+      ],
+      "similarToTitles": [
+        "Shoe Dog",
+        "The Everything Store: Jeff Bezos and the Age of Amazon"
+      ],
+      "similarToAuthors": [
+        "Phil Knight",
+        "Brad Stone"
+      ]
     },
     {
       "bookKey": "the-final-score|don-winslow",
@@ -926,14 +1474,28 @@
       "author": "Don Winslow",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 304,
       "dateRead": null,
       "dateAdded": "2026/02/26",
       "isbn": "0063450429",
       "isbn13": "9780063450424",
       "publisher": "William Morrow",
-      "year": 2026
+      "year": 2026,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "crime",
+        "suspense"
+      ],
+      "similarToTitles": [
+        "The Outsider",
+        "Billy Summers"
+      ],
+      "similarToAuthors": [
+        "Stephen King",
+        "James Patterson"
+      ]
     },
     {
       "bookKey": "none-of-this-is-true|lisa-jewell",
@@ -1038,14 +1600,28 @@
       "author": "Chris Bohjalian",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 336,
       "dateRead": null,
       "dateAdded": "2026/01/31",
       "isbn": "0593315014",
       "isbn13": "9780593315019",
       "publisher": "Vintage",
-      "year": 2026
+      "year": 2026,
+      "type": "fiction",
+      "themes": [
+        "historical",
+        "thriller",
+        "wwii"
+      ],
+      "similarToTitles": [
+        "The Great Alone",
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission"
+      ],
+      "similarToAuthors": [
+        "Kristin Hannah",
+        "Hampton Sides"
+      ]
     },
     {
       "bookKey": "the-greatest-sentence-ever-written|walter-isaacson",
@@ -1070,7 +1646,7 @@
       "author": "Alice Feeney",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 294,
       "dateRead": null,
       "dateAdded": "2026/01/23",
@@ -1078,7 +1654,21 @@
       "isbn13": "9781250266101",
       "publisher": "Flatiron Books",
       "year": 2021,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1612020952i/56269064.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1612020952i/56269064.jpg",
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "psychological",
+        "suspense"
+      ],
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "The Woman in the Window"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Alex Michaelides"
+      ]
     },
     {
       "bookKey": "neptune-s-fortune-the-billion-dollar-shipwreck-and-the-ghosts-of-the-spanish-empire|julian-sancton",
@@ -1087,14 +1677,28 @@
       "author": "Julian Sancton",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 384,
       "dateRead": null,
       "dateAdded": "2025/12/20",
       "isbn": "0593594177",
       "isbn13": "9780593594179",
       "publisher": "Crown",
-      "year": 2026
+      "year": 2026,
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "adventure",
+        "history"
+      ],
+      "similarToTitles": [
+        "Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night",
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder"
+      ],
+      "similarToAuthors": [
+        "David Grann",
+        "Hampton Sides"
+      ]
     },
     {
       "bookKey": "no-one-saw-a-thing|andrea-mara",
@@ -1103,14 +1707,28 @@
       "author": "Andrea Mara",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 384,
       "dateRead": null,
       "dateAdded": "2025/12/01",
       "isbn": "178763650X",
       "isbn13": "9781787636507",
       "publisher": "Bantam",
-      "year": 2023
+      "year": 2023,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "mystery",
+        "psychological"
+      ],
+      "similarToTitles": [
+        "All Her Fault",
+        "The Silent Patient"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Shari Lapena"
+      ]
     },
     {
       "bookKey": "football|chuck-klosterman",
@@ -1119,7 +1737,7 @@
       "author": "Chuck Klosterman",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 304,
       "dateRead": null,
       "dateAdded": "2025/11/28",
@@ -1127,7 +1745,20 @@
       "isbn13": "9780593490648",
       "publisher": "Penguin Press",
       "year": 2026,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1753931256i/239522729.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1753931256i/239522729.jpg",
+      "type": "nonfiction",
+      "themes": [
+        "sports",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "Killing Yourself to Live: 85% of a True Story"
+      ],
+      "similarToAuthors": [
+        "Jeff Pearlman",
+        "Michael Lewis"
+      ]
     },
     {
       "bookKey": "a-violent-masterpiece|jordan-harper",
@@ -1136,7 +1767,7 @@
       "author": "Jordan Harper",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 384,
       "dateRead": null,
       "dateAdded": "2025/11/06",
@@ -1144,7 +1775,21 @@
       "isbn13": "9780316458405",
       "publisher": "Mulholland Books",
       "year": 2026,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1754521907i/239680410.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1754521907i/239680410.jpg",
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "mystery",
+        "crime"
+      ],
+      "similarToTitles": [
+        "She Rides Shotgun",
+        "Everybody Knows"
+      ],
+      "similarToAuthors": [
+        "S.A. Cosby",
+        "Jordan Harper"
+      ]
     },
     {
       "bookKey": "big-fan-two-friends-82-490-miles-and-the-wild-wonderful-sports-we-love|michael-schur",
@@ -1153,7 +1798,7 @@
       "author": "Michael Schur",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.2,
       "pages": 448,
       "dateRead": null,
       "dateAdded": "2025/11/06",
@@ -1161,7 +1806,21 @@
       "isbn13": "9798217045112",
       "publisher": "Dutton",
       "year": 2026,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1771360009i/240382488.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1771360009i/240382488.jpg",
+      "type": "nonfiction",
+      "themes": [
+        "sports",
+        "humor",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Fantasyland: True Tales from America's Most Compulsive Fantasy Baseball League",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)"
+      ],
+      "similarToAuthors": [
+        "Chuck Klosterman",
+        "Sam Walker"
+      ]
     },
     {
       "bookKey": "parks-and-rec-the-underdog-tv-show-that-lit-rally-inspired-a-vision-for-a-better-america|jennifer-keishin-armstrong",
@@ -1170,7 +1829,7 @@
       "author": "Jennifer Keishin Armstrong",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 301,
       "dateRead": null,
       "dateAdded": "2025/11/06",
@@ -1178,7 +1837,20 @@
       "isbn13": "9780593854518",
       "publisher": "Dutton",
       "year": 2026,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1759845350i/238227105.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1759845350i/238227105.jpg",
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "humor"
+      ],
+      "similarToTitles": [
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
+        "Yearbook"
+      ],
+      "similarToAuthors": [
+        "Chuck Klosterman",
+        "Seth Rogen"
+      ]
     },
     {
       "bookKey": "the-amazing-adventures-of-cavalier-clay|michael-chabon",
@@ -1187,14 +1859,28 @@
       "author": "Michael Chabon",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": null,
       "dateRead": null,
       "dateAdded": "2025/11/05",
       "isbn": null,
       "isbn13": null,
       "publisher": "Random House Inc",
-      "year": 2000
+      "year": 2000,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "historical",
+        "coming-of-age"
+      ],
+      "similarToTitles": [
+        "The Invisible Life of Addie LaRue",
+        "Tomorrow, and Tomorrow, and Tomorrow"
+      ],
+      "similarToAuthors": [
+        "Gabrielle Zevin",
+        "V.E. Schwab"
+      ]
     },
     {
       "bookKey": "den-of-thieves|james-b-stewart",
@@ -1203,14 +1889,28 @@
       "author": "James B. Stewart",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 592,
       "dateRead": null,
       "dateAdded": "2025/10/16",
       "isbn": "067179227X",
       "isbn13": "9780671792275",
       "publisher": "Simon & Schuster",
-      "year": 1992
+      "year": 1992,
+      "type": "nonfiction",
+      "themes": [
+        "finance",
+        "true crime",
+        "wall street"
+      ],
+      "similarToTitles": [
+        "The Big Short: Inside the Doomsday Machine",
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Nick Bilton"
+      ]
     },
     {
       "bookKey": "rich-blood|robert-bailey",
@@ -1219,14 +1919,28 @@
       "author": "Robert  Bailey",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.2,
       "pages": 380,
       "dateRead": null,
       "dateAdded": "2025/10/11",
       "isbn": "1542037263",
       "isbn13": "9781542037266",
       "publisher": "Thomas & Mercer",
-      "year": 2022
+      "year": 2022,
+      "type": "fiction",
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ],
+      "similarToTitles": [
+        "A Time to Kill (Jake Brigance, #1)",
+        "The Boomerang"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow"
+      ]
     },
     {
       "bookKey": "we-are-legion|dennis-e-taylor",
@@ -1235,14 +1949,28 @@
       "author": "Dennis E. Taylor",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.2,
       "pages": 383,
       "dateRead": null,
       "dateAdded": "2025/10/11",
       "isbn": null,
       "isbn13": null,
       "publisher": "Worldbuilders Press",
-      "year": 2016
+      "year": 2016,
+      "type": "fiction",
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "humor"
+      ],
+      "similarToTitles": [
+        "Project Hail Mary",
+        "The Martian"
+      ],
+      "similarToAuthors": [
+        "Andy Weir",
+        "Neal Stephenson"
+      ]
     },
     {
       "bookKey": "dating-after-the-end-of-the-world|jeneva-rose",
@@ -1251,7 +1979,7 @@
       "author": "Jeneva Rose",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 293,
       "dateRead": null,
       "dateAdded": "2025/10/09",
@@ -1259,7 +1987,21 @@
       "isbn13": "9781662520204",
       "publisher": "Montlake",
       "year": 2025,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1742785775i/226943312.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1742785775i/226943312.jpg",
+      "type": "fiction",
+      "themes": [
+        "speculative",
+        "romance",
+        "dystopia"
+      ],
+      "similarToTitles": [
+        "The Measure",
+        "The Invisible Life of Addie LaRue"
+      ],
+      "similarToAuthors": [
+        "Nikki Erlick",
+        "V.E. Schwab"
+      ]
     },
     {
       "bookKey": "the-age-of-ai-and-our-human-future|henry-kissinger",
@@ -1268,14 +2010,27 @@
       "author": "Henry Kissinger",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 272,
       "dateRead": null,
       "dateAdded": "2025/10/06",
       "isbn": "0316273805",
       "isbn13": "9780316273800",
       "publisher": "Little, Brown and Company",
-      "year": 2021
+      "year": 2021,
+      "type": "nonfiction",
+      "themes": [
+        "tech history",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
+        "Elon Musk"
+      ],
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Ashlee Vance"
+      ]
     },
     {
       "bookKey": "the-intruder|freida-mcfadden",
@@ -1284,7 +2039,7 @@
       "author": "Freida McFadden",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 279,
       "dateRead": null,
       "dateAdded": "2025/10/02",
@@ -1292,7 +2047,21 @@
       "isbn13": "9781464260919",
       "publisher": "Poisoned Pen Press",
       "year": 2025,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1747844349i/231819058.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1747844349i/231819058.jpg",
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "psychological",
+        "suspense"
+      ],
+      "similarToTitles": [
+        "Never Lie",
+        "The Teacher"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Lisa Jewell"
+      ]
     },
     {
       "bookKey": "children-of-time|adrian-tchaikovsky",
@@ -1301,7 +2070,7 @@
       "author": "Adrian Tchaikovsky",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.3,
       "pages": 600,
       "dateRead": null,
       "dateAdded": "2026/01/21",
@@ -1309,7 +2078,21 @@
       "isbn13": "9781447273288",
       "publisher": "PanMacmillan",
       "year": 2015,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1431014197i/25499718.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1431014197i/25499718.jpg",
+      "type": "fiction",
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "literary"
+      ],
+      "similarToTitles": [
+        "Seveneves",
+        "Project Hail Mary"
+      ],
+      "similarToAuthors": [
+        "Neal Stephenson",
+        "Andy Weir"
+      ]
     },
     {
       "bookKey": "american-kings-a-biography-of-the-quarterback|seth-wickersham",
@@ -1334,14 +2117,27 @@
       "author": "Timothy Snyder",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.2,
       "pages": 128,
       "dateRead": null,
       "dateAdded": "2024/11/15",
       "isbn": "1984860399",
       "isbn13": "9781984860392",
       "publisher": "Ten Speed Graphic",
-      "year": 2021
+      "year": 2021,
+      "type": "nonfiction",
+      "themes": [
+        "history",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "A Promised Land",
+        "The Accidental President: Harry S. Truman and the Four Months That Changed the World"
+      ],
+      "similarToAuthors": [
+        "Barack Obama",
+        "A.J. Baime"
+      ]
     },
     {
       "bookKey": "you-have-arrived-at-your-destination|amor-towles",
@@ -1414,14 +2210,28 @@
       "author": "Christine Kuehn",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 272,
       "dateRead": null,
       "dateAdded": "2025/12/24",
       "isbn": "1250344468",
       "isbn13": "9781250344465",
       "publisher": "Celadon Books",
-      "year": 2025
+      "year": 2025,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "suspense",
+        "espionage"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "The Woman in the Window"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Alex Michaelides"
+      ]
     },
     {
       "bookKey": "magic-for-liars|sarah-gailey",
@@ -1430,14 +2240,28 @@
       "author": "Sarah Gailey",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 336,
       "dateRead": null,
       "dateAdded": "2025/12/20",
       "isbn": "1250174600",
       "isbn13": "9781250174604",
       "publisher": "Tor",
-      "year": 2019
+      "year": 2019,
+      "type": "fiction",
+      "themes": [
+        "mystery",
+        "speculative",
+        "thriller"
+      ],
+      "similarToTitles": [
+        "The Echo Wife",
+        "The Silent Patient"
+      ],
+      "similarToAuthors": [
+        "Alex Michaelides",
+        "V.E. Schwab"
+      ]
     },
     {
       "bookKey": "careless-people-a-cautionary-tale-of-power-greed-and-lost-idealism|sarah-wynn-williams",
@@ -1446,7 +2270,7 @@
       "author": "Sarah Wynn-Williams",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.3,
       "pages": 382,
       "dateRead": null,
       "dateAdded": "2025/12/17",
@@ -1454,7 +2278,21 @@
       "isbn13": "9781250391230",
       "publisher": "Flatiron Books",
       "year": 2025,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1742029683i/223436601.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1742029683i/223436601.jpg",
+      "type": "nonfiction",
+      "themes": [
+        "tech history",
+        "narrative nonfiction",
+        "biography"
+      ],
+      "similarToTitles": [
+        "Super Pumped: The Battle for Uber",
+        "The Accidental Billionaires: The Founding of Facebook, a Tale of Sex, Money, Genius, and Betrayal"
+      ],
+      "similarToAuthors": [
+        "Mike Isaac",
+        "Nick Bilton"
+      ]
     },
     {
       "bookKey": "tiger-tiger-his-life-as-it-s-never-been-told-before|james-patterson",
@@ -1479,7 +2317,7 @@
       "author": "Grace          Walker",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 320,
       "dateRead": null,
       "dateAdded": "2025/12/06",
@@ -1487,7 +2325,21 @@
       "isbn13": "9780063446731",
       "publisher": "Mariner Books",
       "year": 2025,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1743149009i/223614634.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1743149009i/223614634.jpg",
+      "type": "fiction",
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "thriller"
+      ],
+      "similarToTitles": [
+        "Recursion",
+        "Dark Matter"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Neal Stephenson"
+      ]
     },
     {
       "bookKey": "the-idaho-four-an-american-tragedy|james-patterson",
@@ -1496,7 +2348,7 @@
       "author": "James  Patterson",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 448,
       "dateRead": null,
       "dateAdded": "2025/12/06",
@@ -1504,7 +2356,21 @@
       "isbn13": "9780316572859",
       "publisher": "Little, Brown and Company",
       "year": 2025,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1739959692i/222733476.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1739959692i/222733476.jpg",
+      "type": "nonfiction",
+      "themes": [
+        "true crime",
+        "narrative nonfiction",
+        "investigative journalism"
+      ],
+      "similarToTitles": [
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America"
+      ],
+      "similarToAuthors": [
+        "Nick Bilton",
+        "Beth Macy"
+      ]
     },
     {
       "bookKey": "the-compound|aisling-rawle",
@@ -1755,14 +2621,28 @@
       "author": "Andrew Ross Sorkin",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 577,
       "dateRead": null,
       "dateAdded": "2025/10/16",
       "isbn": "0241479428",
       "isbn13": "9780241479421",
       "publisher": "Viking Books",
-      "year": 2025
+      "year": 2025,
+      "type": "nonfiction",
+      "themes": [
+        "finance",
+        "wall street",
+        "history"
+      ],
+      "similarToTitles": [
+        "The Big Short: Inside the Doomsday Machine",
+        "Flash Boys: A Wall Street Revolt"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Sebastian Mallaby"
+      ]
     },
     {
       "bookKey": "the-boomerang|robert-bailey",
@@ -3936,14 +4816,27 @@
       "author": "Timothy Snyder",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.2,
       "pages": 127,
       "dateRead": null,
       "dateAdded": "2025/07/13",
       "isbn": "0804190119",
       "isbn13": "9780804190114",
       "publisher": "Tim Duggan Books",
-      "year": 2017
+      "year": 2017,
+      "type": "nonfiction",
+      "themes": [
+        "history",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "A Promised Land",
+        "The Accidental President: Harry S. Truman and the Four Months That Changed the World"
+      ],
+      "similarToAuthors": [
+        "Barack Obama",
+        "A.J. Baime"
+      ]
     },
     {
       "bookKey": "we-used-to-live-here|marcus-kliewer",
