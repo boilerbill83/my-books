@@ -23,11 +23,12 @@ export function buildIndexes(goodreads, feedback) {
   const read             = new Map();
   const toRead           = new Map();
   const currentlyReading = new Map();
-  const fiveStarTitles   = new Set();
-  const fiveStarAuthors  = new Map();
-  const fiveStarThemes   = new Map();
-  const allReadAuthors   = new Map();
-  const excluded         = new Map();
+  const fiveStarTitles      = new Set();
+  const fiveStarAuthors     = new Map();
+  const fiveStarThemes      = new Map();
+  const allReadAuthors      = new Map();
+  const authorRatingWeight  = new Map();
+  const excluded            = new Map();
 
   for (const book of goodreads.books || []) {
     const shelf     = String(book.shelf || '').toLowerCase();
@@ -37,6 +38,11 @@ export function buildIndexes(goodreads, feedback) {
     if (shelf === 'read') {
       read.set(key, book);
       allReadAuthors.set(authorKey, (allReadAuthors.get(authorKey) || 0) + 1);
+      const r = book.myRating;
+      if (r >= 1) {
+        const w = r >= 5 ? 1.0 : r === 4 ? 0.8 : r === 3 ? 0.3 : r === 2 ? -0.5 : -1.0;
+        authorRatingWeight.set(authorKey, (authorRatingWeight.get(authorKey) || 0) + w);
+      }
       if (book.myRating === 5) {
         fiveStarTitles.add(book.title);
         fiveStarAuthors.set(authorKey, (fiveStarAuthors.get(authorKey) || 0) + 1);
@@ -56,7 +62,7 @@ export function buildIndexes(goodreads, feedback) {
     if (interaction?.bookKey) excluded.set(interaction.bookKey, interaction);
   }
 
-  return { read, toRead, currentlyReading, fiveStarTitles, fiveStarAuthors, fiveStarThemes, allReadAuthors, excluded };
+  return { read, toRead, currentlyReading, fiveStarTitles, fiveStarAuthors, fiveStarThemes, allReadAuthors, authorRatingWeight, excluded };
 }
 
 function summarize(goodreads) {
@@ -167,7 +173,7 @@ function matchScoreFiction(candidate, idx, profile, timesShown) {
     score += 10;
     const authorKey = normAuthor(candidate.author);
     score += Math.min(AUTHOR_CONTRIB_CAP,     (idx.fiveStarAuthors.get(authorKey) || 0) * 6);
-    score += Math.min(AUTHOR_CONTRIB_CAP / 2, (idx.allReadAuthors.get(authorKey)  || 0) * 1.5);
+    score += Math.min(AUTHOR_CONTRIB_CAP / 2, (idx.authorRatingWeight.get(authorKey)  || 0) * 1.5);
     for (const t of candidate.similarToTitles || []) {
       if (idx.fiveStarTitles.has(t)) score += 8;
     }
@@ -187,7 +193,7 @@ function matchScoreFiction(candidate, idx, profile, timesShown) {
       // Direct author lookup for BBE — inject signal that similarToAuthors normally provides
       const authorKey = normAuthor(candidate.author);
       const contrib = (idx.fiveStarAuthors.get(authorKey) || 0) * 4
-                    + (idx.allReadAuthors.get(authorKey)   || 0) * 0.5;
+                    + (idx.authorRatingWeight.get(authorKey)   || 0) * 0.5;
       score += Math.min(AUTHOR_CONTRIB_CAP, contrib);
       // Option A: community rating as signal (fiction weight: ×4)
       const avg = Number(candidate.avgRating) || 0;
@@ -199,7 +205,7 @@ function matchScoreFiction(candidate, idx, profile, timesShown) {
       for (const a of candidate.similarToAuthors || []) {
         const authorKey = normAuthor(a);
         const contrib = (idx.fiveStarAuthors.get(authorKey) || 0) * 4
-                      + (idx.allReadAuthors.get(authorKey)   || 0) * 0.5;
+                      + (idx.authorRatingWeight.get(authorKey)   || 0) * 0.5;
         score += Math.min(AUTHOR_CONTRIB_CAP, contrib);
       }
       for (const t of candidate.similarToTitles || []) {
@@ -237,7 +243,7 @@ function matchScoreNonfiction(candidate, idx, profile, timesShown) {
     score += 10;
     const authorKey = normAuthor(candidate.author);
     score += Math.min(AUTHOR_CONTRIB_CAP,     (idx.fiveStarAuthors.get(authorKey) || 0) * 6);
-    score += Math.min(AUTHOR_CONTRIB_CAP / 2, (idx.allReadAuthors.get(authorKey)  || 0) * 1.5);
+    score += Math.min(AUTHOR_CONTRIB_CAP / 2, (idx.authorRatingWeight.get(authorKey)  || 0) * 1.5);
     for (const t of candidate.similarToTitles || []) {
       if (idx.fiveStarTitles.has(t)) score += 8;
     }
@@ -257,7 +263,7 @@ function matchScoreNonfiction(candidate, idx, profile, timesShown) {
       // Direct author lookup for BBE
       const authorKey = normAuthor(candidate.author);
       const contrib = (idx.fiveStarAuthors.get(authorKey) || 0) * 4
-                    + (idx.allReadAuthors.get(authorKey)   || 0) * 0.5;
+                    + (idx.authorRatingWeight.get(authorKey)   || 0) * 0.5;
       score += Math.min(AUTHOR_CONTRIB_CAP, contrib);
       // Option A: community rating (nonfiction weight: ×8 — rating matters more here)
       const avg = Number(candidate.avgRating) || 0;
@@ -269,7 +275,7 @@ function matchScoreNonfiction(candidate, idx, profile, timesShown) {
       for (const a of candidate.similarToAuthors || []) {
         const authorKey = normAuthor(a);
         const contrib = (idx.fiveStarAuthors.get(authorKey) || 0) * 4
-                      + (idx.allReadAuthors.get(authorKey)   || 0) * 0.5;
+                      + (idx.authorRatingWeight.get(authorKey)   || 0) * 0.5;
         score += Math.min(AUTHOR_CONTRIB_CAP, contrib);
       }
       for (const t of candidate.similarToTitles || []) {
@@ -306,7 +312,7 @@ function confidenceScore(candidate, idx) {
   if (candidate.fromToRead) {
     let score = 55;
     if (idx.fiveStarAuthors.has(authorKey))    score += 20;
-    else if (idx.allReadAuthors.has(authorKey)) score += 10;
+    else if ((idx.authorRatingWeight.get(authorKey) || 0) > 0) score += 10;
     if (candidate.pages) score += 4;
     if ((candidate.similarToTitles || []).length >= 2)  score += 8;
     if ((candidate.themes || []).length >= 2)            score += 4;
@@ -316,7 +322,7 @@ function confidenceScore(candidate, idx) {
     // BBE: confidence based on ratingsCount and direct author match
     let score = 50;
     if (idx.fiveStarAuthors.has(authorKey))    score += 20;
-    else if (idx.allReadAuthors.has(authorKey)) score += 10;
+    else if ((idx.authorRatingWeight.get(authorKey) || 0) > 0) score += 10;
     const n = Number(candidate.ratingsCount) || 0;
     if (n > 100000)     score += 10;
     else if (n > 50000) score += 7;
