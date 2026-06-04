@@ -89,7 +89,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": null,
-      "year": 2026
+      "year": 2026,
+      "themes": [
+        "thriller",
+        "crime",
+        "humor"
+      ]
     },
     {
       "bookKey": "the-housemaid-is-watching|freida-mcfadden",
@@ -105,7 +110,12 @@
       "isbn": "1464223319",
       "isbn13": "9781464223310",
       "publisher": "Sourcebooks",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "thriller",
+        "psychological",
+        "domestic suspense"
+      ]
     },
     {
       "bookKey": "ward-d|freida-mcfadden",
@@ -121,7 +131,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Hollywood Upstairs Press",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "thriller",
+        "psychological",
+        "suspense"
+      ]
     },
     {
       "bookKey": "hidden-pictures|jason-rekulak",
@@ -184,7 +199,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Hollywood Upstairs Press",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "thriller",
+        "psychological",
+        "domestic suspense"
+      ]
     },
     {
       "bookKey": "freak|jennifer-hillier",
@@ -200,7 +220,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Gallery Books",
-      "year": 2012
+      "year": 2012,
+      "themes": [
+        "thriller",
+        "psychological",
+        "crime"
+      ]
     },
     {
       "bookKey": "come-undone|eddie-huang",
@@ -431,7 +456,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Gallery Books",
-      "year": 2011
+      "year": 2011,
+      "themes": [
+        "thriller",
+        "psychological",
+        "crime"
+      ]
     },
     {
       "bookKey": "dirty-20|bill-schweigart",
@@ -837,7 +867,10 @@
       "isbn": "1250400554",
       "isbn13": "9781250400550",
       "publisher": "Celadon Books",
-      "year": 2025
+      "year": 2025,
+      "themes": [
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-midnight-lawyer|j-j-miller",
@@ -1131,7 +1164,12 @@
       "isbn": "0593832450",
       "isbn13": "9780593832455",
       "publisher": "Pamela Dorman Books",
-      "year": 2025
+      "year": 2025,
+      "themes": [
+        "thriller",
+        "domestic suspense",
+        "psychological"
+      ]
     },
     {
       "bookKey": "the-couple-next-door|shari-lapena",
@@ -1320,7 +1358,12 @@
       "isbn": "125017466X",
       "isbn13": "9781250174666",
       "publisher": "Tor Books",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "speculative",
+        "thriller",
+        "literary"
+      ]
     },
     {
       "bookKey": "you-with-the-sad-eyes|christina-applegate",
@@ -1552,7 +1595,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Atria",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "thriller",
+        "psychological",
+        "domestic suspense"
+      ]
     },
     {
       "bookKey": "beautiful-ugly|alice-feeney",
@@ -1568,7 +1616,11 @@
       "isbn": "1250337798",
       "isbn13": "9781250337795",
       "publisher": "Flatiron Books",
-      "year": 2025
+      "year": 2025,
+      "themes": [
+        "thriller",
+        "psychological"
+      ]
     },
     {
       "bookKey": "gone-before-goodbye|reese-witherspoon",
@@ -1584,7 +1636,12 @@
       "isbn": "1538774712",
       "isbn13": "9781538774717",
       "publisher": "Grand Central Publishing",
-      "year": 2025
+      "year": 2025,
+      "themes": [
+        "thriller",
+        "mystery",
+        "suspense"
+      ]
     },
     {
       "bookKey": "the-long-walk|stephen-king",
@@ -1632,7 +1689,12 @@
       "isbn": "0385548990",
       "isbn13": "9780385548991",
       "publisher": "Doubleday",
-      "year": 2025
+      "year": 2025,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "the-jackal-s-mistress|chris-bohjalian",
@@ -1679,7 +1741,11 @@
       "isbn": "1982181338",
       "isbn13": "9781982181338",
       "publisher": "Simon & Schuster",
-      "year": 2025
+      "year": 2025,
+      "themes": [
+        "narrative nonfiction",
+        "history"
+      ]
     },
     {
       "bookKey": "rock-paper-scissors|alice-feeney",
@@ -2259,7 +2325,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "St. Martin's Press",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "thriller",
+        "psychological",
+        "suspense"
+      ]
     },
     {
       "bookKey": "family-of-spies|christine-kuehn",
@@ -2480,7 +2551,12 @@
       "isbn": "1473589444",
       "isbn13": "9781473589445",
       "publisher": "Transworld Digital",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "thriller",
+        "domestic suspense",
+        "psychological"
+      ]
     },
     {
       "bookKey": "power-play-tesla-elon-musk-and-the-bet-of-the-century|tim-higgins",
@@ -2528,7 +2604,12 @@
       "isbn": "1668089351",
       "isbn13": "9781668089354",
       "publisher": "Scribner",
-      "year": 2025
+      "year": 2025,
+      "themes": [
+        "thriller",
+        "horror",
+        "psychological"
+      ]
     },
     {
       "bookKey": "blacktop-wasteland|s-a-cosby",
@@ -2544,7 +2625,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Flatiron Books",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "thriller",
+        "crime",
+        "noir"
+      ]
     },
     {
       "bookKey": "who-knew|barry-diller",
@@ -2607,7 +2693,12 @@
       "isbn": null,
       "isbn13": "9798874620950",
       "publisher": "Blackstone Publishing",
-      "year": 2025
+      "year": 2025,
+      "themes": [
+        "thriller",
+        "domestic suspense",
+        "psychological"
+      ]
     },
     {
       "bookKey": "anatomy-of-an-alibi|ashley-elston",
@@ -2827,7 +2918,11 @@
       "isbn": "1662516673",
       "isbn13": "9781662516672",
       "publisher": "Thomas & Mercer",
-      "year": 2025
+      "year": 2025,
+      "themes": [
+        "legal",
+        "thriller"
+      ]
     },
     {
       "bookKey": "widow-s-point-the-complete-haunting|richard-chizmar",
@@ -3012,7 +3107,12 @@
       "isbn": null,
       "isbn13": "9798212182867",
       "publisher": "Blackstone Publishing",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "thriller",
+        "domestic suspense",
+        "psychological"
+      ]
     },
     {
       "bookKey": "doppelganger-a-trip-into-the-mirror-world|naomi-klein",
@@ -3121,7 +3221,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Dell",
-      "year": 2004
+      "year": 2004,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "the-street-lawyer|john-grisham",
@@ -3137,7 +3242,12 @@
       "isbn": "0385339097",
       "isbn13": "9780385339094",
       "publisher": "Bantam",
-      "year": 2005
+      "year": 2005,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "the-client|john-grisham",
@@ -3153,7 +3263,12 @@
       "isbn": "0385339089",
       "isbn13": "9780385339087",
       "publisher": "Delta Trade Paperbacks",
-      "year": 2005
+      "year": 2005,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "the-firm|robin-waterfield",
@@ -3169,7 +3284,12 @@
       "isbn": "0582418275",
       "isbn13": "9780582418271",
       "publisher": "Addison Wesley Publishing Company",
-      "year": 2000
+      "year": 2000,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "sex-drugs-and-cocoa-puffs-a-low-culture-manifesto|chuck-klosterman",
@@ -3185,7 +3305,12 @@
       "isbn": "0743236017",
       "isbn13": "9780743236010",
       "publisher": "Scribner",
-      "year": 2004
+      "year": 2004,
+      "themes": [
+        "narrative nonfiction",
+        "humor",
+        "music history"
+      ]
     },
     {
       "bookKey": "fantasyland-true-tales-from-america-s-most-compulsive-fantasy-baseball-league|sam-walker",
@@ -3201,7 +3326,11 @@
       "isbn": "0143038435",
       "isbn13": "9780143038436",
       "publisher": "Penguin Publishing Group",
-      "year": 2007
+      "year": 2007,
+      "themes": [
+        "sports",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-accidental-billionaires-the-founding-of-facebook-a-tale-of-sex-money-genius-and-betrayal|ben-mezrich",
@@ -3217,7 +3346,12 @@
       "isbn": "0385529376",
       "isbn13": "9780385529372",
       "publisher": "Doubleday",
-      "year": 2009
+      "year": 2009,
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "finance"
+      ]
     },
     {
       "bookKey": "steve-jobs|walter-isaacson",
@@ -3233,7 +3367,12 @@
       "isbn": "1451648537",
       "isbn13": "9781451648539",
       "publisher": "Simon & Schuster",
-      "year": 2011
+      "year": 2011,
+      "themes": [
+        "biography",
+        "tech history",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-postmortal|drew-magary",
@@ -3249,7 +3388,12 @@
       "isbn": "0143119826",
       "isbn13": "9780143119821",
       "publisher": "Penguin Group USA",
-      "year": 2011
+      "year": 2011,
+      "themes": [
+        "speculative",
+        "humor",
+        "literary"
+      ]
     },
     {
       "bookKey": "the-extra-2-how-wall-street-strategies-took-a-major-league-baseball-team-from-worst-to-first|jonah-keri",
@@ -3265,7 +3409,12 @@
       "isbn": "0345517652",
       "isbn13": "9780345517654",
       "publisher": "ESPN Books",
-      "year": 2011
+      "year": 2011,
+      "themes": [
+        "sports",
+        "narrative nonfiction",
+        "finance"
+      ]
     },
     {
       "bookKey": "the-everything-store-jeff-bezos-and-the-age-of-amazon|brad-stone",
@@ -3281,7 +3430,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Little, Brown and Company",
-      "year": 2013
+      "year": 2013,
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "business"
+      ]
     },
     {
       "bookKey": "dream-team-how-michael-magic-larry-charles-and-the-greatest-team-of-all-time-conquered-the-world-and-changed-the-game-of-basketball-forever|jack-mccallum",
@@ -3297,7 +3451,12 @@
       "isbn": "0345520483",
       "isbn13": "9780345520487",
       "publisher": "Ballantine Books",
-      "year": 2012
+      "year": 2012,
+      "themes": [
+        "sports",
+        "history",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "hatching-twitter-a-true-story-of-money-power-friendship-and-betrayal|nick-bilton",
@@ -3313,7 +3472,12 @@
       "isbn": "1101605235",
       "isbn13": "9781101605233",
       "publisher": "Portfolio",
-      "year": 2013
+      "year": 2013,
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "business"
+      ]
     },
     {
       "bookKey": "i-wear-the-black-hat-grappling-with-villains|chuck-klosterman",
@@ -3329,7 +3493,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Scribner",
-      "year": 2013
+      "year": 2013,
+      "themes": [
+        "narrative nonfiction",
+        "humor",
+        "music history"
+      ]
     },
     {
       "bookKey": "ship-it-holla-ballas-how-a-bunch-of-19-year-old-college-dropouts-used-the-internet-to-become-poker-s-loudest-craziest-and-richest-crew|jonathan-grotenstein",
@@ -3345,7 +3514,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "St. Martin's Press",
-      "year": 2013
+      "year": 2013,
+      "themes": [
+        "narrative nonfiction",
+        "finance",
+        "humor"
+      ]
     },
     {
       "bookKey": "things-a-little-bird-told-me-confessions-of-the-creative-mind|biz-stone",
@@ -3361,7 +3535,12 @@
       "isbn": "1455528730",
       "isbn13": "9781455528738",
       "publisher": "Grand Central Publishing",
-      "year": 2014
+      "year": 2014,
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "memoir"
+      ]
     },
     {
       "bookKey": "flash-boys-a-wall-street-revolt|michael-lewis",
@@ -3377,7 +3556,12 @@
       "isbn": "0393244679",
       "isbn13": "9780393244670",
       "publisher": "W. W. Norton & Company",
-      "year": 2014
+      "year": 2014,
+      "themes": [
+        "narrative nonfiction",
+        "finance",
+        "tech history"
+      ]
     },
     {
       "bookKey": "the-blind-side|michael-lewis",
@@ -3393,7 +3577,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "W. W. Norton & Company",
-      "year": 2009
+      "year": 2009,
+      "themes": [
+        "sports",
+        "narrative nonfiction",
+        "biography"
+      ]
     },
     {
       "bookKey": "the-innovators-how-a-group-of-hackers-geniuses-and-geeks-created-the-digital-revolution|walter-isaacson",
@@ -3409,7 +3598,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Simon & Schuster",
-      "year": 2014
+      "year": 2014,
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "history"
+      ]
     },
     {
       "bookKey": "the-lagunitas-story-so-you-want-to-start-a-brewery|tony-magee",
@@ -3425,7 +3619,12 @@
       "isbn": "0985356456",
       "isbn13": "9780985356453",
       "publisher": "Charles Pinot",
-      "year": 2012
+      "year": 2012,
+      "themes": [
+        "narrative nonfiction",
+        "business",
+        "memoir"
+      ]
     },
     {
       "bookKey": "elon-musk-tesla-spacex-and-the-quest-for-a-fantastic-future|ashlee-vance",
@@ -3441,7 +3640,12 @@
       "isbn": "0062301268",
       "isbn13": "9780062301260",
       "publisher": "Ecco",
-      "year": 2015
+      "year": 2015,
+      "themes": [
+        "biography",
+        "tech history",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-martian|andy-weir",
@@ -3457,7 +3661,12 @@
       "isbn": "0804139024",
       "isbn13": "9780804139021",
       "publisher": "Crown Publishers",
-      "year": 2014
+      "year": 2014,
+      "themes": [
+        "speculative",
+        "sci-fi",
+        "high-concept"
+      ]
     },
     {
       "bookKey": "the-big-short-inside-the-doomsday-machine|michael-lewis",
@@ -3473,7 +3682,12 @@
       "isbn": "039335315X",
       "isbn13": "9780393353150",
       "publisher": "W. W. Norton & Company",
-      "year": 2015
+      "year": 2015,
+      "themes": [
+        "narrative nonfiction",
+        "finance",
+        "true crime"
+      ]
     },
     {
       "bookKey": "when-breath-becomes-air|paul-kalanithi",
@@ -3489,7 +3703,11 @@
       "isbn": "081298840X",
       "isbn13": "9780812988406",
       "publisher": "Random House",
-      "year": 2016
+      "year": 2016,
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "american-kingpin-the-epic-hunt-for-the-criminal-mastermind-behind-the-silk-road|nick-bilton",
@@ -3505,7 +3723,12 @@
       "isbn": "1591848148",
       "isbn13": "9781591848141",
       "publisher": "Portfolio",
-      "year": 2017
+      "year": 2017,
+      "themes": [
+        "true crime",
+        "narrative nonfiction",
+        "tech history"
+      ]
     },
     {
       "bookKey": "a-life-in-parts|bryan-cranston",
@@ -3521,7 +3744,11 @@
       "isbn": "1476793859",
       "isbn13": "9781476793856",
       "publisher": "Scribner",
-      "year": 2016
+      "year": 2016,
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "artemis|andy-weir",
@@ -3537,7 +3764,12 @@
       "isbn": "0553448137",
       "isbn13": "9780553448139",
       "publisher": "Crown",
-      "year": 2017
+      "year": 2017,
+      "themes": [
+        "speculative",
+        "sci-fi",
+        "high-concept"
+      ]
     },
     {
       "bookKey": "the-arsenal-of-democracy-fdr-detroit-and-an-epic-quest-to-arm-an-america-at-war|a-j-baime",
@@ -3553,7 +3785,12 @@
       "isbn": "0547719280",
       "isbn13": "9780547719283",
       "publisher": "Houghton Mifflin Harcourt",
-      "year": 2014
+      "year": 2014,
+      "themes": [
+        "history",
+        "military",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-accidental-president-harry-s-truman-and-the-four-months-that-changed-the-world|a-j-baime",
@@ -3569,7 +3806,12 @@
       "isbn": "0544617347",
       "isbn13": "9780544617346",
       "publisher": "Houghton Mifflin Harcourt",
-      "year": 2017
+      "year": 2017,
+      "themes": [
+        "history",
+        "political",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "unbroken-a-world-war-ii-story-of-survival-resilience-and-redemption|laura-hillenbrand",
@@ -3585,7 +3827,12 @@
       "isbn": "1400064163",
       "isbn13": "9781400064168",
       "publisher": "Random House",
-      "year": 2010
+      "year": 2010,
+      "themes": [
+        "history",
+        "military",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "evicted-poverty-and-profit-in-the-american-city|matthew-desmond",
@@ -3601,7 +3848,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Broadway Books",
-      "year": 2016
+      "year": 2016,
+      "themes": [
+        "narrative nonfiction",
+        "social commentary"
+      ]
     },
     {
       "bookKey": "educated|tara-westover",
@@ -3617,7 +3868,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Random House",
-      "year": 2018
+      "year": 2018,
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "chesapeake-requiem-a-year-with-the-watermen-of-vanishing-tangier-island|earl-swift",
@@ -3633,7 +3888,11 @@
       "isbn": "0062661418",
       "isbn13": "9780062661418",
       "publisher": "Mariner Books",
-      "year": 2018
+      "year": 2018,
+      "themes": [
+        "narrative nonfiction",
+        "history"
+      ]
     },
     {
       "bookKey": "seveneves|neal-stephenson",
@@ -3649,7 +3908,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "William Morrow",
-      "year": 2015
+      "year": 2015,
+      "themes": [
+        "speculative",
+        "sci-fi",
+        "high-concept"
+      ]
     },
     {
       "bookKey": "the-woman-in-the-window|a-j-finn",
@@ -3665,7 +3929,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "William Morrow",
-      "year": 2018
+      "year": 2018,
+      "themes": [
+        "thriller",
+        "psychological",
+        "suspense"
+      ]
     },
     {
       "bookKey": "the-outsider|stephen-king",
@@ -3681,7 +3950,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Scribner",
-      "year": 2018
+      "year": 2018,
+      "themes": [
+        "thriller",
+        "horror",
+        "psychological"
+      ]
     },
     {
       "bookKey": "the-chief-the-life-and-turbulent-times-of-chief-justice-john-roberts|joan-biskupic",
@@ -3697,7 +3971,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Basic Books",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "biography",
+        "political",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "bitcoin-billionaires-a-true-story-of-genius-betrayal-and-redemption|ben-mezrich",
@@ -3713,7 +3992,12 @@
       "isbn": "125021775X",
       "isbn13": "9781250217752",
       "publisher": "Flatiron Books",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "narrative nonfiction",
+        "finance",
+        "tech history"
+      ]
     },
     {
       "bookKey": "world-war-z-an-oral-history-of-the-zombie-war|max-brooks",
@@ -3729,7 +4013,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Crown",
-      "year": 2006
+      "year": 2006,
+      "themes": [
+        "speculative",
+        "horror",
+        "thriller"
+      ]
     },
     {
       "bookKey": "the-rosie-project|graeme-simsion",
@@ -3745,7 +4034,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Simon & Schuster",
-      "year": 2013
+      "year": 2013,
+      "themes": [
+        "contemporary",
+        "humor",
+        "romance"
+      ]
     },
     {
       "bookKey": "dopesick-dealers-doctors-and-the-drug-company-that-addicted-america|beth-macy",
@@ -3761,7 +4055,12 @@
       "isbn": "0316551287",
       "isbn13": "9780316551281",
       "publisher": "Little, Brown",
-      "year": 2018
+      "year": 2018,
+      "themes": [
+        "narrative nonfiction",
+        "true crime",
+        "social commentary"
+      ]
     },
     {
       "bookKey": "super-pumped-the-battle-for-uber|mike-isaac",
@@ -3777,7 +4076,12 @@
       "isbn": "0393652254",
       "isbn13": "9780393652253",
       "publisher": "W. W. Norton & Company",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "business"
+      ]
     },
     {
       "bookKey": "maybe-you-should-talk-to-someone-a-therapist-her-therapist-and-our-lives-revealed|lori-gottlieb",
@@ -3793,7 +4097,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Harper",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "memoir",
+        "psychology",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "dark-places|gillian-flynn",
@@ -3809,7 +4118,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Broadway Books",
-      "year": 2009
+      "year": 2009,
+      "themes": [
+        "thriller",
+        "psychological",
+        "crime"
+      ]
     },
     {
       "bookKey": "maid-hard-work-low-pay-and-a-mother-s-will-to-survive|stephanie-land",
@@ -3825,7 +4139,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Hachette Books",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "that-will-never-work-the-birth-of-netflix-and-the-amazing-life-of-an-idea|marc-randolph",
@@ -3841,7 +4159,12 @@
       "isbn": "0316530212",
       "isbn13": "9780316530217",
       "publisher": "Little, Brown and Company",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "business"
+      ]
     },
     {
       "bookKey": "recursion|blake-crouch",
@@ -3857,7 +4180,12 @@
       "isbn": "1524759805",
       "isbn13": "9781524759803",
       "publisher": "Ballantine Books",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "speculative",
+        "thriller",
+        "high-concept"
+      ]
     },
     {
       "bookKey": "dark-matter|blake-crouch",
@@ -3873,7 +4201,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Ballantine Books",
-      "year": 2016
+      "year": 2016,
+      "themes": [
+        "speculative",
+        "thriller",
+        "high-concept"
+      ]
     },
     {
       "bookKey": "someone-could-get-hurt-a-memoir-of-twenty-first-century-parenthood|drew-magary",
@@ -3889,7 +4222,12 @@
       "isbn": "159240832X",
       "isbn13": "9781592408320",
       "publisher": "Gotham",
-      "year": 2013
+      "year": 2013,
+      "themes": [
+        "memoir",
+        "humor",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "killing-yourself-to-live-85-of-a-true-story|chuck-klosterman",
@@ -3905,7 +4243,12 @@
       "isbn": "0743274482",
       "isbn13": "9780743274487",
       "publisher": "Scribner",
-      "year": 2005
+      "year": 2005,
+      "themes": [
+        "narrative nonfiction",
+        "humor",
+        "music history"
+      ]
     },
     {
       "bookKey": "notes-from-a-young-black-chef|kwame-onwuachi",
@@ -3921,7 +4264,12 @@
       "isbn": "1524732621",
       "isbn13": "9781524732622",
       "publisher": "Knopf",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "memoir",
+        "food",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "eat-a-peach|david-chang",
@@ -3937,7 +4285,12 @@
       "isbn": "152475921X",
       "isbn13": "9781524759216",
       "publisher": "Clarkson Potter Publishers",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "memoir",
+        "food",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "me|elton-john",
@@ -3953,7 +4306,12 @@
       "isbn": "1250147611",
       "isbn13": "9781250147615",
       "publisher": "Henry Holt and Co.",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "memoir",
+        "biography",
+        "music history"
+      ]
     },
     {
       "bookKey": "shoe-dog|phil-knight",
@@ -3969,7 +4327,12 @@
       "isbn": "1501135937",
       "isbn13": "9781501135934",
       "publisher": "Scribner",
-      "year": 2016
+      "year": 2016,
+      "themes": [
+        "memoir",
+        "business",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-flight-attendant|chris-bohjalian",
@@ -3985,7 +4348,12 @@
       "isbn": "0385542429",
       "isbn13": "9780385542425",
       "publisher": "Doubleday",
-      "year": 2018
+      "year": 2018,
+      "themes": [
+        "thriller",
+        "psychological",
+        "suspense"
+      ]
     },
     {
       "bookKey": "three-ring-circus-kobe-shaq-phil-and-the-crazy-years-of-the-lakers-dynasty|jeff-pearlman",
@@ -4001,7 +4369,11 @@
       "isbn": "1328530663",
       "isbn13": "9781328530660",
       "publisher": "Mariner Books",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "sports",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "a-promised-land|barack-obama",
@@ -4017,7 +4389,12 @@
       "isbn": "1524763187",
       "isbn13": "9781524763183",
       "publisher": "Crown",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "memoir",
+        "political",
+        "history"
+      ]
     },
     {
       "bookKey": "the-stand|stephen-king",
@@ -4033,7 +4410,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Anchor",
-      "year": 2008
+      "year": 2008,
+      "themes": [
+        "speculative",
+        "horror",
+        "thriller"
+      ]
     },
     {
       "bookKey": "the-midnight-library|matt-haig",
@@ -4049,7 +4431,12 @@
       "isbn": "0525559485",
       "isbn13": "9780525559481",
       "publisher": "Viking",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "literary",
+        "speculative",
+        "contemporary"
+      ]
     },
     {
       "bookKey": "along-came-a-spider|james-patterson",
@@ -4065,7 +4452,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Little, Brown and Company",
-      "year": 2001
+      "year": 2001,
+      "themes": [
+        "thriller",
+        "crime",
+        "suspense"
+      ]
     },
     {
       "bookKey": "project-hail-mary|andy-weir",
@@ -4081,7 +4473,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Ballantine Books",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "speculative",
+        "sci-fi",
+        "high-concept"
+      ]
     },
     {
       "bookKey": "the-secret-life-of-groceries-the-dark-miracle-of-the-american-supermarket|benjamin-lorr",
@@ -4097,7 +4494,11 @@
       "isbn": "0553459406",
       "isbn13": "9780553459401",
       "publisher": "Avery",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "narrative nonfiction",
+        "business"
+      ]
     },
     {
       "bookKey": "amazon-unbound-jeff-bezos-and-the-invention-of-a-global-empire|brad-stone",
@@ -4113,7 +4514,12 @@
       "isbn": "1982132639",
       "isbn13": "9781982132637",
       "publisher": "Simon & Schuster",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "business"
+      ]
     },
     {
       "bookKey": "pappyland-a-story-of-family-fine-bourbon-and-the-things-that-last|wright-thompson",
@@ -4129,7 +4535,12 @@
       "isbn": "073522126X",
       "isbn13": "9780735221260",
       "publisher": "Penguin Press",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "narrative nonfiction",
+        "history",
+        "sports"
+      ]
     },
     {
       "bookKey": "paradise-one-town-s-struggle-to-survive-an-american-wildfire|lizzie-johnson",
@@ -4145,7 +4556,11 @@
       "isbn": "059313639X",
       "isbn13": "9780593136393",
       "publisher": "Crown",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "narrative nonfiction",
+        "true crime"
+      ]
     },
     {
       "bookKey": "the-plot|jean-hanff-korelitz",
@@ -4161,7 +4576,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Celadon",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "thriller",
+        "literary",
+        "psychological"
+      ]
     },
     {
       "bookKey": "crying-in-h-mart|michelle-zauner",
@@ -4177,7 +4597,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Knopf",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-storyteller-tales-of-life-and-music|dave-grohl",
@@ -4193,7 +4617,12 @@
       "isbn": "006307611X",
       "isbn13": "9780063076112",
       "publisher": "Dey Street Books",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "memoir",
+        "music history",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-greatest-beer-run-ever-a-memoir-of-friendship-loyalty-and-war|john-chick-donohue",
@@ -4209,7 +4638,12 @@
       "isbn": "0062995480",
       "isbn13": "9780062995483",
       "publisher": "William Morrow",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "memoir",
+        "history",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "tanking-to-the-top-the-philadelphia-76ers-and-the-most-audacious-process-in-the-history-of-professional-sports|yaron-weitzman",
@@ -4225,7 +4659,11 @@
       "isbn": "1538749742",
       "isbn13": "9781538749746",
       "publisher": "Grand Central Publishing",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "sports",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "one-day-the-extraordinary-story-of-an-ordinary-24-hours-in-america|gene-weingarten",
@@ -4241,7 +4679,10 @@
       "isbn": "0698135598",
       "isbn13": "9780698135598",
       "publisher": "Blue Rider Press",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-seven-husbands-of-evelyn-hugo|taylor-jenkins-reid",
@@ -4257,7 +4698,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Washington Square Press",
-      "year": 2017
+      "year": 2017,
+      "themes": [
+        "contemporary",
+        "literary",
+        "historical"
+      ]
     },
     {
       "bookKey": "the-glass-castle|jeannette-walls",
@@ -4273,7 +4719,11 @@
       "isbn": "074324754X",
       "isbn13": "9780743247542",
       "publisher": "Scribner",
-      "year": 2006
+      "year": 2006,
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "daisy-jones-the-six|taylor-jenkins-reid",
@@ -4289,7 +4739,12 @@
       "isbn": "1524798622",
       "isbn13": "9781524798628",
       "publisher": "Ballantine Books",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "contemporary",
+        "literary",
+        "music history"
+      ]
     },
     {
       "bookKey": "upgrade|blake-crouch",
@@ -4305,7 +4760,12 @@
       "isbn": "0593157516",
       "isbn13": "9780593157510",
       "publisher": "Ballantine Books",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "speculative",
+        "sci-fi",
+        "thriller"
+      ]
     },
     {
       "bookKey": "tomorrow-and-tomorrow-and-tomorrow|gabrielle-zevin",
@@ -4321,7 +4781,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Knopf",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "literary",
+        "contemporary"
+      ]
     },
     {
       "bookKey": "carrie-soto-is-back|taylor-jenkins-reid",
@@ -4337,7 +4801,12 @@
       "isbn": "0593158695",
       "isbn13": "9780593158692",
       "publisher": "Ballantine Books",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "contemporary",
+        "literary",
+        "sports"
+      ]
     },
     {
       "bookKey": "drowning|t-j-newman",
@@ -4353,7 +4822,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Avid Reader Press / Simon & Schuster",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "thriller",
+        "suspense",
+        "high-concept"
+      ]
     },
     {
       "bookKey": "this-is-going-to-hurt-secret-diaries-of-a-junior-doctor|adam-kay",
@@ -4369,7 +4843,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Picador",
-      "year": 2017
+      "year": 2017,
+      "themes": [
+        "memoir",
+        "humor",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-dumb-money-the-gamestop-short-squeeze-and-the-ragtag-group-of-amateur-traders-that-brought-wall-street-to-its-knees|ben-mezrich",
@@ -4385,7 +4864,12 @@
       "isbn": "1538707586",
       "isbn13": "9781538707586",
       "publisher": "Grand Central Publishing",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "narrative nonfiction",
+        "finance",
+        "tech history"
+      ]
     },
     {
       "bookKey": "the-investigator|john-sandford",
@@ -4401,7 +4885,12 @@
       "isbn": "0593328698",
       "isbn13": "9780593328699",
       "publisher": "G.P. Putnam's Sons",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "thriller",
+        "crime",
+        "suspense"
+      ]
     },
     {
       "bookKey": "behind-closed-doors|b-a-paris",
@@ -4417,7 +4906,12 @@
       "isbn": "1250121000",
       "isbn13": "9781250121004",
       "publisher": "St. Martin's Press",
-      "year": 2016
+      "year": 2016,
+      "themes": [
+        "thriller",
+        "psychological",
+        "domestic suspense"
+      ]
     },
     {
       "bookKey": "elon-musk|walter-isaacson",
@@ -4433,7 +4927,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Simon & Schuster",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "biography",
+        "tech history",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "lessons-in-chemistry|bonnie-garmus",
@@ -4449,7 +4948,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Doubleday",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "literary",
+        "contemporary",
+        "humor"
+      ]
     },
     {
       "bookKey": "every-day|david-levithan",
@@ -4465,7 +4969,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Knopf Books for Young Readers",
-      "year": 2012
+      "year": 2012,
+      "themes": [
+        "contemporary",
+        "speculative",
+        "YA"
+      ]
     },
     {
       "bookKey": "the-wager-a-tale-of-shipwreck-mutiny-and-murder|david-grann",
@@ -4481,7 +4990,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Vintage",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "history",
+        "narrative nonfiction",
+        "adventure"
+      ]
     },
     {
       "bookKey": "the-lost-city-of-z-a-tale-of-deadly-obsession-in-the-amazon|david-grann",
@@ -4497,7 +5011,12 @@
       "isbn": "0385513534",
       "isbn13": "9780385513531",
       "publisher": "Doubleday/Random House (NY)",
-      "year": 2009
+      "year": 2009,
+      "themes": [
+        "history",
+        "narrative nonfiction",
+        "adventure"
+      ]
     },
     {
       "bookKey": "the-other-valley|scott-alexander-howard",
@@ -4513,7 +5032,11 @@
       "isbn": "1668015498",
       "isbn13": "9781668015490",
       "publisher": "Atria Books",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "speculative",
+        "literary"
+      ]
     },
     {
       "bookKey": "presumed-innocent|scott-turow",
@@ -4529,7 +5052,12 @@
       "isbn": "1538757044",
       "isbn13": "9781538757048",
       "publisher": "Grand Central Publishing",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "from-the-corner-of-the-oval|beck-dorey-stein",
@@ -4545,7 +5073,12 @@
       "isbn": "0525509135",
       "isbn13": "9780525509134",
       "publisher": "Random House",
-      "year": 2018
+      "year": 2018,
+      "themes": [
+        "memoir",
+        "political",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-invisible-life-of-addie-larue|v-e-schwab",
@@ -4561,7 +5094,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Tor Books",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "literary",
+        "speculative",
+        "historical"
+      ]
     },
     {
       "bookKey": "sorry-i-m-late-i-didn-t-want-to-come-one-introvert-s-year-of-saying-yes|jessica-pan",
@@ -4577,7 +5115,12 @@
       "isbn": "1524854395",
       "isbn13": "9781524854393",
       "publisher": "Andrews McMeel Publishing, LLC",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "memoir",
+        "humor",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "into-thin-air|jon-krakauer",
@@ -4593,7 +5136,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Anchor",
-      "year": 1998
+      "year": 1998,
+      "themes": [
+        "narrative nonfiction",
+        "adventure",
+        "history"
+      ]
     },
     {
       "bookKey": "the-heiress|rachel-hawkins",
@@ -4609,7 +5157,12 @@
       "isbn": "1250280044",
       "isbn13": "9781250280046",
       "publisher": "St. Martin's Press",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "thriller",
+        "mystery",
+        "suspense"
+      ]
     },
     {
       "bookKey": "annie-bot|sierra-greer",
@@ -4625,7 +5178,12 @@
       "isbn": "0063312719",
       "isbn13": "9780063312715",
       "publisher": "Mariner Books",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "speculative",
+        "literary",
+        "thriller"
+      ]
     },
     {
       "bookKey": "the-housemaid|freida-mcfadden",
@@ -4641,7 +5199,12 @@
       "isbn": "1803144378",
       "isbn13": "9781803144375",
       "publisher": "Bookouture",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "thriller",
+        "psychological",
+        "domestic suspense"
+      ]
     },
     {
       "bookKey": "i-hope-this-finds-you-well|natalie-sue",
@@ -4657,7 +5220,11 @@
       "isbn": "006332038X",
       "isbn13": "9780063320383",
       "publisher": "William Morrow",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "contemporary",
+        "humor"
+      ]
     },
     {
       "bookKey": "source-code-my-beginnings|bill-gates",
@@ -4673,7 +5240,12 @@
       "isbn": "0593801598",
       "isbn13": "9780593801598",
       "publisher": "Vintage",
-      "year": 2025
+      "year": 2025,
+      "themes": [
+        "memoir",
+        "tech history",
+        "biography"
+      ]
     },
     {
       "bookKey": "the-perfect-marriage|jeneva-rose",
@@ -4689,7 +5261,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Corner Star Press",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "thriller",
+        "domestic suspense",
+        "psychological"
+      ]
     },
     {
       "bookKey": "12-months-to-live|james-patterson",
@@ -5015,7 +5592,12 @@
       "isbn": "1668023954",
       "isbn13": "9781668023952",
       "publisher": "Simon & Schuster",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "thriller",
+        "mystery",
+        "suspense"
+      ]
     },
     {
       "bookKey": "not-quite-dead-yet|holly-jackson",
@@ -5109,7 +5691,12 @@
       "isbn": "0385548966",
       "isbn13": "9780385548960",
       "publisher": "Vintage",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "english-creek|ivan-doig",
@@ -5496,7 +6083,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Dell",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "the-crash|freida-mcfadden",
@@ -5544,7 +6136,12 @@
       "isbn": "1538721872",
       "isbn13": "9781538721872",
       "publisher": "Little, Brown and Company",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "thriller",
+        "crime",
+        "suspense"
+      ]
     },
     {
       "bookKey": "the-bomber-mafia-a-dream-a-temptation-and-the-longest-night-of-the-second-world-war|malcolm-gladwell",
@@ -5560,7 +6157,12 @@
       "isbn": "0316296813",
       "isbn13": "9780316296816",
       "publisher": "Little, Brown Paperbacks",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "history",
+        "military",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-first-gentleman|bill-clinton",
@@ -5606,7 +6208,12 @@
       "isbn": "0593158725",
       "isbn13": "9780593158722",
       "publisher": "Ballantine Books",
-      "year": 2025
+      "year": 2025,
+      "themes": [
+        "contemporary",
+        "literary",
+        "romance"
+      ]
     },
     {
       "bookKey": "dissolution|nicholas-binge",
@@ -5715,7 +6322,12 @@
       "isbn": "1728296218",
       "isbn13": "9781728296210",
       "publisher": "Poisoned Pen Press",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "thriller",
+        "psychological",
+        "domestic suspense"
+      ]
     },
     {
       "bookKey": "the-man-made-of-smoke|alex-north",
@@ -5808,7 +6420,12 @@
       "isbn": "0062909126",
       "isbn13": "9780062909121",
       "publisher": "HarperCollins Publishers Ltd",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "biography",
+        "food",
+        "memoir"
+      ]
     },
     {
       "bookKey": "the-last-letter|rebecca-yarros",
@@ -6040,7 +6657,12 @@
       "isbn": "1542020360",
       "isbn13": "9781542020367",
       "publisher": "Thomas & Mercer",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "thriller",
+        "legal",
+        "suspense"
+      ]
     },
     {
       "bookKey": "tell-no-one|harlan-coben",
@@ -6134,7 +6756,12 @@
       "isbn": "038549565X",
       "isbn13": "9780385495653",
       "publisher": "Vintage",
-      "year": 2002
+      "year": 2002,
+      "themes": [
+        "history",
+        "military",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "paper-towns|john-green",
@@ -6150,7 +6777,12 @@
       "isbn": "014241493X",
       "isbn13": "9780142414934",
       "publisher": "Speak",
-      "year": 2009
+      "year": 2009,
+      "themes": [
+        "contemporary",
+        "literary",
+        "YA"
+      ]
     },
     {
       "bookKey": "the-tycoons-how-andrew-carnegie-john-d-rockefeller-jay-gould-and-j-p-morgan-invented-the-american-supereconomy|charles-r-morris",
@@ -6259,7 +6891,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Atlantic Monthly Press",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "speculative",
+        "literary",
+        "sci-fi"
+      ]
     },
     {
       "bookKey": "never-lie|freida-mcfadden",
@@ -6275,7 +6912,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Hollywood Upstairs Press",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "thriller",
+        "psychological",
+        "domestic suspense"
+      ]
     },
     {
       "bookKey": "the-perks-of-being-a-wallflower|stephen-chbosky",
@@ -6367,7 +7009,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Speak",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "contemporary",
+        "literary",
+        "YA"
+      ]
     },
     {
       "bookKey": "challenger-a-true-story-of-heroism-and-disaster-on-the-edge-of-space|adam-higginbotham",
@@ -6474,7 +7121,12 @@
       "isbn": "1837901317",
       "isbn13": "9781837901319",
       "publisher": "Bookouture",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "thriller",
+        "psychological",
+        "domestic suspense"
+      ]
     },
     {
       "bookKey": "the-boyfriend|freida-mcfadden",
@@ -6647,7 +7299,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Random House",
-      "year": 2014
+      "year": 2014,
+      "themes": [
+        "thriller",
+        "crime",
+        "suspense"
+      ]
     },
     {
       "bookKey": "the-blackbriar-genesis|simon-gervais",
@@ -6709,7 +7366,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Pamela Dorman Books",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "thriller",
+        "domestic suspense",
+        "mystery"
+      ]
     },
     {
       "bookKey": "grit-the-power-of-passion-and-perseverance|angela-duckworth",
@@ -6850,7 +7512,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Andy Weir / Galactanet",
-      "year": 2009
+      "year": 2009,
+      "themes": [
+        "speculative",
+        "sci-fi"
+      ]
     },
     {
       "bookKey": "flash-crash-a-trading-savant-a-global-manhunt-and-the-most-mysterious-market-crash-in-history|liam-vaughan",
@@ -6866,7 +7532,12 @@
       "isbn": "0385543654",
       "isbn13": "9780385543651",
       "publisher": "Doubleday Books",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "narrative nonfiction",
+        "finance",
+        "true crime"
+      ]
     },
     {
       "bookKey": "worst-case-scenario|t-j-newman",
@@ -6898,7 +7569,12 @@
       "isbn": "1250263654",
       "isbn13": "9781250263650",
       "publisher": "St. Martin's Press",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "narrative nonfiction",
+        "history",
+        "adventure"
+      ]
     },
     {
       "bookKey": "lonesome-dove|larry-mcmurtry",
@@ -7396,7 +8072,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Ecco",
-      "year": 2017
+      "year": 2017,
+      "themes": [
+        "thriller",
+        "crime",
+        "noir"
+      ]
     },
     {
       "bookKey": "everybody-knows|jordan-harper",
@@ -7412,7 +8093,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Mulholland Books",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "thriller",
+        "crime",
+        "noir"
+      ]
     },
     {
       "bookKey": "heartbreak-is-the-national-anthem-how-taylor-swift-reinvented-pop-music|rob-sheffield",
@@ -7458,7 +8144,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Farrar, Straus and Giroux",
-      "year": 2010
+      "year": 2010,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "the-last-one-at-the-wedding|jason-rekulak",
@@ -7535,7 +8226,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "St. Martin's Press",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "literary",
+        "historical",
+        "contemporary"
+      ]
     },
     {
       "bookKey": "abandon|blake-crouch",
@@ -7661,7 +8357,12 @@
       "isbn": "0316540730",
       "isbn13": "9780316540735",
       "publisher": "Little, Brown and Company and Knopf",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "political",
+        "thriller",
+        "suspense"
+      ]
     },
     {
       "bookKey": "liv-and-let-die-the-inside-story-of-the-war-between-the-pga-tour-and-liv-golf|alan-shipnuck",
@@ -7740,7 +8441,11 @@
       "isbn": "0063204177",
       "isbn13": "9780063204171",
       "publisher": "Ecco",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "literary",
+        "contemporary"
+      ]
     },
     {
       "bookKey": "born-to-run-a-hidden-tribe-superathletes-and-the-greatest-race-the-world-has-never-seen|christopher-mcdougall",
@@ -7772,7 +8477,12 @@
       "isbn": "0316565083",
       "isbn13": "9780316565080",
       "publisher": "Little, Brown and Company",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "thriller",
+        "speculative",
+        "high-concept"
+      ]
     },
     {
       "bookKey": "the-anthropocene-reviewed-essays-on-a-human-centered-planet|john-green",
@@ -7804,7 +8514,12 @@
       "isbn": "0385546009",
       "isbn13": "9780385546003",
       "publisher": "Doubleday",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "thriller",
+        "mystery",
+        "suspense"
+      ]
     },
     {
       "bookKey": "the-book-of-dog-a-satire|d-j-molles",
@@ -7851,7 +8566,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Atria Books",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "thriller",
+        "legal",
+        "crime"
+      ]
     },
     {
       "bookKey": "the-burden-of-proof|scott-turow",
@@ -8022,7 +8742,12 @@
       "isbn": "0307739309",
       "isbn13": "9780307739308",
       "publisher": "Vintage",
-      "year": 2010
+      "year": 2010,
+      "themes": [
+        "literary",
+        "contemporary",
+        "romance"
+      ]
     },
     {
       "bookKey": "frogcatchers|jeff-lemire",
@@ -8099,7 +8824,12 @@
       "isbn": "0679605231",
       "isbn13": "9780679605232",
       "publisher": "Random House",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "memoir",
+        "food",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "reading-the-oed-one-man-one-year-21-730-pages|ammon-shea",
@@ -8161,7 +8891,11 @@
       "isbn": "0063318636",
       "isbn13": "9780063318632",
       "publisher": "Mariner Books",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "sports",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "end-of-story|a-j-finn",
@@ -8439,7 +9173,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Ballantine Books",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "literary",
+        "contemporary",
+        "speculative"
+      ]
     },
     {
       "bookKey": "there-s-always-this-year-on-basketball-and-ascension|hanif-abdurraqib",
@@ -8626,7 +9365,12 @@
       "isbn": "0593317386",
       "isbn13": "9780593317389",
       "publisher": "Vintage",
-      "year": 2024
+      "year": 2024,
+      "themes": [
+        "sports",
+        "biography",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-three-body-problem|liu-cixin",
@@ -8689,7 +9433,11 @@
       "isbn": "0593190513",
       "isbn13": "9780593190517",
       "publisher": "G.P. Putnam's Sons",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "literary",
+        "contemporary"
+      ]
     },
     {
       "bookKey": "revival|stephen-king",
@@ -8767,7 +9515,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Scribner",
-      "year": 2018
+      "year": 2018,
+      "themes": [
+        "literary",
+        "speculative",
+        "contemporary"
+      ]
     },
     {
       "bookKey": "the-storied-life-of-a-j-fikry|gabrielle-zevin",
@@ -8783,7 +9536,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Algonquin Books",
-      "year": 2014
+      "year": 2014,
+      "themes": [
+        "literary",
+        "contemporary"
+      ]
     },
     {
       "bookKey": "the-statistical-probability-of-love-at-first-sight|jennifer-e-smith",
@@ -8799,7 +9556,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Poppy",
-      "year": 2012
+      "year": 2012,
+      "themes": [
+        "contemporary",
+        "romance"
+      ]
     },
     {
       "bookKey": "hello-goodbye-and-everything-in-between|jennifer-e-smith",
@@ -8938,7 +9699,12 @@
       "isbn": "0593356187",
       "isbn13": "9780593356180",
       "publisher": "Ballantine Books",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "thriller",
+        "mystery",
+        "suspense"
+      ]
     },
     {
       "bookKey": "flying-blind-the-737-max-tragedy-and-the-fall-of-boeing|peter-robison",
@@ -9001,7 +9767,12 @@
       "isbn": "0385756224",
       "isbn13": "9780385756228",
       "publisher": "Knopf Books for Young Readers",
-      "year": 2015
+      "year": 2015,
+      "themes": [
+        "contemporary",
+        "speculative",
+        "YA"
+      ]
     },
     {
       "bookKey": "the-art-thief-a-true-story-of-love-crime-and-a-dangerous-obsession|michael-finkel",
@@ -9017,7 +9788,12 @@
       "isbn": "0525657339",
       "isbn13": "9780525657330",
       "publisher": "Vintage",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "narrative nonfiction",
+        "true crime",
+        "history"
+      ]
     },
     {
       "bookKey": "the-power-law-venture-capital-and-the-making-of-the-new-future|sebastian-mallaby",
@@ -9144,7 +9920,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Scribner",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "thriller",
+        "horror",
+        "psychological"
+      ]
     },
     {
       "bookKey": "a-criminal-justice|william-l-myers-jr",
@@ -9254,7 +10035,12 @@
       "isbn": "1324074345",
       "isbn13": "9781324074342",
       "publisher": "W. W. Norton & Company",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "narrative nonfiction",
+        "finance",
+        "true crime"
+      ]
     },
     {
       "bookKey": "the-wise-men-six-friends-and-the-world-they-made|walter-isaacson",
@@ -9767,7 +10553,12 @@
       "isbn": "125027415X",
       "isbn13": "9781250274151",
       "publisher": "St. Martin's Press",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "thriller",
+        "psychological",
+        "suspense"
+      ]
     },
     {
       "bookKey": "dark-angel|john-sandford",
@@ -10432,7 +11223,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Grand Central Publishing",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "thriller",
+        "psychological",
+        "domestic suspense"
+      ]
     },
     {
       "bookKey": "romantic-comedy|curtis-sittenfeld",
@@ -10448,7 +11244,12 @@
       "isbn": "0399590943",
       "isbn13": "9780399590948",
       "publisher": "Random House",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "contemporary",
+        "romance",
+        "humor"
+      ]
     },
     {
       "bookKey": "for-blood-and-money-billionaires-biotech-and-the-quest-for-a-blockbuster-drug|nathan-vardi",
@@ -10525,7 +11326,12 @@
       "isbn": "0306925532",
       "isbn13": "9780306925535",
       "publisher": "Legacy Lit",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "narrative nonfiction",
+        "business",
+        "memoir"
+      ]
     },
     {
       "bookKey": "cassandra-in-reverse|holly-smale",
@@ -10588,7 +11394,12 @@
       "isbn": "1629377503",
       "isbn13": "9781629377506",
       "publisher": "Triumph Books",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "sports",
+        "biography",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "mr-texas|lawrence-wright",
@@ -10773,7 +11584,12 @@
       "isbn": "0316531243",
       "isbn13": "9780316531245",
       "publisher": "Mulholland Books",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "thriller",
+        "suspense",
+        "psychological"
+      ]
     },
     {
       "bookKey": "the-boys-from-biloxi|john-grisham",
@@ -10789,7 +11605,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Vintage",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "legal",
+        "thriller",
+        "historical"
+      ]
     },
     {
       "bookKey": "partners-a-rogue-lawyer-short-story|john-grisham",
@@ -10931,7 +11752,12 @@
       "isbn": "0062998900",
       "isbn13": "9780062998903",
       "publisher": "Ecco",
-      "year": 2023
+      "year": 2023,
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "business"
+      ]
     },
     {
       "bookKey": "the-battle-for-your-brain-defending-the-right-to-think-freely-in-the-age-of-neurotechnology|nita-a-farahany",
@@ -11072,7 +11898,12 @@
       "isbn": "1488075891",
       "isbn13": "9781488075896",
       "publisher": "Hanover Square Press",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "thriller",
+        "crime",
+        "suspense"
+      ]
     },
     {
       "bookKey": "stop-at-nothing|michael-ledwidge",
@@ -11088,7 +11919,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Hanover Square Press",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "thriller",
+        "crime",
+        "suspense"
+      ]
     },
     {
       "bookKey": "the-measure|nikki-erlick",
@@ -11104,7 +11940,12 @@
       "isbn": "0063204223",
       "isbn13": "9780063204225",
       "publisher": "William Morrow",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "speculative",
+        "literary",
+        "contemporary"
+      ]
     },
     {
       "bookKey": "little-children|tom-perrotta",
@@ -11120,7 +11961,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": null,
-      "year": 2004
+      "year": 2004,
+      "themes": [
+        "literary",
+        "contemporary"
+      ]
     },
     {
       "bookKey": "poverty-by-america|matthew-desmond",
@@ -11357,7 +12202,12 @@
       "isbn": "1501144081",
       "isbn13": "9781501144080",
       "publisher": "Scribner",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "literary",
+        "contemporary",
+        "political"
+      ]
     },
     {
       "bookKey": "desert-places|blake-crouch",
@@ -11452,7 +12302,12 @@
       "isbn": "0358438713",
       "isbn13": "9780358438717",
       "publisher": "Mariner Books",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "sports",
+        "biography",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-last-town|blake-crouch",
@@ -11468,7 +12323,12 @@
       "isbn": "0593598512",
       "isbn13": "9780593598511",
       "publisher": "Ballantine Books",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "speculative",
+        "thriller",
+        "high-concept"
+      ]
     },
     {
       "bookKey": "wayward-wayward-pines-2|blake-crouch",
@@ -11484,7 +12344,12 @@
       "isbn": "0593598490",
       "isbn13": "9780593598498",
       "publisher": "Ballantine Books",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "speculative",
+        "thriller",
+        "high-concept"
+      ]
     },
     {
       "bookKey": "stolen-focus-why-you-can-t-pay-attention-and-how-to-think-deeply-again|johann-hari",
@@ -11531,7 +12396,12 @@
       "isbn": "0525539026",
       "isbn13": "9780525539025",
       "publisher": "Riverhead Books",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "literary",
+        "speculative",
+        "contemporary"
+      ]
     },
     {
       "bookKey": "the-maid|nita-prose",
@@ -11563,7 +12433,12 @@
       "isbn": "0593598334",
       "isbn13": "9780593598337",
       "publisher": "Ballantine Books",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "speculative",
+        "thriller",
+        "high-concept"
+      ]
     },
     {
       "bookKey": "evidence-of-the-affair|taylor-jenkins-reid",
@@ -11736,7 +12611,12 @@
       "isbn": "1982173637",
       "isbn13": "9781982173630",
       "publisher": "Scribner",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "thriller",
+        "crime",
+        "literary"
+      ]
     },
     {
       "bookKey": "american-dirt|jeanine-cummins",
@@ -11752,7 +12632,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Flatiron Books",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "literary",
+        "thriller",
+        "contemporary"
+      ]
     },
     {
       "bookKey": "the-genome-defense-inside-the-epic-legal-battle-to-determine-who-owns-your-dna|jorge-l-contreras",
@@ -11830,7 +12715,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Dutton",
-      "year": 2007
+      "year": 2007,
+      "themes": [
+        "thriller",
+        "mystery",
+        "suspense"
+      ]
     },
     {
       "bookKey": "can-t-knock-the-hustle-inside-the-season-of-protest-pandemic-and-progress-with-the-brooklyn-nets-superstars-of-tomorrow|matt-sullivan",
@@ -12032,7 +12922,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Atria Books",
-      "year": 2014
+      "year": 2014,
+      "themes": [
+        "contemporary",
+        "romance",
+        "literary"
+      ]
     },
     {
       "bookKey": "sweetness-the-enigmatic-life-of-walter-payton|jeff-pearlman",
@@ -12095,7 +12990,12 @@
       "isbn": "1250301696",
       "isbn13": "9781250301697",
       "publisher": "Celadon Books",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "thriller",
+        "psychological",
+        "mystery"
+      ]
     },
     {
       "bookKey": "maybe-in-another-life|taylor-jenkins-reid",
@@ -12111,7 +13011,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Atria Books",
-      "year": 2015
+      "year": 2015,
+      "themes": [
+        "contemporary",
+        "romance"
+      ]
     },
     {
       "bookKey": "one-true-loves|taylor-jenkins-reid",
@@ -12127,7 +13031,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Washington Square Press",
-      "year": 2016
+      "year": 2016,
+      "themes": [
+        "contemporary",
+        "romance"
+      ]
     },
     {
       "bookKey": "where-the-crawdads-sing|delia-owens",
@@ -12143,7 +13051,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "G.P. Putnam's Sons",
-      "year": 2018
+      "year": 2018,
+      "themes": [
+        "literary",
+        "thriller",
+        "mystery"
+      ]
     },
     {
       "bookKey": "rickey-the-life-and-legend-of-an-american-original|howard-bryant",
@@ -12175,7 +13088,12 @@
       "isbn": "1476797110",
       "isbn13": "9781476797113",
       "publisher": "Avid Reader Press / Simon & Schuster",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "sports",
+        "biography",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-last-thing-he-told-me|laura-dave",
@@ -12191,7 +13109,12 @@
       "isbn": "1501171364",
       "isbn13": "9781501171369",
       "publisher": "Simon & Schuster",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "thriller",
+        "mystery",
+        "suspense"
+      ]
     },
     {
       "bookKey": "malibu-rising|taylor-jenkins-reid",
@@ -12207,7 +13130,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Ballantine Books",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "contemporary",
+        "literary"
+      ]
     },
     {
       "bookKey": "turtles-all-the-way-down|john-green",
@@ -12223,7 +13150,12 @@
       "isbn": "0525555358",
       "isbn13": "9780525555353",
       "publisher": "Dutton Books for Young Readers",
-      "year": 2017
+      "year": 2017,
+      "themes": [
+        "contemporary",
+        "literary",
+        "YA"
+      ]
     },
     {
       "bookKey": "sparring-partners|john-grisham",
@@ -12798,7 +13730,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Atria Books",
-      "year": 2022
+      "year": 2022,
+      "themes": [
+        "sports",
+        "history",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "ten-letters-the-american-people-in-the-obama-years|eli-saslow",
@@ -12875,7 +13812,12 @@
       "isbn": "080212304X",
       "isbn13": "9780802123046",
       "publisher": "Atlantic Monthly Press",
-      "year": 2014
+      "year": 2014,
+      "themes": [
+        "thriller",
+        "crime",
+        "noir"
+      ]
     },
     {
       "bookKey": "the-first-shots-the-epic-rivalries-and-heroic-science-behind-the-race-to-the-coronavirus-vaccine|brendan-borrell",
@@ -12891,7 +13833,11 @@
       "isbn": "0358569842",
       "isbn13": "9780358569848",
       "publisher": "Mariner Books",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "narrative nonfiction",
+        "history"
+      ]
     },
     {
       "bookKey": "the-nineties-a-book|chuck-klosterman",
@@ -12939,7 +13885,12 @@
       "isbn": "198482435X",
       "isbn13": "9781984824356",
       "publisher": "Crown",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "history",
+        "narrative nonfiction",
+        "adventure"
+      ]
     },
     {
       "bookKey": "sick-in-the-head-conversations-about-life-and-comedy|judd-apatow",
@@ -13018,7 +13969,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "HarperCollins",
-      "year": 2011
+      "year": 2011,
+      "themes": [
+        "narrative nonfiction",
+        "history"
+      ]
     },
     {
       "bookKey": "billion-dollar-whale-the-man-who-fooled-wall-street-hollywood-and-the-world|tom-wright",
@@ -13113,7 +14068,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "William Morrow",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-jailhouse-lawyer|james-patterson",
@@ -13129,7 +14088,12 @@
       "isbn": "0316280011",
       "isbn13": "9780316280013",
       "publisher": "Little, Brown and Company",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "legal",
+        "thriller",
+        "crime"
+      ]
     },
     {
       "bookKey": "diablo-mesa|douglas-preston",
@@ -13176,7 +14140,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "William Morrow",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "thriller",
+        "mystery",
+        "suspense"
+      ]
     },
     {
       "bookKey": "bittersweet-how-sorrow-and-longing-make-us-whole|susan-cain",
@@ -13253,7 +14222,12 @@
       "isbn": "0063057034",
       "isbn13": "9780063057036",
       "publisher": "William Morrow",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "thriller",
+        "mystery",
+        "crime"
+      ]
     },
     {
       "bookKey": "everyday-millionaires|chris-hogan",
@@ -13347,7 +14321,11 @@
       "isbn": "1683359208",
       "isbn13": "9781683359203",
       "publisher": "Abrams Press",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "sports",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "falling|t-j-newman",
@@ -13363,7 +14341,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Avid Reader Press / Simon & Schuster",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "thriller",
+        "suspense",
+        "high-concept"
+      ]
     },
     {
       "bookKey": "klara-and-the-sun|kazuo-ishiguro",
@@ -13456,7 +14439,12 @@
       "isbn": "0385546033",
       "isbn13": "9780385546034",
       "publisher": "Doubleday",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "lake-success|gary-shteyngart",
@@ -13472,7 +14460,12 @@
       "isbn": "0812997425",
       "isbn13": "9780812997422",
       "publisher": "Random House",
-      "year": 2018
+      "year": 2018,
+      "themes": [
+        "literary",
+        "contemporary",
+        "humor"
+      ]
     },
     {
       "bookKey": "giannis-the-improbable-rise-of-an-nba-mvp|mirin-fader",
@@ -13488,7 +14481,12 @@
       "isbn": "0306924102",
       "isbn13": "9780306924101",
       "publisher": "Grand Central Publishing",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "sports",
+        "biography",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "nine-perfect-strangers|liane-moriarty",
@@ -13675,7 +14673,12 @@
       "isbn": "1984825410",
       "isbn13": "9781984825414",
       "publisher": "Crown",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "memoir",
+        "humor",
+        "comedy"
+      ]
     },
     {
       "bookKey": "the-caesars-palace-coup-how-a-billionaire-brawl-over-the-famous-casino-exposed-the-corruption-of-the-private-equity-industry|max-frumes",
@@ -13986,7 +14989,12 @@
       "isbn": "0385547714",
       "isbn13": "9780385547710",
       "publisher": "Doubleday",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "sports",
+        "contemporary",
+        "literary"
+      ]
     },
     {
       "bookKey": "jack-jill|james-patterson",
@@ -14142,7 +15150,12 @@
       "isbn": "0525658661",
       "isbn13": "9780525658665",
       "publisher": "Vintage",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "thriller",
+        "speculative",
+        "high-concept"
+      ]
     },
     {
       "bookKey": "the-hot-hand-the-mystery-and-science-of-streaks|ben-cohen",
@@ -14158,7 +15171,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Custom House",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "sports",
+        "narrative nonfiction",
+        "psychology"
+      ]
     },
     {
       "bookKey": "kiss-the-girls|james-patterson",
@@ -14174,7 +15192,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Little, Brown and Company",
-      "year": 2002
+      "year": 2002,
+      "themes": [
+        "thriller",
+        "crime",
+        "suspense"
+      ]
     },
     {
       "bookKey": "the-president-is-missing|bill-clinton",
@@ -14190,7 +15213,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Little, Brown and Company and Knopf",
-      "year": 2018
+      "year": 2018,
+      "themes": [
+        "political",
+        "thriller",
+        "suspense"
+      ]
     },
     {
       "bookKey": "bitter-brew-the-rise-and-fall-of-anheuser-busch-and-america-s-kings-of-beer|william-knoedelseder",
@@ -14268,7 +15296,12 @@
       "isbn": "1982115874",
       "isbn13": "9781982115876",
       "publisher": "Simon & Schuster",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "biography"
+      ]
     },
     {
       "bookKey": "before-i-go-to-sleep|s-j-watson",
@@ -14284,7 +15317,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "HarperCollins Publishers",
-      "year": 2011
+      "year": 2011,
+      "themes": [
+        "thriller",
+        "psychological",
+        "suspense"
+      ]
     },
     {
       "bookKey": "chasing-the-thrill-obsession-death-and-glory-in-america-s-most-extraordinary-treasure-hunt|daniel-barbarisi",
@@ -14346,7 +15384,12 @@
       "isbn": "0385545975",
       "isbn13": "9780385545976",
       "publisher": "Random House",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "the-tomorrow-box|curtis-sittenfeld",
@@ -14394,7 +15437,12 @@
       "isbn": "1542031079",
       "isbn13": "9781542031073",
       "publisher": "Amazon Original Stories",
-      "year": 2021
+      "year": 2021,
+      "themes": [
+        "sports",
+        "memoir",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-humans|matt-haig",
@@ -15031,7 +16079,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Blake Crouch",
-      "year": 2011
+      "year": 2011,
+      "themes": [
+        "thriller",
+        "speculative",
+        "suspense"
+      ]
     },
     {
       "bookKey": "no-filter-the-inside-story-of-instagram|sarah-frier",
@@ -15143,7 +16196,12 @@
       "isbn": "1250154243",
       "isbn13": "9781250154248",
       "publisher": "Minotaur Books",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "thriller",
+        "psychological",
+        "crime"
+      ]
     },
     {
       "bookKey": "if-it-bleeds|stephen-king",
@@ -15301,7 +16359,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Random House",
-      "year": 2012
+      "year": 2012,
+      "themes": [
+        "memoir",
+        "food",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "amity-and-prosperity-one-family-and-the-fracturing-of-america|eliza-griswold",
@@ -15503,7 +16566,12 @@
       "isbn": "0385545940",
       "isbn13": "9780385545945",
       "publisher": "Knopf Doubleday Publishing Group",
-      "year": 2020
+      "year": 2020,
+      "themes": [
+        "thriller",
+        "mystery",
+        "suspense"
+      ]
     },
     {
       "bookKey": "just-mercy-a-story-of-justice-and-redemption|bryan-stevenson",
@@ -15583,7 +16651,12 @@
       "isbn": "0735217998",
       "isbn13": "9780735217997",
       "publisher": "Penguin",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "narrative nonfiction",
+        "finance",
+        "biography"
+      ]
     },
     {
       "bookKey": "boom-town-the-fantastical-saga-of-oklahoma-city-its-chaotic-founding-its-apocalyptic-weather-its-purloined-basketball-team-and-the-dream-of-becoming-a-world-class-metropolis|sam-anderson",
@@ -15631,7 +16704,11 @@
       "isbn": "1542044251",
       "isbn13": "9781542044257",
       "publisher": "Amazon Original Stories",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "speculative",
+        "sci-fi"
+      ]
     },
     {
       "bookKey": "the-reckoning|john-grisham",
@@ -15647,7 +16724,12 @@
       "isbn": "0385544162",
       "isbn13": "9780385544160",
       "publisher": "Doubleday",
-      "year": 2018
+      "year": 2018,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "cook-it-in-cast-iron-kitchen-tested-recipes-for-the-one-pan-that-does-it-all|cook-s-country",
@@ -15663,7 +16745,10 @@
       "isbn": "1940352487",
       "isbn13": "9781940352480",
       "publisher": "Cook's Country",
-      "year": 2016
+      "year": 2016,
+      "themes": [
+        "food"
+      ]
     },
     {
       "bookKey": "michael-symon-s-live-to-cook-recipes-and-techniques-to-rock-your-kitchen-a-cookbook|michael-symon",
@@ -15711,7 +16796,12 @@
       "isbn": "0735217947",
       "isbn13": "9780735217942",
       "publisher": "Penguin Books",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "literary",
+        "humor",
+        "speculative"
+      ]
     },
     {
       "bookKey": "hungry-eating-road-tripping-and-risking-it-all-with-the-greatest-chef-in-the-world|jeff-gordinier",
@@ -15727,7 +16817,12 @@
       "isbn": "152475966X",
       "isbn13": "9781524759667",
       "publisher": "Crown",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "memoir",
+        "food",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "three-women|lisa-taddeo",
@@ -15743,7 +16838,11 @@
       "isbn": "1451642318",
       "isbn13": "9781451642315",
       "publisher": "Avid Reader Press / Simon & Schuster",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "narrative nonfiction",
+        "contemporary"
+      ]
     },
     {
       "bookKey": "baseball-prospectus-2019|baseball-prospectus",
@@ -15775,7 +16874,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Vintage",
-      "year": 2010
+      "year": 2010,
+      "themes": [
+        "narrative nonfiction",
+        "true crime",
+        "history"
+      ]
     },
     {
       "bookKey": "think-like-a-chef-a-cookbook|tom-colicchio",
@@ -15839,7 +16943,12 @@
       "isbn": "0553459813",
       "isbn13": "9780553459814",
       "publisher": "Clarkson Potter",
-      "year": 2017
+      "year": 2017,
+      "themes": [
+        "business",
+        "food",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "methland-the-death-and-life-of-an-american-small-town|nick-reding",
@@ -15871,7 +16980,12 @@
       "isbn": "1925773477",
       "isbn13": "9781925773477",
       "publisher": "Text Publishing",
-      "year": 2019
+      "year": 2019,
+      "themes": [
+        "contemporary",
+        "humor",
+        "romance"
+      ]
     },
     {
       "bookKey": "the-rosie-effect|graeme-simsion",
@@ -15887,7 +17001,12 @@
       "isbn": "1476767335",
       "isbn13": "9781476767338",
       "publisher": "Simon & Schuster",
-      "year": 2014
+      "year": 2014,
+      "themes": [
+        "contemporary",
+        "humor",
+        "romance"
+      ]
     },
     {
       "bookKey": "five-days-at-memorial-life-and-death-in-a-storm-ravaged-hospital|sheri-fink",
@@ -15935,7 +17054,12 @@
       "isbn": "140130415X",
       "isbn13": "9781401304157",
       "publisher": "Hyperion",
-      "year": 2012
+      "year": 2012,
+      "themes": [
+        "memoir",
+        "food",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "lebron-inc-the-making-of-a-billion-dollar-athlete|brian-windhorst",
@@ -16031,7 +17155,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": null,
-      "year": 1998
+      "year": 1998,
+      "themes": [
+        "narrative nonfiction",
+        "biography"
+      ]
     },
     {
       "bookKey": "momofuku-a-cookbook|david-chang",
@@ -16047,7 +17175,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": null,
-      "year": 2009
+      "year": 2009,
+      "themes": [
+        "food",
+        "memoir"
+      ]
     },
     {
       "bookKey": "pledged|alexandra-robbins",
@@ -16079,7 +17211,12 @@
       "isbn": "0316415723",
       "isbn13": "9780316415729",
       "publisher": "Da Capo",
-      "year": 2018
+      "year": 2018,
+      "themes": [
+        "memoir",
+        "music history",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "sharp-objects|gillian-flynn",
@@ -16095,7 +17232,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Broadway Books",
-      "year": 2006
+      "year": 2006,
+      "themes": [
+        "thriller",
+        "psychological",
+        "crime"
+      ]
     },
     {
       "bookKey": "gray-mountain|john-grisham",
@@ -16127,7 +17269,11 @@
       "isbn": "0805061738",
       "isbn13": "9780805061734",
       "publisher": "Holt Paperbacks",
-      "year": 1999
+      "year": 1999,
+      "themes": [
+        "narrative nonfiction",
+        "food"
+      ]
     },
     {
       "bookKey": "city-of-endless-night|douglas-preston",
@@ -16143,7 +17289,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Grand Central Publishing",
-      "year": 2018
+      "year": 2018,
+      "themes": [
+        "thriller",
+        "crime",
+        "mystery"
+      ]
     },
     {
       "bookKey": "the-poisoned-city-flint-s-water-and-the-american-urban-tragedy|anna-clark",
@@ -16287,7 +17438,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Simon & Schuster",
-      "year": 2018
+      "year": 2018,
+      "themes": [
+        "sports",
+        "biography",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "witness-to-a-trial|john-grisham",
@@ -16351,7 +17507,12 @@
       "isbn": "0385537131",
       "isbn13": "9780385537131",
       "publisher": "Doubleday",
-      "year": 2013
+      "year": 2013,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "theodore-boone-kid-lawyer|john-grisham",
@@ -16511,7 +17672,12 @@
       "isbn": "0385339658",
       "isbn13": "9780385339650",
       "publisher": "Delta",
-      "year": 2005
+      "year": 2005,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "the-last-juror|john-grisham",
@@ -16527,7 +17693,12 @@
       "isbn": "0385339682",
       "isbn13": "9780385339681",
       "publisher": "Delta",
-      "year": 2006
+      "year": 2006,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "the-racketeer|john-grisham",
@@ -16591,7 +17762,12 @@
       "isbn": "0385339100",
       "isbn13": "9780385339100",
       "publisher": "Delta",
-      "year": 2005
+      "year": 2005,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "the-chamber|john-grisham",
@@ -16623,7 +17799,12 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Delta",
-      "year": 2005
+      "year": 2005,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "the-runaway-jury|john-grisham",
@@ -16639,7 +17820,12 @@
       "isbn": "0385339690",
       "isbn13": "9780385339698",
       "publisher": "Delta",
-      "year": 2006
+      "year": 2006,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "the-pelican-brief|john-grisham",
@@ -16687,7 +17873,12 @@
       "isbn": "1101973552",
       "isbn13": "9781101973554",
       "publisher": "Vintage Crime/Black Lizard",
-      "year": 2016
+      "year": 2016,
+      "themes": [
+        "thriller",
+        "crime",
+        "noir"
+      ]
     },
     {
       "bookKey": "black-edge-inside-information-dirty-money-and-the-quest-to-bring-down-the-most-wanted-man-on-wall-street|sheelah-kolhatkar",
@@ -16783,7 +17974,12 @@
       "isbn": "0374717311",
       "isbn13": "9780374717315",
       "publisher": "Farrar, Straus and Giroux",
-      "year": 2017
+      "year": 2017,
+      "themes": [
+        "sports",
+        "history",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-lost-city-of-the-monkey-god|douglas-preston",
@@ -16975,7 +18171,12 @@
       "isbn": "1101609656",
       "isbn13": "9781101609651",
       "publisher": "Dutton Adult",
-      "year": 2013
+      "year": 2013,
+      "themes": [
+        "sports",
+        "narrative nonfiction",
+        "finance"
+      ]
     },
     {
       "bookKey": "up-up-and-away-the-kid-the-hawk-rock-vladi-pedro-le-grand-orange-youppi-the-crazy-business-of-baseball-and-the-ill-fated-but-unforgettable-montreal-expos|jonah-keri",
@@ -17199,7 +18400,12 @@
       "isbn": "1400069645",
       "isbn13": "9781400069644",
       "publisher": "Random House",
-      "year": 2012
+      "year": 2012,
+      "themes": [
+        "history",
+        "military",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-last-lecture|randy-pausch",
@@ -17215,7 +18421,11 @@
       "isbn": "1401323251",
       "isbn13": "9781401323257",
       "publisher": "Hachette Books",
-      "year": 2008
+      "year": 2008,
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "digital-gold-bitcoin-and-the-inside-story-of-the-misfits-and-millionaires-trying-to-reinvent-money|nathaniel-popper",
@@ -17247,7 +18457,12 @@
       "isbn": "1118007360",
       "isbn13": "9781118007365",
       "publisher": "Wiley",
-      "year": 2013
+      "year": 2013,
+      "themes": [
+        "narrative nonfiction",
+        "business",
+        "memoir"
+      ]
     },
     {
       "bookKey": "molly-s-game-from-hollywood-s-elite-to-wall-street-s-billionaire-boys-club-my-high-stakes-adventure-in-the-world-of-underground-poker|molly-bloom",
@@ -17263,7 +18478,12 @@
       "isbn": "0062213075",
       "isbn13": "9780062213075",
       "publisher": "Dey Street Books",
-      "year": 2014
+      "year": 2014,
+      "themes": [
+        "memoir",
+        "true crime",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-hanging-judge|michael-ponsor",
@@ -17391,7 +18611,11 @@
       "isbn": "052549300X",
       "isbn13": "9780525493006",
       "publisher": "Books on Tape",
-      "year": 2017
+      "year": 2017,
+      "themes": [
+        "sports",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-undoing-project-a-friendship-that-changed-our-minds|michael-lewis",
@@ -17423,7 +18647,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": "Henry Holt and Co.",
-      "year": 2016
+      "year": 2016,
+      "themes": [
+        "sports",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-girl-on-the-train|paula-hawkins",
@@ -17503,7 +18731,12 @@
       "isbn": "1444729705",
       "isbn13": "9781444729702",
       "publisher": "London : Hodder & Stoughton",
-      "year": 2011
+      "year": 2011,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ]
     },
     {
       "bookKey": "boys-among-men-how-the-prep-to-pro-generation-redefined-the-nba-and-sparked-a-basketball-revolution|jonathan-abrams",
@@ -17535,7 +18768,11 @@
       "isbn": "1607747200",
       "isbn13": "9781607747208",
       "publisher": "Ten Speed Press",
-      "year": 2015
+      "year": 2015,
+      "themes": [
+        "food",
+        "narrative nonfiction"
+      ]
     },
     {
       "bookKey": "the-broker|john-grisham",
@@ -17631,7 +18868,12 @@
       "isbn": "081299499X",
       "isbn13": "9780812994995",
       "publisher": "Random House",
-      "year": 2014
+      "year": 2014,
+      "themes": [
+        "memoir",
+        "humor",
+        "contemporary"
+      ]
     },
     {
       "bookKey": "baseball-maverick-how-sandy-alderson-revolutionized-baseball-and-revived-the-mets|steve-kettmann",
@@ -17663,7 +18905,11 @@
       "isbn": null,
       "isbn13": null,
       "publisher": null,
-      "year": 2014
+      "year": 2014,
+      "themes": [
+        "narrative nonfiction",
+        "history"
+      ]
     },
     {
       "bookKey": "becoming-steve-jobs-the-evolution-of-a-reckless-upstart-into-a-visionary-leader|brent-schlender",
@@ -17695,7 +18941,10 @@
       "isbn": null,
       "isbn13": null,
       "publisher": null,
-      "year": 2015
+      "year": 2015,
+      "themes": [
+        "sports"
+      ]
     }
   ],
   "indexes": {

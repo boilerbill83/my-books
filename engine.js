@@ -25,6 +25,7 @@ export function buildIndexes(goodreads, feedback) {
   const currentlyReading = new Map();
   const fiveStarTitles   = new Set();
   const fiveStarAuthors  = new Map();
+  const fiveStarThemes   = new Map();
   const allReadAuthors   = new Map();
   const excluded         = new Map();
 
@@ -39,6 +40,10 @@ export function buildIndexes(goodreads, feedback) {
       if (book.myRating === 5) {
         fiveStarTitles.add(book.title);
         fiveStarAuthors.set(authorKey, (fiveStarAuthors.get(authorKey) || 0) + 1);
+        for (const theme of book.themes || []) {
+          const t = String(theme).toLowerCase();
+          fiveStarThemes.set(t, (fiveStarThemes.get(t) || 0) + 1);
+        }
       }
     } else if (shelf === 'to-read') {
       toRead.set(key, book);
@@ -51,7 +56,7 @@ export function buildIndexes(goodreads, feedback) {
     if (interaction?.bookKey) excluded.set(interaction.bookKey, interaction);
   }
 
-  return { read, toRead, currentlyReading, fiveStarTitles, fiveStarAuthors, allReadAuthors, excluded };
+  return { read, toRead, currentlyReading, fiveStarTitles, fiveStarAuthors, fiveStarThemes, allReadAuthors, excluded };
 }
 
 function summarize(goodreads) {
@@ -126,26 +131,33 @@ function recencyBonus(year, isFiction) {
   }
 }
 
-function fictionThemeBonus(themes) {
+function themeBonus(themes, fiveStarThemes) {
   const t = (themes || []).map(s => String(s).toLowerCase());
+  if (t.length === 0) return 0;
+  if (!fiveStarThemes || fiveStarThemes.size === 0) {
+    let bonus = 0;
+    if (t.includes('thriller') || t.includes('psychological'))                       bonus += 3;
+    if (t.includes('speculative') || t.includes('sci-fi'))                           bonus += 3;
+    if (t.includes('literary') || t.includes('historical'))                          bonus += 2;
+    if (t.includes('mystery'))                                                        bonus += 2;
+    if (t.includes('true crime'))                                                     bonus += 5;
+    if (t.includes('tech history') || t.includes('narrative nonfiction'))            bonus += 4;
+    if (t.includes('finance'))                                                        bonus += 4;
+    if (t.includes('biography') || t.includes('military') || t.includes('psychology')) bonus += 3;
+    if (t.includes('business'))                                                       bonus += 2;
+    if (t.includes('sports'))                                                         bonus += 2;
+    return Math.min(bonus, 8);
+  }
   let bonus = 0;
-  if (t.includes('thriller') || t.includes('psychological'))  bonus += 3;
-  if (t.includes('speculative') || t.includes('sci-fi'))      bonus += 3;
-  if (t.includes('literary') || t.includes('historical'))     bonus += 2;
-  if (t.includes('mystery'))                                   bonus += 2;
-  return bonus;
-}
-
-function nonfictionThemeBonus(themes) {
-  const t = (themes || []).map(s => String(s).toLowerCase());
-  let bonus = 0;
-  if (t.includes('true crime'))                                              bonus += 5;
-  if (t.includes('tech history') || t.includes('narrative nonfiction'))     bonus += 4;
-  if (t.includes('finance'))                                                 bonus += 4;
-  if (t.includes('biography') || t.includes('military') || t.includes('psychology')) bonus += 3;
-  if (t.includes('business'))                                                bonus += 2;
-  if (t.includes('sports'))                                                  bonus += 2;
-  return bonus;
+  for (const theme of t) {
+    const count = fiveStarThemes.get(theme) || 0;
+    if      (count >= 40) bonus += 5;
+    else if (count >= 25) bonus += 4;
+    else if (count >= 12) bonus += 3;
+    else if (count >= 4)  bonus += 2;
+    else if (count >= 1)  bonus += 1;
+  }
+  return Math.min(bonus, 8);
 }
 
 function matchScoreFiction(candidate, idx, profile, timesShown) {
@@ -159,10 +171,16 @@ function matchScoreFiction(candidate, idx, profile, timesShown) {
     for (const t of candidate.similarToTitles || []) {
       if (idx.fiveStarTitles.has(t)) score += 8;
     }
-    score += fictionThemeBonus(candidate.themes);
+    score += themeBonus(candidate.themes, idx.fiveStarThemes);
     score += ratingsCountBonus(candidate.ratingsCount);
     const avg = Number(candidate.avgRating) || 0;
     if (avg > 0) score += (avg - 3.5) * 10;
+    if (profile.medianPages && candidate.pages) {
+      const delta = Math.abs(candidate.pages - profile.medianPages);
+      if (delta <= 50)       score += 6;
+      else if (delta <= 100) score += 3;
+      else if (delta >= 220) score -= 4;
+    }
   } else {
     const bbe = isBBEBook(candidate);
     if (bbe) {
@@ -190,7 +208,7 @@ function matchScoreFiction(candidate, idx, profile, timesShown) {
       // Option A: community rating (fiction weight: ×4)
       const avg = Number(candidate.avgRating) || 0;
       if (avg > 0) score += (avg - 3.5) * 4;
-      score += fictionThemeBonus(candidate.themes);
+      score += themeBonus(candidate.themes, idx.fiveStarThemes);
       score += ratingsCountBonus(candidate.ratingsCount);
     }
 
@@ -223,10 +241,16 @@ function matchScoreNonfiction(candidate, idx, profile, timesShown) {
     for (const t of candidate.similarToTitles || []) {
       if (idx.fiveStarTitles.has(t)) score += 8;
     }
-    score += nonfictionThemeBonus(candidate.themes);
+    score += themeBonus(candidate.themes, idx.fiveStarThemes);
     score += ratingsCountBonus(candidate.ratingsCount);
     const avg = Number(candidate.avgRating) || 0;
     if (avg > 0) score += (avg - 3.5) * 10;
+    if (profile.medianPages && candidate.pages) {
+      const delta = Math.abs(candidate.pages - profile.medianPages);
+      if (delta <= 50)       score += 6;
+      else if (delta <= 100) score += 3;
+      else if (delta >= 220) score -= 4;
+    }
   } else {
     const bbe = isBBEBook(candidate);
     if (bbe) {
@@ -254,7 +278,7 @@ function matchScoreNonfiction(candidate, idx, profile, timesShown) {
       // Option A: community rating (nonfiction weight: ×8)
       const avg = Number(candidate.avgRating) || 0;
       if (avg > 0) score += (avg - 3.5) * 8;
-      score += nonfictionThemeBonus(candidate.themes);
+      score += themeBonus(candidate.themes, idx.fiveStarThemes);
       score += ratingsCountBonus(candidate.ratingsCount);
     }
 
