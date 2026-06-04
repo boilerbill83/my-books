@@ -12184,14 +12184,27 @@
       "author": "Gene Weingarten",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 384,
       "dateRead": null,
       "dateAdded": "2022/05/16",
       "isbn": "1439181608",
       "isbn13": "9781439181607",
       "publisher": "Simon Schuster",
-      "year": 2010
+      "year": 2010,
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "history"
+      ],
+      "similarToTitles": [
+        "One Day: The Extraordinary Story of an Ordinary 24 Hours in America",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)"
+      ],
+      "similarToAuthors": [
+        "Chuck Klosterman",
+        "Bill Bryson"
+      ]
     },
     {
       "bookKey": "the-infiltrator-my-secret-life-inside-the-dirty-banks-behind-pablo-escobar-s-medell-n-cartel|robert-mazur",
@@ -12200,14 +12213,28 @@
       "author": "Robert Mazur",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 384,
       "dateRead": null,
       "dateAdded": "2022/05/06",
       "isbn": "0316077534",
       "isbn13": "9780316077538",
       "publisher": "Little, Brown and Company",
-      "year": 2009
+      "year": 2009,
+      "type": "nonfiction",
+      "themes": [
+        "true crime",
+        "narrative nonfiction",
+        "investigative journalism"
+      ],
+      "similarToTitles": [
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America"
+      ],
+      "similarToAuthors": [
+        "Nick Bilton",
+        "Beth Macy"
+      ]
     },
     {
       "bookKey": "how-to-prevent-the-next-pandemic|bill-gates",
@@ -12216,14 +12243,28 @@
       "author": "Bill  Gates",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 304,
       "dateRead": null,
       "dateAdded": "2022/04/28",
       "isbn": "0593534484",
       "isbn13": "9780593534489",
       "publisher": "Knopf",
-      "year": 2022
+      "year": 2022,
+      "type": "nonfiction",
+      "themes": [
+        "tech history",
+        "narrative nonfiction",
+        "history"
+      ],
+      "similarToTitles": [
+        "Source Code: My Beginnings",
+        "The Code Breaker: Jennifer Doudna, Gene Editing, and the Future of the Human Race"
+      ],
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Ashlee Vance"
+      ]
     },
     {
       "bookKey": "how-to-be-perfect-the-correct-answer-to-every-moral-question|michael-schur",
@@ -12248,14 +12289,28 @@
       "author": "Jean Hanff Korelitz",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 439,
       "dateRead": null,
       "dateAdded": "2022/05/19",
       "isbn": "1250790794",
       "isbn13": "9781250790798",
       "publisher": "Celadon Books",
-      "year": 2022
+      "year": 2022,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "historical",
+        "contemporary"
+      ],
+      "similarToTitles": [
+        "The Plot (The Book Series, #1)",
+        "Tomorrow, and Tomorrow, and Tomorrow"
+      ],
+      "similarToAuthors": [
+        "Gabrielle Zevin",
+        "V.E. Schwab"
+      ]
     },
     {
       "bookKey": "point-b|drew-magary",
@@ -12296,14 +12351,27 @@
       "author": "Jennifer Egan",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 274,
       "dateRead": null,
       "dateAdded": "2022/05/16",
       "isbn": "0307592839",
       "isbn13": "9780307592835",
       "publisher": "Knopf",
-      "year": 2010
+      "year": 2010,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "contemporary"
+      ],
+      "similarToTitles": [
+        "Tomorrow, and Tomorrow, and Tomorrow",
+        "The Storied Life of A.J. Fikry"
+      ],
+      "similarToAuthors": [
+        "Gabrielle Zevin",
+        "Gary Shteyngart"
+      ]
     },
     {
       "bookKey": "no-one-is-talking-about-this|patricia-lockwood",
@@ -12312,14 +12380,28 @@
       "author": "Patricia Lockwood",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.4,
       "pages": 210,
       "dateRead": null,
       "dateAdded": "2022/05/16",
       "isbn": "0593189582",
       "isbn13": "9780593189580",
       "publisher": "Riverhead Books",
-      "year": 2021
+      "year": 2021,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "speculative",
+        "contemporary"
+      ],
+      "similarToTitles": [
+        "The Postmortal",
+        "Lake Success"
+      ],
+      "similarToAuthors": [
+        "Drew Magary",
+        "Gary Shteyngart"
+      ]
     },
     {
       "bookKey": "gwendy-s-final-task|stephen-king",
@@ -12328,7 +12410,7 @@
       "author": "Stephen  King",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 288,
       "dateRead": null,
       "dateAdded": "2022/05/16",
@@ -12336,7 +12418,21 @@
       "isbn13": "9781982191559",
       "publisher": "Gallery Books",
       "year": 2022,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1651710894i/59366265.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1651710894i/59366265.jpg",
+      "type": "fiction",
+      "themes": [
+        "speculative",
+        "thriller",
+        "literary"
+      ],
+      "similarToTitles": [
+        "The Outsider",
+        "Elevation"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Chuck Klosterman"
+      ]
     },
     {
       "bookKey": "the-midrange-theory|seth-partnow",
@@ -12345,14 +12441,27 @@
       "author": "Seth Partnow",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 288,
       "dateRead": null,
       "dateAdded": "2022/04/14",
       "isbn": "1629379212",
       "isbn13": "9781629379210",
       "publisher": "Triumph Books",
-      "year": 2021
+      "year": 2021,
+      "type": "nonfiction",
+      "themes": [
+        "sports",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "How to Watch Basketball Like a Genius: What Game Designers, Economists, Ballet Choreographers, and Theoretical Astrophysicists Reveal About the Greatest Game on Earth",
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First"
+      ],
+      "similarToAuthors": [
+        "Ben Cohen",
+        "Sam Walker"
+      ]
     },
     {
       "bookKey": "i-ll-be-gone-in-the-dark-one-woman-s-obsessive-search-for-the-golden-state-killer|michelle-mcnamara",
@@ -12361,14 +12470,28 @@
       "author": "Michelle McNamara",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.4,
       "pages": 352,
       "dateRead": null,
       "dateAdded": "2022/04/19",
       "isbn": "0062319809",
       "isbn13": "9780062319807",
       "publisher": "Harper",
-      "year": 2018
+      "year": 2018,
+      "type": "nonfiction",
+      "themes": [
+        "true crime",
+        "narrative nonfiction",
+        "investigative journalism"
+      ],
+      "similarToTitles": [
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America"
+      ],
+      "similarToAuthors": [
+        "Nick Bilton",
+        "Beth Macy"
+      ]
     },
     {
       "bookKey": "into-the-water|paula-hawkins",
@@ -12377,14 +12500,28 @@
       "author": "Paula Hawkins",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.5,
       "pages": 392,
       "dateRead": null,
       "dateAdded": "2022/04/19",
       "isbn": "0735211221",
       "isbn13": "9780735211223",
       "publisher": "Riverhead Books",
-      "year": 2018
+      "year": 2018,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "psychological",
+        "mystery"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "The Woman in the Window"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Alex Michaelides"
+      ]
     },
     {
       "bookKey": "blood-in-the-garden-the-flagrant-history-of-the-1990s-new-york-knicks|chris-herring",
@@ -12409,14 +12546,27 @@
       "author": "Eli Saslow",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 304,
       "dateRead": null,
       "dateAdded": "2022/03/26",
       "isbn": "0307742555",
       "isbn13": "9780307742551",
       "publisher": "Anchor",
-      "year": 2012
+      "year": 2012,
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "history"
+      ],
+      "similarToTitles": [
+        "A Promised Land",
+        "One Day: The Extraordinary Story of an Ordinary 24 Hours in America"
+      ],
+      "similarToAuthors": [
+        "Barack Obama",
+        "Gene Weingarten"
+      ]
     },
     {
       "bookKey": "built-to-fail-the-inside-story-of-blockbuster-s-inevitable-bust|alan-payne",
@@ -12425,14 +12575,28 @@
       "author": "Alan  Payne",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 270,
       "dateRead": null,
       "dateAdded": "2022/01/26",
       "isbn": "1544517777",
       "isbn13": "9781544517773",
       "publisher": "Lioncrest Publishing",
-      "year": 2021
+      "year": 2021,
+      "type": "nonfiction",
+      "themes": [
+        "business",
+        "narrative nonfiction",
+        "tech history"
+      ],
+      "similarToTitles": [
+        "That Will Never Work: The Birth of Netflix and the Amazing Life of an Idea",
+        "Super Pumped: The Battle for Uber"
+      ],
+      "similarToAuthors": [
+        "Marc Randolph",
+        "Mike Isaac"
+      ]
     },
     {
       "bookKey": "the-white-van|patrick-hoffman",
@@ -12553,14 +12717,28 @@
       "author": "Robert Dugoni",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 449,
       "dateRead": null,
       "dateAdded": "2022/02/02",
       "isbn": null,
       "isbn13": null,
       "publisher": "Popular Library",
-      "year": 2008
+      "year": 2008,
+      "type": "fiction",
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ],
+      "similarToTitles": [
+        "A Time to Kill (Jake Brigance, #1)",
+        "Presumed Innocent"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow"
+      ]
     },
     {
       "bookKey": "the-day-the-world-came-to-town-9-11-in-gander-newfoundland|jim-defede",
@@ -12633,14 +12811,28 @@
       "author": "Alex Michaelides",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.5,
       "pages": 337,
       "dateRead": null,
       "dateAdded": "2022/01/10",
       "isbn": "1250304458",
       "isbn13": "9781250304452",
       "publisher": "Celadon Books",
-      "year": 2021
+      "year": 2021,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "psychological",
+        "mystery"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "Before I Go to Sleep"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Shari Lapena"
+      ]
     },
     {
       "bookKey": "the-council-of-dads-my-daughters-my-illness-and-the-men-who-could-be-me|bruce-feiler",
@@ -12681,14 +12873,28 @@
       "author": "Douglas Preston",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 385,
       "dateRead": null,
       "dateAdded": "2022/01/03",
       "isbn": "1538736756",
       "isbn13": "9781538736753",
       "publisher": "Grand Central Publishing",
-      "year": 2022
+      "year": 2022,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "mystery",
+        "suspense"
+      ],
+      "similarToTitles": [
+        "City of Endless Night (Pendergast, #17)",
+        "The Silent Patient"
+      ],
+      "similarToAuthors": [
+        "Alex Michaelides",
+        "Stephen King"
+      ]
     },
     {
       "bookKey": "the-guest-list|lucy-foley",
@@ -12713,14 +12919,27 @@
       "author": "Susan Cain",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.6,
       "pages": 310,
       "dateRead": null,
       "dateAdded": "2021/12/28",
       "isbn": "0451499786",
       "isbn13": "9780451499783",
       "publisher": "Crown",
-      "year": 2022
+      "year": 2022,
+      "type": "nonfiction",
+      "themes": [
+        "psychology",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
+        "Educated"
+      ],
+      "similarToAuthors": [
+        "Lori Gottlieb",
+        "Tara Westover"
+      ]
     },
     {
       "bookKey": "comedy-comedy-comedy-drama|bob-odenkirk",
@@ -12729,14 +12948,28 @@
       "author": "Bob   Odenkirk",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 284,
       "dateRead": null,
       "dateAdded": "2021/12/28",
       "isbn": "0399180516",
       "isbn13": "9780399180514",
       "publisher": "Random House",
-      "year": 2022
+      "year": 2022,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "humor",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Yearbook",
+        "A Life in Parts"
+      ],
+      "similarToAuthors": [
+        "Seth Rogen",
+        "Bryan Cranston"
+      ]
     },
     {
       "bookKey": "no-one-will-miss-her|kat-rosenfield",
@@ -12761,14 +12994,28 @@
       "author": "Chris Hogan",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.3,
       "pages": 272,
       "dateRead": null,
       "dateAdded": "2021/12/25",
       "isbn": "0977489523",
       "isbn13": "9780977489527",
       "publisher": "Ramsey Press",
-      "year": 2019
+      "year": 2019,
+      "type": "nonfiction",
+      "themes": [
+        "finance",
+        "business",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Shoe Dog",
+        "Flash Boys: A Wall Street Revolt"
+      ],
+      "similarToAuthors": [
+        "Phil Knight",
+        "Michael Lewis"
+      ]
     },
     {
       "bookKey": "while-justice-sleeps|stacey-abrams",
@@ -12793,14 +13040,28 @@
       "author": "Brian Panowich",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 320,
       "dateRead": null,
       "dateAdded": "2021/12/23",
       "isbn": "1250206936",
       "isbn13": "9781250206930",
       "publisher": "Minotaur Books",
-      "year": 2020
+      "year": 2020,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "crime",
+        "mystery"
+      ],
+      "similarToTitles": [
+        "Blacktop Wasteland",
+        "Everybody Knows"
+      ],
+      "similarToAuthors": [
+        "S.A. Cosby",
+        "Jordan Harper"
+      ]
     },
     {
       "bookKey": "how-to-watch-basketball-like-a-genius-what-game-designers-economists-ballet-choreographers-and-theoretical-astrophysicists-reveal-about-the-greatest-game-on-earth|nick-greene",
@@ -12841,14 +13102,28 @@
       "author": "Kazuo Ishiguro",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 303,
       "dateRead": null,
       "dateAdded": "2021/12/09",
       "isbn": "059331817X",
       "isbn13": "9780593318171",
       "publisher": "Alfred A. Knopf",
-      "year": 2021
+      "year": 2021,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "speculative",
+        "philosophical"
+      ],
+      "similarToTitles": [
+        "The Invisible Life of Addie LaRue",
+        "The Midnight Library (The Midnight World, #1)"
+      ],
+      "similarToAuthors": [
+        "V.E. Schwab",
+        "Matt Haig"
+      ]
     },
     {
       "bookKey": "dirt-adventures-in-lyon-as-a-chef-in-training-father-and-sleuth-looking-for-the-secret-of-french-cooking|bill-buford",
@@ -12873,14 +13148,27 @@
       "author": "Kristen Radtke",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 352,
       "dateRead": null,
       "dateAdded": "2021/11/19",
       "isbn": "1524748064",
       "isbn13": "9781524748067",
       "publisher": "Pantheon",
-      "year": 2021
+      "year": 2021,
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "psychology"
+      ],
+      "similarToTitles": [
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
+        "Educated"
+      ],
+      "similarToAuthors": [
+        "Lori Gottlieb",
+        "Tara Westover"
+      ]
     },
     {
       "bookKey": "the-judge-s-list|john-grisham",
@@ -12953,14 +13241,28 @@
       "author": "David  Wong",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 362,
       "dateRead": null,
       "dateAdded": "2021/09/28",
       "isbn": "0978970764",
       "isbn13": "9780978970765",
       "publisher": "Permuted Press",
-      "year": 2007
+      "year": 2007,
+      "type": "fiction",
+      "themes": [
+        "speculative",
+        "horror",
+        "humor"
+      ],
+      "similarToTitles": [
+        "World War Z: An Oral History of the Zombie War",
+        "The Postmortal"
+      ],
+      "similarToAuthors": [
+        "Max Brooks",
+        "Drew Magary"
+      ]
     },
     {
       "bookKey": "taste-my-life-through-food|stanley-tucci",
@@ -12969,14 +13271,27 @@
       "author": "Stanley Tucci",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 291,
       "dateRead": null,
       "dateAdded": "2021/09/28",
       "isbn": "1982168013",
       "isbn13": "9781982168018",
       "publisher": "Gallery Books",
-      "year": 2021
+      "year": 2021,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Eat a Peach",
+        "Save Me the Plums: My Gourmet Memoir"
+      ],
+      "similarToAuthors": [
+        "David Chang",
+        "Ruth Reichl"
+      ]
     },
     {
       "bookKey": "exhalation|ted-chiang",
@@ -13001,7 +13316,7 @@
       "author": "James  Patterson",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 352,
       "dateRead": null,
       "dateAdded": "2021/09/20",
@@ -13009,7 +13324,21 @@
       "isbn13": null,
       "publisher": "Little, Brown and Company",
       "year": 2018,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1533912520i/41090677.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1533912520i/41090677.jpg",
+      "type": "fiction",
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ],
+      "similarToTitles": [
+        "A Time to Kill (Jake Brigance, #1)",
+        "Along Came a Spider (Alex Cross, #1)"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow"
+      ]
     },
     {
       "bookKey": "a-slow-fire-burning|paula-hawkins",
@@ -13034,14 +13363,27 @@
       "author": "Julianna Margulies",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 229,
       "dateRead": null,
       "dateAdded": "2021/09/07",
       "isbn": "0525480250",
       "isbn13": "9780525480259",
       "publisher": "Ballantine Books",
-      "year": 2021
+      "year": 2021,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "A Life in Parts",
+        "Yearbook"
+      ],
+      "similarToAuthors": [
+        "Bryan Cranston",
+        "Seth Rogen"
+      ]
     },
     {
       "bookKey": "yearbook|seth-rogen",
@@ -13082,14 +13424,27 @@
       "author": "Neil Postman",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.2,
       "pages": 184,
       "dateRead": null,
       "dateAdded": "2021/08/30",
       "isbn": "014303653X",
       "isbn13": "9780143036531",
       "publisher": "Penguin Books",
-      "year": 2005
+      "year": 2005,
+      "type": "nonfiction",
+      "themes": [
+        "history",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto"
+      ],
+      "similarToAuthors": [
+        "Chuck Klosterman",
+        "Bill Bryson"
+      ]
     },
     {
       "bookKey": "the-wreckage-of-my-presence|casey-wilson",
@@ -13098,14 +13453,28 @@
       "author": "Casey  Wilson",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 288,
       "dateRead": null,
       "dateAdded": "2021/08/23",
       "isbn": "006296058X",
       "isbn13": "9780062960580",
       "publisher": "Harper",
-      "year": 2021
+      "year": 2021,
+      "type": "nonfiction",
+      "themes": [
+        "humor",
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Yearbook",
+        "A Life in Parts"
+      ],
+      "similarToAuthors": [
+        "Seth Rogen",
+        "Bryan Cranston"
+      ]
     },
     {
       "bookKey": "l-a-son-my-life-my-city-my-food|roy-choi",
@@ -13114,14 +13483,27 @@
       "author": "Roy Choi",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 352,
       "dateRead": null,
       "dateAdded": "2021/08/23",
       "isbn": "0062202642",
       "isbn13": "9780062202642",
       "publisher": "Anthony Bourdain/Ecco",
-      "year": 2013
+      "year": 2013,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Eat a Peach",
+        "Yes, Chef"
+      ],
+      "similarToAuthors": [
+        "David Chang",
+        "Marcus Samuelsson"
+      ]
     },
     {
       "bookKey": "emotional-intelligence|daniel-goleman",
@@ -13146,14 +13528,28 @@
       "author": "Matthew FitzSimmons",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 343,
       "dateRead": null,
       "dateAdded": "2021/08/02",
       "isbn": "154201428X",
       "isbn13": "9781542014281",
       "publisher": "Thomas & Mercer",
-      "year": 2021
+      "year": 2021,
+      "type": "fiction",
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "thriller"
+      ],
+      "similarToTitles": [
+        "Recursion",
+        "Dark Matter"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Neal Stephenson"
+      ]
     },
     {
       "bookKey": "cat-mouse|james-patterson",
@@ -13178,14 +13574,28 @@
       "author": "Christopher Paolini",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 880,
       "dateRead": null,
       "dateAdded": "2021/08/02",
       "isbn": "1250762928",
       "isbn13": "9781250762924",
       "publisher": "Tor Books",
-      "year": 2021
+      "year": 2021,
+      "type": "fiction",
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "adventure"
+      ],
+      "similarToTitles": [
+        "Seveneves",
+        "Project Hail Mary"
+      ],
+      "similarToAuthors": [
+        "Neal Stephenson",
+        "Andy Weir"
+      ]
     },
     {
       "bookKey": "if-you-tell-a-true-story-of-murder-family-secrets-and-the-unbreakable-bond-of-sisterhood|gregg-olsen",
@@ -13194,14 +13604,28 @@
       "author": "Gregg Olsen",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.4,
       "pages": 431,
       "dateRead": null,
       "dateAdded": "2021/07/10",
       "isbn": "1542005248",
       "isbn13": "9781542005241",
       "publisher": "Thomas & Mercer",
-      "year": 2019
+      "year": 2019,
+      "type": "nonfiction",
+      "themes": [
+        "true crime",
+        "narrative nonfiction",
+        "investigative journalism"
+      ],
+      "similarToTitles": [
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America"
+      ],
+      "similarToAuthors": [
+        "Nick Bilton",
+        "Beth Macy"
+      ]
     },
     {
       "bookKey": "bubbleball-inside-the-nba-s-fight-to-save-a-season|ben-golliver",
@@ -13242,14 +13666,28 @@
       "author": "Neal Stephenson",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.5,
       "pages": 708,
       "dateRead": null,
       "dateAdded": "2021/07/21",
       "isbn": "0063028050",
       "isbn13": "9780063028050",
       "publisher": "William Morrow",
-      "year": 2021
+      "year": 2021,
+      "type": "fiction",
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "literary"
+      ],
+      "similarToTitles": [
+        "Seveneves",
+        "Dark Matter"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Andy Weir"
+      ]
     },
     {
       "bookKey": "sooley|john-grisham",
@@ -13322,14 +13760,28 @@
       "author": "Mary Bly",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.5,
       "pages": 320,
       "dateRead": null,
       "dateAdded": "2021/06/12",
       "isbn": "0593134826",
       "isbn13": "9780593134825",
       "publisher": "The Dial Press",
-      "year": 2021
+      "year": 2021,
+      "type": "fiction",
+      "themes": [
+        "romance",
+        "literary",
+        "historical"
+      ],
+      "similarToTitles": [
+        "One Day",
+        "The Statistical Probability of Love at First Sight"
+      ],
+      "similarToAuthors": [
+        "David Nicholls",
+        "Jennifer E. Smith"
+      ]
     },
     {
       "bookKey": "the-great-influenza-the-story-of-the-deadliest-pandemic-in-history|john-m-barry",
@@ -13338,14 +13790,28 @@
       "author": "John M. Barry",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.2,
       "pages": 546,
       "dateRead": null,
       "dateAdded": "2021/06/04",
       "isbn": "0143036491",
       "isbn13": "9780143036494",
       "publisher": "Penguin Books",
-      "year": 2005
+      "year": 2005,
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "history",
+        "military"
+      ],
+      "similarToTitles": [
+        "The First Shots: The Epic Rivalries and Heroic Science Behind the Race to the Coronavirus Vaccine",
+        "The Accidental President: Harry S. Truman and the Four Months That Changed the World"
+      ],
+      "similarToAuthors": [
+        "A.J. Baime",
+        "Hampton Sides"
+      ]
     },
     {
       "bookKey": "blood-bones-and-butter-the-inadvertent-education-of-a-reluctant-chef|gabrielle-hamilton",
@@ -13354,14 +13820,27 @@
       "author": "Gabrielle Hamilton",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 304,
       "dateRead": null,
       "dateAdded": "2021/06/02",
       "isbn": "140006872X",
       "isbn13": "9781400068722",
       "publisher": "Random House",
-      "year": 2011
+      "year": 2011,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Eat a Peach",
+        "Save Me the Plums: My Gourmet Memoir"
+      ],
+      "similarToAuthors": [
+        "David Chang",
+        "Ruth Reichl"
+      ]
     },
     {
       "bookKey": "the-end-of-october|lawrence-wright",
@@ -13434,14 +13913,28 @@
       "author": "William Knoedelseder",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 416,
       "dateRead": null,
       "dateAdded": "2020/09/25",
       "isbn": "0062009265",
       "isbn13": "9780062009265",
       "publisher": "Harper Business",
-      "year": 2012
+      "year": 2012,
+      "type": "nonfiction",
+      "themes": [
+        "business",
+        "history",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Pappyland: A Story of Family, Fine Bourbon, and the Things That Last",
+        "Beyond the Pale: The Story of Sierra Nevada Brewing Co."
+      ],
+      "similarToAuthors": [
+        "Wright Thompson",
+        "Ken Grossman"
+      ]
     },
     {
       "bookKey": "built-from-scratch-how-a-couple-of-regular-guys-grew-the-home-depot-from-nothing-to-30-billion|bernie-marcus",
@@ -13450,14 +13943,28 @@
       "author": "Bernie Marcus",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.2,
       "pages": 352,
       "dateRead": null,
       "dateAdded": "2020/11/29",
       "isbn": "0812930584",
       "isbn13": "9780812930580",
       "publisher": "Crown Business",
-      "year": 1999
+      "year": 1999,
+      "type": "nonfiction",
+      "themes": [
+        "business",
+        "biography",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Shoe Dog",
+        "That Will Never Work: The Birth of Netflix and the Amazing Life of an Idea"
+      ],
+      "similarToAuthors": [
+        "Phil Knight",
+        "Marc Randolph"
+      ]
     },
     {
       "bookKey": "the-code-breaker-jennifer-doudna-gene-editing-and-the-future-of-the-human-race|walter-isaacson",
@@ -13498,14 +14005,27 @@
       "author": "Daniel Barbarisi",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 368,
       "dateRead": null,
       "dateAdded": "2021/04/02",
       "isbn": "0525656170",
       "isbn13": "9780525656173",
       "publisher": "Knopf",
-      "year": 2021
+      "year": 2021,
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "adventure"
+      ],
+      "similarToTitles": [
+        "The Lost City of Z: A Tale of Deadly Obsession in the Amazon",
+        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession"
+      ],
+      "similarToAuthors": [
+        "David Grann",
+        "Michael Finkel"
+      ]
     },
     {
       "bookKey": "the-best-american-food-writing-2020|j-kenji-l-pez-alt",
@@ -13594,14 +14114,28 @@
       "author": "Matt Haig",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 285,
       "dateRead": null,
       "dateAdded": "2021/03/01",
       "isbn": "1476727910",
       "isbn13": "9781476727912",
       "publisher": "Simon & Schuster",
-      "year": 2013
+      "year": 2013,
+      "type": "fiction",
+      "themes": [
+        "speculative",
+        "literary",
+        "philosophical"
+      ],
+      "similarToTitles": [
+        "The Midnight Library (The Midnight World, #1)",
+        "The Invisible Life of Addie LaRue"
+      ],
+      "similarToAuthors": [
+        "V.E. Schwab",
+        "Blake Crouch"
+      ]
     },
     {
       "bookKey": "think-again-the-power-of-knowing-what-you-don-t-know|adam-m-grant",
@@ -13610,14 +14144,28 @@
       "author": "Adam M. Grant",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 307,
       "dateRead": null,
       "dateAdded": "2021/02/06",
       "isbn": "1984878107",
       "isbn13": "9781984878106",
       "publisher": "Viking Books",
-      "year": 2021
+      "year": 2021,
+      "type": "nonfiction",
+      "themes": [
+        "psychology",
+        "business",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
+        "Educated"
+      ],
+      "similarToAuthors": [
+        "Lori Gottlieb",
+        "Tara Westover"
+      ]
     },
     {
       "bookKey": "invent-and-wander-the-collected-writings-of-jeff-bezos|jeff-bezos",
@@ -13674,14 +14222,28 @@
       "author": "Duncan Clark",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 304,
       "dateRead": null,
       "dateAdded": "2020/12/01",
       "isbn": "0062413406",
       "isbn13": "9780062413406",
       "publisher": "Ecco",
-      "year": 2016
+      "year": 2016,
+      "type": "nonfiction",
+      "themes": [
+        "tech history",
+        "business",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Super Pumped: The Battle for Uber"
+      ],
+      "similarToAuthors": [
+        "Brad Stone",
+        "Mike Isaac"
+      ]
     },
     {
       "bookKey": "shit-actually-the-definitive-100-objective-guide-to-modern-cinema|lindy-west",
@@ -13722,14 +14284,26 @@
       "author": "Rob Arnold",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 356,
       "dateRead": null,
       "dateAdded": "2020/12/24",
       "isbn": "0231550898",
       "isbn13": "9780231550895",
       "publisher": "Columbia University Press",
-      "year": 2020
+      "year": 2020,
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Pappyland: A Story of Family, Fine Bourbon, and the Things That Last",
+        "Beyond the Pale: The Story of Sierra Nevada Brewing Co."
+      ],
+      "similarToAuthors": [
+        "Wright Thompson",
+        "Ken Grossman"
+      ]
     },
     {
       "bookKey": "sam-walton-made-in-america|sam-walton",
@@ -13754,14 +14328,28 @@
       "author": "Rich Cohen",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 240,
       "dateRead": null,
       "dateAdded": "2020/11/25",
       "isbn": "0374268010",
       "isbn13": "9780374268015",
       "publisher": "Farrar, Straus and Giroux",
-      "year": 2021
+      "year": 2021,
+      "type": "nonfiction",
+      "themes": [
+        "sports",
+        "humor",
+        "memoir"
+      ],
+      "similarToTitles": [
+        "Fantasyland: True Tales from America's Most Compulsive Fantasy Baseball League",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)"
+      ],
+      "similarToAuthors": [
+        "Chuck Klosterman",
+        "Sam Walker"
+      ]
     },
     {
       "bookKey": "the-new-one-painfully-true-stories-from-a-reluctant-dad|mike-birbiglia",
@@ -13770,14 +14358,28 @@
       "author": "Mike Birbiglia",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 256,
       "dateRead": null,
       "dateAdded": "2020/11/20",
       "isbn": "1538701510",
       "isbn13": "9781538701515",
       "publisher": "Grand Central Publishing",
-      "year": 2020
+      "year": 2020,
+      "type": "nonfiction",
+      "themes": [
+        "humor",
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Yearbook",
+        "Someone Could Get Hurt: A Memoir of Twenty-First-Century Parenthood"
+      ],
+      "similarToAuthors": [
+        "Seth Rogen",
+        "Drew Magary"
+      ]
     },
     {
       "bookKey": "talking-to-goats-the-moments-you-remember-and-the-stories-you-never-heard|jim-gray",
@@ -13786,14 +14388,28 @@
       "author": "Jim       Gray",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 336,
       "dateRead": null,
       "dateAdded": "2020/11/13",
       "isbn": "0062992066",
       "isbn13": "9780062992062",
       "publisher": "William Morrow",
-      "year": 2020
+      "year": 2020,
+      "type": "nonfiction",
+      "themes": [
+        "sports",
+        "biography",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever"
+      ],
+      "similarToAuthors": [
+        "Jeff Pearlman",
+        "Jack McCallum"
+      ]
     },
     {
       "bookKey": "greenlights|matthew-mcconaughey",
@@ -13834,14 +14450,28 @@
       "author": "Ben Fritz",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 309,
       "dateRead": null,
       "dateAdded": "2020/10/15",
       "isbn": "0544789776",
       "isbn13": "9780544789777",
       "publisher": "Harper Business",
-      "year": 2018
+      "year": 2018,
+      "type": "nonfiction",
+      "themes": [
+        "business",
+        "narrative nonfiction",
+        "tech history"
+      ],
+      "similarToTitles": [
+        "Super Pumped: The Battle for Uber",
+        "That Will Never Work: The Birth of Netflix and the Amazing Life of an Idea"
+      ],
+      "similarToAuthors": [
+        "Mike Isaac",
+        "Marc Randolph"
+      ]
     },
     {
       "bookKey": "football-for-a-buck-the-crazy-rise-and-crazier-demise-of-the-usfl|jeff-pearlman",
@@ -13850,14 +14480,28 @@
       "author": "Jeff Pearlman",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 384,
       "dateRead": null,
       "dateAdded": "2020/10/09",
       "isbn": "0544454383",
       "isbn13": "9780544454385",
       "publisher": "Mariner Books",
-      "year": 2018
+      "year": 2018,
+      "type": "nonfiction",
+      "themes": [
+        "sports",
+        "narrative nonfiction",
+        "history"
+      ],
+      "similarToTitles": [
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "The Last Folk Hero: The Life and Myth of Bo Jackson"
+      ],
+      "similarToAuthors": [
+        "Jack McCallum",
+        "Keith O'Brien"
+      ]
     },
     {
       "bookKey": "the-cost-of-these-dreams-sports-stories-and-other-serious-business|wright-thompson",
@@ -13898,14 +14542,27 @@
       "author": "Jerry Seinfeld",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 480,
       "dateRead": null,
       "dateAdded": "2020/09/30",
       "isbn": "1982112697",
       "isbn13": "9781982112691",
       "publisher": "Simon & Schuster",
-      "year": 2020
+      "year": 2020,
+      "type": "nonfiction",
+      "themes": [
+        "humor",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "Yearbook"
+      ],
+      "similarToAuthors": [
+        "Chuck Klosterman",
+        "Seth Rogen"
+      ]
     },
     {
       "bookKey": "god-level-knowledge-darts-life-lessons-from-the-bronx|desus",
@@ -13914,14 +14571,28 @@
       "author": "Desus",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 192,
       "dateRead": null,
       "dateAdded": "2020/09/24",
       "isbn": "0525512330",
       "isbn13": "9780525512332",
       "publisher": "Random House",
-      "year": 2020
+      "year": 2020,
+      "type": "nonfiction",
+      "themes": [
+        "humor",
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Yearbook",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)"
+      ],
+      "similarToAuthors": [
+        "Seth Rogen",
+        "Chuck Klosterman"
+      ]
     },
     {
       "bookKey": "george-lucas-a-life|brian-jay-jones",
@@ -13930,14 +14601,28 @@
       "author": "Brian Jay Jones",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 550,
       "dateRead": null,
       "dateAdded": "2020/09/22",
       "isbn": "0316257443",
       "isbn13": "9780316257442",
       "publisher": "Little, Brown and Company",
-      "year": 2016
+      "year": 2016,
+      "type": "nonfiction",
+      "themes": [
+        "biography",
+        "narrative nonfiction",
+        "business"
+      ],
+      "similarToTitles": [
+        "Steve Jobs",
+        "Elon Musk"
+      ],
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Ashlee Vance"
+      ]
     },
     {
       "bookKey": "where-men-win-glory-the-odyssey-of-pat-tillman|jon-krakauer",
@@ -13946,14 +14631,28 @@
       "author": "Jon Krakauer",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.3,
       "pages": 323,
       "dateRead": null,
       "dateAdded": "2020/09/22",
       "isbn": "0385522266",
       "isbn13": "9780385522267",
       "publisher": "Doubleday",
-      "year": 2009
+      "year": 2009,
+      "type": "nonfiction",
+      "themes": [
+        "military",
+        "biography",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Arsenal of Democracy: FDR, Detroit, and an Epic Quest to Arm an America at War",
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission"
+      ],
+      "similarToAuthors": [
+        "A.J. Baime",
+        "Hampton Sides"
+      ]
     },
     {
       "bookKey": "the-answer-is-reflections-on-my-life|alex-trebek",
@@ -13962,14 +14661,27 @@
       "author": "Alex Trebek",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 304,
       "dateRead": null,
       "dateAdded": "2020/09/15",
       "isbn": null,
       "isbn13": null,
       "publisher": "Simon & Schuster",
-      "year": 2020
+      "year": 2020,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "A Life in Parts",
+        "Yearbook"
+      ],
+      "similarToAuthors": [
+        "Bryan Cranston",
+        "Seth Rogen"
+      ]
     },
     {
       "bookKey": "the-enigma-cube|douglas-e-richards",
@@ -13978,14 +14690,28 @@
       "author": "Douglas E. Richards",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.3,
       "pages": 424,
       "dateRead": null,
       "dateAdded": "2020/09/03",
       "isbn": null,
       "isbn13": null,
       "publisher": "Paragon Press",
-      "year": 2020
+      "year": 2020,
+      "type": "fiction",
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "thriller"
+      ],
+      "similarToTitles": [
+        "Project Hail Mary",
+        "Recursion"
+      ],
+      "similarToAuthors": [
+        "Andy Weir",
+        "Blake Crouch"
+      ]
     },
     {
       "bookKey": "run|blake-crouch",
@@ -14138,7 +14864,7 @@
       "author": "Chuck Klosterman",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 374,
       "dateRead": null,
       "dateAdded": "2020/07/08",
@@ -14146,7 +14872,20 @@
       "isbn13": "9780743284882",
       "publisher": "Scribner",
       "year": 2006,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1388448967i/24475.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1388448967i/24475.jpg",
+      "type": "nonfiction",
+      "themes": [
+        "humor",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)"
+      ],
+      "similarToAuthors": [
+        "Jeff Pearlman",
+        "Bill Bryson"
+      ]
     },
     {
       "bookKey": "the-visible-man|chuck-klosterman",
@@ -14155,7 +14894,7 @@
       "author": "Chuck Klosterman",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.4,
       "pages": 230,
       "dateRead": null,
       "dateAdded": "2020/07/08",
@@ -14163,7 +14902,21 @@
       "isbn13": "9781439184462",
       "publisher": "Scribner",
       "year": 2011,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1348198773i/10373933.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1348198773i/10373933.jpg",
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "speculative",
+        "psychological"
+      ],
+      "similarToTitles": [
+        "Raised in Captivity: Fictional Nonfiction",
+        "The Postmortal"
+      ],
+      "similarToAuthors": [
+        "Drew Magary",
+        "Gary Shteyngart"
+      ]
     },
     {
       "bookKey": "downtown-owl|chuck-klosterman",
@@ -14172,7 +14925,7 @@
       "author": "Chuck Klosterman",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.6,
       "pages": 275,
       "dateRead": null,
       "dateAdded": "2020/07/08",
@@ -14180,7 +14933,20 @@
       "isbn13": "9781416544180",
       "publisher": "Scribner",
       "year": 2008,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1348123580i/2159007.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1348123580i/2159007.jpg",
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "contemporary"
+      ],
+      "similarToTitles": [
+        "Little Children",
+        "Tracy Flick Can't Win"
+      ],
+      "similarToAuthors": [
+        "Tom Perrotta",
+        "Gary Shteyngart"
+      ]
     },
     {
       "bookKey": "fargo-rock-city-a-heavy-metal-odyssey-in-rural-north-dakota|chuck-klosterman",
@@ -14189,7 +14955,7 @@
       "author": "Chuck Klosterman",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 320,
       "dateRead": null,
       "dateAdded": "2020/07/08",
@@ -14197,7 +14963,21 @@
       "isbn13": "9780743406567",
       "publisher": "Scribner",
       "year": 2003,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1440854466i/24476.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1440854466i/24476.jpg",
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "humor",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "Killing Yourself to Live: 85% of a True Story"
+      ],
+      "similarToAuthors": [
+        "Jeff Pearlman",
+        "Bill Bryson"
+      ]
     },
     {
       "bookKey": "yes-chef|marcus-samuelsson",
@@ -14222,14 +15002,27 @@
       "author": "Eliza Griswold",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 318,
       "dateRead": null,
       "dateAdded": "2020/06/18",
       "isbn": "0374103119",
       "isbn13": "9780374103118",
       "publisher": "Farrar, Straus and Giroux",
-      "year": 2018
+      "year": 2018,
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "history"
+      ],
+      "similarToTitles": [
+        "Evicted: Poverty and Profit in the American City",
+        "Paradise: One Town's Struggle to Survive an American Wildfire"
+      ],
+      "similarToAuthors": [
+        "Matthew Desmond",
+        "Lizzie Johnson"
+      ]
     },
     {
       "bookKey": "hidden-valley-road-inside-the-mind-of-an-american-family|robert-kolker",
@@ -14238,14 +15031,28 @@
       "author": "Robert Kolker",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.3,
       "pages": 377,
       "dateRead": null,
       "dateAdded": "2020/06/18",
       "isbn": "038554376X",
       "isbn13": "9780385543767",
       "publisher": "Doubleday",
-      "year": 2020
+      "year": 2020,
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "psychology",
+        "history"
+      ],
+      "similarToTitles": [
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America"
+      ],
+      "similarToAuthors": [
+        "Lori Gottlieb",
+        "Beth Macy"
+      ]
     },
     {
       "bookKey": "player-piano|kurt-vonnegut-jr",
@@ -14254,14 +15061,28 @@
       "author": "Kurt Vonnegut Jr.",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 341,
       "dateRead": null,
       "dateAdded": "2020/06/11",
       "isbn": "0385333781",
       "isbn13": "9780385333788",
       "publisher": "Dial Press",
-      "year": 2006
+      "year": 2006,
+      "type": "fiction",
+      "themes": [
+        "speculative",
+        "literary",
+        "dystopia"
+      ],
+      "similarToTitles": [
+        "The Postmortal",
+        "World War Z: An Oral History of the Zombie War"
+      ],
+      "similarToAuthors": [
+        "Drew Magary",
+        "Max Brooks"
+      ]
     },
     {
       "bookKey": "betaball-how-silicon-valley-and-science-built-one-of-the-greatest-basketball-teams-in-history|erik-malinowski",
@@ -14286,14 +15107,28 @@
       "author": "Scott Turow",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 464,
       "dateRead": null,
       "dateAdded": "2020/05/27",
       "isbn": "1538748134",
       "isbn13": "9781538748138",
       "publisher": "Grand Central Publishing",
-      "year": 2020
+      "year": 2020,
+      "type": "fiction",
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ],
+      "similarToTitles": [
+        "Presumed Innocent",
+        "Pleading Guilty (Kindle County, #3)"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Steve Cavanagh"
+      ]
     },
     {
       "bookKey": "the-holdout|graham-moore",
@@ -14318,14 +15153,28 @@
       "author": "Jeff Vandermeer",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 195,
       "dateRead": null,
       "dateAdded": "2020/05/21",
       "isbn": "0374104093",
       "isbn13": "9780374104092",
       "publisher": "Farrar, Straus and Giroux",
-      "year": 2014
+      "year": 2014,
+      "type": "fiction",
+      "themes": [
+        "speculative",
+        "literary",
+        "mystery"
+      ],
+      "similarToTitles": [
+        "Seveneves",
+        "Dark Matter"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Neal Stephenson"
+      ]
     },
     {
       "bookKey": "camino-winds|john-grisham",
