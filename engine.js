@@ -178,6 +178,12 @@ function matchScoreFiction(candidate, idx, profile, timesShown) {
     const authorKey = normAuthor(candidate.author);
     score += Math.min(AUTHOR_CONTRIB_CAP,     (idx.fiveStarAuthors.get(authorKey) || 0) * 6);
     score += Math.min(AUTHOR_CONTRIB_CAP / 2, (idx.authorRatingWeight.get(authorKey)  || 0) * 1.5);
+    for (const a of candidate.similarToAuthors || []) {
+      const simKey = normAuthor(a);
+      const contrib = (idx.fiveStarAuthors.get(simKey) || 0) * 4
+                    + (idx.authorRatingWeight.get(simKey) || 0) * 0.5;
+      score += Math.min(AUTHOR_CONTRIB_CAP, contrib);
+    }
     for (const t of candidate.similarToTitles || []) {
       if (idx.fiveStarTitles.has(t)) score += 8;
     }
@@ -249,6 +255,12 @@ function matchScoreNonfiction(candidate, idx, profile, timesShown) {
     const authorKey = normAuthor(candidate.author);
     score += Math.min(AUTHOR_CONTRIB_CAP,     (idx.fiveStarAuthors.get(authorKey) || 0) * 6);
     score += Math.min(AUTHOR_CONTRIB_CAP / 2, (idx.authorRatingWeight.get(authorKey)  || 0) * 1.5);
+    for (const a of candidate.similarToAuthors || []) {
+      const simKey = normAuthor(a);
+      const contrib = (idx.fiveStarAuthors.get(simKey) || 0) * 4
+                    + (idx.authorRatingWeight.get(simKey) || 0) * 0.5;
+      score += Math.min(AUTHOR_CONTRIB_CAP, contrib);
+    }
     for (const t of candidate.similarToTitles || []) {
       if (idx.fiveStarTitles.has(t)) score += 8;
     }

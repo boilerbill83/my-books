@@ -146,6 +146,7 @@ When adding a new book to `goodreadsData.json`, a complete entry looks like:
 | fromToRead base | +10 | shelf === "to-read" |
 | 5★ author bonus | +15 | `fiveStarAuthors` map |
 | Author rating weight | +7.5 | `authorRatingWeight` (weighted by rating: 5★=+1.0, 4★=+0.8, 3★=+0.3, 2★=−0.5, 1★=−1.0) |
+| Similar-author bonus | +15/author | `candidate.similarToAuthors` ∩ fiveStarAuthors/authorRatingWeight (same formula as pool books) |
 | Forward title match | +8/match | candidate.similarToTitles ∩ fiveStarTitles |
 | Reverse title match | +12 | `reverseSimilar` (5★ reads citing this book) |
 | Theme bonus | +8 | `themeBonus()` vs fiveStarThemes |
@@ -164,3 +165,5 @@ When adding a new book to `goodreadsData.json`, a complete entry looks like:
 | 8 | Pages bonus added to to-read branch; themes tagged on all 260 five-star reads; themeBonus personalized |
 | 9 | authorRatingWeight signal (replaces flat allReadAuthors count) |
 | 10 | Themes tagged on all 241 un-themed read books; similarToTitles added to all 500 read books; reverseSimilar reverse index added to engine |
+| 10b | Data quality audit: 1,065 broken similarToTitles refs fixed; 6 non-canonical themes corrected; single-theme books enriched; CLAUDE.md created |
+| 11 | similarToAuthors signal added to to-read branch (was already in pool branch); pages fixed on 2 to-read books |
