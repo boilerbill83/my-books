@@ -9230,14 +9230,28 @@
       "author": "Alissa Nutting",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.5,
       "pages": 307,
       "dateRead": null,
       "dateAdded": "2023/11/18",
       "isbn": "0062280554",
       "isbn13": "9780062280558",
       "publisher": "Ecco",
-      "year": 2017
+      "year": 2017,
+      "type": "fiction",
+      "themes": [
+        "speculative",
+        "literary",
+        "humor"
+      ],
+      "similarToTitles": [
+        "The Postmortal",
+        "The Rosie Project (Don Tillman, #1)"
+      ],
+      "similarToAuthors": [
+        "Drew Magary",
+        "Graeme Simsion"
+      ]
     },
     {
       "bookKey": "the-sellout|paul-beatty",
@@ -9246,14 +9260,28 @@
       "author": "Paul Beatty",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.6,
       "pages": 289,
       "dateRead": null,
       "dateAdded": "2023/11/18",
       "isbn": "0374260508",
       "isbn13": "9780374260507",
       "publisher": "Farrar, Straus and Giroux",
-      "year": 2015
+      "year": 2015,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "humor",
+        "contemporary"
+      ],
+      "similarToTitles": [
+        "Raised in Captivity: Fictional Nonfiction",
+        "Lake Success"
+      ],
+      "similarToAuthors": [
+        "Chuck Klosterman",
+        "Gary Shteyngart"
+      ]
     },
     {
       "bookKey": "black-sheep|rachel-harrison",
@@ -9262,14 +9290,28 @@
       "author": "Rachel   Harrison",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.6,
       "pages": 289,
       "dateRead": null,
       "dateAdded": "2023/11/18",
       "isbn": "0593545850",
       "isbn13": "9780593545850",
       "publisher": "Berkley",
-      "year": 2023
+      "year": 2023,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "horror",
+        "speculative"
+      ],
+      "similarToTitles": [
+        "The Outsider",
+        "The Stand"
+      ],
+      "similarToAuthors": [
+        "Stephen King",
+        "Blake Crouch"
+      ]
     },
     {
       "bookKey": "entrances-and-exits|michael-richards",
@@ -9278,14 +9320,28 @@
       "author": "Michael    Richards",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 425,
       "dateRead": null,
       "dateAdded": "2023/11/08",
       "isbn": "1637589131",
       "isbn13": "9781637589137",
       "publisher": "Permuted Press",
-      "year": 2024
+      "year": 2024,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "humor",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Yearbook",
+        "A Life in Parts"
+      ],
+      "similarToAuthors": [
+        "Seth Rogen",
+        "Bryan Cranston"
+      ]
     },
     {
       "bookKey": "still-me|jojo-moyes",
@@ -9294,14 +9350,28 @@
       "author": "Jojo Moyes",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 368,
       "dateRead": null,
       "dateAdded": "2023/11/14",
       "isbn": "0399562451",
       "isbn13": "9780399562457",
       "publisher": "Pamela Dorman Books",
-      "year": 2018
+      "year": 2018,
+      "type": "fiction",
+      "themes": [
+        "romance",
+        "literary",
+        "contemporary"
+      ],
+      "similarToTitles": [
+        "One Day",
+        "The Statistical Probability of Love at First Sight"
+      ],
+      "similarToAuthors": [
+        "David Nicholls",
+        "Jennifer E. Smith"
+      ]
     },
     {
       "bookKey": "sleeping-beauties|stephen-king",
@@ -9310,7 +9380,7 @@
       "author": "Stephen  King",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 702,
       "dateRead": null,
       "dateAdded": "2023/11/14",
@@ -9318,7 +9388,21 @@
       "isbn13": "9781501163401",
       "publisher": "Scribner",
       "year": 2017,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1510335748i/34466922.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1510335748i/34466922.jpg",
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "horror",
+        "speculative"
+      ],
+      "similarToTitles": [
+        "The Stand",
+        "The Outsider"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Chuck Klosterman"
+      ]
     },
     {
       "bookKey": "truly-madly-guilty|liane-moriarty",
@@ -9327,14 +9411,28 @@
       "author": "Liane Moriarty",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 432,
       "dateRead": null,
       "dateAdded": "2023/11/14",
       "isbn": "1250125561",
       "isbn13": "9781250125569",
       "publisher": "Flatiron Books",
-      "year": 2016
+      "year": 2016,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "literary",
+        "psychological"
+      ],
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "Remarkably Bright Creatures"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Shelby Van Pelt"
+      ]
     },
     {
       "bookKey": "mean-baby-a-memoir-of-growing-up|selma-blair",
@@ -9343,14 +9441,27 @@
       "author": "Selma Blair",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 320,
       "dateRead": null,
       "dateAdded": "2023/11/14",
       "isbn": "0525659498",
       "isbn13": "9780525659495",
       "publisher": "Knopf",
-      "year": 2022
+      "year": 2022,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "When Breath Becomes Air",
+        "A Life in Parts"
+      ],
+      "similarToAuthors": [
+        "Paul Kalanithi",
+        "Bryan Cranston"
+      ]
     },
     {
       "bookKey": "the-dilemma|b-a-paris",
@@ -9359,14 +9470,28 @@
       "author": "B.A. Paris",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 342,
       "dateRead": null,
       "dateAdded": "2023/11/04",
       "isbn": "1250151368",
       "isbn13": "9781250151360",
       "publisher": "St. Martin's Press",
-      "year": 2020
+      "year": 2020,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "psychological",
+        "suspense"
+      ],
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "The Breakdown"
+      ],
+      "similarToAuthors": [
+        "Shari Lapena",
+        "Alex Michaelides"
+      ]
     },
     {
       "bookKey": "the-therapist|b-a-paris",
@@ -9375,14 +9500,28 @@
       "author": "B.A. Paris",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.6,
       "pages": 298,
       "dateRead": null,
       "dateAdded": "2023/11/04",
       "isbn": "1250274125",
       "isbn13": "9781250274120",
       "publisher": "St. Martin's Press",
-      "year": 2021
+      "year": 2021,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "psychological",
+        "suspense"
+      ],
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "The Breakdown"
+      ],
+      "similarToAuthors": [
+        "Shari Lapena",
+        "Alex Michaelides"
+      ]
     },
     {
       "bookKey": "bring-me-back|b-a-paris",
@@ -9391,14 +9530,28 @@
       "author": "B.A. Paris",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.4,
       "pages": 291,
       "dateRead": null,
       "dateAdded": "2023/11/04",
       "isbn": "1250151333",
       "isbn13": "9781250151339",
       "publisher": "St. Martin's Press",
-      "year": 2018
+      "year": 2018,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "psychological",
+        "suspense"
+      ],
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "Before I Go to Sleep"
+      ],
+      "similarToAuthors": [
+        "Shari Lapena",
+        "Alex Michaelides"
+      ]
     },
     {
       "bookKey": "the-prisoner|b-a-paris",
@@ -9439,14 +9592,27 @@
       "author": "Bianca Bosker",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 370,
       "dateRead": null,
       "dateAdded": "2023/10/05",
       "isbn": "0525562206",
       "isbn13": "9780525562207",
       "publisher": "Viking",
-      "year": 2024
+      "year": 2024,
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "business"
+      ],
+      "similarToTitles": [
+        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
+        "Educated"
+      ],
+      "similarToAuthors": [
+        "Michael Finkel",
+        "Tara Westover"
+      ]
     },
     {
       "bookKey": "so-fetch-the-making-of-mean-girls|jennifer-keishin-armstrong",
@@ -9455,14 +9621,27 @@
       "author": "Jennifer Keishin Armstrong",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 272,
       "dateRead": null,
       "dateAdded": "2023/10/05",
       "isbn": "006327616X",
       "isbn13": "9780063276161",
       "publisher": "Dey Street Books",
-      "year": 2024
+      "year": 2024,
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "humor"
+      ],
+      "similarToTitles": [
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
+        "Yearbook"
+      ],
+      "similarToAuthors": [
+        "Chuck Klosterman",
+        "Seth Rogen"
+      ]
     },
     {
       "bookKey": "come-and-get-it|kiley-reid",
@@ -9471,14 +9650,27 @@
       "author": "Kiley Reid",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.5,
       "pages": 400,
       "dateRead": null,
       "dateAdded": "2023/10/05",
       "isbn": "0593328205",
       "isbn13": "9780593328200",
       "publisher": "G.P. Putnam's Sons",
-      "year": 2024
+      "year": 2024,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "contemporary"
+      ],
+      "similarToTitles": [
+        "Lake Success",
+        "Tomorrow, and Tomorrow, and Tomorrow"
+      ],
+      "similarToAuthors": [
+        "Gary Shteyngart",
+        "Gabrielle Zevin"
+      ]
     },
     {
       "bookKey": "born-standing-up-a-comic-s-life|steve-martin",
@@ -9487,14 +9679,28 @@
       "author": "Steve  Martin",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 207,
       "dateRead": null,
       "dateAdded": "2023/10/21",
       "isbn": "1416553649",
       "isbn13": "9781416553649",
       "publisher": "Scribner",
-      "year": 2007
+      "year": 2007,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "humor",
+        "biography"
+      ],
+      "similarToTitles": [
+        "Yearbook",
+        "A Life in Parts"
+      ],
+      "similarToAuthors": [
+        "Seth Rogen",
+        "Bryan Cranston"
+      ]
     },
     {
       "bookKey": "everybody-lies-big-data-new-data-and-what-the-internet-can-tell-us-about-who-we-really-are|seth-stephens-davidowitz",
@@ -9503,14 +9709,28 @@
       "author": "Seth Stephens-Davidowitz",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 338,
       "dateRead": null,
       "dateAdded": "2023/10/21",
       "isbn": "0062390856",
       "isbn13": "9780062390851",
       "publisher": "Dey Street Books",
-      "year": 2017
+      "year": 2017,
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "psychology",
+        "tech history"
+      ],
+      "similarToTitles": [
+        "The Hot Hand: The Mystery and Science of Streaks",
+        "Flash Boys: A Wall Street Revolt"
+      ],
+      "similarToAuthors": [
+        "Ben Cohen",
+        "Michael Lewis"
+      ]
     },
     {
       "bookKey": "the-mist|stephen-king",
@@ -9519,7 +9739,7 @@
       "author": "Stephen  King",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 176,
       "dateRead": null,
       "dateAdded": "2023/09/29",
@@ -9527,7 +9747,21 @@
       "isbn13": null,
       "publisher": "Signet",
       "year": 2007,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1331317781i/813214.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1331317781i/813214.jpg",
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "horror",
+        "speculative"
+      ],
+      "similarToTitles": [
+        "The Stand",
+        "The Outsider"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Max Brooks"
+      ]
     },
     {
       "bookKey": "the-rocket-that-fell-to-earth-roger-clemens-and-the-rage-for-baseball-immortality|jeff-pearlman",
@@ -9536,14 +9770,28 @@
       "author": "Jeff Pearlman",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 348,
       "dateRead": null,
       "dateAdded": "2023/09/16",
       "isbn": "0061724750",
       "isbn13": "9780061724756",
       "publisher": "Harper",
-      "year": 2009
+      "year": 2009,
+      "type": "nonfiction",
+      "themes": [
+        "sports",
+        "biography",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Doc: The Life of Roy Halladay",
+        "Charlie Hustle: The Rise and Fall of Pete Rose, and the Last Glory Days of Baseball"
+      ],
+      "similarToAuthors": [
+        "Todd Zolecki",
+        "Keith O'Brien"
+      ]
     },
     {
       "bookKey": "the-fury|alex-michaelides",
@@ -9552,14 +9800,28 @@
       "author": "Alex Michaelides",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 298,
       "dateRead": null,
       "dateAdded": "2023/09/12",
       "isbn": "125075898X",
       "isbn13": "9781250758989",
       "publisher": "Celadon Books",
-      "year": 2024
+      "year": 2024,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "psychological",
+        "mystery"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "Before I Go to Sleep"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Shari Lapena"
+      ]
     },
     {
       "bookKey": "twas-the-nightshift-before-christmas|adam-kay",
@@ -9568,14 +9830,28 @@
       "author": "Adam Kay",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.3,
       "pages": 144,
       "dateRead": null,
       "dateAdded": "2023/08/27",
       "isbn": null,
       "isbn13": null,
       "publisher": "Picador",
-      "year": 2019
+      "year": 2019,
+      "type": "nonfiction",
+      "themes": [
+        "humor",
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "This is Going to Hurt: Secret Diaries of a Junior Doctor",
+        "Yearbook"
+      ],
+      "similarToAuthors": [
+        "Seth Rogen",
+        "Bryan Cranston"
+      ]
     },
     {
       "bookKey": "cleo-mcdougal-regrets-nothing|allison-winn-scotch",
@@ -9584,14 +9860,27 @@
       "author": "Allison Winn Scotch",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 328,
       "dateRead": null,
       "dateAdded": "2023/08/26",
       "isbn": "1542021219",
       "isbn13": "9781542021210",
       "publisher": "Lake Union Publishing",
-      "year": 2020
+      "year": 2020,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "contemporary"
+      ],
+      "similarToTitles": [
+        "Romantic Comedy",
+        "One Day"
+      ],
+      "similarToAuthors": [
+        "Curtis Sittenfeld",
+        "David Nicholls"
+      ]
     },
     {
       "bookKey": "going-zero|anthony-mccarten",
@@ -9600,14 +9889,28 @@
       "author": "Anthony McCarten",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 304,
       "dateRead": null,
       "dateAdded": "2023/09/23",
       "isbn": "006322707X",
       "isbn13": "9780063227071",
       "publisher": "Harper",
-      "year": 2023
+      "year": 2023,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "speculative",
+        "tech"
+      ],
+      "similarToTitles": [
+        "Recursion",
+        "Dark Matter"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Neal Stephenson"
+      ]
     },
     {
       "bookKey": "have-i-told-you-this-already-stories-i-don-t-want-to-forget-to-remember|lauren-graham",
@@ -9616,14 +9919,28 @@
       "author": "Lauren Graham",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.5,
       "pages": 208,
       "dateRead": null,
       "dateAdded": "2023/09/07",
       "isbn": "059335544X",
       "isbn13": "9780593355442",
       "publisher": "Ballantine Books",
-      "year": 2023
+      "year": 2023,
+      "type": "nonfiction",
+      "themes": [
+        "humor",
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Yearbook",
+        "A Life in Parts"
+      ],
+      "similarToAuthors": [
+        "Seth Rogen",
+        "Bryan Cranston"
+      ]
     },
     {
       "bookKey": "demon-copperhead|barbara-kingsolver",
@@ -9648,14 +9965,27 @@
       "author": "Hernan Diaz",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 402,
       "dateRead": null,
       "dateAdded": "2023/08/31",
       "isbn": null,
       "isbn13": null,
       "publisher": "Riverhead Books",
-      "year": 2022
+      "year": 2022,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "historical"
+      ],
+      "similarToTitles": [
+        "Tomorrow, and Tomorrow, and Tomorrow",
+        "The Invisible Life of Addie LaRue"
+      ],
+      "similarToAuthors": [
+        "Gabrielle Zevin",
+        "V.E. Schwab"
+      ]
     },
     {
       "bookKey": "a-flicker-in-the-dark|stacy-willingham",
@@ -9680,14 +10010,27 @@
       "author": "Billy Walters",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 384,
       "dateRead": null,
       "dateAdded": "2023/08/21",
       "isbn": "1668032856",
       "isbn13": "9781668032855",
       "publisher": "Avid Reader Press / Simon & Schuster",
-      "year": 2023
+      "year": 2023,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Molly's Game: From Hollywood's Elite to Wall Street's Billionaire Boys Club, My High-Stakes Adventure in the World of Underground Poker",
+        "Ship It Holla Ballas!: How a Bunch of 19-Year-Old College Dropouts Used the Internet to Become Poker's Loudest, Craziest, and Richest Crew"
+      ],
+      "similarToAuthors": [
+        "Ben Mezrich",
+        "Chuck Klosterman"
+      ]
     },
     {
       "bookKey": "the-husband-s-secret|liane-moriarty",
@@ -9696,14 +10039,28 @@
       "author": "Liane Moriarty",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 396,
       "dateRead": null,
       "dateAdded": "2023/08/20",
       "isbn": "0399159347",
       "isbn13": "9780399159343",
       "publisher": "Berkley",
-      "year": 2013
+      "year": 2013,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "literary",
+        "psychological"
+      ],
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "The Breakdown"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Shari Lapena"
+      ]
     },
     {
       "bookKey": "mr-mercedes|stephen-king",
@@ -9712,7 +10069,7 @@
       "author": "Stephen  King",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 437,
       "dateRead": null,
       "dateAdded": "2023/08/17",
@@ -9720,7 +10077,21 @@
       "isbn13": "9781476754451",
       "publisher": "Scribner",
       "year": 2014,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1468705326i/18775247.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1468705326i/18775247.jpg",
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "mystery",
+        "detective"
+      ],
+      "similarToTitles": [
+        "The Outsider",
+        "Billy Summers"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "James Patterson"
+      ]
     },
     {
       "bookKey": "the-road|cormac-mccarthy",
@@ -9777,14 +10148,27 @@
       "author": "Joe Trohman",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 240,
       "dateRead": null,
       "dateAdded": "2022/04/14",
       "isbn": "0306847353",
       "isbn13": "9780306847356",
       "publisher": "Da Capo",
-      "year": 2022
+      "year": 2022,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Storyteller: Tales of Life and Music",
+        "A Life in Parts"
+      ],
+      "similarToAuthors": [
+        "Dave Grohl",
+        "Bryan Cranston"
+      ]
     },
     {
       "bookKey": "the-liars-club|mary-karr",
@@ -9793,14 +10177,28 @@
       "author": "Mary Karr",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 352,
       "dateRead": null,
       "dateAdded": "2023/07/16",
       "isbn": "0143035746",
       "isbn13": "9780143035749",
       "publisher": "Penguin Books",
-      "year": 2005
+      "year": 2005,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "literary",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Educated",
+        "The Glass Castle"
+      ],
+      "similarToAuthors": [
+        "Tara Westover",
+        "Jeannette Walls"
+      ]
     },
     {
       "bookKey": "verity|colleen-hoover",
@@ -9841,14 +10239,28 @@
       "author": "Nathan Vardi",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 288,
       "dateRead": null,
       "dateAdded": "2023/07/01",
       "isbn": "0393540952",
       "isbn13": "9780393540956",
       "publisher": "W. W. Norton & Company",
-      "year": 2023
+      "year": 2023,
+      "type": "nonfiction",
+      "themes": [
+        "finance",
+        "narrative nonfiction",
+        "business"
+      ],
+      "similarToTitles": [
+        "Flash Boys: A Wall Street Revolt",
+        "The Big Short: Inside the Doomsday Machine"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Gregory Zuckerman"
+      ]
     },
     {
       "bookKey": "class-a-memoir-of-motherhood-hunger-and-higher-education|stephanie-land",
@@ -9857,14 +10269,27 @@
       "author": "Stephanie  Land",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 288,
       "dateRead": null,
       "dateAdded": "2023/07/01",
       "isbn": "1982151412",
       "isbn13": "9781982151416",
       "publisher": "Atria/One Signal Publishers",
-      "year": 2023
+      "year": 2023,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive",
+        "Educated"
+      ],
+      "similarToAuthors": [
+        "Tara Westover",
+        "Matthew Desmond"
+      ]
     },
     {
       "bookKey": "hangry-a-startup-journey|mike-evans",
@@ -9889,14 +10314,28 @@
       "author": "Holly Smale",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 362,
       "dateRead": null,
       "dateAdded": "2023/06/28",
       "isbn": "0778334538",
       "isbn13": "9780778334538",
       "publisher": "MIRA",
-      "year": 2023
+      "year": 2023,
+      "type": "fiction",
+      "themes": [
+        "speculative",
+        "romance",
+        "literary"
+      ],
+      "similarToTitles": [
+        "The Measure",
+        "The Invisible Life of Addie LaRue"
+      ],
+      "similarToAuthors": [
+        "Nikki Erlick",
+        "V.E. Schwab"
+      ]
     },
     {
       "bookKey": "me-and-carlos|tom-perrotta",
@@ -9937,14 +10376,27 @@
       "author": "Lawrence Wright",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 323,
       "dateRead": null,
       "dateAdded": "2023/06/17",
       "isbn": "0593537378",
       "isbn13": "9780593537374",
       "publisher": "Knopf",
-      "year": 2023
+      "year": 2023,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "political"
+      ],
+      "similarToTitles": [
+        "The Plot (The Book Series, #1)",
+        "Lake Success"
+      ],
+      "similarToAuthors": [
+        "Jean Hanff Korelitz",
+        "Gary Shteyngart"
+      ]
     },
     {
       "bookKey": "the-last-chance-lawyer|william-bernhardt",
@@ -9953,14 +10405,28 @@
       "author": "William Bernhardt",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.2,
       "pages": 482,
       "dateRead": null,
       "dateAdded": "2023/05/31",
       "isbn": null,
       "isbn13": null,
       "publisher": "Babylon Books",
-      "year": 2019
+      "year": 2019,
+      "type": "fiction",
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ],
+      "similarToTitles": [
+        "A Time to Kill (Jake Brigance, #1)",
+        "Presumed Innocent"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow"
+      ]
     },
     {
       "bookKey": "bad-haircut-stories-from-the-seventies|tom-perrotta",
@@ -9969,14 +10435,27 @@
       "author": "Tom Perrotta",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.6,
       "pages": 244,
       "dateRead": null,
       "dateAdded": "2023/05/31",
       "isbn": "1250017424",
       "isbn13": "9781250017420",
       "publisher": "St. Martin's Griffin",
-      "year": 2012
+      "year": 2012,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "coming-of-age"
+      ],
+      "similarToTitles": [
+        "Little Children",
+        "Tracy Flick Can't Win"
+      ],
+      "similarToAuthors": [
+        "John Green",
+        "Gary Shteyngart"
+      ]
     },
     {
       "bookKey": "not-forever-but-for-now|chuck-palahniuk",
@@ -9985,14 +10464,28 @@
       "author": "Chuck Palahniuk",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.4,
       "pages": 256,
       "dateRead": null,
       "dateAdded": "2023/05/27",
       "isbn": "1668021412",
       "isbn13": "9781668021415",
       "publisher": "Simon & Schuster",
-      "year": 2023
+      "year": 2023,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "humor",
+        "speculative"
+      ],
+      "similarToTitles": [
+        "Raised in Captivity: Fictional Nonfiction",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)"
+      ],
+      "similarToAuthors": [
+        "Chuck Klosterman",
+        "Drew Magary"
+      ]
     },
     {
       "bookKey": "the-island|adrian-mckinty",
@@ -10017,14 +10510,28 @@
       "author": "Adrian McKinty",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 11,
       "dateRead": null,
       "dateAdded": "2023/06/10",
       "isbn": "1441785698",
       "isbn13": "9781441785695",
       "publisher": "Blackstone Audiobooks",
-      "year": 2012
+      "year": 2012,
+      "type": "fiction",
+      "themes": [
+        "mystery",
+        "thriller",
+        "detective"
+      ],
+      "similarToTitles": [
+        "The Chain",
+        "The Outsider"
+      ],
+      "similarToAuthors": [
+        "Stephen King",
+        "S.A. Cosby"
+      ]
     },
     {
       "bookKey": "the-chain|adrian-mckinty",
@@ -10065,7 +10572,7 @@
       "author": "John Grisham",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 58,
       "dateRead": null,
       "dateAdded": "2023/05/31",
@@ -10073,7 +10580,21 @@
       "isbn13": "9781473642393",
       "publisher": "Hodder & Stoughton",
       "year": 2016,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1458476639i/29558771.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1458476639i/29558771.jpg",
+      "type": "fiction",
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ],
+      "similarToTitles": [
+        "The Firm (The Firm, #1)",
+        "A Time to Kill (Jake Brigance, #1)"
+      ],
+      "similarToAuthors": [
+        "Scott Turow",
+        "Steve Cavanagh"
+      ]
     },
     {
       "bookKey": "the-mountain-in-the-sea|ray-nayler",
@@ -10082,14 +10603,28 @@
       "author": "Ray Nayler",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 452,
       "dateRead": null,
       "dateAdded": "2023/05/31",
       "isbn": "1250872278",
       "isbn13": "9781250872272",
       "publisher": "Picador",
-      "year": 2023
+      "year": 2023,
+      "type": "fiction",
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "literary"
+      ],
+      "similarToTitles": [
+        "Seveneves",
+        "Project Hail Mary"
+      ],
+      "similarToAuthors": [
+        "Neal Stephenson",
+        "Andy Weir"
+      ]
     },
     {
       "bookKey": "a-short-history-of-nearly-everything|bill-bryson",
@@ -10130,14 +10665,28 @@
       "author": "Ben Smith",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 352,
       "dateRead": null,
       "dateAdded": "2023/05/27",
       "isbn": "0593299752",
       "isbn13": "9780593299753",
       "publisher": "Penguin Press",
-      "year": 2023
+      "year": 2023,
+      "type": "nonfiction",
+      "themes": [
+        "tech history",
+        "narrative nonfiction",
+        "business"
+      ],
+      "similarToTitles": [
+        "Super Pumped: The Battle for Uber",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal"
+      ],
+      "similarToAuthors": [
+        "Mike Isaac",
+        "Nick Bilton"
+      ]
     },
     {
       "bookKey": "when-the-heavens-went-on-sale-the-misfits-and-geniuses-racing-to-put-space-within-reach|ashlee-vance",
@@ -10162,14 +10711,28 @@
       "author": "Nita A. Farahany",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 288,
       "dateRead": null,
       "dateAdded": "2023/05/22",
       "isbn": "1250272955",
       "isbn13": "9781250272959",
       "publisher": "St. Martin's Press",
-      "year": 2023
+      "year": 2023,
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "psychology"
+      ],
+      "similarToTitles": [
+        "The Code Breaker: Jennifer Doudna, Gene Editing, and the Future of the Human Race",
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution"
+      ],
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Ashlee Vance"
+      ]
     },
     {
       "bookKey": "rogue-justice|stacey-abrams",
@@ -10178,14 +10741,28 @@
       "author": "Stacey Abrams",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 353,
       "dateRead": null,
       "dateAdded": "2023/05/20",
       "isbn": "038554832X",
       "isbn13": "9780385548328",
       "publisher": "Doubleday/Penguin Random House Publishing Group/Bertelsmann",
-      "year": 2023
+      "year": 2023,
+      "type": "fiction",
+      "themes": [
+        "legal",
+        "thriller",
+        "political"
+      ],
+      "similarToTitles": [
+        "A Time to Kill (Jake Brigance, #1)",
+        "The President Is Missing"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "James Patterson"
+      ]
     },
     {
       "bookKey": "the-coming-storm|michael-lewis",
@@ -10210,14 +10787,28 @@
       "author": "Brian Gewirtz",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 288,
       "dateRead": null,
       "dateAdded": "2023/03/19",
       "isbn": "1538710536",
       "isbn13": "9781538710531",
       "publisher": "Twelve",
-      "year": 2022
+      "year": 2022,
+      "type": "nonfiction",
+      "themes": [
+        "humor",
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Yearbook",
+        "A Life in Parts"
+      ],
+      "similarToAuthors": [
+        "Seth Rogen",
+        "Bryan Cranston"
+      ]
     },
     {
       "bookKey": "hard-to-break|michael-ledwidge",
@@ -10338,7 +10929,7 @@
       "author": "Stephen  King",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 144,
       "dateRead": null,
       "dateAdded": "2023/03/25",
@@ -10346,7 +10937,21 @@
       "isbn13": "9781587678226",
       "publisher": "Cemetery Dance Publications",
       "year": 2023,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1641893299i/60102274.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1641893299i/60102274.jpg",
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "speculative",
+        "literary"
+      ],
+      "similarToTitles": [
+        "The Outsider",
+        "Elevation"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Chuck Klosterman"
+      ]
     },
     {
       "bookKey": "my-name-is-lucy-barton|elizabeth-strout",
@@ -10403,14 +11008,28 @@
       "author": "Robert   Cherry",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.1,
       "pages": 384,
       "dateRead": null,
       "dateAdded": "2022/12/16",
       "isbn": "1572436727",
       "isbn13": "9781572436725",
       "publisher": "Triumph Books",
-      "year": 2004
+      "year": 2004,
+      "type": "nonfiction",
+      "themes": [
+        "sports",
+        "biography",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty"
+      ],
+      "similarToAuthors": [
+        "Jeff Pearlman",
+        "Jack McCallum"
+      ]
     },
     {
       "bookKey": "ascension|nicholas-binge",
@@ -10419,14 +11038,28 @@
       "author": "Nicholas Binge",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 344,
       "dateRead": null,
       "dateAdded": "2023/01/17",
       "isbn": "0593539583",
       "isbn13": "9780593539583",
       "publisher": "Riverhead Books",
-      "year": 2023
+      "year": 2023,
+      "type": "fiction",
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "thriller"
+      ],
+      "similarToTitles": [
+        "Recursion",
+        "Dark Matter"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Neal Stephenson"
+      ]
     },
     {
       "bookKey": "white-noise|don-delillo",
@@ -10451,14 +11084,28 @@
       "author": "Nancy Gibbs",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 641,
       "dateRead": null,
       "dateAdded": "2023/02/14",
       "isbn": "1439127700",
       "isbn13": "9781439127704",
       "publisher": "Simon & Schuster",
-      "year": 2012
+      "year": 2012,
+      "type": "nonfiction",
+      "themes": [
+        "history",
+        "biography",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "A Promised Land",
+        "The Accidental President: Harry S. Truman and the Four Months That Changed the World"
+      ],
+      "similarToAuthors": [
+        "Barack Obama",
+        "A.J. Baime"
+      ]
     },
     {
       "bookKey": "tracy-flick-can-t-win|tom-perrotta",
@@ -10499,14 +11146,28 @@
       "author": "Neal Stephenson",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 576,
       "dateRead": null,
       "dateAdded": "2023/01/07",
       "isbn": "059359973X",
       "isbn13": "9780593599730",
       "publisher": "Del Rey",
-      "year": 2022
+      "year": 2022,
+      "type": "fiction",
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "dystopia"
+      ],
+      "similarToTitles": [
+        "Seveneves",
+        "Dark Matter"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Andy Weir"
+      ]
     },
     {
       "bookKey": "the-rewind|allison-winn-scotch",
@@ -10595,14 +11256,28 @@
       "author": "Johann Hari",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 357,
       "dateRead": null,
       "dateAdded": "2022/12/03",
       "isbn": "0593138511",
       "isbn13": "9780593138519",
       "publisher": "Crown",
-      "year": 2022
+      "year": 2022,
+      "type": "nonfiction",
+      "themes": [
+        "psychology",
+        "narrative nonfiction",
+        "tech history"
+      ],
+      "similarToTitles": [
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution"
+      ],
+      "similarToAuthors": [
+        "Lori Gottlieb",
+        "Walter Isaacson"
+      ]
     },
     {
       "bookKey": "this-time-tomorrow|emma-straub",
@@ -10691,14 +11366,28 @@
       "author": "Kat Rosenfield",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 320,
       "dateRead": null,
       "dateAdded": "2022/11/04",
       "isbn": "0063207397",
       "isbn13": "9780063207394",
       "publisher": "William Morrow",
-      "year": 2023
+      "year": 2023,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "psychological",
+        "mystery"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "The Woman in the Window"
+      ],
+      "similarToAuthors": [
+        "Alex Michaelides",
+        "B.A. Paris"
+      ]
     },
     {
       "bookKey": "butts-a-backstory|heather-radke",
@@ -10707,14 +11396,27 @@
       "author": "Heather Radke",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 311,
       "dateRead": null,
       "dateAdded": "2022/10/29",
       "isbn": "1982135484",
       "isbn13": "9781982135485",
       "publisher": "Avid Reader Press / Simon & Schuster",
-      "year": 2022
+      "year": 2022,
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "history"
+      ],
+      "similarToTitles": [
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)"
+      ],
+      "similarToAuthors": [
+        "Chuck Klosterman",
+        "Bill Bryson"
+      ]
     },
     {
       "bookKey": "once-upon-a-december|amy-e-reichert",
@@ -10819,14 +11521,28 @@
       "author": "Jorge L. Contreras",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 432,
       "dateRead": null,
       "dateAdded": "2022/10/14",
       "isbn": "164375324X",
       "isbn13": "9781643753249",
       "publisher": "Algonquin Books",
-      "year": 2022
+      "year": 2022,
+      "type": "nonfiction",
+      "themes": [
+        "legal",
+        "narrative nonfiction",
+        "science"
+      ],
+      "similarToTitles": [
+        "The Code Breaker: Jennifer Doudna, Gene Editing, and the Future of the Human Race",
+        "Presumed Innocent"
+      ],
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Scott Turow"
+      ]
     },
     {
       "bookKey": "the-book-of-joe-trying-not-to-suck-at-baseball-and-life|joe-maddon",
@@ -10835,14 +11551,28 @@
       "author": "Joe Maddon",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 369,
       "dateRead": null,
       "dateAdded": "2022/10/13",
       "isbn": "1538751798",
       "isbn13": "9781538751794",
       "publisher": "Twelve",
-      "year": 2022
+      "year": 2022,
+      "type": "nonfiction",
+      "themes": [
+        "sports",
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Cubs Way: The Zen of Building the Best Team in Baseball and Breaking the Curse",
+        "Charlie Hustle: The Rise and Fall of Pete Rose, and the Last Glory Days of Baseball"
+      ],
+      "similarToAuthors": [
+        "Tom Verducci",
+        "Keith O'Brien"
+      ]
     },
     {
       "bookKey": "the-woods|harlan-coben",
@@ -10915,14 +11645,28 @@
       "author": "Molly Shannon",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 291,
       "dateRead": null,
       "dateAdded": "2022/09/13",
       "isbn": "0063056232",
       "isbn13": "9780063056237",
       "publisher": "Ecco",
-      "year": 2022
+      "year": 2022,
+      "type": "nonfiction",
+      "themes": [
+        "humor",
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Yearbook",
+        "A Life in Parts"
+      ],
+      "similarToAuthors": [
+        "Seth Rogen",
+        "Bryan Cranston"
+      ]
     },
     {
       "bookKey": "why-has-nobody-told-me-this-before-an-international-bestselling-guide-to-mental-health-and-emotional-resilience-from-a-clinical-psychologist|julie-smith",
@@ -10931,14 +11675,27 @@
       "author": "Julie      Smith",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.3,
       "pages": 368,
       "dateRead": null,
       "dateAdded": "2022/09/13",
       "isbn": "0063227932",
       "isbn13": "9780063227934",
       "publisher": "HarperOne",
-      "year": 2022
+      "year": 2022,
+      "type": "nonfiction",
+      "themes": [
+        "psychology",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
+        "Educated"
+      ],
+      "similarToAuthors": [
+        "Lori Gottlieb",
+        "Tara Westover"
+      ]
     },
     {
       "bookKey": "love-by-the-glass-tasting-notes-from-a-marriage|dorothy-j-gaiter",
@@ -10963,14 +11720,27 @@
       "author": "Ted Conover",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.8,
       "pages": 287,
       "dateRead": null,
       "dateAdded": "2022/09/08",
       "isbn": "0525521488",
       "isbn13": "9780525521488",
       "publisher": "Knopf",
-      "year": 2022
+      "year": 2022,
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "adventure"
+      ],
+      "similarToTitles": [
+        "Chesapeake Requiem: A Year With the Watermen of Vanishing Tangier Island",
+        "Educated"
+      ],
+      "similarToAuthors": [
+        "Earl Swift",
+        "Tara Westover"
+      ]
     },
     {
       "bookKey": "boys-will-be-boys-the-glory-days-and-party-nights-of-the-dallas-cowboys-dynasty|jeff-pearlman",
@@ -10979,14 +11749,28 @@
       "author": "Jeff Pearlman",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 406,
       "dateRead": null,
       "dateAdded": "2022/09/04",
       "isbn": "0061256803",
       "isbn13": "9780061256806",
       "publisher": "Harper",
-      "year": 2008
+      "year": 2008,
+      "type": "nonfiction",
+      "themes": [
+        "sports",
+        "narrative nonfiction",
+        "history"
+      ],
+      "similarToTitles": [
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks"
+      ],
+      "similarToAuthors": [
+        "Jack McCallum",
+        "Chris Herring"
+      ]
     },
     {
       "bookKey": "after-i-do|taylor-jenkins-reid",
@@ -11011,14 +11795,28 @@
       "author": "Jeff Pearlman",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.2,
       "pages": 496,
       "dateRead": null,
       "dateAdded": "2022/09/04",
       "isbn": "159240653X",
       "isbn13": "9781592406531",
       "publisher": "Gotham",
-      "year": 2011
+      "year": 2011,
+      "type": "nonfiction",
+      "themes": [
+        "sports",
+        "biography",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Tiger Woods",
+        "The Last Folk Hero: The Life and Myth of Bo Jackson"
+      ],
+      "similarToAuthors": [
+        "Jeff Benedict",
+        "Keith O'Brien"
+      ]
     },
     {
       "bookKey": "forever-interrupted|taylor-jenkins-reid",
@@ -11219,7 +12017,7 @@
       "author": "James  Patterson",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.9,
       "pages": 368,
       "dateRead": null,
       "dateAdded": "2022/06/15",
@@ -11227,7 +12025,21 @@
       "isbn13": "9780316411721",
       "publisher": "jimmy patterson",
       "year": 2022,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1647948485i/60420291.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1647948485i/60420291.jpg",
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "historical",
+        "mystery"
+      ],
+      "similarToTitles": [
+        "Along Came a Spider (Alex Cross, #1)",
+        "The Silent Patient"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Alex Michaelides"
+      ]
     },
     {
       "bookKey": "the-paris-apartment|lucy-foley",
@@ -11236,14 +12048,28 @@
       "author": "Lucy Foley",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.7,
       "pages": 360,
       "dateRead": null,
       "dateAdded": "2022/06/21",
       "isbn": "0063003058",
       "isbn13": "9780063003057",
       "publisher": "William Morrow",
-      "year": 2022
+      "year": 2022,
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "mystery",
+        "suspense"
+      ],
+      "similarToTitles": [
+        "The Guest List",
+        "The Silent Patient"
+      ],
+      "similarToAuthors": [
+        "Alex Michaelides",
+        "B.A. Paris"
+      ]
     },
     {
       "bookKey": "good-morning-monster-a-therapist-shares-four-heroic-stories-of-emotional-recovery|catherine-gildiner",
@@ -11268,14 +12094,27 @@
       "author": "Lisa Taddeo",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 3.5,
       "pages": 225,
       "dateRead": null,
       "dateAdded": "2022/06/15",
       "isbn": "1982122188",
       "isbn13": "9781982122188",
       "publisher": "Avid Reader Press / Simon & Schuster",
-      "year": 2022
+      "year": 2022,
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "contemporary"
+      ],
+      "similarToTitles": [
+        "Three Women",
+        "Tomorrow, and Tomorrow, and Tomorrow"
+      ],
+      "similarToAuthors": [
+        "Gabrielle Zevin",
+        "Gary Shteyngart"
+      ]
     },
     {
       "bookKey": "hell-of-a-book|jason-mott",
@@ -11300,14 +12139,27 @@
       "author": "Anthony Almojera",
       "shelf": "to-read",
       "myRating": 0,
-      "avgRating": 0.0,
+      "avgRating": 4.0,
       "pages": 243,
       "dateRead": null,
       "dateAdded": "2022/05/31",
       "isbn": "0358652901",
       "isbn13": "9780358652908",
       "publisher": "Mariner Books",
-      "year": 2022
+      "year": 2022,
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "When Breath Becomes Air",
+        "This is Going to Hurt: Secret Diaries of a Junior Doctor"
+      ],
+      "similarToAuthors": [
+        "Paul Kalanithi",
+        "Adam Kay"
+      ]
     },
     {
       "bookKey": "tokyo-vice-an-american-reporter-on-the-police-beat-in-japan|jake-adelstein",
