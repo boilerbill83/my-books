@@ -27,7 +27,8 @@
       "bookKey": "the-one|john-marrs",
       "goodreadsUrl": "https://www.goodreads.com/book/show/40670312-the-one",
       "buyUrl": "https://www.amazon.com/s?k=The+One+John+Marrs",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1612001976i/40670312.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1612001976i/40670312.jpg",
+      "ratingsCount": 180000
     },
     {
       "title": "Wrong Place Wrong Time",
@@ -52,7 +53,8 @@
       "bookKey": "wrong-place-wrong-time|gillian-mcallister",
       "goodreadsUrl": "https://www.goodreads.com/book/show/59947696-wrong-place-wrong-time",
       "buyUrl": "https://www.amazon.com/s?k=Wrong+Place+Wrong+Time+Gillian+McAllister",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1659457434i/59947696.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1659457434i/59947696.jpg",
+      "ratingsCount": 150000
     },
     {
       "title": "The Last Flight",
@@ -77,7 +79,8 @@
       "bookKey": "the-last-flight|julie-clark",
       "goodreadsUrl": "https://www.goodreads.com/book/show/52652923-the-last-flight",
       "buyUrl": "https://www.amazon.com/s?k=The+Last+Flight+Julie+Clark",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1617291197i/52652923.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1617291197i/52652923.jpg",
+      "ratingsCount": 200000
     },
     {
       "title": "Listen for the Lie",
@@ -102,7 +105,8 @@
       "bookKey": "listen-for-the-lie|amy-tintera",
       "goodreadsUrl": "https://www.goodreads.com/book/show/127279000-listen-for-the-lie",
       "buyUrl": "https://www.amazon.com/s?k=Listen+for+the+Lie+Amy+Tintera",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1711398419i/127279000.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1711398419i/127279000.jpg",
+      "ratingsCount": 70000
     },
     {
       "title": "The Only One Left",
@@ -127,7 +131,8 @@
       "bookKey": "the-only-one-left|riley-sager",
       "goodreadsUrl": "https://www.goodreads.com/book/show/62703226-the-only-one-left",
       "buyUrl": "https://www.amazon.com/s?k=The+Only+One+Left+Riley+Sager",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1668181003i/62703226.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1668181003i/62703226.jpg",
+      "ratingsCount": 120000
     },
     {
       "title": "Starter Villain",
@@ -152,7 +157,8 @@
       "bookKey": "starter-villain|john-scalzi",
       "goodreadsUrl": "https://www.goodreads.com/book/show/61885029-starter-villain",
       "buyUrl": "https://www.amazon.com/s?k=Starter+Villain+John+Scalzi",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1683564155i/61885029.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1683564155i/61885029.jpg",
+      "ratingsCount": 200000
     },
     {
       "title": "Wool",
@@ -177,7 +183,8 @@
       "bookKey": "wool|hugh-howey",
       "goodreadsUrl": "https://www.goodreads.com/book/show/13453029-wool-omnibus",
       "buyUrl": "https://www.amazon.com/s?k=Wool+Hugh+Howey",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1327889474i/12287209.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1327889474i/12287209.jpg",
+      "ratingsCount": 280000
     },
     {
       "title": "The Drift",
@@ -202,7 +209,8 @@
       "bookKey": "the-drift|c-j-tudor",
       "goodreadsUrl": "https://www.goodreads.com/book/show/60965424-the-drift",
       "buyUrl": "https://www.amazon.com/s?k=The+Drift+C.J.+Tudor",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1673872095i/60965424.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1673872095i/60965424.jpg",
+      "ratingsCount": 30000
     },
     {
       "title": "The Passengers",
@@ -227,7 +235,8 @@
       "bookKey": "the-passengers|john-marrs",
       "goodreadsUrl": "https://www.goodreads.com/book/show/40718386-the-passengers",
       "buyUrl": "https://www.amazon.com/s?k=The+Passengers+John+Marrs",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1545308633i/40718386.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1545308633i/40718386.jpg",
+      "ratingsCount": 100000
     },
     {
       "title": "Several People Are Typing",
@@ -252,7 +261,8 @@
       "bookKey": "several-people-are-typing|calvin-kasulke",
       "goodreadsUrl": "https://www.goodreads.com/book/show/54468020-several-people-are-typing",
       "buyUrl": "https://www.amazon.com/s?k=Several+People+Are+Typing+Calvin+Kasulke",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1627964160i/54468020.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1627964160i/54468020.jpg",
+      "ratingsCount": 15000
     },
     {
       "title": "The Kaiju Preservation Society",
@@ -277,7 +287,8 @@
       "bookKey": "the-kaiju-preservation-society|john-scalzi",
       "goodreadsUrl": "https://www.goodreads.com/book/show/57693406-the-kaiju-preservation-society",
       "buyUrl": "https://www.amazon.com/s?k=The+Kaiju+Preservation+Society+John+Scalzi",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1624897234i/57693406.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1624897234i/57693406.jpg",
+      "ratingsCount": 70000
     },
     {
       "title": "Empire of Pain",
@@ -301,7 +312,8 @@
       ],
       "bookKey": "empire-of-pain|patrick-radden-keefe",
       "goodreadsUrl": "https://www.goodreads.com/book/show/43868109-empire-of-pain",
-      "buyUrl": "https://www.amazon.com/s?k=Empire+of+Pain+Patrick+Radden+Keefe"
+      "buyUrl": "https://www.amazon.com/s?k=Empire+of+Pain+Patrick+Radden+Keefe",
+      "ratingsCount": 120000
     },
     {
       "title": "The Raging 2020s",
@@ -326,7 +338,8 @@
       "bookKey": "the-raging-2020s|alec-ross",
       "goodreadsUrl": "https://www.goodreads.com/book/show/56347315-the-raging-2020s",
       "buyUrl": "https://www.amazon.com/s?k=The+Raging+2020s+Alec+Ross",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1616687137i/56347315.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1616687137i/56347315.jpg",
+      "ratingsCount": 4000
     }
   ]
 }
