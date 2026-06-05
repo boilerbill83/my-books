@@ -1,0 +1,1563 @@
+{
+  "candidates": [
+    {
+      "title": "Moneyball: The Art of Winning an Unfair Game",
+      "author": "Michael Lewis",
+      "type": "nonfiction",
+      "year": 2003,
+      "pages": 317,
+      "avgRating": 4,
+      "ratingsCount": 310000,
+      "themes": [
+        "sports",
+        "narrative nonfiction",
+        "finance"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Ben Mezrich"
+      ],
+      "similarToTitles": [
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
+        "The Cubs Way: The Zen of Building the Best Team in Baseball and Breaking the Curse",
+        "The Hot Hand: The Mystery and Science of Streaks"
+      ],
+      "bookKey": "/works/OL3348068W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/1301.Moneyball",
+      "buyUrl": "https://www.amazon.com/dp/0393324818",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392490-L.jpg"
+    },
+    {
+      "title": "Boomerang: Travels in the New Third World",
+      "author": "Michael Lewis",
+      "type": "nonfiction",
+      "year": 2011,
+      "pages": 224,
+      "avgRating": 3.76,
+      "ratingsCount": 50000,
+      "themes": [
+        "finance",
+        "narrative nonfiction",
+        "history"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Ben Mezrich"
+      ],
+      "similarToTitles": [
+        "Flash Boys: A Wall Street Revolt",
+        "The Big Short: Inside the Doomsday Machine",
+        "Going Infinite: The Rise and Fall of a New Tycoon"
+      ],
+      "bookKey": "/works/OL16533709W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/13707738-boomerang",
+      "buyUrl": "https://www.amazon.com/dp/0393343448",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392491-L.jpg"
+    },
+    {
+      "title": "The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics",
+      "author": "Daniel James Brown",
+      "type": "nonfiction",
+      "year": 2013,
+      "pages": 404,
+      "avgRating": 4.43,
+      "ratingsCount": 1100000,
+      "themes": [
+        "sports",
+        "narrative nonfiction",
+        "history"
+      ],
+      "similarToAuthors": [
+        "Laura Hillenbrand",
+        "David Grann"
+      ],
+      "similarToTitles": [
+        "Unbroken: A World War II Story of Survival, Resilience and Redemption",
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Into Thin Air"
+      ],
+      "bookKey": "/works/OL17028450W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/16158542-the-boys-in-the-boat",
+      "buyUrl": "https://www.amazon.com/dp/0143125478",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392492-L.jpg"
+    },
+    {
+      "title": "Open: An Autobiography",
+      "author": "Andre Agassi",
+      "type": "nonfiction",
+      "year": 2009,
+      "pages": 386,
+      "avgRating": 4.15,
+      "ratingsCount": 165000,
+      "themes": [
+        "memoir",
+        "sports",
+        "narrative nonfiction"
+      ],
+      "similarToAuthors": [
+        "Jeff Pearlman",
+        "Brad Stone"
+      ],
+      "similarToTitles": [
+        "Shoe Dog",
+        "Tiger Woods",
+        "Phil: The Rip-Roaring (and Unauthorized!) Biography of Golf's Most Colorful Superstar",
+        "The Last Folk Hero: The Life and Myth of Bo Jackson"
+      ],
+      "bookKey": "/works/OL14962488W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/6480781-open",
+      "buyUrl": "https://www.amazon.com/dp/0307388409",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392493-L.jpg"
+    },
+    {
+      "title": "Eleven Rings: The Soul of Success",
+      "author": "Phil Jackson",
+      "type": "nonfiction",
+      "year": 2013,
+      "pages": 368,
+      "avgRating": 4.2,
+      "ratingsCount": 85000,
+      "themes": [
+        "sports",
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToAuthors": [
+        "Jeff Pearlman",
+        "Jack McCallum"
+      ],
+      "similarToTitles": [
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks",
+        "Tanking to the Top: The Philadelphia 76ers and the Most Audacious Process in the History of Professional Sports"
+      ],
+      "bookKey": "/works/OL17354820W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/16158542-eleven-rings",
+      "buyUrl": "https://www.amazon.com/dp/1594204446",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392494-L.jpg"
+    },
+    {
+      "title": "Showtime: Magic, Kareem, Riley, and the Los Angeles Lakers Dynasty of the 1980s",
+      "author": "Jeff Pearlman",
+      "type": "nonfiction",
+      "year": 2013,
+      "pages": 432,
+      "avgRating": 4.17,
+      "ratingsCount": 14000,
+      "themes": [
+        "sports",
+        "narrative nonfiction",
+        "history"
+      ],
+      "similarToAuthors": [
+        "Jeff Pearlman",
+        "Jack McCallum"
+      ],
+      "similarToTitles": [
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Giannis: The Improbable Rise of an NBA MVP"
+      ],
+      "bookKey": "/works/OL17354821W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/15843913-showtime",
+      "buyUrl": "https://www.amazon.com/dp/1592407978",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392495-L.jpg"
+    },
+    {
+      "title": "Killers of the Flower Moon: The Osage Murders and the Birth of the FBI",
+      "author": "David Grann",
+      "type": "nonfiction",
+      "year": 2017,
+      "pages": 338,
+      "avgRating": 4.29,
+      "ratingsCount": 600000,
+      "themes": [
+        "true crime",
+        "narrative nonfiction",
+        "history"
+      ],
+      "similarToAuthors": [
+        "David Grann",
+        "Erik Larson"
+      ],
+      "similarToTitles": [
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
+        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
+        "The Lost City of Z: A Tale of Deadly Obsession in the Amazon"
+      ],
+      "bookKey": "/works/OL17871756W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/29496076-killers-of-the-flower-moon",
+      "buyUrl": "https://www.amazon.com/dp/0385541690",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392496-L.jpg"
+    },
+    {
+      "title": "Empire of Pain: The Secret History of the Sackler Dynasty",
+      "author": "Patrick Radden Keefe",
+      "type": "nonfiction",
+      "year": 2021,
+      "pages": 560,
+      "avgRating": 4.39,
+      "ratingsCount": 150000,
+      "themes": [
+        "true crime",
+        "narrative nonfiction",
+        "history"
+      ],
+      "similarToAuthors": [
+        "Patrick Radden Keefe",
+        "Michael Lewis"
+      ],
+      "similarToTitles": [
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "Super Pumped: The Battle for Uber"
+      ],
+      "bookKey": "/works/OL24364406W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/43868109-empire-of-pain",
+      "buyUrl": "https://www.amazon.com/dp/0385545681",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392497-L.jpg"
+    },
+    {
+      "title": "Outliers: The Story of Success",
+      "author": "Malcolm Gladwell",
+      "type": "nonfiction",
+      "year": 2008,
+      "pages": 309,
+      "avgRating": 4.04,
+      "ratingsCount": 1200000,
+      "themes": [
+        "narrative nonfiction",
+        "psychology",
+        "history"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Chuck Klosterman"
+      ],
+      "similarToTitles": [
+        "The Hot Hand: The Mystery and Science of Streaks",
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "Flash Boys: A Wall Street Revolt",
+        "The Big Short: Inside the Doomsday Machine"
+      ],
+      "bookKey": "/works/OL8279778W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/3228917-outliers",
+      "buyUrl": "https://www.amazon.com/dp/0316017930",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392498-L.jpg"
+    },
+    {
+      "title": "Blink: The Power of Thinking Without Thinking",
+      "author": "Malcolm Gladwell",
+      "type": "nonfiction",
+      "year": 2005,
+      "pages": 296,
+      "avgRating": 3.96,
+      "ratingsCount": 800000,
+      "themes": [
+        "narrative nonfiction",
+        "psychology"
+      ],
+      "similarToAuthors": [
+        "Malcolm Gladwell",
+        "Michael Lewis"
+      ],
+      "similarToTitles": [
+        "The Hot Hand: The Mystery and Science of Streaks",
+        "Talking to Strangers: What We Should Know About the People We Don't Know",
+        "The Code Breaker: Jennifer Doudna, Gene Editing, and the Future of the Human Race"
+      ],
+      "bookKey": "/works/OL8279779W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/40102.Blink",
+      "buyUrl": "https://www.amazon.com/dp/0316172324",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392499-L.jpg"
+    },
+    {
+      "title": "David and Goliath: Underdogs, Misfits, and the Art of Battling Giants",
+      "author": "Malcolm Gladwell",
+      "type": "nonfiction",
+      "year": 2013,
+      "pages": 305,
+      "avgRating": 3.84,
+      "ratingsCount": 440000,
+      "themes": [
+        "narrative nonfiction",
+        "history",
+        "psychology"
+      ],
+      "similarToAuthors": [
+        "Malcolm Gladwell",
+        "Michael Lewis"
+      ],
+      "similarToTitles": [
+        "The Hot Hand: The Mystery and Science of Streaks",
+        "Evicted: Poverty and Profit in the American City",
+        "A Hope in the Unseen: An American Odyssey from the Inner City to the Ivy League"
+      ],
+      "bookKey": "/works/OL17354822W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/15751404-david-and-goliath",
+      "buyUrl": "https://www.amazon.com/dp/0316204374",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392500-L.jpg"
+    },
+    {
+      "title": "What the Dog Saw: And Other Adventures",
+      "author": "Malcolm Gladwell",
+      "type": "nonfiction",
+      "year": 2009,
+      "pages": 410,
+      "avgRating": 3.81,
+      "ratingsCount": 175000,
+      "themes": [
+        "narrative nonfiction",
+        "humor"
+      ],
+      "similarToAuthors": [
+        "Chuck Klosterman",
+        "Michael Lewis"
+      ],
+      "similarToTitles": [
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "The Hot Hand: The Mystery and Science of Streaks"
+      ],
+      "bookKey": "/works/OL14962489W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/6516450-what-the-dog-saw-and-other-adventures",
+      "buyUrl": "https://www.amazon.com/dp/0316076201",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392501-L.jpg"
+    },
+    {
+      "title": "Bad Blood: Secrets and Lies in a Silicon Valley Startup",
+      "author": "John Carreyrou",
+      "type": "nonfiction",
+      "year": 2018,
+      "pages": 339,
+      "avgRating": 4.39,
+      "ratingsCount": 350000,
+      "themes": [
+        "narrative nonfiction",
+        "true crime",
+        "tech history"
+      ],
+      "similarToAuthors": [
+        "Ben Mezrich",
+        "Michael Lewis"
+      ],
+      "similarToTitles": [
+        "Super Pumped: The Battle for Uber",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "The Accidental Billionaires: The Founding of Facebook, a Tale of Sex, Money, Genius, and Betrayal"
+      ],
+      "bookKey": "/works/OL19993787W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/37976541-bad-blood",
+      "buyUrl": "https://www.amazon.com/dp/152473165X",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392502-L.jpg"
+    },
+    {
+      "title": "The Devil in the White City: Murder, Magic, and Madness at the Fair That Changed America",
+      "author": "Erik Larson",
+      "type": "nonfiction",
+      "year": 2003,
+      "pages": 447,
+      "avgRating": 4.09,
+      "ratingsCount": 700000,
+      "themes": [
+        "true crime",
+        "narrative nonfiction",
+        "history"
+      ],
+      "similarToAuthors": [
+        "David Grann",
+        "Patrick Radden Keefe"
+      ],
+      "similarToTitles": [
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
+        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
+        "The Lost City of Z: A Tale of Deadly Obsession in the Amazon"
+      ],
+      "bookKey": "/works/OL3348069W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/21996.The_Devil_in_the_White_City",
+      "buyUrl": "https://www.amazon.com/dp/0375725601",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392503-L.jpg"
+    },
+    {
+      "title": "Catch and Kill: Lies, Spies, and a Conspiracy to Protect Predators",
+      "author": "Ronan Farrow",
+      "type": "nonfiction",
+      "year": 2019,
+      "pages": 448,
+      "avgRating": 4.34,
+      "ratingsCount": 80000,
+      "themes": [
+        "narrative nonfiction",
+        "true crime",
+        "political"
+      ],
+      "similarToAuthors": [
+        "Patrick Radden Keefe",
+        "Michael Lewis"
+      ],
+      "similarToTitles": [
+        "Super Pumped: The Battle for Uber",
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America"
+      ],
+      "bookKey": "/works/OL20627614W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/46030919-catch-and-kill",
+      "buyUrl": "https://www.amazon.com/dp/031648506X",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392504-L.jpg"
+    },
+    {
+      "title": "The Feather Thief: Beauty, Obsession, and the Natural History Heist of the Century",
+      "author": "Kirk Wallace Johnson",
+      "type": "nonfiction",
+      "year": 2018,
+      "pages": 308,
+      "avgRating": 4.06,
+      "ratingsCount": 70000,
+      "themes": [
+        "true crime",
+        "narrative nonfiction",
+        "history"
+      ],
+      "similarToAuthors": [
+        "David Grann",
+        "Patrick Radden Keefe"
+      ],
+      "similarToTitles": [
+        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder"
+      ],
+      "bookKey": "/works/OL19891870W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/35068533-the-feather-thief",
+      "buyUrl": "https://www.amazon.com/dp/1101982020",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392505-L.jpg"
+    },
+    {
+      "title": "Liftoff: Elon Musk and the Desperate Early Days That Launched SpaceX",
+      "author": "Eric Berger",
+      "type": "nonfiction",
+      "year": 2021,
+      "pages": 304,
+      "avgRating": 4.41,
+      "ratingsCount": 40000,
+      "themes": [
+        "tech history",
+        "narrative nonfiction",
+        "biography"
+      ],
+      "similarToAuthors": [
+        "Ashlee Vance",
+        "Walter Isaacson"
+      ],
+      "similarToTitles": [
+        "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future",
+        "Elon Musk",
+        "When the Heavens Went on Sale: The Misfits and Geniuses Racing to Put Space Within Reach",
+        "The Space Barons: Elon Musk, Jeff Bezos, and the Quest to Colonize the Cosmos"
+      ],
+      "bookKey": "/works/OL24364407W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/56093620-liftoff",
+      "buyUrl": "https://www.amazon.com/dp/006297997X",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392508-L.jpg"
+    },
+    {
+      "title": "An Unfinished Love Story: A Personal History of the 1960s",
+      "author": "Doris Kearns Goodwin",
+      "type": "nonfiction",
+      "year": 2024,
+      "pages": 400,
+      "avgRating": 4.29,
+      "ratingsCount": 20000,
+      "themes": [
+        "history",
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "David Grann"
+      ],
+      "similarToTitles": [
+        "The Accidental President: Harry S. Truman and the Four Months That Changed the World",
+        "The Arsenal of Democracy: FDR, Detroit, and an Epic Quest to Arm an America at War",
+        "A Promised Land"
+      ],
+      "bookKey": "/works/OL37996870W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/180686614-an-unfinished-love-story",
+      "buyUrl": "https://www.amazon.com/dp/1982106492",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392509-L.jpg"
+    },
+    {
+      "title": "An Ugly Truth: Inside Facebook's Battle for Domination",
+      "author": "Sheera Frenkel",
+      "type": "nonfiction",
+      "year": 2021,
+      "pages": 352,
+      "avgRating": 3.98,
+      "ratingsCount": 18000,
+      "themes": [
+        "tech history",
+        "narrative nonfiction",
+        "business"
+      ],
+      "similarToAuthors": [
+        "Brad Stone",
+        "Nick Bilton"
+      ],
+      "similarToTitles": [
+        "The Accidental Billionaires: The Founding of Facebook, a Tale of Sex, Money, Genius, and Betrayal",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
+        "Super Pumped: The Battle for Uber",
+        "Amazon Unbound: Jeff Bezos and the Invention of a Global Empire"
+      ],
+      "bookKey": "/works/OL24364408W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/53487386-an-ugly-truth",
+      "buyUrl": "https://www.amazon.com/dp/0062960040",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392510-L.jpg"
+    },
+    {
+      "title": "Going Clear: Scientology, Hollywood, and the Prison of Belief",
+      "author": "Lawrence Wright",
+      "type": "nonfiction",
+      "year": 2013,
+      "pages": 430,
+      "avgRating": 4.18,
+      "ratingsCount": 90000,
+      "themes": [
+        "narrative nonfiction",
+        "true crime",
+        "history"
+      ],
+      "similarToAuthors": [
+        "David Grann",
+        "Patrick Radden Keefe"
+      ],
+      "similarToTitles": [
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+        "The Code Breaker: Jennifer Doudna, Gene Editing, and the Future of the Human Race"
+      ],
+      "bookKey": "/works/OL17028451W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/17333084-going-clear",
+      "buyUrl": "https://www.amazon.com/dp/0307745309",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392512-L.jpg"
+    },
+    {
+      "title": "After Steve: How Apple Became a Trillion-Dollar Company and Lost Its Soul",
+      "author": "Tripp Mickle",
+      "type": "nonfiction",
+      "year": 2022,
+      "pages": 448,
+      "avgRating": 3.83,
+      "ratingsCount": 7000,
+      "themes": [
+        "tech history",
+        "narrative nonfiction",
+        "biography"
+      ],
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Brad Stone"
+      ],
+      "similarToTitles": [
+        "Steve Jobs",
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
+        "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future"
+      ],
+      "bookKey": "/works/OL26352791W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/58756678-after-steve",
+      "buyUrl": "https://www.amazon.com/dp/0062917641",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392513-L.jpg"
+    },
+    {
+      "title": "Disrupted: My Misadventure in the Start-Up Bubble",
+      "author": "Dan Lyons",
+      "type": "nonfiction",
+      "year": 2016,
+      "pages": 272,
+      "avgRating": 3.94,
+      "ratingsCount": 30000,
+      "themes": [
+        "humor",
+        "narrative nonfiction",
+        "tech history"
+      ],
+      "similarToAuthors": [
+        "Brad Stone",
+        "Chuck Klosterman"
+      ],
+      "similarToTitles": [
+        "Super Pumped: The Battle for Uber",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
+        "The Accidental Billionaires: The Founding of Facebook, a Tale of Sex, Money, Genius, and Betrayal"
+      ],
+      "bookKey": "/works/OL19891871W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/26030825-disrupted",
+      "buyUrl": "https://www.amazon.com/dp/031630630X",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392514-L.jpg"
+    },
+    {
+      "title": "The Lincoln Lawyer (Mickey Haller, #1)",
+      "author": "Michael Connelly",
+      "type": "fiction",
+      "year": 2005,
+      "pages": 404,
+      "avgRating": 4.2,
+      "ratingsCount": 200000,
+      "themes": [
+        "thriller",
+        "crime",
+        "mystery"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow"
+      ],
+      "similarToTitles": [
+        "A Time to Kill (Jake Brigance, #1)",
+        "Presumed Innocent",
+        "The Whistler (The Whistler, #1)",
+        "The Rainmaker"
+      ],
+      "bookKey": "/works/OL8279780W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/9969.The_Lincoln_Lawyer",
+      "buyUrl": "https://www.amazon.com/dp/0446618519",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392515-L.jpg"
+    },
+    {
+      "title": "The Push",
+      "author": "Ashley Audrain",
+      "type": "fiction",
+      "year": 2021,
+      "pages": 320,
+      "avgRating": 3.93,
+      "ratingsCount": 200000,
+      "themes": [
+        "thriller",
+        "psychological",
+        "domestic suspense"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "B.A. Paris"
+      ],
+      "similarToTitles": [
+        "The Housemaid (The Housemaid, #1)",
+        "Behind Closed Doors (Behind Closed Doors, #1)",
+        "Verity",
+        "Never Lie"
+      ],
+      "bookKey": "/works/OL24364409W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/52957876-the-push",
+      "buyUrl": "https://www.amazon.com/dp/1984881663",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392517-L.jpg"
+    },
+    {
+      "title": "Anatomy of a Scandal",
+      "author": "Sarah Vaughan",
+      "type": "fiction",
+      "year": 2018,
+      "pages": 384,
+      "avgRating": 3.91,
+      "ratingsCount": 65000,
+      "themes": [
+        "thriller",
+        "domestic suspense",
+        "mystery"
+      ],
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Freida McFadden"
+      ],
+      "similarToTitles": [
+        "Behind Closed Doors (Behind Closed Doors, #1)",
+        "Verity",
+        "Presumed Innocent"
+      ],
+      "bookKey": "/works/OL19891872W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/32313478-anatomy-of-a-scandal",
+      "buyUrl": "https://www.amazon.com/dp/1501172387",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392519-L.jpg"
+    },
+    {
+      "title": "A Good Girl's Guide to Murder (A Good Girl's Guide to Murder, #1)",
+      "author": "Holly Jackson",
+      "type": "fiction",
+      "year": 2019,
+      "pages": 392,
+      "avgRating": 4.36,
+      "ratingsCount": 700000,
+      "themes": [
+        "thriller",
+        "mystery",
+        "YA"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "Jennifer Hillier"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "Never Lie",
+        "Sharp Objects",
+        "Dark Places"
+      ],
+      "bookKey": "/works/OL20627615W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/40002024-a-good-girl-s-guide-to-murder",
+      "buyUrl": "https://www.amazon.com/dp/1984896342",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392521-L.jpg"
+    },
+    {
+      "title": "Good Girl Bad Blood (A Good Girl's Guide to Murder, #2)",
+      "author": "Holly Jackson",
+      "type": "fiction",
+      "year": 2020,
+      "pages": 400,
+      "avgRating": 4.32,
+      "ratingsCount": 200000,
+      "themes": [
+        "thriller",
+        "mystery",
+        "YA"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "Jennifer Hillier"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "Never Lie",
+        "Sharp Objects"
+      ],
+      "bookKey": "/works/OL22839070W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/53121648-good-girl-bad-blood",
+      "buyUrl": "https://www.amazon.com/dp/198489635X",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392522-L.jpg"
+    },
+    {
+      "title": "The Dry (Aaron Falk, #1)",
+      "author": "Jane Harper",
+      "type": "fiction",
+      "year": 2016,
+      "pages": 326,
+      "avgRating": 4.07,
+      "ratingsCount": 200000,
+      "themes": [
+        "thriller",
+        "crime",
+        "mystery"
+      ],
+      "similarToAuthors": [
+        "Gillian Flynn",
+        "Jennifer Hillier"
+      ],
+      "similarToTitles": [
+        "The Silent Patient",
+        "Sharp Objects",
+        "Dark Places"
+      ],
+      "bookKey": "/works/OL19891873W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/28818783-the-dry",
+      "buyUrl": "https://www.amazon.com/dp/1250105622",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392523-L.jpg"
+    },
+    {
+      "title": "Big Little Lies",
+      "author": "Liane Moriarty",
+      "type": "fiction",
+      "year": 2014,
+      "pages": 460,
+      "avgRating": 4.14,
+      "ratingsCount": 1000000,
+      "themes": [
+        "thriller",
+        "domestic suspense",
+        "contemporary"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "B.A. Paris"
+      ],
+      "similarToTitles": [
+        "Nine Perfect Strangers",
+        "The Silent Patient",
+        "The Last Thing He Told Me (Hannah Hall, #1)",
+        "Behind Closed Doors (Behind Closed Doors, #1)"
+      ],
+      "bookKey": "/works/OL17028452W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/19486412-big-little-lies",
+      "buyUrl": "https://www.amazon.com/dp/0425274861",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392525-L.jpg"
+    },
+    {
+      "title": "The Last Anniversary",
+      "author": "Liane Moriarty",
+      "type": "fiction",
+      "year": 2004,
+      "pages": 395,
+      "avgRating": 3.9,
+      "ratingsCount": 100000,
+      "themes": [
+        "contemporary",
+        "thriller",
+        "domestic suspense"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "B.A. Paris"
+      ],
+      "similarToTitles": [
+        "Nine Perfect Strangers",
+        "The Silent Patient",
+        "Before I Go to Sleep",
+        "The Last Thing He Told Me (Hannah Hall, #1)"
+      ],
+      "bookKey": "/works/OL8279781W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/14327.The_Last_Anniversary",
+      "buyUrl": "https://www.amazon.com/dp/0425274853",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392527-L.jpg"
+    },
+    {
+      "title": "Ordinary Grace",
+      "author": "William Kent Krueger",
+      "type": "fiction",
+      "year": 2013,
+      "pages": 306,
+      "avgRating": 4.23,
+      "ratingsCount": 100000,
+      "themes": [
+        "literary",
+        "mystery",
+        "historical"
+      ],
+      "similarToAuthors": [
+        "Gillian Flynn",
+        "David Nicholls"
+      ],
+      "similarToTitles": [
+        "Where the Crawdads Sing",
+        "The Silent Patient"
+      ],
+      "bookKey": "/works/OL17028454W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/16091254-ordinary-grace",
+      "buyUrl": "https://www.amazon.com/dp/1451645856",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392528-L.jpg"
+    },
+    {
+      "title": "Ready Player One",
+      "author": "Ernest Cline",
+      "type": "fiction",
+      "year": 2011,
+      "pages": 374,
+      "avgRating": 3.92,
+      "ratingsCount": 1200000,
+      "themes": [
+        "speculative",
+        "sci-fi",
+        "adventure"
+      ],
+      "similarToAuthors": [
+        "Andy Weir",
+        "Blake Crouch"
+      ],
+      "similarToTitles": [
+        "Dark Matter",
+        "Recursion",
+        "Project Hail Mary",
+        "The Martian"
+      ],
+      "bookKey": "/works/OL16533711W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/9969571-ready-player-one",
+      "buyUrl": "https://www.amazon.com/dp/030788743X",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392529-L.jpg"
+    },
+    {
+      "title": "The Hitchhiker's Guide to the Galaxy (Hitchhiker's Guide to the Galaxy, #1)",
+      "author": "Douglas Adams",
+      "type": "fiction",
+      "year": 1979,
+      "pages": 224,
+      "avgRating": 4.23,
+      "ratingsCount": 1500000,
+      "themes": [
+        "speculative",
+        "humor",
+        "sci-fi"
+      ],
+      "similarToAuthors": [
+        "Andy Weir",
+        "Blake Crouch"
+      ],
+      "similarToTitles": [
+        "The Martian",
+        "Project Hail Mary",
+        "Raised in Captivity: Fictional Nonfiction"
+      ],
+      "bookKey": "/works/OL8279782W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/386162.The_Hitchhiker_s_Guide_to_the_Galaxy",
+      "buyUrl": "https://www.amazon.com/dp/0345391802",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392530-L.jpg"
+    },
+    {
+      "title": "Ender's Game (Ender's Game, #1)",
+      "author": "Orson Scott Card",
+      "type": "fiction",
+      "year": 1985,
+      "pages": 226,
+      "avgRating": 4.33,
+      "ratingsCount": 1500000,
+      "themes": [
+        "speculative",
+        "sci-fi",
+        "YA"
+      ],
+      "similarToAuthors": [
+        "Andy Weir",
+        "Blake Crouch"
+      ],
+      "similarToTitles": [
+        "Project Hail Mary",
+        "The Martian",
+        "Dark Matter",
+        "Recursion"
+      ],
+      "bookKey": "/works/OL3348070W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/375802.Ender_s_Game",
+      "buyUrl": "https://www.amazon.com/dp/0812550706",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392531-L.jpg"
+    },
+    {
+      "title": "All Systems Red (Murderbot Diaries, #1)",
+      "author": "Martha Wells",
+      "type": "fiction",
+      "year": 2017,
+      "pages": 176,
+      "avgRating": 4.19,
+      "ratingsCount": 250000,
+      "themes": [
+        "speculative",
+        "sci-fi",
+        "humor"
+      ],
+      "similarToAuthors": [
+        "Andy Weir",
+        "Blake Crouch"
+      ],
+      "similarToTitles": [
+        "Project Hail Mary",
+        "The Martian",
+        "Artemis"
+      ],
+      "bookKey": "/works/OL17871757W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/32758901-all-systems-red",
+      "buyUrl": "https://www.amazon.com/dp/0765397536",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392532-L.jpg"
+    },
+    {
+      "title": "The Long Way to a Small, Angry Planet (Wayfarers, #1)",
+      "author": "Becky Chambers",
+      "type": "fiction",
+      "year": 2014,
+      "pages": 404,
+      "avgRating": 4.22,
+      "ratingsCount": 350000,
+      "themes": [
+        "speculative",
+        "sci-fi",
+        "literary"
+      ],
+      "similarToAuthors": [
+        "Andy Weir",
+        "Blake Crouch"
+      ],
+      "similarToTitles": [
+        "Project Hail Mary",
+        "The Martian",
+        "Recursion"
+      ],
+      "bookKey": "/works/OL17028455W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/22822858-the-long-way-to-a-small-angry-planet",
+      "buyUrl": "https://www.amazon.com/dp/0062444131",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392533-L.jpg"
+    },
+    {
+      "title": "The House in the Cerulean Sea",
+      "author": "TJ Klune",
+      "type": "fiction",
+      "year": 2020,
+      "pages": 400,
+      "avgRating": 4.42,
+      "ratingsCount": 450000,
+      "themes": [
+        "speculative",
+        "contemporary",
+        "humor"
+      ],
+      "similarToAuthors": [
+        "V.E. Schwab",
+        "Blake Crouch"
+      ],
+      "similarToTitles": [
+        "The Invisible Life of Addie LaRue",
+        "The Midnight Library (The Midnight World, #1)",
+        "This Time Tomorrow"
+      ],
+      "bookKey": "/works/OL22839071W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/45810597-the-house-in-the-cerulean-sea",
+      "buyUrl": "https://www.amazon.com/dp/1250217288",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392535-L.jpg"
+    },
+    {
+      "title": "A Memory Called Empire (Teixcalaan, #1)",
+      "author": "Arkady Martine",
+      "type": "fiction",
+      "year": 2019,
+      "pages": 462,
+      "avgRating": 4.05,
+      "ratingsCount": 120000,
+      "themes": [
+        "speculative",
+        "sci-fi",
+        "literary"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Andy Weir"
+      ],
+      "similarToTitles": [
+        "In Ascension",
+        "The Measure",
+        "The Other Valley"
+      ],
+      "bookKey": "/works/OL20627616W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/37794149-a-memory-called-empire",
+      "buyUrl": "https://www.amazon.com/dp/1250186447",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392536-L.jpg"
+    },
+    {
+      "title": "The First Fifteen Lives of Harry August",
+      "author": "Claire North",
+      "type": "fiction",
+      "year": 2014,
+      "pages": 405,
+      "avgRating": 4.21,
+      "ratingsCount": 200000,
+      "themes": [
+        "speculative",
+        "historical",
+        "thriller"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "V.E. Schwab"
+      ],
+      "similarToTitles": [
+        "Dark Matter",
+        "Recursion",
+        "This Time Tomorrow",
+        "The Invisible Life of Addie LaRue"
+      ],
+      "bookKey": "/works/OL17028456W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/20706317-the-first-fifteen-lives-of-harry-august",
+      "buyUrl": "https://www.amazon.com/dp/0316399620",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392537-L.jpg"
+    },
+    {
+      "title": "This Is How You Lose the Time War",
+      "author": "Amal El-Mohtar",
+      "type": "fiction",
+      "year": 2019,
+      "pages": 208,
+      "avgRating": 4.09,
+      "ratingsCount": 200000,
+      "themes": [
+        "speculative",
+        "literary",
+        "romance"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "V.E. Schwab"
+      ],
+      "similarToTitles": [
+        "The Invisible Life of Addie LaRue",
+        "Dark Matter",
+        "This Time Tomorrow"
+      ],
+      "bookKey": "/works/OL20627617W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/38527183-this-is-how-you-lose-the-time-war",
+      "buyUrl": "https://www.amazon.com/dp/1534430996",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392538-L.jpg"
+    },
+    {
+      "title": "People We Meet on Vacation",
+      "author": "Emily Henry",
+      "type": "fiction",
+      "year": 2021,
+      "pages": 384,
+      "avgRating": 4.11,
+      "ratingsCount": 700000,
+      "themes": [
+        "contemporary",
+        "romance"
+      ],
+      "similarToAuthors": [
+        "Taylor Jenkins Reid",
+        "Graeme Simsion"
+      ],
+      "similarToTitles": [
+        "Maybe in Another Life",
+        "After I Do",
+        "One True Loves",
+        "Romantic Comedy"
+      ],
+      "bookKey": "/works/OL24364412W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/54189398-people-we-meet-on-vacation",
+      "buyUrl": "https://www.amazon.com/dp/0593334191",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392539-L.jpg"
+    },
+    {
+      "title": "Beach Read",
+      "author": "Emily Henry",
+      "type": "fiction",
+      "year": 2020,
+      "pages": 384,
+      "avgRating": 4.16,
+      "ratingsCount": 800000,
+      "themes": [
+        "contemporary",
+        "romance",
+        "literary"
+      ],
+      "similarToAuthors": [
+        "Taylor Jenkins Reid",
+        "Graeme Simsion"
+      ],
+      "similarToTitles": [
+        "Maybe in Another Life",
+        "After I Do",
+        "The Statistical Probability of Love at First Sight"
+      ],
+      "bookKey": "/works/OL22839072W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/52867387-beach-read",
+      "buyUrl": "https://www.amazon.com/dp/0593099796",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392540-L.jpg"
+    },
+    {
+      "title": "The Dutch House",
+      "author": "Ann Patchett",
+      "type": "fiction",
+      "year": 2019,
+      "pages": 352,
+      "avgRating": 4.08,
+      "ratingsCount": 340000,
+      "themes": [
+        "literary",
+        "contemporary",
+        "historical"
+      ],
+      "similarToAuthors": [
+        "Taylor Jenkins Reid",
+        "David Nicholls"
+      ],
+      "similarToTitles": [
+        "The Glass Castle",
+        "Beautiful World, Where Are You",
+        "Normal People",
+        "Remarkably Bright Creatures"
+      ],
+      "bookKey": "/works/OL20627618W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/44318414-the-dutch-house",
+      "buyUrl": "https://www.amazon.com/dp/0062966561",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392541-L.jpg"
+    },
+    {
+      "title": "All the Light We Cannot See",
+      "author": "Anthony Doerr",
+      "type": "fiction",
+      "year": 2014,
+      "pages": 531,
+      "avgRating": 4.33,
+      "ratingsCount": 900000,
+      "themes": [
+        "historical",
+        "literary"
+      ],
+      "similarToAuthors": [
+        "David Nicholls",
+        "Kristin Hannah"
+      ],
+      "similarToTitles": [
+        "The Glass Castle",
+        "The Invisible Life of Addie LaRue",
+        "Beautiful World, Where Are You"
+      ],
+      "bookKey": "/works/OL17354823W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/18143977-all-the-light-we-cannot-see",
+      "buyUrl": "https://www.amazon.com/dp/1476746583",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392542-L.jpg"
+    },
+    {
+      "title": "The Overstory",
+      "author": "Richard Powers",
+      "type": "fiction",
+      "year": 2018,
+      "pages": 502,
+      "avgRating": 4.03,
+      "ratingsCount": 200000,
+      "themes": [
+        "literary",
+        "speculative",
+        "social commentary"
+      ],
+      "similarToAuthors": [
+        "David Nicholls",
+        "Martin MacInnes"
+      ],
+      "similarToTitles": [
+        "The Invisible Life of Addie LaRue",
+        "In Ascension",
+        "Beautiful World, Where Are You"
+      ],
+      "bookKey": "/works/OL19993788W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/40180098-the-overstory",
+      "buyUrl": "https://www.amazon.com/dp/0393356952",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392543-L.jpg"
+    },
+    {
+      "title": "Just Kids",
+      "author": "Patti Smith",
+      "type": "nonfiction",
+      "year": 2010,
+      "pages": 294,
+      "avgRating": 4.18,
+      "ratingsCount": 200000,
+      "themes": [
+        "memoir",
+        "literary",
+        "music history"
+      ],
+      "similarToAuthors": [
+        "Dave Grohl",
+        "Seth Rogen"
+      ],
+      "similarToTitles": [
+        "The Storyteller: Tales of Life and Music",
+        "Shoe Dog",
+        "A Life in Parts",
+        "Crying in H Mart"
+      ],
+      "bookKey": "/works/OL14962490W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/341879.Just_Kids",
+      "buyUrl": "https://www.amazon.com/dp/0060936223",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392544-L.jpg"
+    },
+    {
+      "title": "Surrender: 40 Songs, One Story",
+      "author": "Bono",
+      "type": "nonfiction",
+      "year": 2022,
+      "pages": 556,
+      "avgRating": 4.08,
+      "ratingsCount": 60000,
+      "themes": [
+        "memoir",
+        "music history",
+        "biography"
+      ],
+      "similarToAuthors": [
+        "Dave Grohl",
+        "Seth Rogen"
+      ],
+      "similarToTitles": [
+        "The Storyteller: Tales of Life and Music",
+        "Shoe Dog",
+        "Me",
+        "A Life in Parts"
+      ],
+      "bookKey": "/works/OL26352793W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/58951505-surrender",
+      "buyUrl": "https://www.amazon.com/dp/0525521836",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392545-L.jpg"
+    },
+    {
+      "title": "Spare",
+      "author": "Prince Harry",
+      "type": "nonfiction",
+      "year": 2023,
+      "pages": 416,
+      "avgRating": 3.97,
+      "ratingsCount": 230000,
+      "themes": [
+        "memoir",
+        "biography",
+        "political"
+      ],
+      "similarToAuthors": [
+        "Barack Obama",
+        "Bryan Cranston"
+      ],
+      "similarToTitles": [
+        "A Promised Land",
+        "Me",
+        "A Life in Parts",
+        "Source Code: My Beginnings"
+      ],
+      "bookKey": "/works/OL35668791W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/60890308-spare",
+      "buyUrl": "https://www.amazon.com/dp/0593593030",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392546-L.jpg"
+    },
+    {
+      "title": "I'm Glad My Mom Died",
+      "author": "Jennette McCurdy",
+      "type": "nonfiction",
+      "year": 2022,
+      "pages": 320,
+      "avgRating": 4.52,
+      "ratingsCount": 650000,
+      "themes": [
+        "memoir",
+        "humor",
+        "psychological"
+      ],
+      "similarToAuthors": [
+        "Seth Rogen",
+        "Lena Dunham"
+      ],
+      "similarToTitles": [
+        "Yearbook",
+        "Me",
+        "Crying in H Mart",
+        "Sorry I'm Late, I Didn't Want to Come: One Introvert's Year of Saying Yes"
+      ],
+      "bookKey": "/works/OL26352795W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/59364173-i-m-glad-my-mom-died",
+      "buyUrl": "https://www.amazon.com/dp/1982185821",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392550-L.jpg"
+    },
+    {
+      "title": "Is Everyone Hanging Out Without Me? (And Other Concerns)",
+      "author": "Mindy Kaling",
+      "type": "nonfiction",
+      "year": 2011,
+      "pages": 222,
+      "avgRating": 3.81,
+      "ratingsCount": 200000,
+      "themes": [
+        "memoir",
+        "humor"
+      ],
+      "similarToAuthors": [
+        "Seth Rogen",
+        "Lena Dunham"
+      ],
+      "similarToTitles": [
+        "Yearbook",
+        "Not That Kind of Girl: A Young Woman Tells You What She's \"Learned\"",
+        "Sorry I'm Late, I Didn't Want to Come: One Introvert's Year of Saying Yes"
+      ],
+      "bookKey": "/works/OL16533712W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/10335308-is-everyone-hanging-out-without-me-and-other-concerns",
+      "buyUrl": "https://www.amazon.com/dp/0307886271",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392551-L.jpg"
+    },
+    {
+      "title": "A Man Called Ove",
+      "author": "Fredrik Backman",
+      "type": "fiction",
+      "year": 2012,
+      "pages": 337,
+      "avgRating": 4.35,
+      "ratingsCount": 1200000,
+      "themes": [
+        "literary",
+        "contemporary",
+        "humor"
+      ],
+      "similarToAuthors": [
+        "Graeme Simsion",
+        "David Nicholls"
+      ],
+      "similarToTitles": [
+        "The Rosie Project (Don Tillman, #1)",
+        "Remarkably Bright Creatures",
+        "The Storied Life of A.J. Fikry",
+        "Lessons in Chemistry"
+      ],
+      "bookKey": "/works/OL17028457W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/18774964-a-man-called-ove",
+      "buyUrl": "https://www.amazon.com/dp/1476738025",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392553-L.jpg"
+    },
+    {
+      "title": "Endurance: Shackleton's Incredible Voyage",
+      "author": "Alfred Lansing",
+      "type": "nonfiction",
+      "year": 1959,
+      "pages": 282,
+      "avgRating": 4.41,
+      "ratingsCount": 100000,
+      "themes": [
+        "narrative nonfiction",
+        "adventure",
+        "history"
+      ],
+      "similarToAuthors": [
+        "David Grann",
+        "Hampton Sides"
+      ],
+      "similarToTitles": [
+        "Into Thin Air",
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
+        "Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night",
+        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission"
+      ],
+      "bookKey": "/works/OL3348071W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/139069.Endurance",
+      "buyUrl": "https://www.amazon.com/dp/0465062881",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392554-L.jpg"
+    },
+    {
+      "title": "The Warmth of Other Suns: The Epic Story of America's Great Migration",
+      "author": "Isabel Wilkerson",
+      "type": "nonfiction",
+      "year": 2010,
+      "pages": 622,
+      "avgRating": 4.38,
+      "ratingsCount": 80000,
+      "themes": [
+        "narrative nonfiction",
+        "history",
+        "social commentary"
+      ],
+      "similarToAuthors": [
+        "Matthew Desmond",
+        "Laura Hillenbrand"
+      ],
+      "similarToTitles": [
+        "Evicted: Poverty and Profit in the American City",
+        "A Hope in the Unseen: An American Odyssey from the Inner City to the Ivy League",
+        "American Dirt"
+      ],
+      "bookKey": "/works/OL14962491W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/8171378-the-warmth-of-other-suns",
+      "buyUrl": "https://www.amazon.com/dp/0679763880",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392555-L.jpg"
+    },
+    {
+      "title": "I Feel Bad About My Neck: And Other Thoughts on Being a Woman",
+      "author": "Nora Ephron",
+      "type": "nonfiction",
+      "year": 2006,
+      "pages": 137,
+      "avgRating": 3.83,
+      "ratingsCount": 150000,
+      "themes": [
+        "humor",
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToAuthors": [
+        "Seth Rogen",
+        "Chuck Klosterman"
+      ],
+      "similarToTitles": [
+        "Yearbook",
+        "Not That Kind of Girl: A Young Woman Tells You What She's \"Learned\"",
+        "Sorry I'm Late, I Didn't Want to Come: One Introvert's Year of Saying Yes"
+      ],
+      "bookKey": "/works/OL8279783W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/16130.I_Feel_Bad_About_My_Neck",
+      "buyUrl": "https://www.amazon.com/dp/0307264556",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392556-L.jpg"
+    },
+    {
+      "title": "Hunger: A Memoir of (My) Body",
+      "author": "Roxane Gay",
+      "type": "nonfiction",
+      "year": 2017,
+      "pages": 306,
+      "avgRating": 3.92,
+      "ratingsCount": 130000,
+      "themes": [
+        "memoir",
+        "narrative nonfiction",
+        "social commentary"
+      ],
+      "similarToAuthors": [
+        "Michelle Zauner",
+        "Tara Westover"
+      ],
+      "similarToTitles": [
+        "Educated",
+        "Crying in H Mart",
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive"
+      ],
+      "bookKey": "/works/OL17871758W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/28818783-hunger",
+      "buyUrl": "https://www.amazon.com/dp/0062456113",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392557-L.jpg"
+    },
+    {
+      "title": "Conversations with Friends",
+      "author": "Sally Rooney",
+      "type": "fiction",
+      "year": 2017,
+      "pages": 321,
+      "avgRating": 3.72,
+      "ratingsCount": 420000,
+      "themes": [
+        "literary",
+        "contemporary",
+        "romance"
+      ],
+      "similarToAuthors": [
+        "Taylor Jenkins Reid",
+        "David Nicholls"
+      ],
+      "similarToTitles": [
+        "Normal People",
+        "Beautiful World, Where Are You",
+        "After I Do"
+      ],
+      "bookKey": "/works/OL17871759W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/32187419-conversations-with-friends",
+      "buyUrl": "https://www.amazon.com/dp/0374718865",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392558-L.jpg"
+    },
+    {
+      "title": "Fourth Wing (The Empyrean, #1)",
+      "author": "Rebecca Yarros",
+      "type": "fiction",
+      "year": 2023,
+      "pages": 528,
+      "avgRating": 4.33,
+      "ratingsCount": 900000,
+      "themes": [
+        "speculative",
+        "romance",
+        "YA"
+      ],
+      "similarToAuthors": [
+        "V.E. Schwab",
+        "Blake Crouch"
+      ],
+      "similarToTitles": [
+        "The Invisible Life of Addie LaRue",
+        "The Midnight Library (The Midnight World, #1)"
+      ],
+      "bookKey": "/works/OL35668792W",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/61431922-fourth-wing",
+      "buyUrl": "https://www.amazon.com/dp/1649374046",
+      "coverUrl": "https://covers.openlibrary.org/b/id/8392559-L.jpg"
+    }
+  ]
+}
