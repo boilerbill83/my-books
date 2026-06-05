@@ -308,6 +308,7 @@ function renderCurrentlyReading(books) {
             <span class="score-pill" title="Prediction confidence">Conf ${book.confidenceScore}</span>
           </div>
           <p class="cr-reason">${book.reason}</p>
+          ${breakdownHtml(book.breakdown)}
         </div>
       </div>`;
   }).join('');
@@ -509,6 +510,19 @@ function renderBookshelf() {
   }).join('');
 }
 
+function breakdownHtml(breakdown) {
+  if (!breakdown || breakdown.length === 0) return '';
+  const rows = breakdown.map(s => {
+    const sign  = s.pts >= 0 ? '+' : '';
+    const cls   = s.pts >= 0 ? 'bd-pos' : 'bd-neg';
+    return `<li><span class="bd-pts ${cls}">${sign}${s.pts}</span><span class="bd-label">${esc(s.label)}</span></li>`;
+  }).join('');
+  return `<details class="score-breakdown">
+    <summary class="bd-toggle">Why this score?</summary>
+    <ul class="bd-list">${rows}</ul>
+  </details>`;
+}
+
 // ── Recommendations ────────────────────────────────────────────────────────
 
 function renderRecommendations() {
@@ -576,6 +590,7 @@ function renderRecommendations() {
             <span class="score-pill" title="Prediction confidence">Conf ${book.confidenceScore}</span>
           </div>
           <p class="card-reason">${book.reason}</p>
+          ${breakdownHtml(book.breakdown)}
           <div class="card-actions">
             <a class="link-button primary" href="${esc(goodreadsUrl)}" target="_blank" rel="noreferrer">Goodreads</a>
             <button class="danger-button" data-key="${esc(book.bookKey)}">Dismiss</button>

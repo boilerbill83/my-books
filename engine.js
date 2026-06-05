@@ -396,6 +396,86 @@ function reason(candidate, idx) {
     : 'Recommended because it aligns with your overall reading profile.';
 }
 
+function computeBreakdown(candidate, idx, profile) {
+  const signals = [];
+  const type = String(candidate.type || '').toLowerCase();
+  const isNonfiction = type === 'nonfiction' || type === 'non-fiction';
+
+  const push = (label, pts) => {
+    const rounded = Math.round(pts * 10) / 10;
+    if (rounded !== 0) signals.push({ label, pts: rounded });
+  };
+
+  if (candidate.fromToRead) {
+    const authorKey = normAuthor(candidate.author);
+
+    const displayAuthor = candidate.author.replace(/\s+/g, ' ');
+    const fiveCount = idx.fiveStarAuthors.get(authorKey) || 0;
+    push(`${fiveCount}× five-star ${displayAuthor}`, Math.min(AUTHOR_CONTRIB_CAP, fiveCount * 6));
+
+    const weightPts = Math.min(AUTHOR_CONTRIB_CAP / 2, (idx.authorRatingWeight.get(authorKey) || 0) * 1.5);
+    push('author rating history', weightPts);
+
+    for (const a of candidate.similarToAuthors || []) {
+      const sk = normAuthor(a);
+      const contrib = (idx.fiveStarAuthors.get(sk) || 0) * 4 + (idx.authorRatingWeight.get(sk) || 0) * 0.5;
+      push(`similar to ${a.replace(/\s+/g, ' ')}`, Math.min(AUTHOR_CONTRIB_CAP, contrib));
+    }
+
+    const titleMatches = (candidate.similarToTitles || []).filter(t => idx.fiveStarTitles.has(t));
+    push(`${titleMatches.length} five-star title match${titleMatches.length !== 1 ? 'es' : ''}`, titleMatches.length * 8);
+
+    const revCount = idx.reverseSimilar.get(candidate.title) || 0;
+    push(`cited by ${revCount} five-star read${revCount !== 1 ? 's' : ''}`, Math.min(12, revCount * 6));
+
+    push(`themes (${(candidate.themes || []).slice(0, 2).join(', ')})`, themeBonus(candidate.themes, idx.fiveStarThemes));
+
+    const n = Number(candidate.ratingsCount) || 0;
+    push(`${n >= 1000 ? (n / 1000).toFixed(0) + 'k' : n} ratings`, ratingsCountBonus(n));
+
+    const avg = Number(candidate.avgRating) || 0;
+    if (avg > 0) push(`community avg ${avg.toFixed(2)}`, (avg - 3.5) * 10);
+
+    if (profile.medianPages && candidate.pages) {
+      const delta = Math.abs(candidate.pages - profile.medianPages);
+      const pagePts = delta <= 50 ? 6 : delta <= 100 ? 3 : delta >= 220 ? -4 : 0;
+      const lengthLabel = pagePts > 0 ? 'fits your usual length'
+        : candidate.pages < profile.medianPages ? 'much shorter than usual' : 'much longer than usual';
+      push(`${candidate.pages}pp — ${lengthLabel}`, pagePts);
+    }
+  } else if (!isBBEBook(candidate)) {
+    for (const a of candidate.similarToAuthors || []) {
+      const sk = normAuthor(a);
+      const contrib = (idx.fiveStarAuthors.get(sk) || 0) * 4 + (idx.authorRatingWeight.get(sk) || 0) * 0.5;
+      push(`similar to ${a.replace(/\s+/g, ' ')}`, Math.min(AUTHOR_CONTRIB_CAP, contrib));
+    }
+
+    const titleMatches = (candidate.similarToTitles || []).filter(t => idx.fiveStarTitles.has(t));
+    push(`${titleMatches.length} five-star title match${titleMatches.length !== 1 ? 'es' : ''}`, titleMatches.length * 8);
+
+    push(`themes (${(candidate.themes || []).slice(0, 2).join(', ')})`, themeBonus(candidate.themes, idx.fiveStarThemes));
+
+    const n = Number(candidate.ratingsCount) || 0;
+    push(`${n >= 1000 ? (n / 1000).toFixed(0) + 'k' : n} ratings`, ratingsCountBonus(n));
+
+    const avg = Number(candidate.avgRating) || 0;
+    if (avg > 0) push(`community avg ${avg.toFixed(2)}`, (avg - 3.5) * (isNonfiction ? 8 : 4));
+
+    const recPts = recencyBonus(candidate.year, !isNonfiction);
+    push(`published ${candidate.year}`, recPts);
+
+    if (profile.medianPages && candidate.pages) {
+      const delta = Math.abs(candidate.pages - profile.medianPages);
+      const pagePts = delta <= 50 ? 6 : delta <= 100 ? 3 : delta >= 220 ? -4 : 0;
+      const lengthLabel = pagePts > 0 ? 'fits your usual length'
+        : candidate.pages < profile.medianPages ? 'much shorter than usual' : 'much longer than usual';
+      push(`${candidate.pages}pp — ${lengthLabel}`, pagePts);
+    }
+  }
+
+  return signals.filter(s => s.pts !== 0).sort((a, b) => Math.abs(b.pts) - Math.abs(a.pts));
+}
+
 // Score a list of books without exclusion filtering (used for currently-reading)
 export function scoreBooks(candidates, goodreads, feedback, history) {
   const idx     = buildIndexes(goodreads, feedback);
@@ -409,7 +489,8 @@ export function scoreBooks(candidates, goodreads, feedback, history) {
       bookKey:         k,
       matchScore:      matchScore(asCand, idx, profile, showMap.get(k) || 0),
       confidenceScore: confidenceScore(asCand, idx),
-      reason:          reason(asCand, idx)
+      reason:          reason(asCand, idx),
+      breakdown:       computeBreakdown(c, idx, profile)
     };
   });
 }
@@ -429,7 +510,8 @@ export function rankRecommendations(goodreads, feedback, candidatePool, history)
       bookKey:         k,
       matchScore:      matchScore(c, idx, profile, showMap.get(k) || 0),
       confidenceScore: confidenceScore(c, idx),
-      reason:          reason(c, idx)
+      reason:          reason(c, idx),
+      breakdown:       computeBreakdown(c, idx, profile)
     };
   }).sort((a, b) => (b.matchScore - a.matchScore) || (b.confidenceScore - a.confidenceScore));
 

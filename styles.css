@@ -515,6 +515,34 @@ section { padding: 14px 0; }
   font-size: 0.76rem; color: var(--text-muted); line-height: 1.45;
 }
 
+/* ── Score breakdown ── */
+.score-breakdown { margin: 5px 0 2px; }
+
+.bd-toggle {
+  font-size: 0.67rem; color: var(--text-muted); cursor: pointer;
+  list-style: none; display: inline-flex; align-items: center; gap: 3px;
+  opacity: 0.75; user-select: none;
+}
+.bd-toggle::-webkit-details-marker { display: none; }
+.bd-toggle::before { content: '▸'; font-size: 0.6rem; }
+.score-breakdown[open] .bd-toggle::before { content: '▾'; }
+.bd-toggle:hover { opacity: 1; color: var(--accent); }
+
+.bd-list {
+  list-style: none; margin: 4px 0 0; padding: 0;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.bd-list li {
+  display: flex; align-items: baseline; gap: 5px; font-size: 0.67rem;
+}
+.bd-pts {
+  font-weight: 600; min-width: 28px; text-align: right;
+  font-variant-numeric: tabular-nums; flex-shrink: 0;
+}
+.bd-pos { color: #2c7a3e; }
+.bd-neg { color: #a33030; }
+.bd-label { color: var(--text-muted); }
+
 .card-actions {
   display: flex; gap: 5px; margin-top: 6px; flex-wrap: wrap; align-items: center;
 }
