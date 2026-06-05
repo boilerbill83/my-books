@@ -526,11 +526,22 @@ function breakdownHtml(breakdown) {
 // ── Recommendations ────────────────────────────────────────────────────────
 
 function renderRecommendations() {
-  const all = state.ranking.selected;
-  if (!all.length) {
+  const raw = state.ranking.selected;
+  if (!raw.length) {
     recommendationsGrid.innerHTML = `<div class="empty-state">No recommendations available yet.</div>`;
     return;
   }
+
+  // Diversity cap: at most 4 books per dominant similar-author cluster
+  const clusterCount = new Map();
+  const all = raw.filter(book => {
+    const key = (book.similarToAuthors || [])[0];
+    if (!key) return true;
+    const n = clusterCount.get(key) || 0;
+    if (n >= 4) return false;
+    clusterCount.set(key, n + 1);
+    return true;
+  });
 
   const pageSize = 4;
   const pages    = Math.ceil(all.length / pageSize);

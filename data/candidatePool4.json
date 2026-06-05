@@ -13,9 +13,8 @@
       "isbn13": "9780593312742",
       "themes": [
         "mystery",
-        "small-town crime",
-        "coming of age",
-        "1970s"
+        "crime",
+        "literary"
       ],
       "similarToAuthors": [
         "Gillian Flynn",
@@ -38,10 +37,9 @@
       "avgRating": 4.0,
       "isbn13": "9780670038602",
       "themes": [
-        "detective",
-        "psychological thriller",
-        "missing persons",
-        "Ireland"
+        "mystery",
+        "thriller",
+        "psychological"
       ],
       "similarToAuthors": [
         "Gillian Flynn",
@@ -64,10 +62,7 @@
       "avgRating": 4.1,
       "isbn13": "9780670018864",
       "themes": [
-        "detective",
-        "identity",
-        "mystery",
-        "Ireland"
+        "mystery"
       ],
       "similarToAuthors": [
         "Gillian Flynn",
@@ -89,10 +84,9 @@
       "avgRating": 4.0,
       "isbn13": "9780525508977",
       "themes": [
-        "opioid crisis",
-        "sisters",
-        "detective",
-        "Philadelphia"
+        "true crime",
+        "narrative nonfiction",
+        "mystery"
       ],
       "similarToAuthors": [
         "Tana French",
@@ -114,9 +108,8 @@
       "avgRating": 4.2,
       "isbn13": "9780316734936",
       "themes": [
-        "legal thriller",
-        "defense attorney",
-        "Los Angeles",
+        "thriller",
+        "legal",
         "courtroom"
       ],
       "similarToAuthors": [
@@ -140,10 +133,9 @@
       "avgRating": 4.2,
       "isbn13": "9781477825877",
       "themes": [
-        "legal thriller",
-        "cold case",
-        "sister",
-        "Pacific Northwest"
+        "thriller",
+        "legal",
+        "mystery"
       ],
       "similarToAuthors": [
         "John Grisham",
@@ -165,9 +157,8 @@
       "avgRating": 3.8,
       "isbn13": "9780061093739",
       "themes": [
-        "legal thriller",
-        "stalker",
-        "female lawyer",
+        "thriller",
+        "legal",
         "courtroom"
       ],
       "similarToAuthors": [
@@ -190,10 +181,10 @@
       "avgRating": 3.9,
       "isbn13": "9780593652923",
       "themes": [
-        "legal thriller",
-        "AI",
-        "self-driving cars",
-        "tech"
+        "thriller",
+        "legal",
+        "speculative",
+        "tech history"
       ],
       "similarToAuthors": [
         "John Grisham",
@@ -215,9 +206,10 @@
       "avgRating": 3.8,
       "isbn13": "9780399586125",
       "themes": [
-        "time travel",
-        "NCIS",
-        "murder mystery",
+        "speculative",
+        "thriller",
+        "mystery",
+        "crime",
         "sci-fi"
       ],
       "similarToAuthors": [
@@ -240,10 +232,9 @@
       "avgRating": 3.7,
       "isbn13": "9780593537374",
       "themes": [
-        "AI",
-        "tech billionaires",
-        "dystopia",
-        "survival"
+        "speculative",
+        "tech history",
+        "adventure"
       ],
       "similarToAuthors": [
         "Blake Crouch",
@@ -265,10 +256,8 @@
       "avgRating": 3.8,
       "isbn13": "9781101965191",
       "themes": [
-        "psychological thriller",
-        "obsession",
-        "house",
-        "two timelines"
+        "thriller",
+        "psychological"
       ],
       "similarToAuthors": [
         "Freida McFadden",
@@ -291,10 +280,7 @@
       "avgRating": 4.0,
       "isbn13": "9780062875204",
       "themes": [
-        "trapped",
-        "snowstorm",
-        "thriller",
-        "fast-paced"
+        "thriller"
       ],
       "similarToAuthors": [
         "Freida McFadden",
@@ -316,10 +302,9 @@
       "avgRating": 3.8,
       "isbn13": "9780062664167",
       "themes": [
-        "missing woman",
-        "secrets",
-        "friendship",
-        "psychological thriller"
+        "thriller",
+        "mystery",
+        "psychological"
       ],
       "similarToAuthors": [
         "Freida McFadden",
@@ -341,10 +326,9 @@
       "avgRating": 3.7,
       "isbn13": "9780593548592",
       "themes": [
-        "influencers",
-        "rivalry",
-        "psychological thriller",
-        "social media"
+        "thriller",
+        "psychological",
+        "tech history"
       ],
       "similarToAuthors": [
         "Freida McFadden",
@@ -366,10 +350,8 @@
       "avgRating": 3.9,
       "isbn13": "9781668037348",
       "themes": [
-        "domestic thriller",
-        "deception",
-        "secrets",
-        "danger"
+        "thriller",
+        "domestic suspense"
       ],
       "similarToAuthors": [
         "Freida McFadden",
@@ -393,9 +375,7 @@
       "isbn13": "9781982195052",
       "themes": [
         "mystery",
-        "treasure hunt",
-        "voice memos",
-        "epistolary"
+        "adventure"
       ],
       "similarToAuthors": [
         "Alice Feeney",
@@ -417,10 +397,8 @@
       "avgRating": 3.9,
       "isbn13": "9780593535516",
       "themes": [
-        "multigenerational",
-        "New England",
-        "nature",
-        "literary mystery"
+        "literary",
+        "mystery"
       ],
       "similarToAuthors": [
         "Liz Moore",
@@ -443,10 +421,9 @@
       "avgRating": 3.7,
       "isbn13": "9780593640128",
       "themes": [
-        "psychological thriller",
-        "small town",
-        "murder",
-        "secrets"
+        "thriller",
+        "psychological",
+        "crime"
       ],
       "similarToAuthors": [
         "Freida McFadden",
@@ -468,10 +445,10 @@
       "avgRating": 4.4,
       "isbn13": "9781524731656",
       "themes": [
-        "Theranos",
-        "Silicon Valley fraud",
-        "corporate crime",
-        "investigative journalism"
+        "true crime",
+        "tech history",
+        "finance",
+        "narrative nonfiction"
       ],
       "similarToAuthors": [
         "Michael Lewis",
@@ -494,10 +471,8 @@
       "avgRating": 4.2,
       "isbn13": "9780061991226",
       "themes": [
-        "LBO",
-        "RJR Nabisco",
-        "Wall Street",
-        "corporate takeover"
+        "finance",
+        "business"
       ],
       "similarToAuthors": [
         "Michael Lewis",
@@ -519,10 +494,8 @@
       "avgRating": 4.1,
       "isbn13": "9780670021253",
       "themes": [
-        "2008 financial crisis",
-        "Wall Street",
-        "government bailout",
-        "banking"
+        "finance",
+        "history"
       ],
       "similarToAuthors": [
         "Michael Lewis",
@@ -544,10 +517,9 @@
       "avgRating": 4.0,
       "isbn13": "9780375758256",
       "themes": [
-        "hedge fund",
-        "LTCM collapse",
-        "Wall Street",
-        "Nobel Prize"
+        "finance",
+        "history",
+        "narrative nonfiction"
       ],
       "similarToAuthors": [
         "Michael Lewis",
@@ -569,10 +541,8 @@
       "avgRating": 4.1,
       "isbn13": "9781591840534",
       "themes": [
-        "Enron",
-        "corporate fraud",
-        "energy",
-        "Wall Street"
+        "true crime",
+        "finance"
       ],
       "similarToAuthors": [
         "Michael Lewis",
@@ -595,10 +565,7 @@
       "avgRating": 4.0,
       "isbn13": "9781594202551",
       "themes": [
-        "hedge funds",
-        "Wall Street",
-        "investing",
-        "finance history"
+        "finance"
       ],
       "similarToAuthors": [
         "Michael Lewis",
@@ -620,11 +587,9 @@
       "avgRating": 4.2,
       "isbn13": "9780385534246",
       "themes": [
-        "Osage Nation",
-        "FBI",
-        "oil",
+        "history",
         "true crime",
-        "1920s murder"
+        "narrative nonfiction"
       ],
       "similarToAuthors": [
         "David Grann",

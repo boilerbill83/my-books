@@ -11,9 +11,9 @@
       "avgRating": 3.85,
       "isbn13": "9780525539674",
       "themes": [
-        "witness protection",
-        "family in danger",
-        "legal thriller"
+        "thriller",
+        "crime",
+        "legal"
       ],
       "similarToAuthors": [
         "John Grisham",
@@ -35,9 +35,9 @@
       "avgRating": 3.93,
       "isbn13": "9780385314107",
       "themes": [
-        "legal thriller",
-        "courtroom",
-        "murder defense"
+        "thriller",
+        "legal",
+        "courtroom"
       ],
       "similarToAuthors": [
         "John Grisham",
@@ -59,9 +59,10 @@
       "avgRating": 3.93,
       "isbn13": "9780385314138",
       "themes": [
-        "legal thriller",
+        "thriller",
+        "legal",
         "courtroom",
-        "serial killer"
+        "crime"
       ],
       "similarToAuthors": [
         "John Grisham",
@@ -83,8 +84,8 @@
       "avgRating": 3.85,
       "isbn13": "9781503954007",
       "themes": [
-        "legal thriller",
-        "criminal defense",
+        "thriller",
+        "legal",
         "courtroom"
       ],
       "similarToAuthors": [
@@ -107,9 +108,9 @@
       "avgRating": 4.05,
       "isbn13": "9780385344227",
       "themes": [
-        "legal thriller",
-        "courtroom",
-        "family crisis"
+        "thriller",
+        "legal",
+        "courtroom"
       ],
       "similarToAuthors": [
         "John Grisham",
@@ -131,9 +132,10 @@
       "avgRating": 4.06,
       "isbn13": "9780062430243",
       "themes": [
-        "legal thriller",
-        "family secrets",
-        "psychological suspense"
+        "thriller",
+        "legal",
+        "psychological",
+        "suspense"
       ],
       "similarToAuthors": [
         "John Grisham",
@@ -155,9 +157,10 @@
       "avgRating": 4.0,
       "isbn13": "9780062499554",
       "themes": [
-        "missing persons",
-        "family secrets",
-        "psychological suspense"
+        "thriller",
+        "mystery",
+        "psychological",
+        "suspense"
       ],
       "similarToAuthors": [
         "Gillian Flynn",
@@ -179,9 +182,8 @@
       "avgRating": 4.04,
       "isbn13": "9780751554151",
       "themes": [
-        "psychological thriller",
-        "hit-and-run",
-        "unreliable narrator"
+        "thriller",
+        "psychological"
       ],
       "similarToAuthors": [
         "Freida McFadden",
@@ -203,9 +205,8 @@
       "avgRating": 4.12,
       "isbn13": "9781844885961",
       "themes": [
-        "psychological thriller",
-        "dark secrets",
-        "isolated protagonist"
+        "thriller",
+        "psychological"
       ],
       "similarToAuthors": [
         "Freida McFadden",
@@ -227,9 +228,9 @@
       "avgRating": 3.81,
       "isbn13": "9781398501720",
       "themes": [
-        "psychological thriller",
-        "prison",
-        "murder defense",
+        "thriller",
+        "psychological",
+        "crime",
         "courtroom"
       ],
       "similarToAuthors": [
@@ -252,9 +253,9 @@
       "avgRating": 3.93,
       "isbn13": "9781408889558",
       "themes": [
-        "locked-room mystery",
-        "time loop",
-        "country house murder"
+        "mystery",
+        "speculative",
+        "crime"
       ],
       "similarToAuthors": [
         "Agatha Christie",
@@ -276,9 +277,9 @@
       "avgRating": 3.89,
       "isbn13": "9781444776188",
       "themes": [
-        "psychological thriller",
-        "domestic suspense",
-        "obsession"
+        "thriller",
+        "psychological",
+        "domestic suspense"
       ],
       "similarToAuthors": [
         "Freida McFadden",
@@ -301,8 +302,8 @@
       "isbn13": "9780765397539",
       "themes": [
         "sci-fi",
-        "artificial intelligence",
-        "space exploration",
+        "speculative",
+        "adventure",
         "humor"
       ],
       "similarToAuthors": [
@@ -325,10 +326,7 @@
       "avgRating": 4.28,
       "isbn13": "9780316229296",
       "themes": [
-        "speculative fiction",
-        "dystopia",
-        "world-building",
-        "apocalypse"
+        "speculative"
       ],
       "similarToAuthors": [
         "Blake Crouch",
@@ -350,10 +348,9 @@
       "avgRating": 3.89,
       "isbn13": "9781035013746",
       "themes": [
-        "hard sci-fi",
-        "alien biology",
-        "political prisoner",
-        "evolution"
+        "sci-fi",
+        "political",
+        "literary"
       ],
       "similarToAuthors": [
         "Andy Weir",
@@ -376,9 +373,7 @@
       "isbn13": "9780593334836",
       "themes": [
         "romance",
-        "literary fiction",
-        "bookish characters",
-        "emotional"
+        "literary"
       ],
       "similarToAuthors": [
         "Taylor Jenkins Reid",
@@ -400,10 +395,7 @@
       "avgRating": 3.94,
       "isbn13": "9780593441275",
       "themes": [
-        "romance",
-        "emotional fiction",
-        "second chance",
-        "secrets"
+        "romance"
       ],
       "similarToAuthors": [
         "Taylor Jenkins Reid",
@@ -426,9 +418,7 @@
       "isbn13": "9780593441282",
       "themes": [
         "romance",
-        "humor",
-        "emotional fiction",
-        "found family"
+        "humor"
       ],
       "similarToAuthors": [
         "Taylor Jenkins Reid",
@@ -450,10 +440,8 @@
       "avgRating": 4.16,
       "isbn13": "9781982121211",
       "themes": [
-        "literary fiction",
-        "humor",
-        "human connection",
-        "emotional"
+        "literary",
+        "humor"
       ],
       "similarToAuthors": [
         "Taylor Jenkins Reid",
@@ -476,8 +464,6 @@
       "isbn13": "9781984878106",
       "themes": [
         "psychology",
-        "decision-making",
-        "intellectual humility",
         "business"
       ],
       "similarToAuthors": [
@@ -501,8 +487,6 @@
       "isbn13": "9780593653142",
       "themes": [
         "psychology",
-        "achievement",
-        "growth mindset",
         "business"
       ],
       "similarToAuthors": [
@@ -525,9 +509,7 @@
       "avgRating": 3.98,
       "isbn13": "9780593243916",
       "themes": [
-        "communication",
         "psychology",
-        "connection",
         "business"
       ],
       "similarToAuthors": [
@@ -551,10 +533,9 @@
       "avgRating": 4.3,
       "isbn13": "9780375505249",
       "themes": [
-        "tech narrative",
-        "video game history",
-        "entrepreneurship",
-        "Silicon Valley"
+        "tech history",
+        "narrative nonfiction",
+        "business"
       ],
       "similarToAuthors": [
         "Ben Mezrich",
@@ -577,9 +558,10 @@
       "isbn13": "9780385348737",
       "themes": [
         "narrative nonfiction",
-        "WWII",
-        "Churchill",
-        "leadership"
+        "history",
+        "military",
+        "biography",
+        "business"
       ],
       "similarToAuthors": [
         "David Grann",
@@ -603,8 +585,8 @@
       "themes": [
         "narrative nonfiction",
         "true crime",
-        "serial killer",
-        "Chicago World's Fair"
+        "crime",
+        "thriller"
       ],
       "similarToAuthors": [
         "David Grann",
@@ -627,9 +609,9 @@
       "isbn13": "9780385526265",
       "themes": [
         "narrative nonfiction",
-        "presidential history",
-        "medicine",
-        "James Garfield"
+        "history",
+        "political",
+        "biography"
       ],
       "similarToAuthors": [
         "David Grann",
@@ -651,10 +633,7 @@
       "avgRating": 4.15,
       "isbn13": "9780385543767",
       "themes": [
-        "narrative nonfiction",
-        "mental illness",
-        "family",
-        "schizophrenia"
+        "narrative nonfiction"
       ],
       "similarToAuthors": [
         "Jon Krakauer",

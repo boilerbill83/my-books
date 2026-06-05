@@ -103,7 +103,7 @@ function isExcluded(candidate, idx) {
   return idx.read.has(k) || idx.currentlyReading.has(k);
 }
 
-const AUTHOR_CONTRIB_CAP = 15;
+const AUTHOR_CONTRIB_CAP = 10;
 
 // BBE file has corrupted themes (all ["mystery","thriller"]) and empty similarToAuthors.
 // Detect BBE books by their signature: empty similarToAuthors array AND no similarToTitles.
@@ -171,7 +171,7 @@ function themeBonus(themes, fiveStarThemes) {
 }
 
 function matchScoreFiction(candidate, idx, profile, timesShown) {
-  let score = 55;
+  let score = 20;
 
   if (candidate.fromToRead) {
     score += 10;
@@ -248,7 +248,7 @@ function matchScoreFiction(candidate, idx, profile, timesShown) {
 }
 
 function matchScoreNonfiction(candidate, idx, profile, timesShown) {
-  let score = 55;
+  let score = 20;
 
   if (candidate.fromToRead) {
     score += 10;
@@ -328,7 +328,7 @@ function matchScore(candidate, idx, profile, timesShown) {
 function confidenceScore(candidate, idx) {
   const authorKey = normAuthor(candidate.author);
   if (candidate.fromToRead) {
-    let score = 55;
+    let score = 20;
     if (idx.fiveStarAuthors.has(authorKey))    score += 20;
     else if ((idx.authorRatingWeight.get(authorKey) || 0) > 0) score += 10;
     if (candidate.pages) score += 4;

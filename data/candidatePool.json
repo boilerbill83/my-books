@@ -39,7 +39,6 @@
       "avgRating": 3.94,
       "themes": [
         "thriller",
-        "time-slip",
         "high-concept"
       ],
       "similarToAuthors": [
@@ -64,9 +63,7 @@
       "pages": 320,
       "avgRating": 4.09,
       "themes": [
-        "thriller",
-        "domestic",
-        "fast-paced"
+        "thriller"
       ],
       "similarToAuthors": [
         "B.A. Paris",
@@ -91,7 +88,7 @@
       "avgRating": 4.04,
       "themes": [
         "thriller",
-        "darkly-funny",
+        "humor",
         "mystery"
       ],
       "similarToAuthors": [
@@ -117,7 +114,6 @@
       "avgRating": 4.11,
       "themes": [
         "thriller",
-        "gothic",
         "mystery"
       ],
       "similarToAuthors": [
@@ -142,9 +138,7 @@
       "pages": 264,
       "avgRating": 4.07,
       "themes": [
-        "speculative",
-        "funny",
-        "fast-paced"
+        "speculative"
       ],
       "similarToAuthors": [
         "Andy Weir",
@@ -169,8 +163,7 @@
       "avgRating": 4.22,
       "themes": [
         "speculative",
-        "mystery",
-        "series-start"
+        "mystery"
       ],
       "similarToAuthors": [
         "Blake Crouch",
@@ -196,7 +189,7 @@
       "themes": [
         "thriller",
         "speculative",
-        "survival"
+        "adventure"
       ],
       "similarToAuthors": [
         "Stephen King",
@@ -222,7 +215,7 @@
       "themes": [
         "speculative",
         "thriller",
-        "tech"
+        "tech history"
       ],
       "similarToAuthors": [
         "Blake Crouch",
@@ -246,9 +239,7 @@
       "pages": 256,
       "avgRating": 3.64,
       "themes": [
-        "office",
-        "speculative",
-        "funny"
+        "speculative"
       ],
       "similarToAuthors": [
         "Chuck Klosterman",
@@ -273,7 +264,6 @@
       "avgRating": 3.92,
       "themes": [
         "speculative",
-        "funny",
         "adventure"
       ],
       "similarToAuthors": [
@@ -298,7 +288,7 @@
       "pages": 560,
       "avgRating": 4.53,
       "themes": [
-        "investigative",
+        "narrative nonfiction",
         "business",
         "history"
       ],
@@ -323,9 +313,8 @@
       "pages": 304,
       "avgRating": 4.09,
       "themes": [
-        "technology",
-        "business",
-        "future"
+        "tech history",
+        "business"
       ],
       "similarToAuthors": [
         "Walter Isaacson",

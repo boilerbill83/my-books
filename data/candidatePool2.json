@@ -11,8 +11,10 @@
       "avgRating": 4.2,
       "isbn13": "9781538765029",
       "themes": [
-        "legal thriller",
-        "racial injustice",
+        "thriller",
+        "legal",
+        "social commentary",
+        "history",
         "courtroom"
       ],
       "similarToAuthors": [
@@ -35,8 +37,10 @@
       "avgRating": 3.8,
       "isbn13": "9781538706329",
       "themes": [
-        "legal thriller",
-        "police scandal",
+        "thriller",
+        "legal",
+        "crime",
+        "political",
         "courtroom"
       ],
       "similarToAuthors": [
@@ -58,9 +62,10 @@
       "pages": 912,
       "avgRating": 4.1,
       "themes": [
-        "legal thriller",
-        "Southern noir",
-        "racial politics"
+        "thriller",
+        "legal",
+        "noir",
+        "crime"
       ],
       "similarToAuthors": [
         "John Grisham",
@@ -82,9 +87,11 @@
       "avgRating": 3.87,
       "isbn13": "9780063223844",
       "themes": [
-        "legal thriller",
-        "music industry",
-        "digital piracy"
+        "thriller",
+        "legal",
+        "music history",
+        "tech history",
+        "true crime"
       ],
       "similarToAuthors": [
         "John Grisham",
@@ -105,9 +112,8 @@
       "pages": 416,
       "avgRating": 4.35,
       "themes": [
-        "detective thriller",
-        "serial killer",
-        "police procedural"
+        "thriller",
+        "crime"
       ],
       "similarToAuthors": [
         "John Grisham",
@@ -129,9 +135,9 @@
       "avgRating": 4.47,
       "isbn13": "9780316421461",
       "themes": [
-        "detective thriller",
-        "cold case",
-        "police procedural"
+        "thriller",
+        "crime",
+        "mystery"
       ],
       "similarToAuthors": [
         "John Grisham",
@@ -152,8 +158,9 @@
       "pages": 400,
       "avgRating": 3.93,
       "themes": [
-        "government thriller",
-        "military conspiracy",
+        "thriller",
+        "political",
+        "military",
         "suspense"
       ],
       "similarToAuthors": [
@@ -176,9 +183,11 @@
       "avgRating": 4.18,
       "isbn13": "9781250831910",
       "themes": [
-        "Southern noir",
-        "serial killer",
-        "race and justice"
+        "noir",
+        "crime",
+        "thriller",
+        "social commentary",
+        "history"
       ],
       "similarToAuthors": [
         "John Grisham",
@@ -201,9 +210,11 @@
       "avgRating": 3.98,
       "isbn13": "9781501153235",
       "themes": [
-        "psychological thriller",
+        "thriller",
+        "psychological",
         "true crime",
-        "feminist suspense"
+        "suspense",
+        "literary"
       ],
       "similarToAuthors": [
         "Gillian Flynn",
@@ -225,9 +236,10 @@
       "avgRating": 3.84,
       "isbn13": "9781982155261",
       "themes": [
-        "psychological thriller",
-        "Oxford campus",
-        "cold case murder"
+        "thriller",
+        "psychological",
+        "mystery",
+        "crime"
       ],
       "similarToAuthors": [
         "B.A. Paris",
@@ -249,9 +261,9 @@
       "avgRating": 3.9,
       "isbn13": "9781668025598",
       "themes": [
-        "psychological thriller",
-        "survival",
-        "reality TV island"
+        "thriller",
+        "psychological",
+        "adventure"
       ],
       "similarToAuthors": [
         "B.A. Paris",
@@ -273,9 +285,8 @@
       "avgRating": 3.9,
       "isbn13": "9780008385057",
       "themes": [
-        "psychological thriller",
-        "luxury resort",
-        "dark secrets"
+        "thriller",
+        "psychological"
       ],
       "similarToAuthors": [
         "B.A. Paris",
@@ -297,9 +308,9 @@
       "avgRating": 4.05,
       "isbn13": "9780063042254",
       "themes": [
-        "psychological thriller",
-        "missing person",
-        "family dynamics"
+        "thriller",
+        "psychological",
+        "mystery"
       ],
       "similarToAuthors": [
         "Freida McFadden",
@@ -320,9 +331,8 @@
       "pages": 341,
       "avgRating": 3.81,
       "themes": [
-        "domestic thriller",
-        "custody battle",
-        "dark family secrets"
+        "thriller",
+        "domestic suspense"
       ],
       "similarToAuthors": [
         "B.A. Paris",
@@ -343,9 +353,8 @@
       "pages": 288,
       "avgRating": 3.9,
       "themes": [
-        "domestic thriller",
-        "marital obsession",
-        "unreliable narrator"
+        "thriller",
+        "domestic suspense"
       ],
       "similarToAuthors": [
         "B.A. Paris",
@@ -369,7 +378,8 @@
       "themes": [
         "narrative nonfiction",
         "true crime",
-        "IRA history"
+        "history",
+        "political"
       ],
       "similarToAuthors": [
         "David Grann",
@@ -392,8 +402,7 @@
       "isbn13": "9781501191053",
       "themes": [
         "narrative nonfiction",
-        "antebellum history",
-        "escape adventure"
+        "history"
       ],
       "similarToAuthors": [
         "David Grann",
@@ -415,9 +424,8 @@
       "avgRating": 4.4,
       "isbn13": "9780802162175",
       "themes": [
-        "literary fiction",
-        "multigenerational saga",
-        "India"
+        "literary",
+        "historical"
       ],
       "similarToAuthors": [
         "Kristin Hannah",
@@ -439,9 +447,10 @@
       "avgRating": 4.62,
       "isbn13": "9781250178633",
       "themes": [
-        "historical fiction",
-        "Vietnam War nurses",
-        "female resilience"
+        "historical",
+        "military",
+        "history",
+        "literary"
       ],
       "similarToAuthors": [
         "Kristin Hannah",
@@ -463,9 +472,10 @@
       "avgRating": 4.38,
       "isbn13": "9780385546874",
       "themes": [
-        "historical fiction",
-        "murder mystery",
-        "18th-century America"
+        "historical",
+        "mystery",
+        "crime",
+        "history"
       ],
       "similarToAuthors": [
         "Kristin Hannah",
@@ -487,9 +497,8 @@
       "avgRating": 4.39,
       "isbn13": "9780385550369",
       "themes": [
-        "literary fiction",
-        "reimagined classic",
-        "race and identity"
+        "literary",
+        "social commentary"
       ],
       "similarToAuthors": [
         "Gabrielle Zevin",
@@ -511,9 +520,9 @@
       "avgRating": 4.04,
       "isbn13": "9780593243732",
       "themes": [
-        "literary fiction",
-        "family saga",
-        "generational trauma"
+        "literary",
+        "historical",
+        "psychological"
       ],
       "similarToAuthors": [
         "Kristin Hannah",
@@ -535,9 +544,10 @@
       "avgRating": 3.81,
       "isbn13": "9780593422946",
       "themes": [
-        "literary fiction",
-        "historical community",
-        "race in America"
+        "literary",
+        "historical",
+        "social commentary",
+        "history"
       ],
       "similarToAuthors": [
         "Kristin Hannah",
@@ -559,9 +569,9 @@
       "avgRating": 4.2,
       "isbn13": "9780593443811",
       "themes": [
-        "finance nonfiction",
-        "crypto",
-        "investigative narrative"
+        "finance",
+        "narrative nonfiction",
+        "tech history"
       ],
       "similarToAuthors": [
         "Michael Lewis",
@@ -584,9 +594,8 @@
       "avgRating": 4.27,
       "isbn13": "9780316703321",
       "themes": [
-        "tech nonfiction",
-        "social media",
-        "algorithmic radicalization"
+        "tech history",
+        "narrative nonfiction"
       ],
       "similarToAuthors": [
         "Michael Lewis",

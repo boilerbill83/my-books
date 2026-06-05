@@ -12,11 +12,9 @@
       "avgRating": 3.9,
       "isbn13": "9780446527477",
       "themes": [
-        "legal thriller",
-        "defense attorney",
-        "humor",
-        "dog",
-        "New Jersey"
+        "thriller",
+        "legal",
+        "humor"
       ],
       "similarToAuthors": [
         "John Grisham",
@@ -39,11 +37,8 @@
       "avgRating": 3.9,
       "isbn13": "9780525954132",
       "themes": [
-        "domestic thriller",
-        "secrets",
-        "suburb",
-        "blackmail",
-        "marriage"
+        "thriller",
+        "domestic suspense"
       ],
       "similarToAuthors": [
         "Freida McFadden",
@@ -66,10 +61,8 @@
       "avgRating": 3.9,
       "isbn13": "9780385337854",
       "themes": [
-        "missing person",
-        "brother",
-        "secrets",
         "thriller",
+        "mystery",
         "romance"
       ],
       "similarToAuthors": [
@@ -93,11 +86,9 @@
       "avgRating": 3.7,
       "isbn13": "9781501112331",
       "themes": [
-        "bachelorette party",
-        "murder",
-        "psychological thriller",
-        "England",
-        "reunion"
+        "crime",
+        "thriller",
+        "psychological"
       ],
       "similarToAuthors": [
         "Freida McFadden",
@@ -120,11 +111,9 @@
       "avgRating": 3.7,
       "isbn13": "9781982110574",
       "themes": [
-        "smart house",
-        "nanny",
-        "murder",
-        "psychological thriller",
-        "Scotland"
+        "crime",
+        "thriller",
+        "psychological"
       ],
       "similarToAuthors": [
         "Freida McFadden",
@@ -147,11 +136,10 @@
       "avgRating": 3.7,
       "isbn13": "9781982137083",
       "themes": [
-        "locked room",
-        "ski chalet",
-        "corporate thriller",
-        "snowstorm",
-        "murder"
+        "mystery",
+        "thriller",
+        "true crime",
+        "crime"
       ],
       "similarToAuthors": [
         "Agatha Christie",
@@ -174,11 +162,8 @@
       "avgRating": 3.7,
       "isbn13": "9780778316657",
       "themes": [
-        "kidnapping",
-        "psychological thriller",
-        "twist",
-        "memory",
-        "multiple POV"
+        "thriller",
+        "psychological"
       ],
       "similarToAuthors": [
         "Freida McFadden",
@@ -201,11 +186,8 @@
       "avgRating": 4.0,
       "isbn13": "9781250843098",
       "themes": [
-        "island",
-        "family reunion",
-        "murder mystery",
-        "Agatha Christie",
-        "dark secrets"
+        "mystery",
+        "crime"
       ],
       "similarToAuthors": [
         "Ruth Ware",
@@ -228,11 +210,9 @@
       "avgRating": 4.2,
       "isbn13": "9780345539786",
       "themes": [
-        "dystopia",
-        "Mars",
-        "revolution",
-        "action",
-        "class warfare"
+        "speculative",
+        "sci-fi",
+        "social commentary"
       ],
       "similarToAuthors": [
         "Blake Crouch",
@@ -256,10 +236,8 @@
       "isbn13": "9781635575637",
       "themes": [
         "mystery",
-        "labyrinthine house",
-        "alternate world",
-        "literary fantasy",
-        "identity"
+        "speculative",
+        "literary"
       ],
       "similarToAuthors": [
         "Blake Crouch",
@@ -281,11 +259,9 @@
       "avgRating": 4.6,
       "isbn13": "9780312577223",
       "themes": [
-        "WWII",
-        "sisters",
-        "France",
-        "survival",
-        "Resistance"
+        "history",
+        "military",
+        "adventure"
       ],
       "similarToAuthors": [
         "Anthony Doerr",
@@ -308,11 +284,11 @@
       "avgRating": 4.1,
       "isbn13": "9781982168438",
       "themes": [
-        "multiple timelines",
-        "ancient text",
-        "Constantinople",
-        "WWII",
-        "far future"
+        "historical",
+        "thriller",
+        "history",
+        "military",
+        "sci-fi"
       ],
       "similarToAuthors": [
         "Amor Towles",
@@ -336,11 +312,7 @@
       "avgRating": 4.4,
       "isbn13": "9780670026197",
       "themes": [
-        "Russia",
-        "hotel",
-        "house arrest",
-        "1920s-1950s",
-        "elegance"
+        "history"
       ],
       "similarToAuthors": [
         "Anthony Doerr",
@@ -363,11 +335,8 @@
       "avgRating": 4.2,
       "isbn13": "9780593321201",
       "themes": [
-        "video games",
-        "friendship",
-        "creativity",
-        "decades-spanning",
-        "love story"
+        "tech history",
+        "romance"
       ],
       "similarToAuthors": [
         "Tom Perrotta",
@@ -389,11 +358,9 @@
       "avgRating": 4.1,
       "isbn13": "9780679745587",
       "themes": [
-        "murder",
-        "Kansas farm family",
-        "1959",
-        "journalism",
-        "death row"
+        "crime",
+        "narrative nonfiction",
+        "history"
       ],
       "similarToAuthors": [
         "David Grann",
@@ -416,11 +383,8 @@
       "avgRating": 4.0,
       "isbn13": "9780679751526",
       "themes": [
-        "Savannah",
-        "murder trial",
-        "eccentric characters",
-        "Southern Gothic",
-        "atmosphere"
+        "literary",
+        "noir"
       ],
       "similarToAuthors": [
         "David Grann",
@@ -443,11 +407,9 @@
       "avgRating": 4.3,
       "isbn13": "9780316485678",
       "themes": [
-        "Harvey Weinstein",
-        "MeToo",
-        "investigative journalism",
-        "Hollywood",
-        "NBC cover-up"
+        "true crime",
+        "narrative nonfiction",
+        "social commentary"
       ],
       "similarToAuthors": [
         "John Carreyrou",
@@ -470,11 +432,10 @@
       "avgRating": 4.0,
       "isbn13": "9780062183613",
       "themes": [
-        "serial killer",
-        "Long Island",
-        "victims",
-        "Craigslist",
-        "cold case"
+        "crime",
+        "thriller",
+        "true crime",
+        "mystery"
       ],
       "similarToAuthors": [
         "Truman Capote",
@@ -499,11 +460,9 @@
       "avgRating": 4.1,
       "isbn13": "9780307700667",
       "themes": [
-        "Scientology",
-        "L. Ron Hubbard",
-        "celebrities",
-        "cult",
-        "investigation"
+        "true crime",
+        "narrative nonfiction",
+        "biography"
       ],
       "similarToAuthors": [
         "Ronan Farrow",
@@ -526,11 +485,8 @@
       "avgRating": 4.4,
       "isbn13": "9780670025817",
       "themes": [
-        "1936 Berlin Olympics",
-        "rowing",
-        "Great Depression",
-        "teamwork",
-        "underdog"
+        "sports",
+        "history"
       ],
       "similarToAuthors": [
         "Erik Larson",
@@ -554,11 +510,8 @@
       "avgRating": 4.4,
       "isbn13": "9780465019847",
       "themes": [
-        "Shackleton",
-        "Antarctica",
-        "survival",
-        "expedition",
-        "1914-1916"
+        "adventure",
+        "narrative nonfiction"
       ],
       "similarToAuthors": [
         "Daniel James Brown",
@@ -581,11 +534,9 @@
       "avgRating": 4.3,
       "isbn13": "9780871136718",
       "themes": [
-        "Somalia",
-        "1993 Battle of Mogadishu",
-        "Delta Force",
         "military",
-        "war journalism"
+        "history",
+        "narrative nonfiction"
       ],
       "similarToAuthors": [
         "Alfred Lansing",
@@ -608,11 +559,8 @@
       "avgRating": 4.5,
       "isbn13": "9780804136631",
       "themes": [
-        "KGB",
-        "Cold War",
-        "double agent",
-        "MI6",
-        "espionage"
+        "spy",
+        "history"
       ],
       "similarToAuthors": [
         "David Grann",
@@ -635,11 +583,9 @@
       "avgRating": 4.1,
       "isbn13": "9780140120905",
       "themes": [
-        "Michael Milken",
-        "junk bonds",
-        "1980s Wall Street",
-        "leveraged buyouts",
-        "Drexel Burnham"
+        "finance",
+        "true crime",
+        "history"
       ],
       "similarToAuthors": [
         "Bryan Burrough",
@@ -662,11 +608,7 @@
       "avgRating": 4.0,
       "isbn13": "9780735223011",
       "themes": [
-        "museum heist",
-        "Victorian salmon flies",
-        "Natural History Museum",
-        "obsession",
-        "fly-tying"
+        "true crime"
       ],
       "similarToAuthors": [
         "David Grann",
