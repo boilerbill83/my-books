@@ -23984,7 +23984,7 @@
       "title": "11/22/63",
       "author": "Stephen King",
       "shelf": "read",
-      "myRating": 2,
+      "myRating": 5,
       "avgRating": 4.3,
       "pages": 849,
       "dateRead": null,
@@ -23993,10 +23993,13 @@
       "isbn13": "9781451627282",
       "publisher": "Scribner",
       "year": 2011,
-      "themes": [],
+      "themes": [
+        "thriller",
+        "historical fiction",
+        "speculative"
+      ],
       "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "ratingsCount": 0
     },
     {
       "bookKey": "when-women-invented-television-the-untold-story-of-the-female-powerhouses-who-pioneered-the-way-we-watch-today|jennifer-keishin-armstrong",
