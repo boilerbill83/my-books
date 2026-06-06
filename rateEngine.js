@@ -100,6 +100,11 @@ function inferGenre(themes) {
 // ── Helpers ────────────────────────────────────────────────────────────────
 
 const _mean   = arr => arr.length > 0 ? arr.reduce((s, x) => s + x, 0) / arr.length : 0;
+const _stdev  = arr => {
+  if (arr.length < 2) return 0;
+  const m = _mean(arr);
+  return Math.sqrt(arr.reduce((s, x) => s + (x - m) ** 2, 0) / arr.length);
+};
 const _normA  = n => String(n || '').replace(/\s+/g, ' ').trim().toLowerCase().replace(/[^a-z0-9 ]+/g, '').trim();
 const _normT  = n => String(n || '').toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();
 
@@ -174,7 +179,10 @@ export function buildTasteModel(goodreads, candidatePool = []) {
     if (!authorMap.has(key)) authorMap.set(key, { ratings: [], name: b.author });
     authorMap.get(key).ratings.push(b.myRating);
   }
-  for (const v of authorMap.values()) v.mean = _mean(v.ratings);
+  for (const v of authorMap.values()) {
+    v.mean  = _mean(v.ratings);
+    v.stdev = _stdev(v.ratings);
+  }
 
   // ── Theme affinities ────────────────────────────────────────────────────
   // Map: theme → { ratings[], mean, count }
@@ -328,10 +336,14 @@ export function predictRating(book, model) {
   }
 
   // ── Signal 1: Direct author match ──────────────────────────────────────
+  // Variance penalty: high-stdev authors (inconsistent ratings) get a reduced
+  // weight so the prior has more influence on books by hit-or-miss authors.
+  // stdev=0 → no penalty; stdev=1 → 50% max penalty (capped at 40%).
   const authorEntry = model.authorMap.get(_normA(book.author));
   if (authorEntry) {
-    const n = authorEntry.ratings.length;
-    const w = _shrunk(n, 2, 10); // half-K=2 → full weight after ~4 books
+    const n      = authorEntry.ratings.length;
+    const varPen = Math.min(0.4, authorEntry.stdev / 2.0);
+    const w      = _shrunk(n, 2, 10) * (1.0 - varPen);
     addSignal(authorEntry.mean, w, {
       label:  `${authorEntry.name}: ${authorEntry.mean.toFixed(1)}★ avg (${n} book${n > 1 ? 's' : ''} read)`,
       signal: authorEntry.mean,
