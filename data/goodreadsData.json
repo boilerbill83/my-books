@@ -8,7 +8,7 @@
     "currentlyReadingCount": 1,
     "fiveStarCount": 260,
     "notes": "Hardcoded from personal Goodreads export.",
-    "totalBooks": 940
+    "totalBooks": 938
   },
   "books": [
     {
@@ -23713,10 +23713,26 @@
       "isbn13": "9780525561040",
       "publisher": "Penguin Press",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "political",
+        "military",
+        "history"
+      ],
+      "similarToTitles": [
+        "Fiasco",
+        "Imperial Life in the Emerald City",
+        "The Operators",
+        "Bush at War"
+      ],
+      "ratingsCount": 3677,
+      "dnf": true,
+      "similarToAuthors": [
+        "Bob Woodward",
+        "Thomas Ricks",
+        "Rajiv Chandrasekaran",
+        "Ron Suskind"
+      ]
     },
     {
       "bookKey": "once-upon-a-time-in-hollywood-a-novel|quentin-tarantino",
@@ -23733,10 +23749,26 @@
       "isbn13": "9780063112537",
       "publisher": "Harper Perennial",
       "year": 2021,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "historical fiction",
+        "contemporary",
+        "crime",
+        "noir"
+      ],
+      "similarToTitles": [
+        "L.A. Confidential",
+        "White Jazz",
+        "Less Than Zero",
+        "Inherent Vice"
+      ],
+      "ratingsCount": 23603,
+      "dnf": true,
+      "similarToAuthors": [
+        "James Ellroy",
+        "Elmore Leonard",
+        "Don Winslow",
+        "Bret Easton Ellis"
+      ]
     },
     {
       "bookKey": "the-universal-baseball-association-inc-j-henry-waugh-prop|robert-coover",
@@ -23753,10 +23785,25 @@
       "isbn13": "9780452260306",
       "publisher": "Plume",
       "year": 1971,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "literary",
+        "speculative",
+        "historical fiction"
+      ],
+      "similarToTitles": [
+        "The Natural",
+        "The Great American Novel",
+        "End Zone",
+        "The Franchise"
+      ],
+      "ratingsCount": 2718,
+      "dnf": true,
+      "similarToAuthors": [
+        "Don DeLillo",
+        "Philip Roth",
+        "Thomas Pynchon",
+        "Bernard Malamud"
+      ]
     },
     {
       "bookKey": "zone-one|colson-whitehead",
@@ -23773,10 +23820,26 @@
       "isbn13": "9780385528078",
       "publisher": "Doubleday",
       "year": 2011,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "horror",
+        "literary",
+        "speculative",
+        "historical fiction"
+      ],
+      "similarToTitles": [
+        "The Road",
+        "A Head Full of Ghosts",
+        "The Passage",
+        "Station Eleven"
+      ],
+      "ratingsCount": 27393,
+      "dnf": true,
+      "similarToAuthors": [
+        "Colm Toibin",
+        "Cormac McCarthy",
+        "Paul Tremblay",
+        "Justin Cronin"
+      ]
     },
     {
       "bookKey": "the-antisocial-network-the-true-story-of-a-ragtag-of-amateur-investors-gamers-and-internet-trolls-who-brought-wall-street-to-its-knees|ben-mezrich",
@@ -23793,10 +23856,26 @@
       "isbn13": "9781538707555",
       "publisher": "Grand Central Publishing",
       "year": 2021,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "finance",
+        "tech history",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "The Big Short",
+        "Flash Boys",
+        "Bringing Down the House",
+        "Dumb Money"
+      ],
+      "ratingsCount": 2319,
+      "dnf": true,
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Scott Patterson",
+        "Gregory Zuckerman",
+        "Andrew Ross Sorkin"
+      ]
     },
     {
       "bookKey": "the-origins-of-the-cornbread-mafia-a-memoir-of-sorts|joe-keith-bickett",
@@ -23813,10 +23892,25 @@
       "isbn13": "",
       "publisher": "Joe Keith Bickett",
       "year": 2016,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "memoir",
+        "true crime",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Cornbread Mafia",
+        "Methland",
+        "Dreamland",
+        "The Bluegrass Conspiracy"
+      ],
+      "ratingsCount": 91,
+      "dnf": true,
+      "similarToAuthors": [
+        "James Higdon",
+        "Nick Reding",
+        "Sam Quinones",
+        "Daniel Coyle"
+      ]
     },
     {
       "bookKey": "liftoff-elon-musk-and-the-desperate-early-days-that-launched-spacex|eric-berger",
@@ -23833,10 +23927,26 @@
       "isbn13": "9780062979971",
       "publisher": "William Morrow",
       "year": 2021,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "biography",
+        "history"
+      ],
+      "similarToTitles": [
+        "Elon Musk",
+        "Rocket Billionaires",
+        "The Space Barons",
+        "Endurance"
+      ],
+      "ratingsCount": 6726,
+      "dnf": true,
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Ashlee Vance",
+        "Tim Fernholz",
+        "Christian Davenport"
+      ]
     },
     {
       "bookKey": "a-knock-at-midnight-a-story-of-hope-justice-and-freedom|brittany-k-barnett",
@@ -23853,10 +23963,26 @@
       "isbn13": "9781984825780",
       "publisher": "Crown Publishing Group (NY)",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "memoir",
+        "narrative nonfiction",
+        "social commentary",
+        "true crime"
+      ],
+      "similarToTitles": [
+        "Just Mercy",
+        "The New Jim Crow",
+        "Between the World and Me",
+        "Locking Up Our Own"
+      ],
+      "ratingsCount": 6144,
+      "dnf": true,
+      "similarToAuthors": [
+        "Bryan Stevenson",
+        "Michelle Alexander",
+        "Shon Hopwood",
+        "James Forman Jr."
+      ]
     },
     {
       "bookKey": "a-people-s-history-of-the-united-states|howard-zinn",
@@ -23873,10 +23999,26 @@
       "isbn13": "9780060838652",
       "publisher": "Harper Perennial",
       "year": 2005,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "history",
+        "political",
+        "social commentary",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Lies My Teacher Told Me",
+        "The New Jim Crow",
+        "An Indigenous Peoples' History of the United States",
+        "Empire of Illusion"
+      ],
+      "ratingsCount": 254282,
+      "dnf": true,
+      "similarToAuthors": [
+        "Noam Chomsky",
+        "James W. Loewen",
+        "Eric Foner",
+        "Ta-Nehisi Coates"
+      ]
     },
     {
       "bookKey": "firebreak|nicole-kornher-stace",
@@ -23893,10 +24035,26 @@
       "isbn13": "9781982142742",
       "publisher": "Gallery / Saga Press",
       "year": 2021,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "high-concept",
+        "thriller"
+      ],
+      "similarToTitles": [
+        "All Systems Red",
+        "Autonomous",
+        "Infomocracy",
+        "The Stars Are Legion"
+      ],
+      "ratingsCount": 3142,
+      "dnf": true,
+      "similarToAuthors": [
+        "Annalee Newitz",
+        "Martha Wells",
+        "Kameron Hurley",
+        "Malka Older"
+      ]
     },
     {
       "bookKey": "the-last-human|zack-jordan",
@@ -23913,10 +24071,26 @@
       "isbn13": "9780451499813",
       "publisher": "Del Rey Books",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "sci-fi",
+        "adventure",
+        "speculative",
+        "high-concept"
+      ],
+      "similarToTitles": [
+        "A Long Way to a Small Angry Planet",
+        "Old Man's War",
+        "Ancillary Justice",
+        "Blindsight"
+      ],
+      "ratingsCount": 3708,
+      "dnf": true,
+      "similarToAuthors": [
+        "Ann Leckie",
+        "Becky Chambers",
+        "John Scalzi",
+        "Peter Watts"
+      ]
     },
     {
       "bookKey": "fentanyl-inc-how-rogue-chemists-are-creating-the-deadliest-wave-of-the-opioid-epidemic|ben-westhoff",
@@ -23933,10 +24107,26 @@
       "isbn13": "9780802157379",
       "publisher": "Grove Press",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "true crime",
+        "social commentary",
+        "political"
+      ],
+      "similarToTitles": [
+        "Dreamland",
+        "Empire of Pain",
+        "Dopesick",
+        "Say Nothing"
+      ],
+      "ratingsCount": 3459,
+      "dnf": true,
+      "similarToAuthors": [
+        "Sam Quinones",
+        "Beth Macy",
+        "Patrick Radden Keefe",
+        "Chris McGreal"
+      ]
     },
     {
       "bookKey": "noise-a-flaw-in-human-judgment|daniel-kahneman",
@@ -23953,10 +24143,26 @@
       "isbn13": "9780316451406",
       "publisher": "Little, Brown Spark",
       "year": 2021,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "psychology",
+        "business",
+        "social commentary",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Thinking Fast and Slow",
+        "Predictably Irrational",
+        "Misbehaving",
+        "The Black Swan"
+      ],
+      "ratingsCount": 16836,
+      "dnf": true,
+      "similarToAuthors": [
+        "Nassim Nicholas Taleb",
+        "Richard Thaler",
+        "Dan Ariely",
+        "Cass Sunstein"
+      ]
     },
     {
       "bookKey": "the-moviegoer|walker-percy",
@@ -23973,10 +24179,25 @@
       "isbn13": "9780374214524",
       "publisher": "Farrar, Straus and Giroux",
       "year": 2018,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "literary",
+        "contemporary",
+        "coming-of-age"
+      ],
+      "similarToTitles": [
+        "Stoner",
+        "The Catcher in the Rye",
+        "Revolutionary Road",
+        "Herzog"
+      ],
+      "ratingsCount": 30727,
+      "dnf": true,
+      "similarToAuthors": [
+        "John Updike",
+        "Richard Yates",
+        "Saul Bellow",
+        "Don DeLillo"
+      ]
     },
     {
       "bookKey": "11-22-63|stephen-king",
@@ -24016,10 +24237,25 @@
       "isbn13": "9780062973306",
       "publisher": "Harper",
       "year": 2021,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "history",
+        "biography"
+      ],
+      "similarToTitles": [
+        "Seinfeldia",
+        "Mary and Lou and Rhoda and Ted",
+        "The Genius of Women",
+        "Broad Influence"
+      ],
+      "ratingsCount": 1842,
+      "dnf": true,
+      "similarToAuthors": [
+        "Karina Longworth",
+        "Emily Nussbaum",
+        "Jennifer Keishin Armstrong",
+        "Brooke Barnes"
+      ]
     },
     {
       "bookKey": "lucky-peach-issue-1|chris-ying",
@@ -24036,10 +24272,25 @@
       "isbn13": "9781936365463",
       "publisher": "Lucky Peach",
       "year": 2011,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "food",
+        "narrative nonfiction",
+        "humor"
+      ],
+      "similarToTitles": [
+        "Kitchen Confidential",
+        "The Art of Eating",
+        "Medium Raw",
+        "On Food and Cooking"
+      ],
+      "ratingsCount": 325,
+      "dnf": true,
+      "similarToAuthors": [
+        "David Chang",
+        "Anthony Bourdain",
+        "Ruth Reichl",
+        "Harold McGee"
+      ]
     },
     {
       "bookKey": "how-to-avoid-a-climate-disaster-the-solutions-we-have-and-the-breakthroughs-we-need|bill-gates",
@@ -24056,10 +24307,26 @@
       "isbn13": "9780385546133",
       "publisher": "Knopf Publishing Group",
       "year": 2021,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "social commentary",
+        "business"
+      ],
+      "similarToTitles": [
+        "The Uninhabitable Earth",
+        "The Sixth Extinction",
+        "Speed and Scale",
+        "A Field Guide to Climate Anxiety"
+      ],
+      "ratingsCount": 51253,
+      "dnf": true,
+      "similarToAuthors": [
+        "Elizabeth Kolbert",
+        "Michael Pollan",
+        "Vaclav Smil",
+        "Yuval Noah Harari"
+      ]
     },
     {
       "bookKey": "the-kid-the-immortal-life-of-ted-williams|ben-bradlee-jr",
@@ -24076,10 +24343,25 @@
       "isbn13": "9780316614351",
       "publisher": "Little, Brown and Company",
       "year": 2013,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "biography",
+        "sports",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Big Bam",
+        "Sandy Koufax: A Lefty's Legacy",
+        "Joe DiMaggio: The Hero's Life",
+        "Clemente"
+      ],
+      "ratingsCount": 1679,
+      "dnf": true,
+      "similarToAuthors": [
+        "Leigh Montville",
+        "David Halberstam",
+        "Jane Leavy",
+        "Jonathan Eig"
+      ]
     },
     {
       "bookKey": "rise-of-the-warrior-cop-the-militarization-of-america-s-police-forces|radley-balko",
@@ -24096,10 +24378,26 @@
       "isbn13": "9781610392112",
       "publisher": "PublicAffairs",
       "year": 2013,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "political",
+        "social commentary",
+        "military"
+      ],
+      "similarToTitles": [
+        "The New Jim Crow",
+        "Just Mercy",
+        "Three Felonies a Day",
+        "The War on Cops"
+      ],
+      "ratingsCount": 4024,
+      "dnf": true,
+      "similarToAuthors": [
+        "Michelle Alexander",
+        "Bryan Stevenson",
+        "Ta-Nehisi Coates",
+        "David Simon"
+      ]
     },
     {
       "bookKey": "the-path-to-power|robert-a-caro",
@@ -24116,10 +24414,26 @@
       "isbn13": "9780679729457",
       "publisher": "Vintage",
       "year": 1990,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "biography",
+        "political",
+        "history",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Team of Rivals",
+        "The Power Broker",
+        "Truman",
+        "Grant"
+      ],
+      "ratingsCount": 27143,
+      "dnf": true,
+      "similarToAuthors": [
+        "Taylor Branch",
+        "David McCullough",
+        "Doris Kearns Goodwin",
+        "Ron Chernow"
+      ]
     },
     {
       "bookKey": "network-effect|martha-wells",
@@ -24136,10 +24450,26 @@
       "isbn13": "9781250229861",
       "publisher": "Tor.com",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "adventure",
+        "high-concept"
+      ],
+      "similarToTitles": [
+        "A Memory Called Empire",
+        "A Long Way to a Small Angry Planet",
+        "Ancillary Justice",
+        "All Systems Red"
+      ],
+      "ratingsCount": 133995,
+      "dnf": true,
+      "similarToAuthors": [
+        "Ann Leckie",
+        "Becky Chambers",
+        "Arkady Martine",
+        "Charles Stross"
+      ]
     },
     {
       "bookKey": "to-sleep-in-a-sea-of-stars|christopher-paolini",
@@ -24156,10 +24486,26 @@
       "isbn13": "9781250762849",
       "publisher": "Tor Books",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "sci-fi",
+        "adventure",
+        "speculative",
+        "high-concept"
+      ],
+      "similarToTitles": [
+        "Hyperion",
+        "A Fire Upon the Deep",
+        "Revelation Space",
+        "The Long Way to a Small Angry Planet"
+      ],
+      "ratingsCount": 72265,
+      "dnf": true,
+      "similarToAuthors": [
+        "Peter F. Hamilton",
+        "Alastair Reynolds",
+        "Ann Leckie",
+        "John Scalzi"
+      ]
     },
     {
       "bookKey": "the-troop|nick-cutter",
@@ -24176,10 +24522,26 @@
       "isbn13": "9781476717715",
       "publisher": "Gallery Books",
       "year": 2014,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "horror",
+        "psychological",
+        "suspense",
+        "high-concept"
+      ],
+      "similarToTitles": [
+        "Lord of the Flies",
+        "The Ruins",
+        "Boy's Life",
+        "It"
+      ],
+      "ratingsCount": 106105,
+      "dnf": true,
+      "similarToAuthors": [
+        "Stephen King",
+        "Paul Tremblay",
+        "Richard Laymon",
+        "Jack Ketchum"
+      ]
     },
     {
       "bookKey": "grinding-it-out-the-making-of-mcdonald-s|ray-kroc",
@@ -24196,10 +24558,25 @@
       "isbn13": "9780312929879",
       "publisher": "St. Martin's Press",
       "year": 1992,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "business",
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Shoe Dog",
+        "Made in America",
+        "Pour Your Heart Into It",
+        "The Everything Store"
+      ],
+      "ratingsCount": 12500,
+      "dnf": true,
+      "similarToAuthors": [
+        "Phil Knight",
+        "Sam Walton",
+        "Howard Schultz",
+        "Lee Iacocca"
+      ]
     },
     {
       "bookKey": "the-rise-and-fall-of-the-third-reich-a-history-of-nazi-germany|william-l-shirer",
@@ -24216,10 +24593,26 @@
       "isbn13": "9780671728687",
       "publisher": "Simon & Schuster",
       "year": 1990,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "history",
+        "military",
+        "narrative nonfiction",
+        "political"
+      ],
+      "similarToTitles": [
+        "Berlin: The Downfall 1945",
+        "The Third Reich Trilogy",
+        "Hitler: A Biography",
+        "Bloodlands"
+      ],
+      "ratingsCount": 167273,
+      "dnf": true,
+      "similarToAuthors": [
+        "Ian Kershaw",
+        "Richard J. Evans",
+        "Antony Beevor",
+        "John Toland"
+      ]
     },
     {
       "bookKey": "notes-from-underground|fyodor-dostoevsky",
@@ -24236,10 +24629,25 @@
       "isbn13": "9780679734529",
       "publisher": "Vintage Classics",
       "year": 1994,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "literary",
+        "psychological",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "The Stranger",
+        "The Trial",
+        "The Overcoat",
+        "Hunger"
+      ],
+      "ratingsCount": 245425,
+      "dnf": true,
+      "similarToAuthors": [
+        "Leo Tolstoy",
+        "Franz Kafka",
+        "Albert Camus",
+        "Nikolai Gogol"
+      ]
     },
     {
       "bookKey": "the-drudge-revolution-the-untold-story-of-how-talk-radio-fox-news-and-a-gift-shop-clerk-with-an-internet-connection-took-down-the-mainstream-media|matthew-lysiak",
@@ -24256,10 +24664,26 @@
       "isbn13": "",
       "publisher": "BenBella Books",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "political",
+        "history",
+        "tech history",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Loudest Voice in the Room",
+        "Hoax",
+        "The Death of Truth",
+        "Bad News"
+      ],
+      "ratingsCount": 250,
+      "dnf": true,
+      "similarToAuthors": [
+        "Brian Stelter",
+        "Gabriel Sherman",
+        "David Folkenflik",
+        "Michael Wolff"
+      ]
     },
     {
       "bookKey": "the-body-a-guide-for-occupants|bill-bryson",
@@ -24276,10 +24700,26 @@
       "isbn13": "9780385539302",
       "publisher": "Doubleday Books",
       "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "psychology",
+        "social commentary",
+        "history"
+      ],
+      "similarToTitles": [
+        "Stiff",
+        "The Emperor of All Maladies",
+        "Being Mortal",
+        "A Short History of Nearly Everything"
+      ],
+      "ratingsCount": 102463,
+      "dnf": true,
+      "similarToAuthors": [
+        "Mary Roach",
+        "Siddhartha Mukherjee",
+        "Atul Gawande",
+        "Paul Kalanithi"
+      ]
     },
     {
       "bookKey": "pilsner-how-the-beer-of-kings-changed-the-world|tom-acitelli",
@@ -24296,10 +24736,25 @@
       "isbn13": "9781641601825",
       "publisher": "Chicago Review Press",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "history",
+        "food"
+      ],
+      "similarToTitles": [
+        "The Audacity of Hops",
+        "Bitter Brew",
+        "A History of the World in 6 Glasses",
+        "Hops and Dreams"
+      ],
+      "ratingsCount": 112,
+      "dnf": true,
+      "similarToAuthors": [
+        "William Bostwick",
+        "Tom Standage",
+        "Maureen Ogle",
+        "Jeff Alworth"
+      ]
     },
     {
       "bookKey": "the-invention-of-sound|chuck-palahniuk",
@@ -24316,10 +24771,26 @@
       "isbn13": "9781538718001",
       "publisher": "Grand Central Publishing",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "horror",
+        "thriller",
+        "psychological",
+        "high-concept"
+      ],
+      "similarToTitles": [
+        "Fight Club",
+        "Lullaby",
+        "American Psycho",
+        "The Silence of the Lambs"
+      ],
+      "ratingsCount": 9594,
+      "dnf": true,
+      "similarToAuthors": [
+        "Thomas Harris",
+        "Bret Easton Ellis",
+        "Dennis Cooper",
+        "Stephen Graham Jones"
+      ]
     },
     {
       "bookKey": "king-of-capital-the-remarkable-rise-fall-and-rise-again-of-steve-schwarzman-and-blackstone|david-carey",
@@ -24336,10 +24807,26 @@
       "isbn13": "9780307452993",
       "publisher": "Crown Business",
       "year": 2010,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "finance",
+        "business",
+        "narrative nonfiction",
+        "biography"
+      ],
+      "similarToTitles": [
+        "Barbarians at the Gate",
+        "More Money Than God",
+        "Too Big to Fail",
+        "The Predators' Ball"
+      ],
+      "ratingsCount": 5445,
+      "dnf": true,
+      "similarToAuthors": [
+        "Sebastian Mallaby",
+        "William Cohan",
+        "Bryan Burrough",
+        "Andrew Ross Sorkin"
+      ]
     },
     {
       "bookKey": "world-travel-an-irreverent-guide|anthony-bourdain",
@@ -24356,10 +24843,26 @@
       "isbn13": "9780062802774",
       "publisher": "Ecco",
       "year": 2021,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "food",
+        "humor",
+        "memoir"
+      ],
+      "similarToTitles": [
+        "Kitchen Confidential",
+        "A Cook's Tour",
+        "In a Sunburned Country",
+        "The Great Railway Bazaar"
+      ],
+      "ratingsCount": 11038,
+      "dnf": true,
+      "similarToAuthors": [
+        "Eric Ripert",
+        "Bill Bryson",
+        "Paul Theroux",
+        "Rick Steves"
+      ]
     },
     {
       "bookKey": "a-bridge-too-far|cornelius-ryan",
@@ -24376,10 +24879,25 @@
       "isbn13": "9780450837319",
       "publisher": "Book Club Associates",
       "year": 1975,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "military",
+        "history"
+      ],
+      "similarToTitles": [
+        "The Longest Day",
+        "Band of Brothers",
+        "An Army at Dawn",
+        "D-Day"
+      ],
+      "ratingsCount": 21600,
+      "dnf": true,
+      "similarToAuthors": [
+        "Stephen Ambrose",
+        "Rick Atkinson",
+        "Antony Beevor",
+        "John Keegan"
+      ]
     },
     {
       "bookKey": "the-speed-of-sound-breaking-the-barriers-between-music-and-technology-a-memoir|thomas-dolby",
@@ -24396,10 +24914,25 @@
       "isbn13": "9781250071842",
       "publisher": "Flatiron Books",
       "year": 2016,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "memoir",
+        "music history",
+        "tech history"
+      ],
+      "similarToTitles": [
+        "Porcelain",
+        "How Music Works",
+        "Waging Heavy Peace",
+        "The Storyteller"
+      ],
+      "ratingsCount": 695,
+      "dnf": true,
+      "similarToAuthors": [
+        "Moby",
+        "Brian Eno",
+        "Neil Young",
+        "Dave Grohl"
+      ]
     },
     {
       "bookKey": "fahrenheit-451|ray-bradbury",
@@ -24416,10 +24949,26 @@
       "isbn13": "9780007491568",
       "publisher": "Harper Voyager",
       "year": 2013,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "literary",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "1984",
+        "Brave New World",
+        "The Handmaid's Tale",
+        "We"
+      ],
+      "ratingsCount": 2865527,
+      "dnf": true,
+      "similarToAuthors": [
+        "George Orwell",
+        "Aldous Huxley",
+        "Philip K. Dick",
+        "Kurt Vonnegut"
+      ]
     },
     {
       "bookKey": "the-terminal-list|jack-carr",
@@ -24436,10 +24985,26 @@
       "isbn13": "9781501180811",
       "publisher": "Atria/Emily Bestler Books",
       "year": 2018,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "thriller",
+        "military",
+        "suspense",
+        "crime"
+      ],
+      "similarToTitles": [
+        "American Assassin",
+        "I Am Pilgrim",
+        "The Lions of Lucerne",
+        "Lone Wolf"
+      ],
+      "ratingsCount": 75908,
+      "dnf": true,
+      "similarToAuthors": [
+        "Vince Flynn",
+        "Brad Thor",
+        "Brad Taylor",
+        "Daniel Silva"
+      ]
     },
     {
       "bookKey": "american-prison-a-reporter-s-undercover-journey-into-the-business-of-punishment|shane-bauer",
@@ -24456,10 +25021,26 @@
       "isbn13": "9780735223585",
       "publisher": "Penguin Press",
       "year": 2018,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "true crime",
+        "social commentary",
+        "political"
+      ],
+      "similarToTitles": [
+        "Newjack",
+        "Just Mercy",
+        "The Divide",
+        "Fast Food Nation"
+      ],
+      "ratingsCount": 13012,
+      "dnf": true,
+      "similarToAuthors": [
+        "Ted Conover",
+        "Bryan Stevenson",
+        "Matthew Desmond",
+        "Eric Schlosser"
+      ]
     },
     {
       "bookKey": "good-economics-for-hard-times-better-answers-to-our-biggest-problems|abhijit-v-banerjee",
@@ -24476,30 +25057,26 @@
       "isbn13": "",
       "publisher": "Penguin Books",
       "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
-    },
-    {
-      "bookKey": "world-travel-an-irreverent-guide|anthony-bourdain",
-      "bookId": "50496808",
-      "title": "World Travel: An Irreverent Guide",
-      "author": "Anthony Bourdain",
-      "shelf": "read",
-      "myRating": 2,
-      "avgRating": 3.57,
-      "pages": 480,
-      "dateRead": null,
-      "dateAdded": "2020-06-16",
-      "isbn": "0062802798",
-      "isbn13": "9780062802798",
-      "publisher": "Ecco",
-      "year": 2021,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "finance",
+        "social commentary",
+        "political"
+      ],
+      "similarToTitles": [
+        "Poor Economics",
+        "The Deficit Myth",
+        "Freakonomics",
+        "Why Nations Fail"
+      ],
+      "ratingsCount": 11073,
+      "dnf": true,
+      "similarToAuthors": [
+        "Esther Duflo",
+        "Paul Krugman",
+        "Daron Acemoglu",
+        "Steven Levitt"
+      ]
     },
     {
       "bookKey": "the-bayou-trilogy-under-the-bright-lights-muscle-for-the-wing-and-the-ones-you-do|daniel-woodrell",
@@ -24516,10 +25093,26 @@
       "isbn13": "9780316133654",
       "publisher": "Mulholland Books",
       "year": 2011,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "crime",
+        "noir",
+        "literary",
+        "mystery"
+      ],
+      "similarToTitles": [
+        "In the Electric Mist with Confederate Dead",
+        "The Two-Bear Mambo",
+        "Joe",
+        "Miami Blues"
+      ],
+      "ratingsCount": 1869,
+      "dnf": true,
+      "similarToAuthors": [
+        "James Lee Burke",
+        "Joe R. Lansdale",
+        "Larry Brown",
+        "Charles Willeford"
+      ]
     },
     {
       "bookKey": "the-big-roads-the-untold-story-of-the-engineers-visionaries-and-trailblazers-who-created-the-american-superhighways|earl-swift",
@@ -24536,10 +25129,25 @@
       "isbn13": "9780618812417",
       "publisher": "Houghton Mifflin Harcourt",
       "year": 2011,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "history",
+        "narrative nonfiction",
+        "tech history"
+      ],
+      "similarToTitles": [
+        "Divided Highways",
+        "Interstate: Express Highway Politics",
+        "The Road to Somewhere",
+        "The Grid"
+      ],
+      "ratingsCount": 1934,
+      "dnf": true,
+      "similarToAuthors": [
+        "Tom Lewis",
+        "Dan McNichol",
+        "G. Pascal Zachary",
+        "David Halberstam"
+      ]
     },
     {
       "bookKey": "andy-grove-the-life-and-times-of-an-american|richard-s-tedlow",
@@ -24556,10 +25164,26 @@
       "isbn13": "9781591841395",
       "publisher": "Portfolio Hardcover",
       "year": 2006,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "biography",
+        "tech history",
+        "business",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Steve Jobs",
+        "The Everything Store",
+        "Only the Paranoid Survive",
+        "Shoe Dog"
+      ],
+      "ratingsCount": 125,
+      "dnf": true,
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Michael Lewis",
+        "Tom Wolfe",
+        "John Sculley"
+      ]
     },
     {
       "bookKey": "a-kind-and-just-parent-the-children-of-juvenile-court|bill-ayers",
@@ -24576,10 +25200,25 @@
       "isbn13": "9780807044032",
       "publisher": "Beacon Press",
       "year": 1998,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "social commentary",
+        "political"
+      ],
+      "similarToTitles": [
+        "Just Mercy",
+        "There Are No Children Here",
+        "The New Jim Crow",
+        "Savage Inequalities"
+      ],
+      "ratingsCount": 79,
+      "dnf": true,
+      "similarToAuthors": [
+        "Jonathan Kozol",
+        "Michelle Alexander",
+        "Bryan Stevenson",
+        "Alex Kotlowitz"
+      ]
     },
     {
       "bookKey": "the-tumor|john-grisham",
@@ -24596,10 +25235,25 @@
       "isbn13": "",
       "publisher": "Focused Ultrasound Foundation",
       "year": 2016,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "medical thriller",
+        "narrative nonfiction",
+        "high-concept"
+      ],
+      "similarToTitles": [
+        "The Immortal Life of Henrietta Lacks",
+        "The Emperor of All Maladies",
+        "Micro",
+        "Cutting for Stone"
+      ],
+      "ratingsCount": 17735,
+      "dnf": true,
+      "similarToAuthors": [
+        "Michael Crichton",
+        "Robin Cook",
+        "Tess Gerritsen",
+        "Karin Slaughter"
+      ]
     },
     {
       "bookKey": "panic-the-story-of-modern-financial-insanity|michael-lewis",
@@ -24616,10 +25270,26 @@
       "isbn13": "9780393337983",
       "publisher": "W. W. Norton & Company",
       "year": 2009,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "finance",
+        "history",
+        "social commentary",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Big Short",
+        "Too Big to Fail",
+        "When Genius Failed",
+        "More Money Than God"
+      ],
+      "ratingsCount": 3017,
+      "dnf": true,
+      "similarToAuthors": [
+        "Bethany McLean",
+        "Roger Lowenstein",
+        "Andrew Ross Sorkin",
+        "Sebastian Mallaby"
+      ]
     },
     {
       "bookKey": "the-tennis-partner|abraham-verghese",
@@ -24636,10 +25306,25 @@
       "isbn13": "9780060931131",
       "publisher": "Harper Perennial",
       "year": 1999,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "memoir",
+        "narrative nonfiction",
+        "psychology"
+      ],
+      "similarToTitles": [
+        "When Breath Becomes Air",
+        "Being Mortal",
+        "The Spirit Catches You and You Fall Down",
+        "Beautiful Boy"
+      ],
+      "ratingsCount": 15402,
+      "dnf": true,
+      "similarToAuthors": [
+        "Paul Kalanithi",
+        "Atul Gawande",
+        "Oliver Sacks",
+        "Siddhartha Mukherjee"
+      ]
     },
     {
       "bookKey": "we-learn-nothing|tim-kreider",
@@ -24656,10 +25341,26 @@
       "isbn13": "9781439198704",
       "publisher": "Free Press",
       "year": 2012,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "memoir",
+        "humor",
+        "social commentary",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Me Talk Pretty One Day",
+        "I Was Told There'd Be Cake",
+        "Eating the Dinosaur",
+        "You're Not Doing It Right"
+      ],
+      "ratingsCount": 5170,
+      "dnf": true,
+      "similarToAuthors": [
+        "David Sedaris",
+        "Chuck Klosterman",
+        "Sloane Crosley",
+        "Michael Ian Black"
+      ]
     },
     {
       "bookKey": "safe|ryan-gattis",
@@ -24676,10 +25377,26 @@
       "isbn13": "9780374253370",
       "publisher": "MCD",
       "year": 2017,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "crime",
+        "noir",
+        "thriller",
+        "literary"
+      ],
+      "similarToTitles": [
+        "All Involved",
+        "The Force",
+        "City of Thieves",
+        "The Wheelman"
+      ],
+      "ratingsCount": 384,
+      "dnf": true,
+      "similarToAuthors": [
+        "Elmore Leonard",
+        "Don Winslow",
+        "Richard Price",
+        "James Ellroy"
+      ]
     },
     {
       "bookKey": "samsung-rising-the-inside-story-of-the-south-korean-giant-that-set-out-to-beat-apple-and-conquer-tech|geoffrey-cain",
@@ -24696,10 +25413,26 @@
       "isbn13": "9781101907252",
       "publisher": "Currency",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "tech history",
+        "business",
+        "narrative nonfiction",
+        "history"
+      ],
+      "similarToTitles": [
+        "The Everything Store",
+        "Shoe Dog",
+        "Sony vs Samsung",
+        "Bad Blood"
+      ],
+      "ratingsCount": 1605,
+      "dnf": true,
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Brad Stone",
+        "John Lee",
+        "Evan Osnos"
+      ]
     },
     {
       "bookKey": "the-victory-machine-the-making-and-unmaking-of-the-warriors-dynasty|ethan-sherwood-strauss",
@@ -24716,10 +25449,25 @@
       "isbn13": "9781541736238",
       "publisher": "PublicAffairs",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "sports",
+        "narrative nonfiction",
+        "business"
+      ],
+      "similarToTitles": [
+        "The Soul of Basketball",
+        "The Last Dance",
+        "Showtime",
+        "Dream Team"
+      ],
+      "ratingsCount": 1591,
+      "dnf": true,
+      "similarToAuthors": [
+        "Bill Simmons",
+        "Adrian Wojnarowski",
+        "Jonathan Abrams",
+        "Howard Beck"
+      ]
     },
     {
       "bookKey": "twitter-a-biography|jean-burgess",
@@ -24736,10 +25484,26 @@
       "isbn13": "9781479811069",
       "publisher": "New York University Press",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "social commentary",
+        "history"
+      ],
+      "similarToTitles": [
+        "Hatching Twitter",
+        "Facebook: The Inside Story",
+        "No Filter",
+        "Chaos Monkeys"
+      ],
+      "ratingsCount": 48,
+      "dnf": true,
+      "similarToAuthors": [
+        "Nick Bilton",
+        "Steven Levy",
+        "Kate Klonick",
+        "Siva Vaidhyanathan"
+      ]
     },
     {
       "bookKey": "the-ballad-of-songbirds-and-snakes|suzanne-collins",
@@ -24756,10 +25520,26 @@
       "isbn13": "",
       "publisher": "Scholastic Press",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "YA",
+        "speculative",
+        "coming-of-age",
+        "thriller"
+      ],
+      "similarToTitles": [
+        "Divergent",
+        "The Maze Runner",
+        "Legend",
+        "Red Queen"
+      ],
+      "ratingsCount": 1250000,
+      "dnf": true,
+      "similarToAuthors": [
+        "Veronica Roth",
+        "James Dashner",
+        "Marie Lu",
+        "Victoria Aveyard"
+      ]
     },
     {
       "bookKey": "this-i-believe-the-personal-philosophies-of-remarkable-men-and-women|jay-allison",
@@ -24776,10 +25556,25 @@
       "isbn13": "",
       "publisher": "Macmillan Audio",
       "year": 2006,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "biography",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "Listening Is an Act of Love",
+        "Working",
+        "Man's Search for Meaning",
+        "Wisdom of Our Fathers"
+      ],
+      "ratingsCount": 7040,
+      "dnf": true,
+      "similarToAuthors": [
+        "David Isay",
+        "Studs Terkel",
+        "Anna Quindlen",
+        "Edward R. Murrow"
+      ]
     },
     {
       "bookKey": "the-wax-pack-on-the-open-road-in-search-of-baseball-s-afterlife|brad-balukjian",
@@ -24796,10 +25591,25 @@
       "isbn13": "9781496218742",
       "publisher": "University of Nebraska Press",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "sports",
+        "memoir"
+      ],
+      "similarToTitles": [
+        "The Baseball 100",
+        "Fantasyland",
+        "Where Nobody Knows Your Name",
+        "Ball Four"
+      ],
+      "ratingsCount": 2054,
+      "dnf": true,
+      "similarToAuthors": [
+        "Joe Posnanski",
+        "Tom Verducci",
+        "Roger Angell",
+        "Michael Rosenberg"
+      ]
     },
     {
       "bookKey": "the-office-the-untold-story-of-the-greatest-sitcom-of-the-2000s-an-oral-history|andy-greene",
@@ -24816,10 +25626,25 @@
       "isbn13": "9781524744977",
       "publisher": "Dutton Books",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "humor",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "Live from New York",
+        "Difficult Men",
+        "Seinfeldia",
+        "The Simpsons Archive"
+      ],
+      "ratingsCount": 12146,
+      "dnf": true,
+      "similarToAuthors": [
+        "Brian Baumgartner",
+        "Alan Sepinwall",
+        "Ken Levine",
+        "Bill Carter"
+      ]
     },
     {
       "bookKey": "the-monk-who-sold-his-ferrari-a-fable-about-fulfilling-your-dreams-and-reaching-your-destiny|robin-s-sharma",
@@ -24836,10 +25661,25 @@
       "isbn13": "9780062515674",
       "publisher": "HarperOne",
       "year": 1999,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "psychology",
+        "business"
+      ],
+      "similarToTitles": [
+        "The Alchemist",
+        "The Power of Now",
+        "The 7 Habits of Highly Effective People",
+        "Jonathan Livingston Seagull"
+      ],
+      "ratingsCount": 187258,
+      "dnf": true,
+      "similarToAuthors": [
+        "Paulo Coelho",
+        "Eckhart Tolle",
+        "Dale Carnegie",
+        "Stephen Covey"
+      ]
     },
     {
       "bookKey": "a-beautiful-mind|sylvia-nasar",
@@ -24856,10 +25696,26 @@
       "isbn13": "9780571212927",
       "publisher": "Faber  Faber",
       "year": 2002,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "biography",
+        "narrative nonfiction",
+        "history",
+        "psychology"
+      ],
+      "similarToTitles": [
+        "The Man Who Knew Infinity",
+        "Genius",
+        "The Imitation Game",
+        "Fermat's Enigma"
+      ],
+      "ratingsCount": 135542,
+      "dnf": true,
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Robert Kanigel",
+        "Simon Singh",
+        "Deborah Heilbrand"
+      ]
     },
     {
       "bookKey": "arbitrary-stupid-goal|tamara-shopsin",
@@ -24876,10 +25732,26 @@
       "isbn13": "9780374105860",
       "publisher": "MCD",
       "year": 2017,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "memoir",
+        "narrative nonfiction",
+        "food",
+        "humor"
+      ],
+      "similarToTitles": [
+        "Kitchen Confidential",
+        "Blood Bones and Butter",
+        "Medium Raw",
+        "Tender at the Bone"
+      ],
+      "ratingsCount": 2636,
+      "dnf": true,
+      "similarToAuthors": [
+        "Anthony Bourdain",
+        "David Sedaris",
+        "Gabrielle Hamilton",
+        "Calvin Trillin"
+      ]
     },
     {
       "bookKey": "the-inside-game-bad-calls-strange-moves-and-what-baseball-behavior-teaches-us-about-ourselves|keith-law",
@@ -24896,10 +25768,25 @@
       "isbn13": "9780062942722",
       "publisher": "William Morrow",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "sports",
+        "psychology",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Moneyball",
+        "Thinking Fast and Slow",
+        "The Signal and the Noise",
+        "Smart Baseball"
+      ],
+      "ratingsCount": 900,
+      "dnf": true,
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Jonah Lehrer",
+        "Dan Ariely",
+        "Nate Silver"
+      ]
     },
     {
       "bookKey": "author-in-chief-the-untold-story-of-our-presidents-and-the-books-they-wrote|craig-fehrman",
@@ -24916,10 +25803,26 @@
       "isbn13": "9781476786391",
       "publisher": "Avid Reader Press / Simon  Schuster",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "history",
+        "political",
+        "biography"
+      ],
+      "similarToTitles": [
+        "The Bully Pulpit",
+        "Team of Rivals",
+        "John Adams",
+        "The Path to Power"
+      ],
+      "ratingsCount": 642,
+      "dnf": true,
+      "similarToAuthors": [
+        "Jon Meacham",
+        "Robert Caro",
+        "Doris Kearns Goodwin",
+        "H.W. Brands"
+      ]
     },
     {
       "bookKey": "the-class-a-life-changing-teacher-his-world-changing-kids-and-the-most-inventive-classroom-in-america|heather-won-tesoriero",
@@ -24936,10 +25839,25 @@
       "isbn13": "9780399181849",
       "publisher": "Ballantine Books",
       "year": 2018,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "social commentary",
+        "memoir"
+      ],
+      "similarToTitles": [
+        "The Freedom Writers Diary",
+        "Whatever It Takes",
+        "Teach Like a Champion",
+        "There Are No Children Here"
+      ],
+      "ratingsCount": 401,
+      "dnf": true,
+      "similarToAuthors": [
+        "Jonathan Kozol",
+        "Paul Tough",
+        "Ron Clark",
+        "Erin Gruwell"
+      ]
     },
     {
       "bookKey": "collision-course-ronald-reagan-the-air-traffic-controllers-and-the-strike-that-changed-america|joseph-a-mccartin",
@@ -24956,10 +25874,26 @@
       "isbn13": "9780199836789",
       "publisher": "Oxford University Press, USA",
       "year": 2011,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "history",
+        "political",
+        "military",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "America in the King Years",
+        "Nixonland",
+        "Stayin' Alive",
+        "Invisible Hands"
+      ],
+      "ratingsCount": 235,
+      "dnf": true,
+      "similarToAuthors": [
+        "Taylor Branch",
+        "Rick Perlstein",
+        "Jefferson Cowie",
+        "Kim Phillips-Fein"
+      ]
     },
     {
       "bookKey": "the-shift-the-next-evolution-in-baseball-thinking|russell-a-carleton",
@@ -24976,10 +25910,25 @@
       "isbn13": "9781629375441",
       "publisher": "Triumph Books",
       "year": 2018,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "sports",
+        "narrative nonfiction",
+        "psychology"
+      ],
+      "similarToTitles": [
+        "Moneyball",
+        "The MVP Machine",
+        "Big Data Baseball",
+        "The Extra 2%"
+      ],
+      "ratingsCount": 695,
+      "dnf": true,
+      "similarToAuthors": [
+        "Ben Lindbergh",
+        "Travis Sawchik",
+        "Keith Law",
+        "Michael Lewis"
+      ]
     },
     {
       "bookKey": "the-one-that-got-away|simon-wood",
@@ -24996,10 +25945,26 @@
       "isbn13": "",
       "publisher": "Thomas & Mercer",
       "year": 2015,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "thriller",
+        "psychological",
+        "suspense",
+        "crime"
+      ],
+      "similarToTitles": [
+        "Tell No One",
+        "Find Her",
+        "The Silence of the Lambs",
+        "Pretty Girls"
+      ],
+      "ratingsCount": 22609,
+      "dnf": true,
+      "similarToAuthors": [
+        "Harlan Coben",
+        "Lisa Gardner",
+        "Thomas Harris",
+        "Karin Slaughter"
+      ]
     },
     {
       "bookKey": "steven-adams-my-life-my-fight|steven-adams",
@@ -25016,10 +25981,24 @@
       "isbn13": "9780143771296",
       "publisher": "Penguin Random House NZ",
       "year": 2018,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "memoir",
+        "sports"
+      ],
+      "similarToTitles": [
+        "The Warrior Way",
+        "Open",
+        "Eleven Rings",
+        "When the Game Was Ours"
+      ],
+      "ratingsCount": 637,
+      "dnf": true,
+      "similarToAuthors": [
+        "Andre Iguodala",
+        "Phil Jackson",
+        "Kareem Abdul-Jabbar",
+        "Bill Russell"
+      ]
     },
     {
       "bookKey": "the-financial-diaries-how-american-families-cope-in-a-world-of-uncertainty|jonathan-morduch",
@@ -25036,10 +26015,26 @@
       "isbn13": "9780691172989",
       "publisher": "Princeton University Press",
       "year": 2017,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "finance",
+        "social commentary",
+        "psychology"
+      ],
+      "similarToTitles": [
+        "Portfolios of the Poor",
+        "Hand to Mouth",
+        "The Two-Income Trap",
+        "Pound Foolish"
+      ],
+      "ratingsCount": 224,
+      "dnf": true,
+      "similarToAuthors": [
+        "Robert Shiller",
+        "Annamaria Lusardi",
+        "Helaine Olen",
+        "Jacob Hacker"
+      ]
     },
     {
       "bookKey": "we-will-rise-a-true-story-of-tragedy-and-resurrection-in-the-american-heartland|steve-beaven",
@@ -25056,10 +26051,25 @@
       "isbn13": "9781503942202",
       "publisher": "Little A",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "sports",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "Friday Night Lights",
+        "The Last Shot",
+        "Outcasts United",
+        "The Fab Five"
+      ],
+      "ratingsCount": 1623,
+      "dnf": true,
+      "similarToAuthors": [
+        "H.G. Bissinger",
+        "Adrian Wojnarowski",
+        "Jeff Benedict",
+        "Jonathan Hock"
+      ]
     },
     {
       "bookKey": "robopocalypse|daniel-h-wilson",
@@ -25076,10 +26086,26 @@
       "isbn13": "9780385533850",
       "publisher": "Doubleday",
       "year": 2011,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "sci-fi",
+        "thriller",
+        "speculative",
+        "high-concept"
+      ],
+      "similarToTitles": [
+        "World War Z",
+        "Armada",
+        "Prey",
+        "The Andromeda Evolution"
+      ],
+      "ratingsCount": 41656,
+      "dnf": true,
+      "similarToAuthors": [
+        "Max Brooks",
+        "Michael Crichton",
+        "Blake Crouch",
+        "Ernest Cline"
+      ]
     },
     {
       "bookKey": "home-now-how-6000-refugees-transformed-an-american-town|cynthia-anderson",
@@ -25096,10 +26122,25 @@
       "isbn13": "9781541767911",
       "publisher": "PublicAffairs",
       "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "social commentary",
+        "political"
+      ],
+      "similarToTitles": [
+        "Zeitoun",
+        "Enrique's Journey",
+        "The Newcomers",
+        "Outcasts United"
+      ],
+      "ratingsCount": 158,
+      "dnf": true,
+      "similarToAuthors": [
+        "Dave Eggers",
+        "Tracy Kidder",
+        "Sonia Nazario",
+        "Helen Thorpe"
+      ]
     },
     {
       "bookKey": "the-flavor-bible-the-essential-guide-to-culinary-creativity-based-on-the-wisdom-of-america-s-most-imaginative-chefs|karen-page",
@@ -25116,10 +26157,24 @@
       "isbn13": "9780316118408",
       "publisher": "Little, Brown and Company",
       "year": 2008,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "food",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Food Lab",
+        "Salt Fat Acid Heat",
+        "On Food and Cooking",
+        "The Vegetarian Flavor Bible"
+      ],
+      "ratingsCount": 23653,
+      "dnf": true,
+      "similarToAuthors": [
+        "Andrew Dornenburg",
+        "Harold McGee",
+        "Samin Nosrat",
+        "Yotam Ottolenghi"
+      ]
     },
     {
       "bookKey": "top-of-the-morning-inside-the-cutthroat-world-of-morning-tv|brian-stelter",
@@ -25136,10 +26191,25 @@
       "isbn13": "9781455545360",
       "publisher": "Grand Central Publishing",
       "year": 2013,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "social commentary",
+        "business"
+      ],
+      "similarToTitles": [
+        "The Loudest Voice in the Room",
+        "The Late Shift",
+        "Hoax",
+        "War at the Wall Street Journal"
+      ],
+      "ratingsCount": 2055,
+      "dnf": true,
+      "similarToAuthors": [
+        "Michael Wolff",
+        "Howard Kurtz",
+        "Gabriel Sherman",
+        "Ken Auletta"
+      ]
     },
     {
       "bookKey": "uncanny-valley|anna-wiener",
@@ -25156,10 +26226,26 @@
       "isbn13": "9780374278014",
       "publisher": "MCD",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "memoir",
+        "tech history",
+        "social commentary",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Brotopia",
+        "Close to the Machine",
+        "The Big Nine",
+        "Chaos Monkeys"
+      ],
+      "ratingsCount": 35631,
+      "dnf": true,
+      "similarToAuthors": [
+        "Emily Chang",
+        "Ellen Ullman",
+        "Kara Swisher",
+        "Kate Crawford"
+      ]
     },
     {
       "bookKey": "sabbath-s-theater|philip-roth",
@@ -25176,10 +26262,25 @@
       "isbn13": "9780679772590",
       "publisher": "Vintage",
       "year": 1996,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "literary",
+        "contemporary",
+        "humor"
+      ],
+      "similarToTitles": [
+        "Portnoy's Complaint",
+        "Herzog",
+        "Rabbit Run",
+        "American Pastoral"
+      ],
+      "ratingsCount": 11550,
+      "dnf": true,
+      "similarToAuthors": [
+        "Saul Bellow",
+        "John Updike",
+        "Norman Mailer",
+        "Don DeLillo"
+      ]
     },
     {
       "bookKey": "colonel-sanders-and-the-american-dream|josh-ozersky",
@@ -25196,10 +26297,26 @@
       "isbn13": "9780292723825",
       "publisher": "University of Texas Press",
       "year": 2012,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "biography",
+        "business",
+        "food",
+        "history"
+      ],
+      "similarToTitles": [
+        "The Hamburger",
+        "Fast Food Nation",
+        "Salt Sugar Fat",
+        "Drive-Thru Dreams"
+      ],
+      "ratingsCount": 140,
+      "dnf": true,
+      "similarToAuthors": [
+        "John T. Edge",
+        "Andrew F. Smith",
+        "Michael Moss",
+        "Eric Schlosser"
+      ]
     },
     {
       "bookKey": "hate-inc-why-today-s-media-makes-us-despise-one-another|matt-taibbi",
@@ -25216,10 +26333,26 @@
       "isbn13": "9781949017250",
       "publisher": "OR Books",
       "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "social commentary",
+        "political",
+        "narrative nonfiction",
+        "humor"
+      ],
+      "similarToTitles": [
+        "Manufacturing Consent",
+        "Trust Me I'm Lying",
+        "The New Media Monopoly",
+        "Merchants of Truth"
+      ],
+      "ratingsCount": 4430,
+      "dnf": true,
+      "similarToAuthors": [
+        "Glenn Greenwald",
+        "Chris Hedges",
+        "Michael Wolff",
+        "Noam Chomsky"
+      ]
     },
     {
       "bookKey": "burn-the-ice-the-american-culinary-revolution-and-its-end|kevin-alexander",
@@ -25236,10 +26369,25 @@
       "isbn13": "9780525558026",
       "publisher": "Penguin Press",
       "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "food",
+        "history"
+      ],
+      "similarToTitles": [
+        "Kitchen Confidential",
+        "Heat",
+        "Save the Deli",
+        "The Sorcerer's Apprentices"
+      ],
+      "ratingsCount": 407,
+      "dnf": true,
+      "similarToAuthors": [
+        "Anthony Bourdain",
+        "Bill Buford",
+        "Michael Ruhlman",
+        "David Chang"
+      ]
     },
     {
       "bookKey": "rolling-nowhere-riding-the-rails-with-america-s-hoboes|ted-conover",
@@ -25256,10 +26404,25 @@
       "isbn13": "9780375727863",
       "publisher": "Vintage",
       "year": 2001,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "memoir",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "Into the Wild",
+        "Blue Highways",
+        "Newjack",
+        "The Worst Hard Time"
+      ],
+      "ratingsCount": 1140,
+      "dnf": true,
+      "similarToAuthors": [
+        "Sebastian Junger",
+        "Jon Krakauer",
+        "William Least Heat-Moon",
+        "Ted Conover"
+      ]
     },
     {
       "bookKey": "stiff-the-curious-lives-of-human-cadavers|mary-roach",
@@ -25276,10 +26439,25 @@
       "isbn13": "9780393324822",
       "publisher": "W. W. Norton  Company",
       "year": 2004,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "humor",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "Bonk",
+        "Smoke Gets in Your Eyes",
+        "The Disappearing Spoon",
+        "A Short History of Nearly Everything"
+      ],
+      "ratingsCount": 236463,
+      "dnf": true,
+      "similarToAuthors": [
+        "Bill Bryson",
+        "Caitlin Doughty",
+        "Sam Kean",
+        "Erik Larson"
+      ]
     },
     {
       "bookKey": "the-first-cell-and-the-human-costs-of-pursuing-cancer-to-the-last|azra-raza",
@@ -25296,10 +26474,25 @@
       "isbn13": "9781541699526",
       "publisher": "Basic Books",
       "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "memoir",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "The Emperor of All Maladies",
+        "When Breath Becomes Air",
+        "Being Mortal",
+        "The Immortal Life of Henrietta Lacks"
+      ],
+      "ratingsCount": 1279,
+      "dnf": true,
+      "similarToAuthors": [
+        "Siddhartha Mukherjee",
+        "Paul Kalanithi",
+        "Atul Gawande",
+        "Jerome Groopman"
+      ]
     },
     {
       "bookKey": "fit-matters-how-to-love-your-job|moe-carrick",
@@ -25316,10 +26509,25 @@
       "isbn13": "9781938548741",
       "publisher": "Maven House",
       "year": 2017,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "business",
+        "psychology",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "First Break All the Rules",
+        "Drive",
+        "The Culture Code",
+        "Strengths Finder 2.0"
+      ],
+      "ratingsCount": 95,
+      "dnf": true,
+      "similarToAuthors": [
+        "Marcus Buckingham",
+        "Liz Wiseman",
+        "Patrick Lencioni",
+        "Daniel Pink"
+      ]
     },
     {
       "bookKey": "spare-parts-four-undocumented-teenagers-one-ugly-robot-and-the-battle-for-the-american-dream|joshua-davis",
@@ -25336,30 +26544,25 @@
       "isbn13": "9780374183370",
       "publisher": "FSG Originals",
       "year": 2014,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
-    },
-    {
-      "bookKey": "fentanyl-inc-how-rogue-chemists-are-creating-the-deadliest-wave-of-the-opioid-epidemic|ben-westhoff",
-      "bookId": "44643351",
-      "title": "Fentanyl, Inc.: How Rogue Chemists Are Creating the Deadliest Wave of the Opioid Epidemic",
-      "author": "Ben Westhoff",
-      "shelf": "read",
-      "myRating": 2,
-      "avgRating": 4.01,
-      "pages": 356,
-      "dateRead": null,
-      "dateAdded": "2019-09-06",
-      "isbn": "0802127436",
-      "isbn13": "9780802127433",
-      "publisher": "Atlantic Monthly Press",
-      "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "social commentary",
+        "biography"
+      ],
+      "similarToTitles": [
+        "Random Family",
+        "There Are No Children Here",
+        "Evicted",
+        "The Boys in the Boat"
+      ],
+      "ratingsCount": 3486,
+      "dnf": true,
+      "similarToAuthors": [
+        "Adrian Nicole LeBlanc",
+        "Alex Kotlowitz",
+        "Matthew Desmond",
+        "Katherine Boo"
+      ]
     },
     {
       "bookKey": "rise-of-the-robots-technology-and-the-threat-of-a-jobless-future|martin-ford",
@@ -25376,10 +26579,26 @@
       "isbn13": "9780465059997",
       "publisher": "Basic Books",
       "year": 2015,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "social commentary",
+        "finance"
+      ],
+      "similarToTitles": [
+        "The Second Machine Age",
+        "Superintelligence",
+        "Average Is Over",
+        "The Industries of the Future"
+      ],
+      "ratingsCount": 9571,
+      "dnf": true,
+      "similarToAuthors": [
+        "Nick Bostrom",
+        "Kevin Kelly",
+        "Erik Brynjolfsson",
+        "Tyler Cowen"
+      ]
     },
     {
       "bookKey": "two-steps-forward|graeme-simsion",
@@ -25396,10 +26615,25 @@
       "isbn13": "9780062843111",
       "publisher": "William Morrow Paperbacks",
       "year": 2018,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "contemporary",
+        "romance",
+        "literary"
+      ],
+      "similarToTitles": [
+        "A Man Called Ove",
+        "The Unlikely Pilgrimage of Harold Fry",
+        "Eleanor Oliphant Is Completely Fine",
+        "The Rosie Project"
+      ],
+      "ratingsCount": 16592,
+      "dnf": true,
+      "similarToAuthors": [
+        "Nick Hornby",
+        "Matt Haig",
+        "Richard Russo",
+        "Fredrik Backman"
+      ]
     },
     {
       "bookKey": "serving-the-servant-remembering-kurt-cobain|danny-goldberg",
@@ -25416,10 +26650,25 @@
       "isbn13": "9780062861672",
       "publisher": "Ecco",
       "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "memoir",
+        "music history",
+        "biography"
+      ],
+      "similarToTitles": [
+        "Heavier Than Heaven",
+        "Come As You Are",
+        "Just Kids",
+        "Please Kill Me"
+      ],
+      "ratingsCount": 2025,
+      "dnf": true,
+      "similarToAuthors": [
+        "Charles R. Cross",
+        "Michael Azerrad",
+        "Everett True",
+        "Dave Thompson"
+      ]
     },
     {
       "bookKey": "the-white-stripes-sweethearts-of-the-blues|denise-sullivan",
@@ -25436,10 +26685,25 @@
       "isbn13": "9780879308056",
       "publisher": "Backbeat Books",
       "year": 2004,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "music history",
+        "biography",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Our Band Could Be Your Life",
+        "Heavier Than Heaven",
+        "Please Kill Me",
+        "Just Kids"
+      ],
+      "ratingsCount": 36,
+      "dnf": true,
+      "similarToAuthors": [
+        "Greil Marcus",
+        "Nick Tosches",
+        "Charles R. Cross",
+        "Michael Azerrad"
+      ]
     },
     {
       "bookKey": "cribsheet-a-data-driven-guide-to-better-more-relaxed-parenting-from-birth-to-preschool|emily-oster",
@@ -25456,10 +26720,25 @@
       "isbn13": "9780525559252",
       "publisher": "Penguin Press",
       "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "psychology",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "Expecting Better",
+        "Bringing Up Bebe",
+        "How Toddlers Thrive",
+        "NurtureShock"
+      ],
+      "ratingsCount": 46577,
+      "dnf": true,
+      "similarToAuthors": [
+        "Jennifer Senior",
+        "Po Bronson",
+        "Pamela Druckerman",
+        "Ina May Gaskin"
+      ]
     },
     {
       "bookKey": "win-bigly-persuasion-in-a-world-where-facts-don-t-matter|scott-adams",
@@ -25476,10 +26755,25 @@
       "isbn13": "9780735219717",
       "publisher": "Portfolio Penguin",
       "year": 2017,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "political",
+        "psychology",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "Influence",
+        "Thinking Fast and Slow",
+        "Pre-Suasion",
+        "The Art of the Deal"
+      ],
+      "ratingsCount": 3883,
+      "dnf": true,
+      "similarToAuthors": [
+        "Robert Cialdini",
+        "Daniel Kahneman",
+        "Malcolm Gladwell",
+        "Jonah Berger"
+      ]
     },
     {
       "bookKey": "atmosphaera-incognita|neal-stephenson",
@@ -25496,10 +26790,25 @@
       "isbn13": "9781596069190",
       "publisher": "Subterranean Press",
       "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "high-concept"
+      ],
+      "similarToTitles": [
+        "Seveneves",
+        "The Martian",
+        "Aurora",
+        "A Fire Upon the Deep"
+      ],
+      "ratingsCount": 1943,
+      "dnf": true,
+      "similarToAuthors": [
+        "Kim Stanley Robinson",
+        "William Gibson",
+        "Charles Stross",
+        "Cory Doctorow"
+      ]
     },
     {
       "bookKey": "under-the-influence-new-edition-of-the-unauthorized-story-of-the-anheuser-busch-dynasty|terry-ganey",
@@ -25516,10 +26825,26 @@
       "isbn13": "",
       "publisher": "Terry Ganey and Peter Hernon",
       "year": 2012,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "business",
+        "history",
+        "biography"
+      ],
+      "similarToTitles": [
+        "Bitter Brew",
+        "Ambitious Brew",
+        "Barbarians at the Gate",
+        "The Fifties"
+      ],
+      "ratingsCount": 160,
+      "dnf": true,
+      "similarToAuthors": [
+        "William Knoedelseder",
+        "Maureen Ogle",
+        "Bryan Burrough",
+        "John Helyar"
+      ]
     },
     {
       "bookKey": "god-bless-you-dr-kevorkian|kurt-vonnegut-jr",
@@ -25536,10 +26861,26 @@
       "isbn13": "9780743422000",
       "publisher": "Washington Square Press",
       "year": 2001,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "humor",
+        "literary",
+        "social commentary",
+        "speculative"
+      ],
+      "similarToTitles": [
+        "Breakfast of Champions",
+        "Cat's Cradle",
+        "Tenth of December",
+        "The Sirens of Titan"
+      ],
+      "ratingsCount": 17619,
+      "dnf": true,
+      "similarToAuthors": [
+        "Tom Robbins",
+        "Joseph Heller",
+        "Christopher Moore",
+        "George Saunders"
+      ]
     },
     {
       "bookKey": "the-smartest-guys-in-the-room-the-amazing-rise-and-scandalous-fall-of-enron|bethany-mclean",
@@ -25556,10 +26897,26 @@
       "isbn13": "9781591840534",
       "publisher": "Portfolio Trade",
       "year": 2004,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "business",
+        "true crime",
+        "finance",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Too Big to Fail",
+        "The Big Short",
+        "Conspiracy of Fools",
+        "Den of Thieves"
+      ],
+      "ratingsCount": 28490,
+      "dnf": true,
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Andrew Ross Sorkin",
+        "Roger Lowenstein",
+        "Kurt Eichenwald"
+      ]
     },
     {
       "bookKey": "bush|jean-edward-smith",
@@ -25576,10 +26933,25 @@
       "isbn13": "9781476741192",
       "publisher": "Simon  Schuster",
       "year": 2016,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "biography",
+        "political",
+        "history"
+      ],
+      "similarToTitles": [
+        "Decision Points",
+        "Angler: The Cheney Vice Presidency",
+        "Dead Certain",
+        "The Price of Loyalty"
+      ],
+      "ratingsCount": 1230,
+      "dnf": true,
+      "similarToAuthors": [
+        "Robert Caro",
+        "Ron Chernow",
+        "David McCullough",
+        "Bob Woodward"
+      ]
     },
     {
       "bookKey": "nixonland-the-rise-of-a-president-and-the-fracturing-of-america|rick-perlstein",
@@ -25596,10 +26968,26 @@
       "isbn13": "9780743243025",
       "publisher": "Scribner/Simon & Schuster (NYC)",
       "year": 2008,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "history",
+        "political",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "The Years of Lyndon Johnson",
+        "The Making of the President 1968",
+        "Fear and Loathing on the Campaign Trail",
+        "America's Bitter Pill"
+      ],
+      "ratingsCount": 11071,
+      "dnf": true,
+      "similarToAuthors": [
+        "Robert Caro",
+        "Taylor Branch",
+        "Robert Dallek",
+        "Garry Wills"
+      ]
     },
     {
       "bookKey": "drive-thru-dreams-a-journey-through-the-heart-of-america-s-fast-food-kingdom|adam-chandler",
@@ -25616,10 +27004,26 @@
       "isbn13": "9781250090720",
       "publisher": "Flatiron Books",
       "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "food",
+        "social commentary",
+        "history"
+      ],
+      "similarToTitles": [
+        "Fast Food Nation",
+        "In-N-Out Burger",
+        "Salt Sugar Fat",
+        "Cooked"
+      ],
+      "ratingsCount": 978,
+      "dnf": true,
+      "similarToAuthors": [
+        "Eric Schlosser",
+        "Michael Pollan",
+        "Josh Ozersky",
+        "David Gelles"
+      ]
     },
     {
       "bookKey": "wild-and-outside-how-a-renegade-minor-league-revived-the-spirit-of-baseball-in-america-s-heartland|stefan-fatsis",
@@ -25636,10 +27040,25 @@
       "isbn13": "9780802712974",
       "publisher": "Walker Books",
       "year": 1995,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "sports",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "Word Freak",
+        "The Extra 2%",
+        "Fantasyland",
+        "Three Nights in August"
+      ],
+      "ratingsCount": 92,
+      "dnf": true,
+      "similarToAuthors": [
+        "Roger Angell",
+        "Michael Lewis",
+        "Joe Posnanski",
+        "John Feinstein"
+      ]
     },
     {
       "bookKey": "serious-eater-a-food-lover-s-perilous-quest-for-pizza-and-redemption|ed-levine",
@@ -25656,10 +27075,26 @@
       "isbn13": "9780525533542",
       "publisher": "Portfolio",
       "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "memoir",
+        "food",
+        "humor",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Kitchen Confidential",
+        "Garlic and Sapphires",
+        "Dirt",
+        "Medium Raw"
+      ],
+      "ratingsCount": 450,
+      "dnf": true,
+      "similarToAuthors": [
+        "Anthony Bourdain",
+        "Ruth Reichl",
+        "Adam Platt",
+        "Bill Buford"
+      ]
     },
     {
       "bookKey": "best-movie-year-ever-how-1999-blew-up-the-big-screen|brian-raftery",
@@ -25676,10 +27111,26 @@
       "isbn13": "9781501175381",
       "publisher": "Simon  Schuster",
       "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "history",
+        "social commentary",
+        "humor"
+      ],
+      "similarToTitles": [
+        "Pictures at a Revolution",
+        "Easy Riders Raging Bulls",
+        "Blockbuster",
+        "The Big Goodbye"
+      ],
+      "ratingsCount": 3480,
+      "dnf": true,
+      "similarToAuthors": [
+        "Mark Harris",
+        "Peter Biskind",
+        "Tom Shone",
+        "David Thomson"
+      ]
     },
     {
       "bookKey": "the-last-pirate-of-new-york-a-ghost-ship-a-killer-and-the-birth-of-a-gangster-nation|rich-cohen",
@@ -25696,10 +27147,25 @@
       "isbn13": "9780399589928",
       "publisher": "Random House",
       "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "true crime",
+        "history"
+      ],
+      "similarToTitles": [
+        "The Devil in the White City",
+        "Destiny of the Republic",
+        "The Feather Thief",
+        "Thunderstruck"
+      ],
+      "ratingsCount": 2742,
+      "dnf": true,
+      "similarToAuthors": [
+        "Erik Larson",
+        "T.J. Stiles",
+        "Robert Kurson",
+        "Mike Dash"
+      ]
     },
     {
       "bookKey": "spying-on-the-south-travels-with-frederick-law-olmsted-in-a-fractured-land|tony-horwitz",
@@ -25716,10 +27182,26 @@
       "isbn13": "9781101980286",
       "publisher": "Penguin Press",
       "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "history",
+        "political",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "Confederates in the Attic",
+        "The Devil in the White City",
+        "Blood and Thunder",
+        "Travels with Charley"
+      ],
+      "ratingsCount": 4415,
+      "dnf": true,
+      "similarToAuthors": [
+        "Bill Bryson",
+        "Erik Larson",
+        "Hampton Sides",
+        "Robert Kaplan"
+      ]
     },
     {
       "bookKey": "my-thoughts-exactly|lily-allen",
@@ -25736,10 +27218,25 @@
       "isbn13": "",
       "publisher": "Blink Publishing",
       "year": 2018,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "memoir",
+        "music history",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "Just Kids",
+        "Girl in a Band",
+        "Hunger Makes Me a Modern Girl",
+        "Becoming"
+      ],
+      "ratingsCount": 24003,
+      "dnf": true,
+      "similarToAuthors": [
+        "Courtney Love",
+        "Patti Smith",
+        "Kim Gordon",
+        "Carrie Brownstein"
+      ]
     },
     {
       "bookKey": "the-grind-inside-baseball-s-endless-season|barry-svrluga",
@@ -25756,10 +27253,24 @@
       "isbn13": "9780399176289",
       "publisher": "Blue Rider Press",
       "year": 2015,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "sports",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Art of a Beautiful Game",
+        "The Arm",
+        "Four Days to Glory",
+        "Boys of Summer"
+      ],
+      "ratingsCount": 842,
+      "dnf": true,
+      "similarToAuthors": [
+        "Tom Verducci",
+        "Joe Posnanski",
+        "Tyler Kepner",
+        "Bob Costas"
+      ]
     },
     {
       "bookKey": "the-devil-in-the-white-city|erik-larson",
@@ -25776,10 +27287,25 @@
       "isbn13": "9780739303405",
       "publisher": "Random House Audio Publishing Group",
       "year": 2003,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "true crime",
+        "history"
+      ],
+      "similarToTitles": [
+        "Killers of the Flower Moon",
+        "The River of Doubt",
+        "American Fire",
+        "The Wrath of Grapes"
+      ],
+      "ratingsCount": 1505026,
+      "dnf": true,
+      "similarToAuthors": [
+        "David Grann",
+        "Simon Winchester",
+        "Candice Millard",
+        "Karen Abbott"
+      ]
     },
     {
       "bookKey": "twilight-of-the-gods-a-journey-to-the-end-of-classic-rock|steven-hyden",
@@ -25796,10 +27322,25 @@
       "isbn13": "9780062657152",
       "publisher": "Dey Street Books",
       "year": 2018,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "music history",
+        "social commentary",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Your Favorite Band Is Killing Me",
+        "Love Is a Mix Tape",
+        "But What If We're Wrong?",
+        "Meet Me in the Bathroom"
+      ],
+      "ratingsCount": 1591,
+      "dnf": true,
+      "similarToAuthors": [
+        "Chuck Klosterman",
+        "Rob Sheffield",
+        "Joe Posnanski",
+        "Bill Simmons"
+      ]
     },
     {
       "bookKey": "roadfood|jane-stern",
@@ -25816,10 +27357,25 @@
       "isbn13": "9780767922647",
       "publisher": "Broadway Books",
       "year": 2005,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "food",
+        "narrative nonfiction",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "Kitchen Confidential",
+        "The United States of Arugula",
+        "America Eats",
+        "Eating My Way Through Italy"
+      ],
+      "ratingsCount": 617,
+      "dnf": true,
+      "similarToAuthors": [
+        "Calvin Trillin",
+        "Anthony Bourdain",
+        "Michael Stern",
+        "John T. Edge"
+      ]
     },
     {
       "bookKey": "fraternity-an-inside-look-at-a-year-of-college-boys-becoming-men|alexandra-robbins",
@@ -25836,10 +27392,25 @@
       "isbn13": "9781101986721",
       "publisher": "Dutton Books",
       "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "social commentary",
+        "psychology"
+      ],
+      "similarToTitles": [
+        "Pledged",
+        "Dreamland",
+        "Missoula",
+        "Among the Thugs"
+      ],
+      "ratingsCount": 733,
+      "dnf": true,
+      "similarToAuthors": [
+        "Jon Krakauer",
+        "Sebastian Junger",
+        "Ted Conover",
+        "Michael Lewis"
+      ]
     },
     {
       "bookKey": "smart-baseball-the-story-behind-the-old-stats-that-are-ruining-the-game-the-new-ones-that-are-running-it-and-the-right-way-to-think-about-baseball|keith-law",
@@ -25856,10 +27427,25 @@
       "isbn13": "9780062490223",
       "publisher": "Harper Collins",
       "year": 2017,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "sports",
+        "narrative nonfiction",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "Moneyball",
+        "The Signal and the Noise",
+        "Astroball",
+        "The MVP Machine"
+      ],
+      "ratingsCount": 3032,
+      "dnf": true,
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Nate Silver",
+        "Ben Reiter",
+        "Joe Posnanski"
+      ]
     },
     {
       "bookKey": "hungry-monkey-a-food-loving-father-s-quest-to-raise-an-adventurous-eater|matthew-amster-burton",
@@ -25876,10 +27462,25 @@
       "isbn13": "9780151013241",
       "publisher": "Houghton Mifflin Harcourt",
       "year": 2009,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "food",
+        "memoir"
+      ],
+      "similarToTitles": [
+        "The Omnivore's Dilemma",
+        "An Everlasting Meal",
+        "In Defense of Food",
+        "Pretty Good Number One"
+      ],
+      "ratingsCount": 2180,
+      "dnf": true,
+      "similarToAuthors": [
+        "Michael Pollan",
+        "Anthony Bourdain",
+        "David Lebovitz",
+        "Mark Bittman"
+      ]
     },
     {
       "bookKey": "the-apprentice-my-life-in-the-kitchen|jacques-p-pin",
@@ -25896,10 +27497,25 @@
       "isbn13": "9780618444113",
       "publisher": "Houghton Mifflin",
       "year": 2004,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "memoir",
+        "food",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Kitchen Confidential",
+        "My Life in France",
+        "Tender at the Bone",
+        "Blood Bones and Butter"
+      ],
+      "ratingsCount": 10738,
+      "dnf": true,
+      "similarToAuthors": [
+        "Anthony Bourdain",
+        "Julia Child",
+        "Ruth Reichl",
+        "Gabrielle Hamilton"
+      ]
     },
     {
       "bookKey": "reckless-road-guns-n-roses-and-the-making-of-appetite-for-destruction-author-autographed-edition|marc-canter",
@@ -25916,10 +27532,25 @@
       "isbn13": "9780979341878",
       "publisher": "Music Sales",
       "year": 2008,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "music history",
+        "memoir",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Dirt",
+        "Slash",
+        "Scar Tissue",
+        "Please Kill Me"
+      ],
+      "ratingsCount": 750,
+      "dnf": true,
+      "similarToAuthors": [
+        "Steven Davis",
+        "Nikki Sixx",
+        "Dave Mustaine",
+        "Steven Adler"
+      ]
     },
     {
       "bookKey": "vengeful|v-e-schwab",
@@ -25936,10 +27567,26 @@
       "isbn13": "9780765387523",
       "publisher": "Tor Books",
       "year": 2018,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "speculative",
+        "thriller",
+        "fantasy",
+        "high-concept"
+      ],
+      "similarToTitles": [
+        "Vicious",
+        "The Lies of Locke Lamora",
+        "Red Rising",
+        "Six of Crows"
+      ],
+      "ratingsCount": 135098,
+      "dnf": true,
+      "similarToAuthors": [
+        "Brandon Sanderson",
+        "Leigh Bardugo",
+        "Pierce Brown",
+        "Joe Abercrombie"
+      ]
     },
     {
       "bookKey": "gearheads-the-turbulent-rise-of-robotic-sports|brad-stone",
@@ -25956,10 +27603,25 @@
       "isbn13": "9780743229517",
       "publisher": "Simon  Schuster",
       "year": 2003,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "business"
+      ],
+      "similarToTitles": [
+        "The Everything Store",
+        "Hackers",
+        "The Innovators",
+        "Soul of a New Machine"
+      ],
+      "ratingsCount": 312,
+      "dnf": true,
+      "similarToAuthors": [
+        "Steven Levy",
+        "Michael Lewis",
+        "Walter Isaacson",
+        "Po Bronson"
+      ]
     },
     {
       "bookKey": "bill-dave-how-hewlett-and-packard-built-the-world-s-greatest-company|michael-s-malone",
@@ -25976,10 +27638,26 @@
       "isbn13": "9781591841524",
       "publisher": "Portfolio",
       "year": 2007,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "business",
+        "biography",
+        "tech history",
+        "history"
+      ],
+      "similarToTitles": [
+        "Steve Jobs",
+        "The Innovators",
+        "Hackers",
+        "The Intel Trinity"
+      ],
+      "ratingsCount": 820,
+      "dnf": true,
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Michael Lewis",
+        "Steven Levy",
+        "John Markoff"
+      ]
     },
     {
       "bookKey": "say-you-re-sorry|melinda-leigh",
@@ -25996,10 +27674,26 @@
       "isbn13": "9781503948709",
       "publisher": "Montlake Romance",
       "year": 2017,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "thriller",
+        "suspense",
+        "crime",
+        "mystery"
+      ],
+      "similarToTitles": [
+        "Find Her",
+        "Pieces of Her",
+        "The Perfect Husband",
+        "Gone Too Far"
+      ],
+      "ratingsCount": 105171,
+      "dnf": true,
+      "similarToAuthors": [
+        "Lisa Gardner",
+        "Karin Slaughter",
+        "Allison Brennan",
+        "Heather Graham"
+      ]
     },
     {
       "bookKey": "the-captain-the-journey-of-derek-jeter|ian-o-connor",
@@ -26016,10 +27710,25 @@
       "isbn13": "9780547327938",
       "publisher": "Houghton Mifflin Harcourt",
       "year": 2011,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "biography",
+        "sports",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Last Boy",
+        "The Captain (Lou Gehrig)",
+        "Koufax",
+        "Roger Maris: Baseball's Forgotten Hero"
+      ],
+      "ratingsCount": 2202,
+      "dnf": true,
+      "similarToAuthors": [
+        "Joe Posnanski",
+        "Tom Verducci",
+        "Jeff Pearlman",
+        "Jane Leavy"
+      ]
     },
     {
       "bookKey": "who-is-michael-ovitz|michael-ovitz",
@@ -26036,10 +27745,26 @@
       "isbn13": "",
       "publisher": "Portfolio",
       "year": 2018,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "memoir",
+        "biography",
+        "business",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "The Kid Stays in the Picture",
+        "Down and Dirty Pictures",
+        "You'll Never Eat Lunch in This Town Again",
+        "Leading"
+      ],
+      "ratingsCount": 2700,
+      "dnf": true,
+      "similarToAuthors": [
+        "Harvey Weinstein",
+        "Sherry Lansing",
+        "David Geffen",
+        "Peter Bart"
+      ]
     },
     {
       "bookKey": "power-ball-anatomy-of-a-modern-baseball-game|rob-neyer",
@@ -26056,10 +27781,25 @@
       "isbn13": "9780062853615",
       "publisher": "Harper",
       "year": 2018,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "sports",
+        "narrative nonfiction",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "Moneyball",
+        "The MVP Machine",
+        "The Only Rule Is It Has to Work",
+        "Astroball"
+      ],
+      "ratingsCount": 866,
+      "dnf": true,
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Joe Posnanski",
+        "Tom Verducci",
+        "Ben Lindbergh"
+      ]
     },
     {
       "bookKey": "setting-the-table-the-transforming-power-of-hospitality-in-business|danny-meyer",
@@ -26076,10 +27816,26 @@
       "isbn13": "9780060742751",
       "publisher": "Harper",
       "year": 2006,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "business",
+        "narrative nonfiction",
+        "memoir",
+        "food"
+      ],
+      "similarToTitles": [
+        "Unreasonable Hospitality",
+        "Pour Your Heart Into It",
+        "Delivering Happiness",
+        "The Soul of a Chef"
+      ],
+      "ratingsCount": 12909,
+      "dnf": true,
+      "similarToAuthors": [
+        "Howard Schultz",
+        "Tony Hsieh",
+        "René Redzepi",
+        "Will Guidara"
+      ]
     },
     {
       "bookKey": "the-recovering-intoxication-and-its-aftermath|leslie-jamison",
@@ -26096,10 +27852,26 @@
       "isbn13": "9780316259613",
       "publisher": "Little, Brown and Company",
       "year": 2018,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "memoir",
+        "narrative nonfiction",
+        "social commentary",
+        "psychology"
+      ],
+      "similarToTitles": [
+        "Drinking: A Love Story",
+        "Lit",
+        "The Empathy Exams",
+        "Hunger: A Memoir"
+      ],
+      "ratingsCount": 6750,
+      "dnf": true,
+      "similarToAuthors": [
+        "Mary Karr",
+        "Caroline Knapp",
+        "Maggie Nelson",
+        "Ann Marlowe"
+      ]
     },
     {
       "bookKey": "the-fourth-age-smart-robots-conscious-computers-and-the-future-of-humanity|byron-reese",
@@ -26116,10 +27888,25 @@
       "isbn13": "9781501158568",
       "publisher": "Atria Books",
       "year": 2018,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "tech history",
+        "social commentary"
+      ],
+      "similarToTitles": [
+        "Superintelligence",
+        "Life 3.0",
+        "Homo Deus",
+        "The Singularity Is Near"
+      ],
+      "ratingsCount": 1026,
+      "dnf": true,
+      "similarToAuthors": [
+        "Nick Bostrom",
+        "Max Tegmark",
+        "Yuval Noah Harari",
+        "Ray Kurzweil"
+      ]
     },
     {
       "bookKey": "the-mexican-tree-duck|james-crumley",
@@ -26136,10 +27923,26 @@
       "isbn13": "9780446677912",
       "publisher": "Mysterious Press",
       "year": 2001,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "crime",
+        "noir",
+        "mystery",
+        "humor"
+      ],
+      "similarToTitles": [
+        "The Last Good Kiss",
+        "Bordersnakes",
+        "The Big Lebowski",
+        "Two for Texas"
+      ],
+      "ratingsCount": 1297,
+      "dnf": true,
+      "similarToAuthors": [
+        "James Ellroy",
+        "Carl Hiaasen",
+        "Elmore Leonard",
+        "Charles Willeford"
+      ]
     },
     {
       "bookKey": "home-game-an-accidental-guide-to-fatherhood|michael-lewis",
@@ -26156,10 +27959,25 @@
       "isbn13": "9780393338096",
       "publisher": "W. W. Norton & Company",
       "year": 2010,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "memoir",
+        "humor",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "Dad Is Fat",
+        "The Year of Living Biblically",
+        "My Age of Anxiety",
+        "Dad's Maybe Book"
+      ],
+      "ratingsCount": 5950,
+      "dnf": true,
+      "similarToAuthors": [
+        "David Sedaris",
+        "Jim Gaffigan",
+        "AJ Jacobs",
+        "Rob Delaney"
+      ]
     },
     {
       "bookKey": "coach-lessons-on-the-game-of-life|michael-lewis",
@@ -26176,10 +27994,25 @@
       "isbn13": "9780393060911",
       "publisher": "W. W. Norton  Company",
       "year": 2005,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "memoir",
+        "sports",
+        "narrative nonfiction"
+      ],
+      "similarToTitles": [
+        "A Season on the Brink",
+        "The Last Lecture",
+        "When Pride Still Mattered",
+        "Bowerman and the Men of Oregon"
+      ],
+      "ratingsCount": 2974,
+      "dnf": true,
+      "similarToAuthors": [
+        "John Feinstein",
+        "Pat Summitt",
+        "Rick Reilly",
+        "Joe Posnanski"
+      ]
     },
     {
       "bookKey": "i-don-t-care-if-we-never-get-back-30-games-in-30-days-on-the-best-worst-baseball-road-trip-ever|ben-blatt",
@@ -26196,10 +28029,25 @@
       "isbn13": "9780802122742",
       "publisher": "Grove Press",
       "year": 2014,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "sports",
+        "humor"
+      ],
+      "similarToTitles": [
+        "Moneyball",
+        "The Extra 2%",
+        "The Wax Pack",
+        "Fantasyland"
+      ],
+      "ratingsCount": 760,
+      "dnf": true,
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Joe Posnanski",
+        "Rob Neyer",
+        "Jonah Keri"
+      ]
     },
     {
       "bookKey": "big-shots-the-men-behind-the-booze|a-j-baime",
@@ -26216,10 +28064,25 @@
       "isbn13": "9780451209801",
       "publisher": "NAL Trade",
       "year": 2003,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
+      "themes": [
+        "narrative nonfiction",
+        "history",
+        "business"
+      ],
+      "similarToTitles": [
+        "Last Call",
+        "And a Bottle of Rum",
+        "Bourbon Empire",
+        "The Prohibition Hangover"
+      ],
+      "ratingsCount": 148,
+      "dnf": true,
+      "similarToAuthors": [
+        "Daniel Okrent",
+        "Wayne Curtis",
+        "Reid Mitenbuler",
+        "Garrett Peck"
+      ]
     }
   ],
   "indexes": {

@@ -64,6 +64,7 @@
  *   v2 (genre prior + k-NN):               MAE=0.758, Spearman=0.329  (+7.5% / +2.7%)
  *   v3.1 (author variance penalty):        MAE=0.762, Spearman=0.274
  *   v3.2 (DNF half-weight + prior fix):    MAE=0.764, Spearman=0.311  (+13.5% vs v3.1)
+ *   v3.3 (enrich DNF metadata + kNN/theme fix): MAE=0.766, Spearman=0.306
  *   Baseline (always predict prior): MAE=0.823
  *
  * Exports: buildTasteModel(), predictRating(), predictedStars(),
@@ -196,24 +197,31 @@ export function buildTasteModel(goodreads, candidatePool = []) {
   }
 
   // ── Theme affinities ────────────────────────────────────────────────────
-  // Map: theme → { ratings[], mean, count }
+  // Map: theme → { wSum, wTotal, mean, count }
+  // DNF books at half-weight — their themes are valid signal but 2★ implicit
+  // ratings should not fully dilute the means learned from finished books.
   const themeMap = new Map();
   for (const b of read) {
+    const w = b.dnf ? 0.5 : 1.0;
     for (const t of (b.themes || [])) {
-      if (!themeMap.has(t)) themeMap.set(t, { ratings: [] });
-      themeMap.get(t).ratings.push(b.myRating);
+      if (!themeMap.has(t)) themeMap.set(t, { wSum: 0, wTotal: 0 });
+      themeMap.get(t).wSum   += b.myRating * w;
+      themeMap.get(t).wTotal += w;
     }
   }
   for (const v of themeMap.values()) {
-    v.count = v.ratings.length;
-    v.mean  = _mean(v.ratings);
+    v.count = v.wTotal;
+    v.mean  = v.wTotal > 0 ? v.wSum / v.wTotal : 0;
   }
 
   // ── Reverse-title map ───────────────────────────────────────────────────
   // normTitle → ratings[] of read books that list this title as "similar to".
   // Answers: "which read books would call this candidate a peer?"
+  // DNF books are excluded: their enriched similarToTitles would add 2★
+  // citations to high-quality candidates they merely resemble.
   const reverseTitleMap = new Map();
   for (const b of read) {
+    if (b.dnf) continue;
     for (const st of (b.similarToTitles || [])) {
       const key = _normT(st);
       if (!reverseTitleMap.has(key)) reverseTitleMap.set(key, []);
@@ -250,7 +258,9 @@ export function buildTasteModel(goodreads, candidatePool = []) {
   // ── k-NN precompute ─────────────────────────────────────────────────────
   // For each read book, cache the Sets needed by the similarity function so
   // per-candidate comparisons are O(theme_count) rather than O(text_length).
-  const knnBooks = read.map(b => {
+  // DNF books are excluded: a book you abandoned should not vote as a
+  // "similar read" in the nearest-neighbor pool.
+  const knnBooks = read.filter(b => !b.dnf).map(b => {
     const aNorm = _normA(b.author);
     return {
       rating:       b.myRating,
