@@ -7,7 +7,8 @@
     "toReadCount": 313,
     "currentlyReadingCount": 1,
     "fiveStarCount": 260,
-    "notes": "Hardcoded from personal Goodreads export."
+    "notes": "Hardcoded from personal Goodreads export.",
+    "totalBooks": 940
   },
   "books": [
     {
@@ -1479,7 +1480,7 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Formula: How Rogues, Geniuses, and Speed Freaks Reengineered F1 into the World's Fastest-Growing Sport\u2014A High-Octane History of Formula 1's Rise in America",
+        "The Formula: How Rogues, Geniuses, and Speed Freaks Reengineered F1 into the World's Fastest-Growing Sport—A High-Octane History of Formula 1's Rise in America",
         "Super Pumped: The Battle for Uber"
       ],
       "similarToAuthors": [
@@ -2985,7 +2986,7 @@
         "food"
       ],
       "similarToTitles": [
-        "Your Table Is Ready: Tales of a New York City Ma\u00eetre D'",
+        "Your Table Is Ready: Tales of a New York City Maître D'",
         "Eat a Peach",
         "Yes, Chef",
         "Save Me the Plums: My Gourmet Memoir"
@@ -3231,7 +3232,7 @@
     {
       "bookKey": "1929-inside-the-greatest-crash-in-history-and-how-it-shattered-a-nation|andrew-ross-sorkin",
       "bookId": "211179569",
-      "title": "1929: Inside the Greatest Crash in History \u2013 and How It Shattered a Nation",
+      "title": "1929: Inside the Greatest Crash in History – and How It Shattered a Nation",
       "author": "Andrew Ross Sorkin",
       "shelf": "to-read",
       "myRating": 0,
@@ -3320,7 +3321,7 @@
     {
       "bookKey": "your-table-is-ready-tales-of-a-new-york-city-ma-tre-d|michael-cecchi-azzolina",
       "bookId": "59808190",
-      "title": "Your Table Is Ready: Tales of a New York City Ma\u00eetre D'",
+      "title": "Your Table Is Ready: Tales of a New York City Maître D'",
       "author": "Michael Cecchi-Azzolina",
       "shelf": "to-read",
       "myRating": 0,
@@ -3350,7 +3351,7 @@
     {
       "bookKey": "the-last-shot-city-streets-basketball-dreams-a-poignant-biography-of-young-athletes-inner-city-basketball-and-the-fight-to-escape-poverty|darcy-frey",
       "bookId": "44628",
-      "title": "The Last Shot: City Streets, Basketball Dreams \u2013 A Poignant Biography of Young Athletes, Inner-City Basketball, and the Fight to Escape Poverty",
+      "title": "The Last Shot: City Streets, Basketball Dreams – A Poignant Biography of Young Athletes, Inner-City Basketball, and the Fight to Escape Poverty",
       "author": "Darcy Frey",
       "shelf": "to-read",
       "myRating": 0,
@@ -10590,7 +10591,7 @@
     {
       "bookKey": "the-formula-how-rogues-geniuses-and-speed-freaks-reengineered-f1-into-the-world-s-fastest-growing-sport-a-high-octane-history-of-formula-1-s-rise-in-america|joshua-robinson",
       "bookId": "177317614",
-      "title": "The Formula: How Rogues, Geniuses, and Speed Freaks Reengineered F1 into the World's Fastest-Growing Sport\u2014A High-Octane History of Formula 1's Rise in America",
+      "title": "The Formula: How Rogues, Geniuses, and Speed Freaks Reengineered F1 into the World's Fastest-Growing Sport—A High-Octane History of Formula 1's Rise in America",
       "author": "Joshua Robinson",
       "shelf": "read",
       "myRating": 5,
@@ -11153,7 +11154,7 @@
     {
       "bookKey": "the-three-body-problem|liu-cixin",
       "bookId": "58709846",
-      "title": "The Three-Body Problem (Remembrance of Earth\u2019s Past, #1)",
+      "title": "The Three-Body Problem (Remembrance of Earth’s Past, #1)",
       "author": "Liu Cixin",
       "shelf": "read",
       "myRating": 2,
@@ -14667,7 +14668,7 @@
     {
       "bookKey": "stolen-focus-why-you-can-t-pay-attention-and-how-to-think-deeply-again|johann-hari",
       "bookId": "57933306",
-      "title": "Stolen Focus: Why You Can't Pay Attention\u2014 and How to Think Deeply Again",
+      "title": "Stolen Focus: Why You Can't Pay Attention— and How to Think Deeply Again",
       "author": "Johann Hari",
       "shelf": "to-read",
       "myRating": 0,
@@ -16017,7 +16018,7 @@
     {
       "bookKey": "the-infiltrator-my-secret-life-inside-the-dirty-banks-behind-pablo-escobar-s-medell-n-cartel|robert-mazur",
       "bookId": "6657841",
-      "title": "The Infiltrator: My Secret Life Inside the Dirty Banks Behind Pablo Escobar's Medell\u00edn Cartel",
+      "title": "The Infiltrator: My Secret Life Inside the Dirty Banks Behind Pablo Escobar's Medellín Cartel",
       "author": "Robert Mazur",
       "shelf": "to-read",
       "myRating": 0,
@@ -18410,7 +18411,7 @@
       "bookKey": "the-best-american-food-writing-2020|j-kenji-l-pez-alt",
       "bookId": "53715111",
       "title": "The Best American Food Writing 2020 (The Best American Series)",
-      "author": "J. Kenji L\u00f3pez-Alt",
+      "author": "J. Kenji López-Alt",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 3.85,
@@ -19221,7 +19222,7 @@
     {
       "bookKey": "the-answer-is-reflections-on-my-life|alex-trebek",
       "bookId": "52854193",
-      "title": "The Answer Is\u2026: Reflections on My Life",
+      "title": "The Answer Is…: Reflections on My Life",
       "author": "Alex Trebek",
       "shelf": "to-read",
       "myRating": 0,
@@ -19983,7 +19984,7 @@
     {
       "bookKey": "talking-to-strangers-what-we-should-know-about-the-people-we-don-t-know|malcolm-gladwell",
       "bookId": "43854293",
-      "title": "Talking to Strangers: What We Should Know About the People We Don\u2019t Know",
+      "title": "Talking to Strangers: What We Should Know About the People We Don’t Know",
       "author": "Malcolm Gladwell",
       "shelf": "read",
       "myRating": 4,
@@ -20439,7 +20440,7 @@
       "similarToTitles": [
         "Thinking, Fast and Slow",
         "The Tipping Point: How Little Things Can Make a Big Difference",
-        "Talking to Strangers: What We Should Know About the People We Don\u2019t Know"
+        "Talking to Strangers: What We Should Know About the People We Don’t Know"
       ],
       "ratingsCount": 50000
     },
@@ -22627,7 +22628,7 @@
     {
       "bookKey": "rigged-the-true-story-of-an-ivy-league-kid-who-changed-the-world-of-oil-from-wall-street-to-dubai-a-brooklyn-to-harvard-high-stakes-adventure|ben-mezrich",
       "bookId": "3242976",
-      "title": "Rigged: The True Story of an Ivy League Kid Who Changed the World of Oil, from Wall Street to Dubai \u2013 A Brooklyn-to-Harvard High-Stakes Adventure (P.S.)",
+      "title": "Rigged: The True Story of an Ivy League Kid Who Changed the World of Oil, from Wall Street to Dubai – A Brooklyn-to-Harvard High-Stakes Adventure (P.S.)",
       "author": "Ben Mezrich",
       "shelf": "read",
       "myRating": 3,
@@ -22700,7 +22701,7 @@
         "business"
       ],
       "similarToTitles": [
-        "Talking to Strangers: What We Should Know About the People We Don\u2019t Know",
+        "Talking to Strangers: What We Should Know About the People We Don’t Know",
         "The Bomber Mafia: A Dream, a Temptation, and the Longest Night of the Second World War",
         "Thinking, Fast and Slow",
         "Everybody Lies: Big Data, New Data, and What the Internet Can Tell Us About Who We Really Are"
@@ -23499,7 +23500,7 @@
       ],
       "similarToTitles": [
         "The Tipping Point: How Little Things Can Make a Big Difference",
-        "Talking to Strangers: What We Should Know About the People We Don\u2019t Know",
+        "Talking to Strangers: What We Should Know About the People We Don’t Know",
         "Everybody Lies: Big Data, New Data, and What the Internet Can Tell Us About Who We Really Are",
         "Quiet: The Power of Introverts in a World That Can't Stop Talking"
       ],
@@ -23738,26 +23739,6 @@
       "dnf": true
     },
     {
-      "bookKey": "the-judge-s-list|john-grisham",
-      "bookId": "57865158",
-      "title": "The Judge's List",
-      "author": "John Grisham",
-      "shelf": "read",
-      "myRating": 2,
-      "avgRating": 4.4,
-      "pages": 368,
-      "dateRead": null,
-      "dateAdded": "2021-08-23",
-      "isbn": "0385546025",
-      "isbn13": "9780385546027",
-      "publisher": "Doubleday Books",
-      "year": 2021,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
-    },
-    {
       "bookKey": "the-universal-baseball-association-inc-j-henry-waugh-prop|robert-coover",
       "bookId": "156192",
       "title": "The Universal Baseball Association, Inc., J. Henry Waugh, Prop.",
@@ -23892,26 +23873,6 @@
       "isbn13": "9780060838652",
       "publisher": "Harper Perennial",
       "year": 2005,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
-    },
-    {
-      "bookKey": "the-plot|jean-hanff-korelitz",
-      "bookId": "55315487",
-      "title": "The Plot",
-      "author": "Jean Hanff Korelitz",
-      "shelf": "read",
-      "myRating": 2,
-      "avgRating": 3.93,
-      "pages": 336,
-      "dateRead": null,
-      "dateAdded": "2021-06-07",
-      "isbn": "125079076X",
-      "isbn13": "9781250790767",
-      "publisher": "Celadon Books",
-      "year": 2021,
       "themes": [],
       "similarToTitles": [],
       "ratingsCount": 0,
@@ -24298,26 +24259,6 @@
       "dnf": true
     },
     {
-      "bookKey": "pines|blake-crouch",
-      "bookId": "15096164",
-      "title": "Pines (Wayward Pines, #1)",
-      "author": "Blake Crouch",
-      "shelf": "read",
-      "myRating": 2,
-      "avgRating": 3.93,
-      "pages": 303,
-      "dateRead": null,
-      "dateAdded": "2020-05-26",
-      "isbn": "1612183956",
-      "isbn13": "9781612183954",
-      "publisher": "Thomas & Mercer",
-      "year": 2012,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
-    },
-    {
       "bookKey": "the-body-a-guide-for-occupants|bill-bryson",
       "bookId": "43582376",
       "title": "The Body: A Guide for Occupants",
@@ -24332,26 +24273,6 @@
       "isbn13": "9780385539302",
       "publisher": "Doubleday Books",
       "year": 2019,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
-    },
-    {
-      "bookKey": "desert-places|blake-crouch",
-      "bookId": "854143",
-      "title": "Desert Places (Andrew Z. Thomas/Luther Kite, #1)",
-      "author": "Blake Crouch",
-      "shelf": "read",
-      "myRating": 2,
-      "avgRating": 3.8,
-      "pages": 309,
-      "dateRead": null,
-      "dateAdded": "2020-09-03",
-      "isbn": "0312934785",
-      "isbn13": "9780312934781",
-      "publisher": "St. Martin's Press",
-      "year": 2004,
       "themes": [],
       "similarToTitles": [],
       "ratingsCount": 0,
@@ -24412,26 +24333,6 @@
       "isbn13": "9780307452993",
       "publisher": "Crown Business",
       "year": 2010,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
-    },
-    {
-      "bookKey": "creep|jennifer-hillier",
-      "bookId": "10088219",
-      "title": "Creep (Creep #1)",
-      "author": "Jennifer Hillier",
-      "shelf": "read",
-      "myRating": 2,
-      "avgRating": 3.79,
-      "pages": 357,
-      "dateRead": null,
-      "dateAdded": "2020-07-26",
-      "isbn": "1451625847",
-      "isbn13": "9781451625844",
-      "publisher": "Gallery Books",
-      "year": 2011,
       "themes": [],
       "similarToTitles": [],
       "ratingsCount": 0,
@@ -24738,26 +24639,6 @@
       "dnf": true
     },
     {
-      "bookKey": "dirt-adventures-with-family-in-the-kitchens-of-lyon-looking-for-the-origins-of-french-cooking|bill-buford",
-      "bookId": "48983247",
-      "title": "Dirt: Adventures, with Family, in the Kitchens of Lyon, Looking for the Origins of French Cooking",
-      "author": "Bill Buford",
-      "shelf": "read",
-      "myRating": 2,
-      "avgRating": 3.43,
-      "pages": 448,
-      "dateRead": null,
-      "dateAdded": "2020-05-27",
-      "isbn": "0307271013",
-      "isbn13": "9780307271013",
-      "publisher": "Knopf Publishing Group",
-      "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
-    },
-    {
       "bookKey": "we-learn-nothing|tim-kreider",
       "bookId": "13259887",
       "title": "We Learn Nothing",
@@ -24900,7 +24781,7 @@
     {
       "bookKey": "the-wax-pack-on-the-open-road-in-search-of-baseball-s-afterlife|brad-balukjian",
       "bookId": "51312349",
-      "title": "The Wax Pack: On the Open Road in Search of Baseball\u00e2\u20ac\u2122s Afterlife",
+      "title": "The Wax Pack: On the Open Road in Search of Baseballâ€™s Afterlife",
       "author": "Brad Balukjian",
       "shelf": "read",
       "myRating": 2,
@@ -25032,26 +24913,6 @@
       "isbn13": "9781476786391",
       "publisher": "Avid Reader Press / Simon  Schuster",
       "year": 2020,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
-    },
-    {
-      "bookKey": "from-the-corner-of-the-oval-a-memoir|beck-dorey-stein",
-      "bookId": "43345850",
-      "title": "From the Corner of the Oval: A Memoir",
-      "author": "Beck Dorey-Stein",
-      "shelf": "read",
-      "myRating": 2,
-      "avgRating": 3.8,
-      "pages": 352,
-      "dateRead": null,
-      "dateAdded": "2020-01-31",
-      "isbn": "0525509143",
-      "isbn13": "9780525509141",
-      "publisher": "Random House",
-      "year": 2019,
       "themes": [],
       "similarToTitles": [],
       "ratingsCount": 0,
@@ -25452,26 +25313,6 @@
       "isbn13": "9781938548741",
       "publisher": "Maven House",
       "year": 2017,
-      "themes": [],
-      "similarToTitles": [],
-      "ratingsCount": 0,
-      "dnf": true
-    },
-    {
-      "bookKey": "buttermilk-graffiti-a-chef-s-journey-to-discover-america-s-new-melting-pot-cuisine|edward-lee",
-      "bookId": "35592077",
-      "title": "Buttermilk Graffiti: A Chef\u00e2\u20ac\u2122s Journey to Discover America\u00e2\u20ac\u2122s New Melting-Pot Cuisine",
-      "author": "Edward       Lee",
-      "shelf": "read",
-      "myRating": 2,
-      "avgRating": 4.01,
-      "pages": 304,
-      "dateRead": null,
-      "dateAdded": "2019-09-11",
-      "isbn": "1579657389",
-      "isbn13": "9781579657383",
-      "publisher": "Artisan",
-      "year": 2018,
       "themes": [],
       "similarToTitles": [],
       "ratingsCount": 0,
@@ -26041,7 +25882,7 @@
       "bookKey": "the-apprentice-my-life-in-the-kitchen|jacques-p-pin",
       "bookId": "343684",
       "title": "The Apprentice: My Life in the Kitchen",
-      "author": "Jacques P\u00c3\u00a9pin",
+      "author": "Jacques PÃ©pin",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 4.07,
