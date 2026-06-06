@@ -59,9 +59,11 @@
  *      memoir/narrative-nonfiction themes force nonfiction; else fiction.
  *      Example: ['memoir','literary'] → nonfiction; ['sports','contemporary'] → fiction.
  *
- * LOO cross-validation results (490 rated read books):
- *   v1 (global prior, no k-NN): MAE=0.777, Spearman=0.306
- *   v2 (genre prior + k-NN):    MAE=0.758, Spearman=0.329  (+7.5% / +2.7%)
+ * LOO cross-validation results (491 rated read books):
+ *   v1 (global prior, no k-NN):            MAE=0.777, Spearman=0.306
+ *   v2 (genre prior + k-NN):               MAE=0.758, Spearman=0.329  (+7.5% / +2.7%)
+ *   v3.1 (author variance penalty):        MAE=0.762, Spearman=0.274
+ *   v3.2 (DNF half-weight + prior fix):    MAE=0.764, Spearman=0.311  (+13.5% vs v3.1)
  *   Baseline (always predict prior): MAE=0.823
  *
  * Exports: buildTasteModel(), predictRating(), predictedStars(),
@@ -162,8 +164,11 @@ export function buildTasteModel(goodreads, candidatePool = []) {
   // Fiction and nonfiction have statistically different mean ratings for this
   // user (4.41 vs 4.07), so using a shared prior would introduce systematic
   // bias of ±0.17★ per book.
+  // DNF books are excluded: they have no themes so they all fall into
+  // "unknown", which would contaminate that prior with implicit 2★ ratings.
   const byGenre = { fiction: [], nonfiction: [], unknown: [] };
   for (const b of read) {
+    if (b.dnf) continue;
     const g = inferGenre(b.themes);
     byGenre[g].push(b.myRating);
   }
@@ -172,15 +177,21 @@ export function buildTasteModel(goodreads, candidatePool = []) {
   const unknownMean    = byGenre.unknown.length    > 0 ? _mean(byGenre.unknown)    : globalMean;
 
   // ── Author ratings ──────────────────────────────────────────────────────
-  // Map: normAuthor → { ratings[], mean, name }
+  // Map: normAuthor → { ratings[], wSum, wTotal, mean, stdev, name }
+  // DNF books count as 0.5 observations so they contribute signal without
+  // fully overriding ratings from books the user finished.
   const authorMap = new Map();
   for (const b of read) {
     const key = _normA(b.author);
-    if (!authorMap.has(key)) authorMap.set(key, { ratings: [], name: b.author });
-    authorMap.get(key).ratings.push(b.myRating);
+    const w   = b.dnf ? 0.5 : 1.0;
+    if (!authorMap.has(key)) authorMap.set(key, { ratings: [], wSum: 0, wTotal: 0, name: b.author });
+    const entry = authorMap.get(key);
+    entry.wSum   += b.myRating * w;
+    entry.wTotal += w;
+    if (!b.dnf) entry.ratings.push(b.myRating);
   }
   for (const v of authorMap.values()) {
-    v.mean  = _mean(v.ratings);
+    v.mean  = v.wTotal > 0 ? v.wSum / v.wTotal : 0;
     v.stdev = _stdev(v.ratings);
   }
 
@@ -341,11 +352,12 @@ export function predictRating(book, model) {
   // stdev=0 → no penalty; stdev=1 → 50% max penalty (capped at 40%).
   const authorEntry = model.authorMap.get(_normA(book.author));
   if (authorEntry) {
-    const n      = authorEntry.ratings.length;
+    const n      = authorEntry.wTotal;
+    const nLabel = authorEntry.ratings.length;
     const varPen = Math.min(0.4, authorEntry.stdev / 2.0);
     const w      = _shrunk(n, 2, 10) * (1.0 - varPen);
     addSignal(authorEntry.mean, w, {
-      label:  `${authorEntry.name}: ${authorEntry.mean.toFixed(1)}★ avg (${n} book${n > 1 ? 's' : ''} read)`,
+      label:  `${authorEntry.name}: ${authorEntry.mean.toFixed(1)}★ avg (${nLabel} book${nLabel > 1 ? 's' : ''} read)`,
       signal: authorEntry.mean,
       weight: w,
       type:   'author',
