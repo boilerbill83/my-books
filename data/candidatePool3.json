@@ -576,31 +576,6 @@
       "ratingsCount": 200000
     },
     {
-      "title": "The Devil in the White City",
-      "author": "Erik Larson",
-      "year": 2003,
-      "pages": 464,
-      "avgRating": 3.99,
-      "isbn13": "9780375725609",
-      "themes": [
-        "narrative nonfiction",
-        "true crime",
-        "crime",
-        "thriller"
-      ],
-      "similarToAuthors": [
-        "David Grann",
-        "Jon Krakauer"
-      ],
-      "type": "nonfiction",
-      "publisher": "Crown",
-      "similarToTitles": [
-        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
-        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road"
-      ],
-      "ratingsCount": 900000
-    },
-    {
       "title": "Destiny of the Republic",
       "author": "Candice Millard",
       "year": 2011,
