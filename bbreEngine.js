@@ -167,7 +167,7 @@ const TONE_PRIORITY = [
   'melancholic','hopeful','dual-timeline','nonlinear',
 ];
 
-function inferTones(book) {
+export function inferTones(book) {
   if (book.tones && book.tones.length > 0) return book.tones;
   const collected = new Set();
   for (const theme of (book.themes || [])) {

@@ -1,6 +1,6 @@
 
 import { scoreBooks }  from './engine.js';
-import { rankBBRE }    from './bbreEngine.js';
+import { rankBBRE, inferTones } from './bbreEngine.js';
 
 const state = {
   goodreads:    null,
@@ -10,7 +10,8 @@ const state = {
   ranking:      null,
   pending:      null,
   page:         0,
-  activeThemes: new Set()
+  activeThemes: new Set(),
+  activeTones:  new Set()
 };
 
 // DOM refs
@@ -33,6 +34,7 @@ const filterFiction            = document.getElementById('filterFiction');
 const filterNonfiction         = document.getElementById('filterNonfiction');
 const poolCountEl              = document.getElementById('poolCount');
 const themeFilterBar           = document.getElementById('themeFilterBar');
+const toneFilterBar            = document.getElementById('toneFilterBar');
 
 const THEME_MACROS = [
   { label: 'Legal',      keys: ['legal', 'courtroom', 'attorney', 'lawyer'] },
@@ -81,6 +83,52 @@ function renderThemeChips(books) {
 
   document.getElementById('themeClearBtn')?.addEventListener('click', () => {
     state.activeThemes.clear();
+    state.page = 0;
+    recompute();
+  });
+}
+
+// Ordered list of tones to potentially show in the filter — only those
+// present in the current pool are actually rendered.
+const TONE_FILTER_ORDER = [
+  'fast-paced', 'slow-burn', 'dark', 'tense', 'atmospheric',
+  'twisty', 'whodunit', 'procedural', 'humorous', 'character-driven',
+  'character-study', 'investigative', 'heartwarming', 'gritty',
+  'unreliable-narrator', 'compulsive', 'melancholic', 'inspiring',
+];
+
+function renderToneChips(books) {
+  if (!toneFilterBar) return;
+  const available = TONE_FILTER_ORDER.filter(tone =>
+    books.some(b => inferTones(b).includes(tone))
+  );
+  if (!available.length) { toneFilterBar.innerHTML = ''; return; }
+
+  const hasActive = state.activeTones.size > 0;
+  const clearBtn  = hasActive
+    ? `<button class="tone-clear-btn" id="toneClearBtn">Clear</button>` : '';
+
+  toneFilterBar.innerHTML =
+    `<span class="tone-filter-label">Style</span>` +
+    available.map(tone => {
+      const active = state.activeTones.has(tone) ? ' active' : '';
+      const label  = tone.charAt(0).toUpperCase() + tone.slice(1);
+      return `<button class="tone-filter-chip${active}" data-tone="${esc(tone)}">${esc(label)}</button>`;
+    }).join('') +
+    clearBtn;
+
+  toneFilterBar.querySelectorAll('.tone-filter-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tone = btn.dataset.tone;
+      if (state.activeTones.has(tone)) state.activeTones.delete(tone);
+      else                             state.activeTones.add(tone);
+      state.page = 0;
+      recompute();
+    });
+  });
+
+  document.getElementById('toneClearBtn')?.addEventListener('click', () => {
+    state.activeTones.clear();
     state.page = 0;
     recompute();
   });
@@ -571,10 +619,14 @@ function renderRecommendations() {
     if (book.publisher) meta.push(`<span class="meta-chip pub">${esc(book.publisher)}</span>`);
     const metaRow = meta.length ? `<div class="meta-row">${meta.join('')}</div>` : '';
 
-    // themes
+    // themes (L2) + tones (L3)
     const themes   = (book.themes || []).slice(0, 3);
     const themeRow = themes.length
-      ? `<div class="theme-row">${themes.map(t => `<span class="theme-chip">${t}</span>`).join('')}</div>`
+      ? `<div class="theme-row">${themes.map(t => `<span class="theme-chip">${esc(t)}</span>`).join('')}</div>`
+      : '';
+    const tones   = inferTones(book).slice(0, 3);
+    const toneRow = tones.length
+      ? `<div class="tone-row">${tones.map(t => `<span class="tone-chip">${esc(t)}</span>`).join('')}</div>`
       : '';
 
     // similar-to
@@ -596,6 +648,7 @@ function renderRecommendations() {
           <div class="card-author">${esc(book.author)}</div>
           ${metaRow}
           ${themeRow}
+          ${toneRow}
           ${simRow}
           <div class="score-row">
             <span class="score-pill" title="BBRE score: Bayesian taste model (65%) + citation network (35%) + author diversity">BBRE ${book.matchScore}</span>
@@ -648,11 +701,17 @@ function recompute() {
     });
   }
 
-  // Build genre chips from the source/type-filtered pool, then apply theme filter
+  // L2 genre filter
   renderThemeChips(allCands);
   if (state.activeThemes.size > 0) {
     const active = THEME_MACROS.filter(m => state.activeThemes.has(m.label));
     allCands = allCands.filter(b => active.some(m => bookMatchesMacro(b, m)));
+  }
+
+  // L3 tone filter — rendered from the theme-filtered pool so chips stay relevant
+  renderToneChips(allCands);
+  if (state.activeTones.size > 0) {
+    allCands = allCands.filter(b => inferTones(b).some(t => state.activeTones.has(t)));
   }
 
   if (poolCountEl) poolCountEl.textContent = `${allCands.length.toLocaleString()} in pool`;
@@ -729,7 +788,7 @@ function dismiss(reasonCode) {
 
 // Filter checkboxes reset page and theme selection, then recompute
 [filterToRead, filterOnlineFinds, filterFiction, filterNonfiction].forEach(el => {
-  el?.addEventListener('change', () => { state.activeThemes.clear(); state.page = 0; recompute(); });
+  el?.addEventListener('change', () => { state.activeThemes.clear(); state.activeTones.clear(); state.page = 0; recompute(); });
 });
 
 // Animated refresh (visual appeal #1)
