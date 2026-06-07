@@ -48,7 +48,9 @@
         "twisty",
         "procedural",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "an-innocent-client-a-joe-dillard-novel|scott-pratt",
@@ -131,7 +133,9 @@
         "procedural",
         "tense",
         "plot-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "clusterf-ck|brian-o-sullivan",
@@ -334,7 +338,9 @@
         "conversational",
         "narrative-driven",
         "accessible"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 6
     },
     {
       "bookKey": "the-housemaid-s-wedding|freida-mcfadden",
@@ -453,7 +459,9 @@
         "personal",
         "conversational",
         "humorous"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "exit-party|emily-st-john-mandel",
@@ -488,7 +496,9 @@
         "atmospheric",
         "melancholic",
         "character-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "judge-stone|viola-davis",
@@ -525,7 +535,9 @@
         "procedural",
         "tense",
         "plot-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-scaling-curve-dario-amodei-anthropic-and-the-race-to-build-and-survive-superintelligence|claude-st-john",
@@ -599,7 +611,9 @@
         "humorous",
         "conversational",
         "accessible"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "house-of-fidelity-the-rise-of-the-johnson-dynasty-and-the-company-that-changed-american-investing|justin-baer",
@@ -635,7 +649,9 @@
         "dense",
         "narrative-driven",
         "accessible"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "eating-the-dinosaur|chuck-klosterman",
@@ -712,7 +728,9 @@
         "atmospheric",
         "melancholic",
         "character-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "creep|jennifer-hillier",
@@ -790,7 +808,9 @@
         "fast-paced",
         "tense",
         "gritty"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-optimist-sam-altman-openai-and-the-race-to-invent-the-future|keach-hagey",
@@ -866,7 +886,9 @@
         "accessible",
         "narrative-driven",
         "investigative"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "famesick|lena-dunham",
@@ -902,7 +924,9 @@
         "conversational",
         "humorous",
         "melancholic"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-insomniacs|allison-winn-scotch",
@@ -939,7 +963,9 @@
         "twisty",
         "dark",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "checkmate-genius-lies-ambition-and-the-biggest-scandal-in-chess|ben-mezrich",
@@ -976,7 +1002,9 @@
         "fast-paced",
         "investigative",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-divorce|freida-mcfadden",
@@ -1013,7 +1041,9 @@
         "fast-paced",
         "twisty",
         "dark"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "peck-peck|bonnie-garmus",
@@ -1049,7 +1079,9 @@
         "heartwarming",
         "character-driven",
         "slow-burn"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "monsters-in-the-archives-my-year-of-fear-with-stephen-king|caroline-bicks",
@@ -1085,7 +1117,9 @@
         "personal",
         "conversational",
         "accessible"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "american-fantasy|emma-straub",
@@ -1122,7 +1156,9 @@
         "atmospheric",
         "character-driven",
         "melancholic"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "everyone-who-is-gone-is-here-the-united-states-central-america-and-the-making-of-a-crisis|jonathan-blitzer",
@@ -1158,7 +1194,9 @@
         "investigative",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-running-man|richard-bachman",
@@ -1196,7 +1234,9 @@
         "dark",
         "tense",
         "cat-and-mouse"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 20
     },
     {
       "bookKey": "the-break-up-retreat|camilla-sten",
@@ -1233,7 +1273,9 @@
         "dark",
         "tense",
         "twisty"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "best-offer-wins|marisa-kashino",
@@ -1309,7 +1351,9 @@
         "procedural",
         "tense",
         "plot-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "last-night-in-montreal|emily-st-john-mandel",
@@ -1345,7 +1389,9 @@
         "atmospheric",
         "melancholic",
         "slow-burn"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "this-land-is-your-land-a-road-trip-through-u-s-history|beverly-gage",
@@ -1380,7 +1426,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "planet-money-a-guide-to-the-economic-forces-that-shape-your-life|alex-mayyasi",
@@ -1416,7 +1464,9 @@
         "accessible",
         "conversational",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-anniversary|alex-finlay",
@@ -1452,7 +1502,9 @@
         "fast-paced",
         "twisty",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "dissection-of-a-murder|jo-murray",
@@ -1488,7 +1540,9 @@
         "fast-paced",
         "twisty",
         "procedural"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-midnight-train|matt-haig",
@@ -1524,7 +1578,9 @@
         "heartwarming",
         "atmospheric",
         "humorous"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "yesteryear|caro-claire-burke",
@@ -1559,7 +1615,9 @@
         "atmospheric",
         "melancholic",
         "slow-burn"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-french-illusion|john-grisham",
@@ -1597,7 +1655,9 @@
         "procedural",
         "plot-driven",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "she-didn-t-see-it-coming|shari-lapena",
@@ -1677,7 +1737,9 @@
         "twisty",
         "dark",
         "tense"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "1929-inside-the-greatest-crash-in-wall-street-history-and-how-it-shattered-a-nation|andrew-ross-sorkin",
@@ -1714,7 +1776,9 @@
         "fast-paced",
         "investigative",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "heartland-a-forgotten-place-an-impossible-dream-and-the-miracle-of-larry-bird|keith-o-brien",
@@ -1752,7 +1816,9 @@
         "narrative-driven",
         "accessible",
         "inspiring"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-everything-war-amazon-s-ruthless-quest-to-own-the-world-and-remake-corporate-power|dana-mattioli",
@@ -1788,7 +1854,9 @@
         "investigative",
         "dark",
         "revelatory"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "no-more-tears-the-dark-secrets-of-johnson-johnson|gardiner-harris",
@@ -1862,7 +1930,9 @@
         "investigative",
         "dark",
         "revelatory"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-echo-wife|sarah-gailey",
@@ -1940,7 +2010,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "loose-balls-the-short-wild-life-of-the-american-basketball-association|terry-pluto",
@@ -1977,7 +2049,9 @@
         "narrative-driven",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": 3.0,
+      "googleRatingsCount": 2
     },
     {
       "bookKey": "unhinged-habits-a-counterintuitive-guide-for-humans-to-have-more-by-doing-less|jonathan-goodman",
@@ -2012,7 +2086,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "you-can-t-lose-them-all-tales-of-a-degenerate-gambler-and-his-ridiculous-friends|sal-iacono",
@@ -2048,7 +2124,9 @@
         "personal",
         "narrative-driven",
         "dark"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "american-sketches-great-leaders-creative-thinkers-and-heroes-of-a-hurricane|walter-isaacson",
@@ -2086,7 +2164,9 @@
         "narrative-driven",
         "inspiring",
         "character-study"
-      ]
+      ],
+      "googleRating": 3.5,
+      "googleRatingsCount": 4
     },
     {
       "bookKey": "what-it-takes-lessons-in-the-pursuit-of-excellence|stephen-a-schwarzman",
@@ -2123,7 +2203,9 @@
         "accessible",
         "character-study",
         "dense"
-      ]
+      ],
+      "googleRating": 1.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "the-final-score|don-winslow",
@@ -2160,7 +2242,9 @@
         "dark",
         "gritty",
         "character-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "none-of-this-is-true|lisa-jewell",
@@ -2446,7 +2530,9 @@
         "dark",
         "character-driven",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-greatest-sentence-ever-written|walter-isaacson",
@@ -2525,7 +2611,9 @@
         "twisty",
         "dark",
         "unreliable-narrator"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "neptune-s-fortune-the-billion-dollar-shipwreck-and-the-ghosts-of-the-spanish-empire|julian-sancton",
@@ -2562,7 +2650,9 @@
         "fast-paced",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "no-one-saw-a-thing|andrea-mara",
@@ -2598,7 +2688,9 @@
         "fast-paced",
         "twisty",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "football|chuck-klosterman",
@@ -2634,7 +2726,9 @@
         "humorous",
         "conversational",
         "accessible"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "a-violent-masterpiece|jordan-harper",
@@ -2672,7 +2766,9 @@
         "dark",
         "gritty",
         "procedural"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "big-fan-two-friends-82-490-miles-and-the-wild-wonderful-sports-we-love|michael-schur",
@@ -2710,7 +2806,9 @@
         "accessible",
         "humorous",
         "conversational"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "parks-and-rec-the-underdog-tv-show-that-lit-rally-inspired-a-vision-for-a-better-america|jennifer-keishin-armstrong",
@@ -2746,7 +2844,9 @@
         "fast-paced",
         "tense",
         "dark"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-amazing-adventures-of-cavalier-clay|michael-chabon",
@@ -2783,7 +2883,9 @@
         "character-driven",
         "atmospheric",
         "heartwarming"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "den-of-thieves|james-b-stewart",
@@ -2820,7 +2922,9 @@
         "fast-paced",
         "dark",
         "accessible"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 5
     },
     {
       "bookKey": "rich-blood|robert-bailey",
@@ -2857,7 +2961,9 @@
         "procedural",
         "tense",
         "plot-driven"
-      ]
+      ],
+      "googleRating": 4.5,
+      "googleRatingsCount": 2
     },
     {
       "bookKey": "we-are-legion|dennis-e-taylor",
@@ -2893,7 +2999,9 @@
         "humorous",
         "fast-paced",
         "accessible"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "dating-after-the-end-of-the-world|jeneva-rose",
@@ -2931,7 +3039,9 @@
         "twisty",
         "dark",
         "atmospheric"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-age-of-ai-and-our-human-future|henry-kissinger",
@@ -2965,7 +3075,9 @@
       "tones": [
         "dense",
         "polemic"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-intruder|freida-mcfadden",
@@ -3003,7 +3115,9 @@
         "twisty",
         "unreliable-narrator",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "children-of-time|adrian-tchaikovsky",
@@ -3040,7 +3154,9 @@
         "dense",
         "atmospheric",
         "slow-burn"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "american-kings-a-biography-of-the-quarterback|seth-wickersham",
@@ -3114,7 +3230,9 @@
         "narrative-driven",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": 2.5,
+      "googleRatingsCount": 2
     },
     {
       "bookKey": "you-have-arrived-at-your-destination|amor-towles",
@@ -3311,7 +3429,9 @@
         "tense",
         "cat-and-mouse",
         "plot-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "magic-for-liars|sarah-gailey",
@@ -3348,7 +3468,9 @@
         "slow-burn",
         "procedural",
         "whodunit"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "careless-people-a-cautionary-tale-of-power-greed-and-lost-idealism|sarah-wynn-williams",
@@ -3385,7 +3507,9 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "tiger-tiger-his-life-as-it-s-never-been-told-before|james-patterson",
@@ -3463,7 +3587,9 @@
         "atmospheric",
         "fast-paced",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-idaho-four-an-american-tragedy|james-patterson",
@@ -3501,7 +3627,9 @@
         "plot-driven",
         "compulsive",
         "investigative"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-compound|aisling-rawle",
@@ -3538,7 +3666,9 @@
         "fast-paced",
         "dark",
         "character-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "all-her-fault|andrea-mara",
@@ -3617,7 +3747,9 @@
         "narrative-driven",
         "investigative",
         "accessible"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "never-flinch|stephen-king",
@@ -3737,7 +3869,9 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "i-regret-almost-everything|keith-mcnally",
@@ -3857,7 +3991,9 @@
         "tense",
         "procedural",
         "whodunit"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "a-heartbreaking-work-of-staggering-genius|dave-eggers",
@@ -3894,7 +4030,9 @@
         "character-driven",
         "character-study",
         "atmospheric"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 55
     },
     {
       "bookKey": "2024-how-trump-retook-the-white-house-and-the-democrats-lost-america|josh-dawsey",
@@ -3969,7 +4107,9 @@
         "dark",
         "procedural",
         "whodunit"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "you-shouldn-t-have-come-here|jeneva-rose",
@@ -4047,7 +4187,9 @@
         "humorous",
         "character-driven",
         "twisty"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "framed-astonishing-true-stories-of-wrongful-convictions|john-grisham",
@@ -4125,7 +4267,9 @@
         "fast-paced",
         "investigative",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-boomerang|robert-bailey",
@@ -4202,7 +4346,9 @@
         "tense",
         "dark",
         "disturbing"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "your-table-is-ready-tales-of-a-new-york-city-ma-tre-d|michael-cecchi-azzolina",
@@ -4238,7 +4384,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "the-last-shot-city-streets-basketball-dreams-a-poignant-biography-of-young-athletes-inner-city-basketball-and-the-fight-to-escape-poverty|darcy-frey",
@@ -4274,7 +4422,9 @@
         "dark",
         "melancholic",
         "character-study"
-      ]
+      ],
+      "googleRating": 3.5,
+      "googleRatingsCount": 4
     },
     {
       "bookKey": "twice|mitch-albom",
@@ -4311,7 +4461,9 @@
         "character-driven",
         "atmospheric",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "remain|nicholas-sparks",
@@ -4348,7 +4500,9 @@
         "slow-burn",
         "atmospheric",
         "heartwarming"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "how-to-stop-time|matt-haig",
@@ -4465,7 +4619,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "burn-book-a-tech-love-story|kara-swisher",
@@ -4501,7 +4657,9 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "empire-of-ai-dreams-and-nightmares-in-sam-altman-s-openai|karen-hao",
@@ -4539,7 +4697,9 @@
         "dark",
         "revelatory",
         "polemic"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "a-time-to-kill|john-grisham",
@@ -8682,7 +8842,9 @@
         "fast-paced",
         "tense",
         "procedural"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-thursday-murder-club|richard-osman",
@@ -8718,7 +8880,9 @@
         "humorous",
         "whodunit",
         "heartwarming"
-      ]
+      ],
+      "googleRating": 3.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "who-is-government-the-untold-story-of-public-service|michael-lewis",
@@ -8833,7 +8997,9 @@
         "slow-burn",
         "atmospheric",
         "heartwarming"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-staircase-in-the-woods|chuck-wendig",
@@ -8870,7 +9036,9 @@
         "atmospheric",
         "fast-paced",
         "disturbing"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "oddbody|rose-keating",
@@ -8907,7 +9075,9 @@
         "fast-paced",
         "slow-burn",
         "dark"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "inside-the-cartel-how-an-undercover-fbi-agent-smuggled-cocaine-laundered-cash-and-dismantled-a-colombian-narco-empire|martin-suarez",
@@ -8944,7 +9114,9 @@
         "dark",
         "immersive-journalism",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "comedy-samurai-forty-years-of-blood-guts-and-laughter|larry-charles",
@@ -8981,7 +9153,9 @@
         "character-study",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "paper-girl-a-memoir-of-home-and-family-in-a-fractured-america|beth-macy",
@@ -9017,7 +9191,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "a-hollywood-ending-the-dreams-and-drama-of-the-lebron-lakers|yaron-weitzman",
@@ -9053,7 +9229,9 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-return-of-ellie-black|emiko-jean",
@@ -9132,7 +9310,9 @@
         "tense",
         "procedural",
         "whodunit"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "my-friends|fredrik-backman",
@@ -9168,7 +9348,9 @@
         "character-driven",
         "slow-burn",
         "atmospheric"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "lorne-the-man-who-invented-saturday-night-live|susan-morrison",
@@ -9287,7 +9469,9 @@
         "character-driven",
         "atmospheric",
         "heartwarming"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "the-life-of-chuck|stephen-king",
@@ -9324,7 +9508,9 @@
         "dark",
         "character-driven",
         "slow-burn"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "pearl-harbor-warning-and-decision|roberta-wohlstetter",
@@ -9361,7 +9547,9 @@
         "gritty",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "shuttle-houston-my-life-in-the-center-seat-of-mission-control|paul-dye",
@@ -9398,7 +9586,9 @@
         "fast-paced",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "baddest-man-the-making-of-mike-tyson|mark-kriegel",
@@ -9434,7 +9624,9 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-tenant|freida-mcfadden",
@@ -9472,7 +9664,9 @@
         "twisty",
         "unreliable-narrator",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "accidentally-on-purpose|kristen-kish",
@@ -9508,7 +9702,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "ask-for-andrea|noelle-w-ihli",
@@ -9545,7 +9741,9 @@
         "tense",
         "dark",
         "disturbing"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "a-thousand-natural-shocks|omar-hussain",
@@ -9582,7 +9780,9 @@
         "tense",
         "dark",
         "disturbing"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "on-tyranny-twenty-lessons-from-the-twentieth-century|timothy-snyder",
@@ -9617,7 +9817,9 @@
         "narrative-driven",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": 3.5,
+      "googleRatingsCount": 4
     },
     {
       "bookKey": "we-used-to-live-here|marcus-kliewer",
@@ -9654,7 +9856,9 @@
         "tense",
         "dark",
         "disturbing"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "i-who-have-never-known-men|jacqueline-harpman",
@@ -9691,7 +9895,9 @@
         "slow-burn",
         "dark",
         "character-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-firm|john-grisham",
@@ -9771,7 +9977,9 @@
         "twisty",
         "unreliable-narrator",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-perfect-assassin|james-patterson",
@@ -9889,7 +10097,9 @@
         "fast-paced",
         "tense",
         "plot-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "atmosphere|taylor-jenkins-reid",
@@ -9967,7 +10177,9 @@
         "atmospheric",
         "fast-paced",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "wild-dark-shore|charlotte-mcconaghy",
@@ -10003,7 +10215,9 @@
         "fast-paced",
         "tense",
         "dark"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "bad-company-private-equity-and-the-death-of-the-american-dream|megan-greenwell",
@@ -10039,7 +10253,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-teacher|freida-mcfadden",
@@ -10118,7 +10334,9 @@
         "tense",
         "procedural",
         "whodunit"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "rita-hayworth-and-shawshank-redemption|stephen-king",
@@ -10193,7 +10411,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "bourdain-the-definitive-oral-biography|laurie-woolever",
@@ -10273,7 +10493,9 @@
         "atmospheric",
         "gritty",
         "character-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-gatekeepers-how-the-white-house-chiefs-of-staff-define-every-presidency|chris-whipple",
@@ -10310,7 +10532,9 @@
         "character-study",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "big-dumb-eyes-stories-from-a-simpler-mind|nate-bargatze",
@@ -10347,7 +10571,9 @@
         "character-study",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "ark|veronica-roth",
@@ -10383,7 +10609,9 @@
         "fast-paced",
         "tense",
         "dark"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "local-woman-missing|mary-kubica",
@@ -10420,7 +10648,9 @@
         "fast-paced",
         "dark",
         "procedural"
-      ]
+      ],
+      "googleRating": 4.5,
+      "googleRatingsCount": 2
     },
     {
       "bookKey": "an-innocent-client|scott-pratt",
@@ -10457,7 +10687,9 @@
         "procedural",
         "tense",
         "plot-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "say-nothing|brad-parks",
@@ -10493,7 +10725,9 @@
         "procedural",
         "twisty",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "interference|brad-parks",
@@ -10612,7 +10846,9 @@
         "gritty",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": 3.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "in-the-kingdom-of-ice-the-grand-and-terrible-polar-voyage-of-the-uss-jeannette|hampton-sides",
@@ -10649,7 +10885,9 @@
         "fast-paced",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "ghost-soldiers-the-epic-account-of-world-war-ii-s-greatest-rescue-mission|hampton-sides",
@@ -10769,7 +11007,9 @@
         "character-study",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": 3.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "legends-and-soles-the-memoir-of-an-american-original|sonny-vaccaro-armen-keteyian",
@@ -10806,7 +11046,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "henry-j-kaiser-builder-in-the-modern-american-west|mark-s-foster",
@@ -10843,7 +11085,9 @@
         "gritty",
         "character-study",
         "dense"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "in-ascension|martin-macinnes",
@@ -10962,7 +11206,9 @@
         "slow-burn",
         "atmospheric",
         "heartwarming"
-      ]
+      ],
+      "googleRating": 4.5,
+      "googleRatingsCount": 282
     },
     {
       "bookKey": "care-and-feeding|laurie-woolever",
@@ -10998,7 +11244,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-elias-network|simon-gervais",
@@ -11117,7 +11365,9 @@
         "tense",
         "investigative",
         "disturbing"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "be-ready-when-the-luck-happens|ina-garten",
@@ -11153,7 +11403,9 @@
         "inspiring",
         "conversational",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-maid-s-secret|nita-prose",
@@ -11189,7 +11441,9 @@
         "character-study",
         "procedural",
         "whodunit"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-housemaid-s-secret|freida-mcfadden",
@@ -11269,7 +11523,9 @@
         "twisty",
         "dark",
         "compulsive"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "th1rt3en|steve-cavanagh",
@@ -11306,7 +11562,9 @@
         "twisty",
         "procedural",
         "compulsive"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 2
     },
     {
       "bookKey": "the-inmate|freida-mcfadden",
@@ -11344,7 +11602,9 @@
         "twisty",
         "unreliable-narrator",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "razorblade-tears|s-a-cosby",
@@ -11381,7 +11641,9 @@
         "dark",
         "gritty",
         "character-driven"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "the-god-of-the-woods|liz-moore",
@@ -11418,7 +11680,9 @@
         "slow-burn",
         "procedural",
         "whodunit"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "cape-fear|john-d-macdonald",
@@ -11536,7 +11800,9 @@
         "melancholic",
         "character-driven",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "first-lie-wins|ashley-elston",
@@ -11614,7 +11880,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "us|david-nicholls",
@@ -11692,7 +11960,9 @@
         "accessible",
         "tense",
         "dark"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 2
     },
     {
       "bookKey": "nuclear-war-a-scenario|annie-jacobsen",
@@ -11729,7 +11999,9 @@
         "gritty",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "sweet-sorrow|david-nicholls",
@@ -11970,7 +12242,9 @@
         "atmospheric",
         "fast-paced",
         "character-driven"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "born-to-run|bruce-springsteen",
@@ -12047,7 +12321,9 @@
         "character-driven",
         "heartwarming",
         "dual-timeline"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-wide-wide-sea-imperial-ambition-first-contact-and-the-fateful-final-voyage-of-captain-james-cook|hampton-sides",
@@ -12084,7 +12360,9 @@
         "fast-paced",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-institute|stephen-king",
@@ -12202,7 +12480,9 @@
         "procedural",
         "whodunit",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "raised-by-a-serial-killer-discovering-the-truth-about-my-father|april-balascio",
@@ -12239,7 +12519,9 @@
         "investigative",
         "character-study",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-small-and-the-mighty-twelve-unsung-americans-who-changed-the-course-of-history-from-the-founding-to-the-civil-rights-movement|sharon-mcmahon",
@@ -12275,7 +12557,9 @@
         "accessible",
         "inspiring",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "why-i-cook|tom-colicchio",
@@ -12311,7 +12595,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-founders-the-story-of-paypal-and-the-entrepreneurs-who-shaped-silicon-valley|jimmy-soni",
@@ -12388,7 +12674,9 @@
         "character-study",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 3
     },
     {
       "bookKey": "the-innocent-man-murder-and-injustice-in-a-small-town|john-grisham",
@@ -12466,7 +12754,9 @@
         "slow-burn",
         "atmospheric",
         "heartwarming"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "here-one-moment|liane-moriarty",
@@ -12502,7 +12792,9 @@
         "slow-burn",
         "character-driven",
         "atmospheric"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "intermezzo|sally-rooney",
@@ -12537,7 +12829,9 @@
         "character-driven",
         "slow-burn",
         "atmospheric"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-wedding-people|alison-espach",
@@ -12574,7 +12868,9 @@
         "slow-burn",
         "atmospheric",
         "humorous"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-lost-story|meg-shaffer",
@@ -12776,7 +13072,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "pleading-guilty|scott-turow",
@@ -12854,7 +13152,9 @@
         "tense",
         "procedural",
         "whodunit"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "rejection|tony-tulathimutte",
@@ -12889,7 +13189,9 @@
         "character-driven",
         "slow-burn",
         "atmospheric"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-great-alone|kristin-hannah",
@@ -13008,7 +13310,9 @@
         "atmospheric",
         "character-driven",
         "humorous"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "behind-closed-doors|lisa-renee-jones",
@@ -13125,7 +13429,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-president-s-daughter|bill-clinton",
@@ -13282,7 +13588,9 @@
         "revelatory",
         "accessible",
         "polemic"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "remarkably-bright-creatures|shelby-van-pelt",
@@ -13524,7 +13832,9 @@
         "atmospheric",
         "character-driven",
         "humorous"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "kill-for-me-kill-for-you|steve-cavanagh",
@@ -13643,7 +13953,9 @@
         "slow-burn",
         "atmospheric",
         "character-driven"
-      ]
+      ],
+      "googleRating": 1.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "atonement|ian-mcewan",
@@ -13680,7 +13992,9 @@
         "character-driven",
         "atmospheric",
         "dark"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "the-mistletoe-mystery|nita-prose",
@@ -13716,7 +14030,9 @@
         "character-study",
         "procedural",
         "whodunit"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-family-experiment|john-marrs",
@@ -13753,7 +14069,9 @@
         "twisty",
         "slow-burn",
         "atmospheric"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "stories-of-your-life-and-others|ted-chiang",
@@ -13870,7 +14188,9 @@
         "slow-burn",
         "atmospheric",
         "character-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "things-don-t-break-on-their-own|sarah-easter-collins",
@@ -13907,7 +14227,9 @@
         "fast-paced",
         "dark",
         "character-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "save-me-the-plums-my-gourmet-memoir|ruth-reichl",
@@ -13985,7 +14307,9 @@
         "narrative-driven",
         "accessible",
         "conversational"
-      ]
+      ],
+      "googleRating": 2.5,
+      "googleRatingsCount": 2
     },
     {
       "bookKey": "the-library-book|susan-orlean",
@@ -14219,7 +14543,9 @@
         "fast-paced",
         "tense",
         "dark"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "tiger-chair|max-brooks",
@@ -14255,7 +14581,9 @@
         "multiple-pov",
         "atmospheric",
         "slow-burn"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "cue-the-sun-the-invention-of-reality-tv|emily-nussbaum",
@@ -14290,7 +14618,9 @@
         "narrative-driven",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "return-of-the-king-lebron-james-the-cleveland-cavaliers-and-the-greatest-comeback-in-nba-history|brian-windhorst",
@@ -14326,7 +14656,9 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 2
     },
     {
       "bookKey": "rescued|david-rosenfelt",
@@ -14363,7 +14695,9 @@
         "procedural",
         "whodunit",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "how-to-know-a-person-the-art-of-seeing-others-deeply-and-being-deeply-seen|david-brooks",
@@ -14398,7 +14732,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "seeing-further-the-story-of-science-and-the-royal-society|bill-bryson",
@@ -14435,7 +14771,9 @@
         "accessible",
         "conversational",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-wishing-game|meg-shaffer",
@@ -14553,7 +14891,9 @@
         "fast-paced",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-last-of-his-kind-clayton-kershaw-and-the-burden-of-greatness|andy-mccullough",
@@ -14589,7 +14929,9 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-trolls-of-wall-street-how-the-outcasts-and-insurgents-are-hacking-the-markets|nathaniel-popper",
@@ -14625,7 +14967,9 @@
         "fast-paced",
         "tense",
         "dark"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-wright-brothers|david-mccullough",
@@ -14662,7 +15006,9 @@
         "character-study",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "the-best-minds-a-story-of-friendship-madness-and-the-tragedy-of-good-intentions|jonathan-rosen",
@@ -14698,7 +15044,9 @@
         "narrative-driven",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "charlie-hustle-the-rise-and-fall-of-pete-rose-and-the-last-glory-days-of-baseball|keith-o-brien",
@@ -14815,7 +15163,9 @@
         "accessible",
         "conversational",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-golfer-s-carol|robert-bailey",
@@ -14893,7 +15243,9 @@
         "dark",
         "character-driven",
         "fast-paced"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "refund-stories|karen-e-bender",
@@ -14928,7 +15280,9 @@
         "character-driven",
         "slow-burn",
         "atmospheric"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "elevation|stephen-king",
@@ -15087,7 +15441,9 @@
         "heartwarming",
         "slow-burn",
         "atmospheric"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "if-you-can-t-take-the-heat|michael-ruhlman",
@@ -15123,7 +15479,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "influence-empire-the-story-of-tencent-and-china-s-tech-ambition|lulu-yilun-chen",
@@ -15160,7 +15518,9 @@
         "accessible",
         "investigative",
         "dense"
-      ]
+      ],
+      "googleRating": 1.5,
+      "googleRatingsCount": 2
     },
     {
       "bookKey": "on-earth-as-it-is-on-television|emily-jane",
@@ -15197,7 +15557,9 @@
         "atmospheric",
         "character-driven",
         "humorous"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-mystery-guest|nita-prose",
@@ -15276,7 +15638,9 @@
         "dark",
         "revelatory",
         "immersive-journalism"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "someday|david-levithan",
@@ -15437,7 +15801,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "chip-war-the-fight-for-the-world-s-most-critical-technology|chris-miller",
@@ -15716,7 +16082,9 @@
         "procedural",
         "tense",
         "plot-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "a-killer-s-alibi|william-l-myers-jr",
@@ -15753,7 +16121,9 @@
         "procedural",
         "tense",
         "plot-driven"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "beautiful-world-where-are-you|sally-rooney",
@@ -15912,7 +16282,9 @@
         "narrative-driven",
         "inspiring",
         "character-study"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "kissinger-a-biography|walter-isaacson",
@@ -15949,7 +16321,9 @@
         "dense",
         "narrative-driven",
         "accessible"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "yellowface|r-f-kuang",
@@ -15986,7 +16360,9 @@
         "tense",
         "fast-paced",
         "slow-burn"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "survival-of-the-thickest-essays|michelle-buteau",
@@ -16023,7 +16399,9 @@
         "character-study",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "skippy-dies|paul-murray",
@@ -16059,7 +16437,9 @@
         "slow-burn",
         "atmospheric",
         "heartwarming"
-      ]
+      ],
+      "googleRating": 4.5,
+      "googleRatingsCount": 2
     },
     {
       "bookKey": "made-for-love|alissa-nutting",
@@ -16096,7 +16476,9 @@
         "atmospheric",
         "character-driven",
         "humorous"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-sellout|paul-beatty",
@@ -16133,7 +16515,9 @@
         "slow-burn",
         "atmospheric",
         "humorous"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "black-sheep|rachel-harrison",
@@ -16170,7 +16554,9 @@
         "fast-paced",
         "slow-burn",
         "dark"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "entrances-and-exits|michael-richards",
@@ -16207,7 +16593,9 @@
         "character-study",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "still-me|jojo-moyes",
@@ -16244,7 +16632,9 @@
         "slow-burn",
         "atmospheric",
         "heartwarming"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "sleeping-beauties|stephen-king",
@@ -16282,7 +16672,9 @@
         "dark",
         "character-driven",
         "fast-paced"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "truly-madly-guilty|liane-moriarty",
@@ -16319,7 +16711,9 @@
         "tense",
         "fast-paced",
         "slow-burn"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "mean-baby-a-memoir-of-growing-up|selma-blair",
@@ -16355,7 +16749,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-dilemma|b-a-paris",
@@ -16392,7 +16788,9 @@
         "twisty",
         "tense",
         "dark"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-therapist|b-a-paris",
@@ -16429,7 +16827,9 @@
         "twisty",
         "tense",
         "dark"
-      ]
+      ],
+      "googleRating": 3.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "bring-me-back|b-a-paris",
@@ -16466,7 +16866,9 @@
         "twisty",
         "tense",
         "dark"
-      ]
+      ],
+      "googleRating": 2.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "the-prisoner|b-a-paris",
@@ -16583,7 +16985,9 @@
         "humorous",
         "immersive-journalism",
         "atmospheric"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "so-fetch-the-making-of-mean-girls|jennifer-keishin-armstrong",
@@ -16619,7 +17023,9 @@
         "narrative-driven",
         "accessible",
         "conversational"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "come-and-get-it|kiley-reid",
@@ -16654,7 +17060,9 @@
         "character-driven",
         "slow-burn",
         "atmospheric"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "born-standing-up-a-comic-s-life|steve-martin",
@@ -16691,7 +17099,9 @@
         "conversational",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "everybody-lies-big-data-new-data-and-what-the-internet-can-tell-us-about-who-we-really-are|seth-stephens-davidowitz",
@@ -16727,7 +17137,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 2
     },
     {
       "bookKey": "the-mist|stephen-king",
@@ -16765,7 +17177,9 @@
         "dark",
         "character-driven",
         "fast-paced"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-rocket-that-fell-to-earth-roger-clemens-and-the-rage-for-baseball-immortality|jeff-pearlman",
@@ -16802,7 +17216,9 @@
         "accessible",
         "investigative",
         "character-study"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-fury|alex-michaelides",
@@ -16839,7 +17255,9 @@
         "twisty",
         "dark",
         "atmospheric"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "twas-the-nightshift-before-christmas|adam-kay",
@@ -16876,7 +17294,9 @@
         "character-study",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "cleo-mcdougal-regrets-nothing|allison-winn-scotch",
@@ -16912,7 +17332,9 @@
         "fast-paced",
         "character-driven",
         "slow-burn"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "going-zero|anthony-mccarten",
@@ -16949,7 +17371,9 @@
         "twisty",
         "slow-burn",
         "atmospheric"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "have-i-told-you-this-already-stories-i-don-t-want-to-forget-to-remember|lauren-graham",
@@ -16986,7 +17410,9 @@
         "character-study",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "demon-copperhead|barbara-kingsolver",
@@ -17062,7 +17488,9 @@
         "slow-burn",
         "atmospheric",
         "character-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "a-flicker-in-the-dark|stacy-willingham",
@@ -17138,7 +17566,9 @@
         "personal",
         "narrative-driven",
         "dark"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-husband-s-secret|liane-moriarty",
@@ -17175,7 +17605,9 @@
         "tense",
         "fast-paced",
         "slow-burn"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "mr-mercedes|stephen-king",
@@ -17212,7 +17644,9 @@
         "dark",
         "character-driven",
         "fast-paced"
-      ]
+      ],
+      "googleRating": 3.5,
+      "googleRatingsCount": 2
     },
     {
       "bookKey": "the-road|cormac-mccarthy",
@@ -17369,7 +17803,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-liars-club|mary-karr",
@@ -17406,7 +17842,9 @@
         "character-driven",
         "character-study",
         "atmospheric"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "verity|colleen-hoover",
@@ -17526,7 +17964,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "class-a-memoir-of-motherhood-hunger-and-higher-education|stephanie-land",
@@ -17562,7 +18002,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "hangry-a-startup-journey|mike-evans",
@@ -17640,7 +18082,9 @@
         "character-driven",
         "atmospheric",
         "heartwarming"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "me-and-carlos|tom-perrotta",
@@ -17758,7 +18202,9 @@
         "slow-burn",
         "investigative",
         "atmospheric"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-last-chance-lawyer|william-bernhardt",
@@ -17795,7 +18241,9 @@
         "procedural",
         "tense",
         "plot-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "bad-haircut-stories-from-the-seventies|tom-perrotta",
@@ -17831,7 +18279,9 @@
         "character-driven",
         "satirical",
         "atmospheric"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "not-forever-but-for-now|chuck-palahniuk",
@@ -17868,7 +18318,9 @@
         "atmospheric",
         "character-driven",
         "humorous"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-island|adrian-mckinty",
@@ -17945,7 +18397,9 @@
         "procedural",
         "whodunit",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-chain|adrian-mckinty",
@@ -18067,7 +18521,9 @@
         "procedural",
         "plot-driven",
         "tense"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "the-mountain-in-the-sea|ray-nayler",
@@ -18103,7 +18559,9 @@
         "slow-burn",
         "atmospheric",
         "character-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "a-short-history-of-nearly-everything|bill-bryson",
@@ -18218,7 +18676,9 @@
         "investigative",
         "fast-paced",
         "immersive-journalism"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "when-the-heavens-went-on-sale-the-misfits-and-geniuses-racing-to-put-space-within-reach|ashlee-vance",
@@ -18295,7 +18755,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "rogue-justice|stacey-abrams",
@@ -18332,7 +18794,9 @@
         "procedural",
         "investigative",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-coming-storm|michael-lewis",
@@ -18408,7 +18872,9 @@
         "character-study",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "hard-to-break|michael-ledwidge",
@@ -18734,7 +19200,9 @@
         "dark",
         "character-driven",
         "slow-burn"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "my-name-is-lucy-barton|elizabeth-strout",
@@ -18888,7 +19356,9 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "ascension|nicholas-binge",
@@ -18925,7 +19395,9 @@
         "atmospheric",
         "fast-paced",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "white-noise|don-delillo",
@@ -19003,7 +19475,9 @@
         "character-study",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "tracy-flick-can-t-win|tom-perrotta",
@@ -19121,7 +19595,9 @@
         "atmospheric",
         "slow-burn",
         "dark"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-rewind|allison-winn-scotch",
@@ -19364,7 +19840,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "this-time-tomorrow|emma-straub",
@@ -19606,7 +20084,9 @@
         "fast-paced",
         "dark",
         "procedural"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "butts-a-backstory|heather-radke",
@@ -19641,7 +20121,9 @@
         "narrative-driven",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "once-upon-a-december|amy-e-reichert",
@@ -19921,7 +20403,9 @@
         "investigative",
         "accessible",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-book-of-joe-trying-not-to-suck-at-baseball-and-life|joe-maddon",
@@ -19958,7 +20442,9 @@
         "accessible",
         "character-study",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-woods|harlan-coben",
@@ -20152,7 +20638,9 @@
         "character-study",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "why-has-nobody-told-me-this-before-an-international-bestselling-guide-to-mental-health-and-emotional-resilience-from-a-clinical-psychologist|julie-smith",
@@ -20187,7 +20675,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "love-by-the-glass-tasting-notes-from-a-marriage|dorothy-j-gaiter",
@@ -20263,7 +20753,9 @@
         "immersive-journalism",
         "narrative-driven",
         "accessible"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "boys-will-be-boys-the-glory-days-and-party-nights-of-the-dallas-cowboys-dynasty|jeff-pearlman",
@@ -20300,7 +20792,9 @@
         "accessible",
         "investigative",
         "dense"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "after-i-do|taylor-jenkins-reid",
@@ -20378,7 +20872,9 @@
         "accessible",
         "investigative",
         "character-study"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 2
     },
     {
       "bookKey": "forever-interrupted|taylor-jenkins-reid",
@@ -20904,7 +21400,9 @@
         "plot-driven",
         "compulsive",
         "slow-burn"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-paris-apartment|lucy-foley",
@@ -20941,7 +21439,9 @@
         "twisty",
         "tense",
         "multiple-pov"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "good-morning-monster-a-therapist-shares-four-heroic-stories-of-emotional-recovery|catherine-gildiner",
@@ -21017,7 +21517,9 @@
         "character-driven",
         "slow-burn",
         "atmospheric"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "hell-of-a-book|jason-mott",
@@ -21091,7 +21593,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "tokyo-vice-an-american-reporter-on-the-police-beat-in-japan|jake-adelstein",
@@ -21167,7 +21671,9 @@
         "narrative-driven",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": 4.5,
+      "googleRatingsCount": 2
     },
     {
       "bookKey": "the-infiltrator-my-secret-life-inside-the-dirty-banks-behind-pablo-escobar-s-medell-n-cartel|robert-mazur",
@@ -21204,7 +21710,9 @@
         "dark",
         "immersive-journalism",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "how-to-prevent-the-next-pandemic|bill-gates",
@@ -21240,7 +21748,9 @@
         "narrative-driven",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "how-to-be-perfect-the-correct-answer-to-every-moral-question|michael-schur",
@@ -21316,7 +21826,9 @@
         "slow-burn",
         "character-driven",
         "atmospheric"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "point-b|drew-magary",
@@ -21432,7 +21944,9 @@
         "character-driven",
         "slow-burn",
         "atmospheric"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "no-one-is-talking-about-this|patricia-lockwood",
@@ -21468,7 +21982,9 @@
         "slow-burn",
         "character-driven",
         "atmospheric"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "gwendy-s-final-task|stephen-king",
@@ -21505,7 +22021,9 @@
         "fast-paced",
         "dark",
         "atmospheric"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-midrange-theory|seth-partnow",
@@ -21541,7 +22059,9 @@
         "accessible",
         "dense",
         "data-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "i-ll-be-gone-in-the-dark-one-woman-s-obsessive-search-for-the-golden-state-killer|michelle-mcnamara",
@@ -21578,7 +22098,9 @@
         "dark",
         "personal",
         "immersive-journalism"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "into-the-water|paula-hawkins",
@@ -21615,7 +22137,9 @@
         "fast-paced",
         "dark",
         "procedural"
-      ]
+      ],
+      "googleRating": 3.5,
+      "googleRatingsCount": 6
     },
     {
       "bookKey": "blood-in-the-garden-the-flagrant-history-of-the-1990s-new-york-knicks|chris-herring",
@@ -21691,7 +22215,9 @@
         "narrative-driven",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "built-to-fail-the-inside-story-of-blockbuster-s-inevitable-bust|alan-payne",
@@ -21728,7 +22254,9 @@
         "accessible",
         "investigative",
         "revelatory"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-white-van|patrick-hoffman",
@@ -22049,7 +22577,9 @@
         "procedural",
         "tense",
         "plot-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-day-the-world-came-to-town-9-11-in-gander-newfoundland|jim-defede",
@@ -22248,7 +22778,9 @@
         "twisty",
         "dark",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-council-of-dads-my-daughters-my-illness-and-the-men-who-could-be-me|bruce-feiler",
@@ -22366,7 +22898,9 @@
         "tense",
         "procedural",
         "whodunit"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-guest-list|lucy-foley",
@@ -22443,7 +22977,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "comedy-comedy-comedy-drama|bob-odenkirk",
@@ -22480,7 +23016,9 @@
         "character-study",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "no-one-will-miss-her|kat-rosenfield",
@@ -22558,7 +23096,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "while-justice-sleeps|stacey-abrams",
@@ -22636,7 +23176,9 @@
         "dark",
         "gritty",
         "procedural"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "how-to-watch-basketball-like-a-genius-what-game-designers-economists-ballet-choreographers-and-theoretical-astrophysicists-reveal-about-the-greatest-game-on-earth|nick-greene",
@@ -22753,7 +23295,9 @@
         "character-driven",
         "atmospheric",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "dirt-adventures-in-lyon-as-a-chef-in-training-father-and-sleuth-looking-for-the-secret-of-french-cooking|bill-buford",
@@ -22828,7 +23372,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-judge-s-list|john-grisham",
@@ -23030,7 +23576,9 @@
         "slow-burn",
         "dark",
         "disturbing"
-      ]
+      ],
+      "googleRating": 4.5,
+      "googleRatingsCount": 69
     },
     {
       "bookKey": "taste-my-life-through-food|stanley-tucci",
@@ -23065,7 +23613,9 @@
         "conversational",
         "heartwarming",
         "accessible"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "exhalation|ted-chiang",
@@ -23142,7 +23692,9 @@
         "plot-driven",
         "compulsive",
         "procedural"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "a-slow-fire-burning|paula-hawkins",
@@ -23219,7 +23771,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "yearbook|seth-rogen",
@@ -23335,7 +23889,9 @@
         "narrative-driven",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": 3.0,
+      "googleRatingsCount": 3
     },
     {
       "bookKey": "the-wreckage-of-my-presence|casey-wilson",
@@ -23372,7 +23928,9 @@
         "character-study",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "l-a-son-my-life-my-city-my-food|roy-choi",
@@ -23408,7 +23966,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "emotional-intelligence|daniel-goleman",
@@ -23483,7 +24043,9 @@
         "atmospheric",
         "fast-paced",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "cat-mouse|james-patterson",
@@ -23559,7 +24121,9 @@
         "atmospheric",
         "fast-paced",
         "plot-driven"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 2
     },
     {
       "bookKey": "if-you-tell-a-true-story-of-murder-family-secrets-and-the-unbreakable-bond-of-sisterhood|gregg-olsen",
@@ -23596,7 +24160,9 @@
         "dark",
         "immersive-journalism",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "bubbleball-inside-the-nba-s-fight-to-save-a-season|ben-golliver",
@@ -23711,7 +24277,9 @@
         "slow-burn",
         "atmospheric",
         "character-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "sooley|john-grisham",
@@ -23908,7 +24476,9 @@
         "character-driven",
         "atmospheric",
         "heartwarming"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-great-influenza-the-story-of-the-deadliest-pandemic-in-history|john-m-barry",
@@ -23945,7 +24515,9 @@
         "gritty",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "blood-bones-and-butter-the-inadvertent-education-of-a-reluctant-chef|gabrielle-hamilton",
@@ -23982,7 +24554,9 @@
         "conversational",
         "character-study",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-end-of-october|lawrence-wright",
@@ -24183,7 +24757,9 @@
         "narrative-driven",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "built-from-scratch-how-a-couple-of-regular-guys-grew-the-home-depot-from-nothing-to-30-billion|bernie-marcus",
@@ -24219,7 +24795,9 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-code-breaker-jennifer-doudna-gene-editing-and-the-future-of-the-human-race|walter-isaacson",
@@ -24339,7 +24917,9 @@
         "narrative-driven",
         "fast-paced",
         "tense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-best-american-food-writing-2020|j-kenji-l-pez-alt",
@@ -24578,7 +25158,9 @@
         "humorous",
         "accessible",
         "slow-burn"
-      ]
+      ],
+      "googleRating": 3.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "think-again-the-power-of-knowing-what-you-don-t-know|adam-m-grant",
@@ -24614,7 +25196,9 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "invent-and-wander-the-collected-writings-of-jeff-bezos|jeff-bezos",
@@ -24769,7 +25353,9 @@
         "narrative-driven",
         "accessible",
         "investigative"
-      ]
+      ],
+      "googleRating": 4.5,
+      "googleRatingsCount": 2
     },
     {
       "bookKey": "shit-actually-the-definitive-100-objective-guide-to-modern-cinema|lindy-west",
@@ -24883,7 +25469,9 @@
         "accessible",
         "narrative-driven",
         "conversational"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "sam-walton-made-in-america|sam-walton",
@@ -24961,7 +25549,9 @@
         "character-study",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-new-one-painfully-true-stories-from-a-reluctant-dad|mike-birbiglia",
@@ -24998,7 +25588,9 @@
         "character-study",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "talking-to-goats-the-moments-you-remember-and-the-stories-you-never-heard|jim-gray",
@@ -25034,7 +25626,9 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "greenlights|matthew-mcconaughey",
@@ -25151,7 +25745,9 @@
         "accessible",
         "investigative",
         "revelatory"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "football-for-a-buck-the-crazy-rise-and-crazier-demise-of-the-usfl|jeff-pearlman",
@@ -25187,7 +25783,9 @@
         "humorous",
         "conversational",
         "accessible"
-      ]
+      ],
+      "googleRating": 1.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "the-cost-of-these-dreams-sports-stories-and-other-serious-business|wright-thompson",
@@ -25303,7 +25901,9 @@
         "narrative-driven",
         "accessible",
         "conversational"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "god-level-knowledge-darts-life-lessons-from-the-bronx|desus",
@@ -25340,7 +25940,9 @@
         "character-study",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "george-lucas-a-life|brian-jay-jones",
@@ -25376,7 +25978,9 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "where-men-win-glory-the-odyssey-of-pat-tillman|jon-krakauer",
@@ -25413,7 +26017,9 @@
         "dark",
         "investigative",
         "disturbing"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-answer-is-reflections-on-my-life|alex-trebek",
@@ -25449,7 +26055,9 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-enigma-cube|douglas-e-richards",
@@ -25485,7 +26093,9 @@
         "fast-paced",
         "tense",
         "plot-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "run|blake-crouch",
@@ -25889,7 +26499,9 @@
         "conversational",
         "accessible",
         "narrative-driven"
-      ]
+      ],
+      "googleRating": 4.0,
+      "googleRatingsCount": 9
     },
     {
       "bookKey": "the-visible-man|chuck-klosterman",
@@ -25927,7 +26539,9 @@
         "conversational",
         "accessible",
         "slow-burn"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "downtown-owl|chuck-klosterman",
@@ -25964,7 +26578,9 @@
         "conversational",
         "accessible",
         "character-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "fargo-rock-city-a-heavy-metal-odyssey-in-rural-north-dakota|chuck-klosterman",
@@ -26002,7 +26618,9 @@
         "conversational",
         "accessible",
         "character-study"
-      ]
+      ],
+      "googleRating": 4.5,
+      "googleRatingsCount": 3
     },
     {
       "bookKey": "yes-chef|marcus-samuelsson",
@@ -26079,7 +26697,9 @@
         "narrative-driven",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "hidden-valley-road-inside-the-mind-of-an-american-family|robert-kolker",
@@ -26115,7 +26735,9 @@
         "narrative-driven",
         "accessible",
         "dense"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "player-piano|kurt-vonnegut-jr",
@@ -26152,7 +26774,9 @@
         "slow-burn",
         "dark",
         "character-driven"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "betaball-how-silicon-valley-and-science-built-one-of-the-greatest-basketball-teams-in-history|erik-malinowski",
@@ -26229,7 +26853,9 @@
         "tense",
         "character-driven",
         "fast-paced"
-      ]
+      ],
+      "googleRating": null,
+      "googleRatingsCount": null
     },
     {
       "bookKey": "the-holdout|graham-moore",
@@ -26307,7 +26933,9 @@
         "atmospheric",
         "procedural",
         "whodunit"
-      ]
+      ],
+      "googleRating": 5.0,
+      "googleRatingsCount": 1
     },
     {
       "bookKey": "camino-winds|john-grisham",
