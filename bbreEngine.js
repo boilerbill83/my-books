@@ -398,13 +398,22 @@ function dnfPenalty(book, dnfSignal) {
 }
 
 // ── 4. Community popularity signal ────────────────────────────────────────
-// Goodreads avgRating weighted by ratingsCount on a log scale.
+// Prefers freshly-scraped StoryGraph data; falls back to Amazon then Goodreads.
 // Popular books (>500k ratings) get full weight; obscure books (<1k) get
 // near-zero weight, so an unknown book's 4.8★ average doesn't sway the score.
 
 function communitySignal(book) {
-  const avg = Number(book.avgRating)  || 0;
-  const cnt = Number(book.ratingsCount) || 0;
+  let avg, cnt;
+  if (book.storyGraphRating) {
+    avg = Number(book.storyGraphRating);
+    cnt = Number(book.storyGraphRatingCount) || 0;
+  } else if (book.amazonRating) {
+    avg = Number(book.amazonRating);
+    cnt = Number(book.amazonRatingCount) || 0;
+  } else {
+    avg = Number(book.avgRating)    || 0;
+    cnt = Number(book.ratingsCount) || 0;
+  }
   if (!avg || !cnt) return 0;
 
   // Log-scale popularity weight: 0 below 1k ratings, 1 at 500k+
@@ -531,8 +540,8 @@ export function rankBBRE(goodreads, feedback, candidatePool, history) {
       b._recencyAdj < -0.005 && { label: `author trending down in recent reads`,       pts: Math.round(b._recencyAdj * 100) },
       b._toneAdj > 0.005      && { label: `matches your preferred reading styles`,      pts: Math.round(b._toneAdj * 100) },
       b._toneAdj < -0.005     && { label: `style or mood outside your comfort zone`,    pts: Math.round(b._toneAdj * 100) },
-      b._communityAdj > 0.005 && { label: `highly rated across ${(b.ratingsCount||0).toLocaleString()} community ratings`, pts: Math.round(b._communityAdj * 100) },
-      b._communityAdj < -0.005 && { label: `lower community rating across ${(b.ratingsCount||0).toLocaleString()} ratings`, pts: Math.round(b._communityAdj * 100) },
+      b._communityAdj > 0.005  && { label: `highly rated — ${b.storyGraphRating ? 'StoryGraph' : b.amazonRating ? 'Amazon' : 'Goodreads'} community`, pts: Math.round(b._communityAdj * 100) },
+      b._communityAdj < -0.005 && { label: `lower ${b.storyGraphRating ? 'StoryGraph' : b.amazonRating ? 'Amazon' : 'Goodreads'} community rating`, pts: Math.round(b._communityAdj * 100) },
       b._dnfPen > 0.005       && { label: `theme or author overlap with low-rated/DNF books`, pts: -Math.round(b._dnfPen * 100) },
       b._diversityPen > 0.005 && { label: `variety discount`, pts: -Math.round(b._diversityPen * 100) || -1 },
     ].filter(Boolean);

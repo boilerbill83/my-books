@@ -680,6 +680,25 @@ function renderRecommendations() {
   });
 }
 
+// ── Scraped-ratings merge ──────────────────────────────────────────────────
+
+function scrapedKey(book) {
+  let title = String(book.title || '').replace(/\s*[:({\[].*/, '').trim().toLowerCase();
+  title = title.replace(/\s*\(.*?\)\s*$/, '').trim();
+  const author = String(book.author || '').split(',')[0].trim().toLowerCase();
+  return `${title}|||${author}`;
+}
+
+function mergeScraped(book, scraped) {
+  const entry = scraped[scrapedKey(book)];
+  if (!entry || entry.source === 'not_found') return book;
+  const sg  = entry.storyGraph;
+  const amz = entry.amazon;
+  if (sg)  return { ...book, storyGraphRating: sg.rating, storyGraphRatingCount: sg.count, storyGraphMoods: sg.moods, storyGraphPace: sg.pace };
+  if (amz) return { ...book, amazonRating: amz.rating, amazonRatingCount: amz.count };
+  return book;
+}
+
 // ── Data & Recompute ───────────────────────────────────────────────────────
 
 function recompute() {
@@ -735,13 +754,21 @@ function recompute() {
 
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [goodreads, feedback, history, candIndex] = await Promise.all([
+  const [goodreads, feedback, history, candIndex, scraped] = await Promise.all([
     get('./data/goodreadsData.json'),
     get('./data/feedbackData.json'),
     get('./data/recommendationHistory.json'),
-    get('./data/candidateIndex.json').catch(() => ['candidatePool.json'])
+    get('./data/candidateIndex.json').catch(() => ['candidatePool.json']),
+    get('./data/scrapedRatings.json').catch(() => ({}))
   ]);
-  state.goodreads = goodreads;
+
+  // Merge scraped ratings into to-read books
+  state.goodreads = {
+    ...goodreads,
+    books: (goodreads.books || []).map(b =>
+      b.shelf === 'to-read' ? mergeScraped(b, scraped) : b
+    )
+  };
   state.feedback  = feedback;
   state.history   = history;
 
@@ -749,7 +776,7 @@ async function load() {
   const arrays = await Promise.all(
     files.map(f => get(`./data/${f}`).then(d => d.candidates || []).catch(() => []))
   );
-  state.candidates = arrays.flat();
+  state.candidates = arrays.flat().map(b => mergeScraped(b, scraped));
 }
 
 // ── Dismiss (local-only) ───────────────────────────────────────────────────
