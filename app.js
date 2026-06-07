@@ -353,8 +353,7 @@ function renderCurrentlyReading(books) {
           <div class="cr-author">by ${esc(book.author)}</div>
           ${meta.length ? `<div class="cr-meta">${meta.join(' &nbsp;·&nbsp; ')}</div>` : ''}
           <div class="cr-scores">
-            <span class="score-pill" title="BBRE score: Bayesian taste model (65%) + citation network (35%) + author diversity">BBRE ${book.matchScore}</span>
-            <span class="score-pill" title="Prediction confidence">Conf ${book.confidenceScore}</span>
+            <span class="score-pill" title="BBRE score: Bayesian taste model + citation network + diversity re-ranking">BBRE ${book.matchScore}</span>
           </div>
           <p class="cr-reason">${book.reason}</p>
           ${breakdownHtml(book.breakdown)}
@@ -651,8 +650,7 @@ function renderRecommendations() {
           ${toneRow}
           ${simRow}
           <div class="score-row">
-            <span class="score-pill" title="BBRE score: Bayesian taste model (65%) + citation network (35%) + author diversity">BBRE ${book.matchScore}</span>
-            <span class="score-pill" title="Prediction confidence">Conf ${book.confidenceScore}</span>
+            <span class="score-pill" title="BBRE score: Bayesian taste model + citation network + diversity re-ranking">BBRE ${book.matchScore}</span>
           </div>
           <p class="card-reason">${book.reason}</p>
           ${breakdownHtml(book.breakdown)}
