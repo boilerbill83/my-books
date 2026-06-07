@@ -1,28 +1,36 @@
 /**
- * bbreEngine.js  —  Bills Books Recommendation Engine (BBRE)
+ * bbreEngine.js  —  Bills Books Recommendation Engine (BBRE) v3
  *
  * Combines two engines to leverage each one's strengths:
  *
  *   rateEngine.js  — Bayesian shrinkage model trained on all 1–5★ ratings.
- *                    LOO MAE 0.763 vs baseline 0.820; LOO Spearman 0.462.
+ *                    LOO MAE 0.763 vs baseline 0.820; standalone LOO Spearman 0.462.
  *                    Weakness: clusters on dominant authors.
  *
  *   engine.js      — Rule-based 5★ citation network.
  *                    Broad author/theme coverage, human-readable reasons.
  *                    Weakness: score ceiling (34 books all score 100), 5★-only data.
  *
- * BBRE algorithm:
- *   1. Compute raw scores from both models.
- *   2. Normalize within each genre (fiction / nonfiction) separately so each
- *      genre's best book competes at score 1.0 — prevents the fiction-skewed
- *      5★ citation network from systematically burying nonfiction.
- *   3. Combine: 40% Bayesian + 60% citation network (LOO-tuned optimum).
- *   4. Greedy author-diversity re-ranking (MMR-style) to break author clusters.
- *   5. Return same shape as rankRecommendations() so app.js needs no changes.
+ * BBRE v3 algorithm:
+ *   1. Run both models and attach predictions to each eligible candidate.
+ *   2. Normalise within genre (fiction / nonfiction) so each genre's top book
+ *      competes at score 1.0.  Prevents the fiction-skewed 5★ network from
+ *      burying nonfiction.
+ *   3. Confidence-adaptive combination: at conf=1 the tuned 40/60 split applies;
+ *      at lower confidence the engine.js signal absorbs the slack.
+ *   4. Apply four additive signal adjustments:
+ *        a. Series continuity — boost/penalise sequels based on earlier-book ratings.
+ *        b. Temporal recency  — small bias toward authors trending up in last 2 years.
+ *        c. DNF lift penalty  — themes statistically over-represented in did-not-finish
+ *           books (lift > 2×) receive a mild penalty.
+ *        d. (Confidence-adaptive handled in step 3.)
+ *   5. Greedy author-diversity re-ranking (MMR-style) to break author clusters.
+ *   6. Return same shape as rankRecommendations() so app.js needs no changes.
  *
- * Tuning history (LOO Spearman):
- *   BAYES=0.65 (original)  → 0.627
- *   BAYES=0.40 (current)   → 0.656  (+0.029)
+ * Tuning history (full-pool LOO Spearman from grid search):
+ *   v1: BAYES=0.65, global norm, no adjustments          → 0.627
+ *   v2: BAYES=0.40, within-genre norm                    → 0.656  (+0.029)
+ *   v3: conf-adaptive + series + recency + DNF lift      → see eval below
  *
  * Exports:
  *   rankBBRE(goodreads, feedback, candidatePool, history) → { selected, profile, eligibleCount }
@@ -31,19 +39,25 @@
 import { buildTasteModel, predictRating } from './rateEngine.js';
 import { rankRecommendations }            from './engine.js';
 
-// ── Tuning knobs ───────────────────────────────────────────────────────────
+// ── Tuning constants ───────────────────────────────────────────────────────
 
-// LOO-optimised at BAYES=0.40; engine.js citation signal is more discriminating
-// for this user's catalogue (Spearman 0.634 vs rateEngine 0.462 standalone).
-const BAYES_WEIGHT  = 0.40;
-const ENGINE_WEIGHT = 0.60;
+// Base Bayes weight at full confidence (conf=1.0).  Engine absorbs the rest.
+// LOO-tuned optimum: 0.40 (engine.js citation signal is more discriminating).
+const BAYES_WEIGHT = 0.40;
 
-// Diversity penalty for the Nth book by the same author already ranked above.
-// count=0 (first book): no penalty; count=1 (second): -0.10; etc.
+// Author-diversity MMR penalty per additional same-author book already ranked.
 const DIVERSITY_PENALTY = [0, 0.10, 0.18, 0.25, 0.30];
 
-// Genre tags used to split the normalisation pool so fiction and nonfiction
-// compete on equal footing despite the fiction-skewed 5★ citation network.
+// How many calendar years to look back for the "recent taste" recency window.
+const RECENCY_WINDOW_YEARS = 2;
+
+// DNF theme lift threshold.  Themes appearing at 2× or more the rate in DNF
+// books vs overall reads are treated as mild negative signals.
+const DNF_LIFT_THRESHOLD = 2.0;
+const DNF_THEME_MIN_RATE = 0.08;   // theme must appear in ≥8% of DNFs to count
+
+// ── Genre helpers ──────────────────────────────────────────────────────────
+
 const NF_THEMES = new Set([
   'narrative nonfiction','memoir','biography','true crime','history','military',
   'tech history','business','finance','sports','food','psychology','political',
@@ -54,8 +68,6 @@ const FIC_THEMES = new Set([
   'speculative','crime','suspense','domestic suspense','psychological',
   'historical fiction','ya','adventure','high-concept','noir','legal','courtroom',
 ]);
-
-const normAuthorKey = a => String(a || '').replace(/\s+/g, ' ').trim().toLowerCase();
 
 function inferGenre(themes) {
   let nf = 0, f = 0;
@@ -69,93 +81,256 @@ function inferGenre(themes) {
   return 'unknown';
 }
 
-// Normalise a field to [0,1] within an array of books; returns new objects.
-function normaliseField(books, field, outField) {
+// ── Normalisation ──────────────────────────────────────────────────────────
+
+function normaliseField(books, srcField, dstField) {
   if (books.length === 0) return books;
-  const vals = books.map(b => b[field]);
+  const vals = books.map(b => b[srcField]);
   const min  = Math.min(...vals), max = Math.max(...vals);
-  const range = max - min || 1;
-  return books.map(b => ({ ...b, [outField]: (b[field] - min) / range }));
+  const rng  = max - min || 1;
+  return books.map(b => ({ ...b, [dstField]: (b[srcField] - min) / rng }));
+}
+
+// ── Shared key helper ──────────────────────────────────────────────────────
+
+const normA = a => String(a || '').replace(/\s+/g, ' ').trim().toLowerCase();
+
+// ── 1. Series continuity ───────────────────────────────────────────────────
+// Parse "(Series Name, #N)" from Goodreads-style titles.
+
+function parseSeries(title) {
+  const m = String(title || '').match(/\(([^,#)]+),?\s*#(\d+)\)/);
+  return m ? { name: m[1].trim().toLowerCase(), num: parseInt(m[2], 10) } : null;
+}
+
+function buildSeriesMap(readBooks) {
+  // seriesKey → { ratings[], mean }
+  const map = new Map();
+  for (const b of readBooks) {
+    const s = parseSeries(b.title);
+    if (!s) continue;
+    if (!map.has(s.name)) map.set(s.name, { ratings: [] });
+    // DNF books contribute rating=2 (same as their stored myRating)
+    if (b.myRating > 0) map.get(s.name).ratings.push(b.myRating);
+  }
+  for (const e of map.values()) {
+    e.mean = e.ratings.length
+      ? e.ratings.reduce((s, v) => s + v, 0) / e.ratings.length
+      : null;
+  }
+  return map;
+}
+
+// Returns a score delta in roughly [-0.08, +0.07] applied before diversity.
+function seriesSignal(book, seriesMap) {
+  const s = parseSeries(book.title);
+  if (!s || s.num <= 1) return 0;       // only applies to book 2, 3, 4, …
+  const entry = seriesMap.get(s.name);
+  if (!entry || entry.mean === null) return 0;
+  // Deviation from neutral 3.5★; scale so ±1.5★ → ±0.075
+  return (entry.mean - 3.5) * 0.05;
+}
+
+// ── 2. Temporal recency ────────────────────────────────────────────────────
+// Small bias toward authors whose recent reads (last 2 years) are trending
+// above or below their all-time average.
+
+function buildTemporalMaps(readBooks) {
+  const cutoffMs = Date.now() - RECENCY_WINDOW_YEARS * 365.25 * 24 * 3600 * 1000;
+  const recent   = new Map();  // normAuthor → { sum, count }
+  const allTime  = new Map();
+
+  for (const b of readBooks) {
+    if (b.dnf || !b.myRating) continue;
+    const ak = normA(b.author);
+
+    // All-time
+    if (!allTime.has(ak)) allTime.set(ak, { sum: 0, count: 0 });
+    const at = allTime.get(ak);
+    at.sum += b.myRating; at.count++;
+
+    // Recent
+    if (b.dateRead && new Date(b.dateRead).getTime() >= cutoffMs) {
+      if (!recent.has(ak)) recent.set(ak, { sum: 0, count: 0 });
+      const rc = recent.get(ak);
+      rc.sum += b.myRating; rc.count++;
+    }
+  }
+
+  for (const e of allTime.values()) e.mean = e.sum / e.count;
+  for (const e of recent.values())  e.mean = e.sum / e.count;
+  return { recent, allTime };
+}
+
+// Returns a score delta in roughly [-0.05, +0.05].
+function recencySignal(book, recent, allTime) {
+  const ak = normA(book.author);
+  const r  = recent.get(ak);
+  const a  = allTime.get(ak);
+  if (!r || !a || r.count < 2) return 0;  // need ≥2 recent reads to detect a trend
+  const drift = r.mean - a.mean;          // positive = trending up
+  return drift * 0.025;
+}
+
+// ── 3. DNF lift penalty ───────────────────────────────────────────────────
+// Penalise themes that are statistically over-represented in DNF books
+// relative to the user's overall reading (lift = dnf_rate / all_read_rate).
+// Does NOT penalise themes the user simply reads a lot of — only themes
+// specifically associated with abandonment.
+
+function buildDnfSignal(readBooks) {
+  const dnfBooks    = readBooks.filter(b => b.dnf);
+  const totalReads  = readBooks.length;
+  const totalDnf    = dnfBooks.length;
+  if (totalDnf === 0) return { dnfThemeLift: new Map(), dnfOnlyAuthors: new Set() };
+
+  // Theme counts across all reads and DNF-only
+  const allThemeCnt = new Map();
+  const dnfThemeCnt = new Map();
+  for (const b of readBooks) {
+    for (const t of (b.themes || [])) {
+      allThemeCnt.set(t, (allThemeCnt.get(t) || 0) + 1);
+      if (b.dnf) dnfThemeCnt.set(t, (dnfThemeCnt.get(t) || 0) + 1);
+    }
+  }
+
+  // Compute lift per theme
+  const dnfThemeLift = new Map();
+  for (const [t, dnfCnt] of dnfThemeCnt) {
+    const dnfRate  = dnfCnt / totalDnf;
+    const allRate  = (allThemeCnt.get(t) || 0) / totalReads;
+    if (allRate === 0 || dnfRate < DNF_THEME_MIN_RATE) continue;
+    const lift = dnfRate / allRate;
+    if (lift >= DNF_LIFT_THRESHOLD) dnfThemeLift.set(t, lift);
+  }
+
+  // Authors who appear only in DNF (zero completed reads) with 2+ DNFs
+  const ratedAuthorSet = new Set(
+    readBooks.filter(b => !b.dnf && b.myRating > 0).map(b => normA(b.author))
+  );
+  const dnfAuthorCnt = new Map();
+  for (const b of dnfBooks) dnfAuthorCnt.set(normA(b.author), (dnfAuthorCnt.get(normA(b.author)) || 0) + 1);
+  const dnfOnlyAuthors = new Set(
+    [...dnfAuthorCnt.entries()]
+      .filter(([ak, cnt]) => cnt >= 2 && !ratedAuthorSet.has(ak))
+      .map(([ak]) => ak)
+  );
+
+  return { dnfThemeLift, dnfOnlyAuthors };
+}
+
+// Returns a non-negative penalty in [0, 0.12].
+function dnfPenalty(book, dnfSignal) {
+  const { dnfThemeLift, dnfOnlyAuthors } = dnfSignal;
+  let pen = 0;
+  if (dnfOnlyAuthors.has(normA(book.author))) pen += 0.08;
+  for (const t of (book.themes || [])) {
+    if (dnfThemeLift.has(t)) pen += 0.015;
+  }
+  return Math.min(pen, 0.12);
+}
+
+// ── 4. Confidence-adaptive combination ────────────────────────────────────
+// At full confidence (conf=1): tuned 40/60 Bayes/Engine split.
+// At lower confidence: engine.js signal absorbs the slack so cold-start
+// books aren't pulled down by a weak Bayesian prior.
+
+function adaptiveCombine(normBayes, normEngine, conf) {
+  const bw = BAYES_WEIGHT * conf;         // 0 at conf=0, 0.40 at conf=1
+  return bw * normBayes + (1 - bw) * normEngine;
 }
 
 // ── Main export ────────────────────────────────────────────────────────────
 
 export function rankBBRE(goodreads, feedback, candidatePool, history) {
 
-  // ── 1. Bayesian model ────────────────────────────────────────────────────
-  const model = buildTasteModel(goodreads, candidatePool);
-
-  // ── 2. Engine.js (handles exclusion filtering & supplies profile) ────────
+  // ── Step 1: run both models ──────────────────────────────────────────────
+  const model        = buildTasteModel(goodreads, candidatePool);
   const engineResult = rankRecommendations(goodreads, feedback, candidatePool, history);
 
   if (engineResult.selected.length === 0) {
     return { selected: [], profile: engineResult.profile, eligibleCount: 0 };
   }
 
-  // Attach rateEngine predictions to each eligible book
+  const allReadBooks = (goodreads.books || []).filter(b => b.shelf === 'read');
+
+  // ── Step 2: pre-build all signal maps ───────────────────────────────────
+  const seriesMap          = buildSeriesMap(allReadBooks);
+  const { recent, allTime } = buildTemporalMaps(allReadBooks);
+  const dnfSig             = buildDnfSignal(allReadBooks);
+
+  // ── Step 3: attach rateEngine predictions ───────────────────────────────
   const withPred = engineResult.selected.map(eb => {
     const rr = predictRating(eb, model);
     return { ...eb, _pred: rr.predicted, _conf: rr.confidence, _bayesBD: rr.breakdown };
   });
 
-  // ── 3. Within-genre normalisation ───────────────────────────────────────
-  // Split into fiction / nonfiction / unknown, normalise each group
-  // independently, then re-merge.  Prevents the fiction-heavy 5★ network
-  // from compressing all nonfiction scores to the bottom of the range.
+  // ── Step 4: within-genre normalisation ──────────────────────────────────
   const groups = { fiction: [], nonfiction: [], unknown: [] };
   for (const b of withPred) groups[inferGenre(b.themes)].push(b);
 
   const normalised = Object.values(groups).flatMap(grp => {
-    let g = normaliseField(grp,  '_pred',     '_normBayes');
-    g     = normaliseField(g,    'matchScore','_normEngine');
-    return g.map(b => ({ ...b, _combined: BAYES_WEIGHT * b._normBayes + ENGINE_WEIGHT * b._normEngine }));
+    let g = normaliseField(grp, '_pred',      '_normBayes');
+    g     = normaliseField(g,   'matchScore', '_normEngine');
+    return g;
   });
 
-  normalised.sort((a, b) => b._combined - a._combined);
+  // ── Step 5: combine with adjustments ────────────────────────────────────
+  const withScores = normalised.map(b => {
+    const base      = adaptiveCombine(b._normBayes, b._normEngine, b._conf);
+    const seriesAdj = seriesSignal(b, seriesMap);
+    const recencyAdj = recencySignal(b, recent, allTime);
+    const dnfPen    = dnfPenalty(b, dnfSig);
+    const combined  = Math.max(0, base + seriesAdj + recencyAdj - dnfPen);
+    return { ...b, _combined: combined, _base: base, _seriesAdj: seriesAdj, _recencyAdj: recencyAdj, _dnfPen: dnfPen };
+  });
 
-  // ── 4. Greedy author-diversity re-ranking ────────────────────────────────
-  const pool       = [...normalised];
+  withScores.sort((a, b) => b._combined - a._combined);
+
+  // ── Step 6: greedy author-diversity re-ranking ───────────────────────────
+  const pool       = [...withScores];
   const authorSeen = new Map();
   const reranked   = [];
 
   while (pool.length > 0) {
     let bestIdx = 0, bestScore = -Infinity;
     for (let i = 0; i < pool.length; i++) {
-      const b     = pool[i];
-      const count = authorSeen.get(normAuthorKey(b.author)) || 0;
-      const pen   = DIVERSITY_PENALTY[Math.min(count, DIVERSITY_PENALTY.length - 1)];
-      const s     = b._combined - pen;
+      const b   = pool[i];
+      const cnt = authorSeen.get(normA(b.author)) || 0;
+      const pen = DIVERSITY_PENALTY[Math.min(cnt, DIVERSITY_PENALTY.length - 1)];
+      const s   = b._combined - pen;
       if (s > bestScore) { bestScore = s; bestIdx = i; }
     }
     const sel = pool.splice(bestIdx, 1)[0];
-    const ak  = normAuthorKey(sel.author);
+    const ak  = normA(sel.author);
     const prev = authorSeen.get(ak) || 0;
     authorSeen.set(ak, prev + 1);
     reranked.push({ ...sel, _bbreScore: bestScore, _authorSlot: prev + 1 });
   }
 
-  // ── 5. Shape output ──────────────────────────────────────────────────────
+  // ── Step 7: shape output ─────────────────────────────────────────────────
   const selected = reranked.map((b, i) => {
     const matchScore = Math.max(1, Math.round(b._bbreScore * 100));
-    const bayesPts   = Math.round(b._normBayes  * BAYES_WEIGHT  * 100);
-    const engPts     = Math.round(b._normEngine * ENGINE_WEIGHT * 100);
 
-    // Bayesian signals: distribute bayesPts proportionally across rateEngine signals.
-    // Show them in detail; do NOT repeat engine.js's individual breakdown entries
-    // because both engines draw from the same similarToAuthors edges (duplicates).
-    const bayesSignals = _distPts(b._bayesBD, bayesPts);
+    // Bayesian component pts: scale by adaptive weight
+    const bayesPts = Math.round(BAYES_WEIGHT * b._conf * b._normBayes * 100);
+    const engPts   = Math.round((1 - BAYES_WEIGHT * b._conf) * b._normEngine * 100);
 
-    // Diversity adjustment
-    const penPts = Math.round((b._combined - b._bbreScore) * -100);
-    const divEntry = b._authorSlot > 1 && penPts > 0
-      ? [{ label: `book ${b._authorSlot} by ${b.author.replace(/\s+/g,' ')} — variety discount`, pts: -penPts }]
-      : [];
+    // Adjustment entries (only show non-zero)
+    const adj = [
+      b._seriesAdj > 0.005  && { label: `series continuity — prior books avg ${((b._seriesAdj / 0.05) + 3.5).toFixed(1)}★`, pts: Math.round(b._seriesAdj * 100) },
+      b._seriesAdj < -0.005 && { label: `series continuity — prior books below expectations`,                                  pts: Math.round(b._seriesAdj * 100) },
+      b._recencyAdj > 0.005  && { label: `author trending up in your recent reads`,   pts: Math.round(b._recencyAdj * 100) },
+      b._recencyAdj < -0.005 && { label: `author trending down in recent reads`,       pts: Math.round(b._recencyAdj * 100) },
+      b._dnfPen > 0.005      && { label: `theme overlap with did-not-finish books`,    pts: -Math.round(b._dnfPen * 100) },
+      b._authorSlot > 1      && { label: `book ${b._authorSlot} by ${b.author.replace(/\s+/g,' ')} — variety discount`, pts: -Math.round((b._combined - b._bbreScore) * 100) || -1 },
+    ].filter(Boolean);
 
     const breakdown = [
       { label: `Taste model: ${b._pred.toFixed(2)}★ predicted (${Math.round(b._conf * 100)}% confident)`, pts: bayesPts },
-      ...bayesSignals,
+      ..._distPts(b._bayesBD, bayesPts),
       { label: `Citation network score ${b.matchScore}`, pts: engPts },
-      ...divEntry,
+      ...adj,
     ].filter(s => s.pts !== 0).sort((a, x) => Math.abs(x.pts) - Math.abs(a.pts));
 
     return {
@@ -170,6 +345,10 @@ export function rankBBRE(goodreads, feedback, candidatePool, history) {
         confidence: b._conf,
         normBayes:  b._normBayes,
         normEngine: b._normEngine,
+        base:       b._base,
+        seriesAdj:  b._seriesAdj,
+        recencyAdj: b._recencyAdj,
+        dnfPen:     b._dnfPen,
         combined:   b._combined,
         bbreScore:  b._bbreScore,
         authorSlot: b._authorSlot,
@@ -182,7 +361,6 @@ export function rankBBRE(goodreads, feedback, candidatePool, history) {
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
-// Distribute totalPts across rateEngine breakdown signals proportionally to weight.
 function _distPts(breakdown, totalPts) {
   if (!breakdown || breakdown.length === 0) return [];
   const totalW = breakdown.reduce((s, x) => s + x.weight, 0);
