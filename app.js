@@ -3,15 +3,16 @@ import { scoreBooks }  from './engine.js';
 import { rankBBRE, inferTones } from './bbreEngine.js';
 
 const state = {
-  goodreads:    null,
-  feedback:     null,
-  history:      null,
-  candidates:   null,
-  ranking:      null,
-  pending:      null,
-  page:         0,
-  activeThemes: new Set(),
-  activeTones:  new Set()
+  goodreads:        null,
+  feedback:         null,
+  history:          null,
+  candidates:       null,
+  currentlyReading: [],
+  ranking:          null,
+  pending:          null,
+  page:             0,
+  activeThemes:     new Set(),
+  activeTones:      new Set()
 };
 
 // DOM refs
@@ -754,12 +755,13 @@ function recompute() {
 
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [goodreads, feedback, history, candIndex, scraped] = await Promise.all([
+  const [goodreads, feedback, history, candIndex, scraped, currentlyReading] = await Promise.all([
     get('./data/goodreadsData.json'),
     get('./data/feedbackData.json'),
     get('./data/recommendationHistory.json'),
     get('./data/candidateIndex.json').catch(() => ['candidatePool.json']),
-    get('./data/scrapedRatings.json').catch(() => ({}))
+    get('./data/scrapedRatings.json').catch(() => ({})),
+    get('./data/currentlyReading.json').catch(() => [])
   ]);
 
   // Merge scraped ratings into to-read books
@@ -769,8 +771,9 @@ async function load() {
       b.shelf === 'to-read' ? mergeScraped(b, scraped) : b
     )
   };
-  state.feedback  = feedback;
-  state.history   = history;
+  state.feedback        = feedback;
+  state.history         = history;
+  state.currentlyReading = Array.isArray(currentlyReading) ? currentlyReading : [];
 
   const files  = Array.isArray(candIndex) ? candIndex : ['candidatePool.json'];
   const arrays = await Promise.all(
@@ -843,7 +846,11 @@ dismissForm.addEventListener('submit', e => {
 async function initialize() {
   setStatus('Loading…', 'loading');
   await load();
-  const crBooks = await fetchCurrentlyReading();
+  // currentlyReading.json is kept fresh by the GitHub Action (every 6 hours).
+  // Fall back to goodreadsData.json if the file is empty.
+  const crBooks = state.currentlyReading.length > 0
+    ? state.currentlyReading
+    : (state.goodreads.books || []).filter(b => b.shelf === 'currently-reading');
   recompute();
   renderCurrentlyReading(crBooks);
   const readCount = state.goodreads.meta?.readCount || 0;
