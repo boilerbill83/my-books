@@ -33,6 +33,7 @@
  *   v3: conf-adaptive + series + recency + DNF lift               → 0.656  (structural)
  *   v4: + low-rated author penalty + sub-genre theme MMR          → 0.656  (structural)
  *   v5: + tone preference signal + tone DNF lift + tone MMR layer → see eval below
+ *   v5.1: + community signal (ratingsCount × avgRating + optional googleRating)
  *
  * Exports:
  *   rankBBRE(goodreads, feedback, candidatePool, history) → { selected, profile, eligibleCount }
@@ -63,6 +64,15 @@ const RECENCY_WINDOW_YEARS = 2;
 // books vs overall reads are treated as mild negative signals.
 const DNF_LIFT_THRESHOLD = 2.0;
 const DNF_THEME_MIN_RATE = 0.08;   // theme must appear in ≥8% of DNFs to count
+
+// Community signal tuning.
+// Goodreads average sits around 3.7–3.9 across all books.  We treat 3.75 as
+// the neutral midpoint.  Log-scale popularity weight ensures low-sample-count
+// ratings don't sway the engine.
+const COMMUNITY_NEUTRAL  = 3.75;
+const COMMUNITY_MAX_LIFT = 0.04;   // max ±4 pts on the final score
+const COMMUNITY_POP_MIN  = Math.log10(1_000);    // 1k ratings → weight 0
+const COMMUNITY_POP_MAX  = Math.log10(500_000);  // 500k ratings → weight 1
 
 // ── Genre helpers ──────────────────────────────────────────────────────────
 
@@ -387,7 +397,30 @@ function dnfPenalty(book, dnfSignal) {
   return Math.min(pen, 0.12);
 }
 
-// ── 4. Confidence-adaptive combination ────────────────────────────────────
+// ── 4. Community popularity signal ────────────────────────────────────────
+// Uses Goodreads avgRating + ratingsCount and, when available, a Google Books
+// rating (googleRating field set by the async browser enrichment).
+// High ratingsCount = more trustworthy community signal, so the rating
+// deviation is weighted by log-scale popularity.  Max effect ±COMMUNITY_MAX_LIFT.
+
+function communitySignal(book) {
+  const grAvg = Number(book.avgRating)  || 0;
+  const gbAvg = Number(book.googleRating) || 0;
+  const cnt   = Number(book.ratingsCount) || 0;
+  if (!grAvg || !cnt) return 0;
+
+  // Blend Goodreads + Google Books (GR is primary, GB is corroborating)
+  const blended = gbAvg > 0 ? grAvg * 0.65 + gbAvg * 0.35 : grAvg;
+
+  // Log-scale popularity weight: 0 below 1k ratings, 1 at 500k+
+  const logCnt    = Math.log10(Math.max(cnt, 1));
+  const popWeight = Math.max(0, Math.min(1, (logCnt - COMMUNITY_POP_MIN) / (COMMUNITY_POP_MAX - COMMUNITY_POP_MIN)));
+
+  const signal = (blended - COMMUNITY_NEUTRAL) * 0.06 * popWeight;
+  return Math.max(-COMMUNITY_MAX_LIFT, Math.min(COMMUNITY_MAX_LIFT, signal));
+}
+
+// ── 5. Confidence-adaptive combination ────────────────────────────────────
 // At full confidence (conf=1): tuned 40/60 Bayes/Engine split.
 // At lower confidence: engine.js signal absorbs the slack so cold-start
 // books aren't pulled down by a weak Bayesian prior.
@@ -439,13 +472,14 @@ export function rankBBRE(goodreads, feedback, candidatePool, history) {
 
   // ── Step 5: combine with adjustments ────────────────────────────────────
   const withScores = normalised.map(b => {
-    const base       = adaptiveCombine(b._normBayes, b._normEngine, b._conf);
-    const seriesAdj  = seriesSignal(b, seriesMap);
-    const recencyAdj = recencySignal(b, recent, allTime);
-    const toneAdj    = toneSignal(b, toneProfile, globalMean);
-    const dnfPen     = dnfPenalty(b, dnfSig);
-    const combined   = Math.max(0, base + seriesAdj + recencyAdj + toneAdj - dnfPen);
-    return { ...b, _combined: combined, _base: base, _seriesAdj: seriesAdj, _recencyAdj: recencyAdj, _toneAdj: toneAdj, _dnfPen: dnfPen };
+    const base        = adaptiveCombine(b._normBayes, b._normEngine, b._conf);
+    const seriesAdj   = seriesSignal(b, seriesMap);
+    const recencyAdj  = recencySignal(b, recent, allTime);
+    const toneAdj     = toneSignal(b, toneProfile, globalMean);
+    const communityAdj = communitySignal(b);
+    const dnfPen      = dnfPenalty(b, dnfSig);
+    const combined    = Math.max(0, base + seriesAdj + recencyAdj + toneAdj + communityAdj - dnfPen);
+    return { ...b, _combined: combined, _base: base, _seriesAdj: seriesAdj, _recencyAdj: recencyAdj, _toneAdj: toneAdj, _communityAdj: communityAdj, _dnfPen: dnfPen };
   });
 
   withScores.sort((a, b) => b._combined - a._combined);
@@ -488,7 +522,7 @@ export function rankBBRE(goodreads, feedback, candidatePool, history) {
 
   // ── Step 7: shape output ─────────────────────────────────────────────────
   const selected = reranked.map((b, i) => {
-    const matchScore = Math.max(1, Math.round(b._bbreScore * 100));
+    const matchScore = Math.max(1, Math.min(100, Math.round(b._bbreScore * 100)));
 
     // Bayesian component pts: scale by adaptive weight
     const bayesPts = Math.round(BAYES_WEIGHT * b._conf * b._normBayes * 100);
@@ -500,9 +534,11 @@ export function rankBBRE(goodreads, feedback, candidatePool, history) {
       b._seriesAdj < -0.005  && { label: `series continuity — prior books below expectations`,                                  pts: Math.round(b._seriesAdj * 100) },
       b._recencyAdj > 0.005  && { label: `author trending up in your recent reads`,   pts: Math.round(b._recencyAdj * 100) },
       b._recencyAdj < -0.005 && { label: `author trending down in recent reads`,       pts: Math.round(b._recencyAdj * 100) },
-      b._toneAdj > 0.005     && { label: `matches your preferred reading styles`,      pts: Math.round(b._toneAdj * 100) },
-      b._toneAdj < -0.005    && { label: `style or mood outside your comfort zone`,    pts: Math.round(b._toneAdj * 100) },
-      b._dnfPen > 0.005      && { label: `theme or author overlap with low-rated/DNF books`, pts: -Math.round(b._dnfPen * 100) },
+      b._toneAdj > 0.005      && { label: `matches your preferred reading styles`,      pts: Math.round(b._toneAdj * 100) },
+      b._toneAdj < -0.005     && { label: `style or mood outside your comfort zone`,    pts: Math.round(b._toneAdj * 100) },
+      b._communityAdj > 0.005 && { label: `highly rated across ${(b.ratingsCount||0).toLocaleString()} community ratings`, pts: Math.round(b._communityAdj * 100) },
+      b._communityAdj < -0.005 && { label: `lower community rating across ${(b.ratingsCount||0).toLocaleString()} ratings`, pts: Math.round(b._communityAdj * 100) },
+      b._dnfPen > 0.005       && { label: `theme or author overlap with low-rated/DNF books`, pts: -Math.round(b._dnfPen * 100) },
       b._diversityPen > 0.005 && { label: `variety discount`, pts: -Math.round(b._diversityPen * 100) || -1 },
     ].filter(Boolean);
 
@@ -529,6 +565,7 @@ export function rankBBRE(goodreads, feedback, candidatePool, history) {
         seriesAdj:    b._seriesAdj,
         recencyAdj:   b._recencyAdj,
         toneAdj:      b._toneAdj,
+        communityAdj: b._communityAdj,
         dnfPen:       b._dnfPen,
         diversityPen: b._diversityPen,
         combined:     b._combined,

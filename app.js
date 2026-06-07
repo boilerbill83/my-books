@@ -213,6 +213,75 @@ function attachCoverFallbacks() {
   });
 }
 
+// ── Google Books rating lookup ─────────────────────────────────────────────
+// Fetches averageRating + ratingsCount from Google Books API asynchronously.
+// Results are cached in memory and persisted to localStorage so the API is
+// only hit once per book across sessions.
+
+const GB_CACHE_KEY = 'gbRatings_v1';
+const gbCache = (() => {
+  try { return new Map(Object.entries(JSON.parse(localStorage.getItem(GB_CACHE_KEY) || '{}'))) }
+  catch { return new Map(); }
+})();
+
+function saveGbCache() {
+  try { localStorage.setItem(GB_CACHE_KEY, JSON.stringify(Object.fromEntries(gbCache))); }
+  catch { /* storage full — silent */ }
+}
+
+async function fetchGoogleRating(bookKey, title, author) {
+  if (gbCache.has(bookKey)) return gbCache.get(bookKey);
+  try {
+    const bare = title.replace(/\s*\([^)]*\)\s*$/, '').replace(/\s*:.*$/, '').trim();
+    const q    = encodeURIComponent(`intitle:${bare} inauthor:${author}`);
+    const res  = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${q}&maxResults=1&printType=books`,
+      { signal: AbortSignal.timeout(6000) }
+    );
+    if (!res.ok) throw new Error(res.statusText);
+    const data = await res.json();
+    const vi   = data.items?.[0]?.volumeInfo;
+    const result = vi?.averageRating
+      ? { rating: vi.averageRating, count: vi.ratingsCount || 0 }
+      : null;
+    gbCache.set(bookKey, result);
+    saveGbCache();
+    return result;
+  } catch {
+    gbCache.set(bookKey, null);
+    return null;
+  }
+}
+
+// Enrich rendered cards with Google Books ratings after the DOM is ready.
+// Staggers requests 300ms apart to stay well within API rate limits.
+async function enhanceWithGoogleRatings(books) {
+  for (let i = 0; i < books.length; i++) {
+    const book = books[i];
+    const key  = book.bookKey || book.title;
+    // Skip if already cached (instant) or no key
+    const cached = gbCache.get(key);
+    if (cached !== undefined) {
+      if (cached) _applyGbRating(key, cached);
+      continue;
+    }
+    // Stagger uncached fetches 300ms apart
+    if (i > 0) await new Promise(r => setTimeout(r, 300));
+    const result = await fetchGoogleRating(key, book.title, book.author);
+    if (result) _applyGbRating(key, result);
+  }
+}
+
+function _applyGbRating(bookKey, { rating, count }) {
+  const el = document.querySelector(`[data-bookkey-gb="${CSS.escape(bookKey)}"]`);
+  if (!el) return;
+  const stars = '★'.repeat(Math.round(rating)) + '☆'.repeat(5 - Math.round(rating));
+  el.innerHTML =
+    `<span class="chip-stars gb-stars">${stars}</span> ${rating.toFixed(1)}`
+    + (count > 0 ? ` <span class="gb-count">(${count >= 1000 ? (count/1000).toFixed(0)+'k' : count} Google)</span>` : '');
+  el.hidden = false;
+}
+
 // ── Open Library cover lookup ──────────────────────────────────────────────
 
 const coverCache = new Map();
@@ -610,12 +679,23 @@ function renderRecommendations() {
     if (book.year) meta.push(`<span class="meta-chip">📅 ${book.year}</span>`);
     if (book.pages) meta.push(`<span class="meta-chip">📄 ${book.pages} pp</span>`);
     if (Number(book.avgRating) > 0) {
-      const n    = Number(book.avgRating);
-      const full = Math.round(n);
+      const n     = Number(book.avgRating);
+      const full  = Math.round(n);
       const stars = '★'.repeat(Math.min(full, 5)) + '☆'.repeat(Math.max(0, 5 - full));
-      meta.push(`<span class="meta-chip"><span class="chip-stars">${stars}</span> ${n.toFixed(1)}</span>`);
+      const cnt   = Number(book.ratingsCount) || 0;
+      const cntStr = cnt >= 1_000_000 ? `${(cnt/1_000_000).toFixed(1)}M`
+                   : cnt >= 1_000     ? `${Math.round(cnt/1_000)}k`
+                   : cnt > 0          ? String(cnt) : '';
+      meta.push(`<span class="meta-chip" title="Goodreads: ${n.toFixed(2)}★ · ${cntStr} ratings"><span class="chip-stars">${stars}</span> ${n.toFixed(1)}${cntStr ? ` <span class="rating-count">(${cntStr})</span>` : ''}</span>`);
     }
     if (book.publisher) meta.push(`<span class="meta-chip pub">${esc(book.publisher)}</span>`);
+    const bk = book.bookKey || book.title;
+    // Google Books rating slot — populated async after render
+    const gbCached = gbCache.get(bk);
+    const gbContent = gbCached
+      ? `<span class="chip-stars gb-stars">${'★'.repeat(Math.round(gbCached.rating))}${'☆'.repeat(5-Math.round(gbCached.rating))}</span> ${gbCached.rating.toFixed(1)}<span class="gb-count"> (${gbCached.count>=1000?(gbCached.count/1000).toFixed(0)+'k':gbCached.count} Google)</span>`
+      : '';
+    meta.push(`<span class="meta-chip gb-rating-chip" data-bookkey-gb="${esc(bk)}" ${gbCached === null ? 'hidden' : (gbCached ? '' : 'hidden')}>${gbContent}</span>`);
     const metaRow = meta.length ? `<div class="meta-row">${meta.join('')}</div>` : '';
 
     // themes (L2) + tones (L3)
@@ -664,6 +744,7 @@ function renderRecommendations() {
 
   attachCoverFallbacks();
   enhanceCovers();
+  enhanceWithGoogleRatings(slice);
 
   recommendationsGrid.querySelectorAll('.danger-button').forEach(btn => {
     btn.addEventListener('click', () => {
