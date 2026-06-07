@@ -2,7 +2,11 @@ name: Scrape StoryGraph + Amazon Ratings
 
 on:
   schedule:
-    - cron: '0 3 * * *'   # 3 AM UTC daily
+    - cron: '17 2  * * *'   # 2:17 AM UTC
+    - cron: '43 7  * * *'   # 7:43 AM UTC
+    - cron: '31 12 * * *'   # 12:31 PM UTC
+    - cron: '52 17 * * *'   # 5:52 PM UTC
+    - cron: '08 22 * * *'   # 10:08 PM UTC
   workflow_dispatch:
     inputs:
       batch_size:
