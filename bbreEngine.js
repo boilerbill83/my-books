@@ -1,5 +1,5 @@
 /**
- * bbreEngine.js  —  Bills Books Recommendation Engine (BBRE) v3
+ * bbreEngine.js  —  Bills Books Recommendation Engine (BBRE) v5
  *
  * Combines two engines to leverage each one's strengths:
  *
@@ -11,27 +11,28 @@
  *                    Broad author/theme coverage, human-readable reasons.
  *                    Weakness: score ceiling (34 books all score 100), 5★-only data.
  *
- * BBRE v4 algorithm:
+ * BBRE v5 algorithm:
  *   1. Run both models and attach predictions to each eligible candidate.
  *   2. Normalise within genre (fiction / nonfiction) so each genre's top book
  *      competes at score 1.0.  Prevents the fiction-skewed 5★ network from
  *      burying nonfiction.
  *   3. Confidence-adaptive combination: at conf=1 the tuned 40/60 split applies;
  *      at lower confidence the engine.js signal absorbs the slack.
- *   4. Apply three additive signal adjustments:
+ *   4. Apply four additive signal adjustments:
  *        a. Series continuity  — boost/penalise sequels based on earlier-book ratings.
  *        b. Temporal recency   — small bias toward authors trending up in last 2 years.
- *        c. DNF/low-rated penalty — themes over-represented in DNF books penalised;
- *           authors with ≥2 reads all rated ≤2.5★ also penalised.
- *        d. (Confidence-adaptive handled in step 3.)
- *   5. Greedy author + sub-genre diversity re-ranking to break clusters at both levels.
+ *        c. DNF/low-rated penalty — themes AND tones over-represented in DNF books
+ *           penalised; authors with ≥2 reads all rated ≤2.5★ also penalised.
+ *        d. Tone preference    — ±0.08 signal from user's mean rating per tone tag.
+ *   5. Three-layer greedy MMR: author → sub-genre theme → granular tone diversity.
  *   6. Return same shape as rankRecommendations() so app.js needs no changes.
  *
  * Tuning history (full-pool LOO Spearman from grid search):
  *   v1: BAYES=0.65, global norm, no adjustments                   → 0.627
  *   v2: BAYES=0.40, within-genre norm                             → 0.656  (+0.029)
  *   v3: conf-adaptive + series + recency + DNF lift               → 0.656  (structural)
- *   v4: + low-rated author penalty + sub-genre theme MMR          → see eval below
+ *   v4: + low-rated author penalty + sub-genre theme MMR          → 0.656  (structural)
+ *   v5: + tone preference signal + tone DNF lift + tone MMR layer → see eval below
  *
  * Exports:
  *   rankBBRE(goodreads, feedback, candidatePool, history) → { selected, profile, eligibleCount }
@@ -51,6 +52,9 @@ const DIVERSITY_PENALTY = [0, 0.10, 0.18, 0.25, 0.30];
 
 // Sub-genre (primary theme) diversity penalty — softer than author penalty.
 const THEME_DIVERSITY_PENALTY = [0, 0.04, 0.07, 0.09, 0.10];
+
+// Granular tone diversity penalty — softest layer (L3 in the theme hierarchy).
+const TONE_DIVERSITY_PENALTY = [0, 0.02, 0.04, 0.05, 0.06];
 
 // How many calendar years to look back for the "recent taste" recency window.
 const RECENCY_WINDOW_YEARS = 2;
@@ -102,6 +106,76 @@ const normA = a => String(a || '').replace(/\s+/g, ' ').trim().toLowerCase();
 // Primary sub-genre for theme-level MMR (first theme tag, or null if none).
 function primaryTheme(book) {
   return book.themes && book.themes.length > 0 ? book.themes[0] : null;
+}
+
+// Primary tone for tone-level MMR (first tone tag from effective tones, or null).
+function primaryTone(book) {
+  const tones = inferTones(book);
+  return tones.length > 0 ? tones[0] : null;
+}
+
+// ── Tone inference ─────────────────────────────────────────────────────────
+// For candidates that lack a tones[] array (external books), derive tones
+// from themes using the same mapping as the enrichment script.
+
+const THEME_TONES_MAP = {
+  'thriller':           ['fast-paced', 'tense', 'plot-driven'],
+  'domestic suspense':  ['fast-paced', 'twisty', 'dark'],
+  'psychological':      ['dark', 'tense', 'character-driven'],
+  'legal':              ['procedural', 'fast-paced'],
+  'courtroom':          ['procedural', 'fast-paced', 'tense'],
+  'literary':           ['slow-burn', 'character-driven', 'atmospheric'],
+  'memoir':             ['personal', 'character-study', 'conversational'],
+  'narrative nonfiction': ['narrative-driven', 'accessible'],
+  'true crime':         ['investigative', 'dark'],
+  'mystery':            ['whodunit', 'plot-driven'],
+  'noir':               ['dark', 'gritty', 'atmospheric'],
+  'crime':              ['dark', 'gritty', 'procedural'],
+  'horror':             ['dark', 'disturbing', 'atmospheric'],
+  'contemporary':       ['character-driven', 'heartwarming'],
+  'romance':            ['heartwarming', 'fast-paced'],
+  'historical fiction': ['atmospheric', 'slow-burn', 'character-driven'],
+  'sci-fi':             ['atmospheric', 'plot-driven'],
+  'speculative':        ['atmospheric', 'slow-burn'],
+  'suspense':           ['tense', 'fast-paced'],
+  'high-concept':       ['fast-paced', 'plot-driven'],
+  'adventure':          ['fast-paced', 'plot-driven'],
+  'ya':                 ['fast-paced', 'character-driven'],
+  'biography':          ['character-study', 'narrative-driven'],
+  'history':            ['narrative-driven', 'dense'],
+  'military':           ['narrative-driven', 'gritty'],
+  'business':           ['narrative-driven', 'accessible'],
+  'tech history':       ['narrative-driven', 'accessible'],
+  'finance':            ['narrative-driven', 'accessible'],
+  'sports':             ['narrative-driven', 'character-study'],
+  'food':               ['narrative-driven', 'conversational'],
+  'psychology':         ['dense', 'accessible'],
+  'political':          ['dense', 'investigative'],
+  'social commentary':  ['dense', 'polemic'],
+  'music history':      ['narrative-driven', 'character-study'],
+};
+
+const TONE_PRIORITY = [
+  'compulsive','twisty','unreliable-narrator','whodunit',
+  'fast-paced','slow-burn','procedural','cat-and-mouse',
+  'dark','disturbing','gritty','tense',
+  'character-study','character-driven','anti-hero','ensemble',
+  'atmospheric','immersive-journalism','investigative',
+  'humorous','satirical','personal','conversational',
+  'polemic','revelatory','dense','accessible',
+  'narrative-driven','plot-driven','inspiring','heartwarming',
+  'melancholic','hopeful','dual-timeline','nonlinear',
+];
+
+function inferTones(book) {
+  if (book.tones && book.tones.length > 0) return book.tones;
+  const collected = new Set();
+  for (const theme of (book.themes || [])) {
+    const tl = theme.toLowerCase();
+    for (const tone of (THEME_TONES_MAP[tl] || [])) collected.add(tone);
+  }
+  // Return in TONE_PRIORITY order, capped at 4
+  return TONE_PRIORITY.filter(t => collected.has(t)).slice(0, 4);
 }
 
 // ── 1. Series continuity ───────────────────────────────────────────────────
@@ -191,7 +265,7 @@ function buildDnfSignal(readBooks) {
   const dnfBooks    = readBooks.filter(b => b.dnf);
   const totalReads  = readBooks.length;
   const totalDnf    = dnfBooks.length;
-  if (totalDnf === 0) return { dnfThemeLift: new Map(), dnfOnlyAuthors: new Set() };
+  if (totalDnf === 0) return { dnfThemeLift: new Map(), dnfToneLift: new Map(), dnfOnlyAuthors: new Set(), lowRatedAuthors: new Set() };
 
   // Theme counts across all reads and DNF-only
   const allThemeCnt = new Map();
@@ -211,6 +285,24 @@ function buildDnfSignal(readBooks) {
     if (allRate === 0 || dnfRate < DNF_THEME_MIN_RATE) continue;
     const lift = dnfRate / allRate;
     if (lift >= DNF_LIFT_THRESHOLD) dnfThemeLift.set(t, lift);
+  }
+
+  // Tone counts across all reads and DNF-only (same algorithm as themes)
+  const allToneCnt = new Map();
+  const dnfToneCnt = new Map();
+  for (const b of readBooks) {
+    for (const t of (b.tones || [])) {
+      allToneCnt.set(t, (allToneCnt.get(t) || 0) + 1);
+      if (b.dnf) dnfToneCnt.set(t, (dnfToneCnt.get(t) || 0) + 1);
+    }
+  }
+  const dnfToneLift = new Map();
+  for (const [t, dnfCnt] of dnfToneCnt) {
+    const dnfRate = dnfCnt / totalDnf;
+    const allRate = (allToneCnt.get(t) || 0) / totalReads;
+    if (allRate === 0 || dnfRate < DNF_THEME_MIN_RATE) continue;
+    const lift = dnfRate / allRate;
+    if (lift >= DNF_LIFT_THRESHOLD) dnfToneLift.set(t, lift);
   }
 
   // Authors who appear only in DNF (zero completed reads) with 2+ DNFs
@@ -242,17 +334,55 @@ function buildDnfSignal(readBooks) {
       .map(([ak]) => ak)
   );
 
-  return { dnfThemeLift, dnfOnlyAuthors, lowRatedAuthors };
+  return { dnfThemeLift, dnfToneLift, dnfOnlyAuthors, lowRatedAuthors };
+}
+
+// ── 5. Tone preference signal ─────────────────────────────────────────────
+// For each tone tag, compute the user's mean rating on books carrying that
+// tone (min 3 rated books to trust the signal).  Compare against the global
+// mean to get a preference delta, then sum across the candidate's tones.
+
+function buildToneProfile(readBooks) {
+  const rated = readBooks.filter(b => !b.dnf && b.myRating > 0);
+  const toneMap = new Map();  // tone → { sum, count }
+  for (const b of rated) {
+    for (const t of (b.tones || [])) {
+      if (!toneMap.has(t)) toneMap.set(t, { sum: 0, count: 0 });
+      const e = toneMap.get(t);
+      e.sum += b.myRating; e.count++;
+    }
+  }
+  // Only keep tones with ≥3 rated books (otherwise signal is too noisy).
+  const profile = new Map();
+  for (const [t, e] of toneMap) {
+    if (e.count >= 3) profile.set(t, e.sum / e.count);
+  }
+  return profile;
+}
+
+// Returns a score delta in [-0.08, +0.08].
+function toneSignal(book, toneProfile, globalMean) {
+  if (!toneProfile.size || !globalMean) return 0;
+  let adj = 0;
+  for (const t of inferTones(book)) {
+    if (toneProfile.has(t)) {
+      adj += (toneProfile.get(t) - globalMean) * 0.02;
+    }
+  }
+  return Math.max(-0.08, Math.min(0.08, adj));
 }
 
 // Returns a non-negative penalty in [0, 0.12].
 function dnfPenalty(book, dnfSignal) {
-  const { dnfThemeLift, dnfOnlyAuthors, lowRatedAuthors } = dnfSignal;
+  const { dnfThemeLift, dnfToneLift, dnfOnlyAuthors, lowRatedAuthors } = dnfSignal;
   let pen = 0;
   if (dnfOnlyAuthors.has(normA(book.author)))  pen += 0.08;
   if (lowRatedAuthors.has(normA(book.author))) pen += 0.08;
   for (const t of (book.themes || [])) {
     if (dnfThemeLift.has(t)) pen += 0.015;
+  }
+  for (const t of inferTones(book)) {
+    if (dnfToneLift.has(t)) pen += 0.012;
   }
   return Math.min(pen, 0.12);
 }
@@ -282,9 +412,14 @@ export function rankBBRE(goodreads, feedback, candidatePool, history) {
   const allReadBooks = (goodreads.books || []).filter(b => b.shelf === 'read');
 
   // ── Step 2: pre-build all signal maps ───────────────────────────────────
-  const seriesMap          = buildSeriesMap(allReadBooks);
+  const seriesMap           = buildSeriesMap(allReadBooks);
   const { recent, allTime } = buildTemporalMaps(allReadBooks);
-  const dnfSig             = buildDnfSignal(allReadBooks);
+  const dnfSig              = buildDnfSignal(allReadBooks);
+  const toneProfile         = buildToneProfile(allReadBooks);
+  const ratedBooks          = allReadBooks.filter(b => !b.dnf && b.myRating > 0);
+  const globalMean          = ratedBooks.length
+    ? ratedBooks.reduce((s, b) => s + b.myRating, 0) / ratedBooks.length
+    : 3.5;
 
   // ── Step 3: attach rateEngine predictions ───────────────────────────────
   const withPred = engineResult.selected.map(eb => {
@@ -307,17 +442,22 @@ export function rankBBRE(goodreads, feedback, candidatePool, history) {
     const base       = adaptiveCombine(b._normBayes, b._normEngine, b._conf);
     const seriesAdj  = seriesSignal(b, seriesMap);
     const recencyAdj = recencySignal(b, recent, allTime);
+    const toneAdj    = toneSignal(b, toneProfile, globalMean);
     const dnfPen     = dnfPenalty(b, dnfSig);
-    const combined   = Math.max(0, base + seriesAdj + recencyAdj - dnfPen);
-    return { ...b, _combined: combined, _base: base, _seriesAdj: seriesAdj, _recencyAdj: recencyAdj, _dnfPen: dnfPen };
+    const combined   = Math.max(0, base + seriesAdj + recencyAdj + toneAdj - dnfPen);
+    return { ...b, _combined: combined, _base: base, _seriesAdj: seriesAdj, _recencyAdj: recencyAdj, _toneAdj: toneAdj, _dnfPen: dnfPen };
   });
 
   withScores.sort((a, b) => b._combined - a._combined);
 
-  // ── Step 6: greedy author-diversity re-ranking ───────────────────────────
+  // ── Step 6: greedy three-layer diversity re-ranking ──────────────────────
+  // Layer 1: author MMR  (strongest — prevents same-author clusters)
+  // Layer 2: theme MMR   (sub-genre level — prevents same-genre monotony)
+  // Layer 3: tone MMR    (granular style level — softest, broadens feel variety)
   const pool       = [...withScores];
   const authorSeen = new Map();
   const themeSeen  = new Map();
+  const toneSeen   = new Map();
   const reranked   = [];
 
   while (pool.length > 0) {
@@ -329,15 +469,20 @@ export function rankBBRE(goodreads, feedback, candidatePool, history) {
       const pt      = primaryTheme(b);
       const themCnt = pt ? (themeSeen.get(pt) || 0) : 0;
       const themPen = THEME_DIVERSITY_PENALTY[Math.min(themCnt, THEME_DIVERSITY_PENALTY.length - 1)];
-      const s       = b._combined - authPen - themPen;
+      const ptn     = primaryTone(b);
+      const tonCnt  = ptn ? (toneSeen.get(ptn) || 0) : 0;
+      const tonPen  = TONE_DIVERSITY_PENALTY[Math.min(tonCnt, TONE_DIVERSITY_PENALTY.length - 1)];
+      const s       = b._combined - authPen - themPen - tonPen;
       if (s > bestScore) { bestScore = s; bestIdx = i; }
     }
     const sel  = pool.splice(bestIdx, 1)[0];
     const ak   = normA(sel.author);
     const pt   = primaryTheme(sel);
+    const ptn  = primaryTone(sel);
     const prev = authorSeen.get(ak) || 0;
     authorSeen.set(ak, prev + 1);
-    if (pt) themeSeen.set(pt, (themeSeen.get(pt) || 0) + 1);
+    if (pt)  themeSeen.set(pt,  (themeSeen.get(pt)  || 0) + 1);
+    if (ptn) toneSeen.set(ptn,  (toneSeen.get(ptn)  || 0) + 1);
     reranked.push({ ...sel, _bbreScore: bestScore, _diversityPen: sel._combined - bestScore, _authorSlot: prev + 1 });
   }
 
@@ -355,6 +500,8 @@ export function rankBBRE(goodreads, feedback, candidatePool, history) {
       b._seriesAdj < -0.005  && { label: `series continuity — prior books below expectations`,                                  pts: Math.round(b._seriesAdj * 100) },
       b._recencyAdj > 0.005  && { label: `author trending up in your recent reads`,   pts: Math.round(b._recencyAdj * 100) },
       b._recencyAdj < -0.005 && { label: `author trending down in recent reads`,       pts: Math.round(b._recencyAdj * 100) },
+      b._toneAdj > 0.005     && { label: `matches your preferred reading styles`,      pts: Math.round(b._toneAdj * 100) },
+      b._toneAdj < -0.005    && { label: `style or mood outside your comfort zone`,    pts: Math.round(b._toneAdj * 100) },
       b._dnfPen > 0.005      && { label: `theme or author overlap with low-rated/DNF books`, pts: -Math.round(b._dnfPen * 100) },
       b._diversityPen > 0.005 && { label: `variety discount`, pts: -Math.round(b._diversityPen * 100) || -1 },
     ].filter(Boolean);
@@ -381,11 +528,13 @@ export function rankBBRE(goodreads, feedback, candidatePool, history) {
         base:         b._base,
         seriesAdj:    b._seriesAdj,
         recencyAdj:   b._recencyAdj,
+        toneAdj:      b._toneAdj,
         dnfPen:       b._dnfPen,
         diversityPen: b._diversityPen,
         combined:     b._combined,
         bbreScore:    b._bbreScore,
         authorSlot:   b._authorSlot,
+        tones:        inferTones(b),
       },
     };
   });
