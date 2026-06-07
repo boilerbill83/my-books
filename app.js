@@ -256,20 +256,23 @@ async function fetchGoogleRating(bookKey, title, author) {
 // Enrich rendered cards with Google Books ratings after the DOM is ready.
 // Staggers requests 300ms apart to stay well within API rate limits.
 async function enhanceWithGoogleRatings(books) {
+  let newFetches = 0;
   for (let i = 0; i < books.length; i++) {
     const book = books[i];
     const key  = book.bookKey || book.title;
-    // Skip if already cached (instant) or no key
     const cached = gbCache.get(key);
     if (cached !== undefined) {
       if (cached) _applyGbRating(key, cached);
       continue;
     }
     // Stagger uncached fetches 300ms apart
-    if (i > 0) await new Promise(r => setTimeout(r, 300));
+    if (newFetches > 0) await new Promise(r => setTimeout(r, 300));
     const result = await fetchGoogleRating(key, book.title, book.author);
     if (result) _applyGbRating(key, result);
+    newFetches++;
   }
+  // Re-score once all new ratings are cached so communitySignal() can use them
+  if (newFetches > 0) recompute();
 }
 
 function _applyGbRating(bookKey, { rating, count }) {
@@ -770,7 +773,12 @@ function recompute() {
   const showFiction    = filterFiction?.checked !== false;
   const showNonfiction = filterNonfiction?.checked !== false;
 
-  let allCands = [...external, ...toReadCands];
+  // Enrich candidates with cached Google Books ratings so communitySignal()
+  // in bbreEngine can blend them into the score on subsequent visits.
+  let allCands = [...external, ...toReadCands].map(b => {
+    const gb = gbCache.get(b.bookKey || b.title);
+    return gb ? { ...b, googleRating: gb.rating, googleRatingsCount: gb.count } : b;
+  });
   if (!showFiction || !showNonfiction) {
     allCands = allCands.filter(b => {
       const t = String(b.type || '').toLowerCase();
