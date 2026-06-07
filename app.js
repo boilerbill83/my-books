@@ -1,5 +1,6 @@
 
-import { rankRecommendations, scoreBooks } from './engine.js';
+import { scoreBooks }  from './engine.js';
+import { rankBBRE }    from './bbreEngine.js';
 
 const state = {
   goodreads:    null,
@@ -304,7 +305,7 @@ function renderCurrentlyReading(books) {
           <div class="cr-author">by ${esc(book.author)}</div>
           ${meta.length ? `<div class="cr-meta">${meta.join(' &nbsp;·&nbsp; ')}</div>` : ''}
           <div class="cr-scores">
-            <span class="score-pill" title="Likelihood you'll enjoy this">Match ${book.matchScore}</span>
+            <span class="score-pill" title="BBRE score: Bayesian taste model (65%) + citation network (35%) + author diversity">BBRE ${book.matchScore}</span>
             <span class="score-pill" title="Prediction confidence">Conf ${book.confidenceScore}</span>
           </div>
           <p class="cr-reason">${book.reason}</p>
@@ -597,7 +598,7 @@ function renderRecommendations() {
           ${themeRow}
           ${simRow}
           <div class="score-row">
-            <span class="score-pill" title="Likelihood you'll enjoy this">Match ${book.matchScore}</span>
+            <span class="score-pill" title="BBRE score: Bayesian taste model (65%) + citation network (35%) + author diversity">BBRE ${book.matchScore}</span>
             <span class="score-pill" title="Prediction confidence">Conf ${book.confidenceScore}</span>
           </div>
           <p class="card-reason">${book.reason}</p>
@@ -656,7 +657,7 @@ function recompute() {
 
   if (poolCountEl) poolCountEl.textContent = `${allCands.length.toLocaleString()} in pool`;
 
-  state.ranking = rankRecommendations(
+  state.ranking = rankBBRE(
     state.goodreads,
     state.feedback,
     allCands,
