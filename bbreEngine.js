@@ -398,25 +398,20 @@ function dnfPenalty(book, dnfSignal) {
 }
 
 // ── 4. Community popularity signal ────────────────────────────────────────
-// Uses Goodreads avgRating + ratingsCount and, when available, a Google Books
-// rating (googleRating field set by the async browser enrichment).
-// High ratingsCount = more trustworthy community signal, so the rating
-// deviation is weighted by log-scale popularity.  Max effect ±COMMUNITY_MAX_LIFT.
+// Goodreads avgRating weighted by ratingsCount on a log scale.
+// Popular books (>500k ratings) get full weight; obscure books (<1k) get
+// near-zero weight, so an unknown book's 4.8★ average doesn't sway the score.
 
 function communitySignal(book) {
-  const grAvg = Number(book.avgRating)  || 0;
-  const gbAvg = Number(book.googleRating) || 0;
-  const cnt   = Number(book.ratingsCount) || 0;
-  if (!grAvg || !cnt) return 0;
-
-  // Blend Goodreads + Google Books (GR is primary, GB is corroborating)
-  const blended = gbAvg > 0 ? grAvg * 0.65 + gbAvg * 0.35 : grAvg;
+  const avg = Number(book.avgRating)  || 0;
+  const cnt = Number(book.ratingsCount) || 0;
+  if (!avg || !cnt) return 0;
 
   // Log-scale popularity weight: 0 below 1k ratings, 1 at 500k+
   const logCnt    = Math.log10(Math.max(cnt, 1));
   const popWeight = Math.max(0, Math.min(1, (logCnt - COMMUNITY_POP_MIN) / (COMMUNITY_POP_MAX - COMMUNITY_POP_MIN)));
 
-  const signal = (blended - COMMUNITY_NEUTRAL) * 0.06 * popWeight;
+  const signal = (avg - COMMUNITY_NEUTRAL) * 0.06 * popWeight;
   return Math.max(-COMMUNITY_MAX_LIFT, Math.min(COMMUNITY_MAX_LIFT, signal));
 }
 

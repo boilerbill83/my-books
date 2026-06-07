@@ -544,10 +544,7 @@ section { padding: 14px 0; }
 /* star ratings (visual appeal #3) */
 .stars-gold  { color: var(--gold); letter-spacing: 0.04em; }
 .chip-stars  { color: var(--gold); font-size: 0.7rem; letter-spacing: 0.04em; }
-.gb-stars    { color: #4285f4; }   /* Google blue for Google Books ratings */
 .rating-count { opacity: 0.65; font-size: 0.6rem; }
-.gb-count    { opacity: 0.65; font-size: 0.6rem; }
-.gb-rating-chip { border-color: #c6dafc; }
 
 /* theme chips (L2 — genre/category) */
 .theme-row { display: flex; flex-wrap: wrap; gap: 3px; }
