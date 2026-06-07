@@ -2,13 +2,14 @@
   "meta": {
     "sourceFile": null,
     "generatedAt": "2026-06-01T00:00:00.000Z",
-    "bookCount": 814,
+    "bookCount": 958,
     "readCount": 500,
     "toReadCount": 313,
     "currentlyReadingCount": 1,
     "fiveStarCount": 260,
     "notes": "Hardcoded from personal Goodreads export.",
-    "totalBooks": 958
+    "totalBooks": 958,
+    "dnfCount": 144
   },
   "books": [
     {
@@ -75,7 +76,8 @@
         "Scott Turow",
         "Brad Parks",
         "Steve Cavanagh"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "in-good-faith-a-joe-dillard-novel|scott-pratt",
@@ -110,13 +112,14 @@
         "Scott Turow",
         "Brad Parks",
         "Steve Cavanagh"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "clusterf-ck|brian-o-sullivan",
       "bookId": "240377749",
       "title": "Clusterf*ck",
-      "author": "Brian     O'Sullivan",
+      "author": "Brian O'Sullivan",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.85,
@@ -144,7 +147,8 @@
         "James Patterson",
         "Michael Connelly",
         "Lee Child"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-housemaid-is-watching|freida-mcfadden",
@@ -179,7 +183,8 @@
         "Lisa Jewell",
         "Shari Lapena",
         "Liane Moriarty"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "ward-d|freida-mcfadden",
@@ -214,7 +219,8 @@
         "Lisa Jewell",
         "Shari Lapena",
         "Liane Moriarty"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "hidden-pictures|jason-rekulak",
@@ -248,7 +254,8 @@
         "Riley Sager",
         "Stephen Graham Jones",
         "Gillian Flynn"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "confessions-of-a-street-addict|james-j-cramer",
@@ -314,7 +321,8 @@
         "Lisa Jewell",
         "Shari Lapena",
         "Liane Moriarty"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "freak|jennifer-hillier",
@@ -349,7 +357,8 @@
         "B.A. Paris",
         "Tana French",
         "Harlan Coben"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "come-undone|eddie-huang",
@@ -473,7 +482,8 @@
         "Walter Isaacson",
         "Nick Bilton",
         "Robert Cringely"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "i-am-not-a-robot-my-year-using-ai-to-do-everything|joanna-stern",
@@ -509,7 +519,7 @@
       "bookKey": "house-of-fidelity-the-rise-of-the-johnson-dynasty-and-the-company-that-changed-american-investing|justin-baer",
       "bookId": "241039527",
       "title": "House of Fidelity: The Rise of the Johnson Dynasty and the Company That Changed American Investing",
-      "author": "Justin  Baer",
+      "author": "Justin Baer",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.8,
@@ -568,17 +578,18 @@
         "Drew Magary",
         "Malcolm Gladwell",
         "Joe Queenan"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-body|stephen-king",
       "bookId": "249109853",
       "title": "The Body",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.3,
-      "pages": 7,
+      "pages": 96,
       "dateRead": null,
       "dateAdded": "2026/03/06",
       "isbn": "1668170612",
@@ -634,7 +645,8 @@
         "B.A. Paris",
         "Tana French",
         "Harlan Coben"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "dirty-20|bill-schweigart",
@@ -699,7 +711,8 @@
         "Nick Bilton",
         "Brian Stelter",
         "Gabriel Sherman"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "ai-valley-microsoft-google-and-the-trillion-dollar-race-to-cash-in-on-artificial-intelligence|gary-rivlin",
@@ -985,7 +998,7 @@
       "bookKey": "the-running-man|richard-bachman",
       "bookId": "237828922",
       "title": "The Running Man",
-      "author": "Richard  Bachman",
+      "author": "Richard Bachman",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4,
@@ -1075,13 +1088,14 @@
         "James Patterson",
         "Michael Connelly",
         "Brad Parks"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-midnight-lawyer|j-j-miller",
       "bookId": "230424523",
       "title": "The Midnight Lawyer (Hank Luger Legal Thrillers, #1)",
-      "author": "J.J.  Miller",
+      "author": "J.J. Miller",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.1,
@@ -1388,7 +1402,8 @@
         "Lisa Jewell",
         "Liane Moriarty",
         "Paula Hawkins"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-couple-next-door|shari-lapena",
@@ -1546,7 +1561,8 @@
         "Erik Larson",
         "David Grann",
         "Jon Krakauer"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "everybody-loses-the-tumultuous-rise-of-american-sports-gambling|danny-funt",
@@ -1612,7 +1628,8 @@
         "Emily St. John Mandel",
         "Carmen Maria Machado",
         "Kazuo Ishiguro"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "you-with-the-sad-eyes|christina-applegate",
@@ -1680,7 +1697,7 @@
       "bookKey": "unhinged-habits-a-counterintuitive-guide-for-humans-to-have-more-by-doing-less|jonathan-goodman",
       "bookId": "229098150",
       "title": "Unhinged Habits: A Counterintuitive Guide for Humans to Have More by Doing Less",
-      "author": "Jonathan   Goodman",
+      "author": "Jonathan Goodman",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.8,
@@ -1863,7 +1880,8 @@
         "Shari Lapena",
         "Liane Moriarty",
         "Freida McFadden"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "beautiful-ugly|alice-feeney",
@@ -1897,7 +1915,8 @@
         "Shari Lapena",
         "Freida McFadden",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "gone-before-goodbye|reese-witherspoon",
@@ -1932,13 +1951,14 @@
         "Liane Moriarty",
         "Kristin Hannah",
         "Jojo Moyes"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-long-walk|stephen-king",
       "bookId": "209080212",
       "title": "The Long Walk",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 4.23,
@@ -1966,7 +1986,8 @@
         "Joe Hill",
         "Peter Straub",
         "Clive Barker"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "my-next-breath|jeremy-renner",
@@ -1999,7 +2020,8 @@
         "Matthew McConaughey",
         "Steve Martin",
         "Elton John"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-widow|john-grisham",
@@ -2034,7 +2056,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-jackal-s-mistress|chris-bohjalian",
@@ -2055,7 +2078,8 @@
       "themes": [
         "historical",
         "thriller",
-        "military"
+        "military",
+        "historical fiction"
       ],
       "similarToTitles": [
         "The Great Alone",
@@ -2099,7 +2123,8 @@
         "Brad Stone",
         "Ron Chernow",
         "David McCullough"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "rock-paper-scissors|alice-feeney",
@@ -2387,7 +2412,7 @@
       "bookKey": "rich-blood|robert-bailey",
       "bookId": "58920609",
       "title": "Rich Blood (Jason Rich, #1)",
-      "author": "Robert  Bailey",
+      "author": "Robert Bailey",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.2,
@@ -2602,7 +2627,8 @@
         "Dave Zirin",
         "Jeff Pearlman",
         "Tom Verducci"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "on-tyranny-twenty-lessons-from-the-twentieth-century-graphic-edition|timothy-snyder",
@@ -2665,7 +2691,8 @@
         "Alan Furst",
         "Donna Tartt",
         "Kate Atkinson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "emergency-skin|n-k-jemisin",
@@ -2698,7 +2725,8 @@
         "Ted Chiang",
         "Ursula K. Le Guin",
         "Becky Chambers"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "summer-frost|blake-crouch",
@@ -2731,7 +2759,8 @@
         "Neal Stephenson",
         "Michael Crichton",
         "Greg Bear"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-breakdown|b-a-paris",
@@ -2766,7 +2795,8 @@
         "Lisa Jewell",
         "Paula Hawkins",
         "Gillian Flynn"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "family-of-spies|christine-kuehn",
@@ -2866,7 +2896,7 @@
       "bookKey": "tiger-tiger-his-life-as-it-s-never-been-told-before|james-patterson",
       "bookId": "173404111",
       "title": "Tiger Tiger: His Life as It's Never Been Told Before",
-      "author": "James  Patterson",
+      "author": "James Patterson",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 3.8,
@@ -2893,13 +2923,14 @@
         "Michael Connelly",
         "Lee Child",
         "David Baldacci"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-merge|grace-walker",
       "bookId": "223614634",
       "title": "The Merge",
-      "author": "Grace          Walker",
+      "author": "Grace Walker",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.9,
@@ -2931,7 +2962,7 @@
       "bookKey": "the-idaho-four-an-american-tragedy|james-patterson",
       "bookId": "222733476",
       "title": "The Idaho Four: An American Tragedy (James Patterson True Crime, 3)",
-      "author": "James  Patterson",
+      "author": "James Patterson",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.9,
@@ -3023,7 +3054,8 @@
         "B.A. Paris",
         "Shari Lapena",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "power-play-tesla-elon-musk-and-the-bet-of-the-century|tim-higgins",
@@ -3061,7 +3093,7 @@
       "bookKey": "never-flinch|stephen-king",
       "bookId": "221633922",
       "title": "Never Flinch (Holly Gibney, #4)",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 4.05,
@@ -3090,7 +3122,8 @@
         "Joe Hill",
         "Peter Straub",
         "Clive Barker"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "blacktop-wasteland|s-a-cosby",
@@ -3125,7 +3158,8 @@
         "Don Winslow",
         "George Pelecanos",
         "Karin Slaughter"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "who-knew|barry-diller",
@@ -3189,7 +3223,8 @@
         "Anthony Bourdain",
         "Marcus Samuelsson",
         "Ruth Reichl"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-perfect-divorce|jeneva-rose",
@@ -3224,7 +3259,8 @@
         "B.A. Paris",
         "Lisa Jewell",
         "Shari Lapena"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "anatomy-of-an-alibi|ashley-elston",
@@ -3319,7 +3355,8 @@
         "Michael Wolff",
         "Maggie Haberman",
         "Jonathan Martin"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "listen-for-the-lie|amy-tintera",
@@ -3384,7 +3421,8 @@
         "B.A. Paris",
         "Lisa Jewell",
         "Shari Lapena"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-lies-of-locke-lamora|scott-lynch",
@@ -3449,7 +3487,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "1929-inside-the-greatest-crash-in-history-and-how-it-shattered-a-nation|andrew-ross-sorkin",
@@ -3486,7 +3525,7 @@
       "bookKey": "the-boomerang|robert-bailey",
       "bookId": "218229236",
       "title": "The Boomerang",
-      "author": "Robert  Bailey",
+      "author": "Robert Bailey",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.8,
@@ -3513,7 +3552,8 @@
         "Scott Pratt",
         "Scott Turow",
         "Steve Cavanagh"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "widow-s-point-the-complete-haunting|richard-chizmar",
@@ -3700,7 +3740,8 @@
         "John Green",
         "David Nicholls",
         "Nick Hornby"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "home-is-where-the-bodies-are|jeneva-rose",
@@ -3734,7 +3775,8 @@
         "B.A. Paris",
         "Lisa Jewell",
         "Shari Lapena"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "doppelganger-a-trip-into-the-mirror-world|naomi-klein",
@@ -3862,7 +3904,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-street-lawyer|john-grisham",
@@ -3897,7 +3940,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-client|john-grisham",
@@ -3932,7 +3976,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-firm|robin-waterfield",
@@ -3966,7 +4011,8 @@
         "Scott Turow",
         "Steve Cavanagh",
         "Brad Parks"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "sex-drugs-and-cocoa-puffs-a-low-culture-manifesto|chuck-klosterman",
@@ -4001,13 +4047,14 @@
         "Drew Magary",
         "Malcolm Gladwell",
         "Joe Queenan"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "fantasyland-true-tales-from-america-s-most-compulsive-fantasy-baseball-league|sam-walker",
       "bookId": "75816",
       "title": "Fantasyland: True Tales from America's Most Compulsive Fantasy Baseball League",
-      "author": "Sam  Walker",
+      "author": "Sam Walker",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.95,
@@ -4035,7 +4082,8 @@
         "Jeff Pearlman",
         "Bill Simmons",
         "Malcolm Gladwell"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-accidental-billionaires-the-founding-of-facebook-a-tale-of-sex-money-genius-and-betrayal|ben-mezrich",
@@ -4070,7 +4118,8 @@
         "Brad Stone",
         "Nick Bilton",
         "David Kushner"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "steve-jobs|walter-isaacson",
@@ -4105,7 +4154,8 @@
         "Brad Stone",
         "Ron Chernow",
         "David McCullough"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-postmortal|drew-magary",
@@ -4140,7 +4190,8 @@
         "Bill Simmons",
         "Chris Jones",
         "Will Leitch"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-extra-2-how-wall-street-strategies-took-a-major-league-baseball-team-from-worst-to-first|jonah-keri",
@@ -4175,7 +4226,8 @@
         "Jeff Pearlman",
         "Bill James",
         "Nate Silver"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-everything-store-jeff-bezos-and-the-age-of-amazon|brad-stone",
@@ -4210,7 +4262,8 @@
         "Ashlee Vance",
         "Nick Bilton",
         "Ben Mezrich"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "dream-team-how-michael-magic-larry-charles-and-the-greatest-team-of-all-time-conquered-the-world-and-changed-the-game-of-basketball-forever|jack-mccallum",
@@ -4245,7 +4298,8 @@
         "Michael Lewis",
         "Wright Thompson",
         "Bill Simmons"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "hatching-twitter-a-true-story-of-money-power-friendship-and-betrayal|nick-bilton",
@@ -4280,7 +4334,8 @@
         "Walter Isaacson",
         "Ashlee Vance",
         "Ben Mezrich"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "i-wear-the-black-hat-grappling-with-villains|chuck-klosterman",
@@ -4314,7 +4369,8 @@
         "Drew Magary",
         "Malcolm Gladwell",
         "Joe Queenan"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "ship-it-holla-ballas-how-a-bunch-of-19-year-old-college-dropouts-used-the-internet-to-become-poker-s-loudest-craziest-and-richest-crew|jonathan-grotenstein",
@@ -4349,7 +4405,8 @@
         "Michael Lewis",
         "Drew Magary",
         "Jonah Keri"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "things-a-little-bird-told-me-confessions-of-the-creative-mind|biz-stone",
@@ -4384,13 +4441,14 @@
         "Nick Bilton",
         "Walter Isaacson",
         "Ben Mezrich"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "flash-boys-a-wall-street-revolt|michael-lewis",
       "bookId": "20639917",
       "title": "Flash Boys: A Wall Street Revolt",
-      "author": "Michael   Lewis",
+      "author": "Michael Lewis",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 4.05,
@@ -4419,13 +4477,14 @@
         "John Carreyrou",
         "Ben Mezrich",
         "Ben Horowitz"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-blind-side|michael-lewis",
       "bookId": "20234883",
       "title": "The Blind Side",
-      "author": "Michael   Lewis",
+      "author": "Michael Lewis",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 4.15,
@@ -4454,7 +4513,8 @@
         "John Carreyrou",
         "Ben Mezrich",
         "Ben Horowitz"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-innovators-how-a-group-of-hackers-geniuses-and-geeks-created-the-digital-revolution|walter-isaacson",
@@ -4489,7 +4549,8 @@
         "Brad Stone",
         "Ron Chernow",
         "David McCullough"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-lagunitas-story-so-you-want-to-start-a-brewery|tony-magee",
@@ -4524,7 +4585,8 @@
         "Sam Walton",
         "Robert Iger",
         "Howard Schultz"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "elon-musk-tesla-spacex-and-the-quest-for-a-fantastic-future|ashlee-vance",
@@ -4559,7 +4621,8 @@
         "Brad Stone",
         "Jimmy Soni",
         "Brent Schlender"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-martian|andy-weir",
@@ -4594,13 +4657,14 @@
         "Neal Stephenson",
         "Michael Crichton",
         "John Scalzi"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-big-short-inside-the-doomsday-machine|michael-lewis",
       "bookId": "26889576",
       "title": "The Big Short: Inside the Doomsday Machine",
-      "author": "Michael   Lewis",
+      "author": "Michael Lewis",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 4.2,
@@ -4629,7 +4693,8 @@
         "John Carreyrou",
         "Ben Mezrich",
         "Ben Horowitz"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "when-breath-becomes-air|paul-kalanithi",
@@ -4663,7 +4728,8 @@
         "Siddhartha Mukherjee",
         "Abraham Verghese",
         "Henry Marsh"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "american-kingpin-the-epic-hunt-for-the-criminal-mastermind-behind-the-silk-road|nick-bilton",
@@ -4698,7 +4764,8 @@
         "Walter Isaacson",
         "Ashlee Vance",
         "Ben Mezrich"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "a-life-in-parts|bryan-cranston",
@@ -4732,7 +4799,8 @@
         "Ron Howard",
         "Neil Patrick Harris",
         "Steve Martin"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "artemis|andy-weir",
@@ -4767,7 +4835,8 @@
         "Neal Stephenson",
         "Michael Crichton",
         "John Scalzi"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-arsenal-of-democracy-fdr-detroit-and-an-epic-quest-to-arm-an-america-at-war|a-j-baime",
@@ -4802,7 +4871,8 @@
         "Hampton Sides",
         "Candice Millard",
         "David Grann"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-accidental-president-harry-s-truman-and-the-four-months-that-changed-the-world|a-j-baime",
@@ -4837,7 +4907,8 @@
         "Hampton Sides",
         "Candice Millard",
         "David Grann"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "unbroken-a-world-war-ii-story-of-survival-resilience-and-redemption|laura-hillenbrand",
@@ -4872,7 +4943,8 @@
         "David Grann",
         "Hampton Sides",
         "Candice Millard"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "evicted-poverty-and-profit-in-the-american-city|matthew-desmond",
@@ -4906,7 +4978,8 @@
         "Barbara Ehrenreich",
         "Matthew Crawford",
         "Stephanie Land"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "educated|tara-westover",
@@ -4940,7 +5013,8 @@
         "Mary Karr",
         "Rick Bragg",
         "Haven Kimmel"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "chesapeake-requiem-a-year-with-the-watermen-of-vanishing-tangier-island|earl-swift",
@@ -4973,7 +5047,8 @@
         "A.J. Baime",
         "Laura Hillenbrand",
         "Erik Larson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "seveneves|neal-stephenson",
@@ -5008,7 +5083,8 @@
         "Greg Bear",
         "Peter Watts",
         "Kim Stanley Robinson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-woman-in-the-window|a-j-finn",
@@ -5043,13 +5119,14 @@
         "Paula Hawkins",
         "B.A. Paris",
         "Shari Lapena"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-outsider|stephen-king",
       "bookId": "37684362",
       "title": "The Outsider",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.98,
@@ -5078,7 +5155,8 @@
         "Joe Hill",
         "Peter Straub",
         "Clive Barker"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-chief-the-life-and-turbulent-times-of-chief-justice-john-roberts|joan-biskupic",
@@ -5113,7 +5191,8 @@
         "Linda Greenhouse",
         "Dahlia Lithwick",
         "Jan Crawford Greenburg"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "bitcoin-billionaires-a-true-story-of-genius-betrayal-and-redemption|ben-mezrich",
@@ -5148,7 +5227,8 @@
         "Brad Stone",
         "Nick Bilton",
         "David Kushner"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "world-war-z-an-oral-history-of-the-zombie-war|max-brooks",
@@ -5183,7 +5263,8 @@
         "Joe Hill",
         "Dean Koontz",
         "Peter Clines"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-rosie-project|graeme-simsion",
@@ -5218,7 +5299,8 @@
         "John Green",
         "Tom Perrotta",
         "Nick Hornby"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "dopesick-dealers-doctors-and-the-drug-company-that-addicted-america|beth-macy",
@@ -5253,7 +5335,8 @@
         "Sam Quinones",
         "Patrick Radden Keefe",
         "Sheri Fink"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "super-pumped-the-battle-for-uber|mike-isaac",
@@ -5288,7 +5371,8 @@
         "Nick Bilton",
         "Ashlee Vance",
         "Ben Mezrich"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "maybe-you-should-talk-to-someone-a-therapist-her-therapist-and-our-lives-revealed|lori-gottlieb",
@@ -5323,7 +5407,8 @@
         "Daniel Goleman",
         "Brené Brown",
         "Angela Duckworth"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "dark-places|gillian-flynn",
@@ -5358,13 +5443,14 @@
         "Paula Hawkins",
         "B.A. Paris",
         "Shari Lapena"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "maid-hard-work-low-pay-and-a-mother-s-will-to-survive|stephanie-land",
       "bookId": "39218350",
       "title": "Maid: Hard Work, Low Pay, and a Mother's Will to Survive",
-      "author": "Stephanie  Land",
+      "author": "Stephanie Land",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 4.36,
@@ -5392,7 +5478,8 @@
         "Barbara Ehrenreich",
         "Matthew Desmond",
         "Chris Arnade"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "that-will-never-work-the-birth-of-netflix-and-the-amazing-life-of-an-idea|marc-randolph",
@@ -5427,7 +5514,8 @@
         "Nick Bilton",
         "Ashlee Vance",
         "Walter Isaacson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "recursion|blake-crouch",
@@ -5462,7 +5550,8 @@
         "Neal Stephenson",
         "Michael Crichton",
         "Greg Bear"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "dark-matter|blake-crouch",
@@ -5497,7 +5586,8 @@
         "Neal Stephenson",
         "Michael Crichton",
         "Greg Bear"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "someone-could-get-hurt-a-memoir-of-twenty-first-century-parenthood|drew-magary",
@@ -5531,7 +5621,8 @@
         "Bill Simmons",
         "Chris Jones",
         "Will Leitch"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "killing-yourself-to-live-85-of-a-true-story|chuck-klosterman",
@@ -5565,7 +5656,8 @@
         "Drew Magary",
         "Malcolm Gladwell",
         "Joe Queenan"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "notes-from-a-young-black-chef|kwame-onwuachi",
@@ -5600,7 +5692,8 @@
         "Marcus Samuelsson",
         "Anthony Bourdain",
         "Edward Lee"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "eat-a-peach|david-chang",
@@ -5635,7 +5728,8 @@
         "Anthony Bourdain",
         "Marcus Samuelsson",
         "Kwame Onwuachi"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "me|elton-john",
@@ -5670,7 +5764,8 @@
         "Bruce Springsteen",
         "Steven Tyler",
         "Patti Smith"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "shoe-dog|phil-knight",
@@ -5705,7 +5800,8 @@
         "Richard Branson",
         "Jeff Bezos",
         "Robert Iger"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-flight-attendant|chris-bohjalian",
@@ -5740,7 +5836,8 @@
         "Liane Moriarty",
         "Jodi Picoult",
         "Anita Shreve"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "three-ring-circus-kobe-shaq-phil-and-the-crazy-years-of-the-lakers-dynasty|jeff-pearlman",
@@ -5774,7 +5871,8 @@
         "Joe Posnanski",
         "Tom Verducci",
         "Jeff Benedict"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "a-promised-land|barack-obama",
@@ -5809,13 +5907,14 @@
         "Michelle Obama",
         "Hillary Clinton",
         "David Axelrod"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-stand|stephen-king",
       "bookId": "56793452",
       "title": "The Stand",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 4.37,
@@ -5844,7 +5943,8 @@
         "Joe Hill",
         "Peter Straub",
         "Clive Barker"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-midnight-library|matt-haig",
@@ -5879,13 +5979,14 @@
         "John Green",
         "David Nicholls",
         "Nick Hornby"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "along-came-a-spider|james-patterson",
       "bookId": "49123943",
       "title": "Along Came a Spider (Alex Cross, #1)",
-      "author": "James  Patterson",
+      "author": "James Patterson",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.98,
@@ -5914,7 +6015,8 @@
         "Michael Connelly",
         "Lee Child",
         "David Baldacci"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "project-hail-mary|andy-weir",
@@ -5949,7 +6051,8 @@
         "Neal Stephenson",
         "Michael Crichton",
         "John Scalzi"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-secret-life-of-groceries-the-dark-miracle-of-the-american-supermarket|benjamin-lorr",
@@ -5982,7 +6085,8 @@
         "Dan Saladino",
         "Ruth Reichl",
         "Michael Ruhlman"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "amazon-unbound-jeff-bezos-and-the-invention-of-a-global-empire|brad-stone",
@@ -6017,7 +6121,8 @@
         "Ashlee Vance",
         "Nick Bilton",
         "Ben Mezrich"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "pappyland-a-story-of-family-fine-bourbon-and-the-things-that-last|wright-thompson",
@@ -6052,7 +6157,8 @@
         "Jeff Pearlman",
         "Gary Smith",
         "Bill Simmons"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "paradise-one-town-s-struggle-to-survive-an-american-wildfire|lizzie-johnson",
@@ -6086,7 +6192,8 @@
         "Erik Larson",
         "David Grann",
         "Michael Finkel"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-plot|jean-hanff-korelitz",
@@ -6121,7 +6228,8 @@
         "Tana French",
         "Gillian Flynn",
         "Liane Moriarty"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "crying-in-h-mart|michelle-zauner",
@@ -6155,7 +6263,8 @@
         "Hua Hsu",
         "Ocean Vuong",
         "Jenny Zhang"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-storyteller-tales-of-life-and-music|dave-grohl",
@@ -6190,7 +6299,8 @@
         "Bruce Springsteen",
         "Keith Richards",
         "Patti Smith"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-greatest-beer-run-ever-a-memoir-of-friendship-loyalty-and-war|john-chick-donohue",
@@ -6224,7 +6334,8 @@
         "Hampton Sides",
         "Sebastian Junger",
         "Michael Finkel"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "tanking-to-the-top-the-philadelphia-76ers-and-the-most-audacious-process-in-the-history-of-professional-sports|yaron-weitzman",
@@ -6258,7 +6369,8 @@
         "Jeff Pearlman",
         "Jonathan Abrams",
         "Michael Lewis"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "one-day-the-extraordinary-story-of-an-ordinary-24-hours-in-america|gene-weingarten",
@@ -6291,7 +6403,8 @@
         "David Grann",
         "David Sedaris",
         "Chuck Klosterman"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-seven-husbands-of-evelyn-hugo|taylor-jenkins-reid",
@@ -6326,7 +6439,8 @@
         "Emily Henry",
         "Jojo Moyes",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-glass-castle|jeannette-walls",
@@ -6360,7 +6474,8 @@
         "Mary Karr",
         "Rick Bragg",
         "Haven Kimmel"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "daisy-jones-the-six|taylor-jenkins-reid",
@@ -6395,7 +6510,8 @@
         "Emily Henry",
         "Jojo Moyes",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "upgrade|blake-crouch",
@@ -6429,7 +6545,8 @@
         "Neal Stephenson",
         "Michael Crichton",
         "Greg Bear"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "tomorrow-and-tomorrow-and-tomorrow|gabrielle-zevin",
@@ -6463,7 +6580,8 @@
         "Taylor Jenkins Reid",
         "Rainbow Rowell",
         "Emily Henry"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "carrie-soto-is-back|taylor-jenkins-reid",
@@ -6497,7 +6615,8 @@
         "Emily Henry",
         "Jojo Moyes",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "drowning|t-j-newman",
@@ -6531,7 +6650,8 @@
         "Blake Crouch",
         "Lee Child",
         "Daniel Silva"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "this-is-going-to-hurt-secret-diaries-of-a-junior-doctor|adam-kay",
@@ -6565,7 +6685,8 @@
         "David Sedaris",
         "A.J. Jacobs",
         "Jon Ronson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-dumb-money-the-gamestop-short-squeeze-and-the-ragtag-group-of-amateur-traders-that-brought-wall-street-to-its-knees|ben-mezrich",
@@ -6600,7 +6721,8 @@
         "Brad Stone",
         "Nick Bilton",
         "David Kushner"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-investigator|john-sandford",
@@ -6634,7 +6756,8 @@
         "James Patterson",
         "Lee Child",
         "Michael Connelly"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "behind-closed-doors|b-a-paris",
@@ -6669,7 +6792,8 @@
         "Lisa Jewell",
         "Paula Hawkins",
         "Gillian Flynn"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "elon-musk|walter-isaacson",
@@ -6704,7 +6828,8 @@
         "Brad Stone",
         "Ron Chernow",
         "David McCullough"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "lessons-in-chemistry|bonnie-garmus",
@@ -6739,7 +6864,8 @@
         "Maria Semple",
         "Emma Straub",
         "Taylor Jenkins Reid"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "every-day|david-levithan",
@@ -6774,7 +6900,8 @@
         "Rainbow Rowell",
         "Jay Asher",
         "Nicola Yoon"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-wager-a-tale-of-shipwreck-mutiny-and-murder|david-grann",
@@ -6809,7 +6936,8 @@
         "Jon Krakauer",
         "Sebastian Junger",
         "Candice Millard"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-lost-city-of-z-a-tale-of-deadly-obsession-in-the-amazon|david-grann",
@@ -6844,7 +6972,8 @@
         "Jon Krakauer",
         "Sebastian Junger",
         "Candice Millard"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-other-valley|scott-alexander-howard",
@@ -6878,7 +7007,8 @@
         "Matt Haig",
         "Emily St. John Mandel",
         "Ted Chiang"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "presumed-innocent|scott-turow",
@@ -6913,7 +7043,8 @@
         "Scott Pratt",
         "James Grippando",
         "William L. Myers Jr."
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "from-the-corner-of-the-oval|beck-dorey-stein",
@@ -6947,7 +7078,8 @@
         "Bob Woodward",
         "Omarosa",
         "Barbara Res"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-invisible-life-of-addie-larue|v-e-schwab",
@@ -6982,7 +7114,8 @@
         "Leigh Bardugo",
         "Patrick Rothfuss",
         "Robin Hobb"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "sorry-i-m-late-i-didn-t-want-to-come-one-introvert-s-year-of-saying-yes|jessica-pan",
@@ -7016,7 +7149,8 @@
         "David Sedaris",
         "Mary Roach",
         "A.J. Jacobs"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "into-thin-air|jon-krakauer",
@@ -7051,7 +7185,8 @@
         "Mark Bowden",
         "David Grann",
         "Peter Zuckerman"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-heiress|rachel-hawkins",
@@ -7086,7 +7221,8 @@
         "Lucy Foley",
         "Ruth Ware",
         "Kristin Hannah"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "annie-bot|sierra-greer",
@@ -7121,7 +7257,8 @@
         "Freida McFadden",
         "Emily St. John Mandel",
         "B.A. Paris"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-housemaid|freida-mcfadden",
@@ -7156,7 +7293,8 @@
         "Lisa Jewell",
         "Shari Lapena",
         "Liane Moriarty"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "i-hope-this-finds-you-well|natalie-sue",
@@ -7190,13 +7328,14 @@
         "Matt Haig",
         "Bonnie Garmus",
         "Taylor Jenkins Reid"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "source-code-my-beginnings|bill-gates",
       "bookId": "213290918",
       "title": "Source Code: My Beginnings",
-      "author": "Bill  Gates",
+      "author": "Bill Gates",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 4.12,
@@ -7225,7 +7364,8 @@
         "Jeff Bezos",
         "Phil Knight",
         "Ashlee Vance"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-perfect-marriage|jeneva-rose",
@@ -7260,13 +7400,14 @@
         "B.A. Paris",
         "Lisa Jewell",
         "Shari Lapena"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "12-months-to-live|james-patterson",
       "bookId": "75569754",
       "title": "12 Months to Live (Jane Smith, #1)",
-      "author": "James  Patterson",
+      "author": "James Patterson",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.9,
@@ -7356,7 +7497,8 @@
         "John Carreyrou",
         "Ben Mezrich",
         "Ben Horowitz"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "gandolfini-jim-tony-and-the-life-of-a-legend|jason-bailey",
@@ -7389,7 +7531,8 @@
         "Dave Itzkoff",
         "Susan Morrison",
         "James Andrew Miller"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "a-s-l|jeanne-thornton",
@@ -7487,7 +7630,7 @@
       "bookKey": "inside-the-cartel-how-an-undercover-fbi-agent-smuggled-cocaine-laundered-cash-and-dismantled-a-colombian-narco-empire|martin-suarez",
       "bookId": "215217592",
       "title": "Inside the Cartel: How an Undercover FBI Agent Smuggled Cocaine, Laundered Cash, and Dismantled a Colombian Narco-Empire",
-      "author": "Martin   Suarez",
+      "author": "Martin Suarez",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.9,
@@ -7639,13 +7782,14 @@
         "B.A. Paris",
         "Lisa Jewell",
         "Laura Dave"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "not-quite-dead-yet|holly-jackson",
       "bookId": "220223963",
       "title": "Not Quite Dead Yet",
-      "author": "Holly  Jackson",
+      "author": "Holly Jackson",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.1,
@@ -7707,7 +7851,7 @@
       "bookKey": "lorne-the-man-who-invented-saturday-night-live|susan-morrison",
       "bookId": "216818681",
       "title": "Lorne: The Man Who Invented Saturday Night Live",
-      "author": "Susan    Morrison",
+      "author": "Susan Morrison",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 4.05,
@@ -7734,7 +7878,8 @@
         "Jason Bailey",
         "Laurie Woolever",
         "Anthony Bourdain"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-exchange|john-grisham",
@@ -7769,7 +7914,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "english-creek|ivan-doig",
@@ -7806,7 +7952,7 @@
       "bookKey": "the-life-of-chuck|stephen-king",
       "bookId": "229251932",
       "title": "The Life of Chuck",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.1,
@@ -8175,7 +8321,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-crash|freida-mcfadden",
@@ -8213,7 +8360,7 @@
       "bookKey": "the-perfect-assassin|james-patterson",
       "bookId": "60601632",
       "title": "The Perfect Assassin (Doc Savage, #1)",
-      "author": "James  Patterson",
+      "author": "James Patterson",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.8,
@@ -8241,7 +8388,8 @@
         "Michael Connelly",
         "Lee Child",
         "David Baldacci"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-bomber-mafia-a-dream-a-temptation-and-the-longest-night-of-the-second-world-war|malcolm-gladwell",
@@ -8276,7 +8424,8 @@
         "Daniel Kahneman",
         "Nassim Taleb",
         "Dan Ariely"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-first-gentleman|bill-clinton",
@@ -8340,7 +8489,8 @@
         "Emily Henry",
         "Jojo Moyes",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "dissolution|nicholas-binge",
@@ -8468,7 +8618,8 @@
         "Lisa Jewell",
         "Shari Lapena",
         "Liane Moriarty"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-man-made-of-smoke|alex-north",
@@ -8505,7 +8656,7 @@
       "bookKey": "rita-hayworth-and-shawshank-redemption|stephen-king",
       "bookId": "53660995",
       "title": "Rita Hayworth and Shawshank Redemption",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 4.4,
@@ -8532,13 +8683,14 @@
         "Joe Hill",
         "Peter Straub",
         "Clive Barker"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "how-i-killed-pluto-and-why-it-had-it-coming|mike-brown",
       "bookId": "10146802",
       "title": "How I Killed Pluto and Why It Had It Coming",
-      "author": "Mike    Brown",
+      "author": "Mike Brown",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.1,
@@ -8597,7 +8749,8 @@
         "David Chang",
         "Ruth Reichl",
         "Michael Ruhlman"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-last-letter|rebecca-yarros",
@@ -8618,7 +8771,8 @@
       "themes": [
         "romance",
         "military",
-        "historical"
+        "historical",
+        "historical fiction"
       ],
       "similarToTitles": [
         "One Day",
@@ -8847,7 +9001,8 @@
         "Scott Turow",
         "Steve Cavanagh",
         "Lisa Scottoline"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "tell-no-one|harlan-coben",
@@ -8881,7 +9036,8 @@
         "Michael Connelly",
         "Jeffery Deaver",
         "John Sandford"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "blood-and-thunder-an-epic-of-the-american-west|hampton-sides",
@@ -8978,13 +9134,14 @@
         "Jon Krakauer",
         "Laura Hillenbrand",
         "Candice Millard"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "paper-towns|john-green",
       "bookId": "6442769",
       "title": "Paper Towns",
-      "author": "John  Green",
+      "author": "John Green",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.67,
@@ -9012,7 +9169,8 @@
         "Rainbow Rowell",
         "Sally Rooney",
         "Taylor Jenkins Reid"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-tycoons-how-andrew-carnegie-john-d-rockefeller-jay-gould-and-j-p-morgan-invented-the-american-supereconomy|charles-r-morris",
@@ -9140,7 +9298,8 @@
         "Emily St. John Mandel",
         "Jeff VanderMeer",
         "Kazuo Ishiguro"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "never-lie|freida-mcfadden",
@@ -9175,7 +9334,8 @@
         "Lisa Jewell",
         "Shari Lapena",
         "Liane Moriarty"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-perks-of-being-a-wallflower|stephen-chbosky",
@@ -9269,13 +9429,14 @@
         "Brad Thor",
         "Daniel Silva",
         "Jason Matthews"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "looking-for-alaska|john-green",
       "bookId": "49085770",
       "title": "Looking for Alaska",
-      "author": "John  Green",
+      "author": "John Green",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 4.02,
@@ -9303,7 +9464,8 @@
         "Rainbow Rowell",
         "Sally Rooney",
         "Taylor Jenkins Reid"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "challenger-a-true-story-of-heroism-and-disaster-on-the-edge-of-space|adam-higginbotham",
@@ -9429,7 +9591,8 @@
         "Lisa Jewell",
         "Shari Lapena",
         "Liane Moriarty"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-boyfriend|freida-mcfadden",
@@ -9561,7 +9724,7 @@
       "bookKey": "the-god-of-the-woods|liz-moore",
       "bookId": "199700434",
       "title": "The God of the Woods",
-      "author": "Liz    Moore",
+      "author": "Liz Moore",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.2,
@@ -9621,7 +9784,8 @@
         "James Crumley",
         "Raymond Chandler",
         "Ross Macdonald"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-blackbriar-genesis|simon-gervais",
@@ -9654,13 +9818,14 @@
         "Brad Thor",
         "Daniel Silva",
         "Jason Matthews"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "everything-is-tuberculosis-the-history-and-persistence-of-our-deadliest-infection|john-green",
       "bookId": "220341389",
       "title": "Everything Is Tuberculosis: The History and Persistence of Our Deadliest Infection",
-      "author": "John  Green",
+      "author": "John Green",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.9,
@@ -9719,7 +9884,8 @@
         "B.A. Paris",
         "Shari Lapena",
         "Freida McFadden"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "grit-the-power-of-passion-and-perseverance|angela-duckworth",
@@ -9784,7 +9950,8 @@
         "John Green",
         "Matthew Quick",
         "Jonathan Tropper"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "under-the-banner-of-heaven-a-story-of-violent-faith|jon-krakauer",
@@ -9880,7 +10047,8 @@
         "John Green",
         "Matthew Quick",
         "Jonathan Tropper"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-egg|andy-weir",
@@ -9913,7 +10081,8 @@
         "Neal Stephenson",
         "Michael Crichton",
         "John Scalzi"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "flash-crash-a-trading-savant-a-global-manhunt-and-the-most-mysterious-market-crash-in-history|liam-vaughan",
@@ -9948,7 +10117,8 @@
         "Gregory Zuckerman",
         "Max Frumes",
         "Sheelah Kolhatkar"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "worst-case-scenario|t-j-newman",
@@ -9982,7 +10152,8 @@
         "Blake Crouch",
         "Lee Child",
         "Daniel Silva"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-stowaway|james-s-murray",
@@ -10016,7 +10187,8 @@
         "David Grann",
         "Sebastian Junger",
         "Candice Millard"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "lonesome-dove|larry-mcmurtry",
@@ -10080,7 +10252,8 @@
         "Bob Dylan",
         "Keith Richards",
         "Patti Smith"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "tom-lake|ann-patchett",
@@ -10148,7 +10321,7 @@
       "bookKey": "the-institute|stephen-king",
       "bookId": "43799634",
       "title": "The Institute",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 3.96,
@@ -10176,7 +10349,8 @@
         "Joe Hill",
         "Peter Straub",
         "Clive Barker"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "dear-mr-you|mary-louise-parker",
@@ -10209,7 +10383,8 @@
         "Mary Karr",
         "Nora Ephron",
         "Carrie Fisher"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-second-smartest-dog-that-ever-lived|will-pass",
@@ -10366,7 +10541,8 @@
         "Brent Schlender",
         "Brad Stone",
         "Ashlee Vance"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "bossypants|tina-fey",
@@ -10431,7 +10607,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "good-material|dolly-alderton",
@@ -10588,7 +10765,8 @@
         "Taylor Jenkins Reid",
         "Gabrielle Zevin",
         "Matt Haig"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-pentagon-s-brain-an-uncensored-history-of-darpa-america-s-top-secret-military-research-agency|annie-jacobsen",
@@ -10622,7 +10800,8 @@
         "Hampton Sides",
         "Laura Hillenbrand",
         "Candice Millard"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "she-rides-shotgun|jordan-harper",
@@ -10657,7 +10836,8 @@
         "S.A. Cosby",
         "James Ellroy",
         "Richard Price"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "everybody-knows|jordan-harper",
@@ -10692,7 +10872,8 @@
         "S.A. Cosby",
         "James Ellroy",
         "Richard Price"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "heartbreak-is-the-national-anthem-how-taylor-swift-reinvented-pop-music|rob-sheffield",
@@ -10756,7 +10937,8 @@
         "Scott Pratt",
         "James Grippando",
         "William L. Myers Jr."
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-last-one-at-the-wedding|jason-rekulak",
@@ -10852,7 +11034,8 @@
         "Lisa Genova",
         "Delia Owens",
         "Sara Gruen"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "abandon|blake-crouch",
@@ -10886,7 +11069,8 @@
         "Neal Stephenson",
         "Michael Crichton",
         "Greg Bear"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "lifeform|jenny-slate",
@@ -10951,13 +11135,14 @@
         "Liane Moriarty",
         "Freida McFadden",
         "Shari Lapena"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "buttermilk-graffiti-a-chef-s-journey-to-discover-america-s-new-melting-pot-cuisine|edward-lee",
       "bookId": "38348301",
       "title": "Buttermilk Graffiti: A Chef's Journey to Discover America's New Melting-Pot Cuisine",
-      "author": "Edward       Lee",
+      "author": "Edward Lee",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 3.96,
@@ -10984,7 +11169,8 @@
         "Kwame Onwuachi",
         "Anthony Bourdain",
         "Marcus Samuelsson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "open|andre-agassi",
@@ -11049,7 +11235,8 @@
         "James Patterson",
         "Scott Turow",
         "Tom Clancy"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "liv-and-let-die-the-inside-story-of-the-war-between-the-pga-tour-and-liv-golf|alan-shipnuck",
@@ -11082,7 +11269,8 @@
         "David Owen",
         "John Feinstein",
         "Michael Lewis"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "american-overdose-the-opioid-tragedy-in-three-acts|chris-mcgreal",
@@ -11115,7 +11303,8 @@
         "Sam Quinones",
         "Patrick Radden Keefe",
         "Johann Hari"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "nexus-a-brief-history-of-information-networks-from-the-stone-age-to-ai|yuval-noah-harari",
@@ -11180,7 +11369,8 @@
         "Matt Haig",
         "Emily St. John Mandel",
         "Liane Moriarty"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "born-to-run-a-hidden-tribe-superathletes-and-the-greatest-race-the-world-has-never-seen|christopher-mcdougall",
@@ -11214,7 +11404,8 @@
         "Sebastian Junger",
         "David Epstein",
         "Mark Obmascik"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "eruption|michael-crichton",
@@ -11249,13 +11440,14 @@
         "Blake Crouch",
         "Daniel H. Wilson",
         "Greg Bear"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-anthropocene-reviewed-essays-on-a-human-centered-planet|john-green",
       "bookId": "55223004",
       "title": "The Anthropocene Reviewed: Essays on a Human-Centered Planet",
-      "author": "John  Green",
+      "author": "John Green",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 4.38,
@@ -11282,7 +11474,8 @@
         "Rainbow Rowell",
         "Sally Rooney",
         "Taylor Jenkins Reid"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "camino-ghosts|john-grisham",
@@ -11317,7 +11510,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-book-of-dog-a-satire|d-j-molles",
@@ -11383,7 +11577,8 @@
         "Scott Turow",
         "Brad Parks",
         "Lisa Scottoline"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-burden-of-proof|scott-turow",
@@ -11417,7 +11612,8 @@
         "Scott Pratt",
         "James Grippando",
         "William L. Myers Jr."
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "exit-west|mohsin-hamid",
@@ -11574,7 +11770,8 @@
         "Kazuo Ishiguro",
         "Andy Weir",
         "Emily St. John Mandel"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "one-day|david-nicholls",
@@ -11609,7 +11806,8 @@
         "John Green",
         "Matthew Quick",
         "Jonathan Tropper"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "frogcatchers|jeff-lemire",
@@ -11705,7 +11903,8 @@
         "Bill Buford",
         "Michael Ruhlman",
         "David Chang"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "reading-the-oed-one-man-one-year-21-730-pages|ammon-shea",
@@ -11768,7 +11967,8 @@
         "Jon Krakauer",
         "Erik Larson",
         "Tracy Kidder"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-formula-how-rogues-geniuses-and-speed-freaks-reengineered-f1-into-the-world-s-fastest-growing-sport-a-high-octane-history-of-formula-1-s-rise-in-america|joshua-robinson",
@@ -11802,7 +12002,8 @@
         "Jeff Pearlman",
         "Simon Kuper",
         "David Conn"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "end-of-story|a-j-finn",
@@ -11834,7 +12035,8 @@
         "Paula Hawkins",
         "B.A. Paris",
         "Shari Lapena"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "before-the-coffee-gets-cold|toshikazu-kawaguchi",
@@ -11868,13 +12070,14 @@
         "Graeme Simsion",
         "Nikki Erlick",
         "Richard Osman"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "you-like-it-darker|stephen-king",
       "bookId": "201255440",
       "title": "You Like It Darker",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "read",
       "myRating": 3,
       "avgRating": 4.12,
@@ -11901,7 +12104,8 @@
         "Joe Hill",
         "Peter Straub",
         "Clive Barker"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-one|john-marrs",
@@ -12060,7 +12264,7 @@
       "bookKey": "how-to-know-a-person-the-art-of-seeing-others-deeply-and-being-deeply-seen|david-brooks",
       "bookId": "112974860",
       "title": "How to Know a Person: The Art of Seeing Others Deeply and Being Deeply Seen",
-      "author": "David  Brooks",
+      "author": "David Brooks",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.9,
@@ -12150,7 +12354,8 @@
         "Taylor Jenkins Reid",
         "Gabrielle Zevin",
         "Matt Haig"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "there-s-always-this-year-on-basketball-and-ascension|hanif-abdurraqib",
@@ -12183,7 +12388,8 @@
         "Jesmyn Ward",
         "Michael Eric Dyson",
         "Chuck Klosterman"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "fire-weather-a-true-story-from-a-hotter-world|john-vaillant",
@@ -12373,7 +12579,8 @@
         "Michael Lewis",
         "Laura Hillenbrand",
         "David Maraniss"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-three-body-problem|liu-cixin",
@@ -12407,7 +12614,8 @@
         "Neal Stephenson",
         "Greg Bear",
         "Kim Stanley Robinson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-mother-tongue-english-and-how-it-got-that-way|bill-bryson",
@@ -12444,7 +12652,7 @@
       "bookKey": "the-golfer-s-carol|robert-bailey",
       "bookId": "54800699",
       "title": "The Golfer's Carol",
-      "author": "Robert  Bailey",
+      "author": "Robert Bailey",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.8,
@@ -12471,13 +12679,14 @@
         "Scott Pratt",
         "Scott Turow",
         "Steve Cavanagh"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "revival|stephen-king",
       "bookId": "20926278",
       "title": "Revival",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.8,
@@ -12539,7 +12748,7 @@
       "bookKey": "elevation|stephen-king",
       "bookId": "39931828",
       "title": "Elevation",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.72,
@@ -12568,7 +12777,8 @@
         "Joe Hill",
         "Peter Straub",
         "Clive Barker"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-storied-life-of-a-j-fikry|gabrielle-zevin",
@@ -12602,7 +12812,8 @@
         "Taylor Jenkins Reid",
         "Rainbow Rowell",
         "Emily Henry"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-statistical-probability-of-love-at-first-sight|jennifer-e-smith",
@@ -12635,7 +12846,8 @@
         "Graeme Simsion",
         "Rainbow Rowell",
         "David Nicholls"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "hello-goodbye-and-everything-in-between|jennifer-e-smith",
@@ -12733,7 +12945,7 @@
       "bookKey": "on-earth-as-it-is-on-television|emily-jane",
       "bookId": "206340812",
       "title": "On Earth as It Is on Television",
-      "author": "Emily  Jane",
+      "author": "Emily Jane",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.5,
@@ -12793,7 +13005,8 @@
         "Alexander McCall Smith",
         "Agatha Christie",
         "Alan Bradley"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "flying-blind-the-737-max-tragedy-and-the-fall-of-boeing|peter-robison",
@@ -12859,7 +13072,8 @@
         "Rainbow Rowell",
         "Jay Asher",
         "Nicola Yoon"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "another-day|david-levithan",
@@ -12894,7 +13108,8 @@
         "Rainbow Rowell",
         "Jay Asher",
         "Nicola Yoon"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-art-thief-a-true-story-of-love-crime-and-a-dangerous-obsession|michael-finkel",
@@ -12928,7 +13143,8 @@
         "David Grann",
         "Lawrence Wright",
         "Erik Larson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-power-law-venture-capital-and-the-making-of-the-new-future|sebastian-mallaby",
@@ -12965,7 +13181,7 @@
       "bookKey": "chip-war-the-fight-for-the-world-s-most-critical-technology|chris-miller",
       "bookId": "60838950",
       "title": "Chip War: The Fight for the World's Most Critical Technology",
-      "author": "Chris   Miller",
+      "author": "Chris Miller",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 4.21,
@@ -12993,7 +13209,8 @@
         "Brad Stone",
         "Michael Lewis",
         "Ben Mezrich"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-woman-in-me|britney-spears",
@@ -13026,7 +13243,8 @@
         "Mariah Carey",
         "Kim Kardashian",
         "Paris Hilton"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-marriage-act|john-marrs",
@@ -13059,7 +13277,8 @@
         "Shari Lapena",
         "Andy Weir",
         "Liane Moriarty"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "breaking-twitter-elon-musk-and-the-most-controversial-corporate-takeover-in-history|ben-mezrich",
@@ -13092,7 +13311,8 @@
         "Brad Stone",
         "Nick Bilton",
         "David Kushner"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "zero-days|ruth-ware",
@@ -13126,13 +13346,14 @@
         "B.A. Paris",
         "Paula Hawkins",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "holly|stephen-king",
       "bookId": "81401804",
       "title": "Holly (Holly Gibney, #3)",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 4.08,
@@ -13161,7 +13382,8 @@
         "Joe Hill",
         "Peter Straub",
         "Clive Barker"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "a-criminal-justice|william-l-myers-jr",
@@ -13256,7 +13478,8 @@
         "Ottessa Moshfegh",
         "Hanya Yanagihara",
         "Normal People"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-lost-continent-travels-in-small-town-america|bill-bryson",
@@ -13289,13 +13512,14 @@
         "Paul Theroux",
         "Peter Mayle",
         "Tim Cahill"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "going-infinite-the-rise-and-fall-of-a-new-tycoon|michael-lewis",
       "bookId": "156552773",
       "title": "Going Infinite: The Rise and Fall of a New Tycoon",
-      "author": "Michael   Lewis",
+      "author": "Michael Lewis",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.94,
@@ -13324,7 +13548,8 @@
         "John Carreyrou",
         "Ben Mezrich",
         "Ben Horowitz"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-wise-men-six-friends-and-the-world-they-made|walter-isaacson",
@@ -13548,7 +13773,7 @@
       "bookKey": "black-sheep|rachel-harrison",
       "bookId": "69704909",
       "title": "Black Sheep",
-      "author": "Rachel   Harrison",
+      "author": "Rachel Harrison",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.6,
@@ -13579,7 +13804,7 @@
       "bookKey": "entrances-and-exits|michael-richards",
       "bookId": "201339849",
       "title": "Entrances and Exits",
-      "author": "Michael    Richards",
+      "author": "Michael Richards",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.7,
@@ -13641,7 +13866,7 @@
       "bookKey": "sleeping-beauties|stephen-king",
       "bookId": "34466922",
       "title": "Sleeping Beauties",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.8,
@@ -13856,7 +14081,8 @@
         "Lisa Jewell",
         "Paula Hawkins",
         "Gillian Flynn"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "dark-angel|john-sandford",
@@ -13890,7 +14116,8 @@
         "James Patterson",
         "Lee Child",
         "Michael Connelly"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "get-the-picture-a-mind-bending-journey-among-the-inspired-artists-and-obsessive-art-fiends-who-taught-me-how-to-see|bianca-bosker",
@@ -13986,7 +14213,7 @@
       "bookKey": "born-standing-up-a-comic-s-life|steve-martin",
       "bookId": "773858",
       "title": "Born Standing Up: A Comic's Life",
-      "author": "Steve  Martin",
+      "author": "Steve Martin",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.1,
@@ -14048,7 +14275,7 @@
       "bookKey": "the-mist|stephen-king",
       "bookId": "813214",
       "title": "The Mist",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.1,
@@ -14293,7 +14520,8 @@
         "Alice Walker",
         "Toni Morrison",
         "Louise Erdrich"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "trust|hernan-diaz",
@@ -14357,7 +14585,8 @@
         "Freida McFadden",
         "Shari Lapena",
         "B.A. Paris"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "gambler-secrets-from-a-life-at-risk|billy-walters",
@@ -14424,7 +14653,7 @@
       "bookKey": "mr-mercedes|stephen-king",
       "bookId": "18775247",
       "title": "Mr. Mercedes (Bill Hodges #1)",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4,
@@ -14483,7 +14712,8 @@
         "Denis Johnson",
         "Colson Whitehead",
         "Philip Roth"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "a-walk-in-the-woods-rediscovering-america-on-the-appalachian-trail|bill-bryson",
@@ -14517,13 +14747,14 @@
         "Paul Theroux",
         "Peter Mayle",
         "Tim Cahill"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "a-face-in-the-crowd|stephen-king",
       "bookId": "17452151",
       "title": "A Face in the Crowd",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 3.65,
@@ -14549,7 +14780,8 @@
         "Joe Hill",
         "Peter Straub",
         "Clive Barker"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "none-of-this-rocks-a-memoir|joe-trohman",
@@ -14645,7 +14877,8 @@
         "Liane Moriarty",
         "Jodi Picoult",
         "Freida McFadden"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "romantic-comedy|curtis-sittenfeld",
@@ -14680,7 +14913,8 @@
         "Emily Giffin",
         "Marian Keyes",
         "Taylor Jenkins Reid"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "for-blood-and-money-billionaires-biotech-and-the-quest-for-a-blockbuster-drug|nathan-vardi",
@@ -14717,7 +14951,7 @@
       "bookKey": "class-a-memoir-of-motherhood-hunger-and-higher-education|stephanie-land",
       "bookId": "101160309",
       "title": "Class: A Memoir of Motherhood, Hunger, and Higher Education",
-      "author": "Stephanie  Land",
+      "author": "Stephanie Land",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.9,
@@ -14747,7 +14981,7 @@
       "bookKey": "hangry-a-startup-journey|mike-evans",
       "bookId": "60099154",
       "title": "Hangry: A Startup Journey",
-      "author": "Mike           Evans",
+      "author": "Mike Evans",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.72,
@@ -14775,7 +15009,8 @@
         "Sam Walton",
         "Robert Iger",
         "Jeff Bezos"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "cassandra-in-reverse|holly-smale",
@@ -14839,7 +15074,8 @@
         "Jonathan Franzen",
         "Richard Russo",
         "Tom McCarthy"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "doc-the-life-of-roy-halladay|todd-zolecki",
@@ -14874,7 +15110,8 @@
         "Tom Verducci",
         "Jeff Pearlman",
         "Jonah Keri"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "mr-texas|lawrence-wright",
@@ -14894,7 +15131,8 @@
       "type": "fiction",
       "themes": [
         "literary",
-        "political"
+        "political",
+        "contemporary"
       ],
       "similarToTitles": [
         "The Plot (The Book Series, #1)",
@@ -15030,7 +15268,8 @@
         "Declan Hughes",
         "Stuart Neville",
         "Colin Bateman"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-cold-cold-ground|adrian-mckinty",
@@ -15040,7 +15279,7 @@
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.1,
-      "pages": 11,
+      "pages": 320,
       "dateRead": null,
       "dateAdded": "2023/06/10",
       "isbn": "1441785698",
@@ -15095,7 +15334,8 @@
         "Declan Hughes",
         "Stuart Neville",
         "Colin Bateman"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-boys-from-biloxi|john-grisham",
@@ -15130,7 +15370,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "partners-a-rogue-lawyer-short-story|john-grisham",
@@ -15225,7 +15466,8 @@
         "Paul Theroux",
         "Peter Mayle",
         "Tim Cahill"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "nine-inches|tom-perrotta",
@@ -15258,7 +15500,8 @@
         "Jonathan Franzen",
         "Richard Russo",
         "Tom McCarthy"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "traffic-genius-rivalry-and-delusion-in-the-billion-dollar-race-to-go-viral|ben-smith",
@@ -15324,7 +15567,8 @@
         "Brad Stone",
         "Jimmy Soni",
         "Brent Schlender"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-battle-for-your-brain-defending-the-right-to-think-freely-in-the-age-of-neurotechnology|nita-a-farahany",
@@ -15392,11 +15636,11 @@
       "bookKey": "the-coming-storm|michael-lewis",
       "bookId": "41016100",
       "title": "The Coming Storm",
-      "author": "Michael   Lewis",
+      "author": "Michael Lewis",
       "shelf": "read",
       "myRating": 0,
       "avgRating": 3.75,
-      "pages": 3,
+      "pages": 65,
       "dateRead": null,
       "dateAdded": "2022/09/23",
       "isbn": null,
@@ -15419,7 +15663,8 @@
         "John Carreyrou",
         "Ben Mezrich",
         "Ben Horowitz"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "there-s-just-one-problem-true-tales-from-the-former-one-time-7th-most-powerful-person-in-wwe|brian-gewirtz",
@@ -15484,7 +15729,8 @@
         "Lee Child",
         "Harlan Coben",
         "Vince Flynn"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "run-for-cover|michael-ledwidge",
@@ -15519,7 +15765,8 @@
         "Lee Child",
         "Harlan Coben",
         "Vince Flynn"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "stop-at-nothing|michael-ledwidge",
@@ -15553,7 +15800,8 @@
         "Lee Child",
         "Harlan Coben",
         "Vince Flynn"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-measure|nikki-erlick",
@@ -15588,7 +15836,8 @@
         "Graeme Simsion",
         "Toshikazu Kawaguchi",
         "Gabrielle Zevin"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "little-children|tom-perrotta",
@@ -15622,7 +15871,8 @@
         "Jonathan Franzen",
         "Richard Russo",
         "Tom McCarthy"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "poverty-by-america|matthew-desmond",
@@ -15656,13 +15906,14 @@
         "Barbara Ehrenreich",
         "Matthew Crawford",
         "Stephanie Land"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "fairy-tale|stephen-king",
       "bookId": "60188762",
       "title": "Fairy Tale",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 3.89,
@@ -15690,13 +15941,14 @@
         "Joe Hill",
         "Peter Straub",
         "Clive Barker"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "a-face-in-the-crowd-the-longest-december|stephen-king",
       "bookId": "60102274",
       "title": "A Face in the Crowd / The Longest December",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.8,
@@ -15754,7 +16006,8 @@
         "Alice Munro",
         "Marilynne Robinson",
         "Lily King"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "sea-of-tranquility|emily-st-john-mandel",
@@ -15787,7 +16040,8 @@
         "Colson Whitehead",
         "Donna Tartt",
         "Ted Chiang"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-abstinence-teacher-a-novel|tom-perrotta",
@@ -15820,13 +16074,14 @@
         "Jonathan Franzen",
         "Richard Russo",
         "Tom McCarthy"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "wilt-larger-than-life|robert-cherry",
       "bookId": "1454721",
       "title": "Wilt: Larger Than Life",
-      "author": "Robert   Cherry",
+      "author": "Robert Cherry",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.1,
@@ -15916,7 +16171,8 @@
         "Jonathan Franzen",
         "Philip Roth",
         "Thomas Pynchon"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-presidents-club-inside-the-world-s-most-exclusive-fraternity|nancy-gibbs",
@@ -15981,7 +16237,8 @@
         "Jonathan Franzen",
         "Richard Russo",
         "Tom McCarthy"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "desert-places|blake-crouch",
@@ -16015,7 +16272,8 @@
         "Neal Stephenson",
         "Michael Crichton",
         "Greg Bear"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "snow-crash|neal-stephenson",
@@ -16080,7 +16338,8 @@
         "Curtis Sittenfeld",
         "Emma Straub",
         "Liane Moriarty"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "fool-me-once|harlan-coben",
@@ -16114,7 +16373,8 @@
         "Michael Connelly",
         "Jeffery Deaver",
         "John Sandford"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-last-folk-hero-the-life-and-myth-of-bo-jackson|jeff-pearlman",
@@ -16149,7 +16409,8 @@
         "Joe Posnanski",
         "Tom Verducci",
         "Jeff Benedict"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-last-town|blake-crouch",
@@ -16184,7 +16445,8 @@
         "Neal Stephenson",
         "Michael Crichton",
         "Greg Bear"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "wayward-wayward-pines-2|blake-crouch",
@@ -16218,7 +16480,8 @@
         "Neal Stephenson",
         "Michael Crichton",
         "Greg Bear"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "stolen-focus-why-you-can-t-pay-attention-and-how-to-think-deeply-again|johann-hari",
@@ -16284,7 +16547,8 @@
         "Lisa Jewell",
         "Emily St. John Mandel",
         "Anne Tyler"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-maid|nita-prose",
@@ -16318,7 +16582,8 @@
         "Alexander McCall Smith",
         "Agatha Christie",
         "Alan Bradley"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "pines-wayward-pines-1|blake-crouch",
@@ -16353,7 +16618,8 @@
         "Neal Stephenson",
         "Michael Crichton",
         "Greg Bear"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "evidence-of-the-affair|taylor-jenkins-reid",
@@ -16386,7 +16652,8 @@
         "Emily Henry",
         "Jojo Moyes",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "our-missing-hearts|celeste-ng",
@@ -16420,7 +16687,8 @@
         "Ann Napolitano",
         "Liane Moriarty",
         "Taylor Jenkins Reid"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "you-must-remember-this|kat-rosenfield",
@@ -16514,7 +16782,8 @@
         "Taylor Jenkins Reid",
         "Gabrielle Zevin",
         "Liane Moriarty"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "stay-true-a-memoir|hua-hsu",
@@ -16547,13 +16816,14 @@
         "Jesmyn Ward",
         "Edwidge Danticat",
         "Hanif Abdurraqib"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "later|stephen-king",
       "bookId": "54798175",
       "title": "Later",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 3.94,
@@ -16581,7 +16851,8 @@
         "Joe Hill",
         "Peter Straub",
         "Clive Barker"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "stories-from-the-tenants-downstairs|sidik-fofana",
@@ -16614,13 +16885,14 @@
         "James McBride",
         "Edward P. Jones",
         "Jesmyn Ward"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "billy-summers|stephen-king",
       "bookId": "56883591",
       "title": "Billy Summers",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 4.01,
@@ -16649,7 +16921,8 @@
         "Joe Hill",
         "Peter Straub",
         "Clive Barker"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "american-dirt|jeanine-cummins",
@@ -16684,7 +16957,8 @@
         "Barbara Kingsolver",
         "Sandra Cisneros",
         "Luis Alberto Urrea"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-genome-defense-inside-the-epic-legal-battle-to-determine-who-owns-your-dna|jorge-l-contreras",
@@ -16705,7 +16979,8 @@
       "themes": [
         "legal",
         "narrative nonfiction",
-        "science"
+        "science",
+        "social commentary"
       ],
       "similarToTitles": [
         "The Code Breaker: Jennifer Doudna, Gene Editing, and the Future of the Human Race",
@@ -16781,7 +17056,8 @@
         "Michael Connelly",
         "Jeffery Deaver",
         "John Sandford"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "can-t-knock-the-hustle-inside-the-season-of-protest-pandemic-and-progress-with-the-brooklyn-nets-superstars-of-tomorrow|matt-sullivan",
@@ -16813,7 +17089,8 @@
         "Michael Lewis",
         "Bill Simmons",
         "Wright Thompson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "how-i-learned-to-cook-culinary-educations-from-the-world-s-greatest-chefs|kimberly-witherspoon",
@@ -16845,7 +17122,8 @@
         "Anthony Bourdain",
         "Michael Ruhlman",
         "David Chang"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "gunslinger-the-remarkable-improbable-iconic-life-of-brett-favre|jeff-pearlman",
@@ -16878,7 +17156,8 @@
         "Joe Posnanski",
         "Tom Verducci",
         "Jeff Benedict"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "hello-molly-a-memoir|molly-shannon",
@@ -16915,7 +17194,7 @@
       "bookKey": "why-has-nobody-told-me-this-before-an-international-bestselling-guide-to-mental-health-and-emotional-resilience-from-a-clinical-psychologist|julie-smith",
       "bookId": "58536046",
       "title": "Why Has Nobody Told Me This Before?: An International Bestselling Guide to Mental Health and Emotional Resilience from a Clinical Psychologist",
-      "author": "Julie      Smith",
+      "author": "Julie Smith",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.3,
@@ -16972,7 +17251,8 @@
         "Ruth Reichl",
         "Michael Ruhlman",
         "Bianca Bosker"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "cheap-land-colorado-off-gridders-at-america-s-edge|ted-conover",
@@ -16992,7 +17272,8 @@
       "type": "nonfiction",
       "themes": [
         "narrative nonfiction",
-        "adventure"
+        "adventure",
+        "social commentary"
       ],
       "similarToTitles": [
         "Chesapeake Requiem: A Year With the Watermen of Vanishing Tangier Island",
@@ -17067,7 +17348,8 @@
         "Emily Henry",
         "Jojo Moyes",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "sweetness-the-enigmatic-life-of-walter-payton|jeff-pearlman",
@@ -17132,7 +17414,8 @@
         "Emily Henry",
         "Jojo Moyes",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-silent-patient|alex-michaelides",
@@ -17167,7 +17450,8 @@
         "Gillian Flynn",
         "B.A. Paris",
         "Paula Hawkins"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "maybe-in-another-life|taylor-jenkins-reid",
@@ -17200,7 +17484,8 @@
         "Emily Henry",
         "Jojo Moyes",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "one-true-loves|taylor-jenkins-reid",
@@ -17233,7 +17518,8 @@
         "Emily Henry",
         "Jojo Moyes",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "where-the-crawdads-sing|delia-owens",
@@ -17268,7 +17554,8 @@
         "Jojo Moyes",
         "Lisa Genova",
         "Sara Gruen"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "rickey-the-life-and-legend-of-an-american-original|howard-bryant",
@@ -17302,7 +17589,8 @@
         "Michael Lewis",
         "Hanif Abdurraqib",
         "Dave Zirin"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "phil-the-rip-roaring-biography-of-golf-s-most-colorful-superstar|alan-shipnuck",
@@ -17337,7 +17625,8 @@
         "David Owen",
         "John Feinstein",
         "Michael Lewis"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-last-thing-he-told-me|laura-dave",
@@ -17372,7 +17661,8 @@
         "Shari Lapena",
         "B.A. Paris",
         "Freida McFadden"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "malibu-rising|taylor-jenkins-reid",
@@ -17405,13 +17695,14 @@
         "Emily Henry",
         "Jojo Moyes",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "turtles-all-the-way-down|john-green",
       "bookId": "35498621",
       "title": "Turtles All the Way Down",
-      "author": "John  Green",
+      "author": "John Green",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.92,
@@ -17439,7 +17730,8 @@
         "Rainbow Rowell",
         "Sally Rooney",
         "Taylor Jenkins Reid"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "sparring-partners|john-grisham",
@@ -17473,7 +17765,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "built-to-lose-how-the-nba-s-tanking-era-changed-the-league-forever|jake-fischer",
@@ -17507,13 +17800,14 @@
         "Jeff Pearlman",
         "Bill Simmons",
         "Joe Posnanski"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-girl-in-the-castle|james-patterson",
       "bookId": "60420291",
       "title": "The Girl in the Castle",
-      "author": "James  Patterson",
+      "author": "James Patterson",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.9,
@@ -17604,7 +17898,8 @@
         "Jeannette Walls",
         "Mary Karr",
         "Alexandra Fuller"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "ghost-lover|lisa-taddeo",
@@ -17666,7 +17961,8 @@
         "Mat Johnson",
         "Paul Tremblay",
         "Victor LaValle"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "riding-the-lightning-a-year-in-the-life-of-a-new-york-city-paramedic|anthony-almojera",
@@ -17730,7 +18026,8 @@
         "Michael Connelly",
         "Robert Whiting",
         "George Pelecanos"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-fiddler-in-the-subway-the-story-of-the-world-class-violinist-who-played-for-handouts-and-other-virtuoso-performances-by-america-s-foremost-feature-writer|gene-weingarten",
@@ -17797,7 +18094,7 @@
       "bookKey": "how-to-prevent-the-next-pandemic|bill-gates",
       "bookId": "59900689",
       "title": "How to Prevent the Next Pandemic",
-      "author": "Bill  Gates",
+      "author": "Bill Gates",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.8,
@@ -17855,7 +18152,8 @@
         "Bill Bryson",
         "A.J. Jacobs",
         "Chuck Klosterman"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-latecomer|jean-hanff-korelitz",
@@ -17919,7 +18217,8 @@
         "Bill Simmons",
         "Chris Jones",
         "Will Leitch"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-midnight-ride|ben-mezrich",
@@ -17953,7 +18252,8 @@
         "Brad Stone",
         "Nick Bilton",
         "David Kushner"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "a-visit-from-the-goon-squad|jennifer-egan",
@@ -18020,7 +18320,7 @@
       "bookKey": "gwendy-s-final-task|stephen-king",
       "bookId": "59366265",
       "title": "Gwendy's Final Task (The Button Box, #3)",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4,
@@ -18144,7 +18444,7 @@
       "bookKey": "blood-in-the-garden-the-flagrant-history-of-the-1990s-new-york-knicks|chris-herring",
       "bookId": "58805673",
       "title": "Blood in the Garden: The Flagrant History of the 1990s New York Knicks",
-      "author": "Chris  Herring",
+      "author": "Chris Herring",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 4.17,
@@ -18173,7 +18473,8 @@
         "Brian Windhorst",
         "Michael Lewis",
         "Jonathan Abrams"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "ten-letters-the-american-people-in-the-obama-years|eli-saslow",
@@ -18209,7 +18510,7 @@
       "bookKey": "built-to-fail-the-inside-story-of-blockbuster-s-inevitable-bust|alan-payne",
       "bookId": "57118893",
       "title": "Built to Fail: The Inside Story of Blockbuster's Inevitable Bust",
-      "author": "Alan  Payne",
+      "author": "Alan Payne",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4,
@@ -18240,7 +18541,7 @@
       "bookKey": "the-white-van|patrick-hoffman",
       "bookId": "20763888",
       "title": "The White Van",
-      "author": "Patrick  Hoffman",
+      "author": "Patrick Hoffman",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.68,
@@ -18269,7 +18570,8 @@
         "George Pelecanos",
         "James Ellroy",
         "Jason Matthews"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-first-shots-the-epic-rivalries-and-heroic-science-behind-the-race-to-the-coronavirus-vaccine|brendan-borrell",
@@ -18302,7 +18604,8 @@
         "Jon Krakauer",
         "Erik Larson",
         "Michael Finkel"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-nineties-a-book|chuck-klosterman",
@@ -18336,7 +18639,8 @@
         "Drew Magary",
         "Malcolm Gladwell",
         "Joe Queenan"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-night-the-lights-went-out-a-memoir-of-life-after-brain-damage|drew-magary",
@@ -18369,7 +18673,8 @@
         "Bill Simmons",
         "Chris Jones",
         "Will Leitch"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "madhouse-at-the-end-of-the-earth-the-belgica-s-journey-into-the-dark-antarctic-night|julian-sancton",
@@ -18404,7 +18709,8 @@
         "David Grann",
         "Jon Krakauer",
         "Caroline Alexander"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "sick-in-the-head-conversations-about-life-and-comedy|judd-apatow",
@@ -18437,7 +18743,8 @@
         "Steve Martin",
         "David Sedaris",
         "Lindy West"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-guardians|john-grisham",
@@ -18471,7 +18778,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-jury-master|robert-dugoni",
@@ -18535,13 +18843,14 @@
         "Erik Larson",
         "David Grann",
         "Jon Krakauer"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "billion-dollar-whale-the-man-who-fooled-wall-street-hollywood-and-the-world|tom-wright",
       "bookId": "38734171",
       "title": "Billion Dollar Whale: The Man Who Fooled Wall Street, Hollywood, and the World",
-      "author": "Tom         Wright",
+      "author": "Tom Wright",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 4.07,
@@ -18569,7 +18878,8 @@
         "Liam Vaughan",
         "Max Frumes",
         "Bradley Hope"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "an-engineered-injustice|william-l-myers-jr",
@@ -18603,7 +18913,8 @@
         "Scott Turow",
         "Steve Cavanagh",
         "Brad Parks"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "a-criminal-defense|william-l-myers-jr",
@@ -18637,7 +18948,8 @@
         "Scott Turow",
         "Steve Cavanagh",
         "Brad Parks"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-maidens|alex-michaelides",
@@ -18701,13 +19013,14 @@
         "Bill Bryson",
         "Paul Theroux",
         "Rolf Potts"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-jailhouse-lawyer|james-patterson",
       "bookId": "57328803",
       "title": "The Jailhouse Lawyer",
-      "author": "James  Patterson",
+      "author": "James Patterson",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.85,
@@ -18735,7 +19048,8 @@
         "Michael Connelly",
         "Lee Child",
         "David Baldacci"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "diablo-mesa|douglas-preston",
@@ -18801,7 +19115,8 @@
         "Shari Lapena",
         "B.A. Paris",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "bittersweet-how-sorrow-and-longing-make-us-whole|susan-cain",
@@ -18837,7 +19152,7 @@
       "bookKey": "comedy-comedy-comedy-drama|bob-odenkirk",
       "bookId": "57851735",
       "title": "Comedy Comedy Comedy Drama",
-      "author": "Bob   Odenkirk",
+      "author": "Bob Odenkirk",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.8,
@@ -18897,7 +19212,8 @@
         "Shari Lapena",
         "Ruth Ware",
         "Jennifer McMahon"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "everyday-millionaires|chris-hogan",
@@ -18962,7 +19278,8 @@
         "Scott Turow",
         "James Grippando",
         "Brad Parks"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "hard-cash-valley|brian-panowich",
@@ -18999,7 +19316,7 @@
       "bookKey": "how-to-watch-basketball-like-a-genius-what-game-designers-economists-ballet-choreographers-and-theoretical-astrophysicists-reveal-about-the-greatest-game-on-earth|nick-greene",
       "bookId": "56604273",
       "title": "How to Watch Basketball Like a Genius: What Game Designers, Economists, Ballet Choreographers, and Theoretical Astrophysicists Reveal About the Greatest Game on Earth",
-      "author": "Nick  Greene",
+      "author": "Nick Greene",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.85,
@@ -19027,7 +19344,8 @@
         "Michael Lewis",
         "Bill Simmons",
         "Wright Thompson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "falling|t-j-newman",
@@ -19061,7 +19379,8 @@
         "Blake Crouch",
         "Lee Child",
         "Daniel Silva"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "klara-and-the-sun|kazuo-ishiguro",
@@ -19125,7 +19444,8 @@
         "Ruth Reichl",
         "Michael Ruhlman",
         "David Chang"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "seek-you-a-journey-through-american-loneliness|kristen-radtke",
@@ -19190,7 +19510,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "lake-success|gary-shteyngart",
@@ -19224,7 +19545,8 @@
         "Jonathan Franzen",
         "Tom Perrotta",
         "Joshua Ferris"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "giannis-the-improbable-rise-of-an-nba-mvp|mirin-fader",
@@ -19259,7 +19581,8 @@
         "Jeff Pearlman",
         "Wright Thompson",
         "Michael Lewis"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "nine-perfect-strangers|liane-moriarty",
@@ -19293,13 +19616,14 @@
         "Shari Lapena",
         "Jodi Picoult",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "john-dies-at-the-end|david-wong",
       "bookId": "1857440",
       "title": "John Dies at the End (John Dies at the End, #1)",
-      "author": "David  Wong",
+      "author": "David Wong",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.9,
@@ -19387,13 +19711,14 @@
         "Kazuo Ishiguro",
         "Andy Weir",
         "Emily St. John Mandel"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "juror-3|james-patterson",
       "bookId": "41090677",
       "title": "Juror #3 (Ruby Bozarth, #1)",
-      "author": "James  Patterson",
+      "author": "James Patterson",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.8,
@@ -19453,7 +19778,8 @@
         "B.A. Paris",
         "Shari Lapena",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "sunshine-girl-an-unexpected-life|julianna-margulies",
@@ -19517,7 +19843,8 @@
         "Lindy West",
         "David Sedaris",
         "Steve Martin"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-caesars-palace-coup-how-a-billionaire-brawl-over-the-famous-casino-exposed-the-corruption-of-the-private-equity-industry|max-frumes",
@@ -19551,7 +19878,8 @@
         "Gregory Zuckerman",
         "Liam Vaughan",
         "Sheelah Kolhatkar"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "amusing-ourselves-to-death-public-discourse-in-the-age-of-show-business|neil-postman",
@@ -19587,7 +19915,7 @@
       "bookKey": "the-wreckage-of-my-presence|casey-wilson",
       "bookId": "54798456",
       "title": "The Wreckage of My Presence",
-      "author": "Casey  Wilson",
+      "author": "Casey Wilson",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.8,
@@ -19674,7 +20002,8 @@
         "Daniel Pink",
         "Adam Grant",
         "Carol Dweck"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "constance|matthew-fitzsimmons",
@@ -19711,7 +20040,7 @@
       "bookKey": "cat-mouse|james-patterson",
       "bookId": "6449504",
       "title": "Cat & Mouse (Alex Cross, #4)",
-      "author": "James  Patterson",
+      "author": "James Patterson",
       "shelf": "read",
       "myRating": 3,
       "avgRating": 3.88,
@@ -19737,7 +20066,8 @@
         "Michael Connelly",
         "Lee Child",
         "David Baldacci"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "to-sleep-in-a-sea-of-stars|christopher-paolini",
@@ -19832,7 +20162,8 @@
         "Brian Windhorst",
         "Michael Lewis",
         "Bill Simmons"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-plague-year-america-in-the-time-of-covid|lawrence-wright",
@@ -19865,7 +20196,8 @@
         "Jon Krakauer",
         "Erik Larson",
         "Sebastian Junger"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "termination-shock|neal-stephenson",
@@ -19930,13 +20262,14 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "jack-jill|james-patterson",
       "bookId": "5414726",
       "title": "Jack & Jill (Alex Cross #3)",
-      "author": "James  Patterson",
+      "author": "James Patterson",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 3.83,
@@ -19963,7 +20296,8 @@
         "Michael Connelly",
         "Lee Child",
         "David Baldacci"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-nine-inside-the-secret-world-of-the-supreme-court|jeffrey-toobin",
@@ -19996,13 +20330,14 @@
         "Bryan Stevenson",
         "Alan Dershowitz",
         "Linda Fairstein"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-premonition-a-pandemic-story|michael-lewis",
       "bookId": "56883526",
       "title": "The Premonition: A Pandemic Story",
-      "author": "Michael   Lewis",
+      "author": "Michael Lewis",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 4.2,
@@ -20029,7 +20364,8 @@
         "John Carreyrou",
         "Ben Mezrich",
         "Ben Horowitz"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "lizzie-dante|mary-bly",
@@ -20156,13 +20492,14 @@
         "Jon Krakauer",
         "Erik Larson",
         "Sebastian Junger"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-hot-hand-the-mystery-and-science-of-streaks|ben-cohen",
       "bookId": "50929727",
       "title": "The Hot Hand: The Mystery and Science of Streaks",
-      "author": "Ben  Cohen",
+      "author": "Ben Cohen",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.87,
@@ -20191,13 +20528,14 @@
         "Malcolm Gladwell",
         "Jeff Pearlman",
         "Jonah Keri"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "kiss-the-girls|james-patterson",
       "bookId": "45944998",
       "title": "Kiss the Girls (Alex Cross, #2)",
-      "author": "James  Patterson",
+      "author": "James Patterson",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.95,
@@ -20226,7 +20564,8 @@
         "Michael Connelly",
         "Lee Child",
         "David Baldacci"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-president-is-missing|bill-clinton",
@@ -20260,7 +20599,8 @@
         "James Patterson",
         "Scott Turow",
         "Tom Clancy"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "bitter-brew-the-rise-and-fall-of-anheuser-busch-and-america-s-kings-of-beer|william-knoedelseder",
@@ -20357,7 +20697,8 @@
         "Brad Stone",
         "Ron Chernow",
         "David McCullough"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "before-i-go-to-sleep|s-j-watson",
@@ -20392,7 +20733,8 @@
         "Paula Hawkins",
         "B.A. Paris",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "chasing-the-thrill-obsession-death-and-glory-in-america-s-most-extraordinary-treasure-hunt|daniel-barbarisi",
@@ -20412,7 +20754,8 @@
       "type": "nonfiction",
       "themes": [
         "narrative nonfiction",
-        "adventure"
+        "adventure",
+        "social commentary"
       ],
       "similarToTitles": [
         "The Lost City of Z: A Tale of Deadly Obsession in the Amazon",
@@ -20454,7 +20797,8 @@
         "Alton Brown",
         "David Chang",
         "Michael Ruhlman"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "a-time-for-mercy|john-grisham",
@@ -20489,7 +20833,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-tomorrow-box|curtis-sittenfeld",
@@ -20522,7 +20867,8 @@
         "Emily Giffin",
         "Marian Keyes",
         "Taylor Jenkins Reid"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "simplexity|kiley-reid",
@@ -20556,7 +20902,8 @@
         "Angie Thomas",
         "Taylor Jenkins Reid",
         "Jacqueline Woodson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "inside-the-nba-bubble-a-championship-season-under-quarantine|jared-dudley",
@@ -20591,7 +20938,8 @@
         "Jeff Pearlman",
         "Bill Simmons",
         "Chris Ballard"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-humans|matt-haig",
@@ -20686,7 +21034,8 @@
         "Robert Iger",
         "Walter Isaacson",
         "Brad Stone"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "our-lady-of-perpetual-hunger-a-memoir|lisa-donovan",
@@ -20719,7 +21068,8 @@
         "Ruth Reichl",
         "Bill Buford",
         "Gail Simmons"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "meat-everything-you-need-to-know|pat-lafrieda",
@@ -20752,7 +21102,8 @@
         "Michael Ruhlman",
         "Aaron Franklin",
         "David Chang"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "alibaba-the-house-that-jack-ma-built|duncan-clark",
@@ -20816,13 +21167,14 @@
         "Tina Fey",
         "Mindy Kaling",
         "Samantha Irby"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "billion-dollar-loser-the-epic-rise-and-spectacular-fall-of-adam-neumann-and-wework|reeves-wiedeman",
       "bookId": "55447811",
       "title": "Billion Dollar Loser: The Epic Rise and Spectacular Fall of Adam Neumann and WeWork",
-      "author": "Reeves  Wiedeman",
+      "author": "Reeves Wiedeman",
       "shelf": "read",
       "myRating": 3,
       "avgRating": 4.07,
@@ -20849,7 +21201,8 @@
         "Nick Bilton",
         "Ashlee Vance",
         "Mike Isaac"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-terroir-of-whiskey-a-distiller-s-journey-into-the-flavor-of-place|rob-arnold",
@@ -20913,7 +21266,8 @@
         "Robert Iger",
         "Jack Welch",
         "Lee Iacocca"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "pee-wees-confessions-of-a-hockey-parent|rich-cohen",
@@ -20981,7 +21335,7 @@
       "bookKey": "talking-to-goats-the-moments-you-remember-and-the-stories-you-never-heard|jim-gray",
       "bookId": "52940539",
       "title": "Talking to GOATs: The Moments You Remember and the Stories You Never Heard",
-      "author": "Jim       Gray",
+      "author": "Jim Gray",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4,
@@ -21039,7 +21393,8 @@
         "Elton John",
         "Keith Richards",
         "Steve Martin"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "all-adults-here|emma-straub",
@@ -21072,7 +21427,8 @@
         "Lisa Jewell",
         "Emily St. John Mandel",
         "Anne Tyler"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-big-picture-the-fight-for-the-future-of-movies|ben-fritz",
@@ -21167,7 +21523,8 @@
         "Jeff Pearlman",
         "Gary Smith",
         "Bill Simmons"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-glass-hotel|emily-st-john-mandel",
@@ -21201,7 +21558,8 @@
         "Colson Whitehead",
         "Donna Tartt",
         "Ted Chiang"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "is-this-anything|jerry-seinfeld",
@@ -21419,7 +21777,8 @@
         "Neal Stephenson",
         "Michael Crichton",
         "Greg Bear"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "no-filter-the-inside-story-of-instagram|sarah-frier",
@@ -21453,7 +21812,8 @@
         "Nick Bilton",
         "Ashlee Vance",
         "Mike Isaac"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "normal-people|sally-rooney",
@@ -21487,13 +21847,14 @@
         "Ottessa Moshfegh",
         "Hanya Yanagihara",
         "Normal People"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "clean-hands|patrick-hoffman",
       "bookId": "51234851",
       "title": "Clean Hands",
-      "author": "Patrick  Hoffman",
+      "author": "Patrick Hoffman",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 3.78,
@@ -21521,7 +21882,8 @@
         "George Pelecanos",
         "James Ellroy",
         "Jason Matthews"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "cork-dork-a-wine-fueled-adventure-among-the-obsessive-sommeliers-big-bottle-hunters-and-rogue-scientists-who-taught-me-to-live-for-taste|bianca-bosker",
@@ -21554,7 +21916,8 @@
         "Bill Buford",
         "Michael Ruhlman",
         "Michael Steinberger"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "devolution-a-firsthand-account-of-the-rainier-sasquatch-massacre|max-brooks",
@@ -21588,7 +21951,8 @@
         "Joe Hill",
         "Dean Koontz",
         "Peter Clines"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-ride-of-a-lifetime-lessons-learned-from-15-years-as-ceo-of-the-walt-disney-company|robert-iger",
@@ -21622,7 +21986,8 @@
         "Jeff Bezos",
         "Bob Iger",
         "Sam Walton"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "little-secrets|jennifer-hillier",
@@ -21657,13 +22022,14 @@
         "B.A. Paris",
         "Tana French",
         "Harlan Coben"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "if-it-bleeds|stephen-king",
       "bookId": "46015758",
       "title": "If It Bleeds (Holly Gibney #2)",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 3.86,
@@ -21691,7 +22057,8 @@
         "Joe Hill",
         "Peter Straub",
         "Clive Barker"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "chuck-klosterman-iv-a-decade-of-curious-people-and-dangerous-ideas|chuck-klosterman",
@@ -21852,7 +22219,8 @@
         "Kwame Onwuachi",
         "Anthony Bourdain",
         "Ruth Reichl"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "amity-and-prosperity-one-family-and-the-fracturing-of-america|eliza-griswold",
@@ -21978,7 +22346,8 @@
         "Brad Stone",
         "Nick Bilton",
         "Ben Mezrich"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-last-trial|scott-turow",
@@ -22043,7 +22412,8 @@
         "Scott Turow",
         "Steve Cavanagh",
         "Brad Parks"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "annihilation|jeff-vandermeer",
@@ -22109,7 +22479,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "just-mercy-a-story-of-justice-and-redemption|bryan-stevenson",
@@ -22143,7 +22514,8 @@
         "Isabel Wilkerson",
         "Ta-Nehisi Coates",
         "Matthew Desmond"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-soul-of-a-chef-the-journey-toward-perfection|michael-ruhlman",
@@ -22176,7 +22548,8 @@
         "Ruth Reichl",
         "Bill Buford",
         "David Chang"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "talking-to-strangers-what-we-should-know-about-the-people-we-don-t-know|malcolm-gladwell",
@@ -22209,7 +22582,8 @@
         "Daniel Kahneman",
         "Nassim Taleb",
         "Dan Ariely"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "heartland-a-memoir-of-working-hard-and-being-broke-in-the-richest-country-on-earth|sarah-smarsh",
@@ -22242,7 +22616,8 @@
         "Matthew Desmond",
         "Tara Westover",
         "Stephanie Land"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-man-who-solved-the-market-how-jim-simons-launched-the-quant-revolution|gregory-zuckerman",
@@ -22277,7 +22652,8 @@
         "Ben Mezrich",
         "Sheelah Kolhatkar",
         "John Carreyrou"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "boom-town-the-fantastical-saga-of-oklahoma-city-its-chaotic-founding-its-apocalyptic-weather-its-purloined-basketball-team-and-the-dream-of-becoming-a-world-class-metropolis|sam-anderson",
@@ -22311,7 +22687,8 @@
         "David Grann",
         "Bill Bryson",
         "Michael Lewis"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "jay-z-made-in-america|michael-eric-dyson",
@@ -22344,7 +22721,8 @@
         "Jelani Cobb",
         "Hanif Abdurraqib",
         "Dan Charnas"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "randomize|andy-weir",
@@ -22377,7 +22755,8 @@
         "Neal Stephenson",
         "Michael Crichton",
         "John Scalzi"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-reckoning|john-grisham",
@@ -22411,7 +22790,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "cook-it-in-cast-iron-kitchen-tested-recipes-for-the-one-pan-that-does-it-all|cook-s-country",
@@ -22429,7 +22809,8 @@
       "publisher": "Cook's Country",
       "year": 2016,
       "themes": [
-        "food"
+        "food",
+        "narrative nonfiction"
       ],
       "similarToTitles": [
         "Franklin Barbecue: A Meat-Smoking Manifesto [A Cookbook]",
@@ -22443,7 +22824,8 @@
         "Michael Ruhlman",
         "J. Kenji López-Alt",
         "Alton Brown"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "michael-symon-s-live-to-cook-recipes-and-techniques-to-rock-your-kitchen-a-cookbook|michael-symon",
@@ -22461,7 +22843,8 @@
       "publisher": "Clarkson Potter",
       "year": 2009,
       "themes": [
-        "food"
+        "food",
+        "narrative nonfiction"
       ],
       "similarToTitles": [
         "Eat a Peach",
@@ -22475,7 +22858,8 @@
         "Michael Ruhlman",
         "Marcus Samuelsson",
         "Tom Colicchio"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "smokin-with-myron-mixon-recipes-made-simple-from-the-winningest-man-in-barbecue-a-cookbook|myron-mixon",
@@ -22493,7 +22877,8 @@
       "publisher": "Ballantine Books",
       "year": 2011,
       "themes": [
-        "food"
+        "food",
+        "narrative nonfiction"
       ],
       "similarToTitles": [
         "Franklin Barbecue: A Meat-Smoking Manifesto [A Cookbook]",
@@ -22507,7 +22892,8 @@
         "Pat LaFrieda",
         "Michael Ruhlman",
         "David Chang"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "raised-in-captivity-fictional-nonfiction|chuck-klosterman",
@@ -22541,7 +22927,8 @@
         "Drew Magary",
         "Malcolm Gladwell",
         "Joe Queenan"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "hungry-eating-road-tripping-and-risking-it-all-with-the-greatest-chef-in-the-world|jeff-gordinier",
@@ -22576,7 +22963,8 @@
         "David Chang",
         "Michael Ruhlman",
         "Kim Severson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "three-women|lisa-taddeo",
@@ -22610,7 +22998,8 @@
         "Roxane Gay",
         "Lori Gottlieb",
         "Nora Ephron"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "baseball-prospectus-2019|baseball-prospectus",
@@ -22628,7 +23017,8 @@
       "publisher": "Baseball Prospectus",
       "year": 2019,
       "themes": [
-        "sports"
+        "sports",
+        "narrative nonfiction"
       ],
       "similarToTitles": [
         "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
@@ -22641,7 +23031,8 @@
         "Jonah Keri",
         "Nate Silver",
         "Ben Lindbergh"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "newjack-guarding-sing-sing|ted-conover",
@@ -22676,7 +23067,8 @@
         "Erik Larson",
         "David Grann",
         "Barbara Ehrenreich"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "think-like-a-chef-a-cookbook|tom-colicchio",
@@ -22709,7 +23101,8 @@
         "Anthony Bourdain",
         "Marcus Samuelsson",
         "Ruth Reichl"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-culture-code-the-secrets-of-highly-successful-groups|daniel-coyle",
@@ -22741,7 +23134,8 @@
         "Daniel Pink",
         "Matthew Syed",
         "Anders Ericsson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "station-eleven|emily-st-john-mandel",
@@ -22774,7 +23168,8 @@
         "Colson Whitehead",
         "Donna Tartt",
         "Ted Chiang"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "shake-shack-recipes-stories-a-cookbook|randy-garutti",
@@ -22809,7 +23204,8 @@
         "Danny Meyer",
         "Phil Knight",
         "Robert Iger"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "methland-the-death-and-life-of-an-american-small-town|nick-reding",
@@ -22843,7 +23239,8 @@
         "Sam Quinones",
         "Chris McGreal",
         "Patrick Radden Keefe"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-rosie-result|graeme-simsion",
@@ -22878,7 +23275,8 @@
         "John Green",
         "Tom Perrotta",
         "Nick Hornby"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-rosie-effect|graeme-simsion",
@@ -22912,7 +23310,8 @@
         "John Green",
         "Tom Perrotta",
         "Nick Hornby"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "five-days-at-memorial-life-and-death-in-a-storm-ravaged-hospital|sheri-fink",
@@ -22945,7 +23344,8 @@
         "Erik Larson",
         "David Grann",
         "Jon Krakauer"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-prophets-of-smoked-meat-a-journey-through-texas-barbecue|daniel-vaughn",
@@ -22978,7 +23378,8 @@
         "Myron Mixon",
         "Michael Ruhlman",
         "David Chang"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "talking-with-my-mouth-full-my-life-as-a-professional-eater|gail-simmons",
@@ -23013,7 +23414,8 @@
         "Marcus Samuelsson",
         "Tom Colicchio",
         "Padma Lakshmi"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "lebron-inc-the-making-of-a-billion-dollar-athlete|brian-windhorst",
@@ -23047,13 +23449,14 @@
         "Michael Lewis",
         "Bill Simmons",
         "Adrian Wojnarowski"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "every-man-a-menace-a-novel|patrick-hoffman",
       "bookId": "32451813",
       "title": "Every Man a Menace: A Novel",
-      "author": "Patrick  Hoffman",
+      "author": "Patrick Hoffman",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 3.65,
@@ -23081,7 +23484,8 @@
         "George Pelecanos",
         "James Ellroy",
         "Jason Matthews"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "another-day-in-the-death-of-america-a-chronicle-of-ten-short-lives|gary-younge",
@@ -23114,7 +23518,8 @@
         "Isabel Wilkerson",
         "Bryan Stevenson",
         "Michael Eric Dyson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "astroball-the-new-way-to-win-it-all|ben-reiter",
@@ -23147,7 +23552,8 @@
         "Jeff Pearlman",
         "Jonah Keri",
         "Bill James"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "reagan-an-american-journey|bob-spitz",
@@ -23181,7 +23587,8 @@
         "Jon Krakauer",
         "David Grann",
         "Bill Bryson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "a-hope-in-the-unseen-an-american-odyssey-from-the-inner-city-to-the-ivy-league|ron-suskind",
@@ -23215,7 +23622,8 @@
         "Lawrence Wright",
         "David Grann",
         "Erik Larson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "momofuku-a-cookbook|david-chang",
@@ -23249,7 +23657,8 @@
         "Anthony Bourdain",
         "Marcus Samuelsson",
         "Kwame Onwuachi"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "pledged|alexandra-robbins",
@@ -23282,7 +23691,8 @@
         "Susan Cain",
         "Susan Orlean",
         "Alex Berenson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "outside-the-jukebox-how-i-turned-my-vintage-music-obsession-into-my-dream-gig|scott-bradlee",
@@ -23316,7 +23726,8 @@
         "Bill Simmons",
         "Drew Magary",
         "Dan Charnas"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "sharp-objects|gillian-flynn",
@@ -23351,7 +23762,8 @@
         "Paula Hawkins",
         "B.A. Paris",
         "Shari Lapena"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "gray-mountain|john-grisham",
@@ -23385,7 +23797,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-making-of-a-chef-mastering-heat-at-the-culinary-institute|michael-ruhlman",
@@ -23419,7 +23832,8 @@
         "Ruth Reichl",
         "Bill Buford",
         "David Chang"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "city-of-endless-night|douglas-preston",
@@ -23453,13 +23867,14 @@
         "Michael Connelly",
         "Lee Child",
         "Jeffery Deaver"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-poisoned-city-flint-s-water-and-the-american-urban-tragedy|anna-clark",
       "bookId": "39382396",
       "title": "The Poisoned City: Flint's Water and the American Urban Tragedy",
-      "author": "Anna  Clark",
+      "author": "Anna Clark",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 4.12,
@@ -23486,7 +23901,8 @@
         "J.D. Vance",
         "Barbara Ehrenreich",
         "Stephanie Land"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-space-barons-elon-musk-jeff-bezos-and-the-quest-to-colonize-the-cosmos|christian-davenport",
@@ -23519,7 +23935,8 @@
         "Ashlee Vance",
         "Brad Stone",
         "Michael Lewis"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "fresh-off-the-boat-a-memoir|eddie-huang",
@@ -23552,13 +23969,14 @@
         "Anthony Bourdain",
         "Kwame Onwuachi",
         "Marcus Samuelsson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-fifth-risk-undoing-democracy|michael-lewis",
       "bookId": "40936557",
       "title": "The Fifth Risk: Undoing Democracy",
-      "author": "Michael   Lewis",
+      "author": "Michael Lewis",
       "shelf": "read",
       "myRating": 3,
       "avgRating": 4.07,
@@ -23585,7 +24003,8 @@
         "John Carreyrou",
         "Ben Mezrich",
         "Ben Horowitz"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "robin|dave-itzkoff",
@@ -23618,7 +24037,8 @@
         "Jason Bailey",
         "Bill Carter",
         "Laura Hillenbrand"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "try-not-to-suck-the-exceptional-extraordinary-baseball-life-of-joe-maddon|bill-chastain",
@@ -23651,7 +24071,8 @@
         "Michael Lewis",
         "Tom Verducci",
         "Jeff Passan"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-whistler|john-grisham",
@@ -23685,7 +24106,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "unqualified|anna-faris",
@@ -23718,7 +24140,8 @@
         "Lauren Graham",
         "Mindy Kaling",
         "Amy Poehler"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "tiger-woods|jeff-benedict",
@@ -23753,7 +24176,8 @@
         "Michael Lewis",
         "Wright Thompson",
         "Tom Verducci"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "witness-to-a-trial|john-grisham",
@@ -23787,7 +24211,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-associate|john-grisham",
@@ -23821,7 +24246,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-arm-inside-the-billion-dollar-mystery-of-the-most-valuable-commodity-in-sports|jeff-passan",
@@ -23854,7 +24280,8 @@
         "Jeff Pearlman",
         "Jonah Keri",
         "Jayson Stark"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "sycamore-row|john-grisham",
@@ -23889,7 +24316,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "theodore-boone-kid-lawyer|john-grisham",
@@ -23921,7 +24349,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-abduction|john-grisham",
@@ -23953,7 +24382,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "ford-county|john-grisham",
@@ -23986,7 +24416,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "bleachers|john-grisham",
@@ -24019,7 +24450,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "playing-for-pizza|john-grisham",
@@ -24052,7 +24484,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "skipping-christmas|john-grisham",
@@ -24085,7 +24518,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-confession|john-grisham",
@@ -24119,7 +24553,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-summons|john-grisham",
@@ -24153,7 +24588,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "a-painted-house|john-grisham",
@@ -24186,7 +24622,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-king-of-torts|john-grisham",
@@ -24221,7 +24658,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-last-juror|john-grisham",
@@ -24256,7 +24694,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-racketeer|john-grisham",
@@ -24290,7 +24729,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-brethren|john-grisham",
@@ -24324,7 +24764,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-testament|john-grisham",
@@ -24358,7 +24799,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-partner|john-grisham",
@@ -24393,7 +24835,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-chamber|john-grisham",
@@ -24427,7 +24870,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-rainmaker|john-grisham",
@@ -24462,7 +24906,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-runaway-jury|john-grisham",
@@ -24497,7 +24942,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-pelican-brief|john-grisham",
@@ -24531,7 +24977,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-rooster-bar|john-grisham",
@@ -24565,7 +25012,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-last-good-kiss|james-crumley",
@@ -24600,7 +25048,8 @@
         "James Ellroy",
         "George Pelecanos",
         "Ross Macdonald"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "black-edge-inside-information-dirty-money-and-the-quest-to-bring-down-the-most-wanted-man-on-wall-street|sheelah-kolhatkar",
@@ -24634,7 +25083,8 @@
         "Gregory Zuckerman",
         "Liam Vaughan",
         "Max Frumes"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "all-the-pieces-matter-the-inside-story-of-the-wire|jonathan-abrams",
@@ -24666,13 +25116,14 @@
         "Michael Lewis",
         "Wright Thompson",
         "Alan Shipnuck"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "next-the-future-just-happened|michael-lewis",
       "bookId": "10656",
       "title": "Next: The Future Just Happened",
-      "author": "Michael   Lewis",
+      "author": "Michael Lewis",
       "shelf": "read",
       "myRating": 0,
       "avgRating": 3.78,
@@ -24699,13 +25150,14 @@
         "John Carreyrou",
         "Ben Mezrich",
         "Ben Horowitz"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "liar-s-poker|michael-lewis",
       "bookId": "7865083",
       "title": "Liar's Poker",
-      "author": "Michael   Lewis",
+      "author": "Michael Lewis",
       "shelf": "read",
       "myRating": 0,
       "avgRating": 4.05,
@@ -24732,7 +25184,8 @@
         "John Carreyrou",
         "Ben Mezrich",
         "Ben Horowitz"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "scrappy-little-nobody|anna-kendrick",
@@ -24765,7 +25218,8 @@
         "Mindy Kaling",
         "Amy Poehler",
         "Lauren Graham"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-chicago-cubs-story-of-a-curse|rich-cohen",
@@ -24800,7 +25254,8 @@
         "Jeff Pearlman",
         "Wright Thompson",
         "David Remnick"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-lost-city-of-the-monkey-god|douglas-preston",
@@ -24833,7 +25288,8 @@
         "Michael Connelly",
         "Lee Child",
         "Jeffery Deaver"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-appeal|john-grisham",
@@ -24867,7 +25323,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "quiet-power-the-secret-strengths-of-introverts|susan-cain",
@@ -24900,7 +25357,8 @@
         "Malcolm Gladwell",
         "Adam Grant",
         "Gretchen Rubin"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "quiet-the-power-of-introverts-in-a-world-that-can-t-stop-talking|susan-cain",
@@ -24933,7 +25391,8 @@
         "Malcolm Gladwell",
         "Adam Grant",
         "Gretchen Rubin"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-hike|drew-magary",
@@ -24967,7 +25426,8 @@
         "Bill Simmons",
         "Chris Jones",
         "Will Leitch"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "in-conclusion-don-t-worry-about-it|lauren-graham",
@@ -24999,7 +25459,8 @@
         "Mindy Kaling",
         "Amy Poehler",
         "Anna Kendrick"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "talking-as-fast-as-i-can-from-gilmore-girls-to-gilmore-girls|lauren-graham",
@@ -25032,7 +25493,8 @@
         "Mindy Kaling",
         "Amy Poehler",
         "Anna Kendrick"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "camino-island|john-grisham",
@@ -25066,7 +25528,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "hillbilly-elegy-a-memoir-of-a-family-and-culture-in-crisis|j-d-vance",
@@ -25100,7 +25563,8 @@
         "Matthew Desmond",
         "Robert Putnam",
         "Stephanie Land"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-big-payback-the-history-of-the-business-of-hip-hop|dan-charnas",
@@ -25133,7 +25597,8 @@
         "Michael Eric Dyson",
         "Bill Simmons",
         "Chuck Klosterman"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "my-seinfeld-year|fred-stoller",
@@ -25166,7 +25631,8 @@
         "Judd Apatow",
         "Seth Rogen",
         "Lindy West"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "trading-bases-a-story-about-wall-street-gambling-and-baseball|joe-peta",
@@ -25201,7 +25667,8 @@
         "Jonah Keri",
         "Jeff Pearlman",
         "Nate Silver"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "up-up-and-away-the-kid-the-hawk-rock-vladi-pedro-le-grand-orange-youppi-the-crazy-business-of-baseball-and-the-ill-fated-but-unforgettable-montreal-expos|jonah-keri",
@@ -25234,7 +25701,8 @@
         "Jeff Pearlman",
         "Bill James",
         "Nate Silver"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "winning-fantasy-baseball-secret-strategies-of-a-nine-time-national-champion|larry-schechter",
@@ -25252,7 +25720,8 @@
       "publisher": "Emerald Book Company",
       "year": 2014,
       "themes": [
-        "sports"
+        "sports",
+        "narrative nonfiction"
       ],
       "similarToTitles": [
         "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
@@ -25265,7 +25734,8 @@
         "Nate Silver",
         "Bill James",
         "Ben Lindbergh"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "world-according-to-twitter|david-pogue",
@@ -25298,7 +25768,8 @@
         "Walter Isaacson",
         "Steven Levy",
         "Robert Cringely"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "business-adventures-twelve-classic-tales-from-the-world-of-wall-street|john-brooks",
@@ -25332,7 +25803,8 @@
         "Roger Lowenstein",
         "Liaquat Ahamed",
         "Bethany McLean"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "men-with-balls-the-professional-athlete-s-handbook|drew-magary",
@@ -25365,7 +25837,8 @@
         "Bill Simmons",
         "Chris Jones",
         "Will Leitch"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "hardwood-paroxysm-2013-2014-season-preview|hardwood-paroxysm",
@@ -25383,7 +25856,8 @@
       "publisher": "Hardwood Paroxysm",
       "year": 2013,
       "themes": [
-        "sports"
+        "sports",
+        "narrative nonfiction"
       ],
       "similarToTitles": [
         "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
@@ -25396,7 +25870,8 @@
         "Brian Windhorst",
         "Jeff Pearlman",
         "Jonathan Abrams"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "rigged-the-true-story-of-an-ivy-league-kid-who-changed-the-world-of-oil-from-wall-street-to-dubai-a-brooklyn-to-harvard-high-stakes-adventure|ben-mezrich",
@@ -25430,13 +25905,14 @@
         "Brad Stone",
         "Nick Bilton",
         "David Kushner"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-new-new-thing-a-silicon-valley-story|michael-lewis",
       "bookId": "8135219",
       "title": "The New New Thing: A Silicon Valley Story",
-      "author": "Michael   Lewis",
+      "author": "Michael Lewis",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 3.99,
@@ -25463,7 +25939,8 @@
         "John Carreyrou",
         "Ben Mezrich",
         "Ben Horowitz"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-tipping-point-how-little-things-can-make-a-big-difference|malcolm-gladwell",
@@ -25497,7 +25974,8 @@
         "Daniel Kahneman",
         "Nassim Taleb",
         "Dan Ariely"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-rover|drew-magary",
@@ -25531,7 +26009,8 @@
         "Bill Simmons",
         "Chris Jones",
         "Will Leitch"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-decline-and-fall-of-ibm-end-of-an-american-icon|robert-cringely",
@@ -25564,7 +26043,8 @@
         "Walter Isaacson",
         "Steven Levy",
         "Nick Bilton"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-baseball-economist-the-real-game-exposed|j-c-bradbury",
@@ -25596,7 +26076,8 @@
         "Jonah Keri",
         "Bill James",
         "Nate Silver"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-five-dysfunctions-of-a-team|patrick-lencioni",
@@ -25628,7 +26109,8 @@
         "Simon Sinek",
         "John Kotter",
         "Patrick Lencioni"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "freedom-s-forge-how-american-business-produced-victory-in-world-war-ii|arthur-herman",
@@ -25663,7 +26145,8 @@
         "John Keegan",
         "Rick Atkinson",
         "Victor Davis Hanson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-last-lecture|randy-pausch",
@@ -25696,7 +26179,8 @@
         "Paul Kalanithi",
         "Atul Gawande",
         "Victor Frankl"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "digital-gold-bitcoin-and-the-inside-story-of-the-misfits-and-millionaires-trying-to-reinvent-money|nathaniel-popper",
@@ -25730,7 +26214,8 @@
         "Gregory Zuckerman",
         "Ben Mezrich",
         "Nick Bilton"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "beyond-the-pale-the-story-of-sierra-nevada-brewing-co|ken-grossman",
@@ -25765,7 +26250,8 @@
         "Sam Walton",
         "Robert Iger",
         "Tony Magee"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "molly-s-game-from-hollywood-s-elite-to-wall-street-s-billionaire-boys-club-my-high-stakes-adventure-in-the-world-of-underground-poker|molly-bloom",
@@ -25800,7 +26286,8 @@
         "Michael Lewis",
         "Nick Bilton",
         "Drew Magary"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-hanging-judge|michael-ponsor",
@@ -25834,7 +26321,8 @@
         "Scott Turow",
         "William L. Myers Jr.",
         "Brad Parks"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "dueling-with-kings-high-stakes-killer-sharks-and-the-get-rich-promise-of-daily-fantasy-sports|daniel-barbarisi",
@@ -25867,7 +26355,8 @@
         "Jeff Pearlman",
         "Ben Lindbergh",
         "Jonah Keri"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "baseball-between-the-numbers-why-everything-you-know-about-the-game-is-wrong|baseball-prospectus",
@@ -25885,7 +26374,8 @@
       "publisher": "Basic Books",
       "year": 2007,
       "themes": [
-        "sports"
+        "sports",
+        "narrative nonfiction"
       ],
       "similarToTitles": [
         "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
@@ -25898,13 +26388,14 @@
         "Jonah Keri",
         "Nate Silver",
         "Ben Lindbergh"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "janesville-an-american-story|amy-goldstein",
       "bookId": "33665908",
       "title": "Janesville: An American Story",
-      "author": "Amy  Goldstein",
+      "author": "Amy Goldstein",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 4.15,
@@ -25932,7 +26423,8 @@
         "Barbara Ehrenreich",
         "J.D. Vance",
         "Chris Arnade"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "ivan-ramen-love-obsession-and-recipes-from-tokyo-s-most-unlikely-noodle-joint|ivan-orkin",
@@ -25965,7 +26457,8 @@
         "Anthony Bourdain",
         "Marcus Samuelsson",
         "Michael Ruhlman"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-upstarts-how-uber-airbnb-and-the-killer-companies-of-the-new-silicon-valley-are-changing-the-world|brad-stone",
@@ -25999,7 +26492,8 @@
         "Ashlee Vance",
         "Nick Bilton",
         "Ben Mezrich"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "ahead-of-the-curve-inside-the-baseball-revolution|brian-kenny",
@@ -26032,7 +26526,8 @@
         "Jonah Keri",
         "Bill James",
         "Ben Lindbergh"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-cubs-way-the-zen-of-building-the-best-team-in-baseball-and-breaking-the-curse|tom-verducci",
@@ -26042,7 +26537,7 @@
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.97,
-      "pages": 0,
+      "pages": 352,
       "dateRead": "2017/05/14",
       "dateAdded": "2017/01/30",
       "isbn": "052549300X",
@@ -26065,13 +26560,14 @@
         "Jeff Passan",
         "Jonah Keri",
         "Roger Angell"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-undoing-project-a-friendship-that-changed-our-minds|michael-lewis",
       "bookId": "30334134",
       "title": "The Undoing Project: A Friendship That Changed Our Minds",
-      "author": "Michael   Lewis",
+      "author": "Michael Lewis",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 4.1,
@@ -26098,7 +26594,8 @@
         "John Carreyrou",
         "Ben Mezrich",
         "Ben Horowitz"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-only-rule-is-it-has-to-work-our-wild-experiment-building-a-new-kind-of-baseball-team|ben-lindbergh",
@@ -26132,7 +26629,8 @@
         "Jonah Keri",
         "Jeff Pearlman",
         "Nate Silver"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-girl-on-the-train|paula-hawkins",
@@ -26167,7 +26665,8 @@
         "B.A. Paris",
         "Shari Lapena",
         "Lisa Jewell"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "seinfeldia-how-a-show-about-nothing-changed-everything|jennifer-keishin-armstrong",
@@ -26200,7 +26699,8 @@
         "Chuck Klosterman",
         "Bill Simmons",
         "David Sedaris"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "netflixed-the-epic-battle-for-america-s-eyeballs|gina-keating",
@@ -26234,7 +26734,8 @@
         "Nick Bilton",
         "Ashlee Vance",
         "Steven Levy"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "but-what-if-we-re-wrong-thinking-about-the-present-as-if-it-were-the-past|chuck-klosterman",
@@ -26267,7 +26768,8 @@
         "Drew Magary",
         "Malcolm Gladwell",
         "Joe Queenan"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-litigators|john-grisham",
@@ -26302,7 +26804,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "boys-among-men-how-the-prep-to-pro-generation-redefined-the-nba-and-sparked-a-basketball-revolution|jonathan-abrams",
@@ -26335,7 +26838,8 @@
         "Michael Lewis",
         "Wright Thompson",
         "Alan Shipnuck"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "franklin-barbecue-a-meat-smoking-manifesto-a-cookbook|aaron-franklin",
@@ -26369,7 +26873,8 @@
         "Myron Mixon",
         "David Chang",
         "Eddie Huang"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-broker|john-grisham",
@@ -26403,7 +26908,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "calico-joe|john-grisham",
@@ -26436,7 +26942,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "thinking-fast-and-slow|daniel-kahneman",
@@ -26469,7 +26976,8 @@
         "Malcolm Gladwell",
         "Dan Ariely",
         "Richard Thaler"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "when-to-rob-a-bank-and-131-more-warped-suggestions-and-well-intended-rants|steven-d-levitt",
@@ -26502,7 +27010,8 @@
         "Malcolm Gladwell",
         "Jon Krakauer",
         "Erik Larson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "rogue-lawyer|john-grisham",
@@ -26536,7 +27045,8 @@
         "James Grippando",
         "Steve Cavanagh",
         "Richard Patterson"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "not-that-kind-of-girl-a-young-woman-tells-you-what-she-s-learned|lena-dunham",
@@ -26571,7 +27081,8 @@
         "Mindy Kaling",
         "Amy Poehler",
         "Roxane Gay"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "baseball-maverick-how-sandy-alderson-revolutionized-baseball-and-revived-the-mets|steve-kettmann",
@@ -26604,7 +27115,8 @@
         "Michael Lewis",
         "Jonah Keri",
         "Rick Wolff"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "boom-oil-money-cowboys-strippers-and-the-energy-rush-that-could-change-america-forever|tony-horwitz",
@@ -26637,7 +27149,8 @@
         "Bill Bryson",
         "Jon Krakauer",
         "Erik Larson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "becoming-steve-jobs-the-evolution-of-a-reckless-upstart-into-a-visionary-leader|brent-schlender",
@@ -26671,7 +27184,8 @@
         "Brad Stone",
         "Ashlee Vance",
         "Jimmy Soni"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-fantasy-baseball-black-book-2015-edition|joe-pisapia",
@@ -26689,7 +27203,8 @@
       "publisher": null,
       "year": 2015,
       "themes": [
-        "sports"
+        "sports",
+        "narrative nonfiction"
       ],
       "similarToTitles": [
         "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
@@ -26703,7 +27218,8 @@
         "Michael Lewis",
         "Jonah Keri",
         "Chris Ballard"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "to-start-a-war-how-the-bush-administration-took-america-into-iraq|robert-draper",
@@ -26739,7 +27255,8 @@
         "Thomas Ricks",
         "Rajiv Chandrasekaran",
         "Ron Suskind"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "once-upon-a-time-in-hollywood-a-novel|quentin-tarantino",
@@ -26775,7 +27292,8 @@
         "Elmore Leonard",
         "Don Winslow",
         "Bret Easton Ellis"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-universal-baseball-association-inc-j-henry-waugh-prop|robert-coover",
@@ -26810,7 +27328,8 @@
         "Philip Roth",
         "Thomas Pynchon",
         "Bernard Malamud"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "zone-one|colson-whitehead",
@@ -26846,7 +27365,8 @@
         "Cormac McCarthy",
         "Paul Tremblay",
         "Justin Cronin"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-antisocial-network-the-true-story-of-a-ragtag-of-amateur-investors-gamers-and-internet-trolls-who-brought-wall-street-to-its-knees|ben-mezrich",
@@ -26882,7 +27402,8 @@
         "Scott Patterson",
         "Gregory Zuckerman",
         "Andrew Ross Sorkin"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-origins-of-the-cornbread-mafia-a-memoir-of-sorts|joe-keith-bickett",
@@ -26917,13 +27438,14 @@
         "Nick Reding",
         "Sam Quinones",
         "Daniel Coyle"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "liftoff-elon-musk-and-the-desperate-early-days-that-launched-spacex|eric-berger",
       "bookId": "53402132",
       "title": "Liftoff: Elon Musk and the Desperate Early Days That Launched SpaceX",
-      "author": "Eric  Berger",
+      "author": "Eric Berger",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 4.54,
@@ -26953,7 +27475,8 @@
         "Ashlee Vance",
         "Tim Fernholz",
         "Christian Davenport"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "a-knock-at-midnight-a-story-of-hope-justice-and-freedom|brittany-k-barnett",
@@ -26989,7 +27512,8 @@
         "Michelle Alexander",
         "Shon Hopwood",
         "James Forman Jr."
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "a-people-s-history-of-the-united-states|howard-zinn",
@@ -27025,7 +27549,8 @@
         "James W. Loewen",
         "Eric Foner",
         "Ta-Nehisi Coates"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "firebreak|nicole-kornher-stace",
@@ -27061,13 +27586,14 @@
         "Martha Wells",
         "Kameron Hurley",
         "Malka Older"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-last-human|zack-jordan",
       "bookId": "45895112",
       "title": "The Last Human",
-      "author": "Zack  Jordan",
+      "author": "Zack Jordan",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 3.68,
@@ -27097,7 +27623,8 @@
         "Becky Chambers",
         "John Scalzi",
         "Peter Watts"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "fentanyl-inc-how-rogue-chemists-are-creating-the-deadliest-wave-of-the-opioid-epidemic|ben-westhoff",
@@ -27133,7 +27660,8 @@
         "Beth Macy",
         "Patrick Radden Keefe",
         "Chris McGreal"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "noise-a-flaw-in-human-judgment|daniel-kahneman",
@@ -27169,7 +27697,8 @@
         "Richard Thaler",
         "Dan Ariely",
         "Cass Sunstein"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-moviegoer|walker-percy",
@@ -27204,7 +27733,8 @@
         "Richard Yates",
         "Saul Bellow",
         "Don DeLillo"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "11-22-63|stephen-king",
@@ -27233,13 +27763,14 @@
         "Catch-22",
         "The Time Traveler's Wife"
       ],
-      "ratingsCount": 0,
+      "ratingsCount": 450000,
       "similarToAuthors": [
         "Dean Koontz",
         "Joe Hill",
         "Peter Straub",
         "Clive Barker"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "when-women-invented-television-the-untold-story-of-the-female-powerhouses-who-pioneered-the-way-we-watch-today|jennifer-keishin-armstrong",
@@ -27274,7 +27805,8 @@
         "Emily Nussbaum",
         "Jennifer Keishin Armstrong",
         "Brooke Barnes"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "lucky-peach-issue-1|chris-ying",
@@ -27309,13 +27841,14 @@
         "Anthony Bourdain",
         "Ruth Reichl",
         "Harold McGee"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "how-to-avoid-a-climate-disaster-the-solutions-we-have-and-the-breakthroughs-we-need|bill-gates",
       "bookId": "52908942",
       "title": "How to Avoid a Climate Disaster: The Solutions We Have and the Breakthroughs We Need",
-      "author": "Bill  Gates",
+      "author": "Bill Gates",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 4.18,
@@ -27345,7 +27878,8 @@
         "Michael Pollan",
         "Vaclav Smil",
         "Yuval Noah Harari"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-kid-the-immortal-life-of-ted-williams|ben-bradlee-jr",
@@ -27380,7 +27914,8 @@
         "David Halberstam",
         "Jane Leavy",
         "Jonathan Eig"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "rise-of-the-warrior-cop-the-militarization-of-america-s-police-forces|radley-balko",
@@ -27416,7 +27951,8 @@
         "Bryan Stevenson",
         "Ta-Nehisi Coates",
         "David Simon"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-path-to-power|robert-a-caro",
@@ -27452,7 +27988,8 @@
         "David McCullough",
         "Doris Kearns Goodwin",
         "Ron Chernow"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "network-effect|martha-wells",
@@ -27488,7 +28025,8 @@
         "Becky Chambers",
         "Arkady Martine",
         "Charles Stross"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "to-sleep-in-a-sea-of-stars|christopher-paolini",
@@ -27524,7 +28062,8 @@
         "Alastair Reynolds",
         "Ann Leckie",
         "John Scalzi"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-troop|nick-cutter",
@@ -27560,7 +28099,8 @@
         "Paul Tremblay",
         "Richard Laymon",
         "Jack Ketchum"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "grinding-it-out-the-making-of-mcdonald-s|ray-kroc",
@@ -27595,7 +28135,8 @@
         "Sam Walton",
         "Howard Schultz",
         "Lee Iacocca"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-rise-and-fall-of-the-third-reich-a-history-of-nazi-germany|william-l-shirer",
@@ -27631,7 +28172,8 @@
         "Richard J. Evans",
         "Antony Beevor",
         "John Toland"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "notes-from-underground|fyodor-dostoevsky",
@@ -27666,7 +28208,8 @@
         "Franz Kafka",
         "Albert Camus",
         "Nikolai Gogol"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-drudge-revolution-the-untold-story-of-how-talk-radio-fox-news-and-a-gift-shop-clerk-with-an-internet-connection-took-down-the-mainstream-media|matthew-lysiak",
@@ -27702,7 +28245,8 @@
         "Gabriel Sherman",
         "David Folkenflik",
         "Michael Wolff"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-body-a-guide-for-occupants|bill-bryson",
@@ -27738,7 +28282,8 @@
         "Siddhartha Mukherjee",
         "Atul Gawande",
         "Paul Kalanithi"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "pilsner-how-the-beer-of-kings-changed-the-world|tom-acitelli",
@@ -27773,7 +28318,8 @@
         "Tom Standage",
         "Maureen Ogle",
         "Jeff Alworth"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-invention-of-sound|chuck-palahniuk",
@@ -27809,7 +28355,8 @@
         "Bret Easton Ellis",
         "Dennis Cooper",
         "Stephen Graham Jones"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "king-of-capital-the-remarkable-rise-fall-and-rise-again-of-steve-schwarzman-and-blackstone|david-carey",
@@ -27845,7 +28392,8 @@
         "William Cohan",
         "Bryan Burrough",
         "Andrew Ross Sorkin"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "world-travel-an-irreverent-guide|anthony-bourdain",
@@ -27881,7 +28429,8 @@
         "Bill Bryson",
         "Paul Theroux",
         "Rick Steves"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "a-bridge-too-far|cornelius-ryan",
@@ -27916,7 +28465,8 @@
         "Rick Atkinson",
         "Antony Beevor",
         "John Keegan"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-speed-of-sound-breaking-the-barriers-between-music-and-technology-a-memoir|thomas-dolby",
@@ -27951,7 +28501,8 @@
         "Brian Eno",
         "Neil Young",
         "Dave Grohl"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "fahrenheit-451|ray-bradbury",
@@ -27987,7 +28538,8 @@
         "Aldous Huxley",
         "Philip K. Dick",
         "Kurt Vonnegut"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-terminal-list|jack-carr",
@@ -28023,7 +28575,8 @@
         "Brad Thor",
         "Brad Taylor",
         "Daniel Silva"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "american-prison-a-reporter-s-undercover-journey-into-the-business-of-punishment|shane-bauer",
@@ -28059,7 +28612,8 @@
         "Bryan Stevenson",
         "Matthew Desmond",
         "Eric Schlosser"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "good-economics-for-hard-times-better-answers-to-our-biggest-problems|abhijit-v-banerjee",
@@ -28095,7 +28649,8 @@
         "Paul Krugman",
         "Daron Acemoglu",
         "Steven Levitt"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-bayou-trilogy-under-the-bright-lights-muscle-for-the-wing-and-the-ones-you-do|daniel-woodrell",
@@ -28131,7 +28686,8 @@
         "Joe R. Lansdale",
         "Larry Brown",
         "Charles Willeford"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-big-roads-the-untold-story-of-the-engineers-visionaries-and-trailblazers-who-created-the-american-superhighways|earl-swift",
@@ -28166,7 +28722,8 @@
         "Dan McNichol",
         "G. Pascal Zachary",
         "David Halberstam"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "andy-grove-the-life-and-times-of-an-american|richard-s-tedlow",
@@ -28202,7 +28759,8 @@
         "Michael Lewis",
         "Tom Wolfe",
         "John Sculley"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "a-kind-and-just-parent-the-children-of-juvenile-court|bill-ayers",
@@ -28237,7 +28795,8 @@
         "Michelle Alexander",
         "Bryan Stevenson",
         "Alex Kotlowitz"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-tumor|john-grisham",
@@ -28272,13 +28831,14 @@
         "Robin Cook",
         "Tess Gerritsen",
         "Karin Slaughter"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "panic-the-story-of-modern-financial-insanity|michael-lewis",
       "bookId": "7182861",
       "title": "Panic: The Story of Modern Financial Insanity",
-      "author": "Michael   Lewis",
+      "author": "Michael Lewis",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 3.57,
@@ -28308,13 +28868,14 @@
         "Roger Lowenstein",
         "Andrew Ross Sorkin",
         "Sebastian Mallaby"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-tennis-partner|abraham-verghese",
       "bookId": "187117",
       "title": "The Tennis Partner",
-      "author": "Abraham   Verghese",
+      "author": "Abraham Verghese",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 3.91,
@@ -28343,7 +28904,8 @@
         "Atul Gawande",
         "Oliver Sacks",
         "Siddhartha Mukherjee"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "we-learn-nothing|tim-kreider",
@@ -28379,7 +28941,8 @@
         "Chuck Klosterman",
         "Sloane Crosley",
         "Michael Ian Black"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "safe|ryan-gattis",
@@ -28415,7 +28978,8 @@
         "Don Winslow",
         "Richard Price",
         "James Ellroy"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "samsung-rising-the-inside-story-of-the-south-korean-giant-that-set-out-to-beat-apple-and-conquer-tech|geoffrey-cain",
@@ -28451,7 +29015,8 @@
         "Brad Stone",
         "John Lee",
         "Evan Osnos"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-victory-machine-the-making-and-unmaking-of-the-warriors-dynasty|ethan-sherwood-strauss",
@@ -28486,7 +29051,8 @@
         "Adrian Wojnarowski",
         "Jonathan Abrams",
         "Howard Beck"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "twitter-a-biography|jean-burgess",
@@ -28522,7 +29088,8 @@
         "Steven Levy",
         "Kate Klonick",
         "Siva Vaidhyanathan"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-ballad-of-songbirds-and-snakes|suzanne-collins",
@@ -28558,7 +29125,8 @@
         "James Dashner",
         "Marie Lu",
         "Victoria Aveyard"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "this-i-believe-the-personal-philosophies-of-remarkable-men-and-women|jay-allison",
@@ -28568,7 +29136,7 @@
       "shelf": "read",
       "myRating": 2,
       "avgRating": 3.85,
-      "pages": 0,
+      "pages": 256,
       "dateRead": null,
       "dateAdded": "2020-03-21",
       "isbn": "",
@@ -28593,7 +29161,8 @@
         "Studs Terkel",
         "Anna Quindlen",
         "Edward R. Murrow"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-wax-pack-on-the-open-road-in-search-of-baseball-s-afterlife|brad-balukjian",
@@ -28628,7 +29197,8 @@
         "Tom Verducci",
         "Roger Angell",
         "Michael Rosenberg"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-office-the-untold-story-of-the-greatest-sitcom-of-the-2000s-an-oral-history|andy-greene",
@@ -28663,7 +29233,8 @@
         "Alan Sepinwall",
         "Ken Levine",
         "Bill Carter"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-monk-who-sold-his-ferrari-a-fable-about-fulfilling-your-dreams-and-reaching-your-destiny|robin-s-sharma",
@@ -28698,7 +29269,8 @@
         "Eckhart Tolle",
         "Dale Carnegie",
         "Stephen Covey"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "a-beautiful-mind|sylvia-nasar",
@@ -28734,7 +29306,8 @@
         "Robert Kanigel",
         "Simon Singh",
         "Deborah Heilbrand"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "arbitrary-stupid-goal|tamara-shopsin",
@@ -28770,7 +29343,8 @@
         "David Sedaris",
         "Gabrielle Hamilton",
         "Calvin Trillin"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-inside-game-bad-calls-strange-moves-and-what-baseball-behavior-teaches-us-about-ourselves|keith-law",
@@ -28805,7 +29379,8 @@
         "Jonah Lehrer",
         "Dan Ariely",
         "Nate Silver"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "author-in-chief-the-untold-story-of-our-presidents-and-the-books-they-wrote|craig-fehrman",
@@ -28841,7 +29416,8 @@
         "Robert Caro",
         "Doris Kearns Goodwin",
         "H.W. Brands"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-class-a-life-changing-teacher-his-world-changing-kids-and-the-most-inventive-classroom-in-america|heather-won-tesoriero",
@@ -28876,7 +29452,8 @@
         "Paul Tough",
         "Ron Clark",
         "Erin Gruwell"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "collision-course-ronald-reagan-the-air-traffic-controllers-and-the-strike-that-changed-america|joseph-a-mccartin",
@@ -28912,7 +29489,8 @@
         "Rick Perlstein",
         "Jefferson Cowie",
         "Kim Phillips-Fein"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-shift-the-next-evolution-in-baseball-thinking|russell-a-carleton",
@@ -28947,7 +29525,8 @@
         "Travis Sawchik",
         "Keith Law",
         "Michael Lewis"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-one-that-got-away|simon-wood",
@@ -28983,13 +29562,14 @@
         "Lisa Gardner",
         "Thomas Harris",
         "Karin Slaughter"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "steven-adams-my-life-my-fight|steven-adams",
       "bookId": "40878637",
       "title": "Steven Adams: My Life, My Fight",
-      "author": "Steven  Adams",
+      "author": "Steven Adams",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 4.25,
@@ -29017,7 +29597,8 @@
         "Phil Jackson",
         "Kareem Abdul-Jabbar",
         "Bill Russell"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-financial-diaries-how-american-families-cope-in-a-world-of-uncertainty|jonathan-morduch",
@@ -29053,7 +29634,8 @@
         "Annamaria Lusardi",
         "Helaine Olen",
         "Jacob Hacker"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "we-will-rise-a-true-story-of-tragedy-and-resurrection-in-the-american-heartland|steve-beaven",
@@ -29088,7 +29670,8 @@
         "Adrian Wojnarowski",
         "Jeff Benedict",
         "Jonathan Hock"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "robopocalypse|daniel-h-wilson",
@@ -29124,13 +29707,14 @@
         "Michael Crichton",
         "Blake Crouch",
         "Ernest Cline"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "home-now-how-6000-refugees-transformed-an-american-town|cynthia-anderson",
       "bookId": "44064569",
       "title": "Home Now: How 6000 Refugees Transformed an American Town",
-      "author": "Cynthia   Anderson",
+      "author": "Cynthia Anderson",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 3.81,
@@ -29159,7 +29743,8 @@
         "Tracy Kidder",
         "Sonia Nazario",
         "Helen Thorpe"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-flavor-bible-the-essential-guide-to-culinary-creativity-based-on-the-wisdom-of-america-s-most-imaginative-chefs|karen-page",
@@ -29193,7 +29778,8 @@
         "Harold McGee",
         "Samin Nosrat",
         "Yotam Ottolenghi"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "top-of-the-morning-inside-the-cutthroat-world-of-morning-tv|brian-stelter",
@@ -29228,7 +29814,8 @@
         "Howard Kurtz",
         "Gabriel Sherman",
         "Ken Auletta"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "uncanny-valley|anna-wiener",
@@ -29264,7 +29851,8 @@
         "Ellen Ullman",
         "Kara Swisher",
         "Kate Crawford"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "sabbath-s-theater|philip-roth",
@@ -29299,7 +29887,8 @@
         "John Updike",
         "Norman Mailer",
         "Don DeLillo"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "colonel-sanders-and-the-american-dream|josh-ozersky",
@@ -29335,7 +29924,8 @@
         "Andrew F. Smith",
         "Michael Moss",
         "Eric Schlosser"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "hate-inc-why-today-s-media-makes-us-despise-one-another|matt-taibbi",
@@ -29371,7 +29961,8 @@
         "Chris Hedges",
         "Michael Wolff",
         "Noam Chomsky"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "burn-the-ice-the-american-culinary-revolution-and-its-end|kevin-alexander",
@@ -29406,7 +29997,8 @@
         "Bill Buford",
         "Michael Ruhlman",
         "David Chang"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "rolling-nowhere-riding-the-rails-with-america-s-hoboes|ted-conover",
@@ -29441,7 +30033,8 @@
         "Jon Krakauer",
         "William Least Heat-Moon",
         "Ted Conover"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "stiff-the-curious-lives-of-human-cadavers|mary-roach",
@@ -29476,7 +30069,8 @@
         "Caitlin Doughty",
         "Sam Kean",
         "Erik Larson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-first-cell-and-the-human-costs-of-pursuing-cancer-to-the-last|azra-raza",
@@ -29511,7 +30105,8 @@
         "Paul Kalanithi",
         "Atul Gawande",
         "Jerome Groopman"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "fit-matters-how-to-love-your-job|moe-carrick",
@@ -29546,7 +30141,8 @@
         "Liz Wiseman",
         "Patrick Lencioni",
         "Daniel Pink"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "spare-parts-four-undocumented-teenagers-one-ugly-robot-and-the-battle-for-the-american-dream|joshua-davis",
@@ -29581,7 +30177,8 @@
         "Alex Kotlowitz",
         "Matthew Desmond",
         "Katherine Boo"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "rise-of-the-robots-technology-and-the-threat-of-a-jobless-future|martin-ford",
@@ -29617,7 +30214,8 @@
         "Kevin Kelly",
         "Erik Brynjolfsson",
         "Tyler Cowen"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "two-steps-forward|graeme-simsion",
@@ -29652,7 +30250,8 @@
         "Matt Haig",
         "Richard Russo",
         "Fredrik Backman"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "serving-the-servant-remembering-kurt-cobain|danny-goldberg",
@@ -29687,7 +30286,8 @@
         "Michael Azerrad",
         "Everett True",
         "Dave Thompson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-white-stripes-sweethearts-of-the-blues|denise-sullivan",
@@ -29722,7 +30322,8 @@
         "Nick Tosches",
         "Charles R. Cross",
         "Michael Azerrad"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "cribsheet-a-data-driven-guide-to-better-more-relaxed-parenting-from-birth-to-preschool|emily-oster",
@@ -29757,7 +30358,8 @@
         "Po Bronson",
         "Pamela Druckerman",
         "Ina May Gaskin"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "win-bigly-persuasion-in-a-world-where-facts-don-t-matter|scott-adams",
@@ -29792,7 +30394,8 @@
         "Daniel Kahneman",
         "Malcolm Gladwell",
         "Jonah Berger"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "atmosphaera-incognita|neal-stephenson",
@@ -29827,7 +30430,8 @@
         "William Gibson",
         "Charles Stross",
         "Cory Doctorow"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "under-the-influence-new-edition-of-the-unauthorized-story-of-the-anheuser-busch-dynasty|terry-ganey",
@@ -29863,7 +30467,8 @@
         "Maureen Ogle",
         "Bryan Burrough",
         "John Helyar"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "god-bless-you-dr-kevorkian|kurt-vonnegut-jr",
@@ -29899,7 +30504,8 @@
         "Joseph Heller",
         "Christopher Moore",
         "George Saunders"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-smartest-guys-in-the-room-the-amazing-rise-and-scandalous-fall-of-enron|bethany-mclean",
@@ -29935,7 +30541,8 @@
         "Andrew Ross Sorkin",
         "Roger Lowenstein",
         "Kurt Eichenwald"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "bush|jean-edward-smith",
@@ -29970,7 +30577,8 @@
         "Ron Chernow",
         "David McCullough",
         "Bob Woodward"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "nixonland-the-rise-of-a-president-and-the-fracturing-of-america|rick-perlstein",
@@ -30006,13 +30614,14 @@
         "Taylor Branch",
         "Robert Dallek",
         "Garry Wills"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "drive-thru-dreams-a-journey-through-the-heart-of-america-s-fast-food-kingdom|adam-chandler",
       "bookId": "41150451",
       "title": "Drive-Thru Dreams: A Journey Through the Heart of America's Fast-Food Kingdom",
-      "author": "Adam   Chandler",
+      "author": "Adam Chandler",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 3.62,
@@ -30042,7 +30651,8 @@
         "Michael Pollan",
         "Josh Ozersky",
         "David Gelles"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "wild-and-outside-how-a-renegade-minor-league-revived-the-spirit-of-baseball-in-america-s-heartland|stefan-fatsis",
@@ -30077,7 +30687,8 @@
         "Michael Lewis",
         "Joe Posnanski",
         "John Feinstein"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "serious-eater-a-food-lover-s-perilous-quest-for-pizza-and-redemption|ed-levine",
@@ -30113,7 +30724,8 @@
         "Ruth Reichl",
         "Adam Platt",
         "Bill Buford"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "best-movie-year-ever-how-1999-blew-up-the-big-screen|brian-raftery",
@@ -30149,7 +30761,8 @@
         "Peter Biskind",
         "Tom Shone",
         "David Thomson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-last-pirate-of-new-york-a-ghost-ship-a-killer-and-the-birth-of-a-gangster-nation|rich-cohen",
@@ -30184,7 +30797,8 @@
         "T.J. Stiles",
         "Robert Kurson",
         "Mike Dash"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "spying-on-the-south-travels-with-frederick-law-olmsted-in-a-fractured-land|tony-horwitz",
@@ -30220,7 +30834,8 @@
         "Erik Larson",
         "Hampton Sides",
         "Robert Kaplan"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "my-thoughts-exactly|lily-allen",
@@ -30255,7 +30870,8 @@
         "Patti Smith",
         "Kim Gordon",
         "Carrie Brownstein"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-grind-inside-baseball-s-endless-season|barry-svrluga",
@@ -30289,7 +30905,8 @@
         "Joe Posnanski",
         "Tyler Kepner",
         "Bob Costas"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-devil-in-the-white-city|erik-larson",
@@ -30299,7 +30916,7 @@
       "shelf": "read",
       "myRating": 2,
       "avgRating": 3.98,
-      "pages": 0,
+      "pages": 447,
       "dateRead": null,
       "dateAdded": "2019-02-11",
       "isbn": "0739303406",
@@ -30324,7 +30941,8 @@
         "Simon Winchester",
         "Candice Millard",
         "Karen Abbott"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "twilight-of-the-gods-a-journey-to-the-end-of-classic-rock|steven-hyden",
@@ -30359,7 +30977,8 @@
         "Rob Sheffield",
         "Joe Posnanski",
         "Bill Simmons"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "roadfood|jane-stern",
@@ -30394,7 +31013,8 @@
         "Anthony Bourdain",
         "Michael Stern",
         "John T. Edge"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "fraternity-an-inside-look-at-a-year-of-college-boys-becoming-men|alexandra-robbins",
@@ -30429,7 +31049,8 @@
         "Sebastian Junger",
         "Ted Conover",
         "Michael Lewis"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "smart-baseball-the-story-behind-the-old-stats-that-are-ruining-the-game-the-new-ones-that-are-running-it-and-the-right-way-to-think-about-baseball|keith-law",
@@ -30464,7 +31085,8 @@
         "Nate Silver",
         "Ben Reiter",
         "Joe Posnanski"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "hungry-monkey-a-food-loving-father-s-quest-to-raise-an-adventurous-eater|matthew-amster-burton",
@@ -30499,7 +31121,8 @@
         "Anthony Bourdain",
         "David Lebovitz",
         "Mark Bittman"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-apprentice-my-life-in-the-kitchen|jacques-p-pin",
@@ -30534,7 +31157,8 @@
         "Julia Child",
         "Ruth Reichl",
         "Gabrielle Hamilton"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "reckless-road-guns-n-roses-and-the-making-of-appetite-for-destruction-author-autographed-edition|marc-canter",
@@ -30569,7 +31193,8 @@
         "Nikki Sixx",
         "Dave Mustaine",
         "Steven Adler"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "vengeful|v-e-schwab",
@@ -30605,7 +31230,8 @@
         "Leigh Bardugo",
         "Pierce Brown",
         "Joe Abercrombie"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "gearheads-the-turbulent-rise-of-robotic-sports|brad-stone",
@@ -30640,7 +31266,8 @@
         "Michael Lewis",
         "Walter Isaacson",
         "Po Bronson"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "bill-dave-how-hewlett-and-packard-built-the-world-s-greatest-company|michael-s-malone",
@@ -30676,7 +31303,8 @@
         "Michael Lewis",
         "Steven Levy",
         "John Markoff"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "say-you-re-sorry|melinda-leigh",
@@ -30712,7 +31340,8 @@
         "Karin Slaughter",
         "Allison Brennan",
         "Heather Graham"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-captain-the-journey-of-derek-jeter|ian-o-connor",
@@ -30747,7 +31376,8 @@
         "Tom Verducci",
         "Jeff Pearlman",
         "Jane Leavy"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "who-is-michael-ovitz|michael-ovitz",
@@ -30783,7 +31413,8 @@
         "Sherry Lansing",
         "David Geffen",
         "Peter Bart"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "power-ball-anatomy-of-a-modern-baseball-game|rob-neyer",
@@ -30818,7 +31449,8 @@
         "Joe Posnanski",
         "Tom Verducci",
         "Ben Lindbergh"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "setting-the-table-the-transforming-power-of-hospitality-in-business|danny-meyer",
@@ -30854,7 +31486,8 @@
         "Tony Hsieh",
         "René Redzepi",
         "Will Guidara"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-recovering-intoxication-and-its-aftermath|leslie-jamison",
@@ -30890,7 +31523,8 @@
         "Caroline Knapp",
         "Maggie Nelson",
         "Ann Marlowe"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-fourth-age-smart-robots-conscious-computers-and-the-future-of-humanity|byron-reese",
@@ -30925,7 +31559,8 @@
         "Max Tegmark",
         "Yuval Noah Harari",
         "Ray Kurzweil"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-mexican-tree-duck|james-crumley",
@@ -30961,13 +31596,14 @@
         "Carl Hiaasen",
         "Elmore Leonard",
         "Charles Willeford"
-      ]
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "home-game-an-accidental-guide-to-fatherhood|michael-lewis",
       "bookId": "7099559",
       "title": "Home Game: An Accidental Guide to Fatherhood",
-      "author": "Michael   Lewis",
+      "author": "Michael Lewis",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 3.68,
@@ -30996,13 +31632,14 @@
         "Jim Gaffigan",
         "AJ Jacobs",
         "Rob Delaney"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "coach-lessons-on-the-game-of-life|michael-lewis",
       "bookId": "10654",
       "title": "Coach: Lessons on the Game of Life",
-      "author": "Michael   Lewis",
+      "author": "Michael Lewis",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 3.86,
@@ -31031,7 +31668,8 @@
         "Pat Summitt",
         "Rick Reilly",
         "Joe Posnanski"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "i-don-t-care-if-we-never-get-back-30-games-in-30-days-on-the-best-worst-baseball-road-trip-ever|ben-blatt",
@@ -31066,7 +31704,8 @@
         "Joe Posnanski",
         "Rob Neyer",
         "Jonah Keri"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "big-shots-the-men-behind-the-booze|a-j-baime",
@@ -31101,7 +31740,8 @@
         "Wayne Curtis",
         "Reid Mitenbuler",
         "Garrett Peck"
-      ]
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "a-history-of-basketball-in-fifteen-sneakers|russ-bengtson",
@@ -31137,7 +31777,8 @@
         "Jeff Pearlman"
       ],
       "ratingsCount": 650,
-      "dnf": true
+      "dnf": true,
+      "type": "nonfiction"
     },
     {
       "bookKey": "all-the-light-we-cannot-see|anthony-doerr",
@@ -31172,7 +31813,8 @@
         "Lisa Wingate"
       ],
       "ratingsCount": 2100000,
-      "dnf": true
+      "dnf": true,
+      "type": "fiction"
     },
     {
       "bookKey": "apples-never-fall|liane-moriarty",
@@ -31208,7 +31850,8 @@
         "Lucy Foley"
       ],
       "ratingsCount": 220000,
-      "dnf": true
+      "dnf": true,
+      "type": "fiction"
     },
     {
       "bookKey": "blood-and-fire-the-unbelievable-real-life-story-of-wrestling-s-original-sheik|brian-r-solomon",
@@ -31244,7 +31887,8 @@
         "Jon Alba"
       ],
       "ratingsCount": 480,
-      "dnf": true
+      "dnf": true,
+      "type": "nonfiction"
     },
     {
       "bookKey": "endgame-an-insurgency-on-wall-street|sheelah-kolhatkar",
@@ -31280,7 +31924,8 @@
         "Scott Patterson"
       ],
       "ratingsCount": 180,
-      "dnf": true
+      "dnf": true,
+      "type": "nonfiction"
     },
     {
       "bookKey": "fourth-wing|rebecca-yarros",
@@ -31316,7 +31961,8 @@
         "Holly Black"
       ],
       "ratingsCount": 1400000,
-      "dnf": true
+      "dnf": true,
+      "type": "fiction"
     },
     {
       "bookKey": "number-go-up-inside-crypto-s-wild-rise-and-staggering-fall|zeke-faux",
@@ -31352,7 +31998,8 @@
         "Roger Lowenstein"
       ],
       "ratingsCount": 32000,
-      "dnf": true
+      "dnf": true,
+      "type": "nonfiction"
     },
     {
       "bookKey": "red-rising|pierce-brown",
@@ -31388,7 +32035,8 @@
         "Veronica Roth"
       ],
       "ratingsCount": 620000,
-      "dnf": true
+      "dnf": true,
+      "type": "fiction"
     },
     {
       "bookKey": "spaced-out-how-the-nba-s-three-point-revolution-changed-everything-you-thought-you-knew-about-basketball|mike-prada",
@@ -31423,7 +32071,8 @@
         "Ethan Sherwood Strauss"
       ],
       "ratingsCount": 2100,
-      "dnf": true
+      "dnf": true,
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-come-up-an-oral-history-of-the-rise-of-hip-hop|jonathan-abrams",
@@ -31459,7 +32108,8 @@
         "Bill Adler"
       ],
       "ratingsCount": 5800,
-      "dnf": true
+      "dnf": true,
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-coming-wave-technology-power-and-the-twenty-first-century-s-greatest-dilemma|mustafa-suleyman",
@@ -31495,7 +32145,8 @@
         "Max Tegmark"
       ],
       "ratingsCount": 34000,
-      "dnf": true
+      "dnf": true,
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-exchange-after-the-firm|john-grisham",
@@ -31531,7 +32182,8 @@
         "Scott Turow"
       ],
       "ratingsCount": 98000,
-      "dnf": true
+      "dnf": true,
+      "type": "fiction"
     },
     {
       "bookKey": "the-ferryman|justin-cronin",
@@ -31567,7 +32219,8 @@
         "Neal Stephenson"
       ],
       "ratingsCount": 21000,
-      "dnf": true
+      "dnf": true,
+      "type": "fiction"
     },
     {
       "bookKey": "the-heaven-earth-grocery-store|james-mcbride",
@@ -31602,7 +32255,8 @@
         "Brit Bennett"
       ],
       "ratingsCount": 195000,
-      "dnf": true
+      "dnf": true,
+      "type": "fiction"
     },
     {
       "bookKey": "the-real-hoosiers-crispus-attucks-high-school-oscar-robertson-and-the-hidden-history-of-hoops|jack-mccallum",
@@ -31638,7 +32292,8 @@
         "Jonathan Eig"
       ],
       "ratingsCount": 420,
-      "dnf": true
+      "dnf": true,
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-roundabout-way-stories-from-the-villages-florida|jack-o-brien",
@@ -31673,7 +32328,8 @@
         "Roy Blount Jr."
       ],
       "ratingsCount": 190,
-      "dnf": true
+      "dnf": true,
+      "type": "nonfiction"
     },
     {
       "bookKey": "trillions-how-a-band-of-wall-street-renegades-invented-the-index-fund-and-changed-finance-forever|robin-wigglesworth",
@@ -31709,7 +32365,8 @@
         "Michael Lewis"
       ],
       "ratingsCount": 10500,
-      "dnf": true
+      "dnf": true,
+      "type": "nonfiction"
     },
     {
       "bookKey": "ugly-love|colleen-hoover",
@@ -31744,7 +32401,8 @@
         "Anna Todd"
       ],
       "ratingsCount": 700000,
-      "dnf": true
+      "dnf": true,
+      "type": "fiction"
     },
     {
       "bookKey": "when-crack-was-king-a-people-s-history-of-a-misunderstood-era|donovan-x-ramsey",
@@ -31780,7 +32438,8 @@
         "David Simon"
       ],
       "ratingsCount": 9800,
-      "dnf": true
+      "dnf": true,
+      "type": "nonfiction"
     },
     {
       "bookKey": "where-are-your-boys-tonight-the-oral-history-of-emo-s-mainstream-explosion-1999-2008|chris-payne",
@@ -31816,7 +32475,8 @@
         "David Browne"
       ],
       "ratingsCount": 4900,
-      "dnf": true
+      "dnf": true,
+      "type": "nonfiction"
     }
   ],
   "indexes": {
