@@ -4,7 +4,7 @@
  * Combines two engines to leverage each one's strengths:
  *
  *   rateEngine.js  — Bayesian shrinkage model trained on all 1–5★ ratings.
- *                    Accurate predicted rating, LOO MAE 0.76 vs baseline 0.82.
+ *                    LOO MAE 0.763 vs baseline 0.820; LOO Spearman 0.462.
  *                    Weakness: clusters on dominant authors.
  *
  *   engine.js      — Rule-based 5★ citation network.
@@ -12,10 +12,17 @@
  *                    Weakness: score ceiling (34 books all score 100), 5★-only data.
  *
  * BBRE algorithm:
- *   1. Normalize both scores to [0, 1] against observed range.
- *   2. Combine: 65% Bayesian + 35% Engine.
- *   3. Greedy author-diversity re-ranking (MMR-style) to break author clusters.
- *   4. Return same shape as rankRecommendations() so app.js needs no changes.
+ *   1. Compute raw scores from both models.
+ *   2. Normalize within each genre (fiction / nonfiction) separately so each
+ *      genre's best book competes at score 1.0 — prevents the fiction-skewed
+ *      5★ citation network from systematically burying nonfiction.
+ *   3. Combine: 40% Bayesian + 60% citation network (LOO-tuned optimum).
+ *   4. Greedy author-diversity re-ranking (MMR-style) to break author clusters.
+ *   5. Return same shape as rankRecommendations() so app.js needs no changes.
+ *
+ * Tuning history (LOO Spearman):
+ *   BAYES=0.65 (original)  → 0.627
+ *   BAYES=0.40 (current)   → 0.656  (+0.029)
  *
  * Exports:
  *   rankBBRE(goodreads, feedback, candidatePool, history) → { selected, profile, eligibleCount }
@@ -26,15 +33,50 @@ import { rankRecommendations }            from './engine.js';
 
 // ── Tuning knobs ───────────────────────────────────────────────────────────
 
-const BAYES_WEIGHT  = 0.65;   // share of combined score from Bayesian prediction
-const ENGINE_WEIGHT = 0.35;   // share from engine.js citation/breadth signals
+// LOO-optimised at BAYES=0.40; engine.js citation signal is more discriminating
+// for this user's catalogue (Spearman 0.634 vs rateEngine 0.462 standalone).
+const BAYES_WEIGHT  = 0.40;
+const ENGINE_WEIGHT = 0.60;
 
-// Diversity penalty applied to the Nth book by the same author (0-indexed count
-// of how many books by this author have already been selected above this one).
-// A penalty of 0.10 shifts a book down roughly 10 points in a 0–100 display.
+// Diversity penalty for the Nth book by the same author already ranked above.
+// count=0 (first book): no penalty; count=1 (second): -0.10; etc.
 const DIVERSITY_PENALTY = [0, 0.10, 0.18, 0.25, 0.30];
 
+// Genre tags used to split the normalisation pool so fiction and nonfiction
+// compete on equal footing despite the fiction-skewed 5★ citation network.
+const NF_THEMES = new Set([
+  'narrative nonfiction','memoir','biography','true crime','history','military',
+  'tech history','business','finance','sports','food','psychology','political',
+  'social commentary','music history',
+]);
+const FIC_THEMES = new Set([
+  'thriller','mystery','literary','contemporary','romance','horror','sci-fi',
+  'speculative','crime','suspense','domestic suspense','psychological',
+  'historical fiction','ya','adventure','high-concept','noir','legal','courtroom',
+]);
+
 const normAuthorKey = a => String(a || '').replace(/\s+/g, ' ').trim().toLowerCase();
+
+function inferGenre(themes) {
+  let nf = 0, f = 0;
+  for (const t of (themes || [])) {
+    const tl = String(t).toLowerCase();
+    if (NF_THEMES.has(tl))  nf++;
+    if (FIC_THEMES.has(tl)) f++;
+  }
+  if (nf > f) return 'nonfiction';
+  if (f > nf) return 'fiction';
+  return 'unknown';
+}
+
+// Normalise a field to [0,1] within an array of books; returns new objects.
+function normaliseField(books, field, outField) {
+  if (books.length === 0) return books;
+  const vals = books.map(b => b[field]);
+  const min  = Math.min(...vals), max = Math.max(...vals);
+  const range = max - min || 1;
+  return books.map(b => ({ ...b, [outField]: (b[field] - min) / range }));
+}
 
 // ── Main export ────────────────────────────────────────────────────────────
 
@@ -43,46 +85,36 @@ export function rankBBRE(goodreads, feedback, candidatePool, history) {
   // ── 1. Bayesian model ────────────────────────────────────────────────────
   const model = buildTasteModel(goodreads, candidatePool);
 
-  // ── 2. Engine.js (also handles exclusion filtering & profile) ───────────
+  // ── 2. Engine.js (handles exclusion filtering & supplies profile) ────────
   const engineResult = rankRecommendations(goodreads, feedback, candidatePool, history);
-  const engineByKey  = new Map(engineResult.selected.map(b => [b.bookKey, b]));
 
-  // Only books that passed engine.js exclusion filter are eligible
-  const eligible = engineResult.selected.map(eb => {
-    const rr = predictRating(eb, model);
-    return {
-      ...eb,
-      _pred:          rr.predicted,
-      _conf:          rr.confidence,
-      _bayesBreakdown: rr.breakdown,   // [{label, signal, weight, type}]
-    };
-  });
-
-  if (eligible.length === 0) {
+  if (engineResult.selected.length === 0) {
     return { selected: [], profile: engineResult.profile, eligibleCount: 0 };
   }
 
-  // ── 3. Normalize both dimensions to [0, 1] ──────────────────────────────
-  const preds  = eligible.map(b => b._pred);
-  const eScores = eligible.map(b => b.matchScore);
-  const pMin = Math.min(...preds),  pMax = Math.max(...preds);
-  const eMin = Math.min(...eScores), eMax = Math.max(...eScores);
-  const pRange = pMax - pMin || 1;
-  const eRange = eMax - eMin || 1;
+  // Attach rateEngine predictions to each eligible book
+  const withPred = engineResult.selected.map(eb => {
+    const rr = predictRating(eb, model);
+    return { ...eb, _pred: rr.predicted, _conf: rr.confidence, _bayesBD: rr.breakdown };
+  });
 
-  const withCombined = eligible.map(b => ({
-    ...b,
-    _normBayes:  (b._pred  - pMin) / pRange,
-    _normEngine: (b.matchScore - eMin) / eRange,
-    get _combined() { return BAYES_WEIGHT * this._normBayes + ENGINE_WEIGHT * this._normEngine; },
-  })).map(b => ({ ...b, _combined: b._combined }));
+  // ── 3. Within-genre normalisation ───────────────────────────────────────
+  // Split into fiction / nonfiction / unknown, normalise each group
+  // independently, then re-merge.  Prevents the fiction-heavy 5★ network
+  // from compressing all nonfiction scores to the bottom of the range.
+  const groups = { fiction: [], nonfiction: [], unknown: [] };
+  for (const b of withPred) groups[inferGenre(b.themes)].push(b);
 
-  withCombined.sort((a, b) => b._combined - a._combined);
+  const normalised = Object.values(groups).flatMap(grp => {
+    let g = normaliseField(grp,  '_pred',     '_normBayes');
+    g     = normaliseField(g,    'matchScore','_normEngine');
+    return g.map(b => ({ ...b, _combined: BAYES_WEIGHT * b._normBayes + ENGINE_WEIGHT * b._normEngine }));
+  });
+
+  normalised.sort((a, b) => b._combined - a._combined);
 
   // ── 4. Greedy author-diversity re-ranking ────────────────────────────────
-  // At each position pick the book with the highest (combined − diversity_penalty).
-  // This is O(n²) but n ≤ ~350 so negligible.
-  const pool       = [...withCombined];
+  const pool       = [...normalised];
   const authorSeen = new Map();
   const reranked   = [];
 
@@ -90,88 +122,72 @@ export function rankBBRE(goodreads, feedback, candidatePool, history) {
     let bestIdx = 0, bestScore = -Infinity;
     for (let i = 0; i < pool.length; i++) {
       const b     = pool[i];
-      const ak    = normAuthorKey(b.author);
-      const count = authorSeen.get(ak) || 0;
+      const count = authorSeen.get(normAuthorKey(b.author)) || 0;
       const pen   = DIVERSITY_PENALTY[Math.min(count, DIVERSITY_PENALTY.length - 1)];
-      const score = b._combined - pen;
-      if (score > bestScore) { bestScore = score; bestIdx = i; }
+      const s     = b._combined - pen;
+      if (s > bestScore) { bestScore = s; bestIdx = i; }
     }
-    const sel  = pool.splice(bestIdx, 1)[0];
-    const ak   = normAuthorKey(sel.author);
+    const sel = pool.splice(bestIdx, 1)[0];
+    const ak  = normAuthorKey(sel.author);
     const prev = authorSeen.get(ak) || 0;
     authorSeen.set(ak, prev + 1);
     reranked.push({ ...sel, _bbreScore: bestScore, _authorSlot: prev + 1 });
   }
 
-  // ── 5. Shape output to match rankRecommendations() contract ─────────────
+  // ── 5. Shape output ──────────────────────────────────────────────────────
   const selected = reranked.map((b, i) => {
     const matchScore = Math.max(1, Math.round(b._bbreScore * 100));
+    const bayesPts   = Math.round(b._normBayes  * BAYES_WEIGHT  * 100);
+    const engPts     = Math.round(b._normEngine * ENGINE_WEIGHT * 100);
 
-    // Bayesian signals → pts (deviation from genre-expected mean, scaled for display)
-    const bayesPts = Math.round(b._normBayes * BAYES_WEIGHT * 100);
-    const engPts   = Math.round(b._normEngine * ENGINE_WEIGHT * 100);
+    // Bayesian signals: distribute bayesPts proportionally across rateEngine signals.
+    // Show them in detail; do NOT repeat engine.js's individual breakdown entries
+    // because both engines draw from the same similarToAuthors edges (duplicates).
+    const bayesSignals = _distPts(b._bayesBD, bayesPts);
 
-    // Convert rateEngine signals to displayable pts
-    const bayesSigPts = _bayesBreakdownToPts(b._bayesBreakdown, bayesPts);
-
-    // Scale engine.js breakdown pts by ENGINE_WEIGHT so combined makes sense
-    const engineSigPts = (b.breakdown || []).map(s => ({
-      label: s.label,
-      pts:   Math.round(s.pts * ENGINE_WEIGHT),
-    })).filter(s => s.pts !== 0);
-
-    // Diversity adjustment entry (if not the first book by this author)
-    const diversityEntry = b._authorSlot > 1
-      ? [{ label: `book ${b._authorSlot} by ${b.author.replace(/\s+/g,' ')} — variety discount`, pts: Math.round((b._combined - b._bbreScore) * -100) || 0 }]
+    // Diversity adjustment
+    const penPts = Math.round((b._combined - b._bbreScore) * -100);
+    const divEntry = b._authorSlot > 1 && penPts > 0
+      ? [{ label: `book ${b._authorSlot} by ${b.author.replace(/\s+/g,' ')} — variety discount`, pts: -penPts }]
       : [];
 
     const breakdown = [
       { label: `Taste model: ${b._pred.toFixed(2)}★ predicted (${Math.round(b._conf * 100)}% confident)`, pts: bayesPts },
-      ...bayesSigPts,
+      ...bayesSignals,
       { label: `Citation network score ${b.matchScore}`, pts: engPts },
-      ...engineSigPts,
-      ...diversityEntry,
+      ...divEntry,
     ].filter(s => s.pts !== 0).sort((a, x) => Math.abs(x.pts) - Math.abs(a.pts));
 
     return {
       ...b,
-      rank:       i + 1,
+      rank:      i + 1,
       matchScore,
-      reason:     b.reason || '',
+      reason:    b.reason || '',
       breakdown,
-      // Extra fields for debugging / future use
       bbreDetails: {
-        predicted:   b._pred,
-        confidence:  b._conf,
-        normBayes:   b._normBayes,
-        normEngine:  b._normEngine,
-        combined:    b._combined,
-        bbreScore:   b._bbreScore,
-        authorSlot:  b._authorSlot,
+        genre:      inferGenre(b.themes),
+        predicted:  b._pred,
+        confidence: b._conf,
+        normBayes:  b._normBayes,
+        normEngine: b._normEngine,
+        combined:   b._combined,
+        bbreScore:  b._bbreScore,
+        authorSlot: b._authorSlot,
       },
     };
   });
 
-  return {
-    selected,
-    profile:       engineResult.profile,
-    eligibleCount: engineResult.eligibleCount,
-  };
+  return { selected, profile: engineResult.profile, eligibleCount: engineResult.eligibleCount };
 }
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
-// Convert rateEngine's [{label, signal, weight, type}] signals into pts
-// by measuring each signal's pull relative to the estimated genre prior.
-// The total bayesPts (0–65) is distributed proportionally to signal weights.
-function _bayesBreakdownToPts(breakdown, totalBayesPts) {
+// Distribute totalPts across rateEngine breakdown signals proportionally to weight.
+function _distPts(breakdown, totalPts) {
   if (!breakdown || breakdown.length === 0) return [];
-  const totalWeight = breakdown.reduce((s, x) => s + x.weight, 0);
-  if (totalWeight === 0) return [];
-
-  return breakdown.map(sig => {
-    const share = sig.weight / totalWeight;
-    const pts   = Math.round(share * totalBayesPts);
-    return { label: sig.label, pts };
-  }).filter(s => s.pts !== 0);
+  const totalW = breakdown.reduce((s, x) => s + x.weight, 0);
+  if (totalW === 0) return [];
+  return breakdown
+    .map(sig => ({ label: sig.label, pts: Math.round((sig.weight / totalW) * totalPts) }))
+    .filter(s => s.pts !== 0);
 }
