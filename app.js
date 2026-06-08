@@ -374,16 +374,30 @@ function tile(label, value) {
   </div>`;
 }
 
+function readingPaceTile() {
+  const books2026 = (state.goodreads.books || []).filter(b =>
+    b.shelf === 'read' && b.dateRead && b.dateRead.startsWith('2026')
+  );
+  if (!books2026.length) return '';
+  const today   = new Date();
+  const start   = new Date(today.getFullYear(), 0, 1);
+  const dayOfYear = Math.ceil((today - start) / 86_400_000) + 1;
+  const pace    = Math.round(books2026.length / dayOfYear * 365);
+  return tile(`${books2026.length} in 2026`, `On pace for ${pace}`);
+}
+
 function renderAnalytics() {
   const p = state.ranking.profile;
+  const paceTile = readingPaceTile();
   analyticsTiles.innerHTML = [
     tile('Books read',    p.booksRead),
     tile('5-star books',  p.fiveStarBooks),
     tile('Avg rating',    p.avgRating),
     tile('Top author',    p.favoriteAuthors[0]?.[0] || 'n/a'),
     tile('Median length', p.medianPages ? `${p.medianPages} pp` : 'n/a'),
-    tile('To read',       state.goodreads.meta?.toReadCount || 0)
-  ].join('');
+    tile('To read',       state.goodreads.meta?.toReadCount || 0),
+    paceTile,
+  ].filter(Boolean).join('');
 }
 
 // ── Rating donut chart (visual appeal #5) ─────────────────────────────────
@@ -605,7 +619,7 @@ function renderListView() {
     const isbn       = book.isbn13 || book.isbn;
     const coverUrl   = book.coverUrl || (isbn ? `https://covers.openlibrary.org/b/isbn/${isbn}-S.jpg` : null);
     const coverEl    = coverUrl ? `<img src="${esc(coverUrl)}" alt="" onerror="this.style.display='none'">` : '';
-    const typeBadge  = book.type ? `<span class="type-tag ${book.type}">${book.type}</span>` : '';
+    const typeBadge  = (book.type && book.type !== 'unknown') ? `<span class="type-tag ${book.type}">${book.type}</span>` : '';
     const fromBadge  = book.fromToRead ? `<span class="shelf-tag to-read">on list</span>` : '';
     const toneChips  = tones.map(t => `<span class="tone-chip">${esc(t)}</span>`).join('');
     const seriesStr  = series ? ` · <em>Bk&nbsp;${series.num}</em>` : '';
@@ -622,8 +636,19 @@ function renderListView() {
         <div class="list-badges">${typeBadge}${fromBadge}</div>
         <span class="score-pill">BBRE&nbsp;${book.matchScore}</span>
         <a class="link-button primary list-gr-btn" href="${esc(grUrl)}" target="_blank" rel="noreferrer">GR</a>
+        <button class="danger-button list-dismiss-btn" data-key="${esc(book.bookKey)}">✕</button>
       </div>`;
   }).join('');
+
+  recommendationsGrid.querySelectorAll('.list-dismiss-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const book = all.find(x => x.bookKey === btn.dataset.key);
+      if (!book) return;
+      state.pending = book;
+      dismissBookLabel.textContent = `"${book.title}" — ${book.author}`;
+      dismissDialog.showModal();
+    });
+  });
 }
 
 // ── Recommendations ────────────────────────────────────────────────────────
@@ -660,7 +685,7 @@ function renderRecommendations() {
     const shelfBadge = book.fromToRead
       ? `<span class="shelf-tag to-read">on your list</span>`
       : `<span class="shelf-tag">curated pick</span>`;
-    const typeBadge = book.type
+    const typeBadge = (book.type && book.type !== 'unknown')
       ? `<span class="type-tag ${book.type}">${book.type}</span>` : '';
     const seriesBadge = series
       ? `<span class="series-badge">Book&nbsp;${series.num} · ${esc(series.name)}</span>` : '';

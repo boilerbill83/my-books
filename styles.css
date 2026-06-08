@@ -91,10 +91,9 @@ section { padding: 14px 0; }
 
 .tile-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
   gap: 10px;
 }
-@media (max-width: 700px) { .tile-grid { grid-template-columns: repeat(3, 1fr); } }
 
 .tile {
   background: var(--bg-card);
@@ -713,7 +712,7 @@ section { padding: 14px 0; }
 }
 .list-row {
   display: grid;
-  grid-template-columns: 28px 36px 1fr auto auto auto;
+  grid-template-columns: 28px 36px 1fr auto auto auto auto;
   gap: 10px;
   align-items: center;
   padding: 7px 14px;
@@ -740,6 +739,8 @@ section { padding: 14px 0; }
 .list-tones { display: flex; gap: 3px; flex-wrap: wrap; margin-top: 2px; }
 .list-badges { display: flex; gap: 3px; flex-wrap: wrap; justify-content: flex-end; }
 .list-gr-btn { font-size: 0.68rem; padding: 3px 8px; }
+.list-dismiss-btn { font-size: 0.65rem; padding: 3px 7px; opacity: 0.55; }
+.list-row:hover .list-dismiss-btn { opacity: 1; }
 
 /* ── CURRENTLY READING ── */
 #currentlyReadingSection { padding: 10px 0 4px; }
