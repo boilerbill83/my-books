@@ -395,5 +395,218 @@
       "count": 8748
     },
     "source": "amazon"
+  },
+  "all systems red|||martha wells": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 67599
+    },
+    "source": "amazon"
+  },
+  "the fifth season|||n.k. jemisin": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 42124
+    },
+    "source": "amazon"
+  },
+  "alien clay|||adrian tchaikovsky": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.3,
+      "count": 7711
+    },
+    "source": "amazon"
+  },
+  "book lovers|||emily henry": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 109993
+    },
+    "source": "amazon"
+  },
+  "happy place|||emily henry": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.2,
+      "count": 111622
+    },
+    "source": "amazon"
+  },
+  "funny story|||emily henry": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 122322
+    },
+    "source": "amazon"
+  },
+  "anxious people|||fredrik backman": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": null,
+    "source": "not_found"
+  },
+  "think again|||adam grant": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 17766
+    },
+    "source": "amazon"
+  },
+  "hidden potential|||adam grant": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 4549
+    },
+    "source": "amazon"
+  },
+  "supercommunicators|||charles duhigg": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 3032
+    },
+    "source": "amazon"
+  },
+  "masters of doom|||david kushner": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 3797
+    },
+    "source": "amazon"
+  },
+  "the splendid and the vile|||erik larson": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.7,
+      "count": 45818
+    },
+    "source": "amazon"
+  },
+  "destiny of the republic|||candice millard": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 8842
+    },
+    "source": "amazon"
+  },
+  "hidden valley road|||robert kolker": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 22018
+    },
+    "source": "amazon"
+  },
+  "all the colors of the dark|||chris whitaker": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.3,
+      "count": 12
+    },
+    "source": "amazon"
+  },
+  "in the woods|||tana french": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.1,
+      "count": 34167
+    },
+    "source": "amazon"
+  },
+  "the likeness|||tana french": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.3,
+      "count": 22391
+    },
+    "source": "amazon"
+  },
+  "long bright river|||liz moore": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 333
+    },
+    "source": "amazon"
+  },
+  "the lincoln lawyer|||michael connelly": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 27235
+    },
+    "source": "amazon"
+  },
+  "my sister's grave|||robert dugoni": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 3.6,
+      "count": 501
+    },
+    "source": "amazon"
+  },
+  "everywhere that mary went|||lisa scottoline": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": null,
+    "source": "not_found"
+  },
+  "culpability|||bruce holsinger": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": null,
+    "source": "not_found"
+  },
+  "the gone world|||tom sweterlitsch": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": null,
+    "source": "not_found"
+  },
+  "the future|||naomi alderman": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 1025
+    },
+    "source": "amazon"
+  },
+  "the girl before|||jp delaney": {
+    "isbn13": null,
+    "storyGraph": null,
+    "amazon": {
+      "rating": 3.9,
+      "count": 920
+    },
+    "source": "amazon"
   }
 }
