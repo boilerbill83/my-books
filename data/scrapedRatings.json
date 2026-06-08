@@ -1,1 +1,199 @@
-{}
+{
+  "the one|||john marrs": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.2,
+      "count": 67649
+    },
+    "source": "amazon"
+  },
+  "wrong place wrong time|||gillian mcallister": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.2,
+      "count": 51748
+    },
+    "source": "amazon"
+  },
+  "the last flight|||julie clark": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 74336
+    },
+    "source": "amazon"
+  },
+  "listen for the lie|||amy tintera": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.3,
+      "count": 76618
+    },
+    "source": "amazon"
+  },
+  "the only one left|||riley sager": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 57391
+    },
+    "source": "amazon"
+  },
+  "starter villain|||john scalzi": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 15606
+    },
+    "source": "amazon"
+  },
+  "wool|||hugh howey": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 53107
+    },
+    "source": "amazon"
+  },
+  "the drift|||c.j. tudor": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 3.9,
+      "count": 3340
+    },
+    "source": "amazon"
+  },
+  "the passengers|||john marrs": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.2,
+      "count": 13103
+    },
+    "source": "amazon"
+  },
+  "several people are typing|||calvin kasulke": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 3.8,
+      "count": 1313
+    },
+    "source": "amazon"
+  },
+  "the kaiju preservation society|||john scalzi": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 15624
+    },
+    "source": "amazon"
+  },
+  "empire of pain|||patrick radden keefe": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 13626
+    },
+    "source": "amazon"
+  },
+  "the raging 2020s|||alec ross": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 207
+    },
+    "source": "amazon"
+  },
+  "a calamity of souls|||david baldacci": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 35429
+    },
+    "source": "amazon"
+  },
+  "suspect|||scott turow": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.1,
+      "count": 6719
+    },
+    "source": "amazon"
+  },
+  "southern man|||greg iles": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.3,
+      "count": 6654
+    },
+    "source": "amazon"
+  },
+  "goodbye girl|||james grippando": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.3,
+      "count": 818
+    },
+    "source": "amazon"
+  },
+  "the waiting|||michael connelly": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 62898
+    },
+    "source": "amazon"
+  },
+  "desert star|||michael connelly": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.7,
+      "count": 80746
+    },
+    "source": "amazon"
+  },
+  "the lightning rod|||brad meltzer": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.3,
+      "count": 5197
+    },
+    "source": "amazon"
+  },
+  "all the sinners bleed|||s.a. cosby": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 26852
+    },
+    "source": "amazon"
+  },
+  "bright young women|||jessica knoll": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.2,
+      "count": 17869
+    },
+    "source": "amazon"
+  },
+  "the it girl|||ruth ware": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.2,
+      "count": 35048
+    },
+    "source": "amazon"
+  },
+  "one perfect couple|||ruth ware": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.0,
+      "count": 14903
+    },
+    "source": "amazon"
+  },
+  "the midnight feast|||lucy foley": {
+    "storyGraph": null,
+    "amazon": null,
+    "source": "not_found"
+  }
+}
