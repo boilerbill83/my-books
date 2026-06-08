@@ -608,5 +608,221 @@
       "count": 920
     },
     "source": "amazon"
+  },
+  "no exit|||taylor adams": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 3.9,
+      "count": 14
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/717qVFaqdiL._SX300_.jpg",
+    "source": "amazon"
+  },
+  "a simple favor|||darcey bell": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found"
+  },
+  "you will never be me|||jesse q. sutanto": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.2,
+      "count": 166
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81PmMrDEPFL._SX300_.jpg",
+    "source": "amazon"
+  },
+  "don't let him in|||lisa jewell": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found"
+  },
+  "the twyford code|||janice hallett": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 5405
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81IVG6J+XpL._SX300_.jpg",
+    "source": "amazon"
+  },
+  "north woods|||daniel mason": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.7,
+      "count": 17
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91C3C4KRR8L._SX300_.jpg",
+    "source": "amazon"
+  },
+  "what have you done|||shari lapena": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 3.9,
+      "count": 6808
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81IF4qljOOL._SX300_.jpg",
+    "source": "amazon"
+  },
+  "bad blood|||john carreyrou": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.7,
+      "count": 33640
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81P1xvxdBkL._SX300_.jpg",
+    "source": "amazon"
+  },
+  "barbarians at the gate|||bryan burrough": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.1,
+      "count": 44
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/418HUoFkhVL._SX300_.jpg",
+    "source": "amazon"
+  },
+  "too big to fail|||andrew ross sorkin": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 3574
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81ybGr83+8L._SX300_.jpg",
+    "source": "amazon"
+  },
+  "when genius failed|||roger lowenstein": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 4018
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/71IuJdGPf4L._SX300_.jpg",
+    "source": "amazon"
+  },
+  "more money than god|||sebastian mallaby": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 1519
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91OZtXVKK1L._SX300_.jpg",
+    "source": "amazon"
+  },
+  "killers of the flower moon|||david grann": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 82002
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/71rAyRvoeyL._SX300_.jpg",
+    "source": "amazon"
+  },
+  "open and shut|||david rosenfelt": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found"
+  },
+  "the stranger|||harlan coben": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.3,
+      "count": 24
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91lUONTMRpL._SX300_.jpg",
+    "source": "amazon"
+  },
+  "gone for good|||harlan coben": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.0,
+      "count": 20
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/31SCCyblz8L._SX300_.jpg",
+    "source": "amazon"
+  },
+  "in a dark, dark wood|||ruth ware": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.0,
+      "count": 29629
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/A1wotZ7A13L._SX300_.jpg",
+    "source": "amazon"
+  },
+  "the turn of the key|||ruth ware": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 63788
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81K1CGm9QeL._SX300_.jpg",
+    "source": "amazon"
+  },
+  "one by one|||ruth ware": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 217
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91qUuMyfp6L._SX300_.jpg",
+    "source": "amazon"
+  },
+  "the good girl|||mary kubica": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.3,
+      "count": 402
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/813de+01aPL._SX300_.jpg",
+    "source": "amazon"
+  },
+  "daisy darker|||alice feeney": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.8,
+      "count": 70
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81TlolABzxL._SX300_.jpg",
+    "source": "amazon"
+  },
+  "red rising|||pierce brown": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 100725
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81bbaOYIagL._SX300_.jpg",
+    "source": "amazon"
+  },
+  "piranesi|||susanna clarke": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 44647
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91JVtEzgo8L._SX300_.jpg",
+    "source": "amazon"
+  },
+  "the nightingale|||kristin hannah": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.7,
+      "count": 411186
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81MSoBp+PAL._SX300_.jpg",
+    "source": "amazon"
+  },
+  "cloud cuckoo land|||anthony doerr": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 35732
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91IV2caBbpL._SX300_.jpg",
+    "source": "amazon"
   }
 }
