@@ -340,7 +340,8 @@
         "accessible"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 6
+      "googleRatingsCount": 6,
+      "coverUrl": "https://books.google.com/books/content?id=uXVXu79IB8IC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-housemaid-s-wedding|freida-mcfadden",
@@ -461,7 +462,8 @@
         "humorous"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=gUeHEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "exit-party|emily-st-john-mandel",
@@ -498,7 +500,8 @@
         "character-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=agyHEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "judge-stone|viola-davis",
@@ -537,7 +540,8 @@
         "plot-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=pp2MEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-scaling-curve-dario-amodei-anthropic-and-the-race-to-build-and-survive-superintelligence|claude-st-john",
@@ -613,7 +617,8 @@
         "accessible"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=EOGU0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "house-of-fidelity-the-rise-of-the-johnson-dynasty-and-the-company-that-changed-american-investing|justin-baer",
@@ -651,7 +656,8 @@
         "accessible"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=yTnUEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "eating-the-dinosaur|chuck-klosterman",
@@ -810,7 +816,8 @@
         "gritty"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=Q4aN0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "the-optimist-sam-altman-openai-and-the-race-to-invent-the-future|keach-hagey",
@@ -888,7 +895,8 @@
         "investigative"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=7FIQEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "famesick|lena-dunham",
@@ -926,7 +934,8 @@
         "melancholic"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=-P-BEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-insomniacs|allison-winn-scotch",
@@ -965,7 +974,8 @@
         "tense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=K8BxEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "checkmate-genius-lies-ambition-and-the-biggest-scandal-in-chess|ben-mezrich",
@@ -1081,7 +1091,8 @@
         "slow-burn"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=zvfCEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "monsters-in-the-archives-my-year-of-fear-with-stephen-king|caroline-bicks",
@@ -1119,7 +1130,8 @@
         "accessible"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=k85yEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "american-fantasy|emma-straub",
@@ -1275,7 +1287,8 @@
         "twisty"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=yuR4EQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "best-offer-wins|marisa-kashino",
@@ -1391,7 +1404,8 @@
         "slow-burn"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=SAwBAwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "this-land-is-your-land-a-road-trip-through-u-s-history|beverly-gage",
@@ -1466,7 +1480,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=1-GMEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-anniversary|alex-finlay",
@@ -1504,7 +1519,8 @@
         "tense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=WxJ5EQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "dissection-of-a-murder|jo-murray",
@@ -1542,7 +1558,8 @@
         "procedural"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=BOVeEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "the-midnight-train|matt-haig",
@@ -1580,7 +1597,8 @@
         "humorous"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=AnCOEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "yesteryear|caro-claire-burke",
@@ -1617,7 +1635,8 @@
         "slow-burn"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=WPlrEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-french-illusion|john-grisham",
@@ -1778,7 +1797,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=4sRHEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "heartland-a-forgotten-place-an-impossible-dream-and-the-miracle-of-larry-bird|keith-o-brien",
@@ -1856,7 +1876,8 @@
         "revelatory"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=Ffq1EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "no-more-tears-the-dark-secrets-of-johnson-johnson|gardiner-harris",
@@ -1932,7 +1953,8 @@
         "revelatory"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=FJRkEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-echo-wife|sarah-gailey",
@@ -2012,7 +2034,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=hzhsEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "loose-balls-the-short-wild-life-of-the-american-basketball-association|terry-pluto",
@@ -2088,7 +2111,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=BnFOEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "you-can-t-lose-them-all-tales-of-a-degenerate-gambler-and-his-ridiculous-friends|sal-iacono",
@@ -2126,7 +2150,8 @@
         "dark"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=VjfhDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "american-sketches-great-leaders-creative-thinkers-and-heroes-of-a-hurricane|walter-isaacson",
@@ -2205,7 +2230,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=h06qDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-final-score|don-winslow",
@@ -2244,7 +2270,8 @@
         "character-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=WypIEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "none-of-this-is-true|lisa-jewell",
@@ -2532,7 +2559,8 @@
         "tense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=33oQEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-greatest-sentence-ever-written|walter-isaacson",
@@ -2652,7 +2680,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=x6tZEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "no-one-saw-a-thing|andrea-mara",
@@ -2690,7 +2719,8 @@
         "tense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=M8h6EAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "football|chuck-klosterman",
@@ -2924,7 +2954,8 @@
         "accessible"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 5
+      "googleRatingsCount": 5,
+      "coverUrl": "https://books.google.com/books/content?id=a9_Z413-J1IC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "rich-blood|robert-bailey",
@@ -3001,7 +3032,8 @@
         "accessible"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=M4Ry0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "dating-after-the-end-of-the-world|jeneva-rose",
@@ -3431,7 +3463,8 @@
         "plot-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=XCk4EQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "magic-for-liars|sarah-gailey",
@@ -3470,7 +3503,8 @@
         "whodunit"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=9LJrDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "careless-people-a-cautionary-tale-of-power-greed-and-lost-idealism|sarah-wynn-williams",
@@ -3668,7 +3702,8 @@
         "character-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=W_IwEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "all-her-fault|andrea-mara",
@@ -4032,7 +4067,8 @@
         "atmospheric"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 55
+      "googleRatingsCount": 55,
+      "coverUrl": "https://books.google.com/books/content?id=OSfpEJpJzrIC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "2024-how-trump-retook-the-white-house-and-the-democrats-lost-america|josh-dawsey",
@@ -4109,7 +4145,8 @@
         "whodunit"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=P5S9EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "you-shouldn-t-have-come-here|jeneva-rose",
@@ -4189,7 +4226,8 @@
         "twisty"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=rpLxEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "framed-astonishing-true-stories-of-wrongful-convictions|john-grisham",
@@ -4269,7 +4307,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=4sRHEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-boomerang|robert-bailey",
@@ -4348,7 +4387,8 @@
         "disturbing"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=2rFg0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "your-table-is-ready-tales-of-a-new-york-city-ma-tre-d|michael-cecchi-azzolina",
@@ -4386,7 +4426,8 @@
         "personal"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=75RVEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-last-shot-city-streets-basketball-dreams-a-poignant-biography-of-young-athletes-inner-city-basketball-and-the-fight-to-escape-poverty|darcy-frey",
@@ -4424,7 +4465,8 @@
         "character-study"
       ],
       "googleRating": 3.5,
-      "googleRatingsCount": 4
+      "googleRatingsCount": 4,
+      "coverUrl": "https://books.google.com/books/content?id=VXp3l0ZXZscC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "twice|mitch-albom",
@@ -4463,7 +4505,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=TmeLzgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "remain|nicholas-sparks",
@@ -4502,7 +4545,8 @@
         "heartwarming"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=0j1MEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "how-to-stop-time|matt-haig",
@@ -4621,7 +4665,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=HH2-EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "burn-book-a-tech-love-story|kara-swisher",
@@ -4659,7 +4704,8 @@
         "character-study"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=MYTPEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "empire-of-ai-dreams-and-nightmares-in-sam-altman-s-openai|karen-hao",
@@ -8882,7 +8928,8 @@
         "heartwarming"
       ],
       "googleRating": 3.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=q7yZDwAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "who-is-government-the-untold-story-of-public-service|michael-lewis",
@@ -8999,7 +9046,8 @@
         "heartwarming"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=54ThEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-staircase-in-the-woods|chuck-wendig",
@@ -9038,7 +9086,8 @@
         "disturbing"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=icGWEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "oddbody|rose-keating",
@@ -9077,7 +9126,8 @@
         "dark"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=8tUnEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "inside-the-cartel-how-an-undercover-fbi-agent-smuggled-cocaine-laundered-cash-and-dismantled-a-colombian-narco-empire|martin-suarez",
@@ -9116,7 +9166,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=NlMQEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "comedy-samurai-forty-years-of-blood-guts-and-laughter|larry-charles",
@@ -9155,7 +9206,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=YK8sEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "paper-girl-a-memoir-of-home-and-family-in-a-fractured-america|beth-macy",
@@ -9193,7 +9245,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=__o8EQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "a-hollywood-ending-the-dreams-and-drama-of-the-lebron-lakers|yaron-weitzman",
@@ -9231,7 +9284,8 @@
         "character-study"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=Iow-EQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-return-of-ellie-black|emiko-jean",
@@ -9312,7 +9366,8 @@
         "whodunit"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=2FwoEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "my-friends|fredrik-backman",
@@ -9471,7 +9526,8 @@
         "heartwarming"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=mXLuvf9410MC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-life-of-chuck|stephen-king",
@@ -9549,7 +9605,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=pO4JxYdXP04C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "shuttle-houston-my-life-in-the-center-seat-of-mission-control|paul-dye",
@@ -9588,7 +9645,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=KmO8DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "baddest-man-the-making-of-mike-tyson|mark-kriegel",
@@ -9704,7 +9762,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=_o4cEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "ask-for-andrea|noelle-w-ihli",
@@ -9743,7 +9802,8 @@
         "disturbing"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=9sJVEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "a-thousand-natural-shocks|omar-hussain",
@@ -9782,7 +9842,8 @@
         "disturbing"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=PXInEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "on-tyranny-twenty-lessons-from-the-twentieth-century|timothy-snyder",
@@ -9819,7 +9880,8 @@
         "dense"
       ],
       "googleRating": 3.5,
-      "googleRatingsCount": 4
+      "googleRatingsCount": 4,
+      "coverUrl": "https://books.google.com/books/content?id=3z7cDQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "we-used-to-live-here|marcus-kliewer",
@@ -9858,7 +9920,8 @@
         "disturbing"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=ixjdEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "i-who-have-never-known-men|jacqueline-harpman",
@@ -9897,7 +9960,8 @@
         "character-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=qF9-J2VEFksC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-firm|john-grisham",
@@ -10099,7 +10163,8 @@
         "plot-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=07onEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "atmosphere|taylor-jenkins-reid",
@@ -10179,7 +10244,8 @@
         "tense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=r4-iEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "wild-dark-shore|charlotte-mcconaghy",
@@ -10217,7 +10283,8 @@
         "dark"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=5wcAEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "bad-company-private-equity-and-the-death-of-the-american-dream|megan-greenwell",
@@ -10255,7 +10322,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=cpwgEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-teacher|freida-mcfadden",
@@ -10336,7 +10404,8 @@
         "whodunit"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=3TmPEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "rita-hayworth-and-shawshank-redemption|stephen-king",
@@ -10413,7 +10482,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=ywJD6s64ErgC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "bourdain-the-definitive-oral-biography|laurie-woolever",
@@ -10495,7 +10565,8 @@
         "character-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=D8tkDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-gatekeepers-how-the-white-house-chiefs-of-staff-define-every-presidency|chris-whipple",
@@ -10534,7 +10605,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=4Lw2DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "big-dumb-eyes-stories-from-a-simpler-mind|nate-bargatze",
@@ -10573,7 +10645,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=hfglEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "ark|veronica-roth",
@@ -10650,7 +10723,8 @@
         "procedural"
       ],
       "googleRating": 4.5,
-      "googleRatingsCount": 2
+      "googleRatingsCount": 2,
+      "coverUrl": "https://books.google.com/books/content?id=Mu_yDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "an-innocent-client|scott-pratt",
@@ -10689,7 +10763,8 @@
         "plot-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=34RyzgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "say-nothing|brad-parks",
@@ -10727,7 +10802,8 @@
         "tense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=ZGA9DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "interference|brad-parks",
@@ -10848,7 +10924,8 @@
         "dense"
       ],
       "googleRating": 3.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=W_2KDQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "in-the-kingdom-of-ice-the-grand-and-terrible-polar-voyage-of-the-uss-jeannette|hampton-sides",
@@ -10887,7 +10964,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=b07VAgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "ghost-soldiers-the-epic-account-of-world-war-ii-s-greatest-rescue-mission|hampton-sides",
@@ -11009,7 +11087,8 @@
         "dense"
       ],
       "googleRating": 3.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=1g60MM3ogpAC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "legends-and-soles-the-memoir-of-an-american-original|sonny-vaccaro-armen-keteyian",
@@ -11048,7 +11127,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=n-sTEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "henry-j-kaiser-builder-in-the-modern-american-west|mark-s-foster",
@@ -11087,7 +11167,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=mBniCwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "in-ascension|martin-macinnes",
@@ -11208,7 +11289,8 @@
         "heartwarming"
       ],
       "googleRating": 4.5,
-      "googleRatingsCount": 282
+      "googleRatingsCount": 282,
+      "coverUrl": "https://books.google.com/books/content?id=xFNG764pnOgC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "care-and-feeding|laurie-woolever",
@@ -11246,7 +11328,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=MyAUEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-elias-network|simon-gervais",
@@ -11367,7 +11450,8 @@
         "disturbing"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=2zmlEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "be-ready-when-the-luck-happens|ina-garten",
@@ -11405,7 +11489,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=C573EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-maid-s-secret|nita-prose",
@@ -11443,7 +11528,8 @@
         "whodunit"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=-Y2UEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-housemaid-s-secret|freida-mcfadden",
@@ -11643,7 +11729,8 @@
         "character-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=Tlz2DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-god-of-the-woods|liz-moore",
@@ -11682,7 +11769,8 @@
         "whodunit"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=cgV3EQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "cape-fear|john-d-macdonald",
@@ -11802,7 +11890,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=SpIrEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "first-lie-wins|ashley-elston",
@@ -11882,7 +11971,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=Xh2rEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "us|david-nicholls",
@@ -11962,7 +12052,8 @@
         "dark"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 2
+      "googleRatingsCount": 2,
+      "coverUrl": "https://books.google.com/books/content?id=DD-691FFuQUC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "nuclear-war-a-scenario|annie-jacobsen",
@@ -12001,7 +12092,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=dlnKEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "sweet-sorrow|david-nicholls",
@@ -12244,7 +12336,8 @@
         "character-driven"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=GXYH1C_esq0C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "born-to-run|bruce-springsteen",
@@ -12323,7 +12416,8 @@
         "dual-timeline"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=-9DPEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "the-wide-wide-sea-imperial-ambition-first-contact-and-the-fateful-final-voyage-of-captain-james-cook|hampton-sides",
@@ -12362,7 +12456,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=K5jLEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-institute|stephen-king",
@@ -12521,7 +12616,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=DYryEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-small-and-the-mighty-twelve-unsung-americans-who-changed-the-course-of-history-from-the-founding-to-the-civil-rights-movement|sharon-mcmahon",
@@ -12559,7 +12655,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=h2_8EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "why-i-cook|tom-colicchio",
@@ -12597,7 +12694,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=ZGjyEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-founders-the-story-of-paypal-and-the-entrepreneurs-who-shaped-silicon-valley|jimmy-soni",
@@ -12676,7 +12774,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=zkpqfz00tAcC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-innocent-man-murder-and-injustice-in-a-small-town|john-grisham",
@@ -12756,7 +12855,8 @@
         "heartwarming"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=Bxpn0AEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "here-one-moment|liane-moriarty",
@@ -12794,7 +12894,8 @@
         "atmospheric"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=INP0EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "intermezzo|sally-rooney",
@@ -12831,7 +12932,8 @@
         "atmospheric"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=ifn3EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-wedding-people|alison-espach",
@@ -12870,7 +12972,8 @@
         "humorous"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=Wvw_0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "the-lost-story|meg-shaffer",
@@ -13074,7 +13177,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=0N3f0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "pleading-guilty|scott-turow",
@@ -13154,7 +13258,8 @@
         "whodunit"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=OytAEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "rejection|tony-tulathimutte",
@@ -13191,7 +13296,8 @@
         "atmospheric"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=psQd0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "the-great-alone|kristin-hannah",
@@ -13312,7 +13418,8 @@
         "humorous"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=SU_0EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "behind-closed-doors|lisa-renee-jones",
@@ -13431,7 +13538,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=VGZ7HbvqenkC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-president-s-daughter|bill-clinton",
@@ -13590,7 +13698,8 @@
         "polemic"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=ylvsEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "remarkably-bright-creatures|shelby-van-pelt",
@@ -13955,7 +14064,8 @@
         "character-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=fUAdDgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "atonement|ian-mcewan",
@@ -13994,7 +14104,8 @@
         "dark"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=NKasHN-C2_4C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-mistletoe-mystery|nita-prose",
@@ -14032,7 +14143,8 @@
         "whodunit"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=HKv8EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-family-experiment|john-marrs",
@@ -14071,7 +14183,8 @@
         "atmospheric"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=TYbREAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "stories-of-your-life-and-others|ted-chiang",
@@ -14190,7 +14303,8 @@
         "character-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=VA7uDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "things-don-t-break-on-their-own|sarah-easter-collins",
@@ -14229,7 +14343,8 @@
         "character-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=DopEEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "save-me-the-plums-my-gourmet-memoir|ruth-reichl",
@@ -14309,7 +14424,8 @@
         "conversational"
       ],
       "googleRating": 2.5,
-      "googleRatingsCount": 2
+      "googleRatingsCount": 2,
+      "coverUrl": "https://books.google.com/books/content?id=xmU6ArretQ8C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-library-book|susan-orlean",
@@ -14545,7 +14661,8 @@
         "dark"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=ck-a0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "tiger-chair|max-brooks",
@@ -14658,7 +14775,8 @@
         "character-study"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=D9nADQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "rescued|david-rosenfelt",
@@ -14697,7 +14815,8 @@
         "tense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=iCFeDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "how-to-know-a-person-the-art-of-seeing-others-deeply-and-being-deeply-seen|david-brooks",
@@ -14734,7 +14853,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=HZRqEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "seeing-further-the-story-of-science-and-the-royal-society|bill-bryson",
@@ -14773,7 +14893,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=1euouQAACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "the-wishing-game|meg-shaffer",
@@ -14893,7 +15014,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=0CH0EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-last-of-his-kind-clayton-kershaw-and-the-burden-of-greatness|andy-mccullough",
@@ -14931,7 +15053,8 @@
         "character-study"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=NNzUEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-trolls-of-wall-street-how-the-outcasts-and-insurgents-are-hacking-the-markets|nathaniel-popper",
@@ -14969,7 +15092,8 @@
         "dark"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=ASJNEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-wright-brothers|david-mccullough",
@@ -15008,7 +15132,8 @@
         "dense"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=bLudBAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-best-minds-a-story-of-friendship-madness-and-the-tragedy-of-good-intentions|jonathan-rosen",
@@ -15046,7 +15171,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=QY33EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "charlie-hustle-the-rise-and-fall-of-pete-rose-and-the-last-glory-days-of-baseball|keith-o-brien",
@@ -15165,7 +15291,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=sEZMJwAACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "the-golfer-s-carol|robert-bailey",
@@ -15282,7 +15409,8 @@
         "atmospheric"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=r94REAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "elevation|stephen-king",
@@ -15443,7 +15571,8 @@
         "atmospheric"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=8ogQBgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "if-you-can-t-take-the-heat|michael-ruhlman",
@@ -15481,7 +15610,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=MXUiEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "influence-empire-the-story-of-tencent-and-china-s-tech-ambition|lulu-yilun-chen",
@@ -15559,7 +15689,8 @@
         "humorous"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=LBwW0AEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "the-mystery-guest|nita-prose",
@@ -15640,7 +15771,8 @@
         "immersive-journalism"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=T88LEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "someday|david-levithan",
@@ -15803,7 +15935,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=a3YsEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "chip-war-the-fight-for-the-world-s-most-critical-technology|chris-miller",
@@ -16084,7 +16217,8 @@
         "plot-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=6U_WwwEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "a-killer-s-alibi|william-l-myers-jr",
@@ -16123,7 +16257,8 @@
         "plot-driven"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=BJCvtQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "beautiful-world-where-are-you|sally-rooney",
@@ -16362,7 +16497,8 @@
         "slow-burn"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=iJPhEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "survival-of-the-thickest-essays|michelle-buteau",
@@ -16401,7 +16537,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=RIK2DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "skippy-dies|paul-murray",
@@ -16439,7 +16576,8 @@
         "heartwarming"
       ],
       "googleRating": 4.5,
-      "googleRatingsCount": 2
+      "googleRatingsCount": 2,
+      "coverUrl": "https://books.google.com/books/content?id=mlWJ9VSoPMUC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "made-for-love|alissa-nutting",
@@ -16478,7 +16616,8 @@
         "humorous"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=8wf7DwAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "the-sellout|paul-beatty",
@@ -16517,7 +16656,8 @@
         "humorous"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=wnAmBgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "black-sheep|rachel-harrison",
@@ -16556,7 +16696,8 @@
         "dark"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=IkyhEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "entrances-and-exits|michael-richards",
@@ -16595,7 +16736,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=YkvzEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "still-me|jojo-moyes",
@@ -16634,7 +16776,8 @@
         "heartwarming"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=CeosDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "sleeping-beauties|stephen-king",
@@ -16713,7 +16856,8 @@
         "slow-burn"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=o9-UCgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "mean-baby-a-memoir-of-growing-up|selma-blair",
@@ -16751,7 +16895,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=qyWlEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-dilemma|b-a-paris",
@@ -16790,7 +16935,8 @@
         "dark"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=DQS-zQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "the-therapist|b-a-paris",
@@ -16829,7 +16975,8 @@
         "dark"
       ],
       "googleRating": 3.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=CND3DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "bring-me-back|b-a-paris",
@@ -16868,7 +17015,8 @@
         "dark"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=4WY-DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-prisoner|b-a-paris",
@@ -16987,7 +17135,8 @@
         "atmospheric"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=qVu_EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "so-fetch-the-making-of-mean-girls|jennifer-keishin-armstrong",
@@ -17025,7 +17174,8 @@
         "conversational"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=iCTGEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "come-and-get-it|kiley-reid",
@@ -17062,7 +17212,8 @@
         "atmospheric"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=aDi4EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "born-standing-up-a-comic-s-life|steve-martin",
@@ -17101,7 +17252,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=Xjasgu7430UC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "everybody-lies-big-data-new-data-and-what-the-internet-can-tell-us-about-who-we-really-are|seth-stephens-davidowitz",
@@ -17139,7 +17291,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=hy5bCwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-mist|stephen-king",
@@ -17218,7 +17371,8 @@
         "character-study"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=6Q74lgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "the-fury|alex-michaelides",
@@ -17334,7 +17488,8 @@
         "slow-burn"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=yLZIygEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "going-zero|anthony-mccarten",
@@ -17373,7 +17528,8 @@
         "atmospheric"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=G3SkEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "have-i-told-you-this-already-stories-i-don-t-want-to-forget-to-remember|lauren-graham",
@@ -17412,7 +17568,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=wEbMEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "demon-copperhead|barbara-kingsolver",
@@ -17490,7 +17647,8 @@
         "character-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=QyiwEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "a-flicker-in-the-dark|stacy-willingham",
@@ -17568,7 +17726,8 @@
         "dark"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=IHaqEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-husband-s-secret|liane-moriarty",
@@ -17607,7 +17766,8 @@
         "slow-burn"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=UHL_mO1zFxoC&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "mr-mercedes|stephen-king",
@@ -17805,7 +17965,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=6Rj4zgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "the-liars-club|mary-karr",
@@ -17844,7 +18005,8 @@
         "atmospheric"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=4jIaEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "verity|colleen-hoover",
@@ -17966,7 +18128,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=AndwEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "class-a-memoir-of-motherhood-hunger-and-higher-education|stephanie-land",
@@ -18004,7 +18167,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=IJAZEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "hangry-a-startup-journey|mike-evans",
@@ -18084,7 +18248,8 @@
         "heartwarming"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=HfK5zwEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "me-and-carlos|tom-perrotta",
@@ -18204,7 +18369,8 @@
         "atmospheric"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=XAgPEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-last-chance-lawyer|william-bernhardt",
@@ -18243,7 +18409,8 @@
         "plot-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=O_wBEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "bad-haircut-stories-from-the-seventies|tom-perrotta",
@@ -18281,7 +18448,8 @@
         "atmospheric"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=i0IiXCIxYowC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "not-forever-but-for-now|chuck-palahniuk",
@@ -18320,7 +18488,8 @@
         "humorous"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=7I8ZEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-island|adrian-mckinty",
@@ -18399,7 +18568,8 @@
         "tense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=fOxRxwEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "the-chain|adrian-mckinty",
@@ -18561,7 +18731,8 @@
         "character-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=q49VEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "a-short-history-of-nearly-everything|bill-bryson",
@@ -18678,7 +18849,8 @@
         "immersive-journalism"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=bSyEEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "when-the-heavens-went-on-sale-the-misfits-and-geniuses-racing-to-put-space-within-reach|ashlee-vance",
@@ -18757,7 +18929,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=FFdrEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "rogue-justice|stacey-abrams",
@@ -18796,7 +18969,8 @@
         "tense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=B7iREAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-coming-storm|michael-lewis",
@@ -18874,7 +19048,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=k1pTEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "hard-to-break|michael-ledwidge",
@@ -19358,7 +19533,8 @@
         "character-study"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=XjomPQAACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "ascension|nicholas-binge",
@@ -19397,7 +19573,8 @@
         "tense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=VP7xEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "white-noise|don-delillo",
@@ -19477,7 +19654,8 @@
         "dense"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=VhPF-DstSKsC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "tracy-flick-can-t-win|tom-perrotta",
@@ -19597,7 +19775,8 @@
         "dark"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=SXyqPwAACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "the-rewind|allison-winn-scotch",
@@ -19842,7 +20021,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=uC0rEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "this-time-tomorrow|emma-straub",
@@ -20086,7 +20266,8 @@
         "procedural"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=RcdrEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "butts-a-backstory|heather-radke",
@@ -20123,7 +20304,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=GCC_EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "once-upon-a-december|amy-e-reichert",
@@ -20405,7 +20587,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=ErUdEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-book-of-joe-trying-not-to-suck-at-baseball-and-life|joe-maddon",
@@ -20444,7 +20627,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=xzxkEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-woods|harlan-coben",
@@ -20640,7 +20824,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=aV83EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "why-has-nobody-told-me-this-before-an-international-bestselling-guide-to-mental-health-and-emotional-resilience-from-a-clinical-psychologist|julie-smith",
@@ -20677,7 +20862,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=fxcjEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "love-by-the-glass-tasting-notes-from-a-marriage|dorothy-j-gaiter",
@@ -20755,7 +20941,8 @@
         "accessible"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=s4T-EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "boys-will-be-boys-the-glory-days-and-party-nights-of-the-dallas-cowboys-dynasty|jeff-pearlman",
@@ -20794,7 +20981,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=FUQniqgB3wAC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "after-i-do|taylor-jenkins-reid",
@@ -20874,7 +21062,8 @@
         "character-study"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=FyaT4hC9DDwC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "forever-interrupted|taylor-jenkins-reid",
@@ -21441,7 +21630,8 @@
         "multiple-pov"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=rCU3EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "good-morning-monster-a-therapist-shares-four-heroic-stories-of-emotional-recovery|catherine-gildiner",
@@ -21519,7 +21709,8 @@
         "atmospheric"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=STpwEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "hell-of-a-book|jason-mott",
@@ -21595,7 +21786,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=5yEzEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "tokyo-vice-an-american-reporter-on-the-police-beat-in-japan|jake-adelstein",
@@ -21673,7 +21865,8 @@
         "dense"
       ],
       "googleRating": 4.5,
-      "googleRatingsCount": 2
+      "googleRatingsCount": 2,
+      "coverUrl": "https://books.google.com/books/content?id=Vx6CHHo8pz8C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-infiltrator-my-secret-life-inside-the-dirty-banks-behind-pablo-escobar-s-medell-n-cartel|robert-mazur",
@@ -21712,7 +21905,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=6mJmvUl6UCwC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "how-to-prevent-the-next-pandemic|bill-gates",
@@ -21750,7 +21944,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=JA1SEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "how-to-be-perfect-the-correct-answer-to-every-moral-question|michael-schur",
@@ -21828,7 +22023,8 @@
         "atmospheric"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=nDArEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "point-b|drew-magary",
@@ -21946,7 +22142,8 @@
         "atmospheric"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=1211xyTX5ykC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "no-one-is-talking-about-this|patricia-lockwood",
@@ -21984,7 +22181,8 @@
         "atmospheric"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=G5rmDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "gwendy-s-final-task|stephen-king",
@@ -22061,7 +22259,8 @@
         "data-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=ZO27zgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "i-ll-be-gone-in-the-dark-one-woman-s-obsessive-search-for-the-golden-state-killer|michelle-mcnamara",
@@ -22100,7 +22299,8 @@
         "immersive-journalism"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=aSZHDwAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "into-the-water|paula-hawkins",
@@ -22139,7 +22339,8 @@
         "procedural"
       ],
       "googleRating": 3.5,
-      "googleRatingsCount": 6
+      "googleRatingsCount": 6,
+      "coverUrl": "https://books.google.com/books/content?id=2v6ZDQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "blood-in-the-garden-the-flagrant-history-of-the-1990s-new-york-knicks|chris-herring",
@@ -22217,7 +22418,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=UkW02QxybzQC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "built-to-fail-the-inside-story-of-blockbuster-s-inevitable-bust|alan-payne",
@@ -22256,7 +22458,8 @@
         "revelatory"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=u1lEzgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "the-white-van|patrick-hoffman",
@@ -22579,7 +22782,8 @@
         "plot-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=adKaRCzY2owC&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "the-day-the-world-came-to-town-9-11-in-gander-newfoundland|jim-defede",
@@ -22780,7 +22984,8 @@
         "tense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=o44oEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-council-of-dads-my-daughters-my-illness-and-the-men-who-could-be-me|bruce-feiler",
@@ -22900,7 +23105,8 @@
         "whodunit"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=pTUzEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-guest-list|lucy-foley",
@@ -22979,7 +23185,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=4oVoEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "comedy-comedy-comedy-drama|bob-odenkirk",
@@ -23018,7 +23225,8 @@
         "narrative-driven"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=mf0qEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "no-one-will-miss-her|kat-rosenfield",
@@ -23098,7 +23306,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=4gBJzQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "while-justice-sleeps|stacey-abrams",
@@ -23178,7 +23387,8 @@
         "procedural"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=V9G1DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "how-to-watch-basketball-like-a-genius-what-game-designers-economists-ballet-choreographers-and-theoretical-astrophysicists-reveal-about-the-greatest-game-on-earth|nick-greene",
@@ -23297,7 +23507,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=S7jrDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "dirt-adventures-in-lyon-as-a-chef-in-training-father-and-sleuth-looking-for-the-secret-of-french-cooking|bill-buford",
@@ -23374,7 +23585,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=YUAzEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-judge-s-list|john-grisham",
@@ -23578,7 +23790,8 @@
         "disturbing"
       ],
       "googleRating": 4.5,
-      "googleRatingsCount": 69
+      "googleRatingsCount": 69,
+      "coverUrl": "https://books.google.com/books/content?id=Yu3SuiqituMC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "taste-my-life-through-food|stanley-tucci",
@@ -23615,7 +23828,8 @@
         "accessible"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=yoZGEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "exhalation|ted-chiang",
@@ -23773,7 +23987,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=WO5nEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "yearbook|seth-rogen",
@@ -23891,7 +24106,8 @@
         "dense"
       ],
       "googleRating": 3.0,
-      "googleRatingsCount": 3
+      "googleRatingsCount": 3,
+      "coverUrl": "https://books.google.com/books/content?id=oup6iagfox8C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-wreckage-of-my-presence|casey-wilson",
@@ -23930,7 +24146,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=ClL1DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "l-a-son-my-life-my-city-my-food|roy-choi",
@@ -24045,7 +24262,8 @@
         "tense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=aOkdzgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "cat-mouse|james-patterson",
@@ -24123,7 +24341,8 @@
         "plot-driven"
       ],
       "googleRating": 4.0,
-      "googleRatingsCount": 2
+      "googleRatingsCount": 2,
+      "coverUrl": "https://books.google.com/books/content?id=vci9DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "if-you-tell-a-true-story-of-murder-family-secrets-and-the-unbreakable-bond-of-sisterhood|gregg-olsen",
@@ -24162,7 +24381,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=N-lqxAEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "bubbleball-inside-the-nba-s-fight-to-save-a-season|ben-golliver",
@@ -24279,7 +24499,8 @@
         "character-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=yJeKzgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "sooley|john-grisham",
@@ -24478,7 +24699,8 @@
         "heartwarming"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=3zBfEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-great-influenza-the-story-of-the-deadliest-pandemic-in-history|john-m-barry",
@@ -24517,7 +24739,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=d7691ImvK7YC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "blood-bones-and-butter-the-inadvertent-education-of-a-reluctant-chef|gabrielle-hamilton",
@@ -24556,7 +24779,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=xTUGbXlII5MC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-end-of-october|lawrence-wright",
@@ -24759,7 +24983,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=Aeu3UYUtLokC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "built-from-scratch-how-a-couple-of-regular-guys-grew-the-home-depot-from-nothing-to-30-billion|bernie-marcus",
@@ -24797,7 +25022,8 @@
         "character-study"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=SbmdDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-code-breaker-jennifer-doudna-gene-editing-and-the-future-of-the-human-race|walter-isaacson",
@@ -24919,7 +25145,8 @@
         "tense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=JGMrEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-best-american-food-writing-2020|j-kenji-l-pez-alt",
@@ -25160,7 +25387,8 @@
         "slow-burn"
       ],
       "googleRating": 3.0,
-      "googleRatingsCount": 1
+      "googleRatingsCount": 1,
+      "coverUrl": "https://books.google.com/books/content?id=OwA7BAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "think-again-the-power-of-knowing-what-you-don-t-know|adam-m-grant",
@@ -25198,7 +25426,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=KdXcEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "invent-and-wander-the-collected-writings-of-jeff-bezos|jeff-bezos",
@@ -25355,7 +25584,8 @@
         "investigative"
       ],
       "googleRating": 4.5,
-      "googleRatingsCount": 2
+      "googleRatingsCount": 2,
+      "coverUrl": "https://books.google.com/books/content?id=EI4zCgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "shit-actually-the-definitive-100-objective-guide-to-modern-cinema|lindy-west",
@@ -25471,7 +25701,8 @@
         "conversational"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=WN7fDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "sam-walton-made-in-america|sam-walton",
@@ -25551,7 +25782,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=ybriDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-new-one-painfully-true-stories-from-a-reluctant-dad|mike-birbiglia",
@@ -25628,7 +25860,8 @@
         "character-study"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=MlmaygEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "greenlights|matthew-mcconaughey",
@@ -25747,7 +25980,8 @@
         "revelatory"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=7hdMDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "football-for-a-buck-the-crazy-rise-and-crazier-demise-of-the-usfl|jeff-pearlman",
@@ -25785,7 +26019,8 @@
         "accessible"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=CFZLDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-cost-of-these-dreams-sports-stories-and-other-serious-business|wright-thompson",
@@ -25903,7 +26138,8 @@
         "conversational"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=fStEEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "god-level-knowledge-darts-life-lessons-from-the-bronx|desus",
@@ -25942,7 +26178,8 @@
         "narrative-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=uFbXDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "george-lucas-a-life|brian-jay-jones",
@@ -25980,7 +26217,8 @@
         "character-study"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=wPXhCwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "where-men-win-glory-the-odyssey-of-pat-tillman|jon-krakauer",
@@ -26019,7 +26257,8 @@
         "disturbing"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=a8JVz-fkQm4C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-answer-is-reflections-on-my-life|alex-trebek",
@@ -26057,7 +26296,8 @@
         "personal"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=dcjcDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-enigma-cube|douglas-e-richards",
@@ -26095,7 +26335,8 @@
         "plot-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=o8dezQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "run|blake-crouch",
@@ -26699,7 +26940,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=uXxaDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "hidden-valley-road-inside-the-mind-of-an-american-family|robert-kolker",
@@ -26737,7 +26979,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=bxahDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "player-piano|kurt-vonnegut-jr",
@@ -26776,7 +27019,8 @@
         "character-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=vCmxARuaIFYC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "betaball-how-silicon-valley-and-science-built-one-of-the-greatest-basketball-teams-in-history|erik-malinowski",
@@ -26855,7 +27099,8 @@
         "fast-paced"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=zfmsDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-holdout|graham-moore",
@@ -26935,7 +27180,8 @@
         "whodunit"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://books.google.com/books/content?id=qUo0AQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "camino-winds|john-grisham",
