@@ -799,13 +799,15 @@ function scrapedKey(book) {
 function mergeScraped(book, scraped) {
   const entry = scraped[scrapedKey(book)];
   if (!entry) return book;
-  // Always apply ISBN if the book lacks one — enables OpenLibrary cover lookup
-  let merged = (entry.isbn13 && !book.isbn13) ? { ...book, isbn13: entry.isbn13 } : book;
-  if (entry.source === 'not_found') return merged;
+  // Always apply ISBN + scraped coverUrl if missing from book data
+  let merged = { ...book };
+  if (entry.isbn13  && !merged.isbn13)   merged = { ...merged, isbn13:   entry.isbn13 };
+  if (entry.coverUrl && !merged.coverUrl) merged = { ...merged, coverUrl: entry.coverUrl };
+  if (entry.source === 'not_found' || entry.source === 'cover_only') return merged;
   const sg  = entry.storyGraph;
   const amz = entry.amazon;
   if (sg && sg.rating)  return { ...merged, storyGraphRating: sg.rating, storyGraphRatingCount: sg.count, storyGraphMoods: sg.moods, storyGraphPace: sg.pace };
-  if (amz) return { ...merged, amazonRating: amz.rating, amazonRatingCount: amz.count };
+  if (amz && amz.rating) return { ...merged, amazonRating: amz.rating, amazonRatingCount: amz.count };
   return merged;
 }
 

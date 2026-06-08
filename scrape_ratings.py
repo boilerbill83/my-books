@@ -65,6 +65,21 @@ def load_pending(cache):
 
 # ── Amazon ─────────────────────────────────────────────────────────────────
 
+def extract_cover_url(html):
+    """Extract the first Amazon CDN book cover URL from search result HTML."""
+    # s-image class (search results) — grab src or data-src
+    for attr in ('src', 'data-src'):
+        m = re.search(
+            r'<img[^>]+class="[^"]*s-image[^"]*"[^>]+' + attr + r'="(https://m\.media-amazon\.com/images/I/[^"]+)"',
+            html, re.S
+        )
+        if m:
+            url = m.group(1)
+            # Normalise to a clean medium-size image (remove size suffixes, add clean one)
+            url = re.sub(r'\._[A-Z0-9_,]+_\.', '._SX300_.', url)
+            return url
+    return None
+
 def scrape_amazon(page, book):
     from playwright.sync_api import TimeoutError as PWTimeout
     isbn   = book.get('isbn13') or book.get('isbn') or ''
@@ -81,6 +96,8 @@ def scrape_amazon(page, book):
     except PWTimeout:
         return None
 
+    cover_url = extract_cover_url(html)
+
     # JSON-LD (most reliable when present)
     for ld_raw in re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S):
         try:
@@ -89,7 +106,8 @@ def scrape_amazon(page, book):
             rv  = ar.get('ratingValue')
             rc  = ar.get('reviewCount') or ar.get('ratingCount')
             if rv:
-                return {'rating': float(rv), 'count': int(rc) if rc else None}
+                return {'rating': float(rv), 'count': int(rc) if rc else None,
+                        'coverUrl': cover_url}
         except Exception:
             pass
 
@@ -98,7 +116,12 @@ def scrape_amazon(page, book):
     if m:
         rating = float(m.group(1))
         cm = re.search(r'([\d,]+)\s+(?:global\s+)?ratings', html, re.I)
-        return {'rating': rating, 'count': int(cm.group(1).replace(',','')) if cm else None}
+        return {'rating': rating, 'count': int(cm.group(1).replace(',','')) if cm else None,
+                'coverUrl': cover_url}
+
+    # No rating found but we may still have a cover
+    if cover_url:
+        return {'rating': None, 'count': None, 'coverUrl': cover_url}
 
     return None
 
@@ -146,11 +169,17 @@ def main():
 
             amz = scrape_amazon(page, book)
             if amz:
-                cache[key] = {'storyGraph': None, 'amazon': amz, 'source': 'amazon'}
-                cnt = f"{amz['count']:,}" if amz.get('count') else '?'
-                print(f"         ✓  {amz['rating']}★  ({cnt} ratings)")
+                cache[key] = {
+                    'storyGraph': None,
+                    'amazon':     {'rating': amz.get('rating'), 'count': amz.get('count')},
+                    'coverUrl':   amz.get('coverUrl'),
+                    'source':     'amazon' if amz.get('rating') else 'cover_only',
+                }
+                rating_str = f"{amz['rating']}★  ({amz['count']:,} ratings)" if amz.get('rating') else 'no rating'
+                cover_str  = ' + cover' if amz.get('coverUrl') else ''
+                print(f"         ✓  {rating_str}{cover_str}")
             else:
-                cache[key] = {'storyGraph': None, 'amazon': None, 'source': 'not_found'}
+                cache[key] = {'storyGraph': None, 'amazon': None, 'coverUrl': None, 'source': 'not_found'}
                 print(f"         ✗  not found")
 
             save_cache(cache)
