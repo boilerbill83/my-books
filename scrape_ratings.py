@@ -96,7 +96,7 @@ def sg_search(page, title, author):
     return None
 
 def sg_extract(page, url):
-    """Fetch StoryGraph book page; return dict with rating/count/moods/pace."""
+    """Fetch StoryGraph book page; return dict with rating/count/moods/pace/isbn13."""
     from playwright.sync_api import TimeoutError as PWTimeout
     try:
         page.goto(url, wait_until='networkidle', timeout=25_000)
@@ -104,6 +104,12 @@ def sg_extract(page, url):
         html = page.content()
     except PWTimeout:
         return None
+
+    # ── ISBN13 ── (grab it regardless of whether we get a rating)
+    isbn13 = None
+    m = re.search(r'\b(97[89]\d{10})\b', html)
+    if m:
+        isbn13 = m.group(1)
 
     # ── Rating ──
     # StoryGraph shows the average like "3.94" in several spots; try structured
@@ -132,27 +138,30 @@ def sg_extract(page, url):
                 if 1.0 <= r <= 5.0:
                     rating = r; break
 
-    if not rating:
+    # Return None only if we got nothing useful at all
+    if not rating and not isbn13:
         return None
 
     # ── Rating count ──
     count = None
-    for pat in [r'"ratingCount"\s*:\s*(\d+)', r'([\d,]+)\s+ratings?']:
-        m = re.search(pat, html, re.I)
-        if m:
-            count = int(m.group(1).replace(',', '')); break
+    if rating:
+        for pat in [r'"ratingCount"\s*:\s*(\d+)', r'([\d,]+)\s+ratings?']:
+            m = re.search(pat, html, re.I)
+            if m:
+                count = int(m.group(1).replace(',', '')); break
 
     # ── Moods ──
     found_moods = [w for w in re.findall(r'\b[a-z]+\b', html.lower()) if w in SG_MOODS]
-    moods = list(dict.fromkeys(found_moods))[:5]  # deduplicated, capped at 5
+    moods = list(dict.fromkeys(found_moods))[:5] if rating else []
 
     # ── Pace ──
     pace = None
-    m = re.search(r'\b(fast[\-\s]paced|slow[\-\s]paced|average[\-\s]paced)\b', html, re.I)
-    if m:
-        pace = re.sub(r'\s', '-', m.group(1).lower())
+    if rating:
+        m = re.search(r'\b(fast[\-\s]paced|slow[\-\s]paced|average[\-\s]paced)\b', html, re.I)
+        if m:
+            pace = re.sub(r'\s', '-', m.group(1).lower())
 
-    return {'rating': rating, 'count': count, 'moods': moods, 'pace': pace}
+    return {'rating': rating, 'count': count, 'moods': moods, 'pace': pace, 'isbn13': isbn13}
 
 def scrape_storygraph(page, book):
     url = sg_search(page, book.get('title',''), book.get('author',''))
@@ -246,22 +255,29 @@ def main():
 
             # StoryGraph first
             sg = scrape_storygraph(page, book)
-            if sg:
-                cache[key] = {'storyGraph': sg, 'amazon': None, 'source': 'storyGraph'}
+            # isbn13 lives at the top level of the cache entry (source-independent)
+            isbn13 = sg.pop('isbn13', None) if sg else None
+
+            if sg and sg.get('rating'):
+                cache[key] = {'isbn13': isbn13, 'storyGraph': sg, 'amazon': None, 'source': 'storyGraph'}
                 mood_str = ', '.join(sg['moods']) or '—'
+                isbn_str = f"  isbn={isbn13}" if isbn13 else ''
                 print(f"         SG ✓  {sg['rating']}★  "
-                      f"({sg['count']:,} ratings)  moods=[{mood_str}]  pace={sg['pace']}")
+                      f"({sg['count']:,} ratings)  moods=[{mood_str}]  pace={sg['pace']}{isbn_str}")
             else:
-                print(f"         SG ✗  trying Amazon…")
+                if isbn13:
+                    print(f"         SG ~  no rating but got isbn={isbn13}  trying Amazon…")
+                else:
+                    print(f"         SG ✗  trying Amazon…")
                 time.sleep(random.uniform(MIN_DELAY // 2, MAX_DELAY // 2))
 
                 amz = scrape_amazon(page, book)
                 if amz:
-                    cache[key] = {'storyGraph': None, 'amazon': amz, 'source': 'amazon'}
+                    cache[key] = {'isbn13': isbn13, 'storyGraph': None, 'amazon': amz, 'source': 'amazon'}
                     cnt = f"{amz['count']:,}" if amz.get('count') else '?'
                     print(f"         AMZ ✓  {amz['rating']}★  ({cnt} ratings)")
                 else:
-                    cache[key] = {'storyGraph': None, 'amazon': None, 'source': 'not_found'}
+                    cache[key] = {'isbn13': isbn13, 'storyGraph': None, 'amazon': None, 'source': 'not_found'}
                     print(f"         ✗  not found on either source")
 
             save_cache(cache)

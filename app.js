@@ -214,11 +214,11 @@ function attachCoverFallbacks() {
   });
 }
 
-// ── Open Library cover lookup ──────────────────────────────────────────────
+// ── Google Books cover lookup (async fallback for books without ISBN) ──────
 
 const coverCache = new Map();
 
-async function fetchOLCover(bookKey, title, author) {
+async function fetchGoogleBooksCover(bookKey, title, author) {
   if (coverCache.has(bookKey)) return coverCache.get(bookKey);
   try {
     const q = encodeURIComponent(`intitle:${title} inauthor:${author}`);
@@ -242,7 +242,7 @@ async function enhanceCovers() {
   const wraps = Array.from(document.querySelectorAll('.book-cover[data-lookup]'));
   await Promise.all(wraps.map(async wrap => {
     const { bookkey, title, author, color } = wrap.dataset;
-    const url = await fetchOLCover(bookkey, title, author);
+    const url = await fetchGoogleBooksCover(bookkey, title, author);
     if (!url || !wrap.isConnected) return;
     wrap.innerHTML = `<img src="${esc(url)}" alt="${esc(title)} cover"
       data-title="${esc(title)}" data-author="${esc(author)}"
@@ -692,12 +692,15 @@ function scrapedKey(book) {
 
 function mergeScraped(book, scraped) {
   const entry = scraped[scrapedKey(book)];
-  if (!entry || entry.source === 'not_found') return book;
+  if (!entry) return book;
+  // Always apply ISBN if the book lacks one — enables OpenLibrary cover lookup
+  let merged = (entry.isbn13 && !book.isbn13) ? { ...book, isbn13: entry.isbn13 } : book;
+  if (entry.source === 'not_found') return merged;
   const sg  = entry.storyGraph;
   const amz = entry.amazon;
-  if (sg)  return { ...book, storyGraphRating: sg.rating, storyGraphRatingCount: sg.count, storyGraphMoods: sg.moods, storyGraphPace: sg.pace };
-  if (amz) return { ...book, amazonRating: amz.rating, amazonRatingCount: amz.count };
-  return book;
+  if (sg && sg.rating)  return { ...merged, storyGraphRating: sg.rating, storyGraphRatingCount: sg.count, storyGraphMoods: sg.moods, storyGraphPace: sg.pace };
+  if (amz) return { ...merged, amazonRating: amz.rating, amazonRatingCount: amz.count };
+  return merged;
 }
 
 // ── Data & Recompute ───────────────────────────────────────────────────────
