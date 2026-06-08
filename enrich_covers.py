@@ -77,10 +77,33 @@ def google_books_cover(title, author):
 
     return thumb_url
 
+def gb_direct_url(isbn13):
+    """
+    Google Books direct thumbnail URL — works for many books not in the API,
+    including some Amazon Publishing titles. Returns a URL string (not validated).
+    The browser will get a generic placeholder if Google doesn't have it,
+    but it's still better than nothing.
+    """
+    return (f'https://books.google.com/books/content'
+            f'?vid=ISBN{isbn13}&printsec=frontcover&img=1&zoom=2&source=gbs_api')
+
+def gb_direct_has_cover(isbn13):
+    """Return True if the Google Books direct URL resolves to a real image (>1 KB)."""
+    url = gb_direct_url(isbn13)
+    try:
+        req = urllib.request.Request(url, method='HEAD',
+                                     headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, timeout=8) as resp:
+            ct     = resp.headers.get('Content-Type', '')
+            length = int(resp.headers.get('Content-Length', 0))
+            return 'image' in ct and length > MIN_COVER_BYTES
+    except Exception:
+        return False
+
 def best_cover_url(book):
     """
     Return the best available cover URL for book, or None if not found.
-    Checks OL first (free, no key), then Google Books.
+    Priority: OL → Google Books API → Google Books direct ISBN thumbnail.
     """
     isbn13 = book.get('isbn13', '')
     title  = book.get('title', '')
@@ -89,13 +112,23 @@ def best_cover_url(book):
     if isbn13:
         if ol_has_cover(isbn13):
             return ol_cover_url(isbn13)
-        print(f'    OL miss for {isbn13}, trying Google Books…')
+        print(f'    OL miss for {isbn13}, trying Google Books API…')
         time.sleep(0.3)
 
-    # Fall through to Google Books
+    # Google Books search API
     url = google_books_cover(title, author)
     time.sleep(0.6)
-    return url
+    if url:
+        return url
+
+    # Last resort: Google Books direct ISBN thumbnail (no search needed)
+    if isbn13:
+        print(f'    API miss, trying GB direct thumbnail…')
+        if gb_direct_has_cover(isbn13):
+            return gb_direct_url(isbn13)
+        time.sleep(0.3)
+
+    return None
 
 # ── File enrichment ────────────────────────────────────────────────────────
 
