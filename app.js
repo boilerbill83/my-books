@@ -205,7 +205,7 @@ function attachCoverFallbacks() {
       const { title, author, color } = img.dataset;
       const wrap = img.parentElement;
       if (!wrap?.isConnected) return;
-      const url = await fetchGoogleBooksCover(`${title}|||${author}`, title, author);
+      const url = await fetchGoogleBooksCover(`${title}|||${author}`, cleanTitle(title), author);
       if (!wrap.isConnected) return;
       if (url) {
         wrap.innerHTML = `<img src="${esc(url)}" alt="${esc(title)} cover"
