@@ -673,6 +673,74 @@ section { padding: 14px 0; }
 .reason-list label:hover { border-color: var(--accent); background: var(--bg-subtle); }
 .dialog-actions { display: flex; justify-content: flex-end; }
 
+/* ── VIEW TOGGLE ── */
+.view-toggle {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.view-toggle-btn {
+  padding: 5px 12px;
+  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  background: var(--bg-card);
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: background 0.15s, color 0.15s;
+}
+.view-toggle-btn + .view-toggle-btn { border-left: 1px solid var(--border); }
+.view-toggle-btn.active { background: var(--accent); color: #fff; }
+.view-toggle-btn:not(.active):hover { background: var(--bg-subtle); color: var(--text); }
+
+/* ── SERIES BADGE ── */
+.series-badge {
+  font-size: 0.62rem; font-weight: 500;
+  background: #e0f2fe; color: #0369a1;
+  padding: 1px 6px; border-radius: 8px;
+  white-space: nowrap;
+}
+
+/* ── LIST VIEW ── */
+.recs-list {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.list-row {
+  display: grid;
+  grid-template-columns: 28px 36px 1fr auto auto auto;
+  gap: 10px;
+  align-items: center;
+  padding: 7px 14px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
+}
+.list-row:last-child { border-bottom: none; }
+.list-row:hover { background: var(--bg-subtle); }
+.list-rank {
+  font-size: 0.72rem; font-weight: 700;
+  color: var(--text-muted); text-align: right;
+}
+.list-cover-mini {
+  width: 32px; height: 48px;
+  border-radius: 2px; overflow: hidden; flex-shrink: 0;
+}
+.list-cover-mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.list-info { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.list-title {
+  font-weight: 600; font-size: 0.85rem; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.list-sub { font-size: 0.73rem; color: var(--text-muted); }
+.list-tones { display: flex; gap: 3px; flex-wrap: wrap; margin-top: 2px; }
+.list-badges { display: flex; gap: 3px; flex-wrap: wrap; justify-content: flex-end; }
+.list-gr-btn { font-size: 0.68rem; padding: 3px 8px; }
+
 /* ── CURRENTLY READING ── */
 #currentlyReadingSection { padding: 10px 0 4px; }
 

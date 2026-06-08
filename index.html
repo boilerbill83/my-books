@@ -60,7 +60,13 @@
         <section class="recommendations-section">
           <div class="section-header">
             <h3 class="card-heading">📚 What Should I Read Next?</h3>
-            <button id="refreshButton" class="primary-button">Refresh ↻</button>
+            <div style="display:flex;gap:8px;align-items:center">
+              <div class="view-toggle" id="viewToggle">
+                <button class="view-toggle-btn active" data-view="cards">Cards</button>
+                <button class="view-toggle-btn" data-view="list">List</button>
+              </div>
+              <button id="refreshButton" class="primary-button">Refresh ↻</button>
+            </div>
           </div>
           <div class="filter-bar">
             <div class="filter-group">

@@ -11,6 +11,7 @@ const state = {
   ranking:          null,
   pending:          null,
   page:             0,
+  viewMode:         'cards',
   activeThemes:     new Set(),
   activeTones:      new Set()
 };
@@ -36,6 +37,7 @@ const filterNonfiction         = document.getElementById('filterNonfiction');
 const poolCountEl              = document.getElementById('poolCount');
 const themeFilterBar           = document.getElementById('themeFilterBar');
 const toneFilterBar            = document.getElementById('toneFilterBar');
+const viewToggle               = document.getElementById('viewToggle');
 
 const THEME_MACROS = [
   { label: 'Legal',      keys: ['legal', 'courtroom', 'attorney', 'lawyer'] },
@@ -572,9 +574,63 @@ function breakdownHtml(breakdown) {
   </details>`;
 }
 
+// ── Series helpers ─────────────────────────────────────────────────────────
+
+function parseSeries(title) {
+  const m = String(title || '').match(/\(([^,#)]+),?\s*#(\d+)\)/);
+  return m ? { name: m[1].trim(), num: parseInt(m[2], 10) } : null;
+}
+
+function cleanTitle(title) {
+  return String(title || '').replace(/\s*\([^)]+#\d+[^)]*\)\s*$/, '').trim();
+}
+
+// ── List view ──────────────────────────────────────────────────────────────
+
+function renderListView() {
+  const all = state.ranking.selected;
+  if (!all.length) {
+    recommendationsGrid.className = 'recs-list';
+    recommendationsGrid.innerHTML = `<div class="empty-state">No recommendations available yet.</div>`;
+    return;
+  }
+
+  recommendationsGrid.className = 'recs-list';
+  recommendationsGrid.innerHTML = all.map(book => {
+    const series     = parseSeries(book.title);
+    const dispTitle  = cleanTitle(book.title);
+    const tones      = inferTones(book).slice(0, 2);
+    const grUrl      = book.goodreadsUrl
+      || `https://www.goodreads.com/search?q=${encodeURIComponent(book.title + ' ' + book.author)}`;
+    const isbn       = book.isbn13 || book.isbn;
+    const coverUrl   = book.coverUrl || (isbn ? `https://covers.openlibrary.org/b/isbn/${isbn}-S.jpg` : null);
+    const coverEl    = coverUrl ? `<img src="${esc(coverUrl)}" alt="" onerror="this.style.display='none'">` : '';
+    const typeBadge  = book.type ? `<span class="type-tag ${book.type}">${book.type}</span>` : '';
+    const fromBadge  = book.fromToRead ? `<span class="shelf-tag to-read">on list</span>` : '';
+    const toneChips  = tones.map(t => `<span class="tone-chip">${esc(t)}</span>`).join('');
+    const seriesStr  = series ? ` · <em>Bk&nbsp;${series.num}</em>` : '';
+
+    return `
+      <div class="list-row">
+        <span class="list-rank">${book.rank}</span>
+        <div class="list-cover-mini" style="background:${hashColor(book.bookKey || book.title)}">${coverEl}</div>
+        <div class="list-info">
+          <div class="list-title">${esc(dispTitle)}</div>
+          <div class="list-sub">${esc(book.author)}${seriesStr}</div>
+          ${toneChips ? `<div class="list-tones">${toneChips}</div>` : ''}
+        </div>
+        <div class="list-badges">${typeBadge}${fromBadge}</div>
+        <span class="score-pill">BBRE&nbsp;${book.matchScore}</span>
+        <a class="link-button primary list-gr-btn" href="${esc(grUrl)}" target="_blank" rel="noreferrer">GR</a>
+      </div>`;
+  }).join('');
+}
+
 // ── Recommendations ────────────────────────────────────────────────────────
 
 function renderRecommendations() {
+  if (state.viewMode === 'list') { renderListView(); return; }
+
   const raw = state.ranking.selected;
   if (!raw.length) {
     recommendationsGrid.innerHTML = `<div class="empty-state">No recommendations available yet.</div>`;
@@ -597,12 +653,17 @@ function renderRecommendations() {
   const start    = (state.page % pages) * pageSize;
   const slice    = all.slice(start, start + pageSize);
 
+  recommendationsGrid.className = 'recs-grid';
   recommendationsGrid.innerHTML = slice.map(book => {
+    const series     = parseSeries(book.title);
+    const dispTitle  = cleanTitle(book.title);
     const shelfBadge = book.fromToRead
       ? `<span class="shelf-tag to-read">on your list</span>`
       : `<span class="shelf-tag">curated pick</span>`;
     const typeBadge = book.type
       ? `<span class="type-tag ${book.type}">${book.type}</span>` : '';
+    const seriesBadge = series
+      ? `<span class="series-badge">Book&nbsp;${series.num} · ${esc(series.name)}</span>` : '';
     const goodreadsUrl = book.goodreadsUrl
       || `https://www.goodreads.com/search?q=${encodeURIComponent(book.title + ' ' + book.author)}`;
 
@@ -648,8 +709,9 @@ function renderRecommendations() {
             ${shelfBadge}
             ${typeBadge}
           </div>
-          <div class="card-title">${esc(book.title)}</div>
+          <div class="card-title">${esc(dispTitle)}</div>
           <div class="card-author">${esc(book.author)}</div>
+          ${seriesBadge}
           ${metaRow}
           ${themeRow}
           ${toneRow}
@@ -824,6 +886,18 @@ function dismiss(reasonCode) {
 // Filter checkboxes reset page and theme selection, then recompute
 [filterToRead, filterOnlineFinds, filterFiction, filterNonfiction].forEach(el => {
   el?.addEventListener('change', () => { state.activeThemes.clear(); state.activeTones.clear(); state.page = 0; recompute(); });
+});
+
+// View toggle: Cards ↔ List
+viewToggle?.addEventListener('click', e => {
+  const btn = e.target.closest('.view-toggle-btn');
+  if (!btn || btn.dataset.view === state.viewMode) return;
+  state.viewMode = btn.dataset.view;
+  viewToggle.querySelectorAll('.view-toggle-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.view === state.viewMode)
+  );
+  refreshButton.style.display = state.viewMode === 'list' ? 'none' : '';
+  renderRecommendations();
 });
 
 // Animated refresh (visual appeal #1)

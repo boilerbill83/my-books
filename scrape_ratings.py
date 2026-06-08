@@ -74,25 +74,34 @@ SG_MOODS = {
     'sad', 'tense',
 }
 
-def sg_search(page, title, author):
-    """Search StoryGraph; return first matching book-detail URL or None."""
-    from playwright.sync_api import TimeoutError as PWTimeout
-    bare  = re.sub(r'\s*[:({\[].*', '', title).strip()[:50]
-    query = f"{bare} {author.split(',')[0].strip()}"[:60]
+def sg_search(page, title, author, isbn=None):
+    """Search StoryGraph; return first matching book-detail URL or None.
 
-    try:
-        page.goto(
-            f"https://app.thestorygraph.com/books?utf8=%E2%9C%93&search_term={quote(query)}",
-            wait_until='networkidle', timeout=25_000
-        )
-        time.sleep(random.uniform(2, 4))
-        # Book detail links look like /books/some-slug (not /books?...)
-        for link in page.query_selector_all('a[href*="/books/"]'):
-            href = (link.get_attribute('href') or '').strip()
-            if re.match(r'^/books/[a-z0-9][a-z0-9\-]+$', href):
-                return f"https://app.thestorygraph.com{href}"
-    except PWTimeout:
-        pass
+    Tries ISBN search first (most precise), then falls back to title+author.
+    Uses domcontentloaded + generous sleep instead of networkidle, which hangs
+    on sites with persistent background connections (WebSockets, polling).
+    """
+    from playwright.sync_api import TimeoutError as PWTimeout
+
+    queries = []
+    if isbn and re.match(r'^97[89]\d{10}$', str(isbn)):
+        queries.append(str(isbn))
+    bare = re.sub(r'\s*[:({\[].*', '', title).strip()[:50]
+    queries.append(f"{bare} {author.split(',')[0].strip()}"[:60])
+
+    for query in queries:
+        try:
+            page.goto(
+                f"https://app.thestorygraph.com/books?utf8=%E2%9C%93&search_term={quote(query)}",
+                wait_until='domcontentloaded', timeout=30_000
+            )
+            time.sleep(random.uniform(5, 8))   # allow JS to render results
+            for link in page.query_selector_all('a[href*="/books/"]'):
+                href = (link.get_attribute('href') or '').strip()
+                if re.match(r'^/books/[a-z0-9][a-z0-9\-]+$', href):
+                    return f"https://app.thestorygraph.com{href}"
+        except PWTimeout:
+            continue
     return None
 
 def sg_extract(page, url):
@@ -164,7 +173,8 @@ def sg_extract(page, url):
     return {'rating': rating, 'count': count, 'moods': moods, 'pace': pace, 'isbn13': isbn13}
 
 def scrape_storygraph(page, book):
-    url = sg_search(page, book.get('title',''), book.get('author',''))
+    isbn = book.get('isbn13') or book.get('isbn') or None
+    url  = sg_search(page, book.get('title',''), book.get('author',''), isbn=isbn)
     if not url:
         return None
     time.sleep(random.uniform(3, 5))
