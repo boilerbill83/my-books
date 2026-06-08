@@ -3,8 +3,8 @@
     "sourceFile": null,
     "generatedAt": "2026-06-01T00:00:00.000Z",
     "bookCount": 958,
-    "readCount": 500,
-    "toReadCount": 313,
+    "readCount": 645,
+    "toReadCount": 335,
     "currentlyReadingCount": 1,
     "fiveStarCount": 260,
     "notes": "Hardcoded from personal Goodreads export.",
@@ -218,7 +218,8 @@
         "twisty",
         "unreliable-narrator",
         "compulsive"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1710781235l/197717652._SY475_.jpg"
     },
     {
       "bookKey": "ward-d|freida-mcfadden",
@@ -1442,7 +1443,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1749394011l/235992561._SY475_.jpg"
     },
     {
       "bookKey": "planet-money-a-guide-to-the-economic-forces-that-shape-your-life|alex-mayyasi",
@@ -2915,7 +2917,8 @@
         "heartwarming"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://s.gr-assets.com/assets/nophoto/book/111x148-675b3b2743c83e96e2540d2929d5f4d2.png"
     },
     {
       "bookKey": "den-of-thieves|james-b-stewart",
@@ -3110,7 +3113,8 @@
         "polemic"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1634645375l/56620811.jpg"
     },
     {
       "bookKey": "the-intruder|freida-mcfadden",
@@ -3907,7 +3911,8 @@
         "character-study"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1738777598l/220377436._SY475_.jpg"
     },
     {
       "bookKey": "i-regret-almost-everything|keith-mcnally",
@@ -9687,7 +9692,8 @@
         "character-study"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1733544911l/218695859._SY475_.jpg"
     },
     {
       "bookKey": "the-tenant|freida-mcfadden",
@@ -10734,8 +10740,8 @@
       "bookId": "32077564",
       "title": "An Innocent Client (Joe Dillard, #1)",
       "author": "Scott Pratt",
-      "shelf": "to-read",
-      "myRating": 0,
+      "shelf": "read",
+      "myRating": 4,
       "avgRating": 4.3,
       "pages": 375,
       "dateRead": null,
@@ -11653,7 +11659,8 @@
         "compulsive"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1505068558l/36217425._SY475_.jpg"
     },
     {
       "bookKey": "the-inmate|freida-mcfadden",
@@ -12580,7 +12587,8 @@
         "tense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717373740l/214172333._SY475_.jpg"
     },
     {
       "bookKey": "raised-by-a-serial-killer-discovering-the-truth-about-my-father|april-balascio",
@@ -13947,7 +13955,8 @@
         "humorous"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1698860711l/201251602._SY475_.jpg"
     },
     {
       "bookKey": "kill-for-me-kill-for-you|steve-cavanagh",
@@ -14704,7 +14713,8 @@
         "slow-burn"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1710517586l/209608728.jpg"
     },
     {
       "bookKey": "cue-the-sun-the-invention-of-reality-tv|emily-nussbaum",
@@ -14741,7 +14751,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1703798624l/203020280._SY475_.jpg"
     },
     {
       "bookKey": "return-of-the-king-lebron-james-the-cleveland-cavaliers-and-the-greatest-comeback-in-nba-history|brian-windhorst",
@@ -15654,7 +15665,8 @@
         "dense"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1657976165l/61467835._SY475_.jpg"
     },
     {
       "bookKey": "on-earth-as-it-is-on-television|emily-jane",
@@ -38830,6 +38842,397 @@
         "dense",
         "revelatory"
       ]
+    },
+    {
+      "title": "House of Fidelity: The Rise of the Johnson Dynasty and the Company That Changed American Investing",
+      "author": "Justin  Baer",
+      "isbn13": null,
+      "isbn": "1538766957",
+      "avgRating": 3.75,
+      "ratingsCount": 0,
+      "year": null,
+      "pages": 384,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1756934751l/241039527._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "The Midnight Lawyer (Hank Luger Legal Thrillers, #1)",
+      "author": "J.J.  Miller",
+      "isbn13": null,
+      "isbn": null,
+      "avgRating": 4.36,
+      "ratingsCount": 0,
+      "year": null,
+      "pages": 396,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743045684l/230424523._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "The Body",
+      "author": "Stephen  King",
+      "isbn13": null,
+      "isbn": "1668170612",
+      "avgRating": 4.29,
+      "ratingsCount": 0,
+      "year": 1982,
+      "pages": 7,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1772263528l/249109853._SX318_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "Unhinged Habits: A Counterintuitive Guide for Humans to Have More",
+      "author": "Jonathan   Goodman",
+      "isbn13": null,
+      "isbn": "1400253438",
+      "avgRating": 3.72,
+      "ratingsCount": 0,
+      "year": null,
+      "pages": 240,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1757625840l/229098150._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "The Merge",
+      "author": "Grace          Walker",
+      "isbn13": null,
+      "isbn": "0063446731",
+      "avgRating": 3.69,
+      "ratingsCount": 0,
+      "year": 2025,
+      "pages": 320,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743149009l/223614634._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "The Idaho Four: An American Tragedy (James Patterson True Crime, 3)",
+      "author": "James  Patterson",
+      "isbn13": null,
+      "isbn": "0316572853",
+      "avgRating": 4.12,
+      "ratingsCount": 0,
+      "year": 2025,
+      "pages": 448,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739959692l/222733476._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "The Running Man",
+      "author": "Richard  Bachman",
+      "isbn13": null,
+      "isbn": "1668208121",
+      "avgRating": 3.64,
+      "ratingsCount": 0,
+      "year": 1982,
+      "pages": 352,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1752766696l/237828922._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "Rich Blood (Jason Rich, #1)",
+      "author": "Robert  Bailey",
+      "isbn13": null,
+      "isbn": "1542037263",
+      "avgRating": 4.3,
+      "ratingsCount": 0,
+      "year": 2022,
+      "pages": 380,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1644100235l/58920609._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "12 Months to Live (Jane Smith, #1)",
+      "author": "James  Patterson",
+      "isbn13": null,
+      "isbn": "0316405795",
+      "avgRating": 4.09,
+      "ratingsCount": 0,
+      "year": 2023,
+      "pages": 400,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1684768893l/75569754.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "Inside the Cartel: How an Undercover FBI Agent Smuggled Cocaine, Laundered Cash, and Dismantled a Colombian Narco-Empire",
+      "author": "Martin   Suarez",
+      "isbn13": null,
+      "isbn": "0063354012",
+      "avgRating": 4.05,
+      "ratingsCount": 0,
+      "year": null,
+      "pages": 304,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1741188620l/215217592._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "Not Quite Dead Yet",
+      "author": "Holly  Jackson",
+      "isbn13": null,
+      "isbn": "059397705X",
+      "avgRating": 3.98,
+      "ratingsCount": 0,
+      "year": 2025,
+      "pages": 400,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739418770l/220223963._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "The Life of Chuck",
+      "author": "Stephen  King",
+      "isbn13": null,
+      "isbn": "1668208792",
+      "avgRating": 4.23,
+      "ratingsCount": 0,
+      "year": null,
+      "pages": 128,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1747771053l/229251932._SX318_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "How I Killed Pluto and Why It Had It Coming",
+      "author": "Mike    Brown",
+      "isbn13": null,
+      "isbn": "0307932699",
+      "avgRating": 4.17,
+      "ratingsCount": 0,
+      "year": 2010,
+      "pages": 0,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1347770850l/10146802.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "The God of the Woods",
+      "author": "Liz    Moore",
+      "isbn13": null,
+      "isbn": "0593418913",
+      "avgRating": 4.04,
+      "ratingsCount": 0,
+      "year": 2024,
+      "pages": 478,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717970585l/199700434._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "Everything Is Tuberculosis: The History and Persistence of Our Deadliest Infection",
+      "author": "John  Green",
+      "isbn13": null,
+      "isbn": "0525556575",
+      "avgRating": 4.32,
+      "ratingsCount": 0,
+      "year": 2025,
+      "pages": 198,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1729825992l/220341389._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "Raised",
+      "author": "April Balascio",
+      "isbn13": null,
+      "isbn": "1982177039",
+      "avgRating": 3.75,
+      "ratingsCount": 0,
+      "year": 2024,
+      "pages": 352,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1710377557l/207294155._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "How to Know a Person: The Art of Seeing Others Deeply and Being Deeply Seen",
+      "author": "David  Brooks",
+      "isbn13": null,
+      "isbn": "059323006X",
+      "avgRating": 4.02,
+      "ratingsCount": 0,
+      "year": 2023,
+      "pages": 306,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1684815605l/112974860.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "Revival",
+      "author": "Stephen  King",
+      "isbn13": null,
+      "isbn": "1476770387",
+      "avgRating": 3.78,
+      "ratingsCount": 0,
+      "year": 2014,
+      "pages": 405,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1510335323l/20926278._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "On Earth as It Is on Television",
+      "author": "Emily  Jane",
+      "isbn13": null,
+      "isbn": "1368101208",
+      "avgRating": 3.84,
+      "ratingsCount": 0,
+      "year": 2023,
+      "pages": 380,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1706715171l/206340812._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "Black Sheep",
+      "author": "Rachel   Harrison",
+      "isbn13": null,
+      "isbn": "0593545850",
+      "avgRating": 3.56,
+      "ratingsCount": 0,
+      "year": 2023,
+      "pages": 289,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680293749l/69704909.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "Sleeping Beauties",
+      "author": "Stephen  King",
+      "isbn13": null,
+      "isbn": "150116340X",
+      "avgRating": 3.7,
+      "ratingsCount": 0,
+      "year": 2017,
+      "pages": 702,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1510335748l/34466922._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "Entrances and Exits",
+      "author": "Michael    Richards",
+      "isbn13": null,
+      "isbn": "1637589131",
+      "avgRating": 3.99,
+      "ratingsCount": 0,
+      "year": null,
+      "pages": 425,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1713686954l/201339849._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "Born Standing Up: A Comic's Life",
+      "author": "Steve  Martin",
+      "isbn13": null,
+      "isbn": "1416553649",
+      "avgRating": 3.87,
+      "ratingsCount": 0,
+      "year": 2007,
+      "pages": 207,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348034328l/773858.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
     }
   ],
   "indexes": {
