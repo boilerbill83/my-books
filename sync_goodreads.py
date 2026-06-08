@@ -105,6 +105,7 @@ def main():
 
     moved_to_read = 0
     newly_added   = 0
+    cover_updated = 0
     errors        = []
 
     # ── 1. Read shelf: detect books that moved from to-read → read ────────────
@@ -144,6 +145,12 @@ def main():
     for item in toread_items:
         k = norm_key(item['title'], item['author'])
         if k in key_to_idx:
+            # Backfill coverUrl for existing books that are missing one
+            book = books[key_to_idx[k]]
+            if not book.get('coverUrl') and item.get('coverUrl'):
+                book['coverUrl'] = item['coverUrl']
+                print(f'  ↑ cover backfilled: "{book["title"]}"')
+                cover_updated += 1
             continue   # already in data
         isbn13 = item['isbn'] if item.get('isbn') and len(str(item.get('isbn', ''))) == 13 else None
         isbn   = item['isbn'] if item.get('isbn') and len(str(item.get('isbn', ''))) == 10 else None
@@ -169,7 +176,7 @@ def main():
         print(f'  + added: "{item["title"]}" by {item["author"]}')
         newly_added += 1
 
-    total_changes = moved_to_read + newly_added
+    total_changes = moved_to_read + newly_added + cover_updated
     if total_changes == 0:
         print('No changes — goodreadsData.json is up to date.')
         if errors:
@@ -187,7 +194,7 @@ def main():
         json.dump(data, f, indent=2)
         f.write('\n')
 
-    print(f'\nDone. {moved_to_read} moved to read, {newly_added} new to-read books added.')
+    print(f'\nDone. {moved_to_read} moved to read, {newly_added} new to-read books added, {cover_updated} covers backfilled.')
     if errors:
         print(f'Partial errors: {"; ".join(errors)}')
 
