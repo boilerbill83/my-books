@@ -201,18 +201,34 @@ function coverHtml(book) {
 
 function attachCoverFallbacks() {
   document.querySelectorAll('img.cover-img').forEach(img => {
-    img.addEventListener('load', () => {
-      if (img.naturalWidth <= 1 || img.naturalHeight <= 1) {
-        img.parentElement.innerHTML = makePlaceholder(
-          img.dataset.title, img.dataset.author, img.dataset.color
-        );
+    const tryGoogleFallback = async () => {
+      const { title, author, color } = img.dataset;
+      const wrap = img.parentElement;
+      if (!wrap?.isConnected) return;
+      const url = await fetchGoogleBooksCover(`${title}|||${author}`, title, author);
+      if (!wrap.isConnected) return;
+      if (url) {
+        wrap.innerHTML = `<img src="${esc(url)}" alt="${esc(title)} cover"
+          data-title="${esc(title)}" data-author="${esc(author)}"
+          data-color="${esc(color)}" class="cover-img" loading="lazy" />`;
+        const newImg = wrap.querySelector('img');
+        if (newImg) {
+          newImg.addEventListener('load', () => {
+            if (newImg.naturalWidth <= 1) wrap.innerHTML = makePlaceholder(title, author, color);
+          });
+          newImg.addEventListener('error', () => {
+            wrap.innerHTML = makePlaceholder(title, author, color);
+          });
+        }
+      } else {
+        wrap.innerHTML = makePlaceholder(title, author, color);
       }
+    };
+
+    img.addEventListener('load', () => {
+      if (img.naturalWidth <= 1 || img.naturalHeight <= 1) tryGoogleFallback();
     });
-    img.addEventListener('error', () => {
-      img.parentElement.innerHTML = makePlaceholder(
-        img.dataset.title, img.dataset.author, img.dataset.color
-      );
-    });
+    img.addEventListener('error', tryGoogleFallback);
   });
 }
 
