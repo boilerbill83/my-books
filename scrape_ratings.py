@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """
-Daily scraper: StoryGraph ratings (primary) + Amazon ratings (fallback).
-Runs BATCH_SIZE books per day — designed as a daily GitHub Action so it
-spreads work over ~2 weeks and never looks like bulk scraping.
+Daily scraper: Amazon ratings via Playwright.
+Runs BATCH_SIZE books per day via GitHub Actions (5x/day) until all books
+in the candidate pools and to-read shelf have been processed.
 
-Results stored in data/scrapedRatings.json (separate from source files).
-The app merges this at load time via app.js.
+Results stored in data/scrapedRatings.json — app.js merges at load time.
 
-Run manually:   python3 scrape_ratings.py
-GitHub Action:  .github/workflows/scrape-ratings.yml (scheduled daily)
+Run manually:   python3 scrape_ratings.py [batch_size]
+GitHub Action:  .github/workflows/scrape-ratings.yml
 """
 
 import json, time, random, re, sys
@@ -18,7 +17,7 @@ from urllib.parse import quote
 DATA_DIR   = Path('data')
 CACHE_FILE = DATA_DIR / 'scrapedRatings.json'
 BATCH_SIZE = int(sys.argv[1]) if len(sys.argv) > 1 else 25
-MIN_DELAY  = 10   # seconds between book requests
+MIN_DELAY  = 10   # seconds between requests
 MAX_DELAY  = 20
 
 # ── Cache helpers ──────────────────────────────────────────────────────────
@@ -54,9 +53,7 @@ def load_pending(cache):
         with open(path) as f:
             candidates += json.load(f).get('candidates', [])
 
-    # Candidates first — engine uses them for ranking
     all_books = candidates + to_read
-    # Deduplicate by key (same book may appear in multiple pools)
     seen, unique = set(), []
     for b in all_books:
         k = book_key(b)
@@ -65,120 +62,6 @@ def load_pending(cache):
             unique.append(b)
 
     return [b for b in unique if book_key(b) not in cache]
-
-# ── StoryGraph ─────────────────────────────────────────────────────────────
-
-SG_MOODS = {
-    'adventurous', 'dark', 'emotional', 'funny', 'hopeful', 'informative',
-    'inspiring', 'lighthearted', 'mysterious', 'reflective', 'relaxing',
-    'sad', 'tense',
-}
-
-def sg_search(page, title, author, isbn=None):
-    """Search StoryGraph; return first matching book-detail URL or None.
-
-    Tries ISBN search first (most precise), then falls back to title+author.
-    Uses domcontentloaded + generous sleep instead of networkidle, which hangs
-    on sites with persistent background connections (WebSockets, polling).
-    """
-    from playwright.sync_api import TimeoutError as PWTimeout
-
-    queries = []
-    if isbn and re.match(r'^97[89]\d{10}$', str(isbn)):
-        queries.append(str(isbn))
-    bare = re.sub(r'\s*[:({\[].*', '', title).strip()[:50]
-    queries.append(f"{bare} {author.split(',')[0].strip()}"[:60])
-
-    for query in queries:
-        try:
-            page.goto(
-                f"https://app.thestorygraph.com/books?utf8=%E2%9C%93&search_term={quote(query)}",
-                wait_until='domcontentloaded', timeout=30_000
-            )
-            time.sleep(random.uniform(5, 8))   # allow JS to render results
-            for link in page.query_selector_all('a[href*="/books/"]'):
-                href = (link.get_attribute('href') or '').strip()
-                if re.match(r'^/books/[a-z0-9][a-z0-9\-]+$', href):
-                    return f"https://app.thestorygraph.com{href}"
-        except PWTimeout:
-            continue
-    return None
-
-def sg_extract(page, url):
-    """Fetch StoryGraph book page; return dict with rating/count/moods/pace/isbn13."""
-    from playwright.sync_api import TimeoutError as PWTimeout
-    try:
-        page.goto(url, wait_until='networkidle', timeout=25_000)
-        time.sleep(random.uniform(2, 4))
-        html = page.content()
-    except PWTimeout:
-        return None
-
-    # ── ISBN13 ── (grab it regardless of whether we get a rating)
-    isbn13 = None
-    m = re.search(r'\b(97[89]\d{10})\b', html)
-    if m:
-        isbn13 = m.group(1)
-
-    # ── Rating ──
-    # StoryGraph shows the average like "3.94" in several spots; try structured
-    # data first (most reliable), then visible text patterns.
-    rating = None
-    for ld_raw in re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S):
-        try:
-            obj = json.loads(ld_raw)
-            rv  = (obj.get('aggregateRating') or {}).get('ratingValue')
-            if rv:
-                r = float(rv)
-                if 1.0 <= r <= 5.0:
-                    rating = r; break
-        except Exception:
-            pass
-
-    if not rating:
-        for pat in [
-            r'"ratingValue"\s*:\s*"?(\d\.\d{1,2})',
-            r'(\d\.\d{1,2})\s+out of 5',
-            r'average[^\d]*(\d\.\d{1,2})',
-        ]:
-            m = re.search(pat, html, re.I)
-            if m:
-                r = float(m.group(1))
-                if 1.0 <= r <= 5.0:
-                    rating = r; break
-
-    # Return None only if we got nothing useful at all
-    if not rating and not isbn13:
-        return None
-
-    # ── Rating count ──
-    count = None
-    if rating:
-        for pat in [r'"ratingCount"\s*:\s*(\d+)', r'([\d,]+)\s+ratings?']:
-            m = re.search(pat, html, re.I)
-            if m:
-                count = int(m.group(1).replace(',', '')); break
-
-    # ── Moods ──
-    found_moods = [w for w in re.findall(r'\b[a-z]+\b', html.lower()) if w in SG_MOODS]
-    moods = list(dict.fromkeys(found_moods))[:5] if rating else []
-
-    # ── Pace ──
-    pace = None
-    if rating:
-        m = re.search(r'\b(fast[\-\s]paced|slow[\-\s]paced|average[\-\s]paced)\b', html, re.I)
-        if m:
-            pace = re.sub(r'\s', '-', m.group(1).lower())
-
-    return {'rating': rating, 'count': count, 'moods': moods, 'pace': pace, 'isbn13': isbn13}
-
-def scrape_storygraph(page, book):
-    isbn = book.get('isbn13') or book.get('isbn') or None
-    url  = sg_search(page, book.get('title',''), book.get('author',''), isbn=isbn)
-    if not url:
-        return None
-    time.sleep(random.uniform(3, 5))
-    return sg_extract(page, url)
 
 # ── Amazon ─────────────────────────────────────────────────────────────────
 
@@ -198,7 +81,7 @@ def scrape_amazon(page, book):
     except PWTimeout:
         return None
 
-    # ── JSON-LD (most reliable when present) ──
+    # JSON-LD (most reliable when present)
     for ld_raw in re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S):
         try:
             obj = json.loads(ld_raw)
@@ -210,7 +93,7 @@ def scrape_amazon(page, book):
         except Exception:
             pass
 
-    # ── Regex fallback ──
+    # Regex fallback
     m = re.search(r'(\d\.\d)\s+out of\s+5\s+stars', html, re.I)
     if m:
         rating = float(m.group(1))
@@ -254,41 +137,21 @@ def main():
             timezone_id='America/Chicago',
         )
         page = ctx.new_page()
-        # Block images/fonts to speed up page loads
         page.route('**/*.{png,jpg,jpeg,gif,webp,woff,woff2,ttf,svg}', lambda r: r.abort())
 
         for i, book in enumerate(batch):
             key    = book_key(book)
             title  = book.get('title', '')[:55]
-            author = book.get('author', '')[:25]
             print(f"[{i+1:2}/{len(batch)}] {title}")
 
-            # StoryGraph first
-            sg = scrape_storygraph(page, book)
-            # isbn13 lives at the top level of the cache entry (source-independent)
-            isbn13 = sg.pop('isbn13', None) if sg else None
-
-            if sg and sg.get('rating'):
-                cache[key] = {'isbn13': isbn13, 'storyGraph': sg, 'amazon': None, 'source': 'storyGraph'}
-                mood_str = ', '.join(sg['moods']) or '—'
-                isbn_str = f"  isbn={isbn13}" if isbn13 else ''
-                print(f"         SG ✓  {sg['rating']}★  "
-                      f"({sg['count']:,} ratings)  moods=[{mood_str}]  pace={sg['pace']}{isbn_str}")
+            amz = scrape_amazon(page, book)
+            if amz:
+                cache[key] = {'storyGraph': None, 'amazon': amz, 'source': 'amazon'}
+                cnt = f"{amz['count']:,}" if amz.get('count') else '?'
+                print(f"         ✓  {amz['rating']}★  ({cnt} ratings)")
             else:
-                if isbn13:
-                    print(f"         SG ~  no rating but got isbn={isbn13}  trying Amazon…")
-                else:
-                    print(f"         SG ✗  trying Amazon…")
-                time.sleep(random.uniform(MIN_DELAY // 2, MAX_DELAY // 2))
-
-                amz = scrape_amazon(page, book)
-                if amz:
-                    cache[key] = {'isbn13': isbn13, 'storyGraph': None, 'amazon': amz, 'source': 'amazon'}
-                    cnt = f"{amz['count']:,}" if amz.get('count') else '?'
-                    print(f"         AMZ ✓  {amz['rating']}★  ({cnt} ratings)")
-                else:
-                    cache[key] = {'isbn13': isbn13, 'storyGraph': None, 'amazon': None, 'source': 'not_found'}
-                    print(f"         ✗  not found on either source")
+                cache[key] = {'storyGraph': None, 'amazon': None, 'source': 'not_found'}
+                print(f"         ✗  not found")
 
             save_cache(cache)
 
@@ -301,7 +164,7 @@ def main():
 
     found     = sum(1 for v in cache.values() if v['source'] != 'not_found')
     remaining = len(pending) - len(batch)
-    print(f"\n✅  Batch done.  Cache total: {found}/{len(cache)} found  |  {remaining} books still in queue")
+    print(f"\n✅  Batch done.  Cache: {found}/{len(cache)} found  |  {remaining} still in queue")
 
 if __name__ == '__main__':
     main()
