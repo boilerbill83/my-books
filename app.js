@@ -179,9 +179,12 @@ function makePlaceholder(title, author, color) {
 function coverHtml(book) {
   const color = hashColor(book.bookKey || book.title);
   const isbn  = book.isbn13 || book.isbn;
-  // Prefer explicit coverUrl, then ISBN-based OL lookup, then async Google Books
-  const staticUrl = book.coverUrl
-    || (isbn ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg` : null);
+  // If coverUrl is an OL URL but we also have isbn13, prefer isbn13 (more reliable edition match).
+  // Otherwise use coverUrl as-is, then fall back to isbn-based OL, then async Google Books.
+  const isOLCoverUrl = (book.coverUrl || '').includes('covers.openlibrary.org');
+  const staticUrl = (isOLCoverUrl && book.isbn13)
+    ? `https://covers.openlibrary.org/b/isbn/${book.isbn13}-M.jpg`
+    : book.coverUrl || (isbn ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg` : null);
 
   if (staticUrl) {
     return `<div class="book-cover" style="background:${color}">
