@@ -131,6 +131,11 @@ def main():
                 book['dateRead'] = date
             print(f'  ✓ finished: "{book["title"]}" ({item["myRating"]}★)')
             moved_to_read += 1
+        # Backfill coverUrl for read books missing one
+        if not book.get('coverUrl') and item.get('coverUrl'):
+            book['coverUrl'] = item['coverUrl']
+            print(f'  ↑ cover backfilled (read): "{book["title"]}"')
+            cover_updated += 1
 
     # ── 2. To-read shelf: add new books ───────────────────────────────────────
     print('Fetching to-read shelf RSS (recent 200)…')

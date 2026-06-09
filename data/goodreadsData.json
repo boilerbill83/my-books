@@ -1367,7 +1367,8 @@
         "plot-driven"
       ],
       "googleRating": null,
-      "googleRatingsCount": null
+      "googleRatingsCount": null,
+      "coverUrl": "https://m.media-amazon.com/images/I/81cR0jlGNFL._SX300_.jpg"
     },
     {
       "bookKey": "last-night-in-montreal|emily-st-john-mandel",
@@ -3229,7 +3230,8 @@
         "dense"
       ],
       "googleRating": 2.5,
-      "googleRatingsCount": 2
+      "googleRatingsCount": 2,
+      "coverUrl": "https://m.media-amazon.com/images/I/816-80H7rwL._SX300_.jpg"
     },
     {
       "bookKey": "you-have-arrived-at-your-destination|amor-towles",
@@ -37285,7 +37287,8 @@
         "character-driven",
         "atmospheric",
         "heartwarming"
-      ]
+      ],
+      "coverUrl": "https://m.media-amazon.com/images/I/81WY6M9XikL._SX300_.jpg"
     },
     {
       "bookKey": "apples-never-fall|liane-moriarty",
@@ -37457,7 +37460,8 @@
         "character-driven",
         "heartwarming",
         "atmospheric"
-      ]
+      ],
+      "coverUrl": "https://m.media-amazon.com/images/I/81eoMVeTPmL._SX300_.jpg"
     },
     {
       "bookKey": "number-go-up-inside-crypto-s-wild-rise-and-staggering-fall|zeke-faux",
@@ -37543,7 +37547,8 @@
         "atmospheric",
         "fast-paced",
         "character-driven"
-      ]
+      ],
+      "coverUrl": "https://m.media-amazon.com/images/I/81bbaOYIagL._SX300_.jpg"
     },
     {
       "bookKey": "spaced-out-how-the-nba-s-three-point-revolution-changed-everything-you-thought-you-knew-about-basketball|mike-prada",
