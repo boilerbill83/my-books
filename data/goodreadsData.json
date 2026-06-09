@@ -38067,10 +38067,27 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1756934751l/241039527._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "nonfiction",
+      "themes": [
+        "finance",
+        "business",
+        "narrative nonfiction",
+        "biography"
+      ],
+      "tones": [
+        "narrative-driven",
+        "accessible",
+        "dense"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "The House of Morgan",
+        "Den of Thieves"
+      ],
+      "similarToAuthors": [
+        "Ron Chernow",
+        "Andrew Ross Sorkin"
+      ]
     },
     {
       "title": "The Midnight Lawyer (Hank Luger Legal Thrillers, #1)",
@@ -38084,10 +38101,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743045684l/230424523._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "fiction",
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ],
+      "tones": [
+        "fast-paced",
+        "procedural",
+        "tense"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "The Lincoln Lawyer",
+        "A Time to Kill"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Michael Connelly"
+      ]
     },
     {
       "title": "The Body",
@@ -38101,10 +38134,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1772263528l/249109853._SX318_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "coming-of-age",
+        "contemporary"
+      ],
+      "tones": [
+        "atmospheric",
+        "melancholic",
+        "character-driven"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "The Green Mile",
+        "It"
+      ],
+      "similarToAuthors": [
+        "Dennis Lehane",
+        "Ray Bradbury"
+      ]
     },
     {
       "title": "The Merge",
@@ -38118,10 +38167,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743149009l/223614634._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "speculative",
+        "contemporary"
+      ],
+      "tones": [
+        "fast-paced",
+        "tense",
+        "plot-driven"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "Dark Matter",
+        "The Final Gambit"
+      ],
+      "similarToAuthors": [
+        "Blake Crouch",
+        "Harlan Coben"
+      ]
     },
     {
       "title": "The Idaho Four: An American Tragedy (James Patterson True Crime, 3)",
@@ -38135,10 +38200,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739959692l/222733476._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "nonfiction",
+      "themes": [
+        "true crime",
+        "narrative nonfiction",
+        "crime"
+      ],
+      "tones": [
+        "investigative",
+        "dark",
+        "narrative-driven"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "I'll Be Gone in the Dark",
+        "American Fire"
+      ],
+      "similarToAuthors": [
+        "John Douglas",
+        "Michelle McNamara"
+      ]
     },
     {
       "title": "The Running Man",
@@ -38152,10 +38233,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1752766696l/237828922._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "fiction",
+      "themes": [
+        "thriller",
+        "speculative",
+        "sci-fi"
+      ],
+      "tones": [
+        "fast-paced",
+        "dark",
+        "tense"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "The Long Walk",
+        "Battle Royale"
+      ],
+      "similarToAuthors": [
+        "Philip K. Dick",
+        "George Orwell"
+      ]
     },
     {
       "title": "Rich Blood (Jason Rich, #1)",
@@ -38169,10 +38266,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1644100235l/58920609._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "fiction",
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ],
+      "tones": [
+        "fast-paced",
+        "procedural",
+        "tense"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "A Time to Kill",
+        "The Boomerang"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow"
+      ]
     },
     {
       "title": "12 Months to Live (Jane Smith, #1)",
@@ -38186,10 +38299,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1684768893l/75569754.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "fiction",
+      "themes": [
+        "legal",
+        "thriller",
+        "mystery"
+      ],
+      "tones": [
+        "fast-paced",
+        "procedural",
+        "plot-driven"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "The Lincoln Lawyer",
+        "1st to Die"
+      ],
+      "similarToAuthors": [
+        "John Grisham",
+        "Michael Connelly"
+      ]
     },
     {
       "title": "Inside the Cartel: How an Undercover FBI Agent Smuggled Cocaine, Laundered Cash, and Dismantled a Colombian Narco-Empire",
@@ -38203,10 +38332,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1741188620l/215217592._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "nonfiction",
+      "themes": [
+        "true crime",
+        "narrative nonfiction",
+        "crime"
+      ],
+      "tones": [
+        "investigative",
+        "fast-paced",
+        "dark"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "El Narco",
+        "Operation Odessa"
+      ],
+      "similarToAuthors": [
+        "Ioan Grillo",
+        "Don Winslow"
+      ]
     },
     {
       "title": "Not Quite Dead Yet",
@@ -38220,10 +38365,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739418770l/220223963._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "fiction",
+      "themes": [
+        "mystery",
+        "thriller",
+        "suspense"
+      ],
+      "tones": [
+        "fast-paced",
+        "twisty",
+        "whodunit"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "A Good Girl's Guide to Murder",
+        "Five Survive"
+      ],
+      "similarToAuthors": [
+        "Karen M. McManus",
+        "Maureen Johnson"
+      ]
     },
     {
       "title": "The Life of Chuck",
@@ -38237,10 +38398,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1747771053l/229251932._SX318_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "fiction",
+      "themes": [
+        "literary",
+        "speculative",
+        "contemporary"
+      ],
+      "tones": [
+        "atmospheric",
+        "melancholic",
+        "character-driven"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "The Green Mile",
+        "The Body"
+      ],
+      "similarToAuthors": [
+        "Dennis Lehane",
+        "Garth Stein"
+      ]
     },
     {
       "title": "How I Killed Pluto and Why It Had It Coming",
@@ -38254,10 +38431,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1347770850l/10146802.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "nonfiction",
+      "themes": [
+        "narrative nonfiction",
+        "science",
+        "memoir"
+      ],
+      "tones": [
+        "humorous",
+        "accessible",
+        "conversational"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "Astrophysics for People in a Hurry",
+        "Packing for Mars"
+      ],
+      "similarToAuthors": [
+        "Neil deGrasse Tyson",
+        "Mary Roach"
+      ]
     },
     {
       "title": "The God of the Woods",
@@ -38271,10 +38464,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717970585l/199700434._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "fiction",
+      "themes": [
+        "mystery",
+        "thriller",
+        "literary"
+      ],
+      "tones": [
+        "atmospheric",
+        "slow-burn",
+        "dark"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "Long Bright River",
+        "Where the Crawdads Sing"
+      ],
+      "similarToAuthors": [
+        "Tana French",
+        "Kate Atkinson"
+      ]
     },
     {
       "title": "Everything Is Tuberculosis: The History and Persistence of Our Deadliest Infection",
@@ -38288,10 +38497,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1729825992l/220341389._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "nonfiction",
+      "themes": [
+        "history",
+        "narrative nonfiction",
+        "science"
+      ],
+      "tones": [
+        "accessible",
+        "conversational",
+        "narrative-driven"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "The Immortal Life of Henrietta Lacks",
+        "Spillover"
+      ],
+      "similarToAuthors": [
+        "Rebecca Skloot",
+        "David Quammen"
+      ]
     },
     {
       "title": "Raised",
@@ -38305,10 +38530,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1710377557l/207294155._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "true crime",
+        "narrative nonfiction"
+      ],
+      "tones": [
+        "dark",
+        "personal",
+        "investigative"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "Educated",
+        "My Absolute Darling"
+      ],
+      "similarToAuthors": [
+        "Tara Westover",
+        "Deborah Feldman"
+      ]
     },
     {
       "title": "How to Know a Person: The Art of Seeing Others Deeply and Being Deeply Seen",
@@ -38322,10 +38563,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1684815605l/112974860.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "nonfiction",
+      "themes": [
+        "psychology",
+        "narrative nonfiction",
+        "social commentary"
+      ],
+      "tones": [
+        "accessible",
+        "narrative-driven",
+        "personal"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "Thinking, Fast and Slow",
+        "The Second Mountain"
+      ],
+      "similarToAuthors": [
+        "Malcolm Gladwell",
+        "Jonathan Haidt"
+      ]
     },
     {
       "title": "Revival",
@@ -38339,10 +38596,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1510335323l/20926278._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "fiction",
+      "themes": [
+        "horror",
+        "thriller",
+        "literary"
+      ],
+      "tones": [
+        "dark",
+        "atmospheric",
+        "slow-burn"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "Doctor Sleep",
+        "Pet Sematary"
+      ],
+      "similarToAuthors": [
+        "Joe Hill",
+        "Dean Koontz"
+      ]
     },
     {
       "title": "On Earth as It Is on Television",
@@ -38356,10 +38629,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1706715171l/206340812._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "fiction",
+      "themes": [
+        "speculative",
+        "literary",
+        "contemporary"
+      ],
+      "tones": [
+        "humorous",
+        "atmospheric",
+        "character-driven"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "Station Eleven",
+        "The Hitchhiker's Guide to the Galaxy"
+      ],
+      "similarToAuthors": [
+        "Emily St. John Mandel",
+        "Douglas Adams"
+      ]
     },
     {
       "title": "Black Sheep",
@@ -38373,10 +38662,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680293749l/69704909.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "fiction",
+      "themes": [
+        "horror",
+        "thriller",
+        "contemporary"
+      ],
+      "tones": [
+        "dark",
+        "humorous",
+        "atmospheric"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "The Year of the Witching",
+        "Midsommar"
+      ],
+      "similarToAuthors": [
+        "Carmen Maria Machado",
+        "Paul Tremblay"
+      ]
     },
     {
       "title": "Sleeping Beauties",
@@ -38390,10 +38695,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1510335748l/34466922._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "fiction",
+      "themes": [
+        "horror",
+        "speculative",
+        "thriller"
+      ],
+      "tones": [
+        "dark",
+        "atmospheric",
+        "tense"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "The Stand",
+        "Under the Dome"
+      ],
+      "similarToAuthors": [
+        "Joe Hill",
+        "Dan Simmons"
+      ]
     },
     {
       "title": "Entrances and Exits",
@@ -38407,10 +38728,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1713686954l/201339849._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "biography",
+        "humor"
+      ],
+      "tones": [
+        "personal",
+        "conversational",
+        "humorous"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "Is This Anything?",
+        "Born Standing Up"
+      ],
+      "similarToAuthors": [
+        "Jerry Seinfeld",
+        "Steve Martin"
+      ]
     },
     {
       "title": "Born Standing Up: A Comic's Life",
@@ -38424,10 +38761,26 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348034328l/773858.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
+      "type": "nonfiction",
+      "themes": [
+        "memoir",
+        "biography",
+        "humor"
+      ],
+      "tones": [
+        "conversational",
+        "humorous",
+        "personal"
+      ],
+      "dnf": false,
+      "similarToTitles": [
+        "Is This Anything?",
+        "Entrances and Exits"
+      ],
+      "similarToAuthors": [
+        "Jerry Seinfeld",
+        "Mike Birbiglia"
+      ]
     }
   ],
   "indexes": {

@@ -34,6 +34,10 @@
  *   v4: + low-rated author penalty + sub-genre theme MMR          → 0.656  (structural)
  *   v5: + tone preference signal + tone DNF lift + tone MMR layer → see eval below
  *   v5.1: + community signal (ratingsCount × avgRating + optional googleRating)
+ *   v5.2: recalibrate tone signal (0.02→0.030, cap 0.08→0.12), raise community
+ *         neutral (3.75→3.80) and max lift (0.04→0.06), lower DNF threshold
+ *         (2.0→1.7).  Data: twisty +0.45★, compulsive +0.38★, tense +0.28★
+ *         vs revelatory -0.40★, conversational -0.27★ vs Bill's 4.23 mean.
  *
  * Exports:
  *   rankBBRE(goodreads, feedback, candidatePool, history) → { selected, profile, eligibleCount }
@@ -60,17 +64,18 @@ const TONE_DIVERSITY_PENALTY = [0, 0.02, 0.04, 0.05, 0.06];
 // How many calendar years to look back for the "recent taste" recency window.
 const RECENCY_WINDOW_YEARS = 2;
 
-// DNF theme lift threshold.  Themes appearing at 2× or more the rate in DNF
-// books vs overall reads are treated as mild negative signals.
-const DNF_LIFT_THRESHOLD = 2.0;
+// DNF theme lift threshold.  Themes appearing at 1.7× or more the rate in DNF
+// books vs overall reads are treated as mild negative signals.  Lowered from
+// 2.0 → 1.7 based on Bill's nonfiction/literary DNF patterns.
+const DNF_LIFT_THRESHOLD = 1.7;
 const DNF_THEME_MIN_RATE = 0.08;   // theme must appear in ≥8% of DNFs to count
 
 // Community signal tuning.
-// Goodreads average sits around 3.7–3.9 across all books.  We treat 3.75 as
-// the neutral midpoint.  Log-scale popularity weight ensures low-sample-count
-// ratings don't sway the engine.
-const COMMUNITY_NEUTRAL  = 3.75;
-const COMMUNITY_MAX_LIFT = 0.04;   // max ±4 pts on the final score
+// Raised neutral 3.75→3.80: Bill's global mean is 4.23, so 3.80 is a better
+// proxy for "meh" on his scale.  Max lift raised 0.04→0.06 since community
+// ratings are a reliable signal for him (fiction 4.40 mean, nonfiction 4.05).
+const COMMUNITY_NEUTRAL  = 3.80;
+const COMMUNITY_MAX_LIFT = 0.06;   // max ±6 pts on the final score
 const COMMUNITY_POP_MIN  = Math.log10(1_000);    // 1k ratings → weight 0
 const COMMUNITY_POP_MAX  = Math.log10(500_000);  // 500k ratings → weight 1
 
@@ -370,16 +375,20 @@ function buildToneProfile(readBooks) {
   return profile;
 }
 
-// Returns a score delta in [-0.08, +0.08].
+// Returns a score delta in [-0.12, +0.12].
+// Multiplier raised 0.02→0.030 and cap raised 0.08→0.12.
+// Tone deltas from Bill's history are strong (twisty +0.45★, compulsive
+// +0.38★, tense +0.28★ vs revelatory -0.40★, conversational -0.27★) so
+// the old 0.02 multiplier was underselling the signal.
 function toneSignal(book, toneProfile, globalMean) {
   if (!toneProfile.size || !globalMean) return 0;
   let adj = 0;
   for (const t of inferTones(book)) {
     if (toneProfile.has(t)) {
-      adj += (toneProfile.get(t) - globalMean) * 0.02;
+      adj += (toneProfile.get(t) - globalMean) * 0.030;
     }
   }
-  return Math.max(-0.08, Math.min(0.08, adj));
+  return Math.max(-0.12, Math.min(0.12, adj));
 }
 
 // Returns a non-negative penalty in [0, 0.12].
