@@ -78,7 +78,7 @@ def norm_key(title, author):
     """Loose match key: bare lowercase title + first-listed author."""
     t = re.sub(r'\s*[:({\[].*', '', str(title)).strip().lower()
     t = re.sub(r'\s*\(.*?\)\s*$', '', t).strip()
-    a = str(author).split(',')[0].strip().lower()
+    a = re.sub(r'\s+', ' ', str(author).split(',')[0]).strip().lower()
     return f'{t}|||{a}'
 
 def parse_date(date_str):

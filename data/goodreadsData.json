@@ -3,8 +3,8 @@
     "sourceFile": null,
     "generatedAt": "2026-06-01T00:00:00.000Z",
     "bookCount": 958,
-    "readCount": 645,
-    "toReadCount": 314,
+    "readCount": 643,
+    "toReadCount": 290,
     "currentlyReadingCount": 1,
     "fiveStarCount": 260,
     "notes": "Hardcoded from personal Goodreads export.",
@@ -622,45 +622,6 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81XQpXyXRHL._SX300_.jpg"
     },
     {
-      "bookKey": "house-of-fidelity-the-rise-of-the-johnson-dynasty-and-the-company-that-changed-american-investing|justin-baer",
-      "bookId": "241039527",
-      "title": "House of Fidelity: The Rise of the Johnson Dynasty and the Company That Changed American Investing",
-      "author": "Justin Baer",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.8,
-      "pages": 384,
-      "dateRead": null,
-      "dateAdded": "2026/05/07",
-      "isbn": "1538766957",
-      "isbn13": "9781538766958",
-      "publisher": "Grand Central Publishing",
-      "year": 2026,
-      "type": "nonfiction",
-      "themes": [
-        "finance",
-        "wall street",
-        "narrative nonfiction"
-      ],
-      "similarToTitles": [
-        "Flash Boys: A Wall Street Revolt",
-        "The Big Short: Inside the Doomsday Machine"
-      ],
-      "similarToAuthors": [
-        "Michael Lewis",
-        "Brad Stone"
-      ],
-      "ratingsCount": 2000,
-      "tones": [
-        "dense",
-        "narrative-driven",
-        "accessible"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://m.media-amazon.com/images/I/91Oo4yC6MtL._SX300_.jpg"
-    },
-    {
       "bookKey": "eating-the-dinosaur|chuck-klosterman",
       "bookId": "7286964",
       "title": "Eating the Dinosaur",
@@ -700,44 +661,6 @@
         "accessible",
         "narrative-driven"
       ]
-    },
-    {
-      "bookKey": "the-body|stephen-king",
-      "bookId": "249109853",
-      "title": "The Body",
-      "author": "Stephen King",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 4.3,
-      "pages": 96,
-      "dateRead": null,
-      "dateAdded": "2026/03/06",
-      "isbn": "1668170612",
-      "isbn13": "9781668170618",
-      "publisher": "Simon & Schuster Audio",
-      "year": 2026,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1527495506i/38926465.jpg",
-      "type": "fiction",
-      "themes": [
-        "literary",
-        "coming-of-age"
-      ],
-      "similarToTitles": [
-        "The Outsider",
-        "Billy Summers"
-      ],
-      "similarToAuthors": [
-        "Blake Crouch",
-        "Chuck Klosterman"
-      ],
-      "ratingsCount": 85000,
-      "tones": [
-        "atmospheric",
-        "melancholic",
-        "character-driven"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
     },
     {
       "bookKey": "creep|jennifer-hillier",
@@ -4237,46 +4160,6 @@
         "plot-driven",
         "dark"
       ]
-    },
-    {
-      "bookKey": "1929-inside-the-greatest-crash-in-history-and-how-it-shattered-a-nation|andrew-ross-sorkin",
-      "bookId": "211179569",
-      "title": "1929: Inside the Greatest Crash in History \u2013 and How It Shattered a Nation",
-      "author": "Andrew Ross Sorkin",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 4,
-      "pages": 577,
-      "dateRead": null,
-      "dateAdded": "2025/10/16",
-      "isbn": "0241479428",
-      "isbn13": "9780241479421",
-      "publisher": "Viking Books",
-      "year": 2025,
-      "type": "nonfiction",
-      "themes": [
-        "finance",
-        "wall street",
-        "history"
-      ],
-      "similarToTitles": [
-        "The Big Short: Inside the Doomsday Machine",
-        "Flash Boys: A Wall Street Revolt"
-      ],
-      "similarToAuthors": [
-        "Michael Lewis",
-        "Sebastian Mallaby"
-      ],
-      "ratingsCount": 25000,
-      "tones": [
-        "dense",
-        "fast-paced",
-        "investigative",
-        "narrative-driven"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://m.media-amazon.com/images/I/71UsOBohZeL._SX300_.jpg"
     },
     {
       "bookKey": "the-boomerang|robert-bailey",
@@ -9817,44 +9700,6 @@
       "coverUrl": "https://books.google.com/books/content?id=PXInEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
-      "bookKey": "on-tyranny-twenty-lessons-from-the-twentieth-century|timothy-snyder",
-      "bookId": "33917107",
-      "title": "On Tyranny: Twenty Lessons from the Twentieth Century",
-      "author": "Timothy Snyder",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 4.2,
-      "pages": 127,
-      "dateRead": null,
-      "dateAdded": "2025/07/13",
-      "isbn": "0804190119",
-      "isbn13": "9780804190114",
-      "publisher": "Tim Duggan Books",
-      "year": 2017,
-      "type": "nonfiction",
-      "themes": [
-        "history",
-        "narrative nonfiction"
-      ],
-      "similarToTitles": [
-        "A Promised Land",
-        "The Accidental President: Harry S. Truman and the Four Months That Changed the World"
-      ],
-      "similarToAuthors": [
-        "Barack Obama",
-        "A.J. Baime"
-      ],
-      "ratingsCount": 220000,
-      "tones": [
-        "narrative-driven",
-        "accessible",
-        "dense"
-      ],
-      "googleRating": 3.5,
-      "googleRatingsCount": 4,
-      "coverUrl": "https://m.media-amazon.com/images/I/816-80H7rwL._SX300_.jpg"
-    },
-    {
       "bookKey": "we-used-to-live-here|marcus-kliewer",
       "bookId": "199798006",
       "title": "We Used to Live Here",
@@ -10698,46 +10543,6 @@
       "coverUrl": "https://books.google.com/books/content?id=Mu_yDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
-      "bookKey": "an-innocent-client|scott-pratt",
-      "bookId": "32077564",
-      "title": "An Innocent Client (Joe Dillard, #1)",
-      "author": "Scott Pratt",
-      "shelf": "read",
-      "myRating": 4,
-      "avgRating": 4.3,
-      "pages": 375,
-      "dateRead": null,
-      "dateAdded": "2023/02/03",
-      "isbn": null,
-      "isbn13": "9780451412652",
-      "publisher": "Phoenix Flying, Inc.",
-      "year": 2013,
-      "type": "fiction",
-      "themes": [
-        "legal",
-        "thriller",
-        "courtroom"
-      ],
-      "similarToTitles": [
-        "A Time to Kill (Jake Brigance, #1)",
-        "The Street Lawyer"
-      ],
-      "similarToAuthors": [
-        "John Grisham",
-        "Scott Turow"
-      ],
-      "ratingsCount": 22000,
-      "tones": [
-        "fast-paced",
-        "procedural",
-        "tense",
-        "plot-driven"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=34RyzgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
-    },
-    {
       "bookKey": "say-nothing|brad-parks",
       "bookId": "30689366",
       "title": "Say Nothing",
@@ -11069,7 +10874,7 @@
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.1,
-      "pages": 0,
+      "pages": 304,
       "dateRead": null,
       "dateAdded": "2025/03/05",
       "isbn": null,
@@ -14794,44 +14599,6 @@
       "googleRating": null,
       "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=iCFeDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
-    },
-    {
-      "bookKey": "how-to-know-a-person-the-art-of-seeing-others-deeply-and-being-deeply-seen|david-brooks",
-      "bookId": "112974860",
-      "title": "How to Know a Person: The Art of Seeing Others Deeply and Being Deeply Seen",
-      "author": "David Brooks",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.9,
-      "pages": 306,
-      "dateRead": null,
-      "dateAdded": "2024/05/25",
-      "isbn": "059323006X",
-      "isbn13": "9780593230084",
-      "publisher": "Random House",
-      "year": 2023,
-      "type": "nonfiction",
-      "themes": [
-        "psychology",
-        "narrative nonfiction"
-      ],
-      "similarToTitles": [
-        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
-        "Educated"
-      ],
-      "similarToAuthors": [
-        "Lori Gottlieb",
-        "Tara Westover"
-      ],
-      "ratingsCount": 110000,
-      "tones": [
-        "accessible",
-        "narrative-driven",
-        "dense"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=HZRqEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "seeing-further-the-story-of-science-and-the-royal-society|bill-bryson",
@@ -23853,46 +23620,6 @@
         "compulsive",
         "dark"
       ]
-    },
-    {
-      "bookKey": "to-sleep-in-a-sea-of-stars|christopher-paolini",
-      "bookId": "56179373",
-      "title": "To Sleep in a Sea of Stars (Fractalverse, #1)",
-      "author": "Christopher Paolini",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.8,
-      "pages": 880,
-      "dateRead": null,
-      "dateAdded": "2021/08/02",
-      "isbn": "1250762928",
-      "isbn13": "9781250762924",
-      "publisher": "Tor Books",
-      "year": 2021,
-      "type": "fiction",
-      "themes": [
-        "sci-fi",
-        "speculative",
-        "adventure"
-      ],
-      "similarToTitles": [
-        "Seveneves",
-        "Project Hail Mary"
-      ],
-      "similarToAuthors": [
-        "Neal Stephenson",
-        "Andy Weir"
-      ],
-      "ratingsCount": 110000,
-      "tones": [
-        "slow-burn",
-        "atmospheric",
-        "fast-paced",
-        "plot-driven"
-      ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 2,
-      "coverUrl": "https://books.google.com/books/content?id=vci9DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "if-you-tell-a-true-story-of-murder-family-secrets-and-the-unbreakable-bond-of-sisterhood|gregg-olsen",
@@ -37678,49 +37405,6 @@
       ]
     },
     {
-      "bookKey": "the-exchange-after-the-firm|john-grisham",
-      "bookId": "123285511",
-      "title": "The Exchange: After The Firm",
-      "author": "John Grisham",
-      "shelf": "read",
-      "myRating": 2,
-      "avgRating": 3.74,
-      "pages": 352,
-      "dateRead": null,
-      "dateAdded": "2023/05/27",
-      "isbn": "0385548958",
-      "isbn13": "9780385548953",
-      "publisher": "Doubleday",
-      "year": 2023,
-      "themes": [
-        "legal thriller",
-        "thriller",
-        "suspense",
-        "crime"
-      ],
-      "similarToTitles": [
-        "The Firm",
-        "The Pelican Brief",
-        "The Associate",
-        "The Lincoln Lawyer"
-      ],
-      "similarToAuthors": [
-        "David Baldacci",
-        "Brad Meltzer",
-        "James Patterson",
-        "Scott Turow"
-      ],
-      "ratingsCount": 98000,
-      "dnf": true,
-      "type": "fiction",
-      "tones": [
-        "fast-paced",
-        "procedural",
-        "plot-driven",
-        "tense"
-      ]
-    },
-    {
       "bookKey": "the-ferryman|justin-cronin",
       "bookId": "61282437",
       "title": "The Ferryman",
@@ -38062,12 +37746,12 @@
     },
     {
       "title": "House of Fidelity: The Rise of the Johnson Dynasty and the Company That Changed American Investing",
-      "author": "Justin  Baer",
+      "author": "Justin Baer",
       "isbn13": null,
       "isbn": "1538766957",
       "avgRating": 3.75,
       "ratingsCount": 0,
-      "year": null,
+      "year": 2024,
       "pages": 384,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1756934751l/241039527._SY475_.jpg",
       "shelf": "to-read",
@@ -38095,41 +37779,8 @@
       ]
     },
     {
-      "title": "The Midnight Lawyer (Hank Luger Legal Thrillers, #1)",
-      "author": "J.J.  Miller",
-      "isbn13": null,
-      "isbn": null,
-      "avgRating": 4.36,
-      "ratingsCount": 0,
-      "year": null,
-      "pages": 396,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743045684l/230424523._SY475_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "fiction",
-      "themes": [
-        "legal",
-        "thriller",
-        "courtroom"
-      ],
-      "tones": [
-        "fast-paced",
-        "procedural",
-        "tense"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "The Lincoln Lawyer",
-        "A Time to Kill"
-      ],
-      "similarToAuthors": [
-        "John Grisham",
-        "Michael Connelly"
-      ]
-    },
-    {
       "title": "The Body",
-      "author": "Stephen  King",
+      "author": "Stephen King",
       "isbn13": null,
       "isbn": "1668170612",
       "avgRating": 4.29,
@@ -38158,369 +37809,6 @@
       "similarToAuthors": [
         "Dennis Lehane",
         "Ray Bradbury"
-      ]
-    },
-    {
-      "title": "The Merge",
-      "author": "Grace          Walker",
-      "isbn13": null,
-      "isbn": "0063446731",
-      "avgRating": 3.69,
-      "ratingsCount": 0,
-      "year": 2025,
-      "pages": 320,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743149009l/223614634._SY475_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "fiction",
-      "themes": [
-        "thriller",
-        "speculative",
-        "contemporary"
-      ],
-      "tones": [
-        "fast-paced",
-        "tense",
-        "plot-driven"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "Dark Matter",
-        "The Final Gambit"
-      ],
-      "similarToAuthors": [
-        "Blake Crouch",
-        "Harlan Coben"
-      ]
-    },
-    {
-      "title": "The Idaho Four: An American Tragedy (James Patterson True Crime, 3)",
-      "author": "James  Patterson",
-      "isbn13": null,
-      "isbn": "0316572853",
-      "avgRating": 4.12,
-      "ratingsCount": 0,
-      "year": 2025,
-      "pages": 448,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739959692l/222733476._SY475_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "nonfiction",
-      "themes": [
-        "true crime",
-        "narrative nonfiction",
-        "crime"
-      ],
-      "tones": [
-        "investigative",
-        "dark",
-        "narrative-driven"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "I'll Be Gone in the Dark",
-        "American Fire"
-      ],
-      "similarToAuthors": [
-        "John Douglas",
-        "Michelle McNamara"
-      ]
-    },
-    {
-      "title": "The Running Man",
-      "author": "Richard  Bachman",
-      "isbn13": null,
-      "isbn": "1668208121",
-      "avgRating": 3.64,
-      "ratingsCount": 0,
-      "year": 1982,
-      "pages": 352,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1752766696l/237828922._SY475_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "fiction",
-      "themes": [
-        "thriller",
-        "speculative",
-        "sci-fi"
-      ],
-      "tones": [
-        "fast-paced",
-        "dark",
-        "tense"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "The Long Walk",
-        "Battle Royale"
-      ],
-      "similarToAuthors": [
-        "Philip K. Dick",
-        "George Orwell"
-      ]
-    },
-    {
-      "title": "Rich Blood (Jason Rich, #1)",
-      "author": "Robert  Bailey",
-      "isbn13": null,
-      "isbn": "1542037263",
-      "avgRating": 4.3,
-      "ratingsCount": 0,
-      "year": 2022,
-      "pages": 380,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1644100235l/58920609._SY475_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "fiction",
-      "themes": [
-        "legal",
-        "thriller",
-        "courtroom"
-      ],
-      "tones": [
-        "fast-paced",
-        "procedural",
-        "tense"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "A Time to Kill",
-        "The Boomerang"
-      ],
-      "similarToAuthors": [
-        "John Grisham",
-        "Scott Turow"
-      ]
-    },
-    {
-      "title": "12 Months to Live (Jane Smith, #1)",
-      "author": "James  Patterson",
-      "isbn13": null,
-      "isbn": "0316405795",
-      "avgRating": 4.09,
-      "ratingsCount": 0,
-      "year": 2023,
-      "pages": 400,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1684768893l/75569754.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "fiction",
-      "themes": [
-        "legal",
-        "thriller",
-        "mystery"
-      ],
-      "tones": [
-        "fast-paced",
-        "procedural",
-        "plot-driven"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "The Lincoln Lawyer",
-        "1st to Die"
-      ],
-      "similarToAuthors": [
-        "John Grisham",
-        "Michael Connelly"
-      ]
-    },
-    {
-      "title": "Inside the Cartel: How an Undercover FBI Agent Smuggled Cocaine, Laundered Cash, and Dismantled a Colombian Narco-Empire",
-      "author": "Martin   Suarez",
-      "isbn13": null,
-      "isbn": "0063354012",
-      "avgRating": 4.05,
-      "ratingsCount": 0,
-      "year": null,
-      "pages": 304,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1741188620l/215217592._SY475_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "nonfiction",
-      "themes": [
-        "true crime",
-        "narrative nonfiction",
-        "crime"
-      ],
-      "tones": [
-        "investigative",
-        "fast-paced",
-        "dark"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "El Narco",
-        "Operation Odessa"
-      ],
-      "similarToAuthors": [
-        "Ioan Grillo",
-        "Don Winslow"
-      ]
-    },
-    {
-      "title": "Not Quite Dead Yet",
-      "author": "Holly  Jackson",
-      "isbn13": null,
-      "isbn": "059397705X",
-      "avgRating": 3.98,
-      "ratingsCount": 0,
-      "year": 2025,
-      "pages": 400,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1739418770l/220223963._SY475_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "fiction",
-      "themes": [
-        "mystery",
-        "thriller",
-        "suspense"
-      ],
-      "tones": [
-        "fast-paced",
-        "twisty",
-        "whodunit"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "A Good Girl's Guide to Murder",
-        "Five Survive"
-      ],
-      "similarToAuthors": [
-        "Karen M. McManus",
-        "Maureen Johnson"
-      ]
-    },
-    {
-      "title": "The Life of Chuck",
-      "author": "Stephen  King",
-      "isbn13": null,
-      "isbn": "1668208792",
-      "avgRating": 4.23,
-      "ratingsCount": 0,
-      "year": null,
-      "pages": 128,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1747771053l/229251932._SX318_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "fiction",
-      "themes": [
-        "literary",
-        "speculative",
-        "contemporary"
-      ],
-      "tones": [
-        "atmospheric",
-        "melancholic",
-        "character-driven"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "The Green Mile",
-        "The Body"
-      ],
-      "similarToAuthors": [
-        "Dennis Lehane",
-        "Garth Stein"
-      ]
-    },
-    {
-      "title": "How I Killed Pluto and Why It Had It Coming",
-      "author": "Mike    Brown",
-      "isbn13": null,
-      "isbn": "0307932699",
-      "avgRating": 4.17,
-      "ratingsCount": 0,
-      "year": 2010,
-      "pages": 0,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1347770850l/10146802.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "nonfiction",
-      "themes": [
-        "narrative nonfiction",
-        "science",
-        "memoir"
-      ],
-      "tones": [
-        "humorous",
-        "accessible",
-        "conversational"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "Astrophysics for People in a Hurry",
-        "Packing for Mars"
-      ],
-      "similarToAuthors": [
-        "Neil deGrasse Tyson",
-        "Mary Roach"
-      ]
-    },
-    {
-      "title": "The God of the Woods",
-      "author": "Liz    Moore",
-      "isbn13": null,
-      "isbn": "0593418913",
-      "avgRating": 4.04,
-      "ratingsCount": 0,
-      "year": 2024,
-      "pages": 478,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717970585l/199700434._SY475_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "fiction",
-      "themes": [
-        "mystery",
-        "thriller",
-        "literary"
-      ],
-      "tones": [
-        "atmospheric",
-        "slow-burn",
-        "dark"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "Long Bright River",
-        "Where the Crawdads Sing"
-      ],
-      "similarToAuthors": [
-        "Tana French",
-        "Kate Atkinson"
-      ]
-    },
-    {
-      "title": "Everything Is Tuberculosis: The History and Persistence of Our Deadliest Infection",
-      "author": "John  Green",
-      "isbn13": null,
-      "isbn": "0525556575",
-      "avgRating": 4.32,
-      "ratingsCount": 0,
-      "year": 2025,
-      "pages": 198,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1729825992l/220341389._SY475_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "nonfiction",
-      "themes": [
-        "history",
-        "narrative nonfiction",
-        "science"
-      ],
-      "tones": [
-        "accessible",
-        "conversational",
-        "narrative-driven"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "The Immortal Life of Henrietta Lacks",
-        "Spillover"
-      ],
-      "similarToAuthors": [
-        "Rebecca Skloot",
-        "David Quammen"
       ]
     },
     {
@@ -38558,7 +37846,7 @@
     },
     {
       "title": "How to Know a Person: The Art of Seeing Others Deeply and Being Deeply Seen",
-      "author": "David  Brooks",
+      "author": "David Brooks",
       "isbn13": null,
       "isbn": "059323006X",
       "avgRating": 4.02,
@@ -38587,204 +37875,6 @@
       "similarToAuthors": [
         "Malcolm Gladwell",
         "Jonathan Haidt"
-      ]
-    },
-    {
-      "title": "Revival",
-      "author": "Stephen  King",
-      "isbn13": null,
-      "isbn": "1476770387",
-      "avgRating": 3.78,
-      "ratingsCount": 0,
-      "year": 2014,
-      "pages": 405,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1510335323l/20926278._SY475_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "fiction",
-      "themes": [
-        "horror",
-        "thriller",
-        "literary"
-      ],
-      "tones": [
-        "dark",
-        "atmospheric",
-        "slow-burn"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "Doctor Sleep",
-        "Pet Sematary"
-      ],
-      "similarToAuthors": [
-        "Joe Hill",
-        "Dean Koontz"
-      ]
-    },
-    {
-      "title": "On Earth as It Is on Television",
-      "author": "Emily  Jane",
-      "isbn13": null,
-      "isbn": "1368101208",
-      "avgRating": 3.84,
-      "ratingsCount": 0,
-      "year": 2023,
-      "pages": 380,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1706715171l/206340812._SY475_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "fiction",
-      "themes": [
-        "speculative",
-        "literary",
-        "contemporary"
-      ],
-      "tones": [
-        "humorous",
-        "atmospheric",
-        "character-driven"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "Station Eleven",
-        "The Hitchhiker's Guide to the Galaxy"
-      ],
-      "similarToAuthors": [
-        "Emily St. John Mandel",
-        "Douglas Adams"
-      ]
-    },
-    {
-      "title": "Black Sheep",
-      "author": "Rachel   Harrison",
-      "isbn13": null,
-      "isbn": "0593545850",
-      "avgRating": 3.56,
-      "ratingsCount": 0,
-      "year": 2023,
-      "pages": 289,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680293749l/69704909.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "fiction",
-      "themes": [
-        "horror",
-        "thriller",
-        "contemporary"
-      ],
-      "tones": [
-        "dark",
-        "humorous",
-        "atmospheric"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "The Year of the Witching",
-        "Midsommar"
-      ],
-      "similarToAuthors": [
-        "Carmen Maria Machado",
-        "Paul Tremblay"
-      ]
-    },
-    {
-      "title": "Sleeping Beauties",
-      "author": "Stephen  King",
-      "isbn13": null,
-      "isbn": "150116340X",
-      "avgRating": 3.7,
-      "ratingsCount": 0,
-      "year": 2017,
-      "pages": 702,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1510335748l/34466922._SY475_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "fiction",
-      "themes": [
-        "horror",
-        "speculative",
-        "thriller"
-      ],
-      "tones": [
-        "dark",
-        "atmospheric",
-        "tense"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "The Stand",
-        "Under the Dome"
-      ],
-      "similarToAuthors": [
-        "Joe Hill",
-        "Dan Simmons"
-      ]
-    },
-    {
-      "title": "Entrances and Exits",
-      "author": "Michael    Richards",
-      "isbn13": null,
-      "isbn": "1637589131",
-      "avgRating": 3.99,
-      "ratingsCount": 0,
-      "year": null,
-      "pages": 425,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1713686954l/201339849._SY475_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "nonfiction",
-      "themes": [
-        "memoir",
-        "biography",
-        "humor"
-      ],
-      "tones": [
-        "personal",
-        "conversational",
-        "humorous"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "Is This Anything?",
-        "Born Standing Up"
-      ],
-      "similarToAuthors": [
-        "Jerry Seinfeld",
-        "Steve Martin"
-      ]
-    },
-    {
-      "title": "Born Standing Up: A Comic's Life",
-      "author": "Steve  Martin",
-      "isbn13": null,
-      "isbn": "1416553649",
-      "avgRating": 3.87,
-      "ratingsCount": 0,
-      "year": 2007,
-      "pages": 207,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348034328l/773858.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "nonfiction",
-      "themes": [
-        "memoir",
-        "biography",
-        "humor"
-      ],
-      "tones": [
-        "conversational",
-        "humorous",
-        "personal"
-      ],
-      "dnf": false,
-      "similarToTitles": [
-        "Is This Anything?",
-        "Entrances and Exits"
-      ],
-      "similarToAuthors": [
-        "Jerry Seinfeld",
-        "Mike Birbiglia"
       ]
     }
   ],
