@@ -4,7 +4,7 @@
     "generatedAt": "2026-06-01T00:00:00.000Z",
     "bookCount": 958,
     "readCount": 645,
-    "toReadCount": 335,
+    "toReadCount": 314,
     "currentlyReadingCount": 1,
     "fiveStarCount": 260,
     "notes": "Hardcoded from personal Goodreads export.",
@@ -2194,46 +2194,6 @@
       ],
       "googleRating": 3.5,
       "googleRatingsCount": 4
-    },
-    {
-      "bookKey": "what-it-takes-lessons-in-the-pursuit-of-excellence|stephen-a-schwarzman",
-      "bookId": "45733318",
-      "title": "What It Takes: Lessons in the Pursuit of Excellence",
-      "author": "Stephen A. Schwarzman",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.9,
-      "pages": 400,
-      "dateRead": null,
-      "dateAdded": "2020/08/02",
-      "isbn": "1508279144",
-      "isbn13": "9781508279143",
-      "publisher": "Simon & Schuster Audio",
-      "year": 2019,
-      "type": "nonfiction",
-      "themes": [
-        "finance",
-        "business",
-        "biography"
-      ],
-      "similarToTitles": [
-        "Shoe Dog",
-        "The Everything Store: Jeff Bezos and the Age of Amazon"
-      ],
-      "similarToAuthors": [
-        "Phil Knight",
-        "Brad Stone"
-      ],
-      "ratingsCount": 28000,
-      "tones": [
-        "narrative-driven",
-        "accessible",
-        "character-study",
-        "dense"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=h06qDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-final-score|don-winslow",
@@ -20287,44 +20247,6 @@
       "coverUrl": "https://books.google.com/books/content?id=RcdrEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
-      "bookKey": "butts-a-backstory|heather-radke",
-      "bookId": "59366123",
-      "title": "Butts: A Backstory",
-      "author": "Heather Radke",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.7,
-      "pages": 311,
-      "dateRead": null,
-      "dateAdded": "2022/10/29",
-      "isbn": "1982135484",
-      "isbn13": "9781982135485",
-      "publisher": "Avid Reader Press / Simon & Schuster",
-      "year": 2022,
-      "type": "nonfiction",
-      "themes": [
-        "narrative nonfiction",
-        "history"
-      ],
-      "similarToTitles": [
-        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
-        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)"
-      ],
-      "similarToAuthors": [
-        "Chuck Klosterman",
-        "Bill Bryson"
-      ],
-      "ratingsCount": 32000,
-      "tones": [
-        "narrative-driven",
-        "accessible",
-        "dense"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=GCC_EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
-    },
-    {
       "bookKey": "once-upon-a-december|amy-e-reichert",
       "bookId": "60097392",
       "title": "Once Upon a December",
@@ -20608,46 +20530,6 @@
       "coverUrl": "https://books.google.com/books/content?id=ErUdEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
-      "bookKey": "the-book-of-joe-trying-not-to-suck-at-baseball-and-life|joe-maddon",
-      "bookId": "60568501",
-      "title": "The Book of Joe: Trying Not to Suck at Baseball and Life",
-      "author": "Joe Maddon",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.9,
-      "pages": 369,
-      "dateRead": null,
-      "dateAdded": "2022/10/13",
-      "isbn": "1538751798",
-      "isbn13": "9781538751794",
-      "publisher": "Twelve",
-      "year": 2022,
-      "type": "nonfiction",
-      "themes": [
-        "sports",
-        "memoir",
-        "narrative nonfiction"
-      ],
-      "similarToTitles": [
-        "The Cubs Way: The Zen of Building the Best Team in Baseball and Breaking the Curse",
-        "Charlie Hustle: The Rise and Fall of Pete Rose, and the Last Glory Days of Baseball"
-      ],
-      "similarToAuthors": [
-        "Tom Verducci",
-        "Keith O'Brien"
-      ],
-      "ratingsCount": 12000,
-      "tones": [
-        "narrative-driven",
-        "accessible",
-        "character-study",
-        "personal"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=xzxkEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
-    },
-    {
       "bookKey": "the-woods|harlan-coben",
       "bookId": "59119583",
       "title": "The Woods",
@@ -20921,45 +20803,6 @@
         "accessible",
         "personal"
       ]
-    },
-    {
-      "bookKey": "cheap-land-colorado-off-gridders-at-america-s-edge|ted-conover",
-      "bookId": "60206504",
-      "title": "Cheap Land Colorado: Off-Gridders at America's Edge",
-      "author": "Ted Conover",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.8,
-      "pages": 287,
-      "dateRead": null,
-      "dateAdded": "2022/09/08",
-      "isbn": "0525521488",
-      "isbn13": "9780525521488",
-      "publisher": "Knopf",
-      "year": 2022,
-      "type": "nonfiction",
-      "themes": [
-        "narrative nonfiction",
-        "adventure",
-        "social commentary"
-      ],
-      "similarToTitles": [
-        "Chesapeake Requiem: A Year With the Watermen of Vanishing Tangier Island",
-        "Educated"
-      ],
-      "similarToAuthors": [
-        "Earl Swift",
-        "Tara Westover"
-      ],
-      "ratingsCount": 12000,
-      "tones": [
-        "immersive-journalism",
-        "narrative-driven",
-        "accessible"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=s4T-EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "boys-will-be-boys-the-glory-days-and-party-nights-of-the-dallas-cowboys-dynasty|jeff-pearlman",
@@ -21571,46 +21414,6 @@
       ]
     },
     {
-      "bookKey": "the-girl-in-the-castle|james-patterson",
-      "bookId": "60420291",
-      "title": "The Girl in the Castle",
-      "author": "James Patterson",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.9,
-      "pages": 368,
-      "dateRead": null,
-      "dateAdded": "2022/06/15",
-      "isbn": "0316411728",
-      "isbn13": "9780316411721",
-      "publisher": "jimmy patterson",
-      "year": 2022,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1647948485i/60420291.jpg",
-      "type": "fiction",
-      "themes": [
-        "thriller",
-        "historical",
-        "mystery"
-      ],
-      "similarToTitles": [
-        "Along Came a Spider (Alex Cross, #1)",
-        "The Silent Patient"
-      ],
-      "similarToAuthors": [
-        "John Grisham",
-        "Alex Michaelides"
-      ],
-      "ratingsCount": 22000,
-      "tones": [
-        "fast-paced",
-        "plot-driven",
-        "compulsive",
-        "slow-burn"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
-    },
-    {
       "bookKey": "the-paris-apartment|lucy-foley",
       "bookId": "58468990",
       "title": "The Paris Apartment",
@@ -21690,44 +21493,6 @@
         "narrative-driven",
         "dense"
       ]
-    },
-    {
-      "bookKey": "ghost-lover|lisa-taddeo",
-      "bookId": "59366097",
-      "title": "Ghost Lover",
-      "author": "Lisa Taddeo",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.5,
-      "pages": 225,
-      "dateRead": null,
-      "dateAdded": "2022/06/15",
-      "isbn": "1982122188",
-      "isbn13": "9781982122188",
-      "publisher": "Avid Reader Press / Simon & Schuster",
-      "year": 2022,
-      "type": "fiction",
-      "themes": [
-        "literary",
-        "contemporary"
-      ],
-      "similarToTitles": [
-        "Three Women",
-        "Tomorrow, and Tomorrow, and Tomorrow"
-      ],
-      "similarToAuthors": [
-        "Gabrielle Zevin",
-        "Gary Shteyngart"
-      ],
-      "ratingsCount": 18000,
-      "tones": [
-        "character-driven",
-        "slow-burn",
-        "atmospheric"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=STpwEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "hell-of-a-book|jason-mott",
@@ -22125,83 +21890,6 @@
       ]
     },
     {
-      "bookKey": "a-visit-from-the-goon-squad|jennifer-egan",
-      "bookId": "7331435",
-      "title": "A Visit from the Goon Squad",
-      "author": "Jennifer Egan",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.7,
-      "pages": 274,
-      "dateRead": null,
-      "dateAdded": "2022/05/16",
-      "isbn": "0307592839",
-      "isbn13": "9780307592835",
-      "publisher": "Knopf",
-      "year": 2010,
-      "type": "fiction",
-      "themes": [
-        "literary",
-        "contemporary"
-      ],
-      "similarToTitles": [
-        "Tomorrow, and Tomorrow, and Tomorrow",
-        "The Storied Life of A.J. Fikry"
-      ],
-      "similarToAuthors": [
-        "Gabrielle Zevin",
-        "Gary Shteyngart"
-      ],
-      "ratingsCount": 110000,
-      "tones": [
-        "character-driven",
-        "slow-burn",
-        "atmospheric"
-      ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 1,
-      "coverUrl": "https://books.google.com/books/content?id=1211xyTX5ykC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
-    },
-    {
-      "bookKey": "no-one-is-talking-about-this|patricia-lockwood",
-      "bookId": "53733106",
-      "title": "No One Is Talking About This",
-      "author": "Patricia Lockwood",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.4,
-      "pages": 210,
-      "dateRead": null,
-      "dateAdded": "2022/05/16",
-      "isbn": "0593189582",
-      "isbn13": "9780593189580",
-      "publisher": "Riverhead Books",
-      "year": 2021,
-      "type": "fiction",
-      "themes": [
-        "literary",
-        "speculative",
-        "contemporary"
-      ],
-      "similarToTitles": [
-        "The Postmortal",
-        "Lake Success"
-      ],
-      "similarToAuthors": [
-        "Drew Magary",
-        "Gary Shteyngart"
-      ],
-      "ratingsCount": 85000,
-      "tones": [
-        "slow-burn",
-        "character-driven",
-        "atmospheric"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=G5rmDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
-    },
-    {
       "bookKey": "gwendy-s-final-task|stephen-king",
       "bookId": "59366265",
       "title": "Gwendy's Final Task (The Button Box, #3)",
@@ -22239,45 +21927,6 @@
       ],
       "googleRating": null,
       "googleRatingsCount": null
-    },
-    {
-      "bookKey": "the-midrange-theory|seth-partnow",
-      "bookId": "57136758",
-      "title": "The Midrange Theory",
-      "author": "Seth Partnow",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.9,
-      "pages": 288,
-      "dateRead": null,
-      "dateAdded": "2022/04/14",
-      "isbn": "1629379212",
-      "isbn13": "9781629379210",
-      "publisher": "Triumph Books",
-      "year": 2021,
-      "type": "nonfiction",
-      "themes": [
-        "sports",
-        "narrative nonfiction"
-      ],
-      "similarToTitles": [
-        "How to Watch Basketball Like a Genius: What Game Designers, Economists, Ballet Choreographers, and Theoretical Astrophysicists Reveal About the Greatest Game on Earth",
-        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First"
-      ],
-      "similarToAuthors": [
-        "Ben Cohen",
-        "Sam Walker"
-      ],
-      "ratingsCount": 3000,
-      "tones": [
-        "narrative-driven",
-        "accessible",
-        "dense",
-        "data-driven"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=ZO27zgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "i-ll-be-gone-in-the-dark-one-woman-s-obsessive-search-for-the-golden-state-killer|michelle-mcnamara",
@@ -23168,44 +22817,6 @@
       ]
     },
     {
-      "bookKey": "bittersweet-how-sorrow-and-longing-make-us-whole|susan-cain",
-      "bookId": "58734811",
-      "title": "Bittersweet: How Sorrow and Longing Make Us Whole",
-      "author": "Susan Cain",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.6,
-      "pages": 310,
-      "dateRead": null,
-      "dateAdded": "2021/12/28",
-      "isbn": "0451499786",
-      "isbn13": "9780451499783",
-      "publisher": "Crown",
-      "year": 2022,
-      "type": "nonfiction",
-      "themes": [
-        "psychology",
-        "narrative nonfiction"
-      ],
-      "similarToTitles": [
-        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
-        "Educated"
-      ],
-      "similarToAuthors": [
-        "Lori Gottlieb",
-        "Tara Westover"
-      ],
-      "ratingsCount": 110000,
-      "tones": [
-        "accessible",
-        "narrative-driven",
-        "dense"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=4oVoEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
-    },
-    {
       "bookKey": "comedy-comedy-comedy-drama|bob-odenkirk",
       "bookId": "57851735",
       "title": "Comedy Comedy Comedy Drama",
@@ -23486,46 +23097,6 @@
         "tense",
         "compulsive"
       ]
-    },
-    {
-      "bookKey": "klara-and-the-sun|kazuo-ishiguro",
-      "bookId": "54120408",
-      "title": "Klara and the Sun",
-      "author": "Kazuo Ishiguro",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.9,
-      "pages": 303,
-      "dateRead": null,
-      "dateAdded": "2021/12/09",
-      "isbn": "059331817X",
-      "isbn13": "9780593318171",
-      "publisher": "Alfred A. Knopf",
-      "year": 2021,
-      "type": "fiction",
-      "themes": [
-        "literary",
-        "speculative",
-        "philosophical"
-      ],
-      "similarToTitles": [
-        "The Invisible Life of Addie LaRue",
-        "The Midnight Library (The Midnight World, #1)"
-      ],
-      "similarToAuthors": [
-        "V.E. Schwab",
-        "Matt Haig"
-      ],
-      "ratingsCount": 250000,
-      "tones": [
-        "slow-burn",
-        "character-driven",
-        "atmospheric",
-        "dense"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=S7jrDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "dirt-adventures-in-lyon-as-a-chef-in-training-father-and-sleuth-looking-for-the-secret-of-french-cooking|bill-buford",
@@ -24127,46 +23698,6 @@
       "coverUrl": "https://books.google.com/books/content?id=oup6iagfox8C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
-      "bookKey": "the-wreckage-of-my-presence|casey-wilson",
-      "bookId": "54798456",
-      "title": "The Wreckage of My Presence",
-      "author": "Casey Wilson",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.8,
-      "pages": 288,
-      "dateRead": null,
-      "dateAdded": "2021/08/23",
-      "isbn": "006296058X",
-      "isbn13": "9780062960580",
-      "publisher": "Harper",
-      "year": 2021,
-      "type": "nonfiction",
-      "themes": [
-        "humor",
-        "memoir",
-        "narrative nonfiction"
-      ],
-      "similarToTitles": [
-        "Yearbook",
-        "A Life in Parts"
-      ],
-      "similarToAuthors": [
-        "Seth Rogen",
-        "Bryan Cranston"
-      ],
-      "ratingsCount": 28000,
-      "tones": [
-        "conversational",
-        "character-study",
-        "humorous",
-        "narrative-driven"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=ClL1DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
-    },
-    {
       "bookKey": "l-a-son-my-life-my-city-my-food|roy-choi",
       "bookId": "17331327",
       "title": "L.A. Son: My Life, My City, My Food",
@@ -24680,46 +24211,6 @@
       ]
     },
     {
-      "bookKey": "lizzie-dante|mary-bly",
-      "bookId": "55333946",
-      "title": "Lizzie & Dante",
-      "author": "Mary Bly",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.5,
-      "pages": 320,
-      "dateRead": null,
-      "dateAdded": "2021/06/12",
-      "isbn": "0593134826",
-      "isbn13": "9780593134825",
-      "publisher": "The Dial Press",
-      "year": 2021,
-      "type": "fiction",
-      "themes": [
-        "romance",
-        "literary",
-        "historical"
-      ],
-      "similarToTitles": [
-        "One Day",
-        "The Statistical Probability of Love at First Sight"
-      ],
-      "similarToAuthors": [
-        "David Nicholls",
-        "Jennifer E. Smith"
-      ],
-      "ratingsCount": 12000,
-      "tones": [
-        "slow-burn",
-        "character-driven",
-        "atmospheric",
-        "heartwarming"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=3zBfEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
-    },
-    {
       "bookKey": "the-great-influenza-the-story-of-the-deadliest-pandemic-in-history|john-m-barry",
       "bookId": "29036",
       "title": "The Great Influenza: The Story of the Deadliest Pandemic in History",
@@ -24758,46 +24249,6 @@
       "googleRating": null,
       "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=d7691ImvK7YC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
-    },
-    {
-      "bookKey": "blood-bones-and-butter-the-inadvertent-education-of-a-reluctant-chef|gabrielle-hamilton",
-      "bookId": "8459594",
-      "title": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-      "author": "Gabrielle Hamilton",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.9,
-      "pages": 304,
-      "dateRead": null,
-      "dateAdded": "2021/06/02",
-      "isbn": "140006872X",
-      "isbn13": "9781400068722",
-      "publisher": "Random House",
-      "year": 2011,
-      "type": "nonfiction",
-      "themes": [
-        "memoir",
-        "food",
-        "narrative nonfiction"
-      ],
-      "similarToTitles": [
-        "Eat a Peach",
-        "Save Me the Plums: My Gourmet Memoir"
-      ],
-      "similarToAuthors": [
-        "David Chang",
-        "Ruth Reichl"
-      ],
-      "ratingsCount": 85000,
-      "tones": [
-        "accessible",
-        "conversational",
-        "character-study",
-        "narrative-driven"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=xTUGbXlII5MC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-end-of-october|lawrence-wright",
@@ -25566,45 +25017,6 @@
       ]
     },
     {
-      "bookKey": "alibaba-the-house-that-jack-ma-built|duncan-clark",
-      "bookId": "25817524",
-      "title": "Alibaba: The House That Jack Ma Built",
-      "author": "Duncan Clark",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.8,
-      "pages": 304,
-      "dateRead": null,
-      "dateAdded": "2020/12/01",
-      "isbn": "0062413406",
-      "isbn13": "9780062413406",
-      "publisher": "Ecco",
-      "year": 2016,
-      "type": "nonfiction",
-      "themes": [
-        "tech history",
-        "business",
-        "narrative nonfiction"
-      ],
-      "similarToTitles": [
-        "The Everything Store: Jeff Bezos and the Age of Amazon",
-        "Super Pumped: The Battle for Uber"
-      ],
-      "similarToAuthors": [
-        "Brad Stone",
-        "Mike Isaac"
-      ],
-      "ratingsCount": 22000,
-      "tones": [
-        "narrative-driven",
-        "accessible",
-        "investigative"
-      ],
-      "googleRating": 4.5,
-      "googleRatingsCount": 2,
-      "coverUrl": "https://books.google.com/books/content?id=EI4zCgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
-    },
-    {
       "bookKey": "shit-actually-the-definitive-100-objective-guide-to-modern-cinema|lindy-west",
       "bookId": "53851695",
       "title": "Shit, Actually: The Definitive, 100% Objective Guide to Modern Cinema",
@@ -25761,46 +25173,6 @@
         "accessible",
         "personal"
       ]
-    },
-    {
-      "bookKey": "pee-wees-confessions-of-a-hockey-parent|rich-cohen",
-      "bookId": "53317521",
-      "title": "Pee Wees: Confessions of a Hockey Parent",
-      "author": "Rich Cohen",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.7,
-      "pages": 240,
-      "dateRead": null,
-      "dateAdded": "2020/11/25",
-      "isbn": "0374268010",
-      "isbn13": "9780374268015",
-      "publisher": "Farrar, Straus and Giroux",
-      "year": 2021,
-      "type": "nonfiction",
-      "themes": [
-        "sports",
-        "humor",
-        "memoir"
-      ],
-      "similarToTitles": [
-        "Fantasyland: True Tales from America's Most Compulsive Fantasy Baseball League",
-        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)"
-      ],
-      "similarToAuthors": [
-        "Chuck Klosterman",
-        "Sam Walker"
-      ],
-      "ratingsCount": 9000,
-      "tones": [
-        "conversational",
-        "character-study",
-        "humorous",
-        "narrative-driven"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=ybriDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "the-new-one-painfully-true-stories-from-a-reluctant-dad|mike-birbiglia",
@@ -25961,46 +25333,6 @@
       ]
     },
     {
-      "bookKey": "the-big-picture-the-fight-for-the-future-of-movies|ben-fritz",
-      "bookId": "38488114",
-      "title": "The Big Picture: The Fight for the Future of Movies",
-      "author": "Ben Fritz",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.8,
-      "pages": 309,
-      "dateRead": null,
-      "dateAdded": "2020/10/15",
-      "isbn": "0544789776",
-      "isbn13": "9780544789777",
-      "publisher": "Harper Business",
-      "year": 2018,
-      "type": "nonfiction",
-      "themes": [
-        "business",
-        "narrative nonfiction",
-        "tech history"
-      ],
-      "similarToTitles": [
-        "Super Pumped: The Battle for Uber",
-        "That Will Never Work: The Birth of Netflix and the Amazing Life of an Idea"
-      ],
-      "similarToAuthors": [
-        "Mike Isaac",
-        "Marc Randolph"
-      ],
-      "ratingsCount": 12000,
-      "tones": [
-        "narrative-driven",
-        "accessible",
-        "investigative",
-        "revelatory"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=7hdMDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
-    },
-    {
       "bookKey": "football-for-a-buck-the-crazy-rise-and-crazier-demise-of-the-usfl|jeff-pearlman",
       "bookId": "37569316",
       "title": "Football For A Buck: The Crazy Rise and Crazier Demise of the USFL",
@@ -26157,46 +25489,6 @@
       "googleRating": null,
       "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=fStEEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
-    },
-    {
-      "bookKey": "god-level-knowledge-darts-life-lessons-from-the-bronx|desus",
-      "bookId": "48995022",
-      "title": "God-Level Knowledge Darts: Life Lessons from the Bronx",
-      "author": "Desus",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.8,
-      "pages": 192,
-      "dateRead": null,
-      "dateAdded": "2020/09/24",
-      "isbn": "0525512330",
-      "isbn13": "9780525512332",
-      "publisher": "Random House",
-      "year": 2020,
-      "type": "nonfiction",
-      "themes": [
-        "humor",
-        "memoir",
-        "narrative nonfiction"
-      ],
-      "similarToTitles": [
-        "Yearbook",
-        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)"
-      ],
-      "similarToAuthors": [
-        "Seth Rogen",
-        "Chuck Klosterman"
-      ],
-      "ratingsCount": 6000,
-      "tones": [
-        "conversational",
-        "character-study",
-        "humorous",
-        "narrative-driven"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=uFbXDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "george-lucas-a-life|brian-jay-jones",
@@ -27000,46 +26292,6 @@
       "coverUrl": "https://books.google.com/books/content?id=bxahDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
-      "bookKey": "player-piano|kurt-vonnegut-jr",
-      "bookId": "9597",
-      "title": "Player Piano",
-      "author": "Kurt Vonnegut Jr.",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.9,
-      "pages": 341,
-      "dateRead": null,
-      "dateAdded": "2020/06/11",
-      "isbn": "0385333781",
-      "isbn13": "9780385333788",
-      "publisher": "Dial Press",
-      "year": 2006,
-      "type": "fiction",
-      "themes": [
-        "speculative",
-        "literary",
-        "dystopia"
-      ],
-      "similarToTitles": [
-        "The Postmortal",
-        "World War Z: An Oral History of the Zombie War"
-      ],
-      "similarToAuthors": [
-        "Drew Magary",
-        "Max Brooks"
-      ],
-      "ratingsCount": 110000,
-      "tones": [
-        "atmospheric",
-        "slow-burn",
-        "dark",
-        "character-driven"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=vCmxARuaIFYC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
-    },
-    {
       "bookKey": "betaball-how-silicon-valley-and-science-built-one-of-the-greatest-basketball-teams-in-history|erik-malinowski",
       "bookId": "35013637",
       "title": "Betaball: How Silicon Valley and Science Built One of the Greatest Basketball Teams in History",
@@ -27159,46 +26411,6 @@
         "tense",
         "plot-driven"
       ]
-    },
-    {
-      "bookKey": "annihilation|jeff-vandermeer",
-      "bookId": "17934530",
-      "title": "Annihilation (Southern Reach, #1)",
-      "author": "Jeff Vandermeer",
-      "shelf": "to-read",
-      "myRating": 0,
-      "avgRating": 3.7,
-      "pages": 195,
-      "dateRead": null,
-      "dateAdded": "2020/05/21",
-      "isbn": "0374104093",
-      "isbn13": "9780374104092",
-      "publisher": "Farrar, Straus and Giroux",
-      "year": 2014,
-      "type": "fiction",
-      "themes": [
-        "speculative",
-        "literary",
-        "mystery"
-      ],
-      "similarToTitles": [
-        "Seveneves",
-        "Dark Matter"
-      ],
-      "similarToAuthors": [
-        "Blake Crouch",
-        "Neal Stephenson"
-      ],
-      "ratingsCount": 300000,
-      "tones": [
-        "slow-burn",
-        "atmospheric",
-        "procedural",
-        "whodunit"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null,
-      "coverUrl": "https://books.google.com/books/content?id=qUo0AQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
       "bookKey": "camino-winds|john-grisham",
@@ -38887,23 +38099,6 @@
       "year": 1982,
       "pages": 7,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1772263528l/249109853._SX318_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
-    },
-    {
-      "title": "Unhinged Habits: A Counterintuitive Guide for Humans to Have More",
-      "author": "Jonathan   Goodman",
-      "isbn13": null,
-      "isbn": "1400253438",
-      "avgRating": 3.72,
-      "ratingsCount": 0,
-      "year": null,
-      "pages": 240,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1757625840l/229098150._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
       "type": "unknown",
