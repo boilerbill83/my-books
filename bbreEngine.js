@@ -40,6 +40,10 @@
  *         vs revelatory -0.40★, conversational -0.27★ vs Bill's 4.23 mean.
  *   v5.3: allTimeFave books (Goodreads "all-time-faves" shelf) weighted 2× in
  *         rateEngine author/theme maps — equivalent to treating them as 6★.
+ *   v5.4: lift-scaled DNF penalties (lift×0.008/0.006 vs flat 0.015/0.012);
+ *         dismissed reason codes feed theme/tone signal (wrong_genre 0.6×,
+ *         author_not_appealing 0.4×, etc.); combo multiplier 1.5× when ≥2
+ *         themes have lift > 2.0; penalty cap raised 0.12 → 0.30.
  *
  * Exports:
  *   rankBBRE(goodreads, feedback, candidatePool, history) → { selected, profile, eligibleCount }
@@ -278,11 +282,11 @@ function recencySignal(book, recent, allTime) {
 // Does NOT penalise themes the user simply reads a lot of — only themes
 // specifically associated with abandonment.
 
-function buildDnfSignal(readBooks) {
+function buildDnfSignal(readBooks, feedback) {
   const dnfBooks    = readBooks.filter(b => b.dnf);
   const totalReads  = readBooks.length;
   const totalDnf    = dnfBooks.length;
-  if (totalDnf === 0) return { dnfThemeLift: new Map(), dnfToneLift: new Map(), dnfOnlyAuthors: new Set(), lowRatedAuthors: new Set() };
+  if (totalDnf === 0) return { dnfThemeLift: new Map(), dnfToneLift: new Map(), dnfOnlyAuthors: new Set(), lowRatedAuthors: new Set(), dismissedThemeWeights: new Map(), dismissedToneWeights: new Map(), softPenaltyAuthors: new Set() };
 
   // Theme counts across all reads and DNF-only
   const allThemeCnt = new Map();
@@ -351,7 +355,35 @@ function buildDnfSignal(readBooks) {
       .map(([ak]) => ak)
   );
 
-  return { dnfThemeLift, dnfToneLift, dnfOnlyAuthors, lowRatedAuthors };
+  // ── Dismissed-reason signal ────────────────────────────────────────────
+  const REASON_WEIGHT = {
+    'started_did_not_like':          1.0,
+    'wrong_genre_or_vibe':           0.6,
+    'author_or_topic_not_appealing': 0.4,
+    'overrated':                     0.25,
+    'too_similar':                   0.15,
+  };
+  const dismissedThemeWeights = new Map();
+  const dismissedToneWeights  = new Map();
+  const softPenaltyAuthors    = new Set();
+  const dnfBookKeys = new Set(dnfBooks.map(b => b.bookKey).filter(Boolean));
+
+  for (const ix of (feedback?.interactions || [])) {
+    const w = REASON_WEIGHT[ix.reasonCode] ?? 0;
+    if (w === 0) continue;
+    if (w === 1.0 && dnfBookKeys.has(ix.bookKey)) continue; // already in DNF
+    for (const t of (ix.themes || [])) {
+      dismissedThemeWeights.set(t, (dismissedThemeWeights.get(t) || 0) + w);
+    }
+    for (const t of (ix.tones || [])) {
+      dismissedToneWeights.set(t, (dismissedToneWeights.get(t) || 0) + w);
+    }
+    if (ix.reasonCode === 'author_or_topic_not_appealing') {
+      softPenaltyAuthors.add(normA(ix.author));
+    }
+  }
+
+  return { dnfThemeLift, dnfToneLift, dnfOnlyAuthors, lowRatedAuthors, dismissedThemeWeights, dismissedToneWeights, softPenaltyAuthors };
 }
 
 // ── 5. Tone preference signal ─────────────────────────────────────────────
@@ -393,19 +425,38 @@ function toneSignal(book, toneProfile, globalMean) {
   return Math.max(-0.12, Math.min(0.12, adj));
 }
 
-// Returns a non-negative penalty in [0, 0.12].
+// Returns a non-negative penalty in [0, 0.30].
 function dnfPenalty(book, dnfSignal) {
-  const { dnfThemeLift, dnfToneLift, dnfOnlyAuthors, lowRatedAuthors } = dnfSignal;
+  const { dnfThemeLift, dnfToneLift, dnfOnlyAuthors, lowRatedAuthors,
+          dismissedThemeWeights, dismissedToneWeights, softPenaltyAuthors } = dnfSignal;
   let pen = 0;
-  if (dnfOnlyAuthors.has(normA(book.author)))  pen += 0.08;
-  if (lowRatedAuthors.has(normA(book.author))) pen += 0.08;
+  let highLiftCount = 0;
+
+  if (dnfOnlyAuthors.has(normA(book.author)))     pen += 0.08;
+  if (lowRatedAuthors.has(normA(book.author)))    pen += 0.08;
+  if (softPenaltyAuthors.has(normA(book.author))) pen += 0.04;
+
   for (const t of (book.themes || [])) {
-    if (dnfThemeLift.has(t)) pen += 0.015;
+    const lift = dnfThemeLift.get(t);
+    if (lift) {
+      pen += lift * 0.008;          // scaled by lift (was flat 0.015)
+      if (lift > 2.0) highLiftCount++;
+    }
+    const dw = dismissedThemeWeights.get(t);
+    if (dw) pen += dw * 0.005;
   }
+
   for (const t of inferTones(book)) {
-    if (dnfToneLift.has(t)) pen += 0.012;
+    const lift = dnfToneLift.get(t);
+    if (lift) pen += lift * 0.006;  // scaled by lift (was flat 0.012)
+    const dw = dismissedToneWeights.get(t);
+    if (dw) pen += dw * 0.004;
   }
-  return Math.min(pen, 0.12);
+
+  // Combo penalty: ≥2 themes with lift > 2.0 → 1.5× multiplier
+  if (highLiftCount >= 2) pen *= 1.5;
+
+  return Math.min(pen, 0.30);       // raised cap: was 0.12
 }
 
 // ── 4. Community popularity signal ────────────────────────────────────────
@@ -462,7 +513,7 @@ export function rankBBRE(goodreads, feedback, candidatePool, history) {
   // ── Step 2: pre-build all signal maps ───────────────────────────────────
   const seriesMap           = buildSeriesMap(allReadBooks);
   const { recent, allTime } = buildTemporalMaps(allReadBooks);
-  const dnfSig              = buildDnfSignal(allReadBooks);
+  const dnfSig              = buildDnfSignal(allReadBooks, feedback);
   const toneProfile         = buildToneProfile(allReadBooks);
   const ratedBooks          = allReadBooks.filter(b => !b.dnf && b.myRating > 0);
   const globalMean          = ratedBooks.length

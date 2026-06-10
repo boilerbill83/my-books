@@ -19,7 +19,19 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "narrative nonfiction",
+        "military",
+        "history"
+      ],
+      "tones": [
+        "narrative-driven",
+        "gritty",
+        "accessible",
+        "dense"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "a-history-of-basketball-in-fifteen-sneakers|russ-bengtson",
@@ -35,7 +47,20 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "sports",
+        "history",
+        "narrative nonfiction",
+        "social commentary"
+      ],
+      "tones": [
+        "narrative-driven",
+        "accessible",
+        "dense",
+        "revelatory"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "all-the-light-we-cannot-see|anthony-doerr",
@@ -51,7 +76,19 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "historical fiction",
+        "literary",
+        "coming-of-age"
+      ],
+      "tones": [
+        "slow-burn",
+        "character-driven",
+        "atmospheric",
+        "heartwarming"
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "apples-never-fall|liane-moriarty",
@@ -67,7 +104,20 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "domestic suspense",
+        "mystery",
+        "psychological",
+        "contemporary"
+      ],
+      "tones": [
+        "dark",
+        "character-driven",
+        "twisty",
+        "fast-paced"
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "best-movie-year-ever|brian-raftery",
@@ -83,7 +133,20 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "narrative nonfiction",
+        "history",
+        "social commentary",
+        "humor"
+      ],
+      "tones": [
+        "narrative-driven",
+        "accessible",
+        "humorous",
+        "dense"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "blood-and-fire|brian-r-solomon",
@@ -99,7 +162,20 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "sports",
+        "biography",
+        "narrative nonfiction",
+        "history"
+      ],
+      "tones": [
+        "narrative-driven",
+        "accessible",
+        "character-study",
+        "dense"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "burn-the-ice|kevin-alexander",
@@ -115,7 +191,19 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "narrative nonfiction",
+        "food",
+        "history"
+      ],
+      "tones": [
+        "narrative-driven",
+        "accessible",
+        "dense",
+        "conversational"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "bush|jean-edward-smith",
@@ -131,7 +219,19 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "biography",
+        "political",
+        "history"
+      ],
+      "tones": [
+        "narrative-driven",
+        "investigative",
+        "character-study",
+        "accessible"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "endgame-an-insurgency-on-wall-street|sheelah-kolhatkar",
@@ -147,7 +247,20 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "finance",
+        "narrative nonfiction",
+        "business",
+        "social commentary"
+      ],
+      "tones": [
+        "accessible",
+        "narrative-driven",
+        "dense",
+        "revelatory"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "fourth-wing|rebecca-yarros",
@@ -163,23 +276,20 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
-    },
-    {
-      "bookKey": "from-the-corner-of-the-oval|beck-dorey-stein",
-      "title": "From the Corner of the Oval",
-      "author": "Beck Dorey-Stein",
-      "interactionType": "negative_seed",
-      "reasonCode": "started_did_not_like",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "fantasy",
+        "romance",
+        "adventure",
+        "YA"
+      ],
+      "tones": [
+        "fast-paced",
+        "character-driven",
+        "heartwarming",
+        "atmospheric"
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "juror-3|james-patterson",
@@ -195,7 +305,19 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ],
+      "tones": [
+        "fast-paced",
+        "plot-driven",
+        "compulsive",
+        "procedural"
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "king-of-capital|david-carey",
@@ -211,7 +333,19 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "finance",
+        "business",
+        "narrative nonfiction",
+        "biography"
+      ],
+      "tones": [
+        "fast-paced",
+        "tense",
+        "dark"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "notes-from-underground|fyodor-dostoevsky",
@@ -227,7 +361,19 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "literary",
+        "psychological",
+        "social commentary"
+      ],
+      "tones": [
+        "character-driven",
+        "slow-burn",
+        "dark",
+        "atmospheric"
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "number-go-up|zeke-faux",
@@ -243,7 +389,20 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "narrative nonfiction",
+        "finance",
+        "true crime",
+        "tech history"
+      ],
+      "tones": [
+        "accessible",
+        "narrative-driven",
+        "dark",
+        "investigative"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "red-rising|pierce-brown",
@@ -259,7 +418,20 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "adventure",
+        "coming-of-age"
+      ],
+      "tones": [
+        "slow-burn",
+        "atmospheric",
+        "fast-paced",
+        "character-driven"
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "seek-you|kristen-radtke",
@@ -275,7 +447,17 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "narrative nonfiction",
+        "psychology"
+      ],
+      "tones": [
+        "accessible",
+        "narrative-driven",
+        "dense"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "so-fetch|jennifer-keishin-armstrong",
@@ -291,7 +473,18 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "narrative nonfiction",
+        "humor"
+      ],
+      "tones": [
+        "humorous",
+        "narrative-driven",
+        "accessible",
+        "conversational"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "spaced-out|mike-prada",
@@ -307,7 +500,18 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "sports",
+        "narrative nonfiction",
+        "social commentary"
+      ],
+      "tones": [
+        "accessible",
+        "narrative-driven",
+        "revelatory"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "steven-adams-my-life-my-fight|steven-adams",
@@ -323,7 +527,18 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "memoir",
+        "sports"
+      ],
+      "tones": [
+        "character-study",
+        "narrative-driven",
+        "accessible",
+        "personal"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "stolen-focus|johann-hari",
@@ -339,23 +554,18 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
-    },
-    {
-      "bookKey": "summer-frost|blake-crouch",
-      "title": "Summer Frost",
-      "author": "Blake Crouch",
-      "interactionType": "negative_seed",
-      "reasonCode": "started_did_not_like",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "psychology",
+        "narrative nonfiction",
+        "tech history"
+      ],
+      "tones": [
+        "accessible",
+        "narrative-driven",
+        "dense"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-coming-wave|mustafa-suleyman",
@@ -371,7 +581,20 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "tech history",
+        "social commentary",
+        "narrative nonfiction",
+        "political"
+      ],
+      "tones": [
+        "accessible",
+        "narrative-driven",
+        "investigative",
+        "revelatory"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-ferryman|justin-cronin",
@@ -387,7 +610,20 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "thriller",
+        "high-concept"
+      ],
+      "tones": [
+        "fast-paced",
+        "slow-burn",
+        "atmospheric",
+        "twisty"
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-flavor-bible|andrew-dornenburg",
@@ -403,7 +639,14 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "food"
+      ],
+      "tones": [
+        "dense"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-heaven-earth-grocery-store|james-mcbride",
@@ -419,7 +662,19 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "historical fiction",
+        "literary",
+        "social commentary"
+      ],
+      "tones": [
+        "slow-burn",
+        "atmospheric",
+        "character-driven",
+        "accessible"
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-invention-of-sound|chuck-palahniuk",
@@ -435,7 +690,20 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "horror",
+        "thriller",
+        "psychological",
+        "high-concept"
+      ],
+      "tones": [
+        "fast-paced",
+        "dark",
+        "tense",
+        "twisty"
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-last-trial|scott-turow",
@@ -451,7 +719,19 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ],
+      "tones": [
+        "procedural",
+        "tense",
+        "character-driven",
+        "fast-paced"
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-monk-who-sold-his-ferrari|robin-sharma",
@@ -467,7 +747,17 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "self-help",
+        "memoir"
+      ],
+      "tones": [
+        "accessible",
+        "conversational",
+        "personal"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-real-hoosiers|jack-mccallum",
@@ -483,7 +773,20 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "sports",
+        "history",
+        "narrative nonfiction",
+        "social commentary"
+      ],
+      "tones": [
+        "narrative-driven",
+        "accessible",
+        "dense",
+        "revelatory"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-rise-and-fall-of-the-third-reich|william-shirer",
@@ -499,12 +802,24 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "history",
+        "political",
+        "military",
+        "narrative nonfiction"
+      ],
+      "tones": [
+        "dense",
+        "investigative",
+        "narrative-driven"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-roundabout-way|jack-o-brien",
       "title": "The Roundabout Way",
-      "author": "Jack O’Brien",
+      "author": "Jack O\u2019Brien",
       "interactionType": "negative_seed",
       "reasonCode": "started_did_not_like",
       "reasonLabel": "Started but didn't like",
@@ -515,7 +830,16 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "literary",
+        "adventure"
+      ],
+      "tones": [
+        "character-driven",
+        "conversational"
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-terminal-list|jack-carr",
@@ -531,7 +855,20 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "thriller",
+        "military",
+        "suspense",
+        "crime"
+      ],
+      "tones": [
+        "fast-paced",
+        "gritty",
+        "tense",
+        "dark"
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "the-terroir-of-whiskey|rob-arnold",
@@ -547,7 +884,17 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "narrative nonfiction",
+        "food"
+      ],
+      "tones": [
+        "accessible",
+        "narrative-driven",
+        "conversational"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "the-wax-pack|brad-balukjian",
@@ -563,7 +910,19 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "narrative nonfiction",
+        "sports",
+        "memoir"
+      ],
+      "tones": [
+        "narrative-driven",
+        "accessible",
+        "character-study",
+        "personal"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "to-sleep-in-a-sea-of-stars|christopher-paolini",
@@ -579,7 +938,20 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "sci-fi",
+        "adventure",
+        "speculative",
+        "high-concept"
+      ],
+      "tones": [
+        "fast-paced",
+        "slow-burn",
+        "atmospheric",
+        "twisty"
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "to-start-a-war|robert-draper",
@@ -595,7 +967,20 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "narrative nonfiction",
+        "political",
+        "military",
+        "history"
+      ],
+      "tones": [
+        "narrative-driven",
+        "accessible",
+        "gritty",
+        "investigative"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "trillions|robin-wigglesworth",
@@ -611,7 +996,19 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "finance",
+        "narrative nonfiction",
+        "history",
+        "tech history"
+      ],
+      "tones": [
+        "narrative-driven",
+        "accessible",
+        "dense"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "ugly-love|colleen-hoover",
@@ -627,7 +1024,19 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "romance",
+        "contemporary",
+        "domestic suspense"
+      ],
+      "tones": [
+        "character-driven",
+        "twisty",
+        "fast-paced",
+        "dark"
+      ],
+      "type": "fiction"
     },
     {
       "bookKey": "when-crack-was-king|donovan-ramsey",
@@ -643,7 +1052,19 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "true crime",
+        "social commentary",
+        "narrative nonfiction",
+        "history"
+      ],
+      "tones": [
+        "investigative",
+        "narrative-driven",
+        "dark"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "where-are-your-boys-tonight|chris-payne",
@@ -659,7 +1080,20 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "music history",
+        "narrative nonfiction",
+        "social commentary",
+        "history"
+      ],
+      "tones": [
+        "narrative-driven",
+        "accessible",
+        "dense",
+        "revelatory"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "white-stripes|denise-sullivan",
@@ -675,7 +1109,16 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "music history",
+        "biography"
+      ],
+      "tones": [
+        "narrative-driven",
+        "character-study"
+      ],
+      "type": "nonfiction"
     },
     {
       "bookKey": "why-has-nobody-told-me-this-before|julie-smith",
@@ -691,7 +1134,17 @@
       "timesSaved": 0,
       "explicitHide": true,
       "excludeFromRecommendations": true,
-      "source": "manual_seed_list"
+      "source": "manual_seed_list",
+      "themes": [
+        "psychology",
+        "narrative nonfiction"
+      ],
+      "tones": [
+        "accessible",
+        "narrative-driven",
+        "dense"
+      ],
+      "type": "nonfiction"
     }
   ]
 }
