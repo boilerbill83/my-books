@@ -357,8 +357,18 @@ function buildDnfSignal(readBooks, feedback) {
 
   // ── Dismissed-reason signal ────────────────────────────────────────────
   const REASON_WEIGHT = {
-    'started_did_not_like':          1.0,
-    'wrong_genre_or_vibe':           0.6,
+    // Current canonical reasons
+    'started_did_not_like':   1.0,  // treat as DNF
+    'topic_doesnt_appeal':    0.5,  // strong theme signal
+    'not_my_vibe':            0.4,  // genre/style mismatch
+    'dont_know_author':       0.2,  // mild author-unfamiliarity
+    'not_interesting':        0.1,  // weak — could mean anything
+    'no_longer_relevant':     0,
+    'already_seen_adaptation':0,
+    'already_read_or_owned':  0,
+    'too_long':               0,
+    // Legacy codes (pre-v5.4 — keep for backward compat)
+    'wrong_genre_or_vibe':           0.5,
     'author_or_topic_not_appealing': 0.4,
     'overrated':                     0.25,
     'too_similar':                   0.15,
