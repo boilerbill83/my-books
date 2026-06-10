@@ -15093,7 +15093,7 @@
       "title": "The Three-Body Problem (Remembrance of Earth\u2019s Past, #1)",
       "author": "Liu Cixin",
       "shelf": "read",
-      "myRating": 2,
+      "myRating": 3,
       "avgRating": 4.2,
       "pages": 400,
       "dateRead": "2024/04/28",
@@ -15113,7 +15113,7 @@
         "Children of Time (Children of Time, #1)"
       ],
       "ratingsCount": 420000,
-      "dnf": true,
+      "dnf": false,
       "similarToAuthors": [
         "Andy Weir",
         "Neal Stephenson",
@@ -31860,7 +31860,8 @@
         "accessible",
         "gritty",
         "investigative"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "once-upon-a-time-in-hollywood-a-novel|quentin-tarantino",
@@ -31903,7 +31904,8 @@
         "gritty",
         "atmospheric",
         "slow-burn"
-      ]
+      ],
+      "dnfReason": "not_my_vibe"
     },
     {
       "bookKey": "the-universal-baseball-association-inc-j-henry-waugh-prop|robert-coover",
@@ -31944,7 +31946,8 @@
         "slow-burn",
         "atmospheric",
         "character-driven"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "zone-one|colson-whitehead",
@@ -31987,7 +31990,8 @@
         "dark",
         "character-driven",
         "slow-burn"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-antisocial-network-the-true-story-of-a-ragtag-of-amateur-investors-gamers-and-internet-trolls-who-brought-wall-street-to-its-knees|ben-mezrich",
@@ -31995,7 +31999,7 @@
       "title": "The Antisocial Network: The True Story of a Ragtag of Amateur Investors, Gamers, and Internet Trolls Who Brought Wall Street to Its Knees",
       "author": "Ben Mezrich",
       "shelf": "read",
-      "myRating": 2,
+      "myRating": 5,
       "avgRating": 4.57,
       "pages": 288,
       "dateRead": null,
@@ -32017,7 +32021,7 @@
         "Dumb Money"
       ],
       "ratingsCount": 2319,
-      "dnf": true,
+      "dnf": false,
       "similarToAuthors": [
         "Michael Lewis",
         "Scott Patterson",
@@ -32038,7 +32042,7 @@
       "title": "The Origins of the Cornbread Mafia: A Memoir of Sorts",
       "author": "Joe Keith Bickett",
       "shelf": "read",
-      "myRating": 2,
+      "myRating": 4,
       "avgRating": 3.84,
       "pages": 226,
       "dateRead": null,
@@ -32059,7 +32063,7 @@
         "The Bluegrass Conspiracy"
       ],
       "ratingsCount": 91,
-      "dnf": true,
+      "dnf": false,
       "similarToAuthors": [
         "James Higdon",
         "Nick Reding",
@@ -32115,7 +32119,8 @@
         "accessible",
         "character-study",
         "dense"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "a-knock-at-midnight-a-story-of-hope-justice-and-freedom|brittany-k-barnett",
@@ -32158,7 +32163,8 @@
         "dark",
         "investigative",
         "character-study"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "a-people-s-history-of-the-united-states|howard-zinn",
@@ -32201,7 +32207,8 @@
         "narrative-driven",
         "investigative",
         "dense"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "firebreak|nicole-kornher-stace",
@@ -32244,7 +32251,8 @@
         "slow-burn",
         "atmospheric",
         "twisty"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-last-human|zack-jordan",
@@ -32287,7 +32295,8 @@
         "slow-burn",
         "atmospheric",
         "twisty"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "fentanyl-inc-how-rogue-chemists-are-creating-the-deadliest-wave-of-the-opioid-epidemic|ben-westhoff",
@@ -32330,7 +32339,8 @@
         "investigative",
         "dark",
         "narrative-driven"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "noise-a-flaw-in-human-judgment|daniel-kahneman",
@@ -32373,7 +32383,8 @@
         "narrative-driven",
         "dense",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-moviegoer|walker-percy",
@@ -32415,7 +32426,8 @@
         "slow-burn",
         "atmospheric",
         "heartwarming"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "11-22-63|stephen-king",
@@ -32499,7 +32511,8 @@
         "character-study",
         "accessible",
         "dense"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "lucky-peach-issue-1|chris-ying",
@@ -32541,7 +32554,8 @@
         "conversational",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "how-to-avoid-a-climate-disaster-the-solutions-we-have-and-the-breakthroughs-we-need|bill-gates",
@@ -32583,7 +32597,8 @@
         "accessible",
         "narrative-driven",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "the-kid-the-immortal-life-of-ted-williams|ben-bradlee-jr",
@@ -32624,7 +32639,8 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "rise-of-the-warrior-cop-the-militarization-of-america-s-police-forces|radley-balko",
@@ -32667,7 +32683,8 @@
         "narrative-driven",
         "gritty",
         "investigative"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "the-path-to-power|robert-a-caro",
@@ -32710,7 +32727,8 @@
         "accessible",
         "investigative",
         "character-study"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "network-effect|martha-wells",
@@ -32753,7 +32771,8 @@
         "slow-burn",
         "atmospheric",
         "twisty"
-      ]
+      ],
+      "dnfReason": "not_my_vibe"
     },
     {
       "bookKey": "to-sleep-in-a-sea-of-stars|christopher-paolini",
@@ -32796,7 +32815,8 @@
         "slow-burn",
         "atmospheric",
         "twisty"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-troop|nick-cutter",
@@ -32839,7 +32859,8 @@
         "dark",
         "tense",
         "twisty"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "grinding-it-out-the-making-of-mcdonald-s|ray-kroc",
@@ -32881,7 +32902,8 @@
         "accessible",
         "character-study",
         "personal"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "the-rise-and-fall-of-the-third-reich-a-history-of-nazi-germany|william-l-shirer",
@@ -32924,7 +32946,8 @@
         "accessible",
         "gritty",
         "investigative"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "notes-from-underground|fyodor-dostoevsky",
@@ -32966,7 +32989,8 @@
         "slow-burn",
         "dark",
         "atmospheric"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-drudge-revolution-the-untold-story-of-how-talk-radio-fox-news-and-a-gift-shop-clerk-with-an-internet-connection-took-down-the-mainstream-media|matthew-lysiak",
@@ -33009,7 +33033,8 @@
         "accessible",
         "investigative",
         "dense"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "the-body-a-guide-for-occupants|bill-bryson",
@@ -33051,7 +33076,8 @@
         "atmospheric",
         "melancholic",
         "character-driven"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "pilsner-how-the-beer-of-kings-changed-the-world|tom-acitelli",
@@ -33093,7 +33119,8 @@
         "accessible",
         "dense",
         "conversational"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "the-invention-of-sound|chuck-palahniuk",
@@ -33136,7 +33163,8 @@
         "dark",
         "tense",
         "twisty"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "king-of-capital-the-remarkable-rise-fall-and-rise-again-of-steve-schwarzman-and-blackstone|david-carey",
@@ -33178,7 +33206,8 @@
         "fast-paced",
         "tense",
         "dark"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "world-travel-an-irreverent-guide|anthony-bourdain",
@@ -33186,7 +33215,7 @@
       "title": "World Travel: An Irreverent Guide",
       "author": "Anthony Bourdain",
       "shelf": "read",
-      "myRating": 2,
+      "myRating": 5,
       "avgRating": 3.57,
       "pages": 480,
       "dateRead": null,
@@ -33208,7 +33237,7 @@
         "The Great Railway Bazaar"
       ],
       "ratingsCount": 11038,
-      "dnf": true,
+      "dnf": false,
       "similarToAuthors": [
         "Eric Ripert",
         "Bill Bryson",
@@ -33263,7 +33292,8 @@
         "gritty",
         "accessible",
         "dense"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "the-speed-of-sound-breaking-the-barriers-between-music-and-technology-a-memoir|thomas-dolby",
@@ -33305,7 +33335,8 @@
         "accessible",
         "character-study",
         "personal"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "fahrenheit-451|ray-bradbury",
@@ -33348,7 +33379,8 @@
         "atmospheric",
         "character-driven",
         "accessible"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-terminal-list|jack-carr",
@@ -33391,7 +33423,8 @@
         "gritty",
         "tense",
         "dark"
-      ]
+      ],
+      "dnfReason": "already_seen_adaptation"
     },
     {
       "bookKey": "american-prison-a-reporter-s-undercover-journey-into-the-business-of-punishment|shane-bauer",
@@ -33434,7 +33467,8 @@
         "investigative",
         "dark",
         "narrative-driven"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "good-economics-for-hard-times-better-answers-to-our-biggest-problems|abhijit-v-banerjee",
@@ -33477,7 +33511,8 @@
         "investigative",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "the-bayou-trilogy-under-the-bright-lights-muscle-for-the-wing-and-the-ones-you-do|daniel-woodrell",
@@ -33520,7 +33555,8 @@
         "gritty",
         "atmospheric",
         "slow-burn"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-big-roads-the-untold-story-of-the-engineers-visionaries-and-trailblazers-who-created-the-american-superhighways|earl-swift",
@@ -33561,7 +33597,8 @@
         "narrative-driven",
         "accessible",
         "dense"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "andy-grove-the-life-and-times-of-an-american|richard-s-tedlow",
@@ -33603,7 +33640,8 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "a-kind-and-just-parent-the-children-of-juvenile-court|bill-ayers",
@@ -33645,7 +33683,8 @@
         "investigative",
         "narrative-driven",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "the-tumor|john-grisham",
@@ -33686,7 +33725,8 @@
         "accessible",
         "inspiring",
         "dense"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "panic-the-story-of-modern-financial-insanity|michael-lewis",
@@ -33729,7 +33769,8 @@
         "narrative-driven",
         "investigative",
         "dense"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "the-tennis-partner|abraham-verghese",
@@ -33771,7 +33812,8 @@
         "character-study",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "we-learn-nothing|tim-kreider",
@@ -33814,7 +33856,8 @@
         "conversational",
         "character-study",
         "humorous"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "safe|ryan-gattis",
@@ -33857,7 +33900,8 @@
         "gritty",
         "atmospheric",
         "fast-paced"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "samsung-rising-the-inside-story-of-the-south-korean-giant-that-set-out-to-beat-apple-and-conquer-tech|geoffrey-cain",
@@ -33899,7 +33943,8 @@
         "narrative-driven",
         "accessible",
         "dense"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "the-victory-machine-the-making-and-unmaking-of-the-warriors-dynasty|ethan-sherwood-strauss",
@@ -33941,7 +33986,8 @@
         "accessible",
         "investigative",
         "dark"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "twitter-a-biography|jean-burgess",
@@ -33984,7 +34030,8 @@
         "accessible",
         "dense",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-ballad-of-songbirds-and-snakes|suzanne-collins",
@@ -34027,7 +34074,8 @@
         "heartwarming",
         "slow-burn",
         "character-driven"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "this-i-believe-the-personal-philosophies-of-remarkable-men-and-women|jay-allison",
@@ -34068,7 +34116,8 @@
         "fast-paced",
         "tense",
         "dark"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "the-wax-pack-on-the-open-road-in-search-of-baseball-s-afterlife|brad-balukjian",
@@ -34110,7 +34159,8 @@
         "accessible",
         "character-study",
         "personal"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-office-the-untold-story-of-the-greatest-sitcom-of-the-2000s-an-oral-history|andy-greene",
@@ -34152,7 +34202,8 @@
         "humorous",
         "narrative-driven",
         "conversational"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-monk-who-sold-his-ferrari-a-fable-about-fulfilling-your-dreams-and-reaching-your-destiny|robin-s-sharma",
@@ -34193,7 +34244,8 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "a-beautiful-mind|sylvia-nasar",
@@ -34236,7 +34288,8 @@
         "accessible",
         "dense",
         "character-study"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "arbitrary-stupid-goal|tamara-shopsin",
@@ -34279,7 +34332,8 @@
         "accessible",
         "character-study",
         "humorous"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-inside-game-bad-calls-strange-moves-and-what-baseball-behavior-teaches-us-about-ourselves|keith-law",
@@ -34320,7 +34374,8 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "author-in-chief-the-untold-story-of-our-presidents-and-the-books-they-wrote|craig-fehrman",
@@ -34363,7 +34418,8 @@
         "accessible",
         "investigative",
         "character-study"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "the-class-a-life-changing-teacher-his-world-changing-kids-and-the-most-inventive-classroom-in-america|heather-won-tesoriero",
@@ -34405,7 +34461,8 @@
         "character-study",
         "narrative-driven",
         "personal"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "collision-course-ronald-reagan-the-air-traffic-controllers-and-the-strike-that-changed-america|joseph-a-mccartin",
@@ -34448,7 +34505,8 @@
         "accessible",
         "gritty",
         "investigative"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-shift-the-next-evolution-in-baseball-thinking|russell-a-carleton",
@@ -34489,7 +34547,8 @@
         "accessible",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "the-one-that-got-away|simon-wood",
@@ -34532,7 +34591,8 @@
         "fast-paced",
         "dark",
         "gritty"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "steven-adams-my-life-my-fight|steven-adams",
@@ -34573,7 +34633,8 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "the-financial-diaries-how-american-families-cope-in-a-world-of-uncertainty|jonathan-morduch",
@@ -34616,7 +34677,8 @@
         "dense",
         "narrative-driven",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "we-will-rise-a-true-story-of-tragedy-and-resurrection-in-the-american-heartland|steve-beaven",
@@ -34658,7 +34720,8 @@
         "narrative-driven",
         "accessible",
         "inspiring"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "robopocalypse|daniel-h-wilson",
@@ -34701,7 +34764,8 @@
         "slow-burn",
         "atmospheric",
         "twisty"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "home-now-how-6000-refugees-transformed-an-american-town|cynthia-anderson",
@@ -34743,7 +34807,8 @@
         "investigative",
         "narrative-driven",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "the-flavor-bible-the-essential-guide-to-culinary-creativity-based-on-the-wisdom-of-america-s-most-imaginative-chefs|karen-page",
@@ -34783,7 +34848,8 @@
         "accessible",
         "narrative-driven",
         "conversational"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "top-of-the-morning-inside-the-cutthroat-world-of-morning-tv|brian-stelter",
@@ -34824,7 +34890,8 @@
         "accessible",
         "narrative-driven",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "uncanny-valley|anna-wiener",
@@ -34867,7 +34934,8 @@
         "narrative-driven",
         "character-study",
         "personal"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "sabbath-s-theater|philip-roth",
@@ -34909,7 +34977,8 @@
         "slow-burn",
         "atmospheric",
         "humorous"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "colonel-sanders-and-the-american-dream|josh-ozersky",
@@ -34952,7 +35021,8 @@
         "accessible",
         "character-study",
         "dense"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "hate-inc-why-today-s-media-makes-us-despise-one-another|matt-taibbi",
@@ -34995,7 +35065,8 @@
         "investigative",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "burn-the-ice-the-american-culinary-revolution-and-its-end|kevin-alexander",
@@ -35037,7 +35108,8 @@
         "accessible",
         "dense",
         "conversational"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "rolling-nowhere-riding-the-rails-with-america-s-hoboes|ted-conover",
@@ -35079,7 +35151,8 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "stiff-the-curious-lives-of-human-cadavers|mary-roach",
@@ -35121,7 +35194,8 @@
         "humorous",
         "narrative-driven",
         "conversational"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "the-first-cell-and-the-human-costs-of-pursuing-cancer-to-the-last|azra-raza",
@@ -35163,7 +35237,8 @@
         "character-study",
         "narrative-driven",
         "personal"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "fit-matters-how-to-love-your-job|moe-carrick",
@@ -35205,7 +35280,8 @@
         "narrative-driven",
         "dense",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "spare-parts-four-undocumented-teenagers-one-ugly-robot-and-the-battle-for-the-american-dream|joshua-davis",
@@ -35247,7 +35323,8 @@
         "accessible",
         "character-study",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "rise-of-the-robots-technology-and-the-threat-of-a-jobless-future|martin-ford",
@@ -35290,7 +35367,8 @@
         "narrative-driven",
         "dense",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "two-steps-forward|graeme-simsion",
@@ -35332,7 +35410,8 @@
         "heartwarming",
         "character-driven",
         "slow-burn"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "serving-the-servant-remembering-kurt-cobain|danny-goldberg",
@@ -35374,7 +35453,8 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "the-white-stripes-sweethearts-of-the-blues|denise-sullivan",
@@ -35415,7 +35495,8 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "cribsheet-a-data-driven-guide-to-better-more-relaxed-parenting-from-birth-to-preschool|emily-oster",
@@ -35457,7 +35538,8 @@
         "narrative-driven",
         "dense",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "win-bigly-persuasion-in-a-world-where-facts-don-t-matter|scott-adams",
@@ -35499,7 +35581,8 @@
         "investigative",
         "dense",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "atmosphaera-incognita|neal-stephenson",
@@ -35541,7 +35624,8 @@
         "atmospheric",
         "twisty",
         "fast-paced"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "under-the-influence-new-edition-of-the-unauthorized-story-of-the-anheuser-busch-dynasty|terry-ganey",
@@ -35584,7 +35668,8 @@
         "accessible",
         "character-study",
         "dense"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "god-bless-you-dr-kevorkian|kurt-vonnegut-jr",
@@ -35627,7 +35712,8 @@
         "atmospheric",
         "character-driven",
         "humorous"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-smartest-guys-in-the-room-the-amazing-rise-and-scandalous-fall-of-enron|bethany-mclean",
@@ -35671,7 +35757,8 @@
         "dark",
         "investigative"
       ],
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1309204701i/113576.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1309204701i/113576.jpg",
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "bush|jean-edward-smith",
@@ -35713,7 +35800,8 @@
         "investigative",
         "character-study",
         "accessible"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "nixonland-the-rise-of-a-president-and-the-fracturing-of-america|rick-perlstein",
@@ -35756,7 +35844,8 @@
         "narrative-driven",
         "investigative",
         "dense"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "drive-thru-dreams-a-journey-through-the-heart-of-america-s-fast-food-kingdom|adam-chandler",
@@ -35799,7 +35888,8 @@
         "narrative-driven",
         "dense",
         "conversational"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "wild-and-outside-how-a-renegade-minor-league-revived-the-spirit-of-baseball-in-america-s-heartland|stefan-fatsis",
@@ -35841,7 +35931,8 @@
         "narrative-driven",
         "accessible",
         "inspiring"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "serious-eater-a-food-lover-s-perilous-quest-for-pizza-and-redemption|ed-levine",
@@ -35884,7 +35975,8 @@
         "accessible",
         "character-study",
         "humorous"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "best-movie-year-ever-how-1999-blew-up-the-big-screen|brian-raftery",
@@ -35927,7 +36019,8 @@
         "accessible",
         "humorous",
         "dense"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "the-last-pirate-of-new-york-a-ghost-ship-a-killer-and-the-birth-of-a-gangster-nation|rich-cohen",
@@ -35969,7 +36062,8 @@
         "dark",
         "investigative",
         "accessible"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "spying-on-the-south-travels-with-frederick-law-olmsted-in-a-fractured-land|tony-horwitz",
@@ -36012,7 +36106,8 @@
         "narrative-driven",
         "investigative",
         "dense"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "my-thoughts-exactly|lily-allen",
@@ -36054,7 +36149,8 @@
         "character-study",
         "narrative-driven",
         "personal"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "the-grind-inside-baseball-s-endless-season|barry-svrluga",
@@ -36094,7 +36190,8 @@
         "narrative-driven",
         "atmospheric",
         "accessible"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "the-devil-in-the-white-city|erik-larson",
@@ -36136,7 +36233,8 @@
         "dark",
         "dual-timeline",
         "investigative"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "twilight-of-the-gods-a-journey-to-the-end-of-classic-rock|steven-hyden",
@@ -36177,7 +36275,8 @@
         "accessible",
         "narrative-driven",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "roadfood|jane-stern",
@@ -36219,7 +36318,8 @@
         "narrative-driven",
         "conversational",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "fraternity-an-inside-look-at-a-year-of-college-boys-becoming-men|alexandra-robbins",
@@ -36261,7 +36361,8 @@
         "narrative-driven",
         "dense",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "smart-baseball-the-story-behind-the-old-stats-that-are-ruining-the-game-the-new-ones-that-are-running-it-and-the-right-way-to-think-about-baseball|keith-law",
@@ -36302,7 +36403,8 @@
         "accessible",
         "narrative-driven",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "hungry-monkey-a-food-loving-father-s-quest-to-raise-an-adventurous-eater|matthew-amster-burton",
@@ -36344,7 +36446,8 @@
         "conversational",
         "character-study",
         "narrative-driven"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "the-apprentice-my-life-in-the-kitchen|jacques-p-pin",
@@ -36428,7 +36531,8 @@
         "accessible",
         "character-study",
         "personal"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "vengeful|v-e-schwab",
@@ -36471,7 +36575,8 @@
         "atmospheric",
         "twisty",
         "slow-burn"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "gearheads-the-turbulent-rise-of-robotic-sports|brad-stone",
@@ -36513,7 +36618,8 @@
         "accessible",
         "investigative",
         "humorous"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "bill-dave-how-hewlett-and-packard-built-the-world-s-greatest-company|michael-s-malone",
@@ -36556,7 +36662,8 @@
         "accessible",
         "character-study",
         "dense"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "say-you-re-sorry|melinda-leigh",
@@ -36599,7 +36706,8 @@
         "tense",
         "dark",
         "gritty"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-captain-the-journey-of-derek-jeter|ian-o-connor",
@@ -36640,7 +36748,8 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "who-is-michael-ovitz|michael-ovitz",
@@ -36683,7 +36792,8 @@
         "character-study",
         "accessible",
         "personal"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "power-ball-anatomy-of-a-modern-baseball-game|rob-neyer",
@@ -36724,7 +36834,8 @@
         "accessible",
         "narrative-driven",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "setting-the-table-the-transforming-power-of-hospitality-in-business|danny-meyer",
@@ -36767,7 +36878,8 @@
         "narrative-driven",
         "conversational",
         "character-study"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-recovering-intoxication-and-its-aftermath|leslie-jamison",
@@ -36810,7 +36922,8 @@
         "character-study",
         "narrative-driven",
         "dense"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-fourth-age-smart-robots-conscious-computers-and-the-future-of-humanity|byron-reese",
@@ -36851,7 +36964,8 @@
         "accessible",
         "narrative-driven",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "the-mexican-tree-duck|james-crumley",
@@ -36894,7 +37008,8 @@
         "gritty",
         "procedural",
         "whodunit"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "home-game-an-accidental-guide-to-fatherhood|michael-lewis",
@@ -36936,7 +37051,8 @@
         "narrative-driven",
         "investigative",
         "conversational"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "coach-lessons-on-the-game-of-life|michael-lewis",
@@ -36944,7 +37060,7 @@
       "title": "Coach: Lessons on the Game of Life",
       "author": "Michael Lewis",
       "shelf": "read",
-      "myRating": 2,
+      "myRating": 5,
       "avgRating": 3.86,
       "pages": 96,
       "dateRead": null,
@@ -36965,7 +37081,7 @@
         "Bowerman and the Men of Oregon"
       ],
       "ratingsCount": 2974,
-      "dnf": true,
+      "dnf": false,
       "similarToAuthors": [
         "John Feinstein",
         "Pat Summitt",
@@ -37020,7 +37136,8 @@
         "accessible",
         "humorous",
         "conversational"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "big-shots-the-men-behind-the-booze|a-j-baime",
@@ -37062,7 +37179,8 @@
         "accessible",
         "atmospheric",
         "dense"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "a-history-of-basketball-in-fifteen-sneakers|russ-bengtson",
@@ -37105,7 +37223,8 @@
         "accessible",
         "dense",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "all-the-light-we-cannot-see|anthony-doerr",
@@ -37148,7 +37267,8 @@
         "atmospheric",
         "heartwarming"
       ],
-      "coverUrl": "https://m.media-amazon.com/images/I/81WY6M9XikL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/81WY6M9XikL._SX300_.jpg",
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "apples-never-fall|liane-moriarty",
@@ -37191,7 +37311,8 @@
         "character-driven",
         "twisty",
         "fast-paced"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "blood-and-fire-the-unbelievable-real-life-story-of-wrestling-s-original-sheik|brian-r-solomon",
@@ -37234,7 +37355,8 @@
         "accessible",
         "character-study",
         "dense"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "endgame-an-insurgency-on-wall-street|sheelah-kolhatkar",
@@ -37277,7 +37399,8 @@
         "narrative-driven",
         "dense",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "fourth-wing|rebecca-yarros",
@@ -37321,7 +37444,8 @@
         "heartwarming",
         "atmospheric"
       ],
-      "coverUrl": "https://m.media-amazon.com/images/I/81eoMVeTPmL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/81eoMVeTPmL._SX300_.jpg",
+      "dnfReason": "not_my_vibe"
     },
     {
       "bookKey": "number-go-up-inside-crypto-s-wild-rise-and-staggering-fall|zeke-faux",
@@ -37357,7 +37481,7 @@
         "Roger Lowenstein"
       ],
       "ratingsCount": 32000,
-      "dnf": true,
+      "dnf": false,
       "type": "nonfiction",
       "tones": [
         "accessible",
@@ -37408,7 +37532,8 @@
         "fast-paced",
         "character-driven"
       ],
-      "coverUrl": "https://m.media-amazon.com/images/I/81bbaOYIagL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/81bbaOYIagL._SX300_.jpg",
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "spaced-out-how-the-nba-s-three-point-revolution-changed-everything-you-thought-you-knew-about-basketball|mike-prada",
@@ -37449,7 +37574,8 @@
         "accessible",
         "narrative-driven",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "the-come-up-an-oral-history-of-the-rise-of-hip-hop|jonathan-abrams",
@@ -37492,7 +37618,8 @@
         "accessible",
         "dense",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "the-coming-wave-technology-power-and-the-twenty-first-century-s-greatest-dilemma|mustafa-suleyman",
@@ -37535,7 +37662,8 @@
         "narrative-driven",
         "investigative",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "the-ferryman|justin-cronin",
@@ -37578,7 +37706,8 @@
         "slow-burn",
         "atmospheric",
         "twisty"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-heaven-earth-grocery-store|james-mcbride",
@@ -37620,7 +37749,8 @@
         "atmospheric",
         "character-driven",
         "accessible"
-      ]
+      ],
+      "dnfReason": "not_interesting"
     },
     {
       "bookKey": "the-real-hoosiers-crispus-attucks-high-school-oscar-robertson-and-the-hidden-history-of-hoops|jack-mccallum",
@@ -37656,7 +37786,7 @@
         "Jonathan Eig"
       ],
       "ratingsCount": 420,
-      "dnf": true,
+      "dnf": false,
       "type": "nonfiction",
       "tones": [
         "narrative-driven",
@@ -37705,7 +37835,8 @@
         "character-study",
         "humorous",
         "narrative-driven"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "trillions-how-a-band-of-wall-street-renegades-invented-the-index-fund-and-changed-finance-forever|robin-wigglesworth",
@@ -37747,7 +37878,8 @@
         "narrative-driven",
         "accessible",
         "dense"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "bookKey": "ugly-love|colleen-hoover",
@@ -37789,7 +37921,8 @@
         "twisty",
         "fast-paced",
         "dark"
-      ]
+      ],
+      "dnfReason": "not_my_vibe"
     },
     {
       "bookKey": "when-crack-was-king-a-people-s-history-of-a-misunderstood-era|donovan-x-ramsey",
@@ -37832,7 +37965,8 @@
         "accessible",
         "dark",
         "investigative"
-      ]
+      ],
+      "dnfReason": "topic_doesnt_appeal"
     },
     {
       "bookKey": "where-are-your-boys-tonight-the-oral-history-of-emo-s-mainstream-explosion-1999-2008|chris-payne",
@@ -37875,7 +38009,8 @@
         "accessible",
         "dense",
         "revelatory"
-      ]
+      ],
+      "dnfReason": "no_longer_relevant"
     },
     {
       "title": "House of Fidelity: The Rise of the Johnson Dynasty and the Company That Changed American Investing",

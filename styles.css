@@ -742,6 +742,62 @@ section { padding: 14px 0; }
 .list-dismiss-btn { font-size: 0.65rem; padding: 3px 7px; opacity: 0.55; }
 .list-row:hover .list-dismiss-btn { opacity: 1; }
 
+/* ── DISMISSED BOOKS PANEL ── */
+.dismissed-section { margin-top: 24px; }
+
+.dismissed-toggle {
+  display: flex; align-items: center; gap: 8px;
+  width: 100%; padding: 10px 16px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); cursor: pointer;
+  font-size: 0.85rem; font-weight: 600; color: var(--text-muted);
+  text-align: left; transition: background 0.12s;
+}
+.dismissed-toggle:hover { background: var(--bg-subtle); }
+.dismissed-toggle[aria-expanded="true"] .dismissed-chevron { transform: rotate(90deg); }
+.dismissed-count {
+  margin-left: 2px; font-size: 0.75rem; font-weight: 700;
+  background: var(--bg-subtle); color: var(--text-muted);
+  padding: 1px 7px; border-radius: 99px;
+}
+.dismissed-chevron {
+  margin-left: auto; transition: transform 0.18s; font-size: 0.75rem;
+}
+.dismissed-panel {
+  margin-top: 4px; border: 1px solid var(--border);
+  border-radius: var(--radius); background: var(--bg-card);
+  overflow: hidden;
+}
+.dismissed-list { display: flex; flex-direction: column; }
+.dismissed-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px; align-items: center;
+  padding: 9px 16px; border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
+}
+.dismissed-row:last-child { border-bottom: none; }
+.dismissed-row:hover { background: var(--bg-subtle); }
+.dismissed-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.dismissed-title {
+  font-weight: 600; font-size: 0.84rem; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.dismissed-meta { font-size: 0.72rem; color: var(--text-muted); }
+.dismissed-reason {
+  font-size: 0.72rem; color: var(--text-muted);
+  background: var(--bg-subtle); padding: 2px 8px; border-radius: 99px;
+  white-space: nowrap;
+}
+.undo-btn {
+  padding: 4px 10px; font-size: 0.72rem; font-weight: 600;
+  background: transparent; border: 1px solid var(--border);
+  border-radius: var(--radius); cursor: pointer; color: var(--text-muted);
+  transition: background 0.12s, color 0.12s;
+  white-space: nowrap;
+}
+.undo-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
 /* ── CURRENTLY READING ── */
 #currentlyReadingSection { padding: 10px 0 4px; }
 

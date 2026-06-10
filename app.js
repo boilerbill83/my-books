@@ -29,6 +29,10 @@ const refreshButton       = document.getElementById('refreshButton');
 const dismissDialog            = document.getElementById('dismissDialog');
 const dismissBookLabel         = document.getElementById('dismissBookLabel');
 const dismissForm              = document.getElementById('dismissForm');
+const dismissedToggle          = document.getElementById('dismissedToggle');
+const dismissedPanel           = document.getElementById('dismissedPanel');
+const dismissedCount           = document.getElementById('dismissedCount');
+const dismissedList            = document.getElementById('dismissedList');
 const currentlyReadingGrid     = document.getElementById('currentlyReadingGrid');
 const filterToRead             = document.getElementById('filterToRead');
 const filterOnlineFinds        = document.getElementById('filterOnlineFinds');
@@ -898,6 +902,68 @@ async function load() {
   state.candidates = arrays.flat().map(b => mergeScraped(b, scraped));
 }
 
+// ── Dismissed books panel ─────────────────────────────────────────────────
+
+const REASON_LABELS = {
+  not_interesting:        "Doesn't look interesting",
+  topic_doesnt_appeal:    "Topic doesn't appeal",
+  not_my_vibe:            "Not my vibe",
+  started_did_not_like:   "Started, didn't finish",
+  no_longer_relevant:     "No longer relevant",
+  already_seen_adaptation:"Already saw the movie / show",
+  already_read_or_owned:  "Already read or own it",
+  dont_know_author:       "Don't know the author",
+  too_long:               "Too long for what it offers",
+};
+
+function renderDismissedPanel() {
+  const dismissed = (state.feedback?.interactions || [])
+    .filter(e => e.excludeFromRecommendations)
+    .slice()
+    .sort((a, b) => (b.timestamp || '').localeCompare(a.timestamp || ''));
+
+  dismissedCount.textContent = dismissed.length;
+
+  if (!dismissed.length) {
+    dismissedList.innerHTML = '<p style="padding:16px;color:var(--text-muted);font-size:0.85rem;">No dismissed books.</p>';
+    return;
+  }
+
+  dismissedList.innerHTML = dismissed.map(entry => {
+    const reasonLabel = REASON_LABELS[entry.reasonCode] || entry.reasonCode || '—';
+    const date = entry.timestamp ? new Date(entry.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+    return `<div class="dismissed-row" data-key="${esc(entry.bookKey)}">
+      <div class="dismissed-info">
+        <span class="dismissed-title">${esc(entry.title)}</span>
+        <span class="dismissed-meta">${esc(entry.author)}${date ? ' · ' + date : ''}</span>
+      </div>
+      <span class="dismissed-reason">${esc(reasonLabel)}</span>
+      <button class="undo-btn" data-key="${esc(entry.bookKey)}">Undo</button>
+    </div>`;
+  }).join('');
+}
+
+function undismiss(bookKey) {
+  state.feedback.interactions = state.feedback.interactions.filter(
+    e => !(e.bookKey === bookKey && e.excludeFromRecommendations)
+  );
+  recompute();
+  renderDismissedPanel();
+  setStatus('Dismissal removed.', 'online');
+}
+
+dismissedToggle?.addEventListener('click', () => {
+  const open = dismissedPanel.hidden;
+  dismissedPanel.hidden = !open;
+  dismissedToggle.setAttribute('aria-expanded', String(open));
+  if (open) renderDismissedPanel();
+});
+
+dismissedList?.addEventListener('click', e => {
+  const btn = e.target.closest('.undo-btn');
+  if (btn) undismiss(btn.dataset.key);
+});
+
 // ── Dismiss (local-only) ───────────────────────────────────────────────────
 
 function dismiss(reasonCode) {
@@ -933,6 +999,8 @@ function dismiss(reasonCode) {
   state.pending = null;
   recompute();
   setStatus(`Dismissed "${book.title}".`, 'online');
+  dismissedCount.textContent = state.feedback.interactions.filter(e => e.excludeFromRecommendations).length;
+  if (!dismissedPanel.hidden) renderDismissedPanel();
 }
 
 // ── Event wiring ───────────────────────────────────────────────────────────
@@ -984,6 +1052,7 @@ async function initialize() {
     : (state.goodreads.books || []).filter(b => b.shelf === 'currently-reading');
   recompute();
   renderCurrentlyReading(crBooks);
+  dismissedCount.textContent = (state.feedback?.interactions || []).filter(e => e.excludeFromRecommendations).length;
   const readCount = state.goodreads.meta?.readCount || 0;
   setStatus(
     `${readCount} books read · ${state.ranking.selected.length} recommendations available`,

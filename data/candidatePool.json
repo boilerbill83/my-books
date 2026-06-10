@@ -1,6 +1,6 @@
 {
   "meta": {
-    "count": 13
+    "count": 15
   },
   "candidates": [
     {
@@ -343,6 +343,78 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1616687137i/56347315.jpg",
       "ratingsCount": 4000,
       "isbn13": "9781250770936"
+    },
+    {
+      "title": "Number Go Up: Inside Crypto's Wild Rise and Staggering Fall",
+      "author": "Zeke Faux",
+      "type": "nonfiction",
+      "year": 2023,
+      "pages": 304,
+      "avgRating": 4.32,
+      "themes": [
+        "narrative nonfiction",
+        "finance",
+        "true crime",
+        "tech history"
+      ],
+      "tones": [
+        "accessible",
+        "narrative-driven",
+        "dark",
+        "investigative"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Ben McKenzie",
+        "Nathaniel Popper",
+        "Roger Lowenstein"
+      ],
+      "similarToTitles": [
+        "Going Infinite",
+        "The Big Short",
+        "Bad Blood",
+        "Easy Money"
+      ],
+      "bookKey": "number-go-up-inside-crypto-s-wild-rise-and-staggering-fall|zeke-faux",
+      "coverUrl": "",
+      "isbn": "0593443810",
+      "source": "manual"
+    },
+    {
+      "title": "The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops",
+      "author": "Jack McCallum",
+      "type": "nonfiction",
+      "year": 2024,
+      "pages": 336,
+      "avgRating": 4.1,
+      "themes": [
+        "sports",
+        "history",
+        "narrative nonfiction",
+        "social commentary"
+      ],
+      "tones": [
+        "narrative-driven",
+        "accessible",
+        "dense",
+        "revelatory"
+      ],
+      "similarToAuthors": [
+        "David Halberstam",
+        "John Feinstein",
+        "Joe Posnanski",
+        "Jonathan Eig"
+      ],
+      "similarToTitles": [
+        "A Season on the Brink",
+        "The Last Shot",
+        "The Soul of Basketball",
+        "Boys Among Men"
+      ],
+      "bookKey": "the-real-hoosiers-crispus-attucks-high-school-oscar-robertson-and-the-hidden-history-of-hoops|jack-mccallum",
+      "coverUrl": "",
+      "isbn": "0306830752",
+      "source": "manual"
     }
   ]
 }

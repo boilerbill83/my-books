@@ -376,35 +376,6 @@
       "type": "fiction"
     },
     {
-      "bookKey": "number-go-up|zeke-faux",
-      "title": "Number Go Up",
-      "author": "Zeke Faux",
-      "interactionType": "negative_seed",
-      "reasonCode": "started_did_not_like",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "narrative nonfiction",
-        "finance",
-        "true crime",
-        "tech history"
-      ],
-      "tones": [
-        "accessible",
-        "narrative-driven",
-        "dark",
-        "investigative"
-      ],
-      "type": "nonfiction"
-    },
-    {
       "bookKey": "red-rising|pierce-brown",
       "title": "Red Rising",
       "author": "Pierce Brown",
@@ -756,35 +727,6 @@
         "accessible",
         "conversational",
         "personal"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "the-real-hoosiers|jack-mccallum",
-      "title": "The Real Hoosiers",
-      "author": "Jack McCallum",
-      "interactionType": "negative_seed",
-      "reasonCode": "no_longer_relevant",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "sports",
-        "history",
-        "narrative nonfiction",
-        "social commentary"
-      ],
-      "tones": [
-        "narrative-driven",
-        "accessible",
-        "dense",
-        "revelatory"
       ],
       "type": "nonfiction"
     },
