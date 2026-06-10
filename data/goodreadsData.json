@@ -4,7 +4,7 @@
     "generatedAt": "2026-06-01T00:00:00.000Z",
     "bookCount": 958,
     "readCount": 643,
-    "toReadCount": 290,
+    "toReadCount": 291,
     "currentlyReadingCount": 1,
     "fiveStarCount": 260,
     "notes": "Hardcoded from personal Goodreads export.",
@@ -93,7 +93,8 @@
         "tense",
         "plot-driven"
       ],
-      "top10": true
+      "top10": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1764811078l/244759037._SY475_.jpg"
     },
     {
       "bookKey": "in-good-faith-a-joe-dillard-novel|scott-pratt",
@@ -178,7 +179,8 @@
         "dark",
         "gritty",
         "tense"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1765823558l/240377749._SY475_.jpg"
     },
     {
       "bookKey": "the-housemaid-is-watching|freida-mcfadden",
@@ -263,7 +265,8 @@
         "twisty",
         "unreliable-narrator",
         "tense"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1678127541l/123193218._SY475_.jpg"
     },
     {
       "bookKey": "hidden-pictures|jason-rekulak",
@@ -304,7 +307,8 @@
         "dark",
         "disturbing",
         "procedural"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1635773106l/58938609._SY475_.jpg"
     },
     {
       "bookKey": "confessions-of-a-street-addict|james-j-cramer",
@@ -386,7 +390,8 @@
         "twisty",
         "unreliable-narrator",
         "compulsive"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1732729490l/220921867._SY475_.jpg"
     },
     {
       "bookKey": "freak|jennifer-hillier",
@@ -428,7 +433,8 @@
         "twisty",
         "tense",
         "fast-paced"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1386987930l/18883319.jpg"
     },
     {
       "bookKey": "come-undone|eddie-huang",
@@ -583,7 +589,8 @@
         "fast-paced",
         "dark",
         "revelatory"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1771914986l/248283419._SY475_.jpg"
     },
     {
       "bookKey": "i-am-not-a-robot-my-year-using-ai-to-do-everything|joanna-stern",
@@ -704,7 +711,8 @@
         "twisty",
         "tense",
         "fast-paced"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1634235881l/59349372.jpg"
     },
     {
       "bookKey": "dirty-20|bill-schweigart",
@@ -783,7 +791,8 @@
         "narrative-driven",
         "accessible",
         "character-study"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1741152013l/223400731._SY475_.jpg"
     },
     {
       "bookKey": "ai-valley-microsoft-google-and-the-trillion-dollar-race-to-cash-in-on-artificial-intelligence|gary-rivlin",
@@ -1257,7 +1266,8 @@
         "accessible",
         "investigative"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1744686911l/231405494._SY475_.jpg"
     },
     {
       "bookKey": "the-midnight-lawyer|j-j-miller",
@@ -1650,7 +1660,8 @@
         "twisty",
         "dark",
         "tense"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1731420500l/221144907._SY475_.jpg"
     },
     {
       "bookKey": "the-couple-next-door|shari-lapena",
@@ -1849,7 +1860,8 @@
         "fast-paced",
         "tense",
         "dark"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1724259520l/216247552._SY475_.jpg"
     },
     {
       "bookKey": "everybody-loses-the-tumultuous-rise-of-american-sports-gambling|danny-funt",
@@ -1931,7 +1943,8 @@
         "fast-paced",
         "character-driven"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1588791809l/52379735.jpg"
     },
     {
       "bookKey": "you-with-the-sad-eyes|christina-applegate",
@@ -2210,7 +2223,8 @@
         "tense",
         "twisty"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1684812487l/62558732._SY475_.jpg"
     },
     {
       "bookKey": "beautiful-ugly|alice-feeney",
@@ -2252,7 +2266,8 @@
         "dark",
         "tense"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1716839545l/210993995._SY475_.jpg"
     },
     {
       "bookKey": "gone-before-goodbye|reese-witherspoon",
@@ -2294,7 +2309,8 @@
         "tense",
         "procedural",
         "whodunit"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1747149626l/219775636._SY475_.jpg"
     },
     {
       "bookKey": "the-long-walk|stephen-king",
@@ -2335,7 +2351,8 @@
         "tense",
         "slow-burn",
         "disturbing"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1708730522l/209080212._SY475_.jpg"
     },
     {
       "bookKey": "my-next-breath|jeremy-renner",
@@ -2375,7 +2392,8 @@
         "narrative-driven",
         "personal",
         "conversational"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1737607859l/219446263._SY475_.jpg"
     },
     {
       "bookKey": "the-widow|john-grisham",
@@ -2417,7 +2435,8 @@
         "procedural",
         "plot-driven",
         "tense"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743131057l/229005082._SY475_.jpg"
     },
     {
       "bookKey": "the-jackal-s-mistress|chris-bohjalian",
@@ -2499,7 +2518,8 @@
         "narrative-driven",
         "inspiring",
         "dense"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1751079767l/237396511._SX318_.jpg"
     },
     {
       "bookKey": "rock-paper-scissors|alice-feeney",
@@ -3134,7 +3154,8 @@
         "slow-burn",
         "character-study",
         "inspiring"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1746557255l/222594068._SY475_.jpg"
     },
     {
       "bookKey": "on-tyranny-twenty-lessons-from-the-twentieth-century-graphic-edition|timothy-snyder",
@@ -3211,7 +3232,8 @@
         "slow-burn",
         "atmospheric",
         "character-study"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1563468097l/49665863._SX318_SY475_.jpg"
     },
     {
       "bookKey": "emergency-skin|n-k-jemisin",
@@ -3250,7 +3272,8 @@
         "fast-paced",
         "dark",
         "polemic"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1563468452l/49669410._SX318_SY475_.jpg"
     },
     {
       "bookKey": "summer-frost|blake-crouch",
@@ -3290,7 +3313,8 @@
         "twisty",
         "compulsive",
         "slow-burn"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1563468943l/49676965._SX318_SY475_.jpg"
     },
     {
       "bookKey": "the-breakdown|b-a-paris",
@@ -3332,7 +3356,8 @@
         "twisty",
         "tense",
         "dark"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1552586664l/44430778._SY475_.jpg"
     },
     {
       "bookKey": "family-of-spies|christine-kuehn",
@@ -3492,7 +3517,8 @@
         "plot-driven",
         "compulsive",
         "dark"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717081181l/173404111._SY475_.jpg"
     },
     {
       "bookKey": "the-merge|grace-walker",
@@ -3655,7 +3681,8 @@
         "twisty",
         "tense",
         "dark"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1620075242l/57937453._SY475_.jpg"
     },
     {
       "bookKey": "power-play-tesla-elon-musk-and-the-bet-of-the-century|tim-higgins",
@@ -3738,7 +3765,8 @@
         "character-driven",
         "tense"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743501467l/221633922._SY475_.jpg"
     },
     {
       "bookKey": "blacktop-wasteland|s-a-cosby",
@@ -3781,7 +3809,8 @@
         "gritty",
         "character-driven"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1573874784l/51182571.jpg"
     },
     {
       "bookKey": "who-knew|barry-diller",
@@ -3860,7 +3889,8 @@
         "character-study",
         "accessible",
         "personal"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1729089718l/220476359._SY475_.jpg"
     },
     {
       "bookKey": "the-perfect-divorce|jeneva-rose",
@@ -3902,7 +3932,8 @@
         "twisty",
         "dark",
         "tense"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1737698524l/219234429._SY475_.jpg"
     },
     {
       "bookKey": "anatomy-of-an-alibi|ashley-elston",
@@ -4021,7 +4052,8 @@
         "accessible",
         "investigative",
         "narrative-driven"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1741317979l/228018711._SY475_.jpg"
     },
     {
       "bookKey": "listen-for-the-lie|amy-tintera",
@@ -4102,7 +4134,8 @@
         "twisty",
         "dark",
         "tense"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1666523893l/61032435._SY475_.jpg"
     },
     {
       "bookKey": "the-lies-of-locke-lamora|scott-lynch",
@@ -4183,7 +4216,8 @@
         "procedural",
         "plot-driven",
         "dark"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1711027483l/209786389.jpg"
     },
     {
       "bookKey": "the-boomerang|robert-bailey",
@@ -4224,7 +4258,8 @@
         "tense",
         "plot-driven"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1727365791l/218229236._SY475_.jpg"
     },
     {
       "bookKey": "widow-s-point-the-complete-haunting|richard-chizmar",
@@ -4463,7 +4498,8 @@
         "humorous",
         "accessible",
         "slow-burn"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1632094493l/59028418.jpg"
     },
     {
       "bookKey": "home-is-where-the-bodies-are|jeneva-rose",
@@ -4504,7 +4540,8 @@
         "twisty",
         "dark",
         "tense"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1701937124l/193993695.jpg"
     },
     {
       "bookKey": "doppelganger-a-trip-into-the-mirror-world|naomi-klein",
@@ -8447,7 +8484,8 @@
         "character-study",
         "narrative-driven"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524255918l/39903265._SY475_.jpg"
     },
     {
       "bookKey": "the-invisible-life-of-addie-larue|v-e-schwab",
@@ -8489,7 +8527,8 @@
         "atmospheric",
         "character-driven"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1679679236l/123739932._SY475_.jpg"
     },
     {
       "bookKey": "sorry-i-m-late-i-didn-t-want-to-come-one-introvert-s-year-of-saying-yes|jessica-pan",
@@ -8531,7 +8570,8 @@
         "humorous",
         "narrative-driven"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1556842560l/45442010._SY475_.jpg"
     },
     {
       "bookKey": "into-thin-air|jon-krakauer",
@@ -8574,7 +8614,8 @@
         "tense",
         "fast-paced"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1327859184l/6081088.jpg"
     },
     {
       "bookKey": "the-heiress|rachel-hawkins",
@@ -8617,7 +8658,8 @@
         "procedural",
         "whodunit"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1686663798l/177478086._SY475_.jpg"
     },
     {
       "bookKey": "annie-bot|sierra-greer",
@@ -8660,7 +8702,8 @@
         "fast-paced",
         "character-driven"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1690812345l/156007669._SY475_.jpg"
     },
     {
       "bookKey": "the-housemaid|freida-mcfadden",
@@ -8703,7 +8746,8 @@
         "unreliable-narrator",
         "compulsive"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1646534743l/60556912._SY475_.jpg"
     },
     {
       "bookKey": "i-hope-this-finds-you-well|natalie-sue",
@@ -8744,7 +8788,8 @@
         "humorous",
         "conversational"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1699443709l/62066104._SY475_.jpg"
     },
     {
       "bookKey": "source-code-my-beginnings|bill-gates",
@@ -8787,7 +8832,8 @@
         "accessible",
         "personal"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1719008431l/213290918._SY475_.jpg"
     },
     {
       "bookKey": "the-perfect-marriage|jeneva-rose",
@@ -8830,7 +8876,8 @@
         "dark",
         "tense"
       ],
-      "allTimeFave": true
+      "allTimeFave": true,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1732681778l/221997992._SY475_.jpg"
     },
     {
       "bookKey": "12-months-to-live|james-patterson",
@@ -8947,7 +8994,8 @@
         "accessible",
         "narrative-driven",
         "investigative"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1729304725l/219728281._SY475_.jpg"
     },
     {
       "bookKey": "gandolfini-jim-tony-and-the-life-of-a-legend|jason-bailey",
@@ -8987,7 +9035,8 @@
         "narrative-driven",
         "personal",
         "conversational"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1729124173l/217112030._SY475_.jpg"
     },
     {
       "bookKey": "a-s-l|jeanne-thornton",
@@ -9306,7 +9355,8 @@
         "tense",
         "procedural",
         "whodunit"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1715178170l/199897926._SY475_.jpg"
     },
     {
       "bookKey": "not-quite-dead-yet|holly-jackson",
@@ -9425,7 +9475,8 @@
         "narrative-driven",
         "personal",
         "conversational"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1728331961l/216818681._SY475_.jpg"
     },
     {
       "bookKey": "the-exchange|john-grisham",
@@ -9467,7 +9518,8 @@
         "procedural",
         "plot-driven",
         "tense"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680059561l/124025550._SY475_.jpg"
     },
     {
       "bookKey": "english-creek|ivan-doig",
@@ -9946,7 +9998,8 @@
         "procedural",
         "plot-driven",
         "tense"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680705245l/125188440._SY475_.jpg"
     },
     {
       "bookKey": "the-crash|freida-mcfadden",
@@ -10027,7 +10080,8 @@
         "plot-driven",
         "compulsive",
         "tense"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1659623259l/60601632._SY475_.jpg"
     },
     {
       "bookKey": "the-bomber-mafia-a-dream-a-temptation-and-the-longest-night-of-the-second-world-war|malcolm-gladwell",
@@ -10069,7 +10123,8 @@
         "revelatory",
         "conversational",
         "narrative-driven"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1633586623l/58989871.jpg"
     },
     {
       "bookKey": "the-first-gentleman|bill-clinton",
@@ -10148,7 +10203,8 @@
         "character-driven",
         "heartwarming",
         "slow-burn"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1730469054l/220818107._SY475_.jpg"
     },
     {
       "bookKey": "dissolution|nicholas-binge",
@@ -10308,7 +10364,8 @@
         "twisty",
         "unreliable-narrator",
         "dark"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1693401496l/195967140._SY475_.jpg"
     },
     {
       "bookKey": "the-man-made-of-smoke|alex-north",
@@ -10388,7 +10445,8 @@
         "dark",
         "character-driven",
         "slow-burn"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1590843284l/53660995._SY475_.jpg"
     },
     {
       "bookKey": "how-i-killed-pluto-and-why-it-had-it-coming|mike-brown",
@@ -10468,7 +10526,8 @@
         "conversational",
         "narrative-driven",
         "accessible"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1644163715l/57926350._SY475_.jpg"
     },
     {
       "bookKey": "the-last-letter|rebecca-yarros",
@@ -10748,7 +10807,8 @@
         "procedural",
         "twisty",
         "tense"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1577933110l/50245253._SY475_.jpg"
     },
     {
       "bookKey": "tell-no-one|harlan-coben",
@@ -10911,7 +10971,8 @@
         "gritty",
         "accessible",
         "dense"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1320454587l/94799.jpg"
     },
     {
       "bookKey": "paper-towns|john-green",
@@ -10952,7 +11013,8 @@
         "melancholic",
         "character-driven",
         "fast-paced"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1349013610l/6442769.jpg"
     },
     {
       "bookKey": "the-tycoons-how-andrew-carnegie-john-d-rockefeller-jay-gould-and-j-p-morgan-invented-the-american-supereconomy|charles-r-morris",
@@ -11113,7 +11175,8 @@
         "slow-burn",
         "atmospheric",
         "character-driven"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1707064360l/200624139._SY475_.jpg"
     },
     {
       "bookKey": "never-lie|freida-mcfadden",
@@ -11155,7 +11218,8 @@
         "twisty",
         "unreliable-narrator",
         "dark"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1661428846l/62080187._SY475_.jpg"
     },
     {
       "bookKey": "the-perks-of-being-a-wallflower|stephen-chbosky",
@@ -11274,7 +11338,8 @@
         "tense",
         "cat-and-mouse",
         "plot-driven"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1709924516l/201915708.jpg"
     },
     {
       "bookKey": "looking-for-alaska|john-green",
@@ -11315,7 +11380,8 @@
         "melancholic",
         "character-driven",
         "fast-paced"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1575397677l/49085770._SY475_.jpg"
     },
     {
       "bookKey": "challenger-a-true-story-of-heroism-and-disaster-on-the-edge-of-space|adam-higginbotham",
@@ -11475,7 +11541,8 @@
         "twisty",
         "unreliable-narrator",
         "compulsive"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1664729357l/62848145._SY475_.jpg"
     },
     {
       "bookKey": "the-boyfriend|freida-mcfadden",
@@ -11717,7 +11784,8 @@
         "tense",
         "dark",
         "gritty"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1514931872l/37799979._SY475_.jpg"
     },
     {
       "bookKey": "the-blackbriar-genesis|simon-gervais",
@@ -11757,7 +11825,8 @@
         "tense",
         "cat-and-mouse",
         "plot-driven"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1645489303l/59851384.jpg"
     },
     {
       "bookKey": "everything-is-tuberculosis-the-history-and-persistence-of-our-deadliest-infection|john-green",
@@ -11838,7 +11907,8 @@
         "twisty",
         "dark",
         "procedural"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1681257471l/127463547.jpg"
     },
     {
       "bookKey": "grit-the-power-of-passion-and-perseverance|angela-duckworth",
@@ -11918,7 +11988,8 @@
         "character-driven",
         "humorous",
         "slow-burn"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1480603223l/33215733._SY475_.jpg"
     },
     {
       "bookKey": "under-the-banner-of-heaven-a-story-of-violent-faith|jon-krakauer",
@@ -12039,7 +12110,8 @@
         "character-driven",
         "humorous",
         "slow-burn"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1561578109l/43188104._SY475_.jpg"
     },
     {
       "bookKey": "the-egg|andy-weir",
@@ -12079,7 +12151,8 @@
         "accessible",
         "humorous",
         "slow-burn"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1431492647l/17563539.jpg"
     },
     {
       "bookKey": "flash-crash-a-trading-savant-a-global-manhunt-and-the-most-mysterious-market-crash-in-history|liam-vaughan",
@@ -12120,7 +12193,8 @@
         "fast-paced",
         "tense",
         "dark"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1566881388l/52661266._SX318_SY475_.jpg"
     },
     {
       "bookKey": "worst-case-scenario|t-j-newman",
@@ -12161,7 +12235,8 @@
         "tense",
         "compulsive",
         "twisty"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1714528035l/210375937._SY475_.jpg"
     },
     {
       "bookKey": "the-stowaway|james-s-murray",
@@ -12202,7 +12277,8 @@
         "fast-paced",
         "accessible",
         "dense"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1597876716l/53138124.jpg"
     },
     {
       "bookKey": "lonesome-dove|larry-mcmurtry",
@@ -12282,7 +12358,8 @@
         "narrative-driven",
         "accessible",
         "personal"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1455481304l/29095634._SY475_.jpg"
     },
     {
       "bookKey": "tom-lake|ann-patchett",
@@ -12443,7 +12520,8 @@
         "character-driven",
         "character-study",
         "atmospheric"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1440466364l/26160586._SY475_.jpg"
     },
     {
       "bookKey": "the-second-smartest-dog-that-ever-lived|will-pass",
@@ -12921,7 +12999,8 @@
         "slow-burn",
         "atmospheric",
         "heartwarming"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1699723282l/199928985._SY475_.jpg"
     },
     {
       "bookKey": "the-pentagon-s-brain-an-uncensored-history-of-darpa-america-s-top-secret-military-research-agency|annie-jacobsen",
@@ -12962,7 +13041,8 @@
         "gritty",
         "accessible",
         "dense"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1440920054l/26191204._SY475_.jpg"
     },
     {
       "bookKey": "she-rides-shotgun|jordan-harper",
@@ -13004,7 +13084,8 @@
         "gritty",
         "fast-paced",
         "atmospheric"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1730167869l/33853767._SY475_.jpg"
     },
     {
       "bookKey": "everybody-knows|jordan-harper",
@@ -13046,7 +13127,8 @@
         "gritty",
         "fast-paced",
         "atmospheric"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1652805068l/59107997.jpg"
     },
     {
       "bookKey": "heartbreak-is-the-national-anthem-how-taylor-swift-reinvented-pop-music|rob-sheffield",
@@ -13126,7 +13208,8 @@
         "tense",
         "character-driven",
         "fast-paced"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1328328180l/8341825.jpg"
     },
     {
       "bookKey": "the-last-one-at-the-wedding|jason-rekulak",
@@ -13245,7 +13328,8 @@
         "slow-burn",
         "character-driven",
         "atmospheric"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1582857542l/51851615._SY475_.jpg"
     },
     {
       "bookKey": "abandon|blake-crouch",
@@ -13286,7 +13370,8 @@
         "twisty",
         "compulsive",
         "dark"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1653965860l/61198602._SX318_.jpg"
     },
     {
       "bookKey": "lifeform|jenny-slate",
@@ -13367,7 +13452,8 @@
         "fast-paced",
         "tense",
         "heartwarming"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1471731396l/23434956._SY475_.jpg"
     },
     {
       "bookKey": "buttermilk-graffiti-a-chef-s-journey-to-discover-america-s-new-melting-pot-cuisine|edward-lee",
@@ -13406,7 +13492,8 @@
         "accessible",
         "narrative-driven",
         "conversational"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1517772358l/38348301._SX318_.jpg"
     },
     {
       "bookKey": "open|andre-agassi",
@@ -13487,7 +13574,8 @@
         "tense",
         "investigative",
         "accessible"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1617042528l/53483903._SY475_.jpg"
     },
     {
       "bookKey": "liv-and-let-die-the-inside-story-of-the-war-between-the-pga-tour-and-liv-golf|alan-shipnuck",
@@ -13526,7 +13614,8 @@
         "investigative",
         "fast-paced",
         "revelatory"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680730742l/125363222._SY475_.jpg"
     },
     {
       "bookKey": "american-overdose-the-opioid-tragedy-in-three-acts|chris-mcgreal",
@@ -13646,7 +13735,8 @@
         "fast-paced",
         "tense",
         "dark"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1638033318l/59710157._SY475_.jpg"
     },
     {
       "bookKey": "born-to-run-a-hidden-tribe-superathletes-and-the-greatest-race-the-world-has-never-seen|christopher-mcdougall",
@@ -13687,7 +13777,8 @@
         "accessible",
         "fast-paced",
         "plot-driven"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1507651257l/6565082._SY475_.jpg"
     },
     {
       "bookKey": "eruption|michael-crichton",
@@ -13729,7 +13820,8 @@
         "twisty",
         "slow-burn",
         "atmospheric"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1699720827l/199372731._SY475_.jpg"
     },
     {
       "bookKey": "the-anthropocene-reviewed-essays-on-a-human-centered-planet|john-green",
@@ -13811,7 +13903,8 @@
         "procedural",
         "plot-driven",
         "tense"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1697078243l/199460331._SY475_.jpg"
     },
     {
       "bookKey": "the-book-of-dog-a-satire|d-j-molles",
@@ -13893,7 +13986,8 @@
         "twisty",
         "procedural",
         "dark"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1686591897l/177058954._SY475_.jpg"
     },
     {
       "bookKey": "the-burden-of-proof|scott-turow",
@@ -13934,7 +14028,8 @@
         "tense",
         "character-driven",
         "fast-paced"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1328344397l/8700873.jpg"
     },
     {
       "bookKey": "exit-west|mohsin-hamid",
@@ -14132,7 +14227,8 @@
         "slow-burn",
         "atmospheric",
         "character-driven"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1499943597l/18626849._SY475_.jpg"
     },
     {
       "bookKey": "one-day|david-nicholls",
@@ -14174,7 +14270,8 @@
         "character-driven",
         "humorous",
         "slow-burn"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1356891529l/8489510.jpg"
     },
     {
       "bookKey": "frogcatchers|jeff-lemire",
@@ -37489,7 +37586,8 @@
         "narrative-driven",
         "dark",
         "investigative"
-      ]
+      ],
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1687140968l/123276708.jpg"
     },
     {
       "bookKey": "red-rising|pierce-brown",
@@ -38145,6 +38243,23 @@
         "Malcolm Gladwell",
         "Jonathan Haidt"
       ]
+    },
+    {
+      "title": "Stoner",
+      "author": "John  Williams",
+      "isbn13": null,
+      "isbn": "1590171993",
+      "avgRating": 4.36,
+      "ratingsCount": 0,
+      "year": 1965,
+      "pages": 292,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1742326950l/166997._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
     }
   ],
   "indexes": {
