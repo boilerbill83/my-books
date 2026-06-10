@@ -1,5 +1,5 @@
 /**
- * bbreEngine.js  —  Bills Books Recommendation Engine (BBRE) v5
+ * bbreEngine.js  —  Bills Books Recommendation Engine (BBRE) v5.5
  *
  * Combines two engines to leverage each one's strengths:
  *
@@ -44,6 +44,16 @@
  *         dismissed reason codes feed theme/tone signal (wrong_genre 0.6×,
  *         author_not_appealing 0.4×, etc.); combo multiplier 1.5× when ≥2
  *         themes have lift > 2.0; penalty cap raised 0.12 → 0.30.
+ *   v5.5: reason-weighted DNF lift — each DNF book's contribution to the
+ *         lift numerator and denominator is scaled by DNF_REASON_WEIGHT[dnfReason].
+ *         not_interesting 0.7, topic_doesnt_appeal 0.6, not_my_vibe 0.3,
+ *         no_longer_relevant 0.05, already_seen_adaptation 0.0.
+ *         Key effect: 34 "no longer relevant" DNFs (sports dynasties, old
+ *         finance, music history) no longer unfairly penalise those themes.
+ *         Truly bad reads (not_interesting, topic_doesnt_appeal) get stronger
+ *         signal as the denominator shrinks 136 → 66.8 effective weight.
+ *         dnfOnlyAuthors now filtered to quality-signal reasons (weight ≥ 0.3).
+ *         softPenaltyAuthors extended to dismissed not_my_vibe entries.
  *
  * Exports:
  *   rankBBRE(goodreads, feedback, candidatePool, history) → { selected, profile, eligibleCount }
@@ -282,59 +292,89 @@ function recencySignal(book, recent, allTime) {
 // Does NOT penalise themes the user simply reads a lot of — only themes
 // specifically associated with abandonment.
 
+// How much each DNF reason's abandonment counts toward the lift signal.
+// Higher = "I actively disliked this" (strong topic/theme signal).
+// Lower = "circumstances changed, not a quality judgment".
+const DNF_REASON_WEIGHT = {
+  'started_did_not_like':    1.0,   // read it, hated it — strongest signal
+  'not_interesting':         0.7,   // read it, found it boring
+  'topic_doesnt_appeal':     0.6,   // topic/theme mismatch
+  'not_my_vibe':             0.3,   // style mismatch, mild signal
+  'no_longer_relevant':      0.05,  // timing/life issue, not quality — nearly excluded
+  'already_seen_adaptation': 0.0,   // no quality judgment at all
+  'already_read_or_owned':   0.0,
+  'too_long':                0.1,
+  'dont_know_author':        0.0,
+};
+const DEFAULT_DNF_WEIGHT = 0.5;  // for books without a stored dnfReason
+
 function buildDnfSignal(readBooks, feedback) {
   const dnfBooks    = readBooks.filter(b => b.dnf);
   const totalReads  = readBooks.length;
-  const totalDnf    = dnfBooks.length;
-  if (totalDnf === 0) return { dnfThemeLift: new Map(), dnfToneLift: new Map(), dnfOnlyAuthors: new Set(), lowRatedAuthors: new Set(), dismissedThemeWeights: new Map(), dismissedToneWeights: new Map(), softPenaltyAuthors: new Set() };
+  if (dnfBooks.length === 0) return { dnfThemeLift: new Map(), dnfToneLift: new Map(), dnfOnlyAuthors: new Set(), lowRatedAuthors: new Set(), dismissedThemeWeights: new Map(), dismissedToneWeights: new Map(), softPenaltyAuthors: new Set() };
 
-  // Theme counts across all reads and DNF-only
+  // Theme / tone counts across all reads (unweighted — denominator uses raw counts).
   const allThemeCnt = new Map();
-  const dnfThemeCnt = new Map();
+  const allToneCnt  = new Map();
   for (const b of readBooks) {
-    for (const t of (b.themes || [])) {
-      allThemeCnt.set(t, (allThemeCnt.get(t) || 0) + 1);
-      if (b.dnf) dnfThemeCnt.set(t, (dnfThemeCnt.get(t) || 0) + 1);
-    }
+    for (const t of (b.themes || [])) allThemeCnt.set(t, (allThemeCnt.get(t) || 0) + 1);
+    for (const t of (b.tones  || [])) allToneCnt.set(t, (allToneCnt.get(t)   || 0) + 1);
   }
 
-  // Compute lift per theme
+  // Weighted DNF theme / tone counts.
+  // Each DNF book contributes proportionally to how strongly its reason
+  // signals active dislike (vs. a neutral life circumstance).
+  const dnfThemeWt = new Map();
+  const dnfToneWt  = new Map();
+  let   totalDnfWt = 0;
+
+  for (const b of dnfBooks) {
+    const w = DNF_REASON_WEIGHT[b.dnfReason] ?? DEFAULT_DNF_WEIGHT;
+    if (w === 0) continue;
+    totalDnfWt += w;
+    for (const t of (b.themes || [])) dnfThemeWt.set(t, (dnfThemeWt.get(t) || 0) + w);
+    for (const t of (b.tones  || [])) dnfToneWt.set(t,  (dnfToneWt.get(t)  || 0) + w);
+  }
+
+  // Fall back to unweighted count if all reasons have zero weight.
+  if (totalDnfWt === 0) totalDnfWt = dnfBooks.length;
+
+  // Compute lift per theme (weighted dnf rate / unweighted all rate).
   const dnfThemeLift = new Map();
-  for (const [t, dnfCnt] of dnfThemeCnt) {
-    const dnfRate  = dnfCnt / totalDnf;
-    const allRate  = (allThemeCnt.get(t) || 0) / totalReads;
+  for (const [t, wt] of dnfThemeWt) {
+    const dnfRate = wt / totalDnfWt;
+    const allRate = (allThemeCnt.get(t) || 0) / totalReads;
     if (allRate === 0 || dnfRate < DNF_THEME_MIN_RATE) continue;
     const lift = dnfRate / allRate;
     if (lift >= DNF_LIFT_THRESHOLD) dnfThemeLift.set(t, lift);
   }
 
-  // Tone counts across all reads and DNF-only (same algorithm as themes)
-  const allToneCnt = new Map();
-  const dnfToneCnt = new Map();
-  for (const b of readBooks) {
-    for (const t of (b.tones || [])) {
-      allToneCnt.set(t, (allToneCnt.get(t) || 0) + 1);
-      if (b.dnf) dnfToneCnt.set(t, (dnfToneCnt.get(t) || 0) + 1);
-    }
-  }
+  // Same for tones.
   const dnfToneLift = new Map();
-  for (const [t, dnfCnt] of dnfToneCnt) {
-    const dnfRate = dnfCnt / totalDnf;
+  for (const [t, wt] of dnfToneWt) {
+    const dnfRate = wt / totalDnfWt;
     const allRate = (allToneCnt.get(t) || 0) / totalReads;
     if (allRate === 0 || dnfRate < DNF_THEME_MIN_RATE) continue;
     const lift = dnfRate / allRate;
     if (lift >= DNF_LIFT_THRESHOLD) dnfToneLift.set(t, lift);
   }
 
-  // Authors who appear only in DNF (zero completed reads) with 2+ DNFs
+  // Authors whose only reads are quality-signal DNFs (weight ≥ 0.3) with 2+
+  // such books and no completed reads.  Excludes "no longer relevant" etc.
   const ratedAuthorSet = new Set(
     readBooks.filter(b => !b.dnf && b.myRating > 0).map(b => normA(b.author))
   );
-  const dnfAuthorCnt = new Map();
-  for (const b of dnfBooks) dnfAuthorCnt.set(normA(b.author), (dnfAuthorCnt.get(normA(b.author)) || 0) + 1);
+  const dnfAuthorWt = new Map();
+  for (const b of dnfBooks) {
+    const w = DNF_REASON_WEIGHT[b.dnfReason] ?? DEFAULT_DNF_WEIGHT;
+    if (w >= 0.3) {
+      const ak = normA(b.author);
+      dnfAuthorWt.set(ak, (dnfAuthorWt.get(ak) || 0) + w);
+    }
+  }
   const dnfOnlyAuthors = new Set(
-    [...dnfAuthorCnt.entries()]
-      .filter(([ak, cnt]) => cnt >= 2 && !ratedAuthorSet.has(ak))
+    [...dnfAuthorWt.entries()]
+      .filter(([ak, wt]) => wt >= 0.6 && !ratedAuthorSet.has(ak))
       .map(([ak]) => ak)
   );
 
@@ -388,7 +428,8 @@ function buildDnfSignal(readBooks, feedback) {
     for (const t of (ix.tones || [])) {
       dismissedToneWeights.set(t, (dismissedToneWeights.get(t) || 0) + w);
     }
-    if (ix.reasonCode === 'author_or_topic_not_appealing') {
+    if (ix.reasonCode === 'not_my_vibe' ||
+        ix.reasonCode === 'author_or_topic_not_appealing') {  // legacy compat
       softPenaltyAuthors.add(normA(ix.author));
     }
   }
