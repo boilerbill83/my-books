@@ -65,6 +65,12 @@
  *   v3.1 (author variance penalty):        MAE=0.762, Spearman=0.274
  *   v3.2 (DNF half-weight + prior fix):    MAE=0.764, Spearman=0.311  (+13.5% vs v3.1)
  *   v3.3 (enrich DNF metadata + kNN/theme fix): MAE=0.766, Spearman=0.306
+ *   v3.4: virtual DNF ratings — reason-adjusted effective rating instead of
+ *         myRating=2★ for all DNF books. started_did_not_like→1.0,
+ *         not_interesting→1.5, topic_doesnt_appeal→2.0, not_my_vibe→2.5;
+ *         no_longer_relevant/already_seen_adaptation skipped entirely.
+ *         Net effect: genuinely bad reads drag author/theme means lower;
+ *         circumstantial DNFs stop penalising their authors.
  *   Baseline (always predict prior): MAE=0.823
  *
  * Exports: buildTasteModel(), predictRating(), predictedStars(),
@@ -118,6 +124,29 @@ const _normT  = n => String(n || '').toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').
  */
 function _shrunk(n, halfK, maxW) {
   return maxW * n / (n + halfK);
+}
+
+// ── DNF virtual rating ─────────────────────────────────────────────────────
+// Returns the effective rating to use for a DNF book in the taste model,
+// or null if the book should be skipped entirely (no quality signal).
+const _DNF_VIRTUAL_RATINGS = {
+  'started_did_not_like':    1.0,   // actively hated it
+  'not_interesting':         1.5,   // read enough to find it boring
+  'topic_doesnt_appeal':     2.0,   // topic mismatch, not a quality judgment
+  'not_my_vibe':             2.5,   // style mismatch, slightly below neutral
+  'no_longer_relevant':      null,  // timing issue — skip, not a quality signal
+  'already_seen_adaptation': null,
+  'already_read_or_owned':   null,
+  'too_long':                2.0,
+  'dont_know_author':        null,
+};
+const _DEFAULT_DNF_VIRTUAL = 1.8;   // unknown reason → conservative signal
+
+function _dnfVirtualRating(book) {
+  if (!book.dnf) return book.myRating;
+  const vr = _DNF_VIRTUAL_RATINGS[book.dnfReason];
+  if (vr !== undefined) return vr;   // null means skip, number means use it
+  return _DEFAULT_DNF_VIRTUAL;
 }
 
 // ── Author Co-occurrence ───────────────────────────────────────────────────
@@ -186,12 +215,19 @@ export function buildTasteModel(goodreads, candidatePool = []) {
   const authorMap = new Map();
   for (const b of read) {
     const key = _normA(b.author);
-    const w   = b.dnf ? 0.5 : (b.allTimeFave ? 2.0 : 1.0);
     if (!authorMap.has(key)) authorMap.set(key, { ratings: [], wSum: 0, wTotal: 0, name: b.author });
     const entry = authorMap.get(key);
-    entry.wSum   += b.myRating * w;
-    entry.wTotal += w;
-    if (!b.dnf) entry.ratings.push(b.myRating);
+    if (b.dnf) {
+      const vr = _dnfVirtualRating(b);
+      if (vr === null) continue;       // no quality signal — skip entirely
+      entry.wSum   += vr * 0.5;
+      entry.wTotal += 0.5;
+    } else {
+      const w = b.allTimeFave ? 2.0 : 1.0;
+      entry.wSum   += b.myRating * w;
+      entry.wTotal += w;
+      entry.ratings.push(b.myRating);
+    }
   }
   for (const v of authorMap.values()) {
     v.mean  = v.wTotal > 0 ? v.wSum / v.wTotal : 0;
@@ -203,11 +239,21 @@ export function buildTasteModel(goodreads, candidatePool = []) {
   // DNF books at half-weight; allTimeFave books at 2× weight.
   const themeMap = new Map();
   for (const b of read) {
-    const w = b.dnf ? 0.5 : (b.allTimeFave ? 2.0 : 1.0);
-    for (const t of (b.themes || [])) {
-      if (!themeMap.has(t)) themeMap.set(t, { wSum: 0, wTotal: 0 });
-      themeMap.get(t).wSum   += b.myRating * w;
-      themeMap.get(t).wTotal += w;
+    if (b.dnf) {
+      const vr = _dnfVirtualRating(b);
+      if (vr === null) continue;       // no quality signal — skip entirely
+      for (const t of (b.themes || [])) {
+        if (!themeMap.has(t)) themeMap.set(t, { wSum: 0, wTotal: 0 });
+        themeMap.get(t).wSum   += vr * 0.5;
+        themeMap.get(t).wTotal += 0.5;
+      }
+    } else {
+      const w = b.allTimeFave ? 2.0 : 1.0;
+      for (const t of (b.themes || [])) {
+        if (!themeMap.has(t)) themeMap.set(t, { wSum: 0, wTotal: 0 });
+        themeMap.get(t).wSum   += b.myRating * w;
+        themeMap.get(t).wTotal += w;
+      }
     }
   }
   for (const v of themeMap.values()) {
