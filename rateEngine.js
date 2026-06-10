@@ -181,10 +181,12 @@ export function buildTasteModel(goodreads, candidatePool = []) {
   // Map: normAuthor → { ratings[], wSum, wTotal, mean, stdev, name }
   // DNF books count as 0.5 observations so they contribute signal without
   // fully overriding ratings from books the user finished.
+  // allTimeFave books are weighted 2× — they represent the strongest taste
+  // signal (books loved beyond a typical 5★) and pull author/theme means up.
   const authorMap = new Map();
   for (const b of read) {
     const key = _normA(b.author);
-    const w   = b.dnf ? 0.5 : 1.0;
+    const w   = b.dnf ? 0.5 : (b.allTimeFave ? 2.0 : 1.0);
     if (!authorMap.has(key)) authorMap.set(key, { ratings: [], wSum: 0, wTotal: 0, name: b.author });
     const entry = authorMap.get(key);
     entry.wSum   += b.myRating * w;
@@ -198,11 +200,10 @@ export function buildTasteModel(goodreads, candidatePool = []) {
 
   // ── Theme affinities ────────────────────────────────────────────────────
   // Map: theme → { wSum, wTotal, mean, count }
-  // DNF books at half-weight — their themes are valid signal but 2★ implicit
-  // ratings should not fully dilute the means learned from finished books.
+  // DNF books at half-weight; allTimeFave books at 2× weight.
   const themeMap = new Map();
   for (const b of read) {
-    const w = b.dnf ? 0.5 : 1.0;
+    const w = b.dnf ? 0.5 : (b.allTimeFave ? 2.0 : 1.0);
     for (const t of (b.themes || [])) {
       if (!themeMap.has(t)) themeMap.set(t, { wSum: 0, wTotal: 0 });
       themeMap.get(t).wSum   += b.myRating * w;

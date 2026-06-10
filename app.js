@@ -34,6 +34,7 @@ const filterToRead             = document.getElementById('filterToRead');
 const filterOnlineFinds        = document.getElementById('filterOnlineFinds');
 const filterFiction            = document.getElementById('filterFiction');
 const filterNonfiction         = document.getElementById('filterNonfiction');
+const filterTop10              = document.getElementById('filterTop10');
 const poolCountEl              = document.getElementById('poolCount');
 const themeFilterBar           = document.getElementById('themeFilterBar');
 const toneFilterBar            = document.getElementById('toneFilterBar');
@@ -823,8 +824,12 @@ function recompute() {
 
   const showFiction    = filterFiction?.checked !== false;
   const showNonfiction = filterNonfiction?.checked !== false;
+  const showTop10Only  = filterTop10?.checked === true;
 
   let allCands = [...external, ...toReadCands];
+  if (showTop10Only) {
+    allCands = allCands.filter(b => b.top10);
+  }
   if (!showFiction || !showNonfiction) {
     allCands = allCands.filter(b => {
       const t = String(b.type || '').toLowerCase();
@@ -930,7 +935,7 @@ function dismiss(reasonCode) {
 // ── Event wiring ───────────────────────────────────────────────────────────
 
 // Filter checkboxes reset page and theme selection, then recompute
-[filterToRead, filterOnlineFinds, filterFiction, filterNonfiction].forEach(el => {
+[filterToRead, filterOnlineFinds, filterFiction, filterNonfiction, filterTop10].forEach(el => {
   el?.addEventListener('change', () => { state.activeThemes.clear(); state.activeTones.clear(); state.page = 0; recompute(); });
 });
 

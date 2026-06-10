@@ -38,6 +38,8 @@
  *         neutral (3.75→3.80) and max lift (0.04→0.06), lower DNF threshold
  *         (2.0→1.7).  Data: twisty +0.45★, compulsive +0.38★, tense +0.28★
  *         vs revelatory -0.40★, conversational -0.27★ vs Bill's 4.23 mean.
+ *   v5.3: allTimeFave books (Goodreads "all-time-faves" shelf) weighted 2× in
+ *         rateEngine author/theme maps — equivalent to treating them as 6★.
  *
  * Exports:
  *   rankBBRE(goodreads, feedback, candidatePool, history) → { selected, profile, eligibleCount }
