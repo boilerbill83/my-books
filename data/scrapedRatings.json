@@ -3866,5 +3866,14 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/71sOuWGE-8L._SX300_.jpg",
     "source": "amazon"
+  },
+  "ding dong|||jamie siminoff": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.7,
+      "count": 75
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/71g4OviP4vL._SX300_.jpg",
+    "source": "amazon"
   }
 }
