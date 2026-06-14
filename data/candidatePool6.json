@@ -423,7 +423,7 @@
       "bookKey": "/works/OL19891870W",
       "goodreadsUrl": "https://www.goodreads.com/book/show/35068533-the-feather-thief",
       "buyUrl": "https://www.amazon.com/dp/1101982020",
-      "coverUrl": "https://covers.openlibrary.org/b/isbn/1101982020-L.jpg",
+      "coverUrl": "https://books.google.com/books/content?vid=ISBN9781101981634&printsec=frontcover&img=1&zoom=2&source=gbs_api",
       "isbn13": "9781101981634"
     },
     {
@@ -1386,7 +1386,7 @@
       "bookKey": "/works/OL17028457W",
       "goodreadsUrl": "https://www.goodreads.com/book/show/18774964-a-man-called-ove",
       "buyUrl": "https://www.amazon.com/dp/1476738025",
-      "coverUrl": "https://covers.openlibrary.org/b/isbn/1476738025-L.jpg",
+      "coverUrl": "https://books.google.com/books/content?id=7mtNAgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "isbn13": "9781476738031"
     },
     {
@@ -1553,7 +1553,7 @@
       "bookKey": "/works/OL35668792W",
       "goodreadsUrl": "https://www.goodreads.com/book/show/61431922-fourth-wing",
       "buyUrl": "https://www.amazon.com/dp/1649374046",
-      "coverUrl": "https://covers.openlibrary.org/b/isbn/1649374046-L.jpg",
+      "coverUrl": "https://books.google.com/books/content?id=kU8ZEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
       "isbn13": "9781649377371"
     }
   ]
