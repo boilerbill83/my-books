@@ -3881,5 +3881,14 @@
     "amazon": null,
     "coverUrl": null,
     "source": "not_found"
+  },
+  "the american way of killing|||malcolm gladwell": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/71kMY3eXfyL._SX300_.jpg",
+    "source": "cover_only"
   }
 }
