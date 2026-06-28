@@ -906,7 +906,8 @@
       "bookKey": "/works/OL3348070W",
       "goodreadsUrl": "https://www.goodreads.com/book/show/375802.Ender_s_Game",
       "buyUrl": "https://www.amazon.com/dp/0812550706",
-      "coverUrl": "https://covers.openlibrary.org/b/isbn/0812550706-L.jpg"
+      "coverUrl": "https://covers.openlibrary.org/b/isbn/0812550706-L.jpg",
+      "isbn13": "9780765317384"
     },
     {
       "title": "All Systems Red (Murderbot Diaries, #1)",
