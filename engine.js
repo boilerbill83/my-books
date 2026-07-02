@@ -45,14 +45,14 @@ export function buildIndexes(goodreads, feedback) {
         authorRatingWeight.set(authorKey, (authorRatingWeight.get(authorKey) || 0) + w);
       }
       if (book.myRating === 5) {
-        fiveStarTitles.add(book.title);
+        fiveStarTitles.add(norm(book.title));
         fiveStarAuthors.set(authorKey, (fiveStarAuthors.get(authorKey) || 0) + 1);
         for (const theme of book.themes || []) {
           const t = String(theme).toLowerCase();
           fiveStarThemes.set(t, (fiveStarThemes.get(t) || 0) + 1);
         }
         for (const t of book.similarToTitles || []) {
-          reverseSimilar.set(t, (reverseSimilar.get(t) || 0) + 1);
+          reverseSimilar.set(norm(t), (reverseSimilar.get(norm(t)) || 0) + 1);
         }
       }
     } else if (shelf === 'to-read') {
@@ -185,9 +185,9 @@ function matchScoreFiction(candidate, idx, profile, timesShown) {
       score += Math.min(AUTHOR_CONTRIB_CAP, contrib);
     }
     for (const t of candidate.similarToTitles || []) {
-      if (idx.fiveStarTitles.has(t)) score += 8;
+      if (idx.fiveStarTitles.has(norm(t))) score += 8;
     }
-    score += Math.min(12, (idx.reverseSimilar.get(candidate.title) || 0) * 6);
+    score += Math.min(12, (idx.reverseSimilar.get(norm(candidate.title)) || 0) * 6);
     score += themeBonus(candidate.themes, idx.fiveStarThemes);
     score += ratingsCountBonus(candidate.ratingsCount);
     const avg = Number(candidate.avgRating) || 0;
@@ -220,7 +220,7 @@ function matchScoreFiction(candidate, idx, profile, timesShown) {
         score += Math.min(AUTHOR_CONTRIB_CAP, contrib);
       }
       for (const t of candidate.similarToTitles || []) {
-        if (idx.fiveStarTitles.has(t)) score += 8;
+        if (idx.fiveStarTitles.has(norm(t))) score += 8;
       }
       // Option A: community rating (fiction weight: ×4)
       const avg = Number(candidate.avgRating) || 0;
@@ -262,9 +262,9 @@ function matchScoreNonfiction(candidate, idx, profile, timesShown) {
       score += Math.min(AUTHOR_CONTRIB_CAP, contrib);
     }
     for (const t of candidate.similarToTitles || []) {
-      if (idx.fiveStarTitles.has(t)) score += 8;
+      if (idx.fiveStarTitles.has(norm(t))) score += 8;
     }
-    score += Math.min(12, (idx.reverseSimilar.get(candidate.title) || 0) * 6);
+    score += Math.min(12, (idx.reverseSimilar.get(norm(candidate.title)) || 0) * 6);
     score += themeBonus(candidate.themes, idx.fiveStarThemes);
     score += ratingsCountBonus(candidate.ratingsCount);
     const avg = Number(candidate.avgRating) || 0;
@@ -297,7 +297,7 @@ function matchScoreNonfiction(candidate, idx, profile, timesShown) {
         score += Math.min(AUTHOR_CONTRIB_CAP, contrib);
       }
       for (const t of candidate.similarToTitles || []) {
-        if (idx.fiveStarTitles.has(t)) score += 8;
+        if (idx.fiveStarTitles.has(norm(t))) score += 8;
       }
       // Option A: community rating (nonfiction weight: ×8)
       const avg = Number(candidate.avgRating) || 0;
@@ -386,7 +386,7 @@ function reason(candidate, idx) {
       : `Best Books Ever pick with a strong community rating.`;
   }
   const authorMatches = (candidate.similarToAuthors || []).filter(a => idx.fiveStarAuthors.has(normAuthor(a)));
-  const titleMatches  = (candidate.similarToTitles  || []).filter(t => idx.fiveStarTitles.has(t));
+  const titleMatches  = (candidate.similarToTitles  || []).filter(t => idx.fiveStarTitles.has(norm(t)));
   const parts = [];
   if (authorMatches.length) parts.push(`matches your strong results with ${authorMatches.slice(0, 2).join(' and ')}`);
   if (titleMatches.length)  parts.push(`lines up with ${titleMatches.slice(0, 2).join(' and ')}`);
@@ -422,10 +422,10 @@ function computeBreakdown(candidate, idx, profile) {
       push(`similar to ${a.replace(/\s+/g, ' ')}`, Math.min(AUTHOR_CONTRIB_CAP, contrib));
     }
 
-    const titleMatches = (candidate.similarToTitles || []).filter(t => idx.fiveStarTitles.has(t));
+    const titleMatches = (candidate.similarToTitles || []).filter(t => idx.fiveStarTitles.has(norm(t)));
     push(`${titleMatches.length} five-star title match${titleMatches.length !== 1 ? 'es' : ''}`, titleMatches.length * 8);
 
-    const revCount = idx.reverseSimilar.get(candidate.title) || 0;
+    const revCount = idx.reverseSimilar.get(norm(candidate.title)) || 0;
     push(`cited by ${revCount} five-star read${revCount !== 1 ? 's' : ''}`, Math.min(12, revCount * 6));
 
     push(`themes (${(candidate.themes || []).slice(0, 2).join(', ')})`, themeBonus(candidate.themes, idx.fiveStarThemes));
@@ -450,7 +450,7 @@ function computeBreakdown(candidate, idx, profile) {
       push(`similar to ${a.replace(/\s+/g, ' ')}`, Math.min(AUTHOR_CONTRIB_CAP, contrib));
     }
 
-    const titleMatches = (candidate.similarToTitles || []).filter(t => idx.fiveStarTitles.has(t));
+    const titleMatches = (candidate.similarToTitles || []).filter(t => idx.fiveStarTitles.has(norm(t)));
     push(`${titleMatches.length} five-star title match${titleMatches.length !== 1 ? 'es' : ''}`, titleMatches.length * 8);
 
     push(`themes (${(candidate.themes || []).slice(0, 2).join(', ')})`, themeBonus(candidate.themes, idx.fiveStarThemes));

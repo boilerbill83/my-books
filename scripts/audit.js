@@ -1,5 +1,5 @@
 const fs = require('fs');
-const data = JSON.parse(fs.readFileSync('/tmp/my-books/data/goodreadsData.json', 'utf8'));
+const data = JSON.parse(fs.readFileSync(require('path').join(__dirname, '../data/goodreadsData.json'), 'utf8'));
 const books = Object.values(data.books);
 
 console.log('='.repeat(80));

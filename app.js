@@ -873,6 +873,22 @@ function recompute() {
   renderRecommendations();
 }
 
+// ── Local feedback persistence (survives refresh via localStorage) ─────────
+
+const LOCAL_FEEDBACK_KEY = 'mybooks_feedback_v1';
+
+function loadLocalFeedback() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(LOCAL_FEEDBACK_KEY));
+    return { added: parsed?.added || [], removedKeys: parsed?.removedKeys || [] };
+  } catch { return { added: [], removedKeys: [] }; }
+}
+
+function saveLocalFeedback(local) {
+  try { localStorage.setItem(LOCAL_FEEDBACK_KEY, JSON.stringify(local)); }
+  catch { /* private browsing / storage full — dismissals last this session only */ }
+}
+
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
   const [goodreads, feedback, history, candIndex, scraped, currentlyReading] = await Promise.all([
@@ -891,7 +907,23 @@ async function load() {
       b.shelf === 'to-read' ? mergeScraped(b, scraped) : b
     )
   };
-  state.feedback        = feedback;
+  // Merge locally persisted dismissals with committed feedbackData.json.
+  // Once a local interaction is committed to the JSON, it's pruned from localStorage.
+  const local = loadLocalFeedback();
+  const committed = feedback.interactions || [];
+  const committedKeys = new Set(committed.map(e => `${e.bookKey}|${e.timestamp}`));
+  local.added       = local.added.filter(e => !committedKeys.has(`${e.bookKey}|${e.timestamp}`));
+  local.removedKeys = local.removedKeys.filter(k => committed.some(e => e.bookKey === k));
+  saveLocalFeedback(local);
+  state.localFeedback = local;
+
+  state.feedback = {
+    ...feedback,
+    interactions: [
+      ...committed.filter(e => !local.removedKeys.includes(e.bookKey)),
+      ...local.added
+    ]
+  };
   state.history         = history;
   state.currentlyReading = Array.isArray(currentlyReading) ? currentlyReading : [];
 
@@ -947,6 +979,16 @@ function undismiss(bookKey) {
   state.feedback.interactions = state.feedback.interactions.filter(
     e => !(e.bookKey === bookKey && e.excludeFromRecommendations)
   );
+
+  const local = state.localFeedback ??= { added: [], removedKeys: [] };
+  const before = local.added.length;
+  local.added = local.added.filter(e => !(e.bookKey === bookKey && e.excludeFromRecommendations));
+  // If it wasn't a local dismissal, it came from committed feedbackData.json — mark it removed
+  if (local.added.length === before && !local.removedKeys.includes(bookKey)) {
+    local.removedKeys.push(bookKey);
+  }
+  saveLocalFeedback(local);
+
   recompute();
   renderDismissedPanel();
   setStatus('Dismissal removed.', 'online');
@@ -964,13 +1006,25 @@ dismissedList?.addEventListener('click', e => {
   if (btn) undismiss(btn.dataset.key);
 });
 
+// Copy full merged feedback as JSON — paste into data/feedbackData.json to commit,
+// which prunes the matching entries from localStorage on next load.
+document.getElementById('copyFeedbackBtn')?.addEventListener('click', async () => {
+  const json = JSON.stringify({ ...state.feedback, interactions: state.feedback.interactions }, null, 2);
+  try {
+    await navigator.clipboard.writeText(json);
+    setStatus('Feedback JSON copied — paste into data/feedbackData.json and commit.', 'online');
+  } catch {
+    setStatus('Clipboard unavailable — check browser permissions.', 'offline');
+  }
+});
+
 // ── Dismiss (local-only) ───────────────────────────────────────────────────
 
 function dismiss(reasonCode) {
   if (!state.pending) return;
   const book = state.pending;
 
-  state.feedback.interactions.push({
+  const interaction = {
     bookKey:  book.bookKey,
     title:    book.title,
     author:   book.author,
@@ -981,7 +1035,13 @@ function dismiss(reasonCode) {
     reasonCode,
     timestamp: new Date().toISOString(),
     excludeFromRecommendations: true
-  });
+  };
+  state.feedback.interactions.push(interaction);
+
+  state.localFeedback ??= { added: [], removedKeys: [] };
+  state.localFeedback.added.push(interaction);
+  state.localFeedback.removedKeys = state.localFeedback.removedKeys.filter(k => k !== book.bookKey);
+  saveLocalFeedback(state.localFeedback);
 
   let row = state.history.history.find(x => x.bookKey === book.bookKey);
   if (!row) {

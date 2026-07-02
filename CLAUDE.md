@@ -10,9 +10,9 @@ Static GitHub Pages app that recommends books from Bill's personal to-read list 
 
 ## Session Start Checklist
 
-1. **Set the remote** (PAT is stored in the fishers-house-search-2026 repo, not this one):
+1. **Set the remote** (PAT is stored locally outside any git repo — never commit it or reference its path in committed files):
    ```bash
-   PAT=$(cat /home/user/fishers-house-search-2026/.github_pat)
+   PAT=$(cat ~/.github_pat)   # adjust to wherever your PAT lives locally
    git remote set-url origin https://${PAT}@github.com/boilerbill83/my-books.git
    ```
 2. **Push to main** (deploy triggers on main only):

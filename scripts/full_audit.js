@@ -1,4 +1,4 @@
-const data = require('/tmp/my-books/data/goodreadsData.json');
+const data = require('../data/goodreadsData.json');
 const books = data.books;
 
 // ============================================================
