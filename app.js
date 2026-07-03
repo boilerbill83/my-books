@@ -383,7 +383,7 @@ function renderCurrentlyReading(books) {
             <span class="score-pill" title="BBRE score: Bayesian taste model + citation network + diversity re-ranking">BBRE ${book.matchScore}</span>
           </div>
           <p class="cr-reason">${book.reason}</p>
-          ${breakdownHtml(book.breakdown)}
+          ${breakdownHtml(book.breakdown, book.matchScore)}
         </div>
       </div>`;
   }).join('');
@@ -599,15 +599,23 @@ function renderBookshelf() {
   }).join('');
 }
 
-function breakdownHtml(breakdown) {
+function breakdownHtml(breakdown, matchScore) {
   if (!breakdown || breakdown.length === 0) return '';
-  const rows = breakdown.map(s => {
-    const sign  = s.pts >= 0 ? '+' : '';
-    const cls   = s.pts >= 0 ? 'bd-pos' : 'bd-neg';
-    return `<li><span class="bd-pts ${cls}">${sign}${s.pts}</span><span class="bd-label">${esc(s.label)}</span></li>`;
+  const sorted = breakdown.slice().sort((a, b) => Math.abs(b.pts) - Math.abs(a.pts));
+  const maxAbs = Math.max(...sorted.map(s => Math.abs(s.pts)), 1);
+  const rows = sorted.map(s => {
+    const sign = s.pts >= 0 ? '+' : '';
+    const cls  = s.pts >= 0 ? 'bd-pos' : 'bd-neg';
+    const w    = Math.max(5, Math.round(Math.abs(s.pts) / maxAbs * 100));
+    return `<li>
+      <span class="bd-pts ${cls}">${sign}${s.pts}</span>
+      <span class="bd-bar-track"><span class="bd-bar ${cls}" style="width:${w}%"></span></span>
+      <span class="bd-label">${esc(s.label)}</span>
+    </li>`;
   }).join('');
+  const scoreLabel = Number.isFinite(matchScore) ? ` · ${Math.round(matchScore)} pts` : '';
   return `<details class="score-breakdown">
-    <summary class="bd-toggle">Why this score?</summary>
+    <summary class="bd-toggle">Why this score?${scoreLabel}</summary>
     <ul class="bd-list">${rows}</ul>
   </details>`;
 }
@@ -769,7 +777,7 @@ function renderRecommendations() {
             <span class="score-pill" title="BBRE score: Bayesian taste model + citation network + diversity re-ranking">BBRE ${book.matchScore}</span>
           </div>
           <p class="card-reason">${book.reason}</p>
-          ${breakdownHtml(book.breakdown)}
+          ${breakdownHtml(book.breakdown, book.matchScore)}
           <div class="card-actions">
             <a class="link-button primary" href="${esc(goodreadsUrl)}" target="_blank" rel="noreferrer">Goodreads</a>
             <button class="danger-button" data-key="${esc(book.bookKey)}">Dismiss</button>
