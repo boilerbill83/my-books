@@ -870,7 +870,8 @@ function recompute() {
     state.goodreads,
     state.feedback,
     allCands,
-    state.history
+    state.history,
+    state.enrichedMeta
   );
 
   renderAnalytics();
@@ -899,14 +900,17 @@ function saveLocalFeedback(local) {
 
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [goodreads, feedback, history, candIndex, scraped, currentlyReading] = await Promise.all([
+  const getOpt = url => get(url).catch(() => null);  // optional data files
+  const [goodreads, feedback, history, candIndex, scraped, currentlyReading, enrichedMeta] = await Promise.all([
     get('./data/goodreadsData.json'),
     get('./data/feedbackData.json'),
     get('./data/recommendationHistory.json'),
     get('./data/candidateIndex.json').catch(() => ['candidatePool.json']),
     get('./data/scrapedRatings.json').catch(() => ({})),
-    get('./data/currentlyReading.json').catch(() => [])
+    get('./data/currentlyReading.json').catch(() => []),
+    getOpt('./data/enrichedMetadata.json')
   ]);
+  state.enrichedMeta = enrichedMeta;
 
   // Merge scraped ratings into to-read books
   state.goodreads = {

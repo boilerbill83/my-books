@@ -9,13 +9,16 @@
 import fs from 'fs';
 import { buildTasteModel, predictRating } from '../rateEngine.js';
 
+let meta = null;
+try { meta = JSON.parse(fs.readFileSync('data/enrichedMetadata.json', 'utf8')); } catch {}
+
 const gd = JSON.parse(fs.readFileSync('data/goodreadsData.json', 'utf8'));
 const completed = gd.books.filter(b => b.shelf === 'read' && b.myRating >= 1 && !b.dnf);
 
 const preds = [];
 for (const b of completed) {
   const loo = { ...gd, books: gd.books.filter(x => x !== b) };
-  const model = buildTasteModel(loo, []);
+  const model = buildTasteModel(loo, [], meta);
   const p = predictRating(b, model);
   const pr = typeof p === 'object' ? (p.rating ?? p.predicted ?? p.score) : p;
   if (Number.isFinite(pr)) preds.push({ pr, actual: b.myRating, title: b.title });

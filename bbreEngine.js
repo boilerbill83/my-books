@@ -627,10 +627,10 @@ function adaptiveCombine(normBayes, normEngine, conf) {
 
 // ── Main export ────────────────────────────────────────────────────────────
 
-export function rankBBRE(goodreads, feedback, candidatePool, history) {
+export function rankBBRE(goodreads, feedback, candidatePool, history, enrichedMeta = null) {
 
   // ── Step 1: run both models ──────────────────────────────────────────────
-  const model        = buildTasteModel(goodreads, candidatePool);
+  const model        = buildTasteModel(goodreads, candidatePool, enrichedMeta);
   const engineResult = rankRecommendations(goodreads, feedback, candidatePool, history);
 
   if (engineResult.selected.length === 0) {

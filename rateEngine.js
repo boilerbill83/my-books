@@ -173,6 +173,8 @@ function _buildAuthorCoOccurrence(candidatePool) {
   return map;
 }
 
+import { buildDescModel, descSignal } from './descSimilarity.js';
+
 // ── Model Building ─────────────────────────────────────────────────────────
 
 /**
@@ -183,12 +185,17 @@ function _buildAuthorCoOccurrence(candidatePool) {
  * @param {object}   goodreads     — full goodreadsData.json object
  * @param {object[]} candidatePool — optional; enables author co-occurrence in k-NN
  */
-export function buildTasteModel(goodreads, candidatePool = []) {
+export function buildTasteModel(goodreads, candidatePool = [], enrichedMeta = null) {
   const books   = goodreads.books || [];
   const read    = books.filter(b => b.shelf === 'read' && b.myRating >= 1);
   if (read.length === 0) return null;
 
   const globalMean = _mean(read.map(b => b.myRating));
+
+  // v6.0 (prototype): TF-IDF description similarity. Null until the daily
+  // enrich-metadata workflow has covered enough of the read shelf.
+  const descModel = enrichedMeta ? buildDescModel(goodreads, enrichedMeta) : null;
+  const descByKey = enrichedMeta || {};
 
   // ── Genre-split priors ──────────────────────────────────────────────────
   // Fiction and nonfiction have statistically different mean ratings for this
@@ -320,6 +327,7 @@ export function buildTasteModel(goodreads, candidatePool = []) {
   });
 
   return {
+    descModel, descByKey,
     globalMean,
     fictionMean,
     nonfictionMean,
@@ -482,6 +490,21 @@ export function predictRating(book, model) {
       type:   'forwardTitle',
       detail: forwardHits.slice(0, 3),
     });
+  }
+
+  // ── Signal 4b: description similarity (v6.0 prototype) ─────────────────
+  // k-NN over TF-IDF vectors of real descriptions; no-op until coverage lands.
+  if (model.descModel) {
+    const d = model.descByKey[book.bookKey]?.description;
+    const ds = descSignal(d, model.descModel);
+    if (ds) {
+      addSignal(ds.mean, ds.weight, {
+        label:  `reads like ${ds.neighbors.length} rated books → ${ds.mean.toFixed(1)}★ avg`,
+        signal: ds.mean,
+        weight: ds.weight,
+        type:   'descSim',
+      });
+    }
   }
 
   // ── Signal 5: Theme affinity ────────────────────────────────────────────
