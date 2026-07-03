@@ -42,11 +42,27 @@ body {
 }
 
 /* ── LOGO (now lives beside Currently Reading) ── */
-.site-logo {
-  width: 192px;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 2px 8px rgba(44,26,14,0.15));
+.site-logo-text {
+  font-family: var(--font-serif);
+  line-height: 0.95;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+.site-logo-text .logo-line-1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--accent);
+}
+.site-logo-text .logo-line-2 {
+  font-size: 3.1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .header-status {
   display: flex;
@@ -812,7 +828,8 @@ section { padding: 14px 0; }
 
 @media (max-width: 600px) {
   .cr-top-layout { flex-direction: column; align-items: flex-start; gap: 10px; }
-  .site-logo { width: 144px; }
+  .site-logo-text .logo-line-1 { font-size: 1.9rem; }
+  .site-logo-text .logo-line-2 { font-size: 2.3rem; }
 }
 
 .cr-grid { display: flex; flex-direction: column; gap: 12px; }
