@@ -1,0 +1,29 @@
+name: Enrich Metadata (descriptions, categories, subjects)
+
+on:
+  schedule:
+    - cron: '0 7 * * *'   # daily 7 AM UTC until backlog clears
+  workflow_dispatch:
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch descriptions from Google Books + Open Library
+        env:
+          GOOGLE_BOOKS_API_KEY: ${{ secrets.GOOGLE_BOOKS_API_KEY }}
+        run: python3 enrich_metadata.py 150
+        timeout-minutes: 30
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git diff --staged --quiet && echo "No new metadata." || \
+            (git commit -m "Enrich metadata via Google Books + OL [automated]" && git push)

@@ -1,0 +1,27 @@
+name: Tag Books with Haiku
+
+on:
+  workflow_dispatch:   # manual only — each run costs API credits
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Re-tag to-read books from descriptions (Claude Haiku 4.5)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 tag_with_haiku.py 300
+        timeout-minutes: 30
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git diff --staged --quiet && echo "No tagging changes." || \
+            (git commit -m "Re-tag to-read books via Haiku [automated]" && git push)
