@@ -1,1092 +1,1108 @@
 {
-  "meta": {
-    "formatVersion": 1,
-    "lastUpdated": "2026-06-01T08:30:00-04:00",
-    "negativeSeedCount": 43
+ "meta": {
+  "formatVersion": 1,
+  "lastUpdated": "2026-06-01T08:30:00-04:00",
+  "negativeSeedCount": 43
+ },
+ "interactions": [
+  {
+   "bookKey": "a-bridge-too-far|cornelius-ryan",
+   "title": "A Bridge Too Far",
+   "author": "Cornelius Ryan",
+   "interactionType": "negative_seed",
+   "reasonCode": "not_interesting",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "narrative nonfiction",
+    "military",
+    "history"
+   ],
+   "tones": [
+    "narrative-driven",
+    "gritty",
+    "accessible",
+    "dense"
+   ],
+   "type": "nonfiction"
   },
-  "interactions": [
-    {
-      "bookKey": "a-bridge-too-far|cornelius-ryan",
-      "title": "A Bridge Too Far",
-      "author": "Cornelius Ryan",
-      "interactionType": "negative_seed",
-      "reasonCode": "not_interesting",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "narrative nonfiction",
-        "military",
-        "history"
-      ],
-      "tones": [
-        "narrative-driven",
-        "gritty",
-        "accessible",
-        "dense"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "a-history-of-basketball-in-fifteen-sneakers|russ-bengtson",
-      "title": "A History of Basketball in Fifteen Sneakers",
-      "author": "Russ Bengtson",
-      "interactionType": "negative_seed",
-      "reasonCode": "not_interesting",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "sports",
-        "history",
-        "narrative nonfiction",
-        "social commentary"
-      ],
-      "tones": [
-        "narrative-driven",
-        "accessible",
-        "dense",
-        "revelatory"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "all-the-light-we-cannot-see|anthony-doerr",
-      "title": "All the Light We Cannot See",
-      "author": "Anthony Doerr",
-      "interactionType": "negative_seed",
-      "reasonCode": "not_interesting",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "historical fiction",
-        "literary",
-        "coming-of-age"
-      ],
-      "tones": [
-        "slow-burn",
-        "character-driven",
-        "atmospheric",
-        "heartwarming"
-      ],
-      "type": "fiction"
-    },
-    {
-      "bookKey": "apples-never-fall|liane-moriarty",
-      "title": "Apples Never Fall",
-      "author": "Liane Moriarty",
-      "interactionType": "negative_seed",
-      "reasonCode": "started_did_not_like",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "domestic suspense",
-        "mystery",
-        "psychological",
-        "contemporary"
-      ],
-      "tones": [
-        "dark",
-        "character-driven",
-        "twisty",
-        "fast-paced"
-      ],
-      "type": "fiction"
-    },
-    {
-      "bookKey": "best-movie-year-ever|brian-raftery",
-      "title": "Best. Movie. Year. Ever.",
-      "author": "Brian Raftery",
-      "interactionType": "negative_seed",
-      "reasonCode": "topic_doesnt_appeal",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "narrative nonfiction",
-        "history",
-        "social commentary",
-        "humor"
-      ],
-      "tones": [
-        "narrative-driven",
-        "accessible",
-        "humorous",
-        "dense"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "blood-and-fire|brian-r-solomon",
-      "title": "Blood and Fire",
-      "author": "Brian R. Solomon",
-      "interactionType": "negative_seed",
-      "reasonCode": "topic_doesnt_appeal",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "sports",
-        "biography",
-        "narrative nonfiction",
-        "history"
-      ],
-      "tones": [
-        "narrative-driven",
-        "accessible",
-        "character-study",
-        "dense"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "burn-the-ice|kevin-alexander",
-      "title": "Burn the Ice",
-      "author": "Kevin Alexander",
-      "interactionType": "negative_seed",
-      "reasonCode": "dont_know_author",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "narrative nonfiction",
-        "food",
-        "history"
-      ],
-      "tones": [
-        "narrative-driven",
-        "accessible",
-        "dense",
-        "conversational"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "bush|jean-edward-smith",
-      "title": "Bush",
-      "author": "Jean Edward Smith",
-      "interactionType": "negative_seed",
-      "reasonCode": "topic_doesnt_appeal",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "biography",
-        "political",
-        "history"
-      ],
-      "tones": [
-        "narrative-driven",
-        "investigative",
-        "character-study",
-        "accessible"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "endgame-an-insurgency-on-wall-street|sheelah-kolhatkar",
-      "title": "Endgame: An Insurgency on Wall Street",
-      "author": "Sheelah Kolhatkar",
-      "interactionType": "negative_seed",
-      "reasonCode": "not_interesting",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "finance",
-        "narrative nonfiction",
-        "business",
-        "social commentary"
-      ],
-      "tones": [
-        "accessible",
-        "narrative-driven",
-        "dense",
-        "revelatory"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "fourth-wing|rebecca-yarros",
-      "title": "Fourth Wing",
-      "author": "Rebecca Yarros",
-      "interactionType": "negative_seed",
-      "reasonCode": "started_did_not_like",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "fantasy",
-        "romance",
-        "adventure",
-        "YA"
-      ],
-      "tones": [
-        "fast-paced",
-        "character-driven",
-        "heartwarming",
-        "atmospheric"
-      ],
-      "type": "fiction"
-    },
-    {
-      "bookKey": "juror-3|james-patterson",
-      "title": "Juror #3",
-      "author": "James Patterson",
-      "interactionType": "negative_seed",
-      "reasonCode": "already_seen_adaptation",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "legal",
-        "thriller",
-        "courtroom"
-      ],
-      "tones": [
-        "fast-paced",
-        "plot-driven",
-        "compulsive",
-        "procedural"
-      ],
-      "type": "fiction"
-    },
-    {
-      "bookKey": "king-of-capital|david-carey",
-      "title": "King of Capital",
-      "author": "David Carey",
-      "interactionType": "negative_seed",
-      "reasonCode": "not_interesting",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "finance",
-        "business",
-        "narrative nonfiction",
-        "biography"
-      ],
-      "tones": [
-        "fast-paced",
-        "tense",
-        "dark"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "notes-from-underground|fyodor-dostoevsky",
-      "title": "Notes from Underground",
-      "author": "Fyodor Dostoevsky",
-      "interactionType": "negative_seed",
-      "reasonCode": "not_my_vibe",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "literary",
-        "psychological",
-        "social commentary"
-      ],
-      "tones": [
-        "character-driven",
-        "slow-burn",
-        "dark",
-        "atmospheric"
-      ],
-      "type": "fiction"
-    },
-    {
-      "bookKey": "red-rising|pierce-brown",
-      "title": "Red Rising",
-      "author": "Pierce Brown",
-      "interactionType": "negative_seed",
-      "reasonCode": "topic_doesnt_appeal",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "sci-fi",
-        "speculative",
-        "adventure",
-        "coming-of-age"
-      ],
-      "tones": [
-        "slow-burn",
-        "atmospheric",
-        "fast-paced",
-        "character-driven"
-      ],
-      "type": "fiction"
-    },
-    {
-      "bookKey": "seek-you|kristen-radtke",
-      "title": "Seek You",
-      "author": "Kristen Radtke",
-      "interactionType": "negative_seed",
-      "reasonCode": "not_interesting",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "narrative nonfiction",
-        "psychology"
-      ],
-      "tones": [
-        "accessible",
-        "narrative-driven",
-        "dense"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "so-fetch|jennifer-keishin-armstrong",
-      "title": "So Fetch",
-      "author": "Jennifer Keishin Armstrong",
-      "interactionType": "negative_seed",
-      "reasonCode": "topic_doesnt_appeal",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "narrative nonfiction",
-        "humor"
-      ],
-      "tones": [
-        "humorous",
-        "narrative-driven",
-        "accessible",
-        "conversational"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "spaced-out|mike-prada",
-      "title": "Spaced Out",
-      "author": "Mike Prada",
-      "interactionType": "negative_seed",
-      "reasonCode": "no_longer_relevant",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "sports",
-        "narrative nonfiction",
-        "social commentary"
-      ],
-      "tones": [
-        "accessible",
-        "narrative-driven",
-        "revelatory"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "steven-adams-my-life-my-fight|steven-adams",
-      "title": "Steven Adams: My Life, My Fight",
-      "author": "Steven Adams",
-      "interactionType": "negative_seed",
-      "reasonCode": "no_longer_relevant",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "memoir",
-        "sports"
-      ],
-      "tones": [
-        "character-study",
-        "narrative-driven",
-        "accessible",
-        "personal"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "stolen-focus|johann-hari",
-      "title": "Stolen Focus",
-      "author": "Johann Hari",
-      "interactionType": "negative_seed",
-      "reasonCode": "topic_doesnt_appeal",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "psychology",
-        "narrative nonfiction",
-        "tech history"
-      ],
-      "tones": [
-        "accessible",
-        "narrative-driven",
-        "dense"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "the-coming-wave|mustafa-suleyman",
-      "title": "The Coming Wave",
-      "author": "Mustafa Suleyman",
-      "interactionType": "negative_seed",
-      "reasonCode": "topic_doesnt_appeal",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "tech history",
-        "social commentary",
-        "narrative nonfiction",
-        "political"
-      ],
-      "tones": [
-        "accessible",
-        "narrative-driven",
-        "investigative",
-        "revelatory"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "the-ferryman|justin-cronin",
-      "title": "The Ferryman",
-      "author": "Justin Cronin",
-      "interactionType": "negative_seed",
-      "reasonCode": "started_did_not_like",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "sci-fi",
-        "speculative",
-        "thriller",
-        "high-concept"
-      ],
-      "tones": [
-        "fast-paced",
-        "slow-burn",
-        "atmospheric",
-        "twisty"
-      ],
-      "type": "fiction"
-    },
-    {
-      "bookKey": "the-flavor-bible|andrew-dornenburg",
-      "title": "The Flavor Bible",
-      "author": "Andrew Dornenburg",
-      "interactionType": "negative_seed",
-      "reasonCode": "not_interesting",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "food"
-      ],
-      "tones": [
-        "dense"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "the-heaven-earth-grocery-store|james-mcbride",
-      "title": "The Heaven & Earth Grocery Store",
-      "author": "James McBride",
-      "interactionType": "negative_seed",
-      "reasonCode": "not_interesting",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "historical fiction",
-        "literary",
-        "social commentary"
-      ],
-      "tones": [
-        "slow-burn",
-        "atmospheric",
-        "character-driven",
-        "accessible"
-      ],
-      "type": "fiction"
-    },
-    {
-      "bookKey": "the-invention-of-sound|chuck-palahniuk",
-      "title": "The Invention of Sound",
-      "author": "Chuck Palahniuk",
-      "interactionType": "negative_seed",
-      "reasonCode": "not_interesting",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "horror",
-        "thriller",
-        "psychological",
-        "high-concept"
-      ],
-      "tones": [
-        "fast-paced",
-        "dark",
-        "tense",
-        "twisty"
-      ],
-      "type": "fiction"
-    },
-    {
-      "bookKey": "the-last-trial|scott-turow",
-      "title": "The Last Trial",
-      "author": "Scott Turow",
-      "interactionType": "negative_seed",
-      "reasonCode": "already_read_or_owned",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "legal",
-        "thriller",
-        "courtroom"
-      ],
-      "tones": [
-        "procedural",
-        "tense",
-        "character-driven",
-        "fast-paced"
-      ],
-      "type": "fiction"
-    },
-    {
-      "bookKey": "the-monk-who-sold-his-ferrari|robin-sharma",
-      "title": "The Monk Who Sold His Ferrari",
-      "author": "Robin Sharma",
-      "interactionType": "negative_seed",
-      "reasonCode": "topic_doesnt_appeal",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "self-help",
-        "memoir"
-      ],
-      "tones": [
-        "accessible",
-        "conversational",
-        "personal"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "the-rise-and-fall-of-the-third-reich|william-shirer",
-      "title": "The Rise and Fall of the Third Reich",
-      "author": "William Shirer",
-      "interactionType": "negative_seed",
-      "reasonCode": "topic_doesnt_appeal",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "history",
-        "political",
-        "military",
-        "narrative nonfiction"
-      ],
-      "tones": [
-        "dense",
-        "investigative",
-        "narrative-driven"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "the-roundabout-way|jack-o-brien",
-      "title": "The Roundabout Way",
-      "author": "Jack O\u2019Brien",
-      "interactionType": "negative_seed",
-      "reasonCode": "topic_doesnt_appeal",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "literary",
-        "adventure"
-      ],
-      "tones": [
-        "character-driven",
-        "conversational"
-      ],
-      "type": "fiction"
-    },
-    {
-      "bookKey": "the-terminal-list|jack-carr",
-      "title": "The Terminal List",
-      "author": "Jack Carr",
-      "interactionType": "negative_seed",
-      "reasonCode": "already_seen_adaptation",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "thriller",
-        "military",
-        "suspense",
-        "crime"
-      ],
-      "tones": [
-        "fast-paced",
-        "gritty",
-        "tense",
-        "dark"
-      ],
-      "type": "fiction"
-    },
-    {
-      "bookKey": "the-terroir-of-whiskey|rob-arnold",
-      "title": "The Terroir of Whiskey",
-      "author": "Rob Arnold",
-      "interactionType": "negative_seed",
-      "reasonCode": "not_interesting",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "narrative nonfiction",
-        "food"
-      ],
-      "tones": [
-        "accessible",
-        "narrative-driven",
-        "conversational"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "the-wax-pack|brad-balukjian",
-      "title": "The Wax Pack",
-      "author": "Brad Balukjian",
-      "interactionType": "negative_seed",
-      "reasonCode": "not_interesting",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "narrative nonfiction",
-        "sports",
-        "memoir"
-      ],
-      "tones": [
-        "narrative-driven",
-        "accessible",
-        "character-study",
-        "personal"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "to-sleep-in-a-sea-of-stars|christopher-paolini",
-      "title": "To Sleep in a Sea of Stars",
-      "author": "Christopher Paolini",
-      "interactionType": "negative_seed",
-      "reasonCode": "not_my_vibe",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "sci-fi",
-        "adventure",
-        "speculative",
-        "high-concept"
-      ],
-      "tones": [
-        "fast-paced",
-        "slow-burn",
-        "atmospheric",
-        "twisty"
-      ],
-      "type": "fiction"
-    },
-    {
-      "bookKey": "to-start-a-war|robert-draper",
-      "title": "To Start a War",
-      "author": "Robert Draper",
-      "interactionType": "negative_seed",
-      "reasonCode": "no_longer_relevant",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "narrative nonfiction",
-        "political",
-        "military",
-        "history"
-      ],
-      "tones": [
-        "narrative-driven",
-        "accessible",
-        "gritty",
-        "investigative"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "trillions|robin-wigglesworth",
-      "title": "Trillions",
-      "author": "Robin Wigglesworth",
-      "interactionType": "negative_seed",
-      "reasonCode": "not_my_vibe",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "finance",
-        "narrative nonfiction",
-        "history",
-        "tech history"
-      ],
-      "tones": [
-        "narrative-driven",
-        "accessible",
-        "dense"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "ugly-love|colleen-hoover",
-      "title": "Ugly Love",
-      "author": "Colleen Hoover",
-      "interactionType": "negative_seed",
-      "reasonCode": "not_my_vibe",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "romance",
-        "contemporary",
-        "domestic suspense"
-      ],
-      "tones": [
-        "character-driven",
-        "twisty",
-        "fast-paced",
-        "dark"
-      ],
-      "type": "fiction"
-    },
-    {
-      "bookKey": "when-crack-was-king|donovan-ramsey",
-      "title": "When Crack Was King",
-      "author": "Donovan Ramsey",
-      "interactionType": "negative_seed",
-      "reasonCode": "not_my_vibe",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "true crime",
-        "social commentary",
-        "narrative nonfiction",
-        "history"
-      ],
-      "tones": [
-        "investigative",
-        "narrative-driven",
-        "dark"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "where-are-your-boys-tonight|chris-payne",
-      "title": "Where Are Your Boys Tonight?",
-      "author": "Chris Payne",
-      "interactionType": "negative_seed",
-      "reasonCode": "no_longer_relevant",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "music history",
-        "narrative nonfiction",
-        "social commentary",
-        "history"
-      ],
-      "tones": [
-        "narrative-driven",
-        "accessible",
-        "dense",
-        "revelatory"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "white-stripes|denise-sullivan",
-      "title": "White Stripes",
-      "author": "Denise Sullivan",
-      "interactionType": "negative_seed",
-      "reasonCode": "no_longer_relevant",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "music history",
-        "biography"
-      ],
-      "tones": [
-        "narrative-driven",
-        "character-study"
-      ],
-      "type": "nonfiction"
-    },
-    {
-      "bookKey": "why-has-nobody-told-me-this-before|julie-smith",
-      "title": "Why Has Nobody Told Me This Before?",
-      "author": "Julie Smith",
-      "interactionType": "negative_seed",
-      "reasonCode": "topic_doesnt_appeal",
-      "reasonLabel": "Started but didn't like",
-      "timestamp": "2026-06-01T08:30:00-04:00",
-      "timesShown": 0,
-      "timesDismissed": 0,
-      "timesClicked": 0,
-      "timesSaved": 0,
-      "explicitHide": true,
-      "excludeFromRecommendations": true,
-      "source": "manual_seed_list",
-      "themes": [
-        "psychology",
-        "narrative nonfiction"
-      ],
-      "tones": [
-        "accessible",
-        "narrative-driven",
-        "dense"
-      ],
-      "type": "nonfiction"
-    }
-  ]
+  {
+   "bookKey": "a-history-of-basketball-in-fifteen-sneakers|russ-bengtson",
+   "title": "A History of Basketball in Fifteen Sneakers",
+   "author": "Russ Bengtson",
+   "interactionType": "negative_seed",
+   "reasonCode": "not_interesting",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "sports",
+    "history",
+    "narrative nonfiction",
+    "social commentary"
+   ],
+   "tones": [
+    "narrative-driven",
+    "accessible",
+    "dense",
+    "revelatory"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "all-the-light-we-cannot-see|anthony-doerr",
+   "title": "All the Light We Cannot See",
+   "author": "Anthony Doerr",
+   "interactionType": "negative_seed",
+   "reasonCode": "not_interesting",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "historical fiction",
+    "literary",
+    "coming-of-age"
+   ],
+   "tones": [
+    "slow-burn",
+    "character-driven",
+    "atmospheric",
+    "heartwarming"
+   ],
+   "type": "fiction"
+  },
+  {
+   "bookKey": "apples-never-fall|liane-moriarty",
+   "title": "Apples Never Fall",
+   "author": "Liane Moriarty",
+   "interactionType": "negative_seed",
+   "reasonCode": "started_did_not_like",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "domestic suspense",
+    "mystery",
+    "psychological",
+    "contemporary"
+   ],
+   "tones": [
+    "dark",
+    "character-driven",
+    "twisty",
+    "fast-paced"
+   ],
+   "type": "fiction"
+  },
+  {
+   "bookKey": "best-movie-year-ever|brian-raftery",
+   "title": "Best. Movie. Year. Ever.",
+   "author": "Brian Raftery",
+   "interactionType": "negative_seed",
+   "reasonCode": "topic_doesnt_appeal",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "narrative nonfiction",
+    "history",
+    "social commentary",
+    "humor"
+   ],
+   "tones": [
+    "narrative-driven",
+    "accessible",
+    "humorous",
+    "dense"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "blood-and-fire|brian-r-solomon",
+   "title": "Blood and Fire",
+   "author": "Brian R. Solomon",
+   "interactionType": "negative_seed",
+   "reasonCode": "topic_doesnt_appeal",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "sports",
+    "biography",
+    "narrative nonfiction",
+    "history"
+   ],
+   "tones": [
+    "narrative-driven",
+    "accessible",
+    "character-study",
+    "dense"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "burn-the-ice|kevin-alexander",
+   "title": "Burn the Ice",
+   "author": "Kevin Alexander",
+   "interactionType": "negative_seed",
+   "reasonCode": "dont_know_author",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "narrative nonfiction",
+    "food",
+    "history"
+   ],
+   "tones": [
+    "narrative-driven",
+    "accessible",
+    "dense",
+    "conversational"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "bush|jean-edward-smith",
+   "title": "Bush",
+   "author": "Jean Edward Smith",
+   "interactionType": "negative_seed",
+   "reasonCode": "topic_doesnt_appeal",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "biography",
+    "political",
+    "history"
+   ],
+   "tones": [
+    "narrative-driven",
+    "investigative",
+    "character-study",
+    "accessible"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "endgame-an-insurgency-on-wall-street|sheelah-kolhatkar",
+   "title": "Endgame: An Insurgency on Wall Street",
+   "author": "Sheelah Kolhatkar",
+   "interactionType": "negative_seed",
+   "reasonCode": "not_interesting",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "finance",
+    "narrative nonfiction",
+    "business",
+    "social commentary"
+   ],
+   "tones": [
+    "accessible",
+    "narrative-driven",
+    "dense",
+    "revelatory"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "fourth-wing|rebecca-yarros",
+   "title": "Fourth Wing",
+   "author": "Rebecca Yarros",
+   "interactionType": "negative_seed",
+   "reasonCode": "started_did_not_like",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "fantasy",
+    "romance",
+    "adventure",
+    "YA"
+   ],
+   "tones": [
+    "fast-paced",
+    "character-driven",
+    "heartwarming",
+    "atmospheric"
+   ],
+   "type": "fiction"
+  },
+  {
+   "bookKey": "juror-3|james-patterson",
+   "title": "Juror #3",
+   "author": "James Patterson",
+   "interactionType": "negative_seed",
+   "reasonCode": "already_seen_adaptation",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "legal",
+    "thriller",
+    "courtroom"
+   ],
+   "tones": [
+    "fast-paced",
+    "plot-driven",
+    "compulsive",
+    "procedural"
+   ],
+   "type": "fiction"
+  },
+  {
+   "bookKey": "king-of-capital|david-carey",
+   "title": "King of Capital",
+   "author": "David Carey",
+   "interactionType": "negative_seed",
+   "reasonCode": "not_interesting",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "finance",
+    "business",
+    "narrative nonfiction",
+    "biography"
+   ],
+   "tones": [
+    "fast-paced",
+    "tense",
+    "dark"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "notes-from-underground|fyodor-dostoevsky",
+   "title": "Notes from Underground",
+   "author": "Fyodor Dostoevsky",
+   "interactionType": "negative_seed",
+   "reasonCode": "not_my_vibe",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "literary",
+    "psychological",
+    "social commentary"
+   ],
+   "tones": [
+    "character-driven",
+    "slow-burn",
+    "dark",
+    "atmospheric"
+   ],
+   "type": "fiction"
+  },
+  {
+   "bookKey": "red-rising|pierce-brown",
+   "title": "Red Rising",
+   "author": "Pierce Brown",
+   "interactionType": "negative_seed",
+   "reasonCode": "topic_doesnt_appeal",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "sci-fi",
+    "speculative",
+    "adventure",
+    "coming-of-age"
+   ],
+   "tones": [
+    "slow-burn",
+    "atmospheric",
+    "fast-paced",
+    "character-driven"
+   ],
+   "type": "fiction"
+  },
+  {
+   "bookKey": "seek-you|kristen-radtke",
+   "title": "Seek You",
+   "author": "Kristen Radtke",
+   "interactionType": "negative_seed",
+   "reasonCode": "not_interesting",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "narrative nonfiction",
+    "psychology"
+   ],
+   "tones": [
+    "accessible",
+    "narrative-driven",
+    "dense"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "so-fetch|jennifer-keishin-armstrong",
+   "title": "So Fetch",
+   "author": "Jennifer Keishin Armstrong",
+   "interactionType": "negative_seed",
+   "reasonCode": "topic_doesnt_appeal",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "narrative nonfiction",
+    "humor"
+   ],
+   "tones": [
+    "humorous",
+    "narrative-driven",
+    "accessible",
+    "conversational"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "spaced-out|mike-prada",
+   "title": "Spaced Out",
+   "author": "Mike Prada",
+   "interactionType": "negative_seed",
+   "reasonCode": "no_longer_relevant",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "sports",
+    "narrative nonfiction",
+    "social commentary"
+   ],
+   "tones": [
+    "accessible",
+    "narrative-driven",
+    "revelatory"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "steven-adams-my-life-my-fight|steven-adams",
+   "title": "Steven Adams: My Life, My Fight",
+   "author": "Steven Adams",
+   "interactionType": "negative_seed",
+   "reasonCode": "no_longer_relevant",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "memoir",
+    "sports"
+   ],
+   "tones": [
+    "character-study",
+    "narrative-driven",
+    "accessible",
+    "personal"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "stolen-focus|johann-hari",
+   "title": "Stolen Focus",
+   "author": "Johann Hari",
+   "interactionType": "negative_seed",
+   "reasonCode": "topic_doesnt_appeal",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "psychology",
+    "narrative nonfiction",
+    "tech history"
+   ],
+   "tones": [
+    "accessible",
+    "narrative-driven",
+    "dense"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "the-coming-wave|mustafa-suleyman",
+   "title": "The Coming Wave",
+   "author": "Mustafa Suleyman",
+   "interactionType": "negative_seed",
+   "reasonCode": "topic_doesnt_appeal",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "tech history",
+    "social commentary",
+    "narrative nonfiction",
+    "political"
+   ],
+   "tones": [
+    "accessible",
+    "narrative-driven",
+    "investigative",
+    "revelatory"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "the-ferryman|justin-cronin",
+   "title": "The Ferryman",
+   "author": "Justin Cronin",
+   "interactionType": "negative_seed",
+   "reasonCode": "started_did_not_like",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "sci-fi",
+    "speculative",
+    "thriller",
+    "high-concept"
+   ],
+   "tones": [
+    "fast-paced",
+    "slow-burn",
+    "atmospheric",
+    "twisty"
+   ],
+   "type": "fiction"
+  },
+  {
+   "bookKey": "the-flavor-bible|andrew-dornenburg",
+   "title": "The Flavor Bible",
+   "author": "Andrew Dornenburg",
+   "interactionType": "negative_seed",
+   "reasonCode": "not_interesting",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "food"
+   ],
+   "tones": [
+    "dense"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "the-heaven-earth-grocery-store|james-mcbride",
+   "title": "The Heaven & Earth Grocery Store",
+   "author": "James McBride",
+   "interactionType": "negative_seed",
+   "reasonCode": "not_interesting",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "historical fiction",
+    "literary",
+    "social commentary"
+   ],
+   "tones": [
+    "slow-burn",
+    "atmospheric",
+    "character-driven",
+    "accessible"
+   ],
+   "type": "fiction"
+  },
+  {
+   "bookKey": "the-invention-of-sound|chuck-palahniuk",
+   "title": "The Invention of Sound",
+   "author": "Chuck Palahniuk",
+   "interactionType": "negative_seed",
+   "reasonCode": "not_interesting",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "horror",
+    "thriller",
+    "psychological",
+    "high-concept"
+   ],
+   "tones": [
+    "fast-paced",
+    "dark",
+    "tense",
+    "twisty"
+   ],
+   "type": "fiction"
+  },
+  {
+   "bookKey": "the-last-trial|scott-turow",
+   "title": "The Last Trial",
+   "author": "Scott Turow",
+   "interactionType": "negative_seed",
+   "reasonCode": "already_read_or_owned",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "legal",
+    "thriller",
+    "courtroom"
+   ],
+   "tones": [
+    "procedural",
+    "tense",
+    "character-driven",
+    "fast-paced"
+   ],
+   "type": "fiction"
+  },
+  {
+   "bookKey": "the-monk-who-sold-his-ferrari|robin-sharma",
+   "title": "The Monk Who Sold His Ferrari",
+   "author": "Robin Sharma",
+   "interactionType": "negative_seed",
+   "reasonCode": "topic_doesnt_appeal",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "self-help",
+    "memoir"
+   ],
+   "tones": [
+    "accessible",
+    "conversational",
+    "personal"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "the-rise-and-fall-of-the-third-reich|william-shirer",
+   "title": "The Rise and Fall of the Third Reich",
+   "author": "William Shirer",
+   "interactionType": "negative_seed",
+   "reasonCode": "topic_doesnt_appeal",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "history",
+    "political",
+    "military",
+    "narrative nonfiction"
+   ],
+   "tones": [
+    "dense",
+    "investigative",
+    "narrative-driven"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "the-roundabout-way|jack-o-brien",
+   "title": "The Roundabout Way",
+   "author": "Jack O\u2019Brien",
+   "interactionType": "negative_seed",
+   "reasonCode": "topic_doesnt_appeal",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "literary",
+    "adventure"
+   ],
+   "tones": [
+    "character-driven",
+    "conversational"
+   ],
+   "type": "fiction"
+  },
+  {
+   "bookKey": "the-terminal-list|jack-carr",
+   "title": "The Terminal List",
+   "author": "Jack Carr",
+   "interactionType": "negative_seed",
+   "reasonCode": "already_seen_adaptation",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "thriller",
+    "military",
+    "suspense",
+    "crime"
+   ],
+   "tones": [
+    "fast-paced",
+    "gritty",
+    "tense",
+    "dark"
+   ],
+   "type": "fiction"
+  },
+  {
+   "bookKey": "the-terroir-of-whiskey|rob-arnold",
+   "title": "The Terroir of Whiskey",
+   "author": "Rob Arnold",
+   "interactionType": "negative_seed",
+   "reasonCode": "not_interesting",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "narrative nonfiction",
+    "food"
+   ],
+   "tones": [
+    "accessible",
+    "narrative-driven",
+    "conversational"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "the-wax-pack|brad-balukjian",
+   "title": "The Wax Pack",
+   "author": "Brad Balukjian",
+   "interactionType": "negative_seed",
+   "reasonCode": "not_interesting",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "narrative nonfiction",
+    "sports",
+    "memoir"
+   ],
+   "tones": [
+    "narrative-driven",
+    "accessible",
+    "character-study",
+    "personal"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "to-sleep-in-a-sea-of-stars|christopher-paolini",
+   "title": "To Sleep in a Sea of Stars",
+   "author": "Christopher Paolini",
+   "interactionType": "negative_seed",
+   "reasonCode": "not_my_vibe",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "sci-fi",
+    "adventure",
+    "speculative",
+    "high-concept"
+   ],
+   "tones": [
+    "fast-paced",
+    "slow-burn",
+    "atmospheric",
+    "twisty"
+   ],
+   "type": "fiction"
+  },
+  {
+   "bookKey": "to-start-a-war|robert-draper",
+   "title": "To Start a War",
+   "author": "Robert Draper",
+   "interactionType": "negative_seed",
+   "reasonCode": "no_longer_relevant",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "narrative nonfiction",
+    "political",
+    "military",
+    "history"
+   ],
+   "tones": [
+    "narrative-driven",
+    "accessible",
+    "gritty",
+    "investigative"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "trillions|robin-wigglesworth",
+   "title": "Trillions",
+   "author": "Robin Wigglesworth",
+   "interactionType": "negative_seed",
+   "reasonCode": "not_my_vibe",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "finance",
+    "narrative nonfiction",
+    "history",
+    "tech history"
+   ],
+   "tones": [
+    "narrative-driven",
+    "accessible",
+    "dense"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "ugly-love|colleen-hoover",
+   "title": "Ugly Love",
+   "author": "Colleen Hoover",
+   "interactionType": "negative_seed",
+   "reasonCode": "not_my_vibe",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "romance",
+    "contemporary",
+    "domestic suspense"
+   ],
+   "tones": [
+    "character-driven",
+    "twisty",
+    "fast-paced",
+    "dark"
+   ],
+   "type": "fiction"
+  },
+  {
+   "bookKey": "when-crack-was-king|donovan-ramsey",
+   "title": "When Crack Was King",
+   "author": "Donovan Ramsey",
+   "interactionType": "negative_seed",
+   "reasonCode": "not_my_vibe",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "true crime",
+    "social commentary",
+    "narrative nonfiction",
+    "history"
+   ],
+   "tones": [
+    "investigative",
+    "narrative-driven",
+    "dark"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "where-are-your-boys-tonight|chris-payne",
+   "title": "Where Are Your Boys Tonight?",
+   "author": "Chris Payne",
+   "interactionType": "negative_seed",
+   "reasonCode": "no_longer_relevant",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "music history",
+    "narrative nonfiction",
+    "social commentary",
+    "history"
+   ],
+   "tones": [
+    "narrative-driven",
+    "accessible",
+    "dense",
+    "revelatory"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "white-stripes|denise-sullivan",
+   "title": "White Stripes",
+   "author": "Denise Sullivan",
+   "interactionType": "negative_seed",
+   "reasonCode": "no_longer_relevant",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "music history",
+    "biography"
+   ],
+   "tones": [
+    "narrative-driven",
+    "character-study"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "why-has-nobody-told-me-this-before|julie-smith",
+   "title": "Why Has Nobody Told Me This Before?",
+   "author": "Julie Smith",
+   "interactionType": "negative_seed",
+   "reasonCode": "topic_doesnt_appeal",
+   "reasonLabel": "Started but didn't like",
+   "timestamp": "2026-06-01T08:30:00-04:00",
+   "timesShown": 0,
+   "timesDismissed": 0,
+   "timesClicked": 0,
+   "timesSaved": 0,
+   "explicitHide": true,
+   "excludeFromRecommendations": true,
+   "source": "manual_seed_list",
+   "themes": [
+    "psychology",
+    "narrative nonfiction"
+   ],
+   "tones": [
+    "accessible",
+    "narrative-driven",
+    "dense"
+   ],
+   "type": "nonfiction"
+  },
+  {
+   "bookKey": "the-jackal-s-mistress|chris-bohjalian",
+   "title": "The Jackal's Mistress",
+   "author": "Chris Bohjalian",
+   "type": "fiction",
+   "themes": [
+    "historical",
+    "thriller",
+    "military"
+   ],
+   "interactionType": "dismiss",
+   "reasonCode": "pre-1900-fiction-setting",
+   "note": "Bill rule: no fiction set before 1900 (nonfiction sometimes OK)",
+   "timestamp": "2026-07-04T02:23:04Z",
+   "excludeFromRecommendations": true
+  }
+ ]
 }
