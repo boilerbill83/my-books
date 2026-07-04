@@ -214,8 +214,9 @@ export function inferTones(book) {
 // Parse "(Series Name, #N)" from Goodreads-style titles.
 
 function parseSeries(title) {
-  const m = String(title || '').match(/\(([^,#)]+),?\s*#(\d+)\)/);
-  return m ? { name: m[1].trim().toLowerCase(), num: parseInt(m[2], 10) } : null;
+  // handles decimal entries like (Molly the Maid, #2.5)
+  const m = String(title || '').match(/\(([^,#)]+),?\s*#(\d+(?:\.\d+)?)\)/);
+  return m ? { name: m[1].trim().toLowerCase(), num: parseFloat(m[2]) } : null;
 }
 
 function buildSeriesMap(readBooks) {
@@ -239,7 +240,9 @@ function buildSeriesMap(readBooks) {
 // Returns a score delta in roughly [-0.08, +0.07] applied before diversity.
 function seriesSignal(book, seriesMap) {
   const s = parseSeries(book.title);
-  if (!s || s.num <= 1) return 0;       // only applies to book 2, 3, 4, …
+  // The map only contains series Bill has actually read, so entry #1 of a
+  // collection he's rated other entries of (e.g. Forward Collection) counts too.
+  if (!s) return 0;
   const entry = seriesMap.get(s.name);
   if (!entry || entry.mean === null) return 0;
   // Deviation from neutral 3.5★; scale so ±1.5★ → ±0.075
