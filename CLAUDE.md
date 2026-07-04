@@ -193,6 +193,12 @@ buildTasteModel(…, meta) → Signal 4b in predictRating.
 - Data conflicts: sync + enrichment commit daily. Rebase carefully; prefer
   re-layering enrichment fields (themes/tones/similarToTitles) onto upstream.
 
+## Bill's Taste Rules (explicit, from Session 12 review)
+
+- NO fiction set before 1900. Nonfiction pre-1900 settings are sometimes fine.
+  Exception: Lonesome Dove (kept for its reputation). When tagging or
+  dismissing, check historical fiction settings against this rule.
+
 ## Data Caveats
 
 - Session 12 similarToTitles are validated-to-exist but unverified-as-good:
