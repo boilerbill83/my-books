@@ -214,7 +214,11 @@ Status legend: [ ] todo, [x] done. Update as items complete.
       bbreEngine: dismissAdjust (author -0.15, style-match -0.08, fiction
       only, needs 2+ style dismissals) and pre1900Penalty (-0.12, requires
       historical theme + era keywords, lonesome-dove exempt). Rerun
-      scripts/validate_review.js after any engine change.
+      scripts/validate_review.js after any engine change. Also in 12b:
+      fiction/nonfiction balance pass (final step of rankBBRE — no type
+      leads by more than 1 in any prefix; Bill's request), and dismissal
+      exclusion now matches derived title|author keys too (pool candidates
+      carry OL ids or no key; Bad Blood stayed ranked until this fix).
 
 Review results (Jul 3 2026, ranks 1-20): KEEPS = The Tenant, Local Woman
 Missing, Th1rt3en, Heartland, The Wise Men, The Idaho Four, Everything Is

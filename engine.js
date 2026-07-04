@@ -64,6 +64,10 @@ export function buildIndexes(goodreads, feedback) {
 
   for (const interaction of feedback.interactions || []) {
     if (interaction?.bookKey) excluded.set(interaction.bookKey, interaction);
+    // Pool candidates carry OL ids or no key at all, so also index by
+    // derived title|author key — otherwise dismissing a pool book misses
+    // its duplicates (caught live: Bad Blood stayed ranked after dismissal).
+    if (interaction?.title) excluded.set(bookKey(interaction.title, interaction.author), interaction);
   }
 
   return { read, toRead, currentlyReading, fiveStarTitles, fiveStarAuthors, fiveStarThemes, allReadAuthors, authorRatingWeight, reverseSimilar, excluded };
@@ -97,7 +101,8 @@ function summarize(goodreads) {
 
 function isExcluded(candidate, idx) {
   const k        = candidate.bookKey || bookKey(candidate.title, candidate.author);
-  const feedback = idx.excluded.get(k);
+  const tk       = bookKey(candidate.title, candidate.author);
+  const feedback = idx.excluded.get(k) || idx.excluded.get(tk);
   if (feedback?.explicitHide || feedback?.excludeFromRecommendations) return true;
   if (candidate.fromToRead) return false;
   return idx.read.has(k) || idx.currentlyReading.has(k);

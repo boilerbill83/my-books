@@ -857,7 +857,28 @@ export function rankBBRE(goodreads, feedback, candidatePool, history, enrichedMe
     };
   });
 
-  return { selected, profile: engineResult.profile, eligibleCount: engineResult.eligibleCount };
+  // ── Session 12b: fiction/nonfiction balance ─────────────────────────────
+  // Bill wants an even split. Greedy pass preserving within-type order:
+  // never let one type lead by more than 1 in any prefix of the list.
+  // Unknown-type books slot by rank without moving the balance count.
+  const balanced = [];
+  const rest = [...selected];
+  let fN = 0, nN = 0;
+  while (rest.length) {
+    let pick = 0;
+    const diff = fN - nN;
+    if (Math.abs(diff) >= 1) {
+      const need = diff > 0 ? 'nonfiction' : 'fiction';
+      const i = rest.findIndex(b => b.type === need);
+      if (i !== -1) pick = i;
+    }
+    const b = rest.splice(pick, 1)[0];
+    if (b.type === 'fiction') fN++;
+    else if (b.type === 'nonfiction') nN++;
+    balanced.push(b);
+  }
+
+  return { selected: balanced, profile: engineResult.profile, eligibleCount: engineResult.eligibleCount };
 }
 
 // ── Helpers ────────────────────────────────────────────────────────────────
