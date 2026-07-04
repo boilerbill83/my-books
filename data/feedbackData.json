@@ -1133,6 +1133,22 @@
    "note": "Bill: reads as too feminine for his taste \u2014 reflective domestic literary fiction",
    "timestamp": "2026-07-04T02:29:53Z",
    "excludeFromRecommendations": true
+  },
+  {
+   "bookKey": "/works/OL20627615W",
+   "title": "A Good Girl's Guide to Murder (A Good Girl's Guide to Murder, #1)",
+   "author": "Holly Jackson",
+   "type": "fiction",
+   "themes": [
+    "thriller",
+    "mystery",
+    "YA"
+   ],
+   "interactionType": "dismiss",
+   "reasonCode": "saw-the-adaptation",
+   "note": "Bill: already watched the TV show",
+   "timestamp": "2026-07-04T02:30:40Z",
+   "excludeFromRecommendations": true
   }
  ]
 }
