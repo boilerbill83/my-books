@@ -1149,6 +1149,21 @@
    "note": "Bill: already watched the TV show",
    "timestamp": "2026-07-04T02:30:40Z",
    "excludeFromRecommendations": true
+  },
+  {
+   "bookKey": "/works/OL24364412W",
+   "title": "People We Meet on Vacation",
+   "author": "Emily Henry",
+   "type": "fiction",
+   "themes": [
+    "contemporary",
+    "romance"
+   ],
+   "interactionType": "dismiss",
+   "reasonCode": "style-not-for-me",
+   "note": "Bill: too feminine \u2014 second dismissal with this reason (see Tom Lake)",
+   "timestamp": "2026-07-04T02:31:23Z",
+   "excludeFromRecommendations": true
   }
  ]
 }
