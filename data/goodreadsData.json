@@ -31,10 +31,13 @@
    "type": "fiction",
    "themes": [
     "thriller",
-    "mystery",
-    "suspense"
+    "suspense",
+    "domestic suspense"
    ],
    "similarToTitles": [
+    "The Guest List",
+    "First Lie Wins",
+    "All Her Fault",
     "The Silent Patient",
     "The Woman in the Window"
    ],
@@ -538,6 +541,9 @@
    ],
    "similarToTitles": [
     "A Time to Kill (Jake Brigance, #1)",
+    "Sycamore Row (Jake Brigance, #2)",
+    "The Rainmaker",
+    "The Judge's List (The Whistler #2)",
     "Presumed Innocent"
    ],
    "similarToAuthors": [
@@ -736,11 +742,13 @@
    "year": 2026,
    "type": "fiction",
    "themes": [
-    "thriller",
-    "military",
-    "suspense"
+    "crime",
+    "humor",
+    "thriller"
    ],
    "similarToTitles": [
+    "Clusterf*ck",
+    "She Rides Shotgun",
     "The Outsider",
     "Billy Summers"
    ],
@@ -1027,8 +1035,10 @@
     "humor"
    ],
    "similarToTitles": [
-    "Lessons in Chemistry",
-    "Remarkably Bright Creatures"
+    "Remarkably Bright Creatures",
+    "The Storied Life of A.J. Fikry",
+    "Tomorrow, and Tomorrow, and Tomorrow",
+    "Lessons in Chemistry"
    ],
    "similarToAuthors": [
     "Shelby Van Pelt",
@@ -1067,6 +1077,9 @@
     "biography"
    ],
    "similarToTitles": [
+    "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+    "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
+    "11/22/63",
     "A Life in Parts",
     "The Storyteller: Tales of Life and Music"
    ],
@@ -1108,6 +1121,8 @@
    ],
    "similarToTitles": [
     "This Time Tomorrow",
+    "Romantic Comedy",
+    "The Seven Husbands of Evelyn Hugo",
     "The Invisible Life of Addie LaRue"
    ],
    "similarToAuthors": [
@@ -1519,6 +1534,9 @@
     "suspense"
    ],
    "similarToTitles": [
+    "Presumed Innocent",
+    "The Firm (The Firm, #1)",
+    "First Lie Wins",
     "The Silent Patient",
     "Before I Go to Sleep"
    ],
@@ -1558,6 +1576,8 @@
    ],
    "similarToTitles": [
     "The Midnight Library (The Midnight World, #1)",
+    "The Measure",
+    "This Time Tomorrow",
     "The Invisible Life of Addie LaRue"
    ],
    "similarToAuthors": [
@@ -2097,7 +2117,9 @@
     "narrative nonfiction"
    ],
    "similarToTitles": [
+    "The Hot Hand: The Mystery and Science of Streaks",
     "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
+    "Sorry I'm Late, I Didn't Want to Come: One Introvert's Year of Saying Yes",
     "Educated"
    ],
    "similarToAuthors": [
@@ -2647,7 +2669,8 @@
    ],
    "similarToTitles": [
     "Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night",
-    "The Wager: A Tale of Shipwreck, Mutiny and Murder"
+    "The Wager: A Tale of Shipwreck, Mutiny and Murder",
+    "The Lost City of Z: A Tale of Deadly Obsession in the Amazon"
    ],
    "similarToAuthors": [
     "David Grann",
@@ -2688,6 +2711,8 @@
    ],
    "similarToTitles": [
     "All Her Fault",
+    "The Chain",
+    "Little Secrets",
     "The Silent Patient"
    ],
    "similarToAuthors": [
@@ -2769,6 +2794,8 @@
    ],
    "similarToTitles": [
     "She Rides Shotgun",
+    "Blacktop Wasteland",
+    "The Last Good Kiss (C.W. Sughrue, #1)",
     "Everybody Knows"
    ],
    "similarToAuthors": [
@@ -3457,12 +3484,16 @@
    "isbn13": "9781250344465",
    "publisher": "Celadon Books",
    "year": 2025,
-   "type": "fiction",
+   "type": "nonfiction",
    "themes": [
-    "thriller",
-    "suspense"
+    "history",
+    "military",
+    "narrative nonfiction"
    ],
    "similarToTitles": [
+    "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+    "Unbroken: A World War II Story of Survival, Resilience and Redemption",
+    "The Bomber Mafia: A Dream, a Temptation, and the Longest Night of the Second World War",
     "The Silent Patient",
     "The Woman in the Window"
    ],
@@ -4257,6 +4288,7 @@
     "literary"
    ],
    "similarToTitles": [
+    "The Invisible Life of Addie LaRue",
     "Dark Matter",
     "Recursion"
    ],
@@ -9799,7 +9831,8 @@
    ],
    "similarToTitles": [
     "When the Heavens Went on Sale: The Misfits and Geniuses Racing to Put Space Within Reach",
-    "Into Thin Air"
+    "Into Thin Air",
+    "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution"
    ],
    "similarToAuthors": [
     "Ashlee Vance",
@@ -10005,6 +10038,9 @@
     "suspense"
    ],
    "similarToTitles": [
+    "The Silent Patient",
+    "Dark Matter",
+    "Sharp Objects",
     "The Outsider",
     "The Stand"
    ],
@@ -11051,6 +11087,8 @@
    ],
    "similarToTitles": [
     "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+    "The Accidental President: Harry S. Truman and the Four Months That Changed the World",
+    "Unbroken: A World War II Story of Survival, Resilience and Redemption",
     "The Arsenal of Democracy: FDR, Detroit, and an Epic Quest to Arm an America at War"
    ],
    "similarToAuthors": [
@@ -11669,10 +11707,12 @@
    "type": "fiction",
    "themes": [
     "mystery",
-    "whodunit"
+    "contemporary"
    ],
    "similarToTitles": [
     "The Mystery Guest (Molly the Maid, #2)",
+    "Remarkably Bright Creatures",
+    "The Rosie Project (Don Tillman, #1)",
     "The Silent Patient"
    ],
    "similarToAuthors": [
@@ -12219,8 +12259,9 @@
     "history"
    ],
    "similarToTitles": [
-    "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
-    "Into Thin Air"
+    "Into Thin Air",
+    "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
+    "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road"
    ],
    "similarToAuthors": [
     "Nick Bilton",
@@ -14371,10 +14412,11 @@
    "type": "fiction",
    "themes": [
     "mystery",
-    "whodunit"
+    "contemporary"
    ],
    "similarToTitles": [
     "The Mystery Guest (Molly the Maid, #2)",
+    "Remarkably Bright Creatures",
     "The Rosie Project (Don Tillman, #1)"
    ],
    "similarToAuthors": [
@@ -14946,6 +14988,8 @@
    ],
    "similarToTitles": [
     "World War Z: An Oral History of the Zombie War",
+    "The Egg",
+    "Randomize (Forward Collection, #6)",
     "The Postmortal"
    ],
    "similarToAuthors": [
@@ -14985,7 +15029,8 @@
    ],
    "similarToTitles": [
     "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
-    "I Wear the Black Hat: Grappling with Villains (Real and Imagined)"
+    "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
+    "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution"
    ],
    "similarToAuthors": [
     "Chuck Klosterman",
@@ -15063,6 +15108,8 @@
     "thriller"
    ],
    "similarToTitles": [
+    "The Rainmaker",
+    "The Litigators",
     "A Time to Kill (Jake Brigance, #1)",
     "The Silent Patient"
    ],
@@ -15794,6 +15841,9 @@
     "literary"
    ],
    "similarToTitles": [
+    "One Day",
+    "One True Loves",
+    "Looking for Alaska",
     "The Statistical Probability of Love at First Sight",
     "Every Day (Every Day, #1)"
    ],
@@ -17745,7 +17795,8 @@
    ],
    "similarToTitles": [
     "This is Going to Hurt: Secret Diaries of a Junior Doctor",
-    "Yearbook"
+    "Yearbook",
+    "Someone Could Get Hurt: A Memoir of Twenty-First-Century Parenthood"
    ],
    "similarToAuthors": [
     "Seth Rogen",
@@ -18483,7 +18534,8 @@
    ],
    "similarToTitles": [
     "Maid: Hard Work, Low Pay, and a Mother's Will to Survive",
-    "Educated"
+    "Educated",
+    "Evicted: Poverty and Profit in the American City"
    ],
    "similarToAuthors": [
     "Tara Westover",
@@ -18770,7 +18822,8 @@
    ],
    "similarToTitles": [
     "Little Children",
-    "Tracy Flick Can't Win"
+    "Tracy Flick Can't Win",
+    "Looking for Alaska"
    ],
    "similarToAuthors": [
     "John Green",
@@ -22196,6 +22249,7 @@
    ],
    "similarToTitles": [
     "The Plot (The Book Series, #1)",
+    "Little Children",
     "Tomorrow, and Tomorrow, and Tomorrow"
    ],
    "similarToAuthors": [
@@ -23172,6 +23226,9 @@
     "suspense"
    ],
    "similarToTitles": [
+    "The Lost City of Z: A Tale of Deadly Obsession in the Amazon",
+    "Dark Matter",
+    "Recursion",
     "City of Endless Night (Pendergast, #17)",
     "The Silent Patient"
    ],
@@ -23338,6 +23395,8 @@
    ],
    "similarToTitles": [
     "Shoe Dog",
+    "That Will Never Work: The Birth of Netflix and the Amazing Life of an Idea",
+    "The Hot Hand: The Mystery and Science of Streaks",
     "Flash Boys: A Wall Street Revolt"
    ],
    "similarToAuthors": [
@@ -24428,6 +24487,9 @@
     "literary"
    ],
    "similarToTitles": [
+    "Project Hail Mary",
+    "The Martian",
+    "World War Z: An Oral History of the Zombie War",
     "Seveneves",
     "Dark Matter"
    ],
@@ -25241,6 +25303,9 @@
    ],
    "similarToTitles": [
     "The Midnight Library (The Midnight World, #1)",
+    "The Rosie Project (Don Tillman, #1)",
+    "Remarkably Bright Creatures",
+    "The Measure",
     "The Invisible Life of Addie LaRue"
    ],
    "similarToAuthors": [
@@ -25599,8 +25664,9 @@
     "narrative nonfiction"
    ],
    "similarToTitles": [
+    "Someone Could Get Hurt: A Memoir of Twenty-First-Century Parenthood",
     "Yearbook",
-    "Someone Could Get Hurt: A Memoir of Twenty-First-Century Parenthood"
+    "Sorry I'm Late, I Didn't Want to Come: One Introvert's Year of Saying Yes"
    ],
    "similarToAuthors": [
     "Seth Rogen",
@@ -25923,6 +25989,8 @@
    ],
    "similarToTitles": [
     "Steve Jobs",
+    "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
+    "Shoe Dog",
     "Elon Musk"
    ],
    "similarToAuthors": [
@@ -26783,7 +26851,8 @@
    ],
    "similarToTitles": [
     "Presumed Innocent",
-    "Pleading Guilty (Kindle County, #3)"
+    "Pleading Guilty (Kindle County, #3)",
+    "The Firm (The Firm, #1)"
    ],
    "similarToAuthors": [
     "John Grisham",
@@ -38607,6 +38676,9 @@
    ],
    "dnf": false,
    "similarToTitles": [
+    "The Everything Store: Jeff Bezos and the Age of Amazon",
+    "The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution",
+    "The Big Short: Inside the Doomsday Machine",
     "The House of Morgan",
     "Den of Thieves"
    ],
@@ -38640,6 +38712,9 @@
    ],
    "dnf": false,
    "similarToTitles": [
+    "11/22/63",
+    "Elevation",
+    "Looking for Alaska",
     "The Green Mile",
     "It"
    ],
@@ -38674,6 +38749,8 @@
    ],
    "dnf": false,
    "similarToTitles": [
+    "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
+    "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
     "Educated",
     "My Absolute Darling"
    ],
@@ -38708,6 +38785,9 @@
    ],
    "dnf": false,
    "similarToTitles": [
+    "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
+    "The Hot Hand: The Mystery and Science of Streaks",
+    "Coach: Lessons on the Game of Life",
     "Thinking, Fast and Slow",
     "The Second Mountain"
    ],
@@ -38729,11 +38809,19 @@
    "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1742326950l/166997._SY475_.jpg",
    "shelf": "to-read",
    "myRating": 0,
-   "type": "unknown",
-   "themes": [],
+   "type": "fiction",
+   "themes": [
+    "literary",
+    "historical"
+   ],
    "tones": [],
    "dnf": false,
-   "bookKey": "stoner|john-williams"
+   "bookKey": "stoner|john-williams",
+   "similarToTitles": [
+    "Tomorrow, and Tomorrow, and Tomorrow",
+    "The Storied Life of A.J. Fikry",
+    "Where the Crawdads Sing"
+   ]
   },
   {
    "title": "Ding Dong: How Ring Went From Shark Tank Reject To Everyone's Front Door",
@@ -38747,11 +38835,20 @@
    "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1761292047l/243134278._SY475_.jpg",
    "shelf": "to-read",
    "myRating": 0,
-   "type": "unknown",
-   "themes": [],
+   "type": "nonfiction",
+   "themes": [
+    "business",
+    "memoir",
+    "narrative nonfiction"
+   ],
    "tones": [],
    "dnf": false,
-   "bookKey": "ding-dong-how-ring-went-from-shark-tank-reject-to-everyone-s-front-door|jamie-siminoff"
+   "bookKey": "ding-dong-how-ring-went-from-shark-tank-reject-to-everyone-s-front-door|jamie-siminoff",
+   "similarToTitles": [
+    "Shoe Dog",
+    "That Will Never Work: The Birth of Netflix and the Amazing Life of an Idea",
+    "The Everything Store: Jeff Bezos and the Age of Amazon"
+   ]
   },
   {
    "title": "Thrilling Tales of Modern Men: Stories",
@@ -38765,11 +38862,19 @@
    "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1769139407l/242000546._SY475_.jpg",
    "shelf": "to-read",
    "myRating": 0,
-   "type": "unknown",
-   "themes": [],
+   "type": "fiction",
+   "themes": [
+    "humor",
+    "contemporary"
+   ],
    "tones": [],
    "dnf": false,
-   "bookKey": "thrilling-tales-of-modern-men-stories|danny-mcbride"
+   "bookKey": "thrilling-tales-of-modern-men-stories|danny-mcbride",
+   "similarToTitles": [
+    "Yearbook",
+    "Raised in Captivity: Fictional Nonfiction",
+    "Clusterf*ck"
+   ]
   },
   {
    "title": "The American Way of Killing: The Invention of an Epidemic",
@@ -38783,11 +38888,20 @@
    "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1781723843l/247255488._SY475_.jpg",
    "shelf": "to-read",
    "myRating": 0,
-   "type": "unknown",
-   "themes": [],
+   "type": "nonfiction",
+   "themes": [
+    "narrative nonfiction",
+    "social commentary",
+    "history"
+   ],
    "tones": [],
    "dnf": false,
-   "bookKey": "the-american-way-of-killing-the-invention-of-an-epidemic|malcolm-gladwell"
+   "bookKey": "the-american-way-of-killing-the-invention-of-an-epidemic|malcolm-gladwell",
+   "similarToTitles": [
+    "The Bomber Mafia: A Dream, a Temptation, and the Longest Night of the Second World War",
+    "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+    "Evicted: Poverty and Profit in the American City"
+   ]
   },
   {
    "title": "Endurance: Shackleton's Incredible Voyage",
@@ -38801,11 +38915,21 @@
    "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1391329559l/139069.jpg",
    "shelf": "to-read",
    "myRating": 0,
-   "type": "unknown",
-   "themes": [],
+   "type": "nonfiction",
+   "themes": [
+    "narrative nonfiction",
+    "adventure",
+    "history"
+   ],
    "tones": [],
    "dnf": false,
-   "bookKey": "endurance-shackleton-s-incredible-voyage|alfred-lansing"
+   "bookKey": "endurance-shackleton-s-incredible-voyage|alfred-lansing",
+   "similarToTitles": [
+    "Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night",
+    "The Wager: A Tale of Shipwreck, Mutiny and Murder",
+    "Into Thin Air",
+    "Unbroken: A World War II Story of Survival, Resilience and Redemption"
+   ]
   }
  ],
  "indexes": {
