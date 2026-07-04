@@ -1164,6 +1164,22 @@
    "note": "Bill: too feminine \u2014 second dismissal with this reason (see Tom Lake)",
    "timestamp": "2026-07-04T02:31:23Z",
    "excludeFromRecommendations": true
+  },
+  {
+   "bookKey": "hello-goodbye-and-everything-in-between|jennifer-e-smith",
+   "title": "Hello, Goodbye, and Everything in Between",
+   "author": "Jennifer E. Smith",
+   "type": "fiction",
+   "themes": [
+    "romance",
+    "contemporary",
+    "literary"
+   ],
+   "interactionType": "dismiss",
+   "reasonCode": "style-not-for-me",
+   "note": "Bill: too feminine \u2014 3rd in pattern (Tom Lake, People We Meet on Vacation). Nuance: he 5-starred One Day/One True Loves, so adult romance with a hook is fine; soft YA/reflective relationship fiction is not.",
+   "timestamp": "2026-07-04T02:32:01Z",
+   "excludeFromRecommendations": true
   }
  ]
 }
