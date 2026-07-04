@@ -26,10 +26,13 @@ Static GitHub Pages app that recommends books from Bill's personal to-read list 
 
 | File | Purpose |
 |------|---------|
-| `data/goodreadsData.json` | 814 books — all of Bill's Goodreads data |
+| `data/goodreadsData.json` | 939 books — all of Bill's Goodreads data |
 | `data/candidatePool*.json` | External recommendation candidates (5 files, ~115 books) |
 | `engine.js` | Scoring engine — buildIndexes, matchScore, confidenceScore, reason |
-| `app.js` | React UI |
+| `app.js` | UI + localStorage feedback persistence |
+| `descSimilarity.js` | TF-IDF description signal (Session 12) |
+| `data/enrichedMetadata.json` | Descriptions/categories/subjects cache (auto-filled daily) |
+| `scripts/eval.js` | Honest precision@k eval — run before/after engine changes |
 | `index.html` | Entry point |
 
 ---
@@ -156,6 +159,50 @@ When adding a new book to `goodreadsData.json`, a complete entry looks like:
 
 ---
 
+## Evaluation Discipline (added Session 12 — do not skip)
+
+Run `node scripts/eval.js` BEFORE and AFTER any engine change. It reports
+precision@k over completed rated reads (leave-one-out, DNFs excluded — DNF
+virtual ratings leak the answer and inflate metrics; header Spearman claims
+predate this fix). Baseline as of Jul 3 2026: p10=100, p25=96, p50=96,
+MAE=0.770. Top-of-list precision (p10/p25) outranks MAE: never trade it away.
+
+**Measured dead ends — do not re-attempt without new data:**
+- Author/theme weight tuning (upweighting low ratings, asymmetric variance
+  penalty, halving PRIOR_K): flat or traded p25 for MAE. The model is at its
+  ceiling; completed 2★ books look identical to 5★ books in all features.
+- Negative-only description voting: strictly worse than symmetric.
+
+**Real bottleneck:** negative training data. Only 39 dismissals and 106
+low-rated completions whose features match loved books.
+
+## TF-IDF Description Signal (descSimilarity.js, Session 12)
+
+k-NN over TF-IDF vectors of real descriptions from data/enrichedMetadata.json
+(filled daily by the enrich-metadata workflow, 150 books/run). Coverage-gated:
+inactive until 150+ rated reads have descriptions. Tunables in exported CFG
+(k=12, cap=6 — sweep-confirmed optimal). Flows: app.js → rankBBRE(…, meta) →
+buildTasteModel(…, meta) → Signal 4b in predictRating.
+
+## Workflows
+
+- enrich-metadata.yml: daily 07:00 UTC; Google Books + Open Library →
+  data/enrichedMetadata.json. Also usable for tag audits (publisher categories).
+- tag-books.yml: manual; Claude Haiku 4.5 tags from descriptions; needs
+  ANTHROPIC_API_KEY repo secret (unused so far — Session 12 tagged by hand).
+- Data conflicts: sync + enrichment commit daily. Rebase carefully; prefer
+  re-layering enrichment fields (themes/tones/similarToTitles) onto upstream.
+
+## Data Caveats
+
+- Session 12 similarToTitles are validated-to-exist but unverified-as-good:
+  picked from model knowledge, not measured. Treat as draft; description
+  similarity can eventually audit them.
+- All 136 DNFs carry myRating=2. engine.js treats them as ordinary 2★;
+  rateEngine uses virtual ratings. Inconsistent — known, unresolved.
+- similarToTitles entries MUST be exact 5★ read titles (norm() tolerates
+  series suffixes, but stay exact).
+
 ## Data Enrichment Sessions Log
 
 | Session | Work done |
@@ -167,3 +214,4 @@ When adding a new book to `goodreadsData.json`, a complete entry looks like:
 | 10 | Themes tagged on all 241 un-themed read books; similarToTitles added to all 500 read books; reverseSimilar reverse index added to engine |
 | 10b | Data quality audit: 1,065 broken similarToTitles refs fixed; 6 non-canonical themes corrected; single-theme books enriched; CLAUDE.md created |
 | 11 | similarToAuthors signal added to to-read branch (was already in pool branch); pages fixed on 2 to-read books |
+| 12 (Jul 2026, claude.ai) | Persistence: dismissals now survive refresh via localStorage; "Copy feedback JSON" button commits them. Title matching normalized (norm()) in fiveStarTitles/reverseSimilar — series-notation mismatch bug class eliminated. similarToTitles enriched on all 292 to-read books (214 hand-tagged, 49 same-author auto-fill, all validated against exact 5★ titles). Dead themes remapped; 'domestic suspense' added to 19 clear cases. 9 missing bookKeys backfilled. 7 type errors fixed via publisher-category audit (incl. two 5★ reads: Best Offer Wins, The Stowaway). Series signal bugs fixed: decimal entries (#2.5) and collection first-entries now parse. NEW: descSimilarity.js TF-IDF signal (see below). NEW: scripts/eval.js. NEW: enrich_metadata.py + tag_with_haiku.py workflows. Repo hygiene: audit scripts → scripts/, 3.5MB PNG removed, text logo replaces image. |
