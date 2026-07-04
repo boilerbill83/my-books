@@ -454,10 +454,11 @@
    "isbn13": "9780399591907",
    "publisher": "One World",
    "year": 2026,
-   "type": "nonfiction",
+   "type": "fiction",
    "themes": [
-    "memoir",
-    "narrative nonfiction"
+    "literary",
+    "contemporary",
+    "humor"
    ],
    "similarToTitles": [
     "Eat a Peach",
@@ -1280,8 +1281,9 @@
    "publisher": "Celadon Books",
    "year": 2025,
    "themes": [
-    "narrative nonfiction",
-    "business"
+    "thriller",
+    "suspense",
+    "domestic suspense"
    ],
    "similarToTitles": [
     "Evicted: Poverty and Profit in the American City",
@@ -1296,7 +1298,7 @@
     "Michael Connelly",
     "Brad Parks"
    ],
-   "type": "nonfiction",
+   "type": "fiction",
    "tones": [
     "narrative-driven",
     "accessible",
@@ -3610,8 +3612,9 @@
    "publisher": "Little, Brown and Company",
    "year": 2024,
    "themes": [
-    "thriller",
-    "crime"
+    "biography",
+    "sports",
+    "narrative nonfiction"
    ],
    "similarToTitles": [
     "Along Came a Spider (Alex Cross, #1)",
@@ -3626,7 +3629,7 @@
     "Lee Child",
     "David Baldacci"
    ],
-   "type": "fiction",
+   "type": "nonfiction",
    "tones": [
     "fast-paced",
     "plot-driven",
@@ -12503,9 +12506,9 @@
    "publisher": "St. Martin's Press",
    "year": 2021,
    "themes": [
-    "narrative nonfiction",
-    "history",
-    "adventure"
+    "thriller",
+    "suspense",
+    "high-concept"
    ],
    "similarToTitles": [
     "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
@@ -12520,7 +12523,7 @@
     "Sebastian Junger",
     "Candice Millard"
    ],
-   "type": "nonfiction",
+   "type": "fiction",
    "tones": [
     "narrative-driven",
     "fast-paced",
@@ -13662,10 +13665,9 @@
    "isbn13": "9780316263931",
    "publisher": "Little, Brown and Company",
    "year": 2024,
-   "type": "fiction",
+   "type": "nonfiction",
    "themes": [
-    "literary",
-    "speculative",
+    "memoir",
     "humor"
    ],
    "similarToTitles": [
@@ -15877,10 +15879,11 @@
    "isbn13": "9780593523445",
    "publisher": "Penguin Workshop",
    "year": 2024,
-   "type": "nonfiction",
+   "type": "fiction",
    "themes": [
-    "memoir",
-    "narrative nonfiction"
+    "contemporary",
+    "romance",
+    "food"
    ],
    "similarToTitles": [
     "The Making of a Chef: Mastering Heat at the Culinary Institute",
@@ -22040,9 +22043,9 @@
    "publisher": "Vintage",
    "year": 2009,
    "themes": [
-    "crime",
-    "narrative nonfiction",
-    "thriller"
+    "true crime",
+    "memoir",
+    "narrative nonfiction"
    ],
    "similarToTitles": [
     "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
@@ -22057,7 +22060,7 @@
     "Robert Whiting",
     "George Pelecanos"
    ],
-   "type": "fiction",
+   "type": "nonfiction",
    "tones": [
     "fast-paced",
     "dark",
