@@ -244,7 +244,10 @@ function seriesSignal(book, seriesMap) {
   // collection he's rated other entries of (e.g. Forward Collection) counts too.
   if (!s) return 0;
   const entry = seriesMap.get(s.name);
-  if (!entry || entry.mean === null) return 0;
+  // Bill rule (Session 12): don't push mid-series entries of UNREAD series —
+  // he wants to start at book 1. Books #2+ of a series with no read history
+  // get a penalty; book #1 is unaffected.
+  if (!entry || entry.mean === null) return s.num > 1 ? -0.06 : 0;
   // Deviation from neutral 3.5★; scale so ±1.5★ → ±0.075
   return (entry.mean - 3.5) * 0.05;
 }

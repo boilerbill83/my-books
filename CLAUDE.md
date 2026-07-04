@@ -198,6 +198,9 @@ buildTasteModel(…, meta) → Signal 4b in predictRating.
 - NO fiction set before 1900. Nonfiction pre-1900 settings are sometimes fine.
   Exception: Lonesome Dove (kept for its reputation). When tagging or
   dismissing, check historical fiction settings against this rule.
+- Recommend book 1 of a series, not mid-series entries, unless Bill has read
+  the earlier books (engine: unread-series #2+ penalty in seriesSignal).
+  Exception: Th1rt3en (#4) explicitly kept in Session 12 review.
 
 ## Data Caveats
 
