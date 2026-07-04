@@ -61,6 +61,7 @@
  */
 
 import { buildTasteModel, predictRating } from './rateEngine.js';
+import { tokenize, cosine } from './descSimilarity.js';
 import { rankRecommendations }            from './engine.js';
 
 // ── Tuning constants ───────────────────────────────────────────────────────
@@ -250,6 +251,82 @@ function seriesSignal(book, seriesMap) {
   if (!entry || entry.mean === null) return s.num > 1 ? -0.06 : 0;
   // Deviation from neutral 3.5★; scale so ±1.5★ → ±0.075
   return (entry.mean - 3.5) * 0.05;
+}
+
+
+// ── Session 12b: dismissal generalization + era filter ──────────────────────
+// Bill's review dismissals carry reason codes; generalize them beyond the
+// single dismissed book. See CLAUDE.md "Bill's Taste Rules".
+
+const HOOK_THEMES = new Set(['thriller','mystery','suspense','crime','legal',
+  'courtroom','speculative','sci-fi','horror','spy','high-concept','noir',
+  'domestic suspense','psychological']);
+
+const PRE1900_RX = /civil war|victorian|regency|frontier|wild west|confederate|union army|medieval|ancient (rome|greece|egypt)|18th century|19th century|17th century|\b1[678]\d\d\b|napoleonic|antebellum|colonial america|revolutionary war/i;
+const PRE1900_EXEMPT = new Set(['lonesome-dove|larry-mcmurtry']);
+
+function buildDismissProfile(feedback, model) {
+  const inter = (feedback?.interactions || []).filter(e => e.excludeFromRecommendations);
+  const badAuthors = new Set(inter
+    .filter(e => e.reasonCode === 'author-dislike')
+    .map(e => normA(e.author)));
+  const styleBooks = inter.filter(e => e.reasonCode === 'style-not-for-me');
+  const styleThemes = new Map();
+  for (const e of styleBooks) {
+    for (const t of (e.themes || [])) {
+      const k = String(t).toLowerCase();
+      styleThemes.set(k, (styleThemes.get(k) || 0) + 1);
+    }
+  }
+  // TF-IDF centroid of dismissed-style descriptions (when signal is active)
+  let styleVecs = [];
+  if (model?.descModel && model?.descByKey) {
+    for (const e of styleBooks) {
+      const d = model.descByKey[e.bookKey]?.description;
+      if (d && d.length >= 80) styleVecs.push(model.descModel.vec(tokenize(d)));
+    }
+  }
+  return { badAuthors, styleThemes, styleVecs, styleCount: styleBooks.length };
+}
+
+function dismissAdjust(book, profile, model) {
+  let adj = 0;
+  const reasons = [];
+  if (profile.badAuthors.has(normA(book.author))) {
+    adj -= 0.15; reasons.push('disliked-author');
+  }
+  if (profile.styleCount >= 2 && book.type === 'fiction') {
+    const themes = (book.themes || []).map(t => String(t).toLowerCase());
+    const hasHook = themes.some(t => HOOK_THEMES.has(t));
+    if (!hasHook) {
+      const themeOverlap = themes.filter(t => profile.styleThemes.has(t)).length;
+      let descSim = 0;
+      if (profile.styleVecs.length && model?.descModel && model?.descByKey) {
+        const d = model.descByKey[book.bookKey]?.description;
+        if (d && d.length >= 80) {
+          const v = model.descModel.vec(tokenize(d));
+          descSim = Math.max(...profile.styleVecs.map(sv => cosine(v, sv)));
+        }
+      }
+      if (themeOverlap >= 2 || descSim > 0.08) {
+        adj -= 0.08; reasons.push('dismissed-style-match');
+      }
+    }
+  }
+  return { adj, reasons };
+}
+
+function pre1900Penalty(book, model) {
+  if (book.type !== 'fiction') return 0;                 // rule is fiction-only
+  if (PRE1900_EXEMPT.has(book.bookKey)) return 0;
+  // Require the historical tag: descriptions of contemporary books often
+  // mention old artifacts (heist plots, family histories) without the story
+  // being SET pre-1900 — gate caught The Maid's Secret this way.
+  const themes = (book.themes || []).map(t => String(t).toLowerCase());
+  if (!themes.includes('historical')) return 0;
+  const d = model?.descByKey?.[book.bookKey]?.description || '';
+  const hay = d + ' ' + (book.title || '');
+  return PRE1900_RX.test(hay) ? 0.12 : 0;
 }
 
 // ── 2. Temporal recency ────────────────────────────────────────────────────
@@ -672,6 +749,7 @@ export function rankBBRE(goodreads, feedback, candidatePool, history, enrichedMe
   });
 
   // ── Step 5: combine with adjustments ────────────────────────────────────
+  const dismissProfile = buildDismissProfile(feedback, model);
   const withScores = normalised.map(b => {
     const base        = adaptiveCombine(b._normBayes, b._normEngine, b._conf);
     const seriesAdj   = seriesSignal(b, seriesMap);
@@ -679,8 +757,10 @@ export function rankBBRE(goodreads, feedback, candidatePool, history, enrichedMe
     const toneAdj     = toneSignal(b, toneProfile, globalMean);
     const communityAdj = communitySignal(b);
     const dnfPen      = dnfPenalty(b, dnfSig);
-    const combined    = Math.max(0, base + seriesAdj + recencyAdj + toneAdj + communityAdj - dnfPen);
-    return { ...b, _combined: combined, _base: base, _seriesAdj: seriesAdj, _recencyAdj: recencyAdj, _toneAdj: toneAdj, _communityAdj: communityAdj, _dnfPen: dnfPen };
+    const dis         = dismissAdjust(b, dismissProfile, model);
+    const eraPen      = pre1900Penalty(b, model);
+    const combined    = Math.max(0, base + seriesAdj + recencyAdj + toneAdj + communityAdj - dnfPen + dis.adj - eraPen);
+    return { ...b, _combined: combined, _base: base, _seriesAdj: seriesAdj, _recencyAdj: recencyAdj, _toneAdj: toneAdj, _communityAdj: communityAdj, _dnfPen: dnfPen, _dismissAdj: dis.adj, _dismissReasons: dis.reasons, _eraPen: eraPen };
   });
 
   withScores.sort((a, b) => b._combined - a._combined);
