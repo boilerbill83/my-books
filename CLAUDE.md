@@ -193,6 +193,32 @@ buildTasteModel(…, meta) → Signal 4b in predictRating.
 - Data conflicts: sync + enrichment commit daily. Rebase carefully; prefer
   re-layering enrichment fields (themes/tones/similarToTitles) onto upstream.
 
+## WIP: Session 12b Action Plan (resume here if interrupted)
+
+Status legend: [ ] todo, [x] done. Update as items complete.
+
+- [ ] 1. Generalize dismissals in bbreEngine: author-dislike penalizes the
+      author's other books; style-not-for-me builds a dismissed profile
+      (themes + TF-IDF description centroid) and penalizes lookalikes
+- [ ] 2. Soft-relationship-fiction penalty: no hook theme (thriller/mystery/
+      crime/legal/speculative/etc.) AND similar to dismissed style profile.
+      CAUTION: One Day and One True Loves are 5-star keeps in this shape —
+      penalty must key on dismissed-profile similarity, not romance tags alone
+- [ ] 3. Pre-1900 fiction filter: description keyword scan (civil war,
+      victorian, frontier, regency, 1800s...); exempt lonesome-dove
+- [ ] 4. Validation gate: scripts/validate_review.js — the 14 Session 12
+      review keeps must stay in top 25; eval p10 must stay 100
+- [ ] 5. Update this file when done
+
+Review results (Jul 3 2026, ranks 1-20): KEEPS = The Tenant, Local Woman
+Missing, Th1rt3en, Heartland, The Wise Men, The Idaho Four, Everything Is
+Tuberculosis, Empire of AI, Be Ready When the Luck Happens, The Maid's
+Secret, You Must Remember This, The Trolls of Wall Street, The Midnight
+Lawyer (+ Rich Blood → currently reading). DISMISSES with reasons in
+feedbackData.json: Jackal's Mistress (pre-1900), I'm Glad My Mom Died
+(author), Tom Lake / People We Meet on Vacation / Hello Goodbye (style),
+A Good Girl's Guide (adaptation), Bad Blood (already attempted).
+
 ## Bill's Taste Rules (explicit, from Session 12 review)
 
 - NO fiction set before 1900. Nonfiction pre-1900 settings are sometimes fine.
