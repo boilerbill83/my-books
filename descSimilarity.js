@@ -28,7 +28,8 @@ function tfVector(tokens) {
 }
 
 const MIN_READ_DOCS = 150;
-export const K_NEIGHBORS = 12;
+// tunable at runtime for eval sweeps; defaults are production values
+export const CFG = { k: 12, cap: 6 };
 
 /**
  * @param {object} goodreads — goodreadsData.json object
@@ -85,12 +86,12 @@ export function descSignal(description, model) {
     .map(d => ({ key: d.key, rating: d.rating, sim: cosine(q, d.vec) }))
     .filter(x => x.sim > 0.03)
     .sort((a, b) => b.sim - a.sim)
-    .slice(0, K_NEIGHBORS);
+    .slice(0, CFG.k);
   if (sims.length < 3) return null;
   const wSum = sims.reduce((s, x) => s + x.sim, 0);
   const mean = sims.reduce((s, x) => s + x.rating * x.sim, 0) / wSum;
   // weight grows with both neighbor count and similarity mass, capped small:
   // this is one voice among the existing signals, not a takeover.
-  const weight = Math.min(6, wSum * 4);
+  const weight = Math.min(CFG.cap, wSum * 4);
   return { mean, weight, neighbors: sims };
 }
