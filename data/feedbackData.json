@@ -1180,6 +1180,23 @@
    "note": "Bill: too feminine \u2014 3rd in pattern (Tom Lake, People We Meet on Vacation). Nuance: he 5-starred One Day/One True Loves, so adult romance with a hook is fine; soft YA/reflective relationship fiction is not.",
    "timestamp": "2026-07-04T02:32:01Z",
    "excludeFromRecommendations": true
+  },
+  {
+   "bookKey": "bad-blood-secrets-and-lies-in-a-silicon-valley-startup|john-carreyrou",
+   "title": "Bad Blood",
+   "author": "John Carreyrou",
+   "type": "nonfiction",
+   "themes": [
+    "true crime",
+    "tech history",
+    "finance",
+    "narrative nonfiction"
+   ],
+   "interactionType": "dismiss",
+   "reasonCode": "already-read-or-attempted",
+   "note": "Bill: read or started it before; possibly an untracked DNF",
+   "timestamp": "2026-07-04T02:33:13Z",
+   "excludeFromRecommendations": true
   }
  ]
 }
