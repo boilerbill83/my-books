@@ -17967,7 +17967,7 @@
  "/works/OL20627614W": {
   "title": "Catch and Kill: Lies, Spies, and a Conspiracy to Protect Predators",
   "author": "Ronan Farrow",
-  "description": "",
+  "description": "Ronan Farrow's account of investigating Harvey Weinstein's decades of sexual abuse and the machinery used to bury the story: private intelligence firms trailing reporters, tabloid catch-and-kill deals that purchased victims' silence, and network executives who shelved the reporting. Part investigative journalism, part memoir of the pressure campaign against the reporter himself, it follows the sources who risked everything to go on record and the collapse of the cover-up that followed, reshaping how newsrooms, studios, and courts handle allegations against powerful men.",
   "categories": [
    "True Crime"
   ],
@@ -17989,7 +17989,8 @@
    "Motion picture actors and actresses, united states",
    "Hollywood (los angeles, calif.), social life and customs"
   ],
-  "fetchedAt": "2026-07-04"
+  "fetchedAt": "2026-07-04",
+  "source": "hand-written"
  },
  "/works/OL19891870W": {
   "title": "The Feather Thief: Beauty, Obsession, and the Natural History Heist of the Century",
