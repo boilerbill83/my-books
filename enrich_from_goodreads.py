@@ -58,9 +58,13 @@ def load_targets(cache):
     for path in sorted(DATA_DIR.glob('candidatePool*.json')):
         with open(path) as f:
             books += json.load(f).get('candidates', [])
+    # target anything without a USABLE description (>= 80 chars) — Google
+    # sometimes returns junk from wrong editions ("Simplified Chinese
+    # edition of...", one-line blurbs) which should be replaced, not kept
     return [b for b in books
             if b.get('bookKey') and b.get('bookId')
-            and not cache.get(b['bookKey'], {}).get('description')]
+            and len(cache.get(b['bookKey'], {}).get('description') or '') < 80
+            and not cache.get(b['bookKey'], {}).get('goodreadsTriedAt')]
 
 
 def main():
