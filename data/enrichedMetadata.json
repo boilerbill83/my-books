@@ -15381,7 +15381,7 @@
  "fahrenheit-451|ray-bradbury": {
   "title": "Fahrenheit 451",
   "author": "Ray Bradbury",
-  "description": "",
+  "description": "The terrifyingly prophetic novel of a post-literate future. Guy Montag is a fireman. His job is to burn books, which are forbidden, being the source of all discord and unhappiness. Even so, Montag is unhappy; there is discord in his marriage. Are books hidden in his house? The Mechanical Hound of the Fire Department, armed with a lethal hypodermic, escorted by helicopters, is ready to track down those dissidents who defy society to preserve and read books. The classic dystopian novel of a post-literate future, Fahrenheit 451 stands alongside Orwell\u2019s 1984 and Huxley\u2019s Brave New World as a prophetic account of Western civilization\u2019s enslavement by the media, drugs and conformity. Bradbury\u2019s powerful and poetic prose combines with uncanny insight into the potential of technology to create a novel which, decades on from first publication, still has the power to dazzle and shock. --back cover",
   "categories": [
    "Fiction"
   ],
@@ -15403,7 +15403,9 @@
    "Book burning",
    "Censorship"
   ],
-  "fetchedAt": "2026-07-04"
+  "fetchedAt": "2026-07-04",
+  "source": "goodreads",
+  "goodreadsTriedAt": "2026-07-05"
  },
  "the-terminal-list|jack-carr": {
   "title": "The Terminal List (Terminal List, #1)",
@@ -17262,7 +17264,7 @@
  "red-rising|pierce-brown": {
   "title": "Red Rising",
   "author": "Pierce Brown",
-  "description": "",
+  "description": "Darrow is a Red, a member of the lowest caste in the color-coded society of the future. Like his fellow Reds, he works all day, believing that he and his people are making the surface of Mars livable for future generations. Yet he toils willingly, trusting that his blood and sweat will one day result in a better world for his children. But Darrow and his kind have been betrayed. Soon he discovers that humanity reached the surface generations ago. Vast cities and lush wilds spread across the planet. Darrow\u2014and Reds like him\u2014are nothing more than slaves to a decadent ruling class. Inspired by a longing for justice, and driven by the memory of lost love, Darrow sacrifices everything to infiltrate the legendary Institute, a proving ground for the dominant Gold caste, where the next generation of humanity\u2019s overlords struggle for power. He will be forced to compete for his life and the very future of civilization against the best and most brutal of Society\u2019s ruling class. There, he will stop at nothing to bring down his enemies . . . even if it means he has to become one of them to do so.",
   "categories": [
    "Fiction"
   ],
@@ -17282,7 +17284,9 @@
    "Social classes",
    "Adventure"
   ],
-  "fetchedAt": "2026-07-04"
+  "fetchedAt": "2026-07-04",
+  "source": "goodreads",
+  "goodreadsTriedAt": "2026-07-05"
  },
  "spaced-out-how-the-nba-s-three-point-revolution-changed-everything-you-thought-you-knew-about-basketball|mike-prada": {
   "title": "Spaced Out: How the NBA's Three-Point Revolution Changed Everything You Thought You Knew About Basketball",
