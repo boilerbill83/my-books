@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '0 7 * * *'   # daily 7 AM UTC until backlog clears
   workflow_dispatch:
+    inputs:
+      retry_empties:
+        description: 'Re-attempt books that returned no description'
+        type: boolean
+        default: false
 
 jobs:
   enrich:
@@ -18,6 +23,7 @@ jobs:
       - name: Fetch descriptions from Google Books + Open Library
         env:
           GOOGLE_BOOKS_API_KEY: ${{ secrets.GOOGLE_BOOKS_API_KEY }}
+          RETRY_EMPTIES: ${{ inputs.retry_empties && '1' || '0' }}
         run: python3 enrich_metadata.py 150
         timeout-minutes: 30
       - name: Commit if changed

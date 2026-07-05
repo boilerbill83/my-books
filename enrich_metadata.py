@@ -18,6 +18,7 @@ from pathlib import Path
 DATA_DIR   = Path('data')
 CACHE_FILE = DATA_DIR / 'enrichedMetadata.json'
 BATCH_SIZE = int(sys.argv[1]) if len(sys.argv) > 1 else 150
+RETRY_EMPTIES = os.environ.get('RETRY_EMPTIES') == '1' or '--retry-empties' in sys.argv
 API_KEY    = os.environ.get('GOOGLE_BOOKS_API_KEY', '')
 DELAY      = 1.2   # seconds between books (both APIs are rate-friendly)
 
@@ -44,6 +45,10 @@ def google_books(title, author, isbn13):
     if isbn13:
         queries.append(f'isbn:{isbn13}')
     queries.append(f'intitle:{title} inauthor:{author}')
+    queries.append(f'intitle:{title}')
+    short = title.split(':')[0].split('(')[0].strip()
+    if short and short != title:
+        queries.append(f'intitle:{short}')
     for q in queries:
         url = ('https://www.googleapis.com/books/v1/volumes?q='
                + urllib.parse.quote(q) + '&maxResults=1&country=US')
@@ -106,8 +111,16 @@ def load_books():
 
 def main():
     cache = json.load(open(CACHE_FILE)) if CACHE_FILE.exists() else {}
-    pending = [b for b in load_books()
-               if b.get('bookKey') and b['bookKey'] not in cache]
+    if RETRY_EMPTIES:
+        # re-attempt cached entries that came back without a description,
+        # using looser title-only queries; skip ones already retried
+        pending = [b for b in load_books()
+                   if b.get('bookKey') and b['bookKey'] in cache
+                   and not cache[b['bookKey']].get('description')
+                   and not cache[b['bookKey']].get('retriedAt')]
+    else:
+        pending = [b for b in load_books()
+                   if b.get('bookKey') and b['bookKey'] not in cache]
     batch = pending[:BATCH_SIZE]
     print(f'{len(pending)} books pending, processing {len(batch)}')
 
@@ -120,6 +133,8 @@ def main():
             entry['description'] = ol['olDescription']
         entry['subjects'] = ol.get('subjects', [])
         entry['fetchedAt'] = time.strftime('%Y-%m-%d')
+        if RETRY_EMPTIES:
+            entry['retriedAt'] = entry['fetchedAt']
         cache[b['bookKey']] = entry
         got = 'desc' if entry.get('description') else '----'
         print(f'  [{i}/{len(batch)}] {got} | {title[:50]}')
