@@ -39,9 +39,21 @@ export function buildIndexes(goodreads, feedback) {
     if (shelf === 'read') {
       read.set(key, book);
       allReadAuthors.set(authorKey, (allReadAuthors.get(authorKey) || 0) + 1);
-      const r = book.myRating;
-      if (r >= 1) {
-        const w = r >= 5 ? 1.0 : r === 4 ? 0.8 : r === 3 ? 0.3 : r === 2 ? -0.5 : -1.0;
+      // DNF-aware rating (Session 12b): mirror rateEngine's virtual ratings.
+      // Circumstantial DNFs (no_longer_relevant, already_seen_adaptation,
+      // dont_know_author) carry no signal about the author — skip them.
+      // Genuine DNFs scale by reason instead of the flat 2-star placeholder.
+      let r = book.myRating;
+      if (book.dnf) {
+        const VIRT = { started_did_not_like: 1.0, not_interesting: 1.5,
+                       topic_doesnt_appeal: 2.0, not_my_vibe: 2.5, too_long: 2.0,
+                       no_longer_relevant: null, already_seen_adaptation: null,
+                       dont_know_author: null };
+        const vr = VIRT[book.dnfReason];
+        r = vr === undefined ? 1.8 : vr;   // unknown reason → conservative
+      }
+      if (r !== null && r >= 1) {
+        const w = r >= 5 ? 1.0 : r >= 4 ? 0.8 : r >= 3 ? 0.3 : r >= 2 ? -0.5 : -1.0;
         authorRatingWeight.set(authorKey, (authorRatingWeight.get(authorKey) || 0) + w);
       }
       if (book.myRating === 5) {

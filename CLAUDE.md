@@ -243,8 +243,9 @@ A Good Girl's Guide (adaptation), Bad Blood (already attempted).
 - Session 12 similarToTitles are validated-to-exist but unverified-as-good:
   picked from model knowledge, not measured. Treat as draft; description
   similarity can eventually audit them.
-- All 136 DNFs carry myRating=2. engine.js treats them as ordinary 2★;
-  rateEngine uses virtual ratings. Inconsistent — known, unresolved.
+- All 136 DNFs carry myRating=2 as a placeholder. Both engines now use
+  reason-scaled virtual ratings (resolved Session 12b; circumstantial DNFs
+  are skipped in the author signal).
 - similarToTitles entries MUST be exact 5★ read titles (norm() tolerates
   series suffixes, but stay exact).
 
