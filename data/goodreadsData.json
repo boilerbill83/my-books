@@ -4,7 +4,7 @@
     "generatedAt": "2026-06-01T00:00:00.000Z",
     "bookCount": 958,
     "readCount": 647,
-    "toReadCount": 291,
+    "toReadCount": 292,
     "currentlyReadingCount": 1,
     "fiveStarCount": 260,
     "notes": "Hardcoded from personal Goodreads export.",
@@ -38933,6 +38933,23 @@
         "Into Thin Air",
         "Unbroken: A World War II Story of Survival, Resilience and Redemption"
       ]
+    },
+    {
+      "title": "Up on Cove Mountain: Adventure, Tragedy, and a Quest for Meaning on the Appalachian Trail",
+      "author": "Earl Swift",
+      "isbn13": null,
+      "isbn": "0063265435",
+      "avgRating": 3.12,
+      "ratingsCount": 0,
+      "year": null,
+      "pages": 368,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1763480486l/244122402._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
     }
   ],
   "indexes": {
