@@ -3905,5 +3905,32 @@
     "amazon": null,
     "coverUrl": null,
     "source": "not_found"
+  },
+  "the munich affair|||james  patterson": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/811jfCT+8yL._SX300_.jpg",
+    "source": "cover_only"
+  },
+  "this book made me think of you|||libby  page": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 10831
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81SBYhzgiNL._SX300_.jpg",
+    "source": "amazon"
+  },
+  "operation bounce house|||matt dinniman": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 4267
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/8125RHI24JL._SX300_.jpg",
+    "source": "amazon"
   }
 }
