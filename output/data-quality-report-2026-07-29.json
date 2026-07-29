@@ -1,0 +1,205 @@
+{
+  "date": "2026-07-29",
+  "totalBooks": 1117,
+  "fields": [
+    {
+      "field": "isbn",
+      "scorePct": 65.6,
+      "rawPct": 64.63742166517457,
+      "critical": false
+    },
+    {
+      "field": "dateRead",
+      "scorePct": 71.95685670261942,
+      "rawPct": 41.80841539838854,
+      "critical": false
+    },
+    {
+      "field": "subjects",
+      "scorePct": 75.24663677130044,
+      "rawPct": 75.11190689346464,
+      "critical": false
+    },
+    {
+      "field": "dismissReason",
+      "scorePct": 78.26086956521739,
+      "rawPct": 1.611459265890779,
+      "critical": false
+    },
+    {
+      "field": "isbn13",
+      "scorePct": 82.00537153088631,
+      "rawPct": 82.00537153088631,
+      "critical": false
+    },
+    {
+      "field": "dateAdded",
+      "scorePct": 83.25872873769025,
+      "rawPct": 83.25872873769025,
+      "critical": false
+    },
+    {
+      "field": "tones",
+      "scorePct": 83.7958818263205,
+      "rawPct": 83.7958818263205,
+      "critical": false
+    },
+    {
+      "field": "publisher",
+      "scorePct": 86.66069829901522,
+      "rawPct": 86.66069829901522,
+      "critical": false
+    },
+    {
+      "field": "amazonRating",
+      "scorePct": 89.69957081545064,
+      "rawPct": 38.49597135183527,
+      "critical": false
+    },
+    {
+      "field": "amazonRatingsCount",
+      "scorePct": 89.69957081545064,
+      "rawPct": 38.49597135183527,
+      "critical": false
+    },
+    {
+      "field": "categories",
+      "scorePct": 96.41255605381166,
+      "rawPct": 96.23992837958818,
+      "critical": false
+    },
+    {
+      "field": "similarToAuthors",
+      "scorePct": 98.83616830796777,
+      "rawPct": 98.83616830796777,
+      "critical": true
+    },
+    {
+      "field": "themes",
+      "scorePct": 99.28379588182632,
+      "rawPct": 99.28379588182632,
+      "critical": true
+    },
+    {
+      "field": "similarToTitles",
+      "scorePct": 99.28379588182632,
+      "rawPct": 99.28379588182632,
+      "critical": true
+    },
+    {
+      "field": "year",
+      "scorePct": 99.37332139659803,
+      "rawPct": 99.37332139659803,
+      "critical": false
+    },
+    {
+      "field": "ratingsCount",
+      "scorePct": 99.73142345568488,
+      "rawPct": 99.73142345568488,
+      "critical": true
+    },
+    {
+      "field": "metadataFetchedAt",
+      "scorePct": 99.82094897045658,
+      "rawPct": 99.82094897045658,
+      "critical": false
+    },
+    {
+      "field": "type",
+      "scorePct": 99.91047448522829,
+      "rawPct": 99.91047448522829,
+      "critical": false
+    },
+    {
+      "field": "description",
+      "scorePct": 99.91047448522829,
+      "rawPct": 99.91047448522829,
+      "critical": false
+    },
+    {
+      "field": "bookKey",
+      "scorePct": 100,
+      "rawPct": 100,
+      "critical": true
+    },
+    {
+      "field": "title",
+      "scorePct": 100,
+      "rawPct": 100,
+      "critical": false
+    },
+    {
+      "field": "author",
+      "scorePct": 100,
+      "rawPct": 100,
+      "critical": true
+    },
+    {
+      "field": "source",
+      "scorePct": 100,
+      "rawPct": 100,
+      "critical": false
+    },
+    {
+      "field": "shelf",
+      "scorePct": 100,
+      "rawPct": 100,
+      "critical": true
+    },
+    {
+      "field": "pages",
+      "scorePct": 100,
+      "rawPct": 100,
+      "critical": true
+    },
+    {
+      "field": "myRating",
+      "scorePct": 100,
+      "rawPct": 84.6911369740376,
+      "critical": true
+    },
+    {
+      "field": "avgRating",
+      "scorePct": 100,
+      "rawPct": 100,
+      "critical": true
+    },
+    {
+      "field": "dismissed",
+      "scorePct": 100,
+      "rawPct": 100,
+      "critical": false
+    },
+    {
+      "field": "coverUrl",
+      "scorePct": 100,
+      "rawPct": 52.10384959713518,
+      "critical": false
+    },
+    {
+      "field": "goodreadsUrl",
+      "scorePct": 100,
+      "rawPct": 100,
+      "critical": false
+    },
+    {
+      "field": "top10",
+      "scorePct": 100,
+      "rawPct": 100,
+      "critical": false
+    }
+  ],
+  "integrity": {
+    "dupBookKeys": 4,
+    "dupTitleAuthor": 8,
+    "brokenNearMiss": 97,
+    "brokenOrphaned": 334,
+    "nonCanonicalTotal": 156,
+    "promoteCandidateCount": 3,
+    "themesOutOfRange": 0,
+    "similarOutOfRange": 4,
+    "zeroPages": 1,
+    "zeroRatingsCount": 19,
+    "missingBookKey": 1
+  }
+}
