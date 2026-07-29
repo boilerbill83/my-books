@@ -1,12 +1,16 @@
 #!/usr/bin/env node
-// Weekly data quality report: field-population analysis (Field Name,
-// Percent Populated, Quality Score, How Score is Determined, Suggestions
-// for Improvement) via FIELD_REGISTRY, plus data integrity checks
-// (duplicates, broken similarToTitles refs, non-canonical themes,
-// out-of-range field counts). Writes a dated Markdown report to
+// Weekly data quality report focused on BBRE recommendation quality, not
+// just extract completeness: which specific books, if fixed, would
+// actually change what gets recommended. Field-level population/quality
+// scoring (Field Name, Percent Populated, Quality Score, How Score is
+// Determined, Suggestions for Improvement) via FIELD_REGISTRY is still
+// here, but the report leads with BBRE-impact findings — foundational
+// 5-star-read signal gaps, already-read books sitting in a candidate pool,
+// high-leverage candidates flying under the radar due to missing data, and
+// a per-book impact score. Writes a dated Markdown report to
 // output/data-quality-report-YYYY-MM-DD.md, plus a machine-readable
-// output/data-quality-report-YYYY-MM-DD.json snapshot used to diff this
-// run against the most recent prior one (week-over-week trend section).
+// output/data-quality-report-YYYY-MM-DD.json snapshot (dashboard-ready:
+// full structured findings, not just counts) used for multi-week trending.
 // Run from repo root: node scripts/data_quality_report.js
 
 import fs from 'fs';
@@ -61,6 +65,10 @@ const { rows } = loadAllBooks();
 
 const SHELVES = ['to-read', 'read', 'currently-reading', 'candidate-pool'];
 const isEmpty = v => v === '' || v == null || (Array.isArray(v) && v.length === 0);
+const isFiveStarRead = r => r.shelf === 'read' && r.myRating === 5;
+const isHighLeverageShelf = r => r.shelf === 'to-read' || r.shelf === 'candidate-pool';
+const HIGH_LEVERAGE_AVG_RATING = 4.0;
+const HIGH_LEVERAGE_RATINGS_COUNT = 10000;
 
 // ── Field registry ───────────────────────────────────────────────────────────
 // Quality Score is population % measured against the ELIGIBLE subset of rows
@@ -71,11 +79,12 @@ const isEmpty = v => v === '' || v == null || (Array.isArray(v) && v.length === 
 // Populated (raw, of all rows) is kept alongside so the difference is
 // visible. `critical: true` marks fields that directly feed a BBRE/engine
 // scoring signal (CLAUDE.md "Engine Summary" table) — these get a lower
-// (stricter) warning threshold and surface first in Action Items, since a
-// gap here actually degrades recommendations rather than just leaving the
-// extract incomplete. Eligibility scopes and suggestions below are the
-// root causes diagnosed in CLAUDE.md Session 13b-13e — update this
-// registry, not just the data, when a new enrichment job changes scope.
+// (stricter) warning threshold, surface first in Action Items, and are
+// what the per-book Impact Score is computed from, since a gap here
+// actually degrades recommendations rather than just leaving the extract
+// incomplete. Eligibility scopes and suggestions below are the root causes
+// diagnosed in CLAUDE.md Session 13b-13e — update this registry, not just
+// the data, when a new enrichment job changes scope.
 const inShelves = (...shelves) => r => shelves.includes(r.shelf);
 const always = () => true;
 const isAttempted = r => !isEmpty(r.metadataFetchedAt);
@@ -194,6 +203,13 @@ const FIELD_REGISTRY = {
 const fields = Object.keys(rows[0]);
 const WARN_THRESHOLD = 80;
 const CRITICAL_WARN_THRESHOLD = 90;
+// The subset of critical fields that actually drive the per-book Impact
+// Score below — bookKey/author/shelf are near-universal structural fields
+// (population is basically 100% after Session 13b's backfill) so a gap on
+// any *specific* book is either impossible or a data-entry emergency
+// already covered elsewhere; the impact score focuses on the fields whose
+// per-book presence genuinely varies and genuinely changes that book's score.
+const IMPACT_FIELDS = ['themes', 'similarToTitles', 'similarToAuthors', 'pages', 'ratingsCount', 'avgRating', 'myRating'];
 
 function scoreLabel(pct) {
   if (pct >= 95) return 'Excellent';
@@ -227,6 +243,90 @@ function populationStats() {
   return stats.sort((a, b) => a.scorePct - b.scorePct);
 }
 
+// ── BBRE-impact checks ───────────────────────────────────────────────────────
+
+// fiveStarThemes/fiveStarAuthors/reverseSimilar are built ENTIRELY from
+// 5-star reads — a gap here doesn't just under-describe one book, it
+// silently withholds a bonus every candidate that actually deserves it
+// should be getting. This is the highest-leverage data-quality issue in
+// the whole dataset and gets its own top-priority section.
+function findFiveStarSignalGaps() {
+  return rows
+    .filter(isFiveStarRead)
+    .map(r => {
+      const missing = [];
+      if (isEmpty(r.themes)) missing.push('themes');
+      if (isEmpty(r.similarToTitles)) missing.push('similarToTitles');
+      if (isEmpty(r.similarToAuthors)) missing.push('similarToAuthors');
+      return { title: r.title, author: r.author, missing };
+    })
+    .filter(x => x.missing.length > 0);
+}
+
+// Already-read books still sitting in a candidate pool are a direct
+// correctness bug, not a completeness stat — Bill could be recommended a
+// book he's already read (and rated).
+function findAlreadyReadInPool() {
+  const readByKey = new Map();
+  for (const r of rows) {
+    if (r.source === 'library' && r.shelf === 'read') {
+      readByKey.set(`${norm(r.title)}|${norm(r.author)}`, r);
+    }
+  }
+  const hits = new Map(); // dedupe — the same book can sit in >1 candidate pool file
+  for (const r of rows) {
+    if (r.source !== 'candidate_pool') continue;
+    const key = `${norm(r.title)}|${norm(r.author)}`;
+    const readMatch = readByKey.get(key);
+    if (readMatch && !hits.has(key)) {
+      hits.set(key, { title: r.title, author: r.author, myRating: readMatch.myRating });
+    }
+  }
+  return [...hits.values()];
+}
+
+// Popular, well-reviewed to-read/candidate books that are missing the
+// fields that would let BBRE actually score them well — these are
+// specific, current under-scored recommendations, not an abstract
+// percentage. avgRating/ratingsCount thresholds pick out books that are
+// objectively likely to belong near the top of the list already.
+function findHighLeverageGaps() {
+  const seen = new Map(); // dedupe — the same book can be on both to-read and a candidate pool
+  for (const r of rows) {
+    if (!isHighLeverageShelf(r) || r.avgRating < HIGH_LEVERAGE_AVG_RATING || r.ratingsCount < HIGH_LEVERAGE_RATINGS_COUNT) continue;
+    const missing = [];
+    if (isEmpty(r.themes)) missing.push('themes');
+    if (isEmpty(r.similarToTitles)) missing.push('similarToTitles');
+    if (isEmpty(r.similarToAuthors)) missing.push('similarToAuthors');
+    if (!missing.length) continue;
+    const key = `${norm(r.title)}|${norm(r.author)}`;
+    if (!seen.has(key)) {
+      seen.set(key, { title: r.title, author: r.author, avgRating: r.avgRating, ratingsCount: r.ratingsCount, missing });
+    }
+  }
+  return [...seen.values()].sort((a, b) => b.ratingsCount - a.ratingsCount);
+}
+
+// Structural sanity checks: a book citing itself, or an author citing
+// themselves in similarToAuthors, is a data-entry bug (the whole point of
+// the field is naming a *different* similar author) rather than a
+// completeness gap.
+function findSelfReferential() {
+  const selfTitle = [];
+  const selfAuthor = [];
+  for (const r of rows) {
+    const nt = engineNorm(r.title);
+    if (r.similarToTitles.some(t => engineNorm(t) === nt)) {
+      selfTitle.push({ title: r.title, author: r.author });
+    }
+    const na = norm(r.author);
+    if (r.similarToAuthors.some(a => norm(a) === na)) {
+      selfAuthor.push({ title: r.title, author: r.author });
+    }
+  }
+  return { selfTitle, selfAuthor };
+}
+
 // ── Data integrity checks ───────────────────────────────────────────────────
 
 function findDuplicateBookKeys() {
@@ -251,12 +351,16 @@ function findDuplicateTitleAuthor() {
 // Buckets broken similarToTitles refs into:
 //  - nearMiss: a close match exists (substring/prefix or small edit
 //    distance) — almost always a fixable typo, truncation, or an edition
-//    difference engineNorm() didn't already catch. Worth a human fix.
+//    difference engineNorm() didn't already catch. Sorted so refs that
+//    touch a 5-star read (either the citing book is one, or the resolved
+//    match is one) come first — those are the ones actually corrupting a
+//    live scoring signal, not just an unused candidate-to-candidate note.
 //  - orphaned: no close match anywhere — most likely a "flavor" reference
 //    to a book that was never added to the dataset at all. Lower priority.
 function findBrokenSimilarToTitles() {
   const titleList = [...new Set(rows.map(r => engineNorm(r.title)))].filter(Boolean);
   const titleSet = new Set(titleList);
+  const fiveStarTitleSet = new Set(rows.filter(isFiveStarRead).map(r => engineNorm(r.title)));
   // Bucket candidate titles by length for cheap Levenshtein pre-filtering.
   const byLength = new Map();
   for (const t of titleList) {
@@ -264,41 +368,45 @@ function findBrokenSimilarToTitles() {
     byLength.get(t.length).push(t);
   }
 
+  function findNearMatch(nt) {
+    const substringMatch = titleList.find(candidate =>
+      candidate.length >= 5 && nt.length >= 5 &&
+      (candidate.includes(nt) || nt.includes(candidate))
+    );
+    if (substringMatch) return substringMatch;
+    for (let len = nt.length - 3; len <= nt.length + 3; len++) {
+      const bucket = byLength.get(len);
+      if (!bucket) continue;
+      for (const candidate of bucket) {
+        if (levenshtein(nt, candidate) <= 3) return candidate;
+      }
+    }
+    return null;
+  }
+
   const nearMiss = [];
   const orphaned = [];
-  const seen = new Set(); // avoid re-checking the same broken ref string repeatedly
+  const classCache = new Map(); // ref (normalized) -> matched title or null
 
   for (const r of rows) {
     for (const t of r.similarToTitles) {
       const nt = engineNorm(t);
       if (!nt || titleSet.has(nt)) continue; // resolves fine under engine matching
 
-      const dedupeKey = nt;
-      let classification = seen.has(dedupeKey) ? null : undefined;
-      if (classification === undefined) {
-        const isNear = titleList.some(candidate =>
-          candidate.length >= 5 && nt.length >= 5 &&
-          (candidate.includes(nt) || nt.includes(candidate))
-        ) || (() => {
-          for (let len = nt.length - 3; len <= nt.length + 3; len++) {
-            const bucket = byLength.get(len);
-            if (!bucket) continue;
-            for (const candidate of bucket) {
-              if (levenshtein(nt, candidate) <= 3) return true;
-            }
-          }
-          return false;
-        })();
-        classification = isNear ? 'near' : 'orphan';
-        seen.add(dedupeKey);
+      let matched = classCache.has(nt) ? classCache.get(nt) : undefined;
+      if (matched === undefined) {
+        matched = findNearMatch(nt);
+        classCache.set(nt, matched);
       }
 
-      const entry = { from: r.title, ref: t };
-      if (classification === 'near') nearMiss.push(entry);
-      else if (classification === 'orphan') orphaned.push(entry);
-      // classification === null shouldn't occur since we always cache above
+      const citingIsFiveStar = isFiveStarRead(r);
+      const touchesFiveStar = citingIsFiveStar || (matched && fiveStarTitleSet.has(matched));
+      const entry = { from: r.title, ref: t, touchesFiveStar };
+      if (matched) nearMiss.push(entry);
+      else orphaned.push(entry);
     }
   }
+  nearMiss.sort((a, b) => Number(b.touchesFiveStar) - Number(a.touchesFiveStar));
   return { nearMiss, orphaned };
 }
 
@@ -333,20 +441,85 @@ function findOutOfRangeCounts() {
   };
 }
 
-// ── Week-over-week trend ─────────────────────────────────────────────────────
+// ── Per-book BBRE impact score ───────────────────────────────────────────────
+// Not "how many fields are missing" but "how much does this book's data
+// quality actually matter to BBRE." A 5-star read missing similarToTitles
+// degrades every candidate's reverse-match bonus; a to-read book with the
+// same gap only affects its own score. Weighted accordingly so the
+// worst-N list surfaces the highest-leverage fixes first.
+function computeBookImpactScores(integrityFlags) {
+  const perRow = rows.map(r => {
+    const missingFields = IMPACT_FIELDS.filter(f => {
+      const reg = FIELD_REGISTRY[f];
+      if (reg?.eligible && !reg.eligible(r)) return false; // not applicable to this book
+      return isEmpty(r[f]);
+    });
+    let score = missingFields.length * 10;
+    const reasons = [];
+    if (missingFields.length) reasons.push(`missing ${missingFields.join(', ')}`);
 
-function loadPreviousSnapshot(todayStamp) {
+    if (isFiveStarRead(r)) {
+      score += missingFields.length * 20; // foundational signal — triple the per-field weight
+      if (missingFields.length) reasons.push('5★ read (foundational signal — affects every candidate)');
+    }
+    if (isHighLeverageShelf(r) && r.avgRating >= HIGH_LEVERAGE_AVG_RATING && r.ratingsCount >= HIGH_LEVERAGE_RATINGS_COUNT && missingFields.length) {
+      score += 30;
+      reasons.push('popular + well-rated candidate flying under the radar');
+    }
+    const key = `${norm(r.title)}|${norm(r.author)}`;
+    if (integrityFlags.alreadyReadInPool.has(key)) {
+      score += 100;
+      reasons.push('already read but still sitting in a candidate pool — recommendable duplicate');
+    }
+    if (integrityFlags.selfReferential.has(key)) {
+      score += 20;
+      reasons.push('self-referential similarToTitles/similarToAuthors entry');
+    }
+    if (integrityFlags.brokenFiveStarTouch.has(key)) {
+      score += 25;
+      reasons.push('cites or is cited by a broken similarToTitles reference touching a 5★ read');
+    }
+
+    return { key, title: r.title, author: r.author, shelf: r.shelf, source: r.source, score, reasons };
+  });
+
+  // Dedupe by book (title+author) — a duplicate sitting in both the
+  // library and a candidate pool (or in two candidate pools) is one
+  // actionable book, not multiple separate list entries. Keep the highest
+  // score seen for the book and the union of reasons/locations.
+  const byKey = new Map();
+  for (const s of perRow) {
+    if (s.score <= 0) continue;
+    const loc = `${s.source}/${s.shelf}`;
+    const existing = byKey.get(s.key);
+    if (!existing) {
+      byKey.set(s.key, { title: s.title, author: s.author, score: s.score, reasons: new Set(s.reasons), locations: [loc] });
+    } else {
+      existing.score = Math.max(existing.score, s.score);
+      s.reasons.forEach(r => existing.reasons.add(r));
+      existing.locations.push(loc);
+    }
+  }
+  return [...byKey.values()]
+    .map(s => ({ ...s, reasons: [...s.reasons] }))
+    .sort((a, b) => b.score - a.score);
+}
+
+// ── Snapshot history / trend ─────────────────────────────────────────────────
+
+function listSnapshotDates(beforeStamp) {
   const files = fs.existsSync('output')
     ? fs.readdirSync('output').filter(f => /^data-quality-report-\d{4}-\d{2}-\d{2}\.json$/.test(f))
     : [];
-  const dates = files
+  return files
     .map(f => f.match(/(\d{4}-\d{2}-\d{2})/)[1])
-    .filter(d => d < todayStamp)
+    .filter(d => !beforeStamp || d < beforeStamp)
     .sort();
-  if (!dates.length) return null;
-  const prevDate = dates[dates.length - 1];
+}
+
+function loadSnapshot(dateStr) {
   try {
-    return JSON.parse(fs.readFileSync(path.join('output', `data-quality-report-${prevDate}.json`), 'utf8'));
+    return JSON.parse(fs.readFileSync(path.join('output', `data-quality-report-${dateStr}.json`), 'utf8'));
   } catch {
     return null;
   }
@@ -376,6 +549,40 @@ function computeTrend(current, previous) {
   return { previousDate: previous.date, fieldChanges, integrityDelta };
 }
 
+// Multi-week history for the metrics that actually matter to BBRE quality:
+// critical field scores, plus the new impact-focused integrity counts.
+const HISTORY_WEEKS = 6;
+const HISTORY_METRICS = [
+  { key: 'fiveStarSignalGapCount', label: '5★-read signal gaps' },
+  { key: 'alreadyReadInPoolCount', label: 'Already-read books in a candidate pool' },
+  { key: 'highLeverageGapCount', label: 'High-leverage candidate gaps' },
+  { key: 'brokenNearMissTouchingFiveStar', label: 'Broken refs touching a 5★ read' },
+];
+
+function buildHistoryTable(currentSnapshot, todayStamp) {
+  const dates = listSnapshotDates(todayStamp);
+  const recentDates = dates.slice(-(HISTORY_WEEKS - 1));
+  const snapshots = [...recentDates.map(loadSnapshot).filter(Boolean), currentSnapshot];
+  if (snapshots.length < 2) return null; // nothing to trend yet
+
+  const header = `| Metric | ${snapshots.map(s => s.date).join(' | ')} |`;
+  const sep = `|---|${snapshots.map(() => '---').join('|')}|`;
+  const criticalFieldRows = currentSnapshot.fields
+    .filter(f => f.critical)
+    .map(f => {
+      const cells = snapshots.map(s => {
+        const match = (s.fields || []).find(x => x.field === f.field);
+        return match ? `${match.scorePct.toFixed(1)}%` : '—';
+      });
+      return `| \`${f.field}\` (critical) | ${cells.join(' | ')} |`;
+    });
+  const metricRows = HISTORY_METRICS.map(m => {
+    const cells = snapshots.map(s => (s.integrity?.[m.key] ?? '—'));
+    return `| ${m.label} | ${cells.join(' | ')} |`;
+  });
+  return [header, sep, ...metricRows, ...criticalFieldRows].join('\n');
+}
+
 // ── Render report ────────────────────────────────────────────────────────────
 
 function renderPopulationTable(stats) {
@@ -398,27 +605,36 @@ function renderList(items, limit = 20) {
   return lines.join('\n');
 }
 
-function renderActionItems(stats, integrity, trend) {
+function renderActionItems(stats, integrity, trend, impactScores) {
   const lines = [];
+
+  lines.push('**Top BBRE-impact issues (fix these first):**');
+  if (integrity.alreadyReadInPool > 0) {
+    lines.push(`- 🚨 **${integrity.alreadyReadInPool} already-read book(s) still sitting in a candidate pool** — Bill could be recommended a book he's already read. See Data Integrity below.`);
+  }
+  if (integrity.fiveStarSignalGaps > 0) {
+    lines.push(`- 🎯 **${integrity.fiveStarSignalGaps} 5★ read(s) missing themes/similarToTitles/similarToAuthors** — these are the foundational signal every candidate is scored against. See "5★-Read Signal Gaps" below.`);
+  }
+  if (integrity.highLeverageGaps > 0) {
+    lines.push(`- 📊 **${integrity.highLeverageGaps} popular, well-rated candidate(s)** missing data that would let BBRE score them properly. See "High-Leverage Candidate Gaps" below.`);
+  }
+  if (integrity.selfReferential > 0) {
+    lines.push(`- 🔁 **${integrity.selfReferential} self-referential ${integrity.selfReferential === 1 ? 'entry' : 'entries'}** (a book citing itself or its own author).`);
+  }
+  if (!integrity.alreadyReadInPool && !integrity.fiveStarSignalGaps && !integrity.highLeverageGaps && !integrity.selfReferential) {
+    lines.push('- None found. The highest-leverage BBRE-quality issues are all clear.');
+  }
+
   const criticalLow = stats.filter(s => s.critical && s.belowThreshold);
-  const otherLow = stats.filter(s => !s.critical && s.belowThreshold).slice(0, 5);
+  lines.push('', criticalLow.length
+    ? '**🔴 Scoring-critical fields below threshold:**'
+    : '**🔴 Scoring-critical fields:** all above threshold.');
+  lines.push(...criticalLow.map(s => `- \`${s.field}\`: ${s.scorePct.toFixed(1)}% — ${s.suggest}`));
 
-  if (criticalLow.length) {
-    lines.push('**🔴 Scoring-critical fields below threshold** (these directly degrade recommendations, not just extract completeness):');
-    lines.push(...criticalLow.map(s => `- \`${s.field}\`: ${s.scorePct.toFixed(1)}% — ${s.suggest}`));
-  } else {
-    lines.push('**🔴 Scoring-critical fields:** all above threshold. Nothing urgent.');
+  if (impactScores.length) {
+    lines.push('', `**Worst ${Math.min(5, impactScores.length)} books by BBRE impact score** (full top 20 in the table below):`);
+    lines.push(...impactScores.slice(0, 5).map(s => `- "${s.title}" by ${s.author} (score ${s.score}) — ${s.reasons.join('; ')}`));
   }
-
-  if (otherLow.length) {
-    lines.push('', '**⚠️ Other low-scoring fields (top 5):**');
-    lines.push(...otherLow.map(s => `- \`${s.field}\`: ${s.scorePct.toFixed(1)}%`));
-  }
-
-  lines.push('', '**Data integrity highlights:**');
-  lines.push(`- ${integrity.dupBookKeys} duplicate bookKey group(s), ${integrity.dupTitleAuthor} book(s) duplicated across library/candidate pools`);
-  lines.push(`- ${integrity.brokenNearMiss} likely-fixable broken similarToTitles reference(s) (near-miss), ${integrity.brokenOrphaned} orphaned (no close match)`);
-  lines.push(`- ${integrity.promoteCandidateCount} non-canonical theme(s) used often enough to be canonical-vocabulary candidates`);
 
   if (trend) {
     lines.push('', `**Week-over-week (vs ${trend.previousDate}):**`);
@@ -447,6 +663,21 @@ const dupTitleAuthor = findDuplicateTitleAuthor();
 const { nearMiss: brokenNearMiss, orphaned: brokenOrphaned } = findBrokenSimilarToTitles();
 const { offenders: nonCanonical, promoteCandidates } = findNonCanonicalThemes();
 const ranges = findOutOfRangeCounts();
+const fiveStarGaps = findFiveStarSignalGaps();
+const alreadyReadInPool = findAlreadyReadInPool();
+const highLeverageGaps = findHighLeverageGaps();
+const { selfTitle, selfAuthor } = findSelfReferential();
+
+const alreadyReadInPoolKeys = new Set(alreadyReadInPool.map(x => `${norm(x.title)}|${norm(x.author)}`));
+const selfReferentialKeys = new Set([...selfTitle, ...selfAuthor].map(x => `${norm(x.title)}|${norm(x.author)}`));
+const brokenFiveStarTouchKeys = new Set(
+  brokenNearMiss.filter(b => b.touchesFiveStar).map(b => `${norm(b.from)}`) // keyed by title-only since author isn't tracked on broken-ref entries
+);
+const impactScores = computeBookImpactScores({
+  alreadyReadInPool: alreadyReadInPoolKeys,
+  selfReferential: selfReferentialKeys,
+  brokenFiveStarTouch: new Set(rows.filter(r => brokenFiveStarTouchKeys.has(norm(r.title))).map(r => `${norm(r.title)}|${norm(r.author)}`)),
+});
 
 const shelfCounts = SHELVES.map(sh => `${sh}: ${rows.filter(r => r.shelf === sh).length}`).join(', ');
 const dateStamp = new Date().toISOString().slice(0, 10);
@@ -454,7 +685,12 @@ const dateStamp = new Date().toISOString().slice(0, 10);
 const integritySummary = {
   dupBookKeys: dupBookKeys.length,
   dupTitleAuthor: dupTitleAuthor.length,
+  alreadyReadInPool: alreadyReadInPool.length,
+  fiveStarSignalGaps: fiveStarGaps.length,
+  highLeverageGaps: highLeverageGaps.length,
+  selfReferential: selfTitle.length + selfAuthor.length,
   brokenNearMiss: brokenNearMiss.length,
+  brokenNearMissTouchingFiveStar: brokenNearMiss.filter(b => b.touchesFiveStar).length,
   brokenOrphaned: brokenOrphaned.length,
   nonCanonicalTotal: nonCanonical.length,
   promoteCandidateCount: promoteCandidates.length,
@@ -470,10 +706,26 @@ const currentSnapshot = {
   totalBooks: rows.length,
   fields: stats.map(s => ({ field: s.field, scorePct: s.scorePct, rawPct: s.rawPct, critical: s.critical })),
   integrity: integritySummary,
+  // Full structured findings (not just counts) — dashboard-ready.
+  findings: {
+    fiveStarSignalGaps: fiveStarGaps,
+    alreadyReadInPool,
+    highLeverageGaps,
+    selfReferentialTitle: selfTitle,
+    selfReferentialAuthor: selfAuthor,
+    brokenNearMiss,
+    brokenOrphaned,
+    promoteCandidates: promoteCandidates.map(([theme, count]) => ({ theme, count })),
+    nonCanonicalThemes: nonCanonical,
+    duplicateBookKeys: dupBookKeys.map(([key, list]) => ({ key, books: list.map(r => ({ title: r.title, source: r.source, shelf: r.shelf })) })),
+    duplicateTitleAuthor: dupTitleAuthor.map(([, list]) => ({ title: list[0].title, author: list[0].author, occurrences: list.map(r => ({ source: r.source, shelf: r.shelf })) })),
+    impactScores: impactScores.slice(0, 50),
+  },
 };
 
-const previousSnapshot = loadPreviousSnapshot(dateStamp);
+const previousSnapshot = loadSnapshot(listSnapshotDates(dateStamp).slice(-1)[0] || '');
 const trend = computeTrend(currentSnapshot, previousSnapshot);
+const historyTable = buildHistoryTable(currentSnapshot, dateStamp);
 
 const report = `# Data Quality Report — ${dateStamp}
 
@@ -481,7 +733,26 @@ Generated by \`scripts/data_quality_report.js\`. Total books analyzed: **${rows.
 
 ## Action Items
 
-${renderActionItems(stats, integritySummary, trend)}
+${renderActionItems(stats, integritySummary, trend, impactScores)}
+
+## 5★-Read Signal Gaps (${fiveStarGaps.length})
+
+fiveStarThemes, fiveStarAuthors, and reverseSimilar are built entirely from 5★ reads — a gap here silently withholds a bonus every candidate that deserves it should be getting, not just an incomplete record for this one book.
+${fiveStarGaps.length ? renderList(fiveStarGaps.map(g => `"${g.title}" by ${g.author} — missing ${g.missing.join(', ')}`)) : 'None found — every 5★ read has themes, similarToTitles, and similarToAuthors populated.'}
+
+## High-Leverage Candidate Gaps (${highLeverageGaps.length})
+
+To-read/candidate-pool books with avgRating ≥ ${HIGH_LEVERAGE_AVG_RATING} and ratingsCount ≥ ${HIGH_LEVERAGE_RATINGS_COUNT.toLocaleString()} — objectively likely to belong near the top of the list already — that are missing data BBRE needs to score them properly.
+${highLeverageGaps.length ? renderList(highLeverageGaps.map(g => `"${g.title}" by ${g.author} (${g.avgRating}★, ${g.ratingsCount.toLocaleString()} ratings) — missing ${g.missing.join(', ')}`)) : 'None found.'}
+
+## Worst 20 Books by BBRE Impact Score
+
+Not a raw missing-field count — weighted by whether the book is a 5★ read (foundational signal), a high-leverage candidate, or involved in an integrity issue like an already-read duplicate.
+${impactScores.length ? renderList(impactScores.slice(0, 20).map(s => `"${s.title}" by ${s.author} (${s.locations.join(', ')}) — score ${s.score}: ${s.reasons.join('; ')}`), 20) : 'None — no book has a nonzero impact score.'}
+
+## Multi-Week Trend (BBRE-relevant metrics)
+
+${historyTable || 'Not enough history yet — need at least one prior snapshot. This will populate starting next week.'}
 
 ## Field Population
 
@@ -498,6 +769,15 @@ ${renderPopulationTable(stats)}
 
 ## Data Integrity
 
+### Already-read books still in a candidate pool (${alreadyReadInPool.length})
+${alreadyReadInPool.length ? renderList(alreadyReadInPool.map(x => `"${x.title}" by ${x.author} — rated ${x.myRating}★ but still listed as a candidate`)) : 'None found.'}
+
+### Self-referential entries (${selfTitle.length + selfAuthor.length})
+${(selfTitle.length + selfAuthor.length) ? renderList([
+    ...selfTitle.map(x => `"${x.title}" by ${x.author} lists itself in similarToTitles`),
+    ...selfAuthor.map(x => `"${x.title}" by ${x.author} lists its own author in similarToAuthors`),
+  ]) : 'None found.'}
+
 ### Duplicate bookKeys (${dupBookKeys.length})
 ${dupBookKeys.length ? renderList(dupBookKeys.map(([k, list]) => `\`${k}\` — ${list.map(r => `"${r.title}" (${r.source}/${r.shelf})`).join(', ')}`)) : 'None found.'}
 
@@ -507,8 +787,8 @@ ${dupTitleAuthor.length ? renderList(dupTitleAuthor.map(([, list]) => `"${list[0
 ### Broken similarToTitles references
 Checked against the engine's actual title-matching normalization (parenthetical/series notation stripped, same as \`norm()\` in engine.js) — so this excludes refs the engine already resolves fine, unlike a naive string comparison.
 
-**Near-miss (${brokenNearMiss.length})** — a close match exists in the dataset (substring/prefix overlap or a small edit distance); almost always a fixable typo, truncation, or formatting difference.
-${brokenNearMiss.length ? renderList(brokenNearMiss.map(b => `"${b.from}" cites "${b.ref}"`)) : 'None found.'}
+**Near-miss (${brokenNearMiss.length}, ${brokenNearMiss.filter(b => b.touchesFiveStar).length} touching a 5★ read)** — a close match exists in the dataset (substring/prefix overlap or a small edit distance); almost always a fixable typo, truncation, or formatting difference. Sorted so refs touching a 5★ read (corrupting a live scoring signal) come first.
+${brokenNearMiss.length ? renderList(brokenNearMiss.map(b => `"${b.from}" cites "${b.ref}"${b.touchesFiveStar ? ' 🎯 touches a 5★ read' : ''}`)) : 'None found.'}
 
 **Orphaned (${brokenOrphaned.length})** — no close match anywhere in the dataset; likely a reference to a book that was never added at all. Lower priority than near-miss.
 ${brokenOrphaned.length ? renderList(brokenOrphaned.map(b => `"${b.from}" cites "${b.ref}"`)) : 'None found.'}
