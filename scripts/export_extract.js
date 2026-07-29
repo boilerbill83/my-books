@@ -1,0 +1,109 @@
+#!/usr/bin/env node
+// Full weekly data extract: every book Bill has read/to-read (goodreadsData.json)
+// plus every external candidate-pool book, merged with all enrichment metadata
+// (descriptions/categories from enrichedMetadata.json, third-party ratings from
+// scrapedRatings.json, dismissal/feedback state from feedbackData.json).
+// Writes output/all-books.csv. Run from repo root: node scripts/export_extract.js
+
+import fs from 'fs';
+import path from 'path';
+
+const read = f => JSON.parse(fs.readFileSync(f, 'utf8'));
+const norm = s => (s || '').toString().trim().toLowerCase();
+const deriveKey = (title, author) => `${norm(title)}|||${norm(author)}`;
+
+const goodreads = read('data/goodreadsData.json');
+const feedback = read('data/feedbackData.json');
+let enrichedMeta = {};
+try { enrichedMeta = read('data/enrichedMetadata.json'); } catch {}
+let scrapedRatings = {};
+try { scrapedRatings = read('data/scrapedRatings.json'); } catch {}
+let currentlyReading = [];
+try { currentlyReading = read('data/currentlyReading.json'); } catch {}
+
+const candidateFiles = read('data/candidateIndex.json');
+const candidates = candidateFiles.flatMap(f => read(path.join('data', f)).candidates);
+
+const feedbackByKey = new Map(
+  feedback.interactions.map(i => [i.bookKey || deriveKey(i.title, i.author), i])
+);
+
+const libraryKeys = new Set(
+  goodreads.books.map(b => deriveKey(b.title, b.author))
+);
+
+const rows = [];
+
+for (const b of goodreads.books) {
+  rows.push({ ...b, source: 'library' });
+}
+
+for (const c of candidates) {
+  rows.push({ ...c, shelf: 'candidate-pool', source: 'candidate_pool' });
+}
+
+for (const cr of currentlyReading) {
+  if (libraryKeys.has(deriveKey(cr.title, cr.author))) continue;
+  rows.push({ ...cr, source: 'currently_reading_feed' });
+}
+
+const extract = rows.map(b => {
+  const key = b.bookKey || deriveKey(b.title, b.author);
+  const meta = enrichedMeta[key] || {};
+  const ratings = scrapedRatings[deriveKey(b.title, b.author)] || {};
+  const fb = feedbackByKey.get(key);
+
+  return {
+    bookKey: key,
+    title: b.title || '',
+    author: b.author || '',
+    source: b.source,
+    shelf: b.shelf || '',
+    type: b.type || '',
+    year: b.year ?? '',
+    pages: b.pages ?? '',
+    myRating: b.myRating ?? '',
+    avgRating: b.avgRating ?? '',
+    ratingsCount: b.ratingsCount ?? '',
+    googleRating: b.googleRating ?? meta.googleRating ?? '',
+    googleRatingsCount: b.googleRatingsCount ?? '',
+    amazonRating: ratings.amazon?.rating ?? '',
+    amazonRatingsCount: ratings.amazon?.count ?? '',
+    storyGraphRating: ratings.storyGraph?.rating ?? '',
+    isbn: b.isbn || '',
+    isbn13: b.isbn13 || '',
+    publisher: b.publisher || '',
+    dateRead: b.dateRead || '',
+    dateAdded: b.dateAdded || '',
+    themes: (b.themes || []).join('; '),
+    tones: (b.tones || []).join('; '),
+    similarToTitles: (b.similarToTitles || []).join('; '),
+    similarToAuthors: (b.similarToAuthors || []).join('; '),
+    categories: (meta.categories || []).join('; '),
+    subjects: (meta.subjects || []).join('; '),
+    description: meta.description || '',
+    metadataFetchedAt: meta.fetchedAt || '',
+    dismissed: fb ? Boolean(fb.excludeFromRecommendations) : false,
+    dismissReason: fb?.reasonLabel || '',
+    coverUrl: b.coverUrl || '',
+    goodreadsUrl: b.goodreadsUrl || '',
+    top10: Boolean(b.top10),
+  };
+});
+
+const columns = Object.keys(extract[0]);
+
+const csvEscape = v => {
+  const s = String(v ?? '');
+  return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+};
+
+const csv = [
+  columns.join(','),
+  ...extract.map(row => columns.map(c => csvEscape(row[c])).join(',')),
+].join('\n');
+
+fs.mkdirSync('output', { recursive: true });
+fs.writeFileSync('output/all-books.csv', csv + '\n');
+
+console.log(`Wrote output/all-books.csv: ${extract.length} books (${goodreads.books.length} library + ${candidates.length} candidate pool)`);
