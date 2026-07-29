@@ -33,6 +33,10 @@ Static GitHub Pages app that recommends books from Bill's personal to-read list 
 | `descSimilarity.js` | TF-IDF description signal (Session 12) |
 | `data/enrichedMetadata.json` | Descriptions/categories/subjects cache (auto-filled daily) |
 | `scripts/eval.js` | Honest precision@k eval — run before/after engine changes |
+| `scripts/validate_review.js` | Validation gate — Session 12 review keeps must stay in top 25 |
+| `scripts/audit.js`, `scripts/full_audit.js` | Manual data-quality audits (duplicates, broken similarToTitles refs, missing themes) |
+| `scripts/export_extract.js` | Weekly full extract — merges goodreadsData.json + candidate pools + enrichedMetadata.json + scrapedRatings.json + feedbackData.json into `output/all-books-YYYY-MM-DD.csv` |
+| `output/` | Dated CSV snapshots from the weekly extract job (one file per run, not overwritten) |
 | `index.html` | Entry point |
 
 ---
@@ -190,6 +194,22 @@ buildTasteModel(…, meta) → Signal 4b in predictRating.
   data/enrichedMetadata.json. Also usable for tag audits (publisher categories).
 - tag-books.yml: manual; Claude Haiku 4.5 tags from descriptions; needs
   ANTHROPIC_API_KEY repo secret (unused so far — Session 12 tagged by hand).
+- enrich-covers.yml: Sundays 05:00 UTC; backfills cover URLs (OpenLibrary +
+  Google Books) via enrich_covers.py.
+- enrich-isbn.yml: Sundays 04:00 UTC; backfills ISBN13 via enrich_isbn.py.
+- enrich-ratings.yml: manual; Google Books ratings via enrich_google_books.py.
+- enrich-goodreads.yml: manual; last-resort description scrape of each book's
+  own Goodreads page via enrich_from_goodreads.py.
+- scrape-ratings.yml: 5x/day; Amazon + StoryGraph ratings via Playwright
+  (scrape_ratings.py), batched to avoid rate limits.
+- sync-goodreads.yml: twice daily (6 AM / 6 PM UTC); syncs read/to-read
+  shelves from Goodreads RSS via sync_goodreads.py.
+- sync-currently-reading.yml: 4x/day; syncs the currently-reading shelf via
+  sync_currently_reading.py into data/currentlyReading.json.
+- export-extract.yml: Mondays 08:00 UTC; runs scripts/export_extract.js and
+  commits a fresh dated `output/all-books-YYYY-MM-DD.csv` snapshot (previous
+  dated files are kept, not overwritten). Requires this workflow file to live
+  on `main` — GitHub only fires `schedule:` triggers for the default branch.
 - Data conflicts: sync + enrichment commit daily. Rebase carefully; prefer
   re-layering enrichment fields (themes/tones/similarToTitles) onto upstream.
 
@@ -261,3 +281,4 @@ A Good Girl's Guide (adaptation), Bad Blood (already attempted).
 | 10b | Data quality audit: 1,065 broken similarToTitles refs fixed; 6 non-canonical themes corrected; single-theme books enriched; CLAUDE.md created |
 | 11 | similarToAuthors signal added to to-read branch (was already in pool branch); pages fixed on 2 to-read books |
 | 12 (Jul 2026, claude.ai) | Persistence: dismissals now survive refresh via localStorage; "Copy feedback JSON" button commits them. Title matching normalized (norm()) in fiveStarTitles/reverseSimilar — series-notation mismatch bug class eliminated. similarToTitles enriched on all 292 to-read books (214 hand-tagged, 49 same-author auto-fill, all validated against exact 5★ titles). Dead themes remapped; 'domestic suspense' added to 19 clear cases. 9 missing bookKeys backfilled. 7 type errors fixed via publisher-category audit (incl. two 5★ reads: Best Offer Wins, The Stowaway). Series signal bugs fixed: decimal entries (#2.5) and collection first-entries now parse. NEW: descSimilarity.js TF-IDF signal (see below). NEW: scripts/eval.js. NEW: enrich_metadata.py + tag_with_haiku.py workflows. Repo hygiene: audit scripts → scripts/, 3.5MB PNG removed, text logo replaces image. |
+| 13 (Jul 2026, claude code) | Repo cleanup: removed committed __pycache__ (+ added .gitignore), removed 4 one-off hardcoded patch scripts already applied to goodreadsData.json (tag_read_themes.py, tag_similar_5star.py, tag_similar_lower.py, enrich_read_ratings.py), removed orphaned input/ folder and stale output/dismissed-books.csv. NEW: scripts/export_extract.js + export-extract.yml — weekly (Mondays) full extract merging goodreadsData.json, all candidate pools, enrichedMetadata.json, scrapedRatings.json, and feedbackData.json into a dated output/all-books-YYYY-MM-DD.csv snapshot. |

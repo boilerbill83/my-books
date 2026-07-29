@@ -3,7 +3,8 @@
 // plus every external candidate-pool book, merged with all enrichment metadata
 // (descriptions/categories from enrichedMetadata.json, third-party ratings from
 // scrapedRatings.json, dismissal/feedback state from feedbackData.json).
-// Writes output/all-books.csv. Run from repo root: node scripts/export_extract.js
+// Writes output/all-books-YYYY-MM-DD.csv (dated so each run keeps its own
+// snapshot). Run from repo root: node scripts/export_extract.js
 
 import fs from 'fs';
 import path from 'path';
@@ -103,7 +104,10 @@ const csv = [
   ...extract.map(row => columns.map(c => csvEscape(row[c])).join(',')),
 ].join('\n');
 
-fs.mkdirSync('output', { recursive: true });
-fs.writeFileSync('output/all-books.csv', csv + '\n');
+const dateStamp = new Date().toISOString().slice(0, 10);
+const outPath = `output/all-books-${dateStamp}.csv`;
 
-console.log(`Wrote output/all-books.csv: ${extract.length} books (${goodreads.books.length} library + ${candidates.length} candidate pool)`);
+fs.mkdirSync('output', { recursive: true });
+fs.writeFileSync(outPath, csv + '\n');
+
+console.log(`Wrote ${outPath}: ${extract.length} books (${goodreads.books.length} library + ${candidates.length} candidate pool)`);
