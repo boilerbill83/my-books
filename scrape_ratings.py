@@ -11,6 +11,7 @@ GitHub Action:  .github/workflows/scrape-ratings.yml
 """
 
 import json, time, random, re, sys
+from datetime import datetime, timedelta
 from pathlib import Path
 from urllib.parse import quote
 
@@ -19,6 +20,7 @@ CACHE_FILE = DATA_DIR / 'scrapedRatings.json'
 BATCH_SIZE = int(sys.argv[1]) if len(sys.argv) > 1 else 25
 MIN_DELAY  = 10   # seconds between requests
 MAX_DELAY  = 20
+RETRY_COOLDOWN_DAYS = 14   # re-attempt not_found/cover_only misses after this long
 
 # ── Cache helpers ──────────────────────────────────────────────────────────
 
@@ -42,8 +44,28 @@ def book_key(book):
 
 # ── Book loading ───────────────────────────────────────────────────────────
 
+def is_cached_done(entry):
+    """A cached entry blocks retries permanently only if it found a real
+    rating. A miss (not_found/cover_only) is retried once it's older than
+    RETRY_COOLDOWN_DAYS — a one-off scraping failure (bot detection, a
+    mismatched search result, etc.) shouldn't be cached forever. Entries
+    with no checkedAt (written before this field existed) are treated as
+    eligible for an immediate retry."""
+    if entry is None:
+        return False
+    if entry.get('source') == 'amazon':
+        return True
+    checked_at = entry.get('checkedAt')
+    if not checked_at:
+        return False
+    try:
+        age = datetime.utcnow() - datetime.strptime(checked_at, '%Y-%m-%d')
+    except ValueError:
+        return False
+    return age < timedelta(days=RETRY_COOLDOWN_DAYS)
+
 def load_pending(cache):
-    """Return all books not yet in cache, candidates first."""
+    """Return all books not yet done (see is_cached_done), candidates first."""
     with open(DATA_DIR / 'goodreadsData.json') as f:
         gd = json.load(f)
     to_read = [b for b in gd['books'] if b.get('shelf') == 'to-read']
@@ -61,7 +83,7 @@ def load_pending(cache):
             seen.add(k)
             unique.append(b)
 
-    return [b for b in unique if book_key(b) not in cache]
+    return [b for b in unique if not is_cached_done(cache.get(book_key(b)))]
 
 # ── Amazon ─────────────────────────────────────────────────────────────────
 
@@ -168,18 +190,21 @@ def main():
             print(f"[{i+1:2}/{len(batch)}] {title}")
 
             amz = scrape_amazon(page, book)
+            checked_at = time.strftime('%Y-%m-%d')
             if amz:
                 cache[key] = {
                     'storyGraph': None,
                     'amazon':     {'rating': amz.get('rating'), 'count': amz.get('count')},
                     'coverUrl':   amz.get('coverUrl'),
                     'source':     'amazon' if amz.get('rating') else 'cover_only',
+                    'checkedAt':  checked_at,
                 }
                 rating_str = f"{amz['rating']}★  ({amz['count']:,} ratings)" if amz.get('rating') else 'no rating'
                 cover_str  = ' + cover' if amz.get('coverUrl') else ''
                 print(f"         ✓  {rating_str}{cover_str}")
             else:
-                cache[key] = {'storyGraph': None, 'amazon': None, 'coverUrl': None, 'source': 'not_found'}
+                cache[key] = {'storyGraph': None, 'amazon': None, 'coverUrl': None,
+                               'source': 'not_found', 'checkedAt': checked_at}
                 print(f"         ✗  not found")
 
             save_cache(cache)
