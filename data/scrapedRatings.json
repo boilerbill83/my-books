@@ -191,11 +191,6 @@
     },
     "source": "amazon"
   },
-  "the midnight feast|||lucy foley": {
-    "storyGraph": null,
-    "amazon": null,
-    "source": "not_found"
-  },
   "what happened to nina?|||dervla mctiernan": {
     "storyGraph": null,
     "amazon": {
@@ -450,12 +445,6 @@
     },
     "source": "amazon"
   },
-  "anxious people|||fredrik backman": {
-    "isbn13": null,
-    "storyGraph": null,
-    "amazon": null,
-    "source": "not_found"
-  },
   "think again|||adam grant": {
     "isbn13": null,
     "storyGraph": null,
@@ -573,24 +562,6 @@
     },
     "source": "amazon"
   },
-  "everywhere that mary went|||lisa scottoline": {
-    "isbn13": null,
-    "storyGraph": null,
-    "amazon": null,
-    "source": "not_found"
-  },
-  "culpability|||bruce holsinger": {
-    "isbn13": null,
-    "storyGraph": null,
-    "amazon": null,
-    "source": "not_found"
-  },
-  "the gone world|||tom sweterlitsch": {
-    "isbn13": null,
-    "storyGraph": null,
-    "amazon": null,
-    "source": "not_found"
-  },
   "the future|||naomi alderman": {
     "isbn13": null,
     "storyGraph": null,
@@ -618,12 +589,6 @@
     "coverUrl": "https://m.media-amazon.com/images/I/717qVFaqdiL._SX300_.jpg",
     "source": "amazon"
   },
-  "a simple favor|||darcey bell": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
   "you will never be me|||jesse q. sutanto": {
     "storyGraph": null,
     "amazon": {
@@ -632,12 +597,6 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/81PmMrDEPFL._SX300_.jpg",
     "source": "amazon"
-  },
-  "don't let him in|||lisa jewell": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
   },
   "the twyford code|||janice hallett": {
     "storyGraph": null,
@@ -719,12 +678,6 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/71rAyRvoeyL._SX300_.jpg",
     "source": "amazon"
-  },
-  "open and shut|||david rosenfelt": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
   },
   "the stranger|||harlan coben": {
     "storyGraph": null,
@@ -861,12 +814,6 @@
     "coverUrl": "https://m.media-amazon.com/images/I/918XDSzEHCL._SX300_.jpg",
     "source": "amazon"
   },
-  "catch and kill|||ronan farrow": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
   "lost girls|||robert kolker": {
     "storyGraph": null,
     "amazon": {
@@ -984,12 +931,6 @@
     "coverUrl": "https://m.media-amazon.com/images/I/81fvDikywhL._SX300_.jpg",
     "source": "amazon"
   },
-  "outliers|||malcolm gladwell": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
   "blink|||malcolm gladwell": {
     "storyGraph": null,
     "amazon": {
@@ -1007,12 +948,6 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/71lDO3J7DUL._SX300_.jpg",
     "source": "amazon"
-  },
-  "what the dog saw|||malcolm gladwell": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
   },
   "an unfinished love story|||doris kearns goodwin": {
     "storyGraph": null,
@@ -1149,12 +1084,6 @@
     "coverUrl": "https://m.media-amazon.com/images/I/91P0lfcIEJS._SX300_.jpg",
     "source": "amazon"
   },
-  "the long way to a small, angry planet|||becky chambers": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
   "the house in the cerulean sea|||tj klune": {
     "storyGraph": null,
     "amazon": {
@@ -1190,12 +1119,6 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/71w0e6zz+VL._SX300_.jpg",
     "source": "amazon"
-  },
-  "people we meet on vacation|||emily henry": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
   },
   "beach read|||emily henry": {
     "storyGraph": null,
@@ -1250,12 +1173,6 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/910-EtZIYKL._SX300_.jpg",
     "source": "amazon"
-  },
-  "spare|||prince harry": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
   },
   "i'm glad my mom died|||jennette mccurdy": {
     "storyGraph": null,
@@ -1347,21 +1264,6 @@
     "coverUrl": "https://m.media-amazon.com/images/I/61S4h+a8PRL._SX300_.jpg",
     "source": "amazon"
   },
-  "come undone|||eddie huang": {
-    "storyGraph": null,
-    "amazon": {
-      "rating": null,
-      "count": null
-    },
-    "coverUrl": "https://m.media-amazon.com/images/I/91JgoR2z8kL._SX300_.jpg",
-    "source": "cover_only"
-  },
-  "exit party|||emily st. john mandel": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
   "judge stone|||viola davis": {
     "storyGraph": null,
     "amazon": {
@@ -1389,12 +1291,6 @@
     "coverUrl": "https://m.media-amazon.com/images/I/91Oo4yC6MtL._SX300_.jpg",
     "source": "amazon"
   },
-  "the body|||stephen king": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
   "dirty 20|||bill schweigart": {
     "storyGraph": null,
     "amazon": {
@@ -1412,12 +1308,6 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/810D7Vp29KL._SX300_.jpg",
     "source": "amazon"
-  },
-  "famesick|||lena dunham": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
   },
   "the insomniacs|||allison winn scotch": {
     "storyGraph": null,
@@ -1445,15 +1335,6 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/71i7mlMpWSL._SX300_.jpg",
     "source": "amazon"
-  },
-  "peck & peck|||bonnie garmus": {
-    "storyGraph": null,
-    "amazon": {
-      "rating": null,
-      "count": null
-    },
-    "coverUrl": "https://m.media-amazon.com/images/I/81Z8qRkK6wL._SX300_.jpg",
-    "source": "cover_only"
   },
   "monsters in the archives|||caroline bicks": {
     "storyGraph": null,
@@ -1490,15 +1371,6 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/91pbtqMZr2L._SX300_.jpg",
     "source": "amazon"
-  },
-  "the break-up retreat|||camilla sten": {
-    "storyGraph": null,
-    "amazon": {
-      "rating": null,
-      "count": null
-    },
-    "coverUrl": "https://m.media-amazon.com/images/I/81Og5EqlbkL._SX300_.jpg",
-    "source": "cover_only"
   },
   "the midnight lawyer|||j.j. miller": {
     "storyGraph": null,
@@ -1562,21 +1434,6 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/61MdSSjgpoL._SX300_.jpg",
     "source": "amazon"
-  },
-  "yesteryear|||caro claire burke": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
-  "the french illusion|||john grisham": {
-    "storyGraph": null,
-    "amazon": {
-      "rating": null,
-      "count": null
-    },
-    "coverUrl": "https://m.media-amazon.com/images/I/81IqjWGFpkL._SX300_.jpg",
-    "source": "cover_only"
   },
   "the couple next door|||shari lapena": {
     "storyGraph": null,
@@ -2262,12 +2119,6 @@
     "coverUrl": "https://m.media-amazon.com/images/I/714iocGJHzL._SX300_.jpg",
     "source": "amazon"
   },
-  "how i killed pluto and why it had it coming|||mike brown": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
   "the last letter|||rebecca yarros": {
     "storyGraph": null,
     "amazon": {
@@ -2664,12 +2515,6 @@
     "coverUrl": "https://m.media-amazon.com/images/I/81pt4f42JvL._SX300_.jpg",
     "source": "amazon"
   },
-  "atonement|||ian mcewan": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
   "the mistletoe mystery|||nita prose": {
     "storyGraph": null,
     "amazon": {
@@ -2678,12 +2523,6 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/717UAnhQ7rL._SX300_.jpg",
     "source": "amazon"
-  },
-  "the family experiment|||john marrs": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
   },
   "frogcatchers|||jeff lemire": {
     "storyGraph": null,
@@ -2820,54 +2659,6 @@
     "coverUrl": "https://m.media-amazon.com/images/I/81ajoeKICJL._SX300_.jpg",
     "source": "amazon"
   },
-  "refund|||karen e. bender": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
-  "hello, goodbye, and everything in between|||jennifer e. smith": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
-  "if you can't take the heat|||michael ruhlman": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
-  "influence empire|||lulu yilun chen": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
-  "on earth as it is on television|||emily jane": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
-  "flying blind|||peter robison": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
-  "the power law|||sebastian mallaby": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
-  "a criminal justice|||william l. myers jr.": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
   "a killer's alibi|||william l. myers jr.": {
     "storyGraph": null,
     "amazon": {
@@ -2877,12 +2668,6 @@
     "coverUrl": "https://m.media-amazon.com/images/I/91reF7t7lNL._SX300_.jpg",
     "source": "amazon"
   },
-  "the wise men|||walter isaacson": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
   "kissinger|||walter isaacson": {
     "storyGraph": null,
     "amazon": {
@@ -2891,12 +2676,6 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/91CMoC5YxvL._SX300_.jpg",
     "source": "amazon"
-  },
-  "yellowface|||r.f. kuang": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
   },
   "survival of the thickest|||michelle buteau": {
     "storyGraph": null,
@@ -2969,12 +2748,6 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/819Zf4nGrxL._SX300_.jpg",
     "source": "amazon"
-  },
-  "truly madly guilty|||liane moriarty": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
   },
   "mean baby|||selma blair": {
     "storyGraph": null,
@@ -3092,12 +2865,6 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/81Ji0kfcBmL._SX300_.jpg",
     "source": "amazon"
-  },
-  "twas the nightshift before christmas|||adam kay": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
   },
   "cleo mcdougal regrets nothing|||allison winn scotch": {
     "storyGraph": null,
@@ -3251,12 +3018,6 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/81sl12SmMPL._SX300_.jpg",
     "source": "amazon"
-  },
-  "partners|||john grisham": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
   },
   "the mountain in the sea|||ray nayler": {
     "storyGraph": null,
@@ -3474,12 +3235,6 @@
     "coverUrl": "https://m.media-amazon.com/images/I/91LF6rakimL._SX300_.jpg",
     "source": "amazon"
   },
-  "i'll be gone in the dark|||michelle mcnamara": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
   "into the water|||paula hawkins": {
     "storyGraph": null,
     "amazon": {
@@ -3587,15 +3342,6 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/81rXcVViS1L._SX300_.jpg",
     "source": "amazon"
-  },
-  "juror #3|||james patterson": {
-    "storyGraph": null,
-    "amazon": {
-      "rating": null,
-      "count": null
-    },
-    "coverUrl": "https://m.media-amazon.com/images/I/81gDGi4E8JL._SX300_.jpg",
-    "source": "cover_only"
   },
   "sunshine girl|||julianna margulies": {
     "storyGraph": null,
@@ -3876,45 +3622,6 @@
     "coverUrl": "https://m.media-amazon.com/images/I/71g4OviP4vL._SX300_.jpg",
     "source": "amazon"
   },
-  "thrilling tales of modern men|||danny mcbride": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
-  "the american way of killing|||malcolm gladwell": {
-    "storyGraph": null,
-    "amazon": {
-      "rating": null,
-      "count": null
-    },
-    "coverUrl": "https://m.media-amazon.com/images/I/71kMY3eXfyL._SX300_.jpg",
-    "source": "cover_only"
-  },
-  "up on cove mountain|||earl swift": {
-    "storyGraph": null,
-    "amazon": {
-      "rating": null,
-      "count": null
-    },
-    "coverUrl": "https://m.media-amazon.com/images/I/91OqHQNqWpL._SX300_.jpg",
-    "source": "cover_only"
-  },
-  "how to not die in prison|||taylor sheridan": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
-  },
-  "the munich affair|||james  patterson": {
-    "storyGraph": null,
-    "amazon": {
-      "rating": null,
-      "count": null
-    },
-    "coverUrl": "https://m.media-amazon.com/images/I/811jfCT+8yL._SX300_.jpg",
-    "source": "cover_only"
-  },
   "this book made me think of you|||libby  page": {
     "storyGraph": null,
     "amazon": {
@@ -3932,11 +3639,5 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/8125RHI24JL._SX300_.jpg",
     "source": "amazon"
-  },
-  "rock*|||chuck klosterman": {
-    "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found"
   }
 }
