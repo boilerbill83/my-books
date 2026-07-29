@@ -26,7 +26,7 @@ Interactive dial + full breakdown: [quality-dashboard.html](../quality-dashboard
 - "Red Rising" by Pierce Brown (score 100) — already read but still sitting in a candidate pool — recommendable duplicate
 - "The Heaven & Earth Grocery Store" by James McBride (score 100) — already read but still sitting in a candidate pool — recommendable duplicate
 
-**Week-over-week:** no prior snapshot found — this is the baseline run.
+**Since last report:** no prior snapshot found — this is the baseline run.
 
 ## 5★-Read Signal Gaps (0)
 
@@ -62,7 +62,7 @@ Not a raw missing-field count — weighted by whether the book is a 5★ read (f
 - "The Path to Power" by Robert A. Caro (library/read) — score 25: cites or is cited by a broken similarToTitles reference touching a 5★ read
 - "The Troop" by Nick Cutter (library/read) — score 25: cites or is cited by a broken similarToTitles reference touching a 5★ read
 
-## Multi-Week Trend (BBRE-relevant metrics)
+## Recent Trend (BBRE-relevant metrics)
 
 Not enough history yet — need at least one prior snapshot. This will populate starting next week.
 

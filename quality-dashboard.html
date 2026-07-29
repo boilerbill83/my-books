@@ -185,8 +185,8 @@
         </section>
 
         <section class="qd-section">
-          <h2>Multi-Week Trend</h2>
-          <p class="qd-desc">History across the available weekly snapshots. Hover a line for the value at that date.</p>
+          <h2>Recent Trend</h2>
+          <p class="qd-desc">History across the available daily snapshots (last 14). Hover a line for the value at that date.</p>
           <div class="qd-trend-grid" id="qdTrendGrid"></div>
         </section>
 
@@ -226,7 +226,7 @@
       </div>
 
       <div class="qd-footer">
-        Auto-generated weekly by <code>scripts/data_quality_report.js</code> (Mondays 09:00 UTC).
+        Auto-generated daily by <code>scripts/data_quality_report.js</code> (09:00 UTC).
         Full markdown report and raw JSON snapshots live in <a href="./output/">output/</a>.
       </div>
     </div>
@@ -257,7 +257,7 @@
         const wrap = document.createElement('div');
         wrap.className = 'qd-trend-svg-wrap';
         if (values.length < 2) {
-          wrap.textContent = 'History starts next week';
+          wrap.textContent = 'History starts next run';
           wrap.style.fontSize = '0.72rem';
           wrap.style.color = 'var(--text-muted)';
           wrap.style.height = `${height}px`;
@@ -413,7 +413,7 @@
             const deltaEl = document.createElement('div');
             deltaEl.style.fontSize = '0.78rem';
             deltaEl.style.color = diff > 0 ? 'var(--status-good)' : 'var(--status-critical)';
-            deltaEl.textContent = `${diff > 0 ? '▲' : '▼'} ${diff > 0 ? '+' : ''}${diff} vs last week (${prevScore}/100)`;
+            deltaEl.textContent = `${diff > 0 ? '▲' : '▼'} ${diff > 0 ? '+' : ''}${diff} since last report (${prevScore}/100)`;
             componentsWrap.appendChild(deltaEl);
           }
         }
@@ -504,7 +504,7 @@
           const dates = indexData.dates || [];
           if (!dates.length) throw new Error('No snapshots available yet.');
           const latest = dates[dates.length - 1];
-          const recentDates = dates.slice(-6);
+          const recentDates = dates.slice(-14); // 2 weeks at the current daily cadence
           const snaps = await Promise.all(recentDates.map(d => fetch(`./output/data-quality-report-${d}.json`).then(r => r.json())));
           history = snaps;
           current = snaps[snaps.length - 1];
@@ -564,7 +564,7 @@
         healthTile.innerHTML = `<div class="qd-tile-label">Scoring-critical fields</div><div class="qd-tile-value">${criticalLow.length ? criticalLow.length + ' below threshold' : 'All healthy'}</div>`;
         tiles.appendChild(healthTile);
 
-        // ── Multi-week trend small multiples ──
+        // ── Recent trend small multiples ──
         const trendGrid = $('#qdTrendGrid');
         const trendMetrics = [
           { key: 'fiveStarSignalGaps', label: '5★-read signal gaps' },
@@ -576,7 +576,7 @@
           { key: 'nonCanonicalTotal', label: 'Non-canonical theme uses' },
         ];
         if (history.length < 2) {
-          trendGrid.innerHTML = '<div class="qd-empty">Not enough history yet — this populates starting next week\'s snapshot.</div>';
+          trendGrid.innerHTML = '<div class="qd-empty">Not enough history yet — this populates starting with the next daily snapshot.</div>';
         } else {
           for (const m of trendMetrics) {
             const card = document.createElement('div'); card.className = 'qd-trend-card';

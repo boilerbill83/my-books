@@ -1,17 +1,18 @@
 #!/usr/bin/env node
-// Weekly data quality report focused on BBRE recommendation quality, not
-// just extract completeness: which specific books, if fixed, would
-// actually change what gets recommended. Field-level population/quality
-// scoring (Field Name, Percent Populated, Quality Score, How Score is
-// Determined, Suggestions for Improvement) via FIELD_REGISTRY is still
-// here, but the report leads with BBRE-impact findings — foundational
-// 5-star-read signal gaps, already-read books sitting in a candidate pool,
-// high-leverage candidates flying under the radar due to missing data, and
-// a per-book impact score. Writes a dated Markdown report to
+// Data quality report focused on BBRE recommendation quality, not just
+// extract completeness: which specific books, if fixed, would actually
+// change what gets recommended. Field-level population/quality scoring
+// (Field Name, Percent Populated, Quality Score, How Score is Determined,
+// Suggestions for Improvement) via FIELD_REGISTRY is still here, but the
+// report leads with BBRE-impact findings — foundational 5-star-read
+// signal gaps, already-read books sitting in a candidate pool, high-
+// leverage candidates flying under the radar due to missing data, and a
+// per-book impact score. Writes a dated Markdown report to
 // output/data-quality-report-YYYY-MM-DD.md, plus a machine-readable
 // output/data-quality-report-YYYY-MM-DD.json snapshot (dashboard-ready:
-// full structured findings, not just counts) used for multi-week trending.
-// Run from repo root: node scripts/data_quality_report.js
+// full structured findings, not just counts) used for trending over time.
+// Runs daily via .github/workflows/data-quality-report.yml. Run manually
+// from repo root: node scripts/data_quality_report.js
 
 import fs from 'fs';
 import path from 'path';
@@ -679,9 +680,11 @@ function computeTrend(current, previous) {
   return { previousDate: previous.date, fieldChanges, integrityDelta };
 }
 
-// Multi-week history for the metrics that actually matter to BBRE quality:
-// critical field scores, plus the new impact-focused integrity counts.
-const HISTORY_WEEKS = 6;
+// History for the metrics that actually matter to BBRE quality: critical
+// field scores, plus the impact-focused integrity counts. 14 snapshots
+// covers 2 weeks at the current daily cadence — enough to see a trend
+// without the table growing unreadable.
+const HISTORY_SNAPSHOTS = 14;
 const HISTORY_METRICS = [
   { key: 'fiveStarSignalGapCount', label: '5★-read signal gaps' },
   { key: 'alreadyReadInPoolCount', label: 'Already-read books in a candidate pool' },
@@ -691,7 +694,7 @@ const HISTORY_METRICS = [
 
 function buildHistoryTable(currentSnapshot, todayStamp) {
   const dates = listSnapshotDates(todayStamp);
-  const recentDates = dates.slice(-(HISTORY_WEEKS - 1));
+  const recentDates = dates.slice(-(HISTORY_SNAPSHOTS - 1));
   const snapshots = [...recentDates.map(loadSnapshot).filter(Boolean), currentSnapshot];
   if (snapshots.length < 2) return null; // nothing to trend yet
 
@@ -767,7 +770,7 @@ function renderActionItems(stats, integrity, trend, impactScores) {
   }
 
   if (trend) {
-    lines.push('', `**Week-over-week (vs ${trend.previousDate}):**`);
+    lines.push('', `**Since last report (vs ${trend.previousDate}):**`);
     if (trend.fieldChanges.length) {
       for (const c of trend.fieldChanges) {
         const arrow = c.delta > 0 ? '📈 improved' : '📉 regressed';
@@ -781,7 +784,7 @@ function renderActionItems(stats, integrity, trend, impactScores) {
       lines.push('- Integrity count changes: ' + nonZeroIntegrity.map(([k, d]) => `${k} ${d > 0 ? '+' : ''}${d}`).join(', '));
     }
   } else {
-    lines.push('', '**Week-over-week:** no prior snapshot found — this is the baseline run.');
+    lines.push('', '**Since last report:** no prior snapshot found — this is the baseline run.');
   }
 
   return lines.join('\n');
@@ -889,7 +892,7 @@ ${highLeverageGaps.length ? renderList(highLeverageGaps.map(g => `"${g.title}" b
 Not a raw missing-field count — weighted by whether the book is a 5★ read (foundational signal), a high-leverage candidate, or involved in an integrity issue like an already-read duplicate.
 ${impactScores.length ? renderList(impactScores.slice(0, 20).map(s => `"${s.title}" by ${s.author} (${s.locations.join(', ')}) — score ${s.score}: ${s.reasons.join('; ')}`), 20) : 'None — no book has a nonzero impact score.'}
 
-## Multi-Week Trend (BBRE-relevant metrics)
+## Recent Trend (BBRE-relevant metrics)
 
 ${historyTable || 'Not enough history yet — need at least one prior snapshot. This will populate starting next week.'}
 
