@@ -1,6 +1,77 @@
 {
   "date": "2026-07-29",
   "totalBooks": 1117,
+  "qualityScore": {
+    "score": 91,
+    "components": [
+      {
+        "key": "criticalHealth",
+        "label": "Critical Field Health",
+        "weight": 0.3,
+        "subscore": 99.71351835273053
+      },
+      {
+        "key": "foundational",
+        "label": "Foundational Signal Integrity",
+        "weight": 0.3,
+        "subscore": 88.71415356151712
+      },
+      {
+        "key": "safety",
+        "label": "Recommendation Safety",
+        "weight": 0.2,
+        "subscore": 91.17647058823529
+      },
+      {
+        "key": "hygiene",
+        "label": "Data Hygiene",
+        "weight": 0.2,
+        "subscore": 81.10205970052642
+      }
+    ],
+    "impediments": [
+      {
+        "count": 61,
+        "pointsLost": 3.4,
+        "name": "Broken similarToTitles references touching a 5★ read",
+        "description": "61 near-miss reference(s) where the citing book (or the book it's trying to cite) is a 5★ read — these corrupt a live scoring signal, not just an unused candidate-to-candidate note.",
+        "fix": "Correct each reference to the exact title string in the dataset (Broken References tab, sorted with these first).",
+        "anchor": "#tab-brokenrefs"
+      },
+      {
+        "count": 156,
+        "pointsLost": 2,
+        "name": "Non-canonical theme usage",
+        "description": "156 uses of themes outside the canonical vocabulary (chiefly \"legal\"/\"courtroom\") — these don't contribute to themeBonus scoring at all.",
+        "fix": "Remap to canonical themes, or promote frequently-used ones (see promotion candidates) to the canonical list in CLAUDE.md and the engine.",
+        "anchor": "#tab-themes"
+      },
+      {
+        "count": 5,
+        "pointsLost": 1.8,
+        "name": "Already-read books still in a candidate pool",
+        "description": "5 book(s) Bill has already read and rated are still sitting in a candidate pool — he could be recommended a book he's already finished.",
+        "fix": "Remove these entries from their candidate pool file(s).",
+        "anchor": "#tab-alreadyread"
+      },
+      {
+        "count": 79,
+        "pointsLost": 1.1,
+        "name": "Broken similarToTitles references (candidate-to-candidate)",
+        "description": "79 near-miss reference(s) between books that aren't 5★ reads — lower live-scoring impact, but still fixable typos or subtitle truncations.",
+        "fix": "Correct each reference to the exact title string in the dataset.",
+        "anchor": "#tab-brokenrefs"
+      },
+      {
+        "count": 19,
+        "pointsLost": 0.7,
+        "name": "Self-referential entries",
+        "description": "19 book(s) cite themselves in similarToTitles or list their own author in similarToAuthors — a data-entry mistake, not a useful signal.",
+        "fix": "Replace with a genuinely different similar title or author.",
+        "anchor": "#tab-selfref"
+      }
+    ]
+  },
   "fields": [
     {
       "field": "isbn",

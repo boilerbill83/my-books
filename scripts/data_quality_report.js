@@ -505,6 +505,136 @@ function computeBookImpactScores(integrityFlags) {
     .sort((a, b) => b.score - a.score);
 }
 
+// ── Overall Data Quality Score (0-100) ──────────────────────────────────────
+// A single composite number for the dashboard's dial, built from four
+// weighted sub-scores rather than raw point deductions, so it stays
+// meaningful regardless of dataset size. Each sub-score is itself a 0-100
+// rate against a sensible denominator (books, citations, 5-star reads) —
+// never a flat per-item penalty, which would either be meaningless at
+// this scale (1000+ books) or wildly oversensitive to one bucket's count.
+//
+// Deliberately excludes brokenOrphaned from scoring: per CLAUDE.md, most
+// orphaned references are legitimate "flavor" citations to books that were
+// never added to the dataset, not a fixable defect — penalizing the score
+// for them would make the number less trustworthy, not more.
+function computeQualityScore(stats, integ, rows) {
+  const totalFiveStarReads = rows.filter(isFiveStarRead).length || 1;
+  const totalCandidatePool = rows.filter(r => r.shelf === 'candidate-pool').length || 1;
+  const totalCitations = rows.reduce((s, r) => s + r.similarToTitles.length, 0) || 1;
+  const totalThemeTags = rows.reduce((s, r) => s + r.themes.length, 0) || 1;
+  const totalSimEntryBooks = rows.filter(r => r.similarToTitles.length || r.similarToAuthors.length).length || 1;
+  const nearMissOther = integ.brokenNearMiss - integ.brokenNearMissTouchingFiveStar;
+
+  const rate = {
+    alreadyReadInPool: integ.alreadyReadInPool / totalCandidatePool,
+    fiveStarSignalGaps: integ.fiveStarSignalGaps / totalFiveStarReads,
+    brokenTouchFiveStar: integ.brokenNearMissTouchingFiveStar / totalCitations,
+    highLeverageGaps: Math.min(1, integ.highLeverageGaps / 10),
+    selfReferential: integ.selfReferential / totalSimEntryBooks,
+    nearMissOther: nearMissOther / totalCitations,
+    nonCanonicalThemes: integ.nonCanonicalTotal / totalThemeTags,
+  };
+
+  const criticalFields = stats.filter(s => s.critical);
+  const criticalHealth = criticalFields.length
+    ? criticalFields.reduce((s, f) => s + f.scorePct, 0) / criticalFields.length
+    : 100;
+  // fiveStarThemes/fiveStarAuthors/reverseSimilar are built entirely from
+  // 5-star reads — gaps and broken refs touching them corrupt a signal
+  // every candidate is scored against, not just the one book's own record.
+  const foundationalScore = 100 * (1 - Math.min(1, rate.fiveStarSignalGaps * 4 + rate.brokenTouchFiveStar * 8));
+  // Could a bad or duplicate recommendation actually surface to Bill.
+  const safetyScore = 100 * (1 - Math.min(1, rate.alreadyReadInPool * 3 + rate.highLeverageGaps * 0.5));
+  // Fixable data-entry mistakes that don't touch a live 5-star signal.
+  const hygieneScore = 100 * (1 - Math.min(1, rate.selfReferential * 2 + rate.nearMissOther * 3 + rate.nonCanonicalThemes * 2));
+
+  const components = [
+    { key: 'criticalHealth', label: 'Critical Field Health', weight: 0.30, subscore: criticalHealth },
+    { key: 'foundational', label: 'Foundational Signal Integrity', weight: 0.30, subscore: foundationalScore },
+    { key: 'safety', label: 'Recommendation Safety', weight: 0.20, subscore: safetyScore },
+    { key: 'hygiene', label: 'Data Hygiene', weight: 0.20, subscore: hygieneScore },
+  ];
+  const score = Math.max(0, Math.min(100, Math.round(components.reduce((s, c) => s + c.weight * c.subscore, 0))));
+
+  // Impediment candidates: each one's OWN isolated point-loss contribution
+  // (as if its siblings were zero), so the ranking reflects what's actually
+  // dragging the score down rather than just raw counts.
+  const impedimentDefs = [
+    {
+      count: integ.fiveStarSignalGaps,
+      pointsLost: 100 * Math.min(1, rate.fiveStarSignalGaps * 4) * 0.30,
+      name: '5★-read signal gaps',
+      description: `${integ.fiveStarSignalGaps} 5★ read(s) missing themes/similarToTitles/similarToAuthors — these withhold a bonus every candidate that deserves it should be getting, since fiveStarThemes/fiveStarAuthors/reverseSimilar are built entirely from 5★ reads.`,
+      fix: 'Tag the missing fields on these specific books — the single highest-leverage fix available.',
+      anchor: '#impactSection',
+    },
+    {
+      count: integ.brokenNearMissTouchingFiveStar,
+      pointsLost: 100 * Math.min(1, rate.brokenTouchFiveStar * 8) * 0.30,
+      name: 'Broken similarToTitles references touching a 5★ read',
+      description: `${integ.brokenNearMissTouchingFiveStar} near-miss reference(s) where the citing book (or the book it's trying to cite) is a 5★ read — these corrupt a live scoring signal, not just an unused candidate-to-candidate note.`,
+      fix: 'Correct each reference to the exact title string in the dataset (Broken References tab, sorted with these first).',
+      anchor: '#tab-brokenrefs',
+    },
+    {
+      count: integ.alreadyReadInPool,
+      pointsLost: 100 * Math.min(1, rate.alreadyReadInPool * 3) * 0.20,
+      name: 'Already-read books still in a candidate pool',
+      description: `${integ.alreadyReadInPool} book(s) Bill has already read and rated are still sitting in a candidate pool — he could be recommended a book he's already finished.`,
+      fix: 'Remove these entries from their candidate pool file(s).',
+      anchor: '#tab-alreadyread',
+    },
+    {
+      count: integ.highLeverageGaps,
+      pointsLost: 100 * Math.min(1, rate.highLeverageGaps * 0.5) * 0.20,
+      name: 'High-leverage candidate gaps',
+      description: `${integ.highLeverageGaps} popular, well-rated candidate(s) missing data BBRE needs to score them properly — likely under-ranked right now.`,
+      fix: 'Tag themes/similarToTitles/similarToAuthors on these specific books.',
+      anchor: '#impactSection',
+    },
+    {
+      count: nearMissOther,
+      pointsLost: 100 * Math.min(1, rate.nearMissOther * 3) * 0.20,
+      name: 'Broken similarToTitles references (candidate-to-candidate)',
+      description: `${nearMissOther} near-miss reference(s) between books that aren't 5★ reads — lower live-scoring impact, but still fixable typos or subtitle truncations.`,
+      fix: 'Correct each reference to the exact title string in the dataset.',
+      anchor: '#tab-brokenrefs',
+    },
+    {
+      count: integ.nonCanonicalTotal,
+      pointsLost: 100 * Math.min(1, rate.nonCanonicalThemes * 2) * 0.20,
+      name: 'Non-canonical theme usage',
+      description: `${integ.nonCanonicalTotal} uses of themes outside the canonical vocabulary (chiefly "legal"/"courtroom") — these don't contribute to themeBonus scoring at all.`,
+      fix: 'Remap to canonical themes, or promote frequently-used ones (see promotion candidates) to the canonical list in CLAUDE.md and the engine.',
+      anchor: '#tab-themes',
+    },
+    {
+      count: integ.selfReferential,
+      pointsLost: 100 * Math.min(1, rate.selfReferential * 2) * 0.20,
+      name: 'Self-referential entries',
+      description: `${integ.selfReferential} book(s) cite themselves in similarToTitles or list their own author in similarToAuthors — a data-entry mistake, not a useful signal.`,
+      fix: 'Replace with a genuinely different similar title or author.',
+      anchor: '#tab-selfref',
+    },
+    {
+      count: criticalFields.filter(f => f.scorePct < 90).length,
+      pointsLost: (100 - criticalHealth) * 0.30,
+      name: 'Scoring-critical field gaps',
+      description: `Average critical-field Quality Score is ${criticalHealth.toFixed(1)}% — these fields feed a live scoring signal directly.`,
+      fix: 'See the Field Population table, sorted by Quality Score, for the specific fields below threshold.',
+      anchor: '#fieldPopulationSection',
+    },
+  ];
+
+  const impediments = impedimentDefs
+    .filter(i => i.pointsLost > 0.05 && i.count > 0)
+    .sort((a, b) => b.pointsLost - a.pointsLost)
+    .slice(0, 5)
+    .map(i => ({ ...i, pointsLost: Math.round(i.pointsLost * 10) / 10 }));
+
+  return { score, components, impediments };
+}
+
 // ── Snapshot history / trend ─────────────────────────────────────────────────
 
 function listSnapshotDates(beforeStamp) {
@@ -701,9 +831,12 @@ const integritySummary = {
   missingBookKey: ranges.missingBookKey.length,
 };
 
+const qualityScore = computeQualityScore(stats, integritySummary, rows);
+
 const currentSnapshot = {
   date: dateStamp,
   totalBooks: rows.length,
+  qualityScore,
   fields: stats.map(s => ({ field: s.field, scorePct: s.scorePct, rawPct: s.rawPct, critical: s.critical })),
   integrity: integritySummary,
   // Full structured findings (not just counts) — dashboard-ready.
@@ -730,6 +863,12 @@ const historyTable = buildHistoryTable(currentSnapshot, dateStamp);
 const report = `# Data Quality Report — ${dateStamp}
 
 Generated by \`scripts/data_quality_report.js\`. Total books analyzed: **${rows.length}** (${shelfCounts}).
+
+## Data Quality Score: ${qualityScore.score}/100
+
+${qualityScore.components.map(c => `- ${c.label} (${(c.weight * 100).toFixed(0)}%): ${c.subscore.toFixed(1)}/100`).join('\n')}
+
+Interactive dial + full breakdown: [quality-dashboard.html](../quality-dashboard.html). See "Top 5 Impediments to a Perfect Score" at the end of this report.
 
 ## Action Items
 
@@ -808,6 +947,12 @@ ${nonCanonical.length ? renderList(nonCanonical.map(o => `"${o.title}": "${o.the
 - Zero/missing pages (kills pages-fit bonus): **${ranges.zeroPages.length}**
 - Zero/missing ratingsCount (kills popularity bonus): **${ranges.zeroRatingsCount.length}**
 - Missing a real bookKey (derived-key fallback, skipped by daily enrichment): **${ranges.missingBookKey.length}**
+
+## Top ${qualityScore.impediments.length} Impediments to a Perfect Data Quality Score
+
+Ranked by estimated points lost from the 100-point score above — not raw counts. A large orphaned-reference or one-off count can matter less than a small count in a higher-weighted category (see Data Quality Score components).
+
+${qualityScore.impediments.length ? qualityScore.impediments.map((imp, i) => `${i + 1}. **${imp.name}** (−${imp.pointsLost} pts)\n   ${imp.description}\n   **Fix:** ${imp.fix}`).join('\n\n') : 'None — the score is already at or near 100.'}
 `;
 
 fs.mkdirSync('output', { recursive: true });

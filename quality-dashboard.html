@@ -125,6 +125,42 @@
       .qd-footer a { color: var(--accent); }
 
       .qd-loading { padding: 60px 0; text-align: center; color: var(--text-muted); }
+
+      /* ── Data Quality Score dial ── */
+      .qd-score-section {
+        display: flex; gap: 32px; flex-wrap: wrap; align-items: center;
+        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+        padding: 24px; box-shadow: var(--shadow-card); margin-bottom: 36px;
+      }
+      .qd-dial-wrap { position: relative; width: 200px; height: 200px; flex-shrink: 0; }
+      .qd-dial-number { font-family: var(--font-sans); font-weight: 700; font-size: 3.2rem; line-height: 1; }
+      .qd-dial-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 2px; }
+      .qd-dial-center {
+        position: absolute; inset: 0; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; text-align: center;
+      }
+      .qd-components { flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 12px; }
+      .qd-component-row .qd-component-head { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px; }
+      .qd-component-row .qd-component-head strong { font-weight: 600; color: var(--text); }
+      .qd-meter-track { height: 8px; border-radius: 5px; background: var(--bg-subtle); overflow: hidden; }
+      .qd-meter-fill { height: 100%; border-radius: 5px; }
+
+      /* ── Impediments section ── */
+      .qd-impediment {
+        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+        padding: 16px 18px; box-shadow: var(--shadow); margin-bottom: 12px;
+        display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: start;
+      }
+      .qd-impediment-rank {
+        font-family: var(--font-serif); font-weight: 700; font-size: 1.6rem; color: var(--accent);
+        width: 34px; text-align: center;
+      }
+      .qd-impediment-name { font-weight: 600; color: var(--text); margin-bottom: 4px; }
+      .qd-impediment-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
+      .qd-impediment-fix { font-size: 0.85rem; color: var(--text); }
+      .qd-impediment-fix strong { color: var(--accent); }
+      .qd-impediment-pts { font-weight: 700; color: var(--status-critical); white-space: nowrap; font-variant-numeric: tabular-nums; }
+      .qd-impediment-link { font-size: 0.78rem; }
     </style>
   </head>
   <body>
@@ -139,6 +175,8 @@
 
       <div id="qdLoading" class="qd-loading">Loading quality report…</div>
       <div id="qdApp" hidden>
+
+        <section class="qd-score-section" id="qdScoreSection"></section>
 
         <section class="qd-section">
           <h2>At a Glance</h2>
@@ -177,6 +215,12 @@
           <h2>Data Integrity</h2>
           <div class="qd-tabs" id="qdTabs"></div>
           <div id="qdTabPanels"></div>
+        </section>
+
+        <section class="qd-section" id="impedimentsSection">
+          <h2 id="impedimentsHeading">Top Impediments to a Perfect Data Quality Score</h2>
+          <p class="qd-desc">Ranked by estimated points lost from the 100-point score above — not raw counts. A large low-weight count can matter less than a small count in a higher-weighted category.</p>
+          <div id="qdImpediments"></div>
         </section>
 
       </div>
@@ -295,6 +339,112 @@
         return wrap;
       }
 
+      // ── Data Quality Score dial (meter form — a single ratio against a
+      // limit) — a ring gauge via stroke-dasharray, fill hue chosen by
+      // severity tier (never a rainbow: one hue per render, reflecting
+      // current state). The 4 component sub-scores render as small meters
+      // beside it, so the breakdown is reachable without hovering. ──
+      function scoreTier(score) {
+        if (score >= 90) return { color: 'var(--status-good)', label: 'Excellent' };
+        if (score >= 75) return { color: '#b8860b', label: 'Good' }; // darker gold — --status-warning fails text contrast
+        if (score >= 60) return { color: 'var(--status-serious)', label: 'Fair' };
+        return { color: 'var(--status-critical)', label: 'Poor' };
+      }
+
+      function renderScoreDial(qualityScore, history) {
+        const section = $('#qdScoreSection');
+        const { score, components } = qualityScore;
+        const tier = scoreTier(score);
+        const size = 200, stroke = 18, r = (size - stroke) / 2, cx = size / 2, cy = size / 2;
+        const circumference = 2 * Math.PI * r;
+        const filled = (score / 100) * circumference;
+
+        const dialWrap = document.createElement('div');
+        dialWrap.className = 'qd-dial-wrap';
+
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
+        svg.setAttribute('width', size); svg.setAttribute('height', size);
+        svg.style.transform = 'rotate(-90deg)';
+
+        const track = document.createElementNS(svg.namespaceURI, 'circle');
+        track.setAttribute('cx', cx); track.setAttribute('cy', cy); track.setAttribute('r', r);
+        track.setAttribute('fill', 'none'); track.setAttribute('stroke', 'var(--bg-subtle)');
+        track.setAttribute('stroke-width', stroke);
+        svg.appendChild(track);
+
+        const fill = document.createElementNS(svg.namespaceURI, 'circle');
+        fill.setAttribute('cx', cx); fill.setAttribute('cy', cy); fill.setAttribute('r', r);
+        fill.setAttribute('fill', 'none'); fill.setAttribute('stroke', tier.color);
+        fill.setAttribute('stroke-width', stroke);
+        fill.setAttribute('stroke-linecap', 'round');
+        fill.setAttribute('stroke-dasharray', `${filled} ${circumference}`);
+        svg.appendChild(fill);
+
+        const center = document.createElement('div');
+        center.className = 'qd-dial-center';
+        const num = document.createElement('div'); num.className = 'qd-dial-number'; num.style.color = tier.color; num.textContent = score;
+        const lbl = document.createElement('div'); lbl.className = 'qd-dial-label'; lbl.textContent = `${tier.label} · out of 100`;
+        center.appendChild(num); center.appendChild(lbl);
+
+        dialWrap.appendChild(svg); dialWrap.appendChild(center);
+
+        const componentsWrap = document.createElement('div');
+        componentsWrap.className = 'qd-components';
+        const heading = document.createElement('div');
+        heading.innerHTML = '<strong style="font-family:var(--font-serif);font-size:1.1rem;color:var(--text)">Data Quality Score</strong>';
+        componentsWrap.appendChild(heading);
+        for (const c of components) {
+          const row = document.createElement('div'); row.className = 'qd-component-row';
+          const cTier = scoreTier(c.subscore);
+          row.innerHTML = `<div class="qd-component-head"><span>${c.label} <span style="color:var(--text-muted)">(${(c.weight * 100).toFixed(0)}% weight)</span></span><strong>${c.subscore.toFixed(1)}/100</strong></div>`;
+          const track2 = document.createElement('div'); track2.className = 'qd-meter-track';
+          const fill2 = document.createElement('div'); fill2.className = 'qd-meter-fill';
+          fill2.style.width = `${Math.max(0, Math.min(100, c.subscore))}%`;
+          fill2.style.background = cTier.color;
+          track2.appendChild(fill2);
+          row.appendChild(track2);
+          componentsWrap.appendChild(row);
+        }
+        if (history.length > 1) {
+          const prevScore = history[history.length - 2]?.qualityScore?.score;
+          if (typeof prevScore === 'number' && prevScore !== score) {
+            const diff = score - prevScore;
+            const deltaEl = document.createElement('div');
+            deltaEl.style.fontSize = '0.78rem';
+            deltaEl.style.color = diff > 0 ? 'var(--status-good)' : 'var(--status-critical)';
+            deltaEl.textContent = `${diff > 0 ? '▲' : '▼'} ${diff > 0 ? '+' : ''}${diff} vs last week (${prevScore}/100)`;
+            componentsWrap.appendChild(deltaEl);
+          }
+        }
+
+        section.appendChild(dialWrap);
+        section.appendChild(componentsWrap);
+      }
+
+      function renderImpediments(impediments) {
+        const wrap = $('#qdImpediments');
+        if (!impediments.length) {
+          wrap.innerHTML = '<div class="qd-empty">None — the score is already at or near 100.</div>';
+          return;
+        }
+        impediments.forEach((imp, i) => {
+          const card = document.createElement('div'); card.className = 'qd-impediment';
+          const rank = document.createElement('div'); rank.className = 'qd-impediment-rank'; rank.textContent = `#${i + 1}`;
+          const body = document.createElement('div');
+          const name = document.createElement('div'); name.className = 'qd-impediment-name'; name.textContent = imp.name;
+          const desc = document.createElement('div'); desc.className = 'qd-impediment-desc'; desc.textContent = imp.description;
+          const fix = document.createElement('div'); fix.className = 'qd-impediment-fix';
+          fix.innerHTML = '<strong>Fix: </strong>';
+          fix.append(document.createTextNode(imp.fix));
+          const link = document.createElement('a'); link.className = 'qd-impediment-link'; link.href = imp.anchor; link.textContent = 'Jump to detail →';
+          body.appendChild(name); body.appendChild(desc); body.appendChild(fix); body.appendChild(document.createElement('br')); body.appendChild(link);
+          const pts = document.createElement('div'); pts.className = 'qd-impediment-pts'; pts.textContent = `−${imp.pointsLost} pts`;
+          card.appendChild(rank); card.appendChild(body); card.appendChild(pts);
+          wrap.appendChild(card);
+        });
+      }
+
       function sortableTable(table, columns, rows, opts = {}) {
         let sortCol = opts.defaultSort ?? 0;
         let sortAsc = opts.defaultAsc ?? false;
@@ -370,6 +520,10 @@
         const integ = current.integrity;
         const findings = current.findings;
         const prev = history.length > 1 ? history[history.length - 2] : null;
+
+        // ── Data Quality Score dial ──
+        renderScoreDial(current.qualityScore, history);
+        renderImpediments(current.qualityScore.impediments);
 
         // ── At-a-glance tiles ──
         const tileDefs = [
@@ -630,6 +784,15 @@
           ], findings.duplicateTitleAuthor || [], { emptyText: 'None found.' });
         });
       }
+
+      // Links pointing at a #tab-* anchor (impediment/tile "jump to detail"
+      // links) should also activate that tab, not just scroll to the button.
+      document.addEventListener('click', e => {
+        const a = e.target.closest('a[href^="#tab-"]');
+        if (!a) return;
+        const btn = document.querySelector(a.getAttribute('href'));
+        if (btn && btn.classList.contains('qd-tab')) btn.click();
+      });
 
       main();
     </script>
