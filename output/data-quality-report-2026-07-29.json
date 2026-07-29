@@ -1,6 +1,6 @@
 {
   "date": "2026-07-29",
-  "totalBooks": 1117,
+  "totalBooks": 1118,
   "qualityScore": {
     "score": 91,
     "components": [
@@ -8,7 +8,7 @@
         "key": "criticalHealth",
         "label": "Critical Field Health",
         "weight": 0.3,
-        "subscore": 99.71351835273053
+        "subscore": 99.68694096601072
       },
       {
         "key": "foundational",
@@ -75,116 +75,116 @@
   "fields": [
     {
       "field": "isbn",
-      "scorePct": 65.6,
-      "rawPct": 64.63742166517457,
+      "scorePct": 65.87301587301587,
+      "rawPct": 64.66905187835421,
       "critical": false
     },
     {
       "field": "dateRead",
       "scorePct": 71.95685670261942,
-      "rawPct": 41.80841539838854,
+      "rawPct": 41.77101967799642,
       "critical": false
     },
     {
       "field": "subjects",
       "scorePct": 75.24663677130044,
-      "rawPct": 75.11190689346464,
+      "rawPct": 75.04472271914132,
       "critical": false
     },
     {
       "field": "dismissReason",
       "scorePct": 78.26086956521739,
-      "rawPct": 1.611459265890779,
+      "rawPct": 1.6100178890876566,
       "critical": false
     },
     {
       "field": "isbn13",
-      "scorePct": 82.00537153088631,
-      "rawPct": 82.00537153088631,
+      "scorePct": 81.93202146690518,
+      "rawPct": 81.93202146690518,
       "critical": false
     },
     {
       "field": "dateAdded",
-      "scorePct": 83.25872873769025,
-      "rawPct": 83.25872873769025,
+      "scorePct": 83.18425760286226,
+      "rawPct": 83.18425760286226,
       "critical": false
     },
     {
       "field": "tones",
-      "scorePct": 83.7958818263205,
-      "rawPct": 83.7958818263205,
+      "scorePct": 83.72093023255815,
+      "rawPct": 83.72093023255815,
       "critical": false
     },
     {
       "field": "publisher",
-      "scorePct": 86.66069829901522,
-      "rawPct": 86.66069829901522,
+      "scorePct": 86.58318425760287,
+      "rawPct": 86.58318425760287,
       "critical": false
     },
     {
       "field": "amazonRating",
-      "scorePct": 92.70386266094421,
-      "rawPct": 39.74932855863921,
+      "scorePct": 92.50535331905782,
+      "rawPct": 39.71377459749553,
       "critical": false
     },
     {
       "field": "amazonRatingsCount",
-      "scorePct": 92.70386266094421,
-      "rawPct": 39.74932855863921,
+      "scorePct": 92.50535331905782,
+      "rawPct": 39.71377459749553,
       "critical": false
     },
     {
       "field": "categories",
       "scorePct": 96.41255605381166,
-      "rawPct": 96.23992837958818,
+      "rawPct": 96.15384615384616,
       "critical": false
     },
     {
       "field": "similarToAuthors",
-      "scorePct": 98.83616830796777,
-      "rawPct": 98.83616830796777,
+      "scorePct": 98.74776386404294,
+      "rawPct": 98.74776386404294,
       "critical": true
     },
     {
       "field": "themes",
-      "scorePct": 99.28379588182632,
-      "rawPct": 99.28379588182632,
+      "scorePct": 99.19499105545617,
+      "rawPct": 99.19499105545617,
       "critical": true
     },
     {
       "field": "similarToTitles",
-      "scorePct": 99.28379588182632,
-      "rawPct": 99.28379588182632,
+      "scorePct": 99.19499105545617,
+      "rawPct": 99.19499105545617,
       "critical": true
     },
     {
       "field": "year",
-      "scorePct": 99.37332139659803,
-      "rawPct": 99.37332139659803,
+      "scorePct": 99.28443649373882,
+      "rawPct": 99.28443649373882,
       "critical": false
     },
     {
       "field": "ratingsCount",
-      "scorePct": 99.73142345568488,
-      "rawPct": 99.73142345568488,
+      "scorePct": 99.73166368515206,
+      "rawPct": 99.73166368515206,
       "critical": true
     },
     {
       "field": "metadataFetchedAt",
-      "scorePct": 99.82094897045658,
-      "rawPct": 99.82094897045658,
-      "critical": false
-    },
-    {
-      "field": "type",
-      "scorePct": 99.91047448522829,
-      "rawPct": 99.91047448522829,
+      "scorePct": 99.73166368515206,
+      "rawPct": 99.73166368515206,
       "critical": false
     },
     {
       "field": "description",
-      "scorePct": 99.91047448522829,
-      "rawPct": 99.91047448522829,
+      "scorePct": 99.82110912343471,
+      "rawPct": 99.82110912343471,
+      "critical": false
+    },
+    {
+      "field": "type",
+      "scorePct": 99.91055456171735,
+      "rawPct": 99.91055456171735,
       "critical": false
     },
     {
@@ -226,7 +226,7 @@
     {
       "field": "myRating",
       "scorePct": 100,
-      "rawPct": 84.6911369740376,
+      "rawPct": 84.70483005366727,
       "critical": true
     },
     {
@@ -244,7 +244,7 @@
     {
       "field": "coverUrl",
       "scorePct": 100,
-      "rawPct": 52.10384959713518,
+      "rawPct": 52.146690518783544,
       "critical": false
     },
     {
@@ -275,8 +275,8 @@
     "themesOutOfRange": 0,
     "similarOutOfRange": 4,
     "zeroPages": 1,
-    "zeroRatingsCount": 19,
-    "missingBookKey": 1
+    "zeroRatingsCount": 20,
+    "missingBookKey": 2
   },
   "findings": {
     "fiveStarSignalGaps": [],
@@ -4168,6 +4168,17 @@
         ]
       },
       {
+        "title": "Cancel Me If You Can",
+        "author": "Dave Portnoy",
+        "score": 30,
+        "reasons": [
+          "missing themes, similarToTitles, similarToAuthors"
+        ],
+        "locations": [
+          "library/to-read"
+        ]
+      },
+      {
         "title": "The Boomerang",
         "author": "Robert Bailey",
         "score": 25,
@@ -4544,17 +4555,6 @@
       {
         "title": "I Don't Care if We Never Get Back: 30 Games in 30 Days on the Best Worst Baseball Road Trip Ever",
         "author": "Ben Blatt",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "A History of Basketball in Fifteen Sneakers",
-        "author": "Russ Bengtson",
         "score": 25,
         "reasons": [
           "cites or is cited by a broken similarToTitles reference touching a 5★ read"
