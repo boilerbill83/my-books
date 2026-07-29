@@ -64,6 +64,13 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.header-quality-link {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.header-quality-link:hover { color: var(--accent); }
 .header-status {
   display: flex;
   align-items: center;

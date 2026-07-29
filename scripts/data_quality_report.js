@@ -813,4 +813,11 @@ ${nonCanonical.length ? renderList(nonCanonical.map(o => `"${o.title}": "${o.the
 fs.mkdirSync('output', { recursive: true });
 fs.writeFileSync(`output/data-quality-report-${dateStamp}.md`, report);
 fs.writeFileSync(`output/data-quality-report-${dateStamp}.json`, JSON.stringify(currentSnapshot, null, 2) + '\n');
-console.log(`Wrote output/data-quality-report-${dateStamp}.md and .json`);
+
+// Manifest of every snapshot date — the dashboard (quality-dashboard.html)
+// is a static page and can't list a directory on GitHub Pages, so it reads
+// this file to know which dated JSON snapshots exist.
+const allDates = [...listSnapshotDates(null).filter(d => d !== dateStamp), dateStamp].sort();
+fs.writeFileSync('output/data-quality-index.json', JSON.stringify({ dates: allDates }, null, 2) + '\n');
+
+console.log(`Wrote output/data-quality-report-${dateStamp}.md, .json, and updated data-quality-index.json`);

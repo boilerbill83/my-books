@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Quality Dashboard — Bill's Books</title>
+    <meta name="description" content="BBRE recommendation-quality dashboard for Bill's Books" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      /* ── Dashboard-specific tokens ──────────────────────────────────────
+         Reuses the site's warm palette (--bg/--text/--accent/--gold from
+         styles.css) for chrome and typography. Status colors below are the
+         dataviz skill's fixed status palette (never themed) — always paired
+         with an icon + text label per the skill's mitigation requirement,
+         since warning/serious fall under 3:1 contrast on this light surface
+         (validated against #faf8f3 via validate_palette.js). */
+      :root {
+        --status-good: #0ca30c;
+        --status-warning: #fab219;
+        --status-serious: #ec835a;
+        --status-critical: #d03b3b;
+        --chart-line: var(--accent);
+        --chart-fill: rgba(92, 51, 23, 0.08);
+      }
+
+      .qd-shell { max-width: 1200px; margin: 0 auto; padding: 0 20px 60px; }
+
+      .qd-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 28px 0 18px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 24px;
+      }
+      .qd-title { font-family: var(--font-serif); font-size: 2.1rem; font-weight: 700; color: var(--accent); }
+      .qd-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
+      .qd-back { font-size: 0.85rem; color: var(--text-muted); text-decoration: none; white-space: nowrap; }
+      .qd-back:hover { color: var(--accent); }
+
+      .qd-section { margin: 36px 0; }
+      .qd-section h2 {
+        font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700;
+        color: var(--text); margin-bottom: 6px;
+      }
+      .qd-section .qd-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; max-width: 780px; }
+
+      /* ── Stat tiles ── */
+      .qd-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+      .qd-tile {
+        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+        padding: 16px; box-shadow: var(--shadow);
+      }
+      .qd-tile-label { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px; }
+      .qd-tile-value { font-size: 2rem; font-weight: 700; font-family: var(--font-sans); line-height: 1; display: flex; align-items: baseline; gap: 8px; }
+      .qd-tile-delta { font-size: 0.75rem; font-weight: 600; }
+      .qd-tile-delta.up { color: var(--status-critical); }
+      .qd-tile-delta.down { color: var(--status-good); }
+      .qd-tile-spark { margin-top: 10px; height: 32px; }
+      .qd-tile.status-good .qd-tile-value { color: var(--status-good); }
+      .qd-tile.status-critical .qd-tile-value { color: var(--status-critical); }
+      .qd-tile.status-warning .qd-tile-value { color: #9a6a00; }
+
+      /* ── Status badge (icon + label — never color alone) ── */
+      .qd-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 0.78rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+      .qd-badge.good { background: rgba(12,163,12,0.12); color: #0a7d0a; }
+      .qd-badge.warning { background: rgba(250,178,25,0.18); color: #8a5a00; }
+      .qd-badge.serious { background: rgba(236,131,90,0.18); color: #9a4a26; }
+      .qd-badge.critical { background: rgba(208,59,59,0.13); color: var(--status-critical); }
+
+      /* ── Small-multiples trend grid ── */
+      .qd-trend-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+      .qd-trend-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; box-shadow: var(--shadow); }
+      .qd-trend-card h4 { font-size: 0.8rem; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+      .qd-trend-card .qd-trend-current { font-size: 1.3rem; font-weight: 700; font-family: var(--font-sans); }
+      .qd-trend-svg-wrap { position: relative; margin-top: 6px; }
+      .qd-tooltip {
+        position: absolute; pointer-events: none; background: var(--text); color: #fff;
+        font-size: 0.72rem; padding: 4px 7px; border-radius: 4px; white-space: nowrap;
+        transform: translate(-50%, -110%); opacity: 0; transition: opacity 0.1s; z-index: 5;
+      }
+      .qd-trend-svg-wrap:hover .qd-tooltip.active { opacity: 1; }
+
+      /* ── Controls row ── */
+      .qd-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+      .qd-search {
+        font: inherit; font-size: 0.85rem; padding: 7px 12px; border: 1px solid var(--border);
+        border-radius: var(--radius); background: var(--bg-card); color: var(--text); min-width: 220px;
+      }
+      .qd-toggle-btn {
+        font: inherit; font-size: 0.8rem; padding: 6px 12px; border: 1px solid var(--border);
+        border-radius: var(--radius); background: var(--bg-card); color: var(--text-muted); cursor: pointer;
+      }
+      .qd-toggle-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+      .qd-count { font-size: 0.8rem; color: var(--text-muted); margin-left: auto; }
+
+      /* ── Tables ── */
+      .qd-table-wrap { overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+      table.qd-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+      table.qd-table th, table.qd-table td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+      table.qd-table th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); cursor: pointer; user-select: none; white-space: nowrap; }
+      table.qd-table th:hover { color: var(--accent); }
+      table.qd-table th.sorted::after { content: ' ▾'; }
+      table.qd-table th.sorted.asc::after { content: ' ▴'; }
+      table.qd-table tbody tr:hover { background: var(--bg-subtle); }
+      table.qd-table td.num { font-variant-numeric: tabular-nums; text-align: right; }
+      .qd-reasons { font-size: 0.78rem; color: var(--text-muted); }
+      .qd-locs { font-size: 0.72rem; color: var(--text-muted); }
+      .qd-flag-star { color: var(--gold); font-weight: 700; }
+
+      /* ── Tabs ── */
+      .qd-tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 12px; border-bottom: 1px solid var(--border); }
+      .qd-tab { font: inherit; font-size: 0.82rem; padding: 8px 14px; border: none; background: none; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; }
+      .qd-tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+      .qd-tabpanel { display: none; }
+      .qd-tabpanel.active { display: block; }
+
+      .qd-empty { padding: 24px; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+      .qd-footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--text-muted); }
+      .qd-footer a { color: var(--accent); }
+
+      .qd-loading { padding: 60px 0; text-align: center; color: var(--text-muted); }
+    </style>
+  </head>
+  <body>
+    <div class="qd-shell">
+      <div class="qd-header">
+        <div>
+          <div class="qd-title">Data Quality Dashboard</div>
+          <div class="qd-subtitle" id="qdSubtitle">Loading…</div>
+        </div>
+        <a class="qd-back" href="./index.html">← Back to Bill's Books</a>
+      </div>
+
+      <div id="qdLoading" class="qd-loading">Loading quality report…</div>
+      <div id="qdApp" hidden>
+
+        <section class="qd-section">
+          <h2>At a Glance</h2>
+          <p class="qd-desc">The highest-leverage BBRE recommendation-quality issues — each tile links to its detail section below.</p>
+          <div class="qd-tiles" id="qdTiles"></div>
+        </section>
+
+        <section class="qd-section">
+          <h2>Multi-Week Trend</h2>
+          <p class="qd-desc">History across the available weekly snapshots. Hover a line for the value at that date.</p>
+          <div class="qd-trend-grid" id="qdTrendGrid"></div>
+        </section>
+
+        <section class="qd-section" id="fieldPopulationSection">
+          <h2>Field Population</h2>
+          <p class="qd-desc">Quality Score is measured against each field's real eligible population (e.g. myRating vs. read-shelf books only), not the full dataset — a field can show a low raw percentage and a high Quality Score at once; that's expected, not a bug.</p>
+          <div class="qd-controls">
+            <input type="text" class="qd-search" id="fieldSearch" placeholder="Search fields…" />
+            <button class="qd-toggle-btn" id="criticalOnlyBtn">Critical fields only</button>
+            <span class="qd-count" id="fieldCount"></span>
+          </div>
+          <div class="qd-table-wrap"><table class="qd-table" id="fieldTable"></table></div>
+        </section>
+
+        <section class="qd-section" id="impactSection">
+          <h2>Worst Books by BBRE Impact Score</h2>
+          <p class="qd-desc">Not a raw missing-field count — weighted by whether the book is a 5★ read (foundational signal), a high-leverage candidate, or involved in an integrity issue like an already-read duplicate.</p>
+          <div class="qd-controls">
+            <input type="text" class="qd-search" id="impactSearch" placeholder="Search books or authors…" />
+            <span class="qd-count" id="impactCount"></span>
+          </div>
+          <div class="qd-table-wrap"><table class="qd-table" id="impactTable"></table></div>
+        </section>
+
+        <section class="qd-section" id="integritySection">
+          <h2>Data Integrity</h2>
+          <div class="qd-tabs" id="qdTabs"></div>
+          <div id="qdTabPanels"></div>
+        </section>
+
+      </div>
+
+      <div class="qd-footer">
+        Auto-generated weekly by <code>scripts/data_quality_report.js</code> (Mondays 09:00 UTC).
+        Full markdown report and raw JSON snapshots live in <a href="./output/">output/</a>.
+      </div>
+    </div>
+
+    <script type="module">
+      const $ = sel => document.querySelector(sel);
+      const esc = s => String(s ?? '');
+
+      function fmtPct(n) { return `${n.toFixed(1)}%`; }
+      function fmtDate(d) { return d; }
+
+      function scoreBadge(scorePct, critical) {
+        const threshold = critical ? 90 : 80;
+        let cls, icon, label;
+        if (scorePct >= 95) { cls = 'good'; icon = '●'; label = 'Excellent'; }
+        else if (scorePct >= 80) { cls = 'good'; icon = '●'; label = 'Good'; }
+        else if (scorePct >= 60) { cls = 'warning'; icon = '▲'; label = 'Fair'; }
+        else { cls = 'critical'; icon = '✕'; label = 'Poor'; }
+        if (scorePct < threshold && cls === 'good') { cls = critical ? 'critical' : 'warning'; icon = critical ? '✕' : '▲'; }
+        const span = document.createElement('span');
+        span.className = `qd-badge ${cls}`;
+        span.textContent = `${icon} ${label}`;
+        return span;
+      }
+
+      // ── Tiny SVG line chart (single series — no categorical color needed) ──
+      function sparkline(values, { width = 200, height = 40, showAxis = false } = {}) {
+        const wrap = document.createElement('div');
+        wrap.className = 'qd-trend-svg-wrap';
+        if (values.length < 2) {
+          wrap.textContent = 'History starts next week';
+          wrap.style.fontSize = '0.72rem';
+          wrap.style.color = 'var(--text-muted)';
+          wrap.style.height = `${height}px`;
+          wrap.style.display = 'flex';
+          wrap.style.alignItems = 'center';
+          return wrap;
+        }
+        const min = Math.min(...values.map(v => v.value));
+        const max = Math.max(...values.map(v => v.value));
+        const pad = 4;
+        const range = max - min || 1;
+        const stepX = values.length > 1 ? (width - pad * 2) / (values.length - 1) : 0;
+        const yFor = v => height - pad - ((v - min) / range) * (height - pad * 2);
+        const points = values.map((v, i) => [pad + i * stepX, yFor(v.value)]);
+        const path = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ');
+        const areaPath = `${path} L${points[points.length - 1][0].toFixed(1)},${height - pad} L${points[0][0].toFixed(1)},${height - pad} Z`;
+
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+        svg.setAttribute('width', '100%');
+        svg.setAttribute('height', height);
+        svg.style.display = 'block';
+
+        const area = document.createElementNS(svg.namespaceURI, 'path');
+        area.setAttribute('d', areaPath);
+        area.setAttribute('fill', 'var(--chart-fill)');
+        area.setAttribute('stroke', 'none');
+        svg.appendChild(area);
+
+        const line = document.createElementNS(svg.namespaceURI, 'path');
+        line.setAttribute('d', path);
+        line.setAttribute('fill', 'none');
+        line.setAttribute('stroke', 'var(--chart-line)');
+        line.setAttribute('stroke-width', '2');
+        line.setAttribute('stroke-linejoin', 'round');
+        line.setAttribute('stroke-linecap', 'round');
+        svg.appendChild(line);
+
+        // End marker with surface ring
+        const [ex, ey] = points[points.length - 1];
+        const ring = document.createElementNS(svg.namespaceURI, 'circle');
+        ring.setAttribute('cx', ex); ring.setAttribute('cy', ey); ring.setAttribute('r', 5);
+        ring.setAttribute('fill', 'var(--bg-card)');
+        svg.appendChild(ring);
+        const dot = document.createElementNS(svg.namespaceURI, 'circle');
+        dot.setAttribute('cx', ex); ring.setAttribute('cy', ey);
+        dot.setAttribute('cy', ey); dot.setAttribute('r', 3.5);
+        dot.setAttribute('fill', 'var(--chart-line)');
+        svg.appendChild(dot);
+
+        // Hover crosshair + tooltip (findX nearest data position)
+        const tooltip = document.createElement('div');
+        tooltip.className = 'qd-tooltip';
+        wrap.appendChild(svg);
+        wrap.appendChild(tooltip);
+
+        const hitLayer = document.createElementNS(svg.namespaceURI, 'rect');
+        hitLayer.setAttribute('x', 0); hitLayer.setAttribute('y', 0);
+        hitLayer.setAttribute('width', width); hitLayer.setAttribute('height', height);
+        hitLayer.setAttribute('fill', 'transparent');
+        svg.appendChild(hitLayer);
+
+        function showTooltip(clientX, rect) {
+          const relX = ((clientX - rect.left) / rect.width) * width;
+          let nearest = 0, best = Infinity;
+          points.forEach((p, i) => { const d = Math.abs(p[0] - relX); if (d < best) { best = d; nearest = i; } });
+          const v = values[nearest];
+          tooltip.textContent = `${v.date}: ${v.value.toLocaleString()}`;
+          tooltip.classList.add('active');
+          const px = (points[nearest][0] / width) * 100;
+          tooltip.style.left = `${px}%`;
+          tooltip.style.top = `${(points[nearest][1] / height) * 100}%`;
+        }
+        wrap.addEventListener('pointermove', e => showTooltip(e.clientX, wrap.getBoundingClientRect()));
+        wrap.addEventListener('pointerleave', () => tooltip.classList.remove('active'));
+        wrap.addEventListener('focus', () => showTooltip(0, wrap.getBoundingClientRect()));
+        wrap.tabIndex = 0;
+
+        return wrap;
+      }
+
+      function sortableTable(table, columns, rows, opts = {}) {
+        let sortCol = opts.defaultSort ?? 0;
+        let sortAsc = opts.defaultAsc ?? false;
+
+        function render() {
+          const sorted = [...rows].sort((a, b) => {
+            const va = columns[sortCol].get(a), vb = columns[sortCol].get(b);
+            const cmp = typeof va === 'number' ? va - vb : String(va).localeCompare(String(vb));
+            return sortAsc ? cmp : -cmp;
+          });
+          table.innerHTML = '';
+          const thead = document.createElement('thead');
+          const trh = document.createElement('tr');
+          columns.forEach((c, i) => {
+            const th = document.createElement('th');
+            th.textContent = c.label;
+            if (i === sortCol) th.className = 'sorted' + (sortAsc ? ' asc' : '');
+            th.addEventListener('click', () => {
+              if (sortCol === i) sortAsc = !sortAsc; else { sortCol = i; sortAsc = false; }
+              render();
+            });
+            trh.appendChild(th);
+          });
+          thead.appendChild(trh);
+          table.appendChild(thead);
+          const tbody = document.createElement('tbody');
+          if (!sorted.length) {
+            const tr = document.createElement('tr');
+            const td = document.createElement('td');
+            td.colSpan = columns.length;
+            td.className = 'qd-empty';
+            td.textContent = opts.emptyText || 'No rows.';
+            tr.appendChild(td);
+            tbody.appendChild(tr);
+          }
+          for (const row of sorted) {
+            const tr = document.createElement('tr');
+            columns.forEach(c => {
+              const td = document.createElement('td');
+              if (c.numeric) td.className = 'num';
+              if (c.render) c.render(td, row); else td.textContent = esc(c.get(row));
+              tr.appendChild(td);
+            });
+            tbody.appendChild(tr);
+          }
+          table.appendChild(tbody);
+        }
+        render();
+        return { rerender: render };
+      }
+
+      async function main() {
+        let indexData, current, history;
+        try {
+          const idxRes = await fetch('./output/data-quality-index.json');
+          indexData = await idxRes.json();
+          const dates = indexData.dates || [];
+          if (!dates.length) throw new Error('No snapshots available yet.');
+          const latest = dates[dates.length - 1];
+          const recentDates = dates.slice(-6);
+          const snaps = await Promise.all(recentDates.map(d => fetch(`./output/data-quality-report-${d}.json`).then(r => r.json())));
+          history = snaps;
+          current = snaps[snaps.length - 1];
+        } catch (err) {
+          $('#qdLoading').textContent = `Couldn't load the quality report: ${err.message}`;
+          return;
+        }
+
+        $('#qdLoading').hidden = true;
+        $('#qdApp').hidden = false;
+        $('#qdSubtitle').textContent = `As of ${current.date} — ${current.totalBooks.toLocaleString()} books analyzed`;
+
+        const integ = current.integrity;
+        const findings = current.findings;
+        const prev = history.length > 1 ? history[history.length - 2] : null;
+
+        // ── At-a-glance tiles ──
+        const tileDefs = [
+          { key: 'alreadyReadInPool', label: 'Already-read books in a pool', anchor: '#tab-alreadyread', invert: true },
+          { key: 'fiveStarSignalGaps', label: '5★-read signal gaps', anchor: '#impactSection', invert: true },
+          { key: 'highLeverageGaps', label: 'High-leverage candidate gaps', anchor: '#impactSection', invert: true },
+          { key: 'selfReferential', label: 'Self-referential entries', anchor: '#tab-selfref', invert: true },
+        ];
+        const tiles = $('#qdTiles');
+        for (const def of tileDefs) {
+          const val = integ[def.key] ?? 0;
+          const prevVal = prev?.integrity?.[def.key];
+          const tile = document.createElement('a');
+          tile.href = def.anchor;
+          tile.style.textDecoration = 'none'; tile.style.color = 'inherit';
+          tile.className = `qd-tile ${val > 0 ? (def.invert ? 'status-critical' : 'status-good') : 'status-good'}`;
+          const label = document.createElement('div'); label.className = 'qd-tile-label'; label.textContent = def.label;
+          const valueRow = document.createElement('div'); valueRow.className = 'qd-tile-value';
+          const valueSpan = document.createElement('span'); valueSpan.textContent = val;
+          valueRow.appendChild(valueSpan);
+          if (prevVal != null && prevVal !== val) {
+            const delta = document.createElement('span');
+            const diff = val - prevVal;
+            delta.className = `qd-tile-delta ${diff > 0 ? 'up' : 'down'}`;
+            delta.textContent = `${diff > 0 ? '+' : ''}${diff}`;
+            valueRow.appendChild(delta);
+          }
+          tile.appendChild(label); tile.appendChild(valueRow);
+          const sparkWrap = document.createElement('div'); sparkWrap.className = 'qd-tile-spark';
+          sparkWrap.appendChild(sparkline(history.map(h => ({ date: h.date, value: h.integrity?.[def.key] ?? 0 })), { height: 32 }));
+          tile.appendChild(sparkWrap);
+          tiles.appendChild(tile);
+        }
+        // Critical fields health tile
+        const criticalLow = current.fields.filter(f => f.critical && f.scorePct < 90);
+        const healthTile = document.createElement('div');
+        healthTile.className = `qd-tile ${criticalLow.length ? 'status-critical' : 'status-good'}`;
+        healthTile.innerHTML = `<div class="qd-tile-label">Scoring-critical fields</div><div class="qd-tile-value">${criticalLow.length ? criticalLow.length + ' below threshold' : 'All healthy'}</div>`;
+        tiles.appendChild(healthTile);
+
+        // ── Multi-week trend small multiples ──
+        const trendGrid = $('#qdTrendGrid');
+        const trendMetrics = [
+          { key: 'fiveStarSignalGaps', label: '5★-read signal gaps' },
+          { key: 'alreadyReadInPool', label: 'Already-read in pool' },
+          { key: 'highLeverageGaps', label: 'High-leverage gaps' },
+          { key: 'brokenNearMissTouchingFiveStar', label: 'Broken refs touching 5★' },
+          { key: 'brokenNearMiss', label: 'Broken refs (near-miss)' },
+          { key: 'brokenOrphaned', label: 'Broken refs (orphaned)' },
+          { key: 'nonCanonicalTotal', label: 'Non-canonical theme uses' },
+        ];
+        if (history.length < 2) {
+          trendGrid.innerHTML = '<div class="qd-empty">Not enough history yet — this populates starting next week\'s snapshot.</div>';
+        } else {
+          for (const m of trendMetrics) {
+            const card = document.createElement('div'); card.className = 'qd-trend-card';
+            const values = history.map(h => ({ date: h.date, value: h.integrity?.[m.key] ?? 0 }));
+            card.innerHTML = `<h4>${m.label}</h4><div class="qd-trend-current">${values[values.length - 1].value}</div>`;
+            card.appendChild(sparkline(values, { height: 44 }));
+            trendGrid.appendChild(card);
+          }
+          for (const f of current.fields.filter(f => f.critical)) {
+            const card = document.createElement('div'); card.className = 'qd-trend-card';
+            const values = history.map(h => ({ date: h.date, value: (h.fields || []).find(x => x.field === f.field)?.scorePct ?? 0 }));
+            card.innerHTML = `<h4><code>${f.field}</code> Quality Score</h4><div class="qd-trend-current">${f.scorePct.toFixed(1)}%</div>`;
+            card.appendChild(sparkline(values, { height: 44 }));
+            trendGrid.appendChild(card);
+          }
+        }
+
+        // ── Field Population table ──
+        const fieldTable = $('#fieldTable');
+        const fieldSearch = $('#fieldSearch');
+        const criticalOnlyBtn = $('#criticalOnlyBtn');
+        let criticalOnly = false;
+        const fieldCols = [
+          { label: 'Field', get: r => r.field },
+          { label: 'Critical', get: r => r.critical ? 1 : 0, render: (td, r) => { if (r.critical) { const b = document.createElement('span'); b.className = 'qd-badge critical'; b.textContent = '★ critical'; td.appendChild(b); } } },
+          { label: 'Percent Populated', get: r => r.rawPct, numeric: true, render: (td, r) => { td.className = 'num'; td.textContent = fmtPct(r.rawPct); } },
+          { label: 'Quality Score', get: r => r.scorePct, numeric: true, render: (td, r) => { td.appendChild(scoreBadge(r.scorePct, r.critical)); td.append(` ${fmtPct(r.scorePct)}`); } },
+        ];
+        function fieldRows() {
+          const q = fieldSearch.value.trim().toLowerCase();
+          return current.fields.filter(f => (!criticalOnly || f.critical) && (!q || f.field.toLowerCase().includes(q)));
+        }
+        const fieldTableCtl = sortableTable(fieldTable, fieldCols, fieldRows(), { defaultSort: 3, defaultAsc: true });
+        function refreshFieldTable() {
+          const rows = fieldRows();
+          fieldTableCtl.rerender ? Object.assign(fieldTableCtl, sortableTable(fieldTable, fieldCols, rows, { defaultSort: 3, defaultAsc: true })) : null;
+          $('#fieldCount').textContent = `${rows.length} of ${current.fields.length} fields`;
+        }
+        fieldSearch.addEventListener('input', refreshFieldTable);
+        criticalOnlyBtn.addEventListener('click', () => { criticalOnly = !criticalOnly; criticalOnlyBtn.classList.toggle('active', criticalOnly); refreshFieldTable(); });
+        refreshFieldTable();
+
+        // ── Impact score table ──
+        const impactTable = $('#impactTable');
+        const impactSearch = $('#impactSearch');
+        const impactCols = [
+          { label: 'Title', get: r => r.title },
+          { label: 'Author', get: r => r.author },
+          { label: 'Score', get: r => r.score, numeric: true },
+          { label: 'Locations', get: r => r.locations.join(', '), render: (td, r) => { td.className = 'qd-locs'; td.textContent = r.locations.join(', '); } },
+          { label: 'Why', get: r => r.reasons.join('; '), render: (td, r) => { td.className = 'qd-reasons'; td.textContent = r.reasons.join('; '); } },
+        ];
+        function impactRows() {
+          const q = impactSearch.value.trim().toLowerCase();
+          return (findings.impactScores || []).filter(r => !q || r.title.toLowerCase().includes(q) || r.author.toLowerCase().includes(q));
+        }
+        let impactCtl = sortableTable(impactTable, impactCols, impactRows(), { defaultSort: 2, defaultAsc: false });
+        function refreshImpactTable() {
+          const rows = impactRows();
+          impactCtl = sortableTable(impactTable, impactCols, rows, { defaultSort: 2, defaultAsc: false });
+          $('#impactCount').textContent = `${rows.length} books with a nonzero impact score`;
+        }
+        impactSearch.addEventListener('input', refreshImpactTable);
+        refreshImpactTable();
+
+        // ── Data Integrity tabs ──
+        const tabDefs = [
+          { id: 'alreadyread', label: `Already-Read in Pool (${(findings.alreadyReadInPool || []).length})` },
+          { id: 'selfref', label: `Self-Referential (${(findings.selfReferentialTitle || []).length + (findings.selfReferentialAuthor || []).length})` },
+          { id: 'brokenrefs', label: `Broken References (${integ.brokenNearMiss + integ.brokenOrphaned})` },
+          { id: 'themes', label: `Non-Canonical Themes (${integ.nonCanonicalTotal})` },
+          { id: 'duplicates', label: `Duplicates (${integ.dupBookKeys + integ.dupTitleAuthor})` },
+        ];
+        const tabsEl = $('#qdTabs');
+        const panelsEl = $('#qdTabPanels');
+        tabDefs.forEach((t, i) => {
+          const btn = document.createElement('button');
+          btn.className = 'qd-tab' + (i === 0 ? ' active' : '');
+          btn.id = `tab-${t.id}`;
+          btn.textContent = t.label;
+          btn.addEventListener('click', () => {
+            tabsEl.querySelectorAll('.qd-tab').forEach(b => b.classList.remove('active'));
+            panelsEl.querySelectorAll('.qd-tabpanel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            $(`#panel-${t.id}`).classList.add('active');
+          });
+          tabsEl.appendChild(btn);
+        });
+
+        function panel(id, active, buildFn) {
+          const div = document.createElement('div');
+          div.className = 'qd-tabpanel' + (active ? ' active' : '');
+          div.id = `panel-${id}`;
+          buildFn(div);
+          panelsEl.appendChild(div);
+        }
+
+        panel('alreadyread', true, div => {
+          const table = document.createElement('table'); table.className = 'qd-table'; div.appendChild(table);
+          const wrap = document.createElement('div'); wrap.className = 'qd-table-wrap'; wrap.appendChild(table);
+          div.innerHTML = ''; div.appendChild(wrap);
+          sortableTable(table, [
+            { label: 'Title', get: r => r.title },
+            { label: 'Author', get: r => r.author },
+            { label: 'Bill\'s Rating', get: r => r.myRating, numeric: true },
+          ], findings.alreadyReadInPool || [], { emptyText: 'None found.' });
+        });
+
+        panel('selfref', false, div => {
+          const rows = [
+            ...(findings.selfReferentialTitle || []).map(r => ({ ...r, kind: 'Cites itself in similarToTitles' })),
+            ...(findings.selfReferentialAuthor || []).map(r => ({ ...r, kind: 'Lists its own author in similarToAuthors' })),
+          ];
+          const table = document.createElement('table'); table.className = 'qd-table';
+          const wrap = document.createElement('div'); wrap.className = 'qd-table-wrap'; wrap.appendChild(table);
+          div.appendChild(wrap);
+          sortableTable(table, [
+            { label: 'Title', get: r => r.title },
+            { label: 'Author', get: r => r.author },
+            { label: 'Issue', get: r => r.kind },
+          ], rows, { emptyText: 'None found.' });
+        });
+
+        panel('brokenrefs', false, div => {
+          const sub = document.createElement('div'); sub.className = 'qd-controls';
+          const nearBtn = document.createElement('button'); nearBtn.className = 'qd-toggle-btn active'; nearBtn.textContent = `Near-miss (${integ.brokenNearMiss})`;
+          const orphanBtn = document.createElement('button'); orphanBtn.className = 'qd-toggle-btn'; orphanBtn.textContent = `Orphaned (${integ.brokenOrphaned})`;
+          sub.appendChild(nearBtn); sub.appendChild(orphanBtn);
+          const search = document.createElement('input'); search.className = 'qd-search'; search.placeholder = 'Search…';
+          sub.appendChild(search);
+          div.appendChild(sub);
+          const table = document.createElement('table'); table.className = 'qd-table';
+          const wrap = document.createElement('div'); wrap.className = 'qd-table-wrap'; wrap.appendChild(table);
+          div.appendChild(wrap);
+          let mode = 'near';
+          function rows() {
+            const src = mode === 'near' ? (findings.brokenNearMiss || []) : (findings.brokenOrphaned || []);
+            const q = search.value.trim().toLowerCase();
+            return src.filter(r => !q || r.from.toLowerCase().includes(q) || r.ref.toLowerCase().includes(q));
+          }
+          function refresh() {
+            sortableTable(table, [
+              { label: 'Citing Book', get: r => r.from },
+              { label: 'Cites (broken)', get: r => r.ref },
+              ...(mode === 'near' ? [{ label: 'Touches 5★', get: r => r.touchesFiveStar ? 1 : 0, render: (td, r) => { td.textContent = r.touchesFiveStar ? '★ yes' : ''; if (r.touchesFiveStar) td.className = 'qd-flag-star'; } }] : []),
+            ], rows(), { emptyText: 'None found.' });
+          }
+          nearBtn.addEventListener('click', () => { mode = 'near'; nearBtn.classList.add('active'); orphanBtn.classList.remove('active'); refresh(); });
+          orphanBtn.addEventListener('click', () => { mode = 'orphan'; orphanBtn.classList.add('active'); nearBtn.classList.remove('active'); refresh(); });
+          search.addEventListener('input', refresh);
+          refresh();
+        });
+
+        panel('themes', false, div => {
+          if ((findings.promoteCandidates || []).length) {
+            const h = document.createElement('p'); h.className = 'qd-desc';
+            h.textContent = 'Used ≥5 times each — likely a real canonical-vocabulary gap, not a typo:';
+            div.appendChild(h);
+            const list = document.createElement('div'); list.className = 'qd-tiles';
+            for (const p of findings.promoteCandidates) {
+              const tile = document.createElement('div'); tile.className = 'qd-tile status-warning';
+              tile.innerHTML = `<div class="qd-tile-label">"${esc(p.theme)}"</div><div class="qd-tile-value">${p.count} uses</div>`;
+              list.appendChild(tile);
+            }
+            div.appendChild(list);
+          }
+          const search = document.createElement('input'); search.className = 'qd-search'; search.placeholder = 'Search…'; search.style.marginTop = '14px';
+          const controls = document.createElement('div'); controls.className = 'qd-controls'; controls.style.marginTop = '14px'; controls.appendChild(search);
+          div.appendChild(controls);
+          const table = document.createElement('table'); table.className = 'qd-table';
+          const wrap = document.createElement('div'); wrap.className = 'qd-table-wrap'; wrap.appendChild(table);
+          div.appendChild(wrap);
+          function refresh() {
+            const q = search.value.trim().toLowerCase();
+            const rows = (findings.nonCanonicalThemes || []).filter(r => !q || r.title.toLowerCase().includes(q) || r.theme.toLowerCase().includes(q));
+            sortableTable(table, [
+              { label: 'Title', get: r => r.title },
+              { label: 'Non-Canonical Theme', get: r => r.theme },
+            ], rows, { emptyText: 'None found.' });
+          }
+          search.addEventListener('input', refresh);
+          refresh();
+        });
+
+        panel('duplicates', false, div => {
+          const h1 = document.createElement('h4'); h1.textContent = `Duplicate bookKeys (${(findings.duplicateBookKeys || []).length})`; h1.style.marginBottom = '8px';
+          div.appendChild(h1);
+          const table1 = document.createElement('table'); table1.className = 'qd-table';
+          const wrap1 = document.createElement('div'); wrap1.className = 'qd-table-wrap'; wrap1.appendChild(table1);
+          div.appendChild(wrap1);
+          sortableTable(table1, [
+            { label: 'bookKey', get: r => r.key },
+            { label: 'Books', get: r => r.books.map(b => `${b.title} (${b.source}/${b.shelf})`).join('; '), render: (td, r) => { td.className = 'qd-reasons'; td.textContent = r.books.map(b => `${b.title} (${b.source}/${b.shelf})`).join('; '); } },
+          ], findings.duplicateBookKeys || [], { emptyText: 'None found.' });
+
+          const h2 = document.createElement('h4'); h2.textContent = `Duplicate title+author across sources (${(findings.duplicateTitleAuthor || []).length})`; h2.style.margin = '18px 0 8px';
+          div.appendChild(h2);
+          const table2 = document.createElement('table'); table2.className = 'qd-table';
+          const wrap2 = document.createElement('div'); wrap2.className = 'qd-table-wrap'; wrap2.appendChild(table2);
+          div.appendChild(wrap2);
+          sortableTable(table2, [
+            { label: 'Title', get: r => r.title },
+            { label: 'Author', get: r => r.author },
+            { label: 'Appears In', get: r => r.occurrences.map(o => `${o.source}/${o.shelf}`).join(', '), render: (td, r) => { td.className = 'qd-locs'; td.textContent = r.occurrences.map(o => `${o.source}/${o.shelf}`).join(', '); } },
+          ], findings.duplicateTitleAuthor || [], { emptyText: 'None found.' });
+        });
+      }
+
+      main();
+    </script>
+  </body>
+</html>
