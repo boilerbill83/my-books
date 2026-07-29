@@ -161,6 +161,31 @@
       .qd-impediment-fix strong { color: var(--accent); }
       .qd-impediment-pts { font-weight: 700; color: var(--status-critical); white-space: nowrap; font-variant-numeric: tabular-nums; }
       .qd-impediment-link { font-size: 0.78rem; }
+
+      /* ── Date range filter (one row, above everything it scopes) ── */
+      .qd-range-row { display: flex; gap: 8px; align-items: center; margin-bottom: 24px; flex-wrap: wrap; }
+      .qd-range-label { font-size: 0.78rem; color: var(--text-muted); margin-right: 4px; }
+
+      /* ── Resolved-since-last-report banner ── */
+      .qd-resolved-banner {
+        background: rgba(12,163,12,0.08); border: 1px solid rgba(12,163,12,0.3); border-radius: var(--radius);
+        padding: 14px 18px; margin-bottom: 36px; font-size: 0.85rem; color: #0a7d0a;
+      }
+      .qd-resolved-banner strong { display: block; margin-bottom: 4px; font-family: var(--font-serif); font-size: 1rem; }
+      .qd-resolved-banner ul { margin: 4px 0 0 20px; }
+
+      .qd-dial-trend { margin-top: 8px; }
+      .qd-dial-trend-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 3px; }
+
+      /* ── Responsive ── */
+      @media (max-width: 640px) {
+        .qd-impediment { grid-template-columns: 1fr auto; }
+        .qd-impediment-rank { display: none; }
+        .qd-score-section { padding: 18px; gap: 20px; }
+        .qd-dial-wrap { width: 160px; height: 160px; }
+        .qd-dial-number { font-size: 2.4rem; }
+        .qd-dial-label { font-size: 0.6rem; letter-spacing: 0.02em; padding: 0 8px; }
+      }
     </style>
   </head>
   <body>
@@ -176,7 +201,13 @@
       <div id="qdLoading" class="qd-loading">Loading quality report…</div>
       <div id="qdApp" hidden>
 
+        <div class="qd-range-row" id="qdRangeRow">
+          <span class="qd-range-label">Trend window:</span>
+        </div>
+
         <section class="qd-score-section" id="qdScoreSection"></section>
+
+        <div id="qdResolvedSection"></div>
 
         <section class="qd-section">
           <h2>At a Glance</h2>
@@ -196,6 +227,7 @@
           <div class="qd-controls">
             <input type="text" class="qd-search" id="fieldSearch" placeholder="Search fields…" />
             <button class="qd-toggle-btn" id="criticalOnlyBtn">Critical fields only</button>
+            <button class="qd-toggle-btn" id="fieldDownloadBtn">⬇ Download CSV</button>
             <span class="qd-count" id="fieldCount"></span>
           </div>
           <div class="qd-table-wrap"><table class="qd-table" id="fieldTable"></table></div>
@@ -206,6 +238,7 @@
           <p class="qd-desc">Not a raw missing-field count — weighted by whether the book is a 5★ read (foundational signal), a high-leverage candidate, or involved in an integrity issue like an already-read duplicate.</p>
           <div class="qd-controls">
             <input type="text" class="qd-search" id="impactSearch" placeholder="Search books or authors…" />
+            <button class="qd-toggle-btn" id="impactDownloadBtn">⬇ Download CSV</button>
             <span class="qd-count" id="impactCount"></span>
           </div>
           <div class="qd-table-wrap"><table class="qd-table" id="impactTable"></table></div>
@@ -353,6 +386,7 @@
 
       function renderScoreDial(qualityScore, history) {
         const section = $('#qdScoreSection');
+        section.innerHTML = '';
         const { score, components } = qualityScore;
         const tier = scoreTier(score);
         const size = 200, stroke = 18, r = (size - stroke) / 2, cx = size / 2, cy = size / 2;
@@ -364,7 +398,7 @@
 
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
-        svg.setAttribute('width', size); svg.setAttribute('height', size);
+        svg.setAttribute('width', '100%'); svg.setAttribute('height', '100%');
         svg.style.transform = 'rotate(-90deg)';
 
         const track = document.createElementNS(svg.namespaceURI, 'circle');
@@ -418,6 +452,19 @@
           }
         }
 
+        // Overall score trend (stat-tile pattern: hero number + sparkline).
+        const scoreHistory = history.filter(h => h.qualityScore).map(h => ({ date: h.date, value: h.qualityScore.score }));
+        if (scoreHistory.length > 1) {
+          const trendWrap = document.createElement('div');
+          trendWrap.className = 'qd-dial-trend';
+          const trendLabel = document.createElement('div');
+          trendLabel.className = 'qd-dial-trend-label';
+          trendLabel.textContent = 'Score trend';
+          trendWrap.appendChild(trendLabel);
+          trendWrap.appendChild(sparkline(scoreHistory, { height: 32 }));
+          componentsWrap.appendChild(trendWrap);
+        }
+
         section.appendChild(dialWrap);
         section.appendChild(componentsWrap);
       }
@@ -443,6 +490,30 @@
           card.appendChild(rank); card.appendChild(body); card.appendChild(pts);
           wrap.appendChild(card);
         });
+      }
+
+      // ── CSV export — reads whatever is currently rendered in the table
+      // (post search-filter, post sort), so the download always matches
+      // what's on screen. ──
+      function csvCell(v) {
+        const s = String(v ?? '');
+        return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+      }
+      function tableToCSV(table) {
+        const headerCells = [...table.querySelectorAll('thead th')].map(th => csvCell(th.textContent.replace(/[▾▴]/g, '').trim()));
+        const rows = [...table.querySelectorAll('tbody tr')].map(tr =>
+          [...tr.children].map(td => csvCell(td.textContent.trim())).join(',')
+        );
+        return [headerCells.join(','), ...rows].join('\n');
+      }
+      function downloadCSV(table, filename) {
+        const csv = tableToCSV(table);
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = filename;
+        document.body.appendChild(a); a.click(); a.remove();
+        URL.revokeObjectURL(url);
       }
 
       function sortableTable(table, columns, rows, opts = {}) {
@@ -496,36 +567,11 @@
         return { rerender: render };
       }
 
-      async function main() {
-        let indexData, current, history;
-        try {
-          const idxRes = await fetch('./output/data-quality-index.json');
-          indexData = await idxRes.json();
-          const dates = indexData.dates || [];
-          if (!dates.length) throw new Error('No snapshots available yet.');
-          const latest = dates[dates.length - 1];
-          const recentDates = dates.slice(-14); // 2 weeks at the current daily cadence
-          const snaps = await Promise.all(recentDates.map(d => fetch(`./output/data-quality-report-${d}.json`).then(r => r.json())));
-          history = snaps;
-          current = snaps[snaps.length - 1];
-        } catch (err) {
-          $('#qdLoading').textContent = `Couldn't load the quality report: ${err.message}`;
-          return;
-        }
-
-        $('#qdLoading').hidden = true;
-        $('#qdApp').hidden = false;
-        $('#qdSubtitle').textContent = `As of ${current.date} — ${current.totalBooks.toLocaleString()} books analyzed`;
-
+      // ── At-a-glance tiles (re-renderable — the date-range filter rebuilds
+      // this with a different history slice) ──
+      function renderTiles(current, history) {
         const integ = current.integrity;
-        const findings = current.findings;
         const prev = history.length > 1 ? history[history.length - 2] : null;
-
-        // ── Data Quality Score dial ──
-        renderScoreDial(current.qualityScore, history);
-        renderImpediments(current.qualityScore.impediments);
-
-        // ── At-a-glance tiles ──
         const tileDefs = [
           { key: 'alreadyReadInPool', label: 'Already-read books in a pool', anchor: '#tab-alreadyread', invert: true },
           { key: 'fiveStarSignalGaps', label: '5★-read signal gaps', anchor: '#impactSection', invert: true },
@@ -533,6 +579,7 @@
           { key: 'selfReferential', label: 'Self-referential entries', anchor: '#tab-selfref', invert: true },
         ];
         const tiles = $('#qdTiles');
+        tiles.innerHTML = '';
         for (const def of tileDefs) {
           const val = integ[def.key] ?? 0;
           const prevVal = prev?.integrity?.[def.key];
@@ -563,9 +610,12 @@
         healthTile.className = `qd-tile ${criticalLow.length ? 'status-critical' : 'status-good'}`;
         healthTile.innerHTML = `<div class="qd-tile-label">Scoring-critical fields</div><div class="qd-tile-value">${criticalLow.length ? criticalLow.length + ' below threshold' : 'All healthy'}</div>`;
         tiles.appendChild(healthTile);
+      }
 
-        // ── Recent trend small multiples ──
+      // ── Recent trend small multiples (re-renderable) ──
+      function renderTrendGrid(current, history) {
         const trendGrid = $('#qdTrendGrid');
+        trendGrid.innerHTML = '';
         const trendMetrics = [
           { key: 'fiveStarSignalGaps', label: '5★-read signal gaps' },
           { key: 'alreadyReadInPool', label: 'Already-read in pool' },
@@ -577,22 +627,128 @@
         ];
         if (history.length < 2) {
           trendGrid.innerHTML = '<div class="qd-empty">Not enough history yet — this populates starting with the next daily snapshot.</div>';
-        } else {
-          for (const m of trendMetrics) {
-            const card = document.createElement('div'); card.className = 'qd-trend-card';
-            const values = history.map(h => ({ date: h.date, value: h.integrity?.[m.key] ?? 0 }));
-            card.innerHTML = `<h4>${m.label}</h4><div class="qd-trend-current">${values[values.length - 1].value}</div>`;
-            card.appendChild(sparkline(values, { height: 44 }));
-            trendGrid.appendChild(card);
-          }
-          for (const f of current.fields.filter(f => f.critical)) {
-            const card = document.createElement('div'); card.className = 'qd-trend-card';
-            const values = history.map(h => ({ date: h.date, value: (h.fields || []).find(x => x.field === f.field)?.scorePct ?? 0 }));
-            card.innerHTML = `<h4><code>${f.field}</code> Quality Score</h4><div class="qd-trend-current">${f.scorePct.toFixed(1)}%</div>`;
-            card.appendChild(sparkline(values, { height: 44 }));
-            trendGrid.appendChild(card);
-          }
+          return;
         }
+        for (const m of trendMetrics) {
+          const card = document.createElement('div'); card.className = 'qd-trend-card';
+          const values = history.map(h => ({ date: h.date, value: h.integrity?.[m.key] ?? 0 }));
+          card.innerHTML = `<h4>${m.label}</h4><div class="qd-trend-current">${values[values.length - 1].value}</div>`;
+          card.appendChild(sparkline(values, { height: 44 }));
+          trendGrid.appendChild(card);
+        }
+        for (const f of current.fields.filter(f => f.critical)) {
+          const card = document.createElement('div'); card.className = 'qd-trend-card';
+          const values = history.map(h => ({ date: h.date, value: (h.fields || []).find(x => x.field === f.field)?.scorePct ?? 0 }));
+          card.innerHTML = `<h4><code>${f.field}</code> Quality Score</h4><div class="qd-trend-current">${f.scorePct.toFixed(1)}%</div>`;
+          card.appendChild(sparkline(values, { height: 44 }));
+          trendGrid.appendChild(card);
+        }
+      }
+
+      // ── Resolved-since-last-report banner — the positive counterpart to
+      // Action Items. Always compares against the TRUE immediately-prior
+      // snapshot, never the date-range filter's window, since "resolved
+      // since last report" is a fact about the last run, not a view option.
+      const RESOLVED_METRICS = [
+        { key: 'alreadyReadInPool', label: 'Already-read books in a candidate pool' },
+        { key: 'fiveStarSignalGaps', label: '5★-read signal gaps' },
+        { key: 'highLeverageGaps', label: 'High-leverage candidate gaps' },
+        { key: 'selfReferential', label: 'Self-referential entries' },
+        { key: 'brokenNearMissTouchingFiveStar', label: 'Broken refs touching a 5★ read' },
+        { key: 'brokenNearMiss', label: 'Broken similarToTitles references (near-miss)' },
+        { key: 'nonCanonicalTotal', label: 'Non-canonical theme uses' },
+        { key: 'dupBookKeys', label: 'Duplicate bookKeys' },
+        { key: 'dupTitleAuthor', label: 'Duplicate title+author entries' },
+      ];
+      function renderResolvedBanner(current, truePrev) {
+        const section = $('#qdResolvedSection');
+        section.innerHTML = '';
+        if (!truePrev) return;
+        const resolved = RESOLVED_METRICS.filter(m => {
+          const prevVal = truePrev.integrity?.[m.key];
+          const curVal = current.integrity?.[m.key];
+          return typeof prevVal === 'number' && prevVal > 0 && curVal === 0;
+        });
+        if (!resolved.length) return;
+        const banner = document.createElement('div');
+        banner.className = 'qd-resolved-banner';
+        const title = document.createElement('strong');
+        title.textContent = '✅ Resolved since last report';
+        banner.appendChild(title);
+        const ul = document.createElement('ul');
+        for (const m of resolved) {
+          const li = document.createElement('li');
+          li.textContent = `${m.label} — was ${truePrev.integrity[m.key]}, now 0`;
+          ul.appendChild(li);
+        }
+        banner.appendChild(ul);
+        section.appendChild(banner);
+      }
+
+      // ── Date-range filter — one row, above everything it scopes (score
+      // dial's trend, at-a-glance tile sparklines, trend grid). Slices the
+      // already-fetched history client-side, no refetch needed. ──
+      const RANGE_PRESETS = [
+        { label: '7d', days: 7 },
+        { label: '14d', days: 14 },
+        { label: '30d', days: 30 },
+        { label: '90d', days: 90 },
+        { label: 'All', days: Infinity },
+      ];
+      function renderRangeFilter(fullHistory, onChange) {
+        const row = $('#qdRangeRow');
+        // keep the label, drop any previously rendered buttons
+        row.querySelectorAll('.qd-toggle-btn').forEach(b => b.remove());
+        let selected = 14;
+        for (const preset of RANGE_PRESETS) {
+          const btn = document.createElement('button');
+          btn.className = 'qd-toggle-btn' + (preset.days === selected ? ' active' : '');
+          btn.textContent = preset.label;
+          btn.addEventListener('click', () => {
+            row.querySelectorAll('.qd-toggle-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selected = preset.days;
+            const sliced = preset.days === Infinity ? fullHistory : fullHistory.slice(-preset.days);
+            onChange(sliced);
+          });
+          row.appendChild(btn);
+        }
+      }
+
+      async function main() {
+        let indexData, fullHistory, current;
+        try {
+          const idxRes = await fetch('./output/data-quality-index.json');
+          indexData = await idxRes.json();
+          const dates = indexData.dates || [];
+          if (!dates.length) throw new Error('No snapshots available yet.');
+          const fetchDates = dates.slice(-100); // generous cap; UI windows (max 90d) stay within it
+          const snaps = await Promise.all(fetchDates.map(d => fetch(`./output/data-quality-report-${d}.json`).then(r => r.json())));
+          fullHistory = snaps;
+          current = snaps[snaps.length - 1];
+        } catch (err) {
+          $('#qdLoading').textContent = `Couldn't load the quality report: ${err.message}`;
+          return;
+        }
+
+        $('#qdLoading').hidden = true;
+        $('#qdApp').hidden = false;
+        $('#qdSubtitle').textContent = `As of ${current.date} — ${current.totalBooks.toLocaleString()} books analyzed`;
+
+        const integ = current.integrity;
+        const findings = current.findings;
+        const truePrev = fullHistory.length > 1 ? fullHistory[fullHistory.length - 2] : null;
+
+        function renderHistoryDependent(history) {
+          renderScoreDial(current.qualityScore, history);
+          renderTiles(current, history);
+          renderTrendGrid(current, history);
+        }
+
+        renderRangeFilter(fullHistory, renderHistoryDependent);
+        renderHistoryDependent(fullHistory.slice(-14)); // default window
+        renderResolvedBanner(current, truePrev);
+        renderImpediments(current.qualityScore.impediments);
 
         // ── Field Population table ──
         const fieldTable = $('#fieldTable');
@@ -617,6 +773,7 @@
         }
         fieldSearch.addEventListener('input', refreshFieldTable);
         criticalOnlyBtn.addEventListener('click', () => { criticalOnly = !criticalOnly; criticalOnlyBtn.classList.toggle('active', criticalOnly); refreshFieldTable(); });
+        $('#fieldDownloadBtn').addEventListener('click', () => downloadCSV(fieldTable, `field-population-${current.date}.csv`));
         refreshFieldTable();
 
         // ── Impact score table ──
@@ -640,6 +797,7 @@
           $('#impactCount').textContent = `${rows.length} books with a nonzero impact score`;
         }
         impactSearch.addEventListener('input', refreshImpactTable);
+        $('#impactDownloadBtn').addEventListener('click', () => downloadCSV(impactTable, `bbre-impact-scores-${current.date}.csv`));
         refreshImpactTable();
 
         // ── Data Integrity tabs ──
