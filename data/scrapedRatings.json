@@ -3932,5 +3932,11 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/8125RHI24JL._SX300_.jpg",
     "source": "amazon"
+  },
+  "rock*|||chuck klosterman": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found"
   }
 }
