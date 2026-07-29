@@ -4024,5 +4024,12 @@
     "coverUrl": "https://m.media-amazon.com/images/I/711m2ZIJmHL._SX300_.jpg",
     "source": "cover_only",
     "checkedAt": "2026-07-29"
+  },
+  "cancel me if you can|||dave portnoy": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
   }
 }
