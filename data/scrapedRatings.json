@@ -3639,5 +3639,390 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/8125RHI24JL._SX300_.jpg",
     "source": "amazon"
+  },
+  "the midnight feast|||lucy foley": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "anxious people|||fredrik backman": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "everywhere that mary went|||lisa scottoline": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "culpability|||bruce holsinger": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "the gone world|||tom sweterlitsch": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "a simple favor|||darcey bell": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "don't let him in|||lisa jewell": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.8,
+      "count": 34375
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/61QqyLbKiYL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-07-29"
+  },
+  "open and shut|||david rosenfelt": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "catch and kill|||ronan farrow": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "outliers|||malcolm gladwell": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "what the dog saw|||malcolm gladwell": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "the long way to a small, angry planet|||becky chambers": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "people we meet on vacation|||emily henry": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "spare|||prince harry": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "come undone|||eddie huang": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.3,
+      "count": 31
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91JgoR2z8kL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-07-29"
+  },
+  "exit party|||emily st. john mandel": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.0,
+      "count": 1
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/717wKCjeZ7L._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-07-29"
+  },
+  "famesick|||lena dunham": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "peck & peck|||bonnie garmus": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81SpBbqpUtL._SX300_.jpg",
+    "source": "cover_only",
+    "checkedAt": "2026-07-29"
+  },
+  "the break-up retreat|||camilla sten": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 3.4,
+      "count": 167
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81c11QRfVmL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-07-29"
+  },
+  "yesteryear|||caro claire burke": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "the french illusion|||john grisham": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81cHtN9fiuL._SX300_.jpg",
+    "source": "cover_only",
+    "checkedAt": "2026-07-29"
+  },
+  "how i killed pluto and why it had it coming|||mike brown": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "atonement|||ian mcewan": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "the family experiment|||john marrs": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "refund|||karen e. bender": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 3.8,
+      "count": 129
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/817-poIpMYL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-07-29"
+  },
+  "hello, goodbye, and everything in between|||jennifer e. smith": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.0,
+      "count": 340
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81igFjXoaAL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-07-29"
+  },
+  "if you can't take the heat|||michael ruhlman": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 20
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91mfHL5zGBL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-07-29"
+  },
+  "influence empire|||lulu yilun chen": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "on earth as it is on television|||emily jane": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.1,
+      "count": 418
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91cp1yLy57L._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-07-29"
+  },
+  "flying blind|||peter robison": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 1920
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/71ojCMQVuyL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-07-29"
+  },
+  "the power law|||sebastian mallaby": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.7,
+      "count": 1028
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/71WYvJXAW1L._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-07-29"
+  },
+  "a criminal justice|||william l. myers jr.": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 3066
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91QqBO8GSAL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-07-29"
+  },
+  "the wise men|||walter isaacson": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 966
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81bpdzKtLOL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-07-29"
+  },
+  "yellowface|||r.f. kuang": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "truly madly guilty|||liane moriarty": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "twas the nightshift before christmas|||adam kay": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "partners|||john grisham": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "i'll be gone in the dark|||michelle mcnamara": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "juror #3|||james patterson": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81gDGi4E8JL._SX300_.jpg",
+    "source": "cover_only",
+    "checkedAt": "2026-07-29"
+  },
+  "the body|||stephen king": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-07-29"
+  },
+  "thrilling tales of modern men|||danny mcbride": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 127
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91FKpVeqq7L._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-07-29"
+  },
+  "the american way of killing|||malcolm gladwell": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/71kMY3eXfyL._SX300_.jpg",
+    "source": "cover_only",
+    "checkedAt": "2026-07-29"
+  },
+  "up on cove mountain|||earl swift": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91OqHQNqWpL._SX300_.jpg",
+    "source": "cover_only",
+    "checkedAt": "2026-07-29"
+  },
+  "how to not die in prison|||taylor sheridan": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.2,
+      "count": 93
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81aHqtkHYAL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-07-29"
+  },
+  "the munich affair|||james  patterson": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/811jfCT+8yL._SX300_.jpg",
+    "source": "cover_only",
+    "checkedAt": "2026-07-29"
+  },
+  "rock*|||chuck klosterman": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/711m2ZIJmHL._SX300_.jpg",
+    "source": "cover_only",
+    "checkedAt": "2026-07-29"
   }
 }
