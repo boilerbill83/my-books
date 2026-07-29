@@ -5,6 +5,7 @@
   },
   "candidates": [
     {
+      "bookKey": "open-and-shut|david-rosenfelt",
       "title": "Open and Shut",
       "author": "David Rosenfelt",
       "year": 2002,
@@ -31,6 +32,7 @@
       "coverUrl": "https://books.google.com/books/content?id=Ju9PZjAUZ3gC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "the-stranger|harlan-coben",
       "title": "The Stranger",
       "author": "Harlan Coben",
       "year": 2015,
@@ -56,6 +58,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/91lUONTMRpL._SX300_.jpg"
     },
     {
+      "bookKey": "gone-for-good|harlan-coben",
       "title": "Gone for Good",
       "author": "Harlan Coben",
       "year": 2002,
@@ -82,6 +85,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/31SCCyblz8L._SX300_.jpg"
     },
     {
+      "bookKey": "in-a-dark-dark-wood|ruth-ware",
       "title": "In a Dark, Dark Wood",
       "author": "Ruth Ware",
       "year": 2015,
@@ -108,6 +112,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/A1wotZ7A13L._SX300_.jpg"
     },
     {
+      "bookKey": "the-turn-of-the-key|ruth-ware",
       "title": "The Turn of the Key",
       "author": "Ruth Ware",
       "year": 2019,
@@ -134,6 +139,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81K1CGm9QeL._SX300_.jpg"
     },
     {
+      "bookKey": "one-by-one|ruth-ware",
       "title": "One by One",
       "author": "Ruth Ware",
       "year": 2020,
@@ -161,6 +167,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/91qUuMyfp6L._SX300_.jpg"
     },
     {
+      "bookKey": "the-good-girl|mary-kubica",
       "title": "The Good Girl",
       "author": "Mary Kubica",
       "year": 2014,
@@ -186,6 +193,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/813de+01aPL._SX300_.jpg"
     },
     {
+      "bookKey": "daisy-darker|alice-feeney",
       "title": "Daisy Darker",
       "author": "Alice Feeney",
       "year": 2022,
@@ -211,6 +219,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81TlolABzxL._SX300_.jpg"
     },
     {
+      "bookKey": "red-rising|pierce-brown-2",
       "title": "Red Rising",
       "author": "Pierce Brown",
       "year": 2014,
@@ -237,6 +246,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81bbaOYIagL._SX300_.jpg"
     },
     {
+      "bookKey": "piranesi|susanna-clarke",
       "title": "Piranesi",
       "author": "Susanna Clarke",
       "year": 2020,
@@ -262,6 +272,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/91JVtEzgo8L._SX300_.jpg"
     },
     {
+      "bookKey": "the-nightingale|kristin-hannah",
       "title": "The Nightingale",
       "author": "Kristin Hannah",
       "year": 2015,
@@ -288,6 +299,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81MSoBp+PAL._SX300_.jpg"
     },
     {
+      "bookKey": "cloud-cuckoo-land|anthony-doerr",
       "title": "Cloud Cuckoo Land",
       "author": "Anthony Doerr",
       "year": 2021,
@@ -317,6 +329,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/91IV2caBbpL._SX300_.jpg"
     },
     {
+      "bookKey": "a-gentleman-in-moscow|amor-towles",
       "title": "A Gentleman in Moscow",
       "author": "Amor Towles",
       "year": 2016,
@@ -341,6 +354,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/91LkGlWO6eL._SX300_.jpg"
     },
     {
+      "bookKey": "tomorrow-and-tomorrow-and-tomorrow|gabrielle-zevin-2",
       "title": "Tomorrow and Tomorrow and Tomorrow",
       "author": "Gabrielle Zevin",
       "year": 2022,
@@ -365,6 +379,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/91Lu2eTVdWL._SX300_.jpg"
     },
     {
+      "bookKey": "in-cold-blood|truman-capote",
       "title": "In Cold Blood",
       "author": "Truman Capote",
       "year": 1966,
@@ -391,6 +406,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81eXI+N-KlL._SX300_.jpg"
     },
     {
+      "bookKey": "midnight-in-the-garden-of-good-and-evil|john-berendt",
       "title": "Midnight in the Garden of Good and Evil",
       "author": "John Berendt",
       "year": 1994,
@@ -416,6 +432,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/918XDSzEHCL._SX300_.jpg"
     },
     {
+      "bookKey": "catch-and-kill|ronan-farrow",
       "title": "Catch and Kill",
       "author": "Ronan Farrow",
       "year": 2019,
@@ -442,6 +459,7 @@
       "coverUrl": "https://books.google.com/books/content?id=2beeDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "lost-girls|robert-kolker",
       "title": "Lost Girls",
       "author": "Robert Kolker",
       "year": 2013,
@@ -471,6 +489,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81yePlRlH1L._SX300_.jpg"
     },
     {
+      "bookKey": "going-clear|lawrence-wright",
       "title": "Going Clear",
       "author": "Lawrence Wright",
       "year": 2013,
@@ -497,6 +516,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/718dlRt0c1L._SX300_.jpg"
     },
     {
+      "bookKey": "the-boys-in-the-boat|daniel-james-brown",
       "title": "The Boys in the Boat",
       "author": "Daniel James Brown",
       "year": 2013,
@@ -523,6 +543,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81uQRVpi2UL._SX300_.jpg"
     },
     {
+      "bookKey": "endurance|alfred-lansing",
       "title": "Endurance",
       "author": "Alfred Lansing",
       "year": 1959,
@@ -548,6 +569,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/61Gg1Gr2GiL._SX300_.jpg"
     },
     {
+      "bookKey": "black-hawk-down|mark-bowden",
       "title": "Black Hawk Down",
       "author": "Mark Bowden",
       "year": 1999,
@@ -574,6 +596,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/61GXkUsuC5L._SX300_.jpg"
     },
     {
+      "bookKey": "the-spy-and-the-traitor|ben-macintyre",
       "title": "The Spy and the Traitor",
       "author": "Ben Macintyre",
       "year": 2018,
@@ -599,6 +622,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/91j6ME+ohlL._SX300_.jpg"
     },
     {
+      "bookKey": "the-predators-ball|connie-bruck",
       "title": "The Predators' Ball",
       "author": "Connie Bruck",
       "year": 1988,
@@ -625,6 +649,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/61I3e1cnrHL._SX300_.jpg"
     },
     {
+      "bookKey": "the-feather-thief|kirk-wallace-johnson",
       "title": "The Feather Thief",
       "author": "Kirk Wallace Johnson",
       "year": 2018,

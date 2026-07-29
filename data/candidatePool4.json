@@ -5,6 +5,7 @@
   },
   "candidates": [
     {
+      "bookKey": "all-the-colors-of-the-dark|chris-whitaker",
       "title": "All the Colors of the Dark",
       "author": "Chris Whitaker",
       "year": 2024,
@@ -31,6 +32,7 @@
       "coverUrl": "https://books.google.com/books/content?id=01xaEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "in-the-woods|tana-french",
       "title": "In the Woods",
       "author": "Tana French",
       "year": 2007,
@@ -57,6 +59,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1562761513i/2459785.jpg"
     },
     {
+      "bookKey": "the-likeness|tana-french",
       "title": "The Likeness",
       "author": "Tana French",
       "year": 2008,
@@ -80,6 +83,7 @@
       "coverUrl": "https://books.google.com/books/content?id=xoCX8n_i6OYC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "long-bright-river|liz-moore",
       "title": "Long Bright River",
       "author": "Liz Moore",
       "year": 2020,
@@ -105,6 +109,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1555616163i/43834909.jpg"
     },
     {
+      "bookKey": "the-lincoln-lawyer|michael-connelly",
       "title": "The Lincoln Lawyer",
       "author": "Michael Connelly",
       "year": 2005,
@@ -131,6 +136,7 @@
       "coverUrl": "https://books.google.com/books/content?id=bZoibWwaSNoC&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
+      "bookKey": "my-sister-s-grave|robert-dugoni",
       "title": "My Sister's Grave",
       "author": "Robert Dugoni",
       "year": 2014,
@@ -156,6 +162,7 @@
       "coverUrl": "https://books.google.com/books/content?id=_4r7oAEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
+      "bookKey": "everywhere-that-mary-went|lisa-scottoline",
       "title": "Everywhere That Mary Went",
       "author": "Lisa Scottoline",
       "year": 1994,
@@ -181,6 +188,7 @@
       "coverUrl": "https://books.google.com/books/content?id=zLmKh8BZFsQC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "culpability|bruce-holsinger-2",
       "title": "Culpability",
       "author": "Bruce Holsinger",
       "year": 2025,
@@ -207,6 +215,7 @@
       "coverUrl": "https://books.google.com/books/content?id=61c_EQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "the-gone-world|tom-sweterlitsch",
       "title": "The Gone World",
       "author": "Tom Sweterlitsch",
       "year": 2018,
@@ -234,6 +243,7 @@
       "coverUrl": "https://books.google.com/books/content?id=FlzODgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "the-future|naomi-alderman",
       "title": "The Future",
       "author": "Naomi Alderman",
       "year": 2023,
@@ -259,6 +269,7 @@
       "coverUrl": "https://books.google.com/books/content?id=ZfFiEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "the-girl-before|jp-delaney",
       "title": "The Girl Before",
       "author": "JP Delaney",
       "year": 2016,
@@ -284,6 +295,7 @@
       "coverUrl": "https://books.google.com/books/content?id=tpn9CwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "no-exit|taylor-adams",
       "title": "No Exit",
       "author": "Taylor Adams",
       "year": 2019,
@@ -307,6 +319,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/717qVFaqdiL._SX300_.jpg"
     },
     {
+      "bookKey": "a-simple-favor|darcey-bell",
       "title": "A Simple Favor",
       "author": "Darcey Bell",
       "year": 2017,
@@ -332,6 +345,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1468422073i/29938376.jpg"
     },
     {
+      "bookKey": "you-will-never-be-me|jesse-q-sutanto",
       "title": "You Will Never Be Me",
       "author": "Jesse Q. Sutanto",
       "year": 2024,
@@ -357,6 +371,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81PmMrDEPFL._SX300_.jpg"
     },
     {
+      "bookKey": "don-t-let-him-in|lisa-jewell",
       "title": "Don't Let Him In",
       "author": "Lisa Jewell",
       "year": 2025,
@@ -382,6 +397,7 @@
       "coverUrl": "https://books.google.com/books/content?id=I8nOEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "the-twyford-code|janice-hallett",
       "title": "The Twyford Code",
       "author": "Janice Hallett",
       "year": 2022,
@@ -406,6 +422,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81IVG6J+XpL._SX300_.jpg"
     },
     {
+      "bookKey": "north-woods|daniel-mason",
       "title": "North Woods",
       "author": "Daniel Mason",
       "year": 2023,
@@ -431,6 +448,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/91C3C4KRR8L._SX300_.jpg"
     },
     {
+      "bookKey": "what-have-you-done|shari-lapena",
       "title": "What Have You Done",
       "author": "Shari Lapena",
       "year": 2024,
@@ -456,6 +474,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81IF4qljOOL._SX300_.jpg"
     },
     {
+      "bookKey": "bad-blood|john-carreyrou",
       "title": "Bad Blood",
       "author": "John Carreyrou",
       "year": 2018,
@@ -483,6 +502,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81P1xvxdBkL._SX300_.jpg"
     },
     {
+      "bookKey": "barbarians-at-the-gate|bryan-burrough",
       "title": "Barbarians at the Gate",
       "author": "Bryan Burrough",
       "year": 1989,
@@ -507,6 +527,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/418HUoFkhVL._SX300_.jpg"
     },
     {
+      "bookKey": "too-big-to-fail|andrew-ross-sorkin",
       "title": "Too Big to Fail",
       "author": "Andrew Ross Sorkin",
       "year": 2009,
@@ -531,6 +552,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81ybGr83+8L._SX300_.jpg"
     },
     {
+      "bookKey": "when-genius-failed|roger-lowenstein",
       "title": "When Genius Failed",
       "author": "Roger Lowenstein",
       "year": 2000,
@@ -556,6 +578,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/71IuJdGPf4L._SX300_.jpg"
     },
     {
+      "bookKey": "more-money-than-god|sebastian-mallaby",
       "title": "More Money Than God",
       "author": "Sebastian Mallaby",
       "year": 2010,
@@ -579,6 +602,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/91OZtXVKK1L._SX300_.jpg"
     },
     {
+      "bookKey": "killers-of-the-flower-moon|david-grann",
       "title": "Killers of the Flower Moon",
       "author": "David Grann",
       "year": 2017,

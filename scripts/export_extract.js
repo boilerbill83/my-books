@@ -13,6 +13,16 @@ const read = f => JSON.parse(fs.readFileSync(f, 'utf8'));
 const norm = s => (s || '').toString().trim().toLowerCase();
 const deriveKey = (title, author) => `${norm(title)}|||${norm(author)}`;
 
+// Mirrors scrape_ratings.py's book_key(): bare title (no subtitle/series
+// notation) + first-listed author only. scrapedRatings.json is keyed this
+// way, not by the full title, so lookups must match it exactly.
+const scrapedKey = (title, author) => {
+  let t = (title || '').toString().replace(/\s*[:({\[].*/, '').trim().toLowerCase();
+  t = t.replace(/\s*\(.*?\)\s*$/, '').trim();
+  const a = (author || '').toString().split(',')[0].trim().toLowerCase();
+  return `${t}|||${a}`;
+};
+
 const goodreads = read('data/goodreadsData.json');
 const feedback = read('data/feedbackData.json');
 let enrichedMeta = {};
@@ -51,8 +61,11 @@ for (const cr of currentlyReading) {
 const extract = rows.map(b => {
   const key = b.bookKey || deriveKey(b.title, b.author);
   const meta = enrichedMeta[key] || {};
-  const ratings = scrapedRatings[deriveKey(b.title, b.author)] || {};
+  const ratings = scrapedRatings[scrapedKey(b.title, b.author)] || {};
   const fb = feedbackByKey.get(key);
+  const goodreadsUrl = b.goodreadsUrl
+    || (b.bookId ? `https://www.goodreads.com/book/show/${b.bookId}` : '')
+    || (b.title ? `https://www.goodreads.com/search?q=${encodeURIComponent(`${b.title} ${b.author || ''}`.trim())}` : '');
 
   return {
     bookKey: key,
@@ -67,10 +80,9 @@ const extract = rows.map(b => {
     avgRating: b.avgRating ?? '',
     ratingsCount: b.ratingsCount ?? '',
     googleRating: b.googleRating ?? meta.googleRating ?? '',
-    googleRatingsCount: b.googleRatingsCount ?? '',
+    googleRatingsCount: b.googleRatingsCount ?? meta.googleRatingsCount ?? '',
     amazonRating: ratings.amazon?.rating ?? '',
     amazonRatingsCount: ratings.amazon?.count ?? '',
-    storyGraphRating: ratings.storyGraph?.rating ?? '',
     isbn: b.isbn || '',
     isbn13: b.isbn13 || '',
     publisher: b.publisher || '',
@@ -87,7 +99,7 @@ const extract = rows.map(b => {
     dismissed: fb ? Boolean(fb.excludeFromRecommendations) : false,
     dismissReason: fb?.reasonLabel || '',
     coverUrl: b.coverUrl || '',
-    goodreadsUrl: b.goodreadsUrl || '',
+    goodreadsUrl,
     top10: Boolean(b.top10),
   };
 });

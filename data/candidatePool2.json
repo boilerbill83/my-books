@@ -4,6 +4,7 @@
   },
   "candidates": [
     {
+      "bookKey": "a-calamity-of-souls|david-baldacci",
       "title": "A Calamity of Souls",
       "author": "David Baldacci",
       "year": 2024,
@@ -31,6 +32,7 @@
       "coverUrl": "https://books.google.com/books/content?id=LuXUEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "suspect|scott-turow",
       "title": "Suspect",
       "author": "Scott Turow",
       "year": 2022,
@@ -58,6 +60,7 @@
       "coverUrl": "https://books.google.com/books/content?id=dFVgEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "southern-man|greg-iles",
       "title": "Southern Man",
       "author": "Greg Iles",
       "year": 2024,
@@ -84,6 +87,7 @@
       "coverUrl": "https://books.google.com/books/content?id=tDI_EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "goodbye-girl|james-grippando",
       "title": "Goodbye Girl",
       "author": "James Grippando",
       "year": 2024,
@@ -111,6 +115,7 @@
       "coverUrl": "https://books.google.com/books/content?id=y7C4EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "the-waiting|michael-connelly",
       "title": "The Waiting",
       "author": "Michael Connelly",
       "year": 2024,
@@ -135,6 +140,7 @@
       "coverUrl": "https://books.google.com/books/content?id=th_xEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "desert-star|michael-connelly",
       "title": "Desert Star",
       "author": "Michael Connelly",
       "year": 2022,
@@ -160,6 +166,7 @@
       "coverUrl": "https://books.google.com/books/content?id=iJdZEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "the-lightning-rod|brad-meltzer",
       "title": "The Lightning Rod",
       "author": "Brad Meltzer",
       "year": 2022,
@@ -186,6 +193,7 @@
       "coverUrl": "https://books.google.com/books/content?id=NH81EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "all-the-sinners-bleed|s-a-cosby",
       "title": "All the Sinners Bleed",
       "author": "S.A. Cosby",
       "year": 2023,
@@ -213,6 +221,7 @@
       "ratingsCount": 55000
     },
     {
+      "bookKey": "bright-young-women|jessica-knoll",
       "title": "Bright Young Women",
       "author": "Jessica Knoll",
       "year": 2023,
@@ -240,6 +249,7 @@
       "coverUrl": "https://books.google.com/books/content?id=sk-tEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "the-it-girl|ruth-ware",
       "title": "The It Girl",
       "author": "Ruth Ware",
       "year": 2022,
@@ -266,6 +276,7 @@
       "coverUrl": "https://books.google.com/books/content?id=nndTEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "one-perfect-couple|ruth-ware",
       "title": "One Perfect Couple",
       "author": "Ruth Ware",
       "year": 2024,
@@ -291,6 +302,7 @@
       "coverUrl": "https://books.google.com/books/content?id=9s8DEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "the-midnight-feast|lucy-foley",
       "title": "The Midnight Feast",
       "author": "Lucy Foley",
       "year": 2024,
@@ -315,6 +327,7 @@
       "coverUrl": "https://books.google.com/books/content?id=0PzcEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "what-happened-to-nina|dervla-mctiernan",
       "title": "What Happened to Nina?",
       "author": "Dervla McTiernan",
       "year": 2024,
@@ -340,6 +353,7 @@
       "coverUrl": "https://books.google.com/books/content?id=i0vCEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "house-of-glass|sarah-pekkanen",
       "title": "House of Glass",
       "author": "Sarah Pekkanen",
       "year": 2024,
@@ -364,6 +378,7 @@
       "coverUrl": "https://books.google.com/books/content?id=4nXTEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "my-husband|maud-ventura",
       "title": "My Husband",
       "author": "Maud Ventura",
       "year": 2023,
@@ -388,6 +403,7 @@
       "coverUrl": "https://books.google.com/books/content?id=Q42UEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "say-nothing-a-true-story-of-murder-and-memory-in-northern-ireland|patrick-radden-keefe",
       "title": "Say Nothing: A True Story of Murder and Memory in Northern Ireland",
       "author": "Patrick Radden Keefe",
       "year": 2019,
@@ -414,6 +430,7 @@
       "coverUrl": "https://books.google.com/books/content?id=Qw1aDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "master-slave-husband-wife-an-epic-journey-from-slavery-to-freedom|ilyon-woo",
       "title": "Master Slave Husband Wife: An Epic Journey from Slavery to Freedom",
       "author": "Ilyon Woo",
       "year": 2023,
@@ -438,6 +455,7 @@
       "coverUrl": "https://books.google.com/books/content?id=jCfqEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "the-covenant-of-water|abraham-verghese",
       "title": "The Covenant of Water",
       "author": "Abraham Verghese",
       "year": 2023,
@@ -462,6 +480,7 @@
       "coverUrl": "https://books.google.com/books/content?id=_MO5EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "the-women|kristin-hannah",
       "title": "The Women",
       "author": "Kristin Hannah",
       "year": 2024,
@@ -488,6 +507,7 @@
       "coverUrl": "https://books.google.com/books/content?id=0Ua4EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "the-frozen-river|ariel-lawhon",
       "title": "The Frozen River",
       "author": "Ariel Lawhon",
       "year": 2023,
@@ -514,6 +534,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1730395034i/112975658.jpg"
     },
     {
+      "bookKey": "james|percival-everett",
       "title": "James",
       "author": "Percival Everett",
       "year": 2024,
@@ -538,6 +559,7 @@
       "coverUrl": "https://books.google.com/books/content?id=SevFEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "hello-beautiful|ann-napolitano",
       "title": "Hello Beautiful",
       "author": "Ann Napolitano",
       "year": 2023,
@@ -563,6 +585,7 @@
       "coverUrl": "https://books.google.com/books/content?id=J7Z9EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "the-heaven-earth-grocery-store|james-mcbride-2",
       "title": "The Heaven & Earth Grocery Store",
       "author": "James McBride",
       "year": 2023,
@@ -589,6 +612,7 @@
       "coverUrl": "https://books.google.com/books/content?id=meOgEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "number-go-up-inside-crypto-s-wild-rise-and-staggering-fall|zeke-faux-2",
       "title": "Number Go Up: Inside Crypto's Wild Rise and Staggering Fall",
       "author": "Zeke Faux",
       "year": 2023,
@@ -614,6 +638,7 @@
       "ratingsCount": 30000
     },
     {
+      "bookKey": "the-chaos-machine-the-inside-story-of-how-social-media-rewired-our-minds-and-our-world|max-fisher",
       "title": "The Chaos Machine: The Inside Story of How Social Media Rewired Our Minds and Our World",
       "author": "Max Fisher",
       "year": 2022,

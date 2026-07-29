@@ -4,6 +4,7 @@
   },
   "candidates": [
     {
+      "bookKey": "what-happened-to-the-bennetts|lisa-scottoline",
       "title": "What Happened to the Bennetts",
       "author": "Lisa Scottoline",
       "year": 2022,
@@ -29,6 +30,7 @@
       "coverUrl": "https://books.google.com/books/content?id=YkGREAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
+      "bookKey": "motion-to-suppress|perri-o-shaughnessy",
       "title": "Motion to Suppress",
       "author": "Perri O'Shaughnessy",
       "year": 1995,
@@ -54,6 +56,7 @@
       "coverUrl": "https://books.google.com/books/content?id=aLyt6LL5SFQC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "invasion-of-privacy|perri-o-shaughnessy",
       "title": "Invasion of Privacy",
       "author": "Perri O'Shaughnessy",
       "year": 1996,
@@ -80,6 +83,7 @@
       "coverUrl": "https://books.google.com/books/content?id=txbl6TAEcKMC&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
+      "bookKey": "blood-defense|marcia-clark",
       "title": "Blood Defense",
       "author": "Marcia Clark",
       "year": 2016,
@@ -105,6 +109,7 @@
       "coverUrl": "https://books.google.com/books/content?id=H2J1jgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
+      "bookKey": "defending-jacob|william-landay",
       "title": "Defending Jacob",
       "author": "William Landay",
       "year": 2012,
@@ -130,6 +135,7 @@
       "coverUrl": "https://books.google.com/books/content?id=sTaLDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "the-good-daughter|karin-slaughter",
       "title": "The Good Daughter",
       "author": "Karin Slaughter",
       "year": 2017,
@@ -156,6 +162,7 @@
       "coverUrl": "https://books.google.com/books/content?id=hQrYswEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
+      "bookKey": "pretty-girls|karin-slaughter",
       "title": "Pretty Girls",
       "author": "Karin Slaughter",
       "year": 2015,
@@ -182,6 +189,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1432205734i/25574782.jpg"
     },
     {
+      "bookKey": "i-let-you-go|clare-mackintosh",
       "title": "I Let You Go",
       "author": "Clare Mackintosh",
       "year": 2014,
@@ -206,6 +214,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1474522974i/30689367.jpg"
     },
     {
+      "bookKey": "strange-sally-diamond|liz-nugent",
       "title": "Strange Sally Diamond",
       "author": "Liz Nugent",
       "year": 2023,
@@ -230,6 +239,7 @@
       "coverUrl": "https://books.google.com/books/content?id=kR-UEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "house-of-correction|nicci-french",
       "title": "House of Correction",
       "author": "Nicci French",
       "year": 2020,
@@ -256,6 +266,7 @@
       "coverUrl": "https://books.google.com/books/content?id=nifqDwAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
+      "bookKey": "the-7-deaths-of-evelyn-hardcastle|stuart-turton",
       "title": "The 7\u00bd Deaths of Evelyn Hardcastle",
       "author": "Stuart Turton",
       "year": 2018,
@@ -281,6 +292,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1506896221i/36337550.jpg"
     },
     {
+      "bookKey": "haven-t-they-grown|sophie-hannah",
       "title": "Haven't They Grown",
       "author": "Sophie Hannah",
       "year": 2020,
@@ -306,6 +318,7 @@
       "coverUrl": "https://books.google.com/books/content?id=kMkTuwEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
+      "bookKey": "all-systems-red|martha-wells",
       "title": "All Systems Red",
       "author": "Martha Wells",
       "year": 2017,
@@ -332,6 +345,7 @@
       "coverUrl": "https://books.google.com/books/content?id=ZSu2DQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "the-fifth-season|n-k-jemisin",
       "title": "The Fifth Season",
       "author": "N.K. Jemisin",
       "year": 2015,
@@ -355,6 +369,7 @@
       "coverUrl": "https://books.google.com/books/content?id=1-X5jgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
+      "bookKey": "alien-clay|adrian-tchaikovsky",
       "title": "Alien Clay",
       "author": "Adrian Tchaikovsky",
       "year": 2024,
@@ -380,6 +395,7 @@
       "coverUrl": "https://books.google.com/books/content?id=xj3dEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "book-lovers|emily-henry",
       "title": "Book Lovers",
       "author": "Emily Henry",
       "year": 2022,
@@ -404,6 +420,7 @@
       "coverUrl": "https://books.google.com/books/content?id=ht7EEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
+      "bookKey": "happy-place|emily-henry",
       "title": "Happy Place",
       "author": "Emily Henry",
       "year": 2023,
@@ -427,6 +444,7 @@
       "coverUrl": "https://books.google.com/books/content?id=EObnEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "funny-story|emily-henry",
       "title": "Funny Story",
       "author": "Emily Henry",
       "year": 2024,
@@ -451,6 +469,7 @@
       "coverUrl": "https://books.google.com/books/content?id=wcHMEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "anxious-people|fredrik-backman",
       "title": "Anxious People",
       "author": "Fredrik Backman",
       "year": 2019,
@@ -475,6 +494,7 @@
       "coverUrl": "https://books.google.com/books/content?id=PMr2DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "think-again|adam-grant",
       "title": "Think Again",
       "author": "Adam Grant",
       "year": 2021,
@@ -499,6 +519,7 @@
       "coverUrl": "https://books.google.com/books/content?id=-5SezQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
+      "bookKey": "hidden-potential|adam-grant",
       "title": "Hidden Potential",
       "author": "Adam Grant",
       "year": 2023,
@@ -523,6 +544,7 @@
       "coverUrl": "https://books.google.com/books/content?id=u1u_EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "supercommunicators|charles-duhigg",
       "title": "Supercommunicators",
       "author": "Charles Duhigg",
       "year": 2024,
@@ -547,6 +569,7 @@
       "ratingsCount": 25000
     },
     {
+      "bookKey": "masters-of-doom|david-kushner",
       "title": "Masters of Doom",
       "author": "David Kushner",
       "year": 2003,
@@ -572,6 +595,7 @@
       "coverUrl": "https://books.google.com/books/content?id=yyaxyKjyp2YC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "the-splendid-and-the-vile|erik-larson",
       "title": "The Splendid and the Vile",
       "author": "Erik Larson",
       "year": 2020,
@@ -599,6 +623,7 @@
       "coverUrl": "https://books.google.com/books/content?id=v9LMDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "destiny-of-the-republic|candice-millard",
       "title": "Destiny of the Republic",
       "author": "Candice Millard",
       "year": 2011,
@@ -625,6 +650,7 @@
       "coverUrl": "https://books.google.com/books/content?id=Gss_INMTZQIC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
+      "bookKey": "hidden-valley-road|robert-kolker",
       "title": "Hidden Valley Road",
       "author": "Robert Kolker",
       "year": 2020,

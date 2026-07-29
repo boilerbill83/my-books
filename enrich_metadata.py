@@ -64,6 +64,7 @@ def google_books(title, author, isbn13):
                     'description': desc[:2000],
                     'categories': info.get('categories') or [],
                     'googleRating': info.get('averageRating'),
+                    'googleRatingsCount': info.get('ratingsCount'),
                 }
     return {}
 
