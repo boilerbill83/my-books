@@ -79,8 +79,6 @@ const extract = rows.map(b => {
     myRating: b.myRating ?? '',
     avgRating: b.avgRating ?? '',
     ratingsCount: b.ratingsCount ?? '',
-    googleRating: b.googleRating ?? meta.googleRating ?? '',
-    googleRatingsCount: b.googleRatingsCount ?? meta.googleRatingsCount ?? '',
     amazonRating: ratings.amazon?.rating ?? '',
     amazonRatingsCount: ratings.amazon?.count ?? '',
     isbn: b.isbn || '',

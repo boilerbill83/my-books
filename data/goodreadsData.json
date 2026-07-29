@@ -52,8 +52,6 @@
         "procedural",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -139,9 +137,7 @@
         "procedural",
         "tense",
         "plot-driven"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "clusterf-ck|brian-o-sullivan",
@@ -349,8 +345,6 @@
         "narrative-driven",
         "accessible"
       ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 6,
       "coverUrl": "https://m.media-amazon.com/images/I/61S4h+a8PRL._SX300_.jpg"
     },
     {
@@ -475,8 +469,6 @@
         "conversational",
         "humorous"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/91JgoR2z8kL._SX300_.jpg"
     },
     {
@@ -515,8 +507,6 @@
         "melancholic",
         "character-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=agyHEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -558,8 +548,6 @@
         "tense",
         "plot-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/81S-zsvHfhL._SX300_.jpg"
     },
     {
@@ -638,8 +626,6 @@
         "conversational",
         "accessible"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/81XQpXyXRHL._SX300_.jpg"
     },
     {
@@ -763,8 +749,6 @@
         "tense",
         "gritty"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/81eCWsc+T5L._SX300_.jpg"
     },
     {
@@ -845,8 +829,6 @@
         "narrative-driven",
         "investigative"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/810D7Vp29KL._SX300_.jpg"
     },
     {
@@ -885,8 +867,6 @@
         "humorous",
         "melancholic"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=-P-BEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -927,8 +907,6 @@
         "dark",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/71KwUwAGKlL._SX300_.jpg"
     },
     {
@@ -968,9 +946,7 @@
         "fast-paced",
         "investigative",
         "narrative-driven"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "the-divorce|freida-mcfadden",
@@ -1011,9 +987,7 @@
         "fast-paced",
         "twisty",
         "dark"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "peck-peck|bonnie-garmus",
@@ -1052,8 +1026,6 @@
         "character-driven",
         "slow-burn"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/81Z8qRkK6wL._SX300_.jpg"
     },
     {
@@ -1094,8 +1066,6 @@
         "conversational",
         "accessible"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/81J4qXB8ckL._SX300_.jpg"
     },
     {
@@ -1136,8 +1106,6 @@
         "character-driven",
         "melancholic"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -1177,8 +1145,6 @@
         "narrative-driven",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -1219,8 +1185,6 @@
         "tense",
         "cat-and-mouse"
       ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 20,
       "top10": true
     },
     {
@@ -1261,8 +1225,6 @@
         "tense",
         "twisty"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/81Og5EqlbkL._SX300_.jpg"
     },
     {
@@ -1346,8 +1308,6 @@
         "tense",
         "plot-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/81cR0jlGNFL._SX300_.jpg"
     },
     {
@@ -1388,8 +1348,6 @@
         "melancholic",
         "slow-burn"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/71iqazY0DEL._SX300_.jpg"
     },
     {
@@ -1428,8 +1386,6 @@
         "narrative-driven",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1749394011l/235992561._SY475_.jpg"
     },
     {
@@ -1468,8 +1424,6 @@
         "conversational",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/81kWfQNvzqL._SX300_.jpg"
     },
     {
@@ -1510,8 +1464,6 @@
         "twisty",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/81WI7ejwr2L._SX300_.jpg"
     },
     {
@@ -1552,8 +1504,6 @@
         "twisty",
         "procedural"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/71vfuGmGkAL._SX300_.jpg"
     },
     {
@@ -1592,8 +1542,6 @@
         "atmospheric",
         "humorous"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/61MdSSjgpoL._SX300_.jpg"
     },
     {
@@ -1633,8 +1581,6 @@
         "melancholic",
         "slow-burn"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=WPlrEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -1676,9 +1622,7 @@
         "procedural",
         "plot-driven",
         "tense"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "she-didn-t-see-it-coming|shari-lapena",
@@ -1763,8 +1707,6 @@
         "dark",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -1803,8 +1745,6 @@
         "investigative",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/71UsOBohZeL._SX300_.jpg"
     },
     {
@@ -1847,8 +1787,6 @@
         "accessible",
         "inspiring"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -1887,8 +1825,6 @@
         "dark",
         "revelatory"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/71O6OBA+gjL._SX300_.jpg"
     },
     {
@@ -1968,8 +1904,6 @@
         "dark",
         "revelatory"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/71YpHJ6vWAL._SX300_.jpg"
     },
     {
@@ -2053,8 +1987,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/91DXVH3TqRL._SX300_.jpg"
     },
     {
@@ -2094,8 +2026,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": 3.0,
-      "googleRatingsCount": 2,
       "top10": true
     },
     {
@@ -2134,8 +2064,6 @@
         "narrative-driven",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/81V1KWJL5xL._SX300_.jpg"
     },
     {
@@ -2175,8 +2103,6 @@
         "narrative-driven",
         "dark"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/91NmOh1gpZL._SX300_.jpg"
     },
     {
@@ -2218,9 +2144,7 @@
         "narrative-driven",
         "inspiring",
         "character-study"
-      ],
-      "googleRating": 3.5,
-      "googleRatingsCount": 4
+      ]
     },
     {
       "bookKey": "the-final-score|don-winslow",
@@ -2260,8 +2184,6 @@
         "gritty",
         "character-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/91LZTzdAl-L._SX300_.jpg"
     },
     {
@@ -2559,8 +2481,6 @@
         "character-driven",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/716TrbmqWaL._SX300_.jpg"
     },
     {
@@ -2644,8 +2564,6 @@
         "dark",
         "unreliable-narrator"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -2685,8 +2603,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/91Y5tD+3iRL._SX300_.jpg"
     },
     {
@@ -2727,8 +2643,6 @@
         "twisty",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/81CRxjuTB6L._SX300_.jpg"
     },
     {
@@ -2768,8 +2682,6 @@
         "conversational",
         "accessible"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -2811,8 +2723,6 @@
         "gritty",
         "procedural"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -2854,8 +2764,6 @@
         "humorous",
         "conversational"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -2894,8 +2802,6 @@
         "tense",
         "dark"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -2935,8 +2841,6 @@
         "atmospheric",
         "heartwarming"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://s.gr-assets.com/assets/nophoto/book/111x148-675b3b2743c83e96e2540d2929d5f4d2.png"
     },
     {
@@ -2975,8 +2879,6 @@
         "dark",
         "accessible"
       ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 5,
       "coverUrl": "https://m.media-amazon.com/images/I/51jEG+V+NrL._SX300_.jpg"
     },
     {
@@ -3018,8 +2920,6 @@
         "tense",
         "plot-driven"
       ],
-      "googleRating": 4.5,
-      "googleRatingsCount": 2,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1644100235i/58920609.jpg"
     },
     {
@@ -3058,8 +2958,6 @@
         "fast-paced",
         "accessible"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/81NdM46erJL._SX300_.jpg"
     },
     {
@@ -3100,9 +2998,7 @@
         "twisty",
         "dark",
         "atmospheric"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "the-age-of-ai-and-our-human-future|henry-kissinger",
@@ -3139,8 +3035,6 @@
         "dense",
         "polemic"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1634645375l/56620811.jpg"
     },
     {
@@ -3183,9 +3077,7 @@
         "twisty",
         "unreliable-narrator",
         "tense"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "children-of-time|adrian-tchaikovsky",
@@ -3224,8 +3116,6 @@
         "atmospheric",
         "slow-burn"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -3303,8 +3193,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": 2.5,
-      "googleRatingsCount": 2,
       "coverUrl": "https://m.media-amazon.com/images/I/816-80H7rwL._SX300_.jpg"
     },
     {
@@ -3510,8 +3398,6 @@
         "cat-and-mouse",
         "plot-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/81S6PQlkAfL._SX300_.jpg"
     },
     {
@@ -3552,8 +3438,6 @@
         "procedural",
         "whodunit"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/71ujW-xxTiL._SX300_.jpg"
     },
     {
@@ -3592,8 +3476,6 @@
         "accessible",
         "character-study"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -3677,8 +3559,6 @@
         "fast-paced",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -3719,9 +3599,7 @@
         "plot-driven",
         "compulsive",
         "investigative"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "the-compound|aisling-rawle",
@@ -3762,8 +3640,6 @@
         "dark",
         "character-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/81Ouv7ZpPgL._SX300_.jpg"
     },
     {
@@ -3846,8 +3722,6 @@
         "investigative",
         "accessible"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -3975,8 +3849,6 @@
         "accessible",
         "character-study"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1738777598l/220377436._SY475_.jpg"
     },
     {
@@ -4100,8 +3972,6 @@
         "procedural",
         "whodunit"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -4141,8 +4011,6 @@
         "character-study",
         "atmospheric"
       ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 55,
       "coverUrl": "https://books.google.com/books/content?id=OSfpEJpJzrIC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -4223,8 +4091,6 @@
         "procedural",
         "whodunit"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=P5S9EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -4306,8 +4172,6 @@
         "character-driven",
         "twisty"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=rpLxEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -4432,8 +4296,6 @@
         "dark",
         "disturbing"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=2rFg0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -4473,8 +4335,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 1,
       "coverUrl": "https://books.google.com/books/content?id=75RVEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -4514,8 +4374,6 @@
         "melancholic",
         "character-study"
       ],
-      "googleRating": 3.5,
-      "googleRatingsCount": 4,
       "coverUrl": "https://books.google.com/books/content?id=VXp3l0ZXZscC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -4555,8 +4413,6 @@
         "atmospheric",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=TmeLzgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -4597,8 +4453,6 @@
         "atmospheric",
         "heartwarming"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=0j1MEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -4721,8 +4575,6 @@
         "narrative-driven",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=HH2-EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -4762,8 +4614,6 @@
         "accessible",
         "character-study"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=MYTPEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -4806,8 +4656,6 @@
         "revelatory",
         "polemic"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -9065,9 +8913,7 @@
         "fast-paced",
         "tense",
         "procedural"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "the-thursday-murder-club|richard-osman",
@@ -9105,8 +8951,6 @@
         "whodunit",
         "heartwarming"
       ],
-      "googleRating": 3.0,
-      "googleRatingsCount": 1,
       "coverUrl": "https://books.google.com/books/content?id=q7yZDwAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -9227,8 +9071,6 @@
         "atmospheric",
         "heartwarming"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=54ThEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9268,8 +9110,6 @@
         "fast-paced",
         "disturbing"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=icGWEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9311,8 +9151,6 @@
         "slow-burn",
         "dark"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=8tUnEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9351,8 +9189,6 @@
         "immersive-journalism",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=NlMQEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9392,8 +9228,6 @@
         "humorous",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=YK8sEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9432,8 +9266,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=__o8EQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9473,8 +9305,6 @@
         "accessible",
         "character-study"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=Iow-EQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9557,8 +9387,6 @@
         "procedural",
         "whodunit"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=2FwoEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9598,8 +9426,6 @@
         "slow-burn",
         "atmospheric"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -9723,8 +9549,6 @@
         "atmospheric",
         "heartwarming"
       ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 1,
       "coverUrl": "https://books.google.com/books/content?id=mXLuvf9410MC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9765,9 +9589,7 @@
         "dark",
         "character-driven",
         "slow-burn"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "pearl-harbor-warning-and-decision|roberta-wohlstetter",
@@ -9807,8 +9629,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=pO4JxYdXP04C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9848,8 +9668,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=KmO8DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9888,8 +9706,6 @@
         "accessible",
         "character-study"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1733544911l/218695859._SY475_.jpg"
     },
     {
@@ -9932,9 +9748,7 @@
         "twisty",
         "unreliable-narrator",
         "tense"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "accidentally-on-purpose|kristen-kish",
@@ -9972,8 +9786,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=_o4cEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10015,8 +9827,6 @@
         "dark",
         "disturbing"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=9sJVEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10058,8 +9868,6 @@
         "dark",
         "disturbing"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=PXInEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10100,8 +9908,6 @@
         "dark",
         "disturbing"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=ixjdEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10142,8 +9948,6 @@
         "dark",
         "character-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=qF9-J2VEFksC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10229,9 +10033,7 @@
         "twisty",
         "unreliable-narrator",
         "tense"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "the-perfect-assassin|james-patterson",
@@ -10353,8 +10155,6 @@
         "tense",
         "plot-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=07onEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10437,8 +10237,6 @@
         "fast-paced",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=r4-iEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10478,8 +10276,6 @@
         "tense",
         "dark"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=5wcAEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10519,8 +10315,6 @@
         "narrative-driven",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=cpwgEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10604,8 +10398,6 @@
         "procedural",
         "whodunit"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=3TmPEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -10684,8 +10476,6 @@
         "narrative-driven",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=ywJD6s64ErgC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10770,8 +10560,6 @@
         "gritty",
         "character-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=D8tkDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10811,8 +10599,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=4Lw2DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10853,8 +10639,6 @@
         "humorous",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=hfglEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10894,8 +10678,6 @@
         "tense",
         "dark"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -10938,8 +10720,6 @@
         "dark",
         "procedural"
       ],
-      "googleRating": 4.5,
-      "googleRatingsCount": 2,
       "coverUrl": "https://books.google.com/books/content?id=Mu_yDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10980,8 +10760,6 @@
         "twisty",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=ZGA9DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -11105,8 +10883,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": 3.0,
-      "googleRatingsCount": 1,
       "coverUrl": "https://books.google.com/books/content?id=W_2KDQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -11146,8 +10922,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=b07VAgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -11273,8 +11047,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": 3.0,
-      "googleRatingsCount": 1,
       "coverUrl": "https://books.google.com/books/content?id=1g60MM3ogpAC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -11315,8 +11087,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=n-sTEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -11356,8 +11126,6 @@
         "character-study",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=mBniCwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -11481,8 +11249,6 @@
         "atmospheric",
         "heartwarming"
       ],
-      "googleRating": 4.5,
-      "googleRatingsCount": 282,
       "coverUrl": "https://books.google.com/books/content?id=xFNG764pnOgC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -11521,8 +11287,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=MyAUEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -11647,8 +11411,6 @@
         "investigative",
         "disturbing"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=2zmlEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -11688,8 +11450,6 @@
         "conversational",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=C573EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -11729,8 +11489,6 @@
         "procedural",
         "whodunit"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=-Y2UEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -11816,9 +11574,7 @@
         "twisty",
         "dark",
         "compulsive"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "th1rt3en|steve-cavanagh",
@@ -11859,8 +11615,6 @@
         "procedural",
         "compulsive"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1505068558l/36217425._SY475_.jpg"
     },
     {
@@ -11899,9 +11653,7 @@
         "twisty",
         "unreliable-narrator",
         "tense"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "razorblade-tears|s-a-cosby",
@@ -11941,8 +11693,6 @@
         "gritty",
         "character-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=Tlz2DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -11984,8 +11734,6 @@
         "procedural",
         "whodunit"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=cgV3EQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -12110,8 +11858,6 @@
         "character-driven",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=SpIrEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -12194,8 +11940,6 @@
         "narrative-driven",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=Xh2rEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -12277,8 +12021,6 @@
         "tense",
         "dark"
       ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 2,
       "coverUrl": "https://books.google.com/books/content?id=DD-691FFuQUC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -12319,8 +12061,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=dlnKEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -12569,8 +12309,6 @@
         "fast-paced",
         "character-driven"
       ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 1,
       "coverUrl": "https://books.google.com/books/content?id=GXYH1C_esq0C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -12652,8 +12390,6 @@
         "heartwarming",
         "dual-timeline"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=-9DPEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -12693,8 +12429,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=K5jLEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -12815,8 +12549,6 @@
         "whodunit",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717373740l/214172333._SY475_.jpg"
     },
     {
@@ -12857,8 +12589,6 @@
         "character-study",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=DYryEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -12898,8 +12628,6 @@
         "inspiring",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=h2_8EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -12938,8 +12666,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=ZGjyEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -13021,8 +12747,6 @@
         "humorous",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=zkpqfz00tAcC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -13103,8 +12827,6 @@
         "atmospheric",
         "heartwarming"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=Bxpn0AEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -13144,8 +12866,6 @@
         "character-driven",
         "atmospheric"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=INP0EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -13183,8 +12903,6 @@
         "slow-burn",
         "atmospheric"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=ifn3EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -13225,8 +12943,6 @@
         "atmospheric",
         "humorous"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=Wvw_0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -13436,8 +13152,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=0N3f0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -13522,8 +13236,6 @@
         "procedural",
         "whodunit"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=OytAEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -13562,8 +13274,6 @@
         "slow-burn",
         "atmospheric"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=psQd0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -13688,8 +13398,6 @@
         "character-driven",
         "humorous"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=SU_0EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -13812,8 +13520,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/I/91AR39AbCgL._SX300_.jpg"
     },
     {
@@ -13976,8 +13682,6 @@
         "accessible",
         "polemic"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=ylvsEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -14226,8 +13930,6 @@
         "character-driven",
         "humorous"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1698860711l/201251602._SY475_.jpg"
     },
     {
@@ -14351,8 +14053,6 @@
         "atmospheric",
         "character-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=fUAdDgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -14392,8 +14092,6 @@
         "atmospheric",
         "dark"
       ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 1,
       "coverUrl": "https://books.google.com/books/content?id=NKasHN-C2_4C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -14432,8 +14130,6 @@
         "procedural",
         "whodunit"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=HKv8EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -14475,8 +14171,6 @@
         "slow-burn",
         "atmospheric"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=TYbREAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -14598,8 +14292,6 @@
         "atmospheric",
         "character-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=VA7uDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -14641,8 +14333,6 @@
         "dark",
         "character-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=DopEEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -14724,8 +14414,6 @@
         "accessible",
         "conversational"
       ],
-      "googleRating": 2.5,
-      "googleRatingsCount": 2,
       "coverUrl": "https://books.google.com/books/content?id=xmU6ArretQ8C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -14964,8 +14652,6 @@
         "tense",
         "dark"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=ck-a0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -15005,8 +14691,6 @@
         "atmospheric",
         "slow-burn"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1710517586l/209608728.jpg"
     },
     {
@@ -15044,8 +14728,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1703798624l/203020280._SY475_.jpg"
     },
     {
@@ -15084,8 +14766,6 @@
         "accessible",
         "character-study"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=D9nADQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15126,8 +14806,6 @@
         "whodunit",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=iCFeDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15166,8 +14844,6 @@
         "conversational",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=1euouQAACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -15288,8 +14964,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=0CH0EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15328,8 +15002,6 @@
         "accessible",
         "character-study"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=NNzUEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15368,8 +15040,6 @@
         "tense",
         "dark"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=ASJNEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15410,8 +15080,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 1,
       "coverUrl": "https://books.google.com/books/content?id=bLudBAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15451,8 +15119,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=QY33EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15572,8 +15238,6 @@
         "conversational",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=sEZMJwAACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -15655,9 +15319,7 @@
         "dark",
         "character-driven",
         "fast-paced"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "refund-stories|karen-e-bender",
@@ -15695,8 +15357,6 @@
         "slow-burn",
         "atmospheric"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=r94REAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15860,8 +15520,6 @@
         "slow-burn",
         "atmospheric"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=8ogQBgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15901,8 +15559,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=MXUiEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15942,8 +15598,6 @@
         "investigative",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1657976165l/61467835._SY475_.jpg"
     },
     {
@@ -15985,8 +15639,6 @@
         "character-driven",
         "humorous"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=LBwW0AEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -16069,8 +15721,6 @@
         "revelatory",
         "immersive-journalism"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=T88LEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -16235,8 +15885,6 @@
         "narrative-driven",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=a3YsEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -16520,8 +16168,6 @@
         "tense",
         "plot-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=6U_WwwEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -16561,8 +16207,6 @@
         "tense",
         "plot-driven"
       ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 1,
       "coverUrl": "https://books.google.com/books/content?id=BJCvtQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -16726,8 +16370,6 @@
         "inspiring",
         "character-study"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "top10": true
     },
     {
@@ -16768,9 +16410,7 @@
         "dense",
         "narrative-driven",
         "accessible"
-      ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 1
+      ]
     },
     {
       "bookKey": "yellowface|r-f-kuang",
@@ -16810,8 +16450,6 @@
         "fast-paced",
         "slow-burn"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=iJPhEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -16852,8 +16490,6 @@
         "humorous",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=RIK2DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -16893,8 +16529,6 @@
         "atmospheric",
         "heartwarming"
       ],
-      "googleRating": 4.5,
-      "googleRatingsCount": 2,
       "coverUrl": "https://books.google.com/books/content?id=mlWJ9VSoPMUC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -16936,8 +16570,6 @@
         "character-driven",
         "humorous"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=8wf7DwAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -16977,8 +16609,6 @@
         "atmospheric",
         "humorous"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=wnAmBgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17020,8 +16650,6 @@
         "slow-burn",
         "dark"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=IkyhEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17061,8 +16689,6 @@
         "humorous",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=YkvzEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17103,8 +16729,6 @@
         "atmospheric",
         "heartwarming"
       ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 1,
       "coverUrl": "https://books.google.com/books/content?id=CeosDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17146,9 +16770,7 @@
         "dark",
         "character-driven",
         "fast-paced"
-      ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 1
+      ]
     },
     {
       "bookKey": "truly-madly-guilty|liane-moriarty",
@@ -17190,8 +16812,6 @@
         "fast-paced",
         "slow-burn"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=o9-UCgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17231,8 +16851,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=qyWlEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17273,8 +16891,6 @@
         "tense",
         "dark"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=DQS-zQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -17315,8 +16931,6 @@
         "tense",
         "dark"
       ],
-      "googleRating": 3.0,
-      "googleRatingsCount": 1,
       "coverUrl": "https://books.google.com/books/content?id=CND3DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17358,8 +16972,6 @@
         "tense",
         "dark"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=4WY-DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17480,8 +17092,6 @@
         "immersive-journalism",
         "atmospheric"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=qVu_EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17521,8 +17131,6 @@
         "accessible",
         "conversational"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=iCTGEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17561,8 +17169,6 @@
         "slow-burn",
         "atmospheric"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=aDi4EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17602,8 +17208,6 @@
         "humorous",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=Xjasgu7430UC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17643,8 +17247,6 @@
         "narrative-driven",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=hy5bCwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17686,9 +17288,7 @@
         "dark",
         "character-driven",
         "fast-paced"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "the-rocket-that-fell-to-earth-roger-clemens-and-the-rage-for-baseball-immortality|jeff-pearlman",
@@ -17729,8 +17329,6 @@
         "investigative",
         "character-study"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=6Q74lgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -17771,8 +17369,6 @@
         "dark",
         "atmospheric"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1684763144i/123206645.jpg"
     },
     {
@@ -17812,8 +17408,6 @@
         "humorous",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1574878671i/42660463.jpg"
     },
     {
@@ -17853,8 +17447,6 @@
         "character-driven",
         "slow-burn"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=yLZIygEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -17896,8 +17488,6 @@
         "slow-burn",
         "atmospheric"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=G3SkEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -17937,8 +17527,6 @@
         "humorous",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=wEbMEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18017,8 +17605,6 @@
         "atmospheric",
         "character-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=QyiwEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18097,8 +17683,6 @@
         "narrative-driven",
         "dark"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=IHaqEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18140,8 +17724,6 @@
         "fast-paced",
         "slow-burn"
       ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 1,
       "coverUrl": "https://books.google.com/books/content?id=UHL_mO1zFxoC&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -18182,9 +17764,7 @@
         "dark",
         "character-driven",
         "fast-paced"
-      ],
-      "googleRating": 3.5,
-      "googleRatingsCount": 2
+      ]
     },
     {
       "bookKey": "the-road|cormac-mccarthy",
@@ -18344,8 +17924,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=6Rj4zgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -18385,8 +17963,6 @@
         "character-study",
         "atmospheric"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=4jIaEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18511,8 +18087,6 @@
         "narrative-driven",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=AndwEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18551,8 +18125,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=IJAZEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18635,8 +18207,6 @@
         "atmospheric",
         "heartwarming"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=HfK5zwEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -18757,8 +18327,6 @@
         "investigative",
         "atmospheric"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=XAgPEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18799,8 +18367,6 @@
         "tense",
         "plot-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=O_wBEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18839,8 +18405,6 @@
         "satirical",
         "atmospheric"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=i0IiXCIxYowC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18881,8 +18445,6 @@
         "character-driven",
         "humorous"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=7I8ZEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18963,8 +18525,6 @@
         "whodunit",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=fOxRxwEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -19090,9 +18650,7 @@
         "procedural",
         "plot-driven",
         "tense"
-      ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 1
+      ]
     },
     {
       "bookKey": "the-mountain-in-the-sea|ray-nayler",
@@ -19131,8 +18689,6 @@
         "atmospheric",
         "character-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=q49VEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -19250,8 +18806,6 @@
         "fast-paced",
         "immersive-journalism"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=bSyEEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -19331,8 +18885,6 @@
         "narrative-driven",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=FFdrEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -19374,8 +18926,6 @@
         "investigative",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=B7iREAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -19455,8 +19005,6 @@
         "humorous",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=k1pTEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -19786,9 +19334,7 @@
         "dark",
         "character-driven",
         "slow-burn"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "my-name-is-lucy-barton|elizabeth-strout",
@@ -19945,8 +19491,6 @@
         "accessible",
         "character-study"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=XjomPQAACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -19986,8 +19530,6 @@
         "fast-paced",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=VP7xEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -20068,8 +19610,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 1,
       "coverUrl": "https://books.google.com/books/content?id=VhPF-DstSKsC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -20190,8 +19730,6 @@
         "slow-burn",
         "dark"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=SXyqPwAACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -20437,8 +19975,6 @@
         "narrative-driven",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=uC0rEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -20686,8 +20222,6 @@
         "dark",
         "procedural"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=RcdrEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -20970,8 +20504,6 @@
         "accessible",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=ErUdEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -21168,8 +20700,6 @@
         "humorous",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=aV83EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -21208,8 +20738,6 @@
         "narrative-driven",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=fxcjEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -21291,8 +20819,6 @@
         "investigative",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=FUQniqgB3wAC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -21374,8 +20900,6 @@
         "investigative",
         "character-study"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=FyaT4hC9DDwC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -21904,8 +21428,6 @@
         "tense",
         "multiple-pov"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=rCU3EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -22023,8 +21545,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=5yEzEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -22104,8 +21624,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": 4.5,
-      "googleRatingsCount": 2,
       "coverUrl": "https://books.google.com/books/content?id=Vx6CHHo8pz8C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -22144,8 +21662,6 @@
         "immersive-journalism",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=6mJmvUl6UCwC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -22185,8 +21701,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=JA1SEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -22265,8 +21779,6 @@
         "character-driven",
         "atmospheric"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=nDArEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -22388,9 +21900,7 @@
         "fast-paced",
         "dark",
         "atmospheric"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "i-ll-be-gone-in-the-dark-one-woman-s-obsessive-search-for-the-golden-state-killer|michelle-mcnamara",
@@ -22429,8 +21939,6 @@
         "personal",
         "immersive-journalism"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=aSZHDwAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -22470,8 +21978,6 @@
         "dark",
         "procedural"
       ],
-      "googleRating": 3.5,
-      "googleRatingsCount": 6,
       "coverUrl": "https://books.google.com/books/content?id=2v6ZDQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -22551,8 +22057,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=UkW02QxybzQC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -22592,8 +22096,6 @@
         "investigative",
         "revelatory"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=u1lEzgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -22918,8 +22420,6 @@
         "tense",
         "plot-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=adKaRCzY2owC&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -23122,8 +22622,6 @@
         "dark",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=o44oEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -23246,8 +22744,6 @@
         "procedural",
         "whodunit"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=pTUzEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -23329,8 +22825,6 @@
         "humorous",
         "narrative-driven"
       ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 1,
       "coverUrl": "https://books.google.com/books/content?id=mf0qEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -23412,8 +22906,6 @@
         "narrative-driven",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=4gBJzQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -23495,8 +22987,6 @@
         "gritty",
         "procedural"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=V9G1DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -23655,8 +23145,6 @@
         "narrative-driven",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=YUAzEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -23861,8 +23349,6 @@
         "dark",
         "disturbing"
       ],
-      "googleRating": 4.5,
-      "googleRatingsCount": 69,
       "coverUrl": "https://books.google.com/books/content?id=Yu3SuiqituMC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -23901,8 +23387,6 @@
         "heartwarming",
         "accessible"
       ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 1,
       "coverUrl": "https://books.google.com/books/content?id=yoZGEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -23983,9 +23467,7 @@
         "plot-driven",
         "compulsive",
         "procedural"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "a-slow-fire-burning|paula-hawkins",
@@ -24065,8 +23547,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=WO5nEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -24185,8 +23665,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": 3.0,
-      "googleRatingsCount": 3,
       "coverUrl": "https://books.google.com/books/content?id=oup6iagfox8C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -24226,8 +23704,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1374635033i/17331327.jpg"
     },
     {
@@ -24306,8 +23782,6 @@
         "fast-paced",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=aOkdzgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -24385,8 +23859,6 @@
         "immersive-journalism",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=N-lqxAEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -24506,8 +23978,6 @@
         "atmospheric",
         "character-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=yJeKzgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -24708,8 +24178,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=d7691ImvK7YC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -24914,8 +24382,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=Aeu3UYUtLokC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -24954,8 +24420,6 @@
         "accessible",
         "character-study"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=SbmdDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -25078,8 +24542,6 @@
         "fast-paced",
         "tense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=JGMrEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -25322,8 +24784,6 @@
         "accessible",
         "slow-burn"
       ],
-      "googleRating": 3.0,
-      "googleRatingsCount": 1,
       "coverUrl": "https://books.google.com/books/content?id=OwA7BAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -25363,8 +24823,6 @@
         "narrative-driven",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=KdXcEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -25600,8 +25058,6 @@
         "narrative-driven",
         "conversational"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=WN7fDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -25682,8 +25138,6 @@
         "humorous",
         "narrative-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1571127808l/52894214.jpg"
     },
     {
@@ -25723,8 +25177,6 @@
         "accessible",
         "character-study"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=MlmaygEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -25845,8 +25297,6 @@
         "conversational",
         "accessible"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=CFZLDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -25965,8 +25415,6 @@
         "accessible",
         "conversational"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=fStEEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -26006,8 +25454,6 @@
         "accessible",
         "character-study"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=wPXhCwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -26047,8 +25493,6 @@
         "investigative",
         "disturbing"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1439088374i/2936415.jpg"
     },
     {
@@ -26088,8 +25532,6 @@
         "accessible",
         "personal"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=dcjcDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -26129,8 +25571,6 @@
         "tense",
         "plot-driven"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=o8dezQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -26537,9 +25977,7 @@
         "conversational",
         "accessible",
         "narrative-driven"
-      ],
-      "googleRating": 4.0,
-      "googleRatingsCount": 9
+      ]
     },
     {
       "bookKey": "the-visible-man|chuck-klosterman",
@@ -26580,9 +26018,7 @@
         "conversational",
         "accessible",
         "slow-burn"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "downtown-owl|chuck-klosterman",
@@ -26622,9 +26058,7 @@
         "conversational",
         "accessible",
         "character-driven"
-      ],
-      "googleRating": null,
-      "googleRatingsCount": null
+      ]
     },
     {
       "bookKey": "fargo-rock-city-a-heavy-metal-odyssey-in-rural-north-dakota|chuck-klosterman",
@@ -26664,9 +26098,7 @@
         "conversational",
         "accessible",
         "character-study"
-      ],
-      "googleRating": 4.5,
-      "googleRatingsCount": 3
+      ]
     },
     {
       "bookKey": "yes-chef|marcus-samuelsson",
@@ -26746,8 +26178,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=uXxaDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -26787,8 +26217,6 @@
         "accessible",
         "dense"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=bxahDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -26868,8 +26296,6 @@
         "character-driven",
         "fast-paced"
       ],
-      "googleRating": null,
-      "googleRatingsCount": null,
       "coverUrl": "https://books.google.com/books/content?id=zfmsDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
