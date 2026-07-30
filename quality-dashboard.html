@@ -177,6 +177,31 @@
       .qd-dial-trend { margin-top: 8px; }
       .qd-dial-trend-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 3px; }
 
+      /* ── Roadmap to 100 ── */
+      .qd-roadmap-phase {
+        display: grid; grid-template-columns: 92px 1fr; gap: 18px; align-items: start;
+        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+        padding: 16px 18px; box-shadow: var(--shadow); position: relative;
+      }
+      /* Grid items default to min-width:auto, which ignores overflow-wrap on
+         descendants and lets a long unbroken token force the track wider
+         than its 1fr share — min-width:0 lets it actually shrink. */
+      .qd-roadmap-phase > div { min-width: 0; }
+      .qd-roadmap-phase + .qd-roadmap-phase { margin-top: 0; }
+      .qd-roadmap-connector { width: 2px; height: 16px; background: var(--border); margin: 0 0 0 45px; }
+      .qd-roadmap-score { text-align: center; padding-top: 2px; }
+      .qd-roadmap-score-num { font-family: var(--font-sans); font-weight: 700; font-size: 1.7rem; line-height: 1; }
+      .qd-roadmap-score-delta { font-size: 0.7rem; color: var(--text-muted); margin-top: 3px; white-space: nowrap; }
+      .qd-roadmap-label { font-family: var(--font-serif); font-weight: 700; font-size: 1.02rem; color: var(--text); margin-bottom: 8px; }
+      .qd-roadmap-actions { font-size: 0.83rem; color: var(--text-muted); margin: 0; padding-left: 18px; overflow-wrap: break-word; }
+      .qd-roadmap-actions li { margin-bottom: 5px; }
+      .qd-roadmap-bottomline {
+        margin-top: 4px; padding: 14px 18px; background: var(--bg-subtle); border-radius: var(--radius);
+        font-size: 0.85rem; color: var(--text);
+      }
+      .qd-roadmap-bottomline strong { color: var(--accent); }
+      .qd-roadmap-phase.is-ceiling { border-style: dashed; }
+
       /* ── Responsive ── */
       @media (max-width: 640px) {
         .qd-impediment { grid-template-columns: 1fr auto; }
@@ -185,6 +210,9 @@
         .qd-dial-wrap { width: 160px; height: 160px; }
         .qd-dial-number { font-size: 2.4rem; }
         .qd-dial-label { font-size: 0.6rem; letter-spacing: 0.02em; padding: 0 8px; }
+        .qd-roadmap-phase { grid-template-columns: 1fr; }
+        .qd-roadmap-score { text-align: left; display: flex; align-items: baseline; gap: 8px; }
+        .qd-roadmap-connector { display: none; }
       }
     </style>
   </head>
@@ -254,6 +282,12 @@
           <h2 id="impedimentsHeading">Top Impediments to a Perfect Data Quality Score</h2>
           <p class="qd-desc">Ranked by estimated points lost from the 100-point score above — not raw counts. A large low-weight count can matter less than a small count in a higher-weighted category.</p>
           <div id="qdImpediments"></div>
+        </section>
+
+        <section class="qd-section" id="roadmapSection">
+          <h2>Roadmap to 100</h2>
+          <p class="qd-desc">A phased, cumulative plan from the current score to a perfect one. Each phase's projected score is <em>simulated</em> by re-running the real scoring formula against a hypothetical fixed-state — not a hand-typed estimate.</p>
+          <div id="qdRoadmap"></div>
         </section>
 
       </div>
@@ -490,6 +524,68 @@
           card.appendChild(rank); card.appendChild(body); card.appendChild(pts);
           wrap.appendChild(card);
         });
+      }
+
+      // ── Roadmap to 100 — a vertical sequence of cumulative phase cards,
+      // each showing the simulated projected score if that phase (and every
+      // phase before it) were completed. The final "ceiling" phase is
+      // visually distinguished (dashed border) since it requires external
+      // data-source coverage this project doesn't control. ──
+      function renderRoadmap(roadmap) {
+        const wrap = $('#qdRoadmap');
+        wrap.innerHTML = '';
+        if (!roadmap || !roadmap.length) {
+          wrap.innerHTML = '<div class="qd-empty">No roadmap data in this snapshot.</div>';
+          return;
+        }
+        const baseScore = roadmap[0].score;
+        roadmap.forEach((phase, i) => {
+          if (i > 0) {
+            const connector = document.createElement('div');
+            connector.className = 'qd-roadmap-connector';
+            wrap.appendChild(connector);
+          }
+          const card = document.createElement('div');
+          card.className = 'qd-roadmap-phase' + (phase.key === 'ceiling' ? ' is-ceiling' : '');
+
+          const scoreCol = document.createElement('div');
+          scoreCol.className = 'qd-roadmap-score';
+          const tier = scoreTier(phase.score);
+          const num = document.createElement('div');
+          num.className = 'qd-roadmap-score-num';
+          num.style.color = tier.color;
+          num.textContent = phase.score;
+          const delta = document.createElement('div');
+          delta.className = 'qd-roadmap-score-delta';
+          delta.textContent = i === 0 ? 'current' : `+${phase.score - baseScore} pts`;
+          scoreCol.appendChild(num);
+          scoreCol.appendChild(delta);
+
+          const body = document.createElement('div');
+          const label = document.createElement('div');
+          label.className = 'qd-roadmap-label';
+          label.textContent = phase.label;
+          body.appendChild(label);
+          if (phase.actions && phase.actions.length) {
+            const ul = document.createElement('ul');
+            ul.className = 'qd-roadmap-actions';
+            phase.actions.forEach(a => {
+              const li = document.createElement('li');
+              li.textContent = a;
+              ul.appendChild(li);
+            });
+            body.appendChild(ul);
+          }
+
+          card.appendChild(scoreCol);
+          card.appendChild(body);
+          wrap.appendChild(card);
+        });
+
+        const bottomLine = document.createElement('div');
+        bottomLine.className = 'qd-roadmap-bottomline';
+        bottomLine.innerHTML = '<strong>Bottom line:</strong> the phase before "Theoretical ceiling" is the realistic practical target for this dataset — the ceiling phase requires subjects/categories coverage from Open Library and Google Books that retrying with current logic does not close, plus resolving a long tail of ~300 singly-cited orphaned references with steeply diminishing returns.';
+        wrap.appendChild(bottomLine);
       }
 
       // ── CSV export — reads whatever is currently rendered in the table
@@ -749,6 +845,7 @@
         renderHistoryDependent(fullHistory.slice(-14)); // default window
         renderResolvedBanner(current, truePrev);
         renderImpediments(current.qualityScore.impediments);
+        renderRoadmap(current.roadmap);
 
         // ── Field Population table ──
         const fieldTable = $('#fieldTable');

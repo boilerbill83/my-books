@@ -223,3 +223,41 @@ Ranked by estimated points lost from the 100-point score above — not raw count
 4. **Duplicate book entries** (−0.5 pts)
    5 duplicate group(s) (same bookKey or same title+author appearing more than once) — a duplicated 5★ read double-counts its themes/citations toward every scoring signal built from it.
    **Fix:** Merge or remove the duplicate entry, keeping the more complete record.
+
+## Roadmap to 100
+
+A phased, cumulative plan from the current score to a perfect one. Each phase's projected score is *simulated* by re-running the actual scoring formula on a hypothetical fixed-state, not hand-estimated — see `buildRoadmap()` in this script. Full breakdown and phase-by-phase visual in [quality-dashboard.html](../quality-dashboard.html#roadmapSection).
+
+**Current** — projected score: 65/100
+
+
+**Phase 1 — Quick data-entry fixes** — projected score: 71/100 (+6 from current)
+- Correct the ~35 genuine candidate-to-candidate subtitle-truncation near-misses (same fix pattern as the 35 already corrected for 5★-touching refs) — e.g. "Just Mercy" → "Just Mercy: A Story of Justice and Redemption" (4 citing books), "Moneyball" → full title (5 citing books).
+- Fix 2 abbreviated self-citations found during this analysis: "The Origins of the Cornbread Mafia" and "Twilight of the Gods" each cite their own short-form title in similarToTitles — same bug class as Session 14's self-referential fixes, just missed because the abbreviation doesn't normalize to an exact title match.
+- Tighten findNearMatch() further: several of the 52 remaining near-misses are still false positives from coincidental word-prefix collisions ("The Road to Somewhere"→"The Road", "Superintelligence"→an unrelated book with "Superintelligence" in its subtitle) — reclassifying these to orphaned is more accurate, not a score loss, since they were never real matches.
+- Merge/remove the 5 duplicate-book groups (to-read books also sitting in a candidate pool — "Listen for the Lie," "The One," "Endurance," "Culpability").
+- Backfill dismissReason labels for the handful of dismissed books that have a reasonCode but no label — a small, finite, fully in-house fix.
+- Close the last-mile gaps on similarToAuthors/themes/similarToTitles/ratingsCount — a small number of books account for the remaining ~1% below 100%.
+
+**Phase 2 — Add the top 30 missing books** — projected score: 75/100 (+10 from current)
+- Add the 30 most-frequently-cited missing books as real candidate-pool entries with full "Perfect Book Entry" data (pages, avgRating, ratingsCount, themes, similarToTitles, similarToAuthors per CLAUDE.md's quality standard) — resolves 99 of 463 orphaned citations (21%) from just 30 additions.
+- Top of the list: "Blood, Bones, and Butter" (cited by 20 different food-memoir books — by far the single highest-leverage addition), "Kitchen Confidential" (7), "The Midrange Theory" (5), "Dreamland" and "The New Jim Crow" (4 each).
+- Each addition directly serves the BBRE-quality goal too — these are books the existing library already implicitly vouches for by citing them repeatedly as "similar," so they're likely to be good recommendations once added, not just data-quality filler.
+
+**Phase 3 — Add the next-tier missing books (top 100)** — projected score: 79/100 (+14 from current)
+- Extend Phase 2 to the next ~70 most-cited missing titles (cumulative top 100), reaching 186 of 463 citations resolved (40%).
+- Beyond this point, each further addition resolves only 1 citation (330 of the 377 unique orphaned titles are cited exactly once) — genuinely diminishing returns, not a reason to stop, but a reason to expect this phase to taper off rather than reach zero.
+
+**Phase 4 — Automation catch-up + targeted backfills** — projected score: 85/100 (+20 from current)
+- amazonRating/amazonRatingsCount (currently 92.4%) will keep rising via the existing 5x/day scrape-ratings.yml with its Session 13d retry cooldown — no new work, just time.
+- description/metadataFetchedAt backlog (currently 99.7-99.8%) clears at 150/day via enrich-metadata.yml — already nearly done.
+- Run tag-books.yml (built in an earlier session but never used — needs the ANTHROPIC_API_KEY repo secret) to tag tones on the candidate-pool books it was built for — tones is 84% populated almost entirely because that job has never run.
+- Extend enrich_isbn.py's scope to also backfill read-shelf isbn13 (currently to-read/candidate-only by design) and backfill publisher gaps via the Google Books lookup already used elsewhere.
+- dateRead and isbn gaps are partially legacy-import artifacts — worth a manual pass, but likely can't fully close (some original Goodreads exports may genuinely lack the field).
+
+**Theoretical ceiling (literal 100)** — projected score: 100/100 (+35 from current)
+- Literal 100/100 requires subjects and categories to reach 100% — but both depend on Open Library and Google Books actually having that data for every book. Per the Field Population table's own notes, retrying with current logic does not close these; they need either a different data source or accepting a lower ceiling.
+- It also requires resolving all 463 orphaned refs, including the ~300 singly-cited long tail — likely only practical by editorially replacing unresolvable "flavor" citations with a real similar book, not by adding hundreds of marginal entries to the dataset.
+- Realistic assessment: Phase 4 is probably the practical ceiling for this dataset without a new data source, not Phase 5.
+
+**Bottom line:** Phase 4 is the realistic practical ceiling for this dataset without a new external data source — subjects (Open Library) and categories (Google Books) genuinely cap below 100% no matter how much this project retries them with current logic, and the ~300 singly-cited orphaned references are a long tail with steeply diminishing returns past Phase 3.
