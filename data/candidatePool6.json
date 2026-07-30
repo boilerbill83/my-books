@@ -14,7 +14,6 @@
         "finance"
       ],
       "similarToAuthors": [
-        "Michael Lewis",
         "Ben Mezrich"
       ],
       "similarToTitles": [
@@ -43,7 +42,6 @@
         "history"
       ],
       "similarToAuthors": [
-        "Michael Lewis",
         "Ben Mezrich"
       ],
       "similarToTitles": [
@@ -158,7 +156,6 @@
         "history"
       ],
       "similarToAuthors": [
-        "Jeff Pearlman",
         "Jack McCallum"
       ],
       "similarToTitles": [
@@ -187,7 +184,6 @@
         "history"
       ],
       "similarToAuthors": [
-        "David Grann",
         "Erik Larson"
       ],
       "similarToTitles": [
@@ -216,7 +212,6 @@
         "history"
       ],
       "similarToAuthors": [
-        "Patrick Radden Keefe",
         "Michael Lewis"
       ],
       "similarToTitles": [
@@ -272,7 +267,6 @@
         "psychology"
       ],
       "similarToAuthors": [
-        "Malcolm Gladwell",
         "Michael Lewis"
       ],
       "similarToTitles": [
@@ -300,7 +294,6 @@
         "psychology"
       ],
       "similarToAuthors": [
-        "Malcolm Gladwell",
         "Michael Lewis"
       ],
       "similarToTitles": [
@@ -1162,33 +1155,6 @@
       "buyUrl": "https://www.amazon.com/dp/0062966561",
       "coverUrl": "https://m.media-amazon.com/images/I/91QKBe2VZCL._SX300_.jpg",
       "isbn13": "9780063023390"
-    },
-    {
-      "title": "All the Light We Cannot See",
-      "author": "Anthony Doerr",
-      "type": "fiction",
-      "year": 2014,
-      "pages": 531,
-      "avgRating": 4.33,
-      "ratingsCount": 900000,
-      "themes": [
-        "historical",
-        "literary"
-      ],
-      "similarToAuthors": [
-        "David Nicholls",
-        "Kristin Hannah"
-      ],
-      "similarToTitles": [
-        "The Glass Castle",
-        "The Invisible Life of Addie LaRue",
-        "Beautiful World, Where Are You"
-      ],
-      "bookKey": "/works/OL17354823W",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/18143977-all-the-light-we-cannot-see",
-      "buyUrl": "https://www.amazon.com/dp/1476746583",
-      "coverUrl": "https://m.media-amazon.com/images/I/81WY6M9XikL._SX300_.jpg",
-      "isbn13": "9781476746586"
     },
     {
       "title": "The Overstory",

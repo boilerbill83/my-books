@@ -19,10 +19,14 @@ import path from 'path';
 import { loadAllBooks, norm } from './lib/loadData.js';
 
 // Keep in sync with CLAUDE.md's "Canonical theme vocabulary" section.
+// "legal"/"courtroom" promoted to canonical (Session 14) — 142 combined uses,
+// well past the ≥5 promotion threshold, and already load-bearing in app.js's
+// THEME_MACROS "Legal" filter chip.
 const CANONICAL_THEMES = new Set([
   'thriller', 'psychological', 'suspense', 'domestic suspense', 'mystery', 'crime',
   'noir', 'horror', 'high-concept', 'spy', 'adventure', 'historical', 'YA', 'romance',
-  'literary', 'contemporary', 'speculative', 'sci-fi', 'social commentary',
+  'literary', 'contemporary', 'speculative', 'sci-fi', 'social commentary', 'legal',
+  'courtroom',
   'narrative nonfiction', 'memoir', 'biography', 'true crime', 'history', 'tech history',
   'finance', 'business', 'sports', 'food', 'music history', 'political', 'military',
   'psychology', 'humor', 'comedy',
@@ -313,11 +317,26 @@ function findHighLeverageGaps() {
 // the field is naming a *different* similar author) rather than a
 // completeness gap.
 function findSelfReferential() {
+  // A normalized title can collide across two genuinely different books
+  // (engineNorm strips series/edition notation — e.g. "Behind Closed Doors"
+  // by B.A. Paris vs. "Behind Closed Doors (Behind Closed Doors, #1)" by
+  // Lisa Renee Jones both normalize to the same string). In that case a
+  // citation matching the normalized title may legitimately resolve to the
+  // *other* book, not itself — only flag a title self-citation when the
+  // normalized title is unambiguous (exactly one book in the dataset has it).
+  const titleGroups = new Map();
+  for (const r of rows) {
+    const nt = engineNorm(r.title);
+    if (!titleGroups.has(nt)) titleGroups.set(nt, new Set());
+    titleGroups.get(nt).add(`${norm(r.title)}|${norm(r.author)}`);
+  }
+
   const selfTitle = [];
   const selfAuthor = [];
   for (const r of rows) {
     const nt = engineNorm(r.title);
-    if (r.similarToTitles.some(t => engineNorm(t) === nt)) {
+    const unambiguous = titleGroups.get(nt).size === 1;
+    if (unambiguous && r.similarToTitles.some(t => engineNorm(t) === nt)) {
       selfTitle.push({ title: r.title, author: r.author });
     }
     const na = norm(r.author);
@@ -369,17 +388,26 @@ function findBrokenSimilarToTitles() {
     byLength.get(t.length).push(t);
   }
 
+  // Session 14: both thresholds were tuned by hand-checking every match —
+  // the originals (substring length >=5, flat Levenshtein <=3) produced
+  // confident-looking but wrong matches on short titles ("Grant" is a
+  // substring of "flagrant"; "It"/"We"/"Joe" are Levenshtein-2 from "Me").
+  // Auditing all 28 pre-fix Levenshtein hits found exactly one real catch
+  // (a "The"/"A" + comma variant on a 34-char title) and 27 false positives
+  // on short, unrelated titles — so short strings no longer qualify at all.
   function findNearMatch(nt) {
     const substringMatch = titleList.find(candidate =>
-      candidate.length >= 5 && nt.length >= 5 &&
+      candidate.length >= 8 && nt.length >= 8 &&
       (candidate.includes(nt) || nt.includes(candidate))
     );
     if (substringMatch) return substringMatch;
+    if (nt.length < 15) return null; // too short for edit-distance to mean anything
+    const maxDist = Math.floor(nt.length * 0.10);
     for (let len = nt.length - 3; len <= nt.length + 3; len++) {
       const bucket = byLength.get(len);
       if (!bucket) continue;
       for (const candidate of bucket) {
-        if (levenshtein(nt, candidate) <= 3) return candidate;
+        if (levenshtein(nt, candidate) <= maxDist) return candidate;
       }
     }
     return null;
@@ -510,30 +538,51 @@ function computeBookImpactScores(integrityFlags) {
 // A single composite number for the dashboard's dial, built from four
 // weighted sub-scores rather than raw point deductions, so it stays
 // meaningful regardless of dataset size. Each sub-score is itself a 0-100
-// rate against a sensible denominator (books, citations, 5-star reads) —
-// never a flat per-item penalty, which would either be meaningless at
-// this scale (1000+ books) or wildly oversensitive to one bucket's count.
+// rate against a sensible denominator — never a flat per-item penalty,
+// which would either be meaningless at this scale (1000+ books) or wildly
+// oversensitive to one bucket's count.
 //
-// Deliberately excludes brokenOrphaned from scoring: per CLAUDE.md, most
-// orphaned references are legitimate "flavor" citations to books that were
-// never added to the dataset, not a fixable defect — penalizing the score
-// for them would make the number less trustworthy, not more.
+// Recalibrated Session 14: the original rubric averaged 91-99/100 while a
+// by-hand review of the same findings — 5 already-read books still
+// recommendable, 19 self-referential entries, 61 broken refs corrupting
+// the 5★ signal, 156 non-canonical theme uses, plus 418 orphaned refs and
+// 12 duplicate-book groups the old formula didn't count at all — read as
+// "Fair," not "Excellent." Two structural causes: (1) rate denominators
+// were huge (total citations/theme tags across the whole 1118-book
+// dataset), which mathematically crushes any real count into a fraction
+// of a point regardless of how it feels; (2) whole categories (orphaned
+// refs, duplicate books) were excluded from scoring entirely. This version
+// uses smaller, more honest denominators (5★-read count instead of total
+// citation count for the foundational check; total book count for
+// duplicates), folds orphaned refs and duplicate-book groups into the
+// score at reduced weight, and raises the penalty multipliers substantially.
+// Recalibrated against the Jul 30 2026 pre-fix snapshot to land at 65/100
+// ("Fair") — an intentionally high bar for "Excellent," not a re-derivation
+// of the old thresholds.
 function computeQualityScore(stats, integ, rows) {
+  const totalBooks = rows.length || 1;
   const totalFiveStarReads = rows.filter(isFiveStarRead).length || 1;
   const totalCandidatePool = rows.filter(r => r.shelf === 'candidate-pool').length || 1;
   const totalCitations = rows.reduce((s, r) => s + r.similarToTitles.length, 0) || 1;
   const totalThemeTags = rows.reduce((s, r) => s + r.themes.length, 0) || 1;
   const totalSimEntryBooks = rows.filter(r => r.similarToTitles.length || r.similarToAuthors.length).length || 1;
   const nearMissOther = integ.brokenNearMiss - integ.brokenNearMissTouchingFiveStar;
+  const totalDuplicateGroups = integ.dupBookKeys + integ.dupTitleAuthor;
 
   const rate = {
     alreadyReadInPool: integ.alreadyReadInPool / totalCandidatePool,
     fiveStarSignalGaps: integ.fiveStarSignalGaps / totalFiveStarReads,
-    brokenTouchFiveStar: integ.brokenNearMissTouchingFiveStar / totalCitations,
+    // Denominator is 5★-read count, not total citations — this measures
+    // "what fraction of the books every recommendation is scored against
+    // has a corrupted reference," not a rate diluted by candidate-to-
+    // candidate citation volume that has nothing to do with the 5★ signal.
+    brokenTouchFiveStar: integ.brokenNearMissTouchingFiveStar / totalFiveStarReads,
     highLeverageGaps: Math.min(1, integ.highLeverageGaps / 10),
     selfReferential: integ.selfReferential / totalSimEntryBooks,
     nearMissOther: nearMissOther / totalCitations,
+    orphaned: integ.brokenOrphaned / totalCitations,
     nonCanonicalThemes: integ.nonCanonicalTotal / totalThemeTags,
+    duplicates: totalDuplicateGroups / totalBooks,
   };
 
   const criticalFields = stats.filter(s => s.critical);
@@ -543,17 +592,22 @@ function computeQualityScore(stats, integ, rows) {
   // fiveStarThemes/fiveStarAuthors/reverseSimilar are built entirely from
   // 5-star reads — gaps and broken refs touching them corrupt a signal
   // every candidate is scored against, not just the one book's own record.
-  const foundationalScore = 100 * (1 - Math.min(1, rate.fiveStarSignalGaps * 4 + rate.brokenTouchFiveStar * 8));
-  // Could a bad or duplicate recommendation actually surface to Bill.
-  const safetyScore = 100 * (1 - Math.min(1, rate.alreadyReadInPool * 3 + rate.highLeverageGaps * 0.5));
-  // Fixable data-entry mistakes that don't touch a live 5-star signal.
-  const hygieneScore = 100 * (1 - Math.min(1, rate.selfReferential * 2 + rate.nearMissOther * 3 + rate.nonCanonicalThemes * 2));
+  const foundationalScore = 100 * (1 - Math.min(1, rate.fiveStarSignalGaps * 6 + rate.brokenTouchFiveStar * 1.75));
+  // Could a bad, duplicate, or unscoreable recommendation actually surface
+  // to Bill. Duplicate book entries risk double-counting a signal (a
+  // duplicated 5★ read's themes/citations get weighted twice).
+  const safetyScore = 100 * (1 - Math.min(1, rate.alreadyReadInPool * 8 + rate.highLeverageGaps * 1 + rate.duplicates * 6));
+  // Fixable data-entry mistakes. Orphaned refs are weighted lower than
+  // near-miss (most are legitimate citations to books never added to the
+  // dataset, not a defect) but still counted — 418 of them is a real
+  // completeness debt on the similarToTitles signal, not nothing.
+  const hygieneScore = 100 * (1 - Math.min(1, rate.selfReferential * 4 + rate.nearMissOther * 5 + rate.orphaned * 1.5 + rate.nonCanonicalThemes * 4));
 
   const components = [
-    { key: 'criticalHealth', label: 'Critical Field Health', weight: 0.30, subscore: criticalHealth },
+    { key: 'criticalHealth', label: 'Critical Field Health', weight: 0.15, subscore: criticalHealth },
     { key: 'foundational', label: 'Foundational Signal Integrity', weight: 0.30, subscore: foundationalScore },
-    { key: 'safety', label: 'Recommendation Safety', weight: 0.20, subscore: safetyScore },
-    { key: 'hygiene', label: 'Data Hygiene', weight: 0.20, subscore: hygieneScore },
+    { key: 'safety', label: 'Recommendation Safety', weight: 0.25, subscore: safetyScore },
+    { key: 'hygiene', label: 'Data Hygiene', weight: 0.30, subscore: hygieneScore },
   ];
   const score = Math.max(0, Math.min(100, Math.round(components.reduce((s, c) => s + c.weight * c.subscore, 0))));
 
@@ -563,7 +617,7 @@ function computeQualityScore(stats, integ, rows) {
   const impedimentDefs = [
     {
       count: integ.fiveStarSignalGaps,
-      pointsLost: 100 * Math.min(1, rate.fiveStarSignalGaps * 4) * 0.30,
+      pointsLost: 100 * Math.min(1, rate.fiveStarSignalGaps * 6) * 0.30,
       name: '5★-read signal gaps',
       description: `${integ.fiveStarSignalGaps} 5★ read(s) missing themes/similarToTitles/similarToAuthors — these withhold a bonus every candidate that deserves it should be getting, since fiveStarThemes/fiveStarAuthors/reverseSimilar are built entirely from 5★ reads.`,
       fix: 'Tag the missing fields on these specific books — the single highest-leverage fix available.',
@@ -571,7 +625,7 @@ function computeQualityScore(stats, integ, rows) {
     },
     {
       count: integ.brokenNearMissTouchingFiveStar,
-      pointsLost: 100 * Math.min(1, rate.brokenTouchFiveStar * 8) * 0.30,
+      pointsLost: 100 * Math.min(1, rate.brokenTouchFiveStar * 1.75) * 0.30,
       name: 'Broken similarToTitles references touching a 5★ read',
       description: `${integ.brokenNearMissTouchingFiveStar} near-miss reference(s) where the citing book (or the book it's trying to cite) is a 5★ read — these corrupt a live scoring signal, not just an unused candidate-to-candidate note.`,
       fix: 'Correct each reference to the exact title string in the dataset (Broken References tab, sorted with these first).',
@@ -579,15 +633,23 @@ function computeQualityScore(stats, integ, rows) {
     },
     {
       count: integ.alreadyReadInPool,
-      pointsLost: 100 * Math.min(1, rate.alreadyReadInPool * 3) * 0.20,
+      pointsLost: 100 * Math.min(1, rate.alreadyReadInPool * 8) * 0.25,
       name: 'Already-read books still in a candidate pool',
-      description: `${integ.alreadyReadInPool} book(s) Bill has already read and rated are still sitting in a candidate pool — he could be recommended a book he's already finished.`,
+      description: `${integ.alreadyReadInPool} book(s) Bill has already read and rated are still sitting in a candidate pool — he could be recommended a book he's already finished. Treated as a severity-1 bug, not a completeness stat.`,
       fix: 'Remove these entries from their candidate pool file(s).',
       anchor: '#tab-alreadyread',
     },
     {
+      count: totalDuplicateGroups,
+      pointsLost: 100 * Math.min(1, rate.duplicates * 6) * 0.25,
+      name: 'Duplicate book entries',
+      description: `${totalDuplicateGroups} duplicate group(s) (same bookKey or same title+author appearing more than once) — a duplicated 5★ read double-counts its themes/citations toward every scoring signal built from it.`,
+      fix: 'Merge or remove the duplicate entry, keeping the more complete record.',
+      anchor: '#tab-duplicates',
+    },
+    {
       count: integ.highLeverageGaps,
-      pointsLost: 100 * Math.min(1, rate.highLeverageGaps * 0.5) * 0.20,
+      pointsLost: 100 * Math.min(1, rate.highLeverageGaps * 1) * 0.25,
       name: 'High-leverage candidate gaps',
       description: `${integ.highLeverageGaps} popular, well-rated candidate(s) missing data BBRE needs to score them properly — likely under-ranked right now.`,
       fix: 'Tag themes/similarToTitles/similarToAuthors on these specific books.',
@@ -595,23 +657,31 @@ function computeQualityScore(stats, integ, rows) {
     },
     {
       count: nearMissOther,
-      pointsLost: 100 * Math.min(1, rate.nearMissOther * 3) * 0.20,
+      pointsLost: 100 * Math.min(1, rate.nearMissOther * 5) * 0.30,
       name: 'Broken similarToTitles references (candidate-to-candidate)',
       description: `${nearMissOther} near-miss reference(s) between books that aren't 5★ reads — lower live-scoring impact, but still fixable typos or subtitle truncations.`,
       fix: 'Correct each reference to the exact title string in the dataset.',
       anchor: '#tab-brokenrefs',
     },
     {
+      count: integ.brokenOrphaned,
+      pointsLost: 100 * Math.min(1, rate.orphaned * 1.5) * 0.30,
+      name: 'Orphaned similarToTitles references',
+      description: `${integ.brokenOrphaned} reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (${(rate.orphaned * 100).toFixed(1)}% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.`,
+      fix: 'Add the missing books to the dataset where practical, or confirm the reference is intentionally external.',
+      anchor: '#tab-brokenrefs',
+    },
+    {
       count: integ.nonCanonicalTotal,
-      pointsLost: 100 * Math.min(1, rate.nonCanonicalThemes * 2) * 0.20,
+      pointsLost: 100 * Math.min(1, rate.nonCanonicalThemes * 4) * 0.30,
       name: 'Non-canonical theme usage',
-      description: `${integ.nonCanonicalTotal} uses of themes outside the canonical vocabulary (chiefly "legal"/"courtroom") — these don't contribute to themeBonus scoring at all.`,
+      description: `${integ.nonCanonicalTotal} uses of themes outside the canonical vocabulary — these still score identically to canonical themes (the engine has no vocabulary filter), but fragment what should be one consistent signal and one UI filter.`,
       fix: 'Remap to canonical themes, or promote frequently-used ones (see promotion candidates) to the canonical list in CLAUDE.md and the engine.',
       anchor: '#tab-themes',
     },
     {
       count: integ.selfReferential,
-      pointsLost: 100 * Math.min(1, rate.selfReferential * 2) * 0.20,
+      pointsLost: 100 * Math.min(1, rate.selfReferential * 4) * 0.30,
       name: 'Self-referential entries',
       description: `${integ.selfReferential} book(s) cite themselves in similarToTitles or list their own author in similarToAuthors — a data-entry mistake, not a useful signal.`,
       fix: 'Replace with a genuinely different similar title or author.',
@@ -619,7 +689,7 @@ function computeQualityScore(stats, integ, rows) {
     },
     {
       count: criticalFields.filter(f => f.scorePct < 90).length,
-      pointsLost: (100 - criticalHealth) * 0.30,
+      pointsLost: (100 - criticalHealth) * 0.15,
       name: 'Scoring-critical field gaps',
       description: `Average critical-field Quality Score is ${criticalHealth.toFixed(1)}% — these fields feed a live scoring signal directly.`,
       fix: 'See the Field Population table, sorted by Quality Score, for the specific fields below threshold.',
@@ -936,7 +1006,7 @@ ${brokenNearMiss.length ? renderList(brokenNearMiss.map(b => `"${b.from}" cites 
 ${brokenOrphaned.length ? renderList(brokenOrphaned.map(b => `"${b.from}" cites "${b.ref}"`)) : 'None found.'}
 
 ### Non-canonical themes (${nonCanonical.length} uses)
-Themes not in CLAUDE.md's canonical vocabulary — these don't contribute to \`fiveStarThemes\`/\`themeBonus\` scoring.
+Themes not in CLAUDE.md's canonical vocabulary. Note: the engine has no canonical-vocabulary filter — a non-canonical theme still contributes to \`fiveStarThemes\`/\`themeBonus\` scoring identically to a canonical one. The real cost is vocabulary drift: near-duplicate/inconsistent tags fragment what should be one signal (e.g. "historical fiction" vs "historical" never co-count toward the same theme bonus), and app.js's THEME_MACROS genre filter only recognizes specific known strings.
 
 **Canonical-vocabulary candidates** — used ${promoteCandidates.length ? `≥5 times each` : 'nowhere near the promotion threshold'}, which suggests a real vocabulary gap rather than a one-off typo:
 ${promoteCandidates.length ? renderList(promoteCandidates.map(([theme, count]) => `"${theme}" — ${count} uses`)) : 'None — no non-canonical theme is used often enough to suggest a real gap.'}

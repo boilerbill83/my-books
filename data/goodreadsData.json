@@ -119,7 +119,7 @@
         "courtroom"
       ],
       "similarToTitles": [
-        "An Innocent Client (Joe Dillard, #1)",
+        "An Innocent Client: A Joe Dillard Novel (Joe Dillard Series Book 1)",
         "A Time to Kill (Jake Brigance, #1)",
         "The Client",
         "The Last Chance Lawyer (Daniel Pike #1)"
@@ -2713,8 +2713,7 @@
         "Everybody Knows"
       ],
       "similarToAuthors": [
-        "S.A. Cosby",
-        "Jordan Harper"
+        "S.A. Cosby"
       ],
       "ratingsCount": 9000,
       "tones": [
@@ -4239,7 +4238,7 @@
         "Rich Blood (Jason Rich, #1)",
         "A Time to Kill (Jake Brigance, #1)",
         "The Client",
-        "An Innocent Client (Joe Dillard, #1)"
+        "An Innocent Client: A Joe Dillard Novel (Joe Dillard Series Book 1)"
       ],
       "ratingsCount": 5000,
       "similarToAuthors": [
@@ -10459,7 +10458,7 @@
       "type": "nonfiction",
       "themes": [
         "narrative nonfiction",
-        "science"
+        "history"
       ],
       "similarToTitles": [
         "When the Heavens Went on Sale: The Misfits and Geniuses Racing to Put Space Within Reach",
@@ -15786,7 +15785,6 @@
         "YA"
       ],
       "similarToTitles": [
-        "Another Day (Every Day, #2)",
         "The Perks of Being a Wallflower",
         "Looking for Alaska",
         "Paper Towns",
@@ -23217,7 +23215,6 @@
       ],
       "ratingsCount": 16000,
       "similarToAuthors": [
-        "Gary Shteyngart",
         "Jonathan Franzen",
         "Tom Perrotta",
         "Joshua Ferris"
@@ -30586,8 +30583,7 @@
       "similarToAuthors": [
         "Jim Collins",
         "Simon Sinek",
-        "John Kotter",
-        "Patrick Lencioni"
+        "John Kotter"
       ],
       "type": "nonfiction",
       "tones": [
@@ -31944,7 +31940,7 @@
       "publisher": "Harper Perennial",
       "year": 2021,
       "themes": [
-        "historical fiction",
+        "historical",
         "contemporary",
         "crime",
         "noir"
@@ -31990,7 +31986,7 @@
       "themes": [
         "literary",
         "speculative",
-        "historical fiction"
+        "historical"
       ],
       "similarToTitles": [
         "The Natural",
@@ -32033,7 +32029,7 @@
         "horror",
         "literary",
         "speculative",
-        "historical fiction"
+        "historical"
       ],
       "similarToTitles": [
         "The Road",
@@ -32080,10 +32076,10 @@
         "social commentary"
       ],
       "similarToTitles": [
-        "The Big Short",
-        "Flash Boys",
+        "The Big Short: Inside the Doomsday Machine",
+        "Flash Boys: A Wall Street Revolt",
         "Bringing Down the House",
-        "Dumb Money"
+        "The Dumb Money: The GameStop Short Squeeze and the Ragtag Group of Amateur Traders That Brought Wall Street to Its Knees (Previously Published as The Antisocial Network)"
       ],
       "ratingsCount": 2319,
       "dnf": false,
@@ -32387,7 +32383,7 @@
       "similarToTitles": [
         "Dreamland",
         "Empire of Pain",
-        "Dopesick",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
         "Say Nothing"
       ],
       "ratingsCount": 3459,
@@ -32468,8 +32464,7 @@
       "year": 2018,
       "themes": [
         "literary",
-        "contemporary",
-        "coming-of-age"
+        "contemporary"
       ],
       "similarToTitles": [
         "Stoner",
@@ -32511,7 +32506,7 @@
       "year": 2011,
       "themes": [
         "thriller",
-        "historical fiction",
+        "historical",
         "speculative"
       ],
       "similarToTitles": [
@@ -32567,7 +32562,6 @@
       "similarToAuthors": [
         "Karina Longworth",
         "Emily Nussbaum",
-        "Jennifer Keishin Armstrong",
         "Brooke Barnes"
       ],
       "type": "nonfiction",
@@ -32951,7 +32945,7 @@
         "Shoe Dog",
         "Made in America",
         "Pour Your Heart Into It",
-        "The Everything Store"
+        "The Everything Store: Jeff Bezos and the Age of Amazon"
       ],
       "ratingsCount": 12500,
       "dnf": true,
@@ -33384,7 +33378,7 @@
         "Porcelain",
         "How Music Works",
         "Waging Heavy Peace",
-        "The Storyteller"
+        "The Storyteller: Tales of Life and Music"
       ],
       "ratingsCount": 695,
       "dnf": true,
@@ -33688,7 +33682,7 @@
       ],
       "similarToTitles": [
         "Steve Jobs",
-        "The Everything Store",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
         "Only the Paranoid Survive",
         "Shoe Dog"
       ],
@@ -33767,7 +33761,6 @@
       "publisher": "Focused Ultrasound Foundation",
       "year": 2016,
       "themes": [
-        "medical thriller",
         "narrative nonfiction",
         "high-concept"
       ],
@@ -33815,7 +33808,7 @@
         "narrative nonfiction"
       ],
       "similarToTitles": [
-        "The Big Short",
+        "The Big Short: Inside the Doomsday Machine",
         "Too Big to Fail",
         "When Genius Failed",
         "More Money Than God"
@@ -33990,7 +33983,7 @@
         "history"
       ],
       "similarToTitles": [
-        "The Everything Store",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
         "Shoe Dog",
         "Sony vs Samsung",
         "Bad Blood"
@@ -34035,7 +34028,7 @@
         "The Soul of Basketball",
         "The Last Dance",
         "Showtime",
-        "Dream Team"
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever"
       ],
       "ratingsCount": 1591,
       "dnf": true,
@@ -34076,7 +34069,7 @@
         "history"
       ],
       "similarToTitles": [
-        "Hatching Twitter",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
         "Facebook: The Inside Story",
         "No Filter",
         "Chaos Monkeys"
@@ -34116,7 +34109,6 @@
       "themes": [
         "YA",
         "speculative",
-        "coming-of-age",
         "thriller"
       ],
       "similarToTitles": [
@@ -34206,7 +34198,7 @@
       ],
       "similarToTitles": [
         "The Baseball 100",
-        "Fantasyland",
+        "Fantasyland: True Tales from America's Most Compulsive Fantasy Baseball League",
         "Where Nobody Knows Your Name",
         "Ball Four"
       ],
@@ -34597,7 +34589,7 @@
         "Moneyball",
         "The MVP Machine",
         "Big Data Baseball",
-        "The Extra 2%"
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First"
       ],
       "ratingsCount": 695,
       "dnf": true,
@@ -34810,7 +34802,7 @@
         "high-concept"
       ],
       "similarToTitles": [
-        "World War Z",
+        "World War Z: An Oral History of the Zombie War",
         "Armada",
         "Prey",
         "The Andromeda Evolution"
@@ -35207,8 +35199,7 @@
       "similarToAuthors": [
         "Sebastian Junger",
         "Jon Krakauer",
-        "William Least Heat-Moon",
-        "Ted Conover"
+        "William Least Heat-Moon"
       ],
       "type": "nonfiction",
       "tones": [
@@ -35803,7 +35794,7 @@
       ],
       "similarToTitles": [
         "Too Big to Fail",
-        "The Big Short",
+        "The Big Short: Inside the Doomsday Machine",
         "Conspiracy of Fools",
         "Den of Thieves"
       ],
@@ -35978,8 +35969,8 @@
       ],
       "similarToTitles": [
         "Word Freak",
-        "The Extra 2%",
-        "Fantasyland",
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "Fantasyland: True Tales from America's Most Compulsive Fantasy Baseball League",
         "Three Nights in August"
       ],
       "ratingsCount": 92,
@@ -36618,7 +36609,6 @@
       "themes": [
         "speculative",
         "thriller",
-        "fantasy",
         "high-concept"
       ],
       "similarToTitles": [
@@ -36665,9 +36655,9 @@
         "business"
       ],
       "similarToTitles": [
-        "The Everything Store",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
         "Hackers",
-        "The Innovators",
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
         "Soul of a New Machine"
       ],
       "ratingsCount": 312,
@@ -36710,7 +36700,7 @@
       ],
       "similarToTitles": [
         "Steve Jobs",
-        "The Innovators",
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
         "Hackers",
         "The Intel Trinity"
       ],
@@ -36884,7 +36874,7 @@
       "similarToTitles": [
         "Moneyball",
         "The MVP Machine",
-        "The Only Rule Is It Has to Work",
+        "The Only Rule Is It Has to Work: Our Wild Experiment Building a New Kind of Baseball Team",
         "Astroball"
       ],
       "ratingsCount": 866,
@@ -37184,9 +37174,9 @@
       ],
       "similarToTitles": [
         "Moneyball",
-        "The Extra 2%",
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
         "The Wax Pack",
-        "Fantasyland"
+        "Fantasyland: True Tales from America's Most Compulsive Fantasy Baseball League"
       ],
       "ratingsCount": 760,
       "dnf": true,
@@ -37273,7 +37263,7 @@
         "Sole Influence",
         "Where'd You Get Those?",
         "The Breaks of the Game",
-        "Dream Team"
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever"
       ],
       "similarToAuthors": [
         "Scoop Jackson",
@@ -37308,9 +37298,8 @@
       "publisher": "Scribner",
       "year": 2014,
       "themes": [
-        "historical fiction",
-        "literary",
-        "coming-of-age"
+        "historical",
+        "literary"
       ],
       "similarToTitles": [
         "The Nightingale",
@@ -37446,7 +37435,7 @@
         "social commentary"
       ],
       "similarToTitles": [
-        "The Big Short",
+        "The Big Short: Inside the Doomsday Machine",
         "Hedge Hogs",
         "More Money Than God",
         "Barbarians at the Gate"
@@ -37484,7 +37473,7 @@
       "publisher": "Red Tower Books",
       "year": 2023,
       "themes": [
-        "fantasy",
+        "speculative",
         "romance",
         "adventure",
         "YA"
@@ -37535,8 +37524,8 @@
         "tech history"
       ],
       "similarToTitles": [
-        "Going Infinite",
-        "The Big Short",
+        "Going Infinite: The Rise and Fall of a New Tycoon",
+        "The Big Short: Inside the Doomsday Machine",
         "Bad Blood",
         "Easy Money"
       ],
@@ -37575,8 +37564,7 @@
       "themes": [
         "sci-fi",
         "speculative",
-        "adventure",
-        "coming-of-age"
+        "adventure"
       ],
       "similarToTitles": [
         "The Hunger Games",
@@ -37626,7 +37614,7 @@
         "Sprawlball",
         "The Victory Machine",
         "Basketball and Other Things",
-        "Dream Team"
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever"
       ],
       "similarToAuthors": [
         "Zach Lowe",
@@ -37792,7 +37780,7 @@
       "publisher": "Riverhead Books",
       "year": 2023,
       "themes": [
-        "historical fiction",
+        "historical",
         "literary",
         "social commentary"
       ],
@@ -37930,7 +37918,7 @@
         "A Random Walk Down Wall Street",
         "The Little Book of Common Sense Investing",
         "When Genius Failed",
-        "The Big Short"
+        "The Big Short: Inside the Doomsday Machine"
       ],
       "similarToAuthors": [
         "Jack Bogle",
@@ -38016,7 +38004,7 @@
         "Dreamland",
         "Chasing the Scream",
         "Empire of Pain",
-        "Dopesick"
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America"
       ],
       "similarToAuthors": [
         "Sam Quinones",

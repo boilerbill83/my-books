@@ -219,33 +219,6 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81TlolABzxL._SX300_.jpg"
     },
     {
-      "bookKey": "red-rising|pierce-brown-2",
-      "title": "Red Rising",
-      "author": "Pierce Brown",
-      "year": 2014,
-      "pages": 382,
-      "avgRating": 4.2,
-      "isbn13": "9780345539786",
-      "themes": [
-        "speculative",
-        "sci-fi",
-        "social commentary"
-      ],
-      "similarToAuthors": [
-        "Blake Crouch",
-        "Andy Weir",
-        "Hugh Howey"
-      ],
-      "type": "fiction",
-      "redditSource": "r/books, r/scifi \u2014 Reddit's #1 recommended sci-fi series for action and thriller fans; consistently top-upvoted series starter",
-      "similarToTitles": [
-        "Dark Matter",
-        "Upgrade"
-      ],
-      "ratingsCount": 700000,
-      "coverUrl": "https://m.media-amazon.com/images/I/81bbaOYIagL._SX300_.jpg"
-    },
-    {
       "bookKey": "piranesi|susanna-clarke",
       "title": "Piranesi",
       "author": "Susanna Clarke",

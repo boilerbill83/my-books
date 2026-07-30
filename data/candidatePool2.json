@@ -47,8 +47,7 @@
         "courtroom"
       ],
       "similarToAuthors": [
-        "John Grisham",
-        "Scott Turow"
+        "John Grisham"
       ],
       "type": "fiction",
       "publisher": "Grand Central Publishing",
@@ -179,8 +178,7 @@
         "suspense"
       ],
       "similarToAuthors": [
-        "John Grisham",
-        "Brad Meltzer"
+        "John Grisham"
       ],
       "type": "fiction",
       "publisher": "William Morrow",
@@ -494,7 +492,6 @@
         "literary"
       ],
       "similarToAuthors": [
-        "Kristin Hannah",
         "Taylor Jenkins Reid"
       ],
       "type": "fiction",
@@ -583,59 +580,6 @@
       ],
       "ratingsCount": 190000,
       "coverUrl": "https://books.google.com/books/content?id=J7Z9EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
-    },
-    {
-      "bookKey": "the-heaven-earth-grocery-store|james-mcbride-2",
-      "title": "The Heaven & Earth Grocery Store",
-      "author": "James McBride",
-      "year": 2023,
-      "pages": 400,
-      "avgRating": 3.81,
-      "isbn13": "9780593422946",
-      "themes": [
-        "literary",
-        "historical",
-        "social commentary",
-        "history"
-      ],
-      "similarToAuthors": [
-        "Kristin Hannah",
-        "Gabrielle Zevin"
-      ],
-      "type": "fiction",
-      "publisher": "Riverhead Books",
-      "similarToTitles": [
-        "American Dirt",
-        "Where the Crawdads Sing"
-      ],
-      "ratingsCount": 290000,
-      "coverUrl": "https://books.google.com/books/content?id=meOgEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
-    },
-    {
-      "bookKey": "number-go-up-inside-crypto-s-wild-rise-and-staggering-fall|zeke-faux-2",
-      "title": "Number Go Up: Inside Crypto's Wild Rise and Staggering Fall",
-      "author": "Zeke Faux",
-      "year": 2023,
-      "pages": 304,
-      "avgRating": 4.2,
-      "isbn13": "9780593443811",
-      "themes": [
-        "finance",
-        "narrative nonfiction",
-        "tech history"
-      ],
-      "similarToAuthors": [
-        "Michael Lewis",
-        "Ben Mezrich"
-      ],
-      "type": "nonfiction",
-      "publisher": "Crown Currency",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1687140968i/123276708.jpg",
-      "similarToTitles": [
-        "Going Infinite: The Rise and Fall of a New Tycoon",
-        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road"
-      ],
-      "ratingsCount": 30000
     },
     {
       "bookKey": "the-chaos-machine-the-inside-story-of-how-social-media-rewired-our-minds-and-our-world|max-fisher",

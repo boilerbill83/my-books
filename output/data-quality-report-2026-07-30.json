@@ -1,74 +1,58 @@
 {
   "date": "2026-07-30",
-  "totalBooks": 1118,
+  "totalBooks": 1112,
   "qualityScore": {
-    "score": 91,
+    "score": 93,
     "components": [
       {
         "key": "criticalHealth",
         "label": "Critical Field Health",
-        "weight": 0.3,
-        "subscore": 99.68694096601072
+        "weight": 0.15,
+        "subscore": 99.70323741007194
       },
       {
         "key": "foundational",
         "label": "Foundational Signal Integrity",
         "weight": 0.3,
-        "subscore": 88.71415356151712
+        "subscore": 100
       },
       {
         "key": "safety",
         "label": "Recommendation Safety",
-        "weight": 0.2,
-        "subscore": 91.17647058823529
+        "weight": 0.25,
+        "subscore": 97.3021582733813
       },
       {
         "key": "hygiene",
         "label": "Data Hygiene",
-        "weight": 0.2,
-        "subscore": 81.10205970052642
+        "weight": 0.3,
+        "subscore": 77.83325592196934
       }
     ],
     "impediments": [
       {
-        "count": 61,
-        "pointsLost": 3.4,
-        "name": "Broken similarToTitles references touching a 5★ read",
-        "description": "61 near-miss reference(s) where the citing book (or the book it's trying to cite) is a 5★ read — these corrupt a live scoring signal, not just an unused candidate-to-candidate note.",
-        "fix": "Correct each reference to the exact title string in the dataset (Broken References tab, sorted with these first).",
+        "count": 463,
+        "pointsLost": 4.8,
+        "name": "Orphaned similarToTitles references",
+        "description": "463 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (10.8% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
+        "fix": "Add the missing books to the dataset where practical, or confirm the reference is intentionally external.",
         "anchor": "#tab-brokenrefs"
       },
       {
-        "count": 156,
-        "pointsLost": 2,
-        "name": "Non-canonical theme usage",
-        "description": "156 uses of themes outside the canonical vocabulary (chiefly \"legal\"/\"courtroom\") — these don't contribute to themeBonus scoring at all.",
-        "fix": "Remap to canonical themes, or promote frequently-used ones (see promotion candidates) to the canonical list in CLAUDE.md and the engine.",
-        "anchor": "#tab-themes"
-      },
-      {
-        "count": 5,
+        "count": 52,
         "pointsLost": 1.8,
-        "name": "Already-read books still in a candidate pool",
-        "description": "5 book(s) Bill has already read and rated are still sitting in a candidate pool — he could be recommended a book he's already finished.",
-        "fix": "Remove these entries from their candidate pool file(s).",
-        "anchor": "#tab-alreadyread"
-      },
-      {
-        "count": 79,
-        "pointsLost": 1.1,
         "name": "Broken similarToTitles references (candidate-to-candidate)",
-        "description": "79 near-miss reference(s) between books that aren't 5★ reads — lower live-scoring impact, but still fixable typos or subtitle truncations.",
+        "description": "52 near-miss reference(s) between books that aren't 5★ reads — lower live-scoring impact, but still fixable typos or subtitle truncations.",
         "fix": "Correct each reference to the exact title string in the dataset.",
         "anchor": "#tab-brokenrefs"
       },
       {
-        "count": 19,
+        "count": 5,
         "pointsLost": 0.7,
-        "name": "Self-referential entries",
-        "description": "19 book(s) cite themselves in similarToTitles or list their own author in similarToAuthors — a data-entry mistake, not a useful signal.",
-        "fix": "Replace with a genuinely different similar title or author.",
-        "anchor": "#tab-selfref"
+        "name": "Duplicate book entries",
+        "description": "5 duplicate group(s) (same bookKey or same title+author appearing more than once) — a duplicated 5★ read double-counts its themes/citations toward every scoring signal built from it.",
+        "fix": "Merge or remove the duplicate entry, keeping the more complete record.",
+        "anchor": "#tab-duplicates"
       }
     ]
   },
@@ -76,116 +60,116 @@
     {
       "field": "isbn",
       "scorePct": 65.87301587301587,
-      "rawPct": 64.66905187835421,
+      "rawPct": 64.83812949640287,
       "critical": false
     },
     {
       "field": "dateRead",
       "scorePct": 71.95685670261942,
-      "rawPct": 41.77101967799642,
+      "rawPct": 41.99640287769784,
       "critical": false
     },
     {
       "field": "subjects",
-      "scorePct": 75.24663677130044,
-      "rawPct": 75.04472271914132,
+      "scorePct": 75.11271415689811,
+      "rawPct": 74.91007194244604,
       "critical": false
     },
     {
       "field": "dismissReason",
       "scorePct": 78.26086956521739,
-      "rawPct": 1.6100178890876566,
+      "rawPct": 1.618705035971223,
       "critical": false
     },
     {
       "field": "isbn13",
-      "scorePct": 81.93202146690518,
-      "rawPct": 81.93202146690518,
+      "scorePct": 82.01438848920863,
+      "rawPct": 82.01438848920863,
       "critical": false
     },
     {
       "field": "dateAdded",
-      "scorePct": 83.18425760286226,
-      "rawPct": 83.18425760286226,
+      "scorePct": 83.63309352517986,
+      "rawPct": 83.63309352517986,
       "critical": false
     },
     {
       "field": "tones",
-      "scorePct": 83.72093023255815,
-      "rawPct": 83.72093023255815,
+      "scorePct": 83.99280575539568,
+      "rawPct": 83.99280575539568,
       "critical": false
     },
     {
       "field": "publisher",
-      "scorePct": 86.58318425760287,
-      "rawPct": 86.58318425760287,
+      "scorePct": 86.87050359712231,
+      "rawPct": 86.87050359712231,
       "critical": false
     },
     {
       "field": "amazonRating",
-      "scorePct": 92.50535331905782,
-      "rawPct": 39.71377459749553,
+      "scorePct": 92.40780911062907,
+      "rawPct": 39.388489208633096,
       "critical": false
     },
     {
       "field": "amazonRatingsCount",
-      "scorePct": 92.50535331905782,
-      "rawPct": 39.71377459749553,
+      "scorePct": 92.40780911062907,
+      "rawPct": 39.388489208633096,
       "critical": false
     },
     {
       "field": "categories",
-      "scorePct": 96.41255605381166,
-      "rawPct": 96.15384615384616,
+      "scorePct": 96.39314697926059,
+      "rawPct": 96.13309352517986,
       "critical": false
     },
     {
       "field": "similarToAuthors",
-      "scorePct": 98.74776386404294,
-      "rawPct": 98.74776386404294,
+      "scorePct": 98.7410071942446,
+      "rawPct": 98.7410071942446,
       "critical": true
     },
     {
       "field": "themes",
-      "scorePct": 99.19499105545617,
-      "rawPct": 99.19499105545617,
+      "scorePct": 99.19064748201438,
+      "rawPct": 99.19064748201438,
       "critical": true
     },
     {
       "field": "similarToTitles",
-      "scorePct": 99.19499105545617,
-      "rawPct": 99.19499105545617,
+      "scorePct": 99.19064748201438,
+      "rawPct": 99.19064748201438,
       "critical": true
     },
     {
       "field": "year",
-      "scorePct": 99.28443649373882,
-      "rawPct": 99.28443649373882,
+      "scorePct": 99.28057553956835,
+      "rawPct": 99.28057553956835,
       "critical": false
     },
     {
-      "field": "ratingsCount",
-      "scorePct": 99.73166368515206,
-      "rawPct": 99.73166368515206,
-      "critical": true
-    },
-    {
       "field": "metadataFetchedAt",
-      "scorePct": 99.73166368515206,
-      "rawPct": 99.73166368515206,
+      "scorePct": 99.73021582733813,
+      "rawPct": 99.73021582733813,
       "critical": false
     },
     {
       "field": "description",
-      "scorePct": 99.82110912343471,
-      "rawPct": 99.82110912343471,
+      "scorePct": 99.82014388489209,
+      "rawPct": 99.82014388489209,
       "critical": false
     },
     {
       "field": "type",
-      "scorePct": 99.91055456171735,
-      "rawPct": 99.91055456171735,
+      "scorePct": 99.91007194244604,
+      "rawPct": 99.91007194244604,
       "critical": false
+    },
+    {
+      "field": "ratingsCount",
+      "scorePct": 99.91007194244604,
+      "rawPct": 99.91007194244604,
+      "critical": true
     },
     {
       "field": "bookKey",
@@ -226,7 +210,7 @@
     {
       "field": "myRating",
       "scorePct": 100,
-      "rawPct": 84.70483005366727,
+      "rawPct": 85.16187050359713,
       "critical": true
     },
     {
@@ -244,7 +228,7 @@
     {
       "field": "coverUrl",
       "scorePct": 100,
-      "rawPct": 52.146690518783544,
+      "rawPct": 51.888489208633096,
       "critical": false
     },
     {
@@ -261,449 +245,30 @@
     }
   ],
   "integrity": {
-    "dupBookKeys": 4,
-    "dupTitleAuthor": 8,
-    "alreadyReadInPool": 5,
+    "dupBookKeys": 2,
+    "dupTitleAuthor": 3,
+    "alreadyReadInPool": 0,
     "fiveStarSignalGaps": 0,
     "highLeverageGaps": 0,
-    "selfReferential": 19,
-    "brokenNearMiss": 140,
-    "brokenNearMissTouchingFiveStar": 61,
-    "brokenOrphaned": 418,
-    "nonCanonicalTotal": 156,
-    "promoteCandidateCount": 3,
+    "selfReferential": 0,
+    "brokenNearMiss": 52,
+    "brokenNearMissTouchingFiveStar": 0,
+    "brokenOrphaned": 463,
+    "nonCanonicalTotal": 0,
+    "promoteCandidateCount": 0,
     "themesOutOfRange": 0,
     "similarOutOfRange": 4,
     "zeroPages": 1,
-    "zeroRatingsCount": 20,
+    "zeroRatingsCount": 18,
     "missingBookKey": 2
   },
   "findings": {
     "fiveStarSignalGaps": [],
-    "alreadyReadInPool": [
-      {
-        "title": "Number Go Up: Inside Crypto's Wild Rise and Staggering Fall",
-        "author": "Zeke Faux",
-        "myRating": 2
-      },
-      {
-        "title": "The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops",
-        "author": "Jack McCallum",
-        "myRating": 2
-      },
-      {
-        "title": "The Heaven & Earth Grocery Store",
-        "author": "James McBride",
-        "myRating": 2
-      },
-      {
-        "title": "Red Rising",
-        "author": "Pierce Brown",
-        "myRating": 2
-      },
-      {
-        "title": "All the Light We Cannot See",
-        "author": "Anthony Doerr",
-        "myRating": 2
-      }
-    ],
+    "alreadyReadInPool": [],
     "highLeverageGaps": [],
-    "selfReferentialTitle": [
-      {
-        "title": "The Firm (Penguin Readers, Level 5)",
-        "author": "Robin Waterfield"
-      },
-      {
-        "title": "Behind Closed Doors (Behind Closed Doors, #1)",
-        "author": "Lisa Renee Jones"
-      },
-      {
-        "title": "Another Day (Every Day, #2)",
-        "author": "David Levithan"
-      }
-    ],
-    "selfReferentialAuthor": [
-      {
-        "title": "A Violent Masterpiece",
-        "author": "Jordan Harper"
-      },
-      {
-        "title": "Lake Success",
-        "author": "Gary Shteyngart"
-      },
-      {
-        "title": "The Five Dysfunctions of a Team",
-        "author": "Patrick Lencioni"
-      },
-      {
-        "title": "When Women Invented Television: The Untold Story of the Female Powerhouses Who Pioneered the Way We Watch Today",
-        "author": "Jennifer Keishin Armstrong"
-      },
-      {
-        "title": "Rolling Nowhere: Riding the Rails with America's Hoboes",
-        "author": "Ted Conover"
-      },
-      {
-        "title": "Suspect",
-        "author": "Scott Turow"
-      },
-      {
-        "title": "The Lightning Rod",
-        "author": "Brad Meltzer"
-      },
-      {
-        "title": "The Women",
-        "author": "Kristin Hannah"
-      },
-      {
-        "title": "Killers of the Flower Moon",
-        "author": "David Grann"
-      },
-      {
-        "title": "Moneyball: The Art of Winning an Unfair Game",
-        "author": "Michael Lewis"
-      },
-      {
-        "title": "Boomerang: Travels in the New Third World",
-        "author": "Michael Lewis"
-      },
-      {
-        "title": "Showtime: Magic, Kareem, Riley, and the Los Angeles Lakers Dynasty of the 1980s",
-        "author": "Jeff Pearlman"
-      },
-      {
-        "title": "Killers of the Flower Moon: The Osage Murders and the Birth of the FBI",
-        "author": "David Grann"
-      },
-      {
-        "title": "Empire of Pain: The Secret History of the Sackler Dynasty",
-        "author": "Patrick Radden Keefe"
-      },
-      {
-        "title": "Blink: The Power of Thinking Without Thinking",
-        "author": "Malcolm Gladwell"
-      },
-      {
-        "title": "David and Goliath: Underdogs, Misfits, and the Art of Battling Giants",
-        "author": "Malcolm Gladwell"
-      }
-    ],
+    "selfReferentialTitle": [],
+    "selfReferentialAuthor": [],
     "brokenNearMiss": [
-      {
-        "from": "The Boomerang",
-        "ref": "An Innocent Client (Joe Dillard, #1)",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Antisocial Network: The True Story of a Ragtag of Amateur Investors, Gamers, and Internet Trolls Who Brought Wall Street to Its Knees",
-        "ref": "The Big Short",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Antisocial Network: The True Story of a Ragtag of Amateur Investors, Gamers, and Internet Trolls Who Brought Wall Street to Its Knees",
-        "ref": "Flash Boys",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Antisocial Network: The True Story of a Ragtag of Amateur Investors, Gamers, and Internet Trolls Who Brought Wall Street to Its Knees",
-        "ref": "Dumb Money",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Fentanyl, Inc.: How Rogue Chemists Are Creating the Deadliest Wave of the Opioid Epidemic",
-        "ref": "Dopesick",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Path to Power",
-        "ref": "Truman",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Path to Power",
-        "ref": "Grant",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Troop",
-        "ref": "It",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Grinding It Out: The Making of McDonald's",
-        "ref": "The Everything Store",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "A Bridge Too Far",
-        "ref": "D-Day",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Speed of Sound: Breaking the Barriers Between Music and Technology: A Memoir",
-        "ref": "The Storyteller",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Fahrenheit 451",
-        "ref": "We",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "American Prison: A Reporter's Undercover Journey into the Business of Punishment",
-        "ref": "Newjack",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Good Economics for Hard Times: Better Answers to Our Biggest Problems",
-        "ref": "Freakonomics",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Bayou Trilogy: Under the Bright Lights, Muscle for the Wing, and The Ones You Do",
-        "ref": "Joe",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Andy Grove: The Life and Times of an American",
-        "ref": "The Everything Store",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Panic: The Story of Modern Financial Insanity",
-        "ref": "The Big Short",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Tennis Partner",
-        "ref": "Beautiful Boy",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "We Learn Nothing",
-        "ref": "Me Talk Pretty One Day",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Samsung Rising: The Inside Story of the South Korean Giant That Set Out to Beat Apple and Conquer Tech",
-        "ref": "The Everything Store",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Victory Machine: The Making and Unmaking of the Warriors Dynasty",
-        "ref": "Dream Team",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Twitter: A Biography",
-        "ref": "Hatching Twitter",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Wax Pack: On the Open Road in Search of Baseballâ€™s Afterlife",
-        "ref": "Fantasyland",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Shift: The Next Evolution in Baseball Thinking",
-        "ref": "The Extra 2%",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Robopocalypse (Robopocalypse, #1)",
-        "ref": "World War Z",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Robopocalypse (Robopocalypse, #1)",
-        "ref": "Prey",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Burn the Ice: The American Culinary Revolution and Its End",
-        "ref": "Heat",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Rolling Nowhere: Riding the Rails with America's Hoboes",
-        "ref": "Newjack",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Spare Parts: Four Undocumented Teenagers, One Ugly Robot, and the Battle for the American Dream",
-        "ref": "Evicted",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Smartest Guys in the Room: The Amazing Rise and Scandalous Fall of Enron",
-        "ref": "The Big Short",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Drive-Thru Dreams: A Journey Through the Heart of America's Fast-Food Kingdom",
-        "ref": "Cooked",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Wild and Outside: How a Renegade Minor League Revived the Spirit of Baseball in America's Heartland",
-        "ref": "Word Freak",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Wild and Outside: How a Renegade Minor League Revived the Spirit of Baseball in America's Heartland",
-        "ref": "The Extra 2%",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Wild and Outside: How a Renegade Minor League Revived the Spirit of Baseball in America's Heartland",
-        "ref": "Fantasyland",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Devil in the White City",
-        "ref": "American Fire",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Gearheads: The Turbulent Rise of Robotic Sports",
-        "ref": "The Everything Store",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Gearheads: The Turbulent Rise of Robotic Sports",
-        "ref": "Hackers",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Gearheads: The Turbulent Rise of Robotic Sports",
-        "ref": "The Innovators",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Bill & Dave: How Hewlett and Packard Built the World's Greatest Company",
-        "ref": "The Innovators",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Bill & Dave: How Hewlett and Packard Built the World's Greatest Company",
-        "ref": "Hackers",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Captain: The Journey of Derek Jeter",
-        "ref": "The Last Boy",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Who Is Michael Ovitz?",
-        "ref": "Leading",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Power Ball: Anatomy of a Modern Baseball Game",
-        "ref": "The Only Rule Is It Has to Work",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Recovering: Intoxication and Its Aftermath",
-        "ref": "Lit",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "I Don't Care if We Never Get Back: 30 Games in 30 Days on the Best Worst Baseball Road Trip Ever",
-        "ref": "The Extra 2%",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "I Don't Care if We Never Get Back: 30 Games in 30 Days on the Best Worst Baseball Road Trip Ever",
-        "ref": "Fantasyland",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "A History of Basketball in Fifteen Sneakers",
-        "ref": "Dream Team",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Endgame: An Insurgency on Wall Street",
-        "ref": "The Big Short",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Number Go Up: Inside Crypto's Wild Rise and Staggering Fall",
-        "ref": "Going Infinite",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Number Go Up: Inside Crypto's Wild Rise and Staggering Fall",
-        "ref": "The Big Short",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Spaced Out: How the NBA's Three-Point Revolution Changed Everything You Thought You Knew About Basketball",
-        "ref": "Dream Team",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Roundabout Way: Stories From The Villages, Florida",
-        "ref": "Me Talk Pretty One Day",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Trillions: How a Band of Wall Street Renegades Invented the Index Fund and Changed Finance Forever",
-        "ref": "The Big Short",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "When Crack Was King: A People's History of a Misunderstood Era",
-        "ref": "Dopesick",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Body",
-        "ref": "It",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Empire of Pain",
-        "ref": "Going Infinite",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Empire of Pain",
-        "ref": "The Big Short",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Raging 2020s",
-        "ref": "The Code Breaker",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Raging 2020s",
-        "ref": "Going Infinite",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Number Go Up: Inside Crypto's Wild Rise and Staggering Fall",
-        "ref": "Going Infinite",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Number Go Up: Inside Crypto's Wild Rise and Staggering Fall",
-        "ref": "The Big Short",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "In Good Faith: A Joe Dillard Novel (Joe Dillard Series Book 2)",
-        "ref": "An Innocent Client (Joe Dillard, #1)",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "To Start a War: How the Bush Administration Took America into Iraq",
-        "ref": "The Operators",
-        "touchesFiveStar": false
-      },
       {
         "from": "The Universal Baseball Association, Inc., J. Henry Waugh, Prop.",
         "ref": "The Natural",
@@ -750,38 +315,8 @@
         "touchesFiveStar": false
       },
       {
-        "from": "The Troop",
-        "ref": "The Ruins",
-        "touchesFiveStar": false
-      },
-      {
         "from": "Grinding It Out: The Making of McDonald's",
         "ref": "Made in America",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Rise and Fall of the Third Reich: A History of Nazi Germany",
-        "ref": "Hitler: A Biography",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Notes from Underground",
-        "ref": "The Trial",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Notes from Underground",
-        "ref": "Hunger",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Drudge Revolution: The Untold Story of How Talk Radio, Fox News, and a Gift Shop Clerk with an Internet Connection Took Down the Mainstream Media",
-        "ref": "Hoax",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Body: A Guide for Occupants",
-        "ref": "Stiff",
         "touchesFiveStar": false
       },
       {
@@ -795,33 +330,13 @@
         "touchesFiveStar": false
       },
       {
-        "from": "American Prison: A Reporter's Undercover Journey into the Business of Punishment",
-        "ref": "The Divide",
-        "touchesFiveStar": false
-      },
-      {
         "from": "The Big Roads: The Untold Story of the Engineers, Visionaries, and Trailblazers Who Created the American Superhighways",
         "ref": "The Road to Somewhere",
         "touchesFiveStar": false
       },
       {
-        "from": "The Big Roads: The Untold Story of the Engineers, Visionaries, and Trailblazers Who Created the American Superhighways",
-        "ref": "The Grid",
-        "touchesFiveStar": false
-      },
-      {
         "from": "A Kind and Just Parent: The Children of Juvenile Court",
         "ref": "Just Mercy",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Tumor",
-        "ref": "Micro",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Safe",
-        "ref": "The Force",
         "touchesFiveStar": false
       },
       {
@@ -835,16 +350,6 @@
         "touchesFiveStar": false
       },
       {
-        "from": "The Ballad of Songbirds and Snakes (The Hunger Games, #0)",
-        "ref": "Legend",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "This I Believe: The Personal Philosophies of Remarkable Men and Women (This I Believe, #1)",
-        "ref": "Working",
-        "touchesFiveStar": false
-      },
-      {
         "from": "The Office: The Untold Story of the Greatest Sitcom of the 2000s: An Oral History",
         "ref": "Seinfeldia",
         "touchesFiveStar": false
@@ -852,11 +357,6 @@
       {
         "from": "A Beautiful Mind",
         "ref": "The Man Who Knew Infinity",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "A Beautiful Mind",
-        "ref": "Genius",
         "touchesFiveStar": false
       },
       {
@@ -890,28 +390,8 @@
         "touchesFiveStar": false
       },
       {
-        "from": "Top of the Morning: Inside the Cutthroat World of Morning TV",
-        "ref": "Hoax",
-        "touchesFiveStar": false
-      },
-      {
         "from": "Colonel Sanders and the American Dream",
         "ref": "Drive-Thru Dreams",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Hate Inc.: Why Today's Media Makes Us Despise One Another",
-        "ref": "Trust Me I'm Lying",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Stiff: The Curious Lives of Human Cadavers",
-        "ref": "Bonk",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Fit Matters: How to Love Your Job",
-        "ref": "Drive",
         "touchesFiveStar": false
       },
       {
@@ -935,18 +415,8 @@
         "touchesFiveStar": false
       },
       {
-        "from": "Atmosphaera Incognita",
-        "ref": "Aurora",
-        "touchesFiveStar": false
-      },
-      {
         "from": "Under the Influence, New Edition of the Unauthorized Story of the Anheuser-Busch Dynasty",
         "ref": "Bitter Brew",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Serious Eater: A Food Lover's Perilous Quest for Pizza and Redemption",
-        "ref": "Dirt",
         "touchesFiveStar": false
       },
       {
@@ -962,11 +432,6 @@
       {
         "from": "My Thoughts Exactly",
         "ref": "Becoming",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Grind: Inside Baseball's Endless Season",
-        "ref": "The Arm",
         "touchesFiveStar": false
       },
       {
@@ -987,11 +452,6 @@
       {
         "from": "Reckless Road: Guns N' Roses and the Making of Appetite for Destruction: Author Autographed Edition!",
         "ref": "The Dirt",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Reckless Road: Guns N' Roses and the Making of Appetite for Destruction: Author Autographed Edition!",
-        "ref": "Slash",
         "touchesFiveStar": false
       },
       {
@@ -1035,11 +495,6 @@
         "touchesFiveStar": false
       },
       {
-        "from": "All the Light We Cannot See",
-        "ref": "The Alice Network",
-        "touchesFiveStar": false
-      },
-      {
         "from": "Spaced Out: How the NBA's Three-Point Revolution Changed Everything You Thought You Knew About Basketball",
         "ref": "The Victory Machine",
         "touchesFiveStar": false
@@ -1070,23 +525,8 @@
         "touchesFiveStar": false
       },
       {
-        "from": "Ugly Love",
-        "ref": "After",
-        "touchesFiveStar": false
-      },
-      {
         "from": "Where Are Your Boys Tonight?: The Oral History of Emo's Mainstream Explosion 1999-2008",
         "ref": "Twilight of the Gods",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops",
-        "ref": "The Last Shot",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops",
-        "ref": "Boys Among Men",
         "touchesFiveStar": false
       }
     ],
@@ -1294,6 +734,11 @@
       {
         "from": "To Start a War: How the Bush Administration Took America into Iraq",
         "ref": "Imperial Life in the Emerald City",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "To Start a War: How the Bush Administration Took America into Iraq",
+        "ref": "The Operators",
         "touchesFiveStar": null
       },
       {
@@ -1587,6 +1032,16 @@
         "touchesFiveStar": null
       },
       {
+        "from": "The Path to Power",
+        "ref": "Truman",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "The Path to Power",
+        "ref": "Grant",
+        "touchesFiveStar": null
+      },
+      {
         "from": "Network Effect (The Murderbot Diaries, #5)",
         "ref": "Ancillary Justice",
         "touchesFiveStar": null
@@ -1613,7 +1068,17 @@
       },
       {
         "from": "The Troop",
+        "ref": "The Ruins",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "The Troop",
         "ref": "Boy's Life",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "The Troop",
+        "ref": "It",
         "touchesFiveStar": null
       },
       {
@@ -1633,7 +1098,17 @@
       },
       {
         "from": "The Rise and Fall of the Third Reich: A History of Nazi Germany",
+        "ref": "Hitler: A Biography",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "The Rise and Fall of the Third Reich: A History of Nazi Germany",
         "ref": "Bloodlands",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Notes from Underground",
+        "ref": "The Trial",
         "touchesFiveStar": null
       },
       {
@@ -1642,8 +1117,18 @@
         "touchesFiveStar": null
       },
       {
+        "from": "Notes from Underground",
+        "ref": "Hunger",
+        "touchesFiveStar": null
+      },
+      {
         "from": "The Drudge Revolution: The Untold Story of How Talk Radio, Fox News, and a Gift Shop Clerk with an Internet Connection Took Down the Mainstream Media",
         "ref": "The Loudest Voice in the Room",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "The Drudge Revolution: The Untold Story of How Talk Radio, Fox News, and a Gift Shop Clerk with an Internet Connection Took Down the Mainstream Media",
+        "ref": "Hoax",
         "touchesFiveStar": null
       },
       {
@@ -1654,6 +1139,11 @@
       {
         "from": "The Drudge Revolution: The Untold Story of How Talk Radio, Fox News, and a Gift Shop Clerk with an Internet Connection Took Down the Mainstream Media",
         "ref": "Bad News",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "The Body: A Guide for Occupants",
+        "ref": "Stiff",
         "touchesFiveStar": null
       },
       {
@@ -1737,6 +1227,11 @@
         "touchesFiveStar": null
       },
       {
+        "from": "A Bridge Too Far",
+        "ref": "D-Day",
+        "touchesFiveStar": null
+      },
+      {
         "from": "The Speed of Sound: Breaking the Barriers Between Music and Technology: A Memoir",
         "ref": "Porcelain",
         "touchesFiveStar": null
@@ -1767,6 +1262,11 @@
         "touchesFiveStar": null
       },
       {
+        "from": "Fahrenheit 451",
+        "ref": "We",
+        "touchesFiveStar": null
+      },
+      {
         "from": "The Terminal List (Terminal List, #1)",
         "ref": "American Assassin",
         "touchesFiveStar": null
@@ -1788,6 +1288,16 @@
       },
       {
         "from": "American Prison: A Reporter's Undercover Journey into the Business of Punishment",
+        "ref": "Newjack",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "American Prison: A Reporter's Undercover Journey into the Business of Punishment",
+        "ref": "The Divide",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "American Prison: A Reporter's Undercover Journey into the Business of Punishment",
         "ref": "Fast Food Nation",
         "touchesFiveStar": null
       },
@@ -1799,6 +1309,11 @@
       {
         "from": "Good Economics for Hard Times: Better Answers to Our Biggest Problems",
         "ref": "The Deficit Myth",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Good Economics for Hard Times: Better Answers to Our Biggest Problems",
+        "ref": "Freakonomics",
         "touchesFiveStar": null
       },
       {
@@ -1818,6 +1333,11 @@
       },
       {
         "from": "The Bayou Trilogy: Under the Bright Lights, Muscle for the Wing, and The Ones You Do",
+        "ref": "Joe",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "The Bayou Trilogy: Under the Bright Lights, Muscle for the Wing, and The Ones You Do",
         "ref": "Miami Blues",
         "touchesFiveStar": null
       },
@@ -1829,6 +1349,11 @@
       {
         "from": "The Big Roads: The Untold Story of the Engineers, Visionaries, and Trailblazers Who Created the American Superhighways",
         "ref": "Interstate: Express Highway Politics",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "The Big Roads: The Untold Story of the Engineers, Visionaries, and Trailblazers Who Created the American Superhighways",
+        "ref": "The Grid",
         "touchesFiveStar": null
       },
       {
@@ -1863,6 +1388,11 @@
       },
       {
         "from": "The Tumor",
+        "ref": "Micro",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "The Tumor",
         "ref": "Cutting for Stone",
         "touchesFiveStar": null
       },
@@ -1874,6 +1404,16 @@
       {
         "from": "The Tennis Partner",
         "ref": "The Spirit Catches You and You Fall Down",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "The Tennis Partner",
+        "ref": "Beautiful Boy",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "We Learn Nothing",
+        "ref": "Me Talk Pretty One Day",
         "touchesFiveStar": null
       },
       {
@@ -1889,6 +1429,11 @@
       {
         "from": "Safe",
         "ref": "All Involved",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Safe",
+        "ref": "The Force",
         "touchesFiveStar": null
       },
       {
@@ -1938,12 +1483,22 @@
       },
       {
         "from": "The Ballad of Songbirds and Snakes (The Hunger Games, #0)",
+        "ref": "Legend",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "The Ballad of Songbirds and Snakes (The Hunger Games, #0)",
         "ref": "Red Queen",
         "touchesFiveStar": null
       },
       {
         "from": "This I Believe: The Personal Philosophies of Remarkable Men and Women (This I Believe, #1)",
         "ref": "Listening Is an Act of Love",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "This I Believe: The Personal Philosophies of Remarkable Men and Women (This I Believe, #1)",
+        "ref": "Working",
         "touchesFiveStar": null
       },
       {
@@ -2004,6 +1559,11 @@
       {
         "from": "The Monk Who Sold His Ferrari: A Fable About Fulfilling Your Dreams and Reaching Your Destiny",
         "ref": "Jonathan Livingston Seagull",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "A Beautiful Mind",
+        "ref": "Genius",
         "touchesFiveStar": null
       },
       {
@@ -2158,6 +1718,11 @@
       },
       {
         "from": "Robopocalypse (Robopocalypse, #1)",
+        "ref": "Prey",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Robopocalypse (Robopocalypse, #1)",
         "ref": "The Andromeda Evolution",
         "touchesFiveStar": null
       },
@@ -2209,6 +1774,11 @@
       {
         "from": "Top of the Morning: Inside the Cutthroat World of Morning TV",
         "ref": "The Late Shift",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Top of the Morning: Inside the Cutthroat World of Morning TV",
+        "ref": "Hoax",
         "touchesFiveStar": null
       },
       {
@@ -2278,6 +1848,11 @@
       },
       {
         "from": "Hate Inc.: Why Today's Media Makes Us Despise One Another",
+        "ref": "Trust Me I'm Lying",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Hate Inc.: Why Today's Media Makes Us Despise One Another",
         "ref": "The New Media Monopoly",
         "touchesFiveStar": null
       },
@@ -2289,6 +1864,11 @@
       {
         "from": "Burn the Ice: The American Culinary Revolution and Its End",
         "ref": "Kitchen Confidential",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Burn the Ice: The American Culinary Revolution and Its End",
+        "ref": "Heat",
         "touchesFiveStar": null
       },
       {
@@ -2313,7 +1893,17 @@
       },
       {
         "from": "Rolling Nowhere: Riding the Rails with America's Hoboes",
+        "ref": "Newjack",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Rolling Nowhere: Riding the Rails with America's Hoboes",
         "ref": "The Worst Hard Time",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Stiff: The Curious Lives of Human Cadavers",
+        "ref": "Bonk",
         "touchesFiveStar": null
       },
       {
@@ -2348,6 +1938,11 @@
       },
       {
         "from": "Fit Matters: How to Love Your Job",
+        "ref": "Drive",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Fit Matters: How to Love Your Job",
         "ref": "Strengths Finder 2.0",
         "touchesFiveStar": null
       },
@@ -2359,6 +1954,11 @@
       {
         "from": "Spare Parts: Four Undocumented Teenagers, One Ugly Robot, and the Battle for the American Dream",
         "ref": "There Are No Children Here",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Spare Parts: Four Undocumented Teenagers, One Ugly Robot, and the Battle for the American Dream",
+        "ref": "Evicted",
         "touchesFiveStar": null
       },
       {
@@ -2439,6 +2039,11 @@
       {
         "from": "Win Bigly: Persuasion in a World Where Facts Don't Matter",
         "ref": "The Art of the Deal",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Atmosphaera Incognita",
+        "ref": "Aurora",
         "touchesFiveStar": null
       },
       {
@@ -2537,6 +2142,16 @@
         "touchesFiveStar": null
       },
       {
+        "from": "Drive-Thru Dreams: A Journey Through the Heart of America's Fast-Food Kingdom",
+        "ref": "Cooked",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Wild and Outside: How a Renegade Minor League Revived the Spirit of Baseball in America's Heartland",
+        "ref": "Word Freak",
+        "touchesFiveStar": null
+      },
+      {
         "from": "Wild and Outside: How a Renegade Minor League Revived the Spirit of Baseball in America's Heartland",
         "ref": "Three Nights in August",
         "touchesFiveStar": null
@@ -2549,6 +2164,11 @@
       {
         "from": "Serious Eater: A Food Lover's Perilous Quest for Pizza and Redemption",
         "ref": "Garlic and Sapphires",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Serious Eater: A Food Lover's Perilous Quest for Pizza and Redemption",
+        "ref": "Dirt",
         "touchesFiveStar": null
       },
       {
@@ -2603,6 +2223,11 @@
       },
       {
         "from": "The Grind: Inside Baseball's Endless Season",
+        "ref": "The Arm",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "The Grind: Inside Baseball's Endless Season",
         "ref": "Four Days to Glory",
         "touchesFiveStar": null
       },
@@ -2614,6 +2239,11 @@
       {
         "from": "The Devil in the White City",
         "ref": "The River of Doubt",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "The Devil in the White City",
+        "ref": "American Fire",
         "touchesFiveStar": null
       },
       {
@@ -2723,6 +2353,11 @@
       },
       {
         "from": "Reckless Road: Guns N' Roses and the Making of Appetite for Destruction: Author Autographed Edition!",
+        "ref": "Slash",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Reckless Road: Guns N' Roses and the Making of Appetite for Destruction: Author Autographed Edition!",
         "ref": "Scar Tissue",
         "touchesFiveStar": null
       },
@@ -2743,7 +2378,17 @@
       },
       {
         "from": "Gearheads: The Turbulent Rise of Robotic Sports",
+        "ref": "Hackers",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Gearheads: The Turbulent Rise of Robotic Sports",
         "ref": "Soul of a New Machine",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Bill & Dave: How Hewlett and Packard Built the World's Greatest Company",
+        "ref": "Hackers",
         "touchesFiveStar": null
       },
       {
@@ -2773,6 +2418,11 @@
       },
       {
         "from": "The Captain: The Journey of Derek Jeter",
+        "ref": "The Last Boy",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "The Captain: The Journey of Derek Jeter",
         "ref": "Koufax",
         "touchesFiveStar": null
       },
@@ -2794,6 +2444,11 @@
       {
         "from": "Who Is Michael Ovitz?",
         "ref": "You'll Never Eat Lunch in This Town Again",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Who Is Michael Ovitz?",
+        "ref": "Leading",
         "touchesFiveStar": null
       },
       {
@@ -2819,6 +2474,11 @@
       {
         "from": "The Recovering: Intoxication and Its Aftermath",
         "ref": "Drinking: A Love Story",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "The Recovering: Intoxication and Its Aftermath",
+        "ref": "Lit",
         "touchesFiveStar": null
       },
       {
@@ -2929,6 +2589,11 @@
       {
         "from": "All the Light We Cannot See",
         "ref": "The Tattooist of Auschwitz",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "All the Light We Cannot See",
+        "ref": "The Alice Network",
         "touchesFiveStar": null
       },
       {
@@ -3088,6 +2753,11 @@
       },
       {
         "from": "The Roundabout Way: Stories From The Villages, Florida",
+        "ref": "Me Talk Pretty One Day",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "The Roundabout Way: Stories From The Villages, Florida",
         "ref": "Lake Wobegon Days",
         "touchesFiveStar": null
       },
@@ -3119,6 +2789,11 @@
       {
         "from": "Ugly Love",
         "ref": "Beautiful Disaster",
+        "touchesFiveStar": null
+      },
+      {
+        "from": "Ugly Love",
+        "ref": "After",
         "touchesFiveStar": null
       },
       {
@@ -3157,6 +2832,11 @@
         "touchesFiveStar": null
       },
       {
+        "from": "The Body",
+        "ref": "It",
+        "touchesFiveStar": null
+      },
+      {
         "from": "Raised",
         "ref": "My Absolute Darling",
         "touchesFiveStar": null
@@ -3165,663 +2845,10 @@
         "from": "How to Know a Person: The Art of Seeing Others Deeply and Being Deeply Seen",
         "ref": "The Second Mountain",
         "touchesFiveStar": null
-      },
-      {
-        "from": "Number Go Up: Inside Crypto's Wild Rise and Staggering Fall",
-        "ref": "Easy Money",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops",
-        "ref": "A Season on the Brink",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops",
-        "ref": "The Soul of Basketball",
-        "touchesFiveStar": null
       }
     ],
-    "promoteCandidates": [
-      {
-        "theme": "legal",
-        "count": 86
-      },
-      {
-        "theme": "courtroom",
-        "count": 56
-      },
-      {
-        "theme": "historical fiction",
-        "count": 6
-      }
-    ],
-    "nonCanonicalThemes": [
-      {
-        "title": "An Innocent Client: A Joe Dillard Novel (Joe Dillard Series Book 1)",
-        "theme": "legal"
-      },
-      {
-        "title": "An Innocent Client: A Joe Dillard Novel (Joe Dillard Series Book 1)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "In Good Faith: A Joe Dillard Novel (Joe Dillard Series Book 2)",
-        "theme": "legal"
-      },
-      {
-        "title": "In Good Faith: A Joe Dillard Novel (Joe Dillard Series Book 2)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Judge Stone",
-        "theme": "legal"
-      },
-      {
-        "title": "Judge Stone",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Midnight Lawyer (Hank Luger Legal Thrillers, #1)",
-        "theme": "legal"
-      },
-      {
-        "title": "The Midnight Lawyer (Hank Luger Legal Thrillers, #1)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The French Illusion",
-        "theme": "legal"
-      },
-      {
-        "title": "The French Illusion",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Widow",
-        "theme": "legal"
-      },
-      {
-        "title": "The Widow",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Rich Blood (Jason Rich, #1)",
-        "theme": "legal"
-      },
-      {
-        "title": "Rich Blood (Jason Rich, #1)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Framed: Astonishing True Stories of Wrongful Convictions",
-        "theme": "legal"
-      },
-      {
-        "title": "The Boomerang",
-        "theme": "legal"
-      },
-      {
-        "title": "A Time to Kill (Jake Brigance, #1)",
-        "theme": "legal"
-      },
-      {
-        "title": "A Time to Kill (Jake Brigance, #1)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Street Lawyer",
-        "theme": "legal"
-      },
-      {
-        "title": "The Street Lawyer",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Client",
-        "theme": "legal"
-      },
-      {
-        "title": "The Client",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Firm (Penguin Readers, Level 5)",
-        "theme": "legal"
-      },
-      {
-        "title": "The Firm (Penguin Readers, Level 5)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Presumed Innocent",
-        "theme": "legal"
-      },
-      {
-        "title": "Presumed Innocent",
-        "theme": "courtroom"
-      },
-      {
-        "title": "12 Months to Live (Jane Smith, #1)",
-        "theme": "legal"
-      },
-      {
-        "title": "The Exchange (The Firm, #2)",
-        "theme": "legal"
-      },
-      {
-        "title": "The Exchange (The Firm, #2)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Firm (The Firm, #1)",
-        "theme": "legal"
-      },
-      {
-        "title": "The Firm (The Firm, #1)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "How I Killed Pluto and Why It Had It Coming",
-        "theme": "science"
-      },
-      {
-        "title": "Interference",
-        "theme": "legal"
-      },
-      {
-        "title": "Th1rt3en (Eddie Flynn, #4)",
-        "theme": "legal"
-      },
-      {
-        "title": "Th1rt3en (Eddie Flynn, #4)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Innocent Man: Murder and Injustice in a Small Town",
-        "theme": "legal"
-      },
-      {
-        "title": "Pleading Guilty (Kindle County, #3)",
-        "theme": "legal"
-      },
-      {
-        "title": "Pleading Guilty (Kindle County, #3)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Kill for Me, Kill for You",
-        "theme": "legal"
-      },
-      {
-        "title": "The Burden of Proof (Kindle County, #2)",
-        "theme": "legal"
-      },
-      {
-        "title": "The Burden of Proof (Kindle County, #2)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Rescued (Andy Carpenter, #17)",
-        "theme": "legal"
-      },
-      {
-        "title": "A Criminal Justice (Philadelphia Legal, #4)",
-        "theme": "legal"
-      },
-      {
-        "title": "A Criminal Justice (Philadelphia Legal, #4)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "A Killer's Alibi (Philadelphia Legal, #3)",
-        "theme": "legal"
-      },
-      {
-        "title": "A Killer's Alibi (Philadelphia Legal, #3)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Last Chance Lawyer (Daniel Pike #1)",
-        "theme": "legal"
-      },
-      {
-        "title": "The Last Chance Lawyer (Daniel Pike #1)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Boys from Biloxi",
-        "theme": "legal"
-      },
-      {
-        "title": "Partners: A Rogue Lawyer Short Story (Kindle Single)",
-        "theme": "legal"
-      },
-      {
-        "title": "Partners: A Rogue Lawyer Short Story (Kindle Single)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Rogue Justice (Avery Keene, #2)",
-        "theme": "legal"
-      },
-      {
-        "title": "The Genome Defense: Inside the Epic Legal Battle to Determine Who Owns Your DNA",
-        "theme": "legal"
-      },
-      {
-        "title": "Sparring Partners",
-        "theme": "legal"
-      },
-      {
-        "title": "Sparring Partners",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Guardians",
-        "theme": "legal"
-      },
-      {
-        "title": "The Guardians",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Jury Master (David Sloane, #1)",
-        "theme": "legal"
-      },
-      {
-        "title": "The Jury Master (David Sloane, #1)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "An Engineered Injustice (Philadelphia Legal, #2)",
-        "theme": "legal"
-      },
-      {
-        "title": "An Engineered Injustice (Philadelphia Legal, #2)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "A Criminal Defense (Philadelphia Legal, #1)",
-        "theme": "legal"
-      },
-      {
-        "title": "A Criminal Defense (Philadelphia Legal, #1)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Jailhouse Lawyer",
-        "theme": "legal"
-      },
-      {
-        "title": "While Justice Sleeps",
-        "theme": "legal"
-      },
-      {
-        "title": "The Judge's List (The Whistler #2)",
-        "theme": "legal"
-      },
-      {
-        "title": "The Judge's List (The Whistler #2)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Juror #3 (Ruby Bozarth, #1)",
-        "theme": "legal"
-      },
-      {
-        "title": "Juror #3 (Ruby Bozarth, #1)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Nine: Inside the Secret World of the Supreme Court",
-        "theme": "legal"
-      },
-      {
-        "title": "A Time for Mercy (Jake Brigance, #3)",
-        "theme": "legal"
-      },
-      {
-        "title": "A Time for Mercy (Jake Brigance, #3)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Last Trial (Kindle County Legal Thriller #11)",
-        "theme": "legal"
-      },
-      {
-        "title": "The Last Trial (Kindle County Legal Thriller #11)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Holdout",
-        "theme": "legal"
-      },
-      {
-        "title": "The Holdout",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Just Mercy: A Story of Justice and Redemption",
-        "theme": "legal"
-      },
-      {
-        "title": "The Reckoning",
-        "theme": "legal"
-      },
-      {
-        "title": "The Reckoning",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Gray Mountain",
-        "theme": "legal"
-      },
-      {
-        "title": "The Whistler (The Whistler, #1)",
-        "theme": "legal"
-      },
-      {
-        "title": "The Whistler (The Whistler, #1)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Witness to a Trial (The Whistler, #0.5)",
-        "theme": "legal"
-      },
-      {
-        "title": "Witness to a Trial (The Whistler, #0.5)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Associate",
-        "theme": "legal"
-      },
-      {
-        "title": "The Associate",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Sycamore Row (Jake Brigance, #2)",
-        "theme": "legal"
-      },
-      {
-        "title": "Sycamore Row (Jake Brigance, #2)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Theodore Boone: Kid Lawyer (Theodore Boone, #1)",
-        "theme": "legal"
-      },
-      {
-        "title": "The Abduction (Theodore Boone, #2)",
-        "theme": "legal"
-      },
-      {
-        "title": "Ford County",
-        "theme": "legal"
-      },
-      {
-        "title": "The Confession",
-        "theme": "legal"
-      },
-      {
-        "title": "The Confession",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Summons",
-        "theme": "legal"
-      },
-      {
-        "title": "The Summons",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The King of Torts",
-        "theme": "legal"
-      },
-      {
-        "title": "The King of Torts",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Last Juror",
-        "theme": "legal"
-      },
-      {
-        "title": "The Last Juror",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Racketeer",
-        "theme": "legal"
-      },
-      {
-        "title": "The Brethren",
-        "theme": "legal"
-      },
-      {
-        "title": "The Brethren",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Testament",
-        "theme": "legal"
-      },
-      {
-        "title": "The Partner",
-        "theme": "legal"
-      },
-      {
-        "title": "The Partner",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Chamber",
-        "theme": "legal"
-      },
-      {
-        "title": "The Chamber",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Rainmaker",
-        "theme": "legal"
-      },
-      {
-        "title": "The Rainmaker",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Runaway Jury",
-        "theme": "legal"
-      },
-      {
-        "title": "The Runaway Jury",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Pelican Brief",
-        "theme": "legal"
-      },
-      {
-        "title": "The Rooster Bar",
-        "theme": "legal"
-      },
-      {
-        "title": "The Appeal",
-        "theme": "legal"
-      },
-      {
-        "title": "The Hanging Judge (The Judge Norcross Novels)",
-        "theme": "legal"
-      },
-      {
-        "title": "The Hanging Judge (The Judge Norcross Novels)",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Litigators",
-        "theme": "legal"
-      },
-      {
-        "title": "The Litigators",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Rogue Lawyer (Rogue Lawyer, #1)",
-        "theme": "legal"
-      },
-      {
-        "title": "Once Upon a Time in Hollywood: A Novel",
-        "theme": "historical fiction"
-      },
-      {
-        "title": "The Universal Baseball Association, Inc., J. Henry Waugh, Prop.",
-        "theme": "historical fiction"
-      },
-      {
-        "title": "Zone One",
-        "theme": "historical fiction"
-      },
-      {
-        "title": "The Moviegoer",
-        "theme": "coming-of-age"
-      },
-      {
-        "title": "11/22/63",
-        "theme": "historical fiction"
-      },
-      {
-        "title": "The Tumor",
-        "theme": "medical thriller"
-      },
-      {
-        "title": "The Ballad of Songbirds and Snakes (The Hunger Games, #0)",
-        "theme": "coming-of-age"
-      },
-      {
-        "title": "Vengeful (Villains, #2)",
-        "theme": "fantasy"
-      },
-      {
-        "title": "All the Light We Cannot See",
-        "theme": "historical fiction"
-      },
-      {
-        "title": "All the Light We Cannot See",
-        "theme": "coming-of-age"
-      },
-      {
-        "title": "Fourth Wing",
-        "theme": "fantasy"
-      },
-      {
-        "title": "Red Rising",
-        "theme": "coming-of-age"
-      },
-      {
-        "title": "The Heaven & Earth Grocery Store",
-        "theme": "historical fiction"
-      },
-      {
-        "title": "A Calamity of Souls",
-        "theme": "legal"
-      },
-      {
-        "title": "A Calamity of Souls",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Suspect",
-        "theme": "legal"
-      },
-      {
-        "title": "Suspect",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Southern Man",
-        "theme": "legal"
-      },
-      {
-        "title": "Goodbye Girl",
-        "theme": "legal"
-      },
-      {
-        "title": "What Happened to the Bennetts",
-        "theme": "legal"
-      },
-      {
-        "title": "Motion to Suppress",
-        "theme": "legal"
-      },
-      {
-        "title": "Motion to Suppress",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Invasion of Privacy",
-        "theme": "legal"
-      },
-      {
-        "title": "Invasion of Privacy",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Blood Defense",
-        "theme": "legal"
-      },
-      {
-        "title": "Blood Defense",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Defending Jacob",
-        "theme": "legal"
-      },
-      {
-        "title": "Defending Jacob",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Good Daughter",
-        "theme": "legal"
-      },
-      {
-        "title": "House of Correction",
-        "theme": "courtroom"
-      },
-      {
-        "title": "The Lincoln Lawyer",
-        "theme": "legal"
-      },
-      {
-        "title": "The Lincoln Lawyer",
-        "theme": "courtroom"
-      },
-      {
-        "title": "My Sister's Grave",
-        "theme": "legal"
-      },
-      {
-        "title": "Everywhere That Mary Went",
-        "theme": "legal"
-      },
-      {
-        "title": "Everywhere That Mary Went",
-        "theme": "courtroom"
-      },
-      {
-        "title": "Culpability",
-        "theme": "legal"
-      },
-      {
-        "title": "Open and Shut",
-        "theme": "legal"
-      }
-    ],
+    "promoteCandidates": [],
+    "nonCanonicalThemes": [],
     "duplicateBookKeys": [
       {
         "key": "listen-for-the-lie|amy-tintera",
@@ -3852,36 +2879,6 @@
             "shelf": "candidate-pool"
           }
         ]
-      },
-      {
-        "key": "number-go-up-inside-crypto-s-wild-rise-and-staggering-fall|zeke-faux",
-        "books": [
-          {
-            "title": "Number Go Up: Inside Crypto's Wild Rise and Staggering Fall",
-            "source": "library",
-            "shelf": "read"
-          },
-          {
-            "title": "Number Go Up: Inside Crypto's Wild Rise and Staggering Fall",
-            "source": "candidate_pool",
-            "shelf": "candidate-pool"
-          }
-        ]
-      },
-      {
-        "key": "the-real-hoosiers-crispus-attucks-high-school-oscar-robertson-and-the-hidden-history-of-hoops|jack-mccallum",
-        "books": [
-          {
-            "title": "The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops",
-            "source": "library",
-            "shelf": "read"
-          },
-          {
-            "title": "The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops",
-            "source": "candidate_pool",
-            "shelf": "candidate-pool"
-          }
-        ]
       }
     ],
     "duplicateTitleAuthor": [
@@ -3892,80 +2889,6 @@
           {
             "source": "library",
             "shelf": "to-read"
-          },
-          {
-            "source": "candidate_pool",
-            "shelf": "candidate-pool"
-          }
-        ]
-      },
-      {
-        "title": "All the Light We Cannot See",
-        "author": "Anthony Doerr",
-        "occurrences": [
-          {
-            "source": "library",
-            "shelf": "read"
-          },
-          {
-            "source": "candidate_pool",
-            "shelf": "candidate-pool"
-          }
-        ]
-      },
-      {
-        "title": "Number Go Up: Inside Crypto's Wild Rise and Staggering Fall",
-        "author": "Zeke Faux",
-        "occurrences": [
-          {
-            "source": "library",
-            "shelf": "read"
-          },
-          {
-            "source": "candidate_pool",
-            "shelf": "candidate-pool"
-          },
-          {
-            "source": "candidate_pool",
-            "shelf": "candidate-pool"
-          }
-        ]
-      },
-      {
-        "title": "Red Rising",
-        "author": "Pierce Brown",
-        "occurrences": [
-          {
-            "source": "library",
-            "shelf": "read"
-          },
-          {
-            "source": "candidate_pool",
-            "shelf": "candidate-pool"
-          }
-        ]
-      },
-      {
-        "title": "The Heaven & Earth Grocery Store",
-        "author": "James McBride",
-        "occurrences": [
-          {
-            "source": "library",
-            "shelf": "read"
-          },
-          {
-            "source": "candidate_pool",
-            "shelf": "candidate-pool"
-          }
-        ]
-      },
-      {
-        "title": "The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops",
-        "author": "Jack McCallum",
-        "occurrences": [
-          {
-            "source": "library",
-            "shelf": "read"
           },
           {
             "source": "candidate_pool",
@@ -4003,82 +2926,6 @@
       }
     ],
     "impactScores": [
-      {
-        "title": "Number Go Up: Inside Crypto's Wild Rise and Staggering Fall",
-        "author": "Zeke Faux",
-        "score": 135,
-        "reasons": [
-          "already read but still sitting in a candidate pool — recommendable duplicate",
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read",
-          "missing ratingsCount"
-        ],
-        "locations": [
-          "library/read",
-          "candidate_pool/candidate-pool",
-          "candidate_pool/candidate-pool"
-        ]
-      },
-      {
-        "title": "The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops",
-        "author": "Jack McCallum",
-        "score": 110,
-        "reasons": [
-          "already read but still sitting in a candidate pool — recommendable duplicate",
-          "missing ratingsCount"
-        ],
-        "locations": [
-          "library/read",
-          "candidate_pool/candidate-pool"
-        ]
-      },
-      {
-        "title": "All the Light We Cannot See",
-        "author": "Anthony Doerr",
-        "score": 100,
-        "reasons": [
-          "already read but still sitting in a candidate pool — recommendable duplicate"
-        ],
-        "locations": [
-          "library/read",
-          "candidate_pool/candidate-pool"
-        ]
-      },
-      {
-        "title": "Red Rising",
-        "author": "Pierce Brown",
-        "score": 100,
-        "reasons": [
-          "already read but still sitting in a candidate pool — recommendable duplicate"
-        ],
-        "locations": [
-          "library/read",
-          "candidate_pool/candidate-pool"
-        ]
-      },
-      {
-        "title": "The Heaven & Earth Grocery Store",
-        "author": "James McBride",
-        "score": 100,
-        "reasons": [
-          "already read but still sitting in a candidate pool — recommendable duplicate"
-        ],
-        "locations": [
-          "library/read",
-          "candidate_pool/candidate-pool"
-        ]
-      },
-      {
-        "title": "Rolling Nowhere: Riding the Rails with America's Hoboes",
-        "author": "Ted Conover",
-        "score": 45,
-        "reasons": [
-          "self-referential similarToTitles/similarToAuthors entry",
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
       {
         "title": "When the Game Was Ours",
         "author": "Larry Bird",
@@ -4179,388 +3026,58 @@
         ]
       },
       {
-        "title": "The Boomerang",
-        "author": "Robert Bailey",
-        "score": 25,
+        "title": "Stoner",
+        "author": "John  Williams",
+        "score": 10,
         "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
+          "missing similarToAuthors"
         ],
         "locations": [
-          "library/read"
+          "library/to-read"
         ]
       },
       {
-        "title": "The Antisocial Network: The True Story of a Ragtag of Amateur Investors, Gamers, and Internet Trolls Who Brought Wall Street to Its Knees",
-        "author": "Ben Mezrich",
-        "score": 25,
+        "title": "Ding Dong: How Ring Went From Shark Tank Reject To Everyone's Front Door",
+        "author": "Jamie Siminoff",
+        "score": 10,
         "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
+          "missing similarToAuthors"
         ],
         "locations": [
-          "library/read"
+          "library/to-read"
         ]
       },
       {
-        "title": "Fentanyl, Inc.: How Rogue Chemists Are Creating the Deadliest Wave of the Opioid Epidemic",
-        "author": "Ben Westhoff",
-        "score": 25,
+        "title": "Thrilling Tales of Modern Men: Stories",
+        "author": "Danny McBride",
+        "score": 10,
         "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
+          "missing similarToAuthors"
         ],
         "locations": [
-          "library/read"
+          "library/to-read"
         ]
       },
       {
-        "title": "The Path to Power",
-        "author": "Robert A. Caro",
-        "score": 25,
+        "title": "The American Way of Killing: The Invention of an Epidemic",
+        "author": "Malcolm Gladwell",
+        "score": 10,
         "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
+          "missing similarToAuthors"
         ],
         "locations": [
-          "library/read"
+          "library/to-read"
         ]
       },
       {
-        "title": "The Troop",
-        "author": "Nick Cutter",
-        "score": 25,
+        "title": "Endurance: Shackleton's Incredible Voyage",
+        "author": "Alfred Lansing",
+        "score": 10,
         "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
+          "missing similarToAuthors"
         ],
         "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "Grinding It Out: The Making of McDonald's",
-        "author": "Ray Kroc",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "A Bridge Too Far",
-        "author": "Cornelius Ryan",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "The Speed of Sound: Breaking the Barriers Between Music and Technology: A Memoir",
-        "author": "Thomas Dolby",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "Fahrenheit 451",
-        "author": "Ray Bradbury",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "American Prison: A Reporter's Undercover Journey into the Business of Punishment",
-        "author": "Shane Bauer",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "Good Economics for Hard Times: Better Answers to Our Biggest Problems",
-        "author": "Abhijit V. Banerjee",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "The Bayou Trilogy: Under the Bright Lights, Muscle for the Wing, and The Ones You Do",
-        "author": "Daniel Woodrell",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "Andy Grove: The Life and Times of an American",
-        "author": "Richard S. Tedlow",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "Panic: The Story of Modern Financial Insanity",
-        "author": "Michael Lewis",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "The Tennis Partner",
-        "author": "Abraham Verghese",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "We Learn Nothing",
-        "author": "Tim Kreider",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "Samsung Rising: The Inside Story of the South Korean Giant That Set Out to Beat Apple and Conquer Tech",
-        "author": "Geoffrey Cain",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "The Victory Machine: The Making and Unmaking of the Warriors Dynasty",
-        "author": "Ethan Sherwood Strauss",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "Twitter: A Biography",
-        "author": "Jean Burgess",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "The Wax Pack: On the Open Road in Search of Baseballâ€™s Afterlife",
-        "author": "Brad Balukjian",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "The Shift: The Next Evolution in Baseball Thinking",
-        "author": "Russell A. Carleton",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "Robopocalypse (Robopocalypse, #1)",
-        "author": "Daniel H. Wilson",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "Burn the Ice: The American Culinary Revolution and Its End",
-        "author": "Kevin Alexander",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "Spare Parts: Four Undocumented Teenagers, One Ugly Robot, and the Battle for the American Dream",
-        "author": "Joshua Davis",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "The Smartest Guys in the Room: The Amazing Rise and Scandalous Fall of Enron",
-        "author": "Bethany McLean",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "Drive-Thru Dreams: A Journey Through the Heart of America's Fast-Food Kingdom",
-        "author": "Adam Chandler",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "Wild and Outside: How a Renegade Minor League Revived the Spirit of Baseball in America's Heartland",
-        "author": "Stefan Fatsis",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "The Devil in the White City",
-        "author": "Erik Larson",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "Gearheads: The Turbulent Rise of Robotic Sports",
-        "author": "Brad Stone",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "Bill & Dave: How Hewlett and Packard Built the World's Greatest Company",
-        "author": "Michael S. Malone",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "The Captain: The Journey of Derek Jeter",
-        "author": "Ian O'Connor",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "Who Is Michael Ovitz?",
-        "author": "Michael Ovitz",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "Power Ball: Anatomy of a Modern Baseball Game",
-        "author": "Rob Neyer",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "The Recovering: Intoxication and Its Aftermath",
-        "author": "Leslie Jamison",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
-        ]
-      },
-      {
-        "title": "I Don't Care if We Never Get Back: 30 Games in 30 Days on the Best Worst Baseball Road Trip Ever",
-        "author": "Ben Blatt",
-        "score": 25,
-        "reasons": [
-          "cites or is cited by a broken similarToTitles reference touching a 5★ read"
-        ],
-        "locations": [
-          "library/read"
+          "library/to-read"
         ]
       }
     ]
