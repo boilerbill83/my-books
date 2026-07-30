@@ -475,13 +475,26 @@
           componentsWrap.appendChild(row);
         }
         if (history.length > 1) {
-          const prevScore = history[history.length - 2]?.qualityScore?.score;
+          const prevEntry = history[history.length - 2];
+          const prevScore = prevEntry?.qualityScore?.score;
+          const prevComponents = prevEntry?.qualityScore?.components;
           if (typeof prevScore === 'number' && prevScore !== score) {
             const diff = score - prevScore;
+            // A changed component set/weights means the scoring FORMULA was
+            // recalibrated, not that the underlying data got better or worse
+            // — a colored up/down arrow would misread a rubric change as a
+            // real regression or improvement, so show a neutral note instead.
+            const recalibrated = !prevComponents || prevComponents.length !== components.length ||
+              prevComponents.some((pc, i) => !components[i] || pc.key !== components[i].key || pc.weight !== components[i].weight);
             const deltaEl = document.createElement('div');
             deltaEl.style.fontSize = '0.78rem';
-            deltaEl.style.color = diff > 0 ? 'var(--status-good)' : 'var(--status-critical)';
-            deltaEl.textContent = `${diff > 0 ? '▲' : '▼'} ${diff > 0 ? '+' : ''}${diff} since last report (${prevScore}/100)`;
+            if (recalibrated) {
+              deltaEl.style.color = 'var(--text-muted)';
+              deltaEl.textContent = `↺ Scoring formula recalibrated since last report — ${prevScore}→${score}/100 isn't a direct comparison.`;
+            } else {
+              deltaEl.style.color = diff > 0 ? 'var(--status-good)' : 'var(--status-critical)';
+              deltaEl.textContent = `${diff > 0 ? '▲' : '▼'} ${diff > 0 ? '+' : ''}${diff} since last report (${prevScore}/100)`;
+            }
             componentsWrap.appendChild(deltaEl);
           }
         }
