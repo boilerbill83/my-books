@@ -38238,6 +38238,10 @@
         "Tomorrow, and Tomorrow, and Tomorrow",
         "The Storied Life of A.J. Fikry",
         "Where the Crawdads Sing"
+      ],
+      "similarToAuthors": [
+        "Gabrielle Zevin",
+        "Tom Perrotta"
       ]
     },
     {
@@ -38265,6 +38269,11 @@
         "Shoe Dog",
         "That Will Never Work: The Birth of Netflix and the Amazing Life of an Idea",
         "The Everything Store: Jeff Bezos and the Age of Amazon"
+      ],
+      "similarToAuthors": [
+        "Phil Knight",
+        "Marc Randolph",
+        "Brad Stone"
       ]
     },
     {
@@ -38291,6 +38300,10 @@
         "Yearbook",
         "Raised in Captivity: Fictional Nonfiction",
         "Clusterf*ck"
+      ],
+      "similarToAuthors": [
+        "Seth Rogen",
+        "Chuck Klosterman"
       ]
     },
     {
@@ -38318,6 +38331,12 @@
         "The Bomber Mafia: A Dream, a Temptation, and the Longest Night of the Second World War",
         "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
         "Evicted: Poverty and Profit in the American City"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Daniel Kahneman",
+        "Nassim Taleb",
+        "Dan Ariely"
       ]
     },
     {
@@ -38346,6 +38365,11 @@
         "The Wager: A Tale of Shipwreck, Mutiny and Murder",
         "Into Thin Air",
         "Unbroken: A World War II Story of Survival, Resilience and Redemption"
+      ],
+      "similarToAuthors": [
+        "Jon Krakauer",
+        "David Grann",
+        "Laura Hillenbrand"
       ]
     },
     {
@@ -38364,7 +38388,11 @@
       "type": "unknown",
       "themes": [],
       "tones": [],
-      "dnf": false
+      "dnf": false,
+      "similarToAuthors": [
+        "Jon Krakauer",
+        "David Grann"
+      ]
     },
     {
       "bookKey": "how-to-not-die-in-prison-a-survival-guide|taylor-sheridan",
@@ -38382,7 +38410,10 @@
       "type": "unknown",
       "themes": [],
       "tones": [],
-      "dnf": false
+      "dnf": false,
+      "similarToAuthors": [
+        "Ted Conover"
+      ]
     },
     {
       "bookKey": "the-munich-affair|james-patterson",
@@ -38400,7 +38431,13 @@
       "type": "unknown",
       "themes": [],
       "tones": [],
-      "dnf": false
+      "dnf": false,
+      "similarToAuthors": [
+        "Harlan Coben",
+        "Michael Connelly",
+        "Lee Child",
+        "David Baldacci"
+      ]
     },
     {
       "bookKey": "this-book-made-me-think-of-you|libby-page",
@@ -38418,7 +38455,11 @@
       "type": "unknown",
       "themes": [],
       "tones": [],
-      "dnf": false
+      "dnf": false,
+      "similarToAuthors": [
+        "Taylor Jenkins Reid",
+        "Emma Straub"
+      ]
     },
     {
       "bookKey": "operation-bounce-house|matt-dinniman",
@@ -38436,7 +38477,11 @@
       "type": "unknown",
       "themes": [],
       "tones": [],
-      "dnf": false
+      "dnf": false,
+      "similarToAuthors": [
+        "Andy Weir",
+        "Max Brooks"
+      ]
     },
     {
       "bookKey": "culpability|bruce-holsinger",
@@ -38454,7 +38499,11 @@
       "type": "unknown",
       "themes": [],
       "tones": [],
-      "dnf": false
+      "dnf": false,
+      "similarToAuthors": [
+        "Gary Shteyngart",
+        "Tom Perrotta"
+      ]
     },
     {
       "bookKey": "rock-a-mainstream-alternative-history-of-alternative-mainstream-music|chuck-klosterman",
@@ -38472,7 +38521,11 @@
       "type": "unknown",
       "themes": [],
       "tones": [],
-      "dnf": false
+      "dnf": false,
+      "similarToAuthors": [
+        "Jeff Pearlman",
+        "Bill Bryson"
+      ]
     },
     {
       "title": "Cancel Me If You Can",
@@ -38489,7 +38542,11 @@
       "type": "unknown",
       "themes": [],
       "tones": [],
-      "dnf": false
+      "dnf": false,
+      "similarToAuthors": [
+        "Phil Knight",
+        "Jeff Pearlman"
+      ]
     }
   ],
   "indexes": {

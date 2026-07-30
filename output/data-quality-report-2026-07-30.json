@@ -8,13 +8,13 @@
         "key": "criticalHealth",
         "label": "Critical Field Health",
         "weight": 0.08,
-        "subscore": 99.70323741007194
+        "subscore": 99.82014388489208
       },
       {
         "key": "completeness",
         "label": "Field Completeness",
         "weight": 0.33,
-        "subscore": 64.08933699073538
+        "subscore": 64.30429405734006
       },
       {
         "key": "foundational",
@@ -46,7 +46,7 @@
       },
       {
         "count": 8,
-        "pointsLost": 11.9,
+        "pointsLost": 11.8,
         "name": "Field completeness gaps (all fields)",
         "description": "Average Quality Score across all 31 tracked fields is 93.7% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
         "fix": "See the Field Population table, sorted by Quality Score, for every field below 90%.",
@@ -81,13 +81,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.70323741007194
+          "subscore": 99.82014388489208
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 64.08933699073538
+          "subscore": 64.30429405734006
         },
         {
           "key": "foundational",
@@ -392,12 +392,6 @@
       "critical": false
     },
     {
-      "field": "similarToAuthors",
-      "scorePct": 98.7410071942446,
-      "rawPct": 98.7410071942446,
-      "critical": true
-    },
-    {
       "field": "themes",
       "scorePct": 99.19064748201438,
       "rawPct": 99.19064748201438,
@@ -435,6 +429,12 @@
     },
     {
       "field": "ratingsCount",
+      "scorePct": 99.91007194244604,
+      "rawPct": 99.91007194244604,
+      "critical": true
+    },
+    {
+      "field": "similarToAuthors",
       "scorePct": 99.91007194244604,
       "rawPct": 99.91007194244604,
       "critical": true
@@ -3208,9 +3208,9 @@
       {
         "title": "Up on Cove Mountain: Adventure, Tragedy, and a Quest for Meaning on the Appalachian Trail",
         "author": "Earl Swift",
-        "score": 30,
+        "score": 20,
         "reasons": [
-          "missing themes, similarToTitles, similarToAuthors"
+          "missing themes, similarToTitles"
         ],
         "locations": [
           "library/to-read"
@@ -3219,9 +3219,9 @@
       {
         "title": "How to Not Die in Prison: A Survival Guide",
         "author": "Taylor Sheridan",
-        "score": 30,
+        "score": 20,
         "reasons": [
-          "missing themes, similarToTitles, similarToAuthors"
+          "missing themes, similarToTitles"
         ],
         "locations": [
           "library/to-read"
@@ -3230,9 +3230,9 @@
       {
         "title": "The Munich Affair",
         "author": "James  Patterson",
-        "score": 30,
+        "score": 20,
         "reasons": [
-          "missing themes, similarToTitles, similarToAuthors"
+          "missing themes, similarToTitles"
         ],
         "locations": [
           "library/to-read"
@@ -3241,9 +3241,9 @@
       {
         "title": "This Book Made Me Think of You",
         "author": "Libby  Page",
-        "score": 30,
+        "score": 20,
         "reasons": [
-          "missing themes, similarToTitles, similarToAuthors"
+          "missing themes, similarToTitles"
         ],
         "locations": [
           "library/to-read"
@@ -3252,9 +3252,9 @@
       {
         "title": "Operation Bounce House",
         "author": "Matt Dinniman",
-        "score": 30,
+        "score": 20,
         "reasons": [
-          "missing themes, similarToTitles, similarToAuthors"
+          "missing themes, similarToTitles"
         ],
         "locations": [
           "library/to-read"
@@ -3263,9 +3263,9 @@
       {
         "title": "Culpability",
         "author": "Bruce Holsinger",
-        "score": 30,
+        "score": 20,
         "reasons": [
-          "missing themes, similarToTitles, similarToAuthors"
+          "missing themes, similarToTitles"
         ],
         "locations": [
           "library/to-read"
@@ -3274,9 +3274,9 @@
       {
         "title": "Rock*: A Mainstream Alternative History of Alternative Mainstream Music",
         "author": "Chuck Klosterman",
-        "score": 30,
+        "score": 20,
         "reasons": [
-          "missing themes, similarToTitles, similarToAuthors"
+          "missing themes, similarToTitles"
         ],
         "locations": [
           "library/to-read"
@@ -3285,64 +3285,9 @@
       {
         "title": "Cancel Me If You Can",
         "author": "Dave Portnoy",
-        "score": 30,
+        "score": 20,
         "reasons": [
-          "missing themes, similarToTitles, similarToAuthors"
-        ],
-        "locations": [
-          "library/to-read"
-        ]
-      },
-      {
-        "title": "Stoner",
-        "author": "John  Williams",
-        "score": 10,
-        "reasons": [
-          "missing similarToAuthors"
-        ],
-        "locations": [
-          "library/to-read"
-        ]
-      },
-      {
-        "title": "Ding Dong: How Ring Went From Shark Tank Reject To Everyone's Front Door",
-        "author": "Jamie Siminoff",
-        "score": 10,
-        "reasons": [
-          "missing similarToAuthors"
-        ],
-        "locations": [
-          "library/to-read"
-        ]
-      },
-      {
-        "title": "Thrilling Tales of Modern Men: Stories",
-        "author": "Danny McBride",
-        "score": 10,
-        "reasons": [
-          "missing similarToAuthors"
-        ],
-        "locations": [
-          "library/to-read"
-        ]
-      },
-      {
-        "title": "The American Way of Killing: The Invention of an Epidemic",
-        "author": "Malcolm Gladwell",
-        "score": 10,
-        "reasons": [
-          "missing similarToAuthors"
-        ],
-        "locations": [
-          "library/to-read"
-        ]
-      },
-      {
-        "title": "Endurance: Shackleton's Incredible Voyage",
-        "author": "Alfred Lansing",
-        "score": 10,
-        "reasons": [
-          "missing similarToAuthors"
+          "missing themes, similarToTitles"
         ],
         "locations": [
           "library/to-read"
