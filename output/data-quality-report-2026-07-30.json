@@ -2,45 +2,59 @@
   "date": "2026-07-30",
   "totalBooks": 1112,
   "qualityScore": {
-    "score": 93,
+    "score": 65,
     "components": [
       {
         "key": "criticalHealth",
         "label": "Critical Field Health",
-        "weight": 0.15,
+        "weight": 0.08,
         "subscore": 99.70323741007194
+      },
+      {
+        "key": "completeness",
+        "label": "Field Completeness",
+        "weight": 0.33,
+        "subscore": 64.08933699073538
       },
       {
         "key": "foundational",
         "label": "Foundational Signal Integrity",
-        "weight": 0.3,
+        "weight": 0.08,
         "subscore": 100
       },
       {
         "key": "safety",
         "label": "Recommendation Safety",
-        "weight": 0.25,
-        "subscore": 97.3021582733813
+        "weight": 0.11,
+        "subscore": 95.50359712230217
       },
       {
         "key": "hygiene",
         "label": "Data Hygiene",
-        "weight": 0.3,
-        "subscore": 77.83325592196934
+        "weight": 0.4,
+        "subscore": 43.49976776590804
       }
     ],
     "impediments": [
       {
         "count": 463,
-        "pointsLost": 4.8,
+        "pointsLost": 18.5,
         "name": "Orphaned similarToTitles references",
         "description": "463 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (10.8% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
         "fix": "Add the missing books to the dataset where practical, or confirm the reference is intentionally external.",
         "anchor": "#tab-brokenrefs"
       },
       {
+        "count": 8,
+        "pointsLost": 11.9,
+        "name": "Field completeness gaps (all fields)",
+        "description": "Average Quality Score across all 31 tracked fields is 93.7% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
+        "fix": "See the Field Population table, sorted by Quality Score, for every field below 90%.",
+        "anchor": "#fieldPopulationSection"
+      },
+      {
         "count": 52,
-        "pointsLost": 1.8,
+        "pointsLost": 4.1,
         "name": "Broken similarToTitles references (candidate-to-candidate)",
         "description": "52 near-miss reference(s) between books that aren't 5★ reads — lower live-scoring impact, but still fixable typos or subtitle truncations.",
         "fix": "Correct each reference to the exact title string in the dataset.",
@@ -48,7 +62,7 @@
       },
       {
         "count": 5,
-        "pointsLost": 0.7,
+        "pointsLost": 0.5,
         "name": "Duplicate book entries",
         "description": "5 duplicate group(s) (same bookKey or same title+author appearing more than once) — a duplicated 5★ read double-counts its themes/citations toward every scoring signal built from it.",
         "fix": "Merge or remove the duplicate entry, keeping the more complete record.",

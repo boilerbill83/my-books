@@ -535,30 +535,38 @@ function computeBookImpactScores(integrityFlags) {
 }
 
 // ── Overall Data Quality Score (0-100) ──────────────────────────────────────
-// A single composite number for the dashboard's dial, built from four
-// weighted sub-scores rather than raw point deductions, so it stays
-// meaningful regardless of dataset size. Each sub-score is itself a 0-100
-// rate against a sensible denominator — never a flat per-item penalty,
-// which would either be meaningless at this scale (1000+ books) or wildly
-// oversensitive to one bucket's count.
+// A single composite number for the dashboard's dial, built from weighted
+// sub-scores rather than raw point deductions, so it stays meaningful
+// regardless of dataset size. Each sub-score is itself a 0-100 rate against
+// a sensible denominator — never a flat per-item penalty, which would
+// either be meaningless at this scale (1000+ books) or wildly oversensitive
+// to one bucket's count.
 //
-// Recalibrated Session 14: the original rubric averaged 91-99/100 while a
-// by-hand review of the same findings — 5 already-read books still
-// recommendable, 19 self-referential entries, 61 broken refs corrupting
-// the 5★ signal, 156 non-canonical theme uses, plus 418 orphaned refs and
-// 12 duplicate-book groups the old formula didn't count at all — read as
-// "Fair," not "Excellent." Two structural causes: (1) rate denominators
-// were huge (total citations/theme tags across the whole 1118-book
-// dataset), which mathematically crushes any real count into a fraction
-// of a point regardless of how it feels; (2) whole categories (orphaned
-// refs, duplicate books) were excluded from scoring entirely. This version
-// uses smaller, more honest denominators (5★-read count instead of total
-// citation count for the foundational check; total book count for
-// duplicates), folds orphaned refs and duplicate-book groups into the
-// score at reduced weight, and raises the penalty multipliers substantially.
-// Recalibrated against the Jul 30 2026 pre-fix snapshot to land at 65/100
-// ("Fair") — an intentionally high bar for "Excellent," not a re-derivation
-// of the old thresholds.
+// Recalibrated Session 14, twice. First pass: the original rubric averaged
+// 91-99/100 while a by-hand review of the same findings — 5 already-read
+// books still recommendable, 19 self-referential entries, 61 broken refs
+// corrupting the 5★ signal, 156 non-canonical theme uses, plus 418 orphaned
+// refs and 12 duplicate-book groups the old formula didn't count at all —
+// read as "Fair," not "Excellent." Fixed the four acute bugs, which
+// mechanically pushed Foundational Signal Integrity and most of
+// Recommendation Safety to a genuine, earned 100 — but the resulting 93/100
+// still read as too generous: fixing the acute bugs is a necessary floor,
+// not the bar for "excellent." Second pass: added a Field Completeness
+// component (average Quality Score across *all* fields, not just the 10
+// scoring-critical ones — isbn 65.9%, dateRead 72%, subjects 75%, tones 84%,
+// publisher 87% were previously invisible to the composite entirely) and
+// shifted weight away from the now-maxed Foundational/Critical-Health
+// components toward Completeness and Hygiene, where the dataset's real
+// remaining gaps live (463 orphaned refs — 10.8% of all similarToTitles
+// citations don't resolve to a real book — plus 52 unfixed candidate-to-
+// candidate near-misses and 5 duplicate-book groups). Multipliers raised
+// again accordingly. Tuned against the Jul 30 2026 post-fix snapshot
+// (0 already-read-in-pool, 0 self-referential, 0 broken-touching-5★, 0
+// non-canonical, 463 orphaned, 52 near-miss, 5 duplicates, 93.7% average
+// field completeness) to land at 65/100 — an explicit, second, higher bar:
+// even a dataset with every acute bug fixed should not read as "Excellent"
+// while a tenth of its similarToTitles references don't resolve and whole
+// fields (isbn, dateRead, subjects) sit at 65-84% populated.
 function computeQualityScore(stats, integ, rows) {
   const totalBooks = rows.length || 1;
   const totalFiveStarReads = rows.filter(isFiveStarRead).length || 1;
@@ -589,6 +597,13 @@ function computeQualityScore(stats, integ, rows) {
   const criticalHealth = criticalFields.length
     ? criticalFields.reduce((s, f) => s + f.scorePct, 0) / criticalFields.length
     : 100;
+  // Every field, not just the scoring-critical ones — isbn/dateRead/
+  // subjects/tones/publisher gaps are real incompleteness that an
+  // "Excellent" dataset shouldn't have, even though BBRE doesn't score
+  // against them directly. Shortfall multiplier makes each missing point
+  // cost more than a flat average would.
+  const allFieldsAvg = stats.length ? stats.reduce((s, f) => s + f.scorePct, 0) / stats.length : 100;
+  const completenessScore = Math.max(0, 100 - (100 - allFieldsAvg) * 5.7);
   // fiveStarThemes/fiveStarAuthors/reverseSimilar are built entirely from
   // 5-star reads — gaps and broken refs touching them corrupt a signal
   // every candidate is scored against, not just the one book's own record.
@@ -596,18 +611,20 @@ function computeQualityScore(stats, integ, rows) {
   // Could a bad, duplicate, or unscoreable recommendation actually surface
   // to Bill. Duplicate book entries risk double-counting a signal (a
   // duplicated 5★ read's themes/citations get weighted twice).
-  const safetyScore = 100 * (1 - Math.min(1, rate.alreadyReadInPool * 8 + rate.highLeverageGaps * 1 + rate.duplicates * 6));
+  const safetyScore = 100 * (1 - Math.min(1, rate.alreadyReadInPool * 8 + rate.highLeverageGaps * 1 + rate.duplicates * 10));
   // Fixable data-entry mistakes. Orphaned refs are weighted lower than
   // near-miss (most are legitimate citations to books never added to the
-  // dataset, not a defect) but still counted — 418 of them is a real
-  // completeness debt on the similarToTitles signal, not nothing.
-  const hygieneScore = 100 * (1 - Math.min(1, rate.selfReferential * 4 + rate.nearMissOther * 5 + rate.orphaned * 1.5 + rate.nonCanonicalThemes * 4));
+  // dataset, not a defect) but still counted heavily — 463 of them (10.8%
+  // of all citations) is a real completeness debt on the similarToTitles
+  // signal, not nothing.
+  const hygieneScore = 100 * (1 - Math.min(1, rate.selfReferential * 4 + rate.nearMissOther * 8.5 + rate.orphaned * 4.3 + rate.nonCanonicalThemes * 4));
 
   const components = [
-    { key: 'criticalHealth', label: 'Critical Field Health', weight: 0.15, subscore: criticalHealth },
-    { key: 'foundational', label: 'Foundational Signal Integrity', weight: 0.30, subscore: foundationalScore },
-    { key: 'safety', label: 'Recommendation Safety', weight: 0.25, subscore: safetyScore },
-    { key: 'hygiene', label: 'Data Hygiene', weight: 0.30, subscore: hygieneScore },
+    { key: 'criticalHealth', label: 'Critical Field Health', weight: 0.08, subscore: criticalHealth },
+    { key: 'completeness', label: 'Field Completeness', weight: 0.33, subscore: completenessScore },
+    { key: 'foundational', label: 'Foundational Signal Integrity', weight: 0.08, subscore: foundationalScore },
+    { key: 'safety', label: 'Recommendation Safety', weight: 0.11, subscore: safetyScore },
+    { key: 'hygiene', label: 'Data Hygiene', weight: 0.40, subscore: hygieneScore },
   ];
   const score = Math.max(0, Math.min(100, Math.round(components.reduce((s, c) => s + c.weight * c.subscore, 0))));
 
@@ -617,7 +634,7 @@ function computeQualityScore(stats, integ, rows) {
   const impedimentDefs = [
     {
       count: integ.fiveStarSignalGaps,
-      pointsLost: 100 * Math.min(1, rate.fiveStarSignalGaps * 6) * 0.30,
+      pointsLost: 100 * Math.min(1, rate.fiveStarSignalGaps * 6) * 0.08,
       name: '5★-read signal gaps',
       description: `${integ.fiveStarSignalGaps} 5★ read(s) missing themes/similarToTitles/similarToAuthors — these withhold a bonus every candidate that deserves it should be getting, since fiveStarThemes/fiveStarAuthors/reverseSimilar are built entirely from 5★ reads.`,
       fix: 'Tag the missing fields on these specific books — the single highest-leverage fix available.',
@@ -625,7 +642,7 @@ function computeQualityScore(stats, integ, rows) {
     },
     {
       count: integ.brokenNearMissTouchingFiveStar,
-      pointsLost: 100 * Math.min(1, rate.brokenTouchFiveStar * 1.75) * 0.30,
+      pointsLost: 100 * Math.min(1, rate.brokenTouchFiveStar * 1.75) * 0.08,
       name: 'Broken similarToTitles references touching a 5★ read',
       description: `${integ.brokenNearMissTouchingFiveStar} near-miss reference(s) where the citing book (or the book it's trying to cite) is a 5★ read — these corrupt a live scoring signal, not just an unused candidate-to-candidate note.`,
       fix: 'Correct each reference to the exact title string in the dataset (Broken References tab, sorted with these first).',
@@ -633,7 +650,7 @@ function computeQualityScore(stats, integ, rows) {
     },
     {
       count: integ.alreadyReadInPool,
-      pointsLost: 100 * Math.min(1, rate.alreadyReadInPool * 8) * 0.25,
+      pointsLost: 100 * Math.min(1, rate.alreadyReadInPool * 8) * 0.11,
       name: 'Already-read books still in a candidate pool',
       description: `${integ.alreadyReadInPool} book(s) Bill has already read and rated are still sitting in a candidate pool — he could be recommended a book he's already finished. Treated as a severity-1 bug, not a completeness stat.`,
       fix: 'Remove these entries from their candidate pool file(s).',
@@ -641,7 +658,7 @@ function computeQualityScore(stats, integ, rows) {
     },
     {
       count: totalDuplicateGroups,
-      pointsLost: 100 * Math.min(1, rate.duplicates * 6) * 0.25,
+      pointsLost: 100 * Math.min(1, rate.duplicates * 10) * 0.11,
       name: 'Duplicate book entries',
       description: `${totalDuplicateGroups} duplicate group(s) (same bookKey or same title+author appearing more than once) — a duplicated 5★ read double-counts its themes/citations toward every scoring signal built from it.`,
       fix: 'Merge or remove the duplicate entry, keeping the more complete record.',
@@ -649,7 +666,7 @@ function computeQualityScore(stats, integ, rows) {
     },
     {
       count: integ.highLeverageGaps,
-      pointsLost: 100 * Math.min(1, rate.highLeverageGaps * 1) * 0.25,
+      pointsLost: 100 * Math.min(1, rate.highLeverageGaps * 1) * 0.11,
       name: 'High-leverage candidate gaps',
       description: `${integ.highLeverageGaps} popular, well-rated candidate(s) missing data BBRE needs to score them properly — likely under-ranked right now.`,
       fix: 'Tag themes/similarToTitles/similarToAuthors on these specific books.',
@@ -657,7 +674,7 @@ function computeQualityScore(stats, integ, rows) {
     },
     {
       count: nearMissOther,
-      pointsLost: 100 * Math.min(1, rate.nearMissOther * 5) * 0.30,
+      pointsLost: 100 * Math.min(1, rate.nearMissOther * 8.5) * 0.40,
       name: 'Broken similarToTitles references (candidate-to-candidate)',
       description: `${nearMissOther} near-miss reference(s) between books that aren't 5★ reads — lower live-scoring impact, but still fixable typos or subtitle truncations.`,
       fix: 'Correct each reference to the exact title string in the dataset.',
@@ -665,7 +682,7 @@ function computeQualityScore(stats, integ, rows) {
     },
     {
       count: integ.brokenOrphaned,
-      pointsLost: 100 * Math.min(1, rate.orphaned * 1.5) * 0.30,
+      pointsLost: 100 * Math.min(1, rate.orphaned * 4.3) * 0.40,
       name: 'Orphaned similarToTitles references',
       description: `${integ.brokenOrphaned} reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (${(rate.orphaned * 100).toFixed(1)}% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.`,
       fix: 'Add the missing books to the dataset where practical, or confirm the reference is intentionally external.',
@@ -673,7 +690,7 @@ function computeQualityScore(stats, integ, rows) {
     },
     {
       count: integ.nonCanonicalTotal,
-      pointsLost: 100 * Math.min(1, rate.nonCanonicalThemes * 4) * 0.30,
+      pointsLost: 100 * Math.min(1, rate.nonCanonicalThemes * 4) * 0.40,
       name: 'Non-canonical theme usage',
       description: `${integ.nonCanonicalTotal} uses of themes outside the canonical vocabulary — these still score identically to canonical themes (the engine has no vocabulary filter), but fragment what should be one consistent signal and one UI filter.`,
       fix: 'Remap to canonical themes, or promote frequently-used ones (see promotion candidates) to the canonical list in CLAUDE.md and the engine.',
@@ -681,7 +698,7 @@ function computeQualityScore(stats, integ, rows) {
     },
     {
       count: integ.selfReferential,
-      pointsLost: 100 * Math.min(1, rate.selfReferential * 4) * 0.30,
+      pointsLost: 100 * Math.min(1, rate.selfReferential * 4) * 0.40,
       name: 'Self-referential entries',
       description: `${integ.selfReferential} book(s) cite themselves in similarToTitles or list their own author in similarToAuthors — a data-entry mistake, not a useful signal.`,
       fix: 'Replace with a genuinely different similar title or author.',
@@ -689,10 +706,18 @@ function computeQualityScore(stats, integ, rows) {
     },
     {
       count: criticalFields.filter(f => f.scorePct < 90).length,
-      pointsLost: (100 - criticalHealth) * 0.15,
+      pointsLost: (100 - criticalHealth) * 0.08,
       name: 'Scoring-critical field gaps',
       description: `Average critical-field Quality Score is ${criticalHealth.toFixed(1)}% — these fields feed a live scoring signal directly.`,
       fix: 'See the Field Population table, sorted by Quality Score, for the specific fields below threshold.',
+      anchor: '#fieldPopulationSection',
+    },
+    {
+      count: stats.filter(f => f.scorePct < 90).length,
+      pointsLost: (100 - completenessScore) * 0.33,
+      name: 'Field completeness gaps (all fields)',
+      description: `Average Quality Score across all ${stats.length} tracked fields is ${allFieldsAvg.toFixed(1)}% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.`,
+      fix: 'See the Field Population table, sorted by Quality Score, for every field below 90%.',
       anchor: '#fieldPopulationSection',
     },
   ];
