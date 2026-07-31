@@ -30,7 +30,7 @@
       ],
       "ratingsCount": 180000,
       "coverUrl": "https://books.google.com/books/content?id=LuXUEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["thoughtful", "tense"], "themeToneReviewed": false
+      "tones": ["thoughtful", "tense"], "themeToneReviewed": true
     },
     {
       "bookKey": "suspect|scott-turow",
@@ -58,7 +58,7 @@
       ],
       "ratingsCount": 15000,
       "coverUrl": "https://books.google.com/books/content?id=dFVgEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["tense", "twisty", "procedural"], "themeToneReviewed": false
+      "tones": ["tense", "twisty", "procedural"], "themeToneReviewed": true
     },
     {
       "bookKey": "southern-man|greg-iles",
@@ -86,7 +86,7 @@
       "ratingsCount": 25000,
       "isbn13": "9780062824875",
       "coverUrl": "https://books.google.com/books/content?id=tDI_EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["dark", "inspiring", "gritty"], "themeToneReviewed": false
+      "tones": ["dark", "inspiring", "gritty"], "themeToneReviewed": true
     },
     {
       "bookKey": "goodbye-girl|james-grippando",
@@ -115,7 +115,7 @@
       ],
       "ratingsCount": 3000,
       "coverUrl": "https://books.google.com/books/content?id=y7C4EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["tense", "twisty"], "themeToneReviewed": false
+      "tones": ["tense", "twisty"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-waiting|michael-connelly",
@@ -141,7 +141,7 @@
       "ratingsCount": 90000,
       "isbn13": "9780316563819",
       "coverUrl": "https://books.google.com/books/content?id=th_xEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["propulsive", "tense"], "themeToneReviewed": false
+      "tones": ["propulsive", "tense"], "themeToneReviewed": true
     },
     {
       "bookKey": "desert-star|michael-connelly",
@@ -168,7 +168,7 @@
       ],
       "ratingsCount": 60000,
       "coverUrl": "https://books.google.com/books/content?id=iJdZEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["dark", "tense"], "themeToneReviewed": false
+      "tones": ["dark", "tense"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-lightning-rod|brad-meltzer",
@@ -195,7 +195,7 @@
       "ratingsCount": 15000,
       "isbn13": "9780062892423",
       "coverUrl": "https://books.google.com/books/content?id=NH81EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["tense", "gritty"], "themeToneReviewed": false
+      "tones": ["tense", "gritty"], "themeToneReviewed": true
     },
     {
       "bookKey": "all-the-sinners-bleed|s-a-cosby",
@@ -224,7 +224,7 @@
         "Dark Places"
       ],
       "ratingsCount": 55000,
-      "tones": ["dark", "tense", "gritty"], "themeToneReviewed": false
+      "tones": ["dark", "tense", "gritty"], "themeToneReviewed": true
     },
     {
       "bookKey": "bright-young-women|jessica-knoll",
@@ -253,7 +253,7 @@
       ],
       "ratingsCount": 100000,
       "coverUrl": "https://books.google.com/books/content?id=sk-tEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["dark", "thoughtful"], "themeToneReviewed": false
+      "tones": ["dark", "thoughtful"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-it-girl|ruth-ware",
@@ -281,7 +281,7 @@
       ],
       "ratingsCount": 80000,
       "coverUrl": "https://books.google.com/books/content?id=nndTEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["twisty", "tense"], "themeToneReviewed": false
+      "tones": ["twisty", "tense"], "themeToneReviewed": true
     },
     {
       "bookKey": "one-perfect-couple|ruth-ware",
@@ -308,7 +308,7 @@
       ],
       "ratingsCount": 70000,
       "coverUrl": "https://books.google.com/books/content?id=9s8DEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["tense", "twisty"], "themeToneReviewed": false
+      "tones": ["tense", "twisty"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-midnight-feast|lucy-foley",
@@ -334,7 +334,7 @@
       ],
       "ratingsCount": 100000,
       "coverUrl": "https://books.google.com/books/content?id=0PzcEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["tense", "atmospheric"], "themeToneReviewed": false
+      "tones": ["tense", "atmospheric"], "themeToneReviewed": true
     },
     {
       "bookKey": "what-happened-to-nina|dervla-mctiernan",
@@ -361,7 +361,7 @@
       ],
       "ratingsCount": 70000,
       "coverUrl": "https://books.google.com/books/content?id=i0vCEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["twisty", "tense"], "themeToneReviewed": false
+      "tones": ["twisty", "tense"], "themeToneReviewed": true
     },
     {
       "bookKey": "house-of-glass|sarah-pekkanen",
@@ -387,7 +387,7 @@
       "ratingsCount": 25000,
       "isbn13": "9781250284006",
       "coverUrl": "https://books.google.com/books/content?id=4nXTEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["propulsive", "tense"], "themeToneReviewed": false
+      "tones": ["propulsive", "tense"], "themeToneReviewed": true
     },
     {
       "bookKey": "my-husband|maud-ventura",
@@ -413,7 +413,7 @@
       "ratingsCount": 80000,
       "isbn13": "9780063274846",
       "coverUrl": "https://books.google.com/books/content?id=Q42UEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["dark", "funny"], "themeToneReviewed": false
+      "tones": ["dark", "funny"], "themeToneReviewed": true
     },
     {
       "bookKey": "say-nothing-a-true-story-of-murder-and-memory-in-northern-ireland|patrick-radden-keefe",
@@ -441,7 +441,7 @@
       ],
       "ratingsCount": 200000,
       "coverUrl": "https://books.google.com/books/content?id=Qw1aDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["revelatory", "dark"], "themeToneReviewed": false
+      "tones": ["revelatory", "dark"], "themeToneReviewed": true
     },
     {
       "bookKey": "master-slave-husband-wife-an-epic-journey-from-slavery-to-freedom|ilyon-woo",
@@ -467,7 +467,7 @@
       ],
       "ratingsCount": 15000,
       "coverUrl": "https://books.google.com/books/content?id=jCfqEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": false
+      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-covenant-of-water|abraham-verghese",
@@ -493,7 +493,7 @@
       ],
       "ratingsCount": 160000,
       "coverUrl": "https://books.google.com/books/content?id=_MO5EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["atmospheric", "thoughtful", "compulsive"], "themeToneReviewed": false
+      "tones": ["atmospheric", "thoughtful", "compulsive"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-women|kristin-hannah",
@@ -520,7 +520,7 @@
       ],
       "ratingsCount": 700000,
       "coverUrl": "https://books.google.com/books/content?id=0Ua4EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["thoughtful", "gritty"], "themeToneReviewed": false
+      "tones": ["thoughtful", "gritty"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-frozen-river|ariel-lawhon",
@@ -548,7 +548,7 @@
       ],
       "ratingsCount": 120000,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1730395034i/112975658.jpg",
-      "tones": ["twisty", "atmospheric", "procedural"], "themeToneReviewed": false
+      "tones": ["twisty", "atmospheric", "procedural"], "themeToneReviewed": true
     },
     {
       "bookKey": "james|percival-everett",
@@ -574,7 +574,7 @@
       ],
       "ratingsCount": 280000,
       "coverUrl": "https://books.google.com/books/content?id=SevFEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["thoughtful", "revelatory"], "themeToneReviewed": false
+      "tones": ["thoughtful", "revelatory"], "themeToneReviewed": true
     },
     {
       "bookKey": "hello-beautiful|ann-napolitano",
@@ -601,7 +601,7 @@
       ],
       "ratingsCount": 190000,
       "coverUrl": "https://books.google.com/books/content?id=J7Z9EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["heartwarming", "thoughtful"], "themeToneReviewed": false
+      "tones": ["heartwarming", "thoughtful"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-chaos-machine-the-inside-story-of-how-social-media-rewired-our-minds-and-our-world|max-fisher",
@@ -627,7 +627,7 @@
         "The Everything Store: Jeff Bezos and the Age of Amazon"
       ],
       "ratingsCount": 10000,
-      "tones": ["dark", "revelatory"], "themeToneReviewed": false
+      "tones": ["dark", "revelatory"], "themeToneReviewed": true
     }
   ]
 }

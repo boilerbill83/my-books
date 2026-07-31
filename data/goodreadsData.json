@@ -36342,7 +36342,7 @@
         "revelatory",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -36384,7 +36384,7 @@
         "revelatory",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -36426,7 +36426,7 @@
         "conversational",
         "character-driven"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -36468,7 +36468,7 @@
         "conversational",
         "character-driven"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -36511,7 +36511,7 @@
         "character-driven",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -36555,7 +36555,7 @@
         "slow-burn",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -36598,7 +36598,7 @@
         "funny",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -36642,7 +36642,7 @@
         "dense",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -36686,7 +36686,7 @@
         "tense",
         "gritty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -36728,7 +36728,7 @@
         "character-driven",
         "inspiring"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -36772,7 +36772,7 @@
         "character-driven",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -36814,7 +36814,7 @@
         "revelatory",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -36857,7 +36857,7 @@
         "conversational",
         "character-driven"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -36900,7 +36900,7 @@
         "character-driven",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -36942,7 +36942,7 @@
         "revelatory",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -36987,7 +36987,7 @@
         "twisty",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -37029,7 +37029,7 @@
         "conversational",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -37071,7 +37071,7 @@
         "character-driven",
         "investigative"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "i-don-t-care-if-we-never-get-back-30-games-in-30-days-on-the-best-worst-baseball-road-trip-ever|ben-blatt",
@@ -37112,7 +37112,7 @@
         "conversational",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -37154,7 +37154,7 @@
         "dense",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -37197,7 +37197,7 @@
         "revelatory",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -37238,7 +37238,7 @@
         "slow-burn",
         "heartwarming"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/81WY6M9XikL._SX300_.jpg",
       "dnfReason": "not_interesting"
     },
@@ -37282,7 +37282,7 @@
         "twisty",
         "compulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -37325,7 +37325,7 @@
         "character-driven",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -37368,7 +37368,7 @@
         "dense",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -37412,7 +37412,7 @@
         "heartwarming",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/81eoMVeTPmL._SX300_.jpg",
       "dnfReason": "not_my_vibe"
     },
@@ -37456,7 +37456,7 @@
         "investigative",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1687140968l/123276708.jpg"
     },
     {
@@ -37499,7 +37499,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/81bbaOYIagL._SX300_.jpg",
       "dnfReason": "not_interesting"
     },
@@ -37542,7 +37542,7 @@
         "revelatory",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -37585,7 +37585,7 @@
         "revelatory",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -37628,7 +37628,7 @@
         "revelatory",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -37673,7 +37673,7 @@
         "twisty",
         "compulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -37715,7 +37715,7 @@
         "slow-burn",
         "satirical"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -37759,7 +37759,7 @@
         "dense",
         "heartwarming"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-roundabout-way-stories-from-the-villages-florida|jack-o-brien",
@@ -37801,7 +37801,7 @@
         "character-driven",
         "ensemble"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -37844,7 +37844,7 @@
         "dense",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -37886,7 +37886,7 @@
         "twisty",
         "heartwarming"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_my_vibe"
     },
     {
@@ -37930,7 +37930,7 @@
         "ensemble",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -37973,7 +37973,7 @@
         "revelatory",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -37999,7 +37999,7 @@
         "dense",
         "inspiring"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnf": false,
       "similarToTitles": [
         "The Everything Store: Jeff Bezos and the Age of Amazon",
@@ -38035,7 +38035,7 @@
         "bleak",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnf": false,
       "similarToTitles": [
         "11/22/63",
@@ -38072,7 +38072,7 @@
         "investigative",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnf": false,
       "similarToTitles": [
         "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
@@ -38108,7 +38108,7 @@
         "conversational",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnf": false,
       "similarToTitles": [
         "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
@@ -38151,7 +38151,7 @@
         "Gabrielle Zevin",
         "Tom Perrotta"
       ],
-      "tones": ["atmospheric", "thoughtful", "gritty"], "themeToneReviewed": false
+      "tones": ["atmospheric", "thoughtful", "gritty"], "themeToneReviewed": true
     },
     {
       "title": "Ding Dong: How Ring Went From Shark Tank Reject To Everyone's Front Door",
@@ -38183,7 +38183,7 @@
         "Marc Randolph",
         "Brad Stone"
       ],
-      "tones": ["heartwarming", "conversational"], "themeToneReviewed": false
+      "tones": ["heartwarming", "conversational"], "themeToneReviewed": true
     },
     {
       "title": "Thrilling Tales of Modern Men: Stories",
@@ -38213,7 +38213,7 @@
         "Seth Rogen",
         "Chuck Klosterman"
       ],
-      "tones": ["funny", "conversational"], "themeToneReviewed": false
+      "tones": ["funny", "conversational"], "themeToneReviewed": true
     },
     {
       "title": "The American Way of Killing: The Invention of an Epidemic",
@@ -38246,7 +38246,7 @@
         "Nassim Taleb",
         "Dan Ariely"
       ],
-      "tones": ["thoughtful", "revelatory"], "themeToneReviewed": false
+      "tones": ["thoughtful", "revelatory"], "themeToneReviewed": true
     },
     {
       "title": "Endurance: Shackleton's Incredible Voyage",
@@ -38279,7 +38279,7 @@
         "David Grann",
         "Laura Hillenbrand"
       ],
-      "tones": ["atmospheric", "thoughtful"], "themeToneReviewed": false
+      "tones": ["atmospheric", "thoughtful"], "themeToneReviewed": true
     },
     {
       "bookKey": "up-on-cove-mountain-adventure-tragedy-and-a-quest-for-meaning-on-the-appalachian-trail|earl-swift",
@@ -38295,13 +38295,13 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "unknown",
-      "themes": [],
+      "themes": ["narrative nonfiction", "adventure"],
       "dnf": false,
       "similarToAuthors": [
         "Jon Krakauer",
         "David Grann"
       ],
-      "tones": ["atmospheric", "compulsive"], "themeToneReviewed": false
+      "tones": ["atmospheric", "compulsive"], "themeToneReviewed": true
     },
     {
       "bookKey": "how-to-not-die-in-prison-a-survival-guide|taylor-sheridan",
@@ -38317,12 +38317,12 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "unknown",
-      "themes": [],
+      "themes": ["narrative nonfiction", "social commentary"],
       "dnf": false,
       "similarToAuthors": [
         "Ted Conover"
       ],
-      "tones": ["dark", "funny"], "themeToneReviewed": false
+      "tones": ["dark", "funny"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-munich-affair|james-patterson",
@@ -38338,7 +38338,7 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "unknown",
-      "themes": [],
+      "themes": ["thriller", "suspense"],
       "dnf": false,
       "similarToAuthors": [
         "Harlan Coben",
@@ -38346,7 +38346,7 @@
         "Lee Child",
         "David Baldacci"
       ],
-      "tones": ["twisty", "compulsive"], "themeToneReviewed": false
+      "tones": ["twisty", "compulsive"], "themeToneReviewed": true
     },
     {
       "bookKey": "this-book-made-me-think-of-you|libby-page",
@@ -38362,13 +38362,13 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "unknown",
-      "themes": [],
+      "themes": ["contemporary", "literary"],
       "dnf": false,
       "similarToAuthors": [
         "Taylor Jenkins Reid",
         "Emma Straub"
       ],
-      "tones": ["heartwarming", "thoughtful"], "themeToneReviewed": false
+      "tones": ["heartwarming", "thoughtful"], "themeToneReviewed": true
     },
     {
       "bookKey": "operation-bounce-house|matt-dinniman",
@@ -38384,13 +38384,13 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "unknown",
-      "themes": [],
+      "themes": ["sci-fi", "speculative", "adventure"],
       "dnf": false,
       "similarToAuthors": [
         "Andy Weir",
         "Max Brooks"
       ],
-      "tones": ["funny", "compulsive"], "themeToneReviewed": false
+      "tones": ["funny", "compulsive"], "themeToneReviewed": true
     },
     {
       "bookKey": "culpability|bruce-holsinger",
@@ -38406,13 +38406,13 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "unknown",
-      "themes": [],
+      "themes": ["literary", "contemporary", "social commentary"],
       "dnf": false,
       "similarToAuthors": [
         "Gary Shteyngart",
         "Tom Perrotta"
       ],
-      "tones": ["thoughtful", "compulsive"], "themeToneReviewed": false
+      "tones": ["thoughtful", "compulsive"], "themeToneReviewed": true
     },
     {
       "bookKey": "rock-a-mainstream-alternative-history-of-alternative-mainstream-music|chuck-klosterman",
@@ -38428,13 +38428,13 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "unknown",
-      "themes": [],
+      "themes": ["music history", "narrative nonfiction", "humor"],
       "dnf": false,
       "similarToAuthors": [
         "Jeff Pearlman",
         "Bill Bryson"
       ],
-      "tones": ["conversational", "thoughtful"], "themeToneReviewed": false
+      "tones": ["conversational", "thoughtful"], "themeToneReviewed": true
     },
     {
       "title": "Cancel Me If You Can",

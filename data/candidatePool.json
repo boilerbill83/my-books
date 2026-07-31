@@ -57,7 +57,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1659457434i/59947696.jpg",
       "ratingsCount": 150000,
       "isbn13": "9780063252363",
-      "tones": ["propulsive", "twisty", "bleak"], "themeToneReviewed": false
+      "tones": ["propulsive", "twisty", "bleak"], "themeToneReviewed": true
     },
     {
       "title": "The Last Flight",
@@ -83,7 +83,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1617291197i/52652923.jpg",
       "ratingsCount": 200000,
       "isbn13": "9781728215730",
-      "tones": ["tense", "poignant"], "themeToneReviewed": false
+      "tones": ["tense", "poignant"], "themeToneReviewed": true
     },
     {
       "title": "Listen for the Lie",
@@ -138,7 +138,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1668181003i/62703226.jpg",
       "ratingsCount": 120000,
       "isbn13": "9798217048250",
-      "tones": ["twisty", "tense"], "themeToneReviewed": false
+      "tones": ["twisty", "tense"], "themeToneReviewed": true
     },
     {
       "title": "Starter Villain",
@@ -164,7 +164,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1683564155i/61885029.jpg",
       "ratingsCount": 200000,
       "isbn13": "9780765389237",
-      "tones": ["funny", "compulsive"], "themeToneReviewed": false
+      "tones": ["funny", "compulsive"], "themeToneReviewed": true
     },
     {
       "title": "Wool",
@@ -191,7 +191,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1327889474i/12287209.jpg",
       "ratingsCount": 280000,
       "isbn13": "9780358447832",
-      "tones": ["atmospheric", "twisty"], "themeToneReviewed": false
+      "tones": ["atmospheric", "twisty"], "themeToneReviewed": true
     },
     {
       "title": "The Drift",
@@ -219,7 +219,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1673872095i/60965424.jpg",
       "ratingsCount": 30000,
       "isbn13": "9780593503812",
-      "tones": ["tense", "bleak"], "themeToneReviewed": false
+      "tones": ["tense", "bleak"], "themeToneReviewed": true
     },
     {
       "title": "The Passengers",
@@ -247,7 +247,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1545308633i/40718386.jpg",
       "ratingsCount": 100000,
       "isbn13": "9781984806987",
-      "tones": ["tense", "twisty"], "themeToneReviewed": false
+      "tones": ["tense", "twisty"], "themeToneReviewed": true
     },
     {
       "title": "Several People Are Typing",
@@ -273,7 +273,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1627964160i/54468020.jpg",
       "ratingsCount": 15000,
       "isbn13": "9780385547253",
-      "tones": ["funny", "satirical"], "themeToneReviewed": false
+      "tones": ["funny", "satirical"], "themeToneReviewed": true
     },
     {
       "title": "The Kaiju Preservation Society",
@@ -300,7 +300,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1624897234i/57693406.jpg",
       "ratingsCount": 70000,
       "isbn13": "9781250878533",
-      "tones": ["propulsive", "funny"], "themeToneReviewed": false
+      "tones": ["propulsive", "funny"], "themeToneReviewed": true
     },
     {
       "title": "Empire of Pain",
@@ -328,7 +328,7 @@
       "ratingsCount": 120000,
       "isbn13": "9780385545686",
       "coverUrl": "https://books.google.com/books/content?id=oEGNEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["dark", "revelatory"], "themeToneReviewed": false
+      "tones": ["dark", "revelatory"], "themeToneReviewed": true
     },
     {
       "title": "The Raging 2020s",
@@ -355,7 +355,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1616687137i/56347315.jpg",
       "ratingsCount": 4000,
       "isbn13": "9781250770936",
-      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": false
+      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": true
     }
   ]
 }
