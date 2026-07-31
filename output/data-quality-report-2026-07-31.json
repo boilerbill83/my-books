@@ -1,6 +1,6 @@
 {
   "date": "2026-07-31",
-  "generatedAt": "2026-07-31T20:35:40.314Z",
+  "generatedAt": "2026-07-31T20:47:32.061Z",
   "totalBooks": 1112,
   "qualityScore": {
     "score": 67,
@@ -33,15 +33,15 @@
         "key": "hygiene",
         "label": "Data Hygiene",
         "weight": 0.4,
-        "subscore": 43.49976776590804
+        "subscore": 44.10793207722726
       }
     ],
     "impediments": [
       {
-        "count": 463,
-        "pointsLost": 18.5,
+        "count": 456,
+        "pointsLost": 18.2,
         "name": "Orphaned similarToTitles references",
-        "description": "463 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (10.8% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
+        "description": "456 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (10.6% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
         "fix": "Add the missing books to the dataset where practical, or confirm the reference is intentionally external.",
         "anchor": "#tab-brokenrefs"
       },
@@ -106,7 +106,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 43.49976776590804
+          "subscore": 44.10793207722726
         }
       ]
     },
@@ -151,7 +151,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 53.7645146307478
+          "subscore": 54.38939288206559
         }
       ]
     },
@@ -193,7 +193,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 63.650719925685095
+          "subscore": 64.29169574319609
         }
       ]
     },
@@ -234,7 +234,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 72.33859730608454
+          "subscore": 72.9937194696441
         }
       ]
     },
@@ -278,7 +278,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 72.33859730608454
+          "subscore": 72.9937194696441
         }
       ]
     },
@@ -553,7 +553,7 @@
     "selfReferential": 0,
     "brokenNearMiss": 52,
     "brokenNearMissTouchingFiveStar": 0,
-    "brokenOrphaned": 463,
+    "brokenOrphaned": 456,
     "nonCanonicalTotal": 0,
     "promoteCandidateCount": 0,
     "nonCanonicalTonesTotal": 0,
@@ -834,41 +834,6 @@
       }
     ],
     "brokenOrphaned": [
-      {
-        "from": "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
-        "ref": "The Midrange Theory",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
-        "ref": "Bittersweet: How Sorrow and Longing Make Us Whole",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Eat a Peach",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Shoe Dog",
-        "ref": "What It Takes: Lessons in the Pursuit of Excellence",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Along Came a Spider (Alex Cross, #1)",
-        "ref": "The Girl in the Castle",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Secret Life of Groceries: The Dark Miracle of the American Supermarket",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Crying in H Mart",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": true
-      },
       {
         "from": "Bourdain: The Definitive Oral Biography",
         "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
@@ -3336,7 +3301,7 @@
       "themes": [
         {
           "value": "thriller",
-          "count": 320
+          "count": 319
         },
         {
           "value": "history",
@@ -3368,7 +3333,7 @@
         },
         {
           "value": "psychological",
-          "count": 105
+          "count": 107
         },
         {
           "value": "sports",
@@ -3388,7 +3353,7 @@
         },
         {
           "value": "legal",
-          "count": 86
+          "count": 85
         },
         {
           "value": "tech history",
@@ -3404,7 +3369,7 @@
         },
         {
           "value": "political",
-          "count": 62
+          "count": 63
         },
         {
           "value": "true crime",
@@ -3530,7 +3495,7 @@
         },
         {
           "value": "procedural",
-          "count": 121
+          "count": 120
         },
         {
           "value": "heartwarming",
@@ -3538,7 +3503,7 @@
         },
         {
           "value": "gritty",
-          "count": 74
+          "count": 75
         },
         {
           "value": "inspiring",

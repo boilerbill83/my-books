@@ -1249,10 +1249,10 @@
         "domestic suspense"
       ],
       "similarToTitles": [
-        "Evicted: Poverty and Profit in the American City",
-        "The Secret Life of Groceries: The Dark Miracle of the American Supermarket",
-        "Shoe Dog",
-        "The Everything Store: Jeff Bezos and the Age of Amazon"
+        "Local Woman Missing",
+        "The Push",
+        "Never Lie",
+        "The Perfect Marriage"
       ],
       "ratingsCount": 5000,
       "similarToAuthors": [
@@ -1931,7 +1931,8 @@
       "year": 2021,
       "themes": [
         "speculative",
-        "thriller"
+        "thriller",
+        "psychological"
       ],
       "similarToTitles": [
         "Magic for Liars",
@@ -4224,27 +4225,27 @@
       "publisher": "Thomas & Mercer",
       "year": 2025,
       "themes": [
-        "legal",
+        "political",
         "thriller"
       ],
       "similarToTitles": [
-        "Rich Blood (Jason Rich, #1)",
-        "A Time to Kill (Jake Brigance, #1)",
-        "The Client",
-        "An Innocent Client: A Joe Dillard Novel (Joe Dillard Series Book 1)"
+        "The President's Daughter",
+        "The President Is Missing",
+        "The Lightning Rod",
+        "The Broker"
       ],
       "ratingsCount": 5000,
       "similarToAuthors": [
-        "John Grisham",
-        "Scott Pratt",
-        "Scott Turow",
-        "Steve Cavanagh"
+        "Bill Clinton",
+        "James Patterson",
+        "David Baldacci",
+        "Vince Flynn"
       ],
       "type": "fiction",
       "tones": [
         "propulsive",
-        "procedural",
-        "tense"
+        "tense",
+        "gritty"
       ],
       "themeToneReviewed": true,
       "allTimeFave": true,
@@ -5048,7 +5049,6 @@
         "The Hot Hand: The Mystery and Science of Streaks",
         "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
         "The Only Rule Is It Has to Work: Our Wild Experiment Building a New Kind of Baseball Team",
-        "The Midrange Theory",
         "Everybody Lies: Big Data, New Data, and What the Internet Can Tell Us About Who We Really Are"
       ],
       "ratingsCount": 4000,
@@ -5382,10 +5382,10 @@
       ],
       "ratingsCount": 70000,
       "similarToAuthors": [
-        "Malcolm Gladwell",
-        "John Carreyrou",
-        "Ben Mezrich",
-        "Ben Horowitz"
+        "Jeff Pearlman",
+        "Wright Thompson",
+        "Laura Hillenbrand",
+        "Jon Krakauer"
       ],
       "type": "nonfiction",
       "tones": [
@@ -6424,7 +6424,6 @@
         "When Breath Becomes Air",
         "Hidden Valley Road: Inside the Mind of an American Family",
         "The Glass Castle",
-        "Bittersweet: How Sorrow and Longing Make Us Whole",
         "Good Morning, Monster: A Therapist Shares Four Heroic Stories of Emotional Recovery"
       ],
       "ratingsCount": 215000,
@@ -6804,7 +6803,6 @@
         "Momofuku: A Cookbook",
         "Yes, Chef",
         "Bourdain: The Definitive Oral Biography",
-        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
         "Why I Cook"
       ],
       "ratingsCount": 15000,
@@ -6889,8 +6887,7 @@
         "The Everything Store: Jeff Bezos and the Age of Amazon",
         "Steve Jobs",
         "Amazon Unbound: Jeff Bezos and the Invention of a Global Empire",
-        "Built from Scratch: How a Couple of Regular Guys Grew The Home Depot from Nothing to $30 Billion",
-        "What It Takes: Lessons in the Pursuit of Excellence"
+        "Built from Scratch: How a Couple of Regular Guys Grew The Home Depot from Nothing to $30 Billion"
       ],
       "ratingsCount": 350000,
       "similarToAuthors": [
@@ -7143,7 +7140,6 @@
       "similarToTitles": [
         "Kiss the Girls (Alex Cross, #2)",
         "12 Months to Live (Jane Smith, #1)",
-        "The Girl in the Castle",
         "Juror #3 (Ruby Bozarth, #1)",
         "The Perfect Assassin (Doc Savage, #1)"
       ],
@@ -7226,7 +7222,6 @@
         "social commentary"
       ],
       "similarToTitles": [
-        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
         "Yes, Chef",
         "Bourdain: The Definitive Oral Biography",
         "Franklin Barbecue: A Meat-Smoking Manifesto [A Cookbook]"
@@ -7434,8 +7429,7 @@
         "Yes, Chef",
         "Eat a Peach",
         "Notes from a Young Black Chef",
-        "Save Me the Plums: My Gourmet Memoir",
-        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef"
+        "Save Me the Plums: My Gourmet Memoir"
       ],
       "ratingsCount": 275000,
       "similarToAuthors": [
@@ -8601,7 +8595,7 @@
       "year": 2024,
       "themes": [
         "speculative",
-        "thriller"
+        "psychological"
       ],
       "similarToTitles": [
         "The Echo Wife",
