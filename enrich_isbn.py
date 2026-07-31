@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 """
-Backfills missing ISBN13 values for candidate pool books and to-read shelf
-books using the Google Books API. Updates the source JSON files directly.
+Backfills missing ISBN13 values for candidate pool books and all books in
+goodreadsData.json (to-read and read shelves) using the Google Books API.
+Updates the source JSON files directly. Only skips a book if it already has
+isbn13 — having an old ISBN-10 does NOT mean isbn13 is unneeded (Session 14e
+fix: the old check skipped any book with either isbn or isbn13 set, silently
+leaving 14 isbn10-only books permanently unfilled).
 
 Requires: GOOGLE_BOOKS_API_KEY environment variable (or set in GitHub secrets).
 
@@ -66,7 +70,7 @@ def enrich_candidates():
         changed    = False
 
         for book in candidates:
-            if book.get('isbn13') or book.get('isbn'):
+            if book.get('isbn13'):
                 continue
             title  = book.get('title', '')
             author = book.get('author', '')
@@ -94,16 +98,16 @@ def enrich_candidates():
     return total_added
 
 def enrich_goodreads():
-    """Backfill ISBN13 for to-read books in goodreadsData.json."""
+    """Backfill ISBN13 for books in goodreadsData.json (to-read and read
+    shelves alike — isbn13 isn't scoring-critical but read-shelf gaps are
+    real incompleteness too, not just a to-read-only concern)."""
     with open(DATA_DIR / 'goodreadsData.json') as f:
         data = json.load(f)
 
     changed     = False
     total_added = 0
     for book in data['books']:
-        if book.get('shelf') != 'to-read':
-            continue
-        if book.get('isbn13') or book.get('isbn'):
+        if book.get('isbn13'):
             continue
 
         title  = book.get('title', '')
