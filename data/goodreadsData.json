@@ -21120,7 +21120,7 @@
         "character-driven",
         "revelatory"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "phil-the-rip-roaring-biography-of-golf-s-most-colorful-superstar|alan-shipnuck",
@@ -21161,7 +21161,7 @@
         "character-driven",
         "inspiring"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-last-thing-he-told-me|laura-dave",
@@ -21204,7 +21204,7 @@
         "twisty",
         "procedural"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "malibu-rising|taylor-jenkins-reid",
@@ -21243,7 +21243,7 @@
         "nonlinear",
         "atmospheric"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "turtles-all-the-way-down|john-green",
@@ -21284,7 +21284,7 @@
         "bleak",
         "poignant"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "sparring-partners|john-grisham",
@@ -21325,7 +21325,7 @@
         "procedural",
         "funny"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "built-to-lose-how-the-nba-s-tanking-era-changed-the-league-forever|jake-fischer",
@@ -21365,7 +21365,7 @@
         "investigative",
         "inspiring"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-paris-apartment|lucy-foley",
@@ -21404,7 +21404,7 @@
         "twisty",
         "ensemble"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=rCU3EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -21445,7 +21445,7 @@
         "character-driven",
         "dense"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "hell-of-a-book|jason-mott",
@@ -21483,7 +21483,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "riding-the-lightning-a-year-in-the-life-of-a-new-york-city-paramedic|anthony-almojera",
@@ -21520,7 +21520,7 @@
         "character-driven",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=5yEzEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -21561,7 +21561,7 @@
         "gritty",
         "thoughtful"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-fiddler-in-the-subway-the-story-of-the-world-class-violinist-who-played-for-handouts-and-other-virtuoso-performances-by-america-s-foremost-feature-writer|gene-weingarten",
@@ -21599,7 +21599,7 @@
         "heartwarming",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=Vx6CHHo8pz8C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -21636,7 +21636,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=6mJmvUl6UCwC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -21675,7 +21675,7 @@
         "dense",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=JA1SEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -21716,7 +21716,7 @@
         "funny",
         "thoughtful"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-latecomer|jean-hanff-korelitz",
