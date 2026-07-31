@@ -40,7 +40,7 @@ def clean_html(text):
 
 
 def google_books(title, author, isbn13):
-    """Description + categories from Google Books."""
+    """Description + categories + publisher from Google Books."""
     queries = []
     if isbn13:
         queries.append(f'isbn:{isbn13}')
@@ -63,6 +63,7 @@ def google_books(title, author, isbn13):
                 return {
                     'description': desc[:2000],
                     'categories': info.get('categories') or [],
+                    'publisher': info.get('publisher') or '',
                 }
     return {}
 

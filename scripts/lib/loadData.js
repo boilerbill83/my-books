@@ -79,7 +79,7 @@ export function loadAllBooks() {
       amazonRatingsCount: ratings.amazon?.count ?? '',
       isbn: b.isbn || '',
       isbn13: b.isbn13 || '',
-      publisher: b.publisher || '',
+      publisher: b.publisher || meta.publisher || '',
       dateRead: b.dateRead || '',
       dateAdded: b.dateAdded || '',
       themes: b.themes || [],
