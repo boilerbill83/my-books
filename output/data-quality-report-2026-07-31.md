@@ -21,14 +21,15 @@ Interactive dial + full breakdown: [quality-dashboard.html](../quality-dashboard
 
 **Worst 5 books by BBRE impact score** (full top 20 in the table below):
 - "When the Game Was Ours" by Larry Bird (score 40) — missing themes, similarToTitles, similarToAuthors, ratingsCount
-- "Cancel Me If You Can" by Dave Portnoy (score 20) — missing themes, similarToTitles
 - "Up on Cove Mountain: Adventure, Tragedy, and a Quest for Meaning on the Appalachian Trail" by Earl Swift (score 10) — missing similarToTitles
 - "How to Not Die in Prison: A Survival Guide" by Taylor Sheridan (score 10) — missing similarToTitles
 - "The Munich Affair" by James  Patterson (score 10) — missing similarToTitles
+- "This Book Made Me Think of You" by Libby  Page (score 10) — missing similarToTitles
 
 **Since last report (vs 2026-07-30):**
 - `tones`: 📈 improved 84.0% → 99.9% (+15.9 pts)
 - `isbn13`: 📈 improved 82.0% → 98.0% (+16.0 pts)
+- Integrity count changes: missingBookKey -1
 
 ## 5★-Read Signal Gaps (0)
 
@@ -44,7 +45,6 @@ None found.
 
 Not a raw missing-field count — weighted by whether the book is a 5★ read (foundational signal), a high-leverage candidate, or involved in an integrity issue like an already-read duplicate.
 - "When the Game Was Ours" by Larry Bird (currently_reading_feed/currently-reading) — score 40: missing themes, similarToTitles, similarToAuthors, ratingsCount
-- "Cancel Me If You Can" by Dave Portnoy (library/to-read) — score 20: missing themes, similarToTitles
 - "Up on Cove Mountain: Adventure, Tragedy, and a Quest for Meaning on the Appalachian Trail" by Earl Swift (library/to-read) — score 10: missing similarToTitles
 - "How to Not Die in Prison: A Survival Guide" by Taylor Sheridan (library/to-read) — score 10: missing similarToTitles
 - "The Munich Affair" by James  Patterson (library/to-read) — score 10: missing similarToTitles
@@ -52,6 +52,7 @@ Not a raw missing-field count — weighted by whether the book is a 5★ read (f
 - "Operation Bounce House" by Matt Dinniman (library/to-read) — score 10: missing similarToTitles
 - "Culpability" by Bruce Holsinger (library/to-read) — score 10: missing similarToTitles
 - "Rock*: A Mainstream Alternative History of Alternative Mainstream Music" by Chuck Klosterman (library/to-read) — score 10: missing similarToTitles
+- "Cancel Me If You Can" by Dave Portnoy (library/to-read) — score 10: missing similarToTitles
 
 ## Recent Trend (BBRE-relevant metrics)
 
@@ -62,8 +63,8 @@ Not a raw missing-field count — weighted by whether the book is a 5★ read (f
 | High-leverage candidate gaps | — | — | — |
 | Broken refs touching a 5★ read | 61 | 0 | 0 |
 | `similarToTitles` (critical) | 99.2% | 99.2% | 99.2% |
-| `themes` (critical) | 99.2% | 99.2% | 99.8% |
 | `ratingsCount` (critical) | 99.7% | 99.9% | 99.9% |
+| `themes` (critical) | 99.2% | 99.2% | 99.9% |
 | `similarToAuthors` (critical) | 98.7% | 99.9% | 99.9% |
 | `bookKey` (critical) | 100.0% | 100.0% | 100.0% |
 | `author` (critical) | 100.0% | 100.0% | 100.0% |
@@ -98,10 +99,10 @@ field below 90%; ⚠️ marks any other field below 80%.
 | similarToTitles | 99.2% | 99.2% (Excellent) | % of all books with at least one similarToTitles entry — feeds the forward/reverse title-match scoring signals. | 9 book(s) have none — see the Broken References section below for entries that exist but don't resolve. |
 | year | 99.3% | 99.3% (Excellent) | % of all books with a publication year. | Low-volume gap; backfill manually or via Google Books lookup if any recommendations are missing it. |
 | metadataFetchedAt | 99.7% | 99.7% (Excellent) | % of all books already attempted by enrich_metadata.py — this IS the backlog-cleared indicator for categories/subjects/description above. | 3 book(s) not yet attempted — will clear at 150/day, prioritizing to-read then read then candidates. |
-| themes | 99.8% | 99.8% (Excellent) | % of all books with at least one theme tag — feeds fiveStarThemes/themeBonus scoring directly. | 2 book(s) have zero themes — tag from canonical vocabulary (see CLAUDE.md) so themeBonus can fire. |
 | description | 99.8% | 99.8% (Excellent) | % of all books with a description — the daily enrich_metadata.py job processes 150/run in to-read → read → candidates priority order, so this rises as the backlog clears. | 2 book(s) still pending or with no description found by Google Books/Open Library. Check the candidate-pool backlog specifically — it's processed last. |
 | type | 99.9% | 99.9% (Excellent) | % of all books tagged fiction/nonfiction. | Spot-check any untagged rows via the publisher-category audit pattern used in Session 13. |
 | ratingsCount | 99.9% | 99.9% (Excellent) | % of all books with a positive ratingsCount — zero/missing silently disables the popularity bonus (CLAUDE.md quality rule). | 1 book(s) have zero/missing ratingsCount — backfill via Google Books/Goodreads lookup so the popularity bonus can fire. |
+| themes | 99.9% | 99.9% (Excellent) | % of all books with at least one theme tag — feeds fiveStarThemes/themeBonus scoring directly. | 1 book(s) have zero themes — tag from canonical vocabulary (see CLAUDE.md) so themeBonus can fire. |
 | tones | 99.9% | 99.9% (Excellent) | % of all books with at least one tone tag. | 1 book(s) missing tones — mostly candidate-pool books never processed by tag_with_haiku.py. |
 | similarToAuthors | 99.9% | 99.9% (Excellent) | % of all books with at least one similarToAuthors entry — feeds the similar-author bonus. | 1 book(s) missing — lower priority than similarToTitles (smaller scoring weight). |
 | bookKey | 100.0% | 100.0% (Excellent) | Population % of all books with a real slug bookKey (not the "title|||author" derived-key fallback, which enrich_metadata.py cannot use). | None needed. |
@@ -121,22 +122,22 @@ field below 90%; ⚠️ marks any other field below 80%.
 
 How many books carry each value, across every book (library + all candidate pools). Themes and tones are controlled vocabularies (see CLAUDE.md); subjects is free-form (Open Library, no canonical list — this table is the fastest way to see what's actually in use). Full lists (not just top 15) are in the JSON snapshot's `findings.tagCounts` and the interactive [dashboard](../quality-dashboard.html#tagCountsSection).
 
-**Themes** (top 15 of 36):
-- narrative nonfiction — 485
+**Themes** (top 15 of 35):
 - thriller — 320
-- literary — 171
-- history — 148
-- memoir — 145
+- literary — 172
+- history — 157
+- memoir — 154
 - speculative — 141
+- humor — 124
+- social commentary — 115
 - contemporary — 112
-- humor — 106
+- business — 110
 - sports — 100
-- biography — 92
+- biography — 96
 - psychological — 90
 - legal — 86
 - mystery — 86
 - suspense — 85
-- tech history — 82
 
 **Tones** (top 15 of 24):
 - dark — 171
@@ -265,7 +266,7 @@ None found.
 - similarToTitles outside 3–5 range: **4** ("Careless People: A Cautionary Tale of Power, Greed, and Lost Idealism", "Anatomy of an Alibi", "The Inmate", "The Second-Smartest Dog That Ever Lived")
 - Zero/missing pages (kills pages-fit bonus): **1**
 - Zero/missing ratingsCount (kills popularity bonus): **18**
-- Missing a real bookKey (derived-key fallback, skipped by daily enrichment): **2**
+- Missing a real bookKey (derived-key fallback, skipped by daily enrichment): **1**
 
 ## Top 4 Impediments to a Perfect Data Quality Score
 

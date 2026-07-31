@@ -424,7 +424,6 @@
       "avgRating": 4.47,
       "isbn13": "9780385521314",
       "themes": [
-        "narrative nonfiction",
         "true crime",
         "history",
         "political"
@@ -452,8 +451,8 @@
       "avgRating": 3.94,
       "isbn13": "9781501191053",
       "themes": [
-        "narrative nonfiction",
-        "history"
+        "history",
+        "social commentary"
       ],
       "similarToAuthors": [
         "David Grann",
@@ -613,7 +612,7 @@
       "isbn13": "9780316703321",
       "themes": [
         "tech history",
-        "narrative nonfiction"
+        "psychology"
       ],
       "similarToAuthors": [
         "Michael Lewis",

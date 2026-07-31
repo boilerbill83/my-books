@@ -1,6 +1,6 @@
 {
   "date": "2026-07-31",
-  "generatedAt": "2026-07-31T17:58:08.551Z",
+  "generatedAt": "2026-07-31T18:33:15.378Z",
   "totalBooks": 1112,
   "qualityScore": {
     "score": 67,
@@ -9,13 +9,13 @@
         "key": "criticalHealth",
         "label": "Critical Field Health",
         "weight": 0.08,
-        "subscore": 99.88309352517986
+        "subscore": 99.89208633093526
       },
       {
         "key": "completeness",
         "label": "Field Completeness",
         "weight": 0.33,
-        "subscore": 70.29002160433474
+        "subscore": 70.30655676330434
       },
       {
         "key": "foundational",
@@ -82,13 +82,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.88309352517986
+          "subscore": 99.89208633093526
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 70.29002160433474
+          "subscore": 70.30655676330434
         },
         {
           "key": "foundational",
@@ -418,13 +418,6 @@
       "eligibleTotal": 1112
     },
     {
-      "field": "themes",
-      "scorePct": 99.82014388489209,
-      "rawPct": 99.82014388489209,
-      "critical": true,
-      "eligibleTotal": 1112
-    },
-    {
       "field": "description",
       "scorePct": 99.82014388489209,
       "rawPct": 99.82014388489209,
@@ -440,6 +433,13 @@
     },
     {
       "field": "ratingsCount",
+      "scorePct": 99.91007194244604,
+      "rawPct": 99.91007194244604,
+      "critical": true,
+      "eligibleTotal": 1112
+    },
+    {
+      "field": "themes",
       "scorePct": 99.91007194244604,
       "rawPct": 99.91007194244604,
       "critical": true,
@@ -563,7 +563,7 @@
     "similarOutOfRange": 4,
     "zeroPages": 1,
     "zeroRatingsCount": 18,
-    "missingBookKey": 2
+    "missingBookKey": 1
   },
   "findings": {
     "fiveStarSignalGaps": [],
@@ -3244,17 +3244,6 @@
         ]
       },
       {
-        "title": "Cancel Me If You Can",
-        "author": "Dave Portnoy",
-        "score": 20,
-        "reasons": [
-          "missing themes, similarToTitles"
-        ],
-        "locations": [
-          "library/to-read"
-        ]
-      },
-      {
         "title": "Up on Cove Mountain: Adventure, Tragedy, and a Quest for Meaning on the Appalachian Trail",
         "author": "Earl Swift",
         "score": 10,
@@ -3330,41 +3319,56 @@
         "locations": [
           "library/to-read"
         ]
+      },
+      {
+        "title": "Cancel Me If You Can",
+        "author": "Dave Portnoy",
+        "score": 10,
+        "reasons": [
+          "missing similarToTitles"
+        ],
+        "locations": [
+          "library/to-read"
+        ]
       }
     ],
     "tagCounts": {
       "themes": [
-        {
-          "value": "narrative nonfiction",
-          "count": 485
-        },
         {
           "value": "thriller",
           "count": 320
         },
         {
           "value": "literary",
-          "count": 171
+          "count": 172
         },
         {
           "value": "history",
-          "count": 148
+          "count": 157
         },
         {
           "value": "memoir",
-          "count": 145
+          "count": 154
         },
         {
           "value": "speculative",
           "count": 141
         },
         {
+          "value": "humor",
+          "count": 124
+        },
+        {
+          "value": "social commentary",
+          "count": 115
+        },
+        {
           "value": "contemporary",
           "count": 112
         },
         {
-          "value": "humor",
-          "count": 106
+          "value": "business",
+          "count": 110
         },
         {
           "value": "sports",
@@ -3372,7 +3376,7 @@
         },
         {
           "value": "biography",
-          "count": 92
+          "count": 96
         },
         {
           "value": "psychological",
@@ -3392,19 +3396,19 @@
         },
         {
           "value": "tech history",
-          "count": 82
-        },
-        {
-          "value": "social commentary",
-          "count": 80
-        },
-        {
-          "value": "business",
-          "count": 79
+          "count": 84
         },
         {
           "value": "crime",
           "count": 73
+        },
+        {
+          "value": "political",
+          "count": 61
+        },
+        {
+          "value": "psychology",
+          "count": 61
         },
         {
           "value": "courtroom",
@@ -3412,19 +3416,19 @@
         },
         {
           "value": "true crime",
-          "count": 54
+          "count": 57
         },
         {
-          "value": "political",
+          "value": "finance",
+          "count": 51
+        },
+        {
+          "value": "food",
           "count": 50
         },
         {
           "value": "domestic suspense",
           "count": 48
-        },
-        {
-          "value": "finance",
-          "count": 46
         },
         {
           "value": "sci-fi",
@@ -3433,14 +3437,6 @@
         {
           "value": "adventure",
           "count": 44
-        },
-        {
-          "value": "food",
-          "count": 43
-        },
-        {
-          "value": "psychology",
-          "count": 43
         },
         {
           "value": "romance",
@@ -3464,7 +3460,7 @@
         },
         {
           "value": "music history",
-          "count": 23
+          "count": 24
         },
         {
           "value": "noir",

@@ -32,8 +32,8 @@
  *   3. Symmetric signal weighting (asymmetric was tested and rejected)
  *      Amplifying below-prior signals (down-weighting negative signals) hurt
  *      Spearman because the 41 low-rated books share common themes with
- *      high-rated ones (e.g. 'narrative nonfiction' appears in both 5★ and 2★),
- *      so the engine should not treat direction as a signal quality indicator.
+ *      high-rated ones, so the engine should not treat direction as a signal
+ *      quality indicator.
  *
  * Signals used in prediction (in order of typical influence):
  *   1. Direct author        — user has read and rated this exact author
@@ -80,7 +80,7 @@
 // ── Genre inference ────────────────────────────────────────────────────────
 
 const _NF_THEMES = new Set([
-  'narrative nonfiction', 'memoir', 'biography', 'true crime', 'history',
+  'memoir', 'biography', 'true crime', 'history',
   'tech history', 'finance', 'business', 'sports', 'food', 'music history',
   'political', 'military', 'psychology', 'social commentary', 'humor',
 ]);
@@ -99,8 +99,8 @@ function inferGenre(themes) {
     if (_NF_THEMES.has(t))  nf++;
   }
   if (f !== nf) return f > nf ? 'fiction' : 'nonfiction';
-  // Tie-break: memoir/narrative-nonfiction are unambiguous nonfiction markers
-  if (f > 0 && (themes || []).some(t => t === 'memoir' || t === 'narrative nonfiction')) {
+  // Tie-break: memoir is an unambiguous nonfiction marker
+  if (f > 0 && (themes || []).some(t => t === 'memoir')) {
     return 'nonfiction';
   }
   return f > 0 ? 'fiction' : 'unknown';

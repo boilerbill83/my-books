@@ -100,7 +100,7 @@ const COMMUNITY_POP_MAX  = Math.log10(500_000);  // 500k ratings → weight 1
 // ── Genre helpers ──────────────────────────────────────────────────────────
 
 const NF_THEMES = new Set([
-  'narrative nonfiction','memoir','biography','true crime','history','military',
+  'memoir','biography','true crime','history','military',
   'tech history','business','finance','sports','food','psychology','political',
   'social commentary','music history',
 ]);
@@ -164,7 +164,6 @@ const THEME_TONES_MAP = {
   'courtroom':            ['procedural', 'tense'],
   'literary':             ['slow-burn', 'character-driven', 'atmospheric'],
   'memoir':               ['poignant', 'conversational'],
-  'narrative nonfiction': ['revelatory', 'thoughtful'],
   'true crime':           ['investigative', 'dark'],
   'mystery':              ['twisty', 'procedural'],
   'noir':                 ['dark', 'gritty', 'atmospheric'],

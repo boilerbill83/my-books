@@ -10,7 +10,6 @@
       "ratingsCount": 310000,
       "themes": [
         "sports",
-        "narrative nonfiction",
         "finance"
       ],
       "similarToAuthors": [
@@ -39,7 +38,6 @@
       "ratingsCount": 50000,
       "themes": [
         "finance",
-        "narrative nonfiction",
         "history"
       ],
       "similarToAuthors": [
@@ -67,7 +65,6 @@
       "ratingsCount": 1100000,
       "themes": [
         "sports",
-        "narrative nonfiction",
         "history"
       ],
       "similarToAuthors": [
@@ -97,8 +94,7 @@
       "ratingsCount": 165000,
       "themes": [
         "memoir",
-        "sports",
-        "narrative nonfiction"
+        "sports"
       ],
       "similarToAuthors": [
         "Jeff Pearlman",
@@ -127,8 +123,7 @@
       "ratingsCount": 85000,
       "themes": [
         "sports",
-        "memoir",
-        "narrative nonfiction"
+        "memoir"
       ],
       "similarToAuthors": [
         "Jeff Pearlman",
@@ -157,7 +152,6 @@
       "ratingsCount": 14000,
       "themes": [
         "sports",
-        "narrative nonfiction",
         "history"
       ],
       "similarToAuthors": [
@@ -186,7 +180,6 @@
       "ratingsCount": 600000,
       "themes": [
         "true crime",
-        "narrative nonfiction",
         "history"
       ],
       "similarToAuthors": [
@@ -215,7 +208,6 @@
       "ratingsCount": 150000,
       "themes": [
         "true crime",
-        "narrative nonfiction",
         "history"
       ],
       "similarToAuthors": [
@@ -242,7 +234,6 @@
       "avgRating": 4.04,
       "ratingsCount": 1200000,
       "themes": [
-        "narrative nonfiction",
         "psychology",
         "history"
       ],
@@ -272,8 +263,8 @@
       "avgRating": 3.96,
       "ratingsCount": 800000,
       "themes": [
-        "narrative nonfiction",
-        "psychology"
+        "psychology",
+        "business"
       ],
       "similarToAuthors": [
         "Michael Lewis"
@@ -299,7 +290,6 @@
       "avgRating": 3.84,
       "ratingsCount": 440000,
       "themes": [
-        "narrative nonfiction",
         "history",
         "psychology"
       ],
@@ -327,8 +317,8 @@
       "avgRating": 3.81,
       "ratingsCount": 175000,
       "themes": [
-        "narrative nonfiction",
-        "humor"
+        "humor",
+        "social commentary"
       ],
       "similarToAuthors": [
         "Chuck Klosterman",
@@ -355,7 +345,6 @@
       "avgRating": 4.39,
       "ratingsCount": 350000,
       "themes": [
-        "narrative nonfiction",
         "true crime",
         "tech history"
       ],
@@ -385,7 +374,6 @@
       "avgRating": 4.34,
       "ratingsCount": 80000,
       "themes": [
-        "narrative nonfiction",
         "true crime",
         "political"
       ],
@@ -415,7 +403,6 @@
       "ratingsCount": 70000,
       "themes": [
         "true crime",
-        "narrative nonfiction",
         "history"
       ],
       "similarToAuthors": [
@@ -444,8 +431,7 @@
       "ratingsCount": 20000,
       "themes": [
         "history",
-        "memoir",
-        "narrative nonfiction"
+        "memoir"
       ],
       "similarToAuthors": [
         "Walter Isaacson",
@@ -473,7 +459,6 @@
       "ratingsCount": 18000,
       "themes": [
         "tech history",
-        "narrative nonfiction",
         "business"
       ],
       "similarToAuthors": [
@@ -502,7 +487,6 @@
       "avgRating": 4.18,
       "ratingsCount": 90000,
       "themes": [
-        "narrative nonfiction",
         "true crime",
         "history"
       ],
@@ -532,7 +516,6 @@
       "ratingsCount": 7000,
       "themes": [
         "tech history",
-        "narrative nonfiction",
         "biography"
       ],
       "similarToAuthors": [
@@ -561,7 +544,6 @@
       "ratingsCount": 30000,
       "themes": [
         "humor",
-        "narrative nonfiction",
         "tech history"
       ],
       "similarToAuthors": [
@@ -1413,7 +1395,6 @@
       "avgRating": 4.41,
       "ratingsCount": 100000,
       "themes": [
-        "narrative nonfiction",
         "adventure",
         "history"
       ],
@@ -1442,7 +1423,6 @@
       "avgRating": 4.38,
       "ratingsCount": 80000,
       "themes": [
-        "narrative nonfiction",
         "history",
         "social commentary"
       ],
@@ -1472,8 +1452,7 @@
       "ratingsCount": 150000,
       "themes": [
         "humor",
-        "memoir",
-        "narrative nonfiction"
+        "memoir"
       ],
       "similarToAuthors": [
         "Seth Rogen",
@@ -1501,7 +1480,6 @@
       "ratingsCount": 130000,
       "themes": [
         "memoir",
-        "narrative nonfiction",
         "social commentary"
       ],
       "similarToAuthors": [

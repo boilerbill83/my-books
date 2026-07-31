@@ -39,7 +39,7 @@ MODEL       = 'claude-sonnet-5'
 # scripts/data_quality_report.js's CANONICAL_THEMES / CANONICAL_TONES.
 THEMES = ('thriller psychological suspense "domestic suspense" mystery crime noir '
           'horror high-concept spy adventure historical YA romance literary '
-          'contemporary speculative sci-fi "social commentary" "narrative nonfiction" '
+          'contemporary speculative sci-fi "social commentary" '
           'memoir biography "true crime" history "tech history" finance business '
           'sports food "music history" political military psychology humor comedy '
           'legal courtroom')
@@ -51,7 +51,7 @@ TONES = ('propulsive compulsive "slow-burn" twisty procedural nonlinear ensemble
          'revelatory dense thoughtful investigative')
 
 CANON_THEMES = {t.strip('"') for t in THEMES.split()} | {
-    'domestic suspense', 'social commentary', 'narrative nonfiction',
+    'domestic suspense', 'social commentary',
     'true crime', 'tech history', 'music history',
 }
 CANON_TONES = {t.strip('"') for t in TONES.split()} | {'slow-burn', 'character-driven'}

@@ -168,7 +168,7 @@ function themeBonus(themes, fiveStarThemes) {
     if (t.includes('literary') || t.includes('historical'))                          bonus += 2;
     if (t.includes('mystery'))                                                        bonus += 2;
     if (t.includes('true crime'))                                                     bonus += 5;
-    if (t.includes('tech history') || t.includes('narrative nonfiction'))            bonus += 4;
+    if (t.includes('tech history'))                                                   bonus += 4;
     if (t.includes('finance'))                                                        bonus += 4;
     if (t.includes('biography') || t.includes('military') || t.includes('psychology')) bonus += 3;
     if (t.includes('business'))                                                       bonus += 2;

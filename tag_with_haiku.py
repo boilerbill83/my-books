@@ -30,7 +30,7 @@ MODEL      = 'claude-haiku-4-5'
 
 THEMES = ('thriller psychological suspense "domestic suspense" mystery crime noir '
           'horror high-concept spy adventure historical YA romance literary '
-          'contemporary speculative sci-fi "social commentary" "narrative nonfiction" '
+          'contemporary speculative sci-fi "social commentary" '
           'memoir biography "true crime" history "tech history" finance business '
           'sports food "music history" political military psychology humor comedy')
 
@@ -78,7 +78,7 @@ Five-star list:
     raw = raw.removeprefix('```json').removeprefix('```').removesuffix('```').strip()
     out = json.loads(raw)
     canon_themes = set(THEMES.replace('"', ' " ').split()) | {
-        'domestic suspense', 'social commentary', 'narrative nonfiction',
+        'domestic suspense', 'social commentary',
         'true crime', 'tech history', 'music history'}
     themes = [t for t in out.get('themes', []) if t in canon_themes][:5]
     tones  = [t for t in out.get('tones', []) if t in TONES.split()][:3]
