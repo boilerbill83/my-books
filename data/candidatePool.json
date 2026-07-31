@@ -111,7 +111,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1711398419i/127279000.jpg",
       "ratingsCount": 70000,
       "isbn13": "9781250880321",
-      "tones": ["twisty", "funny"], "themeToneReviewed": false
+      "tones": ["twisty", "funny"], "themeToneReviewed": true
     },
     {
       "title": "The Only One Left",

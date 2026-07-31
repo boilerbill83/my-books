@@ -3538,7 +3538,7 @@
         "compulsive",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717081181l/173404111._SY475_.jpg"
     },
     {
@@ -3580,7 +3580,7 @@
         "slow-burn",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -3621,7 +3621,7 @@
         "investigative",
         "compulsive"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-compound|aisling-rawle",
@@ -3660,7 +3660,7 @@
         "tense",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/81Ouv7ZpPgL._SX300_.jpg"
     },
     {
@@ -3702,7 +3702,7 @@
         "twisty",
         "compulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1620075242l/57937453._SY475_.jpg"
     },
     {
@@ -3741,7 +3741,7 @@
         "investigative",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -3783,7 +3783,7 @@
         "dark",
         "ensemble"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743501467l/221633922._SY475_.jpg"
     },
@@ -3826,7 +3826,7 @@
         "gritty",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1573874784l/51182571.jpg"
     },
@@ -3866,7 +3866,7 @@
         "character-driven",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1738777598l/220377436._SY475_.jpg"
     },
     {
@@ -3907,7 +3907,7 @@
         "poignant",
         "gritty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1729089718l/220476359._SY475_.jpg"
     },
     {
@@ -3950,7 +3950,7 @@
         "twisty",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1737698524l/219234429._SY475_.jpg"
     },
     {
@@ -3989,7 +3989,7 @@
         "tense",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -4029,7 +4029,7 @@
         "atmospheric",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=OSfpEJpJzrIC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -4068,7 +4068,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1741317979l/228018711._SY475_.jpg"
     },
     {
@@ -4109,7 +4109,7 @@
         "procedural",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=P5S9EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -4151,7 +4151,7 @@
         "tense",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1666523893l/61032435._SY475_.jpg"
     },
     {
@@ -4190,7 +4190,7 @@
         "twisty",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=rpLxEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
