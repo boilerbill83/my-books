@@ -750,7 +750,7 @@
         "propulsive",
         "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/81eCWsc+T5L._SX300_.jpg"
     },
     {
@@ -792,7 +792,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1741152013l/223400731._SY475_.jpg"
     },
     {
@@ -831,7 +831,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/810D7Vp29KL._SX300_.jpg"
     },
     {
@@ -870,7 +870,7 @@
         "poignant",
         "bleak"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=-P-BEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -910,7 +910,7 @@
         "tense",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/71KwUwAGKlL._SX300_.jpg"
     },
     {
@@ -950,7 +950,7 @@
         "investigative",
         "inspiring"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-divorce|freida-mcfadden",
@@ -992,7 +992,7 @@
         "propulsive",
         "dark"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "peck-peck|bonnie-garmus",
@@ -1030,7 +1030,7 @@
         "funny",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/81Z8qRkK6wL._SX300_.jpg"
     },
     {
@@ -1070,7 +1070,7 @@
         "conversational",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/81J4qXB8ckL._SX300_.jpg"
     },
     {
@@ -1092,8 +1092,8 @@
       "type": "fiction",
       "themes": [
         "literary",
-        "speculative",
-        "contemporary"
+        "contemporary",
+        "humor"
       ],
       "similarToTitles": [
         "This Time Tomorrow",
@@ -1107,12 +1107,11 @@
       ],
       "ratingsCount": 12000,
       "tones": [
-        "atmospheric",
-        "bleak",
+        "funny",
         "poignant",
-        "funny"
+        "heartwarming"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -1152,7 +1151,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -1192,7 +1191,7 @@
         "dark",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -1233,7 +1232,7 @@
         "dark",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/81Og5EqlbkL._SX300_.jpg"
     },
     {
