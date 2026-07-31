@@ -181,6 +181,11 @@ def main():
             'currentThemes': b.get('themes') or [], 'currentTones': b.get('tones') or [],
             'themes': verdict['themes'], 'tones': verdict['tones'],
             'applied': {'themes': False, 'tones': False},
+            # Whether scripts/apply_audit_corrections.mjs has flipped this
+            # book's themeToneReviewed flag to true yet (it does this for
+            # every audited book, not just ones with a data correction —
+            # the flag tracks audit coverage, not correction status).
+            'reviewFlagSet': False,
         }
         log_lines.append(json.dumps(entry, ensure_ascii=False))
         state[b['bookKey']] = {'auditedAt': entry['auditedAt']}

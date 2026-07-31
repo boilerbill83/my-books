@@ -78,12 +78,22 @@ for (const [bookKey, entry] of latestByKey) {
   }
 }
 
+// Every audited book gets its themeToneReviewed flag flipped true, whether
+// or not a correction was needed — the flag tracks audit coverage (has this
+// book been checked), not correction status. reviewFlagSet on the log entry
+// is the idempotency marker so a re-run doesn't re-scan for already-flagged
+// books.
+const needsReviewFlag = new Set();
+for (const [bookKey, entry] of latestByKey) {
+  if (!entry.reviewFlagSet) needsReviewFlag.add(bookKey);
+}
+
 const totalPending = pending.themes.size + pending.tones.size;
-if (!totalPending) {
-  console.log('No pending high-confidence corrections to apply.');
+if (!totalPending && !needsReviewFlag.size) {
+  console.log('Nothing to apply — no pending corrections and no review flags to set.');
   process.exit(0);
 }
-console.log(`Pending corrections: ${pending.themes.size} themes, ${pending.tones.size} tones`);
+console.log(`Pending corrections: ${pending.themes.size} themes, ${pending.tones.size} tones. Review flags to set: ${needsReviewFlag.size}.`);
 
 // Find every top-level array element's [start, end) byte span, and each
 // span's bookKey, within `text` given the index of the array's opening '['.
@@ -158,7 +168,14 @@ function replaceFieldInSpan(segment, field, newValues) {
   return out;
 }
 
+function setReviewFlagInSpan(segment) {
+  const re = /"themeToneReviewed":\s*(true|false)/;
+  if (!re.test(segment)) throw new Error('no themeToneReviewed field found in span');
+  return segment.replace(re, '"themeToneReviewed": true');
+}
+
 const appliedNow = []; // { bookKey, field }
+const reviewFlagsSetNow = []; // bookKey
 
 for (const file of FILES) {
   const filePath = DATA(file);
@@ -170,11 +187,11 @@ for (const file of FILES) {
   const arrOpenIdx = text.indexOf('[', keyIdx);
   const spans = findBookSpans(text, arrOpenIdx);
 
-  // Which spans in THIS file have a pending correction, in reverse order so
-  // earlier byte offsets stay valid as each edit is applied.
+  // Any span in THIS file with a pending correction OR a review flag to
+  // set, in reverse order so earlier byte offsets stay valid as each edit
+  // is applied.
   const toEdit = spans
-    .map((sp, i) => ({ ...sp, i }))
-    .filter(sp => sp.bookKey && (pending.themes.has(sp.bookKey) || pending.tones.has(sp.bookKey)))
+    .filter(sp => sp.bookKey && (pending.themes.has(sp.bookKey) || pending.tones.has(sp.bookKey) || needsReviewFlag.has(sp.bookKey)))
     .sort((a, b) => b.start - a.start);
 
   if (!toEdit.length) continue;
@@ -187,24 +204,32 @@ for (const file of FILES) {
         appliedNow.push({ bookKey: sp.bookKey, field });
       }
     }
+    if (needsReviewFlag.has(sp.bookKey)) {
+      segment = setReviewFlagInSpan(segment);
+      reviewFlagsSetNow.push(sp.bookKey);
+    }
     text = text.slice(0, sp.start) + segment + text.slice(sp.end);
   }
 
   fs.writeFileSync(filePath, text);
-  console.log(`${file}: ${toEdit.length} book(s) corrected`);
+  console.log(`${file}: ${toEdit.length} book(s) edited`);
 }
 
-// Append follow-up log lines marking these corrections applied, so a future
-// run's "latest entry per bookKey" read sees applied:true and skips them.
+// Append follow-up log lines marking these corrections applied and/or the
+// review flag set, so a future run's "latest entry per bookKey" read sees
+// the updated state and skips redoing this bookkeeping.
 const now = new Date().toISOString().slice(0, 10);
 const byBookKey = new Map();
 for (const { bookKey, field } of appliedNow) {
   if (!byBookKey.has(bookKey)) byBookKey.set(bookKey, new Set());
   byBookKey.get(bookKey).add(field);
 }
+const touchedBookKeys = new Set([...byBookKey.keys(), ...reviewFlagsSetNow]);
+const reviewFlagsSetSet = new Set(reviewFlagsSetNow);
 const followUps = [];
-for (const [bookKey, fields] of byBookKey) {
+for (const bookKey of touchedBookKeys) {
   const entry = latestByKey.get(bookKey);
+  const fields = byBookKey.get(bookKey) || new Set();
   const updated = {
     ...entry,
     appliedAt: now,
@@ -212,6 +237,7 @@ for (const [bookKey, fields] of byBookKey) {
       themes: entry.applied?.themes || fields.has('themes'),
       tones: entry.applied?.tones || fields.has('tones'),
     },
+    reviewFlagSet: entry.reviewFlagSet || reviewFlagsSetSet.has(bookKey),
   };
   followUps.push(JSON.stringify(updated));
 }
@@ -219,4 +245,4 @@ if (followUps.length) {
   fs.appendFileSync(LOG_FILE, followUps.join('\n') + '\n');
 }
 
-console.log(`Applied ${appliedNow.length} correction(s) across ${byBookKey.size} book(s).`);
+console.log(`Applied ${appliedNow.length} correction(s), set ${reviewFlagsSetNow.length} review flag(s), across ${touchedBookKeys.size} book(s).`);
