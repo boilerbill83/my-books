@@ -1,5 +1,12 @@
 name: Audit Theme/Tone Accuracy
 
+# STOPPED (Jul 31 2026) — Bill decided against the ongoing API cost after
+# seeing the real per-book billing (web_search tool + token cost, tens of
+# dollars for the full 1,111-book backlog). Schedule trigger removed so this
+# can never fire on its own again; workflow_dispatch is left in place only
+# so a future session could still run it by hand if Bill changes his mind.
+# See CLAUDE.md's Session 16f entry.
+#
 # Hourly until every book has been researched against real outside sources
 # (not the cached enrichedMetadata.json description the tagging classifier
 # already used — checking against its own source would be circular). Each
@@ -7,13 +14,7 @@ name: Audit Theme/Tone Accuracy
 # high-confidence corrections the research turns up; anything less than
 # high confidence goes into output/tone-theme-audit-log.jsonl for review
 # instead of touching the data. See CLAUDE.md's Session 16c entry.
-#
-# Consider disabling this workflow once the backlog clears — the script
-# exits cheaply (no API calls) once every book is audited, but there's no
-# reason to keep firing hourly after that.
 on:
-  schedule:
-    - cron: '0 * * * *'   # hourly — hits a real, billed Claude API web-search tool per book
   workflow_dispatch:
     inputs:
       batch_size:
