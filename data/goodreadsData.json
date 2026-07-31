@@ -19917,7 +19917,7 @@
         "slow-burn",
         "twisty"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "stolen-focus-why-you-can-t-pay-attention-and-how-to-think-deeply-again|johann-hari",
@@ -19954,7 +19954,7 @@
         "dense",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=uC0rEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -19998,7 +19998,7 @@
         "bleak",
         "poignant"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-maid|nita-prose",
@@ -20038,7 +20038,7 @@
         "twisty",
         "procedural"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "pines-wayward-pines-1|blake-crouch",
@@ -20081,7 +20081,7 @@
         "slow-burn",
         "twisty"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "evidence-of-the-affair|taylor-jenkins-reid",
@@ -20120,7 +20120,7 @@
         "heartwarming",
         "nonlinear"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "our-missing-hearts|celeste-ng",
@@ -20161,7 +20161,7 @@
         "slow-burn",
         "thoughtful"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "you-must-remember-this|kat-rosenfield",
@@ -20201,7 +20201,7 @@
         "procedural",
         "compulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=RcdrEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -20242,7 +20242,7 @@
         "inspiring",
         "atmospheric"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "stay-true-a-memoir|hua-hsu",
@@ -20282,7 +20282,7 @@
         "slow-burn",
         "thoughtful"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "later|stephen-king",
@@ -20322,7 +20322,7 @@
         "dark",
         "atmospheric"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "stories-from-the-tenants-downstairs|sidik-fofana",
@@ -20361,7 +20361,7 @@
         "slow-burn",
         "ensemble"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "billy-summers|stephen-king",
@@ -20402,7 +20402,7 @@
         "dark",
         "gritty"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "american-dirt|jeanine-cummins",
@@ -20440,10 +20440,11 @@
       ],
       "type": "fiction",
       "tones": [
-        "slow-burn",
-        "heartwarming"
+        "tense",
+        "propulsive",
+        "dark"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-genome-defense-inside-the-epic-legal-battle-to-determine-who-owns-your-dna|jorge-l-contreras",
@@ -20481,7 +20482,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=ErUdEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
