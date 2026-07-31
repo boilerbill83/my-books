@@ -2414,7 +2414,7 @@
         "poignant",
         "bleak"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1737607859l/219446263._SY475_.jpg"
     },
     {
@@ -2457,7 +2457,7 @@
         "propulsive",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743131057l/229005082._SY475_.jpg"
     },
     {
@@ -2497,7 +2497,7 @@
         "dark",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/716TrbmqWaL._SX300_.jpg"
     },
     {
@@ -2538,7 +2538,7 @@
         "inspiring",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1751079767l/237396511._SX318_.jpg"
     },
     {
@@ -2579,7 +2579,7 @@
         "propulsive",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -2617,7 +2617,7 @@
         "propulsive",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/91Y5tD+3iRL._SX300_.jpg"
     },
     {
@@ -2658,7 +2658,7 @@
         "propulsive",
         "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/81CRxjuTB6L._SX300_.jpg"
     },
     {
@@ -2697,7 +2697,7 @@
         "conversational",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -2737,7 +2737,7 @@
         "gritty",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -2778,7 +2778,7 @@
         "funny",
         "heartwarming"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -2813,10 +2813,11 @@
       ],
       "ratingsCount": 18000,
       "tones": [
-        "dark",
-        "funny"
+        "heartwarming",
+        "funny",
+        "conversational"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -2855,7 +2856,7 @@
         "heartwarming",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://s.gr-assets.com/assets/nophoto/book/111x148-675b3b2743c83e96e2540d2929d5f4d2.png"
     },
     {
@@ -2892,7 +2893,7 @@
         "investigative",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/51jEG+V+NrL._SX300_.jpg"
     },
     {
@@ -2933,7 +2934,7 @@
         "procedural",
         "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1644100235i/58920609.jpg"
     },
     {
