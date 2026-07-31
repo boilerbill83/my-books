@@ -92,10 +92,18 @@ Rules:
 - "high" confidence means you found clear, specific, corroborating evidence (e.g. multiple reviews agreeing, or the book's own official description contradicting the current tag). "medium"/"low" for anything you're inferring or only loosely supported."""
 
 
+# Real web_search results (multiple pages of snippets across up to 4
+# searches) count against this same output budget before the model ever
+# writes its JSON answer — 1500 was too tight and silently truncated the
+# final answer mid-string on real runs. 4096 leaves real headroom for
+# search content plus a full verdict.
+MAX_TOKENS = 4096
+
+
 def call_claude(prompt):
     body = json.dumps({
         'model': MODEL,
-        'max_tokens': 1500,
+        'max_tokens': MAX_TOKENS,
         'tools': [{'type': 'web_search_20250305', 'name': 'web_search', 'max_uses': 4}],
         'messages': [{'role': 'user', 'content': prompt}],
     }).encode()
@@ -105,6 +113,8 @@ def call_claude(prompt):
                  'content-type': 'application/json'})
     with urllib.request.urlopen(req, timeout=120) as resp:
         data = json.loads(resp.read())
+    if data.get('stop_reason') == 'max_tokens':
+        raise ValueError(f'response hit max_tokens ({MAX_TOKENS}) before finishing — raise the budget further')
     # Server-side web_search runs inside this one call; the final answer is the
     # LAST text block (earlier blocks may be server_tool_use/web_search_tool_result).
     text_blocks = [b.get('text', '') for b in data.get('content', []) if b.get('type') == 'text']
@@ -139,7 +149,10 @@ def audit_book(book):
     )
     raw = call_claude(prompt)
     raw = raw.removeprefix('```json').removeprefix('```').removesuffix('```').strip()
-    verdict = json.loads(raw)
+    try:
+        verdict = json.loads(raw)
+    except json.JSONDecodeError as e:
+        raise ValueError(f'{e} — raw response tail: ...{raw[-200:]!r}') from e
     verdict['themes'] = sanitize_side(verdict['themes'], (2, 5))
     verdict['tones'] = sanitize_side(verdict['tones'], (2, 4))
     return verdict
