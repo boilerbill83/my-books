@@ -1273,7 +1273,7 @@
         "investigative",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1744686911l/231405494._SY475_.jpg"
     },
@@ -1315,7 +1315,7 @@
         "procedural",
         "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/81cR0jlGNFL._SX300_.jpg"
     },
     {
@@ -1357,7 +1357,7 @@
         "bleak",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/71iqazY0DEL._SX300_.jpg"
     },
     {
@@ -1395,7 +1395,7 @@
         "dense",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1749394011l/235992561._SY475_.jpg"
     },
     {
@@ -1431,9 +1431,9 @@
       "ratingsCount": 9000,
       "tones": [
         "conversational",
-        "dense"
+        "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/81kWfQNvzqL._SX300_.jpg"
     },
     {
@@ -1474,7 +1474,7 @@
         "tense",
         "propulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/81WI7ejwr2L._SX300_.jpg"
     },
     {
@@ -1495,7 +1495,8 @@
       "type": "fiction",
       "themes": [
         "thriller",
-        "mystery",
+        "legal",
+        "courtroom",
         "suspense"
       ],
       "similarToTitles": [
@@ -1515,7 +1516,7 @@
         "propulsive",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/71vfuGmGkAL._SX300_.jpg"
     },
     {
@@ -1554,7 +1555,7 @@
         "heartwarming",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/61MdSSjgpoL._SX300_.jpg"
     },
     {
@@ -1574,8 +1575,10 @@
       "year": 2026,
       "type": "fiction",
       "themes": [
-        "literary",
-        "historical"
+        "thriller",
+        "speculative",
+        "contemporary",
+        "social commentary"
       ],
       "similarToTitles": [
         "The Great Alone",
@@ -1590,11 +1593,12 @@
       ],
       "ratingsCount": 6000,
       "tones": [
-        "slow-burn",
-        "bleak",
-        "poignant"
+        "funny",
+        "satirical",
+        "twisty",
+        "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=WPlrEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -1615,9 +1619,9 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1773198632i/248286863.jpg",
       "type": "fiction",
       "themes": [
-        "legal",
         "thriller",
-        "courtroom"
+        "spy",
+        "suspense"
       ],
       "similarToTitles": [
         "The Widow",
@@ -1637,7 +1641,7 @@
         "tense",
         "compulsive"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "she-didn-t-see-it-coming|shari-lapena",
@@ -1679,7 +1683,7 @@
         "tense",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1731420500l/221144907._SY475_.jpg"
     },
     {
@@ -1721,7 +1725,7 @@
         "tense",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -1758,7 +1762,7 @@
         "investigative",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/71UsOBohZeL._SX300_.jpg"
     },
     {
@@ -1800,7 +1804,7 @@
         "inspiring",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
