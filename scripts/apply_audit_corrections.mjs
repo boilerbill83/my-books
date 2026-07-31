@@ -28,7 +28,7 @@ const CANON_THEMES = new Set([
   'thriller', 'psychological', 'suspense', 'domestic suspense', 'mystery', 'crime',
   'noir', 'horror', 'high-concept', 'spy', 'adventure', 'historical', 'YA', 'romance',
   'literary', 'contemporary', 'speculative', 'sci-fi', 'social commentary', 'legal',
-  'courtroom', 'narrative nonfiction', 'memoir', 'biography', 'true crime', 'history',
+  'courtroom', 'memoir', 'biography', 'true crime', 'history',
   'tech history', 'finance', 'business', 'sports', 'food', 'music history', 'political',
   'military', 'psychology', 'humor', 'comedy',
 ]);
