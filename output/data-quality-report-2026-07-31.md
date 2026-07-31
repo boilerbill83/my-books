@@ -201,6 +201,10 @@ None — no non-canonical tone is used often enough to suggest a real gap.
 All non-canonical uses (including one-offs):
 None found.
 
+### Theme/tone collisions (0)
+A book carrying the same value in both `themes` and `tones` would blur two signals bbreEngine.js is careful to keep separate (`themeBonus` vs `toneSignal`). The two vocabularies are also asserted disjoint at load time (see `CANONICAL_THEMES`/`CANONICAL_TONES` in this script).
+None found.
+
 ### Out-of-range field counts (library books only)
 - Themes outside 2–5 range: **0** 
 - similarToTitles outside 3–5 range: **4** ("Careless People: A Cautionary Tale of Power, Greed, and Lost Idealism", "Anatomy of an Alibi", "The Inmate", "The Second-Smartest Dog That Ever Lived")

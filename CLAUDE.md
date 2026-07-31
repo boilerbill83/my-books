@@ -125,13 +125,15 @@ Two separate engine signals:
 
 ### Canonical Tone Vocabulary (redesigned Session 16)
 
-Use **only** these 24 values in a book's `tones` field. Unlike themes (which describe genre/subject), tones describe *how a book reads* — pacing, mood, voice, craft — so the same word can and should apply across fiction and nonfiction alike.
+Use **only** these 24 values in a book's `tones` field. Unlike themes (which describe genre/subject — *what a book is about*), tones describe *how a book reads* — pacing, mood, voice, craft — so the same word can and should apply across fiction and nonfiction alike: a legal thriller and a memoir can both be `tense`; a domestic-suspense novel and a Silicon Valley exposé can both be `twisty`.
 
 **Pacing & structure:** `propulsive`, `compulsive`, `slow-burn`, `twisty`, `procedural`, `nonlinear`, `ensemble`
 **Mood & emotional register:** `dark`, `bleak`, `tense`, `heartwarming`, `poignant`, `inspiring`
 **Voice & humor:** `funny`, `satirical`, `conversational`
 **Craft & style:** `atmospheric`, `lyrical`, `gritty`, `character-driven`
 **Intellectual register:** `revelatory`, `dense`, `thoughtful`, `investigative`
+
+A few of these sound genre-adjacent but aren't — `procedural` describes information unfolding step-by-step (a legal procedural, a business turnaround, a true-crime investigation all qualify) and `investigative` describes an exposé/dogged-reporting *voice* (fits business, tech, and political nonfiction alike), not a specific subject. Verified zero string overlap with the 37 canonical themes, and zero books carry the same value in both `themes` and `tones`. Engine code never conflates the two fields either: `themeBonus()`/`primaryTheme()` read only `.themes`; `toneSignal()`/`buildToneProfile()`/`primaryTone()`/`inferTones()` read only `.tones`.
 
 **Balance rule:** no tone may sit on more than 15% of the dataset (~166 of 1,111 books as of Session 16). This isn't cosmetic — `bbreEngine.js`'s `buildToneProfile()`/`toneSignal()` computes a real per-tone rating-preference delta from Bill's history and applies it live to every candidate. A tone used on a third of the dataset (as `accessible`/`narrative-driven`/`fast-paced` were under the old free-form vocabulary) can't produce a meaningful signal — it's just "most books." 2–4 tones per book, same as before.
 

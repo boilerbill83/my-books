@@ -1044,6 +1044,12 @@
         });
 
         panel('tones', false, div => {
+          const collisions = findings.themeToneCollisions || [];
+          const collideNote = document.createElement('p'); collideNote.className = 'qd-desc';
+          collideNote.textContent = collisions.length
+            ? `⚠️ ${collisions.length} book(s) carry the same value in both themes and tones: ${collisions.map(c => `"${esc(c.title)}" ("${esc(c.value)}")`).join(', ')}`
+            : 'Theme/tone collisions: none — the two vocabularies stay disjoint (checked per-book, not just at the vocabulary-list level).';
+          div.appendChild(collideNote);
           if ((findings.toneReviewCandidates || []).length) {
             const h = document.createElement('p'); h.className = 'qd-desc';
             h.textContent = 'Used ≥5 times each — likely a real gap in the 24-tone vocabulary, not a one-off:';

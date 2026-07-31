@@ -44,6 +44,16 @@ const CANONICAL_TONES = new Set([
   'revelatory', 'dense', 'thoughtful', 'investigative',
 ]);
 
+// Themes (genre/subject) and tones (how a book reads) must stay two clearly
+// distinct vocabularies — fail loudly at load time if they ever collide,
+// rather than silently letting the two signals blur together.
+{
+  const overlap = [...CANONICAL_THEMES].filter(t => CANONICAL_TONES.has(t));
+  if (overlap.length) {
+    throw new Error(`CANONICAL_THEMES and CANONICAL_TONES share value(s): ${overlap.join(', ')} — themes and tones must stay disjoint vocabularies.`);
+  }
+}
+
 // Mirrors engine.js's norm() (bbreEngine/rateEngine title matching all route
 // through this format) — strips parenthetical series/edition notation
 // before comparing, so "The Firm" vs "The Firm (The Firm, #1)" is treated
@@ -493,6 +503,22 @@ function findNonCanonicalTones() {
     .filter(([, count]) => count >= PROMOTE_THRESHOLD)
     .sort((a, b) => b[1] - a[1]);
   return { offenders, promoteCandidates };
+}
+
+// Catches per-book drift even if the two vocabularies stay disjoint overall
+// (e.g. a future hand-edit copy-pastes a theme into the tones field, or vice
+// versa) — a value appearing in both arrays on the same book blurs the two
+// signals bbreEngine.js is careful to keep separate (themeBonus vs
+// toneSignal).
+function findThemeToneCollisions() {
+  const offenders = [];
+  for (const r of rows) {
+    const themes = new Set(r.themes.map(t => t.toLowerCase()));
+    for (const t of r.tones) {
+      if (themes.has(t.toLowerCase())) offenders.push({ title: r.title, value: t });
+    }
+  }
+  return offenders;
 }
 
 function findOutOfRangeCounts() {
@@ -1043,6 +1069,7 @@ const dupTitleAuthor = findDuplicateTitleAuthor();
 const { nearMiss: brokenNearMiss, orphaned: brokenOrphaned } = findBrokenSimilarToTitles();
 const { offenders: nonCanonical, promoteCandidates } = findNonCanonicalThemes();
 const { offenders: nonCanonicalTones, promoteCandidates: toneReviewCandidates } = findNonCanonicalTones();
+const themeToneCollisions = findThemeToneCollisions();
 const ranges = findOutOfRangeCounts();
 const fiveStarGaps = findFiveStarSignalGaps();
 const alreadyReadInPool = findAlreadyReadInPool();
@@ -1077,6 +1104,7 @@ const integritySummary = {
   promoteCandidateCount: promoteCandidates.length,
   nonCanonicalTonesTotal: nonCanonicalTones.length,
   toneReviewCandidateCount: toneReviewCandidates.length,
+  themeToneCollisions: themeToneCollisions.length,
   themesOutOfRange: ranges.themesOutOfRange.length,
   similarOutOfRange: ranges.similarOutOfRange.length,
   zeroPages: ranges.zeroPages.length,
@@ -1107,6 +1135,7 @@ const currentSnapshot = {
     nonCanonicalThemes: nonCanonical,
     toneReviewCandidates: toneReviewCandidates.map(([tone, count]) => ({ tone, count })),
     nonCanonicalTones,
+    themeToneCollisions,
     duplicateBookKeys: dupBookKeys.map(([key, list]) => ({ key, books: list.map(r => ({ title: r.title, source: r.source, shelf: r.shelf })) })),
     duplicateTitleAuthor: dupTitleAuthor.map(([, list]) => ({ title: list[0].title, author: list[0].author, occurrences: list.map(r => ({ source: r.source, shelf: r.shelf })) })),
     impactScores: impactScores.slice(0, 50),
@@ -1206,6 +1235,10 @@ ${toneReviewCandidates.length ? renderList(toneReviewCandidates.map(([tone, coun
 
 All non-canonical uses (including one-offs):
 ${nonCanonicalTones.length ? renderList(nonCanonicalTones.map(o => `"${o.title}": "${o.tone}"`)) : 'None found.'}
+
+### Theme/tone collisions (${themeToneCollisions.length})
+A book carrying the same value in both \`themes\` and \`tones\` would blur two signals bbreEngine.js is careful to keep separate (\`themeBonus\` vs \`toneSignal\`). The two vocabularies are also asserted disjoint at load time (see \`CANONICAL_THEMES\`/\`CANONICAL_TONES\` in this script).
+${themeToneCollisions.length ? renderList(themeToneCollisions.map(o => `"${o.title}": "${o.value}" appears in both themes and tones`)) : 'None found.'}
 
 ### Out-of-range field counts (library books only)
 - Themes outside 2–5 range: **${ranges.themesOutOfRange.length}** ${ranges.themesOutOfRange.length ? '(' + ranges.themesOutOfRange.slice(0, 5).map(r => `"${r.title}"`).join(', ') + (ranges.themesOutOfRange.length > 5 ? ', …' : '') + ')' : ''}
