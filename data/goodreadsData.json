@@ -1843,7 +1843,7 @@
         "dark",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/71O6OBA+gjL._SX300_.jpg"
     },
     {
@@ -1882,7 +1882,7 @@
         "dark",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1724259520l/216247552._SY475_.jpg"
     },
     {
@@ -1923,7 +1923,7 @@
         "dark",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/71YpHJ6vWAL._SX300_.jpg"
     },
     {
@@ -1965,7 +1965,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1588791809l/52379735.jpg"
     },
@@ -2002,10 +2002,11 @@
       "ratingsCount": 18000,
       "tones": [
         "conversational",
-        "character-driven",
+        "dark",
+        "funny",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/91DXVH3TqRL._SX300_.jpg"
     },
     {
@@ -2041,10 +2042,11 @@
       ],
       "ratingsCount": 7000,
       "tones": [
-        "dense",
+        "conversational",
+        "funny",
         "inspiring"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -2082,7 +2084,7 @@
         "dense",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/81V1KWJL5xL._SX300_.jpg"
     },
     {
@@ -2121,7 +2123,7 @@
         "inspiring",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/91NmOh1gpZL._SX300_.jpg"
     },
     {
@@ -2162,7 +2164,7 @@
         "character-driven",
         "inspiring"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-final-score|don-winslow",
@@ -2200,7 +2202,7 @@
         "dark",
         "gritty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/91LZTzdAl-L._SX300_.jpg"
     },
     {
@@ -2242,7 +2244,7 @@
         "twisty",
         "compulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1684812487l/62558732._SY475_.jpg"
     },
@@ -2284,7 +2286,7 @@
         "twisty",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1716839545l/210993995._SY475_.jpg"
     },
@@ -2328,7 +2330,7 @@
         "twisty",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1747149626l/219775636._SY475_.jpg"
     },
     {
@@ -2370,7 +2372,7 @@
         "tense",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1708730522l/209080212._SY475_.jpg"
     },
     {
