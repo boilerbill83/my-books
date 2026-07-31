@@ -18272,7 +18272,7 @@
         "character-driven",
         "revelatory"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "mr-texas|lawrence-wright",
@@ -18311,7 +18311,7 @@
         "funny",
         "satirical"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=XAgPEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18351,7 +18351,7 @@
         "procedural",
         "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=O_wBEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18388,7 +18388,7 @@
         "slow-burn",
         "satirical"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=i0IiXCIxYowC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18429,7 +18429,7 @@
         "slow-burn",
         "satirical"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=7I8ZEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18472,7 +18472,7 @@
         "dark",
         "gritty"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-cold-cold-ground|adrian-mckinty",
@@ -18509,7 +18509,7 @@
         "twisty",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=fOxRxwEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -18551,7 +18551,7 @@
         "tense",
         "compulsive"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-boys-from-biloxi|john-grisham",
@@ -18593,7 +18593,7 @@
         "procedural",
         "slow-burn"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "partners-a-rogue-lawyer-short-story|john-grisham",
@@ -18634,7 +18634,7 @@
         "procedural",
         "tense"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-mountain-in-the-sea|ray-nayler",
