@@ -15438,7 +15438,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-statistical-probability-of-love-at-first-sight|jennifer-e-smith",
@@ -15478,7 +15478,7 @@
         "bleak",
         "poignant"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "hello-goodbye-and-everything-in-between|jennifer-e-smith",
@@ -15518,7 +15518,7 @@
         "slow-burn",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=8ogQBgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15538,7 +15538,7 @@
       "year": 2024,
       "type": "fiction",
       "themes": [
-        "contemporary",
+        "historical",
         "romance",
         "food"
       ],
@@ -15558,7 +15558,7 @@
         "poignant",
         "gritty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=MXUiEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15596,7 +15596,7 @@
         "investigative",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1657976165l/61467835._SY475_.jpg"
     },
     {
@@ -15637,7 +15637,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=LBwW0AEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -15680,7 +15680,7 @@
         "tense",
         "procedural"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "flying-blind-the-737-max-tragedy-and-the-fall-of-boeing|peter-robison",
@@ -15719,7 +15719,7 @@
         "dark",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=T88LEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15761,7 +15761,7 @@
         "slow-burn",
         "heartwarming"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "another-day|david-levithan",
@@ -15802,7 +15802,7 @@
         "heartwarming",
         "poignant"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-art-thief-a-true-story-of-love-crime-and-a-dangerous-obsession|michael-finkel",
@@ -15842,7 +15842,7 @@
         "investigative",
         "gritty"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-power-law-venture-capital-and-the-making-of-the-new-future|sebastian-mallaby",
@@ -15880,7 +15880,7 @@
         "dense",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=a3YsEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15921,7 +15921,7 @@
         "dense",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1662566820i/60321447.jpg"
     },
     {
@@ -15962,7 +15962,7 @@
         "character-driven",
         "poignant"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-marriage-act|john-marrs",
@@ -16001,7 +16001,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "breaking-twitter-elon-musk-and-the-most-controversial-corporate-takeover-in-history|ben-mezrich",
