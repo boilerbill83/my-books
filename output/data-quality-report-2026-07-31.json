@@ -1,6 +1,6 @@
 {
   "date": "2026-07-31",
-  "generatedAt": "2026-07-31T19:24:16.119Z",
+  "generatedAt": "2026-07-31T20:08:51.754Z",
   "totalBooks": 1112,
   "qualityScore": {
     "score": 67,
@@ -3489,15 +3489,15 @@
           "count": 169
         },
         {
-          "value": "investigative",
-          "count": 168
-        },
-        {
           "value": "twisty",
           "count": 168
         },
         {
           "value": "dark",
+          "count": 167
+        },
+        {
+          "value": "investigative",
           "count": 167
         },
         {
@@ -3554,7 +3554,7 @@
         },
         {
           "value": "satirical",
-          "count": 29
+          "count": 30
         },
         {
           "value": "nonlinear",
