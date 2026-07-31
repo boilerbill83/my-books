@@ -18672,7 +18672,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=q49VEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18711,7 +18711,7 @@
         "conversational",
         "funny"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "nine-inches|tom-perrotta",
@@ -18750,7 +18750,7 @@
         "slow-burn",
         "satirical"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "traffic-genius-rivalry-and-delusion-in-the-billion-dollar-race-to-go-viral|ben-smith",
@@ -18787,7 +18787,7 @@
         "investigative",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=bSyEEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18829,7 +18829,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-battle-for-your-brain-defending-the-right-to-think-freely-in-the-age-of-neurotechnology|nita-a-farahany",
@@ -18866,7 +18866,7 @@
         "dense",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=FFdrEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18906,7 +18906,7 @@
         "procedural",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=B7iREAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18946,7 +18946,7 @@
         "investigative",
         "thoughtful"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "there-s-just-one-problem-true-tales-from-the-former-one-time-7th-most-powerful-person-in-wwe|brian-gewirtz",
@@ -18984,7 +18984,7 @@
         "character-driven",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=k1pTEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -19027,7 +19027,7 @@
         "tense",
         "gritty"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "run-for-cover|michael-ledwidge",
@@ -19070,7 +19070,7 @@
         "tense",
         "gritty"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "stop-at-nothing|michael-ledwidge",
@@ -19111,7 +19111,7 @@
         "tense",
         "gritty"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-measure|nikki-erlick",
@@ -19153,7 +19153,7 @@
         "atmospheric",
         "ensemble"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "little-children|tom-perrotta",
@@ -19193,7 +19193,7 @@
         "slow-burn",
         "satirical"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "poverty-by-america|matthew-desmond",
@@ -19233,7 +19233,7 @@
         "revelatory",
         "bleak"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "fairy-tale|stephen-king",
