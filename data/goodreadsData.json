@@ -51,7 +51,7 @@
         "tense",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -93,7 +93,7 @@
         "procedural",
         "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1764811078l/244759037._SY475_.jpg"
     },
@@ -137,7 +137,7 @@
         "procedural",
         "tense"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "clusterf-ck|brian-o-sullivan",
