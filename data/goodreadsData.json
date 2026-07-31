@@ -9795,7 +9795,7 @@
         "character-driven",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=_o4cEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9836,7 +9836,7 @@
         "tense",
         "propulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=9sJVEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9876,7 +9876,7 @@
         "dark",
         "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=PXInEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9915,7 +9915,7 @@
         "dark",
         "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=ixjdEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9955,7 +9955,7 @@
         "slow-burn",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=qF9-J2VEFksC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9998,7 +9998,7 @@
         "procedural",
         "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680705245l/125188440._SY475_.jpg"
     },
     {
@@ -10040,7 +10040,7 @@
         "twisty",
         "tense"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-perfect-assassin|james-patterson",
@@ -10081,7 +10081,7 @@
         "tense",
         "compulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1659623259l/60601632._SY475_.jpg"
     },
     {
@@ -10123,7 +10123,7 @@
         "conversational",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1633586623l/58989871.jpg"
     },
     {
@@ -10144,7 +10144,8 @@
       "type": "fiction",
       "themes": [
         "thriller",
-        "suspense"
+        "legal",
+        "courtroom"
       ],
       "similarToTitles": [
         "The President Is Missing",
@@ -10161,7 +10162,7 @@
         "tense",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=07onEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10180,7 +10181,7 @@
       "publisher": "Ballantine Books",
       "year": 2025,
       "themes": [
-        "contemporary",
+        "historical",
         "literary",
         "romance"
       ],
@@ -10203,7 +10204,7 @@
         "slow-burn",
         "nonlinear"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1730469054l/220818107._SY475_.jpg"
     },
     {
@@ -10242,7 +10243,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=r4-iEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10281,7 +10282,7 @@
         "propulsive",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=5wcAEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10320,7 +10321,7 @@
         "dense",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=cpwgEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
