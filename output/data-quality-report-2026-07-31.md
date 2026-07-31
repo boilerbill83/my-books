@@ -122,22 +122,22 @@ field below 90%; ⚠️ marks any other field below 80%.
 
 How many books carry each value, across every book (library + all candidate pools). Themes and tones are controlled vocabularies (see CLAUDE.md); subjects is free-form (Open Library, no canonical list — this table is the fastest way to see what's actually in use). Full lists (not just top 15) are in the JSON snapshot's `findings.tagCounts` and the interactive [dashboard](../quality-dashboard.html#tagCountsSection).
 
-**Themes** (top 15 of 35):
+**Themes** (top 15 of 34):
 - thriller — 320
-- literary — 172
-- history — 157
+- history — 158
 - memoir — 154
-- speculative — 141
-- humor — 124
-- social commentary — 115
-- contemporary — 112
+- speculative — 142
+- humor — 135
+- social commentary — 125
+- contemporary — 115
 - business — 110
+- psychological — 105
 - sports — 100
-- biography — 96
-- psychological — 90
+- biography — 97
+- mystery — 89
+- suspense — 87
 - legal — 86
-- mystery — 86
-- suspense — 85
+- tech history — 84
 
 **Tones** (top 15 of 24):
 - dark — 171

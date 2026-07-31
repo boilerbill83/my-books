@@ -1,6 +1,6 @@
 {
   "date": "2026-07-31",
-  "generatedAt": "2026-07-31T18:33:15.378Z",
+  "generatedAt": "2026-07-31T18:54:21.043Z",
   "totalBooks": 1112,
   "qualityScore": {
     "score": 67,
@@ -3339,12 +3339,8 @@
           "count": 320
         },
         {
-          "value": "literary",
-          "count": 172
-        },
-        {
           "value": "history",
-          "count": 157
+          "count": 158
         },
         {
           "value": "memoir",
@@ -3352,23 +3348,27 @@
         },
         {
           "value": "speculative",
-          "count": 141
+          "count": 142
         },
         {
           "value": "humor",
-          "count": 124
+          "count": 135
         },
         {
           "value": "social commentary",
-          "count": 115
+          "count": 125
         },
         {
           "value": "contemporary",
-          "count": 112
+          "count": 115
         },
         {
           "value": "business",
           "count": 110
+        },
+        {
+          "value": "psychological",
+          "count": 105
         },
         {
           "value": "sports",
@@ -3376,23 +3376,19 @@
         },
         {
           "value": "biography",
-          "count": 96
+          "count": 97
         },
         {
-          "value": "psychological",
-          "count": 90
+          "value": "mystery",
+          "count": 89
+        },
+        {
+          "value": "suspense",
+          "count": 87
         },
         {
           "value": "legal",
           "count": 86
-        },
-        {
-          "value": "mystery",
-          "count": 86
-        },
-        {
-          "value": "suspense",
-          "count": 85
         },
         {
           "value": "tech history",
@@ -3400,27 +3396,27 @@
         },
         {
           "value": "crime",
-          "count": 73
-        },
-        {
-          "value": "political",
-          "count": 61
+          "count": 74
         },
         {
           "value": "psychology",
-          "count": 61
+          "count": 64
+        },
+        {
+          "value": "political",
+          "count": 62
+        },
+        {
+          "value": "true crime",
+          "count": 58
         },
         {
           "value": "courtroom",
           "count": 57
         },
         {
-          "value": "true crime",
-          "count": 57
-        },
-        {
           "value": "finance",
-          "count": 51
+          "count": 52
         },
         {
           "value": "food",
@@ -3428,7 +3424,7 @@
         },
         {
           "value": "domestic suspense",
-          "count": 48
+          "count": 49
         },
         {
           "value": "sci-fi",
@@ -3436,15 +3432,15 @@
         },
         {
           "value": "adventure",
-          "count": 44
+          "count": 45
         },
         {
           "value": "romance",
-          "count": 40
+          "count": 41
         },
         {
           "value": "historical",
-          "count": 34
+          "count": 37
         },
         {
           "value": "high-concept",
@@ -3456,18 +3452,18 @@
         },
         {
           "value": "military",
-          "count": 27
+          "count": 28
         },
         {
           "value": "music history",
-          "count": 24
-        },
-        {
-          "value": "noir",
-          "count": 14
+          "count": 25
         },
         {
           "value": "YA",
+          "count": 15
+        },
+        {
+          "value": "noir",
           "count": 14
         },
         {

@@ -52,7 +52,6 @@ const THEME_MACROS = [
   { label: 'Historical', keys: ['historical', 'wwii', 'history', 'multigenerational', 'antebellum'] },
   { label: 'True Crime', keys: ['true crime', 'serial killer', 'investigative journalism'] },
   { label: 'Finance',    keys: ['finance', 'wall street', 'crypto', 'hedge', 'investing', 'junk bond', 'lbo'] },
-  { label: 'Literary',   keys: ['literary'] },
   { label: 'Survival',   keys: ['survival', 'expedition', 'adventure'] },
   { label: 'Funny',      keys: ['funny', 'humor', 'comedy'] },
 ];

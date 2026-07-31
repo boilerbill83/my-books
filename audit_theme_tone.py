@@ -38,7 +38,7 @@ MODEL       = 'claude-sonnet-5'
 # Keep in sync with CLAUDE.md's canonical vocabularies and
 # scripts/data_quality_report.js's CANONICAL_THEMES / CANONICAL_TONES.
 THEMES = ('thriller psychological suspense "domestic suspense" mystery crime noir '
-          'horror high-concept spy adventure historical YA romance literary '
+          'horror high-concept spy adventure historical YA romance '
           'contemporary speculative sci-fi "social commentary" '
           'memoir biography "true crime" history "tech history" finance business '
           'sports food "music history" political military psychology humor comedy '

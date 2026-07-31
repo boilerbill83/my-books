@@ -56,8 +56,8 @@
  *   4. Genre-inference tiebreaker for mixed-theme books (v3 addition)
  *      12 books with equal fiction/nonfiction theme counts were incorrectly
  *      classified as 'unknown' (prior 3.42). Tiebreaker: when both are tied,
- *      memoir/narrative-nonfiction themes force nonfiction; else fiction.
- *      Example: ['memoir','literary'] → nonfiction; ['sports','contemporary'] → fiction.
+ *      memoir themes force nonfiction; else fiction.
+ *      Example: ['memoir','historical'] → nonfiction; ['sports','contemporary'] → fiction.
  *
  * LOO cross-validation results (491 rated read books):
  *   v1 (global prior, no k-NN):            MAE=0.777, Spearman=0.306
@@ -87,7 +87,7 @@ const _NF_THEMES = new Set([
 const _FIC_THEMES = new Set([
   'thriller', 'psychological', 'suspense', 'domestic suspense', 'mystery',
   'crime', 'noir', 'horror', 'high-concept', 'spy', 'adventure', 'YA',
-  'romance', 'literary', 'contemporary', 'speculative', 'sci-fi',
+  'romance', 'contemporary', 'speculative', 'sci-fi',
   'historical', 'comedy', 'legal', 'courtroom',
 ]);
 

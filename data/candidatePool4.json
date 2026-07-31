@@ -14,8 +14,7 @@
       "isbn13": "9780593312742",
       "themes": [
         "mystery",
-        "crime",
-        "literary"
+        "crime"
       ],
       "similarToAuthors": [
         "Gillian Flynn",
@@ -204,7 +203,6 @@
       "avgRating": 3.9,
       "isbn13": "9780593652923",
       "themes": [
-        "literary",
         "contemporary",
         "social commentary"
       ],
@@ -447,8 +445,8 @@
       "avgRating": 3.9,
       "isbn13": "9780593535516",
       "themes": [
-        "literary",
-        "mystery"
+        "mystery",
+        "historical"
       ],
       "similarToAuthors": [
         "Liz Moore",

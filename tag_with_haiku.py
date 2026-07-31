@@ -29,7 +29,7 @@ API_KEY    = os.environ['ANTHROPIC_API_KEY']
 MODEL      = 'claude-haiku-4-5'
 
 THEMES = ('thriller psychological suspense "domestic suspense" mystery crime noir '
-          'horror high-concept spy adventure historical YA romance literary '
+          'horror high-concept spy adventure historical YA romance '
           'contemporary speculative sci-fi "social commentary" '
           'memoir biography "true crime" history "tech history" finance business '
           'sports food "music history" political military psychology humor comedy')

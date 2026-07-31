@@ -238,8 +238,7 @@
         "thriller",
         "psychological",
         "true crime",
-        "suspense",
-        "literary"
+        "suspense"
       ],
       "similarToAuthors": [
         "Gillian Flynn",
@@ -477,8 +476,8 @@
       "avgRating": 4.4,
       "isbn13": "9780802162175",
       "themes": [
-        "literary",
-        "historical"
+        "historical",
+        "social commentary"
       ],
       "similarToAuthors": [
         "Kristin Hannah",
@@ -505,8 +504,7 @@
       "themes": [
         "historical",
         "military",
-        "history",
-        "literary"
+        "history"
       ],
       "similarToAuthors": [
         "Taylor Jenkins Reid"
@@ -558,8 +556,8 @@
       "avgRating": 4.39,
       "isbn13": "9780385550369",
       "themes": [
-        "literary",
-        "social commentary"
+        "social commentary",
+        "psychological"
       ],
       "similarToAuthors": [
         "Gabrielle Zevin",
@@ -584,7 +582,6 @@
       "avgRating": 4.04,
       "isbn13": "9780593243732",
       "themes": [
-        "literary",
         "historical",
         "psychological"
       ],

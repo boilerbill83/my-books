@@ -105,7 +105,7 @@ const NF_THEMES = new Set([
   'social commentary','music history',
 ]);
 const FIC_THEMES = new Set([
-  'thriller','mystery','literary','contemporary','romance','horror','sci-fi',
+  'thriller','mystery','contemporary','romance','horror','sci-fi',
   'speculative','crime','suspense','domestic suspense','psychological',
   'historical fiction','ya','adventure','high-concept','noir','legal','courtroom',
 ]);
@@ -162,7 +162,6 @@ const THEME_TONES_MAP = {
   'psychological':        ['dark', 'tense', 'character-driven'],
   'legal':                ['procedural', 'tense'],
   'courtroom':            ['procedural', 'tense'],
-  'literary':             ['slow-burn', 'character-driven', 'atmospheric'],
   'memoir':               ['poignant', 'conversational'],
   'true crime':           ['investigative', 'dark'],
   'mystery':              ['twisty', 'procedural'],

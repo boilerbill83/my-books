@@ -808,7 +808,6 @@
       "avgRating": 4.23,
       "ratingsCount": 100000,
       "themes": [
-        "literary",
         "mystery",
         "historical"
       ],
@@ -955,8 +954,7 @@
       "ratingsCount": 350000,
       "themes": [
         "speculative",
-        "sci-fi",
-        "literary"
+        "sci-fi"
       ],
       "similarToAuthors": [
         "Andy Weir",
@@ -1013,8 +1011,7 @@
       "ratingsCount": 120000,
       "themes": [
         "speculative",
-        "sci-fi",
-        "literary"
+        "sci-fi"
       ],
       "similarToAuthors": [
         "Blake Crouch",
@@ -1072,7 +1069,6 @@
       "ratingsCount": 200000,
       "themes": [
         "speculative",
-        "literary",
         "romance"
       ],
       "similarToAuthors": [
@@ -1130,8 +1126,7 @@
       "ratingsCount": 800000,
       "themes": [
         "contemporary",
-        "romance",
-        "literary"
+        "romance"
       ],
       "similarToAuthors": [
         "Taylor Jenkins Reid",
@@ -1158,7 +1153,6 @@
       "avgRating": 4.08,
       "ratingsCount": 340000,
       "themes": [
-        "literary",
         "contemporary",
         "historical"
       ],
@@ -1188,7 +1182,6 @@
       "avgRating": 4.03,
       "ratingsCount": 200000,
       "themes": [
-        "literary",
         "speculative",
         "social commentary"
       ],
@@ -1218,7 +1211,6 @@
       "ratingsCount": 200000,
       "themes": [
         "memoir",
-        "literary",
         "music history"
       ],
       "similarToAuthors": [
@@ -1365,7 +1357,6 @@
       "avgRating": 4.35,
       "ratingsCount": 1200000,
       "themes": [
-        "literary",
         "contemporary",
         "humor"
       ],
@@ -1507,7 +1498,6 @@
       "avgRating": 3.72,
       "ratingsCount": 420000,
       "themes": [
-        "literary",
         "contemporary",
         "romance"
       ],

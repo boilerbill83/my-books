@@ -165,7 +165,7 @@ function themeBonus(themes, fiveStarThemes) {
     let bonus = 0;
     if (t.includes('thriller') || t.includes('psychological'))                       bonus += 3;
     if (t.includes('speculative') || t.includes('sci-fi'))                           bonus += 3;
-    if (t.includes('literary') || t.includes('historical'))                          bonus += 2;
+    if (t.includes('historical'))                                                     bonus += 2;
     if (t.includes('mystery'))                                                        bonus += 2;
     if (t.includes('true crime'))                                                     bonus += 5;
     if (t.includes('tech history'))                                                   bonus += 4;

@@ -392,8 +392,7 @@
       "isbn13": "9781035013746",
       "themes": [
         "sci-fi",
-        "political",
-        "literary"
+        "political"
       ],
       "similarToAuthors": [
         "Andy Weir",
@@ -419,7 +418,7 @@
       "isbn13": "9780593334836",
       "themes": [
         "romance",
-        "literary"
+        "humor"
       ],
       "similarToAuthors": [
         "Taylor Jenkins Reid",
@@ -495,8 +494,8 @@
       "avgRating": 4.16,
       "isbn13": "9781982121211",
       "themes": [
-        "literary",
-        "humor"
+        "humor",
+        "psychological"
       ],
       "similarToAuthors": [
         "Taylor Jenkins Reid",
