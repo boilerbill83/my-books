@@ -1,6 +1,6 @@
 {
   "date": "2026-07-31",
-  "generatedAt": "2026-07-31T20:08:51.754Z",
+  "generatedAt": "2026-07-31T20:35:40.314Z",
   "totalBooks": 1112,
   "qualityScore": {
     "score": 67,
@@ -3486,7 +3486,7 @@
         },
         {
           "value": "conversational",
-          "count": 169
+          "count": 168
         },
         {
           "value": "twisty",
@@ -3513,12 +3513,12 @@
           "count": 165
         },
         {
-          "value": "slow-burn",
+          "value": "dense",
           "count": 161
         },
         {
-          "value": "dense",
-          "count": 160
+          "value": "slow-burn",
+          "count": 161
         },
         {
           "value": "thoughtful",

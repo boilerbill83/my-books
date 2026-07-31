@@ -143,15 +143,15 @@ How many books carry each value, across every book (library + all candidate pool
 - funny — 171
 - propulsive — 170
 - tense — 170
-- conversational — 169
+- conversational — 168
 - twisty — 168
 - dark — 167
 - investigative — 167
 - revelatory — 166
 - atmospheric — 165
 - character-driven — 165
+- dense — 161
 - slow-burn — 161
-- dense — 160
 - thoughtful — 152
 - poignant — 131
 - procedural — 121
