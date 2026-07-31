@@ -30,7 +30,7 @@
       ],
       "ratingsCount": 30000,
       "coverUrl": "https://books.google.com/books/content?id=Ju9PZjAUZ3gC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["funny", "propulsive"], "themeToneReviewed": false
+      "tones": ["funny", "propulsive"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-stranger|harlan-coben",
@@ -57,7 +57,7 @@
       ],
       "ratingsCount": 140000,
       "coverUrl": "https://m.media-amazon.com/images/I/91lUONTMRpL._SX300_.jpg",
-      "tones": ["twisty", "tense"], "themeToneReviewed": false
+      "tones": ["twisty", "tense"], "themeToneReviewed": true
     },
     {
       "bookKey": "gone-for-good|harlan-coben",
@@ -85,7 +85,7 @@
       ],
       "ratingsCount": 70000,
       "coverUrl": "https://m.media-amazon.com/images/I/31SCCyblz8L._SX300_.jpg",
-      "tones": ["twisty", "tense"], "themeToneReviewed": false
+      "tones": ["twisty", "tense"], "themeToneReviewed": true
     },
     {
       "bookKey": "in-a-dark-dark-wood|ruth-ware",
@@ -113,7 +113,7 @@
       ],
       "ratingsCount": 350000,
       "coverUrl": "https://m.media-amazon.com/images/I/A1wotZ7A13L._SX300_.jpg",
-      "tones": ["twisty", "gritty"], "themeToneReviewed": false
+      "tones": ["twisty", "gritty"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-turn-of-the-key|ruth-ware",
@@ -141,7 +141,7 @@
       ],
       "ratingsCount": 200000,
       "coverUrl": "https://m.media-amazon.com/images/I/81K1CGm9QeL._SX300_.jpg",
-      "tones": ["tense", "twisty"], "themeToneReviewed": false
+      "tones": ["tense", "twisty"], "themeToneReviewed": true
     },
     {
       "bookKey": "one-by-one|ruth-ware",
@@ -170,7 +170,7 @@
       ],
       "ratingsCount": 120000,
       "coverUrl": "https://m.media-amazon.com/images/I/91qUuMyfp6L._SX300_.jpg",
-      "tones": ["twisty", "tense"], "themeToneReviewed": false
+      "tones": ["twisty", "tense"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-good-girl|mary-kubica",
@@ -197,7 +197,7 @@
       ],
       "ratingsCount": 200000,
       "coverUrl": "https://m.media-amazon.com/images/I/813de+01aPL._SX300_.jpg",
-      "tones": ["tense", "dark"], "themeToneReviewed": false
+      "tones": ["tense", "dark"], "themeToneReviewed": true
     },
     {
       "bookKey": "daisy-darker|alice-feeney",
@@ -224,7 +224,7 @@
       ],
       "ratingsCount": 130000,
       "coverUrl": "https://m.media-amazon.com/images/I/81TlolABzxL._SX300_.jpg",
-      "tones": ["twisty", "atmospheric"], "themeToneReviewed": false
+      "tones": ["twisty", "atmospheric"], "themeToneReviewed": true
     },
     {
       "bookKey": "piranesi|susanna-clarke",
@@ -251,7 +251,7 @@
       ],
       "ratingsCount": 650000,
       "coverUrl": "https://m.media-amazon.com/images/I/91JVtEzgo8L._SX300_.jpg",
-      "tones": ["atmospheric", "thoughtful"], "themeToneReviewed": false
+      "tones": ["atmospheric", "thoughtful"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-nightingale|kristin-hannah",
@@ -279,7 +279,7 @@
       ],
       "ratingsCount": 1500000,
       "coverUrl": "https://m.media-amazon.com/images/I/81MSoBp+PAL._SX300_.jpg",
-      "tones": ["atmospheric", "gritty"], "themeToneReviewed": false
+      "tones": ["atmospheric", "gritty"], "themeToneReviewed": true
     },
     {
       "bookKey": "cloud-cuckoo-land|anthony-doerr",
@@ -310,7 +310,7 @@
       ],
       "ratingsCount": 280000,
       "coverUrl": "https://m.media-amazon.com/images/I/91IV2caBbpL._SX300_.jpg",
-      "tones": ["atmospheric", "thoughtful"], "themeToneReviewed": false
+      "tones": ["atmospheric", "thoughtful"], "themeToneReviewed": true
     },
     {
       "bookKey": "a-gentleman-in-moscow|amor-towles",
@@ -321,7 +321,8 @@
       "avgRating": 4.4,
       "isbn13": "9780670026197",
       "themes": [
-        "history"
+        "literary",
+        "historical"
       ],
       "similarToAuthors": [
         "Anthony Doerr",
@@ -336,7 +337,7 @@
       ],
       "ratingsCount": 950000,
       "coverUrl": "https://m.media-amazon.com/images/I/91LkGlWO6eL._SX300_.jpg",
-      "tones": ["heartwarming", "thoughtful", "ensemble"], "themeToneReviewed": false
+      "tones": ["heartwarming", "thoughtful", "ensemble"], "themeToneReviewed": true
     },
     {
       "bookKey": "tomorrow-and-tomorrow-and-tomorrow|gabrielle-zevin-2",
@@ -362,7 +363,7 @@
       ],
       "ratingsCount": 770000,
       "coverUrl": "https://m.media-amazon.com/images/I/91Lu2eTVdWL._SX300_.jpg",
-      "tones": ["heartwarming", "thoughtful"], "themeToneReviewed": false
+      "tones": ["heartwarming", "thoughtful"], "themeToneReviewed": true
     },
     {
       "bookKey": "in-cold-blood|truman-capote",
@@ -390,7 +391,7 @@
       ],
       "ratingsCount": 750000,
       "coverUrl": "https://m.media-amazon.com/images/I/81eXI+N-KlL._SX300_.jpg",
-      "tones": ["dark", "revelatory"], "themeToneReviewed": false
+      "tones": ["dark", "revelatory"], "themeToneReviewed": true
     },
     {
       "bookKey": "midnight-in-the-garden-of-good-and-evil|john-berendt",
@@ -417,7 +418,7 @@
       ],
       "ratingsCount": 140000,
       "coverUrl": "https://m.media-amazon.com/images/I/918XDSzEHCL._SX300_.jpg",
-      "tones": ["dark", "atmospheric"], "themeToneReviewed": false
+      "tones": ["dark", "atmospheric"], "themeToneReviewed": true
     },
     {
       "bookKey": "catch-and-kill|ronan-farrow",
@@ -445,7 +446,7 @@
       ],
       "ratingsCount": 90000,
       "coverUrl": "https://books.google.com/books/content?id=2beeDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": false
+      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": true
     },
     {
       "bookKey": "lost-girls|robert-kolker",
@@ -476,7 +477,7 @@
       ],
       "ratingsCount": 35000,
       "coverUrl": "https://m.media-amazon.com/images/I/81yePlRlH1L._SX300_.jpg",
-      "tones": ["bleak", "revelatory", "thoughtful"], "themeToneReviewed": false
+      "tones": ["bleak", "revelatory", "thoughtful"], "themeToneReviewed": true
     },
     {
       "bookKey": "going-clear|lawrence-wright",
@@ -504,7 +505,7 @@
       ],
       "ratingsCount": 50000,
       "coverUrl": "https://m.media-amazon.com/images/I/718dlRt0c1L._SX300_.jpg",
-      "tones": ["dark", "revelatory"], "themeToneReviewed": false
+      "tones": ["dark", "revelatory"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-boys-in-the-boat|daniel-james-brown",
@@ -532,7 +533,7 @@
       ],
       "ratingsCount": 400000,
       "coverUrl": "https://m.media-amazon.com/images/I/81uQRVpi2UL._SX300_.jpg",
-      "tones": ["heartwarming", "inspiring"], "themeToneReviewed": false
+      "tones": ["heartwarming", "inspiring"], "themeToneReviewed": true
     },
     {
       "bookKey": "endurance|alfred-lansing",
@@ -559,7 +560,7 @@
       ],
       "ratingsCount": 120000,
       "coverUrl": "https://m.media-amazon.com/images/I/61Gg1Gr2GiL._SX300_.jpg",
-      "tones": ["atmospheric", "inspiring"], "themeToneReviewed": false
+      "tones": ["atmospheric", "inspiring"], "themeToneReviewed": true
     },
     {
       "bookKey": "black-hawk-down|mark-bowden",
@@ -587,7 +588,7 @@
       ],
       "ratingsCount": 110000,
       "coverUrl": "https://m.media-amazon.com/images/I/61GXkUsuC5L._SX300_.jpg",
-      "tones": ["dark", "gritty"], "themeToneReviewed": false
+      "tones": ["dark", "gritty"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-spy-and-the-traitor|ben-macintyre",
@@ -614,7 +615,7 @@
       ],
       "ratingsCount": 80000,
       "coverUrl": "https://m.media-amazon.com/images/I/91j6ME+ohlL._SX300_.jpg",
-      "tones": ["revelatory", "compulsive"], "themeToneReviewed": false
+      "tones": ["revelatory", "compulsive"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-predators-ball|connie-bruck",
@@ -642,7 +643,7 @@
       ],
       "ratingsCount": 8000,
       "coverUrl": "https://m.media-amazon.com/images/I/61I3e1cnrHL._SX300_.jpg",
-      "tones": ["dark", "revelatory"], "themeToneReviewed": false
+      "tones": ["dark", "revelatory"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-feather-thief|kirk-wallace-johnson",
@@ -653,7 +654,9 @@
       "avgRating": 4.0,
       "isbn13": "9780735223011",
       "themes": [
-        "true crime"
+        "true crime",
+        "narrative nonfiction",
+        "history"
       ],
       "similarToAuthors": [
         "David Grann",
@@ -668,7 +671,7 @@
       ],
       "ratingsCount": 90000,
       "coverUrl": "https://m.media-amazon.com/images/I/813HX0ut3nL._SX300_.jpg",
-      "tones": ["twisty", "revelatory"], "themeToneReviewed": false
+      "tones": ["twisty", "revelatory"], "themeToneReviewed": true
     }
   ]
 }

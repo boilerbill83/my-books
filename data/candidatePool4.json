@@ -30,7 +30,7 @@
       ],
       "ratingsCount": 150000,
       "coverUrl": "https://books.google.com/books/content?id=01xaEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["dark", "atmospheric"], "themeToneReviewed": false
+      "tones": ["dark", "atmospheric"], "themeToneReviewed": true
     },
     {
       "bookKey": "in-the-woods|tana-french",
@@ -58,7 +58,7 @@
       ],
       "ratingsCount": 380000,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1562761513i/2459785.jpg",
-      "tones": ["dark", "atmospheric"], "themeToneReviewed": false
+      "tones": ["dark", "atmospheric"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-likeness|tana-french",
@@ -69,7 +69,9 @@
       "avgRating": 4.1,
       "isbn13": "9780670018864",
       "themes": [
-        "mystery"
+        "mystery",
+        "thriller",
+        "psychological"
       ],
       "similarToAuthors": [
         "Gillian Flynn",
@@ -83,7 +85,7 @@
       ],
       "ratingsCount": 200000,
       "coverUrl": "https://books.google.com/books/content?id=xoCX8n_i6OYC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["twisty", "atmospheric"], "themeToneReviewed": false
+      "tones": ["twisty", "atmospheric"], "themeToneReviewed": true
     },
     {
       "bookKey": "long-bright-river|liz-moore",
@@ -110,7 +112,7 @@
       ],
       "ratingsCount": 120000,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1555616163i/43834909.jpg",
-      "tones": ["bleak", "atmospheric", "gritty"], "themeToneReviewed": false
+      "tones": ["bleak", "atmospheric", "gritty"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-lincoln-lawyer|michael-connelly",
@@ -138,7 +140,7 @@
       ],
       "ratingsCount": 260000,
       "coverUrl": "https://books.google.com/books/content?id=bZoibWwaSNoC&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["propulsive", "twisty"], "themeToneReviewed": false
+      "tones": ["propulsive", "twisty"], "themeToneReviewed": true
     },
     {
       "bookKey": "my-sister-s-grave|robert-dugoni",
@@ -165,7 +167,7 @@
       ],
       "ratingsCount": 80000,
       "coverUrl": "https://books.google.com/books/content?id=_4r7oAEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["tense", "dark"], "themeToneReviewed": false
+      "tones": ["tense", "dark"], "themeToneReviewed": true
     },
     {
       "bookKey": "everywhere-that-mary-went|lisa-scottoline",
@@ -192,7 +194,7 @@
       ],
       "ratingsCount": 15000,
       "coverUrl": "https://books.google.com/books/content?id=zLmKh8BZFsQC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["tense", "procedural"], "themeToneReviewed": false
+      "tones": ["tense", "procedural"], "themeToneReviewed": true
     },
     {
       "bookKey": "culpability|bruce-holsinger-2",
@@ -203,10 +205,9 @@
       "avgRating": 3.9,
       "isbn13": "9780593652923",
       "themes": [
-        "thriller",
-        "legal",
-        "speculative",
-        "tech history"
+        "literary",
+        "contemporary",
+        "social commentary"
       ],
       "similarToAuthors": [
         "John Grisham",
@@ -220,7 +221,7 @@
       ],
       "ratingsCount": 8000,
       "coverUrl": "https://books.google.com/books/content?id=61c_EQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["tense", "thoughtful"], "themeToneReviewed": false
+      "tones": ["tense", "thoughtful"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-gone-world|tom-sweterlitsch",
@@ -249,7 +250,7 @@
       ],
       "ratingsCount": 20000,
       "coverUrl": "https://books.google.com/books/content?id=FlzODgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["dark", "twisty"], "themeToneReviewed": false
+      "tones": ["dark", "twisty"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-future|naomi-alderman",
@@ -276,7 +277,7 @@
       ],
       "ratingsCount": 60000,
       "coverUrl": "https://books.google.com/books/content?id=ZfFiEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["propulsive", "thoughtful", "funny", "satirical"], "themeToneReviewed": false
+      "tones": ["propulsive", "thoughtful", "funny", "satirical"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-girl-before|jp-delaney",
@@ -303,7 +304,7 @@
       ],
       "ratingsCount": 190000,
       "coverUrl": "https://books.google.com/books/content?id=tpn9CwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["twisty", "tense"], "themeToneReviewed": false
+      "tones": ["twisty", "tense"], "themeToneReviewed": true
     },
     {
       "bookKey": "no-exit|taylor-adams",
@@ -314,7 +315,8 @@
       "avgRating": 4.0,
       "isbn13": "9780062875204",
       "themes": [
-        "thriller"
+        "thriller",
+        "suspense"
       ],
       "similarToAuthors": [
         "Freida McFadden",
@@ -328,7 +330,7 @@
       ],
       "ratingsCount": 80000,
       "coverUrl": "https://m.media-amazon.com/images/I/717qVFaqdiL._SX300_.jpg",
-      "tones": ["tense", "propulsive"], "themeToneReviewed": false
+      "tones": ["tense", "propulsive"], "themeToneReviewed": true
     },
     {
       "bookKey": "a-simple-favor|darcey-bell",
@@ -355,7 +357,7 @@
       ],
       "ratingsCount": 200000,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1468422073i/29938376.jpg",
-      "tones": ["twisty", "dark"], "themeToneReviewed": false
+      "tones": ["twisty", "dark"], "themeToneReviewed": true
     },
     {
       "bookKey": "you-will-never-be-me|jesse-q-sutanto",
@@ -382,7 +384,7 @@
       ],
       "ratingsCount": 30000,
       "coverUrl": "https://m.media-amazon.com/images/I/81PmMrDEPFL._SX300_.jpg",
-      "tones": ["tense", "twisty"], "themeToneReviewed": false
+      "tones": ["tense", "twisty"], "themeToneReviewed": true
     },
     {
       "bookKey": "don-t-let-him-in|lisa-jewell",
@@ -409,7 +411,7 @@
       ],
       "ratingsCount": 15000,
       "coverUrl": "https://books.google.com/books/content?id=I8nOEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["twisty", "tense"], "themeToneReviewed": false
+      "tones": ["twisty", "tense"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-twyford-code|janice-hallett",
@@ -435,7 +437,7 @@
       ],
       "ratingsCount": 25000,
       "coverUrl": "https://m.media-amazon.com/images/I/81IVG6J+XpL._SX300_.jpg",
-      "tones": ["twisty", "atmospheric"], "themeToneReviewed": false
+      "tones": ["twisty", "atmospheric"], "themeToneReviewed": true
     },
     {
       "bookKey": "north-woods|daniel-mason",
@@ -462,7 +464,7 @@
       ],
       "ratingsCount": 60000,
       "coverUrl": "https://m.media-amazon.com/images/I/91C3C4KRR8L._SX300_.jpg",
-      "tones": ["atmospheric", "thoughtful"], "themeToneReviewed": false
+      "tones": ["atmospheric", "thoughtful"], "themeToneReviewed": true
     },
     {
       "bookKey": "what-have-you-done|shari-lapena",
@@ -489,7 +491,7 @@
       ],
       "ratingsCount": 20000,
       "coverUrl": "https://m.media-amazon.com/images/I/81IF4qljOOL._SX300_.jpg",
-      "tones": ["tense", "twisty"], "themeToneReviewed": false
+      "tones": ["tense", "twisty"], "themeToneReviewed": true
     },
     {
       "bookKey": "bad-blood|john-carreyrou",
@@ -518,7 +520,7 @@
       ],
       "ratingsCount": 290000,
       "coverUrl": "https://m.media-amazon.com/images/I/81P1xvxdBkL._SX300_.jpg",
-      "tones": ["dark", "revelatory"], "themeToneReviewed": false
+      "tones": ["dark", "revelatory"], "themeToneReviewed": true
     },
     {
       "bookKey": "barbarians-at-the-gate|bryan-burrough",
@@ -544,7 +546,7 @@
       ],
       "ratingsCount": 55000,
       "coverUrl": "https://m.media-amazon.com/images/I/418HUoFkhVL._SX300_.jpg",
-      "tones": ["revelatory", "dense"], "themeToneReviewed": false
+      "tones": ["revelatory", "dense"], "themeToneReviewed": true
     },
     {
       "bookKey": "too-big-to-fail|andrew-ross-sorkin",
@@ -570,7 +572,7 @@
       ],
       "ratingsCount": 65000,
       "coverUrl": "https://m.media-amazon.com/images/I/81ybGr83+8L._SX300_.jpg",
-      "tones": ["revelatory", "compulsive"], "themeToneReviewed": false
+      "tones": ["revelatory", "compulsive"], "themeToneReviewed": true
     },
     {
       "bookKey": "when-genius-failed|roger-lowenstein",
@@ -597,7 +599,7 @@
       ],
       "ratingsCount": 36000,
       "coverUrl": "https://m.media-amazon.com/images/I/71IuJdGPf4L._SX300_.jpg",
-      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": false
+      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": true
     },
     {
       "bookKey": "more-money-than-god|sebastian-mallaby",
@@ -608,7 +610,9 @@
       "avgRating": 4.0,
       "isbn13": "9781594202551",
       "themes": [
-        "finance"
+        "finance",
+        "narrative nonfiction",
+        "history"
       ],
       "similarToAuthors": [
         "Michael Lewis",
@@ -622,7 +626,7 @@
       ],
       "ratingsCount": 10000,
       "coverUrl": "https://m.media-amazon.com/images/I/91OZtXVKK1L._SX300_.jpg",
-      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": false
+      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": true
     },
     {
       "bookKey": "killers-of-the-flower-moon|david-grann",
@@ -649,7 +653,7 @@
       ],
       "ratingsCount": 590000,
       "coverUrl": "https://m.media-amazon.com/images/I/71rAyRvoeyL._SX300_.jpg",
-      "tones": ["dark", "revelatory"], "themeToneReviewed": false
+      "tones": ["dark", "revelatory"], "themeToneReviewed": true
     }
   ]
 }

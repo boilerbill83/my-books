@@ -562,7 +562,7 @@
       ],
       "ratingsCount": 130000,
       "coverUrl": "https://books.google.com/books/content?id=u1u_EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["thoughtful", "revelatory", "dense"], "themeToneReviewed": false
+      "tones": ["thoughtful", "revelatory", "dense"], "themeToneReviewed": true
     },
     {
       "bookKey": "supercommunicators|charles-duhigg",
@@ -588,7 +588,7 @@
         "Educated"
       ],
       "ratingsCount": 25000,
-      "tones": ["thoughtful", "dense"], "themeToneReviewed": false
+      "tones": ["thoughtful", "dense"], "themeToneReviewed": true
     },
     {
       "bookKey": "masters-of-doom|david-kushner",
@@ -615,7 +615,7 @@
       ],
       "ratingsCount": 80000,
       "coverUrl": "https://books.google.com/books/content?id=yyaxyKjyp2YC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": false
+      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": true
     },
     {
       "bookKey": "the-splendid-and-the-vile|erik-larson",
@@ -644,7 +644,7 @@
       ],
       "ratingsCount": 200000,
       "coverUrl": "https://books.google.com/books/content?id=v9LMDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["thoughtful", "atmospheric"], "themeToneReviewed": false
+      "tones": ["thoughtful", "atmospheric"], "themeToneReviewed": true
     },
     {
       "bookKey": "destiny-of-the-republic|candice-millard",
@@ -672,7 +672,7 @@
       ],
       "ratingsCount": 110000,
       "coverUrl": "https://books.google.com/books/content?id=Gss_INMTZQIC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": false
+      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": true
     },
     {
       "bookKey": "hidden-valley-road|robert-kolker",
@@ -683,7 +683,9 @@
       "avgRating": 4.15,
       "isbn13": "9780385543767",
       "themes": [
-        "narrative nonfiction"
+        "narrative nonfiction",
+        "psychology",
+        "history"
       ],
       "similarToAuthors": [
         "Jon Krakauer",
@@ -697,7 +699,7 @@
       ],
       "ratingsCount": 200000,
       "coverUrl": "https://books.google.com/books/content?id=bxahDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["bleak", "revelatory"], "themeToneReviewed": false
+      "tones": ["bleak", "revelatory"], "themeToneReviewed": true
     }
   ]
 }
