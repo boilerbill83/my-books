@@ -6243,7 +6243,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -6285,7 +6285,7 @@
         "dense",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -6328,7 +6328,7 @@
         "ensemble",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -6370,7 +6370,7 @@
         "heartwarming",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -6412,7 +6412,7 @@
         "investigative",
         "compulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -6454,7 +6454,7 @@
         "investigative",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -6494,9 +6494,10 @@
       "type": "nonfiction",
       "tones": [
         "character-driven",
-        "dense"
+        "conversational",
+        "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -6539,7 +6540,7 @@
         "propulsive",
         "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -6582,7 +6583,7 @@
         "poignant",
         "bleak"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -6626,7 +6627,7 @@
         "compulsive",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -6670,7 +6671,7 @@
         "twisty",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -6713,7 +6714,7 @@
         "compulsive",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -6754,7 +6755,7 @@
         "funny",
         "satirical"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
