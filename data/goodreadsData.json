@@ -16040,7 +16040,7 @@
         "investigative",
         "thoughtful"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "zero-days|ruth-ware",
@@ -16082,7 +16082,7 @@
         "compulsive",
         "bleak"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "holly|stephen-king",
@@ -16123,7 +16123,7 @@
         "dark",
         "atmospheric"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "a-criminal-justice|william-l-myers-jr",
@@ -16162,7 +16162,7 @@
         "procedural",
         "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=6U_WwwEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -16201,7 +16201,7 @@
         "procedural",
         "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=BJCvtQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -16241,7 +16241,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-lost-continent-travels-in-small-town-america|bill-bryson",
@@ -16282,7 +16282,7 @@
         "propulsive",
         "poignant"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "going-infinite-the-rise-and-fall-of-a-new-tycoon|michael-lewis",
@@ -16323,7 +16323,7 @@
         "investigative",
         "dense"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-wise-men-six-friends-and-the-world-they-made|walter-isaacson",
@@ -16363,7 +16363,7 @@
         "character-driven",
         "inspiring"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -16404,7 +16404,7 @@
         "dense",
         "inspiring"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "yellowface|r-f-kuang",
@@ -16439,10 +16439,11 @@
       ],
       "ratingsCount": 350000,
       "tones": [
-        "slow-burn",
-        "lyrical"
+        "propulsive",
+        "satirical",
+        "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=iJPhEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -16481,7 +16482,7 @@
         "funny",
         "character-driven"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=RIK2DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -16517,10 +16518,11 @@
       "ratingsCount": 32000,
       "tones": [
         "slow-burn",
-        "heartwarming",
-        "atmospheric"
+        "atmospheric",
+        "dark",
+        "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=mlWJ9VSoPMUC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -16562,7 +16564,7 @@
         "slow-burn",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=8wf7DwAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -16601,7 +16603,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=wnAmBgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
