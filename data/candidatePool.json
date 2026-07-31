@@ -30,7 +30,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1612001976i/40670312.jpg",
       "ratingsCount": 180000,
       "isbn13": "9781335002327",
-      "tones": ["twisty", "tense"]
+      "tones": ["tense", "twisty"]
     },
     {
       "title": "Wrong Place Wrong Time",
@@ -57,7 +57,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1659457434i/59947696.jpg",
       "ratingsCount": 150000,
       "isbn13": "9780063252363",
-      "tones": ["twisty", "propulsive"]
+      "tones": ["propulsive", "twisty", "bleak"]
     },
     {
       "title": "The Last Flight",
@@ -83,7 +83,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1617291197i/52652923.jpg",
       "ratingsCount": 200000,
       "isbn13": "9781728215730",
-      "tones": ["tense", "propulsive"]
+      "tones": ["propulsive", "tense", "poignant"]
     },
     {
       "title": "Listen for the Lie",
@@ -138,7 +138,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1668181003i/62703226.jpg",
       "ratingsCount": 120000,
       "isbn13": "9798217048250",
-      "tones": ["tense", "twisty"]
+      "tones": ["twisty", "tense"]
     },
     {
       "title": "Starter Villain",
@@ -164,7 +164,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1683564155i/61885029.jpg",
       "ratingsCount": 200000,
       "isbn13": "9780765389237",
-      "tones": ["funny", "propulsive"]
+      "tones": ["funny", "compulsive"]
     },
     {
       "title": "Wool",
@@ -191,7 +191,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1327889474i/12287209.jpg",
       "ratingsCount": 280000,
       "isbn13": "9780358447832",
-      "tones": ["atmospheric", "tense"]
+      "tones": ["atmospheric", "compulsive"]
     },
     {
       "title": "The Drift",
@@ -273,7 +273,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1627964160i/54468020.jpg",
       "ratingsCount": 15000,
       "isbn13": "9780385547253",
-      "tones": ["funny", "propulsive"]
+      "tones": ["funny", "satirical"]
     },
     {
       "title": "The Kaiju Preservation Society",
@@ -300,7 +300,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1624897234i/57693406.jpg",
       "ratingsCount": 70000,
       "isbn13": "9781250878533",
-      "tones": ["funny", "propulsive"]
+      "tones": ["propulsive", "funny"]
     },
     {
       "title": "Empire of Pain",
@@ -328,7 +328,7 @@
       "ratingsCount": 120000,
       "isbn13": "9780385545686",
       "coverUrl": "https://books.google.com/books/content?id=oEGNEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["revelatory", "dark"]
+      "tones": ["dark", "revelatory"]
     },
     {
       "title": "The Raging 2020s",
@@ -355,7 +355,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1616687137i/56347315.jpg",
       "ratingsCount": 4000,
       "isbn13": "9781250770936",
-      "tones": ["thoughtful", "revelatory"]
+      "tones": ["revelatory", "thoughtful"]
     }
   ]
 }

@@ -192,6 +192,15 @@ None — no non-canonical theme is used often enough to suggest a real gap.
 All non-canonical uses (including one-offs):
 None found.
 
+### Non-canonical tones (0 uses)
+Tones not in CLAUDE.md's canonical 24-tone vocabulary (bbreEngine.js's THEME_TONES_MAP/TONE_PRIORITY). Introduced Session 16 to replace a 39-tag free-for-all where the most common tag alone covered 38% of the dataset, diluting the one tone-based preference signal `buildToneProfile()`/`toneSignal()` computes from Bill's ratings. Not currently folded into the Data Quality Score (see code comment on `findNonCanonicalTones()`).
+
+**Vocabulary-gap candidates** — used nowhere near the review threshold, which would suggest reconsidering the 24-tone list rather than a one-off tagging mistake:
+None — no non-canonical tone is used often enough to suggest a real gap.
+
+All non-canonical uses (including one-offs):
+None found.
+
 ### Out-of-range field counts (library books only)
 - Themes outside 2–5 range: **0** 
 - similarToTitles outside 3–5 range: **4** ("Careless People: A Cautionary Tale of Power, Greed, and Lost Idealism", "Anatomy of an Alibi", "The Inmate", "The Second-Smartest Dog That Ever Lived")

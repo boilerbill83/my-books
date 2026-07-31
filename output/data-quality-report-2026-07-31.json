@@ -555,6 +555,8 @@
     "brokenOrphaned": 463,
     "nonCanonicalTotal": 0,
     "promoteCandidateCount": 0,
+    "nonCanonicalTonesTotal": 0,
+    "toneReviewCandidateCount": 0,
     "themesOutOfRange": 0,
     "similarOutOfRange": 4,
     "zeroPages": 1,
@@ -3148,6 +3150,8 @@
     ],
     "promoteCandidates": [],
     "nonCanonicalThemes": [],
+    "toneReviewCandidates": [],
+    "nonCanonicalTones": [],
     "duplicateBookKeys": [
       {
         "key": "listen-for-the-lie|amy-tintera",

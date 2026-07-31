@@ -929,6 +929,7 @@
           { id: 'selfref', label: `Self-Referential (${(findings.selfReferentialTitle || []).length + (findings.selfReferentialAuthor || []).length})` },
           { id: 'brokenrefs', label: `Broken References (${integ.brokenNearMiss + integ.brokenOrphaned})` },
           { id: 'themes', label: `Non-Canonical Themes (${integ.nonCanonicalTotal})` },
+          { id: 'tones', label: `Non-Canonical Tones (${integ.nonCanonicalTonesTotal || 0})` },
           { id: 'duplicates', label: `Duplicates (${integ.dupBookKeys + integ.dupTitleAuthor})` },
         ];
         const tabsEl = $('#qdTabs');
@@ -1036,6 +1037,37 @@
             sortableTable(table, [
               { label: 'Title', get: r => r.title },
               { label: 'Non-Canonical Theme', get: r => r.theme },
+            ], rows, { emptyText: 'None found.' });
+          }
+          search.addEventListener('input', refresh);
+          refresh();
+        });
+
+        panel('tones', false, div => {
+          if ((findings.toneReviewCandidates || []).length) {
+            const h = document.createElement('p'); h.className = 'qd-desc';
+            h.textContent = 'Used ≥5 times each — likely a real gap in the 24-tone vocabulary, not a one-off:';
+            div.appendChild(h);
+            const list = document.createElement('div'); list.className = 'qd-tiles';
+            for (const p of findings.toneReviewCandidates) {
+              const tile = document.createElement('div'); tile.className = 'qd-tile status-warning';
+              tile.innerHTML = `<div class="qd-tile-label">"${esc(p.tone)}"</div><div class="qd-tile-value">${p.count} uses</div>`;
+              list.appendChild(tile);
+            }
+            div.appendChild(list);
+          }
+          const search = document.createElement('input'); search.className = 'qd-search'; search.placeholder = 'Search…'; search.style.marginTop = '14px';
+          const controls = document.createElement('div'); controls.className = 'qd-controls'; controls.style.marginTop = '14px'; controls.appendChild(search);
+          div.appendChild(controls);
+          const table = document.createElement('table'); table.className = 'qd-table';
+          const wrap = document.createElement('div'); wrap.className = 'qd-table-wrap'; wrap.appendChild(table);
+          div.appendChild(wrap);
+          function refresh() {
+            const q = search.value.trim().toLowerCase();
+            const rows = (findings.nonCanonicalTones || []).filter(r => !q || r.title.toLowerCase().includes(q) || r.tone.toLowerCase().includes(q));
+            sortableTable(table, [
+              { label: 'Title', get: r => r.title },
+              { label: 'Non-Canonical Tone', get: r => r.tone },
             ], rows, { emptyText: 'None found.' });
           }
           search.addEventListener('input', refresh);

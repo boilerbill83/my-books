@@ -97,12 +97,14 @@ function renderThemeChips(books) {
 }
 
 // Ordered list of tones to potentially show in the filter — only those
-// present in the current pool are actually rendered.
+// present in the current pool are actually rendered. Canonical 24-tone
+// vocabulary (Session 16) — see CLAUDE.md's "Canonical Tone Vocabulary".
 const TONE_FILTER_ORDER = [
-  'fast-paced', 'slow-burn', 'dark', 'tense', 'atmospheric',
-  'twisty', 'whodunit', 'procedural', 'humorous', 'character-driven',
-  'character-study', 'investigative', 'heartwarming', 'gritty',
-  'unreliable-narrator', 'compulsive', 'melancholic', 'inspiring',
+  'propulsive', 'compulsive', 'slow-burn', 'twisty', 'procedural', 'nonlinear', 'ensemble',
+  'dark', 'bleak', 'tense', 'heartwarming', 'poignant', 'inspiring',
+  'funny', 'satirical', 'conversational',
+  'atmospheric', 'lyrical', 'gritty', 'character-driven',
+  'revelatory', 'dense', 'thoughtful', 'investigative',
 ];
 
 function renderToneChips(books) {

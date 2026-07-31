@@ -32,6 +32,18 @@ const CANONICAL_THEMES = new Set([
   'psychology', 'humor', 'comedy',
 ]);
 
+// Keep in sync with CLAUDE.md's "Canonical Tone Vocabulary" section and
+// bbreEngine.js's THEME_TONES_MAP/TONE_PRIORITY (Session 16 redesign — 24
+// tones, none used on more than 15% of the dataset, replacing the 39-tag
+// free-for-all this same check would have caught earlier had it existed).
+const CANONICAL_TONES = new Set([
+  'propulsive', 'compulsive', 'slow-burn', 'twisty', 'procedural', 'nonlinear', 'ensemble',
+  'dark', 'bleak', 'tense', 'heartwarming', 'poignant', 'inspiring',
+  'funny', 'satirical', 'conversational',
+  'atmospheric', 'lyrical', 'gritty', 'character-driven',
+  'revelatory', 'dense', 'thoughtful', 'investigative',
+]);
+
 // Mirrors engine.js's norm() (bbreEngine/rateEngine title matching all route
 // through this format) — strips parenthetical series/edition notation
 // before comparing, so "The Firm" vs "The Firm (The Firm, #1)" is treated
@@ -446,6 +458,32 @@ function findNonCanonicalThemes() {
     for (const t of r.themes) {
       if (!CANONICAL_THEMES.has(t)) {
         offenders.push({ title: r.title, theme: t });
+        freq.set(t, (freq.get(t) || 0) + 1);
+      }
+    }
+  }
+  const PROMOTE_THRESHOLD = 5;
+  const promoteCandidates = [...freq.entries()]
+    .filter(([, count]) => count >= PROMOTE_THRESHOLD)
+    .sort((a, b) => b[1] - a[1]);
+  return { offenders, promoteCandidates };
+}
+
+// Mirrors findNonCanonicalThemes() — same drift this dataset already lived
+// through once with themes (Session 14) and once with tones (39 free-form
+// tags before the Session 16 24-tone redesign). Reported but deliberately
+// NOT wired into computeQualityScore(): right after the redesign this reads
+// as zero anyway, and folding it into the calibrated formula would silently
+// change the tuned 65-baseline score without Bill asking for a
+// recalibration, which is exactly the kind of drift Session 14b pushed back
+// on. Future session can fold it in explicitly if that's ever wanted.
+function findNonCanonicalTones() {
+  const offenders = [];
+  const freq = new Map();
+  for (const r of rows) {
+    for (const t of r.tones) {
+      if (!CANONICAL_TONES.has(t)) {
+        offenders.push({ title: r.title, tone: t });
         freq.set(t, (freq.get(t) || 0) + 1);
       }
     }
@@ -1004,6 +1042,7 @@ const dupBookKeys = findDuplicateBookKeys();
 const dupTitleAuthor = findDuplicateTitleAuthor();
 const { nearMiss: brokenNearMiss, orphaned: brokenOrphaned } = findBrokenSimilarToTitles();
 const { offenders: nonCanonical, promoteCandidates } = findNonCanonicalThemes();
+const { offenders: nonCanonicalTones, promoteCandidates: toneReviewCandidates } = findNonCanonicalTones();
 const ranges = findOutOfRangeCounts();
 const fiveStarGaps = findFiveStarSignalGaps();
 const alreadyReadInPool = findAlreadyReadInPool();
@@ -1036,6 +1075,8 @@ const integritySummary = {
   brokenOrphaned: brokenOrphaned.length,
   nonCanonicalTotal: nonCanonical.length,
   promoteCandidateCount: promoteCandidates.length,
+  nonCanonicalTonesTotal: nonCanonicalTones.length,
+  toneReviewCandidateCount: toneReviewCandidates.length,
   themesOutOfRange: ranges.themesOutOfRange.length,
   similarOutOfRange: ranges.similarOutOfRange.length,
   zeroPages: ranges.zeroPages.length,
@@ -1064,6 +1105,8 @@ const currentSnapshot = {
     brokenOrphaned,
     promoteCandidates: promoteCandidates.map(([theme, count]) => ({ theme, count })),
     nonCanonicalThemes: nonCanonical,
+    toneReviewCandidates: toneReviewCandidates.map(([tone, count]) => ({ tone, count })),
+    nonCanonicalTones,
     duplicateBookKeys: dupBookKeys.map(([key, list]) => ({ key, books: list.map(r => ({ title: r.title, source: r.source, shelf: r.shelf })) })),
     duplicateTitleAuthor: dupTitleAuthor.map(([, list]) => ({ title: list[0].title, author: list[0].author, occurrences: list.map(r => ({ source: r.source, shelf: r.shelf })) })),
     impactScores: impactScores.slice(0, 50),
@@ -1154,6 +1197,15 @@ ${promoteCandidates.length ? renderList(promoteCandidates.map(([theme, count]) =
 
 All non-canonical uses (including one-offs):
 ${nonCanonical.length ? renderList(nonCanonical.map(o => `"${o.title}": "${o.theme}"`)) : 'None found.'}
+
+### Non-canonical tones (${nonCanonicalTones.length} uses)
+Tones not in CLAUDE.md's canonical 24-tone vocabulary (bbreEngine.js's THEME_TONES_MAP/TONE_PRIORITY). Introduced Session 16 to replace a 39-tag free-for-all where the most common tag alone covered 38% of the dataset, diluting the one tone-based preference signal \`buildToneProfile()\`/\`toneSignal()\` computes from Bill's ratings. Not currently folded into the Data Quality Score (see code comment on \`findNonCanonicalTones()\`).
+
+**Vocabulary-gap candidates** — used ${toneReviewCandidates.length ? `≥5 times each` : 'nowhere near the review threshold'}, which would suggest reconsidering the 24-tone list rather than a one-off tagging mistake:
+${toneReviewCandidates.length ? renderList(toneReviewCandidates.map(([tone, count]) => `"${tone}" — ${count} uses`)) : 'None — no non-canonical tone is used often enough to suggest a real gap.'}
+
+All non-canonical uses (including one-offs):
+${nonCanonicalTones.length ? renderList(nonCanonicalTones.map(o => `"${o.title}": "${o.tone}"`)) : 'None found.'}
 
 ### Out-of-range field counts (library books only)
 - Themes outside 2–5 range: **${ranges.themesOutOfRange.length}** ${ranges.themesOutOfRange.length ? '(' + ranges.themesOutOfRange.slice(0, 5).map(r => `"${r.title}"`).join(', ') + (ranges.themesOutOfRange.length > 5 ? ', …' : '') + ')' : ''}

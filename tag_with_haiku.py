@@ -34,7 +34,11 @@ THEMES = ('thriller psychological suspense "domestic suspense" mystery crime noi
           'memoir biography "true crime" history "tech history" finance business '
           'sports food "music history" political military psychology humor comedy')
 
-TONES = 'twisty compulsive tense dark funny warm bleak thoughtful revelatory conversational propulsive atmospheric'
+TONES = ('propulsive compulsive slow-burn twisty procedural nonlinear ensemble '
+         'dark bleak tense heartwarming poignant inspiring '
+         'funny satirical conversational '
+         'atmospheric lyrical gritty character-driven '
+         'revelatory dense thoughtful investigative')
 
 
 def call_haiku(prompt):

@@ -28,7 +28,7 @@
       ],
       "ratingsCount": 30000,
       "coverUrl": "https://books.google.com/books/content?id=YkGREAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["tense", "twisty"]
+      "tones": ["twisty", "procedural"]
     },
     {
       "bookKey": "motion-to-suppress|perri-o-shaughnessy",
@@ -55,7 +55,7 @@
       ],
       "ratingsCount": 5000,
       "coverUrl": "https://books.google.com/books/content?id=aLyt6LL5SFQC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["tense", "thoughtful"]
+      "tones": ["tense", "thoughtful", "procedural"]
     },
     {
       "bookKey": "invasion-of-privacy|perri-o-shaughnessy",
@@ -83,7 +83,7 @@
       ],
       "ratingsCount": 4000,
       "coverUrl": "https://books.google.com/books/content?id=txbl6TAEcKMC&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["twisty", "tense"]
+      "tones": ["twisty", "procedural"]
     },
     {
       "bookKey": "blood-defense|marcia-clark",
@@ -110,7 +110,7 @@
       ],
       "ratingsCount": 7000,
       "coverUrl": "https://books.google.com/books/content?id=H2J1jgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["tense", "propulsive"]
+      "tones": ["propulsive", "tense", "procedural"]
     },
     {
       "bookKey": "defending-jacob|william-landay",
@@ -137,7 +137,7 @@
       ],
       "ratingsCount": 380000,
       "coverUrl": "https://books.google.com/books/content?id=sTaLDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["dark", "tense"]
+      "tones": ["procedural", "dark"]
     },
     {
       "bookKey": "the-good-daughter|karin-slaughter",
@@ -165,7 +165,7 @@
       ],
       "ratingsCount": 70000,
       "coverUrl": "https://books.google.com/books/content?id=hQrYswEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["dark", "tense"]
+      "tones": ["tense", "dark", "procedural"]
     },
     {
       "bookKey": "pretty-girls|karin-slaughter",
@@ -193,7 +193,7 @@
       ],
       "ratingsCount": 140000,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1432205734i/25574782.jpg",
-      "tones": ["dark", "tense"]
+      "tones": ["tense", "dark", "poignant"]
     },
     {
       "bookKey": "i-let-you-go|clare-mackintosh",
@@ -273,7 +273,7 @@
       ],
       "ratingsCount": 20000,
       "coverUrl": "https://books.google.com/books/content?id=nifqDwAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["twisty", "tense"]
+      "tones": ["twisty", "procedural"]
     },
     {
       "bookKey": "the-7-deaths-of-evelyn-hardcastle|stuart-turton",
@@ -327,7 +327,7 @@
       ],
       "ratingsCount": 20000,
       "coverUrl": "https://books.google.com/books/content?id=kMkTuwEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["tense", "twisty"]
+      "tones": ["twisty", "tense", "compulsive"]
     },
     {
       "bookKey": "all-systems-red|martha-wells",
@@ -355,7 +355,7 @@
       ],
       "ratingsCount": 180000,
       "coverUrl": "https://books.google.com/books/content?id=ZSu2DQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["funny", "propulsive"]
+      "tones": ["propulsive", "funny"]
     },
     {
       "bookKey": "the-fifth-season|n-k-jemisin",
@@ -380,7 +380,7 @@
       ],
       "ratingsCount": 220000,
       "coverUrl": "https://books.google.com/books/content?id=1-X5jgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["bleak", "atmospheric"]
+      "tones": ["atmospheric", "bleak"]
     },
     {
       "bookKey": "alien-clay|adrian-tchaikovsky",
@@ -407,7 +407,7 @@
       ],
       "ratingsCount": 20000,
       "coverUrl": "https://books.google.com/books/content?id=xj3dEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["thoughtful", "atmospheric"]
+      "tones": ["thoughtful", "atmospheric", "revelatory"]
     },
     {
       "bookKey": "book-lovers|emily-henry",
@@ -433,7 +433,7 @@
       ],
       "ratingsCount": 700000,
       "coverUrl": "https://books.google.com/books/content?id=ht7EEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["warm", "funny"]
+      "tones": ["heartwarming", "funny"]
     },
     {
       "bookKey": "happy-place|emily-henry",
@@ -458,7 +458,7 @@
       ],
       "ratingsCount": 400000,
       "coverUrl": "https://books.google.com/books/content?id=EObnEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["warm", "thoughtful"]
+      "tones": ["heartwarming", "thoughtful"]
     },
     {
       "bookKey": "funny-story|emily-henry",
@@ -484,7 +484,7 @@
       ],
       "ratingsCount": 350000,
       "coverUrl": "https://books.google.com/books/content?id=wcHMEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["warm", "funny"]
+      "tones": ["heartwarming", "funny"]
     },
     {
       "bookKey": "anxious-people|fredrik-backman",
@@ -510,7 +510,7 @@
       ],
       "ratingsCount": 550000,
       "coverUrl": "https://books.google.com/books/content?id=PMr2DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["funny", "warm"]
+      "tones": ["funny", "heartwarming", "poignant"]
     },
     {
       "bookKey": "think-again|adam-grant",
@@ -536,7 +536,7 @@
       ],
       "ratingsCount": 280000,
       "coverUrl": "https://books.google.com/books/content?id=-5SezQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["thoughtful", "conversational"]
+      "tones": ["thoughtful", "dense"]
     },
     {
       "bookKey": "hidden-potential|adam-grant",
@@ -562,7 +562,7 @@
       ],
       "ratingsCount": 130000,
       "coverUrl": "https://books.google.com/books/content?id=u1u_EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["thoughtful", "revelatory"]
+      "tones": ["thoughtful", "revelatory", "dense"]
     },
     {
       "bookKey": "supercommunicators|charles-duhigg",
@@ -588,7 +588,7 @@
         "Educated"
       ],
       "ratingsCount": 25000,
-      "tones": ["conversational", "thoughtful"]
+      "tones": ["thoughtful", "dense"]
     },
     {
       "bookKey": "masters-of-doom|david-kushner",
@@ -615,7 +615,7 @@
       ],
       "ratingsCount": 80000,
       "coverUrl": "https://books.google.com/books/content?id=yyaxyKjyp2YC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["propulsive", "revelatory"]
+      "tones": ["revelatory", "thoughtful"]
     },
     {
       "bookKey": "the-splendid-and-the-vile|erik-larson",
@@ -644,7 +644,7 @@
       ],
       "ratingsCount": 200000,
       "coverUrl": "https://books.google.com/books/content?id=v9LMDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["atmospheric", "thoughtful"]
+      "tones": ["thoughtful", "atmospheric", "gritty"]
     },
     {
       "bookKey": "destiny-of-the-republic|candice-millard",
@@ -672,7 +672,7 @@
       ],
       "ratingsCount": 110000,
       "coverUrl": "https://books.google.com/books/content?id=Gss_INMTZQIC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["revelatory", "tense"]
+      "tones": ["revelatory", "thoughtful"]
     },
     {
       "bookKey": "hidden-valley-road|robert-kolker",
