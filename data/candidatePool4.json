@@ -29,7 +29,8 @@
         "Where the Crawdads Sing"
       ],
       "ratingsCount": 150000,
-      "coverUrl": "https://books.google.com/books/content?id=01xaEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=01xaEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["atmospheric", "dark"]
     },
     {
       "bookKey": "in-the-woods|tana-french",
@@ -56,7 +57,8 @@
         "Sharp Objects"
       ],
       "ratingsCount": 380000,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1562761513i/2459785.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1562761513i/2459785.jpg",
+      "tones": ["atmospheric", "dark"]
     },
     {
       "bookKey": "the-likeness|tana-french",
@@ -80,7 +82,8 @@
         "The Silent Patient"
       ],
       "ratingsCount": 200000,
-      "coverUrl": "https://books.google.com/books/content?id=xoCX8n_i6OYC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=xoCX8n_i6OYC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["atmospheric", "twisty"]
     },
     {
       "bookKey": "long-bright-river|liz-moore",
@@ -106,7 +109,8 @@
         "Sharp Objects"
       ],
       "ratingsCount": 120000,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1555616163i/43834909.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1555616163i/43834909.jpg",
+      "tones": ["bleak", "atmospheric"]
     },
     {
       "bookKey": "the-lincoln-lawyer|michael-connelly",
@@ -133,7 +137,8 @@
         "Presumed Innocent"
       ],
       "ratingsCount": 260000,
-      "coverUrl": "https://books.google.com/books/content?id=bZoibWwaSNoC&printsec=frontcover&img=1&zoom=2&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=bZoibWwaSNoC&printsec=frontcover&img=1&zoom=2&source=gbs_api",
+      "tones": ["propulsive", "twisty"]
     },
     {
       "bookKey": "my-sister-s-grave|robert-dugoni",
@@ -159,7 +164,8 @@
         "The Client"
       ],
       "ratingsCount": 80000,
-      "coverUrl": "https://books.google.com/books/content?id=_4r7oAEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=_4r7oAEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
+      "tones": ["tense", "dark"]
     },
     {
       "bookKey": "everywhere-that-mary-went|lisa-scottoline",
@@ -185,7 +191,8 @@
         "The Client"
       ],
       "ratingsCount": 15000,
-      "coverUrl": "https://books.google.com/books/content?id=zLmKh8BZFsQC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=zLmKh8BZFsQC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["tense", "propulsive"]
     },
     {
       "bookKey": "culpability|bruce-holsinger-2",
@@ -212,7 +219,8 @@
         "Presumed Innocent"
       ],
       "ratingsCount": 8000,
-      "coverUrl": "https://books.google.com/books/content?id=61c_EQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=61c_EQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["thoughtful", "tense"]
     },
     {
       "bookKey": "the-gone-world|tom-sweterlitsch",
@@ -240,7 +248,8 @@
         "Recursion"
       ],
       "ratingsCount": 20000,
-      "coverUrl": "https://books.google.com/books/content?id=FlzODgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=FlzODgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["dark", "twisty"]
     },
     {
       "bookKey": "the-future|naomi-alderman",
@@ -266,7 +275,8 @@
         "Dark Matter"
       ],
       "ratingsCount": 60000,
-      "coverUrl": "https://books.google.com/books/content?id=ZfFiEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=ZfFiEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["thoughtful", "propulsive"]
     },
     {
       "bookKey": "the-girl-before|jp-delaney",
@@ -292,7 +302,8 @@
         "The Silent Patient"
       ],
       "ratingsCount": 190000,
-      "coverUrl": "https://books.google.com/books/content?id=tpn9CwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=tpn9CwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["twisty", "tense"]
     },
     {
       "bookKey": "no-exit|taylor-adams",
@@ -316,7 +327,8 @@
         "The Housemaid (The Housemaid, #1)"
       ],
       "ratingsCount": 80000,
-      "coverUrl": "https://m.media-amazon.com/images/I/717qVFaqdiL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/717qVFaqdiL._SX300_.jpg",
+      "tones": ["tense", "propulsive"]
     },
     {
       "bookKey": "a-simple-favor|darcey-bell",
@@ -342,7 +354,8 @@
         "The Silent Patient"
       ],
       "ratingsCount": 200000,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1468422073i/29938376.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1468422073i/29938376.jpg",
+      "tones": ["twisty", "dark"]
     },
     {
       "bookKey": "you-will-never-be-me|jesse-q-sutanto",
@@ -368,7 +381,8 @@
         "Never Lie"
       ],
       "ratingsCount": 30000,
-      "coverUrl": "https://m.media-amazon.com/images/I/81PmMrDEPFL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/81PmMrDEPFL._SX300_.jpg",
+      "tones": ["twisty", "tense"]
     },
     {
       "bookKey": "don-t-let-him-in|lisa-jewell",
@@ -394,7 +408,8 @@
         "Never Lie"
       ],
       "ratingsCount": 15000,
-      "coverUrl": "https://books.google.com/books/content?id=I8nOEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=I8nOEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["tense", "twisty"]
     },
     {
       "bookKey": "the-twyford-code|janice-hallett",
@@ -419,7 +434,8 @@
         "The Silent Patient"
       ],
       "ratingsCount": 25000,
-      "coverUrl": "https://m.media-amazon.com/images/I/81IVG6J+XpL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/81IVG6J+XpL._SX300_.jpg",
+      "tones": ["twisty", "atmospheric"]
     },
     {
       "bookKey": "north-woods|daniel-mason",
@@ -445,7 +461,8 @@
         "Remarkably Bright Creatures"
       ],
       "ratingsCount": 60000,
-      "coverUrl": "https://m.media-amazon.com/images/I/91C3C4KRR8L._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/91C3C4KRR8L._SX300_.jpg",
+      "tones": ["atmospheric", "thoughtful"]
     },
     {
       "bookKey": "what-have-you-done|shari-lapena",
@@ -471,7 +488,8 @@
         "The Silent Patient"
       ],
       "ratingsCount": 20000,
-      "coverUrl": "https://m.media-amazon.com/images/I/81IF4qljOOL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/81IF4qljOOL._SX300_.jpg",
+      "tones": ["tense", "twisty"]
     },
     {
       "bookKey": "bad-blood|john-carreyrou",
@@ -499,7 +517,8 @@
         "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road"
       ],
       "ratingsCount": 290000,
-      "coverUrl": "https://m.media-amazon.com/images/I/81P1xvxdBkL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/81P1xvxdBkL._SX300_.jpg",
+      "tones": ["revelatory", "dark"]
     },
     {
       "bookKey": "barbarians-at-the-gate|bryan-burrough",
@@ -524,7 +543,8 @@
         "Flash Boys: A Wall Street Revolt"
       ],
       "ratingsCount": 55000,
-      "coverUrl": "https://m.media-amazon.com/images/I/418HUoFkhVL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/418HUoFkhVL._SX300_.jpg",
+      "tones": ["propulsive", "revelatory"]
     },
     {
       "bookKey": "too-big-to-fail|andrew-ross-sorkin",
@@ -549,7 +569,8 @@
         "Flash Boys: A Wall Street Revolt"
       ],
       "ratingsCount": 65000,
-      "coverUrl": "https://m.media-amazon.com/images/I/81ybGr83+8L._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/81ybGr83+8L._SX300_.jpg",
+      "tones": ["tense", "revelatory"]
     },
     {
       "bookKey": "when-genius-failed|roger-lowenstein",
@@ -575,7 +596,8 @@
         "The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution"
       ],
       "ratingsCount": 36000,
-      "coverUrl": "https://m.media-amazon.com/images/I/71IuJdGPf4L._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/71IuJdGPf4L._SX300_.jpg",
+      "tones": ["tense", "revelatory"]
     },
     {
       "bookKey": "more-money-than-god|sebastian-mallaby",
@@ -599,7 +621,8 @@
         "The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution"
       ],
       "ratingsCount": 10000,
-      "coverUrl": "https://m.media-amazon.com/images/I/91OZtXVKK1L._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/91OZtXVKK1L._SX300_.jpg",
+      "tones": ["thoughtful", "revelatory"]
     },
     {
       "bookKey": "killers-of-the-flower-moon|david-grann",
@@ -625,7 +648,8 @@
         "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road"
       ],
       "ratingsCount": 590000,
-      "coverUrl": "https://m.media-amazon.com/images/I/71rAyRvoeyL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/71rAyRvoeyL._SX300_.jpg",
+      "tones": ["dark", "revelatory"]
     }
   ]
 }

@@ -27,7 +27,8 @@
         "The Client"
       ],
       "ratingsCount": 30000,
-      "coverUrl": "https://books.google.com/books/content?id=YkGREAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=YkGREAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
+      "tones": ["tense", "twisty"]
     },
     {
       "bookKey": "motion-to-suppress|perri-o-shaughnessy",
@@ -53,7 +54,8 @@
         "The Client"
       ],
       "ratingsCount": 5000,
-      "coverUrl": "https://books.google.com/books/content?id=aLyt6LL5SFQC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=aLyt6LL5SFQC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["tense", "thoughtful"]
     },
     {
       "bookKey": "invasion-of-privacy|perri-o-shaughnessy",
@@ -80,7 +82,8 @@
         "The Client"
       ],
       "ratingsCount": 4000,
-      "coverUrl": "https://books.google.com/books/content?id=txbl6TAEcKMC&printsec=frontcover&img=1&zoom=2&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=txbl6TAEcKMC&printsec=frontcover&img=1&zoom=2&source=gbs_api",
+      "tones": ["twisty", "tense"]
     },
     {
       "bookKey": "blood-defense|marcia-clark",
@@ -106,7 +109,8 @@
         "A Time to Kill (Jake Brigance, #1)"
       ],
       "ratingsCount": 7000,
-      "coverUrl": "https://books.google.com/books/content?id=H2J1jgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=H2J1jgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
+      "tones": ["tense", "propulsive"]
     },
     {
       "bookKey": "defending-jacob|william-landay",
@@ -132,7 +136,8 @@
         "The Silent Patient"
       ],
       "ratingsCount": 380000,
-      "coverUrl": "https://books.google.com/books/content?id=sTaLDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=sTaLDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["dark", "tense"]
     },
     {
       "bookKey": "the-good-daughter|karin-slaughter",
@@ -159,7 +164,8 @@
         "Dark Places"
       ],
       "ratingsCount": 70000,
-      "coverUrl": "https://books.google.com/books/content?id=hQrYswEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=hQrYswEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
+      "tones": ["dark", "tense"]
     },
     {
       "bookKey": "pretty-girls|karin-slaughter",
@@ -186,7 +192,8 @@
         "Dark Places"
       ],
       "ratingsCount": 140000,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1432205734i/25574782.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1432205734i/25574782.jpg",
+      "tones": ["dark", "tense"]
     },
     {
       "bookKey": "i-let-you-go|clare-mackintosh",
@@ -211,7 +218,8 @@
         "Behind Closed Doors"
       ],
       "ratingsCount": 150000,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1474522974i/30689367.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1474522974i/30689367.jpg",
+      "tones": ["tense", "twisty"]
     },
     {
       "bookKey": "strange-sally-diamond|liz-nugent",
@@ -236,7 +244,8 @@
         "Never Lie"
       ],
       "ratingsCount": 25000,
-      "coverUrl": "https://books.google.com/books/content?id=kR-UEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=kR-UEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["dark", "atmospheric"]
     },
     {
       "bookKey": "house-of-correction|nicci-french",
@@ -263,7 +272,8 @@
         "Presumed Innocent"
       ],
       "ratingsCount": 20000,
-      "coverUrl": "https://books.google.com/books/content?id=nifqDwAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=nifqDwAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
+      "tones": ["twisty", "tense"]
     },
     {
       "bookKey": "the-7-deaths-of-evelyn-hardcastle|stuart-turton",
@@ -289,7 +299,8 @@
         "The Silent Patient"
       ],
       "ratingsCount": 220000,
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1506896221i/36337550.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1506896221i/36337550.jpg",
+      "tones": ["twisty", "atmospheric"]
     },
     {
       "bookKey": "haven-t-they-grown|sophie-hannah",
@@ -315,7 +326,8 @@
         "Behind Closed Doors"
       ],
       "ratingsCount": 20000,
-      "coverUrl": "https://books.google.com/books/content?id=kMkTuwEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=kMkTuwEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
+      "tones": ["tense", "twisty"]
     },
     {
       "bookKey": "all-systems-red|martha-wells",
@@ -342,7 +354,8 @@
         "The Martian"
       ],
       "ratingsCount": 180000,
-      "coverUrl": "https://books.google.com/books/content?id=ZSu2DQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=ZSu2DQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["funny", "propulsive"]
     },
     {
       "bookKey": "the-fifth-season|n-k-jemisin",
@@ -366,7 +379,8 @@
         "Recursion"
       ],
       "ratingsCount": 220000,
-      "coverUrl": "https://books.google.com/books/content?id=1-X5jgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=1-X5jgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
+      "tones": ["bleak", "atmospheric"]
     },
     {
       "bookKey": "alien-clay|adrian-tchaikovsky",
@@ -392,7 +406,8 @@
         "Dark Matter"
       ],
       "ratingsCount": 20000,
-      "coverUrl": "https://books.google.com/books/content?id=xj3dEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=xj3dEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["thoughtful", "atmospheric"]
     },
     {
       "bookKey": "book-lovers|emily-henry",
@@ -417,7 +432,8 @@
         "Malibu Rising"
       ],
       "ratingsCount": 700000,
-      "coverUrl": "https://books.google.com/books/content?id=ht7EEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=ht7EEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
+      "tones": ["warm", "funny"]
     },
     {
       "bookKey": "happy-place|emily-henry",
@@ -441,7 +457,8 @@
         "After I Do"
       ],
       "ratingsCount": 400000,
-      "coverUrl": "https://books.google.com/books/content?id=EObnEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=EObnEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["warm", "thoughtful"]
     },
     {
       "bookKey": "funny-story|emily-henry",
@@ -466,7 +483,8 @@
         "After I Do"
       ],
       "ratingsCount": 350000,
-      "coverUrl": "https://books.google.com/books/content?id=wcHMEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=wcHMEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["warm", "funny"]
     },
     {
       "bookKey": "anxious-people|fredrik-backman",
@@ -491,7 +509,8 @@
         "The Rosie Project (Don Tillman, #1)"
       ],
       "ratingsCount": 550000,
-      "coverUrl": "https://books.google.com/books/content?id=PMr2DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=PMr2DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["funny", "warm"]
     },
     {
       "bookKey": "think-again|adam-grant",
@@ -516,7 +535,8 @@
         "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed"
       ],
       "ratingsCount": 280000,
-      "coverUrl": "https://books.google.com/books/content?id=-5SezQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=-5SezQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
+      "tones": ["thoughtful", "conversational"]
     },
     {
       "bookKey": "hidden-potential|adam-grant",
@@ -541,7 +561,8 @@
         "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed"
       ],
       "ratingsCount": 130000,
-      "coverUrl": "https://books.google.com/books/content?id=u1u_EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=u1u_EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["thoughtful", "revelatory"]
     },
     {
       "bookKey": "supercommunicators|charles-duhigg",
@@ -566,7 +587,8 @@
         "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
         "Educated"
       ],
-      "ratingsCount": 25000
+      "ratingsCount": 25000,
+      "tones": ["conversational", "thoughtful"]
     },
     {
       "bookKey": "masters-of-doom|david-kushner",
@@ -592,7 +614,8 @@
         "Steve Jobs"
       ],
       "ratingsCount": 80000,
-      "coverUrl": "https://books.google.com/books/content?id=yyaxyKjyp2YC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=yyaxyKjyp2YC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["propulsive", "revelatory"]
     },
     {
       "bookKey": "the-splendid-and-the-vile|erik-larson",
@@ -620,7 +643,8 @@
         "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission"
       ],
       "ratingsCount": 200000,
-      "coverUrl": "https://books.google.com/books/content?id=v9LMDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=v9LMDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["atmospheric", "thoughtful"]
     },
     {
       "bookKey": "destiny-of-the-republic|candice-millard",
@@ -647,7 +671,8 @@
         "The Bomber Mafia: A Dream, a Temptation, and the Longest Night of the Second World War"
       ],
       "ratingsCount": 110000,
-      "coverUrl": "https://books.google.com/books/content?id=Gss_INMTZQIC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=Gss_INMTZQIC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["revelatory", "tense"]
     },
     {
       "bookKey": "hidden-valley-road|robert-kolker",
@@ -671,7 +696,8 @@
         "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America"
       ],
       "ratingsCount": 200000,
-      "coverUrl": "https://books.google.com/books/content?id=bxahDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=bxahDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["bleak", "revelatory"]
     }
   ]
 }

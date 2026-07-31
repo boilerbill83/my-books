@@ -26,7 +26,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/1301.Moneyball",
       "buyUrl": "https://www.amazon.com/dp/0393324818",
       "coverUrl": "https://m.media-amazon.com/images/I/61Sr5X1vAQL._SX300_.jpg",
-      "isbn13": "9780393057652"
+      "isbn13": "9780393057652",
+      "tones": ["thoughtful", "revelatory"]
     },
     {
       "title": "Boomerang: Travels in the New Third World",
@@ -53,7 +54,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/13707738-boomerang",
       "buyUrl": "https://www.amazon.com/dp/0393343448",
       "coverUrl": "https://m.media-amazon.com/images/I/9197P6Wt7qL._SX300_.jpg",
-      "isbn13": "9780393082241"
+      "isbn13": "9780393082241",
+      "tones": ["conversational", "revelatory"]
     },
     {
       "title": "The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics",
@@ -82,7 +84,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/16158542-the-boys-in-the-boat",
       "buyUrl": "https://www.amazon.com/dp/0143125478",
       "coverUrl": "https://m.media-amazon.com/images/I/81uQRVpi2UL._SX300_.jpg",
-      "isbn13": "9780593512302"
+      "isbn13": "9780593512302",
+      "tones": ["warm", "propulsive"]
     },
     {
       "title": "Open: An Autobiography",
@@ -111,7 +114,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/6480781-open",
       "buyUrl": "https://www.amazon.com/dp/0307388409",
       "coverUrl": "https://m.media-amazon.com/images/I/91AR39AbCgL._SX300_.jpg",
-      "isbn13": "9780307592804"
+      "isbn13": "9780307592804",
+      "tones": ["thoughtful", "revelatory"]
     },
     {
       "title": "Eleven Rings: The Soul of Success",
@@ -140,7 +144,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/16158542-eleven-rings",
       "buyUrl": "https://www.amazon.com/dp/1594204446",
       "coverUrl": "https://m.media-amazon.com/images/I/81sYoIRFl9L._SX300_.jpg",
-      "isbn13": "9781594205118"
+      "isbn13": "9781594205118",
+      "tones": ["thoughtful", "conversational"]
     },
     {
       "title": "Showtime: Magic, Kareem, Riley, and the Los Angeles Lakers Dynasty of the 1980s",
@@ -168,7 +173,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/15843913-showtime",
       "buyUrl": "https://www.amazon.com/dp/1592407978",
       "coverUrl": "https://m.media-amazon.com/images/I/81fvDikywhL._SX300_.jpg",
-      "isbn13": "9781592408870"
+      "isbn13": "9781592408870",
+      "tones": ["propulsive", "revelatory"]
     },
     {
       "title": "Killers of the Flower Moon: The Osage Murders and the Birth of the FBI",
@@ -196,7 +202,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/29496076-killers-of-the-flower-moon",
       "buyUrl": "https://www.amazon.com/dp/0385541690",
       "coverUrl": "https://m.media-amazon.com/images/I/71rAyRvoeyL._SX300_.jpg",
-      "isbn13": "9780385534253"
+      "isbn13": "9780385534253",
+      "tones": ["dark", "revelatory"]
     },
     {
       "title": "Empire of Pain: The Secret History of the Sackler Dynasty",
@@ -223,7 +230,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/43868109-empire-of-pain",
       "buyUrl": "https://www.amazon.com/dp/0385545681",
       "coverUrl": "https://books.google.com/books/content?id=oEGNEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "isbn13": "9780385545686"
+      "isbn13": "9780385545686",
+      "tones": ["revelatory", "dark"]
     },
     {
       "title": "Outliers: The Story of Success",
@@ -252,7 +260,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/3228917-outliers",
       "buyUrl": "https://www.amazon.com/dp/0316017930",
       "coverUrl": "https://books.google.com/books/content?id=ialrgIT41OAC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "isbn13": "9780141903491"
+      "isbn13": "9780141903491",
+      "tones": ["thoughtful", "revelatory"]
     },
     {
       "title": "Blink: The Power of Thinking Without Thinking",
@@ -278,7 +287,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/40102.Blink",
       "buyUrl": "https://www.amazon.com/dp/0316172324",
       "coverUrl": "https://m.media-amazon.com/images/I/71gt0bpGd3L._SX300_.jpg",
-      "isbn13": "9780141035284"
+      "isbn13": "9780141035284",
+      "tones": ["thoughtful", "revelatory"]
     },
     {
       "title": "David and Goliath: Underdogs, Misfits, and the Art of Battling Giants",
@@ -305,7 +315,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/15751404-david-and-goliath",
       "buyUrl": "https://www.amazon.com/dp/0316204374",
       "coverUrl": "https://m.media-amazon.com/images/I/71lDO3J7DUL._SX300_.jpg",
-      "isbn13": "9780316204385"
+      "isbn13": "9780316204385",
+      "tones": ["thoughtful", "revelatory"]
     },
     {
       "title": "What the Dog Saw: And Other Adventures",
@@ -332,7 +343,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/6516450-what-the-dog-saw-and-other-adventures",
       "buyUrl": "https://www.amazon.com/dp/0316076201",
       "coverUrl": "https://books.google.com/books/content?id=PwzioQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "isbn13": "9781846142772"
+      "isbn13": "9781846142772",
+      "tones": ["funny", "thoughtful"]
     },
     {
       "title": "Bad Blood: Secrets and Lies in a Silicon Valley Startup",
@@ -361,7 +373,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/37976541-bad-blood",
       "buyUrl": "https://www.amazon.com/dp/152473165X",
       "coverUrl": "https://m.media-amazon.com/images/I/81P1xvxdBkL._SX300_.jpg",
-      "isbn13": "9781524731663"
+      "isbn13": "9781524731663",
+      "tones": ["revelatory", "dark"]
     },
     {
       "title": "Catch and Kill: Lies, Spies, and a Conspiracy to Protect Predators",
@@ -389,7 +402,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/46030919-catch-and-kill",
       "buyUrl": "https://www.amazon.com/dp/031648506X",
       "coverUrl": "https://books.google.com/books/content?id=2beeDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "isbn13": "9780316486668"
+      "isbn13": "9780316486668",
+      "tones": ["revelatory", "tense"]
     },
     {
       "title": "The Feather Thief: Beauty, Obsession, and the Natural History Heist of the Century",
@@ -417,7 +431,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/35068533-the-feather-thief",
       "buyUrl": "https://www.amazon.com/dp/1101982020",
       "coverUrl": "https://books.google.com/books/content?vid=ISBN9781101981634&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "isbn13": "9781101981634"
+      "isbn13": "9781101981634",
+      "tones": ["revelatory", "twisty"]
     },
     {
       "title": "An Unfinished Love Story: A Personal History of the 1960s",
@@ -445,7 +460,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/180686614-an-unfinished-love-story",
       "buyUrl": "https://www.amazon.com/dp/1982106492",
       "coverUrl": "https://m.media-amazon.com/images/I/81wwyzE5XcL._SX300_.jpg",
-      "isbn13": "9781982108663"
+      "isbn13": "9781982108663",
+      "tones": ["warm", "thoughtful"]
     },
     {
       "title": "An Ugly Truth: Inside Facebook's Battle for Domination",
@@ -474,7 +490,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/53487386-an-ugly-truth",
       "buyUrl": "https://www.amazon.com/dp/0062960040",
       "coverUrl": "https://m.media-amazon.com/images/I/91L6lEbv+yL._SX300_.jpg",
-      "isbn13": "9780062960702"
+      "isbn13": "9780062960702",
+      "tones": ["revelatory", "dark"]
     },
     {
       "title": "Going Clear: Scientology, Hollywood, and the Prison of Belief",
@@ -502,7 +519,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/17333084-going-clear",
       "buyUrl": "https://www.amazon.com/dp/0307745309",
       "coverUrl": "https://m.media-amazon.com/images/I/718dlRt0c1L._SX300_.jpg",
-      "isbn13": "9780385350273"
+      "isbn13": "9780385350273",
+      "tones": ["revelatory", "dark"]
     },
     {
       "title": "After Steve: How Apple Became a Trillion-Dollar Company and Lost Its Soul",
@@ -530,7 +548,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/58756678-after-steve",
       "buyUrl": "https://www.amazon.com/dp/0062917641",
       "coverUrl": "https://m.media-amazon.com/images/I/A16O0Az5blL._SX300_.jpg",
-      "isbn13": "9780008527846"
+      "isbn13": "9780008527846",
+      "tones": ["revelatory", "thoughtful"]
     },
     {
       "title": "Disrupted: My Misadventure in the Start-Up Bubble",
@@ -558,7 +577,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/26030825-disrupted",
       "buyUrl": "https://www.amazon.com/dp/031630630X",
       "coverUrl": "https://m.media-amazon.com/images/I/81+0aIdJMML._SX300_.jpg",
-      "isbn13": "9780316306072"
+      "isbn13": "9780316306072",
+      "tones": ["funny", "conversational"]
     },
     {
       "title": "The Lincoln Lawyer (Mickey Haller, #1)",
@@ -587,7 +607,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/9969.The_Lincoln_Lawyer",
       "buyUrl": "https://www.amazon.com/dp/0446618519",
       "coverUrl": "https://books.google.com/books/content?id=bZoibWwaSNoC&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "isbn13": "9780446541138"
+      "isbn13": "9780446541138",
+      "tones": ["propulsive", "twisty"]
     },
     {
       "title": "The Push",
@@ -616,7 +637,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/52957876-the-push",
       "buyUrl": "https://www.amazon.com/dp/1984881663",
       "coverUrl": "https://m.media-amazon.com/images/I/91-ir8hlcGL._SX300_.jpg",
-      "isbn13": "9781984881687"
+      "isbn13": "9781984881687",
+      "tones": ["dark", "tense"]
     },
     {
       "title": "Anatomy of a Scandal",
@@ -644,7 +666,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/32313478-anatomy-of-a-scandal",
       "buyUrl": "https://www.amazon.com/dp/1501172387",
       "coverUrl": "https://m.media-amazon.com/images/I/71TVAMGVB5L._SX300_.jpg",
-      "isbn13": "9781501172182"
+      "isbn13": "9781501172182",
+      "tones": ["twisty", "tense"]
     },
     {
       "title": "A Good Girl's Guide to Murder (A Good Girl's Guide to Murder, #1)",
@@ -673,7 +696,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/40002024-a-good-girl-s-guide-to-murder",
       "buyUrl": "https://www.amazon.com/dp/1984896342",
       "coverUrl": "https://m.media-amazon.com/images/I/81kb8NEcm6L._SX300_.jpg",
-      "isbn13": "9781984896391"
+      "isbn13": "9781984896391",
+      "tones": ["twisty", "propulsive"]
     },
     {
       "title": "Good Girl Bad Blood (A Good Girl's Guide to Murder, #2)",
@@ -701,7 +725,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/53121648-good-girl-bad-blood",
       "buyUrl": "https://www.amazon.com/dp/198489635X",
       "coverUrl": "https://m.media-amazon.com/images/I/81VeAXc9+VL._SX300_.jpg",
-      "isbn13": "9781984896438"
+      "isbn13": "9781984896438",
+      "tones": ["twisty", "propulsive"]
     },
     {
       "title": "The Dry (Aaron Falk, #1)",
@@ -729,7 +754,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/28818783-the-dry",
       "buyUrl": "https://www.amazon.com/dp/1250105622",
       "coverUrl": "https://m.media-amazon.com/images/I/91fso2RJWpL._SX300_.jpg",
-      "isbn13": "9781250105608"
+      "isbn13": "9781250105608",
+      "tones": ["atmospheric", "tense"]
     },
     {
       "title": "Big Little Lies",
@@ -758,7 +784,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/19486412-big-little-lies",
       "buyUrl": "https://www.amazon.com/dp/0425274861",
       "coverUrl": "https://m.media-amazon.com/images/I/71RcHc5ZaCL._SX300_.jpg",
-      "isbn13": "9780425274866"
+      "isbn13": "9780425274866",
+      "tones": ["funny", "tense"]
     },
     {
       "title": "The Last Anniversary",
@@ -787,7 +814,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/14327.The_Last_Anniversary",
       "buyUrl": "https://www.amazon.com/dp/0425274853",
       "coverUrl": "https://m.media-amazon.com/images/I/71voq48Vg4L._SX300_.jpg",
-      "isbn13": "9780062008671"
+      "isbn13": "9780062008671",
+      "tones": ["warm", "twisty"]
     },
     {
       "title": "Ordinary Grace",
@@ -814,7 +842,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/16091254-ordinary-grace",
       "buyUrl": "https://www.amazon.com/dp/1451645856",
       "coverUrl": "https://m.media-amazon.com/images/I/81jq+9Bb8VL._SX300_.jpg",
-      "isbn13": "9781663606266"
+      "isbn13": "9781663606266",
+      "tones": ["thoughtful", "atmospheric"]
     },
     {
       "title": "Ready Player One",
@@ -843,7 +872,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/9969571-ready-player-one",
       "buyUrl": "https://www.amazon.com/dp/030788743X",
       "coverUrl": "https://m.media-amazon.com/images/I/71hBXNQxFLL._SX300_.jpg",
-      "isbn13": "9780307887443"
+      "isbn13": "9780307887443",
+      "tones": ["propulsive", "funny"]
     },
     {
       "title": "The Hitchhiker's Guide to the Galaxy (Hitchhiker's Guide to the Galaxy, #1)",
@@ -871,7 +901,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/386162.The_Hitchhiker_s_Guide_to_the_Galaxy",
       "buyUrl": "https://www.amazon.com/dp/0345391802",
       "coverUrl": "https://m.media-amazon.com/images/I/81j4LPfjVWL._SX300_.jpg",
-      "isbn13": "9780671461492"
+      "isbn13": "9780671461492",
+      "tones": ["funny", "propulsive"]
     },
     {
       "title": "Ender's Game (Ender's Game, #1)",
@@ -900,7 +931,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/375802.Ender_s_Game",
       "buyUrl": "https://www.amazon.com/dp/0812550706",
       "coverUrl": "https://books.google.com/books/content?id=Z5QtUpmbcDwC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "isbn13": "9780765317384"
+      "isbn13": "9780765317384",
+      "tones": ["tense", "thoughtful"]
     },
     {
       "title": "All Systems Red (Murderbot Diaries, #1)",
@@ -928,7 +960,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/32758901-all-systems-red",
       "buyUrl": "https://www.amazon.com/dp/0765397536",
       "coverUrl": "https://books.google.com/books/content?id=ZSu2DQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "isbn13": "9780765397522"
+      "isbn13": "9780765397522",
+      "tones": ["funny", "propulsive"]
     },
     {
       "title": "The Long Way to a Small, Angry Planet (Wayfarers, #1)",
@@ -956,7 +989,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/22822858-the-long-way-to-a-small-angry-planet",
       "buyUrl": "https://www.amazon.com/dp/0062444131",
       "coverUrl": "https://books.google.com/books/content?id=dgFxCQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "isbn13": "9781473619777"
+      "isbn13": "9781473619777",
+      "tones": ["warm", "thoughtful"]
     },
     {
       "title": "The House in the Cerulean Sea",
@@ -984,7 +1018,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/45810597-the-house-in-the-cerulean-sea",
       "buyUrl": "https://www.amazon.com/dp/1250217288",
       "coverUrl": "https://m.media-amazon.com/images/I/819iTI3JmkL._SX300_.jpg",
-      "isbn13": "9781250217325"
+      "isbn13": "9781250217325",
+      "tones": ["warm", "funny"]
     },
     {
       "title": "A Memory Called Empire (Teixcalaan, #1)",
@@ -1012,7 +1047,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/37794149-a-memory-called-empire",
       "buyUrl": "https://www.amazon.com/dp/1250186447",
       "coverUrl": "https://m.media-amazon.com/images/I/81XeNwpa8zL._SX300_.jpg",
-      "isbn13": "9781250186454"
+      "isbn13": "9781250186454",
+      "tones": ["thoughtful", "atmospheric"]
     },
     {
       "title": "The First Fifteen Lives of Harry August",
@@ -1041,7 +1077,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/20706317-the-first-fifteen-lives-of-harry-august",
       "buyUrl": "https://www.amazon.com/dp/0316399620",
       "coverUrl": "https://m.media-amazon.com/images/I/A1yrFVo3e-L._SX300_.jpg",
-      "isbn13": "9780316399630"
+      "isbn13": "9780316399630",
+      "tones": ["thoughtful", "propulsive"]
     },
     {
       "title": "This Is How You Lose the Time War",
@@ -1069,7 +1106,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/38527183-this-is-how-you-lose-the-time-war",
       "buyUrl": "https://www.amazon.com/dp/1534430996",
       "coverUrl": "https://m.media-amazon.com/images/I/71w0e6zz+VL._SX300_.jpg",
-      "isbn13": "9781534430990"
+      "isbn13": "9781534430990",
+      "tones": ["atmospheric", "thoughtful"]
     },
     {
       "title": "People We Meet on Vacation",
@@ -1097,7 +1135,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/54189398-people-we-meet-on-vacation",
       "buyUrl": "https://www.amazon.com/dp/0593334191",
       "coverUrl": "https://books.google.com/books/content?id=5fooEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "isbn13": "9780241997031"
+      "isbn13": "9780241997031",
+      "tones": ["warm", "funny"]
     },
     {
       "title": "Beach Read",
@@ -1125,7 +1164,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/52867387-beach-read",
       "buyUrl": "https://www.amazon.com/dp/0593099796",
       "coverUrl": "https://m.media-amazon.com/images/I/71kdiN5Y1YL._SX300_.jpg",
-      "isbn13": "9781984806734"
+      "isbn13": "9781984806734",
+      "tones": ["warm", "funny"]
     },
     {
       "title": "The Dutch House",
@@ -1154,7 +1194,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/44318414-the-dutch-house",
       "buyUrl": "https://www.amazon.com/dp/0062966561",
       "coverUrl": "https://m.media-amazon.com/images/I/91QKBe2VZCL._SX300_.jpg",
-      "isbn13": "9780063023390"
+      "isbn13": "9780063023390",
+      "tones": ["thoughtful", "warm"]
     },
     {
       "title": "The Overstory",
@@ -1182,7 +1223,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/40180098-the-overstory",
       "buyUrl": "https://www.amazon.com/dp/0393356952",
       "coverUrl": "https://m.media-amazon.com/images/I/81m48JcL6yL._SX300_.jpg",
-      "isbn13": "9780393635539"
+      "isbn13": "9780393635539",
+      "tones": ["thoughtful", "atmospheric"]
     },
     {
       "title": "Just Kids",
@@ -1211,7 +1253,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/341879.Just_Kids",
       "buyUrl": "https://www.amazon.com/dp/0060936223",
       "coverUrl": "https://m.media-amazon.com/images/I/61OpgAkTkqL._SX300_.jpg",
-      "isbn13": "9780066211312"
+      "isbn13": "9780066211312",
+      "tones": ["warm", "thoughtful"]
     },
     {
       "title": "Surrender: 40 Songs, One Story",
@@ -1240,7 +1283,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/58951505-surrender",
       "buyUrl": "https://www.amazon.com/dp/0525521836",
       "coverUrl": "https://m.media-amazon.com/images/I/910-EtZIYKL._SX300_.jpg",
-      "isbn13": "9780525521051"
+      "isbn13": "9780525521051",
+      "tones": ["conversational", "thoughtful"]
     },
     {
       "title": "Spare",
@@ -1269,7 +1313,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/60890308-spare",
       "buyUrl": "https://www.amazon.com/dp/0593593030",
       "coverUrl": "https://books.google.com/books/content?id=EpaUEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "isbn13": "9781039003767"
+      "isbn13": "9781039003767",
+      "tones": ["revelatory", "dark"]
     },
     {
       "title": "I'm Glad My Mom Died",
@@ -1298,7 +1343,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/59364173-i-m-glad-my-mom-died",
       "buyUrl": "https://www.amazon.com/dp/1982185821",
       "coverUrl": "https://m.media-amazon.com/images/I/71dSnZu7PeL._SX300_.jpg",
-      "isbn13": "9781982185831"
+      "isbn13": "9781982185831",
+      "tones": ["dark", "funny"]
     },
     {
       "title": "Is Everyone Hanging Out Without Me? (And Other Concerns)",
@@ -1325,7 +1371,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/10335308-is-everyone-hanging-out-without-me-and-other-concerns",
       "buyUrl": "https://www.amazon.com/dp/0307886271",
       "coverUrl": "https://m.media-amazon.com/images/I/91Y+96Afv7L._SX300_.jpg",
-      "isbn13": "9780307886286"
+      "isbn13": "9780307886286",
+      "tones": ["funny", "conversational"]
     },
     {
       "title": "A Man Called Ove",
@@ -1354,7 +1401,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/18774964-a-man-called-ove",
       "buyUrl": "https://www.amazon.com/dp/1476738025",
       "coverUrl": "https://books.google.com/books/content?id=7mtNAgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "isbn13": "9781476738031"
+      "isbn13": "9781476738031",
+      "tones": ["warm", "funny"]
     },
     {
       "title": "Endurance: Shackleton's Incredible Voyage",
@@ -1382,7 +1430,8 @@
       "bookKey": "/works/OL3348071W",
       "goodreadsUrl": "https://www.goodreads.com/book/show/139069.Endurance",
       "buyUrl": "https://www.amazon.com/dp/0465062881",
-      "coverUrl": "https://m.media-amazon.com/images/I/61Gg1Gr2GiL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/61Gg1Gr2GiL._SX300_.jpg",
+      "tones": ["tense", "atmospheric"]
     },
     {
       "title": "The Warmth of Other Suns: The Epic Story of America's Great Migration",
@@ -1410,7 +1459,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/8171378-the-warmth-of-other-suns",
       "buyUrl": "https://www.amazon.com/dp/0679763880",
       "coverUrl": "https://m.media-amazon.com/images/I/91n97GxK59L._SX300_.jpg",
-      "isbn13": "9780679444329"
+      "isbn13": "9780679444329",
+      "tones": ["revelatory", "thoughtful"]
     },
     {
       "title": "I Feel Bad About My Neck: And Other Thoughts on Being a Woman",
@@ -1438,7 +1488,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/16130.I_Feel_Bad_About_My_Neck",
       "buyUrl": "https://www.amazon.com/dp/0307264556",
       "coverUrl": "https://m.media-amazon.com/images/I/610K5vddPoL._SX300_.jpg",
-      "isbn13": "9780307264558"
+      "isbn13": "9780307264558",
+      "tones": ["funny", "conversational"]
     },
     {
       "title": "Hunger: A Memoir of (My) Body",
@@ -1466,7 +1517,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/28818783-hunger",
       "buyUrl": "https://www.amazon.com/dp/0062456113",
       "coverUrl": "https://m.media-amazon.com/images/I/71+Qc8TnHXL._SX300_.jpg",
-      "isbn13": "9781472151117"
+      "isbn13": "9781472151117",
+      "tones": ["revelatory", "bleak"]
     },
     {
       "title": "Conversations with Friends",
@@ -1494,7 +1546,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/32187419-conversations-with-friends",
       "buyUrl": "https://www.amazon.com/dp/0374718865",
       "coverUrl": "https://m.media-amazon.com/images/I/71sjBmOEjlL._SX300_.jpg",
-      "isbn13": "9780451499059"
+      "isbn13": "9780451499059",
+      "tones": ["thoughtful", "atmospheric"]
     },
     {
       "title": "Fourth Wing (The Empyrean, #1)",
@@ -1521,7 +1574,8 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/61431922-fourth-wing",
       "buyUrl": "https://www.amazon.com/dp/1649374046",
       "coverUrl": "https://books.google.com/books/content?id=kU8ZEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "isbn13": "9781649377371"
+      "isbn13": "9781649377371",
+      "tones": ["propulsive", "tense"]
     }
   ]
 }

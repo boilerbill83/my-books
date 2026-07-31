@@ -2,7 +2,7 @@
   "date": "2026-07-31",
   "totalBooks": 1112,
   "qualityScore": {
-    "score": 66,
+    "score": 67,
     "components": [
       {
         "key": "criticalHealth",
@@ -14,7 +14,7 @@
         "key": "completeness",
         "label": "Field Completeness",
         "weight": 0.33,
-        "subscore": 67.24755235392867
+        "subscore": 70.17427549154752
       },
       {
         "key": "foundational",
@@ -45,10 +45,10 @@
         "anchor": "#tab-brokenrefs"
       },
       {
-        "count": 7,
-        "pointsLost": 10.8,
+        "count": 6,
+        "pointsLost": 9.8,
         "name": "Field completeness gaps (all fields)",
-        "description": "Average Quality Score across all 31 tracked fields is 94.3% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
+        "description": "Average Quality Score across all 31 tracked fields is 94.8% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
         "fix": "See the Field Population table, sorted by Quality Score, for every field below 90%.",
         "anchor": "#fieldPopulationSection"
       },
@@ -75,7 +75,7 @@
       "key": "current",
       "label": "Current",
       "actions": [],
-      "score": 66,
+      "score": 67,
       "components": [
         {
           "key": "criticalHealth",
@@ -87,7 +87,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 67.24755235392867
+          "subscore": 70.17427549154752
         },
         {
           "key": "foundational",
@@ -120,7 +120,7 @@
         "Backfill dismissReason labels for the handful of dismissed books that have a reasonCode but no label — a small, finite, fully in-house fix.",
         "Close the last-mile gaps on similarToAuthors/themes/similarToTitles/ratingsCount — a small number of books account for the remaining ~1% below 100%."
       ],
-      "score": 72,
+      "score": 73,
       "components": [
         {
           "key": "criticalHealth",
@@ -132,7 +132,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 71.57545048423232
+          "subscore": 74.50217362185126
         },
         {
           "key": "foundational",
@@ -162,7 +162,7 @@
         "Top of the list: \"Blood, Bones, and Butter\" (cited by 20 different food-memoir books — by far the single highest-leverage addition), \"Kitchen Confidential\" (7), \"The Midrange Theory\" (5), \"Dreamland\" and \"The New Jim Crow\" (4 each).",
         "Each addition directly serves the BBRE-quality goal too — these are books the existing library already implicitly vouches for by citing them repeatedly as \"similar,\" so they're likely to be good recommendations once added, not just data-quality filler."
       ],
-      "score": 76,
+      "score": 77,
       "components": [
         {
           "key": "criticalHealth",
@@ -174,7 +174,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 71.57545048423232
+          "subscore": 74.50217362185126
         },
         {
           "key": "foundational",
@@ -203,7 +203,7 @@
         "Extend Phase 2 to the next ~70 most-cited missing titles (cumulative top 100), reaching 186 of 463 citations resolved (40%).",
         "Beyond this point, each further addition resolves only 1 citation (330 of the 377 unique orphaned titles are cited exactly once) — genuinely diminishing returns, not a reason to stop, but a reason to expect this phase to taper off rather than reach zero."
       ],
-      "score": 80,
+      "score": 81,
       "components": [
         {
           "key": "criticalHealth",
@@ -215,7 +215,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 71.57545048423232
+          "subscore": 74.50217362185126
         },
         {
           "key": "foundational",
@@ -356,12 +356,6 @@
       "critical": false
     },
     {
-      "field": "tones",
-      "scorePct": 83.99280575539568,
-      "rawPct": 83.99280575539568,
-      "critical": false
-    },
-    {
       "field": "publisher",
       "scorePct": 86.87050359712231,
       "rawPct": 86.87050359712231,
@@ -432,6 +426,12 @@
       "scorePct": 99.91007194244604,
       "rawPct": 99.91007194244604,
       "critical": true
+    },
+    {
+      "field": "tones",
+      "scorePct": 99.91007194244604,
+      "rawPct": 99.91007194244604,
+      "critical": false
     },
     {
       "field": "similarToAuthors",

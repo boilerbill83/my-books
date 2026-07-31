@@ -29,7 +29,8 @@
         "The Client"
       ],
       "ratingsCount": 30000,
-      "coverUrl": "https://books.google.com/books/content?id=Ju9PZjAUZ3gC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=Ju9PZjAUZ3gC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["funny", "propulsive"]
     },
     {
       "bookKey": "the-stranger|harlan-coben",
@@ -55,7 +56,8 @@
         "Never Lie"
       ],
       "ratingsCount": 140000,
-      "coverUrl": "https://m.media-amazon.com/images/I/91lUONTMRpL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/91lUONTMRpL._SX300_.jpg",
+      "tones": ["twisty", "tense"]
     },
     {
       "bookKey": "gone-for-good|harlan-coben",
@@ -82,7 +84,8 @@
         "Never Lie"
       ],
       "ratingsCount": 70000,
-      "coverUrl": "https://m.media-amazon.com/images/I/31SCCyblz8L._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/31SCCyblz8L._SX300_.jpg",
+      "tones": ["tense", "twisty"]
     },
     {
       "bookKey": "in-a-dark-dark-wood|ruth-ware",
@@ -109,7 +112,8 @@
         "Behind Closed Doors"
       ],
       "ratingsCount": 350000,
-      "coverUrl": "https://m.media-amazon.com/images/I/A1wotZ7A13L._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/A1wotZ7A13L._SX300_.jpg",
+      "tones": ["atmospheric", "twisty"]
     },
     {
       "bookKey": "the-turn-of-the-key|ruth-ware",
@@ -136,7 +140,8 @@
         "The Silent Patient"
       ],
       "ratingsCount": 200000,
-      "coverUrl": "https://m.media-amazon.com/images/I/81K1CGm9QeL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/81K1CGm9QeL._SX300_.jpg",
+      "tones": ["tense", "twisty"]
     },
     {
       "bookKey": "one-by-one|ruth-ware",
@@ -164,7 +169,8 @@
         "The Chain"
       ],
       "ratingsCount": 120000,
-      "coverUrl": "https://m.media-amazon.com/images/I/91qUuMyfp6L._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/91qUuMyfp6L._SX300_.jpg",
+      "tones": ["tense", "twisty"]
     },
     {
       "bookKey": "the-good-girl|mary-kubica",
@@ -190,7 +196,8 @@
         "Behind Closed Doors"
       ],
       "ratingsCount": 200000,
-      "coverUrl": "https://m.media-amazon.com/images/I/813de+01aPL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/813de+01aPL._SX300_.jpg",
+      "tones": ["dark", "tense"]
     },
     {
       "bookKey": "daisy-darker|alice-feeney",
@@ -216,7 +223,8 @@
         "The Silent Patient"
       ],
       "ratingsCount": 130000,
-      "coverUrl": "https://m.media-amazon.com/images/I/81TlolABzxL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/81TlolABzxL._SX300_.jpg",
+      "tones": ["atmospheric", "twisty"]
     },
     {
       "bookKey": "piranesi|susanna-clarke",
@@ -242,7 +250,8 @@
         "Recursion"
       ],
       "ratingsCount": 650000,
-      "coverUrl": "https://m.media-amazon.com/images/I/91JVtEzgo8L._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/91JVtEzgo8L._SX300_.jpg",
+      "tones": ["atmospheric", "thoughtful"]
     },
     {
       "bookKey": "the-nightingale|kristin-hannah",
@@ -269,7 +278,8 @@
         "Where the Crawdads Sing"
       ],
       "ratingsCount": 1500000,
-      "coverUrl": "https://m.media-amazon.com/images/I/81MSoBp+PAL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/81MSoBp+PAL._SX300_.jpg",
+      "tones": ["tense", "atmospheric"]
     },
     {
       "bookKey": "cloud-cuckoo-land|anthony-doerr",
@@ -299,7 +309,8 @@
         "Where the Crawdads Sing"
       ],
       "ratingsCount": 280000,
-      "coverUrl": "https://m.media-amazon.com/images/I/91IV2caBbpL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/91IV2caBbpL._SX300_.jpg",
+      "tones": ["atmospheric", "thoughtful"]
     },
     {
       "bookKey": "a-gentleman-in-moscow|amor-towles",
@@ -324,7 +335,8 @@
         "The Seven Husbands of Evelyn Hugo"
       ],
       "ratingsCount": 950000,
-      "coverUrl": "https://m.media-amazon.com/images/I/91LkGlWO6eL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/91LkGlWO6eL._SX300_.jpg",
+      "tones": ["warm", "thoughtful"]
     },
     {
       "bookKey": "tomorrow-and-tomorrow-and-tomorrow|gabrielle-zevin-2",
@@ -349,7 +361,8 @@
         "Remarkably Bright Creatures"
       ],
       "ratingsCount": 770000,
-      "coverUrl": "https://m.media-amazon.com/images/I/91Lu2eTVdWL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/91Lu2eTVdWL._SX300_.jpg",
+      "tones": ["warm", "thoughtful"]
     },
     {
       "bookKey": "in-cold-blood|truman-capote",
@@ -376,7 +389,8 @@
         "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road"
       ],
       "ratingsCount": 750000,
-      "coverUrl": "https://m.media-amazon.com/images/I/81eXI+N-KlL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/81eXI+N-KlL._SX300_.jpg",
+      "tones": ["dark", "revelatory"]
     },
     {
       "bookKey": "midnight-in-the-garden-of-good-and-evil|john-berendt",
@@ -402,7 +416,8 @@
         "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road"
       ],
       "ratingsCount": 140000,
-      "coverUrl": "https://m.media-amazon.com/images/I/918XDSzEHCL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/918XDSzEHCL._SX300_.jpg",
+      "tones": ["atmospheric", "dark"]
     },
     {
       "bookKey": "catch-and-kill|ronan-farrow",
@@ -429,7 +444,8 @@
         "Going Infinite: The Rise and Fall of a New Tycoon"
       ],
       "ratingsCount": 90000,
-      "coverUrl": "https://books.google.com/books/content?id=2beeDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=2beeDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "tones": ["revelatory", "tense"]
     },
     {
       "bookKey": "lost-girls|robert-kolker",
@@ -459,7 +475,8 @@
         "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America"
       ],
       "ratingsCount": 35000,
-      "coverUrl": "https://m.media-amazon.com/images/I/81yePlRlH1L._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/81yePlRlH1L._SX300_.jpg",
+      "tones": ["bleak", "revelatory"]
     },
     {
       "bookKey": "going-clear|lawrence-wright",
@@ -486,7 +503,8 @@
         "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America"
       ],
       "ratingsCount": 50000,
-      "coverUrl": "https://m.media-amazon.com/images/I/718dlRt0c1L._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/718dlRt0c1L._SX300_.jpg",
+      "tones": ["revelatory", "dark"]
     },
     {
       "bookKey": "the-boys-in-the-boat|daniel-james-brown",
@@ -513,7 +531,8 @@
         "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission"
       ],
       "ratingsCount": 400000,
-      "coverUrl": "https://m.media-amazon.com/images/I/81uQRVpi2UL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/81uQRVpi2UL._SX300_.jpg",
+      "tones": ["warm", "propulsive"]
     },
     {
       "bookKey": "endurance|alfred-lansing",
@@ -539,7 +558,8 @@
         "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission"
       ],
       "ratingsCount": 120000,
-      "coverUrl": "https://m.media-amazon.com/images/I/61Gg1Gr2GiL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/61Gg1Gr2GiL._SX300_.jpg",
+      "tones": ["tense", "atmospheric"]
     },
     {
       "bookKey": "black-hawk-down|mark-bowden",
@@ -566,7 +586,8 @@
         "The Bomber Mafia: A Dream, a Temptation, and the Longest Night of the Second World War"
       ],
       "ratingsCount": 110000,
-      "coverUrl": "https://m.media-amazon.com/images/I/61GXkUsuC5L._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/61GXkUsuC5L._SX300_.jpg",
+      "tones": ["tense", "dark"]
     },
     {
       "bookKey": "the-spy-and-the-traitor|ben-macintyre",
@@ -592,7 +613,8 @@
         "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession"
       ],
       "ratingsCount": 80000,
-      "coverUrl": "https://m.media-amazon.com/images/I/91j6ME+ohlL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/91j6ME+ohlL._SX300_.jpg",
+      "tones": ["tense", "revelatory"]
     },
     {
       "bookKey": "the-predators-ball|connie-bruck",
@@ -619,7 +641,8 @@
         "Flash Boys: A Wall Street Revolt"
       ],
       "ratingsCount": 8000,
-      "coverUrl": "https://m.media-amazon.com/images/I/61I3e1cnrHL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/61I3e1cnrHL._SX300_.jpg",
+      "tones": ["revelatory", "dark"]
     },
     {
       "bookKey": "the-feather-thief|kirk-wallace-johnson",
@@ -644,7 +667,8 @@
         "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road"
       ],
       "ratingsCount": 90000,
-      "coverUrl": "https://m.media-amazon.com/images/I/813HX0ut3nL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/813HX0ut3nL._SX300_.jpg",
+      "tones": ["revelatory", "twisty"]
     }
   ]
 }

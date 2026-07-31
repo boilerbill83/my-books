@@ -29,7 +29,8 @@
       "buyUrl": "https://www.amazon.com/s?k=The+One+John+Marrs",
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1612001976i/40670312.jpg",
       "ratingsCount": 180000,
-      "isbn13": "9781335002327"
+      "isbn13": "9781335002327",
+      "tones": ["twisty", "tense"]
     },
     {
       "title": "Wrong Place Wrong Time",
@@ -55,7 +56,8 @@
       "buyUrl": "https://www.amazon.com/s?k=Wrong+Place+Wrong+Time+Gillian+McAllister",
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1659457434i/59947696.jpg",
       "ratingsCount": 150000,
-      "isbn13": "9780063252363"
+      "isbn13": "9780063252363",
+      "tones": ["twisty", "propulsive"]
     },
     {
       "title": "The Last Flight",
@@ -80,7 +82,8 @@
       "buyUrl": "https://www.amazon.com/s?k=The+Last+Flight+Julie+Clark",
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1617291197i/52652923.jpg",
       "ratingsCount": 200000,
-      "isbn13": "9781728215730"
+      "isbn13": "9781728215730",
+      "tones": ["tense", "propulsive"]
     },
     {
       "title": "Listen for the Lie",
@@ -107,7 +110,8 @@
       "buyUrl": "https://www.amazon.com/s?k=Listen+for+the+Lie+Amy+Tintera",
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1711398419i/127279000.jpg",
       "ratingsCount": 70000,
-      "isbn13": "9781250880321"
+      "isbn13": "9781250880321",
+      "tones": ["twisty", "funny"]
     },
     {
       "title": "The Only One Left",
@@ -133,7 +137,8 @@
       "buyUrl": "https://www.amazon.com/s?k=The+Only+One+Left+Riley+Sager",
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1668181003i/62703226.jpg",
       "ratingsCount": 120000,
-      "isbn13": "9798217048250"
+      "isbn13": "9798217048250",
+      "tones": ["tense", "twisty"]
     },
     {
       "title": "Starter Villain",
@@ -158,7 +163,8 @@
       "buyUrl": "https://www.amazon.com/s?k=Starter+Villain+John+Scalzi",
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1683564155i/61885029.jpg",
       "ratingsCount": 200000,
-      "isbn13": "9780765389237"
+      "isbn13": "9780765389237",
+      "tones": ["funny", "propulsive"]
     },
     {
       "title": "Wool",
@@ -184,7 +190,8 @@
       "buyUrl": "https://www.amazon.com/s?k=Wool+Hugh+Howey",
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1327889474i/12287209.jpg",
       "ratingsCount": 280000,
-      "isbn13": "9780358447832"
+      "isbn13": "9780358447832",
+      "tones": ["atmospheric", "tense"]
     },
     {
       "title": "The Drift",
@@ -211,7 +218,8 @@
       "buyUrl": "https://www.amazon.com/s?k=The+Drift+C.J.+Tudor",
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1673872095i/60965424.jpg",
       "ratingsCount": 30000,
-      "isbn13": "9780593503812"
+      "isbn13": "9780593503812",
+      "tones": ["tense", "bleak"]
     },
     {
       "title": "The Passengers",
@@ -238,7 +246,8 @@
       "buyUrl": "https://www.amazon.com/s?k=The+Passengers+John+Marrs",
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1545308633i/40718386.jpg",
       "ratingsCount": 100000,
-      "isbn13": "9781984806987"
+      "isbn13": "9781984806987",
+      "tones": ["tense", "twisty"]
     },
     {
       "title": "Several People Are Typing",
@@ -263,7 +272,8 @@
       "buyUrl": "https://www.amazon.com/s?k=Several+People+Are+Typing+Calvin+Kasulke",
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1627964160i/54468020.jpg",
       "ratingsCount": 15000,
-      "isbn13": "9780385547253"
+      "isbn13": "9780385547253",
+      "tones": ["funny", "propulsive"]
     },
     {
       "title": "The Kaiju Preservation Society",
@@ -289,7 +299,8 @@
       "buyUrl": "https://www.amazon.com/s?k=The+Kaiju+Preservation+Society+John+Scalzi",
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1624897234i/57693406.jpg",
       "ratingsCount": 70000,
-      "isbn13": "9781250878533"
+      "isbn13": "9781250878533",
+      "tones": ["funny", "propulsive"]
     },
     {
       "title": "Empire of Pain",
@@ -316,7 +327,8 @@
       "buyUrl": "https://www.amazon.com/s?k=Empire+of+Pain+Patrick+Radden+Keefe",
       "ratingsCount": 120000,
       "isbn13": "9780385545686",
-      "coverUrl": "https://books.google.com/books/content?id=oEGNEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=oEGNEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
+      "tones": ["revelatory", "dark"]
     },
     {
       "title": "The Raging 2020s",
@@ -342,7 +354,8 @@
       "buyUrl": "https://www.amazon.com/s?k=The+Raging+2020s+Alec+Ross",
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1616687137i/56347315.jpg",
       "ratingsCount": 4000,
-      "isbn13": "9781250770936"
+      "isbn13": "9781250770936",
+      "tones": ["thoughtful", "revelatory"]
     }
   ]
 }

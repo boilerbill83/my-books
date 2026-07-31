@@ -38242,7 +38242,8 @@
       "similarToAuthors": [
         "Gabrielle Zevin",
         "Tom Perrotta"
-      ]
+      ],
+      "tones": ["thoughtful", "atmospheric"]
     },
     {
       "title": "Ding Dong: How Ring Went From Shark Tank Reject To Everyone's Front Door",
@@ -38274,7 +38275,8 @@
         "Phil Knight",
         "Marc Randolph",
         "Brad Stone"
-      ]
+      ],
+      "tones": ["conversational", "warm"]
     },
     {
       "title": "Thrilling Tales of Modern Men: Stories",
@@ -38304,7 +38306,8 @@
       "similarToAuthors": [
         "Seth Rogen",
         "Chuck Klosterman"
-      ]
+      ],
+      "tones": ["funny", "conversational"]
     },
     {
       "title": "The American Way of Killing: The Invention of an Epidemic",
@@ -38337,7 +38340,8 @@
         "Daniel Kahneman",
         "Nassim Taleb",
         "Dan Ariely"
-      ]
+      ],
+      "tones": ["thoughtful", "revelatory"]
     },
     {
       "title": "Endurance: Shackleton's Incredible Voyage",
@@ -38370,7 +38374,8 @@
         "Jon Krakauer",
         "David Grann",
         "Laura Hillenbrand"
-      ]
+      ],
+      "tones": ["tense", "atmospheric"]
     },
     {
       "bookKey": "up-on-cove-mountain-adventure-tragedy-and-a-quest-for-meaning-on-the-appalachian-trail|earl-swift",
@@ -38392,7 +38397,8 @@
       "similarToAuthors": [
         "Jon Krakauer",
         "David Grann"
-      ]
+      ],
+      "tones": ["tense", "atmospheric"]
     },
     {
       "bookKey": "how-to-not-die-in-prison-a-survival-guide|taylor-sheridan",
@@ -38413,7 +38419,8 @@
       "dnf": false,
       "similarToAuthors": [
         "Ted Conover"
-      ]
+      ],
+      "tones": ["dark", "funny"]
     },
     {
       "bookKey": "the-munich-affair|james-patterson",
@@ -38437,7 +38444,8 @@
         "Michael Connelly",
         "Lee Child",
         "David Baldacci"
-      ]
+      ],
+      "tones": ["twisty", "tense"]
     },
     {
       "bookKey": "this-book-made-me-think-of-you|libby-page",
@@ -38459,7 +38467,8 @@
       "similarToAuthors": [
         "Taylor Jenkins Reid",
         "Emma Straub"
-      ]
+      ],
+      "tones": ["warm", "thoughtful"]
     },
     {
       "bookKey": "operation-bounce-house|matt-dinniman",
@@ -38481,7 +38490,8 @@
       "similarToAuthors": [
         "Andy Weir",
         "Max Brooks"
-      ]
+      ],
+      "tones": ["propulsive", "funny"]
     },
     {
       "bookKey": "culpability|bruce-holsinger",
@@ -38503,7 +38513,8 @@
       "similarToAuthors": [
         "Gary Shteyngart",
         "Tom Perrotta"
-      ]
+      ],
+      "tones": ["thoughtful", "tense"]
     },
     {
       "bookKey": "rock-a-mainstream-alternative-history-of-alternative-mainstream-music|chuck-klosterman",
@@ -38525,7 +38536,8 @@
       "similarToAuthors": [
         "Jeff Pearlman",
         "Bill Bryson"
-      ]
+      ],
+      "tones": ["thoughtful", "conversational"]
     },
     {
       "title": "Cancel Me If You Can",
@@ -38546,7 +38558,8 @@
       "similarToAuthors": [
         "Phil Knight",
         "Jeff Pearlman"
-      ]
+      ],
+      "tones": ["conversational", "funny"]
     }
   ],
   "indexes": {
