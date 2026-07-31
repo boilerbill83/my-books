@@ -12745,7 +12745,7 @@
         "funny",
         "character-driven"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=zkpqfz00tAcC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -12787,7 +12787,7 @@
         "investigative",
         "procedural"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "good-material|dolly-alderton",
@@ -12825,7 +12825,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=Bxpn0AEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -12864,7 +12864,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=INP0EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -12902,7 +12902,7 @@
         "atmospheric",
         "bleak"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=ifn3EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -12942,7 +12942,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=Wvw_0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -12984,7 +12984,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1699723282l/199928985._SY475_.jpg"
     },
     {
@@ -13025,7 +13025,7 @@
         "gritty",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1440920054l/26191204._SY475_.jpg"
     },
     {
@@ -13068,7 +13068,7 @@
         "dark",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1730167869l/33853767._SY475_.jpg"
     },
     {
@@ -13111,7 +13111,7 @@
         "dark",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1652805068l/59107997.jpg"
     },
     {
@@ -13131,8 +13131,9 @@
       "year": 2024,
       "type": "nonfiction",
       "themes": [
-        "memoir",
-        "narrative nonfiction"
+        "music history",
+        "narrative nonfiction",
+        "memoir"
       ],
       "similarToTitles": [
         "The Storyteller: Tales of Life and Music",
@@ -13150,7 +13151,7 @@
         "character-driven",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=0N3f0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -13191,7 +13192,7 @@
         "procedural",
         "compulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1328328180l/8341825.jpg"
     },
     {
@@ -13233,7 +13234,7 @@
         "tense",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=OytAEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -13272,7 +13273,7 @@
         "atmospheric",
         "satirical"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=psQd0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -13292,8 +13293,7 @@
       "year": 2020,
       "themes": [
         "literary",
-        "historical",
-        "contemporary"
+        "historical"
       ],
       "similarToTitles": [
         "Where the Crawdads Sing",
@@ -13315,7 +13315,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1582857542l/51851615._SY475_.jpg"
     },
     {
