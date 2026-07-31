@@ -27,7 +27,7 @@
       "buyUrl": "https://www.amazon.com/dp/0393324818",
       "coverUrl": "https://m.media-amazon.com/images/I/61Sr5X1vAQL._SX300_.jpg",
       "isbn13": "9780393057652",
-      "tones": ["thoughtful", "revelatory", "dense"]
+      "tones": ["thoughtful", "revelatory"]
     },
     {
       "title": "Boomerang: Travels in the New Third World",
@@ -55,7 +55,7 @@
       "buyUrl": "https://www.amazon.com/dp/0393343448",
       "coverUrl": "https://m.media-amazon.com/images/I/9197P6Wt7qL._SX300_.jpg",
       "isbn13": "9780393082241",
-      "tones": ["revelatory", "dense", "funny"]
+      "tones": ["revelatory", "funny"]
     },
     {
       "title": "The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics",
@@ -203,7 +203,7 @@
       "buyUrl": "https://www.amazon.com/dp/0385541690",
       "coverUrl": "https://m.media-amazon.com/images/I/71rAyRvoeyL._SX300_.jpg",
       "isbn13": "9780385534253",
-      "tones": ["revelatory", "gritty"]
+      "tones": ["dark", "revelatory", "twisty"]
     },
     {
       "title": "Empire of Pain: The Secret History of the Sackler Dynasty",
@@ -261,7 +261,7 @@
       "buyUrl": "https://www.amazon.com/dp/0316017930",
       "coverUrl": "https://books.google.com/books/content?id=ialrgIT41OAC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "isbn13": "9780141903491",
-      "tones": ["thoughtful", "revelatory", "dense"]
+      "tones": ["thoughtful", "revelatory"]
     },
     {
       "title": "Blink: The Power of Thinking Without Thinking",
@@ -288,7 +288,7 @@
       "buyUrl": "https://www.amazon.com/dp/0316172324",
       "coverUrl": "https://m.media-amazon.com/images/I/71gt0bpGd3L._SX300_.jpg",
       "isbn13": "9780141035284",
-      "tones": ["thoughtful", "revelatory", "dense"]
+      "tones": ["thoughtful", "revelatory"]
     },
     {
       "title": "David and Goliath: Underdogs, Misfits, and the Art of Battling Giants",
@@ -316,7 +316,7 @@
       "buyUrl": "https://www.amazon.com/dp/0316204374",
       "coverUrl": "https://m.media-amazon.com/images/I/71lDO3J7DUL._SX300_.jpg",
       "isbn13": "9780316204385",
-      "tones": ["thoughtful", "revelatory", "dense"]
+      "tones": ["thoughtful", "revelatory"]
     },
     {
       "title": "What the Dog Saw: And Other Adventures",
@@ -374,7 +374,7 @@
       "buyUrl": "https://www.amazon.com/dp/152473165X",
       "coverUrl": "https://m.media-amazon.com/images/I/81P1xvxdBkL._SX300_.jpg",
       "isbn13": "9781524731663",
-      "tones": ["dark", "revelatory", "investigative"]
+      "tones": ["dark", "revelatory"]
     },
     {
       "title": "Catch and Kill: Lies, Spies, and a Conspiracy to Protect Predators",
@@ -578,7 +578,7 @@
       "buyUrl": "https://www.amazon.com/dp/031630630X",
       "coverUrl": "https://m.media-amazon.com/images/I/81+0aIdJMML._SX300_.jpg",
       "isbn13": "9780316306072",
-      "tones": ["funny", "satirical"]
+      "tones": ["funny", "conversational"]
     },
     {
       "title": "The Lincoln Lawyer (Mickey Haller, #1)",
@@ -638,7 +638,7 @@
       "buyUrl": "https://www.amazon.com/dp/1984881663",
       "coverUrl": "https://m.media-amazon.com/images/I/91-ir8hlcGL._SX300_.jpg",
       "isbn13": "9781984881687",
-      "tones": ["compulsive", "twisty"]
+      "tones": ["tense", "dark"]
     },
     {
       "title": "Anatomy of a Scandal",
@@ -667,7 +667,7 @@
       "buyUrl": "https://www.amazon.com/dp/1501172387",
       "coverUrl": "https://m.media-amazon.com/images/I/71TVAMGVB5L._SX300_.jpg",
       "isbn13": "9781501172182",
-      "tones": ["twisty", "compulsive", "procedural", "thoughtful"]
+      "tones": ["twisty", "procedural", "thoughtful"]
     },
     {
       "title": "A Good Girl's Guide to Murder (A Good Girl's Guide to Murder, #1)",
@@ -755,7 +755,7 @@
       "buyUrl": "https://www.amazon.com/dp/1250105622",
       "coverUrl": "https://m.media-amazon.com/images/I/91fso2RJWpL._SX300_.jpg",
       "isbn13": "9781250105608",
-      "tones": ["gritty", "compulsive"]
+      "tones": ["tense", "atmospheric"]
     },
     {
       "title": "Big Little Lies",
@@ -785,7 +785,7 @@
       "buyUrl": "https://www.amazon.com/dp/0425274861",
       "coverUrl": "https://m.media-amazon.com/images/I/71RcHc5ZaCL._SX300_.jpg",
       "isbn13": "9780425274866",
-      "tones": ["funny", "compulsive", "twisty"]
+      "tones": ["tense", "funny"]
     },
     {
       "title": "The Last Anniversary",
@@ -815,7 +815,7 @@
       "buyUrl": "https://www.amazon.com/dp/0425274853",
       "coverUrl": "https://m.media-amazon.com/images/I/71voq48Vg4L._SX300_.jpg",
       "isbn13": "9780062008671",
-      "tones": ["twisty", "heartwarming", "compulsive"]
+      "tones": ["twisty", "heartwarming"]
     },
     {
       "title": "Ordinary Grace",
@@ -873,7 +873,7 @@
       "buyUrl": "https://www.amazon.com/dp/030788743X",
       "coverUrl": "https://m.media-amazon.com/images/I/71hBXNQxFLL._SX300_.jpg",
       "isbn13": "9780307887443",
-      "tones": ["propulsive", "funny"]
+      "tones": ["funny", "propulsive"]
     },
     {
       "title": "The Hitchhiker's Guide to the Galaxy (Hitchhiker's Guide to the Galaxy, #1)",
@@ -1107,7 +1107,7 @@
       "buyUrl": "https://www.amazon.com/dp/1534430996",
       "coverUrl": "https://m.media-amazon.com/images/I/71w0e6zz+VL._SX300_.jpg",
       "isbn13": "9781534430990",
-      "tones": ["atmospheric", "thoughtful", "heartwarming"]
+      "tones": ["atmospheric", "thoughtful"]
     },
     {
       "title": "People We Meet on Vacation",
@@ -1136,7 +1136,7 @@
       "buyUrl": "https://www.amazon.com/dp/0593334191",
       "coverUrl": "https://books.google.com/books/content?id=5fooEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "isbn13": "9780241997031",
-      "tones": ["heartwarming", "funny"]
+      "tones": ["funny", "heartwarming"]
     },
     {
       "title": "Beach Read",
@@ -1224,7 +1224,7 @@
       "buyUrl": "https://www.amazon.com/dp/0393356952",
       "coverUrl": "https://m.media-amazon.com/images/I/81m48JcL6yL._SX300_.jpg",
       "isbn13": "9780393635539",
-      "tones": ["atmospheric", "thoughtful"]
+      "tones": ["thoughtful", "atmospheric"]
     },
     {
       "title": "Just Kids",
@@ -1284,7 +1284,7 @@
       "buyUrl": "https://www.amazon.com/dp/0525521836",
       "coverUrl": "https://m.media-amazon.com/images/I/910-EtZIYKL._SX300_.jpg",
       "isbn13": "9780525521051",
-      "tones": ["thoughtful", "poignant"]
+      "tones": ["thoughtful", "inspiring"]
     },
     {
       "title": "Spare",
@@ -1547,7 +1547,7 @@
       "buyUrl": "https://www.amazon.com/dp/0374718865",
       "coverUrl": "https://m.media-amazon.com/images/I/71sjBmOEjlL._SX300_.jpg",
       "isbn13": "9780451499059",
-      "tones": ["thoughtful", "heartwarming"]
+      "tones": ["thoughtful", "atmospheric", "heartwarming"]
     },
     {
       "title": "Fourth Wing (The Empyrean, #1)",

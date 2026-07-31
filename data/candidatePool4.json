@@ -110,7 +110,7 @@
       ],
       "ratingsCount": 120000,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1555616163i/43834909.jpg",
-      "tones": ["bleak", "gritty"]
+      "tones": ["bleak", "atmospheric", "gritty"]
     },
     {
       "bookKey": "the-lincoln-lawyer|michael-connelly",
@@ -138,7 +138,7 @@
       ],
       "ratingsCount": 260000,
       "coverUrl": "https://books.google.com/books/content?id=bZoibWwaSNoC&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["propulsive", "twisty", "procedural"]
+      "tones": ["propulsive", "twisty"]
     },
     {
       "bookKey": "my-sister-s-grave|robert-dugoni",
@@ -165,7 +165,7 @@
       ],
       "ratingsCount": 80000,
       "coverUrl": "https://books.google.com/books/content?id=_4r7oAEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["dark", "procedural"]
+      "tones": ["tense", "dark"]
     },
     {
       "bookKey": "everywhere-that-mary-went|lisa-scottoline",
@@ -192,7 +192,7 @@
       ],
       "ratingsCount": 15000,
       "coverUrl": "https://books.google.com/books/content?id=zLmKh8BZFsQC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["procedural", "compulsive"]
+      "tones": ["tense", "procedural"]
     },
     {
       "bookKey": "culpability|bruce-holsinger-2",
@@ -220,7 +220,7 @@
       ],
       "ratingsCount": 8000,
       "coverUrl": "https://books.google.com/books/content?id=61c_EQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["thoughtful", "procedural"]
+      "tones": ["tense", "thoughtful"]
     },
     {
       "bookKey": "the-gone-world|tom-sweterlitsch",
@@ -409,7 +409,7 @@
       ],
       "ratingsCount": 15000,
       "coverUrl": "https://books.google.com/books/content?id=I8nOEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["twisty", "tense", "compulsive"]
+      "tones": ["twisty", "tense"]
     },
     {
       "bookKey": "the-twyford-code|janice-hallett",
@@ -518,7 +518,7 @@
       ],
       "ratingsCount": 290000,
       "coverUrl": "https://m.media-amazon.com/images/I/81P1xvxdBkL._SX300_.jpg",
-      "tones": ["dark", "revelatory", "investigative", "dense"]
+      "tones": ["dark", "revelatory"]
     },
     {
       "bookKey": "barbarians-at-the-gate|bryan-burrough",
@@ -570,7 +570,7 @@
       ],
       "ratingsCount": 65000,
       "coverUrl": "https://m.media-amazon.com/images/I/81ybGr83+8L._SX300_.jpg",
-      "tones": ["revelatory", "dense"]
+      "tones": ["revelatory", "compulsive"]
     },
     {
       "bookKey": "when-genius-failed|roger-lowenstein",
@@ -597,7 +597,7 @@
       ],
       "ratingsCount": 36000,
       "coverUrl": "https://m.media-amazon.com/images/I/71IuJdGPf4L._SX300_.jpg",
-      "tones": ["revelatory", "dense"]
+      "tones": ["revelatory", "thoughtful"]
     },
     {
       "bookKey": "more-money-than-god|sebastian-mallaby",
@@ -622,7 +622,7 @@
       ],
       "ratingsCount": 10000,
       "coverUrl": "https://m.media-amazon.com/images/I/91OZtXVKK1L._SX300_.jpg",
-      "tones": ["revelatory", "thoughtful", "dense"]
+      "tones": ["revelatory", "thoughtful"]
     },
     {
       "bookKey": "killers-of-the-flower-moon|david-grann",

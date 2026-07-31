@@ -83,7 +83,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1617291197i/52652923.jpg",
       "ratingsCount": 200000,
       "isbn13": "9781728215730",
-      "tones": ["propulsive", "tense", "poignant"]
+      "tones": ["tense", "poignant"]
     },
     {
       "title": "Listen for the Lie",
@@ -191,7 +191,7 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1327889474i/12287209.jpg",
       "ratingsCount": 280000,
       "isbn13": "9780358447832",
-      "tones": ["atmospheric", "compulsive"]
+      "tones": ["atmospheric", "twisty"]
     },
     {
       "title": "The Drift",

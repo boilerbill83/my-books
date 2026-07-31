@@ -28,7 +28,7 @@
       ],
       "ratingsCount": 30000,
       "coverUrl": "https://books.google.com/books/content?id=YkGREAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["twisty", "procedural"]
+      "tones": ["tense", "twisty"]
     },
     {
       "bookKey": "motion-to-suppress|perri-o-shaughnessy",
@@ -55,7 +55,7 @@
       ],
       "ratingsCount": 5000,
       "coverUrl": "https://books.google.com/books/content?id=aLyt6LL5SFQC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["tense", "thoughtful", "procedural"]
+      "tones": ["tense", "thoughtful"]
     },
     {
       "bookKey": "invasion-of-privacy|perri-o-shaughnessy",
@@ -83,7 +83,7 @@
       ],
       "ratingsCount": 4000,
       "coverUrl": "https://books.google.com/books/content?id=txbl6TAEcKMC&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["twisty", "procedural"]
+      "tones": ["tense", "twisty"]
     },
     {
       "bookKey": "blood-defense|marcia-clark",
@@ -110,7 +110,7 @@
       ],
       "ratingsCount": 7000,
       "coverUrl": "https://books.google.com/books/content?id=H2J1jgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["propulsive", "tense", "procedural"]
+      "tones": ["propulsive", "tense"]
     },
     {
       "bookKey": "defending-jacob|william-landay",
@@ -137,7 +137,7 @@
       ],
       "ratingsCount": 380000,
       "coverUrl": "https://books.google.com/books/content?id=sTaLDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["procedural", "dark"]
+      "tones": ["procedural", "twisty"]
     },
     {
       "bookKey": "the-good-daughter|karin-slaughter",
@@ -165,7 +165,7 @@
       ],
       "ratingsCount": 70000,
       "coverUrl": "https://books.google.com/books/content?id=hQrYswEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["tense", "dark", "procedural"]
+      "tones": ["tense", "dark"]
     },
     {
       "bookKey": "pretty-girls|karin-slaughter",
@@ -273,7 +273,7 @@
       ],
       "ratingsCount": 20000,
       "coverUrl": "https://books.google.com/books/content?id=nifqDwAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["twisty", "procedural"]
+      "tones": ["tense", "twisty"]
     },
     {
       "bookKey": "the-7-deaths-of-evelyn-hardcastle|stuart-turton",
@@ -327,7 +327,7 @@
       ],
       "ratingsCount": 20000,
       "coverUrl": "https://books.google.com/books/content?id=kMkTuwEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["twisty", "tense", "compulsive"]
+      "tones": ["twisty", "tense"]
     },
     {
       "bookKey": "all-systems-red|martha-wells",
@@ -407,7 +407,7 @@
       ],
       "ratingsCount": 20000,
       "coverUrl": "https://books.google.com/books/content?id=xj3dEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["thoughtful", "atmospheric", "revelatory"]
+      "tones": ["thoughtful", "atmospheric"]
     },
     {
       "bookKey": "book-lovers|emily-henry",
@@ -644,7 +644,7 @@
       ],
       "ratingsCount": 200000,
       "coverUrl": "https://books.google.com/books/content?id=v9LMDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["thoughtful", "atmospheric", "gritty"]
+      "tones": ["thoughtful", "atmospheric"]
     },
     {
       "bookKey": "destiny-of-the-republic|candice-millard",

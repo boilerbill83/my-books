@@ -30,7 +30,7 @@
       ],
       "ratingsCount": 30000,
       "coverUrl": "https://books.google.com/books/content?id=Ju9PZjAUZ3gC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["funny", "propulsive", "procedural"]
+      "tones": ["funny", "propulsive"]
     },
     {
       "bookKey": "the-stranger|harlan-coben",
@@ -57,7 +57,7 @@
       ],
       "ratingsCount": 140000,
       "coverUrl": "https://m.media-amazon.com/images/I/91lUONTMRpL._SX300_.jpg",
-      "tones": ["twisty", "tense", "compulsive"]
+      "tones": ["twisty", "tense"]
     },
     {
       "bookKey": "gone-for-good|harlan-coben",
@@ -85,7 +85,7 @@
       ],
       "ratingsCount": 70000,
       "coverUrl": "https://m.media-amazon.com/images/I/31SCCyblz8L._SX300_.jpg",
-      "tones": ["twisty", "tense", "heartwarming"]
+      "tones": ["twisty", "tense"]
     },
     {
       "bookKey": "in-a-dark-dark-wood|ruth-ware",
@@ -170,7 +170,7 @@
       ],
       "ratingsCount": 120000,
       "coverUrl": "https://m.media-amazon.com/images/I/91qUuMyfp6L._SX300_.jpg",
-      "tones": ["twisty", "gritty"]
+      "tones": ["twisty", "tense"]
     },
     {
       "bookKey": "the-good-girl|mary-kubica",
@@ -279,7 +279,7 @@
       ],
       "ratingsCount": 1500000,
       "coverUrl": "https://m.media-amazon.com/images/I/81MSoBp+PAL._SX300_.jpg",
-      "tones": ["gritty", "compulsive"]
+      "tones": ["atmospheric", "gritty"]
     },
     {
       "bookKey": "cloud-cuckoo-land|anthony-doerr",
@@ -310,7 +310,7 @@
       ],
       "ratingsCount": 280000,
       "coverUrl": "https://m.media-amazon.com/images/I/91IV2caBbpL._SX300_.jpg",
-      "tones": ["atmospheric", "thoughtful", "gritty"]
+      "tones": ["atmospheric", "thoughtful"]
     },
     {
       "bookKey": "a-gentleman-in-moscow|amor-towles",
@@ -417,7 +417,7 @@
       ],
       "ratingsCount": 140000,
       "coverUrl": "https://m.media-amazon.com/images/I/918XDSzEHCL._SX300_.jpg",
-      "tones": ["dark", "atmospheric", "gritty"]
+      "tones": ["dark", "atmospheric"]
     },
     {
       "bookKey": "catch-and-kill|ronan-farrow",
@@ -559,7 +559,7 @@
       ],
       "ratingsCount": 120000,
       "coverUrl": "https://m.media-amazon.com/images/I/61Gg1Gr2GiL._SX300_.jpg",
-      "tones": ["inspiring", "thoughtful"]
+      "tones": ["atmospheric", "inspiring"]
     },
     {
       "bookKey": "black-hawk-down|mark-bowden",
@@ -642,7 +642,7 @@
       ],
       "ratingsCount": 8000,
       "coverUrl": "https://m.media-amazon.com/images/I/61I3e1cnrHL._SX300_.jpg",
-      "tones": ["dark", "revelatory", "dense"]
+      "tones": ["dark", "revelatory"]
     },
     {
       "bookKey": "the-feather-thief|kirk-wallace-johnson",

@@ -49,8 +49,7 @@
       "tones": [
         "twisty",
         "tense",
-        "procedural",
-        "compulsive"
+        "procedural"
       ],
       "top10": true
     },
@@ -174,7 +173,6 @@
       "tones": [
         "dark",
         "gritty",
-        "propulsive",
         "tense"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1765823558l/240377749._SY475_.jpg"
@@ -336,7 +334,7 @@
       "ratingsCount": 22000,
       "tones": [
         "conversational",
-        "inspiring"
+        "dense"
       ],
       "coverUrl": "https://m.media-amazon.com/images/I/61S4h+a8PRL._SX300_.jpg"
     },
@@ -535,8 +533,8 @@
       ],
       "ratingsCount": 18000,
       "tones": [
-        "procedural",
         "propulsive",
+        "procedural",
         "tense"
       ],
       "coverUrl": "https://m.media-amazon.com/images/I/81S-zsvHfhL._SX300_.jpg"
@@ -732,6 +730,7 @@
       "ratingsCount": 2500,
       "tones": [
         "gritty",
+        "propulsive",
         "tense"
       ],
       "coverUrl": "https://m.media-amazon.com/images/I/81eCWsc+T5L._SX300_.jpg"
@@ -888,7 +887,7 @@
       "tones": [
         "twisty",
         "tense",
-        "compulsive"
+        "dark"
       ],
       "coverUrl": "https://m.media-amazon.com/images/I/71KwUwAGKlL._SX300_.jpg"
     },
@@ -967,7 +966,8 @@
       "ratingsCount": 120000,
       "tones": [
         "twisty",
-        "compulsive"
+        "propulsive",
+        "dark"
       ]
     },
     {
@@ -1081,10 +1081,10 @@
       ],
       "ratingsCount": 12000,
       "tones": [
-        "character-driven",
         "atmospheric",
         "bleak",
-        "poignant"
+        "poignant",
+        "funny"
       ],
       "top10": true
     },
@@ -1242,7 +1242,6 @@
       "type": "fiction",
       "tones": [
         "investigative",
-        "compulsive",
         "funny"
       ],
       "allTimeFave": true,
@@ -1282,8 +1281,8 @@
       ],
       "ratingsCount": 6000,
       "tones": [
-        "procedural",
         "propulsive",
+        "procedural",
         "tense"
       ],
       "coverUrl": "https://m.media-amazon.com/images/I/81cR0jlGNFL._SX300_.jpg"
@@ -1323,6 +1322,7 @@
       "ratingsCount": 35000,
       "tones": [
         "slow-burn",
+        "atmospheric",
         "bleak",
         "poignant"
       ],
@@ -1438,7 +1438,7 @@
       "tones": [
         "twisty",
         "tense",
-        "compulsive"
+        "propulsive"
       ],
       "coverUrl": "https://m.media-amazon.com/images/I/81WI7ejwr2L._SX300_.jpg"
     },
@@ -1477,6 +1477,7 @@
       "ratingsCount": 2500,
       "tones": [
         "twisty",
+        "propulsive",
         "procedural"
       ],
       "coverUrl": "https://m.media-amazon.com/images/I/71vfuGmGkAL._SX300_.jpg"
@@ -1636,7 +1637,8 @@
       "type": "fiction",
       "tones": [
         "twisty",
-        "compulsive"
+        "tense",
+        "dark"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1731420500l/221144907._SY475_.jpg"
     },
@@ -1677,7 +1679,7 @@
       "tones": [
         "twisty",
         "tense",
-        "compulsive"
+        "dark"
       ],
       "top10": true
     },
@@ -1712,8 +1714,8 @@
       ],
       "ratingsCount": 25000,
       "tones": [
-        "dense",
-        "investigative"
+        "investigative",
+        "dense"
       ],
       "coverUrl": "https://m.media-amazon.com/images/I/71UsOBohZeL._SX300_.jpg"
     },
@@ -1949,6 +1951,7 @@
       "ratingsCount": 18000,
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "coverUrl": "https://m.media-amazon.com/images/I/91DXVH3TqRL._SX300_.jpg"
@@ -2220,7 +2223,6 @@
       ],
       "type": "fiction",
       "tones": [
-        "tense",
         "twisty",
         "dark"
       ],
@@ -2389,7 +2391,6 @@
       "tones": [
         "procedural",
         "propulsive",
-        "tense",
         "twisty"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743131057l/229005082._SY475_.jpg"
@@ -2428,8 +2429,8 @@
       ],
       "ratingsCount": 22000,
       "tones": [
-        "gritty",
-        "compulsive"
+        "dark",
+        "atmospheric"
       ],
       "coverUrl": "https://m.media-amazon.com/images/I/716TrbmqWaL._SX300_.jpg"
     },
@@ -2508,7 +2509,8 @@
       "ratingsCount": 150000,
       "tones": [
         "twisty",
-        "compulsive"
+        "propulsive",
+        "dark"
       ],
       "top10": true
     },
@@ -2584,8 +2586,8 @@
       "ratingsCount": 22000,
       "tones": [
         "twisty",
-        "tense",
-        "compulsive"
+        "propulsive",
+        "tense"
       ],
       "coverUrl": "https://m.media-amazon.com/images/I/81CRxjuTB6L._SX300_.jpg"
     },
@@ -2776,7 +2778,6 @@
       "ratingsCount": 150000,
       "tones": [
         "slow-burn",
-        "character-driven",
         "heartwarming",
         "atmospheric"
       ],
@@ -2814,7 +2815,7 @@
       "ratingsCount": 55000,
       "tones": [
         "investigative",
-        "dense"
+        "dark"
       ],
       "coverUrl": "https://m.media-amazon.com/images/I/51jEG+V+NrL._SX300_.jpg"
     },
@@ -2852,8 +2853,8 @@
       ],
       "ratingsCount": 12000,
       "tones": [
-        "procedural",
         "propulsive",
+        "procedural",
         "tense"
       ],
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1644100235i/58920609.jpg"
@@ -2931,7 +2932,7 @@
       "tones": [
         "atmospheric",
         "twisty",
-        "heartwarming"
+        "dark"
       ]
     },
     {
@@ -3010,7 +3011,7 @@
       "tones": [
         "twisty",
         "tense",
-        "compulsive"
+        "propulsive"
       ]
     },
     {
@@ -3325,7 +3326,7 @@
         "propulsive",
         "tense",
         "twisty",
-        "gritty"
+        "revelatory"
       ],
       "coverUrl": "https://m.media-amazon.com/images/I/81S6PQlkAfL._SX300_.jpg"
     },
@@ -3641,7 +3642,7 @@
       "ratingsCount": 42000,
       "tones": [
         "investigative",
-        "inspiring"
+        "dense"
       ],
       "top10": true
     },
@@ -3723,8 +3724,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "dark",
-        "gritty"
+        "gritty",
+        "dark"
       ],
       "allTimeFave": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1573874784l/51182571.jpg"
@@ -3845,7 +3846,7 @@
       "tones": [
         "tense",
         "twisty",
-        "compulsive"
+        "dark"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1737698524l/219234429._SY475_.jpg"
     },
@@ -4237,6 +4238,7 @@
       "ratingsCount": 12000,
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "coverUrl": "https://books.google.com/books/content?id=75RVEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -4352,7 +4354,6 @@
       "tones": [
         "heartwarming",
         "slow-burn",
-        "character-driven",
         "atmospheric"
       ],
       "coverUrl": "https://books.google.com/books/content?id=0j1MEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -4435,7 +4436,7 @@
       "type": "fiction",
       "tones": [
         "twisty",
-        "compulsive"
+        "dark"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1701937124l/193993695.jpg"
     },
@@ -4594,7 +4595,6 @@
       "type": "fiction",
       "tones": [
         "procedural",
-        "tense",
         "dark"
       ],
       "allTimeFave": true
@@ -4925,8 +4925,8 @@
       "type": "fiction",
       "tones": [
         "funny",
-        "slow-burn",
-        "satirical"
+        "satirical",
+        "slow-burn"
       ],
       "allTimeFave": true
     },
@@ -5090,7 +5090,7 @@
       "type": "nonfiction",
       "tones": [
         "investigative",
-        "thoughtful"
+        "dense"
       ],
       "allTimeFave": true
     },
@@ -5212,6 +5212,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant",
         "investigative"
       ],
@@ -5254,8 +5255,7 @@
       "type": "nonfiction",
       "tones": [
         "investigative",
-        "revelatory",
-        "dense"
+        "revelatory"
       ],
       "allTimeFave": true
     },
@@ -5380,6 +5380,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant",
         "funny"
       ],
@@ -5506,8 +5507,8 @@
       "type": "nonfiction",
       "tones": [
         "investigative",
-        "revelatory",
-        "dense"
+        "dark",
+        "revelatory"
       ],
       "allTimeFave": true
     },
@@ -5547,6 +5548,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "allTimeFave": true
@@ -5629,6 +5631,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "allTimeFave": true
@@ -5874,6 +5877,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "allTimeFave": true
@@ -6038,7 +6042,6 @@
       "type": "fiction",
       "tones": [
         "dark",
-        "tense",
         "atmospheric"
       ],
       "allTimeFave": true
@@ -6327,8 +6330,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dense",
-        "poignant"
+        "character-driven",
+        "dense"
       ],
       "allTimeFave": true
     },
@@ -6410,6 +6413,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant",
         "bleak"
       ],
@@ -6494,8 +6498,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "propulsive",
         "compulsive",
+        "propulsive",
         "twisty",
         "dark"
       ],
@@ -6786,6 +6790,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "allTimeFave": true
@@ -7117,7 +7122,7 @@
       "type": "nonfiction",
       "tones": [
         "dark",
-        "thoughtful"
+        "dense"
       ],
       "allTimeFave": true
     },
@@ -7281,7 +7286,7 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "tense"
+        "lyrical"
       ],
       "allTimeFave": true
     },
@@ -7321,6 +7326,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "allTimeFave": true
@@ -7362,6 +7368,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "allTimeFave": true
@@ -7401,6 +7408,7 @@
       ],
       "type": "nonfiction",
       "tones": [
+        "character-driven",
         "dense",
         "heartwarming",
         "funny"
@@ -7565,6 +7573,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "allTimeFave": true
@@ -7606,7 +7615,6 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "heartwarming",
         "nonlinear"
       ],
@@ -7688,8 +7696,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "slow-burn",
         "character-driven",
+        "slow-burn",
         "atmospheric"
       ],
       "allTimeFave": true
@@ -7730,7 +7738,6 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "heartwarming",
         "nonlinear"
       ],
@@ -7813,7 +7820,7 @@
       "type": "nonfiction",
       "tones": [
         "funny",
-        "poignant"
+        "character-driven"
       ],
       "allTimeFave": true
     },
@@ -7853,8 +7860,9 @@
       ],
       "type": "nonfiction",
       "tones": [
+        "propulsive",
         "dense",
-        "propulsive"
+        "investigative"
       ],
       "allTimeFave": true
     },
@@ -7936,7 +7944,7 @@
       "type": "fiction",
       "tones": [
         "twisty",
-        "compulsive"
+        "dark"
       ],
       "allTimeFave": true
     },
@@ -8019,7 +8027,6 @@
       "type": "fiction",
       "tones": [
         "funny",
-        "character-driven",
         "heartwarming",
         "inspiring"
       ],
@@ -8102,8 +8109,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "propulsive",
-        "investigative"
+        "investigative",
+        "propulsive"
       ],
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1659407155i/61714633.jpg",
       "allTimeFave": true
@@ -8144,8 +8151,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "propulsive",
-        "investigative"
+        "investigative",
+        "propulsive"
       ],
       "allTimeFave": true
     },
@@ -8352,7 +8359,7 @@
       "type": "nonfiction",
       "tones": [
         "funny",
-        "poignant"
+        "character-driven"
       ],
       "allTimeFave": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1556842560l/45442010._SY475_.jpg"
@@ -8650,7 +8657,7 @@
       "type": "fiction",
       "tones": [
         "twisty",
-        "compulsive"
+        "dark"
       ],
       "allTimeFave": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1732681778l/221997992._SY475_.jpg"
@@ -8808,7 +8815,7 @@
         "conversational",
         "character-driven",
         "poignant",
-        "thoughtful"
+        "dense"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1729124173l/217112030._SY475_.jpg"
     },
@@ -8845,7 +8852,6 @@
       "ratingsCount": 2500,
       "tones": [
         "slow-burn",
-        "character-driven",
         "heartwarming",
         "atmospheric"
       ],
@@ -8884,6 +8890,7 @@
       "ratingsCount": 18000,
       "tones": [
         "dark",
+        "propulsive",
         "atmospheric"
       ],
       "coverUrl": "https://books.google.com/books/content?id=icGWEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -8996,6 +9003,7 @@
       ],
       "ratingsCount": 6000,
       "tones": [
+        "character-driven",
         "funny",
         "revelatory"
       ],
@@ -9033,6 +9041,7 @@
       "ratingsCount": 12000,
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "coverUrl": "https://books.google.com/books/content?id=__o8EQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -9188,8 +9197,8 @@
       ],
       "ratingsCount": 35000,
       "tones": [
-        "slow-burn",
         "character-driven",
+        "slow-burn",
         "atmospheric"
       ],
       "top10": true
@@ -9230,7 +9239,8 @@
       "tones": [
         "conversational",
         "character-driven",
-        "poignant"
+        "poignant",
+        "dense"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1728331961l/216818681._SY475_.jpg"
     },
@@ -9270,9 +9280,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "procedural",
         "propulsive",
-        "tense"
+        "procedural"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680059561l/124025550._SY475_.jpg"
     },
@@ -9309,7 +9318,6 @@
       "ratingsCount": 12000,
       "tones": [
         "slow-burn",
-        "character-driven",
         "heartwarming",
         "atmospheric"
       ],
@@ -9504,7 +9512,7 @@
       "tones": [
         "twisty",
         "tense",
-        "compulsive"
+        "propulsive"
       ]
     },
     {
@@ -9539,6 +9547,7 @@
       "ratingsCount": 12000,
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "coverUrl": "https://books.google.com/books/content?id=_o4cEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -9618,8 +9627,7 @@
       "ratingsCount": 3000,
       "tones": [
         "dark",
-        "tense",
-        "propulsive"
+        "tense"
       ],
       "coverUrl": "https://books.google.com/books/content?id=PXInEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -9657,8 +9665,7 @@
       "ratingsCount": 32000,
       "tones": [
         "dark",
-        "tense",
-        "propulsive"
+        "tense"
       ],
       "coverUrl": "https://books.google.com/books/content?id=ixjdEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -9780,8 +9787,7 @@
       "ratingsCount": 85000,
       "tones": [
         "twisty",
-        "tense",
-        "compulsive"
+        "tense"
       ]
     },
     {
@@ -9862,8 +9868,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
-        "revelatory",
-        "gritty"
+        "revelatory"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1633586623l/58989871.jpg"
     },
@@ -9941,7 +9946,6 @@
       "tones": [
         "heartwarming",
         "slow-burn",
-        "character-driven",
         "nonlinear"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1730469054l/220818107._SY475_.jpg"
@@ -9980,7 +9984,6 @@
       "ratingsCount": 18000,
       "tones": [
         "atmospheric",
-        "tense",
         "slow-burn"
       ],
       "coverUrl": "https://books.google.com/books/content?id=r4-iEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -10098,8 +10101,7 @@
       "type": "fiction",
       "tones": [
         "twisty",
-        "dark",
-        "compulsive"
+        "dark"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1693401496l/195967140._SY475_.jpg"
     },
@@ -10296,7 +10298,7 @@
       "tones": [
         "gritty",
         "slow-burn",
-        "heartwarming"
+        "atmospheric"
       ],
       "coverUrl": "https://books.google.com/books/content?id=D8tkDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -10371,7 +10373,7 @@
       "ratingsCount": 18000,
       "tones": [
         "funny",
-        "poignant"
+        "character-driven"
       ],
       "coverUrl": "https://books.google.com/books/content?id=hfglEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -10449,7 +10451,6 @@
       "ratingsCount": 110000,
       "tones": [
         "procedural",
-        "twisty",
         "compulsive"
       ],
       "coverUrl": "https://books.google.com/books/content?id=Mu_yDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -10726,7 +10727,6 @@
       ],
       "type": "fiction",
       "tones": [
-        "character-driven",
         "heartwarming",
         "bleak",
         "poignant"
@@ -10843,8 +10843,8 @@
       ],
       "ratingsCount": 1500,
       "tones": [
-        "gritty",
         "character-driven",
+        "gritty",
         "dense"
       ],
       "coverUrl": "https://books.google.com/books/content?id=mBniCwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -10927,8 +10927,7 @@
       "type": "fiction",
       "tones": [
         "twisty",
-        "dark",
-        "compulsive"
+        "dark"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1661428846l/62080187._SY475_.jpg"
     },
@@ -10964,7 +10963,6 @@
       "ratingsCount": 2000000,
       "tones": [
         "slow-burn",
-        "character-driven",
         "heartwarming",
         "poignant"
       ],
@@ -11002,6 +11000,7 @@
       "ratingsCount": 12000,
       "tones": [
         "conversational",
+        "character-driven",
         "poignant",
         "funny"
       ],
@@ -11083,7 +11082,6 @@
       ],
       "type": "fiction",
       "tones": [
-        "character-driven",
         "heartwarming",
         "bleak",
         "poignant"
@@ -11243,8 +11241,7 @@
       "type": "fiction",
       "tones": [
         "twisty",
-        "compulsive",
-        "propulsive"
+        "compulsive"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1664729357l/62848145._SY475_.jpg"
     },
@@ -11284,9 +11281,9 @@
       ],
       "ratingsCount": 400000,
       "tones": [
+        "dark",
         "compulsive",
-        "twisty",
-        "dark"
+        "twisty"
       ]
     },
     {
@@ -11362,8 +11359,7 @@
       "ratingsCount": 110000,
       "tones": [
         "twisty",
-        "tense",
-        "propulsive"
+        "tense"
       ]
     },
     {
@@ -11481,8 +11477,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "tense",
         "dark",
+        "tense",
         "gritty"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1514931872l/37799979._SY475_.jpg"
@@ -11560,6 +11556,7 @@
       ],
       "ratingsCount": 55000,
       "tones": [
+        "character-driven",
         "heartwarming",
         "bleak",
         "poignant"
@@ -11603,8 +11600,7 @@
       "type": "fiction",
       "tones": [
         "twisty",
-        "procedural",
-        "compulsive"
+        "procedural"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1681257471l/127463547.jpg"
     },
@@ -11683,8 +11679,8 @@
       "tones": [
         "heartwarming",
         "slow-burn",
-        "character-driven",
-        "funny"
+        "funny",
+        "inspiring"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1480603223l/33215733._SY475_.jpg"
     },
@@ -11800,7 +11796,6 @@
       "tones": [
         "heartwarming",
         "slow-burn",
-        "character-driven",
         "funny"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1561578109l/43188104._SY475_.jpg"
@@ -11880,8 +11875,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dense",
-        "gritty"
+        "dark",
+        "dense"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1566881388l/52661266._SX318_SY475_.jpg"
     },
@@ -12040,6 +12035,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1455481304l/29095634._SY475_.jpg"
@@ -12078,7 +12074,6 @@
       "ratingsCount": 200000,
       "tones": [
         "slow-burn",
-        "character-driven",
         "heartwarming",
         "nonlinear"
       ],
@@ -12232,7 +12227,6 @@
       "ratingsCount": 6000,
       "tones": [
         "twisty",
-        "tense",
         "procedural"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717373740l/214172333._SY475_.jpg"
@@ -12347,6 +12341,7 @@
       "ratingsCount": 9000,
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "coverUrl": "https://books.google.com/books/content?id=ZGjyEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -12426,7 +12421,7 @@
       "ratingsCount": 1000000,
       "tones": [
         "funny",
-        "poignant"
+        "character-driven"
       ],
       "coverUrl": "https://books.google.com/books/content?id=zkpqfz00tAcC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -12504,7 +12499,6 @@
       "tones": [
         "heartwarming",
         "slow-burn",
-        "character-driven",
         "atmospheric"
       ],
       "coverUrl": "https://books.google.com/books/content?id=Bxpn0AEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
@@ -12543,7 +12537,6 @@
       "ratingsCount": 200000,
       "tones": [
         "slow-burn",
-        "character-driven",
         "atmospheric"
       ],
       "coverUrl": "https://books.google.com/books/content?id=INP0EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -12580,7 +12573,6 @@
       "ratingsCount": 200000,
       "tones": [
         "slow-burn",
-        "character-driven",
         "atmospheric",
         "bleak"
       ],
@@ -12619,9 +12611,8 @@
       ],
       "ratingsCount": 55000,
       "tones": [
-        "slow-burn",
-        "character-driven",
         "funny",
+        "slow-burn",
         "atmospheric"
       ],
       "coverUrl": "https://books.google.com/books/content?id=Wvw_0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
@@ -12663,7 +12654,6 @@
       "tones": [
         "heartwarming",
         "slow-burn",
-        "character-driven",
         "atmospheric"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1699723282l/199928985._SY475_.jpg"
@@ -12786,8 +12776,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "dark",
         "gritty",
+        "dark",
         "atmospheric"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1652805068l/59107997.jpg"
@@ -12825,6 +12815,7 @@
       "ratingsCount": 22000,
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "coverUrl": "https://books.google.com/books/content?id=0N3f0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
@@ -12865,7 +12856,7 @@
       "type": "fiction",
       "tones": [
         "procedural",
-        "tense"
+        "compulsive"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1328328180l/8341825.jpg"
     },
@@ -12906,8 +12897,7 @@
       "tones": [
         "twisty",
         "tense",
-        "procedural",
-        "compulsive"
+        "procedural"
       ],
       "coverUrl": "https://books.google.com/books/content?id=OytAEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
@@ -12944,7 +12934,6 @@
       "ratingsCount": 12000,
       "tones": [
         "slow-burn",
-        "character-driven",
         "atmospheric",
         "satirical"
       ],
@@ -12986,8 +12975,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "slow-burn",
         "character-driven",
+        "slow-burn",
         "atmospheric"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1582857542l/51851615._SY475_.jpg"
@@ -13108,7 +13097,7 @@
       "type": "fiction",
       "tones": [
         "heartwarming",
-        "tense"
+        "compulsive"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1471731396l/23434956._SY475_.jpg"
     },
@@ -13226,8 +13215,7 @@
       "type": "fiction",
       "tones": [
         "tense",
-        "investigative",
-        "revelatory"
+        "investigative"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1617042528l/53483903._SY475_.jpg"
     },
@@ -13305,7 +13293,7 @@
       "type": "nonfiction",
       "tones": [
         "investigative",
-        "gritty"
+        "dense"
       ]
     },
     {
@@ -13383,7 +13371,7 @@
       ],
       "type": "fiction",
       "tones": [
-        "lyrical",
+        "dark",
         "heartwarming"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1638033318l/59710157._SY475_.jpg"
@@ -13670,7 +13658,7 @@
       "type": "fiction",
       "tones": [
         "procedural",
-        "tense"
+        "compulsive"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1328344397l/8700873.jpg"
     },
@@ -13823,8 +13811,8 @@
       "tones": [
         "propulsive",
         "atmospheric",
-        "slow-burn",
-        "twisty"
+        "twisty",
+        "thoughtful"
       ],
       "coverUrl": "https://books.google.com/books/content?id=TYbREAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -13906,7 +13894,6 @@
       "tones": [
         "heartwarming",
         "slow-burn",
-        "character-driven",
         "funny"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1356891529l/8489510.jpg"
@@ -13982,8 +13969,7 @@
       "ratingsCount": 9000,
       "tones": [
         "tense",
-        "compulsive",
-        "twisty"
+        "dark"
       ],
       "coverUrl": "https://books.google.com/books/content?id=DopEEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -14024,9 +14010,9 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant",
-        "funny",
-        "gritty"
+        "funny"
       ]
     },
     {
@@ -14177,7 +14163,6 @@
       ],
       "type": "fiction",
       "tones": [
-        "tense",
         "twisty",
         "dark"
       ]
@@ -14218,7 +14203,6 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "atmospheric",
         "heartwarming"
       ]
@@ -14258,7 +14242,6 @@
       "type": "fiction",
       "tones": [
         "dark",
-        "propulsive",
         "tense"
       ]
     },
@@ -14447,8 +14430,7 @@
       "ratingsCount": 12000,
       "tones": [
         "procedural",
-        "twisty",
-        "tense"
+        "twisty"
       ],
       "coverUrl": "https://books.google.com/books/content?id=iCFeDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -14524,8 +14506,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "slow-burn",
         "character-driven",
+        "slow-burn",
         "atmospheric"
       ]
     },
@@ -14905,7 +14887,6 @@
       ],
       "type": "fiction",
       "tones": [
-        "character-driven",
         "procedural",
         "heartwarming"
       ]
@@ -14982,7 +14963,6 @@
       "ratingsCount": 6000,
       "tones": [
         "slow-burn",
-        "character-driven",
         "atmospheric"
       ],
       "coverUrl": "https://books.google.com/books/content?id=r94REAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -15024,7 +15004,6 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "atmospheric",
         "dark"
       ]
@@ -15065,7 +15044,6 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "atmospheric"
       ]
     },
@@ -15144,7 +15122,6 @@
       "tones": [
         "heartwarming",
         "slow-burn",
-        "character-driven",
         "poignant"
       ],
       "coverUrl": "https://books.google.com/books/content?id=8ogQBgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -15183,8 +15160,8 @@
       "tones": [
         "conversational",
         "character-driven",
-        "heartwarming",
-        "poignant"
+        "poignant",
+        "gritty"
       ],
       "coverUrl": "https://books.google.com/books/content?id=MXUiEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -15616,7 +15593,6 @@
       "type": "fiction",
       "tones": [
         "atmospheric",
-        "tense",
         "slow-burn"
       ]
     },
@@ -15736,7 +15712,6 @@
       "type": "fiction",
       "tones": [
         "dark",
-        "tense",
         "atmospheric"
       ]
     },
@@ -15811,8 +15786,8 @@
       ],
       "ratingsCount": 9000,
       "tones": [
-        "procedural",
         "propulsive",
+        "procedural",
         "tense"
       ],
       "coverUrl": "https://books.google.com/books/content?id=BJCvtQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
@@ -15852,7 +15827,6 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "atmospheric"
       ]
     },
@@ -15933,7 +15907,7 @@
       "type": "nonfiction",
       "tones": [
         "investigative",
-        "gritty"
+        "dense"
       ]
     },
     {
@@ -16049,7 +16023,7 @@
       "ratingsCount": 350000,
       "tones": [
         "slow-burn",
-        "tense"
+        "lyrical"
       ],
       "coverUrl": "https://books.google.com/books/content?id=iJPhEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -16087,7 +16061,7 @@
       "ratingsCount": 18000,
       "tones": [
         "funny",
-        "poignant"
+        "character-driven"
       ],
       "coverUrl": "https://books.google.com/books/content?id=RIK2DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -16124,7 +16098,6 @@
       "ratingsCount": 32000,
       "tones": [
         "slow-burn",
-        "character-driven",
         "heartwarming",
         "atmospheric"
       ],
@@ -16203,9 +16176,8 @@
       ],
       "ratingsCount": 110000,
       "tones": [
-        "slow-burn",
-        "character-driven",
         "funny",
+        "slow-burn",
         "atmospheric"
       ],
       "coverUrl": "https://books.google.com/books/content?id=wnAmBgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -16282,8 +16254,8 @@
       ],
       "ratingsCount": 12000,
       "tones": [
-        "funny",
-        "poignant"
+        "character-driven",
+        "funny"
       ],
       "coverUrl": "https://books.google.com/books/content?id=YkvzEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -16322,7 +16294,6 @@
       "tones": [
         "heartwarming",
         "slow-burn",
-        "character-driven",
         "poignant"
       ],
       "coverUrl": "https://books.google.com/books/content?id=CeosDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -16402,8 +16373,7 @@
       "ratingsCount": 200000,
       "tones": [
         "slow-burn",
-        "compulsive",
-        "twisty"
+        "compulsive"
       ],
       "coverUrl": "https://books.google.com/books/content?id=o9-UCgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -16440,6 +16410,7 @@
       "ratingsCount": 55000,
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "coverUrl": "https://books.google.com/books/content?id=qyWlEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -16518,8 +16489,7 @@
       "ratingsCount": 85000,
       "tones": [
         "twisty",
-        "tense",
-        "compulsive"
+        "tense"
       ],
       "coverUrl": "https://books.google.com/books/content?id=CND3DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -16558,8 +16528,7 @@
       "ratingsCount": 110000,
       "tones": [
         "twisty",
-        "tense",
-        "compulsive"
+        "tense"
       ],
       "coverUrl": "https://books.google.com/books/content?id=4WY-DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -16600,8 +16569,7 @@
       "type": "fiction",
       "tones": [
         "tense",
-        "twisty",
-        "dark"
+        "twisty"
       ]
     },
     {
@@ -16639,9 +16607,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "tense",
         "dark",
-        "propulsive"
+        "tense"
       ]
     },
     {
@@ -16752,7 +16719,6 @@
       "ratingsCount": 55000,
       "tones": [
         "slow-burn",
-        "character-driven",
         "atmospheric",
         "thoughtful"
       ],
@@ -16829,6 +16795,7 @@
       "ratingsCount": 65000,
       "tones": [
         "dense",
+        "investigative",
         "funny"
       ],
       "coverUrl": "https://books.google.com/books/content?id=hy5bCwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -16946,7 +16913,6 @@
       "ratingsCount": 110000,
       "tones": [
         "twisty",
-        "dark",
         "atmospheric"
       ],
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1684763144i/123206645.jpg"
@@ -16983,8 +16949,8 @@
       ],
       "ratingsCount": 110000,
       "tones": [
-        "funny",
-        "poignant"
+        "character-driven",
+        "funny"
       ],
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1574878671i/42660463.jpg"
     },
@@ -17021,7 +16987,6 @@
       "ratingsCount": 22000,
       "tones": [
         "slow-burn",
-        "character-driven",
         "twisty"
       ],
       "coverUrl": "https://books.google.com/books/content?id=yLZIygEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
@@ -17100,7 +17065,7 @@
       "ratingsCount": 55000,
       "tones": [
         "funny",
-        "poignant"
+        "character-driven"
       ],
       "coverUrl": "https://books.google.com/books/content?id=wEbMEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -17140,7 +17105,6 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "funny"
       ]
     },
@@ -17215,8 +17179,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "dark",
-        "compulsive"
+        "tense",
+        "dark"
       ]
     },
     {
@@ -17290,8 +17254,7 @@
       "ratingsCount": 500000,
       "tones": [
         "slow-burn",
-        "compulsive",
-        "twisty"
+        "compulsive"
       ],
       "coverUrl": "https://books.google.com/books/content?id=UHL_mO1zFxoC&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
@@ -17329,8 +17292,8 @@
       ],
       "ratingsCount": 200000,
       "tones": [
-        "compulsive",
-        "procedural"
+        "atmospheric",
+        "twisty"
       ]
     },
     {
@@ -17484,6 +17447,7 @@
       "ratingsCount": 6000,
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "coverUrl": "https://books.google.com/books/content?id=6Rj4zgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
@@ -17678,9 +17642,9 @@
       "ratingsCount": 32000,
       "tones": [
         "conversational",
+        "character-driven",
         "poignant",
-        "bleak",
-        "inspiring"
+        "bleak"
       ],
       "coverUrl": "https://books.google.com/books/content?id=IJAZEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -17720,6 +17684,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ]
     },
@@ -17798,7 +17763,6 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "satirical",
         "atmospheric"
       ]
@@ -17876,9 +17840,9 @@
       "ratingsCount": 12000,
       "tones": [
         "slow-burn",
-        "character-driven",
         "investigative",
-        "revelatory"
+        "funny",
+        "satirical"
       ],
       "coverUrl": "https://books.google.com/books/content?id=XAgPEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -17915,8 +17879,8 @@
       ],
       "ratingsCount": 9000,
       "tones": [
-        "procedural",
         "propulsive",
+        "procedural",
         "tense"
       ],
       "coverUrl": "https://books.google.com/books/content?id=O_wBEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -17953,9 +17917,7 @@
       "ratingsCount": 6000,
       "tones": [
         "slow-burn",
-        "character-driven",
-        "satirical",
-        "atmospheric"
+        "satirical"
       ],
       "coverUrl": "https://books.google.com/books/content?id=i0IiXCIxYowC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -18114,7 +18076,7 @@
       "type": "fiction",
       "tones": [
         "tense",
-        "dark"
+        "compulsive"
       ]
     },
     {
@@ -18193,8 +18155,8 @@
       ],
       "ratingsCount": 32000,
       "tones": [
-        "procedural",
         "propulsive",
+        "procedural",
         "tense"
       ]
     },
@@ -18308,9 +18270,7 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
-        "satirical",
-        "atmospheric"
+        "satirical"
       ]
     },
     {
@@ -18346,7 +18306,7 @@
       "ratingsCount": 18000,
       "tones": [
         "investigative",
-        "thoughtful"
+        "dense"
       ],
       "coverUrl": "https://books.google.com/books/content?id=bSyEEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -18462,8 +18422,7 @@
       "ratingsCount": 18000,
       "tones": [
         "procedural",
-        "investigative",
-        "revelatory"
+        "investigative"
       ],
       "coverUrl": "https://books.google.com/books/content?id=B7iREAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -18502,7 +18461,7 @@
       "type": "nonfiction",
       "tones": [
         "investigative",
-        "revelatory"
+        "thoughtful"
       ]
     },
     {
@@ -18538,8 +18497,8 @@
       ],
       "ratingsCount": 9000,
       "tones": [
-        "funny",
-        "poignant"
+        "character-driven",
+        "funny"
       ],
       "coverUrl": "https://books.google.com/books/content?id=k1pTEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -18579,8 +18538,8 @@
       "type": "fiction",
       "tones": [
         "propulsive",
-        "tense",
         "dark",
+        "tense",
         "gritty"
       ]
     },
@@ -18661,8 +18620,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "tense",
         "dark",
+        "tense",
         "gritty"
       ]
     },
@@ -18703,7 +18662,6 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "atmospheric",
         "ensemble"
       ]
@@ -18744,9 +18702,7 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
-        "satirical",
-        "atmospheric"
+        "satirical"
       ]
     },
     {
@@ -18863,7 +18819,8 @@
       "ratingsCount": 32000,
       "tones": [
         "atmospheric",
-        "slow-burn"
+        "slow-burn",
+        "twisty"
       ]
     },
     {
@@ -18900,7 +18857,6 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "atmospheric"
       ]
     },
@@ -18979,9 +18935,7 @@
       "type": "fiction",
       "tones": [
         "satirical",
-        "slow-burn",
-        "character-driven",
-        "atmospheric"
+        "slow-burn"
       ]
     },
     {
@@ -19171,7 +19125,6 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "satirical",
         "investigative"
       ]
@@ -19290,7 +19243,6 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "twisty",
         "heartwarming"
       ]
@@ -19533,9 +19485,9 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "atmospheric",
-        "bleak"
+        "bleak",
+        "poignant"
       ]
     },
     {
@@ -19733,7 +19685,6 @@
       "ratingsCount": 12000,
       "tones": [
         "procedural",
-        "twisty",
         "compulsive"
       ],
       "coverUrl": "https://books.google.com/books/content?id=RcdrEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -19813,7 +19764,6 @@
       "tones": [
         "character-driven",
         "slow-burn",
-        "atmospheric",
         "thoughtful"
       ]
     },
@@ -19891,8 +19841,6 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
-        "atmospheric",
         "ensemble"
       ]
     },
@@ -19933,7 +19881,7 @@
       "type": "fiction",
       "tones": [
         "dark",
-        "atmospheric"
+        "gritty"
       ]
     },
     {
@@ -19973,8 +19921,7 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
-        "atmospheric"
+        "heartwarming"
       ]
     },
     {
@@ -20011,7 +19958,7 @@
       "ratingsCount": 6000,
       "tones": [
         "investigative",
-        "procedural"
+        "revelatory"
       ],
       "coverUrl": "https://books.google.com/books/content?id=ErUdEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -20165,8 +20112,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dark",
-        "gritty"
+        "gritty",
+        "inspiring"
       ]
     },
     {
@@ -20202,7 +20149,7 @@
       "ratingsCount": 28000,
       "tones": [
         "funny",
-        "poignant"
+        "character-driven"
       ],
       "coverUrl": "https://books.google.com/books/content?id=aV83EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -20358,7 +20305,6 @@
       "tones": [
         "heartwarming",
         "slow-burn",
-        "character-driven",
         "nonlinear"
       ]
     },
@@ -20438,7 +20384,6 @@
       "tones": [
         "heartwarming",
         "slow-burn",
-        "character-driven",
         "nonlinear"
       ]
     },
@@ -20479,7 +20424,6 @@
       "type": "fiction",
       "tones": [
         "twisty",
-        "propulsive",
         "dark"
       ]
     },
@@ -20517,8 +20461,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "heartwarming",
-        "nonlinear"
+        "nonlinear",
+        "heartwarming"
       ]
     },
     {
@@ -20755,7 +20699,6 @@
       ],
       "type": "fiction",
       "tones": [
-        "character-driven",
         "nonlinear",
         "atmospheric"
       ]
@@ -20795,7 +20738,6 @@
       ],
       "type": "fiction",
       "tones": [
-        "character-driven",
         "heartwarming",
         "bleak",
         "poignant"
@@ -20836,8 +20778,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "procedural",
         "propulsive",
+        "procedural",
         "funny"
       ]
     },
@@ -20915,8 +20857,7 @@
       "tones": [
         "tense",
         "twisty",
-        "ensemble",
-        "atmospheric"
+        "ensemble"
       ],
       "coverUrl": "https://books.google.com/books/content?id=rCU3EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -20955,8 +20896,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dense",
-        "poignant"
+        "character-driven",
+        "dense"
       ]
     },
     {
@@ -20993,7 +20934,6 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "atmospheric"
       ]
     },
@@ -21029,6 +20969,7 @@
       "ratingsCount": 12000,
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "coverUrl": "https://books.google.com/books/content?id=5yEzEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -21069,7 +21010,7 @@
       "type": "nonfiction",
       "tones": [
         "gritty",
-        "poignant"
+        "thoughtful"
       ]
     },
     {
@@ -21142,7 +21083,6 @@
       "ratingsCount": 18000,
       "tones": [
         "investigative",
-        "dark",
         "revelatory"
       ],
       "coverUrl": "https://books.google.com/books/content?id=6mJmvUl6UCwC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -21257,7 +21197,6 @@
       "ratingsCount": 32000,
       "tones": [
         "slow-burn",
-        "character-driven",
         "atmospheric"
       ],
       "coverUrl": "https://books.google.com/books/content?id=nDArEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -21376,7 +21315,6 @@
       "ratingsCount": 18000,
       "tones": [
         "atmospheric",
-        "propulsive",
         "dark"
       ]
     },
@@ -21413,7 +21351,6 @@
       "ratingsCount": 400000,
       "tones": [
         "investigative",
-        "dark",
         "poignant"
       ],
       "coverUrl": "https://books.google.com/books/content?id=aSZHDwAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
@@ -21451,7 +21388,7 @@
       "ratingsCount": 500000,
       "tones": [
         "procedural",
-        "compulsive"
+        "twisty"
       ],
       "coverUrl": "https://books.google.com/books/content?id=2v6ZDQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -21605,8 +21542,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "dark",
         "gritty",
+        "dark",
         "atmospheric"
       ]
     },
@@ -21840,8 +21777,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "procedural",
         "propulsive",
+        "procedural",
         "tense"
       ]
     },
@@ -22114,6 +22051,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ]
     },
@@ -22154,8 +22092,7 @@
       "tones": [
         "propulsive",
         "dark",
-        "compulsive",
-        "procedural"
+        "compulsive"
       ]
     },
     {
@@ -22272,7 +22209,7 @@
       "ratingsCount": 32000,
       "tones": [
         "funny",
-        "poignant"
+        "character-driven"
       ],
       "coverUrl": "https://books.google.com/books/content?id=mf0qEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -22392,8 +22329,7 @@
       "type": "fiction",
       "tones": [
         "procedural",
-        "investigative",
-        "revelatory"
+        "investigative"
       ]
     },
     {
@@ -22666,7 +22602,6 @@
       "tones": [
         "funny",
         "slow-burn",
-        "character-driven",
         "poignant"
       ]
     },
@@ -22941,7 +22876,7 @@
       "type": "fiction",
       "tones": [
         "procedural",
-        "compulsive"
+        "twisty"
       ]
     },
     {
@@ -22977,6 +22912,7 @@
       "ratingsCount": 28000,
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "coverUrl": "https://books.google.com/books/content?id=WO5nEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -23129,6 +23065,7 @@
       "ratingsCount": 28000,
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1374635033i/17331327.jpg"
@@ -23278,7 +23215,6 @@
       "ratingsCount": 110000,
       "tones": [
         "investigative",
-        "dark",
         "revelatory"
       ],
       "coverUrl": "https://books.google.com/books/content?id=N-lqxAEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
@@ -23434,7 +23370,6 @@
       "type": "fiction",
       "tones": [
         "propulsive",
-        "character-driven",
         "procedural"
       ]
     },
@@ -23749,8 +23684,7 @@
       "type": "fiction",
       "tones": [
         "tense",
-        "investigative",
-        "revelatory"
+        "investigative"
       ]
     },
     {
@@ -23906,7 +23840,7 @@
       "type": "fiction",
       "tones": [
         "tense",
-        "dark"
+        "compulsive"
       ]
     },
     {
@@ -24059,7 +23993,6 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "atmospheric"
       ]
     },
@@ -24099,8 +24032,7 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
-        "atmospheric"
+        "heartwarming"
       ]
     },
     {
@@ -24140,6 +24072,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ]
     },
@@ -24255,6 +24188,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ]
     },
@@ -24331,7 +24265,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
-        "thoughtful"
+        "revelatory"
       ]
     },
     {
@@ -24520,6 +24454,7 @@
       "ratingsCount": 32000,
       "tones": [
         "funny",
+        "character-driven",
         "poignant"
       ],
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1571127808l/52894214.jpg"
@@ -24558,7 +24493,7 @@
       "ratingsCount": 12000,
       "tones": [
         "character-driven",
-        "inspiring"
+        "revelatory"
       ],
       "coverUrl": "https://books.google.com/books/content?id=MlmaygEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
@@ -24636,9 +24571,9 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "heartwarming",
-        "bleak"
+        "bleak",
+        "poignant"
       ]
     },
     {
@@ -24715,7 +24650,7 @@
       "type": "nonfiction",
       "tones": [
         "character-driven",
-        "inspiring"
+        "revelatory"
       ]
     },
     {
@@ -24829,7 +24764,7 @@
       "ratingsCount": 32000,
       "tones": [
         "character-driven",
-        "inspiring"
+        "revelatory"
       ],
       "coverUrl": "https://books.google.com/books/content?id=wPXhCwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
@@ -24867,7 +24802,7 @@
       "tones": [
         "dark",
         "investigative",
-        "gritty"
+        "revelatory"
       ],
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1439088374i/2936415.jpg"
     },
@@ -24904,6 +24839,7 @@
       "ratingsCount": 55000,
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "coverUrl": "https://books.google.com/books/content?id=dcjcDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
@@ -25022,8 +24958,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "investigative",
-        "revelatory"
+        "revelatory",
+        "investigative"
       ]
     },
     {
@@ -25062,9 +24998,7 @@
       "type": "fiction",
       "tones": [
         "heartwarming",
-        "slow-burn",
-        "character-driven",
-        "atmospheric"
+        "slow-burn"
       ]
     },
     {
@@ -25102,9 +25036,9 @@
       ],
       "type": "fiction",
       "tones": [
-        "dark",
-        "gritty",
         "propulsive",
+        "gritty",
+        "dark",
         "atmospheric"
       ]
     },
@@ -25143,7 +25077,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
-        "thoughtful"
+        "revelatory"
       ]
     },
     {
@@ -25417,7 +25351,6 @@
       "ratingsCount": 32000,
       "tones": [
         "conversational",
-        "character-driven",
         "funny"
       ]
     },
@@ -25496,7 +25429,8 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
-        "character-driven"
+        "character-driven",
+        "revelatory"
       ]
     },
     {
@@ -25610,7 +25544,7 @@
       "type": "nonfiction",
       "tones": [
         "investigative",
-        "inspiring"
+        "revelatory"
       ]
     },
     {
@@ -25686,8 +25620,8 @@
       "type": "fiction",
       "tones": [
         "propulsive",
-        "procedural",
-        "tense"
+        "tense",
+        "procedural"
       ]
     },
     {
@@ -25767,8 +25701,7 @@
       "type": "nonfiction",
       "tones": [
         "investigative",
-        "procedural",
-        "dark"
+        "procedural"
       ]
     },
     {
@@ -25806,7 +25739,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
-        "thoughtful"
+        "revelatory"
       ]
     },
     {
@@ -25844,8 +25777,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
-        "revelatory",
-        "dense"
+        "revelatory"
       ]
     },
     {
@@ -26001,7 +25933,7 @@
       "type": "nonfiction",
       "tones": [
         "character-driven",
-        "inspiring"
+        "revelatory"
       ]
     },
     {
@@ -26077,8 +26009,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "procedural",
         "propulsive",
+        "procedural",
         "tense"
       ]
     },
@@ -26544,7 +26476,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
-        "thoughtful"
+        "dense"
       ]
     },
     {
@@ -26702,7 +26634,7 @@
       "type": "nonfiction",
       "tones": [
         "investigative",
-        "gritty"
+        "twisty"
       ]
     },
     {
@@ -26857,8 +26789,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "dark",
         "gritty",
+        "dark",
         "atmospheric"
       ]
     },
@@ -27131,6 +27063,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant",
         "funny"
       ]
@@ -27560,8 +27493,8 @@
       "type": "fiction",
       "tones": [
         "propulsive",
-        "procedural",
-        "tense"
+        "tense",
+        "procedural"
       ]
     },
     {
@@ -27913,7 +27846,7 @@
       "type": "fiction",
       "tones": [
         "dark",
-        "procedural"
+        "atmospheric"
       ]
     },
     {
@@ -28269,7 +28202,8 @@
       "tones": [
         "propulsive",
         "procedural",
-        "dark"
+        "dark",
+        "twisty"
       ]
     },
     {
@@ -28307,9 +28241,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "procedural",
         "twisty",
-        "dark"
+        "procedural"
       ]
     },
     {
@@ -28552,8 +28485,7 @@
       "tones": [
         "propulsive",
         "procedural",
-        "investigative",
-        "revelatory"
+        "investigative"
       ]
     },
     {
@@ -28631,8 +28563,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "dark",
         "gritty",
+        "dark",
         "atmospheric"
       ]
     },
@@ -28786,7 +28718,7 @@
       "type": "nonfiction",
       "tones": [
         "funny",
-        "thoughtful"
+        "dense"
       ]
     },
     {
@@ -28943,8 +28875,7 @@
       "tones": [
         "propulsive",
         "procedural",
-        "investigative",
-        "revelatory"
+        "investigative"
       ]
     },
     {
@@ -29215,9 +29146,10 @@
       ],
       "type": "nonfiction",
       "tones": [
+        "character-driven",
         "investigative",
-        "revelatory",
-        "thoughtful"
+        "thoughtful",
+        "revelatory"
       ]
     },
     {
@@ -29409,7 +29341,6 @@
       "type": "nonfiction",
       "tones": [
         "funny",
-        "conversational",
         "dense"
       ]
     },
@@ -29719,6 +29650,7 @@
       ],
       "type": "fiction",
       "tones": [
+        "slow-burn",
         "funny",
         "satirical"
       ]
@@ -29758,7 +29690,7 @@
       "type": "nonfiction",
       "tones": [
         "investigative",
-        "compulsive"
+        "dense"
       ]
     },
     {
@@ -29831,7 +29763,7 @@
       "type": "nonfiction",
       "tones": [
         "inspiring",
-        "thoughtful"
+        "dense"
       ]
     },
     {
@@ -29909,6 +29841,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ]
     },
@@ -29947,8 +29880,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "thoughtful",
-        "compulsive"
+        "investigative",
+        "dense"
       ]
     },
     {
@@ -29988,6 +29921,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ]
     },
@@ -30028,7 +29962,7 @@
       "type": "nonfiction",
       "tones": [
         "investigative",
-        "poignant"
+        "character-driven"
       ]
     },
     {
@@ -30066,8 +30000,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "procedural",
         "propulsive",
+        "procedural",
         "tense",
         "thoughtful"
       ]
@@ -30374,8 +30308,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dense",
-        "investigative"
+        "investigative",
+        "dense"
       ]
     },
     {
@@ -30648,8 +30582,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dark",
-        "revelatory"
+        "revelatory",
+        "inspiring"
       ]
     },
     {
@@ -30728,8 +30662,7 @@
       "tones": [
         "propulsive",
         "procedural",
-        "investigative",
-        "revelatory"
+        "investigative"
       ]
     },
     {
@@ -31119,10 +31052,10 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "gritty",
         "investigative",
-        "revelatory",
-        "thoughtful"
+        "gritty",
+        "thoughtful",
+        "revelatory"
       ],
       "dnfReason": "topic_doesnt_appeal"
     },
@@ -31163,8 +31096,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "dark",
         "gritty",
+        "dark",
         "atmospheric",
         "slow-burn"
       ],
@@ -31333,8 +31266,7 @@
       "type": "nonfiction",
       "tones": [
         "investigative",
-        "character-driven",
-        "dark"
+        "character-driven"
       ]
     },
     {
@@ -31674,7 +31606,6 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "character-driven",
         "heartwarming"
       ],
       "dnfReason": "not_interesting"
@@ -31716,8 +31647,7 @@
       "type": "fiction",
       "tones": [
         "atmospheric",
-        "nonlinear",
-        "dark"
+        "nonlinear"
       ]
     },
     {
@@ -31921,8 +31851,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "gritty",
         "investigative",
+        "gritty",
         "revelatory"
       ],
       "dnfReason": "topic_doesnt_appeal"
@@ -32139,6 +32069,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "dnfReason": "no_longer_relevant"
@@ -32180,8 +32111,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "gritty",
         "investigative",
+        "gritty",
         "revelatory"
       ],
       "dnfReason": "no_longer_relevant"
@@ -32223,7 +32154,7 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "dark"
+        "satirical"
       ],
       "dnfReason": "not_interesting"
     },
@@ -32308,8 +32239,7 @@
       "type": "nonfiction",
       "tones": [
         "bleak",
-        "poignant",
-        "dense"
+        "poignant"
       ],
       "dnfReason": "not_interesting"
     },
@@ -32434,8 +32364,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dark",
-        "dense"
+        "dense",
+        "inspiring"
       ],
       "dnfReason": "not_interesting"
     },
@@ -32558,6 +32488,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant",
         "investigative"
       ],
@@ -32642,10 +32573,10 @@
       ],
       "type": "fiction",
       "tones": [
-        "gritty",
         "propulsive",
-        "tense",
-        "dark"
+        "gritty",
+        "dark",
+        "tense"
       ],
       "dnfReason": "already_seen_adaptation"
     },
@@ -32728,8 +32659,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dense",
         "investigative",
+        "dense",
         "revelatory"
       ],
       "dnfReason": "topic_doesnt_appeal"
@@ -32771,8 +32702,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "dark",
         "gritty",
+        "dark",
         "atmospheric",
         "slow-burn"
       ],
@@ -32979,8 +32910,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dense",
-        "investigative"
+        "investigative",
+        "dense"
       ],
       "dnfReason": "no_longer_relevant"
     },
@@ -33020,8 +32951,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dense",
-        "poignant"
+        "character-driven",
+        "dense"
       ],
       "dnfReason": "not_interesting"
     },
@@ -33105,8 +33036,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "dark",
         "gritty",
+        "dark",
         "atmospheric"
       ],
       "dnfReason": "not_interesting"
@@ -33356,6 +33287,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "dnfReason": "not_interesting"
@@ -33481,8 +33413,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dense",
         "character-driven",
+        "dense",
         "inspiring"
       ],
       "dnfReason": "not_interesting"
@@ -33650,6 +33582,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "dnfReason": "topic_doesnt_appeal"
@@ -33691,8 +33624,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "gritty",
         "investigative",
+        "gritty",
         "revelatory"
       ],
       "dnfReason": "not_interesting"
@@ -33776,8 +33709,8 @@
       "type": "fiction",
       "tones": [
         "propulsive",
-        "tense",
         "dark",
+        "tense",
         "gritty"
       ],
       "dnfReason": "not_interesting"
@@ -33818,6 +33751,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "dnfReason": "no_longer_relevant"
@@ -33859,8 +33793,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dense",
-        "revelatory"
+        "revelatory",
+        "dense"
       ],
       "dnfReason": "topic_doesnt_appeal"
     },
@@ -34111,6 +34045,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant",
         "investigative"
       ],
@@ -34152,9 +34087,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "slow-burn",
-        "character-driven",
-        "funny"
+        "funny",
+        "slow-burn"
       ],
       "dnfReason": "not_interesting"
     },
@@ -34195,8 +34129,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "conversational",
         "character-driven",
+        "conversational",
         "dense"
       ],
       "dnfReason": "not_interesting"
@@ -34403,6 +34337,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant",
         "bleak"
       ],
@@ -34528,8 +34463,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dense",
         "revelatory",
+        "dense",
         "investigative"
       ],
       "dnfReason": "topic_doesnt_appeal"
@@ -34572,7 +34507,6 @@
       "tones": [
         "heartwarming",
         "slow-burn",
-        "character-driven",
         "funny"
       ],
       "dnfReason": "not_interesting"
@@ -34696,8 +34630,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dense",
-        "revelatory"
+        "revelatory",
+        "dense"
       ],
       "dnfReason": "topic_doesnt_appeal"
     },
@@ -35289,6 +35223,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant",
         "compulsive"
       ],
@@ -35371,8 +35306,7 @@
       "type": "nonfiction",
       "tones": [
         "investigative",
-        "nonlinear",
-        "dark"
+        "nonlinear"
       ],
       "dnfReason": "not_interesting"
     },
@@ -35494,8 +35428,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dense",
-        "revelatory"
+        "revelatory",
+        "dense"
       ],
       "dnfReason": "topic_doesnt_appeal"
     },
@@ -35659,6 +35593,7 @@
       "type": "nonfiction",
       "tones": [
         "conversational",
+        "character-driven",
         "poignant"
       ],
       "dnfReason": "no_longer_relevant"
@@ -35828,8 +35763,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "tense",
         "dark",
+        "tense",
         "gritty"
       ],
       "dnfReason": "not_interesting"
@@ -36038,8 +35973,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dense",
-        "poignant"
+        "character-driven",
+        "dense"
       ],
       "dnfReason": "not_interesting"
     },
@@ -36121,8 +36056,8 @@
       ],
       "type": "fiction",
       "tones": [
-        "dark",
         "gritty",
+        "dark",
         "twisty",
         "procedural"
       ],
@@ -36205,8 +36140,8 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "investigative",
-        "poignant"
+        "character-driven",
+        "investigative"
       ]
     },
     {
@@ -36582,7 +36517,7 @@
       "type": "nonfiction",
       "tones": [
         "investigative",
-        "gritty"
+        "dense"
       ],
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1687140968l/123276708.jpg"
     },
@@ -36835,7 +36770,7 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "lyrical"
+        "satirical"
       ],
       "dnfReason": "not_interesting"
     },
@@ -36918,6 +36853,7 @@
       "type": "nonfiction",
       "tones": [
         "funny",
+        "character-driven",
         "ensemble"
       ],
       "dnfReason": "no_longer_relevant"
@@ -37001,8 +36937,7 @@
       "type": "fiction",
       "tones": [
         "twisty",
-        "heartwarming",
-        "compulsive"
+        "heartwarming"
       ],
       "dnfReason": "not_my_vibe"
     },
@@ -37146,7 +37081,6 @@
         "contemporary"
       ],
       "tones": [
-        "character-driven",
         "bleak",
         "poignant"
       ],
@@ -37184,7 +37118,6 @@
       ],
       "tones": [
         "investigative",
-        "dark",
         "poignant"
       ],
       "dnf": false,
