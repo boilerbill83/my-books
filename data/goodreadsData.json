@@ -31578,7 +31578,7 @@
         "conversational",
         "funny"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "rogue-lawyer|john-grisham",
@@ -31620,7 +31620,7 @@
         "dark",
         "gritty"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "not-that-kind-of-girl-a-young-woman-tells-you-what-she-s-learned|lena-dunham",
@@ -31662,7 +31662,7 @@
         "conversational",
         "poignant"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "baseball-maverick-how-sandy-alderson-revolutionized-baseball-and-revived-the-mets|steve-kettmann",
@@ -31701,7 +31701,7 @@
         "character-driven",
         "inspiring"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "boom-oil-money-cowboys-strippers-and-the-energy-rush-that-could-change-america-forever|tony-horwitz",
@@ -31740,7 +31740,7 @@
         "dense",
         "thoughtful"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "becoming-steve-jobs-the-evolution-of-a-reckless-upstart-into-a-visionary-leader|brent-schlender",
@@ -31780,7 +31780,7 @@
         "character-driven",
         "investigative"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-fantasy-baseball-black-book-2015-edition|joe-pisapia",
@@ -31819,7 +31819,7 @@
         "conversational",
         "dense"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "to-start-a-war-how-the-bush-administration-took-america-into-iraq|robert-draper",
@@ -31863,7 +31863,7 @@
         "thoughtful",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -31908,7 +31908,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_my_vibe"
     },
     {
@@ -31951,7 +31951,7 @@
         "slow-burn",
         "satirical"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -31995,7 +31995,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -32038,7 +32038,7 @@
         "dense",
         "thoughtful"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-origins-of-the-cornbread-mafia-a-memoir-of-sorts|joe-keith-bickett",
@@ -32079,7 +32079,7 @@
         "investigative",
         "character-driven"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "liftoff-elon-musk-and-the-desperate-early-days-that-launched-spacex|eric-berger",
@@ -32122,7 +32122,7 @@
         "dense",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -32165,7 +32165,7 @@
         "investigative",
         "inspiring"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -32209,7 +32209,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -32254,7 +32254,7 @@
         "twisty",
         "gritty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -32299,7 +32299,7 @@
         "slow-burn",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -32343,7 +32343,7 @@
         "revelatory",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -32386,7 +32386,7 @@
         "dense",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -32425,9 +32425,9 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "heartwarming"
+        "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -32469,7 +32469,7 @@
         "atmospheric",
         "nonlinear"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "when-women-invented-television-the-untold-story-of-the-female-powerhouses-who-pioneered-the-way-we-watch-today|jennifer-keishin-armstrong",
@@ -32509,7 +32509,7 @@
         "character-driven",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -32551,7 +32551,7 @@
         "conversational",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -32594,7 +32594,7 @@
         "revelatory",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -32636,7 +32636,7 @@
         "character-driven",
         "inspiring"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -32680,7 +32680,7 @@
         "gritty",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -32724,7 +32724,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -32769,7 +32769,7 @@
         "slow-burn",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_my_vibe"
     },
     {
@@ -32814,7 +32814,7 @@
         "slow-burn",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -32859,7 +32859,7 @@
         "tense",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -32902,7 +32902,7 @@
         "character-driven",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -32946,7 +32946,7 @@
         "gritty",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -32988,7 +32988,7 @@
         "slow-burn",
         "satirical"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -33032,7 +33032,7 @@
         "dense",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -33075,7 +33075,7 @@
         "bleak",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -33117,7 +33117,7 @@
         "conversational",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -33161,7 +33161,7 @@
         "dark",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -33204,7 +33204,7 @@
         "dense",
         "inspiring"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -33247,7 +33247,7 @@
         "conversational",
         "funny"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "a-bridge-too-far|cornelius-ryan",
@@ -33288,7 +33288,7 @@
         "gritty",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -33332,7 +33332,7 @@
         "poignant",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -33375,7 +33375,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -33420,7 +33420,7 @@
         "dark",
         "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "already_seen_adaptation"
     },
     {
@@ -33463,7 +33463,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -33507,7 +33507,7 @@
         "dense",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -33552,7 +33552,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -33594,7 +33594,7 @@
         "dense",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -33637,7 +33637,7 @@
         "character-driven",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -33679,7 +33679,7 @@
         "revelatory",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -33698,7 +33698,7 @@
       "publisher": "Focused Ultrasound Foundation",
       "year": 2016,
       "themes": [
-        "narrative nonfiction",
+        "thriller",
         "high-concept"
       ],
       "similarToTitles": [
@@ -33717,10 +33717,10 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "inspiring",
-        "dense"
+        "propulsive",
+        "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -33763,7 +33763,7 @@
         "investigative",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -33805,7 +33805,7 @@
         "character-driven",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -33849,7 +33849,7 @@
         "funny",
         "satirical"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -33893,7 +33893,7 @@
         "dark",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -33936,7 +33936,7 @@
         "dense",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -33978,7 +33978,7 @@
         "investigative",
         "inspiring"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -34022,7 +34022,7 @@
         "dense",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -34062,9 +34062,10 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "heartwarming"
+        "dark",
+        "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -34106,7 +34107,7 @@
         "dark",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -34149,7 +34150,7 @@
         "character-driven",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -34193,7 +34194,7 @@
         "revelatory",
         "heartwarming"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -34235,7 +34236,7 @@
         "dense",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -34279,7 +34280,7 @@
         "dense",
         "inspiring"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -34322,7 +34323,7 @@
         "conversational",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -34364,7 +34365,7 @@
         "dense",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -34408,7 +34409,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -34451,7 +34452,7 @@
         "character-driven",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -34495,7 +34496,7 @@
         "gritty",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -34537,7 +34538,7 @@
         "dense",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -34582,7 +34583,7 @@
         "tense",
         "gritty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -34624,7 +34625,7 @@
         "character-driven",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -34667,7 +34668,7 @@
         "revelatory",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -34710,7 +34711,7 @@
         "conversational",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -34755,7 +34756,7 @@
         "slow-burn",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -34798,7 +34799,7 @@
         "investigative",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -34839,7 +34840,7 @@
         "conversational",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -34881,7 +34882,7 @@
         "revelatory",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -34926,7 +34927,7 @@
         "poignant",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -34968,7 +34969,7 @@
         "funny",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -35012,7 +35013,7 @@
         "conversational",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -35056,7 +35057,7 @@
         "funny",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -35098,7 +35099,7 @@
         "conversational",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -35139,7 +35140,7 @@
         "character-driven",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -35181,7 +35182,7 @@
         "conversational",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -35225,7 +35226,7 @@
         "poignant",
         "bleak"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -35267,7 +35268,7 @@
         "dense",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -35310,7 +35311,7 @@
         "revelatory",
         "inspiring"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -35354,7 +35355,7 @@
         "dense",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -35397,7 +35398,7 @@
         "slow-burn",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -35440,7 +35441,7 @@
         "character-driven",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -35482,7 +35483,7 @@
         "character-driven",
         "inspiring"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -35524,7 +35525,7 @@
         "revelatory",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -35568,7 +35569,7 @@
         "investigative",
         "bleak"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -35612,7 +35613,7 @@
         "slow-burn",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -35655,7 +35656,7 @@
         "character-driven",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -35699,7 +35700,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -35742,7 +35743,7 @@
         "investigative",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1309204701i/113576.jpg",
       "dnfReason": "no_longer_relevant"
     },
@@ -35786,7 +35787,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -35830,7 +35831,7 @@
         "dense",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -35873,7 +35874,7 @@
         "conversational",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -35916,7 +35917,7 @@
         "inspiring",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -35959,7 +35960,7 @@
         "conversational",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -36002,7 +36003,7 @@
         "funny",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -36044,7 +36045,7 @@
         "investigative",
         "gritty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -36088,7 +36089,7 @@
         "dense",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -36132,7 +36133,7 @@
         "poignant",
         "compulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "no_longer_relevant"
     },
     {
@@ -36173,7 +36174,7 @@
         "inspiring",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -36215,7 +36216,7 @@
         "investigative",
         "nonlinear"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
@@ -36257,7 +36258,7 @@
         "revelatory",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "topic_doesnt_appeal"
     },
     {
@@ -36299,7 +36300,7 @@
         "conversational",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
     {
