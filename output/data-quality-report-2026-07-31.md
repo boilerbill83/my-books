@@ -127,9 +127,9 @@ How many books carry each value, across every book (library + all candidate pool
 - history — 158
 - memoir — 154
 - speculative — 142
-- humor — 135
-- social commentary — 125
-- contemporary — 115
+- humor — 136
+- social commentary — 127
+- contemporary — 116
 - business — 110
 - psychological — 105
 - sports — 100

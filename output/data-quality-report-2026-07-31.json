@@ -1,6 +1,6 @@
 {
   "date": "2026-07-31",
-  "generatedAt": "2026-07-31T18:54:21.043Z",
+  "generatedAt": "2026-07-31T19:07:57.378Z",
   "totalBooks": 1112,
   "qualityScore": {
     "score": 67,
@@ -3352,15 +3352,15 @@
         },
         {
           "value": "humor",
-          "count": 135
+          "count": 136
         },
         {
           "value": "social commentary",
-          "count": 125
+          "count": 127
         },
         {
           "value": "contemporary",
-          "count": 115
+          "count": 116
         },
         {
           "value": "business",
@@ -3419,12 +3419,12 @@
           "count": 52
         },
         {
-          "value": "food",
+          "value": "domestic suspense",
           "count": 50
         },
         {
-          "value": "domestic suspense",
-          "count": 49
+          "value": "food",
+          "count": 50
         },
         {
           "value": "sci-fi",
