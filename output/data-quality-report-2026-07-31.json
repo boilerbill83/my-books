@@ -329,187 +329,218 @@
       "field": "isbn",
       "scorePct": 65.87301587301587,
       "rawPct": 64.83812949640287,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 126
     },
     {
       "field": "dateRead",
       "scorePct": 71.95685670261942,
       "rawPct": 41.99640287769784,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 649
     },
     {
       "field": "subjects",
       "scorePct": 75.11271415689811,
       "rawPct": 74.91007194244604,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 1109
     },
     {
       "field": "dismissReason",
       "scorePct": 78.26086956521739,
       "rawPct": 1.618705035971223,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 23
     },
     {
       "field": "dateAdded",
       "scorePct": 83.63309352517986,
       "rawPct": 83.63309352517986,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 1112
     },
     {
       "field": "publisher",
       "scorePct": 86.87050359712231,
       "rawPct": 86.87050359712231,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 1112
     },
     {
       "field": "amazonRating",
       "scorePct": 92.40780911062907,
       "rawPct": 39.388489208633096,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 461
     },
     {
       "field": "amazonRatingsCount",
       "scorePct": 92.40780911062907,
       "rawPct": 39.388489208633096,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 461
     },
     {
       "field": "categories",
       "scorePct": 96.39314697926059,
       "rawPct": 96.13309352517986,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 1109
     },
     {
       "field": "isbn13",
       "scorePct": 98.02158273381295,
       "rawPct": 98.02158273381295,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 1112
     },
     {
       "field": "themes",
       "scorePct": 99.19064748201438,
       "rawPct": 99.19064748201438,
-      "critical": true
+      "critical": true,
+      "eligibleTotal": 1112
     },
     {
       "field": "similarToTitles",
       "scorePct": 99.19064748201438,
       "rawPct": 99.19064748201438,
-      "critical": true
+      "critical": true,
+      "eligibleTotal": 1112
     },
     {
       "field": "year",
       "scorePct": 99.28057553956835,
       "rawPct": 99.28057553956835,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 1112
     },
     {
       "field": "metadataFetchedAt",
       "scorePct": 99.73021582733813,
       "rawPct": 99.73021582733813,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 1112
     },
     {
       "field": "description",
       "scorePct": 99.82014388489209,
       "rawPct": 99.82014388489209,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 1112
     },
     {
       "field": "type",
       "scorePct": 99.91007194244604,
       "rawPct": 99.91007194244604,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 1112
     },
     {
       "field": "ratingsCount",
       "scorePct": 99.91007194244604,
       "rawPct": 99.91007194244604,
-      "critical": true
+      "critical": true,
+      "eligibleTotal": 1112
     },
     {
       "field": "tones",
       "scorePct": 99.91007194244604,
       "rawPct": 99.91007194244604,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 1112
     },
     {
       "field": "similarToAuthors",
       "scorePct": 99.91007194244604,
       "rawPct": 99.91007194244604,
-      "critical": true
+      "critical": true,
+      "eligibleTotal": 1112
     },
     {
       "field": "bookKey",
       "scorePct": 100,
       "rawPct": 100,
-      "critical": true
+      "critical": true,
+      "eligibleTotal": 1112
     },
     {
       "field": "title",
       "scorePct": 100,
       "rawPct": 100,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 1112
     },
     {
       "field": "author",
       "scorePct": 100,
       "rawPct": 100,
-      "critical": true
+      "critical": true,
+      "eligibleTotal": 1112
     },
     {
       "field": "source",
       "scorePct": 100,
       "rawPct": 100,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 1112
     },
     {
       "field": "shelf",
       "scorePct": 100,
       "rawPct": 100,
-      "critical": true
+      "critical": true,
+      "eligibleTotal": 1112
     },
     {
       "field": "pages",
       "scorePct": 100,
       "rawPct": 100,
-      "critical": true
+      "critical": true,
+      "eligibleTotal": 1112
     },
     {
       "field": "myRating",
       "scorePct": 100,
       "rawPct": 85.16187050359713,
-      "critical": true
+      "critical": true,
+      "eligibleTotal": 649
     },
     {
       "field": "avgRating",
       "scorePct": 100,
       "rawPct": 100,
-      "critical": true
+      "critical": true,
+      "eligibleTotal": 1112
     },
     {
       "field": "dismissed",
       "scorePct": 100,
       "rawPct": 100,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 1112
     },
     {
       "field": "coverUrl",
       "scorePct": 100,
       "rawPct": 51.888489208633096,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 463
     },
     {
       "field": "goodreadsUrl",
       "scorePct": 100,
       "rawPct": 100,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 1112
     },
     {
       "field": "top10",
       "scorePct": 100,
       "rawPct": 100,
-      "critical": false
+      "critical": false,
+      "eligibleTotal": 1112
     }
   ],
   "integrity": {

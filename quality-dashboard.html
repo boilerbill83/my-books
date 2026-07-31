@@ -109,6 +109,7 @@
       table.qd-table th.sorted.asc::after { content: ' ▴'; }
       table.qd-table tbody tr:hover { background: var(--bg-subtle); }
       table.qd-table td.num { font-variant-numeric: tabular-nums; text-align: right; }
+      .qd-field-target-note { font-size: 0.68rem; color: var(--text-muted); font-weight: 400; margin-top: 2px; }
       .qd-reasons { font-size: 0.78rem; color: var(--text-muted); }
       .qd-locs { font-size: 0.72rem; color: var(--text-muted); }
       .qd-flag-star { color: var(--gold); font-weight: 700; }
@@ -868,7 +869,19 @@
         const fieldCols = [
           { label: 'Field', get: r => r.field },
           { label: 'Critical', get: r => r.critical ? 1 : 0, render: (td, r) => { if (r.critical) { const b = document.createElement('span'); b.className = 'qd-badge critical'; b.textContent = '★ critical'; td.appendChild(b); } } },
-          { label: 'Percent Populated', get: r => r.rawPct, numeric: true, render: (td, r) => { td.className = 'num'; td.textContent = fmtPct(r.rawPct); } },
+          { label: 'Percent Populated', get: r => r.rawPct, numeric: true, render: (td, r) => {
+            td.className = 'num';
+            const restricted = r.eligibleTotal != null && r.eligibleTotal < current.totalBooks;
+            if (restricted) {
+              td.textContent = fmtPct(r.rawPct);
+              const note = document.createElement('div');
+              note.className = 'qd-field-target-note';
+              note.textContent = `target: ${r.eligibleTotal.toLocaleString()} eligible, not all ${current.totalBooks.toLocaleString()}`;
+              td.appendChild(note);
+            } else {
+              td.textContent = fmtPct(r.rawPct);
+            }
+          } },
           { label: 'Quality Score', get: r => r.scorePct, numeric: true, render: (td, r) => { td.appendChild(scoreBadge(r.scorePct, r.critical)); td.append(` ${fmtPct(r.scorePct)}`); } },
         ];
         function fieldRows() {

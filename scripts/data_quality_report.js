@@ -916,6 +916,13 @@ function buildHistoryTable(currentSnapshot, todayStamp) {
 
 // ── Render report ────────────────────────────────────────────────────────────
 
+// A field whose eligible pool is a genuine subset of all books (e.g.
+// dateRead only applies to the 649 read-shelf books, never the full 1112)
+// can never reach 100% "Percent Populated" measured against everyone —
+// that's not a gap, it's the field's real ceiling. Show the eligible count
+// alongside the raw percentage so the denominator/target is never
+// ambiguous, instead of implying every field should climb toward the full
+// dataset.
 function renderPopulationTable(stats) {
   const lines = [
     '| Field Name | Percent Populated | Quality Score | How Score is Determined | Suggestions for Improvement |',
@@ -924,7 +931,11 @@ function renderPopulationTable(stats) {
   for (const s of stats) {
     const label = scoreLabel(s.scorePct);
     const flag = s.belowThreshold ? (s.critical ? ' 🔴' : ' ⚠️') : '';
-    lines.push(`| ${s.field}${flag} | ${s.rawPct.toFixed(1)}% | ${s.scorePct.toFixed(1)}% (${label}) | ${s.how} | ${s.suggest} |`);
+    const isRestricted = s.eligibleTotal < rows.length;
+    const rawCell = isRestricted
+      ? `${s.rawPct.toFixed(1)}% (target: ${s.eligibleTotal.toLocaleString()} eligible, not all ${rows.length.toLocaleString()})`
+      : `${s.rawPct.toFixed(1)}%`;
+    lines.push(`| ${s.field}${flag} | ${rawCell} | ${s.scorePct.toFixed(1)}% (${label}) | ${s.how} | ${s.suggest} |`);
   }
   return lines.join('\n');
 }
@@ -1040,7 +1051,7 @@ const currentSnapshot = {
   totalBooks: rows.length,
   qualityScore,
   roadmap,
-  fields: stats.map(s => ({ field: s.field, scorePct: s.scorePct, rawPct: s.rawPct, critical: s.critical })),
+  fields: stats.map(s => ({ field: s.field, scorePct: s.scorePct, rawPct: s.rawPct, critical: s.critical, eligibleTotal: s.eligibleTotal })),
   integrity: integritySummary,
   // Full structured findings (not just counts) — dashboard-ready.
   findings: {
