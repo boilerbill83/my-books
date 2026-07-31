@@ -1145,6 +1145,7 @@ const roadmap = buildRoadmap(stats, integritySummary, rows);
 
 const currentSnapshot = {
   date: dateStamp,
+  generatedAt: new Date().toISOString(),
   totalBooks: rows.length,
   qualityScore,
   roadmap,

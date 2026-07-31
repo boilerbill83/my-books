@@ -357,6 +357,10 @@
         const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
         return Math.round((today - then) / 86400000);
       }
+      function fmtTime(iso) {
+        // iso is a full ISO instant (UTC); render in the viewer's local time zone with its abbreviation.
+        return new Date(iso).toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+      }
       function relativeRefreshText(d) {
         const n = daysAgo(d);
         if (n <= 0) return 'today';
@@ -901,7 +905,10 @@
 
         $('#qdLoading').hidden = true;
         $('#qdApp').hidden = false;
-        $('#qdSubtitle').textContent = `Last refreshed: ${fmtDate(current.date)} (${relativeRefreshText(current.date)}) — ${current.totalBooks.toLocaleString()} books analyzed`;
+        const refreshedWhen = current.generatedAt
+          ? `${fmtDate(current.date)} at ${fmtTime(current.generatedAt)}`
+          : fmtDate(current.date); // older snapshots predate the generatedAt field — date-only fallback
+        $('#qdSubtitle').textContent = `Last refreshed: ${refreshedWhen} (${relativeRefreshText(current.date)}) — ${current.totalBooks.toLocaleString()} books analyzed`;
 
         const integ = current.integrity;
         const findings = current.findings;
