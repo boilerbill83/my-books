@@ -8108,7 +8108,7 @@
         "gritty",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -8150,7 +8150,7 @@
         "twisty",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -8193,7 +8193,7 @@
         "inspiring",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -8236,7 +8236,7 @@
         "heartwarming",
         "inspiring"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -8278,7 +8278,7 @@
         "slow-burn",
         "heartwarming"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -8320,7 +8320,7 @@
         "investigative",
         "propulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1659407155i/61714633.jpg",
       "allTimeFave": true
     },
@@ -8363,7 +8363,7 @@
         "investigative",
         "propulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -8405,7 +8405,7 @@
         "slow-burn",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -8447,7 +8447,7 @@
         "procedural",
         "compulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -8490,7 +8490,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524255918l/39903265._SY475_.jpg"
     },
@@ -8533,7 +8533,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1679679236l/123739932._SY475_.jpg"
     },
@@ -8575,7 +8575,7 @@
         "funny",
         "character-driven"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1556842560l/45442010._SY475_.jpg"
     },
@@ -8616,9 +8616,10 @@
       "type": "nonfiction",
       "tones": [
         "propulsive",
+        "tense",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1327859184l/6081088.jpg"
     },
@@ -8662,7 +8663,7 @@
         "twisty",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1686663798l/177478086._SY475_.jpg"
     },
@@ -8706,7 +8707,7 @@
         "slow-burn",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1690812345l/156007669._SY475_.jpg"
     },
