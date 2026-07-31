@@ -17830,7 +17830,7 @@
         "propulsive",
         "funny"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "a-face-in-the-crowd|stephen-king",
@@ -17869,7 +17869,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "none-of-this-rocks-a-memoir|joe-trohman",
@@ -17907,7 +17907,7 @@
         "character-driven",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=6Rj4zgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -17947,7 +17947,7 @@
         "funny",
         "gritty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=4jIaEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17989,7 +17989,7 @@
         "twisty",
         "compulsive"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "romantic-comedy|curtis-sittenfeld",
@@ -18030,7 +18030,7 @@
         "heartwarming",
         "funny"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "for-blood-and-money-billionaires-biotech-and-the-quest-for-a-blockbuster-drug|nathan-vardi",
@@ -18069,7 +18069,7 @@
         "dense",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=AndwEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18108,7 +18108,7 @@
         "poignant",
         "bleak"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=IJAZEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -18150,7 +18150,7 @@
         "character-driven",
         "poignant"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "cassandra-in-reverse|holly-smale",
@@ -18190,7 +18190,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=HfK5zwEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -18231,7 +18231,7 @@
         "satirical",
         "atmospheric"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "doc-the-life-of-roy-halladay|todd-zolecki",
