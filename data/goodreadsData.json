@@ -38294,7 +38294,7 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1763480486l/244122402._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
+      "type": "nonfiction",
       "themes": ["narrative nonfiction", "adventure"],
       "dnf": false,
       "similarToAuthors": [
@@ -38316,7 +38316,7 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1771508086l/247948566._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
+      "type": "nonfiction",
       "themes": ["narrative nonfiction", "social commentary"],
       "dnf": false,
       "similarToAuthors": [
@@ -38337,7 +38337,7 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1778172751l/246137709.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
+      "type": "fiction",
       "themes": ["thriller", "suspense"],
       "dnf": false,
       "similarToAuthors": [
@@ -38361,7 +38361,7 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1754576850l/232794526._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
+      "type": "fiction",
       "themes": ["contemporary", "literary"],
       "dnf": false,
       "similarToAuthors": [
@@ -38383,7 +38383,7 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1752549468l/233717212._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
+      "type": "fiction",
       "themes": ["sci-fi", "speculative", "adventure"],
       "dnf": false,
       "similarToAuthors": [
@@ -38405,7 +38405,7 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1751998652l/222259253._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
+      "type": "fiction",
       "themes": ["literary", "contemporary", "social commentary"],
       "dnf": false,
       "similarToAuthors": [
@@ -38427,7 +38427,7 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1772556426l/249246420._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
+      "type": "nonfiction",
       "themes": ["music history", "narrative nonfiction", "humor"],
       "dnf": false,
       "similarToAuthors": [
@@ -38437,6 +38437,7 @@
       "tones": ["conversational", "thoughtful"], "themeToneReviewed": true
     },
     {
+      "bookKey": "cancel-me-if-you-can|dave-portnoy",
       "title": "Cancel Me If You Can",
       "author": "Dave Portnoy",
       "isbn13": "9781668222027",
@@ -38448,8 +38449,8 @@
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1761084960l/243018874._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
-      "type": "unknown",
-      "themes": [],
+      "type": "nonfiction",
+      "themes": ["memoir", "business"],
       "dnf": false,
       "similarToAuthors": [
         "Phil Knight",
