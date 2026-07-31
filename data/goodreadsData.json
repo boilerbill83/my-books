@@ -14255,7 +14255,7 @@
         "slow-burn",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1356891529l/8489510.jpg"
     },
     {
@@ -14292,7 +14292,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=VA7uDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -14332,7 +14332,7 @@
         "tense",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=DopEEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -14376,7 +14376,7 @@
         "poignant",
         "funny"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "reading-the-oed-one-man-one-year-21-730-pages|ammon-shea",
@@ -14413,7 +14413,7 @@
         "conversational",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=xmU6ArretQ8C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -14454,7 +14454,7 @@
         "slow-burn",
         "lyrical"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-formula-how-rogues-geniuses-and-speed-freaks-reengineered-f1-into-the-world-s-fastest-growing-sport-a-high-octane-history-of-formula-1-s-rise-in-america|joshua-robinson",
@@ -14494,7 +14494,7 @@
         "revelatory",
         "investigative"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "end-of-story|a-j-finn",
@@ -14532,7 +14532,7 @@
         "twisty",
         "dark"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "before-the-coffee-gets-cold|toshikazu-kawaguchi",
@@ -14573,7 +14573,7 @@
         "atmospheric",
         "heartwarming"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "you-like-it-darker|stephen-king",
@@ -14612,7 +14612,7 @@
         "dark",
         "tense"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-one|john-marrs",
@@ -14652,7 +14652,7 @@
         "tense",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=ck-a0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -14691,7 +14691,7 @@
         "ensemble",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1710517586l/209608728.jpg"
     },
     {
@@ -14725,10 +14725,11 @@
       ],
       "ratingsCount": 22000,
       "tones": [
-        "dense",
+        "investigative",
+        "funny",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1703798624l/203020280._SY475_.jpg"
     },
     {
@@ -14766,7 +14767,7 @@
         "character-driven",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=D9nADQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
