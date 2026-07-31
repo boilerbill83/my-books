@@ -17237,7 +17237,7 @@
         "investigative",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=hy5bCwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17278,7 +17278,7 @@
         "dark",
         "atmospheric"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-rocket-that-fell-to-earth-roger-clemens-and-the-rage-for-baseball-immortality|jeff-pearlman",
@@ -17318,7 +17318,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=6Q74lgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -17357,7 +17357,7 @@
         "twisty",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1684763144i/123206645.jpg"
     },
     {
@@ -17395,7 +17395,7 @@
         "character-driven",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1574878671i/42660463.jpg"
     },
     {
@@ -17433,7 +17433,7 @@
         "slow-burn",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=yLZIygEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -17475,7 +17475,7 @@
         "slow-burn",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=G3SkEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -17513,7 +17513,7 @@
         "funny",
         "character-driven"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=wEbMEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17552,9 +17552,10 @@
       "type": "fiction",
       "tones": [
         "slow-burn",
-        "funny"
+        "funny",
+        "bleak"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "trust|hernan-diaz",
@@ -17590,7 +17591,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=QyiwEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17631,7 +17632,7 @@
         "tense",
         "dark"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "gambler-secrets-from-a-life-at-risk|billy-walters",
@@ -17667,7 +17668,7 @@
         "poignant",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=IHaqEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -17707,7 +17708,7 @@
         "slow-burn",
         "compulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=UHL_mO1zFxoC&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -17747,7 +17748,7 @@
         "atmospheric",
         "twisty"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-road|cormac-mccarthy",
@@ -17788,7 +17789,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "a-walk-in-the-woods-rediscovering-america-on-the-appalachian-trail|bill-bryson",
