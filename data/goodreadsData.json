@@ -14806,7 +14806,7 @@
         "procedural",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=iCFeDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -14843,7 +14843,7 @@
         "conversational",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=1euouQAACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -14886,7 +14886,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "there-s-always-this-year-on-basketball-and-ascension|hanif-abdurraqib",
@@ -14926,7 +14926,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "fire-weather-a-true-story-from-a-hotter-world|john-vaillant",
@@ -14963,7 +14963,7 @@
         "propulsive",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=0CH0EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15001,7 +15001,7 @@
         "character-driven",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=NNzUEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15039,7 +15039,7 @@
         "dark",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=ASJNEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15078,7 +15078,7 @@
         "character-driven",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=bLudBAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15117,7 +15117,7 @@
         "dense",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=QY33EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15159,7 +15159,7 @@
         "character-driven",
         "revelatory"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-three-body-problem|liu-cixin",
@@ -15199,7 +15199,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-mother-tongue-english-and-how-it-got-that-way|bill-bryson",
@@ -15236,7 +15236,7 @@
         "conversational",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=sEZMJwAACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -15256,7 +15256,8 @@
       "year": 2020,
       "themes": [
         "literary",
-        "contemporary"
+        "contemporary",
+        "speculative"
       ],
       "similarToTitles": [
         "Rich Blood (Jason Rich, #1)",
@@ -15273,10 +15274,11 @@
       ],
       "type": "fiction",
       "tones": [
-        "procedural",
-        "heartwarming"
+        "heartwarming",
+        "inspiring",
+        "poignant"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "revival|stephen-king",
@@ -15316,7 +15318,7 @@
         "dark",
         "atmospheric"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "refund-stories|karen-e-bender",
@@ -15353,7 +15355,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=r94REAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -15396,7 +15398,7 @@
         "atmospheric",
         "dark"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-storied-life-of-a-j-fikry|gabrielle-zevin",
