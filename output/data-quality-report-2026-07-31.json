@@ -1,6 +1,6 @@
 {
   "date": "2026-07-31",
-  "generatedAt": "2026-07-31T19:07:57.378Z",
+  "generatedAt": "2026-07-31T19:24:16.119Z",
   "totalBooks": 1112,
   "qualityScore": {
     "score": 67,
@@ -3473,12 +3473,8 @@
       ],
       "tones": [
         {
-          "value": "dark",
-          "count": 171
-        },
-        {
           "value": "funny",
-          "count": 170
+          "count": 171
         },
         {
           "value": "propulsive",
@@ -3499,6 +3495,10 @@
         {
           "value": "twisty",
           "count": 168
+        },
+        {
+          "value": "dark",
+          "count": 167
         },
         {
           "value": "revelatory",
@@ -3522,7 +3522,7 @@
         },
         {
           "value": "thoughtful",
-          "count": 151
+          "count": 152
         },
         {
           "value": "poignant",
@@ -3542,7 +3542,7 @@
         },
         {
           "value": "inspiring",
-          "count": 69
+          "count": 70
         },
         {
           "value": "compulsive",
@@ -3554,7 +3554,7 @@
         },
         {
           "value": "satirical",
-          "count": 28
+          "count": 29
         },
         {
           "value": "nonlinear",

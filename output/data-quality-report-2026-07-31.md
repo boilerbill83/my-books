@@ -140,19 +140,19 @@ How many books carry each value, across every book (library + all candidate pool
 - tech history — 84
 
 **Tones** (top 15 of 24):
-- dark — 171
-- funny — 170
+- funny — 171
 - propulsive — 170
 - tense — 170
 - conversational — 169
 - investigative — 168
 - twisty — 168
+- dark — 167
 - revelatory — 166
 - atmospheric — 165
 - character-driven — 165
 - slow-burn — 161
 - dense — 160
-- thoughtful — 151
+- thoughtful — 152
 - poignant — 131
 - procedural — 121
 
