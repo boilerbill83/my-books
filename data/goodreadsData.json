@@ -9359,7 +9359,7 @@
         "twisty",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1715178170l/199897926._SY475_.jpg"
     },
     {
@@ -9398,7 +9398,7 @@
         "twisty",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=2FwoEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9438,7 +9438,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -9480,7 +9480,7 @@
         "poignant",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1728331961l/216818681._SY475_.jpg"
     },
     {
@@ -9522,7 +9522,7 @@
         "propulsive",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1680059561l/124025550._SY475_.jpg"
     },
     {
@@ -9543,8 +9543,7 @@
       "type": "fiction",
       "themes": [
         "historical",
-        "literary",
-        "contemporary"
+        "literary"
       ],
       "similarToTitles": [
         "The Great Alone",
@@ -9561,7 +9560,7 @@
         "heartwarming",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=mXLuvf9410MC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9602,7 +9601,7 @@
         "slow-burn",
         "dark"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "pearl-harbor-warning-and-decision|roberta-wohlstetter",
@@ -9640,7 +9639,7 @@
         "gritty",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=pO4JxYdXP04C&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9678,7 +9677,7 @@
         "propulsive",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=KmO8DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -9716,7 +9715,7 @@
         "character-driven",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1733544911l/218695859._SY475_.jpg"
     },
     {
@@ -9759,7 +9758,7 @@
         "tense",
         "propulsive"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "accidentally-on-purpose|kristen-kish",
