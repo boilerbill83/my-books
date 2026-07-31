@@ -2972,7 +2972,7 @@
         "funny",
         "conversational"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/81NdM46erJL._SX300_.jpg"
     },
     {
@@ -3013,7 +3013,7 @@
         "twisty",
         "dark"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-age-of-ai-and-our-human-future|henry-kissinger",
@@ -3051,7 +3051,7 @@
         "investigative",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1634645375l/56620811.jpg"
     },
     {
@@ -3094,7 +3094,7 @@
         "tense",
         "propulsive"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "children-of-time|adrian-tchaikovsky",
@@ -3133,7 +3133,7 @@
         "slow-burn",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -3173,7 +3173,7 @@
         "inspiring",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1746557255l/222594068._SY475_.jpg"
     },
     {
@@ -3210,7 +3210,7 @@
         "dense",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/816-80H7rwL._SX300_.jpg"
     },
     {
@@ -3250,7 +3250,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1563468097l/49665863._SX318_SY475_.jpg"
     },
     {
@@ -3290,7 +3290,7 @@
         "dark",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1563468452l/49669410._SX318_SY475_.jpg"
     },
     {
@@ -3332,7 +3332,7 @@
         "twisty",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1563468943l/49676965._SX318_SY475_.jpg"
     },
     {
@@ -3375,7 +3375,7 @@
         "twisty",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1552586664l/44430778._SY475_.jpg"
     },
     {
@@ -3417,7 +3417,7 @@
         "twisty",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/81S6PQlkAfL._SX300_.jpg"
     },
     {
@@ -3457,7 +3457,7 @@
         "slow-burn",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://m.media-amazon.com/images/I/71ujW-xxTiL._SX300_.jpg"
     },
     {
@@ -3496,7 +3496,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
