@@ -168,11 +168,13 @@ def main():
 
     Path('output').mkdir(exist_ok=True)
     log_lines = []
+    failures = 0
     for i, b in enumerate(batch, 1):
         try:
             verdict = audit_book(b)
         except Exception as e:
             print(f'  [{i}/{len(batch)}] FAIL {b["title"][:45]}: {e}')
+            failures += 1
             time.sleep(1)
             continue
         entry = {
@@ -198,6 +200,15 @@ def main():
             f.write('\n'.join(log_lines) + '\n')
         json.dump(state, open(STATE_FILE, 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
     print(f'done: {len(log_lines)} books audited this run, {len(state)} total audited')
+
+    # A batch where every single book failed almost certainly means something
+    # systemic (bad/missing ANTHROPIC_API_KEY, API outage) rather than 20
+    # unrelated per-book flukes. Fail the job loudly instead of reporting a
+    # quiet "success" that did zero real work -- this exact silent-failure
+    # shape is what happened on this workflow's first real runs.
+    if failures and failures == len(batch):
+        sys.exit(f'All {failures} book(s) in this batch failed — likely a systemic '
+                  f'problem (check ANTHROPIC_API_KEY), not per-book flukes.')
 
 
 if __name__ == '__main__':
