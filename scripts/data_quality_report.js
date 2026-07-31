@@ -521,6 +521,33 @@ function findThemeToneCollisions() {
   return offenders;
 }
 
+// Simple frequency counts across the whole dataset for the three tag-style
+// fields Bill wants visible on the dashboard: themes and tones (canonical,
+// controlled vocabularies) and subjects (free-form Open Library terms, no
+// canonical list — see CLAUDE.md's subjects field notes). Not an integrity
+// check by itself; just a count table so vocabulary distribution (e.g. "is
+// any one tag doing too much work") is visible without re-deriving it by
+// hand each time, the same need that drove the Session 16 tone-balance work.
+function computeTagCounts() {
+  const countField = field => {
+    const freq = new Map();
+    for (const r of rows) {
+      for (const v of r[field]) {
+        if (!v) continue;
+        freq.set(v, (freq.get(v) || 0) + 1);
+      }
+    }
+    return [...freq.entries()]
+      .map(([value, count]) => ({ value, count }))
+      .sort((a, b) => b.count - a.count || a.value.localeCompare(b.value));
+  };
+  return {
+    themes: countField('themes'),
+    tones: countField('tones'),
+    subjects: countField('subjects'),
+  };
+}
+
 function findOutOfRangeCounts() {
   // CLAUDE.md quality rules: themes 2-5, similarToTitles 3-5 (checked only
   // for library books — candidate pools follow a looser convention).
@@ -1075,6 +1102,7 @@ const fiveStarGaps = findFiveStarSignalGaps();
 const alreadyReadInPool = findAlreadyReadInPool();
 const highLeverageGaps = findHighLeverageGaps();
 const { selfTitle, selfAuthor } = findSelfReferential();
+const tagCounts = computeTagCounts();
 
 const alreadyReadInPoolKeys = new Set(alreadyReadInPool.map(x => `${norm(x.title)}|${norm(x.author)}`));
 const selfReferentialKeys = new Set([...selfTitle, ...selfAuthor].map(x => `${norm(x.title)}|${norm(x.author)}`));
@@ -1139,6 +1167,7 @@ const currentSnapshot = {
     duplicateBookKeys: dupBookKeys.map(([key, list]) => ({ key, books: list.map(r => ({ title: r.title, source: r.source, shelf: r.shelf })) })),
     duplicateTitleAuthor: dupTitleAuthor.map(([, list]) => ({ title: list[0].title, author: list[0].author, occurrences: list.map(r => ({ source: r.source, shelf: r.shelf })) })),
     impactScores: impactScores.slice(0, 50),
+    tagCounts,
   },
 };
 
@@ -1191,6 +1220,19 @@ the field is working as scoped, not broken). 🔴 marks a scoring-critical
 field below ${CRITICAL_WARN_THRESHOLD}%; ⚠️ marks any other field below ${WARN_THRESHOLD}%.
 
 ${renderPopulationTable(stats)}
+
+## Tag Counts (Themes, Tones, Subjects)
+
+How many books carry each value, across every book (library + all candidate pools). Themes and tones are controlled vocabularies (see CLAUDE.md); subjects is free-form (Open Library, no canonical list — this table is the fastest way to see what's actually in use). Full lists (not just top 15) are in the JSON snapshot's \`findings.tagCounts\` and the interactive [dashboard](../quality-dashboard.html#tagCountsSection).
+
+**Themes** (top 15 of ${tagCounts.themes.length}):
+${tagCounts.themes.slice(0, 15).map(t => `- ${t.value} — ${t.count}`).join('\n')}
+
+**Tones** (top 15 of ${tagCounts.tones.length}):
+${tagCounts.tones.slice(0, 15).map(t => `- ${t.value} — ${t.count}`).join('\n')}
+
+**Subjects** (top 15 of ${tagCounts.subjects.length}):
+${tagCounts.subjects.length ? tagCounts.subjects.slice(0, 15).map(t => `- ${t.value} — ${t.count}`).join('\n') : 'None found (subjects field not populated on any book yet).'}
 
 ## Data Integrity
 

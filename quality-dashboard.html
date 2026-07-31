@@ -86,6 +86,13 @@
       }
       .qd-trend-svg-wrap:hover .qd-tooltip.active { opacity: 1; }
 
+      /* ── Tag counts (themes/tones/subjects) ── */
+      .qd-tagcounts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; align-items: start; }
+      .qd-tagcount-block h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
+      .qd-tagcount-block .qd-controls { margin-bottom: 8px; }
+      .qd-tagcount-block .qd-table-wrap { max-height: 420px; overflow-y: auto; }
+      .qd-tagcount-block .qd-search { min-width: 0; width: 100%; }
+
       /* ── Controls row ── */
       .qd-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
       .qd-search {
@@ -262,6 +269,40 @@
           <div class="qd-table-wrap"><table class="qd-table" id="fieldTable"></table></div>
         </section>
 
+        <section class="qd-section" id="tagCountsSection">
+          <h2>Tag Counts</h2>
+          <p class="qd-desc">How many books carry each theme, tone, and subject, across the library and every candidate pool. Themes and tones are controlled vocabularies (see CLAUDE.md); subjects is free-form (Open Library, no canonical list).</p>
+          <div class="qd-tagcounts-grid">
+            <div class="qd-tagcount-block">
+              <h3>Themes</h3>
+              <div class="qd-controls">
+                <input type="text" class="qd-search" id="themeCountSearch" placeholder="Search themes…" />
+                <button class="qd-toggle-btn" id="themeCountDownloadBtn">⬇ CSV</button>
+              </div>
+              <div class="qd-table-wrap"><table class="qd-table" id="themeCountTable"></table></div>
+              <span class="qd-count" id="themeCountCount"></span>
+            </div>
+            <div class="qd-tagcount-block">
+              <h3>Tones</h3>
+              <div class="qd-controls">
+                <input type="text" class="qd-search" id="toneCountSearch" placeholder="Search tones…" />
+                <button class="qd-toggle-btn" id="toneCountDownloadBtn">⬇ CSV</button>
+              </div>
+              <div class="qd-table-wrap"><table class="qd-table" id="toneCountTable"></table></div>
+              <span class="qd-count" id="toneCountCount"></span>
+            </div>
+            <div class="qd-tagcount-block">
+              <h3>Subjects</h3>
+              <div class="qd-controls">
+                <input type="text" class="qd-search" id="subjectCountSearch" placeholder="Search subjects…" />
+                <button class="qd-toggle-btn" id="subjectCountDownloadBtn">⬇ CSV</button>
+              </div>
+              <div class="qd-table-wrap"><table class="qd-table" id="subjectCountTable"></table></div>
+              <span class="qd-count" id="subjectCountCount"></span>
+            </div>
+          </div>
+        </section>
+
         <section class="qd-section" id="impactSection">
           <h2>Worst Books by BBRE Impact Score</h2>
           <p class="qd-desc">Not a raw missing-field count — weighted by whether the book is a 5★ read (foundational signal), a high-leverage candidate, or involved in an integrity issue like an already-read duplicate.</p>
@@ -304,7 +345,24 @@
       const esc = s => String(s ?? '');
 
       function fmtPct(n) { return `${n.toFixed(1)}%`; }
-      function fmtDate(d) { return d; }
+      function fmtDate(d) {
+        // d is 'YYYY-MM-DD'; parse as local (not UTC) so it can't roll to the wrong day.
+        const [y, m, day] = d.split('-').map(Number);
+        return new Date(y, m - 1, day).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+      }
+      function daysAgo(d) {
+        const [y, m, day] = d.split('-').map(Number);
+        const then = new Date(y, m - 1, day);
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        return Math.round((today - then) / 86400000);
+      }
+      function relativeRefreshText(d) {
+        const n = daysAgo(d);
+        if (n <= 0) return 'today';
+        if (n === 1) return 'yesterday';
+        return `${n} days ago`;
+      }
 
       function scoreBadge(scorePct, critical) {
         const threshold = critical ? 90 : 80;
@@ -843,7 +901,7 @@
 
         $('#qdLoading').hidden = true;
         $('#qdApp').hidden = false;
-        $('#qdSubtitle').textContent = `As of ${current.date} — ${current.totalBooks.toLocaleString()} books analyzed`;
+        $('#qdSubtitle').textContent = `Last refreshed: ${fmtDate(current.date)} (${relativeRefreshText(current.date)}) — ${current.totalBooks.toLocaleString()} books analyzed`;
 
         const integ = current.integrity;
         const findings = current.findings;
@@ -898,6 +956,32 @@
         criticalOnlyBtn.addEventListener('click', () => { criticalOnly = !criticalOnly; criticalOnlyBtn.classList.toggle('active', criticalOnly); refreshFieldTable(); });
         $('#fieldDownloadBtn').addEventListener('click', () => downloadCSV(fieldTable, `field-population-${current.date}.csv`));
         refreshFieldTable();
+
+        // ── Tag counts (themes/tones/subjects) ──
+        const tagCountCols = [
+          { label: 'Value', get: r => r.value },
+          { label: 'Books', get: r => r.count, numeric: true },
+        ];
+        function wireTagCountTable(field, tableId, searchId, downloadId, countId) {
+          const table = $(`#${tableId}`);
+          const search = $(`#${searchId}`);
+          const allRows = (findings.tagCounts && findings.tagCounts[field]) || [];
+          function rowsFiltered() {
+            const q = search.value.trim().toLowerCase();
+            return allRows.filter(r => !q || r.value.toLowerCase().includes(q));
+          }
+          function refresh() {
+            const rows = rowsFiltered();
+            sortableTable(table, tagCountCols, rows, { defaultSort: 1, defaultAsc: false });
+            $(`#${countId}`).textContent = `${rows.length} of ${allRows.length}`;
+          }
+          search.addEventListener('input', refresh);
+          $(`#${downloadId}`).addEventListener('click', () => downloadCSV(table, `${field}-counts-${current.date}.csv`));
+          refresh();
+        }
+        wireTagCountTable('themes', 'themeCountTable', 'themeCountSearch', 'themeCountDownloadBtn', 'themeCountCount');
+        wireTagCountTable('tones', 'toneCountTable', 'toneCountSearch', 'toneCountDownloadBtn', 'toneCountCount');
+        wireTagCountTable('subjects', 'subjectCountTable', 'subjectCountSearch', 'subjectCountDownloadBtn', 'subjectCountCount');
 
         // ── Impact score table ──
         const impactTable = $('#impactTable');
