@@ -5099,7 +5099,7 @@
         "dense",
         "inspiring"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -5141,7 +5141,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -5183,7 +5183,7 @@
         "dense",
         "inspiring"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -5225,7 +5225,7 @@
         "investigative",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -5266,7 +5266,7 @@
         "conversational",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -5308,7 +5308,7 @@
         "dense",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -5352,7 +5352,7 @@
         "poignant",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -5394,7 +5394,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -5437,7 +5437,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -5480,7 +5480,7 @@
         "dense",
         "investigative"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -5524,7 +5524,7 @@
         "poignant",
         "funny"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -5567,7 +5567,7 @@
         "character-driven",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
@@ -5607,10 +5607,10 @@
       "type": "fiction",
       "tones": [
         "propulsive",
-        "slow-burn",
-        "funny"
+        "funny",
+        "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true
     },
     {
