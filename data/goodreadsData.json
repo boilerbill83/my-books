@@ -10363,7 +10363,7 @@
         "twisty",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1693401496l/195967140._SY475_.jpg"
     },
     {
@@ -10403,7 +10403,7 @@
         "twisty",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=3TmPEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -10444,7 +10444,7 @@
         "slow-burn",
         "bleak"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1590843284l/53660995._SY475_.jpg"
     },
     {
@@ -10481,7 +10481,7 @@
         "dense",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=ywJD6s64ErgC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10524,7 +10524,7 @@
         "character-driven",
         "thoughtful"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1644163715l/57926350._SY475_.jpg"
     },
     {
@@ -10546,7 +10546,7 @@
       "themes": [
         "romance",
         "military",
-        "historical"
+        "contemporary"
       ],
       "similarToTitles": [
         "One True Loves",
@@ -10565,7 +10565,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=D8tkDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10603,7 +10603,7 @@
         "character-driven",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=4Lw2DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10642,7 +10642,7 @@
         "funny",
         "character-driven"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=hfglEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10681,7 +10681,7 @@
         "dark",
         "compulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "top10": true
     },
     {
@@ -10720,9 +10720,11 @@
       "ratingsCount": 110000,
       "tones": [
         "procedural",
-        "compulsive"
+        "compulsive",
+        "twisty",
+        "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=Mu_yDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10762,7 +10764,7 @@
         "twisty",
         "procedural"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=ZGA9DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -10804,7 +10806,7 @@
         "procedural",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1577933110l/50245253._SY475_.jpg"
     },
     {
@@ -10846,7 +10848,7 @@
         "twisty",
         "procedural"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "blood-and-thunder-an-epic-of-the-american-west|hampton-sides",
@@ -10884,7 +10886,7 @@
         "gritty",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=W_2KDQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
