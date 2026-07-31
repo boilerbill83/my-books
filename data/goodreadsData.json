@@ -19273,7 +19273,7 @@
         "atmospheric",
         "slow-burn"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "a-face-in-the-crowd-the-longest-december|stephen-king",
@@ -21753,7 +21753,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=nDArEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -21794,7 +21794,7 @@
         "satirical",
         "slow-burn"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-midnight-ride|ben-mezrich",
@@ -21834,7 +21834,7 @@
         "propulsive",
         "compulsive"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "gwendy-s-final-task|stephen-king",
@@ -21874,7 +21874,7 @@
         "atmospheric",
         "dark"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "i-ll-be-gone-in-the-dark-one-woman-s-obsessive-search-for-the-golden-state-killer|michelle-mcnamara",
@@ -21911,7 +21911,7 @@
         "investigative",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=aSZHDwAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -21946,10 +21946,10 @@
       ],
       "ratingsCount": 500000,
       "tones": [
-        "procedural",
+        "ensemble",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=2v6ZDQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -21989,9 +21989,9 @@
       "type": "nonfiction",
       "tones": [
         "dense",
-        "inspiring"
+        "gritty"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "ten-letters-the-american-people-in-the-obama-years|eli-saslow",
@@ -22028,7 +22028,7 @@
         "dense",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=UkW02QxybzQC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -22066,7 +22066,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=u1lEzgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -22109,7 +22109,7 @@
         "dark",
         "atmospheric"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-first-shots-the-epic-rivalries-and-heroic-science-behind-the-race-to-the-coronavirus-vaccine|brendan-borrell",
@@ -22148,7 +22148,7 @@
         "dense",
         "thoughtful"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-nineties-a-book|chuck-klosterman",
@@ -22188,7 +22188,7 @@
         "conversational",
         "funny"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-night-the-lights-went-out-a-memoir-of-life-after-brain-damage|drew-magary",
@@ -22228,7 +22228,7 @@
         "satirical",
         "thoughtful"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "madhouse-at-the-end-of-the-earth-the-belgica-s-journey-into-the-dark-antarctic-night|julian-sancton",
@@ -22269,7 +22269,7 @@
         "propulsive",
         "dark"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "sick-in-the-head-conversations-about-life-and-comedy|judd-apatow",
@@ -22309,7 +22309,7 @@
         "funny",
         "poignant"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-guardians|john-grisham",
@@ -22350,7 +22350,7 @@
         "procedural",
         "tense"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-jury-master|robert-dugoni",
@@ -22389,7 +22389,7 @@
         "procedural",
         "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=adKaRCzY2owC&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -22426,10 +22426,10 @@
       ],
       "type": "nonfiction",
       "tones": [
-        "dense",
+        "heartwarming",
         "thoughtful"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "billion-dollar-whale-the-man-who-fooled-wall-street-hollywood-and-the-world|tom-wright",
@@ -22469,7 +22469,7 @@
         "dark",
         "gritty"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "an-engineered-injustice|william-l-myers-jr",
@@ -22510,7 +22510,7 @@
         "procedural",
         "tense"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "a-criminal-defense|william-l-myers-jr",
@@ -22551,7 +22551,7 @@
         "procedural",
         "tense"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-maidens|alex-michaelides",
@@ -22589,7 +22589,7 @@
         "dark",
         "twisty"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=o44oEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -22630,7 +22630,7 @@
         "character-driven",
         "poignant"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "the-jailhouse-lawyer|james-patterson",
@@ -22671,7 +22671,7 @@
         "dark",
         "compulsive"
       ],
-      "themeToneReviewed": false
+      "themeToneReviewed": true
     },
     {
       "bookKey": "diablo-mesa|douglas-preston",
