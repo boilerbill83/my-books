@@ -4232,7 +4232,7 @@
         "procedural",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1711027483l/209786389.jpg"
     },
     {
@@ -4273,7 +4273,7 @@
         "procedural",
         "tense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "allTimeFave": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1727365791l/218229236._SY475_.jpg"
     },
@@ -4314,7 +4314,7 @@
         "tense",
         "propulsive"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=2rFg0QEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -4353,7 +4353,7 @@
         "character-driven",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=75RVEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -4392,7 +4392,7 @@
         "bleak",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=VXp3l0ZXZscC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -4431,7 +4431,7 @@
         "slow-burn",
         "dense"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=TmeLzgEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
@@ -4452,8 +4452,8 @@
       "type": "fiction",
       "themes": [
         "romance",
-        "literary",
-        "contemporary"
+        "speculative",
+        "literary"
       ],
       "similarToTitles": [
         "One True Loves",
@@ -4471,7 +4471,7 @@
         "slow-burn",
         "atmospheric"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=0j1MEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -4514,7 +4514,7 @@
         "funny",
         "poignant"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1632094493l/59028418.jpg"
     },
     {
@@ -4555,7 +4555,7 @@
         "twisty",
         "dark"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1701937124l/193993695.jpg"
     },
     {
@@ -4593,7 +4593,7 @@
         "dense",
         "bleak"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=HH2-EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
@@ -4633,7 +4633,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": false,
+      "themeToneReviewed": true,
       "coverUrl": "https://books.google.com/books/content?id=MYTPEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
     },
     {
