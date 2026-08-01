@@ -251,7 +251,10 @@
       "publisher": "Simon & Schuster",
       "similarToTitles": [
         "Sharp Objects",
-        "Dark Places"
+        "Dark Places",
+        "Verity",
+        "The Good Girl",
+        "Local Woman Missing"
       ],
       "ratingsCount": 100000,
       "coverUrl": "https://books.google.com/books/content?id=sk-tEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
@@ -279,7 +282,10 @@
       "publisher": "Scout Press",
       "similarToTitles": [
         "The Guest List",
-        "The Silent Patient"
+        "The Silent Patient",
+        "The Housemaid (The Housemaid, #1)",
+        "Verity",
+        "Behind Closed Doors"
       ],
       "ratingsCount": 80000,
       "coverUrl": "https://books.google.com/books/content?id=nndTEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
@@ -556,7 +562,8 @@
       "publisher": "Doubleday",
       "similarToTitles": [
         "Where the Crawdads Sing",
-        "The Great Alone"
+        "The Great Alone",
+        "The Dutch House"
       ],
       "ratingsCount": 120000,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1730395034i/112975658.jpg",
@@ -638,7 +645,10 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1632076475i/58950736.jpg",
       "similarToTitles": [
         "Elon Musk",
-        "The Everything Store: Jeff Bezos and the Age of Amazon"
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Super Pumped: The Battle for Uber",
+        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
+        "An Ugly Truth: Inside Facebook's Battle for Domination"
       ],
       "ratingsCount": 10000,
       "tones": ["dark", "revelatory"], "themeToneReviewed": true
