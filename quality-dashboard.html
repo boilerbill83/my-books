@@ -243,6 +243,8 @@
 
         <section class="qd-score-section" id="qdScoreSection"></section>
 
+        <section class="qd-score-section" id="qdAccuracySection"></section>
+
         <div id="qdResolvedSection"></div>
 
         <section class="qd-section">
@@ -481,10 +483,17 @@
         return { color: 'var(--status-critical)', label: 'Poor' };
       }
 
-      function renderScoreDial(qualityScore, history) {
-        const section = $('#qdScoreSection');
+      // Generic ring-gauge dial + component meters, shared by the Data
+      // Quality Score and BBRE Accuracy Score sections so the two stay
+      // visually and behaviorally identical without duplicating the SVG/meter
+      // wiring. `recalibrationAware` keeps the Data Quality Score's existing
+      // "formula changed, not a real regression" distinction (that score's
+      // components/weights have genuinely been retuned across sessions
+      // 14/14b) — the BBRE Accuracy Score uses a plain delta instead since it
+      // has no such history yet.
+      function renderDial(sectionId, { score, components, title, historyValues, prevScore, prevComponents, recalibrationAware, footnote }) {
+        const section = $(sectionId);
         section.innerHTML = '';
-        const { score, components } = qualityScore;
         const tier = scoreTier(score);
         const size = 200, stroke = 18, r = (size - stroke) / 2, cx = size / 2, cy = size / 2;
         const circumference = 2 * Math.PI * r;
@@ -523,7 +532,7 @@
         const componentsWrap = document.createElement('div');
         componentsWrap.className = 'qd-components';
         const heading = document.createElement('div');
-        heading.innerHTML = '<strong style="font-family:var(--font-serif);font-size:1.1rem;color:var(--text)">Data Quality Score</strong>';
+        heading.innerHTML = `<strong style="font-family:var(--font-serif);font-size:1.1rem;color:var(--text)">${title}</strong>`;
         componentsWrap.appendChild(heading);
         for (const c of components) {
           const row = document.createElement('div'); row.className = 'qd-component-row';
@@ -537,46 +546,85 @@
           row.appendChild(track2);
           componentsWrap.appendChild(row);
         }
-        if (history.length > 1) {
-          const prevEntry = history[history.length - 2];
-          const prevScore = prevEntry?.qualityScore?.score;
-          const prevComponents = prevEntry?.qualityScore?.components;
-          if (typeof prevScore === 'number' && prevScore !== score) {
-            const diff = score - prevScore;
-            // A changed component set/weights means the scoring FORMULA was
-            // recalibrated, not that the underlying data got better or worse
-            // — a colored up/down arrow would misread a rubric change as a
-            // real regression or improvement, so show a neutral note instead.
-            const recalibrated = !prevComponents || prevComponents.length !== components.length ||
-              prevComponents.some((pc, i) => !components[i] || pc.key !== components[i].key || pc.weight !== components[i].weight);
-            const deltaEl = document.createElement('div');
-            deltaEl.style.fontSize = '0.78rem';
-            if (recalibrated) {
-              deltaEl.style.color = 'var(--text-muted)';
-              deltaEl.textContent = `↺ Scoring formula recalibrated since last report — ${prevScore}→${score}/100 isn't a direct comparison.`;
-            } else {
-              deltaEl.style.color = diff > 0 ? 'var(--status-good)' : 'var(--status-critical)';
-              deltaEl.textContent = `${diff > 0 ? '▲' : '▼'} ${diff > 0 ? '+' : ''}${diff} since last report (${prevScore}/100)`;
-            }
-            componentsWrap.appendChild(deltaEl);
+        if (footnote) {
+          const fn = document.createElement('div');
+          fn.style.fontSize = '0.78rem';
+          fn.style.color = 'var(--text-muted)';
+          fn.textContent = footnote;
+          componentsWrap.appendChild(fn);
+        }
+        if (typeof prevScore === 'number' && prevScore !== score) {
+          const diff = score - prevScore;
+          // A changed component set/weights means the scoring FORMULA was
+          // recalibrated, not that the underlying data got better or worse
+          // — a colored up/down arrow would misread a rubric change as a
+          // real regression or improvement, so show a neutral note instead.
+          const recalibrated = recalibrationAware && (!prevComponents || prevComponents.length !== components.length ||
+            prevComponents.some((pc, i) => !components[i] || pc.key !== components[i].key || pc.weight !== components[i].weight));
+          const deltaEl = document.createElement('div');
+          deltaEl.style.fontSize = '0.78rem';
+          if (recalibrated) {
+            deltaEl.style.color = 'var(--text-muted)';
+            deltaEl.textContent = `↺ Scoring formula recalibrated since last report — ${prevScore}→${score}/100 isn't a direct comparison.`;
+          } else {
+            deltaEl.style.color = diff > 0 ? 'var(--status-good)' : 'var(--status-critical)';
+            deltaEl.textContent = `${diff > 0 ? '▲' : '▼'} ${diff > 0 ? '+' : ''}${diff} since last report (${prevScore}/100)`;
           }
+          componentsWrap.appendChild(deltaEl);
         }
 
         // Overall score trend (stat-tile pattern: hero number + sparkline).
-        const scoreHistory = history.filter(h => h.qualityScore).map(h => ({ date: h.date, value: h.qualityScore.score }));
-        if (scoreHistory.length > 1) {
+        if (historyValues.length > 1) {
           const trendWrap = document.createElement('div');
           trendWrap.className = 'qd-dial-trend';
           const trendLabel = document.createElement('div');
           trendLabel.className = 'qd-dial-trend-label';
           trendLabel.textContent = 'Score trend';
           trendWrap.appendChild(trendLabel);
-          trendWrap.appendChild(sparkline(scoreHistory, { height: 32 }));
+          trendWrap.appendChild(sparkline(historyValues, { height: 32 }));
           componentsWrap.appendChild(trendWrap);
         }
 
         section.appendChild(dialWrap);
         section.appendChild(componentsWrap);
+      }
+
+      function renderScoreDial(qualityScore, history) {
+        const prevEntry = history.length > 1 ? history[history.length - 2] : null;
+        renderDial('#qdScoreSection', {
+          score: qualityScore.score,
+          components: qualityScore.components,
+          title: 'Data Quality Score',
+          historyValues: history.filter(h => h.qualityScore).map(h => ({ date: h.date, value: h.qualityScore.score })),
+          prevScore: prevEntry?.qualityScore?.score,
+          prevComponents: prevEntry?.qualityScore?.components,
+          recalibrationAware: true,
+        });
+      }
+
+      // BBRE Accuracy Score — a separate dial from Data Quality: that one
+      // measures whether the DATA is complete/correct, this one measures
+      // whether the ENGINE'S PREDICTIONS are actually good, via scripts/
+      // eval.js's honest leave-one-out precision@k + MAE over Bill's
+      // completed rated reads (see computeBBREAccuracy in
+      // scripts/data_quality_report.js for the weighting).
+      function renderAccuracyDial(bbreAccuracy, history) {
+        const section = $('#qdAccuracySection');
+        if (!bbreAccuracy) {
+          section.innerHTML = '<div class="qd-empty">BBRE Accuracy Score unavailable for this snapshot.</div>';
+          return;
+        }
+        const prevEntry = history.length > 1 ? history[history.length - 2] : null;
+        renderDial('#qdAccuracySection', {
+          score: bbreAccuracy.score,
+          components: bbreAccuracy.components,
+          title: 'BBRE Accuracy Score',
+          historyValues: history.filter(h => h.bbreAccuracy).map(h => ({ date: h.date, value: h.bbreAccuracy.score })),
+          prevScore: prevEntry?.bbreAccuracy?.score,
+          prevComponents: prevEntry?.bbreAccuracy?.components,
+          recalibrationAware: false,
+          footnote: `MAE ${bbreAccuracy.mae.toFixed(3)} stars, leave-one-out over ${bbreAccuracy.sampleSize.toLocaleString()} completed rated reads.`,
+        });
       }
 
       function renderImpediments(impediments) {
@@ -916,6 +964,7 @@
 
         function renderHistoryDependent(history) {
           renderScoreDial(current.qualityScore, history);
+          renderAccuracyDial(current.bbreAccuracy, history);
           renderTiles(current, history);
           renderTrendGrid(current, history);
         }

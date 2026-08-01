@@ -1,6 +1,6 @@
 {
   "date": "2026-08-01",
-  "generatedAt": "2026-08-01T13:08:35.510Z",
+  "generatedAt": "2026-08-01T13:15:37.097Z",
   "totalBooks": 1107,
   "qualityScore": {
     "score": 90,
@@ -46,6 +46,43 @@
         "anchor": "#fieldPopulationSection"
       }
     ]
+  },
+  "bbreAccuracy": {
+    "score": 91,
+    "components": [
+      {
+        "key": "p10",
+        "label": "Precision@10",
+        "weight": 0.35,
+        "subscore": 100
+      },
+      {
+        "key": "p25",
+        "label": "Precision@25",
+        "weight": 0.3,
+        "subscore": 96
+      },
+      {
+        "key": "p50",
+        "label": "Precision@50",
+        "weight": 0.15,
+        "subscore": 96
+      },
+      {
+        "key": "ratingAccuracy",
+        "label": "Rating Accuracy (from MAE)",
+        "weight": 0.2,
+        "subscore": 62.10748377399822
+      }
+    ],
+    "sampleSize": 503,
+    "mae": 0.7578503245200355,
+    "precisionAtK": {
+      "10": 100,
+      "25": 96,
+      "50": 96,
+      "100": 91
+    }
   },
   "roadmap": [
     {
