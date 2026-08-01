@@ -1,6 +1,6 @@
 {
   "date": "2026-08-01",
-  "generatedAt": "2026-08-01T04:14:02.556Z",
+  "generatedAt": "2026-08-01T04:23:39.276Z",
   "totalBooks": 1126,
   "qualityScore": {
     "score": 89,
@@ -9,13 +9,13 @@
         "key": "criticalHealth",
         "label": "Critical Field Health",
         "weight": 0.08,
-        "subscore": 99.95559502664298
+        "subscore": 99.96447602131438
       },
       {
         "key": "completeness",
         "label": "Field Completeness",
         "weight": 0.33,
-        "subscore": 68.08076791510024
+        "subscore": 68.09709748594761
       },
       {
         "key": "foundational",
@@ -66,13 +66,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.95559502664298
+          "subscore": 99.96447602131438
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 68.08076791510024
+          "subscore": 68.09709748594761
         },
         {
           "key": "foundational",
@@ -409,13 +409,6 @@
       "eligibleTotal": 1126
     },
     {
-      "field": "similarToTitles",
-      "scorePct": 99.82238010657194,
-      "rawPct": 99.82238010657194,
-      "critical": true,
-      "eligibleTotal": 1126
-    },
-    {
       "field": "type",
       "scorePct": 99.91119005328596,
       "rawPct": 99.91119005328596,
@@ -441,6 +434,13 @@
       "scorePct": 99.91119005328596,
       "rawPct": 99.91119005328596,
       "critical": false,
+      "eligibleTotal": 1126
+    },
+    {
+      "field": "similarToTitles",
+      "scorePct": 99.91119005328596,
+      "rawPct": 99.91119005328596,
+      "critical": true,
       "eligibleTotal": 1126
     },
     {
@@ -648,17 +648,6 @@
         ],
         "locations": [
           "currently_reading_feed/currently-reading"
-        ]
-      },
-      {
-        "title": "Culpability",
-        "author": "Bruce Holsinger",
-        "score": 10,
-        "reasons": [
-          "missing similarToTitles"
-        ],
-        "locations": [
-          "library/to-read"
         ]
       }
     ],

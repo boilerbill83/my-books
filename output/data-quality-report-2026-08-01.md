@@ -19,9 +19,8 @@ Interactive dial + full breakdown: [quality-dashboard.html](../quality-dashboard
 
 **🔴 Scoring-critical fields:** all above threshold.
 
-**Worst 2 books by BBRE impact score** (full top 20 in the table below):
+**Worst 1 books by BBRE impact score** (full top 20 in the table below):
 - "When the Game Was Ours" by Larry Bird (score 40) — missing themes, similarToTitles, similarToAuthors, ratingsCount
-- "Culpability" by Bruce Holsinger (score 10) — missing similarToTitles
 
 **Since last report (vs 2026-07-31):**
 - No field Quality Score moved more than 3 points.
@@ -41,7 +40,6 @@ None found.
 
 Not a raw missing-field count — weighted by whether the book is a 5★ read (foundational signal), a high-leverage candidate, or involved in an integrity issue like an already-read duplicate.
 - "When the Game Was Ours" by Larry Bird (currently_reading_feed/currently-reading) — score 40: missing themes, similarToTitles, similarToAuthors, ratingsCount
-- "Culpability" by Bruce Holsinger (library/to-read) — score 10: missing similarToTitles
 
 ## Recent Trend (BBRE-relevant metrics)
 
@@ -51,9 +49,9 @@ Not a raw missing-field count — weighted by whether the book is a 5★ read (f
 | Already-read books in a candidate pool | — | — | — | — |
 | High-leverage candidate gaps | — | — | — | — |
 | Broken refs touching a 5★ read | 61 | 0 | 0 | 0 |
-| `similarToTitles` (critical) | 99.2% | 99.2% | 99.2% | 99.8% |
 | `ratingsCount` (critical) | 99.7% | 99.9% | 99.9% | 99.9% |
 | `themes` (critical) | 99.2% | 99.2% | 99.9% | 99.9% |
+| `similarToTitles` (critical) | 99.2% | 99.2% | 99.2% | 99.9% |
 | `similarToAuthors` (critical) | 98.7% | 99.9% | 99.9% | 99.9% |
 | `bookKey` (critical) | 100.0% | 100.0% | 100.0% | 100.0% |
 | `author` (critical) | 100.0% | 100.0% | 100.0% | 100.0% |
@@ -89,11 +87,11 @@ field below 90%; ⚠️ marks any other field below 80%.
 | metadataFetchedAt | 98.5% | 98.5% (Excellent) | % of all books already attempted by enrich_metadata.py — this IS the backlog-cleared indicator for categories/subjects/description above. | 17 book(s) not yet attempted — will clear at 150/day, prioritizing to-read then read then candidates. |
 | description | 98.6% | 98.6% (Excellent) | % of all books with a description — the daily enrich_metadata.py job processes 150/run in to-read → read → candidates priority order, so this rises as the backlog clears. | 16 book(s) still pending or with no description found by Google Books/Open Library. Check the candidate-pool backlog specifically — it's processed last. |
 | year | 99.3% | 99.3% (Excellent) | % of all books with a publication year. | Low-volume gap; backfill manually or via Google Books lookup if any recommendations are missing it. |
-| similarToTitles | 99.8% | 99.8% (Excellent) | % of all books with at least one similarToTitles entry — feeds the forward/reverse title-match scoring signals. | 2 book(s) have none — see the Broken References section below for entries that exist but don't resolve. |
 | type | 99.9% | 99.9% (Excellent) | % of all books tagged fiction/nonfiction. | Spot-check any untagged rows via the publisher-category audit pattern used in Session 13. |
 | ratingsCount | 99.9% | 99.9% (Excellent) | % of all books with a positive ratingsCount — zero/missing silently disables the popularity bonus (CLAUDE.md quality rule). | 1 book(s) have zero/missing ratingsCount — backfill via Google Books/Goodreads lookup so the popularity bonus can fire. |
 | themes | 99.9% | 99.9% (Excellent) | % of all books with at least one theme tag — feeds fiveStarThemes/themeBonus scoring directly. | 1 book(s) have zero themes — tag from canonical vocabulary (see CLAUDE.md) so themeBonus can fire. |
 | tones | 99.9% | 99.9% (Excellent) | % of all books with at least one tone tag. | 1 book(s) missing tones — mostly candidate-pool books never processed by tag_with_haiku.py. |
+| similarToTitles | 99.9% | 99.9% (Excellent) | % of all books with at least one similarToTitles entry — feeds the forward/reverse title-match scoring signals. | 1 book(s) have none — see the Broken References section below for entries that exist but don't resolve. |
 | similarToAuthors | 99.9% | 99.9% (Excellent) | % of all books with at least one similarToAuthors entry — feeds the similar-author bonus. | 1 book(s) missing — lower priority than similarToTitles (smaller scoring weight). |
 | bookKey | 100.0% | 100.0% (Excellent) | Population % of all books with a real slug bookKey (not the "title|||author" derived-key fallback, which enrich_metadata.py cannot use). | None needed. |
 | title | 100.0% | 100.0% (Excellent) | Always required; % of rows with a non-empty title. | None needed. |
