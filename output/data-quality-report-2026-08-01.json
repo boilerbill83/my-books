@@ -1,9 +1,9 @@
 {
   "date": "2026-08-01",
-  "generatedAt": "2026-08-01T04:01:13.426Z",
+  "generatedAt": "2026-08-01T04:06:58.435Z",
   "totalBooks": 1126,
   "qualityScore": {
-    "score": 77,
+    "score": 84,
     "components": [
       {
         "key": "criticalHealth",
@@ -33,7 +33,7 @@
         "key": "hygiene",
         "label": "Data Hygiene",
         "weight": 0.4,
-        "subscore": 69.71549192364171
+        "subscore": 86.58058608058607
       }
     ],
     "impediments": [
@@ -46,18 +46,18 @@
         "anchor": "#fieldPopulationSection"
       },
       {
-        "count": 273,
-        "pointsLost": 8.6,
+        "count": 119,
+        "pointsLost": 3.7,
         "name": "Orphaned similarToTitles references",
-        "description": "273 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (5.0% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
+        "description": "119 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (2.2% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
         "fix": "Add the missing books to the dataset where practical, or confirm the reference is intentionally external.",
         "anchor": "#tab-brokenrefs"
       },
       {
-        "count": 56,
-        "pointsLost": 3.5,
+        "count": 26,
+        "pointsLost": 1.6,
         "name": "Broken similarToTitles references (candidate-to-candidate)",
-        "description": "56 near-miss reference(s) between books that aren't 5★ reads — lower live-scoring impact, but still fixable typos or subtitle truncations.",
+        "description": "26 near-miss reference(s) between books that aren't 5★ reads — lower live-scoring impact, but still fixable typos or subtitle truncations.",
         "fix": "Correct each reference to the exact title string in the dataset.",
         "anchor": "#tab-brokenrefs"
       },
@@ -76,7 +76,7 @@
       "key": "current",
       "label": "Current",
       "actions": [],
-      "score": 77,
+      "score": 84,
       "components": [
         {
           "key": "criticalHealth",
@@ -106,7 +106,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 69.71549192364171
+          "subscore": 86.58058608058607
         }
       ]
     },
@@ -121,7 +121,7 @@
         "Backfill dismissReason labels for the handful of dismissed books that have a reasonCode but no label — a small, finite, fully in-house fix.",
         "Close the last-mile gaps on similarToAuthors/themes/similarToTitles/ratingsCount — a small number of books account for the remaining ~1% below 100%."
       ],
-      "score": 82,
+      "score": 87,
       "components": [
         {
           "key": "criticalHealth",
@@ -151,7 +151,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 78.45264317180617
+          "subscore": 90.62820512820512
         }
       ]
     },
@@ -163,7 +163,7 @@
         "Top of the list: \"Blood, Bones, and Butter\" (cited by 20 different food-memoir books — by far the single highest-leverage addition), \"Kitchen Confidential\" (7), \"The Midrange Theory\" (5), \"Dreamland\" and \"The New Jim Crow\" (4 each).",
         "Each addition directly serves the BBRE-quality goal too — these are books the existing library already implicitly vouches for by citing them repeatedly as \"similar,\" so they're likely to be good recommendations once added, not just data-quality filler."
       ],
-      "score": 85,
+      "score": 90,
       "components": [
         {
           "key": "criticalHealth",
@@ -193,7 +193,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 86.26651982378854
+          "subscore": 98.42490842490844
         }
       ]
     },
@@ -204,7 +204,7 @@
         "Extend Phase 2 to the next ~70 most-cited missing titles (cumulative top 100), reaching 186 of 463 citations resolved (40%).",
         "Beyond this point, each further addition resolves only 1 citation (330 of the 377 unique orphaned titles are cited exactly once) — genuinely diminishing returns, not a reason to stop, but a reason to expect this phase to taper off rather than reach zero."
       ],
-      "score": 88,
+      "score": 91,
       "components": [
         {
           "key": "criticalHealth",
@@ -234,7 +234,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 93.13325991189427
+          "subscore": 100
         }
       ]
     },
@@ -248,7 +248,7 @@
         "Extend enrich_isbn.py's scope to also backfill read-shelf isbn13 (currently to-read/candidate-only by design) and backfill publisher gaps via the Google Books lookup already used elsewhere.",
         "dateRead and isbn gaps are partially legacy-import artifacts — worth a manual pass, but likely can't fully close (some original Goodreads exports may genuinely lack the field)."
       ],
-      "score": 93,
+      "score": 95,
       "components": [
         {
           "key": "criticalHealth",
@@ -278,7 +278,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 93.13325991189427
+          "subscore": 100
         }
       ]
     },
@@ -551,9 +551,9 @@
     "fiveStarSignalGaps": 0,
     "highLeverageGaps": 0,
     "selfReferential": 0,
-    "brokenNearMiss": 56,
+    "brokenNearMiss": 26,
     "brokenNearMissTouchingFiveStar": 0,
-    "brokenOrphaned": 273,
+    "brokenOrphaned": 119,
     "nonCanonicalTotal": 0,
     "promoteCandidateCount": 0,
     "nonCanonicalTonesTotal": 0,
@@ -572,156 +572,6 @@
     "selfReferentialTitle": [],
     "selfReferentialAuthor": [],
     "brokenNearMiss": [
-      {
-        "from": "The Big Roads: The Untold Story of the Engineers, Visionaries, and Trailblazers Who Created the American Superhighways",
-        "ref": "The Road to Somewhere",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "A Kind and Just Parent: The Children of Juvenile Court",
-        "ref": "Just Mercy",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "A Kind and Just Parent: The Children of Juvenile Court",
-        "ref": "The New Jim Crow",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Tumor",
-        "ref": "The Emperor of All Maladies",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Tennis Partner",
-        "ref": "Being Mortal",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Victory Machine: The Making and Unmaking of the Warriors Dynasty",
-        "ref": "Showtime",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Twitter: A Biography",
-        "ref": "No Filter",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Office: The Untold Story of the Greatest Sitcom of the 2000s: An Oral History",
-        "ref": "Seinfeldia",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "A Beautiful Mind",
-        "ref": "The Man Who Knew Infinity",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Arbitrary Stupid Goal",
-        "ref": "Blood Bones and Butter",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Arbitrary Stupid Goal",
-        "ref": "Medium Raw",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Inside Game: Bad Calls, Strange Moves, and What Baseball Behavior Teaches Us About Ourselves",
-        "ref": "Moneyball",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Inside Game: Bad Calls, Strange Moves, and What Baseball Behavior Teaches Us About Ourselves",
-        "ref": "Smart Baseball",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Collision Course: Ronald Reagan, the Air Traffic Controllers, and the Strike That Changed America",
-        "ref": "Nixonland",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Shift: The Next Evolution in Baseball Thinking",
-        "ref": "Moneyball",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Shift: The Next Evolution in Baseball Thinking",
-        "ref": "The MVP Machine",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Steven Adams: My Life, My Fight",
-        "ref": "Eleven Rings",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "We Will Rise: A True Story of Tragedy and Resurrection in the American Heartland",
-        "ref": "The Last Shot",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Colonel Sanders and the American Dream",
-        "ref": "Fast Food Nation",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Colonel Sanders and the American Dream",
-        "ref": "Drive-Thru Dreams",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The First Cell: And the Human Costs of Pursuing Cancer to the Last",
-        "ref": "The Emperor of All Maladies",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The First Cell: And the Human Costs of Pursuing Cancer to the Last",
-        "ref": "Being Mortal",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Fit Matters: How to Love Your Job",
-        "ref": "The Culture Code",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Rise of the Robots: Technology and the Threat of a Jobless Future",
-        "ref": "Superintelligence",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Rise of the Robots: Technology and the Threat of a Jobless Future",
-        "ref": "The Industries of the Future",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Win Bigly: Persuasion in a World Where Facts Don't Matter",
-        "ref": "Influence",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Under the Influence, New Edition of the Unauthorized Story of the Anheuser-Busch Dynasty",
-        "ref": "Bitter Brew",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Drive-Thru Dreams: A Journey Through the Heart of America's Fast-Food Kingdom",
-        "ref": "Fast Food Nation",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Serious Eater: A Food Lover's Perilous Quest for Pizza and Redemption",
-        "ref": "Medium Raw",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Best. Movie. Year. Ever.: How 1999 Blew Up the Big Screen",
-        "ref": "Blockbuster",
-        "touchesFiveStar": false
-      },
       {
         "from": "Spying on the South: Travels with Frederick Law Olmsted in a Fractured Land",
         "ref": "Blood and Thunder",
@@ -854,776 +704,6 @@
       }
     ],
     "brokenOrphaned": [
-      {
-        "from": "The Big Roads: The Untold Story of the Engineers, Visionaries, and Trailblazers Who Created the American Superhighways",
-        "ref": "Divided Highways",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Big Roads: The Untold Story of the Engineers, Visionaries, and Trailblazers Who Created the American Superhighways",
-        "ref": "Interstate: Express Highway Politics",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Big Roads: The Untold Story of the Engineers, Visionaries, and Trailblazers Who Created the American Superhighways",
-        "ref": "The Grid",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Andy Grove: The Life and Times of an American",
-        "ref": "Only the Paranoid Survive",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A Kind and Just Parent: The Children of Juvenile Court",
-        "ref": "There Are No Children Here",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A Kind and Just Parent: The Children of Juvenile Court",
-        "ref": "Savage Inequalities",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Tumor",
-        "ref": "Micro",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Tumor",
-        "ref": "Cutting for Stone",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Tennis Partner",
-        "ref": "The Spirit Catches You and You Fall Down",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Tennis Partner",
-        "ref": "Beautiful Boy",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "We Learn Nothing",
-        "ref": "Me Talk Pretty One Day",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "We Learn Nothing",
-        "ref": "I Was Told There'd Be Cake",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "We Learn Nothing",
-        "ref": "You're Not Doing It Right",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Safe",
-        "ref": "All Involved",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Safe",
-        "ref": "The Force",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Safe",
-        "ref": "City of Thieves",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Safe",
-        "ref": "The Wheelman",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Samsung Rising: The Inside Story of the South Korean Giant That Set Out to Beat Apple and Conquer Tech",
-        "ref": "Sony vs Samsung",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Victory Machine: The Making and Unmaking of the Warriors Dynasty",
-        "ref": "The Soul of Basketball",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Victory Machine: The Making and Unmaking of the Warriors Dynasty",
-        "ref": "The Last Dance",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Twitter: A Biography",
-        "ref": "Facebook: The Inside Story",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Twitter: A Biography",
-        "ref": "Chaos Monkeys",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Ballad of Songbirds and Snakes (The Hunger Games, #0)",
-        "ref": "Divergent",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Ballad of Songbirds and Snakes (The Hunger Games, #0)",
-        "ref": "The Maze Runner",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Ballad of Songbirds and Snakes (The Hunger Games, #0)",
-        "ref": "Legend",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Ballad of Songbirds and Snakes (The Hunger Games, #0)",
-        "ref": "Red Queen",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "This I Believe: The Personal Philosophies of Remarkable Men and Women (This I Believe, #1)",
-        "ref": "Listening Is an Act of Love",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "This I Believe: The Personal Philosophies of Remarkable Men and Women (This I Believe, #1)",
-        "ref": "Working",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "This I Believe: The Personal Philosophies of Remarkable Men and Women (This I Believe, #1)",
-        "ref": "Man's Search for Meaning",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "This I Believe: The Personal Philosophies of Remarkable Men and Women (This I Believe, #1)",
-        "ref": "Wisdom of Our Fathers",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Wax Pack: On the Open Road in Search of Baseballâ€™s Afterlife",
-        "ref": "The Baseball 100",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Wax Pack: On the Open Road in Search of Baseballâ€™s Afterlife",
-        "ref": "Where Nobody Knows Your Name",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Wax Pack: On the Open Road in Search of Baseballâ€™s Afterlife",
-        "ref": "Ball Four",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Office: The Untold Story of the Greatest Sitcom of the 2000s: An Oral History",
-        "ref": "Live from New York",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Office: The Untold Story of the Greatest Sitcom of the 2000s: An Oral History",
-        "ref": "Difficult Men",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Office: The Untold Story of the Greatest Sitcom of the 2000s: An Oral History",
-        "ref": "The Simpsons Archive",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Monk Who Sold His Ferrari: A Fable About Fulfilling Your Dreams and Reaching Your Destiny",
-        "ref": "The Alchemist",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Monk Who Sold His Ferrari: A Fable About Fulfilling Your Dreams and Reaching Your Destiny",
-        "ref": "The Power of Now",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Monk Who Sold His Ferrari: A Fable About Fulfilling Your Dreams and Reaching Your Destiny",
-        "ref": "The 7 Habits of Highly Effective People",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Monk Who Sold His Ferrari: A Fable About Fulfilling Your Dreams and Reaching Your Destiny",
-        "ref": "Jonathan Livingston Seagull",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A Beautiful Mind",
-        "ref": "Genius",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A Beautiful Mind",
-        "ref": "The Imitation Game",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A Beautiful Mind",
-        "ref": "Fermat's Enigma",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Arbitrary Stupid Goal",
-        "ref": "Tender at the Bone",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Inside Game: Bad Calls, Strange Moves, and What Baseball Behavior Teaches Us About Ourselves",
-        "ref": "The Signal and the Noise",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Author in Chief: The Untold Story of Our Presidents and the Books They Wrote",
-        "ref": "The Bully Pulpit",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Author in Chief: The Untold Story of Our Presidents and the Books They Wrote",
-        "ref": "Team of Rivals",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Author in Chief: The Untold Story of Our Presidents and the Books They Wrote",
-        "ref": "John Adams",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Class: A Life-Changing Teacher, His World-Changing Kids, and the Most Inventive Classroom in America",
-        "ref": "The Freedom Writers Diary",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Class: A Life-Changing Teacher, His World-Changing Kids, and the Most Inventive Classroom in America",
-        "ref": "Whatever It Takes",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Class: A Life-Changing Teacher, His World-Changing Kids, and the Most Inventive Classroom in America",
-        "ref": "Teach Like a Champion",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Class: A Life-Changing Teacher, His World-Changing Kids, and the Most Inventive Classroom in America",
-        "ref": "There Are No Children Here",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Collision Course: Ronald Reagan, the Air Traffic Controllers, and the Strike That Changed America",
-        "ref": "America in the King Years",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Collision Course: Ronald Reagan, the Air Traffic Controllers, and the Strike That Changed America",
-        "ref": "Stayin' Alive",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Collision Course: Ronald Reagan, the Air Traffic Controllers, and the Strike That Changed America",
-        "ref": "Invisible Hands",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Shift: The Next Evolution in Baseball Thinking",
-        "ref": "Big Data Baseball",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The One That Got Away",
-        "ref": "Find Her",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The One That Got Away",
-        "ref": "The Silence of the Lambs",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Steven Adams: My Life, My Fight",
-        "ref": "The Warrior Way",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Financial Diaries: How American Families Cope in a World of Uncertainty",
-        "ref": "Portfolios of the Poor",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Financial Diaries: How American Families Cope in a World of Uncertainty",
-        "ref": "Hand to Mouth",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Financial Diaries: How American Families Cope in a World of Uncertainty",
-        "ref": "The Two-Income Trap",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Financial Diaries: How American Families Cope in a World of Uncertainty",
-        "ref": "Pound Foolish",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "We Will Rise: A True Story of Tragedy and Resurrection in the American Heartland",
-        "ref": "Friday Night Lights",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "We Will Rise: A True Story of Tragedy and Resurrection in the American Heartland",
-        "ref": "Outcasts United",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "We Will Rise: A True Story of Tragedy and Resurrection in the American Heartland",
-        "ref": "The Fab Five",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Robopocalypse (Robopocalypse, #1)",
-        "ref": "Armada",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Robopocalypse (Robopocalypse, #1)",
-        "ref": "Prey",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Robopocalypse (Robopocalypse, #1)",
-        "ref": "The Andromeda Evolution",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Home Now: How 6000 Refugees Transformed an American Town",
-        "ref": "Zeitoun",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Home Now: How 6000 Refugees Transformed an American Town",
-        "ref": "Enrique's Journey",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Home Now: How 6000 Refugees Transformed an American Town",
-        "ref": "The Newcomers",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Home Now: How 6000 Refugees Transformed an American Town",
-        "ref": "Outcasts United",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Flavor Bible: The Essential Guide to Culinary Creativity, Based on the Wisdom of America's Most Imaginative Chefs",
-        "ref": "The Food Lab",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Flavor Bible: The Essential Guide to Culinary Creativity, Based on the Wisdom of America's Most Imaginative Chefs",
-        "ref": "Salt Fat Acid Heat",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Flavor Bible: The Essential Guide to Culinary Creativity, Based on the Wisdom of America's Most Imaginative Chefs",
-        "ref": "On Food and Cooking",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Flavor Bible: The Essential Guide to Culinary Creativity, Based on the Wisdom of America's Most Imaginative Chefs",
-        "ref": "The Vegetarian Flavor Bible",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Top of the Morning: Inside the Cutthroat World of Morning TV",
-        "ref": "The Loudest Voice in the Room",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Top of the Morning: Inside the Cutthroat World of Morning TV",
-        "ref": "The Late Shift",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Top of the Morning: Inside the Cutthroat World of Morning TV",
-        "ref": "Hoax",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Top of the Morning: Inside the Cutthroat World of Morning TV",
-        "ref": "War at the Wall Street Journal",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Uncanny Valley",
-        "ref": "Brotopia",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Uncanny Valley",
-        "ref": "Close to the Machine",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Uncanny Valley",
-        "ref": "The Big Nine",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Uncanny Valley",
-        "ref": "Chaos Monkeys",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Sabbath's Theater",
-        "ref": "Portnoy's Complaint",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Sabbath's Theater",
-        "ref": "Herzog",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Sabbath's Theater",
-        "ref": "Rabbit Run",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Sabbath's Theater",
-        "ref": "American Pastoral",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Colonel Sanders and the American Dream",
-        "ref": "The Hamburger",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Colonel Sanders and the American Dream",
-        "ref": "Salt Sugar Fat",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Hate Inc.: Why Today's Media Makes Us Despise One Another",
-        "ref": "Manufacturing Consent",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Hate Inc.: Why Today's Media Makes Us Despise One Another",
-        "ref": "Trust Me I'm Lying",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Hate Inc.: Why Today's Media Makes Us Despise One Another",
-        "ref": "The New Media Monopoly",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Hate Inc.: Why Today's Media Makes Us Despise One Another",
-        "ref": "Merchants of Truth",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Burn the Ice: The American Culinary Revolution and Its End",
-        "ref": "Heat",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Burn the Ice: The American Culinary Revolution and Its End",
-        "ref": "Save the Deli",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Burn the Ice: The American Culinary Revolution and Its End",
-        "ref": "The Sorcerer's Apprentices",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Rolling Nowhere: Riding the Rails with America's Hoboes",
-        "ref": "Into the Wild",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Rolling Nowhere: Riding the Rails with America's Hoboes",
-        "ref": "Blue Highways",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Rolling Nowhere: Riding the Rails with America's Hoboes",
-        "ref": "Newjack",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Rolling Nowhere: Riding the Rails with America's Hoboes",
-        "ref": "The Worst Hard Time",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Stiff: The Curious Lives of Human Cadavers",
-        "ref": "Bonk",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Stiff: The Curious Lives of Human Cadavers",
-        "ref": "Smoke Gets in Your Eyes",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Stiff: The Curious Lives of Human Cadavers",
-        "ref": "The Disappearing Spoon",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Fit Matters: How to Love Your Job",
-        "ref": "First Break All the Rules",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Fit Matters: How to Love Your Job",
-        "ref": "Drive",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Fit Matters: How to Love Your Job",
-        "ref": "Strengths Finder 2.0",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Spare Parts: Four Undocumented Teenagers, One Ugly Robot, and the Battle for the American Dream",
-        "ref": "Random Family",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Spare Parts: Four Undocumented Teenagers, One Ugly Robot, and the Battle for the American Dream",
-        "ref": "There Are No Children Here",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Spare Parts: Four Undocumented Teenagers, One Ugly Robot, and the Battle for the American Dream",
-        "ref": "Evicted",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Rise of the Robots: Technology and the Threat of a Jobless Future",
-        "ref": "The Second Machine Age",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Rise of the Robots: Technology and the Threat of a Jobless Future",
-        "ref": "Average Is Over",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Two Steps Forward",
-        "ref": "The Unlikely Pilgrimage of Harold Fry",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Two Steps Forward",
-        "ref": "Eleanor Oliphant Is Completely Fine",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Serving the Servant: Remembering Kurt Cobain",
-        "ref": "Heavier Than Heaven",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Serving the Servant: Remembering Kurt Cobain",
-        "ref": "Come As You Are",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Serving the Servant: Remembering Kurt Cobain",
-        "ref": "Please Kill Me",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The White Stripes: Sweethearts of the Blues",
-        "ref": "Our Band Could Be Your Life",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The White Stripes: Sweethearts of the Blues",
-        "ref": "Heavier Than Heaven",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The White Stripes: Sweethearts of the Blues",
-        "ref": "Please Kill Me",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Cribsheet: A Data-Driven Guide to Better, More Relaxed Parenting, from Birth to Preschool",
-        "ref": "Expecting Better",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Cribsheet: A Data-Driven Guide to Better, More Relaxed Parenting, from Birth to Preschool",
-        "ref": "Bringing Up Bebe",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Cribsheet: A Data-Driven Guide to Better, More Relaxed Parenting, from Birth to Preschool",
-        "ref": "How Toddlers Thrive",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Cribsheet: A Data-Driven Guide to Better, More Relaxed Parenting, from Birth to Preschool",
-        "ref": "NurtureShock",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Win Bigly: Persuasion in a World Where Facts Don't Matter",
-        "ref": "Pre-Suasion",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Win Bigly: Persuasion in a World Where Facts Don't Matter",
-        "ref": "The Art of the Deal",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Atmosphaera Incognita",
-        "ref": "Aurora",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Atmosphaera Incognita",
-        "ref": "A Fire Upon the Deep",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Under the Influence, New Edition of the Unauthorized Story of the Anheuser-Busch Dynasty",
-        "ref": "Ambitious Brew",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Under the Influence, New Edition of the Unauthorized Story of the Anheuser-Busch Dynasty",
-        "ref": "The Fifties",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "God Bless You, Dr. Kevorkian",
-        "ref": "Breakfast of Champions",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "God Bless You, Dr. Kevorkian",
-        "ref": "Cat's Cradle",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "God Bless You, Dr. Kevorkian",
-        "ref": "Tenth of December",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "God Bless You, Dr. Kevorkian",
-        "ref": "The Sirens of Titan",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Smartest Guys in the Room: The Amazing Rise and Scandalous Fall of Enron",
-        "ref": "Conspiracy of Fools",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Bush",
-        "ref": "Decision Points",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Bush",
-        "ref": "Angler: The Cheney Vice Presidency",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Bush",
-        "ref": "Dead Certain",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Bush",
-        "ref": "The Price of Loyalty",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Nixonland: The Rise of a President and the Fracturing of America",
-        "ref": "The Years of Lyndon Johnson",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Nixonland: The Rise of a President and the Fracturing of America",
-        "ref": "The Making of the President 1968",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Nixonland: The Rise of a President and the Fracturing of America",
-        "ref": "Fear and Loathing on the Campaign Trail",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Nixonland: The Rise of a President and the Fracturing of America",
-        "ref": "America's Bitter Pill",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Drive-Thru Dreams: A Journey Through the Heart of America's Fast-Food Kingdom",
-        "ref": "In-N-Out Burger",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Drive-Thru Dreams: A Journey Through the Heart of America's Fast-Food Kingdom",
-        "ref": "Salt Sugar Fat",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Drive-Thru Dreams: A Journey Through the Heart of America's Fast-Food Kingdom",
-        "ref": "Cooked",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Wild and Outside: How a Renegade Minor League Revived the Spirit of Baseball in America's Heartland",
-        "ref": "Word Freak",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Wild and Outside: How a Renegade Minor League Revived the Spirit of Baseball in America's Heartland",
-        "ref": "Three Nights in August",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Serious Eater: A Food Lover's Perilous Quest for Pizza and Redemption",
-        "ref": "Garlic and Sapphires",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Serious Eater: A Food Lover's Perilous Quest for Pizza and Redemption",
-        "ref": "Dirt",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Best. Movie. Year. Ever.: How 1999 Blew Up the Big Screen",
-        "ref": "Pictures at a Revolution",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Best. Movie. Year. Ever.: How 1999 Blew Up the Big Screen",
-        "ref": "Easy Riders Raging Bulls",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Best. Movie. Year. Ever.: How 1999 Blew Up the Big Screen",
-        "ref": "The Big Goodbye",
-        "touchesFiveStar": null
-      },
       {
         "from": "The Last Pirate of New York: A Ghost Ship, a Killer, and the Birth of a Gangster Nation",
         "ref": "Thunderstruck",
