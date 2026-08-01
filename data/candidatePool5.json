@@ -374,36 +374,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/91LkGlWO6eL._SX300_.jpg",
       "tones": ["heartwarming", "thoughtful", "ensemble"], "themeToneReviewed": true
     },
-    {
-      "bookKey": "tomorrow-and-tomorrow-and-tomorrow|gabrielle-zevin-2",
-      "title": "Tomorrow and Tomorrow and Tomorrow",
-      "author": "Gabrielle Zevin",
-      "year": 2022,
-      "pages": 401,
-      "avgRating": 4.2,
-      "isbn13": "9780593321201",
-      "themes": [
-        "tech history",
-        "romance"
-      ],
-      "similarToAuthors": [
-        "Tom Perrotta",
-        "Amor Towles"
-      ],
-      "type": "fiction",
-      "redditSource": "r/books \u2014 #1 most-discussed novel on r/books in 2022; multiple awards shortlists and r/books annual Best Of",
-      "similarToTitles": [
-        "Daisy Jones & The Six",
-        "Remarkably Bright Creatures",
-        "The Storied Life of A.J. Fikry",
-        "Lessons in Chemistry",
-        "The Midnight Library (The Midnight World, #1)"
-      ],
-      "ratingsCount": 770000,
-      "coverUrl": "https://m.media-amazon.com/images/I/91Lu2eTVdWL._SX300_.jpg",
-      "tones": ["heartwarming", "thoughtful"], "themeToneReviewed": true
-    },
-    {
+        {
       "bookKey": "in-cold-blood|truman-capote",
       "title": "In Cold Blood",
       "author": "Truman Capote",
@@ -486,7 +457,7 @@
         "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
         "Going Infinite: The Rise and Fall of a New Tycoon",
         "An Ugly Truth: Inside Facebook's Battle for Domination",
-        "Bad Blood: Secrets and Lies in a Silicon Valley Startup",
+        "Bad Blood",
         "Say Nothing"
       ],
       "ratingsCount": 90000,
@@ -588,37 +559,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81uQRVpi2UL._SX300_.jpg",
       "tones": ["heartwarming", "inspiring"], "themeToneReviewed": true
     },
-    {
-      "bookKey": "endurance|alfred-lansing",
-      "title": "Endurance",
-      "author": "Alfred Lansing",
-      "year": 1959,
-      "pages": 282,
-      "avgRating": 4.4,
-      "isbn13": "9780465019847",
-      "themes": [
-        "adventure",
-        "history"
-      ],
-      "similarToAuthors": [
-        "Daniel James Brown",
-        "Mark Bowden",
-        "David Grann"
-      ],
-      "type": "nonfiction",
-      "redditSource": "r/books, r/nonfiction \u2014 Reddit's all-time #1 survival nonfiction recommendation; harrowing and impossible-to-put-down",
-      "similarToTitles": [
-        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
-        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
-        "Into Thin Air",
-        "Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night",
-        "The Lost City of the Monkey God"
-      ],
-      "ratingsCount": 120000,
-      "coverUrl": "https://m.media-amazon.com/images/I/61Gg1Gr2GiL._SX300_.jpg",
-      "tones": ["atmospheric", "inspiring"], "themeToneReviewed": true
-    },
-    {
+        {
       "bookKey": "black-hawk-down|mark-bowden",
       "title": "Black Hawk Down",
       "author": "Mark Bowden",
@@ -670,7 +611,7 @@
       "similarToTitles": [
         "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
         "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
-        "Killers of the Flower Moon: The Osage Murders and the Birth of the FBI",
+        "Killers of the Flower Moon",
         "The Wager: A Tale of Shipwreck, Mutiny and Murder",
         "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission"
       ],
@@ -731,7 +672,7 @@
       "similarToTitles": [
         "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
         "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
-        "Killers of the Flower Moon: The Osage Murders and the Birth of the FBI",
+        "Killers of the Flower Moon",
         "The Lost City of Z: A Tale of Deadly Obsession in the Amazon",
         "In Cold Blood"
       ],

@@ -58,67 +58,7 @@
       "isbn13": "9780393082241",
       "tones": ["revelatory", "funny"], "themeToneReviewed": true
     },
-    {
-      "title": "The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics",
-      "author": "Daniel James Brown",
-      "type": "nonfiction",
-      "year": 2013,
-      "pages": 404,
-      "avgRating": 4.43,
-      "ratingsCount": 1100000,
-      "themes": [
-        "sports",
-        "history"
-      ],
-      "similarToAuthors": [
-        "Laura Hillenbrand",
-        "David Grann"
-      ],
-      "similarToTitles": [
-        "Unbroken: A World War II Story of Survival, Resilience and Redemption",
-        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
-        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
-        "Into Thin Air",
-        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks"
-      ],
-      "bookKey": "/works/OL17028450W",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/16158542-the-boys-in-the-boat",
-      "buyUrl": "https://www.amazon.com/dp/0143125478",
-      "coverUrl": "https://m.media-amazon.com/images/I/81uQRVpi2UL._SX300_.jpg",
-      "isbn13": "9780593512302",
-      "tones": ["heartwarming", "inspiring"], "themeToneReviewed": true
-    },
-    {
-      "title": "Open: An Autobiography",
-      "author": "Andre Agassi",
-      "type": "nonfiction",
-      "year": 2009,
-      "pages": 386,
-      "avgRating": 4.15,
-      "ratingsCount": 165000,
-      "themes": [
-        "memoir",
-        "sports"
-      ],
-      "similarToAuthors": [
-        "Jeff Pearlman",
-        "Brad Stone"
-      ],
-      "similarToTitles": [
-        "Shoe Dog",
-        "Tiger Woods",
-        "Phil: The Rip-Roaring (and Unauthorized!) Biography of Golf's Most Colorful Superstar",
-        "The Last Folk Hero: The Life and Myth of Bo Jackson",
-        "Doc: The Life of Roy Halladay"
-      ],
-      "bookKey": "/works/OL14962488W",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/6480781-open",
-      "buyUrl": "https://www.amazon.com/dp/0307388409",
-      "coverUrl": "https://m.media-amazon.com/images/I/91AR39AbCgL._SX300_.jpg",
-      "isbn13": "9780307592804",
-      "tones": ["thoughtful", "revelatory"], "themeToneReviewed": true
-    },
-    {
+            {
       "title": "Eleven Rings: The Soul of Success",
       "author": "Phil Jackson",
       "type": "nonfiction",
@@ -177,65 +117,7 @@
       "isbn13": "9781592408870",
       "tones": ["revelatory", "inspiring"], "themeToneReviewed": true
     },
-    {
-      "title": "Killers of the Flower Moon: The Osage Murders and the Birth of the FBI",
-      "author": "David Grann",
-      "type": "nonfiction",
-      "year": 2017,
-      "pages": 338,
-      "avgRating": 4.29,
-      "ratingsCount": 600000,
-      "themes": [
-        "true crime",
-        "history"
-      ],
-      "similarToAuthors": [
-        "Erik Larson"
-      ],
-      "similarToTitles": [
-        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
-        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
-        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
-        "The Lost City of Z: A Tale of Deadly Obsession in the Amazon",
-        "Blood and Thunder: An Epic of the American West"
-      ],
-      "bookKey": "/works/OL17871756W",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/29496076-killers-of-the-flower-moon",
-      "buyUrl": "https://www.amazon.com/dp/0385541690",
-      "coverUrl": "https://m.media-amazon.com/images/I/71rAyRvoeyL._SX300_.jpg",
-      "isbn13": "9780385534253",
-      "tones": ["dark", "revelatory", "twisty"], "themeToneReviewed": true
-    },
-    {
-      "title": "Empire of Pain: The Secret History of the Sackler Dynasty",
-      "author": "Patrick Radden Keefe",
-      "type": "nonfiction",
-      "year": 2021,
-      "pages": 560,
-      "avgRating": 4.39,
-      "ratingsCount": 150000,
-      "themes": [
-        "true crime",
-        "history"
-      ],
-      "similarToAuthors": [
-        "Michael Lewis"
-      ],
-      "similarToTitles": [
-        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
-        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
-        "Super Pumped: The Battle for Uber",
-        "Bad Company: Private Equity and the Death of the American Dream",
-        "The Big Short: Inside the Doomsday Machine"
-      ],
-      "bookKey": "/works/OL24364406W",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/43868109-empire-of-pain",
-      "buyUrl": "https://www.amazon.com/dp/0385545681",
-      "coverUrl": "https://books.google.com/books/content?id=oEGNEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "isbn13": "9780385545686",
-      "tones": ["dark", "revelatory"], "themeToneReviewed": true
-    },
-    {
+            {
       "title": "Outliers: The Story of Success",
       "author": "Malcolm Gladwell",
       "type": "nonfiction",
@@ -313,7 +195,7 @@
         "The Hot Hand: The Mystery and Science of Streaks",
         "Evicted: Poverty and Profit in the American City",
         "A Hope in the Unseen: An American Odyssey from the Inner City to the Ivy League",
-        "Think Again",
+        "Think Again: The Power of Knowing What You Don't Know",
         "What the Dog Saw: And Other Adventures"
       ],
       "bookKey": "/works/OL17354822W",
@@ -353,97 +235,7 @@
       "isbn13": "9781846142772",
       "tones": ["funny", "thoughtful"], "themeToneReviewed": true
     },
-    {
-      "title": "Bad Blood: Secrets and Lies in a Silicon Valley Startup",
-      "author": "John Carreyrou",
-      "type": "nonfiction",
-      "year": 2018,
-      "pages": 339,
-      "avgRating": 4.39,
-      "ratingsCount": 350000,
-      "themes": [
-        "true crime",
-        "tech history"
-      ],
-      "similarToAuthors": [
-        "Ben Mezrich",
-        "Michael Lewis"
-      ],
-      "similarToTitles": [
-        "Super Pumped: The Battle for Uber",
-        "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",
-        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
-        "The Accidental Billionaires: The Founding of Facebook, a Tale of Sex, Money, Genius, and Betrayal",
-        "An Ugly Truth: Inside Facebook's Battle for Domination"
-      ],
-      "bookKey": "/works/OL19993787W",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/37976541-bad-blood",
-      "buyUrl": "https://www.amazon.com/dp/152473165X",
-      "coverUrl": "https://m.media-amazon.com/images/I/81P1xvxdBkL._SX300_.jpg",
-      "isbn13": "9781524731663",
-      "tones": ["dark", "revelatory"], "themeToneReviewed": true
-    },
-    {
-      "title": "Catch and Kill: Lies, Spies, and a Conspiracy to Protect Predators",
-      "author": "Ronan Farrow",
-      "type": "nonfiction",
-      "year": 2019,
-      "pages": 448,
-      "avgRating": 4.34,
-      "ratingsCount": 80000,
-      "themes": [
-        "true crime",
-        "political"
-      ],
-      "similarToAuthors": [
-        "Patrick Radden Keefe",
-        "Michael Lewis"
-      ],
-      "similarToTitles": [
-        "Super Pumped: The Battle for Uber",
-        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
-        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
-        "An Ugly Truth: Inside Facebook's Battle for Domination",
-        "Bad Blood: Secrets and Lies in a Silicon Valley Startup"
-      ],
-      "bookKey": "/works/OL20627614W",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/46030919-catch-and-kill",
-      "buyUrl": "https://www.amazon.com/dp/031648506X",
-      "coverUrl": "https://books.google.com/books/content?id=2beeDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "isbn13": "9780316486668",
-      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": true
-    },
-    {
-      "title": "The Feather Thief: Beauty, Obsession, and the Natural History Heist of the Century",
-      "author": "Kirk Wallace Johnson",
-      "type": "nonfiction",
-      "year": 2018,
-      "pages": 308,
-      "avgRating": 4.06,
-      "ratingsCount": 70000,
-      "themes": [
-        "true crime",
-        "history"
-      ],
-      "similarToAuthors": [
-        "David Grann",
-        "Patrick Radden Keefe"
-      ],
-      "similarToTitles": [
-        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
-        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
-        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
-        "Killers of the Flower Moon",
-        "In Cold Blood"
-      ],
-      "bookKey": "/works/OL19891870W",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/35068533-the-feather-thief",
-      "buyUrl": "https://www.amazon.com/dp/1101982020",
-      "coverUrl": "https://books.google.com/books/content?vid=ISBN9781101981634&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "isbn13": "9781101981634",
-      "tones": ["twisty", "revelatory"], "themeToneReviewed": true
-    },
-    {
+                {
       "title": "An Unfinished Love Story: A Personal History of the 1960s",
       "author": "Doris Kearns Goodwin",
       "type": "nonfiction",
@@ -503,37 +295,7 @@
       "isbn13": "9780062960702",
       "tones": ["dark", "revelatory"], "themeToneReviewed": true
     },
-    {
-      "title": "Going Clear: Scientology, Hollywood, and the Prison of Belief",
-      "author": "Lawrence Wright",
-      "type": "nonfiction",
-      "year": 2013,
-      "pages": 430,
-      "avgRating": 4.18,
-      "ratingsCount": 90000,
-      "themes": [
-        "true crime",
-        "history"
-      ],
-      "similarToAuthors": [
-        "David Grann",
-        "Patrick Radden Keefe"
-      ],
-      "similarToTitles": [
-        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
-        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
-        "The Code Breaker: Jennifer Doudna, Gene Editing, and the Future of the Human Race",
-        "Midnight in the Garden of Good and Evil",
-        "In Cold Blood"
-      ],
-      "bookKey": "/works/OL17028451W",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/17333084-going-clear",
-      "buyUrl": "https://www.amazon.com/dp/0307745309",
-      "coverUrl": "https://m.media-amazon.com/images/I/718dlRt0c1L._SX300_.jpg",
-      "isbn13": "9780385350273",
-      "tones": ["dark", "revelatory"], "themeToneReviewed": true
-    },
-    {
+        {
       "title": "After Steve: How Apple Became a Trillion-Dollar Company and Lost Its Soul",
       "author": "Tripp Mickle",
       "type": "nonfiction",
@@ -593,38 +355,7 @@
       "isbn13": "9780316306072",
       "tones": ["funny", "conversational"], "themeToneReviewed": true
     },
-    {
-      "title": "The Lincoln Lawyer (Mickey Haller, #1)",
-      "author": "Michael Connelly",
-      "type": "fiction",
-      "year": 2005,
-      "pages": 404,
-      "avgRating": 4.2,
-      "ratingsCount": 200000,
-      "themes": [
-        "thriller",
-        "crime",
-        "mystery"
-      ],
-      "similarToAuthors": [
-        "John Grisham",
-        "Scott Turow"
-      ],
-      "similarToTitles": [
-        "A Time to Kill (Jake Brigance, #1)",
-        "Presumed Innocent",
-        "The Whistler (The Whistler, #1)",
-        "The Rainmaker",
-        "The Client"
-      ],
-      "bookKey": "/works/OL8279780W",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/9969.The_Lincoln_Lawyer",
-      "buyUrl": "https://www.amazon.com/dp/0446618519",
-      "coverUrl": "https://books.google.com/books/content?id=bZoibWwaSNoC&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "isbn13": "9780446541138",
-      "tones": ["twisty", "procedural"], "themeToneReviewed": true
-    },
-    {
+        {
       "title": "The Push",
       "author": "Ashley Audrain",
       "type": "fiction",
@@ -964,38 +695,7 @@
       "isbn13": "9780765317384",
       "tones": ["thoughtful", "compulsive"], "themeToneReviewed": true
     },
-    {
-      "title": "All Systems Red (Murderbot Diaries, #1)",
-      "author": "Martha Wells",
-      "type": "fiction",
-      "year": 2017,
-      "pages": 176,
-      "avgRating": 4.19,
-      "ratingsCount": 250000,
-      "themes": [
-        "speculative",
-        "sci-fi",
-        "humor"
-      ],
-      "similarToAuthors": [
-        "Andy Weir",
-        "Blake Crouch"
-      ],
-      "similarToTitles": [
-        "Project Hail Mary",
-        "The Martian",
-        "Artemis",
-        "Children of Time (Children of Time, #1)",
-        "A Memory Called Empire (Teixcalaan, #1)"
-      ],
-      "bookKey": "/works/OL17871757W",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/32758901-all-systems-red",
-      "buyUrl": "https://www.amazon.com/dp/0765397536",
-      "coverUrl": "https://books.google.com/books/content?id=ZSu2DQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "isbn13": "9780765397522",
-      "tones": ["funny", "satirical"], "themeToneReviewed": true
-    },
-    {
+        {
       "title": "The Long Way to a Small, Angry Planet (Wayfarers, #1)",
       "author": "Becky Chambers",
       "type": "fiction",
@@ -1450,36 +1150,7 @@
       "isbn13": "9781476738031",
       "tones": ["heartwarming", "funny"], "themeToneReviewed": true
     },
-    {
-      "title": "Endurance: Shackleton's Incredible Voyage",
-      "author": "Alfred Lansing",
-      "type": "nonfiction",
-      "year": 1959,
-      "pages": 282,
-      "avgRating": 4.41,
-      "ratingsCount": 100000,
-      "themes": [
-        "adventure",
-        "history"
-      ],
-      "similarToAuthors": [
-        "David Grann",
-        "Hampton Sides"
-      ],
-      "similarToTitles": [
-        "Into Thin Air",
-        "The Wager: A Tale of Shipwreck, Mutiny and Murder",
-        "Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night",
-        "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
-        "Unbroken: A World War II Story of Survival, Resilience and Redemption"
-      ],
-      "bookKey": "/works/OL3348071W",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/139069.Endurance",
-      "buyUrl": "https://www.amazon.com/dp/0465062881",
-      "coverUrl": "https://m.media-amazon.com/images/I/61Gg1Gr2GiL._SX300_.jpg",
-      "tones": ["atmospheric", "thoughtful"], "themeToneReviewed": true
-    },
-    {
+        {
       "title": "The Warmth of Other Suns: The Epic Story of America's Great Migration",
       "author": "Isabel Wilkerson",
       "type": "nonfiction",
@@ -1598,37 +1269,6 @@
       "coverUrl": "https://m.media-amazon.com/images/I/71sjBmOEjlL._SX300_.jpg",
       "isbn13": "9780451499059",
       "tones": ["thoughtful", "atmospheric", "heartwarming"], "themeToneReviewed": true
-    },
-    {
-      "title": "Fourth Wing (The Empyrean, #1)",
-      "author": "Rebecca Yarros",
-      "type": "fiction",
-      "year": 2023,
-      "pages": 528,
-      "avgRating": 4.33,
-      "ratingsCount": 900000,
-      "themes": [
-        "speculative",
-        "romance",
-        "YA"
-      ],
-      "similarToAuthors": [
-        "V.E. Schwab",
-        "Blake Crouch"
-      ],
-      "similarToTitles": [
-        "The Invisible Life of Addie LaRue",
-        "The Midnight Library (The Midnight World, #1)",
-        "This Time Tomorrow",
-        "The Measure",
-        "Annie Bot"
-      ],
-      "bookKey": "/works/OL35668792W",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/61431922-fourth-wing",
-      "buyUrl": "https://www.amazon.com/dp/1649374046",
-      "coverUrl": "https://books.google.com/books/content?id=kU8ZEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "isbn13": "9781649377371",
-      "tones": ["heartwarming", "compulsive"], "themeToneReviewed": true
     }
   ]
 }

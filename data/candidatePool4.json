@@ -215,36 +215,7 @@
       "coverUrl": "https://books.google.com/books/content?id=zLmKh8BZFsQC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "tones": ["tense", "procedural"], "themeToneReviewed": true
     },
-    {
-      "bookKey": "culpability|bruce-holsinger-2",
-      "title": "Culpability",
-      "author": "Bruce Holsinger",
-      "year": 2025,
-      "pages": 352,
-      "avgRating": 3.9,
-      "isbn13": "9780593652923",
-      "themes": [
-        "contemporary",
-        "social commentary"
-      ],
-      "similarToAuthors": [
-        "John Grisham",
-        "Scott Turow"
-      ],
-      "type": "fiction",
-      "redditSource": "r/books \u2014 2025 legal thriller with contemporary AI courtroom drama",
-      "similarToTitles": [
-        "Normal People",
-        "Beautiful World, Where Are You",
-        "Lessons in Chemistry",
-        "Tomorrow, and Tomorrow, and Tomorrow",
-        "Come and Get It"
-      ],
-      "ratingsCount": 8000,
-      "coverUrl": "https://books.google.com/books/content?id=61c_EQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["tense", "thoughtful"], "themeToneReviewed": true
-    },
-    {
+        {
       "bookKey": "the-gone-world|tom-sweterlitsch",
       "title": "The Gone World",
       "author": "Tom Sweterlitsch",

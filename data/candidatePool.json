@@ -3,38 +3,7 @@
     "count": 15
   },
   "candidates": [
-    {
-      "title": "The One",
-      "author": "John Marrs",
-      "type": "fiction",
-      "year": 2017,
-      "pages": 416,
-      "avgRating": 3.87,
-      "themes": [
-        "speculative",
-        "thriller",
-        "high-concept"
-      ],
-      "similarToAuthors": [
-        "Blake Crouch",
-        "Andy Weir"
-      ],
-      "similarToTitles": [
-        "Dark Matter",
-        "Recursion",
-        "Project Hail Mary",
-        "The Echo Wife",
-        "Annie Bot"
-      ],
-      "bookKey": "the-one|john-marrs",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/40670312-the-one",
-      "buyUrl": "https://www.amazon.com/s?k=The+One+John+Marrs",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1612001976i/40670312.jpg",
-      "ratingsCount": 180000,
-      "isbn13": "9781335002327",
-      "tones": ["tense", "twisty"], "themeToneReviewed": true
-    },
-    {
+        {
       "title": "Wrong Place Wrong Time",
       "author": "Gillian McAllister",
       "type": "fiction",
@@ -94,38 +63,7 @@
       "isbn13": "9781728215730",
       "tones": ["tense", "poignant"], "themeToneReviewed": true
     },
-    {
-      "title": "Listen for the Lie",
-      "author": "Amy Tintera",
-      "type": "fiction",
-      "year": 2024,
-      "pages": 352,
-      "avgRating": 4.04,
-      "themes": [
-        "thriller",
-        "humor",
-        "mystery"
-      ],
-      "similarToAuthors": [
-        "Jeneva Rose",
-        "Freida McFadden"
-      ],
-      "similarToTitles": [
-        "The Perfect Marriage",
-        "Ward D",
-        "First Lie Wins",
-        "None of This Is True",
-        "The Silent Patient"
-      ],
-      "bookKey": "listen-for-the-lie|amy-tintera",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/127279000-listen-for-the-lie",
-      "buyUrl": "https://www.amazon.com/s?k=Listen+for+the+Lie+Amy+Tintera",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1711398419i/127279000.jpg",
-      "ratingsCount": 70000,
-      "isbn13": "9781250880321",
-      "tones": ["twisty", "funny"], "themeToneReviewed": true
-    },
-    {
+        {
       "title": "The Only One Left",
       "author": "Riley Sager",
       "type": "fiction",
@@ -385,7 +323,7 @@
       "similarToTitles": [
         "The Code Breaker: Jennifer Doudna, Gene Editing, and the Future of the Human Race",
         "Going Infinite: The Rise and Fall of a New Tycoon",
-        "Empire of Pain: The Secret History of the Sackler Dynasty",
+        "Empire of Pain",
         "The Big Short: Inside the Doomsday Machine",
         "Bad Company: Private Equity and the Death of the American Dream"
       ],

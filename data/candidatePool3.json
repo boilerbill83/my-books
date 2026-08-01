@@ -570,36 +570,7 @@
       "coverUrl": "https://books.google.com/books/content?id=PMr2DwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "tones": ["funny", "heartwarming", "poignant"], "themeToneReviewed": true
     },
-    {
-      "bookKey": "think-again|adam-grant",
-      "title": "Think Again",
-      "author": "Adam Grant",
-      "year": 2021,
-      "pages": 307,
-      "avgRating": 4.11,
-      "isbn13": "9781984878106",
-      "themes": [
-        "psychology",
-        "business"
-      ],
-      "similarToAuthors": [
-        "Walter Isaacson",
-        "Charles Duhigg"
-      ],
-      "type": "nonfiction",
-      "publisher": "Viking",
-      "similarToTitles": [
-        "Educated",
-        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
-        "Grit: The Power of Passion and Perseverance",
-        "The Hot Hand: The Mystery and Science of Streaks",
-        "Coach: Lessons on the Game of Life"
-      ],
-      "ratingsCount": 280000,
-      "coverUrl": "https://books.google.com/books/content?id=-5SezQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["thoughtful", "dense"], "themeToneReviewed": true
-    },
-    {
+        {
       "bookKey": "hidden-potential|adam-grant",
       "title": "Hidden Potential",
       "author": "Adam Grant",
@@ -746,35 +717,6 @@
       "ratingsCount": 110000,
       "coverUrl": "https://books.google.com/books/content?id=Gss_INMTZQIC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "tones": ["revelatory", "thoughtful"], "themeToneReviewed": true
-    },
-    {
-      "bookKey": "hidden-valley-road|robert-kolker",
-      "title": "Hidden Valley Road",
-      "author": "Robert Kolker",
-      "year": 2020,
-      "pages": 377,
-      "avgRating": 4.15,
-      "isbn13": "9780385543767",
-      "themes": [
-        "psychology",
-        "history"
-      ],
-      "similarToAuthors": [
-        "Jon Krakauer",
-        "Michael Finkel"
-      ],
-      "type": "nonfiction",
-      "publisher": "Doubleday",
-      "similarToTitles": [
-        "When Breath Becomes Air",
-        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
-        "Three Women",
-        "Educated",
-        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive"
-      ],
-      "ratingsCount": 200000,
-      "coverUrl": "https://books.google.com/books/content?id=bxahDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
-      "tones": ["bleak", "revelatory"], "themeToneReviewed": true
     }
   ]
 }
