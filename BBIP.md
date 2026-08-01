@@ -159,3 +159,24 @@ Parsing notes confirmed against the real file:
 - Do we want to start tracking `Read Count` (re-reads) anywhere in the
   schema, or leave it out of scope?
 - Final validation + reasons for the 7 genuinely-missing books.
+
+## Side task completed: candidate-pool `bookId` backfill
+
+Separate from the main import (candidate-pool books were never on Bill's
+Goodreads shelves, so none of this came from the CSV export) — manually
+searched Goodreads for all 159 external candidate-pool books.
+
+- 67 already carried a `goodreadsUrl` with an embedded ID from earlier
+  enrichment. Cross-checked fresh search results against these as a sanity
+  check: only 36 agreed, 31 disagreed (different edition IDs or ambiguous
+  listings — `goodreads.com` itself is still blocked for direct fetches in
+  this environment, so neither side could be independently confirmed).
+- Per Bill's call: left all 67 existing values untouched (overwriting
+  already-integrated data with a less-certain fresh guess is pure downside)
+  and backfilled `bookId` only on the **92 books that had no ID at all**.
+  All 159 candidate-pool books now carry a resolvable Goodreads ID.
+- The 31 disagreements are flagged, not resolved — worth a manual spot-check
+  on Goodreads directly if it matters later, but out of scope for now.
+- Committed and pushed (`8832a8f`). Verified: JSON valid, diff shows only
+  the 92 intended insertions, `eval.js` unaffected (bookId isn't read by any
+  scoring path).
