@@ -734,6 +734,37 @@
       "isbn13": "9781400052172",
       "tones": ["revelatory", "investigative", "thoughtful"],
       "themeToneReviewed": true
+    },
+    {
+      "title": "Dad Is Fat",
+      "author": "Jim Gaffigan",
+      "type": "nonfiction",
+      "year": 2013,
+      "pages": 288,
+      "avgRating": 3.77,
+      "themes": [
+        "memoir",
+        "humor"
+      ],
+      "similarToAuthors": [
+        "Drew Magary",
+        "Bill Bryson",
+        "David Sedaris",
+        "A.J. Jacobs"
+      ],
+      "similarToTitles": [
+        "Someone Could Get Hurt: A Memoir of Twenty-First-Century Parenthood",
+        "This is Going to Hurt: Secret Diaries of a Junior Doctor",
+        "Sorry I'm Late, I Didn't Want to Come: One Introvert's Year of Saying Yes"
+      ],
+      "bookKey": "dad-is-fat|jim-gaffigan",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/16141924-dad-is-fat",
+      "buyUrl": "https://www.amazon.com/s?k=Dad%20Is%20Fat%20Jim%20Gaffigan",
+      "coverUrl": "",
+      "ratingsCount": 74417,
+      "isbn13": "9780385349055",
+      "tones": ["funny", "character-driven"],
+      "themeToneReviewed": true
     }
   ]
 }

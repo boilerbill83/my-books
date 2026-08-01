@@ -1,7 +1,7 @@
 {
   "date": "2026-08-01",
-  "generatedAt": "2026-08-01T02:18:57.717Z",
-  "totalBooks": 1124,
+  "generatedAt": "2026-08-01T02:33:42.386Z",
+  "totalBooks": 1125,
   "qualityScore": {
     "score": 67,
     "components": [
@@ -9,13 +9,13 @@
         "key": "criticalHealth",
         "label": "Critical Field Health",
         "weight": 0.08,
-        "subscore": 99.89323843416369
+        "subscore": 99.89333333333335
       },
       {
         "key": "completeness",
         "label": "Field Completeness",
         "weight": 0.33,
-        "subscore": 68.39177419504738
+        "subscore": 68.22505167147075
       },
       {
         "key": "foundational",
@@ -27,29 +27,29 @@
         "key": "safety",
         "label": "Recommendation Safety",
         "weight": 0.11,
-        "subscore": 95.55160142348754
+        "subscore": 95.55555555555556
       },
       {
         "key": "hygiene",
         "label": "Data Hygiene",
         "weight": 0.4,
-        "subscore": 45.48617511520738
+        "subscore": 45.909299129638114
       }
     ],
     "impediments": [
       {
-        "count": 398,
-        "pointsLost": 15.8,
+        "count": 397,
+        "pointsLost": 15.6,
         "name": "Orphaned similarToTitles references",
-        "description": "398 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (9.2% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
+        "description": "397 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (9.1% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
         "fix": "Add the missing books to the dataset where practical, or confirm the reference is intentionally external.",
         "anchor": "#tab-brokenrefs"
       },
       {
-        "count": 6,
-        "pointsLost": 10.4,
+        "count": 8,
+        "pointsLost": 10.5,
         "name": "Field completeness gaps (all fields)",
-        "description": "Average Quality Score across all 31 tracked fields is 94.5% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
+        "description": "Average Quality Score across all 31 tracked fields is 94.4% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
         "fix": "See the Field Population table, sorted by Quality Score, for every field below 90%.",
         "anchor": "#fieldPopulationSection"
       },
@@ -82,13 +82,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.89323843416369
+          "subscore": 99.89333333333335
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 68.39177419504738
+          "subscore": 68.22505167147075
         },
         {
           "key": "foundational",
@@ -100,13 +100,13 @@
           "key": "safety",
           "label": "Recommendation Safety",
           "weight": 0.11,
-          "subscore": 95.55160142348754
+          "subscore": 95.55555555555556
         },
         {
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 45.48617511520738
+          "subscore": 45.909299129638114
         }
       ]
     },
@@ -133,7 +133,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 72.26549707416572
+          "subscore": 72.09860005856757
         },
         {
           "key": "foundational",
@@ -151,7 +151,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 60.5668202764977
+          "subscore": 60.900137425561155
         }
       ]
     },
@@ -175,7 +175,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 72.26549707416572
+          "subscore": 72.09860005856757
         },
         {
           "key": "foundational",
@@ -193,7 +193,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 70.37557603686636
+          "subscore": 70.65048098946404
         }
       ]
     },
@@ -216,7 +216,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 72.26549707416572
+          "subscore": 72.09860005856757
         },
         {
           "key": "foundational",
@@ -234,7 +234,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 78.99539170506912
+          "subscore": 79.2189647274393
         }
       ]
     },
@@ -260,7 +260,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 86.29677419354839
+          "subscore": 86.25912171320141
         },
         {
           "key": "foundational",
@@ -278,7 +278,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 78.99539170506912
+          "subscore": 79.2189647274393
         }
       ]
     },
@@ -302,7 +302,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 99.53548387096777
+          "subscore": 99.49783139062072
         },
         {
           "key": "foundational",
@@ -329,189 +329,189 @@
     {
       "field": "isbn",
       "scorePct": 64.84375,
-      "rawPct": 64.1459074733096,
+      "rawPct": 64.08888888888889,
       "critical": false,
       "eligibleTotal": 128
     },
     {
       "field": "dateRead",
       "scorePct": 71.95685670261942,
-      "rawPct": 41.54804270462633,
+      "rawPct": 41.51111111111111,
       "critical": false,
       "eligibleTotal": 649
     },
     {
       "field": "subjects",
       "scorePct": 75.11271415689811,
-      "rawPct": 74.11032028469751,
+      "rawPct": 74.04444444444445,
       "critical": false,
       "eligibleTotal": 1109
     },
     {
       "field": "dismissReason",
       "scorePct": 80,
-      "rawPct": 1.7793594306049823,
+      "rawPct": 1.7777777777777777,
       "critical": false,
       "eligibleTotal": 25
     },
     {
       "field": "dateAdded",
-      "scorePct": 82.74021352313167,
-      "rawPct": 82.74021352313167,
+      "scorePct": 82.66666666666667,
+      "rawPct": 82.66666666666667,
       "critical": false,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "publisher",
-      "scorePct": 85.94306049822065,
-      "rawPct": 85.94306049822065,
+      "scorePct": 85.86666666666666,
+      "rawPct": 85.86666666666666,
       "critical": false,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "amazonRating",
-      "scorePct": 90.06342494714588,
-      "rawPct": 38.96797153024911,
+      "scorePct": 89.87341772151899,
+      "rawPct": 38.93333333333333,
       "critical": false,
-      "eligibleTotal": 473
+      "eligibleTotal": 474
     },
     {
       "field": "amazonRatingsCount",
-      "scorePct": 90.06342494714588,
-      "rawPct": 38.96797153024911,
+      "scorePct": 89.87341772151899,
+      "rawPct": 38.93333333333333,
       "critical": false,
-      "eligibleTotal": 473
+      "eligibleTotal": 474
     },
     {
       "field": "categories",
       "scorePct": 96.39314697926059,
-      "rawPct": 95.1067615658363,
+      "rawPct": 95.02222222222223,
       "critical": false,
       "eligibleTotal": 1109
     },
     {
       "field": "coverUrl",
-      "scorePct": 97.47368421052632,
-      "rawPct": 51.33451957295374,
+      "scorePct": 97.26890756302521,
+      "rawPct": 51.28888888888889,
       "critical": false,
-      "eligibleTotal": 475
+      "eligibleTotal": 476
     },
     {
       "field": "isbn13",
-      "scorePct": 98.04270462633453,
-      "rawPct": 98.04270462633453,
+      "scorePct": 98.04444444444445,
+      "rawPct": 98.04444444444445,
       "critical": false,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "metadataFetchedAt",
-      "scorePct": 98.66548042704626,
-      "rawPct": 98.66548042704626,
+      "scorePct": 98.57777777777778,
+      "rawPct": 98.57777777777778,
       "critical": false,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "description",
-      "scorePct": 98.75444839857651,
-      "rawPct": 98.75444839857651,
+      "scorePct": 98.66666666666667,
+      "rawPct": 98.66666666666667,
       "critical": false,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "similarToTitles",
-      "scorePct": 99.19928825622776,
-      "rawPct": 99.19928825622776,
+      "scorePct": 99.2,
+      "rawPct": 99.2,
       "critical": true,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "year",
-      "scorePct": 99.28825622775801,
-      "rawPct": 99.28825622775801,
+      "scorePct": 99.28888888888889,
+      "rawPct": 99.28888888888889,
       "critical": false,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "type",
-      "scorePct": 99.91103202846975,
-      "rawPct": 99.91103202846975,
+      "scorePct": 99.91111111111111,
+      "rawPct": 99.91111111111111,
       "critical": false,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "ratingsCount",
-      "scorePct": 99.91103202846975,
-      "rawPct": 99.91103202846975,
+      "scorePct": 99.91111111111111,
+      "rawPct": 99.91111111111111,
       "critical": true,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "themes",
-      "scorePct": 99.91103202846975,
-      "rawPct": 99.91103202846975,
+      "scorePct": 99.91111111111111,
+      "rawPct": 99.91111111111111,
       "critical": true,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "tones",
-      "scorePct": 99.91103202846975,
-      "rawPct": 99.91103202846975,
+      "scorePct": 99.91111111111111,
+      "rawPct": 99.91111111111111,
       "critical": false,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "similarToAuthors",
-      "scorePct": 99.91103202846975,
-      "rawPct": 99.91103202846975,
+      "scorePct": 99.91111111111111,
+      "rawPct": 99.91111111111111,
       "critical": true,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "bookKey",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "title",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "author",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "source",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "shelf",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "pages",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "myRating",
       "scorePct": 100,
-      "rawPct": 84.25266903914591,
+      "rawPct": 84.17777777777778,
       "critical": true,
       "eligibleTotal": 649
     },
@@ -520,28 +520,28 @@
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "dismissed",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "goodreadsUrl",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     },
     {
       "field": "top10",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1124
+      "eligibleTotal": 1125
     }
   ],
   "integrity": {
@@ -553,7 +553,7 @@
     "selfReferential": 0,
     "brokenNearMiss": 77,
     "brokenNearMissTouchingFiveStar": 0,
-    "brokenOrphaned": 398,
+    "brokenOrphaned": 397,
     "nonCanonicalTotal": 0,
     "promoteCandidateCount": 0,
     "nonCanonicalTonesTotal": 0,
@@ -2626,11 +2626,6 @@
       },
       {
         "from": "Home Game: An Accidental Guide to Fatherhood",
-        "ref": "Dad Is Fat",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Home Game: An Accidental Guide to Fatherhood",
         "ref": "The Year of Living Biblically",
         "touchesFiveStar": null
       },
@@ -3144,7 +3139,7 @@
         },
         {
           "value": "memoir",
-          "count": 159
+          "count": 160
         },
         {
           "value": "speculative",
@@ -3152,7 +3147,7 @@
         },
         {
           "value": "humor",
-          "count": 136
+          "count": 137
         },
         {
           "value": "social commentary",
@@ -3274,7 +3269,7 @@
       "tones": [
         {
           "value": "funny",
-          "count": 173
+          "count": 174
         },
         {
           "value": "conversational",
@@ -3306,7 +3301,7 @@
         },
         {
           "value": "character-driven",
-          "count": 166
+          "count": 167
         },
         {
           "value": "atmospheric",
