@@ -1,7 +1,7 @@
 {
  "meta": {
   "formatVersion": 1,
-  "lastUpdated": "2026-06-01T08:30:00-04:00",
+  "lastUpdated": "2026-08-01T01:41:48.135Z",
   "negativeSeedCount": 43
  },
  "interactions": [
@@ -1196,6 +1196,26 @@
    "reasonCode": "already-read-or-attempted",
    "note": "Bill: read or started it before; possibly an untracked DNF",
    "timestamp": "2026-07-04T02:33:13Z",
+   "excludeFromRecommendations": true
+  },
+  {
+   "bookKey": "be-ready-when-the-luck-happens|ina-garten",
+   "title": "Be Ready When the Luck Happens",
+   "author": "Ina Garten",
+   "type": "nonfiction",
+   "themes": [
+    "memoir",
+    "food"
+   ],
+   "tones": [
+    "conversational",
+    "heartwarming",
+    "inspiring",
+    "poignant"
+   ],
+   "interactionType": "dismiss",
+   "reasonCode": "not_interesting",
+   "timestamp": "2026-08-01T01:41:48.135Z",
    "excludeFromRecommendations": true
   }
  ]
