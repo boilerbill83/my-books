@@ -1,21 +1,21 @@
 {
   "date": "2026-08-01",
-  "generatedAt": "2026-08-01T03:11:08.529Z",
+  "generatedAt": "2026-08-01T03:40:50.715Z",
   "totalBooks": 1126,
   "qualityScore": {
-    "score": 69,
+    "score": 71,
     "components": [
       {
         "key": "criticalHealth",
         "label": "Critical Field Health",
         "weight": 0.08,
-        "subscore": 99.89342806394316
+        "subscore": 99.95559502664298
       },
       {
         "key": "completeness",
         "label": "Field Completeness",
         "weight": 0.33,
-        "subscore": 67.9664609191683
+        "subscore": 68.08076791510024
       },
       {
         "key": "foundational",
@@ -33,21 +33,21 @@
         "key": "hygiene",
         "label": "Data Hygiene",
         "weight": 0.4,
-        "subscore": 50.801028057399876
+        "subscore": 55.419016138440604
       }
     ],
     "impediments": [
       {
-        "count": 382,
-        "pointsLost": 14.1,
+        "count": 381,
+        "pointsLost": 12.7,
         "name": "Orphaned similarToTitles references",
-        "description": "382 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (8.2% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
+        "description": "381 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (7.4% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
         "fix": "Add the missing books to the dataset where practical, or confirm the reference is intentionally external.",
         "anchor": "#tab-brokenrefs"
       },
       {
         "count": 8,
-        "pointsLost": 10.6,
+        "pointsLost": 10.5,
         "name": "Field completeness gaps (all fields)",
         "description": "Average Quality Score across all 31 tracked fields is 94.4% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
         "fix": "See the Field Population table, sorted by Quality Score, for every field below 90%.",
@@ -55,7 +55,7 @@
       },
       {
         "count": 77,
-        "pointsLost": 5.6,
+        "pointsLost": 5.1,
         "name": "Broken similarToTitles references (candidate-to-candidate)",
         "description": "77 near-miss reference(s) between books that aren't 5★ reads — lower live-scoring impact, but still fixable typos or subtitle truncations.",
         "fix": "Correct each reference to the exact title string in the dataset.",
@@ -76,19 +76,19 @@
       "key": "current",
       "label": "Current",
       "actions": [],
-      "score": 69,
+      "score": 71,
       "components": [
         {
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.89342806394316
+          "subscore": 99.95559502664298
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 67.9664609191683
+          "subscore": 68.08076791510024
         },
         {
           "key": "foundational",
@@ -106,7 +106,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 50.801028057399876
+          "subscore": 55.419016138440604
         }
       ]
     },
@@ -121,7 +121,7 @@
         "Backfill dismissReason labels for the handful of dismissed books that have a reasonCode but no label — a small, finite, fully in-house fix.",
         "Close the last-mile gaps on similarToAuthors/themes/similarToTitles/ratingsCount — a small number of books account for the remaining ~1% below 100%."
       ],
-      "score": 77,
+      "score": 78,
       "components": [
         {
           "key": "criticalHealth",
@@ -151,7 +151,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 64.81901906189762
+          "subscore": 68.14505152634649
         }
       ]
     },
@@ -163,7 +163,7 @@
         "Top of the list: \"Blood, Bones, and Butter\" (cited by 20 different food-memoir books — by far the single highest-leverage addition), \"Kitchen Confidential\" (7), \"The Midrange Theory\" (5), \"Dreamland\" and \"The New Jim Crow\" (4 each).",
         "Each addition directly serves the BBRE-quality goal too — these are books the existing library already implicitly vouches for by citing them repeatedly as \"similar,\" so they're likely to be good recommendations once added, not just data-quality filler."
       ],
-      "score": 80,
+      "score": 81,
       "components": [
         {
           "key": "criticalHealth",
@@ -193,7 +193,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 73.93660312700793
+          "subscore": 76.42232160217772
         }
       ]
     },
@@ -204,7 +204,7 @@
         "Extend Phase 2 to the next ~70 most-cited missing titles (cumulative top 100), reaching 186 of 463 citations resolved (40%).",
         "Beyond this point, each further addition resolves only 1 citation (330 of the 377 unique orphaned titles are cited exactly once) — genuinely diminishing returns, not a reason to stop, but a reason to expect this phase to taper off rather than reach zero."
       ],
-      "score": 83,
+      "score": 84,
       "components": [
         {
           "key": "criticalHealth",
@@ -234,7 +234,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 81.94902548725638
+          "subscore": 83.69628621427184
         }
       ]
     },
@@ -248,7 +248,7 @@
         "Extend enrich_isbn.py's scope to also backfill read-shelf isbn13 (currently to-read/candidate-only by design) and backfill publisher gaps via the Google Books lookup already used elsewhere.",
         "dateRead and isbn gaps are partially legacy-import artifacts — worth a manual pass, but likely can't fully close (some original Goodreads exports may genuinely lack the field)."
       ],
-      "score": 88,
+      "score": 89,
       "components": [
         {
           "key": "criticalHealth",
@@ -278,7 +278,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 81.94902548725638
+          "subscore": 83.69628621427184
         }
       ]
     },
@@ -418,17 +418,17 @@
       "eligibleTotal": 1126
     },
     {
-      "field": "similarToTitles",
-      "scorePct": 99.20071047957371,
-      "rawPct": 99.20071047957371,
-      "critical": true,
-      "eligibleTotal": 1126
-    },
-    {
       "field": "year",
       "scorePct": 99.28952042628775,
       "rawPct": 99.28952042628775,
       "critical": false,
+      "eligibleTotal": 1126
+    },
+    {
+      "field": "similarToTitles",
+      "scorePct": 99.82238010657194,
+      "rawPct": 99.82238010657194,
+      "critical": true,
       "eligibleTotal": 1126
     },
     {
@@ -553,14 +553,14 @@
     "selfReferential": 0,
     "brokenNearMiss": 77,
     "brokenNearMissTouchingFiveStar": 0,
-    "brokenOrphaned": 382,
+    "brokenOrphaned": 381,
     "nonCanonicalTotal": 0,
     "promoteCandidateCount": 0,
     "nonCanonicalTonesTotal": 0,
     "toneReviewCandidateCount": 0,
     "themeToneCollisions": 0,
     "themesOutOfRange": 0,
-    "similarOutOfRange": 4,
+    "similarOutOfRange": 3,
     "zeroPages": 1,
     "zeroRatingsCount": 18,
     "missingBookKey": 1
@@ -2860,11 +2860,6 @@
         "touchesFiveStar": null
       },
       {
-        "from": "Raised",
-        "ref": "My Absolute Darling",
-        "touchesFiveStar": null
-      },
-      {
         "from": "How to Know a Person: The Art of Seeing Others Deeply and Being Deeply Seen",
         "ref": "The Second Mountain",
         "touchesFiveStar": null
@@ -2964,85 +2959,8 @@
         ]
       },
       {
-        "title": "Up on Cove Mountain: Adventure, Tragedy, and a Quest for Meaning on the Appalachian Trail",
-        "author": "Earl Swift",
-        "score": 10,
-        "reasons": [
-          "missing similarToTitles"
-        ],
-        "locations": [
-          "library/to-read"
-        ]
-      },
-      {
-        "title": "How to Not Die in Prison: A Survival Guide",
-        "author": "Taylor Sheridan",
-        "score": 10,
-        "reasons": [
-          "missing similarToTitles"
-        ],
-        "locations": [
-          "library/to-read"
-        ]
-      },
-      {
-        "title": "The Munich Affair",
-        "author": "James  Patterson",
-        "score": 10,
-        "reasons": [
-          "missing similarToTitles"
-        ],
-        "locations": [
-          "library/to-read"
-        ]
-      },
-      {
-        "title": "This Book Made Me Think of You",
-        "author": "Libby  Page",
-        "score": 10,
-        "reasons": [
-          "missing similarToTitles"
-        ],
-        "locations": [
-          "library/to-read"
-        ]
-      },
-      {
-        "title": "Operation Bounce House",
-        "author": "Matt Dinniman",
-        "score": 10,
-        "reasons": [
-          "missing similarToTitles"
-        ],
-        "locations": [
-          "library/to-read"
-        ]
-      },
-      {
         "title": "Culpability",
         "author": "Bruce Holsinger",
-        "score": 10,
-        "reasons": [
-          "missing similarToTitles"
-        ],
-        "locations": [
-          "library/to-read"
-        ]
-      },
-      {
-        "title": "Rock*: A Mainstream Alternative History of Alternative Mainstream Music",
-        "author": "Chuck Klosterman",
-        "score": 10,
-        "reasons": [
-          "missing similarToTitles"
-        ],
-        "locations": [
-          "library/to-read"
-        ]
-      },
-      {
-        "title": "Cancel Me If You Can",
-        "author": "Dave Portnoy",
         "score": 10,
         "reasons": [
           "missing similarToTitles"
