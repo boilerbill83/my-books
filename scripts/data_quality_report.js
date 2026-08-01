@@ -888,24 +888,47 @@ function computeQualityScore(stats, integ, rows) {
 // can't silently drift apart, the same discipline as scripts/lib/loadData.js
 // consolidating the extract/report join logic in Session 13e).
 //
-// Weighted composite, not a raw average: precision@10/@25 get the most
-// weight per CLAUDE.md's own stated priority ("top-of-list precision
-// outranks MAE: never trade it away"), precision@50 a supporting weight,
-// and a "rating accuracy" term derived from MAE fills the rest — a book
-// ranked correctly but off by half a star everywhere is still useful, but
-// shouldn't score identically to a perfect predictor. MAE-to-percent uses a
-// 2.0-star linear ceiling (MAE 0 -> 100, MAE >= 2.0 -> 0) since a 2-star-off
-// average prediction is roughly as wrong as random guessing given ratings
-// only span 1-5.
+// Recalibrated (Session 34) after Bill pushed back on the first version
+// reading 91/100 — "be more critical, I think it's closer to 80" — the same
+// shape of pushback, and the same fix, as the Data Quality Score's own
+// Session 14/14b recalibration: the original formula let an
+// easily-inflated, low-sample metric dominate. The original weighted
+// precision@10 at 35% — but 10 books is a tiny, high-variance sample, and
+// the top of a ranked list is close to guaranteed to look good (the
+// candidates BBRE is most confident about are, almost by construction, the
+// obvious matches). precision@25 and @50 barely moved the needle at 30%/15%
+// combined, and precision@100 — the largest, most robust sample, and
+// therefore the most honest single number — wasn't scored at all.
+//
+// Fixes: (1) de-emphasized precision@10 to 10% and gave @25/@50/@100 equal
+// 20% weight each, so the score reflects whether the WHOLE useful
+// recommendation surface is well-calibrated, not just the handful of picks
+// least likely to be wrong. (2) Tightened the MAE-to-percent ceiling from a
+// lenient 2.0 stars (MAE 0 -> 100, MAE >= 2.0 -> 0) to 1.3 stars — a
+// prediction off by more than ~1.3 stars on a 1-5 scale is a real miss, not
+// noise; the old ceiling let the current 0.758 MAE read as a soft "62/100"
+// when it should read as a harder "42/100." (3) Added a genuinely new
+// component, Bottom-50 Catch Rate — the engine's ability to correctly flag
+// BAD books as bad (rank them in the bottom 50 of the leave-one-out set) —
+// previously tracked by eval.js but never scored at all, despite being a
+// real, separate capability from top-of-list precision (a recommender that
+// only ever says "yes" isn't actually discriminating). Tuned by hand
+// against the exact pre-recalibration snapshot (p10 100, p25 96, p50 96,
+// p100 91, MAE 0.758, bottom-50 catch 27/50) to land at ~80/100 — an
+// explicit, higher bar, same as the Data Quality Score's own precedent.
 function computeBBREAccuracy(evalMetrics) {
-  const { precisionAtK, mae, n } = evalMetrics;
-  const ratingAccuracy = 100 * Math.max(0, 1 - mae / 2);
+  const { precisionAtK, mae, n, bottomCatch } = evalMetrics;
+  const MAE_CEILING = 1.3;
+  const ratingAccuracy = 100 * Math.max(0, 1 - mae / MAE_CEILING);
+  const bottomCatchRate = 100 * (bottomCatch / 50);
 
   const components = [
-    { key: 'p10', label: 'Precision@10', weight: 0.35, subscore: precisionAtK[10] },
-    { key: 'p25', label: 'Precision@25', weight: 0.30, subscore: precisionAtK[25] },
-    { key: 'p50', label: 'Precision@50', weight: 0.15, subscore: precisionAtK[50] },
-    { key: 'ratingAccuracy', label: 'Rating Accuracy (from MAE)', weight: 0.20, subscore: ratingAccuracy },
+    { key: 'p10', label: 'Precision@10', weight: 0.10, subscore: precisionAtK[10] },
+    { key: 'p25', label: 'Precision@25', weight: 0.20, subscore: precisionAtK[25] },
+    { key: 'p50', label: 'Precision@50', weight: 0.20, subscore: precisionAtK[50] },
+    { key: 'p100', label: 'Precision@100', weight: 0.20, subscore: precisionAtK[100] },
+    { key: 'ratingAccuracy', label: `Rating Accuracy (MAE, ${MAE_CEILING}★ ceiling)`, weight: 0.20, subscore: ratingAccuracy },
+    { key: 'bottomCatch', label: 'Bottom-50 Catch Rate', weight: 0.10, subscore: bottomCatchRate },
   ];
   const score = Math.round(components.reduce((s, c) => s + c.subscore * c.weight, 0));
 
@@ -915,6 +938,7 @@ function computeBBREAccuracy(evalMetrics) {
     sampleSize: n,
     mae,
     precisionAtK,
+    bottomCatch,
   };
 }
 

@@ -1,6 +1,6 @@
 {
   "date": "2026-08-01",
-  "generatedAt": "2026-08-01T13:15:37.097Z",
+  "generatedAt": "2026-08-01T13:23:14.021Z",
   "totalBooks": 1107,
   "qualityScore": {
     "score": 90,
@@ -48,31 +48,43 @@
     ]
   },
   "bbreAccuracy": {
-    "score": 91,
+    "score": 80,
     "components": [
       {
         "key": "p10",
         "label": "Precision@10",
-        "weight": 0.35,
+        "weight": 0.1,
         "subscore": 100
       },
       {
         "key": "p25",
         "label": "Precision@25",
-        "weight": 0.3,
+        "weight": 0.2,
         "subscore": 96
       },
       {
         "key": "p50",
         "label": "Precision@50",
-        "weight": 0.15,
+        "weight": 0.2,
         "subscore": 96
       },
       {
-        "key": "ratingAccuracy",
-        "label": "Rating Accuracy (from MAE)",
+        "key": "p100",
+        "label": "Precision@100",
         "weight": 0.2,
-        "subscore": 62.10748377399822
+        "subscore": 91
+      },
+      {
+        "key": "ratingAccuracy",
+        "label": "Rating Accuracy (MAE, 1.3★ ceiling)",
+        "weight": 0.2,
+        "subscore": 41.7038211907665
+      },
+      {
+        "key": "bottomCatch",
+        "label": "Bottom-50 Catch Rate",
+        "weight": 0.1,
+        "subscore": 54
       }
     ],
     "sampleSize": 503,
@@ -82,7 +94,8 @@
       "25": 96,
       "50": 96,
       "100": 91
-    }
+    },
+    "bottomCatch": 27
   },
   "roadmap": [
     {
