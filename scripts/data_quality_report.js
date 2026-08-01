@@ -390,6 +390,62 @@ function findDuplicateTitleAuthor() {
   return [...byKey.entries()].filter(([, list]) => list.length > 1);
 }
 
+// Session 32: findDuplicateTitleAuthor() only catches exact title+author
+// matches (modulo case/whitespace), which misses the shape candidatePool6.json
+// (Open-Library-derived: full subtitled titles, /works/OL... bookKeys)
+// produces against the slug-keyed pools — e.g. "Bad Blood" vs "Bad Blood:
+// Secrets and Lies in a Silicon Valley Startup", or "The One" vs "The One
+// (Dark Future #1)". A dedicated normalized-title+author scan (18 groups)
+// found these were invisible to both findDuplicateBookKeys() and
+// findDuplicateTitleAuthor() — same physical book, two unrelated identities.
+// This strips subtitles (colon-onward) in addition to engineNorm's existing
+// parenthetical/series stripping, and matches authors by word-set
+// containment rather than exact string so "Adam Grant" vs "Adam M. Grant"
+// still merges. Deliberately heuristic and report-only-by-default in spirit
+// (see findNonCanonicalTones/findThemeToneCollisions) — a false-positive
+// cluster here is just a suggestion to check by hand, never an auto-fix.
+function normTitleNoSubtitle(v) {
+  return engineNorm(String(v || '').replace(/:.*$/, ''));
+}
+function authorWordSet(v) {
+  return new Set(
+    String(v || '').toLowerCase().replace(/[^a-z\s]/g, ' ').split(/\s+/).filter(w => w.length > 2)
+  );
+}
+function authorsFuzzyMatch(a, b) {
+  const wa = authorWordSet(a), wb = authorWordSet(b);
+  if (wa.size === 0 || wb.size === 0) return false;
+  const [small, big] = wa.size <= wb.size ? [wa, wb] : [wb, wa];
+  return [...small].every(w => big.has(w));
+}
+function findDuplicateBooksFuzzy() {
+  const byTitle = new Map();
+  for (const r of rows) {
+    const nt = normTitleNoSubtitle(r.title);
+    if (!nt) continue;
+    if (!byTitle.has(nt)) byTitle.set(nt, []);
+    byTitle.get(nt).push(r);
+  }
+  const groups = [];
+  for (const [nt, list] of byTitle) {
+    if (list.length < 2) continue;
+    const used = new Array(list.length).fill(false);
+    for (let i = 0; i < list.length; i++) {
+      if (used[i]) continue;
+      const cluster = [list[i]];
+      used[i] = true;
+      for (let j = i + 1; j < list.length; j++) {
+        if (!used[j] && authorsFuzzyMatch(list[i].author, list[j].author)) {
+          cluster.push(list[j]);
+          used[j] = true;
+        }
+      }
+      if (cluster.length > 1) groups.push([nt, cluster]);
+    }
+  }
+  return groups;
+}
+
 // Buckets broken similarToTitles refs into:
 //  - nearMiss: a close match exists (substring/prefix or small edit
 //    distance) — almost always a fixable typo, truncation, or an edition
@@ -666,7 +722,7 @@ function computeQualityScore(stats, integ, rows) {
   const totalThemeTags = rows.reduce((s, r) => s + r.themes.length, 0) || 1;
   const totalSimEntryBooks = rows.filter(r => r.similarToTitles.length || r.similarToAuthors.length).length || 1;
   const nearMissOther = integ.brokenNearMiss - integ.brokenNearMissTouchingFiveStar;
-  const totalDuplicateGroups = integ.dupBookKeys + integ.dupTitleAuthor;
+  const totalDuplicateGroups = integ.dupBookKeys + integ.dupTitleAuthor + integ.dupFuzzy;
 
   const rate = {
     alreadyReadInPool: integ.alreadyReadInPool / totalCandidatePool,
@@ -838,7 +894,7 @@ function buildRoadmap(stats, integ, rows) {
 
   // Phase 1 — Quick data-entry fixes: no new content, just correcting and
   // deduping what's already there.
-  const phase1Integ = { ...integ, brokenNearMiss: 0, dupBookKeys: 0, dupTitleAuthor: 0 };
+  const phase1Integ = { ...integ, brokenNearMiss: 0, dupBookKeys: 0, dupTitleAuthor: 0, dupFuzzy: 0 };
   const phase1Stats = withFieldScores(stats, {
     similarToAuthors: 100, themes: 100, similarToTitles: 100, ratingsCount: 100, dismissReason: 100,
   });
@@ -846,7 +902,6 @@ function buildRoadmap(stats, integ, rows) {
     'Correct the ~35 genuine candidate-to-candidate subtitle-truncation near-misses (same fix pattern as the 35 already corrected for 5★-touching refs) — e.g. "Just Mercy" → "Just Mercy: A Story of Justice and Redemption" (4 citing books), "Moneyball" → full title (5 citing books).',
     'Fix 2 abbreviated self-citations found during this analysis: "The Origins of the Cornbread Mafia" and "Twilight of the Gods" each cite their own short-form title in similarToTitles — same bug class as Session 14\'s self-referential fixes, just missed because the abbreviation doesn\'t normalize to an exact title match.',
     'Tighten findNearMatch() further: several of the 52 remaining near-misses are still false positives from coincidental word-prefix collisions ("The Road to Somewhere"→"The Road", "Superintelligence"→an unrelated book with "Superintelligence" in its subtitle) — reclassifying these to orphaned is more accurate, not a score loss, since they were never real matches.',
-    'Merge/remove the 5 duplicate-book groups (to-read books also sitting in a candidate pool — "Listen for the Lie," "The One," "Endurance," "Culpability").',
     'Backfill dismissReason labels for the handful of dismissed books that have a reasonCode but no label — a small, finite, fully in-house fix.',
     'Close the last-mile gaps on similarToAuthors/themes/similarToTitles/ratingsCount — a small number of books account for the remaining ~1% below 100%.',
   ];
@@ -1093,6 +1148,7 @@ function renderActionItems(stats, integrity, trend, impactScores) {
 const stats = populationStats();
 const dupBookKeys = findDuplicateBookKeys();
 const dupTitleAuthor = findDuplicateTitleAuthor();
+const dupFuzzy = findDuplicateBooksFuzzy();
 const { nearMiss: brokenNearMiss, orphaned: brokenOrphaned } = findBrokenSimilarToTitles();
 const { offenders: nonCanonical, promoteCandidates } = findNonCanonicalThemes();
 const { offenders: nonCanonicalTones, promoteCandidates: toneReviewCandidates } = findNonCanonicalTones();
@@ -1121,6 +1177,7 @@ const dateStamp = new Date().toISOString().slice(0, 10);
 const integritySummary = {
   dupBookKeys: dupBookKeys.length,
   dupTitleAuthor: dupTitleAuthor.length,
+  dupFuzzy: dupFuzzy.length,
   alreadyReadInPool: alreadyReadInPool.length,
   fiveStarSignalGaps: fiveStarGaps.length,
   highLeverageGaps: highLeverageGaps.length,
@@ -1167,6 +1224,7 @@ const currentSnapshot = {
     themeToneCollisions,
     duplicateBookKeys: dupBookKeys.map(([key, list]) => ({ key, books: list.map(r => ({ title: r.title, source: r.source, shelf: r.shelf })) })),
     duplicateTitleAuthor: dupTitleAuthor.map(([, list]) => ({ title: list[0].title, author: list[0].author, occurrences: list.map(r => ({ source: r.source, shelf: r.shelf })) })),
+    duplicateBooksFuzzy: dupFuzzy.map(([, list]) => ({ title: list[0].title, occurrences: list.map(r => ({ title: r.title, author: r.author, source: r.source, shelf: r.shelf })) })),
     impactScores: impactScores.slice(0, 50),
     tagCounts,
   },
@@ -1251,6 +1309,10 @@ ${dupBookKeys.length ? renderList(dupBookKeys.map(([k, list]) => `\`${k}\` — $
 
 ### Duplicate title+author across sources (${dupTitleAuthor.length})
 ${dupTitleAuthor.length ? renderList(dupTitleAuthor.map(([, list]) => `"${list[0].title}" by ${list[0].author} — appears in ${list.map(r => `${r.source}/${r.shelf}`).join(', ')}`)) : 'None found.'}
+
+### Duplicate books, normalized (${dupFuzzy.length})
+Catches subtitle/edition-variant duplicates the two exact-match checks above miss (e.g. "Bad Blood" vs "Bad Blood: Secrets and Lies in a Silicon Valley Startup", "The One" vs "The One (Dark Future #1)") — same physical book under two unrelated identities, mostly candidatePool6.json's Open-Library-derived entries duplicating an earlier pool file or goodreadsData.json. Heuristic (normalized title + fuzzy author word-match) — verify by hand before merging.
+${dupFuzzy.length ? renderList(dupFuzzy.map(([, list]) => `${list.map(r => `"${r.title}" by ${r.author} (${r.source}/${r.shelf})`).join(' == ')}`)) : 'None found.'}
 
 ### Broken similarToTitles references
 Checked against the engine's actual title-matching normalization (parenthetical/series notation stripped, same as \`norm()\` in engine.js) — so this excludes refs the engine already resolves fine, unlike a naive string comparison.

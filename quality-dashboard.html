@@ -1021,7 +1021,7 @@
           { id: 'brokenrefs', label: `Broken References (${integ.brokenNearMiss + integ.brokenOrphaned})` },
           { id: 'themes', label: `Non-Canonical Themes (${integ.nonCanonicalTotal})` },
           { id: 'tones', label: `Non-Canonical Tones (${integ.nonCanonicalTonesTotal || 0})` },
-          { id: 'duplicates', label: `Duplicates (${integ.dupBookKeys + integ.dupTitleAuthor})` },
+          { id: 'duplicates', label: `Duplicates (${integ.dupBookKeys + integ.dupTitleAuthor + (integ.dupFuzzy || 0)})` },
         ];
         const tabsEl = $('#qdTabs');
         const panelsEl = $('#qdTabPanels');
@@ -1192,6 +1192,19 @@
             { label: 'Author', get: r => r.author },
             { label: 'Appears In', get: r => r.occurrences.map(o => `${o.source}/${o.shelf}`).join(', '), render: (td, r) => { td.className = 'qd-locs'; td.textContent = r.occurrences.map(o => `${o.source}/${o.shelf}`).join(', '); } },
           ], findings.duplicateTitleAuthor || [], { emptyText: 'None found.' });
+
+          const h3 = document.createElement('h4'); h3.textContent = `Duplicate books, normalized (${(findings.duplicateBooksFuzzy || []).length})`; h3.style.margin = '18px 0 8px';
+          div.appendChild(h3);
+          const note = document.createElement('p'); note.className = 'qd-desc'; note.style.margin = '0 0 8px';
+          note.textContent = 'Catches subtitle/edition-variant duplicates the two exact-match checks above miss (e.g. "Bad Blood" vs "Bad Blood: Secrets and Lies in a Silicon Valley Startup"). Heuristic — verify by hand before merging.';
+          div.appendChild(note);
+          const table3 = document.createElement('table'); table3.className = 'qd-table';
+          const wrap3 = document.createElement('div'); wrap3.className = 'qd-table-wrap'; wrap3.appendChild(table3);
+          div.appendChild(wrap3);
+          sortableTable(table3, [
+            { label: 'Title', get: r => r.title },
+            { label: 'Occurrences', get: r => r.occurrences.map(o => `${o.title} by ${o.author} (${o.source}/${o.shelf})`).join('; '), render: (td, r) => { td.className = 'qd-reasons'; td.textContent = r.occurrences.map(o => `${o.title} by ${o.author} (${o.source}/${o.shelf})`).join('; '); } },
+          ], findings.duplicateBooksFuzzy || [], { emptyText: 'None found.' });
         });
       }
 

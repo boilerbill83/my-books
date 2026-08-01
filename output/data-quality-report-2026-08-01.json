@@ -1,21 +1,21 @@
 {
   "date": "2026-08-01",
-  "generatedAt": "2026-08-01T04:23:39.276Z",
-  "totalBooks": 1126,
+  "generatedAt": "2026-08-01T13:08:35.510Z",
+  "totalBooks": 1107,
   "qualityScore": {
-    "score": 89,
+    "score": 90,
     "components": [
       {
         "key": "criticalHealth",
         "label": "Critical Field Health",
         "weight": 0.08,
-        "subscore": 99.96447602131438
+        "subscore": 99.96386630532973
       },
       {
         "key": "completeness",
         "label": "Field Completeness",
         "weight": 0.33,
-        "subscore": 68.09709748594761
+        "subscore": 68.8143418058241
       },
       {
         "key": "foundational",
@@ -27,7 +27,7 @@
         "key": "safety",
         "label": "Recommendation Safety",
         "weight": 0.11,
-        "subscore": 95.5595026642984
+        "subscore": 100
       },
       {
         "key": "hygiene",
@@ -39,19 +39,11 @@
     "impediments": [
       {
         "count": 8,
-        "pointsLost": 10.5,
+        "pointsLost": 10.3,
         "name": "Field completeness gaps (all fields)",
-        "description": "Average Quality Score across all 31 tracked fields is 94.4% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
+        "description": "Average Quality Score across all 31 tracked fields is 94.5% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
         "fix": "See the Field Population table, sorted by Quality Score, for every field below 90%.",
         "anchor": "#fieldPopulationSection"
-      },
-      {
-        "count": 5,
-        "pointsLost": 0.5,
-        "name": "Duplicate book entries",
-        "description": "5 duplicate group(s) (same bookKey or same title+author appearing more than once) — a duplicated 5★ read double-counts its themes/citations toward every scoring signal built from it.",
-        "fix": "Merge or remove the duplicate entry, keeping the more complete record.",
-        "anchor": "#tab-duplicates"
       }
     ]
   },
@@ -60,19 +52,19 @@
       "key": "current",
       "label": "Current",
       "actions": [],
-      "score": 89,
+      "score": 90,
       "components": [
         {
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.96447602131438
+          "subscore": 99.96386630532973
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 68.09709748594761
+          "subscore": 68.8143418058241
         },
         {
           "key": "foundational",
@@ -84,7 +76,7 @@
           "key": "safety",
           "label": "Recommendation Safety",
           "weight": 0.11,
-          "subscore": 95.5595026642984
+          "subscore": 100
         },
         {
           "key": "hygiene",
@@ -101,7 +93,6 @@
         "Correct the ~35 genuine candidate-to-candidate subtitle-truncation near-misses (same fix pattern as the 35 already corrected for 5★-touching refs) — e.g. \"Just Mercy\" → \"Just Mercy: A Story of Justice and Redemption\" (4 citing books), \"Moneyball\" → full title (5 citing books).",
         "Fix 2 abbreviated self-citations found during this analysis: \"The Origins of the Cornbread Mafia\" and \"Twilight of the Gods\" each cite their own short-form title in similarToTitles — same bug class as Session 14's self-referential fixes, just missed because the abbreviation doesn't normalize to an exact title match.",
         "Tighten findNearMatch() further: several of the 52 remaining near-misses are still false positives from coincidental word-prefix collisions (\"The Road to Somewhere\"→\"The Road\", \"Superintelligence\"→an unrelated book with \"Superintelligence\" in its subtitle) — reclassifying these to orphaned is more accurate, not a score loss, since they were never real matches.",
-        "Merge/remove the 5 duplicate-book groups (to-read books also sitting in a candidate pool — \"Listen for the Lie,\" \"The One,\" \"Endurance,\" \"Culpability\").",
         "Backfill dismissReason labels for the handful of dismissed books that have a reasonCode but no label — a small, finite, fully in-house fix.",
         "Close the last-mile gaps on similarToAuthors/themes/similarToTitles/ratingsCount — a small number of books account for the remaining ~1% below 100%."
       ],
@@ -117,7 +108,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 71.83983512417603
+          "subscore": 72.55820053473396
         },
         {
           "key": "foundational",
@@ -159,7 +150,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 71.83983512417603
+          "subscore": 72.55820053473396
         },
         {
           "key": "foundational",
@@ -200,7 +191,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 71.83983512417603
+          "subscore": 72.55820053473396
         },
         {
           "key": "foundational",
@@ -244,7 +235,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 86.22162710488945
+          "subscore": 86.19923932948302
         },
         {
           "key": "foundational",
@@ -286,7 +277,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 99.46033678230884
+          "subscore": 99.43794900690231
         },
         {
           "key": "foundational",
@@ -312,190 +303,190 @@
   "fields": [
     {
       "field": "isbn",
-      "scorePct": 64.34108527131782,
-      "rawPct": 64.03197158081706,
+      "scorePct": 65.87301587301587,
+      "rawPct": 65.13098464317976,
       "critical": false,
-      "eligibleTotal": 129
+      "eligibleTotal": 126
     },
     {
       "field": "dateRead",
       "scorePct": 71.95685670261942,
-      "rawPct": 41.47424511545293,
+      "rawPct": 42.186088527551945,
       "critical": false,
       "eligibleTotal": 649
     },
     {
       "field": "subjects",
-      "scorePct": 75.11271415689811,
-      "rawPct": 73.97868561278864,
+      "scorePct": 74.95412844036697,
+      "rawPct": 73.80307136404697,
       "critical": false,
-      "eligibleTotal": 1109
+      "eligibleTotal": 1090
     },
     {
       "field": "dismissReason",
       "scorePct": 80,
-      "rawPct": 1.7761989342806395,
+      "rawPct": 1.8066847335140017,
       "critical": false,
       "eligibleTotal": 25
     },
     {
       "field": "dateAdded",
-      "scorePct": 82.59325044404973,
-      "rawPct": 82.59325044404973,
+      "scorePct": 84.01084010840108,
+      "rawPct": 84.01084010840108,
       "critical": false,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "publisher",
-      "scorePct": 85.79040852575488,
-      "rawPct": 85.79040852575488,
+      "scorePct": 87.08220415537488,
+      "rawPct": 87.08220415537488,
       "critical": false,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "amazonRating",
-      "scorePct": 89.6842105263158,
-      "rawPct": 38.898756660746,
+      "scorePct": 89.69298245614036,
+      "rawPct": 38.030713640469735,
       "critical": false,
-      "eligibleTotal": 475
+      "eligibleTotal": 456
     },
     {
       "field": "amazonRatingsCount",
-      "scorePct": 89.6842105263158,
-      "rawPct": 38.898756660746,
+      "scorePct": 89.69298245614036,
+      "rawPct": 38.030713640469735,
       "critical": false,
-      "eligibleTotal": 475
+      "eligibleTotal": 456
     },
     {
       "field": "categories",
-      "scorePct": 96.39314697926059,
-      "rawPct": 94.93783303730018,
+      "scorePct": 96.3302752293578,
+      "rawPct": 94.8509485094851,
       "critical": false,
-      "eligibleTotal": 1109
+      "eligibleTotal": 1090
     },
     {
       "field": "coverUrl",
-      "scorePct": 97.06498951781971,
-      "rawPct": 51.243339253996446,
+      "scorePct": 96.94323144104804,
+      "rawPct": 50.40650406504065,
       "critical": false,
-      "eligibleTotal": 477
+      "eligibleTotal": 458
     },
     {
       "field": "isbn13",
-      "scorePct": 98.0461811722913,
-      "rawPct": 98.0461811722913,
+      "scorePct": 98.1029810298103,
+      "rawPct": 98.1029810298103,
       "critical": false,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "metadataFetchedAt",
-      "scorePct": 98.49023090586145,
-      "rawPct": 98.49023090586145,
+      "scorePct": 98.4643179765131,
+      "rawPct": 98.4643179765131,
       "critical": false,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "description",
-      "scorePct": 98.57904085257549,
-      "rawPct": 98.57904085257549,
+      "scorePct": 98.5546522131888,
+      "rawPct": 98.5546522131888,
       "critical": false,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "year",
-      "scorePct": 99.28952042628775,
-      "rawPct": 99.28952042628775,
+      "scorePct": 99.2773261065944,
+      "rawPct": 99.2773261065944,
       "critical": false,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "type",
-      "scorePct": 99.91119005328596,
-      "rawPct": 99.91119005328596,
+      "scorePct": 99.9096657633243,
+      "rawPct": 99.9096657633243,
       "critical": false,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "ratingsCount",
-      "scorePct": 99.91119005328596,
-      "rawPct": 99.91119005328596,
+      "scorePct": 99.9096657633243,
+      "rawPct": 99.9096657633243,
       "critical": true,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "themes",
-      "scorePct": 99.91119005328596,
-      "rawPct": 99.91119005328596,
+      "scorePct": 99.9096657633243,
+      "rawPct": 99.9096657633243,
       "critical": true,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "tones",
-      "scorePct": 99.91119005328596,
-      "rawPct": 99.91119005328596,
+      "scorePct": 99.9096657633243,
+      "rawPct": 99.9096657633243,
       "critical": false,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "similarToTitles",
-      "scorePct": 99.91119005328596,
-      "rawPct": 99.91119005328596,
+      "scorePct": 99.9096657633243,
+      "rawPct": 99.9096657633243,
       "critical": true,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "similarToAuthors",
-      "scorePct": 99.91119005328596,
-      "rawPct": 99.91119005328596,
+      "scorePct": 99.9096657633243,
+      "rawPct": 99.9096657633243,
       "critical": true,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "bookKey",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "title",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "author",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "source",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "shelf",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "pages",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "myRating",
       "scorePct": 100,
-      "rawPct": 84.10301953818828,
+      "rawPct": 85.54652213188798,
       "critical": true,
       "eligibleTotal": 649
     },
@@ -504,33 +495,34 @@
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "dismissed",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "goodreadsUrl",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     },
     {
       "field": "top10",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1126
+      "eligibleTotal": 1107
     }
   ],
   "integrity": {
-    "dupBookKeys": 2,
-    "dupTitleAuthor": 3,
+    "dupBookKeys": 0,
+    "dupTitleAuthor": 0,
+    "dupFuzzy": 0,
     "alreadyReadInPool": 0,
     "fiveStarSignalGaps": 0,
     "highLeverageGaps": 0,
@@ -562,82 +554,9 @@
     "toneReviewCandidates": [],
     "nonCanonicalTones": [],
     "themeToneCollisions": [],
-    "duplicateBookKeys": [
-      {
-        "key": "listen-for-the-lie|amy-tintera",
-        "books": [
-          {
-            "title": "Listen for the Lie",
-            "source": "library",
-            "shelf": "to-read"
-          },
-          {
-            "title": "Listen for the Lie",
-            "source": "candidate_pool",
-            "shelf": "candidate-pool"
-          }
-        ]
-      },
-      {
-        "key": "the-one|john-marrs",
-        "books": [
-          {
-            "title": "The One (Dark Future #1)",
-            "source": "library",
-            "shelf": "to-read"
-          },
-          {
-            "title": "The One",
-            "source": "candidate_pool",
-            "shelf": "candidate-pool"
-          }
-        ]
-      }
-    ],
-    "duplicateTitleAuthor": [
-      {
-        "title": "Listen for the Lie",
-        "author": "Amy Tintera",
-        "occurrences": [
-          {
-            "source": "library",
-            "shelf": "to-read"
-          },
-          {
-            "source": "candidate_pool",
-            "shelf": "candidate-pool"
-          }
-        ]
-      },
-      {
-        "title": "Endurance: Shackleton's Incredible Voyage",
-        "author": "Alfred Lansing",
-        "occurrences": [
-          {
-            "source": "library",
-            "shelf": "to-read"
-          },
-          {
-            "source": "candidate_pool",
-            "shelf": "candidate-pool"
-          }
-        ]
-      },
-      {
-        "title": "Culpability",
-        "author": "Bruce Holsinger",
-        "occurrences": [
-          {
-            "source": "library",
-            "shelf": "to-read"
-          },
-          {
-            "source": "candidate_pool",
-            "shelf": "candidate-pool"
-          }
-        ]
-      }
-    ],
+    "duplicateBookKeys": [],
+    "duplicateTitleAuthor": [],
+    "duplicateBooksFuzzy": [],
     "impactScores": [
       {
         "title": "When the Game Was Ours",
@@ -655,35 +574,35 @@
       "themes": [
         {
           "value": "thriller",
-          "count": 319
-        },
-        {
-          "value": "history",
-          "count": 160
+          "count": 316
         },
         {
           "value": "memoir",
-          "count": 160
+          "count": 159
+        },
+        {
+          "value": "history",
+          "count": 152
         },
         {
           "value": "speculative",
-          "count": 142
+          "count": 139
         },
         {
           "value": "humor",
-          "count": 137
+          "count": 135
         },
         {
           "value": "social commentary",
-          "count": 130
+          "count": 129
         },
         {
           "value": "contemporary",
-          "count": 116
+          "count": 115
         },
         {
           "value": "business",
-          "count": 113
+          "count": 112
         },
         {
           "value": "psychological",
@@ -691,7 +610,7 @@
         },
         {
           "value": "sports",
-          "count": 103
+          "count": 101
         },
         {
           "value": "biography",
@@ -699,7 +618,7 @@
         },
         {
           "value": "mystery",
-          "count": 89
+          "count": 87
         },
         {
           "value": "suspense",
@@ -711,27 +630,27 @@
         },
         {
           "value": "tech history",
-          "count": 84
+          "count": 82
         },
         {
           "value": "crime",
-          "count": 74
-        },
-        {
-          "value": "psychology",
-          "count": 65
+          "count": 73
         },
         {
           "value": "political",
-          "count": 64
+          "count": 63
         },
         {
-          "value": "true crime",
-          "count": 60
+          "value": "psychology",
+          "count": 63
         },
         {
           "value": "courtroom",
           "count": 57
+        },
+        {
+          "value": "true crime",
+          "count": 54
         },
         {
           "value": "finance",
@@ -747,15 +666,15 @@
         },
         {
           "value": "sci-fi",
-          "count": 46
-        },
-        {
-          "value": "adventure",
           "count": 45
         },
         {
+          "value": "adventure",
+          "count": 43
+        },
+        {
           "value": "romance",
-          "count": 41
+          "count": 39
         },
         {
           "value": "historical",
@@ -763,7 +682,7 @@
         },
         {
           "value": "high-concept",
-          "count": 31
+          "count": 30
         },
         {
           "value": "horror",
@@ -778,11 +697,11 @@
           "count": 25
         },
         {
-          "value": "YA",
-          "count": 15
+          "value": "noir",
+          "count": 14
         },
         {
-          "value": "noir",
+          "value": "YA",
           "count": 14
         },
         {
@@ -792,19 +711,15 @@
       ],
       "tones": [
         {
-          "value": "funny",
-          "count": 174
-        },
-        {
           "value": "conversational",
           "count": 172
         },
         {
-          "value": "investigative",
+          "value": "funny",
           "count": 172
         },
         {
-          "value": "revelatory",
+          "value": "investigative",
           "count": 172
         },
         {
@@ -813,14 +728,6 @@
         },
         {
           "value": "tense",
-          "count": 170
-        },
-        {
-          "value": "dark",
-          "count": 169
-        },
-        {
-          "value": "twisty",
           "count": 168
         },
         {
@@ -828,12 +735,24 @@
           "count": 167
         },
         {
-          "value": "atmospheric",
+          "value": "dark",
           "count": 165
         },
         {
           "value": "dense",
-          "count": 165
+          "count": 164
+        },
+        {
+          "value": "revelatory",
+          "count": 164
+        },
+        {
+          "value": "atmospheric",
+          "count": 163
+        },
+        {
+          "value": "twisty",
+          "count": 163
         },
         {
           "value": "slow-burn",
@@ -841,7 +760,7 @@
         },
         {
           "value": "thoughtful",
-          "count": 159
+          "count": 153
         },
         {
           "value": "poignant",
@@ -849,11 +768,11 @@
         },
         {
           "value": "procedural",
-          "count": 120
+          "count": 119
         },
         {
           "value": "heartwarming",
-          "count": 99
+          "count": 96
         },
         {
           "value": "gritty",
@@ -861,19 +780,19 @@
         },
         {
           "value": "inspiring",
-          "count": 71
+          "count": 69
         },
         {
           "value": "compulsive",
-          "count": 64
+          "count": 63
         },
         {
           "value": "bleak",
-          "count": 39
+          "count": 38
         },
         {
           "value": "satirical",
-          "count": 30
+          "count": 29
         },
         {
           "value": "nonlinear",
@@ -891,43 +810,39 @@
       "subjects": [
         {
           "value": "New York Times bestseller",
-          "count": 327
+          "count": 320
         },
         {
           "value": "Fiction",
-          "count": 249
+          "count": 245
         },
         {
           "value": "Biography",
-          "count": 138
+          "count": 134
         },
         {
           "value": "New York Times reviewed",
-          "count": 124
+          "count": 122
         },
         {
           "value": "History",
-          "count": 98
+          "count": 95
         },
         {
           "value": "American literature",
-          "count": 64
+          "count": 62
         },
         {
           "value": "Fiction, thrillers, general",
           "count": 47
         },
         {
-          "value": "Large type books",
-          "count": 44
-        },
-        {
           "value": "Nonfiction",
-          "count": 44
+          "count": 43
         },
         {
-          "value": "Murder",
-          "count": 39
+          "value": "Large type books",
+          "count": 41
         },
         {
           "value": "Mystery",
@@ -942,12 +857,16 @@
           "count": 37
         },
         {
+          "value": "Murder",
+          "count": 37
+        },
+        {
           "value": "Fiction, thrillers, suspense",
           "count": 36
         },
         {
           "value": "Thriller",
-          "count": 36
+          "count": 35
         },
         {
           "value": "English literature",
@@ -966,16 +885,16 @@
           "count": 24
         },
         {
-          "value": "Fiction, legal",
-          "count": 23
-        },
-        {
           "value": "Investigation",
           "count": 23
         },
         {
-          "value": "United States",
+          "value": "Fiction, legal",
           "count": 22
+        },
+        {
+          "value": "United States",
+          "count": 21
         },
         {
           "value": "Fiction, thrillers",
@@ -986,18 +905,6 @@
           "count": 20
         },
         {
-          "value": "Case studies",
-          "count": 19
-        },
-        {
-          "value": "Biographies",
-          "count": 18
-        },
-        {
-          "value": "Business",
-          "count": 18
-        },
-        {
           "value": "Families",
           "count": 18
         },
@@ -1006,11 +913,19 @@
           "count": 18
         },
         {
-          "value": "Man-woman relationships",
-          "count": 18
+          "value": "Biographies",
+          "count": 17
         },
         {
-          "value": "Legal stories",
+          "value": "Business",
+          "count": 17
+        },
+        {
+          "value": "Case studies",
+          "count": 17
+        },
+        {
+          "value": "Man-woman relationships",
           "count": 17
         },
         {
@@ -1026,6 +941,10 @@
           "count": 16
         },
         {
+          "value": "Legal stories",
+          "count": 16
+        },
+        {
           "value": "Contemporary",
           "count": 15
         },
@@ -1035,10 +954,6 @@
         },
         {
           "value": "Fiction, horror",
-          "count": 15
-        },
-        {
-          "value": "Travel",
           "count": 15
         },
         {
@@ -1062,7 +977,7 @@
           "count": 14
         },
         {
-          "value": "Social life and customs",
+          "value": "Travel",
           "count": 14
         },
         {
@@ -1074,16 +989,12 @@
           "count": 13
         },
         {
-          "value": "Open Library Staff Picks",
-          "count": 13
-        },
-        {
           "value": "Psychology",
           "count": 13
         },
         {
-          "value": "Biography & Autobiography",
-          "count": 12
+          "value": "Social life and customs",
+          "count": 13
         },
         {
           "value": "Cooks, biography",
@@ -1098,15 +1009,7 @@
           "count": 12
         },
         {
-          "value": "Finance",
-          "count": 12
-        },
-        {
           "value": "Friendship, fiction",
-          "count": 12
-        },
-        {
-          "value": "General",
           "count": 12
         },
         {
@@ -1114,7 +1017,7 @@
           "count": 12
         },
         {
-          "value": "Lawyers, fiction",
+          "value": "Open Library Staff Picks",
           "count": 12
         },
         {
@@ -1127,6 +1030,10 @@
         },
         {
           "value": "Adult",
+          "count": 11
+        },
+        {
+          "value": "Biography & Autobiography",
           "count": 11
         },
         {
@@ -1146,7 +1053,19 @@
           "count": 11
         },
         {
+          "value": "Finance",
+          "count": 11
+        },
+        {
+          "value": "General",
+          "count": 11
+        },
+        {
           "value": "Horror",
+          "count": 11
+        },
+        {
+          "value": "Lawyers, fiction",
           "count": 11
         },
         {
@@ -1163,10 +1082,6 @@
         },
         {
           "value": "Science fiction",
-          "count": 11
-        },
-        {
-          "value": "Suspense fiction",
           "count": 11
         },
         {
@@ -1218,11 +1133,11 @@
           "count": 10
         },
         {
-          "value": "Romance",
+          "value": "Sociology",
           "count": 10
         },
         {
-          "value": "Sociology",
+          "value": "Suspense fiction",
           "count": 10
         },
         {
@@ -1242,15 +1157,7 @@
           "count": 9
         },
         {
-          "value": "Crimes against",
-          "count": 9
-        },
-        {
           "value": "Family",
-          "count": 9
-        },
-        {
-          "value": "Fantasy",
           "count": 9
         },
         {
@@ -1270,6 +1177,10 @@
           "count": 9
         },
         {
+          "value": "Romance",
+          "count": 9
+        },
+        {
           "value": "Science Fiction",
           "count": 9
         },
@@ -1278,11 +1189,7 @@
           "count": 8
         },
         {
-          "value": "Artificial intelligence",
-          "count": 8
-        },
-        {
-          "value": "Corrupt practices",
+          "value": "Crimes against",
           "count": 8
         },
         {
@@ -1291,6 +1198,10 @@
         },
         {
           "value": "Entrepreneurship",
+          "count": 8
+        },
+        {
+          "value": "Fantasy",
           "count": 8
         },
         {
@@ -1318,20 +1229,16 @@
           "count": 8
         },
         {
-          "value": "Motion picture actors and actresses",
-          "count": 8
-        },
-        {
           "value": "Psychological fiction",
-          "count": 8
-        },
-        {
-          "value": "SOCIAL SCIENCE",
           "count": 8
         },
         {
           "value": "Survival",
           "count": 8
+        },
+        {
+          "value": "Artificial intelligence",
+          "count": 7
         },
         {
           "value": "Baseball players",
@@ -1343,6 +1250,10 @@
         },
         {
           "value": "BIOGRAPHY & AUTOBIOGRAPHY / Entertainment & Performing Arts",
+          "count": 7
+        },
+        {
+          "value": "Corrupt practices",
           "count": 7
         },
         {
@@ -1382,10 +1293,6 @@
           "count": 7
         },
         {
-          "value": "HISTORY",
-          "count": 7
-        },
-        {
           "value": "Home economics",
           "count": 7
         },
@@ -1394,15 +1301,11 @@
           "count": 7
         },
         {
-          "value": "Life on other planets",
-          "count": 7
-        },
-        {
           "value": "Married people",
           "count": 7
         },
         {
-          "value": "Motion picture actors and actresses, united states",
+          "value": "Motion picture actors and actresses",
           "count": 7
         },
         {
@@ -1414,11 +1317,11 @@
           "count": 7
         },
         {
-          "value": "Popular culture",
+          "value": "Sisters",
           "count": 7
         },
         {
-          "value": "Sisters",
+          "value": "SOCIAL SCIENCE",
           "count": 7
         },
         {
@@ -1538,11 +1441,11 @@
           "count": 6
         },
         {
-          "value": "Homicide",
+          "value": "HISTORY",
           "count": 6
         },
         {
-          "value": "Interplanetary voyages",
+          "value": "Homicide",
           "count": 6
         },
         {
@@ -1550,7 +1453,15 @@
           "count": 6
         },
         {
+          "value": "Life on other planets",
+          "count": 6
+        },
+        {
           "value": "Married people, fiction",
+          "count": 6
+        },
+        {
+          "value": "Motion picture actors and actresses, united states",
           "count": 6
         },
         {
@@ -1562,7 +1473,7 @@
           "count": 6
         },
         {
-          "value": "Popular culture, united states",
+          "value": "Popular culture",
           "count": 6
         },
         {
@@ -1583,10 +1494,6 @@
         },
         {
           "value": "Women, united states, biography",
-          "count": 6
-        },
-        {
-          "value": "Young adult fiction",
           "count": 6
         },
         {
@@ -1627,14 +1534,6 @@
         },
         {
           "value": "Criminal defense lawyers",
-          "count": 5
-        },
-        {
-          "value": "Criminal investigation",
-          "count": 5
-        },
-        {
-          "value": "Discovery and exploration",
           "count": 5
         },
         {
@@ -1690,10 +1589,6 @@
           "count": 5
         },
         {
-          "value": "genre:science fiction",
-          "count": 5
-        },
-        {
           "value": "Health",
           "count": 5
         },
@@ -1702,11 +1597,11 @@
           "count": 5
         },
         {
-          "value": "LGBT",
+          "value": "Interplanetary voyages",
           "count": 5
         },
         {
-          "value": "Los angeles (calif.), fiction",
+          "value": "LGBT",
           "count": 5
         },
         {
@@ -1730,23 +1625,15 @@
           "count": 5
         },
         {
-          "value": "Pharmaceutical industry",
-          "count": 5
-        },
-        {
           "value": "Police",
           "count": 5
         },
         {
+          "value": "Popular culture, united states",
+          "count": 5
+        },
+        {
           "value": "Prisoners",
-          "count": 5
-        },
-        {
-          "value": "PSYCHOLOGY",
-          "count": 5
-        },
-        {
-          "value": "Robots",
           "count": 5
         },
         {
@@ -1778,10 +1665,6 @@
           "count": 5
         },
         {
-          "value": "Sports & Recreations",
-          "count": 5
-        },
-        {
           "value": "Technological innovations",
           "count": 5
         },
@@ -1798,8 +1681,8 @@
           "count": 5
         },
         {
-          "value": "20th Century",
-          "count": 4
+          "value": "Young adult fiction",
+          "count": 5
         },
         {
           "value": "Adultery",
@@ -1850,23 +1733,11 @@
           "count": 4
         },
         {
-          "value": "Biography & Memoir",
-          "count": 4
-        },
-        {
           "value": "Biography/Autobiography",
           "count": 4
         },
         {
           "value": "Brothers and sisters",
-          "count": 4
-        },
-        {
-          "value": "business",
-          "count": 4
-        },
-        {
-          "value": "BUSINESS & ECONOMICS / Finance",
           "count": 4
         },
         {
@@ -1887,6 +1758,14 @@
         },
         {
           "value": "Contemporary Women",
+          "count": 4
+        },
+        {
+          "value": "Criminal investigation",
+          "count": 4
+        },
+        {
+          "value": "Discovery and exploration",
           "count": 4
         },
         {
@@ -1911,10 +1790,6 @@
         },
         {
           "value": "Essays",
-          "count": 4
-        },
-        {
-          "value": "Family relationships",
           "count": 4
         },
         {
@@ -1954,15 +1829,11 @@
           "count": 4
         },
         {
+          "value": "genre:science fiction",
+          "count": 4
+        },
+        {
           "value": "Global Financial Crisis, 2008-2009",
-          "count": 4
-        },
-        {
-          "value": "history",
-          "count": 4
-        },
-        {
-          "value": "Homicide investigation",
           "count": 4
         },
         {
@@ -2002,6 +1873,10 @@
           "count": 4
         },
         {
+          "value": "Los angeles (calif.), fiction",
+          "count": 4
+        },
+        {
           "value": "Love",
           "count": 4
         },
@@ -2038,10 +1913,6 @@
           "count": 4
         },
         {
-          "value": "nonfiction",
-          "count": 4
-        },
-        {
           "value": "Novela",
           "count": 4
         },
@@ -2054,11 +1925,19 @@
           "count": 4
         },
         {
+          "value": "Pharmaceutical industry",
+          "count": 4
+        },
+        {
           "value": "Political aspects",
           "count": 4
         },
         {
           "value": "Politics",
+          "count": 4
+        },
+        {
+          "value": "PSYCHOLOGY",
           "count": 4
         },
         {
@@ -2071,6 +1950,10 @@
         },
         {
           "value": "Restaurateurs, biography",
+          "count": 4
+        },
+        {
+          "value": "Robots",
           "count": 4
         },
         {
@@ -2106,6 +1989,10 @@
           "count": 4
         },
         {
+          "value": "Sports & Recreations",
+          "count": 4
+        },
+        {
           "value": "Sports, social aspects",
           "count": 4
         },
@@ -2130,28 +2017,16 @@
           "count": 4
         },
         {
-          "value": "Treatment",
-          "count": 4
-        },
-        {
           "value": "Twitter",
-          "count": 4
-        },
-        {
-          "value": "United states, social life and customs",
-          "count": 4
-        },
-        {
-          "value": "United States. Federal Bureau of Investigation",
-          "count": 4
-        },
-        {
-          "value": "Voyages and travels",
           "count": 4
         },
         {
           "value": "Young women",
           "count": 4
+        },
+        {
+          "value": "20th Century",
+          "count": 3
         },
         {
           "value": "Adventure",
@@ -2170,19 +2045,7 @@
           "count": 3
         },
         {
-          "value": "Androids",
-          "count": 3
-        },
-        {
-          "value": "Antarctica, discovery and exploration",
-          "count": 3
-        },
-        {
           "value": "Aspect social",
-          "count": 3
-        },
-        {
-          "value": "Attorney and client",
           "count": 3
         },
         {
@@ -2230,6 +2093,10 @@
           "count": 3
         },
         {
+          "value": "Biography & Memoir",
+          "count": 3
+        },
+        {
           "value": "Bitcoin",
           "count": 3
         },
@@ -2239,10 +2106,6 @@
         },
         {
           "value": "Breweries",
-          "count": 3
-        },
-        {
-          "value": "British",
           "count": 3
         },
         {
@@ -2258,19 +2121,19 @@
           "count": 3
         },
         {
+          "value": "business",
+          "count": 3
+        },
+        {
+          "value": "BUSINESS & ECONOMICS / Finance",
+          "count": 3
+        },
+        {
           "value": "BUSINESS & ECONOMICS / General",
           "count": 3
         },
         {
           "value": "BUSINESS & ECONOMICS / Industries / Computer Industry",
-          "count": 3
-        },
-        {
-          "value": "Care",
-          "count": 3
-        },
-        {
-          "value": "Christianity",
           "count": 3
         },
         {
@@ -2334,10 +2197,6 @@
           "count": 3
         },
         {
-          "value": "Cults",
-          "count": 3
-        },
-        {
           "value": "Dead",
           "count": 3
         },
@@ -2374,7 +2233,7 @@
           "count": 3
         },
         {
-          "value": "Explorers",
+          "value": "Family relationships",
           "count": 3
         },
         {
@@ -2442,14 +2301,6 @@
           "count": 3
         },
         {
-          "value": "franchise:The Murderbot Diaries",
-          "count": 3
-        },
-        {
-          "value": "Fraud",
-          "count": 3
-        },
-        {
           "value": "Friends and associates",
           "count": 3
         },
@@ -2474,7 +2325,15 @@
           "count": 3
         },
         {
+          "value": "history",
+          "count": 3
+        },
+        {
           "value": "History and criticism",
+          "count": 3
+        },
+        {
+          "value": "Homicide investigation",
           "count": 3
         },
         {
@@ -2483,10 +2342,6 @@
         },
         {
           "value": "Horror tales",
-          "count": 3
-        },
-        {
-          "value": "Human-computer interaction",
           "count": 3
         },
         {
@@ -2574,10 +2429,6 @@
           "count": 3
         },
         {
-          "value": "Mentally ill",
-          "count": 3
-        },
-        {
           "value": "Military art and science",
           "count": 3
         },
@@ -2606,10 +2457,6 @@
           "count": 3
         },
         {
-          "value": "nyt:combined-print-and-e-book-fiction=2023-05-21",
-          "count": 3
-        },
-        {
           "value": "Oakland Athletics (Baseball team)",
           "count": 3
         },
@@ -2623,14 +2470,6 @@
         },
         {
           "value": "Orphans",
-          "count": 3
-        },
-        {
-          "value": "Oxycodone",
-          "count": 3
-        },
-        {
-          "value": "Oxycodone abuse",
           "count": 3
         },
         {
@@ -2710,18 +2549,6 @@
           "count": 3
         },
         {
-          "value": "Schizophrenia",
-          "count": 3
-        },
-        {
-          "value": "Schizophrenics",
-          "count": 3
-        },
-        {
-          "value": "Schizophrenics, biography",
-          "count": 3
-        },
-        {
           "value": "Science-Fiction",
           "count": 3
         },
@@ -2735,14 +2562,6 @@
         },
         {
           "value": "Serial murders",
-          "count": 3
-        },
-        {
-          "value": "series:The Murderbot Diaries",
-          "count": 3
-        },
-        {
-          "value": "Sex discrimination in employment",
           "count": 3
         },
         {
@@ -2774,10 +2593,6 @@
           "count": 3
         },
         {
-          "value": "technology",
-          "count": 3
-        },
-        {
           "value": "TECHNOLOGY & ENGINEERING",
           "count": 3
         },
@@ -2790,19 +2605,11 @@
           "count": 3
         },
         {
-          "value": "Thought and thinking",
+          "value": "Treatment",
           "count": 3
         },
         {
           "value": "Trials, litigation",
-          "count": 3
-        },
-        {
-          "value": "true crime",
-          "count": 3
-        },
-        {
-          "value": "TRUE CRIME",
           "count": 3
         },
         {
@@ -2818,7 +2625,19 @@
           "count": 3
         },
         {
+          "value": "United states, social life and customs",
+          "count": 3
+        },
+        {
+          "value": "United States. Federal Bureau of Investigation",
+          "count": 3
+        },
+        {
           "value": "Virtual reality",
+          "count": 3
+        },
+        {
+          "value": "Voyages and travels",
           "count": 3
         },
         {
@@ -2902,6 +2721,14 @@
           "count": 2
         },
         {
+          "value": "Androids",
+          "count": 2
+        },
+        {
+          "value": "Antarctica, discovery and exploration",
+          "count": 2
+        },
+        {
           "value": "Architects",
           "count": 2
         },
@@ -2926,6 +2753,10 @@
           "count": 2
         },
         {
+          "value": "Attorney and client",
+          "count": 2
+        },
+        {
           "value": "Authors, fiction",
           "count": 2
         },
@@ -2935,10 +2766,6 @@
         },
         {
           "value": "Autobiographies",
-          "count": 2
-        },
-        {
-          "value": "autobiography",
           "count": 2
         },
         {
@@ -2974,10 +2801,6 @@
           "count": 2
         },
         {
-          "value": "Belief and doubt",
-          "count": 2
-        },
-        {
           "value": "Billionaires in fiction",
           "count": 2
         },
@@ -3006,10 +2829,6 @@
           "count": 2
         },
         {
-          "value": "biomedical",
-          "count": 2
-        },
-        {
           "value": "Blogs",
           "count": 2
         },
@@ -3030,11 +2849,11 @@
           "count": 2
         },
         {
-          "value": "Bush, george w. (george walker), 1946-",
+          "value": "British",
           "count": 2
         },
         {
-          "value": "business & economics",
+          "value": "Bush, george w. (george walker), 1946-",
           "count": 2
         },
         {
@@ -3059,6 +2878,10 @@
         },
         {
           "value": "Capitalists and financiers",
+          "count": 2
+        },
+        {
+          "value": "Care",
           "count": 2
         },
         {
@@ -3106,11 +2929,11 @@
           "count": 2
         },
         {
-          "value": "Christmas",
+          "value": "Christianity",
           "count": 2
         },
         {
-          "value": "Church of Scientology International",
+          "value": "Christmas",
           "count": 2
         },
         {
@@ -3190,19 +3013,11 @@
           "count": 2
         },
         {
-          "value": "Crimes against Osage Indians",
-          "count": 2
-        },
-        {
-          "value": "crimes against women",
-          "count": 2
-        },
-        {
-          "value": "Critical thinking",
-          "count": 2
-        },
-        {
           "value": "Cryptocurrencies",
+          "count": 2
+        },
+        {
+          "value": "Cults",
           "count": 2
         },
         {
@@ -3234,15 +3049,7 @@
           "count": 2
         },
         {
-          "value": "Doctrines",
-          "count": 2
-        },
-        {
           "value": "Dogs",
-          "count": 2
-        },
-        {
-          "value": "Doktrin",
           "count": 2
         },
         {
@@ -3251,10 +3058,6 @@
         },
         {
           "value": "Drug addicts",
-          "count": 2
-        },
-        {
-          "value": "drugs",
           "count": 2
         },
         {
@@ -3286,27 +3089,7 @@
           "count": 2
         },
         {
-          "value": "Endurance (Navire)",
-          "count": 2
-        },
-        {
-          "value": "Endurance (Ship : A171)",
-          "count": 2
-        },
-        {
-          "value": "Endurance (Ship)",
-          "count": 2
-        },
-        {
           "value": "Englisch",
-          "count": 2
-        },
-        {
-          "value": "entrepreneurship",
-          "count": 2
-        },
-        {
-          "value": "espionage",
           "count": 2
         },
         {
@@ -3319,6 +3102,10 @@
         },
         {
           "value": "Executive Branch",
+          "count": 2
+        },
+        {
+          "value": "Explorers",
           "count": 2
         },
         {
@@ -3346,10 +3133,6 @@
           "count": 2
         },
         {
-          "value": "Fantasía",
-          "count": 2
-        },
-        {
           "value": "Farm life",
           "count": 2
         },
@@ -3359,14 +3142,6 @@
         },
         {
           "value": "FBI",
-          "count": 2
-        },
-        {
-          "value": "ficción",
-          "count": 2
-        },
-        {
-          "value": "ficciones",
           "count": 2
         },
         {
@@ -3434,10 +3209,6 @@
           "count": 2
         },
         {
-          "value": "Fly tying",
-          "count": 2
-        },
-        {
           "value": "Food habits",
           "count": 2
         },
@@ -3462,7 +3233,11 @@
           "count": 2
         },
         {
-          "value": "form:novella",
+          "value": "franchise:The Murderbot Diaries",
+          "count": 2
+        },
+        {
+          "value": "Fraud",
           "count": 2
         },
         {
@@ -3487,10 +3262,6 @@
         },
         {
           "value": "General Fiction",
-          "count": 2
-        },
-        {
-          "value": "Genetic aspects",
           "count": 2
         },
         {
@@ -3522,10 +3293,6 @@
           "count": 2
         },
         {
-          "value": "Hematologic equipment industry",
-          "count": 2
-        },
-        {
           "value": "High technology industries",
           "count": 2
         },
@@ -3547,10 +3314,6 @@
         },
         {
           "value": "Hollywood (los angeles, calif.), fiction",
-          "count": 2
-        },
-        {
-          "value": "Hollywood (los angeles, calif.), social life and customs",
           "count": 2
         },
         {
@@ -3582,15 +3345,15 @@
           "count": 2
         },
         {
-          "value": "Hubbard, L. Ron (La Fayette Ron), 1911-1986",
-          "count": 2
-        },
-        {
           "value": "Hugo Award Winner",
           "count": 2
         },
         {
           "value": "Human behavior",
+          "count": 2
+        },
+        {
+          "value": "Human-computer interaction",
           "count": 2
         },
         {
@@ -3611,14 +3374,6 @@
         },
         {
           "value": "Immortalism",
-          "count": 2
-        },
-        {
-          "value": "Imperial Trans-Antarctic Expedition (1914-1917)",
-          "count": 2
-        },
-        {
-          "value": "Imperial Trans-Antarctic Expedition, 1914-1917",
           "count": 2
         },
         {
@@ -3690,10 +3445,6 @@
           "count": 2
         },
         {
-          "value": "joven adulto",
-          "count": 2
-        },
-        {
           "value": "Jurors",
           "count": 2
         },
@@ -3707,10 +3458,6 @@
         },
         {
           "value": "kidnapping victims",
-          "count": 2
-        },
-        {
-          "value": "Knowledge, theory of",
           "count": 2
         },
         {
@@ -3770,14 +3517,6 @@
           "count": 2
         },
         {
-          "value": "manners and customs",
-          "count": 2
-        },
-        {
-          "value": "marketing",
-          "count": 2
-        },
-        {
           "value": "Mass media",
           "count": 2
         },
@@ -3806,11 +3545,7 @@
           "count": 2
         },
         {
-          "value": "Mentally ill, care",
-          "count": 2
-        },
-        {
-          "value": "Mickey Haller (Fictitious character)",
+          "value": "Mentally ill",
           "count": 2
         },
         {
@@ -3854,10 +3589,6 @@
           "count": 2
         },
         {
-          "value": "Modern fiction",
-          "count": 2
-        },
-        {
           "value": "Money",
           "count": 2
         },
@@ -3871,10 +3602,6 @@
         },
         {
           "value": "Mothers and daughters, fiction",
-          "count": 2
-        },
-        {
-          "value": "motion picture producers and directors",
           "count": 2
         },
         {
@@ -3894,10 +3621,6 @@
           "count": 2
         },
         {
-          "value": "Murder, oklahoma",
-          "count": 2
-        },
-        {
           "value": "Music",
           "count": 2
         },
@@ -3911,10 +3634,6 @@
         },
         {
           "value": "mystery",
-          "count": 2
-        },
-        {
-          "value": "Native American",
           "count": 2
         },
         {
@@ -3934,10 +3653,6 @@
           "count": 2
         },
         {
-          "value": "NEW LIST 20130331",
-          "count": 2
-        },
-        {
           "value": "New mexico, fiction",
           "count": 2
         },
@@ -3947,6 +3662,10 @@
         },
         {
           "value": "Nina Reilly (Fictitious character)",
+          "count": 2
+        },
+        {
+          "value": "nonfiction",
           "count": 2
         },
         {
@@ -3978,11 +3697,11 @@
           "count": 2
         },
         {
-          "value": "nyt:combined-print-and-e-book-fiction=2022-07-24",
+          "value": "nyt:combined-print-and-e-book-fiction=2022-11-06",
           "count": 2
         },
         {
-          "value": "nyt:combined-print-and-e-book-fiction=2022-11-06",
+          "value": "nyt:combined-print-and-e-book-fiction=2023-05-21",
           "count": 2
         },
         {
@@ -4010,14 +3729,6 @@
           "count": 2
         },
         {
-          "value": "nyt:combined-print-and-e-book-nonfiction=2021-02-21",
-          "count": 2
-        },
-        {
-          "value": "nyt:combined-print-and-e-book-nonfiction=2021-05-02",
-          "count": 2
-        },
-        {
           "value": "nyt:combined-print-and-e-book-nonfiction=2021-10-24",
           "count": 2
         },
@@ -4034,10 +3745,6 @@
           "count": 2
         },
         {
-          "value": "nyt:e-book_fiction=2011-05-14",
-          "count": 2
-        },
-        {
           "value": "nyt:hardcover_political_books=2012-02-25",
           "count": 2
         },
@@ -4050,23 +3757,7 @@
           "count": 2
         },
         {
-          "value": "nyt:hardcover-fiction=2024-03-24",
-          "count": 2
-        },
-        {
-          "value": "nyt:hardcover-nonfiction=2013-02-03",
-          "count": 2
-        },
-        {
-          "value": "nyt:hardcover-nonfiction=2020-04-26",
-          "count": 2
-        },
-        {
           "value": "Obama, barack, 1961-",
-          "count": 2
-        },
-        {
-          "value": "Oklahoma, history",
           "count": 2
         },
         {
@@ -4082,11 +3773,11 @@
           "count": 2
         },
         {
-          "value": "Organisation",
+          "value": "Oxycodone",
           "count": 2
         },
         {
-          "value": "Osage Indians",
+          "value": "Oxycodone abuse",
           "count": 2
         },
         {
@@ -4119,10 +3810,6 @@
         },
         {
           "value": "Philadelphia (pa.), fiction",
-          "count": 2
-        },
-        {
-          "value": "philanthropists",
           "count": 2
         },
         {
@@ -4222,10 +3909,6 @@
           "count": 2
         },
         {
-          "value": "PSYCHOLOGY / General",
-          "count": 2
-        },
-        {
           "value": "PSYCHOLOGY / Social Psychology",
           "count": 2
         },
@@ -4246,15 +3929,7 @@
           "count": 2
         },
         {
-          "value": "Purdue Pharma L.P.",
-          "count": 2
-        },
-        {
           "value": "Queer",
-          "count": 2
-        },
-        {
-          "value": "Questioning",
           "count": 2
         },
         {
@@ -4298,10 +3973,6 @@
           "count": 2
         },
         {
-          "value": "RELIGION",
-          "count": 2
-        },
-        {
           "value": "Religious fanaticism",
           "count": 2
         },
@@ -4326,14 +3997,6 @@
           "count": 2
         },
         {
-          "value": "Romántica",
-          "count": 2
-        },
-        {
-          "value": "Romántico",
-          "count": 2
-        },
-        {
           "value": "Rural families",
           "count": 2
         },
@@ -4342,7 +4005,15 @@
           "count": 2
         },
         {
-          "value": "Schizophrènes",
+          "value": "Schizophrenia",
+          "count": 2
+        },
+        {
+          "value": "Schizophrenics",
+          "count": 2
+        },
+        {
+          "value": "Schizophrenics, biography",
           "count": 2
         },
         {
@@ -4366,18 +4037,6 @@
           "count": 2
         },
         {
-          "value": "Scientific expeditions",
-          "count": 2
-        },
-        {
-          "value": "Scientologists",
-          "count": 2
-        },
-        {
-          "value": "Scientology",
-          "count": 2
-        },
-        {
           "value": "Secret societies",
           "count": 2
         },
@@ -4394,27 +4053,15 @@
           "count": 2
         },
         {
-          "value": "Serie:The_Empyrean",
-          "count": 2
-        },
-        {
           "value": "Series:Molly-the-Maid",
           "count": 2
         },
         {
-          "value": "sex customs",
+          "value": "series:The Murderbot Diaries",
           "count": 2
         },
         {
-          "value": "Sexual harassment",
-          "count": 2
-        },
-        {
-          "value": "sexual harassment against women",
-          "count": 2
-        },
-        {
-          "value": "Shackleton, ernest henry, sir, 1874-1922",
+          "value": "Sex discrimination in employment",
           "count": 2
         },
         {
@@ -4450,19 +4097,11 @@
           "count": 2
         },
         {
-          "value": "social life and customs",
-          "count": 2
-        },
-        {
           "value": "SOCIAL SCIENCE / Disasters & Disaster Relief",
           "count": 2
         },
         {
           "value": "SOCIAL SCIENCE / Popular Culture",
-          "count": 2
-        },
-        {
-          "value": "Sociology of Religion",
           "count": 2
         },
         {
@@ -4598,15 +4237,11 @@
           "count": 2
         },
         {
-          "value": "technology & engineering",
+          "value": "technology",
           "count": 2
         },
         {
           "value": "TECHNOLOGY & ENGINEERING / Aeronautics & Astronautics",
-          "count": 2
-        },
-        {
-          "value": "TECHNOLOGY & ENGINEERING / Biomedical",
           "count": 2
         },
         {
@@ -4626,14 +4261,6 @@
           "count": 2
         },
         {
-          "value": "Tennis players",
-          "count": 2
-        },
-        {
-          "value": "Tennis, biography",
-          "count": 2
-        },
-        {
           "value": "Terminally Ill",
           "count": 2
         },
@@ -4642,27 +4269,15 @@
           "count": 2
         },
         {
-          "value": "Theft",
-          "count": 2
-        },
-        {
-          "value": "Theory of Knowledge",
-          "count": 2
-        },
-        {
-          "value": "Theranos",
-          "count": 2
-        },
-        {
-          "value": "Theranos (Firm)",
-          "count": 2
-        },
-        {
           "value": "Therapist and patient",
           "count": 2
         },
         {
           "value": "Therapy",
+          "count": 2
+        },
+        {
+          "value": "Thought and thinking",
           "count": 2
         },
         {
@@ -4678,11 +4293,15 @@
           "count": 2
         },
         {
+          "value": "true crime",
+          "count": 2
+        },
+        {
           "value": "True Crime",
           "count": 2
         },
         {
-          "value": "true crime stories",
+          "value": "TRUE CRIME",
           "count": 2
         },
         {
@@ -4695,10 +4314,6 @@
         },
         {
           "value": "United states, economic conditions, 21st century",
-          "count": 2
-        },
-        {
-          "value": "United states, federal bureau of investigation",
           "count": 2
         },
         {
@@ -5550,6 +5165,10 @@
           "count": 1
         },
         {
+          "value": "autobiography",
+          "count": 1
+        },
+        {
           "value": "Autobiography",
           "count": 1
         },
@@ -5730,6 +5349,10 @@
           "count": 1
         },
         {
+          "value": "Belief and doubt",
+          "count": 1
+        },
+        {
           "value": "Bell Telephone Laboratories",
           "count": 1
         },
@@ -5839,6 +5462,10 @@
         },
         {
           "value": "biological warfare",
+          "count": 1
+        },
+        {
+          "value": "biomedical",
           "count": 1
         },
         {
@@ -6086,6 +5713,10 @@
           "count": 1
         },
         {
+          "value": "business & economics",
+          "count": 1
+        },
+        {
           "value": "BUSINESS & ECONOMICS / Commercial Policy",
           "count": 1
         },
@@ -6127,10 +5758,6 @@
         },
         {
           "value": "BUSINESS & ECONOMICS / Industries / Transportation",
-          "count": 1
-        },
-        {
-          "value": "BUSINESS & ECONOMICS / Museum Administration & Museology",
           "count": 1
         },
         {
@@ -6495,6 +6122,10 @@
         },
         {
           "value": "Church of jesus christ of latter-day saints",
+          "count": 1
+        },
+        {
+          "value": "Church of Scientology International",
           "count": 1
         },
         {
@@ -7174,6 +6805,14 @@
           "count": 1
         },
         {
+          "value": "Crimes against Osage Indians",
+          "count": 1
+        },
+        {
+          "value": "crimes against women",
+          "count": 1
+        },
+        {
           "value": "Crimes against Women",
           "count": 1
         },
@@ -7219,6 +6858,10 @@
         },
         {
           "value": "CRISPR (Genetics)",
+          "count": 1
+        },
+        {
+          "value": "Critical thinking",
           "count": 1
         },
         {
@@ -7518,6 +7161,10 @@
           "count": 1
         },
         {
+          "value": "Doctrines",
+          "count": 1
+        },
+        {
           "value": "Document",
           "count": 1
         },
@@ -7531,6 +7178,10 @@
         },
         {
           "value": "Dogs, fiction",
+          "count": 1
+        },
+        {
+          "value": "Doktrin",
           "count": 1
         },
         {
@@ -7567,6 +7218,10 @@
         },
         {
           "value": "Drug dealers",
+          "count": 1
+        },
+        {
+          "value": "drugs",
           "count": 1
         },
         {
@@ -7750,6 +7405,18 @@
           "count": 1
         },
         {
+          "value": "Endurance (Navire)",
+          "count": 1
+        },
+        {
+          "value": "Endurance (Ship : A171)",
+          "count": 1
+        },
+        {
+          "value": "Endurance (Ship)",
+          "count": 1
+        },
+        {
           "value": "Energy industries",
           "count": 1
         },
@@ -7763,10 +7430,6 @@
         },
         {
           "value": "Engineers",
-          "count": 1
-        },
-        {
-          "value": "England)",
           "count": 1
         },
         {
@@ -7842,6 +7505,10 @@
           "count": 1
         },
         {
+          "value": "entrepreneurship",
+          "count": 1
+        },
+        {
           "value": "Entreprises",
           "count": 1
         },
@@ -7907,6 +7574,10 @@
         },
         {
           "value": "Erlebnisbericht",
+          "count": 1
+        },
+        {
+          "value": "espionage",
           "count": 1
         },
         {
@@ -8142,6 +7813,10 @@
           "count": 1
         },
         {
+          "value": "Fantasía",
+          "count": 1
+        },
+        {
           "value": "fantasy",
           "count": 1
         },
@@ -8191,6 +7866,14 @@
         },
         {
           "value": "FENTANYL",
+          "count": 1
+        },
+        {
+          "value": "ficción",
+          "count": 1
+        },
+        {
+          "value": "ficciones",
           "count": 1
         },
         {
@@ -8642,6 +8325,10 @@
           "count": 1
         },
         {
+          "value": "form:novella",
+          "count": 1
+        },
+        {
           "value": "Fortune",
           "count": 1
         },
@@ -8735,6 +8422,10 @@
         },
         {
           "value": "General Motors Corporation -- History",
+          "count": 1
+        },
+        {
+          "value": "Genetic aspects",
           "count": 1
         },
         {
@@ -9054,6 +8745,10 @@
           "count": 1
         },
         {
+          "value": "Hematologic equipment industry",
+          "count": 1
+        },
+        {
           "value": "Hermanos",
           "count": 1
         },
@@ -9186,6 +8881,10 @@
           "count": 1
         },
         {
+          "value": "Hollywood (los angeles, calif.), social life and customs",
+          "count": 1
+        },
+        {
           "value": "Home detention",
           "count": 1
         },
@@ -9247,6 +8946,10 @@
         },
         {
           "value": "Household Moving",
+          "count": 1
+        },
+        {
+          "value": "Hubbard, L. Ron (La Fayette Ron), 1911-1986",
           "count": 1
         },
         {
@@ -9395,6 +9098,14 @@
         },
         {
           "value": "Immunogenetics",
+          "count": 1
+        },
+        {
+          "value": "Imperial Trans-Antarctic Expedition (1914-1917)",
+          "count": 1
+        },
+        {
+          "value": "Imperial Trans-Antarctic Expedition, 1914-1917",
           "count": 1
         },
         {
@@ -9770,6 +9481,10 @@
           "count": 1
         },
         {
+          "value": "joven adulto",
+          "count": 1
+        },
+        {
           "value": "Judges, biography",
           "count": 1
         },
@@ -9910,6 +9625,10 @@
           "count": 1
         },
         {
+          "value": "Knowledge, theory of",
+          "count": 1
+        },
+        {
           "value": "Kognition",
           "count": 1
         },
@@ -9931,10 +9650,6 @@
         },
         {
           "value": "Koreans, united states",
-          "count": 1
-        },
-        {
-          "value": "Koude Oorlog",
           "count": 1
         },
         {
@@ -10354,6 +10069,10 @@
           "count": 1
         },
         {
+          "value": "manners and customs",
+          "count": 1
+        },
+        {
           "value": "Manufacturing industries",
           "count": 1
         },
@@ -10367,6 +10086,10 @@
         },
         {
           "value": "Marché financier",
+          "count": 1
+        },
+        {
+          "value": "marketing",
           "count": 1
         },
         {
@@ -10526,6 +10249,10 @@
           "count": 1
         },
         {
+          "value": "Mentally ill, care",
+          "count": 1
+        },
+        {
           "value": "Mercedes automobiles",
           "count": 1
         },
@@ -10563,6 +10290,10 @@
         },
         {
           "value": "Michigan, history",
+          "count": 1
+        },
+        {
+          "value": "Mickey Haller (Fictitious character)",
           "count": 1
         },
         {
@@ -10650,10 +10381,6 @@
           "count": 1
         },
         {
-          "value": "Military Sociology",
-          "count": 1
-        },
-        {
           "value": "Milkshakes",
           "count": 1
         },
@@ -10711,6 +10438,10 @@
         },
         {
           "value": "Modern fairy tales",
+          "count": 1
+        },
+        {
+          "value": "Modern fiction",
           "count": 1
         },
         {
@@ -10799,6 +10530,10 @@
         },
         {
           "value": "Motion picture industry, fiction",
+          "count": 1
+        },
+        {
+          "value": "motion picture producers and directors",
           "count": 1
         },
         {
@@ -10902,6 +10637,10 @@
           "count": 1
         },
         {
+          "value": "Murder, oklahoma",
+          "count": 1
+        },
+        {
           "value": "Murder, united states",
           "count": 1
         },
@@ -10942,10 +10681,6 @@
           "count": 1
         },
         {
-          "value": "Nationaal bewustzijn",
-          "count": 1
-        },
-        {
           "value": "National Basketball Association",
           "count": 1
         },
@@ -10970,27 +10705,15 @@
           "count": 1
         },
         {
+          "value": "Native American",
+          "count": 1
+        },
+        {
           "value": "Natural history",
           "count": 1
         },
         {
-          "value": "Natural History Museum (London",
-          "count": 1
-        },
-        {
-          "value": "Natural History Museum (London, England)",
-          "count": 1
-        },
-        {
-          "value": "Natural history museums",
-          "count": 1
-        },
-        {
           "value": "Natural history, united states",
-          "count": 1
-        },
-        {
-          "value": "NATURE / Animals / Birds",
           "count": 1
         },
         {
@@ -11035,6 +10758,10 @@
         },
         {
           "value": "NEW LIST 20100930",
+          "count": 1
+        },
+        {
+          "value": "NEW LIST 20130331",
           "count": 1
         },
         {
@@ -11418,6 +11145,10 @@
           "count": 1
         },
         {
+          "value": "nyt:combined-print-and-e-book-fiction=2022-07-24",
+          "count": 1
+        },
+        {
           "value": "nyt:combined-print-and-e-book-fiction=2022-07-31",
           "count": 1
         },
@@ -11670,11 +11401,19 @@
           "count": 1
         },
         {
+          "value": "nyt:combined-print-and-e-book-nonfiction=2021-02-21",
+          "count": 1
+        },
+        {
           "value": "nyt:combined-print-and-e-book-nonfiction=2021-03-07",
           "count": 1
         },
         {
           "value": "nyt:combined-print-and-e-book-nonfiction=2021-03-28",
+          "count": 1
+        },
+        {
+          "value": "nyt:combined-print-and-e-book-nonfiction=2021-05-02",
           "count": 1
         },
         {
@@ -11775,6 +11514,10 @@
         },
         {
           "value": "nyt:crime-and-punishment=2016-08-07",
+          "count": 1
+        },
+        {
+          "value": "nyt:e-book_fiction=2011-05-14",
           "count": 1
         },
         {
@@ -11966,6 +11709,10 @@
           "count": 1
         },
         {
+          "value": "nyt:hardcover-fiction=2024-03-24",
+          "count": 1
+        },
+        {
           "value": "nyt:hardcover-nonfiction=2008-10-05",
           "count": 1
         },
@@ -11987,6 +11734,10 @@
         },
         {
           "value": "nyt:hardcover-nonfiction=2012-05-06",
+          "count": 1
+        },
+        {
+          "value": "nyt:hardcover-nonfiction=2013-02-03",
           "count": 1
         },
         {
@@ -12019,6 +11770,10 @@
         },
         {
           "value": "nyt:hardcover-nonfiction=2019-12-15",
+          "count": 1
+        },
+        {
+          "value": "nyt:hardcover-nonfiction=2020-04-26",
           "count": 1
         },
         {
@@ -12414,6 +12169,10 @@
           "count": 1
         },
         {
+          "value": "Oklahoma, history",
+          "count": 1
+        },
+        {
           "value": "Older men",
           "count": 1
         },
@@ -12482,6 +12241,10 @@
           "count": 1
         },
         {
+          "value": "Organisation",
+          "count": 1
+        },
+        {
           "value": "Organizational Behavior",
           "count": 1
         },
@@ -12495,6 +12258,10 @@
         },
         {
           "value": "Orphanages",
+          "count": 1
+        },
+        {
+          "value": "Osage Indians",
           "count": 1
         },
         {
@@ -12691,6 +12458,10 @@
         },
         {
           "value": "pharmacies",
+          "count": 1
+        },
+        {
+          "value": "philanthropists",
           "count": 1
         },
         {
@@ -12930,10 +12701,6 @@
           "count": 1
         },
         {
-          "value": "Populaire cultuur",
-          "count": 1
-        },
-        {
           "value": "Popular Culture - General",
           "count": 1
         },
@@ -13142,6 +12909,10 @@
           "count": 1
         },
         {
+          "value": "PSYCHOLOGY / General",
+          "count": 1
+        },
+        {
           "value": "PSYCHOLOGY / Human Sexuality",
           "count": 1
         },
@@ -13214,6 +12985,10 @@
           "count": 1
         },
         {
+          "value": "Purdue Pharma L.P.",
+          "count": 1
+        },
+        {
           "value": "Puzzles",
           "count": 1
         },
@@ -13235,6 +13010,10 @@
         },
         {
           "value": "Quarterbacks (Football)",
+          "count": 1
+        },
+        {
+          "value": "Questioning",
           "count": 1
         },
         {
@@ -13414,6 +13193,10 @@
           "count": 1
         },
         {
+          "value": "RELIGION",
+          "count": 1
+        },
+        {
           "value": "Religion & Spirituality",
           "count": 1
         },
@@ -13566,6 +13349,14 @@
           "count": 1
         },
         {
+          "value": "Romántica",
+          "count": 1
+        },
+        {
+          "value": "Romántico",
+          "count": 1
+        },
+        {
           "value": "Roommates",
           "count": 1
         },
@@ -13694,6 +13485,10 @@
           "count": 1
         },
         {
+          "value": "Schizophrènes",
+          "count": 1
+        },
+        {
           "value": "sci-fi",
           "count": 1
         },
@@ -13766,7 +13561,19 @@
           "count": 1
         },
         {
+          "value": "Scientific expeditions",
+          "count": 1
+        },
+        {
           "value": "Scientists",
+          "count": 1
+        },
+        {
+          "value": "Scientologists",
+          "count": 1
+        },
+        {
+          "value": "Scientology",
           "count": 1
         },
         {
@@ -13858,6 +13665,10 @@
           "count": 1
         },
         {
+          "value": "Serie:The_Empyrean",
+          "count": 1
+        },
+        {
           "value": "series:A_Good_Girl's_Guide_to_Murder",
           "count": 1
         },
@@ -13882,6 +13693,10 @@
           "count": 1
         },
         {
+          "value": "sex customs",
+          "count": 1
+        },
+        {
           "value": "Sex role",
           "count": 1
         },
@@ -13894,7 +13709,19 @@
           "count": 1
         },
         {
+          "value": "Sexual harassment",
+          "count": 1
+        },
+        {
+          "value": "sexual harassment against women",
+          "count": 1
+        },
+        {
           "value": "Sexually abused children",
+          "count": 1
+        },
+        {
+          "value": "Shackleton, ernest henry, sir, 1874-1922",
           "count": 1
         },
         {
@@ -14058,6 +13885,10 @@
           "count": 1
         },
         {
+          "value": "social life and customs",
+          "count": 1
+        },
+        {
           "value": "Social media",
           "count": 1
         },
@@ -14150,7 +13981,7 @@
           "count": 1
         },
         {
-          "value": "Sociology, Military",
+          "value": "Sociology of Religion",
           "count": 1
         },
         {
@@ -14618,11 +14449,19 @@
           "count": 1
         },
         {
+          "value": "technology & engineering",
+          "count": 1
+        },
+        {
           "value": "Technology & Engineering",
           "count": 1
         },
         {
           "value": "TECHNOLOGY & ENGINEERING / Automation",
+          "count": 1
+        },
+        {
+          "value": "TECHNOLOGY & ENGINEERING / Biomedical",
           "count": 1
         },
         {
@@ -14726,11 +14565,15 @@
           "count": 1
         },
         {
-          "value": "tennis",
+          "value": "Tennis",
           "count": 1
         },
         {
-          "value": "Tennis",
+          "value": "Tennis players",
+          "count": 1
+        },
+        {
+          "value": "Tennis, biography",
           "count": 1
         },
         {
@@ -14826,11 +14669,23 @@
           "count": 1
         },
         {
-          "value": "Theft from museums",
+          "value": "Theft",
           "count": 1
         },
         {
           "value": "Theology",
+          "count": 1
+        },
+        {
+          "value": "Theory of Knowledge",
+          "count": 1
+        },
+        {
+          "value": "Theranos",
+          "count": 1
+        },
+        {
+          "value": "Theranos (Firm)",
           "count": 1
         },
         {
@@ -15054,15 +14909,15 @@
           "count": 1
         },
         {
-          "value": "TRUE CRIME / General",
-          "count": 1
-        },
-        {
           "value": "TRUE CRIME / Heists & Robberies",
           "count": 1
         },
         {
           "value": "TRUE CRIME / Murder / Mass Murder",
+          "count": 1
+        },
+        {
+          "value": "true crime stories",
           "count": 1
         },
         {
@@ -15167,6 +15022,10 @@
         },
         {
           "value": "United states, economic conditions, 2009-",
+          "count": 1
+        },
+        {
+          "value": "United states, federal bureau of investigation",
           "count": 1
         },
         {
@@ -15495,10 +15354,6 @@
         },
         {
           "value": "war",
-          "count": 1
-        },
-        {
-          "value": "War and society",
           "count": 1
         },
         {
@@ -15939,10 +15794,6 @@
         },
         {
           "value": "Youth, recreation",
-          "count": 1
-        },
-        {
-          "value": "Zoological specimens",
           "count": 1
         },
         {
