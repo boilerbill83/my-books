@@ -1,6 +1,6 @@
 {
   "date": "2026-08-01",
-  "generatedAt": "2026-08-01T02:47:18.096Z",
+  "generatedAt": "2026-08-01T02:51:51.946Z",
   "totalBooks": 1126,
   "qualityScore": {
     "score": 68,
@@ -33,13 +33,13 @@
         "key": "hygiene",
         "label": "Data Hygiene",
         "weight": 0.4,
-        "subscore": 47.994113651799864
+        "subscore": 48.53013667936366
       }
     ],
     "impediments": [
       {
         "count": 382,
-        "pointsLost": 14.9,
+        "pointsLost": 14.7,
         "name": "Orphaned similarToTitles references",
         "description": "382 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (8.6% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
         "fix": "Add the missing books to the dataset where practical, or confirm the reference is intentionally external.",
@@ -106,7 +106,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 47.994113651799864
+          "subscore": 48.53013667936366
         }
       ]
     },
@@ -151,7 +151,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 62.81186325560335
+          "subscore": 63.19516020613938
         }
       ]
     },
@@ -193,7 +193,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 72.4496264432873
+          "subscore": 72.73358727313466
         }
       ]
     },
@@ -234,7 +234,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 80.91917591125198
+          "subscore": 81.11584136231235
         }
       ]
     },
@@ -278,7 +278,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 80.91917591125198
+          "subscore": 81.11584136231235
         }
       ]
     },
