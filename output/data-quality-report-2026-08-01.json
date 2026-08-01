@@ -1,6 +1,6 @@
 {
   "date": "2026-08-01",
-  "generatedAt": "2026-08-01T03:02:19.003Z",
+  "generatedAt": "2026-08-01T03:11:08.529Z",
   "totalBooks": 1126,
   "qualityScore": {
     "score": 69,
@@ -33,7 +33,7 @@
         "key": "hygiene",
         "label": "Data Hygiene",
         "weight": 0.4,
-        "subscore": 50.08991694628876
+        "subscore": 50.801028057399876
       }
     ],
     "impediments": [
@@ -68,14 +68,6 @@
         "description": "5 duplicate group(s) (same bookKey or same title+author appearing more than once) — a duplicated 5★ read double-counts its themes/citations toward every scoring signal built from it.",
         "fix": "Merge or remove the duplicate entry, keeping the more complete record.",
         "anchor": "#tab-duplicates"
-      },
-      {
-        "count": 2,
-        "pointsLost": 0.3,
-        "name": "Self-referential entries",
-        "description": "2 book(s) cite themselves in similarToTitles or list their own author in similarToAuthors — a data-entry mistake, not a useful signal.",
-        "fix": "Replace with a genuinely different similar title or author.",
-        "anchor": "#tab-selfref"
       }
     ]
   },
@@ -114,7 +106,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 50.08991694628876
+          "subscore": 50.801028057399876
         }
       ]
     },
@@ -129,7 +121,7 @@
         "Backfill dismissReason labels for the handful of dismissed books that have a reasonCode but no label — a small, finite, fully in-house fix.",
         "Close the last-mile gaps on similarToAuthors/themes/similarToTitles/ratingsCount — a small number of books account for the remaining ~1% below 100%."
       ],
-      "score": 76,
+      "score": 77,
       "components": [
         {
           "key": "criticalHealth",
@@ -159,7 +151,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 64.10790795078651
+          "subscore": 64.81901906189762
         }
       ]
     },
@@ -201,7 +193,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 73.2254920158968
+          "subscore": 73.93660312700793
         }
       ]
     },
@@ -242,7 +234,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 81.23791437614526
+          "subscore": 81.94902548725638
         }
       ]
     },
@@ -286,7 +278,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 81.23791437614526
+          "subscore": 81.94902548725638
         }
       ]
     },
@@ -328,7 +320,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 99.28888888888889
+          "subscore": 100
         }
       ]
     }
@@ -558,7 +550,7 @@
     "alreadyReadInPool": 0,
     "fiveStarSignalGaps": 0,
     "highLeverageGaps": 0,
-    "selfReferential": 2,
+    "selfReferential": 0,
     "brokenNearMiss": 77,
     "brokenNearMissTouchingFiveStar": 0,
     "brokenOrphaned": 382,
@@ -577,16 +569,7 @@
     "fiveStarSignalGaps": [],
     "alreadyReadInPool": [],
     "highLeverageGaps": [],
-    "selfReferentialTitle": [
-      {
-        "title": "Medium Raw: A Bloody Valentine to the World of Food and the People Who Cook",
-        "author": "Anthony Bourdain"
-      },
-      {
-        "title": "The New Jim Crow: Mass Incarceration in the Age of Colorblindness",
-        "author": "Michelle Alexander"
-      }
-    ],
+    "selfReferentialTitle": [],
     "selfReferentialAuthor": [],
     "brokenNearMiss": [
       {
@@ -2978,28 +2961,6 @@
         ],
         "locations": [
           "currently_reading_feed/currently-reading"
-        ]
-      },
-      {
-        "title": "Medium Raw: A Bloody Valentine to the World of Food and the People Who Cook",
-        "author": "Anthony Bourdain",
-        "score": 20,
-        "reasons": [
-          "self-referential similarToTitles/similarToAuthors entry"
-        ],
-        "locations": [
-          "candidate_pool/candidate-pool"
-        ]
-      },
-      {
-        "title": "The New Jim Crow: Mass Incarceration in the Age of Colorblindness",
-        "author": "Michelle Alexander",
-        "score": 20,
-        "reasons": [
-          "self-referential similarToTitles/similarToAuthors entry"
-        ],
-        "locations": [
-          "candidate_pool/candidate-pool"
         ]
       },
       {
