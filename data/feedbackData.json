@@ -1215,6 +1215,7 @@
    ],
    "interactionType": "dismiss",
    "reasonCode": "not_interesting",
+   "reasonLabel": "Doesn't look interesting",
    "timestamp": "2026-08-01T01:41:48.135Z",
    "excludeFromRecommendations": true
   },
@@ -1234,6 +1235,7 @@
    ],
    "interactionType": "dismiss",
    "reasonCode": "already_read_or_owned",
+   "reasonLabel": "Already read or own it",
    "timestamp": "2026-08-01T01:58:14.928Z",
    "excludeFromRecommendations": true
   }

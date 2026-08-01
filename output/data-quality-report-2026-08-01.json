@@ -1,7 +1,7 @@
 {
   "date": "2026-08-01",
-  "generatedAt": "2026-08-01T01:59:51.553Z",
-  "totalBooks": 1112,
+  "generatedAt": "2026-08-01T02:18:57.717Z",
+  "totalBooks": 1124,
   "qualityScore": {
     "score": 67,
     "components": [
@@ -9,13 +9,13 @@
         "key": "criticalHealth",
         "label": "Critical Field Health",
         "weight": 0.08,
-        "subscore": 99.89208633093526
+        "subscore": 99.89323843416369
       },
       {
         "key": "completeness",
         "label": "Field Completeness",
         "weight": 0.33,
-        "subscore": 69.15536461744178
+        "subscore": 68.39177419504738
       },
       {
         "key": "foundational",
@@ -27,37 +27,37 @@
         "key": "safety",
         "label": "Recommendation Safety",
         "weight": 0.11,
-        "subscore": 95.50359712230217
+        "subscore": 95.55160142348754
       },
       {
         "key": "hygiene",
         "label": "Data Hygiene",
         "weight": 0.4,
-        "subscore": 44.10793207722726
+        "subscore": 45.48617511520738
       }
     ],
     "impediments": [
       {
-        "count": 456,
-        "pointsLost": 18.2,
+        "count": 398,
+        "pointsLost": 15.8,
         "name": "Orphaned similarToTitles references",
-        "description": "456 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (10.6% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
+        "description": "398 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (9.2% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
         "fix": "Add the missing books to the dataset where practical, or confirm the reference is intentionally external.",
         "anchor": "#tab-brokenrefs"
       },
       {
         "count": 6,
-        "pointsLost": 10.2,
+        "pointsLost": 10.4,
         "name": "Field completeness gaps (all fields)",
-        "description": "Average Quality Score across all 31 tracked fields is 94.6% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
+        "description": "Average Quality Score across all 31 tracked fields is 94.5% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
         "fix": "See the Field Population table, sorted by Quality Score, for every field below 90%.",
         "anchor": "#fieldPopulationSection"
       },
       {
-        "count": 52,
-        "pointsLost": 4.1,
+        "count": 77,
+        "pointsLost": 6,
         "name": "Broken similarToTitles references (candidate-to-candidate)",
-        "description": "52 near-miss reference(s) between books that aren't 5★ reads — lower live-scoring impact, but still fixable typos or subtitle truncations.",
+        "description": "77 near-miss reference(s) between books that aren't 5★ reads — lower live-scoring impact, but still fixable typos or subtitle truncations.",
         "fix": "Correct each reference to the exact title string in the dataset.",
         "anchor": "#tab-brokenrefs"
       },
@@ -82,13 +82,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.89208633093526
+          "subscore": 99.89323843416369
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 69.15536461744178
+          "subscore": 68.39177419504738
         },
         {
           "key": "foundational",
@@ -100,13 +100,13 @@
           "key": "safety",
           "label": "Recommendation Safety",
           "weight": 0.11,
-          "subscore": 95.50359712230217
+          "subscore": 95.55160142348754
         },
         {
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 44.10793207722726
+          "subscore": 45.48617511520738
         }
       ]
     },
@@ -121,7 +121,7 @@
         "Backfill dismissReason labels for the handful of dismissed books that have a reasonCode but no label — a small, finite, fully in-house fix.",
         "Close the last-mile gaps on similarToAuthors/themes/similarToTitles/ratingsCount — a small number of books account for the remaining ~1% below 100%."
       ],
-      "score": 73,
+      "score": 75,
       "components": [
         {
           "key": "criticalHealth",
@@ -133,7 +133,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 74.50217362185126
+          "subscore": 72.26549707416572
         },
         {
           "key": "foundational",
@@ -151,7 +151,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 54.38939288206559
+          "subscore": 60.5668202764977
         }
       ]
     },
@@ -163,7 +163,7 @@
         "Top of the list: \"Blood, Bones, and Butter\" (cited by 20 different food-memoir books — by far the single highest-leverage addition), \"Kitchen Confidential\" (7), \"The Midrange Theory\" (5), \"Dreamland\" and \"The New Jim Crow\" (4 each).",
         "Each addition directly serves the BBRE-quality goal too — these are books the existing library already implicitly vouches for by citing them repeatedly as \"similar,\" so they're likely to be good recommendations once added, not just data-quality filler."
       ],
-      "score": 77,
+      "score": 79,
       "components": [
         {
           "key": "criticalHealth",
@@ -175,7 +175,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 74.50217362185126
+          "subscore": 72.26549707416572
         },
         {
           "key": "foundational",
@@ -193,7 +193,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 64.29169574319609
+          "subscore": 70.37557603686636
         }
       ]
     },
@@ -204,7 +204,7 @@
         "Extend Phase 2 to the next ~70 most-cited missing titles (cumulative top 100), reaching 186 of 463 citations resolved (40%).",
         "Beyond this point, each further addition resolves only 1 citation (330 of the 377 unique orphaned titles are cited exactly once) — genuinely diminishing returns, not a reason to stop, but a reason to expect this phase to taper off rather than reach zero."
       ],
-      "score": 81,
+      "score": 82,
       "components": [
         {
           "key": "criticalHealth",
@@ -216,7 +216,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 74.50217362185126
+          "subscore": 72.26549707416572
         },
         {
           "key": "foundational",
@@ -234,7 +234,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 72.9937194696441
+          "subscore": 78.99539170506912
         }
       ]
     },
@@ -248,7 +248,7 @@
         "Extend enrich_isbn.py's scope to also backfill read-shelf isbn13 (currently to-read/candidate-only by design) and backfill publisher gaps via the Google Books lookup already used elsewhere.",
         "dateRead and isbn gaps are partially legacy-import artifacts — worth a manual pass, but likely can't fully close (some original Goodreads exports may genuinely lack the field)."
       ],
-      "score": 85,
+      "score": 87,
       "components": [
         {
           "key": "criticalHealth",
@@ -260,7 +260,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 86.76129032258062
+          "subscore": 86.29677419354839
         },
         {
           "key": "foundational",
@@ -278,7 +278,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 72.9937194696441
+          "subscore": 78.99539170506912
         }
       ]
     },
@@ -302,7 +302,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 100
+          "subscore": 99.53548387096777
         },
         {
           "key": "foundational",
@@ -328,183 +328,190 @@
   "fields": [
     {
       "field": "isbn",
-      "scorePct": 65.87301587301587,
-      "rawPct": 64.83812949640287,
+      "scorePct": 64.84375,
+      "rawPct": 64.1459074733096,
       "critical": false,
-      "eligibleTotal": 126
+      "eligibleTotal": 128
     },
     {
       "field": "dateRead",
       "scorePct": 71.95685670261942,
-      "rawPct": 41.99640287769784,
+      "rawPct": 41.54804270462633,
       "critical": false,
       "eligibleTotal": 649
     },
     {
+      "field": "subjects",
+      "scorePct": 75.11271415689811,
+      "rawPct": 74.11032028469751,
+      "critical": false,
+      "eligibleTotal": 1109
+    },
+    {
       "field": "dismissReason",
-      "scorePct": 72,
-      "rawPct": 1.618705035971223,
+      "scorePct": 80,
+      "rawPct": 1.7793594306049823,
       "critical": false,
       "eligibleTotal": 25
     },
     {
-      "field": "subjects",
-      "scorePct": 75.11271415689811,
-      "rawPct": 74.91007194244604,
-      "critical": false,
-      "eligibleTotal": 1109
-    },
-    {
       "field": "dateAdded",
-      "scorePct": 83.63309352517986,
-      "rawPct": 83.63309352517986,
+      "scorePct": 82.74021352313167,
+      "rawPct": 82.74021352313167,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "publisher",
-      "scorePct": 86.87050359712231,
-      "rawPct": 86.87050359712231,
+      "scorePct": 85.94306049822065,
+      "rawPct": 85.94306049822065,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "amazonRating",
-      "scorePct": 92.40780911062907,
-      "rawPct": 39.388489208633096,
+      "scorePct": 90.06342494714588,
+      "rawPct": 38.96797153024911,
       "critical": false,
-      "eligibleTotal": 461
+      "eligibleTotal": 473
     },
     {
       "field": "amazonRatingsCount",
-      "scorePct": 92.40780911062907,
-      "rawPct": 39.388489208633096,
+      "scorePct": 90.06342494714588,
+      "rawPct": 38.96797153024911,
       "critical": false,
-      "eligibleTotal": 461
+      "eligibleTotal": 473
     },
     {
       "field": "categories",
       "scorePct": 96.39314697926059,
-      "rawPct": 96.13309352517986,
+      "rawPct": 95.1067615658363,
       "critical": false,
       "eligibleTotal": 1109
     },
     {
+      "field": "coverUrl",
+      "scorePct": 97.47368421052632,
+      "rawPct": 51.33451957295374,
+      "critical": false,
+      "eligibleTotal": 475
+    },
+    {
       "field": "isbn13",
-      "scorePct": 98.02158273381295,
-      "rawPct": 98.02158273381295,
+      "scorePct": 98.04270462633453,
+      "rawPct": 98.04270462633453,
       "critical": false,
-      "eligibleTotal": 1112
-    },
-    {
-      "field": "similarToTitles",
-      "scorePct": 99.19064748201438,
-      "rawPct": 99.19064748201438,
-      "critical": true,
-      "eligibleTotal": 1112
-    },
-    {
-      "field": "year",
-      "scorePct": 99.28057553956835,
-      "rawPct": 99.28057553956835,
-      "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "metadataFetchedAt",
-      "scorePct": 99.73021582733813,
-      "rawPct": 99.73021582733813,
+      "scorePct": 98.66548042704626,
+      "rawPct": 98.66548042704626,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "description",
-      "scorePct": 99.82014388489209,
-      "rawPct": 99.82014388489209,
+      "scorePct": 98.75444839857651,
+      "rawPct": 98.75444839857651,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
+    },
+    {
+      "field": "similarToTitles",
+      "scorePct": 99.19928825622776,
+      "rawPct": 99.19928825622776,
+      "critical": true,
+      "eligibleTotal": 1124
+    },
+    {
+      "field": "year",
+      "scorePct": 99.28825622775801,
+      "rawPct": 99.28825622775801,
+      "critical": false,
+      "eligibleTotal": 1124
     },
     {
       "field": "type",
-      "scorePct": 99.91007194244604,
-      "rawPct": 99.91007194244604,
+      "scorePct": 99.91103202846975,
+      "rawPct": 99.91103202846975,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "ratingsCount",
-      "scorePct": 99.91007194244604,
-      "rawPct": 99.91007194244604,
+      "scorePct": 99.91103202846975,
+      "rawPct": 99.91103202846975,
       "critical": true,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "themes",
-      "scorePct": 99.91007194244604,
-      "rawPct": 99.91007194244604,
+      "scorePct": 99.91103202846975,
+      "rawPct": 99.91103202846975,
       "critical": true,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "tones",
-      "scorePct": 99.91007194244604,
-      "rawPct": 99.91007194244604,
+      "scorePct": 99.91103202846975,
+      "rawPct": 99.91103202846975,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "similarToAuthors",
-      "scorePct": 99.91007194244604,
-      "rawPct": 99.91007194244604,
+      "scorePct": 99.91103202846975,
+      "rawPct": 99.91103202846975,
       "critical": true,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "bookKey",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "title",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "author",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "source",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "shelf",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "pages",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "myRating",
       "scorePct": 100,
-      "rawPct": 85.16187050359713,
+      "rawPct": 84.25266903914591,
       "critical": true,
       "eligibleTotal": 649
     },
@@ -513,35 +520,28 @@
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "dismissed",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1112
-    },
-    {
-      "field": "coverUrl",
-      "scorePct": 100,
-      "rawPct": 51.888489208633096,
-      "critical": false,
-      "eligibleTotal": 463
+      "eligibleTotal": 1124
     },
     {
       "field": "goodreadsUrl",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     },
     {
       "field": "top10",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1124
     }
   ],
   "integrity": {
@@ -551,9 +551,9 @@
     "fiveStarSignalGaps": 0,
     "highLeverageGaps": 0,
     "selfReferential": 0,
-    "brokenNearMiss": 52,
+    "brokenNearMiss": 77,
     "brokenNearMissTouchingFiveStar": 0,
-    "brokenOrphaned": 456,
+    "brokenOrphaned": 398,
     "nonCanonicalTotal": 0,
     "promoteCandidateCount": 0,
     "nonCanonicalTonesTotal": 0,
@@ -588,6 +588,11 @@
         "touchesFiveStar": false
       },
       {
+        "from": "The Origins of the Cornbread Mafia: A Memoir of Sorts",
+        "ref": "Dreamland",
+        "touchesFiveStar": false
+      },
+      {
         "from": "Liftoff: Elon Musk and the Desperate Early Days That Launched SpaceX",
         "ref": "The Space Barons",
         "touchesFiveStar": false
@@ -598,13 +603,38 @@
         "touchesFiveStar": false
       },
       {
+        "from": "A Knock at Midnight: A Story of Hope, Justice, and Freedom",
+        "ref": "The New Jim Crow",
+        "touchesFiveStar": false
+      },
+      {
+        "from": "A People's History of the United States",
+        "ref": "The New Jim Crow",
+        "touchesFiveStar": false
+      },
+      {
         "from": "The Last Human",
         "ref": "A Long Way to a Small Angry Planet",
         "touchesFiveStar": false
       },
       {
+        "from": "Fentanyl, Inc.: How Rogue Chemists Are Creating the Deadliest Wave of the Opioid Epidemic",
+        "ref": "Dreamland",
+        "touchesFiveStar": false
+      },
+      {
         "from": "When Women Invented Television: The Untold Story of the Female Powerhouses Who Pioneered the Way We Watch Today",
         "ref": "Seinfeldia",
+        "touchesFiveStar": false
+      },
+      {
+        "from": "Lucky Peach: Issue 1",
+        "ref": "Medium Raw",
+        "touchesFiveStar": false
+      },
+      {
+        "from": "Rise of the Warrior Cop: The Militarization of America's Police Forces",
+        "ref": "The New Jim Crow",
         "touchesFiveStar": false
       },
       {
@@ -623,6 +653,16 @@
         "touchesFiveStar": false
       },
       {
+        "from": "The Body: A Guide for Occupants",
+        "ref": "The Emperor of All Maladies",
+        "touchesFiveStar": false
+      },
+      {
+        "from": "The Body: A Guide for Occupants",
+        "ref": "Being Mortal",
+        "touchesFiveStar": false
+      },
+      {
         "from": "Pilsner: How the Beer of Kings Changed the World",
         "ref": "Bitter Brew",
         "touchesFiveStar": false
@@ -633,6 +673,11 @@
         "touchesFiveStar": false
       },
       {
+        "from": "American Prison: A Reporter's Undercover Journey into the Business of Punishment",
+        "ref": "Fast Food Nation",
+        "touchesFiveStar": false
+      },
+      {
         "from": "The Big Roads: The Untold Story of the Engineers, Visionaries, and Trailblazers Who Created the American Superhighways",
         "ref": "The Road to Somewhere",
         "touchesFiveStar": false
@@ -640,6 +685,21 @@
       {
         "from": "A Kind and Just Parent: The Children of Juvenile Court",
         "ref": "Just Mercy",
+        "touchesFiveStar": false
+      },
+      {
+        "from": "A Kind and Just Parent: The Children of Juvenile Court",
+        "ref": "The New Jim Crow",
+        "touchesFiveStar": false
+      },
+      {
+        "from": "The Tumor",
+        "ref": "The Emperor of All Maladies",
+        "touchesFiveStar": false
+      },
+      {
+        "from": "The Tennis Partner",
+        "ref": "Being Mortal",
         "touchesFiveStar": false
       },
       {
@@ -663,6 +723,16 @@
         "touchesFiveStar": false
       },
       {
+        "from": "Arbitrary Stupid Goal",
+        "ref": "Blood Bones and Butter",
+        "touchesFiveStar": false
+      },
+      {
+        "from": "Arbitrary Stupid Goal",
+        "ref": "Medium Raw",
+        "touchesFiveStar": false
+      },
+      {
         "from": "The Inside Game: Bad Calls, Strange Moves, and What Baseball Behavior Teaches Us About Ourselves",
         "ref": "Moneyball",
         "touchesFiveStar": false
@@ -683,6 +753,11 @@
         "touchesFiveStar": false
       },
       {
+        "from": "The Shift: The Next Evolution in Baseball Thinking",
+        "ref": "The MVP Machine",
+        "touchesFiveStar": false
+      },
+      {
         "from": "Steven Adams: My Life, My Fight",
         "ref": "Eleven Rings",
         "touchesFiveStar": false
@@ -694,7 +769,22 @@
       },
       {
         "from": "Colonel Sanders and the American Dream",
+        "ref": "Fast Food Nation",
+        "touchesFiveStar": false
+      },
+      {
+        "from": "Colonel Sanders and the American Dream",
         "ref": "Drive-Thru Dreams",
+        "touchesFiveStar": false
+      },
+      {
+        "from": "The First Cell: And the Human Costs of Pursuing Cancer to the Last",
+        "ref": "The Emperor of All Maladies",
+        "touchesFiveStar": false
+      },
+      {
+        "from": "The First Cell: And the Human Costs of Pursuing Cancer to the Last",
+        "ref": "Being Mortal",
         "touchesFiveStar": false
       },
       {
@@ -723,6 +813,16 @@
         "touchesFiveStar": false
       },
       {
+        "from": "Drive-Thru Dreams: A Journey Through the Heart of America's Fast-Food Kingdom",
+        "ref": "Fast Food Nation",
+        "touchesFiveStar": false
+      },
+      {
+        "from": "Serious Eater: A Food Lover's Perilous Quest for Pizza and Redemption",
+        "ref": "Medium Raw",
+        "touchesFiveStar": false
+      },
+      {
         "from": "Best. Movie. Year. Ever.: How 1999 Blew Up the Big Screen",
         "ref": "Blockbuster",
         "touchesFiveStar": false
@@ -743,6 +843,11 @@
         "touchesFiveStar": false
       },
       {
+        "from": "Fraternity: An Inside Look at a Year of College Boys Becoming Men",
+        "ref": "Dreamland",
+        "touchesFiveStar": false
+      },
+      {
         "from": "Smart Baseball: The Story Behind the Old Stats That Are Ruining the Game, the New Ones That Are Running It, and the Right Way to Think About Baseball",
         "ref": "Moneyball",
         "touchesFiveStar": false
@@ -750,6 +855,16 @@
       {
         "from": "Smart Baseball: The Story Behind the Old Stats That Are Ruining the Game, the New Ones That Are Running It, and the Right Way to Think About Baseball",
         "ref": "Astroball",
+        "touchesFiveStar": false
+      },
+      {
+        "from": "Smart Baseball: The Story Behind the Old Stats That Are Ruining the Game, the New Ones That Are Running It, and the Right Way to Think About Baseball",
+        "ref": "The MVP Machine",
+        "touchesFiveStar": false
+      },
+      {
+        "from": "The Apprentice: My Life in the Kitchen",
+        "ref": "Blood Bones and Butter",
         "touchesFiveStar": false
       },
       {
@@ -765,6 +880,11 @@
       {
         "from": "Power Ball: Anatomy of a Modern Baseball Game",
         "ref": "Moneyball",
+        "touchesFiveStar": false
+      },
+      {
+        "from": "Power Ball: Anatomy of a Modern Baseball Game",
+        "ref": "The MVP Machine",
         "touchesFiveStar": false
       },
       {
@@ -828,6 +948,11 @@
         "touchesFiveStar": false
       },
       {
+        "from": "When Crack Was King: A People's History of a Misunderstood Era",
+        "ref": "Dreamland",
+        "touchesFiveStar": false
+      },
+      {
         "from": "Where Are Your Boys Tonight?: The Oral History of Emo's Mainstream Explosion 1999-2008",
         "ref": "Twilight of the Gods",
         "touchesFiveStar": false
@@ -835,59 +960,9 @@
     ],
     "brokenOrphaned": [
       {
-        "from": "Bourdain: The Definitive Oral Biography",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Buttermilk Graffiti: A Chef's Journey to Discover America's New Melting-Pot Cuisine",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Save Me the Plums: My Gourmet Memoir",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "How I Learned to Cook: Culinary Educations from the World's Greatest Chefs",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "How to Watch Basketball Like a Genius: What Game Designers, Economists, Ballet Choreographers, and Theoretical Astrophysicists Reveal About the Greatest Game on Earth",
-        "ref": "The Midrange Theory",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Dirt: Adventures in Lyon as a Chef in Training, Father, and Sleuth Looking for the Secret of French Cooking",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Hot Hand: The Mystery and Science of Streaks",
-        "ref": "The Midrange Theory",
-        "touchesFiveStar": true
-      },
-      {
         "from": "Kiss the Girls (Alex Cross, #2)",
         "ref": "The Girl in the Castle",
         "touchesFiveStar": true
-      },
-      {
-        "from": "The Best American Food Writing 2020 (The Best American Series)",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Our Lady of Perpetual Hunger: A Memoir",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Meat: Everything You Need To Know",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": null
       },
       {
         "from": "Shit, Actually: The Definitive, 100% Objective Guide to Modern Cinema",
@@ -895,29 +970,9 @@
         "touchesFiveStar": null
       },
       {
-        "from": "Cork Dork: A Wine-Fueled Adventure Among the Obsessive Sommeliers, Big Bottle Hunters, and Rogue Scientists Who Taught Me to Live for Taste",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": null
-      },
-      {
         "from": "The Ride of a Lifetime: Lessons Learned from 15 Years as CEO of the Walt Disney Company",
         "ref": "What It Takes: Lessons in the Pursuit of Excellence",
         "touchesFiveStar": null
-      },
-      {
-        "from": "Yes, Chef",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Smokin' with Myron Mixon: Recipes Made Simple, from the Winningest Man in Barbecue: A Cookbook",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Hungry: Eating, Road-Tripping, and Risking It All with the Greatest Chef in the World",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": true
       },
       {
         "from": "Three Women",
@@ -928,31 +983,6 @@
         "from": "Newjack: Guarding Sing Sing",
         "ref": "Cheap Land Colorado: Off-Gridders at America's Edge",
         "touchesFiveStar": true
-      },
-      {
-        "from": "The Prophets of Smoked Meat: A Journey Through Texas Barbecue",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Astroball: The New Way to Win It All",
-        "ref": "The Midrange Theory",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Momofuku: A Cookbook",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Making of a Chef: Mastering Heat at the Culinary Institute",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Try Not to Suck: The Exceptional, Extraordinary Baseball Life of Joe Maddon",
-        "ref": "The Book of Joe: Trying Not to Suck at Baseball and Life",
-        "touchesFiveStar": null
       },
       {
         "from": "The Chicago Cubs: Story of a Curse",
@@ -968,31 +998,6 @@
         "from": "Quiet: The Power of Introverts in a World That Can't Stop Talking",
         "ref": "Bittersweet: How Sorrow and Longing Make Us Whole",
         "touchesFiveStar": null
-      },
-      {
-        "from": "Trading Bases: A Story About Wall Street, Gambling, and Baseball (Not Necessarily in That Order)",
-        "ref": "The Midrange Theory",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Ivan Ramen: Love, Obsession, and Recipes from Tokyo's Most Unlikely Noodle Joint",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Only Rule Is It Has to Work: Our Wild Experiment Building a New Kind of Baseball Team",
-        "ref": "The Book of Joe: Trying Not to Suck at Baseball and Life",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "Franklin Barbecue: A Meat-Smoking Manifesto [A Cookbook]",
-        "ref": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
-        "touchesFiveStar": true
-      },
-      {
-        "from": "The Fantasy Baseball Black Book 2015 Edition",
-        "ref": "The Book of Joe: Trying Not to Suck at Baseball and Life",
-        "touchesFiveStar": true
       },
       {
         "from": "To Start a War: How the Bush Administration Took America into Iraq",
@@ -1066,22 +1071,12 @@
       },
       {
         "from": "The Origins of the Cornbread Mafia: A Memoir of Sorts",
-        "ref": "Dreamland",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Origins of the Cornbread Mafia: A Memoir of Sorts",
         "ref": "The Bluegrass Conspiracy",
         "touchesFiveStar": null
       },
       {
         "from": "Liftoff: Elon Musk and the Desperate Early Days That Launched SpaceX",
         "ref": "Rocket Billionaires",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A Knock at Midnight: A Story of Hope, Justice, and Freedom",
-        "ref": "The New Jim Crow",
         "touchesFiveStar": null
       },
       {
@@ -1097,11 +1092,6 @@
       {
         "from": "A People's History of the United States",
         "ref": "Lies My Teacher Told Me",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A People's History of the United States",
-        "ref": "The New Jim Crow",
         "touchesFiveStar": null
       },
       {
@@ -1142,11 +1132,6 @@
       {
         "from": "The Last Human",
         "ref": "Blindsight",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Fentanyl, Inc.: How Rogue Chemists Are Creating the Deadliest Wave of the Opioid Epidemic",
-        "ref": "Dreamland",
         "touchesFiveStar": null
       },
       {
@@ -1216,17 +1201,7 @@
       },
       {
         "from": "Lucky Peach: Issue 1",
-        "ref": "Kitchen Confidential",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Lucky Peach: Issue 1",
         "ref": "The Art of Eating",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Lucky Peach: Issue 1",
-        "ref": "Medium Raw",
         "touchesFiveStar": null
       },
       {
@@ -1272,11 +1247,6 @@
       {
         "from": "The Kid: The Immortal Life of Ted Williams",
         "ref": "Clemente",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Rise of the Warrior Cop: The Militarization of America's Police Forces",
-        "ref": "The New Jim Crow",
         "touchesFiveStar": null
       },
       {
@@ -1415,16 +1385,6 @@
         "touchesFiveStar": null
       },
       {
-        "from": "The Body: A Guide for Occupants",
-        "ref": "The Emperor of All Maladies",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Body: A Guide for Occupants",
-        "ref": "Being Mortal",
-        "touchesFiveStar": null
-      },
-      {
         "from": "Pilsner: How the Beer of Kings Changed the World",
         "ref": "The Audacity of Hops",
         "touchesFiveStar": null
@@ -1458,11 +1418,6 @@
         "from": "The Invention of Sound",
         "ref": "The Silence of the Lambs",
         "touchesFiveStar": null
-      },
-      {
-        "from": "World Travel: An Irreverent Guide",
-        "ref": "Kitchen Confidential",
-        "touchesFiveStar": true
       },
       {
         "from": "World Travel: An Irreverent Guide",
@@ -1565,11 +1520,6 @@
         "touchesFiveStar": null
       },
       {
-        "from": "American Prison: A Reporter's Undercover Journey into the Business of Punishment",
-        "ref": "Fast Food Nation",
-        "touchesFiveStar": null
-      },
-      {
         "from": "Good Economics for Hard Times: Better Answers to Our Biggest Problems",
         "ref": "Poor Economics",
         "touchesFiveStar": null
@@ -1636,22 +1586,7 @@
       },
       {
         "from": "A Kind and Just Parent: The Children of Juvenile Court",
-        "ref": "The New Jim Crow",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A Kind and Just Parent: The Children of Juvenile Court",
         "ref": "Savage Inequalities",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Tumor",
-        "ref": "The Immortal Life of Henrietta Lacks",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Tumor",
-        "ref": "The Emperor of All Maladies",
         "touchesFiveStar": null
       },
       {
@@ -1662,11 +1597,6 @@
       {
         "from": "The Tumor",
         "ref": "Cutting for Stone",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Tennis Partner",
-        "ref": "Being Mortal",
         "touchesFiveStar": null
       },
       {
@@ -1846,21 +1776,6 @@
       },
       {
         "from": "Arbitrary Stupid Goal",
-        "ref": "Kitchen Confidential",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Arbitrary Stupid Goal",
-        "ref": "Blood Bones and Butter",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Arbitrary Stupid Goal",
-        "ref": "Medium Raw",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Arbitrary Stupid Goal",
         "ref": "Tender at the Bone",
         "touchesFiveStar": null
       },
@@ -1917,11 +1832,6 @@
       {
         "from": "Collision Course: Ronald Reagan, the Air Traffic Controllers, and the Strike That Changed America",
         "ref": "Invisible Hands",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Shift: The Next Evolution in Baseball Thinking",
-        "ref": "The MVP Machine",
         "touchesFiveStar": null
       },
       {
@@ -2101,11 +2011,6 @@
       },
       {
         "from": "Colonel Sanders and the American Dream",
-        "ref": "Fast Food Nation",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Colonel Sanders and the American Dream",
         "ref": "Salt Sugar Fat",
         "touchesFiveStar": null
       },
@@ -2127,11 +2032,6 @@
       {
         "from": "Hate Inc.: Why Today's Media Makes Us Despise One Another",
         "ref": "Merchants of Truth",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Burn the Ice: The American Culinary Revolution and Its End",
-        "ref": "Kitchen Confidential",
         "touchesFiveStar": null
       },
       {
@@ -2182,21 +2082,6 @@
       {
         "from": "Stiff: The Curious Lives of Human Cadavers",
         "ref": "The Disappearing Spoon",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The First Cell: And the Human Costs of Pursuing Cancer to the Last",
-        "ref": "The Emperor of All Maladies",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The First Cell: And the Human Costs of Pursuing Cancer to the Last",
-        "ref": "Being Mortal",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The First Cell: And the Human Costs of Pursuing Cancer to the Last",
-        "ref": "The Immortal Life of Henrietta Lacks",
         "touchesFiveStar": null
       },
       {
@@ -2396,11 +2281,6 @@
       },
       {
         "from": "Drive-Thru Dreams: A Journey Through the Heart of America's Fast-Food Kingdom",
-        "ref": "Fast Food Nation",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Drive-Thru Dreams: A Journey Through the Heart of America's Fast-Food Kingdom",
         "ref": "In-N-Out Burger",
         "touchesFiveStar": null
       },
@@ -2426,22 +2306,12 @@
       },
       {
         "from": "Serious Eater: A Food Lover's Perilous Quest for Pizza and Redemption",
-        "ref": "Kitchen Confidential",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Serious Eater: A Food Lover's Perilous Quest for Pizza and Redemption",
         "ref": "Garlic and Sapphires",
         "touchesFiveStar": null
       },
       {
         "from": "Serious Eater: A Food Lover's Perilous Quest for Pizza and Redemption",
         "ref": "Dirt",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Serious Eater: A Food Lover's Perilous Quest for Pizza and Redemption",
-        "ref": "Medium Raw",
         "touchesFiveStar": null
       },
       {
@@ -2536,11 +2406,6 @@
       },
       {
         "from": "Roadfood",
-        "ref": "Kitchen Confidential",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Roadfood",
         "ref": "The United States of Arugula",
         "touchesFiveStar": null
       },
@@ -2556,11 +2421,6 @@
       },
       {
         "from": "Fraternity: An Inside Look at a Year of College Boys Becoming Men",
-        "ref": "Dreamland",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Fraternity: An Inside Look at a Year of College Boys Becoming Men",
         "ref": "Missoula",
         "touchesFiveStar": null
       },
@@ -2572,11 +2432,6 @@
       {
         "from": "Smart Baseball: The Story Behind the Old Stats That Are Ruining the Game, the New Ones That Are Running It, and the Right Way to Think About Baseball",
         "ref": "The Signal and the Noise",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Smart Baseball: The Story Behind the Old Stats That Are Ruining the Game, the New Ones That Are Running It, and the Right Way to Think About Baseball",
-        "ref": "The MVP Machine",
         "touchesFiveStar": null
       },
       {
@@ -2601,22 +2456,12 @@
       },
       {
         "from": "The Apprentice: My Life in the Kitchen",
-        "ref": "Kitchen Confidential",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Apprentice: My Life in the Kitchen",
         "ref": "My Life in France",
         "touchesFiveStar": null
       },
       {
         "from": "The Apprentice: My Life in the Kitchen",
         "ref": "Tender at the Bone",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Apprentice: My Life in the Kitchen",
-        "ref": "Blood Bones and Butter",
         "touchesFiveStar": null
       },
       {
@@ -2717,11 +2562,6 @@
       {
         "from": "Who Is Michael Ovitz?",
         "ref": "Leading",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Power Ball: Anatomy of a Modern Baseball Game",
-        "ref": "The MVP Machine",
         "touchesFiveStar": null
       },
       {
@@ -3066,11 +2906,6 @@
       },
       {
         "from": "When Crack Was King: A People's History of a Misunderstood Era",
-        "ref": "Dreamland",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "When Crack Was King: A People's History of a Misunderstood Era",
         "ref": "Chasing the Scream",
         "touchesFiveStar": null
       },
@@ -3305,11 +3140,11 @@
         },
         {
           "value": "history",
-          "count": 158
+          "count": 160
         },
         {
           "value": "memoir",
-          "count": 154
+          "count": 159
         },
         {
           "value": "speculative",
@@ -3321,7 +3156,7 @@
         },
         {
           "value": "social commentary",
-          "count": 127
+          "count": 130
         },
         {
           "value": "contemporary",
@@ -3329,7 +3164,7 @@
         },
         {
           "value": "business",
-          "count": 110
+          "count": 113
         },
         {
           "value": "psychological",
@@ -3337,11 +3172,11 @@
         },
         {
           "value": "sports",
-          "count": 100
+          "count": 103
         },
         {
           "value": "biography",
-          "count": 97
+          "count": 99
         },
         {
           "value": "mystery",
@@ -3365,19 +3200,23 @@
         },
         {
           "value": "psychology",
-          "count": 64
+          "count": 65
         },
         {
           "value": "political",
-          "count": 63
+          "count": 64
         },
         {
           "value": "true crime",
-          "count": 58
+          "count": 59
         },
         {
           "value": "courtroom",
           "count": 57
+        },
+        {
+          "value": "food",
+          "count": 53
         },
         {
           "value": "finance",
@@ -3385,10 +3224,6 @@
         },
         {
           "value": "domestic suspense",
-          "count": 50
-        },
-        {
-          "value": "food",
           "count": 50
         },
         {
@@ -3439,6 +3274,18 @@
       "tones": [
         {
           "value": "funny",
+          "count": 173
+        },
+        {
+          "value": "conversational",
+          "count": 172
+        },
+        {
+          "value": "revelatory",
+          "count": 172
+        },
+        {
+          "value": "investigative",
           "count": 171
         },
         {
@@ -3450,23 +3297,15 @@
           "count": 170
         },
         {
-          "value": "conversational",
-          "count": 168
+          "value": "dark",
+          "count": 169
         },
         {
           "value": "twisty",
           "count": 168
         },
         {
-          "value": "dark",
-          "count": 167
-        },
-        {
-          "value": "investigative",
-          "count": 167
-        },
-        {
-          "value": "revelatory",
+          "value": "character-driven",
           "count": 166
         },
         {
@@ -3474,12 +3313,8 @@
           "count": 165
         },
         {
-          "value": "character-driven",
-          "count": 165
-        },
-        {
           "value": "dense",
-          "count": 161
+          "count": 165
         },
         {
           "value": "slow-burn",
@@ -3487,11 +3322,11 @@
         },
         {
           "value": "thoughtful",
-          "count": 152
+          "count": 159
         },
         {
           "value": "poignant",
-          "count": 131
+          "count": 132
         },
         {
           "value": "procedural",
@@ -3503,11 +3338,11 @@
         },
         {
           "value": "gritty",
-          "count": 75
+          "count": 78
         },
         {
           "value": "inspiring",
-          "count": 70
+          "count": 71
         },
         {
           "value": "compulsive",

@@ -358,6 +358,382 @@
       "ratingsCount": 4000,
       "isbn13": "9781250770936",
       "tones": ["revelatory", "thoughtful"], "themeToneReviewed": true
+    },
+    {
+      "title": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
+      "author": "Gabrielle Hamilton",
+      "type": "nonfiction",
+      "year": 2011,
+      "pages": 304,
+      "avgRating": 3.77,
+      "themes": [
+        "memoir",
+        "food"
+      ],
+      "similarToAuthors": [
+        "Anthony Bourdain",
+        "David Chang",
+        "Marcus Samuelsson",
+        "Kwame Onwuachi"
+      ],
+      "similarToTitles": [
+        "Kitchen Confidential",
+        "Medium Raw: A Bloody Valentine to the World of Food and the People Who Cook",
+        "Eat a Peach",
+        "Yes, Chef",
+        "Notes from a Young Black Chef"
+      ],
+      "bookKey": "blood-bones-and-butter-the-inadvertent-education-of-a-reluctant-chef|gabrielle-hamilton",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/8459594-blood-bones-and-butter",
+      "buyUrl": "https://www.amazon.com/s?k=Blood%2C%20Bones%2C%20and%20Butter%3A%20The%20Inadvertent%20Education%20of%20a%20Reluctant%20Chef%20Gabrielle%20Hamilton",
+      "coverUrl": "",
+      "ratingsCount": 37657,
+      "isbn13": "9780812980882",
+      "tones": ["conversational", "character-driven", "gritty"],
+      "themeToneReviewed": true
+    },
+    {
+      "title": "Kitchen Confidential",
+      "author": "Anthony Bourdain",
+      "type": "nonfiction",
+      "year": 2000,
+      "pages": 312,
+      "avgRating": 4.19,
+      "themes": [
+        "memoir",
+        "food"
+      ],
+      "similarToAuthors": [
+        "David Chang",
+        "Gabrielle Hamilton",
+        "Marcus Samuelsson",
+        "Michael Ruhlman"
+      ],
+      "similarToTitles": [
+        "Medium Raw: A Bloody Valentine to the World of Food and the People Who Cook",
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
+        "Eat a Peach",
+        "Yes, Chef"
+      ],
+      "bookKey": "kitchen-confidential|anthony-bourdain",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/33313.Kitchen_Confidential",
+      "buyUrl": "https://www.amazon.com/s?k=Kitchen%20Confidential%20Anthony%20Bourdain",
+      "coverUrl": "",
+      "ratingsCount": 395000,
+      "isbn13": "9780060899226",
+      "tones": ["conversational", "gritty", "funny"],
+      "themeToneReviewed": true
+    },
+    {
+      "title": "Medium Raw: A Bloody Valentine to the World of Food and the People Who Cook",
+      "author": "Anthony Bourdain",
+      "type": "nonfiction",
+      "year": 2010,
+      "pages": 304,
+      "avgRating": 3.86,
+      "themes": [
+        "memoir",
+        "food"
+      ],
+      "similarToAuthors": [
+        "David Chang",
+        "Gabrielle Hamilton",
+        "Marcus Samuelsson",
+        "Michael Ruhlman"
+      ],
+      "similarToTitles": [
+        "Kitchen Confidential",
+        "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
+        "Eat a Peach",
+        "Yes, Chef"
+      ],
+      "bookKey": "medium-raw-a-bloody-valentine-to-the-world-of-food-and-the-people-who-cook|anthony-bourdain",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/40409969-medium-raw",
+      "buyUrl": "https://www.amazon.com/s?k=Medium%20Raw%3A%20A%20Bloody%20Valentine%20to%20the%20World%20of%20Food%20and%20the%20People%20Who%20Cook%20Anthony%20Bourdain",
+      "coverUrl": "",
+      "ratingsCount": 49340,
+      "isbn13": "9780061718953",
+      "tones": ["conversational", "gritty", "funny"],
+      "themeToneReviewed": true
+    },
+    {
+      "title": "The Midrange Theory",
+      "author": "Seth Partnow",
+      "type": "nonfiction",
+      "year": 2021,
+      "pages": 288,
+      "avgRating": 4.1,
+      "themes": [
+        "sports",
+        "business"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Jonah Keri",
+        "Ben Lindbergh",
+        "Nate Silver"
+      ],
+      "similarToTitles": [
+        "Moneyball: The Art of Winning an Unfair Game",
+        "The MVP Machine: How Baseball's New Nonconformists Are Using Data to Build Better Players",
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First"
+      ],
+      "bookKey": "the-midrange-theory|seth-partnow",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/57136758-the-midrange-theory",
+      "buyUrl": "https://www.amazon.com/s?k=The%20Midrange%20Theory%20Seth%20Partnow",
+      "coverUrl": "",
+      "ratingsCount": 500,
+      "isbn13": "9781629379210",
+      "tones": ["dense", "thoughtful"],
+      "themeToneReviewed": true
+    },
+    {
+      "title": "Dreamland: The True Tale of America's Opiate Epidemic",
+      "author": "Sam Quinones",
+      "type": "nonfiction",
+      "year": 2015,
+      "pages": 384,
+      "avgRating": 4.22,
+      "themes": [
+        "true crime",
+        "social commentary"
+      ],
+      "similarToAuthors": [
+        "Beth Macy",
+        "Matthew Desmond",
+        "Patrick Radden Keefe",
+        "David Grann"
+      ],
+      "similarToTitles": [
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+        "Evicted: Poverty and Profit in the American City",
+        "Paradise: One Town's Struggle to Survive an American Wildfire"
+      ],
+      "bookKey": "dreamland-the-true-tale-of-america-s-opiate-epidemic|sam-quinones",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/22529381-dreamland",
+      "buyUrl": "https://www.amazon.com/s?k=Dreamland%3A%20The%20True%20Tale%20of%20America's%20Opiate%20Epidemic%20Sam%20Quinones",
+      "coverUrl": "",
+      "ratingsCount": 22722,
+      "isbn13": "9781620402504",
+      "tones": ["investigative", "dark", "revelatory"],
+      "themeToneReviewed": true
+    },
+    {
+      "title": "The New Jim Crow: Mass Incarceration in the Age of Colorblindness",
+      "author": "Michelle Alexander",
+      "type": "nonfiction",
+      "year": 2010,
+      "pages": 290,
+      "avgRating": 4.52,
+      "themes": [
+        "social commentary",
+        "political"
+      ],
+      "similarToAuthors": [
+        "Matthew Desmond",
+        "Bryan Stevenson",
+        "Stephanie Land",
+        "Barbara Ehrenreich"
+      ],
+      "similarToTitles": [
+        "Evicted: Poverty and Profit in the American City",
+        "Maid: Hard Work, Low Pay, and a Mother's Will to Survive",
+        "Just Mercy: A Story of Justice and Redemption"
+      ],
+      "bookKey": "the-new-jim-crow-mass-incarceration-in-the-age-of-colorblindness|michelle-alexander",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/6792458-the-new-jim-crow",
+      "buyUrl": "https://www.amazon.com/s?k=The%20New%20Jim%20Crow%3A%20Mass%20Incarceration%20in%20the%20Age%20of%20Colorblindness%20Michelle%20Alexander",
+      "coverUrl": "",
+      "ratingsCount": 122123,
+      "isbn13": "9781595581037",
+      "tones": ["revelatory", "dense", "thoughtful"],
+      "themeToneReviewed": true
+    },
+    {
+      "title": "The Book of Joe: Trying Not to Suck at Baseball and Life",
+      "author": "Joe Maddon",
+      "type": "nonfiction",
+      "year": 2022,
+      "pages": 384,
+      "avgRating": 3.99,
+      "themes": [
+        "sports",
+        "memoir"
+      ],
+      "similarToAuthors": [
+        "Tom Verducci",
+        "Jeff Pearlman",
+        "Jonah Keri",
+        "Michael Lewis"
+      ],
+      "similarToTitles": [
+        "Fantasyland: True Tales from America's Most Compulsive Fantasy Baseball League",
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First",
+        "Baseball Prospectus 2019"
+      ],
+      "bookKey": "the-book-of-joe-trying-not-to-suck-at-baseball-and-life|joe-maddon",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/60568501-the-book-of-joe",
+      "buyUrl": "https://www.amazon.com/s?k=The%20Book%20of%20Joe%3A%20Trying%20Not%20to%20Suck%20at%20Baseball%20and%20Life%20Joe%20Maddon",
+      "coverUrl": "",
+      "ratingsCount": 436,
+      "isbn13": "9781538751794",
+      "tones": ["conversational", "inspiring", "thoughtful"],
+      "themeToneReviewed": true
+    },
+    {
+      "title": "The Emperor of All Maladies: A Biography of Cancer",
+      "author": "Siddhartha Mukherjee",
+      "type": "nonfiction",
+      "year": 2010,
+      "pages": 592,
+      "avgRating": 4.32,
+      "themes": [
+        "history",
+        "biography"
+      ],
+      "similarToAuthors": [
+        "Atul Gawande",
+        "Paul Kalanithi",
+        "Rebecca Skloot",
+        "Abraham Verghese"
+      ],
+      "similarToTitles": [
+        "When Breath Becomes Air",
+        "Being Mortal: Medicine and What Matters in the End",
+        "The Immortal Life of Henrietta Lacks"
+      ],
+      "bookKey": "the-emperor-of-all-maladies-a-biography-of-cancer|siddhartha-mukherjee",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/7170627-the-emperor-of-all-maladies",
+      "buyUrl": "https://www.amazon.com/s?k=The%20Emperor%20of%20All%20Maladies%3A%20A%20Biography%20of%20Cancer%20Siddhartha%20Mukherjee",
+      "coverUrl": "",
+      "ratingsCount": 197930,
+      "isbn13": "9781439107959",
+      "tones": ["dense", "revelatory", "thoughtful"],
+      "themeToneReviewed": true
+    },
+    {
+      "title": "Being Mortal: Medicine and What Matters in the End",
+      "author": "Atul Gawande",
+      "type": "nonfiction",
+      "year": 2014,
+      "pages": 282,
+      "avgRating": 4.48,
+      "themes": [
+        "memoir",
+        "psychology"
+      ],
+      "similarToAuthors": [
+        "Paul Kalanithi",
+        "Siddhartha Mukherjee",
+        "Lori Gottlieb",
+        "Abraham Verghese"
+      ],
+      "similarToTitles": [
+        "When Breath Becomes Air",
+        "The Emperor of All Maladies: A Biography of Cancer",
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed"
+      ],
+      "bookKey": "being-mortal-medicine-and-what-matters-in-the-end|atul-gawande",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/40015533-being-mortal",
+      "buyUrl": "https://www.amazon.com/s?k=Being%20Mortal%3A%20Medicine%20and%20What%20Matters%20in%20the%20End%20Atul%20Gawande",
+      "coverUrl": "",
+      "ratingsCount": 188099,
+      "isbn13": "9780805095159",
+      "tones": ["thoughtful", "poignant", "revelatory"],
+      "themeToneReviewed": true
+    },
+    {
+      "title": "Fast Food Nation: The Dark Side of the All-American Meal",
+      "author": "Eric Schlosser",
+      "type": "nonfiction",
+      "year": 2001,
+      "pages": 288,
+      "avgRating": 3.75,
+      "themes": [
+        "business",
+        "social commentary"
+      ],
+      "similarToAuthors": [
+        "Michael Pollan",
+        "Benjamin Lorr",
+        "Matthew Desmond",
+        "Beth Macy"
+      ],
+      "similarToTitles": [
+        "The Secret Life of Groceries: The Dark Miracle of the American Supermarket",
+        "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
+        "Evicted: Poverty and Profit in the American City"
+      ],
+      "bookKey": "fast-food-nation-the-dark-side-of-the-all-american-meal|eric-schlosser",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/1097.Fast_Food_Nation",
+      "buyUrl": "https://www.amazon.com/s?k=Fast%20Food%20Nation%3A%20The%20Dark%20Side%20of%20the%20All-American%20Meal%20Eric%20Schlosser",
+      "coverUrl": "",
+      "ratingsCount": 200568,
+      "isbn13": "9780395977897",
+      "tones": ["investigative", "dark", "thoughtful"],
+      "themeToneReviewed": true
+    },
+    {
+      "title": "The MVP Machine: How Baseball's New Nonconformists Are Using Data to Build Better Players",
+      "author": "Ben Lindbergh",
+      "type": "nonfiction",
+      "year": 2019,
+      "pages": 373,
+      "avgRating": 4.27,
+      "themes": [
+        "sports",
+        "business"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Jonah Keri",
+        "Seth Partnow",
+        "Nate Silver"
+      ],
+      "similarToTitles": [
+        "Moneyball: The Art of Winning an Unfair Game",
+        "The Midrange Theory",
+        "The Extra 2%: How Wall Street Strategies Took a Major League Baseball Team from Worst to First"
+      ],
+      "bookKey": "the-mvp-machine-how-baseball-s-new-nonconformists-are-using-data-to-build-better-players|ben-lindbergh",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/42283858-the-mvp-machine",
+      "buyUrl": "https://www.amazon.com/s?k=The%20MVP%20Machine%3A%20How%20Baseball's%20New%20Nonconformists%20Are%20Using%20Data%20to%20Build%20Better%20Players%20Ben%20Lindbergh",
+      "coverUrl": "",
+      "ratingsCount": 2725,
+      "isbn13": "9781541698949",
+      "tones": ["dense", "revelatory", "investigative"],
+      "themeToneReviewed": true
+    },
+    {
+      "title": "The Immortal Life of Henrietta Lacks",
+      "author": "Rebecca Skloot",
+      "type": "nonfiction",
+      "year": 2010,
+      "pages": 370,
+      "avgRating": 4.13,
+      "themes": [
+        "history",
+        "biography"
+      ],
+      "similarToAuthors": [
+        "Siddhartha Mukherjee",
+        "Atul Gawande",
+        "Paul Kalanithi",
+        "Matthew Desmond"
+      ],
+      "similarToTitles": [
+        "The Emperor of All Maladies: A Biography of Cancer",
+        "Being Mortal: Medicine and What Matters in the End",
+        "Evicted: Poverty and Profit in the American City"
+      ],
+      "bookKey": "the-immortal-life-of-henrietta-lacks|rebecca-skloot",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/6493208-the-immortal-life-of-henrietta-lacks",
+      "buyUrl": "https://www.amazon.com/s?k=The%20Immortal%20Life%20of%20Henrietta%20Lacks%20Rebecca%20Skloot",
+      "coverUrl": "",
+      "ratingsCount": 760088,
+      "isbn13": "9781400052172",
+      "tones": ["revelatory", "investigative", "thoughtful"],
+      "themeToneReviewed": true
     }
   ]
 }
