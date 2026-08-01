@@ -765,6 +765,37 @@
       "isbn13": "9780385349055",
       "tones": ["funny", "character-driven"],
       "themeToneReviewed": true
+    },
+    {
+      "title": "Bringing Down the House: The Inside Story of Six M.I.T. Students Who Took Vegas for Millions",
+      "author": "Ben Mezrich",
+      "type": "nonfiction",
+      "year": 2002,
+      "pages": 272,
+      "avgRating": 3.95,
+      "themes": [
+        "true crime",
+        "finance"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Brad Stone",
+        "Nick Bilton",
+        "David Kushner"
+      ],
+      "similarToTitles": [
+        "The Accidental Billionaires: The Founding of Facebook, a Tale of Sex, Money, Genius, and Betrayal",
+        "Bitcoin Billionaires: A True Story of Genius, Betrayal, and Redemption",
+        "The Antisocial Network: The True Story of a Ragtag of Amateur Investors, Gamers, and Internet Trolls Who Brought Wall Street to Its Knees"
+      ],
+      "bookKey": "bringing-down-the-house-the-inside-story-of-six-m-i-t-students-who-took-vegas-for-millions|ben-mezrich",
+      "goodreadsUrl": "https://www.goodreads.com/book/show/502278.Bringing_Down_the_House",
+      "buyUrl": "https://www.amazon.com/s?k=Bringing%20Down%20the%20House%3A%20The%20Inside%20Story%20of%20Six%20M.I.T.%20Students%20Who%20Took%20Vegas%20for%20Millions%20Ben%20Mezrich",
+      "coverUrl": "",
+      "ratingsCount": 21741,
+      "isbn13": "9780743225700",
+      "tones": ["propulsive", "investigative"],
+      "themeToneReviewed": true
     }
   ]
 }
