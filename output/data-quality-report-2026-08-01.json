@@ -1,6 +1,6 @@
 {
   "date": "2026-08-01",
-  "generatedAt": "2026-08-01T02:59:02.432Z",
+  "generatedAt": "2026-08-01T03:02:19.003Z",
   "totalBooks": 1126,
   "qualityScore": {
     "score": 69,
@@ -33,15 +33,15 @@
         "key": "hygiene",
         "label": "Data Hygiene",
         "weight": 0.4,
-        "subscore": 49.302564102564105
+        "subscore": 50.08991694628876
       }
     ],
     "impediments": [
       {
         "count": 382,
-        "pointsLost": 14.4,
+        "pointsLost": 14.1,
         "name": "Orphaned similarToTitles references",
-        "description": "382 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (8.4% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
+        "description": "382 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (8.2% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
         "fix": "Add the missing books to the dataset where practical, or confirm the reference is intentionally external.",
         "anchor": "#tab-brokenrefs"
       },
@@ -55,7 +55,7 @@
       },
       {
         "count": 77,
-        "pointsLost": 5.7,
+        "pointsLost": 5.6,
         "name": "Broken similarToTitles references (candidate-to-candidate)",
         "description": "77 near-miss reference(s) between books that aren't 5★ reads — lower live-scoring impact, but still fixable typos or subtitle truncations.",
         "fix": "Correct each reference to the exact title string in the dataset.",
@@ -70,10 +70,10 @@
         "anchor": "#tab-duplicates"
       },
       {
-        "count": 1,
-        "pointsLost": 0.1,
+        "count": 2,
+        "pointsLost": 0.3,
         "name": "Self-referential entries",
-        "description": "1 book(s) cite themselves in similarToTitles or list their own author in similarToAuthors — a data-entry mistake, not a useful signal.",
+        "description": "2 book(s) cite themselves in similarToTitles or list their own author in similarToAuthors — a data-entry mistake, not a useful signal.",
         "fix": "Replace with a genuinely different similar title or author.",
         "anchor": "#tab-selfref"
       }
@@ -114,7 +114,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 49.302564102564105
+          "subscore": 50.08991694628876
         }
       ]
     },
@@ -159,7 +159,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 63.646197676966906
+          "subscore": 64.10790795078651
         }
       ]
     },
@@ -201,7 +201,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 72.9755862371247
+          "subscore": 73.2254920158968
         }
       ]
     },
@@ -242,7 +242,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 81.17413982029366
+          "subscore": 81.23791437614526
         }
       ]
     },
@@ -286,7 +286,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 81.17413982029366
+          "subscore": 81.23791437614526
         }
       ]
     },
@@ -328,7 +328,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 99.64444444444445
+          "subscore": 99.28888888888889
         }
       ]
     }
@@ -558,7 +558,7 @@
     "alreadyReadInPool": 0,
     "fiveStarSignalGaps": 0,
     "highLeverageGaps": 0,
-    "selfReferential": 1,
+    "selfReferential": 2,
     "brokenNearMiss": 77,
     "brokenNearMissTouchingFiveStar": 0,
     "brokenOrphaned": 382,
@@ -581,6 +581,10 @@
       {
         "title": "Medium Raw: A Bloody Valentine to the World of Food and the People Who Cook",
         "author": "Anthony Bourdain"
+      },
+      {
+        "title": "The New Jim Crow: Mass Incarceration in the Age of Colorblindness",
+        "author": "Michelle Alexander"
       }
     ],
     "selfReferentialAuthor": [],
@@ -2979,6 +2983,17 @@
       {
         "title": "Medium Raw: A Bloody Valentine to the World of Food and the People Who Cook",
         "author": "Anthony Bourdain",
+        "score": 20,
+        "reasons": [
+          "self-referential similarToTitles/similarToAuthors entry"
+        ],
+        "locations": [
+          "candidate_pool/candidate-pool"
+        ]
+      },
+      {
+        "title": "The New Jim Crow: Mass Incarceration in the Age of Colorblindness",
+        "author": "Michelle Alexander",
         "score": 20,
         "reasons": [
           "self-referential similarToTitles/similarToAuthors entry"
