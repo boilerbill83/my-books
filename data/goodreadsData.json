@@ -500,7 +500,8 @@
         "In Ascension",
         "The Midnight Library (The Midnight World, #1)",
         "The Measure",
-        "The Invisible Life of Addie LaRue"
+        "The Invisible Life of Addie LaRue",
+        "Exit West"
       ],
       "similarToAuthors": [
         "V.E. Schwab",
@@ -2870,7 +2871,9 @@
       "similarToTitles": [
         "Tomorrow, and Tomorrow, and Tomorrow",
         "The Invisible Life of Addie LaRue",
-        "Daisy Jones & The Six"
+        "Daisy Jones & The Six",
+        "The Dutch House",
+        "Atonement"
       ],
       "similarToAuthors": [
         "Gabrielle Zevin",
@@ -3151,7 +3154,9 @@
       "similarToTitles": [
         "Project Hail Mary",
         "Seveneves",
-        "In Ascension"
+        "In Ascension",
+        "The Three-Body Problem (Remembrance of Earth’s Past, #1)",
+        "A Memory Called Empire (Teixcalaan, #1)"
       ],
       "similarToAuthors": [
         "Neal Stephenson",
@@ -9561,7 +9566,9 @@
       "similarToTitles": [
         "The Great Alone",
         "Where the Crawdads Sing",
-        "11/22/63"
+        "11/22/63",
+        "Lonesome Dove (Lonesome Dove, #1)",
+        "American Dirt"
       ],
       "similarToAuthors": [
         "Kristin Hannah",
@@ -12331,7 +12338,9 @@
       "similarToTitles": [
         "The Great Alone",
         "Where the Crawdads Sing",
-        "American Dirt"
+        "American Dirt",
+        "English Creek (Montana Trilogy)",
+        "11/22/63"
       ],
       "similarToAuthors": [
         "Kristin Hannah",
@@ -12888,7 +12897,8 @@
         "The Measure",
         "The Midnight Library (The Midnight World, #1)",
         "Little Children",
-        "Remarkably Bright Creatures"
+        "Remarkably Bright Creatures",
+        "Big Little Lies"
       ],
       "similarToAuthors": [
         "Shelby Van Pelt",
@@ -14078,7 +14088,9 @@
       "similarToTitles": [
         "American Dirt",
         "The Invisible Life of Addie LaRue",
-        "In Ascension"
+        "In Ascension",
+        "The Overstory",
+        "Beautiful World, Where Are You"
       ],
       "similarToAuthors": [
         "V.E. Schwab",
@@ -14320,7 +14332,9 @@
       "similarToTitles": [
         "The Egg",
         "The Invisible Life of Addie LaRue",
-        "The Midnight Library (The Midnight World, #1)"
+        "The Midnight Library (The Midnight World, #1)",
+        "The Measure",
+        "In Ascension"
       ],
       "similarToAuthors": [
         "V.E. Schwab",
@@ -18483,7 +18497,8 @@
         "Raised in Captivity: Fictional Nonfiction",
         "Clusterf*ck",
         "Lake Success",
-        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)"
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
+        "The Book of Dog: A Satire"
       ],
       "similarToAuthors": [
         "Chuck Klosterman",
@@ -26011,7 +26026,8 @@
         "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
         "I Wear the Black Hat: Grappling with Villains (Real and Imagined)",
         "Killing Yourself to Live: 85% of a True Story",
-        "Raised in Captivity: Fictional Nonfiction"
+        "Raised in Captivity: Fictional Nonfiction",
+        "Fargo Rock City: A Heavy Metal Odyssey in Rural North Dakota"
       ],
       "similarToAuthors": [
         "Jeff Pearlman",
@@ -38208,7 +38224,9 @@
       "similarToTitles": [
         "The Bomber Mafia: A Dream, a Temptation, and the Longest Night of the Second World War",
         "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
-        "Evicted: Poverty and Profit in the American City"
+        "Evicted: Poverty and Profit in the American City",
+        "The New Jim Crow: Mass Incarceration in the Age of Colorblindness",
+        "Just Mercy: A Story of Justice and Redemption"
       ],
       "similarToAuthors": [
         "Michael Lewis",
@@ -38271,6 +38289,13 @@
         "Jon Krakauer",
         "David Grann"
       ],
+      "similarToTitles": [
+        "Into Thin Air",
+        "A Walk in the Woods: Rediscovering America on the Appalachian Trail",
+        "The Lost City of Z: A Tale of Deadly Obsession in the Amazon",
+        "Endurance: Shackleton's Incredible Voyage",
+        "The Wager: A Tale of Shipwreck, Mutiny and Murder"
+      ],
       "tones": ["atmospheric", "compulsive"], "themeToneReviewed": true
     },
     {
@@ -38291,6 +38316,13 @@
       "dnf": false,
       "similarToAuthors": [
         "Ted Conover"
+      ],
+      "similarToTitles": [
+        "American Prison: A Reporter's Undercover Journey into the Business of Punishment",
+        "Just Mercy: A Story of Justice and Redemption",
+        "The New Jim Crow: Mass Incarceration in the Age of Colorblindness",
+        "Evicted: Poverty and Profit in the American City",
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto"
       ],
       "tones": ["dark", "funny"], "themeToneReviewed": true
     },
@@ -38316,6 +38348,13 @@
         "Lee Child",
         "David Baldacci"
       ],
+      "similarToTitles": [
+        "Along Came a Spider (Alex Cross, #1)",
+        "Kiss the Girls (Alex Cross, #2)",
+        "The Perfect Assassin (Doc Savage, #1)",
+        "The President Is Missing",
+        "The Broker"
+      ],
       "tones": ["twisty", "compulsive"], "themeToneReviewed": true
     },
     {
@@ -38338,6 +38377,13 @@
         "Taylor Jenkins Reid",
         "Emma Straub"
       ],
+      "similarToTitles": [
+        "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
+        "Educated",
+        "Tomorrow, and Tomorrow, and Tomorrow",
+        "The Storied Life of A.J. Fikry",
+        "Remarkably Bright Creatures"
+      ],
       "tones": ["heartwarming", "thoughtful"], "themeToneReviewed": true
     },
     {
@@ -38359,6 +38405,13 @@
       "similarToAuthors": [
         "Andy Weir",
         "Max Brooks"
+      ],
+      "similarToTitles": [
+        "The Martian",
+        "Project Hail Mary",
+        "We Are Legion (We Are Bob) (Bobiverse, #1)",
+        "Artemis",
+        "Starter Villain"
       ],
       "tones": ["funny", "compulsive"], "themeToneReviewed": true
     },
@@ -38404,6 +38457,13 @@
         "Jeff Pearlman",
         "Bill Bryson"
       ],
+      "similarToTitles": [
+        "Fargo Rock City: A Heavy Metal Odyssey in Rural North Dakota",
+        "Chuck Klosterman IV: A Decade of Curious People and Dangerous Ideas",
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "Killing Yourself to Live: 85% of a True Story",
+        "I Wear the Black Hat: Grappling with Villains (Real and Imagined)"
+      ],
       "tones": ["conversational", "thoughtful"], "themeToneReviewed": true
     },
     {
@@ -38425,6 +38485,13 @@
       "similarToAuthors": [
         "Phil Knight",
         "Jeff Pearlman"
+      ],
+      "similarToTitles": [
+        "Shoe Dog",
+        "Molly's Game: From Hollywood's Elite to Wall Street's Billionaire Boys Club, My High-Stakes Adventure in the World of Underground Poker",
+        "A Life in Parts",
+        "Yearbook",
+        "Open"
       ],
       "tones": ["funny", "conversational"], "themeToneReviewed": false
     }
