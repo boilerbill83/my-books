@@ -1,9 +1,9 @@
 {
   "date": "2026-08-01",
-  "generatedAt": "2026-08-01T04:06:58.435Z",
+  "generatedAt": "2026-08-01T04:14:02.556Z",
   "totalBooks": 1126,
   "qualityScore": {
-    "score": 84,
+    "score": 89,
     "components": [
       {
         "key": "criticalHealth",
@@ -33,7 +33,7 @@
         "key": "hygiene",
         "label": "Data Hygiene",
         "weight": 0.4,
-        "subscore": 86.58058608058607
+        "subscore": 100
       }
     ],
     "impediments": [
@@ -44,22 +44,6 @@
         "description": "Average Quality Score across all 31 tracked fields is 94.4% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
         "fix": "See the Field Population table, sorted by Quality Score, for every field below 90%.",
         "anchor": "#fieldPopulationSection"
-      },
-      {
-        "count": 119,
-        "pointsLost": 3.7,
-        "name": "Orphaned similarToTitles references",
-        "description": "119 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (2.2% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
-        "fix": "Add the missing books to the dataset where practical, or confirm the reference is intentionally external.",
-        "anchor": "#tab-brokenrefs"
-      },
-      {
-        "count": 26,
-        "pointsLost": 1.6,
-        "name": "Broken similarToTitles references (candidate-to-candidate)",
-        "description": "26 near-miss reference(s) between books that aren't 5★ reads — lower live-scoring impact, but still fixable typos or subtitle truncations.",
-        "fix": "Correct each reference to the exact title string in the dataset.",
-        "anchor": "#tab-brokenrefs"
       },
       {
         "count": 5,
@@ -76,7 +60,7 @@
       "key": "current",
       "label": "Current",
       "actions": [],
-      "score": 84,
+      "score": 89,
       "components": [
         {
           "key": "criticalHealth",
@@ -106,7 +90,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 86.58058608058607
+          "subscore": 100
         }
       ]
     },
@@ -121,7 +105,7 @@
         "Backfill dismissReason labels for the handful of dismissed books that have a reasonCode but no label — a small, finite, fully in-house fix.",
         "Close the last-mile gaps on similarToAuthors/themes/similarToTitles/ratingsCount — a small number of books account for the remaining ~1% below 100%."
       ],
-      "score": 87,
+      "score": 91,
       "components": [
         {
           "key": "criticalHealth",
@@ -151,7 +135,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 90.62820512820512
+          "subscore": 100
         }
       ]
     },
@@ -163,7 +147,7 @@
         "Top of the list: \"Blood, Bones, and Butter\" (cited by 20 different food-memoir books — by far the single highest-leverage addition), \"Kitchen Confidential\" (7), \"The Midrange Theory\" (5), \"Dreamland\" and \"The New Jim Crow\" (4 each).",
         "Each addition directly serves the BBRE-quality goal too — these are books the existing library already implicitly vouches for by citing them repeatedly as \"similar,\" so they're likely to be good recommendations once added, not just data-quality filler."
       ],
-      "score": 90,
+      "score": 91,
       "components": [
         {
           "key": "criticalHealth",
@@ -193,7 +177,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 98.42490842490844
+          "subscore": 100
         }
       ]
     },
@@ -551,9 +535,9 @@
     "fiveStarSignalGaps": 0,
     "highLeverageGaps": 0,
     "selfReferential": 0,
-    "brokenNearMiss": 26,
+    "brokenNearMiss": 0,
     "brokenNearMissTouchingFiveStar": 0,
-    "brokenOrphaned": 119,
+    "brokenOrphaned": 0,
     "nonCanonicalTotal": 0,
     "promoteCandidateCount": 0,
     "nonCanonicalTonesTotal": 0,
@@ -571,735 +555,8 @@
     "highLeverageGaps": [],
     "selfReferentialTitle": [],
     "selfReferentialAuthor": [],
-    "brokenNearMiss": [
-      {
-        "from": "Spying on the South: Travels with Frederick Law Olmsted in a Fractured Land",
-        "ref": "Blood and Thunder",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "My Thoughts Exactly",
-        "ref": "Becoming",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Twilight of the Gods: A Journey to the End of Classic Rock",
-        "ref": "But What If We're Wrong?",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Fraternity: An Inside Look at a Year of College Boys Becoming Men",
-        "ref": "Dreamland",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Smart Baseball: The Story Behind the Old Stats That Are Ruining the Game, the New Ones That Are Running It, and the Right Way to Think About Baseball",
-        "ref": "Moneyball",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Smart Baseball: The Story Behind the Old Stats That Are Ruining the Game, the New Ones That Are Running It, and the Right Way to Think About Baseball",
-        "ref": "Astroball",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Smart Baseball: The Story Behind the Old Stats That Are Ruining the Game, the New Ones That Are Running It, and the Right Way to Think About Baseball",
-        "ref": "The MVP Machine",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Apprentice: My Life in the Kitchen",
-        "ref": "Blood Bones and Butter",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Reckless Road: Guns N' Roses and the Making of Appetite for Destruction: Author Autographed Edition!",
-        "ref": "The Dirt",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Captain: The Journey of Derek Jeter",
-        "ref": "The Captain (Lou Gehrig)",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Power Ball: Anatomy of a Modern Baseball Game",
-        "ref": "Moneyball",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Power Ball: Anatomy of a Modern Baseball Game",
-        "ref": "The MVP Machine",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Power Ball: Anatomy of a Modern Baseball Game",
-        "ref": "Astroball",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Setting the Table: The Transforming Power of Hospitality in Business",
-        "ref": "The Soul of a Chef",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Recovering: Intoxication and Its Aftermath",
-        "ref": "Hunger: A Memoir",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Fourth Age: Smart Robots, Conscious Computers, and the Future of Humanity",
-        "ref": "Superintelligence",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "I Don't Care if We Never Get Back: 30 Games in 30 Days on the Best Worst Baseball Road Trip Ever",
-        "ref": "Moneyball",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "I Don't Care if We Never Get Back: 30 Games in 30 Days on the Best Worst Baseball Road Trip Ever",
-        "ref": "The Wax Pack",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Spaced Out: How the NBA's Three-Point Revolution Changed Everything You Thought You Knew About Basketball",
-        "ref": "The Victory Machine",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Come Up: An Oral History of the Rise of Hip-Hop",
-        "ref": "The Big Payback",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Coming Wave: Technology, Power, and the Twenty-first Century's Greatest Dilemma",
-        "ref": "Superintelligence",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops",
-        "ref": "The Last Shot",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops",
-        "ref": "Boys Among Men",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Ugly Love",
-        "ref": "The Notebook",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "When Crack Was King: A People's History of a Misunderstood Era",
-        "ref": "Dreamland",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Where Are Your Boys Tonight?: The Oral History of Emo's Mainstream Explosion 1999-2008",
-        "ref": "Twilight of the Gods",
-        "touchesFiveStar": false
-      }
-    ],
-    "brokenOrphaned": [
-      {
-        "from": "The Last Pirate of New York: A Ghost Ship, a Killer, and the Birth of a Gangster Nation",
-        "ref": "Thunderstruck",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Spying on the South: Travels with Frederick Law Olmsted in a Fractured Land",
-        "ref": "Confederates in the Attic",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Spying on the South: Travels with Frederick Law Olmsted in a Fractured Land",
-        "ref": "Travels with Charley",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "My Thoughts Exactly",
-        "ref": "Girl in a Band",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "My Thoughts Exactly",
-        "ref": "Hunger Makes Me a Modern Girl",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Grind: Inside Baseball's Endless Season",
-        "ref": "The Art of a Beautiful Game",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Grind: Inside Baseball's Endless Season",
-        "ref": "The Arm",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Grind: Inside Baseball's Endless Season",
-        "ref": "Four Days to Glory",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Grind: Inside Baseball's Endless Season",
-        "ref": "Boys of Summer",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Devil in the White City",
-        "ref": "The River of Doubt",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Devil in the White City",
-        "ref": "American Fire",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Devil in the White City",
-        "ref": "The Wrath of Grapes",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Twilight of the Gods: A Journey to the End of Classic Rock",
-        "ref": "Your Favorite Band Is Killing Me",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Twilight of the Gods: A Journey to the End of Classic Rock",
-        "ref": "Love Is a Mix Tape",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Twilight of the Gods: A Journey to the End of Classic Rock",
-        "ref": "Meet Me in the Bathroom",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Roadfood",
-        "ref": "The United States of Arugula",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Roadfood",
-        "ref": "America Eats",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Roadfood",
-        "ref": "Eating My Way Through Italy",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Fraternity: An Inside Look at a Year of College Boys Becoming Men",
-        "ref": "Missoula",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Fraternity: An Inside Look at a Year of College Boys Becoming Men",
-        "ref": "Among the Thugs",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Smart Baseball: The Story Behind the Old Stats That Are Ruining the Game, the New Ones That Are Running It, and the Right Way to Think About Baseball",
-        "ref": "The Signal and the Noise",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Hungry Monkey: A Food-Loving Father's Quest to Raise an Adventurous Eater",
-        "ref": "The Omnivore's Dilemma",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Hungry Monkey: A Food-Loving Father's Quest to Raise an Adventurous Eater",
-        "ref": "An Everlasting Meal",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Hungry Monkey: A Food-Loving Father's Quest to Raise an Adventurous Eater",
-        "ref": "In Defense of Food",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Hungry Monkey: A Food-Loving Father's Quest to Raise an Adventurous Eater",
-        "ref": "Pretty Good Number One",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Apprentice: My Life in the Kitchen",
-        "ref": "My Life in France",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Apprentice: My Life in the Kitchen",
-        "ref": "Tender at the Bone",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Reckless Road: Guns N' Roses and the Making of Appetite for Destruction: Author Autographed Edition!",
-        "ref": "Slash",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Reckless Road: Guns N' Roses and the Making of Appetite for Destruction: Author Autographed Edition!",
-        "ref": "Scar Tissue",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Reckless Road: Guns N' Roses and the Making of Appetite for Destruction: Author Autographed Edition!",
-        "ref": "Please Kill Me",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Vengeful (Villains, #2)",
-        "ref": "Vicious",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Vengeful (Villains, #2)",
-        "ref": "Six of Crows",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Gearheads: The Turbulent Rise of Robotic Sports",
-        "ref": "Hackers",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Gearheads: The Turbulent Rise of Robotic Sports",
-        "ref": "Soul of a New Machine",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Bill & Dave: How Hewlett and Packard Built the World's Greatest Company",
-        "ref": "Hackers",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Bill & Dave: How Hewlett and Packard Built the World's Greatest Company",
-        "ref": "The Intel Trinity",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Say You're Sorry (Morgan Dane, #1)",
-        "ref": "Find Her",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Say You're Sorry (Morgan Dane, #1)",
-        "ref": "Pieces of Her",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Say You're Sorry (Morgan Dane, #1)",
-        "ref": "The Perfect Husband",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Say You're Sorry (Morgan Dane, #1)",
-        "ref": "Gone Too Far",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Captain: The Journey of Derek Jeter",
-        "ref": "The Last Boy",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Captain: The Journey of Derek Jeter",
-        "ref": "Koufax",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Captain: The Journey of Derek Jeter",
-        "ref": "Roger Maris: Baseball's Forgotten Hero",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Who Is Michael Ovitz?",
-        "ref": "The Kid Stays in the Picture",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Who Is Michael Ovitz?",
-        "ref": "Down and Dirty Pictures",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Who Is Michael Ovitz?",
-        "ref": "You'll Never Eat Lunch in This Town Again",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Who Is Michael Ovitz?",
-        "ref": "Leading",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Setting the Table: The Transforming Power of Hospitality in Business",
-        "ref": "Unreasonable Hospitality",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Setting the Table: The Transforming Power of Hospitality in Business",
-        "ref": "Pour Your Heart Into It",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Setting the Table: The Transforming Power of Hospitality in Business",
-        "ref": "Delivering Happiness",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Recovering: Intoxication and Its Aftermath",
-        "ref": "Drinking: A Love Story",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Recovering: Intoxication and Its Aftermath",
-        "ref": "Lit",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Recovering: Intoxication and Its Aftermath",
-        "ref": "The Empathy Exams",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Fourth Age: Smart Robots, Conscious Computers, and the Future of Humanity",
-        "ref": "Life 3.0",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Fourth Age: Smart Robots, Conscious Computers, and the Future of Humanity",
-        "ref": "Homo Deus",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Fourth Age: Smart Robots, Conscious Computers, and the Future of Humanity",
-        "ref": "The Singularity Is Near",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Mexican Tree Duck (C.W. Sughrue #2)",
-        "ref": "Bordersnakes",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Mexican Tree Duck (C.W. Sughrue #2)",
-        "ref": "The Big Lebowski",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Mexican Tree Duck (C.W. Sughrue #2)",
-        "ref": "Two for Texas",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Home Game: An Accidental Guide to Fatherhood",
-        "ref": "The Year of Living Biblically",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Home Game: An Accidental Guide to Fatherhood",
-        "ref": "My Age of Anxiety",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Home Game: An Accidental Guide to Fatherhood",
-        "ref": "Dad's Maybe Book",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Big Shots: The Men Behind the Booze",
-        "ref": "Last Call",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Big Shots: The Men Behind the Booze",
-        "ref": "And a Bottle of Rum",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Big Shots: The Men Behind the Booze",
-        "ref": "Bourbon Empire",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Big Shots: The Men Behind the Booze",
-        "ref": "The Prohibition Hangover",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A History of Basketball in Fifteen Sneakers",
-        "ref": "Sole Influence",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A History of Basketball in Fifteen Sneakers",
-        "ref": "Where'd You Get Those?",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A History of Basketball in Fifteen Sneakers",
-        "ref": "The Breaks of the Game",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "All the Light We Cannot See",
-        "ref": "The Tattooist of Auschwitz",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "All the Light We Cannot See",
-        "ref": "The Alice Network",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "All the Light We Cannot See",
-        "ref": "The Rose Code",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Apples Never Fall",
-        "ref": "Little Fires Everywhere",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Apples Never Fall",
-        "ref": "The Family Upstairs",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Blood and Fire: The Unbelievable Real-Life Story of Wrestling's Original Sheik",
-        "ref": "Have a Nice Day",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Blood and Fire: The Unbelievable Real-Life Story of Wrestling's Original Sheik",
-        "ref": "The Death of WCW",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Blood and Fire: The Unbelievable Real-Life Story of Wrestling's Original Sheik",
-        "ref": "Foley Is Good",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Blood and Fire: The Unbelievable Real-Life Story of Wrestling's Original Sheik",
-        "ref": "The Squared Circle",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Endgame: An Insurgency on Wall Street",
-        "ref": "Hedge Hogs",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Fourth Wing",
-        "ref": "A Court of Thorns and Roses",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Fourth Wing",
-        "ref": "From Blood and Ash",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Fourth Wing",
-        "ref": "The Name of the Wind",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Fourth Wing",
-        "ref": "Throne of Glass",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Number Go Up: Inside Crypto's Wild Rise and Staggering Fall",
-        "ref": "Easy Money",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Red Rising",
-        "ref": "The Hunger Games",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Red Rising",
-        "ref": "Divergent",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Spaced Out: How the NBA's Three-Point Revolution Changed Everything You Thought You Knew About Basketball",
-        "ref": "Sprawlball",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Spaced Out: How the NBA's Three-Point Revolution Changed Everything You Thought You Knew About Basketball",
-        "ref": "Basketball and Other Things",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Come Up: An Oral History of the Rise of Hip-Hop",
-        "ref": "Can't Stop Won't Stop",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Come Up: An Oral History of the Rise of Hip-Hop",
-        "ref": "Check the Technique",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Come Up: An Oral History of the Rise of Hip-Hop",
-        "ref": "The Rap Year Book",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Coming Wave: Technology, Power, and the Twenty-first Century's Greatest Dilemma",
-        "ref": "AI Superpowers",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Coming Wave: Technology, Power, and the Twenty-first Century's Greatest Dilemma",
-        "ref": "Life 3.0",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Coming Wave: Technology, Power, and the Twenty-first Century's Greatest Dilemma",
-        "ref": "Human Compatible",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Ferryman",
-        "ref": "Altered Carbon",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Ferryman",
-        "ref": "The Passage",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Heaven & Earth Grocery Store",
-        "ref": "The Known World",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Heaven & Earth Grocery Store",
-        "ref": "Sing Unburied Sing",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Heaven & Earth Grocery Store",
-        "ref": "The Vanishing Half",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Heaven & Earth Grocery Store",
-        "ref": "The Underground Railroad",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops",
-        "ref": "A Season on the Brink",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops",
-        "ref": "The Soul of Basketball",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Roundabout Way: Stories From The Villages, Florida",
-        "ref": "Me Talk Pretty One Day",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Roundabout Way: Stories From The Villages, Florida",
-        "ref": "Lake Wobegon Days",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Roundabout Way: Stories From The Villages, Florida",
-        "ref": "I Was Told There'd Be Cake",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Roundabout Way: Stories From The Villages, Florida",
-        "ref": "The Wit and Wisdom",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Trillions: How a Band of Wall Street Renegades Invented the Index Fund and Changed Finance Forever",
-        "ref": "A Random Walk Down Wall Street",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Trillions: How a Band of Wall Street Renegades Invented the Index Fund and Changed Finance Forever",
-        "ref": "The Little Book of Common Sense Investing",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Ugly Love",
-        "ref": "It Ends with Us",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Ugly Love",
-        "ref": "Beautiful Disaster",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Ugly Love",
-        "ref": "After",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "When Crack Was King: A People's History of a Misunderstood Era",
-        "ref": "Chasing the Scream",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Where Are Your Boys Tonight?: The Oral History of Emo's Mainstream Explosion 1999-2008",
-        "ref": "Our Band Could Be Your Life",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Where Are Your Boys Tonight?: The Oral History of Emo's Mainstream Explosion 1999-2008",
-        "ref": "Love Is a Mix Tape",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Where Are Your Boys Tonight?: The Oral History of Emo's Mainstream Explosion 1999-2008",
-        "ref": "Meet Me in the Bathroom",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "House of Fidelity: The Rise of the Johnson Dynasty and the Company That Changed American Investing",
-        "ref": "The House of Morgan",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Body",
-        "ref": "The Green Mile",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Body",
-        "ref": "It",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "How to Know a Person: The Art of Seeing Others Deeply and Being Deeply Seen",
-        "ref": "The Second Mountain",
-        "touchesFiveStar": null
-      }
-    ],
+    "brokenNearMiss": [],
+    "brokenOrphaned": [],
     "promoteCandidates": [],
     "nonCanonicalThemes": [],
     "toneReviewCandidates": [],
