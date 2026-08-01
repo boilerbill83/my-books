@@ -6,6 +6,7 @@
         {
       "title": "Wrong Place Wrong Time",
       "author": "Gillian McAllister",
+      "bookId": "59947696",
       "type": "fiction",
       "year": 2022,
       "pages": 336,
@@ -36,6 +37,7 @@
     {
       "title": "The Last Flight",
       "author": "Julie Clark",
+      "bookId": "52652923",
       "type": "fiction",
       "year": 2020,
       "pages": 320,
@@ -66,6 +68,7 @@
         {
       "title": "The Only One Left",
       "author": "Riley Sager",
+      "bookId": "62703226",
       "type": "fiction",
       "year": 2023,
       "pages": 384,
@@ -96,6 +99,7 @@
     {
       "title": "Starter Villain",
       "author": "John Scalzi",
+      "bookId": "61885029",
       "type": "fiction",
       "year": 2023,
       "pages": 264,
@@ -126,6 +130,7 @@
     {
       "title": "Wool",
       "author": "Hugh Howey",
+      "bookId": "13453029",
       "type": "fiction",
       "year": 2012,
       "pages": 528,
@@ -156,6 +161,7 @@
     {
       "title": "The Drift",
       "author": "C.J. Tudor",
+      "bookId": "60965424",
       "type": "fiction",
       "year": 2023,
       "pages": 368,
@@ -187,6 +193,7 @@
     {
       "title": "The Passengers",
       "author": "John Marrs",
+      "bookId": "40718386",
       "type": "fiction",
       "year": 2019,
       "pages": 352,
@@ -218,6 +225,7 @@
     {
       "title": "Several People Are Typing",
       "author": "Calvin Kasulke",
+      "bookId": "54468020",
       "type": "fiction",
       "year": 2021,
       "pages": 256,
@@ -248,6 +256,7 @@
     {
       "title": "The Kaiju Preservation Society",
       "author": "John Scalzi",
+      "bookId": "57693406",
       "type": "fiction",
       "year": 2022,
       "pages": 272,
@@ -278,6 +287,7 @@
     {
       "title": "Empire of Pain",
       "author": "Patrick Radden Keefe",
+      "bookId": "43868109",
       "type": "nonfiction",
       "year": 2021,
       "pages": 560,
@@ -308,6 +318,7 @@
     {
       "title": "The Raging 2020s",
       "author": "Alec Ross",
+      "bookId": "56347315",
       "type": "nonfiction",
       "year": 2021,
       "pages": 304,
@@ -338,6 +349,7 @@
     {
       "title": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
       "author": "Gabrielle Hamilton",
+      "bookId": "8459594",
       "type": "nonfiction",
       "year": 2011,
       "pages": 304,
@@ -371,6 +383,7 @@
     {
       "title": "Kitchen Confidential",
       "author": "Anthony Bourdain",
+      "bookId": "33313",
       "type": "nonfiction",
       "year": 2000,
       "pages": 312,
@@ -404,6 +417,7 @@
     {
       "title": "Medium Raw: A Bloody Valentine to the World of Food and the People Who Cook",
       "author": "Anthony Bourdain",
+      "bookId": "40409969",
       "type": "nonfiction",
       "year": 2010,
       "pages": 304,
@@ -437,6 +451,7 @@
     {
       "title": "The Midrange Theory",
       "author": "Seth Partnow",
+      "bookId": "57136758",
       "type": "nonfiction",
       "year": 2021,
       "pages": 288,
@@ -470,6 +485,7 @@
     {
       "title": "Dreamland: The True Tale of America's Opiate Epidemic",
       "author": "Sam Quinones",
+      "bookId": "22529381",
       "type": "nonfiction",
       "year": 2015,
       "pages": 384,
@@ -503,6 +519,7 @@
     {
       "title": "The New Jim Crow: Mass Incarceration in the Age of Colorblindness",
       "author": "Michelle Alexander",
+      "bookId": "6792458",
       "type": "nonfiction",
       "year": 2010,
       "pages": 290,
@@ -536,6 +553,7 @@
     {
       "title": "The Book of Joe: Trying Not to Suck at Baseball and Life",
       "author": "Joe Maddon",
+      "bookId": "60568501",
       "type": "nonfiction",
       "year": 2022,
       "pages": 384,
@@ -569,6 +587,7 @@
     {
       "title": "The Emperor of All Maladies: A Biography of Cancer",
       "author": "Siddhartha Mukherjee",
+      "bookId": "7170627",
       "type": "nonfiction",
       "year": 2010,
       "pages": 592,
@@ -602,6 +621,7 @@
     {
       "title": "Being Mortal: Medicine and What Matters in the End",
       "author": "Atul Gawande",
+      "bookId": "40015533",
       "type": "nonfiction",
       "year": 2014,
       "pages": 282,
@@ -635,6 +655,7 @@
     {
       "title": "Fast Food Nation: The Dark Side of the All-American Meal",
       "author": "Eric Schlosser",
+      "bookId": "1097",
       "type": "nonfiction",
       "year": 2001,
       "pages": 288,
@@ -668,6 +689,7 @@
     {
       "title": "The MVP Machine: How Baseball's New Nonconformists Are Using Data to Build Better Players",
       "author": "Ben Lindbergh",
+      "bookId": "42283858",
       "type": "nonfiction",
       "year": 2019,
       "pages": 373,
@@ -701,6 +723,7 @@
     {
       "title": "The Immortal Life of Henrietta Lacks",
       "author": "Rebecca Skloot",
+      "bookId": "6493208",
       "type": "nonfiction",
       "year": 2010,
       "pages": 370,
@@ -734,6 +757,7 @@
     {
       "title": "Dad Is Fat",
       "author": "Jim Gaffigan",
+      "bookId": "16141924",
       "type": "nonfiction",
       "year": 2013,
       "pages": 288,
@@ -767,6 +791,7 @@
     {
       "title": "Bringing Down the House: The Inside Story of Six M.I.T. Students Who Took Vegas for Millions",
       "author": "Ben Mezrich",
+      "bookId": "502278",
       "type": "nonfiction",
       "year": 2002,
       "pages": 272,

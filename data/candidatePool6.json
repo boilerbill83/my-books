@@ -3,6 +3,7 @@
     {
       "title": "Moneyball: The Art of Winning an Unfair Game",
       "author": "Michael Lewis",
+      "bookId": "1301",
       "type": "nonfiction",
       "year": 2003,
       "pages": 317,
@@ -32,6 +33,7 @@
     {
       "title": "Boomerang: Travels in the New Third World",
       "author": "Michael Lewis",
+      "bookId": "13707738",
       "type": "nonfiction",
       "year": 2011,
       "pages": 224,
@@ -61,6 +63,7 @@
             {
       "title": "Eleven Rings: The Soul of Success",
       "author": "Phil Jackson",
+      "bookId": "16158542",
       "type": "nonfiction",
       "year": 2013,
       "pages": 368,
@@ -91,6 +94,7 @@
     {
       "title": "Showtime: Magic, Kareem, Riley, and the Los Angeles Lakers Dynasty of the 1980s",
       "author": "Jeff Pearlman",
+      "bookId": "15843913",
       "type": "nonfiction",
       "year": 2013,
       "pages": 432,
@@ -120,6 +124,7 @@
             {
       "title": "Outliers: The Story of Success",
       "author": "Malcolm Gladwell",
+      "bookId": "3228917",
       "type": "nonfiction",
       "year": 2008,
       "pages": 309,
@@ -150,6 +155,7 @@
     {
       "title": "Blink: The Power of Thinking Without Thinking",
       "author": "Malcolm Gladwell",
+      "bookId": "40102",
       "type": "nonfiction",
       "year": 2005,
       "pages": 296,
@@ -179,6 +185,7 @@
     {
       "title": "David and Goliath: Underdogs, Misfits, and the Art of Battling Giants",
       "author": "Malcolm Gladwell",
+      "bookId": "15751404",
       "type": "nonfiction",
       "year": 2013,
       "pages": 305,
@@ -208,6 +215,7 @@
     {
       "title": "What the Dog Saw: And Other Adventures",
       "author": "Malcolm Gladwell",
+      "bookId": "6516450",
       "type": "nonfiction",
       "year": 2009,
       "pages": 410,
@@ -238,6 +246,7 @@
                 {
       "title": "An Unfinished Love Story: A Personal History of the 1960s",
       "author": "Doris Kearns Goodwin",
+      "bookId": "180686614",
       "type": "nonfiction",
       "year": 2024,
       "pages": 400,
@@ -268,6 +277,7 @@
     {
       "title": "An Ugly Truth: Inside Facebook's Battle for Domination",
       "author": "Sheera Frenkel",
+      "bookId": "53487386",
       "type": "nonfiction",
       "year": 2021,
       "pages": 352,
@@ -298,6 +308,7 @@
         {
       "title": "After Steve: How Apple Became a Trillion-Dollar Company and Lost Its Soul",
       "author": "Tripp Mickle",
+      "bookId": "58756678",
       "type": "nonfiction",
       "year": 2022,
       "pages": 448,
@@ -328,6 +339,7 @@
     {
       "title": "Disrupted: My Misadventure in the Start-Up Bubble",
       "author": "Dan Lyons",
+      "bookId": "26030825",
       "type": "nonfiction",
       "year": 2016,
       "pages": 272,
@@ -358,6 +370,7 @@
         {
       "title": "The Push",
       "author": "Ashley Audrain",
+      "bookId": "52957876",
       "type": "fiction",
       "year": 2021,
       "pages": 320,
@@ -389,6 +402,7 @@
     {
       "title": "Anatomy of a Scandal",
       "author": "Sarah Vaughan",
+      "bookId": "32313478",
       "type": "fiction",
       "year": 2018,
       "pages": 384,
@@ -420,6 +434,7 @@
     {
       "title": "A Good Girl's Guide to Murder (A Good Girl's Guide to Murder, #1)",
       "author": "Holly Jackson",
+      "bookId": "40002024",
       "type": "fiction",
       "year": 2019,
       "pages": 392,
@@ -451,6 +466,7 @@
     {
       "title": "Good Girl Bad Blood (A Good Girl's Guide to Murder, #2)",
       "author": "Holly Jackson",
+      "bookId": "53121648",
       "type": "fiction",
       "year": 2020,
       "pages": 400,
@@ -482,6 +498,7 @@
     {
       "title": "The Dry (Aaron Falk, #1)",
       "author": "Jane Harper",
+      "bookId": "28818783",
       "type": "fiction",
       "year": 2016,
       "pages": 326,
@@ -513,6 +530,7 @@
     {
       "title": "Big Little Lies",
       "author": "Liane Moriarty",
+      "bookId": "19486412",
       "type": "fiction",
       "year": 2014,
       "pages": 460,
@@ -544,6 +562,7 @@
     {
       "title": "The Last Anniversary",
       "author": "Liane Moriarty",
+      "bookId": "14327",
       "type": "fiction",
       "year": 2004,
       "pages": 395,
@@ -575,6 +594,7 @@
     {
       "title": "Ordinary Grace",
       "author": "William Kent Krueger",
+      "bookId": "16091254",
       "type": "fiction",
       "year": 2013,
       "pages": 306,
@@ -605,6 +625,7 @@
     {
       "title": "Ready Player One",
       "author": "Ernest Cline",
+      "bookId": "9969571",
       "type": "fiction",
       "year": 2011,
       "pages": 374,
@@ -636,6 +657,7 @@
     {
       "title": "The Hitchhiker's Guide to the Galaxy (Hitchhiker's Guide to the Galaxy, #1)",
       "author": "Douglas Adams",
+      "bookId": "386162",
       "type": "fiction",
       "year": 1979,
       "pages": 224,
@@ -667,6 +689,7 @@
     {
       "title": "Ender's Game (Ender's Game, #1)",
       "author": "Orson Scott Card",
+      "bookId": "375802",
       "type": "fiction",
       "year": 1985,
       "pages": 226,
@@ -698,6 +721,7 @@
         {
       "title": "The Long Way to a Small, Angry Planet (Wayfarers, #1)",
       "author": "Becky Chambers",
+      "bookId": "22822858",
       "type": "fiction",
       "year": 2014,
       "pages": 404,
@@ -728,6 +752,7 @@
     {
       "title": "The House in the Cerulean Sea",
       "author": "TJ Klune",
+      "bookId": "45810597",
       "type": "fiction",
       "year": 2020,
       "pages": 400,
@@ -759,6 +784,7 @@
     {
       "title": "A Memory Called Empire (Teixcalaan, #1)",
       "author": "Arkady Martine",
+      "bookId": "37794149",
       "type": "fiction",
       "year": 2019,
       "pages": 462,
@@ -789,6 +815,7 @@
     {
       "title": "The First Fifteen Lives of Harry August",
       "author": "Claire North",
+      "bookId": "20706317",
       "type": "fiction",
       "year": 2014,
       "pages": 405,
@@ -820,6 +847,7 @@
     {
       "title": "This Is How You Lose the Time War",
       "author": "Amal El-Mohtar",
+      "bookId": "38527183",
       "type": "fiction",
       "year": 2019,
       "pages": 208,
@@ -850,6 +878,7 @@
     {
       "title": "People We Meet on Vacation",
       "author": "Emily Henry",
+      "bookId": "54189398",
       "type": "fiction",
       "year": 2021,
       "pages": 384,
@@ -880,6 +909,7 @@
     {
       "title": "Beach Read",
       "author": "Emily Henry",
+      "bookId": "52867387",
       "type": "fiction",
       "year": 2020,
       "pages": 384,
@@ -910,6 +940,7 @@
     {
       "title": "The Dutch House",
       "author": "Ann Patchett",
+      "bookId": "44318414",
       "type": "fiction",
       "year": 2019,
       "pages": 352,
@@ -940,6 +971,7 @@
     {
       "title": "The Overstory",
       "author": "Richard Powers",
+      "bookId": "40180098",
       "type": "fiction",
       "year": 2018,
       "pages": 502,
@@ -970,6 +1002,7 @@
     {
       "title": "Just Kids",
       "author": "Patti Smith",
+      "bookId": "341879",
       "type": "nonfiction",
       "year": 2010,
       "pages": 294,
@@ -1000,6 +1033,7 @@
     {
       "title": "Surrender: 40 Songs, One Story",
       "author": "Bono",
+      "bookId": "58951505",
       "type": "nonfiction",
       "year": 2022,
       "pages": 556,
@@ -1031,6 +1065,7 @@
     {
       "title": "Spare",
       "author": "Prince Harry",
+      "bookId": "60890308",
       "type": "nonfiction",
       "year": 2023,
       "pages": 416,
@@ -1062,6 +1097,7 @@
     {
       "title": "I'm Glad My Mom Died",
       "author": "Jennette McCurdy",
+      "bookId": "59364173",
       "type": "nonfiction",
       "year": 2022,
       "pages": 320,
@@ -1093,6 +1129,7 @@
     {
       "title": "Is Everyone Hanging Out Without Me? (And Other Concerns)",
       "author": "Mindy Kaling",
+      "bookId": "10335308",
       "type": "nonfiction",
       "year": 2011,
       "pages": 222,
@@ -1123,6 +1160,7 @@
     {
       "title": "A Man Called Ove",
       "author": "Fredrik Backman",
+      "bookId": "18774964",
       "type": "fiction",
       "year": 2012,
       "pages": 337,
@@ -1153,6 +1191,7 @@
         {
       "title": "The Warmth of Other Suns: The Epic Story of America's Great Migration",
       "author": "Isabel Wilkerson",
+      "bookId": "8171378",
       "type": "nonfiction",
       "year": 2010,
       "pages": 622,
@@ -1183,6 +1222,7 @@
     {
       "title": "I Feel Bad About My Neck: And Other Thoughts on Being a Woman",
       "author": "Nora Ephron",
+      "bookId": "16130",
       "type": "nonfiction",
       "year": 2006,
       "pages": 137,
@@ -1213,6 +1253,7 @@
     {
       "title": "Hunger: A Memoir of (My) Body",
       "author": "Roxane Gay",
+      "bookId": "28818783",
       "type": "nonfiction",
       "year": 2017,
       "pages": 306,
@@ -1243,6 +1284,7 @@
     {
       "title": "Conversations with Friends",
       "author": "Sally Rooney",
+      "bookId": "32187419",
       "type": "fiction",
       "year": 2017,
       "pages": 321,
