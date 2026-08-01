@@ -1,9 +1,9 @@
 {
   "date": "2026-08-01",
-  "generatedAt": "2026-08-01T03:40:50.715Z",
+  "generatedAt": "2026-08-01T04:01:13.426Z",
   "totalBooks": 1126,
   "qualityScore": {
-    "score": 71,
+    "score": 77,
     "components": [
       {
         "key": "criticalHealth",
@@ -33,18 +33,10 @@
         "key": "hygiene",
         "label": "Data Hygiene",
         "weight": 0.4,
-        "subscore": 55.419016138440604
+        "subscore": 69.71549192364171
       }
     ],
     "impediments": [
-      {
-        "count": 381,
-        "pointsLost": 12.7,
-        "name": "Orphaned similarToTitles references",
-        "description": "381 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (7.4% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
-        "fix": "Add the missing books to the dataset where practical, or confirm the reference is intentionally external.",
-        "anchor": "#tab-brokenrefs"
-      },
       {
         "count": 8,
         "pointsLost": 10.5,
@@ -54,10 +46,18 @@
         "anchor": "#fieldPopulationSection"
       },
       {
-        "count": 77,
-        "pointsLost": 5.1,
+        "count": 273,
+        "pointsLost": 8.6,
+        "name": "Orphaned similarToTitles references",
+        "description": "273 reference(s) with no close match anywhere in the dataset — mostly legitimate citations to books never added, but at this volume (5.0% of all citations) it's a real completeness gap on the similarToTitles signal, not nothing.",
+        "fix": "Add the missing books to the dataset where practical, or confirm the reference is intentionally external.",
+        "anchor": "#tab-brokenrefs"
+      },
+      {
+        "count": 56,
+        "pointsLost": 3.5,
         "name": "Broken similarToTitles references (candidate-to-candidate)",
-        "description": "77 near-miss reference(s) between books that aren't 5★ reads — lower live-scoring impact, but still fixable typos or subtitle truncations.",
+        "description": "56 near-miss reference(s) between books that aren't 5★ reads — lower live-scoring impact, but still fixable typos or subtitle truncations.",
         "fix": "Correct each reference to the exact title string in the dataset.",
         "anchor": "#tab-brokenrefs"
       },
@@ -76,7 +76,7 @@
       "key": "current",
       "label": "Current",
       "actions": [],
-      "score": 71,
+      "score": 77,
       "components": [
         {
           "key": "criticalHealth",
@@ -106,7 +106,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 55.419016138440604
+          "subscore": 69.71549192364171
         }
       ]
     },
@@ -121,7 +121,7 @@
         "Backfill dismissReason labels for the handful of dismissed books that have a reasonCode but no label — a small, finite, fully in-house fix.",
         "Close the last-mile gaps on similarToAuthors/themes/similarToTitles/ratingsCount — a small number of books account for the remaining ~1% below 100%."
       ],
-      "score": 78,
+      "score": 82,
       "components": [
         {
           "key": "criticalHealth",
@@ -151,7 +151,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 68.14505152634649
+          "subscore": 78.45264317180617
         }
       ]
     },
@@ -163,7 +163,7 @@
         "Top of the list: \"Blood, Bones, and Butter\" (cited by 20 different food-memoir books — by far the single highest-leverage addition), \"Kitchen Confidential\" (7), \"The Midrange Theory\" (5), \"Dreamland\" and \"The New Jim Crow\" (4 each).",
         "Each addition directly serves the BBRE-quality goal too — these are books the existing library already implicitly vouches for by citing them repeatedly as \"similar,\" so they're likely to be good recommendations once added, not just data-quality filler."
       ],
-      "score": 81,
+      "score": 85,
       "components": [
         {
           "key": "criticalHealth",
@@ -193,7 +193,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 76.42232160217772
+          "subscore": 86.26651982378854
         }
       ]
     },
@@ -204,7 +204,7 @@
         "Extend Phase 2 to the next ~70 most-cited missing titles (cumulative top 100), reaching 186 of 463 citations resolved (40%).",
         "Beyond this point, each further addition resolves only 1 citation (330 of the 377 unique orphaned titles are cited exactly once) — genuinely diminishing returns, not a reason to stop, but a reason to expect this phase to taper off rather than reach zero."
       ],
-      "score": 84,
+      "score": 88,
       "components": [
         {
           "key": "criticalHealth",
@@ -234,7 +234,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 83.69628621427184
+          "subscore": 93.13325991189427
         }
       ]
     },
@@ -248,7 +248,7 @@
         "Extend enrich_isbn.py's scope to also backfill read-shelf isbn13 (currently to-read/candidate-only by design) and backfill publisher gaps via the Google Books lookup already used elsewhere.",
         "dateRead and isbn gaps are partially legacy-import artifacts — worth a manual pass, but likely can't fully close (some original Goodreads exports may genuinely lack the field)."
       ],
-      "score": 89,
+      "score": 93,
       "components": [
         {
           "key": "criticalHealth",
@@ -278,7 +278,7 @@
           "key": "hygiene",
           "label": "Data Hygiene",
           "weight": 0.4,
-          "subscore": 83.69628621427184
+          "subscore": 93.13325991189427
         }
       ]
     },
@@ -551,16 +551,16 @@
     "fiveStarSignalGaps": 0,
     "highLeverageGaps": 0,
     "selfReferential": 0,
-    "brokenNearMiss": 77,
+    "brokenNearMiss": 56,
     "brokenNearMissTouchingFiveStar": 0,
-    "brokenOrphaned": 381,
+    "brokenOrphaned": 273,
     "nonCanonicalTotal": 0,
     "promoteCandidateCount": 0,
     "nonCanonicalTonesTotal": 0,
     "toneReviewCandidateCount": 0,
     "themeToneCollisions": 0,
     "themesOutOfRange": 0,
-    "similarOutOfRange": 3,
+    "similarOutOfRange": 0,
     "zeroPages": 1,
     "zeroRatingsCount": 18,
     "missingBookKey": 1
@@ -572,111 +572,6 @@
     "selfReferentialTitle": [],
     "selfReferentialAuthor": [],
     "brokenNearMiss": [
-      {
-        "from": "The Universal Baseball Association, Inc., J. Henry Waugh, Prop.",
-        "ref": "The Natural",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Origins of the Cornbread Mafia: A Memoir of Sorts",
-        "ref": "Cornbread Mafia",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Origins of the Cornbread Mafia: A Memoir of Sorts",
-        "ref": "Methland",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Origins of the Cornbread Mafia: A Memoir of Sorts",
-        "ref": "Dreamland",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Liftoff: Elon Musk and the Desperate Early Days That Launched SpaceX",
-        "ref": "The Space Barons",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "A Knock at Midnight: A Story of Hope, Justice, and Freedom",
-        "ref": "Just Mercy",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "A Knock at Midnight: A Story of Hope, Justice, and Freedom",
-        "ref": "The New Jim Crow",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "A People's History of the United States",
-        "ref": "The New Jim Crow",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Last Human",
-        "ref": "A Long Way to a Small Angry Planet",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Fentanyl, Inc.: How Rogue Chemists Are Creating the Deadliest Wave of the Opioid Epidemic",
-        "ref": "Dreamland",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "When Women Invented Television: The Untold Story of the Female Powerhouses Who Pioneered the Way We Watch Today",
-        "ref": "Seinfeldia",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Lucky Peach: Issue 1",
-        "ref": "Medium Raw",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Rise of the Warrior Cop: The Militarization of America's Police Forces",
-        "ref": "The New Jim Crow",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Rise of the Warrior Cop: The Militarization of America's Police Forces",
-        "ref": "Just Mercy",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Network Effect (The Murderbot Diaries, #5)",
-        "ref": "A Long Way to a Small Angry Planet",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Grinding It Out: The Making of McDonald's",
-        "ref": "Made in America",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Body: A Guide for Occupants",
-        "ref": "The Emperor of All Maladies",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "The Body: A Guide for Occupants",
-        "ref": "Being Mortal",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "Pilsner: How the Beer of Kings Changed the World",
-        "ref": "Bitter Brew",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "American Prison: A Reporter's Undercover Journey into the Business of Punishment",
-        "ref": "Just Mercy",
-        "touchesFiveStar": false
-      },
-      {
-        "from": "American Prison: A Reporter's Undercover Journey into the Business of Punishment",
-        "ref": "Fast Food Nation",
-        "touchesFiveStar": false
-      },
       {
         "from": "The Big Roads: The Untold Story of the Engineers, Visionaries, and Trailblazers Who Created the American Superhighways",
         "ref": "The Road to Somewhere",
@@ -959,546 +854,6 @@
       }
     ],
     "brokenOrphaned": [
-      {
-        "from": "Shit, Actually: The Definitive, 100% Objective Guide to Modern Cinema",
-        "ref": "The Wreckage of My Presence",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Ride of a Lifetime: Lessons Learned from 15 Years as CEO of the Walt Disney Company",
-        "ref": "What It Takes: Lessons in the Pursuit of Excellence",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Quiet Power: The Secret Strengths of Introverts",
-        "ref": "Bittersweet: How Sorrow and Longing Make Us Whole",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Quiet: The Power of Introverts in a World That Can't Stop Talking",
-        "ref": "Bittersweet: How Sorrow and Longing Make Us Whole",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "To Start a War: How the Bush Administration Took America into Iraq",
-        "ref": "Fiasco",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "To Start a War: How the Bush Administration Took America into Iraq",
-        "ref": "Imperial Life in the Emerald City",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "To Start a War: How the Bush Administration Took America into Iraq",
-        "ref": "The Operators",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "To Start a War: How the Bush Administration Took America into Iraq",
-        "ref": "Bush at War",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Once Upon a Time in Hollywood: A Novel",
-        "ref": "L.A. Confidential",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Once Upon a Time in Hollywood: A Novel",
-        "ref": "White Jazz",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Once Upon a Time in Hollywood: A Novel",
-        "ref": "Less Than Zero",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Once Upon a Time in Hollywood: A Novel",
-        "ref": "Inherent Vice",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Universal Baseball Association, Inc., J. Henry Waugh, Prop.",
-        "ref": "The Great American Novel",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Universal Baseball Association, Inc., J. Henry Waugh, Prop.",
-        "ref": "End Zone",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Universal Baseball Association, Inc., J. Henry Waugh, Prop.",
-        "ref": "The Franchise",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Zone One",
-        "ref": "A Head Full of Ghosts",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Zone One",
-        "ref": "The Passage",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Origins of the Cornbread Mafia: A Memoir of Sorts",
-        "ref": "The Bluegrass Conspiracy",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Liftoff: Elon Musk and the Desperate Early Days That Launched SpaceX",
-        "ref": "Rocket Billionaires",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A Knock at Midnight: A Story of Hope, Justice, and Freedom",
-        "ref": "Between the World and Me",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A Knock at Midnight: A Story of Hope, Justice, and Freedom",
-        "ref": "Locking Up Our Own",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A People's History of the United States",
-        "ref": "Lies My Teacher Told Me",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A People's History of the United States",
-        "ref": "An Indigenous Peoples' History of the United States",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A People's History of the United States",
-        "ref": "Empire of Illusion",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Firebreak",
-        "ref": "Autonomous",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Firebreak",
-        "ref": "Infomocracy",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Firebreak",
-        "ref": "The Stars Are Legion",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Last Human",
-        "ref": "Old Man's War",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Last Human",
-        "ref": "Ancillary Justice",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Last Human",
-        "ref": "Blindsight",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Noise: A Flaw in Human Judgment",
-        "ref": "Predictably Irrational",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Noise: A Flaw in Human Judgment",
-        "ref": "Misbehaving",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Noise: A Flaw in Human Judgment",
-        "ref": "The Black Swan",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Moviegoer",
-        "ref": "The Catcher in the Rye",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Moviegoer",
-        "ref": "Revolutionary Road",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Moviegoer",
-        "ref": "Herzog",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "When Women Invented Television: The Untold Story of the Female Powerhouses Who Pioneered the Way We Watch Today",
-        "ref": "Mary and Lou and Rhoda and Ted",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "When Women Invented Television: The Untold Story of the Female Powerhouses Who Pioneered the Way We Watch Today",
-        "ref": "The Genius of Women",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "When Women Invented Television: The Untold Story of the Female Powerhouses Who Pioneered the Way We Watch Today",
-        "ref": "Broad Influence",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Lucky Peach: Issue 1",
-        "ref": "The Art of Eating",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Lucky Peach: Issue 1",
-        "ref": "On Food and Cooking",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "How to Avoid a Climate Disaster: The Solutions We Have and the Breakthroughs We Need",
-        "ref": "The Uninhabitable Earth",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "How to Avoid a Climate Disaster: The Solutions We Have and the Breakthroughs We Need",
-        "ref": "The Sixth Extinction",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "How to Avoid a Climate Disaster: The Solutions We Have and the Breakthroughs We Need",
-        "ref": "Speed and Scale",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "How to Avoid a Climate Disaster: The Solutions We Have and the Breakthroughs We Need",
-        "ref": "A Field Guide to Climate Anxiety",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Kid: The Immortal Life of Ted Williams",
-        "ref": "The Big Bam",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Kid: The Immortal Life of Ted Williams",
-        "ref": "Sandy Koufax: A Lefty's Legacy",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Kid: The Immortal Life of Ted Williams",
-        "ref": "Joe DiMaggio: The Hero's Life",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Kid: The Immortal Life of Ted Williams",
-        "ref": "Clemente",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Rise of the Warrior Cop: The Militarization of America's Police Forces",
-        "ref": "Three Felonies a Day",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Rise of the Warrior Cop: The Militarization of America's Police Forces",
-        "ref": "The War on Cops",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Path to Power",
-        "ref": "Team of Rivals",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Path to Power",
-        "ref": "The Power Broker",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Path to Power",
-        "ref": "Truman",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Path to Power",
-        "ref": "Grant",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Network Effect (The Murderbot Diaries, #5)",
-        "ref": "Ancillary Justice",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "To Sleep in a Sea of Stars",
-        "ref": "Hyperion",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "To Sleep in a Sea of Stars",
-        "ref": "A Fire Upon the Deep",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "To Sleep in a Sea of Stars",
-        "ref": "Revelation Space",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Troop",
-        "ref": "Lord of the Flies",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Troop",
-        "ref": "The Ruins",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Troop",
-        "ref": "Boy's Life",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Troop",
-        "ref": "It",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Grinding It Out: The Making of McDonald's",
-        "ref": "Pour Your Heart Into It",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Rise and Fall of the Third Reich: A History of Nazi Germany",
-        "ref": "Berlin: The Downfall 1945",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Rise and Fall of the Third Reich: A History of Nazi Germany",
-        "ref": "The Third Reich Trilogy",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Rise and Fall of the Third Reich: A History of Nazi Germany",
-        "ref": "Hitler: A Biography",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Rise and Fall of the Third Reich: A History of Nazi Germany",
-        "ref": "Bloodlands",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Notes from Underground",
-        "ref": "The Trial",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Notes from Underground",
-        "ref": "The Overcoat",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Notes from Underground",
-        "ref": "Hunger",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Drudge Revolution: The Untold Story of How Talk Radio, Fox News, and a Gift Shop Clerk with an Internet Connection Took Down the Mainstream Media",
-        "ref": "The Loudest Voice in the Room",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Drudge Revolution: The Untold Story of How Talk Radio, Fox News, and a Gift Shop Clerk with an Internet Connection Took Down the Mainstream Media",
-        "ref": "Hoax",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Drudge Revolution: The Untold Story of How Talk Radio, Fox News, and a Gift Shop Clerk with an Internet Connection Took Down the Mainstream Media",
-        "ref": "The Death of Truth",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Drudge Revolution: The Untold Story of How Talk Radio, Fox News, and a Gift Shop Clerk with an Internet Connection Took Down the Mainstream Media",
-        "ref": "Bad News",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Body: A Guide for Occupants",
-        "ref": "Stiff",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Pilsner: How the Beer of Kings Changed the World",
-        "ref": "The Audacity of Hops",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Pilsner: How the Beer of Kings Changed the World",
-        "ref": "A History of the World in 6 Glasses",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Pilsner: How the Beer of Kings Changed the World",
-        "ref": "Hops and Dreams",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Invention of Sound",
-        "ref": "Fight Club",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Invention of Sound",
-        "ref": "Lullaby",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Invention of Sound",
-        "ref": "American Psycho",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Invention of Sound",
-        "ref": "The Silence of the Lambs",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A Bridge Too Far",
-        "ref": "The Longest Day",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A Bridge Too Far",
-        "ref": "Band of Brothers",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A Bridge Too Far",
-        "ref": "An Army at Dawn",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "A Bridge Too Far",
-        "ref": "D-Day",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Speed of Sound: Breaking the Barriers Between Music and Technology: A Memoir",
-        "ref": "Porcelain",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Speed of Sound: Breaking the Barriers Between Music and Technology: A Memoir",
-        "ref": "How Music Works",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Speed of Sound: Breaking the Barriers Between Music and Technology: A Memoir",
-        "ref": "Waging Heavy Peace",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Fahrenheit 451",
-        "ref": "1984",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Fahrenheit 451",
-        "ref": "Brave New World",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Fahrenheit 451",
-        "ref": "The Handmaid's Tale",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Fahrenheit 451",
-        "ref": "We",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Terminal List (Terminal List, #1)",
-        "ref": "American Assassin",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Terminal List (Terminal List, #1)",
-        "ref": "I Am Pilgrim",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Terminal List (Terminal List, #1)",
-        "ref": "The Lions of Lucerne",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Terminal List (Terminal List, #1)",
-        "ref": "Lone Wolf",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "American Prison: A Reporter's Undercover Journey into the Business of Punishment",
-        "ref": "Newjack",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "American Prison: A Reporter's Undercover Journey into the Business of Punishment",
-        "ref": "The Divide",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Good Economics for Hard Times: Better Answers to Our Biggest Problems",
-        "ref": "Poor Economics",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Good Economics for Hard Times: Better Answers to Our Biggest Problems",
-        "ref": "The Deficit Myth",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Good Economics for Hard Times: Better Answers to Our Biggest Problems",
-        "ref": "Freakonomics",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "Good Economics for Hard Times: Better Answers to Our Biggest Problems",
-        "ref": "Why Nations Fail",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Bayou Trilogy: Under the Bright Lights, Muscle for the Wing, and The Ones You Do",
-        "ref": "In the Electric Mist with Confederate Dead",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Bayou Trilogy: Under the Bright Lights, Muscle for the Wing, and The Ones You Do",
-        "ref": "The Two-Bear Mambo",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Bayou Trilogy: Under the Bright Lights, Muscle for the Wing, and The Ones You Do",
-        "ref": "Joe",
-        "touchesFiveStar": null
-      },
-      {
-        "from": "The Bayou Trilogy: Under the Bright Lights, Muscle for the Wing, and The Ones You Do",
-        "ref": "Miami Blues",
-        "touchesFiveStar": null
-      },
       {
         "from": "The Big Roads: The Untold Story of the Engineers, Visionaries, and Trailblazers Who Created the American Superhighways",
         "ref": "Divided Highways",
