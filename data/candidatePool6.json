@@ -26,7 +26,11 @@
       "buyUrl": "https://www.amazon.com/dp/0393324818",
       "coverUrl": "https://m.media-amazon.com/images/I/61Sr5X1vAQL._SX300_.jpg",
       "isbn13": "9780393057652",
-      "tones": ["thoughtful", "revelatory"], "themeToneReviewed": true
+      "tones": [
+        "thoughtful",
+        "revelatory"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Boomerang: Travels in the New Third World",
@@ -53,7 +57,11 @@
       "buyUrl": "https://www.amazon.com/dp/0393343448",
       "coverUrl": "https://m.media-amazon.com/images/I/9197P6Wt7qL._SX300_.jpg",
       "isbn13": "9780393082241",
-      "tones": ["revelatory", "funny"], "themeToneReviewed": true
+      "tones": [
+        "revelatory",
+        "funny"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics",
@@ -82,7 +90,11 @@
       "buyUrl": "https://www.amazon.com/dp/0143125478",
       "coverUrl": "https://m.media-amazon.com/images/I/81uQRVpi2UL._SX300_.jpg",
       "isbn13": "9780593512302",
-      "tones": ["heartwarming", "inspiring"], "themeToneReviewed": true
+      "tones": [
+        "heartwarming",
+        "inspiring"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Open: An Autobiography",
@@ -111,7 +123,11 @@
       "buyUrl": "https://www.amazon.com/dp/0307388409",
       "coverUrl": "https://m.media-amazon.com/images/I/91AR39AbCgL._SX300_.jpg",
       "isbn13": "9780307592804",
-      "tones": ["thoughtful", "revelatory"], "themeToneReviewed": true
+      "tones": [
+        "thoughtful",
+        "revelatory"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Eleven Rings: The Soul of Success",
@@ -140,7 +156,11 @@
       "buyUrl": "https://www.amazon.com/dp/1594204446",
       "coverUrl": "https://m.media-amazon.com/images/I/81sYoIRFl9L._SX300_.jpg",
       "isbn13": "9781594205118",
-      "tones": ["thoughtful", "conversational"], "themeToneReviewed": true
+      "tones": [
+        "thoughtful",
+        "conversational"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Showtime: Magic, Kareem, Riley, and the Los Angeles Lakers Dynasty of the 1980s",
@@ -168,7 +188,11 @@
       "buyUrl": "https://www.amazon.com/dp/1592407978",
       "coverUrl": "https://m.media-amazon.com/images/I/81fvDikywhL._SX300_.jpg",
       "isbn13": "9781592408870",
-      "tones": ["revelatory", "inspiring"], "themeToneReviewed": true
+      "tones": [
+        "revelatory",
+        "inspiring"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Killers of the Flower Moon: The Osage Murders and the Birth of the FBI",
@@ -196,7 +220,12 @@
       "buyUrl": "https://www.amazon.com/dp/0385541690",
       "coverUrl": "https://m.media-amazon.com/images/I/71rAyRvoeyL._SX300_.jpg",
       "isbn13": "9780385534253",
-      "tones": ["dark", "revelatory", "twisty"], "themeToneReviewed": true
+      "tones": [
+        "dark",
+        "revelatory",
+        "twisty"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Empire of Pain: The Secret History of the Sackler Dynasty",
@@ -223,7 +252,11 @@
       "buyUrl": "https://www.amazon.com/dp/0385545681",
       "coverUrl": "https://books.google.com/books/content?id=oEGNEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
       "isbn13": "9780385545686",
-      "tones": ["dark", "revelatory"], "themeToneReviewed": true
+      "tones": [
+        "dark",
+        "revelatory"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Outliers: The Story of Success",
@@ -252,7 +285,11 @@
       "buyUrl": "https://www.amazon.com/dp/0316017930",
       "coverUrl": "https://books.google.com/books/content?id=ialrgIT41OAC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "isbn13": "9780141903491",
-      "tones": ["thoughtful", "revelatory"], "themeToneReviewed": true
+      "tones": [
+        "thoughtful",
+        "revelatory"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Blink: The Power of Thinking Without Thinking",
@@ -279,7 +316,11 @@
       "buyUrl": "https://www.amazon.com/dp/0316172324",
       "coverUrl": "https://m.media-amazon.com/images/I/71gt0bpGd3L._SX300_.jpg",
       "isbn13": "9780141035284",
-      "tones": ["thoughtful", "revelatory"], "themeToneReviewed": true
+      "tones": [
+        "thoughtful",
+        "revelatory"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "David and Goliath: Underdogs, Misfits, and the Art of Battling Giants",
@@ -306,7 +347,11 @@
       "buyUrl": "https://www.amazon.com/dp/0316204374",
       "coverUrl": "https://m.media-amazon.com/images/I/71lDO3J7DUL._SX300_.jpg",
       "isbn13": "9780316204385",
-      "tones": ["thoughtful", "revelatory"], "themeToneReviewed": true
+      "tones": [
+        "thoughtful",
+        "revelatory"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "What the Dog Saw: And Other Adventures",
@@ -334,7 +379,11 @@
       "buyUrl": "https://www.amazon.com/dp/0316076201",
       "coverUrl": "https://books.google.com/books/content?id=PwzioQEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
       "isbn13": "9781846142772",
-      "tones": ["funny", "thoughtful"], "themeToneReviewed": true
+      "tones": [
+        "funny",
+        "thoughtful"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Bad Blood: Secrets and Lies in a Silicon Valley Startup",
@@ -363,7 +412,11 @@
       "buyUrl": "https://www.amazon.com/dp/152473165X",
       "coverUrl": "https://m.media-amazon.com/images/I/81P1xvxdBkL._SX300_.jpg",
       "isbn13": "9781524731663",
-      "tones": ["dark", "revelatory"], "themeToneReviewed": true
+      "tones": [
+        "dark",
+        "revelatory"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Catch and Kill: Lies, Spies, and a Conspiracy to Protect Predators",
@@ -391,7 +444,11 @@
       "buyUrl": "https://www.amazon.com/dp/031648506X",
       "coverUrl": "https://books.google.com/books/content?id=2beeDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "isbn13": "9780316486668",
-      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": true
+      "tones": [
+        "revelatory",
+        "thoughtful"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The Feather Thief: Beauty, Obsession, and the Natural History Heist of the Century",
@@ -419,7 +476,11 @@
       "buyUrl": "https://www.amazon.com/dp/1101982020",
       "coverUrl": "https://books.google.com/books/content?vid=ISBN9781101981634&printsec=frontcover&img=1&zoom=2&source=gbs_api",
       "isbn13": "9781101981634",
-      "tones": ["twisty", "revelatory"], "themeToneReviewed": true
+      "tones": [
+        "twisty",
+        "revelatory"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "An Unfinished Love Story: A Personal History of the 1960s",
@@ -447,7 +508,11 @@
       "buyUrl": "https://www.amazon.com/dp/1982106492",
       "coverUrl": "https://m.media-amazon.com/images/I/81wwyzE5XcL._SX300_.jpg",
       "isbn13": "9781982108663",
-      "tones": ["thoughtful", "heartwarming"], "themeToneReviewed": true
+      "tones": [
+        "thoughtful",
+        "heartwarming"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "An Ugly Truth: Inside Facebook's Battle for Domination",
@@ -476,7 +541,11 @@
       "buyUrl": "https://www.amazon.com/dp/0062960040",
       "coverUrl": "https://m.media-amazon.com/images/I/91L6lEbv+yL._SX300_.jpg",
       "isbn13": "9780062960702",
-      "tones": ["dark", "revelatory"], "themeToneReviewed": true
+      "tones": [
+        "dark",
+        "revelatory"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Going Clear: Scientology, Hollywood, and the Prison of Belief",
@@ -504,7 +573,11 @@
       "buyUrl": "https://www.amazon.com/dp/0307745309",
       "coverUrl": "https://m.media-amazon.com/images/I/718dlRt0c1L._SX300_.jpg",
       "isbn13": "9780385350273",
-      "tones": ["dark", "revelatory"], "themeToneReviewed": true
+      "tones": [
+        "dark",
+        "revelatory"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "After Steve: How Apple Became a Trillion-Dollar Company and Lost Its Soul",
@@ -532,7 +605,11 @@
       "buyUrl": "https://www.amazon.com/dp/0062917641",
       "coverUrl": "https://m.media-amazon.com/images/I/A16O0Az5blL._SX300_.jpg",
       "isbn13": "9780008527846",
-      "tones": ["thoughtful", "revelatory"], "themeToneReviewed": true
+      "tones": [
+        "thoughtful",
+        "revelatory"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Disrupted: My Misadventure in the Start-Up Bubble",
@@ -560,7 +637,11 @@
       "buyUrl": "https://www.amazon.com/dp/031630630X",
       "coverUrl": "https://m.media-amazon.com/images/I/81+0aIdJMML._SX300_.jpg",
       "isbn13": "9780316306072",
-      "tones": ["funny", "conversational"], "themeToneReviewed": true
+      "tones": [
+        "funny",
+        "conversational"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The Lincoln Lawyer (Mickey Haller, #1)",
@@ -590,7 +671,11 @@
       "buyUrl": "https://www.amazon.com/dp/0446618519",
       "coverUrl": "https://books.google.com/books/content?id=bZoibWwaSNoC&printsec=frontcover&img=1&zoom=2&source=gbs_api",
       "isbn13": "9780446541138",
-      "tones": ["twisty", "procedural"], "themeToneReviewed": true
+      "tones": [
+        "twisty",
+        "procedural"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The Push",
@@ -620,7 +705,11 @@
       "buyUrl": "https://www.amazon.com/dp/1984881663",
       "coverUrl": "https://m.media-amazon.com/images/I/91-ir8hlcGL._SX300_.jpg",
       "isbn13": "9781984881687",
-      "tones": ["tense", "dark"], "themeToneReviewed": true
+      "tones": [
+        "tense",
+        "dark"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Anatomy of a Scandal",
@@ -649,7 +738,12 @@
       "buyUrl": "https://www.amazon.com/dp/1501172387",
       "coverUrl": "https://m.media-amazon.com/images/I/71TVAMGVB5L._SX300_.jpg",
       "isbn13": "9781501172182",
-      "tones": ["twisty", "procedural", "thoughtful"], "themeToneReviewed": true
+      "tones": [
+        "twisty",
+        "procedural",
+        "thoughtful"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "A Good Girl's Guide to Murder (A Good Girl's Guide to Murder, #1)",
@@ -679,7 +773,11 @@
       "buyUrl": "https://www.amazon.com/dp/1984896342",
       "coverUrl": "https://m.media-amazon.com/images/I/81kb8NEcm6L._SX300_.jpg",
       "isbn13": "9781984896391",
-      "tones": ["twisty", "propulsive"], "themeToneReviewed": true
+      "tones": [
+        "twisty",
+        "propulsive"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Good Girl Bad Blood (A Good Girl's Guide to Murder, #2)",
@@ -708,7 +806,11 @@
       "buyUrl": "https://www.amazon.com/dp/198489635X",
       "coverUrl": "https://m.media-amazon.com/images/I/81VeAXc9+VL._SX300_.jpg",
       "isbn13": "9781984896438",
-      "tones": ["twisty", "propulsive"], "themeToneReviewed": true
+      "tones": [
+        "twisty",
+        "propulsive"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The Dry (Aaron Falk, #1)",
@@ -737,7 +839,11 @@
       "buyUrl": "https://www.amazon.com/dp/1250105622",
       "coverUrl": "https://m.media-amazon.com/images/I/91fso2RJWpL._SX300_.jpg",
       "isbn13": "9781250105608",
-      "tones": ["tense", "atmospheric"], "themeToneReviewed": true
+      "tones": [
+        "tense",
+        "atmospheric"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Big Little Lies",
@@ -767,7 +873,11 @@
       "buyUrl": "https://www.amazon.com/dp/0425274861",
       "coverUrl": "https://m.media-amazon.com/images/I/71RcHc5ZaCL._SX300_.jpg",
       "isbn13": "9780425274866",
-      "tones": ["tense", "funny"], "themeToneReviewed": true
+      "tones": [
+        "tense",
+        "funny"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The Last Anniversary",
@@ -797,7 +907,11 @@
       "buyUrl": "https://www.amazon.com/dp/0425274853",
       "coverUrl": "https://m.media-amazon.com/images/I/71voq48Vg4L._SX300_.jpg",
       "isbn13": "9780062008671",
-      "tones": ["twisty", "heartwarming"], "themeToneReviewed": true
+      "tones": [
+        "twisty",
+        "heartwarming"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Ordinary Grace",
@@ -824,7 +938,11 @@
       "buyUrl": "https://www.amazon.com/dp/1451645856",
       "coverUrl": "https://m.media-amazon.com/images/I/81jq+9Bb8VL._SX300_.jpg",
       "isbn13": "9781663606266",
-      "tones": ["atmospheric", "thoughtful"], "themeToneReviewed": true
+      "tones": [
+        "atmospheric",
+        "thoughtful"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Ready Player One",
@@ -854,7 +972,11 @@
       "buyUrl": "https://www.amazon.com/dp/030788743X",
       "coverUrl": "https://m.media-amazon.com/images/I/71hBXNQxFLL._SX300_.jpg",
       "isbn13": "9780307887443",
-      "tones": ["funny", "propulsive"], "themeToneReviewed": true
+      "tones": [
+        "funny",
+        "propulsive"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The Hitchhiker's Guide to the Galaxy (Hitchhiker's Guide to the Galaxy, #1)",
@@ -883,7 +1005,11 @@
       "buyUrl": "https://www.amazon.com/dp/0345391802",
       "coverUrl": "https://m.media-amazon.com/images/I/81j4LPfjVWL._SX300_.jpg",
       "isbn13": "9780671461492",
-      "tones": ["funny", "satirical"], "themeToneReviewed": true
+      "tones": [
+        "funny",
+        "satirical"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Ender's Game (Ender's Game, #1)",
@@ -913,7 +1039,11 @@
       "buyUrl": "https://www.amazon.com/dp/0812550706",
       "coverUrl": "https://books.google.com/books/content?id=Z5QtUpmbcDwC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "isbn13": "9780765317384",
-      "tones": ["thoughtful", "compulsive"], "themeToneReviewed": true
+      "tones": [
+        "thoughtful",
+        "compulsive"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "All Systems Red (Murderbot Diaries, #1)",
@@ -942,7 +1072,11 @@
       "buyUrl": "https://www.amazon.com/dp/0765397536",
       "coverUrl": "https://books.google.com/books/content?id=ZSu2DQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "isbn13": "9780765397522",
-      "tones": ["funny", "satirical"], "themeToneReviewed": true
+      "tones": [
+        "funny",
+        "satirical"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The Long Way to a Small, Angry Planet (Wayfarers, #1)",
@@ -970,7 +1104,11 @@
       "buyUrl": "https://www.amazon.com/dp/0062444131",
       "coverUrl": "https://books.google.com/books/content?id=dgFxCQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "isbn13": "9781473619777",
-      "tones": ["heartwarming", "thoughtful"], "themeToneReviewed": true
+      "tones": [
+        "heartwarming",
+        "thoughtful"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The House in the Cerulean Sea",
@@ -999,7 +1137,11 @@
       "buyUrl": "https://www.amazon.com/dp/1250217288",
       "coverUrl": "https://m.media-amazon.com/images/I/819iTI3JmkL._SX300_.jpg",
       "isbn13": "9781250217325",
-      "tones": ["heartwarming", "funny"], "themeToneReviewed": true
+      "tones": [
+        "heartwarming",
+        "funny"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "A Memory Called Empire (Teixcalaan, #1)",
@@ -1027,7 +1169,11 @@
       "buyUrl": "https://www.amazon.com/dp/1250186447",
       "coverUrl": "https://m.media-amazon.com/images/I/81XeNwpa8zL._SX300_.jpg",
       "isbn13": "9781250186454",
-      "tones": ["atmospheric", "thoughtful"], "themeToneReviewed": true
+      "tones": [
+        "atmospheric",
+        "thoughtful"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The First Fifteen Lives of Harry August",
@@ -1057,7 +1203,11 @@
       "buyUrl": "https://www.amazon.com/dp/0316399620",
       "coverUrl": "https://m.media-amazon.com/images/I/A1yrFVo3e-L._SX300_.jpg",
       "isbn13": "9780316399630",
-      "tones": ["propulsive", "thoughtful"], "themeToneReviewed": true
+      "tones": [
+        "propulsive",
+        "thoughtful"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "This Is How You Lose the Time War",
@@ -1085,7 +1235,11 @@
       "buyUrl": "https://www.amazon.com/dp/1534430996",
       "coverUrl": "https://m.media-amazon.com/images/I/71w0e6zz+VL._SX300_.jpg",
       "isbn13": "9781534430990",
-      "tones": ["atmospheric", "thoughtful"], "themeToneReviewed": true
+      "tones": [
+        "atmospheric",
+        "thoughtful"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "People We Meet on Vacation",
@@ -1114,7 +1268,11 @@
       "buyUrl": "https://www.amazon.com/dp/0593334191",
       "coverUrl": "https://books.google.com/books/content?id=5fooEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "isbn13": "9780241997031",
-      "tones": ["funny", "heartwarming"], "themeToneReviewed": true
+      "tones": [
+        "funny",
+        "heartwarming"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Beach Read",
@@ -1142,7 +1300,11 @@
       "buyUrl": "https://www.amazon.com/dp/0593099796",
       "coverUrl": "https://m.media-amazon.com/images/I/71kdiN5Y1YL._SX300_.jpg",
       "isbn13": "9781984806734",
-      "tones": ["heartwarming", "funny"], "themeToneReviewed": true
+      "tones": [
+        "heartwarming",
+        "funny"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The Dutch House",
@@ -1171,7 +1333,11 @@
       "buyUrl": "https://www.amazon.com/dp/0062966561",
       "coverUrl": "https://m.media-amazon.com/images/I/91QKBe2VZCL._SX300_.jpg",
       "isbn13": "9780063023390",
-      "tones": ["heartwarming", "thoughtful"], "themeToneReviewed": true
+      "tones": [
+        "heartwarming",
+        "thoughtful"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The Overstory",
@@ -1199,7 +1365,11 @@
       "buyUrl": "https://www.amazon.com/dp/0393356952",
       "coverUrl": "https://m.media-amazon.com/images/I/81m48JcL6yL._SX300_.jpg",
       "isbn13": "9780393635539",
-      "tones": ["thoughtful", "atmospheric"], "themeToneReviewed": true
+      "tones": [
+        "thoughtful",
+        "atmospheric"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Just Kids",
@@ -1228,7 +1398,11 @@
       "buyUrl": "https://www.amazon.com/dp/0060936223",
       "coverUrl": "https://m.media-amazon.com/images/I/61OpgAkTkqL._SX300_.jpg",
       "isbn13": "9780066211312",
-      "tones": ["heartwarming", "thoughtful"], "themeToneReviewed": true
+      "tones": [
+        "heartwarming",
+        "thoughtful"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Surrender: 40 Songs, One Story",
@@ -1258,7 +1432,11 @@
       "buyUrl": "https://www.amazon.com/dp/0525521836",
       "coverUrl": "https://m.media-amazon.com/images/I/910-EtZIYKL._SX300_.jpg",
       "isbn13": "9780525521051",
-      "tones": ["thoughtful", "inspiring"], "themeToneReviewed": true
+      "tones": [
+        "thoughtful",
+        "inspiring"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Spare",
@@ -1288,7 +1466,11 @@
       "buyUrl": "https://www.amazon.com/dp/0593593030",
       "coverUrl": "https://books.google.com/books/content?id=EpaUEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "isbn13": "9781039003767",
-      "tones": ["revelatory", "dark"], "themeToneReviewed": true
+      "tones": [
+        "revelatory",
+        "dark"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "I'm Glad My Mom Died",
@@ -1318,7 +1500,11 @@
       "buyUrl": "https://www.amazon.com/dp/1982185821",
       "coverUrl": "https://m.media-amazon.com/images/I/71dSnZu7PeL._SX300_.jpg",
       "isbn13": "9781982185831",
-      "tones": ["funny", "dark"], "themeToneReviewed": true
+      "tones": [
+        "funny",
+        "dark"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Is Everyone Hanging Out Without Me? (And Other Concerns)",
@@ -1346,7 +1532,11 @@
       "buyUrl": "https://www.amazon.com/dp/0307886271",
       "coverUrl": "https://m.media-amazon.com/images/I/91Y+96Afv7L._SX300_.jpg",
       "isbn13": "9780307886286",
-      "tones": ["funny", "conversational"], "themeToneReviewed": true
+      "tones": [
+        "funny",
+        "conversational"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "A Man Called Ove",
@@ -1375,7 +1565,11 @@
       "buyUrl": "https://www.amazon.com/dp/1476738025",
       "coverUrl": "https://books.google.com/books/content?id=7mtNAgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "isbn13": "9781476738031",
-      "tones": ["heartwarming", "funny"], "themeToneReviewed": true
+      "tones": [
+        "heartwarming",
+        "funny"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Endurance: Shackleton's Incredible Voyage",
@@ -1403,7 +1597,12 @@
       "goodreadsUrl": "https://www.goodreads.com/book/show/139069.Endurance",
       "buyUrl": "https://www.amazon.com/dp/0465062881",
       "coverUrl": "https://m.media-amazon.com/images/I/61Gg1Gr2GiL._SX300_.jpg",
-      "tones": ["atmospheric", "thoughtful"], "themeToneReviewed": true
+      "tones": [
+        "atmospheric",
+        "thoughtful"
+      ],
+      "themeToneReviewed": true,
+      "isbn13": "9780786708420"
     },
     {
       "title": "The Warmth of Other Suns: The Epic Story of America's Great Migration",
@@ -1431,7 +1630,11 @@
       "buyUrl": "https://www.amazon.com/dp/0679763880",
       "coverUrl": "https://m.media-amazon.com/images/I/91n97GxK59L._SX300_.jpg",
       "isbn13": "9780679444329",
-      "tones": ["thoughtful", "revelatory"], "themeToneReviewed": true
+      "tones": [
+        "thoughtful",
+        "revelatory"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "I Feel Bad About My Neck: And Other Thoughts on Being a Woman",
@@ -1459,7 +1662,11 @@
       "buyUrl": "https://www.amazon.com/dp/0307264556",
       "coverUrl": "https://m.media-amazon.com/images/I/610K5vddPoL._SX300_.jpg",
       "isbn13": "9780307264558",
-      "tones": ["funny", "conversational"], "themeToneReviewed": true
+      "tones": [
+        "funny",
+        "conversational"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Hunger: A Memoir of (My) Body",
@@ -1487,7 +1694,11 @@
       "buyUrl": "https://www.amazon.com/dp/0062456113",
       "coverUrl": "https://m.media-amazon.com/images/I/71+Qc8TnHXL._SX300_.jpg",
       "isbn13": "9781472151117",
-      "tones": ["bleak", "revelatory"], "themeToneReviewed": true
+      "tones": [
+        "bleak",
+        "revelatory"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Conversations with Friends",
@@ -1515,7 +1726,12 @@
       "buyUrl": "https://www.amazon.com/dp/0374718865",
       "coverUrl": "https://m.media-amazon.com/images/I/71sjBmOEjlL._SX300_.jpg",
       "isbn13": "9780451499059",
-      "tones": ["thoughtful", "atmospheric", "heartwarming"], "themeToneReviewed": true
+      "tones": [
+        "thoughtful",
+        "atmospheric",
+        "heartwarming"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Fourth Wing (The Empyrean, #1)",
@@ -1543,7 +1759,11 @@
       "buyUrl": "https://www.amazon.com/dp/1649374046",
       "coverUrl": "https://books.google.com/books/content?id=kU8ZEQAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
       "isbn13": "9781649377371",
-      "tones": ["heartwarming", "compulsive"], "themeToneReviewed": true
+      "tones": [
+        "heartwarming",
+        "compulsive"
+      ],
+      "themeToneReviewed": true
     }
   ]
 }
