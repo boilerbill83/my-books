@@ -1100,12 +1100,13 @@
    ],
    "interactionType": "dismiss",
    "reasonCode": "pre-1900-fiction-setting",
+   "reasonLabel": "Fiction set before 1900",
    "note": "Bill rule: no fiction set before 1900 (nonfiction sometimes OK)",
    "timestamp": "2026-07-04T02:23:04Z",
    "excludeFromRecommendations": true
   },
   {
-   "bookKey": "i-m-glad-my-mom-died|jennette-mccurdy",
+   "bookKey": "/works/OL26352795W",
    "title": "I'm Glad My Mom Died",
    "author": "Jennette McCurdy",
    "type": "nonfiction",
@@ -1114,6 +1115,7 @@
    ],
    "interactionType": "dismiss",
    "reasonCode": "author-dislike",
+   "reasonLabel": "Don't like this author",
    "note": "Bill: does not like this author",
    "timestamp": "2026-07-04T02:26:38Z",
    "excludeFromRecommendations": true
@@ -1130,6 +1132,7 @@
    ],
    "interactionType": "dismiss",
    "reasonCode": "style-not-for-me",
+   "reasonLabel": "Style not for me",
    "note": "Bill: reads as too feminine for his taste \u2014 reflective domestic literary fiction",
    "timestamp": "2026-07-04T02:29:53Z",
    "excludeFromRecommendations": true
@@ -1146,6 +1149,7 @@
    ],
    "interactionType": "dismiss",
    "reasonCode": "saw-the-adaptation",
+   "reasonLabel": "Already saw the adaptation",
    "note": "Bill: already watched the TV show",
    "timestamp": "2026-07-04T02:30:40Z",
    "excludeFromRecommendations": true
@@ -1161,6 +1165,7 @@
    ],
    "interactionType": "dismiss",
    "reasonCode": "style-not-for-me",
+   "reasonLabel": "Style not for me",
    "note": "Bill: too feminine \u2014 second dismissal with this reason (see Tom Lake)",
    "timestamp": "2026-07-04T02:31:23Z",
    "excludeFromRecommendations": true
@@ -1177,12 +1182,13 @@
    ],
    "interactionType": "dismiss",
    "reasonCode": "style-not-for-me",
+   "reasonLabel": "Style not for me",
    "note": "Bill: too feminine \u2014 3rd in pattern (Tom Lake, People We Meet on Vacation). Nuance: he 5-starred One Day/One True Loves, so adult romance with a hook is fine; soft YA/reflective relationship fiction is not.",
    "timestamp": "2026-07-04T02:32:01Z",
    "excludeFromRecommendations": true
   },
   {
-   "bookKey": "bad-blood-secrets-and-lies-in-a-silicon-valley-startup|john-carreyrou",
+   "bookKey": "bad-blood|john-carreyrou",
    "title": "Bad Blood",
    "author": "John Carreyrou",
    "type": "nonfiction",
@@ -1194,6 +1200,7 @@
    ],
    "interactionType": "dismiss",
    "reasonCode": "already-read-or-attempted",
+   "reasonLabel": "Already read or attempted",
    "note": "Bill: read or started it before; possibly an untracked DNF",
    "timestamp": "2026-07-04T02:33:13Z",
    "excludeFromRecommendations": true

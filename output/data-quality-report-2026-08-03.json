@@ -1,9 +1,9 @@
 {
   "date": "2026-08-03",
-  "generatedAt": "2026-08-03T14:09:15.901Z",
+  "generatedAt": "2026-08-03T14:16:20.446Z",
   "totalBooks": 1109,
   "qualityScore": {
-    "score": 90,
+    "score": 91,
     "components": [
       {
         "key": "criticalHealth",
@@ -15,7 +15,7 @@
         "key": "completeness",
         "label": "Field Completeness",
         "weight": 0.33,
-        "subscore": 70.07973819617207
+        "subscore": 72.9527220671398
       },
       {
         "key": "foundational",
@@ -38,10 +38,10 @@
     ],
     "impediments": [
       {
-        "count": 8,
-        "pointsLost": 9.9,
+        "count": 7,
+        "pointsLost": 8.9,
         "name": "Field completeness gaps (all fields)",
-        "description": "Average Quality Score across all 31 tracked fields is 94.8% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
+        "description": "Average Quality Score across all 31 tracked fields is 95.3% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
         "fix": "See the Field Population table, sorted by Quality Score, for every field below 90%.",
         "anchor": "#fieldPopulationSection"
       }
@@ -102,7 +102,7 @@
       "key": "current",
       "label": "Current",
       "actions": [],
-      "score": 90,
+      "score": 91,
       "components": [
         {
           "key": "criticalHealth",
@@ -114,7 +114,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 70.07973819617207
+          "subscore": 72.9527220671398
         },
         {
           "key": "foundational",
@@ -374,13 +374,6 @@
       "eligibleTotal": 1109
     },
     {
-      "field": "dismissReason",
-      "scorePct": 84.375,
-      "rawPct": 2.434625788999098,
-      "critical": false,
-      "eligibleTotal": 32
-    },
-    {
       "field": "publisher",
       "scorePct": 87.2858431018936,
       "rawPct": 87.2858431018936,
@@ -547,6 +540,13 @@
       "rawPct": 100,
       "critical": false,
       "eligibleTotal": 1109
+    },
+    {
+      "field": "dismissReason",
+      "scorePct": 100,
+      "rawPct": 3.065825067628494,
+      "critical": false,
+      "eligibleTotal": 34
     },
     {
       "field": "goodreadsUrl",
