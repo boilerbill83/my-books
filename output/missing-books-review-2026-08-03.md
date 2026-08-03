@@ -37,15 +37,15 @@ just a data-hygiene note.)
 
 | Title | Author | Last Known Shelf | Last Known Rating | Reason code | Notes |
 |---|---|---|---|---|---|
-| Unhinged Habits: A Counterintuitive Guide for Humans to Have More by Doing Less | Jonathan Goodman | to-read | — | | |
-| The Origins of the Cornbread Mafia: A Memoir of Sorts | Joe Keith Bickett | read | 4★ | | |
-| 11/22/63 | Stephen King | read | 5★ | | |
-| World Travel: An Irreverent Guide | Anthony Bourdain | read | 5★ | | |
-| Coach: Lessons on the Game of Life | Michael Lewis | read | 5★ | | |
-| The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops | Jack McCallum | read | 2★ | | |
-| Children of Time (Children of Time, #1) | Adrian Tchaikovsky | to-read | — | | |
-| Survival of the Thickest: Essays | Michelle Buteau | to-read | — | | |
-| Behind Closed Doors (Behind Closed Doors, #1) | Lisa Renee Jones | read | 3★ | | |
+| Unhinged Habits: A Counterintuitive Guide for Humans to Have More by Doing Less | Jonathan Goodman | to-read | — | not_interesting | |
+| The Origins of the Cornbread Mafia: A Memoir of Sorts | Joe Keith Bickett | read | 4★ |  I read this, remove the dismissal/dnf | |
+| 11/22/63 | Stephen King | read | 5★ | I read this, remove the dismissal/dnf | |
+| World Travel: An Irreverent Guide | Anthony Bourdain | read | 5★ | I read this, remove the dismissal/dnf | |
+| Coach: Lessons on the Game of Life | Michael Lewis | read | 5★ | I read this, remove the dismissal/dnf | |
+| The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops | Jack McCallum | read | 2★ | not my vibe | |
+| Children of Time (Children of Time, #1) | Adrian Tchaikovsky | to-read | — | started_did_not_like | |
+| Survival of the Thickest: Essays | Michelle Buteau | to-read | — | started_did_not_like | |
+| Behind Closed Doors (Behind Closed Doors, #1) | Lisa Renee Jones | read | 3★ | no_longer_relevant | |
 
 ## Resolved
 
