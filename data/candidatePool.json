@@ -3,7 +3,7 @@
     "count": 14
   },
   "candidates": [
-        {
+    {
       "title": "Wrong Place Wrong Time",
       "author": "Gillian McAllister",
       "bookId": "59947696",
@@ -32,9 +32,14 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1659457434i/59947696.jpg",
       "ratingsCount": 150000,
       "isbn13": "9780063252363",
-      "tones": ["propulsive", "twisty", "bleak"], "themeToneReviewed": true
+      "tones": [
+        "propulsive",
+        "twisty",
+        "bleak"
+      ],
+      "themeToneReviewed": true
     },
-        {
+    {
       "title": "The Only One Left",
       "author": "Riley Sager",
       "bookId": "62703226",
@@ -63,7 +68,11 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1668181003i/62703226.jpg",
       "ratingsCount": 120000,
       "isbn13": "9798217048250",
-      "tones": ["twisty", "tense"], "themeToneReviewed": true
+      "tones": [
+        "twisty",
+        "tense"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Starter Villain",
@@ -94,7 +103,11 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1683564155i/61885029.jpg",
       "ratingsCount": 200000,
       "isbn13": "9780765389237",
-      "tones": ["funny", "compulsive"], "themeToneReviewed": true
+      "tones": [
+        "funny",
+        "compulsive"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Wool",
@@ -116,7 +129,7 @@
         "Dark Matter",
         "Project Hail Mary",
         "Children of Time (Children of Time, #1)",
-        "The Three-Body Problem (Remembrance of Earth’s Past, #1)",
+        "The Three-Body Problem (Remembrance of Earth\u2019s Past, #1)",
         "Recursion"
       ],
       "bookKey": "wool|hugh-howey",
@@ -125,7 +138,11 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1327889474i/12287209.jpg",
       "ratingsCount": 280000,
       "isbn13": "9780358447832",
-      "tones": ["atmospheric", "twisty"], "themeToneReviewed": true
+      "tones": [
+        "atmospheric",
+        "twisty"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The Drift",
@@ -157,7 +174,11 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1673872095i/60965424.jpg",
       "ratingsCount": 30000,
       "isbn13": "9780593503812",
-      "tones": ["tense", "bleak"], "themeToneReviewed": true
+      "tones": [
+        "tense",
+        "bleak"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The Passengers",
@@ -189,7 +210,11 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1545308633i/40718386.jpg",
       "ratingsCount": 100000,
       "isbn13": "9781984806987",
-      "tones": ["tense", "twisty"], "themeToneReviewed": true
+      "tones": [
+        "tense",
+        "twisty"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Several People Are Typing",
@@ -220,7 +245,11 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1627964160i/54468020.jpg",
       "ratingsCount": 15000,
       "isbn13": "9780385547253",
-      "tones": ["funny", "satirical"], "themeToneReviewed": true
+      "tones": [
+        "funny",
+        "satirical"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The Kaiju Preservation Society",
@@ -251,7 +280,11 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1624897234i/57693406.jpg",
       "ratingsCount": 70000,
       "isbn13": "9781250878533",
-      "tones": ["propulsive", "funny"], "themeToneReviewed": true
+      "tones": [
+        "propulsive",
+        "funny"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Empire of Pain",
@@ -282,7 +315,11 @@
       "ratingsCount": 120000,
       "isbn13": "9780385545686",
       "coverUrl": "https://books.google.com/books/content?id=oEGNEAAAQBAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api",
-      "tones": ["dark", "revelatory"], "themeToneReviewed": true
+      "tones": [
+        "dark",
+        "revelatory"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The Raging 2020s",
@@ -313,7 +350,11 @@
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1616687137i/56347315.jpg",
       "ratingsCount": 4000,
       "isbn13": "9781250770936",
-      "tones": ["revelatory", "thoughtful"], "themeToneReviewed": true
+      "tones": [
+        "revelatory",
+        "thoughtful"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Blood, Bones, and Butter: The Inadvertent Education of a Reluctant Chef",
@@ -343,10 +384,14 @@
       "bookKey": "blood-bones-and-butter-the-inadvertent-education-of-a-reluctant-chef|gabrielle-hamilton",
       "goodreadsUrl": "https://www.goodreads.com/book/show/8459594-blood-bones-and-butter",
       "buyUrl": "https://www.amazon.com/s?k=Blood%2C%20Bones%2C%20and%20Butter%3A%20The%20Inadvertent%20Education%20of%20a%20Reluctant%20Chef%20Gabrielle%20Hamilton",
-      "coverUrl": "",
+      "coverUrl": "https://books.google.com/books/content?vid=ISBN9780812980882&printsec=frontcover&img=1&zoom=2&source=gbs_api",
       "ratingsCount": 37657,
       "isbn13": "9780812980882",
-      "tones": ["conversational", "character-driven", "gritty"],
+      "tones": [
+        "conversational",
+        "character-driven",
+        "gritty"
+      ],
       "themeToneReviewed": true
     },
     {
@@ -377,10 +422,14 @@
       "bookKey": "kitchen-confidential|anthony-bourdain",
       "goodreadsUrl": "https://www.goodreads.com/book/show/33313.Kitchen_Confidential",
       "buyUrl": "https://www.amazon.com/s?k=Kitchen%20Confidential%20Anthony%20Bourdain",
-      "coverUrl": "",
+      "coverUrl": "https://books.google.com/books/content?vid=ISBN9780060899226&printsec=frontcover&img=1&zoom=2&source=gbs_api",
       "ratingsCount": 395000,
       "isbn13": "9780060899226",
-      "tones": ["conversational", "gritty", "funny"],
+      "tones": [
+        "conversational",
+        "gritty",
+        "funny"
+      ],
       "themeToneReviewed": true
     },
     {
@@ -411,10 +460,14 @@
       "bookKey": "medium-raw-a-bloody-valentine-to-the-world-of-food-and-the-people-who-cook|anthony-bourdain",
       "goodreadsUrl": "https://www.goodreads.com/book/show/40409969-medium-raw",
       "buyUrl": "https://www.amazon.com/s?k=Medium%20Raw%3A%20A%20Bloody%20Valentine%20to%20the%20World%20of%20Food%20and%20the%20People%20Who%20Cook%20Anthony%20Bourdain",
-      "coverUrl": "",
+      "coverUrl": "https://books.google.com/books/content?id=NW_VvOlgJTUC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "ratingsCount": 49340,
       "isbn13": "9780061718953",
-      "tones": ["conversational", "gritty", "funny"],
+      "tones": [
+        "conversational",
+        "gritty",
+        "funny"
+      ],
       "themeToneReviewed": true
     },
     {
@@ -445,10 +498,13 @@
       "bookKey": "the-midrange-theory|seth-partnow",
       "goodreadsUrl": "https://www.goodreads.com/book/show/57136758-the-midrange-theory",
       "buyUrl": "https://www.amazon.com/s?k=The%20Midrange%20Theory%20Seth%20Partnow",
-      "coverUrl": "",
+      "coverUrl": "https://books.google.com/books/content?vid=ISBN9781629379210&printsec=frontcover&img=1&zoom=2&source=gbs_api",
       "ratingsCount": 500,
       "isbn13": "9781629379210",
-      "tones": ["dense", "thoughtful"],
+      "tones": [
+        "dense",
+        "thoughtful"
+      ],
       "themeToneReviewed": true
     },
     {
@@ -479,10 +535,14 @@
       "bookKey": "dreamland-the-true-tale-of-america-s-opiate-epidemic|sam-quinones",
       "goodreadsUrl": "https://www.goodreads.com/book/show/22529381-dreamland",
       "buyUrl": "https://www.amazon.com/s?k=Dreamland%3A%20The%20True%20Tale%20of%20America's%20Opiate%20Epidemic%20Sam%20Quinones",
-      "coverUrl": "",
+      "coverUrl": "https://books.google.com/books/content?id=JbGgDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "ratingsCount": 22722,
       "isbn13": "9781620402504",
-      "tones": ["investigative", "dark", "revelatory"],
+      "tones": [
+        "investigative",
+        "dark",
+        "revelatory"
+      ],
       "themeToneReviewed": true
     },
     {
@@ -513,10 +573,14 @@
       "bookKey": "the-new-jim-crow-mass-incarceration-in-the-age-of-colorblindness|michelle-alexander",
       "goodreadsUrl": "https://www.goodreads.com/book/show/6792458-the-new-jim-crow",
       "buyUrl": "https://www.amazon.com/s?k=The%20New%20Jim%20Crow%3A%20Mass%20Incarceration%20in%20the%20Age%20of%20Colorblindness%20Michelle%20Alexander",
-      "coverUrl": "",
+      "coverUrl": "https://books.google.com/books/content?vid=ISBN9781595581037&printsec=frontcover&img=1&zoom=2&source=gbs_api",
       "ratingsCount": 122123,
       "isbn13": "9781595581037",
-      "tones": ["revelatory", "dense", "thoughtful"],
+      "tones": [
+        "revelatory",
+        "dense",
+        "thoughtful"
+      ],
       "themeToneReviewed": true
     },
     {
@@ -547,10 +611,14 @@
       "bookKey": "the-book-of-joe-trying-not-to-suck-at-baseball-and-life|joe-maddon",
       "goodreadsUrl": "https://www.goodreads.com/book/show/60568501-the-book-of-joe",
       "buyUrl": "https://www.amazon.com/s?k=The%20Book%20of%20Joe%3A%20Trying%20Not%20to%20Suck%20at%20Baseball%20and%20Life%20Joe%20Maddon",
-      "coverUrl": "",
+      "coverUrl": "https://books.google.com/books/content?id=xzxkEAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "ratingsCount": 436,
       "isbn13": "9781538751794",
-      "tones": ["conversational", "inspiring", "thoughtful"],
+      "tones": [
+        "conversational",
+        "inspiring",
+        "thoughtful"
+      ],
       "themeToneReviewed": true
     },
     {
@@ -581,10 +649,14 @@
       "bookKey": "the-emperor-of-all-maladies-a-biography-of-cancer|siddhartha-mukherjee",
       "goodreadsUrl": "https://www.goodreads.com/book/show/7170627-the-emperor-of-all-maladies",
       "buyUrl": "https://www.amazon.com/s?k=The%20Emperor%20of%20All%20Maladies%3A%20A%20Biography%20of%20Cancer%20Siddhartha%20Mukherjee",
-      "coverUrl": "",
+      "coverUrl": "https://books.google.com/books/content?id=hgx0sJvphNkC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "ratingsCount": 197930,
       "isbn13": "9781439107959",
-      "tones": ["dense", "revelatory", "thoughtful"],
+      "tones": [
+        "dense",
+        "revelatory",
+        "thoughtful"
+      ],
       "themeToneReviewed": true
     },
     {
@@ -615,10 +687,14 @@
       "bookKey": "being-mortal-medicine-and-what-matters-in-the-end|atul-gawande",
       "goodreadsUrl": "https://www.goodreads.com/book/show/40015533-being-mortal",
       "buyUrl": "https://www.amazon.com/s?k=Being%20Mortal%3A%20Medicine%20and%20What%20Matters%20in%20the%20End%20Atul%20Gawande",
-      "coverUrl": "",
+      "coverUrl": "https://books.google.com/books/content?id=w5EcCgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "ratingsCount": 188099,
       "isbn13": "9780805095159",
-      "tones": ["thoughtful", "poignant", "revelatory"],
+      "tones": [
+        "thoughtful",
+        "poignant",
+        "revelatory"
+      ],
       "themeToneReviewed": true
     },
     {
@@ -649,10 +725,14 @@
       "bookKey": "fast-food-nation-the-dark-side-of-the-all-american-meal|eric-schlosser",
       "goodreadsUrl": "https://www.goodreads.com/book/show/1097.Fast_Food_Nation",
       "buyUrl": "https://www.amazon.com/s?k=Fast%20Food%20Nation%3A%20The%20Dark%20Side%20of%20the%20All-American%20Meal%20Eric%20Schlosser",
-      "coverUrl": "",
+      "coverUrl": "https://books.google.com/books/content?id=yNFN1OpnkBkC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
       "ratingsCount": 200568,
       "isbn13": "9780395977897",
-      "tones": ["investigative", "dark", "thoughtful"],
+      "tones": [
+        "investigative",
+        "dark",
+        "thoughtful"
+      ],
       "themeToneReviewed": true
     },
     {
@@ -683,10 +763,14 @@
       "bookKey": "the-mvp-machine-how-baseball-s-new-nonconformists-are-using-data-to-build-better-players|ben-lindbergh",
       "goodreadsUrl": "https://www.goodreads.com/book/show/42283858-the-mvp-machine",
       "buyUrl": "https://www.amazon.com/s?k=The%20MVP%20Machine%3A%20How%20Baseball's%20New%20Nonconformists%20Are%20Using%20Data%20to%20Build%20Better%20Players%20Ben%20Lindbergh",
-      "coverUrl": "",
+      "coverUrl": "https://books.google.com/books/content?vid=ISBN9781541698949&printsec=frontcover&img=1&zoom=2&source=gbs_api",
       "ratingsCount": 2725,
       "isbn13": "9781541698949",
-      "tones": ["dense", "revelatory", "investigative"],
+      "tones": [
+        "dense",
+        "revelatory",
+        "investigative"
+      ],
       "themeToneReviewed": true
     },
     {
@@ -717,10 +801,14 @@
       "bookKey": "the-immortal-life-of-henrietta-lacks|rebecca-skloot",
       "goodreadsUrl": "https://www.goodreads.com/book/show/6493208-the-immortal-life-of-henrietta-lacks",
       "buyUrl": "https://www.amazon.com/s?k=The%20Immortal%20Life%20of%20Henrietta%20Lacks%20Rebecca%20Skloot",
-      "coverUrl": "",
+      "coverUrl": "https://books.google.com/books/content?vid=ISBN9781400052172&printsec=frontcover&img=1&zoom=2&source=gbs_api",
       "ratingsCount": 760088,
       "isbn13": "9781400052172",
-      "tones": ["revelatory", "investigative", "thoughtful"],
+      "tones": [
+        "revelatory",
+        "investigative",
+        "thoughtful"
+      ],
       "themeToneReviewed": true
     },
     {
@@ -751,10 +839,13 @@
       "bookKey": "dad-is-fat|jim-gaffigan",
       "goodreadsUrl": "https://www.goodreads.com/book/show/16141924-dad-is-fat",
       "buyUrl": "https://www.amazon.com/s?k=Dad%20Is%20Fat%20Jim%20Gaffigan",
-      "coverUrl": "",
+      "coverUrl": "https://books.google.com/books/content?vid=ISBN9780385349055&printsec=frontcover&img=1&zoom=2&source=gbs_api",
       "ratingsCount": 74417,
       "isbn13": "9780385349055",
-      "tones": ["funny", "character-driven"],
+      "tones": [
+        "funny",
+        "character-driven"
+      ],
       "themeToneReviewed": true
     },
     {
@@ -785,10 +876,13 @@
       "bookKey": "bringing-down-the-house-the-inside-story-of-six-m-i-t-students-who-took-vegas-for-millions|ben-mezrich",
       "goodreadsUrl": "https://www.goodreads.com/book/show/502278.Bringing_Down_the_House",
       "buyUrl": "https://www.amazon.com/s?k=Bringing%20Down%20the%20House%3A%20The%20Inside%20Story%20of%20Six%20M.I.T.%20Students%20Who%20Took%20Vegas%20for%20Millions%20Ben%20Mezrich",
-      "coverUrl": "",
+      "coverUrl": "https://books.google.com/books/content?vid=ISBN9780743225700&printsec=frontcover&img=1&zoom=2&source=gbs_api",
       "ratingsCount": 21741,
       "isbn13": "9780743225700",
-      "tones": ["propulsive", "investigative"],
+      "tones": [
+        "propulsive",
+        "investigative"
+      ],
       "themeToneReviewed": true
     }
   ]
