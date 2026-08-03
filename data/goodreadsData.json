@@ -95,7 +95,6 @@
         "tense"
       ],
       "themeToneReviewed": true,
-      "top10": true,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1764811078l/244759037._SY475_.jpg"
     },
     {
@@ -638,6 +637,7 @@
         "funny"
       ],
       "themeToneReviewed": true,
+      "top10": true,
       "coverUrl": "https://m.media-amazon.com/images/I/81XQpXyXRHL._SX300_.jpg"
     },
     {
@@ -10747,8 +10747,7 @@
         "dark",
         "compulsive"
       ],
-      "themeToneReviewed": true,
-      "top10": true
+      "themeToneReviewed": true
     },
     {
       "bookKey": "local-woman-missing|mary-kubica",
@@ -38918,7 +38917,8 @@
         "Tomorrow, and Tomorrow, and Tomorrow",
         "Come and Get It"
       ],
-      "tones": ["thoughtful", "compulsive"], "themeToneReviewed": true
+      "tones": ["thoughtful", "compulsive"], "themeToneReviewed": true,
+      "top10": true
     },
     {
       "bookKey": "rock-a-mainstream-alternative-history-of-alternative-mainstream-music|chuck-klosterman",
