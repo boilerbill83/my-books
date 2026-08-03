@@ -4,11 +4,15 @@ Plan for merging a fresh Goodreads library export into `data/goodreadsData.json`
 Living document — update this file as the plan changes or the import proceeds,
 rather than re-deriving it from scratch in a future session.
 
-**Status as of this writing: dry run complete against a real export
-(`goodreads_library_export_1.csv`, 822 rows). No data files have been
-written. Waiting on Bill to (a) fix the Goodreads-side duplicates listed
-below, (b) confirm the two genuine status-reversion books, (c) validate the
-7 genuinely-missing books one by one.**
+**Status as of this writing: two dry runs complete** (`goodreads_library_export_1.csv`,
+822 rows; `goodreads_library_export_3.csv`, 806 rows, after Bill's first
+round of Goodreads-side cleanup). No `goodreadsData.json`/`feedbackData.json`
+changes have been written yet — the only real writes so far are the
+candidate-pool `bookId` backfill (side task, complete). Waiting on Bill to
+(a) resolve the last 2 Goodreads-side duplicates, (b) check whether *Behind
+Closed Doors*' rating loss was intentional, (c) clarify whether *Number Go
+Up* / *Survival of the Thickest* were meant to be deleted outright, (d)
+validate the 9 genuinely-missing books one by one.
 
 ---
 
@@ -175,8 +179,51 @@ searched Goodreads for all 159 external candidate-pool books.
   already-integrated data with a less-certain fresh guess is pure downside)
   and backfilled `bookId` only on the **92 books that had no ID at all**.
   All 159 candidate-pool books now carry a resolvable Goodreads ID.
-- The 31 disagreements are flagged, not resolved — worth a manual spot-check
-  on Goodreads directly if it matters later, but out of scope for now.
-- Committed and pushed (`8832a8f`). Verified: JSON valid, diff shows only
-  the 92 intended insertions, `eval.js` unaffected (bookId isn't read by any
-  scoring path).
+- **Resolved (Bill's call): use the pre-existing `goodreadsUrl` over the
+  fresh search result for all 31 disagreements** — extracted the ID already
+  embedded in each book's `goodreadsUrl` and wrote it as an explicit
+  `bookId` field (previously only implicit in the URL string). All 159
+  candidate-pool books now carry an explicit `bookId`.
+- Committed and pushed (`8832a8f` blank-book backfill, `a05b2a3`
+  goodreadsUrl-derived backfill for the other 67). Verified: JSON valid,
+  diffs show only the intended insertions, `eval.js` unaffected (bookId
+  isn't read by any scoring path).
+
+## Second dry run: export_3.csv (806 rows, after Bill's Goodreads cleanup)
+
+Bill fixed data directly on Goodreads and re-exported. Re-ran the same
+matcher (no data files changed — explicitly another test run).
+
+**Progress confirmed:**
+- Duplicate groups: **15 → 2 remaining** (*Black Sheep*, *Cassandra in
+  Reverse* — both still two to-read entries each).
+
+**New issue found:** *Behind Closed Doors* now shows a single Goodreads
+entry (same `Book Id` 29437949 on both sides — not a duplicate-merge
+artifact this time) with its rating cleared: `read, 5★` on our side vs.
+`read, unrated` in the export. Looks like the rating got wiped while
+resolving the duplicate, not left over from the other copy. Worth checking
+directly on Goodreads.
+
+**Two books now fully gone (not just reverted) — previously softer findings
+that hardened**:
+- *Number Go Up* — was `to-read, unrated` (same single entry, reverted)
+  last run; now absent from the export entirely.
+- *Survival of the Thickest* — was one of the 15 duplicate pairs; now
+  neither copy is present.
+
+**Unchanged from the first dry run:**
+- *In Good Faith* (currently-reading → read, 5★) and *Stoner* (to-read →
+  currently-reading) — real progress, still just waiting on the actual
+  import to apply.
+- *The Three-Body Problem* (3★ → 2★) — still looks like a genuine re-rate.
+- *To Sleep in a Sea of Stars* — still absent, still consistent with its
+  existing `dnf: true` flag, nothing new.
+
+**Missing-books list, now 9 confirmed real** (up from 7): the original 7
+(*Unhinged Habits, The Origins of the Cornbread Mafia, 11/22/63, World
+Travel, Coach, The Real Hoosiers, Children of Time*) plus the 2 new ones
+above (*Number Go Up, Survival of the Thickest*). The raw diff also flagged
+*The Antisocial Network* and *Raised* again — confirmed both are still just
+the same matcher blind spot from the first run (retitled book, truncated
+title), not really missing; re-verified by hand both still resolve.
