@@ -56,14 +56,14 @@
     },
     {
       "bookKey": "an-innocent-client-a-joe-dillard-novel|scott-pratt",
-      "bookId": "244759037",
+      "bookId": "59005391",
       "title": "An Innocent Client: A Joe Dillard Novel (Joe Dillard Series Book 1)",
       "author": "Scott Pratt",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 3.9,
       "pages": 372,
-      "dateRead": "2026/05/31",
+      "dateRead": "2026/05/28",
       "dateAdded": "2026/05/28",
       "isbn": null,
       "isbn13": "9781944083106",
@@ -100,14 +100,14 @@
     },
     {
       "bookKey": "in-good-faith-a-joe-dillard-novel|scott-pratt",
-      "bookId": "244759039",
+      "bookId": "16124802",
       "title": "In Good Faith: A Joe Dillard Novel (Joe Dillard Series Book 2)",
       "author": "Scott Pratt",
-      "shelf": "currently-reading",
-      "myRating": 0,
+      "shelf": "read",
+      "myRating": 5,
       "avgRating": 3.95,
       "pages": 429,
-      "dateRead": null,
+      "dateRead": "2026/06/16",
       "dateAdded": "2026/05/31",
       "isbn": null,
       "isbn13": "9780451412720",
@@ -1090,7 +1090,7 @@
     },
     {
       "bookKey": "american-fantasy|emma-straub",
-      "bookId": "241433199",
+      "bookId": "239051491",
       "title": "American Fantasy",
       "author": "Emma Straub",
       "shelf": "to-read",
@@ -1792,14 +1792,14 @@
     },
     {
       "bookKey": "heartland-a-forgotten-place-an-impossible-dream-and-the-miracle-of-larry-bird|keith-o-brien",
-      "bookId": "235992099",
+      "bookId": "236045073",
       "title": "Heartland: A Forgotten Place, an Impossible Dream, and the Miracle of Larry Bird",
       "author": "Keith O'Brien",
       "shelf": "read",
       "myRating": 5,
       "avgRating": 4.2,
       "pages": 384,
-      "dateRead": null,
+      "dateRead": "2026/07/19",
       "dateAdded": "2026/03/12",
       "isbn": "166821170X",
       "isbn13": "9781668211700",
@@ -2575,14 +2575,14 @@
     },
     {
       "bookKey": "rock-paper-scissors|alice-feeney",
-      "bookId": "56269064",
+      "bookId": "57026221",
       "title": "Rock Paper Scissors",
       "author": "Alice Feeney",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 3.9,
       "pages": 294,
-      "dateRead": null,
+      "dateRead": "2026/07/24",
       "dateAdded": "2026/01/23",
       "isbn": "1250266106",
       "isbn13": "9781250266101",
@@ -2780,7 +2780,7 @@
     },
     {
       "bookKey": "big-fan-two-friends-82-490-miles-and-the-wild-wonderful-sports-we-love|michael-schur",
-      "bookId": "240382488",
+      "bookId": "240381654",
       "title": "Big Fan: Two Friends, 82,490 Miles, and the Wild, Wonderful Sports We Love",
       "author": "Michael Schur",
       "shelf": "to-read",
@@ -2948,7 +2948,7 @@
       "myRating": 5,
       "avgRating": 4.2,
       "pages": 380,
-      "dateRead": null,
+      "dateRead": "2026/07/04",
       "dateAdded": "2025/10/11",
       "isbn": "1542037263",
       "isbn13": "9781542037266",
@@ -3515,14 +3515,14 @@
     },
     {
       "bookKey": "careless-people-a-cautionary-tale-of-power-greed-and-lost-idealism|sarah-wynn-williams",
-      "bookId": "223436601",
+      "bookId": "228578720",
       "title": "Careless People: A Cautionary Tale of Power, Greed, and Lost Idealism",
       "author": "Sarah Wynn-Williams",
       "shelf": "read",
       "myRating": 2,
       "avgRating": 4.3,
       "pages": 382,
-      "dateRead": null,
+      "dateRead": "2026/06/30",
       "dateAdded": "2025/12/17",
       "isbn": "1250391237",
       "isbn13": "9781250391230",
@@ -4013,14 +4013,14 @@
     },
     {
       "bookKey": "anatomy-of-an-alibi|ashley-elston",
-      "bookId": "239052933",
+      "bookId": "239265790",
       "title": "Anatomy of an Alibi",
       "author": "Ashley Elston",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 4,
       "pages": 340,
-      "dateRead": null,
+      "dateRead": "2026/07/02",
       "dateAdded": "2025/11/06",
       "isbn": "0593834453",
       "isbn13": "9780593834459",
@@ -8245,7 +8245,7 @@
       "myRating": 5,
       "avgRating": 4.37,
       "pages": 386,
-      "dateRead": "2023/10/28",
+      "dateRead": "2023/12/12",
       "dateAdded": "2022/07/19",
       "isbn": null,
       "isbn13": "9780593314487",
@@ -11707,7 +11707,7 @@
       "myRating": 4,
       "avgRating": 4.1,
       "pages": 388,
-      "dateRead": null,
+      "dateRead": "2026/06/27",
       "dateAdded": "2025/01/30",
       "isbn": null,
       "isbn13": "9781420519426",
@@ -15297,7 +15297,7 @@
       "title": "The Three-Body Problem (Remembrance of Earth\u2019s Past, #1)",
       "author": "Liu Cixin",
       "shelf": "read",
-      "myRating": 3,
+      "myRating": 2,
       "avgRating": 4.2,
       "pages": 400,
       "dateRead": "2024/04/28",
@@ -15735,7 +15735,7 @@
     },
     {
       "bookKey": "on-earth-as-it-is-on-television|emily-jane",
-      "bookId": "206340812",
+      "bookId": "62874129",
       "title": "On Earth as It Is on Television",
       "author": "Emily Jane",
       "shelf": "to-read",
@@ -16749,7 +16749,7 @@
     },
     {
       "bookKey": "black-sheep|rachel-harrison",
-      "bookId": "69704909",
+      "bookId": "69704901",
       "title": "Black Sheep",
       "author": "Rachel Harrison",
       "shelf": "to-read",
@@ -18320,7 +18320,7 @@
     },
     {
       "bookKey": "cassandra-in-reverse|holly-smale",
-      "bookId": "177513602",
+      "bookId": "61987507",
       "title": "Cassandra in Reverse",
       "author": "Holly Smale",
       "shelf": "to-read",
@@ -38418,7 +38418,8 @@
         "Ron Chernow",
         "Andrew Ross Sorkin"
       ],
-      "bookKey": "house-of-fidelity-the-rise-of-the-johnson-dynasty-and-the-company-that-changed-american-investing|justin-baer"
+      "bookKey": "house-of-fidelity-the-rise-of-the-johnson-dynasty-and-the-company-that-changed-american-investing|justin-baer",
+      "bookId": "241039527"
     },
     {
       "title": "The Body",
@@ -38454,7 +38455,8 @@
         "Dennis Lehane",
         "Ray Bradbury"
       ],
-      "bookKey": "the-body|stephen-king"
+      "bookKey": "the-body|stephen-king",
+      "bookId": "38926465"
     },
     {
       "title": "Raised",
@@ -38526,7 +38528,8 @@
         "Malcolm Gladwell",
         "Jonathan Haidt"
       ],
-      "bookKey": "how-to-know-a-person-the-art-of-seeing-others-deeply-and-being-deeply-seen|david-brooks"
+      "bookKey": "how-to-know-a-person-the-art-of-seeing-others-deeply-and-being-deeply-seen|david-brooks",
+      "bookId": "112974860"
     },
     {
       "title": "Stoner",
@@ -38584,6 +38587,7 @@
       ],
       "dnf": false,
       "bookKey": "ding-dong-how-ring-went-from-shark-tank-reject-to-everyone-s-front-door|jamie-siminoff",
+      "bookId": "243134278",
       "similarToTitles": [
         "Shoe Dog",
         "That Will Never Work: The Birth of Netflix and the Amazing Life of an Idea",
@@ -38621,6 +38625,7 @@
       ],
       "dnf": false,
       "bookKey": "thrilling-tales-of-modern-men-stories|danny-mcbride",
+      "bookId": "242000546",
       "similarToTitles": [
         "Yearbook",
         "Raised in Captivity: Fictional Nonfiction",
@@ -38657,6 +38662,7 @@
       ],
       "dnf": false,
       "bookKey": "the-american-way-of-killing-the-invention-of-an-epidemic|malcolm-gladwell",
+      "bookId": "247255488",
       "similarToTitles": [
         "The Bomber Mafia: A Dream, a Temptation, and the Longest Night of the Second World War",
         "Dopesick: Dealers, Doctors, and the Drug Company that Addicted America",
@@ -38695,6 +38701,7 @@
       ],
       "dnf": false,
       "bookKey": "endurance-shackleton-s-incredible-voyage|alfred-lansing",
+      "bookId": "139069",
       "similarToTitles": [
         "Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night",
         "The Wager: A Tale of Shipwreck, Mutiny and Murder",
@@ -38715,6 +38722,7 @@
     },
     {
       "bookKey": "up-on-cove-mountain-adventure-tragedy-and-a-quest-for-meaning-on-the-appalachian-trail|earl-swift",
+      "bookId": "244122402",
       "title": "Up on Cove Mountain: Adventure, Tragedy, and a Quest for Meaning on the Appalachian Trail",
       "author": "Earl Swift",
       "isbn13": "9780063265455",
@@ -38747,6 +38755,7 @@
     },
     {
       "bookKey": "how-to-not-die-in-prison-a-survival-guide|taylor-sheridan",
+      "bookId": "247948566",
       "title": "How to Not Die in Prison: A Survival Guide",
       "author": "Taylor Sheridan",
       "isbn13": "9781668213452",
@@ -38778,6 +38787,7 @@
     },
     {
       "bookKey": "the-munich-affair|james-patterson",
+      "bookId": "246137709",
       "title": "The Munich Affair",
       "author": "James  Patterson",
       "isbn13": "9780316612494",
@@ -38812,6 +38822,7 @@
     },
     {
       "bookKey": "this-book-made-me-think-of-you|libby-page",
+      "bookId": "232794526",
       "title": "This Book Made Me Think of You",
       "author": "Libby  Page",
       "isbn13": "9798217186990",
@@ -38844,6 +38855,7 @@
     },
     {
       "bookKey": "operation-bounce-house|matt-dinniman",
+      "bookId": "233717212",
       "title": "Operation Bounce House",
       "author": "Matt Dinniman",
       "isbn13": "9780593820315",
@@ -38877,6 +38889,7 @@
     },
     {
       "bookKey": "culpability|bruce-holsinger",
+      "bookId": "222259253",
       "title": "Culpability",
       "author": "Bruce Holsinger",
       "isbn13": "9781787706057",
@@ -38909,6 +38922,7 @@
     },
     {
       "bookKey": "rock-a-mainstream-alternative-history-of-alternative-mainstream-music|chuck-klosterman",
+      "bookId": "249246420",
       "title": "Rock*: A Mainstream Alternative History of Alternative Mainstream Music",
       "author": "Chuck Klosterman",
       "isbn13": "9781451624496",
@@ -38941,6 +38955,7 @@
     },
     {
       "bookKey": "cancel-me-if-you-can|dave-portnoy",
+      "bookId": "243018874",
       "title": "Cancel Me If You Can",
       "author": "Dave Portnoy",
       "isbn13": "9781668222027",
