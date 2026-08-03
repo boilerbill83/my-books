@@ -1,6 +1,6 @@
 {
   "meta": {
-    "count": 15
+    "count": 14
   },
   "candidates": [
         {
@@ -33,37 +33,6 @@
       "ratingsCount": 150000,
       "isbn13": "9780063252363",
       "tones": ["propulsive", "twisty", "bleak"], "themeToneReviewed": true
-    },
-    {
-      "title": "The Last Flight",
-      "author": "Julie Clark",
-      "bookId": "52652923",
-      "type": "fiction",
-      "year": 2020,
-      "pages": 320,
-      "avgRating": 4.09,
-      "themes": [
-        "thriller",
-        "domestic suspense"
-      ],
-      "similarToAuthors": [
-        "B.A. Paris",
-        "Freida McFadden"
-      ],
-      "similarToTitles": [
-        "Behind Closed Doors",
-        "The Housemaid (The Housemaid, #1)",
-        "Never Lie",
-        "Home Is Where the Bodies Are",
-        "The Perfect Marriage"
-      ],
-      "bookKey": "the-last-flight|julie-clark",
-      "goodreadsUrl": "https://www.goodreads.com/book/show/52652923-the-last-flight",
-      "buyUrl": "https://www.amazon.com/s?k=The+Last+Flight+Julie+Clark",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1617291197i/52652923.jpg",
-      "ratingsCount": 200000,
-      "isbn13": "9781728215730",
-      "tones": ["tense", "poignant"], "themeToneReviewed": true
     },
         {
       "title": "The Only One Left",

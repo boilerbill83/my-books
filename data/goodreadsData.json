@@ -38985,6 +38985,133 @@
         "Open"
       ],
       "tones": ["funny", "conversational"], "themeToneReviewed": false
+    },
+    {
+      "bookKey": "injustice-for-all|scott-pratt",
+      "bookId": "18841489",
+      "title": "Injustice For All (Joe Dillard #3)",
+      "author": "Scott Pratt",
+      "shelf": "read",
+      "myRating": 4,
+      "avgRating": 4.47,
+      "pages": 367,
+      "dateRead": "2026/06/21",
+      "dateAdded": "2026/06/26",
+      "isbn": null,
+      "isbn13": null,
+      "publisher": "Phoenix Flying, LLC",
+      "year": 2013,
+      "coverUrl": null,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ],
+      "similarToTitles": [
+        "An Innocent Client: A Joe Dillard Novel (Joe Dillard Series Book 1)",
+        "In Good Faith: A Joe Dillard Novel (Joe Dillard Series Book 2)",
+        "A Time to Kill (Jake Brigance, #1)",
+        "The Client",
+        "Sycamore Row (Jake Brigance, #2)"
+      ],
+      "ratingsCount": 20363,
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow",
+        "Brad Parks",
+        "Steve Cavanagh"
+      ],
+      "type": "fiction",
+      "tones": [
+        "propulsive",
+        "procedural",
+        "tense"
+      ],
+      "themeToneReviewed": true,
+      "dnf": false
+    },
+    {
+      "bookKey": "the-last-flight|julie-clark",
+      "bookId": "51197260",
+      "title": "The Last Flight",
+      "author": "Julie Clark",
+      "shelf": "read",
+      "myRating": 5,
+      "avgRating": 4.09,
+      "pages": 320,
+      "dateRead": "2026/06/09",
+      "dateAdded": "2026/06/04",
+      "isbn": "1728215730",
+      "isbn13": "9781728215730",
+      "publisher": "Sourcebooks Landmark",
+      "year": 2020,
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1617291197i/52652923.jpg",
+      "themes": [
+        "thriller",
+        "domestic suspense"
+      ],
+      "similarToTitles": [
+        "Behind Closed Doors",
+        "The Housemaid (The Housemaid, #1)",
+        "Never Lie",
+        "Home Is Where the Bodies Are",
+        "The Perfect Marriage"
+      ],
+      "ratingsCount": 200000,
+      "similarToAuthors": [
+        "B.A. Paris",
+        "Freida McFadden"
+      ],
+      "type": "fiction",
+      "tones": [
+        "tense",
+        "poignant"
+      ],
+      "themeToneReviewed": true,
+      "dnf": false
+    },
+    {
+      "bookKey": "the-last-word-a-legal-thriller|d-b-easton",
+      "bookId": "236093450",
+      "title": "The Last Word: A Legal Thriller",
+      "author": "D.B. Easton",
+      "shelf": "read",
+      "myRating": 5,
+      "avgRating": 4.3,
+      "pages": 313,
+      "dateRead": "2026/06/04",
+      "dateAdded": "2026/06/01",
+      "isbn": null,
+      "isbn13": null,
+      "publisher": null,
+      "year": 2025,
+      "coverUrl": null,
+      "themes": [
+        "legal",
+        "thriller",
+        "courtroom"
+      ],
+      "similarToTitles": [
+        "A Time to Kill (Jake Brigance, #1)",
+        "The Client",
+        "An Innocent Client: A Joe Dillard Novel (Joe Dillard Series Book 1)",
+        "In Good Faith: A Joe Dillard Novel (Joe Dillard Series Book 2)",
+        "The Last Chance Lawyer (Daniel Pike #1)"
+      ],
+      "ratingsCount": 200,
+      "similarToAuthors": [
+        "John Grisham",
+        "Scott Turow",
+        "Steve Cavanagh"
+      ],
+      "type": "fiction",
+      "tones": [
+        "tense",
+        "gritty",
+        "procedural"
+      ],
+      "themeToneReviewed": true,
+      "dnf": false
     }
   ],
   "indexes": {
