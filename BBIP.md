@@ -278,12 +278,22 @@ Parsing notes confirmed against the real file:
 
 ## Open questions / decisions pending
 
-- Do the 2 status-reversion books (Number Go Up, To Sleep in a Sea of
-  Stars) reflect deliberate re-shelving for a reread, or an accident? Governs
-  whether we touch their `shelf`/`myRating` at all.
-- Do we want to start tracking `Read Count` (re-reads) anywhere in the
-  schema, or leave it out of scope?
-- Final validation + reasons for the 7 genuinely-missing books.
+All resolved:
+
+- **Status-reversion books** (Number Go Up, To Sleep in a Sea of Stars) —
+  turned out to be moot by the later dry runs, not an accident needing
+  `shelf`/`myRating` changes. *Number Go Up* was captured as a genuinely
+  missing book and dismissed (`started_did_not_like`). *To Sleep in a Sea
+  of Stars* stayed absent, consistent with its pre-existing `dnf: true`
+  flag and an existing `feedbackData.json` entry that predates this whole
+  import effort — nothing to touch.
+- **`Read Count` (re-reads)** — Bill's call: leave it out of scope. Not
+  used by any scoring signal today; adding a field with no consumer is
+  dead weight. The 5 books with `Read Count` > 1 (Steve Jobs ×3, Lessons
+  in Chemistry ×2, LIV and Let Die ×2, American Overdose ×2, The Hike ×2)
+  are left as-is.
+- **Final validation + reasons for the missing books** — done; all 11
+  resolved (see "All 11 missing books now resolved" above).
 
 ## Side task completed: candidate-pool `bookId` backfill
 
