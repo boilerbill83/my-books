@@ -870,7 +870,11 @@ function computeQualityScore(stats, integ, rows) {
       count: stats.filter(f => f.scorePct < 90).length,
       pointsLost: (100 - completenessScore) * 0.33,
       name: 'Field completeness gaps (all fields)',
-      description: `Average Quality Score across all ${stats.length} tracked fields is ${allFieldsAvg.toFixed(1)}% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.`,
+      // Largest gaps are named live from `stats` every run, not a fixed list
+      // — a hand-written field list here silently went stale once (e.g.
+      // "tones" was named as a top gap long after it reached 100%,
+      // caught during Bill's Aug 3 2026 data-quality follow-up).
+      description: `Average Quality Score across all ${stats.length} tracked fields is ${allFieldsAvg.toFixed(1)}% — ${stats.slice().sort((a, b) => a.scorePct - b.scorePct).slice(0, 5).map(f => f.field).join(', ')} are the largest gaps today, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.`,
       fix: 'See the Field Population table, sorted by Quality Score, for every field below 90%.',
       anchor: '#fieldPopulationSection',
     },
@@ -968,6 +972,22 @@ function buildRoadmap(stats, integ, rows) {
   function withFieldScores(baseStats, overrides) {
     return baseStats.map(f => (f.field in overrides ? { ...f, scorePct: overrides[f.field] } : f));
   }
+  // Live per-field lookup so every phase's action text quotes today's real
+  // percentage/count instead of a number typed once and left to rot — the
+  // exact bug class found in this section during Bill's Aug 3 2026
+  // data-quality follow-up (a "463 orphaned refs" plan long after that
+  // number hit 0, and a "tones is a top-5 gap" claim long after tones hit
+  // 100%). `stat()` always reads the CURRENT stats array, so even a phase's
+  // own description reads correctly once that phase's fix has actually
+  // landed (e.g. Phase 1 will honestly show "0 books" once dismissReason
+  // is done, not a stale pre-fix count).
+  function stat(name) {
+    const f = stats.find(s => s.field === name);
+    if (!f) return { pct: 0, missing: 0 };
+    return { pct: f.scorePct, missing: Math.max(0, f.eligibleTotal - f.eligiblePopulated) };
+  }
+  function pct(name) { return stat(name).pct.toFixed(1); }
+  function missing(name) { return stat(name).missing; }
 
   // Phase 1 — Quick in-house fixes: small, finite, no external dependency.
   const phase1Integ = integ;
@@ -975,7 +995,7 @@ function buildRoadmap(stats, integ, rows) {
     dismissReason: 100,
   });
   const phase1Actions = [
-    'Backfill reasonLabel for the handful of dismissed books that have a reasonCode but no label (currently 84.4%, ~5 books) — a small, finite, fully in-house fix, same pattern used for the two dismissals backfilled in Session 26.',
+    `Backfill reasonLabel for the handful of dismissed books that have a reasonCode but no label (currently ${pct('dismissReason')}%, ${missing('dismissReason')} book(s)) — a small, finite, fully in-house fix, same pattern used for the two dismissals backfilled in Session 26.`,
   ];
 
   // Phase 2 — Let existing scheduled automation finish; no new code, just
@@ -987,10 +1007,10 @@ function buildRoadmap(stats, integ, rows) {
     isbn13: 100, year: 100, coverUrl: 100,
   });
   const phase2Actions = [
-    'amazonRating/amazonRatingsCount (currently 89.7%, 47 books) keep rising via the existing 5x/day scrape-ratings.yml with its Session 13d retry cooldown.',
-    'metadataFetchedAt/description (98.4-98.5%, ~18 books each) clear at 150/day via enrich-metadata.yml — already nearly done.',
-    'isbn13 (98.9%, 12 books, mostly read-shelf) and year (99.3%) are small enough gaps that a single enrich-isbn.yml/enrich_metadata.py run each should close them.',
-    'coverUrl (96.9%, 14 books in the eligible to-read/candidate/currently-reading pool) clears via a re-run of enrich_covers.py.',
+    `amazonRating/amazonRatingsCount (currently ${pct('amazonRating')}%, ${missing('amazonRating')} book(s)) keep rising via the existing 5x/day scrape-ratings.yml with its Session 13d retry cooldown.`,
+    `metadataFetchedAt/description (currently ${pct('metadataFetchedAt')}%/${pct('description')}%, ${missing('metadataFetchedAt')}/${missing('description')} book(s)) clear at 150/day via enrich-metadata.yml.`,
+    `isbn13 (${pct('isbn13')}%, ${missing('isbn13')} book(s), mostly read-shelf) and year (${pct('year')}%, ${missing('year')} book(s)) are small enough gaps that a single enrich-isbn.yml/enrich_metadata.py run each should close them.`,
+    `coverUrl (${pct('coverUrl')}%, ${missing('coverUrl')} book(s) in the eligible to-read/candidate/currently-reading pool) clears via a re-run of enrich_covers.py.`,
   ];
 
   // Phase 3 — Targeted backfills that need a deliberate pass, not just more
@@ -1001,9 +1021,9 @@ function buildRoadmap(stats, integ, rows) {
     publisher: 96, categories: 98, dateAdded: 92,
   });
   const phase3Actions = [
-    'publisher (87.3%) — Session 15 fixed enrich_metadata.py to capture the publisher field from Google Books, but ~99.7% of the dataset was already attempted before that fix landed, so the cache never picked it up. Needs a deliberate re-fetch pass over already-attempted books, not just waiting.',
-    'categories (96.3%, 40 attempted books with no result) — mostly a genuine Google Books coverage gap at this point, but worth one more pass since it hasn\'t been retried since Session 13c\'s original attempt.',
-    'dateAdded (84.1%) — cosmetic only, not used by scoring, but a low-volume gap worth a manual pass if ever prioritized.',
+    `publisher (currently ${pct('publisher')}%, ${missing('publisher')} book(s)) — Session 15 fixed enrich_metadata.py to capture the publisher field from Google Books, but most of the dataset was already attempted before that fix landed, so the cache never picked it up. Needs a deliberate re-fetch pass over already-attempted books, not just waiting.`,
+    `categories (${pct('categories')}%, ${missing('categories')} attempted book(s) with no result) — mostly a genuine Google Books coverage gap at this point, but worth one more pass since it hasn't been retried since Session 13c's original attempt.`,
+    `dateAdded (${pct('dateAdded')}%, ${missing('dateAdded')} book(s)) — cosmetic only, not used by scoring, but a low-volume gap worth a manual pass if ever prioritized.`,
   ];
 
   // Phase 4 — The honest ceiling. dateRead and isbn have no existing
@@ -1020,9 +1040,9 @@ function buildRoadmap(stats, integ, rows) {
     dateRead: 90, isbn: 85, subjects: 85,
   });
   const phase4Actions = [
-    'dateRead (73.1%, 176 read books) — no backfill path exists today (Session 15: sync_goodreads.py only ever sets dateRead at the moment of a live to-read→read transition, with no path for already-read/bulk-imported books). Would need a dedicated new script, and goodreads.com itself is blocked from this sandbox, so it would need to be built and tested against a real export rather than live.',
-    'isbn (65.9%, 43 pre-2007 books) — low priority regardless: isbn13 is the modern identifier that actually matters, and is already at 98.9%. Only worth chasing for a specific book if isbn13 is also missing for it.',
-    'subjects (74.9%, 274 attempted books with no result) — Session 13e\'s own analysis found this varies 60-95% by book type as a real Open Library coverage gap, not a backlog; a new data source is the only way past this ceiling, not more retries.',
+    `dateRead (currently ${pct('dateRead')}%, ${missing('dateRead')} read book(s)) — no backfill path exists today (Session 15: sync_goodreads.py only ever sets dateRead at the moment of a live to-read→read transition, with no path for already-read/bulk-imported books). Would need a dedicated new script, and goodreads.com itself is blocked from this sandbox, so it would need to be built and tested against a real export rather than live.`,
+    `isbn (${pct('isbn')}%, ${missing('isbn')} pre-2007 book(s)) — low priority regardless: isbn13 is the modern identifier that actually matters, and is already at ${pct('isbn13')}%. Only worth chasing for a specific book if isbn13 is also missing for it.`,
+    `subjects (${pct('subjects')}%, ${missing('subjects')} attempted book(s) with no result) — Session 13e's own analysis found this varies 60-95% by book type as a real Open Library coverage gap, not a backlog; a new data source is the only way past this ceiling, not more retries.`,
   ];
 
   const ceilingIntegri = phase4Integ;

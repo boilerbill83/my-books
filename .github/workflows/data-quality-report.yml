@@ -26,6 +26,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add output/data-quality-report-*.md output/data-quality-report-*.json
+          git add output/data-quality-report-*.md output/data-quality-report-*.json output/data-quality-index.json
           git diff --staged --quiet && echo "No change to commit." || \
             (git commit -m "Daily data quality report [automated]" && git push)

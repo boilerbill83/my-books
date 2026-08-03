@@ -231,7 +231,7 @@ None found.
 Ranked by estimated points lost from the 100-point score above — not raw counts. A large orphaned-reference or one-off count can matter less than a small count in a higher-weighted category (see Data Quality Score components).
 
 1. **Field completeness gaps (all fields)** (−8.9 pts)
-   Average Quality Score across all 31 tracked fields is 95.3% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.
+   Average Quality Score across all 31 tracked fields is 95.3% — isbn, dateRead, subjects, dateAdded, publisher are the largest gaps today, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.
    **Fix:** See the Field Population table, sorted by Quality Score, for every field below 90%.
 
 ## Roadmap to 100
@@ -242,23 +242,23 @@ A phased, cumulative plan from the current score to a perfect one. Each phase's 
 
 
 **Phase 1 — Quick in-house fixes** — projected score: 91/100 (+0 from current)
-- Backfill reasonLabel for the handful of dismissed books that have a reasonCode but no label (currently 84.4%, ~5 books) — a small, finite, fully in-house fix, same pattern used for the two dismissals backfilled in Session 26.
+- Backfill reasonLabel for the handful of dismissed books that have a reasonCode but no label (currently 100.0%, 0 book(s)) — a small, finite, fully in-house fix, same pattern used for the two dismissals backfilled in Session 26.
 
 **Phase 2 — Let existing automation finish** — projected score: 93/100 (+2 from current)
-- amazonRating/amazonRatingsCount (currently 89.7%, 47 books) keep rising via the existing 5x/day scrape-ratings.yml with its Session 13d retry cooldown.
-- metadataFetchedAt/description (98.4-98.5%, ~18 books each) clear at 150/day via enrich-metadata.yml — already nearly done.
-- isbn13 (98.9%, 12 books, mostly read-shelf) and year (99.3%) are small enough gaps that a single enrich-isbn.yml/enrich_metadata.py run each should close them.
-- coverUrl (96.9%, 14 books in the eligible to-read/candidate/currently-reading pool) clears via a re-run of enrich_covers.py.
+- amazonRating/amazonRatingsCount (currently 89.7%, 47 book(s)) keep rising via the existing 5x/day scrape-ratings.yml with its Session 13d retry cooldown.
+- metadataFetchedAt/description (currently 98.4%/98.5%, 18/17 book(s)) clear at 150/day via enrich-metadata.yml.
+- isbn13 (98.9%, 12 book(s), mostly read-shelf) and year (99.3%, 8 book(s)) are small enough gaps that a single enrich-isbn.yml/enrich_metadata.py run each should close them.
+- coverUrl (96.9%, 14 book(s) in the eligible to-read/candidate/currently-reading pool) clears via a re-run of enrich_covers.py.
 
 **Phase 3 — Targeted backfills (publisher, categories, dateAdded)** — projected score: 94/100 (+3 from current)
-- publisher (87.3%) — Session 15 fixed enrich_metadata.py to capture the publisher field from Google Books, but ~99.7% of the dataset was already attempted before that fix landed, so the cache never picked it up. Needs a deliberate re-fetch pass over already-attempted books, not just waiting.
-- categories (96.3%, 40 attempted books with no result) — mostly a genuine Google Books coverage gap at this point, but worth one more pass since it hasn't been retried since Session 13c's original attempt.
-- dateAdded (84.1%) — cosmetic only, not used by scoring, but a low-volume gap worth a manual pass if ever prioritized.
+- publisher (currently 87.3%, 141 book(s)) — Session 15 fixed enrich_metadata.py to capture the publisher field from Google Books, but most of the dataset was already attempted before that fix landed, so the cache never picked it up. Needs a deliberate re-fetch pass over already-attempted books, not just waiting.
+- categories (96.3%, 40 attempted book(s) with no result) — mostly a genuine Google Books coverage gap at this point, but worth one more pass since it hasn't been retried since Session 13c's original attempt.
+- dateAdded (84.1%, 176 book(s)) — cosmetic only, not used by scoring, but a low-volume gap worth a manual pass if ever prioritized.
 
 **Phase 4 — Best-effort on the harder gaps (dateRead, isbn, subjects)** — projected score: 96/100 (+5 from current)
-- dateRead (73.1%, 176 read books) — no backfill path exists today (Session 15: sync_goodreads.py only ever sets dateRead at the moment of a live to-read→read transition, with no path for already-read/bulk-imported books). Would need a dedicated new script, and goodreads.com itself is blocked from this sandbox, so it would need to be built and tested against a real export rather than live.
-- isbn (65.9%, 43 pre-2007 books) — low priority regardless: isbn13 is the modern identifier that actually matters, and is already at 98.9%. Only worth chasing for a specific book if isbn13 is also missing for it.
-- subjects (74.9%, 274 attempted books with no result) — Session 13e's own analysis found this varies 60-95% by book type as a real Open Library coverage gap, not a backlog; a new data source is the only way past this ceiling, not more retries.
+- dateRead (currently 73.1%, 176 read book(s)) — no backfill path exists today (Session 15: sync_goodreads.py only ever sets dateRead at the moment of a live to-read→read transition, with no path for already-read/bulk-imported books). Would need a dedicated new script, and goodreads.com itself is blocked from this sandbox, so it would need to be built and tested against a real export rather than live.
+- isbn (65.9%, 43 pre-2007 book(s)) — low priority regardless: isbn13 is the modern identifier that actually matters, and is already at 98.9%. Only worth chasing for a specific book if isbn13 is also missing for it.
+- subjects (74.9%, 274 attempted book(s) with no result) — Session 13e's own analysis found this varies 60-95% by book type as a real Open Library coverage gap, not a backlog; a new data source is the only way past this ceiling, not more retries.
 
 **Theoretical ceiling (literal 100)** — projected score: 100/100 (+9 from current)
 - Literal 100/100 requires dateRead, isbn, and subjects to reach full population — all three depend on either data Goodreads/Open Library may never have had for a given book, or a new backfill script this sandbox can't build-and-verify against the live site. Realistic assessment: Phase 3 is probably the practical ceiling without dedicated new tooling and/or a different data source, not Phase 4.
