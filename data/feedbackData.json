@@ -1,7 +1,7 @@
 {
  "meta": {
   "formatVersion": 1,
-  "lastUpdated": "2026-08-01T01:58:14.928Z",
+  "lastUpdated": "2026-08-03T12:34:41.731Z",
   "negativeSeedCount": 43
  },
  "interactions": [
@@ -1237,6 +1237,48 @@
    "reasonCode": "already_read_or_owned",
    "reasonLabel": "Already read or own it",
    "timestamp": "2026-08-01T01:58:14.928Z",
+   "excludeFromRecommendations": true
+  },
+  {
+   "bookKey": "number-go-up-inside-crypto-s-wild-rise-and-staggering-fall|zeke-faux",
+   "title": "Number Go Up",
+   "author": "Zeke Faux",
+   "type": "nonfiction",
+   "themes": [
+    "finance",
+    "true crime",
+    "tech history"
+   ],
+   "tones": [
+    "investigative",
+    "dense"
+   ],
+   "interactionType": "dismiss",
+   "reasonCode": "started_did_not_like",
+   "reasonLabel": "Started it, didn't like it",
+   "note": "Bill: boring",
+   "timestamp": "2026-08-03T12:34:41.731Z",
+   "excludeFromRecommendations": true
+  },
+  {
+   "bookKey": "stoner|john-williams",
+   "title": "Stoner",
+   "author": "John Williams",
+   "type": "fiction",
+   "themes": [
+    "historical",
+    "psychological"
+   ],
+   "tones": [
+    "atmospheric",
+    "thoughtful",
+    "gritty"
+   ],
+   "interactionType": "dismiss",
+   "reasonCode": "started_did_not_like",
+   "reasonLabel": "Started it, didn't like it",
+   "note": "Bill: boring",
+   "timestamp": "2026-08-03T12:34:41.731Z",
    "excludeFromRecommendations": true
   }
  ]
