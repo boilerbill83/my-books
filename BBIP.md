@@ -20,15 +20,33 @@ bare title) is now gone from Goodreads entirely, and so is **Stoner**
 is now **11**, up from 9 — see the "Second dry run" section below for the
 original findings and add these 2 to the same review-file treatment.
 
-**Resolved**: *Number Go Up* and *Stoner* — Bill confirmed both were
-deliberately dismissed ("boring"), not accidental. Written to
-`feedbackData.json` (`reasonCode: started_did_not_like`), verified
-(`eval.js`/`validate_review.js` unchanged), commit `46220e3`.
+**All 11 missing books now resolved.** Bill edited the review file directly
+on GitHub (commit `8695441`) rather than sending it back:
+- **7 real dismissals written** to `feedbackData.json` (commits `46220e3`,
+  `d159ef1`): *Number Go Up* (started_did_not_like), *Stoner*
+  (started_did_not_like), *Unhinged Habits* (not_interesting), *The Real
+  Hoosiers* (not_my_vibe), *Children of Time* (started_did_not_like),
+  *Survival of the Thickest* (started_did_not_like), *Behind Closed Doors*
+  by Lisa Renee Jones — not the B.A. Paris novel, that one's fine
+  (no_longer_relevant).
+- **4 rows needed no action at all**: *The Origins of the Cornbread Mafia,
+  11/22/63, World Travel, Coach* — Bill confirmed he genuinely read all
+  four; checked `goodreadsData.json` and each already correctly shows
+  `shelf: read` with a real rating and `dnf: false` — no dismissal or DNF
+  flag was ever set, so there was nothing to remove. Their absence from the
+  fresh export is just Bill tidying his Goodreads account, not a data bug.
+- Checked all 7 dismissed titles against every candidate-pool file for a
+  lurking duplicate under a different bookKey (Session 32's bug class) —
+  none found.
+- Verified after both dismissal batches: `eval.js` unchanged (p10=100,
+  p25=96), `validate_review.js` unchanged (informational, same 9/13 keeps
+  below top 25).
 
-Remaining open: (a) whether the Lisa Renee Jones *Behind Closed Doors* and
-*Survival of the Thickest* disappearances were also intentional, (b) hand
-back reasons for the other 9 genuinely-missing books (7 original +
-Lisa Renee Jones's *Behind Closed Doors* + *Survival of the Thickest*).
+**Missing-books phase of BBIP is complete.** Remaining before the real
+import: apply the two clean matched-book updates still pending (*In Good
+Faith* currently-reading → read/5★, *The Three-Body Problem* re-rate 3★ →
+2★), then move through Phases 4 onward (bookId backfill for `goodreadsData.json`,
+new-book enrichment, integrity guardrails, verify, commit).
 
 ## Branch sync with `main` (completed)
 
