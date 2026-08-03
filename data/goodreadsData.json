@@ -39112,6 +39112,48 @@
       ],
       "themeToneReviewed": true,
       "dnf": false
+    },
+    {
+      "bookKey": "when-the-game-was-ours|larry-bird",
+      "bookId": "40624439",
+      "title": "When the Game Was Ours",
+      "author": "Larry Bird",
+      "shelf": "read",
+      "myRating": 2,
+      "avgRating": 4.33,
+      "pages": 369,
+      "dateRead": "2026/08/03",
+      "dateAdded": null,
+      "isbn": null,
+      "isbn13": "9780547225470",
+      "publisher": "Houghton Mifflin Harcourt",
+      "year": 2009,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1529859709l/40624439._SY475_.jpg",
+      "type": "nonfiction",
+      "themes": [
+        "sports",
+        "biography"
+      ],
+      "similarToTitles": [
+        "Heartland: A Forgotten Place, an Impossible Dream, and the Miracle of Larry Bird",
+        "Dream Team: How Michael, Magic, Larry, Charles, and the Greatest Team of All Time Conquered the World and Changed the Game of Basketball Forever",
+        "Three-Ring Circus: Kobe, Shaq, Phil, and the Crazy Years of the Lakers Dynasty",
+        "Blood in the Garden: The Flagrant History of the 1990s New York Knicks",
+        "The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops"
+      ],
+      "similarToAuthors": [
+        "Jeff Pearlman",
+        "Jack McCallum",
+        "Keith O'Brien"
+      ],
+      "ratingsCount": 4860,
+      "tones": [
+        "conversational",
+        "inspiring",
+        "poignant"
+      ],
+      "themeToneReviewed": true,
+      "dnf": false
     }
   ],
   "indexes": {
