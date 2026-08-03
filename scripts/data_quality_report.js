@@ -625,7 +625,13 @@ function findOutOfRangeCounts() {
 // same gap only affects its own score. Weighted accordingly so the
 // worst-N list surfaces the highest-leverage fixes first.
 function computeBookImpactScores(integrityFlags) {
-  const perRow = rows.map(r => {
+  // currently_reading_feed rows can never have real BBRE impact: engine.js's
+  // isExcluded() removes currently-reading books from the candidate pool
+  // entirely, and sync_currently_reading.py fully rebuilds this file from
+  // Goodreads RSS with no merge step, so any tags added here would be wiped
+  // on the next shelf change anyway. Surfacing them just clutters the report
+  // with a permanently-unfixable finding (see CLAUDE.md Session 14d/15/19/31).
+  const perRow = rows.filter(r => r.source !== 'currently_reading_feed').map(r => {
     const missingFields = IMPACT_FIELDS.filter(f => {
       const reg = FIELD_REGISTRY[f];
       if (reg?.eligible && !reg.eligible(r)) return false; // not applicable to this book
