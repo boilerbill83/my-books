@@ -4,15 +4,69 @@ Plan for merging a fresh Goodreads library export into `data/goodreadsData.json`
 Living document — update this file as the plan changes or the import proceeds,
 rather than re-deriving it from scratch in a future session.
 
-**Status as of this writing: two dry runs complete** (`goodreads_library_export_1.csv`,
-822 rows; `goodreads_library_export_3.csv`, 806 rows, after Bill's first
-round of Goodreads-side cleanup). No `goodreadsData.json`/`feedbackData.json`
-changes have been written yet — the only real writes so far are the
-candidate-pool `bookId` backfill (side task, complete). Waiting on Bill to
-(a) resolve the last 2 Goodreads-side duplicates, (b) check whether *Behind
-Closed Doors*' rating loss was intentional, (c) clarify whether *Number Go
-Up* / *Survival of the Thickest* were meant to be deleted outright, (d)
-validate the 9 genuinely-missing books one by one.
+**Status as of this writing: three dry runs complete** (`goodreads_library_export_1.csv`,
+822 rows; `goodreads_library_export_3.csv`, 806 rows; `goodreads_library_export (1).csv`,
+803 rows, pulled from `input/goodreadsextract/` on `main`). No
+`goodreadsData.json`/`feedbackData.json` changes have been written yet —
+the only real writes so far are the candidate-pool `bookId` backfill (side
+task, complete) and a merge with `main` (see "Branch sync" below).
+
+**Third dry run confirmed the remaining 2 duplicates and the Behind Closed
+Doors rating are both fixed** — 0 duplicate groups, B.A. Paris's copy back
+at 5★. Two new absences surfaced: a *second, different* "Behind Closed
+Doors" (by Lisa Renee Jones — a separate book that happens to share the
+bare title) is now gone from Goodreads entirely, and so is **Stoner**
+(previously progressing nicely to `currently-reading`). Missing-book count
+is now **11**, up from 9 — see the "Second dry run" section below for the
+original findings and add these 2 to the same review-file treatment.
+
+Waiting on Bill to (a) check whether the Lisa Renee Jones *Behind Closed
+Doors* and *Stoner* disappearances were intentional, (b) clarify whether
+*Number Go Up* / *Survival of the Thickest* were meant to be deleted
+outright, (c) hand back the missing-books review file with reasons filled
+in (now needs 11 rows, not 9).
+
+## Branch sync with `main` (completed)
+
+`main` had moved ahead independently — several automated jobs (ISBN13
+backfill via Google Books, metadata enrichment, daily quality reports,
+weekly extract) plus Bill's new export upload to
+`input/goodreadsextract/`. Merged `main` into this working branch before
+running the third dry run, so the comparison is against fully current data.
+
+4 real conflicts, resolved by hand:
+- **`data/goodreadsData.json`** (8 blocks) — main's automated ISBN13
+  backfill script did a full `JSON.stringify` rewrite instead of a surgical
+  edit, so its in-memory copy of 8 books predated this branch's
+  `similarToTitles` completion work (Sessions 27-31) and never had that
+  field. Kept this branch's `similarToTitles` (real work main never had),
+  merged in main's `isbn13` values (auto-merged cleanly elsewhere in the
+  file), kept identical `tones` values from either side.
+- **`data/candidatePool6.json`** (8 blocks) — main still had all 12 of the
+  pool-to-pool duplicate objects Session 32 deliberately removed (Boys in
+  the Boat, Open, Killers of the Flower Moon, Empire of Pain, Bad Blood,
+  Catch and Kill, The Feather Thief, Going Clear, The Lincoln Lawyer, All
+  Systems Red, Endurance, Fourth Wing). Kept this branch's deletions —
+  verified duplicate-merge work, not re-litigated by an unrelated automated
+  job that ran against a stale base.
+- **`output/data-quality-report-2026-08-01.{json,md}`** (add/add) — both
+  branches independently generated a snapshot for the same date from
+  different states. Kept main's (the automated daily pipeline's official
+  record) rather than hand-merging point-in-time report content.
+
+Verified post-merge: JSON valid across all 8 data files; 0 duplicate groups
+/ 0 broken `similarToTitles` refs / 0 self-citations dataset-wide (1,106
+books, unchanged); `eval.js` identical (p10=100, p25=96, MAE=0.758);
+`validate_review.js` unchanged. Re-ran the export_(1) dry run after the
+merge to confirm findings didn't shift — identical results before/after.
+Committed (`ca72901`) and pushed.
+
+**Lesson for future dry runs**: check `git log HEAD..origin/main` before
+trusting a comparison — an automated job on `main` can silently diverge
+from this branch's data between sessions, and (as seen here) an automated
+script's full-file rewrite can make it *look* like data was lost when it
+was really just two branches each holding a real, non-overlapping
+improvement.
 
 ---
 

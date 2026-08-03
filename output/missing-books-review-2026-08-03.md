@@ -1,6 +1,8 @@
 # Missing / Deleted Books — Review Needed
 
-Generated 2026-08-03, from the BBIP export_3 dry run (`goodreads_library_export_3.csv`).
+Generated 2026-08-03, updated after the third BBIP dry run
+(`goodreads_library_export (1).csv`, pulled from `input/goodreadsextract/`
+on `main`) — 2 new books added since the first version of this file.
 
 These are books currently in `data/goodreadsData.json` that do not appear anywhere
 in the latest Goodreads export — meaning they've been removed from your
@@ -44,11 +46,23 @@ just a data-hygiene note.)
 | Children of Time (Children of Time, #1) | Adrian Tchaikovsky | to-read | — | | |
 | Number Go Up: Inside Crypto's Wild Rise and Staggering Fall | Zeke Faux | read | 2★ | | |
 | Survival of the Thickest: Essays | Michelle Buteau | to-read | — | | |
+| Behind Closed Doors (Behind Closed Doors, #1) | Lisa Renee Jones | read | 3★ | | |
+| Stoner | John Williams | to-read / currently-reading | — | | |
+
+## Notes on the two new additions
+
+- **"Behind Closed Doors" by Lisa Renee Jones** is a *different book* from
+  the B.A. Paris novel of the same bare title — that one is fine, still
+  correctly matched at 5★. This is the separate Lisa Renee Jones series
+  entry, which is the one that's now gone from your account.
+- **Stoner** was also being tracked separately in `currentlyReading.json`
+  (its own sync, `currently-reading`) — it's disappeared from the main
+  export entirely, so worth confirming whether that was intentional.
 
 ## Not on this list (already resolved, no action needed)
 
 - **The Antisocial Network** and **Raised** looked missing in the raw diff
   but both resolve fine on inspection (retitled edition, truncated title on
   our side) — not actually gone, not on this list.
-- 135 other absent books already carry `dnf: true` in our data — their
+- 135+ other absent books already carry `dnf: true` in our data — their
   absence is expected and already accounted for, not re-litigated here.
