@@ -1,6 +1,6 @@
 {
-  "date": "2026-08-01",
-  "generatedAt": "2026-08-01T10:38:37.743Z",
+  "date": "2026-08-02",
+  "generatedAt": "2026-08-02T10:39:11.490Z",
   "totalBooks": 1112,
   "qualityScore": {
     "score": 67,
@@ -15,7 +15,7 @@
         "key": "completeness",
         "label": "Field Completeness",
         "weight": 0.33,
-        "subscore": 70.34431732860386
+        "subscore": 70.52620407726937
       },
       {
         "key": "foundational",
@@ -47,7 +47,7 @@
       },
       {
         "count": 6,
-        "pointsLost": 9.8,
+        "pointsLost": 9.7,
         "name": "Field completeness gaps (all fields)",
         "description": "Average Quality Score across all 31 tracked fields is 94.8% — isbn, dateRead, subjects, tones, and publisher are the largest gaps, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
         "fix": "See the Field Population table, sorted by Quality Score, for every field below 90%.",
@@ -88,7 +88,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 70.34431732860386
+          "subscore": 70.52620407726937
         },
         {
           "key": "foundational",
@@ -133,7 +133,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 74.53993418715069
+          "subscore": 74.72182093581637
         },
         {
           "key": "foundational",
@@ -175,7 +175,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 74.53993418715069
+          "subscore": 74.72182093581637
         },
         {
           "key": "foundational",
@@ -216,7 +216,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 74.53993418715069
+          "subscore": 74.72182093581637
         },
         {
           "key": "foundational",
@@ -391,8 +391,8 @@
     },
     {
       "field": "isbn13",
-      "scorePct": 98.02158273381295,
-      "rawPct": 98.02158273381295,
+      "scorePct": 99.01079136690647,
+      "rawPct": 99.01079136690647,
       "critical": false,
       "eligibleTotal": 1112
     },

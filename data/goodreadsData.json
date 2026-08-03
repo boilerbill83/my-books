@@ -14626,7 +14626,7 @@
       "dateRead": "2024/06/29",
       "dateAdded": "2024/01/25",
       "isbn": null,
-      "isbn13": null,
+      "isbn13": "9783641229498",
       "publisher": "William Morrow",
       "year": 2024,
       "themes": [
@@ -21089,7 +21089,7 @@
       "dateRead": "2022/08/25",
       "dateAdded": "2022/08/16",
       "isbn": null,
-      "isbn13": null,
+      "isbn13": "9781476712826",
       "publisher": "Washington Square Press",
       "year": 2013,
       "themes": [
@@ -26341,7 +26341,7 @@
       "dateRead": "2020/07/04",
       "dateAdded": "2020/03/21",
       "isbn": null,
-      "isbn13": null,
+      "isbn13": "9780385342605",
       "publisher": "Random House",
       "year": 2012,
       "themes": [
@@ -27919,7 +27919,7 @@
       "dateRead": "2019/01/13",
       "dateAdded": "2018/11/07",
       "isbn": null,
-      "isbn13": null,
+      "isbn13": "9780784813522",
       "publisher": null,
       "year": 1998,
       "themes": [
@@ -29440,7 +29440,7 @@
       "dateRead": null,
       "dateAdded": "2018/06/25",
       "isbn": null,
-      "isbn13": null,
+      "isbn13": "9780780760622",
       "publisher": "Delta",
       "year": 2005,
       "themes": [
@@ -29810,7 +29810,7 @@
       "dateRead": "2018/05/08",
       "dateAdded": "2018/05/01",
       "isbn": null,
-      "isbn13": null,
+      "isbn13": "9781471156816",
       "publisher": "Touchstone",
       "year": 2016,
       "themes": [
@@ -30504,7 +30504,7 @@
       "dateRead": "2010/01/01",
       "dateAdded": "2014/11/23",
       "isbn": null,
-      "isbn13": null,
+      "isbn13": "9780575003491",
       "publisher": "Open Road Media",
       "year": 2014,
       "themes": [
@@ -38386,7 +38386,7 @@
     {
       "title": "House of Fidelity: The Rise of the Johnson Dynasty and the Company That Changed American Investing",
       "author": "Justin Baer",
-      "isbn13": null,
+      "isbn13": "9781538766972",
       "isbn": "1538766957",
       "avgRating": 3.75,
       "ratingsCount": 0,
@@ -38558,7 +38558,12 @@
         "Gabrielle Zevin",
         "Tom Perrotta"
       ],
-      "tones": ["atmospheric", "thoughtful", "gritty"], "themeToneReviewed": true
+      "tones": [
+        "atmospheric",
+        "thoughtful",
+        "gritty"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Ding Dong: How Ring Went From Shark Tank Reject To Everyone's Front Door",
@@ -38591,7 +38596,11 @@
         "Marc Randolph",
         "Brad Stone"
       ],
-      "tones": ["heartwarming", "conversational"], "themeToneReviewed": true
+      "tones": [
+        "heartwarming",
+        "conversational"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Thrilling Tales of Modern Men: Stories",
@@ -38623,7 +38632,11 @@
         "Seth Rogen",
         "Chuck Klosterman"
       ],
-      "tones": ["funny", "conversational"], "themeToneReviewed": true
+      "tones": [
+        "funny",
+        "conversational"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "The American Way of Killing: The Invention of an Epidemic",
@@ -38657,12 +38670,16 @@
         "Nassim Taleb",
         "Dan Ariely"
       ],
-      "tones": ["thoughtful", "revelatory"], "themeToneReviewed": true
+      "tones": [
+        "thoughtful",
+        "revelatory"
+      ],
+      "themeToneReviewed": true
     },
     {
       "title": "Endurance: Shackleton's Incredible Voyage",
       "author": "Alfred Lansing",
-      "isbn13": null,
+      "isbn13": "9780752834597",
       "isbn": null,
       "avgRating": 4.43,
       "ratingsCount": 0,
@@ -38690,7 +38707,11 @@
         "David Grann",
         "Laura Hillenbrand"
       ],
-      "tones": ["atmospheric", "thoughtful"], "themeToneReviewed": true
+      "tones": [
+        "atmospheric",
+        "thoughtful"
+      ],
+      "themeToneReviewed": true
     },
     {
       "bookKey": "up-on-cove-mountain-adventure-tragedy-and-a-quest-for-meaning-on-the-appalachian-trail|earl-swift",
@@ -38706,13 +38727,16 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "nonfiction",
-      "themes": ["adventure", "history"],
+      "themes": [
+        "adventure",
+        "history"
+      ],
       "dnf": false,
       "similarToAuthors": [
         "Jon Krakauer",
         "David Grann"
       ],
-      "similarToTitles": [
+"similarToTitles": [
         "Into Thin Air",
         "A Walk in the Woods: Rediscovering America on the Appalachian Trail",
         "The Lost City of Z: A Tale of Deadly Obsession in the Amazon",
@@ -38735,12 +38759,15 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "nonfiction",
-      "themes": ["social commentary", "humor"],
+      "themes": [
+        "social commentary",
+        "humor"
+      ],
       "dnf": false,
       "similarToAuthors": [
         "Ted Conover"
       ],
-      "similarToTitles": [
+"similarToTitles": [
         "American Prison: A Reporter's Undercover Journey into the Business of Punishment",
         "Just Mercy: A Story of Justice and Redemption",
         "The New Jim Crow: Mass Incarceration in the Age of Colorblindness",
@@ -38753,7 +38780,7 @@
       "bookKey": "the-munich-affair|james-patterson",
       "title": "The Munich Affair",
       "author": "James  Patterson",
-      "isbn13": null,
+      "isbn13": "9780316612494",
       "isbn": "0316404098",
       "avgRating": 4.28,
       "ratingsCount": 0,
@@ -38763,7 +38790,10 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "fiction",
-      "themes": ["thriller", "suspense"],
+      "themes": [
+        "thriller",
+        "suspense"
+      ],
       "dnf": false,
       "similarToAuthors": [
         "Harlan Coben",
@@ -38771,7 +38801,7 @@
         "Lee Child",
         "David Baldacci"
       ],
-      "similarToTitles": [
+"similarToTitles": [
         "Along Came a Spider (Alex Cross, #1)",
         "Kiss the Girls (Alex Cross, #2)",
         "The Perfect Assassin (Doc Savage, #1)",
@@ -38794,13 +38824,16 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "fiction",
-      "themes": ["contemporary", "psychology"],
+      "themes": [
+        "contemporary",
+        "psychology"
+      ],
       "dnf": false,
       "similarToAuthors": [
         "Taylor Jenkins Reid",
         "Emma Straub"
       ],
-      "similarToTitles": [
+"similarToTitles": [
         "Maybe You Should Talk to Someone: A Therapist, Her Therapist, and Our Lives Revealed",
         "Educated",
         "Tomorrow, and Tomorrow, and Tomorrow",
@@ -38823,13 +38856,17 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "fiction",
-      "themes": ["sci-fi", "speculative", "adventure"],
+      "themes": [
+        "sci-fi",
+        "speculative",
+        "adventure"
+      ],
       "dnf": false,
       "similarToAuthors": [
         "Andy Weir",
         "Max Brooks"
       ],
-      "similarToTitles": [
+"similarToTitles": [
         "The Martian",
         "Project Hail Mary",
         "We Are Legion (We Are Bob) (Bobiverse, #1)",
@@ -38852,13 +38889,16 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "fiction",
-      "themes": ["contemporary", "social commentary"],
+      "themes": [
+        "contemporary",
+        "social commentary"
+      ],
       "dnf": false,
       "similarToAuthors": [
         "Gary Shteyngart",
         "Tom Perrotta"
       ],
-      "similarToTitles": [
+"similarToTitles": [
         "Normal People",
         "Beautiful World, Where Are You",
         "Lessons in Chemistry",
@@ -38881,13 +38921,16 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "nonfiction",
-      "themes": ["music history", "humor"],
+      "themes": [
+        "music history",
+        "humor"
+      ],
       "dnf": false,
       "similarToAuthors": [
         "Jeff Pearlman",
         "Bill Bryson"
       ],
-      "similarToTitles": [
+"similarToTitles": [
         "Fargo Rock City: A Heavy Metal Odyssey in Rural North Dakota",
         "Chuck Klosterman IV: A Decade of Curious People and Dangerous Ideas",
         "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
@@ -38910,13 +38953,16 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "nonfiction",
-      "themes": ["memoir", "business"],
+      "themes": [
+        "memoir",
+        "business"
+      ],
       "dnf": false,
       "similarToAuthors": [
         "Phil Knight",
         "Jeff Pearlman"
       ],
-      "similarToTitles": [
+"similarToTitles": [
         "Shoe Dog",
         "Molly's Game: From Hollywood's Elite to Wall Street's Billionaire Boys Club, My High-Stakes Adventure in the World of Underground Poker",
         "A Life in Parts",
