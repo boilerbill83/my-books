@@ -120,36 +120,46 @@ Parsing notes confirmed against the real file:
 
 ## Phases (updated)
 
-1. **Bill fixes the 15 Goodreads-side duplicates** and clarifies the 2
-   status-reversion books. *(blocking — waiting on this)*
-2. **Bill validates the 7 genuinely-missing books one by one** — for each,
-   capture a real `reasonCode`/`reasonLabel` dismissal in
-   `feedbackData.json` (same schema the app's dismiss button writes),
-   never a guessed reason.
-3. **Re-export and re-run the matcher** against the cleaned-up Goodreads
+1. **Bill fixes the remaining Goodreads-side duplicates** and clarifies any
+   status-reversion / unexpectedly-deleted books. *(blocking — waiting on
+   this)*
+2. **Generate a missing/deleted-books review file after every dry run**:
+   `output/missing-books-review-YYYY-MM-DD.md` — one row per book absent
+   from the latest export (excluding ones already `dnf: true`, and
+   excluding any the matcher's known blind spots resolve on inspection —
+   see "Matching strategy" point 3), with a blank reason-code column for
+   Bill to fill in and hand back. Never guess a reason; nothing gets
+   written to `feedbackData.json` until Bill returns the file. Regenerate
+   this fresh on each dry run rather than patching the previous one, since
+   the missing set can grow or shrink between exports.
+3. **Bill hands back the filled-in review file** — for each book, capture a
+   real `reasonCode`/`reasonLabel` dismissal in `feedbackData.json` (same
+   schema the app's dismiss button writes), exactly as given, never a
+   guessed reason.
+4. **Re-export and re-run the matcher** against the cleaned-up Goodreads
    state (removes the 15-duplicate noise from the real diff).
-4. **Apply matched-book updates**: shelf/rating/date/pages/year/isbn
+5. **Apply matched-book updates**: shelf/rating/date/pages/year/isbn
    changes, logged individually. `avgRating` always overwritable
    (Goodreads' own live community average); `pages`/`year` only overwritten
    if it doesn't regress a value that looks hand-corrected (cross-check
    against session history in CLAUDE.md before blindly trusting a stale
    Goodreads value over an existing one).
-5. **Backfill `bookId`** on every matched book missing one (17 known so
+6. **Backfill `bookId`** on every matched book missing one (17 known so
    far, more likely once the duplicates are resolved and re-matched).
-6. **Add the new books** (themes/tones/similarToTitles researched inline,
+7. **Add the new books** (themes/tones/similarToTitles researched inline,
    per Bill's choice) — for each, immediately verify: no bookKey collision,
    all 5 `similarToTitles` resolve to real dataset titles, and — the step
    that just proved itself necessary — check every candidate-pool file for
    an existing unread duplicate of a book that just became `read`.
-7. **Reconcile `top10`/`allTimeFave` drift** against the export's custom
+8. **Reconcile `top10`/`allTimeFave` drift** against the export's custom
    shelves.
-8. **Re-run integrity guardrails**: `findDuplicateBooksFuzzy`, broken-ref
+9. **Re-run integrity guardrails**: `findDuplicateBooksFuzzy`, broken-ref
    scan, self-citation scan (Session 32's checks) — confirm the merge
    introduced nothing new.
-9. **Write via targeted string replacement**, never a full JSON round-trip,
+10. **Write via targeted string replacement**, never a full JSON round-trip,
    even at this scale — same discipline as every prior data-editing
    session. Verify via `git diff` that only intended fields changed.
-10. **Verify**: JSON validity, `node scripts/eval.js` (protect p10/p25),
+11. **Verify**: JSON validity, `node scripts/eval.js` (protect p10/p25),
     `node scripts/validate_review.js` (informational only, per Session 35),
     regenerate `data_quality_report.js`, commit in logical batches (e.g.
     "shelf/rating updates," "new books added," "bookId backfill," "missing-
