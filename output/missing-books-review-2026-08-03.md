@@ -44,10 +44,18 @@ just a data-hygiene note.)
 | Coach: Lessons on the Game of Life | Michael Lewis | read | 5★ | | |
 | The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops | Jack McCallum | read | 2★ | | |
 | Children of Time (Children of Time, #1) | Adrian Tchaikovsky | to-read | — | | |
-| Number Go Up: Inside Crypto's Wild Rise and Staggering Fall | Zeke Faux | read | 2★ | | |
 | Survival of the Thickest: Essays | Michelle Buteau | to-read | — | | |
 | Behind Closed Doors (Behind Closed Doors, #1) | Lisa Renee Jones | read | 3★ | | |
-| Stoner | John Williams | to-read / currently-reading | — | | |
+
+## Resolved
+
+| Title | Author | Reason |
+|---|---|---|
+| Number Go Up: Inside Crypto's Wild Rise and Staggering Fall | Zeke Faux | `started_did_not_like` — "boring" |
+| Stoner | John Williams | `started_did_not_like` — "boring" |
+
+Both written to `feedbackData.json` and verified (eval.js/validate_review.js
+unchanged).
 
 ## Notes on the two new additions
 

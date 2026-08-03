@@ -20,11 +20,15 @@ bare title) is now gone from Goodreads entirely, and so is **Stoner**
 is now **11**, up from 9 — see the "Second dry run" section below for the
 original findings and add these 2 to the same review-file treatment.
 
-Waiting on Bill to (a) check whether the Lisa Renee Jones *Behind Closed
-Doors* and *Stoner* disappearances were intentional, (b) clarify whether
-*Number Go Up* / *Survival of the Thickest* were meant to be deleted
-outright, (c) hand back the missing-books review file with reasons filled
-in (now needs 11 rows, not 9).
+**Resolved**: *Number Go Up* and *Stoner* — Bill confirmed both were
+deliberately dismissed ("boring"), not accidental. Written to
+`feedbackData.json` (`reasonCode: started_did_not_like`), verified
+(`eval.js`/`validate_review.js` unchanged), commit `46220e3`.
+
+Remaining open: (a) whether the Lisa Renee Jones *Behind Closed Doors* and
+*Survival of the Thickest* disappearances were also intentional, (b) hand
+back reasons for the other 9 genuinely-missing books (7 original +
+Lisa Renee Jones's *Behind Closed Doors* + *Survival of the Thickest*).
 
 ## Branch sync with `main` (completed)
 
