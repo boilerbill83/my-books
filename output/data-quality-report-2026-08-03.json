@@ -1,9 +1,9 @@
 {
   "date": "2026-08-03",
-  "generatedAt": "2026-08-03T14:29:38.439Z",
+  "generatedAt": "2026-08-03T14:55:56.624Z",
   "totalBooks": 1109,
   "qualityScore": {
-    "score": 91,
+    "score": 92,
     "components": [
       {
         "key": "criticalHealth",
@@ -15,7 +15,7 @@
         "key": "completeness",
         "label": "Field Completeness",
         "weight": 0.33,
-        "subscore": 72.9527220671398
+        "subscore": 74.34570864939641
       },
       {
         "key": "foundational",
@@ -39,16 +39,16 @@
     "impediments": [
       {
         "count": 7,
-        "pointsLost": 8.9,
+        "pointsLost": 8.5,
         "name": "Field completeness gaps (all fields)",
-        "description": "Average Quality Score across all 31 tracked fields is 95.3% — isbn, dateRead, subjects, dateAdded, publisher are the largest gaps today, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
+        "description": "Average Quality Score across all 31 tracked fields is 95.5% — isbn, dateRead, subjects, dateAdded, publisher are the largest gaps today, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
         "fix": "See the Field Population table, sorted by Quality Score, for every field below 90%.",
         "anchor": "#fieldPopulationSection"
       }
     ]
   },
   "bbreAccuracy": {
-    "score": 81,
+    "score": 80,
     "components": [
       {
         "key": "p10",
@@ -78,7 +78,7 @@
         "key": "ratingAccuracy",
         "label": "Rating Accuracy (MAE, 1.3★ ceiling)",
         "weight": 0.2,
-        "subscore": 41.50204069873973
+        "subscore": 41.48611616368092
       },
       {
         "key": "bottomCatch",
@@ -88,7 +88,7 @@
       }
     ],
     "sampleSize": 508,
-    "mae": 0.7604734709163835,
+    "mae": 0.7606804898721481,
     "precisionAtK": {
       "10": 100,
       "25": 96,
@@ -102,7 +102,7 @@
       "key": "current",
       "label": "Current",
       "actions": [],
-      "score": 91,
+      "score": 92,
       "components": [
         {
           "key": "criticalHealth",
@@ -114,7 +114,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 72.9527220671398
+          "subscore": 74.34570864939641
         },
         {
           "key": "foundational",
@@ -142,7 +142,7 @@
       "actions": [
         "Backfill reasonLabel for the handful of dismissed books that have a reasonCode but no label (currently 100.0%, 0 book(s)) — a small, finite, fully in-house fix, same pattern used for the two dismissals backfilled in Session 26."
       ],
-      "score": 91,
+      "score": 92,
       "components": [
         {
           "key": "criticalHealth",
@@ -154,7 +154,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 72.9527220671398
+          "subscore": 74.34570864939641
         },
         {
           "key": "foundational",
@@ -181,9 +181,9 @@
       "label": "Phase 2 — Let existing automation finish",
       "actions": [
         "amazonRating/amazonRatingsCount (currently 89.7%, 47 book(s)) keep rising via the existing 5x/day scrape-ratings.yml with its Session 13d retry cooldown.",
-        "metadataFetchedAt/description (currently 98.4%/98.5%, 18/17 book(s)) clear at 150/day via enrich-metadata.yml.",
-        "isbn13 (98.9%, 12 book(s), mostly read-shelf) and year (99.3%, 8 book(s)) are small enough gaps that a single enrich-isbn.yml/enrich_metadata.py run each should close them.",
-        "coverUrl (96.9%, 14 book(s) in the eligible to-read/candidate/currently-reading pool) clears via a re-run of enrich_covers.py."
+        "metadataFetchedAt/description (currently 99.9%/99.9%, 1/1 book(s)) clear at 150/day via enrich-metadata.yml.",
+        "isbn13 (99.2%, 9 book(s), mostly read-shelf) and year (99.3%, 8 book(s)) are small enough gaps that a single enrich-isbn.yml/enrich_metadata.py run each should close them.",
+        "coverUrl (100.0%, 0 book(s) in the eligible to-read/candidate/currently-reading pool) clears via a re-run of enrich_covers.py."
       ],
       "score": 93,
       "components": [
@@ -197,7 +197,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 77.49354186864785
+          "subscore": 77.72389562719945
         },
         {
           "key": "foundational",
@@ -223,8 +223,8 @@
       "key": "phase3",
       "label": "Phase 3 — Targeted backfills (publisher, categories, dateAdded)",
       "actions": [
-        "publisher (currently 87.3%, 141 book(s)) — Session 15 fixed enrich_metadata.py to capture the publisher field from Google Books, but most of the dataset was already attempted before that fix landed, so the cache never picked it up. Needs a deliberate re-fetch pass over already-attempted books, not just waiting.",
-        "categories (96.3%, 40 attempted book(s) with no result) — mostly a genuine Google Books coverage gap at this point, but worth one more pass since it hasn't been retried since Session 13c's original attempt.",
+        "publisher (currently 88.5%, 128 book(s)) — Session 15 fixed enrich_metadata.py to capture the publisher field from Google Books, but most of the dataset was already attempted before that fix landed, so the cache never picked it up. Needs a deliberate re-fetch pass over already-attempted books, not just waiting.",
+        "categories (96.4%, 40 attempted book(s) with no result) — mostly a genuine Google Books coverage gap at this point, but worth one more pass since it hasn't been retried since Session 13c's original attempt.",
         "dateAdded (84.1%, 176 book(s)) — cosmetic only, not used by scoring, but a low-volume gap worth a manual pass if ever prioritized."
       ],
       "score": 94,
@@ -239,7 +239,7 @@
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 80.84931046728691
+          "subscore": 80.85378240742368
         },
         {
           "key": "foundational",
@@ -266,8 +266,8 @@
       "label": "Phase 4 — Best-effort on the harder gaps (dateRead, isbn, subjects)",
       "actions": [
         "dateRead (currently 73.1%, 176 read book(s)) — no backfill path exists today (Session 15: sync_goodreads.py only ever sets dateRead at the moment of a live to-read→read transition, with no path for already-read/bulk-imported books). Would need a dedicated new script, and goodreads.com itself is blocked from this sandbox, so it would need to be built and tested against a real export rather than live.",
-        "isbn (65.9%, 43 pre-2007 book(s)) — low priority regardless: isbn13 is the modern identifier that actually matters, and is already at 98.9%. Only worth chasing for a specific book if isbn13 is also missing for it.",
-        "subjects (74.9%, 274 attempted book(s) with no result) — Session 13e's own analysis found this varies 60-95% by book type as a real Open Library coverage gap, not a backlog; a new data source is the only way past this ceiling, not more retries."
+        "isbn (65.9%, 43 pre-2007 book(s)) — low priority regardless: isbn13 is the modern identifier that actually matters, and is already at 99.2%. Only worth chasing for a specific book if isbn13 is also missing for it.",
+        "subjects (74.9%, 278 attempted book(s) with no result) — Session 13e's own analysis found this varies 60-95% by book type as a real Open Library coverage gap, not a backlog; a new data source is the only way past this ceiling, not more retries."
       ],
       "score": 96,
       "components": [
@@ -361,10 +361,10 @@
     },
     {
       "field": "subjects",
-      "scorePct": 74.88542621448212,
-      "rawPct": 73.66997294860235,
+      "scorePct": 74.90974729241877,
+      "rawPct": 74.84220018034264,
       "critical": false,
-      "eligibleTotal": 1091
+      "eligibleTotal": 1108
     },
     {
       "field": "dateAdded",
@@ -375,8 +375,8 @@
     },
     {
       "field": "publisher",
-      "scorePct": 87.2858431018936,
-      "rawPct": 87.2858431018936,
+      "scorePct": 88.4580703336339,
+      "rawPct": 88.4580703336339,
       "critical": false,
       "eligibleTotal": 1109
     },
@@ -396,36 +396,15 @@
     },
     {
       "field": "categories",
-      "scorePct": 96.33363886342805,
-      "rawPct": 94.77006311992787,
+      "scorePct": 96.38989169675091,
+      "rawPct": 96.30297565374211,
       "critical": false,
-      "eligibleTotal": 1091
-    },
-    {
-      "field": "coverUrl",
-      "scorePct": 96.92307692307692,
-      "rawPct": 50.3155996393147,
-      "critical": false,
-      "eligibleTotal": 455
-    },
-    {
-      "field": "metadataFetchedAt",
-      "scorePct": 98.37691614066726,
-      "rawPct": 98.37691614066726,
-      "critical": false,
-      "eligibleTotal": 1109
-    },
-    {
-      "field": "description",
-      "scorePct": 98.46708746618576,
-      "rawPct": 98.46708746618576,
-      "critical": false,
-      "eligibleTotal": 1109
+      "eligibleTotal": 1108
     },
     {
       "field": "isbn13",
-      "scorePct": 98.91794409377817,
-      "rawPct": 98.91794409377817,
+      "scorePct": 99.18845807033364,
+      "rawPct": 99.18845807033364,
       "critical": false,
       "eligibleTotal": 1109
     },
@@ -433,6 +412,20 @@
       "field": "year",
       "scorePct": 99.27862939585212,
       "rawPct": 99.27862939585212,
+      "critical": false,
+      "eligibleTotal": 1109
+    },
+    {
+      "field": "description",
+      "scorePct": 99.90982867448152,
+      "rawPct": 99.90982867448152,
+      "critical": false,
+      "eligibleTotal": 1109
+    },
+    {
+      "field": "metadataFetchedAt",
+      "scorePct": 99.90982867448152,
+      "rawPct": 99.90982867448152,
       "critical": false,
       "eligibleTotal": 1109
     },
@@ -547,6 +540,13 @@
       "rawPct": 3.065825067628494,
       "critical": false,
       "eligibleTotal": 34
+    },
+    {
+      "field": "coverUrl",
+      "scorePct": 100,
+      "rawPct": 51.57799819657349,
+      "critical": false,
+      "eligibleTotal": 455
     },
     {
       "field": "goodreadsUrl",
@@ -842,23 +842,23 @@
       "subjects": [
         {
           "value": "New York Times bestseller",
-          "count": 320
+          "count": 329
         },
         {
           "value": "Fiction",
-          "count": 245
+          "count": 246
         },
         {
           "value": "Biography",
-          "count": 134
+          "count": 138
         },
         {
           "value": "New York Times reviewed",
-          "count": 122
+          "count": 124
         },
         {
           "value": "History",
-          "count": 95
+          "count": 98
         },
         {
           "value": "American literature",
@@ -874,7 +874,7 @@
         },
         {
           "value": "Large type books",
-          "count": 41
+          "count": 42
         },
         {
           "value": "Mystery",
@@ -885,11 +885,11 @@
           "count": 39
         },
         {
-          "value": "Fiction, suspense",
-          "count": 37
+          "value": "Murder",
+          "count": 38
         },
         {
-          "value": "Murder",
+          "value": "Fiction, suspense",
           "count": 37
         },
         {
@@ -918,7 +918,7 @@
         },
         {
           "value": "Investigation",
-          "count": 23
+          "count": 24
         },
         {
           "value": "Fiction, legal",
@@ -938,7 +938,7 @@
         },
         {
           "value": "Families",
-          "count": 18
+          "count": 19
         },
         {
           "value": "Fiction, mystery & detective, general",
@@ -961,11 +961,19 @@
           "count": 17
         },
         {
+          "value": "Anecdotes",
+          "count": 16
+        },
+        {
           "value": "FICTION / Literary",
           "count": 16
         },
         {
           "value": "Fiction, family life",
+          "count": 16
+        },
+        {
+          "value": "Fiction, general",
           "count": 16
         },
         {
@@ -977,24 +985,20 @@
           "count": 16
         },
         {
+          "value": "Baseball",
+          "count": 15
+        },
+        {
           "value": "Contemporary",
           "count": 15
         },
         {
-          "value": "Fiction, general",
+          "value": "Cooks, biography",
           "count": 15
         },
         {
           "value": "Fiction, horror",
           "count": 15
-        },
-        {
-          "value": "Anecdotes",
-          "count": 14
-        },
-        {
-          "value": "Baseball",
-          "count": 14
         },
         {
           "value": "Fiction, women",
@@ -1029,7 +1033,7 @@
           "count": 13
         },
         {
-          "value": "Cooks, biography",
+          "value": "Cooks",
           "count": 12
         },
         {
@@ -1070,6 +1074,10 @@
         },
         {
           "value": "Businesspeople",
+          "count": 11
+        },
+        {
+          "value": "Cooking",
           "count": 11
         },
         {
@@ -1121,19 +1129,19 @@
           "count": 10
         },
         {
-          "value": "Cooking",
-          "count": 10
-        },
-        {
-          "value": "Cooks",
-          "count": 10
-        },
-        {
           "value": "Economic aspects",
           "count": 10
         },
         {
+          "value": "Family",
+          "count": 10
+        },
+        {
           "value": "Friendship",
+          "count": 10
+        },
+        {
+          "value": "Humor",
           "count": 10
         },
         {
@@ -1189,7 +1197,7 @@
           "count": 9
         },
         {
-          "value": "Family",
+          "value": "Crimes against",
           "count": 9
         },
         {
@@ -1201,7 +1209,7 @@
           "count": 9
         },
         {
-          "value": "Humor",
+          "value": "Judges",
           "count": 9
         },
         {
@@ -1221,7 +1229,11 @@
           "count": 8
         },
         {
-          "value": "Crimes against",
+          "value": "Baseball players",
+          "count": 8
+        },
+        {
+          "value": "Basketball players",
           "count": 8
         },
         {
@@ -1257,11 +1269,15 @@
           "count": 8
         },
         {
-          "value": "Judges",
+          "value": "Psychological fiction",
           "count": 8
         },
         {
-          "value": "Psychological fiction",
+          "value": "SOCIAL SCIENCE",
+          "count": 8
+        },
+        {
+          "value": "Sports",
           "count": 8
         },
         {
@@ -1273,11 +1289,11 @@
           "count": 7
         },
         {
-          "value": "Baseball players",
+          "value": "Basketball",
           "count": 7
         },
         {
-          "value": "Basketball players",
+          "value": "Basketball, biography",
           "count": 7
         },
         {
@@ -1353,14 +1369,6 @@
           "count": 7
         },
         {
-          "value": "SOCIAL SCIENCE",
-          "count": 7
-        },
-        {
-          "value": "Sports",
-          "count": 7
-        },
-        {
           "value": "SPORTS & RECREATION / Basketball",
           "count": 7
         },
@@ -1393,15 +1401,11 @@
           "count": 6
         },
         {
+          "value": "Athletes",
+          "count": 6
+        },
+        {
           "value": "Authors, biography",
-          "count": 6
-        },
-        {
-          "value": "Basketball",
-          "count": 6
-        },
-        {
-          "value": "Basketball, biography",
           "count": 6
         },
         {
@@ -1414,6 +1418,18 @@
         },
         {
           "value": "BUSINESS & ECONOMICS / Corporate & Business History",
+          "count": 6
+        },
+        {
+          "value": "Cancer",
+          "count": 6
+        },
+        {
+          "value": "Comedians, biography",
+          "count": 6
+        },
+        {
+          "value": "Conduct of life",
           "count": 6
         },
         {
@@ -1469,6 +1485,10 @@
           "count": 6
         },
         {
+          "value": "Health",
+          "count": 6
+        },
+        {
           "value": "Hedge funds",
           "count": 6
         },
@@ -1497,6 +1517,10 @@
           "count": 6
         },
         {
+          "value": "New york (n.y.), biography",
+          "count": 6
+        },
+        {
           "value": "New york (n.y.), fiction",
           "count": 6
         },
@@ -1505,11 +1529,27 @@
           "count": 6
         },
         {
+          "value": "Patients",
+          "count": 6
+        },
+        {
           "value": "Popular culture",
           "count": 6
         },
         {
+          "value": "Prisoners",
+          "count": 6
+        },
+        {
           "value": "Psychological",
+          "count": 6
+        },
+        {
+          "value": "Restaurateurs",
+          "count": 6
+        },
+        {
+          "value": "Social conditions",
           "count": 6
         },
         {
@@ -1537,10 +1577,6 @@
           "count": 5
         },
         {
-          "value": "Athletes",
-          "count": 5
-        },
-        {
           "value": "Baseball players, statistics",
           "count": 5
         },
@@ -1553,15 +1589,7 @@
           "count": 5
         },
         {
-          "value": "Comedians, biography",
-          "count": 5
-        },
-        {
           "value": "Comedians, united states",
-          "count": 5
-        },
-        {
-          "value": "Conduct of life",
           "count": 5
         },
         {
@@ -1621,7 +1649,7 @@
           "count": 5
         },
         {
-          "value": "Health",
+          "value": "Gastronomy",
           "count": 5
         },
         {
@@ -1645,10 +1673,6 @@
           "count": 5
         },
         {
-          "value": "Patients",
-          "count": 5
-        },
-        {
           "value": "Personal memoirs",
           "count": 5
         },
@@ -1665,7 +1689,11 @@
           "count": 5
         },
         {
-          "value": "Prisoners",
+          "value": "Restaurants",
+          "count": 5
+        },
+        {
+          "value": "Restaurateurs, biography",
           "count": 5
         },
         {
@@ -1690,10 +1718,6 @@
         },
         {
           "value": "Serial murderers",
-          "count": 5
-        },
-        {
-          "value": "Social conditions",
           "count": 5
         },
         {
@@ -1741,6 +1765,10 @@
           "count": 4
         },
         {
+          "value": "Baseball teams",
+          "count": 4
+        },
+        {
           "value": "Baseball, biography",
           "count": 4
         },
@@ -1777,10 +1805,6 @@
           "count": 4
         },
         {
-          "value": "Cancer",
-          "count": 4
-        },
-        {
           "value": "Civilization",
           "count": 4
         },
@@ -1802,6 +1826,10 @@
         },
         {
           "value": "Drama",
+          "count": 4
+        },
+        {
+          "value": "Drug traffic",
           "count": 4
         },
         {
@@ -1866,6 +1894,10 @@
         },
         {
           "value": "Global Financial Crisis, 2008-2009",
+          "count": 4
+        },
+        {
+          "value": "history",
           "count": 4
         },
         {
@@ -1973,15 +2005,7 @@
           "count": 4
         },
         {
-          "value": "Restaurants",
-          "count": 4
-        },
-        {
-          "value": "Restaurateurs",
-          "count": 4
-        },
-        {
-          "value": "Restaurateurs, biography",
+          "value": "Race relations",
           "count": 4
         },
         {
@@ -2029,6 +2053,10 @@
           "count": 4
         },
         {
+          "value": "Statistical methods",
+          "count": 4
+        },
+        {
           "value": "Stockbrokers",
           "count": 4
         },
@@ -2065,6 +2093,10 @@
           "count": 3
         },
         {
+          "value": "African Americans",
+          "count": 3
+        },
+        {
           "value": "African americans, biography",
           "count": 3
         },
@@ -2081,6 +2113,10 @@
           "count": 3
         },
         {
+          "value": "Attitude to Death",
+          "count": 3
+        },
+        {
           "value": "Authors",
           "count": 3
         },
@@ -2093,15 +2129,15 @@
           "count": 3
         },
         {
-          "value": "Baseball teams",
-          "count": 3
-        },
-        {
           "value": "Baseball, history",
           "count": 3
         },
         {
           "value": "Basketball teams",
+          "count": 3
+        },
+        {
+          "value": "Basketball, history",
           "count": 3
         },
         {
@@ -2233,7 +2269,7 @@
           "count": 3
         },
         {
-          "value": "Drug traffic",
+          "value": "Drug abuse",
           "count": 3
         },
         {
@@ -2262,6 +2298,10 @@
         },
         {
           "value": "Exploration",
+          "count": 3
+        },
+        {
+          "value": "Family life",
           "count": 3
         },
         {
@@ -2337,10 +2377,6 @@
           "count": 3
         },
         {
-          "value": "Gastronomy",
-          "count": 3
-        },
-        {
           "value": "High school students",
           "count": 3
         },
@@ -2354,10 +2390,6 @@
         },
         {
           "value": "historical fiction",
-          "count": 3
-        },
-        {
-          "value": "history",
           "count": 3
         },
         {
@@ -2453,6 +2485,10 @@
           "count": 3
         },
         {
+          "value": "Mathematical models",
+          "count": 3
+        },
+        {
           "value": "Medicine",
           "count": 3
         },
@@ -2485,10 +2521,6 @@
           "count": 3
         },
         {
-          "value": "New york (n.y.), biography",
-          "count": 3
-        },
-        {
           "value": "Oakland Athletics (Baseball team)",
           "count": 3
         },
@@ -2497,11 +2529,19 @@
           "count": 3
         },
         {
+          "value": "Opioids",
+          "count": 3
+        },
+        {
           "value": "Organized crime",
           "count": 3
         },
         {
           "value": "Orphans",
+          "count": 3
+        },
+        {
+          "value": "Oxycodone",
           "count": 3
         },
         {
@@ -2522,6 +2562,10 @@
         },
         {
           "value": "Political culture",
+          "count": 3
+        },
+        {
+          "value": "politics",
           "count": 3
         },
         {
@@ -2553,10 +2597,6 @@
           "count": 3
         },
         {
-          "value": "Race relations",
-          "count": 3
-        },
-        {
           "value": "Reading Level-Grade 11",
           "count": 3
         },
@@ -2566,6 +2606,10 @@
         },
         {
           "value": "Reading Level-Grade 9",
+          "count": 3
+        },
+        {
+          "value": "Research",
           "count": 3
         },
         {
@@ -2614,10 +2658,6 @@
         },
         {
           "value": "Sports, psychological aspects",
-          "count": 3
-        },
-        {
-          "value": "Statistical methods",
           "count": 3
         },
         {
@@ -2721,7 +2761,7 @@
           "count": 2
         },
         {
-          "value": "African Americans",
+          "value": "African American women",
           "count": 2
         },
         {
@@ -2781,10 +2821,6 @@
           "count": 2
         },
         {
-          "value": "Attitude to Death",
-          "count": 2
-        },
-        {
           "value": "Attorney and client",
           "count": 2
         },
@@ -2825,15 +2861,15 @@
           "count": 2
         },
         {
-          "value": "Basketball, history",
-          "count": 2
-        },
-        {
           "value": "Behavior",
           "count": 2
         },
         {
           "value": "Billionaires in fiction",
+          "count": 2
+        },
+        {
+          "value": "Biografía",
           "count": 2
         },
         {
@@ -2906,6 +2942,10 @@
         },
         {
           "value": "Campaigns",
+          "count": 2
+        },
+        {
+          "value": "Cancer, popular works",
           "count": 2
         },
         {
@@ -3021,6 +3061,10 @@
           "count": 2
         },
         {
+          "value": "cooking",
+          "count": 2
+        },
+        {
           "value": "COOKING / General",
           "count": 2
         },
@@ -3053,6 +3097,10 @@
           "count": 2
         },
         {
+          "value": "Death & Dying",
+          "count": 2
+        },
+        {
           "value": "Death and burial",
           "count": 2
         },
@@ -3077,15 +3125,15 @@
           "count": 2
         },
         {
+          "value": "Diagnosis",
+          "count": 2
+        },
+        {
           "value": "Discoveries in science",
           "count": 2
         },
         {
           "value": "Dogs",
-          "count": 2
-        },
-        {
-          "value": "Drug abuse",
           "count": 2
         },
         {
@@ -3118,6 +3166,10 @@
         },
         {
           "value": "Effectenhandel",
+          "count": 2
+        },
+        {
+          "value": "Elderly",
           "count": 2
         },
         {
@@ -3154,10 +3206,6 @@
         },
         {
           "value": "Family & Relationships",
-          "count": 2
-        },
-        {
-          "value": "Family life",
           "count": 2
         },
         {
@@ -3238,6 +3286,10 @@
         },
         {
           "value": "First loves",
+          "count": 2
+        },
+        {
+          "value": "food",
           "count": 2
         },
         {
@@ -3345,6 +3397,10 @@
           "count": 2
         },
         {
+          "value": "History, 20th Century",
+          "count": 2
+        },
+        {
           "value": "Hollywood (los angeles, calif.), fiction",
           "count": 2
         },
@@ -3385,6 +3441,10 @@
           "count": 2
         },
         {
+          "value": "Human experimentation in medicine",
+          "count": 2
+        },
+        {
           "value": "Human-computer interaction",
           "count": 2
         },
@@ -3394,6 +3454,10 @@
         },
         {
           "value": "Humor, general",
+          "count": 2
+        },
+        {
+          "value": "Humor, topic, marriage & family",
           "count": 2
         },
         {
@@ -3473,6 +3537,10 @@
           "count": 2
         },
         {
+          "value": "Johnson, earvin, 1959-",
+          "count": 2
+        },
+        {
           "value": "Journeys",
           "count": 2
         },
@@ -3521,6 +3589,10 @@
           "count": 2
         },
         {
+          "value": "Leukemia",
+          "count": 2
+        },
+        {
           "value": "LGBTQ biography and memoir",
           "count": 2
         },
@@ -3553,10 +3625,6 @@
           "count": 2
         },
         {
-          "value": "Mathematical models",
-          "count": 2
-        },
-        {
           "value": "Mathematicians",
           "count": 2
         },
@@ -3566,6 +3634,10 @@
         },
         {
           "value": "MEDICAL / Infectious Diseases",
+          "count": 2
+        },
+        {
+          "value": "medicine",
           "count": 2
         },
         {
@@ -3801,14 +3873,6 @@
           "count": 2
         },
         {
-          "value": "Opioids",
-          "count": 2
-        },
-        {
-          "value": "Oxycodone",
-          "count": 2
-        },
-        {
           "value": "Oxycodone abuse",
           "count": 2
         },
@@ -3845,6 +3909,10 @@
           "count": 2
         },
         {
+          "value": "Physiology",
+          "count": 2
+        },
+        {
           "value": "Poets, biography",
           "count": 2
         },
@@ -3878,10 +3946,6 @@
         },
         {
           "value": "POLITICAL SCIENCE / Labor & Industrial Relations",
-          "count": 2
-        },
-        {
-          "value": "politics",
           "count": 2
         },
         {
@@ -4009,7 +4073,7 @@
           "count": 2
         },
         {
-          "value": "Research",
+          "value": "research",
           "count": 2
         },
         {
@@ -4129,6 +4193,10 @@
           "count": 2
         },
         {
+          "value": "social science",
+          "count": 2
+        },
+        {
           "value": "SOCIAL SCIENCE / Disasters & Disaster Relief",
           "count": 2
         },
@@ -4241,6 +4309,10 @@
           "count": 2
         },
         {
+          "value": "Suicide",
+          "count": 2
+        },
+        {
           "value": "supernatural",
           "count": 2
         },
@@ -4341,6 +4413,10 @@
           "count": 2
         },
         {
+          "value": "Umschulungswerkstätten für Siedler und Auswanderer",
+          "count": 2
+        },
+        {
           "value": "Undercover operations",
           "count": 2
         },
@@ -4354,6 +4430,10 @@
         },
         {
           "value": "United states, politics and government, 2009-2017",
+          "count": 2
+        },
+        {
+          "value": "United states, social conditions",
           "count": 2
         },
         {
@@ -4541,6 +4621,10 @@
           "count": 1
         },
         {
+          "value": "Activities of Daily Living",
+          "count": 1
+        },
+        {
           "value": "Actors and actresses",
           "count": 1
         },
@@ -4566,6 +4650,10 @@
         },
         {
           "value": "administration of criminal justice",
+          "count": 1
+        },
+        {
+          "value": "Administration of Criminal justice",
           "count": 1
         },
         {
@@ -4677,7 +4765,15 @@
           "count": 1
         },
         {
+          "value": "African American men",
+          "count": 1
+        },
+        {
           "value": "African American politicians",
+          "count": 1
+        },
+        {
+          "value": "African American prisoners",
           "count": 1
         },
         {
@@ -4689,7 +4785,7 @@
           "count": 1
         },
         {
-          "value": "African American women",
+          "value": "African American women -- History",
           "count": 1
         },
         {
@@ -4706,6 +4802,10 @@
         },
         {
           "value": "African americans, history",
+          "count": 1
+        },
+        {
+          "value": "Aged",
           "count": 1
         },
         {
@@ -4829,7 +4929,15 @@
           "count": 1
         },
         {
+          "value": "American cooking",
+          "count": 1
+        },
+        {
           "value": "American Cooking",
+          "count": 1
+        },
+        {
+          "value": "American Dream",
           "count": 1
         },
         {
@@ -4986,6 +5094,10 @@
         },
         {
           "value": "Anticholesteremic agents",
+          "count": 1
+        },
+        {
+          "value": "Antineoplastic Agents",
           "count": 1
         },
         {
@@ -5177,6 +5289,10 @@
           "count": 1
         },
         {
+          "value": "Attitude (Psychology)",
+          "count": 1
+        },
+        {
           "value": "Attitudes",
           "count": 1
         },
@@ -5345,6 +5461,10 @@
           "count": 1
         },
         {
+          "value": "Baseball, training",
+          "count": 1
+        },
+        {
           "value": "Baseboll",
           "count": 1
         },
@@ -5465,10 +5585,6 @@
           "count": 1
         },
         {
-          "value": "Biografía",
-          "count": 1
-        },
-        {
           "value": "biographies",
           "count": 1
         },
@@ -5502,6 +5618,10 @@
         },
         {
           "value": "biotechnology",
+          "count": 1
+        },
+        {
+          "value": "Bird, larry, 1956-",
           "count": 1
         },
         {
@@ -5873,15 +5993,15 @@
           "count": 1
         },
         {
+          "value": "Cancer -- Patients -- Virginia -- Biography",
+          "count": 1
+        },
+        {
           "value": "Cancer, chemotherapy",
           "count": 1
         },
         {
           "value": "Cancer, patients, biography",
-          "count": 1
-        },
-        {
-          "value": "Cancer, popular works",
           "count": 1
         },
         {
@@ -5993,6 +6113,10 @@
           "count": 1
         },
         {
+          "value": "Cell culture",
+          "count": 1
+        },
+        {
           "value": "Censura",
           "count": 1
         },
@@ -6026,6 +6150,10 @@
         },
         {
           "value": "Checo-americanos",
+          "count": 1
+        },
+        {
+          "value": "Chefs",
           "count": 1
         },
         {
@@ -6225,6 +6353,10 @@
           "count": 1
         },
         {
+          "value": "civilization",
+          "count": 1
+        },
+        {
           "value": "Class actions (Civil procedure)",
           "count": 1
         },
@@ -6294,6 +6426,10 @@
         },
         {
           "value": "Coal trade",
+          "count": 1
+        },
+        {
+          "value": "Cocineros",
           "count": 1
         },
         {
@@ -6893,6 +7029,10 @@
           "count": 1
         },
         {
+          "value": "Critical care medicine",
+          "count": 1
+        },
+        {
           "value": "Critical thinking",
           "count": 1
         },
@@ -6938,6 +7078,10 @@
         },
         {
           "value": "Curiosities and wonders",
+          "count": 1
+        },
+        {
+          "value": "current events",
           "count": 1
         },
         {
@@ -6998,10 +7142,6 @@
         },
         {
           "value": "De long, george w. (george washington), 1844-1881",
-          "count": 1
-        },
-        {
-          "value": "Death & Dying",
           "count": 1
         },
         {
@@ -7081,10 +7221,6 @@
           "count": 1
         },
         {
-          "value": "Diagnosis",
-          "count": 1
-        },
-        {
           "value": "Diagnostic",
           "count": 1
         },
@@ -7154,6 +7290,10 @@
         },
         {
           "value": "discrimination in criminal justice administration",
+          "count": 1
+        },
+        {
+          "value": "Discrimination in criminal justice administration",
           "count": 1
         },
         {
@@ -7245,11 +7385,27 @@
           "count": 1
         },
         {
+          "value": "Drug addiction",
+          "count": 1
+        },
+        {
           "value": "Drug control",
           "count": 1
         },
         {
           "value": "Drug dealers",
+          "count": 1
+        },
+        {
+          "value": "drug therapy",
+          "count": 1
+        },
+        {
+          "value": "Drug traffic--mexico",
+          "count": 1
+        },
+        {
+          "value": "Drug trafficking",
           "count": 1
         },
         {
@@ -7269,11 +7425,19 @@
           "count": 1
         },
         {
+          "value": "dying",
+          "count": 1
+        },
+        {
           "value": "E-Commerce",
           "count": 1
         },
         {
           "value": "Earth (planet)",
+          "count": 1
+        },
+        {
+          "value": "eating",
           "count": 1
         },
         {
@@ -7354,10 +7518,6 @@
         },
         {
           "value": "El Dorado",
-          "count": 1
-        },
-        {
-          "value": "Elderly",
           "count": 1
         },
         {
@@ -7889,6 +8049,10 @@
           "count": 1
         },
         {
+          "value": "feeding behavior",
+          "count": 1
+        },
+        {
           "value": "Feldzug",
           "count": 1
         },
@@ -8293,6 +8457,10 @@
           "count": 1
         },
         {
+          "value": "foods",
+          "count": 1
+        },
+        {
           "value": "Football and war",
           "count": 1
         },
@@ -8354,6 +8522,10 @@
         },
         {
           "value": "Forgiveness",
+          "count": 1
+        },
+        {
+          "value": "Form",
           "count": 1
         },
         {
@@ -8482,6 +8654,10 @@
         },
         {
           "value": "Georgia, social life and customs",
+          "count": 1
+        },
+        {
+          "value": "geriatrics",
           "count": 1
         },
         {
@@ -8725,6 +8901,10 @@
           "count": 1
         },
         {
+          "value": "health",
+          "count": 1
+        },
+        {
           "value": "Health & Fitness",
           "count": 1
         },
@@ -8777,11 +8957,23 @@
           "count": 1
         },
         {
+          "value": "HeLa cells",
+          "count": 1
+        },
+        {
           "value": "Hematologic equipment industry",
           "count": 1
         },
         {
           "value": "Hermanos",
+          "count": 1
+        },
+        {
+          "value": "Heroin abuse",
+          "count": 1
+        },
+        {
+          "value": "Heroin dependence",
           "count": 1
         },
         {
@@ -8886,10 +9078,6 @@
         },
         {
           "value": "History teachers",
-          "count": 1
-        },
-        {
-          "value": "History, 20th Century",
           "count": 1
         },
         {
@@ -9013,7 +9201,7 @@
           "count": 1
         },
         {
-          "value": "Human experimentation in medicine",
+          "value": "Human experimentation in medicine -- United States -- History",
           "count": 1
         },
         {
@@ -9053,15 +9241,19 @@
           "count": 1
         },
         {
+          "value": "HUMOR / Topic / Marriage & Family",
+          "count": 1
+        },
+        {
+          "value": "HUMOR / Topic / Relationships",
+          "count": 1
+        },
+        {
           "value": "Humor, topic, business & professional",
           "count": 1
         },
         {
           "value": "Humor, topic, celebrity & popular culture",
-          "count": 1
-        },
-        {
-          "value": "Humor, topic, marriage & family",
           "count": 1
         },
         {
@@ -9481,10 +9673,6 @@
           "count": 1
         },
         {
-          "value": "Johnson, earvin, 1959-",
-          "count": 1
-        },
-        {
           "value": "Johnson, lyndon b. (lyndon baines), 1908-1973",
           "count": 1
         },
@@ -9713,6 +9901,10 @@
           "count": 1
         },
         {
+          "value": "Lacks, Henrietta, -- 1920-1951 -- Health",
+          "count": 1
+        },
+        {
           "value": "Lagunitas Brewing Company",
           "count": 1
         },
@@ -9874,10 +10066,6 @@
         },
         {
           "value": "Letters",
-          "count": 1
-        },
-        {
-          "value": "Leukemia",
           "count": 1
         },
         {
@@ -10125,6 +10313,10 @@
           "count": 1
         },
         {
+          "value": "Marriage & Family",
+          "count": 1
+        },
+        {
           "value": "Mass murder",
           "count": 1
         },
@@ -10150,6 +10342,10 @@
         },
         {
           "value": "Mathematics",
+          "count": 1
+        },
+        {
+          "value": "McDonald's",
           "count": 1
         },
         {
@@ -10202,6 +10398,14 @@
         },
         {
           "value": "Medical care",
+          "count": 1
+        },
+        {
+          "value": "Medical ethics",
+          "count": 1
+        },
+        {
+          "value": "medical history",
           "count": 1
         },
         {
@@ -10318,6 +10522,10 @@
         },
         {
           "value": "Mexico, fiction",
+          "count": 1
+        },
+        {
+          "value": "Mexico, social conditions",
           "count": 1
         },
         {
@@ -10710,6 +10918,10 @@
         },
         {
           "value": "Mystery and detective stories.",
+          "count": 1
+        },
+        {
+          "value": "Narcotics",
           "count": 1
         },
         {
@@ -11545,6 +11757,10 @@
           "count": 1
         },
         {
+          "value": "nyt:crime-and-punishment=2016-05-08",
+          "count": 1
+        },
+        {
           "value": "nyt:crime-and-punishment=2016-08-07",
           "count": 1
         },
@@ -11554,6 +11770,10 @@
         },
         {
           "value": "nyt:e-book_fiction=2012-01-28",
+          "count": 1
+        },
+        {
+          "value": "nyt:e-book_nonfiction=2011-10-08",
           "count": 1
         },
         {
@@ -11761,6 +11981,10 @@
           "count": 1
         },
         {
+          "value": "nyt:hardcover-nonfiction=2009-11-22",
+          "count": 1
+        },
+        {
           "value": "nyt:hardcover-nonfiction=2011-10-23",
           "count": 1
         },
@@ -11905,6 +12129,18 @@
           "count": 1
         },
         {
+          "value": "nyt:paperback_nonfiction=2011-08-27",
+          "count": 1
+        },
+        {
+          "value": "nyt:paperback_nonfiction=2012-01-14",
+          "count": 1
+        },
+        {
+          "value": "nyt:paperback_nonfiction=2012-01-21",
+          "count": 1
+        },
+        {
           "value": "nyt:paperback-nonfiction=2008-11-16",
           "count": 1
         },
@@ -11925,7 +12161,19 @@
           "count": 1
         },
         {
+          "value": "nyt:paperback-nonfiction=2011-05-22",
+          "count": 1
+        },
+        {
           "value": "nyt:paperback-nonfiction=2012-01-22",
+          "count": 1
+        },
+        {
+          "value": "nyt:paperback-nonfiction=2012-02-12",
+          "count": 1
+        },
+        {
+          "value": "nyt:paperback-nonfiction=2014-06-22",
           "count": 1
         },
         {
@@ -12022,6 +12270,10 @@
         },
         {
           "value": "nyt:sports=2019-05-12",
+          "count": 1
+        },
+        {
+          "value": "nyt:sports=2019-07-07",
           "count": 1
         },
         {
@@ -12234,6 +12486,10 @@
         },
         {
           "value": "Olympics, juvenile literature",
+          "count": 1
+        },
+        {
+          "value": "oncology",
           "count": 1
         },
         {
@@ -12529,6 +12785,10 @@
           "count": 1
         },
         {
+          "value": "Physical education and training",
+          "count": 1
+        },
+        {
           "value": "Physician and patient",
           "count": 1
         },
@@ -12546,10 +12806,6 @@
         },
         {
           "value": "Physicians, fiction",
-          "count": 1
-        },
-        {
-          "value": "Physiology",
           "count": 1
         },
         {
@@ -12730,6 +12986,10 @@
         },
         {
           "value": "Pop Arts / Pop Culture",
+          "count": 1
+        },
+        {
+          "value": "popular culture",
           "count": 1
         },
         {
@@ -13033,6 +13293,10 @@
           "count": 1
         },
         {
+          "value": "quality",
+          "count": 1
+        },
+        {
           "value": "Quantitative analysts",
           "count": 1
         },
@@ -13054,6 +13318,10 @@
         },
         {
           "value": "R690 .k39 2017",
+          "count": 1
+        },
+        {
+          "value": "Race discrimination",
           "count": 1
         },
         {
@@ -13102,6 +13370,14 @@
         },
         {
           "value": "Rare books",
+          "count": 1
+        },
+        {
+          "value": "Rasdiskriminering",
+          "count": 1
+        },
+        {
+          "value": "Rassendiskriminierung",
           "count": 1
         },
         {
@@ -13221,6 +13497,10 @@
           "count": 1
         },
         {
+          "value": "Relationships",
+          "count": 1
+        },
+        {
           "value": "Religion",
           "count": 1
         },
@@ -13257,10 +13537,6 @@
           "count": 1
         },
         {
-          "value": "research",
-          "count": 1
-        },
-        {
           "value": "Réseaux sociaux (Internet)",
           "count": 1
         },
@@ -13282,6 +13558,10 @@
         },
         {
           "value": "Restaurant management",
+          "count": 1
+        },
+        {
+          "value": "Restauranteurs",
           "count": 1
         },
         {
@@ -13873,6 +14153,10 @@
           "count": 1
         },
         {
+          "value": "social aspects",
+          "count": 1
+        },
+        {
           "value": "Social aspects of Basketball",
           "count": 1
         },
@@ -13941,10 +14225,6 @@
           "count": 1
         },
         {
-          "value": "social science",
-          "count": 1
-        },
-        {
           "value": "Social Science",
           "count": 1
         },
@@ -13981,6 +14261,10 @@
           "count": 1
         },
         {
+          "value": "social sciences",
+          "count": 1
+        },
+        {
           "value": "SOCIAL SCIENCES",
           "count": 1
         },
@@ -14010,6 +14294,10 @@
         },
         {
           "value": "Sociological aspects",
+          "count": 1
+        },
+        {
+          "value": "sociology",
           "count": 1
         },
         {
@@ -14257,6 +14545,10 @@
           "count": 1
         },
         {
+          "value": "Strafjustiz",
+          "count": 1
+        },
+        {
           "value": "Strange Wine",
           "count": 1
         },
@@ -14334,10 +14626,6 @@
         },
         {
           "value": "Sughrue, c. w. (fictitious character), fiction",
-          "count": 1
-        },
-        {
-          "value": "Suicide",
           "count": 1
         },
         {
@@ -14613,6 +14901,10 @@
           "count": 1
         },
         {
+          "value": "Terminal care",
+          "count": 1
+        },
+        {
           "value": "Territorial expansion",
           "count": 1
         },
@@ -14757,6 +15049,10 @@
           "count": 1
         },
         {
+          "value": "Topic",
+          "count": 1
+        },
+        {
           "value": "Torts",
           "count": 1
         },
@@ -14790,6 +15086,10 @@
         },
         {
           "value": "trade",
+          "count": 1
+        },
+        {
+          "value": "trade marks",
           "count": 1
         },
         {
@@ -14997,10 +15297,6 @@
           "count": 1
         },
         {
-          "value": "Umschulungswerkstätten für Siedler und Auswanderer",
-          "count": 1
-        },
-        {
           "value": "Uncertainty",
           "count": 1
         },
@@ -15126,10 +15422,6 @@
         },
         {
           "value": "United states, rural conditions",
-          "count": 1
-        },
-        {
-          "value": "United states, social conditions",
           "count": 1
         },
         {
