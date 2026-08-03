@@ -708,7 +708,7 @@
 
         const bottomLine = document.createElement('div');
         bottomLine.className = 'qd-roadmap-bottomline';
-        bottomLine.innerHTML = '<strong>Bottom line:</strong> the phase before "Theoretical ceiling" is the realistic practical target for this dataset — the ceiling phase requires subjects/categories coverage from Open Library and Google Books that retrying with current logic does not close, plus resolving a long tail of ~300 singly-cited orphaned references with steeply diminishing returns.';
+        bottomLine.innerHTML = '<strong>Bottom line:</strong> the phase before "Theoretical ceiling" is the realistic practical target for this dataset — the ceiling phase requires dateRead/isbn/subjects coverage that has no backfill path today (dateRead), is low-priority (isbn, since isbn13 already covers the modern identifier), or depends on Open Library actually having the data (subjects) — none of which retrying with current logic closes.';
         wrap.appendChild(bottomLine);
       }
 

@@ -241,32 +241,26 @@ A phased, cumulative plan from the current score to a perfect one. Each phase's 
 **Current** — projected score: 90/100
 
 
-**Phase 1 — Quick data-entry fixes** — projected score: 91/100 (+1 from current)
-- Correct the ~35 genuine candidate-to-candidate subtitle-truncation near-misses (same fix pattern as the 35 already corrected for 5★-touching refs) — e.g. "Just Mercy" → "Just Mercy: A Story of Justice and Redemption" (4 citing books), "Moneyball" → full title (5 citing books).
-- Fix 2 abbreviated self-citations found during this analysis: "The Origins of the Cornbread Mafia" and "Twilight of the Gods" each cite their own short-form title in similarToTitles — same bug class as Session 14's self-referential fixes, just missed because the abbreviation doesn't normalize to an exact title match.
-- Tighten findNearMatch() further: several of the 52 remaining near-misses are still false positives from coincidental word-prefix collisions ("The Road to Somewhere"→"The Road", "Superintelligence"→an unrelated book with "Superintelligence" in its subtitle) — reclassifying these to orphaned is more accurate, not a score loss, since they were never real matches.
-- Backfill dismissReason labels for the handful of dismissed books that have a reasonCode but no label — a small, finite, fully in-house fix.
-- Close the last-mile gaps on similarToAuthors/themes/similarToTitles/ratingsCount — a small number of books account for the remaining ~1% below 100%.
+**Phase 1 — Quick in-house fixes** — projected score: 91/100 (+1 from current)
+- Backfill reasonLabel for the handful of dismissed books that have a reasonCode but no label (currently 84.4%, ~5 books) — a small, finite, fully in-house fix, same pattern used for the two dismissals backfilled in Session 26.
 
-**Phase 2 — Add the top 30 missing books** — projected score: 91/100 (+1 from current)
-- Add the 30 most-frequently-cited missing books as real candidate-pool entries with full "Perfect Book Entry" data (pages, avgRating, ratingsCount, themes, similarToTitles, similarToAuthors per CLAUDE.md's quality standard) — resolves 99 of 463 orphaned citations (21%) from just 30 additions.
-- Top of the list: "Blood, Bones, and Butter" (cited by 20 different food-memoir books — by far the single highest-leverage addition), "Kitchen Confidential" (7), "The Midrange Theory" (5), "Dreamland" and "The New Jim Crow" (4 each).
-- Each addition directly serves the BBRE-quality goal too — these are books the existing library already implicitly vouches for by citing them repeatedly as "similar," so they're likely to be good recommendations once added, not just data-quality filler.
+**Phase 2 — Let existing automation finish** — projected score: 93/100 (+3 from current)
+- amazonRating/amazonRatingsCount (currently 89.7%, 47 books) keep rising via the existing 5x/day scrape-ratings.yml with its Session 13d retry cooldown.
+- metadataFetchedAt/description (98.4-98.5%, ~18 books each) clear at 150/day via enrich-metadata.yml — already nearly done.
+- isbn13 (98.9%, 12 books, mostly read-shelf) and year (99.3%) are small enough gaps that a single enrich-isbn.yml/enrich_metadata.py run each should close them.
+- coverUrl (96.9%, 14 books in the eligible to-read/candidate/currently-reading pool) clears via a re-run of enrich_covers.py.
 
-**Phase 3 — Add the next-tier missing books (top 100)** — projected score: 91/100 (+1 from current)
-- Extend Phase 2 to the next ~70 most-cited missing titles (cumulative top 100), reaching 186 of 463 citations resolved (40%).
-- Beyond this point, each further addition resolves only 1 citation (330 of the 377 unique orphaned titles are cited exactly once) — genuinely diminishing returns, not a reason to stop, but a reason to expect this phase to taper off rather than reach zero.
+**Phase 3 — Targeted backfills (publisher, categories, dateAdded)** — projected score: 94/100 (+4 from current)
+- publisher (87.3%) — Session 15 fixed enrich_metadata.py to capture the publisher field from Google Books, but ~99.7% of the dataset was already attempted before that fix landed, so the cache never picked it up. Needs a deliberate re-fetch pass over already-attempted books, not just waiting.
+- categories (96.3%, 40 attempted books with no result) — mostly a genuine Google Books coverage gap at this point, but worth one more pass since it hasn't been retried since Session 13c's original attempt.
+- dateAdded (84.1%) — cosmetic only, not used by scoring, but a low-volume gap worth a manual pass if ever prioritized.
 
-**Phase 4 — Automation catch-up + targeted backfills** — projected score: 95/100 (+5 from current)
-- amazonRating/amazonRatingsCount (currently 92.4%) will keep rising via the existing 5x/day scrape-ratings.yml with its Session 13d retry cooldown — no new work, just time.
-- description/metadataFetchedAt backlog (currently 99.7-99.8%) clears at 150/day via enrich-metadata.yml — already nearly done.
-- Run tag-books.yml (built in an earlier session but never used — needs the ANTHROPIC_API_KEY repo secret) to tag tones on the candidate-pool books it was built for — tones is 84% populated almost entirely because that job has never run.
-- Extend enrich_isbn.py's scope to also backfill read-shelf isbn13 (currently to-read/candidate-only by design) and backfill publisher gaps via the Google Books lookup already used elsewhere.
-- dateRead and isbn gaps are partially legacy-import artifacts — worth a manual pass, but likely can't fully close (some original Goodreads exports may genuinely lack the field).
+**Phase 4 — Best-effort on the harder gaps (dateRead, isbn, subjects)** — projected score: 96/100 (+6 from current)
+- dateRead (73.1%, 176 read books) — no backfill path exists today (Session 15: sync_goodreads.py only ever sets dateRead at the moment of a live to-read→read transition, with no path for already-read/bulk-imported books). Would need a dedicated new script, and goodreads.com itself is blocked from this sandbox, so it would need to be built and tested against a real export rather than live.
+- isbn (65.9%, 43 pre-2007 books) — low priority regardless: isbn13 is the modern identifier that actually matters, and is already at 98.9%. Only worth chasing for a specific book if isbn13 is also missing for it.
+- subjects (74.9%, 274 attempted books with no result) — Session 13e's own analysis found this varies 60-95% by book type as a real Open Library coverage gap, not a backlog; a new data source is the only way past this ceiling, not more retries.
 
 **Theoretical ceiling (literal 100)** — projected score: 100/100 (+10 from current)
-- Literal 100/100 requires subjects and categories to reach 100% — but both depend on Open Library and Google Books actually having that data for every book. Per the Field Population table's own notes, retrying with current logic does not close these; they need either a different data source or accepting a lower ceiling.
-- It also requires resolving all 463 orphaned refs, including the ~300 singly-cited long tail — likely only practical by editorially replacing unresolvable "flavor" citations with a real similar book, not by adding hundreds of marginal entries to the dataset.
-- Realistic assessment: Phase 4 is probably the practical ceiling for this dataset without a new data source, not Phase 5.
+- Literal 100/100 requires dateRead, isbn, and subjects to reach full population — all three depend on either data Goodreads/Open Library may never have had for a given book, or a new backfill script this sandbox can't build-and-verify against the live site. Realistic assessment: Phase 3 is probably the practical ceiling without dedicated new tooling and/or a different data source, not Phase 4.
 
-**Bottom line:** Phase 4 is the realistic practical ceiling for this dataset without a new external data source — subjects (Open Library) and categories (Google Books) genuinely cap below 100% no matter how much this project retries them with current logic, and the ~300 singly-cited orphaned references are a long tail with steeply diminishing returns past Phase 3.
+**Bottom line:** Phase 3 is the realistic practical ceiling for this dataset without dedicated new tooling and/or a new external data source — dateRead has no backfill path today, isbn is low-priority since isbn13 already covers the modern identifier, and subjects (Open Library) genuinely caps below 100% no matter how much this project retries it with current logic.

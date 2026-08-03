@@ -951,96 +951,99 @@ function computeBBREAccuracy(evalMetrics) {
 // ── Roadmap to a perfect score ──────────────────────────────────────────────
 // Phases are cumulative and computed by re-running the SAME
 // computeQualityScore on a hypothetical stats/integ state (not hand-typed
-// point estimates that could silently drift from the real formula). Phase
-// targets were derived from Session 14c's investigation of the actual
-// remaining findings — e.g. the 463 orphaned refs turned out to have a very
-// long tail (377 unique titles, but the top 30 alone account for ~21% of
-// all citations, led by "Blood, Bones, and Butter" cited by 20 different
-// food-memoir books) rather than being uniformly hard to fix.
+// point estimates that could silently drift from the real formula).
+//
+// Rewritten Session 36 (Aug 3 2026) — the original Session 14c version was
+// built when similarToTitles orphaned refs sat at 463 and every integrity
+// category (self-referential, already-read-in-pool, near-miss, duplicates)
+// had real open counts. Sessions 26 and 29-32 fully resolved all of that:
+// as of this snapshot, Critical Field Health/Foundational Signal Integrity/
+// Recommendation Safety/Data Hygiene are all a genuine 100 — only Field
+// Completeness (33% weight) has real remaining headroom. The stale phase
+// text (still describing a "463 orphaned refs" plan, citing "Blood, Bones,
+// and Butter" as a still-needed addition that was actually added in Session
+// 26) was flagged by Bill's data-quality follow-up and is replaced below
+// with phases grounded in the actual current Field Population table.
 function buildRoadmap(stats, integ, rows) {
   function withFieldScores(baseStats, overrides) {
     return baseStats.map(f => (f.field in overrides ? { ...f, scorePct: overrides[f.field] } : f));
   }
 
-  // Phase 1 — Quick data-entry fixes: no new content, just correcting and
-  // deduping what's already there.
-  const phase1Integ = { ...integ, brokenNearMiss: 0, dupBookKeys: 0, dupTitleAuthor: 0, dupFuzzy: 0 };
+  // Phase 1 — Quick in-house fixes: small, finite, no external dependency.
+  const phase1Integ = integ;
   const phase1Stats = withFieldScores(stats, {
-    similarToAuthors: 100, themes: 100, similarToTitles: 100, ratingsCount: 100, dismissReason: 100,
+    dismissReason: 100,
   });
   const phase1Actions = [
-    'Correct the ~35 genuine candidate-to-candidate subtitle-truncation near-misses (same fix pattern as the 35 already corrected for 5★-touching refs) — e.g. "Just Mercy" → "Just Mercy: A Story of Justice and Redemption" (4 citing books), "Moneyball" → full title (5 citing books).',
-    'Fix 2 abbreviated self-citations found during this analysis: "The Origins of the Cornbread Mafia" and "Twilight of the Gods" each cite their own short-form title in similarToTitles — same bug class as Session 14\'s self-referential fixes, just missed because the abbreviation doesn\'t normalize to an exact title match.',
-    'Tighten findNearMatch() further: several of the 52 remaining near-misses are still false positives from coincidental word-prefix collisions ("The Road to Somewhere"→"The Road", "Superintelligence"→an unrelated book with "Superintelligence" in its subtitle) — reclassifying these to orphaned is more accurate, not a score loss, since they were never real matches.',
-    'Backfill dismissReason labels for the handful of dismissed books that have a reasonCode but no label — a small, finite, fully in-house fix.',
-    'Close the last-mile gaps on similarToAuthors/themes/similarToTitles/ratingsCount — a small number of books account for the remaining ~1% below 100%.',
+    'Backfill reasonLabel for the handful of dismissed books that have a reasonCode but no label (currently 84.4%, ~5 books) — a small, finite, fully in-house fix, same pattern used for the two dismissals backfilled in Session 26.',
   ];
 
-  // Phase 2 — Add the highest-leverage missing books. Resolves the most
-  // citations per book added, and each addition is a genuinely good
-  // recommendation Bill is currently missing entirely, not just a score fix.
-  const TOP30_CITATIONS_RESOLVED = 99; // top 30 unique orphaned titles by citation count
-  const phase2Integ = { ...phase1Integ, brokenOrphaned: Math.max(0, integ.brokenOrphaned - TOP30_CITATIONS_RESOLVED) };
-  const phase2Stats = phase1Stats;
+  // Phase 2 — Let existing scheduled automation finish; no new code, just
+  // time. These fields are already 89-99% and each has a live workflow
+  // actively closing the remaining gap.
+  const phase2Integ = phase1Integ;
+  const phase2Stats = withFieldScores(phase1Stats, {
+    amazonRating: 98, amazonRatingsCount: 98, metadataFetchedAt: 100, description: 100,
+    isbn13: 100, year: 100, coverUrl: 100,
+  });
   const phase2Actions = [
-    'Add the 30 most-frequently-cited missing books as real candidate-pool entries with full "Perfect Book Entry" data (pages, avgRating, ratingsCount, themes, similarToTitles, similarToAuthors per CLAUDE.md\'s quality standard) — resolves 99 of 463 orphaned citations (21%) from just 30 additions.',
-    'Top of the list: "Blood, Bones, and Butter" (cited by 20 different food-memoir books — by far the single highest-leverage addition), "Kitchen Confidential" (7), "The Midrange Theory" (5), "Dreamland" and "The New Jim Crow" (4 each).',
-    'Each addition directly serves the BBRE-quality goal too — these are books the existing library already implicitly vouches for by citing them repeatedly as "similar," so they\'re likely to be good recommendations once added, not just data-quality filler.',
+    'amazonRating/amazonRatingsCount (currently 89.7%, 47 books) keep rising via the existing 5x/day scrape-ratings.yml with its Session 13d retry cooldown.',
+    'metadataFetchedAt/description (98.4-98.5%, ~18 books each) clear at 150/day via enrich-metadata.yml — already nearly done.',
+    'isbn13 (98.9%, 12 books, mostly read-shelf) and year (99.3%) are small enough gaps that a single enrich-isbn.yml/enrich_metadata.py run each should close them.',
+    'coverUrl (96.9%, 14 books in the eligible to-read/candidate/currently-reading pool) clears via a re-run of enrich_covers.py.',
   ];
 
-  // Phase 3 — Next tier of missing books. Steep diminishing returns: going
-  // from top-30 to top-100 (70 more books) only adds another ~19 points of
-  // citation coverage (21%→40%), and 330 of the 377 unique orphaned titles
-  // are cited exactly once each — a long tail where each addition resolves
-  // only its own single citation.
-  const TOP100_CITATIONS_RESOLVED = 186; // cumulative, top 100 unique orphaned titles
-  const phase3Integ = { ...phase2Integ, brokenOrphaned: Math.max(0, integ.brokenOrphaned - TOP100_CITATIONS_RESOLVED) };
-  const phase3Stats = phase2Stats;
+  // Phase 3 — Targeted backfills that need a deliberate pass, not just more
+  // automation cycles: either the automation's scope needs extending, or a
+  // fresh Google Books fetch is needed since the cache predates a code fix.
+  const phase3Integ = phase2Integ;
+  const phase3Stats = withFieldScores(phase2Stats, {
+    publisher: 96, categories: 98, dateAdded: 92,
+  });
   const phase3Actions = [
-    'Extend Phase 2 to the next ~70 most-cited missing titles (cumulative top 100), reaching 186 of 463 citations resolved (40%).',
-    'Beyond this point, each further addition resolves only 1 citation (330 of the 377 unique orphaned titles are cited exactly once) — genuinely diminishing returns, not a reason to stop, but a reason to expect this phase to taper off rather than reach zero.',
+    'publisher (87.3%) — Session 15 fixed enrich_metadata.py to capture the publisher field from Google Books, but ~99.7% of the dataset was already attempted before that fix landed, so the cache never picked it up. Needs a deliberate re-fetch pass over already-attempted books, not just waiting.',
+    'categories (96.3%, 40 attempted books with no result) — mostly a genuine Google Books coverage gap at this point, but worth one more pass since it hasn\'t been retried since Session 13c\'s original attempt.',
+    'dateAdded (84.1%) — cosmetic only, not used by scoring, but a low-volume gap worth a manual pass if ever prioritized.',
   ];
 
-  // Phase 4 — Let existing automation finish its job, plus targeted
-  // backfills for fields scoring is currently ignoring the ceiling on.
-  // Targets below are realistic-improvement estimates, not 100%, because
-  // several of these fields have a documented external-data ceiling (see
-  // Phase 5) rather than being a pure backlog.
+  // Phase 4 — The honest ceiling. dateRead and isbn have no existing
+  // automation and are partly legacy-import artifacts (Session 15 confirmed
+  // no backfill path exists for dateRead; goodreads.com itself is blocked
+  // from this sandbox, so a prospective new script couldn't be tested
+  // locally either). subjects depends on Open Library actually having the
+  // data — FIELD_REGISTRY says explicitly that retrying with current logic
+  // does not improve it. Shown so "100" reads as a reference point, not a
+  // promise, same honesty as the original Session 14c version had for
+  // subjects/categories.
   const phase4Integ = phase3Integ;
   const phase4Stats = withFieldScores(phase3Stats, {
-    isbn: 85, dateRead: 90, subjects: 80, isbn13: 95, dateAdded: 92, tones: 97,
-    publisher: 96, amazonRating: 98, amazonRatingsCount: 98, categories: 97,
-    year: 100, metadataFetchedAt: 100, description: 100, type: 100,
+    dateRead: 90, isbn: 85, subjects: 85,
   });
   const phase4Actions = [
-    'amazonRating/amazonRatingsCount (currently 92.4%) will keep rising via the existing 5x/day scrape-ratings.yml with its Session 13d retry cooldown — no new work, just time.',
-    'description/metadataFetchedAt backlog (currently 99.7-99.8%) clears at 150/day via enrich-metadata.yml — already nearly done.',
-    'Run tag-books.yml (built in an earlier session but never used — needs the ANTHROPIC_API_KEY repo secret) to tag tones on the candidate-pool books it was built for — tones is 84% populated almost entirely because that job has never run.',
-    'Extend enrich_isbn.py\'s scope to also backfill read-shelf isbn13 (currently to-read/candidate-only by design) and backfill publisher gaps via the Google Books lookup already used elsewhere.',
-    'dateRead and isbn gaps are partially legacy-import artifacts — worth a manual pass, but likely can\'t fully close (some original Goodreads exports may genuinely lack the field).',
+    'dateRead (73.1%, 176 read books) — no backfill path exists today (Session 15: sync_goodreads.py only ever sets dateRead at the moment of a live to-read→read transition, with no path for already-read/bulk-imported books). Would need a dedicated new script, and goodreads.com itself is blocked from this sandbox, so it would need to be built and tested against a real export rather than live.',
+    'isbn (65.9%, 43 pre-2007 books) — low priority regardless: isbn13 is the modern identifier that actually matters, and is already at 98.9%. Only worth chasing for a specific book if isbn13 is also missing for it.',
+    'subjects (74.9%, 274 attempted books with no result) — Session 13e\'s own analysis found this varies 60-95% by book type as a real Open Library coverage gap, not a backlog; a new data source is the only way past this ceiling, not more retries.',
   ];
 
-  // Phase 5 — The honest ceiling. subjects (Open Library) and categories
-  // (Google Books) depend on external catalog coverage that retrying with
-  // current logic does not improve (FIELD_REGISTRY says so explicitly for
-  // both). Shown so "100" reads as a reference point, not a promise.
-  const ceilingIntegri = { ...phase4Integ, brokenOrphaned: 0 };
-  const ceilingStats = withFieldScores(phase4Stats, {
-    isbn: 100, dateRead: 100, subjects: 100, isbn13: 100, dateAdded: 100, tones: 100,
-    publisher: 100, amazonRating: 100, amazonRatingsCount: 100, categories: 100,
+  const ceilingIntegri = phase4Integ;
+  // Literal 100 on every field this roadmap touched, not just the hardest
+  // three — applied directly to the base stats so this scenario doesn't
+  // inherit any partial value from an earlier phase.
+  const ceilingStats = withFieldScores(stats, {
+    dismissReason: 100, amazonRating: 100, amazonRatingsCount: 100, metadataFetchedAt: 100,
+    description: 100, isbn13: 100, year: 100, coverUrl: 100, publisher: 100,
+    categories: 100, dateAdded: 100, dateRead: 100, isbn: 100, subjects: 100,
   });
   const ceilingActions = [
-    'Literal 100/100 requires subjects and categories to reach 100% — but both depend on Open Library and Google Books actually having that data for every book. Per the Field Population table\'s own notes, retrying with current logic does not close these; they need either a different data source or accepting a lower ceiling.',
-    'It also requires resolving all 463 orphaned refs, including the ~300 singly-cited long tail — likely only practical by editorially replacing unresolvable "flavor" citations with a real similar book, not by adding hundreds of marginal entries to the dataset.',
-    'Realistic assessment: Phase 4 is probably the practical ceiling for this dataset without a new data source, not Phase 5.',
+    'Literal 100/100 requires dateRead, isbn, and subjects to reach full population — all three depend on either data Goodreads/Open Library may never have had for a given book, or a new backfill script this sandbox can\'t build-and-verify against the live site. Realistic assessment: Phase 3 is probably the practical ceiling without dedicated new tooling and/or a different data source, not Phase 4.',
   ];
 
   const scenarios = [
     { key: 'current', label: 'Current', actions: [], stats, integ },
-    { key: 'phase1', label: 'Phase 1 — Quick data-entry fixes', actions: phase1Actions, stats: phase1Stats, integ: phase1Integ },
-    { key: 'phase2', label: 'Phase 2 — Add the top 30 missing books', actions: phase2Actions, stats: phase2Stats, integ: phase2Integ },
-    { key: 'phase3', label: 'Phase 3 — Add the next-tier missing books (top 100)', actions: phase3Actions, stats: phase3Stats, integ: phase3Integ },
-    { key: 'phase4', label: 'Phase 4 — Automation catch-up + targeted backfills', actions: phase4Actions, stats: phase4Stats, integ: phase4Integ },
+    { key: 'phase1', label: 'Phase 1 — Quick in-house fixes', actions: phase1Actions, stats: phase1Stats, integ: phase1Integ },
+    { key: 'phase2', label: 'Phase 2 — Let existing automation finish', actions: phase2Actions, stats: phase2Stats, integ: phase2Integ },
+    { key: 'phase3', label: 'Phase 3 — Targeted backfills (publisher, categories, dateAdded)', actions: phase3Actions, stats: phase3Stats, integ: phase3Integ },
+    { key: 'phase4', label: 'Phase 4 — Best-effort on the harder gaps (dateRead, isbn, subjects)', actions: phase4Actions, stats: phase4Stats, integ: phase4Integ },
     { key: 'ceiling', label: 'Theoretical ceiling (literal 100)', actions: ceilingActions, stats: ceilingStats, integ: ceilingIntegri },
   ];
 
@@ -1452,7 +1455,7 @@ A phased, cumulative plan from the current score to a perfect one. Each phase's 
 
 ${roadmap.map(r => `**${r.label}** — projected score: ${r.score}/100${r.key !== 'current' ? ` (+${r.score - roadmap[0].score} from current)` : ''}\n${r.actions.length ? r.actions.map(a => `- ${a}`).join('\n') : ''}`).join('\n\n')}
 
-**Bottom line:** Phase 4 is the realistic practical ceiling for this dataset without a new external data source — subjects (Open Library) and categories (Google Books) genuinely cap below 100% no matter how much this project retries them with current logic, and the ~300 singly-cited orphaned references are a long tail with steeply diminishing returns past Phase 3.
+**Bottom line:** Phase 3 is the realistic practical ceiling for this dataset without dedicated new tooling and/or a new external data source — dateRead has no backfill path today, isbn is low-priority since isbn13 already covers the modern identifier, and subjects (Open Library) genuinely caps below 100% no matter how much this project retries it with current logic.
 `;
 
 fs.mkdirSync('output', { recursive: true });
