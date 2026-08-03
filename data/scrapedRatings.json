@@ -4031,5 +4031,139 @@
     "coverUrl": null,
     "source": "not_found",
     "checkedAt": "2026-07-29"
+  },
+  "blood, bones, and butter|||gabrielle hamilton": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-08-03"
+  },
+  "kitchen confidential|||anthony bourdain": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-08-03"
+  },
+  "medium raw|||anthony bourdain": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 5067
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/61HKztnIkpL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-03"
+  },
+  "the midrange theory|||seth partnow": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 255
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/618bXCZaX8L._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-03"
+  },
+  "dreamland|||sam quinones": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 9198
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91m7VL4sgSL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-03"
+  },
+  "the new jim crow|||michelle alexander": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.8,
+      "count": 16604
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/819g827zGlL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-03"
+  },
+  "the book of joe|||joe maddon": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 270
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91n-pWzIuQL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-03"
+  },
+  "the emperor of all maladies|||siddhartha mukherjee": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.7,
+      "count": 9867
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/816OVDdymuL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-03"
+  },
+  "being mortal|||atul gawande": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.7,
+      "count": 49509
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91UznJLfwUL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-03"
+  },
+  "fast food nation|||eric schlosser": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 3545
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/71U-WCsm8tL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-03"
+  },
+  "the mvp machine|||ben lindbergh": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.7,
+      "count": 777
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81E5MNS9ePL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-03"
+  },
+  "the immortal life of henrietta lacks|||rebecca skloot": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 31311
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/811yGFJMOJL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-03"
+  },
+  "dad is fat|||jim gaffigan": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.4,
+      "count": 6098
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/51nV0rLk2AL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-03"
+  },
+  "bringing down the house|||ben mezrich": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 1347
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81xzD8OFt0L._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-03"
   }
 }
