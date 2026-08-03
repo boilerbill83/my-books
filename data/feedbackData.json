@@ -1,7 +1,7 @@
 {
  "meta": {
   "formatVersion": 1,
-  "lastUpdated": "2026-08-03T12:34:41.731Z",
+  "lastUpdated": "2026-08-03T12:44:19.705Z",
   "negativeSeedCount": 43
  },
  "interactions": [
@@ -1279,6 +1279,105 @@
    "reasonLabel": "Started it, didn't like it",
    "note": "Bill: boring",
    "timestamp": "2026-08-03T12:34:41.731Z",
+   "excludeFromRecommendations": true
+  },
+  {
+   "bookKey": "unhinged-habits-a-counterintuitive-guide-for-humans-to-have-more-by-doing-less|jonathan-goodman",
+   "title": "Unhinged Habits: A Counterintuitive Guide for Humans to Have More by Doing Less",
+   "author": "Jonathan Goodman",
+   "type": "nonfiction",
+   "themes": [
+    "psychology",
+    "business"
+   ],
+   "tones": [
+    "dense",
+    "thoughtful"
+   ],
+   "interactionType": "dismiss",
+   "reasonCode": "not_interesting",
+   "reasonLabel": "Doesn't look interesting",
+   "timestamp": "2026-08-03T12:44:19.705Z",
+   "excludeFromRecommendations": true
+  },
+  {
+   "bookKey": "the-real-hoosiers-crispus-attucks-high-school-oscar-robertson-and-the-hidden-history-of-hoops|jack-mccallum",
+   "title": "The Real Hoosiers: Crispus Attucks High School, Oscar Robertson, and the Hidden History of Hoops",
+   "author": "Jack McCallum",
+   "type": "nonfiction",
+   "themes": [
+    "sports",
+    "history",
+    "social commentary"
+   ],
+   "tones": [
+    "revelatory",
+    "dense",
+    "heartwarming"
+   ],
+   "interactionType": "dismiss",
+   "reasonCode": "not_my_vibe",
+   "reasonLabel": "Not my vibe",
+   "timestamp": "2026-08-03T12:44:19.705Z",
+   "excludeFromRecommendations": true
+  },
+  {
+   "bookKey": "children-of-time|adrian-tchaikovsky",
+   "title": "Children of Time (Children of Time, #1)",
+   "author": "Adrian Tchaikovsky",
+   "type": "fiction",
+   "themes": [
+    "sci-fi",
+    "speculative"
+   ],
+   "tones": [
+    "atmospheric",
+    "slow-burn",
+    "dense"
+   ],
+   "interactionType": "dismiss",
+   "reasonCode": "started_did_not_like",
+   "reasonLabel": "Started it, didn't like it",
+   "timestamp": "2026-08-03T12:44:19.705Z",
+   "excludeFromRecommendations": true
+  },
+  {
+   "bookKey": "survival-of-the-thickest-essays|michelle-buteau",
+   "title": "Survival of the Thickest: Essays",
+   "author": "Michelle Buteau",
+   "type": "nonfiction",
+   "themes": [
+    "humor",
+    "memoir"
+   ],
+   "tones": [
+    "funny",
+    "character-driven"
+   ],
+   "interactionType": "dismiss",
+   "reasonCode": "started_did_not_like",
+   "reasonLabel": "Started it, didn't like it",
+   "timestamp": "2026-08-03T12:44:19.705Z",
+   "excludeFromRecommendations": true
+  },
+  {
+   "bookKey": "behind-closed-doors|lisa-renee-jones",
+   "title": "Behind Closed Doors (Behind Closed Doors, #1)",
+   "author": "Lisa Renee Jones",
+   "type": "fiction",
+   "themes": [
+    "thriller",
+    "romance",
+    "contemporary"
+   ],
+   "tones": [
+    "heartwarming",
+    "compulsive"
+   ],
+   "interactionType": "dismiss",
+   "reasonCode": "no_longer_relevant",
+   "reasonLabel": "No longer relevant",
+   "timestamp": "2026-08-03T12:44:19.705Z",
    "excludeFromRecommendations": true
   }
  ]
