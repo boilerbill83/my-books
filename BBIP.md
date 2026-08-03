@@ -42,11 +42,46 @@ on GitHub (commit `8695441`) rather than sending it back:
   p25=96), `validate_review.js` unchanged (informational, same 9/13 keeps
   below top 25).
 
-**Missing-books phase of BBIP is complete.** Remaining before the real
-import: apply the two clean matched-book updates still pending (*In Good
-Faith* currently-reading → read/5★, *The Three-Body Problem* re-rate 3★ →
-2★), then move through Phases 4 onward (bookId backfill for `goodreadsData.json`,
-new-book enrichment, integrity guardrails, verify, commit).
+**Real import complete (commits `b133a85`, `4b4c1f2`, `b4104ef`).** All
+remaining phases executed:
+- Applied the matched-book shelf/rating/dateRead updates (*In Good Faith*
+  → read/5★, *The Three-Body Problem* 3★→2★, plus dateRead fills/corrections
+  on 6 more books). Deliberately skipped `pages`/`year`/`isbn`/`isbn13` on
+  this batch — the fresh export had implausible page counts on several rows
+  (e.g. "Legends and Soles" 304→1) even on confirmed-`Book Id` matches, a
+  genuine Goodreads CSV data-quality issue, not an edition-mismatch
+  artifact — too risky to propagate blind.
+- Backfilled 15 missing `bookId`s and corrected 11 stale/mismatched ones
+  (adopted the CSV's ID — Bill's own export is ground truth for his own
+  library, unlike the earlier candidate-pool bookId project where neither
+  side was authoritative).
+- Added the 3 genuinely new books found in the export: *Injustice For All*
+  (Joe Dillard #3, Scott Pratt, researched via WebSearch), *The Last Word:
+  A Legal Thriller* (D.B. Easton, researched via WebSearch — unfamiliar
+  small-press title), and *The Last Flight* (Julie Clark — reused its
+  existing `candidatePool.json` enrichment wholesale, just swapped in
+  Bill's real read-copy `bookId`). All three verified: no bookKey
+  collision, every `similarToTitles` entry resolves to a real dataset
+  title.
+- Fixed the already-read-in-pool bug flagged during the dry run: removed
+  *The Last Flight* (bookId `52652923`) from `candidatePool.json` now that
+  Bill's real copy (bookId `51197260`) is a confirmed 5★ read.
+- Reconciled `top10` drift against the export's `top-10` custom shelf: *An
+  Innocent Client* and *Ark* dropped off, *I Am Not a Robot* and
+  *Culpability* were added — 4 books, net count still 22. No
+  `allTimeFave` drift this round.
+- Guardrails re-run after every write: dataset-wide broken-`similarToTitles`
+  scan (0, using the engine's real `norm()`), duplicate-book scan (0 new),
+  self-citation scan (same 2 pre-existing Session-14-documented
+  `engineNorm` false positives, no new ones), `eval.js` (p10=100/p25=96/MAE
+  0.758, unchanged throughout), `validate_review.js` (unchanged,
+  informational-only per Session 35).
+
+BBIP's active import work is done. Future sessions: re-run the same
+dry-run pipeline (`/tmp/gr_import/full_diff.mjs`-style scripts, or rebuild
+if `/tmp` has been cleared) against Bill's next export whenever he provides
+one — the matching strategy, phase list, and guardrail discipline
+documented below all still apply unchanged.
 
 ## Branch sync with `main` (completed)
 
