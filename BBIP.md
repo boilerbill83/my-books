@@ -358,3 +358,79 @@ above (*Number Go Up, Survival of the Thickest*). The raw diff also flagged
 *The Antisocial Network* and *Raised* again — confirmed both are still just
 the same matcher blind spot from the first run (retitled book, truncated
 title), not really missing; re-verified by hand both still resolve.
+
+---
+
+## Lessons Learned (post-import retrospective)
+
+Written after the real import landed on `main` and after a live bug (stale
+Stoner entry) surfaced post-deploy. For whoever runs the next import.
+
+### What went well
+
+- **Zero data corruption.** Every write used surgical byte-span
+  text-splices, never `JSON.parse`+`stringify`, verified with `git diff`
+  before every commit. Across ~15 writes touching 3 files, not one
+  accidental reformat or unrelated-field change.
+- **Cheap, consistent verification.** `eval.js`/`validate_review.js` after
+  every batch caught nothing wrong, but at near-zero cost — worth keeping
+  as a reflex on any data change, not just imports.
+- **Caught the already-read-in-pool bug proactively.** Recognized mid-import
+  that adding a new read (*The Last Flight*) meant it needed to come out of
+  `candidatePool.json` too, rather than waiting for a report to flag it.
+- **Conservative on bad source data.** The export had implausible page
+  counts on some rows even with confirmed `Book Id` matches (e.g. 304→1) —
+  chose to skip `pages`/`year`/`isbn` for this round rather than risk
+  propagating garbage.
+
+### What didn't go well
+
+1. **`currentlyReading.json` was never in scope, and it should have been.**
+   The plan was framed as "reconcile the CSV export against
+   `goodreadsData.json`," but a book's real state lives across three files
+   that sync on different schedules (manual CSV import,
+   RSS-based `sync_goodreads.py`, RSS-based `sync_currently_reading.py`).
+   Stoner got dismissed correctly in `feedbackData.json` and correctly
+   marked absent in `goodreadsData.json`, but nobody cross-checked the
+   third file — it sat stale until Bill caught it live on the site. The
+   plan's blast radius was too narrow for what "one book's state" actually
+   means in this repo.
+2. **Open questions went stale in this doc.** When asked to walk through
+   remaining open items, two ("status reversions," "Read Count") were
+   reported as still unresolved when in fact later dry runs had already
+   settled them — this doc just hadn't been updated in real time as new
+   evidence closed them out. The living-doc discipline slipped: questions
+   need to close the moment they're resolved, not in a later cleanup pass.
+3. **Branch divergence with `main` cost real time.** Automated GitHub
+   Actions kept moving `main` independently (ISBN backfill, metadata
+   enrichment, daily reports) while dry runs were happening on the feature
+   branch, forcing a real merge with conflict resolution mid-import. This
+   should be a pre-flight check at the start of every dry run, not
+   something discovered partway through (see "Lesson for future dry runs"
+   above, from Session-level branch sync — this generalizes it).
+4. **Briefly conflated two unrelated "duplicate" problems**: Session 32's
+   internal `candidatePool*.json` duplicate-book-object issue vs. this
+   import's "Bill has the same book shelved twice on Goodreads under
+   different Book Ids." Superficially similar, structurally unrelated —
+   cost a few minutes of confusion before checking the data directly and
+   separating them.
+5. **No live-site verification step.** Nothing in the process checked the
+   actual deployed app after pushing to `main`. The Stoner bug was only
+   caught because Bill happened to look — a post-push smoke check would
+   have caught it without requiring a manual report.
+
+### Concrete improvements for next import
+
+- **Build a cross-file consistency check** (same spirit as
+  `data_quality_report.js`'s existing checks): flag any book dismissed/
+  excluded in `feedbackData.json` but still present in
+  `currentlyReading.json` or any `candidatePool*.json`, or any book absent
+  from the latest export but not marked `dnf`. Turns the ad hoc checking
+  done by hand this session into something repeatable and automatic.
+- **Check `git log HEAD..origin/main` before every dry run**, not just
+  once — make it step 0 of the phase list.
+- **Update "open questions" the moment they resolve**, not in a batch
+  cleanup later.
+- **Add a cheap post-push sanity step**: after pushing to `main`, pull the
+  2-3 highest-visibility data surfaces (currently-reading, top
+  recommendations) and eyeball them against what should be there.
