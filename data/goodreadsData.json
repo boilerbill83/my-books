@@ -4,7 +4,7 @@
     "generatedAt": "2026-06-01T00:00:00.000Z",
     "bookCount": 958,
     "readCount": 655,
-    "toReadCount": 296,
+    "toReadCount": 297,
     "currentlyReadingCount": 1,
     "fiveStarCount": 260,
     "notes": "Hardcoded from personal Goodreads export.",
@@ -39185,6 +39185,23 @@
         "poignant"
       ],
       "themeToneReviewed": true,
+      "dnf": false
+    },
+    {
+      "title": "The Amazing Adventures of Kavalier & Clay",
+      "author": "Michael Chabon",
+      "isbn13": null,
+      "isbn": "0965007030",
+      "avgRating": 4.34,
+      "ratingsCount": 0,
+      "year": null,
+      "pages": 656,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1353584921l/90447.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
       "dnf": false
     }
   ],
