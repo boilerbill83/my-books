@@ -4165,5 +4165,15 @@
     "coverUrl": "https://m.media-amazon.com/images/I/81xzD8OFt0L._SX300_.jpg",
     "source": "amazon",
     "checkedAt": "2026-08-03"
+  },
+  "the amazing adventures of kavalier & clay|||michael chabon": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 5997
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81UajM2aOHL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-07"
   }
 }
