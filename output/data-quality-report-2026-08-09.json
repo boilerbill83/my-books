@@ -1,7 +1,7 @@
 {
   "date": "2026-08-09",
-  "generatedAt": "2026-08-09T09:37:34.600Z",
-  "totalBooks": 1112,
+  "generatedAt": "2026-08-09T15:35:09.218Z",
+  "totalBooks": 1113,
   "qualityScore": {
     "score": 92,
     "components": [
@@ -9,13 +9,13 @@
         "key": "criticalHealth",
         "label": "Critical Field Health",
         "weight": 0.08,
-        "subscore": 99.91906474820144
+        "subscore": 99.88319856244384
       },
       {
         "key": "completeness",
         "label": "Field Completeness",
         "weight": 0.33,
-        "subscore": 74.78044529074094
+        "subscore": 74.60390684147254
       },
       {
         "key": "foundational",
@@ -39,9 +39,9 @@
     "impediments": [
       {
         "count": 5,
-        "pointsLost": 8.3,
+        "pointsLost": 8.4,
         "name": "Field completeness gaps (all fields)",
-        "description": "Average Quality Score across all 31 tracked fields is 95.6% — isbn, dateRead, subjects, dateAdded, publisher are the largest gaps today, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
+        "description": "Average Quality Score across all 31 tracked fields is 95.5% — isbn, dateRead, subjects, dateAdded, publisher are the largest gaps today, none of them scoring-critical but all real incompleteness for a genuinely excellent dataset.",
         "fix": "See the Field Population table, sorted by Quality Score, for every field below 90%.",
         "anchor": "#fieldPopulationSection"
       }
@@ -108,13 +108,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.91906474820144
+          "subscore": 99.88319856244384
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 74.78044529074094
+          "subscore": 74.60390684147254
         },
         {
           "key": "foundational",
@@ -148,13 +148,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.91906474820144
+          "subscore": 99.88319856244384
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 74.78044529074094
+          "subscore": 74.60390684147254
         },
         {
           "key": "foundational",
@@ -181,8 +181,8 @@
       "label": "Phase 2 — Let existing automation finish",
       "actions": [
         "amazonRating/amazonRatingsCount (currently 91.9%, 37 book(s)) keep rising via the existing 5x/day scrape-ratings.yml with its Session 13d retry cooldown.",
-        "metadataFetchedAt/description (currently 99.6%/99.6%, 4/4 book(s)) clear at 150/day via enrich-metadata.yml.",
-        "isbn13 (99.1%, 10 book(s), mostly read-shelf) and year (99.2%, 9 book(s)) are small enough gaps that a single enrich-isbn.yml/enrich_metadata.py run each should close them.",
+        "metadataFetchedAt/description (currently 99.6%/99.6%, 5/5 book(s)) clear at 150/day via enrich-metadata.yml.",
+        "isbn13 (99.0%, 11 book(s), mostly read-shelf) and year (99.2%, 9 book(s)) are small enough gaps that a single enrich-isbn.yml/enrich_metadata.py run each should close them.",
         "coverUrl (100.0%, 0 book(s) in the eligible to-read/candidate/currently-reading pool) clears via a re-run of enrich_covers.py."
       ],
       "score": 93,
@@ -191,13 +191,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.91906474820144
+          "subscore": 99.88319856244384
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 77.4687524215592
+          "subscore": 77.34137375758318
         },
         {
           "key": "foundational",
@@ -223,9 +223,9 @@
       "key": "phase3",
       "label": "Phase 3 — Targeted backfills (publisher, categories, dateAdded)",
       "actions": [
-        "publisher (currently 88.2%, 131 book(s)) — Session 15 fixed enrich_metadata.py to capture the publisher field from Google Books, but most of the dataset was already attempted before that fix landed, so the cache never picked it up. Needs a deliberate re-fetch pass over already-attempted books, not just waiting.",
+        "publisher (currently 88.1%, 132 book(s)) — Session 15 fixed enrich_metadata.py to capture the publisher field from Google Books, but most of the dataset was already attempted before that fix landed, so the cache never picked it up. Needs a deliberate re-fetch pass over already-attempted books, not just waiting.",
         "categories (96.4%, 40 attempted book(s) with no result) — mostly a genuine Google Books coverage gap at this point, but worth one more pass since it hasn't been retried since Session 13c's original attempt.",
-        "dateAdded (83.9%, 179 book(s)) — cosmetic only, not used by scoring, but a low-volume gap worth a manual pass if ever prioritized."
+        "dateAdded (83.8%, 180 book(s)) — cosmetic only, not used by scoring, but a low-volume gap worth a manual pass if ever prioritized."
       ],
       "score": 94,
       "components": [
@@ -233,13 +233,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.91906474820144
+          "subscore": 99.88319856244384
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 80.68425226111934
+          "subscore": 80.58530872227155
         },
         {
           "key": "foundational",
@@ -266,7 +266,7 @@
       "label": "Phase 4 — Best-effort on the harder gaps (dateRead, isbn, subjects)",
       "actions": [
         "dateRead (currently 73.0%, 177 read book(s)) — no backfill path exists today (Session 15: sync_goodreads.py only ever sets dateRead at the moment of a live to-read→read transition, with no path for already-read/bulk-imported books). Would need a dedicated new script, and goodreads.com itself is blocked from this sandbox, so it would need to be built and tested against a real export rather than live.",
-        "isbn (66.1%, 43 pre-2007 book(s)) — low priority regardless: isbn13 is the modern identifier that actually matters, and is already at 99.1%. Only worth chasing for a specific book if isbn13 is also missing for it.",
+        "isbn (66.1%, 43 pre-2007 book(s)) — low priority regardless: isbn13 is the modern identifier that actually matters, and is already at 99.0%. Only worth chasing for a specific book if isbn13 is also missing for it.",
         "subjects (74.9%, 278 attempted book(s) with no result) — Session 13e's own analysis found this varies 60-95% by book type as a real Open Library coverage gap, not a backlog; a new data source is the only way past this ceiling, not more retries."
       ],
       "score": 96,
@@ -275,13 +275,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.91906474820144
+          "subscore": 99.88319856244384
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 89.13706196333246
+          "subscore": 89.03811842448475
         },
         {
           "key": "foundational",
@@ -315,13 +315,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.91906474820144
+          "subscore": 99.88319856244384
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 99.80157809236474
+          "subscore": 99.70263455351703
         },
         {
           "key": "foundational",
@@ -348,168 +348,175 @@
     {
       "field": "isbn",
       "scorePct": 66.14173228346456,
-      "rawPct": 65.1978417266187,
+      "rawPct": 65.1392632524708,
       "critical": false,
       "eligibleTotal": 127
     },
     {
       "field": "dateRead",
       "scorePct": 72.97709923664122,
-      "rawPct": 42.985611510791365,
+      "rawPct": 42.94699011680144,
       "critical": false,
       "eligibleTotal": 655
     },
     {
       "field": "subjects",
       "scorePct": 74.90974729241877,
-      "rawPct": 74.64028776978417,
+      "rawPct": 74.57322551662175,
       "critical": false,
       "eligibleTotal": 1108
     },
     {
       "field": "dateAdded",
-      "scorePct": 83.90287769784173,
-      "rawPct": 83.90287769784173,
+      "scorePct": 83.82749326145553,
+      "rawPct": 83.82749326145553,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "publisher",
-      "scorePct": 88.21942446043165,
-      "rawPct": 88.21942446043165,
+      "scorePct": 88.14016172506739,
+      "rawPct": 88.14016172506739,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "amazonRating",
       "scorePct": 91.90371991247265,
-      "rawPct": 39.02877697841727,
+      "rawPct": 38.9937106918239,
       "critical": false,
       "eligibleTotal": 457
     },
     {
       "field": "amazonRatingsCount",
       "scorePct": 91.90371991247265,
-      "rawPct": 39.02877697841727,
+      "rawPct": 38.9937106918239,
       "critical": false,
       "eligibleTotal": 457
     },
     {
       "field": "categories",
       "scorePct": 96.38989169675091,
-      "rawPct": 96.0431654676259,
+      "rawPct": 95.95687331536388,
       "critical": false,
       "eligibleTotal": 1108
     },
     {
       "field": "isbn13",
-      "scorePct": 99.10071942446044,
-      "rawPct": 99.10071942446044,
+      "scorePct": 99.01168014375561,
+      "rawPct": 99.01168014375561,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "year",
-      "scorePct": 99.19064748201438,
-      "rawPct": 99.19064748201438,
+      "scorePct": 99.19137466307278,
+      "rawPct": 99.19137466307278,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "description",
-      "scorePct": 99.64028776978417,
-      "rawPct": 99.64028776978417,
+      "scorePct": 99.5507637017071,
+      "rawPct": 99.5507637017071,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "metadataFetchedAt",
-      "scorePct": 99.64028776978417,
-      "rawPct": 99.64028776978417,
+      "scorePct": 99.5507637017071,
+      "rawPct": 99.5507637017071,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "themes",
-      "scorePct": 99.73021582733813,
-      "rawPct": 99.73021582733813,
+      "scorePct": 99.64061096136568,
+      "rawPct": 99.64061096136568,
       "critical": true,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "tones",
-      "scorePct": 99.73021582733813,
-      "rawPct": 99.73021582733813,
+      "scorePct": 99.64061096136568,
+      "rawPct": 99.64061096136568,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "similarToTitles",
-      "scorePct": 99.73021582733813,
-      "rawPct": 99.73021582733813,
+      "scorePct": 99.64061096136568,
+      "rawPct": 99.64061096136568,
       "critical": true,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "similarToAuthors",
-      "scorePct": 99.73021582733813,
-      "rawPct": 99.73021582733813,
+      "scorePct": 99.64061096136568,
+      "rawPct": 99.64061096136568,
       "critical": true,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
+    },
+    {
+      "field": "type",
+      "scorePct": 99.91015274034142,
+      "rawPct": 99.91015274034142,
+      "critical": false,
+      "eligibleTotal": 1113
+    },
+    {
+      "field": "ratingsCount",
+      "scorePct": 99.91015274034142,
+      "rawPct": 99.91015274034142,
+      "critical": true,
+      "eligibleTotal": 1113
     },
     {
       "field": "bookKey",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "title",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "author",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "source",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "shelf",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1112
-    },
-    {
-      "field": "type",
-      "scorePct": 100,
-      "rawPct": 100,
-      "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "pages",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "myRating",
       "scorePct": 100,
-      "rawPct": 85.79136690647482,
+      "rawPct": 85.71428571428571,
       "critical": true,
       "eligibleTotal": 655
     },
@@ -518,49 +525,42 @@
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1112
-    },
-    {
-      "field": "ratingsCount",
-      "scorePct": 100,
-      "rawPct": 100,
-      "critical": true,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "dismissed",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "dismissReason",
       "scorePct": 100,
-      "rawPct": 3.0575539568345325,
+      "rawPct": 3.054806828391734,
       "critical": false,
       "eligibleTotal": 34
     },
     {
       "field": "coverUrl",
       "scorePct": 100,
-      "rawPct": 51.888489208633096,
+      "rawPct": 51.93171608265948,
       "critical": false,
-      "eligibleTotal": 457
+      "eligibleTotal": 458
     },
     {
       "field": "goodreadsUrl",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     },
     {
       "field": "top10",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1112
+      "eligibleTotal": 1113
     }
   ],
   "integrity": {
@@ -582,8 +582,8 @@
     "themesOutOfRange": 0,
     "similarOutOfRange": 0,
     "zeroPages": 1,
-    "zeroRatingsCount": 20,
-    "missingBookKey": 3
+    "zeroRatingsCount": 21,
+    "missingBookKey": 4
   },
   "findings": {
     "fiveStarSignalGaps": [],
@@ -16163,6 +16163,36 @@
           "count": 1
         }
       ]
-    }
+    },
+    "improvementOpportunities": [
+      {
+        "key": "amazonRatingBias",
+        "title": "Amazon ratings run systematically off Goodreads’ scale",
+        "status": "open",
+        "detail": "Across 434 books with both a Goodreads avgRating and a scraped Amazon rating, Amazon runs +0.37★ relative to Goodreads on average (411 of 434 higher, 12 lower). bbreEngine.js's communitySignal() applies the same COMMUNITY_NEUTRAL constant regardless of source, so candidates with Amazon data currently get a small, one-directional, uncorrected boost purely from platform rating inflation — not real popularity or quality.",
+        "fix": "Recalibrate communitySignal() to use a source-specific neutral (or subtract the measured offset from amazonRating before scoring), then verify with eval.js/validate_review.js before shipping — this touches live scoring."
+      },
+      {
+        "key": "unusedFields",
+        "title": "Populated fields with no scoring code path",
+        "status": "open",
+        "detail": "`categories` (96% populated), `subjects` (75% populated) have zero references across engine.js/bbreEngine.js/rateEngine.js/descSimilarity.js/app.js — confirmed by scanning the actual source text, not assumed. Field-completeness work on these fields currently has no BBRE payoff.",
+        "fix": "Either wire subjects into descSimilarity.js's TF-IDF vocabulary as bonus tokens (untested — needs an eval.js sweep to confirm it helps before keeping it), or accept it as cosmetic/extract-only and stop prioritizing its completeness in future sessions."
+      },
+      {
+        "key": "bottomCatchRate",
+        "title": "Bottom-50 catch rate is the engine’s weakest metric",
+        "status": "open",
+        "detail": "The engine's 50 lowest-predicted candidates (leave-one-out) actually turn out to be ≤3★ only 28/50 times (56%) — the weakest of the 6 BBRE Accuracy components. This is the false-negative side (predicted bad, actually loved), distinct from the \"predicted-high-actual-low\" worst-misses list, and has no identified fix yet.",
+        "fix": "No concrete lead yet — tracked here so its trend is visible over time rather than only moving the composite score silently."
+      },
+      {
+        "key": "deadStoryGraphCode",
+        "title": "storyGraphRating branches in bbreEngine.js never fire",
+        "status": "open",
+        "detail": "bbreEngine.js references `storyGraphRating` 5 time(s) as a preferred-over-Amazon community rating source, but every entry in data/scrapedRatings.json has `storyGraph: null` — confirmed live, not just from history. This code path has never executed.",
+        "fix": "Remove the dead storyGraphRating branches (zero behavior change) for clarity, or actually implement StoryGraph scraping if the source is wanted — Bill's call."
+      }
+    ]
   }
 }

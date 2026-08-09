@@ -170,6 +170,24 @@
       .qd-impediment-pts { font-weight: 700; color: var(--status-critical); white-space: nowrap; font-variant-numeric: tabular-nums; }
       .qd-impediment-link { font-size: 0.78rem; }
 
+      /* ── Improvement opportunities section ── */
+      .qd-opp {
+        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+        padding: 16px 18px; box-shadow: var(--shadow); margin-bottom: 12px;
+      }
+      .qd-opp-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
+      .qd-opp-title { font-weight: 600; color: var(--text); }
+      .qd-opp-status {
+        display: inline-flex; align-items: center; gap: 5px; font-size: 0.72rem; font-weight: 600;
+        padding: 2px 9px; border-radius: 999px; white-space: nowrap; letter-spacing: 0.02em;
+      }
+      .qd-opp-status.open { background: rgba(208,59,59,0.13); color: var(--status-critical); }
+      .qd-opp-status.resolved { background: rgba(12,163,12,0.13); color: var(--status-good); }
+      .qd-opp-key { font-family: ui-monospace, monospace; font-size: 0.72rem; color: var(--text-muted); }
+      .qd-opp-detail { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; line-height: 1.5; overflow-wrap: break-word; }
+      .qd-opp-fix { font-size: 0.85rem; color: var(--text); }
+      .qd-opp-fix strong { color: var(--accent); }
+
       /* ── Date range filter (one row, above everything it scopes) ── */
       .qd-range-row { display: flex; gap: 8px; align-items: center; margin-bottom: 24px; flex-wrap: wrap; }
       .qd-range-label { font-size: 0.78rem; color: var(--text-muted); margin-right: 4px; }
@@ -332,6 +350,12 @@
           <h2>Roadmap to 100</h2>
           <p class="qd-desc">A phased, cumulative plan from the current score to a perfect one. Each phase's projected score is <em>simulated</em> by re-running the real scoring formula against a hypothetical fixed-state — not a hand-typed estimate.</p>
           <div id="qdRoadmap"></div>
+        </section>
+
+        <section class="qd-section" id="opportunitiesSection">
+          <h2>Improvement Opportunities (Data + BBRE)</h2>
+          <p class="qd-desc">A research backlog of ways to improve the data or the engine itself, beyond what the checks above already cover. Every finding here is live-computed from current data/engine source on every run — including flipping to "resolved" the moment a future fix lands — never a fixed snapshot of what was true the day it was found.</p>
+          <div id="qdOpportunities"></div>
         </section>
 
       </div>
@@ -646,6 +670,34 @@
           body.appendChild(name); body.appendChild(desc); body.appendChild(fix); body.appendChild(document.createElement('br')); body.appendChild(link);
           const pts = document.createElement('div'); pts.className = 'qd-impediment-pts'; pts.textContent = `−${imp.pointsLost} pts`;
           card.appendChild(rank); card.appendChild(body); card.appendChild(pts);
+          wrap.appendChild(card);
+        });
+      }
+
+      // Icon paired with the status label (not color alone) per the
+      // dataviz accessibility rule — this page's warning/serious status
+      // colors already fail 3:1 contrast on the card background.
+      function renderOpportunities(findings) {
+        const wrap = $('#qdOpportunities');
+        wrap.innerHTML = '';
+        if (!findings || !findings.length) {
+          wrap.innerHTML = '<div class="qd-empty">None currently identified.</div>';
+          return;
+        }
+        findings.forEach(f => {
+          const card = document.createElement('div'); card.className = 'qd-opp';
+          const head = document.createElement('div'); head.className = 'qd-opp-head';
+          const title = document.createElement('div'); title.className = 'qd-opp-title'; title.textContent = f.title;
+          const status = document.createElement('span');
+          status.className = `qd-opp-status ${f.status}`;
+          status.textContent = f.status === 'open' ? '🔴 Open' : '✅ Resolved';
+          const key = document.createElement('span'); key.className = 'qd-opp-key'; key.textContent = f.key;
+          head.appendChild(title); head.appendChild(status); head.appendChild(key);
+          const detail = document.createElement('div'); detail.className = 'qd-opp-detail'; detail.textContent = f.detail;
+          const fix = document.createElement('div'); fix.className = 'qd-opp-fix';
+          fix.innerHTML = '<strong>Fix: </strong>';
+          fix.append(document.createTextNode(f.fix));
+          card.appendChild(head); card.appendChild(detail); card.appendChild(fix);
           wrap.appendChild(card);
         });
       }
@@ -974,6 +1026,7 @@
         renderResolvedBanner(current, truePrev);
         renderImpediments(current.qualityScore.impediments);
         renderRoadmap(current.roadmap);
+        renderOpportunities(current.findings.improvementOpportunities);
 
         // ── Field Population table ──
         const fieldTable = $('#fieldTable');

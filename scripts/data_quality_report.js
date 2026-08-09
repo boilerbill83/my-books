@@ -605,6 +605,159 @@ function computeTagCounts() {
   };
 }
 
+// ── BBRE/data improvement opportunities ──────────────────────────────────
+// A research backlog Bill asked for (Session 36, Aug 3 2026) after a
+// code-level investigation turned up real, non-obvious findings beyond
+// what the integrity/completeness checks above already catch. Every
+// number here is LIVE-COMPUTED from current data/engine source on every
+// run, not a hand-typed snapshot of what was true the day it was found —
+// the exact staleness bug class fixed earlier this same session (a
+// hardcoded "tones is a top-5 gap" claim that outlived tones actually
+// hitting 100%). So each finding here self-corrects the moment the
+// underlying reality changes, including quietly reporting "resolved" if
+// a future session fixes the code these findings point at.
+// app.js is included because that's where live per-book objects actually
+// get shaped before being handed to bbreEngine.js/rankBBRE — some fields
+// only "exist" for scoring after app.js merges/renames them (see the
+// amazonRatingsCount/amazonRatingCount case below), so checking only the
+// scoring files themselves would false-flag real, live-used fields.
+const ENGINE_SOURCE_FILES = ['engine.js', 'bbreEngine.js', 'rateEngine.js', 'descSimilarity.js', 'app.js'];
+// Fields intentionally excluded from the "does any signal read this?"
+// check — bibliographic/identifier/UI metadata that was never meant to
+// feed scoring, so flagging them would just be noise.
+const NON_SIGNAL_FIELDS = new Set([
+  'bookKey', 'title', 'author', 'source', 'shelf', 'isbn', 'isbn13', 'publisher',
+  'goodreadsUrl', 'dateAdded', 'coverUrl', 'metadataFetchedAt', 'top10', 'dismissed',
+]);
+// scrapedRatings.json's amazonRatingsCount (this report's/export's naming
+// convention, plural "Ratings") is the exact same data app.js/bbreEngine.js
+// read as amazonRatingCount (singular "Rating") — confirmed by reading both
+// call sites (app.js:824 sets it, bbreEngine.js:688 reads it, consistently
+// singular). Not a dead field, just a real naming split across the
+// reporting pipeline vs. the live app — checked for explicitly so the
+// unused-field scan doesn't cry wolf on it.
+const FIELD_NAME_VARIANTS = { amazonRatingsCount: ['amazonRatingCount'] };
+function findImprovementOpportunities() {
+  const findings = [];
+
+  // 1. Amazon vs Goodreads rating-scale bias. communitySignal() in
+  // bbreEngine.js applies the same COMMUNITY_NEUTRAL regardless of which
+  // source (Amazon/StoryGraph/Goodreads) supplied the average — if one
+  // platform runs systematically hotter or colder than the other, every
+  // candidate scored from that platform gets an uncorrected one-directional
+  // nudge that has nothing to do with how much Bill would actually like it.
+  {
+    const diffs = [];
+    for (const r of rows) {
+      const gr = Number(r.avgRating), amz = Number(r.amazonRating);
+      if (gr && amz) diffs.push(amz - gr);
+    }
+    if (diffs.length >= 20) {
+      const mean = diffs.reduce((a, b) => a + b, 0) / diffs.length;
+      const higherCount = diffs.filter(d => d > 0.05).length;
+      const lowerCount = diffs.filter(d => d < -0.05).length;
+      const biasedDirection = higherCount > diffs.length * 0.8 ? 'higher' : lowerCount > diffs.length * 0.8 ? 'lower' : null;
+      findings.push({
+        key: 'amazonRatingBias',
+        title: 'Amazon ratings run systematically off Goodreads’ scale',
+        status: Math.abs(mean) >= 0.15 && biasedDirection ? 'open' : 'resolved',
+        detail: `Across ${diffs.length} books with both a Goodreads avgRating and a scraped Amazon rating, Amazon runs ${mean >= 0 ? '+' : ''}${mean.toFixed(2)}★ relative to Goodreads on average (${higherCount} of ${diffs.length} higher, ${lowerCount} lower). bbreEngine.js's communitySignal() applies the same COMMUNITY_NEUTRAL constant regardless of source, so candidates with Amazon data currently get a small, one-directional, uncorrected boost purely from platform rating inflation — not real popularity or quality.`,
+        fix: 'Recalibrate communitySignal() to use a source-specific neutral (or subtract the measured offset from amazonRating before scoring), then verify with eval.js/validate_review.js before shipping — this touches live scoring.',
+      });
+    }
+  }
+
+  // 2. Populated fields with zero code path in any scoring engine file.
+  // Chasing a field's Field Population % has zero BBRE payoff if nothing
+  // ever reads it — this flags that mismatch directly instead of letting
+  // future sessions rediscover it by accident.
+  {
+    const sourceText = ENGINE_SOURCE_FILES
+      .map(f => { try { return fs.readFileSync(f, 'utf8'); } catch { return ''; } })
+      .join('\n');
+    const unused = [];
+    for (const f of fields) {
+      if (NON_SIGNAL_FIELDS.has(f)) continue;
+      const populated = rows.filter(r => !isEmpty(r[f])).length;
+      if (populated < rows.length * 0.2) continue; // too sparse to be a real "chased" field either way
+      const namesToCheck = [f, ...(FIELD_NAME_VARIANTS[f] || [])];
+      const referenced = namesToCheck.some(name => new RegExp(`[.\\[]['"]?${name}\\b`).test(sourceText));
+      if (!referenced) {
+        unused.push({ field: f, populatedPct: 100 * populated / rows.length });
+      }
+    }
+    if (unused.length) {
+      findings.push({
+        key: 'unusedFields',
+        title: 'Populated fields with no scoring code path',
+        status: 'open',
+        detail: `${unused.map(u => `\`${u.field}\` (${u.populatedPct.toFixed(0)}% populated)`).join(', ')} ${unused.length === 1 ? 'has' : 'have'} zero references across ${ENGINE_SOURCE_FILES.join('/')} — confirmed by scanning the actual source text, not assumed. Field-completeness work on ${unused.length === 1 ? 'this field' : 'these fields'} currently has no BBRE payoff.`,
+        fix: unused.some(u => u.field === 'subjects')
+          ? 'Either wire subjects into descSimilarity.js\'s TF-IDF vocabulary as bonus tokens (untested — needs an eval.js sweep to confirm it helps before keeping it), or accept it as cosmetic/extract-only and stop prioritizing its completeness in future sessions.'
+          : 'Either find a real scoring use for these fields, or stop prioritizing their completeness in future field-gap work.',
+      });
+    } else {
+      findings.push({
+        key: 'unusedFields',
+        title: 'Populated fields with no scoring code path',
+        status: 'resolved',
+        detail: 'Every field populated on ≥20% of books has at least one real reference in engine.js/bbreEngine.js/rateEngine.js/descSimilarity.js.',
+        fix: 'None needed.',
+      });
+    }
+  }
+
+  // 3. Bottom-50 catch rate, surfaced as its own line rather than only
+  // buried inside the composite BBRE Accuracy Score's weighted average.
+  if (bbreAccuracy) {
+    const comp = bbreAccuracy.components.find(c => c.key === 'bottomCatch');
+    if (comp) {
+      const caught = Math.round(comp.subscore / 2); // subscore is already *2 (out of 50 -> out of 100)
+      findings.push({
+        key: 'bottomCatchRate',
+        title: 'Bottom-50 catch rate is the engine’s weakest metric',
+        status: comp.subscore >= 80 ? 'resolved' : 'open',
+        detail: `The engine's 50 lowest-predicted candidates (leave-one-out) actually turn out to be ≤3★ only ${caught}/50 times (${comp.subscore.toFixed(0)}%) — the weakest of the 6 BBRE Accuracy components. This is the false-negative side (predicted bad, actually loved), distinct from the "predicted-high-actual-low" worst-misses list, and has no identified fix yet.`,
+        fix: 'No concrete lead yet — tracked here so its trend is visible over time rather than only moving the composite score silently.',
+      });
+    }
+  }
+
+  // 4. storyGraphRating: bbreEngine.js branches on it as if sometimes
+  // populated, but scrape_ratings.py has hardcoded storyGraph: null for
+  // every book since Session 13b (StoryGraph scraping was never actually
+  // implemented despite the workflow's name). Checked live against the
+  // real scraped-ratings cache, not assumed from the session log.
+  {
+    let anyStoryGraph = false;
+    try {
+      const scraped = JSON.parse(fs.readFileSync('data/scrapedRatings.json', 'utf8'));
+      anyStoryGraph = Object.values(scraped).some(v => v && v.storyGraph);
+    } catch {}
+    const bbreSrc = (() => { try { return fs.readFileSync('bbreEngine.js', 'utf8'); } catch { return ''; } })();
+    const refCount = (bbreSrc.match(/storyGraphRating/g) || []).length;
+    if (refCount > 0 && !anyStoryGraph) {
+      findings.push({
+        key: 'deadStoryGraphCode',
+        title: 'storyGraphRating branches in bbreEngine.js never fire',
+        status: 'open',
+        detail: `bbreEngine.js references \`storyGraphRating\` ${refCount} time(s) as a preferred-over-Amazon community rating source, but every entry in data/scrapedRatings.json has \`storyGraph: null\` — confirmed live, not just from history. This code path has never executed.`,
+        fix: 'Remove the dead storyGraphRating branches (zero behavior change) for clarity, or actually implement StoryGraph scraping if the source is wanted — Bill\'s call.',
+      });
+    } else if (refCount > 0 && anyStoryGraph) {
+      findings.push({
+        key: 'deadStoryGraphCode',
+        title: 'storyGraphRating branches in bbreEngine.js never fire',
+        status: 'resolved',
+        detail: 'scrapedRatings.json now has at least one real storyGraph value — this code path is live again.',
+        fix: 'None needed.',
+      });
+    }
+  }
+
+  return findings;
+}
+
 function findOutOfRangeCounts() {
   // CLAUDE.md quality rules: themes 2-5, similarToTitles 3-5 (checked only
   // for library books — candidate pools follow a looser convention).
@@ -1263,6 +1416,8 @@ try {
   console.error('BBRE accuracy computation failed, omitting from report:', e.message);
 }
 
+const improvementOpportunities = findImprovementOpportunities();
+
 const alreadyReadInPoolKeys = new Set(alreadyReadInPool.map(x => `${norm(x.title)}|${norm(x.author)}`));
 const selfReferentialKeys = new Set([...selfTitle, ...selfAuthor].map(x => `${norm(x.title)}|${norm(x.author)}`));
 const brokenFiveStarTouchKeys = new Set(
@@ -1331,6 +1486,7 @@ const currentSnapshot = {
     duplicateBooksFuzzy: dupFuzzy.map(([, list]) => ({ title: list[0].title, occurrences: list.map(r => ({ title: r.title, author: r.author, source: r.source, shelf: r.shelf })) })),
     impactScores: impactScores.slice(0, 50),
     tagCounts,
+    improvementOpportunities,
   },
 };
 
@@ -1373,6 +1529,12 @@ ${highLeverageGaps.length ? renderList(highLeverageGaps.map(g => `"${g.title}" b
 
 Not a raw missing-field count — weighted by whether the book is a 5★ read (foundational signal), a high-leverage candidate, or involved in an integrity issue like an already-read duplicate.
 ${impactScores.length ? renderList(impactScores.slice(0, 20).map(s => `"${s.title}" by ${s.author} (${s.locations.join(', ')}) — score ${s.score}: ${s.reasons.join('; ')}`), 20) : 'None — no book has a nonzero impact score.'}
+
+## Improvement Opportunities (Data + BBRE)
+
+A research backlog (Session 36) of ways to improve the data or the engine itself, beyond what the integrity/completeness checks above already cover. Every finding here is live-computed from current data/engine source on every run — including "resolved" once a future fix lands — not a fixed snapshot of what was true the day it was found.
+
+${improvementOpportunities.length ? improvementOpportunities.map(f => `${f.status === 'open' ? '🔴' : '✅'} **${f.title}** (\`${f.key}\`, ${f.status})\n${f.detail}\n**Fix:** ${f.fix}`).join('\n\n') : 'None currently identified.'}
 
 ## Recent Trend (BBRE-relevant metrics)
 
