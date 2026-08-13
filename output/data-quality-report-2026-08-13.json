@@ -1,6 +1,6 @@
 {
   "date": "2026-08-13",
-  "generatedAt": "2026-08-13T14:44:11.053Z",
+  "generatedAt": "2026-08-13T15:35:38.329Z",
   "totalBooks": 1111,
   "qualityScore": {
     "score": 92,
@@ -16170,6 +16170,48 @@
         "status": "open",
         "detail": "bbreEngine.js's SOFT_ROMANCE_AUTHORS list docks colleen hoover (despite Verity (5★)); kristin hannah (despite The Great Alone (5★)); jennifer e. smith (despite The Statistical Probability of Love at First Sight (5★)) — a flat author-identity penalty on a name Bill has rated 4★ or higher. For these specific names this is a known, deliberate tradeoff Bill approved directly (Session 38, after the same check flagged it live): he asked for both an author- and content-based penalty and chose to keep Hoover/Hannah/Smith on the list despite the conflict, carving out only Taylor Jenkins Reid as a standing exception. Tracked here so it stays visible rather than silently re-approved every time this check runs, and so a *future* name added to the list without this same disclosure gets caught the same way.",
         "fix": "No action needed on the names above (Bill's call, already made) — but re-check this finding before adding any new author to SOFT_ROMANCE_AUTHORS, and revisit if one of the flagged authors picks up more high-rated books that strengthen the contradiction."
+      },
+      {
+        "key": "rankDisplayMismatch",
+        "title": "The rank badge Bill sees is wrong on most recommendations",
+        "status": "open",
+        "detail": "436 of 440 candidates (99%) show a \"#N\" badge in app.js that doesn't match their true position in the list — e.g. position 2 shows \"#5\" (Bringing Down the House: The Inside Story of Six M.I.T. Students Who Took Vegas for Millions); position 3 shows \"#2\" (Th1rt3en (Eddie Flynn, #4)); position 4 shows \"#6\" (The Small and the Mighty: Twelve Unsung Americans Who Changed the Course of History, from the Founding to the Civil Rights Movement). The recommendation ORDER is correct; only the printed number is stale, because it's set in bbreEngine.js's Step 7 before the fiction/nonfiction balance pass reorders the array, and the balance pass never re-indexes it.",
+        "fix": "Re-index `rank` on the `balanced` array right before rankBBRE() returns (a one-line `.map((b,i) => ({...b, rank: i+1}))`), not a structural change to the balance logic itself."
+      },
+      {
+        "key": "evalCoverageGap",
+        "title": "eval.js never tests bbreEngine.js, only its rateEngine.js sub-model",
+        "status": "open",
+        "detail": "scripts/eval.js's only model import is rateEngine.js's buildTasteModel/predictRating. Every \"eval.js unchanged, p10/p25 held\" verification logged across dozens of sessions was only ever capable of catching a regression in the Bayesian rating predictor — never in bbreEngine.js's 9 additive adjustment layers or its diversity/balance re-ranking, which is what actually produces the ranked list Bill sees. validate_review.js does call rankBBRE() and is the only real (informational-only, non-blocking) coverage that pipeline has.",
+        "fix": "Either extend eval.js's leave-one-out methodology to run through rankBBRE() and measure precision on its final output, or explicitly document that eval.js is a rateEngine.js-only check and rely on validate_review.js (or a new gate) for bbreEngine.js coverage — the current implicit assumption that eval.js protects the whole pipeline is the risk to close, one way or the other."
+      },
+      {
+        "key": "genreInferenceDrift",
+        "title": "Two independently-implemented genre classifiers disagree with each other",
+        "status": "open",
+        "detail": "bbreEngine.js's local inferGenre(themes) and rateEngine.js's inferGenre(themes) disagree on 72 of 1111 books (6.5%) — root cause is bbreEngine.js having no tie-break (a theme-count tie falls to 'unknown') while rateEngine.js defaults ties to fiction. bbreEngine.js's Step 4 within-genre normalization uses this flawed local classifier instead of the book's own reliable `.type` field (used correctly everywhere else in the file) — 66 books with a real, populated `.type` currently get mis-bucketed into the tiny \"unknown\" normalization group instead of their correct genre bucket, which measurably inflates their normalized score relative to being compared against the correctly-sized pool.",
+        "fix": "Make bbreEngine.js's Step 4 group by the book's own `.type` field (99.2% populated, already trusted elsewhere in the same file) instead of re-deriving genre from themes via a second, drift-prone classifier — removes the disagreement structurally rather than patching either Set."
+      },
+      {
+        "key": "deadTimesShownSignal",
+        "title": "The repeat-exposure penalty in engine.js can never fire",
+        "status": "open",
+        "detail": "engine.js's matchScoreFiction/matchScoreNonfiction dock -10/-25/-50 points for a candidate shown 1/2/3+ times before, sourced from data/recommendationHistory.json. That file is permanently `{\"history\": []}` in the repo — app.js only fetches it read-only, and the static site has no way to persist recommendation-exposure history back to it. Every rankBBRE()/rankRecommendations() run, live or scripted, always sees timesShown=0 for every candidate.",
+        "fix": "Either wire up a real persistence path for recommendation-exposure history (e.g. folded into the existing localStorage feedback-persistence mechanism, then synced the same way dismissals are), or remove the dead penalty branch for clarity — Bill's call, same shape as the deadStoryGraphCode finding above."
+      },
+      {
+        "key": "deadRankByPredictedRating",
+        "title": "rankByPredictedRating() is dead code, never imported anywhere",
+        "status": "open",
+        "detail": "rateEngine.js exports rankByPredictedRating() — with its own exclusion filtering, its own dismissal handling, and its own duplicated copy of the book-key normalizer (_normBookKey, a re-implementation of engine.js's norm()) — but no other file in the repo (app.js, scripts/*, or bbreEngine.js) imports or calls it.",
+        "fix": "Remove it along with its private _normBookKey helper — zero behavior change, since nothing calls it, and it removes a second copy of book-key normalization logic that could otherwise silently drift from engine.js's real one (the exact bug class Session 13b hit with bookKey slug format)."
+      },
+      {
+        "key": "diversityPenaltyMagnitude",
+        "title": "Diversity re-ranking penalty is comparable in size to the whole score spread",
+        "status": "open",
+        "detail": "429 of 440 candidates (98%) take some author/theme/tone diversity penalty; its average non-zero size is 0.176, against a full-pool final-score standard deviation of 0.198 — comparable magnitudes, meaning diversity re-ranking isn't a light touch on top of the \"real\" score, it moves rank about as much as the underlying model does for a large share of the pool. 33 candidates hit the maximum -0.30 author penalty (4th+ book by an author already selected). Separately, 7 candidates are currently hit by 2+ independently-tuned penalty signals at once (dismissal-generalization, era filter, soft-romance), each calibrated in isolation with no check on the combined effect; and 5 candidates are clipped to exactly 0 by the final `Math.max(0, ...)`, losing all differentiation among the worst matches.",
+        "fix": "Not necessarily a bug — Bill has asked for variety in the list — but worth a deliberate decision on whether DIVERSITY_PENALTY's steps (0, 0.10, 0.18, 0.25, 0.30) are still the right scale now that it's measured against the real score distribution, rather than tuned once and never revisited at this resolution."
       }
     ]
   }

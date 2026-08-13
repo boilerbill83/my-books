@@ -18,6 +18,7 @@ import fs from 'fs';
 import path from 'path';
 import { loadAllBooks, norm } from './lib/loadData.js';
 import { computeEvalMetrics } from './eval.js';
+import { rankBBRE } from '../bbreEngine.js';
 
 // Keep in sync with CLAUDE.md's "Canonical theme vocabulary" section.
 // "legal"/"courtroom" promoted to canonical (Session 14) — 142 combined uses,
@@ -637,6 +638,29 @@ const NON_SIGNAL_FIELDS = new Set([
 // reporting pipeline vs. the live app — checked for explicitly so the
 // unused-field scan doesn't cry wolf on it.
 const FIELD_NAME_VARIANTS = { amazonRatingsCount: ['amazonRatingCount'] };
+
+// Live rankBBRE() run, shared across the several improvement-opportunity
+// checks below that need to inspect real scored/ranked output rather than
+// just source text or raw data files. Memoized — this pipeline run is not
+// free, and several findings need the same result.
+let _liveBBRECache = null;
+function runLiveBBRE() {
+  if (_liveBBRECache) return _liveBBRECache;
+  try {
+    const read = f => JSON.parse(fs.readFileSync(f, 'utf8'));
+    const gd   = read('data/goodreadsData.json');
+    const fb   = read('data/feedbackData.json');
+    const hist = read('data/recommendationHistory.json');
+    const meta = read('data/enrichedMetadata.json');
+    const pool = read('data/candidateIndex.json').flatMap(f => read('data/' + f).candidates || []);
+    const candidates = [...gd.books.filter(b => b.shelf === 'to-read'), ...pool];
+    _liveBBRECache = rankBBRE(gd, fb, candidates, hist, meta);
+  } catch (e) {
+    _liveBBRECache = { error: e.message, selected: [] };
+  }
+  return _liveBBRECache;
+}
+
 function findImprovementOpportunities() {
   const findings = [];
 
@@ -828,6 +852,229 @@ function findImprovementOpportunities() {
         fix: contradictions.length
           ? 'No action needed on the names above (Bill\'s call, already made) — but re-check this finding before adding any new author to SOFT_ROMANCE_AUTHORS, and revisit if one of the flagged authors picks up more high-rated books that strengthen the contradiction.'
           : 'None needed — re-run this check before adding any new name to the list.',
+      });
+    }
+  }
+
+  // 7. Rank-display mismatch (Session 38's BBRE architecture audit). app.js
+  // renders `book.rank` directly as the visible "#N" badge on every
+  // recommendation card, but bbreEngine.js sets that field in Step 7 —
+  // BEFORE the final fiction/nonfiction balance pass reorders the array —
+  // and the balance pass never recomputes it. Checked live: compare each
+  // book's true array position in a real rankBBRE() run against its
+  // embedded .rank field.
+  {
+    const live = runLiveBBRE();
+    if (!live.error && live.selected.length) {
+      let mismatches = 0;
+      const examples = [];
+      live.selected.forEach((b, i) => {
+        if (i + 1 !== b.rank) {
+          mismatches++;
+          if (examples.length < 3) examples.push(`position ${i + 1} shows "#${b.rank}" (${b.title})`);
+        }
+      });
+      findings.push({
+        key: 'rankDisplayMismatch',
+        title: 'The rank badge Bill sees is wrong on most recommendations',
+        status: mismatches > 0 ? 'open' : 'resolved',
+        detail: mismatches > 0
+          ? `${mismatches} of ${live.selected.length} candidates (${(100 * mismatches / live.selected.length).toFixed(0)}%) show a "#N" badge in app.js that doesn't match their true position in the list — e.g. ${examples.join('; ')}. The recommendation ORDER is correct; only the printed number is stale, because it's set in bbreEngine.js's Step 7 before the fiction/nonfiction balance pass reorders the array, and the balance pass never re-indexes it.`
+          : 'Every candidate\'s displayed rank badge matches its true position in the list.',
+        fix: mismatches > 0
+          ? 'Re-index `rank` on the `balanced` array right before rankBBRE() returns (a one-line `.map((b,i) => ({...b, rank: i+1}))`), not a structural change to the balance logic itself.'
+          : 'None needed.',
+      });
+    }
+  }
+
+  // 8. eval.js coverage gap (Session 38's BBRE architecture audit). The
+  // precision@k metric checked before shipping almost every session only
+  // ever imports rateEngine.js — it has never exercised bbreEngine.js's
+  // adjustment layers (dismissals, era filter, tone/series/community
+  // signals, soft-romance penalty) at all. Checked live by scanning eval.js's
+  // actual import statements, not assumed from memory.
+  {
+    let evalSrc = '';
+    try { evalSrc = fs.readFileSync('scripts/eval.js', 'utf8'); } catch {}
+    const importsRateEngine = /from ['"].*rateEngine\.js['"]/.test(evalSrc);
+    const importsBbreEngine = /from ['"].*bbreEngine\.js['"]/.test(evalSrc);
+    if (evalSrc) {
+      findings.push({
+        key: 'evalCoverageGap',
+        title: 'eval.js never tests bbreEngine.js, only its rateEngine.js sub-model',
+        status: (importsRateEngine && !importsBbreEngine) ? 'open' : 'resolved',
+        detail: (importsRateEngine && !importsBbreEngine)
+          ? `scripts/eval.js's only model import is rateEngine.js's buildTasteModel/predictRating. Every "eval.js unchanged, p10/p25 held" verification logged across dozens of sessions was only ever capable of catching a regression in the Bayesian rating predictor — never in bbreEngine.js's 9 additive adjustment layers or its diversity/balance re-ranking, which is what actually produces the ranked list Bill sees. validate_review.js does call rankBBRE() and is the only real (informational-only, non-blocking) coverage that pipeline has.`
+          : 'eval.js now imports bbreEngine.js directly, so its precision@k metric covers the full ranking pipeline, not just the rating predictor.',
+        fix: (importsRateEngine && !importsBbreEngine)
+          ? 'Either extend eval.js\'s leave-one-out methodology to run through rankBBRE() and measure precision on its final output, or explicitly document that eval.js is a rateEngine.js-only check and rely on validate_review.js (or a new gate) for bbreEngine.js coverage — the current implicit assumption that eval.js protects the whole pipeline is the risk to close, one way or the other.'
+          : 'None needed.',
+      });
+    }
+  }
+
+  // 9. Genre-inference drift between rateEngine.js and bbreEngine.js
+  // (Session 38's BBRE architecture audit). Each file implements its own
+  // inferGenre(themes), independently, and they disagree — bbreEngine.js's
+  // version has no tie-break at all (a tie falls to 'unknown') while
+  // rateEngine.js's defaults ties to fiction. bbreEngine.js's Step 4 then
+  // groups candidates for within-genre score normalization using its own
+  // flawed inferGenre(themes) instead of the book's own reliable, populated
+  // `.type` field — so a mis-tied book gets normalized against a small,
+  // non-representative "unknown" bucket instead of the correct one. Checked
+  // live: both classifiers' theme sets are extracted from bbreEngine.js's
+  // and rateEngine.js's actual source text (not a hand-copied duplicate that
+  // could itself go stale), then run against the real dataset.
+  {
+    let bbreSrc = '', rateSrc = '';
+    try { bbreSrc = fs.readFileSync('bbreEngine.js', 'utf8'); } catch {}
+    try { rateSrc = fs.readFileSync('rateEngine.js', 'utf8'); } catch {}
+    const extractSet = (src, constName) => {
+      const m = src.match(new RegExp(`const ${constName} = new Set\\(\\[([\\s\\S]*?)\\]\\)`));
+      if (!m) return null;
+      return new Set([...m[1].matchAll(/'([^']+)'/g)].map(x => x[1].toLowerCase()));
+    };
+    const bbreNF = extractSet(bbreSrc, 'NF_THEMES');
+    const bbreF  = extractSet(bbreSrc, 'FIC_THEMES');
+    const rateNF = extractSet(rateSrc, '_NF_THEMES');
+    const rateF  = extractSet(rateSrc, '_FIC_THEMES');
+    if (bbreNF && bbreF && rateNF && rateF) {
+      const inferBBRE = themes => {
+        let nf = 0, f = 0;
+        for (const t of (themes || [])) { const tl = String(t).toLowerCase(); if (bbreNF.has(tl)) nf++; if (bbreF.has(tl)) f++; }
+        return nf > f ? 'nonfiction' : f > nf ? 'fiction' : 'unknown';
+      };
+      const inferRate = themes => {
+        let f = 0, nf = 0;
+        for (const t of (themes || [])) { const tl = String(t).toLowerCase(); if (rateF.has(tl)) f++; if (rateNF.has(tl)) nf++; }
+        if (f !== nf) return f > nf ? 'fiction' : 'nonfiction';
+        if (f > 0 && (themes || []).some(t => String(t).toLowerCase() === 'memoir')) return 'nonfiction';
+        return f > 0 ? 'fiction' : 'unknown';
+      };
+      const allBooks = rows.map(r => ({ title: r.title, themes: r.themes, type: r.type }));
+      let disagree = 0, unknownBucketMisassigned = 0;
+      for (const b of allBooks) {
+        const g1 = inferBBRE(b.themes), g2 = inferRate(b.themes);
+        if (g1 !== g2) disagree++;
+        if (g1 === 'unknown' && b.type && (b.type === 'fiction' || b.type === 'nonfiction')) unknownBucketMisassigned++;
+      }
+      findings.push({
+        key: 'genreInferenceDrift',
+        title: 'Two independently-implemented genre classifiers disagree with each other',
+        status: disagree > 0 ? 'open' : 'resolved',
+        detail: disagree > 0
+          ? `bbreEngine.js's local inferGenre(themes) and rateEngine.js's inferGenre(themes) disagree on ${disagree} of ${allBooks.length} books (${(100 * disagree / allBooks.length).toFixed(1)}%) — root cause is bbreEngine.js having no tie-break (a theme-count tie falls to 'unknown') while rateEngine.js defaults ties to fiction. bbreEngine.js's Step 4 within-genre normalization uses this flawed local classifier instead of the book's own reliable \`.type\` field (used correctly everywhere else in the file) — ${unknownBucketMisassigned} books with a real, populated \`.type\` currently get mis-bucketed into the tiny "unknown" normalization group instead of their correct genre bucket, which measurably inflates their normalized score relative to being compared against the correctly-sized pool.`
+          : 'bbreEngine.js and rateEngine.js\'s genre classifiers agree on every book in the dataset.',
+        fix: disagree > 0
+          ? 'Make bbreEngine.js\'s Step 4 group by the book\'s own `.type` field (99.2% populated, already trusted elsewhere in the same file) instead of re-deriving genre from themes via a second, drift-prone classifier — removes the disagreement structurally rather than patching either Set.'
+          : 'None needed.',
+      });
+    }
+  }
+
+  // 10. Dead timesShown repeat-exposure penalty (Session 38's BBRE
+  // architecture audit). engine.js docks a candidate -10/-25/-50 points for
+  // having been "shown" 1/2/3+ times before, read from
+  // data/recommendationHistory.json — but that file is fetched read-only by
+  // app.js on every page load and nothing ever writes back to it (the site
+  // is static GitHub Pages with no server), so it's permanently `{history:
+  // []}` and every candidate's timesShown is always 0. Checked live against
+  // the actual file content, not assumed from history.
+  {
+    let histEmpty = false, engineReferencesTimesShown = false;
+    try {
+      const hist = JSON.parse(fs.readFileSync('data/recommendationHistory.json', 'utf8'));
+      histEmpty = Array.isArray(hist.history) && hist.history.length === 0;
+    } catch {}
+    try {
+      const engineSrc = fs.readFileSync('engine.js', 'utf8');
+      engineReferencesTimesShown = /timesShown/.test(engineSrc);
+    } catch {}
+    if (engineReferencesTimesShown) {
+      findings.push({
+        key: 'deadTimesShownSignal',
+        title: 'The repeat-exposure penalty in engine.js can never fire',
+        status: histEmpty ? 'open' : 'resolved',
+        detail: histEmpty
+          ? 'engine.js\'s matchScoreFiction/matchScoreNonfiction dock -10/-25/-50 points for a candidate shown 1/2/3+ times before, sourced from data/recommendationHistory.json. That file is permanently `{"history": []}` in the repo — app.js only fetches it read-only, and the static site has no way to persist recommendation-exposure history back to it. Every rankBBRE()/rankRecommendations() run, live or scripted, always sees timesShown=0 for every candidate.'
+          : 'data/recommendationHistory.json now has real entries, so the repeat-exposure penalty has live data to act on.',
+        fix: histEmpty
+          ? 'Either wire up a real persistence path for recommendation-exposure history (e.g. folded into the existing localStorage feedback-persistence mechanism, then synced the same way dismissals are), or remove the dead penalty branch for clarity — Bill\'s call, same shape as the deadStoryGraphCode finding above.'
+          : 'None needed.',
+      });
+    }
+  }
+
+  // 11. Dead code: rankByPredictedRating() (Session 38's BBRE architecture
+  // audit). rateEngine.js exports a ~60-line function — its own exclusion
+  // filtering, its own dismissal handling, and its own duplicate copy of
+  // engine.js's book-key normalization logic — that is never imported
+  // anywhere else in the codebase. Checked live via a source-text scan
+  // across every .js file, not from memory.
+  {
+    const jsFiles = ['app.js', 'engine.js', 'rateEngine.js', 'bbreEngine.js', 'descSimilarity.js']
+      .concat((() => { try { return fs.readdirSync('scripts').filter(f => f.endsWith('.js')).map(f => 'scripts/' + f); } catch { return []; } })());
+    // Look for real usage syntax (a call or an import), not any substring
+    // mention — this very script's own reporting prose about the finding
+    // would otherwise self-count as a false "external reference".
+    const usageRx = /rankByPredictedRating\s*\(|\brankByPredictedRating\b\s*[,}]/;
+    let externalRefs = 0;
+    for (const f of jsFiles) {
+      if (f === 'rateEngine.js' || f === 'scripts/data_quality_report.js') continue; // definition file + this reporting file's own prose
+      try {
+        const src = fs.readFileSync(f, 'utf8');
+        if (usageRx.test(src)) externalRefs++;
+      } catch {}
+    }
+    let definesIt = false;
+    try { definesIt = fs.readFileSync('rateEngine.js', 'utf8').includes('export function rankByPredictedRating'); } catch {}
+    if (definesIt) {
+      findings.push({
+        key: 'deadRankByPredictedRating',
+        title: 'rankByPredictedRating() is dead code, never imported anywhere',
+        status: externalRefs === 0 ? 'open' : 'resolved',
+        detail: externalRefs === 0
+          ? 'rateEngine.js exports rankByPredictedRating() — with its own exclusion filtering, its own dismissal handling, and its own duplicated copy of the book-key normalizer (_normBookKey, a re-implementation of engine.js\'s norm()) — but no other file in the repo (app.js, scripts/*, or bbreEngine.js) imports or calls it.'
+          : 'rankByPredictedRating() is now referenced from at least one other file.',
+        fix: externalRefs === 0
+          ? 'Remove it along with its private _normBookKey helper — zero behavior change, since nothing calls it, and it removes a second copy of book-key normalization logic that could otherwise silently drift from engine.js\'s real one (the exact bug class Session 13b hit with bookKey slug format).'
+          : 'None needed.',
+      });
+    }
+  }
+
+  // 12. Diversity re-ranking penalty magnitude (Session 38's BBRE
+  // architecture audit). CLAUDE.md's Session 16 log already named steep
+  // author-diversity penalties as the cause of specific rank churn but never
+  // quantified how large the effect is relative to the rest of the model.
+  // Checked live against a real rankBBRE() run: how often the penalty fires,
+  // its average size vs. the overall score spread, and how many candidates
+  // hit the maximum penalty simultaneously with an independent dismissal-type
+  // penalty (signal stacking with no combined-effect review).
+  {
+    const live = runLiveBBRE();
+    if (!live.error && live.selected.length) {
+      const n = live.selected.length;
+      const divPens = live.selected.map(b => b.bbreDetails?.diversityPen ?? 0);
+      const nonzero = divPens.filter(v => v > 0.005);
+      const maxHits = divPens.filter(v => v >= 0.29).length;
+      const combined = live.selected.map(b => b.bbreDetails?.combined ?? 0);
+      const mean = combined.reduce((a, b) => a + b, 0) / n;
+      const std = Math.sqrt(combined.reduce((a, b) => a + (b - mean) ** 2, 0) / n);
+      const avgNonzero = nonzero.length ? nonzero.reduce((a, b) => a + b, 0) / nonzero.length : 0;
+      const flooredZero = combined.filter(v => v === 0).length;
+      const stacked = live.selected.filter(b => {
+        const flags = [b._dismissAdj, b._eraPen, b._softRomanceAdj]
+          .filter(v => v && Math.abs(v) > 1e-6).length;
+        return flags >= 2;
+      }).length;
+      findings.push({
+        key: 'diversityPenaltyMagnitude',
+        title: 'Diversity re-ranking penalty is comparable in size to the whole score spread',
+        status: (avgNonzero >= std * 0.7) ? 'open' : 'resolved',
+        detail: `${nonzero.length} of ${n} candidates (${(100 * nonzero.length / n).toFixed(0)}%) take some author/theme/tone diversity penalty; its average non-zero size is ${avgNonzero.toFixed(3)}, against a full-pool final-score standard deviation of ${std.toFixed(3)} — comparable magnitudes, meaning diversity re-ranking isn't a light touch on top of the "real" score, it moves rank about as much as the underlying model does for a large share of the pool. ${maxHits} candidates hit the maximum -0.30 author penalty (4th+ book by an author already selected). Separately, ${stacked} candidates are currently hit by 2+ independently-tuned penalty signals at once (dismissal-generalization, era filter, soft-romance), each calibrated in isolation with no check on the combined effect; and ${flooredZero} candidates are clipped to exactly 0 by the final \`Math.max(0, ...)\`, losing all differentiation among the worst matches.`,
+        fix: 'Not necessarily a bug — Bill has asked for variety in the list — but worth a deliberate decision on whether DIVERSITY_PENALTY\'s steps (0, 0.10, 0.18, 0.25, 0.30) are still the right scale now that it\'s measured against the real score distribution, rather than tuned once and never revisited at this resolution.',
       });
     }
   }
