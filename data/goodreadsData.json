@@ -3,8 +3,8 @@
     "sourceFile": null,
     "generatedAt": "2026-06-01T00:00:00.000Z",
     "bookCount": 958,
-    "readCount": 655,
-    "toReadCount": 300,
+    "readCount": 654,
+    "toReadCount": 299,
     "currentlyReadingCount": 1,
     "fiveStarCount": 260,
     "notes": "Hardcoded from personal Goodreads export.",
@@ -32375,7 +32375,6 @@
       "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
-    
     {
       "bookKey": "the-origins-of-the-cornbread-mafia-a-memoir-of-sorts|joe-keith-bickett",
       "bookId": "31831960",
@@ -38420,7 +38419,6 @@
       "bookKey": "the-body|stephen-king",
       "bookId": "38926465"
     },
-    
     {
       "title": "How to Know a Person: The Art of Seeing Others Deeply and Being Deeply Seen",
       "author": "David Brooks",
@@ -39118,7 +39116,6 @@
       "themeToneReviewed": true,
       "dnf": false
     },
-    
     {
       "bookKey": "the-dog-stars|peter-heller",
       "bookId": "13330761",
@@ -39171,6 +39168,23 @@
       "year": 2027,
       "pages": 272,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1779454744l/252570605._SY475_.jpg",
+      "shelf": "to-read",
+      "myRating": 0,
+      "type": "unknown",
+      "themes": [],
+      "tones": [],
+      "dnf": false
+    },
+    {
+      "title": "Raised",
+      "author": "April Balascio",
+      "isbn13": null,
+      "isbn": "1982177039",
+      "avgRating": 3.75,
+      "ratingsCount": 0,
+      "year": 2024,
+      "pages": 352,
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1710377557l/207294155._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
       "type": "unknown",
