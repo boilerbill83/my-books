@@ -4,7 +4,19 @@ Plan for merging a fresh Goodreads library export into `data/goodreadsData.json`
 Living document — update this file as the plan changes or the import proceeds,
 rather than re-deriving it from scratch in a future session.
 
-**Status as of this writing: three dry runs complete** (`goodreads_library_export_1.csv`,
+**Second real import complete (Session 37, `goodreads_library_export_4.csv`,
+804 rows)** — see "Second import round" at the end of this file for the full
+writeup. Highlights: added a permanent **pages-conflict rule** (Bill's
+explicit instruction — never default to either side on a pages disagreement,
+always look the real number up from an outside source; this round found 2
+cases where the correct answer matched *neither* our stored value nor the
+CSV's), and found + fixed 3 real duplicate-book bugs already sitting in our
+own data (not Goodreads-side duplicates this time) while investigating
+"missing" books.
+
+---
+
+**First import — status as of that writing: three dry runs complete** (`goodreads_library_export_1.csv`,
 822 rows; `goodreads_library_export_3.csv`, 806 rows; `goodreads_library_export (1).csv`,
 803 rows, pulled from `input/goodreadsextract/` on `main`). No
 `goodreadsData.json`/`feedbackData.json` changes have been written yet —
@@ -255,6 +267,17 @@ Parsing notes confirmed against the real file:
    if it doesn't regress a value that looks hand-corrected (cross-check
    against session history in CLAUDE.md before blindly trusting a stale
    Goodreads value over an existing one).
+   **Pages conflict rule (added Session 37, Bill's explicit instruction):**
+   when our stored `pages` and the CSV's `pages` disagree, don't default to
+   either side (not "keep ours," not "trust the CSV") — look the book up
+   from a real outside source (WebSearch: publisher page, Amazon listing,
+   WorldCat, etc.) and use the actual correct page count. This replaces the
+   earlier, cruder heuristic of blanket-skipping all `pages` diffs because
+   some rows in a given export are known-bad (e.g. "Legends and Soles"
+   304→1) — that heuristic would have also skipped genuine fixes to our own
+   stale bad data (e.g. "The Body" stored as 7 pages, CSV's 192 being the
+   real value). Applies to any future pages disagreement, not just this
+   session's four.
 6. **Backfill `bookId`** on every matched book missing one (17 known so
    far, more likely once the duplicates are resolved and re-matched).
 7. **Add the new books** (themes/tones/similarToTitles researched inline,
@@ -434,3 +457,78 @@ Stoner entry) surfaced post-deploy. For whoever runs the next import.
 - **Add a cheap post-push sanity step**: after pushing to `main`, pull the
   2-3 highest-visibility data surfaces (currently-reading, top
   recommendations) and eyeball them against what should be there.
+
+---
+
+## Second import round (Session 37, `goodreads_library_export_4.csv`, 804 rows)
+
+Ran the same dry-run pipeline against a genuinely new export. Much cleaner
+than the first round — 0 Goodreads-side duplicate entries in the CSV itself
+(vs. 15 last time), and most "missing" books turned out to already be
+handled from the last round rather than new work.
+
+**New standing rule (Bill's explicit instruction, applies to all future
+imports):** when our stored `pages` and the CSV's `pages` disagree, don't
+default to either side — look the book up from a real outside source
+(WebSearch: publisher page, Amazon, WorldCat, etc.) and use the actual
+correct number. This replaces the earlier, cruder heuristic of blanket-
+skipping every `pages` diff because some rows in a given export are known-
+bad. That heuristic would have also skipped genuine fixes to our own stale
+bad data. Proof this round: of 4 real pages conflicts, 2 were confirmed
+correct on the CSV's side (including one, *The Coming Storm*, where the
+CSV's tiny "3 pages" turned out to be *right* — it's an Audible Original
+with no print edition, and Goodreads' own official listing agrees), and 2
+needed a completely different number that matched **neither** stored value
+(*Legends and Soles* real count is 336, not our 304 or the CSV's 1; *The
+Cold Cold Ground* is 332, not our 320 or the CSV's 11).
+
+**Dry-run findings:**
+- 41 field diffs (isbn/isbn13/year/dateRead), 1 real dateRead gap-fill.
+- 1 bookId mismatch (*The Dilemma*, edition change — adopted the CSV's ID).
+- 4 bookId backfills, 3 of which were bare/unenriched stub entries.
+- 16 books of top10/allTimeFave drift.
+- 0 genuinely new books to add.
+- 0 duplicate entries within the CSV itself (a first — every prior round had
+  Goodreads-side duplicates to work around).
+
+**3 real duplicate-book bugs found while investigating "missing" books —
+this time entirely on our side, not Goodreads':**
+- *The Amazing Adventures of Cavalier & Clay* (a typo in our own data,
+  fully enriched) vs. *...Kavalier & Clay* (correct spelling, a bare stub
+  `sync_goodreads.py` auto-created because the typo never matched). Fixed
+  by correcting the enriched entry's title/bookKey/bookId to the real
+  spelling and deleting the stub — the durable fix, since leaving the typo
+  in place would just recreate this exact bug on every future sync.
+- *The Antisocial Network* (old title/bookId, enriched, no longer on
+  Goodreads since the book was legitimately retitled) vs. *The Dumb
+  Money...(Previously Published as The Antisocial Network)* (current title,
+  matches the export, flagged `allTimeFave`). Both were 5★ reads — a real
+  case of one physical book double-counting its theme/author signal in
+  `fiveStarThemes`/`fiveStarAuthors`. Kept the current-title version.
+- Bare *Raised* stub vs. *Raised by a Serial Killer: Discovering the Truth
+  About My Father* (matches the export) — same bookId embedded in both.
+
+Confirmed with Bill directly: none of these three needed any change on the
+Goodreads.com side — the export only ever had one row for each book in all
+three cases, so these were purely internal data artifacts (old enrichment
+sessions, a typo, a stale pre-retitle leftover), not duplicate shelvings.
+Repointed all citing books' `similarToTitles` (2 for Kavalier & Clay, 3 for
+Antisocial Network/Dumb Money spanning `goodreadsData.json` and
+`candidatePool.json`; 0 for Raised).
+
+**Missing-books review**: only 1 genuinely new case out of 15 "missing, not
+already dnf" — *Famesick* by Lena Dunham. Asked Bill directly rather than
+guessing; his answer: it was on his to-do list but he removed it, not
+interested in the topic. Dismissed with `not_interesting`. Everything else
+in the missing list was either already dismissed from the last round
+(resurfacing harmlessly since dismissal doesn't set `dnf`) or already
+confirmed fine by Bill previously.
+
+**Verified**: JSON valid across all 8 data files, 0 broken `similarToTitles`
+refs, 0 new duplicate groups (same 2 pre-existing Session-14 engineNorm
+false positives, no new ones), `eval.js` unchanged (p10=100/p25=96/MAE
+0.761), `validate_review.js` unchanged (informational, same 9/13 keeps
+below top 25). Committed in 4 logical batches (matched-book updates +
+bookId + top10 drift + duplicate merges together since they're all one
+`goodreadsData.json` pass; candidatePool.json citation repoint; the
+Famesick dismissal; this doc update) and pushed to both branches.

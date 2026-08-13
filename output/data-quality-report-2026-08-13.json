@@ -1,7 +1,7 @@
 {
   "date": "2026-08-13",
-  "generatedAt": "2026-08-13T10:03:14.723Z",
-  "totalBooks": 1114,
+  "generatedAt": "2026-08-13T14:08:41.254Z",
+  "totalBooks": 1111,
   "qualityScore": {
     "score": 92,
     "components": [
@@ -9,13 +9,13 @@
         "key": "criticalHealth",
         "label": "Critical Field Health",
         "weight": 0.08,
-        "subscore": 99.85637342908437
+        "subscore": 99.88298829882989
       },
       {
         "key": "completeness",
         "label": "Field Completeness",
         "weight": 0.33,
-        "subscore": 74.41903568582396
+        "subscore": 74.52132234819479
       },
       {
         "key": "foundational",
@@ -78,7 +78,7 @@
         "key": "ratingAccuracy",
         "label": "Rating Accuracy (MAE, 1.3★ ceiling)",
         "weight": 0.2,
-        "subscore": 41.43006283337415
+        "subscore": 41.42391639415977
       },
       {
         "key": "bottomCatch",
@@ -87,8 +87,8 @@
         "subscore": 56.00000000000001
       }
     ],
-    "sampleSize": 509,
-    "mae": 0.7614091831661361,
+    "sampleSize": 508,
+    "mae": 0.7614890868759231,
     "precisionAtK": {
       "10": 100,
       "25": 96,
@@ -108,13 +108,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.85637342908437
+          "subscore": 99.88298829882989
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 74.41903568582396
+          "subscore": 74.52132234819479
         },
         {
           "key": "foundational",
@@ -148,13 +148,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.85637342908437
+          "subscore": 99.88298829882989
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 74.41903568582396
+          "subscore": 74.52132234819479
         },
         {
           "key": "foundational",
@@ -182,7 +182,7 @@
       "actions": [
         "amazonRating/amazonRatingsCount (currently 91.7%, 38 book(s)) keep rising via the existing 5x/day scrape-ratings.yml with its Session 13d retry cooldown.",
         "metadataFetchedAt/description (currently 99.5%/99.5%, 6/6 book(s)) clear at 150/day via enrich-metadata.yml.",
-        "isbn13 (98.9%, 12 book(s), mostly read-shelf) and year (99.1%, 10 book(s)) are small enough gaps that a single enrich-isbn.yml/enrich_metadata.py run each should close them.",
+        "isbn13 (99.1%, 10 book(s), mostly read-shelf) and year (100.0%, 0 book(s)) are small enough gaps that a single enrich-isbn.yml/enrich_metadata.py run each should close them.",
         "coverUrl (100.0%, 0 book(s) in the eligible to-read/candidate/currently-reading pool) clears via a re-run of enrich_covers.py."
       ],
       "score": 92,
@@ -191,13 +191,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.85637342908437
+          "subscore": 99.88298829882989
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 77.29587185487495
+          "subscore": 77.21445553248097
         },
         {
           "key": "foundational",
@@ -223,9 +223,9 @@
       "key": "phase3",
       "label": "Phase 3 — Targeted backfills (publisher, categories, dateAdded)",
       "actions": [
-        "publisher (currently 88.1%, 133 book(s)) — Session 15 fixed enrich_metadata.py to capture the publisher field from Google Books, but most of the dataset was already attempted before that fix landed, so the cache never picked it up. Needs a deliberate re-fetch pass over already-attempted books, not just waiting.",
-        "categories (96.4%, 40 attempted book(s) with no result) — mostly a genuine Google Books coverage gap at this point, but worth one more pass since it hasn't been retried since Session 13c's original attempt.",
-        "dateAdded (83.8%, 181 book(s)) — cosmetic only, not used by scoring, but a low-volume gap worth a manual pass if ever prioritized."
+        "publisher (currently 88.2%, 131 book(s)) — Session 15 fixed enrich_metadata.py to capture the publisher field from Google Books, but most of the dataset was already attempted before that fix landed, so the cache never picked it up. Needs a deliberate re-fetch pass over already-attempted books, not just waiting.",
+        "categories (96.5%, 39 attempted book(s) with no result) — mostly a genuine Google Books coverage gap at this point, but worth one more pass since it hasn't been retried since Session 13c's original attempt.",
+        "dateAdded (83.9%, 179 book(s)) — cosmetic only, not used by scoring, but a low-volume gap worth a manual pass if ever prioritized."
       ],
       "score": 94,
       "components": [
@@ -233,13 +233,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.85637342908437
+          "subscore": 99.88298829882989
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 80.56819089419776
+          "subscore": 80.41973139213516
         },
         {
           "key": "foundational",
@@ -265,9 +265,9 @@
       "key": "phase4",
       "label": "Phase 4 — Best-effort on the harder gaps (dateRead, isbn, subjects)",
       "actions": [
-        "dateRead (currently 73.0%, 177 read book(s)) — no backfill path exists today (Session 15: sync_goodreads.py only ever sets dateRead at the moment of a live to-read→read transition, with no path for already-read/bulk-imported books). Would need a dedicated new script, and goodreads.com itself is blocked from this sandbox, so it would need to be built and tested against a real export rather than live.",
-        "isbn (66.4%, 43 pre-2007 book(s)) — low priority regardless: isbn13 is the modern identifier that actually matters, and is already at 98.9%. Only worth chasing for a specific book if isbn13 is also missing for it.",
-        "subjects (74.9%, 278 attempted book(s) with no result) — Session 13e's own analysis found this varies 60-95% by book type as a real Open Library coverage gap, not a backlog; a new data source is the only way past this ceiling, not more retries."
+        "dateRead (currently 73.2%, 175 read book(s)) — no backfill path exists today (Session 15: sync_goodreads.py only ever sets dateRead at the moment of a live to-read→read transition, with no path for already-read/bulk-imported books). Would need a dedicated new script, and goodreads.com itself is blocked from this sandbox, so it would need to be built and tested against a real export rather than live.",
+        "isbn (65.0%, 41 pre-2007 book(s)) — low priority regardless: isbn13 is the modern identifier that actually matters, and is already at 99.1%. Only worth chasing for a specific book if isbn13 is also missing for it.",
+        "subjects (74.9%, 277 attempted book(s) with no result) — Session 13e's own analysis found this varies 60-95% by book type as a real Open Library coverage gap, not a backlog; a new data source is the only way past this ceiling, not more retries."
       ],
       "score": 96,
       "components": [
@@ -275,13 +275,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.85637342908437
+          "subscore": 99.88298829882989
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 88.97236346788667
+          "subscore": 89.03758311315006
         },
         {
           "key": "foundational",
@@ -315,13 +315,13 @@
           "key": "criticalHealth",
           "label": "Critical Field Health",
           "weight": 0.08,
-          "subscore": 99.85637342908437
+          "subscore": 99.88298829882989
         },
         {
           "key": "completeness",
           "label": "Field Completeness",
           "weight": 0.33,
-          "subscore": 99.63687959691894
+          "subscore": 99.70209924218234
         },
         {
           "key": "foundational",
@@ -347,220 +347,220 @@
   "fields": [
     {
       "field": "isbn",
-      "scorePct": 66.40625,
-      "rawPct": 65.1705565529623,
+      "scorePct": 64.95726495726495,
+      "rawPct": 65.34653465346534,
       "critical": false,
-      "eligibleTotal": 128
+      "eligibleTotal": 117
     },
     {
       "field": "dateRead",
-      "scorePct": 72.97709923664122,
-      "rawPct": 42.908438061041295,
+      "scorePct": 73.24159021406727,
+      "rawPct": 43.114311431143115,
       "critical": false,
-      "eligibleTotal": 655
+      "eligibleTotal": 654
     },
     {
       "field": "subjects",
-      "scorePct": 74.90974729241877,
-      "rawPct": 74.50628366247756,
+      "scorePct": 74.93212669683258,
+      "rawPct": 74.52745274527453,
       "critical": false,
-      "eligibleTotal": 1108
+      "eligibleTotal": 1105
     },
     {
       "field": "dateAdded",
-      "scorePct": 83.75224416517055,
-      "rawPct": 83.75224416517055,
+      "scorePct": 83.88838883888388,
+      "rawPct": 83.88838883888388,
       "critical": false,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "publisher",
-      "scorePct": 88.06104129263913,
-      "rawPct": 88.06104129263913,
+      "scorePct": 88.2088208820882,
+      "rawPct": 88.2088208820882,
       "critical": false,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "amazonRating",
-      "scorePct": 91.70305676855895,
-      "rawPct": 38.95870736086176,
+      "scorePct": 91.66666666666667,
+      "rawPct": 38.88388838883888,
       "critical": false,
-      "eligibleTotal": 458
+      "eligibleTotal": 456
     },
     {
       "field": "amazonRatingsCount",
-      "scorePct": 91.70305676855895,
-      "rawPct": 38.95870736086176,
+      "scorePct": 91.66666666666667,
+      "rawPct": 38.88388838883888,
       "critical": false,
-      "eligibleTotal": 458
+      "eligibleTotal": 456
     },
     {
       "field": "categories",
-      "scorePct": 96.38989169675091,
-      "rawPct": 95.87073608617594,
+      "scorePct": 96.47058823529412,
+      "rawPct": 95.94959495949595,
       "critical": false,
-      "eligibleTotal": 1108
+      "eligibleTotal": 1105
     },
     {
       "field": "isbn13",
-      "scorePct": 98.92280071813285,
-      "rawPct": 98.92280071813285,
+      "scorePct": 99.0999099909991,
+      "rawPct": 99.0999099909991,
       "critical": false,
-      "eligibleTotal": 1114
-    },
-    {
-      "field": "year",
-      "scorePct": 99.10233393177738,
-      "rawPct": 99.10233393177738,
-      "critical": false,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "description",
-      "scorePct": 99.46140035906643,
-      "rawPct": 99.46140035906643,
+      "scorePct": 99.45994599459947,
+      "rawPct": 99.45994599459947,
       "critical": false,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "metadataFetchedAt",
-      "scorePct": 99.46140035906643,
-      "rawPct": 99.46140035906643,
+      "scorePct": 99.45994599459947,
+      "rawPct": 99.45994599459947,
       "critical": false,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "themes",
-      "scorePct": 99.55116696588868,
-      "rawPct": 99.55116696588868,
+      "scorePct": 99.63996399639964,
+      "rawPct": 99.63996399639964,
       "critical": true,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "tones",
-      "scorePct": 99.55116696588868,
-      "rawPct": 99.55116696588868,
+      "scorePct": 99.63996399639964,
+      "rawPct": 99.63996399639964,
       "critical": false,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "similarToTitles",
-      "scorePct": 99.55116696588868,
-      "rawPct": 99.55116696588868,
+      "scorePct": 99.63996399639964,
+      "rawPct": 99.63996399639964,
       "critical": true,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "similarToAuthors",
-      "scorePct": 99.55116696588868,
-      "rawPct": 99.55116696588868,
+      "scorePct": 99.63996399639964,
+      "rawPct": 99.63996399639964,
       "critical": true,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "type",
-      "scorePct": 99.91023339317773,
-      "rawPct": 99.91023339317773,
+      "scorePct": 99.9099909990999,
+      "rawPct": 99.9099909990999,
       "critical": false,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "ratingsCount",
-      "scorePct": 99.91023339317773,
-      "rawPct": 99.91023339317773,
+      "scorePct": 99.9099909990999,
+      "rawPct": 99.9099909990999,
       "critical": true,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "bookKey",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "title",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "author",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "source",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "shelf",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
+    },
+    {
+      "field": "year",
+      "scorePct": 100,
+      "rawPct": 100,
+      "critical": false,
+      "eligibleTotal": 1111
     },
     {
       "field": "pages",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "myRating",
       "scorePct": 100,
-      "rawPct": 85.72710951526032,
+      "rawPct": 85.6885688568857,
       "critical": true,
-      "eligibleTotal": 655
+      "eligibleTotal": 654
     },
     {
       "field": "avgRating",
       "scorePct": 100,
       "rawPct": 100,
       "critical": true,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "dismissed",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "dismissReason",
       "scorePct": 100,
-      "rawPct": 3.0520646319569122,
+      "rawPct": 3.1503150315031503,
       "critical": false,
-      "eligibleTotal": 34
+      "eligibleTotal": 35
     },
     {
       "field": "coverUrl",
       "scorePct": 100,
-      "rawPct": 51.974865350089765,
+      "rawPct": 51.935193519351934,
       "critical": false,
-      "eligibleTotal": 459
+      "eligibleTotal": 457
     },
     {
       "field": "goodreadsUrl",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     },
     {
       "field": "top10",
       "scorePct": 100,
       "rawPct": 100,
       "critical": false,
-      "eligibleTotal": 1114
+      "eligibleTotal": 1111
     }
   ],
   "integrity": {
@@ -582,8 +582,8 @@
     "themesOutOfRange": 0,
     "similarOutOfRange": 0,
     "zeroPages": 1,
-    "zeroRatingsCount": 22,
-    "missingBookKey": 5
+    "zeroRatingsCount": 20,
+    "missingBookKey": 1
   },
   "findings": {
     "fiveStarSignalGaps": [],
@@ -602,17 +602,6 @@
     "duplicateTitleAuthor": [],
     "duplicateBooksFuzzy": [],
     "impactScores": [
-      {
-        "title": "The Amazing Adventures of Kavalier & Clay",
-        "author": "Michael Chabon",
-        "score": 30,
-        "reasons": [
-          "missing themes, similarToTitles, similarToAuthors"
-        ],
-        "locations": [
-          "library/to-read"
-        ]
-      },
       {
         "title": "The Dog Stars",
         "author": "Peter Heller",
@@ -655,7 +644,7 @@
         },
         {
           "value": "memoir",
-          "count": 159
+          "count": 158
         },
         {
           "value": "history",
@@ -671,7 +660,7 @@
         },
         {
           "value": "social commentary",
-          "count": 129
+          "count": 128
         },
         {
           "value": "contemporary",
@@ -707,7 +696,7 @@
         },
         {
           "value": "tech history",
-          "count": 82
+          "count": 81
         },
         {
           "value": "crime",
@@ -726,16 +715,16 @@
           "count": 59
         },
         {
+          "value": "food",
+          "count": 53
+        },
+        {
           "value": "true crime",
-          "count": 54
+          "count": 53
         },
         {
           "value": "finance",
-          "count": 53
-        },
-        {
-          "value": "food",
-          "count": 53
+          "count": 52
         },
         {
           "value": "domestic suspense",
@@ -796,12 +785,12 @@
           "count": 172
         },
         {
-          "value": "investigative",
+          "value": "propulsive",
           "count": 172
         },
         {
-          "value": "propulsive",
-          "count": 172
+          "value": "investigative",
+          "count": 171
         },
         {
           "value": "tense",
@@ -816,15 +805,15 @@
           "count": 165
         },
         {
-          "value": "dense",
-          "count": 164
-        },
-        {
           "value": "revelatory",
           "count": 164
         },
         {
           "value": "atmospheric",
+          "count": 163
+        },
+        {
+          "value": "dense",
           "count": 163
         },
         {
@@ -837,11 +826,11 @@
         },
         {
           "value": "thoughtful",
-          "count": 153
+          "count": 152
         },
         {
           "value": "poignant",
-          "count": 133
+          "count": 132
         },
         {
           "value": "procedural",
@@ -891,7 +880,7 @@
         },
         {
           "value": "Fiction",
-          "count": 246
+          "count": 245
         },
         {
           "value": "Biography",
@@ -1138,10 +1127,6 @@
           "count": 11
         },
         {
-          "value": "Finance",
-          "count": 11
-        },
-        {
           "value": "General",
           "count": 11
         },
@@ -1179,6 +1164,10 @@
         },
         {
           "value": "Family",
+          "count": 10
+        },
+        {
+          "value": "Finance",
           "count": 10
         },
         {
@@ -1294,10 +1283,6 @@
           "count": 8
         },
         {
-          "value": "Ficción",
-          "count": 8
-        },
-        {
           "value": "Fiction, mystery & detective, women sleuths",
           "count": 8
         },
@@ -1367,6 +1352,10 @@
         },
         {
           "value": "Fathers and sons",
+          "count": 7
+        },
+        {
+          "value": "Ficción",
           "count": 7
         },
         {
@@ -1454,15 +1443,7 @@
           "count": 6
         },
         {
-          "value": "Bildungsromans",
-          "count": 6
-        },
-        {
           "value": "BUSINESS & ECONOMICS",
-          "count": 6
-        },
-        {
-          "value": "BUSINESS & ECONOMICS / Corporate & Business History",
           "count": 6
         },
         {
@@ -1531,10 +1512,6 @@
         },
         {
           "value": "Health",
-          "count": 6
-        },
-        {
-          "value": "Hedge funds",
           "count": 6
         },
         {
@@ -1626,6 +1603,14 @@
           "count": 5
         },
         {
+          "value": "Bildungsromans",
+          "count": 5
+        },
+        {
+          "value": "BUSINESS & ECONOMICS / Corporate & Business History",
+          "count": 5
+        },
+        {
           "value": "Childhood and youth",
           "count": 5
         },
@@ -1695,6 +1680,10 @@
         },
         {
           "value": "Gastronomy",
+          "count": 5
+        },
+        {
+          "value": "Hedge funds",
           "count": 5
         },
         {
@@ -1795,10 +1784,6 @@
         },
         {
           "value": "Americans",
-          "count": 4
-        },
-        {
-          "value": "Artists",
           "count": 4
         },
         {
@@ -2154,6 +2139,10 @@
           "count": 3
         },
         {
+          "value": "Artists",
+          "count": 3
+        },
+        {
           "value": "Aspect social",
           "count": 3
         },
@@ -2267,10 +2256,6 @@
         },
         {
           "value": "College teachers",
-          "count": 3
-        },
-        {
-          "value": "Comic books, strips",
           "count": 3
         },
         {
@@ -2555,10 +2540,6 @@
         },
         {
           "value": "Murder victims' families",
-          "count": 3
-        },
-        {
-          "value": "Mutual funds",
           "count": 3
         },
         {
@@ -2874,10 +2855,6 @@
           "count": 2
         },
         {
-          "value": "Authorship",
-          "count": 2
-        },
-        {
           "value": "Autobiographies",
           "count": 2
         },
@@ -2970,15 +2947,7 @@
           "count": 2
         },
         {
-          "value": "BUSINESS & ECONOMICS / Consumer Behavior",
-          "count": 2
-        },
-        {
           "value": "BUSINESS & ECONOMICS / Decision-Making & Problem Solving",
-          "count": 2
-        },
-        {
-          "value": "BUSINESS & ECONOMICS / Finance / Wealth Management",
           "count": 2
         },
         {
@@ -3070,6 +3039,10 @@
           "count": 2
         },
         {
+          "value": "Comic books, strips",
+          "count": 2
+        },
+        {
           "value": "Commerce",
           "count": 2
         },
@@ -3091,14 +3064,6 @@
         },
         {
           "value": "Consolidation and merger of corporations",
-          "count": 2
-        },
-        {
-          "value": "Consumer behavior",
-          "count": 2
-        },
-        {
-          "value": "Consumers",
           "count": 2
         },
         {
@@ -3383,10 +3348,6 @@
         },
         {
           "value": "Future life",
-          "count": 2
-        },
-        {
-          "value": "GameStop (Firm)",
           "count": 2
         },
         {
@@ -3779,6 +3740,10 @@
         },
         {
           "value": "Musiciens rock",
+          "count": 2
+        },
+        {
+          "value": "Mutual funds",
           "count": 2
         },
         {
@@ -4214,10 +4179,6 @@
           "count": 2
         },
         {
-          "value": "Short selling (Securities)",
-          "count": 2
-        },
-        {
           "value": "Short Stories",
           "count": 2
         },
@@ -4327,10 +4288,6 @@
         },
         {
           "value": "Stock exchanges",
-          "count": 2
-        },
-        {
-          "value": "Stocks",
           "count": 2
         },
         {
@@ -4998,10 +4955,6 @@
           "count": 1
         },
         {
-          "value": "American Humorous stories",
-          "count": 1
-        },
-        {
           "value": "American Legal stories",
           "count": 1
         },
@@ -5246,15 +5199,7 @@
           "count": 1
         },
         {
-          "value": "Arte de escribir",
-          "count": 1
-        },
-        {
           "value": "Arthur Dent (Fictitious character)",
-          "count": 1
-        },
-        {
-          "value": "Artists in fiction",
           "count": 1
         },
         {
@@ -5351,6 +5296,10 @@
         },
         {
           "value": "Authors, american",
+          "count": 1
+        },
+        {
+          "value": "Authorship",
           "count": 1
         },
         {
@@ -5918,6 +5867,10 @@
           "count": 1
         },
         {
+          "value": "BUSINESS & ECONOMICS / Consumer Behavior",
+          "count": 1
+        },
+        {
           "value": "Business & Economics / Corporate History",
           "count": 1
         },
@@ -5935,6 +5888,10 @@
         },
         {
           "value": "BUSINESS & ECONOMICS / Facility Management",
+          "count": 1
+        },
+        {
+          "value": "BUSINESS & ECONOMICS / Finance / Wealth Management",
           "count": 1
         },
         {
@@ -6094,10 +6051,6 @@
           "count": 1
         },
         {
-          "value": "Cartoonists",
-          "count": 1
-        },
-        {
           "value": "Cases",
           "count": 1
         },
@@ -6191,10 +6144,6 @@
         },
         {
           "value": "ChatGPT",
-          "count": 1
-        },
-        {
-          "value": "Checo-americanos",
           "count": 1
         },
         {
@@ -6554,10 +6503,6 @@
           "count": 1
         },
         {
-          "value": "Comic books, strips, etc. in fiction",
-          "count": 1
-        },
-        {
           "value": "comic science fiction",
           "count": 1
         },
@@ -6727,6 +6672,14 @@
         },
         {
           "value": "Construction",
+          "count": 1
+        },
+        {
+          "value": "Consumer behavior",
+          "count": 1
+        },
+        {
+          "value": "Consumers",
           "count": 1
         },
         {
@@ -7094,10 +7047,6 @@
           "count": 1
         },
         {
-          "value": "Cuentos humorísticos",
-          "count": 1
-        },
-        {
           "value": "Cuisine au barbecue",
           "count": 1
         },
@@ -7139,14 +7088,6 @@
         },
         {
           "value": "Cyberpunk",
-          "count": 1
-        },
-        {
-          "value": "Czech Americans",
-          "count": 1
-        },
-        {
-          "value": "Czech Americans in fiction",
           "count": 1
         },
         {
@@ -8639,6 +8580,10 @@
         },
         {
           "value": "Game shows",
+          "count": 1
+        },
+        {
+          "value": "GameStop (Firm)",
           "count": 1
         },
         {
@@ -14114,6 +14059,10 @@
           "count": 1
         },
         {
+          "value": "Short selling (Securities)",
+          "count": 1
+        },
+        {
           "value": "Siberia (russia), history",
           "count": 1
         },
@@ -14587,6 +14536,10 @@
         },
         {
           "value": "Stepmothers",
+          "count": 1
+        },
+        {
+          "value": "Stocks",
           "count": 1
         },
         {
@@ -16180,7 +16133,7 @@
         "key": "amazonRatingBias",
         "title": "Amazon ratings run systematically off Goodreads’ scale",
         "status": "open",
-        "detail": "Across 434 books with both a Goodreads avgRating and a scraped Amazon rating, Amazon runs +0.37★ relative to Goodreads on average (411 of 434 higher, 12 lower). bbreEngine.js's communitySignal() applies the same COMMUNITY_NEUTRAL constant regardless of source, so candidates with Amazon data currently get a small, one-directional, uncorrected boost purely from platform rating inflation — not real popularity or quality.",
+        "detail": "Across 432 books with both a Goodreads avgRating and a scraped Amazon rating, Amazon runs +0.37★ relative to Goodreads on average (409 of 432 higher, 12 lower). bbreEngine.js's communitySignal() applies the same COMMUNITY_NEUTRAL constant regardless of source, so candidates with Amazon data currently get a small, one-directional, uncorrected boost purely from platform rating inflation — not real popularity or quality.",
         "fix": "Recalibrate communitySignal() to use a source-specific neutral (or subtract the measured offset from amazonRating before scoring), then verify with eval.js/validate_review.js before shipping — this touches live scoring."
       },
       {
