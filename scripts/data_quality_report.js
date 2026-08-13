@@ -755,6 +755,83 @@ function findImprovementOpportunities() {
     }
   }
 
+  // 5. Feedback reasonCode vocabulary drift. bbreEngine.js's REASON_WEIGHT
+  // map (plus the two separately-handled codes author-dislike and
+  // style-not-for-me) is the only thing that turns a dismissal into a real
+  // generalization signal (theme/tone weight bumps, compound-author score).
+  // Any reasonCode string used in feedbackData.json that bbreEngine.js's
+  // source never mentions falls through REASON_WEIGHT's `?? 0` fallback
+  // silently — Bill recorded a reason, but the engine draws zero lesson
+  // from it. Checked live by scanning bbreEngine.js's actual source text
+  // for each distinct reasonCode string in use, not from a hand-maintained
+  // list that could itself drift stale.
+  {
+    let bbreSrc = '';
+    try { bbreSrc = fs.readFileSync('bbreEngine.js', 'utf8'); } catch {}
+    let codes = [];
+    try {
+      const fb = JSON.parse(fs.readFileSync('data/feedbackData.json', 'utf8'));
+      codes = [...new Set((fb.interactions || []).map(e => e.reasonCode).filter(Boolean))];
+    } catch {}
+    const unrecognized = codes.filter(c => bbreSrc && !bbreSrc.includes(`'${c}'`));
+    if (unrecognized.length) {
+      findings.push({
+        key: 'reasonCodeVocabularyDrift',
+        title: 'Dismissal reasonCodes with no matching logic in bbreEngine.js',
+        status: 'open',
+        detail: `feedbackData.json uses ${unrecognized.map(c => `\`${c}\``).join(', ')} as a dismissal reasonCode, but bbreEngine.js's source never mentions ${unrecognized.length === 1 ? 'that exact string' : 'those exact strings'} — not in REASON_WEIGHT, not as a special-cased author/style signal. Each matching dismissal silently contributes zero theme/tone/author generalization signal via the \`?? 0\` fallback, even though Bill recorded a real reason. Some of these (already-read-or-attempted, saw-the-adaptation) are hyphenated duplicates of existing zero-weight codes so the practical effect is harmless; \`pre-1900-fiction-setting\` is different — it's a real taste signal (the era penalty applies proactively to all books regardless of dismissal, but the dismissal itself never reinforces theme/tone weights the way topic_doesnt_appeal or not_my_vibe do).`,
+        fix: 'Either add these exact reasonCode strings to REASON_WEIGHT with an appropriate weight (0 for the harmless duplicates, a real weight like topic_doesnt_appeal\'s 0.5 for pre-1900-fiction-setting), or normalize app.js\'s dismiss-button reasonCode values to the existing underscored vocabulary so new duplicates stop appearing.',
+      });
+    } else if (codes.length) {
+      findings.push({
+        key: 'reasonCodeVocabularyDrift',
+        title: 'Dismissal reasonCodes with no matching logic in bbreEngine.js',
+        status: 'resolved',
+        detail: 'Every distinct reasonCode currently in feedbackData.json has matching logic in bbreEngine.js.',
+        fix: 'None needed.',
+      });
+    }
+  }
+
+  // 6. Named author-penalty lists checked against Bill's own rating history.
+  // Session 38 almost shipped a blanket Colleen Hoover/Taylor Jenkins Reid
+  // penalty before checking the data — Bill 5-starred Verity (Hoover) and
+  // nearly her entire TJR catalog, so an author-identity penalty would have
+  // fought his own strongest signal. SOFT_ROMANCE_AUTHORS survived that
+  // check by construction (TJR excluded, Hoover kept in per Bill's explicit
+  // call), but the list is hand-maintained prose in bbreEngine.js — nothing
+  // stops a future session from adding a name without re-running the same
+  // check. This re-derives it fresh every report run rather than trusting
+  // that the one-time manual check still holds.
+  {
+    let bbreSrc = '';
+    try { bbreSrc = fs.readFileSync('bbreEngine.js', 'utf8'); } catch {}
+    const listMatch = bbreSrc.match(/const SOFT_ROMANCE_AUTHORS = new Set\(\[([\s\S]*?)\]\.map\(normA\)\)/);
+    const authorNames = listMatch
+      ? [...listMatch[1].matchAll(/'([^']+)'/g)].map(m => m[1])
+      : [];
+    if (authorNames.length) {
+      const normAuthor = s => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+      const contradictions = [];
+      for (const name of authorNames) {
+        const nName = normAuthor(name);
+        const matches = rows.filter(r => r.source === 'library' && r.shelf === 'read' && normAuthor(r.author) === nName && Number(r.myRating) >= 4);
+        if (matches.length) contradictions.push({ name, books: matches.map(m => `${m.title} (${m.myRating}★)`) });
+      }
+      findings.push({
+        key: 'authorPenaltyContradictsRatings',
+        title: 'Author-penalty list checked against Bill\'s own ratings',
+        status: contradictions.length ? 'open' : 'resolved',
+        detail: contradictions.length
+          ? `bbreEngine.js's SOFT_ROMANCE_AUTHORS list docks ${contradictions.map(c => `${c.name} (despite ${c.books.join(', ')})`).join('; ')} — a flat author-identity penalty on a name Bill has rated 4★ or higher. For these specific names this is a known, deliberate tradeoff Bill approved directly (Session 38, after the same check flagged it live): he asked for both an author- and content-based penalty and chose to keep Hoover/Hannah/Smith on the list despite the conflict, carving out only Taylor Jenkins Reid as a standing exception. Tracked here so it stays visible rather than silently re-approved every time this check runs, and so a *future* name added to the list without this same disclosure gets caught the same way.`
+          : `All ${authorNames.length} authors on bbreEngine.js's SOFT_ROMANCE_AUTHORS penalty list have zero 4★+ rated books in Bill's read history — re-verified live against the current data, not just the one-time check made when the list was built.`,
+        fix: contradictions.length
+          ? 'No action needed on the names above (Bill\'s call, already made) — but re-check this finding before adding any new author to SOFT_ROMANCE_AUTHORS, and revisit if one of the flagged authors picks up more high-rated books that strengthen the contradiction.'
+          : 'None needed — re-run this check before adding any new name to the list.',
+      });
+    }
+  }
+
   return findings;
 }
 

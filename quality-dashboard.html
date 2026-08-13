@@ -153,23 +153,6 @@
       .qd-meter-track { height: 8px; border-radius: 5px; background: var(--bg-subtle); overflow: hidden; }
       .qd-meter-fill { height: 100%; border-radius: 5px; }
 
-      /* ── Impediments section ── */
-      .qd-impediment {
-        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
-        padding: 16px 18px; box-shadow: var(--shadow); margin-bottom: 12px;
-        display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: start;
-      }
-      .qd-impediment-rank {
-        font-family: var(--font-serif); font-weight: 700; font-size: 1.6rem; color: var(--accent);
-        width: 34px; text-align: center;
-      }
-      .qd-impediment-name { font-weight: 600; color: var(--text); margin-bottom: 4px; }
-      .qd-impediment-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
-      .qd-impediment-fix { font-size: 0.85rem; color: var(--text); }
-      .qd-impediment-fix strong { color: var(--accent); }
-      .qd-impediment-pts { font-weight: 700; color: var(--status-critical); white-space: nowrap; font-variant-numeric: tabular-nums; }
-      .qd-impediment-link { font-size: 0.78rem; }
-
       /* ── Improvement opportunities section ── */
       .qd-opp {
         background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
@@ -230,8 +213,6 @@
 
       /* ── Responsive ── */
       @media (max-width: 640px) {
-        .qd-impediment { grid-template-columns: 1fr auto; }
-        .qd-impediment-rank { display: none; }
         .qd-score-section { padding: 18px; gap: 20px; }
         .qd-dial-wrap { width: 160px; height: 160px; }
         .qd-dial-number { font-size: 2.4rem; }
@@ -338,12 +319,6 @@
           <h2>Data Integrity</h2>
           <div class="qd-tabs" id="qdTabs"></div>
           <div id="qdTabPanels"></div>
-        </section>
-
-        <section class="qd-section" id="impedimentsSection">
-          <h2 id="impedimentsHeading">Top Impediments to a Perfect Data Quality Score</h2>
-          <p class="qd-desc">Ranked by estimated points lost from the 100-point score above — not raw counts. A large low-weight count can matter less than a small count in a higher-weighted category.</p>
-          <div id="qdImpediments"></div>
         </section>
 
         <section class="qd-section" id="roadmapSection">
@@ -648,29 +623,6 @@
           prevComponents: prevEntry?.bbreAccuracy?.components,
           recalibrationAware: false,
           footnote: `MAE ${bbreAccuracy.mae.toFixed(3)} stars, leave-one-out over ${bbreAccuracy.sampleSize.toLocaleString()} completed rated reads.`,
-        });
-      }
-
-      function renderImpediments(impediments) {
-        const wrap = $('#qdImpediments');
-        if (!impediments.length) {
-          wrap.innerHTML = '<div class="qd-empty">None — the score is already at or near 100.</div>';
-          return;
-        }
-        impediments.forEach((imp, i) => {
-          const card = document.createElement('div'); card.className = 'qd-impediment';
-          const rank = document.createElement('div'); rank.className = 'qd-impediment-rank'; rank.textContent = `#${i + 1}`;
-          const body = document.createElement('div');
-          const name = document.createElement('div'); name.className = 'qd-impediment-name'; name.textContent = imp.name;
-          const desc = document.createElement('div'); desc.className = 'qd-impediment-desc'; desc.textContent = imp.description;
-          const fix = document.createElement('div'); fix.className = 'qd-impediment-fix';
-          fix.innerHTML = '<strong>Fix: </strong>';
-          fix.append(document.createTextNode(imp.fix));
-          const link = document.createElement('a'); link.className = 'qd-impediment-link'; link.href = imp.anchor; link.textContent = 'Jump to detail →';
-          body.appendChild(name); body.appendChild(desc); body.appendChild(fix); body.appendChild(document.createElement('br')); body.appendChild(link);
-          const pts = document.createElement('div'); pts.className = 'qd-impediment-pts'; pts.textContent = `−${imp.pointsLost} pts`;
-          card.appendChild(rank); card.appendChild(body); card.appendChild(pts);
-          wrap.appendChild(card);
         });
       }
 
@@ -1024,7 +976,6 @@
         renderRangeFilter(fullHistory, renderHistoryDependent);
         renderHistoryDependent(fullHistory.slice(-14)); // default window
         renderResolvedBanner(current, truePrev);
-        renderImpediments(current.qualityScore.impediments);
         renderRoadmap(current.roadmap);
         renderOpportunities(current.findings.improvementOpportunities);
 
