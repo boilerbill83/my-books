@@ -331,6 +331,64 @@ function pre1900Penalty(book, model) {
   return PRE1900_RX.test(hay) ? 0.12 : 0;
 }
 
+// ── Session 38: soft/no-hook romance penalty ─────────────────────────────
+// Bill's explicit request (Aug 13 2026): systematically lower "girly"/soft
+// romance-adjacent fiction, naming Danielle Steel and Colleen Hoover as
+// anchor examples. Checked against Bill's own rating history first: a flat
+// genre/theme penalty would misfire hard — he 5-starred Colleen Hoover's
+// Verity (a hook-driven psychological thriller: themes thriller/psychological/
+// domestic suspense, tones twisty/compulsive) while rating her Ugly Love
+// (themes romance/contemporary, tones twisty/heartwarming, no hook theme) only
+// 2★. Taylor Jenkins Reid — genre-labeled "women's fiction" but 5-starred by
+// Bill across nearly her entire catalog (10 books) — is a similar case, and
+// Bill explicitly carved her out as a standing exception when this signal was
+// approved. So this is two penalties, not one: a CONTENT signal (the real
+// differentiator between Verity and Ugly Love, and between One Day/One True
+// Loves — both 5★ keeps — and This Book Made Me Think of You, which prompted
+// this request) plus a narrower AUTHOR signal Bill explicitly asked for on
+// top of it, accepting that it will also dock a hook-driven book by one of
+// these authors if one ever shows up as a candidate.
+
+const SOFT_ROMANCE_SOFT_TONES = new Set(['heartwarming', 'poignant', 'thoughtful', 'inspiring']);
+const SOFT_ROMANCE_EDGE_TONES = new Set(['twisty', 'funny', 'gritty', 'dark', 'nonlinear',
+  'satirical', 'propulsive', 'compulsive', 'tense', 'procedural', 'ensemble', 'investigative',
+  'revelatory']);
+
+// Authors whose catalogs run almost entirely soft/no-hook romance & women's
+// fiction, per Bill's explicit request. Taylor Jenkins Reid is deliberately
+// excluded (see comment above) — do not add her back without Bill asking.
+const SOFT_ROMANCE_AUTHORS = new Set([
+  'danielle steel', 'colleen hoover', 'nicholas sparks', 'debbie macomber',
+  'nora roberts', 'beatriz williams', 'helen hoang', 'rebecca serle',
+  'jojo moyes', 'christina lauren', 'abby jimenez', 'penelope douglas',
+  'sarah dessen', 'mary kay andrews', 'elin hilderbrand', 'jennifer weiner',
+  'sophie kinsella', 'kristan higgins', 'emily giffin', 'marian keyes',
+  'sally thorne', 'kristin hannah', 'emily henry', 'jennifer e. smith',
+].map(normA));
+
+function softRomancePenalty(book) {
+  let adj = 0;
+  const reasons = [];
+
+  if (SOFT_ROMANCE_AUTHORS.has(normA(book.author))) {
+    adj -= 0.20; reasons.push('soft-romance-author');
+  }
+
+  if (book.type === 'fiction') {
+    const themes = (book.themes || []).map(t => String(t).toLowerCase());
+    const tones  = (book.tones  || []).map(t => String(t).toLowerCase());
+    const hasHook       = themes.some(t => HOOK_THEMES.has(t));
+    const touchesRomance = themes.includes('romance') || themes.includes('contemporary');
+    const hasSoftTone    = tones.some(t => SOFT_ROMANCE_SOFT_TONES.has(t));
+    const hasEdgeTone    = tones.some(t => SOFT_ROMANCE_EDGE_TONES.has(t));
+    if (!hasHook && touchesRomance && hasSoftTone && !hasEdgeTone) {
+      adj -= 0.15; reasons.push('soft-no-hook-romance');
+    }
+  }
+
+  return { adj, reasons };
+}
+
 // ── 2. Temporal recency ────────────────────────────────────────────────────
 // Small bias toward authors whose recent reads (last 2 years) are trending
 // above or below their all-time average.
@@ -761,8 +819,9 @@ export function rankBBRE(goodreads, feedback, candidatePool, history, enrichedMe
     const dnfPen      = dnfPenalty(b, dnfSig);
     const dis         = dismissAdjust(b, dismissProfile, model);
     const eraPen      = pre1900Penalty(b, model);
-    const combined    = Math.max(0, base + seriesAdj + recencyAdj + toneAdj + communityAdj - dnfPen + dis.adj - eraPen);
-    return { ...b, _combined: combined, _base: base, _seriesAdj: seriesAdj, _recencyAdj: recencyAdj, _toneAdj: toneAdj, _communityAdj: communityAdj, _dnfPen: dnfPen, _dismissAdj: dis.adj, _dismissReasons: dis.reasons, _eraPen: eraPen };
+    const softRom     = softRomancePenalty(b);
+    const combined    = Math.max(0, base + seriesAdj + recencyAdj + toneAdj + communityAdj - dnfPen + dis.adj - eraPen + softRom.adj);
+    return { ...b, _combined: combined, _base: base, _seriesAdj: seriesAdj, _recencyAdj: recencyAdj, _toneAdj: toneAdj, _communityAdj: communityAdj, _dnfPen: dnfPen, _dismissAdj: dis.adj, _dismissReasons: dis.reasons, _eraPen: eraPen, _softRomanceAdj: softRom.adj, _softRomanceReasons: softRom.reasons };
   });
 
   withScores.sort((a, b) => b._combined - a._combined);
