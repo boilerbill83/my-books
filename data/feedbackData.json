@@ -1386,6 +1386,28 @@
    "reasonLabel": "No longer relevant",
    "timestamp": "2026-08-03T12:44:19.705Z",
    "excludeFromRecommendations": true
+  },
+  {
+   "bookKey": "famesick|lena-dunham",
+   "title": "Famesick",
+   "author": "Lena Dunham",
+   "type": "nonfiction",
+   "themes": [
+    "memoir",
+    "humor"
+   ],
+   "tones": [
+    "conversational",
+    "funny",
+    "poignant",
+    "bleak"
+   ],
+   "interactionType": "dismiss",
+   "reasonCode": "not_interesting",
+   "reasonLabel": "Doesn't look interesting",
+   "note": "Bill: was on his to-read list but removed it, not interested in the topic",
+   "timestamp": "2026-08-13T13:50:00.000Z",
+   "excludeFromRecommendations": true
   }
  ]
 }
