@@ -62,13 +62,13 @@
       "shelf": "read",
       "myRating": 4,
       "avgRating": 3.9,
-      "pages": 372,
+      "pages": 393,
       "dateRead": "2026/05/28",
       "dateAdded": "2026/05/28",
-      "isbn": null,
+      "isbn": "1944083103",
       "isbn13": "9781944083106",
       "publisher": "Phoenix Flying LLC",
-      "year": 2025,
+      "year": 2021,
       "themes": [
         "legal",
         "thriller",
@@ -105,13 +105,13 @@
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.95,
-      "pages": 429,
+      "pages": 384,
       "dateRead": "2026/06/16",
       "dateAdded": "2026/05/31",
-      "isbn": null,
-      "isbn13": "9780451412720",
+      "isbn": "1480189871",
+      "isbn13": "9781480189874",
       "publisher": "Phoenix Flying LLC",
-      "year": 2025,
+      "year": 2012,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1764811085i/244759039.jpg",
       "themes": [
         "legal",
@@ -191,7 +191,7 @@
       "shelf": "read",
       "myRating": 5,
       "avgRating": 4.17,
-      "pages": 387,
+      "pages": 400,
       "dateRead": null,
       "dateAdded": "2025/02/25",
       "isbn": "1464223319",
@@ -952,7 +952,7 @@
       "similarToTitles": [
         "The Accidental Billionaires: The Founding of Facebook, a Tale of Sex, Money, Genius, and Betrayal",
         "Bitcoin Billionaires: A True Story of Genius, Betrayal, and Redemption",
-        "The Antisocial Network: The True Story of a Ragtag of Amateur Investors, Gamers, and Internet Trolls Who Brought Wall Street to Its Knees",
+        "The Dumb Money: The GameStop Short Squeeze and the Ragtag Group of Amateur Traders That Brought Wall Street to Its Knees (Previously Published as The Antisocial Network)",
         "Going Infinite: The Rise and Fall of a New Tycoon",
         "The Man Who Solved the Market: How Jim Simons Launched the Quant Revolution"
       ],
@@ -965,7 +965,8 @@
         "investigative",
         "inspiring"
       ],
-      "themeToneReviewed": true
+      "themeToneReviewed": true,
+      "top10": true
     },
     {
       "bookKey": "the-divorce|freida-mcfadden",
@@ -1047,7 +1048,8 @@
         "slow-burn"
       ],
       "themeToneReviewed": true,
-      "coverUrl": "https://m.media-amazon.com/images/I/81Z8qRkK6wL._SX300_.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/I/81Z8qRkK6wL._SX300_.jpg",
+      "top10": true
     },
     {
       "bookKey": "monsters-in-the-archives-my-year-of-fear-with-stephen-king|caroline-bicks",
@@ -1096,11 +1098,11 @@
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.8,
-      "pages": 294,
+      "pages": 304,
       "dateRead": null,
       "dateAdded": "2026/03/25",
       "isbn": null,
-      "isbn13": "9798217046867",
+      "isbn13": "9798217046850",
       "publisher": "Riverhead Books",
       "year": 2026,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1758250558i/239051491.jpg",
@@ -1621,7 +1623,8 @@
         "dark"
       ],
       "themeToneReviewed": true,
-      "coverUrl": "https://books.google.com/books/content?id=WPlrEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=WPlrEQAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "top10": true
     },
     {
       "bookKey": "the-french-illusion|john-grisham",
@@ -1673,7 +1676,7 @@
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.88,
-      "pages": 349,
+      "pages": 362,
       "dateRead": "2026/03/15",
       "dateAdded": "2026/03/15",
       "isbn": "0593832450",
@@ -1801,8 +1804,8 @@
       "pages": 384,
       "dateRead": "2026/07/19",
       "dateAdded": "2026/03/12",
-      "isbn": "166821170X",
-      "isbn13": "9781668211700",
+      "isbn": "1668211726",
+      "isbn13": "9781668211724",
       "publisher": "Atria Books",
       "year": 2026,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1761837989i/235992099.jpg",
@@ -1829,7 +1832,7 @@
         "poignant"
       ],
       "themeToneReviewed": true,
-      "top10": true
+      "allTimeFave": true
     },
     {
       "bookKey": "the-everything-war-amazon-s-ruthless-quest-to-own-the-world-and-remake-corporate-power|dana-mattioli",
@@ -2193,7 +2196,8 @@
         "character-driven",
         "inspiring"
       ],
-      "themeToneReviewed": true
+      "themeToneReviewed": true,
+      "top10": true
     },
     {
       "bookKey": "the-final-score|don-winslow",
@@ -2581,11 +2585,11 @@
       "shelf": "read",
       "myRating": 4,
       "avgRating": 3.9,
-      "pages": 294,
+      "pages": 304,
       "dateRead": "2026/07/24",
       "dateAdded": "2026/01/23",
-      "isbn": "1250266106",
-      "isbn13": "9781250266101",
+      "isbn": "1250266114",
+      "isbn13": "9781250266118",
       "publisher": "Flatiron Books",
       "year": 2021,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1612020952i/56269064.jpg",
@@ -2613,8 +2617,7 @@
         "propulsive",
         "dark"
       ],
-      "themeToneReviewed": true,
-      "top10": true
+      "themeToneReviewed": true
     },
     {
       "bookKey": "neptune-s-fortune-the-billion-dollar-shipwreck-and-the-ghosts-of-the-spanish-empire|julian-sancton",
@@ -2786,11 +2789,11 @@
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.2,
-      "pages": 448,
+      "pages": 443,
       "dateRead": null,
       "dateAdded": "2025/11/06",
       "isbn": null,
-      "isbn13": "9798217045112",
+      "isbn13": "9798217045136",
       "publisher": "Dutton",
       "year": 2026,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1771360009i/240382488.jpg",
@@ -2861,19 +2864,19 @@
       "top10": true
     },
     {
-      "bookKey": "the-amazing-adventures-of-cavalier-clay|michael-chabon",
-      "bookId": "133798223",
-      "title": "The Amazing Adventures of Cavalier & Clay",
+      "bookKey": "the-amazing-adventures-of-kavalier-clay|michael-chabon",
+      "bookId": "90447",
+      "title": "The Amazing Adventures of Kavalier & Clay",
       "author": "Michael Chabon",
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4,
-      "pages": 636,
+      "pages": 656,
       "dateRead": null,
       "dateAdded": "2025/11/05",
-      "isbn": null,
-      "isbn13": "9780812983586",
-      "publisher": "Random House Inc",
+      "isbn": "0965007030",
+      "isbn13": "9780965007030",
+      "publisher": "Random House",
       "year": 2000,
       "type": "fiction",
       "themes": [
@@ -3524,8 +3527,8 @@
       "pages": 382,
       "dateRead": "2026/06/30",
       "dateAdded": "2025/12/17",
-      "isbn": "1250391237",
-      "isbn13": "9781250391230",
+      "isbn": "1250391245",
+      "isbn13": "9781250391247",
       "publisher": "Flatiron Books",
       "year": 2025,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1742029683i/223436601.jpg",
@@ -3551,8 +3554,7 @@
         "investigative",
         "revelatory"
       ],
-      "themeToneReviewed": true,
-      "top10": true
+      "themeToneReviewed": true
     },
     {
       "bookKey": "tiger-tiger-his-life-as-it-s-never-been-told-before|james-patterson",
@@ -4019,11 +4021,11 @@
       "shelf": "read",
       "myRating": 4,
       "avgRating": 4,
-      "pages": 340,
+      "pages": 347,
       "dateRead": "2026/07/02",
       "dateAdded": "2025/11/06",
-      "isbn": "0593834453",
-      "isbn13": "9780593834459",
+      "isbn": "0593834461",
+      "isbn13": "9780593834466",
       "publisher": "Pamela Dorman Books",
       "year": 2026,
       "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1755269338i/239052933.jpg",
@@ -4050,8 +4052,7 @@
         "tense",
         "procedural"
       ],
-      "themeToneReviewed": true,
-      "top10": true
+      "themeToneReviewed": true
     },
     {
       "bookKey": "a-heartbreaking-work-of-staggering-genius|dave-eggers",
@@ -7737,7 +7738,7 @@
       "shelf": "read",
       "myRating": 5,
       "avgRating": 4.39,
-      "pages": 434,
+      "pages": 400,
       "dateRead": "2022/06/09",
       "dateAdded": "2022/06/05",
       "isbn": null,
@@ -7786,7 +7787,7 @@
       "isbn": "074324754X",
       "isbn13": "9780743247542",
       "publisher": "Scribner",
-      "year": 2006,
+      "year": 2005,
       "themes": [
         "memoir",
         "psychology"
@@ -8539,13 +8540,13 @@
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.89,
-      "pages": 434,
+      "pages": 438,
       "dateRead": "2024/08/21",
       "dateAdded": "2024/06/01",
       "isbn": null,
       "isbn13": "9780765387585",
       "publisher": "Tor Books",
-      "year": 2023,
+      "year": 2020,
       "themes": [
         "speculative",
         "historical"
@@ -8753,7 +8754,7 @@
       "shelf": "read",
       "myRating": 5,
       "avgRating": 4.25,
-      "pages": 329,
+      "pages": 338,
       "dateRead": "2025/02/23",
       "dateAdded": "2023/12/10",
       "isbn": "1803144378",
@@ -9770,7 +9771,8 @@
         "thoughtful"
       ],
       "themeToneReviewed": true,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1733544911l/218695859._SY475_.jpg"
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1733544911l/218695859._SY475_.jpg",
+      "top10": true
     },
     {
       "bookKey": "the-tenant|freida-mcfadden",
@@ -9812,7 +9814,8 @@
         "tense",
         "propulsive"
       ],
-      "themeToneReviewed": true
+      "themeToneReviewed": true,
+      "top10": true
     },
     {
       "bookKey": "accidentally-on-purpose|kristen-kish",
@@ -10232,7 +10235,7 @@
       "shelf": "read",
       "myRating": 5,
       "avgRating": 3.86,
-      "pages": 341,
+      "pages": 345,
       "dateRead": "2025/06/25",
       "dateAdded": "2025/01/02",
       "isbn": "0593158725",
@@ -10993,7 +10996,8 @@
         "dense"
       ],
       "themeToneReviewed": true,
-      "coverUrl": "https://books.google.com/books/content?id=b07VAgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api"
+      "coverUrl": "https://books.google.com/books/content?id=b07VAgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+      "top10": true
     },
     {
       "bookKey": "ghost-soldiers-the-epic-account-of-world-war-ii-s-greatest-rescue-mission|hampton-sides",
@@ -11127,7 +11131,7 @@
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.1,
-      "pages": 304,
+      "pages": 336,
       "dateRead": null,
       "dateAdded": "2025/03/05",
       "isbn": null,
@@ -11786,7 +11790,7 @@
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.2,
-      "pages": 478,
+      "pages": 496,
       "dateRead": null,
       "dateAdded": "2025/02/20",
       "isbn": "0593418913",
@@ -15154,7 +15158,7 @@
         "tech history"
       ],
       "similarToTitles": [
-        "The Antisocial Network: The True Story of a Ragtag of Amateur Investors, Gamers, and Internet Trolls Who Brought Wall Street to Its Knees",
+        "The Dumb Money: The GameStop Short Squeeze and the Ragtag Group of Amateur Traders That Brought Wall Street to Its Knees (Previously Published as The Antisocial Network)",
         "Bitcoin Billionaires: A True Story of Genius, Betrayal, and Redemption",
         "Flash Boys: A Wall Street Revolt",
         "Going Infinite: The Rise and Fall of a New Tycoon",
@@ -15740,13 +15744,13 @@
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.5,
-      "pages": 380,
+      "pages": 352,
       "dateRead": null,
       "dateAdded": "2024/03/24",
-      "isbn": "1368101208",
-      "isbn13": "9781368101202",
+      "isbn": "1368092993",
+      "isbn13": "9781368092999",
       "publisher": "Hyperion Avenue",
-      "year": 2024,
+      "year": 2023,
       "type": "fiction",
       "themes": [
         "speculative",
@@ -16754,11 +16758,11 @@
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 3.6,
-      "pages": 289,
+      "pages": 304,
       "dateRead": null,
       "dateAdded": "2023/11/18",
-      "isbn": "0593545850",
-      "isbn13": "9780593545850",
+      "isbn": "0593545877",
+      "isbn13": "9780593545874",
       "publisher": "Berkley",
       "year": 2023,
       "type": "fiction",
@@ -16988,17 +16992,17 @@
     },
     {
       "bookKey": "the-dilemma|b-a-paris",
-      "bookId": "41150465",
+      "bookId": "49219357",
       "title": "The Dilemma",
       "author": "B.A. Paris",
       "shelf": "read",
       "myRating": 4,
       "avgRating": 3.7,
-      "pages": 342,
-      "dateRead": null,
+      "pages": 304,
+      "dateRead": "2026/08/05",
       "dateAdded": "2023/11/04",
-      "isbn": "1250151368",
-      "isbn13": "9781250151360",
+      "isbn": "1250151384",
+      "isbn13": "9781250151384",
       "publisher": "St. Martin's Press",
       "year": 2020,
       "type": "fiction",
@@ -18651,7 +18655,7 @@
       "shelf": "to-read",
       "myRating": 0,
       "avgRating": 4.1,
-      "pages": 320,
+      "pages": 332,
       "dateRead": null,
       "dateAdded": "2023/06/10",
       "isbn": "1441785698",
@@ -19091,7 +19095,7 @@
       "shelf": "read",
       "myRating": 0,
       "avgRating": 3.75,
-      "pages": 65,
+      "pages": 3,
       "dateRead": null,
       "dateAdded": "2022/09/23",
       "isbn": null,
@@ -23408,7 +23412,7 @@
         "White Noise",
         "Normal People",
         "Beautiful World, Where Are You",
-        "The Amazing Adventures of Cavalier & Clay",
+        "The Amazing Adventures of Kavalier & Clay",
         "Tracy Flick Can't Win"
       ],
       "ratingsCount": 16000,
@@ -29435,7 +29439,7 @@
       "shelf": "read",
       "myRating": 5,
       "avgRating": 4.09,
-      "pages": 419,
+      "pages": 576,
       "dateRead": null,
       "dateAdded": "2018/06/25",
       "isbn": null,
@@ -32371,48 +32375,7 @@
       "themeToneReviewed": true,
       "dnfReason": "not_interesting"
     },
-    {
-      "bookKey": "the-antisocial-network-the-true-story-of-a-ragtag-of-amateur-investors-gamers-and-internet-trolls-who-brought-wall-street-to-its-knees|ben-mezrich",
-      "bookId": "57796397",
-      "title": "The Antisocial Network: The True Story of a Ragtag of Amateur Investors, Gamers, and Internet Trolls Who Brought Wall Street to Its Knees",
-      "author": "Ben Mezrich",
-      "shelf": "read",
-      "myRating": 5,
-      "avgRating": 4.57,
-      "pages": 288,
-      "dateRead": null,
-      "dateAdded": "2021-08-09",
-      "isbn": "1538707551",
-      "isbn13": "9781538707555",
-      "publisher": "Grand Central Publishing",
-      "year": 2021,
-      "themes": [
-        "finance",
-        "tech history",
-        "social commentary"
-      ],
-      "similarToTitles": [
-        "The Big Short: Inside the Doomsday Machine",
-        "Flash Boys: A Wall Street Revolt",
-        "Bringing Down the House: The Inside Story of Six M.I.T. Students Who Took Vegas for Millions",
-        "Checkmate: Genius, Lies, Ambition, and the Biggest Scandal in Chess",
-        "Bitcoin Billionaires: A True Story of Genius, Betrayal, and Redemption"
-      ],
-      "ratingsCount": 2319,
-      "dnf": false,
-      "similarToAuthors": [
-        "Michael Lewis",
-        "Scott Patterson",
-        "Gregory Zuckerman",
-        "Andrew Ross Sorkin"
-      ],
-      "type": "nonfiction",
-      "tones": [
-        "dense",
-        "thoughtful"
-      ],
-      "themeToneReviewed": true
-    },
+    
     {
       "bookKey": "the-origins-of-the-cornbread-mafia-a-memoir-of-sorts|joe-keith-bickett",
       "bookId": "31831960",
@@ -37624,7 +37587,7 @@
         "Cloud Cuckoo Land",
         "Atonement",
         "The Covenant of Water",
-        "The Amazing Adventures of Cavalier & Clay"
+        "The Amazing Adventures of Kavalier & Clay"
       ],
       "similarToAuthors": [
         "Kristin Hannah",
@@ -38385,11 +38348,11 @@
     {
       "title": "House of Fidelity: The Rise of the Johnson Dynasty and the Company That Changed American Investing",
       "author": "Justin Baer",
-      "isbn13": "9781538766972",
+      "isbn13": "9781538766958",
       "isbn": "1538766957",
       "avgRating": 3.75,
       "ratingsCount": 0,
-      "year": 2024,
+      "year": 2026,
       "pages": 384,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1756934751l/241039527._SY475_.jpg",
       "shelf": "to-read",
@@ -38423,12 +38386,12 @@
     {
       "title": "The Body",
       "author": "Stephen King",
-      "isbn13": "9781982105594",
-      "isbn": "1668170612",
+      "isbn13": "9781982103538",
+      "isbn": "1982103531",
       "avgRating": 4.29,
       "ratingsCount": 0,
-      "year": 1982,
-      "pages": 7,
+      "year": 2018,
+      "pages": 192,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1772263528l/249109853._SX318_.jpg",
       "shelf": "to-read",
       "myRating": 0,
@@ -38457,46 +38420,11 @@
       "bookKey": "the-body|stephen-king",
       "bookId": "38926465"
     },
-    {
-      "title": "Raised",
-      "author": "April Balascio",
-      "isbn13": "9781982177058",
-      "isbn": "1982177039",
-      "avgRating": 3.75,
-      "ratingsCount": 0,
-      "year": 2024,
-      "pages": 352,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1710377557l/207294155._SY475_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "nonfiction",
-      "themes": [
-        "memoir",
-        "true crime"
-      ],
-      "tones": [
-        "investigative",
-        "poignant"
-      ],
-      "themeToneReviewed": true,
-      "dnf": false,
-      "similarToTitles": [
-        "American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road",
-        "The Art Thief: A True Story of Love, Crime, and a Dangerous Obsession",
-        "Educated",
-        "In Cold Blood",
-        "Midnight in the Garden of Good and Evil"
-      ],
-      "similarToAuthors": [
-        "Tara Westover",
-        "Deborah Feldman"
-      ],
-      "bookKey": "raised|april-balascio"
-    },
+    
     {
       "title": "How to Know a Person: The Art of Seeing Others Deeply and Being Deeply Seen",
       "author": "David Brooks",
-      "isbn13": "9780593230077",
+      "isbn13": "9780593230084",
       "isbn": "059323006X",
       "avgRating": 4.02,
       "ratingsCount": 0,
@@ -38570,11 +38498,11 @@
     {
       "title": "Ding Dong: How Ring Went From Shark Tank Reject To Everyone's Front Door",
       "author": "Jamie Siminoff",
-      "isbn13": "9798993418148",
+      "isbn13": "9798993418117",
       "isbn": null,
       "avgRating": 4.42,
       "ratingsCount": 0,
-      "year": null,
+      "year": 2025,
       "pages": 288,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1761292047l/243134278._SY475_.jpg",
       "shelf": "to-read",
@@ -38608,11 +38536,11 @@
     {
       "title": "Thrilling Tales of Modern Men: Stories",
       "author": "Danny McBride",
-      "isbn13": "9781529998436",
+      "isbn13": "9780593594759",
       "isbn": "0593594754",
       "avgRating": 3.91,
       "ratingsCount": 0,
-      "year": null,
+      "year": 2026,
       "pages": 368,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1769139407l/242000546._SY475_.jpg",
       "shelf": "to-read",
@@ -38640,17 +38568,18 @@
         "funny",
         "conversational"
       ],
-      "themeToneReviewed": true
+      "themeToneReviewed": true,
+      "top10": true
     },
     {
       "title": "The American Way of Killing: The Invention of an Epidemic",
       "author": "Malcolm Gladwell",
-      "isbn13": "9780316603829",
+      "isbn13": "9780316603782",
       "isbn": "0316603783",
       "avgRating": 0.0,
       "ratingsCount": 0,
-      "year": null,
-      "pages": 288,
+      "year": 2026,
+      "pages": 304,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1781723843l/247255488._SY475_.jpg",
       "shelf": "to-read",
       "myRating": 0,
@@ -38679,7 +38608,8 @@
         "thoughtful",
         "revelatory"
       ],
-      "themeToneReviewed": true
+      "themeToneReviewed": true,
+      "top10": true
     },
     {
       "title": "Endurance: Shackleton's Incredible Voyage",
@@ -38688,7 +38618,7 @@
       "isbn": null,
       "avgRating": 4.43,
       "ratingsCount": 0,
-      "year": 1959,
+      "year": 1999,
       "pages": 282,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1391329559l/139069.jpg",
       "shelf": "to-read",
@@ -38724,11 +38654,11 @@
       "bookId": "244122402",
       "title": "Up on Cove Mountain: Adventure, Tragedy, and a Quest for Meaning on the Appalachian Trail",
       "author": "Earl Swift",
-      "isbn13": "9780063265455",
+      "isbn13": "9780063265431",
       "isbn": "0063265435",
       "avgRating": 3.12,
       "ratingsCount": 0,
-      "year": null,
+      "year": 2026,
       "pages": 368,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1763480486l/244122402._SY475_.jpg",
       "shelf": "to-read",
@@ -38765,7 +38695,7 @@
       "isbn": "1668213451",
       "avgRating": 3.54,
       "ratingsCount": 0,
-      "year": null,
+      "year": 2026,
       "pages": 256,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1771508086l/247948566._SY475_.jpg",
       "shelf": "to-read",
@@ -38797,11 +38727,11 @@
       "bookId": "246137709",
       "title": "The Munich Affair",
       "author": "James  Patterson",
-      "isbn13": "9780316612494",
+      "isbn13": "9780316404099",
       "isbn": "0316404098",
       "avgRating": 4.28,
       "ratingsCount": 0,
-      "year": null,
+      "year": 2026,
       "pages": 528,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1778172751l/246137709.jpg",
       "shelf": "to-read",
@@ -38873,7 +38803,7 @@
       "bookId": "233717212",
       "title": "Operation Bounce House",
       "author": "Matt Dinniman",
-      "isbn13": "9780593820315",
+      "isbn13": "9780593820308",
       "isbn": "0593820304",
       "avgRating": 3.87,
       "ratingsCount": 0,
@@ -38911,7 +38841,7 @@
       "bookId": "222259253",
       "title": "Culpability",
       "author": "Bruce Holsinger",
-      "isbn13": "9781787706057",
+      "isbn13": "9781954118966",
       "isbn": "1954118961",
       "avgRating": 3.89,
       "ratingsCount": 0,
@@ -38949,11 +38879,11 @@
       "bookId": "249246420",
       "title": "Rock*: A Mainstream Alternative History of Alternative Mainstream Music",
       "author": "Chuck Klosterman",
-      "isbn13": "9781451624496",
+      "isbn13": "9780306837999",
       "isbn": "0306837994",
       "avgRating": 3.2,
       "ratingsCount": 0,
-      "year": null,
+      "year": 2026,
       "pages": 336,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1772556426l/249246420._SY475_.jpg",
       "shelf": "to-read",
@@ -38979,18 +38909,19 @@
         "conversational",
         "thoughtful"
       ],
-      "themeToneReviewed": true
+      "themeToneReviewed": true,
+      "top10": true
     },
     {
       "bookKey": "cancel-me-if-you-can|dave-portnoy",
       "bookId": "243018874",
       "title": "Cancel Me If You Can",
       "author": "Dave Portnoy",
-      "isbn13": "9781668222027",
+      "isbn13": "9781668222041",
       "isbn": "1668222043",
       "avgRating": 4.29,
       "ratingsCount": 0,
-      "year": null,
+      "year": 2026,
       "pages": 348,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1761084960l/243018874._SY475_.jpg",
       "shelf": "to-read",
@@ -39187,27 +39118,13 @@
       "themeToneReviewed": true,
       "dnf": false
     },
+    
     {
-      "title": "The Amazing Adventures of Kavalier & Clay",
-      "author": "Michael Chabon",
-      "isbn13": "9780312282998",
-      "isbn": "0965007030",
-      "avgRating": 4.34,
-      "ratingsCount": 0,
-      "year": null,
-      "pages": 656,
-      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1353584921l/90447.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
-      "type": "unknown",
-      "themes": [],
-      "tones": [],
-      "dnf": false
-    },
-    {
+      "bookKey": "the-dog-stars|peter-heller",
+      "bookId": "13330761",
       "title": "The Dog Stars",
       "author": "Peter Heller",
-      "isbn13": "9780307950475",
+      "isbn13": "9780307959942",
       "isbn": "0307959945",
       "avgRating": 3.91,
       "ratingsCount": 0,
@@ -39219,12 +39136,15 @@
       "type": "unknown",
       "themes": [],
       "tones": [],
-      "dnf": false
+      "dnf": false,
+      "top10": true
     },
     {
+      "bookKey": "my-husband-s-wife|alice-feeney",
+      "bookId": "231127462",
       "title": "My Husband's Wife",
       "author": "Alice Feeney",
-      "isbn13": null,
+      "isbn13": "9781250337818",
       "isbn": "125033781X",
       "avgRating": 3.95,
       "ratingsCount": 0,
@@ -39236,16 +39156,19 @@
       "type": "unknown",
       "themes": [],
       "tones": [],
-      "dnf": false
+      "dnf": false,
+      "top10": true
     },
     {
+      "bookKey": "galleria|chuck-palahniuk",
+      "bookId": "252570605",
       "title": "Galleria",
       "author": "Chuck Palahniuk",
-      "isbn13": null,
+      "isbn13": "9781668225097",
       "isbn": "1668225093",
       "avgRating": 4.6,
       "ratingsCount": 0,
-      "year": null,
+      "year": 2027,
       "pages": 272,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1779454744l/252570605._SY475_.jpg",
       "shelf": "to-read",
