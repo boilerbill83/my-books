@@ -639,6 +639,33 @@ const NON_SIGNAL_FIELDS = new Set([
 // unused-field scan doesn't cry wolf on it.
 const FIELD_NAME_VARIANTS = { amazonRatingsCount: ['amazonRatingCount'] };
 
+// Mirrors app.js's mergeScraped()/scrapedKey() exactly. Neither
+// goodreadsData.json nor the candidate-pool files store amazonRating/
+// storyGraphRating directly — app.js merges data/scrapedRatings.json in at
+// load time, for both to-read books and pool candidates. A rankBBRE() call
+// that skips this merge never exercises communitySignal()'s Amazon/
+// StoryGraph branches at all, even though ~92% of live candidates carry a
+// scraped Amazon rating in the real app — caught while verifying the
+// amazonRatingBias fix (Improvement Opportunities #1, Aug 2026): without
+// this merge, every "live" pipeline check in this file was silently only
+// ever testing the avgRating/ratingsCount fallback branch.
+function _scrapedKey(book) {
+  let title = String(book.title || '').replace(/\s*[:({\[].*/, '').trim().toLowerCase();
+  title = title.replace(/\s*\(.*?\)\s*$/, '').trim();
+  const author = String(book.author || '').split(',')[0].trim().toLowerCase();
+  return `${title}|||${author}`;
+}
+function _mergeScraped(book, scraped) {
+  const entry = scraped[_scrapedKey(book)];
+  if (!entry) return book;
+  if (entry.source === 'not_found' || entry.source === 'cover_only') return book;
+  const sg  = entry.storyGraph;
+  const amz = entry.amazon;
+  if (sg  && sg.rating)  return { ...book, storyGraphRating: sg.rating, storyGraphRatingCount: sg.count };
+  if (amz && amz.rating) return { ...book, amazonRating: amz.rating, amazonRatingCount: amz.count };
+  return book;
+}
+
 // Live rankBBRE() run, shared across the several improvement-opportunity
 // checks below that need to inspect real scored/ranked output rather than
 // just source text or raw data files. Memoized — this pipeline run is not
@@ -648,12 +675,14 @@ function runLiveBBRE() {
   if (_liveBBRECache) return _liveBBRECache;
   try {
     const read = f => JSON.parse(fs.readFileSync(f, 'utf8'));
-    const gd   = read('data/goodreadsData.json');
-    const fb   = read('data/feedbackData.json');
-    const hist = read('data/recommendationHistory.json');
-    const meta = read('data/enrichedMetadata.json');
-    const pool = read('data/candidateIndex.json').flatMap(f => read('data/' + f).candidates || []);
-    const candidates = [...gd.books.filter(b => b.shelf === 'to-read'), ...pool];
+    const gd      = read('data/goodreadsData.json');
+    const fb      = read('data/feedbackData.json');
+    const hist    = read('data/recommendationHistory.json');
+    const meta    = read('data/enrichedMetadata.json');
+    const scraped = (() => { try { return read('data/scrapedRatings.json'); } catch { return {}; } })();
+    const pool    = read('data/candidateIndex.json').flatMap(f => read('data/' + f).candidates || []);
+    const candidates = [...gd.books.filter(b => b.shelf === 'to-read'), ...pool]
+      .map(c => _mergeScraped(c, scraped));
     _liveBBRECache = rankBBRE(gd, fb, candidates, hist, meta);
   } catch (e) {
     _liveBBRECache = { error: e.message, selected: [] };
@@ -681,12 +710,26 @@ function findImprovementOpportunities() {
       const higherCount = diffs.filter(d => d > 0.05).length;
       const lowerCount = diffs.filter(d => d < -0.05).length;
       const biasedDirection = higherCount > diffs.length * 0.8 ? 'higher' : lowerCount > diffs.length * 0.8 ? 'lower' : null;
+      const rawBiasExists = Math.abs(mean) >= 0.15 && biasedDirection;
+      // The raw Amazon-vs-Goodreads discrepancy in the DATA will always be
+      // real-world noise that can't be "fixed" — what actually matters is
+      // whether bbreEngine.js's communitySignal() corrects for it before
+      // scoring. Checked live against the actual source: does the
+      // amazonRating branch subtract a bias-offset constant before using it.
+      let bbreSrc = '';
+      try { bbreSrc = fs.readFileSync('bbreEngine.js', 'utf8'); } catch {}
+      const amazonBranch = bbreSrc.match(/book\.amazonRating\)\s*\{([\s\S]*?)\}/);
+      const engineCorrects = !!(amazonBranch && /amazonRating\)\s*-\s*[A-Z_]+/.test(amazonBranch[1]));
       findings.push({
         key: 'amazonRatingBias',
         title: 'Amazon ratings run systematically off Goodreads’ scale',
-        status: Math.abs(mean) >= 0.15 && biasedDirection ? 'open' : 'resolved',
-        detail: `Across ${diffs.length} books with both a Goodreads avgRating and a scraped Amazon rating, Amazon runs ${mean >= 0 ? '+' : ''}${mean.toFixed(2)}★ relative to Goodreads on average (${higherCount} of ${diffs.length} higher, ${lowerCount} lower). bbreEngine.js's communitySignal() applies the same COMMUNITY_NEUTRAL constant regardless of source, so candidates with Amazon data currently get a small, one-directional, uncorrected boost purely from platform rating inflation — not real popularity or quality.`,
-        fix: 'Recalibrate communitySignal() to use a source-specific neutral (or subtract the measured offset from amazonRating before scoring), then verify with eval.js/validate_review.js before shipping — this touches live scoring.',
+        status: rawBiasExists && !engineCorrects ? 'open' : 'resolved',
+        detail: engineCorrects
+          ? `Amazon still runs ${mean >= 0 ? '+' : ''}${mean.toFixed(2)}★ relative to Goodreads in the raw data (${diffs.length} books with both) — that's real platform behavior, not something to "fix" in the data. bbreEngine.js's communitySignal() now subtracts a measured bias offset from amazonRating before comparing it against COMMUNITY_NEUTRAL, so Amazon-sourced candidates are normalized onto the same scale as Goodreads-sourced ones before scoring.`
+          : `Across ${diffs.length} books with both a Goodreads avgRating and a scraped Amazon rating, Amazon runs ${mean >= 0 ? '+' : ''}${mean.toFixed(2)}★ relative to Goodreads on average (${higherCount} of ${diffs.length} higher, ${lowerCount} lower). bbreEngine.js's communitySignal() applies the same COMMUNITY_NEUTRAL constant regardless of source, so candidates with Amazon data currently get a small, one-directional, uncorrected boost purely from platform rating inflation — not real popularity or quality.`,
+        fix: engineCorrects
+          ? 'None needed — if the measured offset drifts meaningfully from the current constant on a future report run, recalibrate AMAZON_BIAS_OFFSET in bbreEngine.js to match.'
+          : 'Recalibrate communitySignal() to use a source-specific neutral (or subtract the measured offset from amazonRating before scoring), then verify with eval.js/validate_review.js before shipping — this touches live scoring.',
       });
     }
   }

@@ -97,6 +97,17 @@ const COMMUNITY_MAX_LIFT = 0.06;   // max ±6 pts on the final score
 const COMMUNITY_POP_MIN  = Math.log10(1_000);    // 1k ratings → weight 0
 const COMMUNITY_POP_MAX  = Math.log10(500_000);  // 500k ratings → weight 1
 
+// Amazon ratings run systematically hot vs. Goodreads for this dataset —
+// measured +0.37★ average across 432 books with both a real Goodreads
+// avgRating and a scraped Amazon rating (dashboard's amazonRatingBias
+// finding, Improvement Opportunities #1, Aug 2026). COMMUNITY_NEUTRAL above
+// is calibrated against Bill's Goodreads-scale rating behavior specifically,
+// so an Amazon-sourced rating needs this offset subtracted first to land on
+// the same scale before comparing against that neutral — otherwise every
+// Amazon-sourced candidate gets a small, one-directional, uncorrected boost
+// from platform inflation rather than real popularity or quality.
+const AMAZON_BIAS_OFFSET = 0.37;
+
 // ── Genre helpers ──────────────────────────────────────────────────────────
 
 const NF_THEMES = new Set([
@@ -742,7 +753,7 @@ function communitySignal(book) {
     avg = Number(book.storyGraphRating);
     cnt = Number(book.storyGraphRatingCount) || 0;
   } else if (book.amazonRating) {
-    avg = Number(book.amazonRating);
+    avg = Number(book.amazonRating) - AMAZON_BIAS_OFFSET;
     cnt = Number(book.amazonRatingCount) || 0;
   } else {
     avg = Number(book.avgRating)    || 0;

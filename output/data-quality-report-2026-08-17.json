@@ -1,6 +1,6 @@
 {
   "date": "2026-08-17",
-  "generatedAt": "2026-08-17T09:39:02.368Z",
+  "generatedAt": "2026-08-17T12:51:20.100Z",
   "totalBooks": 1112,
   "qualityScore": {
     "score": 92,
@@ -16183,9 +16183,9 @@
       {
         "key": "amazonRatingBias",
         "title": "Amazon ratings run systematically off Goodreads’ scale",
-        "status": "open",
-        "detail": "Across 433 books with both a Goodreads avgRating and a scraped Amazon rating, Amazon runs +0.37★ relative to Goodreads on average (410 of 433 higher, 12 lower). bbreEngine.js's communitySignal() applies the same COMMUNITY_NEUTRAL constant regardless of source, so candidates with Amazon data currently get a small, one-directional, uncorrected boost purely from platform rating inflation — not real popularity or quality.",
-        "fix": "Recalibrate communitySignal() to use a source-specific neutral (or subtract the measured offset from amazonRating before scoring), then verify with eval.js/validate_review.js before shipping — this touches live scoring."
+        "status": "resolved",
+        "detail": "Amazon still runs +0.37★ relative to Goodreads in the raw data (433 books with both) — that's real platform behavior, not something to \"fix\" in the data. bbreEngine.js's communitySignal() now subtracts a measured bias offset from amazonRating before comparing it against COMMUNITY_NEUTRAL, so Amazon-sourced candidates are normalized onto the same scale as Goodreads-sourced ones before scoring.",
+        "fix": "None needed — if the measured offset drifts meaningfully from the current constant on a future report run, recalibrate AMAZON_BIAS_OFFSET in bbreEngine.js to match."
       },
       {
         "key": "unusedFields",
@@ -16226,7 +16226,7 @@
         "key": "rankDisplayMismatch",
         "title": "The rank badge Bill sees is wrong on most recommendations",
         "status": "open",
-        "detail": "437 of 441 candidates (99%) show a \"#N\" badge in app.js that doesn't match their true position in the list — e.g. position 2 shows \"#5\" (Bringing Down the House: The Inside Story of Six M.I.T. Students Who Took Vegas for Millions); position 3 shows \"#2\" (Th1rt3en (Eddie Flynn, #4)); position 4 shows \"#6\" (The Small and the Mighty: Twelve Unsung Americans Who Changed the Course of History, from the Founding to the Civil Rights Movement). The recommendation ORDER is correct; only the printed number is stale, because it's set in bbreEngine.js's Step 7 before the fiction/nonfiction balance pass reorders the array, and the balance pass never re-indexes it.",
+        "detail": "437 of 441 candidates (99%) show a \"#N\" badge in app.js that doesn't match their true position in the list — e.g. position 2 shows \"#5\" (Bringing Down the House: The Inside Story of Six M.I.T. Students Who Took Vegas for Millions); position 3 shows \"#2\" (Th1rt3en (Eddie Flynn, #4)); position 4 shows \"#7\" (Taste: My Life Through Food). The recommendation ORDER is correct; only the printed number is stale, because it's set in bbreEngine.js's Step 7 before the fiction/nonfiction balance pass reorders the array, and the balance pass never re-indexes it.",
         "fix": "Re-index `rank` on the `balanced` array right before rankBBRE() returns (a one-line `.map((b,i) => ({...b, rank: i+1}))`), not a structural change to the balance logic itself."
       },
       {
@@ -16261,7 +16261,7 @@
         "key": "diversityPenaltyMagnitude",
         "title": "Diversity re-ranking penalty is comparable in size to the whole score spread",
         "status": "open",
-        "detail": "430 of 441 candidates (98%) take some author/theme/tone diversity penalty; its average non-zero size is 0.176, against a full-pool final-score standard deviation of 0.199 — comparable magnitudes, meaning diversity re-ranking isn't a light touch on top of the \"real\" score, it moves rank about as much as the underlying model does for a large share of the pool. 33 candidates hit the maximum -0.30 author penalty (4th+ book by an author already selected). Separately, 7 candidates are currently hit by 2+ independently-tuned penalty signals at once (dismissal-generalization, era filter, soft-romance), each calibrated in isolation with no check on the combined effect; and 5 candidates are clipped to exactly 0 by the final `Math.max(0, ...)`, losing all differentiation among the worst matches.",
+        "detail": "429 of 441 candidates (97%) take some author/theme/tone diversity penalty; its average non-zero size is 0.176, against a full-pool final-score standard deviation of 0.199 — comparable magnitudes, meaning diversity re-ranking isn't a light touch on top of the \"real\" score, it moves rank about as much as the underlying model does for a large share of the pool. 33 candidates hit the maximum -0.30 author penalty (4th+ book by an author already selected). Separately, 7 candidates are currently hit by 2+ independently-tuned penalty signals at once (dismissal-generalization, era filter, soft-romance), each calibrated in isolation with no check on the combined effect; and 5 candidates are clipped to exactly 0 by the final `Math.max(0, ...)`, losing all differentiation among the worst matches.",
         "fix": "Not necessarily a bug — Bill has asked for variety in the list — but worth a deliberate decision on whether DIVERSITY_PENALTY's steps (0, 0.10, 0.18, 0.25, 0.30) are still the right scale now that it's measured against the real score distribution, rather than tuned once and never revisited at this resolution."
       }
     ]
