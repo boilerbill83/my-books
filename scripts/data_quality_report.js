@@ -727,9 +727,13 @@ function findImprovementOpportunities() {
         detail: engineCorrects
           ? `Amazon still runs ${mean >= 0 ? '+' : ''}${mean.toFixed(2)}★ relative to Goodreads in the raw data (${diffs.length} books with both) — that's real platform behavior, not something to "fix" in the data. bbreEngine.js's communitySignal() now subtracts a measured bias offset from amazonRating before comparing it against COMMUNITY_NEUTRAL, so Amazon-sourced candidates are normalized onto the same scale as Goodreads-sourced ones before scoring.`
           : `Across ${diffs.length} books with both a Goodreads avgRating and a scraped Amazon rating, Amazon runs ${mean >= 0 ? '+' : ''}${mean.toFixed(2)}★ relative to Goodreads on average (${higherCount} of ${diffs.length} higher, ${lowerCount} lower). bbreEngine.js's communitySignal() applies the same COMMUNITY_NEUTRAL constant regardless of source, so candidates with Amazon data currently get a small, one-directional, uncorrected boost purely from platform rating inflation — not real popularity or quality.`,
+        plainSummary: engineCorrects
+          ? `Amazon's star ratings tend to run about a third of a star higher than Goodreads' for the same book. The recommendation engine now adjusts for that gap so a book isn't scored as "better" just because Amazon happens to be more generous than Goodreads.`
+          : `Amazon's star ratings tend to run about a third of a star higher than Goodreads' for the same book, but the engine was treating an Amazon 4.2★ the same as a Goodreads 4.2★. That means books with Amazon data were getting a small, undeserved edge over books it only has Goodreads data for.`,
         fix: engineCorrects
           ? 'None needed — if the measured offset drifts meaningfully from the current constant on a future report run, recalibrate AMAZON_BIAS_OFFSET in bbreEngine.js to match.'
           : 'Recalibrate communitySignal() to use a source-specific neutral (or subtract the measured offset from amazonRating before scoring), then verify with eval.js/validate_review.js before shipping — this touches live scoring.',
+        impact: 4,
       });
     }
   }
@@ -759,9 +763,11 @@ function findImprovementOpportunities() {
         title: 'Populated fields with no scoring code path',
         status: 'open',
         detail: `${unused.map(u => `\`${u.field}\` (${u.populatedPct.toFixed(0)}% populated)`).join(', ')} ${unused.length === 1 ? 'has' : 'have'} zero references across ${ENGINE_SOURCE_FILES.join('/')} — confirmed by scanning the actual source text, not assumed. Field-completeness work on ${unused.length === 1 ? 'this field' : 'these fields'} currently has no BBRE payoff.`,
+        plainSummary: `We track ${unused.length === 1 ? 'a field' : 'a couple of fields'} (${unused.map(u => u.field).join(', ')}) for every book, but the recommendation engine never actually looks at ${unused.length === 1 ? 'it' : 'them'} when deciding what to suggest. Filling ${unused.length === 1 ? 'it' : 'them'} in more completely wouldn't currently make recommendations any better.`,
         fix: unused.some(u => u.field === 'subjects')
           ? 'Either wire subjects into descSimilarity.js\'s TF-IDF vocabulary as bonus tokens (untested — needs an eval.js sweep to confirm it helps before keeping it), or accept it as cosmetic/extract-only and stop prioritizing its completeness in future sessions.'
           : 'Either find a real scoring use for these fields, or stop prioritizing their completeness in future field-gap work.',
+        impact: 3,
       });
     } else {
       findings.push({
@@ -769,7 +775,9 @@ function findImprovementOpportunities() {
         title: 'Populated fields with no scoring code path',
         status: 'resolved',
         detail: 'Every field populated on ≥20% of books has at least one real reference in engine.js/bbreEngine.js/rateEngine.js/descSimilarity.js.',
+        plainSummary: 'Every piece of data we bother tracking is actually being used by the recommendation engine somewhere.',
         fix: 'None needed.',
+        impact: 1,
       });
     }
   }
@@ -785,7 +793,9 @@ function findImprovementOpportunities() {
         title: 'Bottom-50 catch rate is the engine’s weakest metric',
         status: comp.subscore >= 80 ? 'resolved' : 'open',
         detail: `The engine's 50 lowest-predicted candidates (leave-one-out) actually turn out to be ≤3★ only ${caught}/50 times (${comp.subscore.toFixed(0)}%) — the weakest of the 6 BBRE Accuracy components. This is the false-negative side (predicted bad, actually loved), distinct from the "predicted-high-actual-low" worst-misses list, and has no identified fix yet.`,
+        plainSummary: `When the engine is confident it has found your 50 least-favorite candidates, it's only right about half the time — the other half turn out to be books you'd actually enjoy, just mislabeled as bad matches. This is currently the single weakest part of the whole system.`,
         fix: 'No concrete lead yet — tracked here so its trend is visible over time rather than only moving the composite score silently.',
+        impact: 6,
       });
     }
   }
@@ -809,7 +819,9 @@ function findImprovementOpportunities() {
         title: 'storyGraphRating branches in bbreEngine.js never fire',
         status: 'open',
         detail: `bbreEngine.js references \`storyGraphRating\` ${refCount} time(s) as a preferred-over-Amazon community rating source, but every entry in data/scrapedRatings.json has \`storyGraph: null\` — confirmed live, not just from history. This code path has never executed.`,
+        plainSummary: `There's code that would prefer a book's StoryGraph rating over its Amazon rating when both exist — but we never actually collect StoryGraph ratings, so that preference has never once come into play.`,
         fix: 'Remove the dead storyGraphRating branches (zero behavior change) for clarity, or actually implement StoryGraph scraping if the source is wanted — Bill\'s call.',
+        impact: 1,
       });
     } else if (refCount > 0 && anyStoryGraph) {
       findings.push({
@@ -817,7 +829,9 @@ function findImprovementOpportunities() {
         title: 'storyGraphRating branches in bbreEngine.js never fire',
         status: 'resolved',
         detail: 'scrapedRatings.json now has at least one real storyGraph value — this code path is live again.',
+        plainSummary: 'We now have at least one real StoryGraph rating, so the code that prefers it over Amazon is actually doing something.',
         fix: 'None needed.',
+        impact: 1,
       });
     }
   }
@@ -847,7 +861,9 @@ function findImprovementOpportunities() {
         title: 'Dismissal reasonCodes with no matching logic in bbreEngine.js',
         status: 'open',
         detail: `feedbackData.json uses ${unrecognized.map(c => `\`${c}\``).join(', ')} as a dismissal reasonCode, but bbreEngine.js's source never mentions ${unrecognized.length === 1 ? 'that exact string' : 'those exact strings'} — not in REASON_WEIGHT, not as a special-cased author/style signal. Each matching dismissal silently contributes zero theme/tone/author generalization signal via the \`?? 0\` fallback, even though Bill recorded a real reason. Some of these (already-read-or-attempted, saw-the-adaptation) are hyphenated duplicates of existing zero-weight codes so the practical effect is harmless; \`pre-1900-fiction-setting\` is different — it's a real taste signal (the era penalty applies proactively to all books regardless of dismissal, but the dismissal itself never reinforces theme/tone weights the way topic_doesnt_appeal or not_my_vibe do).`,
+        plainSummary: `A few of your "not interested" reasons for dismissed books use wording the engine doesn't recognize, so those specific dismissals aren't teaching it anything about your taste beyond removing that one book — it's not learning the broader lesson the way it does for most dismissals.`,
         fix: 'Either add these exact reasonCode strings to REASON_WEIGHT with an appropriate weight (0 for the harmless duplicates, a real weight like topic_doesnt_appeal\'s 0.5 for pre-1900-fiction-setting), or normalize app.js\'s dismiss-button reasonCode values to the existing underscored vocabulary so new duplicates stop appearing.',
+        impact: 2,
       });
     } else if (codes.length) {
       findings.push({
@@ -855,7 +871,9 @@ function findImprovementOpportunities() {
         title: 'Dismissal reasonCodes with no matching logic in bbreEngine.js',
         status: 'resolved',
         detail: 'Every distinct reasonCode currently in feedbackData.json has matching logic in bbreEngine.js.',
+        plainSummary: 'Every reason Bill has given for dismissing a book is actually understood by the engine and factored into future recommendations.',
         fix: 'None needed.',
+        impact: 1,
       });
     }
   }
@@ -892,9 +910,13 @@ function findImprovementOpportunities() {
         detail: contradictions.length
           ? `bbreEngine.js's SOFT_ROMANCE_AUTHORS list docks ${contradictions.map(c => `${c.name} (despite ${c.books.join(', ')})`).join('; ')} — a flat author-identity penalty on a name Bill has rated 4★ or higher. For these specific names this is a known, deliberate tradeoff Bill approved directly (Session 38, after the same check flagged it live): he asked for both an author- and content-based penalty and chose to keep Hoover/Hannah/Smith on the list despite the conflict, carving out only Taylor Jenkins Reid as a standing exception. Tracked here so it stays visible rather than silently re-approved every time this check runs, and so a *future* name added to the list without this same disclosure gets caught the same way.`
           : `All ${authorNames.length} authors on bbreEngine.js's SOFT_ROMANCE_AUTHORS penalty list have zero 4★+ rated books in Bill's read history — re-verified live against the current data, not just the one-time check made when the list was built.`,
+        plainSummary: contradictions.length
+          ? `Bill asked the engine to dock a specific list of romance authors, knowing it would also dock a few of their books that he's actually rated highly (like Colleen Hoover's Verity). This is just double-checking that tradeoff still only affects the authors he approved, and nobody new got added without the same conversation.`
+          : `The list of authors we've asked the engine to be wary of doesn't accidentally include anyone Bill has actually rated highly.`,
         fix: contradictions.length
           ? 'No action needed on the names above (Bill\'s call, already made) — but re-check this finding before adding any new author to SOFT_ROMANCE_AUTHORS, and revisit if one of the flagged authors picks up more high-rated books that strengthen the contradiction.'
           : 'None needed — re-run this check before adding any new name to the list.',
+        impact: 2,
       });
     }
   }
@@ -924,9 +946,13 @@ function findImprovementOpportunities() {
         detail: mismatches > 0
           ? `${mismatches} of ${live.selected.length} candidates (${(100 * mismatches / live.selected.length).toFixed(0)}%) show a "#N" badge in app.js that doesn't match their true position in the list — e.g. ${examples.join('; ')}. The recommendation ORDER is correct; only the printed number is stale, because it's set in bbreEngine.js's Step 7 before the fiction/nonfiction balance pass reorders the array, and the balance pass never re-indexes it.`
           : 'Every candidate\'s displayed rank badge matches its true position in the list.',
+        plainSummary: mismatches > 0
+          ? `The numbered badge next to each recommendation (#1, #2, #3...) shows the wrong number for almost every book on the page. The books themselves are already in the right order, top to bottom — only the little number printed next to them is wrong, which can make the list look confusing or broken even though the actual recommendations are fine.`
+          : 'The numbered badge next to each recommendation always matches its actual position on the page.',
         fix: mismatches > 0
           ? 'Re-index `rank` on the `balanced` array right before rankBBRE() returns (a one-line `.map((b,i) => ({...b, rank: i+1}))`), not a structural change to the balance logic itself.'
           : 'None needed.',
+        impact: 2,
       });
     }
   }
@@ -950,9 +976,13 @@ function findImprovementOpportunities() {
         detail: (importsRateEngine && !importsBbreEngine)
           ? `scripts/eval.js's only model import is rateEngine.js's buildTasteModel/predictRating. Every "eval.js unchanged, p10/p25 held" verification logged across dozens of sessions was only ever capable of catching a regression in the Bayesian rating predictor — never in bbreEngine.js's 9 additive adjustment layers or its diversity/balance re-ranking, which is what actually produces the ranked list Bill sees. validate_review.js does call rankBBRE() and is the only real (informational-only, non-blocking) coverage that pipeline has.`
           : 'eval.js now imports bbreEngine.js directly, so its precision@k metric covers the full ranking pipeline, not just the rating predictor.',
+        plainSummary: (importsRateEngine && !importsBbreEngine)
+          ? `We have an automated check we run before almost every change to catch mistakes — but it only tests one piece of the recommendation system, not the whole thing. A real mistake introduced into most of the engine's logic could currently ship without anyone noticing, because the safety check was never capable of seeing that part of the system.`
+          : 'The automated check we run before shipping changes now covers the whole recommendation system, not just part of it.',
         fix: (importsRateEngine && !importsBbreEngine)
           ? 'Either extend eval.js\'s leave-one-out methodology to run through rankBBRE() and measure precision on its final output, or explicitly document that eval.js is a rateEngine.js-only check and rely on validate_review.js (or a new gate) for bbreEngine.js coverage — the current implicit assumption that eval.js protects the whole pipeline is the risk to close, one way or the other.'
           : 'None needed.',
+        impact: 5,
       });
     }
   }
@@ -1009,9 +1039,13 @@ function findImprovementOpportunities() {
         detail: disagree > 0
           ? `bbreEngine.js's local inferGenre(themes) and rateEngine.js's inferGenre(themes) disagree on ${disagree} of ${allBooks.length} books (${(100 * disagree / allBooks.length).toFixed(1)}%) — root cause is bbreEngine.js having no tie-break (a theme-count tie falls to 'unknown') while rateEngine.js defaults ties to fiction. bbreEngine.js's Step 4 within-genre normalization uses this flawed local classifier instead of the book's own reliable \`.type\` field (used correctly everywhere else in the file) — ${unknownBucketMisassigned} books with a real, populated \`.type\` currently get mis-bucketed into the tiny "unknown" normalization group instead of their correct genre bucket, which measurably inflates their normalized score relative to being compared against the correctly-sized pool.`
           : 'bbreEngine.js and rateEngine.js\'s genre classifiers agree on every book in the dataset.',
+        plainSummary: disagree > 0
+          ? `Two different parts of the code each have their own way of guessing whether a book is fiction or nonfiction, and they don't always agree with each other. When they disagree, that book gets compared against the wrong, much smaller group of other books — which can unfairly boost its score. This is currently happening to real books in the actual recommendation list, not just a hypothetical edge case.`
+          : 'Every part of the code that needs to know whether a book is fiction or nonfiction agrees with every other part.',
         fix: disagree > 0
           ? 'Make bbreEngine.js\'s Step 4 group by the book\'s own `.type` field (99.2% populated, already trusted elsewhere in the same file) instead of re-deriving genre from themes via a second, drift-prone classifier — removes the disagreement structurally rather than patching either Set.'
           : 'None needed.',
+        impact: 7,
       });
     }
   }
@@ -1042,9 +1076,13 @@ function findImprovementOpportunities() {
         detail: histEmpty
           ? 'engine.js\'s matchScoreFiction/matchScoreNonfiction dock -10/-25/-50 points for a candidate shown 1/2/3+ times before, sourced from data/recommendationHistory.json. That file is permanently `{"history": []}` in the repo — app.js only fetches it read-only, and the static site has no way to persist recommendation-exposure history back to it. Every rankBBRE()/rankRecommendations() run, live or scripted, always sees timesShown=0 for every candidate.'
           : 'data/recommendationHistory.json now has real entries, so the repeat-exposure penalty has live data to act on.',
+        plainSummary: histEmpty
+          ? `The engine is designed to stop pushing a book so hard once it's been shown to Bill a few times without him doing anything about it — but the way the site is built, it never actually finds out how many times a book has been shown. So that safeguard has never once kicked in, even though the code for it exists.`
+          : 'The site now remembers how many times a book has been shown, so the engine can actually back off on repeats the way it was designed to.',
         fix: histEmpty
           ? 'Either wire up a real persistence path for recommendation-exposure history (e.g. folded into the existing localStorage feedback-persistence mechanism, then synced the same way dismissals are), or remove the dead penalty branch for clarity — Bill\'s call, same shape as the deadStoryGraphCode finding above.'
           : 'None needed.',
+        impact: 3,
       });
     }
   }
@@ -1080,9 +1118,13 @@ function findImprovementOpportunities() {
         detail: externalRefs === 0
           ? 'rateEngine.js exports rankByPredictedRating() — with its own exclusion filtering, its own dismissal handling, and its own duplicated copy of the book-key normalizer (_normBookKey, a re-implementation of engine.js\'s norm()) — but no other file in the repo (app.js, scripts/*, or bbreEngine.js) imports or calls it.'
           : 'rankByPredictedRating() is now referenced from at least one other file.',
+        plainSummary: externalRefs === 0
+          ? `There's a whole extra chunk of code sitting in the recommendation engine that nothing ever actually runs. It doesn't affect what gets recommended, but it's dead weight someone has to read past, and it's a second copy of some logic that could quietly go out of sync with the real version.`
+          : 'That extra chunk of code is now actually being used somewhere.',
         fix: externalRefs === 0
           ? 'Remove it along with its private _normBookKey helper — zero behavior change, since nothing calls it, and it removes a second copy of book-key normalization logic that could otherwise silently drift from engine.js\'s real one (the exact bug class Session 13b hit with bookKey slug format).'
           : 'None needed.',
+        impact: 1,
       });
     }
   }
@@ -1117,7 +1159,9 @@ function findImprovementOpportunities() {
         title: 'Diversity re-ranking penalty is comparable in size to the whole score spread',
         status: (avgNonzero >= std * 0.7) ? 'open' : 'resolved',
         detail: `${nonzero.length} of ${n} candidates (${(100 * nonzero.length / n).toFixed(0)}%) take some author/theme/tone diversity penalty; its average non-zero size is ${avgNonzero.toFixed(3)}, against a full-pool final-score standard deviation of ${std.toFixed(3)} — comparable magnitudes, meaning diversity re-ranking isn't a light touch on top of the "real" score, it moves rank about as much as the underlying model does for a large share of the pool. ${maxHits} candidates hit the maximum -0.30 author penalty (4th+ book by an author already selected). Separately, ${stacked} candidates are currently hit by 2+ independently-tuned penalty signals at once (dismissal-generalization, era filter, soft-romance), each calibrated in isolation with no check on the combined effect; and ${flooredZero} candidates are clipped to exactly 0 by the final \`Math.max(0, ...)\`, losing all differentiation among the worst matches.`,
+        plainSummary: `To keep the recommendation list varied, the engine automatically knocks a book's score down once it's already picked a few books by the same author, genre, or vibe. That penalty turns out to be almost as big a factor in the final list as everything else the engine knows about a book combined — meaning "keep it varied" is currently pulling about as much weight as "is this actually a good match" for a large share of the list.`,
         fix: 'Not necessarily a bug — Bill has asked for variety in the list — but worth a deliberate decision on whether DIVERSITY_PENALTY\'s steps (0, 0.10, 0.18, 0.25, 0.30) are still the right scale now that it\'s measured against the real score distribution, rather than tuned once and never revisited at this resolution.',
+        impact: 6,
       });
     }
   }
@@ -1901,7 +1945,7 @@ ${impactScores.length ? renderList(impactScores.slice(0, 20).map(s => `"${s.titl
 
 A research backlog (Session 36) of ways to improve the data or the engine itself, beyond what the integrity/completeness checks above already cover. Every finding here is live-computed from current data/engine source on every run — including "resolved" once a future fix lands — not a fixed snapshot of what was true the day it was found.
 
-${improvementOpportunities.length ? improvementOpportunities.map(f => `${f.status === 'open' ? '🔴' : '✅'} **${f.title}** (\`${f.key}\`, ${f.status})\n${f.detail}\n**Fix:** ${f.fix}`).join('\n\n') : 'None currently identified.'}
+${improvementOpportunities.length ? improvementOpportunities.map(f => `${f.status === 'open' ? '🔴' : '✅'} **${f.title}** (\`${f.key}\`, ${f.status}) — Impact to BBRE: ${f.impact ?? '?'}/10\n*Technical description:* ${f.detail}\n*In plain English:* ${f.plainSummary ?? '—'}\n**Fix needed:** ${f.fix}`).join('\n\n') : 'None currently identified.'}
 
 ## Recent Trend (BBRE-relevant metrics)
 

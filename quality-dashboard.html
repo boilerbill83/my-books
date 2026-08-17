@@ -167,7 +167,21 @@
       .qd-opp-status.open { background: rgba(208,59,59,0.13); color: var(--status-critical); }
       .qd-opp-status.resolved { background: rgba(12,163,12,0.13); color: var(--status-good); }
       .qd-opp-key { font-family: ui-monospace, monospace; font-size: 0.72rem; color: var(--text-muted); }
-      .qd-opp-detail { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; line-height: 1.5; overflow-wrap: break-word; }
+      .qd-opp-impact { display: inline-flex; align-items: center; gap: 6px; margin-left: auto; }
+      .qd-opp-impact-label { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; white-space: nowrap; }
+      .qd-opp-impact-track { width: 60px; height: 7px; border-radius: 4px; background: var(--bg-subtle); overflow: hidden; }
+      .qd-opp-impact-fill { height: 100%; border-radius: 4px; }
+      .qd-opp-impact-num { font-size: 0.78rem; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--text); white-space: nowrap; }
+      .qd-opp-field { margin: 10px 0; }
+      .qd-opp-field-label {
+        font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+        color: var(--text-muted); margin-bottom: 3px;
+      }
+      .qd-opp-detail { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; overflow-wrap: break-word; }
+      .qd-opp-plain {
+        font-size: 0.87rem; color: var(--text); line-height: 1.55; overflow-wrap: break-word;
+        background: var(--bg-subtle); border-radius: 7px; padding: 10px 12px;
+      }
       .qd-opp-fix { font-size: 0.85rem; color: var(--text); }
       .qd-opp-fix strong { color: var(--accent); }
 
@@ -629,6 +643,16 @@
       // Icon paired with the status label (not color alone) per the
       // dataviz accessibility rule — this page's warning/serious status
       // colors already fail 3:1 contrast on the card background.
+      // Higher impact = more severe (opposite polarity from scoreTier's
+      // 0-100 quality scores, so this is a separate small helper rather
+      // than reusing that one).
+      function impactColor(n) {
+        if (n >= 7) return 'var(--status-critical)';
+        if (n >= 5) return 'var(--status-serious)';
+        if (n >= 3) return '#b8860b'; // darker gold — --status-warning fails text contrast, same fix as scoreTier
+        return 'var(--status-good)';
+      }
+
       function renderOpportunities(findings) {
         const wrap = $('#qdOpportunities');
         wrap.innerHTML = '';
@@ -645,11 +669,38 @@
           status.textContent = f.status === 'open' ? '🔴 Open' : '✅ Resolved';
           const key = document.createElement('span'); key.className = 'qd-opp-key'; key.textContent = f.key;
           head.appendChild(title); head.appendChild(status); head.appendChild(key);
+
+          if (typeof f.impact === 'number') {
+            const impactWrap = document.createElement('div'); impactWrap.className = 'qd-opp-impact';
+            const impactLabel = document.createElement('span'); impactLabel.className = 'qd-opp-impact-label'; impactLabel.textContent = 'Impact to BBRE';
+            const track = document.createElement('div'); track.className = 'qd-opp-impact-track';
+            const fill = document.createElement('div'); fill.className = 'qd-opp-impact-fill';
+            fill.style.width = `${Math.max(0, Math.min(10, f.impact)) * 10}%`;
+            fill.style.background = impactColor(f.impact);
+            track.appendChild(fill);
+            const num = document.createElement('span'); num.className = 'qd-opp-impact-num';
+            num.style.color = impactColor(f.impact);
+            num.textContent = `${f.impact}/10`;
+            impactWrap.appendChild(impactLabel); impactWrap.appendChild(track); impactWrap.appendChild(num);
+            head.appendChild(impactWrap);
+          }
+
+          const techField = document.createElement('div'); techField.className = 'qd-opp-field';
+          const techLabel = document.createElement('div'); techLabel.className = 'qd-opp-field-label'; techLabel.textContent = 'Technical description';
           const detail = document.createElement('div'); detail.className = 'qd-opp-detail'; detail.textContent = f.detail;
-          const fix = document.createElement('div'); fix.className = 'qd-opp-fix';
-          fix.innerHTML = '<strong>Fix: </strong>';
-          fix.append(document.createTextNode(f.fix));
-          card.appendChild(head); card.appendChild(detail); card.appendChild(fix);
+          techField.appendChild(techLabel); techField.appendChild(detail);
+
+          const plainField = document.createElement('div'); plainField.className = 'qd-opp-field';
+          const plainLabel = document.createElement('div'); plainLabel.className = 'qd-opp-field-label'; plainLabel.textContent = 'In plain English';
+          const plain = document.createElement('div'); plain.className = 'qd-opp-plain'; plain.textContent = f.plainSummary || f.detail;
+          plainField.appendChild(plainLabel); plainField.appendChild(plain);
+
+          const fixField = document.createElement('div'); fixField.className = 'qd-opp-field';
+          const fixLabel = document.createElement('div'); fixLabel.className = 'qd-opp-field-label'; fixLabel.textContent = 'Fix needed';
+          const fix = document.createElement('div'); fix.className = 'qd-opp-fix'; fix.textContent = f.fix;
+          fixField.appendChild(fixLabel); fixField.appendChild(fix);
+
+          card.appendChild(head); card.appendChild(techField); card.appendChild(plainField); card.appendChild(fixField);
           wrap.appendChild(card);
         });
       }
