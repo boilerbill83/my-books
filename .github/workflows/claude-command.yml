@@ -1,0 +1,34 @@
+name: Claude Command
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  claude:
+    if: |
+      github.actor != 'claude[bot]' &&
+      contains(github.event.comment.body, '@claude')
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      actions: read
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Run Claude Code
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          track_progress: true
+          claude_args: |
+            --max-turns 15
