@@ -1,3 +1,1005 @@
 {
-  "movies": []
+  "movies": [
+    {
+      "id": "738c624c-d826-4a7a-8c69-1dc6f631e4f2",
+      "title": "1917",
+      "year": 2019,
+      "dateWatched": "2019-12-25",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt8579674"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "5f141370-882d-4de2-8844-26c6564fc338",
+      "title": "A Complete Unknown",
+      "year": 2024,
+      "dateWatched": "2024-12-25",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt11563598"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "3d4ba875-d04e-4434-90f9-fa88d7d34343",
+      "title": "A Quiet Place",
+      "year": 2018,
+      "dateWatched": "2018-04-06",
+      "rating": 4,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt6644200"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "47eafd0c-08dc-4c02-8bc4-cc6f624ee8fc",
+      "title": "A Star Is Born",
+      "year": 2018,
+      "dateWatched": "2018-10-05",
+      "rating": 10,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1517451"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "78b53248-ce02-4b1e-b87a-fe9e831f5e61",
+      "title": "Air",
+      "year": 2023,
+      "dateWatched": "2023-04-05",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt16419074"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "9e230fdd-125a-42a5-8fca-34ce166fb891",
+      "title": "Anora",
+      "year": 2024,
+      "dateWatched": "2024-10-18",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt28607951"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "00bb55c5-a44d-456a-9b26-f96bc4a572d8",
+      "title": "Anyone But You",
+      "year": 2023,
+      "dateWatched": "2023-12-22",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt26047818"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "d082d8e3-ef3d-4b08-9981-31f11fc9ae61",
+      "title": "Arrival",
+      "year": 2016,
+      "dateWatched": "2016-11-11",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt2543164"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "be2cdec6-968f-471d-b2c2-41786ac93992",
+      "title": "Avatar: The Way of Water",
+      "year": 2022,
+      "dateWatched": "2022-12-16",
+      "rating": 3,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1630029"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "dcdc553a-c9c5-415f-82f5-01402ffa995a",
+      "title": "Avengers: Infinity War",
+      "year": 2018,
+      "dateWatched": "2018-04-27",
+      "rating": 6,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt4154756"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "ee803664-3b83-4e6e-ad99-1dadb3b0535b",
+      "title": "Baby Driver",
+      "year": 2017,
+      "dateWatched": "2017-06-28",
+      "rating": 6,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt3890160"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "363556fc-361f-48c8-9b62-af233e11bda4",
+      "title": "Barbie",
+      "year": 2023,
+      "dateWatched": "2023-07-21",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1517268"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "0f82d7d3-138d-4870-a72f-9401aa09b467",
+      "title": "Bohemian Rhapsody",
+      "year": 2018,
+      "dateWatched": "2018-11-02",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1727824"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "21e86bc1-5a94-4447-b1ed-9fdb5df59449",
+      "title": "Bridge of Spies",
+      "year": 2015,
+      "dateWatched": "2015-10-16",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt3682448"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "fa48f6f5-fddb-447f-a686-7d673b3a6156",
+      "title": "Bullet Train",
+      "year": 2022,
+      "dateWatched": "2022-08-05",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt12593682"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "c70eb690-07cc-4d89-bad6-eb772b73985a",
+      "title": "Civil War",
+      "year": 2024,
+      "dateWatched": "2024-04-12",
+      "rating": 10,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt17279496"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "5993dead-bb75-4fbe-92fb-bb3de4f8b67a",
+      "title": "Conclave",
+      "year": 2024,
+      "dateWatched": "2024-10-25",
+      "rating": 6,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt20215234"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "6d49eaba-d5e1-4f84-a49f-1b8932431e59",
+      "title": "Creed",
+      "year": 2015,
+      "dateWatched": "2015-11-25",
+      "rating": 10,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt3076658"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "b6951e1b-badb-46c2-828e-e3b92e8047a9",
+      "title": "Deadpool",
+      "year": 2016,
+      "dateWatched": "2016-02-12",
+      "rating": 10,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1431045"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "82a8d247-52a4-4bd3-828c-71dd9c5f5f53",
+      "title": "Deadpool 2",
+      "year": 2018,
+      "dateWatched": "2018-05-18",
+      "rating": 9,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt5463162"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "fe423d1c-49d0-4d10-9182-b80dca2a8f0f",
+      "title": "Dune",
+      "year": 2021,
+      "dateWatched": "2021-10-22",
+      "rating": 2,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1160419"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "5a02c7cb-0161-45a1-98ab-f3acb4d085b5",
+      "title": "Dunkirk",
+      "year": 2017,
+      "dateWatched": "2017-07-21",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt5013056"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "86b13fe4-3265-4082-bc2d-85383127b843",
+      "title": "Elvis",
+      "year": 2022,
+      "dateWatched": "2022-06-24",
+      "rating": 4,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt3704428"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "bbee94bb-3eab-4e58-8cb6-f14481b863fe",
+      "title": "Everything Everywhere All at Once",
+      "year": 2022,
+      "dateWatched": "2022-04-08",
+      "rating": 9,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt6710474"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "0f209ee9-c65b-40a7-b351-ca6fa399564d",
+      "title": "F1",
+      "year": 2025,
+      "dateWatched": "2025-06-27",
+      "rating": 9,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt16311594"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "8b13cf05-90e2-4d0f-a06f-84e4ab468eaf",
+      "title": "Five Nights at Freddy's",
+      "year": 2023,
+      "dateWatched": "2023-10-27",
+      "rating": 5,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt4589218"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "7ab71dbb-6896-403b-907a-e93c5a3ffe2e",
+      "title": "Ford v Ferrari",
+      "year": 2019,
+      "dateWatched": "2019-11-15",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1950186"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "ac736027-8308-49d8-b95f-d929a1abb2a0",
+      "title": "Game Night",
+      "year": 2018,
+      "dateWatched": "2018-02-23",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt2704998"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "5f0aa864-777d-4a59-9517-34a272145225",
+      "title": "Get Out",
+      "year": 2017,
+      "dateWatched": "2017-02-24",
+      "rating": 10,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt5052448"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "84e20fef-280f-4eff-b5ec-8e53f5909f37",
+      "title": "Gladiator II",
+      "year": 2024,
+      "dateWatched": "2024-11-22",
+      "rating": 9,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt9218128"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "029525ae-f0cd-4edf-a28e-dac251bcb8aa",
+      "title": "Glass Onion: A Knives Out Mystery",
+      "year": 2022,
+      "dateWatched": "2022-11-23",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt11564570"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "98d88681-4618-403a-b316-88c0d9d118dc",
+      "title": "Green Book",
+      "year": 2018,
+      "dateWatched": "2018-11-16",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt6966692"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "a67ab210-97f5-443e-af30-96e1bb0dac84",
+      "title": "Hidden Figures",
+      "year": 2017,
+      "dateWatched": "2017-01-06",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt4846340"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "8383a96d-bc62-4cee-bbab-66d83b9ddd68",
+      "title": "I, Tonya",
+      "year": 2017,
+      "dateWatched": "2017-12-08",
+      "rating": 5,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt5580036"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "1cc59c6b-4f00-49a0-b527-0b1043020118",
+      "title": "It",
+      "year": 2017,
+      "dateWatched": "2017-09-08",
+      "rating": 6,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1396484"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "39fc4929-d675-46a1-a0de-f9147a0b5880",
+      "title": "It Chapter Two",
+      "year": 2019,
+      "dateWatched": "2019-09-06",
+      "rating": 4,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt7349950"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "1186aff6-8d01-4ff8-a9d1-e7a8d4d638c8",
+      "title": "John Wick: Chapter 2",
+      "year": 2017,
+      "dateWatched": "2017-02-10",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt4425200"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "3360f32a-8244-42f4-b7a4-145b0e46b34a",
+      "title": "John Wick: Chapter 3 – Parabellum",
+      "year": 2019,
+      "dateWatched": "2019-05-17",
+      "rating": 6,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt6146586"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "422a299a-a51f-4e68-ba22-78d097191e58",
+      "title": "John Wick: Chapter 4",
+      "year": 2023,
+      "dateWatched": "2023-03-24",
+      "rating": 6,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt10366206"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "b9ed19e4-981e-435d-beda-661b30fd1a0e",
+      "title": "Joker",
+      "year": 2019,
+      "dateWatched": "2019-10-04",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt7286456"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "4a608f11-3517-4250-b70e-7a1611682e65",
+      "title": "Knives Out",
+      "year": 2019,
+      "dateWatched": "2019-11-27",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt8946378"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "d50d5432-b64a-41b5-850f-60616410a070",
+      "title": "La La Land",
+      "year": 2016,
+      "dateWatched": "2016-12-25",
+      "rating": 10,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt3783958"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "bcafc27d-f8df-4f10-b413-21ac084eb9cc",
+      "title": "Lady Bird",
+      "year": 2017,
+      "dateWatched": "2017-11-03",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt4925292"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "0a9536ab-c540-46a2-b700-18c841b64045",
+      "title": "Mad Max: Fury Road",
+      "year": 2015,
+      "dateWatched": "2015-05-15",
+      "rating": 4,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1392190"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "b9b47c37-a4de-4f40-909f-6e72d699c890",
+      "title": "Molly's Game",
+      "year": 2017,
+      "dateWatched": "2017-12-25",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt4209788"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "f8235e3a-0136-49ce-a018-93360e5d5fbf",
+      "title": "Nobody",
+      "year": 2021,
+      "dateWatched": "2021-03-26",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt7888964"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "d71d13a2-a62e-49dc-ac9b-d51c273623a3",
+      "title": "Once Upon a Time in Hollywood",
+      "year": 2019,
+      "dateWatched": "2019-07-26",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt7131622"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "286cde61-3a67-48e1-a7d9-0480546cfcb1",
+      "title": "Oppenheimer",
+      "year": 2023,
+      "dateWatched": "2023-07-21",
+      "rating": 10,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt15398776"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "56776c2e-7c79-48f1-be82-aaced8286550",
+      "title": "Parasite",
+      "year": 2019,
+      "dateWatched": "2019-10-11",
+      "rating": 9,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt6751668"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "aab0cbdf-0e7a-480e-b55c-0282fa661b20",
+      "title": "Passengers",
+      "year": 2016,
+      "dateWatched": "2016-12-21",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1355644"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "cdf3ccf6-21e2-434b-a4be-dff5bcf03c36",
+      "title": "Promising Young Woman",
+      "year": 2020,
+      "dateWatched": "2020-12-25",
+      "rating": 9,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt9620292"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "e44b0d74-d160-450d-a3ba-a8983132c875",
+      "title": "Room",
+      "year": 2015,
+      "dateWatched": "2015-10-23",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt3170832"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "49af9c21-9568-426a-8492-20bcc25a3448",
+      "title": "Scream",
+      "year": 2022,
+      "dateWatched": "2022-01-14",
+      "rating": 4,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt11245972"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "a210a37a-910a-4d83-830d-b82f77212490",
+      "title": "Sicario",
+      "year": 2015,
+      "dateWatched": "2015-09-18",
+      "rating": 10,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt3397884"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "24e3929f-98de-4d89-a91f-81b2effee9c2",
+      "title": "Sinners",
+      "year": 2025,
+      "dateWatched": "2025-04-18",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt31193180"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "bb0f2b4a-bb7c-4892-a133-d40c0f87aaba",
+      "title": "Smile",
+      "year": 2022,
+      "dateWatched": "2022-09-30",
+      "rating": 5,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt15474916"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "46196e7f-d144-4b7d-900e-2077b803804b",
+      "title": "Spotlight",
+      "year": 2015,
+      "dateWatched": "2015-11-20",
+      "rating": 9,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1895587"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "f78c6c8a-b4ec-4e97-85e3-996740c56938",
+      "title": "Straight Outta Compton",
+      "year": 2015,
+      "dateWatched": "2015-08-14",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1398426"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "246f66c1-bbdf-419f-924a-76f5415d5b4c",
+      "title": "Sully",
+      "year": 2016,
+      "dateWatched": "2016-09-09",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt3263904"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "f7a22c67-4ff2-4353-8397-88e08d9e55ca",
+      "title": "Tenet",
+      "year": 2020,
+      "dateWatched": "2020-09-03",
+      "rating": 10,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt6723592"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "e714faeb-1a18-4647-85b4-22971937be01",
+      "title": "The Accountant",
+      "year": 2016,
+      "dateWatched": "2016-10-14",
+      "rating": 9,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt2140479"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "39af94e3-b5a2-4641-b843-40e869f9a92a",
+      "title": "The Batman",
+      "year": 2022,
+      "dateWatched": "2022-03-04",
+      "rating": 5,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1877830"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "3b61a6ac-3edd-4566-bb11-b25bfff32b0d",
+      "title": "The Big Short",
+      "year": 2015,
+      "dateWatched": "2015-12-23",
+      "rating": 10,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1596363"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "5798a8c3-b59d-4d93-af79-803d8ea710f5",
+      "title": "The Hateful Eight",
+      "year": 2015,
+      "dateWatched": "2015-12-25",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt3460252"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "9e82dc0f-f3a5-4cb5-a92c-557dd09a032f",
+      "title": "The Holdovers",
+      "year": 2023,
+      "dateWatched": "2023-11-10",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt14849194"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "70315801-4c16-4951-8587-4c1991a2c70c",
+      "title": "The Hunger Games: Mockingjay – Part 2",
+      "year": 2015,
+      "dateWatched": "2015-11-20",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1951266"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "dea0fb4a-d242-4d29-bf9e-2c5e6ba3a25a",
+      "title": "The Hunger Games: The Ballad of Songbirds & Snakes",
+      "year": 2023,
+      "dateWatched": "2023-11-17",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt10545296"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "c31de71f-8fb2-4290-b948-336b3af1d9e9",
+      "title": "The Martian",
+      "year": 2015,
+      "dateWatched": "2015-10-02",
+      "rating": 10,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt3659388"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "06924519-3107-4c3a-a084-b486ecf9a658",
+      "title": "The Menu",
+      "year": 2022,
+      "dateWatched": "2022-11-18",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt9764362"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "fc073638-f676-4d0c-a491-bd399922e169",
+      "title": "The Revenant",
+      "year": 2016,
+      "dateWatched": "2016-01-08",
+      "rating": 6,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1663202"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "69fa6d3d-d9fb-483b-998e-5a9973c5afdb",
+      "title": "The Substance",
+      "year": 2024,
+      "dateWatched": "2024-09-20",
+      "rating": 5,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt17526714"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "f058e0a0-89d4-421a-acbc-8beaa76b7b3c",
+      "title": "The Trial of the Chicago 7",
+      "year": 2020,
+      "dateWatched": "2020-10-16",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1070874"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "998ab746-f492-4ff8-9ec8-024c9b0439ac",
+      "title": "Three Billboards Outside Ebbing, Missouri",
+      "year": 2017,
+      "dateWatched": "2017-11-10",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt5027774"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "a90562eb-94b6-4de6-b171-319a31bbb185",
+      "title": "Top Gun: Maverick",
+      "year": 2022,
+      "dateWatched": "2022-05-27",
+      "rating": 9,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt1745960"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "c1fc4b18-e3bf-47de-97f6-6d53adffad30",
+      "title": "Twisters",
+      "year": 2024,
+      "dateWatched": "2024-07-19",
+      "rating": 9,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt12584954"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "386d5ba1-0a73-4509-8d1f-76d56a5882a8",
+      "title": "Uncut Gems",
+      "year": 2019,
+      "dateWatched": "2019-12-25",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt5727208"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "cf2accec-45e6-4eac-9ecd-7a493694bd10",
+      "title": "Us",
+      "year": 2019,
+      "dateWatched": "2019-03-22",
+      "rating": 9,
+      "notes": "",
+      "addedAt": "2026-08-20T15:06:11.080Z",
+      "traktIds": {
+        "imdb": "tt6857112"
+      },
+      "traktSyncedAt": null
+    }
+  ]
 }
