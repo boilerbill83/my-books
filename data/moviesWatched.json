@@ -196,6 +196,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "c0c8aeab-26a3-45b0-a878-a3f5c12b40c5",
+      "title": "Challengers",
+      "year": 2024,
+      "dateWatched": "2024-04-26",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T19:57:04.158Z",
+      "traktIds": {
+        "imdb": "tt16426418"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "c70eb690-07cc-4d89-bad6-eb772b73985a",
       "title": "Civil War",
       "year": 2024,
@@ -257,6 +270,19 @@
       "addedAt": "2026-08-20T15:06:11.080Z",
       "traktIds": {
         "imdb": "tt5463162"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "74afb8be-7962-49ba-a163-631e5c2947e2",
+      "title": "Den of Thieves",
+      "year": 2018,
+      "dateWatched": "2018-01-19",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T19:57:04.158Z",
+      "traktIds": {
+        "imdb": "tt1259528"
       },
       "traktSyncedAt": null
     },
@@ -417,6 +443,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "c9253a9d-6750-44e0-bb01-79d87d26374d",
+      "title": "Hell or High Water",
+      "year": 2016,
+      "dateWatched": "2016-08-12",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T19:57:04.158Z",
+      "traktIds": {
+        "imdb": "tt2582782"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "a67ab210-97f5-443e-af30-96e1bb0dac84",
       "title": "Hidden Figures",
       "year": 2017,
@@ -573,6 +612,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "6697f499-f708-4777-9965-2f1f69448543",
+      "title": "Manchester by the Sea",
+      "year": 2016,
+      "dateWatched": "2016-11-18",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T19:57:04.158Z",
+      "traktIds": {
+        "imdb": "tt4034228"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "b9b47c37-a4de-4f40-909f-6e72d699c890",
       "title": "Molly's Game",
       "year": 2017,
@@ -586,6 +638,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "4f2e5bc4-4c8c-44e0-85e3-e06a5ed83139",
+      "title": "Moonlight",
+      "year": 2016,
+      "dateWatched": "2016-10-21",
+      "rating": 6,
+      "notes": "",
+      "addedAt": "2026-08-20T19:57:04.158Z",
+      "traktIds": {
+        "imdb": "tt4975722"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "f8235e3a-0136-49ce-a018-93360e5d5fbf",
       "title": "Nobody",
       "year": 2021,
@@ -595,6 +660,19 @@
       "addedAt": "2026-08-20T15:06:11.080Z",
       "traktIds": {
         "imdb": "tt7888964"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "efd51674-6908-4107-992d-8dfcf97be51a",
+      "title": "Nomadland",
+      "year": 2020,
+      "dateWatched": "2020-12-04",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T19:57:04.158Z",
+      "traktIds": {
+        "imdb": "tt9770150"
       },
       "traktSyncedAt": null
     },
@@ -660,6 +738,19 @@
       "addedAt": "2026-08-20T15:06:11.080Z",
       "traktIds": {
         "imdb": "tt9620292"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "2fa86660-a6ff-40ba-8574-d89479e12e03",
+      "title": "Rocketman",
+      "year": 2019,
+      "dateWatched": "2019-05-31",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T19:57:04.158Z",
+      "traktIds": {
+        "imdb": "tt2066051"
       },
       "traktSyncedAt": null
     },
@@ -898,6 +989,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "4e3c5f5a-d567-4ada-bd68-014d1ad9a033",
+      "title": "The Nice Guys",
+      "year": 2016,
+      "dateWatched": "2016-05-20",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T19:57:04.158Z",
+      "traktIds": {
+        "imdb": "tt3799694"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "fc073638-f676-4d0c-a491-bd399922e169",
       "title": "The Revenant",
       "year": 2016,
@@ -998,6 +1102,19 @@
       "addedAt": "2026-08-20T15:06:11.080Z",
       "traktIds": {
         "imdb": "tt6857112"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "eea437ea-3dc7-49cb-a2a9-522190cc8bfe",
+      "title": "Wind River",
+      "year": 2017,
+      "dateWatched": "2017-08-04",
+      "rating": 9,
+      "notes": "",
+      "addedAt": "2026-08-20T19:57:04.158Z",
+      "traktIds": {
+        "imdb": "tt5362988"
       },
       "traktSyncedAt": null
     }
