@@ -44,8 +44,7 @@ Static GitHub Pages app that recommends books from Bill's personal to-read list 
 | `quality-dashboard.html` | Interactive dashboard reading the data-quality-report JSON snapshots — a "Last refreshed" timestamp at the top, a Data Quality Score ring gauge + component breakdown, a second BBRE Accuracy Score ring gauge (Session 33, engine-prediction quality via `scripts/eval.js`'s metrics, both dials share the generic `renderDial()`), At-a-Glance stat tiles, multi-week trend charts, sortable/searchable field, impact-score, and tag-count (themes/tones/subjects) tables, a tabbed integrity browser, and a Top Impediments section at the bottom. Linked from index.html's header. |
 | `index.html` | Entry point |
 | `movies.html` / `movies.js` | Movie tracker (Session 41) — local-first UI for "watched since 2015" and "want to watch" lists, same localStorage-then-commit pattern as `app.js`'s feedback persistence (add in the browser → `localStorage` → "Copy JSON" button → paste into the committed data file → push). Linked from `index.html`'s header. |
-| `data/moviesWatched.json` / `data/movieWatchlist.json` | Committed movie lists (`{ movies: [...] }`), the durable source of truth `movies.html` merges against and `scripts/trakt_sync.js` reads. |
-| `scripts/trakt_sync.js` | Uploads the two movie JSON files to Trakt — OAuth device-code flow (no redirect URI needed), resolves each title/year against `GET /search/movie` before syncing (never guesses on an ambiguous or no-match title), writes `traktIds`/`traktSyncedAt` back into the local files so re-runs are incremental. Needs `TRAKT_CLIENT_ID`/`TRAKT_CLIENT_SECRET` env vars (never committed) and caches its token in `.trakt-token.json` (gitignored). See "Movie Tracking (Trakt)" below. |
+| `data/moviesWatched.json` / `data/movieWatchlist.json` | Committed movie lists (`{ movies: [...] }`), the durable source of truth `movies.html` merges against. Ratings are 1-10 (Trakt's native scale). No script reads these automatically — Trakt import files are built by hand/research per "Movie Tracking (Trakt)" below; **this project never calls the Trakt API**. |
 
 ---
 
@@ -214,22 +213,21 @@ buildTasteModel(…, meta) → Signal 4b in predictRating.
 
 ## Movie Tracking (Trakt) — Session 41
 
-A separate, lightweight tracker living alongside the book app (unrelated data, same static-site conventions) for movies watched since 2015 and a want-to-watch list, with a one-way upload to Trakt.
+A separate, lightweight tracker living alongside the book app (unrelated data, same static-site conventions) for movies watched since 2015 and a want-to-watch list, exported as a file Bill uploads to Trakt himself.
 
-**Adding movies:** open `movies.html` (linked from `index.html`'s header). Add entries under either tab — they save to `localStorage` immediately. When ready to make them durable, click **Copy JSON** on a tab and paste the result into `data/moviesWatched.json` or `data/movieWatchlist.json`, then commit + push (same workflow as `app.js`'s "Copy feedback JSON" button). Local-only entries that haven't been committed yet will *not* survive a fresh clone/container — commit regularly, don't let a long backlog build up only in browser storage.
+**The Trakt API is never called by this project — a standing rule, not a preference.** An earlier version of this feature used Trakt's OAuth device-code flow to sync directly; Bill rejected that (Trakt's live-import path needs VIP, and he doesn't want any API dependency at all) and the sandbox's network policy blocks `api.trakt.tv` outright anyway. Do not add a script or UI feature that calls `api.trakt.tv` again without Bill explicitly asking for it.
 
-**One-time Trakt API app setup** (do this once, it's free):
-1. Sign in at https://trakt.tv (create an account first if Bill doesn't have one).
-2. Go to https://trakt.tv/oauth/applications → **New Application**.
-3. Name it anything (e.g. "Bill's Movies Sync"). Redirect URI: `urn:ietf:wg:oauth:2.0:oob` (required by Trakt's form even though the device-code flow this script uses doesn't redirect anywhere). Leave the Permissions/Scopes default.
-4. Save — copy the **Client ID** and **Client Secret** it generates.
-5. **Never commit these.** Export them as env vars before running the sync script (same "keep it outside the repo" rule CLAUDE.md already applies to the GitHub PAT):
-   ```bash
-   export TRAKT_CLIENT_ID=your_client_id
-   export TRAKT_CLIENT_SECRET=your_client_secret
-   ```
+**Adding movies:** open `movies.html` (linked from `index.html`'s header). Add entries under either tab — they save to `localStorage` immediately. When ready to make them durable, click **Copy JSON** on a tab and paste the result into `data/moviesWatched.json` or `data/movieWatchlist.json`, then commit + push (same workflow as `app.js`'s "Copy feedback JSON" button). Local-only entries that haven't been committed yet will *not* survive a fresh clone/container — commit regularly, don't let a long backlog build up only in browser storage. Ratings are on **Trakt's native 1-10 scale** (not 1-5 stars), matching Bill's own rating spreadsheets.
 
-**Running the sync:** `node scripts/trakt_sync.js` (add `--dry-run` to preview without writing anything). First run prints a short URL + code — visit it on any device and enter the code to authorize once; the token is then cached in `.trakt-token.json` (gitignored) and auto-refreshed on later runs. The script resolves each movie against Trakt's search by title+year, syncs matched watched movies to Trakt history (`watched_at` = your logged date) and watchlist movies to Trakt's watchlist, and writes the resolved ids + a sync timestamp back into the two local data files so re-runs only touch what's new. Titles it can't confidently match (ambiguous or no result) are left unsynced and listed at the end for manual review — it never guesses.
+**Building a Trakt import file (manual, by design):** Trakt's own sync-item schema is exactly:
+```
+id          — IMDb id (e.g. tt1160419)
+type        — always "movie"
+watched_at  — ISO 8601 datetime
+rating      — 1-10 integer, optional
+rated_at    — ISO 8601 datetime
+```
+IMDb ids and release dates aren't things this app's data model has natively (only title/year come from Bill), so building this file means resolving each movie via real web research (WebSearch, imdb.com) — never guessed, never pulled from Trakt's own API. For a batch of more than a handful of movies, delegate the resolution to a background Agent with the exact title list and this schema (see Session 41's approach) rather than doing it serially in the main conversation. Write the finished file as a CSV and hand it to Bill directly (`SendUserFile`) — he uploads it himself through whatever third-party Trakt importer he's using.
 
 ## Workflows
 

@@ -1,6 +1,7 @@
 // Bill's Movies — local-first tracker for watched-since-2015 + want-to-watch,
 // meant to be periodically committed to data/moviesWatched.json /
-// data/movieWatchlist.json and then pushed to Trakt via scripts/trakt_sync.js.
+// data/movieWatchlist.json. Trakt uploads are built by hand from this data
+// (a CSV of id/type/watched_at/rating/rated_at) — no Trakt API calls, ever.
 //
 // Persistence pattern mirrors app.js's feedback handling: entries added in
 // the browser live in localStorage until "Copy JSON" is used to paste the
@@ -91,12 +92,6 @@ function removeEntry(list, localKey, localState, id) {
 
 // ── Rendering ────────────────────────────────────────────────────────────
 
-function starString(rating) {
-  const n = Number(rating);
-  if (!n || n < 1) return '';
-  return '★'.repeat(n) + '☆'.repeat(5 - n);
-}
-
 function fmtDate(iso) {
   if (!iso) return '';
   const d = new Date(iso + 'T00:00:00');
@@ -126,12 +121,12 @@ function renderWatched() {
         <div class="mv-row-title">${esc(m.title)}${m.year ? ` <span class="mv-year">(${esc(m.year)})</span>` : ''}</div>
         <div class="mv-row-meta">
           ${m.dateWatched ? `Watched ${esc(fmtDate(m.dateWatched))}` : 'No date logged'}
-          ${m.rating ? ` · <span class="mv-rating">${esc(starString(m.rating))}</span>` : ''}
+          ${m.rating ? ` · <span class="mv-rating">${esc(m.rating)}/10</span>` : ''}
         </div>
       </div>
       ${m.traktSyncedAt
-        ? '<span class="mv-badge synced">Synced to Trakt</span>'
-        : '<span class="mv-badge">Not synced</span>'}
+        ? '<span class="mv-badge synced">In Trakt export</span>'
+        : '<span class="mv-badge">Not exported</span>'}
       <div class="mv-row-actions">
         <button class="mv-btn small danger" data-action="remove-watched" data-id="${esc(m.id)}">Remove</button>
       </div>
@@ -162,8 +157,8 @@ function renderWatchlist() {
         ${m.notes ? `<div class="mv-row-meta">${esc(m.notes)}</div>` : ''}
       </div>
       ${m.traktSyncedAt
-        ? '<span class="mv-badge synced">On Trakt</span>'
-        : '<span class="mv-badge">Not synced</span>'}
+        ? '<span class="mv-badge synced">In Trakt export</span>'
+        : '<span class="mv-badge">Not exported</span>'}
       <div class="mv-row-actions">
         <button class="mv-btn small primary" data-action="mark-watched" data-id="${esc(m.id)}">Mark watched</button>
         <button class="mv-btn small danger" data-action="remove-watchlist" data-id="${esc(m.id)}">Remove</button>
@@ -264,6 +259,11 @@ document.getElementById('copyWatchedBtn').addEventListener('click', () =>
   copyListJSON(state.watched, 'copyWatchedBtn', 'moviesWatched.json'));
 document.getElementById('copyWatchlistBtn').addEventListener('click', () =>
   copyListJSON(state.watchlist, 'copyWatchlistBtn', 'movieWatchlist.json'));
+
+// CSV export to Trakt's own item schema (id/type/watched_at/rating/rated_at)
+// needs an IMDb id + release date per movie, which requires an external
+// lookup — done server-side by scripts/export_trakt_csv.js, not here, so a
+// Trakt API credential is never embedded in this public page's JS.
 
 // Default the "date watched" field to today for convenience.
 document.getElementById('wDate').value = new Date().toISOString().slice(0, 10);

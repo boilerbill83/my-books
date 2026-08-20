@@ -117,8 +117,9 @@
         <div class="mv-help">
           Everything here is saved to your browser's local storage first. Click <strong>Copy JSON</strong> on a tab
           to copy that list, then paste it into <code>data/moviesWatched.json</code> or
-          <code>data/movieWatchlist.json</code> and commit/push — that's what makes it durable and what
-          <code>scripts/trakt_sync.js</code> reads to upload to Trakt.
+          <code>data/movieWatchlist.json</code> and commit/push — that's what makes it durable.
+          Ratings are on Trakt's native 1-10 scale. Trakt import files (id/type/watched_at/rating/rated_at)
+          are built by hand from this data — see CLAUDE.md's "Movie Tracking (Trakt)" section.
         </div>
 
         <div class="mv-tabs">
@@ -142,14 +143,19 @@
               <input id="wDate" type="date" />
             </div>
             <div class="mv-field">
-              <label for="wRating">Rating</label>
+              <label for="wRating">Rating (1-10)</label>
               <select id="wRating">
                 <option value="">—</option>
-                <option value="1">★</option>
-                <option value="2">★★</option>
-                <option value="3">★★★</option>
-                <option value="4">★★★★</option>
-                <option value="5">★★★★★</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
               </select>
             </div>
             <div class="mv-field">
