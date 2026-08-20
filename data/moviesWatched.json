@@ -66,6 +66,45 @@
       "traktSyncedAt": null
     },
     {
+      "id": "fc44da37-adc4-4837-8d7c-e0dfd5fac297",
+      "title": "American Fiction",
+      "year": 2023,
+      "dateWatched": "2023-12-15",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt23561236"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "4f403409-8843-42b4-a8b4-884831c3e6a0",
+      "title": "Anatomy of a Fall",
+      "year": 2023,
+      "dateWatched": "2023-08-23",
+      "rating": 6,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt17009710"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "e8fb3a4b-ecfe-4d92-be60-c108b2cb0415",
+      "title": "Annihilation",
+      "year": 2018,
+      "dateWatched": "2018-02-23",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt2798920"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "9e230fdd-125a-42a5-8fca-34ce166fb891",
       "title": "Anora",
       "year": 2024,
@@ -157,6 +196,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "a3cb63e9-de4b-470d-9b93-b1fa6211a2b9",
+      "title": "BlacKkKlansman",
+      "year": 2018,
+      "dateWatched": "2018-08-10",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt7349662"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "0f82d7d3-138d-4870-a72f-9401aa09b467",
       "title": "Bohemian Rhapsody",
       "year": 2018,
@@ -179,6 +231,19 @@
       "addedAt": "2026-08-20T15:06:11.080Z",
       "traktIds": {
         "imdb": "tt3682448"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "ad65edb3-207f-44dd-b76b-2019d8bc9bc2",
+      "title": "Bugonia",
+      "year": 2025,
+      "dateWatched": "2025-10-24",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt12300742"
       },
       "traktSyncedAt": null
     },
@@ -235,6 +300,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "b2f0e19e-58e8-4f7c-afdc-3860375f9e44",
+      "title": "Concussion",
+      "year": 2015,
+      "dateWatched": "2015-12-25",
+      "rating": 6,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt3322364"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "6d49eaba-d5e1-4f84-a49f-1b8932431e59",
       "title": "Creed",
       "year": 2015,
@@ -244,6 +322,19 @@
       "addedAt": "2026-08-20T15:06:11.080Z",
       "traktIds": {
         "imdb": "tt3076658"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "6b361187-0d66-4222-974c-c4abf1cc9c2b",
+      "title": "Creed II",
+      "year": 2018,
+      "dateWatched": "2018-11-21",
+      "rating": 9,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt6343314"
       },
       "traktSyncedAt": null
     },
@@ -335,6 +426,19 @@
       "addedAt": "2026-08-20T15:06:11.080Z",
       "traktIds": {
         "imdb": "tt6710474"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "ca44f19d-715f-49d0-bbcc-276c3d2c56a9",
+      "title": "Ex Machina",
+      "year": 2015,
+      "dateWatched": "2015-04-10",
+      "rating": 9,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt0470752"
       },
       "traktSyncedAt": null
     },
@@ -439,6 +543,19 @@
       "addedAt": "2026-08-20T15:06:11.080Z",
       "traktIds": {
         "imdb": "tt6966692"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "48f4e2aa-e9d3-4011-b654-52b8636a5120",
+      "title": "Hamnet",
+      "year": 2025,
+      "dateWatched": "2025-11-26",
+      "rating": 3,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt14905854"
       },
       "traktSyncedAt": null
     },
@@ -560,6 +677,45 @@
       "traktSyncedAt": null
     },
     {
+      "id": "61fe67b6-0cf9-4777-9353-48c4c423e59d",
+      "title": "Joy",
+      "year": 2015,
+      "dateWatched": "2015-12-25",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt2446980"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "5280e0b9-a399-4506-a9f0-01c57104232a",
+      "title": "Just Mercy",
+      "year": 2019,
+      "dateWatched": "2019-12-25",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt4916630"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "92da989d-607e-499b-a04d-0b3092febac6",
+      "title": "Killers of the Flower Moon",
+      "year": 2023,
+      "dateWatched": "2023-10-20",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt5537002"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "4a608f11-3517-4250-b70e-7a1611682e65",
       "title": "Knives Out",
       "year": 2019,
@@ -599,6 +755,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "b9968bfe-5201-49a1-bf01-f71eead3f279",
+      "title": "Licorice Pizza",
+      "year": 2021,
+      "dateWatched": "2021-11-26",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt11271038"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "0a9536ab-c540-46a2-b700-18c841b64045",
       "title": "Mad Max: Fury Road",
       "year": 2015,
@@ -612,6 +781,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "d5a072c6-c4dc-4cbd-bc22-82588afc08a9",
+      "title": "Maestro",
+      "year": 2023,
+      "dateWatched": "2023-11-22",
+      "rating": 5,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt5535276"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "6697f499-f708-4777-9965-2f1f69448543",
       "title": "Manchester by the Sea",
       "year": 2016,
@@ -621,6 +803,19 @@
       "addedAt": "2026-08-20T19:57:04.158Z",
       "traktIds": {
         "imdb": "tt4034228"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "10385b66-112e-4825-bbfe-8984a748c1a6",
+      "title": "Marty Supreme",
+      "year": 2025,
+      "dateWatched": "2025-12-25",
+      "rating": 9,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt32916440"
       },
       "traktSyncedAt": null
     },
@@ -690,6 +885,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "8d67e43b-36f4-4e67-8359-4e6d5b114fd6",
+      "title": "One Battle After Another",
+      "year": 2025,
+      "dateWatched": "2025-09-26",
+      "rating": 9,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt30144839"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "286cde61-3a67-48e1-a7d9-0480546cfcb1",
       "title": "Oppenheimer",
       "year": 2023,
@@ -725,6 +933,32 @@
       "addedAt": "2026-08-20T15:06:11.080Z",
       "traktIds": {
         "imdb": "tt1355644"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "5b74329e-a24f-4a27-9aa8-ea943a8f9dde",
+      "title": "Past Lives",
+      "year": 2023,
+      "dateWatched": "2023-06-02",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt13238346"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "ac898bd0-23bf-469b-8590-2fc5979ff963",
+      "title": "Poor Things",
+      "year": 2023,
+      "dateWatched": "2023-12-08",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt14230458"
       },
       "traktSyncedAt": null
     },
@@ -781,6 +1015,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "9ca134d5-e960-4ea7-83f8-a2b32db42263",
+      "title": "Sentimental Value",
+      "year": 2025,
+      "dateWatched": "2025-08-20",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt27714581"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "a210a37a-910a-4d83-830d-b82f77212490",
       "title": "Sicario",
       "year": 2015,
@@ -790,6 +1037,19 @@
       "addedAt": "2026-08-20T15:06:11.080Z",
       "traktIds": {
         "imdb": "tt3397884"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "139b9002-5789-4f17-97e4-ecaf960c8db4",
+      "title": "Sicario: Day of the Soldado",
+      "year": 2018,
+      "dateWatched": "2018-06-29",
+      "rating": 10,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt5052474"
       },
       "traktSyncedAt": null
     },
@@ -833,6 +1093,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "330ec83e-2d7e-4648-9105-d993e6e714ea",
+      "title": "Steve Jobs",
+      "year": 2015,
+      "dateWatched": "2015-10-23",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt2080374"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "f78c6c8a-b4ec-4e97-85e3-996740c56938",
       "title": "Straight Outta Compton",
       "year": 2015,
@@ -855,6 +1128,19 @@
       "addedAt": "2026-08-20T15:06:11.080Z",
       "traktIds": {
         "imdb": "tt3263904"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "7fd6836d-1417-4b86-9ab0-c4abf38acf87",
+      "title": "Tár",
+      "year": 2022,
+      "dateWatched": "2022-10-07",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt14444726"
       },
       "traktSyncedAt": null
     },
@@ -911,6 +1197,71 @@
       "traktSyncedAt": null
     },
     {
+      "id": "fd96ca36-74d2-4345-be13-92f35fe2492d",
+      "title": "The Big Sick",
+      "year": 2017,
+      "dateWatched": "2017-06-23",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt5462602"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "2fa79b74-8eff-4c62-96eb-54f0b1a96b9b",
+      "title": "The Brutalist",
+      "year": 2024,
+      "dateWatched": "2024-12-20",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt8999762"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "60f539fc-f426-4c50-877b-6b11e3624a6b",
+      "title": "The Fabelmans",
+      "year": 2022,
+      "dateWatched": "2022-11-11",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt14208870"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "2b90d020-2cc1-43b6-970e-039dd711bcb0",
+      "title": "The Founder",
+      "year": 2016,
+      "dateWatched": "2017-01-20",
+      "rating": 10,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt4276820"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "3f867cf5-19ac-4ab7-8f96-ead23219b64b",
+      "title": "The Girl on the Train",
+      "year": 2016,
+      "dateWatched": "2016-10-07",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt3631112"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "5798a8c3-b59d-4d93-af79-803d8ea710f5",
       "title": "The Hateful Eight",
       "year": 2015,
@@ -963,6 +1314,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "bd0b9da4-6ad0-46c8-8e31-e16cdb9c5f14",
+      "title": "The Iron Claw",
+      "year": 2023,
+      "dateWatched": "2023-12-22",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt21064584"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "c31de71f-8fb2-4290-b948-336b3af1d9e9",
       "title": "The Martian",
       "year": 2015,
@@ -1002,6 +1366,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "7af6fb4b-9062-4522-a3a0-af9e8d7541b3",
+      "title": "The Post",
+      "year": 2017,
+      "dateWatched": "2017-12-22",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt6294822"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "fc073638-f676-4d0c-a491-bd399922e169",
       "title": "The Revenant",
       "year": 2016,
@@ -1037,6 +1414,19 @@
       "addedAt": "2026-08-20T15:06:11.080Z",
       "traktIds": {
         "imdb": "tt1070874"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "867165b2-79cc-46f2-a0ab-9142c29ac294",
+      "title": "The Woman in the Window",
+      "year": 2021,
+      "dateWatched": "2021-05-14",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-20T20:11:07.751Z",
+      "traktIds": {
+        "imdb": "tt6111574"
       },
       "traktSyncedAt": null
     },
