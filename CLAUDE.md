@@ -219,13 +219,18 @@ A separate, lightweight tracker living alongside the book app (unrelated data, s
 
 **Adding movies:** open `movies.html` (linked from `index.html`'s header). Add entries under either tab — they save to `localStorage` immediately. When ready to make them durable, click **Copy JSON** on a tab and paste the result into `data/moviesWatched.json` or `data/movieWatchlist.json`, then commit + push (same workflow as `app.js`'s "Copy feedback JSON" button). Local-only entries that haven't been committed yet will *not* survive a fresh clone/container — commit regularly, don't let a long backlog build up only in browser storage. Ratings are on **Trakt's native 1-10 scale** (not 1-5 stars), matching Bill's own rating spreadsheets.
 
-**Building a Trakt import file (manual, by design):** Trakt's own sync-item schema is exactly:
+**Building a Trakt import file (manual, by design):** Trakt's own sync-item schema (per its in-app CSV Guidelines panel, confirmed Aug 2026 after a real upload rejection) is:
 ```
-id          — IMDb id (e.g. tt1160419)
-type        — always "movie"
-watched_at  — ISO 8601 datetime
+id          — MUST be prefixed with the service name, e.g. imdb_id:tt1160419
+              (a bare "tt1160419" with no prefix is rejected — trakt_id/tmdb_id/tvdb_id also valid)
+type        — movie | episode | show | season (optional but recommended; always "movie" here)
+watched_at  — full ISO 8601 datetime, e.g. 2019-12-25T00:00:00Z (a bare date like
+              "2019-12-25" is NOT accepted — needs the T00:00:00Z time component).
+              Optional; can be "unknown"; omit if only adding to watchlist.
+watchlisted_at — full ISO 8601 datetime the item was added to the watchlist.
+              Optional; omit if only marking as watched (not used by this project's export).
 rating      — 1-10 integer, optional
-rated_at    — ISO 8601 datetime
+rated_at    — full ISO 8601 datetime, same format as watched_at; only parsed if rating is present
 ```
 IMDb ids and release dates aren't things this app's data model has natively (only title/year come from Bill), so building this file means resolving each movie via real web research (WebSearch, imdb.com) — never guessed, never pulled from Trakt's own API. For a batch of more than a handful of movies, delegate the resolution to a background Agent with the exact title list and this schema (see Session 41's approach) rather than doing it serially in the main conversation. Write the finished file as a CSV and hand it to Bill directly (`SendUserFile`) — he uploads it himself through whatever third-party Trakt importer he's using.
 
