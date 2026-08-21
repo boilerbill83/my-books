@@ -31,6 +31,7 @@ jobs:
         run: python3 trakt/enrich_tmdb.py ${{ inputs.batch_size || 150 }}
         timeout-minutes: 30
       - name: Commit if changed
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

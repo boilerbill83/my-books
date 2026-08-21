@@ -140,7 +140,7 @@ def main():
         key, kind = t['titleKey'], t['type']
         tmdb_id = (t.get('ids') or {}).get('tmdb')
         if not tmdb_id:
-            print(f'  [{i}/{len(batch)}] ---- (no tmdb id) | {t.get("title", "?")[:50]}')
+            print(f'  [{i}/{len(batch)}] ---- (no tmdb id) | {(t.get("title") or "?")[:50]}')
             continue
 
         data, status = tmdb_detail(kind, tmdb_id)
@@ -150,7 +150,7 @@ def main():
             sys.exit(1)
         if not data:
             failures += 1
-            print(f'  [{i}/{len(batch)}] FAIL (status {status}) | {t.get("title", "?")[:50]}')
+            print(f'  [{i}/{len(batch)}] FAIL (status {status}) | {(t.get("title") or "?")[:50]}')
             continue
 
         entry = extract_entry(kind, data)
@@ -173,7 +173,7 @@ def main():
         cache[key] = entry
 
         got = 'ok' if entry.get('overview') else '----'
-        print(f'  [{i}/{len(batch)}] {got} | {t.get("title", "?")[:50]}')
+        print(f'  [{i}/{len(batch)}] {got} | {(t.get("title") or "?")[:50]}')
         if i % 25 == 0:
             json.dump(cache, open(CACHE_FILE, 'w'), indent=1)
         time.sleep(DELAY)
