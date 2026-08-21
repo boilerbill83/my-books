@@ -49,15 +49,23 @@ API_BASE = 'https://api.themoviedb.org/3'
 
 
 def get_json(url, timeout=10):
-    """Returns (data, status_code). status_code is None on network/parse failure."""
+    """Returns (data, status_code, error_body). error_body is TMDB's own
+    error JSON/text on a non-2xx response (e.g. {"status_message": "..."}),
+    surfaced so a 401 can be diagnosed from its real reason (revoked key,
+    suspended for abuse, malformed key, etc.) rather than the bare status
+    code alone."""
     try:
         req = urllib.request.Request(url, headers=HEADERS)
         with urllib.request.urlopen(req, timeout=timeout) as resp:
-            return json.loads(resp.read().decode('utf-8')), resp.status
+            return json.loads(resp.read().decode('utf-8')), resp.status, None
     except urllib.error.HTTPError as e:
-        return None, e.code
-    except Exception:
-        return None, None
+        try:
+            body = e.read().decode('utf-8', errors='replace')[:500]
+        except Exception:
+            body = None
+        return None, e.code, body
+    except Exception as e:
+        return None, None, str(e)[:500]
 
 
 def tmdb_detail(kind, tmdb_id):
@@ -163,14 +171,15 @@ def main():
             print(f'  [{i}/{len(batch)}] ---- (no tmdb id) | {(t.get("title") or "?")[:50]}')
             continue
 
-        data, status = tmdb_detail(kind, tmdb_id)
+        data, status, error_body = tmdb_detail(kind, tmdb_id)
         if status == 401:
-            print('ERROR: TMDB rejected the API key (401). Check TMDB_API_KEY and stop — '
-                  'no point burning through the rest of the batch on a bad key.', file=sys.stderr)
+            print(f'ERROR: TMDB rejected the API key (401). TMDB\'s own response: {error_body!r}. '
+                  'Check TMDB_API_KEY and stop — no point burning through the rest of the batch '
+                  'on a bad key.', file=sys.stderr)
             sys.exit(1)
         if not data:
             failures += 1
-            print(f'  [{i}/{len(batch)}] FAIL (status {status}) | {(t.get("title") or "?")[:50]}')
+            print(f'  [{i}/{len(batch)}] FAIL (status {status}, {error_body!r}) | {(t.get("title") or "?")[:50]}')
             continue
 
         entry = extract_entry(kind, data)
