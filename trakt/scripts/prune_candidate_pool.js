@@ -39,6 +39,7 @@ const library = readJSON(path.join(DATA_DIR, 'library.json'), { titles: [] });
 const watchlist = readJSON(path.join(DATA_DIR, 'watchlist.json'), { titles: [] });
 const candidatePool = readJSON(path.join(DATA_DIR, 'candidatePool.json'), { titles: [] });
 const enrichedMeta = readJSON(path.join(DATA_DIR, 'enrichedMetadata.json'), {});
+const omdbMeta = readJSON(path.join(DATA_DIR, 'omdbMetadata.json'), {});
 const feedback = readJSON(path.join(DATA_DIR, 'feedbackData.json'), { interactions: [] });
 
 const idx = buildIndexes(library, enrichedMeta, feedback);
@@ -67,7 +68,7 @@ for (const c of candidatePool.titles || []) {
 const scored = live.map(c => {
   const h = hydrateTitle(c, enrichedMeta);
   const enriched = !!enrichedMeta[c.titleKey];
-  return { raw: c, hydrated: h, score: enriched ? matchScore(h, idx, enrichedMeta) : null, enriched };
+  return { raw: c, hydrated: h, score: enriched ? matchScore(h, idx, enrichedMeta, omdbMeta) : null, enriched };
 });
 
 const notYetEnriched = scored.filter(s => !s.enriched);

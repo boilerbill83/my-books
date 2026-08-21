@@ -539,7 +539,7 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
     rows.push({
       title: h.title || '(untitled — not yet enriched)', year: h.year, type: h.type, status,
       myRating: myRating ?? null, tmdbRating: meta?.voteAverage ?? null,
-      predictedScore: Math.round(matchScore(h, idx, enrichedMeta)),
+      predictedScore: Math.round(matchScore(h, idx, enrichedMeta, omdbMeta)),
       popularity: popularityScore(meta?.voteCount),
       voteCount: meta?.voteCount ?? null,
       audienceScore: audienceScore(omdb),
@@ -842,7 +842,7 @@ async function load() {
     get('./data/feedbackData.json').catch(() => ({ interactions: [] })),
   ]);
 
-  const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback);
+  const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
   const byType = (list, type) => list.filter(c => c.type === type && enrichedOnly(c));
 

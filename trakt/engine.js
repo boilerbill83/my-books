@@ -189,13 +189,11 @@ export function popularityScore(voteCount) {
 // distinct from "enriched but has no data," which these treat as a
 // real 0, not unknown).
 //
-// Display-only for now, deliberately not wired into matchScore(): with
-// zero real OMDb data in this dataset as of this build (needs a new
-// OMDB_API_KEY only Bill can create), any scoring weight here would be
-// guessed rather than validated — the same discipline the book engine
-// always used via scripts/eval.js before trusting a new signal. Once
-// real data exists, folding these into baseSignals() is a natural
-// follow-up, calibrated against it rather than assumed now.
+// Wired into baseSignals() below (omdbSignal()) now that real OMDb data
+// exists (890 titles enriched as of this build) — the weights there were
+// calibrated against this dataset's actual audienceScore/awardsScore
+// distributions, not guessed, the same discipline the book engine always
+// used via scripts/eval.js before trusting a new signal.
 
 export function audienceScore(omdbEntry) {
   if (!omdbEntry) return null;
@@ -226,6 +224,46 @@ export function awardsScore(omdbEntry) {
 const COMMUNITY_NEUTRAL = 6.0;
 const COMMUNITY_WEIGHT = 8;
 
+// Audience-score neutral point measured from this dataset's real OMDb
+// coverage (283 titles with a Rotten Tomatoes and/or Metacritic score:
+// mean 76.1, median 80) rather than assumed — Bill's watched/candidate
+// pool skews toward well-regarded titles, and RT/MC coverage itself
+// skews toward more notable titles (obscure titles are the ones most
+// often missing a score entirely), so a generic "50 is neutral" would
+// have quietly penalized most of the catalog. Capped modestly (±6) since
+// this is a corroborating secondary signal, not a primary one — smaller
+// than genre/creator/similar-title but comparable to voteCountBonus/
+// recencyBonus. Missing audience data contributes nothing, not a penalty
+// (only 283 of 890 OMDb-enriched titles as of this build even have an
+// RT/MC score at all — most titles legitimately don't carry one).
+const AUDIENCE_NEUTRAL = 80;
+const AUDIENCE_MAX_SWING = 6;
+
+// Awards score is real but heavily right-skewed in this dataset (206 of
+// 890 titles score exactly 0 — no recognition found, a legitimate answer
+// per awardsScore()'s own contract, not a gap — while p75/p90/p99 all
+// saturate at 100). Scaled down rather than used at full 0-100 weight so
+// "won something" and "won everything" don't collapse into the same
+// signal strength as forward/reverse similar-title matches — capped at
+// +4, the same scale as voteCountBonus, since award recognition here is
+// a modest corroborating signal (this is a taste engine, not an Oscars
+// predictor) rather than a primary differentiator.
+const AWARDS_MAX = 4;
+
+function omdbSignal(omdbEntry) {
+  let score = 0;
+  const aud = audienceScore(omdbEntry);
+  if (aud != null) {
+    score += Math.max(-AUDIENCE_MAX_SWING, Math.min(AUDIENCE_MAX_SWING,
+      (aud - AUDIENCE_NEUTRAL) / 20 * AUDIENCE_MAX_SWING));
+  }
+  const awd = awardsScore(omdbEntry);
+  if (awd != null) {
+    score += (awd / 100) * AWARDS_MAX;
+  }
+  return score;
+}
+
 function recencyBonus(year, nowYear = new Date().getFullYear()) {
   if (!year) return 0;
   const age = nowYear - year;
@@ -235,13 +273,13 @@ function recencyBonus(year, nowYear = new Date().getFullYear()) {
   return 0;
 }
 
-export function matchScore(candidate, idx, enrichedMeta) {
+export function matchScore(candidate, idx, enrichedMeta, omdbMeta = {}) {
   return candidate.type === 'movie'
-    ? matchScoreMovie(candidate, idx, enrichedMeta)
-    : matchScoreShow(candidate, idx, enrichedMeta);
+    ? matchScoreMovie(candidate, idx, enrichedMeta, omdbMeta)
+    : matchScoreShow(candidate, idx, enrichedMeta, omdbMeta);
 }
 
-function baseSignals(candidate, idx, meta) {
+function baseSignals(candidate, idx, meta, omdbEntry) {
   let score = 20; // base, mirrors the book engine's starting point
   const creator = getCreator(candidate.type, meta);
 
@@ -273,19 +311,20 @@ function baseSignals(candidate, idx, meta) {
   }
   score += voteCountBonus(meta?.voteCount);
   score += recencyBonus(candidate.year);
+  score += omdbSignal(omdbEntry);
 
   return { score, forwardMatches, creator };
 }
 
-function matchScoreMovie(candidate, idx, enrichedMeta) {
+function matchScoreMovie(candidate, idx, enrichedMeta, omdbMeta) {
   const meta = enrichedMeta[candidate.titleKey];
-  const { score } = baseSignals(candidate, idx, meta);
+  const { score } = baseSignals(candidate, idx, meta, omdbMeta[candidate.titleKey]);
   return Math.max(0, Math.min(100, score));
 }
 
-function matchScoreShow(candidate, idx, enrichedMeta) {
+function matchScoreShow(candidate, idx, enrichedMeta, omdbMeta) {
   const meta = enrichedMeta[candidate.titleKey];
-  const { score } = baseSignals(candidate, idx, meta);
+  const { score } = baseSignals(candidate, idx, meta, omdbMeta[candidate.titleKey]);
   return Math.max(0, Math.min(100, score));
 }
 
@@ -304,7 +343,7 @@ export function confidenceScore(candidate, enrichedMeta) {
   return Math.min(100, c);
 }
 
-export function reason(candidate, idx, enrichedMeta) {
+export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
   const meta = enrichedMeta[candidate.titleKey];
   if (!meta) return 'Not enough data yet to explain this one — needs TMDB enrichment.';
 
@@ -340,20 +379,30 @@ export function reason(candidate, idx, enrichedMeta) {
     return `Broadly well-regarded (${meta.voteAverage.toFixed(1)}/10 on TMDB).`;
   }
 
+  const omdbEntry = omdbMeta[candidate.titleKey];
+  const aud = audienceScore(omdbEntry);
+  if (aud != null && aud >= AUDIENCE_NEUTRAL) {
+    return `Well-reviewed by critics and audiences (${aud}/100 audience score).`;
+  }
+  const awd = awardsScore(omdbEntry);
+  if (awd) {
+    return `Real award recognition (${omdbEntry.awards?.raw || 'wins/nominations found'}).`;
+  }
+
   return 'A newer or less-connected title — worth a look, lower confidence.';
 }
 
 // ── Entry point ──────────────────────────────────────────────────────────
 
-export function rankRecommendations(library, watchlist, enrichedMeta, feedback = { interactions: [] }) {
+export function rankRecommendations(library, watchlist, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}) {
   const idx = buildIndexes(library, enrichedMeta, feedback);
 
   const candidates = (watchlist.titles || []).filter(c => !idx.excluded.has(c.titleKey));
   const scored = candidates.map(c => ({
     ...c,
-    bmtreScore: matchScore(c, idx, enrichedMeta),
+    bmtreScore: matchScore(c, idx, enrichedMeta, omdbMeta),
     confidenceScore: confidenceScore(c, enrichedMeta),
-    reason: reason(c, idx, enrichedMeta),
+    reason: reason(c, idx, enrichedMeta, omdbMeta),
   }));
 
   scored.sort((a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore));
@@ -371,7 +420,7 @@ export function rankRecommendations(library, watchlist, enrichedMeta, feedback =
 // discover_candidates.js already exclude known watchlist/library keys —
 // but checked here too since a UI silently double-counting the same title
 // under two origins would be worse than a defensive filter).
-export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedback = { interactions: [] }) {
+export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}) {
   const idx = buildIndexes(library, enrichedMeta, feedback);
   const watchlistKeys = new Set((watchlist.titles || []).map(c => c.titleKey));
 
@@ -380,9 +429,9 @@ export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedbac
     return {
       ...h,
       origin,
-      bmtreScore: matchScore(h, idx, enrichedMeta),
+      bmtreScore: matchScore(h, idx, enrichedMeta, omdbMeta),
       confidenceScore: confidenceScore(h, enrichedMeta),
-      reason: reason(h, idx, enrichedMeta),
+      reason: reason(h, idx, enrichedMeta, omdbMeta),
     };
   };
 

@@ -6,11 +6,12 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
 
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [library, watchlist, enrichedMeta, feedback] = await Promise.all([
+  const [library, watchlist, enrichedMeta, feedback, omdbMeta] = await Promise.all([
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
     get('./data/enrichedMetadata.json').catch(() => ({})),
     get('./data/feedbackData.json').catch(() => ({ interactions: [] })),
+    get('./data/omdbMetadata.json').catch(() => ({})),
   ]);
 
   const enrichedCount = Object.keys(enrichedMeta).length;
@@ -18,7 +19,7 @@ async function load() {
     `${watchlist.titles?.length || 0} watchlist titles · ${enrichedCount} enriched with TMDB data`;
   document.getElementById('statusText').textContent = 'Scored';
 
-  const { selected } = rankRecommendations(library, watchlist, enrichedMeta, feedback);
+  const { selected } = rankRecommendations(library, watchlist, enrichedMeta, feedback, omdbMeta);
 
   const el = document.getElementById('recList');
   if (!selected.length) {

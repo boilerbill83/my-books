@@ -101,12 +101,12 @@ export function loadAllTitles() {
       exclusionReasonCode: fb?.reasonCode || '',
       exclusionReasonLabel: fb?.reasonLabel || '',
       // Live-computed BMTRE engine outputs (same functions the dashboard uses)
-      predictedScore: meta.genres ? Math.round(matchScore(h, idx, enrichedMeta)) : '',
+      predictedScore: meta.genres ? Math.round(matchScore(h, idx, enrichedMeta, omdbMeta)) : '',
       confidenceScore: meta.genres ? confidenceScore(h, enrichedMeta) : '',
       popularityScore: popularityScore(meta.voteCount),
       audienceScoreComputed: audienceScore(omdb) ?? '',
       awardsScoreComputed: awardsScore(omdb) ?? '',
-      reason: meta.genres ? reason(h, idx, enrichedMeta) : 'Not enough data yet.',
+      reason: meta.genres ? reason(h, idx, enrichedMeta, omdbMeta) : 'Not enough data yet.',
     });
   };
 
