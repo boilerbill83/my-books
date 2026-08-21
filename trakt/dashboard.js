@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -241,24 +241,26 @@ function renderFranchiseList(stats) {
 
 // ── All-titles filterable/sortable table ────────────────────────────────
 
-function buildAllTitlesRows(library, watchlist, enrichedMeta) {
+// Predicted Score reuses the same matchScore() the recommendation panels
+// score against (0-100, "how much BMTRE thinks this fits your taste") —
+// computed here for every row, including already-watched titles, so it
+// doubles as an honesty check against My Rating, the same role You vs.
+// The Crowd plays for TMDB's rating.
+function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, idx) {
   const rows = [];
-  for (const t of library.titles || []) {
-    const meta = enrichedMeta[t.titleKey];
+  const addRow = (t, status, myRating) => {
+    const h = hydrateTitle(t, enrichedMeta);
+    const meta = enrichedMeta[h.titleKey];
     rows.push({
-      title: t.title, year: t.year, type: t.type, status: 'Watched',
-      myRating: t.myRating, tmdbRating: meta?.voteAverage ?? null,
-      genres: meta?.genres?.join(', ') || '', creator: (t.type === 'movie' ? meta?.director : meta?.createdBy?.[0]) || '',
+      title: h.title || '(untitled — not yet enriched)', year: h.year, type: h.type, status,
+      myRating: myRating ?? null, tmdbRating: meta?.voteAverage ?? null,
+      predictedScore: Math.round(matchScore(h, idx, enrichedMeta)),
+      genres: meta?.genres?.join(', ') || '', creator: (h.type === 'movie' ? meta?.director : meta?.createdBy?.[0]) || '',
     });
-  }
-  for (const t of watchlist.titles || []) {
-    const meta = enrichedMeta[t.titleKey];
-    rows.push({
-      title: t.title, year: t.year, type: t.type, status: 'Watchlist',
-      myRating: null, tmdbRating: meta?.voteAverage ?? null,
-      genres: meta?.genres?.join(', ') || '', creator: (t.type === 'movie' ? meta?.director : meta?.createdBy?.[0]) || '',
-    });
-  }
+  };
+  for (const t of library.titles || []) addRow(t, 'Watched', t.myRating);
+  for (const t of watchlist.titles || []) addRow(t, 'Watchlist', null);
+  for (const t of candidatePool.titles || []) addRow(t, 'Candidate', null);
   return rows;
 }
 
@@ -280,27 +282,44 @@ function downloadCSV(table, filename) {
   URL.revokeObjectURL(url);
 }
 
+const TOP_N_DEFAULT = 20;
+
 function renderAllTitlesTable(allRows) {
   const table = document.getElementById('allTitlesTable');
   const searchInput = document.getElementById('titleSearch');
+  const typeFilter = document.getElementById('titleTypeFilter');
+  const yearFilter = document.getElementById('titleYearFilter');
+  const showAllBtn = document.getElementById('titleShowAllBtn');
+
+  const years = [...new Set(allRows.map(r => r.year).filter(Boolean))].sort((a, b) => b - a);
+  yearFilter.innerHTML = '<option value="">All Years</option>' +
+    years.map(y => `<option value="${y}">${y}</option>`).join('');
+
   const columns = [
     { label: 'Title', get: r => r.title },
     { label: 'Year', get: r => r.year ?? '', numeric: true },
     { label: 'Type', get: r => r.type === 'movie' ? 'Movie' : 'Show' },
     { label: 'Status', get: r => r.status },
     { label: 'My Rating', get: r => r.myRating ?? '', numeric: true },
+    { label: 'Predicted Score', get: r => r.predictedScore ?? '', numeric: true },
     { label: 'TMDB Rating', get: r => r.tmdbRating != null ? Math.round(r.tmdbRating * 10) / 10 : '', numeric: true },
     { label: 'Genres', get: r => r.genres, render: (td, r) => { td.className = 'tk-genres'; td.textContent = r.genres || '—'; } },
     { label: 'Director/Creator', get: r => r.creator || '—' },
   ];
 
   let sortCol = 4, sortAsc = false; // default: My Rating desc
+  let showAll = false;
 
   function filtered() {
     const q = (searchInput.value || '').trim().toLowerCase();
-    if (!q) return allRows;
-    return allRows.filter(r =>
-      r.title.toLowerCase().includes(q) || r.genres.toLowerCase().includes(q) || r.creator.toLowerCase().includes(q));
+    const type = typeFilter.value;
+    const year = yearFilter.value;
+    return allRows.filter(r => {
+      if (type && r.type !== type) return false;
+      if (year && String(r.year) !== year) return false;
+      if (q && !(r.title.toLowerCase().includes(q) || r.genres.toLowerCase().includes(q) || r.creator.toLowerCase().includes(q))) return false;
+      return true;
+    });
   }
 
   function render() {
@@ -311,6 +330,10 @@ function renderAllTitlesTable(allRows) {
       return sortAsc ? cmp : -cmp;
     });
     document.getElementById('allTitlesCount').textContent = fmtNum(rows.length);
+    showAllBtn.textContent = showAll ? `Show top ${TOP_N_DEFAULT}` : `Show all ${fmtNum(rows.length)}`;
+    showAllBtn.classList.toggle('active', showAll);
+
+    const display = showAll ? sorted : sorted.slice(0, TOP_N_DEFAULT);
 
     table.innerHTML = '';
     const thead = document.createElement('thead');
@@ -329,18 +352,23 @@ function renderAllTitlesTable(allRows) {
     table.appendChild(thead);
 
     const tbody = document.createElement('tbody');
-    if (!sorted.length) {
+    if (!display.length) {
       const tr = document.createElement('tr');
       const td = document.createElement('td');
       td.colSpan = columns.length; td.className = 'tk-empty'; td.textContent = 'No matches.';
       tr.appendChild(td); tbody.appendChild(tr);
     }
-    for (const row of sorted) {
+    for (const row of display) {
       const tr = document.createElement('tr');
       columns.forEach(c => {
         const td = document.createElement('td');
         if (c.numeric) td.className = 'num';
-        if (c.render) c.render(td, row); else td.textContent = esc(c.get(row));
+        // textContent already escapes safely on assignment — esc() is for
+        // building innerHTML strings (the rec-card templates above), and
+        // wrapping it around a textContent assignment double-processes
+        // entities instead of escaping anything: a title like "Chappelle's
+        // Show" rendered as the literal text "Chappelle&#39;s Show".
+        if (c.render) c.render(td, row); else td.textContent = c.get(row);
         tr.appendChild(td);
       });
       tbody.appendChild(tr);
@@ -350,6 +378,9 @@ function renderAllTitlesTable(allRows) {
 
   render();
   searchInput.addEventListener('input', render);
+  typeFilter.addEventListener('change', render);
+  yearFilter.addEventListener('change', render);
+  showAllBtn.addEventListener('click', () => { showAll = !showAll; render(); });
   document.getElementById('titleCsvBtn').addEventListener('click', () => downloadCSV(table, 'trakt-all-titles.csv'));
 }
 
@@ -374,7 +405,8 @@ function metaLine(candidate, enrichedMeta) {
 // predicted score, and its plain-English reason, per Bill's request.
 function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta) {
   const el = document.getElementById(sectionId);
-  const picks = [...watchlistItems.slice(0, 4), ...candidateItems.slice(0, 4)];
+  const picks = [...watchlistItems.slice(0, 4), ...candidateItems.slice(0, 4)]
+    .sort((a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore));
   if (!picks.length) {
     el.innerHTML = '<div class="tk-empty">Not enough enriched data yet.</div>';
     return;
@@ -502,7 +534,7 @@ async function load() {
     get('./data/feedbackData.json').catch(() => ({ interactions: [] })),
   ]);
 
-  const { fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback);
+  const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
   const byType = (list, type) => list.filter(c => c.type === type && enrichedOnly(c));
 
@@ -537,7 +569,7 @@ async function load() {
   renderCrowdCompare(computeCrowdCompare(library, enrichedMeta));
   renderFranchiseList(computeFranchiseStats(library, enrichedMeta));
 
-  renderAllTitlesTable(buildAllTitlesRows(library, watchlist, enrichedMeta));
+  renderAllTitlesTable(buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, idx));
 }
 
 load().catch(err => {

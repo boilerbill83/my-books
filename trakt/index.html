@@ -138,16 +138,21 @@
       .tk-crowd-detail { font-size: 0.76rem; color: var(--text-muted); margin-top: 10px; }
 
       /* ── All-titles table ── */
-      .tk-table-toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; }
+      .tk-table-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
       .tk-search {
         font: inherit; font-size: 0.85rem; padding: 7px 12px; border: 1px solid var(--border);
         border-radius: var(--radius); background: var(--bg-card); color: var(--text); flex: 1; max-width: 340px;
+      }
+      .tk-select {
+        font: inherit; font-size: 0.85rem; padding: 7px 10px; border: 1px solid var(--border);
+        border-radius: var(--radius); background: var(--bg-card); color: var(--text);
       }
       .tk-btn {
         font: inherit; font-size: 0.8rem; padding: 7px 14px; border: 1px solid var(--border);
         border-radius: var(--radius); background: #fff; color: var(--text); cursor: pointer;
       }
       .tk-btn:hover { border-color: var(--accent); }
+      .tk-btn.active { border-color: var(--accent); color: var(--accent); font-weight: 600; }
       .tk-table-wrap { overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
       table.tk-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
       table.tk-table th, table.tk-table td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
@@ -179,12 +184,10 @@
         <div class="tk-row2" style="margin-bottom:14px;">
           <div class="tk-card">
             <div class="tk-card-heading">🎬 Movies You'll Love</div>
-            <div class="tk-card-note">Top 4 from your watchlist + top 4 new candidates you haven't queued up, ranked against your real rating history.</div>
             <div class="tk-rec-list" id="movieRecList"></div>
           </div>
           <div class="tk-card">
             <div class="tk-card-heading">📺 Shows You'll Love</div>
-            <div class="tk-card-note">Top 4 from your watchlist + top 4 new candidates you haven't queued up, ranked against your real rating history.</div>
             <div class="tk-rec-list" id="showRecList"></div>
           </div>
         </div>
@@ -235,9 +238,18 @@
 
         <div class="tk-card" style="margin-bottom: 24px;">
           <div class="tk-card-heading">All Titles (<span id="allTitlesCount">0</span>)</div>
-          <div class="tk-card-note">Every watched and watchlisted title. Search, sort by any column, or export.</div>
+          <div class="tk-card-note">Every watched, watchlisted, and candidate title, with the engine's predicted score. Search, filter, sort by any column, or export.</div>
           <div class="tk-table-toolbar">
             <input type="text" class="tk-search" id="titleSearch" placeholder="Search title, genre, director…" />
+            <select class="tk-select" id="titleTypeFilter">
+              <option value="">All Types</option>
+              <option value="movie">Movies</option>
+              <option value="show">TV</option>
+            </select>
+            <select class="tk-select" id="titleYearFilter">
+              <option value="">All Years</option>
+            </select>
+            <button class="tk-btn" id="titleShowAllBtn">Show all</button>
             <button class="tk-btn" id="titleCsvBtn">Download CSV</button>
           </div>
           <div class="tk-table-wrap"><table class="tk-table" id="allTitlesTable"></table></div>

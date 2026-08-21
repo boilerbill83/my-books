@@ -32,6 +32,17 @@ export function titleKey(type, tmdbId) {
   return tmdbId != null ? `${type}:${tmdbId}` : null;
 }
 
+// Candidate-pool stubs carry title:null/year:null until enrich_tmdb.py
+// backfills a real title into enrichedMetadata.json — but only there,
+// never back onto the stub itself — so any consumer reading candidate.title/
+// .year directly needs this fallback (the pool's raw JSON staying
+// title:null is intentional per resolve_titles.py/discover_candidates.js's
+// own comments; fixing it here once is cheaper than a repo-wide backfill).
+export function hydrateTitle(c, enrichedMeta) {
+  const meta = enrichedMeta[c.titleKey];
+  return { ...c, title: c.title || meta?.title || c.title, year: c.year || meta?.year || c.year };
+}
+
 // The single "creative author" signal for a title: a movie's director or
 // a show's primary creator — the closest 1:1 analog to a book's author
 // (usually one person per title, same as the book engine's model).
@@ -270,22 +281,14 @@ export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedbac
   const idx = buildIndexes(library, enrichedMeta, feedback);
   const watchlistKeys = new Set((watchlist.titles || []).map(c => c.titleKey));
 
-  // Candidate-pool stubs carry title:null/year:null until enrich_tmdb.py
-  // backfills a real title into enrichedMetadata.json — but only there,
-  // never back onto the stub itself, so any consumer reading c.title
-  // directly needs this fallback (the pool's raw JSON staying title:null
-  // is intentional per resolve_titles.py/discover_candidates.js's own
-  // comments; fixing it here is cheaper than a repo-wide backfill pass).
   const scoreOne = (c, origin) => {
-    const meta = enrichedMeta[c.titleKey];
+    const h = hydrateTitle(c, enrichedMeta);
     return {
-      ...c,
-      title: c.title || meta?.title || c.title,
-      year: c.year || meta?.year || c.year,
+      ...h,
       origin,
-      bmtreScore: matchScore(c, idx, enrichedMeta),
-      confidenceScore: confidenceScore(c, enrichedMeta),
-      reason: reason(c, idx, enrichedMeta),
+      bmtreScore: matchScore(h, idx, enrichedMeta),
+      confidenceScore: confidenceScore(h, enrichedMeta),
+      reason: reason(h, idx, enrichedMeta),
     };
   };
 
