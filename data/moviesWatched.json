@@ -196,6 +196,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "6cf43046-f67a-4c6d-aa12-74add238cff0",
+      "title": "Bird Box",
+      "year": 2018,
+      "dateWatched": "2018-12-21",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-21T13:02:13.588Z",
+      "traktIds": {
+        "imdb": "tt2737304"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "a3cb63e9-de4b-470d-9b93-b1fa6211a2b9",
       "title": "BlacKkKlansman",
       "year": 2018,
@@ -365,6 +378,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "8f38df2b-3e0b-4ddb-aac5-15026486d933",
+      "title": "Deepwater Horizon",
+      "year": 2016,
+      "dateWatched": "2016-09-30",
+      "rating": 6,
+      "notes": "",
+      "addedAt": "2026-08-21T13:02:13.588Z",
+      "traktIds": {
+        "imdb": "tt1860357"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "74afb8be-7962-49ba-a163-631e5c2947e2",
       "title": "Den of Thieves",
       "year": 2018,
@@ -517,6 +543,19 @@
       "addedAt": "2026-08-20T15:06:11.080Z",
       "traktIds": {
         "imdb": "tt9218128"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "8659c2f8-684b-46e1-9ddf-4904b6500218",
+      "title": "Glass",
+      "year": 2019,
+      "dateWatched": "2019-01-18",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-21T13:02:13.588Z",
+      "traktIds": {
+        "imdb": "tt6823368"
       },
       "traktSyncedAt": null
     },
@@ -725,6 +764,19 @@
       "addedAt": "2026-08-20T15:06:11.080Z",
       "traktIds": {
         "imdb": "tt8946378"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "d55931b8-2e66-44a2-8887-b90813ca515a",
+      "title": "Kong: Skull Island",
+      "year": 2017,
+      "dateWatched": "2017-03-10",
+      "rating": 6,
+      "notes": "",
+      "addedAt": "2026-08-21T13:02:13.588Z",
+      "traktIds": {
+        "imdb": "tt3731562"
       },
       "traktSyncedAt": null
     },
@@ -950,6 +1002,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "d00a1308-84bd-4bc0-92b5-1427f96f4834",
+      "title": "Patriots Day",
+      "year": 2016,
+      "dateWatched": "2016-12-21",
+      "rating": 6,
+      "notes": "",
+      "addedAt": "2026-08-21T13:02:13.588Z",
+      "traktIds": {
+        "imdb": "tt4572514"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "ac898bd0-23bf-469b-8590-2fc5979ff963",
       "title": "Poor Things",
       "year": 2023,
@@ -972,6 +1037,19 @@
       "addedAt": "2026-08-20T15:06:11.080Z",
       "traktIds": {
         "imdb": "tt9620292"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "c072fcbc-4c54-4fe8-af87-db3846938215",
+      "title": "Ready Player One",
+      "year": 2018,
+      "dateWatched": "2018-03-29",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-21T13:02:13.588Z",
+      "traktIds": {
+        "imdb": "tt1677720"
       },
       "traktSyncedAt": null
     },
@@ -1353,6 +1431,19 @@
       "traktSyncedAt": null
     },
     {
+      "id": "40e2beee-98ca-40dd-b600-d18d84b02e0f",
+      "title": "The Mule",
+      "year": 2018,
+      "dateWatched": "2018-12-14",
+      "rating": 8,
+      "notes": "",
+      "addedAt": "2026-08-21T13:02:13.588Z",
+      "traktIds": {
+        "imdb": "tt7959026"
+      },
+      "traktSyncedAt": null
+    },
+    {
       "id": "4e3c5f5a-d567-4ada-bd68-014d1ad9a033",
       "title": "The Nice Guys",
       "year": 2016,
@@ -1492,6 +1583,19 @@
       "addedAt": "2026-08-20T15:06:11.080Z",
       "traktIds": {
         "imdb": "tt6857112"
+      },
+      "traktSyncedAt": null
+    },
+    {
+      "id": "bc2424f0-8011-4a0a-b80f-206b5d64021e",
+      "title": "War Dogs",
+      "year": 2016,
+      "dateWatched": "2016-08-19",
+      "rating": 7,
+      "notes": "",
+      "addedAt": "2026-08-21T13:02:13.588Z",
+      "traktIds": {
+        "imdb": "tt2005151"
       },
       "traktSyncedAt": null
     },
