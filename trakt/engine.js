@@ -304,8 +304,14 @@ export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedbac
   // are Bill's own explicit picks, not the engine's discovery.
   const isReEdit = c => (enrichedMeta[c.titleKey]?.keywords || []).includes('edited from film');
 
+  // A candidate can also go stale the other direction: Bill watches or
+  // watchlists something on Trakt directly (outside this pipeline) that
+  // happens to already be sitting in candidatePool.json from an earlier
+  // discovery/resolve run. idx.watched already indexes every library
+  // title by titleKey, so this reuses it rather than a second lookup.
   const fromCandidates = (candidatePool.titles || [])
-    .filter(c => !idx.excluded.has(c.titleKey) && !watchlistKeys.has(c.titleKey) && !isReEdit(c))
+    .filter(c => !idx.excluded.has(c.titleKey) && !watchlistKeys.has(c.titleKey)
+      && !idx.watched.has(c.titleKey) && !isReEdit(c))
     .map(c => scoreOne(c, 'candidate'))
     .sort(byScore);
 

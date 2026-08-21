@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-08-21T15:40:49Z",
-    "count": 328
+    "generatedAt": "2026-08-21T15:55:06Z",
+    "count": 327
   },
   "titles": [
     {
@@ -3049,16 +3049,6 @@
       "titleKey": "show:69557",
       "ids": {
         "tmdb": 69557
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:73375",
-      "ids": {
-        "tmdb": 73375
       },
       "title": null,
       "year": null,
