@@ -54,6 +54,26 @@ export function getCreator(type, meta) {
 
 // ── Indexes built from watched history + enriched metadata ─────────────
 
+// TMDB uses two different genre vocabularies — movies get "Action",
+// "Science Fiction", "War"; shows get "Action & Adventure", "Sci-Fi &
+// Fantasy", "War & Politics", "Kids" — for the same real concepts. Left
+// unnormalized, a loved movie's "Action" tag and a loved show's "Action &
+// Adventure" tag were accumulating into separate lovedGenres buckets,
+// silently halving genre-preference credit for whichever type Bill has
+// fewer loved titles in. Normalized to the movie-side name (arbitrary
+// choice of canonical form, not a value judgment) at both the point
+// lovedGenres is built and the point a candidate's genres are looked up,
+// so a genre is counted once regardless of which type taught it to Bill.
+const GENRE_ALIASES = {
+  'Action & Adventure': 'Action',
+  'Sci-Fi & Fantasy': 'Science Fiction',
+  'War & Politics': 'War',
+  'Kids': 'Family',
+};
+function normalizeGenre(g) {
+  return GENRE_ALIASES[g] || g;
+}
+
 export function buildIndexes(library, enrichedMeta, feedback) {
   const watched = new Map();
   for (const t of library.titles || []) watched.set(t.titleKey, t);
@@ -78,7 +98,8 @@ export function buildIndexes(library, enrichedMeta, feedback) {
       lovedTitles.add(t.titleKey);
       if (creator) lovedCreators.set(creator, (lovedCreators.get(creator) || 0) + 1);
       for (const g of (meta?.genres || [])) {
-        lovedGenres.set(g, (lovedGenres.get(g) || 0) + 1);
+        const ng = normalizeGenre(g);
+        lovedGenres.set(ng, (lovedGenres.get(ng) || 0) + 1);
       }
       for (const id of [...(meta?.similarToIds || []), ...(meta?.recommendedIds || [])]) {
         const key = titleKey(t.type, id);
@@ -106,7 +127,7 @@ export function buildIndexes(library, enrichedMeta, feedback) {
 function genreBonus(genres, lovedGenres) {
   let bonus = 0;
   for (const g of (genres || [])) {
-    const count = lovedGenres.get(g) || 0;
+    const count = lovedGenres.get(normalizeGenre(g)) || 0;
     if      (count >= 60) bonus += 5;
     else if (count >= 35) bonus += 4;
     else if (count >= 18) bonus += 3;
