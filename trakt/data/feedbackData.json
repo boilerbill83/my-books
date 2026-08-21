@@ -1,3 +1,15 @@
 {
-  "interactions": []
+  "interactions": [
+    {
+      "titleKey": "movie:98",
+      "title": "Gladiator",
+      "year": 2000,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "already_watched",
+      "reasonLabel": "Already watched and rated 10/10 — missing from the Trakt export (pre-dates his Trakt account or wasn't logged there)",
+      "timestamp": "2026-08-21T19:15:00Z",
+      "excludeFromRecommendations": true
+    }
+  ]
 }

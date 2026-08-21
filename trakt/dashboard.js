@@ -406,6 +406,11 @@ const FIELD_REGISTRY = [
     populated: (t, meta, omdb) => omdb?.rottenTomatoes != null || omdb?.metacritic != null,
     quality: (t, meta, omdb) => omdb?.rottenTomatoes != null && omdb?.metacritic != null,
     note: 'Quality = both Rotten Tomatoes and Metacritic present, not just one.' },
+  { key: 'awards', label: 'Awards (Oscar/Emmy)', source: 'OMDb', critical: false,
+    eligible: (t, meta, omdb) => !!omdb,
+    populated: (t, meta, omdb) => omdb?.awards != null,
+    quality: (t, meta, omdb) => awardsScore(omdb) > 0,
+    note: 'Quality = real recognition found (0 is a legitimate answer for most titles, not a data gap).' },
 ];
 
 function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta) {
@@ -692,8 +697,13 @@ function metaLine(candidate, enrichedMeta, omdbMeta) {
     const ratings = meta.voteCount != null ? ` (${fmtCompact(meta.voteCount)} ratings)` : '';
     parts.push(`${meta.voteAverage.toFixed(1)}/10 on TMDB${ratings}`);
   }
-  const audience = audienceScore(omdbMeta?.[candidate.titleKey]);
+  const omdbEntry = omdbMeta?.[candidate.titleKey];
+  const audience = audienceScore(omdbEntry);
   if (audience != null) parts.push(`${audience}/100 audience`);
+  const awardsText = omdbEntry?.awards?.raw;
+  if (awardsText && awardsText !== 'N/A') {
+    parts.push(awardsText.length > 40 ? awardsText.slice(0, 40) + '…' : awardsText);
+  }
   return parts.join(' · ') || 'No genre/creator data yet.';
 }
 
