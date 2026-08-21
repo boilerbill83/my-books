@@ -98,9 +98,11 @@ def extract_entry(kind, data):
 
 
 def load_titles():
-    """watchlist first (most decision-relevant), then library."""
+    """watchlist first (most decision-relevant), then library, then
+    discovered candidates (trakt/scripts/discover_candidates.js) last —
+    those are real TMDB ids but bare stubs with no title/year yet."""
     titles = []
-    for name in ('watchlist.json', 'library.json'):
+    for name in ('watchlist.json', 'library.json', 'candidatePool.json'):
         p = DATA_DIR / name
         if p.exists():
             titles += json.load(open(p)).get('titles', [])
@@ -152,8 +154,18 @@ def main():
             continue
 
         entry = extract_entry(kind, data)
-        entry['title'] = t.get('title')
-        entry['year'] = t.get('year')
+        # Discovered candidates (discover_candidates.js) are bare-id stubs
+        # with no title/year of their own — backfill from TMDB's response.
+        if kind == 'movie':
+            date_field, name_field = 'release_date', 'title'
+        else:
+            date_field, name_field = 'first_air_date', 'name'
+        entry['title'] = t.get('title') or data.get(name_field)
+        year = t.get('year')
+        if not year:
+            date_str = data.get(date_field)
+            year = int(date_str[:4]) if date_str else None
+        entry['year'] = year
         entry['type'] = kind
         entry['fetchedAt'] = time.strftime('%Y-%m-%d')
         if RETRY_EMPTIES:
