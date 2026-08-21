@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bill's Trakt Dashboard</title>
+    <meta name="description" content="Movie and TV watch stats from Bill's Trakt account, rebuilt from a periodic data export" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+      .tk-title {
+        font-family: var(--font-serif); font-weight: 700; font-style: italic;
+        font-size: 2rem; color: var(--accent); margin-bottom: 2px;
+      }
+      .tk-subtitle { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 22px; }
+
+      .tk-tiles {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px; margin-bottom: 26px;
+      }
+      .tk-tile {
+        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+        padding: 14px 16px; box-shadow: var(--shadow);
+      }
+      .tk-tile-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; font-weight: 600; }
+      .tk-tile-value { font-family: var(--font-sans); font-weight: 600; font-size: 1.7rem; color: var(--text); margin-top: 4px; }
+
+      .tk-card {
+        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+        padding: 18px 20px; margin-bottom: 22px; box-shadow: var(--shadow);
+      }
+      .tk-card-heading {
+        font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; color: var(--accent);
+        margin-bottom: 4px;
+      }
+      .tk-card-note { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
+      .tk-caveat {
+        background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 6px;
+        padding: 8px 12px; font-size: 0.76rem; color: var(--text-muted); margin-top: 10px;
+      }
+
+      .tk-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      @media (max-width: 780px) { .tk-row2 { grid-template-columns: 1fr; } }
+
+      .tk-chart-wrap { position: relative; }
+      .tk-bar { fill: var(--accent); }
+      .tk-bar:hover { fill: var(--accent-hover); }
+      .tk-axis-label { fill: var(--text-muted); font-size: 10px; font-family: var(--font-sans); }
+      .tk-gridline { stroke: var(--border); stroke-width: 1; }
+      .tk-value-label { fill: var(--text-muted); font-size: 10px; font-family: var(--font-sans); font-weight: 600; }
+
+      .tk-tooltip {
+        position: absolute; pointer-events: none; opacity: 0; transition: opacity 0.1s;
+        background: var(--accent); color: #fff; font-size: 0.75rem; padding: 4px 9px;
+        border-radius: 5px; white-space: nowrap; transform: translate(-50%, -130%);
+        z-index: 5;
+      }
+      .tk-tooltip.active { opacity: 1; }
+
+      .tk-list { display: flex; flex-direction: column; gap: 0; }
+      .tk-list-row {
+        display: flex; align-items: center; justify-content: space-between; gap: 10px;
+        padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem;
+      }
+      .tk-list-row:last-child { border-bottom: none; }
+      .tk-list-rank { color: var(--text-muted); font-size: 0.78rem; width: 20px; flex-shrink: 0; }
+      .tk-list-title { flex: 1; min-width: 0; }
+      .tk-list-title .tk-year { color: var(--text-muted); font-weight: 400; }
+      .tk-list-score {
+        font-weight: 600; font-size: 0.78rem; padding: 2px 8px; border-radius: 999px;
+        background: var(--bg-subtle); color: var(--accent); white-space: nowrap;
+      }
+
+      .tk-empty { padding: 20px; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="site-header">
+        <div class="container header-inner">
+          <a class="header-quality-link" href="../index.html">← Books</a>
+          <div class="header-status">
+            <span id="statusText">Loading…</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="container" style="padding-top:24px;">
+        <div class="tk-title">📊 Bill's Trakt Dashboard</div>
+        <div class="tk-subtitle" id="subtitleText">Loading…</div>
+
+        <div class="tk-tiles" id="statTiles"></div>
+
+        <div class="tk-card">
+          <div class="tk-card-heading">Rating Distribution</div>
+          <div class="tk-card-note">All 495 ratings (movies + shows), on Trakt's 1-10 scale.</div>
+          <div class="tk-chart-wrap" id="ratingChart"></div>
+        </div>
+
+        <div class="tk-row2">
+          <div class="tk-card">
+            <div class="tk-card-heading">Movies Watched by Year</div>
+            <div class="tk-card-note">Based on watch date (from Trakt history).</div>
+            <div class="tk-chart-wrap" id="moviesByYearChart"></div>
+          </div>
+          <div class="tk-card">
+            <div class="tk-card-heading">Episodes Watched by Year</div>
+            <div class="tk-card-note">Only plays with a real recorded watch date — see caveat below.</div>
+            <div class="tk-chart-wrap" id="episodesByYearChart"></div>
+            <div class="tk-caveat" id="undatedCaveat"></div>
+          </div>
+        </div>
+
+        <div class="tk-card">
+          <div class="tk-card-heading">Top Shows by Episodes Watched</div>
+          <div class="tk-card-note">Top 15 shows, ranked by total plays.</div>
+          <div class="tk-chart-wrap" id="topShowsChart"></div>
+        </div>
+
+        <div class="tk-row2">
+          <div class="tk-card">
+            <div class="tk-card-heading">Top Rated Movies</div>
+            <div class="tk-list" id="topRatedMoviesList"></div>
+          </div>
+          <div class="tk-card">
+            <div class="tk-card-heading">Top Rated Shows</div>
+            <div class="tk-list" id="topRatedShowsList"></div>
+          </div>
+        </div>
+
+        <div class="tk-row2" style="margin-bottom: 24px;">
+          <div class="tk-card">
+            <div class="tk-card-heading">Watchlist (<span id="watchlistCount">0</span>)</div>
+            <div class="tk-list" id="watchlistList"></div>
+          </div>
+          <div class="tk-card">
+            <div class="tk-card-heading">Favorites (<span id="favoritesCount">0</span>)</div>
+            <div class="tk-list" id="favoritesList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./dashboard.js"></script>
+  </body>
+</html>

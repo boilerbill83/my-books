@@ -1,0 +1,819 @@
+{
+  "generatedAt": "2026-08-21T13:17:44.228Z",
+  "profile": {
+    "username": "bill_stoltenberg_27166c",
+    "joinedAt": "2026-07-27T14:49:58.000Z"
+  },
+  "summary": {
+    "moviesWatched": 124,
+    "moviesPlays": 124,
+    "moviesRatings": 124,
+    "moviesMinutes": 16150,
+    "showsWatched": 364,
+    "showsRatings": 371,
+    "episodesWatched": 10894,
+    "episodesPlays": 10894,
+    "episodesMinutes": 467446,
+    "totalRatings": 495,
+    "totalMinutes": 483596,
+    "totalHours": 8060,
+    "avgRating": 7.75
+  },
+  "ratingDistribution": {
+    "1": 0,
+    "2": 2,
+    "3": 4,
+    "4": 17,
+    "5": 7,
+    "6": 41,
+    "7": 108,
+    "8": 186,
+    "9": 75,
+    "10": 55
+  },
+  "activityByYear": [
+    {
+      "year": 1997,
+      "movies": 0,
+      "episodes": 8
+    },
+    {
+      "year": 1998,
+      "movies": 0,
+      "episodes": 8
+    },
+    {
+      "year": 1999,
+      "movies": 0,
+      "episodes": 31
+    },
+    {
+      "year": 2000,
+      "movies": 0,
+      "episodes": 43
+    },
+    {
+      "year": 2001,
+      "movies": 0,
+      "episodes": 42
+    },
+    {
+      "year": 2002,
+      "movies": 0,
+      "episodes": 44
+    },
+    {
+      "year": 2003,
+      "movies": 0,
+      "episodes": 41
+    },
+    {
+      "year": 2004,
+      "movies": 0,
+      "episodes": 74
+    },
+    {
+      "year": 2005,
+      "movies": 0,
+      "episodes": 92
+    },
+    {
+      "year": 2006,
+      "movies": 0,
+      "episodes": 106
+    },
+    {
+      "year": 2007,
+      "movies": 0,
+      "episodes": 118
+    },
+    {
+      "year": 2008,
+      "movies": 0,
+      "episodes": 95
+    },
+    {
+      "year": 2009,
+      "movies": 0,
+      "episodes": 126
+    },
+    {
+      "year": 2010,
+      "movies": 0,
+      "episodes": 123
+    },
+    {
+      "year": 2011,
+      "movies": 0,
+      "episodes": 176
+    },
+    {
+      "year": 2012,
+      "movies": 0,
+      "episodes": 202
+    },
+    {
+      "year": 2013,
+      "movies": 0,
+      "episodes": 181
+    },
+    {
+      "year": 2014,
+      "movies": 0,
+      "episodes": 188
+    },
+    {
+      "year": 2015,
+      "movies": 15,
+      "episodes": 160
+    },
+    {
+      "year": 2016,
+      "movies": 15,
+      "episodes": 187
+    },
+    {
+      "year": 2017,
+      "movies": 15,
+      "episodes": 183
+    },
+    {
+      "year": 2018,
+      "movies": 15,
+      "episodes": 178
+    },
+    {
+      "year": 2019,
+      "movies": 13,
+      "episodes": 197
+    },
+    {
+      "year": 2020,
+      "movies": 4,
+      "episodes": 61
+    },
+    {
+      "year": 2021,
+      "movies": 4,
+      "episodes": 54
+    },
+    {
+      "year": 2022,
+      "movies": 12,
+      "episodes": 135
+    },
+    {
+      "year": 2023,
+      "movies": 15,
+      "episodes": 101
+    },
+    {
+      "year": 2024,
+      "movies": 9,
+      "episodes": 97
+    },
+    {
+      "year": 2025,
+      "movies": 7,
+      "episodes": 238
+    },
+    {
+      "year": 2026,
+      "movies": 0,
+      "episodes": 82
+    }
+  ],
+  "dataCaveats": {
+    "undatedEpisodePlays": 7523,
+    "datedEpisodePlays": 3371,
+    "undatedEpisodeSharePct": 69.1
+  },
+  "topShowsByPlays": [
+    {
+      "title": "The Office",
+      "year": 2005,
+      "plays": 186,
+      "airedEpisodes": 186
+    },
+    {
+      "title": "Seinfeld",
+      "year": 1989,
+      "plays": 180,
+      "airedEpisodes": 180
+    },
+    {
+      "title": "House",
+      "year": 2004,
+      "plays": 177,
+      "airedEpisodes": 177
+    },
+    {
+      "title": "It's Always Sunny in Philadelphia",
+      "year": 2005,
+      "plays": 177,
+      "airedEpisodes": 179
+    },
+    {
+      "title": "Mom",
+      "year": 2013,
+      "plays": 170,
+      "airedEpisodes": 170
+    },
+    {
+      "title": "The Good Wife",
+      "year": 2009,
+      "plays": 156,
+      "airedEpisodes": 156
+    },
+    {
+      "title": "The West Wing",
+      "year": 1999,
+      "plays": 154,
+      "airedEpisodes": 154
+    },
+    {
+      "title": "Brooklyn Nine-Nine",
+      "year": 2013,
+      "plays": 152,
+      "airedEpisodes": 152
+    },
+    {
+      "title": "New Girl",
+      "year": 2011,
+      "plays": 146,
+      "airedEpisodes": 146
+    },
+    {
+      "title": "The Rookie",
+      "year": 2018,
+      "plays": 144,
+      "airedEpisodes": 144
+    },
+    {
+      "title": "30 Rock",
+      "year": 2006,
+      "plays": 138,
+      "airedEpisodes": 138
+    },
+    {
+      "title": "Love is Blind",
+      "year": 2020,
+      "plays": 136,
+      "airedEpisodes": 136
+    },
+    {
+      "title": "Shameless",
+      "year": 2011,
+      "plays": 134,
+      "airedEpisodes": 134
+    },
+    {
+      "title": "Suits",
+      "year": 2011,
+      "plays": 134,
+      "airedEpisodes": 134
+    },
+    {
+      "title": "American Horror Story",
+      "year": 2011,
+      "plays": 132,
+      "airedEpisodes": 132
+    }
+  ],
+  "topRatedMovies": [
+    {
+      "title": "Civil War",
+      "year": 2024,
+      "rating": 10,
+      "ratedAt": "2024-04-12T00:00:00.000Z"
+    },
+    {
+      "title": "Oppenheimer",
+      "year": 2023,
+      "rating": 10,
+      "ratedAt": "2023-07-21T00:00:00.000Z"
+    },
+    {
+      "title": "Tenet",
+      "year": 2020,
+      "rating": 10,
+      "ratedAt": "2020-09-03T00:00:00.000Z"
+    },
+    {
+      "title": "A Star Is Born",
+      "year": 2018,
+      "rating": 10,
+      "ratedAt": "2018-10-05T00:00:00.000Z"
+    },
+    {
+      "title": "Sicario: Day of the Soldado",
+      "year": 2018,
+      "rating": 10,
+      "ratedAt": "2018-06-29T00:00:00.000Z"
+    },
+    {
+      "title": "Get Out",
+      "year": 2017,
+      "rating": 10,
+      "ratedAt": "2017-02-24T00:00:00.000Z"
+    },
+    {
+      "title": "The Founder",
+      "year": 2016,
+      "rating": 10,
+      "ratedAt": "2017-01-20T00:00:00.000Z"
+    },
+    {
+      "title": "La La Land",
+      "year": 2016,
+      "rating": 10,
+      "ratedAt": "2016-12-25T00:00:00.000Z"
+    },
+    {
+      "title": "Deadpool",
+      "year": 2016,
+      "rating": 10,
+      "ratedAt": "2016-02-12T00:00:00.000Z"
+    },
+    {
+      "title": "The Big Short",
+      "year": 2015,
+      "rating": 10,
+      "ratedAt": "2015-12-23T00:00:00.000Z"
+    },
+    {
+      "title": "Creed",
+      "year": 2015,
+      "rating": 10,
+      "ratedAt": "2015-11-25T00:00:00.000Z"
+    },
+    {
+      "title": "The Martian",
+      "year": 2015,
+      "rating": 10,
+      "ratedAt": "2015-10-02T00:00:00.000Z"
+    },
+    {
+      "title": "Sicario",
+      "year": 2015,
+      "rating": 10,
+      "ratedAt": "2015-09-18T00:00:00.000Z"
+    },
+    {
+      "title": "Marty Supreme",
+      "year": 2025,
+      "rating": 9,
+      "ratedAt": "2025-12-25T00:00:00.000Z"
+    },
+    {
+      "title": "One Battle After Another",
+      "year": 2025,
+      "rating": 9,
+      "ratedAt": "2025-09-26T00:00:00.000Z"
+    },
+    {
+      "title": "F1",
+      "year": 2025,
+      "rating": 9,
+      "ratedAt": "2025-06-27T00:00:00.000Z"
+    },
+    {
+      "title": "Gladiator II",
+      "year": 2024,
+      "rating": 9,
+      "ratedAt": "2024-11-22T00:00:00.000Z"
+    },
+    {
+      "title": "Twisters",
+      "year": 2024,
+      "rating": 9,
+      "ratedAt": "2024-07-19T00:00:00.000Z"
+    },
+    {
+      "title": "Top Gun: Maverick",
+      "year": 2022,
+      "rating": 9,
+      "ratedAt": "2022-05-27T00:00:00.000Z"
+    },
+    {
+      "title": "Everything Everywhere All at Once",
+      "year": 2022,
+      "rating": 9,
+      "ratedAt": "2022-04-08T00:00:00.000Z"
+    }
+  ],
+  "topRatedShows": [
+    {
+      "title": "Billions",
+      "year": 2016,
+      "rating": 10,
+      "ratedAt": "2026-08-20T11:47:15.000Z"
+    },
+    {
+      "title": "The Paper",
+      "year": 2025,
+      "rating": 10,
+      "ratedAt": "2026-08-16T02:26:08.000Z"
+    },
+    {
+      "title": "Tires",
+      "year": 2024,
+      "rating": 10,
+      "ratedAt": "2026-08-11T00:07:50.000Z"
+    },
+    {
+      "title": "Goliath",
+      "year": 2016,
+      "rating": 10,
+      "ratedAt": "2026-07-29T01:24:45.000Z"
+    },
+    {
+      "title": "The Good Fight",
+      "year": 2017,
+      "rating": 10,
+      "ratedAt": "2026-07-29T01:24:40.000Z"
+    },
+    {
+      "title": "The West Wing",
+      "year": 1999,
+      "rating": 10,
+      "ratedAt": "2026-07-29T01:24:35.000Z"
+    },
+    {
+      "title": "The Good Wife",
+      "year": 2009,
+      "rating": 10,
+      "ratedAt": "2026-07-29T01:23:47.000Z"
+    },
+    {
+      "title": "Chappelle's Show",
+      "year": 2003,
+      "rating": 10,
+      "ratedAt": "2026-07-29T01:22:30.000Z"
+    },
+    {
+      "title": "Californication",
+      "year": 2007,
+      "rating": 10,
+      "ratedAt": "2026-07-29T01:22:07.000Z"
+    },
+    {
+      "title": "Weeds",
+      "year": 2005,
+      "rating": 10,
+      "ratedAt": "2026-07-29T01:21:49.000Z"
+    },
+    {
+      "title": "Lost",
+      "year": 2004,
+      "rating": 10,
+      "ratedAt": "2026-07-29T01:21:29.000Z"
+    },
+    {
+      "title": "Entourage",
+      "year": 2004,
+      "rating": 10,
+      "ratedAt": "2026-07-29T01:20:15.000Z"
+    },
+    {
+      "title": "Oz",
+      "year": 1997,
+      "rating": 10,
+      "ratedAt": "2026-07-29T01:19:58.000Z"
+    },
+    {
+      "title": "The Sopranos",
+      "year": 1999,
+      "rating": 10,
+      "ratedAt": "2026-07-29T01:19:25.000Z"
+    },
+    {
+      "title": "Watchmen",
+      "year": 2019,
+      "rating": 10,
+      "ratedAt": "2026-07-29T00:56:11.000Z"
+    },
+    {
+      "title": "Chernobyl",
+      "year": 2019,
+      "rating": 10,
+      "ratedAt": "2026-07-29T00:49:18.000Z"
+    },
+    {
+      "title": "Love",
+      "year": 2016,
+      "rating": 10,
+      "ratedAt": "2026-07-29T00:27:22.000Z"
+    },
+    {
+      "title": "Girls",
+      "year": 2012,
+      "rating": 10,
+      "ratedAt": "2026-07-29T00:27:13.000Z"
+    },
+    {
+      "title": "The Marvelous Mrs. Maisel",
+      "year": 2017,
+      "rating": 10,
+      "ratedAt": "2026-07-29T00:26:48.000Z"
+    },
+    {
+      "title": "Comedians in Cars Getting Coffee",
+      "year": 2012,
+      "rating": 10,
+      "ratedAt": "2026-07-29T00:26:12.000Z"
+    }
+  ],
+  "watchlist": {
+    "count": 28,
+    "items": [
+      {
+        "type": "show",
+        "title": "Star City",
+        "year": 2026,
+        "listedAt": "2026-07-28T19:26:36.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Suits LA",
+        "year": 2025,
+        "listedAt": "2026-07-28T19:26:36.000Z"
+      },
+      {
+        "type": "show",
+        "title": "The Consultant",
+        "year": 2023,
+        "listedAt": "2026-07-28T19:26:36.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Marshals",
+        "year": 2026,
+        "listedAt": "2026-07-28T19:26:36.000Z"
+      },
+      {
+        "type": "show",
+        "title": "The Westies",
+        "year": 2026,
+        "listedAt": "2026-07-28T20:02:37.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Best Medicine",
+        "year": 2026,
+        "listedAt": "2026-07-28T20:02:52.000Z"
+      },
+      {
+        "type": "show",
+        "title": "The Hawk",
+        "year": 2026,
+        "listedAt": "2026-07-28T20:02:59.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Your Friends & Neighbors",
+        "year": 2025,
+        "listedAt": "2026-07-29T00:12:52.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Elsbeth",
+        "year": 2024,
+        "listedAt": "2026-07-29T00:14:28.000Z"
+      },
+      {
+        "type": "show",
+        "title": "BEEF",
+        "year": 2023,
+        "listedAt": "2026-07-29T00:18:40.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Elle",
+        "year": 2026,
+        "listedAt": "2026-07-29T00:18:56.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Silo",
+        "year": 2023,
+        "listedAt": "2026-07-29T00:29:21.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Furious",
+        "year": 2026,
+        "listedAt": "2026-07-29T00:30:04.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Lucky",
+        "year": 2026,
+        "listedAt": "2026-07-29T00:30:18.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Pressure",
+        "year": 2026,
+        "listedAt": "2026-07-29T00:47:53.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Love Story",
+        "year": 2026,
+        "listedAt": "2026-07-29T01:05:26.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Cupertino",
+        "year": 2026,
+        "listedAt": "2026-07-29T01:26:13.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Neagley",
+        "year": 2026,
+        "listedAt": "2026-07-31T13:56:08.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Crystal Lake",
+        "year": 2026,
+        "listedAt": "2026-07-31T13:56:18.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Off Campus",
+        "year": 2026,
+        "listedAt": "2026-07-31T22:55:12.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Ted Lasso",
+        "year": 2020,
+        "listedAt": "2026-08-06T01:26:21.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Lanterns",
+        "year": 2026,
+        "listedAt": "2026-08-11T00:07:34.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Tires",
+        "year": 2024,
+        "listedAt": "2026-08-11T00:07:54.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Reacher",
+        "year": 2022,
+        "listedAt": "2026-08-11T00:08:04.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Ransom Canyon",
+        "year": 2025,
+        "listedAt": "2026-08-13T13:32:56.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Adults",
+        "year": 2025,
+        "listedAt": "2026-08-14T23:35:00.000Z"
+      },
+      {
+        "type": "show",
+        "title": "The Lowdown",
+        "year": 2025,
+        "listedAt": "2026-08-15T23:33:14.000Z"
+      },
+      {
+        "type": "show",
+        "title": "The Paper",
+        "year": 2025,
+        "listedAt": "2026-08-16T02:26:10.000Z"
+      }
+    ]
+  },
+  "favorites": {
+    "count": 19,
+    "items": [
+      {
+        "type": "show",
+        "title": "The Pitt",
+        "year": 2025,
+        "listedAt": "2026-07-29T00:10:02.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Pluribus",
+        "year": 2025,
+        "listedAt": "2026-07-29T00:10:02.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Landman",
+        "year": 2024,
+        "listedAt": "2026-07-29T00:12:16.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Paradise",
+        "year": 2025,
+        "listedAt": "2026-07-29T00:12:25.000Z"
+      },
+      {
+        "type": "show",
+        "title": "The Agency",
+        "year": 2024,
+        "listedAt": "2026-07-29T00:14:11.000Z"
+      },
+      {
+        "type": "show",
+        "title": "The Diplomat",
+        "year": 2023,
+        "listedAt": "2026-07-29T00:18:47.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Mayor of Kingstown",
+        "year": 2021,
+        "listedAt": "2026-07-29T00:19:00.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Shameless",
+        "year": 2011,
+        "listedAt": "2026-07-29T00:23:11.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Chernobyl",
+        "year": 2019,
+        "listedAt": "2026-07-29T00:49:19.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Watchmen",
+        "year": 2019,
+        "listedAt": "2026-07-29T00:56:12.000Z"
+      },
+      {
+        "type": "show",
+        "title": "The Sopranos",
+        "year": 1999,
+        "listedAt": "2026-07-29T01:19:25.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Entourage",
+        "year": 2004,
+        "listedAt": "2026-07-29T01:20:15.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Lost",
+        "year": 2004,
+        "listedAt": "2026-07-29T01:21:29.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Weeds",
+        "year": 2005,
+        "listedAt": "2026-07-29T01:21:49.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Californication",
+        "year": 2007,
+        "listedAt": "2026-07-29T01:22:10.000Z"
+      },
+      {
+        "type": "show",
+        "title": "The Good Wife",
+        "year": 2009,
+        "listedAt": "2026-07-29T01:23:47.000Z"
+      },
+      {
+        "type": "show",
+        "title": "The West Wing",
+        "year": 1999,
+        "listedAt": "2026-07-29T01:24:36.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Tires",
+        "year": 2024,
+        "listedAt": "2026-08-11T00:07:53.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Billions",
+        "year": 2016,
+        "listedAt": "2026-08-20T11:47:18.000Z"
+      }
+    ]
+  }
+}
