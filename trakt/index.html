@@ -89,6 +89,7 @@
         font-size: 0.64rem; font-weight: 600; padding: 2px 7px; border-radius: 999px;
         background: var(--bg-card); color: var(--text-muted); margin-left: 8px; vertical-align: middle;
       }
+      .tk-rec-meta { font-size: 0.78rem; color: var(--accent); margin-top: 4px; font-weight: 500; }
       .tk-rec-reason { font-size: 0.8rem; color: var(--text-muted); margin-top: 3px; }
       .tk-rec-score { font-family: var(--font-sans); font-weight: 600; font-size: 1.25rem; color: var(--accent); flex-shrink: 0; }
       .tk-rec-seeall { font-size: 0.82rem; text-align: right; }
@@ -175,12 +176,19 @@
         <div class="tk-title">📊 Bill's Trakt Dashboard</div>
         <div class="tk-subtitle" id="subtitleText">Loading…</div>
 
-        <div class="tk-card">
-          <div class="tk-card-heading">🎯 What You'll Love</div>
-          <div class="tk-card-note">BMTRE's top picks from your watchlist, ranked against your real rating history.</div>
-          <div class="tk-rec-list" id="recPreviewList"></div>
-          <div class="tk-rec-seeall"><a href="./recommend.html">See the full ranked watchlist →</a></div>
+        <div class="tk-row2" style="margin-bottom:14px;">
+          <div class="tk-card">
+            <div class="tk-card-heading">🎬 Movies You'll Love</div>
+            <div class="tk-card-note">Top 4 from your watchlist + top 4 new candidates you haven't queued up, ranked against your real rating history.</div>
+            <div class="tk-rec-list" id="movieRecList"></div>
+          </div>
+          <div class="tk-card">
+            <div class="tk-card-heading">📺 Shows You'll Love</div>
+            <div class="tk-card-note">Top 4 from your watchlist + top 4 new candidates you haven't queued up, ranked against your real rating history.</div>
+            <div class="tk-rec-list" id="showRecList"></div>
+          </div>
         </div>
+        <div class="tk-rec-seeall" style="margin-bottom:24px;"><a href="./recommend.html">See the full ranked watchlist →</a></div>
 
         <div class="tk-card">
           <div class="tk-card-heading">📈 Metadata &amp; Engine Quality</div>

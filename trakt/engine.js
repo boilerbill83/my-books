@@ -35,7 +35,7 @@ export function titleKey(type, tmdbId) {
 // The single "creative author" signal for a title: a movie's director or
 // a show's primary creator — the closest 1:1 analog to a book's author
 // (usually one person per title, same as the book engine's model).
-function getCreator(type, meta) {
+export function getCreator(type, meta) {
   if (!meta) return null;
   if (type === 'movie') return meta.director || null;
   return (meta.createdBy && meta.createdBy[0]) || null;
@@ -254,4 +254,60 @@ export function rankRecommendations(library, watchlist, enrichedMeta, feedback =
   scored.sort((a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore));
 
   return { selected: scored, idx };
+}
+
+// Same scoring machinery as rankRecommendations, but scores the watchlist
+// and the discovered/manually-added candidate pool as two separate ranked
+// lists (tagged via `origin`) instead of one. Lets a UI show "top picks
+// from what you already plan to watch" alongside "top picks you haven't
+// queued up yet" without re-deriving the indexes twice. A candidate whose
+// titleKey already sits in the watchlist is dropped from the candidate
+// list (structurally shouldn't happen — both resolve_titles.py and
+// discover_candidates.js already exclude known watchlist/library keys —
+// but checked here too since a UI silently double-counting the same title
+// under two origins would be worse than a defensive filter).
+export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedback = { interactions: [] }) {
+  const idx = buildIndexes(library, enrichedMeta, feedback);
+  const watchlistKeys = new Set((watchlist.titles || []).map(c => c.titleKey));
+
+  // Candidate-pool stubs carry title:null/year:null until enrich_tmdb.py
+  // backfills a real title into enrichedMetadata.json — but only there,
+  // never back onto the stub itself, so any consumer reading c.title
+  // directly needs this fallback (the pool's raw JSON staying title:null
+  // is intentional per resolve_titles.py/discover_candidates.js's own
+  // comments; fixing it here is cheaper than a repo-wide backfill pass).
+  const scoreOne = (c, origin) => {
+    const meta = enrichedMeta[c.titleKey];
+    return {
+      ...c,
+      title: c.title || meta?.title || c.title,
+      year: c.year || meta?.year || c.year,
+      origin,
+      bmtreScore: matchScore(c, idx, enrichedMeta),
+      confidenceScore: confidenceScore(c, enrichedMeta),
+      reason: reason(c, idx, enrichedMeta),
+    };
+  };
+
+  const byScore = (a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore);
+
+  const fromWatchlist = (watchlist.titles || [])
+    .filter(c => !idx.excluded.has(c.titleKey))
+    .map(c => scoreOne(c, 'watchlist'))
+    .sort(byScore);
+
+  // TMDB tags theatrical re-cuts/re-releases with the literal keyword
+  // "edited from film" (e.g. Once Upon a Deadpool, a PG-13 re-edit of
+  // Deadpool 2, which Bill already watched and rated 9/10 under its own
+  // titleKey) — a real, well-supported signal that this "new pick" isn't
+  // actually a new title, not a guess. Watchlist items are exempt: those
+  // are Bill's own explicit picks, not the engine's discovery.
+  const isReEdit = c => (enrichedMeta[c.titleKey]?.keywords || []).includes('edited from film');
+
+  const fromCandidates = (candidatePool.titles || [])
+    .filter(c => !idx.excluded.has(c.titleKey) && !watchlistKeys.has(c.titleKey) && !isReEdit(c))
+    .map(c => scoreOne(c, 'candidate'))
+    .sort(byScore);
+
+  return { idx, fromWatchlist, fromCandidates };
 }

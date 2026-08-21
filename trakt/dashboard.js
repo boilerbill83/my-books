@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankRecommendations } from './engine.js';
+import { rankAll, getCreator } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -355,21 +355,39 @@ function renderAllTitlesTable(allRows) {
 
 // ── Recommendations preview ─────────────────────────────────────────────
 
-function renderRecPreview(selected) {
-  const el = document.getElementById('recPreviewList');
-  if (!selected.length) {
-    el.innerHTML = '<div class="tk-empty">Nothing on the watchlist yet.</div>';
+// One line of real metadata under the title: genres, director/creator,
+// TMDB community rating — whatever's actually present, since candidate
+// stubs may still be mid-enrichment.
+function metaLine(candidate, enrichedMeta) {
+  const meta = enrichedMeta[candidate.titleKey];
+  if (!meta) return 'Not enriched yet.';
+  const parts = [];
+  if (meta.genres?.length) parts.push(meta.genres.slice(0, 2).join(', '));
+  const creator = getCreator(candidate.type, meta);
+  if (creator) parts.push(candidate.type === 'movie' ? `dir. ${creator}` : `by ${creator}`);
+  if (meta.voteAverage != null) parts.push(`${meta.voteAverage.toFixed(1)}/10 on TMDB`);
+  return parts.join(' · ') || 'No genre/creator data yet.';
+}
+
+// 4 top-ranked watchlist titles + 4 top-ranked candidate-pool titles for
+// one type (movie or show) — each card shows real metadata, the engine's
+// predicted score, and its plain-English reason, per Bill's request.
+function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta) {
+  const el = document.getElementById(sectionId);
+  const picks = [...watchlistItems.slice(0, 4), ...candidateItems.slice(0, 4)];
+  if (!picks.length) {
+    el.innerHTML = '<div class="tk-empty">Not enough enriched data yet.</div>';
     return;
   }
-  const top5 = selected.slice(0, 5);
-  el.innerHTML = top5.map((c, i) => `
+  el.innerHTML = picks.map((c, i) => `
     <div class="tk-rec-card">
       <div class="tk-rec-rank">${i + 1}</div>
       <div class="tk-rec-body">
         <div class="tk-rec-title">
           ${esc(c.title)}${c.year ? ` <span class="tk-year">(${esc(c.year)})</span>` : ''}
-          <span class="tk-rec-badge">${c.type === 'movie' ? 'Movie' : 'Show'}</span>
+          <span class="tk-rec-badge">${c.origin === 'watchlist' ? 'Watchlist' : 'New pick'}</span>
         </div>
+        <div class="tk-rec-meta">${esc(metaLine(c, enrichedMeta))}</div>
         <div class="tk-rec-reason">${esc(c.reason)}</div>
       </div>
       <div class="tk-rec-score">${Math.round(c.bmtreScore)}</div>
@@ -475,18 +493,23 @@ function renderQualityDial(sectionId, { score, components }) {
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
 
-  const [d, library, watchlist, enrichedMeta, feedback] = await Promise.all([
+  const [d, library, watchlist, candidatePool, enrichedMeta, feedback] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
+    get('./data/candidatePool.json').catch(() => ({ titles: [] })),
     get('./data/enrichedMetadata.json').catch(() => ({})),
     get('./data/feedbackData.json').catch(() => ({ interactions: [] })),
   ]);
 
-  const { selected } = rankRecommendations(library, watchlist, enrichedMeta, feedback);
-  renderRecPreview(selected);
+  const { fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback);
+  const enrichedOnly = c => !!enrichedMeta[c.titleKey];
+  const byType = (list, type) => list.filter(c => c.type === type && enrichedOnly(c));
 
-  const quality = computeMetadataQuality(library, watchlist, enrichedMeta, selected);
+  renderRecPanel('movieRecList', byType(fromWatchlist, 'movie'), byType(fromCandidates, 'movie'), enrichedMeta);
+  renderRecPanel('showRecList', byType(fromWatchlist, 'show'), byType(fromCandidates, 'show'), enrichedMeta);
+
+  const quality = computeMetadataQuality(library, watchlist, enrichedMeta, fromWatchlist);
   renderQualityDial('qualitySection', quality);
   document.getElementById('qualityFootnote').textContent =
     `${quality.watchlistEnrichedCount}/${quality.watchlistTotal} watchlist titles enriched, ` +
