@@ -9,6 +9,10 @@ on:
         description: 'Re-attempt titles that returned no overview'
         type: boolean
         default: false
+      refresh_all:
+        description: 'Re-fetch every title regardless of cache (one-off backfill for a new field)'
+        type: boolean
+        default: false
       batch_size:
         description: 'How many titles to enrich this run (default 150 on schedule)'
         type: number
@@ -28,6 +32,7 @@ jobs:
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
           RETRY_EMPTIES: ${{ inputs.retry_empties && '1' || '0' }}
+          REFRESH_ALL: ${{ inputs.refresh_all && '1' || '0' }}
         run: python3 trakt/enrich_tmdb.py ${{ inputs.batch_size || 150 }}
         timeout-minutes: 30
       - name: Commit if changed

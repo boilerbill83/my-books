@@ -19,6 +19,12 @@ scoring signals like director/genre affinity).
 
 Run manually:   python3 trakt/enrich_tmdb.py [batch_size]
 GitHub Action:  .github/workflows/trakt-enrich-tmdb.yml
+
+REFRESH_ALL=1 (or --refresh-all) re-fetches every title regardless of
+cache membership — a one-off backfill for when extract_entry() gains a
+new field that already-cached entries don't carry (the cache only ever
+stores the extracted subset, so a new field can't be recovered without
+a real re-fetch).
 """
 
 import json, os, sys, time, urllib.request, urllib.parse, urllib.error
@@ -29,6 +35,12 @@ DATA_DIR   = ROOT / 'trakt' / 'data'
 CACHE_FILE = DATA_DIR / 'enrichedMetadata.json'
 BATCH_SIZE = int(sys.argv[1]) if len(sys.argv) > 1 else 150
 RETRY_EMPTIES = os.environ.get('RETRY_EMPTIES') == '1' or '--retry-empties' in sys.argv
+# One-off backfill mode: re-fetches every title regardless of cache
+# membership, needed when a new field is added to extract_entry() (e.g.
+# originalLanguage) that already-cached entries don't have — the cache
+# only ever stores the extracted subset, not the raw TMDB response, so
+# there's no way to backfill a new field without a real re-fetch.
+REFRESH_ALL = os.environ.get('REFRESH_ALL') == '1' or '--refresh-all' in sys.argv
 API_KEY    = os.environ.get('TMDB_API_KEY', '')
 DELAY      = 0.35  # seconds between titles — one call per title, generous TMDB rate limit
 
@@ -61,6 +73,7 @@ def extract_entry(kind, data):
         'genres': [g['name'] for g in (data.get('genres') or [])],
         'overview': (data.get('overview') or '')[:2000],
         'keywords': [],
+        'originalLanguage': data.get('original_language'),
         'voteAverage': data.get('vote_average'),
         'voteCount': data.get('vote_count'),
         'popularity': data.get('popularity'),
@@ -116,7 +129,9 @@ def main():
         sys.exit(1)
 
     cache = json.load(open(CACHE_FILE)) if CACHE_FILE.exists() else {}
-    if RETRY_EMPTIES:
+    if REFRESH_ALL:
+        pending = [t for t in load_titles() if t.get('titleKey')]
+    elif RETRY_EMPTIES:
         pending = [t for t in load_titles()
                    if t.get('titleKey') and t['titleKey'] in cache
                    and not cache[t['titleKey']].get('overview')
