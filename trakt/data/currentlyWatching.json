@@ -1,0 +1,266 @@
+[
+  {
+    "type": "show",
+    "titleKey": "show:154385",
+    "ids": {
+      "imdb": "tt14403178",
+      "plex": {
+        "guid": "61cdd57fcd8c10ae5aca39f4",
+        "slug": "beef-1"
+      },
+      "slug": "beef",
+      "tmdb": 154385,
+      "tvdb": 399838,
+      "trakt": 197667
+    },
+    "title": "BEEF",
+    "year": 2023,
+    "myRating": 8,
+    "ratedAt": "2023-04-06T00:00:00.000Z",
+    "plays": 10,
+    "airedEpisodes": 18,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:226285",
+    "ids": {
+      "imdb": "tt26591110",
+      "plex": {
+        "guid": "645ea1c294b088b0810f2ea8",
+        "slug": "elsbeth"
+      },
+      "slug": "elsbeth",
+      "tmdb": 226285,
+      "tvdb": 430543,
+      "trakt": 205237
+    },
+    "title": "Elsbeth",
+    "year": 2024,
+    "myRating": 8,
+    "ratedAt": "2026-05-21T00:00:00.000Z",
+    "plays": 30,
+    "airedEpisodes": 50,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:2710",
+    "ids": {
+      "imdb": "tt0472954",
+      "plex": {
+        "guid": "5d9c0875170e24001f2ab27e",
+        "slug": "its-always-sunny-in-philadelphia"
+      },
+      "slug": "it-s-always-sunny-in-philadelphia",
+      "tmdb": 2710,
+      "tvdb": 75805,
+      "trakt": 2692
+    },
+    "title": "It's Always Sunny in Philadelphia",
+    "year": 2005,
+    "myRating": 9,
+    "ratedAt": "2025-08-20T00:00:00.000Z",
+    "plays": 177,
+    "airedEpisodes": 179,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:113962",
+    "ids": {
+      "imdb": "tt13111078",
+      "plex": {
+        "guid": "62ac863c44b73ea95829962c",
+        "slug": "lioness-1"
+      },
+      "slug": "lioness",
+      "tmdb": 113962,
+      "tvdb": 388589,
+      "trakt": 167187
+    },
+    "title": "Lioness",
+    "year": 2023,
+    "myRating": 7,
+    "ratedAt": "2024-12-15T00:00:00.000Z",
+    "plays": 16,
+    "airedEpisodes": 19,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:240993",
+    "ids": {
+      "imdb": "tt28088031",
+      "plex": {
+        "guid": "656ff8021618e1eba2286daf",
+        "slug": "ransom-canyon"
+      },
+      "slug": "ransom-canyon",
+      "tmdb": 240993,
+      "tvdb": 443051,
+      "trakt": 216613
+    },
+    "title": "Ransom Canyon",
+    "year": 2025,
+    "myRating": 7,
+    "ratedAt": "2026-08-13T13:32:59.000Z",
+    "plays": 10,
+    "airedEpisodes": 18,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "2025-04-17T08:53:00.000Z",
+    "favorite": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:108978",
+    "ids": {
+      "imdb": "tt9288030",
+      "plex": {
+        "guid": "5d9c09190aaccd001f8f42f0",
+        "slug": "reacher"
+      },
+      "slug": "reacher",
+      "tmdb": 108978,
+      "tvdb": 366924,
+      "trakt": 155536
+    },
+    "title": "Reacher",
+    "year": 2022,
+    "myRating": 8,
+    "ratedAt": "2025-04-10T00:00:00.000Z",
+    "plays": 24,
+    "airedEpisodes": 28,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:125988",
+    "ids": {
+      "imdb": "tt14688458",
+      "plex": {
+        "guid": "61b180686bfb4feb48515e07",
+        "slug": "silo"
+      },
+      "slug": "silo",
+      "tmdb": 125988,
+      "tvdb": 403245,
+      "trakt": 180770
+    },
+    "title": "Silo",
+    "year": 2023,
+    "myRating": 7,
+    "ratedAt": "2026-08-13T13:32:00.000Z",
+    "plays": 20,
+    "airedEpisodes": 28,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "2025-01-17T02:59:00.000Z",
+    "favorite": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:203744",
+    "ids": {
+      "imdb": "tt16418808",
+      "plex": {
+        "guid": "62a35be541db86d50abcadfb",
+        "slug": "sugar-2024"
+      },
+      "slug": "sugar-2024",
+      "tmdb": 203744,
+      "tvdb": 421070,
+      "trakt": 196180
+    },
+    "title": "Sugar",
+    "year": 2024,
+    "myRating": 7,
+    "ratedAt": "2024-05-03T00:00:00.000Z",
+    "plays": 14,
+    "airedEpisodes": 16,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:97546",
+    "ids": {
+      "imdb": "tt10986410",
+      "plex": {
+        "guid": "5e204251072b9e003ca5c140",
+        "slug": "ted-lasso"
+      },
+      "slug": "ted-lasso",
+      "tmdb": 97546,
+      "tvdb": 383203,
+      "trakt": 162639
+    },
+    "title": "Ted Lasso",
+    "year": 2020,
+    "myRating": 9,
+    "ratedAt": "2023-05-31T00:00:00.000Z",
+    "plays": 34,
+    "airedEpisodes": 37,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:247522",
+    "ids": {
+      "imdb": "tt31491435",
+      "plex": {
+        "guid": "65df741280e2a6434615dcf0",
+        "slug": "tires-2"
+      },
+      "slug": "tires",
+      "tmdb": 247522,
+      "tvdb": 446718,
+      "trakt": 228099
+    },
+    "title": "Tires",
+    "year": 2024,
+    "myRating": 10,
+    "ratedAt": "2026-08-11T00:07:50.000Z",
+    "plays": 18,
+    "airedEpisodes": 30,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "2025-06-05T04:31:00.000Z",
+    "favorite": true
+  },
+  {
+    "type": "show",
+    "titleKey": "show:241609",
+    "ids": {
+      "imdb": "tt30459041",
+      "plex": {
+        "guid": "657dc33ef513062f56b44a23",
+        "slug": "your-friends-and-neighbors"
+      },
+      "slug": "your-friends-neighbors",
+      "tmdb": 241609,
+      "tvdb": 443433,
+      "trakt": 217691
+    },
+    "title": "Your Friends & Neighbors",
+    "year": 2025,
+    "myRating": 8,
+    "ratedAt": "2026-07-29T00:12:49.000Z",
+    "plays": 9,
+    "airedEpisodes": 19,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "2025-05-30T02:02:00.000Z",
+    "favorite": false
+  }
+]

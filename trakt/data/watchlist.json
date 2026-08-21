@@ -1,0 +1,539 @@
+{
+  "meta": {
+    "generatedAt": "2026-08-21T13:55:46.226Z",
+    "count": 28
+  },
+  "titles": [
+    {
+      "type": "show",
+      "titleKey": "show:286709",
+      "ids": {
+        "imdb": "tt31849235",
+        "plex": {
+          "guid": "67f0f2a94a6dc1c58d90d164",
+          "slug": "the-westies"
+        },
+        "slug": "the-westies",
+        "tmdb": 286709,
+        "tvdb": 461627,
+        "trakt": 279635
+      },
+      "title": "The Westies",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-28T20:02:37.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:291084",
+      "ids": {
+        "imdb": "tt36885662",
+        "plex": {
+          "guid": "682050fa174928d66e7e9ed8",
+          "slug": "best-medicine"
+        },
+        "slug": "best-medicine",
+        "tmdb": 291084,
+        "tvdb": 463505,
+        "trakt": 285217
+      },
+      "title": "Best Medicine",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-28T20:02:52.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:254528",
+      "ids": {
+        "imdb": "tt27550719",
+        "plex": {
+          "guid": "6646a03bab6b31fa3ee5e703",
+          "slug": "the-hawk-2026"
+        },
+        "slug": "the-hawk-2026",
+        "tmdb": 254528,
+        "tvdb": 450088,
+        "trakt": 240024
+      },
+      "title": "The Hawk",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-28T20:02:59.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:241609",
+      "ids": {
+        "imdb": "tt30459041",
+        "plex": {
+          "guid": "657dc33ef513062f56b44a23",
+          "slug": "your-friends-and-neighbors"
+        },
+        "slug": "your-friends-neighbors",
+        "tmdb": 241609,
+        "tvdb": 443433,
+        "trakt": 217691
+      },
+      "title": "Your Friends & Neighbors",
+      "year": 2025,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-29T00:12:52.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:226285",
+      "ids": {
+        "imdb": "tt26591110",
+        "plex": {
+          "guid": "645ea1c294b088b0810f2ea8",
+          "slug": "elsbeth"
+        },
+        "slug": "elsbeth",
+        "tmdb": 226285,
+        "tvdb": 430543,
+        "trakt": 205237
+      },
+      "title": "Elsbeth",
+      "year": 2024,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-29T00:14:28.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:154385",
+      "ids": {
+        "imdb": "tt14403178",
+        "plex": {
+          "guid": "61cdd57fcd8c10ae5aca39f4",
+          "slug": "beef-1"
+        },
+        "slug": "beef",
+        "tmdb": 154385,
+        "tvdb": 399838,
+        "trakt": 197667
+      },
+      "title": "BEEF",
+      "year": 2023,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-29T00:18:40.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:254420",
+      "ids": {
+        "imdb": "tt32020831",
+        "plex": {
+          "guid": "67ac7f7849b7ba5b2b751f7c",
+          "slug": "elle"
+        },
+        "slug": "elle",
+        "tmdb": 254420,
+        "tvdb": 450048,
+        "trakt": 239856
+      },
+      "title": "Elle",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-29T00:18:56.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:125988",
+      "ids": {
+        "imdb": "tt14688458",
+        "plex": {
+          "guid": "61b180686bfb4feb48515e07",
+          "slug": "silo"
+        },
+        "slug": "silo",
+        "tmdb": 125988,
+        "tvdb": 403245,
+        "trakt": 180770
+      },
+      "title": "Silo",
+      "year": 2023,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-29T00:29:21.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:287238",
+      "ids": {
+        "imdb": "tt36303968",
+        "plex": {
+          "guid": "68d30fff1190765ce3a96c77",
+          "slug": "furious"
+        },
+        "slug": "furious",
+        "tmdb": 287238,
+        "tvdb": 468000,
+        "trakt": 280335
+      },
+      "title": "Furious",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-29T00:30:04.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:278624",
+      "ids": {
+        "imdb": "tt34866681",
+        "plex": {
+          "guid": "67507127b734a2ab5d683713",
+          "slug": "lucky-2026"
+        },
+        "slug": "lucky-2026",
+        "tmdb": 278624,
+        "tvdb": 457437,
+        "trakt": 265812
+      },
+      "title": "Lucky",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-29T00:30:18.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1318413",
+      "ids": {
+        "imdb": "tt32547691",
+        "plex": {
+          "guid": "666552209e34ea73f7f11b2f",
+          "slug": "pressure-2026"
+        },
+        "slug": "pressure-2026",
+        "tmdb": 1318413,
+        "trakt": 1077714
+      },
+      "title": "Pressure",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-29T00:47:53.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:131142",
+      "ids": {
+        "imdb": "tt15232564",
+        "plex": {
+          "guid": "61b1811072d2810d4b1b54a2",
+          "slug": "love-story-13"
+        },
+        "slug": "love-story-2026",
+        "tmdb": 131142,
+        "tvdb": 408694,
+        "trakt": 185998
+      },
+      "title": "Love Story",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-29T01:05:26.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:303630",
+      "ids": {
+        "imdb": "tt33270224",
+        "plex": {
+          "guid": null,
+          "slug": null
+        },
+        "slug": "cupertino",
+        "tmdb": 303630,
+        "tvdb": null,
+        "trakt": 304435
+      },
+      "title": "Cupertino",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-29T01:26:13.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:273207",
+      "ids": {
+        "imdb": "tt33539520",
+        "plex": {
+          "guid": null,
+          "slug": null
+        },
+        "slug": "neagley",
+        "tmdb": 273207,
+        "tvdb": 455064,
+        "trakt": 258222
+      },
+      "title": "Neagley",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-31T13:56:08.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:213562",
+      "ids": {
+        "imdb": "tt23148340",
+        "plex": {
+          "guid": null,
+          "slug": null
+        },
+        "slug": "crystal-lake",
+        "tmdb": 213562,
+        "tvdb": 426669,
+        "trakt": 199470
+      },
+      "title": "Crystal Lake",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-31T13:56:18.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:273240",
+      "ids": {
+        "imdb": "tt33546863",
+        "plex": {
+          "guid": "670d3d01ea35b28bf307201f",
+          "slug": "off-campus"
+        },
+        "slug": "off-campus",
+        "tmdb": 273240,
+        "tvdb": 455086,
+        "trakt": 258304
+      },
+      "title": "Off Campus",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-31T22:55:12.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:97546",
+      "ids": {
+        "imdb": "tt10986410",
+        "plex": {
+          "guid": "5e204251072b9e003ca5c140",
+          "slug": "ted-lasso"
+        },
+        "slug": "ted-lasso",
+        "tmdb": 97546,
+        "tvdb": 383203,
+        "trakt": 162639
+      },
+      "title": "Ted Lasso",
+      "year": 2020,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-06T01:26:21.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:95350",
+      "ids": {
+        "imdb": "tt26545992",
+        "plex": {
+          "guid": "6475f4e274668225adb2c0e0",
+          "slug": "lanterns-1"
+        },
+        "slug": "lanterns",
+        "tmdb": 95350,
+        "tvdb": 376098,
+        "trakt": 157599
+      },
+      "title": "Lanterns",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-11T00:07:34.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:247522",
+      "ids": {
+        "imdb": "tt31491435",
+        "plex": {
+          "guid": "65df741280e2a6434615dcf0",
+          "slug": "tires-2"
+        },
+        "slug": "tires",
+        "tmdb": 247522,
+        "tvdb": 446718,
+        "trakt": 228099
+      },
+      "title": "Tires",
+      "year": 2024,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-11T00:07:54.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:252107",
+      "ids": {
+        "imdb": "tt32140872",
+        "plex": {
+          "guid": "67a711656b1b8d167eb3f327",
+          "slug": "star-city-1"
+        },
+        "slug": "star-city",
+        "tmdb": 252107,
+        "tvdb": 449146,
+        "trakt": 235622
+      },
+      "title": "Star City",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-28T19:26:36.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:108978",
+      "ids": {
+        "imdb": "tt9288030",
+        "plex": {
+          "guid": "5d9c09190aaccd001f8f42f0",
+          "slug": "reacher"
+        },
+        "slug": "reacher",
+        "tmdb": 108978,
+        "tvdb": 366924,
+        "trakt": 155536
+      },
+      "title": "Reacher",
+      "year": 2022,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-11T00:08:04.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:240993",
+      "ids": {
+        "imdb": "tt28088031",
+        "plex": {
+          "guid": "656ff8021618e1eba2286daf",
+          "slug": "ransom-canyon"
+        },
+        "slug": "ransom-canyon",
+        "tmdb": 240993,
+        "tvdb": 443051,
+        "trakt": 216613
+      },
+      "title": "Ransom Canyon",
+      "year": 2025,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-13T13:32:56.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:260458",
+      "ids": {
+        "imdb": "tt33049767",
+        "plex": {
+          "guid": "66aaecf0c7e4d02d38d9afde",
+          "slug": "adults-2025"
+        },
+        "slug": "adults-2025",
+        "tmdb": 260458,
+        "tvdb": 449390,
+        "trakt": 250203
+      },
+      "title": "Adults",
+      "year": 2025,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-14T23:35:00.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:273247",
+      "ids": {
+        "imdb": "tt31289994",
+        "plex": {
+          "guid": "6700d88decd8889ab8287d07",
+          "slug": "the-lowdown-2"
+        },
+        "slug": "the-lowdown-2025",
+        "tmdb": 273247,
+        "tvdb": 450085,
+        "trakt": 258223
+      },
+      "title": "The Lowdown",
+      "year": 2025,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-15T23:33:14.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:253941",
+      "ids": {
+        "imdb": "tt32159809",
+        "plex": {
+          "guid": "663c5c9154860a808df84899",
+          "slug": "the-paper-2025"
+        },
+        "slug": "the-paper-2025",
+        "tmdb": 253941,
+        "tvdb": 449872,
+        "trakt": 239158
+      },
+      "title": "The Paper",
+      "year": 2025,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-16T02:26:10.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:259453",
+      "ids": {
+        "imdb": "tt29485142",
+        "plex": {
+          "guid": "669bac4bc1cd84be5a118e34",
+          "slug": "suits-la"
+        },
+        "slug": "suits-la",
+        "tmdb": 259453,
+        "tvdb": 452385,
+        "trakt": 248982
+      },
+      "title": "Suits LA",
+      "year": 2025,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-28T19:26:36.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:139099",
+      "ids": {
+        "imdb": "tt16152716",
+        "plex": {
+          "guid": "6197a19e26d37b3e1c5c1947",
+          "slug": "the-consultant-2023"
+        },
+        "slug": "the-consultant-2023",
+        "tmdb": 139099,
+        "tvdb": 412634,
+        "trakt": 191307
+      },
+      "title": "The Consultant",
+      "year": 2023,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-28T19:26:36.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:290856",
+      "ids": {
+        "imdb": "tt36849871",
+        "plex": {
+          "guid": "681bfb361a7ad6c1b6da9873",
+          "slug": "marshals"
+        },
+        "slug": "marshals",
+        "tmdb": 290856,
+        "tvdb": 463433,
+        "trakt": 284855
+      },
+      "title": "Marshals",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-07-28T19:26:36.000Z"
+    }
+  ]
+}

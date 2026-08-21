@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What Should I Watch Next</title>
+    <meta name="description" content="Movie and TV recommendations from Bill's watchlist, scored by BMTRE against his real Trakt rating history" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+      .rc-title {
+        font-family: var(--font-serif); font-weight: 700; font-style: italic;
+        font-size: 2rem; color: var(--accent); margin-bottom: 2px;
+      }
+      .rc-subtitle { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 22px; }
+
+      .rc-help {
+        background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--radius);
+        padding: 12px 16px; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 20px; line-height: 1.55;
+      }
+      .rc-help code { background: rgba(0,0,0,0.06); padding: 1px 5px; border-radius: 4px; font-size: 0.78rem; }
+
+      .rc-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+      .rc-card {
+        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+        padding: 14px 18px; box-shadow: var(--shadow); display: flex; gap: 16px; align-items: center;
+      }
+      .rc-rank {
+        font-family: var(--font-serif); font-weight: 700; font-size: 1.3rem; color: var(--border);
+        width: 32px; flex-shrink: 0; text-align: center;
+      }
+      .rc-body { flex: 1; min-width: 0; }
+      .rc-row-title { font-weight: 600; font-size: 0.98rem; }
+      .rc-row-title .rc-year { color: var(--text-muted); font-weight: 400; }
+      .rc-badge {
+        font-size: 0.66rem; font-weight: 600; padding: 2px 7px; border-radius: 999px;
+        background: var(--bg-subtle); color: var(--text-muted); margin-left: 8px; vertical-align: middle;
+      }
+      .rc-reason { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; }
+      .rc-scores { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; flex-shrink: 0; }
+      .rc-score { font-family: var(--font-sans); font-weight: 600; font-size: 1.3rem; color: var(--accent); }
+      .rc-conf { font-size: 0.7rem; color: var(--text-muted); }
+
+      .rc-empty { padding: 30px; text-align: center; color: var(--text-muted); font-size: 0.88rem; }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="site-header">
+        <div class="container header-inner">
+          <a class="header-quality-link" href="./index.html">← Dashboard</a>
+          <div class="header-status">
+            <span id="statusText">Loading…</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="container" style="padding-top:24px;">
+        <div class="rc-title">🍿 What Should I Watch Next</div>
+        <div class="rc-subtitle" id="subtitleText">Loading…</div>
+
+        <div class="rc-help">
+          BMTRE (Bill's Movies &amp; TV Recommendation Engine) scores every title on your watchlist against your
+          real Trakt rating history — directors/creators you've loved, genres you rate highly, and TMDB's own
+          similar-title network. Phase 1: rule-based only, watchlist candidates only. See CLAUDE.md's "BMTRE"
+          section for the full design and what's still to come.
+        </div>
+
+        <div class="rc-list" id="recList"></div>
+      </div>
+    </div>
+
+    <script type="module" src="./recommend.js"></script>
+  </body>
+</html>

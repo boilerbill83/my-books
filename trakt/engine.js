@@ -1,0 +1,257 @@
+// BMTRE — Bill's Movies & TV Recommendation Engine, Phase 1.
+//
+// Rule-based scorer for trakt/data/watchlist.json candidates, mirroring
+// the book project's engine.js mechanics but keyed on exact TMDB ids
+// instead of fuzzy title/author normalization (every title here already
+// carries a real tmdb id from the Trakt export, so no norm()-style
+// slugify/matching is needed at all).
+//
+// Phase 1 signals only — see CLAUDE.md's "BMTRE" section for the full
+// port-vs-redesign table against the book engine, and for what's
+// deliberately deferred (Bayesian predictor, MMR diversity, dismissal
+// rules, franchise/rewatch/dropped-show signals — all need either more
+// rated volume or real feedback data to calibrate against, same
+// discipline the book engine always followed via scripts/eval.js).
+
+// Rating-weight curve, calibrated against Bill's real 1-10 rating
+// distribution (from trakt/data/dashboard.json: mode/median sits at 7-8,
+// not the scale's midpoint) rather than assuming a linear mapping from
+// the book engine's 1-5 curve. Neutral point ~6.5, not ~5.5.
+const RATING_NEUTRAL = 6.5;
+const RATING_SCALE = 3.5;
+function ratingWeight(rating) {
+  return Math.max(-1, Math.min(1, (rating - RATING_NEUTRAL) / RATING_SCALE));
+}
+
+// "Loved" = top ~25% of Bill's real rating distribution (9s and 10s are
+// 130 of 495 ratings, ~26%) — used to seed the director/genre/similar-
+// title signals, mirroring the book engine's fiveStarAuthors/fiveStarThemes.
+const LOVED_THRESHOLD = 9;
+
+export function titleKey(type, tmdbId) {
+  return tmdbId != null ? `${type}:${tmdbId}` : null;
+}
+
+// The single "creative author" signal for a title: a movie's director or
+// a show's primary creator — the closest 1:1 analog to a book's author
+// (usually one person per title, same as the book engine's model).
+function getCreator(type, meta) {
+  if (!meta) return null;
+  if (type === 'movie') return meta.director || null;
+  return (meta.createdBy && meta.createdBy[0]) || null;
+}
+
+// ── Indexes built from watched history + enriched metadata ─────────────
+
+export function buildIndexes(library, enrichedMeta, feedback) {
+  const watched = new Map();
+  for (const t of library.titles || []) watched.set(t.titleKey, t);
+
+  const lovedTitles = new Set();
+  const lovedCreators = new Map();       // creator name -> count of loved titles
+  const creatorRatingWeight = new Map(); // creator name -> summed rating-weight across all rated titles
+  const lovedGenres = new Map();         // genre name -> count of loved titles
+  const reverseSimilar = new Map();      // titleKey -> count of loved titles citing it as similar/recommended
+
+  for (const t of library.titles || []) {
+    if (t.myRating == null) continue;
+    const meta = enrichedMeta[t.titleKey];
+    const creator = meta ? getCreator(t.type, meta) : null;
+
+    if (creator) {
+      const w = ratingWeight(t.myRating);
+      creatorRatingWeight.set(creator, (creatorRatingWeight.get(creator) || 0) + w);
+    }
+
+    if (t.myRating >= LOVED_THRESHOLD) {
+      lovedTitles.add(t.titleKey);
+      if (creator) lovedCreators.set(creator, (lovedCreators.get(creator) || 0) + 1);
+      for (const g of (meta?.genres || [])) {
+        lovedGenres.set(g, (lovedGenres.get(g) || 0) + 1);
+      }
+      for (const id of [...(meta?.similarToIds || []), ...(meta?.recommendedIds || [])]) {
+        const key = titleKey(t.type, id);
+        reverseSimilar.set(key, (reverseSimilar.get(key) || 0) + 1);
+      }
+    }
+  }
+
+  const excluded = new Set(
+    (feedback?.interactions || [])
+      .filter(e => e.excludeFromRecommendations)
+      .map(e => e.titleKey)
+  );
+
+  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, excluded };
+}
+
+// ── Scoring ──────────────────────────────────────────────────────────────
+
+// Tiered by how many loved titles share the genre — same shape as the book
+// engine's themeBonus(), but tier thresholds are provisional (TMDB's ~19
+// fixed genres saturate far faster than book's free-form themes) and
+// should be recalibrated once real enrichment data exists — see the
+// "Roadmap" note in CLAUDE.md's BMTRE section.
+function genreBonus(genres, lovedGenres) {
+  let bonus = 0;
+  for (const g of (genres || [])) {
+    const count = lovedGenres.get(g) || 0;
+    if      (count >= 60) bonus += 5;
+    else if (count >= 35) bonus += 4;
+    else if (count >= 18) bonus += 3;
+    else if (count >= 6)  bonus += 2;
+    else if (count >= 1)  bonus += 1;
+  }
+  return Math.min(bonus, 8);
+}
+
+function voteCountBonus(voteCount) {
+  const n = voteCount || 0;
+  if (n >= 5000) return 4;
+  if (n >= 1000) return 3;
+  if (n >= 200)  return 2;
+  if (n >= 50)   return 1;
+  return 0;
+}
+
+// TMDB's global vote_average tends to sit around 6.0-6.5 across popular
+// titles — a provisional neutral point, TMDB-only in Phase 1 (no multi-
+// source bias-offset the way the book engine's communitySignal() has for
+// Amazon vs Goodreads; that's a later-phase addition once a second rating
+// source is actually wired in).
+const COMMUNITY_NEUTRAL = 6.0;
+const COMMUNITY_WEIGHT = 8;
+
+function recencyBonus(year, nowYear = new Date().getFullYear()) {
+  if (!year) return 0;
+  const age = nowYear - year;
+  if (age <= 1) return 3;
+  if (age <= 3) return 2;
+  if (age <= 6) return 1;
+  return 0;
+}
+
+export function matchScore(candidate, idx, enrichedMeta) {
+  return candidate.type === 'movie'
+    ? matchScoreMovie(candidate, idx, enrichedMeta)
+    : matchScoreShow(candidate, idx, enrichedMeta);
+}
+
+function baseSignals(candidate, idx, meta) {
+  let score = 20; // base, mirrors the book engine's starting point
+  const creator = getCreator(candidate.type, meta);
+
+  if (creator) {
+    score += Math.min(10, (idx.lovedCreators.get(creator) || 0) * 6);
+    score += Math.min(5, (idx.creatorRatingWeight.get(creator) || 0) * 1.5);
+  }
+
+  score += genreBonus(meta?.genres, idx.lovedGenres);
+
+  // Forward match: this candidate's own TMDB-similar/recommended list
+  // includes a title Bill loved.
+  const citedIds = new Set([...(meta?.similarToIds || []), ...(meta?.recommendedIds || [])]
+    .map(id => titleKey(candidate.type, id)));
+  let forwardMatches = 0;
+  for (const id of citedIds) if (idx.lovedTitles.has(id)) forwardMatches++;
+  score += Math.min(24, forwardMatches * 8);
+
+  // Reverse match: a title Bill loved cites this candidate as similar/
+  // recommended. Unlike the book engine (gated to to-read-shelf only,
+  // because hand-curated similarToTitles coverage was sparse), this
+  // applies unconditionally — TMDB's similar/recommendations coverage is
+  // comprehensive, not a scarce hand-curated signal.
+  score += Math.min(12, (idx.reverseSimilar.get(candidate.titleKey) || 0) * 6);
+
+  if (meta?.voteAverage != null) {
+    score += (meta.voteAverage - COMMUNITY_NEUTRAL) * COMMUNITY_WEIGHT;
+  }
+  score += voteCountBonus(meta?.voteCount);
+  score += recencyBonus(candidate.year);
+
+  return { score, forwardMatches, creator };
+}
+
+function matchScoreMovie(candidate, idx, enrichedMeta) {
+  const meta = enrichedMeta[candidate.titleKey];
+  const { score } = baseSignals(candidate, idx, meta);
+  return Math.max(0, Math.min(100, score));
+}
+
+function matchScoreShow(candidate, idx, enrichedMeta) {
+  const meta = enrichedMeta[candidate.titleKey];
+  const { score } = baseSignals(candidate, idx, meta);
+  return Math.max(0, Math.min(100, score));
+}
+
+// "How much data do we actually have to trust this ranking" — a tiebreaker,
+// same role as the book engine's confidenceScore(), not a quality signal.
+export function confidenceScore(candidate, enrichedMeta) {
+  const meta = enrichedMeta[candidate.titleKey];
+  if (!meta) return 0;
+  let c = 20;
+  if (meta.genres?.length) c += 15;
+  if (meta.overview) c += 10;
+  if (getCreator(candidate.type, meta)) c += 15;
+  const simCount = (meta.similarToIds?.length || 0) + (meta.recommendedIds?.length || 0);
+  c += Math.min(20, simCount);
+  c += voteCountBonus(meta.voteCount) * 5;
+  return Math.min(100, c);
+}
+
+export function reason(candidate, idx, enrichedMeta) {
+  const meta = enrichedMeta[candidate.titleKey];
+  if (!meta) return 'Not enough data yet to explain this one — needs TMDB enrichment.';
+
+  const creator = getCreator(candidate.type, meta);
+  const creatorLabel = candidate.type === 'movie' ? 'director' : 'creator';
+  const creatorCount = creator ? (idx.lovedCreators.get(creator) || 0) : 0;
+  if (creatorCount > 0) {
+    return `You've loved ${creatorCount} title${creatorCount > 1 ? 's' : ''} from ${creatorLabel} ${creator} before.`;
+  }
+
+  const citedIds = new Set([...(meta.similarToIds || []), ...(meta.recommendedIds || [])]
+    .map(id => titleKey(candidate.type, id)));
+  const matchedLoved = [...citedIds].filter(id => idx.lovedTitles.has(id));
+  if (matchedLoved.length) {
+    const names = matchedLoved
+      .map(k => idx.watched.get(k)?.title)
+      .filter(Boolean)
+      .slice(0, 2);
+    if (names.length) return `Similar to ${names.join(' and ')}, which you loved.`;
+  }
+
+  const reverseCount = idx.reverseSimilar.get(candidate.titleKey) || 0;
+  if (reverseCount > 0) {
+    return `Titles you loved list this as similar or recommended (${reverseCount} time${reverseCount > 1 ? 's' : ''}).`;
+  }
+
+  const topGenres = (meta.genres || []).filter(g => idx.lovedGenres.has(g)).slice(0, 2);
+  if (topGenres.length) {
+    return `Fits your taste for ${topGenres.join(' / ')}.`;
+  }
+
+  if (meta.voteAverage != null && meta.voteAverage >= 7.5) {
+    return `Broadly well-regarded (${meta.voteAverage.toFixed(1)}/10 on TMDB).`;
+  }
+
+  return 'A newer or less-connected title — worth a look, lower confidence.';
+}
+
+// ── Entry point ──────────────────────────────────────────────────────────
+
+export function rankRecommendations(library, watchlist, enrichedMeta, feedback = { interactions: [] }) {
+  const idx = buildIndexes(library, enrichedMeta, feedback);
+
+  const candidates = (watchlist.titles || []).filter(c => !idx.excluded.has(c.titleKey));
+  const scored = candidates.map(c => ({
+    ...c,
+    bmtreScore: matchScore(c, idx, enrichedMeta),
+    confidenceScore: confidenceScore(c, enrichedMeta),
+    reason: reason(c, idx, enrichedMeta),
+  }));
+
+  scored.sort((a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore));
+
+  return { selected: scored, idx };
+}

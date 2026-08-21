@@ -15,6 +15,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import { loadTraktExport } from '../trakt/scripts/lib/traktExport.js';
 
 const exportDir = process.argv[2];
 if (!exportDir || !fs.existsSync(exportDir)) {
@@ -22,42 +23,12 @@ if (!exportDir || !fs.existsSync(exportDir)) {
   process.exit(1);
 }
 
-const readJSON = (name, fallback = []) => {
-  const p = path.join(exportDir, name);
-  if (!fs.existsSync(p)) return fallback;
-  try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return fallback; }
-};
-
-const globHistory = () =>
-  fs.readdirSync(exportDir)
-    .filter(f => /^watched-history-\d+\.json$/.test(f))
-    .sort((a, b) => parseInt(a.match(/\d+/)[0]) - parseInt(b.match(/\d+/)[0]));
-
-const globShows = () =>
-  fs.readdirSync(exportDir)
-    .filter(f => /^watched-shows(-\d+)?\.json$/.test(f))
-    .sort();
-
-const globShowRatings = () =>
-  fs.readdirSync(exportDir)
-    .filter(f => /^ratings-shows(-\d+)?\.json$/.test(f))
-    .sort();
-
 // ── Load raw export files ───────────────────────────────────────────────
 
-const stats = readJSON('user-stats.json', {});
-const profile = readJSON('user-profile.json', {});
-const watchedMovies = readJSON('watched-movies.json', []);
-const ratingsMovies = readJSON('ratings-movies.json', []);
-const watchlist = readJSON('lists-watchlist.json', []);
-const favorites = readJSON('lists-favorites.json', []);
-
-const watchedShows = globShows().flatMap(f => readJSON(f, []));
-const ratingsShows = globShowRatings().flatMap(f => readJSON(f, []));
-
-const historyFiles = globHistory();
-let history = [];
-for (const f of historyFiles) history = history.concat(readJSON(f, []));
+const {
+  stats, profile, watchedMovies, ratingsMovies, watchlist, favorites,
+  watchedShows, ratingsShows, history, historyFiles,
+} = loadTraktExport(exportDir);
 
 console.log(`Loaded: ${watchedMovies.length} watched movies, ${watchedShows.length} watched shows, ` +
   `${history.length} history events (${historyFiles.length} files), ${ratingsMovies.length} movie ratings, ` +
