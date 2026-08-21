@@ -235,11 +235,7 @@ trakt/
 ```
 `trakt/index.html` links back to the book app via `../index.html` and pulls the shared stylesheet via `../styles.css`. Root `index.html`'s header links to `./trakt/`.
 
-**Updating the dashboard (the actual workflow, whenever Bill has a fresh export):**
-1. Bill downloads a new export zip from trakt.tv (Settings → Data) and uploads it in chat.
-2. Extract it to a scratch directory (`unzip -q -o <zip> -d <dir>` — verify the extracted file count matches `unzip -l`'s total; a truncated extraction happened once in Session 43 from a harness interruption mid-command, not a corrupt zip).
-3. Run `node scripts/build_trakt_dashboard.js <extracted-dir>` from the repo root. It reads the export's `user-stats.json`, `watched-movies.json`, `watched-shows*.json`, `watched-history-*.json`, `ratings-movies.json`, `ratings-shows*.json`, `lists-watchlist.json`, and `lists-favorites.json`, and writes `trakt/data/dashboard.json`.
-4. Commit + push the regenerated JSON. No other code changes are needed for a routine refresh — the dashboard just re-reads whatever's in the file.
+**Importing a fresh export — see "Importing a fresh Trakt export" below (the authoritative, full step-by-step; this subsection used to duplicate a shorter version of it and drifted out of sync with the BMTRE section's own copy, so both were consolidated into one place after Session 48).**
 
 **Known real data caveat, handled explicitly rather than hidden:** a large share of episode watch events (69.1% / 7,523 of 10,894 as of the Session 43 export) carry a `1970-01-01` epoch placeholder instead of a real `watched_at` timestamp — a bulk Plex-sync import with no per-episode date, not a bug in this pipeline. `build_trakt_dashboard.js` excludes these from the year-over-year activity chart (rather than plotting a false 1970 spike) and reports the exact undated share in `dataCaveats`, which the dashboard renders as a visible callout under the episodes-by-year chart. Movie watch events are all cleanly dated (they came from Session 42's real CSV import, built from verified release dates) — this caveat is episode-only.
 
@@ -291,16 +287,31 @@ A real recommendation engine for movies/TV, modeled closely on BBRE (the book en
 
 **Explicitly deferred to Phase 2+** (needs either more rated volume or real feedback data to calibrate against, same discipline BBRE always used via `scripts/eval.js` rather than guessing): a Bayesian predictor (`rateEngine.js` port), the combine/adjustment/MMR-diversity layer (`bbreEngine.js` port), candidate discovery beyond the watchlist (`discover_candidates.py`, seeded from loved titles' TMDB `/similar`+`/recommendations`), tone tagging (`tag_with_haiku.py` port), `descSimilarity.js` port, franchise/rewatch/dropped-show signals, and a data-quality report for this dataset.
 
-### Daily update workflow
+### Importing a fresh Trakt export (Session 48) — the authoritative workflow
 
-Extends the existing "upload zip → `build_trakt_dashboard.js`" step already documented above:
-1. Bill uploads a fresh export zip; extract it (verify file count vs `unzip -l`, per the Session 43 caution against a truncated extraction).
-2. `node scripts/build_trakt_dashboard.js <dir>` (unchanged, existing).
-3. `node trakt/scripts/build_trakt_library.js <dir>` — upserts `library.json`/`watchlist.json`/`currentlyWatching.json`.
-4. Commit + push all four JSON files together.
-5. **Nothing else is manual** — this is what satisfies Bill's "pull this data when I upload a new zip" ask. Any title in the fresh `library.json`/`watchlist.json` without a matching key in `enrichedMetadata.json` is automatically picked up by the next scheduled run of `trakt-enrich-tmdb.yml` (same resumable-via-cache-membership idiom as `enrich_metadata.py` — the cache itself is the resume cursor).
+The one and only place this is documented — the Trakt Dashboard section above and this section used to each carry their own shorter, drifting copy; Session 48 merged them here so there's a single source of truth, the same discipline `scripts/lib/loadData.js` established for the book project's join logic. Whenever Bill uploads a fresh Trakt export zip (Settings → Data on trakt.tv), do all of these steps, in order — skipping the later ones (especially re-enrichment) is what "properly import" means, not just refreshing the dashboard:
 
-**Requires a `TMDB_API_KEY` repo secret** — Bill creates a free API key at themoviedb.org (instant approval, personal use), same pattern as `GOOGLE_BOOKS_API_KEY`/`ANTHROPIC_API_KEY`. Until this secret exists, `trakt/recommend.html` runs correctly but every title shows an honest "not enough data yet" reason — verified this session with all 28 real watchlist titles.
+1. **Extract and verify.** `unzip -q -o <zip> -d <scratch-dir>`, then confirm the extracted file count matches `unzip -l <zip>`'s own reported total (89 files as of Session 48's export shape — watched history, ratings, watchlist, favorites, stats, profile). A truncated extraction happened once in Session 43 from a harness interruption mid-command, not a corrupt zip — don't skip this check.
+2. **Rebuild the dashboard summary.** `node scripts/build_trakt_dashboard.js <scratch-dir>` — reads `user-stats.json`, `watched-movies.json`, `watched-shows*.json`, `watched-history-*.json`, `ratings-movies.json`, `ratings-shows*.json`, `lists-watchlist.json`, `lists-favorites.json`; writes `trakt/data/dashboard.json` (~16KB, the only Trakt-derived file besides the ones below that this repo commits — the raw export itself never is).
+3. **Rebuild the recommendation-engine data.** `node trakt/scripts/build_trakt_library.js <scratch-dir>` — upserts `trakt/data/library.json` (every watched movie/show + `myRating`), `trakt/data/watchlist.json` (unwatched, explicitly-queued titles), and `trakt/data/currentlyWatching.json` (derived, in-progress shows). Upsert, not overwrite — a title missing from the fresh export is kept and flagged, never silently deleted, since a partial/older export shouldn't erase real history.
+4. **Prune the candidate pool of anything Bill has since watched or watchlisted for real.** `trakt/data/candidatePool.json` (built by `discover_candidates.js`/`resolve_titles.py`) only excludes already-known titles *at the moment a candidate is added* — if Bill later watches or Trakt-watchlists one of those candidates directly (outside this pipeline, as happened for real in Session 48 with "Tom Clancy's Jack Ryan"), the stub goes stale and should be removed so it doesn't linger as dead data:
+   ```js
+   const libKeys = new Set(library.titles.map(t => t.titleKey));
+   const wlKeys = new Set(watchlist.titles.map(t => t.titleKey));
+   pool.titles = pool.titles.filter(t => !libKeys.has(t.titleKey) && !wlKeys.has(t.titleKey));
+   ```
+   Note this is a hygiene step, not a correctness requirement as of Session 48 — `trakt/engine.js`'s `rankAll()` already defensively excludes any candidate whose titleKey is in `idx.watched` or the real watchlist before it ever reaches the dashboard's "New pick" cards, so a stale stub can't actually surface as a bad recommendation even if this step is skipped. Do it anyway; a growing pile of dead stubs is still worth avoiding.
+5. **Commit + push every changed file together** (`dashboard.json`, `library.json`, `watchlist.json`, `currentlyWatching.json` if it changed, `candidatePool.json` if step 4 pruned anything) — one commit for the routine data refresh is fine; a separate commit only if step 4's pruning is bundled with an unrelated code fix (as it was in Session 48, alongside the `rankAll()` hardening above).
+6. **Enrich the new titles — don't just wait for the daily cron.** Any title in the fresh `library.json`/`watchlist.json`/`candidatePool.json` without a matching key in `enrichedMetadata.json` is *eventually* picked up automatically by the next scheduled run of `trakt-enrich-tmdb.yml` (same resumable-via-cache-membership idiom as `enrich_metadata.py` — the cache itself is the resume cursor), but the daily schedule only processes 150 titles and reads `watchlist.json` → `library.json` → `candidatePool.json` in strict priority order (Session 46 hit this directly: a default-sized batch got fully consumed by library backlog before ever reaching new candidates). After a real import, check how many titles are actually pending before deciding whether to wait or trigger manually:
+   ```js
+   const cache = JSON.parse(fs.readFileSync('trakt/data/enrichedMetadata.json'));
+   const pending = list => list.titles.filter(t => t.titleKey && !cache[t.titleKey]).length;
+   ```
+   If it's more than a handful, trigger `trakt-enrich-tmdb.yml` manually via `workflow_dispatch` with a `batch_size` input comfortably above the pending count (e.g. Session 48's 60 pending titles → `batch_size: 100`) rather than waiting on the next 8 AM UTC run.
+7. **Pull the enrichment commit back into the working branch** once the workflow finishes (it commits straight to `main`) before doing any further work against `enrichedMetadata.json` locally.
+8. **Nothing else is manual.** `trakt/index.html`/`recommend.html` just re-read whatever's committed — no code changes are needed for a routine import, only for the enrichment/pruning steps above.
+
+**Requires a `TMDB_API_KEY` repo secret** — Bill creates a free API key at themoviedb.org (instant approval, personal use), same pattern as `GOOGLE_BOOKS_API_KEY`/`ANTHROPIC_API_KEY`. Without it, `trakt/recommend.html` and the dashboard's recommendation panels still run correctly but every title shows an honest "not enough data yet" reason (verified in Session 44 with all 28 real watchlist titles pre-enrichment) — this has been set since Session 45 and shouldn't need re-doing, but if a fresh import's enrichment run fails with a 401, check this first before assuming a code bug.
 
 ## Workflows
 
