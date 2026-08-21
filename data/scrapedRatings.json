@@ -4163,10 +4163,13 @@
   },
   "the dog stars|||peter heller": {
     "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found",
-    "checkedAt": "2026-08-07"
+    "amazon": {
+      "rating": 4.4,
+      "count": 12736
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/71PSvZjccxL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-21"
   },
   "my husband's wife|||alice feeney": {
     "storyGraph": null,
@@ -4181,5 +4184,15 @@
     "coverUrl": null,
     "source": "not_found",
     "checkedAt": "2026-08-11"
+  },
+  "hollywood, ending|||john  green": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.0,
+      "count": 1274
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91UzFDnJQHL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-20"
   }
 }
