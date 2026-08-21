@@ -83,6 +83,7 @@ export function buildIndexes(library, enrichedMeta, feedback) {
   const creatorRatingWeight = new Map(); // creator name -> summed rating-weight across all rated titles
   const lovedGenres = new Map();         // genre name -> count of loved titles
   const reverseSimilar = new Map();      // titleKey -> count of loved titles citing it as similar/recommended
+  const lovedCountByType = { movie: 0, show: 0 }; // for matchPointScale() below
 
   for (const t of library.titles || []) {
     if (t.myRating == null) continue;
@@ -96,6 +97,7 @@ export function buildIndexes(library, enrichedMeta, feedback) {
 
     if (t.myRating >= LOVED_THRESHOLD) {
       lovedTitles.add(t.titleKey);
+      lovedCountByType[t.type] = (lovedCountByType[t.type] || 0) + 1;
       if (creator) lovedCreators.set(creator, (lovedCreators.get(creator) || 0) + 1);
       for (const g of (meta?.genres || [])) {
         const ng = normalizeGenre(g);
@@ -114,7 +116,27 @@ export function buildIndexes(library, enrichedMeta, feedback) {
       .map(e => e.titleKey)
   );
 
-  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, excluded };
+  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, excluded, lovedCountByType };
+}
+
+// Bill has roughly half as many loved movies as loved shows (measured:
+// 50 vs 99) — the forward/reverse similar-title match signal below can
+// only ever compare a movie against other loved movies (TMDB's /similar
+// and /recommendations never cross type), so with half the comparison
+// pool, a movie needs roughly twice the "hit rate" to earn the same
+// credit a show does purely from having more loved titles to match
+// against, not from being a worse match. Scales the smaller-pool type's
+// per-match point value up by the ratio to the larger pool (the larger
+// pool's own scale is always 1 — unchanged behavior for it), rather than
+// hand-picking a number: an explicit, measured compensation for the
+// pool-size gap, not a general "movies score too low so boost them" fudge.
+// Revisit if the loved-title counts shift substantially (e.g. once Bill
+// has rated enough more movies that the pools are closer to even).
+function matchPointScale(type, lovedCountByType) {
+  const counts = Object.values(lovedCountByType || {});
+  const maxCount = Math.max(1, ...counts);
+  const thisCount = Math.max(1, lovedCountByType?.[type] || 1);
+  return maxCount / thisCount;
 }
 
 // ── Scoring ──────────────────────────────────────────────────────────────
@@ -236,14 +258,15 @@ function baseSignals(candidate, idx, meta) {
     .map(id => titleKey(candidate.type, id)));
   let forwardMatches = 0;
   for (const id of citedIds) if (idx.lovedTitles.has(id)) forwardMatches++;
-  score += Math.min(24, forwardMatches * 8);
+  const scale = matchPointScale(candidate.type, idx.lovedCountByType);
+  score += Math.min(24, forwardMatches * 8 * scale);
 
   // Reverse match: a title Bill loved cites this candidate as similar/
   // recommended. Unlike the book engine (gated to to-read-shelf only,
   // because hand-curated similarToTitles coverage was sparse), this
   // applies unconditionally — TMDB's similar/recommendations coverage is
   // comprehensive, not a scarce hand-curated signal.
-  score += Math.min(12, (idx.reverseSimilar.get(candidate.titleKey) || 0) * 6);
+  score += Math.min(12, (idx.reverseSimilar.get(candidate.titleKey) || 0) * 6 * scale);
 
   if (meta?.voteAverage != null) {
     score += (meta.voteAverage - COMMUNITY_NEUTRAL) * COMMUNITY_WEIGHT;

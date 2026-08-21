@@ -31,5 +31,21 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add trakt/data/
-          git diff --staged --quiet && echo "No new metadata." || \
-            (git commit -m "Enrich Trakt metadata via OMDb [automated]" && git push)
+          if git diff --staged --quiet; then
+            echo "No new metadata."
+            exit 0
+          fi
+          git commit -m "Enrich Trakt metadata via OMDb [automated]"
+          # Same race the TMDB job hit: a long run can lose a push to any
+          # other scheduled workflow that lands on main first. Rebase and
+          # retry rather than losing a long run's real output.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest main."
+            git fetch origin main
+            git rebase origin/main
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1
