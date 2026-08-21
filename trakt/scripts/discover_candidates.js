@@ -48,13 +48,23 @@ for (const t of lovedSources) {
   }
 }
 
-const ranked = [...citationCount.entries()]
-  .map(([titleKey, citedBy]) => {
-    const [type, tmdbId] = titleKey.split(':');
-    return { type, titleKey, ids: { tmdb: Number(tmdbId) }, title: null, year: null, citedBy };
-  })
-  .sort((a, b) => b.citedBy - a.citedBy)
-  .slice(0, MAX_NEW);
+// Ranked and capped PER TYPE, not as one combined global top-N. Bill has
+// roughly twice as many loved shows as loved movies (99 vs 50 as of this
+// build), so shows generate a denser citation network and would otherwise
+// dominate a single combined ranking on citation count alone — the same
+// structural pool-size imbalance trakt/engine.js's matchPointScale() was
+// built to compensate for on the scoring side. Left uncorrected here, a
+// movie could never even reach the candidate pool to be scored, let alone
+// compete once matchPointScale evens out the scoring formula downstream.
+const byType = new Map();
+for (const [titleKey, citedBy] of citationCount.entries()) {
+  const [type, tmdbId] = titleKey.split(':');
+  const entry = { type, titleKey, ids: { tmdb: Number(tmdbId) }, title: null, year: null, citedBy };
+  if (!byType.has(type)) byType.set(type, []);
+  byType.get(type).push(entry);
+}
+const ranked = [...byType.values()]
+  .flatMap(list => list.sort((a, b) => b.citedBy - a.citedBy).slice(0, MAX_NEW));
 
 const merged = [...existingPool.titles, ...ranked];
 writeJSON(path.join(DATA_DIR, 'candidatePool.json'), {
