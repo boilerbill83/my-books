@@ -187,6 +187,92 @@ function computeFranchiseStats(library, enrichedMeta) {
     .sort((a, b) => b.count - a.count);
 }
 
+// ── Predicted-score distribution (unwatched titles) ─────────────────────
+// Movies and shows are kept as separate small multiples rather than one
+// combined histogram — their real means differ enough (movies ~43,
+// shows ~56, from a thinner loved-movie source pool per CLAUDE.md) that
+// merging them would blur a real, worth-seeing difference, the same
+// small-multiples-over-one-crowded-chart call the genre/year charts made.
+
+function computeScoreDistribution(items) {
+  const scores = items.map(c => c.bmtreScore);
+  const n = scores.length;
+  if (!n) return null;
+  const mean = scores.reduce((a, b) => a + b, 0) / n;
+  const sorted = [...scores].sort((a, b) => a - b);
+  const median = sorted[Math.floor(n / 2)];
+  const variance = scores.reduce((a, b) => a + (b - mean) ** 2, 0) / n;
+  const sd = Math.sqrt(variance);
+  const BIN_WIDTH = 10, BIN_COUNT = 10; // scores are clipped 0-100
+  const bins = Array.from({ length: BIN_COUNT }, (_, i) => ({ label: String(i * BIN_WIDTH), count: 0 }));
+  for (const s of scores) bins[Math.min(BIN_COUNT - 1, Math.max(0, Math.floor(s / BIN_WIDTH)))].count++;
+  return { n, mean, median, sd, bins };
+}
+
+// A distribution whose mean and median sit close together (relative to
+// its own spread) is symmetric, the property that actually matters for
+// "does this look normal" — skewness in real units, not a formal
+// normality test, but an honest, computed check rather than an assumed one.
+function shapeNote(dist) {
+  const skew = dist.sd ? (dist.mean - dist.median) / dist.sd : 0;
+  if (Math.abs(skew) < 0.2) return 'Roughly bell-shaped — mean and median are close.';
+  return skew > 0 ? 'Skewed toward lower scores (a long tail of weak matches).' : 'Skewed toward higher scores.';
+}
+
+function renderScoreHistogram(containerId, bins) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  if (!bins.some(b => b.count > 0)) { container.innerHTML = '<div class="tk-empty">Not enough scored titles yet.</div>'; return; }
+
+  const width = 340, height = 170;
+  const marginLeft = 30, marginBottom = 22, marginTop = 8, marginRight = 8;
+  const plotW = width - marginLeft - marginRight;
+  const plotH = height - marginTop - marginBottom;
+  const maxVal = Math.max(1, ...bins.map(b => b.count));
+
+  const svg = svgEl('svg', { viewBox: `0 0 ${width} ${height}`, width: '100%', height, style: 'display:block' });
+
+  [0, 0.5, 1].forEach(f => {
+    const y = marginTop + plotH * (1 - f);
+    svg.appendChild(svgEl('line', { x1: marginLeft, x2: width - marginRight, y1: y, y2: y, class: 'tk-gridline' }));
+    const label = svgEl('text', { x: marginLeft - 6, y: y + 3, class: 'tk-axis-label', 'text-anchor': 'end' });
+    label.textContent = fmtNum(Math.round(maxVal * f));
+    svg.appendChild(label);
+  });
+
+  const tooltip = document.createElement('div');
+  tooltip.className = 'tk-tooltip';
+  const wrap = document.createElement('div');
+  wrap.style.position = 'relative';
+  wrap.appendChild(svg);
+  wrap.appendChild(tooltip);
+  container.appendChild(wrap);
+
+  const barSlot = plotW / bins.length;
+  const barWidth = Math.min(28, barSlot - 4);
+
+  bins.forEach((b, i) => {
+    const x = marginLeft + i * barSlot + (barSlot - barWidth) / 2;
+    const barH = plotH * (b.count / maxVal);
+    const y = marginTop + plotH - barH;
+
+    const rect = svgEl('rect', { x, y, width: barWidth, height: Math.max(barH, 0.5), rx: 3, ry: 3, class: 'tk-bar' });
+    svg.appendChild(rect);
+
+    const xlabel = svgEl('text', { x: x + barWidth / 2, y: height - marginBottom + 13, class: 'tk-axis-label', 'text-anchor': 'middle' });
+    xlabel.textContent = b.label;
+    svg.appendChild(xlabel);
+
+    rect.addEventListener('pointerenter', () => {
+      tooltip.textContent = `${b.label}-${Number(b.label) + 9}: ${fmtNum(b.count)} title${b.count === 1 ? '' : 's'}`;
+      tooltip.classList.add('active');
+      tooltip.style.left = `${((x + barWidth / 2) / width) * 100}%`;
+      tooltip.style.top = `${(y / height) * 100}%`;
+    });
+    rect.addEventListener('pointerleave', () => tooltip.classList.remove('active'));
+  });
+}
+
 function renderGenreChart(stats) {
   renderHBarChart('genreChart',
     stats.map(g => ({ genre: `${g.genre} (${g.count})`, avg: g.avg })),
@@ -540,6 +626,21 @@ async function load() {
 
   renderRecPanel('movieRecList', byType(fromWatchlist, 'movie'), byType(fromCandidates, 'movie'), enrichedMeta);
   renderRecPanel('showRecList', byType(fromWatchlist, 'show'), byType(fromCandidates, 'show'), enrichedMeta);
+
+  for (const [type, chartId, noteId, label] of [
+    ['movie', 'scoreDistMovieChart', 'scoreDistMovieNote', 'unwatched movies'],
+    ['show', 'scoreDistShowChart', 'scoreDistShowNote', 'unwatched shows'],
+  ]) {
+    const dist = computeScoreDistribution([...byType(fromWatchlist, type), ...byType(fromCandidates, type)]);
+    if (!dist) {
+      document.getElementById(chartId).innerHTML = '<div class="tk-empty">Not enough enriched titles yet.</div>';
+      document.getElementById(noteId).textContent = '';
+      continue;
+    }
+    renderScoreHistogram(chartId, dist.bins);
+    document.getElementById(noteId).textContent =
+      `${fmtNum(dist.n)} ${label} — mean ${dist.mean.toFixed(0)}, median ${dist.median.toFixed(0)}, σ ${dist.sd.toFixed(0)}. ${shapeNote(dist)}`;
+  }
 
   const quality = computeMetadataQuality(library, watchlist, enrichedMeta, fromWatchlist);
   renderQualityDial('qualitySection', quality);
