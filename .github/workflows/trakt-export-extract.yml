@@ -1,0 +1,44 @@
+name: Daily Full Trakt Extract
+
+on:
+  schedule:
+    - cron: '0 12 * * *'   # daily 12:00 UTC (after both TMDB/OMDb enrichment jobs and the Sunday discovery job)
+  workflow_dispatch: {}
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Generate full watched + watchlist + candidate extract
+        run: node trakt/scripts/export_extract.js
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add trakt/output/all-titles-*.csv
+          if git diff --staged --quiet; then
+            echo "No change to commit."
+            exit 0
+          fi
+          git commit -m "Daily full Trakt extract [automated]"
+          # Same race the other Trakt jobs hit: a scheduled workflow can
+          # lose a push to another one landing on main first. Rebase and
+          # retry rather than losing the run's output.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest main."
+            git fetch origin main
+            git rebase origin/main
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1
