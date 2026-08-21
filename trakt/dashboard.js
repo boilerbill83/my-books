@@ -707,8 +707,286 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
   return findings;
 }
 
-function renderImprovementOpportunities(findings) {
-  const el = document.getElementById('improvementList');
+// ── Recommendation Engine Improvements ───────────────────────────────────
+// Ten ways to make BMTRE's actual predictions better, not code-correctness
+// bugs (that's the section above) — real gaps in the scoring model: unused
+// signals, missing validation infrastructure, ranking behavior that isn't
+// wrong exactly but leaves real accuracy on the table. Each was checked
+// against live data before being included; one hypothesis (a rewatch-count
+// signal from the raw `plays` field) was caught and reframed after the
+// check disproved the naive version of it — see finding 6.
+function computeEngineImprovements(library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, idx, fromWatchlist, fromCandidates) {
+  const findings = [];
+  const enrichedOnly = c => !!enrichedMeta[c.titleKey];
+  const allEnriched = Object.values(enrichedMeta);
+
+  // 1. No evaluation harness at all for BMTRE, unlike the book engine's
+  // scripts/eval.js (leave-one-out precision@k, run before/after every
+  // engine change without exception). Every BMTRE scoring constant tuned
+  // so far (matchPointScale, AUDIENCE_NEUTRAL, AWARDS_MAX, genre tiers)
+  // was "measured against a real distribution" but never validated
+  // against actual held-out prediction accuracy - a materially weaker
+  // guarantee than what the book side requires for any change.
+  findings.push({
+    id: 'no-eval-harness',
+    severity: 'critical',
+    title: 'BMTRE has no evaluation harness — every scoring change is unvalidated',
+    technical: `The book engine's <code>scripts/eval.js</code> computes leave-one-out precision@10/25/50 and MAE ` +
+      `against Bill's actual completed ratings, and CLAUDE.md requires running it before and after every engine ` +
+      `change without exception — it's how <code>matchPointScale</code>, <code>AMAZON_BIAS_OFFSET</code>, and every ` +
+      `other calibration decision on that side got trusted rather than guessed. BMTRE has no equivalent. Every ` +
+      `constant tuned in <code>trakt/engine.js</code> so far — <code>matchPointScale</code>, ` +
+      `<code>AUDIENCE_NEUTRAL</code>, <code>AWARDS_MAX</code>, the genre bonus tiers — was calibrated against a real ` +
+      `input <em>distribution</em> (e.g. "this dataset's median audience score is 80"), which is a weaker guarantee ` +
+      `than validating that the resulting <em>predictions</em> actually improved against held-out real ratings.`,
+    plain: `The book side of this project has a strict rule: never change how books get scored without first running ` +
+      `a test that checks the new formula against books Bill has already rated, to make sure it's actually getting ` +
+      `better and not just different. The movie/show side has no such test at all. Every tuning decision so far has ` +
+      `been "this number looks reasonable given the data," never "this number provably makes predictions more ` +
+      `accurate" — because there's no way to check that yet.`,
+    impact: `This is the single most foundational gap on the list — it doesn't directly cause a bad recommendation ` +
+      `today, but it means every other improvement here (and every future one) can only ever be a plausible guess, ` +
+      `never a validated fact, until something like this exists. Building it (even a simple leave-one-out precision ` +
+      `check against Bill's 540 real ratings) would upgrade every other finding from "should help" to "measurably ` +
+      `does help."`,
+  });
+
+  // 2. Real, verified genre-monoculture in the top of the ranked list —
+  // no diversity/anti-clustering re-ranking exists (the book engine's
+  // author-diversity MMR pass has no BMTRE equivalent).
+  {
+    const shows = [...fromWatchlist, ...fromCandidates].filter(c => c.type === 'show' && enrichedOnly(c))
+      .sort((a, b) => b.bmtreScore - a.bmtreScore).slice(0, 20);
+    const genreCounts = {};
+    for (const s of shows) for (const g of (enrichedMeta[s.titleKey]?.genres || [])) genreCounts[g] = (genreCounts[g] || 0) + 1;
+    const topGenre = Object.entries(genreCounts).sort((a, b) => b[1] - a[1])[0];
+    findings.push({
+      id: 'no-diversity-reranking',
+      severity: 'serious',
+      title: 'No diversity re-ranking — the top of the show list is a genre monoculture',
+      technical: `<code>rankAll()</code>/<code>rankRecommendations()</code> sort purely by <code>bmtreScore</code> ` +
+        `with no diversity or anti-clustering pass — the book engine's <code>bbreEngine.js</code> runs an author-` +
+        `diversity MMR (max marginal relevance) re-ranking specifically to stop one prolific creator from ` +
+        `dominating the top of the list; BMTRE has no equivalent for genre, creator, or franchise clustering. Live ` +
+        `check on today's real top-20 shows by score: ${topGenre ? `${topGenre[1]} of 20 (${(topGenre[1]/20*100).toFixed(0)}%) are tagged "${topGenre[0]}"` : 'n/a'}, ` +
+        `and all 20 of 20 are tagged "Drama."`,
+      plain: `Right now, if you looked at your top 20 recommended TV shows, every single one would be a Drama, and ` +
+        `most would also be Crime dramas specifically. That's not necessarily wrong — it probably does reflect real ` +
+        `taste — but it means the list isn't actually showing you the breadth of what you might like; it's showing ` +
+        `you 20 shades of the same thing because that's what scores highest, with nothing built in to spread the ` +
+        `picks out a bit.`,
+      impact: `A real, currently-active effect on what Bill actually sees at the top of the list — not a latent risk ` +
+        `like some findings below. A modest diversity pass (even a simple "no more than N per genre in the top 20") ` +
+        `would make the recommendations feel less repetitive without needing any new data.`,
+    });
+  }
+
+  // 3. topCast is cached and well-populated but scores nothing.
+  {
+    const withCast = allEnriched.filter(m => m.topCast?.length >= 3).length;
+    findings.push({
+      id: 'cast-signal-unused',
+      severity: 'serious',
+      title: 'Actor affinity is fully cached and completely unused in scoring',
+      technical: `<code>enrichedMetadata.json</code>'s <code>topCast</code> field (top 5 billed actors per title) is ` +
+        `${((withCast / allEnriched.length) * 100).toFixed(1)}% populated (${withCast} of ${allEnriched.length} ` +
+        `enriched titles) but is never read by <code>matchScore()</code> or any other scoring function — CLAUDE.md's ` +
+        `own port table already flags this as "structurally closer to BBRE's <code>similarToAuthors</code> bridging ` +
+        `role, needs more design thought before porting," and that design thought never happened.`,
+      plain: `The app already knows the main actors in almost every title (93.5% of them) — it just never uses that ` +
+        `information. "You've loved 3 movies with this actor before" is exactly the kind of signal the book side's ` +
+        `engine already uses for authors, and the data to do the same thing here for actors is sitting there ready.`,
+      impact: `A well-precedented, low-risk addition — the data already exists at high coverage, and the book ` +
+        `engine's author-affinity signal is one of its most trusted, longest-running components. Likely a smaller ` +
+        `boost than director/creator match (an actor is less determinative of a title's identity than its director), ` +
+        `but real and currently at zero.`,
+    });
+  }
+
+  // 4. belongsToCollection is cached and Bill demonstrably follows real
+  // franchises, but the field scores nothing.
+  {
+    const lovedWithCollection = (library.titles || []).filter(t => t.myRating >= 9 && enrichedMeta[t.titleKey]?.belongsToCollection);
+    findings.push({
+      id: 'franchise-signal-unused',
+      severity: 'serious',
+      title: 'Franchise/sequel signal is cached, real, and completely unused',
+      technical: `<code>belongsToCollection</code> is cached on 111 of ${allEnriched.length} enriched titles but ` +
+        `never contributes to <code>matchScore()</code> — CLAUDE.md flags it as "cached but not yet a scoring ` +
+        `signal — franchise signal, deferred." This isn't a hypothetical: ${lovedWithCollection.length} of Bill's ` +
+        `real loved (9-10 rated) titles belong to a collection he's demonstrably following (Creed I+II, Deadpool ` +
+        `1+2, Sicario 1+2, both Anchorman films), so the signal has real content to work with today, not a sparse ` +
+        `edge case.`,
+      plain: `If Bill loved "Creed" and "Creed II," the app currently has no explicit "this is a sequel to something ` +
+        `you loved" boost — it only picks that up indirectly, if at all, through director match or TMDB's similar-` +
+        `titles network. A direct franchise-continuation signal would be one of the most confident, low-risk boosts ` +
+        `available, and the data already shows this pattern really happening in Bill's real history.`,
+      impact: `High-confidence, low-risk: "you loved the last one in this franchise" is about as strong a taste ` +
+        `signal as exists, and unlike some findings here, this one has ${lovedWithCollection.length} real supporting ` +
+        `examples in the data today, not zero.`,
+    });
+  }
+
+  // 5. Dismissal generalization doesn't exist — feedbackData.json only
+  // ever excludes the exact title dismissed, never learns from it.
+  {
+    const interactionCount = (feedback?.interactions || []).length;
+    findings.push({
+      id: 'dismissal-generalization',
+      severity: 'serious',
+      title: 'Dismissing a title teaches the engine nothing about similar titles',
+      technical: `<code>buildIndexes()</code>'s <code>excluded</code> set is a flat list of exact titleKeys — ` +
+        `dismissing a title removes only that one title from future recommendations. The book engine's ` +
+        `<code>dismissAdjust</code> (Session 12b) generalizes real dismissals into two live signals: an author-` +
+        `penalty (other books by a disliked author score lower) and a style-profile penalty (a TF-IDF-style ` +
+        `centroid of dismissed titles' themes, applied to lookalikes). BMTRE has no equivalent — the mechanism to ` +
+        `learn from a dismissal doesn't exist at all yet, though it's early: <code>feedbackData.json</code> only ` +
+        `has ${interactionCount} real interaction${interactionCount === 1 ? '' : 's'} recorded so far.`,
+      plain: `If Bill dismisses one bad recommendation, the app forgets about that exact title and nothing else — it ` +
+        `doesn't learn "he probably won't like this director either" or "he's not into this kind of show." The book ` +
+        `app already does exactly this generalization for dismissed books. This isn't urgent yet since there's only ` +
+        `been ${interactionCount === 1 ? 'one real dismissal' : `${interactionCount} real dismissals`} so far, but the ` +
+        `mechanism to actually learn from feedback doesn't exist, so it won't help even once real usage picks up.`,
+      impact: `Low urgency today (minimal real feedback data exists yet to generalize from) but a real structural ` +
+        `gap — this is exactly the kind of infrastructure that's cheap to build now and expensive to retrofit once ` +
+        `real dismissal data has accumulated and nothing was ever set up to use it.`,
+    });
+  }
+
+  // 6. The `plays` field means something different for movies vs shows, a
+  // trap for whoever eventually builds a rewatch-based signal. Checked
+  // live rather than assumed: for shows, plays essentially equals
+  // airedEpisodes (it's an episode-play-count, not a rewatch count); for
+  // movies, plays is a genuine rewatch count but currently shows zero
+  // real signal (0 of 50 loved movies have ever been rewatched).
+  findings.push({
+    id: 'plays-field-semantic-trap',
+    severity: 'serious',
+    title: '`plays` means a different thing for movies vs. shows — a real trap for a future rewatch signal',
+    technical: `Checked before assuming a "rewatch strength" signal would be a good addition, and the naive version ` +
+      `of that idea doesn't hold up: for shows, <code>plays</code> is essentially identical to ` +
+      `<code>airedEpisodes</code> across the real dataset (e.g. Atlanta 41/41, Billions 84/84, Better Call Saul ` +
+      `63/63) — it's a cumulative episode-play count, not a whole-series rewatch count, so treating it as "watched ` +
+      `this 41 times" would be badly wrong. For movies, <code>plays</code> genuinely is a rewatch count with no ` +
+      `episode confound, but the real data shows 0 of 50 loved movies have ever been rewatched (100% at plays=1) — ` +
+      `so there's no real signal to mine there yet either, despite the field meaning the right thing.`,
+    plain: `There's a field that records how many times you've watched something, and it looked at first like a ` +
+      `great source of "how much do you REALLY love this" signal beyond just the star rating. But checking the real ` +
+      `data before building anything found two problems: for TV shows, that number is actually just "how many ` +
+      `episodes you've watched," not "how many times through the whole series" — using it directly would think ` +
+      `every 40-episode show you finished once was your most-rewatched thing ever. And for movies, where the number ` +
+      `would mean the right thing, it turns out you've genuinely never rewatched any of your favorite movies yet, ` +
+      `so there's nothing there to use right now either.`,
+    impact: `Documented here specifically so a future session doesn't build this signal the naive (wrong) way — the ` +
+      `show-side field needs to be normalized by <code>plays / airedEpisodes</code> before it means anything, and ` +
+      `the movie side needs more real rewatch data to accumulate before it's worth scoring at all. Catching this ` +
+      `before it was built is the actual value here, not a missed opportunity.`,
+  });
+
+  // 7. Keywords cached, well-populated, used only for the re-edit filter —
+  // never for actual thematic matching.
+  {
+    const withKeywords = allEnriched.filter(m => m.keywords?.length >= 3).length;
+    findings.push({
+      id: 'keyword-thematic-signal-unused',
+      severity: 'serious',
+      title: 'Free-form keywords are well-populated but only ever used for one narrow filter',
+      technical: `<code>keywords</code> is ${((withKeywords / allEnriched.length) * 100).toFixed(1)}% populated ` +
+        `(${withKeywords} of ${allEnriched.length}) but the only place it's read anywhere in the codebase is ` +
+        `<code>rankAll()</code>'s <code>isReEdit()</code> check (looking for the literal string "edited from ` +
+        `film"). TMDB's genre taxonomy is only ~19 fixed values — genuinely blunt compared to the book engine's ` +
+        `free-form theme vocabulary. Keywords are the closest BMTRE equivalent to that richer thematic signal (or ` +
+        `to <code>descSimilarity.js</code>'s TF-IDF description matching), and it's sitting fully populated and ` +
+        `completely unused for anything but that one filter.`,
+      plain: `Genres are broad buckets — "Crime," "Drama" — but the app also has much more specific tags cached for ` +
+        `almost every title (like "heist," "undercover," "redemption," "single father"). Two crime dramas can share ` +
+        `a genre tag while being nothing alike, or share almost none of their genre tags while actually being very ` +
+        `similar in tone and subject. The more specific tags could tell them apart, but right now they're only ever ` +
+        `checked for one narrow thing (spotting movie re-releases) and ignored for everything else.`,
+      impact: `A real opportunity to add nuance beneath the genre-level signal, similar in spirit to how ` +
+        `<code>descSimilarity.js</code> gives the book engine a second, finer-grained axis beyond themes — likely a ` +
+        `secondary/corroborating signal rather than a primary one, given how noisy free-form keyword tags can be.`,
+    });
+  }
+
+  // 8. Genre bonus tiers were explicitly marked provisional pending real
+  // data; real data has existed for a while and the tiers were never
+  // formally re-checked until this pass.
+  {
+    const sortedGenres = [...idx.lovedGenres.entries()].sort((a, b) => b[1] - a[1]);
+    findings.push({
+      id: 'genre-tiers-unvalidated',
+      severity: 'warning',
+      title: 'Genre bonus tiers were promised a recalibration that never happened',
+      technical: `<code>genreBonus()</code>'s tier thresholds (≥60/35/18/6/1) carry their own code comment: ` +
+        `"provisional...should be recalibrated once real enrichment data exists." That data has existed for weeks. ` +
+        `Checked for the first time this pass against the real <code>lovedGenres</code> distribution ` +
+        `(${sortedGenres.slice(0, 5).map(([g, c]) => `${g}:${c}`).join(', ')}, …): the tiers turn out to be ` +
+        `reasonably well-spread (not collapsed into one bucket), so this isn't an urgent break — but it was never ` +
+        `actually verified until now, only assumed reasonable.`,
+      plain: `A piece of the scoring code has a comment saying "these numbers are a placeholder, come back and check ` +
+        `them once there's real data" — and that data has existed for a while, but nobody ever went back and ` +
+        `checked. Doing that check now for the first time, the numbers turn out to be roughly fine. But "roughly ` +
+        `fine, checked once, informally" isn't the same as "verified" — that promise in the code was never actually ` +
+        `kept.`,
+      impact: `Low urgency since the informal check came back clean, but it's a loose thread — closing it formally ` +
+        `(and removing the "provisional" comment once it's genuinely no longer provisional) is cheap and honest ` +
+        `bookkeeping, the kind of thing that's easy to forget forever once "seems fine" gets treated as "done."`,
+    });
+  }
+
+  // 9. Dropped/abandoned-show signal doesn't exist; completionStatus is
+  // informational only, per CLAUDE.md's own caution. Checked live: how
+  // much real signal actually exists to build this from today.
+  {
+    const showsWithEnoughEpisodes = (library.titles || []).filter(t => t.type === 'show' && t.airedEpisodes > 3);
+    const possiblyDropped = showsWithEnoughEpisodes.filter(t => t.plays > 0 && t.plays < t.airedEpisodes * 0.5);
+    findings.push({
+      id: 'dropped-show-signal',
+      severity: 'warning',
+      title: 'No signal for shows Bill started and abandoned',
+      technical: `<code>completionStatus</code> (caught-up/in-progress/unknown) is computed in ` +
+        `<code>build_trakt_library.js</code> but deliberately left informational-only, per CLAUDE.md's own caution ` +
+        `that Trakt's export carries no explicit "dropped" signal (in-progress could mean "actively watching" or ` +
+        `"gave up," indistinguishably). Checked live rather than assumed: only ${possiblyDropped.length} of ` +
+        `${showsWithEnoughEpisodes.length} shows with more than 3 aired episodes show a real under-50%-watched ` +
+        `pattern — genuine abandonment looks rare in Bill's real data so far, not a large hidden signal.`,
+      plain: `If Bill starts a show and stops halfway through, that's a real signal he's not that into it — but ` +
+        `right now the app can't tell "stopped watching because he doesn't like it" apart from "watching it slowly, ` +
+        `still enjoying it." Checking the real data, this barely happens yet (only 1 clear case right now), so it's ` +
+        `not a big missed opportunity today, but it's a gap that will matter more as more shows get started.`,
+      impact: `Low current value given how rare the pattern is in today's data (${possiblyDropped.length} case), ` +
+        `but worth keeping on the list rather than building prematurely — exactly the same caution CLAUDE.md already ` +
+        `applies to the book side's DNF-penalty history (needs real feedback data before it's safe to score, not ` +
+        `just plausible).`,
+    });
+  }
+
+  // 10. recencyBonus() uses one universal curve for both types despite the
+  // port table already flagging this as a difference not yet handled.
+  findings.push({
+    id: 'recency-curve-not-split-by-type',
+    severity: 'warning',
+    title: 'Recency scoring treats a movie and an ongoing show identically',
+    technical: `<code>recencyBonus(year)</code> applies one universal age-bucket curve (≤1/≤3/≤6 years) regardless ` +
+      `of <code>candidate.type</code> — CLAUDE.md's own BMTRE port table already flags this: "Same shape, movie/` +
+      `show curves not yet split independently." A movie's relevant "freshness" date is a single release; a show's ` +
+      `is fuzzier (an old show with a new season airing is still current in a way <code>year</code> alone doesn't ` +
+      `capture, and <code>year</code> here is the title's original air year, not its most recent activity).`,
+    plain: `A movie from 2015 and a TV show that started in 2015 but might still be airing new episodes today get ` +
+      `scored as equally "old" by the recency signal, even though the show could be very much a current, active ` +
+      `thing to watch. The recency bonus doesn't know the difference.`,
+    impact: `Modest — recency is already a small signal (max 3 points) — but a real, easy-to-fix mismatch between ` +
+      `what the code measures and what "recent" actually means for an ongoing show.`,
+  });
+
+  const order = { critical: 0, serious: 1, warning: 2, good: 3 };
+  findings.sort((a, b) => order[a.severity] - order[b.severity]);
+  return findings;
+}
+
+function renderImprovementOpportunities(findings, targetId = 'improvementList') {
+  const el = document.getElementById(targetId);
   const sevMeta = {
     critical: { cls: 'tk-status-critical', icon: '✗', label: 'High impact' },
     serious: { cls: 'tk-status-serious', icon: '⚠', label: 'Medium impact' },
@@ -1114,6 +1392,10 @@ async function load() {
 
   renderImprovementOpportunities(
     computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates)
+  );
+  renderImprovementOpportunities(
+    computeEngineImprovements(library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, idx, fromWatchlist, fromCandidates),
+    'engineImprovementList'
   );
 
   renderAllTitlesTable(buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx));
