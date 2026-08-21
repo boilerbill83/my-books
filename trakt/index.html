@@ -117,6 +117,46 @@
         font-size: 0.78rem; color: var(--text-muted); margin-top: 14px; padding-top: 12px;
         border-top: 1px solid var(--border); line-height: 1.5;
       }
+
+      /* ── Genre/creator/cast lists ── */
+      .tk-metric-row {
+        display: flex; align-items: center; justify-content: space-between; gap: 10px;
+        padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem;
+      }
+      .tk-metric-row:last-child { border-bottom: none; }
+      .tk-metric-name { flex: 1; min-width: 0; }
+      .tk-metric-sub { color: var(--text-muted); font-size: 0.76rem; }
+      .tk-metric-score {
+        font-weight: 600; font-size: 0.8rem; padding: 2px 9px; border-radius: 999px;
+        background: var(--bg-subtle); color: var(--accent); white-space: nowrap;
+      }
+
+      .tk-crowd-stat { text-align: center; padding: 10px 0; }
+      .tk-crowd-number { font-family: var(--font-sans); font-weight: 700; font-size: 2.6rem; color: var(--accent); }
+      .tk-crowd-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
+      .tk-crowd-detail { font-size: 0.76rem; color: var(--text-muted); margin-top: 10px; }
+
+      /* ── All-titles table ── */
+      .tk-table-toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; }
+      .tk-search {
+        font: inherit; font-size: 0.85rem; padding: 7px 12px; border: 1px solid var(--border);
+        border-radius: var(--radius); background: var(--bg-card); color: var(--text); flex: 1; max-width: 340px;
+      }
+      .tk-btn {
+        font: inherit; font-size: 0.8rem; padding: 7px 14px; border: 1px solid var(--border);
+        border-radius: var(--radius); background: #fff; color: var(--text); cursor: pointer;
+      }
+      .tk-btn:hover { border-color: var(--accent); }
+      .tk-table-wrap { overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+      table.tk-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+      table.tk-table th, table.tk-table td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+      table.tk-table th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); cursor: pointer; user-select: none; white-space: nowrap; }
+      table.tk-table th:hover { color: var(--accent); }
+      table.tk-table th.sorted::after { content: ' ▾'; }
+      table.tk-table th.sorted.asc::after { content: ' ▴'; }
+      table.tk-table tbody tr:hover { background: var(--bg-subtle); }
+      table.tk-table td.num { font-variant-numeric: tabular-nums; text-align: right; }
+      table.tk-table td.tk-genres { color: var(--text-muted); font-size: 0.78rem; }
     </style>
   </head>
   <body>
@@ -151,52 +191,48 @@
 
         <div class="tk-tiles" id="statTiles"></div>
 
-        <div class="tk-card">
-          <div class="tk-card-heading">Rating Distribution</div>
-          <div class="tk-card-note">All 495 ratings (movies + shows), on Trakt's 1-10 scale.</div>
-          <div class="tk-chart-wrap" id="ratingChart"></div>
+        <div class="tk-card-note" id="genreSectionScopeNote" style="margin-bottom:14px;"></div>
+
+        <div class="tk-row2">
+          <div class="tk-card">
+            <div class="tk-card-heading">Genres You Rate Highest</div>
+            <div class="tk-card-note">Average rating per genre (min. 3 rated titles). Sorted by taste, not volume.</div>
+            <div class="tk-chart-wrap" id="genreChart"></div>
+          </div>
+          <div class="tk-card">
+            <div class="tk-card-heading">Directors &amp; Creators You Love</div>
+            <div class="tk-card-note">Average rating per director/creator (min. 2 titles).</div>
+            <div class="tk-list" id="creatorList"></div>
+          </div>
         </div>
 
         <div class="tk-row2">
           <div class="tk-card">
-            <div class="tk-card-heading">Movies Watched by Year</div>
-            <div class="tk-card-note">Based on watch date (from Trakt history).</div>
-            <div class="tk-chart-wrap" id="moviesByYearChart"></div>
+            <div class="tk-card-heading">Most-Watched Actors</div>
+            <div class="tk-card-note">Top-billed cast, counted across every enriched watched title.</div>
+            <div class="tk-list" id="castList"></div>
           </div>
           <div class="tk-card">
-            <div class="tk-card-heading">Episodes Watched by Year</div>
-            <div class="tk-card-note">Only plays with a real recorded watch date — see caveat below.</div>
-            <div class="tk-chart-wrap" id="episodesByYearChart"></div>
-            <div class="tk-caveat" id="undatedCaveat"></div>
+            <div class="tk-card-heading">You vs. The Crowd</div>
+            <div class="tk-card-note">Your rating vs. TMDB's average, for titles both have rated.</div>
+            <div id="crowdCompare"></div>
           </div>
         </div>
 
-        <div class="tk-card">
-          <div class="tk-card-heading">Top Shows by Episodes Watched</div>
-          <div class="tk-card-note">Top 15 shows, ranked by total plays.</div>
-          <div class="tk-chart-wrap" id="topShowsChart"></div>
+        <div class="tk-card" id="franchiseCard" style="display:none;">
+          <div class="tk-card-heading">Franchises You're Following</div>
+          <div class="tk-card-note">Collections with 2+ entries watched.</div>
+          <div class="tk-list" id="franchiseList"></div>
         </div>
 
-        <div class="tk-row2">
-          <div class="tk-card">
-            <div class="tk-card-heading">Top Rated Movies</div>
-            <div class="tk-list" id="topRatedMoviesList"></div>
+        <div class="tk-card" style="margin-bottom: 24px;">
+          <div class="tk-card-heading">All Titles (<span id="allTitlesCount">0</span>)</div>
+          <div class="tk-card-note">Every watched and watchlisted title. Search, sort by any column, or export.</div>
+          <div class="tk-table-toolbar">
+            <input type="text" class="tk-search" id="titleSearch" placeholder="Search title, genre, director…" />
+            <button class="tk-btn" id="titleCsvBtn">Download CSV</button>
           </div>
-          <div class="tk-card">
-            <div class="tk-card-heading">Top Rated Shows</div>
-            <div class="tk-list" id="topRatedShowsList"></div>
-          </div>
-        </div>
-
-        <div class="tk-row2" style="margin-bottom: 24px;">
-          <div class="tk-card">
-            <div class="tk-card-heading">Watchlist (<span id="watchlistCount">0</span>)</div>
-            <div class="tk-list" id="watchlistList"></div>
-          </div>
-          <div class="tk-card">
-            <div class="tk-card-heading">Favorites (<span id="favoritesCount">0</span>)</div>
-            <div class="tk-list" id="favoritesList"></div>
-          </div>
+          <div class="tk-table-wrap"><table class="tk-table" id="allTitlesTable"></table></div>
         </div>
       </div>
     </div>

@@ -44,82 +44,9 @@ function renderStatTiles(summary) {
   `).join('');
 }
 
-// ── Vertical bar chart (rating distribution, watched-by-year) ──────────────
+// ── Horizontal bar chart (genres) ───────────────────────────────────────
 
-function renderVBarChart(containerId, data, { labelKey, valueKey, height = 200 }) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = '';
-  if (!data.length) { container.innerHTML = '<div class="tk-empty">No data.</div>'; return; }
-
-  const width = 600;
-  const marginLeft = 34, marginBottom = 20, marginTop = 10, marginRight = 10;
-  const plotW = width - marginLeft - marginRight;
-  const plotH = height - marginTop - marginBottom;
-
-  const maxVal = Math.max(1, ...data.map(d => d[valueKey]));
-  const niceMax = Math.pow(10, Math.floor(Math.log10(maxVal))) * Math.ceil(maxVal / Math.pow(10, Math.floor(Math.log10(maxVal))));
-  const yScale = v => plotH - (v / niceMax) * plotH;
-
-  const barSlot = plotW / data.length;
-  const barWidth = Math.min(24, barSlot - 4);
-  // Label every Nth bar so labels never collide — cap at ~12 visible labels,
-  // always including the first and last.
-  const labelStep = Math.max(1, Math.ceil(data.length / 12));
-
-  const svg = svgEl('svg', { viewBox: `0 0 ${width} ${height}`, width: '100%', height, style: 'display:block' });
-
-  // gridlines (0, mid, max)
-  [0, 0.5, 1].forEach(f => {
-    const y = marginTop + plotH * (1 - f);
-    svg.appendChild(svgEl('line', {
-      x1: marginLeft, x2: width - marginRight, y1: y, y2: y, class: 'tk-gridline',
-    }));
-    const label = svgEl('text', { x: marginLeft - 6, y: y + 3, class: 'tk-axis-label', 'text-anchor': 'end' });
-    label.textContent = fmtNum(Math.round(niceMax * f));
-    svg.appendChild(label);
-  });
-
-  const tooltip = document.createElement('div');
-  tooltip.className = 'tk-tooltip';
-  const wrap = document.createElement('div');
-  wrap.style.position = 'relative';
-  wrap.appendChild(svg);
-  wrap.appendChild(tooltip);
-  container.appendChild(wrap);
-
-  data.forEach((d, i) => {
-    const x = marginLeft + i * barSlot + (barSlot - barWidth) / 2;
-    const barH = plotH * (d[valueKey] / niceMax);
-    const y = marginTop + plotH - barH;
-
-    const rect = svgEl('rect', {
-      x, y, width: barWidth, height: Math.max(barH, 0.5), rx: 4, ry: 4, class: 'tk-bar',
-    });
-    svg.appendChild(rect);
-
-    const isLastBar = i === data.length - 1;
-    if (i % labelStep === 0 || isLastBar) {
-      const xlabel = svgEl('text', {
-        x: x + barWidth / 2, y: height - marginBottom + 13, class: 'tk-axis-label', 'text-anchor': 'middle',
-      });
-      xlabel.textContent = d[labelKey];
-      svg.appendChild(xlabel);
-    }
-
-    rect.addEventListener('pointerenter', () => {
-      tooltip.textContent = `${d[labelKey]}: ${fmtNum(d[valueKey])}`;
-      tooltip.classList.add('active');
-      const pct = ((x + barWidth / 2) / width) * 100;
-      tooltip.style.left = `${pct}%`;
-      tooltip.style.top = `${((y) / height) * 100}%`;
-    });
-    rect.addEventListener('pointerleave', () => tooltip.classList.remove('active'));
-  });
-}
-
-// ── Horizontal bar chart (top shows) ────────────────────────────────────
-
-function renderHBarChart(containerId, data, { labelKey, valueKey, barHeight = 20 }) {
+function renderHBarChart(containerId, data, { labelKey, valueKey, barHeight = 20, maxScale, fmtValue = fmtNum, tooltipSuffix = '' }) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
   if (!data.length) { container.innerHTML = '<div class="tk-empty">No data.</div>'; return; }
@@ -128,9 +55,9 @@ function renderHBarChart(containerId, data, { labelKey, valueKey, barHeight = 20
   const gap = 6;
   const rowH = barHeight + gap;
   const height = data.length * rowH + 10;
-  const marginLeft = 170, marginRight = 50;
+  const marginLeft = 170, marginRight = 60;
   const plotW = width - marginLeft - marginRight;
-  const maxVal = Math.max(1, ...data.map(d => d[valueKey]));
+  const maxVal = maxScale ?? Math.max(1, ...data.map(d => d[valueKey]));
 
   const svg = svgEl('svg', { viewBox: `0 0 ${width} ${height}`, width: '100%', height, style: 'display:block' });
 
@@ -160,11 +87,11 @@ function renderHBarChart(containerId, data, { labelKey, valueKey, barHeight = 20
     const valueLabel = svgEl('text', {
       x: marginLeft + barW + 6, y: y + barHeight / 2 + 4, class: 'tk-value-label',
     });
-    valueLabel.textContent = fmtNum(d[valueKey]);
+    valueLabel.textContent = fmtValue(d[valueKey]);
     svg.appendChild(valueLabel);
 
     rect.addEventListener('pointerenter', () => {
-      tooltip.textContent = `${d[labelKey]}: ${fmtNum(d[valueKey])} episodes`;
+      tooltip.textContent = `${d[labelKey]}: ${fmtValue(d[valueKey])}${tooltipSuffix}`;
       tooltip.classList.add('active');
       tooltip.style.left = `${((marginLeft + barW / 2) / width) * 100}%`;
       tooltip.style.top = `${(y / height) * 100}%`;
@@ -173,29 +100,257 @@ function renderHBarChart(containerId, data, { labelKey, valueKey, barHeight = 20
   });
 }
 
-// ── Ranked lists (top rated, watchlist, favorites) ──────────────────────
+// ── Genre / creator / cast / crowd-comparison metrics ───────────────────
+// All scoped to the enriched subset only (currently a fraction of the full
+// library — see the scope note rendered above these sections) since TMDB
+// enrichment runs incrementally, not all-at-once.
 
-function renderRankedList(containerId, items, { scoreKey, scoreSuffix = '' }) {
-  const el = document.getElementById(containerId);
-  if (!items.length) { el.innerHTML = '<div class="tk-empty">Nothing here yet.</div>'; return; }
-  el.innerHTML = items.map((item, i) => `
-    <div class="tk-list-row">
-      <span class="tk-list-rank">${i + 1}</span>
-      <span class="tk-list-title">${esc(item.title)}${item.year ? ` <span class="tk-year">(${esc(item.year)})</span>` : ''}</span>
-      ${scoreKey ? `<span class="tk-list-score">${esc(item[scoreKey])}${scoreSuffix}</span>` : ''}
+const LOVED_THRESHOLD = 9;
+
+function computeGenreStats(library, enrichedMeta) {
+  const stats = new Map();
+  for (const t of library.titles || []) {
+    if (t.myRating == null) continue;
+    const meta = enrichedMeta[t.titleKey];
+    if (!meta?.genres) continue;
+    for (const g of meta.genres) {
+      if (!stats.has(g)) stats.set(g, { sum: 0, count: 0 });
+      const e = stats.get(g);
+      e.sum += t.myRating; e.count++;
+    }
+  }
+  return [...stats.entries()]
+    .map(([genre, e]) => ({ genre, avg: e.sum / e.count, count: e.count }))
+    .filter(g => g.count >= 3)
+    .sort((a, b) => b.avg - a.avg);
+}
+
+function computeCreatorStats(library, enrichedMeta) {
+  const stats = new Map();
+  for (const t of library.titles || []) {
+    if (t.myRating == null) continue;
+    const meta = enrichedMeta[t.titleKey];
+    if (!meta) continue;
+    const creator = t.type === 'movie' ? meta.director : (meta.createdBy && meta.createdBy[0]);
+    if (!creator) continue;
+    if (!stats.has(creator)) stats.set(creator, { sum: 0, count: 0 });
+    const e = stats.get(creator);
+    e.sum += t.myRating; e.count++;
+  }
+  return [...stats.entries()]
+    .map(([creator, e]) => ({ creator, avg: e.sum / e.count, count: e.count }))
+    .filter(c => c.count >= 2)
+    .sort((a, b) => b.avg - a.avg)
+    .slice(0, 12);
+}
+
+function computeCastStats(library, enrichedMeta) {
+  const counts = new Map();
+  for (const t of library.titles || []) {
+    const meta = enrichedMeta[t.titleKey];
+    if (!meta?.topCast) continue;
+    for (const actor of meta.topCast) counts.set(actor, (counts.get(actor) || 0) + 1);
+  }
+  return [...counts.entries()]
+    .map(([actor, count]) => ({ actor, count }))
+    .filter(a => a.count >= 2)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 12);
+}
+
+function computeCrowdCompare(library, enrichedMeta) {
+  let sumMine = 0, sumTmdb = 0, n = 0;
+  for (const t of library.titles || []) {
+    if (t.myRating == null) continue;
+    const meta = enrichedMeta[t.titleKey];
+    if (meta?.voteAverage == null) continue;
+    sumMine += t.myRating; sumTmdb += meta.voteAverage; n++;
+  }
+  if (!n) return null;
+  return { n, mineAvg: sumMine / n, tmdbAvg: sumTmdb / n, diff: (sumMine - sumTmdb) / n };
+}
+
+function computeFranchiseStats(library, enrichedMeta) {
+  const stats = new Map();
+  for (const t of library.titles || []) {
+    const meta = enrichedMeta[t.titleKey];
+    if (!meta?.belongsToCollection) continue;
+    const name = meta.belongsToCollection.name;
+    if (!stats.has(name)) stats.set(name, { count: 0, sum: 0, ratedCount: 0 });
+    const e = stats.get(name);
+    e.count++;
+    if (t.myRating != null) { e.sum += t.myRating; e.ratedCount++; }
+  }
+  return [...stats.entries()]
+    .map(([name, e]) => ({ name, count: e.count, avg: e.ratedCount ? e.sum / e.ratedCount : null }))
+    .filter(f => f.count >= 2)
+    .sort((a, b) => b.count - a.count);
+}
+
+function renderGenreChart(stats) {
+  renderHBarChart('genreChart',
+    stats.map(g => ({ genre: `${g.genre} (${g.count})`, avg: g.avg })),
+    { labelKey: 'genre', valueKey: 'avg', maxScale: 10, fmtValue: v => v.toFixed(1), tooltipSuffix: '/10 avg' });
+}
+
+function renderCreatorList(stats) {
+  const el = document.getElementById('creatorList');
+  if (!stats.length) { el.innerHTML = '<div class="tk-empty">Not enough enriched, rated titles yet.</div>'; return; }
+  el.innerHTML = stats.map(c => `
+    <div class="tk-metric-row">
+      <span class="tk-metric-name">${esc(c.creator)} <span class="tk-metric-sub">(${c.count} title${c.count > 1 ? 's' : ''})</span></span>
+      <span class="tk-metric-score">${c.avg.toFixed(1)}/10</span>
     </div>
   `).join('');
 }
 
-function renderSimpleList(containerId, items) {
-  const el = document.getElementById(containerId);
-  if (!items.length) { el.innerHTML = '<div class="tk-empty">Nothing here yet.</div>'; return; }
-  el.innerHTML = items.map(item => `
-    <div class="tk-list-row">
-      <span class="tk-list-title">${esc(item.title)}${item.year ? ` <span class="tk-year">(${esc(item.year)})</span>` : ''}</span>
-      <span class="tk-list-score">${item.type === 'movie' ? 'Movie' : 'Show'}</span>
+function renderCastList(stats) {
+  const el = document.getElementById('castList');
+  if (!stats.length) { el.innerHTML = '<div class="tk-empty">Not enough enriched titles yet.</div>'; return; }
+  el.innerHTML = stats.map(a => `
+    <div class="tk-metric-row">
+      <span class="tk-metric-name">${esc(a.actor)}</span>
+      <span class="tk-metric-score">${a.count} title${a.count > 1 ? 's' : ''}</span>
     </div>
   `).join('');
+}
+
+function renderCrowdCompare(compare) {
+  const el = document.getElementById('crowdCompare');
+  if (!compare) { el.innerHTML = '<div class="tk-empty">Not enough enriched, rated titles yet.</div>'; return; }
+  const dir = compare.diff > 0 ? 'higher than' : compare.diff < 0 ? 'lower than' : 'the same as';
+  el.innerHTML = `
+    <div class="tk-crowd-stat">
+      <div class="tk-crowd-number">${compare.diff > 0 ? '+' : ''}${compare.diff.toFixed(2)}</div>
+      <div class="tk-crowd-label">You rate ${Math.abs(compare.diff).toFixed(2)} points ${dir} TMDB on average</div>
+      <div class="tk-crowd-detail">Your avg ${compare.mineAvg.toFixed(2)}/10 vs. TMDB's ${compare.tmdbAvg.toFixed(2)}/10, across ${compare.n} rated titles.</div>
+    </div>`;
+}
+
+function renderFranchiseList(stats) {
+  const card = document.getElementById('franchiseCard');
+  if (!stats.length) { card.style.display = 'none'; return; }
+  card.style.display = '';
+  document.getElementById('franchiseList').innerHTML = stats.map(f => `
+    <div class="tk-metric-row">
+      <span class="tk-metric-name">${esc(f.name)} <span class="tk-metric-sub">(${f.count} watched)</span></span>
+      <span class="tk-metric-score">${f.avg != null ? f.avg.toFixed(1) + '/10' : '—'}</span>
+    </div>
+  `).join('');
+}
+
+// ── All-titles filterable/sortable table ────────────────────────────────
+
+function buildAllTitlesRows(library, watchlist, enrichedMeta) {
+  const rows = [];
+  for (const t of library.titles || []) {
+    const meta = enrichedMeta[t.titleKey];
+    rows.push({
+      title: t.title, year: t.year, type: t.type, status: 'Watched',
+      myRating: t.myRating, tmdbRating: meta?.voteAverage ?? null,
+      genres: meta?.genres?.join(', ') || '', creator: (t.type === 'movie' ? meta?.director : meta?.createdBy?.[0]) || '',
+    });
+  }
+  for (const t of watchlist.titles || []) {
+    const meta = enrichedMeta[t.titleKey];
+    rows.push({
+      title: t.title, year: t.year, type: t.type, status: 'Watchlist',
+      myRating: null, tmdbRating: meta?.voteAverage ?? null,
+      genres: meta?.genres?.join(', ') || '', creator: (t.type === 'movie' ? meta?.director : meta?.createdBy?.[0]) || '',
+    });
+  }
+  return rows;
+}
+
+function tableToCSV(table) {
+  const csvCell = s => /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  const headerCells = [...table.querySelectorAll('thead th')].map(th => csvCell(th.textContent.replace(/[▾▴]/g, '').trim()));
+  const rows = [...table.querySelectorAll('tbody tr')].map(tr =>
+    [...tr.children].map(td => csvCell(td.textContent.trim())).join(','));
+  return [headerCells.join(','), ...rows].join('\r\n');
+}
+
+function downloadCSV(table, filename) {
+  const csv = tableToCSV(table);
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function renderAllTitlesTable(allRows) {
+  const table = document.getElementById('allTitlesTable');
+  const searchInput = document.getElementById('titleSearch');
+  const columns = [
+    { label: 'Title', get: r => r.title },
+    { label: 'Year', get: r => r.year ?? '', numeric: true },
+    { label: 'Type', get: r => r.type === 'movie' ? 'Movie' : 'Show' },
+    { label: 'Status', get: r => r.status },
+    { label: 'My Rating', get: r => r.myRating ?? '', numeric: true },
+    { label: 'TMDB Rating', get: r => r.tmdbRating != null ? Math.round(r.tmdbRating * 10) / 10 : '', numeric: true },
+    { label: 'Genres', get: r => r.genres, render: (td, r) => { td.className = 'tk-genres'; td.textContent = r.genres || '—'; } },
+    { label: 'Director/Creator', get: r => r.creator || '—' },
+  ];
+
+  let sortCol = 4, sortAsc = false; // default: My Rating desc
+
+  function filtered() {
+    const q = (searchInput.value || '').trim().toLowerCase();
+    if (!q) return allRows;
+    return allRows.filter(r =>
+      r.title.toLowerCase().includes(q) || r.genres.toLowerCase().includes(q) || r.creator.toLowerCase().includes(q));
+  }
+
+  function render() {
+    const rows = filtered();
+    const sorted = [...rows].sort((a, b) => {
+      const va = columns[sortCol].get(a), vb = columns[sortCol].get(b);
+      const cmp = typeof va === 'number' ? va - vb : String(va).localeCompare(String(vb));
+      return sortAsc ? cmp : -cmp;
+    });
+    document.getElementById('allTitlesCount').textContent = fmtNum(rows.length);
+
+    table.innerHTML = '';
+    const thead = document.createElement('thead');
+    const trh = document.createElement('tr');
+    columns.forEach((c, i) => {
+      const th = document.createElement('th');
+      th.textContent = c.label;
+      if (i === sortCol) th.className = 'sorted' + (sortAsc ? ' asc' : '');
+      th.addEventListener('click', () => {
+        if (sortCol === i) sortAsc = !sortAsc; else { sortCol = i; sortAsc = false; }
+        render();
+      });
+      trh.appendChild(th);
+    });
+    thead.appendChild(trh);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    if (!sorted.length) {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.colSpan = columns.length; td.className = 'tk-empty'; td.textContent = 'No matches.';
+      tr.appendChild(td); tbody.appendChild(tr);
+    }
+    for (const row of sorted) {
+      const tr = document.createElement('tr');
+      columns.forEach(c => {
+        const td = document.createElement('td');
+        if (c.numeric) td.className = 'num';
+        if (c.render) c.render(td, row); else td.textContent = esc(c.get(row));
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+  }
+
+  render();
+  searchInput.addEventListener('input', render);
+  document.getElementById('titleCsvBtn').addEventListener('click', () => downloadCSV(table, 'trakt-all-titles.csv'));
 }
 
 // ── Recommendations preview ─────────────────────────────────────────────
@@ -348,28 +503,18 @@ async function load() {
 
   renderStatTiles(d.summary);
 
-  const ratingData = Object.entries(d.ratingDistribution)
-    .map(([rating, count]) => ({ rating, count }))
-    .sort((a, b) => Number(a.rating) - Number(b.rating));
-  renderVBarChart('ratingChart', ratingData, { labelKey: 'rating', valueKey: 'count' });
+  const enrichedCount = Object.keys(enrichedMeta).length;
+  document.getElementById('genreSectionScopeNote').textContent =
+    `Based on the ${fmtNum(enrichedCount)} titles enriched with TMDB data so far (of ${fmtNum((library.titles?.length || 0) + (watchlist.titles?.length || 0))} total) — ` +
+    `these sections fill in automatically as the daily enrichment job covers more of your library.`;
 
-  renderVBarChart('moviesByYearChart', d.activityByYear, { labelKey: 'year', valueKey: 'movies' });
-  renderVBarChart('episodesByYearChart', d.activityByYear, { labelKey: 'year', valueKey: 'episodes' });
+  renderGenreChart(computeGenreStats(library, enrichedMeta));
+  renderCreatorList(computeCreatorStats(library, enrichedMeta));
+  renderCastList(computeCastStats(library, enrichedMeta));
+  renderCrowdCompare(computeCrowdCompare(library, enrichedMeta));
+  renderFranchiseList(computeFranchiseStats(library, enrichedMeta));
 
-  document.getElementById('undatedCaveat').textContent =
-    `${d.dataCaveats.undatedEpisodeSharePct}% of all episode plays (${fmtNum(d.dataCaveats.undatedEpisodePlays)} of ` +
-    `${fmtNum(d.dataCaveats.undatedEpisodePlays + d.dataCaveats.datedEpisodePlays)}) have no recorded watch date — ` +
-    `a bulk import with no per-episode timestamp — and are excluded from this chart rather than shown as watched in 1970.`;
-
-  renderHBarChart('topShowsChart', d.topShowsByPlays, { labelKey: 'title', valueKey: 'plays' });
-
-  renderRankedList('topRatedMoviesList', d.topRatedMovies, { scoreKey: 'rating', scoreSuffix: '/10' });
-  renderRankedList('topRatedShowsList', d.topRatedShows, { scoreKey: 'rating', scoreSuffix: '/10' });
-
-  document.getElementById('watchlistCount').textContent = d.watchlist.count;
-  document.getElementById('favoritesCount').textContent = d.favorites.count;
-  renderSimpleList('watchlistList', d.watchlist.items);
-  renderSimpleList('favoritesList', d.favorites.items);
+  renderAllTitlesTable(buildAllTitlesRows(library, watchlist, enrichedMeta));
 }
 
 load().catch(err => {
