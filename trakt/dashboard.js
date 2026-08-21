@@ -525,6 +525,215 @@ function renderFieldBar(pct, critical) {
   return wrap;
 }
 
+// ── Improvement Opportunities ────────────────────────────────────────────
+// Findings from a full read-through of every file under trakt/ (engine.js,
+// dashboard.js, recommend.js, enrich_tmdb.py, enrich_omdb.py,
+// resolve_titles.py, discover_candidates.js, prune_candidate_pool.js,
+// build_trakt_library.js, loadAllTitles.js, export_extract.js, both HTML
+// shells) — the 5 with the most real impact on data quality and
+// recommendation accuracy, each verified against live data rather than
+// asserted. Two of the five compute their own evidence live on every page
+// load (so the numbers can't go stale or become placeholder claims); the
+// other three describe a real code-level gap whose severity doesn't change
+// run to run, but still carry the concrete numbers that established it.
+function computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates) {
+  const findings = [];
+
+  // 1. prune_candidate_pool.js defines isReEdit/isNonEnglish (copied from
+  // rankAll's own filter) but never actually calls either when deciding
+  // what counts toward the 100-per-type cap — so a re-edit or foreign-
+  // language title can occupy a cap slot even though rankAll() would
+  // filter it back out at render time and it could never actually surface
+  // as a "New pick." Computed live: how many of the current pool's 200
+  // slots are spent on titles like this right now.
+  {
+    const isReEdit = c => (enrichedMeta[c.titleKey]?.keywords || []).includes('edited from film');
+    const isNonEnglish = c => {
+      const lang = enrichedMeta[c.titleKey]?.originalLanguage;
+      return lang != null && lang !== 'en';
+    };
+    const wasted = (candidatePool.titles || []).filter(c => isReEdit(c) || isNonEnglish(c));
+    const total = (candidatePool.titles || []).length;
+    findings.push({
+      id: 'pool-cap-waste',
+      severity: wasted.length > 0 ? 'serious' : 'good',
+      title: 'Candidate pool cap counts titles that can never actually be recommended',
+      technical: `<code>prune_candidate_pool.js</code> defines <code>isReEdit()</code>/<code>isNonEnglish()</code>, ` +
+        `copied verbatim from <code>rankAll()</code>'s own candidate filter, but never calls either when deciding ` +
+        `which candidates count toward the 100-per-type cap. <code>rankAll()</code> still correctly excludes these ` +
+        `titles from the "New pick" panels at render time — so the bug isn't a bad recommendation slipping through, ` +
+        `it's cap capacity silently spent on a title that was never going to be shown, crowding out a real candidate ` +
+        `that could have taken that slot instead. Live count right now: ${wasted.length} of ${total} pool slots ` +
+        `(${total ? ((wasted.length / total) * 100).toFixed(1) : 0}%) are re-edits or non-English titles.`,
+      plain: `There's a cap of 100 movies and 100 TV shows in the "maybe you'll like this" pile. But right now, ` +
+        `${wasted.length} of those 200 slots are taken up by titles that the app has already privately decided it ` +
+        `will never actually show you (foreign-language titles, or things like a PG-13 re-edit of a movie you've ` +
+        `already seen). Those titles are just sitting there uselessly instead of making room for something that ` +
+        `could genuinely make your recommendation list better.`,
+      impact: `Fixing this frees up real candidate slots — every wasted slot is a slot a genuinely-scoreable, ` +
+        `possibly-better title could have occupied instead. At the current ${wasted.length}/${total} rate this is a ` +
+        `real, ongoing tax on pool diversity, not a one-time cleanup.`,
+    });
+  }
+
+  // 2. The rec panels ("Movies/Shows You'll Love") take the top 4 from the
+  // watchlist and the top 4 from the candidate pool BEFORE sorting, then
+  // sort those 8 by score — so a candidate ranked 5th-8th overall can be
+  // silently excluded even if it outscores every watchlist title shown.
+  // Computed live: does today's real ranking actually produce a different
+  // (correct) top-8 than what the panel currently shows.
+  {
+    const gapsByType = {};
+    for (const type of ['movie', 'show']) {
+      const wl = fromWatchlist.filter(c => c.type === type && enrichedMeta[c.titleKey]);
+      const cd = fromCandidates.filter(c => c.type === type && enrichedMeta[c.titleKey]);
+      const current = new Set([...wl.slice(0, 4), ...cd.slice(0, 4)].map(c => c.titleKey));
+      const trueTop8 = [...wl, ...cd].sort((a, b) => b.bmtreScore - a.bmtreScore).slice(0, 8);
+      gapsByType[type] = trueTop8.filter(c => !current.has(c.titleKey));
+    }
+    const totalMissed = gapsByType.movie.length + gapsByType.show.length;
+    const example = gapsByType.movie[0] || gapsByType.show[0];
+    findings.push({
+      id: 'rec-panel-top8',
+      severity: totalMissed > 0 ? 'critical' : 'good',
+      title: '"You\'ll Love" panels don\'t actually show the true top 8 by score',
+      technical: `<code>renderRecPanel()</code> builds each panel from <code>watchlistItems.slice(0, 4)</code> + ` +
+        `<code>candidateItems.slice(0, 4)</code>, THEN sorts those 8 by <code>bmtreScore</code>. The cap of 4-per-` +
+        `origin is applied before the cross-origin sort, not after — so a candidate ranked 5th-8th overall within ` +
+        `its own origin is dropped even if its score beats several titles that do make the cut from the other ` +
+        `origin. Live check right now: ${totalMissed} title${totalMissed === 1 ? '' : 's'} belong${totalMissed === 1 ? 's' : ''} ` +
+        `in the real top 8 by score but ${totalMissed === 1 ? 'is' : 'are'} missing from the panel as rendered` +
+        (example ? ` — e.g. "${esc(example.title)}" (score ${Math.round(example.bmtreScore)}) isn't shown.` : '.'),
+      plain: `The "Movies/Shows You'll Love" boxes are supposed to show your 8 best matches. But the code actually ` +
+        `grabs your top 4 already-queued titles and your top 4 newly-discovered titles as two separate groups ` +
+        `first, and only then sorts those 8 — so if your 5th-best new discovery is actually a better fit than your ` +
+        `4th-best queued title, it gets left out even though it deserved a spot. Right now that's really happening: ` +
+        `${totalMissed} title${totalMissed === 1 ? '' : 's'} that should be on the list ${totalMissed === 1 ? 'isn\'t' : 'aren\'t'}.`,
+      impact: `This is the single most directly recommendation-accuracy-affecting finding of the five — it's not a ` +
+        `data-quality gap, it's the headline feature of the dashboard showing a worse list than the engine already ` +
+        `computed. Fixing it is a small code change (sort the combined pool first, take the top 8 after) with an ` +
+        `immediate, visible improvement.`,
+    });
+  }
+
+  // 3. enrich_omdb.py never got the same "surface TMDB's real error body"
+  // fix enrich_tmdb.py got tonight after a real dead-key incident (a bare
+  // 401 with no way to tell revoked/malformed/suspended apart cost real
+  // back-and-forth before the fix). enrich_omdb.py's get_json() still
+  // discards the response body the same way enrich_tmdb.py's used to.
+  findings.push({
+    id: 'omdb-error-diagnostics',
+    severity: 'warning',
+    title: 'enrich_omdb.py still throws away the one piece of information that would diagnose a dead key',
+    technical: `<code>trakt/enrich_tmdb.py</code>'s <code>get_json()</code> was fixed this session to capture and ` +
+      `surface TMDB's own error-response body (not just the bare HTTP status) after a real incident where a bare ` +
+      `401 gave no way to distinguish a revoked key from a malformed one from a temporarily-suspended one — the ` +
+      `fix immediately paid off, turning an unexplained failure into a one-line diagnosis. ` +
+      `<code>trakt/enrich_omdb.py</code>'s <code>get_json()</code> is structurally identical but was never given the ` +
+      `same fix: <code>except urllib.error.HTTPError as e: return None, e.code</code> still discards <code>e.read()</code> entirely.`,
+    plain: `Earlier tonight, one of the two API keys this app depends on broke, and figuring out why took a long time ` +
+      `because the error message was just "401 - invalid" with no further detail. That got fixed for one of the two ` +
+      `data pipelines (TMDB) but not the other (OMDb, the Rotten Tomatoes/awards data) — so if the OMDb key ever ` +
+      `has the same kind of problem, we're back to square one on that side, guessing instead of reading the real answer.`,
+    impact: `Low urgency (this doesn't affect today's data), but cheap to fix and directly reduces future debugging ` +
+      `time the next time this exact category of failure happens — which it already has once tonight, on the sibling pipeline.`,
+  });
+
+  // 4. resolve_titles.py takes TMDB's #1 search result with zero
+  // disambiguation. This already produced 11 wrong matches out of 196
+  // titles in a real past run (Session 47) — Bros -> Super Mario Bros.
+  // Movie, The Impossible -> Mission: Impossible, etc. — each requiring
+  // manual after-the-fact correction. No guardrail exists to catch this
+  // automatically on a future run.
+  findings.push({
+    id: 'resolve-titles-disambiguation',
+    severity: 'serious',
+    title: 'Manual title resolution has no confidence check, and has already produced wrong matches once',
+    technical: `<code>trakt/resolve_titles.py</code>'s <code>search()</code> takes <code>results[0]</code> from ` +
+      `TMDB's search endpoint unconditionally — no check that the returned title actually resembles the query, no ` +
+      `year hint, no popularity/relevance threshold. This already produced 11 wrong matches out of 196 titles in a ` +
+      `real past run (5.6% error rate): short/common titles like "Bros", "The Impossible", "Dredd", and "Chad" all ` +
+      `matched an unrelated same-named title instead of what was actually meant, each silently written into ` +
+      `<code>candidatePool.json</code> until caught by hand and corrected via manual web research. Nothing in the ` +
+      `script itself changed since then — the same failure mode is live for every future manual batch.`,
+    plain: `When Bill types in a list of movie/show titles he wants added, the script just grabs whatever TMDB's ` +
+      `search returns first and trusts it completely. For a title like "Bros" or "Dredd," that's ambiguous — TMDB's ` +
+      `top result was the wrong movie 11 times out of 196 the last time this ran, and every one of those wrong ` +
+      `matches quietly poisoned the recommendation data until someone noticed and fixed it by hand.`,
+    impact: `A ~5.6% wrong-match rate compounds every time Bill hand-adds a new batch of titles — each wrong match ` +
+      `contaminates the loved-title citation network (a bad match on a real title's identity feeds wrong signal into ` +
+      `every score that touches it). A simple title-similarity or year-match guardrail before auto-accepting would ` +
+      `catch most of these before they ever reach the data.`,
+  });
+
+  // 5. build_trakt_library.js's titleKey() falls back to a `type:trakt:ID`
+  // format when a title has no TMDB id — a completely different shape than
+  // every other part of the pipeline assumes (engine.js's titleKey(),
+  // enrich_tmdb.py's lookup, enrichedMetadata.json's own keys). Checked
+  // live: does any current title actually use this fallback keyspace.
+  {
+    const allTitles = [...(library.titles || []), ...(watchlist.titles || []), ...(candidatePool.titles || [])];
+    const trakFallback = allTitles.filter(t => t.titleKey && /^(movie|show):trakt:/.test(t.titleKey));
+    findings.push({
+      id: 'trakt-fallback-titlekey',
+      severity: trakFallback.length > 0 ? 'critical' : 'warning',
+      title: 'A title with no TMDB id gets a titleKey format the rest of the pipeline can\'t recognize',
+      technical: `<code>build_trakt_library.js</code>'s local <code>titleKey(type, ids)</code> falls back to ` +
+        `<code>\`\${type}:trakt:\${ids.trakt}\`</code> when a title has a Trakt id but no TMDB id. Every other part ` +
+        `of BMTRE assumes the single canonical shape from <code>engine.js</code>'s own exported <code>titleKey(type, tmdbId)</code> ` +
+        `— <code>\`\${type}:\${tmdbId}\`</code> — including <code>enrich_tmdb.py</code>'s lookup (which needs ` +
+        `<code>ids.tmdb</code> directly and silently skips a title with none), <code>enrichedMetadata.json</code>'s own ` +
+        `keys, and the engine's scoring indexes. A title that ever takes this fallback path would get a key no other ` +
+        `file recognizes — permanently un-enrichable, unscorable, and invisible to the dashboard, with no error, ever. ` +
+        `Live check right now: ${trakFallback.length} title${trakFallback.length === 1 ? '' : 's'} currently use${trakFallback.length === 1 ? 's' : ''} this fallback format` +
+        (trakFallback.length ? ` (${trakFallback.slice(0, 3).map(t => esc(t.title)).join(', ')}${trakFallback.length > 3 ? ', …' : ''}).` : ' — none yet, but the code path exists and would fire silently the moment one does.'),
+      plain: `Every title in this whole system is identified by its TMDB catalog number — that's the one thing the ` +
+        `entire design leans on to avoid the messy "is this the same movie?" guessing the book side of this project ` +
+        `has hit repeatedly. But there's one line of code that quietly creates a different kind of ID for a title ` +
+        `that (for whatever reason) doesn't have a TMDB number, using its Trakt number instead. If that ever happens ` +
+        `for real, that title becomes a ghost — it'll never get real data, never get scored, and nothing will tell ` +
+        `anyone it's broken.`,
+      impact: trakFallback.length
+        ? `Actively affecting ${trakFallback.length} title${trakFallback.length === 1 ? '' : 's'} right now — these are silently dead weight in the data.`
+        : `Zero titles affected today, so this is a latent risk rather than a current problem — but it directly ` +
+          `contradicts this project's own foundational design assumption ("every title carries a real TMDB id"), and ` +
+          `the moment a future Trakt export includes one title without a TMDB id, it fails completely silently. Cheap ` +
+          `to close off now (skip and warn, same as the existing "neither id" case already does) rather than debug later.`,
+    });
+  }
+
+  const order = { critical: 0, serious: 1, warning: 2, good: 3 };
+  findings.sort((a, b) => order[a.severity] - order[b.severity]);
+  return findings;
+}
+
+function renderImprovementOpportunities(findings) {
+  const el = document.getElementById('improvementList');
+  const sevMeta = {
+    critical: { cls: 'tk-status-critical', icon: '✗', label: 'High impact' },
+    serious: { cls: 'tk-status-serious', icon: '⚠', label: 'Medium impact' },
+    warning: { cls: 'tk-status-warning', icon: '⚠', label: 'Low impact' },
+    good: { cls: 'tk-status-good', icon: '✓', label: 'Resolved' },
+  };
+  el.innerHTML = findings.map(f => {
+    const sev = sevMeta[f.severity];
+    return `
+      <div class="tk-imp-card">
+        <div class="tk-imp-header">
+          <div class="tk-imp-title">${esc(f.title)}</div>
+          <span class="tk-status-pill ${sev.cls}">${sev.icon} ${sev.label}</span>
+        </div>
+        <div class="tk-imp-section-label">Technical description</div>
+        <div class="tk-imp-technical">${f.technical}</div>
+        <div class="tk-imp-section-label">In plain English</div>
+        <div class="tk-imp-plain">${f.plain}</div>
+        <div class="tk-imp-section-label">Impact</div>
+        <div class="tk-imp-impact">${f.impact}</div>
+      </div>
+    `;
+  }).join('');
+}
+
 // Predicted Score reuses the same matchScore() the recommendation panels
 // score against (0-100, "how much BMTRE thinks this fits your taste") —
 // computed here for every row, including already-watched titles, so it
@@ -902,6 +1111,10 @@ async function load() {
     (omdbFound === 0
       ? `OMDb fields (audience score, awards) are ${fmtNum(omdbEligible)} titles eligible but 0 enriched — needs the OMDB_API_KEY secret before that pipeline can run.`
       : `${fmtNum(omdbFound)}/${fmtNum(omdbEligible)} eligible titles have an OMDb record.`);
+
+  renderImprovementOpportunities(
+    computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates)
+  );
 
   renderAllTitlesTable(buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx));
 }
