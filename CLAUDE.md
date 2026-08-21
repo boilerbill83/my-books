@@ -20,6 +20,8 @@ Static GitHub Pages app that recommends books from Bill's personal to-read list 
    git push origin HEAD:main
    ```
 
+**Standing rule (Bill's explicit instruction): always push finished work to main — never stop to ask permission first.** Committing/pushing to main is the normal, expected end state of a working session here, not a risky action that needs sign-off each time.
+
 ---
 
 ## Project Structure
