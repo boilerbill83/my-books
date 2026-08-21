@@ -327,6 +327,199 @@ function renderFranchiseList(stats) {
 
 // ── All-titles filterable/sortable table ────────────────────────────────
 
+// ── Field Population & Quality ───────────────────────────────────────────
+// Mirrors the book project's FIELD_REGISTRY-driven data-quality report in
+// spirit (per-field Percent Populated + a stricter Quality check, critical
+// fields held to a higher bar), but computed live client-side from the
+// already-fetched JSON rather than a separate scripts/data_quality_report.js
+// + dated snapshot pipeline — this dashboard has always computed everything
+// (recommendations, genre stats, crowd comparison) on page load from the
+// committed data files, so a static one-off report would be a second,
+// divergent architecture for no real benefit at this dataset's size.
+// "Populated" = the field carries a real value. "Quality" is a stricter,
+// same-field check for whether that value is actually useful to BMTRE (e.g.
+// a genres array existing vs. having 2+ entries to match against) - not a
+// second independent metric.
+const FIELD_REGISTRY = [
+  { key: 'imdbId', label: 'IMDb ID', source: 'Trakt/TMDB', critical: true,
+    eligible: () => true,
+    populated: (t, meta) => !!(t.ids?.imdb || meta?.imdbId),
+    quality: (t, meta) => !!(t.ids?.imdb || meta?.imdbId),
+    note: 'Needed to join OMDb audience-score/awards data.' },
+  { key: 'genres', label: 'Genres', source: 'TMDB', critical: true,
+    eligible: (t, meta) => !!meta,
+    populated: (t, meta) => (meta?.genres?.length || 0) > 0,
+    quality: (t, meta) => (meta?.genres?.length || 0) >= 2,
+    note: 'Quality = 2+ genres, so genreBonus() has more than one tag to match.' },
+  { key: 'overview', label: 'Overview', source: 'TMDB', critical: false,
+    eligible: (t, meta) => !!meta,
+    populated: (t, meta) => !!meta?.overview,
+    quality: (t, meta) => (meta?.overview?.length || 0) >= 40,
+    note: 'Quality = 40+ characters (not a one-line placeholder).' },
+  { key: 'originalLanguage', label: 'Original Language', source: 'TMDB', critical: true,
+    eligible: (t, meta) => !!meta,
+    populated: (t, meta) => meta?.originalLanguage != null,
+    quality: (t, meta) => meta?.originalLanguage != null,
+    note: 'Drives the non-English candidate filter.' },
+  { key: 'creator', label: 'Director/Creator', source: 'TMDB', critical: true,
+    eligible: (t, meta) => !!meta,
+    populated: (t, meta) => !!getCreator(t.type, meta || {}),
+    quality: (t, meta) => !!getCreator(t.type, meta || {}),
+    note: 'Feeds the director/creator-match scoring signal.' },
+  { key: 'voteAverage', label: 'Community Rating', source: 'TMDB', critical: true,
+    eligible: (t, meta) => !!meta,
+    populated: (t, meta) => meta?.voteAverage != null,
+    quality: (t, meta) => (meta?.voteCount || 0) >= 50,
+    note: 'Quality = backed by 50+ TMDB votes, not a near-empty sample.' },
+  { key: 'voteCount', label: 'Rating Count', source: 'TMDB', critical: false,
+    eligible: (t, meta) => !!meta,
+    populated: (t, meta) => meta?.voteCount != null,
+    quality: (t, meta) => (meta?.voteCount || 0) >= 50,
+    note: 'Drives the Popularity metric.' },
+  { key: 'similarToIds', label: 'Similar Titles', source: 'TMDB', critical: true,
+    eligible: (t, meta) => !!meta,
+    populated: (t, meta) => (meta?.similarToIds?.length || 0) > 0,
+    quality: (t, meta) => (meta?.similarToIds?.length || 0) >= 5,
+    note: 'Forward-match signal - quality = 5+ candidates to cross-reference.' },
+  { key: 'recommendedIds', label: 'Recommended Titles', source: 'TMDB', critical: true,
+    eligible: (t, meta) => !!meta,
+    populated: (t, meta) => (meta?.recommendedIds?.length || 0) > 0,
+    quality: (t, meta) => (meta?.recommendedIds?.length || 0) >= 5,
+    note: 'Same role as Similar Titles, TMDB’s separate recommendations list.' },
+  { key: 'topCast', label: 'Top Cast', source: 'TMDB', critical: false,
+    eligible: (t, meta) => !!meta,
+    populated: (t, meta) => (meta?.topCast?.length || 0) > 0,
+    quality: (t, meta) => (meta?.topCast?.length || 0) >= 3,
+    note: 'Cached for a future cast-based signal - not yet scored.' },
+  { key: 'keywords', label: 'Keywords', source: 'TMDB', critical: false,
+    eligible: (t, meta) => !!meta,
+    populated: (t, meta) => (meta?.keywords?.length || 0) > 0,
+    quality: (t, meta) => (meta?.keywords?.length || 0) > 0,
+    note: 'Powers the re-edit/re-cut exclusion ("edited from film").' },
+  { key: 'omdbRecord', label: 'OMDb Record Found', source: 'OMDb', critical: false,
+    eligible: (t, meta) => !!(t.ids?.imdb || meta?.imdbId),
+    populated: (t, meta, omdb) => !!omdb,
+    quality: (t, meta, omdb) => !!omdb,
+    note: 'Eligible = titles with a known IMDb id. Needs OMDB_API_KEY to run.' },
+  { key: 'audienceScore', label: 'Audience Score (RT/Metacritic)', source: 'OMDb', critical: false,
+    eligible: (t, meta, omdb) => !!omdb,
+    populated: (t, meta, omdb) => omdb?.rottenTomatoes != null || omdb?.metacritic != null,
+    quality: (t, meta, omdb) => omdb?.rottenTomatoes != null && omdb?.metacritic != null,
+    note: 'Quality = both Rotten Tomatoes and Metacritic present, not just one.' },
+];
+
+function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta) {
+  const allTitles = new Map();
+  for (const t of [...(library.titles || []), ...(watchlist.titles || []), ...(candidatePool.titles || [])]) {
+    if (t.titleKey && !allTitles.has(t.titleKey)) allTitles.set(t.titleKey, t);
+  }
+  const titles = [...allTitles.values()];
+
+  return FIELD_REGISTRY.map(f => {
+    let eligible = 0, populated = 0, quality = 0;
+    for (const t of titles) {
+      const meta = enrichedMeta[t.titleKey];
+      const omdb = omdbMeta[t.titleKey];
+      if (!f.eligible(t, meta, omdb)) continue;
+      eligible++;
+      if (f.populated(t, meta, omdb)) populated++;
+      if (f.quality(t, meta, omdb)) quality++;
+    }
+    return {
+      ...f, eligible, populated, quality,
+      populatedPct: eligible ? (populated / eligible) * 100 : null,
+      qualityPct: eligible ? (quality / eligible) * 100 : null,
+    };
+  });
+}
+
+function fieldStatus(pct, critical) {
+  if (pct == null) return { cls: 'tk-status-warning', icon: '—', label: 'N/A' };
+  const goodMin = critical ? 90 : 80;
+  const warnMin = critical ? 70 : 50;
+  if (pct >= goodMin) return { cls: 'tk-status-good', icon: '✓', label: 'Good' };
+  if (pct >= warnMin) return { cls: 'tk-status-warning', icon: '⚠', label: 'Fair' };
+  return { cls: 'tk-status-critical', icon: '✗', label: 'Low' };
+}
+
+function renderFieldQualityTable(stats) {
+  const table = document.getElementById('fieldQualityTable');
+  const columns = [
+    { label: 'Field', get: r => r.label },
+    { label: 'Source', get: r => r.source },
+    { label: 'Eligible', get: r => r.eligible, numeric: true },
+    { label: '% Populated', get: r => r.populatedPct ?? -1, numeric: true,
+      render: (td, r) => { td.className = 'num'; td.appendChild(renderFieldBar(r.populatedPct, r.critical)); } },
+    { label: '% Quality', get: r => r.qualityPct ?? -1, numeric: true,
+      render: (td, r) => { td.className = 'num'; td.appendChild(renderFieldBar(r.qualityPct, r.critical)); } },
+    { label: 'What "Quality" Means', get: r => r.note,
+      render: (td, r) => { td.className = 'tk-genres'; td.textContent = r.note; } },
+  ];
+
+  let sortCol = 3, sortAsc = true; // default: % Populated ascending, worst first
+
+  function render() {
+    const sorted = [...stats].sort((a, b) => {
+      const va = columns[sortCol].get(a), vb = columns[sortCol].get(b);
+      const cmp = typeof va === 'number' ? va - vb : String(va).localeCompare(String(vb));
+      return sortAsc ? cmp : -cmp;
+    });
+
+    table.innerHTML = '';
+    const thead = document.createElement('thead');
+    const trh = document.createElement('tr');
+    columns.forEach((c, i) => {
+      const th = document.createElement('th');
+      th.textContent = c.label;
+      if (i === sortCol) th.className = 'sorted' + (sortAsc ? ' asc' : '');
+      th.addEventListener('click', () => {
+        if (sortCol === i) sortAsc = !sortAsc; else { sortCol = i; sortAsc = true; }
+        render();
+      });
+      trh.appendChild(th);
+    });
+    thead.appendChild(trh);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    for (const row of sorted) {
+      const tr = document.createElement('tr');
+      columns.forEach(c => {
+        const td = document.createElement('td');
+        if (c.render) c.render(td, row); else { if (c.numeric) td.className = 'num'; td.textContent = esc(c.get(row)); }
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+  }
+
+  render();
+}
+
+function renderFieldBar(pct, critical) {
+  const wrap = document.createElement('span');
+  if (pct == null) {
+    wrap.textContent = '—';
+    return wrap;
+  }
+  const status = fieldStatus(pct, critical);
+  const track = document.createElement('span');
+  track.className = 'tk-field-bar-track';
+  const fill = document.createElement('span');
+  fill.className = 'tk-field-bar-fill';
+  const color = status.cls === 'tk-status-good' ? 'var(--status-good)'
+    : status.cls === 'tk-status-warning' ? 'var(--status-warning)' : 'var(--status-critical)';
+  fill.style.cssText = `width:${Math.max(0, Math.min(100, pct))}%; background:${color};`;
+  track.appendChild(fill);
+  wrap.appendChild(track);
+  const pill = document.createElement('span');
+  pill.className = `tk-status-pill ${status.cls}`;
+  pill.textContent = `${status.icon} ${pct.toFixed(0)}%`;
+  wrap.appendChild(pill);
+  return wrap;
+}
+
 // Predicted Score reuses the same matchScore() the recommendation panels
 // score against (0-100, "how much BMTRE thinks this fits your taste") —
 // computed here for every row, including already-watched titles, so it
@@ -688,6 +881,17 @@ async function load() {
   renderCastList(computeCastStats(library, enrichedMeta));
   renderCrowdCompare(computeCrowdCompare(library, enrichedMeta));
   renderFranchiseList(computeFranchiseStats(library, enrichedMeta));
+
+  const fieldStats = computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta);
+  renderFieldQualityTable(fieldStats);
+  const totalTitles = (library.titles?.length || 0) + (watchlist.titles?.length || 0) + (candidatePool.titles?.length || 0);
+  const omdbEligible = fieldStats.find(f => f.key === 'omdbRecord')?.eligible ?? 0;
+  const omdbFound = fieldStats.find(f => f.key === 'omdbRecord')?.populated ?? 0;
+  document.getElementById('fieldQualityNote').textContent =
+    `Population and quality of every metadata field, across all ${fmtNum(totalTitles)} watched/watchlisted/candidate titles. ` +
+    (omdbFound === 0
+      ? `OMDb fields (audience score, awards) are ${fmtNum(omdbEligible)} titles eligible but 0 enriched — needs the OMDB_API_KEY secret before that pipeline can run.`
+      : `${fmtNum(omdbFound)}/${fmtNum(omdbEligible)} eligible titles have an OMDb record.`);
 
   renderAllTitlesTable(buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx));
 }
