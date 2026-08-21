@@ -125,6 +125,56 @@ function voteCountBonus(voteCount) {
   return 0;
 }
 
+// Popularity as a real 0-100 display metric (not just a small scoring
+// bonus) — TMDB's own vote_count, log-scaled since raw counts span
+// 0-30,000+ and a linear scale would make everything below a blockbuster
+// look like zero. Cap tuned against this dataset's real p99 (~21k, max
+// ~33k as of this build) rather than a guessed ceiling.
+const POPULARITY_VOTE_CAP = 30000;
+export function popularityScore(voteCount) {
+  const n = Math.max(0, voteCount || 0);
+  const score = (Math.log10(n + 1) / Math.log10(POPULARITY_VOTE_CAP + 1)) * 100;
+  return Math.max(0, Math.min(100, Math.round(score)));
+}
+
+// ── OMDb-sourced signals (audience score, awards) ───────────────────────
+// TMDB has neither Rotten Tomatoes/Metacritic scores nor awards data —
+// these come from a second, independent source (trakt/enrich_omdb.py,
+// keyed by IMDb id), cached separately in omdbMetadata.json so it's
+// never blended silently into the TMDB cache. `omdbEntry` is that
+// cache's per-title value (or undefined if not yet OMDb-enriched —
+// distinct from "enriched but has no data," which these treat as a
+// real 0, not unknown).
+//
+// Display-only for now, deliberately not wired into matchScore(): with
+// zero real OMDb data in this dataset as of this build (needs a new
+// OMDB_API_KEY only Bill can create), any scoring weight here would be
+// guessed rather than validated — the same discipline the book engine
+// always used via scripts/eval.js before trusting a new signal. Once
+// real data exists, folding these into baseSignals() is a natural
+// follow-up, calibrated against it rather than assumed now.
+
+export function audienceScore(omdbEntry) {
+  if (!omdbEntry) return null;
+  const scores = [omdbEntry.rottenTomatoes, omdbEntry.metacritic].filter(v => v != null);
+  if (!scores.length) return null;
+  return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+}
+
+export function awardsScore(omdbEntry) {
+  if (!omdbEntry) return null;
+  const a = omdbEntry.awards;
+  if (!a) return 0;
+  // Oscar/Emmy weighted heaviest (the two Bill named explicitly), a
+  // generic wins/nominations total contributes a smaller amount — a
+  // hand-picked weighting, not a derived one, same as the book engine's
+  // themeBonus tiers or recencyBonus curve.
+  const raw = (a.oscarWins || 0) * 40 + (a.oscarNominations || 0) * 15
+    + (a.emmyWins || 0) * 20 + (a.emmyNominations || 0) * 8
+    + (a.totalWins || 0) * 2 + (a.totalNominations || 0) * 1;
+  return Math.max(0, Math.min(100, Math.round(raw)));
+}
+
 // TMDB's global vote_average tends to sit around 6.0-6.5 across popular
 // titles — a provisional neutral point, TMDB-only in Phase 1 (no multi-
 // source bias-offset the way the book engine's communitySignal() has for
@@ -307,6 +357,21 @@ export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedbac
   // are Bill's own explicit picks, not the engine's discovery.
   const isReEdit = c => (enrichedMeta[c.titleKey]?.keywords || []).includes('edited from film');
 
+  // TMDB's similar/recommendations network frequently surfaces foreign-
+  // language titles that don't match Bill's real (near-entirely English)
+  // taste profile — a real source of "way off" recommendations, not a
+  // guess. Only applied to discovered/manually-resolved candidates,
+  // never to the watchlist: a title Bill explicitly queued up himself is
+  // his own real data, not the engine's discovery, and is never
+  // filtered regardless of language. A missing originalLanguage (not
+  // yet enriched, or enriched before this field existed) defaults to
+  // allowed rather than excluded — silently hiding an unenriched title
+  // would look like a bug, not a filter.
+  const isNonEnglish = c => {
+    const lang = enrichedMeta[c.titleKey]?.originalLanguage;
+    return lang != null && lang !== 'en';
+  };
+
   // A candidate can also go stale the other direction: Bill watches or
   // watchlists something on Trakt directly (outside this pipeline) that
   // happens to already be sitting in candidatePool.json from an earlier
@@ -314,7 +379,7 @@ export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedbac
   // title by titleKey, so this reuses it rather than a second lookup.
   const fromCandidates = (candidatePool.titles || [])
     .filter(c => !idx.excluded.has(c.titleKey) && !watchlistKeys.has(c.titleKey)
-      && !idx.watched.has(c.titleKey) && !isReEdit(c))
+      && !idx.watched.has(c.titleKey) && !isReEdit(c) && !isNonEnglish(c))
     .map(c => scoreOne(c, 'candidate'))
     .sort(byScore);
 

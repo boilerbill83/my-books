@@ -1,0 +1,35 @@
+name: Enrich Trakt Metadata (OMDb — audience score + awards)
+
+on:
+  schedule:
+    - cron: '0 9 * * *'   # daily 9 AM UTC (after the TMDB enrichment job's 8 AM)
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: 'How many titles to enrich this run (default 150 on schedule)'
+        type: number
+        default: 150
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch Rotten Tomatoes/Metacritic + awards from OMDb
+        env:
+          OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
+        run: python3 trakt/enrich_omdb.py ${{ inputs.batch_size || 150 }}
+        timeout-minutes: 30
+      - name: Commit if changed
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add trakt/data/
+          git diff --staged --quiet && echo "No new metadata." || \
+            (git commit -m "Enrich Trakt metadata via OMDb [automated]" && git push)

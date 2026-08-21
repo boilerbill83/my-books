@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, audienceScore, awardsScore } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -332,15 +332,21 @@ function renderFranchiseList(stats) {
 // computed here for every row, including already-watched titles, so it
 // doubles as an honesty check against My Rating, the same role You vs.
 // The Crowd plays for TMDB's rating.
-function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, idx) {
+function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx) {
   const rows = [];
   const addRow = (t, status, myRating) => {
     const h = hydrateTitle(t, enrichedMeta);
     const meta = enrichedMeta[h.titleKey];
+    const omdb = omdbMeta[h.titleKey];
     rows.push({
       title: h.title || '(untitled — not yet enriched)', year: h.year, type: h.type, status,
       myRating: myRating ?? null, tmdbRating: meta?.voteAverage ?? null,
       predictedScore: Math.round(matchScore(h, idx, enrichedMeta)),
+      popularity: popularityScore(meta?.voteCount),
+      voteCount: meta?.voteCount ?? null,
+      audienceScore: audienceScore(omdb),
+      awardsScore: awardsScore(omdb),
+      awardsRaw: omdb?.awards?.raw || '',
       genres: meta?.genres?.join(', ') || '', creator: (h.type === 'movie' ? meta?.director : meta?.createdBy?.[0]) || '',
     });
   };
@@ -389,6 +395,11 @@ function renderAllTitlesTable(allRows) {
     { label: 'My Rating', get: r => r.myRating ?? '', numeric: true },
     { label: 'Predicted Score', get: r => r.predictedScore ?? '', numeric: true },
     { label: 'TMDB Rating', get: r => r.tmdbRating != null ? Math.round(r.tmdbRating * 10) / 10 : '', numeric: true },
+    { label: 'Popularity', get: r => r.popularity ?? '', numeric: true },
+    { label: 'Ratings', get: r => r.voteCount ?? '', numeric: true },
+    { label: 'Audience Score', get: r => r.audienceScore ?? '', numeric: true },
+    { label: 'Awards', get: r => r.awardsScore ?? '', numeric: true,
+      render: (td, r) => { td.className = 'num'; td.textContent = r.awardsScore ?? ''; if (r.awardsRaw) td.title = r.awardsRaw; } },
     { label: 'Genres', get: r => r.genres, render: (td, r) => { td.className = 'tk-genres'; td.textContent = r.genres || '—'; } },
     { label: 'Director/Creator', get: r => r.creator || '—' },
   ];
@@ -475,21 +486,28 @@ function renderAllTitlesTable(allRows) {
 // One line of real metadata under the title: genres, director/creator,
 // TMDB community rating — whatever's actually present, since candidate
 // stubs may still be mid-enrichment.
-function metaLine(candidate, enrichedMeta) {
+const fmtCompact = n => n >= 1000 ? `${(n / 1000).toFixed(n >= 10000 ? 0 : 1)}k` : String(n);
+
+function metaLine(candidate, enrichedMeta, omdbMeta) {
   const meta = enrichedMeta[candidate.titleKey];
   if (!meta) return 'Not enriched yet.';
   const parts = [];
   if (meta.genres?.length) parts.push(meta.genres.slice(0, 2).join(', '));
   const creator = getCreator(candidate.type, meta);
   if (creator) parts.push(candidate.type === 'movie' ? `dir. ${creator}` : `by ${creator}`);
-  if (meta.voteAverage != null) parts.push(`${meta.voteAverage.toFixed(1)}/10 on TMDB`);
+  if (meta.voteAverage != null) {
+    const ratings = meta.voteCount != null ? ` (${fmtCompact(meta.voteCount)} ratings)` : '';
+    parts.push(`${meta.voteAverage.toFixed(1)}/10 on TMDB${ratings}`);
+  }
+  const audience = audienceScore(omdbMeta?.[candidate.titleKey]);
+  if (audience != null) parts.push(`${audience}/100 audience`);
   return parts.join(' · ') || 'No genre/creator data yet.';
 }
 
 // 4 top-ranked watchlist titles + 4 top-ranked candidate-pool titles for
 // one type (movie or show) — each card shows real metadata, the engine's
 // predicted score, and its plain-English reason, per Bill's request.
-function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta) {
+function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta, omdbMeta) {
   const el = document.getElementById(sectionId);
   const picks = [...watchlistItems.slice(0, 4), ...candidateItems.slice(0, 4)]
     .sort((a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore));
@@ -505,7 +523,7 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta)
           ${esc(c.title)}${c.year ? ` <span class="tk-year">(${esc(c.year)})</span>` : ''}
           <span class="tk-rec-badge">${c.origin === 'watchlist' ? 'Watchlist' : 'New pick'}</span>
         </div>
-        <div class="tk-rec-meta">${esc(metaLine(c, enrichedMeta))}</div>
+        <div class="tk-rec-meta">${esc(metaLine(c, enrichedMeta, omdbMeta))}</div>
         <div class="tk-rec-reason">${esc(c.reason)}</div>
       </div>
       <div class="tk-rec-score">${Math.round(c.bmtreScore)}</div>
@@ -611,12 +629,13 @@ function renderQualityDial(sectionId, { score, components }) {
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
 
-  const [d, library, watchlist, candidatePool, enrichedMeta, feedback] = await Promise.all([
+  const [d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
     get('./data/candidatePool.json').catch(() => ({ titles: [] })),
     get('./data/enrichedMetadata.json').catch(() => ({})),
+    get('./data/omdbMetadata.json').catch(() => ({})),
     get('./data/feedbackData.json').catch(() => ({ interactions: [] })),
   ]);
 
@@ -624,8 +643,8 @@ async function load() {
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
   const byType = (list, type) => list.filter(c => c.type === type && enrichedOnly(c));
 
-  renderRecPanel('movieRecList', byType(fromWatchlist, 'movie'), byType(fromCandidates, 'movie'), enrichedMeta);
-  renderRecPanel('showRecList', byType(fromWatchlist, 'show'), byType(fromCandidates, 'show'), enrichedMeta);
+  renderRecPanel('movieRecList', byType(fromWatchlist, 'movie'), byType(fromCandidates, 'movie'), enrichedMeta, omdbMeta);
+  renderRecPanel('showRecList', byType(fromWatchlist, 'show'), byType(fromCandidates, 'show'), enrichedMeta, omdbMeta);
 
   for (const [type, chartId, noteId, label] of [
     ['movie', 'scoreDistMovieChart', 'scoreDistMovieNote', 'unwatched movies'],
@@ -670,7 +689,7 @@ async function load() {
   renderCrowdCompare(computeCrowdCompare(library, enrichedMeta));
   renderFranchiseList(computeFranchiseStats(library, enrichedMeta));
 
-  renderAllTitlesTable(buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, idx));
+  renderAllTitlesTable(buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx));
 }
 
 load().catch(err => {

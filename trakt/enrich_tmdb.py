@@ -64,7 +64,7 @@ def tmdb_detail(kind, tmdb_id):
     """kind: 'movie' or 'show' (mapped to TMDB's 'tv'). One call, full detail."""
     tmdb_kind = 'movie' if kind == 'movie' else 'tv'
     url = (f'{API_BASE}/{tmdb_kind}/{tmdb_id}'
-           f'?api_key={API_KEY}&append_to_response=credits,keywords,similar,recommendations')
+           f'?api_key={API_KEY}&append_to_response=credits,keywords,similar,recommendations,external_ids')
     return get_json(url)
 
 
@@ -74,6 +74,11 @@ def extract_entry(kind, data):
         'overview': (data.get('overview') or '')[:2000],
         'keywords': [],
         'originalLanguage': data.get('original_language'),
+        # Movies carry imdb_id at the top level; shows only get it via the
+        # external_ids append (added alongside credits/keywords/similar/
+        # recommendations above) — needed to join against OMDb, which is
+        # keyed by IMDb id, not TMDB id.
+        'imdbId': data.get('imdb_id') or (data.get('external_ids') or {}).get('imdb_id'),
         'voteAverage': data.get('vote_average'),
         'voteCount': data.get('vote_count'),
         'popularity': data.get('popularity'),
