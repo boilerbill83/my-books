@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-08-21T13:55:46.226Z",
-    "count": 28
+    "generatedAt": "2026-08-21T15:53:56.530Z",
+    "count": 43
   },
   "titles": [
     {
@@ -327,6 +327,24 @@
       "watchlistedAt": "2026-08-06T01:26:21.000Z"
     },
     {
+      "type": "movie",
+      "titleKey": "movie:875828",
+      "ids": {
+        "imdb": "tt15574124",
+        "plex": {
+          "guid": "6163f6a27fa9b99d6f3b1f77",
+          "slug": "peaky-blinders-the-immortal-man"
+        },
+        "slug": "peaky-blinders-the-immortal-man-2026",
+        "tmdb": 875828,
+        "trakt": 701249
+      },
+      "title": "Peaky Blinders: The Immortal Man",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-21T15:27:10.000Z"
+    },
+    {
       "type": "show",
       "titleKey": "show:95350",
       "ids": {
@@ -346,6 +364,24 @@
       "watchlistedAt": "2026-08-11T00:07:34.000Z"
     },
     {
+      "type": "movie",
+      "titleKey": "movie:1265609",
+      "ids": {
+        "imdb": "tt15940132",
+        "plex": {
+          "guid": "618e27b6646c288531cde0e1",
+          "slug": "war-machine-2026"
+        },
+        "slug": "war-machine-2026",
+        "tmdb": 1265609,
+        "trakt": 1026879
+      },
+      "title": "War Machine",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-21T15:27:26.000Z"
+    },
+    {
       "type": "show",
       "titleKey": "show:247522",
       "ids": {
@@ -363,6 +399,24 @@
       "year": 2024,
       "watchlisted": true,
       "watchlistedAt": "2026-08-11T00:07:54.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1265063",
+      "ids": {
+        "imdb": "tt32159989",
+        "plex": {
+          "guid": "662608913b7eee1e807dd77f",
+          "slug": "after-the-hunt-2025"
+        },
+        "slug": "after-the-hunt-2025",
+        "tmdb": 1265063,
+        "trakt": 1026370
+      },
+      "title": "After the Hunt",
+      "year": 2025,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-21T15:27:42.000Z"
     },
     {
       "type": "show",
@@ -422,6 +476,24 @@
       "watchlistedAt": "2026-08-13T13:32:56.000Z"
     },
     {
+      "type": "movie",
+      "titleKey": "movie:1007734",
+      "ids": {
+        "imdb": "tt28996126",
+        "plex": {
+          "guid": "64fdc3a5732dc8989ba96acb",
+          "slug": "nobody-2-2025"
+        },
+        "slug": "nobody-2-2025",
+        "tmdb": 1007734,
+        "trakt": 810123
+      },
+      "title": "Nobody 2",
+      "year": 2025,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-21T15:27:51.000Z"
+    },
+    {
       "type": "show",
       "titleKey": "show:260458",
       "ids": {
@@ -439,6 +511,24 @@
       "year": 2025,
       "watchlisted": true,
       "watchlistedAt": "2026-08-14T23:35:00.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1236470",
+      "ids": {
+        "imdb": "tt21103218",
+        "plex": {
+          "guid": "62ce983e503cd8974caf52ad",
+          "slug": "the-lost-bus-1"
+        },
+        "slug": "the-lost-bus-2025",
+        "tmdb": 1236470,
+        "trakt": 1000306
+      },
+      "title": "The Lost Bus",
+      "year": 2025,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-21T15:28:08.000Z"
     },
     {
       "type": "show",
@@ -460,6 +550,24 @@
       "watchlistedAt": "2026-08-15T23:33:14.000Z"
     },
     {
+      "type": "movie",
+      "titleKey": "movie:760329",
+      "ids": {
+        "imdb": "tt11214558",
+        "plex": {
+          "guid": "5f40962102101b0040056d82",
+          "slug": "the-smashing-machine-2025"
+        },
+        "slug": "the-smashing-machine-2025",
+        "tmdb": 760329,
+        "trakt": 599275
+      },
+      "title": "The Smashing Machine",
+      "year": 2025,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-21T15:28:20.000Z"
+    },
+    {
       "type": "show",
       "titleKey": "show:253941",
       "ids": {
@@ -477,6 +585,24 @@
       "year": 2025,
       "watchlisted": true,
       "watchlistedAt": "2026-08-16T02:26:10.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:986097",
+      "ids": {
+        "imdb": "tt20990442",
+        "plex": {
+          "guid": "62aeee7bceaa7a466851059d",
+          "slug": "him-2025-1"
+        },
+        "slug": "him-2025",
+        "tmdb": 986097,
+        "trakt": 792648
+      },
+      "title": "HIM",
+      "year": 2025,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-21T15:28:30.000Z"
     },
     {
       "type": "show",
@@ -498,6 +624,99 @@
       "watchlistedAt": "2026-07-28T19:26:36.000Z"
     },
     {
+      "type": "movie",
+      "titleKey": "movie:1244999",
+      "ids": {
+        "imdb": "tt31313835",
+        "plex": {
+          "guid": "65d1a8a9263d814bae3daf87",
+          "slug": "stans-2025"
+        },
+        "slug": "stans-2025",
+        "tmdb": 1244999,
+        "trakt": 1008206
+      },
+      "title": "Stans",
+      "year": 2025,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-21T15:28:53.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:541671",
+      "ids": {
+        "imdb": "tt7181546",
+        "plex": {
+          "guid": "5d77707481ba41001faf0c7f",
+          "slug": "ballerina-2025"
+        },
+        "slug": "ballerina-2025",
+        "tmdb": 541671,
+        "trakt": 392717
+      },
+      "title": "Ballerina",
+      "year": 2025,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-21T15:29:02.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:61244",
+      "ids": {
+        "imdb": "tt3428912",
+        "plex": {
+          "guid": "5d9c0845705e7a001e6d7801",
+          "slug": "happy-valley"
+        },
+        "slug": "happy-valley",
+        "tmdb": 61244,
+        "tvdb": 280537,
+        "trakt": 60750
+      },
+      "title": "Happy Valley",
+      "year": 2014,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-21T15:29:38.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:43982",
+      "ids": {
+        "imdb": "tt2303687",
+        "plex": {
+          "guid": "5d9c0841cb3ffa001f1b36a3",
+          "slug": "line-of-duty"
+        },
+        "slug": "line-of-duty",
+        "tmdb": 43982,
+        "tvdb": 260092,
+        "trakt": 43740
+      },
+      "title": "Line of Duty",
+      "year": 2012,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-21T15:29:46.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:245256",
+      "ids": {
+        "imdb": "tt31122777",
+        "plex": {
+          "guid": "65bd41c1414230404b768a2e",
+          "slug": "say-nothing"
+        },
+        "slug": "say-nothing",
+        "tmdb": 245256,
+        "tvdb": 445610,
+        "trakt": 222933
+      },
+      "title": "Say Nothing",
+      "year": 2024,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-21T15:29:55.000Z"
+    },
+    {
       "type": "show",
       "titleKey": "show:139099",
       "ids": {
@@ -515,6 +734,63 @@
       "year": 2023,
       "watchlisted": true,
       "watchlistedAt": "2026-07-28T19:26:36.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:80307",
+      "ids": {
+        "imdb": "tt7493974",
+        "plex": {
+          "guid": "5d9c08f52df347001e3bab35",
+          "slug": "bodyguard-2018"
+        },
+        "slug": "bodyguard-2018",
+        "tmdb": 80307,
+        "tvdb": 349310,
+        "trakt": 133330
+      },
+      "title": "Bodyguard",
+      "year": 2018,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-21T15:30:03.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:73375",
+      "ids": {
+        "imdb": "tt5057054",
+        "plex": {
+          "guid": "5d9c08dcffd9ef001e99bb8c",
+          "slug": "tom-clancys-jack-ryan"
+        },
+        "slug": "tom-clancy-s-jack-ryan",
+        "tmdb": 73375,
+        "tvdb": 336261,
+        "trakt": 124381
+      },
+      "title": "Tom Clancy's Jack Ryan",
+      "year": 2018,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-21T15:30:46.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:63646",
+      "ids": {
+        "imdb": "tt4643084",
+        "plex": {
+          "guid": "5d9c0806e98e47001eb05c02",
+          "slug": "counterpart"
+        },
+        "slug": "counterpart",
+        "tmdb": 63646,
+        "tvdb": 337302,
+        "trakt": 102692
+      },
+      "title": "Counterpart",
+      "year": 2017,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-21T15:30:55.000Z"
     },
     {
       "type": "show",
