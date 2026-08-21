@@ -29,8 +29,20 @@ const library = readJSON(path.join(DATA_DIR, 'library.json'), { titles: [] });
 const watchlist = readJSON(path.join(DATA_DIR, 'watchlist.json'), { titles: [] });
 const enrichedMeta = readJSON(path.join(DATA_DIR, 'enrichedMetadata.json'), {});
 const existingPool = readJSON(path.join(DATA_DIR, 'candidatePool.json'), { titles: [] });
+const HISTORY_PATH = path.join(DATA_DIR, 'discoveredHistory.json');
+const history = readJSON(HISTORY_PATH, { titleKeys: [] });
 
-const known = new Set(); // titleKey of anything already watched, watchlisted, or already a candidate
+// known = anything already watched, watchlisted, currently a candidate, OR
+// discovered by a past run and since evicted by prune_candidate_pool.js.
+// That last part matters once this runs on a recurring schedule alongside
+// pruning: without it, a title evicted last week for scoring low would
+// look brand new again next week (prune_candidate_pool.js deletes it from
+// candidatePool.json, the only place the old "known" check looked), get
+// re-added, then likely get re-evicted again — a permanent weekly loop of
+// the exact same losing candidates. discoveredHistory.json is append-only
+// and never shrinks, so once a title's been evaluated once, it's not
+// re-evaluated just because it fell out of the active pool.
+const known = new Set(history.titleKeys);
 for (const t of [...library.titles, ...watchlist.titles, ...existingPool.titles]) {
   if (t.titleKey) known.add(t.titleKey);
 }
@@ -71,6 +83,10 @@ writeJSON(path.join(DATA_DIR, 'candidatePool.json'), {
   meta: { generatedAt: new Date().toISOString(), count: merged.length },
   titles: merged,
 });
+
+const historyKeys = new Set(history.titleKeys);
+for (const c of ranked) historyKeys.add(c.titleKey);
+writeJSON(HISTORY_PATH, { titleKeys: [...historyKeys] });
 
 console.log(`${lovedSources.length} loved+enriched sources scanned.`);
 console.log(`${citationCount.size} unique new candidates found, added top ${ranked.length} (by citation count).`);

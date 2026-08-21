@@ -1,0 +1,78 @@
+name: Discover Trakt Candidates (weekly refresh)
+
+on:
+  schedule:
+    - cron: '0 10 * * 0'   # weekly, Sundays 10 AM UTC (after both daily 8/9 AM enrichment jobs)
+  workflow_dispatch:
+    inputs:
+      max_new_per_type:
+        description: 'Max new candidates to discover per type (movie/show) this run'
+        type: number
+        default: 30
+      enrich_batch_size:
+        description: 'How many titles enrich_tmdb.py should process this run'
+        type: number
+        default: 100
+      cap_per_type:
+        description: 'Candidate pool cap per type (movies/shows), lowest scorers evicted beyond this'
+        type: number
+        default: 100
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Discover new candidates from loved titles' TMDB similar/recommendations network
+        run: node trakt/scripts/discover_candidates.js ${{ inputs.max_new_per_type || 30 }}
+
+      - name: Enrich newly-discovered candidates via TMDB
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: python3 trakt/enrich_tmdb.py ${{ inputs.enrich_batch_size || 100 }}
+        timeout-minutes: 20
+
+      - name: Prune pool to cap size, evicting lowest scorers
+        # Runs even if the TMDB enrich step above failed (e.g. a bad/expired
+        # key) - pruning the already-enriched backlog and sweeping stale
+        # watched/watchlisted entries is a useful, independent maintenance
+        # step regardless of whether this run's new discoveries got scored.
+        # prune_candidate_pool.js already never evicts an unenriched
+        # candidate, so a failed enrich step just means this week's new
+        # stubs sit unscored (kept) until a future run enriches them.
+        if: always()
+        run: node trakt/scripts/prune_candidate_pool.js ${{ inputs.cap_per_type || 100 }}
+
+      - name: Commit if changed
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add trakt/data/
+          if git diff --staged --quiet; then
+            echo "No new candidates this run."
+            exit 0
+          fi
+          git commit -m "Weekly candidate discovery + prune [automated]"
+          # Same race the other Trakt jobs hit: a long run can lose a push
+          # to another scheduled workflow landing on main first. Rebase
+          # and retry rather than losing a real run's output.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest main."
+            git fetch origin main
+            git rebase origin/main
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1
