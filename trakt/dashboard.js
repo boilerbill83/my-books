@@ -484,7 +484,9 @@ const FIELD_REGISTRY = [
     eligible: (t, meta, omdb) => !!omdb,
     populated: (t, meta, omdb) => omdb?.awards != null,
     quality: (t, meta, omdb) => awardsScore(omdb) > 0,
-    note: 'Quality = real recognition found (0 is a legitimate answer for most titles, not a data gap).' },
+    note: 'Quality = any real award/nomination found via OMDb\'s Awards text. Bill\'s library skews toward ' +
+      'well-regarded titles, so most (~80%) genuinely do have some recognition — 0 is still a legitimate ' +
+      'answer for a real minority (genuinely un-recognized titles), not evidence of a parsing gap.' },
 ];
 
 function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta) {
@@ -869,7 +871,9 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       .sort((a, b) => b.bmtreScore - a.bmtreScore).slice(0, 20);
     const genreCounts = {};
     for (const s of shows) for (const g of (enrichedMeta[s.titleKey]?.genres || [])) genreCounts[g] = (genreCounts[g] || 0) + 1;
-    const topGenre = Object.entries(genreCounts).sort((a, b) => b[1] - a[1])[0];
+    const genreRanked = Object.entries(genreCounts).sort((a, b) => b[1] - a[1]);
+    const topGenre = genreRanked[0];
+    const secondGenre = genreRanked[1];
     findings.push({
       id: 'no-diversity-reranking',
       severity: 'serious',
@@ -879,8 +883,8 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `with no diversity or anti-clustering pass — the book engine's <code>bbreEngine.js</code> runs an author-` +
         `diversity MMR (max marginal relevance) re-ranking specifically to stop one prolific creator from ` +
         `dominating the top of the list; BMTRE has no equivalent for genre, creator, or franchise clustering. Live ` +
-        `check on today's real top-20 shows by score: ${topGenre ? `${topGenre[1]} of 20 (${(topGenre[1]/20*100).toFixed(0)}%) are tagged "${topGenre[0]}"` : 'n/a'}, ` +
-        `and all 20 of 20 are tagged "Drama."`,
+        `check on today's real top-20 shows by score: ${topGenre ? `${topGenre[1]} of 20 (${(topGenre[1]/20*100).toFixed(0)}%) are tagged "${topGenre[0]}"` : 'n/a'}` +
+        (secondGenre ? `, ${secondGenre[1]} of 20 (${(secondGenre[1]/20*100).toFixed(0)}%) also tagged "${secondGenre[0]}."` : '.'),
       plain: `Right now, if you looked at your top 20 recommended TV shows, every single one would be a Drama, and ` +
         `most would also be Crime dramas specifically. That's not necessarily wrong — it probably does reflect real ` +
         `taste — but it means the list isn't actually showing you the breadth of what you might like; it's showing ` +
@@ -919,12 +923,13 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   // franchises, but the field scores nothing.
   {
     const lovedWithCollection = (library.titles || []).filter(t => t.myRating >= 9 && enrichedMeta[t.titleKey]?.belongsToCollection);
+    const withCollection = allEnriched.filter(m => m.belongsToCollection).length;
     findings.push({
       id: 'franchise-signal-unused',
       severity: 'serious',
       ratings: { ease: 6, dataQuality: 2, recEngine: 7, ui: 3 },
       title: 'Franchise/sequel signal is cached, real, and completely unused',
-      technical: `<code>belongsToCollection</code> is cached on 111 of ${allEnriched.length} enriched titles but ` +
+      technical: `<code>belongsToCollection</code> is cached on ${withCollection} of ${allEnriched.length} enriched titles but ` +
         `never contributes to <code>matchScore()</code> — CLAUDE.md flags it as "cached but not yet a scoring ` +
         `signal — franchise signal, deferred." This isn't a hypothetical: ${lovedWithCollection.length} of Bill's ` +
         `real loved (9-10 rated) titles belong to a collection he's demonstrably following (Creed I+II, Deadpool ` +
@@ -1010,7 +1015,8 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       technical: `<code>keywords</code> is ${((withKeywords / allEnriched.length) * 100).toFixed(1)}% populated ` +
         `(${withKeywords} of ${allEnriched.length}) but the only place it's read anywhere in the codebase is ` +
         `<code>rankAll()</code>'s <code>isReEdit()</code> check (looking for the literal string "edited from ` +
-        `film"). TMDB's genre taxonomy is only ~19 fixed values — genuinely blunt compared to the book engine's ` +
+        `film"). TMDB's genre taxonomy is only ~19-27 fixed values (movie/show vocabularies combined, see the ` +
+        `genre/subgenre finding below) — genuinely blunt compared to the book engine's ` +
         `free-form theme vocabulary. Keywords are the closest BMTRE equivalent to that richer thematic signal (or ` +
         `to <code>descSimilarity.js</code>'s TF-IDF description matching), and it's sitting fully populated and ` +
         `completely unused for anything but that one filter.`,
@@ -1071,9 +1077,9 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `pattern — genuine abandonment looks rare in Bill's real data so far, not a large hidden signal.`,
       plain: `If Bill starts a show and stops halfway through, that's a real signal he's not that into it — but ` +
         `right now the app can't tell "stopped watching because he doesn't like it" apart from "watching it slowly, ` +
-        `still enjoying it." Checking the real data, this barely happens yet (only 1 clear case right now), so it's ` +
+        `still enjoying it." Checking the real data, this barely happens yet (only ${possiblyDropped.length === 1 ? '1 clear case' : `${possiblyDropped.length} clear cases`} right now), so it's ` +
         `not a big missed opportunity today, but it's a gap that will matter more as more shows get started.`,
-      impact: `Low current value given how rare the pattern is in today's data (${possiblyDropped.length} case), ` +
+      impact: `Low current value given how rare the pattern is in today's data (${possiblyDropped.length} ${possiblyDropped.length === 1 ? 'case' : 'cases'}), ` +
         `but worth keeping on the list rather than building prematurely — exactly the same caution CLAUDE.md already ` +
         `applies to the book side's DNF-penalty history (needs real feedback data before it's safe to score, not ` +
         `just plausible).`,
@@ -1591,7 +1597,18 @@ function computeBMTREAccuracy(evalMetrics) {
   const p = k => m.precisionAtK[k] ?? 0;
   const maeCeiling = Math.max(1, m.meanBaselineMae * 2);
   const maeAccuracy = Math.max(0, 100 * (1 - m.mae / maeCeiling));
-  const bottomCatchRate = 100 * m.bottomCatch / 50;
+  // Graded against the real achievable ceiling, not a flat 50 — Bill's
+  // ratings skew high enough that genuine dislikes (myRating<=5) are a
+  // small minority of the dataset (e.g. ~30 of 533 titles today), so a
+  // perfect model still can't catch 50 real dislikes in a 50-slot bottom
+  // slice when only ~30 exist dataset-wide. Dividing by 50 regardless
+  // capped this component's max-possible score at 60/100 even for a
+  // flawless model — the same "grade against a measured ceiling, not an
+  // assumed one" fix the MAE component above already gets from
+  // meanBaselineMae. bottomPossible is 0 only if there are zero real
+  // dislikes at all, in which case there's nothing to catch — treat that
+  // as a perfect (not undefined) score.
+  const bottomCatchRate = m.bottomPossible > 0 ? 100 * m.bottomCatch / m.bottomPossible : 100;
 
   const components = [
     { key: 'p10', label: 'Precision@10', weight: 0.15, subscore: p(10) },
@@ -1599,7 +1616,7 @@ function computeBMTREAccuracy(evalMetrics) {
     { key: 'p50', label: 'Precision@50', weight: 0.20, subscore: p(50) },
     { key: 'p100', label: 'Precision@100', weight: 0.15, subscore: p(100) },
     { key: 'mae', label: 'Rating accuracy (vs. baseline)', weight: 0.15, subscore: maeAccuracy },
-    { key: 'bottom', label: 'Bottom-50 catch rate', weight: 0.15, subscore: bottomCatchRate },
+    { key: 'bottom', label: 'Bottom-dislike catch rate (vs. achievable ceiling)', weight: 0.15, subscore: bottomCatchRate },
   ];
   const score = Math.round(components.reduce((s, c) => s + c.weight * c.subscore, 0));
   return { score, components };
@@ -1609,19 +1626,21 @@ function computeBMTREAccuracy(evalMetrics) {
 // this is 97 given all of the improvement ideas we have; I'd put it
 // closer to 50 or 60." The pre-recalibration formula only measured raw
 // data coverage (does the engine have enough titles enriched) — it had
-// no way to reflect that 18 of 22 real, verified Improvement
-// Opportunities findings are still open (6 medium/serious, 12 low/
-// warning impact). Folded those in as a genuine 50%-weight component,
-// the same "explicit recalibration in response to specific pushback, not
-// organic score drift" move the book side's own Data Quality Score made
-// in Session 14b (also after Bill said its first version read too high).
-// Penalty multipliers (serious=8pts, warning=3pts) and the 50% weight
-// were tuned by hand to land in Bill's stated 50-60 range against
-// today's real finding count (18 open) — an intentional recalibration
-// of the bar, not a re-derivation from first principles; if the open-
-// finding count changes a lot in a future session, these multipliers may
-// need a fresh look the same way the book side's have been revisited
-// more than once.
+// no way to reflect how many real, verified Improvement Opportunities
+// findings are still open. Folded those in as a genuine 50%-weight
+// component (via the live `findings` param, so the count and the score
+// both move automatically as findings get fixed or new ones are added —
+// see `open`/`seriousCount`/`warningCount` below, not a hardcoded
+// count), the same "explicit recalibration in response to specific
+// pushback, not organic score drift" move the book side's own Data
+// Quality Score made in Session 14b (also after Bill said its first
+// version read too high). Penalty multipliers (serious=8pts, warning=
+// 3pts) and the 50% weight were tuned by hand against the finding count
+// at recalibration time (18 of 22 open) to land in Bill's stated 50-60
+// range — an intentional recalibration of the bar, not a re-derivation
+// from first principles; if the open-finding count changes a lot in a
+// future session, these multipliers may need a fresh look the same way
+// the book side's have been revisited more than once.
 function computeMetadataQuality(library, watchlist, enrichedMeta, selected, findings) {
   const watchlistTitles = watchlist.titles || [];
   const watchlistEnriched = watchlistTitles.filter(t => enrichedMeta[t.titleKey]);
