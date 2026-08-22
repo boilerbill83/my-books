@@ -82,6 +82,8 @@
         border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px;
       }
       .tk-rec-rank { font-family: var(--font-serif); font-weight: 700; font-size: 1.2rem; color: var(--border); width: 26px; flex-shrink: 0; text-align: center; }
+      .tk-rec-poster { width: 46px; height: 69px; border-radius: 5px; object-fit: cover; flex-shrink: 0; background: var(--bg-card); border: 1px solid var(--border); }
+      .tk-rec-poster-empty { border: 1px dashed var(--border); }
       .tk-rec-body { flex: 1; min-width: 0; }
       .tk-rec-title { font-weight: 600; font-size: 0.95rem; }
       .tk-rec-title .tk-year { color: var(--text-muted); font-weight: 400; }
@@ -125,6 +127,8 @@
         padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem;
       }
       .tk-metric-row:last-child { border-bottom: none; }
+      .tk-metric-poster { width: 28px; height: 42px; border-radius: 3px; object-fit: cover; flex-shrink: 0; background: var(--bg-subtle); border: 1px solid var(--border); }
+      .tk-metric-poster-empty { border: 1px dashed var(--border); }
       .tk-metric-name { flex: 1; min-width: 0; }
       .tk-metric-sub { color: var(--text-muted); font-size: 0.76rem; }
       .tk-metric-score {
@@ -156,6 +160,7 @@
       .tk-table-wrap { overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
       table.tk-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
       table.tk-table th, table.tk-table td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+      .tk-table-poster { width: 30px; height: 45px; border-radius: 3px; object-fit: cover; display: block; background: var(--bg-subtle); border: 1px solid var(--border); }
       table.tk-table th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); cursor: pointer; user-select: none; white-space: nowrap; }
       table.tk-table th:hover { color: var(--accent); }
       table.tk-table th.sorted::after { content: ' ▾'; }
@@ -188,6 +193,10 @@
       .tk-imp-rating-fill { height: 100%; border-radius: 3px; }
       .tk-imp-rating-num { font-size: 0.7rem; font-weight: 600; color: var(--text); margin-top: 2px; }
       @media (max-width: 640px) { .tk-imp-ratings { grid-template-columns: repeat(2, 1fr); } }
+      @media (max-width: 480px) {
+        .tk-metric-row { flex-wrap: wrap; }
+        .tk-metric-score { margin-left: 38px; }
+      }
     </style>
   </head>
   <body>

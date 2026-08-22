@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings, posterUrl } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -168,7 +168,7 @@ function computePredictionMisses(library, enrichedMeta, omdbMeta, idx) {
       const h = hydrateTitle(t, enrichedMeta);
       const predicted = matchScore(h, idx, enrichedMeta, omdbMeta);
       const actual = t.myRating * 10;
-      return { title: h.title, year: h.year, type: h.type, myRating: t.myRating, predicted, actual, diff: predicted - actual };
+      return { titleKey: t.titleKey, title: h.title, year: h.year, type: h.type, myRating: t.myRating, predicted, actual, diff: predicted - actual };
     });
   const overPredicted = [...rows].sort((a, b) => b.diff - a.diff).slice(0, 5);
   const underPredicted = [...rows].sort((a, b) => a.diff - b.diff).slice(0, 5);
@@ -188,7 +188,7 @@ function computeBestMatches(library, enrichedMeta, omdbMeta, idx) {
       const h = hydrateTitle(t, enrichedMeta);
       const predicted = matchScore(h, idx, enrichedMeta, omdbMeta);
       const actual = t.myRating * 10;
-      return { title: h.title, year: h.year, type: h.type, myRating: t.myRating, predicted, actual };
+      return { titleKey: t.titleKey, title: h.title, year: h.year, type: h.type, myRating: t.myRating, predicted, actual };
     });
   const matches = rows.filter(r => r.predicted >= 70 && r.actual >= 80).sort((a, b) => b.predicted - a.predicted);
   return { total: rows.length, matches };
@@ -286,16 +286,20 @@ function renderGenreChart(stats) {
     { labelKey: 'genre', valueKey: 'avg', maxScale: 10, fmtValue: v => v.toFixed(1), tooltipSuffix: '/10 avg' });
 }
 
-function renderPredictionMisses(stats) {
+function renderPredictionMisses(stats, enrichedMeta) {
   const el = document.getElementById('predictionMissesList');
   if (!stats.n) { el.innerHTML = '<div class="tk-empty">Not enough enriched, rated titles yet.</div>'; return; }
-  const row = (r, dir) => `
+  const row = (r, dir) => {
+    const poster = posterUrl(r.titleKey, enrichedMeta);
+    return `
     <div class="tk-metric-row">
+      ${poster ? `<img class="tk-metric-poster" src="${poster}" alt="" loading="lazy" width="28" height="42">` : '<div class="tk-metric-poster tk-metric-poster-empty"></div>'}
       <span class="tk-metric-name">${esc(r.title)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
       <span class="tk-metric-score" style="color:${dir === 'over' ? 'var(--status-critical)' : 'var(--status-serious)'};">
         ${dir === 'over' ? 'predicted' : 'rated'} ${dir === 'over' ? Math.round(r.predicted) : r.myRating + '/10'} vs. ${dir === 'over' ? 'rated ' + r.myRating + '/10' : 'predicted ' + Math.round(r.predicted)}
       </span>
     </div>`;
+  };
   el.innerHTML = `
     <div class="tk-metric-sub" style="margin-bottom:6px;">Engine thought he'd love it, he didn't:</div>
     ${stats.overPredicted.map(r => row(r, 'over')).join('')}
@@ -304,15 +308,19 @@ function renderPredictionMisses(stats) {
   `;
 }
 
-function renderBestMatches(stats) {
+function renderBestMatches(stats, enrichedMeta) {
   const el = document.getElementById('bestMatchesList');
   if (!stats.matches.length) { el.innerHTML = '<div class="tk-empty">Not enough enriched, rated titles yet.</div>'; return; }
-  el.innerHTML = stats.matches.slice(0, 12).map(r => `
+  el.innerHTML = stats.matches.slice(0, 12).map(r => {
+    const poster = posterUrl(r.titleKey, enrichedMeta);
+    return `
     <div class="tk-metric-row">
+      ${poster ? `<img class="tk-metric-poster" src="${poster}" alt="" loading="lazy" width="28" height="42">` : '<div class="tk-metric-poster tk-metric-poster-empty"></div>'}
       <span class="tk-metric-name">${esc(r.title)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
       <span class="tk-metric-score">predicted ${Math.round(r.predicted)}, rated ${r.myRating}/10</span>
     </div>
-  `).join('');
+  `;
+  }).join('');
 }
 
 function renderCastList(stats) {
@@ -1251,6 +1259,7 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
     const meta = enrichedMeta[h.titleKey];
     const omdb = omdbMeta[h.titleKey];
     rows.push({
+      titleKey: h.titleKey, posterUrl: posterUrl(h.titleKey, enrichedMeta),
       title: h.title || '(untitled — not yet enriched)', year: h.year, type: h.type, status,
       myRating: myRating ?? null, tmdbRating: meta?.voteAverage ?? null,
       predictedScore: Math.round(matchScore(h, idx, enrichedMeta, omdbMeta)),
@@ -1300,6 +1309,15 @@ function renderAllTitlesTable(allRows) {
     years.map(y => `<option value="${y}">${y}</option>`).join('');
 
   const columns = [
+    { label: 'Cover', get: () => '', sortable: false,
+      render: (td, r) => {
+        if (r.posterUrl) {
+          const img = document.createElement('img');
+          img.src = r.posterUrl; img.alt = ''; img.loading = 'lazy'; img.width = 30; img.height = 45;
+          img.className = 'tk-table-poster';
+          td.appendChild(img);
+        }
+      } },
     { label: 'Title', get: r => r.title },
     { label: 'Year', get: r => r.year ?? '', numeric: true },
     { label: 'Type', get: r => r.type === 'movie' ? 'Movie' : 'Show' },
@@ -1316,7 +1334,7 @@ function renderAllTitlesTable(allRows) {
     { label: 'Director/Creator', get: r => r.creator || '—' },
   ];
 
-  let sortCol = 4, sortAsc = false; // default: My Rating desc
+  let sortCol = 5, sortAsc = false; // default: My Rating desc (index 5 now that Cover is column 0)
   let showAll = false;
 
   function filtered() {
@@ -1439,9 +1457,14 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
     el.innerHTML = '<div class="tk-empty">Not enough enriched data yet.</div>';
     return;
   }
-  el.innerHTML = picks.map((c, i) => `
+  el.innerHTML = picks.map((c, i) => {
+    const poster = posterUrl(c.titleKey, enrichedMeta);
+    return `
     <div class="tk-rec-card">
       <div class="tk-rec-rank">${i + 1}</div>
+      ${poster
+        ? `<img class="tk-rec-poster" src="${poster}" alt="" loading="lazy" width="46" height="69">`
+        : `<div class="tk-rec-poster tk-rec-poster-empty"></div>`}
       <div class="tk-rec-body">
         <div class="tk-rec-title">
           ${esc(c.title)}${c.year ? ` <span class="tk-year">(${esc(c.year)})</span>` : ''}
@@ -1452,7 +1475,8 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
       </div>
       <div class="tk-rec-score">${Math.round(c.bmtreScore)}</div>
     </div>
-  `).join('');
+  `;
+  }).join('');
 }
 
 // ── Metadata & Engine Quality score ─────────────────────────────────────
@@ -1610,10 +1634,10 @@ async function load() {
     `these sections fill in automatically as the daily enrichment job covers more of your library.`;
 
   renderGenreChart(computeGenreStats(library, enrichedMeta));
-  renderPredictionMisses(computePredictionMisses(library, enrichedMeta, omdbMeta, idx));
+  renderPredictionMisses(computePredictionMisses(library, enrichedMeta, omdbMeta, idx), enrichedMeta);
   renderCastList(computeCastStats(library, enrichedMeta));
   renderCrowdCompare(computeCrowdCompare(library, enrichedMeta));
-  renderBestMatches(computeBestMatches(library, enrichedMeta, omdbMeta, idx));
+  renderBestMatches(computeBestMatches(library, enrichedMeta, omdbMeta, idx), enrichedMeta);
 
   const fieldStats = computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta);
   renderFieldQualityTable(fieldStats);

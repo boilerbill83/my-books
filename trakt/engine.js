@@ -168,6 +168,19 @@ function voteCountBonus(voteCount) {
   return 0;
 }
 
+// Cover images: enrich_tmdb.py already captures TMDB's posterPath on
+// 99%+ of enriched titles, but nothing in trakt/ ever rendered it (a
+// real Improvement Opportunities finding — data existed, no UI ever
+// used it). TMDB's image CDN is public with no auth/CORS restriction,
+// same as any <img src> — image.tmdb.org, not api.themoviedb.org (the
+// API host this sandbox's proxy blocks; the CDN is unrelated and is the
+// end user's own browser fetching it at view time, not this session).
+const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/';
+export function posterUrl(titleKey, enrichedMeta, size = 'w154') {
+  const path = enrichedMeta[titleKey]?.posterPath;
+  return path ? `${TMDB_IMAGE_BASE}${size}${path}` : null;
+}
+
 // Popularity as a real 0-100 display metric (not just a small scoring
 // bonus) — TMDB's own vote_count, log-scaled since raw counts span
 // 0-30,000+ and a linear scale would make everything below a blockbuster
