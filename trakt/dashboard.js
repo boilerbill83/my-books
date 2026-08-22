@@ -1020,6 +1020,142 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       `what the code measures and what "recent" actually means for an ongoing show.`,
   });
 
+  // 11. Cover images: TMDB's posterPath is already captured by
+  // enrich_tmdb.py and 99.1% populated (1,480 of 1,493 enriched titles),
+  // but grep confirms zero UI code anywhere in trakt/ ever reads it — no
+  // rec card, table row, or recommend.html entry shows a poster. This is
+  // pure UI wiring, not a data gap: the data already exists.
+  {
+    const withPoster = allEnriched.filter(m => m.posterPath).length;
+    findings.push({
+      id: 'cover-images-unused',
+      severity: 'warning',
+      title: 'Cover images are 99% populated and cached but never shown anywhere',
+      technical: `<code>enrich_tmdb.py</code> already captures TMDB's <code>poster_path</code> as ` +
+        `<code>posterPath</code> on every enriched title (${withPoster} of ${allEnriched.length}, ` +
+        `${((withPoster / allEnriched.length) * 100).toFixed(1)}%) — but a grep of every file under ` +
+        `<code>trakt/</code> confirms it is never read anywhere: not the rec cards, not the All Titles table, ` +
+        `not <code>recommend.html</code>. This is the book side's own <code>coverUrl</code> field, already ` +
+        `solved there, just never wired into any BMTRE UI surface.`,
+      plain: `Every movie and show poster is already downloaded and sitting in the data, ready to use — the app ` +
+        `just never puts it on screen anywhere. Every card and table row is plain text only.`,
+      impact: `Highest-confidence, lowest-effort item on this whole list — no new data collection needed, no ` +
+        `accuracy risk, purely a "render an <img> tag" UI change with an immediate visual payoff.`,
+    });
+  }
+
+  // 12. similarToTitles: similarToIds/recommendedIds are already 100%
+  // populated as raw TMDB ids, and enrichedMetadata.json itself already
+  // has the title/year for the vast majority of those ids (self-
+  // referential lookup, no new fetch needed) - a human-readable resolved
+  // title list is cheap to derive, unlike themes/tones/categories below.
+  {
+    const withIds = allEnriched.filter(m => (m.similarToIds || []).length || (m.recommendedIds || []).length).length;
+    findings.push({
+      id: 'similar-titles-field-missing',
+      severity: 'warning',
+      title: 'similarToTitles (resolved names) doesn\'t exist — only raw ids do',
+      technical: `<code>similarToIds</code>/<code>recommendedIds</code> are 100% populated (${withIds} of ` +
+        `${allEnriched.length}) and already power <code>matchScore()</code>'s forward/reverse match signal — but ` +
+        `there is no human-readable <code>similarToTitles</code> field the way the book side's ` +
+        `<code>goodreadsData.json</code> has. Resolving id -> title is a self-referential lookup against ` +
+        `<code>enrichedMetadata.json</code> itself (most cited ids are already enriched), not a new fetch.`,
+      plain: `The engine already knows which titles are similar to which — that's literally how "New pick" cards ` +
+        `get their reason text — but there's no simple readable list anywhere (in the data or the UI) saying ` +
+        `"titles similar to this one." It's derivable from data that's already 100% there.`,
+      impact: `Medium — mostly a data-shape/UI convenience rather than a new scoring signal (the ids already do ` +
+        `the scoring work); real value is making the existing signal visible and auditable, the same role the ` +
+        `book side's similarToTitles column plays in its own exports/dashboard.`,
+    });
+  }
+
+  // 13. similarToDirectors: derivable the same self-referential way as
+  // similarToTitles above (directors/creators of a title's similar/
+  // recommended titles), not requiring new external data - but a real
+  // design decision (how many, what corroboration threshold) is needed
+  // before building it, unlike the more mechanical similarToTitles case.
+  findings.push({
+    id: 'similar-directors-field-missing',
+    severity: 'warning',
+    title: 'No similarToDirectors field — the book side\'s similarToAuthors equivalent doesn\'t exist',
+    technical: `The book engine's <code>similarToAuthors</code> bridges a candidate to loved authors directly. ` +
+      `BMTRE has no equivalent field — <code>getCreator()</code> reads a title's own director/creator, but ` +
+      `nothing captures "directors/creators of titles similar to this one." Derivable the same self-referential ` +
+      `way as <code>similarToTitles</code> above (walk each title's <code>similarToIds</code>/` +
+      `<code>recommendedIds</code>, collect their directors/creators), but needs a real design pass first — how ` +
+      `many names, what corroboration threshold — not just a mechanical id-to-name lookup.`,
+    plain: `The book app can say "this book's similar-titles list is full of authors you love." The movie/show ` +
+      `app has no equivalent field to say the same thing about directors, even though the underlying similar-` +
+      `title data it would be built from already exists.`,
+    impact: `Medium — a real potential signal in the same family as the existing director/creator match, but more ` +
+      `design work than similarToTitles above before it's buildable.`,
+  });
+
+  // 14-16. categories/themes/tones: unlike similarToTitles/
+  // similarToDirectors above, these have NO existing TMDB-derived source
+  // to resolve from at all - TMDB's genre taxonomy (~19-27 values seen in
+  // this dataset) is the closest analog and is much blunter than the book
+  // side's free-form theme/tone vocabularies. Building these for real
+  // would mean an LLM-tagging pass against real descriptions, the same
+  // path tag_with_haiku.py took for the book side's tones (Session 16) -
+  // a real, nontrivial project, not a quick field addition.
+  for (const [id, label, bookAnalog] of [
+    ['categories-field-missing', 'categories', 'Google Books\' free-form category strings'],
+    ['themes-field-missing', 'themes', 'the 37-value canonical theme vocabulary'],
+    ['tones-field-missing', 'tones', 'the 24-value canonical tone vocabulary (craft/mood/pacing, Session 16)'],
+  ]) {
+    findings.push({
+      id,
+      severity: 'warning',
+      title: `No ${label} field — nothing beneath TMDB's ~19-27 blunt genre values`,
+      technical: `The book side's ${bookAnalog} give BBRE a much finer-grained subject/craft signal than genre ` +
+        `alone. BMTRE has no equivalent ${label} field, and — unlike similarToTitles/similarToDirectors above — ` +
+        `there's no existing TMDB-derived data to resolve it from; TMDB's own genre taxonomy (19-27 values seen ` +
+        `in this dataset) is the closest analog and is exactly the blunt signal ${label} would sit beneath. ` +
+        `Building this for real means an LLM-tagging pass against each title's real overview/keywords, the same ` +
+        `path <code>tag_with_haiku.py</code> took for the book side's tones (Session 16) — a genuine multi-` +
+        `session project (vocabulary design, classifier calibration, cap-enforcement, drift audits), not a quick ` +
+        `field addition.`,
+      plain: `Genres are broad buckets ("Drama," "Crime"). The book side also tags books with more specific ` +
+        `${label}-style descriptors that genre alone can't capture. The movie/show side has nothing like that yet, ` +
+        `and building it properly is a real project on the scale of the book side's own tone-vocabulary work, not ` +
+        `a one-line addition.`,
+      impact: `Potentially high value (finer-grained taste signal, same role the book side's themes/tones play) ` +
+        `but real, multi-session effort — flagged here as a scoped idea, not started.`,
+    });
+  }
+
+  // 17. genre/subgenre split: TMDB's genre list is heavily concentrated
+  // in this real dataset (Drama 1,026 of 1,493 = 68.7%, Comedy 31.2%,
+  // Crime 28.3%) - the same over-concentration problem the book side hit
+  // with themes (thriller/history/memoir) before its Session 19-21
+  // retirement/split work, checked here with real numbers rather than
+  // assumed.
+  {
+    const genreCounts = {};
+    for (const m of allEnriched) for (const g of (m.genres || [])) genreCounts[g] = (genreCounts[g] || 0) + 1;
+    const top = Object.entries(genreCounts).sort((a, b) => b[1] - a[1])[0];
+    const topPct = top ? ((top[1] / allEnriched.length) * 100).toFixed(1) : '0';
+    findings.push({
+      id: 'genre-subgenre-split-missing',
+      severity: 'warning',
+      title: 'Genre has no subgenre split — one TMDB tag is doing all the work',
+      technical: `TMDB's genre taxonomy is a flat ~19-27 value list per title with no primary/secondary ` +
+        `distinction. Real concentration in this dataset: <code>${top ? top[0] : 'n/a'}</code> alone covers ` +
+        `${topPct}% of enriched titles (${top ? top[1] : 0} of ${allEnriched.length}) — the same over-` +
+        `concentration shape the book side's <code>thriller</code>/<code>history</code>/<code>memoir</code> ` +
+        `themes hit before their Session 19-21 review. Splitting into a single genre + single subgenre value ` +
+        `would need either an LLM classification pass or a keyword-derived heuristic (TMDB's <code>keywords</code> ` +
+        `field, already 93%+ populated per an earlier finding, is the natural raw material) — not something TMDB ` +
+        `hands over directly.`,
+      plain: `"Drama" covers over two-thirds of everything in the database — that's true, but it's not very ` +
+        `useful for telling shows apart. A more specific second-level tag (like "prestige drama" vs. "workplace ` +
+        `comedy-drama") would give the engine something sharper to work with than one giant bucket.`,
+      impact: `Medium — same family as the themes/tones ideas above (a finer signal beneath genre), but narrower ` +
+        `in scope (one extra value per title instead of a full new vocabulary), so a smaller project.`,
+    });
+  }
+
   const order = { critical: 0, serious: 1, warning: 2, good: 3 };
   findings.sort((a, b) => order[a.severity] - order[b.severity]);
   return findings;
