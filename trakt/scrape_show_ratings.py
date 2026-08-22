@@ -128,11 +128,27 @@ def load_pending(cache):
 def scrape_rt(page, title, year, kind):
     """kind: 'movie' or 'show'. Uses RT's own search page, takes the
     first result under the matching /m/ or /tv/ path, then reads the
-    Tomatometer/audience score off that page — JSON-LD aggregateRating
-    first (documented as the stable, redesign-resistant source), a
-    regex fallback on visible "NN%" score text next. Returns
-    {'critic': int|None, 'audience': int|None} or None if no matching
-    page was found at all."""
+    Tomatometer (critic) / Popcornmeter (audience) scores off that page.
+
+    Session 52's first live test found a real accuracy bug here: RT's
+    page embeds MORE THAN ONE JSON-LD aggregateRating block (a 0-100
+    critic score and a 5-star audience score are both present), and a
+    naive "value > 5 means it's already a percentage" heuristic grabbed
+    the wrong one on at least one real title (Elsbeth: scraped 62%,
+    real Tomatometer is 92% — 62 = round(3.1 * 20), consistent with
+    picking up the 5-star audience block instead). Fixed by reading
+    `bestRating` explicitly to disambiguate scale (100 = percentage
+    critic score, 5 = star audience score) instead of guessing from the
+    value's magnitude alone — a block that doesn't clearly declare
+    which scale it's on is skipped rather than guess-converted, per
+    this project's no-fabrication rule.
+
+    Returns {'critic': int|None, 'audience': int|None, 'url': str,
+    'debug': [...]} — debug carries every aggregateRating block found
+    (raw ratingValue/bestRating pairs) so a job log can show exactly
+    what was on the page even when nothing gets accepted, the same
+    "print enough to diagnose it from the log alone" discipline this
+    project used for the TMDB/OMDb dead-key incidents."""
     from playwright.sync_api import TimeoutError as PWTimeout
     try:
         page.goto(f'https://www.rottentomatoes.com/search?search={quote(title)}',
@@ -161,6 +177,7 @@ def scrape_rt(page, title, year, kind):
         return None
 
     critic = audience = None
+    debug = []
     for ld_raw in re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S):
         try:
             obj = json.loads(ld_raw)
@@ -169,50 +186,69 @@ def scrape_rt(page, title, year, kind):
                 ar = o.get('aggregateRating') if isinstance(o, dict) else None
                 if ar and ar.get('ratingValue'):
                     val = float(ar['ratingValue'])
-                    # RT's schema.org block is typically 0-100 already for
-                    # the critic (Tomatometer) score
-                    critic = round(val) if val > 5 else round(val * 20)
+                    best = ar.get('bestRating')
+                    best_num = float(best) if best not in (None, '') else None
+                    debug.append({'ratingValue': val, 'bestRating': best})
+                    if best_num == 100:
+                        critic = round(val)
+                    elif best_num == 5:
+                        audience = round(val * 20)
+                    # bestRating missing/ambiguous -> skip rather than guess
         except Exception:
             pass
 
     if critic is None:
-        cm = re.search(r'"criticsScore"\s*:\s*\{[^}]*?"value"\s*:\s*"?(\d+)', html)
-        if not cm:
-            cm = re.search(r'tomatometer["\s:]+(\d{1,3})\s*%', html, re.I)
+        cm = re.search(r'tomatometer["\s:]+(\d{1,3})\s*%', html, re.I)
         if cm:
             critic = int(cm.group(1))
-
-    am = re.search(r'"audienceScore"\s*:\s*\{[^}]*?"value"\s*:\s*"?(\d+)', html)
-    if am:
-        audience = int(am.group(1))
+    if audience is None:
+        am = re.search(r'(?:popcornmeter|audience\s*score)["\s:]+(\d{1,3})\s*%', html, re.I)
+        if am:
+            audience = int(am.group(1))
 
     if critic is None and audience is None:
-        return None
-    return {'critic': critic, 'audience': audience, 'url': url}
+        return {'critic': None, 'audience': None, 'url': url, 'debug': debug}
+    return {'critic': critic, 'audience': audience, 'url': url, 'debug': debug}
 
 
 # ── Metacritic ────────────────────────────────────────────────────────────
 
 def scrape_metacritic(page, title, year, kind):
-    """kind: 'movie' or 'show'. Same search-then-scrape shape as RT."""
+    """kind: 'movie' or 'show'. Same search-then-scrape shape as RT.
+
+    Session 52's first live test found 0/5 matches here — the search-
+    page href regex (scoped to a specific results-list shape) never
+    matched anything. Widened to accept ANY /movie/<slug> or /tv/<slug>
+    href found anywhere on the search page (Metacritic's search results
+    render via client-side JS into whatever component shape is current,
+    which this sandbox can't inspect directly — see the module
+    docstring), plus a longer render wait. Returns a debug count of how
+    many candidate links were found at all, so the next real run's job
+    log shows whether the page rendered zero result links (a wait-time/
+    selector problem) vs. rendered links that just don't match the
+    regex (a pattern problem) — a different failure mode needs a
+    different fix, and guessing which one happened from a bare "0/5
+    found" isn't enough to fix it correctly."""
     from playwright.sync_api import TimeoutError as PWTimeout
     try:
         page.goto(f'https://www.metacritic.com/search/{quote(title)}/',
                    wait_until='domcontentloaded', timeout=20_000)
-        page.wait_for_timeout(random.randint(2500, 4000))
+        page.wait_for_timeout(random.randint(3500, 5000))
         html = page.content()
     except PWTimeout:
         return None
 
     path_prefix = '/tv/' if kind == 'show' else '/movie/'
-    m = re.search(r'href="(https://www\.metacritic\.com' + re.escape(path_prefix) + r'[a-z0-9_-]+/?)"', html)
-    if not m:
-        return None
-    url = m.group(1)
+    all_links = re.findall(r'href="(https://www\.metacritic\.com(?:/tv/|/movie/)[a-z0-9_-]+/?)"', html)
+    matching = [u for u in all_links if path_prefix in u]
+    if not matching:
+        return {'metascore': None, 'userScore': None, 'url': None,
+                'debug_link_count': len(all_links)}
+    url = matching[0]
 
     try:
         page.goto(url, wait_until='domcontentloaded', timeout=20_000)
-        page.wait_for_timeout(random.randint(2000, 3500))
+        page.wait_for_timeout(random.randint(2500, 4000))
         html = page.content()
     except PWTimeout:
         return None
@@ -225,24 +261,27 @@ def scrape_metacritic(page, title, year, kind):
             for o in objs:
                 ar = o.get('aggregateRating') if isinstance(o, dict) else None
                 if ar and ar.get('ratingValue'):
-                    metascore = round(float(ar['ratingValue']))
+                    val = float(ar['ratingValue'])
+                    best = ar.get('bestRating')
+                    best_num = float(best) if best not in (None, '') else None
+                    if best_num == 100 or best_num is None:
+                        # Metascore is natively 0-100; only convert an
+                        # explicit 10-point scale (Metacritic's user
+                        # score), never guess an unlabeled block.
+                        metascore = round(val)
+                    elif best_num == 10:
+                        user_score = round(val * 10)
         except Exception:
             pass
 
     if metascore is None:
-        mm = re.search(r'"metascore"\s*:\s*"?(\d{1,3})', html, re.I)
-        if not mm:
-            mm = re.search(r'Metascore["\s:]+(\d{1,3})\b', html)
+        mm = re.search(r'Metascore["\s:]+(\d{1,3})\b', html)
         if mm:
             metascore = int(mm.group(1))
 
-    um = re.search(r'"userscore"\s*:\s*"?(\d+(?:\.\d+)?)', html, re.I)
-    if um:
-        user_score = round(float(um.group(1)) * 10)
-
     if metascore is None and user_score is None:
-        return None
-    return {'metascore': metascore, 'userScore': user_score, 'url': url}
+        return {'metascore': None, 'userScore': None, 'url': url, 'debug_link_count': len(all_links)}
+    return {'metascore': metascore, 'userScore': user_score, 'url': url, 'debug_link_count': len(all_links)}
 
 
 # ── Main ───────────────────────────────────────────────────────────────────
@@ -319,6 +358,10 @@ def main():
             rt_str = f"RT {entry['rottenTomatoes']}%" if entry['rottenTomatoes'] is not None else 'RT —'
             mc_str = f"MC {entry['metacritic']}" if entry['metacritic'] is not None else 'MC —'
             print(f'         {rt_str}  |  {mc_str}')
+            if rt and rt.get('debug'):
+                print(f"         RT JSON-LD blocks seen: {rt['debug']}")
+            if mc and mc.get('debug_link_count') is not None and entry['metacritic'] is None:
+                print(f"         MC search page had {mc['debug_link_count']} /tv//movie/ links total")
 
             if i % 10 == 0:
                 save_cache(cache)
