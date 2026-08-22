@@ -45,7 +45,8 @@ console.log(`"liked" = myRating >= ${m.likedThreshold}/10; base rate: ${(100 * m
 for (const k of [10, 25, 50, 100]) {
   if (m.precisionAtK[k] != null) console.log(`precision@${k}: ${m.precisionAtK[k].toFixed(1)}%`);
 }
-console.log(`bottom-50 catches <=5/10: ${m.bottomCatch}/50 (chance would catch ${m.bottomChance.toFixed(1)})`);
+console.log(`bottom-50 catches <=5/10: ${m.bottomCatch}/${m.bottomPossible} of the achievable ceiling ` +
+  `(${m.bottomCatch}/50 of the raw slice; chance would catch ${m.bottomChance.toFixed(1)})`);
 console.log(`naive always-predict-mean baseline MAE: ${m.meanBaselineMae.toFixed(2)} — ` +
   (m.mae > m.meanBaselineMae
     ? 'the model is currently WORSE than this trivial baseline on raw magnitude error (real, not a bug — Bill\'s ratings skew high, so guessing the mean scores well on MAE alone; this is exactly why precision@k, not MAE, is the metric that matters, same principle CLAUDE.md already states for the book side).'

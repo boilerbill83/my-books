@@ -637,8 +637,18 @@ export function computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta) {
 
   const bottom = preds.slice(-50);
   const bottomCatch = bottom.filter(disliked).length;
-  const bottomDislikeRate = preds.filter(disliked).length / n;
+  const totalDisliked = preds.filter(disliked).length;
+  const bottomDislikeRate = totalDisliked / n;
   const bottomChance = Math.min(50, n) * bottomDislikeRate;
+  // The achievable ceiling for bottomCatch isn't always 50 — a model can
+  // only ever catch as many real dislikes as exist in the whole dataset.
+  // Bill's ratings skew high enough that dislikes (myRating<=5) are rare
+  // (~30 of 533 titles here), so a perfect model still only catches ~30,
+  // not 50. Exposed separately so a consumer (the BMTRE Accuracy dial)
+  // can grade bottomCatch against its real ceiling instead of an
+  // unreachable one, the same "measure the real ceiling, don't assume
+  // it" discipline meanBaselineMae already applies to the MAE component.
+  const bottomPossible = Math.min(50, totalDisliked);
 
   const worstMisses = preds.filter(x => x.myRating <= 4).slice(0, 8)
     .map(x => ({ predicted: x.predicted, myRating: x.myRating, title: x.title, type: x.type }));
@@ -659,7 +669,7 @@ export function computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta) {
   }
 
   return {
-    n, baseRate, mae, meanBaselineMae, precisionAtK, bottomCatch, bottomChance,
+    n, baseRate, mae, meanBaselineMae, precisionAtK, bottomCatch, bottomChance, bottomPossible,
     worstMisses, worstUnderrated, byType, likedThreshold: LIKED_THRESHOLD,
   };
 }
