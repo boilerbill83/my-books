@@ -6,6 +6,15 @@ enrich_tmdb.py to fill in on a later run. Never guesses an id — takes
 TMDB's own top search result (its relevance+popularity ranking), and
 titles with no result are logged as unresolved, not silently dropped.
 
+Also runs a title-similarity confidence check before auto-accepting a
+match (added after a real incident: a past run took the #1 search result
+unconditionally and got 11 of 196 titles wrong — short/common titles like
+"Bros", "Dredd", "Chad" matched an unrelated same-named title instead of
+what was meant, e.g. Bros -> The Super Mario Bros. Movie). A low-
+confidence match is never added automatically — it's logged separately
+for manual verification, the same "flag, don't guess" discipline the
+"no result at all" case already used.
+
 Input: trakt/data/manualCandidateTitles.json — {"movies": [...], "shows": [...]}
 (currently Bill's own hand-picked titles, added directly to widen the
 candidate pool after Session 46 found the movie pool too thin relative
@@ -16,7 +25,7 @@ titles, not a recurring job): python3 trakt/resolve_titles.py
 GitHub Action: .github/workflows/trakt-resolve-titles.yml (workflow_dispatch)
 """
 
-import json, os, sys, time, urllib.request, urllib.parse
+import json, os, re, sys, time, urllib.request, urllib.parse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -44,8 +53,38 @@ def search(kind, title):
     return results[0] if results else None
 
 
+def normalize(s):
+    return re.sub(r'[^a-z0-9]', '', (s or '').lower())
+
+
+def is_confident_match(query_title, matched_title):
+    """
+    Guards against the real Session 47 failure mode: taking TMDB's #1 search
+    result unconditionally matched the wrong same-named title 11/196 times
+    (e.g. "Bros" -> The Super Mario Bros. Movie, "Dredd" -> the 1995 film,
+    "Chad" -> Chad Powers) - every one of those false matches was a short,
+    common query word. An exact match (after stripping punctuation/case) is
+    always trusted. A partial/substring match is only trusted once the query
+    is long enough that a coincidental short-word collision is implausible -
+    below that length, only an exact match counts as confident.
+    """
+    q = normalize(query_title)
+    m = normalize(matched_title)
+    if not q or not m:
+        return False
+    if q == m:
+        return True
+    MIN_LEN_FOR_PARTIAL = 12
+    if len(q) < MIN_LEN_FOR_PARTIAL:
+        return False
+    if q in m or m in q:
+        ratio = min(len(q), len(m)) / max(len(q), len(m))
+        return ratio >= 0.5
+    return False
+
+
 def resolve_batch(kind, titles, known, pool_titles):
-    added, skipped, unresolved = [], [], []
+    added, skipped, unresolved, low_confidence = [], [], [], []
     name_field = 'title' if kind == 'movie' else 'name'
     date_field = 'release_date' if kind == 'movie' else 'first_air_date'
     for title in titles:
@@ -59,6 +98,10 @@ def resolve_batch(kind, titles, known, pool_titles):
         key = f'{kind}:{tmdb_id}'
         matched_title = result.get(name_field) or title
         matched_year = (result.get(date_field) or '')[:4] or '?'
+        if not is_confident_match(title, matched_title):
+            low_confidence.append((title, matched_title, matched_year))
+            print(f'  ?LOW-CONF? | {title} -> {matched_title} ({matched_year}) — not added, needs manual review')
+            continue
         if key in known:
             skipped.append(title)
             print(f'  skip (already known) | {title} -> {matched_title} ({matched_year})')
@@ -70,7 +113,7 @@ def resolve_batch(kind, titles, known, pool_titles):
         known.add(key)
         added.append(title)
         print(f'  added | {title} -> {matched_title} ({matched_year})')
-    return added, skipped, unresolved
+    return added, skipped, unresolved, low_confidence
 
 
 def main():
@@ -97,9 +140,9 @@ def main():
             known.add(t['titleKey'])
 
     print(f'Resolving {len(movie_titles)} movies...')
-    m_added, m_skipped, m_unresolved = resolve_batch('movie', movie_titles, known, pool['titles'])
+    m_added, m_skipped, m_unresolved, m_lowconf = resolve_batch('movie', movie_titles, known, pool['titles'])
     print(f'\nResolving {len(show_titles)} shows...')
-    s_added, s_skipped, s_unresolved = resolve_batch('show', show_titles, known, pool['titles'])
+    s_added, s_skipped, s_unresolved, s_lowconf = resolve_batch('show', show_titles, known, pool['titles'])
 
     pool['meta'] = {'generatedAt': time.strftime('%Y-%m-%dT%H:%M:%S') + 'Z', 'count': len(pool['titles'])}
     json.dump(pool, open(pool_path, 'w'), indent=2)
@@ -107,12 +150,19 @@ def main():
     added = m_added + s_added
     skipped = m_skipped + s_skipped
     unresolved = m_unresolved + s_unresolved
+    low_confidence = m_lowconf + s_lowconf
     print(f'\n{len(added)} new candidates added ({len(m_added)} movies, {len(s_added)} shows), '
-          f'{len(skipped)} already known, {len(unresolved)} unresolved.')
+          f'{len(skipped)} already known, {len(unresolved)} unresolved, '
+          f'{len(low_confidence)} low-confidence (not added).')
     if unresolved:
         print('Unresolved (no TMDB match at all — verify title spelling):')
         for t in unresolved:
             print(f'  - {t}')
+    if low_confidence:
+        print('Low-confidence matches (NOT added — TMDB\'s top result did not look like the same title; '
+              'verify by hand and add manually if correct):')
+        for query, matched, year in low_confidence:
+            print(f'  - "{query}" -> best TMDB match was "{matched}" ({year})')
 
 
 if __name__ == '__main__':

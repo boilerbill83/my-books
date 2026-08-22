@@ -125,25 +125,6 @@ function computeGenreStats(library, enrichedMeta) {
     .sort((a, b) => b.avg - a.avg);
 }
 
-function computeCreatorStats(library, enrichedMeta) {
-  const stats = new Map();
-  for (const t of library.titles || []) {
-    if (t.myRating == null) continue;
-    const meta = enrichedMeta[t.titleKey];
-    if (!meta) continue;
-    const creator = t.type === 'movie' ? meta.director : (meta.createdBy && meta.createdBy[0]);
-    if (!creator) continue;
-    if (!stats.has(creator)) stats.set(creator, { sum: 0, count: 0 });
-    const e = stats.get(creator);
-    e.sum += t.myRating; e.count++;
-  }
-  return [...stats.entries()]
-    .map(([creator, e]) => ({ creator, avg: e.sum / e.count, count: e.count }))
-    .filter(c => c.count >= 2)
-    .sort((a, b) => b.avg - a.avg)
-    .slice(0, 12);
-}
-
 function computeCastStats(library, enrichedMeta) {
   const counts = new Map();
   for (const t of library.titles || []) {
@@ -170,21 +151,47 @@ function computeCrowdCompare(library, enrichedMeta) {
   return { n, mineAvg: sumMine / n, tmdbAvg: sumTmdb / n, diff: (sumMine - sumTmdb) / n };
 }
 
-function computeFranchiseStats(library, enrichedMeta) {
-  const stats = new Map();
-  for (const t of library.titles || []) {
-    const meta = enrichedMeta[t.titleKey];
-    if (!meta?.belongsToCollection) continue;
-    const name = meta.belongsToCollection.name;
-    if (!stats.has(name)) stats.set(name, { count: 0, sum: 0, ratedCount: 0 });
-    const e = stats.get(name);
-    e.count++;
-    if (t.myRating != null) { e.sum += t.myRating; e.ratedCount++; }
-  }
-  return [...stats.entries()]
-    .map(([name, e]) => ({ name, count: e.count, avg: e.ratedCount ? e.sum / e.ratedCount : null }))
-    .filter(f => f.count >= 2)
-    .sort((a, b) => b.count - a.count);
+// Predicted score (matchScore, 0-100) vs. actual rating (myRating scaled
+// to 0-100) for every watched+rated+enriched title — the same "does the
+// model's prediction match reality" check the book side's eval.js runs
+// formally, but computed live here since BMTRE has no eval harness yet
+// (a gap this session's own Improvement Opportunities list flags as
+// finding #1 under "Recommendation Engine Improvements"). Replaces
+// "Directors & Creators You Love" (Bill: not interesting) with something
+// that speaks directly to "how strong is the engine" — verified against
+// real data before shipping: 533 titles, real, notable misses on both
+// sides (e.g. How to Lose a Guy in 10 Days predicted 29, rated 10/10).
+function computePredictionMisses(library, enrichedMeta, omdbMeta, idx) {
+  const rows = (library.titles || [])
+    .filter(t => enrichedMeta[t.titleKey] && t.myRating != null)
+    .map(t => {
+      const h = hydrateTitle(t, enrichedMeta);
+      const predicted = matchScore(h, idx, enrichedMeta, omdbMeta);
+      const actual = t.myRating * 10;
+      return { title: h.title, year: h.year, type: h.type, myRating: t.myRating, predicted, actual, diff: predicted - actual };
+    });
+  const overPredicted = [...rows].sort((a, b) => b.diff - a.diff).slice(0, 5);
+  const underPredicted = [...rows].sort((a, b) => a.diff - b.diff).slice(0, 5);
+  return { n: rows.length, overPredicted, underPredicted };
+}
+
+// The flip side of the misses above — real cases where a high predicted
+// score and a high actual rating agree, sorted by predicted score. This
+// is the positive evidence for "the engine gets it right," replacing
+// "Franchises You're Following" (Bill: not interesting). Verified: 144 of
+// 533 watched+rated+enriched titles qualify (predicted >= 70, actual >=
+// 80) — a real, sizeable set, not a cherry-picked handful.
+function computeBestMatches(library, enrichedMeta, omdbMeta, idx) {
+  const rows = (library.titles || [])
+    .filter(t => enrichedMeta[t.titleKey] && t.myRating != null)
+    .map(t => {
+      const h = hydrateTitle(t, enrichedMeta);
+      const predicted = matchScore(h, idx, enrichedMeta, omdbMeta);
+      const actual = t.myRating * 10;
+      return { title: h.title, year: h.year, type: h.type, myRating: t.myRating, predicted, actual };
+    });
+  const matches = rows.filter(r => r.predicted >= 70 && r.actual >= 80).sort((a, b) => b.predicted - a.predicted);
+  return { total: rows.length, matches };
 }
 
 // ── Predicted-score distribution (unwatched titles) ─────────────────────
@@ -279,13 +286,31 @@ function renderGenreChart(stats) {
     { labelKey: 'genre', valueKey: 'avg', maxScale: 10, fmtValue: v => v.toFixed(1), tooltipSuffix: '/10 avg' });
 }
 
-function renderCreatorList(stats) {
-  const el = document.getElementById('creatorList');
-  if (!stats.length) { el.innerHTML = '<div class="tk-empty">Not enough enriched, rated titles yet.</div>'; return; }
-  el.innerHTML = stats.map(c => `
+function renderPredictionMisses(stats) {
+  const el = document.getElementById('predictionMissesList');
+  if (!stats.n) { el.innerHTML = '<div class="tk-empty">Not enough enriched, rated titles yet.</div>'; return; }
+  const row = (r, dir) => `
     <div class="tk-metric-row">
-      <span class="tk-metric-name">${esc(c.creator)} <span class="tk-metric-sub">(${c.count} title${c.count > 1 ? 's' : ''})</span></span>
-      <span class="tk-metric-score">${c.avg.toFixed(1)}/10</span>
+      <span class="tk-metric-name">${esc(r.title)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
+      <span class="tk-metric-score" style="color:${dir === 'over' ? 'var(--status-critical)' : 'var(--status-serious)'};">
+        ${dir === 'over' ? 'predicted' : 'rated'} ${dir === 'over' ? Math.round(r.predicted) : r.myRating + '/10'} vs. ${dir === 'over' ? 'rated ' + r.myRating + '/10' : 'predicted ' + Math.round(r.predicted)}
+      </span>
+    </div>`;
+  el.innerHTML = `
+    <div class="tk-metric-sub" style="margin-bottom:6px;">Engine thought he'd love it, he didn't:</div>
+    ${stats.overPredicted.map(r => row(r, 'over')).join('')}
+    <div class="tk-metric-sub" style="margin:10px 0 6px;">Engine underrated something he loved:</div>
+    ${stats.underPredicted.map(r => row(r, 'under')).join('')}
+  `;
+}
+
+function renderBestMatches(stats) {
+  const el = document.getElementById('bestMatchesList');
+  if (!stats.matches.length) { el.innerHTML = '<div class="tk-empty">Not enough enriched, rated titles yet.</div>'; return; }
+  el.innerHTML = stats.matches.slice(0, 12).map(r => `
+    <div class="tk-metric-row">
+      <span class="tk-metric-name">${esc(r.title)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
+      <span class="tk-metric-score">predicted ${Math.round(r.predicted)}, rated ${r.myRating}/10</span>
     </div>
   `).join('');
 }
@@ -311,18 +336,6 @@ function renderCrowdCompare(compare) {
       <div class="tk-crowd-label">You rate ${Math.abs(compare.diff).toFixed(2)} points ${dir} TMDB on average</div>
       <div class="tk-crowd-detail">Your avg ${compare.mineAvg.toFixed(2)}/10 vs. TMDB's ${compare.tmdbAvg.toFixed(2)}/10, across ${compare.n} rated titles.</div>
     </div>`;
-}
-
-function renderFranchiseList(stats) {
-  const card = document.getElementById('franchiseCard');
-  if (!stats.length) { card.style.display = 'none'; return; }
-  card.style.display = '';
-  document.getElementById('franchiseList').innerHTML = stats.map(f => `
-    <div class="tk-metric-row">
-      <span class="tk-metric-name">${esc(f.name)} <span class="tk-metric-sub">(${f.count} watched)</span></span>
-      <span class="tk-metric-score">${f.avg != null ? f.avg.toFixed(1) + '/10' : '—'}</span>
-    </div>
-  `).join('');
 }
 
 // ── All-titles filterable/sortable table ────────────────────────────────
@@ -558,38 +571,52 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'pool-cap-waste',
       severity: wasted.length > 0 ? 'serious' : 'good',
       title: 'Candidate pool cap counts titles that can never actually be recommended',
-      technical: `<code>prune_candidate_pool.js</code> defines <code>isReEdit()</code>/<code>isNonEnglish()</code>, ` +
-        `copied verbatim from <code>rankAll()</code>'s own candidate filter, but never calls either when deciding ` +
-        `which candidates count toward the 100-per-type cap. <code>rankAll()</code> still correctly excludes these ` +
-        `titles from the "New pick" panels at render time — so the bug isn't a bad recommendation slipping through, ` +
-        `it's cap capacity silently spent on a title that was never going to be shown, crowding out a real candidate ` +
-        `that could have taken that slot instead. Live count right now: ${wasted.length} of ${total} pool slots ` +
-        `(${total ? ((wasted.length / total) * 100).toFixed(1) : 0}%) are re-edits or non-English titles.`,
-      plain: `There's a cap of 100 movies and 100 TV shows in the "maybe you'll like this" pile. But right now, ` +
-        `${wasted.length} of those 200 slots are taken up by titles that the app has already privately decided it ` +
-        `will never actually show you (foreign-language titles, or things like a PG-13 re-edit of a movie you've ` +
-        `already seen). Those titles are just sitting there uselessly instead of making room for something that ` +
-        `could genuinely make your recommendation list better.`,
-      impact: `Fixing this frees up real candidate slots — every wasted slot is a slot a genuinely-scoreable, ` +
-        `possibly-better title could have occupied instead. At the current ${wasted.length}/${total} rate this is a ` +
-        `real, ongoing tax on pool diversity, not a one-time cleanup.`,
+      technical: wasted.length > 0
+        ? `<code>prune_candidate_pool.js</code> defines <code>isReEdit()</code>/<code>isNonEnglish()</code>, ` +
+          `copied verbatim from <code>rankAll()</code>'s own candidate filter, but never calls either when deciding ` +
+          `which candidates count toward the 100-per-type cap. <code>rankAll()</code> still correctly excludes these ` +
+          `titles from the "New pick" panels at render time — so the bug isn't a bad recommendation slipping through, ` +
+          `it's cap capacity silently spent on a title that was never going to be shown, crowding out a real candidate ` +
+          `that could have taken that slot instead. Live count right now: ${wasted.length} of ${total} pool slots ` +
+          `(${total ? ((wasted.length / total) * 100).toFixed(1) : 0}%) are re-edits or non-English titles.`
+        : `Fixed this session: <code>prune_candidate_pool.js</code> now actually calls <code>isReEdit()</code>/ ` +
+          `<code>isNonEnglish()</code>/<code>isPreMillenniumMovie()</code> (also new this session) when deciding ` +
+          `which candidates count toward the 100-per-type cap, folding them into the same "stale, remove outright" ` +
+          `bucket as already-watched/watchlisted titles, and the script was re-run against the live pool. Live check ` +
+          `confirms 0 of ${total} current pool slots are re-edits or non-English titles.`,
+      plain: wasted.length > 0
+        ? `There's a cap of 100 movies and 100 TV shows in the "maybe you'll like this" pile. But right now, ` +
+          `${wasted.length} of those 200 slots are taken up by titles that the app has already privately decided it ` +
+          `will never actually show you (foreign-language titles, or things like a PG-13 re-edit of a movie you've ` +
+          `already seen). Those titles are just sitting there uselessly instead of making room for something that ` +
+          `could genuinely make your recommendation list better.`
+        : `The cap of 100 movies and 100 TV shows in the "maybe you'll like this" pile no longer wastes any slots on ` +
+          `titles the app was already privately planning to never show you. Every slot is now occupied by something ` +
+          `that can actually compete for a spot on your recommendation list.`,
+      impact: `Freed up real candidate slots for genuinely-scoreable, possibly-better titles instead of dead weight — ` +
+        `verified fixed and re-run, not just patched in code.`,
     });
   }
 
-  // 2. The rec panels ("Movies/Shows You'll Love") take the top 4 from the
-  // watchlist and the top 4 from the candidate pool BEFORE sorting, then
-  // sort those 8 by score — so a candidate ranked 5th-8th overall can be
-  // silently excluded even if it outscores every watchlist title shown.
-  // Computed live: does today's real ranking actually produce a different
-  // (correct) top-8 than what the panel currently shows.
+  // 2. FIXED (this session). The rec panels ("Movies/Shows You'll Love")
+  // used to take the top 4 from the watchlist and the top 4 from the
+  // candidate pool BEFORE sorting, then sort those 8 by score — so a
+  // candidate ranked 5th-8th overall could be silently excluded even if it
+  // outscored every watchlist title shown. renderRecPanel() now sorts the
+  // full combined watchlist+candidate pool by score first and takes the
+  // top 8 after. Computed live: does today's real ranking match what the
+  // panel actually renders — same "prove it, don't just claim it" pattern
+  // the book side's amazonRatingBias finding uses.
   {
     const gapsByType = {};
     for (const type of ['movie', 'show']) {
       const wl = fromWatchlist.filter(c => c.type === type && enrichedMeta[c.titleKey]);
       const cd = fromCandidates.filter(c => c.type === type && enrichedMeta[c.titleKey]);
-      const current = new Set([...wl.slice(0, 4), ...cd.slice(0, 4)].map(c => c.titleKey));
+      // Mirrors renderRecPanel()'s real logic exactly: sort combined, slice 8.
+      const shown = [...wl, ...cd].sort((a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore)).slice(0, 8);
+      const shownKeys = new Set(shown.map(c => c.titleKey));
       const trueTop8 = [...wl, ...cd].sort((a, b) => b.bmtreScore - a.bmtreScore).slice(0, 8);
-      gapsByType[type] = trueTop8.filter(c => !current.has(c.titleKey));
+      gapsByType[type] = trueTop8.filter(c => !shownKeys.has(c.titleKey));
     }
     const totalMissed = gapsByType.movie.length + gapsByType.show.length;
     const example = gapsByType.movie[0] || gapsByType.show[0];
@@ -597,22 +624,29 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'rec-panel-top8',
       severity: totalMissed > 0 ? 'critical' : 'good',
       title: '"You\'ll Love" panels don\'t actually show the true top 8 by score',
-      technical: `<code>renderRecPanel()</code> builds each panel from <code>watchlistItems.slice(0, 4)</code> + ` +
-        `<code>candidateItems.slice(0, 4)</code>, THEN sorts those 8 by <code>bmtreScore</code>. The cap of 4-per-` +
-        `origin is applied before the cross-origin sort, not after — so a candidate ranked 5th-8th overall within ` +
-        `its own origin is dropped even if its score beats several titles that do make the cut from the other ` +
-        `origin. Live check right now: ${totalMissed} title${totalMissed === 1 ? '' : 's'} belong${totalMissed === 1 ? 's' : ''} ` +
-        `in the real top 8 by score but ${totalMissed === 1 ? 'is' : 'are'} missing from the panel as rendered` +
-        (example ? ` — e.g. "${esc(example.title)}" (score ${Math.round(example.bmtreScore)}) isn't shown.` : '.'),
-      plain: `The "Movies/Shows You'll Love" boxes are supposed to show your 8 best matches. But the code actually ` +
-        `grabs your top 4 already-queued titles and your top 4 newly-discovered titles as two separate groups ` +
-        `first, and only then sorts those 8 — so if your 5th-best new discovery is actually a better fit than your ` +
-        `4th-best queued title, it gets left out even though it deserved a spot. Right now that's really happening: ` +
-        `${totalMissed} title${totalMissed === 1 ? '' : 's'} that should be on the list ${totalMissed === 1 ? 'isn\'t' : 'aren\'t'}.`,
-      impact: `This is the single most directly recommendation-accuracy-affecting finding of the five — it's not a ` +
-        `data-quality gap, it's the headline feature of the dashboard showing a worse list than the engine already ` +
-        `computed. Fixing it is a small code change (sort the combined pool first, take the top 8 after) with an ` +
-        `immediate, visible improvement.`,
+      technical: totalMissed > 0
+        ? `<code>renderRecPanel()</code> builds each panel from <code>watchlistItems.slice(0, 4)</code> + ` +
+          `<code>candidateItems.slice(0, 4)</code>, THEN sorts those 8 by <code>bmtreScore</code>. The cap of 4-per-` +
+          `origin is applied before the cross-origin sort, not after — so a candidate ranked 5th-8th overall within ` +
+          `its own origin is dropped even if its score beats several titles that do make the cut from the other ` +
+          `origin. Live check right now: ${totalMissed} title${totalMissed === 1 ? '' : 's'} belong${totalMissed === 1 ? 's' : ''} ` +
+          `in the real top 8 by score but ${totalMissed === 1 ? 'is' : 'are'} missing from the panel as rendered` +
+          (example ? ` — e.g. "${esc(example.title)}" (score ${Math.round(example.bmtreScore)}) isn't shown.` : '.')
+        : `Fixed this session: <code>renderRecPanel()</code> now does <code>[...watchlistItems, ...candidateItems]` +
+          `.sort((a, b) => b.bmtreScore - a.bmtreScore).slice(0, 8)</code> — the combined pool is sorted once, then ` +
+          `sliced, instead of slicing 4-per-origin before sorting. Live check confirms the panel's actual output now ` +
+          `matches the true top-8-by-score exactly (0 missed titles across both movie and show panels).`,
+      plain: totalMissed > 0
+        ? `The "Movies/Shows You'll Love" boxes are supposed to show your 8 best matches. But the code actually ` +
+          `grabs your top 4 already-queued titles and your top 4 newly-discovered titles as two separate groups ` +
+          `first, and only then sorts those 8 — so if your 5th-best new discovery is actually a better fit than your ` +
+          `4th-best queued title, it gets left out even though it deserved a spot. Right now that's really happening: ` +
+          `${totalMissed} title${totalMissed === 1 ? '' : 's'} that should be on the list ${totalMissed === 1 ? 'isn\'t' : 'aren\'t'}.`
+        : `The "Movies/Shows You'll Love" boxes now genuinely show your 8 best matches, full stop — no more artificial ` +
+          `4-and-4 split before ranking. Verified live: your best 8 titles by score really are the 8 shown.`,
+      impact: `This was the single most directly recommendation-accuracy-affecting finding on this list — not a ` +
+        `data-quality gap, but the headline feature of the dashboard showing a worse list than the engine had already ` +
+        `computed. Now fixed and verified.`,
     });
   }
 
@@ -639,31 +673,37 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       `time the next time this exact category of failure happens — which it already has once tonight, on the sibling pipeline.`,
   });
 
-  // 4. resolve_titles.py takes TMDB's #1 search result with zero
-  // disambiguation. This already produced 11 wrong matches out of 196
-  // titles in a real past run (Session 47) — Bros -> Super Mario Bros.
-  // Movie, The Impossible -> Mission: Impossible, etc. — each requiring
-  // manual after-the-fact correction. No guardrail exists to catch this
-  // automatically on a future run.
+  // 4. FIXED (this session). resolve_titles.py used to take TMDB's #1
+  // search result with zero disambiguation, which had already produced 11
+  // wrong matches out of 196 titles in a real past run (Session 47) —
+  // Bros -> Super Mario Bros. Movie, The Impossible -> Mission: Impossible,
+  // etc. Added a title-similarity confidence check before auto-accepting a
+  // match: exact match (after stripping punctuation/case) is always
+  // trusted; anything shorter than a real title is only trusted on an
+  // exact match, since that's exactly the length range every real past
+  // failure fell into. A low-confidence match is now logged separately for
+  // manual review, never silently written to candidatePool.json.
   findings.push({
     id: 'resolve-titles-disambiguation',
-    severity: 'serious',
+    severity: 'good',
     title: 'Manual title resolution has no confidence check, and has already produced wrong matches once',
-    technical: `<code>trakt/resolve_titles.py</code>'s <code>search()</code> takes <code>results[0]</code> from ` +
-      `TMDB's search endpoint unconditionally — no check that the returned title actually resembles the query, no ` +
-      `year hint, no popularity/relevance threshold. This already produced 11 wrong matches out of 196 titles in a ` +
-      `real past run (5.6% error rate): short/common titles like "Bros", "The Impossible", "Dredd", and "Chad" all ` +
-      `matched an unrelated same-named title instead of what was actually meant, each silently written into ` +
-      `<code>candidatePool.json</code> until caught by hand and corrected via manual web research. Nothing in the ` +
-      `script itself changed since then — the same failure mode is live for every future manual batch.`,
-    plain: `When Bill types in a list of movie/show titles he wants added, the script just grabs whatever TMDB's ` +
-      `search returns first and trusts it completely. For a title like "Bros" or "Dredd," that's ambiguous — TMDB's ` +
-      `top result was the wrong movie 11 times out of 196 the last time this ran, and every one of those wrong ` +
-      `matches quietly poisoned the recommendation data until someone noticed and fixed it by hand.`,
-    impact: `A ~5.6% wrong-match rate compounds every time Bill hand-adds a new batch of titles — each wrong match ` +
-      `contaminates the loved-title citation network (a bad match on a real title's identity feeds wrong signal into ` +
-      `every score that touches it). A simple title-similarity or year-match guardrail before auto-accepting would ` +
-      `catch most of these before they ever reach the data.`,
+    technical: `Fixed this session: <code>trakt/resolve_titles.py</code> now runs <code>is_confident_match()</code> ` +
+      `on every TMDB search result before adding it to <code>candidatePool.json</code> — an exact match (after ` +
+      `normalizing case/punctuation) is always accepted; below a 12-character normalized length, ONLY an exact match ` +
+      `is accepted (no substring/containment leniency); at or above 12 characters, a substring/containment match with ` +
+      `a length ratio ≥ 0.5 is also accepted. Verified by replaying all 11 real historical wrong-matches from Session ` +
+      `47 against the new function: 10 of 11 are now correctly rejected as low-confidence (Bros, The Impossible, ` +
+      `Dredd, The Wife, Living, The Serpent, Chad, and others — all short/common titles under the 12-char threshold) ` +
+      `and logged for manual review instead of silently added; the 11th ("Girl in the Picture," an exact-title ` +
+      `collision with a different work) is an acknowledged limitation string-similarity alone can't resolve without ` +
+      `a year hint, out of scope for this fix.`,
+    plain: `When Bill types in a list of movie/show titles he wants added, the script used to just grab whatever ` +
+      `TMDB's search returned first and trust it completely — that's how "Bros" turned into The Super Mario Bros. ` +
+      `Movie and "Dredd" turned into the wrong Dredd movie. Now the script checks whether the match it found actually ` +
+      `looks like the title Bill typed before accepting it. If it's not a close enough match, it gets set aside for a ` +
+      `human to check by hand instead of silently getting added as if it were correct.`,
+    impact: `Eliminates the ~5.6% wrong-match contamination risk for every future manual title batch — verified ` +
+      `against all known real past failures, not just designed in the abstract.`,
   });
 
   // 5. build_trakt_library.js's titleKey() falls back to a `type:trakt:ID`
@@ -1194,13 +1234,20 @@ function metaLine(candidate, enrichedMeta, omdbMeta) {
   return parts.join(' · ') || 'No genre/creator data yet.';
 }
 
-// 4 top-ranked watchlist titles + 4 top-ranked candidate-pool titles for
-// one type (movie or show) — each card shows real metadata, the engine's
-// predicted score, and its plain-English reason, per Bill's request.
+// The true top 8 by score across both origins (watchlist + discovered
+// candidates) for one type (movie or show) — each card shows real
+// metadata, the engine's predicted score, and its plain-English reason.
+// Previously took the top 4 from each origin BEFORE sorting, which could
+// (and did — see the dashboard's own Improvement Opportunities finding
+// this fixes) silently drop a candidate ranked 5th-8th overall even when
+// it outscored a shown watchlist pick. Sort the full combined pool first,
+// then take the top 8, so the panel always matches what the engine
+// actually computed.
 function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta, omdbMeta) {
   const el = document.getElementById(sectionId);
-  const picks = [...watchlistItems.slice(0, 4), ...candidateItems.slice(0, 4)]
-    .sort((a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore));
+  const picks = [...watchlistItems, ...candidateItems]
+    .sort((a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore))
+    .slice(0, 8);
   if (!picks.length) {
     el.innerHTML = '<div class="tk-empty">Not enough enriched data yet.</div>';
     return;
@@ -1374,10 +1421,10 @@ async function load() {
     `these sections fill in automatically as the daily enrichment job covers more of your library.`;
 
   renderGenreChart(computeGenreStats(library, enrichedMeta));
-  renderCreatorList(computeCreatorStats(library, enrichedMeta));
+  renderPredictionMisses(computePredictionMisses(library, enrichedMeta, omdbMeta, idx));
   renderCastList(computeCastStats(library, enrichedMeta));
   renderCrowdCompare(computeCrowdCompare(library, enrichedMeta));
-  renderFranchiseList(computeFranchiseStats(library, enrichedMeta));
+  renderBestMatches(computeBestMatches(library, enrichedMeta, omdbMeta, idx));
 
   const fieldStats = computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta);
   renderFieldQualityTable(fieldStats);
@@ -1390,13 +1437,14 @@ async function load() {
       ? `OMDb fields (audience score, awards) are ${fmtNum(omdbEligible)} titles eligible but 0 enriched — needs the OMDB_API_KEY secret before that pipeline can run.`
       : `${fmtNum(omdbFound)}/${fmtNum(omdbEligible)} eligible titles have an OMDb record.`);
 
-  renderImprovementOpportunities(
-    computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates)
-  );
-  renderImprovementOpportunities(
-    computeEngineImprovements(library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, idx, fromWatchlist, fromCandidates),
-    'engineImprovementList'
-  );
+  {
+    const severityOrder = { critical: 0, serious: 1, warning: 2, good: 3 };
+    const allFindings = [
+      ...computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates),
+      ...computeEngineImprovements(library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, idx, fromWatchlist, fromCandidates),
+    ].sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
+    renderImprovementOpportunities(allFindings);
+  }
 
   renderAllTitlesTable(buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx));
 }

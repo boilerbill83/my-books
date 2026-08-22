@@ -242,9 +242,9 @@
             <div class="tk-chart-wrap" id="genreChart"></div>
           </div>
           <div class="tk-card">
-            <div class="tk-card-heading">Directors &amp; Creators You Love</div>
-            <div class="tk-card-note">Average rating per director/creator (min. 2 titles).</div>
-            <div class="tk-list" id="creatorList"></div>
+            <div class="tk-card-heading">Biggest Prediction Misses</div>
+            <div class="tk-card-note">Where the engine's predicted score disagrees most with your actual rating, among watched titles — an honest look at where the model is wrong, not just where it's right.</div>
+            <div class="tk-list" id="predictionMissesList"></div>
           </div>
         </div>
 
@@ -261,10 +261,10 @@
           </div>
         </div>
 
-        <div class="tk-card" id="franchiseCard" style="display:none;">
-          <div class="tk-card-heading">Franchises You're Following</div>
-          <div class="tk-card-note">Collections with 2+ entries watched.</div>
-          <div class="tk-list" id="franchiseList"></div>
+        <div class="tk-card">
+          <div class="tk-card-heading">Best Matches</div>
+          <div class="tk-card-note">Watched titles where the engine's predicted score AND your actual rating both agree it's a great fit (predicted ≥ 70, rated ≥ 8/10) — the real evidence for "the engine gets it right."</div>
+          <div class="tk-list" id="bestMatchesList"></div>
         </div>
 
         <div class="tk-card">
@@ -275,14 +275,8 @@
 
         <div class="tk-card">
           <div class="tk-card-heading">🛠️ Improvement Opportunities</div>
-          <div class="tk-card-note">Findings from a full code review of everything under <code>trakt/</code>, ranked by real impact on data quality and recommendation accuracy — each verified against live data, not guessed.</div>
+          <div class="tk-card-note">Findings from a full code review of everything under <code>trakt/</code> plus real gaps in the scoring model itself — code-correctness bugs and unused/missing signals together, ranked by real impact on data quality and recommendation accuracy, the same kind of iterative refinement history <a href="../index.html" target="_blank">BBRE</a>, the book engine, went through across 40+ sessions. Each verified against live data, not guessed.</div>
           <div id="improvementList"></div>
-        </div>
-
-        <div class="tk-card">
-          <div class="tk-card-heading">🎯 Recommendation Engine Improvements</div>
-          <div class="tk-card-note">Ten ways to make BMTRE's actual predictions better — not code bugs, but real gaps in the scoring model itself (unused signals, missing validation, unhandled ranking behavior) — the same kind of iterative refinement history <a href="../index.html" target="_blank">BBRE</a>, the book engine, went through across 40+ sessions. Ranked by real impact, verified against live data where possible.</div>
-          <div id="engineImprovementList"></div>
         </div>
 
         <div class="tk-card" style="margin-bottom: 24px;">

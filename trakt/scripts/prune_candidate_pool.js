@@ -23,7 +23,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { buildIndexes, matchScore, hydrateTitle } from '../engine.js';
+import { buildIndexes, matchScore, hydrateTitle, isPreMillenniumMovie } from '../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -45,10 +45,15 @@ const feedback = readJSON(path.join(DATA_DIR, 'feedbackData.json'), { interactio
 const idx = buildIndexes(library, enrichedMeta, feedback);
 const watchlistKeys = new Set((watchlist.titles || []).map(c => c.titleKey));
 
-// Same re-edit / non-English exclusions rankAll() applies to candidates
-// (never to the watchlist - that's Bill's own real data) - a candidate
-// that would never surface anyway shouldn't occupy a cap slot or survive
-// pruning on a technicality.
+// Same re-edit / non-English / pre-2000-movie exclusions rankAll() applies
+// to candidates (never to the watchlist - that's Bill's own real data) -
+// a candidate that would never surface anyway shouldn't occupy a cap slot.
+// Previously defined but never actually called here (a real bug: 16 of
+// 200 pool slots were re-edits/non-English titles rankAll() would filter
+// out anyway) - now folded into the same "stale, remove outright" bucket
+// as already-watched/watchlisted, since a title that can never surface
+// deserves the same disposition as one that's gone stale for any other
+// reason: gone, not just disqualified from the cap count.
 const isReEdit = c => (enrichedMeta[c.titleKey]?.keywords || []).includes('edited from film');
 const isNonEnglish = c => {
   const lang = enrichedMeta[c.titleKey]?.originalLanguage;
@@ -58,7 +63,8 @@ const isNonEnglish = c => {
 const stale = [];
 const live = [];
 for (const c of candidatePool.titles || []) {
-  if (idx.excluded.has(c.titleKey) || watchlistKeys.has(c.titleKey) || idx.watched.has(c.titleKey)) {
+  if (idx.excluded.has(c.titleKey) || watchlistKeys.has(c.titleKey) || idx.watched.has(c.titleKey)
+      || isReEdit(c) || isNonEnglish(c) || isPreMillenniumMovie(c, enrichedMeta)) {
     stale.push(c);
     continue;
   }

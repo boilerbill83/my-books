@@ -264,13 +264,56 @@ function omdbSignal(omdbEntry) {
   return score;
 }
 
-function recencyBonus(year, nowYear = new Date().getFullYear()) {
+// Recency curves, split by type (Bill's explicit request: "strongly favor
+// movies from the last 5-10 years, nothing before 2000" — plain
+// recencyBonus() using one universal curve for both types was also
+// flagged as a real gap in its own right, see the dashboard's Engine
+// Improvements finding this fixes as a side effect). Movies get a much
+// steeper curve than before (old max swing was +3; this one runs +8 to
+// -15) since "strongly favor" implies a real behavioral shift, not a
+// nudge — the actual pre-2000 exclusion is enforced separately as a hard
+// candidate filter (see MOVIE_MIN_YEAR below); this curve's very negative
+// tail is belt-and-suspenders for watchlist movies, which are never
+// hard-excluded (Bill's own explicit picks, same precedent as isReEdit/
+// isNonEnglish never applying to the watchlist).
+function recencyBonusMovie(year, nowYear) {
+  if (!year) return 0;
+  const age = nowYear - year;
+  if (age <= 5)  return 8;
+  if (age <= 10) return 6;
+  if (age <= 15) return 1;
+  if (age <= 20) return -4;
+  if (age <= 26) return -9;  // approaching year 2000
+  return -15;                // pre-2000
+}
+
+// Shows keep the original, gentler curve — Bill's ask was specifically
+// about movies ("strongly favor movies from the last 5-10 years"), and a
+// show's relevance doesn't age the same way a movie's release date does
+// (an old show can still be "current" via new seasons) — a real, separate
+// gap already flagged, not addressed here since it wasn't what was asked.
+function recencyBonusShow(year, nowYear) {
   if (!year) return 0;
   const age = nowYear - year;
   if (age <= 1) return 3;
   if (age <= 3) return 2;
   if (age <= 6) return 1;
   return 0;
+}
+
+function recencyBonus(year, type, nowYear = new Date().getFullYear()) {
+  return type === 'movie' ? recencyBonusMovie(year, nowYear) : recencyBonusShow(year, nowYear);
+}
+
+// Hard cutoff for discovered/manually-resolved movie candidates — "nothing
+// before 2000," applied the same way isReEdit/isNonEnglish are: never to
+// the watchlist (Bill's own real picks aren't censored, they're just
+// ranked honestly low by the steep recencyBonusMovie tail above).
+const MOVIE_MIN_YEAR = 2000;
+export function isPreMillenniumMovie(candidate, enrichedMeta) {
+  if (candidate.type !== 'movie') return false;
+  const year = candidate.year || enrichedMeta[candidate.titleKey]?.year;
+  return year != null && year < MOVIE_MIN_YEAR;
 }
 
 export function matchScore(candidate, idx, enrichedMeta, omdbMeta = {}) {
@@ -310,7 +353,7 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
     score += (meta.voteAverage - COMMUNITY_NEUTRAL) * COMMUNITY_WEIGHT;
   }
   score += voteCountBonus(meta?.voteCount);
-  score += recencyBonus(candidate.year);
+  score += recencyBonus(candidate.year, candidate.type);
   score += omdbSignal(omdbEntry);
 
   return { score, forwardMatches, creator };
@@ -472,7 +515,8 @@ export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedbac
   // title by titleKey, so this reuses it rather than a second lookup.
   const fromCandidates = (candidatePool.titles || [])
     .filter(c => !idx.excluded.has(c.titleKey) && !watchlistKeys.has(c.titleKey)
-      && !idx.watched.has(c.titleKey) && !isReEdit(c) && !isNonEnglish(c))
+      && !idx.watched.has(c.titleKey) && !isReEdit(c) && !isNonEnglish(c)
+      && !isPreMillenniumMovie(c, enrichedMeta))
     .map(c => scoreOne(c, 'candidate'))
     .sort(byScore);
 
