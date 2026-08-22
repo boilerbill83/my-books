@@ -181,6 +181,13 @@
       .tk-imp-section-label:first-of-type { margin-top: 0; }
       .tk-imp-technical, .tk-imp-impact { font-size: 0.85rem; line-height: 1.55; }
       .tk-imp-plain { font-size: 0.85rem; line-height: 1.55; background: var(--bg-subtle); border-radius: 8px; padding: 10px 12px; }
+      .tk-imp-ratings { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 10px; }
+      .tk-imp-rating { min-width: 0; }
+      .tk-imp-rating-label { font-size: 0.68rem; color: var(--text-muted); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .tk-imp-rating-track { height: 5px; border-radius: 3px; background: var(--bg-subtle); overflow: hidden; }
+      .tk-imp-rating-fill { height: 100%; border-radius: 3px; }
+      .tk-imp-rating-num { font-size: 0.7rem; font-weight: 600; color: var(--text); margin-top: 2px; }
+      @media (max-width: 640px) { .tk-imp-ratings { grid-template-columns: repeat(2, 1fr); } }
     </style>
   </head>
   <body>

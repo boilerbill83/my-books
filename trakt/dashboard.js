@@ -570,6 +570,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     findings.push({
       id: 'pool-cap-waste',
       severity: wasted.length > 0 ? 'serious' : 'good',
+      ratings: { ease: 9, dataQuality: 6, recEngine: 5, ui: 2 },
       title: 'Candidate pool cap counts titles that can never actually be recommended',
       technical: wasted.length > 0
         ? `<code>prune_candidate_pool.js</code> defines <code>isReEdit()</code>/<code>isNonEnglish()</code>, ` +
@@ -623,6 +624,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     findings.push({
       id: 'rec-panel-top8',
       severity: totalMissed > 0 ? 'critical' : 'good',
+      ratings: { ease: 9, dataQuality: 2, recEngine: 9, ui: 8 },
       title: '"You\'ll Love" panels don\'t actually show the true top 8 by score',
       technical: totalMissed > 0
         ? `<code>renderRecPanel()</code> builds each panel from <code>watchlistItems.slice(0, 4)</code> + ` +
@@ -658,6 +660,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
   findings.push({
     id: 'omdb-error-diagnostics',
     severity: 'warning',
+    ratings: { ease: 9, dataQuality: 3, recEngine: 1, ui: 1 },
     title: 'enrich_omdb.py still throws away the one piece of information that would diagnose a dead key',
     technical: `<code>trakt/enrich_tmdb.py</code>'s <code>get_json()</code> was fixed this session to capture and ` +
       `surface TMDB's own error-response body (not just the bare HTTP status) after a real incident where a bare ` +
@@ -686,6 +689,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
   findings.push({
     id: 'resolve-titles-disambiguation',
     severity: 'good',
+    ratings: { ease: 6, dataQuality: 7, recEngine: 5, ui: 1 },
     title: 'Manual title resolution has no confidence check, and has already produced wrong matches once',
     technical: `Fixed this session: <code>trakt/resolve_titles.py</code> now runs <code>is_confident_match()</code> ` +
       `on every TMDB search result before adding it to <code>candidatePool.json</code> — an exact match (after ` +
@@ -717,6 +721,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     findings.push({
       id: 'trakt-fallback-titlekey',
       severity: trakFallback.length > 0 ? 'critical' : 'warning',
+      ratings: { ease: 6, dataQuality: 3, recEngine: 2, ui: 1 },
       title: 'A title with no TMDB id gets a titleKey format the rest of the pipeline can\'t recognize',
       technical: `<code>build_trakt_library.js</code>'s local <code>titleKey(type, ids)</code> falls back to ` +
         `<code>\`\${type}:trakt:\${ids.trakt}\`</code> when a title has a Trakt id but no TMDB id. Every other part ` +
@@ -770,6 +775,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   findings.push({
     id: 'no-eval-harness',
     severity: 'critical',
+    ratings: { ease: 3, dataQuality: 2, recEngine: 9, ui: 1 },
     title: 'BMTRE has no evaluation harness — every scoring change is unvalidated',
     technical: `The book engine's <code>scripts/eval.js</code> computes leave-one-out precision@10/25/50 and MAE ` +
       `against Bill's actual completed ratings, and CLAUDE.md requires running it before and after every engine ` +
@@ -803,6 +809,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'no-diversity-reranking',
       severity: 'serious',
+      ratings: { ease: 4, dataQuality: 1, recEngine: 8, ui: 6 },
       title: 'No diversity re-ranking — the top of the show list is a genre monoculture',
       technical: `<code>rankAll()</code>/<code>rankRecommendations()</code> sort purely by <code>bmtreScore</code> ` +
         `with no diversity or anti-clustering pass — the book engine's <code>bbreEngine.js</code> runs an author-` +
@@ -827,6 +834,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'cast-signal-unused',
       severity: 'serious',
+      ratings: { ease: 6, dataQuality: 2, recEngine: 6, ui: 3 },
       title: 'Actor affinity is fully cached and completely unused in scoring',
       technical: `<code>enrichedMetadata.json</code>'s <code>topCast</code> field (top 5 billed actors per title) is ` +
         `${((withCast / allEnriched.length) * 100).toFixed(1)}% populated (${withCast} of ${allEnriched.length} ` +
@@ -850,6 +858,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'franchise-signal-unused',
       severity: 'serious',
+      ratings: { ease: 6, dataQuality: 2, recEngine: 7, ui: 3 },
       title: 'Franchise/sequel signal is cached, real, and completely unused',
       technical: `<code>belongsToCollection</code> is cached on 111 of ${allEnriched.length} enriched titles but ` +
         `never contributes to <code>matchScore()</code> — CLAUDE.md flags it as "cached but not yet a scoring ` +
@@ -874,6 +883,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'dismissal-generalization',
       severity: 'serious',
+      ratings: { ease: 4, dataQuality: 3, recEngine: 6, ui: 2 },
       title: 'Dismissing a title teaches the engine nothing about similar titles',
       technical: `<code>buildIndexes()</code>'s <code>excluded</code> set is a flat list of exact titleKeys — ` +
         `dismissing a title removes only that one title from future recommendations. The book engine's ` +
@@ -902,6 +912,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   findings.push({
     id: 'plays-field-semantic-trap',
     severity: 'serious',
+    ratings: { ease: 8, dataQuality: 1, recEngine: 1, ui: 1 },
     title: '`plays` means a different thing for movies vs. shows — a real trap for a future rewatch signal',
     technical: `Checked before assuming a "rewatch strength" signal would be a good addition, and the naive version ` +
       `of that idea doesn't hold up: for shows, <code>plays</code> is essentially identical to ` +
@@ -930,6 +941,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'keyword-thematic-signal-unused',
       severity: 'serious',
+      ratings: { ease: 5, dataQuality: 3, recEngine: 5, ui: 2 },
       title: 'Free-form keywords are well-populated but only ever used for one narrow filter',
       technical: `<code>keywords</code> is ${((withKeywords / allEnriched.length) * 100).toFixed(1)}% populated ` +
         `(${withKeywords} of ${allEnriched.length}) but the only place it's read anywhere in the codebase is ` +
@@ -957,6 +969,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'genre-tiers-unvalidated',
       severity: 'warning',
+      ratings: { ease: 8, dataQuality: 2, recEngine: 3, ui: 1 },
       title: 'Genre bonus tiers were promised a recalibration that never happened',
       technical: `<code>genreBonus()</code>'s tier thresholds (≥60/35/18/6/1) carry their own code comment: ` +
         `"provisional...should be recalibrated once real enrichment data exists." That data has existed for weeks. ` +
@@ -984,6 +997,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'dropped-show-signal',
       severity: 'warning',
+      ratings: { ease: 4, dataQuality: 2, recEngine: 3, ui: 2 },
       title: 'No signal for shows Bill started and abandoned',
       technical: `<code>completionStatus</code> (caught-up/in-progress/unknown) is computed in ` +
         `<code>build_trakt_library.js</code> but deliberately left informational-only, per CLAUDE.md's own caution ` +
@@ -1007,17 +1021,20 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   findings.push({
     id: 'recency-curve-not-split-by-type',
     severity: 'warning',
+    ratings: { ease: 7, dataQuality: 2, recEngine: 4, ui: 1 },
     title: 'Recency scoring treats a movie and an ongoing show identically',
-    technical: `<code>recencyBonus(year)</code> applies one universal age-bucket curve (≤1/≤3/≤6 years) regardless ` +
-      `of <code>candidate.type</code> — CLAUDE.md's own BMTRE port table already flags this: "Same shape, movie/` +
-      `show curves not yet split independently." A movie's relevant "freshness" date is a single release; a show's ` +
-      `is fuzzier (an old show with a new season airing is still current in a way <code>year</code> alone doesn't ` +
-      `capture, and <code>year</code> here is the title's original air year, not its most recent activity).`,
-    plain: `A movie from 2015 and a TV show that started in 2015 but might still be airing new episodes today get ` +
-      `scored as equally "old" by the recency signal, even though the show could be very much a current, active ` +
-      `thing to watch. The recency bonus doesn't know the difference.`,
-    impact: `Modest — recency is already a small signal (max 3 points) — but a real, easy-to-fix mismatch between ` +
-      `what the code measures and what "recent" actually means for an ongoing show.`,
+    technical: `PARTIALLY FIXED this session: <code>recencyBonus(year)</code> used to apply one universal age-` +
+      `bucket curve regardless of <code>candidate.type</code>; now split into <code>recencyBonusMovie()</code> ` +
+      `(a much steeper curve, plus a hard pre-2000 exclusion for discovered movie candidates) and ` +
+      `<code>recencyBonusShow()</code> (unchanged gentler shape), per Bill's explicit "favor recent movies" ` +
+      `request. What's still unaddressed: <code>recencyBonusShow()</code> still keys off <code>year</code> — the ` +
+      `title's original air year — not its most recent activity, so an old show with a new season still airing ` +
+      `today scores exactly as "old" as one that ended years ago.`,
+    plain: `Movies now get scored on how recent they are much more strongly, which was fixed this session. Shows ` +
+      `still don't distinguish "started long ago but still has new episodes coming out" from "started long ago and ` +
+      `ended long ago" — both look equally old to the recency signal.`,
+    impact: `Movie side resolved and verified live (top movie picks are all 2017+ now). Show side is a smaller, ` +
+      `real remaining gap — recency is a modest signal to begin with (max a few points).`,
   });
 
   // 11. Cover images: TMDB's posterPath is already captured by
@@ -1030,6 +1047,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'cover-images-unused',
       severity: 'warning',
+      ratings: { ease: 9, dataQuality: 1, recEngine: 1, ui: 9 },
       title: 'Cover images are 99% populated and cached but never shown anywhere',
       technical: `<code>enrich_tmdb.py</code> already captures TMDB's <code>poster_path</code> as ` +
         `<code>posterPath</code> on every enriched title (${withPoster} of ${allEnriched.length}, ` +
@@ -1054,6 +1072,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'similar-titles-field-missing',
       severity: 'warning',
+      ratings: { ease: 7, dataQuality: 5, recEngine: 3, ui: 4 },
       title: 'similarToTitles (resolved names) doesn\'t exist — only raw ids do',
       technical: `<code>similarToIds</code>/<code>recommendedIds</code> are 100% populated (${withIds} of ` +
         `${allEnriched.length}) and already power <code>matchScore()</code>'s forward/reverse match signal — but ` +
@@ -1077,6 +1096,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   findings.push({
     id: 'similar-directors-field-missing',
     severity: 'warning',
+    ratings: { ease: 5, dataQuality: 4, recEngine: 6, ui: 2 },
     title: 'No similarToDirectors field — the book side\'s similarToAuthors equivalent doesn\'t exist',
     technical: `The book engine's <code>similarToAuthors</code> bridges a candidate to loved authors directly. ` +
       `BMTRE has no equivalent field — <code>getCreator()</code> reads a title's own director/creator, but ` +
@@ -1099,14 +1119,15 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   // would mean an LLM-tagging pass against real descriptions, the same
   // path tag_with_haiku.py took for the book side's tones (Session 16) -
   // a real, nontrivial project, not a quick field addition.
-  for (const [id, label, bookAnalog] of [
-    ['categories-field-missing', 'categories', 'Google Books\' free-form category strings'],
-    ['themes-field-missing', 'themes', 'the 37-value canonical theme vocabulary'],
-    ['tones-field-missing', 'tones', 'the 24-value canonical tone vocabulary (craft/mood/pacing, Session 16)'],
+  for (const [id, label, bookAnalog, ratings] of [
+    ['categories-field-missing', 'categories', 'Google Books\' free-form category strings', { ease: 2, dataQuality: 6, recEngine: 5, ui: 3 }],
+    ['themes-field-missing', 'themes', 'the 37-value canonical theme vocabulary', { ease: 2, dataQuality: 7, recEngine: 7, ui: 3 }],
+    ['tones-field-missing', 'tones', 'the 24-value canonical tone vocabulary (craft/mood/pacing, Session 16)', { ease: 2, dataQuality: 6, recEngine: 6, ui: 3 }],
   ]) {
     findings.push({
       id,
       severity: 'warning',
+      ratings,
       title: `No ${label} field — nothing beneath TMDB's ~19-27 blunt genre values`,
       technical: `The book side's ${bookAnalog} give BBRE a much finer-grained subject/craft signal than genre ` +
         `alone. BMTRE has no equivalent ${label} field, and — unlike similarToTitles/similarToDirectors above — ` +
@@ -1139,6 +1160,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'genre-subgenre-split-missing',
       severity: 'warning',
+      ratings: { ease: 4, dataQuality: 5, recEngine: 5, ui: 3 },
       title: 'Genre has no subgenre split — one TMDB tag is doing all the work',
       technical: `TMDB's genre taxonomy is a flat ~19-27 value list per title with no primary/secondary ` +
         `distinction. Real concentration in this dataset: <code>${top ? top[0] : 'n/a'}</code> alone covers ` +
@@ -1169,6 +1191,34 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList') 
     warning: { cls: 'tk-status-warning', icon: '⚠', label: 'Low impact' },
     good: { cls: 'tk-status-good', icon: '✓', label: 'Resolved' },
   };
+  // 1-10 scale on 4 independent axes (ease of implementation, data
+  // quality improvement, recommendation engine improvement, UI
+  // improvement) — a judgment call grounded in each finding's own
+  // technical/impact writeup above, not a further live computation.
+  // Rendered as small labeled meters (never color alone — a number is
+  // always printed) so the four axes stay scannable without reading
+  // every paragraph, the same discipline the severity pill already uses.
+  const ratingMeta = [
+    { key: 'ease', label: 'Ease' },
+    { key: 'dataQuality', label: 'Data quality' },
+    { key: 'recEngine', label: 'Rec. engine' },
+    { key: 'ui', label: 'UI' },
+  ];
+  const ratingColor = n => n >= 7 ? 'var(--status-good)' : n >= 4 ? 'var(--status-warning)' : 'var(--status-critical)';
+  const renderRatings = ratings => {
+    if (!ratings) return '';
+    return `
+      <div class="tk-imp-ratings">
+        ${ratingMeta.map(r => `
+          <div class="tk-imp-rating">
+            <div class="tk-imp-rating-label">${r.label}</div>
+            <div class="tk-imp-rating-track"><div class="tk-imp-rating-fill" style="width:${ratings[r.key] * 10}%; background:${ratingColor(ratings[r.key])};"></div></div>
+            <div class="tk-imp-rating-num">${ratings[r.key]}/10</div>
+          </div>
+        `).join('')}
+      </div>`;
+  };
+
   el.innerHTML = findings.map(f => {
     const sev = sevMeta[f.severity];
     return `
@@ -1177,6 +1227,7 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList') 
           <div class="tk-imp-title">${esc(f.title)}</div>
           <span class="tk-status-pill ${sev.cls}">${sev.icon} ${sev.label}</span>
         </div>
+        ${renderRatings(f.ratings)}
         <div class="tk-imp-section-label">Technical description</div>
         <div class="tk-imp-technical">${f.technical}</div>
         <div class="tk-imp-section-label">In plain English</div>
