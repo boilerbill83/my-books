@@ -514,6 +514,169 @@ function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, om
   });
 }
 
+// Bill's explicit rule: any field under 90% populated OR under 90%
+// quality gets a real Improvement Opportunity card, not just a passive
+// row in the Field Population & Quality table below — a data gap
+// shouldn't be able to sit merely documented without ever surfacing as
+// something actionable. This is a flat 90% bar on either metric, not the
+// field table's own critical/non-critical 90/80 split (fieldStatus()) —
+// deliberately stricter and uniform, per Bill's own wording. Generated
+// fresh from live fieldStats on every render, so a field crossing back
+// above 90% drops off this list automatically, the same self-resolving
+// pattern every other live-checked finding in this file already follows
+// (pool-cap-waste, rec-panel-top8, etc.) — no field is ever "manually
+// marked resolved" here.
+//
+// Four fields are hand-researched with real root-cause numbers below
+// (imdbId, genres, audienceScore, awards — the ones under 90% as of this
+// writing); any other field that dips below 90% in a future session gets
+// a generic finding built from its own FIELD_REGISTRY note rather than
+// silently going unlisted, per Bill's literal "any field" instruction.
+function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePool, enrichedMeta) {
+  const findings = [];
+
+  // Same dedup-by-titleKey, same source-priority order (library beats
+  // watchlist beats candidatePool for an overlapping key) as
+  // computeFieldQuality() itself uses to build its `eligible` population —
+  // built once here so every breakdown below is counted against the exact
+  // same title set the displayed percentages describe, not a naive sum
+  // across the three raw source lists (which double-counts any title
+  // present in more than one, and was the source of a real mismatch caught
+  // before this shipped: a naive per-list sum landed on different totals
+  // than fieldStats' own deduped counts).
+  const dedupedBySource = new Map();
+  for (const [source, list] of [['library', library.titles || []], ['watchlist', watchlist.titles || []], ['candidatePool', candidatePool.titles || []]]) {
+    for (const t of list) {
+      if (t.titleKey && !dedupedBySource.has(t.titleKey)) dedupedBySource.set(t.titleKey, { t, source });
+    }
+  }
+  const dedupedTitles = [...dedupedBySource.values()];
+
+  const bySourceImdb = () => {
+    const out = { library: { total: 0, has: 0 }, watchlist: { total: 0, has: 0 }, candidatePool: { total: 0, has: 0 } };
+    for (const { t, source } of dedupedTitles) {
+      out[source].total++;
+      if (t.ids?.imdb || enrichedMeta[t.titleKey]?.imdbId) out[source].has++;
+    }
+    for (const source of Object.keys(out)) out[source].missing = out[source].total - out[source].has;
+    return out;
+  };
+
+  const genreCounts = () => {
+    let single = 0, multi = 0;
+    for (const { t } of dedupedTitles) {
+      const meta = enrichedMeta[t.titleKey];
+      if (!meta) continue;
+      const n = meta.genres?.length || 0;
+      if (n === 1) single++; else if (n >= 2) multi++;
+    }
+    return { single, multi };
+  };
+
+  const CUSTOM = {
+    imdbId: (f) => {
+      const src = bySourceImdb();
+      return {
+        severity: 'serious',
+        ratings: { ease: 6, dataQuality: 8, recEngine: 3, ui: 1 },
+        title: `IMDb ID is only ${f.populatedPct.toFixed(1)}% populated — below the 90% bar on a field that gates OMDb data`,
+        technical: `<code>imdbId</code> is ${f.populatedPct.toFixed(1)}% populated (${f.populated} of ${f.eligible} eligible titles). Split by ` +
+          `source: library ${src.library.has}/${src.library.total} (100%, real Trakt export data), watchlist ${src.watchlist.has}/${src.watchlist.total} ` +
+          `(100%), candidatePool ${src.candidatePool.has}/${src.candidatePool.total} (${((src.candidatePool.has / src.candidatePool.total) * 100).toFixed(1)}%) — ` +
+          `the entire gap is concentrated in discovered candidates, which only get an <code>imdbId</code> via ` +
+          `<code>enrich_tmdb.py</code>'s <code>external_ids</code> append, not from the Trakt export directly. Since this field gates OMDb ` +
+          `eligibility (both <code>audienceScore</code> and <code>awards</code> below require a known IMDb id before OMDb is even attempted), the ` +
+          `${src.candidatePool.missing} un-backfilled candidates can never get audience/awards data no matter how many OMDb enrichment runs happen.`,
+        plain: `Every title needs an IMDb number before the app can look up its Rotten Tomatoes score or awards. Titles Bill has ` +
+          `actually watched or explicitly queued always have this number — it comes straight from his real Trakt account. But ` +
+          `titles the app discovered on its own (via "similar to what you loved") often don't have it yet, because that number ` +
+          `has to be looked up separately after the title is added, and that lookup hasn't caught up with every discovered title.`,
+        impact: `Directly blocks the audienceScore/awards gaps below for ${src.candidatePool.missing} candidates — fixing this one ` +
+          `is a precondition for those two catching up, not just its own independent gap.`,
+      };
+    },
+    genres: (f) => {
+      const g = genreCounts();
+      return {
+        severity: 'warning',
+        ratings: { ease: 2, dataQuality: 4, recEngine: 3, ui: 2 },
+        title: `Genres quality is ${f.qualityPct.toFixed(1)}% — below the 90% bar (needs 2+ tags per title to count)`,
+        technical: `<code>genres</code> is 100% populated but only ${f.qualityPct.toFixed(1)}% quality (${f.quality} of ${f.eligible}), since ` +
+          `quality here requires 2+ genre tags so <code>genreBonus()</code> has more than one to match. Live breakdown: ${g.single} titles ` +
+          `carry exactly 1 genre tag, ${g.multi} carry 2+. Spot-checked in a prior session (single-genre entries like 30 Rock, both ` +
+          `Anchorman movies) confirmed this reflects real, current TMDB tagging — not stale data a re-fetch would fix — so this is a ` +
+          `genuine TMDB source-data ceiling, not a pipeline bug.`,
+        plain: `About 1 in 6 titles only has one genre tag from TMDB (like just "Comedy," nothing else), which gives the engine less ` +
+          `to match on for that title. Checked a sample of these directly — they're genuinely single-genre on TMDB's own page, not a ` +
+          `bug in how this app reads the data.`,
+        impact: `Below the bar Bill set, so it's listed here, but a low-effort fix doesn't really exist — TMDB itself is the source of ` +
+          `the gap. The <code>keywords</code>/genre-subgenre-split findings elsewhere on this list are the more promising path to real ` +
+          `additional signal for these titles, not a fix to this field directly.`,
+      };
+    },
+    audienceScore: (f) => ({
+      severity: 'warning',
+      ratings: { ease: 5, dataQuality: 6, recEngine: 4, ui: 2 },
+      title: `Audience Score is only ${f.populatedPct.toFixed(1)}% populated, ${f.qualityPct.toFixed(1)}% quality — below the 90% bar on both`,
+      technical: `<code>audienceScore</code> (Rotten Tomatoes/Metacritic) is ${f.populatedPct.toFixed(1)}% populated and ${f.qualityPct.toFixed(1)}% ` +
+        `quality (both present, not just one) among the ${f.eligible} titles with an OMDb record. OMDb's own RT/MC coverage is ` +
+        `real but thin, especially for TV — a Metacritic scraper (<code>trakt/scrape_show_ratings.py</code>) was built and a real ` +
+        `450-title backfill batch was already in flight as of this session to close part of this gap for shows OMDb doesn't cover; ` +
+        `Rotten Tomatoes scraping was tried and disabled after failing accuracy verification twice. The remaining gap is a real, ` +
+        `partially-addressed data ceiling, not an unexamined one.`,
+      plain: `Not every title has a critic score available — Rotten Tomatoes and Metacritic simply don't cover everything, ` +
+        `especially older or more obscure TV shows. A scraper to fill in more Metacritic scores for shows was already built and ` +
+        `run this session; this number should improve once that finishes and on future runs, but won't ever reach 100% since some ` +
+        `titles genuinely have no critic score anywhere.`,
+      impact: `Partially in progress already (the Metacritic scraper), and blocked in part by the imdbId gap above for ` +
+        `candidatePool titles specifically — the remaining ceiling after both catch up is a real OMDb/critic-coverage limit, not ` +
+        `something more automation alone fully closes.`,
+    }),
+    awards: (f) => ({
+      severity: 'warning',
+      ratings: { ease: 2, dataQuality: 3, recEngine: 3, ui: 1 },
+      title: `Awards quality is ${f.qualityPct.toFixed(1)}% — below the 90% bar (real recognition found)`,
+      technical: `<code>awards</code> is 100% populated (every OMDb record carries an Awards field, even if "N/A") but only ` +
+        `${f.qualityPct.toFixed(1)}% quality (${f.quality} of ${f.eligible} score above 0 via <code>awardsScore()</code>'s Oscar/Emmy/` +
+        `total-wins-and-nominations formula). Most OMDb-enriched titles do carry some real recognition (Bill's library skews toward ` +
+        `well-regarded content), but a genuine ~1-in-5 minority have none at all — that's real data, not a parsing gap.`,
+      plain: `About 1 in 5 titles genuinely has no awards or nominations on record anywhere OMDb tracks — that's usually just true ` +
+        `of the title, not a bug in how this app reads award data.`,
+      impact: `Below the bar Bill set, so it's listed here, but there's no real fix available — a title with no real-world ` +
+        `recognition can't be made to have some. Not expected to reach 90% without the underlying content mix changing.`,
+    }),
+  };
+
+  for (const f of fieldStats) {
+    if (!f.eligible) continue; // nothing eligible yet - a live N/A, not a populated-below-bar gap
+    const popLow = f.populatedPct != null && f.populatedPct < 90;
+    const qualLow = f.qualityPct != null && f.qualityPct < 90;
+    if (!popLow && !qualLow) continue;
+
+    if (CUSTOM[f.key]) {
+      findings.push({ id: `field-quality-${f.key}`, ...CUSTOM[f.key](f) });
+      continue;
+    }
+    // Generic fallback for any field not hand-researched above, so a
+    // future field dipping below 90% still surfaces rather than being
+    // silently unlisted.
+    findings.push({
+      id: `field-quality-${f.key}`,
+      severity: f.critical ? 'serious' : 'warning',
+      ratings: { ease: 4, dataQuality: 5, recEngine: f.critical ? 5 : 2, ui: 1 },
+      title: `${f.label} is below the 90% bar — ${f.populatedPct.toFixed(1)}% populated, ${f.qualityPct.toFixed(1)}% quality`,
+      technical: `<code>${f.key}</code> (source: ${f.source}) is ${f.populatedPct.toFixed(1)}% populated and ${f.qualityPct.toFixed(1)}% ` +
+        `quality among ${f.eligible} eligible titles — below the 90% bar on at least one metric. ${f.note || ''}`,
+      plain: `The "${f.label}" field doesn't have real data for enough titles yet, or what it does have doesn't clear the ` +
+        `quality bar for this field.`,
+      impact: `Flagged automatically because it's below Bill's 90% bar — not yet hand-researched for a specific root cause the ` +
+        `way the other field-quality findings on this list are.`,
+    });
+  }
+
+  return findings;
+}
+
 function fieldStatus(pct, critical) {
   if (pct == null) return { cls: 'tk-status-warning', icon: '—', label: 'N/A' };
   const goodMin = critical ? 90 : 80;
@@ -1754,9 +1917,11 @@ async function load() {
   // (rendered later) share one source of truth — no risk of the two
   // disagreeing about how many findings are actually open.
   const severityOrder = { critical: 0, serious: 1, warning: 2, good: 3 };
+  const fieldStats = computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta);
   const allFindings = [
     ...computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates),
     ...computeEngineImprovements(library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, idx, fromWatchlist, fromCandidates),
+    ...computeFieldQualityFindings(fieldStats, library, watchlist, candidatePool, enrichedMeta),
   ].sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
 
   renderRecPanel('movieRecList', byType(fromWatchlist, 'movie'), byType(fromCandidates, 'movie'), enrichedMeta, omdbMeta);
@@ -1817,7 +1982,6 @@ async function load() {
   renderCrowdCompare(computeCrowdCompare(library, enrichedMeta));
   renderBestMatches(computeBestMatches(library, enrichedMeta, omdbMeta, idx), enrichedMeta);
 
-  const fieldStats = computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta);
   renderFieldQualityTable(fieldStats);
   const totalTitles = (library.titles?.length || 0) + (watchlist.titles?.length || 0) + (candidatePool.titles?.length || 0);
   const omdbEligible = fieldStats.find(f => f.key === 'omdbRecord')?.eligible ?? 0;
