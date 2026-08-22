@@ -569,3 +569,97 @@ export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedbac
 
   return { idx, fromWatchlist, fromCandidates };
 }
+
+// ── Evaluation harness ────────────────────────────────────────────────────
+// Answers the #1 Improvement Opportunities finding this dashboard has
+// flagged since Session 51: BMTRE had no equivalent of the book side's
+// scripts/eval.js — every scoring constant (matchPointScale,
+// AUDIENCE_NEUTRAL, AWARDS_MAX, genre tiers, the movie recency curve)
+// was calibrated against a real input *distribution*, never validated
+// against actual held-out prediction accuracy.
+//
+// Real difference from the book side: BBRE has a separate Bayesian rating
+// predictor (rateEngine.js) distinct from its ranking engine. BMTRE has
+// no such predictor — matchScore() (0-100) is the only scoring function
+// that exists, so this eval treats it as the thing under test: does a
+// title's own predicted match-score, computed against an index that
+// leaves that title OUT (so its own rating can't leak into its own
+// creator/genre/similar-title signal — the same reason the book side's
+// eval.js rebuilds buildTasteModel per held-out book), actually track
+// how Bill rated it for real.
+//
+// Lives here (not in scripts/eval.js) specifically so dashboard.js can
+// import it directly into the browser for the "BMTRE Accuracy Score"
+// dial — engine.js has no Node-specific imports (fs/path/url), unlike
+// scripts/eval.js's CLI wrapper, which would fail to load in a browser.
+const LIKED_THRESHOLD = 8;    // myRating >= 8/10 — the same looser "would he
+                                // enjoy this" bar the dashboard's own Best
+                                // Matches section already established, not
+                                // the stricter myRating >= 9 "loved" bar
+                                // buildIndexes() uses for signal-building.
+const DISLIKED_THRESHOLD = 5; // myRating <= 5/10, for the bottom-catch check
+
+export function computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta) {
+  const rated = (library.titles || []).filter(t => t.myRating != null && enrichedMeta[t.titleKey]);
+
+  const preds = [];
+  for (const t of rated) {
+    const looLibrary = { titles: (library.titles || []).filter(x => x.titleKey !== t.titleKey) };
+    const idx = buildIndexes(looLibrary, enrichedMeta, feedback);
+    const h = hydrateTitle(t, enrichedMeta);
+    const predicted = matchScore(h, idx, enrichedMeta, omdbMeta);
+    if (Number.isFinite(predicted)) {
+      preds.push({ predicted, actual: t.myRating * 10, myRating: t.myRating, title: h.title, type: h.type });
+    }
+  }
+  preds.sort((a, b) => b.predicted - a.predicted);
+
+  const n = preds.length;
+  const liked = x => x.myRating >= LIKED_THRESHOLD;
+  const disliked = x => x.myRating <= DISLIKED_THRESHOLD;
+  const baseRate = preds.filter(liked).length / n;
+  const mae = preds.reduce((s, x) => s + Math.abs(x.predicted - x.actual), 0) / n;
+
+  // A real, honest baseline check: Bill's ratings skew high (mean ~78/100
+  // in this dataset), so a trivial "always predict the mean" guess can
+  // score deceptively well on raw MAE alone without ranking anything
+  // correctly — exactly why CLAUDE.md already states precision@k
+  // outranks MAE for the book side, and why this dial weights MAE low.
+  const meanActual = preds.reduce((s, x) => s + x.actual, 0) / n;
+  const meanBaselineMae = preds.reduce((s, x) => s + Math.abs(meanActual - x.actual), 0) / n;
+
+  const precisionAtK = {};
+  for (const k of [10, 25, 50, 100]) {
+    if (k > n) continue;
+    const hit = preds.slice(0, k).filter(liked).length;
+    precisionAtK[k] = 100 * hit / k;
+  }
+
+  const bottom = preds.slice(-50);
+  const bottomCatch = bottom.filter(disliked).length;
+  const bottomDislikeRate = preds.filter(disliked).length / n;
+  const bottomChance = Math.min(50, n) * bottomDislikeRate;
+
+  const worstMisses = preds.filter(x => x.myRating <= 4).slice(0, 8)
+    .map(x => ({ predicted: x.predicted, myRating: x.myRating, title: x.title, type: x.type }));
+  const worstUnderrated = [...preds].filter(x => x.myRating >= 9).sort((a, b) => a.predicted - b.predicted).slice(0, 8)
+    .map(x => ({ predicted: x.predicted, myRating: x.myRating, title: x.title, type: x.type }));
+
+  // By-type breakdown — BMTRE's own scoring already splits movies/shows
+  // (recencyBonusMovie/Show, matchPointScale per type), so a single
+  // combined precision number could hide one type dragging the other.
+  const byType = {};
+  for (const type of ['movie', 'show']) {
+    const typePreds = preds.filter(x => x.type === type);
+    if (!typePreds.length) continue;
+    const tn = typePreds.length;
+    const tMae = typePreds.reduce((s, x) => s + Math.abs(x.predicted - x.actual), 0) / tn;
+    const top10 = [...typePreds].sort((a, b) => b.predicted - a.predicted).slice(0, Math.min(10, tn));
+    byType[type] = { n: tn, mae: tMae, precisionAt10: 100 * top10.filter(liked).length / top10.length };
+  }
+
+  return {
+    n, baseRate, mae, meanBaselineMae, precisionAtK, bottomCatch, bottomChance,
+    worstMisses, worstUnderrated, byType, likedThreshold: LIKED_THRESHOLD,
+  };
+}

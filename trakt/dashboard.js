@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings, posterUrl } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -780,30 +780,33 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   // was "measured against a real distribution" but never validated
   // against actual held-out prediction accuracy - a materially weaker
   // guarantee than what the book side requires for any change.
-  findings.push({
-    id: 'no-eval-harness',
-    severity: 'critical',
-    ratings: { ease: 3, dataQuality: 2, recEngine: 9, ui: 1 },
-    title: 'BMTRE has no evaluation harness — every scoring change is unvalidated',
-    technical: `The book engine's <code>scripts/eval.js</code> computes leave-one-out precision@10/25/50 and MAE ` +
-      `against Bill's actual completed ratings, and CLAUDE.md requires running it before and after every engine ` +
-      `change without exception — it's how <code>matchPointScale</code>, <code>AMAZON_BIAS_OFFSET</code>, and every ` +
-      `other calibration decision on that side got trusted rather than guessed. BMTRE has no equivalent. Every ` +
-      `constant tuned in <code>trakt/engine.js</code> so far — <code>matchPointScale</code>, ` +
-      `<code>AUDIENCE_NEUTRAL</code>, <code>AWARDS_MAX</code>, the genre bonus tiers — was calibrated against a real ` +
-      `input <em>distribution</em> (e.g. "this dataset's median audience score is 80"), which is a weaker guarantee ` +
-      `than validating that the resulting <em>predictions</em> actually improved against held-out real ratings.`,
-    plain: `The book side of this project has a strict rule: never change how books get scored without first running ` +
-      `a test that checks the new formula against books Bill has already rated, to make sure it's actually getting ` +
-      `better and not just different. The movie/show side has no such test at all. Every tuning decision so far has ` +
-      `been "this number looks reasonable given the data," never "this number provably makes predictions more ` +
-      `accurate" — because there's no way to check that yet.`,
-    impact: `This is the single most foundational gap on the list — it doesn't directly cause a bad recommendation ` +
-      `today, but it means every other improvement here (and every future one) can only ever be a plausible guess, ` +
-      `never a validated fact, until something like this exists. Building it (even a simple leave-one-out precision ` +
-      `check against Bill's 540 real ratings) would upgrade every other finding from "should help" to "measurably ` +
-      `does help."`,
-  });
+  {
+    const em = computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta);
+    findings.push({
+      id: 'no-eval-harness',
+      severity: 'good',
+      ratings: { ease: 3, dataQuality: 2, recEngine: 9, ui: 1 },
+      title: 'BMTRE has no evaluation harness — every scoring change is unvalidated',
+      technical: `FIXED this session: <code>computeEvalMetrics()</code> (now in <code>engine.js</code>, plus a CLI ` +
+        `wrapper at <code>trakt/scripts/eval.js</code>, mirroring the book side's <code>scripts/eval.js</code>) runs ` +
+        `a real leave-one-out evaluation — each watched+rated title is scored by an index that excludes it, so its ` +
+        `own rating can never leak into its own creator/genre/similar-title signal. Live result right now: ` +
+        `${fmtNum(em.n)} titles evaluated, precision@10 ${em.precisionAtK[10]?.toFixed(0)}%, precision@25 ` +
+        `${em.precisionAtK[25]?.toFixed(0)}%, precision@50 ${em.precisionAtK[50]?.toFixed(0)}%. A real, honest ` +
+        `finding fell out of building this: MAE (${em.mae.toFixed(1)}) is currently worse than a naive always-` +
+        `predict-the-mean baseline (${em.meanBaselineMae.toFixed(1)}) since Bill's ratings skew high — exactly why ` +
+        `the new "BMTRE Accuracy Score" dial weights precision@k well above MAE, the same lesson CLAUDE.md already ` +
+        `states for the book side.`,
+      plain: `The movie/show side now has the same kind of test the book side has always required: before trusting ` +
+        `any scoring change, check it against titles Bill has actually rated. It's live on the dashboard now as a ` +
+        `real accuracy score, not just a plausible guess — and building it immediately surfaced an honest weak spot ` +
+        `(the raw "how far off was the number" measure is currently worse than just guessing the average), which is ` +
+        `exactly the kind of thing this test exists to catch.`,
+      impact: `The most foundational fix on this whole list — every other finding here can now be validated against ` +
+        `real held-out accuracy instead of a plausible guess, the same upgrade the book side's own eval.js gave that ` +
+        `project years ago.`,
+    });
+  }
 
   // 2. Real, verified genre-monoculture in the top of the ranked list —
   // no diversity/anti-clustering re-ranking exists (the book engine's
@@ -1493,6 +1496,39 @@ function scoreTier(score) {
   return { color: 'var(--status-critical)', label: 'Poor' };
 }
 
+// BMTRE Accuracy Score — not data completeness (that's the dial above),
+// whether the engine's actual predictions are good, via
+// computeEvalMetrics()'s leave-one-out evaluation. Weighted toward
+// precision@25/@50 (the bulk of the useful recommendation surface, same
+// principle CLAUDE.md states for the book side: top-of-list precision
+// outranks MAE) rather than precision@10 alone (n=10, high-variance, and
+// close to guaranteed to look good by construction). MAE gets a real but
+// low weight and is graded against a measured ceiling (2x the naive
+// always-predict-the-mean baseline) rather than an assumed one — Bill's
+// ratings skew high enough that the naive baseline is already quite low,
+// so MAE alone would flatter the score if weighted heavily; this is
+// exactly the trap the book side's own BBRE Accuracy Score fell into on
+// its first version (Session 33) before Bill's "be more critical"
+// pushback led to the Session 34 recalibration this mirrors.
+function computeBMTREAccuracy(evalMetrics) {
+  const m = evalMetrics;
+  const p = k => m.precisionAtK[k] ?? 0;
+  const maeCeiling = Math.max(1, m.meanBaselineMae * 2);
+  const maeAccuracy = Math.max(0, 100 * (1 - m.mae / maeCeiling));
+  const bottomCatchRate = 100 * m.bottomCatch / 50;
+
+  const components = [
+    { key: 'p10', label: 'Precision@10', weight: 0.15, subscore: p(10) },
+    { key: 'p25', label: 'Precision@25', weight: 0.20, subscore: p(25) },
+    { key: 'p50', label: 'Precision@50', weight: 0.20, subscore: p(50) },
+    { key: 'p100', label: 'Precision@100', weight: 0.15, subscore: p(100) },
+    { key: 'mae', label: 'Rating accuracy (vs. baseline)', weight: 0.15, subscore: maeAccuracy },
+    { key: 'bottom', label: 'Bottom-50 catch rate', weight: 0.15, subscore: bottomCatchRate },
+  ];
+  const score = Math.round(components.reduce((s, c) => s + c.weight * c.subscore, 0));
+  return { score, components };
+}
+
 function computeMetadataQuality(library, watchlist, enrichedMeta, selected) {
   const watchlistTitles = watchlist.titles || [];
   const watchlistEnriched = watchlistTitles.filter(t => enrichedMeta[t.titleKey]);
@@ -1619,6 +1655,17 @@ async function load() {
     (quality.watchlistEnrichedCount === 0
       ? 'No TMDB data yet — the daily enrichment workflow hasn\'t populated enrichedMetadata.json.'
       : 'Scores rise automatically as more titles get enriched — no manual recalibration needed.');
+
+  const evalMetrics = computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta);
+  const bmtreAccuracy = computeBMTREAccuracy(evalMetrics);
+  renderQualityDial('bmtreAccuracySection', bmtreAccuracy);
+  document.getElementById('bmtreAccuracyFootnote').textContent =
+    `Leave-one-out over ${fmtNum(evalMetrics.n)} watched+rated+enriched titles ` +
+    `(movies n=${evalMetrics.byType.movie?.n ?? 0}, shows n=${evalMetrics.byType.show?.n ?? 0}). ` +
+    `MAE ${evalMetrics.mae.toFixed(1)} vs. a naive always-predict-the-mean baseline of ${evalMetrics.meanBaselineMae.toFixed(1)}` +
+    (evalMetrics.mae > evalMetrics.meanBaselineMae
+      ? ' — the model is currently worse than that trivial baseline on raw magnitude error alone (Bill\'s ratings skew high, so guessing the mean scores well on MAE without ranking anything correctly; this is exactly why precision@k, weighted higher above, is the metric that matters more here).'
+      : ' — the model beats that trivial baseline.');
 
   const generated = new Date(d.generatedAt);
   document.getElementById('subtitleText').textContent =
