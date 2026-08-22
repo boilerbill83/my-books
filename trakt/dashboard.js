@@ -18,6 +18,23 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
 
 const fmtNum = n => (n ?? 0).toLocaleString('en-US');
 
+// Consistent visual language for movie/show and watched/watchlist/candidate,
+// used everywhere a title appears (rec cards, metric rows, the All Titles
+// table) — Bill's explicit ask for a systematic cue "throughout" rather than
+// a one-off badge in a single section.
+const typeIcon = t => t === 'movie' ? '🎬' : '📺';
+const typeLabel = t => t === 'movie' ? 'Movie' : 'TV';
+const STATUS_META = {
+  Watched:    { cls: 'tk-status-tag-watched',    label: 'Watched' },
+  Watchlist:  { cls: 'tk-status-tag-watchlist',  label: 'Watchlist' },
+  Candidate:  { cls: 'tk-status-tag-candidate',  label: 'Candidate' },
+};
+const statusTag = status => {
+  const m = STATUS_META[status];
+  if (!m) return '';
+  return `<span class="tk-status-tag ${m.cls}">${m.label}</span>`;
+};
+
 const NS = 'http://www.w3.org/2000/svg';
 const svgEl = (tag, attrs = {}) => {
   const el = document.createElementNS(NS, tag);
@@ -286,6 +303,42 @@ function renderGenreChart(stats) {
     { labelKey: 'genre', valueKey: 'avg', maxScale: 10, fmtValue: v => v.toFixed(1), tooltipSuffix: '/10 avg' });
 }
 
+// Human-readable label per reasonCode, since feedbackData.json's real
+// reasonLabel text is a full sentence (context for the engine/a future
+// reader), not a chart-axis-sized string.
+const REASON_CODE_SHORT_LABEL = {
+  already_watched: 'Already watched',
+  already_have_version_rated: 'Already have a rated version',
+  looks_low_budget: 'Looks low budget',
+  too_urban: 'Setting fatigue (urban crime)',
+  too_old: 'Too old',
+  not_interested: 'Not interested',
+  aimed_at_older_demographic: 'Aimed at older demographic',
+};
+
+function computeDismissalStats(feedback) {
+  const dismissals = (feedback?.interactions || []).filter(i => i.interactionType === 'dismiss');
+  const counts = new Map();
+  for (const d of dismissals) {
+    const key = d.reasonCode || 'unspecified';
+    counts.set(key, (counts.get(key) || 0) + 1);
+  }
+  return {
+    n: dismissals.length,
+    byReason: [...counts.entries()]
+      .map(([reasonCode, count]) => ({ reasonCode, label: REASON_CODE_SHORT_LABEL[reasonCode] || reasonCode, count }))
+      .sort((a, b) => b.count - a.count),
+  };
+}
+
+function renderDismissalChart(stats) {
+  const el = document.getElementById('dismissalChart');
+  if (!stats.n) { el.innerHTML = '<div class="tk-empty">No dismissals tracked yet.</div>'; return; }
+  renderHBarChart('dismissalChart',
+    stats.byReason.map(r => ({ reason: `${r.label} (${r.count})`, count: r.count })),
+    { labelKey: 'reason', valueKey: 'count', maxScale: Math.max(...stats.byReason.map(r => r.count)), fmtValue: v => String(v), tooltipSuffix: ' dismissed' });
+}
+
 function renderPredictionMisses(stats, enrichedMeta) {
   const el = document.getElementById('predictionMissesList');
   if (!stats.n) { el.innerHTML = '<div class="tk-empty">Not enough enriched, rated titles yet.</div>'; return; }
@@ -293,8 +346,8 @@ function renderPredictionMisses(stats, enrichedMeta) {
     const poster = posterUrl(r.titleKey, enrichedMeta);
     return `
     <div class="tk-metric-row">
-      ${poster ? `<img class="tk-metric-poster" src="${poster}" alt="" loading="lazy" width="28" height="42">` : '<div class="tk-metric-poster tk-metric-poster-empty"></div>'}
-      <span class="tk-metric-name">${esc(r.title)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
+      ${poster ? `<img class="tk-metric-poster" src="${poster}" alt="" loading="lazy" width="38" height="57">` : '<div class="tk-metric-poster tk-metric-poster-empty"></div>'}
+      <span class="tk-metric-name">${typeIcon(r.type)} ${esc(r.title)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
       <span class="tk-metric-score" style="color:${dir === 'over' ? 'var(--status-critical)' : 'var(--status-serious)'};">
         ${dir === 'over' ? 'predicted' : 'rated'} ${dir === 'over' ? Math.round(r.predicted) : r.myRating + '/10'} vs. ${dir === 'over' ? 'rated ' + r.myRating + '/10' : 'predicted ' + Math.round(r.predicted)}
       </span>
@@ -315,8 +368,8 @@ function renderBestMatches(stats, enrichedMeta) {
     const poster = posterUrl(r.titleKey, enrichedMeta);
     return `
     <div class="tk-metric-row">
-      ${poster ? `<img class="tk-metric-poster" src="${poster}" alt="" loading="lazy" width="28" height="42">` : '<div class="tk-metric-poster tk-metric-poster-empty"></div>'}
-      <span class="tk-metric-name">${esc(r.title)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
+      ${poster ? `<img class="tk-metric-poster" src="${poster}" alt="" loading="lazy" width="38" height="57">` : '<div class="tk-metric-poster tk-metric-poster-empty"></div>'}
+      <span class="tk-metric-name">${typeIcon(r.type)} ${esc(r.title)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
       <span class="tk-metric-score">predicted ${Math.round(r.predicted)}, rated ${r.myRating}/10</span>
     </div>
   `;
@@ -1057,19 +1110,20 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const withPoster = allEnriched.filter(m => m.posterPath).length;
     findings.push({
       id: 'cover-images-unused',
-      severity: 'warning',
+      severity: 'good',
       ratings: { ease: 9, dataQuality: 1, recEngine: 1, ui: 9 },
       title: 'Cover images are 99% populated and cached but never shown anywhere',
       technical: `<code>enrich_tmdb.py</code> already captures TMDB's <code>poster_path</code> as ` +
         `<code>posterPath</code> on every enriched title (${withPoster} of ${allEnriched.length}, ` +
-        `${((withPoster / allEnriched.length) * 100).toFixed(1)}%) — but a grep of every file under ` +
-        `<code>trakt/</code> confirms it is never read anywhere: not the rec cards, not the All Titles table, ` +
-        `not <code>recommend.html</code>. This is the book side's own <code>coverUrl</code> field, already ` +
-        `solved there, just never wired into any BMTRE UI surface.`,
-      plain: `Every movie and show poster is already downloaded and sitting in the data, ready to use — the app ` +
-        `just never puts it on screen anywhere. Every card and table row is plain text only.`,
-      impact: `Highest-confidence, lowest-effort item on this whole list — no new data collection needed, no ` +
-        `accuracy risk, purely a "render an <img> tag" UI change with an immediate visual payoff.`,
+        `${((withPoster / allEnriched.length) * 100).toFixed(1)}%). Fixed this session: a new ` +
+        `<code>posterUrl()</code> export in <code>engine.js</code> builds the TMDB CDN image URL ` +
+        `(<code>image.tmdb.org</code> — a public no-auth CDN, unrelated to the blocked ` +
+        `<code>api.themoviedb.org</code> API host), now rendered on the You'll Love rec cards, the Biggest ` +
+        `Prediction Misses / Best Matches rows, and the All Titles table's Cover column.`,
+      plain: `Every movie and show poster was already downloaded and sitting in the data — this session added ` +
+        `real poster thumbnails to the recommendation cards and the big titles table so it's not plain text ` +
+        `anymore.`,
+      impact: `Shipped — real poster art now renders across every major title-list surface in the dashboard.`,
     });
   }
 
@@ -1230,24 +1284,40 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList') 
       </div>`;
   };
 
-  el.innerHTML = findings.map(f => {
+  // Bill: "Improvement Opportunities takes up too much space; show each
+  // as a small card with the title and metrics, then make it expandable
+  // to view all of the information." Each card now renders collapsed by
+  // default (title + severity pill + the 4 ratings meters only) with a
+  // click-to-expand for the technical/plain-English/impact write-ups —
+  // same collapse-on-click mechanism as the whole-section collapse
+  // above, just scoped to one card instead of a whole section.
+  el.innerHTML = findings.map((f, i) => {
     const sev = sevMeta[f.severity];
     return `
-      <div class="tk-imp-card">
-        <div class="tk-imp-header">
+      <div class="tk-imp-card tk-imp-collapsed" data-imp-index="${i}">
+        <div class="tk-imp-header" role="button" tabindex="0">
           <div class="tk-imp-title">${esc(f.title)}</div>
           <span class="tk-status-pill ${sev.cls}">${sev.icon} ${sev.label}</span>
+          <span class="tk-collapse-chevron">▾</span>
         </div>
         ${renderRatings(f.ratings)}
-        <div class="tk-imp-section-label">Technical description</div>
-        <div class="tk-imp-technical">${f.technical}</div>
-        <div class="tk-imp-section-label">In plain English</div>
-        <div class="tk-imp-plain">${f.plain}</div>
-        <div class="tk-imp-section-label">Impact</div>
-        <div class="tk-imp-impact">${f.impact}</div>
+        <div class="tk-imp-details">
+          <div class="tk-imp-section-label">Technical description</div>
+          <div class="tk-imp-technical">${f.technical}</div>
+          <div class="tk-imp-section-label">In plain English</div>
+          <div class="tk-imp-plain">${f.plain}</div>
+          <div class="tk-imp-section-label">Impact</div>
+          <div class="tk-imp-impact">${f.impact}</div>
+        </div>
       </div>
     `;
   }).join('');
+
+  el.querySelectorAll('.tk-imp-header').forEach(header => {
+    const toggle = () => header.closest('.tk-imp-card').classList.toggle('tk-imp-collapsed');
+    header.addEventListener('click', toggle);
+    header.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+  });
 }
 
 // Predicted Score reuses the same matchScore() the recommendation panels
@@ -1304,6 +1374,7 @@ function renderAllTitlesTable(allRows) {
   const table = document.getElementById('allTitlesTable');
   const searchInput = document.getElementById('titleSearch');
   const typeFilter = document.getElementById('titleTypeFilter');
+  const statusFilter = document.getElementById('titleStatusFilter');
   const yearFilter = document.getElementById('titleYearFilter');
   const showAllBtn = document.getElementById('titleShowAllBtn');
 
@@ -1316,15 +1387,17 @@ function renderAllTitlesTable(allRows) {
       render: (td, r) => {
         if (r.posterUrl) {
           const img = document.createElement('img');
-          img.src = r.posterUrl; img.alt = ''; img.loading = 'lazy'; img.width = 30; img.height = 45;
+          img.src = r.posterUrl; img.alt = ''; img.loading = 'lazy'; img.width = 40; img.height = 60;
           img.className = 'tk-table-poster';
           td.appendChild(img);
         }
       } },
     { label: 'Title', get: r => r.title },
     { label: 'Year', get: r => r.year ?? '', numeric: true },
-    { label: 'Type', get: r => r.type === 'movie' ? 'Movie' : 'Show' },
-    { label: 'Status', get: r => r.status },
+    { label: 'Type', get: r => typeLabel(r.type),
+      render: (td, r) => { td.textContent = `${typeIcon(r.type)} ${typeLabel(r.type)}`; } },
+    { label: 'Status', get: r => r.status,
+      render: (td, r) => { td.innerHTML = statusTag(r.status); } },
     { label: 'My Rating', get: r => r.myRating ?? '', numeric: true },
     { label: 'Predicted Score', get: r => r.predictedScore ?? '', numeric: true },
     { label: 'TMDB Rating', get: r => r.tmdbRating != null ? Math.round(r.tmdbRating * 10) / 10 : '', numeric: true },
@@ -1343,9 +1416,11 @@ function renderAllTitlesTable(allRows) {
   function filtered() {
     const q = (searchInput.value || '').trim().toLowerCase();
     const type = typeFilter.value;
+    const status = statusFilter.value;
     const year = yearFilter.value;
     return allRows.filter(r => {
       if (type && r.type !== type) return false;
+      if (status && r.status !== status) return false;
       if (year && String(r.year) !== year) return false;
       if (q && !(r.title.toLowerCase().includes(q) || r.genres.toLowerCase().includes(q) || r.creator.toLowerCase().includes(q))) return false;
       return true;
@@ -1409,6 +1484,7 @@ function renderAllTitlesTable(allRows) {
   render();
   searchInput.addEventListener('input', render);
   typeFilter.addEventListener('change', render);
+  statusFilter.addEventListener('change', render);
   yearFilter.addEventListener('change', render);
   showAllBtn.addEventListener('click', () => { showAll = !showAll; render(); });
   document.getElementById('titleCsvBtn').addEventListener('click', () => downloadCSV(table, 'trakt-all-titles.csv'));
@@ -1466,11 +1542,11 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
     <div class="tk-rec-card">
       <div class="tk-rec-rank">${i + 1}</div>
       ${poster
-        ? `<img class="tk-rec-poster" src="${poster}" alt="" loading="lazy" width="46" height="69">`
+        ? `<img class="tk-rec-poster" src="${poster}" alt="" loading="lazy" width="60" height="90">`
         : `<div class="tk-rec-poster tk-rec-poster-empty"></div>`}
       <div class="tk-rec-body">
         <div class="tk-rec-title">
-          ${esc(c.title)}${c.year ? ` <span class="tk-year">(${esc(c.year)})</span>` : ''}
+          ${typeIcon(c.type)} ${esc(c.title)}${c.year ? ` <span class="tk-year">(${esc(c.year)})</span>` : ''}
           <span class="tk-rec-badge">${c.origin === 'watchlist' ? 'Watchlist' : 'New pick'}</span>
         </div>
         <div class="tk-rec-meta">${esc(metaLine(c, enrichedMeta, omdbMeta))}</div>
@@ -1529,7 +1605,24 @@ function computeBMTREAccuracy(evalMetrics) {
   return { score, components };
 }
 
-function computeMetadataQuality(library, watchlist, enrichedMeta, selected) {
+// Recalibrated per Bill's explicit pushback: "I am very skeptical that
+// this is 97 given all of the improvement ideas we have; I'd put it
+// closer to 50 or 60." The pre-recalibration formula only measured raw
+// data coverage (does the engine have enough titles enriched) — it had
+// no way to reflect that 18 of 22 real, verified Improvement
+// Opportunities findings are still open (6 medium/serious, 12 low/
+// warning impact). Folded those in as a genuine 50%-weight component,
+// the same "explicit recalibration in response to specific pushback, not
+// organic score drift" move the book side's own Data Quality Score made
+// in Session 14b (also after Bill said its first version read too high).
+// Penalty multipliers (serious=8pts, warning=3pts) and the 50% weight
+// were tuned by hand to land in Bill's stated 50-60 range against
+// today's real finding count (18 open) — an intentional recalibration
+// of the bar, not a re-derivation from first principles; if the open-
+// finding count changes a lot in a future session, these multipliers may
+// need a fresh look the same way the book side's have been revisited
+// more than once.
+function computeMetadataQuality(library, watchlist, enrichedMeta, selected, findings) {
   const watchlistTitles = watchlist.titles || [];
   const watchlistEnriched = watchlistTitles.filter(t => enrichedMeta[t.titleKey]);
   const watchlistPct = watchlistTitles.length ? (watchlistEnriched.length / watchlistTitles.length) * 100 : 0;
@@ -1547,11 +1640,17 @@ function computeMetadataQuality(library, watchlist, enrichedMeta, selected) {
     ? selected.reduce((sum, c) => sum + c.confidenceScore, 0) / selected.length
     : 0;
 
+  const open = (findings || []).filter(f => f.severity !== 'good');
+  const seriousCount = open.filter(f => f.severity === 'critical' || f.severity === 'serious').length;
+  const warningCount = open.filter(f => f.severity === 'warning').length;
+  const knownIssuesScore = Math.max(0, 100 - (seriousCount * 8 + warningCount * 3));
+
   const components = [
-    { key: 'watchlist', label: 'Watchlist enrichment coverage', weight: 0.35, subscore: watchlistPct },
-    { key: 'loved', label: 'Loved-title signal coverage', weight: 0.35, subscore: lovedPct },
-    { key: 'fields', label: 'Field completeness (of enriched titles)', weight: 0.15, subscore: fieldPct },
-    { key: 'confidence', label: 'Average recommendation confidence', weight: 0.15, subscore: avgConfidence },
+    { key: 'watchlist', label: 'Watchlist enrichment coverage', weight: 0.15, subscore: watchlistPct },
+    { key: 'loved', label: 'Loved-title signal coverage', weight: 0.15, subscore: lovedPct },
+    { key: 'fields', label: 'Field completeness (of enriched titles)', weight: 0.10, subscore: fieldPct },
+    { key: 'confidence', label: 'Average recommendation confidence', weight: 0.10, subscore: avgConfidence },
+    { key: 'knownIssues', label: `Known issues resolved (${open.length} open: ${seriousCount} medium+, ${warningCount} low)`, weight: 0.50, subscore: knownIssuesScore },
   ];
   const score = Math.round(components.reduce((s, c) => s + c.weight * c.subscore, 0));
   return { score, components, watchlistEnrichedCount: watchlistEnriched.length, watchlistTotal: watchlistTitles.length,
@@ -1629,6 +1728,18 @@ async function load() {
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
   const byType = (list, type) => list.filter(c => c.type === type && enrichedOnly(c));
 
+  // Computed once, early, so both the Metadata & Engine Quality score
+  // (which now folds in a real penalty for open findings, per Bill's
+  // explicit "97 is too generous given all the improvement ideas we
+  // have" pushback) and the Improvement Opportunities card itself
+  // (rendered later) share one source of truth — no risk of the two
+  // disagreeing about how many findings are actually open.
+  const severityOrder = { critical: 0, serious: 1, warning: 2, good: 3 };
+  const allFindings = [
+    ...computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates),
+    ...computeEngineImprovements(library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, idx, fromWatchlist, fromCandidates),
+  ].sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
+
   renderRecPanel('movieRecList', byType(fromWatchlist, 'movie'), byType(fromCandidates, 'movie'), enrichedMeta, omdbMeta);
   renderRecPanel('showRecList', byType(fromWatchlist, 'show'), byType(fromCandidates, 'show'), enrichedMeta, omdbMeta);
 
@@ -1647,7 +1758,7 @@ async function load() {
       `${fmtNum(dist.n)} ${label} — mean ${dist.mean.toFixed(0)}, median ${dist.median.toFixed(0)}, σ ${dist.sd.toFixed(0)}. ${shapeNote(dist)}`;
   }
 
-  const quality = computeMetadataQuality(library, watchlist, enrichedMeta, fromWatchlist);
+  const quality = computeMetadataQuality(library, watchlist, enrichedMeta, fromWatchlist, allFindings);
   renderQualityDial('qualitySection', quality);
   document.getElementById('qualityFootnote').textContent =
     `${quality.watchlistEnrichedCount}/${quality.watchlistTotal} watchlist titles enriched, ` +
@@ -1681,6 +1792,7 @@ async function load() {
     `these sections fill in automatically as the daily enrichment job covers more of your library.`;
 
   renderGenreChart(computeGenreStats(library, enrichedMeta));
+  renderDismissalChart(computeDismissalStats(feedback));
   renderPredictionMisses(computePredictionMisses(library, enrichedMeta, omdbMeta, idx), enrichedMeta);
   renderCastList(computeCastStats(library, enrichedMeta));
   renderCrowdCompare(computeCrowdCompare(library, enrichedMeta));
@@ -1697,17 +1809,48 @@ async function load() {
       ? `OMDb fields (audience score, awards) are ${fmtNum(omdbEligible)} titles eligible but 0 enriched — needs the OMDB_API_KEY secret before that pipeline can run.`
       : `${fmtNum(omdbFound)}/${fmtNum(omdbEligible)} eligible titles have an OMDb record.`);
 
-  {
-    const severityOrder = { critical: 0, serious: 1, warning: 2, good: 3 };
-    const allFindings = [
-      ...computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates),
-      ...computeEngineImprovements(library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, idx, fromWatchlist, fromCandidates),
-    ].sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
-    renderImprovementOpportunities(allFindings);
-  }
+  renderImprovementOpportunities(allFindings);
 
   renderAllTitlesTable(buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx));
 }
+
+// ── Collapsible sections ─────────────────────────────────────────────────
+// Bill: "make all sections collapseable." Runs independently of load()'s
+// data fetch — the card headings already exist in the static HTML, so
+// there's no reason to wait on a network round trip before wiring this
+// up. Per-card state persists in localStorage (a private, per-viewer
+// convenience — never shared, never read by anyone but this browser)
+// keyed by the heading's own text, so a card's collapsed/expanded state
+// survives a reload without needing a stable id added to every card in
+// index.html by hand.
+function initCollapsibleCards() {
+  document.querySelectorAll('.tk-card').forEach(card => {
+    const heading = card.querySelector('.tk-card-heading');
+    if (!heading || heading.querySelector('.tk-collapse-chevron')) return;
+    const key = 'tk-collapsed:' + heading.textContent.trim();
+    const chevron = document.createElement('span');
+    chevron.className = 'tk-collapse-chevron';
+    chevron.textContent = '▾';
+    heading.appendChild(chevron);
+    heading.setAttribute('role', 'button');
+    heading.setAttribute('tabindex', '0');
+
+    let collapsed = false;
+    try { collapsed = localStorage.getItem(key) === '1'; } catch {}
+    card.classList.toggle('tk-card-collapsed', collapsed);
+
+    const toggle = () => {
+      collapsed = !collapsed;
+      card.classList.toggle('tk-card-collapsed', collapsed);
+      try { localStorage.setItem(key, collapsed ? '1' : '0'); } catch {}
+    };
+    heading.addEventListener('click', toggle);
+    heading.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+}
+initCollapsibleCards();
 
 load().catch(err => {
   document.getElementById('statusText').textContent = 'Failed to load dashboard data — see console.';

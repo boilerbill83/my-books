@@ -34,7 +34,14 @@
       .tk-card-heading {
         font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; color: var(--accent);
         margin-bottom: 4px;
+        cursor: pointer; display: flex; align-items: center; justify-content: space-between; user-select: none;
       }
+      .tk-card-heading .tk-collapse-chevron {
+        font-family: var(--font-sans); font-size: 0.75em; color: var(--text-muted); transition: transform 0.15s;
+        flex-shrink: 0; margin-left: 10px;
+      }
+      .tk-card.tk-card-collapsed .tk-collapse-chevron { transform: rotate(-90deg); }
+      .tk-card.tk-card-collapsed > *:not(.tk-card-heading) { display: none !important; }
       .tk-card-note { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
       .tk-caveat {
         background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 6px;
@@ -80,9 +87,10 @@
       .tk-rec-card {
         display: flex; gap: 14px; align-items: center; background: var(--bg-subtle);
         border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px;
+        min-height: 96px; box-sizing: border-box;
       }
       .tk-rec-rank { font-family: var(--font-serif); font-weight: 700; font-size: 1.2rem; color: var(--border); width: 26px; flex-shrink: 0; text-align: center; }
-      .tk-rec-poster { width: 46px; height: 69px; border-radius: 5px; object-fit: cover; flex-shrink: 0; background: var(--bg-card); border: 1px solid var(--border); }
+      .tk-rec-poster { width: 60px; height: 90px; border-radius: 6px; object-fit: cover; flex-shrink: 0; background: var(--bg-card); border: 1px solid var(--border); }
       .tk-rec-poster-empty { border: 1px dashed var(--border); }
       .tk-rec-body { flex: 1; min-width: 0; }
       .tk-rec-title { font-weight: 600; font-size: 0.95rem; }
@@ -127,7 +135,7 @@
         padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem;
       }
       .tk-metric-row:last-child { border-bottom: none; }
-      .tk-metric-poster { width: 28px; height: 42px; border-radius: 3px; object-fit: cover; flex-shrink: 0; background: var(--bg-subtle); border: 1px solid var(--border); }
+      .tk-metric-poster { width: 38px; height: 57px; border-radius: 4px; object-fit: cover; flex-shrink: 0; background: var(--bg-subtle); border: 1px solid var(--border); }
       .tk-metric-poster-empty { border: 1px dashed var(--border); }
       .tk-metric-name { flex: 1; min-width: 0; }
       .tk-metric-sub { color: var(--text-muted); font-size: 0.76rem; }
@@ -160,7 +168,7 @@
       .tk-table-wrap { overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
       table.tk-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
       table.tk-table th, table.tk-table td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
-      .tk-table-poster { width: 30px; height: 45px; border-radius: 3px; object-fit: cover; display: block; background: var(--bg-subtle); border: 1px solid var(--border); }
+      .tk-table-poster { width: 40px; height: 60px; border-radius: 4px; object-fit: cover; display: block; background: var(--bg-subtle); border: 1px solid var(--border); }
       table.tk-table th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); cursor: pointer; user-select: none; white-space: nowrap; }
       table.tk-table th:hover { color: var(--accent); }
       table.tk-table th.sorted::after { content: ' ▾'; }
@@ -175,13 +183,25 @@
       .tk-status-warning { background: color-mix(in srgb, var(--status-warning) 20%, transparent); color: #8a5c00; }
       .tk-status-serious { background: color-mix(in srgb, var(--status-serious) 18%, transparent); color: #a3441f; }
       .tk-status-critical { background: color-mix(in srgb, var(--status-critical) 15%, transparent); color: var(--status-critical); }
+      .tk-status-tag {
+        display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap;
+      }
+      .tk-status-tag-watched { background: color-mix(in srgb, var(--status-good) 15%, transparent); color: var(--status-good); }
+      .tk-status-tag-watchlist { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); }
+      .tk-status-tag-candidate { background: color-mix(in srgb, var(--status-warning) 20%, transparent); color: #8a5c00; }
       .tk-field-bar-track { width: 90px; height: 6px; border-radius: 4px; background: var(--bg-subtle); overflow: hidden; display: inline-block; vertical-align: middle; margin-right: 8px; }
       .tk-field-bar-fill { height: 100%; border-radius: 4px; }
       table.tk-table td.tk-genres { color: var(--text-muted); font-size: 0.78rem; }
       .tk-imp-card { border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; }
       .tk-imp-card:last-child { margin-bottom: 0; }
-      .tk-imp-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
-      .tk-imp-title { font-weight: 700; font-size: 0.95rem; }
+      .tk-imp-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; cursor: pointer; user-select: none; }
+      .tk-imp-header:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .tk-imp-title { font-weight: 700; font-size: 0.95rem; flex: 1 1 auto; min-width: 160px; }
+      .tk-imp-header .tk-collapse-chevron { font-size: 0.8rem; color: var(--text-muted); transition: transform 0.15s ease; margin-left: auto; }
+      .tk-imp-card.tk-imp-collapsed .tk-collapse-chevron { transform: rotate(-90deg); }
+      .tk-imp-card.tk-imp-collapsed .tk-imp-header { margin-bottom: 0; }
+      .tk-imp-card:not(.tk-imp-collapsed) .tk-imp-ratings { margin-top: 4px; }
+      .tk-imp-card.tk-imp-collapsed .tk-imp-details { display: none; }
       .tk-imp-section-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); margin-bottom: 4px; margin-top: 10px; }
       .tk-imp-section-label:first-of-type { margin-top: 0; }
       .tk-imp-technical, .tk-imp-impact { font-size: 0.85rem; line-height: 1.55; }
@@ -290,6 +310,12 @@
           <div class="tk-list" id="bestMatchesList"></div>
         </div>
 
+        <div class="tk-card" id="dismissalsCard">
+          <div class="tk-card-heading">Dismissal Reasons</div>
+          <div class="tk-card-note">Why titles got excluded from recommendations, tracked from real feedback — feeds the taste model directly (each exclusion is checked against Bill's actual rating history before it's ever generalized into a scoring signal, not applied on category alone).</div>
+          <div class="tk-chart-wrap" id="dismissalChart"></div>
+        </div>
+
         <div class="tk-card">
           <div class="tk-card-heading">📋 Field Population &amp; Quality</div>
           <div class="tk-card-note" id="fieldQualityNote">Loading…</div>
@@ -311,6 +337,12 @@
               <option value="">All Types</option>
               <option value="movie">Movies</option>
               <option value="show">TV</option>
+            </select>
+            <select class="tk-select" id="titleStatusFilter">
+              <option value="">All Statuses</option>
+              <option value="Watched">Watched</option>
+              <option value="Watchlist">Watchlist</option>
+              <option value="Candidate">Candidate</option>
             </select>
             <select class="tk-select" id="titleYearFilter">
               <option value="">All Years</option>
