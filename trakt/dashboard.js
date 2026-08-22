@@ -950,6 +950,48 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       `against all known real past failures, not just designed in the abstract.`,
   });
 
+  // 4b. A full data-quality audit of the real 447-title Metacritic scrape
+  // batch found the exact same "no confirmation step" failure shape as
+  // resolve-titles-disambiguation above, just on the scraping side: the
+  // direct-URL-slug guess in scrape_metacritic() had no way to tell it
+  // landed on a DIFFERENT same-named work. Confirmed via real outside
+  // cross-checks, not assumed — fixed and unit-tested this session.
+  findings.push({
+    id: 'metacritic-scrape-title-verification',
+    severity: 'good',
+    ratings: { ease: 6, dataQuality: 8, recEngine: 5, ui: 1 },
+    title: 'Metacritic scraper had no page-identity check, and was confirmed producing wrong scores',
+    technical: `Fixed this session: a full data-quality audit of the real 447-title production scrape batch found ` +
+      `<code>scrape_metacritic()</code>'s direct-URL-slug guess (the only path that has ever actually worked, per ` +
+      `this file's own 3-batch investigation) has no confirmation step — it trusts whatever <code>aggregateRating</code> ` +
+      `it finds on whatever page the guessed URL happens to resolve to. Real cross-checks against outside sources ` +
+      `confirmed 9 titles got a fabricated score this way: 3 unreleased shows (Cupertino/Neagley/Crystal Lake, each ` +
+      `scored 93-97 despite zero aired episodes) and 6 title collisions where the guessed bare slug landed on a ` +
+      `DIFFERENT same-named work (Lost in Space scored 93 from the wrong 1965-original page vs. its real 2018 ` +
+      `reboot's actual 58; Perry Mason 96 vs. real 68; The Agency 97 vs. a real "Generally Favorable" band; Legends ` +
+      `59 vs. real 75; plus Ambitions and Elway, both genuinely un-scored on Metacritic). All 9 corrected to null in ` +
+      `the committed cache. Fixed with two independent, unit-tested guards in <code>scrape_show_ratings.py</code>: ` +
+      `<code>is_unreleased()</code> discards any score for a known-future release date outright; the new ` +
+      `<code>extract_metascore()</code>/<code>page_title_matches()</code> cross-check the fetched page's own JSON-LD ` +
+      `date field and &lt;title&gt; tag against the expected title/year, rejecting only on an explicit, positive ` +
+      `conflict (never requiring a signal to be present — an earlier draft that required a year for short titles was ` +
+      `caught and reverted by its own unit test, since it would have wrongly rejected real matches like The Boys and ` +
+      `Fleabag that never show a year at all). The remaining ~365 already-cached Metacritic values were not ` +
+      `individually re-verified this session — that would mean hundreds of manual searches — so this closes the bug ` +
+      `going forward and for the 9 confirmed cases, not a claim that every remaining cached value is confirmed clean.`,
+    plain: `The app looks up Rotten Tomatoes/Metacritic pages by guessing a web address from the title (like turning ` +
+      `"Lost in Space" into metacritic.com/tv/lost-in-space/). That guess sometimes lands on the WRONG page — a ` +
+      `different, older show that happens to share the same name — and the app was trusting whatever score it found ` +
+      `there without checking it was actually the right show. A real check against real Metacritic data found this ` +
+      `happening for at least 9 titles, always producing a suspiciously high fake score. The 9 known cases are now ` +
+      `fixed, and the app now double-checks the page it lands on before trusting a score, so this can't keep ` +
+      `happening quietly for new titles going forward.`,
+    impact: `A real, verified accuracy problem, not a hypothetical one — 9 confirmed wrong scores actively feeding ` +
+      `the Audience Score signal before this fix. A full re-scrape (clearing the cache and re-running with the new ` +
+      `guards) would be the thorough way to re-validate the remaining ~365 entries, since they were cached as ` +
+      `"done" under the old, unguarded logic and won't be re-attempted on their own.`,
+  });
+
   // 5. build_trakt_library.js's titleKey() falls back to a `type:trakt:ID`
   // format when a title has no TMDB id — a completely different shape than
   // every other part of the pipeline assumes (engine.js's titleKey(),

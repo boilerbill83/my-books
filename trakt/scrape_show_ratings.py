@@ -37,12 +37,45 @@ explicit fallback instruction ("if it works for MC but not RT, just
 use MC"), RT scraping is now disabled (SCRAPE_RT = False) — only
 Metacritic data is trusted and wired into scoring.
 
+A FULL DATA-QUALITY AUDIT of the real 447-title production batch found
+Metacritic itself is NOT immune to the same wrong-page failure shape
+that killed RT above, just less often: the direct-URL-slug-guess
+strategy has no confirmation step, so a title whose bare slug is
+already occupied by a DIFFERENT same-named work (an older show, a
+reboot's original) silently lands a real but wrong Metascore instead of
+a miss. Confirmed via real outside cross-checks on 9 titles: 3 unreleased
+shows (Cupertino/Neagley/Crystal Lake, each showing a fabricated 93-97
+"critic score" despite zero aired episodes) and 6 title collisions
+(Lost in Space 2018 reboot scored 93 from the wrong 1965-original page
+vs. its real 58; Perry Mason 2020 scored 96 from the wrong classic-
+franchise page vs. its real 68; The Agency 2024 scored 97 vs. its real
+"Generally Favorable" band; Legends 2026 scored 59 from the wrong 2014
+show's page vs. its real 75; plus Ambitions and Elway, both landing a
+score despite genuinely having none yet on Metacritic). All 9 corrected
+to null in the committed cache. Root cause fixed with two independent,
+conservative guards, both unit-tested (never require a signal to be
+present, only reject on an explicit, positive conflict — the same
+asymmetric discipline resolve_titles.py's is_confident_match() already
+uses): is_unreleased() discards any score for a title with a known
+future release/air date outright; extract_metascore()/
+page_title_matches() cross-check the fetched page's own JSON-LD date
+field and <title> tag against the expected title/year before trusting
+anything scraped from it. This was a real, meaningful error rate in an
+unbiased first-round sample (~1 in 9) concentrated heavily in two
+identifiable risk categories (unreleased titles, title collisions) —
+the fix targets exactly those, but the remaining ~365 already-cached
+Metacritic values were NOT individually re-verified this session (that
+would mean hundreds of manual searches); a full re-scrape with the new
+guards in place is the honest way to get a fully re-validated dataset,
+not a claim that everything remaining is confirmed clean.
+
 Run manually:   python3 trakt/scrape_show_ratings.py [batch_size]
 GitHub Action:  .github/workflows/trakt-scrape-show-ratings.yml
 """
 
 import json, re, sys, time, random
 from datetime import datetime, timedelta
+from html import unescape
 from pathlib import Path
 from urllib.parse import quote
 
@@ -87,6 +120,153 @@ def save_cache(cache):
     json.dump(cache, open(CACHE_FILE, 'w'), indent=1)
     with open(CACHE_FILE, 'a') as f:
         f.write('\n')
+
+
+def is_unreleased(release_date):
+    """A title with a known future release/air date can't have a real
+    critic score yet, no matter what a scrape returns for it — a
+    confirmed real bug in the wild (a full data-quality analysis pass
+    found 3 unreleased titles, Cupertino/Neagley/Crystal Lake, each with
+    an implausible 93-97 "critic score" despite zero episodes having
+    aired; cross-checked against real outside sources, which confirmed
+    none of the three has any critic reviews yet). Root cause not fully
+    pinned down without live access to the actual page (this sandbox
+    can't fetch metacritic.com directly), but the leading hypothesis is
+    an "anticipation"/hype-poll widget on the pre-release page getting
+    misread as a critic aggregateRating by scrape_metacritic()'s JSON-LD
+    parser, which assumes a missing bestRating means a 0-100 critic
+    scale rather than treating it as ambiguous. Rather than chase the
+    exact parsing bug blind, this is a robust plausibility gate at the
+    point of use: any score for a title we already know hasn't aired yet
+    is impossible on its face and discarded regardless of source."""
+    if not release_date:
+        return False
+    try:
+        return datetime.strptime(release_date, '%Y-%m-%d') > datetime.utcnow()
+    except ValueError:
+        return False
+
+
+def page_title_matches(expected_title, expected_year, html_content):
+    """Verify the fetched page's own <title> tag plausibly refers to the
+    title being looked up, not a different work landed via the direct-
+    URL-slug-guess strategy (see scrape_metacritic()'s docstring — that
+    strategy has no built-in confirmation step at all). A real, confirmed
+    bug found by a full data-quality audit: guessing
+    metacritic.com/tv/lost-in-space/ silently resolved to a DIFFERENT
+    "Lost in Space" page than the 2018 reboot actually being tracked
+    here, landing a fabricated Metascore of 93 vs. the real 2018 reboot's
+    actual 58 (verified against real outside sources) — the exact same
+    failure hit /tv/perry-mason/ (96 vs. the real perry-mason-2020's 68)
+    and /tv/the-agency/ (97 vs. the real the-agency-2024's "Generally
+    Favorable" band, nowhere near 97). All three are reboots/remakes that
+    share a bare title with an older, unrelated work — the same title-
+    collision failure shape resolve_titles.py's is_confident_match() was
+    already built to guard against on the manual-resolution side of this
+    pipeline, just missing here on the scraping side until now.
+
+    Deliberately asymmetric, and only ever rejects on a POSITIVE
+    conflict — an earlier version of this function required a year to be
+    present in the title for anything under 15 normalized characters,
+    which sounded like the same discipline is_confident_match() uses,
+    but a unit test replaying real confirmed-good matches (The Boys,
+    Fleabag, Squid Game, Ambitions — none of which show a year in their
+    real Metacritic <title>, since none of them actually collide with an
+    older same-named work) immediately caught it as wrong: it would have
+    silently discarded a large share of genuinely correct short-title
+    matches, not just the real bad ones. A title with no collision risk
+    simply never gets a year suffix at all, so requiring one can't tell
+    "no collision" apart from "wrong page" — only an explicit,
+    disagreeing year can.
+
+    Returns True (title matches, and either no year is stated or it
+    agrees), False (confirmed mismatch — either the title itself doesn't
+    match, or the page states an explicit year that conflicts with the
+    one expected — the caller should discard the result, same as a real
+    miss), or None (couldn't check at all — no <title> tag found —
+    caller should fall back to the pre-existing, unverified behavior
+    rather than discard a possibly-good result on a technicality)."""
+    m = re.search(r'<title[^>]*>(.*?)</title>', html_content, re.I | re.S)
+    if not m:
+        return None
+    page_title = unescape(m.group(1))
+    norm = lambda s: re.sub(r'[^a-z0-9]+', '', s.lower())
+    exp_norm = norm(expected_title)
+    page_norm = norm(page_title)
+    if not exp_norm or exp_norm not in page_norm:
+        return False
+    if expected_year:
+        year_match = re.search(r'\((\d{4})\)', page_title)
+        if year_match and int(year_match.group(1)) != int(expected_year):
+            return False
+    return True
+
+
+def extract_metascore(html, title, year):
+    """Parses a fetched Metacritic page's raw HTML for a critic Metascore
+    and/or user score. Pulled out of scrape_metacritic() into its own
+    pure function (no Playwright dependency) specifically so it's
+    directly unit-testable against synthetic HTML — the same discipline
+    resolve_titles.py's is_confident_match() already gets, applied here
+    after a full data-quality audit found this exact code path producing
+    confirmed-wrong scores for several real titles (see
+    page_title_matches()'s docstring). Returns (metascore, userScore),
+    either or both possibly None."""
+    metascore = user_score = None
+    for ld_raw in re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S):
+        try:
+            obj = json.loads(ld_raw)
+            objs = obj if isinstance(obj, list) else [obj]
+            for o in objs:
+                if not isinstance(o, dict):
+                    continue
+                ar = o.get('aggregateRating')
+                if ar and ar.get('ratingValue'):
+                    # Cross-check the SAME object's own date field
+                    # against the year expected, when both are present —
+                    # more reliable than the <title>-tag check below
+                    # since it's structured data tied directly to the
+                    # entity that produced this aggregateRating, not a
+                    # human-facing string that may or may not mention a
+                    # year at all. Same asymmetric rule as
+                    # page_title_matches(): only a positive, explicit
+                    # conflict disqualifies — a missing date field can't
+                    # tell "no collision" apart from "wrong page," so it
+                    # falls through unchanged.
+                    own_date = o.get('datePublished') or o.get('startDate')
+                    if year and own_date:
+                        dm = re.match(r'(\d{4})', str(own_date))
+                        if dm and int(dm.group(1)) != int(year):
+                            continue
+                    val = float(ar['ratingValue'])
+                    best = ar.get('bestRating')
+                    best_num = float(best) if best not in (None, '') else None
+                    if best_num == 100 or best_num is None:
+                        # Metascore is natively 0-100; only convert an
+                        # explicit 10-point scale (Metacritic's user
+                        # score), never guess an unlabeled block.
+                        metascore = round(val)
+                    elif best_num == 10:
+                        user_score = round(val * 10)
+        except Exception:
+            pass
+
+    if metascore is None:
+        mm = re.search(r'Metascore["\s:]+(\d{1,3})\b', html)
+        if mm:
+            metascore = int(mm.group(1))
+
+    # Confirm the page we actually landed on is the title we meant to
+    # look up before trusting anything scraped from it — see
+    # page_title_matches()'s docstring for the real, confirmed bug this
+    # closes. A confirmed mismatch discards the result entirely (same
+    # shape as a real miss); an unverifiable page (no <title> tag found)
+    # falls through unchanged rather than discarding a possibly-good
+    # result on a technicality.
+    if (metascore is not None or user_score is not None) and page_title_matches(title, year, html) is False:
+        return None, None
+
+    return metascore, user_score
 
 
 def is_cached_done(entry):
@@ -138,7 +318,8 @@ def load_pending(cache):
             if not title:
                 continue
             seen.add(key)
-            titles.append({'titleKey': key, 'type': t.get('type'), 'title': title, 'year': year})
+            release_date = meta.get('releaseDate') or meta.get('firstAirDate')
+            titles.append({'titleKey': key, 'type': t.get('type'), 'title': title, 'year': year, 'releaseDate': release_date})
 
     return [t for t in titles if not is_cached_done(cache.get(t['titleKey']))]
 
@@ -316,32 +497,7 @@ def scrape_metacritic(page, title, year, kind):
     except PWTimeout:
         return {'metascore': None, 'userScore': None, 'url': url, 'debug_link_count': debug_link_count}
 
-    metascore = user_score = None
-    for ld_raw in re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S):
-        try:
-            obj = json.loads(ld_raw)
-            objs = obj if isinstance(obj, list) else [obj]
-            for o in objs:
-                ar = o.get('aggregateRating') if isinstance(o, dict) else None
-                if ar and ar.get('ratingValue'):
-                    val = float(ar['ratingValue'])
-                    best = ar.get('bestRating')
-                    best_num = float(best) if best not in (None, '') else None
-                    if best_num == 100 or best_num is None:
-                        # Metascore is natively 0-100; only convert an
-                        # explicit 10-point scale (Metacritic's user
-                        # score), never guess an unlabeled block.
-                        metascore = round(val)
-                    elif best_num == 10:
-                        user_score = round(val * 10)
-        except Exception:
-            pass
-
-    if metascore is None:
-        mm = re.search(r'Metascore["\s:]+(\d{1,3})\b', html)
-        if mm:
-            metascore = int(mm.group(1))
-
+    metascore, user_score = extract_metascore(html, title, year)
     if metascore is None and user_score is None:
         return {'metascore': None, 'userScore': None, 'url': url, 'debug_link_count': debug_link_count}
     return {'metascore': metascore, 'userScore': user_score, 'url': url, 'debug_link_count': debug_link_count}
@@ -401,12 +557,17 @@ def main():
                 print(f'         MC error: {e}')
             time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
 
+            unreleased = is_unreleased(t.get('releaseDate'))
+            if unreleased and (rt or mc) and ((rt and rt.get('critic') is not None) or (mc and mc.get('metascore') is not None)):
+                print(f"         discarded — {t['title']} hasn't released yet ({t.get('releaseDate')}), a critic "
+                      f"score for it is impossible on its face regardless of what the scrape found")
+
             entry = {
-                'rottenTomatoes': rt.get('critic') if rt else None,
-                'rtAudience': rt.get('audience') if rt else None,
+                'rottenTomatoes': None if unreleased else (rt.get('critic') if rt else None),
+                'rtAudience': None if unreleased else (rt.get('audience') if rt else None),
                 'rtUrl': rt.get('url') if rt else None,
-                'metacritic': mc.get('metascore') if mc else None,
-                'metacriticUser': mc.get('userScore') if mc else None,
+                'metacritic': None if unreleased else (mc.get('metascore') if mc else None),
+                'metacriticUser': None if unreleased else (mc.get('userScore') if mc else None),
                 'mcUrl': mc.get('url') if mc else None,
                 'checkedAt': time.strftime('%Y-%m-%d'),
             }
