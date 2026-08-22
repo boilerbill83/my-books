@@ -23,7 +23,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { buildIndexes, matchScore, hydrateTitle, isPreMillenniumMovie } from '../engine.js';
+import { buildIndexes, matchScore, hydrateTitle, isPreMillenniumMovie, isAnimation } from '../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -45,8 +45,9 @@ const feedback = readJSON(path.join(DATA_DIR, 'feedbackData.json'), { interactio
 const idx = buildIndexes(library, enrichedMeta, feedback);
 const watchlistKeys = new Set((watchlist.titles || []).map(c => c.titleKey));
 
-// Same re-edit / non-English / pre-2000-movie exclusions rankAll() applies
-// to candidates (never to the watchlist - that's Bill's own real data) -
+// Same re-edit / non-English / pre-2000-movie / animation exclusions
+// rankAll() applies to candidates (never to the watchlist - that's Bill's
+// own real data) -
 // a candidate that would never surface anyway shouldn't occupy a cap slot.
 // Previously defined but never actually called here (a real bug: 16 of
 // 200 pool slots were re-edits/non-English titles rankAll() would filter
@@ -64,7 +65,7 @@ const stale = [];
 const live = [];
 for (const c of candidatePool.titles || []) {
   if (idx.excluded.has(c.titleKey) || watchlistKeys.has(c.titleKey) || idx.watched.has(c.titleKey)
-      || isReEdit(c) || isNonEnglish(c) || isPreMillenniumMovie(c, enrichedMeta)) {
+      || isReEdit(c) || isNonEnglish(c) || isPreMillenniumMovie(c, enrichedMeta) || isAnimation(c, enrichedMeta)) {
     stale.push(c);
     continue;
   }

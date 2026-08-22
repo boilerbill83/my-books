@@ -10,6 +10,193 @@
       "reasonLabel": "Already watched and rated 10/10 — missing from the Trakt export (pre-dates his Trakt account or wasn't logged there)",
       "timestamp": "2026-08-21T19:15:00Z",
       "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:71694",
+      "title": "Snowfall",
+      "year": 2017,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "looks_low_budget",
+      "reasonLabel": "Passed over on production-value grounds from the poster/description alone, not content",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:81358",
+      "title": "Mr Inbetween",
+      "year": 2018,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "looks_low_budget",
+      "reasonLabel": "Passed over on production-value grounds from the poster/description alone, not content",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:97890",
+      "title": "Power Book II: Ghost",
+      "year": 2020,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_urban",
+      "reasonLabel": "Urban crime-drama setting fatigue — checked against Bill's real loved-genre distribution before treating this as a genre signal (Crime/Drama are his #1/#2 loved genres, 105/47 loved titles) and confirmed a genre-level penalty would misfire badly (e.g. The Wire, 90/100 loved, is the same subject); not generalized into scoring, recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:2288",
+      "title": "Prison Break",
+      "year": 2005,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_old",
+      "reasonLabel": "Passed over for feeling dated — checked against Bill's real loved-show-by-year distribution before treating release year as a generalizable signal and confirmed it would misfire (24 of his 99 loved shows are pre-2010, including Seinfeld '89/Oz '97/The Sopranos '99); not generalized into scoring, recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:1906",
+      "title": "Shameless",
+      "year": 2004,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "already_have_version_rated",
+      "reasonLabel": "A different version/edition of a show Bill has already watched and rated is sitting in library.json — this is the other one",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:124394",
+      "title": "Power Book III: Raising Kanan",
+      "year": 2021,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_urban",
+      "reasonLabel": "Urban crime-drama setting fatigue — checked against Bill's real loved-genre distribution before treating this as a genre signal (Crime/Drama are his #1/#2 loved genres, 105/47 loved titles) and confirmed a genre-level penalty would misfire badly (e.g. The Wire, 90/100 loved, is the same subject); not generalized into scoring, recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:105",
+      "title": "Sex and the City",
+      "year": 1998,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_old",
+      "reasonLabel": "Passed over for feeling dated — checked against Bill's real loved-show-by-year distribution before treating release year as a generalizable signal and confirmed it would misfire (24 of his 99 loved shows are pre-2010, including Seinfeld '89/Oz '97/The Sopranos '99); not generalized into scoring, recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:41692",
+      "title": "Lonesome Dove",
+      "year": 1989,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_old",
+      "reasonLabel": "Passed over for feeling dated — checked against Bill's real loved-show-by-year distribution before treating release year as a generalizable signal and confirmed it would misfire (24 of his 99 loved shows are pre-2010, including Seinfeld '89/Oz '97/The Sopranos '99); not generalized into scoring, recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:54650",
+      "title": "Power",
+      "year": 2014,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_urban",
+      "reasonLabel": "Urban crime-drama setting fatigue — checked against Bill's real loved-genre distribution before treating this as a genre signal (Crime/Drama are his #1/#2 loved genres, 105/47 loved titles) and confirmed a genre-level penalty would misfire badly (e.g. The Wire, 90/100 loved, is the same subject); not generalized into scoring, recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:101591",
+      "title": "BMF",
+      "year": 2021,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_urban",
+      "reasonLabel": "Urban crime-drama setting fatigue — checked against Bill's real loved-genre distribution before treating this as a genre signal (Crime/Drama are his #1/#2 loved genres, 105/47 loved titles) and confirmed a genre-level penalty would misfire badly (e.g. The Wire, 90/100 loved, is the same subject); not generalized into scoring, recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:85021",
+      "title": "Gangs of London",
+      "year": 2020,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "not_interested",
+      "reasonLabel": "General pass, no more specific reason given",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:75540",
+      "title": "Seven Seconds",
+      "year": 2018,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_urban",
+      "reasonLabel": "Urban crime-drama setting fatigue — checked against Bill's real loved-genre distribution before treating this as a genre signal (Crime/Drama are his #1/#2 loved genres, 105/47 loved titles) and confirmed a genre-level penalty would misfire badly (e.g. The Wire, 90/100 loved, is the same subject); not generalized into scoring, recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:79410",
+      "title": "After Life",
+      "year": 2019,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "aimed_at_older_demographic",
+      "reasonLabel": "The show's tone/target audience skews older, distinct from too_old (which is about the show itself feeling dated, not its audience)",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:17035",
+      "title": "Generation Kill",
+      "year": 2008,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "already_watched",
+      "reasonLabel": "Bill has already watched this — missing from the Trakt export (not logged there, same gap the Gladiator (2000) exclusion documented)",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:113984",
+      "title": "Anatomy of a Scandal",
+      "year": 2022,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "already_watched",
+      "reasonLabel": "Bill has already watched this — missing from the Trakt export (not logged there, same gap the Gladiator (2000) exclusion documented)",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:64254",
+      "title": "Master of None",
+      "year": 2015,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "already_watched",
+      "reasonLabel": "Bill has already watched this — missing from the Trakt export (not logged there, same gap the Gladiator (2000) exclusion documented)",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:4057",
+      "title": "Criminal Minds",
+      "year": 2005,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_old",
+      "reasonLabel": "Passed over for feeling dated — checked against Bill's real loved-show-by-year distribution before treating release year as a generalizable signal and confirmed it would misfire (24 of his 99 loved shows are pre-2010, including Seinfeld '89/Oz '97/The Sopranos '99); not generalized into scoring, recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-22T16:50:26.807Z",
+      "excludeFromRecommendations": true
     }
   ]
 }

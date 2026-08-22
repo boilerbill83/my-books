@@ -316,6 +316,16 @@ export function isPreMillenniumMovie(candidate, enrichedMeta) {
   return year != null && year < MOVIE_MIN_YEAR;
 }
 
+// Bill's explicit request: exclude all animation (movies and shows) from
+// recommendations — same precedent as isReEdit/isNonEnglish/
+// isPreMillenniumMovie, never applied to the watchlist (his own real
+// picks, e.g. The Boys Presents: Diabolical which he's already watched
+// and rated 7, stay untouched — only discovered/resolved candidates are
+// filtered).
+export function isAnimation(candidate, enrichedMeta) {
+  return (enrichedMeta[candidate.titleKey]?.genres || []).includes('Animation');
+}
+
 export function matchScore(candidate, idx, enrichedMeta, omdbMeta = {}) {
   return candidate.type === 'movie'
     ? matchScoreMovie(candidate, idx, enrichedMeta, omdbMeta)
@@ -516,7 +526,7 @@ export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedbac
   const fromCandidates = (candidatePool.titles || [])
     .filter(c => !idx.excluded.has(c.titleKey) && !watchlistKeys.has(c.titleKey)
       && !idx.watched.has(c.titleKey) && !isReEdit(c) && !isNonEnglish(c)
-      && !isPreMillenniumMovie(c, enrichedMeta))
+      && !isPreMillenniumMovie(c, enrichedMeta) && !isAnimation(c, enrichedMeta))
     .map(c => scoreOne(c, 'candidate'))
     .sort(byScore);
 
