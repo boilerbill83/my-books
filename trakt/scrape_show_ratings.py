@@ -178,7 +178,8 @@ def scrape_rt(page, title, year, kind):
 
     critic = audience = None
     debug = []
-    for ld_raw in re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S):
+    ld_scripts = re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S)
+    for ld_raw in ld_scripts:
         try:
             obj = json.loads(ld_raw)
             objs = obj if isinstance(obj, list) else [obj]
@@ -188,7 +189,16 @@ def scrape_rt(page, title, year, kind):
                     val = float(ar['ratingValue'])
                     best = ar.get('bestRating')
                     best_num = float(best) if best not in (None, '') else None
-                    debug.append({'ratingValue': val, 'bestRating': best})
+                    # Full diagnostic tuple, not just the number — @type/name
+                    # tell us whether this aggregateRating block actually
+                    # belongs to the show itself or to something else
+                    # embedded on the same page (a "similar titles" rail,
+                    # a review-count-only widget, etc.)
+                    debug.append({
+                        'ratingValue': val, 'bestRating': best,
+                        'type': o.get('@type'), 'name': o.get('name'),
+                        'ratingCount': ar.get('ratingCount') or ar.get('reviewCount'),
+                    })
                     if best_num == 100:
                         critic = round(val)
                     elif best_num == 5:
@@ -196,6 +206,13 @@ def scrape_rt(page, title, year, kind):
                     # bestRating missing/ambiguous -> skip rather than guess
         except Exception:
             pass
+    debug.append({'ld_script_count': len(ld_scripts)})
+    # Cross-check: does the raw page text mention a *different* Tomatometer
+    # number near the literal word "Tomatometer" than what the JSON-LD gave
+    # us? If so, the JSON-LD block above isn't the real headline score.
+    text_matches = re.findall(r'.{0,20}[Tt]omatometer.{0,40}', html)
+    if text_matches:
+        debug.append({'tomatometer_text_context': text_matches[:3]})
 
     if critic is None:
         cm = re.search(r'tomatometer["\s:]+(\d{1,3})\s*%', html, re.I)
@@ -230,28 +247,50 @@ def scrape_metacritic(page, title, year, kind):
     different fix, and guessing which one happened from a bare "0/5
     found" isn't enough to fix it correctly."""
     from playwright.sync_api import TimeoutError as PWTimeout
+    path_prefix = '/tv/' if kind == 'show' else '/movie/'
+    debug_link_count = None
+    url = None
+
     try:
         page.goto(f'https://www.metacritic.com/search/{quote(title)}/',
                    wait_until='domcontentloaded', timeout=20_000)
         page.wait_for_timeout(random.randint(3500, 5000))
         html = page.content()
+        all_links = re.findall(r'href="(https://www\.metacritic\.com(?:/tv/|/movie/)[a-z0-9_-]+/?)"', html)
+        debug_link_count = len(all_links)
+        matching = [u for u in all_links if path_prefix in u]
+        if matching:
+            url = matching[0]
     except PWTimeout:
-        return None
+        pass
 
-    path_prefix = '/tv/' if kind == 'show' else '/movie/'
-    all_links = re.findall(r'href="(https://www\.metacritic\.com(?:/tv/|/movie/)[a-z0-9_-]+/?)"', html)
-    matching = [u for u in all_links if path_prefix in u]
-    if not matching:
+    if url is None:
+        # Metacritic's own URL convention is predictable and well-
+        # documented (lowercase, non-alphanumeric runs -> single hyphen)
+        # — the search-page link extraction found 0 results in both live
+        # test batches so far (search results likely render via a JS
+        # mechanism this regex-on-static-HTML approach can't see), so
+        # try the guessed direct URL as a fallback rather than giving up.
+        slug = re.sub(r'-+', '-', re.sub(r'[^a-z0-9]+', '-', title.lower())).strip('-')
+        guess_url = f'https://www.metacritic.com{path_prefix}{slug}/'
+        try:
+            resp = page.goto(guess_url, wait_until='domcontentloaded', timeout=20_000)
+            page.wait_for_timeout(random.randint(2000, 3000))
+            if resp and resp.status < 400 and 'Page Not Found' not in page.content()[:3000]:
+                url = guess_url
+        except PWTimeout:
+            pass
+
+    if url is None:
         return {'metascore': None, 'userScore': None, 'url': None,
-                'debug_link_count': len(all_links)}
-    url = matching[0]
+                'debug_link_count': debug_link_count}
 
     try:
         page.goto(url, wait_until='domcontentloaded', timeout=20_000)
         page.wait_for_timeout(random.randint(2500, 4000))
         html = page.content()
     except PWTimeout:
-        return None
+        return {'metascore': None, 'userScore': None, 'url': url, 'debug_link_count': debug_link_count}
 
     metascore = user_score = None
     for ld_raw in re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S):
@@ -280,8 +319,8 @@ def scrape_metacritic(page, title, year, kind):
             metascore = int(mm.group(1))
 
     if metascore is None and user_score is None:
-        return {'metascore': None, 'userScore': None, 'url': url, 'debug_link_count': len(all_links)}
-    return {'metascore': metascore, 'userScore': user_score, 'url': url, 'debug_link_count': len(all_links)}
+        return {'metascore': None, 'userScore': None, 'url': url, 'debug_link_count': debug_link_count}
+    return {'metascore': metascore, 'userScore': user_score, 'url': url, 'debug_link_count': debug_link_count}
 
 
 # ── Main ───────────────────────────────────────────────────────────────────
@@ -358,8 +397,12 @@ def main():
             rt_str = f"RT {entry['rottenTomatoes']}%" if entry['rottenTomatoes'] is not None else 'RT —'
             mc_str = f"MC {entry['metacritic']}" if entry['metacritic'] is not None else 'MC —'
             print(f'         {rt_str}  |  {mc_str}')
+            if rt and rt.get('url'):
+                print(f"         RT url: {rt['url']}")
             if rt and rt.get('debug'):
                 print(f"         RT JSON-LD blocks seen: {rt['debug']}")
+            if mc and mc.get('url'):
+                print(f"         MC url: {mc['url']}")
             if mc and mc.get('debug_link_count') is not None and entry['metacritic'] is None:
                 print(f"         MC search page had {mc['debug_link_count']} /tv//movie/ links total")
 
