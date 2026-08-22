@@ -24,18 +24,18 @@ book_key(). Each site is searched independently via that site's own
 search page (not a third-party search engine, since this sandbox's
 network egress proxy blocks Google/DuckDuckGo/Bing too when tested, and
 using the site's own intended search feature is also the more legitimate
-approach) — a title can find a real RT match and no MC match, or vice
-versa; both are recorded independently.
+approach).
 
-IMPORTANT — this has never been run for real. Direct network access to
-rottentomatoes.com/metacritic.com is blocked from the interactive
-sandbox this was written in (confirmed via a direct WebFetch test), so
-none of the search/scrape logic below could be verified live before
-being committed. The very first workflow_dispatch run IS the real test —
-read its job log carefully; the search URL / JSON-LD parsing / CSS
-fallback selectors below are a best-effort design based on documented
-patterns, not something proven against a live response. Print verbose
-per-title diagnostics for exactly this reason.
+RESULT OF 3 REAL LIVE TEST BATCHES (see SCRAPE_RT below): Metacritic
+verified accurate via spot-check against real outside sources (Elsbeth
+scraped 69, real Metascore is 69 exactly). Rotten Tomatoes was
+confirmed WRONG on the same title in all 3 attempts (scraped 62%
+against a real 92% Tomatometer, despite correctly identifying the
+right show entity) and the root cause couldn't be pinned down further
+without live page inspection this sandbox can't do. Per Bill's own
+explicit fallback instruction ("if it works for MC but not RT, just
+use MC"), RT scraping is now disabled (SCRAPE_RT = False) — only
+Metacritic data is trusted and wired into scoring.
 
 Run manually:   python3 trakt/scrape_show_ratings.py [batch_size]
 GitHub Action:  .github/workflows/trakt-scrape-show-ratings.yml
@@ -55,6 +55,22 @@ MAX_DELAY = 12
 RETRY_COOLDOWN_DAYS = 14   # same convention as scrape_ratings.py: a miss
                             # (not a permanent "no score exists") is retried
                             # after this long, a real score is cached forever
+
+# Disabled after 3 real live test batches: Metacritic verified accurate on
+# spot-check (Elsbeth scraped 69, real Metascore is 69 exactly; Your
+# Friends & Neighbors scraped 65, real is 61-63 - within normal critic-
+# count drift), but RT was confirmed WRONG on the same title across all 3
+# attempts (Elsbeth scraped 62% every time against a real 92% Tomatometer)
+# despite the extraction correctly identifying the right show entity
+# (@type: TVSeries, name: Elsbeth) and a well-formed 0-100 scale block -
+# the JSON-LD RT ships in its initial (pre-hydration) HTML for a show page
+# just doesn't appear to carry the real headline score, and further
+# debugging would need actual page inspection this sandbox can't do. Per
+# Bill's own explicit fallback ("if it works for MC but not RT, just use
+# MC"): Metacritic only. scrape_rt() is left in place, unused, in case a
+# future session finds the real fix (e.g. waiting for full hydration
+# instead of domcontentloaded, or a different data source on the page).
+SCRAPE_RT = False
 
 
 def load_cache():
@@ -363,11 +379,12 @@ def main():
             print(f"[{i:3}/{len(batch)}] {label[:60]} [{t['type']}]")
 
             rt = None
-            try:
-                rt = scrape_rt(page, t['title'], t['year'], t['type'])
-            except Exception as e:
-                print(f'         RT error: {e}')
-            time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
+            if SCRAPE_RT:
+                try:
+                    rt = scrape_rt(page, t['title'], t['year'], t['type'])
+                except Exception as e:
+                    print(f'         RT error: {e}')
+                time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
 
             mc = None
             try:

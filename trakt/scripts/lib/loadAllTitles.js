@@ -15,7 +15,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import {
   buildIndexes, hydrateTitle, getCreator, matchScore, confidenceScore,
-  reason, popularityScore, audienceScore, awardsScore,
+  reason, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings,
 } from '../../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -31,7 +31,9 @@ export function loadAllTitles() {
   const watchlist = read('watchlist.json', { titles: [] });
   const candidatePool = read('candidatePool.json', { titles: [] });
   const enrichedMeta = read('enrichedMetadata.json', {});
-  const omdbMeta = read('omdbMetadata.json', {});
+  const omdbMetaRaw = read('omdbMetadata.json', {});
+  const scrapedShowRatings = read('scrapedShowRatings.json', {});
+  const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
   const feedback = read('feedbackData.json', { interactions: [] });
 
   const idx = buildIndexes(library, enrichedMeta, feedback);

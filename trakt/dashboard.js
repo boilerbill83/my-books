@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, audienceScore, awardsScore } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -1366,7 +1366,7 @@ function renderQualityDial(sectionId, { score, components }) {
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
 
-  const [d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback] = await Promise.all([
+  const [d, library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback, scrapedShowRatings] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -1374,7 +1374,9 @@ async function load() {
     get('./data/enrichedMetadata.json').catch(() => ({})),
     get('./data/omdbMetadata.json').catch(() => ({})),
     get('./data/feedbackData.json').catch(() => ({ interactions: [] })),
+    get('./data/scrapedShowRatings.json').catch(() => ({})),
   ]);
+  const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
 
   const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];

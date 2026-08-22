@@ -195,6 +195,30 @@ export function popularityScore(voteCount) {
 // distributions, not guessed, the same discipline the book engine always
 // used via scripts/eval.js before trusting a new signal.
 
+// Fills the real gap Session 52 found: OMDb's API returns RT/Metacritic
+// for movies but essentially never for shows (confirmed against OMDb's
+// own issue tracker), so trakt/scrape_show_ratings.py scrapes Metacritic
+// directly for exactly that gap, cached separately in
+// trakt/data/scrapedShowRatings.json so the source of every value stays
+// traceable. Only metacritic is merged in — RT scraping was verified
+// wrong against real outside sources (Elsbeth: scraped 62%, real
+// Tomatometer 92%) across 3 live test batches and is disabled at the
+// source (scrape_show_ratings.py's SCRAPE_RT = False), so scraped
+// rottenTomatoes/rtAudience values are never trusted here even if
+// present in an old cache entry. OMDb's own metacritic value always
+// wins when present (the movie case); this only fills a null.
+export function mergeScrapedShowRatings(omdbMeta, scrapedShowRatings) {
+  if (!scrapedShowRatings) return omdbMeta;
+  const merged = { ...omdbMeta };
+  for (const [key, scraped] of Object.entries(scrapedShowRatings)) {
+    if (scraped.metacritic == null) continue;
+    const existing = merged[key];
+    if (existing?.metacritic != null) continue; // OMDb's own value wins
+    merged[key] = { ...(existing || {}), metacritic: scraped.metacritic };
+  }
+  return merged;
+}
+
 export function audienceScore(omdbEntry) {
   if (!omdbEntry) return null;
   const scores = [omdbEntry.rottenTomatoes, omdbEntry.metacritic].filter(v => v != null);

@@ -23,7 +23,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { buildIndexes, matchScore, hydrateTitle, isPreMillenniumMovie, isAnimation } from '../engine.js';
+import { buildIndexes, matchScore, hydrateTitle, isPreMillenniumMovie, isAnimation, mergeScrapedShowRatings } from '../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -39,7 +39,9 @@ const library = readJSON(path.join(DATA_DIR, 'library.json'), { titles: [] });
 const watchlist = readJSON(path.join(DATA_DIR, 'watchlist.json'), { titles: [] });
 const candidatePool = readJSON(path.join(DATA_DIR, 'candidatePool.json'), { titles: [] });
 const enrichedMeta = readJSON(path.join(DATA_DIR, 'enrichedMetadata.json'), {});
-const omdbMeta = readJSON(path.join(DATA_DIR, 'omdbMetadata.json'), {});
+const omdbMetaRaw = readJSON(path.join(DATA_DIR, 'omdbMetadata.json'), {});
+const scrapedShowRatings = readJSON(path.join(DATA_DIR, 'scrapedShowRatings.json'), {});
+const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
 const feedback = readJSON(path.join(DATA_DIR, 'feedbackData.json'), { interactions: [] });
 
 const idx = buildIndexes(library, enrichedMeta, feedback);

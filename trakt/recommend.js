@@ -1,4 +1,4 @@
-import { rankRecommendations } from './engine.js';
+import { rankRecommendations, mergeScrapedShowRatings } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -6,13 +6,15 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
 
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [library, watchlist, enrichedMeta, feedback, omdbMeta] = await Promise.all([
+  const [library, watchlist, enrichedMeta, feedback, omdbMetaRaw, scrapedShowRatings] = await Promise.all([
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
     get('./data/enrichedMetadata.json').catch(() => ({})),
     get('./data/feedbackData.json').catch(() => ({ interactions: [] })),
     get('./data/omdbMetadata.json').catch(() => ({})),
+    get('./data/scrapedShowRatings.json').catch(() => ({})),
   ]);
+  const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
 
   const enrichedCount = Object.keys(enrichedMeta).length;
   document.getElementById('subtitleText').textContent =
