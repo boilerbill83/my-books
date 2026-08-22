@@ -50,8 +50,12 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / 'trakt' / 'data'
 CACHE_FILE = DATA_DIR / 'scrapedShowRatings.json'
 BATCH_SIZE = int(sys.argv[1]) if len(sys.argv) > 1 else 40
-MIN_DELAY = 6
-MAX_DELAY = 12
+# Calibrated for RT originally (known aggressive bot protection); with RT
+# now disabled, 3 real Metacritic-only test batches showed no sign of
+# rate-limiting or blocking at all, so this can run faster. Still a real
+# delay, not zero, since this is still a live third-party site.
+MIN_DELAY = 3
+MAX_DELAY = 6
 RETRY_COOLDOWN_DAYS = 14   # same convention as scrape_ratings.py: a miss
                             # (not a permanent "no score exists") is retried
                             # after this long, a real score is cached forever
@@ -267,33 +271,37 @@ def scrape_metacritic(page, title, year, kind):
     debug_link_count = None
     url = None
 
+    # Verified reliable across 3 real live test batches (5/5 direct-slug
+    # matches, all confirmed correct on spot-check) — Metacritic's own URL
+    # convention is predictable (lowercase, non-alphanumeric runs -> single
+    # hyphen), so try it FIRST rather than the search page. The search
+    # page's href regex found 0 result links in all 3 test batches (its
+    # results likely render via a JS mechanism this regex-on-static-HTML
+    # approach can't see) — still kept as a fallback below for a title
+    # whose real slug doesn't match the naive lowercase-hyphenate guess,
+    # but trying it first on every title would waste a full page load on
+    # something that has never once worked.
+    slug = re.sub(r'-+', '-', re.sub(r'[^a-z0-9]+', '-', title.lower())).strip('-')
+    guess_url = f'https://www.metacritic.com{path_prefix}{slug}/'
     try:
-        page.goto(f'https://www.metacritic.com/search/{quote(title)}/',
-                   wait_until='domcontentloaded', timeout=20_000)
-        page.wait_for_timeout(random.randint(3500, 5000))
-        html = page.content()
-        all_links = re.findall(r'href="(https://www\.metacritic\.com(?:/tv/|/movie/)[a-z0-9_-]+/?)"', html)
-        debug_link_count = len(all_links)
-        matching = [u for u in all_links if path_prefix in u]
-        if matching:
-            url = matching[0]
+        resp = page.goto(guess_url, wait_until='domcontentloaded', timeout=20_000)
+        page.wait_for_timeout(random.randint(2000, 3000))
+        if resp and resp.status < 400 and 'Page Not Found' not in page.content()[:3000]:
+            url = guess_url
     except PWTimeout:
         pass
 
     if url is None:
-        # Metacritic's own URL convention is predictable and well-
-        # documented (lowercase, non-alphanumeric runs -> single hyphen)
-        # — the search-page link extraction found 0 results in both live
-        # test batches so far (search results likely render via a JS
-        # mechanism this regex-on-static-HTML approach can't see), so
-        # try the guessed direct URL as a fallback rather than giving up.
-        slug = re.sub(r'-+', '-', re.sub(r'[^a-z0-9]+', '-', title.lower())).strip('-')
-        guess_url = f'https://www.metacritic.com{path_prefix}{slug}/'
         try:
-            resp = page.goto(guess_url, wait_until='domcontentloaded', timeout=20_000)
-            page.wait_for_timeout(random.randint(2000, 3000))
-            if resp and resp.status < 400 and 'Page Not Found' not in page.content()[:3000]:
-                url = guess_url
+            page.goto(f'https://www.metacritic.com/search/{quote(title)}/',
+                       wait_until='domcontentloaded', timeout=20_000)
+            page.wait_for_timeout(random.randint(3500, 5000))
+            html = page.content()
+            all_links = re.findall(r'href="(https://www\.metacritic\.com(?:/tv/|/movie/)[a-z0-9_-]+/?)"', html)
+            debug_link_count = len(all_links)
+            matching = [u for u in all_links if path_prefix in u]
+            if matching:
+                url = matching[0]
         except PWTimeout:
             pass
 
