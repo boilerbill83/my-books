@@ -532,7 +532,7 @@ function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, om
 // writing); any other field that dips below 90% in a future session gets
 // a generic finding built from its own FIELD_REGISTRY note rather than
 // silently going unlisted, per Bill's literal "any field" instruction.
-function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePool, enrichedMeta) {
+function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePool, enrichedMeta, omdbMeta) {
   const findings = [];
 
   // Same dedup-by-titleKey, same source-priority order (library beats
@@ -614,24 +614,38 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
           `additional signal for these titles, not a fix to this field directly.`,
       };
     },
-    audienceScore: (f) => ({
-      severity: 'warning',
-      ratings: { ease: 5, dataQuality: 6, recEngine: 4, ui: 2 },
-      title: `Audience Score is only ${f.populatedPct.toFixed(1)}% populated, ${f.qualityPct.toFixed(1)}% quality — below the 90% bar on both`,
-      technical: `<code>audienceScore</code> (Rotten Tomatoes/Metacritic) is ${f.populatedPct.toFixed(1)}% populated and ${f.qualityPct.toFixed(1)}% ` +
-        `quality (both present, not just one) among the ${f.eligible} titles with an OMDb record. OMDb's own RT/MC coverage is ` +
-        `real but thin, especially for TV — a Metacritic scraper (<code>trakt/scrape_show_ratings.py</code>) was built and a real ` +
-        `450-title backfill batch was already in flight as of this session to close part of this gap for shows OMDb doesn't cover; ` +
-        `Rotten Tomatoes scraping was tried and disabled after failing accuracy verification twice. The remaining gap is a real, ` +
-        `partially-addressed data ceiling, not an unexamined one.`,
-      plain: `Not every title has a critic score available — Rotten Tomatoes and Metacritic simply don't cover everything, ` +
-        `especially older or more obscure TV shows. A scraper to fill in more Metacritic scores for shows was already built and ` +
-        `run this session; this number should improve once that finishes and on future runs, but won't ever reach 100% since some ` +
-        `titles genuinely have no critic score anywhere.`,
-      impact: `Partially in progress already (the Metacritic scraper), and blocked in part by the imdbId gap above for ` +
-        `candidatePool titles specifically — the remaining ceiling after both catch up is a real OMDb/critic-coverage limit, not ` +
-        `something more automation alone fully closes.`,
-    }),
+    audienceScore: (f) => {
+      const popLow = f.populatedPct < 90;
+      const qualLow = f.qualityPct < 90;
+      const barPhrase = popLow && qualLow ? 'on both' : popLow ? 'on population' : 'on quality';
+      let rtTotal = 0, mcTotal = 0;
+      for (const o of Object.values(omdbMeta || {})) {
+        if (o.rottenTomatoes != null) rtTotal++;
+        if (o.metacritic != null) mcTotal++;
+      }
+      return {
+        severity: 'warning',
+        ratings: { ease: 5, dataQuality: 6, recEngine: 4, ui: 2 },
+        title: `Audience Score is ${f.populatedPct.toFixed(1)}% populated, ${f.qualityPct.toFixed(1)}% quality — below the 90% bar ${barPhrase}`,
+        technical: `<code>audienceScore</code> (Rotten Tomatoes/Metacritic) is ${f.populatedPct.toFixed(1)}% populated and ${f.qualityPct.toFixed(1)}% ` +
+          `quality (both present, not just one) among the ${f.eligible} titles with an OMDb record. A Metacritic-only scraper ` +
+          `(<code>trakt/scrape_show_ratings.py</code> — Rotten Tomatoes scraping was tried and disabled after failing accuracy ` +
+          `verification twice) already ran a real 447-title backfill batch this session, which is why population jumped well past ` +
+          `the bar — but quality (needing BOTH scores, not just one) has a real structural ceiling this scraper alone can't close: ` +
+          `only ${rtTotal} of ${Object.keys(omdbMeta || {}).length} OMDb-cached titles have an RT score at all (Rotten Tomatoes ` +
+          `only ever comes from OMDb itself here, never the scraper), versus ${mcTotal} with Metacritic. Quality can't meaningfully ` +
+          `exceed the RT-coverage ceiling no matter how much more Metacritic gets scraped.`,
+        plain: `Not every title has a critic score, and even titles that do often only have one of the two scores (Rotten Tomatoes ` +
+          `or Metacritic), not both — and "quality" here specifically means having both. This session's scraper run added a lot of ` +
+          `new Metacritic scores, which is why "how many titles have a score at all" improved a lot. But Rotten Tomatoes scores ` +
+          `only ever come from the paid data source (OMDb), not the scraper, and OMDb simply doesn't have an RT score for most of ` +
+          `these titles — so "how many have both" is stuck behind a real limit that more Metacritic scraping alone can't fix.`,
+        impact: `Population-side gain already real and verified (this session's scrape). The remaining quality gap is a genuine ` +
+          `RT-coverage ceiling, not something the existing scraper design can close further — closing it further would need either ` +
+          `a working RT scraper (the earlier attempt failed accuracy verification) or accepting a single-score audience metric as ` +
+          `"quality" instead of requiring both.`,
+      };
+    },
     awards: (f) => ({
       severity: 'warning',
       ratings: { ease: 2, dataQuality: 3, recEngine: 3, ui: 1 },
@@ -1921,7 +1935,7 @@ async function load() {
   const allFindings = [
     ...computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates),
     ...computeEngineImprovements(library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, idx, fromWatchlist, fromCandidates),
-    ...computeFieldQualityFindings(fieldStats, library, watchlist, candidatePool, enrichedMeta),
+    ...computeFieldQualityFindings(fieldStats, library, watchlist, candidatePool, enrichedMeta, omdbMeta),
   ].sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
 
   renderRecPanel('movieRecList', byType(fromWatchlist, 'movie'), byType(fromCandidates, 'movie'), enrichedMeta, omdbMeta);
