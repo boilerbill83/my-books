@@ -3940,5 +3940,86 @@
   "metacriticUser": null,
   "mcUrl": "https://www.metacritic.com/movie/fall/",
   "checkedAt": "2026-08-23"
+ },
+ "show:303630": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/cupertino/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:273207": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/neagley/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:213562": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/crystal-lake/",
+  "checkedAt": "2026-08-23"
+ },
+ "movie:1583500": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 98,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/movie/elway/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:262280": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/legends/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:75758": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/lost-in-space/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:85853": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/perry-mason/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:219971": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/the-agency/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:90399": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 97,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/ambitions/",
+  "checkedAt": "2026-08-23"
  }
 }
