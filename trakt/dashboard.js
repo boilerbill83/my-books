@@ -700,17 +700,19 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
           `(not critics) thought, separate from the critic scores the app already tracked. Checked the real scrape run's own log rather than ` +
           `guessing why it's empty: the critic score (Tomatometer) reliably shows up on the page the scraper grabs, but the separate audience ` +
           `number apparently doesn't load in time to be captured — every single page checked had the critic data but never the audience data, a ` +
-          `consistent pattern, not random misses. Two follow-up fixes were tried this session, both real and specific (not guesses) but both ` +
-          `came back empty on a real 12-title test: one looked for a special HTML tag Rotten Tomatoes' site is believed to use for its scores, ` +
-          `the other looked for a data blob Metacritic's site is believed to embed — neither was found on any of the 12 real pages checked, so ` +
-          `both ideas about where the data lives were wrong (or it's simply not there yet when the page is grabbed). Left in the code since they ` +
-          `can't do harm, but not trusted to actually work.`,
+          `consistent pattern, not random misses. Three follow-up fixes were tried this session, all real and specific (not blind guesses), and ` +
+          `all three came back empty on real 12-title tests: two looked for specific pieces of markup the sites are believed to use for their ` +
+          `scores (neither was ever found, on any page), and the third tried simply waiting much longer before reading the page in case the data ` +
+          `just needed more time to load (made no difference — still never found). At this point that's 3 real, different ideas, all cleanly ` +
+          `wrong or unreachable, with concrete evidence each time rather than an ambiguous "still doesn't work" — the field is being left ` +
+          `honestly at 0% rather than guessed at a 4th time.`,
         impact: `Low priority for now and not blocking anything — it's a new, display-only field, not something the recommendation engine ` +
-          `depends on. Two distinct, real technical attempts (a custom <code>&lt;score-board&gt;</code> element for RT, a ` +
-          `<code>__NEXT_DATA__</code> props blob for Metacritic) were tried and cleanly disproven this session — a real 12-title verification ` +
-          `run found neither piece of markup present on any page, not just a wrong value. Per the same "no third blind attempt" discipline that ` +
-          `took 5 real rounds to get the Metacritic critic-score scraper right, a further attempt (e.g. waiting longer for the page to finish ` +
-          `loading before reading it) should be a deliberate next step, not another autonomous guess.`,
+          `depends on. Three distinct, real technical attempts (a custom <code>&lt;score-board&gt;</code> element for RT, a ` +
+          `<code>__NEXT_DATA__</code> props blob for Metacritic, and a much longer real-hydration wait for both) were tried this session and all ` +
+          `three came back cleanly negative — the critic score worked fine throughout (12/12 across every test), so this isn't a broken scrape, ` +
+          `specifically the audience data isn't reachable by any of the three approaches tried. Per this project's "no third blind attempt" ` +
+          `discipline, a further attempt genuinely needs new information (e.g. someone providing real Rotten Tomatoes/Metacritic page source to ` +
+          `look at directly) rather than another guess from training-data recollection of how these sites are built.`,
       };
     },
     subgenres: (f) => ({

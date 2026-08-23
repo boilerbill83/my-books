@@ -151,6 +151,23 @@ SCRAPE_RT = True
 # for this specific next step, after round 2's clean negative result was
 # reported (this project's "no third blind attempt without checking in"
 # discipline).
+#
+# REAL ROUND 3 RESULT (a 12-title verification run, same sample as
+# rounds 1-2): also cleanly negative, and more conclusively so than
+# round 2 — waiting longer (networkidle + a 6-9s floor, vs. round 2's
+# fixed 2-4s) did NOT reveal a <score-board> tag or a __NEXT_DATA__
+# script on any of the 12 real pages either; identical zero-signal
+# result to round 2, ruling out "just needed more time to hydrate" as
+# cleanly as round 2 ruled out "wrong element name entirely." Critic
+# score held at 12/12 throughout, confirming the fetch itself works
+# fine — this is specifically about where/whether RT and MC expose
+# audience data, not a broken scrape. Three distinct, real technical
+# hypotheses have now failed with concrete diagnostic evidence each
+# time (not ambiguous "sometimes works" noise) — per this project's
+# "no third blind attempt" rule, a 4th guess from training-data
+# recollection isn't warranted; the actual next step would need real
+# information (e.g. someone pasting real RT/MC page source) rather than
+# another autonomous guess at markup this scraper still can't see.
 HYDRATION_WAIT_MS = (6000, 9000)
 
 

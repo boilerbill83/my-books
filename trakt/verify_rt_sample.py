@@ -43,18 +43,26 @@ extraction path is trusted for a bulk backfill as a result (both stay
 in the code as harmless no-ops — they only ever fill a value nothing
 else found).
 
-ROUND 3 (this version, Bill's explicit go-ahead after round 2's negative
-result was reported): neither round 1 nor round 2 tested the one
-remaining real hypothesis — that the audience widget genuinely isn't in
-the DOM yet at the point this scraper reads it (`domcontentloaded` + a
-short 2-4s fixed wait), independent of which markup it eventually uses.
-scrape_rt()/scrape_metacritic() now call the new shared
-_wait_for_hydration() before reading a detail page's content: a real
-`networkidle` wait (network activity actually goes quiet, not just "N
-seconds have passed") followed by a much longer fixed floor
-(HYDRATION_WAIT_MS, 6-9s vs. the previous 2-4s). This run is the actual
-test of that hypothesis — go/no-go decided from its real output below,
-same discipline as every prior round.
+ROUND 3 (Bill's explicit go-ahead after round 2's negative result was
+reported): tested the one remaining real hypothesis neither prior round
+tried — that the audience widget genuinely isn't in the DOM yet at the
+point this scraper reads it (`domcontentloaded` + a short 2-4s fixed
+wait), independent of which markup it eventually uses.
+scrape_rt()/scrape_metacritic() now call _wait_for_hydration() before
+reading a detail page: a real `networkidle` wait followed by a much
+longer fixed floor (6-9s vs. the previous 2-4s).
+
+REAL RESULT (run 3, this file's own 12-title batch): also cleanly
+negative, and more conclusive than round 2 — waiting substantially
+longer did NOT reveal a <score-board> tag or a __NEXT_DATA__ script on
+any of the 12 real pages either, the identical zero-signal result as
+round 2. Critic score held at 12/12 throughout (the fetch itself works
+fine). Three distinct, real technical hypotheses have now failed with
+concrete diagnostic evidence each time — this is where the "no third
+blind attempt" rule actually bites: a 4th guess from training-data
+recollection about RT/MC's markup isn't warranted without new
+information (e.g. someone providing real page source). Reported to Bill
+as a final negative rather than attempted again autonomously.
 
 SAMPLE: the same 12 titles Round 1 verified (already-known imdb ids),
 now also checked against real RT Popcornmeter / Metacritic user score
