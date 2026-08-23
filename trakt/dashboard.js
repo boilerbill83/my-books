@@ -1375,18 +1375,30 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     severity: 'warning',
     ratings: { ease: 7, dataQuality: 2, recEngine: 4, ui: 1 },
     title: 'Recency scoring treats a movie and an ongoing show identically',
-    technical: `PARTIALLY FIXED this session: <code>recencyBonus(year)</code> used to apply one universal age-` +
-      `bucket curve regardless of <code>candidate.type</code>; now split into <code>recencyBonusMovie()</code> ` +
-      `(a much steeper curve, plus a hard pre-2000 exclusion for discovered movie candidates) and ` +
+    technical: `PARTIALLY FIXED across two sessions: <code>recencyBonus(year)</code> used to apply one universal ` +
+      `age-bucket curve regardless of <code>candidate.type</code>; split into <code>recencyBonusMovie()</code> (a ` +
+      `much steeper curve, plus a hard pre-2000 exclusion for discovered movie candidates) and ` +
       `<code>recencyBonusShow()</code> (unchanged gentler shape), per Bill's explicit "favor recent movies" ` +
-      `request. What's still unaddressed: <code>recencyBonusShow()</code> still keys off <code>year</code> — the ` +
-      `title's original air year — not its most recent activity, so an old show with a new season still airing ` +
-      `today scores exactly as "old" as one that ended years ago.`,
-    plain: `Movies now get scored on how recent they are much more strongly, which was fixed this session. Shows ` +
-      `still don't distinguish "started long ago but still has new episodes coming out" from "started long ago and ` +
-      `ended long ago" — both look equally old to the recency signal.`,
-    impact: `Movie side resolved and verified live (top movie picks are all 2017+ now). Show side is a smaller, ` +
-      `real remaining gap — recency is a modest signal to begin with (max a few points).`,
+      `request. The show-side gap flagged here — <code>recencyBonusShow()</code> keys off original air year, not ` +
+      `whether a show is still actively producing new content — was genuinely attempted this session, not just ` +
+      `left alone: TMDB's own <code>status</code> field ("Returning Series"/"In Production" on 188 of 1,059 ` +
+      `enriched shows) is already captured and unused for this. A flat +1 or +2 credit for that status, tried and ` +
+      `measured against <code>scripts/eval.js</code>, made things measurably worse both times — precision@10 ` +
+      `90%→80%, precision@100 91%→86%, and MAE got worse, not better. Reverted rather than shipped, per this ` +
+      `project's precision-first discipline (the same one that capped <code>keywordBonus()</code> after catching a ` +
+      `similar regression above). A flat bonus applied to ~17.8% of all shows regardless of fit is likely just too ` +
+      `blunt an instrument — a real fix probably needs a differently-shaped signal, closer to how ` +
+      `<code>genreBonus()</code>/<code>keywordBonus()</code> weight by loved-title overlap rather than a flat ` +
+      `across-the-board credit.`,
+    plain: `Movies now get scored on how recent they are much more strongly, which was fixed in an earlier session. ` +
+      `Shows still don't distinguish "started long ago but still has new episodes coming out" from "started long ` +
+      `ago and ended long ago" — a fix for that was actually tried this session (using a real "still airing" flag ` +
+      `the app already has but never used), but testing it against real data showed it made the recommendations ` +
+      `measurably worse, not better, so it was undone rather than shipped just because it sounded like it should ` +
+      `help.`,
+    impact: `Movie side resolved and verified live (top movie picks are all 2017+ now). Show side remains a real, ` +
+      `open gap — now backed by evidence that the obvious fix doesn't work, which is useful information for ` +
+      `whoever picks this up next, not just an unexplored idea anymore.`,
   });
 
   // 11. Cover images: TMDB's posterPath is already captured by
