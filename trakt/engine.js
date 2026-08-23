@@ -451,12 +451,19 @@ export function resolveSimilarDirectors(meta, type, enrichedMeta, limit = 3) {
 // caught and avoided).
 
 const SUBGENRE_KEYWORDS = {
-  'crime-drama': ['organized crime', 'drug dealer', 'drugs', 'gangster', 'mafia', 'mob', 'outlaw', 'criminal'],
-  'procedural': ['police', 'detective', 'investigation', 'fbi', 'murder investigation', 'police detective', 'cop', 'murder'],
-  'legal': ['lawyer', 'courtroom', 'trial', 'attorney', 'judge'],
+  // Real additions this session (field-quality-subgenres coverage pass):
+  // every added keyword was verified present at real, non-trivial
+  // frequency in the live enrichedMetadata.json keyword set first, never
+  // guessed — see the session's own keyword-frequency scan. Extends
+  // existing tag buckets with real synonyms/phrasings TMDB actually uses
+  // rather than inventing new sub-buckets off thin, single-keyword
+  // evidence (the exact over-reach the book side's Session 16b rejected).
+  'crime-drama': ['organized crime', 'drug dealer', 'drugs', 'gangster', 'mafia', 'mob', 'outlaw', 'criminal', 'hitman', 'assassin'],
+  'procedural': ['police', 'detective', 'investigation', 'fbi', 'murder investigation', 'police detective', 'cop', 'murder', 'murder mystery', 'whodunit', 'police procedural', 'crime investigation', 'criminal investigation'],
+  'legal': ['lawyer', 'courtroom', 'trial', 'attorney', 'judge', 'legal drama'],
   'heist': ['heist', 'robbery', 'con artist', 'bank robbery'],
   'spy-espionage': ['spy', 'espionage', 'undercover', 'secret agent'],
-  'psychological-thriller': ['psychopath', 'disturbed', 'serial killer', 'psychological thriller', 'stalking', 'obsession'],
+  'psychological-thriller': ['psychopath', 'disturbed', 'serial killer', 'psychological thriller', 'stalking', 'obsession', 'kidnapping'],
   'biopic': ['biography', 'biopic'],
   // Deliberately just these two — a first version also matched bare decade
   // markers ('1970s', '1920s', etc.), which produced real false positives
@@ -467,9 +474,15 @@ const SUBGENRE_KEYWORDS = {
   // and no 'period drama'/'historical' tag of its own, e.g. 1923, won't
   // get this tag) for real precision — an intentional choice per the
   // rollout plan's "trim/merge during calibration, decided empirically."
-  'historical': ['period drama', 'historical'],
+  // Trades some recall for real precision, still — kept 'wild west' out
+  // of a would-be dedicated 'western' bucket (only 12 real occurrences,
+  // too thin for its own tag per the same "decided empirically, not
+  // guessed" discipline as the superhero/historical carve-outs above)
+  // and folded it in here instead, since an Old West setting is a period
+  // piece too.
+  'historical': ['period drama', 'historical', 'historical fiction', 'historical drama', 'costume drama', 'wild west'],
   'war': ['war', 'military', 'soldier', 'world war ii', 'world war i', 'vietnam war'],
-  'political': ['politics', 'president', 'election', 'corruption', 'government'],
+  'political': ['politics', 'president', 'election', 'corruption', 'government', 'conspiracy'],
   'family-drama': ['dysfunctional family', 'family relationships', 'family', 'husband wife relationship', 'sibling relationship'],
   'coming-of-age': ['coming of age', 'high school', 'teenager'],
   'romance': ['romance', 'love', 'love triangle'],
@@ -480,28 +493,42 @@ const SUBGENRE_KEYWORDS = {
   // comic', which produced a real false positive on "300" (a historical
   // war epic based on Frank Miller's graphic novel, not remotely a
   // superhero film) — being adapted from a comic doesn't imply the genre.
-  'superhero': ['superhero', 'supervillain'],
-  'sci-fi-fantasy': ['dystopia', 'supernatural', 'alien', 'time travel', 'zombie', 'vampire'],
+  'superhero': ['superhero', 'supervillain', 'super power', 'superhero team'],
+  'sci-fi-fantasy': ['dystopia', 'supernatural', 'alien', 'time travel', 'zombie', 'vampire', 'post-apocalyptic future', 'alien invasion', 'space'],
   'sports': ['sports', 'basketball', 'baseball', 'wrestling', 'boxing'],
-  'medical': ['doctor', 'hospital', 'surgeon', 'nurse', 'medical'],
+  'medical': ['doctor', 'hospital', 'surgeon', 'nurse', 'medical', 'medical drama'],
   'prison': ['prison', 'death row'],
 };
 
 const TONE_KEYWORDS = {
-  'gritty': ['gritty', 'grim', 'macabre'],
-  'dark': ['dark', 'hopeless', 'tragic'],
-  'witty': ['witty', 'amused'],
-  'satirical': ['satire', 'satirical', 'parody', 'black comedy'],
+  // Real additions this session (field-quality-tones coverage pass, the
+  // most under-covered of the two — TMDB genuinely carries far fewer
+  // mood/craft keywords than content/subject ones). Every addition below
+  // was verified at real, non-trivial frequency in the live dataset
+  // first — deliberately excluded several higher-frequency but too-
+  // generic candidates that would risk becoming filler the way the book
+  // side's Session 16 "any positive score becomes default filler" bug
+  // did (e.g. 'dramatic' 30x, 'complex' 21x, 'serious' 11x, 'bold' 18x —
+  // all real but not specific enough to any one tone to be a safe signal).
+  'gritty': ['gritty', 'grim', 'macabre', 'aggressive', 'brutality', 'angry'],
+  'dark': ['dark', 'hopeless', 'tragic', 'depressing', 'tragedy'],
+  'witty': ['witty', 'amused', 'playful'],
+  'satirical': ['satire', 'satirical', 'parody', 'black comedy', 'biting', 'irreverent'],
   'hilarious': ['hilarious'],
-  'inspirational': ['inspirational', 'inspiring'],
-  'intense': ['intense', 'tension', 'tense'],
+  'inspirational': ['inspirational', 'inspiring', 'hopeful'],
+  'intense': ['intense', 'tension', 'tense', 'anxious'],
   'suspenseful': ['suspenseful', 'suspense', 'cliffhanger'],
   'twisty': ['plot twist'],
   'slow-burn': ['slow burn'],
-  'character-driven': ['character study'],
+  'character-driven': ['character study', 'intimate'],
   'nostalgic': ['nostalgic', 'nostalgia'],
   'melancholy': ['melancholy', 'tearjerker'],
   'offbeat': ['offbeat', 'whimsical', 'surreal'],
+  // New tag — both keywords are exact, unambiguous matches for the tag
+  // itself (not inferred from a looser synonym the way most tags above
+  // are), the safest kind of addition per this file's own established
+  // discipline.
+  'thoughtful': ['thoughtful', 'philosophical'],
 };
 
 function scoreKeywordTags(keywords, map) {
