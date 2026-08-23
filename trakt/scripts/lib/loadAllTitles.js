@@ -16,6 +16,7 @@ import { fileURLToPath } from 'url';
 import {
   buildIndexes, hydrateTitle, getCreator, matchScore, confidenceScore,
   reason, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings,
+  resolveSimilarTitles,
 } from '../../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -76,6 +77,10 @@ export function loadAllTitles() {
       tmdbPopularity: meta.popularity ?? '',
       similarToIds: meta.similarToIds || [],
       recommendedIds: meta.recommendedIds || [],
+      // Resolved names for whichever cited ids happen to already be in our
+      // own tracked catalog — see resolveSimilarTitles()'s own comment for
+      // why this is a real but partial subset of the raw id lists above.
+      similarToTitles: resolveSimilarTitles(meta, h.type, enrichedMeta).map(s => s.title),
       topCast: meta.topCast || [],
       releaseDate: meta.releaseDate || meta.firstAirDate || '',
       runtime: meta.runtime ?? meta.episodeRunTime ?? '',

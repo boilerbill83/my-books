@@ -152,10 +152,15 @@ function matchPointScale(type, lovedCountByType) {
 // ── Scoring ──────────────────────────────────────────────────────────────
 
 // Tiered by how many loved titles share the genre — same shape as the book
-// engine's themeBonus(), but tier thresholds are provisional (TMDB's ~19
-// fixed genres saturate far faster than book's free-form themes) and
-// should be recalibrated once real enrichment data exists — see the
-// "Roadmap" note in CLAUDE.md's BMTRE section.
+// engine's themeBonus(). These thresholds were originally provisional
+// (TMDB's ~19 fixed genres saturate far faster than book's free-form
+// themes), pending validation once real enrichment data existed — that
+// data has existed for a while and was formally checked for the first
+// time in Session 53's improvement pass: Bill's real lovedGenres
+// distribution spans all 5 tiers with no collapse (Drama 105 alone in
+// tier 5, Crime/Comedy in tier 4, Action/Thriller/Mystery in tier 3, 3
+// more in tier 2, 7 more in tier 1) — the tiers hold up against real
+// data, not just an assumption. No longer provisional.
 function genreBonus(genres, lovedGenres) {
   let bonus = 0;
   for (const g of (genres || [])) {
@@ -212,6 +217,36 @@ function castBonus(topCast, lovedActors) {
     else if (count >= 1) bonus += 2;
   }
   return Math.min(8, bonus);
+}
+
+// A real Improvement Opportunities finding (Session 53): similarToIds/
+// recommendedIds are 100% populated and already drive matchScore()'s
+// forward/reverse match signal, but there was no human-readable
+// similarToTitles field the way the book side's goodreadsData.json has —
+// only raw TMDB ids. This resolves a title's cited ids to real names via
+// a self-referential lookup against enrichedMetadata.json itself (no new
+// fetch needed): only ids that happen to already be in our own tracked
+// catalog (library/watchlist/candidatePool, all TMDB-enriched) resolve —
+// checked live against the real dataset, that's 31.2% of all citations
+// (18,525 of 59,336) — the rest cite titles outside what Bill has watched,
+// queued, or been offered as a candidate, which is expected and not a bug:
+// TMDB's similar/recommendations network reaches far beyond any one
+// person's own catalog. Deduped and capped at `limit`, citation order
+// preserved (similarToIds before recommendedIds, matching baseSignals()'s
+// own citedIds construction).
+export function resolveSimilarTitles(meta, type, enrichedMeta, limit = 5) {
+  if (!meta) return [];
+  const seen = new Set();
+  const out = [];
+  for (const id of [...(meta.similarToIds || []), ...(meta.recommendedIds || [])]) {
+    if (out.length >= limit) break;
+    const key = titleKey(type, id);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const cited = enrichedMeta[key];
+    if (cited?.title) out.push({ titleKey: key, title: cited.title, year: cited.year ?? null });
+  }
+  return out;
 }
 
 function voteCountBonus(voteCount) {

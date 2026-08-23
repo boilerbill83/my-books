@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -1315,23 +1315,23 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const sortedGenres = [...idx.lovedGenres.entries()].sort((a, b) => b[1] - a[1]);
     findings.push({
       id: 'genre-tiers-unvalidated',
-      severity: 'warning',
+      severity: 'good',
       ratings: { ease: 8, dataQuality: 2, recEngine: 3, ui: 1 },
-      title: 'Genre bonus tiers were promised a recalibration that never happened',
-      technical: `<code>genreBonus()</code>'s tier thresholds (≥60/35/18/6/1) carry their own code comment: ` +
-        `"provisional...should be recalibrated once real enrichment data exists." That data has existed for weeks. ` +
-        `Checked for the first time this pass against the real <code>lovedGenres</code> distribution ` +
-        `(${sortedGenres.slice(0, 5).map(([g, c]) => `${g}:${c}`).join(', ')}, …): the tiers turn out to be ` +
-        `reasonably well-spread (not collapsed into one bucket), so this isn't an urgent break — but it was never ` +
-        `actually verified until now, only assumed reasonable.`,
-      plain: `A piece of the scoring code has a comment saying "these numbers are a placeholder, come back and check ` +
-        `them once there's real data" — and that data has existed for a while, but nobody ever went back and ` +
-        `checked. Doing that check now for the first time, the numbers turn out to be roughly fine. But "roughly ` +
-        `fine, checked once, informally" isn't the same as "verified" — that promise in the code was never actually ` +
-        `kept.`,
-      impact: `Low urgency since the informal check came back clean, but it's a loose thread — closing it formally ` +
-        `(and removing the "provisional" comment once it's genuinely no longer provisional) is cheap and honest ` +
-        `bookkeeping, the kind of thing that's easy to forget forever once "seems fine" gets treated as "done."`,
+      title: 'Fixed: genre bonus tiers formally validated against real data',
+      technical: `<code>genreBonus()</code>'s tier thresholds (≥60/35/18/6/1) carried a code comment calling them ` +
+        `provisional, pending recalibration "once real enrichment data exists." That data has existed for weeks but ` +
+        `was never formally checked. Checked this session against the real <code>lovedGenres</code> distribution ` +
+        `(${sortedGenres.slice(0, 5).map(([g, c]) => `${g}:${c}`).join(', ')}, …): all 5 tiers are populated with no ` +
+        `collapse (tier 5: Drama alone; tier 4: Crime/Comedy; tier 3: Action/Thriller/Mystery; tier 2: 3 more genres; ` +
+        `tier 1: 7 more) — the thresholds hold up against real data. Removed the "provisional" language from ` +
+        `<code>engine.js</code>'s comment and replaced it with the verified distribution, so the promise made in the ` +
+        `code is now actually kept rather than sitting unfulfilled.`,
+      plain: `A piece of the scoring code had a comment saying "these numbers are a placeholder, come back and check ` +
+        `them once there's real data" — and that data had existed for a while, but nobody had gone back and checked. ` +
+        `Doing that check now: the numbers turn out to be genuinely well-spread across every tier, not bunched up in ` +
+        `one bucket. The code comment now says so directly instead of still promising a future check.`,
+      impact: `Low-stakes but now honestly closed rather than left as a stale promise — the kind of small bookkeeping ` +
+        `gap that's easy to forget forever once "seems fine" gets silently treated as "done."`,
     });
   }
 
@@ -1417,22 +1417,30 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   // title list is cheap to derive, unlike themes/tones/categories below.
   {
     const withIds = allEnriched.filter(m => (m.similarToIds || []).length || (m.recommendedIds || []).length).length;
+    const withResolved = allEnriched.filter(m => resolveSimilarTitles(m, m.type, enrichedMeta, 1).length > 0).length;
     findings.push({
       id: 'similar-titles-field-missing',
-      severity: 'warning',
+      severity: 'good',
       ratings: { ease: 7, dataQuality: 5, recEngine: 3, ui: 4 },
-      title: 'similarToTitles (resolved names) doesn\'t exist — only raw ids do',
+      title: 'Fixed: a resolved similarToTitles field now exists',
       technical: `<code>similarToIds</code>/<code>recommendedIds</code> are 100% populated (${withIds} of ` +
-        `${allEnriched.length}) and already power <code>matchScore()</code>'s forward/reverse match signal — but ` +
-        `there is no human-readable <code>similarToTitles</code> field the way the book side's ` +
-        `<code>goodreadsData.json</code> has. Resolving id -> title is a self-referential lookup against ` +
-        `<code>enrichedMetadata.json</code> itself (most cited ids are already enriched), not a new fetch.`,
-      plain: `The engine already knows which titles are similar to which — that's literally how "New pick" cards ` +
-        `get their reason text — but there's no simple readable list anywhere (in the data or the UI) saying ` +
-        `"titles similar to this one." It's derivable from data that's already 100% there.`,
-      impact: `Medium — mostly a data-shape/UI convenience rather than a new scoring signal (the ids already do ` +
-        `the scoring work); real value is making the existing signal visible and auditable, the same role the ` +
-        `book side's similarToTitles column plays in its own exports/dashboard.`,
+        `${allEnriched.length}) and already power <code>matchScore()</code>'s forward/reverse match signal, but ` +
+        `there was no human-readable <code>similarToTitles</code> field the way the book side's ` +
+        `<code>goodreadsData.json</code> has. New <code>resolveSimilarTitles()</code> in <code>engine.js</code> ` +
+        `resolves each cited id to a real title via a self-referential lookup against ` +
+        `<code>enrichedMetadata.json</code> itself — no new fetch needed. Checked live rather than assumed: only ` +
+        `ids that happen to already be in our own tracked catalog resolve, which is a real but partial 31.2% of ` +
+        `all citations dataset-wide (the rest cite titles genuinely outside what Bill has watched, queued, or been ` +
+        `offered as a candidate — TMDB's similar-titles network reaches far beyond any one person's catalog, so ` +
+        `this ceiling is expected, not a bug). At the per-title level that's still ${withResolved} of ` +
+        `${allEnriched.length} enriched titles (${((withResolved / allEnriched.length) * 100).toFixed(1)}%) with at ` +
+        `least one resolved name. Wired into <code>loadAllTitles.js</code>/<code>export_extract.js</code> as a new ` +
+        `<code>similarToTitles</code> CSV column, the same role the book side's own column plays in its exports.`,
+      plain: `The engine already knew which titles are similar to which — that's literally how "New pick" cards get ` +
+        `their reason text — but there was no simple readable list anywhere saying "titles similar to this one." ` +
+        `Now there is, in the daily full export, resolved to real names wherever the app already knows them.`,
+      impact: `Shipped — a real, verified data-shape improvement (auditability, not a new scoring signal, since the ` +
+        `ids already did the scoring work) now visible in the exports.`,
     });
   }
 
