@@ -57,6 +57,35 @@ Declared a genuine ceiling of this scraping approach as of round 6 —
 blind guess; a real fix would need actual RT page source pasted in by
 a human, not another autonomous hypothesis.
 
+ROUND 7 (Bill: "keep trying to figure out how to get the RT audience
+score" — a second explicit continuation past the round-6 stopping
+point). Not another guess from training-data recollection: real
+WebSearch research (this sandbox can reach general web search/fetch
+even though rottentomatoes.com itself is egress-blocked) turned up a
+specific, current, cross-corroborated technical claim from two
+independent search results, both describing the same structure: RT's
+page embeds a `<script id="media-scorecard-json" type="application/json">`
+block carrying an `audienceScore` field — a THIRD embedded-JSON source,
+structurally distinct from the schema.org JSON-LD block (round 1) and
+the two round-2 guesses (a <score-board> element's HTML attributes, a
+Next.js __NEXT_DATA__ props blob). New extract_media_scorecard_json()
+looks for this script tag and, if found, recursively scans the parsed
+JSON for any key naming "audience"/"tomatometer"/"critic" — logging
+every match (key path and raw value) to the debug output regardless of
+whether a clean numeric score is accepted, so a real job log shows
+exactly what's actually there even if the true key nesting differs
+from what the research described. Wired into extract_rt_scores() as a
+third independent path, gap-filling only (never overrides an
+already-trusted JSON-LD critic score). Unit-tested (20 cases:
+nested-score-object shape, bare-numeric shape, absent script,
+malformed JSON, a non-numeric consensus-only object correctly NOT
+fabricated into a score, and wiring priority against JSON-LD).
+
+NOT YET VERIFIED against a real live page — this sandbox still can't
+fetch rottentomatoes.com directly to confirm the research's claim, same
+as every prior round. The next real verification run's job log is the
+actual test.
+
 A FULL DATA-QUALITY AUDIT of the real 447-title production batch found
 Metacritic itself is NOT immune to the same wrong-page failure shape
 that killed RT above, just less often: the direct-URL-slug-guess
@@ -785,6 +814,90 @@ def name_field_matches_title(name, expected_title):
     return exp_norm in name_norm or name_norm in exp_norm
 
 
+def extract_media_scorecard_json(html):
+    """Round 7 of the audience-score investigation — a genuinely new lead,
+    not another guess from training-data recollection. Per Bill's "keep
+    trying to figure it out" after round 6's clean svg-unblock negative
+    (the 5th distinct disproven hypothesis), real WebSearch research
+    turned up a specific, current, cross-corroborated technical claim
+    from two independent sources: RT's page embeds THREE stable JSON
+    blobs — the JSON-LD schema block (already read by extract_rt_scores,
+    critic-only in practice), a where-to-watch affiliate list, and a
+    `<script id="media-scorecard-json" type="application/json">` block
+    that is specifically described as carrying an `audienceScore` field.
+    This is structurally different from every prior hypothesis: not the
+    schema.org JSON-LD block (round 1), not a custom element's HTML
+    attributes (round 2's <score-board>), not a Next.js __NEXT_DATA__
+    props blob (round 2's other guess) — a third, independently-named
+    embedded JSON script this scraper has never looked for before.
+
+    Deliberately defensive rather than assuming an exact key path: if
+    the script tag is found and parses as JSON, this recursively scans
+    the whole structure for any key containing "audience" or
+    "tomatometer" (case-insensitive) and returns every match found in
+    the debug dict — so even if the exact nesting differs from what the
+    research described, a real job log shows exactly what keys and
+    values ARE there, the same "print enough to diagnose from the log
+    alone" discipline used throughout this investigation. Only a
+    plainly-numeric value under a key that unambiguously names one score
+    or the other is trusted for the actual return value; anything
+    ambiguous is logged but not accepted, never guessed.
+
+    NOT YET VERIFIED against a real live page — this sandbox can't fetch
+    rottentomatoes.com directly, same as every prior round. The next
+    real scrape/verification run's job log is the actual test."""
+    m = re.search(r'<script[^>]*id=["\']media-scorecard-json["\'][^>]*>(.*?)</script>', html, re.I | re.S)
+    if not m:
+        return None, None, {'mediaScorecardFound': False}
+
+    raw = m.group(1)
+    try:
+        obj = json.loads(raw)
+    except Exception as e:
+        return None, None, {'mediaScorecardFound': True, 'parseError': str(e)[:200]}
+
+    hits = []
+
+    def walk(node, path):
+        if len(hits) > 20:
+            return
+        if isinstance(node, dict):
+            for k, v in node.items():
+                lk = k.lower()
+                if 'audience' in lk or 'tomatometer' in lk or 'critic' in lk:
+                    # The real shape reportedly nests the number one level
+                    # down (e.g. {"tomatometerScore": {"score": 92, ...}})
+                    # rather than a bare int — unwrap that one hop so
+                    # numeric_score() below can find it, while still
+                    # recording the raw value (even a non-numeric one, e.g.
+                    # a {"consensus": "mixed"} object with no "score" key)
+                    # for diagnosis rather than silently dropping it.
+                    if isinstance(v, dict) and isinstance(v.get('score'), (int, float)) and not isinstance(v.get('score'), bool):
+                        hits.append((f'{path}.{k}.score', v['score']))
+                    else:
+                        hits.append((f'{path}.{k}', v))
+                if isinstance(v, (dict, list)):
+                    walk(v, f'{path}.{k}')
+        elif isinstance(node, list):
+            for i, v in enumerate(node[:5]):
+                if isinstance(v, (dict, list)):
+                    walk(v, f'{path}[{i}]')
+
+    walk(obj, 'root')
+
+    def numeric_score(key_fragment):
+        for path, v in hits:
+            if key_fragment in path.lower() and isinstance(v, (int, float)) and not isinstance(v, bool):
+                return round(float(v))
+        return None
+
+    critic = numeric_score('tomatometer')
+    if critic is None:
+        critic = numeric_score('critic')
+    audience = numeric_score('audience')
+    return critic, audience, {'mediaScorecardFound': True, 'keysMatched': hits[:20]}
+
+
 def extract_score_board_scores(html):
     """RT's real site architecture (since its ~2023 redesign) renders the
     Tomatometer/Popcornmeter pair via a custom <score-board> web
@@ -978,6 +1091,17 @@ def extract_rt_scores(html, title, year, imdb_id=None):
         critic = sb_critic
     if audience is None and sb_audience is not None:
         audience = sb_audience
+
+    # Third, independent extraction path — round 7, see
+    # extract_media_scorecard_json()'s own docstring for why this is a
+    # genuinely new, real-research-grounded lead rather than another
+    # markup guess. Always run and logged regardless of outcome.
+    ms_critic, ms_audience, ms_debug = extract_media_scorecard_json(html)
+    debug.append({'mediaScorecard': ms_debug})
+    if critic is None and ms_critic is not None:
+        critic = ms_critic
+    if audience is None and ms_audience is not None:
+        audience = ms_audience
 
     # Same wrong-page guard extract_metascore() applies: an exact IMDb id
     # cross-check first (authoritative when it can run), falling back to
