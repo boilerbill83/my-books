@@ -683,22 +683,29 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
       }
       return {
         severity: 'warning',
-        ratings: { ease: 4, dataQuality: 5, recEngine: 2, ui: 2 },
-        title: `Audience Score (real viewer opinion) is ${f.populatedPct.toFixed(1)}% populated, ${f.qualityPct.toFixed(1)}% quality — new field this session`,
+        ratings: { ease: 3, dataQuality: 4, recEngine: 2, ui: 2 },
+        title: `Audience Score (real viewer opinion) is genuinely 0% populated — a real scraper-coverage gap, diagnosed`,
         technical: `<code>realAudienceScore()</code> (RT Popcornmeter / Metacritic user score) is a genuinely new field this session — split out ` +
           `from what used to be a single, misleadingly-named <code>audienceScore</code> field that actually only ever held critic data (see the ` +
-          `Critic Score finding above). OMDb's API never returns either audience number, so this is scraper-only: currently ${rtAudTotal} titles ` +
-          `have a Popcornmeter score and ${mcUserTotal} have a Metacritic user score, both populated only for shows the scraper has processed ` +
-          `(movies with an OMDb critic score never enter that scraper's queue at all, since the scraper exists specifically to fill the gap OMDb ` +
-          `leaves for shows). Display/audit only for now, not wired into <code>matchScore()</code> — same "validate against eval.js before ` +
-          `trusting a new signal" discipline every other signal here (keywords, subgenres, tones, cast, franchise) went through first.`,
+          `Critic Score finding above). OMDb's API never returns either audience number, so this is scraper-only. The real 494-title RT backfill ` +
+          `run this session found ${rtAudTotal} Popcornmeter scores and ${mcUserTotal} Metacritic user scores — genuinely zero, not a display bug. ` +
+          `Diagnosed directly from the run's own job log rather than left unexplained: every single one of 494 scraped RT pages had exactly one ` +
+          `JSON-LD <code>aggregateRating</code> block (the critic Tomatometer one, <code>bestRating: '100'</code>) — none ever carried the ` +
+          `5-star audience block <code>extract_rt_scores()</code> already knows how to read, and the raw-text Popcornmeter regex fallback found ` +
+          `nothing either. Metacritic's user-score block (<code>bestRating: '10'</code>) shows the identical pattern. This means RT's audience ` +
+          `number simply isn't present in whatever the page has rendered by the time this scraper captures it (<code>domcontentloaded</code> + a ` +
+          `short settle wait, no further hydration or interaction) — the critic score reliably survives that same fetch strategy (463 of 494, ` +
+          `93.7%), so it's specifically the audience widget that needs something this scraper doesn't currently do, not a broken fetch overall.`,
         plain: `This is a brand-new field, not a shrinking gap — it didn't exist before this session. It's meant to capture what real viewers ` +
-          `(not critics) thought, using Rotten Tomatoes' audience score and Metacritic's user score, which is different data from the critic ` +
-          `scores the app already tracked. It only has data for shows the scraper has gotten to so far, so low numbers right now are expected, ` +
-          `not a problem.`,
-        impact: `Low priority for now — it's a new, display-only field, not something the recommendation engine depends on yet. Worth ` +
-          `revisiting once coverage grows and there's real data to check whether it's worth adding as its own scoring signal, the same way ` +
-          `every other signal here got adopted only after real validation.`,
+          `(not critics) thought, separate from the critic scores the app already tracked. Checked the real scrape run's own log rather than ` +
+          `guessing why it's empty: the critic score (Tomatometer) reliably shows up on the page the scraper grabs, but the separate audience ` +
+          `number apparently doesn't load in time to be captured — every single page checked had the critic data but never the audience data, a ` +
+          `consistent pattern, not random misses.`,
+        impact: `Low priority for now and not blocking anything — it's a new, display-only field, not something the recommendation engine ` +
+          `depends on. If it's worth chasing later, the fix is technical (waiting longer for the page to finish loading, or looking in a ` +
+          `different place on the page) rather than a data problem — but that's exactly the kind of change that needs real verification before ` +
+          `being trusted at scale, the same discipline that took 5 real rounds to get the Metacritic critic-score scraper right earlier this ` +
+          `session.`,
       };
     },
     subgenres: (f) => ({
