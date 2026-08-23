@@ -114,21 +114,22 @@ RETRY_COOLDOWN_DAYS = 14   # same convention as scrape_ratings.py: a miss
                             # (not a permanent "no score exists") is retried
                             # after this long, a real score is cached forever
 
-# Disabled after 3 real live test batches: Metacritic verified accurate on
-# spot-check (Elsbeth scraped 69, real Metascore is 69 exactly; Your
-# Friends & Neighbors scraped 65, real is 61-63 - within normal critic-
-# count drift), but RT was confirmed WRONG on the same title across all 3
-# attempts (Elsbeth scraped 62% every time against a real 92% Tomatometer)
-# despite the extraction correctly identifying the right show entity
-# (@type: TVSeries, name: Elsbeth) and a well-formed 0-100 scale block -
-# the JSON-LD RT ships in its initial (pre-hydration) HTML for a show page
-# just doesn't appear to carry the real headline score, and further
-# debugging would need actual page inspection this sandbox can't do. Per
-# Bill's own explicit fallback ("if it works for MC but not RT, just use
-# MC"): Metacritic only. scrape_rt() is left in place, unused, in case a
-# future session finds the real fix (e.g. waiting for full hydration
-# instead of domcontentloaded, or a different data source on the page).
-SCRAPE_RT = False
+# RE-ENABLED after root-causing the real bug (see extract_rt_scores()'s
+# docstring): the failure across all 3 prior attempts wasn't a wrong
+# page or a scale-confusion bug (both already ruled out/fixed earlier) —
+# it was the scraper accepting ANY aggregateRating block with
+# bestRating==100 on the page, last-one-wins, with no check that the
+# block's own `name` actually named the show being looked up. A show
+# page can embed more than one such block (a "similar shows" rail is
+# common). Fixed via name_field_matches_title() preferring a
+# name-matched block, re-verified against 12 real, independently
+# researched Tomatometer scores (12/12 matched within a few points —
+# see the trakt-verify-rt.yml workflow run history) before being
+# trusted here. rtAttempted (stamped on every cache write once RT is
+# genuinely attempted, hit or miss) lets load_pending() backfill RT for
+# titles that already had a real Metacritic score cached from the
+# SCRAPE_RT=False era, without re-scraping Metacritic needlessly.
+SCRAPE_RT = True
 
 
 def load_cache():
@@ -380,14 +381,14 @@ def extract_metascore(html, title, year, imdb_id=None):
     return metascore, user_score
 
 
-def is_cached_done(entry):
-    """A real score (rt or mc found) is permanent. A total miss is
-    retried after RETRY_COOLDOWN_DAYS — the same one-off-failure-vs-
-    real-no-data distinction scrape_ratings.py already makes for Amazon."""
+def _in_cooldown(entry):
+    """A real score is permanent; a total miss is retried after
+    RETRY_COOLDOWN_DAYS — the same one-off-failure-vs-real-no-data
+    distinction scrape_ratings.py already makes for Amazon. Factored out
+    of is_cached_done() so load_pending() can reuse it for the
+    MC-specific "still worth retrying" check independent of RT."""
     if entry is None:
         return False
-    if entry.get('rottenTomatoes') is not None or entry.get('metacritic') is not None:
-        return True
     checked_at = entry.get('checkedAt')
     if not checked_at:
         return False
@@ -398,13 +399,35 @@ def is_cached_done(entry):
     return age < timedelta(days=RETRY_COOLDOWN_DAYS)
 
 
+def is_cached_done(entry):
+    """A real score (rt or mc found) is permanent. A total miss is on
+    cooldown for a while before being retried."""
+    if entry is None:
+        return False
+    if entry.get('rottenTomatoes') is not None or entry.get('metacritic') is not None:
+        return True
+    return _in_cooldown(entry)
+
+
 def load_pending(cache):
     """OMDb-enriched titles where OMDb itself has neither RT nor MC — the
     exact gap this script exists to close. No point scraping a title
     OMDb already answered (mostly movies), and no point scraping a title
     with no OMDb record at all yet (enrich_omdb.py needs to run first;
     title/year for the search query come from enrichedMetadata.json,
-    which every title here already has by construction)."""
+    which every title here already has by construction).
+
+    Each returned title carries needsMC/needsRT so main() knows exactly
+    what to (re)scrape — critically, a title whose Metacritic score is
+    already real and cached does NOT get needsMC=True just because it
+    also needs an RT backfill (see below), so main() never re-touches an
+    already-good MC value. needsRT is gated on rtAttempted, a stamp
+    added to every cache write once RT is genuinely attempted (hit or
+    miss) — this makes the RT-was-disabled-for-a-while backfill
+    self-limiting: a title only ever needs one real RT attempt, and
+    every already-cached MC-only entry from the SCRAPE_RT=False era
+    naturally gets exactly one such attempt across however many runs it
+    takes, never repeatedly."""
     omdb = json.load(open(DATA_DIR / 'omdbMetadata.json')) if (DATA_DIR / 'omdbMetadata.json').exists() else {}
     enriched = json.load(open(DATA_DIR / 'enrichedMetadata.json')) if (DATA_DIR / 'enrichedMetadata.json').exists() else {}
 
@@ -429,6 +452,13 @@ def load_pending(cache):
             if not title:
                 continue
             seen.add(key)
+
+            cached = cache.get(key)
+            needs_mc = cached is None or (cached.get('metacritic') is None and not _in_cooldown(cached))
+            needs_rt = SCRAPE_RT and (cached is None or not cached.get('rtAttempted'))
+            if not needs_mc and not needs_rt:
+                continue  # fully resolved already (or a fresh miss still on cooldown)
+
             release_date = meta.get('releaseDate') or meta.get('firstAirDate')
             # Every title reaching this point is OMDb-eligible (checked
             # above), which itself requires a resolved IMDb id — so this
@@ -440,9 +470,10 @@ def load_pending(cache):
             # docstring.
             imdb_id = t.get('ids', {}).get('imdb') or meta.get('imdbId')
             titles.append({'titleKey': key, 'type': t.get('type'), 'title': title, 'year': year,
-                            'releaseDate': release_date, 'imdbId': imdb_id})
+                            'releaseDate': release_date, 'imdbId': imdb_id,
+                            'needsMC': needs_mc, 'needsRT': needs_rt})
 
-    return [t for t in titles if not is_cached_done(cache.get(t['titleKey']))]
+    return titles
 
 
 # ── Rotten Tomatoes ──────────────────────────────────────────────────────
@@ -728,11 +759,13 @@ def main():
     pending = load_pending(cache)
 
     if not pending:
-        print('Nothing pending — every OMDb-gap title has already been scraped or is on cooldown.')
+        print('Nothing pending — every OMDb-gap title has already been scraped, RT-backfilled, or is on cooldown.')
         return
 
     batch = pending[:BATCH_SIZE]
-    print(f'Queue: {len(pending)} remaining (OMDb-enriched, no RT/MC from OMDb)  |  processing {len(batch)} this run\n')
+    rt_backfill_only = sum(1 for t in batch if t['needsRT'] and not t['needsMC'])
+    print(f'Queue: {len(pending)} remaining (OMDb-enriched, no RT/MC from OMDb, or an RT backfill) | '
+          f'processing {len(batch)} this run ({rt_backfill_only} are RT-only backfills of an already-good MC entry)\n')
 
     try:
         from playwright.sync_api import sync_playwright
@@ -740,7 +773,7 @@ def main():
         print('ERROR: playwright not installed. Run: pip install playwright && playwright install chromium --with-deps')
         sys.exit(1)
 
-    rt_found = mc_found = neither = 0
+    rt_attempted = mc_attempted = rt_found = mc_found = neither = 0
 
     with sync_playwright() as pw:
         browser = pw.chromium.launch(
@@ -761,7 +794,8 @@ def main():
             print(f"[{i:3}/{len(batch)}] {label[:60]} [{t['type']}]")
 
             rt = None
-            if SCRAPE_RT:
+            if t['needsRT']:
+                rt_attempted += 1
                 try:
                     rt = scrape_rt(page, t['title'], t['year'], t['type'], t.get('imdbId'))
                 except Exception as e:
@@ -769,37 +803,46 @@ def main():
                 time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
 
             mc = None
-            try:
-                mc = scrape_metacritic(page, t['title'], t['year'], t['type'], t.get('imdbId'))
-            except Exception as e:
-                print(f'         MC error: {e}')
-            time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
+            if t['needsMC']:
+                mc_attempted += 1
+                try:
+                    mc = scrape_metacritic(page, t['title'], t['year'], t['type'], t.get('imdbId'))
+                except Exception as e:
+                    print(f'         MC error: {e}')
+                time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
 
             unreleased = is_unreleased(t.get('releaseDate'))
             if unreleased and (rt or mc) and ((rt and rt.get('critic') is not None) or (mc and mc.get('metascore') is not None)):
                 print(f"         discarded — {t['title']} hasn't released yet ({t.get('releaseDate')}), a critic "
                       f"score for it is impossible on its face regardless of what the scrape found")
 
-            entry = {
-                'rottenTomatoes': None if unreleased else (rt.get('critic') if rt else None),
-                'rtAudience': None if unreleased else (rt.get('audience') if rt else None),
-                'rtUrl': rt.get('url') if rt else None,
-                'metacritic': None if unreleased else (mc.get('metascore') if mc else None),
-                'metacriticUser': None if unreleased else (mc.get('userScore') if mc else None),
-                'mcUrl': mc.get('url') if mc else None,
-                'checkedAt': time.strftime('%Y-%m-%d'),
-            }
+            # Merge onto whatever's already cached rather than replacing
+            # wholesale — an RT-only backfill run (needsMC=False) must
+            # never wipe out an already-good metacritic/metacriticUser/
+            # mcUrl value just because mc is None here (it was never
+            # attempted this run, not a real miss).
+            entry = dict(cache.get(t['titleKey']) or {})
+            if t['needsRT']:
+                entry['rottenTomatoes'] = None if unreleased else (rt.get('critic') if rt else None)
+                entry['rtAudience'] = None if unreleased else (rt.get('audience') if rt else None)
+                entry['rtUrl'] = rt.get('url') if rt else None
+                entry['rtAttempted'] = time.strftime('%Y-%m-%d')
+            if t['needsMC']:
+                entry['metacritic'] = None if unreleased else (mc.get('metascore') if mc else None)
+                entry['metacriticUser'] = None if unreleased else (mc.get('userScore') if mc else None)
+                entry['mcUrl'] = mc.get('url') if mc else None
+            entry['checkedAt'] = time.strftime('%Y-%m-%d')
             cache[t['titleKey']] = entry
 
-            if entry['rottenTomatoes'] is not None:
+            if t['needsRT'] and entry.get('rottenTomatoes') is not None:
                 rt_found += 1
-            if entry['metacritic'] is not None:
+            if t['needsMC'] and entry.get('metacritic') is not None:
                 mc_found += 1
-            if entry['rottenTomatoes'] is None and entry['metacritic'] is None:
+            if entry.get('rottenTomatoes') is None and entry.get('metacritic') is None:
                 neither += 1
 
-            rt_str = f"RT {entry['rottenTomatoes']}%" if entry['rottenTomatoes'] is not None else 'RT —'
-            mc_str = f"MC {entry['metacritic']}" if entry['metacritic'] is not None else 'MC —'
+            rt_str = f"RT {entry.get('rottenTomatoes')}%" if entry.get('rottenTomatoes') is not None else 'RT —'
+            mc_str = f"MC {entry.get('metacritic')}" if entry.get('metacritic') is not None else 'MC —'
             print(f'         {rt_str}  |  {mc_str}')
             if rt and rt.get('url'):
                 print(f"         RT url: {rt['url']}")
@@ -807,7 +850,7 @@ def main():
                 print(f"         RT JSON-LD blocks seen: {rt['debug']}")
             if mc and mc.get('url'):
                 print(f"         MC url: {mc['url']}")
-            if mc and mc.get('debug_link_count') is not None and entry['metacritic'] is None:
+            if mc and mc.get('debug_link_count') is not None and entry.get('metacritic') is None:
                 print(f"         MC search page had {mc['debug_link_count']} /tv//movie/ links total")
 
             if i % 10 == 0:
@@ -816,10 +859,18 @@ def main():
         browser.close()
 
     save_cache(cache)
-    print(f'\nBatch done: {rt_found}/{len(batch)} found on RT, {mc_found}/{len(batch)} found on Metacritic, '
+    print(f'\nBatch done: {rt_found}/{rt_attempted} found on RT ({rt_attempted} attempted), '
+          f'{mc_found}/{mc_attempted} found on Metacritic ({mc_attempted} attempted), '
           f'{neither}/{len(batch)} found on neither.')
-    if len(batch) >= 5 and rt_found == 0 and mc_found == 0:
-        print('WARNING: zero titles matched on either site this batch — likely a real scraping failure '
+    # Only warn against an actually-attempted denominator — a pure RT
+    # backfill batch legitimately has mc_attempted=0, and that's not a
+    # failure signal for Metacritic.
+    if rt_attempted >= 5 and rt_found == 0:
+        print('WARNING: zero titles matched on Rotten Tomatoes this batch — likely a real scraping failure '
+              '(search/slug pattern changed, bot detection) rather than a genuine data gap for every single '
+              'title. Check the per-title debug output above before trusting this cache.', file=sys.stderr)
+    if mc_attempted >= 5 and mc_found == 0:
+        print('WARNING: zero titles matched on Metacritic this batch — likely a real scraping failure '
               '(search page structure changed, bot detection, or a wrong URL pattern), not a genuine '
               'data gap for every single title. Check the per-title output above before trusting this cache.',
               file=sys.stderr)

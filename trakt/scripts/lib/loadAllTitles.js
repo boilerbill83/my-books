@@ -15,7 +15,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import {
   buildIndexes, hydrateTitle, getCreator, matchScore, confidenceScore,
-  reason, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings,
+  reason, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings,
   resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones,
 } from '../../engine.js';
 
@@ -103,9 +103,13 @@ export function loadAllTitles() {
       numberOfSeasons: meta.numberOfSeasons ?? '',
       numberOfEpisodes: meta.numberOfEpisodes ?? '',
       tmdbFetchedAt: meta.fetchedAt || '',
-      // OMDb-enriched fields
+      // OMDb-enriched fields (rottenTomatoes/metacritic are critic
+      // aggregates; rtAudience/metacriticUser are the real-viewer-opinion
+      // counterparts, scraper-only since OMDb's API never returns either)
       rottenTomatoes: omdb?.rottenTomatoes ?? '',
       metacritic: omdb?.metacritic ?? '',
+      rtAudience: omdb?.rtAudience ?? '',
+      metacriticUser: omdb?.metacriticUser ?? '',
       omdbImdbRating: omdb?.imdbRating ?? '',
       omdbImdbVotes: omdb?.imdbVotes ?? '',
       oscarWins: omdb?.awards?.oscarWins ?? '',
@@ -124,7 +128,8 @@ export function loadAllTitles() {
       predictedScore: meta.genres ? Math.round(matchScore(h, idx, enrichedMeta, omdbMeta)) : '',
       confidenceScore: meta.genres ? confidenceScore(h, enrichedMeta) : '',
       popularityScore: popularityScore(meta.voteCount),
-      audienceScoreComputed: audienceScore(omdb) ?? '',
+      criticScoreComputed: criticScore(omdb) ?? '',
+      audienceScoreComputed: realAudienceScore(omdb) ?? '',
       awardsScoreComputed: awardsScore(omdb) ?? '',
       reason: meta.genres ? reason(h, idx, enrichedMeta, omdbMeta) : 'Not enough data yet.',
     });

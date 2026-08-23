@@ -859,31 +859,65 @@ export function popularityScore(voteCount) {
 
 // Fills the real gap Session 52 found: OMDb's API returns RT/Metacritic
 // for movies but essentially never for shows (confirmed against OMDb's
-// own issue tracker), so trakt/scrape_show_ratings.py scrapes Metacritic
-// directly for exactly that gap, cached separately in
+// own issue tracker), so trakt/scrape_show_ratings.py scrapes RT +
+// Metacritic directly for exactly that gap, cached separately in
 // trakt/data/scrapedShowRatings.json so the source of every value stays
-// traceable. Only metacritic is merged in — RT scraping was verified
-// wrong against real outside sources (Elsbeth: scraped 62%, real
-// Tomatometer 92%) across 3 live test batches and is disabled at the
-// source (scrape_show_ratings.py's SCRAPE_RT = False), so scraped
-// rottenTomatoes/rtAudience values are never trusted here even if
-// present in an old cache entry. OMDb's own metacritic value always
-// wins when present (the movie case); this only fills a null.
+// traceable. RT critic (rottenTomatoes) was disabled at the source for a
+// long stretch (scrape_show_ratings.py's SCRAPE_RT = False) after 3 real
+// live test batches scraped a wrong Tomatometer despite landing on the
+// correct show page — root-caused to the scraper accepting ANY
+// aggregateRating block on the page rather than checking it actually
+// named the show being looked up. Fixed (per-block name matching, see
+// name_field_matches_title()/extract_rt_scores() there) and re-verified
+// against 12 real, independently-researched Tomatometer scores (12/12
+// matched within a few points) before being trusted here — RT is merged
+// in the same way metacritic always was: OMDb's own value wins when
+// present (rare for shows), the scraper only fills a null. rtAudience/
+// metacriticUser (RT Popcornmeter / Metacritic user score — genuine
+// audience opinion, not critic aggregates) exist ONLY via the scraper —
+// OMDb's API never returns either — so those always come from here when
+// present at all.
 export function mergeScrapedShowRatings(omdbMeta, scrapedShowRatings) {
   if (!scrapedShowRatings) return omdbMeta;
   const merged = { ...omdbMeta };
   for (const [key, scraped] of Object.entries(scrapedShowRatings)) {
-    if (scraped.metacritic == null) continue;
     const existing = merged[key];
-    if (existing?.metacritic != null) continue; // OMDb's own value wins
-    merged[key] = { ...(existing || {}), metacritic: scraped.metacritic };
+    const patch = {};
+    if (scraped.rottenTomatoes != null && existing?.rottenTomatoes == null) patch.rottenTomatoes = scraped.rottenTomatoes;
+    if (scraped.metacritic != null && existing?.metacritic == null) patch.metacritic = scraped.metacritic;
+    if (scraped.rtAudience != null) patch.rtAudience = scraped.rtAudience;
+    if (scraped.metacriticUser != null) patch.metacriticUser = scraped.metacriticUser;
+    if (Object.keys(patch).length) merged[key] = { ...(existing || {}), ...patch };
   }
   return merged;
 }
 
-export function audienceScore(omdbEntry) {
+// The professional-critic aggregate (RT Tomatometer + Metacritic
+// Metascore, both critic-review aggregators) — NOT what actual viewers
+// thought. Named audienceScore() until this session, which was a real
+// bug: reason() below rendered it as "well-reviewed by critics and
+// audiences" when it never touched a single audience number. See
+// realAudienceScore() just below for the genuine viewer-opinion
+// counterpart (RT Popcornmeter / Metacritic user score).
+export function criticScore(omdbEntry) {
   if (!omdbEntry) return null;
   const scores = [omdbEntry.rottenTomatoes, omdbEntry.metacritic].filter(v => v != null);
+  if (!scores.length) return null;
+  return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+}
+
+// The genuine audience/viewer-opinion aggregate (RT Popcornmeter +
+// Metacritic user score, both already normalized to 0-100 by
+// extract_rt_scores()/extract_metascore() in scrape_show_ratings.py).
+// OMDb's API never returns either value, so this is only ever populated
+// via the scraper (trakt/data/scrapedShowRatings.json) — display/audit
+// only for now, same "don't wire in until eval.js validates it"
+// discipline every other new signal here has followed (keywordBonus,
+// subgenreBonus, toneSignal, castBonus, franchiseBonus all started
+// display-only too).
+export function realAudienceScore(omdbEntry) {
+  if (!omdbEntry) return null;
+  const scores = [omdbEntry.rtAudience, omdbEntry.metacriticUser].filter(v => v != null);
   if (!scores.length) return null;
   return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
 }
@@ -910,7 +944,7 @@ export function awardsScore(omdbEntry) {
 const COMMUNITY_NEUTRAL = 6.0;
 const COMMUNITY_WEIGHT = 8;
 
-// Audience-score neutral point measured from this dataset's real OMDb
+// Critic-score neutral point measured from this dataset's real OMDb
 // coverage (283 titles with a Rotten Tomatoes and/or Metacritic score:
 // mean 76.1, median 80) rather than assumed — Bill's watched/candidate
 // pool skews toward well-regarded titles, and RT/MC coverage itself
@@ -919,11 +953,11 @@ const COMMUNITY_WEIGHT = 8;
 // have quietly penalized most of the catalog. Capped modestly (±6) since
 // this is a corroborating secondary signal, not a primary one — smaller
 // than genre/creator/similar-title but comparable to voteCountBonus/
-// recencyBonus. Missing audience data contributes nothing, not a penalty
-// (only 283 of 890 OMDb-enriched titles as of this build even have an
-// RT/MC score at all — most titles legitimately don't carry one).
-const AUDIENCE_NEUTRAL = 80;
-const AUDIENCE_MAX_SWING = 6;
+// recencyBonus. Missing critic-score data contributes nothing, not a
+// penalty (only 283 of 890 OMDb-enriched titles as of this build even
+// have an RT/MC score at all — most titles legitimately don't carry one).
+const CRITIC_NEUTRAL = 80;
+const CRITIC_MAX_SWING = 6;
 
 // Awards score is real but heavily right-skewed in this dataset (206 of
 // 890 titles score exactly 0 — no recognition found, a legitimate answer
@@ -938,10 +972,10 @@ const AWARDS_MAX = 4;
 
 function omdbSignal(omdbEntry) {
   let score = 0;
-  const aud = audienceScore(omdbEntry);
-  if (aud != null) {
-    score += Math.max(-AUDIENCE_MAX_SWING, Math.min(AUDIENCE_MAX_SWING,
-      (aud - AUDIENCE_NEUTRAL) / 20 * AUDIENCE_MAX_SWING));
+  const crit = criticScore(omdbEntry);
+  if (crit != null) {
+    score += Math.max(-CRITIC_MAX_SWING, Math.min(CRITIC_MAX_SWING,
+      (crit - CRITIC_NEUTRAL) / 20 * CRITIC_MAX_SWING));
   }
   const awd = awardsScore(omdbEntry);
   if (awd != null) {
@@ -1186,9 +1220,12 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
   }
 
   const omdbEntry = omdbMeta[candidate.titleKey];
-  const aud = audienceScore(omdbEntry);
-  if (aud != null && aud >= AUDIENCE_NEUTRAL) {
-    return `Well-reviewed by critics and audiences (${aud}/100 audience score).`;
+  const crit = criticScore(omdbEntry);
+  if (crit != null && crit >= CRITIC_NEUTRAL) {
+    const realAud = realAudienceScore(omdbEntry);
+    return realAud != null
+      ? `Well-reviewed by critics (${crit}/100) and audiences (${realAud}/100).`
+      : `Well-reviewed by critics (${crit}/100 critic score).`;
   }
   const awd = awardsScore(omdbEntry);
   if (awd) {
