@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -1449,28 +1449,40 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
-  // 13. similarToDirectors: derivable the same self-referential way as
-  // similarToTitles above (directors/creators of a title's similar/
-  // recommended titles), not requiring new external data - but a real
-  // design decision (how many, what corroboration threshold) is needed
-  // before building it, unlike the more mechanical similarToTitles case.
-  findings.push({
-    id: 'similar-directors-field-missing',
-    severity: 'warning',
-    ratings: { ease: 5, dataQuality: 4, recEngine: 6, ui: 2 },
-    title: 'No similarToDirectors field — the book side\'s similarToAuthors equivalent doesn\'t exist',
-    technical: `The book engine's <code>similarToAuthors</code> bridges a candidate to loved authors directly. ` +
-      `BMTRE has no equivalent field — <code>getCreator()</code> reads a title's own director/creator, but ` +
-      `nothing captures "directors/creators of titles similar to this one." Derivable the same self-referential ` +
-      `way as <code>similarToTitles</code> above (walk each title's <code>similarToIds</code>/` +
-      `<code>recommendedIds</code>, collect their directors/creators), but needs a real design pass first — how ` +
-      `many names, what corroboration threshold — not just a mechanical id-to-name lookup.`,
-    plain: `The book app can say "this book's similar-titles list is full of authors you love." The movie/show ` +
-      `app has no equivalent field to say the same thing about directors, even though the underlying similar-` +
-      `title data it would be built from already exists.`,
-    impact: `Medium — a real potential signal in the same family as the existing director/creator match, but more ` +
-      `design work than similarToTitles above before it's buildable.`,
-  });
+  // 13. similarToDirectors: fixed this session, same self-referential
+  // derivation as similarToTitles above, with a real corroboration
+  // threshold now designed and applied (2+ resolved similar titles must
+  // share a director before it counts).
+  {
+    const withDirectors = allEnriched.filter(m => resolveSimilarDirectors(m, m.type, enrichedMeta).length > 0).length;
+    findings.push({
+      id: 'similar-directors-field-missing',
+      severity: 'good',
+      ratings: { ease: 5, dataQuality: 4, recEngine: 6, ui: 2 },
+      title: 'Fixed: a similarToDirectors field now exists, with a real corroboration threshold',
+      technical: `The book engine's <code>similarToAuthors</code> bridges a candidate to loved authors directly. ` +
+        `BMTRE had no equivalent field. New <code>resolveSimilarDirectors()</code> in <code>engine.js</code> walks ` +
+        `each title's full <code>similarToIds</code>/<code>recommendedIds</code> citation list (not just the first ` +
+        `few, unlike the display-capped <code>resolveSimilarTitles()</code>), resolves each to a real title via the ` +
+        `same self-referential <code>enrichedMetadata.json</code> lookup, and collects director/creator credits — ` +
+        `the real design decision this needed (per this finding's own prior text): a corroboration threshold, since ` +
+        `one coincidental director match among dozens of citations is noise, not signal. Requires 2+ resolved ` +
+        `similar titles sharing the same director before it counts, capped at the top 3 by corroboration count. ` +
+        `Checked live: ${withDirectors} of ${allEnriched.length} enriched titles (${((withDirectors / allEnriched.length) * 100).toFixed(1)}%) ` +
+        `clear that bar. Wired into <code>loadAllTitles.js</code>/<code>export_extract.js</code> as a new ` +
+        `<code>similarToDirectors</code> CSV column, same as <code>similarToTitles</code> above — display/data-shape ` +
+        `only, not wired into <code>matchScore()</code>, since a real scoring weight would need the same ` +
+        `eval.js-validated tuning <code>keywordBonus()</code> just went through, and this signal has less to draw ` +
+        `from per candidate than keywords do.`,
+      plain: `The book app can say "this book's similar-titles list is full of authors you love." The movie/show ` +
+        `app now has the same thing for directors — but only when at least 2 of a title's own similar titles share ` +
+        `a director, so one coincidental shared name among many unrelated citations doesn't get surfaced as if it ` +
+        `meant something.`,
+      impact: `Shipped as a real, verified data-shape improvement — not yet a scoring signal (would need the same ` +
+        `careful eval.js validation the keyword signal above just went through before it's safe to add scoring ` +
+        `weight).`,
+    });
+  }
 
   // 14-16. categories/themes/tones: unlike similarToTitles/
   // similarToDirectors above, these have NO existing TMDB-derived source
