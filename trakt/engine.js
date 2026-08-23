@@ -332,6 +332,115 @@ export function resolveSimilarDirectors(meta, type, enrichedMeta, limit = 3) {
     .map(([name, count]) => ({ name, count }));
 }
 
+// ── Subgenres + tones (beneath TMDB's blunt ~19-27 genre taxonomy) ─────────
+//
+// Real gap this closes (dashboard Improvement Opportunities findings
+// themes-field-missing/tones-field-missing/genre-subgenre-split-missing):
+// TMDB's genre taxonomy is heavily concentrated — Drama alone covers 68.9%
+// of the 1,793-title dataset this was designed against. The book side's
+// answer to the exact same problem was two curated vocabularies (37 themes,
+// 24 tones), built and hand-corrected over many sessions. This is the
+// movie/TV equivalent, deliberately architected differently: computed live
+// from each title's real TMDB `keywords` (98.7% populated) as a pure
+// function, never persisted to enrichedMetadata.json or any data file.
+// Unlike the book side's persisted, hand-edited arrays — which needed 4
+// files kept in sync, a load-time disjointness assertion, and two dedicated
+// drift-detection functions because hand-edited data can drift from its own
+// vocabulary — a value returned here can only ever be a literal key of
+// SUBGENRE_KEYWORDS/TONE_KEYWORDS, so "non-canonical drift" has no code
+// path to occur through. Iterating on the classifier is just editing these
+// two objects; every title's tags update immediately everywhere, with no
+// migration and none of the JSON-corruption bug classes the book side's
+// surgical-edit history repeatedly hit.
+//
+// Every keyword below was verified present in the real dataset before
+// being included — not assumed. Two real false positives were caught and
+// fixed during that verification (documented inline) via the same
+// spot-check discipline the book side's Session 16c/17 audits used:
+// checking real titles' actual assigned tags against real knowledge of
+// those titles, not just checking that the code runs.
+//
+// Display/audit only for now (CSV export, dashboard) — deliberately NOT
+// wired into matchScore(). A scoring weight needs the same eval.js-gated
+// validation keywordBonus() went through this session before it's safe to
+// add (see that function's own comment for the exact regression that
+// caught and avoided).
+
+const SUBGENRE_KEYWORDS = {
+  'crime-drama': ['organized crime', 'drug dealer', 'drugs', 'gangster', 'mafia', 'mob', 'outlaw', 'criminal'],
+  'procedural': ['police', 'detective', 'investigation', 'fbi', 'murder investigation', 'police detective', 'cop', 'murder'],
+  'legal': ['lawyer', 'courtroom', 'trial', 'attorney', 'judge'],
+  'heist': ['heist', 'robbery', 'con artist', 'bank robbery'],
+  'spy-espionage': ['spy', 'espionage', 'undercover', 'secret agent'],
+  'psychological-thriller': ['psychopath', 'disturbed', 'serial killer', 'psychological thriller', 'stalking', 'obsession'],
+  'biopic': ['biography', 'biopic'],
+  // Deliberately just these two — a first version also matched bare decade
+  // markers ('1970s', '1920s', etc.), which produced real false positives
+  // on titles merely SET in a past decade rather than genuinely historical
+  // in tone (Anchorman: The Legend of Ron Burgundy, a broad 1970s-set
+  // comedy, got tagged 'historical' off its '1970s' keyword alone).
+  // Trades some recall (a genuine period piece with only a decade keyword
+  // and no 'period drama'/'historical' tag of its own, e.g. 1923, won't
+  // get this tag) for real precision — an intentional choice per the
+  // rollout plan's "trim/merge during calibration, decided empirically."
+  'historical': ['period drama', 'historical'],
+  'war': ['war', 'military', 'soldier', 'world war ii', 'world war i', 'vietnam war'],
+  'political': ['politics', 'president', 'election', 'corruption', 'government'],
+  'family-drama': ['dysfunctional family', 'family relationships', 'family', 'husband wife relationship', 'sibling relationship'],
+  'coming-of-age': ['coming of age', 'high school', 'teenager'],
+  'romance': ['romance', 'love', 'love triangle'],
+  'romcom': ['romcom'],
+  'workplace-comedy': ['workplace comedy', 'office'],
+  'dark-comedy': ['dark comedy', 'satire', 'absurd'],
+  // Deliberately just these two — a first version also matched 'based on
+  // comic', which produced a real false positive on "300" (a historical
+  // war epic based on Frank Miller's graphic novel, not remotely a
+  // superhero film) — being adapted from a comic doesn't imply the genre.
+  'superhero': ['superhero', 'supervillain'],
+  'sci-fi-fantasy': ['dystopia', 'supernatural', 'alien', 'time travel', 'zombie', 'vampire'],
+  'sports': ['sports', 'basketball', 'baseball', 'wrestling', 'boxing'],
+  'medical': ['doctor', 'hospital', 'surgeon', 'nurse', 'medical'],
+  'prison': ['prison', 'death row'],
+};
+
+const TONE_KEYWORDS = {
+  'gritty': ['gritty', 'grim', 'macabre'],
+  'dark': ['dark', 'hopeless', 'tragic'],
+  'witty': ['witty', 'amused'],
+  'satirical': ['satire', 'satirical', 'parody', 'black comedy'],
+  'hilarious': ['hilarious'],
+  'inspirational': ['inspirational', 'inspiring'],
+  'intense': ['intense', 'tension', 'tense'],
+  'suspenseful': ['suspenseful', 'suspense', 'cliffhanger'],
+  'twisty': ['plot twist'],
+  'slow-burn': ['slow burn'],
+  'character-driven': ['character study'],
+  'nostalgic': ['nostalgic', 'nostalgia'],
+  'melancholy': ['melancholy', 'tearjerker'],
+  'offbeat': ['offbeat', 'whimsical', 'surreal'],
+};
+
+function scoreKeywordTags(keywords, map) {
+  const kws = keywords || [];
+  const scored = [];
+  for (const [tag, list] of Object.entries(map)) {
+    let score = 0;
+    for (const kw of kws) if (list.includes(kw)) score++;
+    if (score >= 1) scored.push([tag, score]);
+  }
+  return scored.sort((a, b) => b[1] - a[1]);
+}
+
+export function inferSubgenres(meta, limit = 3) {
+  if (!meta) return [];
+  return scoreKeywordTags(meta.keywords, SUBGENRE_KEYWORDS).slice(0, limit).map(([tag]) => tag);
+}
+
+export function inferTones(meta, limit = 4) {
+  if (!meta) return [];
+  return scoreKeywordTags(meta.keywords, TONE_KEYWORDS).slice(0, limit).map(([tag]) => tag);
+}
+
 function voteCountBonus(voteCount) {
   const n = voteCount || 0;
   if (n >= 5000) return 4;

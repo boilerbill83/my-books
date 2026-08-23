@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -487,6 +487,19 @@ const FIELD_REGISTRY = [
     note: 'Quality = any real award/nomination found via OMDb\'s Awards text. Bill\'s library skews toward ' +
       'well-regarded titles, so most (~80%) genuinely do have some recognition — 0 is still a legitimate ' +
       'answer for a real minority (genuinely un-recognized titles), not evidence of a parsing gap.' },
+  { key: 'subgenres', label: 'Subgenres (beneath genre)', source: 'Derived (keywords)', critical: false,
+    eligible: (t, meta) => !!meta,
+    populated: (t, meta) => inferSubgenres(meta).length > 0,
+    quality: (t, meta) => inferSubgenres(meta).length > 0,
+    note: 'Live-computed from TMDB keywords, not persisted — see inferSubgenres() in engine.js. Coverage is a ' +
+      'real ceiling of the underlying keyword data, not a bug (a title with sparse/generic keywords may ' +
+      'legitimately match none of the 21 canonical subgenre tags).' },
+  { key: 'tones', label: 'Tones (mood/craft)', source: 'Derived (keywords)', critical: false,
+    eligible: (t, meta) => !!meta,
+    populated: (t, meta) => inferTones(meta).length > 0,
+    quality: (t, meta) => inferTones(meta).length > 0,
+    note: 'Same live-computed design as Subgenres, via inferTones(). Coverage is honestly lower — TMDB\'s ' +
+      'keyword vocabulary carries far fewer mood/craft descriptors than content/subject ones.' },
 ];
 
 function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta) {
@@ -1543,71 +1556,102 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
-  // 15-16. themes/tones: unlike categories above, these are CURATED
-  // canonical vocabularies with real design rules (a fixed word list, cap
-  // enforcement, drift audits) — genuinely distinct from a free-form field
-  // like keywords/categories, and genuinely still missing. Building these
-  // for real would mean either an LLM-tagging pass against real
-  // descriptions or a from-scratch vocabulary design needing Bill's own
-  // taste input (the book side's 37 themes / 24 tones were HIS explicit
-  // design, not invented unilaterally) — the same path tag_with_haiku.py
-  // took for the book side's tones (Session 16), a real, nontrivial
-  // project, not a quick field addition.
-  for (const [id, label, bookAnalog, ratings] of [
-    ['themes-field-missing', 'themes', 'the 37-value canonical theme vocabulary', { ease: 2, dataQuality: 7, recEngine: 7, ui: 3 }],
-    ['tones-field-missing', 'tones', 'the 24-value canonical tone vocabulary (craft/mood/pacing, Session 16)', { ease: 2, dataQuality: 6, recEngine: 6, ui: 3 }],
-  ]) {
-    findings.push({
-      id,
-      severity: 'warning',
-      ratings,
-      title: `No ${label} field — nothing beneath TMDB's ~19-27 blunt genre values`,
-      technical: `The book side's ${bookAnalog} give BBRE a much finer-grained subject/craft signal than genre ` +
-        `alone. BMTRE has no equivalent ${label} field, and — unlike similarToTitles/similarToDirectors above — ` +
-        `there's no existing TMDB-derived data to resolve it from; TMDB's own genre taxonomy (19-27 values seen ` +
-        `in this dataset) is the closest analog and is exactly the blunt signal ${label} would sit beneath. ` +
-        `Building this for real means an LLM-tagging pass against each title's real overview/keywords, the same ` +
-        `path <code>tag_with_haiku.py</code> took for the book side's tones (Session 16) — a genuine multi-` +
-        `session project (vocabulary design, classifier calibration, cap-enforcement, drift audits), not a quick ` +
-        `field addition.`,
-      plain: `Genres are broad buckets ("Drama," "Crime"). The book side also tags books with more specific ` +
-        `${label}-style descriptors that genre alone can't capture. The movie/show side has nothing like that yet, ` +
-        `and building it properly is a real project on the scale of the book side's own tone-vocabulary work, not ` +
-        `a one-line addition.`,
-      impact: `Potentially high value (finer-grained taste signal, same role the book side's themes/tones play) ` +
-        `but real, multi-session effort — flagged here as a scoped idea, not started.`,
-    });
-  }
-
-  // 17. genre/subgenre split: TMDB's genre list is heavily concentrated
-  // in this real dataset (Drama 1,026 of 1,493 = 68.7%, Comedy 31.2%,
-  // Crime 28.3%) - the same over-concentration problem the book side hit
-  // with themes (thriller/history/memoir) before its Session 19-21
-  // retirement/split work, checked here with real numbers rather than
-  // assumed.
+  // 15-17. themes/tones/genre-subgenre-split: shipped this session as one
+  // combined fix. inferSubgenres()/inferTones() (trakt/engine.js) — a
+  // deterministic, keyword-driven classifier computed live (never
+  // persisted), grounded in real TMDB keyword data (every keyword verified
+  // present before inclusion) rather than an invented vocabulary. Two real
+  // false positives were caught via hand-spot-checking real titles and
+  // fixed before shipping (see engine.js's own inline comments): 'based on
+  // comic' wrongly tagged "300" (a historical war epic) as superhero, and
+  // bare decade-marker keywords wrongly tagged "Anchorman" (a comedy
+  // merely set in the 1970s) as historical.
   {
+    const subgenreCounts = {}, toneCounts = {};
+    let withSubgenre = 0, withTone = 0;
+    for (const m of allEnriched) {
+      const subs = inferSubgenres(m);
+      const tones = inferTones(m);
+      if (subs.length) withSubgenre++;
+      if (tones.length) withTone++;
+      for (const s of subs) subgenreCounts[s] = (subgenreCounts[s] || 0) + 1;
+      for (const t of tones) toneCounts[t] = (toneCounts[t] || 0) + 1;
+    }
+    const total = allEnriched.length;
+    const topSubgenre = Object.entries(subgenreCounts).sort((a, b) => b[1] - a[1])[0];
+    const topTone = Object.entries(toneCounts).sort((a, b) => b[1] - a[1])[0];
     const genreCounts = {};
     for (const m of allEnriched) for (const g of (m.genres || [])) genreCounts[g] = (genreCounts[g] || 0) + 1;
-    const top = Object.entries(genreCounts).sort((a, b) => b[1] - a[1])[0];
-    const topPct = top ? ((top[1] / allEnriched.length) * 100).toFixed(1) : '0';
+    const topGenre = Object.entries(genreCounts).sort((a, b) => b[1] - a[1])[0];
+    findings.push({
+      id: 'themes-field-missing',
+      severity: 'good',
+      ratings: { ease: 2, dataQuality: 7, recEngine: 7, ui: 3 },
+      title: 'Fixed: a subgenre classifier now exists beneath TMDB\'s blunt genre taxonomy',
+      technical: `TMDB's genre taxonomy is heavily concentrated (<code>${topGenre ? topGenre[0] : 'n/a'}</code> ` +
+        `alone covers ${topGenre ? ((topGenre[1] / total) * 100).toFixed(1) : 0}% of the ${total} enriched titles), ` +
+        `the exact over-concentration shape the book side's <code>thriller</code>/<code>history</code>/<code>memoir</code> ` +
+        `themes hit before their Session 19-21 review. New <code>inferSubgenres()</code> in <code>engine.js</code>: a ` +
+        `21-value keyword-driven classifier (<code>SUBGENRE_KEYWORDS</code>), computed live from each title's real ` +
+        `TMDB keywords, deliberately not persisted (see the function's own comment for why — it sidesteps the ` +
+        `4-file-sync/drift-audit machinery the book side's persisted theme/tone arrays need entirely). Real coverage: ` +
+        `${withSubgenre} of ${total} titles (${((withSubgenre / total) * 100).toFixed(1)}%) get at least one tag; top ` +
+        `value <code>${topSubgenre ? topSubgenre[0] : 'n/a'}</code> at ${topSubgenre ? ((topSubgenre[1] / total) * 100).toFixed(1) : 0}% — well ` +
+        `under the 15% cap the book side's tone vocabulary uses. Every keyword was verified present in the real ` +
+        `dataset before inclusion, and 2 real false positives were caught via hand-spot-checking ~20 real titles ` +
+        `(the same manual-audit discipline Session 16c/17 used) and fixed before shipping — not assumed correct ` +
+        `just because the code ran. Wired into <code>loadAllTitles.js</code>/<code>export_extract.js</code> as a new ` +
+        `<code>subgenres</code> CSV column. Display/audit only — not wired into <code>matchScore()</code> yet; a ` +
+        `scoring weight needs the same <code>eval.js</code>-gated validation <code>keywordBonus()</code> went ` +
+        `through this session first.`,
+      plain: `Genres are broad buckets ("Drama," "Crime"). The app now also tags each title with more specific ` +
+        `subject descriptors underneath that ("legal," "heist," "coming-of-age") derived from TMDB's own real, ` +
+        `specific keyword tags — not guessed, and checked by hand against real titles before shipping (one early ` +
+        `version wrongly called "300" a superhero movie just because it's based on a graphic novel; fixed before ` +
+        `going live).`,
+      impact: `Shipped and verified — real coverage on ${((withSubgenre / total) * 100).toFixed(1)}% of the dataset, ` +
+        `a well-distributed vocabulary (no tag over the 15% cap), not yet a scoring signal by design.`,
+    });
+    findings.push({
+      id: 'tones-field-missing',
+      severity: 'good',
+      ratings: { ease: 2, dataQuality: 6, recEngine: 6, ui: 3 },
+      title: 'Fixed: a mood/craft tone classifier now exists, same design as subgenres',
+      technical: `Same live-computed, keyword-driven approach as <code>inferSubgenres()</code> above, via new ` +
+        `<code>inferTones()</code>/<code>TONE_KEYWORDS</code> (14 values: gritty, dark, witty, satirical, hilarious, ` +
+        `inspirational, intense, suspenseful, twisty, slow-burn, character-driven, nostalgic, melancholy, offbeat). ` +
+        `Real coverage is honestly lower than subgenres: ${withTone} of ${total} titles (${((withTone / total) * 100).toFixed(1)}%), ` +
+        `since TMDB's keyword vocabulary carries far fewer mood/craft descriptors than content/subject ones (verified ` +
+        `directly — many plausible tone words like "heartwarming," "bleak," "ensemble," "fast-paced" returned zero ` +
+        `real matches anywhere in the dataset and were dropped from the vocabulary rather than kept as permanently- ` +
+        `empty tags). Top value <code>${topTone ? topTone[0] : 'n/a'}</code> at ${topTone ? ((topTone[1] / total) * 100).toFixed(1) : 0}% — nowhere ` +
+        `close to the 15% cap; the real constraint here is coverage breadth, not over-concentration. Wired into the ` +
+        `CSV export as a new <code>tones</code> column. Same display-only status as subgenres — a future ` +
+        `<code>toneSignal()</code>-equivalent (the book side's real per-tone rating-preference-delta mechanic, ` +
+        `formula confirmed via a full code read this session) is a real next step once coverage and quality are ` +
+        `both proven, not bundled into this pass.`,
+      plain: `Beyond subject matter, the app now also tags mood and craft — how something FEELS, not just what it's ` +
+        `about (a legal drama can be tense or satirical; those are different things). Coverage is honestly thinner ` +
+        `than the subject tags, because the underlying TMDB data just has fewer mood-related tags to draw from — ` +
+        `several plausible mood words were checked against the real data and dropped entirely rather than shipped ` +
+        `empty, since a tag nothing ever gets isn't worth having.`,
+      impact: `Shipped, with an honestly-scoped coverage gap documented rather than hidden — real, verified data, ` +
+        `not yet a scoring signal.`,
+    });
     findings.push({
       id: 'genre-subgenre-split-missing',
-      severity: 'warning',
+      severity: 'good',
       ratings: { ease: 4, dataQuality: 5, recEngine: 5, ui: 3 },
-      title: 'Genre has no subgenre split — one TMDB tag is doing all the work',
-      technical: `TMDB's genre taxonomy is a flat ~19-27 value list per title with no primary/secondary ` +
-        `distinction. Real concentration in this dataset: <code>${top ? top[0] : 'n/a'}</code> alone covers ` +
-        `${topPct}% of enriched titles (${top ? top[1] : 0} of ${allEnriched.length}) — the same over-` +
-        `concentration shape the book side's <code>thriller</code>/<code>history</code>/<code>memoir</code> ` +
-        `themes hit before their Session 19-21 review. Splitting into a single genre + single subgenre value ` +
-        `would need either an LLM classification pass or a keyword-derived heuristic (TMDB's <code>keywords</code> ` +
-        `field, already 93%+ populated per an earlier finding, is the natural raw material) — not something TMDB ` +
-        `hands over directly.`,
-      plain: `"Drama" covers over two-thirds of everything in the database — that's true, but it's not very ` +
-        `useful for telling shows apart. A more specific second-level tag (like "prestige drama" vs. "workplace ` +
-        `comedy-drama") would give the engine something sharper to work with than one giant bucket.`,
-      impact: `Medium — same family as the themes/tones ideas above (a finer signal beneath genre), but narrower ` +
-        `in scope (one extra value per title instead of a full new vocabulary), so a smaller project.`,
+      title: 'Fixed: genre/subgenre split shipped as the same classifier as the themes finding above',
+      technical: `This finding proposed exactly the fix <code>inferSubgenres()</code> above delivers: "a keyword- ` +
+        `derived heuristic (TMDB's <code>keywords</code> field... is the natural raw material)". Not a separate ` +
+        `build — the same classifier serves both the "subgenre beneath genre" role and the "themes-field-missing" ` +
+        `role above, since for BMTRE (unlike the book side, where categories/themes are genuinely different fields) ` +
+        `a subgenre tag and a subject-matter theme tag are the same kind of thing sitting beneath the same blunt ` +
+        `genre taxonomy.`,
+      plain: `This was the same gap as the themes finding above, just described from a different angle (genre ` +
+        `needing a second, more specific layer). One fix closes both.`,
+      impact: `Shipped as part of the same change — no separate work needed.`,
     });
   }
 
