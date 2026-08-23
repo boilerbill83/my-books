@@ -1427,17 +1427,25 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       technical: `<code>completionStatus</code> (caught-up/in-progress/unknown) is computed in ` +
         `<code>build_trakt_library.js</code> but deliberately left informational-only, per CLAUDE.md's own caution ` +
         `that Trakt's export carries no explicit "dropped" signal (in-progress could mean "actively watching" or ` +
-        `"gave up," indistinguishably). Checked live rather than assumed: only ${possiblyDropped.length} of ` +
-        `${showsWithEnoughEpisodes.length} shows with more than 3 aired episodes show a real under-50%-watched ` +
-        `pattern — genuine abandonment looks rare in Bill's real data so far, not a large hidden signal.`,
+        `"gave up," indistinguishably). Re-checked with current data volume rather than assumed stale: still only ` +
+        `${possiblyDropped.length} of ${showsWithEnoughEpisodes.length} shows with more than 3 aired episodes show ` +
+        `a real under-50%-watched pattern — the count hasn't grown. Investigated the one real candidate directly ` +
+        `rather than just re-counting it: "Your Friends & Neighbors" (9 of 19 aired episodes watched) turns out to ` +
+        `be a concrete confirmation of the exact false-positive risk already flagged, not a missed real case — it's ` +
+        `a "Returning Series" Bill rated 8/10 (<code>completionStatus: in-progress</code>), i.e. a show he's ` +
+        `demonstrably enjoying and is simply not yet caught up on, not one he gave up on. A naive under-50%-watched ` +
+        `penalty would have wrongly flagged a title Bill actively likes as "dropped." This is stronger evidence ` +
+        `against building the signal now than the raw count alone was.`,
       plain: `If Bill starts a show and stops halfway through, that's a real signal he's not that into it — but ` +
         `right now the app can't tell "stopped watching because he doesn't like it" apart from "watching it slowly, ` +
-        `still enjoying it." Checking the real data, this barely happens yet (only ${possiblyDropped.length === 1 ? '1 clear case' : `${possiblyDropped.length} clear cases`} right now), so it's ` +
-        `not a big missed opportunity today, but it's a gap that will matter more as more shows get started.`,
-      impact: `Low current value given how rare the pattern is in today's data (${possiblyDropped.length} ${possiblyDropped.length === 1 ? 'case' : 'cases'}), ` +
-        `but worth keeping on the list rather than building prematurely — exactly the same caution CLAUDE.md already ` +
-        `applies to the book side's DNF-penalty history (needs real feedback data before it's safe to score, not ` +
-        `just plausible).`,
+        `still enjoying it." Re-checked this session with the current data, and looked closely at the one real ` +
+        `candidate case: it turns out to be a show Bill rated 8 out of 10 that he just hasn't finished yet, not one ` +
+        `he actually dropped. That's a good real-world example of exactly why this signal would misfire if built ` +
+        `today — it would have called a show he likes "abandoned."`,
+      impact: `Low current value given how rare the pattern is in today's data (${possiblyDropped.length} ${possiblyDropped.length === 1 ? 'case' : 'cases'}, and ` +
+        `that one case is a false positive on inspection) — worth keeping on the list rather than building ` +
+        `prematurely, exactly the same caution CLAUDE.md already applies to the book side's DNF-penalty history ` +
+        `(needs real feedback data before it's safe to score, not just plausible).`,
     });
   }
 
