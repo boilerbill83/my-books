@@ -21486,5 +21486,117 @@
   "imdbRating": 6.3,
   "imdbVotes": 4491,
   "fetchedAt": "2026-08-23"
+ },
+ "show:150": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 4,
+   "totalNominations": 2,
+   "raw": "Won 1 BAFTA Award4 wins & 2 nominations total"
+  },
+  "imdbRating": 8.5,
+  "imdbVotes": 2651,
+  "fetchedAt": "2026-08-23"
+ },
+ "show:253": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 1,
+   "emmyNominations": 0,
+   "totalWins": 19,
+   "totalNominations": 32,
+   "raw": "Won 1 Primetime Emmy. 19 wins & 32 nominations total"
+  },
+  "imdbRating": 8.4,
+  "imdbVotes": 100027,
+  "fetchedAt": "2026-08-23"
+ },
+ "show:208397": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 2,
+   "raw": "2 wins & 2 nominations total"
+  },
+  "imdbRating": 7.7,
+  "imdbVotes": 17256,
+  "fetchedAt": "2026-08-23"
+ },
+ "show:2681": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 7.7,
+  "imdbVotes": 2096,
+  "fetchedAt": "2026-08-23"
+ },
+ "show:72742": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 9,
+   "raw": "2 wins & 9 nominations total"
+  },
+  "imdbRating": 7.5,
+  "imdbVotes": 10662,
+  "fetchedAt": "2026-08-23"
+ },
+ "show:60791": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 2,
+   "emmyNominations": 0,
+   "totalWins": 15,
+   "totalNominations": 94,
+   "raw": "Won 2 Primetime Emmys. 15 wins & 94 nominations total"
+  },
+  "imdbRating": 7.7,
+  "imdbVotes": 10358,
+  "fetchedAt": "2026-08-23"
+ },
+ "movie:442249": {
+  "rottenTomatoes": 55,
+  "metacritic": 54,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 1,
+   "raw": "1 nomination total"
+  },
+  "imdbRating": 5.2,
+  "imdbVotes": 77826,
+  "fetchedAt": "2026-08-23"
  }
 }
