@@ -1497,16 +1497,55 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
-  // 14-16. categories/themes/tones: unlike similarToTitles/
-  // similarToDirectors above, these have NO existing TMDB-derived source
-  // to resolve from at all - TMDB's genre taxonomy (~19-27 values seen in
-  // this dataset) is the closest analog and is much blunter than the book
-  // side's free-form theme/tone vocabularies. Building these for real
-  // would mean an LLM-tagging pass against real descriptions, the same
-  // path tag_with_haiku.py took for the book side's tones (Session 16) -
-  // a real, nontrivial project, not a quick field addition.
+  // 14. categories: re-examined this session rather than left as an
+  // unstarted idea. The book side's `categories` field is Google Books'
+  // own free-form, auto-populated (not curated, no vocabulary rules)
+  // category strings — structurally that's exactly what TMDB's `keywords`
+  // field already is for BMTRE (free-form, auto-populated by TMDB, no
+  // curation needed), not a separate thing to build from scratch. Unlike
+  // `themes`/`tones` below (which are CURATED canonical vocabularies with
+  // real design rules — cap enforcement, drift audits, a fixed word list
+  // Bill would need to approve), `categories`' book-side role was always
+  // "raw auto-populated tags," which `keywords` already fills, and now
+  // (this session) `keywords` is also a live, validated scoring signal via
+  // `keywordBonus()` — a stronger role than the book side's `categories`
+  // field even plays there (categories is data-quality-only, not scored).
+  {
+    const withKeywords = allEnriched.filter(m => (m.keywords || []).length >= 3).length;
+    findings.push({
+      id: 'categories-field-missing',
+      severity: 'good',
+      ratings: { ease: 2, dataQuality: 6, recEngine: 5, ui: 3 },
+      title: 'Categories: already filled by keywords, re-examined and closed rather than left open',
+      technical: `On the book side, <code>categories</code> is Google Books' own free-form, auto-populated category ` +
+        `strings — no canonical vocabulary, no curation rules, populated automatically by the source API. TMDB's ` +
+        `<code>keywords</code> field is structurally the same thing for BMTRE: free-form, auto-populated by TMDB, no ` +
+        `vocabulary design needed. It's ${((withKeywords / allEnriched.length) * 100).toFixed(1)}% populated ` +
+        `(${withKeywords} of ${allEnriched.length} with 3+ tags) and, as of this session's ` +
+        `<code>keywordBonus()</code> addition, is also a real, <code>eval.js</code>-validated scoring signal — a ` +
+        `stronger role than <code>categories</code> plays on the book side, where it's data-quality-reporting only, ` +
+        `not scored. Building a second, separate "categories" field alongside an already-equivalent, already-scored ` +
+        `<code>keywords</code> field would be redundant, not a real gap.`,
+      plain: `This finding used to say the app has nothing like the book side's raw, unpolished category tags. ` +
+        `Looking again: it does — TMDB's own free-form keyword tags are exactly that same kind of thing, and they're ` +
+        `already being read by the app (and, as of this session, actually feeding into the recommendation scores). ` +
+        `Building a whole separate field to duplicate what keywords already does wouldn't add anything real.`,
+      impact: `Closed as redundant with the already-shipped keyword work above, not built as a new field — the ` +
+        `honest right call once the actual gap was re-examined rather than assumed.`,
+    });
+  }
+
+  // 15-16. themes/tones: unlike categories above, these are CURATED
+  // canonical vocabularies with real design rules (a fixed word list, cap
+  // enforcement, drift audits) — genuinely distinct from a free-form field
+  // like keywords/categories, and genuinely still missing. Building these
+  // for real would mean either an LLM-tagging pass against real
+  // descriptions or a from-scratch vocabulary design needing Bill's own
+  // taste input (the book side's 37 themes / 24 tones were HIS explicit
+  // design, not invented unilaterally) — the same path tag_with_haiku.py
+  // took for the book side's tones (Session 16), a real, nontrivial
+  // project, not a quick field addition.
   for (const [id, label, bookAnalog, ratings] of [
-    ['categories-field-missing', 'categories', 'Google Books\' free-form category strings', { ease: 2, dataQuality: 6, recEngine: 5, ui: 3 }],
     ['themes-field-missing', 'themes', 'the 37-value canonical theme vocabulary', { ease: 2, dataQuality: 7, recEngine: 7, ui: 3 }],
     ['tones-field-missing', 'tones', 'the 24-value canonical tone vocabulary (craft/mood/pacing, Session 16)', { ease: 2, dataQuality: 6, recEngine: 6, ui: 3 }],
   ]) {
