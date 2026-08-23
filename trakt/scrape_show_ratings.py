@@ -131,6 +131,49 @@ RETRY_COOLDOWN_DAYS = 14   # same convention as scrape_ratings.py: a miss
 # SCRAPE_RT=False era, without re-scraping Metacritic needlessly.
 SCRAPE_RT = True
 
+# Round 3 of the audience/user-score investigation. Rounds 1-2 (a real
+# per-block name-matching fix, then two real structural hypotheses about
+# where RT/MC embed audience data — a <score-board> element, a
+# __NEXT_DATA__ blob) both verified cleanly against real pages: round 1
+# fixed the critic score for real (12/12, then 93.8% in a 494-title
+# production run); round 2's two extraction paths found NEITHER piece of
+# markup present on any of 12 real pages checked, even though the critic
+# score extracted fine from the same pages — ruling out "wrong element
+# name" as cleanly as a positive result would have confirmed one. That
+# leaves one real hypothesis neither prior round tested: the audience
+# widget genuinely isn't in the DOM yet at the point this scraper reads
+# it (`domcontentloaded` + a short fixed wait), regardless of what markup
+# it eventually uses. HYDRATION_WAIT_MS bumps the settle wait several
+# times longer, and _wait_for_hydration() additionally waits for network
+# activity to go quiet (`networkidle`) before falling back to the fixed
+# wait — a real signal that async/lazy-loaded content has had a chance
+# to finish, not just "wait longer and hope." Bill's explicit go-ahead
+# for this specific next step, after round 2's clean negative result was
+# reported (this project's "no third blind attempt without checking in"
+# discipline).
+HYDRATION_WAIT_MS = (6000, 9000)
+
+
+def _wait_for_hydration(page):
+    """Give a detail page real extra time to finish loading dynamic
+    content before reading it — specifically aimed at whatever the
+    audience/user-score widget needs that the critic score apparently
+    doesn't (see HYDRATION_WAIT_MS's comment above for why this is being
+    tried now). Tries `networkidle` first (waits until there's been no
+    network activity for ~500ms) since that's a real signal an async
+    fetch has actually completed, not just a fixed delay — some pages
+    never truly go idle (an analytics beacon, a chat widget polling in
+    the background), so a networkidle timeout is caught and treated as
+    "waited as long as reasonably possible" rather than a failure; either
+    way, a real fixed settle wait (much longer than the pre-round-3
+    2-4s window) always runs afterward as a floor."""
+    from playwright.sync_api import TimeoutError as PWTimeout
+    try:
+        page.wait_for_load_state('networkidle', timeout=8_000)
+    except PWTimeout:
+        pass
+    page.wait_for_timeout(random.randint(*HYDRATION_WAIT_MS))
+
 
 def load_cache():
     if CACHE_FILE.exists():
@@ -808,7 +851,7 @@ def scrape_rt(page, title, year, kind, imdb_id=None):
 
     try:
         page.goto(url, wait_until='domcontentloaded', timeout=20_000)
-        page.wait_for_timeout(random.randint(2000, 3500))
+        _wait_for_hydration(page)
         html = page.content()
     except PWTimeout:
         return None
@@ -883,7 +926,7 @@ def scrape_metacritic(page, title, year, kind, imdb_id=None):
 
     try:
         page.goto(url, wait_until='domcontentloaded', timeout=20_000)
-        page.wait_for_timeout(random.randint(2500, 4000))
+        _wait_for_hydration(page)
         html = page.content()
     except PWTimeout:
         return {'metascore': None, 'userScore': None, 'url': url, 'debug_link_count': debug_link_count}

@@ -26,4 +26,4 @@ jobs:
           playwright install chromium --with-deps
       - name: Scrape RT for the verification sample (no cache writes)
         run: python3 trakt/verify_rt_sample.py
-        timeout-minutes: 15
+        timeout-minutes: 25
