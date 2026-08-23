@@ -899,21 +899,25 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
   // discards the response body the same way enrich_tmdb.py's used to.
   findings.push({
     id: 'omdb-error-diagnostics',
-    severity: 'warning',
+    severity: 'good',
     ratings: { ease: 9, dataQuality: 3, recEngine: 1, ui: 1 },
-    title: 'enrich_omdb.py still throws away the one piece of information that would diagnose a dead key',
-    technical: `<code>trakt/enrich_tmdb.py</code>'s <code>get_json()</code> was fixed this session to capture and ` +
-      `surface TMDB's own error-response body (not just the bare HTTP status) after a real incident where a bare ` +
-      `401 gave no way to distinguish a revoked key from a malformed one from a temporarily-suspended one — the ` +
-      `fix immediately paid off, turning an unexplained failure into a one-line diagnosis. ` +
-      `<code>trakt/enrich_omdb.py</code>'s <code>get_json()</code> is structurally identical but was never given the ` +
-      `same fix: <code>except urllib.error.HTTPError as e: return None, e.code</code> still discards <code>e.read()</code> entirely.`,
-    plain: `Earlier tonight, one of the two API keys this app depends on broke, and figuring out why took a long time ` +
-      `because the error message was just "401 - invalid" with no further detail. That got fixed for one of the two ` +
-      `data pipelines (TMDB) but not the other (OMDb, the Rotten Tomatoes/awards data) — so if the OMDb key ever ` +
-      `has the same kind of problem, we're back to square one on that side, guessing instead of reading the real answer.`,
-    impact: `Low urgency (this doesn't affect today's data), but cheap to fix and directly reduces future debugging ` +
-      `time the next time this exact category of failure happens — which it already has once tonight, on the sibling pipeline.`,
+    title: 'enrich_omdb.py threw away the one piece of information that would diagnose a dead key',
+    technical: `Fixed this session: <code>trakt/enrich_omdb.py</code>'s <code>get_json()</code> now captures and ` +
+      `surfaces OMDb's own error-response body (not just the bare HTTP status), the same fix ` +
+      `<code>enrich_tmdb.py</code>'s sibling function already got after a real dead-key incident earlier this ` +
+      `session — that fix immediately paid off there, turning an unexplained 401 into a one-line diagnosis ` +
+      `(<code>{"status_message":"Invalid API key..."}</code>). <code>enrich_omdb.py</code> had the identical gap: ` +
+      `<code>except urllib.error.HTTPError as e: return None, e.code</code> discarded <code>e.read()</code> ` +
+      `entirely, even though OMDb genuinely does return a real JSON error body (e.g. ` +
+      `<code>{"Response":"False","Error":"Invalid API key!"}</code>) on a bad key — that real diagnostic text was ` +
+      `never reaching the caller. Now threaded through both the 401 fast-exit message and the per-title failure log line.`,
+    plain: `Earlier this session, one of the two API keys this app depends on broke, and figuring out why took a long ` +
+      `time because the error message was just "401 - invalid" with no further detail. That got fixed for one of the ` +
+      `two data pipelines (TMDB) but not the other (OMDb, the Rotten Tomatoes/awards data) — now both show the real ` +
+      `reason a key failed instead of a bare code.`,
+    impact: `Low urgency (doesn't affect today's data), but now closes the exact same diagnostic gap on both ` +
+      `pipelines instead of just one — directly reduces future debugging time the next time this category of ` +
+      `failure happens on the OMDb side.`,
   });
 
   // 4. FIXED (this session). resolve_titles.py used to take TMDB's #1
@@ -995,40 +999,44 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       `real test of round 2, the same way the first re-scrape was the real test (and the real disproof) of round 1.`,
   });
 
-  // 5. build_trakt_library.js's titleKey() falls back to a `type:trakt:ID`
-  // format when a title has no TMDB id — a completely different shape than
-  // every other part of the pipeline assumes (engine.js's titleKey(),
-  // enrich_tmdb.py's lookup, enrichedMetadata.json's own keys). Checked
-  // live: does any current title actually use this fallback keyspace.
+  // 5. build_trakt_library.js's titleKey() USED TO fall back to a
+  // `type:trakt:ID` format when a title had no TMDB id — a shape no other
+  // part of the pipeline recognized. Fixed this session: the fallback was
+  // removed entirely, so a title with no TMDB id now returns null and falls
+  // into the same existing "unresolvable, skip and warn" bucket a title with
+  // neither id already used. Live check confirms the incompatible format
+  // can no longer be produced — kept as an ongoing sanity confirmation, not
+  // because it's expected to ever find anything again.
   {
     const allTitles = [...(library.titles || []), ...(watchlist.titles || []), ...(candidatePool.titles || [])];
     const trakFallback = allTitles.filter(t => t.titleKey && /^(movie|show):trakt:/.test(t.titleKey));
     findings.push({
       id: 'trakt-fallback-titlekey',
-      severity: trakFallback.length > 0 ? 'critical' : 'warning',
+      severity: trakFallback.length > 0 ? 'critical' : 'good',
       ratings: { ease: 6, dataQuality: 3, recEngine: 2, ui: 1 },
-      title: 'A title with no TMDB id gets a titleKey format the rest of the pipeline can\'t recognize',
-      technical: `<code>build_trakt_library.js</code>'s local <code>titleKey(type, ids)</code> falls back to ` +
-        `<code>\`\${type}:trakt:\${ids.trakt}\`</code> when a title has a Trakt id but no TMDB id. Every other part ` +
+      title: 'Fixed: the incompatible trakt-id titleKey fallback was removed',
+      technical: `<code>build_trakt_library.js</code>'s local <code>titleKey(type, ids)</code> used to fall back to ` +
+        `<code>\`\${type}:trakt:\${ids.trakt}\`</code> when a title had a Trakt id but no TMDB id. Every other part ` +
         `of BMTRE assumes the single canonical shape from <code>engine.js</code>'s own exported <code>titleKey(type, tmdbId)</code> ` +
         `— <code>\`\${type}:\${tmdbId}\`</code> — including <code>enrich_tmdb.py</code>'s lookup (which needs ` +
-        `<code>ids.tmdb</code> directly and silently skips a title with none), <code>enrichedMetadata.json</code>'s own ` +
-        `keys, and the engine's scoring indexes. A title that ever takes this fallback path would get a key no other ` +
-        `file recognizes — permanently un-enrichable, unscorable, and invisible to the dashboard, with no error, ever. ` +
-        `Live check right now: ${trakFallback.length} title${trakFallback.length === 1 ? '' : 's'} currently use${trakFallback.length === 1 ? 's' : ''} this fallback format` +
-        (trakFallback.length ? ` (${trakFallback.slice(0, 3).map(t => esc(t.title)).join(', ')}${trakFallback.length > 3 ? ', …' : ''}).` : ' — none yet, but the code path exists and would fire silently the moment one does.'),
+        `<code>ids.tmdb</code> directly), <code>enrichedMetadata.json</code>'s own keys, and the engine's scoring indexes, ` +
+        `so a title taking that fallback path would have gotten a key no other file recognized — permanently ` +
+        `un-enrichable, unscorable, and invisible to the dashboard, with no error, ever. Verified live that 0 titles ` +
+        `currently used the fallback format before removing it, then removed it: the function now returns <code>null</code> ` +
+        `for a title with no TMDB id, which the existing <code>!r.titleKey</code> skip-and-warn check already handles ` +
+        `correctly (the same bucket a title with neither id already fell into). ` +
+        `Live check right now: ${trakFallback.length} title${trakFallback.length === 1 ? '' : 's'} use${trakFallback.length === 1 ? 's' : ''} the old fallback format` +
+        (trakFallback.length ? ` (${trakFallback.slice(0, 3).map(t => esc(t.title)).join(', ')}${trakFallback.length > 3 ? ', …' : ''}) — this should be impossible now; investigate immediately if it's ever non-zero.` : ' — confirming the code path genuinely can\'t produce it anymore, not just that today\'s data happens to be clean.'),
       plain: `Every title in this whole system is identified by its TMDB catalog number — that's the one thing the ` +
         `entire design leans on to avoid the messy "is this the same movie?" guessing the book side of this project ` +
-        `has hit repeatedly. But there's one line of code that quietly creates a different kind of ID for a title ` +
-        `that (for whatever reason) doesn't have a TMDB number, using its Trakt number instead. If that ever happens ` +
-        `for real, that title becomes a ghost — it'll never get real data, never get scored, and nothing will tell ` +
-        `anyone it's broken.`,
-      impact: trakFallback.length
-        ? `Actively affecting ${trakFallback.length} title${trakFallback.length === 1 ? '' : 's'} right now — these are silently dead weight in the data.`
-        : `Zero titles affected today, so this is a latent risk rather than a current problem — but it directly ` +
-          `contradicts this project's own foundational design assumption ("every title carries a real TMDB id"), and ` +
-          `the moment a future Trakt export includes one title without a TMDB id, it fails completely silently. Cheap ` +
-          `to close off now (skip and warn, same as the existing "neither id" case already does) rather than debug later.`,
+        `has hit repeatedly. There used to be one line of code that quietly created a different kind of ID for a title ` +
+        `that didn't have a TMDB number, using its Trakt number instead — which would have made that title a permanent ` +
+        `ghost with no error ever shown. That line is gone now; a title with no TMDB number is handled the normal, ` +
+        `already-visible way (skipped with a warning) instead of silently mislabeled.`,
+      impact: `Zero titles were ever actually affected (verified before the fix), so this was a latent risk rather ` +
+        `than a live bug — but it directly contradicted this project's own foundational design assumption ("every ` +
+        `title carries a real TMDB id"), and the moment a future Trakt export included one title without a TMDB id, ` +
+        `it would have failed completely silently. Closed off now, cheaply, before it could ever bite.`,
     });
   }
 
