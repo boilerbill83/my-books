@@ -41,11 +41,20 @@ negative — not "still didn't find a value," but "the specific markup
 looked for genuinely isn't present" in this fetch strategy. Neither
 extraction path is trusted for a bulk backfill as a result (both stay
 in the code as harmless no-ops — they only ever fill a value nothing
-else found). Per this project's "no third blind attempt" discipline
-(2 distinct, cleanly-failed technical hypotheses now), a further
-attempt (e.g. waiting for networkidle or a specific CSS selector
-instead of static markup scanning) needs an explicit go-ahead rather
-than another autonomous guess.
+else found).
+
+ROUND 3 (this version, Bill's explicit go-ahead after round 2's negative
+result was reported): neither round 1 nor round 2 tested the one
+remaining real hypothesis — that the audience widget genuinely isn't in
+the DOM yet at the point this scraper reads it (`domcontentloaded` + a
+short 2-4s fixed wait), independent of which markup it eventually uses.
+scrape_rt()/scrape_metacritic() now call the new shared
+_wait_for_hydration() before reading a detail page's content: a real
+`networkidle` wait (network activity actually goes quiet, not just "N
+seconds have passed") followed by a much longer fixed floor
+(HYDRATION_WAIT_MS, 6-9s vs. the previous 2-4s). This run is the actual
+test of that hypothesis — go/no-go decided from its real output below,
+same discipline as every prior round.
 
 SAMPLE: the same 12 titles Round 1 verified (already-known imdb ids),
 now also checked against real RT Popcornmeter / Metacritic user score
