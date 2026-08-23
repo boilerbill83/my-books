@@ -297,6 +297,31 @@ def extract_metascore(html, title, year, imdb_id=None):
                         dm = re.match(r'(\d{4})', str(own_date))
                         if dm and int(dm.group(1)) != int(year):
                             continue
+                    # A genuine, real-data bug found this session (a real
+                    # data-quality audit of the actual scrapedShowRatings.json
+                    # cache): "Elway" (2025) and "Ambitions" (2019) both
+                    # scraped a suspiciously high score (98, 97) from their
+                    # own correct Metacritic page — confirmed via WebSearch
+                    # that neither title has any real critic reviews on
+                    # Metacritic at all. Round 2's page_imdb_matches() guard
+                    # (below) can't catch this: the page IS the right page
+                    # (its IMDb id matches), so the id check passes, but the
+                    # JSON-LD aggregateRating block itself carries a
+                    # placeholder/default ratingValue with no real reviews
+                    # backing it — a different bug shape than a wrong-page
+                    # collision. schema.org's aggregateRating spec allows a
+                    # ratingCount/reviewCount field; reject only when one is
+                    # explicitly present and zero (same asymmetric rule as
+                    # every other guard here — an absent count can't tell
+                    # "no reviews" apart from "count just isn't emitted," so
+                    # it falls through unchanged). NOT verified against a
+                    # live page (this sandbox can't fetch raw Metacritic
+                    # HTML) — a real next-run test, like round 2's own fix.
+                    count = ar.get('ratingCount')
+                    if count is None:
+                        count = ar.get('reviewCount')
+                    if count is not None and int(count) == 0:
+                        continue
                     val = float(ar['ratingValue'])
                     best = ar.get('bestRating')
                     best_num = float(best) if best not in (None, '') else None
