@@ -27,6 +27,9 @@ function ratingWeight(rating) {
 // 130 of 495 ratings, ~26%) — used to seed the director/genre/similar-
 // title signals, mirroring the book engine's fiveStarAuthors/fiveStarThemes.
 const LOVED_THRESHOLD = 9;
+// TMDB's two "still producing new episodes" show-status values — see
+// showAiringBonus() for how this is used.
+const AIRING_STATUSES = new Set(['Returning Series', 'In Production']);
 
 export function titleKey(type, tmdbId) {
   return tmdbId != null ? `${type}:${tmdbId}` : null;
@@ -95,6 +98,13 @@ export function buildIndexes(library, enrichedMeta, feedback) {
   // loved-only counts above.
   const toneRatingsRaw = new Map();
   let ratedSum = 0, ratedCount = 0;
+  // Weighted-by-loved-show-overlap airing-status signal (dashboard
+  // recency-curve-not-split-by-type finding) — see showAiringBonus()
+  // below for why this replaces the flat +1/+2 credit an earlier session
+  // measurably reverted. Tracked across every rated show (not just
+  // loved) so the loved rate can be compared against a real baseline
+  // rate, not an assumed one.
+  let ratedShowsTotal = 0, ratedShowsAiring = 0, lovedShowsAiring = 0;
 
   for (const t of library.titles || []) {
     if (t.myRating == null) continue;
@@ -106,6 +116,15 @@ export function buildIndexes(library, enrichedMeta, feedback) {
     for (const tone of inferTones(meta)) {
       if (!toneRatingsRaw.has(tone)) toneRatingsRaw.set(tone, []);
       toneRatingsRaw.get(tone).push(t.myRating);
+    }
+
+    if (t.type === 'show') {
+      ratedShowsTotal++;
+      const airing = AIRING_STATUSES.has(meta?.status);
+      if (airing) {
+        ratedShowsAiring++;
+        if (t.myRating >= LOVED_THRESHOLD) lovedShowsAiring++;
+      }
     }
 
     if (creator) {
@@ -161,7 +180,17 @@ export function buildIndexes(library, enrichedMeta, feedback) {
     }
   }
 
-  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, toneProfile, globalMeanRating, excluded, lovedCountByType };
+  // Overrepresentation of "still airing" status among loved shows vs. the
+  // real baseline rate among all rated shows — 0 if loved shows are no
+  // more likely to be airing than the general rated pool (or if there's
+  // no data yet), never negative (a show being MORE likely to be ended
+  // among loved titles isn't treated as a penalty signal here, since
+  // "ended" is also just "you've had time to finish it").
+  const showAiringRateAll = ratedShowsTotal ? ratedShowsAiring / ratedShowsTotal : 0;
+  const showAiringRateLoved = lovedCountByType.show ? lovedShowsAiring / lovedCountByType.show : 0;
+  const showAiringOverrep = Math.max(0, showAiringRateLoved - showAiringRateAll);
+
+  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, toneProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -723,21 +752,43 @@ function recencyBonusMovie(year, nowYear) {
 // (an old show can still be "current" via new seasons) — a real, separate
 // gap already flagged, not addressed here since it wasn't what was asked.
 //
-// A fix WAS attempted this session (Session 53's improvement pass): a
-// small flat credit when TMDB's own `status` field says a show is still
-// "Returning Series"/"In Production" (182/6 of 1,059 enriched shows),
-// on top of the unchanged year curve. Tried at +2, then +1 — both
-// measurably hurt scripts/eval.js: precision@10 90%→80%, precision@100
-// 91%→86%, and MAE got WORSE, not better (19.34→19.98 / 20.08). Reverted
-// rather than shipped — this project's precision-first discipline (see
-// keywordBonus()'s own comment above) means a signal that fails its own
-// validation doesn't ship just because it's directionally plausible.
-// Left as a genuinely open gap, not a quick fix — a real solution likely
-// needs a differently-shaped signal (e.g. weighted by how many loved
-// shows share the "still airing" status, the way genreBonus/keywordBonus
-// weight by loved-title overlap, rather than a flat bonus applied to
-// ~17% of all shows regardless of fit) or more rated-show volume before
-// leave-one-out eval can distinguish a real gain from noise.
+// A fix was attempted in an earlier session: a small flat credit when
+// TMDB's own `status` field says a show is still "Returning Series"/
+// "In Production", on top of the unchanged year curve. Tried at +2, then
+// +1 — both measurably hurt scripts/eval.js: precision@10 90%→80%,
+// precision@100 91%→86%, and MAE got WORSE, not better. Reverted rather
+// than shipped, and the fix flagged for a future differently-shaped
+// signal — weighted by how many loved shows share the "still airing"
+// status, the way genreBonus/keywordBonus weight by loved-title overlap,
+// rather than a flat bonus applied to every airing show regardless of
+// fit.
+//
+// That weighted version is showAiringBonus() below, built and tested
+// this session. Real numbers behind it (from buildIndexes()'s
+// showAiringOverrep): loved shows are airing 32.3% of the time vs. 25.1%
+// for the general rated-show pool — a real but modest 7.2-point
+// overrepresentation, not the large effect the flat +1/+2 assumed. A
+// SHOW_AIRING_SCALE sweep against scripts/eval.js (0 through 50) found
+// NO value in that range that improves precision@10 over baseline —
+// precision@10 drops to 90% at the very first nonzero value tested (2)
+// and keeps falling as the scale increases (80% by 15+), while MAE keeps
+// improving the whole way (19.89→19.56 at scale=50) — exactly the
+// MAE-improves-while-precision-drops trade CLAUDE.md says never to make.
+// precision@25/50 hold roughly flat regardless of scale, so they can't
+// rescue it. Confirms the original note's own prediction: this needs
+// either a different signal shape entirely or more rated-show volume,
+// not just a better-calibrated magnitude of the same shape.
+// SHOW_AIRING_SCALE is left at 0 (the function computes but doesn't
+// apply the bonus) rather than removing the machinery — the
+// showAiringOverrep index is real, computed correctly, and ready to use
+// the moment either condition changes; re-sweep via eval.js before
+// raising it above 0.
+const SHOW_AIRING_SCALE = 0;
+function showAiringBonus(candidate, meta, idx) {
+  if (candidate.type !== 'show' || !AIRING_STATUSES.has(meta?.status)) return 0;
+  return idx.showAiringOverrep * SHOW_AIRING_SCALE;
+}
+
 function recencyBonusShow(year, nowYear) {
   if (!year) return 0;
   const age = nowYear - year;
@@ -815,6 +866,7 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   }
   score += voteCountBonus(meta?.voteCount);
   score += recencyBonus(candidate.year, candidate.type);
+  score += showAiringBonus(candidate, meta, idx);
   score += omdbSignal(omdbEntry);
 
   return { score, forwardMatches, creator };

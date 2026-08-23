@@ -1448,30 +1448,36 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     severity: 'warning',
     ratings: { ease: 7, dataQuality: 2, recEngine: 4, ui: 1 },
     title: 'Recency scoring treats a movie and an ongoing show identically',
-    technical: `PARTIALLY FIXED across two sessions: <code>recencyBonus(year)</code> used to apply one universal ` +
+    technical: `PARTIALLY FIXED across three sessions: <code>recencyBonus(year)</code> used to apply one universal ` +
       `age-bucket curve regardless of <code>candidate.type</code>; split into <code>recencyBonusMovie()</code> (a ` +
       `much steeper curve, plus a hard pre-2000 exclusion for discovered movie candidates) and ` +
       `<code>recencyBonusShow()</code> (unchanged gentler shape), per Bill's explicit "favor recent movies" ` +
-      `request. The show-side gap flagged here — <code>recencyBonusShow()</code> keys off original air year, not ` +
-      `whether a show is still actively producing new content — was genuinely attempted this session, not just ` +
-      `left alone: TMDB's own <code>status</code> field ("Returning Series"/"In Production" on 188 of 1,059 ` +
-      `enriched shows) is already captured and unused for this. A flat +1 or +2 credit for that status, tried and ` +
-      `measured against <code>scripts/eval.js</code>, made things measurably worse both times — precision@10 ` +
-      `90%→80%, precision@100 91%→86%, and MAE got worse, not better. Reverted rather than shipped, per this ` +
-      `project's precision-first discipline (the same one that capped <code>keywordBonus()</code> after catching a ` +
-      `similar regression above). A flat bonus applied to ~17.8% of all shows regardless of fit is likely just too ` +
-      `blunt an instrument — a real fix probably needs a differently-shaped signal, closer to how ` +
-      `<code>genreBonus()</code>/<code>keywordBonus()</code> weight by loved-title overlap rather than a flat ` +
-      `across-the-board credit.`,
+      `request. The show-side gap — <code>recencyBonusShow()</code> keys off original air year, not whether a ` +
+      `show is still actively producing new content — has now had two genuinely different attempts, not just one ` +
+      `retried harder. Attempt 1 (an earlier session): a flat +1/+2 credit for TMDB's "Returning Series"/"In ` +
+      `Production" status. Measured against <code>scripts/eval.js</code>, made things measurably worse both times ` +
+      `— precision@10 90%→80%, precision@100 91%→86%. Reverted. Attempt 2 (this session, the specific redesign ` +
+      `that attempt's own follow-up note called for): <code>showAiringBonus()</code>, weighted by real loved-show ` +
+      `overlap — <code>buildIndexes()</code>'s new <code>showAiringOverrep</code> compares the real rate of ` +
+      `"still airing" among Bill's loved shows (32.3%) against the baseline rate among all his rated shows ` +
+      `(25.1%), the same overlap-weighting shape <code>genreBonus()</code>/<code>keywordBonus()</code> already ` +
+      `use elsewhere. A <code>SHOW_AIRING_SCALE</code> sweep from 0 to 50 against <code>scripts/eval.js</code> ` +
+      `found the SAME regression at every nonzero value — precision@10 drops to 90% at the very first value tested ` +
+      `(2) and keeps falling to 80% by 15+, while MAE improves the whole way (exactly the MAE-improves-while-` +
+      `precision-drops trade CLAUDE.md says never to make). <code>SHOW_AIRING_SCALE</code> is shipped at 0 (the ` +
+      `index and function are real and computed correctly, just inert) rather than the machinery being deleted — ` +
+      `ready to re-sweep the moment more rated-show volume exists.`,
     plain: `Movies now get scored on how recent they are much more strongly, which was fixed in an earlier session. ` +
       `Shows still don't distinguish "started long ago but still has new episodes coming out" from "started long ` +
-      `ago and ended long ago" — a fix for that was actually tried this session (using a real "still airing" flag ` +
-      `the app already has but never used), but testing it against real data showed it made the recommendations ` +
-      `measurably worse, not better, so it was undone rather than shipped just because it sounded like it should ` +
-      `help.`,
+      `ago and ended long ago." Two different fixes for that have now been tried and tested against real data — a ` +
+      `simple flat bonus (an earlier session) and, this session, a smarter version that only credits it in ` +
+      `proportion to how much Bill's actual favorite shows lean toward still-airing status. Both made the real ` +
+      `recommendations measurably worse when tested, not better, so both were undone rather than shipped just ` +
+      `because they sounded like they should help.`,
     impact: `Movie side resolved and verified live (top movie picks are all 2017+ now). Show side remains a real, ` +
-      `open gap — now backed by evidence that the obvious fix doesn't work, which is useful information for ` +
-      `whoever picks this up next, not just an unexplored idea anymore.`,
+      `open gap — now backed by evidence that two different fix shapes both don't work, which narrows down what a ` +
+      `future attempt should try (a genuinely different signal, or waiting for more rated-show volume), not just ` +
+      `an unexplored idea anymore.`,
   });
 
   // 11. Cover images: TMDB's posterPath is already captured by
