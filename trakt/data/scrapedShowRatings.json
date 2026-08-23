@@ -4003,5 +4003,500 @@
   "metacriticUser": null,
   "mcUrl": "https://www.metacritic.com/tv/the-agency/",
   "checkedAt": "2026-08-23"
+ },
+ "movie:1583500": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 98,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/movie/elway/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:90399": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 97,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/ambitions/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:202097": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "show:256711": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 53,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/the-rainmaker/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:44856": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "show:95205": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/the-equalizer/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:67026": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 71,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/designated-survivor/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:1403": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "show:62643": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "show:112693": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 75,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/kin/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:65454": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 78,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/horace-and-pete/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:87428": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 62,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/why-women-kill/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:124364": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 63,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/from/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:1416": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "show:95004": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "show:201877": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 63,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/walker-independence/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:157732": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 66,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/lawmen-bass-reeves/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:3050": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 74,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/the-practice/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:16997": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 86,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/the-pacific/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:60726": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "show:66310": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 52,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/startup/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:246412": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 61,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/the-copenhagen-test/",
+  "checkedAt": "2026-08-23"
+ },
+ "movie:1433719": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 77,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/movie/high-ground/",
+  "checkedAt": "2026-08-23"
+ },
+ "movie:1293162": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 98,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/movie/thieves-highway/",
+  "checkedAt": "2026-08-23"
+ },
+ "movie:893297": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "movie:1078600": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "show:4573": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "show:82193": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 43,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/norm-macdonald-has-a-show/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:219": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 97,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/kyle-xy/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:57389": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "show:211169": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 70,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/hotel-cocaine/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:67232": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 57,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/the-son/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:33301": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 58,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/franklin-bash/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:39351": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 58,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/grimm/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:239000": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "show:71340": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 53,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/krypton/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:95170": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 76,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/betty/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:32940": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "show:34639": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 67,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/xiii-the-series/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:262793": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 76,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/ponies/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:283297": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 76,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/sterling-point/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:58937": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 83,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/masters-of-sex/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:62285": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "show:67178": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "show:195868": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 41,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/gotham-knights/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:1411": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 66,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/person-of-interest/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:45094": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 58,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/the-following/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:287167": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "show:60708": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 70,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/gotham/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:241272": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "show:46930": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 72,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/ripper-street/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:103768": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 77,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/sweet-tooth/",
+  "checkedAt": "2026-08-23"
+ },
+ "movie:1439930": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "movie:1093883": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "checkedAt": "2026-08-23"
+ },
+ "movie:1429813": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 80,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/movie/how-i-spent-my-summer-vacation/",
+  "checkedAt": "2026-08-23"
  }
 }
