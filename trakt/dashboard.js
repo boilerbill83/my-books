@@ -958,38 +958,41 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
   // cross-checks, not assumed — fixed and unit-tested this session.
   findings.push({
     id: 'metacritic-scrape-title-verification',
-    severity: 'good',
-    ratings: { ease: 6, dataQuality: 8, recEngine: 5, ui: 1 },
+    severity: 'warning',
+    ratings: { ease: 5, dataQuality: 8, recEngine: 5, ui: 1 },
     title: 'Metacritic scraper had no page-identity check, and was confirmed producing wrong scores',
-    technical: `Fixed this session: a full data-quality audit of the real 447-title production scrape batch found ` +
-      `<code>scrape_metacritic()</code>'s direct-URL-slug guess (the only path that has ever actually worked, per ` +
-      `this file's own 3-batch investigation) has no confirmation step — it trusts whatever <code>aggregateRating</code> ` +
-      `it finds on whatever page the guessed URL happens to resolve to. Real cross-checks against outside sources ` +
+    technical: `Round 1: a full data-quality audit of the real 447-title production scrape batch found ` +
+      `<code>scrape_metacritic()</code>'s direct-URL-slug guess has no confirmation step at all — it trusts whatever ` +
+      `<code>aggregateRating</code> it finds on whatever page the guessed URL happens to resolve to. Real cross-checks ` +
       `confirmed 9 titles got a fabricated score this way: 3 unreleased shows (Cupertino/Neagley/Crystal Lake, each ` +
       `scored 93-97 despite zero aired episodes) and 6 title collisions where the guessed bare slug landed on a ` +
       `DIFFERENT same-named work (Lost in Space scored 93 from the wrong 1965-original page vs. its real 2018 ` +
       `reboot's actual 58; Perry Mason 96 vs. real 68; The Agency 97 vs. a real "Generally Favorable" band; Legends ` +
-      `59 vs. real 75; plus Ambitions and Elway, both genuinely un-scored on Metacritic). All 9 corrected to null in ` +
-      `the committed cache. Fixed with two independent, unit-tested guards in <code>scrape_show_ratings.py</code>: ` +
-      `<code>is_unreleased()</code> discards any score for a known-future release date outright; the new ` +
-      `<code>extract_metascore()</code>/<code>page_title_matches()</code> cross-check the fetched page's own JSON-LD ` +
-      `date field and &lt;title&gt; tag against the expected title/year, rejecting only on an explicit, positive ` +
-      `conflict (never requiring a signal to be present — an earlier draft that required a year for short titles was ` +
-      `caught and reverted by its own unit test, since it would have wrongly rejected real matches like The Boys and ` +
-      `Fleabag that never show a year at all). The remaining ~365 already-cached Metacritic values were not ` +
-      `individually re-verified this session — that would mean hundreds of manual searches — so this closes the bug ` +
-      `going forward and for the 9 confirmed cases, not a claim that every remaining cached value is confirmed clean.`,
-    plain: `The app looks up Rotten Tomatoes/Metacritic pages by guessing a web address from the title (like turning ` +
-      `"Lost in Space" into metacritic.com/tv/lost-in-space/). That guess sometimes lands on the WRONG page — a ` +
-      `different, older show that happens to share the same name — and the app was trusting whatever score it found ` +
-      `there without checking it was actually the right show. A real check against real Metacritic data found this ` +
-      `happening for at least 9 titles, always producing a suspiciously high fake score. The 9 known cases are now ` +
-      `fixed, and the app now double-checks the page it lands on before trusting a score, so this can't keep ` +
-      `happening quietly for new titles going forward.`,
-    impact: `A real, verified accuracy problem, not a hypothetical one — 9 confirmed wrong scores actively feeding ` +
-      `the Audience Score signal before this fix. A full re-scrape (clearing the cache and re-running with the new ` +
-      `guards) would be the thorough way to re-validate the remaining ~365 entries, since they were cached as ` +
-      `"done" under the old, unguarded logic and won't be re-attempted on their own.`,
+      `59 vs. real 75; plus Ambitions and Elway, both genuinely un-scored on Metacritic). Fixed with ` +
+      `<code>is_unreleased()</code> (discards a score for a known-future release date) and ` +
+      `<code>page_title_matches()</code> (cross-checks the page's own JSON-LD date and &lt;title&gt; against the ` +
+      `expected title/year, rejecting only on an explicit conflict). <strong>Round 2, after a real full re-scrape ` +
+      `with those guards deployed</strong>: <code>is_unreleased()</code> held up (3/3 real hits), but 6 of the 9 ` +
+      `originally-wrong titles came back with the EXACT SAME wrong scores — the wrong pages apparently state no ` +
+      `explicit conflicting year anywhere for <code>page_title_matches()</code> to catch, the exact risk its own ` +
+      `asymmetric design (never reject on an absent signal) left open. All 6 corrected back to null again. Fixed with ` +
+      `a harder signal, <code>page_imdb_matches()</code>: every title reaching this script already has a known IMDb ` +
+      `id (a precondition of OMDb eligibility) — cross-checking Metacritic's own IMDb reference against that id is an ` +
+      `exact match, not fuzzy text, and is authoritative when it can run (a mismatch rejects regardless of the title ` +
+      `check; a confirmed match skips the title check; no id found on the page falls back to the pre-existing check ` +
+      `unchanged). Unit-tested against synthetic reconstructions of all 6 real round-2 failures. NOT yet verified ` +
+      `against a real re-scrape — this sandbox still can't fetch metacritic.com to confirm the real wrong pages ` +
+      `actually carry a mismatched IMDb reference the way the fix assumes; the next real run is the actual test.`,
+    plain: `The app looks up Rotten Tomatoes/Metacritic pages by guessing a web address from the title. That guess ` +
+      `sometimes lands on the WRONG page — a different, older show that happens to share the same name. The first ` +
+      `fix checked whether the wrong page's own title mentioned a conflicting year, which worked for some cases but ` +
+      `not others — a real re-scrape showed 6 titles were STILL getting the wrong score, because the wrong page just ` +
+      `didn't happen to show a year at all. The second fix instead checks the exact IMDb reference on the page — a ` +
+      `precise fingerprint rather than a fuzzy text guess — which should close the gap the first fix left open, but ` +
+      `hasn't been proven against a real page yet.`,
+    impact: `A real, verified accuracy problem that took two real rounds to actually close, not one — the honest ` +
+      `state right now is "fixed in code, unverified against a live page a second time." A full re-scrape is the ` +
+      `real test of round 2, the same way the first re-scrape was the real test (and the real disproof) of round 1.`,
   });
 
   // 5. build_trakt_library.js's titleKey() falls back to a `type:trakt:ID`
