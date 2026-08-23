@@ -4004,24 +4004,6 @@
   "mcUrl": "https://www.metacritic.com/tv/the-agency/",
   "checkedAt": "2026-08-23"
  },
- "movie:1583500": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/movie/elway/",
-  "checkedAt": "2026-08-23"
- },
- "show:90399": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/ambitions/",
-  "checkedAt": "2026-08-23"
- },
  "show:202097": {
   "rottenTomatoes": null,
   "rtAudience": null,
@@ -4211,15 +4193,6 @@
   "mcUrl": "https://www.metacritic.com/movie/high-ground/",
   "checkedAt": "2026-08-23"
  },
- "movie:1293162": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/movie/thieves-highway/",
-  "checkedAt": "2026-08-23"
- },
  "movie:893297": {
   "rottenTomatoes": null,
   "rtAudience": null,
@@ -4254,15 +4227,6 @@
   "metacritic": 43,
   "metacriticUser": null,
   "mcUrl": "https://www.metacritic.com/tv/norm-macdonald-has-a-show/",
-  "checkedAt": "2026-08-23"
- },
- "show:219": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/kyle-xy/",
   "checkedAt": "2026-08-23"
  },
  "show:57389": {
