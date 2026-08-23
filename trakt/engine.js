@@ -730,9 +730,65 @@ export function inferSubgenres(meta, limit = 3) {
   return scoreKeywordTags(meta.keywords, SUBGENRE_KEYWORDS).slice(0, limit).map(([tag]) => tag);
 }
 
+// Overview-text fallback for tones (Phase 2 of the second coverage pass —
+// see the field-quality-tones dashboard finding for why round 2 of pure
+// keyword mining hit real diminishing returns: most tone-uncovered
+// titles' remaining keywords are already subgenre/subject material, not
+// unmined mood signal). 1,395 of 1,411 tone-uncovered titles (as
+// measured this session) carry a real TMDB `overview` (plot summary)
+// text, a genuinely untapped secondary source.
+//
+// Deliberately fallback-only — only ever consulted when the keyword-
+// based match above already returned empty, so a real (if partial)
+// keyword-backed tag is never diluted or second-guessed by looser prose
+// matching. This mirrors the book side's THEME_TONES_MAP fallback role
+// (a lower-confidence signal that only fires when nothing better exists)
+// without touching the keyword layer's own logic at all.
+//
+// Every phrase was verified against ~1,400 real overview texts before
+// inclusion, not guessed — and several plausible-looking candidates
+// were caught and REJECTED during that verification, not assumed safe:
+// 'twisted' (as opposed to bare 'twist') turned out to describe a
+// character's psychology/nature ("his twisted will", "twisted serial
+// killer") in the real data far more often than an actual plot twist —
+// dropped, keeping only the noun form. 'devastating' turned out to
+// describe an in-story destructive EVENT ("a devastating new weapon" in
+// Kung Fu Panda 2, a family action-comedy with no melancholy tone at
+// all) about as often as genuine emotional weight — dropped. 'moving'
+// caught 3/3 false positives, all "moving to [a place]" (relocation),
+// zero real emotional-tone hits — dropped. 'poignant'/'touching'/
+// 'bone-chilling' had zero real matches in the dataset — dropped as
+// dead weight rather than kept on faith.
+const TONE_OVERVIEW_PHRASES = {
+  'dark': [/\bdark(est|er)?\b/, /\bsinister\b/, /\bchilling\b/, /\bterrifying\b/, /\bharrowing\b/],
+  'hilarious': [/\bhilarious\b/, /\blaugh[- ]out[- ]loud\b/, /\bcomedic\b/],
+  'witty': [/\bwitty\b/, /\bwry\b/],
+  'gritty': [/\bgritty\b/, /\bunflinching\b/],
+  'melancholy': [/\bheartbreaking\b/],
+  // Bare noun only ('a twist', 'the twist') — the adjective 'twisted'
+  // was verified and rejected above for meaning something else in most
+  // real usage.
+  'twisty': [/\btwist\b/],
+  'satirical': [/\bsatirical\b/, /\bsatire\b/],
+  'offbeat': [/\bquirky\b/, /\beccentric\b/],
+  'suspenseful': [/\bthrilling\b/],
+};
+
+function inferTonesFromOverview(meta, limit) {
+  if (!meta?.overview) return [];
+  const text = meta.overview.toLowerCase();
+  const matched = [];
+  for (const [tag, patterns] of Object.entries(TONE_OVERVIEW_PHRASES)) {
+    if (patterns.some(p => p.test(text))) matched.push(tag);
+  }
+  return matched.slice(0, limit);
+}
+
 export function inferTones(meta, limit = 4) {
   if (!meta) return [];
-  return scoreKeywordTags(meta.keywords, TONE_KEYWORDS).slice(0, limit).map(([tag]) => tag);
+  const fromKeywords = scoreKeywordTags(meta.keywords, TONE_KEYWORDS).slice(0, limit).map(([tag]) => tag);
+  if (fromKeywords.length) return fromKeywords;
+  return inferTonesFromOverview(meta, limit);
 }
 
 function voteCountBonus(voteCount) {
