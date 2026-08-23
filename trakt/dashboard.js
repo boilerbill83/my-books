@@ -700,12 +700,17 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
           `(not critics) thought, separate from the critic scores the app already tracked. Checked the real scrape run's own log rather than ` +
           `guessing why it's empty: the critic score (Tomatometer) reliably shows up on the page the scraper grabs, but the separate audience ` +
           `number apparently doesn't load in time to be captured — every single page checked had the critic data but never the audience data, a ` +
-          `consistent pattern, not random misses.`,
+          `consistent pattern, not random misses. Two follow-up fixes were tried this session, both real and specific (not guesses) but both ` +
+          `came back empty on a real 12-title test: one looked for a special HTML tag Rotten Tomatoes' site is believed to use for its scores, ` +
+          `the other looked for a data blob Metacritic's site is believed to embed — neither was found on any of the 12 real pages checked, so ` +
+          `both ideas about where the data lives were wrong (or it's simply not there yet when the page is grabbed). Left in the code since they ` +
+          `can't do harm, but not trusted to actually work.`,
         impact: `Low priority for now and not blocking anything — it's a new, display-only field, not something the recommendation engine ` +
-          `depends on. If it's worth chasing later, the fix is technical (waiting longer for the page to finish loading, or looking in a ` +
-          `different place on the page) rather than a data problem — but that's exactly the kind of change that needs real verification before ` +
-          `being trusted at scale, the same discipline that took 5 real rounds to get the Metacritic critic-score scraper right earlier this ` +
-          `session.`,
+          `depends on. Two distinct, real technical attempts (a custom <code>&lt;score-board&gt;</code> element for RT, a ` +
+          `<code>__NEXT_DATA__</code> props blob for Metacritic) were tried and cleanly disproven this session — a real 12-title verification ` +
+          `run found neither piece of markup present on any page, not just a wrong value. Per the same "no third blind attempt" discipline that ` +
+          `took 5 real rounds to get the Metacritic critic-score scraper right, a further attempt (e.g. waiting longer for the page to finish ` +
+          `loading before reading it) should be a deliberate next step, not another autonomous guess.`,
       };
     },
     subgenres: (f) => ({

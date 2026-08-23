@@ -286,6 +286,23 @@ def extract_next_data_user_score(html):
     different scale to rescale — the same "never guess-convert an
     ambiguous value" rule as everywhere else in this file.
 
+    REAL RESULT (a 12-title verification run, see verify_rt_sample.py):
+    disproven cleanly, not just still-empty — nextDataFound was False on
+    ALL 12 titles, meaning the fetched Metacritic page has no
+    <script id="__NEXT_DATA__"> tag at all in this fetch strategy
+    (domcontentloaded + a short settle wait). Either this specific
+    hypothesis about MC's stack/markup is wrong, or the tag genuinely
+    isn't present until later client-side hydration this scraper doesn't
+    wait for. Left in place since it's a pure no-op when absent (never
+    overrides a value found elsewhere), but NOT trusted for a bulk
+    backfill — a second real, different technical approach (e.g. waiting
+    for networkidle or a specific selector) would be a 3rd distinct
+    attempt at this exact problem and should get an explicit go-ahead
+    rather than another autonomous guess, per this project's own
+    "no third blind attempt" discipline (see extract_score_board_scores()
+    and extract_metascore()'s own histories for why that discipline
+    exists).
+
     Returns (user_score_0_to_100_or_None, debug_dict)."""
     debug = {'nextDataFound': False, 'matchedPattern': None, 'blobLength': None}
     m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', html, re.S)
@@ -578,7 +595,22 @@ def extract_score_board_scores(html):
     into this custom element. Returns (critic, audience) as ints from
     the FIRST <score-board> tag found, either None if that specific
     attribute is absent — never guessed, only a real numeric attribute
-    value literally present in the tag."""
+    value literally present in the tag.
+
+    REAL RESULT (a 12-title verification run, see verify_rt_sample.py):
+    disproven cleanly, not just still-empty — no <score-board> tag was
+    found on ANY of the 12 real pages fetched (both tomatometerscore and
+    audiencescore came back None every time), despite the critic score
+    reliably being extractable from JSON-LD on those same pages. Either
+    RT's markup doesn't use this element (name, structure, or redesign
+    guessed wrong), or it genuinely isn't present until later
+    client-side hydration this scraper's fetch strategy
+    (domcontentloaded + a short settle wait) doesn't wait for. Left in
+    place since it's a pure no-op when absent (never overrides a value
+    found elsewhere), but NOT trusted for a bulk backfill — see
+    extract_next_data_user_score()'s docstring for why a further,
+    different technical attempt should get an explicit go-ahead rather
+    than another autonomous guess."""
     m = re.search(r'<score-board\b[^>]*>', html, re.I)
     if not m:
         return None, None

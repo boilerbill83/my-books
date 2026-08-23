@@ -19,19 +19,33 @@ per-block name-matching fix — 12/12 matched real Tomatometer scores.
 SCRAPE_RT was then enabled and a real 494-title backfill run confirmed
 it in production (463/494 = 93.8% hit rate).
 
-ROUND 2 (audience/user scores, this version): that same production run
-found the AUDIENCE side (RT Popcornmeter, Metacritic user score)
-genuinely never populated — 0 of 494 titles. Diagnosed from the run's
-own job log: every page had exactly one JSON-LD aggregateRating block
-(the critic one), never a second audience-scale block. Two new,
-specific extraction paths were added on that diagnosis:
-extract_score_board_scores() (RT's real <score-board> custom element,
-which the real site is understood to render server-side with
-tomatometerscore/audiencescore attributes, independent of the
+ROUND 2 (audience/user scores): that same production run found the
+AUDIENCE side (RT Popcornmeter, Metacritic user score) genuinely never
+populated — 0 of 494 titles. Diagnosed from the run's own job log:
+every page had exactly one JSON-LD aggregateRating block (the critic
+one), never a second audience-scale block. Two new, specific extraction
+paths were added on that diagnosis: extract_score_board_scores() (RT's
+real <score-board> custom element, hypothesized to render server-side
+with tomatometerscore/audiencescore attributes, independent of the
 schema.org JSON-LD block) and extract_next_data_user_score()
-(Metacritic's Next.js __NEXT_DATA__ props blob, tried when the JSON-LD
-scan doesn't find a bestRating==10 user-score block). Neither path has
-ever been verified against a real live page — this run is that test.
+(Metacritic's hypothesized Next.js __NEXT_DATA__ props blob, tried when
+the JSON-LD scan doesn't find a bestRating==10 user-score block).
+
+REAL RESULT (run 2, this file's own 12-title batch): both hypotheses
+disproven cleanly. No <score-board> tag was found on any of the 12 RT
+pages (tomatometerscore/audiencescore both None every time, even though
+the critic score extracted fine from JSON-LD on the same pages), and no
+<script id="__NEXT_DATA__"> tag was found on any of the 12 Metacritic
+pages (nextDataFound False every time). This is a real, informative
+negative — not "still didn't find a value," but "the specific markup
+looked for genuinely isn't present" in this fetch strategy. Neither
+extraction path is trusted for a bulk backfill as a result (both stay
+in the code as harmless no-ops — they only ever fill a value nothing
+else found). Per this project's "no third blind attempt" discipline
+(2 distinct, cleanly-failed technical hypotheses now), a further
+attempt (e.g. waiting for networkidle or a specific CSS selector
+instead of static markup scanning) needs an explicit go-ahead rather
+than another autonomous guess.
 
 SAMPLE: the same 12 titles Round 1 verified (already-known imdb ids),
 now also checked against real RT Popcornmeter / Metacritic user score
