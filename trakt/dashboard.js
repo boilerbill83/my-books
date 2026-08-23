@@ -975,44 +975,42 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
   // cross-checks, not assumed — fixed and unit-tested this session.
   findings.push({
     id: 'metacritic-scrape-title-verification',
-    severity: 'warning',
+    severity: 'good',
     ratings: { ease: 5, dataQuality: 8, recEngine: 5, ui: 1 },
-    title: 'Metacritic scraper had no page-identity check — 5 real rounds, a real architectural bug found in round 5',
+    title: 'Fixed and confirmed live: Metacritic scraper page-identity check, after 5 real rounds',
     technical: `Round 1 found <code>scrape_metacritic()</code>'s direct-URL-slug guess had no confirmation step at ` +
       `all — 9 titles got a fabricated score. Rounds 1-2 (<code>is_unreleased()</code>, <code>page_title_matches()</code>, ` +
-      `then <code>page_imdb_matches()</code> — an exact IMDb id cross-check) were each verified against real ` +
-      `re-scrapes and closed the wrong-page-collision failure mode for 7 of 9 titles (Cupertino, Neagley, Crystal ` +
-      `Lake, The Agency, Lost in Space, Perry Mason, Legends) — genuinely confirmed working. The remaining 2 (Elway, ` +
-      `Ambitions) were a different bug: the guessed URL IS the correct page (real IMDb id match), but neither title ` +
-      `has any real critic reviews — the JSON-LD carries a placeholder rating with nothing backing it. Rounds 3 ` +
-      `(reject when JSON-LD's <code>ratingCount</code>/<code>reviewCount</code> is explicitly zero) and 4 (reject an ` +
-      `exact 97-or-98 score with no count to back it — a real pattern found across the full cache: every score ≥90 ` +
+      `then <code>page_imdb_matches()</code> — an exact IMDb id cross-check) closed the wrong-page-collision failure ` +
+      `mode for 7 of 9 titles (Cupertino, Neagley, Crystal Lake, The Agency, Lost in Space, Perry Mason, Legends), ` +
+      `verified against real re-scrapes. The remaining 2 (Elway, Ambitions) were a different bug: the guessed URL IS ` +
+      `the correct page (real IMDb id match), but neither title has any real critic reviews — the JSON-LD carries a ` +
+      `placeholder rating with nothing backing it. Rounds 3 (reject an explicit <code>ratingCount</code>/<code>reviewCount</code> ` +
+      `of zero) and 4 (reject an exact 97-or-98 score with no count to back it — every score ≥90 in the real cache ` +
       `landing on exactly 97/98 was confirmed fabricated via WebSearch, catching 2 more wrong titles the original ` +
       `audit never saw — Thieves' Highway, Kyle XY) were BOTH verified against real re-scrapes and BOTH found NOT ` +
-      `working — Elway/Ambitions/Thieves' Highway/Kyle XY all came back with the exact same wrong scores each time, ` +
-      `guards live and all. <strong>Round 5 found the actual root cause</strong> by re-reading ` +
-      `<code>extract_metascore()</code>'s own control flow rather than inventing a 5th content heuristic: when a ` +
-      `guard rejects a JSON-LD value, it correctly skips assigning it — but the function's regex fallback ` +
-      `(originally meant only for pages with no JSON-LD at all) doesn't know a value was deliberately rejected vs. ` +
-      `never found, and re-scans the ENTIRE raw page text for any "Metascore: NN" match — finding the identical ` +
-      `fabricated number rendered as plain text elsewhere on the same page, completely bypassing every content ` +
-      `guard. Fixed with a <code>rejected</code> flag: any guard that discards a value now sets it, and the regex ` +
-      `fallback is skipped entirely when set — a considered "no," not "keep looking." Unit-tested against the exact ` +
-      `real bypass scenario (a rejected JSON-LD value plus matching regex-visible text on the same page) alongside ` +
-      `every prior case (legitimate scores, the regex-only fallback path, a genuine 97/98 with a real count). All 4 ` +
-      `entries corrected to <code>null</code> again; cache rescanned, 0 remaining 97s/98s. NOT yet verified against ` +
-      `a live page a third time.`,
+      `working — the same 4 titles came back with the exact same wrong scores each time, guards live and all. ` +
+      `<strong>Round 5 found the actual root cause</strong>, by re-reading <code>extract_metascore()</code>'s own ` +
+      `control flow rather than inventing a 6th content heuristic: when a guard rejects a JSON-LD value, it ` +
+      `correctly skips assigning it — but the function's regex fallback (meant only for pages with no JSON-LD at ` +
+      `all) doesn't know a value was deliberately rejected vs. never found, and re-scans the ENTIRE raw page text ` +
+      `for any "Metascore: NN" match — finding the identical fabricated number rendered as plain text elsewhere on ` +
+      `the same page, completely bypassing every content guard. Fixed with a <code>rejected</code> flag: any guard ` +
+      `that discards a value now sets it, and the regex fallback is skipped entirely when set. ` +
+      `<strong>Verified against a real production re-scrape — this time it worked</strong>: all 4 previously-wrong ` +
+      `titles (Elway, Ambitions, Thieves' Highway, Kyle XY) correctly returned <code>null</code>; a full rescan of ` +
+      `all 500 cached titles found the same 14 legitimate high scores as before (The Sopranos, The Wire, Fleabag, ` +
+      `etc.) and zero fabricated ones.`,
     plain: `The app looks up Rotten Tomatoes/Metacritic pages by guessing a web address from the title. Two attempts ` +
       `at fixing "the right page but no real score yet" problem both looked correct in testing but demonstrably ` +
       `failed when actually re-run for real — twice. The real cause, found by reading the code's own logic rather ` +
       `than guessing at another pattern: the fix correctly said "don't trust this number," but a separate, older ` +
       `piece of code (a backup plan for when the main check finds nothing at all) didn't know the difference ` +
       `between "found nothing" and "found something and said no" — so it went looking on its own and found the ` +
-      `same wrong number sitting in plain text elsewhere on the page. Now fixed so a deliberate "no" actually means no.`,
-    impact: `Real, hard-won progress: the wrong-page-collision problem is genuinely confirmed fixed (7 of 9, verified ` +
-      `via real re-scrapes). The wrong-score-on-the-right-page problem needed two failed attempts and a real ` +
-      `architectural bug hunt before the actual cause was found — each failure was surfaced honestly and re-scraped ` +
-      `for real rather than assumed fixed, the same discipline that caught the failures in the first place.`,
+      `same wrong number sitting in plain text elsewhere on the page. Fixed, and this time actually confirmed ` +
+      `working by running the real scraper again and checking the real result, not just trusting the code looked right.`,
+    impact: `Genuinely resolved — took 5 real rounds and 2 confirmed production failures to get here, each one ` +
+      `caught by insisting on a real re-scrape rather than trusting a fix that merely looked correct. The final ` +
+      `state is now verified, not just claimed.`,
   });
 
   // 5. build_trakt_library.js's titleKey() USED TO fall back to a
