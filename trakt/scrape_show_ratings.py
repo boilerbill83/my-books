@@ -537,6 +537,14 @@ def extract_metascore(html, title, year, imdb_id=None):
     if user_score is None:
         user_score = nd_user_score
 
+    # Round 4b (same reasoning as extract_rt_scores()'s equivalent
+    # check): does the word "user score" appear ANYWHERE in the real
+    # page HTML at all, regardless of shape — a purely observational
+    # check, not another extraction guess.
+    usr_word_matches = re.findall(r'.{0,25}user\s*score.{0,40}', html, re.I)
+    nd_debug['userScoreWordContext'] = usr_word_matches[:5] if usr_word_matches else \
+        'DOES NOT APPEAR ANYWHERE ON THE PAGE'
+
     # Confirm the page we actually landed on is the title we meant to
     # look up before trusting anything scraped from it. Try the hard
     # signal first (an exact IMDb id match, per page_imdb_matches()'s
@@ -837,6 +845,23 @@ def extract_rt_scores(html, title, year, imdb_id=None):
     text_matches = re.findall(r'.{0,20}[Tt]omatometer.{0,40}', html)
     if text_matches:
         debug.append({'tomatometer_text_context': text_matches[:3]})
+
+    # Round 4b: does the word "audience"/"popcornmeter" appear ANYWHERE
+    # in the real, full-size page HTML at all — not gated to a specific
+    # regex shape like the extraction attempt below? A real production
+    # run confirmed the page itself loads completely and correctly
+    # (status 200, correct <title>, no bot-challenge markers, 380-450KB
+    # of real content, critic score extracts fine) yet still never
+    # surfaces a <score-board> tag or a JSON-LD audience block — so this
+    # checks a strictly weaker, purely observational question: is the
+    # *word* even present anywhere, in any form, before concluding the
+    # widget is absent from this response entirely rather than just
+    # shaped differently than every extraction attempt so far assumed.
+    aud_word_matches = re.findall(r'.{0,25}(?:audience|popcornmeter).{0,40}', html, re.I)
+    if aud_word_matches:
+        debug.append({'audience_word_context': aud_word_matches[:5]})
+    else:
+        debug.append({'audience_word_context': 'NEITHER "audience" NOR "popcornmeter" APPEARS ANYWHERE ON THE PAGE'})
 
     if critic is None:
         cm = re.search(r'tomatometer["\s:]+(\d{1,3})\s*%', html, re.I)

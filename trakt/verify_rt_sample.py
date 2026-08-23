@@ -99,6 +99,25 @@ confirm it; a normal-looking 200/title with no challenge marker
 wouldn't rule it out (a silent content-stripping response is possible
 too) but would at least eliminate the most obvious form of it.
 
+REAL RESULT (run 4, this file's own 12-title batch): bot detection
+ruled out cleanly. Every single one of 24 page fetches (12 RT + 12 MC)
+came back status 200 with the correct, real page title (e.g.
+"WandaVision | Rotten Tomatoes", "WandaVision Reviews - Metacritic") and
+zero bot-challenge markers. HTML sizes were substantial and real
+(380-450KB on RT, ~1.05-1.12MB on Metacritic) — not the tiny stub a
+challenge/block page would produce. Combined with the critic score
+extracting correctly from that same content on every title, this is
+strong evidence the pages ARE loading completely and correctly; they
+just never contain the specific markup (a <score-board> tag, a
+__NEXT_DATA__ script) rounds 2-3 looked for. The most likely remaining
+explanation is that those two specific structural guesses about RT/MC's
+markup are simply wrong, not blocked or slow — round 4b (same file,
+next commit) checks one purely observational step before concluding
+that: does the word "audience"/"Popcornmeter"/"user score" appear
+ANYWHERE in the real page text at all, in any form, which would tell us
+whether the feature is present-but-differently-shaped versus genuinely
+absent from what this scraper receives.
+
 SAMPLE: the same 12 titles Round 1 verified (already-known imdb ids),
 now also checked against real RT Popcornmeter / Metacritic user score
 ground truth gathered via WebSearch just before this version was
