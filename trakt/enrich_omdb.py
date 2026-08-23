@@ -70,9 +70,56 @@ def omdb_lookup(imdb_id):
 # nominations total" or "Won 16 Primetime Emmys. 165 wins & 258
 # nominations total" or "N/A". Extracts only what's literally present —
 # never infers a count that isn't in the text.
+#
+# The per-award Oscar/Emmy counts (AWARD_WIN_RE/AWARD_NOM_RE) and the
+# aggregate win/nomination totals (parse_totals(), below) are independent
+# and can both be nonzero for the same text (e.g. "Won 1 Primetime Emmy.
+# 1 win total" — 1 Emmy win specifically, 1 win overall).
+#
+# A real parsing gap was found and fixed here: the original single
+# TOTAL_RE only matched the combined "N wins & M nominations total"
+# shape, silently reading every other real OMDb format as zero
+# recognition — confirmed against the live cache (149 of 433
+# zero-recognition records had real, non-"N/A" award text that should
+# have parsed to a nonzero total). Real formats this now also covers:
+# "N win(s) total" alone, "N nomination(s) total" alone, "N wins & M
+# nominations" with no trailing "total", and bare "N nomination(s)"/"N
+# win(s)" with nothing else in the field. Also tolerates a real OMDb text
+# quirk with a missing space/word before the trailing count (e.g.
+# "Nominated for 1 BAFTA Award4 nominations total") since the digit-
+# adjacent "nominations total"/"wins total" suffix is searched anywhere
+# in the text, not anchored to a word boundary.
 AWARD_WIN_RE = re.compile(r'Won (\d+) ([A-Za-z][\w .&-]*?)s?(?:\.|,| \()', re.IGNORECASE)
 AWARD_NOM_RE = re.compile(r'Nominated for (\d+) ([A-Za-z][\w .&-]*?)s?(?:\.|,| \()', re.IGNORECASE)
-TOTAL_RE = re.compile(r'(\d+) wins? & (\d+) nominations? total', re.IGNORECASE)
+BOTH_TOTAL_RE = re.compile(r'(\d+) wins?\s*&\s*(\d+) nominations?(?:\s*total)?', re.IGNORECASE)
+WIN_TOTAL_RE = re.compile(r'(\d+) wins?\s*total', re.IGNORECASE)
+NOM_TOTAL_RE = re.compile(r'(\d+) nominations?\s*total', re.IGNORECASE)
+BARE_WIN_RE = re.compile(r'^(\d+) wins?\.?$', re.IGNORECASE)
+BARE_NOM_RE = re.compile(r'^(\d+) nominations?\.?$', re.IGNORECASE)
+
+
+def parse_totals(text):
+    """Returns (totalWins, totalNominations) — see the module comment
+    above for the real-world text shapes this covers."""
+    both = BOTH_TOTAL_RE.search(text)
+    if both:
+        return int(both.group(1)), int(both.group(2))
+    wins, noms = 0, 0
+    w = WIN_TOTAL_RE.search(text)
+    if w:
+        wins = int(w.group(1))
+    else:
+        bw = BARE_WIN_RE.match(text.strip())
+        if bw:
+            wins = int(bw.group(1))
+    nom_m = NOM_TOTAL_RE.search(text)
+    if nom_m:
+        noms = int(nom_m.group(1))
+    else:
+        bn = BARE_NOM_RE.match(text.strip())
+        if bn:
+            noms = int(bn.group(1))
+    return wins, noms
 
 
 def parse_awards(text):
@@ -93,10 +140,7 @@ def parse_awards(text):
             result['oscarNominations'] += int(count)
         elif 'emmy' in n:
             result['emmyNominations'] += int(count)
-    m = TOTAL_RE.search(text)
-    if m:
-        result['totalWins'] = int(m.group(1))
-        result['totalNominations'] = int(m.group(2))
+    result['totalWins'], result['totalNominations'] = parse_totals(text)
     return result
 
 

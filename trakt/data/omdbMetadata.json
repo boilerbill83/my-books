@@ -167,7 +167,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win total"
   },
@@ -248,7 +248,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 7.9,
@@ -312,7 +312,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.3,
@@ -328,7 +328,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 7.6,
@@ -408,7 +408,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 6.3,
@@ -488,7 +488,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 7.0,
@@ -504,7 +504,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 7,
    "raw": "7 nominations total"
   },
   "imdbRating": 5.0,
@@ -616,7 +616,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.5,
@@ -855,7 +855,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win total"
   },
@@ -936,7 +936,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 7.4,
@@ -1048,7 +1048,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 7.6,
@@ -1112,7 +1112,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.9,
@@ -1144,7 +1144,7 @@
    "emmyWins": 0,
    "emmyNominations": 2,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 6,
    "raw": "Nominated for 2 Primetime Emmys. 6 nominations total"
   },
   "imdbRating": 8.0,
@@ -1384,7 +1384,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 7.3,
@@ -1480,7 +1480,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations"
   },
   "imdbRating": 7.1,
@@ -1496,7 +1496,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 5.9,
@@ -1880,7 +1880,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 8.0,
@@ -2328,7 +2328,7 @@
    "emmyWins": 0,
    "emmyNominations": 1,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 5,
    "raw": "Nominated for 1 Primetime Emmy. 5 nominations total"
   },
   "imdbRating": 7.6,
@@ -2440,7 +2440,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 7.0,
@@ -2472,7 +2472,7 @@
    "emmyWins": 0,
    "emmyNominations": 4,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 14,
    "raw": "Nominated for 4 Primetime Emmys. 14 nominations total"
   },
   "imdbRating": 7.6,
@@ -2504,7 +2504,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 6,
    "raw": "6 nominations total"
   },
   "imdbRating": 8.0,
@@ -2535,8 +2535,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 6,
    "raw": "1 win & 6 nominations"
   },
   "imdbRating": 7.3,
@@ -2600,7 +2600,7 @@
    "emmyWins": 0,
    "emmyNominations": 1,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 8,
    "raw": "Nominated for 1 Primetime Emmy. 8 nominations total"
   },
   "imdbRating": 7.0,
@@ -2871,8 +2871,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 3,
+   "totalNominations": 7,
    "raw": "3 wins & 7 nominations"
   },
   "imdbRating": 6.4,
@@ -3000,7 +3000,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 24,
    "raw": "24 nominations total"
   },
   "imdbRating": 5.4,
@@ -3096,7 +3096,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 6.3,
@@ -3368,7 +3368,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 7.1,
@@ -3480,7 +3480,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 5,
    "raw": "5 nominations total"
   },
   "imdbRating": 8.0,
@@ -3527,8 +3527,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 5,
    "raw": "2 wins & 5 nominations"
   },
   "imdbRating": 7.7,
@@ -3544,7 +3544,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "4 nominations total"
   },
   "imdbRating": 7.5,
@@ -3735,8 +3735,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 17,
    "raw": "1 win & 17 nominations"
   },
   "imdbRating": 7.1,
@@ -3784,7 +3784,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 7.0,
@@ -3800,7 +3800,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 7,
    "raw": "7 nominations total"
   },
   "imdbRating": 4.5,
@@ -3992,7 +3992,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 7.3,
@@ -4280,7 +4280,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 5,
    "raw": "5 nominations total"
   },
   "imdbRating": 6.8,
@@ -4504,7 +4504,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "4 nominations total"
   },
   "imdbRating": 7.2,
@@ -4648,7 +4648,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "4 nominations total"
   },
   "imdbRating": 8.2,
@@ -4728,7 +4728,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 7,
    "raw": "7 nominations total"
   },
   "imdbRating": 8.3,
@@ -5064,7 +5064,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 5,
    "raw": "5 nominations total"
   },
   "imdbRating": 7.0,
@@ -5400,7 +5400,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "4 nominations total"
   },
   "imdbRating": 7.2,
@@ -5464,7 +5464,7 @@
    "emmyWins": 0,
    "emmyNominations": 4,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 21,
    "raw": "Nominated for 4 Primetime Emmys. 21 nominations total"
   },
   "imdbRating": 7.7,
@@ -5512,7 +5512,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 7.4,
@@ -5576,7 +5576,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 7.8,
@@ -5911,8 +5911,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 3,
+   "totalNominations": 23,
    "raw": "3 wins & 23 nominations"
   },
   "imdbRating": 7.9,
@@ -6072,7 +6072,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 6.0,
@@ -6375,7 +6375,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 2,
    "totalNominations": 0,
    "raw": "2 wins total"
   },
@@ -6440,7 +6440,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 7.4,
@@ -6504,7 +6504,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 17,
    "raw": "17 nominations total"
   },
   "imdbRating": 7.4,
@@ -6696,7 +6696,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 7.7,
@@ -6728,7 +6728,7 @@
    "emmyWins": 0,
    "emmyNominations": 1,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 24,
    "raw": "Nominated for 1 Primetime Emmy. 24 nominations total"
   },
   "imdbRating": 8.1,
@@ -6919,7 +6919,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win total"
   },
@@ -7000,7 +7000,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "Nominated for 1 BAFTA Award4 nominations total"
   },
   "imdbRating": 7.4,
@@ -7672,7 +7672,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 10,
    "raw": "10 nominations total"
   },
   "imdbRating": 7.0,
@@ -7752,7 +7752,7 @@
    "emmyWins": 0,
    "emmyNominations": 1,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 7,
    "raw": "Nominated for 1 Primetime Emmy. 7 nominations total"
   },
   "imdbRating": 6.0,
@@ -7944,7 +7944,7 @@
    "emmyWins": 0,
    "emmyNominations": 2,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 24,
    "raw": "Nominated for 2 Primetime Emmys. 24 nominations total"
   },
   "imdbRating": 7.1,
@@ -8008,7 +8008,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 7.9,
@@ -8024,7 +8024,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 7.6,
@@ -8055,8 +8055,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 7,
    "raw": "2 wins & 7 nominations"
   },
   "imdbRating": 6.4,
@@ -8216,7 +8216,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 8,
    "raw": "8 nominations total"
   },
   "imdbRating": 5.7,
@@ -8296,7 +8296,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 8.1,
@@ -8392,7 +8392,7 @@
    "emmyWins": 0,
    "emmyNominations": 2,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 8,
    "raw": "Nominated for 2 Primetime Emmys. 8 nominations total"
   },
   "imdbRating": 7.9,
@@ -8408,7 +8408,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 37,
    "raw": "37 nominations total"
   },
   "imdbRating": 6.5,
@@ -8488,7 +8488,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 6.7,
@@ -8536,7 +8536,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.7,
@@ -8568,7 +8568,7 @@
    "emmyWins": 0,
    "emmyNominations": 3,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 5,
    "raw": "Nominated for 3 Primetime Emmys. 5 nominations total"
   },
   "imdbRating": 7.8,
@@ -8616,7 +8616,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 7.1,
@@ -8664,7 +8664,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 9,
    "raw": "9 nominations"
   },
   "imdbRating": 7.3,
@@ -8824,7 +8824,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 18,
    "raw": "18 nominations total"
   },
   "imdbRating": 6.8,
@@ -8840,7 +8840,7 @@
    "emmyWins": 0,
    "emmyNominations": 1,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 15,
    "raw": "Nominated for 1 Primetime Emmy. 15 nominations total"
   },
   "imdbRating": 8.2,
@@ -9032,7 +9032,7 @@
    "emmyWins": 0,
    "emmyNominations": 3,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 6,
    "raw": "Nominated for 3 Primetime Emmys. 6 nominations total"
   },
   "imdbRating": 7.0,
@@ -9096,7 +9096,7 @@
    "emmyWins": 0,
    "emmyNominations": 1,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "Nominated for 1 Primetime Emmy. 1 nomination total"
   },
   "imdbRating": 6.3,
@@ -9223,8 +9223,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 3,
    "raw": "2 wins & 3 nominations"
   },
   "imdbRating": 7.5,
@@ -9255,7 +9255,7 @@
    "oscarNominations": 0,
    "emmyWins": 1,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "Won 1 Primetime Emmy. 1 win total"
   },
@@ -9352,7 +9352,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 10,
    "raw": "10 nominations total"
   },
   "imdbRating": 6.6,
@@ -9608,7 +9608,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "Nominated for 3 BAFTA 3 nominations total"
   },
   "imdbRating": 8.4,
@@ -9687,7 +9687,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win total"
   },
@@ -9704,7 +9704,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination"
   },
   "imdbRating": 7.2,
@@ -9735,8 +9735,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 3,
+   "totalNominations": 2,
    "raw": "3 wins & 2 nominations"
   },
   "imdbRating": 7.3,
@@ -9752,7 +9752,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination"
   },
   "imdbRating": 8.1,
@@ -9768,7 +9768,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination"
   },
   "imdbRating": 6.0,
@@ -9832,7 +9832,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 10,
    "raw": "10 nominations total"
   },
   "imdbRating": 6.8,
@@ -9927,8 +9927,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 23,
+   "totalNominations": 28,
    "raw": "23 wins & 28 nominations"
   },
   "imdbRating": 7.1,
@@ -9960,7 +9960,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations"
   },
   "imdbRating": 6.6,
@@ -9992,7 +9992,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "Nominated for 2 BAFTA 2 nominations total"
   },
   "imdbRating": 7.3,
@@ -10007,7 +10007,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 2,
    "totalNominations": 0,
    "raw": "2 wins"
   },
@@ -10024,7 +10024,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "Nominated for 1 BAFTA Award1 nomination total"
   },
   "imdbRating": 8.2,
@@ -10120,7 +10120,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 6.3,
@@ -10248,7 +10248,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 8,
    "raw": "8 nominations"
   },
   "imdbRating": 8.2,
@@ -10280,7 +10280,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 7.3,
@@ -10296,7 +10296,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 12,
    "raw": "12 nominations total"
   },
   "imdbRating": 7.2,
@@ -10344,7 +10344,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 7.3,
@@ -10520,7 +10520,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination."
   },
   "imdbRating": null,
@@ -10648,7 +10648,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 7.2,
@@ -10664,7 +10664,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.6,
@@ -10680,7 +10680,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 8.0,
@@ -10696,7 +10696,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 6,
    "raw": "6 nominations total"
   },
   "imdbRating": 7.4,
@@ -10712,7 +10712,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "4 nominations total"
   },
   "imdbRating": 8.4,
@@ -10808,7 +10808,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 7.0,
@@ -10935,7 +10935,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win total"
   },
@@ -10952,7 +10952,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination"
   },
   "imdbRating": 6.8,
@@ -11000,7 +11000,7 @@
    "emmyWins": 0,
    "emmyNominations": 1,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "Nominated for 1 Primetime Emmy. 4 nominations total"
   },
   "imdbRating": 7.1,
@@ -11031,8 +11031,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 4,
    "raw": "2 wins & 4 nominations"
   },
   "imdbRating": 7.9,
@@ -11048,7 +11048,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 7.9,
@@ -11063,8 +11063,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 4,
    "raw": "2 wins & 4 nominations"
   },
   "imdbRating": 6.3,
@@ -11079,7 +11079,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win"
   },
@@ -11127,8 +11127,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 17,
    "raw": "2 wins & 17 nominations"
   },
   "imdbRating": 7.7,
@@ -11239,7 +11239,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win total"
   },
@@ -11336,7 +11336,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 8.2,
@@ -11383,8 +11383,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 5,
+   "totalNominations": 6,
    "raw": "5 wins & 6 nominations"
   },
   "imdbRating": 7.4,
@@ -11400,7 +11400,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": null,
@@ -11448,7 +11448,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 11,
    "raw": "11 nominations total"
   },
   "imdbRating": 7.3,
@@ -11464,7 +11464,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 6.7,
@@ -11528,7 +11528,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 7.1,
@@ -11672,7 +11672,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.5,
@@ -11896,7 +11896,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 5,
    "raw": "Nominated for 1 Oscar. 5 nominations total"
   },
   "imdbRating": 7.3,
@@ -11960,7 +11960,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 6.6,
@@ -11976,7 +11976,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 7.6,
@@ -12103,8 +12103,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 7,
+   "totalNominations": 10,
    "raw": "7 wins & 10 nominations"
   },
   "imdbRating": 7.1,
@@ -12232,7 +12232,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 6.7,
@@ -12392,7 +12392,7 @@
    "emmyWins": 0,
    "emmyNominations": 2,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 8,
    "raw": "Nominated for 2 Primetime Emmys. 8 nominations total"
   },
   "imdbRating": 6.9,
@@ -12472,7 +12472,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 7.3,
@@ -12712,7 +12712,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 5,
    "raw": "5 nominations total"
   },
   "imdbRating": 7.1,
@@ -12808,7 +12808,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 5,
    "raw": "5 nominations total"
   },
   "imdbRating": 7.5,
@@ -13128,7 +13128,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 8.0,
@@ -13160,7 +13160,7 @@
    "emmyWins": 0,
    "emmyNominations": 4,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 7,
    "raw": "Nominated for 4 Primetime Emmys. 7 nominations total"
   },
   "imdbRating": 6.7,
@@ -13191,8 +13191,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 10,
+   "totalNominations": 9,
    "raw": "10 wins & 9 nominations"
   },
   "imdbRating": 8.4,
@@ -13479,8 +13479,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 1,
    "raw": "1 win & 1 nomination"
   },
   "imdbRating": 3.4,
@@ -13592,7 +13592,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 6.8,
@@ -13656,7 +13656,7 @@
    "emmyWins": 0,
    "emmyNominations": 1,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 5,
    "raw": "Nominated for 1 Primetime Emmy. 5 nominations total"
   },
   "imdbRating": 8.5,
@@ -13720,7 +13720,7 @@
    "emmyWins": 0,
    "emmyNominations": 4,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 15,
    "raw": "Nominated for 4 Primetime Emmys. 15 nominations total"
   },
   "imdbRating": 8.0,
@@ -13768,7 +13768,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 7.5,
@@ -13944,7 +13944,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 8.1,
@@ -13960,7 +13960,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 7.8,
@@ -13976,7 +13976,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 13,
    "raw": "Nominated for 2 BAFTA 13 nominations total"
   },
   "imdbRating": 7.6,
@@ -14120,7 +14120,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 14,
    "raw": "14 nominations total"
   },
   "imdbRating": 7.8,
@@ -14168,7 +14168,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "4 nominations total"
   },
   "imdbRating": 7.9,
@@ -14247,7 +14247,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win total"
   },
@@ -14424,7 +14424,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 8,
    "raw": "Nominated for 1 BAFTA Award8 nominations total"
   },
   "imdbRating": 8.0,
@@ -14551,8 +14551,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 8,
    "raw": "2 wins & 8 nominations"
   },
   "imdbRating": 8.2,
@@ -14824,7 +14824,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 5,
    "raw": "5 nominations total"
   },
   "imdbRating": 6.1,
@@ -14920,7 +14920,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.2,
@@ -14936,7 +14936,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 6.7,
@@ -15064,7 +15064,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 4.7,
@@ -15192,7 +15192,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 6.2,
@@ -15256,7 +15256,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 5.5,
@@ -15288,7 +15288,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.5,
@@ -15304,7 +15304,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.6,
@@ -15336,7 +15336,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 5.8,
@@ -15399,8 +15399,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 2,
    "raw": "1 win & 2 nominations"
   },
   "imdbRating": 5.8,
@@ -15432,7 +15432,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "Nominated for 1 Oscar. 2 nominations total"
   },
   "imdbRating": 7.5,
@@ -15544,7 +15544,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "4 nominations total"
   },
   "imdbRating": 7.4,
@@ -15559,7 +15559,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win total"
   },
@@ -15688,7 +15688,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "Nominated for 1 Oscar. 4 nominations total"
   },
   "imdbRating": 6.4,
@@ -15704,7 +15704,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 5.3,
@@ -15912,7 +15912,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 5,
    "raw": "5 nominations total"
   },
   "imdbRating": 6.1,
@@ -15928,7 +15928,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.2,
@@ -15976,7 +15976,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 6.6,
@@ -16135,7 +16135,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win total"
   },
@@ -16200,7 +16200,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.9,
@@ -16264,7 +16264,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "4 nominations total"
   },
   "imdbRating": 8.2,
@@ -16280,7 +16280,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 7.8,
@@ -16296,7 +16296,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 7.1,
@@ -16488,7 +16488,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 5.8,
@@ -16519,8 +16519,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 15,
+   "totalNominations": 13,
    "raw": "15 wins & 13 nominations"
   },
   "imdbRating": 6.9,
@@ -16536,7 +16536,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 6.8,
@@ -16568,7 +16568,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "4 nominations total"
   },
   "imdbRating": 6.6,
@@ -16599,8 +16599,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 2,
    "raw": "1 win & 2 nominations"
   },
   "imdbRating": 5.2,
@@ -16664,7 +16664,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 5.4,
@@ -16759,7 +16759,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win total"
   },
@@ -16871,8 +16871,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 1,
    "raw": "1 win & 1 nomination"
   },
   "imdbRating": 8.4,
@@ -16904,7 +16904,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 4.9,
@@ -16951,7 +16951,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "Won 1 BAFTA Award1 win total"
   },
@@ -16983,8 +16983,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 4,
+   "totalNominations": 1,
    "raw": "4 wins & 1 nomination"
   },
   "imdbRating": 6.5,
@@ -17064,7 +17064,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 7.5,
@@ -17192,7 +17192,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 8,
    "raw": "8 nominations"
   },
   "imdbRating": 7.4,
@@ -17223,8 +17223,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 11,
    "raw": "2 wins & 11 nominations"
   },
   "imdbRating": 7.4,
@@ -17256,7 +17256,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.5,
@@ -17352,7 +17352,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 7.6,
@@ -17367,8 +17367,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 6,
+   "totalNominations": 7,
    "raw": "6 wins & 7 nominations"
   },
   "imdbRating": 6.6,
@@ -17432,7 +17432,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 7,
    "raw": "7 nominations"
   },
   "imdbRating": 7.4,
@@ -17464,7 +17464,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.8,
@@ -17592,7 +17592,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations"
   },
   "imdbRating": 7.7,
@@ -17735,7 +17735,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 5,
    "totalNominations": 0,
    "raw": "5 wins"
   },
@@ -17752,7 +17752,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 7,
    "raw": "7 nominations total"
   },
   "imdbRating": 7.0,
@@ -17816,7 +17816,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 5,
    "raw": "5 nominations total"
   },
   "imdbRating": 7.3,
@@ -17832,7 +17832,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 6.8,
@@ -17912,7 +17912,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 7,
    "raw": "7 nominations total"
   },
   "imdbRating": 6.8,
@@ -17975,8 +17975,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 13,
+   "totalNominations": 10,
    "raw": "13 wins & 10 nominations"
   },
   "imdbRating": null,
@@ -18008,7 +18008,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations"
   },
   "imdbRating": 7.1,
@@ -18119,7 +18119,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win total"
   },
@@ -18136,7 +18136,7 @@
    "emmyWins": 0,
    "emmyNominations": 8,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 11,
    "raw": "Nominated for 8 Primetime Emmys. 11 nominations total"
   },
   "imdbRating": 8.0,
@@ -18152,7 +18152,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 7,
    "raw": "Nominated for 1 BAFTA Award7 nominations total"
   },
   "imdbRating": 7.5,
@@ -18167,8 +18167,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 3,
+   "totalNominations": 1,
    "raw": "3 wins & 1 nomination"
   },
   "imdbRating": 6.4,
@@ -18360,7 +18360,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination"
   },
   "imdbRating": 7.0,
@@ -18376,7 +18376,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination"
   },
   "imdbRating": 6.4,
@@ -18391,7 +18391,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win"
   },
@@ -18632,7 +18632,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 7.2,
@@ -18648,7 +18648,7 @@
    "emmyWins": 0,
    "emmyNominations": 1,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 9,
    "raw": "Nominated for 1 Primetime Emmy. 9 nominations total"
   },
   "imdbRating": 7.2,
@@ -18664,7 +18664,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 7.2,
@@ -18696,7 +18696,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.2,
@@ -18744,7 +18744,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "4 nominations total"
   },
   "imdbRating": 6.7,
@@ -18984,7 +18984,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 6.0,
@@ -19047,7 +19047,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 3,
    "totalNominations": 0,
    "raw": "3 wins"
   },
@@ -19080,7 +19080,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 8.0,
@@ -19112,7 +19112,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 5.7,
@@ -19143,7 +19143,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 2,
    "totalNominations": 0,
    "raw": "2 wins total"
   },
@@ -19240,7 +19240,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 5,
    "raw": "5 nominations total"
   },
   "imdbRating": 5.8,
@@ -19303,8 +19303,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 1,
    "raw": "1 win & 1 nomination"
   },
   "imdbRating": null,
@@ -19400,7 +19400,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination"
   },
   "imdbRating": 5.3,
@@ -19431,7 +19431,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win total"
   },
@@ -19448,7 +19448,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "4 nominations total"
   },
   "imdbRating": 5.2,
@@ -19512,7 +19512,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations"
   },
   "imdbRating": 5.9,
@@ -19608,7 +19608,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations"
   },
   "imdbRating": 5.9,
@@ -19640,7 +19640,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 7.0,
@@ -19704,7 +19704,7 @@
    "emmyWins": 0,
    "emmyNominations": 1,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "Nominated for 1 Primetime Emmy. 2 nominations total"
   },
   "imdbRating": 7.3,
@@ -19720,7 +19720,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 7.4,
@@ -19815,7 +19815,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 5,
    "totalNominations": 0,
    "raw": "5 wins"
   },
@@ -19880,7 +19880,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "Nominated for 1 Oscar. 4 nominations total"
   },
   "imdbRating": 7.4,
@@ -19912,7 +19912,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 5.7,
@@ -19928,7 +19928,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.6,
@@ -20024,7 +20024,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 3,
    "raw": "3 nominations total"
   },
   "imdbRating": 6.5,
@@ -20040,7 +20040,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 5.3,
@@ -20055,8 +20055,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 6,
+   "totalNominations": 3,
    "raw": "6 wins & 3 nominations"
   },
   "imdbRating": 6.5,
@@ -20072,7 +20072,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination"
   },
   "imdbRating": 5.8,
@@ -20087,8 +20087,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 5,
    "raw": "2 wins & 5 nominations"
   },
   "imdbRating": 6.9,
@@ -20120,7 +20120,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.6,
@@ -20135,7 +20135,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win"
   },
@@ -20152,7 +20152,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination"
   },
   "imdbRating": 4.9,
@@ -20167,8 +20167,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 2,
    "raw": "1 win & 2 nominations"
   },
   "imdbRating": 7.2,
@@ -20200,7 +20200,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations"
   },
   "imdbRating": 7.2,
@@ -20247,7 +20247,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win"
   },
@@ -20328,7 +20328,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.8,
@@ -20360,7 +20360,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination"
   },
   "imdbRating": 6.4,
@@ -20424,7 +20424,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 6.2,
@@ -20440,7 +20440,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination"
   },
   "imdbRating": 5.8,
@@ -20504,7 +20504,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 7,
    "raw": "7 nominations total"
   },
   "imdbRating": 6.2,
@@ -20631,8 +20631,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 5,
    "raw": "2 wins & 5 nominations"
   },
   "imdbRating": null,
@@ -20679,8 +20679,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 4,
+   "totalNominations": 1,
    "raw": "4 wins & 1 nomination"
   },
   "imdbRating": 4.4,
@@ -20759,7 +20759,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 2,
    "totalNominations": 0,
    "raw": "2 wins"
   },
@@ -20807,7 +20807,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win total"
   },
@@ -20888,7 +20888,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination"
   },
   "imdbRating": 6.2,
@@ -20935,7 +20935,7 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
+   "totalWins": 1,
    "totalNominations": 0,
    "raw": "1 win"
   },
@@ -20952,7 +20952,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "4 nominations"
   },
   "imdbRating": 6.7,
@@ -20984,7 +20984,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 6,
    "raw": "6 nominations total"
   },
   "imdbRating": null,
@@ -21031,8 +21031,8 @@
    "oscarNominations": 0,
    "emmyWins": 0,
    "emmyNominations": 0,
-   "totalWins": 0,
-   "totalNominations": 0,
+   "totalWins": 3,
+   "totalNominations": 5,
    "raw": "3 wins & 5 nominations"
   },
   "imdbRating": 6.3,
@@ -21080,7 +21080,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 6.7,
@@ -21144,7 +21144,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 4,
    "raw": "4 nominations total"
   },
   "imdbRating": 7.1,
@@ -21176,7 +21176,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 5,
    "raw": "5 nominations total"
   },
   "imdbRating": 5.8,
@@ -21288,7 +21288,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination"
   },
   "imdbRating": 5.6,
@@ -21336,7 +21336,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 5.1,
@@ -21400,7 +21400,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 1,
    "raw": "1 nomination total"
   },
   "imdbRating": 6.1,
@@ -21416,7 +21416,7 @@
    "emmyWins": 0,
    "emmyNominations": 0,
    "totalWins": 0,
-   "totalNominations": 0,
+   "totalNominations": 2,
    "raw": "2 nominations total"
   },
   "imdbRating": 5.0,
