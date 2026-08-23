@@ -475,7 +475,7 @@ const FIELD_REGISTRY = [
     populated: (t, meta, omdb) => !!omdb,
     quality: (t, meta, omdb) => !!omdb,
     note: 'Eligible = titles with a known IMDb id. Needs OMDB_API_KEY to run.' },
-  { key: 'audienceScore', label: 'Audience Score (RT/Metacritic)', source: 'OMDb', critical: false,
+  { key: 'audienceScore', label: 'Audience Score', source: 'OMDb', critical: false,
     eligible: (t, meta, omdb) => !!omdb,
     populated: (t, meta, omdb) => omdb?.rottenTomatoes != null || omdb?.metacritic != null,
     quality: (t, meta, omdb) => omdb?.rottenTomatoes != null && omdb?.metacritic != null,
