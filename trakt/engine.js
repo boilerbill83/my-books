@@ -55,6 +55,30 @@ export function getCreator(type, meta) {
   return (meta.createdBy && meta.createdBy[0]) || null;
 }
 
+// Real normalized rewatch signal (dashboard plays-field-semantic-trap
+// finding). The naive version of this idea is a trap: Trakt's `plays`
+// field means something different per type — for a movie it's a genuine
+// repeat-view count, but for a show it's a cumulative episode-play count
+// (e.g. "watched 41 episodes total"), not "watched the whole series 41
+// times." Using raw `plays` directly would treat every long show anyone
+// finished once as their most-rewatched title ever.
+//
+// The real, normalized version: for a movie, plays IS the rewatch count.
+// For a show, plays/episodeCount approximates "how many times through" —
+// 1.0 means watched once, 2.0 means watched twice. Clamped to a floor of
+// 1 (never below) so a loved show Bill simply hasn't caught up on all
+// aired episodes yet (a real case: "Tires," 18 of 30 aired episodes,
+// rated 10/10) isn't penalized for incompleteness — this is a rewatch
+// *bonus* signal, not a completion-tracking one, so anything at or below
+// "watched once" reads as a neutral 1.0, never a negative multiplier.
+export function rewatchStrength(t, meta) {
+  if (!t || !(t.plays > 0)) return 1;
+  if (t.type === 'movie') return Math.max(1, t.plays);
+  const episodes = meta?.numberOfEpisodes || t.airedEpisodes;
+  if (!episodes) return 1;
+  return Math.max(1, t.plays / episodes);
+}
+
 // ── Indexes built from watched history + enriched metadata ─────────────
 
 // TMDB uses two different genre vocabularies — movies get "Action",
@@ -135,14 +159,25 @@ export function buildIndexes(library, enrichedMeta, feedback) {
     if (t.myRating >= LOVED_THRESHOLD) {
       lovedTitles.add(t.titleKey);
       lovedCountByType[t.type] = (lovedCountByType[t.type] || 0) + 1;
-      if (creator) lovedCreators.set(creator, (lovedCreators.get(creator) || 0) + 1);
+      // A loved title's contribution to every count below is weighted by
+      // how many times Bill has actually watched it, not a flat 1 — see
+      // rewatchStrength()'s own comment. This is a true no-op against
+      // today's real data (every real rewatchStrength value is exactly
+      // 1.0 right now — 0 of 168 movies have plays>1, and no show's
+      // plays/episodes ratio exceeds 1.0 either — verified via
+      // scripts/eval.js producing byte-identical output before/after),
+      // and starts contributing extra weight automatically the moment
+      // Bill genuinely rewatches something, with no future code change
+      // needed.
+      const rw = rewatchStrength(t, meta);
+      if (creator) lovedCreators.set(creator, (lovedCreators.get(creator) || 0) + rw);
       for (const g of (meta?.genres || [])) {
         const ng = normalizeGenre(g);
-        lovedGenres.set(ng, (lovedGenres.get(ng) || 0) + 1);
+        lovedGenres.set(ng, (lovedGenres.get(ng) || 0) + rw);
       }
       for (const id of [...(meta?.similarToIds || []), ...(meta?.recommendedIds || [])]) {
         const key = titleKey(t.type, id);
-        reverseSimilar.set(key, (reverseSimilar.get(key) || 0) + 1);
+        reverseSimilar.set(key, (reverseSimilar.get(key) || 0) + rw);
       }
       const collectionId = meta?.belongsToCollection?.id;
       if (collectionId != null) {
@@ -150,14 +185,14 @@ export function buildIndexes(library, enrichedMeta, feedback) {
         lovedCollections.get(collectionId).push(t.titleKey);
       }
       for (const actor of (meta?.topCast || [])) {
-        lovedActors.set(actor, (lovedActors.get(actor) || 0) + 1);
+        lovedActors.set(actor, (lovedActors.get(actor) || 0) + rw);
       }
       for (const kw of (meta?.keywords || [])) {
         if (KEYWORD_STOPLIST.has(kw)) continue;
-        lovedKeywords.set(kw, (lovedKeywords.get(kw) || 0) + 1);
+        lovedKeywords.set(kw, (lovedKeywords.get(kw) || 0) + rw);
       }
       for (const s of inferSubgenres(meta)) {
-        lovedSubgenres.set(s, (lovedSubgenres.get(s) || 0) + 1);
+        lovedSubgenres.set(s, (lovedSubgenres.get(s) || 0) + rw);
       }
     }
   }

@@ -1330,27 +1330,37 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   // real signal (0 of 50 loved movies have ever been rewatched).
   findings.push({
     id: 'plays-field-semantic-trap',
-    severity: 'serious',
+    severity: 'good',
     ratings: { ease: 8, dataQuality: 1, recEngine: 1, ui: 1 },
-    title: '`plays` means a different thing for movies vs. shows — a real trap for a future rewatch signal',
-    technical: `Checked before assuming a "rewatch strength" signal would be a good addition, and the naive version ` +
-      `of that idea doesn't hold up: for shows, <code>plays</code> is essentially identical to ` +
-      `<code>airedEpisodes</code> across the real dataset (e.g. Atlanta 41/41, Billions 84/84, Better Call Saul ` +
-      `63/63) — it's a cumulative episode-play count, not a whole-series rewatch count, so treating it as "watched ` +
-      `this 41 times" would be badly wrong. For movies, <code>plays</code> genuinely is a rewatch count with no ` +
-      `episode confound, but the real data shows 0 of 50 loved movies have ever been rewatched (100% at plays=1) — ` +
-      `so there's no real signal to mine there yet either, despite the field meaning the right thing.`,
+    title: '`plays` means a different thing for movies vs. shows — normalized and shipped this session',
+    technical: `FIXED: <code>rewatchStrength(t, meta)</code> in engine.js replaces the naive idea (using raw ` +
+      `<code>plays</code> directly, which for a show is a cumulative episode-play count — e.g. Atlanta 41/41, ` +
+      `Billions 84/84 — not a series-rewatch count) with a real normalized signal: movies use <code>plays</code> ` +
+      `directly (a genuine repeat-view count with no episode confound), shows use ` +
+      `<code>plays / numberOfEpisodes</code> (1.0 = watched once, 2.0 = watched twice), clamped to a floor of 1 so ` +
+      `a loved-but-not-yet-caught-up show (a real case: "Tires," 18 of 30 aired episodes, rated 10/10) isn't ` +
+      `penalized for incompleteness. Wired into <code>buildIndexes()</code> as a per-loved-title weight multiplier ` +
+      `on <code>lovedCreators</code>/<code>lovedGenres</code>/<code>reverseSimilar</code>/<code>lovedActors</code>/` +
+      `<code>lovedKeywords</code>/<code>lovedSubgenres</code> (previously each a flat +1 per loved title). Verified ` +
+      `this is a true no-op against today's real data before shipping, not just "shouldn't matter": 0 of 168 real ` +
+      `movies have <code>plays</code> &gt; 1 and no real show's ratio exceeds 1.0, so every real ` +
+      `<code>rewatchStrength()</code> value is exactly 1.0 right now — <code>scripts/eval.js</code> produces ` +
+      `byte-identical output before and after (precision@10/25/50/100 100/92/94/87, MAE 19.89). Starts contributing ` +
+      `real extra weight automatically the first time Bill genuinely rewatches something, with no future code ` +
+      `change needed — the exact "ready to use, not yet observable" shape recency-curve-not-split-by-type's ` +
+      `<code>showAiringBonus()</code> also shipped this session, except this one is verified as a true identity ` +
+      `transform rather than a deliberately-zeroed scale, since there was no nonzero real case to even sweep-test ` +
+      `against.`,
     plain: `There's a field that records how many times you've watched something, and it looked at first like a ` +
-      `great source of "how much do you REALLY love this" signal beyond just the star rating. But checking the real ` +
-      `data before building anything found two problems: for TV shows, that number is actually just "how many ` +
-      `episodes you've watched," not "how many times through the whole series" — using it directly would think ` +
-      `every 40-episode show you finished once was your most-rewatched thing ever. And for movies, where the number ` +
-      `would mean the right thing, it turns out you've genuinely never rewatched any of your favorite movies yet, ` +
-      `so there's nothing there to use right now either.`,
-    impact: `Documented here specifically so a future session doesn't build this signal the naive (wrong) way — the ` +
-      `show-side field needs to be normalized by <code>plays / airedEpisodes</code> before it means anything, and ` +
-      `the movie side needs more real rewatch data to accumulate before it's worth scoring at all. Catching this ` +
-      `before it was built is the actual value here, not a missed opportunity.`,
+      `great source of "how much do you REALLY love this" signal beyond just the star rating — but the raw number ` +
+      `meant the wrong thing for TV shows (episode count, not rewatch count). Fixed the math so it means the right ` +
+      `thing for both movies and shows, and wired it in so a loved, heavily-rewatched title will automatically ` +
+      `count extra toward "what genres/actors/directors does Bill love" starting the moment it actually happens — ` +
+      `checked carefully first that this doesn't change anything today (you haven't rewatched anything yet, so the ` +
+      `math currently multiplies everything by exactly 1, i.e. does nothing) before turning it on.`,
+    impact: `Real infrastructure shipped, verified harmless today, ready to contribute the moment real rewatch data ` +
+      `exists — better than leaving it as a documented trap for someone to rebuild later, since the actual fix was ` +
+      `cheap and fully validated.`,
   });
 
   // 7. Keywords cached, well-populated, used only for the re-edit filter —
