@@ -64,6 +64,41 @@ recollection about RT/MC's markup isn't warranted without new
 information (e.g. someone providing real page source). Reported to Bill
 as a final negative rather than attempted again autonomously.
 
+ROUND 4 (Bill: "keep trying to figure it out"): not a 4th markup guess —
+real research first. WebSearch on how other real scrapers extract RT's
+audience score turned up a specific, credible alternative explanation
+for why rounds 2-3 both came back completely empty rather than just
+"wrong value": Rotten Tomatoes injects its Tomatometer/Popcornmeter
+scores client-side and reportedly needs "a rendered page behind a
+trusted IP" — and Cloudflare (which RT is understood to sit behind) is
+well-documented to give datacenter/cloud IPs low trust scores and
+selectively withhold or degrade content for them. A GitHub Actions
+runner IS a datacenter IP. This would explain the exact pattern seen so
+far far better than three unrelated wrong guesses would: the critic
+score (likely served from a more cacheable/SEO-stable path even to
+flagged traffic) reliably works, while the client-injected audience
+widget specifically never appears, regardless of how long the page is
+given to load — because the server may simply never send it to this
+traffic, no matter how long the client waits.
+
+Verified this sandbox has no way to check a real RT/MC page directly to
+confirm or rule this out before shipping — WebFetch on both domains
+returned EGRESS_BLOCKED (the environment's own proxy status log shows
+this is a real allowlist policy, not a fluke: recent 403s on
+www.google.com/redirector.gvt1.com too), and neither web.archive.org
+nor a public read-proxy (r.jina.ai) were reachable either. So rather
+than guess further at markup, this round adds real diagnostic
+instrumentation instead: _page_diagnostics() (scrape_show_ratings.py)
+captures the actual HTTP status code, the page's own <title> tag, and
+a scan for known bot-challenge phrases (Rotten Tomatoes' own real
+"Pardon Our Interruption" interstitial title, plus generic Cloudflare
+challenge-page markers) on every detail-page fetch, logged regardless
+of outcome. This run's job log is the actual test of the bot-detection
+hypothesis — a real positive (a challenge title, a non-200 status) would
+confirm it; a normal-looking 200/title with no challenge marker
+wouldn't rule it out (a silent content-stripping response is possible
+too) but would at least eliminate the most obvious form of it.
+
 SAMPLE: the same 12 titles Round 1 verified (already-known imdb ids),
 now also checked against real RT Popcornmeter / Metacritic user score
 ground truth gathered via WebSearch just before this version was
@@ -181,11 +216,18 @@ def main():
             if rt:
                 print(f"  RT url: {rt.get('url')}")
                 for d in (rt.get('debug') or []):
-                    print(f'  RT debug: {d}')
+                    if 'pageDiagnostics' in d:
+                        print(f"  >>> RT page diagnostics: {d['pageDiagnostics']}")
+                    else:
+                        print(f'  RT debug: {d}')
             if mc:
                 print(f"  MC url: {mc.get('url')}")
                 if mc.get('nextData'):
-                    print(f"  MC __NEXT_DATA__ scan: {mc['nextData']}")
+                    nd = dict(mc['nextData'])
+                    pd = nd.pop('pageDiagnostics', None)
+                    print(f"  MC __NEXT_DATA__ scan: {nd}")
+                    if pd:
+                        print(f'  >>> MC page diagnostics: {pd}')
 
             results.append({
                 **t, 'scrapedRTCritic': rt_critic, 'scrapedRTAudience': rt_audience,
