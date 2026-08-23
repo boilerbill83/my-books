@@ -3968,15 +3968,6 @@
   "mcUrl": "https://www.metacritic.com/tv/crystal-lake/",
   "checkedAt": "2026-08-23"
  },
- "movie:1583500": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/movie/elway/",
-  "checkedAt": "2026-08-23"
- },
  "show:262280": {
   "rottenTomatoes": null,
   "rtAudience": null,
@@ -4011,15 +4002,6 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": "https://www.metacritic.com/tv/the-agency/",
-  "checkedAt": "2026-08-23"
- },
- "show:90399": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/ambitions/",
   "checkedAt": "2026-08-23"
  }
 }
