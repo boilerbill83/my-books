@@ -964,39 +964,40 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     id: 'metacritic-scrape-title-verification',
     severity: 'warning',
     ratings: { ease: 5, dataQuality: 8, recEngine: 5, ui: 1 },
-    title: 'Metacritic scraper had no page-identity check, and was confirmed producing wrong scores',
+    title: 'Metacritic scraper had no page-identity check — three real rounds to actually close it',
     technical: `Round 1: a full data-quality audit of the real 447-title production scrape batch found ` +
-      `<code>scrape_metacritic()</code>'s direct-URL-slug guess has no confirmation step at all — it trusts whatever ` +
-      `<code>aggregateRating</code> it finds on whatever page the guessed URL happens to resolve to. Real cross-checks ` +
-      `confirmed 9 titles got a fabricated score this way: 3 unreleased shows (Cupertino/Neagley/Crystal Lake, each ` +
-      `scored 93-97 despite zero aired episodes) and 6 title collisions where the guessed bare slug landed on a ` +
-      `DIFFERENT same-named work (Lost in Space scored 93 from the wrong 1965-original page vs. its real 2018 ` +
-      `reboot's actual 58; Perry Mason 96 vs. real 68; The Agency 97 vs. a real "Generally Favorable" band; Legends ` +
-      `59 vs. real 75; plus Ambitions and Elway, both genuinely un-scored on Metacritic). Fixed with ` +
-      `<code>is_unreleased()</code> (discards a score for a known-future release date) and ` +
-      `<code>page_title_matches()</code> (cross-checks the page's own JSON-LD date and &lt;title&gt; against the ` +
-      `expected title/year, rejecting only on an explicit conflict). <strong>Round 2, after a real full re-scrape ` +
-      `with those guards deployed</strong>: <code>is_unreleased()</code> held up (3/3 real hits), but 6 of the 9 ` +
-      `originally-wrong titles came back with the EXACT SAME wrong scores — the wrong pages apparently state no ` +
-      `explicit conflicting year anywhere for <code>page_title_matches()</code> to catch, the exact risk its own ` +
-      `asymmetric design (never reject on an absent signal) left open. All 6 corrected back to null again. Fixed with ` +
-      `a harder signal, <code>page_imdb_matches()</code>: every title reaching this script already has a known IMDb ` +
-      `id (a precondition of OMDb eligibility) — cross-checking Metacritic's own IMDb reference against that id is an ` +
-      `exact match, not fuzzy text, and is authoritative when it can run (a mismatch rejects regardless of the title ` +
-      `check; a confirmed match skips the title check; no id found on the page falls back to the pre-existing check ` +
-      `unchanged). Unit-tested against synthetic reconstructions of all 6 real round-2 failures. NOT yet verified ` +
-      `against a real re-scrape — this sandbox still can't fetch metacritic.com to confirm the real wrong pages ` +
-      `actually carry a mismatched IMDb reference the way the fix assumes; the next real run is the actual test.`,
-    plain: `The app looks up Rotten Tomatoes/Metacritic pages by guessing a web address from the title. That guess ` +
-      `sometimes lands on the WRONG page — a different, older show that happens to share the same name. The first ` +
-      `fix checked whether the wrong page's own title mentioned a conflicting year, which worked for some cases but ` +
-      `not others — a real re-scrape showed 6 titles were STILL getting the wrong score, because the wrong page just ` +
-      `didn't happen to show a year at all. The second fix instead checks the exact IMDb reference on the page — a ` +
-      `precise fingerprint rather than a fuzzy text guess — which should close the gap the first fix left open, but ` +
-      `hasn't been proven against a real page yet.`,
-    impact: `A real, verified accuracy problem that took two real rounds to actually close, not one — the honest ` +
-      `state right now is "fixed in code, unverified against a live page a second time." A full re-scrape is the ` +
-      `real test of round 2, the same way the first re-scrape was the real test (and the real disproof) of round 1.`,
+      `<code>scrape_metacritic()</code>'s direct-URL-slug guess has no confirmation step at all. Confirmed 9 titles ` +
+      `got a fabricated score. Fixed with <code>is_unreleased()</code> + <code>page_title_matches()</code>. ` +
+      `<strong>Round 2, verified against a real full re-scrape</strong>: <code>is_unreleased()</code> held up (3/3), ` +
+      `but 6 of 9 came back with the exact same wrong scores — <code>page_title_matches()</code>'s asymmetric design ` +
+      `(never reject on an absent signal) left a real gap when the wrong page states no explicit conflicting year. ` +
+      `Fixed with a harder signal, <code>page_imdb_matches()</code> (exact IMDb id cross-check). ` +
+      `<strong>Round 2 re-verified against a real re-scrape this session</strong>: genuinely effective for 7 of the 9 ` +
+      `— Cupertino, Neagley, Crystal Lake, The Agency, Lost in Space, Perry Mason, and Legends all correctly came ` +
+      `back <code>null</code> this time, a real, confirmed fix. But 2 of 9 (Elway, Ambitions) still returned the ` +
+      `same wrong high scores (98, 97) — <strong>a genuinely different bug</strong>, not round 2's failure mode: ` +
+      `WebSearch confirmed the guessed URLs for both ARE the correct page (matching IMDb id, so ` +
+      `<code>page_imdb_matches()</code> correctly passes them), but neither title has any real critic reviews on ` +
+      `Metacritic at all — the JSON-LD <code>aggregateRating</code> block itself was carrying a placeholder/default ` +
+      `rating with nothing backing it, not a wrong-page collision. Fixed with a 3rd guard: reject when the JSON-LD's ` +
+      `own <code>ratingCount</code>/<code>reviewCount</code> is explicitly present and zero (same asymmetric rule as ` +
+      `every guard here — an absent count can't distinguish "no reviews" from "just not emitted," so it passes ` +
+      `through unchanged). Unit-tested against both a real reconstruction of the Elway/Ambitions case and a ` +
+      `no-count-field case to confirm the asymmetric rule holds. Both entries corrected to <code>null</code>; a scan ` +
+      `of the other 14 scores ≥90 in the cache found only real, well-known critically-acclaimed titles (The Sopranos, ` +
+      `The Wire, Fleabag, Miami Vice), no further false positives. Round 3 NOT yet verified against a live page — ` +
+      `same honest caveat as round 2 initially carried.`,
+    plain: `The app looks up Rotten Tomatoes/Metacritic pages by guessing a web address from the title. Two different ` +
+      `things could go wrong with that guess: landing on the wrong page entirely (a same-named different show), or ` +
+      `landing on the RIGHT page but that page not actually having a real critic score yet, with the site's own data ` +
+      `still showing a placeholder number. The first problem is now confirmed fixed for most cases (checked by ` +
+      `actually re-running the scraper for real and seeing 7 of 9 previously-wrong titles come back correctly empty). ` +
+      `Two titles turned out to be the second, different problem — a real critic-score-less page returning a fake ` +
+      `number — which just got its own new fix.`,
+    impact: `Real, measurable progress: 7 of 9 originally-wrong titles confirmed fixed via an actual re-scrape, not ` +
+      `just code review. The 2 remaining were a genuinely different bug, now also fixed but not yet re-verified live ` +
+      `— the same honest "fixed in code, pending the next real run" state round 2 was in before this check-in, one ` +
+      `bug class smaller.`,
   });
 
   // 5. build_trakt_library.js's titleKey() USED TO fall back to a
@@ -1375,18 +1376,30 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     severity: 'warning',
     ratings: { ease: 7, dataQuality: 2, recEngine: 4, ui: 1 },
     title: 'Recency scoring treats a movie and an ongoing show identically',
-    technical: `PARTIALLY FIXED this session: <code>recencyBonus(year)</code> used to apply one universal age-` +
-      `bucket curve regardless of <code>candidate.type</code>; now split into <code>recencyBonusMovie()</code> ` +
-      `(a much steeper curve, plus a hard pre-2000 exclusion for discovered movie candidates) and ` +
+    technical: `PARTIALLY FIXED across two sessions: <code>recencyBonus(year)</code> used to apply one universal ` +
+      `age-bucket curve regardless of <code>candidate.type</code>; split into <code>recencyBonusMovie()</code> (a ` +
+      `much steeper curve, plus a hard pre-2000 exclusion for discovered movie candidates) and ` +
       `<code>recencyBonusShow()</code> (unchanged gentler shape), per Bill's explicit "favor recent movies" ` +
-      `request. What's still unaddressed: <code>recencyBonusShow()</code> still keys off <code>year</code> — the ` +
-      `title's original air year — not its most recent activity, so an old show with a new season still airing ` +
-      `today scores exactly as "old" as one that ended years ago.`,
-    plain: `Movies now get scored on how recent they are much more strongly, which was fixed this session. Shows ` +
-      `still don't distinguish "started long ago but still has new episodes coming out" from "started long ago and ` +
-      `ended long ago" — both look equally old to the recency signal.`,
-    impact: `Movie side resolved and verified live (top movie picks are all 2017+ now). Show side is a smaller, ` +
-      `real remaining gap — recency is a modest signal to begin with (max a few points).`,
+      `request. The show-side gap flagged here — <code>recencyBonusShow()</code> keys off original air year, not ` +
+      `whether a show is still actively producing new content — was genuinely attempted this session, not just ` +
+      `left alone: TMDB's own <code>status</code> field ("Returning Series"/"In Production" on 188 of 1,059 ` +
+      `enriched shows) is already captured and unused for this. A flat +1 or +2 credit for that status, tried and ` +
+      `measured against <code>scripts/eval.js</code>, made things measurably worse both times — precision@10 ` +
+      `90%→80%, precision@100 91%→86%, and MAE got worse, not better. Reverted rather than shipped, per this ` +
+      `project's precision-first discipline (the same one that capped <code>keywordBonus()</code> after catching a ` +
+      `similar regression above). A flat bonus applied to ~17.8% of all shows regardless of fit is likely just too ` +
+      `blunt an instrument — a real fix probably needs a differently-shaped signal, closer to how ` +
+      `<code>genreBonus()</code>/<code>keywordBonus()</code> weight by loved-title overlap rather than a flat ` +
+      `across-the-board credit.`,
+    plain: `Movies now get scored on how recent they are much more strongly, which was fixed in an earlier session. ` +
+      `Shows still don't distinguish "started long ago but still has new episodes coming out" from "started long ` +
+      `ago and ended long ago" — a fix for that was actually tried this session (using a real "still airing" flag ` +
+      `the app already has but never used), but testing it against real data showed it made the recommendations ` +
+      `measurably worse, not better, so it was undone rather than shipped just because it sounded like it should ` +
+      `help.`,
+    impact: `Movie side resolved and verified live (top movie picks are all 2017+ now). Show side remains a real, ` +
+      `open gap — now backed by evidence that the obvious fix doesn't work, which is useful information for ` +
+      `whoever picks this up next, not just an unexplored idea anymore.`,
   });
 
   // 11. Cover images: TMDB's posterPath is already captured by

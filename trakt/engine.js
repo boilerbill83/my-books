@@ -502,6 +502,22 @@ function recencyBonusMovie(year, nowYear) {
 // show's relevance doesn't age the same way a movie's release date does
 // (an old show can still be "current" via new seasons) — a real, separate
 // gap already flagged, not addressed here since it wasn't what was asked.
+//
+// A fix WAS attempted this session (Session 53's improvement pass): a
+// small flat credit when TMDB's own `status` field says a show is still
+// "Returning Series"/"In Production" (182/6 of 1,059 enriched shows),
+// on top of the unchanged year curve. Tried at +2, then +1 — both
+// measurably hurt scripts/eval.js: precision@10 90%→80%, precision@100
+// 91%→86%, and MAE got WORSE, not better (19.34→19.98 / 20.08). Reverted
+// rather than shipped — this project's precision-first discipline (see
+// keywordBonus()'s own comment above) means a signal that fails its own
+// validation doesn't ship just because it's directionally plausible.
+// Left as a genuinely open gap, not a quick fix — a real solution likely
+// needs a differently-shaped signal (e.g. weighted by how many loved
+// shows share the "still airing" status, the way genreBonus/keywordBonus
+// weight by loved-title overlap, rather than a flat bonus applied to
+// ~17% of all shows regardless of fit) or more rated-show volume before
+// leave-one-out eval can distinguish a real gain from noise.
 function recencyBonusShow(year, nowYear) {
   if (!year) return 0;
   const age = nowYear - year;
