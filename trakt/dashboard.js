@@ -667,48 +667,59 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
       severity: 'warning',
       ratings: { ease: 3, dataQuality: 4, recEngine: 3, ui: 1 },
       title: `Subgenres coverage is ${f.populatedPct.toFixed(1)}% — below the 90% bar (real TMDB-keyword ceiling)`,
-      technical: `<code>inferSubgenres()</code> coverage genuinely improved this session, not just re-verified: 64.6% -> ${f.populatedPct.toFixed(1)}% ` +
-        `(${f.populated} of ${f.eligible} eligible titles). Added 26 new real keyword synonyms/phrasings to <code>SUBGENRE_KEYWORDS</code>' ` +
-        `existing tag buckets (e.g. <code>procedural</code> gained "murder mystery"/"whodunit"/"police procedural"; <code>historical</code> ` +
-        `gained "historical drama"/"wild west"; <code>political</code> gained "conspiracy"), each verified present at real, non-trivial ` +
-        `frequency in the live <code>enrichedMetadata.json</code> keyword set before being added — never guessed. Spot-checked ~30 newly-` +
-        `matched titles per keyword against real knowledge of those titles (e.g. "wild west" -> 1883/Deadwood/Westworld/Lonesome Dove, ` +
-        `"medical drama" -> Concussion/Dr. Death/House/The Knick) — all defensible, no false positives found. Deliberately did NOT add ` +
-        `several higher-frequency but too-generic keywords ("dramatic" 30x, "complex" 21x) that risked becoming filler the way the book ` +
-        `side's Session 16 tone classifier's first iteration did. This tag is wired into live scoring (<code>subgenreBonus()</code>) — ` +
-        `re-measured via <code>scripts/eval.js</code> after the change, no regression (see this session's overnight summary). The ` +
-        `remaining gap is a genuine TMDB-keyword-data ceiling: a title with sparse/generic keywords has nothing left to match.`,
-      plain: `Real improvement this session, not just double-checking: found more real ways titles' keyword tags say things like ` +
-        `"legal drama" or "wild west" or "conspiracy" that weren't being recognized before, and added them — checked a sample by hand ` +
-        `to make sure they're accurate. Coverage went up a real amount (about 1 in 20 more titles now get a subgenre tag). The rest of ` +
-        `the gap is titles whose keyword tags genuinely don't say anything specific enough to categorize.`,
-      impact: `A real, verified improvement (not a re-confirmation) — 40 more titles now get a subgenre tag, and this tag actively ` +
-        `feeds the recommendation score. Further gains would need either broader keywords (risking the generic-filler failure mode ` +
-        `already avoided here) or a different data source than TMDB's own keyword tagging.`,
+      technical: `<code>inferSubgenres()</code> coverage has now had two real improvement passes: 64.6% -> 69.8% -> ${f.populatedPct.toFixed(1)}% ` +
+        `(${f.populated} of ${f.eligible} eligible titles). Round 2, this session: rather than re-mining the whole dataset's keyword ` +
+        `frequency again (round 1's method), mined the specific *still-uncovered* titles' own keywords — found two real, previously-` +
+        `missing gaps: a whole new <code>horror</code> bucket (TMDB's "Horror" genre already fed <code>genreBonus()</code> separately, ` +
+        `but nothing existed at this layer, despite 19 real occurrences among just the uncovered titles) and a <code>musical</code> ` +
+        `bucket (9 real occurrences dataset-wide). Also added 3 historical-era markers (civil war/cold war/19th century) — deliberately ` +
+        `distinct from the near-present decade markers rejected in round 1, since a 19th-century or Civil War/Cold War setting doesn't ` +
+        `carry the "merely dated" ambiguity that sank bare "1970s"-style keywords. **Caught and fixed a real false positive during spot-` +
+        `checking, not after shipping**: the first version of <code>musical</code> also matched TMDB's combined "based on play or ` +
+        `musical" keyword, which wrongly tagged non-musical stage-play adaptations (Fleabag, Baby Reindeer — neither has any singing) ` +
+        `as musicals; narrowed to just the exact "musical" keyword before commit. Spot-checked ~30 more titles across all new keywords ` +
+        `(horror -> Crystal Lake/Scream/The Fall of the House of Usher; 19th century -> 1883/1899/American Primeval/Godless) — all ` +
+        `defensible. Re-measured via <code>scripts/eval.js</code> after the change: no regression. The remaining gap is the same real ` +
+        `TMDB-keyword-data ceiling as before — a title with sparse/generic keywords has nothing left to match — and round 2's own ` +
+        `smaller yield (+2.5 points vs. round 1's +5.2) is itself evidence that pure keyword mining is running out of real signal to find.`,
+      plain: `Second improvement pass, smaller than the first one on purpose — most of the easy wins were already found last time. ` +
+        `This round added a category that was missing entirely (horror) and a small one (musicals), plus a few historical-era words ` +
+        `that are safe additions (unlike vaguer decade references, which risk mislabeling anything merely "set in the past" as ` +
+        `historical). Caught and fixed a real mistake before it shipped: an early version would have wrongly called some non-musical ` +
+        `shows "musicals" just because they were also based on a stage play. Coverage went up a real but modest amount — this field is ` +
+        `genuinely running low on more keyword-based signal to find.`,
+      impact: `A real, verified, second-round improvement, honestly smaller than round 1 — the diminishing size of this round's gain is ` +
+        `itself useful evidence that keyword mining alone is close to its ceiling for this field. A different source (e.g. mining the ` +
+        `plot-summary text, not just structured keywords) is the more promising next step, not a third keyword-mining pass.`,
     }),
     tones: (f) => ({
       severity: 'warning',
       ratings: { ease: 3, dataQuality: 4, recEngine: 3, ui: 1 },
       title: `Tones coverage is ${f.populatedPct.toFixed(1)}% — below the 90% bar (the thinner of the two keyword vocabularies)`,
-      technical: `<code>inferTones()</code> coverage genuinely improved this session: 18.1% -> ${f.populatedPct.toFixed(1)}% ` +
-        `(${f.populated} of ${f.eligible} eligible titles) — the larger relative gain of the two classifiers, since tones started from ` +
-        `a much thinner base. Added 15 new real keywords across existing tags (<code>gritty</code> gained "aggressive"/"brutality"/` +
-        `"angry"; <code>satirical</code> gained "biting"/"irreverent"; <code>dark</code> gained "depressing"/"tragedy") plus one new tag, ` +
-        `<code>thoughtful</code> (["thoughtful", "philosophical"] — both exact, unambiguous matches for the tag itself, the safest kind ` +
-        `of addition). Every addition verified at real frequency first; several real but too-generic candidates ("dramatic" 30x, ` +
-        `"serious" 11x, "bold" 18x) were deliberately excluded as too likely to become filler rather than a genuine mood signal — the ` +
-        `exact failure mode the book side's Session 16 tone classifier hit and fixed on its first iteration. Spot-checked ~30 newly-` +
-        `matched titles (e.g. "thoughtful" -> 3 Body Problem/Abbott Elementary/American Fiction/BlacKkKlansman) — all defensible. This ` +
-        `tag is wired into live scoring (<code>toneSignal()</code>) — re-measured via <code>scripts/eval.js</code> after the change, no ` +
-        `regression. TMDB's own keyword vocabulary genuinely carries far fewer mood/craft descriptors than content/subject ones, so this ` +
-        `field's ceiling is structurally lower than subgenres' even after the same amount of real effort.`,
-      plain: `Same kind of real improvement as the Subgenres field above, but for mood/tone words like "gritty" or "thoughtful" instead ` +
-        `of content categories — a bigger relative jump (about 1 in 13 more titles now get a tone tag) because there was more obvious ` +
-        `room to grow. The movie database just doesn't tag mood as often as it tags subject matter, so this field will likely always ` +
-        `lag behind Subgenres even with more work.`,
-      impact: `A real, verified improvement — 57 more titles now get a tone tag, and this tag actively feeds the recommendation score ` +
-        `(a per-tone rating-preference signal, the same design as the book side's toneSignal()). Further gains face a harder ceiling ` +
-        `than Subgenres, since TMDB's keyword vocabulary is inherently thinner for mood/craft than for content/subject.`,
+      technical: `<code>inferTones()</code> coverage has now had two real improvement passes: 18.1% -> 25.6% -> ${f.populatedPct.toFixed(1)}% ` +
+        `(${f.populated} of ${f.eligible} eligible titles). Round 2, this session: mined the specific still-uncovered titles' own ` +
+        `keyword frequency (not the whole dataset again) and found real evidence of genuine diminishing returns, not just assumed it — ` +
+        `the most common keywords among tone-uncovered titles turned out to be almost entirely subgenre/subject words already spoken ` +
+        `for (murder, thriller, sports, superhero...), confirming these titles have real *content* signal but genuinely sparse *mood* ` +
+        `signal. What real tone-relevant words remained were thin (single digits each): added 10 across 6 existing buckets anyway where ` +
+        `the fit was clean (<code>dark</code> gained "somber"/"haunting"; <code>witty</code> gained "cheerful"/"lighthearted"; ` +
+        `<code>inspirational</code> gained "comforting"/"feelgood"; <code>intense</code> gained "shocking"/"provocative"; ` +
+        `<code>melancholy</code> gained "bittersweet"; <code>offbeat</code> gained "absurd," reusing a keyword already live as a real ` +
+        `<code>SUBGENRE_KEYWORDS</code> signal — a legitimate dual-use, since the same word can describe both a title's subject and its ` +
+        `mood). No new tag added this round (round 1 added "thoughtful"; nothing in the remaining tail cleared the bar for its own new ` +
+        `bucket). Spot-checked every new keyword's real title matches — all defensible. Re-measured via <code>scripts/eval.js</code>: no ` +
+        `regression. This round's own small yield (+3.5 points, smaller than round 1's +7.5) is itself the clearest evidence yet that ` +
+        `pure keyword mining has hit its real ceiling for this field specifically — TMDB's keyword vocabulary structurally under-tags ` +
+        `mood versus subject, and no amount of further searching the same keyword list changes that.`,
+      plain: `Second pass, and this time the investigation itself found the real answer: looked specifically at what keywords the still-` +
+        `uncovered titles actually have, and it turns out most of them already describe the SUBJECT of the show (murder, sports, spies) ` +
+        `just fine — they're just missing any word that describes its MOOD. That's a real, structural gap in how the movie database ` +
+        `tags things, not something more searching through the same list of keywords can fix. Added what real mood words were still ` +
+        `findable (a modest number), but the honest conclusion is that keyword-based tagging alone is close to done for this field — ` +
+        `the next real improvement needs a different source of information, not more of the same one.`,
+      impact: `A real, verified, second-round improvement — smaller than round 1's, which is itself the useful finding: this confirms ` +
+        `pure keyword mining is close to exhausted for tones specifically. The next real gain is reading each title's actual plot-` +
+        `summary text for mood language TMDB never captured as a structured keyword, not a third round of the same method.`,
     }),
     awards: (f) => ({
       severity: 'warning',

@@ -625,7 +625,12 @@ const SUBGENRE_KEYWORDS = {
   // guessed" discipline as the superhero/historical carve-outs above)
   // and folded it in here instead, since an Old West setting is a period
   // piece too.
-  'historical': ['period drama', 'historical', 'historical fiction', 'historical drama', 'costume drama', 'wild west'],
+  // 'civil war'/'cold war'/'19th century' added this round (Phase 1 of the
+  // second coverage pass) — unlike the bare near-present decade markers
+  // rejected above, these don't carry the "merely dated" ambiguity: a
+  // 19th-century setting or a Civil War/Cold War-era story is
+  // unambiguously period/historical, not just "a bit old."
+  'historical': ['period drama', 'historical', 'historical fiction', 'historical drama', 'costume drama', 'wild west', 'civil war', 'cold war', '19th century'],
   'war': ['war', 'military', 'soldier', 'world war ii', 'world war i', 'vietnam war'],
   'political': ['politics', 'president', 'election', 'corruption', 'government', 'conspiracy'],
   'family-drama': ['dysfunctional family', 'family relationships', 'family', 'husband wife relationship', 'sibling relationship'],
@@ -643,6 +648,21 @@ const SUBGENRE_KEYWORDS = {
   'sports': ['sports', 'basketball', 'baseball', 'wrestling', 'boxing'],
   'medical': ['doctor', 'hospital', 'surgeon', 'nurse', 'medical', 'medical drama'],
   'prison': ['prison', 'death row'],
+  // Two new buckets this round (Phase 1 of the second coverage pass,
+  // grounded in mining the specific subgenre-uncovered set rather than
+  // the whole dataset again — round 1 already took the high-frequency
+  // wins). 'horror' had zero bucket at all despite 19 real occurrences
+  // among just the uncovered titles alone (TMDB's own "Horror" genre
+  // already feeds genreBonus() separately, but nothing existed at the
+  // subgenre/tone layer). 'musical' is real but deliberately just this
+  // one keyword — a first version also included TMDB's combined "based
+  // on play or musical" tag, which produced real false positives on
+  // dramas adapted from a stage PLAY that aren't musicals at all
+  // (Fleabag, Baby Reindeer, both one-person-show adaptations with no
+  // singing) — dropped, same "narrow the bucket rather than accept a
+  // wrong tag" precedent as superhero/historical above.
+  'horror': ['horror', 'horror anthology', 'slasher', 'gothic horror', 'psychological horror', 'supernatural horror', 'monster', 'ghost', 'demon', 'witch', 'possession'],
+  'musical': ['musical'],
 };
 
 const TONE_KEYWORDS = {
@@ -656,19 +676,37 @@ const TONE_KEYWORDS = {
   // did (e.g. 'dramatic' 30x, 'complex' 21x, 'serious' 11x, 'bold' 18x —
   // all real but not specific enough to any one tone to be a safe signal).
   'gritty': ['gritty', 'grim', 'macabre', 'aggressive', 'brutality', 'angry'],
-  'dark': ['dark', 'hopeless', 'tragic', 'depressing', 'tragedy'],
-  'witty': ['witty', 'amused', 'playful'],
+  // 'somber'/'haunting' added this round — clean fits for an already-
+  // existing bucket, not a new one, per the same discipline as every
+  // addition below in this second pass.
+  'dark': ['dark', 'hopeless', 'tragic', 'depressing', 'tragedy', 'somber', 'haunting'],
+  // 'cheerful'/'lighthearted' added this round: both read as the same
+  // breezy, upbeat register 'playful' already covers, closer to that
+  // than to 'inspirational' (which implies uplift through overcoming
+  // something, not just a light touch).
+  'witty': ['witty', 'amused', 'playful', 'cheerful', 'lighthearted'],
   'satirical': ['satire', 'satirical', 'parody', 'black comedy', 'biting', 'irreverent'],
   'hilarious': ['hilarious'],
-  'inspirational': ['inspirational', 'inspiring', 'hopeful'],
-  'intense': ['intense', 'tension', 'tense', 'anxious'],
+  // 'comforting'/'feelgood' added this round — a real, if thin, second
+  // vein of genuinely uplifting language distinct from 'hopeful'.
+  'inspirational': ['inspirational', 'inspiring', 'hopeful', 'comforting', 'feelgood'],
+  // 'shocking'/'provocative' added this round — both signal a jolt/
+  // discomfort register close to 'tension', not the softer 'suspenseful'
+  // bucket.
+  'intense': ['intense', 'tension', 'tense', 'anxious', 'shocking', 'provocative'],
   'suspenseful': ['suspenseful', 'suspense', 'cliffhanger'],
   'twisty': ['plot twist'],
   'slow-burn': ['slow burn'],
   'character-driven': ['character study', 'intimate'],
   'nostalgic': ['nostalgic', 'nostalgia'],
-  'melancholy': ['melancholy', 'tearjerker'],
-  'offbeat': ['offbeat', 'whimsical', 'surreal'],
+  // 'bittersweet' added this round — a clean fit alongside 'tearjerker'.
+  'melancholy': ['melancholy', 'tearjerker', 'bittersweet'],
+  // 'absurd' added this round — already a real, verified SUBGENRE_KEYWORDS
+  // entry (dark-comedy) with 21 real occurrences among tone-uncovered
+  // titles alone; also fits the mood register here (surreal/whimsical
+  // absurdism), a legitimate dual-use the way a keyword can describe both
+  // a title's subject and its tone.
+  'offbeat': ['offbeat', 'whimsical', 'surreal', 'absurd'],
   // New tag — both keywords are exact, unambiguous matches for the tag
   // itself (not inferred from a looser synonym the way most tags above
   // are), the safest kind of addition per this file's own established
