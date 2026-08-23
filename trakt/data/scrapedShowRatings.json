@@ -98,33 +98,6 @@
   "mcUrl": null,
   "checkedAt": "2026-08-22"
  },
- "show:303630": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/cupertino/",
-  "checkedAt": "2026-08-22"
- },
- "show:273207": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/neagley/",
-  "checkedAt": "2026-08-22"
- },
- "show:213562": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/crystal-lake/",
-  "checkedAt": "2026-08-22"
- },
  "show:273240": {
   "rottenTomatoes": null,
   "rtAudience": null,
@@ -1034,15 +1007,6 @@
   "mcUrl": "https://www.metacritic.com/tv/dutton-ranch/",
   "checkedAt": "2026-08-22"
  },
- "movie:1583500": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/movie/elway/",
-  "checkedAt": "2026-08-22"
- },
  "show:82596": {
   "rottenTomatoes": null,
   "rtAudience": null,
@@ -1538,15 +1502,6 @@
   "mcUrl": "https://www.metacritic.com/tv/landman/",
   "checkedAt": "2026-08-22"
  },
- "show:262280": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/legends/",
-  "checkedAt": "2026-08-22"
- },
  "show:67195": {
   "rottenTomatoes": null,
   "rtAudience": null,
@@ -1608,15 +1563,6 @@
   "metacritic": 66,
   "metacriticUser": null,
   "mcUrl": "https://www.metacritic.com/tv/long-bright-river/",
-  "checkedAt": "2026-08-22"
- },
- "show:75758": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/lost-in-space/",
   "checkedAt": "2026-08-22"
  },
  "show:73200": {
@@ -1995,15 +1941,6 @@
   "metacritic": 77,
   "metacriticUser": null,
   "mcUrl": "https://www.metacritic.com/tv/peaky-blinders/",
-  "checkedAt": "2026-08-22"
- },
- "show:85853": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/perry-mason/",
   "checkedAt": "2026-08-22"
  },
  "show:112211": {
@@ -2391,15 +2328,6 @@
   "metacritic": 73,
   "metacriticUser": null,
   "mcUrl": "https://www.metacritic.com/tv/the-afterparty/",
-  "checkedAt": "2026-08-22"
- },
- "show:219971": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/the-agency/",
   "checkedAt": "2026-08-22"
  },
  "show:46533": {
@@ -3633,15 +3561,6 @@
   "metacritic": 31,
   "metacriticUser": null,
   "mcUrl": "https://www.metacritic.com/tv/the-game/",
-  "checkedAt": "2026-08-23"
- },
- "show:90399": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/ambitions/",
   "checkedAt": "2026-08-23"
  },
  "show:100883": {
