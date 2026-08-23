@@ -26,16 +26,36 @@ network egress proxy blocks Google/DuckDuckGo/Bing too when tested, and
 using the site's own intended search feature is also the more legitimate
 approach).
 
-RESULT OF 3 REAL LIVE TEST BATCHES (see SCRAPE_RT below): Metacritic
-verified accurate via spot-check against real outside sources (Elsbeth
-scraped 69, real Metascore is 69 exactly). Rotten Tomatoes was
-confirmed WRONG on the same title in all 3 attempts (scraped 62%
-against a real 92% Tomatometer, despite correctly identifying the
-right show entity) and the root cause couldn't be pinned down further
-without live page inspection this sandbox can't do. Per Bill's own
-explicit fallback instruction ("if it works for MC but not RT, just
-use MC"), RT scraping is now disabled (SCRAPE_RT = False) — only
-Metacritic data is trusted and wired into scoring.
+RESULT OF 3 REAL LIVE TEST BATCHES (see SCRAPE_RT below): Metacritic's
+CRITIC score verified accurate via spot-check against real outside
+sources (Elsbeth scraped 69, real Metascore is 69 exactly). Rotten
+Tomatoes' critic (Tomatometer) score was confirmed WRONG on the same
+title in all 3 attempts (scraped 62% against a real 92% Tomatometer,
+despite correctly identifying the right show entity). Root-caused and
+fixed for real (see name_field_matches_title()'s docstring and
+SCRAPE_RT's own comment below) — RT critic scoring is re-enabled and
+verified at 12/12 then 93.8% of a real 494-title production batch.
+
+AUDIENCE/USER SCORE — a separate investigation from the critic-score
+fix above, tracking the real viewer-opinion fields (RT's Popcornmeter,
+Metacritic's user score) rather than the professional-critic ones.
+Six real, distinct technical hypotheses were tried across rounds 1-6
+(full history in each round's own inline comment below and in
+verify_rt_sample.py's module docstring). FINAL RESULT: Metacritic's
+user score is REAL and VERIFIED — `title="User score X.X out of 10"`,
+confirmed 8/8 against independently-researched ground truth in two
+separate live runs (rounds 5 and 6) — and is now live in production via
+extract_user_score_title_attr(). Rotten Tomatoes' audience/Popcornmeter
+score, by contrast, was NEVER found on any of ~60 real page fetches
+across all six rounds (JSON-LD 5-star block, a <score-board> element,
+a __NEXT_DATA__ blob, a much longer hydration wait, ruling out bot
+detection via _page_diagnostics(), and unblocking svg resource
+requests on the theory the widget is an SVG-icon-dependent component —
+every one came back a clean, concrete negative, never ambiguous).
+Declared a genuine ceiling of this scraping approach as of round 6 —
+`rtAudience` stays permanently null in the cache rather than a further
+blind guess; a real fix would need actual RT page source pasted in by
+a human, not another autonomous hypothesis.
 
 A FULL DATA-QUALITY AUDIT of the real 447-title production batch found
 Metacritic itself is NOT immune to the same wrong-page failure shape
@@ -168,6 +188,20 @@ SCRAPE_RT = True
 # recollection isn't warranted; the actual next step would need real
 # information (e.g. someone pasting real RT/MC page source) rather than
 # another autonomous guess at markup this scraper still can't see.
+#
+# ROUND 4 (bot-detection diagnostic) and ROUND 4c (svg-unblock) both also
+# came back clean negatives — see BOT_CHALLENGE_MARKERS/_page_diagnostics()
+# below for round 4's real evidence (200 status, correct title, no
+# challenge marker, full-size HTML on all 24 fetches — ruling out
+# datacenter-IP degradation), and the RT resource-blocking comment in
+# main() for round 4c (removing svg from the abort list, tested for real
+# in round 6, made no difference). ROUND 6 (final, real 12-title run):
+# RT audience still 0/8 matched against ground truth — a 5th distinct
+# real hypothesis, cleanly disproven, on top of round 3's two. Per Bill's
+# explicit "keep trying to figure it out" this was pursued past the
+# original "no third blind attempt" checkpoint, but five concrete
+# real-evidence negatives in a row is where autonomous guessing stops —
+# RT audience is treated as a genuine ceiling of this approach from here.
 HYDRATION_WAIT_MS = (6000, 9000)
 
 
@@ -653,7 +687,21 @@ def load_pending(cache):
     self-limiting: a title only ever needs one real RT attempt, and
     every already-cached MC-only entry from the SCRAPE_RT=False era
     naturally gets exactly one such attempt across however many runs it
-    takes, never repeatedly."""
+    takes, never repeatedly.
+
+    needsMC is gated the same way on mcUserAttempted, a stamp added
+    whenever MC is genuinely attempted — added when
+    extract_user_score_title_attr() (the real, verified Metacritic
+    user-score fix) shipped, since hundreds of entries already had a
+    real critic `metacritic` score cached (permanently "done" under the
+    original gate) but had never once had a real attempt at the sibling
+    `metacriticUser` field, which didn't exist as an extractable value
+    until this fix. Without this stamp, those entries would never be
+    revisited — the original gate only ever re-checks a title whose
+    critic score itself is still missing. Same self-limiting shape as
+    rtAttempted: one real attempt per title, ever, whether or not that
+    attempt actually finds a user score (some titles genuinely have too
+    few MC user ratings for one to exist)."""
     omdb = json.load(open(DATA_DIR / 'omdbMetadata.json')) if (DATA_DIR / 'omdbMetadata.json').exists() else {}
     enriched = json.load(open(DATA_DIR / 'enrichedMetadata.json')) if (DATA_DIR / 'enrichedMetadata.json').exists() else {}
 
@@ -680,7 +728,11 @@ def load_pending(cache):
             seen.add(key)
 
             cached = cache.get(key)
-            needs_mc = cached is None or (cached.get('metacritic') is None and not _in_cooldown(cached))
+            needs_mc = (
+                cached is None
+                or not cached.get('mcUserAttempted')
+                or (cached.get('metacritic') is None and not _in_cooldown(cached))
+            )
             needs_rt = SCRAPE_RT and (cached is None or not cached.get('rtAttempted'))
             if not needs_mc and not needs_rt:
                 continue  # fully resolved already (or a fresh miss still on cooldown)
@@ -1153,6 +1205,7 @@ def main():
                 entry['metacritic'] = None if unreleased else (mc.get('metascore') if mc else None)
                 entry['metacriticUser'] = None if unreleased else (mc.get('userScore') if mc else None)
                 entry['mcUrl'] = mc.get('url') if mc else None
+                entry['mcUserAttempted'] = True
             entry['checkedAt'] = time.strftime('%Y-%m-%d')
             cache[t['titleKey']] = entry
 

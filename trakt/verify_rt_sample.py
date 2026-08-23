@@ -152,6 +152,37 @@ RT's unknowable server-side architecture a 5th time. This run is the
 test of both changes together — the Metacritic fix should show real
 matches now; RT audience remains an open question pending this result.
 
+REAL RESULT (run 6, this file's own 12-title batch) — FINAL:
+
+METACRITIC: confirmed a second time. 8 of 8 checkable titles matched
+again (real values e.g. 71/71, 91/91, 93/93, 84/84, 88/86, 73/73,
+73/73, 84/83 — all exact or within normal review-count drift). Two
+clean 8/8 runs is enough to trust extract_user_score_title_attr() for a
+real production backfill — this is a genuine, shipped fix.
+
+ROTTEN TOMATOES: the svg-unblock hypothesis also came back a clean,
+concrete negative — 0 of 8 checkable titles found an audience score
+(scraped=None on every single one; RT critic score held at 12/12,
+confirming the fetch itself is fine). This makes FIVE distinct, real,
+independently-falsified technical hypotheses across rounds 1-6 (the
+JSON-LD 5-star block implicit in round 1's original extractor,
+<score-board>, __NEXT_DATA__, a much longer hydration wait, and now
+svg-unblock) — every one checked with real evidence, never assumed.
+Per this project's discipline (a real negative after 2-3 attempts
+should trigger a check-in; Bill's "keep trying" explicitly extended
+that past the original checkpoint, but did not mean guess forever),
+this is where autonomous attempts on RT audience stop. RT's
+Popcornmeter score is treated as a genuine ceiling of this Playwright-
+based scraping approach — `rtAudience` stays permanently null in the
+committed cache. A real fix would need new evidence this sandbox
+cannot generate on its own (e.g. a human pasting real RT page source,
+or RT changing its own markup) rather than a 6th blind guess.
+
+NET OUTCOME: Metacritic critic AND user scores are both real and
+verified; RT critic score is real and verified (93.8% production hit
+rate); RT audience/Popcornmeter score is a confirmed, documented gap —
+mixed but genuinely positive, not a full win or a full loss.
+
 SAMPLE: the same 12 titles Round 1 verified (already-known imdb ids),
 now also checked against real RT Popcornmeter / Metacritic user score
 ground truth gathered via WebSearch just before this version was
