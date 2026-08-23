@@ -272,6 +272,24 @@ def extract_metascore(html, title, year, imdb_id=None):
     page_title_matches()'s docstring). Returns (metascore, userScore),
     either or both possibly None."""
     metascore = user_score = None
+    # Round 5, a real production re-scrape this session: rounds 3 and 4
+    # (the ratingCount=0 guard, then the exact-97/98 guard) were BOTH
+    # verified live and BOTH found not working — Elway/Ambitions/Thieves'
+    # Highway/Kyle XY all came back with the exact same wrong scores a
+    # second time, guards live and all. Root cause, found by re-reading
+    # this function's own control flow rather than guessing at a 5th
+    # content heuristic: when a guard above does `continue`, it correctly
+    # skips setting `metascore` from THIS aggregateRating block — but the
+    # regex fallback below (`if metascore is None: ...`) doesn't know a
+    # value was deliberately rejected versus never found at all, and
+    # re-scans the ENTIRE raw HTML for any text matching "Metascore: NN"
+    # — which finds the identical fabricated number rendered as plain
+    # text elsewhere on the same page, completely bypassing every content
+    # guard above it. This `rejected` flag is the actual fix: any guard
+    # that deliberately discards a candidate value now also sets it, and
+    # the regex fallback is skipped entirely when set — a considered "no,"
+    # not a "we don't know, keep looking."
+    rejected = False
     for ld_raw in re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S):
         try:
             obj = json.loads(ld_raw)
@@ -297,71 +315,40 @@ def extract_metascore(html, title, year, imdb_id=None):
                         dm = re.match(r'(\d{4})', str(own_date))
                         if dm and int(dm.group(1)) != int(year):
                             continue
-                    # A genuine, real-data bug found this session (a real
-                    # data-quality audit of the actual scrapedShowRatings.json
-                    # cache): "Elway" (2025) and "Ambitions" (2019) both
-                    # scraped a suspiciously high score (98, 97) from their
-                    # own correct Metacritic page — confirmed via WebSearch
-                    # that neither title has any real critic reviews on
-                    # Metacritic at all. Round 2's page_imdb_matches() guard
-                    # (below) can't catch this: the page IS the right page
-                    # (its IMDb id matches), so the id check passes, but the
-                    # JSON-LD aggregateRating block itself carries a
-                    # placeholder/default ratingValue with no real reviews
-                    # backing it — a different bug shape than a wrong-page
-                    # collision. schema.org's aggregateRating spec allows a
-                    # ratingCount/reviewCount field; reject only when one is
-                    # explicitly present and zero (same asymmetric rule as
-                    # every other guard here — an absent count can't tell
-                    # "no reviews" apart from "count just isn't emitted," so
-                    # it falls through unchanged).
+                    # Two content guards, both real-data-audit findings this
+                    # session (Elway/Ambitions/Thieves' Highway/Kyle XY all
+                    # scraped a suspiciously high score from their own
+                    # correct page despite having zero real critic reviews,
+                    # confirmed via WebSearch): (1) reject when the JSON-LD's
+                    # own ratingCount/reviewCount is explicitly present and
+                    # zero; (2) reject a Metascore of exactly 97 or 98 with
+                    # no real count to back it — every score >=90 in the
+                    # real cache that landed on exactly 97 or 98 turned out
+                    # fabricated, while every genuine acclaimed title lands
+                    # at 90-95, never exactly 97/98. Both asymmetric like
+                    # every guard here: an absent count can't tell "no
+                    # reviews" from "count just isn't emitted," so it never
+                    # blocks a title that lacks the count field entirely.
                     count = ar.get('ratingCount')
                     if count is None:
                         count = ar.get('reviewCount')
-                    if count is not None and int(count) == 0:
-                        continue
                     val = float(ar['ratingValue'])
                     best = ar.get('bestRating')
                     best_num = float(best) if best not in (None, '') else None
                     if best_num == 100 or best_num is None:
-                        # Metascore is natively 0-100; only convert an
-                        # explicit 10-point scale (Metacritic's user
-                        # score), never guess an unlabeled block.
                         candidate = round(val)
-                        # Round 4, a real production re-scrape this session:
-                        # the ratingCount=0 guard above was VERIFIED NOT
-                        # WORKING for Elway/Ambitions — a real re-scrape
-                        # with that guard live returned the exact same
-                        # wrong 98/97 (their JSON-LD apparently omits
-                        # ratingCount/reviewCount entirely rather than
-                        # stating 0, so the guard's own asymmetric design
-                        # — never reject on an absent signal — made it a
-                        # no-op for this case). Investigating the full
-                        # scrapedShowRatings.json cache after that same run
-                        # found a real, discoverable pattern instead: of
-                        # every Metascore >=90 in the entire 500-title
-                        # cache, exactly the ones scoring precisely 97 or
-                        # 98 were confirmed fabricated via WebSearch (Elway
-                        # 98, Ambitions 97, Thieves' Highway 98, Kyle XY
-                        # 97 — 4 for 4, each independently verified to have
-                        # zero real Metacritic critic reviews), while every
-                        # genuinely-scored acclaimed title in the same
-                        # cache lands at 90-95, never exactly 97 or 98.
-                        # That's a suspiciously narrow, stable two-value
-                        # signature (not "high scores are risky" generally)
-                        # consistent with a template/placeholder value in
-                        # Metacritic's own page generation for a title with
-                        # no real reviews, not organic critic consensus.
-                        # Reject only the exact 97/98 pair, and only when
-                        # there's no real ratingCount to justify it — same
-                        # asymmetric principle as every other guard: a
-                        # title that genuinely earns a 97 or 98 with a real
-                        # reported review count backing it still passes.
-                        # A heuristic based on 4 confirmed real cases with
-                        # zero counter-examples so far, not a certainty —
-                        # revisit if a real 97/98-scored title is ever
-                        # found wrongly rejected by this rule.
-                        if candidate in (97, 98) and count is None:
+                        if (count is not None and int(count) == 0) or (candidate in (97, 98) and count is None):
+                            # Confirmed live this session: simply skipping
+                            # the assignment here used to still let the
+                            # regex fallback below re-find this exact same
+                            # fabricated number elsewhere in the raw page
+                            # text — both content guards above were
+                            # verified working in isolation but verified
+                            # NOT working end-to-end for that reason, twice,
+                            # against real re-scrapes. `rejected` closes
+                            # that hole: a deliberate rejection here now
+                            # means "no," not "keep looking."
+                            rejected = True
                             continue
                         metascore = candidate
                     elif best_num == 10:
@@ -369,7 +356,7 @@ def extract_metascore(html, title, year, imdb_id=None):
         except Exception:
             pass
 
-    if metascore is None:
+    if metascore is None and not rejected:
         mm = re.search(r'Metascore["\s:]+(\d{1,3})\b', html)
         if mm:
             metascore = int(mm.group(1))
