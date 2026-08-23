@@ -192,6 +192,48 @@ def _wait_for_hydration(page):
     page.wait_for_timeout(random.randint(*HYDRATION_WAIT_MS))
 
 
+# Real, well-documented phrases these sites' own bot-challenge/interstitial
+# pages are known to show, per real scraper write-ups (WebSearch, this
+# session — "Pardon Our Interruption" is Rotten Tomatoes' own real
+# interstitial page title for suspected-bot traffic; the rest are generic
+# Cloudflare challenge-page markers many sites share). Checked as the
+# leading alternative explanation for rounds 2-3's clean negative
+# results: a scraper running from a cloud/datacenter IP (which is exactly
+# what a GitHub Actions runner is) is a well-documented Cloudflare
+# low-trust signal, and RT/MC could plausibly still serve a real,
+# SEO-cacheable critic score to that traffic while withholding the
+# client-injected audience widget specifically — which would explain
+# "critic score always works, audience score never does, regardless of
+# how long we wait" far more coherently than three unrelated markup
+# guesses being wrong. This function doesn't fix anything by itself — it
+# just makes that hypothesis checkable with real evidence on the next run
+# instead of staying an unconfirmed theory.
+BOT_CHALLENGE_MARKERS = [
+    'pardon our interruption', 'just a moment', 'attention required',
+    'checking your browser', 'cf-chl', 'cf_chl_opt', 'challenge-platform',
+    'verify you are a human', 'unusual traffic',
+]
+
+
+def _page_diagnostics(response, html):
+    """Real evidence for or against bot detection being why rounds 2-3
+    found no audience data — not another guess at markup, a check on
+    WHY the fetch itself might be getting a degraded response. Returns
+    a dict: status (HTTP status code or None), title (the page's own
+    <title> tag, truncated), botChallengeSignal (which marker phrase
+    matched, if any, else None). A normal status (200) with a normal
+    title and no challenge marker doesn't prove bot detection ISN'T
+    happening (a silent content-stripping response wouldn't show any of
+    these), but a challenge marker or an abnormal status/title would be
+    a real, positive finding, not an assumption."""
+    status = response.status if response else None
+    title_m = re.search(r'<title[^>]*>(.*?)</title>', html, re.I | re.S)
+    title = unescape(title_m.group(1)).strip()[:120] if title_m else None
+    html_lower = html.lower()
+    signal = next((m for m in BOT_CHALLENGE_MARKERS if m in html_lower), None)
+    return {'status': status, 'title': title, 'botChallengeSignal': signal, 'htmlLength': len(html)}
+
+
 def load_cache():
     if CACHE_FILE.exists():
         return json.load(open(CACHE_FILE))
@@ -867,13 +909,15 @@ def scrape_rt(page, title, year, kind, imdb_id=None):
     url = m.group(1)
 
     try:
-        page.goto(url, wait_until='domcontentloaded', timeout=20_000)
+        resp = page.goto(url, wait_until='domcontentloaded', timeout=20_000)
         _wait_for_hydration(page)
         html = page.content()
     except PWTimeout:
         return None
 
     critic, audience, debug = extract_rt_scores(html, title, year, imdb_id)
+    diag = _page_diagnostics(resp, html)
+    debug.append({'pageDiagnostics': diag})
 
     if critic is None and audience is None:
         return {'critic': None, 'audience': None, 'url': url, 'debug': debug}
@@ -942,13 +986,14 @@ def scrape_metacritic(page, title, year, kind, imdb_id=None):
                 'debug_link_count': debug_link_count}
 
     try:
-        page.goto(url, wait_until='domcontentloaded', timeout=20_000)
+        resp = page.goto(url, wait_until='domcontentloaded', timeout=20_000)
         _wait_for_hydration(page)
         html = page.content()
     except PWTimeout:
         return {'metascore': None, 'userScore': None, 'url': url, 'debug_link_count': debug_link_count}
 
     metascore, user_score, nd_debug = extract_metascore(html, title, year, imdb_id)
+    nd_debug['pageDiagnostics'] = _page_diagnostics(resp, html)
     if metascore is None and user_score is None:
         return {'metascore': None, 'userScore': None, 'url': url, 'debug_link_count': debug_link_count, 'nextData': nd_debug}
     return {'metascore': metascore, 'userScore': user_score, 'url': url, 'debug_link_count': debug_link_count, 'nextData': nd_debug}
