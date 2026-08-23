@@ -15,7 +15,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import {
   buildIndexes, hydrateTitle, getCreator, matchScore, confidenceScore,
-  reason, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings,
+  reason, popularityScore, imdbPopularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings,
   resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones,
 } from '../../engine.js';
 
@@ -128,6 +128,7 @@ export function loadAllTitles() {
       predictedScore: meta.genres ? Math.round(matchScore(h, idx, enrichedMeta, omdbMeta)) : '',
       confidenceScore: meta.genres ? confidenceScore(h, enrichedMeta) : '',
       popularityScore: popularityScore(meta.voteCount),
+      imdbPopularityScore: imdbPopularityScore(omdb?.imdbVotes),
       criticScoreComputed: criticScore(omdb) ?? '',
       audienceScoreComputed: realAudienceScore(omdb) ?? '',
       awardsScoreComputed: awardsScore(omdb) ?? '',

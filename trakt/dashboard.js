@@ -470,6 +470,14 @@ const FIELD_REGISTRY = [
     populated: (t, meta) => (meta?.keywords?.length || 0) > 0,
     quality: (t, meta) => (meta?.keywords?.length || 0) > 0,
     note: 'Powers the re-edit/re-cut exclusion ("edited from film").' },
+  { key: 'imdbVotes', label: 'IMDb Vote Count', source: 'OMDb', critical: false,
+    eligible: (t, meta, omdb) => !!omdb,
+    populated: (t, meta, omdb) => omdb?.imdbVotes != null,
+    quality: (t, meta, omdb) => (omdb?.imdbVotes || 0) >= 1000,
+    note: 'A second, independent "how many people rated this" signal alongside TMDB\'s own Rating Count above — ' +
+      'IMDb\'s voter base runs roughly 15-25x larger at equivalent percentiles in this dataset, so it\'s not ' +
+      'redundant with voteCount. Quality = 1,000+ votes, a real floor below which a title\'s IMDb rating rests ' +
+      'on too small a sample to trust as a popularity signal.' },
   { key: 'omdbRecord', label: 'OMDb Record Found', source: 'OMDb', critical: false,
     eligible: (t, meta) => !!(t.ids?.imdb || meta?.imdbId),
     populated: (t, meta, omdb) => !!omdb,
@@ -1904,6 +1912,7 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
       predictedScore: Math.round(matchScore(h, idx, enrichedMeta, omdbMeta)),
       popularity: popularityScore(meta?.voteCount),
       voteCount: meta?.voteCount ?? null,
+      imdbVotes: omdb?.imdbVotes ?? null,
       criticScore: criticScore(omdb),
       audienceScore: realAudienceScore(omdb),
       awardsScore: awardsScore(omdb),
@@ -1970,6 +1979,7 @@ function renderAllTitlesTable(allRows) {
     { label: 'TMDB Rating', get: r => r.tmdbRating != null ? Math.round(r.tmdbRating * 10) / 10 : '', numeric: true },
     { label: 'Popularity', get: r => r.popularity ?? '', numeric: true },
     { label: 'Ratings', get: r => r.voteCount ?? '', numeric: true },
+    { label: 'IMDb Votes', get: r => r.imdbVotes ?? '', numeric: true },
     { label: 'Critic Score', get: r => r.criticScore ?? '', numeric: true },
     { label: 'Audience Score', get: r => r.audienceScore ?? '', numeric: true },
     { label: 'Awards', get: r => r.awardsScore ?? '', numeric: true,
@@ -2077,6 +2087,7 @@ function metaLine(candidate, enrichedMeta, omdbMeta) {
     parts.push(`${meta.voteAverage.toFixed(1)}/10 on TMDB${ratings}`);
   }
   const omdbEntry = omdbMeta?.[candidate.titleKey];
+  if (omdbEntry?.imdbVotes != null) parts.push(`${fmtCompact(omdbEntry.imdbVotes)} IMDb votes`);
   const critic = criticScore(omdbEntry);
   if (critic != null) parts.push(`${critic}/100 critics`);
   const audience = realAudienceScore(omdbEntry);
