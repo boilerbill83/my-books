@@ -118,6 +118,40 @@ ANYWHERE in the real page text at all, in any form, which would tell us
 whether the feature is present-but-differently-shaped versus genuinely
 absent from what this scraper receives.
 
+REAL RESULT (run 5, this file's own 12-title batch) — a genuine
+breakthrough for Metacritic, and one more real lead for RT:
+
+METACRITIC: the word-presence check found something concrete on EVERY
+one of 12 real pages: `title="User score X.X out of 10"` — a real,
+specific attribute, not the __NEXT_DATA__ blob rounds 2-3 guessed at.
+Cross-checked the actual scraped values against real ground truth: 8 of
+8 checkable titles matched (WandaVision 7.1, Chernobyl 9.1, Band of
+Brothers 9.3, Mare of Easttown 8.4, Baby Reindeer 7.3, Sharp Objects
+7.3 all EXACT; The Last Dance 8.8 vs. real ~8.6 and Normal People 8.4
+vs. real ~8.3, both within normal review-count drift). New
+extract_user_score_title_attr() wired in as the primary user-score
+source in extract_metascore(). This is a real, verified fix — not
+another unverified hypothesis.
+
+ROTTEN TOMATOES: the word "audience"/"popcornmeter" DOES appear on
+every real page, but only ever in two unrelated contexts (a generic
+promotional blurb — "updated with critic and audience scores today!" —
+and a "browse/audience:verified_hot" navigation link), never once near
+an actual score value, across all 12 titles. This is a real, informative
+negative distinct from "the word never appears" (round 4b's original
+question) — it appears, just never attached to a number. Checked this
+session's own scraper config for a self-inflicted cause before
+concluding RT itself withholds the data: page.route() was aborting ALL
+image formats INCLUDING svg — a real, plausible culprit if RT's
+Popcornmeter is an SVG-icon-dependent component that fails to mount
+when its icon fetch is blocked, while the critic score (plain text/
+JSON-LD, no icon dependency) is unaffected. svg removed from the abort
+list (raster images/fonts still blocked for speed) as one more real,
+grounded attempt — checking this session's own tooling, not guessing at
+RT's unknowable server-side architecture a 5th time. This run is the
+test of both changes together — the Metacritic fix should show real
+matches now; RT audience remains an open question pending this result.
+
 SAMPLE: the same 12 titles Round 1 verified (already-known imdb ids),
 now also checked against real RT Popcornmeter / Metacritic user score
 ground truth gathered via WebSearch just before this version was
@@ -204,7 +238,9 @@ def main():
             locale='en-US',
         )
         page = ctx.new_page()
-        page.route('**/*.{png,jpg,jpeg,gif,webp,woff,woff2,ttf,svg}', lambda r: r.abort())
+        # svg NOT blocked (round 4c) — see scrape_show_ratings.py's main()
+        # for why.
+        page.route('**/*.{png,jpg,jpeg,gif,webp,woff,woff2,ttf}', lambda r: r.abort())
 
         # [matched, checked] — shared counters across critic + all audience checks
         rt_counter = [0, 0]
