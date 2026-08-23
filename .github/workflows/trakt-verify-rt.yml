@@ -1,0 +1,29 @@
+name: Verify RT Scraper Fix (sample, no cache writes)
+
+# One-off verification for Action 2 of the AudienceScore plan — runs
+# trakt/verify_rt_sample.py against a small, curated real-title sample
+# and prints per-title debug output for a human to cross-check against
+# outside RT scores. Never touches trakt/data/scrapedShowRatings.json
+# (the trusted committed cache) and never runs on a schedule — RT
+# scraping has already failed real accuracy verification 3 times before
+# this fix, so nothing here is trusted until a human reads this run's
+# actual job log.
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Playwright + Chromium
+        run: |
+          pip install playwright
+          playwright install chromium --with-deps
+      - name: Scrape RT for the verification sample (no cache writes)
+        run: python3 trakt/verify_rt_sample.py
+        timeout-minutes: 15
