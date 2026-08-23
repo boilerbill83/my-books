@@ -4462,5 +4462,41 @@
   "metacriticUser": null,
   "mcUrl": "https://www.metacritic.com/movie/how-i-spent-my-summer-vacation/",
   "checkedAt": "2026-08-23"
+ },
+ "movie:1583500": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 98,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/movie/elway/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:90399": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 97,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/ambitions/",
+  "checkedAt": "2026-08-23"
+ },
+ "movie:1293162": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 98,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/movie/thieves-highway/",
+  "checkedAt": "2026-08-23"
+ },
+ "show:219": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "metacritic": 97,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/tv/kyle-xy/",
+  "checkedAt": "2026-08-23"
  }
 }
