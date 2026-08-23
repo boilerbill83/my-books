@@ -17,6 +17,18 @@ Library and the Amazon scrape.
 Run manually:   python3 trakt/enrich_omdb.py [batch_size]
 GitHub Action:  .github/workflows/trakt-enrich-omdb.yml
 
+RETRY_NO_RT=1 (or --retry-no-rt) re-fetches cached entries that have
+real OMDb data but are missing rottenTomatoes specifically — a real,
+confirmed gap: enrich_omdb.py only ever fetches a title once
+(`t['titleKey'] not in cache`), so if OMDb's own upstream RT data was
+backfilled after the original fetch (a known behavior of aggregator
+APIs — verified against real examples: Rocketman/TÁR/Maestro, all
+well-known titles with hundreds of thousands of IMDb votes, still show
+no RT in the cache), this script previously had no way to ever pick
+it up. Mirrors enrich_tmdb.py's RETRY_EMPTIES pattern exactly,
+including the one-retry-only guard (`rtRetriedAt`) so a title that
+genuinely has no RT score in OMDb isn't re-fetched forever.
+
 Needs an OMDB_API_KEY — free tier at omdbapi.com/apikey.aspx (1,000
 requests/day), same pattern as TMDB_API_KEY/GOOGLE_BOOKS_API_KEY: Bill
 creates it himself and sets it as a repo secret; no tool here can do
@@ -26,14 +38,15 @@ either step.
 import json, os, re, sys, time, urllib.request, urllib.parse, urllib.error
 from pathlib import Path
 
-ROOT       = Path(__file__).resolve().parent.parent
-DATA_DIR   = ROOT / 'trakt' / 'data'
-CACHE_FILE = DATA_DIR / 'omdbMetadata.json'
-BATCH_SIZE = int(sys.argv[1]) if len(sys.argv) > 1 else 150
-API_KEY    = os.environ.get('OMDB_API_KEY', '')
-DELAY      = 0.4
-API_BASE   = 'https://www.omdbapi.com/'
-HEADERS    = {'User-Agent': 'my-books-trakt-omdb-enrichment (personal watch-history app)'}
+ROOT         = Path(__file__).resolve().parent.parent
+DATA_DIR     = ROOT / 'trakt' / 'data'
+CACHE_FILE   = DATA_DIR / 'omdbMetadata.json'
+BATCH_SIZE   = int(sys.argv[1]) if len(sys.argv) > 1 else 150
+API_KEY      = os.environ.get('OMDB_API_KEY', '')
+RETRY_NO_RT  = os.environ.get('RETRY_NO_RT') == '1' or '--retry-no-rt' in sys.argv
+DELAY        = 0.4
+API_BASE     = 'https://www.omdbapi.com/'
+HEADERS      = {'User-Agent': 'my-books-trakt-omdb-enrichment (personal watch-history app)'}
 
 
 def get_json(url, timeout=10):
@@ -183,7 +196,8 @@ def load_titles():
                 continue
             imdb_id = (t.get('ids') or {}).get('imdb') or enriched.get(title_key, {}).get('imdbId')
             if imdb_id:
-                titles.append({'titleKey': title_key, 'imdbId': imdb_id, 'title': t.get('title')})
+                titles.append({'titleKey': title_key, 'imdbId': imdb_id, 'title': t.get('title'),
+                                'type': t.get('type')})
     return titles
 
 
@@ -195,7 +209,21 @@ def main():
         sys.exit(1)
 
     cache = json.load(open(CACHE_FILE)) if CACHE_FILE.exists() else {}
-    pending_raw = [t for t in load_titles() if t['titleKey'] not in cache]
+    if RETRY_NO_RT:
+        # Movies only — checked live before shipping this mode: OMDb
+        # returns an RT score for ~91% of movies but essentially never
+        # for shows (0.8%, a real structural gap, not staleness), so
+        # scoping to all 481 "no RT" shows here would burn ~500 API
+        # calls mostly re-confirming an absence that was never a
+        # staleness issue, and permanently mark them rtRetriedAt in the
+        # process for a check unlikely to ever change.
+        pending_raw = [t for t in load_titles()
+                       if t['type'] == 'movie'
+                       and t['titleKey'] in cache
+                       and cache[t['titleKey']].get('rottenTomatoes') is None
+                       and not cache[t['titleKey']].get('rtRetriedAt')]
+    else:
+        pending_raw = [t for t in load_titles() if t['titleKey'] not in cache]
     seen, pending = set(), []
     for t in pending_raw:
         if t['titleKey'] not in seen:
@@ -203,7 +231,10 @@ def main():
             pending.append(t)
 
     batch = pending[:BATCH_SIZE]
-    print(f'{len(pending)} titles pending (have an IMDb id, not yet OMDb-enriched), processing {len(batch)}')
+    if RETRY_NO_RT:
+        print(f'{len(pending)} cached titles missing Rotten Tomatoes, not yet retried, processing {len(batch)}')
+    else:
+        print(f'{len(pending)} titles pending (have an IMDb id, not yet OMDb-enriched), processing {len(batch)}')
 
     failures = 0
     for i, t in enumerate(batch, 1):
@@ -221,8 +252,11 @@ def main():
             continue
 
         cache[t['titleKey']] = extract_entry(data)
+        if RETRY_NO_RT:
+            cache[t['titleKey']]['rtRetriedAt'] = cache[t['titleKey']]['fetchedAt']
         rt = cache[t['titleKey']]['rottenTomatoes']
-        print(f'  [{i}/{len(batch)}] ok (RT {rt if rt is not None else "—"}) | {t["title"] or t["imdbId"]}')
+        found = ' (found!)' if RETRY_NO_RT and rt is not None else ''
+        print(f'  [{i}/{len(batch)}] ok (RT {rt if rt is not None else "—"}{found}) | {t["title"] or t["imdbId"]}')
         if i % 25 == 0:
             json.dump(cache, open(CACHE_FILE, 'w'), indent=1)
         time.sleep(DELAY)
