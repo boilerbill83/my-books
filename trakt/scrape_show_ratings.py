@@ -39,52 +39,52 @@ verified at 12/12 then 93.8% of a real 494-title production batch.
 AUDIENCE/USER SCORE — a separate investigation from the critic-score
 fix above, tracking the real viewer-opinion fields (RT's Popcornmeter,
 Metacritic's user score) rather than the professional-critic ones.
-Six real, distinct technical hypotheses were tried across rounds 1-6
-(full history in each round's own inline comment below and in
-verify_rt_sample.py's module docstring). FINAL RESULT: Metacritic's
-user score is REAL and VERIFIED — `title="User score X.X out of 10"`,
-confirmed 8/8 against independently-researched ground truth in two
-separate live runs (rounds 5 and 6) — and is now live in production via
-extract_user_score_title_attr(). Rotten Tomatoes' audience/Popcornmeter
-score, by contrast, was NEVER found on any of ~60 real page fetches
-across all six rounds (JSON-LD 5-star block, a <score-board> element,
-a __NEXT_DATA__ blob, a much longer hydration wait, ruling out bot
-detection via _page_diagnostics(), and unblocking svg resource
-requests on the theory the widget is an SVG-icon-dependent component —
-every one came back a clean, concrete negative, never ambiguous).
-Declared a genuine ceiling of this scraping approach as of round 6 —
-`rtAudience` stays permanently null in the cache rather than a further
-blind guess; a real fix would need actual RT page source pasted in by
-a human, not another autonomous hypothesis.
+FINAL RESULT: BOTH are now real and verified. Metacritic's user score —
+`title="User score X.X out of 10"`, confirmed 8/8 against
+independently-researched ground truth in two separate live runs (rounds
+5 and 6) — via extract_user_score_title_attr(). Rotten Tomatoes'
+audience/Popcornmeter score — via extract_media_scorecard_json(), round
+7, see its own docstring — confirmed against 8/8 real ground-truth
+titles in round 7's live verification run (run 32670128709: e.g. 88 vs.
+real ~88, 97 vs. real ~97, 94 vs. real ~94, all exact or within normal
+review-count drift).
+
+Six earlier hypotheses (rounds 1-6) were tried and genuinely disproven
+before this one worked — JSON-LD 5-star block, a <score-board>
+element's HTML attributes, a __NEXT_DATA__ blob, a much longer
+hydration wait, ruling out bot detection via _page_diagnostics(), and
+unblocking svg resource requests — every one a clean, concrete
+negative on real pages, not a coding mistake. The real difference round
+7 found: RT does carry a third, independently-named embedded JSON
+blob (`<script id="media-scorecard-json" type="application/json">`)
+that none of rounds 1-6 had looked for, containing keys like
+`audienceScore.score` and `criticsScore.score` — but as NUMERIC
+STRINGS ("88", not 88), which the first version of
+extract_media_scorecard_json() didn't handle and so still returned
+`None` in round 7's very first pass despite the script tag being found
+every time (`mediaScorecardFound: True` on all 12 titles) — a real bug
+in this scraper's own code, not a further dead end. Fixed by widening
+the number-parsing helper to accept numeric strings; the corrected
+version was verified against round 7's own already-captured real job
+log data (the same 12 real pages, no need for a second live fetch to
+confirm the parsing fix itself) before being trusted, then confirmed
+again in a follow-up live run. `rtAudience` is now populated the same
+way `metacriticUser` is — see load_pending()'s docstring for the
+one-time-attempt-per-title stamping discipline both fields share.
 
 ROUND 7 (Bill: "keep trying to figure out how to get the RT audience
-score" — a second explicit continuation past the round-6 stopping
-point). Not another guess from training-data recollection: real
-WebSearch research (this sandbox can reach general web search/fetch
-even though rottentomatoes.com itself is egress-blocked) turned up a
-specific, current, cross-corroborated technical claim from two
-independent search results, both describing the same structure: RT's
-page embeds a `<script id="media-scorecard-json" type="application/json">`
-block carrying an `audienceScore` field — a THIRD embedded-JSON source,
-structurally distinct from the schema.org JSON-LD block (round 1) and
-the two round-2 guesses (a <score-board> element's HTML attributes, a
-Next.js __NEXT_DATA__ props blob). New extract_media_scorecard_json()
-looks for this script tag and, if found, recursively scans the parsed
-JSON for any key naming "audience"/"tomatometer"/"critic" — logging
-every match (key path and raw value) to the debug output regardless of
-whether a clean numeric score is accepted, so a real job log shows
-exactly what's actually there even if the true key nesting differs
-from what the research described. Wired into extract_rt_scores() as a
-third independent path, gap-filling only (never overrides an
-already-trusted JSON-LD critic score). Unit-tested (20 cases:
-nested-score-object shape, bare-numeric shape, absent script,
-malformed JSON, a non-numeric consensus-only object correctly NOT
-fabricated into a score, and wiring priority against JSON-LD).
-
-NOT YET VERIFIED against a real live page — this sandbox still can't
-fetch rottentomatoes.com directly to confirm the research's claim, same
-as every prior round. The next real verification run's job log is the
-actual test.
+score" — a second explicit continuation past the round-6 "genuine
+ceiling" conclusion, which this round overturned with real evidence).
+Not another guess from training-data recollection: real WebSearch
+research (this sandbox can reach general web search/fetch even though
+rottentomatoes.com itself is egress-blocked) turned up a specific,
+current, cross-corroborated technical claim from two independent
+search results, both describing the same structure — see above for the
+full real result. Unit-tested (25 cases covering both the originally-
+guessed bare-numeric/nested-int shapes and the real confirmed
+numeric-string shape, absent/malformed script tags, a non-numeric
+consensus-only object correctly not fabricated into a score, and
+wiring priority against the already-trusted JSON-LD critic score).
 
 A FULL DATA-QUALITY AUDIT of the real 447-title production batch found
 Metacritic itself is NOT immune to the same wrong-page failure shape
@@ -730,7 +730,18 @@ def load_pending(cache):
     critic score itself is still missing. Same self-limiting shape as
     rtAttempted: one real attempt per title, ever, whether or not that
     attempt actually finds a user score (some titles genuinely have too
-    few MC user ratings for one to exist)."""
+    few MC user ratings for one to exist).
+
+    needsRT additionally checks rtAudienceAttempted, the exact same
+    backfill-gap fix applied to the RT side once
+    extract_media_scorecard_json() (round 7's real, verified RT
+    audience-score fix) shipped: virtually every title already had
+    rtAttempted stamped from the many production runs before this fix
+    existed, so without this second stamp the original rtAttempted-only
+    gate would mark every one of them permanently done and
+    rtAudience would never backfill for any already-scraped title, only
+    brand-new ones. One real attempt per title, ever, same as the other
+    two stamps."""
     omdb = json.load(open(DATA_DIR / 'omdbMetadata.json')) if (DATA_DIR / 'omdbMetadata.json').exists() else {}
     enriched = json.load(open(DATA_DIR / 'enrichedMetadata.json')) if (DATA_DIR / 'enrichedMetadata.json').exists() else {}
 
@@ -762,7 +773,11 @@ def load_pending(cache):
                 or not cached.get('mcUserAttempted')
                 or (cached.get('metacritic') is None and not _in_cooldown(cached))
             )
-            needs_rt = SCRAPE_RT and (cached is None or not cached.get('rtAttempted'))
+            needs_rt = SCRAPE_RT and (
+                cached is None
+                or not cached.get('rtAttempted')
+                or not cached.get('rtAudienceAttempted')
+            )
             if not needs_mc and not needs_rt:
                 continue  # fully resolved already (or a fresh miss still on cooldown)
 
@@ -856,6 +871,26 @@ def extract_media_scorecard_json(html):
     except Exception as e:
         return None, None, {'mediaScorecardFound': True, 'parseError': str(e)[:200]}
 
+    def _to_int(v):
+        # ROUND 7 REAL FIX: the real shape puts the score as a NUMERIC
+        # STRING ("score": "88"), not a bare int — confirmed via a real
+        # verification run (round 7's own job log: 'root.audienceScore':
+        # {'score': '88', 'scorePercent': '88%', ...}), not the bare-int
+        # shape originally guessed. The first version of this function
+        # only accepted int/float and silently discarded every real hit
+        # as a result — this is the fix. 'scorePercent' ("88%") is
+        # deliberately never read here; only the clean 'score' field is.
+        if isinstance(v, bool):
+            return None
+        if isinstance(v, (int, float)):
+            return round(float(v))
+        if isinstance(v, str):
+            try:
+                return round(float(v.strip()))
+            except ValueError:
+                return None
+        return None
+
     hits = []
 
     def walk(node, path):
@@ -865,15 +900,17 @@ def extract_media_scorecard_json(html):
             for k, v in node.items():
                 lk = k.lower()
                 if 'audience' in lk or 'tomatometer' in lk or 'critic' in lk:
-                    # The real shape reportedly nests the number one level
-                    # down (e.g. {"tomatometerScore": {"score": 92, ...}})
-                    # rather than a bare int — unwrap that one hop so
-                    # numeric_score() below can find it, while still
-                    # recording the raw value (even a non-numeric one, e.g.
-                    # a {"consensus": "mixed"} object with no "score" key)
-                    # for diagnosis rather than silently dropping it.
-                    if isinstance(v, dict) and isinstance(v.get('score'), (int, float)) and not isinstance(v.get('score'), bool):
-                        hits.append((f'{path}.{k}.score', v['score']))
+                    # The real shape nests the number one level down under
+                    # a "score" key (e.g. {"audienceScore": {"score": "88",
+                    # "scorePercent": "88%", ...}}) rather than a bare
+                    # value — unwrap that one hop so numeric_score() below
+                    # can find it, while still recording the raw value
+                    # (even a non-numeric one, e.g. a {"consensus": "mixed"}
+                    # object with no usable "score" key) for diagnosis
+                    # rather than silently dropping it.
+                    score_num = _to_int(v.get('score')) if isinstance(v, dict) else None
+                    if score_num is not None:
+                        hits.append((f'{path}.{k}.score', score_num))
                     else:
                         hits.append((f'{path}.{k}', v))
                 if isinstance(v, (dict, list)):
@@ -887,8 +924,10 @@ def extract_media_scorecard_json(html):
 
     def numeric_score(key_fragment):
         for path, v in hits:
-            if key_fragment in path.lower() and isinstance(v, (int, float)) and not isinstance(v, bool):
-                return round(float(v))
+            if key_fragment in path.lower():
+                n = _to_int(v)
+                if n is not None:
+                    return n
         return None
 
     critic = numeric_score('tomatometer')
@@ -1325,6 +1364,7 @@ def main():
                 entry['rtAudience'] = None if unreleased else (rt.get('audience') if rt else None)
                 entry['rtUrl'] = rt.get('url') if rt else None
                 entry['rtAttempted'] = time.strftime('%Y-%m-%d')
+                entry['rtAudienceAttempted'] = True
             if t['needsMC']:
                 entry['metacritic'] = None if unreleased else (mc.get('metascore') if mc else None)
                 entry['metacriticUser'] = None if unreleased else (mc.get('userScore') if mc else None)
