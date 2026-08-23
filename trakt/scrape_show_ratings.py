@@ -60,14 +60,35 @@ uses): is_unreleased() discards any score for a title with a known
 future release/air date outright; extract_metascore()/
 page_title_matches() cross-check the fetched page's own JSON-LD date
 field and <title> tag against the expected title/year before trusting
-anything scraped from it. This was a real, meaningful error rate in an
-unbiased first-round sample (~1 in 9) concentrated heavily in two
-identifiable risk categories (unreleased titles, title collisions) —
-the fix targets exactly those, but the remaining ~365 already-cached
-Metacritic values were NOT individually re-verified this session (that
-would mean hundreds of manual searches); a full re-scrape with the new
-guards in place is the honest way to get a fully re-validated dataset,
-not a claim that everything remaining is confirmed clean.
+anything scraped from it.
+
+A FULL RE-SCRAPE with those guards deployed (447 titles) then exposed a
+real gap in that fix: is_unreleased() worked (3/3 real hits), but 6 of
+the 9 originally-confirmed-wrong titles (Elway, Ambitions, The Agency,
+Lost in Space, Perry Mason, Legends) came back with the EXACT SAME wrong
+scores as before — the wrong page for each apparently states no
+explicit conflicting year anywhere in its <title> or JSON-LD, so that
+guard had nothing to act on (deliberately asymmetric — it was built to
+never reject a legitimate no-year match like The Boys or Fleabag, and
+that same caution left it with no signal here). All 6 corrected back to
+null again. Fixed with a HARDER signal, page_imdb_matches(): every title
+reaching this script is already OMDb-eligible, which itself requires a
+resolved IMDb id — cross-checking Metacritic's own IMDb reference (a
+generic imdb.com/title/ttNNNNNNN scan across the whole page, not one
+assumed markup location) against that already-known id is an exact-id
+comparison, not fuzzy text matching, and is treated as authoritative
+when it can run: a mismatch rejects outright regardless of what the
+title check says, a confirmed match skips the title check entirely, and
+"no id found on the page at all" falls back to the pre-existing title/
+date check unchanged. Unit-tested against all 6 real newly-confirmed-bad
+cases (synthetic HTML reconstructing "wrong page, no year signal, wrong
+imdb id present" — every one now correctly rejected) plus every prior
+regression case (The Boys, Fleabag, no-imdb-known candidates). NOT yet
+verified against a real live re-scrape at the time of this commit — this
+sandbox still can't fetch metacritic.com to confirm the real wrong pages
+actually carry a mismatched (not just absent) IMDb reference the way the
+fix assumes; the next real scheduled or manual run is the actual test,
+same discipline as every other scraper fix in this project's history.
 
 Run manually:   python3 trakt/scrape_show_ratings.py [batch_size]
 GitHub Action:  .github/workflows/trakt-scrape-show-ratings.yml
@@ -147,6 +168,44 @@ def is_unreleased(release_date):
         return False
 
 
+def page_imdb_matches(expected_imdb_id, html_content):
+    """Cross-check Metacritic's own IMDb reference against the IMDb id
+    already known for this title (every title reaching this scraper is
+    OMDb-eligible, which itself requires a resolved IMDb id — see
+    load_pending()) — an exact-id comparison, not fuzzy text matching, so
+    it's a much harder signal than page_title_matches() below.
+
+    Built after a real production run exposed that title/date checking
+    alone isn't sufficient: a full re-scrape (447 titles, after
+    page_title_matches()/extract_metascore() first shipped) still landed
+    the exact same wrong scores on 6 of the 9 originally-confirmed-wrong
+    titles (Elway, Ambitions, The Agency, Lost in Space, Perry Mason,
+    Legends) — the guessed wrong page for each apparently doesn't state
+    an explicit conflicting year anywhere in its <title> or JSON-LD, so
+    that check had nothing to act on. An id is a much smaller surface for
+    a "looks right but isn't" false negative than a human-readable title
+    string.
+
+    Scans the raw page HTML for ANY imdb.com/title/ttNNNNNNN reference
+    rather than depending on one specific markup location (an infobox
+    link, a JSON-LD sameAs field, etc.) — this sandbox can't fetch a real
+    page to know exactly where Metacritic embeds it, so a generic scan is
+    the more robust choice over guessing one exact selector/field.
+
+    Returns True (a matching id was found — treat as strongly confirmed,
+    the caller may skip the softer title check entirely), False (an id
+    was found and it does NOT match — a confirmed wrong page, reject
+    regardless of what the title check would say), or None (no IMDb id
+    found anywhere on the page — can't verify this way, caller should
+    fall back to page_title_matches())."""
+    if not expected_imdb_id:
+        return None
+    ids_found = set(re.findall(r'imdb\.com/title/(tt\d+)', html_content))
+    if not ids_found:
+        return None
+    return expected_imdb_id in ids_found
+
+
 def page_title_matches(expected_title, expected_year, html_content):
     """Verify the fetched page's own <title> tag plausibly refers to the
     title being looked up, not a different work landed via the direct-
@@ -202,7 +261,7 @@ def page_title_matches(expected_title, expected_year, html_content):
     return True
 
 
-def extract_metascore(html, title, year):
+def extract_metascore(html, title, year, imdb_id=None):
     """Parses a fetched Metacritic page's raw HTML for a critic Metascore
     and/or user score. Pulled out of scrape_metacritic() into its own
     pure function (no Playwright dependency) specifically so it's
@@ -257,14 +316,20 @@ def extract_metascore(html, title, year):
             metascore = int(mm.group(1))
 
     # Confirm the page we actually landed on is the title we meant to
-    # look up before trusting anything scraped from it — see
-    # page_title_matches()'s docstring for the real, confirmed bug this
-    # closes. A confirmed mismatch discards the result entirely (same
-    # shape as a real miss); an unverifiable page (no <title> tag found)
-    # falls through unchanged rather than discarding a possibly-good
-    # result on a technicality.
-    if (metascore is not None or user_score is not None) and page_title_matches(title, year, html) is False:
-        return None, None
+    # look up before trusting anything scraped from it. Try the hard
+    # signal first (an exact IMDb id match, per page_imdb_matches()'s
+    # docstring — built after a real production run showed the softer
+    # title/date check alone wasn't sufficient); an id match is treated
+    # as authoritative and skips the title check entirely, an id
+    # mismatch rejects immediately regardless of what the title check
+    # would say, and "no id found at all" falls back to the pre-existing
+    # title/date check unchanged.
+    if metascore is not None or user_score is not None:
+        imdb_check = page_imdb_matches(imdb_id, html)
+        if imdb_check is False:
+            return None, None
+        if imdb_check is None and page_title_matches(title, year, html) is False:
+            return None, None
 
     return metascore, user_score
 
@@ -319,7 +384,17 @@ def load_pending(cache):
                 continue
             seen.add(key)
             release_date = meta.get('releaseDate') or meta.get('firstAirDate')
-            titles.append({'titleKey': key, 'type': t.get('type'), 'title': title, 'year': year, 'releaseDate': release_date})
+            # Every title reaching this point is OMDb-eligible (checked
+            # above), which itself requires a resolved IMDb id — so this
+            # should be present for essentially every title, from either
+            # the raw Trakt export (library/watchlist) or TMDB's
+            # external_ids backfill (candidatePool stubs, which have no
+            # ids.imdb of their own). Threaded through to
+            # page_imdb_matches() for a real, verified fix — see its
+            # docstring.
+            imdb_id = t.get('ids', {}).get('imdb') or meta.get('imdbId')
+            titles.append({'titleKey': key, 'type': t.get('type'), 'title': title, 'year': year,
+                            'releaseDate': release_date, 'imdbId': imdb_id})
 
     return [t for t in titles if not is_cached_done(cache.get(t['titleKey']))]
 
@@ -431,7 +506,7 @@ def scrape_rt(page, title, year, kind):
 
 # ── Metacritic ────────────────────────────────────────────────────────────
 
-def scrape_metacritic(page, title, year, kind):
+def scrape_metacritic(page, title, year, kind, imdb_id=None):
     """kind: 'movie' or 'show'. Same search-then-scrape shape as RT.
 
     Session 52's first live test found 0/5 matches here — the search-
@@ -497,7 +572,7 @@ def scrape_metacritic(page, title, year, kind):
     except PWTimeout:
         return {'metascore': None, 'userScore': None, 'url': url, 'debug_link_count': debug_link_count}
 
-    metascore, user_score = extract_metascore(html, title, year)
+    metascore, user_score = extract_metascore(html, title, year, imdb_id)
     if metascore is None and user_score is None:
         return {'metascore': None, 'userScore': None, 'url': url, 'debug_link_count': debug_link_count}
     return {'metascore': metascore, 'userScore': user_score, 'url': url, 'debug_link_count': debug_link_count}
@@ -552,7 +627,7 @@ def main():
 
             mc = None
             try:
-                mc = scrape_metacritic(page, t['title'], t['year'], t['type'])
+                mc = scrape_metacritic(page, t['title'], t['year'], t['type'], t.get('imdbId'))
             except Exception as e:
                 print(f'         MC error: {e}')
             time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
