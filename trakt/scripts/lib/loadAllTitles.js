@@ -16,7 +16,7 @@ import { fileURLToPath } from 'url';
 import {
   buildIndexes, hydrateTitle, getCreator, matchScore, confidenceScore,
   reason, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings,
-  resolveSimilarTitles, resolveSimilarDirectors,
+  resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones,
 } from '../../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -87,6 +87,11 @@ export function loadAllTitles() {
       // among dozens of citations is noise. See resolveSimilarDirectors()'s
       // own comment for why this stays display-only, not a scoring signal.
       similarToDirectors: resolveSimilarDirectors(meta, h.type, enrichedMeta).map(d => d.name),
+      // Beneath TMDB's blunt genre taxonomy — see inferSubgenres()/
+      // inferTones()'s own comment in engine.js for the design (live-
+      // computed from keywords, never persisted, display-only for now).
+      subgenres: inferSubgenres(meta),
+      tones: inferTones(meta),
       topCast: meta.topCast || [],
       releaseDate: meta.releaseDate || meta.firstAirDate || '',
       runtime: meta.runtime ?? meta.episodeRunTime ?? '',
