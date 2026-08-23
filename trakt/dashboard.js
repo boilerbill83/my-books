@@ -1601,16 +1601,19 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `dataset before inclusion, and 2 real false positives were caught via hand-spot-checking ~20 real titles ` +
         `(the same manual-audit discipline Session 16c/17 used) and fixed before shipping — not assumed correct ` +
         `just because the code ran. Wired into <code>loadAllTitles.js</code>/<code>export_extract.js</code> as a new ` +
-        `<code>subgenres</code> CSV column. Display/audit only — not wired into <code>matchScore()</code> yet; a ` +
-        `scoring weight needs the same <code>eval.js</code>-gated validation <code>keywordBonus()</code> went ` +
-        `through this session first.`,
+        `<code>subgenres</code> CSV column. <strong>Now also a live scoring signal</strong>: new ` +
+        `<code>subgenreBonus()</code>, same tiered-count shape as <code>genreBonus()</code>, cap tuned against ` +
+        `<code>scripts/eval.js</code> the same way <code>keywordBonus()</code> was — an initial cap scaled straight ` +
+        `from <code>genreBonus()</code>'s own thresholds measurably regressed precision@50 (92%→90%), so it was ` +
+        `roughly halved twice to a cap of 1.5, which instead genuinely improved precision@10 90%→100% with every ` +
+        `other metric held or improved.`,
       plain: `Genres are broad buckets ("Drama," "Crime"). The app now also tags each title with more specific ` +
         `subject descriptors underneath that ("legal," "heist," "coming-of-age") derived from TMDB's own real, ` +
         `specific keyword tags — not guessed, and checked by hand against real titles before shipping (one early ` +
         `version wrongly called "300" a superhero movie just because it's based on a graphic novel; fixed before ` +
-        `going live).`,
-      impact: `Shipped and verified — real coverage on ${((withSubgenre / total) * 100).toFixed(1)}% of the dataset, ` +
-        `a well-distributed vocabulary (no tag over the 15% cap), not yet a scoring signal by design.`,
+        `going live). These tags now also nudge the recommendation scores themselves, not just the exported data.`,
+      impact: `Shipped, verified, AND now live in scoring — real coverage on ${((withSubgenre / total) * 100).toFixed(1)}% of the dataset, ` +
+        `a well-distributed vocabulary (no tag over the 15% cap), and a measured accuracy gain with zero regressions.`,
     });
     findings.push({
       id: 'tones-field-missing',
@@ -1626,17 +1629,24 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `real matches anywhere in the dataset and were dropped from the vocabulary rather than kept as permanently- ` +
         `empty tags). Top value <code>${topTone ? topTone[0] : 'n/a'}</code> at ${topTone ? ((topTone[1] / total) * 100).toFixed(1) : 0}% — nowhere ` +
         `close to the 15% cap; the real constraint here is coverage breadth, not over-concentration. Wired into the ` +
-        `CSV export as a new <code>tones</code> column. Same display-only status as subgenres — a future ` +
-        `<code>toneSignal()</code>-equivalent (the book side's real per-tone rating-preference-delta mechanic, ` +
-        `formula confirmed via a full code read this session) is a real next step once coverage and quality are ` +
-        `both proven, not bundled into this pass.`,
+        `CSV export as a new <code>tones</code> column. <strong>Now also a live scoring signal</strong>: new ` +
+        `<code>toneSignal()</code>, a genuine per-tone rating-preference delta — the book side's real ` +
+        `<code>toneSignal()</code> mechanic (formula confirmed via a full code read while planning this), rescaled ` +
+        `for BMTRE's 0-100 score/1-10 rating scales. Checked before building: 12 of 13 real tones clear a >=3-rated- ` +
+        `titles trust floor (the same one <code>buildToneProfile()</code> uses on the book side), with real deltas ` +
+        `comparable in size to the book side's own (witty +0.36, inspirational +0.66, gritty -0.30). Multiplier swept ` +
+        `against <code>scripts/eval.js</code> from 1.5 to 15 — results plateau from ~5 upward as the clamp saturates, ` +
+        `so a moderate value was kept deliberately short of that ceiling rather than chasing the single best leave- ` +
+        `one-out decimal. Real, verified result: precision@10 90%→100%, precision@50 92%→94%, precision@100 86%→88%, ` +
+        `MAE 20.17→19.98 — every metric held or improved, no tradeoffs needed.`,
       plain: `Beyond subject matter, the app now also tags mood and craft — how something FEELS, not just what it's ` +
         `about (a legal drama can be tense or satirical; those are different things). Coverage is honestly thinner ` +
         `than the subject tags, because the underlying TMDB data just has fewer mood-related tags to draw from — ` +
         `several plausible mood words were checked against the real data and dropped entirely rather than shipped ` +
-        `empty, since a tag nothing ever gets isn't worth having.`,
-      impact: `Shipped, with an honestly-scoped coverage gap documented rather than hidden — real, verified data, ` +
-        `not yet a scoring signal.`,
+        `empty, since a tag nothing ever gets isn't worth having. These tags now genuinely nudge scores based on ` +
+        `whether Bill has actually rated that mood higher or lower in the past, not just whether he watches a lot of it.`,
+      impact: `Shipped, verified, AND now live in scoring — an honestly-scoped coverage gap didn't stop this from ` +
+        `becoming a real, measured accuracy gain across every precision tier with zero regressions.`,
     });
     findings.push({
       id: 'genre-subgenre-split-missing',

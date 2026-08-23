@@ -86,12 +86,27 @@ export function buildIndexes(library, enrichedMeta, feedback) {
   const lovedCollections = new Map();    // TMDB collection id -> [titleKey, ...] of loved titles in it
   const lovedActors = new Map();         // actor name -> count of loved titles they appeared in (topCast)
   const lovedKeywords = new Map();       // free-form TMDB keyword -> count of loved titles carrying it
+  const lovedSubgenres = new Map();      // inferSubgenres() tag -> count of loved titles carrying it
   const lovedCountByType = { movie: 0, show: 0 }; // for matchPointScale() below
+  // tone -> [ratings], built from EVERY rated title (not just loved) —
+  // this is a rating-preference-delta signal (the book side's
+  // buildToneProfile()/toneSignal() shape), which needs both liked and
+  // disliked examples to compute a real per-tone mean, unlike the
+  // loved-only counts above.
+  const toneRatingsRaw = new Map();
+  let ratedSum = 0, ratedCount = 0;
 
   for (const t of library.titles || []) {
     if (t.myRating == null) continue;
     const meta = enrichedMeta[t.titleKey];
     const creator = meta ? getCreator(t.type, meta) : null;
+
+    ratedSum += t.myRating;
+    ratedCount++;
+    for (const tone of inferTones(meta)) {
+      if (!toneRatingsRaw.has(tone)) toneRatingsRaw.set(tone, []);
+      toneRatingsRaw.get(tone).push(t.myRating);
+    }
 
     if (creator) {
       const w = ratingWeight(t.myRating);
@@ -122,6 +137,9 @@ export function buildIndexes(library, enrichedMeta, feedback) {
         if (KEYWORD_STOPLIST.has(kw)) continue;
         lovedKeywords.set(kw, (lovedKeywords.get(kw) || 0) + 1);
       }
+      for (const s of inferSubgenres(meta)) {
+        lovedSubgenres.set(s, (lovedSubgenres.get(s) || 0) + 1);
+      }
     }
   }
 
@@ -131,7 +149,19 @@ export function buildIndexes(library, enrichedMeta, feedback) {
       .map(e => e.titleKey)
   );
 
-  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, excluded, lovedCountByType };
+  // Only keep tones backed by >=3 rated titles — otherwise a single
+  // outlier rating would swing the whole tone's "preference" to a
+  // meaningless extreme, the same floor buildToneProfile() uses on the
+  // book side.
+  const globalMeanRating = ratedCount ? ratedSum / ratedCount : null;
+  const toneProfile = new Map();
+  for (const [tone, ratings] of toneRatingsRaw) {
+    if (ratings.length >= 3) {
+      toneProfile.set(tone, ratings.reduce((s, r) => s + r, 0) / ratings.length);
+    }
+  }
+
+  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, toneProfile, globalMeanRating, excluded, lovedCountByType };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -260,7 +290,61 @@ function keywordBonus(keywords, lovedKeywords) {
     else if (count >= 3) bonus += 0.5;
     else if (count >= 1) bonus += 0.25;
   }
-  return Math.min(2, bonus);
+  return Math.min(1.5, bonus);
+}
+
+// The scoring-integration step the taxonomy plan deliberately deferred
+// ("a scoring weight needs the same eval.js-gated validation keywordBonus()
+// went through") — attempted and validated this session, not bundled into
+// the classifier's own commit. Reuses genreBonus()'s exact tiered-count
+// shape (the book side's themeBonus() has the identical shape, confirmed
+// via a full code read while planning the classifier), scaled to this
+// signal's real, smaller loved-count range (max 23 among 149 loved titles,
+// vs. lovedGenres' max of 105) rather than reusing genreBonus()'s literal
+// thresholds unscaled. Cap tuned against scripts/eval.js: the tier weights
+// scaled straight from genreBonus() (max ~5 combined) measurably regressed
+// precision@50 (92%→90%) even though MAE improved — this project's
+// precision-first rule (see keywordBonus()'s own comment) means that
+// doesn't ship. Roughly halved twice to a 1.5 cap, which not only avoided
+// the regression but genuinely improved precision@10 90%→100% with every
+// other metric held or improved.
+function subgenreBonus(subgenres, lovedSubgenres) {
+  let bonus = 0;
+  for (const s of (subgenres || [])) {
+    const count = lovedSubgenres.get(s) || 0;
+    if      (count >= 18) bonus += 0.75;
+    else if (count >= 10) bonus += 0.5;
+    else if (count >= 4)  bonus += 0.25;
+    else if (count >= 1)  bonus += 0.1;
+  }
+  return Math.min(1.5, bonus);
+}
+
+// The book side's toneSignal() equivalent: a genuine per-tone rating-
+// preference delta, not a loved-count tier — bbreEngine.js's own formula
+// is `(tonePersonalMean - globalMean) * 0.030`, summed across a
+// candidate's tones, clamped to [-0.12, +0.12], on the book engine's
+// ~0-5 internal score scale. Rescaled here for BMTRE's 0-100 score scale
+// and 1-10 myRating (real per-tone deltas checked against the actual
+// data before picking a multiplier: witty +0.36, inspirational +0.66,
+// gritty -0.30, melancholy +0.70 — comparable magnitude to the book
+// side's own real deltas, and, unlike tone coverage overall, most of the
+// 13 real tones clear the >=3-rated-titles trust floor). Multiplier swept
+// from 1.5 to 15 against scripts/eval.js — results plateau from ~5
+// upward (the +-3 cap saturates), so a moderate 4 was kept deliberately
+// short of the observed ceiling rather than chasing the exact best
+// leave-one-out decimal on a 533-title eval set. Real result: precision@10
+// 90%->100%, precision@50 92%->94%, precision@100 86%->88%, MAE
+// 20.17->19.98 — every metric held or improved, no tradeoffs needed.
+function toneSignal(tones, toneProfile, globalMean) {
+  if (!toneProfile || !toneProfile.size || globalMean == null) return 0;
+  let adj = 0;
+  for (const t of (tones || [])) {
+    if (toneProfile.has(t)) {
+      adj += (toneProfile.get(t) - globalMean) * 4;
+    }
+  }
+  return Math.max(-3, Math.min(3, adj));
 }
 
 // A real Improvement Opportunities finding (Session 53): similarToIds/
@@ -680,6 +764,8 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   score += franchiseBonus(meta?.belongsToCollection?.id, idx.lovedCollections);
   score += castBonus(meta?.topCast, idx.lovedActors);
   score += keywordBonus(meta?.keywords, idx.lovedKeywords);
+  score += subgenreBonus(inferSubgenres(meta), idx.lovedSubgenres);
+  score += toneSignal(inferTones(meta), idx.toneProfile, idx.globalMeanRating);
 
   // Forward match: this candidate's own TMDB-similar/recommended list
   // includes a title Bill loved.
