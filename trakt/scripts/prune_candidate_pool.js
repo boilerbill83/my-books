@@ -43,8 +43,9 @@ const omdbMetaRaw = readJSON(path.join(DATA_DIR, 'omdbMetadata.json'), {});
 const scrapedShowRatings = readJSON(path.join(DATA_DIR, 'scrapedShowRatings.json'), {});
 const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
 const feedback = readJSON(path.join(DATA_DIR, 'feedbackData.json'), { interactions: [] });
+const llmTags = readJSON(path.join(DATA_DIR, 'llmTags.json'), {});
 
-const idx = buildIndexes(library, enrichedMeta, feedback);
+const idx = buildIndexes(library, enrichedMeta, feedback, llmTags);
 const watchlistKeys = new Set((watchlist.titles || []).map(c => c.titleKey));
 
 // Same re-edit / non-English / pre-2000-movie / animation exclusions

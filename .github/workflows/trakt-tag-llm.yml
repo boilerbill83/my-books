@@ -1,0 +1,51 @@
+name: Tag BMTRE Subgenres/Tones with Haiku
+
+on:
+  workflow_dispatch:   # manual only — each run costs real API credits
+    inputs:
+      batch_size:
+        description: 'How many titles to tag this run'
+        type: number
+        default: 600
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Find real subgenre/tone gaps (keyword + overview tiers already tried)
+        run: node trakt/find_llm_tag_gaps.mjs
+      - name: Tag the gap titles (Claude Haiku 4.5)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 trakt/tag_llm.py ${{ inputs.batch_size || 600 }}
+        timeout-minutes: 30
+      - name: Commit if changed
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add trakt/data/llmTags.json
+          if git diff --staged --quiet; then
+            echo "No new tags."
+            exit 0
+          fi
+          git commit -m "Tag BMTRE subgenre/tone gaps via Haiku [automated]"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest main."
+            git fetch origin main
+            git rebase origin/main
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1

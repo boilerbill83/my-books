@@ -36,8 +36,9 @@ export function loadAllTitles() {
   const scrapedShowRatings = read('scrapedShowRatings.json', {});
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
   const feedback = read('feedbackData.json', { interactions: [] });
+  const llmTags = read('llmTags.json', {});
 
-  const idx = buildIndexes(library, enrichedMeta, feedback);
+  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags);
   const feedbackByKey = new Map((feedback.interactions || []).map(i => [i.titleKey, i]));
 
   const rows = [];
@@ -88,10 +89,11 @@ export function loadAllTitles() {
       // own comment for why this stays display-only, not a scoring signal.
       similarToDirectors: resolveSimilarDirectors(meta, h.type, enrichedMeta).map(d => d.name),
       // Beneath TMDB's blunt genre taxonomy — see inferSubgenres()/
-      // inferTones()'s own comment in engine.js for the design (live-
-      // computed from keywords, never persisted, display-only for now).
-      subgenres: inferSubgenres(meta),
-      tones: inferTones(meta),
+      // inferTones()'s own comment in engine.js for the design (keyword +
+      // overview-text + LLM-tag fallback tiers, only the last one
+      // persisted — see trakt/data/llmTags.json).
+      subgenres: inferSubgenres(meta, idx.llmTags?.[h.titleKey]),
+      tones: inferTones(meta, idx.llmTags?.[h.titleKey]),
       topCast: meta.topCast || [],
       releaseDate: meta.releaseDate || meta.firstAirDate || '',
       runtime: meta.runtime ?? meta.episodeRunTime ?? '',

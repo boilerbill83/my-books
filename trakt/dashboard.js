@@ -487,22 +487,22 @@ const FIELD_REGISTRY = [
     note: 'Quality = any real award/nomination found via OMDb\'s Awards text. Bill\'s library skews toward ' +
       'well-regarded titles, so most (~80%) genuinely do have some recognition — 0 is still a legitimate ' +
       'answer for a real minority (genuinely un-recognized titles), not evidence of a parsing gap.' },
-  { key: 'subgenres', label: 'Subgenres (beneath genre)', source: 'Derived (keywords)', critical: false,
+  { key: 'subgenres', label: 'Subgenres (beneath genre)', source: 'Derived (keywords + LLM)', critical: false,
     eligible: (t, meta) => !!meta,
-    populated: (t, meta) => inferSubgenres(meta).length > 0,
-    quality: (t, meta) => inferSubgenres(meta).length > 0,
-    note: 'Live-computed from TMDB keywords, not persisted — see inferSubgenres() in engine.js. Coverage is a ' +
-      'real ceiling of the underlying keyword data, not a bug (a title with sparse/generic keywords may ' +
-      'legitimately match none of the 21 canonical subgenre tags).' },
-  { key: 'tones', label: 'Tones (mood/craft)', source: 'Derived (keywords)', critical: false,
+    populated: (t, meta, omdb, llmEntry) => inferSubgenres(meta, llmEntry).length > 0,
+    quality: (t, meta, omdb, llmEntry) => inferSubgenres(meta, llmEntry).length > 0,
+    note: 'Keyword match first, then trakt/data/llmTags.json (Claude Haiku 4.5, per-title, only for titles the ' +
+      'free keyword tier misses) — see inferSubgenres() in engine.js. Coverage below 100% means the LLM pass ' +
+      'hasn\'t reached this title yet, not a ceiling.' },
+  { key: 'tones', label: 'Tones (mood/craft)', source: 'Derived (keywords + overview + LLM)', critical: false,
     eligible: (t, meta) => !!meta,
-    populated: (t, meta) => inferTones(meta).length > 0,
-    quality: (t, meta) => inferTones(meta).length > 0,
-    note: 'Same live-computed design as Subgenres, via inferTones(). Coverage is honestly lower — TMDB\'s ' +
-      'keyword vocabulary carries far fewer mood/craft descriptors than content/subject ones.' },
+    populated: (t, meta, omdb, llmEntry) => inferTones(meta, llmEntry).length > 0,
+    quality: (t, meta, omdb, llmEntry) => inferTones(meta, llmEntry).length > 0,
+    note: 'Same three-tier design as Subgenres (keyword -> overview-text phrase -> LLM), via inferTones(). ' +
+      'Coverage below 100% means the LLM pass hasn\'t reached this title yet, not a ceiling.' },
 ];
 
-function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta) {
+function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags = {}) {
   const allTitles = new Map();
   for (const t of [...(library.titles || []), ...(watchlist.titles || []), ...(candidatePool.titles || [])]) {
     if (t.titleKey && !allTitles.has(t.titleKey)) allTitles.set(t.titleKey, t);
@@ -514,10 +514,11 @@ function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, om
     for (const t of titles) {
       const meta = enrichedMeta[t.titleKey];
       const omdb = omdbMeta[t.titleKey];
+      const llmEntry = llmTags[t.titleKey];
       if (!f.eligible(t, meta, omdb)) continue;
       eligible++;
-      if (f.populated(t, meta, omdb)) populated++;
-      if (f.quality(t, meta, omdb)) quality++;
+      if (f.populated(t, meta, omdb, llmEntry)) populated++;
+      if (f.quality(t, meta, omdb, llmEntry)) quality++;
     }
     return {
       ...f, eligible, populated, quality,
@@ -1676,9 +1677,10 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   {
     const subgenreCounts = {}, toneCounts = {};
     let withSubgenre = 0, withTone = 0;
-    for (const m of allEnriched) {
-      const subs = inferSubgenres(m);
-      const tones = inferTones(m);
+    for (const [titleKey, m] of Object.entries(enrichedMeta)) {
+      const llmEntry = idx.llmTags?.[titleKey];
+      const subs = inferSubgenres(m, llmEntry);
+      const tones = inferTones(m, llmEntry);
       if (subs.length) withSubgenre++;
       if (tones.length) withTone++;
       for (const s of subs) subgenreCounts[s] = (subgenreCounts[s] || 0) + 1;
@@ -2260,7 +2262,7 @@ function renderQualityDial(sectionId, { score, components }) {
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
 
-  const [d, library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback, scrapedShowRatings] = await Promise.all([
+  const [d, library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback, scrapedShowRatings, llmTags] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -2269,10 +2271,11 @@ async function load() {
     get('./data/omdbMetadata.json').catch(() => ({})),
     get('./data/feedbackData.json').catch(() => ({ interactions: [] })),
     get('./data/scrapedShowRatings.json').catch(() => ({})),
+    get('./data/llmTags.json').catch(() => ({})),
   ]);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
 
-  const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta);
+  const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
   const byType = (list, type) => list.filter(c => c.type === type && enrichedOnly(c));
 
@@ -2283,7 +2286,7 @@ async function load() {
   // (rendered later) share one source of truth — no risk of the two
   // disagreeing about how many findings are actually open.
   const severityOrder = { critical: 0, serious: 1, warning: 2, good: 3 };
-  const fieldStats = computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta);
+  const fieldStats = computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags);
   const allFindings = [
     ...computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates),
     ...computeEngineImprovements(library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, idx, fromWatchlist, fromCandidates),

@@ -101,7 +101,7 @@ function normalizeGenre(g) {
   return GENRE_ALIASES[g] || g;
 }
 
-export function buildIndexes(library, enrichedMeta, feedback) {
+export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}) {
   const watched = new Map();
   for (const t of library.titles || []) watched.set(t.titleKey, t);
 
@@ -137,7 +137,7 @@ export function buildIndexes(library, enrichedMeta, feedback) {
 
     ratedSum += t.myRating;
     ratedCount++;
-    for (const tone of inferTones(meta)) {
+    for (const tone of inferTones(meta, llmTags[t.titleKey])) {
       if (!toneRatingsRaw.has(tone)) toneRatingsRaw.set(tone, []);
       toneRatingsRaw.get(tone).push(t.myRating);
     }
@@ -191,7 +191,7 @@ export function buildIndexes(library, enrichedMeta, feedback) {
         if (KEYWORD_STOPLIST.has(kw)) continue;
         lovedKeywords.set(kw, (lovedKeywords.get(kw) || 0) + rw);
       }
-      for (const s of inferSubgenres(meta)) {
+      for (const s of inferSubgenres(meta, llmTags[t.titleKey])) {
         lovedSubgenres.set(s, (lovedSubgenres.get(s) || 0) + rw);
       }
     }
@@ -248,7 +248,7 @@ export function buildIndexes(library, enrichedMeta, feedback) {
         const ng = normalizeGenre(g);
         dismissedGenreProfile.set(ng, (dismissedGenreProfile.get(ng) || 0) + 1);
       }
-      for (const s of inferSubgenres(dmeta)) {
+      for (const s of inferSubgenres(dmeta, llmTags[e.titleKey])) {
         dismissedSubgenreProfile.set(s, (dismissedSubgenreProfile.get(s) || 0) + 1);
       }
     }
@@ -276,7 +276,7 @@ export function buildIndexes(library, enrichedMeta, feedback) {
   const showAiringRateLoved = lovedCountByType.show ? lovedShowsAiring / lovedCountByType.show : 0;
   const showAiringOverrep = Math.max(0, showAiringRateLoved - showAiringRateAll);
 
-  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, toneProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount };
+  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, toneProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -346,7 +346,7 @@ function dismissAdjust(candidate, meta, creator, idx) {
     for (const g of (meta?.genres || [])) {
       if (idx.dismissedGenreProfile.get(normalizeGenre(g)) > 0) overlap++;
     }
-    for (const s of inferSubgenres(meta)) {
+    for (const s of inferSubgenres(meta, idx.llmTags?.[candidate.titleKey])) {
       if (idx.dismissedSubgenreProfile.get(s) > 0) overlap++;
     }
     if (overlap > 0) penalty += Math.max(STYLE_DISLIKE_CAP, overlap * STYLE_DISLIKE_PER_MATCH);
@@ -725,9 +725,23 @@ function scoreKeywordTags(keywords, map) {
   return scored.sort((a, b) => b[1] - a[1]);
 }
 
-export function inferSubgenres(meta, limit = 3) {
+// llmEntry is the specific per-title trakt/data/llmTags.json cache entry
+// ({subgenres, tones, taggedAt} or undefined) — the third, lowest-
+// priority tier, only consulted when tiers 1 (keywords) and 2 (tones
+// only: overview-text phrases) both come back empty. See trakt/tag_llm.py
+// for how this cache gets populated (Bill's explicit choice, via
+// AskUserQuestion, over a free-but-lower-quality genre-only fallback,
+// after being told the honest tradeoff: a genre-only default would reach
+// 100% coverage for free but many genres — Drama, Action, Thriller — have
+// no single defensible subgenre/tone, so it would mean tagging titles
+// with a guess rather than a real signal, degrading the very scoring
+// signal these fields exist to provide).
+export function inferSubgenres(meta, llmEntry, limit = 3) {
   if (!meta) return [];
-  return scoreKeywordTags(meta.keywords, SUBGENRE_KEYWORDS).slice(0, limit).map(([tag]) => tag);
+  const fromKeywords = scoreKeywordTags(meta.keywords, SUBGENRE_KEYWORDS).slice(0, limit).map(([tag]) => tag);
+  if (fromKeywords.length) return fromKeywords;
+  if (llmEntry?.subgenres?.length) return llmEntry.subgenres.slice(0, limit);
+  return [];
 }
 
 // Overview-text fallback for tones (Phase 2 of the second coverage pass —
@@ -784,11 +798,14 @@ function inferTonesFromOverview(meta, limit) {
   return matched.slice(0, limit);
 }
 
-export function inferTones(meta, limit = 4) {
+export function inferTones(meta, llmEntry, limit = 4) {
   if (!meta) return [];
   const fromKeywords = scoreKeywordTags(meta.keywords, TONE_KEYWORDS).slice(0, limit).map(([tag]) => tag);
   if (fromKeywords.length) return fromKeywords;
-  return inferTonesFromOverview(meta, limit);
+  const fromOverview = inferTonesFromOverview(meta, limit);
+  if (fromOverview.length) return fromOverview;
+  if (llmEntry?.tones?.length) return llmEntry.tones.slice(0, limit);
+  return [];
 }
 
 function voteCountBonus(voteCount) {
@@ -1053,8 +1070,9 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   score += franchiseBonus(meta?.belongsToCollection?.id, idx.lovedCollections);
   score += castBonus(meta?.topCast, idx.lovedActors);
   score += keywordBonus(meta?.keywords, idx.lovedKeywords);
-  score += subgenreBonus(inferSubgenres(meta), idx.lovedSubgenres);
-  score += toneSignal(inferTones(meta), idx.toneProfile, idx.globalMeanRating);
+  const llmEntry = idx.llmTags?.[candidate.titleKey];
+  score += subgenreBonus(inferSubgenres(meta, llmEntry), idx.lovedSubgenres);
+  score += toneSignal(inferTones(meta, llmEntry), idx.toneProfile, idx.globalMeanRating);
 
   // Forward match: this candidate's own TMDB-similar/recommended list
   // includes a title Bill loved.
@@ -1182,8 +1200,8 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
 
 // ── Entry point ──────────────────────────────────────────────────────────
 
-export function rankRecommendations(library, watchlist, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}) {
-  const idx = buildIndexes(library, enrichedMeta, feedback);
+export function rankRecommendations(library, watchlist, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}, llmTags = {}) {
+  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags);
 
   const candidates = (watchlist.titles || []).filter(c => !idx.excluded.has(c.titleKey));
   const scored = candidates.map(c => ({
@@ -1208,8 +1226,8 @@ export function rankRecommendations(library, watchlist, enrichedMeta, feedback =
 // discover_candidates.js already exclude known watchlist/library keys —
 // but checked here too since a UI silently double-counting the same title
 // under two origins would be worse than a defensive filter).
-export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}) {
-  const idx = buildIndexes(library, enrichedMeta, feedback);
+export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}, llmTags = {}) {
+  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags);
   const watchlistKeys = new Set((watchlist.titles || []).map(c => c.titleKey));
 
   const scoreOne = (c, origin) => {
@@ -1350,13 +1368,13 @@ const LIKED_THRESHOLD = 8;    // myRating >= 8/10 — the same looser "would he
                                 // buildIndexes() uses for signal-building.
 const DISLIKED_THRESHOLD = 5; // myRating <= 5/10, for the bottom-catch check
 
-export function computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta) {
+export function computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta, llmTags = {}) {
   const rated = (library.titles || []).filter(t => t.myRating != null && enrichedMeta[t.titleKey]);
 
   const preds = [];
   for (const t of rated) {
     const looLibrary = { titles: (library.titles || []).filter(x => x.titleKey !== t.titleKey) };
-    const idx = buildIndexes(looLibrary, enrichedMeta, feedback);
+    const idx = buildIndexes(looLibrary, enrichedMeta, feedback, llmTags);
     const h = hydrateTitle(t, enrichedMeta);
     const predicted = matchScore(h, idx, enrichedMeta, omdbMeta);
     if (Number.isFinite(predicted)) {

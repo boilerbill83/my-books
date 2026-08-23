@@ -1,2 +1,6 @@
 __pycache__/
 *.pyc
+
+# Regenerated fresh by find_llm_tag_gaps.mjs before every trakt/tag_llm.py
+# run (a workflow step, not committed source data) — scratch, not truth.
+trakt/data/llmTagGaps.json
