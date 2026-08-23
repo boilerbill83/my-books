@@ -570,6 +570,59 @@ export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedbac
   return { idx, fromWatchlist, fromCandidates };
 }
 
+// ── Diversity re-ranking ─────────────────────────────────────────────────
+// Real, verified gap (a dashboard Improvement Opportunities finding): with
+// no anti-clustering pass, the top of a score-sorted show list can be a
+// genre monoculture — a live check found 20 of 20 top-scored shows tagged
+// Drama, 13 also Crime, purely because that's what scores highest, not
+// because nothing else was available. Mirrors the book engine's author-
+// diversity MMR pass in spirit (stop one dominant signal from crowding out
+// everything else at the top of a list) but scoped to genre, the
+// dimension the finding actually measured, and implemented as a soft
+// per-genre cap within a display window rather than a penalty folded into
+// matchScore() — this only reorders an already-scored, already-sorted
+// list for DISPLAY, it never changes an individual title's bmtreScore, so
+// it has zero effect on computeEvalMetrics()'s precision@k (which scores
+// one title at a time, never a list) and needs no re-validation against
+// the eval harness.
+//
+// A title whose primary genre already has maxPerGenre picks within the
+// window gets deferred past titles that add real variety, not excluded —
+// deferred titles still surface later in the same returned list. If the
+// candidate pool genuinely doesn't have enough genre-diverse titles to
+// fill the window (a real possibility with a thin pool), the window is
+// backfilled from the deferred queue in original score order rather than
+// left under-filled — running out of diversity is never a reason to show
+// fewer picks than requested.
+export function diversityRerank(scoredList, enrichedMeta, { windowSize = 8, maxPerGenre = 3 } = {}) {
+  if (!scoredList.length) return scoredList;
+  const primaryGenre = c => {
+    const genres = enrichedMeta[c.titleKey]?.genres || [];
+    return genres.length ? normalizeGenre(genres[0]) : null;
+  };
+
+  const genreCounts = new Map();
+  const placed = [];
+  const deferred = [];
+
+  for (const c of scoredList) {
+    const g = primaryGenre(c);
+    const count = g ? (genreCounts.get(g) || 0) : 0;
+    if (placed.length < windowSize && (!g || count < maxPerGenre)) {
+      placed.push(c);
+      if (g) genreCounts.set(g, count + 1);
+    } else {
+      deferred.push(c);
+    }
+  }
+
+  while (placed.length < windowSize && deferred.length) {
+    placed.push(deferred.shift());
+  }
+
+  return [...placed, ...deferred];
+}
+
 // ── Evaluation harness ────────────────────────────────────────────────────
 // Answers the #1 Improvement Opportunities finding this dashboard has
 // flagged since Session 51: BMTRE had no equivalent of the book side's

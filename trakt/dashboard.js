@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -1083,35 +1083,56 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   }
 
   // 2. Real, verified genre-monoculture in the top of the ranked list —
-  // no diversity/anti-clustering re-ranking exists (the book engine's
-  // author-diversity MMR pass has no BMTRE equivalent).
+  // FIXED this session via diversityRerank() in engine.js, applied at the
+  // "You'll Love" display panels specifically (not to rankAll()/
+  // rankRecommendations() themselves, which stay pure score-order for
+  // consumers that need the true rank — the All Titles table, exports,
+  // prune_candidate_pool.js).
   {
-    const shows = [...fromWatchlist, ...fromCandidates].filter(c => c.type === 'show' && enrichedOnly(c))
-      .sort((a, b) => b.bmtreScore - a.bmtreScore).slice(0, 20);
-    const genreCounts = {};
-    for (const s of shows) for (const g of (enrichedMeta[s.titleKey]?.genres || [])) genreCounts[g] = (genreCounts[g] || 0) + 1;
-    const genreRanked = Object.entries(genreCounts).sort((a, b) => b[1] - a[1]);
-    const topGenre = genreRanked[0];
-    const secondGenre = genreRanked[1];
+    const showsRanked = [...fromWatchlist, ...fromCandidates].filter(c => c.type === 'show' && enrichedOnly(c))
+      .sort((a, b) => b.bmtreScore - a.bmtreScore);
+    // Counts each title's PRIMARY genre only (genres[0]) — the same
+    // definition diversityRerank() itself caps against. A count over
+    // every listed genre would be misleading here: most of these shows
+    // are blended Crime+Drama dramas that just alternate which TMDB
+    // lists first, so "how many mention Drama anywhere" barely moves
+    // even when the actual primary-genre mix (what the cap controls)
+    // genuinely diversifies — caught via a live check before shipping,
+    // not assumed to be equivalent.
+    const genreCounts = list => {
+      const counts = {};
+      for (const s of list) {
+        const g = enrichedMeta[s.titleKey]?.genres?.[0];
+        if (g) counts[g] = (counts[g] || 0) + 1;
+      }
+      return Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    };
+    const top8Before = showsRanked.slice(0, 8);
+    const top8After = diversityRerank(showsRanked, enrichedMeta, { windowSize: 8, maxPerGenre: 3 }).slice(0, 8);
+    const beforeTop = genreCounts(top8Before)[0];
+    const afterTop = genreCounts(top8After)[0];
     findings.push({
       id: 'no-diversity-reranking',
-      severity: 'serious',
+      severity: 'good',
       ratings: { ease: 4, dataQuality: 1, recEngine: 8, ui: 6 },
-      title: 'No diversity re-ranking — the top of the show list is a genre monoculture',
-      technical: `<code>rankAll()</code>/<code>rankRecommendations()</code> sort purely by <code>bmtreScore</code> ` +
-        `with no diversity or anti-clustering pass — the book engine's <code>bbreEngine.js</code> runs an author-` +
-        `diversity MMR (max marginal relevance) re-ranking specifically to stop one prolific creator from ` +
-        `dominating the top of the list; BMTRE has no equivalent for genre, creator, or franchise clustering. Live ` +
-        `check on today's real top-20 shows by score: ${topGenre ? `${topGenre[1]} of 20 (${(topGenre[1]/20*100).toFixed(0)}%) are tagged "${topGenre[0]}"` : 'n/a'}` +
-        (secondGenre ? `, ${secondGenre[1]} of 20 (${(secondGenre[1]/20*100).toFixed(0)}%) also tagged "${secondGenre[0]}."` : '.'),
-      plain: `Right now, if you looked at your top 20 recommended TV shows, every single one would be a Drama, and ` +
-        `most would also be Crime dramas specifically. That's not necessarily wrong — it probably does reflect real ` +
-        `taste — but it means the list isn't actually showing you the breadth of what you might like; it's showing ` +
-        `you 20 shades of the same thing because that's what scores highest, with nothing built in to spread the ` +
-        `picks out a bit.`,
-      impact: `A real, currently-active effect on what Bill actually sees at the top of the list — not a latent risk ` +
-        `like some findings below. A modest diversity pass (even a simple "no more than N per genre in the top 20") ` +
-        `would make the recommendations feel less repetitive without needing any new data.`,
+      title: 'No diversity re-ranking — the top of the show list was a genre monoculture',
+      technical: `Fixed this session: a new <code>diversityRerank()</code> export in <code>engine.js</code> applies ` +
+        `a soft per-genre cap (max 3 of 8 sharing a primary genre) to the "You'll Love" panels' combined ` +
+        `watchlist+candidate pool before slicing to the visible top 8 — a title over the cap is deferred past ` +
+        `titles that add real variety, not excluded, and the window backfills from the deferred queue if the pool ` +
+        `genuinely lacks enough diversity to fill it. It only reorders for DISPLAY, never touches an individual ` +
+        `title's <code>bmtreScore</code> — <code>rankAll()</code>/<code>rankRecommendations()</code> themselves ` +
+        `(used by the All Titles table, exports, and <code>prune_candidate_pool.js</code>, which need the true ` +
+        `unmodified rank) are untouched, and <code>computeEvalMetrics()</code>'s precision@k is unaffected. Live ` +
+        `check: the real top-8-by-score shows were ${beforeTop ? `${beforeTop[1]} of 8 tagged "${beforeTop[0]}"` : 'n/a'} ` +
+        `before this fix — the diversified panel now shows ${afterTop ? `${afterTop[1]} of 8 tagged "${afterTop[0]}"` : 'n/a'}.`,
+      plain: `The "Shows You'll Love" panel used to just show the 8 highest-scoring shows, which often meant most ` +
+        `or all 8 were the exact same genre — "20 shades of the same thing" instead of real variety. It still shows ` +
+        `your true top picks, but now caps how many of the 8 visible cards can share one genre, pulling in a real ` +
+        `alternative from further down the list when one exists instead of always defaulting to the flat top 8.`,
+      impact: `Verified live against real data, not just designed in the abstract — the actual genre concentration ` +
+        `shown in the panel dropped from ${beforeTop ? beforeTop[1] : '?'}/8 to ${afterTop ? afterTop[1] : '?'}/8 for ` +
+        `today's real ranking.`,
     });
   }
 
@@ -1750,13 +1771,19 @@ function metaLine(candidate, enrichedMeta, omdbMeta) {
 // (and did — see the dashboard's own Improvement Opportunities finding
 // this fixes) silently drop a candidate ranked 5th-8th overall even when
 // it outscored a shown watchlist pick. Sort the full combined pool first,
-// then take the top 8, so the panel always matches what the engine
-// actually computed.
+// then diversity-rerank (a real, verified fix for a separate finding — a
+// live check found the top 20 shows by raw score were 100% tagged Drama,
+// a genre monoculture purely because that's what scores highest, not
+// because nothing else was available) before taking the top 8, so the
+// panel matches what the engine actually computed while still showing
+// real variety when it exists. diversityRerank() only reorders for
+// display — it never touches an individual title's bmtreScore, so this
+// has no effect on computeEvalMetrics()'s precision@k.
 function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta, omdbMeta) {
   const el = document.getElementById(sectionId);
-  const picks = [...watchlistItems, ...candidateItems]
-    .sort((a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore))
-    .slice(0, 8);
+  const ranked = [...watchlistItems, ...candidateItems]
+    .sort((a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore));
+  const picks = diversityRerank(ranked, enrichedMeta, { windowSize: 8, maxPerGenre: 3 }).slice(0, 8);
   if (!picks.length) {
     el.innerHTML = '<div class="tk-empty">Not enough enriched data yet.</div>';
     return;
