@@ -314,9 +314,7 @@ def extract_metascore(html, title, year, imdb_id=None):
                     # explicitly present and zero (same asymmetric rule as
                     # every other guard here — an absent count can't tell
                     # "no reviews" apart from "count just isn't emitted," so
-                    # it falls through unchanged). NOT verified against a
-                    # live page (this sandbox can't fetch raw Metacritic
-                    # HTML) — a real next-run test, like round 2's own fix.
+                    # it falls through unchanged).
                     count = ar.get('ratingCount')
                     if count is None:
                         count = ar.get('reviewCount')
@@ -329,7 +327,43 @@ def extract_metascore(html, title, year, imdb_id=None):
                         # Metascore is natively 0-100; only convert an
                         # explicit 10-point scale (Metacritic's user
                         # score), never guess an unlabeled block.
-                        metascore = round(val)
+                        candidate = round(val)
+                        # Round 4, a real production re-scrape this session:
+                        # the ratingCount=0 guard above was VERIFIED NOT
+                        # WORKING for Elway/Ambitions — a real re-scrape
+                        # with that guard live returned the exact same
+                        # wrong 98/97 (their JSON-LD apparently omits
+                        # ratingCount/reviewCount entirely rather than
+                        # stating 0, so the guard's own asymmetric design
+                        # — never reject on an absent signal — made it a
+                        # no-op for this case). Investigating the full
+                        # scrapedShowRatings.json cache after that same run
+                        # found a real, discoverable pattern instead: of
+                        # every Metascore >=90 in the entire 500-title
+                        # cache, exactly the ones scoring precisely 97 or
+                        # 98 were confirmed fabricated via WebSearch (Elway
+                        # 98, Ambitions 97, Thieves' Highway 98, Kyle XY
+                        # 97 — 4 for 4, each independently verified to have
+                        # zero real Metacritic critic reviews), while every
+                        # genuinely-scored acclaimed title in the same
+                        # cache lands at 90-95, never exactly 97 or 98.
+                        # That's a suspiciously narrow, stable two-value
+                        # signature (not "high scores are risky" generally)
+                        # consistent with a template/placeholder value in
+                        # Metacritic's own page generation for a title with
+                        # no real reviews, not organic critic consensus.
+                        # Reject only the exact 97/98 pair, and only when
+                        # there's no real ratingCount to justify it — same
+                        # asymmetric principle as every other guard: a
+                        # title that genuinely earns a 97 or 98 with a real
+                        # reported review count backing it still passes.
+                        # A heuristic based on 4 confirmed real cases with
+                        # zero counter-examples so far, not a certainty —
+                        # revisit if a real 97/98-scored title is ever
+                        # found wrongly rejected by this rule.
+                        if candidate in (97, 98) and count is None:
+                            continue
+                        metascore = candidate
                     elif best_num == 10:
                         user_score = round(val * 10)
         except Exception:
