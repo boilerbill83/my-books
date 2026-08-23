@@ -85,6 +85,7 @@ export function buildIndexes(library, enrichedMeta, feedback) {
   const reverseSimilar = new Map();      // titleKey -> count of loved titles citing it as similar/recommended
   const lovedCollections = new Map();    // TMDB collection id -> [titleKey, ...] of loved titles in it
   const lovedActors = new Map();         // actor name -> count of loved titles they appeared in (topCast)
+  const lovedKeywords = new Map();       // free-form TMDB keyword -> count of loved titles carrying it
   const lovedCountByType = { movie: 0, show: 0 }; // for matchPointScale() below
 
   for (const t of library.titles || []) {
@@ -117,6 +118,10 @@ export function buildIndexes(library, enrichedMeta, feedback) {
       for (const actor of (meta?.topCast || [])) {
         lovedActors.set(actor, (lovedActors.get(actor) || 0) + 1);
       }
+      for (const kw of (meta?.keywords || [])) {
+        if (KEYWORD_STOPLIST.has(kw)) continue;
+        lovedKeywords.set(kw, (lovedKeywords.get(kw) || 0) + 1);
+      }
     }
   }
 
@@ -126,7 +131,7 @@ export function buildIndexes(library, enrichedMeta, feedback) {
       .map(e => e.titleKey)
   );
 
-  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, excluded, lovedCountByType };
+  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, excluded, lovedCountByType };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -217,6 +222,45 @@ function castBonus(topCast, lovedActors) {
     else if (count >= 1) bonus += 2;
   }
   return Math.min(8, bonus);
+}
+
+// Structural/production tags, not thematic ones — TMDB's free-form
+// keyword field mixes both, and these carry zero content-taste signal
+// (every sequel gets "sequel," every mid-credits-scene movie gets
+// "aftercreditsstinger," regardless of what the title is actually
+// about). Excluded from lovedKeywords entirely so they can never earn
+// or cost a candidate points.
+const KEYWORD_STOPLIST = new Set([
+  'aftercreditsstinger', 'duringcreditsstinger', 'sequel', 'spin off',
+  'spinoff', 'miniseries', 'remake', 'reboot', 'anthology', 'standalone',
+]);
+
+// A real Improvement Opportunities finding (Session 53): keywords are
+// well-populated (93%+) and sit completely unused for anything but the
+// isReEdit() re-cut filter, despite being the closest BMTRE equivalent to
+// the book engine's free-form theme vocabulary — TMDB's genre taxonomy
+// alone is a blunt ~19-27 fixed values. Deliberately kept as a small,
+// capped, corroborating signal beneath genreBonus() rather than a primary
+// one: free-form keywords are noisier than a fixed genre vocabulary (see
+// KEYWORD_STOPLIST above), and the real per-keyword counts among Bill's
+// loved titles are much thinner than genre counts (top keyword "based on
+// novel or book" at 19, vs. top genre Drama at 105). Cap tuned against
+// scripts/eval.js, not guessed: an initial cap of 4 measurably improved
+// MAE (20.21→18.55) but dropped precision@10 90%→80% — a real regression
+// on the metric CLAUDE.md says to never trade away for MAE. Halved to a
+// cap of 2, which keeps precision@10/25/50/100 exactly unchanged
+// (90/92/94/91) while still improving MAE (20.21→19.34), the same
+// precision-first discipline the book side's eval gate already enforces.
+function keywordBonus(keywords, lovedKeywords) {
+  let bonus = 0;
+  for (const kw of (keywords || [])) {
+    if (KEYWORD_STOPLIST.has(kw)) continue;
+    const count = lovedKeywords.get(kw) || 0;
+    if      (count >= 8) bonus += 0.75;
+    else if (count >= 3) bonus += 0.5;
+    else if (count >= 1) bonus += 0.25;
+  }
+  return Math.min(2, bonus);
 }
 
 // A real Improvement Opportunities finding (Session 53): similarToIds/
@@ -471,6 +515,7 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   score += genreBonus(meta?.genres, idx.lovedGenres);
   score += franchiseBonus(meta?.belongsToCollection?.id, idx.lovedCollections);
   score += castBonus(meta?.topCast, idx.lovedActors);
+  score += keywordBonus(meta?.keywords, idx.lovedKeywords);
 
   // Forward match: this candidate's own TMDB-similar/recommended list
   // includes a title Bill loved.
