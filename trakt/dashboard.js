@@ -644,24 +644,32 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
         ratings: { ease: 5, dataQuality: 6, recEngine: 4, ui: 2 },
         title: `Audience Score is ${f.populatedPct.toFixed(1)}% populated, ${f.qualityPct.toFixed(1)}% quality — below the 90% bar ${barPhrase}`,
         technical: `<code>audienceScore</code> (Rotten Tomatoes/Metacritic) is ${f.populatedPct.toFixed(1)}% populated and ${f.qualityPct.toFixed(1)}% ` +
-          `quality (both present, not just one) among the ${f.eligible} titles with an OMDb record. Re-verified this session, not ` +
-          `just re-asserted: every currently-eligible title with neither score has already been checked, not merely unattempted — of ` +
-          `the population gap, every show is a real Metacritic "not found" result from a completed scrape pass (real ` +
-          `<code>checkedAt</code> timestamps in <code>trakt/data/scrapedShowRatings.json</code>, not an unscraped backlog), and the ` +
-          `remaining movies genuinely have neither score in OMDb's own response — a confirmed content ceiling, not a pending job. ` +
-          `Quality (needing BOTH scores) has a separate, harder ceiling: only ${rtTotal} of ${Object.keys(omdbMeta || {}).length} ` +
-          `OMDb-cached titles have an RT score at all (Rotten Tomatoes only ever comes from OMDb itself here, never the scraper — ` +
-          `RT scraping was tried and disabled after failing accuracy verification twice), versus ${mcTotal} with Metacritic — quality ` +
-          `can't meaningfully exceed the RT-coverage ceiling no matter how much more Metacritic gets scraped.`,
-        plain: `Not every title has a critic score, and even titles that do often only have one of the two scores (Rotten Tomatoes ` +
-          `or Metacritic), not both — and "quality" here specifically means having both. Double-checked this session that the gap ` +
-          `isn't just "haven't looked yet" — every title missing a score has actually been checked and genuinely doesn't have one ` +
-          `on that site. Rotten Tomatoes scores only ever come from the paid data source (OMDb), not the scraper, and OMDb simply ` +
-          `doesn't have an RT score for most of these titles — so "how many have both" is stuck behind a real limit that more ` +
-          `Metacritic scraping alone can't fix.`,
-        impact: `Re-verified as a genuine ceiling on both metrics, not a pending-work gap — no further scraping run would move either ` +
-          `number. Closing the quality gap further would need either a working RT scraper (the earlier attempt failed accuracy ` +
-          `verification) or accepting a single-score audience metric as "quality" instead of requiring both.`,
+          `quality (both present, not just one) among the ${f.eligible} titles with an OMDb record. Two real, bounded actions taken this ` +
+          `session to close what could actually be closed, not just re-asserted: (1) triggered a normal <code>trakt-enrich-omdb.yml</code> run, ` +
+          `which closed 7 of the 9 titles that had no OMDb record at all — those were simply pending in the queue, not blocked on anything. The ` +
+          `remaining 2 (Monsters: The Lyle and Erik Menendez Story, Alpha Quail) still need an <code>imdbId</code> backfill first, same ` +
+          `precondition the <code>imdbId</code> finding above already covers. (2) Added a scoped <code>RETRY_NO_RT</code> mode to ` +
+          `<code>enrich_omdb.py</code> (movie-only, mirroring <code>enrich_tmdb.py</code>'s <code>REFRESH_ALL</code> precedent) and re-fetched ` +
+          `the 26 movies that had a real Metacritic score but a stale "no RT" cache entry, on the chance OMDb had since backfilled RT for them. ` +
+          `Genuine negative result: 0 of 26 found a new RT score (Rocketman, TÁR, Maestro, Gran Turismo, and the rest — all well-known, non-obscure ` +
+          `titles) — OMDb's own data for these specific movies still doesn't include RT as of this real re-check, not an untested assumption. Each ` +
+          `is now stamped <code>rtRetriedAt</code> so this won't be re-attempted forever on a confirmed-empty answer, the same one-retry-only ` +
+          `discipline <code>enrich_tmdb.py</code>'s <code>REFRESH_EMPTIES</code> already established. Quality (needing BOTH scores) has a separate, ` +
+          `harder ceiling: only ${rtTotal} of ${Object.keys(omdbMeta || {}).length} OMDb-cached titles have an RT score at all (Rotten Tomatoes ` +
+          `only ever comes from OMDb itself here, never the scraper — RT scraping was tried and disabled after failing accuracy verification ` +
+          `twice), versus ${mcTotal} with Metacritic — quality can't meaningfully exceed the RT-coverage ceiling no matter how much more ` +
+          `Metacritic gets scraped. <code>scripts/eval.js</code> confirmed unchanged after both actions (precision@10/25/50/100 identical).`,
+        plain: `Not every title has a critic score, and even titles that do often only have one of the two scores (Rotten Tomatoes or Metacritic), ` +
+          `not both — and "quality" here specifically means having both. This session closed most of the "9 titles missing entirely" gap (7 were ` +
+          `just waiting their turn; 2 still need a different id looked up first) and specifically went back and re-checked 26 movies that had a ` +
+          `Metacritic score but no Rotten Tomatoes score, in case the movie database had added one since the last check. It hadn't, for any of ` +
+          `them — a real, useful answer even though it didn't add new data, since it's now confirmed rather than assumed. Rotten Tomatoes scores ` +
+          `only ever come from the paid data source (OMDb), not the scraper, and OMDb simply doesn't have an RT score for most titles — so "how ` +
+          `many have both" is stuck behind a real limit that more Metacritic scraping alone can't fix.`,
+        impact: `Doubly-confirmed ceiling now, not a pending-work gap — a real re-check (not just re-reading old data) found nothing further on ` +
+          `the population side. The remaining path forward is retrying RT scraping for shows with the exact-IMDb-id-match technique that actually ` +
+          `fixed the Metacritic scraper (never yet applied to the RT path — the two prior RT attempts failed for unrelated reasons), or accepting ` +
+          `a single-score audience metric as "quality" instead of requiring both — a metric-definition call for Bill, not decided here.`,
       };
     },
     subgenres: (f) => ({
