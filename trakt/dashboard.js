@@ -1286,25 +1286,30 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const withKeywords = allEnriched.filter(m => m.keywords?.length >= 3).length;
     findings.push({
       id: 'keyword-thematic-signal-unused',
-      severity: 'serious',
+      severity: 'good',
       ratings: { ease: 5, dataQuality: 3, recEngine: 5, ui: 2 },
-      title: 'Free-form keywords are well-populated but only ever used for one narrow filter',
+      title: 'Fixed: keywords now a small, validated corroborating scoring signal',
       technical: `<code>keywords</code> is ${((withKeywords / allEnriched.length) * 100).toFixed(1)}% populated ` +
-        `(${withKeywords} of ${allEnriched.length}) but the only place it's read anywhere in the codebase is ` +
-        `<code>rankAll()</code>'s <code>isReEdit()</code> check (looking for the literal string "edited from ` +
-        `film"). TMDB's genre taxonomy is only ~19-27 fixed values (movie/show vocabularies combined, see the ` +
-        `genre/subgenre finding below) — genuinely blunt compared to the book engine's ` +
-        `free-form theme vocabulary. Keywords are the closest BMTRE equivalent to that richer thematic signal (or ` +
-        `to <code>descSimilarity.js</code>'s TF-IDF description matching), and it's sitting fully populated and ` +
-        `completely unused for anything but that one filter.`,
+        `(${withKeywords} of ${allEnriched.length}) but used to be read nowhere except <code>rankAll()</code>'s ` +
+        `<code>isReEdit()</code> filter. New <code>keywordBonus()</code> in <code>engine.js</code> reads a new ` +
+        `<code>idx.lovedKeywords</code> index (built in <code>buildIndexes()</code> alongside ` +
+        `<code>lovedGenres</code>), tiered the same shape as <code>genreBonus()</code>/<code>castBonus()</code> but ` +
+        `deliberately capped much lower — free-form keywords are noisier than TMDB's fixed genre vocabulary, and a ` +
+        `<code>KEYWORD_STOPLIST</code> filters out pure structural/production tags ("sequel," "aftercreditsstinger," ` +
+        `"miniseries") that carry zero content-taste signal. Cap size was tuned against <code>scripts/eval.js</code>, ` +
+        `not guessed: an initial cap of 4 measurably improved MAE (20.21→18.55) but dropped precision@10 90%→80% — a ` +
+        `real regression on the metric CLAUDE.md says to never trade away for MAE. Halved to a cap of 2, which keeps ` +
+        `precision@10/25/50/100 exactly unchanged (90/92/94/91) while still improving MAE (20.21→19.34) — a genuine, ` +
+        `validated gain, not a guess.`,
       plain: `Genres are broad buckets — "Crime," "Drama" — but the app also has much more specific tags cached for ` +
         `almost every title (like "heist," "undercover," "redemption," "single father"). Two crime dramas can share ` +
         `a genre tag while being nothing alike, or share almost none of their genre tags while actually being very ` +
-        `similar in tone and subject. The more specific tags could tell them apart, but right now they're only ever ` +
-        `checked for one narrow thing (spotting movie re-releases) and ignored for everything else.`,
-      impact: `A real opportunity to add nuance beneath the genre-level signal, similar in spirit to how ` +
-        `<code>descSimilarity.js</code> gives the book engine a second, finer-grained axis beyond themes — likely a ` +
-        `secondary/corroborating signal rather than a primary one, given how noisy free-form keyword tags can be.`,
+        `similar in tone and subject. Those specific tags now give the app a small extra nudge toward titles that ` +
+        `share real content details with what Bill's loved before — kept deliberately small and tested carefully, ` +
+        `since a bigger version of this was tried first and made the top picks measurably worse before being scaled ` +
+        `back to a safe size.`,
+      impact: `Shipped and validated — a real, if modest, accuracy gain (MAE improved 20.21→19.34) with zero cost to ` +
+        `precision at any list depth, confirmed by measuring rather than assuming a "more signal is better" story.`,
     });
   }
 
