@@ -842,6 +842,52 @@ export function popularityScore(voteCount) {
   return Math.max(0, Math.min(100, Math.round(score)));
 }
 
+// A second, independent "how many people rated this" signal from IMDb
+// (via OMDb's imdbVotes, already fetched/parsed by enrich_omdb.py but
+// never used anywhere until Bill asked for a "number of ratings"
+// datapoint) — genuinely different from TMDB's own voteCount: IMDb's
+// voter base is much larger (this dataset's real distribution, 1,323 of
+// 1,350 OMDb-enriched titles: min 7, p10 1,725, p25 10,423, median
+// 46,933, p75 163,999, p90 410,756, p99 1,148,210, max 2,606,100 —
+// roughly 15-25x TMDB's own vote_count at equivalent percentiles), so a
+// shared cap/tiering with popularityScore()/voteCountBonus() would
+// either crush IMDb's real spread flat or blow past TMDB's ceiling on
+// nearly every title. Same log-scaled shape as popularityScore(), cap
+// set between the real p99 and max the same way POPULARITY_VOTE_CAP
+// sits between TMDB's own p99 (~21k) and max (~33k) — not a guessed
+// round number.
+const IMDB_VOTES_CAP = 1800000;
+export function imdbPopularityScore(imdbVotes) {
+  const n = Math.max(0, imdbVotes || 0);
+  const score = (Math.log10(n + 1) / Math.log10(IMDB_VOTES_CAP + 1)) * 100;
+  return Math.max(0, Math.min(100, Math.round(score)));
+}
+
+// Small additive scoring bonus, same tiered shape as voteCountBonus()
+// but re-tiered to IMDb's own real percentiles above (a title with
+// TMDB's 5,000-vote top tier is only around IMDb's p40-p50 — reusing
+// TMDB's raw thresholds here would treat most real IMDb data as
+// maxed-out noise). Magnitude swept against trakt/scripts/eval.js
+// (0.5x-2x the base 4/3/2/1 tiers) before shipping, same discipline
+// every other OMDb-sourced signal here followed: the base 1x scale
+// measurably improved precision@10 (80%→90%) but cost one title off
+// precision@50 (96%→94%) — per this project's precision-first rule
+// (never trade top-of-list precision for a lower-priority metric, and
+// prefer a magnitude with NO regression when one exists), 0.75x was the
+// smallest scale that kept the full precision@10 gain while holding
+// precision@25/50/100 exactly at baseline — a strictly better result
+// than 1x, not just a smaller one. Values above 1x pushed precision@10
+// as high as 100% but never recovered the precision@50 dip at any scale
+// tested, so weren't preferred over this clean win.
+function imdbVoteCountBonus(imdbVotes) {
+  const n = imdbVotes || 0;
+  if (n >= 400000) return 3;    // ~p90
+  if (n >= 150000) return 2.25; // ~p75
+  if (n >= 40000)  return 1.5;  // ~median
+  if (n >= 10000)  return 0.75; // ~p25
+  return 0;
+}
+
 // ── OMDb-sourced signals (audience score, awards) ───────────────────────
 // TMDB has neither Rotten Tomatoes/Metacritic scores nor awards data —
 // these come from a second, independent source (trakt/enrich_omdb.py,
@@ -981,6 +1027,7 @@ function omdbSignal(omdbEntry) {
   if (awd != null) {
     score += (awd / 100) * AWARDS_MAX;
   }
+  score += imdbVoteCountBonus(omdbEntry?.imdbVotes);
   return score;
 }
 
