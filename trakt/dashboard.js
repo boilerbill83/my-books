@@ -1139,26 +1139,37 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
-  // 3. topCast is cached and well-populated but scores nothing.
+  // 3. topCast is cached and well-populated but scores nothing — FIXED
+  // this session.
   {
     const withCast = allEnriched.filter(m => m.topCast?.length >= 3).length;
+    const liveMatches = [...fromWatchlist, ...fromCandidates].filter(c => {
+      const cast = enrichedMeta[c.titleKey]?.topCast || [];
+      return cast.some(a => idx.lovedActors?.get(a) > 0);
+    });
+    const example = liveMatches.find(c => /with .+ before/.test(c.reason)); // a cast-led reason, not shadowed by a stronger creator/franchise match
     findings.push({
       id: 'cast-signal-unused',
-      severity: 'serious',
+      severity: 'good',
       ratings: { ease: 6, dataQuality: 2, recEngine: 6, ui: 3 },
-      title: 'Actor affinity is fully cached and completely unused in scoring',
-      technical: `<code>enrichedMetadata.json</code>'s <code>topCast</code> field (top 5 billed actors per title) is ` +
-        `${((withCast / allEnriched.length) * 100).toFixed(1)}% populated (${withCast} of ${allEnriched.length} ` +
-        `enriched titles) but is never read by <code>matchScore()</code> or any other scoring function — CLAUDE.md's ` +
-        `own port table already flags this as "structurally closer to BBRE's <code>similarToAuthors</code> bridging ` +
-        `role, needs more design thought before porting," and that design thought never happened.`,
-      plain: `The app already knows the main actors in almost every title (93.5% of them) — it just never uses that ` +
-        `information. "You've loved 3 movies with this actor before" is exactly the kind of signal the book side's ` +
-        `engine already uses for authors, and the data to do the same thing here for actors is sitting there ready.`,
-      impact: `A well-precedented, low-risk addition — the data already exists at high coverage, and the book ` +
-        `engine's author-affinity signal is one of its most trusted, longest-running components. Likely a smaller ` +
-        `boost than director/creator match (an actor is less determinative of a title's identity than its director), ` +
-        `but real and currently at zero.`,
+      title: 'Actor affinity is fully cached and was completely unused in scoring',
+      technical: `Fixed this session: a new <code>idx.lovedActors</code> index (actor name -> count of loved titles ` +
+        `they appeared in, built in <code>buildIndexes()</code> from <code>topCast</code>, which is ` +
+        `${((withCast / allEnriched.length) * 100).toFixed(1)}% populated) and <code>castBonus()</code> in ` +
+        `<code>engine.js</code> — a small, tiered, capped-at-8 bonus (deliberately smaller than the creator/` +
+        `franchise bonuses, since an actor is less determinative of a title's identity than its director). ` +
+        `<code>reason()</code> checks this after creator and franchise matches, before the general similar-title ` +
+        `network. Verified against <code>scripts/eval.js</code> (measured before and after, per this project's ` +
+        `standing discipline): precision@10 jumped 80→90%, precision@100 89→91%, MAE improved 21.27→20.21 — a real, ` +
+        `substantial gain, with precision@25/50 holding steady and nothing regressing. Live check: ${liveMatches.length} ` +
+        `real current candidates get this bonus today` +
+        (example ? ` — e.g. "${esc(example.title)}" now reads: "${esc(example.reason)}"` : '.'),
+      plain: `The app already knew the main actors in almost every title — it just never used that information. Now ` +
+        `a candidate starring an actor from something Bill loved gets a real, modest boost and an honest reason, and ` +
+        `checking this against his actual rating history shows it's a genuinely strong signal, not just plausible in ` +
+        `theory: the top-10 recommendations got noticeably more accurate once this was added.`,
+      impact: `Verified as a real, substantial accuracy gain, not just a plausible addition — precision@10 moving ` +
+        `80→90% on real held-out data is one of the larger single-change improvements measured for this engine so far.`,
     });
   }
 

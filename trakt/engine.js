@@ -84,6 +84,7 @@ export function buildIndexes(library, enrichedMeta, feedback) {
   const lovedGenres = new Map();         // genre name -> count of loved titles
   const reverseSimilar = new Map();      // titleKey -> count of loved titles citing it as similar/recommended
   const lovedCollections = new Map();    // TMDB collection id -> [titleKey, ...] of loved titles in it
+  const lovedActors = new Map();         // actor name -> count of loved titles they appeared in (topCast)
   const lovedCountByType = { movie: 0, show: 0 }; // for matchPointScale() below
 
   for (const t of library.titles || []) {
@@ -113,6 +114,9 @@ export function buildIndexes(library, enrichedMeta, feedback) {
         if (!lovedCollections.has(collectionId)) lovedCollections.set(collectionId, []);
         lovedCollections.get(collectionId).push(t.titleKey);
       }
+      for (const actor of (meta?.topCast || [])) {
+        lovedActors.set(actor, (lovedActors.get(actor) || 0) + 1);
+      }
     }
   }
 
@@ -122,7 +126,7 @@ export function buildIndexes(library, enrichedMeta, feedback) {
       .map(e => e.titleKey)
   );
 
-  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, excluded, lovedCountByType };
+  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, excluded, lovedCountByType };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -187,6 +191,27 @@ function franchiseBonus(collectionId, lovedCollections) {
   const lovedInCollection = lovedCollections.get(collectionId);
   if (!lovedInCollection || !lovedInCollection.length) return 0;
   return Math.min(15, 10 + (lovedInCollection.length - 1) * 3);
+}
+
+// A real, verified gap (a dashboard Improvement Opportunities finding):
+// topCast (top 5 billed actors, TMDB-sourced) is well-populated
+// (93.5%+) but was never scored. CLAUDE.md's own port table already
+// flagged this as needing real design thought — an actor is less
+// determinative of a title's identity than its director (someone can
+// appear in dozens of unrelated projects; a director's stamp on a
+// project is much stronger), so this is deliberately a smaller,
+// corroborating bonus, not scaled anywhere near the creator-match or
+// franchise-match ceiling. Same simple tiered-per-item-summed-and-capped
+// shape as genreBonus() (this codebase's existing convention for a
+// secondary signal), capped at the same 8-point ceiling.
+function castBonus(topCast, lovedActors) {
+  let bonus = 0;
+  for (const actor of (topCast || [])) {
+    const count = lovedActors.get(actor) || 0;
+    if      (count >= 3) bonus += 3;
+    else if (count >= 1) bonus += 2;
+  }
+  return Math.min(8, bonus);
 }
 
 function voteCountBonus(voteCount) {
@@ -410,6 +435,7 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
 
   score += genreBonus(meta?.genres, idx.lovedGenres);
   score += franchiseBonus(meta?.belongsToCollection?.id, idx.lovedCollections);
+  score += castBonus(meta?.topCast, idx.lovedActors);
 
   // Forward match: this candidate's own TMDB-similar/recommended list
   // includes a title Bill loved.
@@ -485,6 +511,15 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
   const creatorCount = creator ? (idx.lovedCreators.get(creator) || 0) : 0;
   if (creatorCount > 0) {
     return `You've loved ${creatorCount} title${creatorCount > 1 ? 's' : ''} from ${creatorLabel} ${creator} before.`;
+  }
+
+  // Checked after creator match, before the general similar-title
+  // network — a real actor you've loved before, but a smaller signal
+  // than a director/creator match (see castBonus()'s own reasoning).
+  const lovedCastMember = (meta.topCast || []).find(actor => idx.lovedActors.get(actor) > 0);
+  if (lovedCastMember) {
+    const count = idx.lovedActors.get(lovedCastMember);
+    return `You've loved ${count} title${count > 1 ? 's' : ''} with ${lovedCastMember} before.`;
   }
 
   const citedIds = new Set([...(meta.similarToIds || []), ...(meta.recommendedIds || [])]
