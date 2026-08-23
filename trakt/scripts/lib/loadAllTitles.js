@@ -16,7 +16,7 @@ import { fileURLToPath } from 'url';
 import {
   buildIndexes, hydrateTitle, getCreator, matchScore, confidenceScore,
   reason, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings,
-  resolveSimilarTitles,
+  resolveSimilarTitles, resolveSimilarDirectors,
 } from '../../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -81,6 +81,12 @@ export function loadAllTitles() {
       // own tracked catalog — see resolveSimilarTitles()'s own comment for
       // why this is a real but partial subset of the raw id lists above.
       similarToTitles: resolveSimilarTitles(meta, h.type, enrichedMeta).map(s => s.title),
+      // Directors/creators shared by 2+ of this title's own resolved
+      // similar titles — the book side's similarToAuthors equivalent, with
+      // a corroboration threshold since one coincidental director match
+      // among dozens of citations is noise. See resolveSimilarDirectors()'s
+      // own comment for why this stays display-only, not a scoring signal.
+      similarToDirectors: resolveSimilarDirectors(meta, h.type, enrichedMeta).map(d => d.name),
       topCast: meta.topCast || [],
       releaseDate: meta.releaseDate || meta.firstAirDate || '',
       runtime: meta.runtime ?? meta.episodeRunTime ?? '',

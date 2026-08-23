@@ -293,6 +293,45 @@ export function resolveSimilarTitles(meta, type, enrichedMeta, limit = 5) {
   return out;
 }
 
+// A real Improvement Opportunities finding (Session 53): the book engine's
+// similarToAuthors bridges a candidate to loved authors directly; BMTRE had
+// no equivalent. Real design decision this needed before building (per the
+// finding's own text): a corroboration threshold, since a single incidental
+// director match among dozens of cited titles is noise, not signal. Scans
+// the FULL similarToIds/recommendedIds citation list (unlike
+// resolveSimilarTitles() above, which caps early for display purposes) so
+// a director cited by, say, title #8 and #14 isn't missed just because
+// resolveSimilarTitles()'s own default limit=5 cut off before reaching
+// them. Requires 2+ resolved similar titles sharing the same director/
+// creator before it counts — one shared director among many cited titles
+// is exactly the kind of coincidental, low-confidence match this project's
+// history (e.g. the Session 47 resolve_titles.py false-match incidents)
+// has repeatedly shown is worth a real bar, not a bare "any match" rule.
+// Display/data-shape only, like resolveSimilarTitles() — not wired into
+// matchScore(), since a real scoring weight would need the same
+// eval.js-validated tuning keywordBonus() just went through, and this is
+// a smaller, noisier signal (fewer resolved titles to draw from per
+// candidate) than keywords were.
+export function resolveSimilarDirectors(meta, type, enrichedMeta, limit = 3) {
+  if (!meta) return [];
+  const counts = new Map(); // director name -> count of resolved similar titles crediting them
+  const seenTitles = new Set();
+  for (const id of [...(meta.similarToIds || []), ...(meta.recommendedIds || [])]) {
+    const key = titleKey(type, id);
+    if (seenTitles.has(key)) continue;
+    seenTitles.add(key);
+    const cited = enrichedMeta[key];
+    if (!cited?.title) continue;
+    const creator = getCreator(type, cited);
+    if (creator) counts.set(creator, (counts.get(creator) || 0) + 1);
+  }
+  return [...counts.entries()]
+    .filter(([, count]) => count >= 2)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([name, count]) => ({ name, count }));
+}
+
 function voteCountBonus(voteCount) {
   const n = voteCount || 0;
   if (n >= 5000) return 4;
