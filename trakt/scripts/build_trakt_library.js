@@ -40,10 +40,23 @@ const readJSON = (p, fallback) => {
 };
 const writeJSON = (p, data) => fs.writeFileSync(p, JSON.stringify(data, null, 2) + '\n');
 
+// Every other file in this pipeline (engine.js's own titleKey(),
+// enrich_tmdb.py's lookup, enrichedMetadata.json's keys) assumes the
+// single canonical `${type}:${tmdbId}` shape. A real Improvement
+// Opportunities finding: this function used to fall back to
+// `${type}:trakt:${ids.trakt}` when a title had a Trakt id but no TMDB
+// id — a completely different shape none of those consumers recognize,
+// meaning a title that ever took that path would be permanently
+// un-enrichable and unscorable with zero error (the `!r.titleKey` skip-
+// and-warn check below only catches a title with NEITHER id, since the
+// trakt-fallback string is truthy and slips right past it). No title
+// currently exercises this path (verified live before removing it), but
+// closing it off now is cheap — a title with no TMDB id now falls
+// through to `null`, the same "unresolvable, skip and warn" bucket a
+// title with neither id already uses.
 function titleKey(type, ids) {
   if (ids?.tmdb) return `${type}:${ids.tmdb}`;
-  if (ids?.trakt) return `${type}:trakt:${ids.trakt}`;
-  return null; // caller must handle — logged as unresolvable
+  return null;
 }
 
 const {

@@ -37,15 +37,28 @@ HEADERS    = {'User-Agent': 'my-books-trakt-omdb-enrichment (personal watch-hist
 
 
 def get_json(url, timeout=10):
-    """Returns (data, status_code). status_code is None on network/parse failure."""
+    """Returns (data, status_code, error_body). error_body is OMDb's own
+    error JSON/text on a non-2xx response, surfaced so a 401 can be
+    diagnosed from its real reason (e.g. {"Response":"False","Error":
+    "Invalid API key!"}) rather than the bare status code alone — mirrors
+    the identical fix enrich_tmdb.py's get_json() got after a real
+    dead-key incident there; this sibling script had the same gap until
+    now (a real Improvement Opportunities finding, not hypothetical:
+    OMDb genuinely does return a JSON error body on a bad key, but the
+    old version discarded it unconditionally on any HTTPError, so even a
+    real, specific error message never reached the caller)."""
     try:
         req = urllib.request.Request(url, headers=HEADERS)
         with urllib.request.urlopen(req, timeout=timeout) as resp:
-            return json.loads(resp.read().decode('utf-8')), resp.status
+            return json.loads(resp.read().decode('utf-8')), resp.status, None
     except urllib.error.HTTPError as e:
-        return None, e.code
-    except Exception:
-        return None, None
+        try:
+            body = e.read().decode('utf-8', errors='replace')[:500]
+        except Exception:
+            body = None
+        return None, e.code, body
+    except Exception as e:
+        return None, None, str(e)[:500]
 
 
 def omdb_lookup(imdb_id):
@@ -150,14 +163,15 @@ def main():
 
     failures = 0
     for i, t in enumerate(batch, 1):
-        data, status = omdb_lookup(t['imdbId'])
+        data, status, error_body = omdb_lookup(t['imdbId'])
         if status == 401:
-            print('ERROR: OMDb rejected the API key (401). Check OMDB_API_KEY and stop — '
-                  'no point burning through the rest of the batch on a bad key.', file=sys.stderr)
+            print(f'ERROR: OMDb rejected the API key (401). OMDb\'s own response: {error_body!r}. '
+                  'Check OMDB_API_KEY and stop — no point burning through the rest of the batch '
+                  'on a bad key.', file=sys.stderr)
             sys.exit(1)
         if not data or data.get('Response') == 'False':
             failures += 1
-            err = (data or {}).get('Error', f'status {status}')
+            err = (data or {}).get('Error') or error_body or f'status {status}'
             print(f'  [{i}/{len(batch)}] FAIL ({err}) | {t["title"] or t["imdbId"]}')
             time.sleep(DELAY)
             continue
