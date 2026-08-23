@@ -203,6 +203,57 @@ export function buildIndexes(library, enrichedMeta, feedback) {
       .map(e => e.titleKey)
   );
 
+  // Dismissal generalization (dashboard dismissal-generalization
+  // finding) — the BMTRE equivalent of the book engine's dismissAdjust
+  // (Session 12b there): a dismissal shouldn't only remove the one exact
+  // title, it should teach the engine "other titles by this same
+  // creator" or "titles with this same overall style" are less likely
+  // to land too. Two new reason codes carry real generalizable meaning
+  // (see dismissAdjust() below for how each is applied):
+  //   'creator_dislike' — this title's director/creator specifically
+  //     isn't for Bill, regardless of genre/content.
+  //   'style_dislike'   — this title's overall genre/subgenre mix isn't
+  //     for Bill, regardless of who made it (needs 2+ before it
+  //     generalizes, the same floor the book engine's dismissAdjust
+  //     uses, so one one-off dismissal can't swing a whole style
+  //     bucket).
+  // Dormant against today's real data by design, not a bug: all 18 real
+  // dismissals recorded so far use other reason codes (already_watched,
+  // looks_low_budget, too_urban, too_old, already_have_version_rated,
+  // not_interested, aimed_at_older_demographic) — none of them
+  // 'creator_dislike'/'style_dislike'. That's deliberate, not an
+  // oversight: 'too_urban' looked like the closest real candidate for a
+  // style-dislike generalization, but a prior session found it would
+  // misfire — Crime/Drama are Bill's #1/#2 loved genres and several of
+  // those exact dismissed shows' genres overlap heavily with titles he
+  // loves, so a genre-shaped penalty keyed on that reason would
+  // wrongly punish real matches. Kept as an exact-title-only exclusion
+  // instead, same as before. This mechanism ships ready for a future
+  // dismissal (from this session's data or the real app once a dismiss
+  // UI exists) that genuinely names a creator or a style as the
+  // problem, without needing another engine change when that happens.
+  const dismissedCreators = new Set();
+  const dismissedGenreProfile = new Map();
+  const dismissedSubgenreProfile = new Map();
+  let styleDismissCount = 0;
+  for (const e of (feedback?.interactions || [])) {
+    if (!e.excludeFromRecommendations) continue;
+    const dmeta = enrichedMeta[e.titleKey];
+    if (e.reasonCode === 'creator_dislike') {
+      const dcreator = dmeta ? getCreator(e.type, dmeta) : null;
+      if (dcreator) dismissedCreators.add(dcreator);
+    } else if (e.reasonCode === 'style_dislike') {
+      styleDismissCount++;
+      for (const g of (dmeta?.genres || [])) {
+        const ng = normalizeGenre(g);
+        dismissedGenreProfile.set(ng, (dismissedGenreProfile.get(ng) || 0) + 1);
+      }
+      for (const s of inferSubgenres(dmeta)) {
+        dismissedSubgenreProfile.set(s, (dismissedSubgenreProfile.get(s) || 0) + 1);
+      }
+    }
+  }
+
   // Only keep tones backed by >=3 rated titles — otherwise a single
   // outlier rating would swing the whole tone's "preference" to a
   // meaningless extreme, the same floor buildToneProfile() uses on the
@@ -225,7 +276,7 @@ export function buildIndexes(library, enrichedMeta, feedback) {
   const showAiringRateLoved = lovedCountByType.show ? lovedShowsAiring / lovedCountByType.show : 0;
   const showAiringOverrep = Math.max(0, showAiringRateLoved - showAiringRateAll);
 
-  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, toneProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep };
+  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, toneProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -271,6 +322,36 @@ function genreBonus(genres, lovedGenres) {
     else if (count >= 1)  bonus += 1;
   }
   return Math.min(bonus, 8);
+}
+
+// Dismissal generalization — see buildIndexes()'s own comment for the
+// full design and why it's dormant against today's real data (no
+// dismissal yet uses either of these two reason codes). A creator-
+// dislike is a flat, confident penalty (naming a specific person as the
+// problem is about as unambiguous as taste feedback gets). A style-
+// dislike is smaller and additive per overlapping genre/subgenre tag,
+// capped, and gated behind 2+ real style dismissals — the same
+// "needs 2+" floor the book engine's dismissAdjust uses, so one
+// one-off dismissal can't swing a whole genre/subgenre bucket against
+// every future candidate that happens to share it.
+const CREATOR_DISLIKE_PENALTY = -15;
+const STYLE_DISLIKE_MIN_COUNT = 2;
+const STYLE_DISLIKE_PER_MATCH = -3;
+const STYLE_DISLIKE_CAP = -10;
+function dismissAdjust(candidate, meta, creator, idx) {
+  let penalty = 0;
+  if (creator && idx.dismissedCreators.has(creator)) penalty += CREATOR_DISLIKE_PENALTY;
+  if (idx.styleDismissCount >= STYLE_DISLIKE_MIN_COUNT) {
+    let overlap = 0;
+    for (const g of (meta?.genres || [])) {
+      if (idx.dismissedGenreProfile.get(normalizeGenre(g)) > 0) overlap++;
+    }
+    for (const s of inferSubgenres(meta)) {
+      if (idx.dismissedSubgenreProfile.get(s) > 0) overlap++;
+    }
+    if (overlap > 0) penalty += Math.max(STYLE_DISLIKE_CAP, overlap * STYLE_DISLIKE_PER_MATCH);
+  }
+  return penalty;
 }
 
 // A real, verified gap (a dashboard Improvement Opportunities finding):
@@ -874,6 +955,7 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   }
 
   score += genreBonus(meta?.genres, idx.lovedGenres);
+  score += dismissAdjust(candidate, meta, creator, idx);
   score += franchiseBonus(meta?.belongsToCollection?.id, idx.lovedCollections);
   score += castBonus(meta?.topCast, idx.lovedActors);
   score += keywordBonus(meta?.keywords, idx.lovedKeywords);

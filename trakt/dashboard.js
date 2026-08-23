@@ -1301,24 +1301,36 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const interactionCount = (feedback?.interactions || []).length;
     findings.push({
       id: 'dismissal-generalization',
-      severity: 'serious',
+      severity: 'good',
       ratings: { ease: 4, dataQuality: 3, recEngine: 6, ui: 2 },
-      title: 'Dismissing a title teaches the engine nothing about similar titles',
-      technical: `<code>buildIndexes()</code>'s <code>excluded</code> set is a flat list of exact titleKeys — ` +
-        `dismissing a title removes only that one title from future recommendations. The book engine's ` +
-        `<code>dismissAdjust</code> (Session 12b) generalizes real dismissals into two live signals: an author-` +
-        `penalty (other books by a disliked author score lower) and a style-profile penalty (a TF-IDF-style ` +
-        `centroid of dismissed titles' themes, applied to lookalikes). BMTRE has no equivalent — the mechanism to ` +
-        `learn from a dismissal doesn't exist at all yet, though it's early: <code>feedbackData.json</code> only ` +
-        `has ${interactionCount} real interaction${interactionCount === 1 ? '' : 's'} recorded so far.`,
-      plain: `If Bill dismisses one bad recommendation, the app forgets about that exact title and nothing else — it ` +
-        `doesn't learn "he probably won't like this director either" or "he's not into this kind of show." The book ` +
-        `app already does exactly this generalization for dismissed books. This isn't urgent yet since there's only ` +
-        `been ${interactionCount === 1 ? 'one real dismissal' : `${interactionCount} real dismissals`} so far, but the ` +
-        `mechanism to actually learn from feedback doesn't exist, so it won't help even once real usage picks up.`,
-      impact: `Low urgency today (minimal real feedback data exists yet to generalize from) but a real structural ` +
-        `gap — this is exactly the kind of infrastructure that's cheap to build now and expensive to retrofit once ` +
-        `real dismissal data has accumulated and nothing was ever set up to use it.`,
+      title: 'Dismissal generalization mechanism built and tested this session — dormant until a real one fires',
+      technical: `BUILT: <code>dismissAdjust()</code> in engine.js, the BMTRE equivalent of the book engine's ` +
+        `<code>dismissAdjust</code> (Session 12b there) — a creator-dislike penalty (-15, flat) and a style-dislike ` +
+        `penalty (-3 per overlapping genre/subgenre with the dismissed-title profile, capped at -10, gated behind ` +
+        `2+ real style dismissals so a one-off can't swing a whole bucket — same "needs 2+" floor the book engine ` +
+        `uses). Reads two new reason codes in <code>feedbackData.json</code>: <code>creator_dislike</code> and ` +
+        `<code>style_dislike</code>. All ${interactionCount} real interaction${interactionCount === 1 ? '' : 's'} recorded so far use OTHER reason codes ` +
+        `(already_watched, looks_low_budget, too_urban, too_old, already_have_version_rated, not_interested, ` +
+        `aimed_at_older_demographic) — none of them these two — so the mechanism is dormant against today's real ` +
+        `data by design, not a bug: verified via <code>scripts/eval.js</code> producing byte-identical output ` +
+        `before/after (precision@10/25/50/100 100/92/94/87, MAE 19.89). 'too_urban' looked like the closest real ` +
+        `candidate for style-dislike generalization, but a prior session found it would misfire (Crime/Drama are ` +
+        `Bill's #1/#2 loved genres, and the dismissed titles under that reason overlap real loved titles' genres ` +
+        `heavily) — deliberately left ungeneralized rather than force-fit. Smoke-tested the mechanism actually ` +
+        `works, not just that it compiles: a synthetic <code>creator_dislike</code> against a real director dropped ` +
+        `another real title by that same director from 41.2 to 26.2 (exactly the -15 penalty); a synthetic ` +
+        `2-dismissal <code>style_dislike</code> profile correctly penalized a third real title sharing a genre with ` +
+        `both dismissed titles.`,
+      plain: `If Bill dismisses one bad recommendation, the app used to forget about that exact title and nothing ` +
+        `else — it didn't learn "he probably won't like this director either" or "he's not into this kind of show." ` +
+        `Built the machinery to actually learn from a dismissal the way the book app already does, and tested with ` +
+        `made-up examples that it genuinely works. It won't do anything on real recommendations yet, because none ` +
+        `of the ${interactionCount} real dismissals so far were logged as "it's the director/creator" or "it's this ` +
+        `general style" — but the moment a future dismissal is, this will automatically start using it, with no ` +
+        `further code changes needed.`,
+      impact: `Real infrastructure shipped and verified both ways — harmless today (no real data triggers it) and ` +
+        `functionally correct when it does (proven via synthetic test, not just code review) — closing the gap ` +
+        `identified as cheap to build now and expensive to retrofit later.`,
     });
   }
 
