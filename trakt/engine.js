@@ -83,6 +83,7 @@ export function buildIndexes(library, enrichedMeta, feedback) {
   const creatorRatingWeight = new Map(); // creator name -> summed rating-weight across all rated titles
   const lovedGenres = new Map();         // genre name -> count of loved titles
   const reverseSimilar = new Map();      // titleKey -> count of loved titles citing it as similar/recommended
+  const lovedCollections = new Map();    // TMDB collection id -> [titleKey, ...] of loved titles in it
   const lovedCountByType = { movie: 0, show: 0 }; // for matchPointScale() below
 
   for (const t of library.titles || []) {
@@ -107,6 +108,11 @@ export function buildIndexes(library, enrichedMeta, feedback) {
         const key = titleKey(t.type, id);
         reverseSimilar.set(key, (reverseSimilar.get(key) || 0) + 1);
       }
+      const collectionId = meta?.belongsToCollection?.id;
+      if (collectionId != null) {
+        if (!lovedCollections.has(collectionId)) lovedCollections.set(collectionId, []);
+        lovedCollections.get(collectionId).push(t.titleKey);
+      }
     }
   }
 
@@ -116,7 +122,7 @@ export function buildIndexes(library, enrichedMeta, feedback) {
       .map(e => e.titleKey)
   );
 
-  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, excluded, lovedCountByType };
+  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, excluded, lovedCountByType };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -157,6 +163,30 @@ function genreBonus(genres, lovedGenres) {
     else if (count >= 1)  bonus += 1;
   }
   return Math.min(bonus, 8);
+}
+
+// A real, verified gap (a dashboard Improvement Opportunities finding):
+// belongsToCollection is cached on every enriched movie TMDB actually
+// groups into a franchise (146 of 1,493 enriched titles as of this
+// build) but was never scored — despite this being one of the most
+// concrete, high-confidence taste signals available. Not hypothetical:
+// a live check found 17 of Bill's real loved (9-10 rated) titles belong
+// to a collection he's demonstrably following (Creed I+II, Deadpool
+// 1+2, Sicario 1+2, both Anchorman films). TMDB's "collection" concept
+// is movie-only (shows have no equivalent field), so this is a no-op
+// for shows by construction, not a special-cased exclusion. Franchises
+// are small in practice (most run 2-5 entries), so this is a flat-ish
+// bonus rather than genreBonus()'s open-ended count-based tiers — a
+// single loved entry in the same franchise is already about as
+// concrete a signal as this engine has (an actual sequel/prequel to
+// something Bill rated a favorite), with a small additional credit if
+// more than one entry in the franchise was loved. Capped at 15, the
+// same order of magnitude as the creator-match bonus above (max 10+5).
+function franchiseBonus(collectionId, lovedCollections) {
+  if (collectionId == null) return 0;
+  const lovedInCollection = lovedCollections.get(collectionId);
+  if (!lovedInCollection || !lovedInCollection.length) return 0;
+  return Math.min(15, 10 + (lovedInCollection.length - 1) * 3);
 }
 
 function voteCountBonus(voteCount) {
@@ -379,6 +409,7 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   }
 
   score += genreBonus(meta?.genres, idx.lovedGenres);
+  score += franchiseBonus(meta?.belongsToCollection?.id, idx.lovedCollections);
 
   // Forward match: this candidate's own TMDB-similar/recommended list
   // includes a title Bill loved.
@@ -436,6 +467,18 @@ export function confidenceScore(candidate, enrichedMeta) {
 export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
   const meta = enrichedMeta[candidate.titleKey];
   if (!meta) return 'Not enough data yet to explain this one — needs TMDB enrichment.';
+
+  // Checked first — a franchise entry Bill already loved a sibling of is
+  // about as concrete and specific a signal as this engine has, more so
+  // than a general director/creator match.
+  const collectionId = meta.belongsToCollection?.id;
+  const lovedInCollection = collectionId != null ? idx.lovedCollections.get(collectionId) : null;
+  if (lovedInCollection?.length) {
+    const names = lovedInCollection.map(k => idx.watched.get(k)?.title).filter(Boolean).slice(0, 2);
+    if (names.length) {
+      return `You loved ${names.join(' and ')} — this is another entry in the same ${meta.belongsToCollection.name.replace(/ Collection$/, '')} franchise.`;
+    }
+  }
 
   const creator = getCreator(candidate.type, meta);
   const creatorLabel = candidate.type === 'movie' ? 'director' : 'creator';
