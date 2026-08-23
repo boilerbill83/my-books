@@ -447,30 +447,172 @@ def load_pending(cache):
 
 # ── Rotten Tomatoes ──────────────────────────────────────────────────────
 
-def scrape_rt(page, title, year, kind):
+def name_field_matches_title(name, expected_title):
+    """Does a JSON-LD block's own `name` field plausibly refer to the
+    title being looked up? Same normalized-substring discipline as
+    page_title_matches(), applied per-block instead of to the whole
+    page — built for a real gap found while investigating RT's 3x
+    Elsbeth failure (62% scraped vs. a real 92% Tomatometer, on a page
+    that WAS the correct show — see extract_rt_scores()'s docstring for
+    why this is a different bug than the wrong-page problem
+    page_imdb_matches()/page_title_matches() already guard against).
+
+    scrape_rt()'s original version accepted ANY aggregateRating block on
+    the page with bestRating==100, last-one-wins — with no check that
+    the block's own `name` actually names the show being looked up. A
+    show page can legitimately embed more than one aggregateRating block
+    (a "similar shows"/recommendations rail is common), so a wrong block
+    can pass the scale check while belonging to a different title
+    entirely. Returns True/False when `name` is present, None when it's
+    absent (can't check — caller should treat as unverified, not
+    rejected, since RT's own structured data doesn't always include a
+    name on every block)."""
+    if not name:
+        return None
+    norm = lambda s: re.sub(r'[^a-z0-9]+', '', s.lower())
+    exp_norm, name_norm = norm(expected_title), norm(name)
+    if not exp_norm or not name_norm:
+        return None
+    return exp_norm in name_norm or name_norm in exp_norm
+
+
+def extract_rt_scores(html, title, year, imdb_id=None):
+    """Parses a fetched RT page's raw HTML for a Tomatometer (critic) /
+    Popcornmeter (audience) score. Pulled out of scrape_rt() into its
+    own pure function (no Playwright dependency), mirroring
+    extract_metascore()'s design exactly — directly unit-testable, and
+    subject to the same guard discipline that fixed the Metacritic
+    scraper after its own 5-round saga.
+
+    Two independent problems, addressed separately:
+
+    (1) WRONG BLOCK on the RIGHT page. Session 52's first live test
+    found RT's page embeds MORE THAN ONE JSON-LD aggregateRating block
+    (a 0-100 critic score and a 5-star audience score are both present,
+    sometimes for MULTIPLE titles via a same-page "similar shows" rail)
+    — a naive "value > 5 means it's already a percentage" heuristic
+    grabbed the wrong one on Elsbeth (scraped 62%, real Tomatometer 92%
+    — 62 = round(3.1 * 20), consistent with an audience block).
+    Disambiguating by `bestRating` (100 vs. 5) fixed the scale confusion,
+    but 3 real live test batches STILL scraped the same wrong 62% on the
+    same title afterward, despite correctly landing on Elsbeth's own
+    page — meaning scale alone isn't enough to pick the RIGHT
+    aggregateRating block when a page embeds more than one. Fixed here
+    by preferring a block whose own `name` field matches the expected
+    title (name_field_matches_title()) over one that doesn't or has no
+    name at all — the same "verify identity, not just shape" discipline
+    extract_metascore() already uses at the whole-page level, applied
+    here at the per-block level where the actual ambiguity lives.
+
+    (2) WRONG PAGE entirely (the title-collision failure class that hit
+    Metacritic — a bare-slug guess or search-result click landing on a
+    different, same-named work). Guarded the same way as
+    extract_metascore(): page_imdb_matches() first (exact IMDb id
+    cross-check, authoritative when it can run), falling back to
+    page_title_matches() only when no IMDb id reference is found on the
+    page at all.
+
+    NOT YET VERIFIED against a real live page at the time this was
+    written — this sandbox can't fetch rottentomatoes.com directly (like
+    every other scraper fix in this project's history). A real small,
+    curated verification batch cross-checked against outside sources is
+    the actual test, not this function running without raising.
+
+    Returns (critic, audience, debug) — debug is a list of every
+    aggregateRating block seen (value/scale/name/whether it name-matched)
+    plus a raw-text Tomatometer mention scan, so a job log shows exactly
+    what was on the page even when nothing gets accepted."""
+    critic = audience = None
+    critic_name_matched = audience_name_matched = False
+    debug = []
+    ld_scripts = re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S)
+    for ld_raw in ld_scripts:
+        try:
+            obj = json.loads(ld_raw)
+            objs = obj if isinstance(obj, list) else [obj]
+            for o in objs:
+                ar = o.get('aggregateRating') if isinstance(o, dict) else None
+                if ar and ar.get('ratingValue'):
+                    val = float(ar['ratingValue'])
+                    best = ar.get('bestRating')
+                    best_num = float(best) if best not in (None, '') else None
+                    name = o.get('name')
+                    name_match = name_field_matches_title(name, title)
+                    # Full diagnostic tuple, not just the number — @type/name
+                    # tell us whether this aggregateRating block actually
+                    # belongs to the show itself or to something else
+                    # embedded on the same page (a "similar titles" rail,
+                    # a review-count-only widget, etc.)
+                    debug.append({
+                        'ratingValue': val, 'bestRating': best,
+                        'type': o.get('@type'), 'name': name, 'nameMatch': name_match,
+                        'ratingCount': ar.get('ratingCount') or ar.get('reviewCount'),
+                    })
+                    if best_num == 100:
+                        # A name-matched block always wins over a not-yet-
+                        # matched one; among equally-confident blocks
+                        # (both matched, or both unverified), the first one
+                        # found is kept rather than the last — no evidence
+                        # either way which is more reliable, so don't
+                        # introduce a new assumption beyond "prefer a
+                        # confirmed identity."
+                        if critic is None or (name_match and not critic_name_matched):
+                            critic = round(val)
+                            critic_name_matched = bool(name_match)
+                    elif best_num == 5:
+                        if audience is None or (name_match and not audience_name_matched):
+                            audience = round(val * 20)
+                            audience_name_matched = bool(name_match)
+                    # bestRating missing/ambiguous -> skip rather than guess
+        except Exception:
+            pass
+    debug.append({'ld_script_count': len(ld_scripts),
+                   'criticNameMatched': critic_name_matched, 'audienceNameMatched': audience_name_matched})
+    # Cross-check: does the raw page text mention a *different* Tomatometer
+    # number near the literal word "Tomatometer" than what the JSON-LD gave
+    # us? If so, the JSON-LD block above isn't the real headline score.
+    text_matches = re.findall(r'.{0,20}[Tt]omatometer.{0,40}', html)
+    if text_matches:
+        debug.append({'tomatometer_text_context': text_matches[:3]})
+
+    if critic is None:
+        cm = re.search(r'tomatometer["\s:]+(\d{1,3})\s*%', html, re.I)
+        if cm:
+            critic = int(cm.group(1))
+    if audience is None:
+        am = re.search(r'(?:popcornmeter|audience\s*score)["\s:]+(\d{1,3})\s*%', html, re.I)
+        if am:
+            audience = int(am.group(1))
+
+    # Same wrong-page guard extract_metascore() applies: an exact IMDb id
+    # cross-check first (authoritative when it can run), falling back to
+    # the softer title/date check only when no id reference is found on
+    # the page at all. A confirmed mismatch discards BOTH scores — a
+    # wrong page invalidates whatever it appeared to say either way.
+    if critic is not None or audience is not None:
+        imdb_check = page_imdb_matches(imdb_id, html)
+        if imdb_check is False:
+            return None, None, debug
+        if imdb_check is None and page_title_matches(title, year, html) is False:
+            return None, None, debug
+
+    return critic, audience, debug
+
+
+def scrape_rt(page, title, year, kind, imdb_id=None):
     """kind: 'movie' or 'show'. Uses RT's own search page, takes the
     first result under the matching /m/ or /tv/ path, then reads the
-    Tomatometer (critic) / Popcornmeter (audience) scores off that page.
-
-    Session 52's first live test found a real accuracy bug here: RT's
-    page embeds MORE THAN ONE JSON-LD aggregateRating block (a 0-100
-    critic score and a 5-star audience score are both present), and a
-    naive "value > 5 means it's already a percentage" heuristic grabbed
-    the wrong one on at least one real title (Elsbeth: scraped 62%,
-    real Tomatometer is 92% — 62 = round(3.1 * 20), consistent with
-    picking up the 5-star audience block instead). Fixed by reading
-    `bestRating` explicitly to disambiguate scale (100 = percentage
-    critic score, 5 = star audience score) instead of guessing from the
-    value's magnitude alone — a block that doesn't clearly declare
-    which scale it's on is skipped rather than guess-converted, per
-    this project's no-fabrication rule.
+    Tomatometer (critic) / Popcornmeter (audience) scores off that page
+    via extract_rt_scores() (see its docstring for the two real bugs
+    that function guards against — a wrong same-page JSON-LD block, and
+    a wrong page entirely).
 
     Returns {'critic': int|None, 'audience': int|None, 'url': str,
-    'debug': [...]} — debug carries every aggregateRating block found
-    (raw ratingValue/bestRating pairs) so a job log can show exactly
-    what was on the page even when nothing gets accepted, the same
-    "print enough to diagnose it from the log alone" discipline this
-    project used for the TMDB/OMDb dead-key incidents."""
+    'debug': [...]} — debug carries every aggregateRating block found so
+    a job log can show exactly what was on the page even when nothing
+    gets accepted, the same "print enough to diagnose it from the log
+    alone" discipline this project used for the TMDB/OMDb dead-key
+    incidents."""
     from playwright.sync_api import TimeoutError as PWTimeout
     try:
         page.goto(f'https://www.rottentomatoes.com/search?search={quote(title)}',
@@ -498,52 +640,7 @@ def scrape_rt(page, title, year, kind):
     except PWTimeout:
         return None
 
-    critic = audience = None
-    debug = []
-    ld_scripts = re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S)
-    for ld_raw in ld_scripts:
-        try:
-            obj = json.loads(ld_raw)
-            objs = obj if isinstance(obj, list) else [obj]
-            for o in objs:
-                ar = o.get('aggregateRating') if isinstance(o, dict) else None
-                if ar and ar.get('ratingValue'):
-                    val = float(ar['ratingValue'])
-                    best = ar.get('bestRating')
-                    best_num = float(best) if best not in (None, '') else None
-                    # Full diagnostic tuple, not just the number — @type/name
-                    # tell us whether this aggregateRating block actually
-                    # belongs to the show itself or to something else
-                    # embedded on the same page (a "similar titles" rail,
-                    # a review-count-only widget, etc.)
-                    debug.append({
-                        'ratingValue': val, 'bestRating': best,
-                        'type': o.get('@type'), 'name': o.get('name'),
-                        'ratingCount': ar.get('ratingCount') or ar.get('reviewCount'),
-                    })
-                    if best_num == 100:
-                        critic = round(val)
-                    elif best_num == 5:
-                        audience = round(val * 20)
-                    # bestRating missing/ambiguous -> skip rather than guess
-        except Exception:
-            pass
-    debug.append({'ld_script_count': len(ld_scripts)})
-    # Cross-check: does the raw page text mention a *different* Tomatometer
-    # number near the literal word "Tomatometer" than what the JSON-LD gave
-    # us? If so, the JSON-LD block above isn't the real headline score.
-    text_matches = re.findall(r'.{0,20}[Tt]omatometer.{0,40}', html)
-    if text_matches:
-        debug.append({'tomatometer_text_context': text_matches[:3]})
-
-    if critic is None:
-        cm = re.search(r'tomatometer["\s:]+(\d{1,3})\s*%', html, re.I)
-        if cm:
-            critic = int(cm.group(1))
-    if audience is None:
-        am = re.search(r'(?:popcornmeter|audience\s*score)["\s:]+(\d{1,3})\s*%', html, re.I)
-        if am:
-            audience = int(am.group(1))
+    critic, audience, debug = extract_rt_scores(html, title, year, imdb_id)
 
     if critic is None and audience is None:
         return {'critic': None, 'audience': None, 'url': url, 'debug': debug}
@@ -666,7 +763,7 @@ def main():
             rt = None
             if SCRAPE_RT:
                 try:
-                    rt = scrape_rt(page, t['title'], t['year'], t['type'])
+                    rt = scrape_rt(page, t['title'], t['year'], t['type'], t.get('imdbId'))
                 except Exception as e:
                     print(f'         RT error: {e}')
                 time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
