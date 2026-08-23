@@ -262,6 +262,53 @@ def page_title_matches(expected_title, expected_year, html_content):
     return True
 
 
+def extract_next_data_user_score(html):
+    """Metacritic's real site is a Next.js app, which server-renders the
+    full page props into a <script id="__NEXT_DATA__"
+    type="application/json"> blob regardless of client-side hydration —
+    a real, specific hypothesis for a pattern the actual 406-title
+    production Metacritic backfill run surfaced: extract_metascore()'s
+    JSON-LD scan reliably finds a critic Metascore block (bestRating==
+    100) but never once found a user-score block (bestRating==10) across
+    the whole run, despite a real user score genuinely existing for most
+    titles on Metacritic's own page. MC may simply not duplicate the
+    user score into schema.org markup at all, only into this Next.js
+    props blob (the same theory that motivated RT's <score-board>
+    extraction just above — a critic-only schema.org block alongside a
+    separate audience number that never made it into that format).
+
+    Doesn't assume one exact key shape (the real props schema isn't
+    known with confidence without live page access) — tries a few
+    plausible key patterns and reports which one (if any) matched, so a
+    real run's job log gives concrete evidence either way rather than a
+    bare "still didn't find it." A candidate value above 10 is treated
+    as a non-match (MC's user score is natively 0-10, one decimal) not a
+    different scale to rescale — the same "never guess-convert an
+    ambiguous value" rule as everywhere else in this file.
+
+    Returns (user_score_0_to_100_or_None, debug_dict)."""
+    debug = {'nextDataFound': False, 'matchedPattern': None, 'blobLength': None}
+    m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', html, re.S)
+    if not m:
+        return None, debug
+    blob = m.group(1)
+    debug['nextDataFound'] = True
+    debug['blobLength'] = len(blob)
+    patterns = [
+        ('userScoreSummary.score', r'"userScoreSummary"\s*:\s*\{[^}]*?"score"\s*:\s*"?(\d+(?:\.\d+)?)"?'),
+        ('userScore', r'"userScore"\s*:\s*"?(\d+(?:\.\d+)?)"?'),
+        ('user_score', r'"user_score"\s*:\s*"?(\d+(?:\.\d+)?)"?'),
+    ]
+    for name, pat in patterns:
+        um = re.search(pat, blob)
+        if um:
+            val = float(um.group(1))
+            if val <= 10:
+                debug['matchedPattern'] = name
+                return round(val * 10), debug
+    return None, debug
+
+
 def extract_metascore(html, title, year, imdb_id=None):
     """Parses a fetched Metacritic page's raw HTML for a critic Metascore
     and/or user score. Pulled out of scrape_metacritic() into its own
@@ -270,8 +317,10 @@ def extract_metascore(html, title, year, imdb_id=None):
     resolve_titles.py's is_confident_match() already gets, applied here
     after a full data-quality audit found this exact code path producing
     confirmed-wrong scores for several real titles (see
-    page_title_matches()'s docstring). Returns (metascore, userScore),
-    either or both possibly None."""
+    page_title_matches()'s docstring). Returns (metascore, userScore,
+    debug), either score possibly None; debug reports the
+    __NEXT_DATA__ extraction's own findings regardless of outcome (see
+    extract_next_data_user_score())."""
     metascore = user_score = None
     # Round 5, a real production re-scrape this session: rounds 3 and 4
     # (the ratingCount=0 guard, then the exact-97/98 guard) were BOTH
@@ -362,6 +411,13 @@ def extract_metascore(html, title, year, imdb_id=None):
         if mm:
             metascore = int(mm.group(1))
 
+    # Second, independent extraction path for the user score — always
+    # run and logged regardless of whether the JSON-LD path above
+    # already found one, so a real job log shows the real comparison.
+    nd_user_score, nd_debug = extract_next_data_user_score(html)
+    if user_score is None:
+        user_score = nd_user_score
+
     # Confirm the page we actually landed on is the title we meant to
     # look up before trusting anything scraped from it. Try the hard
     # signal first (an exact IMDb id match, per page_imdb_matches()'s
@@ -374,11 +430,11 @@ def extract_metascore(html, title, year, imdb_id=None):
     if metascore is not None or user_score is not None:
         imdb_check = page_imdb_matches(imdb_id, html)
         if imdb_check is False:
-            return None, None
+            return None, None, nd_debug
         if imdb_check is None and page_title_matches(title, year, html) is False:
-            return None, None
+            return None, None, nd_debug
 
-    return metascore, user_score
+    return metascore, user_score, nd_debug
 
 
 def _in_cooldown(entry):
@@ -507,6 +563,34 @@ def name_field_matches_title(name, expected_title):
     return exp_norm in name_norm or name_norm in exp_norm
 
 
+def extract_score_board_scores(html):
+    """RT's real site architecture (since its ~2023 redesign) renders the
+    Tomatometer/Popcornmeter pair via a custom <score-board> web
+    component with tomatometerscore/audiencescore attributes baked into
+    the server-rendered static HTML — not the schema.org JSON-LD block
+    extract_rt_scores() already reads. This is the real, specific
+    explanation for a pattern the actual 494-title production backfill
+    run surfaced: every single scraped page had exactly one JSON-LD
+    aggregateRating block (the critic one, 463/494 = 93.8% hit rate) and
+    NEVER a second 5-star audience block, despite Popcornmeter data
+    genuinely being on the page for most shows — RT apparently doesn't
+    duplicate the audience number into schema.org markup at all, only
+    into this custom element. Returns (critic, audience) as ints from
+    the FIRST <score-board> tag found, either None if that specific
+    attribute is absent — never guessed, only a real numeric attribute
+    value literally present in the tag."""
+    m = re.search(r'<score-board\b[^>]*>', html, re.I)
+    if not m:
+        return None, None
+    tag = m.group(0)
+
+    def attr(name):
+        am = re.search(name + r'="(\d+)"', tag, re.I)
+        return int(am.group(1)) if am else None
+
+    return attr('tomatometerscore'), attr('audiencescore')
+
+
 def extract_rt_scores(html, title, year, imdb_id=None):
     """Parses a fetched RT page's raw HTML for a Tomatometer (critic) /
     Popcornmeter (audience) score. Pulled out of scrape_rt() into its
@@ -515,7 +599,7 @@ def extract_rt_scores(html, title, year, imdb_id=None):
     subject to the same guard discipline that fixed the Metacritic
     scraper after its own 5-round saga.
 
-    Two independent problems, addressed separately:
+    Three independent problems, addressed separately:
 
     (1) WRONG BLOCK on the RIGHT page. Session 52's first live test
     found RT's page embeds MORE THAN ONE JSON-LD aggregateRating block
@@ -543,6 +627,19 @@ def extract_rt_scores(html, title, year, imdb_id=None):
     page_title_matches() only when no IMDb id reference is found on the
     page at all.
 
+    (3) AUDIENCE SCORE NEVER FOUND AT ALL. A real production run (494
+    titles) found the JSON-LD path never once carries a 5-star audience
+    block, despite the critic block reliably being present (93.8% hit
+    rate) — the audience number apparently isn't duplicated into
+    schema.org markup by RT's current site. extract_score_board_scores()
+    is a second, independent extraction path targeting RT's real
+    <score-board> custom element instead, tried whenever the JSON-LD/
+    regex paths above come up empty for either value — see its own
+    docstring for the reasoning. Not yet verified against a real live
+    page (this sandbox can't fetch rottentomatoes.com); the next real
+    scrape run's job log (which now logs the score-board's own findings
+    regardless of outcome) is the actual test.
+
     NOT YET VERIFIED against a real live page at the time this was
     written — this sandbox can't fetch rottentomatoes.com directly (like
     every other scraper fix in this project's history). A real small,
@@ -551,8 +648,9 @@ def extract_rt_scores(html, title, year, imdb_id=None):
 
     Returns (critic, audience, debug) — debug is a list of every
     aggregateRating block seen (value/scale/name/whether it name-matched)
-    plus a raw-text Tomatometer mention scan, so a job log shows exactly
-    what was on the page even when nothing gets accepted."""
+    plus a raw-text Tomatometer mention scan and the score-board
+    extraction's own result, so a job log shows exactly what was on the
+    page even when nothing gets accepted."""
     critic = audience = None
     critic_name_matched = audience_name_matched = False
     debug = []
@@ -614,6 +712,18 @@ def extract_rt_scores(html, title, year, imdb_id=None):
         am = re.search(r'(?:popcornmeter|audience\s*score)["\s:]+(\d{1,3})\s*%', html, re.I)
         if am:
             audience = int(am.group(1))
+
+    # Second, independent extraction path — always run and logged
+    # regardless of whether the JSON-LD/regex paths above already found
+    # something, so a real job log shows the real comparison (does
+    # score-board's critic value agree with JSON-LD's?) even on a title
+    # where both already succeeded, not just the gap-filling cases.
+    sb_critic, sb_audience = extract_score_board_scores(html)
+    debug.append({'scoreBoard': {'tomatometerscore': sb_critic, 'audiencescore': sb_audience}})
+    if critic is None and sb_critic is not None:
+        critic = sb_critic
+    if audience is None and sb_audience is not None:
+        audience = sb_audience
 
     # Same wrong-page guard extract_metascore() applies: an exact IMDb id
     # cross-check first (authoritative when it can run), falling back to
@@ -746,10 +856,10 @@ def scrape_metacritic(page, title, year, kind, imdb_id=None):
     except PWTimeout:
         return {'metascore': None, 'userScore': None, 'url': url, 'debug_link_count': debug_link_count}
 
-    metascore, user_score = extract_metascore(html, title, year, imdb_id)
+    metascore, user_score, nd_debug = extract_metascore(html, title, year, imdb_id)
     if metascore is None and user_score is None:
-        return {'metascore': None, 'userScore': None, 'url': url, 'debug_link_count': debug_link_count}
-    return {'metascore': metascore, 'userScore': user_score, 'url': url, 'debug_link_count': debug_link_count}
+        return {'metascore': None, 'userScore': None, 'url': url, 'debug_link_count': debug_link_count, 'nextData': nd_debug}
+    return {'metascore': metascore, 'userScore': user_score, 'url': url, 'debug_link_count': debug_link_count, 'nextData': nd_debug}
 
 
 # ── Main ───────────────────────────────────────────────────────────────────
@@ -843,13 +953,17 @@ def main():
 
             rt_str = f"RT {entry.get('rottenTomatoes')}%" if entry.get('rottenTomatoes') is not None else 'RT —'
             mc_str = f"MC {entry.get('metacritic')}" if entry.get('metacritic') is not None else 'MC —'
-            print(f'         {rt_str}  |  {mc_str}')
+            aud_str = f"RTaud {entry.get('rtAudience')}" if entry.get('rtAudience') is not None else 'RTaud —'
+            usr_str = f"MCuser {entry.get('metacriticUser')}" if entry.get('metacriticUser') is not None else 'MCuser —'
+            print(f'         {rt_str}  |  {mc_str}  |  {aud_str}  |  {usr_str}')
             if rt and rt.get('url'):
                 print(f"         RT url: {rt['url']}")
             if rt and rt.get('debug'):
-                print(f"         RT JSON-LD blocks seen: {rt['debug']}")
+                print(f"         RT JSON-LD/score-board blocks seen: {rt['debug']}")
             if mc and mc.get('url'):
                 print(f"         MC url: {mc['url']}")
+            if mc and mc.get('nextData'):
+                print(f"         MC __NEXT_DATA__ scan: {mc['nextData']}")
             if mc and mc.get('debug_link_count') is not None and entry.get('metacritic') is None:
                 print(f"         MC search page had {mc['debug_link_count']} /tv//movie/ links total")
 
