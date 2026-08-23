@@ -18,7 +18,7 @@ const ROOT = path.resolve(__dirname, '..', '..');
 
 const { rows } = loadAllTitles();
 
-const arrayFields = new Set(['genres', 'keywords', 'similarToIds', 'recommendedIds', 'topCast']);
+const arrayFields = new Set(['genres', 'keywords', 'similarToIds', 'recommendedIds', 'topCast', 'similarToTitles']);
 const columns = Object.keys(rows[0]);
 
 const csvEscape = v => {
