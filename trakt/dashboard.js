@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, audienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -475,11 +475,20 @@ const FIELD_REGISTRY = [
     populated: (t, meta, omdb) => !!omdb,
     quality: (t, meta, omdb) => !!omdb,
     note: 'Eligible = titles with a known IMDb id. Needs OMDB_API_KEY to run.' },
-  { key: 'audienceScore', label: 'Audience Score', source: 'OMDb', critical: false,
+  { key: 'criticScore', label: 'Critic Score (RT/Metacritic)', source: 'OMDb + scraper', critical: false,
     eligible: (t, meta, omdb) => !!omdb,
     populated: (t, meta, omdb) => omdb?.rottenTomatoes != null || omdb?.metacritic != null,
     quality: (t, meta, omdb) => omdb?.rottenTomatoes != null && omdb?.metacritic != null,
-    note: 'Quality = both Rotten Tomatoes and Metacritic present, not just one.' },
+    note: 'The professional-critic aggregate (RT Tomatometer / Metacritic Metascore) — not what real viewers ' +
+      'thought (see Audience Score below for that). Quality = both present, not just one.' },
+  { key: 'audienceScore', label: 'Audience Score (real viewer opinion)', source: 'Scraper only', critical: false,
+    eligible: (t, meta, omdb) => !!omdb,
+    populated: (t, meta, omdb) => omdb?.rtAudience != null || omdb?.metacriticUser != null,
+    quality: (t, meta, omdb) => omdb?.rtAudience != null && omdb?.metacriticUser != null,
+    note: 'RT Popcornmeter / Metacritic user score — genuine audience opinion, distinct from the critic-only ' +
+      'field above. OMDb\'s API never returns either value, so this is scraper-only (trakt/scrape_show_ratings.py) ' +
+      'and only reaches shows the scraper has processed since RT scraping was re-enabled — movies with an OMDb ' +
+      'critic score never enter that scraper\'s queue at all, so low coverage here is expected, not a bug.' },
   { key: 'awards', label: 'Awards (Oscar/Emmy)', source: 'OMDb', critical: false,
     eligible: (t, meta, omdb) => !!omdb,
     populated: (t, meta, omdb) => omdb?.awards != null,
@@ -541,9 +550,10 @@ function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, om
 // (pool-cap-waste, rec-panel-top8, etc.) — no field is ever "manually
 // marked resolved" here.
 //
-// Four fields are hand-researched with real root-cause numbers below
-// (imdbId, genres, audienceScore, awards — the ones under 90% as of this
-// writing); any other field that dips below 90% in a future session gets
+// Several fields are hand-researched with real root-cause numbers below
+// (imdbId, genres, criticScore, audienceScore, awards — the ones under
+// 90% as of this writing); any other field that dips below 90% in a
+// future session gets
 // a generic finding built from its own FIELD_REGISTRY note rather than
 // silently going unlisted, per Bill's literal "any field" instruction.
 function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePool, enrichedMeta, omdbMeta) {
@@ -599,14 +609,15 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
           `(100%), candidatePool ${src.candidatePool.has}/${src.candidatePool.total} (${((src.candidatePool.has / src.candidatePool.total) * 100).toFixed(1)}%) — ` +
           `the entire gap is concentrated in discovered candidates, which only get an <code>imdbId</code> via ` +
           `<code>enrich_tmdb.py</code>'s <code>external_ids</code> append, not from the Trakt export directly. Since this field gates OMDb ` +
-          `eligibility (both <code>audienceScore</code> and <code>awards</code> below require a known IMDb id before OMDb is even attempted), the ` +
-          `${src.candidatePool.missing} un-backfilled candidates can never get audience/awards data no matter how many OMDb enrichment runs happen.`,
-        plain: `Every title needs an IMDb number before the app can look up its Rotten Tomatoes score or awards. Titles Bill has ` +
+          `eligibility (<code>criticScore</code>, <code>audienceScore</code>, and <code>awards</code> below all require a known IMDb id ` +
+          `before OMDb is even attempted), the ${src.candidatePool.missing} un-backfilled candidates can never get critic/audience/awards ` +
+          `data no matter how many OMDb enrichment runs happen.`,
+        plain: `Every title needs an IMDb number before the app can look up its Rotten Tomatoes/Metacritic scores or awards. Titles Bill has ` +
           `actually watched or explicitly queued always have this number — it comes straight from his real Trakt account. But ` +
           `titles the app discovered on its own (via "similar to what you loved") often don't have it yet, because that number ` +
           `has to be looked up separately after the title is added, and that lookup hasn't caught up with every discovered title.`,
-        impact: `Directly blocks the audienceScore/awards gaps below for ${src.candidatePool.missing} candidates — fixing this one ` +
-          `is a precondition for those two catching up, not just its own independent gap.`,
+        impact: `Directly blocks the criticScore/audienceScore/awards gaps below for ${src.candidatePool.missing} candidates — fixing this one ` +
+          `is a precondition for those catching up, not just its own independent gap.`,
       };
     },
     genres: (f) => {
@@ -630,7 +641,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
           `additional signal for these titles, not a fix to this field directly.`,
       };
     },
-    audienceScore: (f) => {
+    criticScore: (f) => {
       const popLow = f.populatedPct < 90;
       const qualLow = f.qualityPct < 90;
       const barPhrase = popLow && qualLow ? 'on both' : popLow ? 'on population' : 'on quality';
@@ -642,34 +653,52 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
       return {
         severity: 'warning',
         ratings: { ease: 5, dataQuality: 6, recEngine: 4, ui: 2 },
-        title: `Audience Score is ${f.populatedPct.toFixed(1)}% populated, ${f.qualityPct.toFixed(1)}% quality — below the 90% bar ${barPhrase}`,
-        technical: `<code>audienceScore</code> (Rotten Tomatoes/Metacritic) is ${f.populatedPct.toFixed(1)}% populated and ${f.qualityPct.toFixed(1)}% ` +
-          `quality (both present, not just one) among the ${f.eligible} titles with an OMDb record. Two real, bounded actions taken this ` +
-          `session to close what could actually be closed, not just re-asserted: (1) triggered a normal <code>trakt-enrich-omdb.yml</code> run, ` +
-          `which closed 7 of the 9 titles that had no OMDb record at all — those were simply pending in the queue, not blocked on anything. The ` +
-          `remaining 2 (Monsters: The Lyle and Erik Menendez Story, Alpha Quail) still need an <code>imdbId</code> backfill first, same ` +
-          `precondition the <code>imdbId</code> finding above already covers. (2) Added a scoped <code>RETRY_NO_RT</code> mode to ` +
-          `<code>enrich_omdb.py</code> (movie-only, mirroring <code>enrich_tmdb.py</code>'s <code>REFRESH_ALL</code> precedent) and re-fetched ` +
-          `the 26 movies that had a real Metacritic score but a stale "no RT" cache entry, on the chance OMDb had since backfilled RT for them. ` +
-          `Genuine negative result: 0 of 26 found a new RT score (Rocketman, TÁR, Maestro, Gran Turismo, and the rest — all well-known, non-obscure ` +
-          `titles) — OMDb's own data for these specific movies still doesn't include RT as of this real re-check, not an untested assumption. Each ` +
-          `is now stamped <code>rtRetriedAt</code> so this won't be re-attempted forever on a confirmed-empty answer, the same one-retry-only ` +
-          `discipline <code>enrich_tmdb.py</code>'s <code>REFRESH_EMPTIES</code> already established. Quality (needing BOTH scores) has a separate, ` +
-          `harder ceiling: only ${rtTotal} of ${Object.keys(omdbMeta || {}).length} OMDb-cached titles have an RT score at all (Rotten Tomatoes ` +
-          `only ever comes from OMDb itself here, never the scraper — RT scraping was tried and disabled after failing accuracy verification ` +
-          `twice), versus ${mcTotal} with Metacritic — quality can't meaningfully exceed the RT-coverage ceiling no matter how much more ` +
-          `Metacritic gets scraped. <code>scripts/eval.js</code> confirmed unchanged after both actions (precision@10/25/50/100 identical).`,
-        plain: `Not every title has a critic score, and even titles that do often only have one of the two scores (Rotten Tomatoes or Metacritic), ` +
-          `not both — and "quality" here specifically means having both. This session closed most of the "9 titles missing entirely" gap (7 were ` +
-          `just waiting their turn; 2 still need a different id looked up first) and specifically went back and re-checked 26 movies that had a ` +
-          `Metacritic score but no Rotten Tomatoes score, in case the movie database had added one since the last check. It hadn't, for any of ` +
-          `them — a real, useful answer even though it didn't add new data, since it's now confirmed rather than assumed. Rotten Tomatoes scores ` +
-          `only ever come from the paid data source (OMDb), not the scraper, and OMDb simply doesn't have an RT score for most titles — so "how ` +
-          `many have both" is stuck behind a real limit that more Metacritic scraping alone can't fix.`,
-        impact: `Doubly-confirmed ceiling now, not a pending-work gap — a real re-check (not just re-reading old data) found nothing further on ` +
-          `the population side. The remaining path forward is retrying RT scraping for shows with the exact-IMDb-id-match technique that actually ` +
-          `fixed the Metacritic scraper (never yet applied to the RT path — the two prior RT attempts failed for unrelated reasons), or accepting ` +
-          `a single-score audience metric as "quality" instead of requiring both — a metric-definition call for Bill, not decided here.`,
+        title: `Critic Score is ${f.populatedPct.toFixed(1)}% populated, ${f.qualityPct.toFixed(1)}% quality — below the 90% bar ${barPhrase}`,
+        technical: `<code>criticScore</code> (Rotten Tomatoes Tomatometer / Metacritic Metascore — both critic aggregates, renamed from the ` +
+          `original misnomer <code>audienceScore</code> once it became clear the "audience" label was wrong: neither field has ever touched a ` +
+          `real viewer opinion, only critic reviews) is ${f.populatedPct.toFixed(1)}% populated and ${f.qualityPct.toFixed(1)}% quality (both ` +
+          `present, not just one) among the ${f.eligible} titles with an OMDb record. RT was disabled at the source for a long stretch after 3 ` +
+          `real live test batches scraped a wrong Tomatometer despite landing on the correct show page — root-caused this session: the scraper ` +
+          `accepted ANY aggregateRating block on the page with the critic-scale bestRating, last-one-wins, with no check that the block's own ` +
+          `<code>name</code> actually named the show being looked up (a show's RT page can embed more than one such block, e.g. a "similar ` +
+          `shows" rail). Fixed via per-block name matching and re-verified against 12 real, independently researched Tomatometer scores (12/12 ` +
+          `matched within a few points) before being re-enabled. RT now merges the same way Metacritic always did — OMDb's own value wins when ` +
+          `present (rare for shows), the scraper only fills a null — currently ${rtTotal} of ${Object.keys(omdbMeta || {}).length} OMDb-cached ` +
+          `titles have an RT score, ${mcTotal} have Metacritic; a real scraper backfill run is what actually moves these numbers going forward, ` +
+          `not a code change.`,
+        plain: `Not every title has a critic score, and even titles that do often only have one of the two (Rotten Tomatoes or Metacritic), not ` +
+          `both — "quality" here means having both. Rotten Tomatoes scraping was turned back on this session after finding and fixing the real ` +
+          `bug behind its 3 earlier failures (it was reading the wrong show's score off a page that had more than one), and testing it against ` +
+          `12 real, well-known shows came back a clean 12/12 match. The population numbers above will keep improving as the scraper works through ` +
+          `its real backlog.`,
+        impact: `The blocking bug is fixed and re-verified — the remaining gap is throughput (how many titles the scraper has actually gotten to), ` +
+          `not accuracy. Numbers here should climb toward the 90% bar as scheduled/manual scraper runs work through the backlog.`,
+      };
+    },
+    audienceScore: (f) => {
+      let rtAudTotal = 0, mcUserTotal = 0;
+      for (const o of Object.values(omdbMeta || {})) {
+        if (o.rtAudience != null) rtAudTotal++;
+        if (o.metacriticUser != null) mcUserTotal++;
+      }
+      return {
+        severity: 'warning',
+        ratings: { ease: 4, dataQuality: 5, recEngine: 2, ui: 2 },
+        title: `Audience Score (real viewer opinion) is ${f.populatedPct.toFixed(1)}% populated, ${f.qualityPct.toFixed(1)}% quality — new field this session`,
+        technical: `<code>realAudienceScore()</code> (RT Popcornmeter / Metacritic user score) is a genuinely new field this session — split out ` +
+          `from what used to be a single, misleadingly-named <code>audienceScore</code> field that actually only ever held critic data (see the ` +
+          `Critic Score finding above). OMDb's API never returns either audience number, so this is scraper-only: currently ${rtAudTotal} titles ` +
+          `have a Popcornmeter score and ${mcUserTotal} have a Metacritic user score, both populated only for shows the scraper has processed ` +
+          `(movies with an OMDb critic score never enter that scraper's queue at all, since the scraper exists specifically to fill the gap OMDb ` +
+          `leaves for shows). Display/audit only for now, not wired into <code>matchScore()</code> — same "validate against eval.js before ` +
+          `trusting a new signal" discipline every other signal here (keywords, subgenres, tones, cast, franchise) went through first.`,
+        plain: `This is a brand-new field, not a shrinking gap — it didn't exist before this session. It's meant to capture what real viewers ` +
+          `(not critics) thought, using Rotten Tomatoes' audience score and Metacritic's user score, which is different data from the critic ` +
+          `scores the app already tracked. It only has data for shows the scraper has gotten to so far, so low numbers right now are expected, ` +
+          `not a problem.`,
+        impact: `Low priority for now — it's a new, display-only field, not something the recommendation engine depends on yet. Worth ` +
+          `revisiting once coverage grows and there's real data to check whether it's worth adding as its own scoring signal, the same way ` +
+          `every other signal here got adopted only after real validation.`,
       };
     },
     subgenres: (f) => ({
@@ -1861,7 +1890,8 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
       predictedScore: Math.round(matchScore(h, idx, enrichedMeta, omdbMeta)),
       popularity: popularityScore(meta?.voteCount),
       voteCount: meta?.voteCount ?? null,
-      audienceScore: audienceScore(omdb),
+      criticScore: criticScore(omdb),
+      audienceScore: realAudienceScore(omdb),
       awardsScore: awardsScore(omdb),
       awardsRaw: omdb?.awards?.raw || '',
       genres: meta?.genres?.join(', ') || '', creator: (h.type === 'movie' ? meta?.director : meta?.createdBy?.[0]) || '',
@@ -1926,6 +1956,7 @@ function renderAllTitlesTable(allRows) {
     { label: 'TMDB Rating', get: r => r.tmdbRating != null ? Math.round(r.tmdbRating * 10) / 10 : '', numeric: true },
     { label: 'Popularity', get: r => r.popularity ?? '', numeric: true },
     { label: 'Ratings', get: r => r.voteCount ?? '', numeric: true },
+    { label: 'Critic Score', get: r => r.criticScore ?? '', numeric: true },
     { label: 'Audience Score', get: r => r.audienceScore ?? '', numeric: true },
     { label: 'Awards', get: r => r.awardsScore ?? '', numeric: true,
       render: (td, r) => { td.className = 'num'; td.textContent = r.awardsScore ?? ''; if (r.awardsRaw) td.title = r.awardsRaw; } },
@@ -2032,7 +2063,9 @@ function metaLine(candidate, enrichedMeta, omdbMeta) {
     parts.push(`${meta.voteAverage.toFixed(1)}/10 on TMDB${ratings}`);
   }
   const omdbEntry = omdbMeta?.[candidate.titleKey];
-  const audience = audienceScore(omdbEntry);
+  const critic = criticScore(omdbEntry);
+  if (critic != null) parts.push(`${critic}/100 critics`);
+  const audience = realAudienceScore(omdbEntry);
   if (audience != null) parts.push(`${audience}/100 audience`);
   const awardsText = omdbEntry?.awards?.raw;
   if (awardsText && awardsText !== 'N/A') {
