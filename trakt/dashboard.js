@@ -494,9 +494,13 @@ const FIELD_REGISTRY = [
     populated: (t, meta, omdb) => omdb?.rtAudience != null || omdb?.metacriticUser != null,
     quality: (t, meta, omdb) => omdb?.rtAudience != null && omdb?.metacriticUser != null,
     note: 'RT Popcornmeter / Metacritic user score — genuine audience opinion, distinct from the critic-only ' +
-      'field above. OMDb\'s API never returns either value, so this is scraper-only (trakt/scrape_show_ratings.py) ' +
-      'and only reaches shows the scraper has processed since RT scraping was re-enabled — movies with an OMDb ' +
-      'critic score never enter that scraper\'s queue at all, so low coverage here is expected, not a bug.' },
+      'field above. OMDb\'s API never returns either value, so this is scraper-only (trakt/scrape_show_ratings.py), ' +
+      'and the scraper itself only ever queues titles where OMDb has neither a critic score either — mostly shows ' +
+      '(~98% of movies already have an OMDb critic score, so the ~98% of them never enter the scraper\'s queue at ' +
+      'all and structurally can\'t get one). This is a real, permanent ceiling for movies by design, not a gap to ' +
+      'close — coverage here will always trend toward "shows only," and even among scraped shows some genuinely ' +
+      'have no RT/Metacritic user-review page to find (see the "Metacritic scrape title verification" finding below ' +
+      'for the accuracy work already done on the values that ARE found).' },
   { key: 'awards', label: 'Awards (Oscar/Emmy)', source: 'OMDb', critical: false,
     eligible: (t, meta, omdb) => !!omdb,
     populated: (t, meta, omdb) => omdb?.awards != null,
