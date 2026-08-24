@@ -139,6 +139,33 @@ actually carry a mismatched (not just absent) IMDb reference the way the
 fix assumes; the next real scheduled or manual run is the actual test,
 same discipline as every other scraper fix in this project's history.
 
+FRANCHISE-PREFIX MISMATCH (Aug 2026, a real 34-title production run): a
+new, different failure mode from every round above — not a wrong page,
+not a fabricated score, but a genuinely CORRECT page's real score being
+rejected. Marvel's Jessica Jones landed on the real, correct RT page
+(confirmed via WebSearch: a genuine 83% Tomatometer) but
+page_title_matches()/name_field_matches_title() both require the FULL
+stored title to appear as a substring of the page's own title/name —
+RT's real branding is "Marvel - Jessica Jones", not "Marvel's Jessica
+Jones", so the literal expected string is never a substring no matter
+how correct the page is. Same root cause hit SAS: Rogue Heroes (page:
+"Rogue Heroes"), and, on the Metacritic side, blocked the slug-guess
+from ever finding several pages at all (Star Wars: Andor's real slug is
+"andor", not "star-wars-andor"). Fixed with _strip_franchise_prefix()
+(strips a leading possessive "X's " or colon-prefixed "X: " segment),
+used as a fallback in both title-verification functions and as a
+second slug guess in scrape_metacritic() — never a replacement for the
+original full-title check, so it can only make a genuinely-right page
+easier to accept, not a wrong one. Unit-tested against the real
+newly-confirmed-good cases (Jessica Jones, SAS: Rogue Heroes) alongside
+every prior regression case (the real Andor-vs-Bad-Batch wrong page
+from this same run, still correctly rejected; the Lost in Space
+1965-vs-2018 year-collision case, unaffected since neither title in
+that pair carries a franchise prefix to strip). NOT yet re-verified
+against a real live re-scrape at the time of this commit — the next
+real run's job log is the actual test, same discipline as every prior
+round.
+
 Run manually:   python3 trakt/scrape_show_ratings.py [batch_size]
 GitHub Action:  .github/workflows/trakt-scrape-show-ratings.yml
 """
@@ -419,7 +446,25 @@ def page_title_matches(expected_title, expected_year, html_content):
     exp_norm = norm(expected_title)
     page_norm = norm(page_title)
     if not exp_norm or exp_norm not in page_norm:
-        return False
+        # A real, confirmed gap found in the same Aug 2026 production run
+        # that motivated is_confident_match()-style guards elsewhere: a
+        # review site's own <title> often drops a franchise/possessive
+        # prefix TMDB's stored title carries (RT's real <title> for
+        # "Marvel's Jessica Jones" is "Marvel - Jessica Jones | Rotten
+        # Tomatoes" — the literal expected string is never a substring of
+        # that, even though it's genuinely the right page). Retry with
+        # _strip_franchise_prefix()'s shorter, more specific form before
+        # rejecting outright — still only a fallback: a wrong page's
+        # title essentially never happens to contain the stripped
+        # substring by coincidence, so this doesn't loosen the guard
+        # against the real title-collision bug class it exists for
+        # (Lost in Space 1965 vs. 2018, etc. — same bare title either
+        # way, nothing here changes how those get caught by the year
+        # check below).
+        stripped = _strip_franchise_prefix(expected_title)
+        stripped_norm = norm(stripped) if stripped else ''
+        if not stripped_norm or stripped_norm not in page_norm:
+            return False
     if expected_year:
         year_match = re.search(r'\((\d{4})\)', page_title)
         if year_match and int(year_match.group(1)) != int(expected_year):
@@ -800,6 +845,37 @@ def load_pending(cache):
 
 # ── Rotten Tomatoes ──────────────────────────────────────────────────────
 
+def _strip_franchise_prefix(title):
+    """Strip a leading franchise/possessive prefix TMDB's title carries
+    that a review site's own on-page branding often doesn't: "Marvel's
+    Jessica Jones" -> "Jessica Jones", "Star Wars: Andor" -> "Andor",
+    "SAS: Rogue Heroes" -> "Rogue Heroes", "Tyler Perry's The Oval" ->
+    "The Oval". Returns None when no such pattern is found, so callers
+    can tell "nothing to strip" apart from "stripped to empty" and skip
+    a pointless retry rather than treat the input unchanged.
+
+    Found via a real 34-title production run (Aug 2026): 8 of the titles
+    that came back with a real, verified-via-WebSearch score sitting on
+    the page (Marvel's Jessica Jones: a real 83% Tomatometer, JSON-LD
+    `name` literally "Marvel - Jessica Jones") were being rejected by
+    page_title_matches()/name_field_matches_title() purely because those
+    functions required the FULL stored title to appear as a substring of
+    the page's own title/name field — a one-directional check that a
+    review site's shorter, prefix-dropped branding can never satisfy no
+    matter how correct the page is. See both functions' own comments for
+    where this is used as a fallback, never a replacement, for the
+    original full-title check."""
+    if not title:
+        return None
+    m = re.match(r"^.+?'s\s+(.+)$", title)
+    if m:
+        return m.group(1)
+    m = re.match(r'^[^:]+:\s*(.+)$', title)
+    if m:
+        return m.group(1)
+    return None
+
+
 def name_field_matches_title(name, expected_title):
     """Does a JSON-LD block's own `name` field plausibly refer to the
     title being looked up? Same normalized-substring discipline as
@@ -826,7 +902,21 @@ def name_field_matches_title(name, expected_title):
     exp_norm, name_norm = norm(expected_title), norm(name)
     if not exp_norm or not name_norm:
         return None
-    return exp_norm in name_norm or name_norm in exp_norm
+    if exp_norm in name_norm or name_norm in exp_norm:
+        return True
+    # Fallback for a franchise/possessive-prefixed expected title whose
+    # page `name` drops the prefix (e.g. expected "Marvel's Jessica
+    # Jones" vs. a real block name of "Marvel - Jessica Jones") — see
+    # _strip_franchise_prefix()'s own comment for the real case this was
+    # found against. Only ever loosens the match toward a MORE specific,
+    # shorter string, never toward a generic one, so it can't turn a
+    # genuinely different show into a false match on its own.
+    stripped = _strip_franchise_prefix(expected_title)
+    if stripped:
+        stripped_norm = norm(stripped)
+        if stripped_norm and (stripped_norm in name_norm or name_norm in stripped_norm):
+            return True
+    return False
 
 
 def extract_media_scorecard_json(html):
@@ -1249,6 +1339,31 @@ def scrape_metacritic(page, title, year, kind, imdb_id=None):
             url = guess_url
     except PWTimeout:
         pass
+
+    # A real, confirmed gap (Aug 2026 production run): a franchise/
+    # possessive-prefixed TMDB title (Star Wars: Andor, Marvel's Jessica
+    # Jones, Tyler Perry's The Oval...) usually gets a real Metacritic
+    # slug built from just the plain show name ("andor", not
+    # "star-wars-andor") — the full-title guess above 404s on all of
+    # these. Try the stripped form too before falling all the way to the
+    # search page, which a real batch already showed returns 0 result
+    # links for titles shaped like this anyway. Still goes through the
+    # exact same extract_metascore()/page_title_matches()/
+    # page_imdb_matches() verification below regardless of which guess
+    # lands a 200, so a coincidentally-wrong stripped-slug page still
+    # gets rejected rather than trusted blind.
+    if url is None:
+        stripped_title = _strip_franchise_prefix(title)
+        if stripped_title:
+            stripped_slug = re.sub(r'-+', '-', re.sub(r'[^a-z0-9]+', '-', stripped_title.lower())).strip('-')
+            stripped_guess_url = f'https://www.metacritic.com{path_prefix}{stripped_slug}/'
+            try:
+                resp = page.goto(stripped_guess_url, wait_until='domcontentloaded', timeout=20_000)
+                page.wait_for_timeout(random.randint(2000, 3000))
+                if resp and resp.status < 400 and 'Page Not Found' not in page.content()[:3000]:
+                    url = stripped_guess_url
+            except PWTimeout:
+                pass
 
     if url is None:
         try:
