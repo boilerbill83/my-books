@@ -233,9 +233,48 @@ still pass). All 8 bad cache entries corrected to null (RT side for all
 also be wrong — the real page is "invasion-2021," confirmed via
 WebSearch — while the other 7 titles' MC values were independently
 verified correct, several matching the real published Metascore/user-
-score exactly). NOT yet re-verified against a real live re-scrape at the
-time of this commit — the next real run's job log is the actual test,
-same discipline as every prior round.
+score exactly).
+
+RE-VERIFIED AGAINST A REAL LIVE RE-SCRAPE (same session, run 32777832090):
+genuinely mixed, not a clean win — read the real job log line by line
+rather than just checking the cache came back null. 5 of the 8 (Bureau,
+Girls, GLOW, FROM, Lost) landed on a DIFFERENT wrong RT candidate than
+before and were correctly rejected via a genuine name_match=False, proof
+the new guard generalizes rather than just memorizing the original 8
+cases. But 2 of the 8 (Brotherhood, Invasion) turned out to have a REAL,
+correct RT page findable by the search (an exact per-block name match,
+plausible ratingValue) that got wrongly discarded anyway — root cause
+was a SEPARATE, pre-existing piece of this session's own work:
+require_imdb_match=True (added earlier the same session for any
+candidate beyond the first) demanded an explicit page_imdb_matches() ==
+True and refused to fall back to a confirmed name match at all, but real
+RT pages for older TV-catalog titles don't always expose a scannable
+imdb.com link. That gate was built back when the title/name checks were
+still naive substring-only and needed the extra IMDb-only strictness;
+now that they carry the length-ratio + subtitle-extension guards, a
+confirmed per-block name match is itself strong enough evidence and no
+longer needs an IMDb id on top of it. Fixed: require_imdb_match now
+falls back to a confirmed name match (critic_name_matched/
+audience_name_matched) when no IMDb id is found on the page, only
+blocking the genuinely unverified case (no `name` field on the block, or
+a value from the regex/scoreboard/scorecard fallback with no per-block
+check backing it). A second, real gap was ALSO caught while writing the
+unit test for this: a synthetic "The Bureau (2009)" name was passing
+_prefix_extension_is_subtitle() purely because it starts with an open
+paren, exactly the RT/MC disambiguation convention for two same-named
+shows released in different years (the same collision class "Lost in
+Space (1965)" vs. the 2018 reboot already needed a dedicated year check
+for elsewhere) — but name_field_matches_title() never receives a year to
+check against, so a parenthetical was wrongly treated as always-safe.
+Fixed: a parenthetical that looks like a bare year is no longer accepted
+as a subtitle extension. Both fixes unit-tested — the real Brotherhood/
+Invasion cases now accept, the real Bureau/Girls/GLOW/FROM/Lost/Power
+cases still correctly reject, and a synthetic year-in-parens collision
+now correctly rejects too. Brotherhood/Invasion's RT cache fields cleared
+again to force a real re-test under the fixed logic — NOT yet re-
+verified a second time at the time of this commit; the next real run is
+the actual test, same discipline as every prior round of this file's
+history.
 
 Run manually:   python3 trakt/scrape_show_ratings.py [batch_size]
 GitHub Action:  .github/workflows/trakt-scrape-show-ratings.yml
@@ -1054,7 +1093,22 @@ def _prefix_extension_is_subtitle(a_raw, b_raw):
     rest = longer[len(shorter):].lstrip()
     if not rest:
         return True
-    return rest[0] in ':-–—('
+    if rest[0] not in ':-–—(':
+        return False
+    if rest[0] == '(':
+        # A parenthetical is only a safe "subtitle" when it ISN'T a bare
+        # year — a real, confirmed live gap found via extract_rt_scores()'s
+        # own unit tests: RT disambiguates two same-named shows with a
+        # parenthetical release year exactly the way "Lost in Space
+        # (1965)" vs. the 2018 reboot already required a dedicated year
+        # check elsewhere (page_title_matches()'s expected_year param) —
+        # but that check isn't available here (this function never sees a
+        # year), so a name like "The Bureau (2009)" must NOT be accepted
+        # as a safe extension of "The Bureau" just because it starts with
+        # an open paren; it's the disambiguator itself, not a subtitle.
+        if re.match(r'\(\d{4}\)?(\s|$)', rest):
+            return False
+    return True
 
 
 def _title_plausibly_matches(expected_title, candidate_text):
@@ -1289,14 +1343,19 @@ def extract_rt_scores(html, title, year, imdb_id=None, require_imdb_match=False)
     subject to the same guard discipline that fixed the Metacritic
     scraper after its own 5-round saga.
 
-    require_imdb_match=True refuses to trust the softer title/date
-    check at all — only an explicit, confirmed page_imdb_matches() ==
-    True is accepted. Used by scrape_rt() for any search-result
-    candidate beyond the first (see its own comment): a lower-ranked
-    result is meaningfully more likely to coincidentally satisfy a
-    loose substring title check than RT's own top-ranked first result
-    ever was, a real bug found via a confirmed-wrong "The Bureau" /
-    "The Bureau of Magical Things" match.
+    require_imdb_match=True refuses to trust an UNCONFIRMED title/date
+    check for a search-result candidate beyond the first — either a
+    confirmed page_imdb_matches() == True or a confirmed per-block name
+    match (see _title_plausibly_matches()) is required; the plain,
+    unconfirmed page_title_matches() fallback alone is not enough. Used
+    by scrape_rt() (see its own comment). Originally built stricter (an
+    IMDb id was the ONLY thing accepted) after a confirmed-wrong "The
+    Bureau" / "The Bureau of Magical Things" match; loosened after the
+    first real re-scrape under the hardened name/title guards showed that
+    version was itself too strict — it discarded 2 genuinely correct
+    matches (Brotherhood, Invasion) purely because their real RT pages
+    don't expose a scannable IMDb link, even though both had an exact,
+    confirmed per-block name match backing them.
 
     Three independent problems, addressed separately:
 
@@ -1469,22 +1528,40 @@ def extract_rt_scores(html, title, year, imdb_id=None, require_imdb_match=False)
     # the softer title/date check only when no id reference is found on
     # the page at all. A confirmed mismatch discards BOTH scores — a
     # wrong page invalidates whatever it appeared to say either way.
-    # require_imdb_match (see scrape_rt()'s own comment) additionally
-    # refuses to fall back to the soft title check at all — only an
-    # explicit, confirmed id match is trusted. Needed for a real bug the
-    # multi-candidate search fix below caused: a 2nd/3rd-ranked search
-    # result is far more likely to coincidentally satisfy the loose
-    # substring check (a short title like "The Bureau" is a literal
-    # substring of an unrelated "The Bureau of Magical Things") than the
-    # single best-ranked first result ever was, and neither page states
-    # an explicit conflicting year for the softer check to catch.
+    #
+    # require_imdb_match (see scrape_rt()'s own comment) was originally
+    # built to refuse the soft title/name fallback entirely for a 2nd/3rd-
+    # ranked search candidate, back when name_field_matches_title()/
+    # page_title_matches() were still naive substring-only checks a
+    # coincidental short-title collision could fool. That's no longer
+    # true — both now carry the _plausible_length_ratio()/_prefix_
+    # extension_is_subtitle() guards (see _title_plausibly_matches()) that
+    # were built specifically to close that exact hole. The first real
+    # live re-scrape after those guards shipped proved the point both
+    # ways: 5 of 8 previously-wrong candidates were correctly rejected via
+    # a genuine name_match=False (Bureau/Girls/GLOW/FROM/Lost, each
+    # landing on a different, real, unrelated show), but require_imdb_
+    # match's unconditional demand for an explicit IMDb link ALSO threw
+    # away 2 genuinely correct matches (Brotherhood and Invasion — both
+    # an EXACT page-name match, ratingValue present and plausible, simply
+    # rejected because RT's own page for an older TV catalog title didn't
+    # happen to expose a scannable imdb.com link). A confirmed per-block
+    # name match is now itself strong enough evidence to trust without
+    # also demanding an IMDb id — so require_imdb_match only still blocks
+    # the genuinely unverified case (no `name` field on the block at all,
+    # or the value came from the regex/scoreboard/scorecard fallback
+    # paths with no per-block check backing it).
     if critic is not None or audience is not None:
         imdb_check = page_imdb_matches(imdb_id, html)
         if imdb_check is False:
             return None, None, debug
-        if require_imdb_match and imdb_check is not True:
+        if imdb_check is True:
+            return critic, audience, debug
+        name_confirmed = (critic is not None and critic_name_matched) or \
+                          (audience is not None and audience_name_matched)
+        if require_imdb_match and not name_confirmed:
             return None, None, debug
-        if imdb_check is None and page_title_matches(title, year, html) is False:
+        if page_title_matches(title, year, html) is False:
             return None, None, debug
 
     return critic, audience, debug
@@ -1553,12 +1630,16 @@ def scrape_rt(page, title, year, kind, imdb_id=None):
         except PWTimeout:
             continue
 
-        # Only the FIRST (RT's own best-ranked) result gets the softer
-        # title/date fallback check — see extract_rt_scores()'s own
-        # comment for the real "The Bureau" vs. "The Bureau of Magical
-        # Things" false-positive this guards against on 2nd/3rd
-        # candidates, which are meaningfully likelier to coincidentally
-        # satisfy a loose substring check.
+        # A 2nd/3rd-ranked candidate additionally requires a genuinely
+        # confirmed identity (a per-block name match or an explicit IMDb
+        # id match) rather than the soft, unconfirmed title/date fallback
+        # alone — see extract_rt_scores()'s own comment for the real
+        # evidence behind this (5 confirmed-wrong candidates correctly
+        # rejected via name_match=False, 2 confirmed-CORRECT candidates
+        # that would have been wrongly thrown out if this only accepted
+        # an IMDb id, not a strong name match, as the fallback confirmed_
+        # signal — Brotherhood and Invasion, both real live production
+        # results).
         critic, audience, debug = extract_rt_scores(html, title, year, imdb_id, require_imdb_match=(i > 0))
         diag = _page_diagnostics(resp, html)
         debug.append({'pageDiagnostics': diag, 'candidatesTried': i + 1, 'candidateUrl': url})

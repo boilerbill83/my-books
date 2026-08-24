@@ -1857,9 +1857,6 @@
   "metacriticUser": null,
   "mcUrl": "https://www.metacritic.com/tv/invasion/",
   "checkedAt": "2026-08-24",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "rtCandidatesTried": 3,
   "mcUserAttempted": true
  },
  "show:114471": {
@@ -4831,10 +4828,7 @@
   "metacriticUser": 47,
   "mcUrl": "https://www.metacritic.com/tv/brotherhood/",
   "checkedAt": "2026-08-24",
-  "mcUserAttempted": true,
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "rtCandidatesTried": 3
+  "mcUserAttempted": true
  },
  "show:1908": {
   "rottenTomatoes": 72,
