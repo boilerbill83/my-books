@@ -1164,9 +1164,9 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
   // opposite — a genuinely RIGHT page's real score being rejected.
   findings.push({
     id: 'scraper-franchise-prefix-mismatch',
-    severity: 'warning',
+    severity: 'good',
     ratings: { ease: 6, dataQuality: 5, recEngine: 3, ui: 1 },
-    title: 'Fixed, not yet re-verified live: franchise-prefixed titles reject their own correct RT/MC page',
+    title: 'Fixed and confirmed live: franchise-prefixed titles no longer reject their own correct RT/MC page (4 of 18)',
     technical: `A real Aug 2026 production run's job log showed <code>Marvel's Jessica Jones</code> landing on ` +
       `the correct RT page with a real JSON-LD Tomatometer block (<code>ratingValue: 83</code>, confirmed via ` +
       `WebSearch as the genuine score) — but <code>page_title_matches()</code> rejected it, because RT's own ` +
@@ -1177,21 +1177,33 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       `"star-wars-andor"). Fixed with <code>_strip_franchise_prefix()</code> — strips a leading possessive ("X's ") ` +
       `or colon-prefixed ("X: ") segment — used as a fallback in <code>page_title_matches()</code>/` +
       `<code>name_field_matches_title()</code> and as a second Metacritic slug guess, never as a replacement for ` +
-      `the original full-title check. 18 unit tests confirm both the real newly-fixable cases (Jessica Jones, ` +
-      `SAS: Rogue Heroes) now pass and every prior regression case still correctly rejects (the same run's real ` +
-      `Andor-vs-Star-Wars:-The-Bad-Batch wrong page; the historical Lost in Space 1965-vs-2018 year-collision case, ` +
-      `untouched since neither title in that pair carries a prefix to strip).`,
+      `the original full-title check. 18 unit tests confirmed both the real newly-fixable cases and every prior ` +
+      `regression case still correctly rejecting before shipping. ` +
+      `<strong>Re-verified against a real scheduled re-scrape of all 18 previously-affected titles</strong>: 4 came ` +
+      `back with real, correct scores and zero false positives — <code>Marvel's Jessica Jones</code> RT 83% (exact ` +
+      `match to the WebSearch-confirmed real score), <code>SAS: Rogue Heroes</code> RT 100% / MC 79, ` +
+      `<code>Guillermo del Toro's Cabinet of Curiosities</code> RT 93%, and <code>Star Wars: Andor</code> MC 84 ` +
+      `(matches the real Metacritic score found via WebSearch before this fix even shipped). The other 14 (Between ` +
+      `Two Ferns, DAHMER, Gordon Ramsay: Uncharted, Love, Manhunt, The Bureau, The Honourable Woman, How the West ` +
+      `Was Won, Return to Lonesome Dove, Tyler Perry's The Oval, Forever, Late Night with Conan O'Brien, Knight ` +
+      `Watchmen, This Life) are still null — a genuinely different, separate problem this fix doesn't address: ` +
+      `<code>scrape_rt()</code> takes RT's own search page's FIRST /tv/ result with no disambiguation, and for a ` +
+      `short/common or heavily-franchised query that first result is often a different show entirely (Andor's RT ` +
+      `side, for instance, still lands on Star Wars: The Bad Batch and gets correctly rejected — the MC side is ` +
+      `what recovered it). A future fix would need to try additional search results, not just strip prefixes.`,
     plain: `Some shows have a "branded" title in this app's data (like "Marvel's Jessica Jones") that the review ` +
       `sites themselves don't use on their own pages (they just say "Jessica Jones"). The code was requiring an ` +
       `exact match, so it kept correctly finding the right page and then throwing away a real score sitting right ` +
       `there, because the two titles didn't match character-for-character. Fixed to also try the show's name with ` +
       `the "Marvel's"/"Star Wars:"/etc. part stripped off before giving up — tested against both the real titles ` +
-      `this was blocking and the real wrong-page cases from past rounds, to make sure being more lenient here ` +
-      `doesn't let a wrong page slip through.`,
-    impact: `A real, code-level fix for part of the still-open Audience/Critic Score field-quality gap below — but ` +
-      `deliberately left at "warning," not "good," until a real scheduled or manual scrape run confirms Jessica ` +
-      `Jones and the other affected titles actually come back with real scores in production, the same discipline ` +
-      `every round of this scraper's history has required before calling anything resolved.`,
+      `this was blocking and the real wrong-page cases from past rounds, then confirmed with a real re-scrape: 4 ` +
+      `shows got their real score back with no wrong matches. The other 14 are a different problem (the site's own ` +
+      `search returning an unrelated show first) that this particular fix doesn't solve.`,
+    impact: `A real, verified win — 4 titles recovered with zero false positives, a genuine improvement to the ` +
+      `still-open Audience/Critic Score field-quality gap below. Confirmed against a real re-scrape, not just unit ` +
+      `tests, the same discipline every round of this scraper's history has required before calling anything ` +
+      `resolved. The remaining 14-title gap is real too, but is a distinct problem (RT's own search ranking) — ` +
+      `flagged as a separate future opportunity rather than folded into this one.`,
   });
 
   // 5. build_trakt_library.js's titleKey() USED TO fall back to a
