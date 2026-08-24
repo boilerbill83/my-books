@@ -18,6 +18,21 @@
 // watchlist directly (same hygiene rankAll() already applies defensively
 // at render time; here it's a real deletion, not just a runtime filter).
 //
+// A dismissed/excluded candidate is deliberately NOT treated the same way
+// (a real bug found and fixed: this used to fold idx.excluded into the
+// same delete-outright "stale" bucket as already-watched/watchlisted,
+// which meant every dismissal got permanently erased from
+// candidatePool.json on the very next prune run - discoverable only via
+// feedbackData.json's own record after the fact, and completely invisible
+// to trakt/scripts/export_extract.js's full data extract, which only ever
+// reads library/watchlist/candidatePool.json and has no other way to know
+// a dismissed title ever existed). A dismissal is Bill's own real
+// feedback data, not staleness - it should never be lost. Excluded
+// candidates are now kept unconditionally (never deleted, same as an
+// unenriched stub), but never compete for a cap slot or get scored,
+// since idx.excluded already keeps them out of every real recommendation
+// surface at render time regardless of whether they sit in this file.
+//
 // Run manually: node trakt/scripts/prune_candidate_pool.js [capPerType]
 
 import fs from 'fs';
@@ -50,14 +65,8 @@ const watchlistKeys = new Set((watchlist.titles || []).map(c => c.titleKey));
 
 // Same re-edit / non-English / pre-2000-movie / animation exclusions
 // rankAll() applies to candidates (never to the watchlist - that's Bill's
-// own real data) -
-// a candidate that would never surface anyway shouldn't occupy a cap slot.
-// Previously defined but never actually called here (a real bug: 16 of
-// 200 pool slots were re-edits/non-English titles rankAll() would filter
-// out anyway) - now folded into the same "stale, remove outright" bucket
-// as already-watched/watchlisted, since a title that can never surface
-// deserves the same disposition as one that's gone stale for any other
-// reason: gone, not just disqualified from the cap count.
+// own real data) - a candidate that would never surface anyway shouldn't
+// occupy a cap slot.
 const isReEdit = c => (enrichedMeta[c.titleKey]?.keywords || []).includes('edited from film');
 const isNonEnglish = c => {
   const lang = enrichedMeta[c.titleKey]?.originalLanguage;
@@ -65,9 +74,14 @@ const isNonEnglish = c => {
 };
 
 const stale = [];
+const excluded = [];
 const live = [];
 for (const c of candidatePool.titles || []) {
-  if (idx.excluded.has(c.titleKey) || watchlistKeys.has(c.titleKey) || idx.watched.has(c.titleKey)
+  if (idx.excluded.has(c.titleKey)) {
+    excluded.push(c);
+    continue;
+  }
+  if (watchlistKeys.has(c.titleKey) || idx.watched.has(c.titleKey)
       || isReEdit(c) || isNonEnglish(c) || isPreMillenniumMovie(c, enrichedMeta) || isAnimation(c, enrichedMeta)) {
     stale.push(c);
     continue;
@@ -104,11 +118,14 @@ for (const type of Object.keys(byType)) {
 for (const s of notYetEnriched) kept.add(s.raw.titleKey);
 
 const finalTitles = (candidatePool.titles || []).filter(c =>
-  kept.has(c.titleKey) || notYetEnriched.some(s => s.raw.titleKey === c.titleKey)
+  kept.has(c.titleKey) || notYetEnriched.some(s => s.raw.titleKey === c.titleKey) || excluded.some(s => s.titleKey === c.titleKey)
 );
 
-console.log(`Stale (already watched/watchlisted/excluded) removed: ${stale.length}`);
+console.log(`Stale (already watched/watchlisted/re-edit/non-English/pre-2000/animation) removed: ${stale.length}`);
 for (const s of stale) console.log(`  removed (stale): ${enrichedMeta[s.titleKey]?.title || s.title || s.titleKey}`);
+
+console.log(`\nExcluded via feedback, kept regardless of cap (never scored, never shown): ${excluded.length}`);
+for (const s of excluded) console.log(`  kept (excluded): ${enrichedMeta[s.titleKey]?.title || s.title || s.titleKey}`);
 
 console.log(`\nEvicted (below top ${CAP_PER_TYPE} for its type): ${evicted.length}`);
 for (const s of evicted.sort((a, b) => a.raw.type.localeCompare(b.raw.type) || (a.score - b.score))) {
@@ -117,8 +134,9 @@ for (const s of evicted.sort((a, b) => a.raw.type.localeCompare(b.raw.type) || (
 
 const finalMovies = finalTitles.filter(c => c.type === 'movie').length;
 const finalShows = finalTitles.filter(c => c.type === 'show').length;
-console.log(`\nFinal pool: ${finalMovies} movies, ${finalShows} shows (cap ${CAP_PER_TYPE} each), ` +
-  `${notYetEnriched.length} unscored/pending kept regardless of cap.`);
+console.log(`\nFinal pool: ${finalMovies} movies, ${finalShows} shows — of which live/scored candidates are capped at ` +
+  `${CAP_PER_TYPE} per type; ${notYetEnriched.length} unscored/pending and ${excluded.length} excluded/dismissed ` +
+  `are kept on top of that, uncapped, since neither competes for a cap slot.`);
 
 writeJSON(path.join(DATA_DIR, 'candidatePool.json'), {
   meta: { generatedAt: new Date().toISOString(), count: finalTitles.length, capPerType: CAP_PER_TYPE },
