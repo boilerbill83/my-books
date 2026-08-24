@@ -161,7 +161,39 @@ newly-confirmed-good cases (Jessica Jones, SAS: Rogue Heroes) alongside
 every prior regression case (the real Andor-vs-Bad-Batch wrong page
 from this same run, still correctly rejected; the Lost in Space
 1965-vs-2018 year-collision case, unaffected since neither title in
-that pair carries a franchise prefix to strip). NOT yet re-verified
+that pair carries a franchise prefix to strip). RE-VERIFIED against a
+real live re-scrape of all 18 previously-affected titles: 4 recovered
+with correct, verified scores and zero false positives (Marvel's
+Jessica Jones RT 83%, matching the real Tomatometer exactly; SAS:
+Rogue Heroes RT 100%/MC 79; Guillermo del Toro's Cabinet of Curiosities
+RT 93%; Star Wars: Andor MC 84). The other 14 turned out to need a
+different fix — see below.
+
+AUDIENCE-SCORE ELIGIBILITY GATE (same session, following Bill's "don't
+stop until 100%"): load_pending() was skipping any title where OMDb
+already had a critic score, on the theory that OMDb "already answered"
+it — but OMDb never returns rtAudience/metacriticUser for ANYTHING,
+so 271 titles (267 of them movies, ~98% of all movies) were
+permanently excluded from ever getting a real audience score, even
+though the same page fetch that would find a critic score carries the
+audience score right next to it. Removed the skip; a title is now
+eligible purely on needsMC/needsRT's existing attempted-stamp/cooldown
+logic, regardless of whether OMDb already had the critic half. No
+extra network cost — the page fetch already parses both scores
+together, this just stops discarding one of them.
+
+RT MULTI-CANDIDATE SEARCH (same session): the 14 titles the franchise-
+prefix fix above didn't recover turned out to share a different root
+cause — scrape_rt() only ever tried the FIRST result from RT's own
+search page, and for a short/franchise-adjacent query that first
+result is often a different show (Andor's search still surfaces "Star
+Wars: The Bad Batch" first; Manhunt (2024) surfaces a 2017 miniseries
+of the same name; Knight Watchmen surfaces the famous HBO Watchmen).
+Each of those was already being correctly REJECTED by
+extract_rt_scores()'s identity guards — the function just gave up
+after the first rejection instead of trying the next search result.
+Now tries up to RT_SEARCH_CANDIDATES (3) results in order, stopping at
+the first one that yields a real, verified score. NOT yet re-verified
 against a real live re-scrape at the time of this commit — the next
 real run's job log is the actual test, same discipline as every prior
 round.
@@ -1256,20 +1288,38 @@ def extract_rt_scores(html, title, year, imdb_id=None):
     return critic, audience, debug
 
 
+RT_SEARCH_CANDIDATES = 3   # how many /m//tv/ search-result links to try in order
+
+
 def scrape_rt(page, title, year, kind, imdb_id=None):
-    """kind: 'movie' or 'show'. Uses RT's own search page, takes the
-    first result under the matching /m/ or /tv/ path, then reads the
-    Tomatometer (critic) / Popcornmeter (audience) scores off that page
-    via extract_rt_scores() (see its docstring for the two real bugs
-    that function guards against — a wrong same-page JSON-LD block, and
-    a wrong page entirely).
+    """kind: 'movie' or 'show'. Uses RT's own search page. A real,
+    confirmed gap (Aug 2026 production run): the original version took
+    ONLY the first result under the matching /m/ or /tv/ path — for a
+    short or franchise-adjacent query, RT's own search ranking often
+    puts a DIFFERENT show first (Andor's search landed on "Star Wars:
+    The Bad Batch"; Manhunt (2024) landed on a 2017 miniseries of the
+    same name; Knight Watchmen landed on the famous HBO Watchmen). Each
+    of those got correctly REJECTED by extract_rt_scores()'s own
+    identity guards rather than caching a wrong score — but the
+    function just gave up there instead of trying the next result.
+
+    Now tries up to RT_SEARCH_CANDIDATES results in the search page's
+    own order, stopping at the first one that yields a real, verified
+    score. A candidate that 404s, times out, or gets rejected by
+    extract_rt_scores()'s imdb/title check just moves on to the next —
+    it does NOT retry the search itself with a different query (see
+    scrape_metacritic()'s stripped-slug retry for that different
+    approach), it just stops trusting "the first link must be right."
 
     Returns {'critic': int|None, 'audience': int|None, 'url': str,
-    'debug': [...]} — debug carries every aggregateRating block found so
-    a job log can show exactly what was on the page even when nothing
-    gets accepted, the same "print enough to diagnose it from the log
-    alone" discipline this project used for the TMDB/OMDb dead-key
-    incidents."""
+    'debug': [...]} — debug carries every aggregateRating block seen on
+    the LAST candidate tried (whichever one the function stopped on, a
+    genuine score or the final rejected attempt) so a job log can show
+    exactly what was on the page even when nothing gets accepted, the
+    same "print enough to diagnose it from the log alone" discipline
+    this project used for the TMDB/OMDb dead-key incidents. A
+    'candidatesTried' count is added to that debug list so a log line
+    also shows whether this ever needed more than the first result."""
     from playwright.sync_api import TimeoutError as PWTimeout
     try:
         page.goto(f'https://www.rottentomatoes.com/search?search={quote(title)}',
@@ -1280,30 +1330,38 @@ def scrape_rt(page, title, year, kind, imdb_id=None):
         return None
 
     path_prefix = '/tv/' if kind == 'show' else '/m/'
-    # RT's search results render as <a> tags to /m/<slug> or /tv/<slug>;
-    # take the first one under the right type path (not doing year-
-    # disambiguation here — imprecise, but a wrong RT match just means a
-    # wrong score gets cached, so this needs real-run verification before
-    # being trusted at scale, noted in the module docstring above).
-    m = re.search(r'href="(https://www\.rottentomatoes\.com' + re.escape(path_prefix) + r'[a-z0-9_-]+)"', html)
-    if not m:
-        return None
-    url = m.group(1)
-
-    try:
-        resp = page.goto(url, wait_until='domcontentloaded', timeout=20_000)
-        _wait_for_hydration(page)
-        html = page.content()
-    except PWTimeout:
+    # RT's search results render as <a> tags to /m/<slug> or /tv/<slug>,
+    # in the site's own ranked order — take up to RT_SEARCH_CANDIDATES of
+    # them, deduplicated, preserving that order.
+    urls = []
+    for u in re.findall(r'href="(https://www\.rottentomatoes\.com' + re.escape(path_prefix) + r'[a-z0-9_-]+)"', html):
+        if u not in urls:
+            urls.append(u)
+        if len(urls) >= RT_SEARCH_CANDIDATES:
+            break
+    if not urls:
         return None
 
-    critic, audience, debug = extract_rt_scores(html, title, year, imdb_id)
-    diag = _page_diagnostics(resp, html)
-    debug.append({'pageDiagnostics': diag})
+    last_result = None
+    for i, url in enumerate(urls):
+        try:
+            resp = page.goto(url, wait_until='domcontentloaded', timeout=20_000)
+            _wait_for_hydration(page)
+            html = page.content()
+        except PWTimeout:
+            continue
 
-    if critic is None and audience is None:
-        return {'critic': None, 'audience': None, 'url': url, 'debug': debug}
-    return {'critic': critic, 'audience': audience, 'url': url, 'debug': debug}
+        critic, audience, debug = extract_rt_scores(html, title, year, imdb_id)
+        diag = _page_diagnostics(resp, html)
+        debug.append({'pageDiagnostics': diag, 'candidatesTried': i + 1, 'candidateUrl': url})
+        last_result = {'critic': critic, 'audience': audience, 'url': url, 'debug': debug}
+
+        if critic is not None or audience is not None:
+            return last_result
+        if i + 1 < len(urls):
+            time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
+
+    return last_result or {'critic': None, 'audience': None, 'url': None, 'debug': []}
 
 
 # ── Metacritic ────────────────────────────────────────────────────────────
