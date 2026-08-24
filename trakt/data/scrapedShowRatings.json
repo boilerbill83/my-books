@@ -1850,14 +1850,17 @@
   "rtAudienceAttempted": true
  },
  "show:127235": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
+  "rottenTomatoes": 73,
+  "rtAudience": 82,
   "rtUrl": "https://www.rottentomatoes.com/tv/invasion",
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": "https://www.metacritic.com/tv/invasion/",
   "checkedAt": "2026-08-24",
-  "mcUserAttempted": true
+  "mcUserAttempted": true,
+  "rtAttempted": "2026-08-24",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 3
  },
  "show:114471": {
   "rottenTomatoes": 76,
@@ -4821,14 +4824,17 @@
   "mcUserAttempted": true
  },
  "show:2204": {
-  "rottenTomatoes": null,
+  "rottenTomatoes": 79,
   "rtAudience": null,
   "rtUrl": "https://www.rottentomatoes.com/tv/brotherhood",
   "metacritic": 75,
   "metacriticUser": 47,
   "mcUrl": "https://www.metacritic.com/tv/brotherhood/",
   "checkedAt": "2026-08-24",
-  "mcUserAttempted": true
+  "mcUserAttempted": true,
+  "rtAttempted": "2026-08-24",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 3
  },
  "show:1908": {
   "rottenTomatoes": 72,
@@ -5915,14 +5921,17 @@
   "checkedAt": "2026-08-24"
  },
  "show:54650": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
+  "rottenTomatoes": 81,
+  "rtAudience": 81,
+  "rtUrl": "https://www.rottentomatoes.com/tv/power",
   "metacritic": 61,
   "metacriticUser": 77,
   "mcUrl": "https://www.metacritic.com/tv/power/",
   "mcUserAttempted": true,
-  "checkedAt": "2026-08-24"
+  "checkedAt": "2026-08-24",
+  "rtAttempted": "2026-08-24",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 3
  },
  "show:101591": {
   "rottenTomatoes": 79,
@@ -9514,6 +9523,45 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": "https://www.metacritic.com/movie/the-last-rodeo/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-24"
+ },
+ "show:150": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": "https://www.rottentomatoes.com/tv/this_farming_life",
+  "rtAttempted": "2026-08-24",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 3,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-24"
+ },
+ "movie:442249": {
+  "rottenTomatoes": 55,
+  "rtAudience": 28,
+  "rtUrl": "https://www.rottentomatoes.com/m/the_first_purge",
+  "rtAttempted": "2026-08-24",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 1,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/movie/the-first-purge/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-24"
+ },
+ "movie:98": {
+  "rottenTomatoes": 80,
+  "rtAudience": 87,
+  "rtUrl": "https://www.rottentomatoes.com/m/gladiator",
+  "rtAttempted": "2026-08-24",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 2,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/movie/gladiator/",
   "mcUserAttempted": true,
   "checkedAt": "2026-08-24"
  }
