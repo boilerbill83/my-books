@@ -744,12 +744,23 @@ def is_cached_done(entry):
 
 
 def load_pending(cache):
-    """OMDb-enriched titles where OMDb itself has neither RT nor MC — the
-    exact gap this script exists to close. No point scraping a title
-    OMDb already answered (mostly movies), and no point scraping a title
-    with no OMDb record at all yet (enrich_omdb.py needs to run first;
-    title/year for the search query come from enrichedMetadata.json,
-    which every title here already has by construction).
+    """Every OMDb-enriched title, gated by needsMC/needsRT below rather
+    than by whether OMDb already answered the CRITIC score — a real
+    eligibility bug fixed in a later session than this function's
+    original design: OMDb's API never returns rtAudience/metacriticUser
+    for ANYTHING, movie or show, so a title skipped here purely because
+    OMDb already had a critic score (271 titles found live, 267 of them
+    movies — ~98% of all movies) could never get a real audience score
+    either, even though the exact same RT/MC page fetch that finds the
+    critic score also carries the audience score right next to it. No
+    extra network cost from including these: scrape_rt()/
+    scrape_metacritic() already parse both scores off the one page
+    fetch regardless of which one the caller actually needed, so
+    widening eligibility here is free, not a bigger scrape. A title
+    with no OMDb record at all yet is still out of scope (enrich_omdb.py
+    needs to run first; title/year for the search query come from
+    enrichedMetadata.json, which every title here already has by
+    construction).
 
     Each returned title carries needsMC/needsRT so main() knows exactly
     what to (re)scrape — critically, a title whose Metacritic score is
@@ -803,8 +814,6 @@ def load_pending(cache):
             omdb_entry = omdb.get(key)
             if not omdb_entry:
                 continue  # not OMDb-enriched yet, out of scope for this script
-            if omdb_entry.get('rottenTomatoes') is not None or omdb_entry.get('metacritic') is not None:
-                continue  # OMDb already answered this one (almost always a movie)
             meta = enriched.get(key, {})
             title = meta.get('title') or t.get('title')
             year = meta.get('year') or t.get('year')
@@ -1409,7 +1418,7 @@ def main():
 
     batch = pending[:BATCH_SIZE]
     rt_backfill_only = sum(1 for t in batch if t['needsRT'] and not t['needsMC'])
-    print(f'Queue: {len(pending)} remaining (OMDb-enriched, no RT/MC from OMDb, or an RT backfill) | '
+    print(f'Queue: {len(pending)} remaining (any OMDb-enriched title still missing a real critic or audience score) | '
           f'processing {len(batch)} this run ({rt_backfill_only} are RT-only backfills of an already-good MC entry)\n')
 
     try:
