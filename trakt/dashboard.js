@@ -1206,6 +1206,61 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       `flagged as a separate future opportunity rather than folded into this one.`,
   });
 
+  // 4c. The 14-title "RT's own search only tries result #1" gap flagged
+  // just above was fixed by trying up to 3 search results — but that fix
+  // introduced a real, separate false-positive risk, found and fixed in
+  // the same session rather than left for a future audit to stumble on.
+  findings.push({
+    id: 'rt-multi-candidate-false-positive',
+    severity: 'good',
+    ratings: { ease: 5, dataQuality: 8, recEngine: 2, ui: 1 },
+    title: 'Fixed a real false-positive bug the RT multi-candidate search fix introduced (8 confirmed-wrong cached scores)',
+    technical: `Trying up to 3 of RT's own search results (rather than only the first, the fix described just ` +
+      `above) recovered real titles like <code>Manhunt (2024)</code> — but a broad audit of already-scraped scores ` +
+      `(comparing each cached title against its own <code>rtUrl</code> slug) found this measurably increased ` +
+      `exposure to a different, real bug the identity guards hadn't closed: a short, generic stored title is a ` +
+      `literal substring of a completely unrelated, much longer title, and the old normalized-substring-only ` +
+      `containment check happily accepted it. Verified 8 confirmed-wrong cache entries via WebSearch against real ` +
+      `outside sources — <code>The Bureau</code> matched to "The Bureau of Magical Things", <code>Girls</code> to ` +
+      `"The Sex Lives of College Girls", <code>GLOW</code> to "Glow Up", <code>Invasion</code> to "Secret ` +
+      `Invasion", <code>Brotherhood</code> to "Fullmetal Alchemist: Brotherhood", <code>FROM</code> to "How to Get ` +
+      `to Heaven from Belfast", <code>Power</code> (Bill's own real loved Starz show) to "The Lord of the Rings: ` +
+      `The Rings of Power", and <code>Lost</code> to "Dan Brown's The Lost Symbol". Fixed with two complementary, ` +
+      `evidence-derived guards, both in a new shared <code>_title_plausibly_matches()</code> used by both the ` +
+      `per-block (<code>name_field_matches_title()</code>) and whole-page (<code>page_title_matches()</code>) ` +
+      `checks so the fix can't drift out of sync between them the way the bug itself did: a normalized-length-` +
+      `ratio floor (0.45, derived from the real confirmed-bad ratios — all &le;0.38 — vs. the one legitimate ` +
+      `short/long pair found, "This City Is Ours" / "This City Is Ours: A Crime Family Saga", at 0.467), plus a ` +
+      `subtitle-extension check (does the longer title's extra content start with a real separator — colon, dash, ` +
+      `paren — rather than a bare extra word?) for the 2 cases the ratio alone couldn't catch (GLOW/Glow Up at ` +
+      `0.667, Invasion/Secret Invasion at 0.571). Also found and fixed a second hole in the same audit: ` +
+      `<code>extract_rt_scores()</code>'s per-block acceptance logic still accepted a block with an explicitly ` +
+      `CONFIRMED mismatched name as the "nothing else found yet" fallback, since a wrong page typically has only ` +
+      `one aggregateRating block — making the per-block identity check a no-op in practice for exactly the case ` +
+      `it most needed to catch. 25 unit tests confirm all 8 confirmed-bad cases now reject and every previously-` +
+      `confirmed-good case (Jessica Jones, SAS: Rogue Heroes, Manhunt 2024, Cabinet of Curiosities, This City Is ` +
+      `Ours, Andor) still passes. All 8 bad cache entries corrected to null — RT side for all 8, plus the MC side ` +
+      `for Invasion (whose cached "invasion" slug also turned out wrong, colliding with an older 2005 NBC show of ` +
+      `the same bare name; the other 7 titles' MC values were independently re-verified correct via WebSearch, ` +
+      `several matching the real published Metascore/user-score exactly). NOT yet re-verified against a real live ` +
+      `re-scrape at the time of writing — the next real scheduled run is the actual test, same discipline every ` +
+      `round of this scraper's history has required before calling anything resolved.`,
+    plain: `Trying more search results on the review site fixed some shows but broke others: it turns out a short ` +
+      `show name like "GLOW" or "The Bureau" is sometimes just a literal piece of a totally different, unrelated ` +
+      `show's much longer name ("Glow Up," "The Bureau of Magical Things"), and the code was treating that as a ` +
+      `match. Found 8 real cases where this had already happened, including Bill's own real favorite show "Power" ` +
+      `getting the wrong score from an unrelated Lord of the Rings show. Fixed by requiring the two titles to be ` +
+      `much closer in length before trusting a partial match, plus a second check for whether the extra text looks ` +
+      `like a real subtitle (starts with a colon or dash) versus just a coincidentally similar name. Cleared all 8 ` +
+      `wrong scores from the saved data rather than leaving bad numbers in place, and wrote automated tests proving ` +
+      `the fix catches all 8 bad cases while still allowing every previously-confirmed-good case through.`,
+    impact: `A real correctness fix, not a completeness one — it corrects data that was already wrong and displayed ` +
+      `on the dashboard, including for one of Bill's own real watched/loved titles. Doesn't move the Audience Score ` +
+      `population percentage up (it may briefly dip while these 8 titles wait to be re-scraped) but protects every ` +
+      `future scrape from the same false-positive class, which the RT_SEARCH_CANDIDATES fix above would otherwise ` +
+      `have kept making more likely over time as more low-ranked search results get tried.`,
+  });
+
   // 5. build_trakt_library.js's titleKey() USED TO fall back to a
   // `type:trakt:ID` format when a title had no TMDB id — a shape no other
   // part of the pipeline recognized. Fixed this session: the fallback was

@@ -193,10 +193,49 @@ Each of those was already being correctly REJECTED by
 extract_rt_scores()'s identity guards — the function just gave up
 after the first rejection instead of trying the next search result.
 Now tries up to RT_SEARCH_CANDIDATES (3) results in order, stopping at
-the first one that yields a real, verified score. NOT yet re-verified
-against a real live re-scrape at the time of this commit — the next
-real run's job log is the actual test, same discipline as every prior
-round.
+the first one that yields a real, verified score.
+
+RT MULTI-CANDIDATE FALSE POSITIVES (same session, found via re-verifying
+the above rather than trusting it): trying more search results measurably
+increased exposure to a real, separate bug the identity guards hadn't
+closed — a short, generic stored title (e.g. "The Bureau," "GLOW,"
+"Power") is a literal substring of a completely unrelated, much longer
+title (e.g. "The Bureau of Magical Things," "Glow Up," "The Lord of the
+Rings: The Rings of Power"), which the old normalized-substring-only
+containment check in name_field_matches_title()/page_title_matches()
+happily accepted as a match. A broad audit of already-cached scores
+(comparing normalized title against normalized URL slug) found 8
+confirmed-wrong cache entries this way, verified individually against
+real outside sources (WebSearch): The Bureau, Girls, GLOW, Invasion,
+Brotherhood, FROM, Power, Lost. Two independent, complementary guards
+fixed it: _plausible_length_ratio() (a normalized-length-ratio floor,
+0.45, derived from the real confirmed-bad ratios — all ≤0.38 — vs. the
+one legitimate short/long pair found, "This City Is Ours" / "This City
+Is Ours: A Crime Family Saga," at 0.467) catches 6 of the 8 on its own;
+_prefix_extension_is_subtitle() (does the longer title's extra content
+start with a real subtitle separator — colon/dash/paren — rather than a
+bare extra word?) catches the remaining 2 the ratio alone couldn't
+(GLOW/Glow Up at 0.667, Invasion/Secret Invasion at 0.571). Both now live
+in one shared _title_plausibly_matches() used by both the per-block and
+whole-page guards, so the fix can't drift out of sync between them the
+way the underlying bug did. extract_rt_scores()'s per-block acceptance
+logic also had a real, separate hole: a block with an explicitly
+CONFIRMED mismatched name (name_match is False, not just unverified) was
+still being accepted as the `critic is None` fallback, since a wrong
+page typically has only one aggregateRating block — meaning the identity
+check was a no-op in practice for exactly the case it most needed to
+catch. Fixed to reject outright on a confirmed mismatch. Unit-tested
+against all 8 confirmed-bad cases (now correctly rejected) and every
+previously-confirmed-good case (Jessica Jones, SAS: Rogue Heroes,
+Manhunt 2024, Cabinet of Curiosities, This City Is Ours, Andor — all
+still pass). All 8 bad cache entries corrected to null (RT side for all
+8; MC side too for Invasion, whose cached "invasion" slug turned out to
+also be wrong — the real page is "invasion-2021," confirmed via
+WebSearch — while the other 7 titles' MC values were independently
+verified correct, several matching the real published Metascore/user-
+score exactly). NOT yet re-verified against a real live re-scrape at the
+time of this commit — the next real run's job log is the actual test,
+same discipline as every prior round.
 
 Run manually:   python3 trakt/scrape_show_ratings.py [batch_size]
 GitHub Action:  .github/workflows/trakt-scrape-show-ratings.yml
@@ -469,34 +508,29 @@ def page_title_matches(expected_title, expected_year, html_content):
     one expected — the caller should discard the result, same as a real
     miss), or None (couldn't check at all — no <title> tag found —
     caller should fall back to the pre-existing, unverified behavior
-    rather than discard a possibly-good result on a technicality)."""
+    rather than discard a possibly-good result on a technicality).
+
+    The actual match logic (beyond the franchise-prefix retry mentioned
+    above) lives in the shared _title_plausibly_matches() — see its own
+    docstring for the length-ratio + subtitle-extension guard added
+    after an Aug 2026 audit found raw containment alone was accepting
+    short, generic titles ("The Bureau," "GLOW," "Invasion," "Power,"
+    "Lost," "Girls," "Brotherhood," "FROM") matched to unrelated, much
+    longer titles that merely happened to contain them as a substring —
+    the exact same real bug this function's per-page check shares with
+    name_field_matches_title()'s per-block check, now fixed in one
+    shared place so it can't drift back out of sync between the two. A
+    review site's own <title> also carries real branding text (" |
+    Rotten Tomatoes" etc.) that would otherwise inflate the "longer"
+    side of that ratio for every page regardless of whether the title
+    itself is a real match — _strip_site_branding() removes it first."""
     m = re.search(r'<title[^>]*>(.*?)</title>', html_content, re.I | re.S)
     if not m:
         return None
     page_title = unescape(m.group(1))
-    norm = lambda s: re.sub(r'[^a-z0-9]+', '', s.lower())
-    exp_norm = norm(expected_title)
-    page_norm = norm(page_title)
-    if not exp_norm or exp_norm not in page_norm:
-        # A real, confirmed gap found in the same Aug 2026 production run
-        # that motivated is_confident_match()-style guards elsewhere: a
-        # review site's own <title> often drops a franchise/possessive
-        # prefix TMDB's stored title carries (RT's real <title> for
-        # "Marvel's Jessica Jones" is "Marvel - Jessica Jones | Rotten
-        # Tomatoes" — the literal expected string is never a substring of
-        # that, even though it's genuinely the right page). Retry with
-        # _strip_franchise_prefix()'s shorter, more specific form before
-        # rejecting outright — still only a fallback: a wrong page's
-        # title essentially never happens to contain the stripped
-        # substring by coincidence, so this doesn't loosen the guard
-        # against the real title-collision bug class it exists for
-        # (Lost in Space 1965 vs. 2018, etc. — same bare title either
-        # way, nothing here changes how those get caught by the year
-        # check below).
-        stripped = _strip_franchise_prefix(expected_title)
-        stripped_norm = norm(stripped) if stripped else ''
-        if not stripped_norm or stripped_norm not in page_norm:
-            return False
+    page_title_clean = _strip_site_branding(page_title)
+    if not _title_plausibly_matches(expected_title, page_title_clean):
+        return False
     if expected_year:
         year_match = re.search(r'\((\d{4})\)', page_title)
         if year_match and int(year_match.group(1)) != int(expected_year):
@@ -917,6 +951,153 @@ def _strip_franchise_prefix(title):
     return None
 
 
+def _strip_site_branding(raw_title):
+    """RT/Metacritic's own <title> tag appends site branding after a
+    separator (e.g. "The Bureau of Magical Things | Rotten Tomatoes",
+    "Marvel - Jessica Jones | Rotten Tomatoes") — strip a trailing site-
+    name segment (case-insensitive) before running any length- or
+    extension-based comparison against it, so real branding text can't
+    inflate the "longer" side of a length ratio or get mistaken for a
+    genuine subtitle continuation. A no-op when no such suffix is
+    present."""
+    if not raw_title:
+        return raw_title
+    return re.sub(r'\s*[|\-–—]\s*(Rotten Tomatoes|Metacritic)\s*$', '', raw_title, flags=re.I).strip()
+
+
+def _plausible_length_ratio(a_norm, b_norm, threshold=0.45):
+    """Does a normalized substring match still look like plausibly the
+    same title, or is one side so much shorter than the other that bare
+    containment can't tell "the same show" from "a short, generic title
+    that happens to sit inside a much longer, unrelated one"?
+
+    A real, confirmed bug found via a broader Aug 2026 audit of already-
+    scraped RT scores: at least 8 titles (The Bureau/The Bureau of
+    Magical Things, Girls/The Sex Lives of College Girls, Power/The Lord
+    of the Rings: The Rings of Power, Brotherhood/Fullmetal Alchemist:
+    Brotherhood, Lost/Dan Brown's The Lost Symbol, FROM/How to Get to
+    Heaven from Belfast, GLOW/Glow Up, Invasion/Secret Invasion) all
+    passed the old containment-only check purely because a short,
+    generic stored title happened to be a literal substring of a much
+    longer, completely unrelated title — a real risk this session's
+    RT_SEARCH_CANDIDATES multi-candidate search measurably increased
+    exposure to, since a lower-ranked search result is more likely to be
+    wrong AND more likely to coincidentally satisfy a loose substring
+    check than RT's own top-ranked result ever was.
+
+    Threshold derived from the real evidence on both sides, not guessed:
+    every confirmed-bad ratio topped out at 0.38 ("brotherhood" vs.
+    "fullmetalalchemistbrotherhood"); the one legitimate short/long pair
+    found in the same audit ("thiscityisours" vs.
+    "thiscityisoursacrimefamilysaga", a real subtitle) sits at 0.467 —
+    0.45 sits between them. NOT sufficient on its own for every bad
+    case found (GLOW/Glow Up at 0.667 and Invasion/Secret Invasion at
+    0.571 both clear this bar) — see _prefix_extension_is_subtitle() for
+    the second, complementary guard that catches those two."""
+    if not a_norm or not b_norm:
+        return False
+    shorter, longer = sorted((len(a_norm), len(b_norm)))
+    return (shorter / longer) >= threshold
+
+
+def _raw_squash(s):
+    """Lowercase + collapse whitespace, but keep punctuation intact —
+    unlike the alnum-only norm() used everywhere else in this file for
+    the containment/ratio checks, this preserves subtitle separators
+    (colon, dash, parens) so _prefix_extension_is_subtitle() can inspect
+    the actual boundary character where a shorter title stops and a
+    longer one continues."""
+    return re.sub(r'\s+', ' ', (s or '').strip().lower())
+
+
+def _prefix_extension_is_subtitle(a_raw, b_raw):
+    """Whichever of a_raw/b_raw is a case-insensitive, whitespace-
+    collapsed PREFIX of the other: is the remainder a genuine subtitle
+    continuation (starts with a real separator — colon, dash, or an
+    open paren) rather than a bare extra word tacked on with nothing but
+    a space?
+
+    This is the guard that catches the two confirmed-bad RT matches
+    _plausible_length_ratio() alone can't: GLOW matched to the unrelated
+    "Glow Up" (a bare extra word, no separator — returns False here) and
+    Invasion matched to the unrelated "Secret Invasion" (not a prefix
+    relationship at all — "Invasion" is a SUFFIX, not a prefix, of
+    "Secret Invasion" — returns None here). A real, genuine subtitle
+    match ("This City Is Ours" / "This City Is Ours: A Crime Family
+    Saga") returns True.
+
+    Deliberately does NOT accept a suffix-position match on its own —
+    "Brotherhood" is technically a suffix of "Fullmetal Alchemist:
+    Brotherhood" in the exact same colon-subtitle shape as the
+    legitimate case above, but is a real confirmed-wrong match (an
+    unrelated anime) — there is no way to tell a genuine subtitle apart
+    from an unrelated show's subtitle happening to equal a different
+    real show's whole title, so only a PREFIX-position extension is
+    ever trusted; a franchise title whose page name drops a
+    possessive/colon PREFIX (e.g. "Marvel's Jessica Jones" -> a page
+    named "Marvel - Jessica Jones") is handled entirely by the separate,
+    narrower _strip_franchise_prefix() fallback in _title_plausibly_
+    matches() below, not by this function.
+
+    Returns True (confirmed subtitle-shaped extension), False (a bare
+    extra word — reject), or None (neither is a prefix of the other at
+    all — a suffix/middle-substring relationship, unconfirmed — caller
+    should treat this as a reject too, not just "unverified")."""
+    a, b = _raw_squash(a_raw), _raw_squash(b_raw)
+    if not a or not b:
+        return None
+    if a == b:
+        return True
+    shorter, longer = (a, b) if len(a) <= len(b) else (b, a)
+    if not longer.startswith(shorter):
+        return None
+    rest = longer[len(shorter):].lstrip()
+    if not rest:
+        return True
+    return rest[0] in ':-–—('
+
+
+def _title_plausibly_matches(expected_title, candidate_text):
+    """Shared identity-matching core for page_title_matches() and
+    name_field_matches_title() — normalized-substring containment,
+    gated by _plausible_length_ratio() + _prefix_extension_is_subtitle()
+    when the two aren't an exact match, plus a narrower fallback that
+    retries with expected_title's franchise/possessive prefix stripped
+    (see _strip_franchise_prefix()) for the real, curated case where a
+    review site's own title/name drops that prefix — that fallback
+    keeps its own, looser ratio-only guard rather than the prefix/
+    subtitle check, since it only ever fires on a specific, curated
+    prefix pattern and only ever loosens toward a MORE specific, shorter
+    string, never a generic one, so it can't turn a genuinely different
+    show into a false match on its own the way raw containment can.
+
+    Built as one shared function, not two copies, specifically so this
+    real bug's fix can't drift out of sync between the per-block
+    (name_field_matches_title) and whole-page (page_title_matches)
+    guards the way the underlying bug itself went unnoticed in one of
+    them for a while. Returns True/False; never None — callers that
+    need an "unverified, couldn't check at all" state (no <title> tag
+    found, no `name` field present) check for that before ever calling
+    this."""
+    norm = lambda s: re.sub(r'[^a-z0-9]+', '', s.lower())
+    exp_norm, cand_norm = norm(expected_title), norm(candidate_text)
+    if not exp_norm or not cand_norm:
+        return False
+    if exp_norm == cand_norm:
+        return True
+    if exp_norm in cand_norm or cand_norm in exp_norm:
+        if (_plausible_length_ratio(exp_norm, cand_norm)
+                and _prefix_extension_is_subtitle(expected_title, candidate_text) is True):
+            return True
+    stripped = _strip_franchise_prefix(expected_title)
+    if stripped:
+        stripped_norm = norm(stripped)
+        if stripped_norm and (stripped_norm in cand_norm or cand_norm in stripped_norm):
+            if _plausible_length_ratio(stripped_norm, cand_norm):
+                return True
+    return False
+
+
 def name_field_matches_title(name, expected_title):
     """Does a JSON-LD block's own `name` field plausibly refer to the
     title being looked up? Same normalized-substring discipline as
@@ -936,28 +1117,17 @@ def name_field_matches_title(name, expected_title):
     entirely. Returns True/False when `name` is present, None when it's
     absent (can't check — caller should treat as unverified, not
     rejected, since RT's own structured data doesn't always include a
-    name on every block)."""
+    name on every block).
+
+    The actual match logic lives in the shared _title_plausibly_
+    matches() — see its own docstring for the length-ratio +
+    subtitle-extension guard that closed a real false-positive hole
+    found in an Aug 2026 audit (raw containment alone let short, generic
+    titles like "The Bureau"/"GLOW"/"Invasion" match unrelated, much
+    longer titles that merely happened to contain them)."""
     if not name:
         return None
-    norm = lambda s: re.sub(r'[^a-z0-9]+', '', s.lower())
-    exp_norm, name_norm = norm(expected_title), norm(name)
-    if not exp_norm or not name_norm:
-        return None
-    if exp_norm in name_norm or name_norm in exp_norm:
-        return True
-    # Fallback for a franchise/possessive-prefixed expected title whose
-    # page `name` drops the prefix (e.g. expected "Marvel's Jessica
-    # Jones" vs. a real block name of "Marvel - Jessica Jones") — see
-    # _strip_franchise_prefix()'s own comment for the real case this was
-    # found against. Only ever loosens the match toward a MORE specific,
-    # shorter string, never toward a generic one, so it can't turn a
-    # genuinely different show into a false match on its own.
-    stripped = _strip_franchise_prefix(expected_title)
-    if stripped:
-        stripped_norm = norm(stripped)
-        if stripped_norm and (stripped_norm in name_norm or name_norm in stripped_norm):
-            return True
-    return False
+    return _title_plausibly_matches(expected_title, name)
 
 
 def extract_media_scorecard_json(html):
@@ -1111,13 +1281,22 @@ def extract_score_board_scores(html):
     return attr('tomatometerscore'), attr('audiencescore')
 
 
-def extract_rt_scores(html, title, year, imdb_id=None):
+def extract_rt_scores(html, title, year, imdb_id=None, require_imdb_match=False):
     """Parses a fetched RT page's raw HTML for a Tomatometer (critic) /
     Popcornmeter (audience) score. Pulled out of scrape_rt() into its
     own pure function (no Playwright dependency), mirroring
     extract_metascore()'s design exactly — directly unit-testable, and
     subject to the same guard discipline that fixed the Metacritic
     scraper after its own 5-round saga.
+
+    require_imdb_match=True refuses to trust the softer title/date
+    check at all — only an explicit, confirmed page_imdb_matches() ==
+    True is accepted. Used by scrape_rt() for any search-result
+    candidate beyond the first (see its own comment): a lower-ranked
+    result is meaningfully more likely to coincidentally satisfy a
+    loose substring title check than RT's own top-ranked first result
+    ever was, a real bug found via a confirmed-wrong "The Bureau" /
+    "The Bureau of Magical Things" match.
 
     Three independent problems, addressed separately:
 
@@ -1205,11 +1384,23 @@ def extract_rt_scores(html, title, year, imdb_id=None):
                         # either way which is more reliable, so don't
                         # introduce a new assumption beyond "prefer a
                         # confirmed identity."
-                        if critic is None or (name_match and not critic_name_matched):
+                        #
+                        # name_match is False (a CONFIRMED mismatch, not
+                        # just unverified) must reject outright, never
+                        # fall through to the `critic is None` fallback —
+                        # a real bug found in the same Aug 2026 audit that
+                        # motivated name_field_matches_title()'s length-
+                        # ratio guard: a wrong page typically has only ONE
+                        # aggregateRating block, so `critic is None` was
+                        # ALWAYS true and accepted it regardless of what
+                        # name_match said, making the per-block identity
+                        # check a no-op in practice for exactly the single-
+                        # wrong-page case it most needed to catch.
+                        if name_match is not False and (critic is None or (name_match and not critic_name_matched)):
                             critic = round(val)
                             critic_name_matched = bool(name_match)
                     elif best_num == 5:
-                        if audience is None or (name_match and not audience_name_matched):
+                        if name_match is not False and (audience is None or (name_match and not audience_name_matched)):
                             audience = round(val * 20)
                             audience_name_matched = bool(name_match)
                     # bestRating missing/ambiguous -> skip rather than guess
@@ -1278,9 +1469,20 @@ def extract_rt_scores(html, title, year, imdb_id=None):
     # the softer title/date check only when no id reference is found on
     # the page at all. A confirmed mismatch discards BOTH scores — a
     # wrong page invalidates whatever it appeared to say either way.
+    # require_imdb_match (see scrape_rt()'s own comment) additionally
+    # refuses to fall back to the soft title check at all — only an
+    # explicit, confirmed id match is trusted. Needed for a real bug the
+    # multi-candidate search fix below caused: a 2nd/3rd-ranked search
+    # result is far more likely to coincidentally satisfy the loose
+    # substring check (a short title like "The Bureau" is a literal
+    # substring of an unrelated "The Bureau of Magical Things") than the
+    # single best-ranked first result ever was, and neither page states
+    # an explicit conflicting year for the softer check to catch.
     if critic is not None or audience is not None:
         imdb_check = page_imdb_matches(imdb_id, html)
         if imdb_check is False:
+            return None, None, debug
+        if require_imdb_match and imdb_check is not True:
             return None, None, debug
         if imdb_check is None and page_title_matches(title, year, html) is False:
             return None, None, debug
@@ -1351,7 +1553,13 @@ def scrape_rt(page, title, year, kind, imdb_id=None):
         except PWTimeout:
             continue
 
-        critic, audience, debug = extract_rt_scores(html, title, year, imdb_id)
+        # Only the FIRST (RT's own best-ranked) result gets the softer
+        # title/date fallback check — see extract_rt_scores()'s own
+        # comment for the real "The Bureau" vs. "The Bureau of Magical
+        # Things" false-positive this guards against on 2nd/3rd
+        # candidates, which are meaningfully likelier to coincidentally
+        # satisfy a loose substring check.
+        critic, audience, debug = extract_rt_scores(html, title, year, imdb_id, require_imdb_match=(i > 0))
         diag = _page_diagnostics(resp, html)
         debug.append({'pageDiagnostics': diag, 'candidatesTried': i + 1, 'candidateUrl': url})
         last_result = {'critic': critic, 'audience': audience, 'url': url, 'debug': debug}
@@ -1547,6 +1755,15 @@ def main():
                 entry['rtUrl'] = rt.get('url') if rt else None
                 entry['rtAttempted'] = time.strftime('%Y-%m-%d')
                 entry['rtAudienceAttempted'] = True
+                # Persisted (not just in the ephemeral debug list) so a
+                # future audit can tell which cached RT values came from
+                # RT's own top-ranked search result (candidate 1, the
+                # confident case) vs. a lower-ranked candidate accepted
+                # only under require_imdb_match=True's stricter guard —
+                # see extract_rt_scores()'s own comment for the real
+                # false-positive risk that distinction protects against.
+                last_debug = (rt.get('debug') or [{}])[-1] if rt else {}
+                entry['rtCandidatesTried'] = last_debug.get('candidatesTried')
             if t['needsMC']:
                 entry['metacritic'] = None if unreleased else (mc.get('metascore') if mc else None)
                 entry['metacriticUser'] = None if unreleased else (mc.get('userScore') if mc else None)
