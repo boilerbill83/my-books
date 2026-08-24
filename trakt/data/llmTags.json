@@ -7484,5 +7484,139 @@
    "slow-burn"
   ],
   "taggedAt": "2026-08-23"
+ },
+ "show:2288": {
+  "subgenres": [
+   "prison",
+   "crime-drama",
+   "political"
+  ],
+  "tones": [
+   "intense",
+   "suspenseful",
+   "dark",
+   "gritty"
+  ],
+  "taggedAt": "2026-08-24"
+ },
+ "show:97890": {
+  "subgenres": [
+   "crime-drama",
+   "political"
+  ],
+  "tones": [
+   "gritty",
+   "dark",
+   "intense",
+   "character-driven"
+  ],
+  "taggedAt": "2026-08-24"
+ },
+ "show:105": {
+  "subgenres": [
+   "romcom",
+   "workplace-comedy"
+  ],
+  "tones": [
+   "witty",
+   "character-driven",
+   "satirical"
+  ],
+  "taggedAt": "2026-08-24"
+ },
+ "show:41692": {
+  "subgenres": [
+   "historical",
+   "crime-drama"
+  ],
+  "tones": [
+   "gritty",
+   "character-driven",
+   "nostalgic",
+   "slow-burn"
+  ],
+  "taggedAt": "2026-08-24"
+ },
+ "show:85021": {
+  "subgenres": [
+   "crime-drama",
+   "psychological-thriller"
+  ],
+  "tones": [
+   "gritty",
+   "dark",
+   "intense",
+   "suspenseful"
+  ],
+  "taggedAt": "2026-08-24"
+ },
+ "show:1906": {
+  "subgenres": [
+   "family-drama",
+   "coming-of-age",
+   "dark-comedy"
+  ],
+  "tones": [
+   "gritty",
+   "dark",
+   "witty",
+   "character-driven"
+  ],
+  "taggedAt": "2026-08-24"
+ },
+ "show:113984": {
+  "subgenres": [
+   "legal",
+   "political",
+   "crime-drama"
+  ],
+  "tones": [
+   "dark",
+   "intense",
+   "character-driven",
+   "twisty"
+  ],
+  "taggedAt": "2026-08-24"
+ },
+ "show:101591": {
+  "subgenres": [
+   "crime-drama",
+   "biopic"
+  ],
+  "tones": [
+   "gritty",
+   "dark",
+   "intense",
+   "character-driven"
+  ],
+  "taggedAt": "2026-08-24"
+ },
+ "movie:98": {
+  "subgenres": [
+   "historical",
+   "war",
+   "political"
+  ],
+  "tones": [
+   "intense",
+   "dark",
+   "gritty",
+   "character-driven"
+  ],
+  "taggedAt": "2026-08-24"
+ },
+ "show:17035": {
+  "subgenres": [
+   "war",
+   "historical",
+   "political"
+  ],
+  "tones": [
+   "gritty",
+   "intense",
+   "character-driven",
+   "nostalgic"
+  ],
+  "taggedAt": "2026-08-24"
  }
 }
