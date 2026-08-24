@@ -510,13 +510,15 @@ const FIELD_REGISTRY = [
     populated: (t, meta, omdb) => omdb?.rtAudience != null || omdb?.metacriticUser != null,
     quality: (t, meta, omdb) => omdb?.rtAudience != null && omdb?.metacriticUser != null,
     note: 'RT Popcornmeter / Metacritic user score — genuine audience opinion, distinct from the critic-only ' +
-      'field above. OMDb\'s API never returns either value, so this is scraper-only (trakt/scrape_show_ratings.py), ' +
-      'and the scraper itself only ever queues titles where OMDb has neither a critic score either — mostly shows ' +
-      '(~98% of movies already have an OMDb critic score, so the ~98% of them never enter the scraper\'s queue at ' +
-      'all and structurally can\'t get one). This is a real, permanent ceiling for movies by design, not a gap to ' +
-      'close — coverage here will always trend toward "shows only," and even among scraped shows some genuinely ' +
-      'have no RT/Metacritic user-review page to find (see the "Metacritic scrape title verification" finding below ' +
-      'for the accuracy work already done on the values that ARE found).' },
+      'field above. OMDb\'s API never returns either value, so this is scraper-only (trakt/scrape_show_ratings.py). ' +
+      'Used to be structurally capped near 60%: the scraper only ever queued titles where OMDb had no critic score ' +
+      'either, which meant ~98% of movies (already OMDb-critic-covered) never even entered its queue — a real ' +
+      'eligibility bug, not a permanent design constraint, since the same page fetch that finds a critic score ' +
+      'carries the audience score right next to it. Fixed by removing that skip; population is climbing in real ' +
+      'time as the newly-eligible backlog (271 titles) gets scraped. A smaller, genuine ceiling remains below 100% ' +
+      '(some titles are truly absent from both sites, unreleased, or have too few reviews for either to publish a ' +
+      'score — see the "Audience Score" Improvement Opportunities finding below for the live numbers and the ' +
+      '"Metacritic scrape title verification" finding for the accuracy work on values that ARE found).' },
   { key: 'awards', label: 'Awards (Oscar/Emmy)', source: 'OMDb', critical: false,
     eligible: (t, meta, omdb) => !!omdb,
     populated: (t, meta, omdb) => omdb?.awards != null,
@@ -712,36 +714,34 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
       return {
         severity: 'warning',
         ratings: { ease: 3, dataQuality: 6, recEngine: 2, ui: 2 },
-        title: `Audience Score (real viewer opinion) is ${f.populatedPct.toFixed(1)}% populated, ${f.qualityPct.toFixed(1)}% quality — a real, verified fix, still below the 90% bar`,
+        title: `Audience Score (real viewer opinion) is ${f.populatedPct.toFixed(1)}% populated, ${f.qualityPct.toFixed(1)}% quality — climbing fast after a real eligibility bug fix`,
         technical: `<code>realAudienceScore()</code> (RT Popcornmeter / Metacritic user score) started this session genuinely 0% populated across ` +
-          `every eligible title. Two real, separate extraction bugs were found and fixed, each ` +
-          `verified against real ground truth before being trusted: Metacritic's user score is exposed via a ` +
-          `<code>title="User score X.X out of 10"</code> HTML attribute (confirmed 8/8 against independently-researched real values, twice, in ` +
-          `separate live runs); RT's audience score is exposed via a <code>&lt;script id="media-scorecard-json" type="application/json"&gt;</code> ` +
-          `block — the extraction logic initially still returned nothing even after finding this block, because the real score is stored as a ` +
-          `numeric STRING (<code>"score": "88"</code>), not a bare number, which the first version of the parser didn't handle; fixed and ` +
-          `re-verified against 8/8 real ground-truth titles. A one-time backfill-coverage gap was also found and fixed along the way: both ` +
-          `fields needed a dedicated <code>mcUserAttempted</code>/<code>rtAudienceAttempted</code> stamp, separate from the existing ` +
-          `<code>rtAttempted</code> stamp, since virtually every scraper-eligible title already had that older stamp set from before either fix ` +
-          `existed — without the new stamps, the fix would never have gotten a chance to backfill any already-scraped title, only brand-new ones. ` +
-          `A full backfill of the addressable backlog is now complete (0 titles pending in the scraper's own queue) — ${rtAudTotal} titles carry ` +
-          `a real RT Popcornmeter score and ${mcUserTotal} carry a real Metacritic user score. Across the dashboard's full ${f.eligible}-title ` +
-          `OMDb-eligible population, ${f.populated} (${f.populatedPct.toFixed(1)}%) have at least one real audience number and ${f.quality} ` +
-          `(${f.qualityPct.toFixed(1)}%) have both. The remaining gap is architectural, not a bug: this field is ` +
-          `scraper-only, and the scraper only ever processes titles OMDb itself has no critic score for (mostly shows) — movies with an OMDb ` +
-          `critic score never enter the scraper's queue at all, so a real ceiling below 100% of the full eligible population is expected by design.`,
-        plain: `Real viewer opinion (not critic reviews) for movies and shows — this field started the session completely empty, and two separate ` +
-          `real bugs stood between "the data exists on the page" and "this app actually captures it." Both are now found, fixed, and verified ` +
-          `against real known-correct answers, not just "the code runs without erroring." The Metacritic fix was a real markup discovery; the ` +
-          `Rotten Tomatoes fix needed a second pass — the right piece of data was found on the first attempt, but it turned out to be stored as ` +
-          `text ("88") instead of a plain number, so the code was silently throwing it away. Both are fixed now, and a full backfill run through ` +
-          `every eligible title has already happened. The number won't ever reach 100%, and that's expected: this data only ever gets fetched for ` +
-          `shows that don't already have a critic score from the main data source, so a large chunk of the eligible titles (movies that already ` +
-          `have that data another way) were never going to need it in the first place.`,
-        impact: `A real, shipped fix, not a diagnosed-but-unresolved gap — both root causes are found, fixed, verified against real ground truth ` +
-          `twice each, and backfilled across the entire addressable backlog. This field is display-only (not wired into <code>matchScore()</code> ` +
-          `yet, see <code>trakt/ENGINE.md</code> §4), so none of this changed any recommendation ranking — it only changed what Bill can see about ` +
-          `a title. Remaining population growth from here comes from new titles entering the scraper's queue over time, not from more code work.`,
+          `every eligible title. Two real, separate extraction bugs were found and fixed, each verified against real ground truth before being ` +
+          `trusted (the Metacritic <code>title="User score X.X out of 10"</code> attribute; RT's <code>media-scorecard-json</code> block, whose ` +
+          `real score is a numeric STRING, not a bare number). After Bill said "don't stop until it's 100%," a THIRD, bigger bug was found: ` +
+          `<code>scrape_show_ratings.py</code>'s <code>load_pending()</code> was skipping any title where OMDb already had a critic score — but ` +
+          `OMDb's API never returns audience-opinion data for ANYTHING, movie or show, so this eligibility check meant 271 titles (267 of them ` +
+          `movies, ~98% of all movies) were permanently excluded from ever getting a real audience score, even though the exact same page fetch ` +
+          `that finds a critic score carries the audience score right next to it — a real, closeable pipeline bug, not the architectural ceiling ` +
+          `this finding previously (incorrectly) described. Fixed by removing the skip; a title is now eligible purely on the existing ` +
+          `attempted-stamp/cooldown logic, no extra network cost since the page was always being fetched anyway. A real production re-scrape of ` +
+          `the newly-eligible backlog is in progress — ${rtAudTotal} titles currently carry a real RT Popcornmeter score and ${mcUserTotal} carry ` +
+          `a real Metacritic user score, out of ${f.eligible} OMDb-eligible titles total (${f.populated}, ${f.populatedPct.toFixed(1)}%, have at ` +
+          `least one; ${f.quality}, ${f.qualityPct.toFixed(1)}%, have both). A separate, real fix also landed the same session: ` +
+          `<code>scrape_rt()</code> used to take only RT's FIRST search result, which is often a wrong show for a short/franchise-adjacent title ` +
+          `(Andor's search still surfaces "Star Wars: The Bad Batch" first) — now tries up to <code>RT_SEARCH_CANDIDATES</code> (3) before giving ` +
+          `up, re-verification of the known-affected titles in progress.`,
+        plain: `Real viewer opinion (not critic reviews) for movies and shows. Two earlier bugs were fixed, then Bill pushed for the real 100% goal, ` +
+          `which surfaced a THIRD, much bigger one: the code was skipping almost every movie entirely, on the mistaken assumption that a movie ` +
+          `"already had" this data through a different source — it didn't, that other source (OMDb) never provides audience opinion at all, only ` +
+          `critic reviews. Fixing that opened the door for 271 more titles this app had never even tried to look up. A real scrape of that backlog ` +
+          `is running now; the population numbers above are climbing in real time as it works through them, not a fixed permanent ceiling.`,
+        impact: `The single highest-leverage fix found in this whole audience-score effort — not a diagnosed-but-permanent gap, a genuine bug that ` +
+          `was quietly capping the field near 60% no matter how many scraper rounds ran. This field is still display-only (not wired into ` +
+          `<code>matchScore()</code>, see <code>trakt/ENGINE.md</code> §4), so none of this changes recommendation ranking — it changes what Bill ` +
+          `can see about a title. A genuine ceiling still exists below literal 100% (some titles are truly absent from both sites, unreleased, or ` +
+          `have too few reviews for either site to publish a score) — but the real, honest ceiling is now much closer to full coverage than the ` +
+          `~62% this finding previously described as final.`,
       };
     },
     subgenres: (f) => ({
