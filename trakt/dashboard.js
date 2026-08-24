@@ -1157,6 +1157,43 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       `state is now verified, not just claimed.`,
   });
 
+  // 4b. A DIFFERENT bug from the fabricated-score saga above, found while
+  // investigating why a real 34-title production run still left 17-18
+  // titles with no critic/audience score after a targeted re-scrape.
+  // That saga was about a WRONG score being trusted; this one is the
+  // opposite — a genuinely RIGHT page's real score being rejected.
+  findings.push({
+    id: 'scraper-franchise-prefix-mismatch',
+    severity: 'warning',
+    ratings: { ease: 6, dataQuality: 5, recEngine: 3, ui: 1 },
+    title: 'Fixed, not yet re-verified live: franchise-prefixed titles reject their own correct RT/MC page',
+    technical: `A real Aug 2026 production run's job log showed <code>Marvel's Jessica Jones</code> landing on ` +
+      `the correct RT page with a real JSON-LD Tomatometer block (<code>ratingValue: 83</code>, confirmed via ` +
+      `WebSearch as the genuine score) — but <code>page_title_matches()</code> rejected it, because RT's own ` +
+      `<code>&lt;title&gt;</code> reads "Marvel - Jessica Jones", not "Marvel's Jessica Jones", and that function ` +
+      `required the full stored title to appear as a literal substring of the page's. Same root cause hit ` +
+      `<code>SAS: Rogue Heroes</code> (page: "Rogue Heroes") and, on the Metacritic side, meant the slug-guess ` +
+      `never even found a candidate URL for titles like <code>Star Wars: Andor</code> (real slug "andor", not ` +
+      `"star-wars-andor"). Fixed with <code>_strip_franchise_prefix()</code> — strips a leading possessive ("X's ") ` +
+      `or colon-prefixed ("X: ") segment — used as a fallback in <code>page_title_matches()</code>/` +
+      `<code>name_field_matches_title()</code> and as a second Metacritic slug guess, never as a replacement for ` +
+      `the original full-title check. 18 unit tests confirm both the real newly-fixable cases (Jessica Jones, ` +
+      `SAS: Rogue Heroes) now pass and every prior regression case still correctly rejects (the same run's real ` +
+      `Andor-vs-Star-Wars:-The-Bad-Batch wrong page; the historical Lost in Space 1965-vs-2018 year-collision case, ` +
+      `untouched since neither title in that pair carries a prefix to strip).`,
+    plain: `Some shows have a "branded" title in this app's data (like "Marvel's Jessica Jones") that the review ` +
+      `sites themselves don't use on their own pages (they just say "Jessica Jones"). The code was requiring an ` +
+      `exact match, so it kept correctly finding the right page and then throwing away a real score sitting right ` +
+      `there, because the two titles didn't match character-for-character. Fixed to also try the show's name with ` +
+      `the "Marvel's"/"Star Wars:"/etc. part stripped off before giving up — tested against both the real titles ` +
+      `this was blocking and the real wrong-page cases from past rounds, to make sure being more lenient here ` +
+      `doesn't let a wrong page slip through.`,
+    impact: `A real, code-level fix for part of the still-open Audience/Critic Score field-quality gap below — but ` +
+      `deliberately left at "warning," not "good," until a real scheduled or manual scrape run confirms Jessica ` +
+      `Jones and the other affected titles actually come back with real scores in production, the same discipline ` +
+      `every round of this scraper's history has required before calling anything resolved.`,
+  });
+
   // 5. build_trakt_library.js's titleKey() USED TO fall back to a
   // `type:trakt:ID` format when a title had no TMDB id — a shape no other
   // part of the pipeline recognized. Fixed this session: the fallback was
