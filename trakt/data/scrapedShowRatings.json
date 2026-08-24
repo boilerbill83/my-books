@@ -1584,28 +1584,24 @@
   "rtAudienceAttempted": true
  },
  "show:42282": {
-  "rottenTomatoes": 73,
-  "rtAudience": 77,
-  "rtUrl": "https://www.rottentomatoes.com/tv/the_sex_lives_of_college_girls",
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
   "metacritic": 80,
   "metacriticUser": 64,
   "mcUrl": "https://www.metacritic.com/tv/girls/",
   "checkedAt": "2026-08-24",
-  "rtAttempted": "2026-08-24",
-  "mcUserAttempted": true,
-  "rtAudienceAttempted": true
+  "mcUserAttempted": true
  },
  "show:70573": {
-  "rottenTomatoes": 59,
-  "rtAudience": 59,
-  "rtUrl": "https://www.rottentomatoes.com/tv/glow_up",
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
   "metacritic": 82,
   "metacriticUser": 79,
   "mcUrl": "https://www.metacritic.com/tv/glow/",
   "checkedAt": "2026-08-24",
-  "rtAttempted": "2026-08-24",
-  "mcUserAttempted": true,
-  "rtAudienceAttempted": true
+  "mcUserAttempted": true
  },
  "show:79086": {
   "rottenTomatoes": 84,
@@ -1848,16 +1844,13 @@
   "rtAudienceAttempted": true
  },
  "show:127235": {
-  "rottenTomatoes": 53,
-  "rtAudience": 43,
-  "rtUrl": "https://www.rottentomatoes.com/tv/secret_invasion",
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/invasion/",
-  "checkedAt": "2026-08-24",
-  "rtAttempted": "2026-08-24",
-  "mcUserAttempted": true,
-  "rtAudienceAttempted": true
+  "mcUrl": null,
+  "checkedAt": "2026-08-24"
  },
  "show:114471": {
   "rottenTomatoes": 76,
@@ -4821,15 +4814,13 @@
   "mcUserAttempted": true
  },
  "show:2204": {
-  "rottenTomatoes": 100,
-  "rtAudience": 94,
-  "rtUrl": "https://www.rottentomatoes.com/tv/fullmetal_alchemist_brotherhood",
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
   "metacritic": 75,
   "metacriticUser": 47,
   "mcUrl": "https://www.metacritic.com/tv/brotherhood/",
   "checkedAt": "2026-08-24",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
   "mcUserAttempted": true
  },
  "show:1908": {
@@ -5286,15 +5277,13 @@
   "mcUserAttempted": true
  },
  "show:124364": {
-  "rottenTomatoes": 95,
-  "rtAudience": 79,
-  "rtUrl": "https://www.rottentomatoes.com/tv/how_to_get_to_heaven_from_belfast",
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
   "metacritic": 63,
   "metacriticUser": 68,
   "mcUrl": "https://www.metacritic.com/tv/from/",
   "checkedAt": "2026-08-24",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
   "mcUserAttempted": true
  },
  "show:1416": {
@@ -5916,11 +5905,9 @@
   "checkedAt": "2026-08-24"
  },
  "show:54650": {
-  "rottenTomatoes": 84,
-  "rtAudience": 48,
-  "rtUrl": "https://www.rottentomatoes.com/tv/the_lord_of_the_rings_the_rings_of_power",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
   "metacritic": 61,
   "metacriticUser": 77,
   "mcUrl": "https://www.metacritic.com/tv/power/",
@@ -7128,11 +7115,9 @@
   "checkedAt": "2026-08-24"
  },
  "show:4607": {
-  "rottenTomatoes": 60,
-  "rtAudience": 47,
-  "rtUrl": "https://www.rottentomatoes.com/tv/dan_browns_the_lost_symbol",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
   "metacritic": 84,
   "metacriticUser": 87,
   "mcUrl": "https://www.metacritic.com/tv/lost/",
@@ -7932,11 +7917,9 @@
   "checkedAt": "2026-08-24"
  },
  "show:62476": {
-  "rottenTomatoes": 82,
-  "rtAudience": 82,
-  "rtUrl": "https://www.rottentomatoes.com/tv/the_bureau_of_magical_things",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
