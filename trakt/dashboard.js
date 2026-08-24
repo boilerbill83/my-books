@@ -1243,28 +1243,28 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       `for Invasion (whose cached "invasion" slug also turned out wrong, colliding with an older 2005 NBC show of ` +
       `the same bare name; the other 7 titles' MC values were independently re-verified correct via WebSearch, ` +
       `several matching the real published Metascore/user-score exactly).<br><br>` +
-      `<strong>Re-verified against a real live re-scrape (run 32777832090) — genuinely mixed, not a clean win, and ` +
-      `both directions were checked in the raw job log rather than just trusting that null-on-the-8-titles meant ` +
-      `success</strong>: 5 of the 8 (Bureau, Girls, GLOW, FROM, Lost) landed on a DIFFERENT wrong RT candidate than ` +
-      `before and were correctly rejected via a genuine <code>name_match=False</code> — real proof the guard ` +
-      `generalizes rather than just memorizing the original 8 cases. But 2 of the 8 (Brotherhood, Invasion) turned ` +
-      `out to have a REAL, correct RT page the search actually found (an exact per-block name match, a plausible ` +
-      `ratingValue) that got wrongly discarded anyway — root cause was a separate piece of this same session's own ` +
-      `work: <code>require_imdb_match=True</code> (added earlier for any search candidate beyond the first) ` +
-      `demanded an explicit IMDb-id page match and refused to fall back to a confirmed name match at all, but real ` +
-      `RT pages for older TV-catalog titles don't always expose a scannable imdb.com link. That gate made sense ` +
-      `when the title/name checks were still naive substring-only, but now that they carry the length-ratio + ` +
-      `subtitle-extension guards, a confirmed per-block name match is itself strong enough evidence. Fixed: it now ` +
-      `falls back to a confirmed name match when no IMDb id is found on the page, only still blocking the ` +
-      `genuinely unverified case. Writing the unit test for this also caught a second real gap: a parenthetical ` +
-      `year suffix ("The Bureau (2009)") was passing the subtitle-extension check purely for starting with an open ` +
-      `paren — exactly RT's own convention for disambiguating two same-named shows released in different years, ` +
-      `the identical collision class that already needed a dedicated year check elsewhere (the Lost in Space 1965 ` +
-      `vs. 2018 bug from this scraper's earlier history) — but this function never receives a year to check ` +
-      `against. Fixed: a bare-year parenthetical is no longer accepted as a safe subtitle. Both fixes unit-tested; ` +
-      `Brotherhood/Invasion's cache entries cleared again to force a real re-test under the corrected logic — a ` +
-      `SECOND re-verification against a real re-scrape is still pending at the time of writing, same discipline as ` +
-      `every prior round.`,
+      `<strong>Two real live re-scrapes later, fully verified — genuinely earned, not a clean-looking diff trusted ` +
+      `on faith</strong>: round 1 (run 32777832090) landed on a DIFFERENT wrong RT candidate for 5 of the 8 ` +
+      `(Bureau, Girls, GLOW, FROM, Lost) and correctly rejected every one via a genuine <code>name_match=False</code> ` +
+      `— real proof the guard generalizes rather than just memorizing the original 8 cases — but also revealed a ` +
+      `real false-NEGATIVE: 2 of the 8 (Brotherhood, Invasion) had a REAL, correct RT page the search found (an ` +
+      `exact per-block name match, a plausible ratingValue) that got wrongly discarded by ` +
+      `<code>require_imdb_match=True</code>, a separate, stricter guard added earlier the same session that ` +
+      `demanded an explicit IMDb-id page match and refused to trust a confirmed name match on its own — sensible ` +
+      `back when the title/name checks were naive substring-only, but no longer necessary once they carried the ` +
+      `length-ratio + subtitle-extension guards. Fixed to fall back to a confirmed name match when no IMDb id is ` +
+      `found on the page. Building the unit test for that fix caught one more real gap: a parenthetical year suffix ` +
+      `("The Bureau (2009)") was passing the subtitle-extension check purely for starting with an open paren — ` +
+      `exactly RT's own convention for disambiguating two same-named shows released in different years, the ` +
+      `identical collision class that already needed a dedicated year check elsewhere (the Lost in Space 1965 vs. ` +
+      `2018 bug from this scraper's earlier history) — fixed so a bare-year parenthetical is never accepted as a ` +
+      `safe subtitle. <strong>Round 2 (run 32784209398) confirmed the fix for real</strong>: Brotherhood now scores ` +
+      `a real RT 79% (exact match to round 1's own discarded value — the fix didn't change WHAT was found, only ` +
+      `whether it got trusted), Invasion RT 73%/audience 82%, and — a genuine bonus beyond what was even being ` +
+      `tracked — Power (Bill's own real loved Starz show) also recovered its correct RT 81%/audience 81% this same ` +
+      `round. All 5 of the originally-wrong titles that don't have a findable RT page (Bureau, Girls, GLOW, FROM, ` +
+      `Lost) stayed correctly null — a genuine remaining ceiling (RT's own search doesn't surface the right result ` +
+      `for these, not a code gap) rather than something padded over.`,
     plain: `Trying more search results on the review site fixed some shows but broke others: it turns out a short ` +
       `show name like "GLOW" or "The Bureau" is sometimes just a literal piece of a totally different, unrelated ` +
       `show's much longer name ("Glow Up," "The Bureau of Magical Things"), and the code was treating that as a ` +
@@ -1272,22 +1272,23 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       `getting the wrong score from an unrelated Lord of the Rings show. Fixed by requiring the two titles to be ` +
       `much closer in length before trusting a partial match, plus a second check for whether the extra text looks ` +
       `like a real subtitle (starts with a colon or dash) versus just a coincidentally similar name.<br><br>` +
-      `Running the fix for real against the live site showed it wasn't quite right yet: 5 of the 8 shows correctly ` +
-      `got rejected again (good — the fix works on NEW wrong pages, not just the ones already known about), but 2 ` +
-      `of them (Brotherhood, Invasion) turned out to have a real, correct page that the code found and then threw ` +
-      `away anyway, because of an overly strict "must find an exact ID match" rule added earlier that didn't trust ` +
-      `a confirmed name match on its own. Loosened that rule, and also closed a related gap where a show's release ` +
-      `year in parentheses (a real way review sites tell two same-named shows apart) was being mistaken for a ` +
-      `harmless subtitle. Both fixes are tested; the next real scrape run will confirm whether they actually work ` +
-      `live, the same "don't trust it until it's been proven against the real site" rule this whole investigation ` +
-      `has followed throughout.`,
+      `Running the fix for real against the live site the first time showed it wasn't quite right yet: 5 of the 8 ` +
+      `shows correctly got rejected again (good — the fix works on NEW wrong pages, not just the ones already known ` +
+      `about), but 2 of them (Brotherhood, Invasion) turned out to have a real, correct page that the code found ` +
+      `and then threw away anyway, because of an overly strict "must find an exact ID match" rule added earlier ` +
+      `that didn't trust a confirmed name match on its own. Loosened that rule, and also closed a related gap where ` +
+      `a show's release year in parentheses (a real way review sites tell two same-named shows apart) was being ` +
+      `mistaken for a harmless subtitle.<br><br>Ran it again for real a second time, and this time it worked: ` +
+      `Brotherhood and Invasion both got their correct scores back, and as a bonus, "Power" (Bill's own real loved ` +
+      `show, the one that was originally getting scored from the wrong Lord of the Rings show) got its correct ` +
+      `score back too. The 5 shows that genuinely don't have a findable match on the review site correctly stayed ` +
+      `blank instead of showing a wrong number.`,
     impact: `A real correctness fix, not a completeness one — it corrects data that was already wrong and displayed ` +
-      `on the dashboard, including for one of Bill's own real watched/loved titles. Doesn't move the Audience Score ` +
-      `population percentage up on its own (it may briefly dip while these titles wait to be re-scraped) but ` +
-      `protects every future scrape from the same false-positive class. The live re-verification also caught a ` +
-      `real false-NEGATIVE this fix's own earlier work had introduced (Brotherhood, Invasion) — a useful reminder ` +
-      `that tightening a guard against one failure mode can create the opposite one, and the only way to know for ` +
-      `sure is a real re-scrape, not a clean-looking diff.`,
+      `on the dashboard, including for one of Bill's own real watched/loved titles, which is now fixed and ` +
+      `confirmed correct. The 2-round process is itself a useful data point: tightening a guard against one failure ` +
+      `mode (false positives) created the opposite one (false negatives) the very first time it ran for real, and ` +
+      `the only way either was caught was insisting on a genuine re-scrape both times rather than trusting a fix ` +
+      `that merely looked correct in code review or unit tests.`,
   });
 
   // 5. build_trakt_library.js's titleKey() USED TO fall back to a
