@@ -18,6 +18,21 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
 
 const fmtNum = n => (n ?? 0).toLocaleString('en-US');
 
+// A cached posterPath can go stale if TMDB moves/reprocesses the underlying
+// image asset after enrich_tmdb.py fetched it (a real, if partial, cause of
+// "the images aren't loading" bug reports — this app can't tell a genuinely
+// broken URL from a network hiccup without a live browser to check against).
+// The onerror handler below swaps a broken poster for the exact same
+// empty-placeholder markup a title with no cached posterPath at all already
+// gets, so a stale path degrades to the existing "no cover" look instead of
+// a broken-image icon, at every one of the 3 places a poster renders as an
+// HTML string (the 4th, the All Titles table, builds the <img> via DOM APIs
+// directly and gets the same onerror behavior inline there instead).
+const posterImgHtml = (url, cssClass, w, h) => url
+  ? `<img class="${cssClass}" src="${esc(url)}" alt="" loading="lazy" width="${w}" height="${h}" ` +
+    `onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'${cssClass} ${cssClass}-empty'}))">`
+  : `<div class="${cssClass} ${cssClass}-empty"></div>`;
+
 // Consistent visual language for movie/show and watched/watchlist/candidate,
 // used everywhere a title appears (rec cards, metric rows, the All Titles
 // table) — Bill's explicit ask for a systematic cue "throughout" rather than
@@ -28,6 +43,7 @@ const STATUS_META = {
   Watched:    { cls: 'tk-status-tag-watched',    label: 'Watched' },
   Watchlist:  { cls: 'tk-status-tag-watchlist',  label: 'Watchlist' },
   Candidate:  { cls: 'tk-status-tag-candidate',  label: 'Candidate' },
+  Dismissed:  { cls: 'tk-status-tag-dismissed',  label: 'Dismissed' },
 };
 const statusTag = status => {
   const m = STATUS_META[status];
@@ -346,7 +362,7 @@ function renderPredictionMisses(stats, enrichedMeta) {
     const poster = posterUrl(r.titleKey, enrichedMeta);
     return `
     <div class="tk-metric-row">
-      ${poster ? `<img class="tk-metric-poster" src="${poster}" alt="" loading="lazy" width="38" height="57">` : '<div class="tk-metric-poster tk-metric-poster-empty"></div>'}
+      ${posterImgHtml(poster, 'tk-metric-poster', 38, 57)}
       <span class="tk-metric-name">${typeIcon(r.type)} ${esc(r.title)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
       <span class="tk-metric-score" style="color:${dir === 'over' ? 'var(--status-critical)' : 'var(--status-serious)'};">
         ${dir === 'over' ? 'predicted' : 'rated'} ${dir === 'over' ? Math.round(r.predicted) : r.myRating + '/10'} vs. ${dir === 'over' ? 'rated ' + r.myRating + '/10' : 'predicted ' + Math.round(r.predicted)}
@@ -368,7 +384,7 @@ function renderBestMatches(stats, enrichedMeta) {
     const poster = posterUrl(r.titleKey, enrichedMeta);
     return `
     <div class="tk-metric-row">
-      ${poster ? `<img class="tk-metric-poster" src="${poster}" alt="" loading="lazy" width="38" height="57">` : '<div class="tk-metric-poster tk-metric-poster-empty"></div>'}
+      ${posterImgHtml(poster, 'tk-metric-poster', 38, 57)}
       <span class="tk-metric-name">${typeIcon(r.type)} ${esc(r.title)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
       <span class="tk-metric-score">predicted ${Math.round(r.predicted)}, rated ${r.myRating}/10</span>
     </div>
@@ -1910,6 +1926,11 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
     const h = hydrateTitle(t, enrichedMeta);
     const meta = enrichedMeta[h.titleKey];
     const omdb = omdbMeta[h.titleKey];
+    // A dismissed title (feedbackData.json's excludeFromRecommendations) is
+    // no longer a real candidate — idx.excluded already keeps it out of
+    // every recommendation surface, so the table's own status label should
+    // say so too rather than still calling it "Candidate."
+    if (idx.excluded.has(h.titleKey)) status = 'Dismissed';
     rows.push({
       titleKey: h.titleKey, posterUrl: posterUrl(h.titleKey, enrichedMeta),
       title: h.title || '(untitled — not yet enriched)', year: h.year, type: h.type, status,
@@ -1970,6 +1991,7 @@ function renderAllTitlesTable(allRows) {
           const img = document.createElement('img');
           img.src = r.posterUrl; img.alt = ''; img.loading = 'lazy'; img.width = 40; img.height = 60;
           img.className = 'tk-table-poster';
+          img.onerror = () => { img.remove(); };
           td.appendChild(img);
         }
       } },
@@ -2133,9 +2155,7 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
     return `
     <div class="tk-rec-card">
       <div class="tk-rec-rank">${i + 1}</div>
-      ${poster
-        ? `<img class="tk-rec-poster" src="${poster}" alt="" loading="lazy" width="60" height="90">`
-        : `<div class="tk-rec-poster tk-rec-poster-empty"></div>`}
+      ${posterImgHtml(poster, 'tk-rec-poster', 60, 90)}
       <div class="tk-rec-body">
         <div class="tk-rec-title">
           ${typeIcon(c.type)} ${esc(c.title)}${c.year ? ` <span class="tk-year">(${esc(c.year)})</span>` : ''}

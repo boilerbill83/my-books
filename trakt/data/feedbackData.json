@@ -197,6 +197,138 @@
       "reasonLabel": "Passed over for feeling dated — checked against Bill's real loved-show-by-year distribution before treating release year as a generalizable signal and confirmed it would misfire (24 of his 99 loved shows are pre-2010, including Seinfeld '89/Oz '97/The Sopranos '99); not generalized into scoring, recorded as an exact-title exclusion only",
       "timestamp": "2026-08-22T16:50:26.807Z",
       "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:62643",
+      "title": "DC's Legends of Tomorrow",
+      "year": 2016,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_hokey",
+      "reasonLabel": "Too hokey/campy — tried generalizing via genre/subgenre overlap (superhero subgenre, aggregate loved-weight 6) but a real scripts/eval.js run caught a regression: that entire weight comes from exactly Deadpool (10/10) and Deadpool 2 (9/10), both real Bill favorites, so the penalty was hitting loved titles directly; reverted (see STYLE_DISLIKE_REASON_CODES's comment in engine.js) — recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-24T13:11:14.176Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:912649",
+      "title": "Venom: The Last Dance",
+      "year": 2024,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "too_hokey",
+      "reasonLabel": "Too hokey/campy — generalization was tried and reverted for this whole group after a real regression (see DC's Legends of Tomorrow's entry for the full rationale); recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-24T13:11:14.176Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:338762",
+      "title": "Bloodshot",
+      "year": 2020,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "too_hokey",
+      "reasonLabel": "Too hokey/campy — generalization was tried and reverted for this whole group after a real regression (see DC's Legends of Tomorrow's entry for the full rationale); recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-24T13:11:14.176Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:345887",
+      "title": "The Equalizer 2",
+      "year": 2018,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "too_hokey",
+      "reasonLabel": "Too hokey/campy — generalization was tried and reverted for this whole group after a real regression (see DC's Legends of Tomorrow's entry for the full rationale); recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-24T13:11:14.176Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:100883",
+      "title": "Never Have I Ever",
+      "year": 2020,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_kiddish",
+      "reasonLabel": "Too young-skewing/juvenile in tone — grouped with too_hokey for a genre/subgenre generalization attempt that was reverted after a real scripts/eval.js regression (see STYLE_DISLIKE_REASON_CODES's comment in engine.js); recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-24T13:11:14.176Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:1411",
+      "title": "Person of Interest",
+      "year": 2011,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_low_brow",
+      "reasonLabel": "Perceived as lower-brow network procedural — checked against Bill's real loved-subgenre weights before deciding whether to generalize (procedural sits at loved-weight 26, crime-drama at 30 — Bill genuinely loves a lot of this content) and found it would misfire the same way too_urban did; not generalized into scoring, recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-24T13:11:14.176Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:1416",
+      "title": "Grey's Anatomy",
+      "year": 2005,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_low_brow",
+      "reasonLabel": "Perceived as lower-brow network soap/procedural — same too_low_brow rationale as Person of Interest's entry (checked against Bill's real loved procedural/crime-drama weights, found it would misfire if generalized); not generalized into scoring, recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-24T13:11:14.176Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:153657",
+      "title": "Bosch: Legacy",
+      "year": 2022,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_low_brow",
+      "reasonLabel": "Perceived as lower-brow network procedural — same too_low_brow rationale as Person of Interest's entry (checked against Bill's real loved procedural/crime-drama weights, found it would misfire if generalized); not generalized into scoring, recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-24T13:11:14.176Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:1403",
+      "title": "Marvel's Agents of S.H.I.E.L.D.",
+      "year": 2013,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "not_interested",
+      "reasonLabel": "General pass, no more specific reason given",
+      "timestamp": "2026-08-24T13:11:14.176Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:43901",
+      "title": "Longmire",
+      "year": 2012,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "not_interested",
+      "reasonLabel": "General pass, no more specific reason given",
+      "timestamp": "2026-08-24T13:11:14.176Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:66025",
+      "title": "Animal Kingdom",
+      "year": 2016,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "not_interested",
+      "reasonLabel": "General pass, no more specific reason given",
+      "timestamp": "2026-08-24T13:11:14.176Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:66676",
+      "title": "Queen of the South",
+      "year": 2016,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "not_english_language",
+      "reasonLabel": "Passed over for feeling too foreign-language/subtitled, despite TMDB listing its originalLanguage as 'en' (a real English-language USA Network production, heavy Spanish dialogue/setting) — not a mappable TMDB language-field signal, so not generalized into scoring; recorded as an exact-title exclusion only",
+      "timestamp": "2026-08-24T13:11:14.176Z",
+      "excludeFromRecommendations": true
     }
   ]
 }
