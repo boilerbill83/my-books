@@ -463,14 +463,23 @@ though real values cluster far tighter around the neutral point).
 
 ## 9. Where to make a change
 
+**Standing rule (Bill's explicit instruction): this file must be updated in
+the same commit as any `engine.js` change that adds, removes, or re-weights
+a scoring signal or filter.** §3's weight table, §4's display-only list, §5's
+filter table, and/or §8's quick-reference must all stay accurate — don't let
+this drift into a stale snapshot of one point in time.
+
 - **Adding/adjusting a weight**: change the constant in `engine.js`, then
   `node trakt/scripts/eval.js` before and after. Never ship a change that
-  drops precision@10 or precision@25, even if MAE improves.
+  drops precision@10 or precision@25, even if MAE improves. Update the
+  relevant §3 entry and the §8 table with the new value and the real
+  before/after `eval.js` numbers, in the same commit.
 - **Adding a new signal**: start it display-only (computed, shown, not
   added to `baseSignals()`) until real data exists to validate it against
   — every signal in §3 above followed this path (keyword/subgenre/tone/
-  cast/franchise/IMDb-votes all shipped display-only first).
+  cast/franchise/IMDb-votes all shipped display-only first). Document it in
+  §4 while display-only; move it to §3/§8 once wired into scoring.
 - **Adding a new hard filter**: add it to `rankAll()`'s `fromCandidates`
-  filter chain (§5), never to the watchlist.
+  filter chain (§5), never to the watchlist. Add a row to §5's table.
 - **Full architecture context, session history, and the BBRE (book-side)
   comparison table**: see `CLAUDE.md`'s "BMTRE" section.
