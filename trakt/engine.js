@@ -101,6 +101,30 @@ function normalizeGenre(g) {
   return GENRE_ALIASES[g] || g;
 }
 
+// Reason codes that feed the style-dislike generalization in dismissAdjust()
+// below (genre/subgenre-overlap penalty against future candidates), beyond
+// the original literal 'style_dislike' code. A real Aug 2026 dismissal
+// batch tried adding 'too_hokey'/'too_kiddish' here, gated on a check
+// against idx.lovedSubgenres' aggregate weight (both looked low-risk:
+// 'superhero' at loved-weight 6, 'coming-of-age'/'romance' at 10/7) — but
+// scripts/eval.js immediately caught a real regression the aggregate-weight
+// check missed: that entire 'superhero' loved-weight of 6 turned out to
+// come from exactly two titles, Deadpool (10/10) and Deadpool 2 (9/10),
+// both real Bill favorites — a low AGGREGATE number said nothing about how
+// CONCENTRATED it was, and generalizing 'too_hokey' directly penalized both
+// clean out of the true leave-one-out top 10 (precision@10 90%→80%).
+// Reverted for the same reason 'too_urban'/'too_old'/'too_low_brow' were
+// never added here in the first place: a genre/subgenre-level penalty is
+// too blunt when Bill's own loved titles can share the exact tag being
+// penalized. 'too_hokey'/'too_kiddish'/'too_low_brow' all stay real,
+// descriptive reason codes in feedbackData.json (useful for grouping and
+// future review) but exact-title-only exclusions, not generalized into
+// scoring. Lesson for any future addition here: check which SPECIFIC
+// loved titles contribute a subgenre's weight, not just the number itself,
+// and always confirm with a real scripts/eval.js run before trusting the
+// static check.
+const STYLE_DISLIKE_REASON_CODES = new Set(['style_dislike']);
+
 export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}) {
   const watched = new Map();
   for (const t of library.titles || []) watched.set(t.titleKey, t);
@@ -208,30 +232,25 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}) {
   // (Session 12b there): a dismissal shouldn't only remove the one exact
   // title, it should teach the engine "other titles by this same
   // creator" or "titles with this same overall style" are less likely
-  // to land too. Two new reason codes carry real generalizable meaning
-  // (see dismissAdjust() below for how each is applied):
-  //   'creator_dislike' — this title's director/creator specifically
-  //     isn't for Bill, regardless of genre/content.
-  //   'style_dislike'   — this title's overall genre/subgenre mix isn't
-  //     for Bill, regardless of who made it (needs 2+ before it
-  //     generalizes, the same floor the book engine's dismissAdjust
-  //     uses, so one one-off dismissal can't swing a whole style
-  //     bucket).
-  // Dormant against today's real data by design, not a bug: all 18 real
-  // dismissals recorded so far use other reason codes (already_watched,
-  // looks_low_budget, too_urban, too_old, already_have_version_rated,
-  // not_interested, aimed_at_older_demographic) — none of them
-  // 'creator_dislike'/'style_dislike'. That's deliberate, not an
-  // oversight: 'too_urban' looked like the closest real candidate for a
-  // style-dislike generalization, but a prior session found it would
-  // misfire — Crime/Drama are Bill's #1/#2 loved genres and several of
-  // those exact dismissed shows' genres overlap heavily with titles he
-  // loves, so a genre-shaped penalty keyed on that reason would
-  // wrongly punish real matches. Kept as an exact-title-only exclusion
-  // instead, same as before. This mechanism ships ready for a future
-  // dismissal (from this session's data or the real app once a dismiss
-  // UI exists) that genuinely names a creator or a style as the
-  // problem, without needing another engine change when that happens.
+  // to land too. Two reason-code families carry real generalizable
+  // meaning (see dismissAdjust() below for how each is applied):
+  //   'creator_dislike'          — this title's director/creator
+  //     specifically isn't for Bill, regardless of genre/content.
+  //   STYLE_DISLIKE_REASON_CODES — this title's overall genre/subgenre
+  //     mix isn't for Bill, regardless of who made it (needs 2+ across
+  //     the whole family before it generalizes, the same floor the book
+  //     engine's dismissAdjust uses, so one one-off dismissal can't
+  //     swing a whole style bucket).
+  // Still just 'style_dislike' in practice, dormant against today's real
+  // data (no dismissal uses that literal code yet) — a real Aug 2026
+  // dismissal batch tried adding 'too_hokey'/'too_kiddish' here and a real
+  // scripts/eval.js run caught a regression, so it was reverted; see
+  // STYLE_DISLIKE_REASON_CODES's own comment for the full story and the
+  // lesson for any future addition. 'too_urban'/'too_old'/'too_low_brow'
+  // were investigated the same way (checked against idx.lovedSubgenres/
+  // lovedGenres) and deliberately kept OUT for the same reason: all three
+  // would penalize genres/subgenres Bill actually loves a lot of — kept as
+  // exact-title-only exclusions instead.
   const dismissedCreators = new Set();
   const dismissedGenreProfile = new Map();
   const dismissedSubgenreProfile = new Map();
@@ -242,7 +261,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}) {
     if (e.reasonCode === 'creator_dislike') {
       const dcreator = dmeta ? getCreator(e.type, dmeta) : null;
       if (dcreator) dismissedCreators.add(dcreator);
-    } else if (e.reasonCode === 'style_dislike') {
+    } else if (STYLE_DISLIKE_REASON_CODES.has(e.reasonCode)) {
       styleDismissCount++;
       for (const g of (dmeta?.genres || [])) {
         const ng = normalizeGenre(g);
@@ -324,16 +343,16 @@ function genreBonus(genres, lovedGenres) {
   return Math.min(bonus, 8);
 }
 
-// Dismissal generalization — see buildIndexes()'s own comment for the
-// full design and why it's dormant against today's real data (no
-// dismissal yet uses either of these two reason codes). A creator-
-// dislike is a flat, confident penalty (naming a specific person as the
-// problem is about as unambiguous as taste feedback gets). A style-
-// dislike is smaller and additive per overlapping genre/subgenre tag,
-// capped, and gated behind 2+ real style dismissals — the same
-// "needs 2+" floor the book engine's dismissAdjust uses, so one
-// one-off dismissal can't swing a whole genre/subgenre bucket against
-// every future candidate that happens to share it.
+// Dismissal generalization — see buildIndexes()'s own comment (and
+// STYLE_DISLIKE_REASON_CODES's) for the full design and which reason
+// codes actually activate each half. A creator-dislike is a flat,
+// confident penalty (naming a specific person as the problem is about
+// as unambiguous as taste feedback gets). A style-dislike is smaller
+// and additive per overlapping genre/subgenre tag, capped, and gated
+// behind 2+ real style dismissals — the same "needs 2+" floor the book
+// engine's dismissAdjust uses, so one one-off dismissal can't swing a
+// whole genre/subgenre bucket against every future candidate that
+// happens to share it.
 const CREATOR_DISLIKE_PENALTY = -15;
 const STYLE_DISLIKE_MIN_COUNT = 2;
 const STYLE_DISLIKE_PER_MATCH = -3;

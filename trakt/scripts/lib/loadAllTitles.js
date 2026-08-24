@@ -48,6 +48,11 @@ export function loadAllTitles() {
     const omdb = omdbMeta[h.titleKey];
     const fb = feedbackByKey.get(h.titleKey);
     const creator = getCreator(h.type, meta);
+    // A dismissed title is no longer a real candidate — idx.excluded
+    // already keeps it out of every recommendation surface, so the export's
+    // own status column should say so too rather than still calling it
+    // "Candidate" (mirrors the same fix in dashboard.js's buildAllTitlesRows).
+    if (fb?.excludeFromRecommendations) status = 'Dismissed';
 
     rows.push({
       titleKey: h.titleKey,
