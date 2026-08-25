@@ -329,6 +329,28 @@
       "reasonLabel": "Passed over for feeling too foreign-language/subtitled, despite TMDB listing its originalLanguage as 'en' (a real English-language USA Network production, heavy Spanish dialogue/setting) — not a mappable TMDB language-field signal, so not generalized into scoring; recorded as an exact-title exclusion only",
       "timestamp": "2026-08-24T13:11:14.176Z",
       "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:112693",
+      "title": "Kin",
+      "year": 2021,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_boring",
+      "reasonLabel": "Passed over as boring/slow-paced",
+      "timestamp": "2026-08-25T00:16:39.000Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:61244",
+      "title": "Happy Valley",
+      "year": 2014,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_boring",
+      "reasonLabel": "Passed over as boring/slow-paced",
+      "timestamp": "2026-08-25T00:16:39.000Z",
+      "excludeFromRecommendations": true
     }
   ]
 }
