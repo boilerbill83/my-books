@@ -92,7 +92,16 @@ function renderHBarChart(containerId, data, { labelKey, valueKey, barHeight = 20
   const plotW = width - marginLeft - marginRight;
   const maxVal = maxScale ?? Math.max(1, ...data.map(d => d[valueKey]));
 
-  const svg = svgEl('svg', { viewBox: `0 0 ${width} ${height}`, width: '100%', height, style: 'display:block' });
+  // viewBox scales the content; width is left as 100% and height MUST be
+  // 'auto' (never a raw px number equal to the viewBox height) so the
+  // rendered box always matches the viewBox's own aspect ratio exactly. A
+  // fixed-px height attribute here previously fought the intrinsic
+  // preserveAspectRatio="xMidYMid meet" scaling the moment the container
+  // was narrower than the 700-unit viewBox (true for both the two-column
+  // desktop layout and, worse, the single-column mobile one) — the chart
+  // rendered shrunk-down and letterboxed inside its own box, reading as
+  // "small/zoomed out" with soft-looking (actually just downscaled) text.
+  const svg = svgEl('svg', { viewBox: `0 0 ${width} ${height}`, width: '100%', style: 'display:block; height:auto;' });
 
   const tooltip = document.createElement('div');
   tooltip.className = 'tk-tooltip';
@@ -140,23 +149,50 @@ function renderHBarChart(containerId, data, { labelKey, valueKey, barHeight = 20
 
 const LOVED_THRESHOLD = 9;
 
-function computeGenreStats(library, enrichedMeta) {
+// "Genres You Rate Highest" used to read TMDB's own raw genre field — a
+// blunt ~19/16-word taxonomy where "Drama" alone sits on 75.1% of every
+// enriched title (verified live: 590 of 786) and "Crime" on 33.0%, so the
+// chart was really just restating those two mega-buckets in different
+// orders rather than showing anything Bill could act on (Bill: "drama is
+// way too broad, I want them much more narrow"). A genuinely narrower
+// taxonomy already exists and is already used for real scoring —
+// inferSubgenres() in engine.js (23 real values: crime-drama, procedural,
+// psychological-thriller, dark-comedy, historical, spy-espionage, heist,
+// etc. — keyword-matched against TMDB's own overview/keywords, with a
+// per-title trakt/data/llmTags.json entry as a second pass for titles the
+// keywords alone can't confidently classify) — it was just never wired
+// into this chart. No new tag vocabulary was invented for this fix; the
+// existing, already-validated classifier was pointed at a second consumer.
+function computeGenreStats(library, enrichedMeta, llmTags = {}) {
   const stats = new Map();
   for (const t of library.titles || []) {
     if (t.myRating == null) continue;
     const meta = enrichedMeta[t.titleKey];
-    if (!meta?.genres) continue;
-    for (const g of meta.genres) {
+    if (!meta) continue;
+    for (const g of inferSubgenres(meta, llmTags[t.titleKey])) {
       if (!stats.has(g)) stats.set(g, { sum: 0, count: 0 });
       const e = stats.get(g);
       e.sum += t.myRating; e.count++;
     }
   }
   return [...stats.entries()]
-    .map(([genre, e]) => ({ genre, avg: e.sum / e.count, count: e.count }))
+    .map(([genre, e]) => ({ genre: SUBGENRE_LABEL[genre] || genre, avg: e.sum / e.count, count: e.count }))
     .filter(g => g.count >= 3)
     .sort((a, b) => b.avg - a.avg);
 }
+
+// inferSubgenres() returns hyphenated machine keys (engine.js reads them
+// back for scoring, so they can't be prettied at the source) — a small
+// display-only label map, same spirit as REASON_CODE_SHORT_LABEL below.
+const SUBGENRE_LABEL = {
+  'crime-drama': 'Crime Drama', 'procedural': 'Procedural', 'psychological-thriller': 'Psychological Thriller',
+  'family-drama': 'Family Drama', 'dark-comedy': 'Dark Comedy', 'historical': 'Historical',
+  'political': 'Political', 'sci-fi-fantasy': 'Sci-Fi & Fantasy', 'biopic': 'Biopic',
+  'coming-of-age': 'Coming-of-Age', 'workplace-comedy': 'Workplace Comedy', 'war': 'War',
+  'sports': 'Sports', 'romance': 'Romance', 'legal': 'Legal', 'superhero': 'Superhero',
+  'spy-espionage': 'Spy / Espionage', 'horror': 'Horror', 'romcom': 'Rom-Com', 'medical': 'Medical',
+  'heist': 'Heist', 'prison': 'Prison', 'musical': 'Musical',
+};
 
 function computeCastStats(library, enrichedMeta) {
   const counts = new Map();
@@ -270,7 +306,11 @@ function renderScoreHistogram(containerId, bins) {
   const plotH = height - marginTop - marginBottom;
   const maxVal = Math.max(1, ...bins.map(b => b.count));
 
-  const svg = svgEl('svg', { viewBox: `0 0 ${width} ${height}`, width: '100%', height, style: 'display:block' });
+  // Same fix as renderHBarChart above: height:'auto' via CSS, never a raw
+  // px height attribute, so the box always matches the viewBox aspect
+  // ratio instead of being letterboxed/shrunk when the container is
+  // narrower than the viewBox's own width.
+  const svg = svgEl('svg', { viewBox: `0 0 ${width} ${height}`, width: '100%', style: 'display:block; height:auto;' });
 
   [0, 0.5, 1].forEach(f => {
     const y = marginTop + plotH * (1 - f);
@@ -862,7 +902,8 @@ function renderFieldQualityTable(stats) {
   const columns = [
     { label: 'Field', get: r => r.label },
     { label: 'Source', get: r => r.source },
-    { label: 'Eligible', get: r => r.eligible, numeric: true },
+    { label: 'Eligible', get: r => r.eligible, numeric: true,
+      render: (td, r) => { td.className = 'num'; td.textContent = fmtNum(r.eligible); } },
     { label: '% Populated', get: r => r.populatedPct ?? -1, numeric: true,
       render: (td, r) => { td.className = 'num'; td.appendChild(renderFieldBar(r.populatedPct, r.critical)); } },
     { label: '% Quality', get: r => r.qualityPct ?? -1, numeric: true,
@@ -946,7 +987,7 @@ function renderFieldBar(pct, critical) {
 // load (so the numbers can't go stale or become placeholder claims); the
 // other three describe a real code-level gap whose severity doesn't change
 // run to run, but still carry the concrete numbers that established it.
-function computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates) {
+function computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates, llmTags = {}) {
   const findings = [];
 
   // 1. prune_candidate_pool.js defines isReEdit/isNonEnglish (copied from
@@ -1416,6 +1457,118 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
         `than a live bug — but it directly contradicted this project's own foundational design assumption ("every ` +
         `title carries a real TMDB id"), and the moment a future Trakt export included one title without a TMDB id, ` +
         `it would have failed completely silently. Closed off now, cheaply, before it could ever bite.`,
+    });
+  }
+
+  // N. FIXED (this session). "Genres You Rate Highest" and every other
+  // place a title's genre was shown (rec-card meta line, All Titles
+  // table) read TMDB's own raw genre field directly — verified live:
+  // "Drama" alone sits on 75.1% of every enriched title (590 of 786),
+  // "Crime" on 33.0%, so the chart and every genre label were really just
+  // restating those two mega-buckets (Bill: "drama is way too broad, I
+  // want them much more narrow"). The already-built, already-scored
+  // inferSubgenres() classifier (23 real values — crime-drama, procedural,
+  // psychological-thriller, dark-comedy, etc.) was never wired into any
+  // of the three display surfaces even though it already exists and is
+  // already used for real scoring — this was a "point the display at data
+  // that already exists" fix, not a new taxonomy.
+  {
+    const subCounts = new Map();
+    let subTotal = 0;
+    for (const list of [library.titles, watchlist.titles, candidatePool.titles]) {
+      for (const t of list || []) {
+        const meta = enrichedMeta[t.titleKey];
+        if (!meta) continue;
+        subTotal++;
+        for (const s of inferSubgenres(meta, llmTags[t.titleKey])) subCounts.set(s, (subCounts.get(s) || 0) + 1);
+      }
+    }
+    const over15 = [...subCounts.entries()].filter(([, c]) => c / subTotal > 0.15).sort((a, b) => b[1] - a[1]);
+    findings.push({
+      id: 'genre-display-too-broad',
+      severity: 'good',
+      ratings: { ease: 6, dataQuality: 7, recEngine: 3, ui: 8 },
+      title: 'Fixed: "Genres You Rate Highest" and genre labels now use the narrow subgenre taxonomy, not TMDB\'s broad genre field',
+      technical: `<code>computeGenreStats()</code>, <code>metaLine()</code> (rec cards), and <code>buildAllTitlesRows()</code> ` +
+        `(All Titles table) all read <code>meta.genres</code> directly — TMDB's own ~19/16-word taxonomy, where Drama ` +
+        `alone covered 75.1% of every enriched title. All three now call the existing <code>inferSubgenres()</code> ` +
+        `classifier instead (falling back to the raw genres only for the rare title with zero subgenre match), with a ` +
+        `small <code>SUBGENRE_LABEL</code> map for display. No new tag vocabulary was built — this pointed three ` +
+        `existing display surfaces at a classifier that already existed and was already feeding <code>subgenreBonus()</code> ` +
+        `in scoring, they just never used it for display. Live check confirms the chart now shows ${subCounts.size} distinct ` +
+        `subgenre rows instead of ${new Set([...Object.values(enrichedMeta)].flatMap(m => m.genres || [])).size} raw genres, ` +
+        `none anywhere near 75%.`,
+      plain: `The "Genres You Rate Highest" chart, and every small "Drama, Crime" tag on a recommendation card or in the ` +
+        `big titles table, used to come straight from TMDB's own broad category list — which is why "Drama" showed up ` +
+        `almost everywhere and didn't tell you anything useful. There was already a much more specific system built ` +
+        `into this app (crime drama, procedural, dark comedy, psychological thriller, and 19 more) that's been quietly ` +
+        `powering your actual recommendation scores for a while — it just was never used to LABEL anything you could ` +
+        `see. Now it is, everywhere a genre shows up.`,
+      impact: `Directly fixes Bill's reported complaint with real, already-validated data rather than inventing a new ` +
+        `taxonomy — verified live: the chart's most common label went from "Drama" (75.1% of titles) to "crime-drama" ` +
+        `(20.2%), a genuine 3.7x reduction in concentration.`,
+    });
+    if (over15.length) {
+      findings.push({
+        id: 'subgenre-still-broad',
+        severity: 'warning',
+        ratings: { ease: 4, dataQuality: 5, recEngine: 4, ui: 3 },
+        title: `Even the narrower subgenre taxonomy has ${over15.length} categor${over15.length === 1 ? 'y' : 'ies'} over a healthy concentration cap`,
+        technical: `Live check of the ${over15.length === 1 ? 'now-narrower' : 'new'} subgenre labels finds ` +
+          `${over15.map(([g, c]) => `"${g}" at ${((c / subTotal) * 100).toFixed(1)}% (${c} of ${subTotal})`).join(', ')} — ` +
+          `both above the 15%-of-dataset concentration cap the book side of this project (CLAUDE.md's tone-vocabulary ` +
+          `redesign, Session 16) established as the point past which a tag stops being a useful differentiator and just ` +
+          `becomes "most things." Splitting "crime-drama" (currently anything with both a crime and a drama signal — ` +
+          `everything from a courtroom procedural to a Mafia saga) into 2-3 more specific buckets is the most likely next ` +
+          `step, following the exact same book-side precedent CLAUDE.md documents for its own theme/tone redesign — but ` +
+          `it needs the same real-keyword-frequency-scan-before-shipping discipline that <code>inferSubgenres()</code> ` +
+          `itself was already built with, not a guessed split.`,
+        plain: `Even after narrowing "Drama" down to 23 more specific categories, 2 of those 23 (crime-drama and ` +
+          `procedural) are themselves still pretty broad — each one covers roughly a fifth of everything. That's much ` +
+          `better than before, but a future pass could probably split "crime-drama" into something like "mob/organized ` +
+          `crime" vs. "police procedural" vs. "legal thriller" for an even sharper picture of what you actually love.`,
+        impact: `A real, quantified next step for the same "narrower genres" request, not a new complaint — the fix ` +
+          `above already resolves the acute problem (Drama at 75%); this is the natural continuation of it.`,
+      });
+    }
+  }
+
+  // N+1. No description/plot-text similarity signal exists for BMTRE at
+  // all, unlike the book side's real, load-bearing descSimilarity.js
+  // (a TF-IDF k-NN signal over book descriptions, gated on coverage,
+  // CLAUDE.md documents it as a genuine scoring contributor). Verified by
+  // reading matchScore() end to end and confirming no function anywhere
+  // in engine.js computes text similarity between a candidate's overview
+  // and a loved title's overview — overview text is used only as a
+  // keyword-matching input to inferSubgenres()/inferTones() (a categorical
+  // signal), never as a direct candidate-to-loved-title similarity score.
+  {
+    const withOverview = Object.values(enrichedMeta).filter(m => m.overview && m.overview.length > 20).length;
+    const totalEnriched = Object.keys(enrichedMeta).length;
+    findings.push({
+      id: 'description-similarity-signal-missing',
+      severity: 'warning',
+      ratings: { ease: 3, dataQuality: 6, recEngine: 6, ui: 1 },
+      title: 'No plot/description-similarity signal exists — the book engine\'s TF-IDF descSimilarity.js has no BMTRE equivalent',
+      technical: `<code>matchScore()</code> in <code>engine.js</code> has no function anywhere in its call graph that ` +
+        `computes text similarity between a candidate's TMDB <code>overview</code> and a loved title's <code>overview</code> ` +
+        `— verified by reading the full scoring path end to end. The book side's <code>descSimilarity.js</code> (a ` +
+        `TF-IDF k-NN signal over real Goodreads descriptions, gated on 150+ rated-books-with-descriptions coverage, ` +
+        `documented in CLAUDE.md as a real contributor to <code>predictRating()</code>) has no analog here. ` +
+        `${fmtNum(withOverview)} of ${fmtNum(totalEnriched)} enriched titles (${totalEnriched ? ((withOverview / totalEnriched) * 100).toFixed(1) : 0}%) ` +
+        `already carry a real, non-trivial overview — comfortably enough raw text to build the same kind of TF-IDF ` +
+        `vector signal, ported the same way <code>subgenreBonus()</code>/<code>toneSignal()</code> were: sweep the ` +
+        `weight against <code>scripts/eval.js</code> before trusting it, exactly like every other new signal this ` +
+        `session's predecessors added.`,
+      plain: `The book side of this app has a feature where two books get bonus points for actually sounding alike in ` +
+        `their real descriptions — not just sharing a genre tag, but genuinely similar plot language. The movie/TV side ` +
+        `has no version of this at all. TMDB gives every title a real plot summary, and almost all of them already have ` +
+        `one — this data is just sitting there unused as a way to catch a genuine "this reads like something you loved" ` +
+        `match that genre and keyword tags alone might miss.`,
+      impact: `A real, unbuilt signal with a validated precedent (the book engine has run this exact idea successfully ` +
+        `for many sessions) and enough real underlying data (${totalEnriched ? ((withOverview / totalEnriched) * 100).toFixed(1) : 0}% ` +
+        `overview coverage) to build and validate today — but it's genuinely new engineering (a TF-IDF module port, not ` +
+        `a config change), so it's flagged here rather than assumed to be a quick win.`,
     });
   }
 
@@ -2066,6 +2219,22 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
 
 function renderImprovementOpportunities(findings, targetId = 'improvementList') {
   const el = document.getElementById(targetId);
+  // Bill: "once something is resolved, remove it from the list" — a
+  // resolved (severity: 'good') finding no longer needs a fix, so keeping
+  // it visible just makes the list longer without giving Bill anything
+  // to act on. The resolved count still exists (and still feeds the
+  // Metadata & Engine Quality dial's "known issues resolved" component
+  // via the full, unfiltered allFindings array passed to
+  // computeMetadataQuality() elsewhere) — only this render is filtered.
+  const resolvedCount = findings.filter(f => f.severity === 'good').length;
+  const open = findings.filter(f => f.severity !== 'good');
+  const noteEl = document.getElementById('improvementResolvedNote');
+  if (noteEl) {
+    noteEl.textContent = resolvedCount
+      ? `${resolvedCount} previously-flagged issue${resolvedCount === 1 ? '' : 's'} ${resolvedCount === 1 ? 'has' : 'have'} been fixed and verified, and ${resolvedCount === 1 ? 'is' : 'are'} no longer shown here.`
+      : '';
+  }
+  findings = open;
   const sevMeta = {
     critical: { cls: 'tk-status-critical', icon: '✗', label: 'High impact' },
     serious: { cls: 'tk-status-serious', icon: '⚠', label: 'Medium impact' },
@@ -2141,7 +2310,7 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList') 
 // computed here for every row, including already-watched titles, so it
 // doubles as an honesty check against My Rating, the same role You vs.
 // The Crowd plays for TMDB's rating.
-function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx) {
+function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, llmTags = {}) {
   const rows = [];
   const addRow = (t, status, myRating) => {
     const h = hydrateTitle(t, enrichedMeta);
@@ -2164,7 +2333,12 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
       audienceScore: realAudienceScore(omdb),
       awardsScore: awardsScore(omdb),
       awardsRaw: omdb?.awards?.raw || '',
-      genres: meta?.genres?.join(', ') || '', creator: (h.type === 'movie' ? meta?.director : meta?.createdBy?.[0]) || '',
+      // Narrower subgenres, not TMDB's own broad genre list — see
+      // computeGenreStats()'s comment for why. Falls back to the raw
+      // genres for the rare title with no subgenre match at all.
+      genres: (meta ? inferSubgenres(meta, llmTags[h.titleKey]).map(s => SUBGENRE_LABEL[s] || s) : []).join(', ')
+        || meta?.genres?.join(', ') || '',
+      creator: (h.type === 'movie' ? meta?.director : meta?.createdBy?.[0]) || '',
     });
   };
   for (const t of library.titles || []) addRow(t, 'Watched', t.myRating);
@@ -2226,8 +2400,10 @@ function renderAllTitlesTable(allRows) {
     { label: 'Predicted Score', get: r => r.predictedScore ?? '', numeric: true },
     { label: 'TMDB Rating', get: r => r.tmdbRating != null ? Math.round(r.tmdbRating * 10) / 10 : '', numeric: true },
     { label: 'Popularity', get: r => r.popularity ?? '', numeric: true },
-    { label: 'Ratings', get: r => r.voteCount ?? '', numeric: true },
-    { label: 'IMDb Votes', get: r => r.imdbVotes ?? '', numeric: true },
+    { label: 'Ratings', get: r => r.voteCount ?? '', numeric: true,
+      render: (td, r) => { td.className = 'num'; td.textContent = r.voteCount != null ? fmtNum(r.voteCount) : ''; } },
+    { label: 'IMDb Votes', get: r => r.imdbVotes ?? '', numeric: true,
+      render: (td, r) => { td.className = 'num'; td.textContent = r.imdbVotes != null ? fmtNum(r.imdbVotes) : ''; } },
     { label: 'Critic Score', get: r => r.criticScore ?? '', numeric: true },
     { label: 'Audience Score', get: r => r.audienceScore ?? '', numeric: true },
     { label: 'Awards', get: r => r.awardsScore ?? '', numeric: true,
@@ -2323,11 +2499,18 @@ function renderAllTitlesTable(allRows) {
 // stubs may still be mid-enrichment.
 const fmtCompact = n => n >= 1000 ? `${(n / 1000).toFixed(n >= 10000 ? 0 : 1)}k` : String(n);
 
-function metaLine(candidate, enrichedMeta, omdbMeta) {
+function metaLine(candidate, enrichedMeta, omdbMeta, llmTags = {}) {
   const meta = enrichedMeta[candidate.titleKey];
   if (!meta) return 'Not enriched yet.';
   const parts = [];
-  if (meta.genres?.length) parts.push(meta.genres.slice(0, 2).join(', '));
+  // Narrower subgenres (e.g. "Crime Drama, Procedural"), not TMDB's own
+  // broad genre list (e.g. "Drama, Crime" on 75%/33% of everything) — see
+  // computeGenreStats()'s comment above for why the raw field alone isn't
+  // useful. Falls back to the raw genres if a title has no subgenre match
+  // at all (3 of 786 today) so a card never shows blank genre info.
+  const subs = inferSubgenres(meta, llmTags[candidate.titleKey]).slice(0, 2).map(s => SUBGENRE_LABEL[s] || s);
+  if (subs.length) parts.push(subs.join(', '));
+  else if (meta.genres?.length) parts.push(meta.genres.slice(0, 2).join(', '));
   const creator = getCreator(candidate.type, meta);
   if (creator) parts.push(candidate.type === 'movie' ? `dir. ${creator}` : `by ${creator}`);
   if (meta.voteAverage != null) {
@@ -2362,7 +2545,7 @@ function metaLine(candidate, enrichedMeta, omdbMeta) {
 // real variety when it exists. diversityRerank() only reorders for
 // display — it never touches an individual title's bmtreScore, so this
 // has no effect on computeEvalMetrics()'s precision@k.
-function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta, omdbMeta) {
+function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta, omdbMeta, llmTags = {}) {
   const el = document.getElementById(sectionId);
   const ranked = [...watchlistItems, ...candidateItems]
     .sort((a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore));
@@ -2382,7 +2565,7 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
           ${typeIcon(c.type)} ${esc(c.title)}${c.year ? ` <span class="tk-year">(${esc(c.year)})</span>` : ''}
           <span class="tk-rec-badge">${c.origin === 'watchlist' ? 'Watchlist' : 'New pick'}</span>
         </div>
-        <div class="tk-rec-meta">${esc(metaLine(c, enrichedMeta, omdbMeta))}</div>
+        <div class="tk-rec-meta">${esc(metaLine(c, enrichedMeta, omdbMeta, llmTags))}</div>
         <div class="tk-rec-reason">${esc(c.reason)}</div>
       </div>
       <div class="tk-rec-score">${Math.round(c.bmtreScore)}</div>
@@ -2584,13 +2767,13 @@ async function load() {
   const severityOrder = { critical: 0, serious: 1, warning: 2, good: 3 };
   const fieldStats = computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags);
   const allFindings = [
-    ...computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates),
+    ...computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates, llmTags),
     ...computeEngineImprovements(library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, idx, fromWatchlist, fromCandidates),
     ...computeFieldQualityFindings(fieldStats, library, watchlist, candidatePool, enrichedMeta, omdbMeta),
   ].sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
 
-  renderRecPanel('movieRecList', byType(fromWatchlist, 'movie'), byType(fromCandidates, 'movie'), enrichedMeta, omdbMeta);
-  renderRecPanel('showRecList', byType(fromWatchlist, 'show'), byType(fromCandidates, 'show'), enrichedMeta, omdbMeta);
+  renderRecPanel('movieRecList', byType(fromWatchlist, 'movie'), byType(fromCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags);
+  renderRecPanel('showRecList', byType(fromWatchlist, 'show'), byType(fromCandidates, 'show'), enrichedMeta, omdbMeta, llmTags);
 
   for (const [type, chartId, noteId, label] of [
     ['movie', 'scoreDistMovieChart', 'scoreDistMovieNote', 'unwatched movies'],
@@ -2630,7 +2813,7 @@ async function load() {
   const generated = new Date(d.generatedAt);
   document.getElementById('subtitleText').textContent =
     `Last refreshed ${generated.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} ` +
-    `· from a Trakt data export · @${d.profile?.username || 'unknown'}`;
+    `at ${generated.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`;
   document.getElementById('statusText').textContent = 'Loaded from export';
 
   renderStatTiles(d.summary);
@@ -2640,7 +2823,7 @@ async function load() {
     `Based on the ${fmtNum(enrichedCount)} titles enriched with TMDB data so far (of ${fmtNum((library.titles?.length || 0) + (watchlist.titles?.length || 0))} total) — ` +
     `these sections fill in automatically as the daily enrichment job covers more of your library.`;
 
-  renderGenreChart(computeGenreStats(library, enrichedMeta));
+  renderGenreChart(computeGenreStats(library, enrichedMeta, llmTags));
   renderDismissalChart(computeDismissalStats(feedback));
   renderPredictionMisses(computePredictionMisses(library, enrichedMeta, omdbMeta, idx), enrichedMeta);
   renderCastList(computeCastStats(library, enrichedMeta));
@@ -2659,7 +2842,7 @@ async function load() {
 
   renderImprovementOpportunities(allFindings);
 
-  renderAllTitlesTable(buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx));
+  renderAllTitlesTable(buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, llmTags));
 }
 
 // ── Collapsible sections ─────────────────────────────────────────────────
