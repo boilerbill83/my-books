@@ -276,6 +276,30 @@ verified a second time at the time of this commit; the next real run is
 the actual test, same discipline as every prior round of this file's
 history.
 
+METACRITIC "REVIEWS" TITLE-SUFFIX REGRESSION (Aug 2026, found while
+investigating why Audience Score's QUALITY metric — both RT and MC user
+score present — sat at 73.8% despite 95.7% population): a diagnostic
+re-scrape of 8 real, well-known titles found 4/4 movies (American
+Sniper, Booksmart, Creed III, Deadpool & Wolverine) had a real MC page
+fetched successfully with the real user score sitting right in the raw
+HTML (e.g. `title="User score 6.6 out of 10"`) — but the result was
+discarded anyway. Root cause: Metacritic's own page-title convention is
+"<Title> Reviews - Metacritic" (confirmed identically on all 4), and
+_strip_site_branding() only stripped the site name, leaving a bare
+"Reviews" trailing word that _prefix_extension_is_subtitle() correctly
+flagged as "not a real subtitle" (no separator) — a real regression
+this session's own earlier RT false-positive fix introduced on the MC
+side, never covered by that fix's unit tests. Fixed by also stripping a
+trailing " Reviews" in _strip_site_branding(), the same boilerplate
+treatment as the site name itself. A broader scan found 74 titles
+dataset-wide with this exact shape (a real MC page fetched, mcUrl
+cached, but no score) vs. 104 with a different, harder problem (no page
+found at all — the direct-slug guess AND the search fallback both come
+up empty, a separate, not-yet-fixed limitation, not addressed here).
+Cleared all 74 to measure the fix's real impact via a live re-scrape —
+NOT yet re-verified at the time of this commit, the next real run is
+the actual test, same discipline as every prior round.
+
 Run manually:   python3 trakt/scrape_show_ratings.py [batch_size]
 GitHub Action:  .github/workflows/trakt-scrape-show-ratings.yml
 """
@@ -998,10 +1022,24 @@ def _strip_site_branding(raw_title):
     extension-based comparison against it, so real branding text can't
     inflate the "longer" side of a length ratio or get mistaken for a
     genuine subtitle continuation. A no-op when no such suffix is
-    present."""
+    present.
+
+    A real, confirmed regression found via a live re-scrape (Aug 2026):
+    Metacritic's own page-title convention is "<Title> Reviews -
+    Metacritic" (e.g. "American Sniper Reviews - Metacritic", confirmed
+    identically across 4/4 real movie samples checked) — the site-name
+    strip alone left a bare "Reviews" trailing word, which
+    _prefix_extension_is_subtitle() then correctly flagged as "not a
+    real subtitle" (no colon/dash/paren separator), discarding a
+    genuinely correct, fully-extracted result (the real user score was
+    sitting right in the page HTML). "Reviews" is exactly the same kind
+    of site boilerplate as the site name itself, not part of any real
+    title, so it's stripped the same way, after the site-name strip."""
     if not raw_title:
         return raw_title
-    return re.sub(r'\s*[|\-–—]\s*(Rotten Tomatoes|Metacritic)\s*$', '', raw_title, flags=re.I).strip()
+    stripped = re.sub(r'\s*[|\-–—]\s*(Rotten Tomatoes|Metacritic)\s*$', '', raw_title, flags=re.I).strip()
+    stripped = re.sub(r'\s+Reviews\s*$', '', stripped, flags=re.I).strip()
+    return stripped
 
 
 def _plausible_length_ratio(a_norm, b_norm, threshold=0.45):
