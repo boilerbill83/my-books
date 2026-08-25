@@ -362,6 +362,17 @@
       "reasonLabel": "Urban-setting fatigue (a comedy-drama, not a crime drama like the other too_urban titles — checked against Bill's real loved-genre distribution before treating this as a genre signal; not generalized into scoring, recorded as an exact-title exclusion only)",
       "timestamp": "2026-08-25T13:49:10.000Z",
       "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:81290",
+      "title": "The Kominsky Method",
+      "year": 2018,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "aimed_at_older_demographic",
+      "reasonLabel": "The show's tone/target audience skews older, distinct from too_old (which is about the show itself feeling dated, not its audience)",
+      "timestamp": "2026-08-25T13:50:46.000Z",
+      "excludeFromRecommendations": true
     }
   ]
 }
