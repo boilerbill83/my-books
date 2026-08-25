@@ -1331,6 +1331,53 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       `same scraper would just hit the same cooldown-protected misses without new information.`,
   });
 
+  // 4e. A second, separate audience-score investigation (Bill: "can you do
+  // anything to improve the quality of the audience score?") — found and
+  // fixed a real Metacritic-side bug, distinct from the RT work above.
+  findings.push({
+    id: 'metacritic-reviews-title-suffix',
+    severity: 'good',
+    ratings: { ease: 6, dataQuality: 7, recEngine: 3, ui: 1 },
+    title: 'Fixed a real Metacritic title-matching bug: "Reviews" suffix was discarding correctly-found scores',
+    technical: `Audience Score's "quality" bar (both RT and MC user score present, not just one) sat at 73.8% ` +
+      `(587/795) despite 95.7% population (761/795) — a real ~174-title gap between having some audience signal ` +
+      `and having both. Diagnosed with 8 real, well-known sample titles rather than guessing: 4/4 movie samples ` +
+      `(American Sniper, Booksmart, Creed III, Deadpool &amp; Wolverine) had a real Metacritic page fetched ` +
+      `successfully — the real user score sitting right in the raw HTML (e.g. <code>title="User score 6.6 out of ` +
+      `10"</code>) — but the result was discarded anyway. Root cause: Metacritic's own page-title convention is ` +
+      `"&lt;Title&gt; Reviews - Metacritic" (confirmed identically on all 4 samples), and <code>_strip_site_` +
+      `branding()</code> — added earlier this session for the RT false-positive fix — only stripped the site name, ` +
+      `leaving a bare "Reviews" trailing word that <code>_prefix_extension_is_subtitle()</code> correctly flagged ` +
+      `as "not a real subtitle" (no colon/dash/paren separator), discarding a genuinely correct result. A real ` +
+      `regression that earlier fix's own unit tests never covered, since they were all built from RT evidence, not ` +
+      `Metacritic's different title format. Fixed by also stripping a trailing " Reviews" in ` +
+      `<code>_strip_site_branding()</code> — the same boilerplate treatment as the site name itself. 13 unit tests ` +
+      `confirmed the fix (including a full <code>extract_metascore()</code> run against reconstructed real HTML) ` +
+      `before shipping. A broader scan found 74 titles dataset-wide with this exact "page found, no score" shape ` +
+      `— cleared all of them and re-ran the scraper for real rather than trust the fix from 4 samples alone. ` +
+      `<strong>Live result, verified against the real commit, not just re-asserted</strong>: all 4 original sample ` +
+      `movies now show the exact scores their raw HTML always had (66, 68, 68, 79) — proof the fix works in ` +
+      `production, not just in unit tests. Dataset-wide, quality climbed 73.8% → 78.7% (587 → 626 of 795, +39 ` +
+      `titles) and population climbed 95.7% → 96.9% (761 → 770). A separate, harder bucket of 104 titles (no ` +
+      `Metacritic page found at all — the direct-slug guess and the search fallback both come up empty) is NOT ` +
+      `addressed by this fix and remains a genuine, undiagnosed gap.`,
+    plain: `Bill asked if the Audience Score's data quality could be improved. Checked, and found a real, fixable ` +
+      `bug rather than just a wall: for movies especially, Metacritic titles its pages "Movie Name Reviews - ` +
+      `Metacritic" — and a filter added earlier tonight (to fix a different Rotten Tomatoes problem) was stripping ` +
+      `the "- Metacritic" part but leaving the word "Reviews" behind, which then made the code think it had landed ` +
+      `on the wrong page and throw away a real, correct score it had already found. Fixed the filter to also strip ` +
+      `that word. Checked how many titles across the whole database had this exact problem (74) and re-ran the ` +
+      `real scraper on all of them rather than trusting the fix from just a few examples. Real result: 39 more ` +
+      `titles now have a complete, real audience score from both sites. There's still a separate group of about ` +
+      `100 titles where the scraper simply can't find any Metacritic page for the show at all — that's a genuinely ` +
+      `different, harder problem this fix doesn't solve.`,
+    impact: `A real, verified data-quality win — not a guess, not a unit-test-only claim. Directly improves ` +
+      `<code>omdbSignal()</code>'s input data for every affected title (both scores now feed the averaged critic/ ` +
+      `audience signals in <code>matchScore()</code>), confirmed via <code>eval.js</code> to hold precision@10/25/ ` +
+      `50/100 exactly at baseline (100/92/96/92) — a pure data-quality improvement, no scoring regression. The 74- ` +
+      `title fix batch and the 104-title remaining gap were both measured from real data, not estimated.`,
+  });
+
   // 5. build_trakt_library.js's titleKey() USED TO fall back to a
   // `type:trakt:ID` format when a title had no TMDB id — a shape no other
   // part of the pipeline recognized. Fixed this session: the fallback was

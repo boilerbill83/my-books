@@ -113,10 +113,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/lucky_2026",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-23",
+  "mcUrl": "https://www.metacritic.com/tv/lucky/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:131142": {
   "rottenTomatoes": 80,
@@ -206,12 +207,13 @@
   "rottenTomatoes": 47,
   "rtAudience": 67,
   "rtUrl": "https://www.rottentomatoes.com/tv/ransom_canyon",
-  "metacritic": null,
+  "metacritic": 58,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-23",
+  "mcUrl": "https://www.metacritic.com/tv/ransom-canyon/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:260458": {
   "rottenTomatoes": null,
@@ -243,10 +245,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/the_paper_2025",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-23",
+  "mcUrl": "https://www.metacritic.com/tv/the-paper/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:259453": {
   "rottenTomatoes": 36,
@@ -1118,10 +1121,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/dark_matter_2024",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-23",
+  "mcUrl": "https://www.metacritic.com/tv/dark-matter/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:81357": {
   "rottenTomatoes": 89,
@@ -1513,10 +1517,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/full_circle_2023",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-23",
+  "mcUrl": "https://www.metacritic.com/tv/full-circle/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:218137": {
   "rottenTomatoes": 77,
@@ -1754,10 +1759,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/house-of-cards",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
+  "mcUrl": "https://www.metacritic.com/tv/house-of-cards/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:110971": {
   "rottenTomatoes": 100,
@@ -1849,11 +1855,12 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/invasion",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
+  "mcUrl": "https://www.metacritic.com/tv/invasion/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "rtCandidatesTried": 3
+  "rtCandidatesTried": 3,
+  "mcUserAttempted": true
  },
  "show:114471": {
   "rottenTomatoes": 76,
@@ -2533,10 +2540,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/poker_face",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
+  "mcUrl": "https://www.metacritic.com/tv/poker-face/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:156933": {
   "rottenTomatoes": 79,
@@ -3120,10 +3128,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/the_curse_2023",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
+  "mcUrl": "https://www.metacritic.com/tv/the-curse/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:222766": {
   "rottenTomatoes": 85,
@@ -3791,10 +3800,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/the_staircase_2022",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
+  "mcUrl": "https://www.metacritic.com/tv/the-staircase/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:247767": {
   "rottenTomatoes": 92,
@@ -4904,10 +4914,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/countdown_2025",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
+  "mcUrl": "https://www.metacritic.com/tv/countdown/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:900": {
   "rottenTomatoes": 68,
@@ -5066,12 +5077,13 @@
   "rottenTomatoes": 96,
   "rtAudience": 91,
   "rtUrl": "https://www.rottentomatoes.com/m/anatomy_of_a_fall",
-  "metacritic": null,
+  "metacritic": 49,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
+  "mcUrl": "https://www.metacritic.com/movie/fall/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:303630": {
   "rottenTomatoes": null,
@@ -5079,10 +5091,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/cupertino",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-23",
+  "mcUrl": "https://www.metacritic.com/tv/cupertino/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:273207": {
   "rottenTomatoes": null,
@@ -5090,10 +5103,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/neagley",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-23",
+  "mcUrl": "https://www.metacritic.com/tv/neagley/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:213562": {
   "rottenTomatoes": null,
@@ -5101,10 +5115,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/crystal_lake",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-23",
+  "mcUrl": "https://www.metacritic.com/tv/crystal-lake/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:262280": {
   "rottenTomatoes": 97,
@@ -5112,10 +5127,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/legends_2026",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
+  "mcUrl": "https://www.metacritic.com/tv/legends/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:75758": {
   "rottenTomatoes": 84,
@@ -5123,10 +5139,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/lost_in_space",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
+  "mcUrl": "https://www.metacritic.com/tv/lost-in-space/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:85853": {
   "rottenTomatoes": 80,
@@ -5134,10 +5151,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/perry_mason_2020",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
+  "mcUrl": "https://www.metacritic.com/tv/perry-mason/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:219971": {
   "rottenTomatoes": 79,
@@ -5145,10 +5163,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/the_agency_2024",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
+  "mcUrl": "https://www.metacritic.com/tv/the-agency/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:202097": {
   "rottenTomatoes": 88,
@@ -5192,10 +5211,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/the_equalizer_2020",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
+  "mcUrl": "https://www.metacritic.com/tv/the-equalizer/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:67026": {
   "rottenTomatoes": 71,
@@ -5367,12 +5387,13 @@
   "rottenTomatoes": 74,
   "rtAudience": 74,
   "rtUrl": "https://www.rottentomatoes.com/m/high_ground_2025",
-  "metacritic": null,
+  "metacritic": 77,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
+  "mcUrl": "https://www.metacritic.com/movie/high-ground/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "movie:893297": {
   "rottenTomatoes": 43,
@@ -5687,34 +5708,37 @@
   "rottenTomatoes": null,
   "rtAudience": null,
   "rtUrl": "https://www.rottentomatoes.com/m/how_i_spent_my_summer_vacation_2025",
-  "metacritic": null,
+  "metacritic": 80,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
+  "mcUrl": "https://www.metacritic.com/movie/how-i-spent-my-summer-vacation/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "movie:1583500": {
   "rottenTomatoes": null,
   "rtAudience": null,
   "rtUrl": "https://www.rottentomatoes.com/m/elway",
-  "metacritic": null,
+  "metacritic": 98,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-23",
+  "mcUrl": "https://www.metacritic.com/movie/elway/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:90399": {
   "rottenTomatoes": 89,
   "rtAudience": 89,
   "rtUrl": "https://www.rottentomatoes.com/tv/ambitions",
-  "metacritic": null,
+  "metacritic": 97,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
+  "mcUrl": "https://www.metacritic.com/tv/ambitions/",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "movie:1293162": {
   "rottenTomatoes": 18,
@@ -7296,10 +7320,11 @@
   "rtUrl": "https://www.rottentomatoes.com/m/obsession_2025",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacritic": null,
+  "metacritic": 100,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "mcUrl": "https://www.metacritic.com/movie/obsession/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:11635": {
   "rottenTomatoes": 60,
@@ -7499,10 +7524,11 @@
   "rtUrl": "https://www.rottentomatoes.com/m/green_room_2016",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacritic": null,
+  "metacritic": 64,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "mcUrl": "https://www.metacritic.com/movie/room/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:646385": {
   "rottenTomatoes": 30,
@@ -7570,10 +7596,11 @@
   "rtUrl": "https://www.rottentomatoes.com/m/smile_2",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacritic": null,
+  "metacritic": 47,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "mcUrl": "https://www.metacritic.com/movie/smile/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:314365": {
   "rottenTomatoes": 97,
@@ -8062,10 +8089,11 @@
   "rtUrl": "https://www.rottentomatoes.com/m/the_search_for_general_tso",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacritic": null,
+  "metacritic": 72,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "mcUrl": "https://www.metacritic.com/movie/the-search-for-general-tso/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:933260": {
   "rottenTomatoes": 89,
@@ -8661,10 +8689,11 @@
   "rtUrl": "https://www.rottentomatoes.com/m/thank_you_for_your_service_2017",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacritic": null,
+  "metacritic": 80,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "mcUrl": "https://www.metacritic.com/movie/thank-you-for-your-service/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:383585": {
   "rottenTomatoes": 45,
@@ -8685,10 +8714,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 81,
+  "metacriticUser": 71,
+  "mcUrl": "https://www.metacritic.com/movie/foxcatcher/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:522938": {
   "rottenTomatoes": 26,
@@ -8697,10 +8727,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 26,
+  "metacriticUser": 74,
+  "mcUrl": "https://www.metacritic.com/movie/rambo-last-blood/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:168259": {
   "rottenTomatoes": 81,
@@ -8709,10 +8740,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 67,
+  "metacriticUser": 68,
+  "mcUrl": "https://www.metacritic.com/movie/furious-7/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:385687": {
   "rottenTomatoes": 56,
@@ -8721,10 +8753,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 56,
+  "metacriticUser": 49,
+  "mcUrl": "https://www.metacritic.com/movie/fast-x/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:385128": {
   "rottenTomatoes": null,
@@ -8746,10 +8779,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 72,
+  "metacriticUser": 73,
+  "mcUrl": "https://www.metacritic.com/movie/the-suicide-squad/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:59859": {
   "rottenTomatoes": 33,
@@ -8758,10 +8792,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 41,
+  "metacriticUser": 69,
+  "mcUrl": "https://www.metacritic.com/movie/kick-ass-2/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:533535": {
   "rottenTomatoes": 77,
@@ -8770,10 +8805,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-25"
+  "metacritic": 56,
+  "metacriticUser": 79,
+  "mcUrl": "https://www.metacritic.com/movie/deadpool-wolverine/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:912649": {
   "rottenTomatoes": 40,
@@ -8795,10 +8831,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 3,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 45,
+  "metacriticUser": 64,
+  "mcUrl": "https://www.metacritic.com/movie/the-expendables/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:338762": {
   "rottenTomatoes": 31,
@@ -8807,10 +8844,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 44,
+  "metacriticUser": 51,
+  "mcUrl": "https://www.metacritic.com/movie/bloodshot/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:453": {
   "rottenTomatoes": 74,
@@ -8819,10 +8857,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 72,
+  "metacriticUser": 81,
+  "mcUrl": "https://www.metacritic.com/movie/a-beautiful-mind/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:1061474": {
   "rottenTomatoes": 83,
@@ -8831,10 +8870,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 82,
+  "metacriticUser": 78,
+  "mcUrl": "https://www.metacritic.com/movie/superman/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:24428": {
   "rottenTomatoes": null,
@@ -8843,10 +8883,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 3,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 12,
+  "metacriticUser": 35,
+  "mcUrl": "https://www.metacritic.com/movie/the-avengers/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:631843": {
   "rottenTomatoes": null,
@@ -8855,10 +8896,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 3,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 55,
+  "metacriticUser": 52,
+  "mcUrl": "https://www.metacritic.com/movie/old/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:798362": {
   "rottenTomatoes": 39,
@@ -8867,10 +8909,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
+  "metacritic": 59,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "mcUrl": "https://www.metacritic.com/movie/daughter/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "show:95004": {
   "rottenTomatoes": null,
@@ -8905,10 +8948,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 60,
+  "metacriticUser": 71,
+  "mcUrl": "https://www.metacritic.com/movie/motherless-brooklyn/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:50839": {
   "rottenTomatoes": 87,
@@ -8917,10 +8961,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 76,
+  "metacriticUser": 72,
+  "mcUrl": "https://www.metacritic.com/movie/margin-call/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:862557": {
   "rottenTomatoes": null,
@@ -8929,10 +8974,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 3,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 81,
+  "metacriticUser": 78,
+  "mcUrl": "https://www.metacritic.com/movie/the-hill/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:76640": {
   "rottenTomatoes": null,
@@ -8941,10 +8987,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 3,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 54,
+  "metacriticUser": 66,
+  "mcUrl": "https://www.metacritic.com/movie/the-last-stand/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:1082195": {
   "rottenTomatoes": 93,
@@ -8953,10 +9000,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 21,
+  "metacriticUser": 38,
+  "mcUrl": "https://www.metacritic.com/movie/the-order/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:295699": {
   "rottenTomatoes": 87,
@@ -9004,10 +9052,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
+  "metacritic": 98,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "mcUrl": "https://www.metacritic.com/movie/incoming/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:505600": {
   "rottenTomatoes": 96,
@@ -9016,10 +9065,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-25"
+  "metacritic": 84,
+  "metacriticUser": 68,
+  "mcUrl": "https://www.metacritic.com/movie/booksmart/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:4911": {
   "rottenTomatoes": 59,
@@ -9028,10 +9078,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 57,
+  "metacriticUser": 64,
+  "mcUrl": "https://www.metacritic.com/movie/dark-blue/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:668489": {
   "rottenTomatoes": 64,
@@ -9040,10 +9091,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 57,
+  "metacriticUser": 51,
+  "mcUrl": "https://www.metacritic.com/movie/havoc/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:1428": {
   "rottenTomatoes": 66,
@@ -9052,10 +9104,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 56,
+  "metacriticUser": 67,
+  "mcUrl": "https://www.metacritic.com/movie/once-upon-a-time-in-mexico/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:634528": {
   "rottenTomatoes": 38,
@@ -9064,10 +9117,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 44,
+  "metacriticUser": 58,
+  "mcUrl": "https://www.metacritic.com/movie/the-marksman/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:49021": {
   "rottenTomatoes": 26,
@@ -9076,10 +9130,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 44,
+  "metacriticUser": 57,
+  "mcUrl": "https://www.metacritic.com/movie/killer-elite/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:612": {
   "rottenTomatoes": null,
@@ -9088,10 +9143,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 3,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 74,
+  "metacriticUser": 74,
+  "mcUrl": "https://www.metacritic.com/movie/munich/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:1263012": {
   "rottenTomatoes": 91,
@@ -9113,10 +9169,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 78,
+  "metacriticUser": 69,
+  "mcUrl": "https://www.metacritic.com/movie/barbarian/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:339527": {
   "rottenTomatoes": 24,
@@ -9125,10 +9182,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 36,
+  "metacriticUser": 60,
+  "mcUrl": "https://www.metacritic.com/movie/solace/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:936075": {
   "rottenTomatoes": 38,
@@ -9137,10 +9195,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 38,
+  "metacriticUser": 67,
+  "mcUrl": "https://www.metacritic.com/movie/michael/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:799766": {
   "rottenTomatoes": 89,
@@ -9162,10 +9221,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 48,
+  "metacriticUser": 68,
+  "mcUrl": "https://www.metacritic.com/movie/scary-movie/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:897087": {
   "rottenTomatoes": 10,
@@ -9174,10 +9234,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 26,
+  "metacriticUser": 48,
+  "mcUrl": "https://www.metacritic.com/movie/freelance/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "show:4573": {
   "rottenTomatoes": null,
@@ -9225,10 +9286,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 75,
+  "metacriticUser": 65,
+  "mcUrl": "https://www.metacritic.com/movie/the-naked-gun/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:449562": {
   "rottenTomatoes": 13,
@@ -9237,10 +9299,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 35,
+  "metacriticUser": 40,
+  "mcUrl": "https://www.metacritic.com/movie/the-hustle/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:384018": {
   "rottenTomatoes": 67,
@@ -9249,10 +9312,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 60,
+  "metacriticUser": 64,
+  "mcUrl": "https://www.metacritic.com/movie/fast-furious-presents-hobbs-shaw/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:190859": {
   "rottenTomatoes": 71,
@@ -9261,10 +9325,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-25"
+  "metacritic": 73,
+  "metacriticUser": 66,
+  "mcUrl": "https://www.metacritic.com/movie/american-sniper/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:715931": {
   "rottenTomatoes": null,
@@ -9273,10 +9338,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 3,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 53,
+  "metacriticUser": 45,
+  "mcUrl": "https://www.metacritic.com/movie/emancipation/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:882569": {
   "rottenTomatoes": 82,
@@ -9298,10 +9364,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 54,
+  "metacriticUser": 63,
+  "mcUrl": "https://www.metacritic.com/movie/12-strong/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:293767": {
   "rottenTomatoes": 44,
@@ -9323,10 +9390,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 51,
+  "metacriticUser": 67,
+  "mcUrl": "https://www.metacritic.com/movie/the-last-full-measure/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:28730": {
   "rottenTomatoes": 78,
@@ -9348,10 +9416,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 3,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 62,
+  "metacriticUser": 68,
+  "mcUrl": "https://www.metacritic.com/movie/lee/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:82693": {
   "rottenTomatoes": 92,
@@ -9360,10 +9429,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 81,
+  "metacriticUser": 83,
+  "mcUrl": "https://www.metacritic.com/movie/silver-linings-playbook/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:59440": {
   "rottenTomatoes": null,
@@ -9372,10 +9442,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 3,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 71,
+  "metacriticUser": 83,
+  "mcUrl": "https://www.metacritic.com/movie/warrior/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:677179": {
   "rottenTomatoes": 89,
@@ -9384,10 +9455,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-25"
+  "metacritic": 73,
+  "metacriticUser": 68,
+  "mcUrl": "https://www.metacritic.com/movie/creed-iii/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:13074": {
   "rottenTomatoes": 61,
@@ -9396,10 +9468,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 55,
+  "metacriticUser": 67,
+  "mcUrl": "https://www.metacritic.com/movie/resurrecting-the-champ/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:39254": {
   "rottenTomatoes": 60,
@@ -9408,10 +9481,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 56,
+  "metacriticUser": 72,
+  "mcUrl": "https://www.metacritic.com/movie/real-steel/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:1246": {
   "rottenTomatoes": 78,
@@ -9420,10 +9494,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 63,
+  "metacriticUser": 77,
+  "mcUrl": "https://www.metacritic.com/movie/rocky-balboa/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:506680": {
   "rottenTomatoes": 40,
@@ -9445,10 +9520,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 61,
+  "metacriticUser": 74,
+  "mcUrl": "https://www.metacritic.com/movie/the-last-rodeo/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "show:150": {
   "rottenTomatoes": null,
@@ -9470,10 +9546,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 54,
+  "metacriticUser": 47,
+  "mcUrl": "https://www.metacritic.com/movie/the-first-purge/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:98": {
   "rottenTomatoes": 80,
@@ -9482,9 +9559,10 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 2,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 67,
+  "metacriticUser": 87,
+  "mcUrl": "https://www.metacritic.com/movie/gladiator/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  }
 }
