@@ -4183,10 +4183,13 @@
   },
   "galleria|||chuck palahniuk": {
     "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found",
-    "checkedAt": "2026-08-11"
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/71EFzHWskJL._SX300_.jpg",
+    "source": "cover_only",
+    "checkedAt": "2026-08-25"
   },
   "hollywood, ending|||john  green": {
     "storyGraph": null,

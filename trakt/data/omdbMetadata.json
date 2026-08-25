@@ -21704,5 +21704,53 @@
   "imdbRating": 8.4,
   "imdbVotes": 63097,
   "fetchedAt": "2026-08-24"
+ },
+ "movie:17431": {
+  "rottenTomatoes": 90,
+  "metacritic": 67,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 28,
+   "totalNominations": 37,
+   "raw": "Won 1 BAFTA Award28 wins & 37 nominations total"
+  },
+  "imdbRating": 7.8,
+  "imdbVotes": 392806,
+  "fetchedAt": "2026-08-25"
+ },
+ "movie:23483": {
+  "rottenTomatoes": 78,
+  "metacritic": 66,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 19,
+   "totalNominations": 63,
+   "raw": "19 wins & 63 nominations total"
+  },
+  "imdbRating": 7.6,
+  "imdbVotes": 620211,
+  "fetchedAt": "2026-08-25"
+ },
+ "movie:353616": {
+  "rottenTomatoes": 29,
+  "metacritic": 40,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 4,
+   "totalNominations": 6,
+   "raw": "4 wins & 6 nominations total"
+  },
+  "imdbRating": 5.8,
+  "imdbVotes": 77963,
+  "fetchedAt": "2026-08-25"
  }
 }

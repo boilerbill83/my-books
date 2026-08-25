@@ -9564,5 +9564,44 @@
   "mcUrl": "https://www.metacritic.com/movie/gladiator/",
   "checkedAt": "2026-08-25",
   "mcUserAttempted": true
+ },
+ "movie:17431": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": "https://www.rottentomatoes.com/m/fly_me_to_the_moon_2024",
+  "rtAttempted": "2026-08-25",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 3,
+  "metacritic": 67,
+  "metacriticUser": 82,
+  "mcUrl": "https://www.metacritic.com/movie/moon/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-25"
+ },
+ "movie:23483": {
+  "rottenTomatoes": 78,
+  "rtAudience": 81,
+  "rtUrl": "https://www.rottentomatoes.com/m/1217700-kick_ass",
+  "rtAttempted": "2026-08-25",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 1,
+  "metacritic": 66,
+  "metacriticUser": 79,
+  "mcUrl": "https://www.metacritic.com/movie/kick-ass/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-25"
+ },
+ "movie:353616": {
+  "rottenTomatoes": 29,
+  "rtAudience": 44,
+  "rtUrl": "https://www.rottentomatoes.com/m/pitch_perfect_3",
+  "rtAttempted": "2026-08-25",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 1,
+  "metacritic": 40,
+  "metacriticUser": 56,
+  "mcUrl": "https://www.metacritic.com/movie/pitch-perfect-3/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-25"
  }
 }
