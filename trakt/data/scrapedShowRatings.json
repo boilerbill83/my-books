@@ -363,9 +363,10 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-23",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:118357": {
   "rottenTomatoes": 89,
@@ -506,9 +507,10 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-23",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:157239": {
   "rottenTomatoes": 94,
@@ -961,9 +963,10 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-23",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:61920": {
   "rottenTomatoes": 98,
@@ -984,9 +987,10 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-23",
+  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:87108": {
   "rottenTomatoes": 95,
@@ -8768,8 +8772,9 @@
   "rtCandidatesTried": 1,
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "mcUrl": "https://www.metacritic.com/movie/deadpool-wolverine/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:912649": {
   "rottenTomatoes": 40,
@@ -9014,8 +9019,9 @@
   "rtCandidatesTried": 1,
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "mcUrl": "https://www.metacritic.com/movie/booksmart/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:4911": {
   "rottenTomatoes": 59,
@@ -9259,8 +9265,9 @@
   "rtCandidatesTried": 1,
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "mcUrl": "https://www.metacritic.com/movie/american-sniper/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:715931": {
   "rottenTomatoes": null,
@@ -9382,8 +9389,9 @@
   "rtCandidatesTried": 1,
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "mcUrl": "https://www.metacritic.com/movie/creed-iii/",
+  "checkedAt": "2026-08-25",
+  "mcUserAttempted": true
  },
  "movie:13074": {
   "rottenTomatoes": 61,
