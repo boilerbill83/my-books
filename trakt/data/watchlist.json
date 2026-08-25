@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-08-21T15:53:56.530Z",
-    "count": 43
+    "generatedAt": "2026-08-25T00:18:25.307Z",
+    "count": 42
   },
   "titles": [
     {
@@ -98,25 +98,6 @@
       "year": 2024,
       "watchlisted": true,
       "watchlistedAt": "2026-07-29T00:14:28.000Z"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:154385",
-      "ids": {
-        "imdb": "tt14403178",
-        "plex": {
-          "guid": "61cdd57fcd8c10ae5aca39f4",
-          "slug": "beef-1"
-        },
-        "slug": "beef",
-        "tmdb": 154385,
-        "tvdb": 399838,
-        "trakt": 197667
-      },
-      "title": "BEEF",
-      "year": 2023,
-      "watchlisted": true,
-      "watchlistedAt": "2026-07-29T00:18:40.000Z"
     },
     {
       "type": "show",
@@ -661,25 +642,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:61244",
-      "ids": {
-        "imdb": "tt3428912",
-        "plex": {
-          "guid": "5d9c0845705e7a001e6d7801",
-          "slug": "happy-valley"
-        },
-        "slug": "happy-valley",
-        "tmdb": 61244,
-        "tvdb": 280537,
-        "trakt": 60750
-      },
-      "title": "Happy Valley",
-      "year": 2014,
-      "watchlisted": true,
-      "watchlistedAt": "2026-08-21T15:29:38.000Z"
-    },
-    {
-      "type": "show",
       "titleKey": "show:43982",
       "ids": {
         "imdb": "tt2303687",
@@ -791,6 +753,24 @@
       "year": 2017,
       "watchlisted": true,
       "watchlistedAt": "2026-08-21T15:30:55.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:17431",
+      "ids": {
+        "imdb": "tt1182345",
+        "plex": {
+          "guid": "5d7768402ec6b5001f6bdd2b",
+          "slug": "moon"
+        },
+        "slug": "moon-2009",
+        "tmdb": 17431,
+        "trakt": 10655
+      },
+      "title": "Moon",
+      "year": 2009,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-24T11:41:45.000Z"
     },
     {
       "type": "show",

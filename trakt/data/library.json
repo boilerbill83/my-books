@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-08-21T15:53:56.527Z",
-    "movieCount": 168,
-    "showCount": 366
+    "generatedAt": "2026-08-25T00:18:25.302Z",
+    "movieCount": 180,
+    "showCount": 373
   },
   "titles": [
     {
@@ -27,6 +27,27 @@
       "airedEpisodes": 8,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:300671",
+      "ids": {
+        "imdb": "tt4172430",
+        "plex": {
+          "guid": "5d776b3afb0d55001f560b67",
+          "slug": "13-hours-the-secret-soldiers-of-benghazi"
+        },
+        "slug": "13-hours-the-secret-soldiers-of-benghazi-2016",
+        "tmdb": 300671,
+        "trakt": 219869
+      },
+      "title": "13 Hours: The Secret Soldiers of Benghazi",
+      "year": 2016,
+      "myRating": 8,
+      "ratedAt": "2026-08-24T12:28:56.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2016-01-15T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -727,6 +748,27 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:190859",
+      "ids": {
+        "imdb": "tt2179136",
+        "plex": {
+          "guid": "5d776a12ad5437001f7710dd",
+          "slug": "american-sniper"
+        },
+        "slug": "american-sniper-2014",
+        "tmdb": 190859,
+        "trakt": 119348
+      },
+      "title": "American Sniper",
+      "year": 2014,
+      "myRating": 10,
+      "ratedAt": "2026-08-24T12:28:01.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2014-12-25T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:915935",
       "ids": {
         "imdb": "tt17009710",
@@ -744,6 +786,30 @@
       "ratedAt": "2023-08-23T00:00:00.000Z",
       "plays": 1,
       "lastWatchedAt": "2023-08-23T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:113984",
+      "ids": {
+        "imdb": "tt12748084",
+        "plex": {
+          "guid": "61f937a4363e29114596995d",
+          "slug": "anatomy-of-a-scandal"
+        },
+        "slug": "anatomy-of-a-scandal",
+        "tmdb": 113984,
+        "tvdb": 415490,
+        "trakt": 170117
+      },
+      "title": "Anatomy of a Scandal",
+      "year": 2022,
+      "myRating": 8,
+      "ratedAt": "2026-08-22T16:42:10.000Z",
+      "plays": 6,
+      "airedEpisodes": 6,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2022-04-15T12:49:00.000Z",
       "favorite": false
     },
     {
@@ -1214,10 +1280,10 @@
       "year": 2023,
       "myRating": 8,
       "ratedAt": "2023-04-06T00:00:00.000Z",
-      "plays": 10,
+      "plays": 18,
       "airedEpisodes": 18,
-      "completionStatus": "in-progress",
-      "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-04-16T07:55:00.000Z",
       "favorite": false
     },
     {
@@ -1608,6 +1674,27 @@
       "ratedAt": "2018-11-02T00:00:00.000Z",
       "plays": 1,
       "lastWatchedAt": "2018-11-02T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:505600",
+      "ids": {
+        "imdb": "tt1489887",
+        "plex": {
+          "guid": "5d77705296b655001fe9370c",
+          "slug": "booksmart"
+        },
+        "slug": "booksmart-2019",
+        "tmdb": 505600,
+        "trakt": 374133
+      },
+      "title": "Booksmart",
+      "year": 2019,
+      "myRating": 8,
+      "ratedAt": "2026-08-24T12:26:18.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2019-05-24T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -2250,6 +2337,27 @@
       "favorite": false
     },
     {
+      "type": "movie",
+      "titleKey": "movie:677179",
+      "ids": {
+        "imdb": "tt11145118",
+        "plex": {
+          "guid": "5e5d3b0bc20b28003df9e33f",
+          "slug": "creed-iii"
+        },
+        "slug": "creed-iii-2023",
+        "tmdb": 677179,
+        "trakt": 512258
+      },
+      "title": "Creed III",
+      "year": 2023,
+      "myRating": 10,
+      "ratedAt": "2026-08-24T12:25:44.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2023-03-03T00:00:00.000Z",
+      "favorite": false
+    },
+    {
       "type": "show",
       "titleKey": "show:98201",
       "ids": {
@@ -2460,6 +2568,27 @@
       "ratedAt": "2016-02-12T00:00:00.000Z",
       "plays": 1,
       "lastWatchedAt": "2016-02-12T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:533535",
+      "ids": {
+        "imdb": "tt6263850",
+        "plex": {
+          "guid": "5d776c8a23d5a3001f51c946",
+          "slug": "deadpool-and-wolverine"
+        },
+        "slug": "deadpool-wolverine-2024",
+        "tmdb": 533535,
+        "trakt": 395672
+      },
+      "title": "Deadpool & Wolverine",
+      "year": 2024,
+      "myRating": 9,
+      "ratedAt": "2026-08-22T16:43:25.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2024-07-26T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -3666,6 +3795,30 @@
       "favorite": false
     },
     {
+      "type": "show",
+      "titleKey": "show:17035",
+      "ids": {
+        "imdb": "tt0995832",
+        "plex": {
+          "guid": "5d9c0866cb3ffa001f1b46d0",
+          "slug": "generation-kill"
+        },
+        "slug": "generation-kill",
+        "tmdb": 17035,
+        "tvdb": 82109,
+        "trakt": 16964
+      },
+      "title": "Generation Kill",
+      "year": 2008,
+      "myRating": 10,
+      "ratedAt": "2026-08-22T16:41:41.000Z",
+      "plays": 7,
+      "airedEpisodes": 7,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2008-08-25T02:08:00.000Z",
+      "favorite": true
+    },
+    {
       "type": "movie",
       "titleKey": "movie:419430",
       "ids": {
@@ -3732,6 +3885,27 @@
       "airedEpisodes": 62,
       "completionStatus": "caught-up",
       "lastWatchedAt": "2017-04-17T02:28:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:98",
+      "ids": {
+        "imdb": "tt0172495",
+        "plex": {
+          "guid": "5d7768257228e5001f1dcccb",
+          "slug": "gladiator"
+        },
+        "slug": "gladiator-2000",
+        "tmdb": 98,
+        "trakt": 67
+      },
+      "title": "Gladiator",
+      "year": 2000,
+      "myRating": 10,
+      "ratedAt": "2026-08-24T12:26:02.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2000-05-05T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -4236,6 +4410,30 @@
       "airedEpisodes": 96,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:65454",
+      "ids": {
+        "imdb": "tt5425186",
+        "plex": {
+          "guid": "5d9c08162192ba001f3070d6",
+          "slug": "horace-and-pete"
+        },
+        "slug": "horace-and-pete",
+        "tmdb": 65454,
+        "tvdb": 309765,
+        "trakt": 105241
+      },
+      "title": "Horace and Pete",
+      "year": 2016,
+      "myRating": 10,
+      "ratedAt": "2026-08-24T12:30:39.000Z",
+      "plays": 10,
+      "airedEpisodes": 10,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2016-04-02T16:30:00.000Z",
       "favorite": false
     },
     {
@@ -4855,6 +5053,48 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:23483",
+      "ids": {
+        "imdb": "tt1250777",
+        "plex": {
+          "guid": "5d77684c85719b001f3a7a88",
+          "slug": "kick-ass"
+        },
+        "slug": "kick-ass-2010",
+        "tmdb": 23483,
+        "trakt": 14160
+      },
+      "title": "Kick-Ass",
+      "year": 2010,
+      "myRating": 8,
+      "ratedAt": "2026-08-24T12:29:17.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2010-04-16T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:59859",
+      "ids": {
+        "imdb": "tt1650554",
+        "plex": {
+          "guid": "5d77689ffb0d55001f515b38",
+          "slug": "kick-ass-2"
+        },
+        "slug": "kick-ass-2-2013",
+        "tmdb": 59859,
+        "trakt": 42809
+      },
+      "title": "Kick-Ass 2",
+      "year": 2013,
+      "myRating": 6,
+      "ratedAt": "2026-08-24T12:29:22.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2013-08-13T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:466420",
       "ids": {
         "imdb": "tt5537002",
@@ -5115,7 +5355,7 @@
       "myRating": 7,
       "ratedAt": "2024-12-15T00:00:00.000Z",
       "plays": 16,
-      "airedEpisodes": 19,
+      "airedEpisodes": 20,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false
@@ -5334,6 +5574,30 @@
       "airedEpisodes": 34,
       "completionStatus": "caught-up",
       "lastWatchedAt": "2018-03-09T17:37:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:124800",
+      "ids": {
+        "imdb": "tt14586350",
+        "plex": {
+          "guid": "60917bce3d1b44002dbca0fd",
+          "slug": "love-and-death"
+        },
+        "slug": "love-death",
+        "tmdb": 124800,
+        "tvdb": 402181,
+        "trakt": 183346
+      },
+      "title": "Love & Death",
+      "year": 2023,
+      "myRating": 8,
+      "ratedAt": "2026-08-22T16:40:51.000Z",
+      "plays": 7,
+      "airedEpisodes": 7,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2023-05-25T07:58:00.000Z",
       "favorite": false
     },
     {
@@ -5641,6 +5905,27 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:50839",
+      "ids": {
+        "imdb": "tt1615147",
+        "plex": {
+          "guid": "5d77688c23d5a3001f4edecd",
+          "slug": "margin-call"
+        },
+        "slug": "margin-call-2011",
+        "tmdb": 50839,
+        "trakt": 35595
+      },
+      "title": "Margin Call",
+      "year": 2011,
+      "myRating": 10,
+      "ratedAt": "2026-08-24T12:28:32.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2011-10-21T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:492188",
       "ids": {
         "imdb": "tt7653254",
@@ -5731,6 +6016,30 @@
     },
     {
       "type": "show",
+      "titleKey": "show:64254",
+      "ids": {
+        "imdb": "tt4635276",
+        "plex": {
+          "guid": "5d9c080e02391c001f57fc9e",
+          "slug": "master-of-none"
+        },
+        "slug": "master-of-none",
+        "tmdb": 64254,
+        "tvdb": 298901,
+        "trakt": 100817
+      },
+      "title": "Master of None",
+      "year": 2015,
+      "myRating": 10,
+      "ratedAt": "2026-08-22T16:42:22.000Z",
+      "plays": 25,
+      "airedEpisodes": 25,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2021-05-23T07:57:00.000Z",
+      "favorite": true
+    },
+    {
+      "type": "show",
       "titleKey": "show:46518",
       "ids": {
         "imdb": "tt2640044",
@@ -5751,6 +6060,30 @@
       "airedEpisodes": 9,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:76231",
+      "ids": {
+        "imdb": "tt5715524",
+        "plex": {
+          "guid": "5d9c08f002391c001f592864",
+          "slug": "mayans-m-c"
+        },
+        "slug": "mayans-m-c",
+        "tmdb": 76231,
+        "tvdb": 349659,
+        "trakt": 133615
+      },
+      "title": "Mayans M.C.",
+      "year": 2018,
+      "myRating": 8,
+      "ratedAt": "2026-08-22T16:36:55.000Z",
+      "plays": 50,
+      "airedEpisodes": 50,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2023-07-20T03:21:00.000Z",
       "favorite": false
     },
     {
@@ -6825,6 +7158,48 @@
       "favorite": false
     },
     {
+      "type": "movie",
+      "titleKey": "movie:254470",
+      "ids": {
+        "imdb": "tt2848292",
+        "plex": {
+          "guid": "5d776aa0f617c9002016f503",
+          "slug": "pitch-perfect-2"
+        },
+        "slug": "pitch-perfect-2-2015",
+        "tmdb": 254470,
+        "trakt": 154861
+      },
+      "title": "Pitch Perfect 2",
+      "year": 2015,
+      "myRating": 10,
+      "ratedAt": "2026-08-24T12:26:37.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2015-05-15T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:353616",
+      "ids": {
+        "imdb": "tt4765284",
+        "plex": {
+          "guid": "5d776bc9f617c9002017a22a",
+          "slug": "pitch-perfect-3"
+        },
+        "slug": "pitch-perfect-3-2017",
+        "tmdb": 353616,
+        "trakt": 222199
+      },
+      "title": "Pitch Perfect 3",
+      "year": 2017,
+      "myRating": 10,
+      "ratedAt": "2026-08-24T12:26:50.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2017-12-22T00:00:00.000Z",
+      "favorite": false
+    },
+    {
       "type": "show",
       "titleKey": "show:112211",
       "ids": {
@@ -7374,6 +7749,27 @@
       "airedEpisodes": 8,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1273221",
+      "ids": {
+        "imdb": "tt32093575",
+        "plex": {
+          "guid": "661ad2e15f2c9043629e7514",
+          "slug": "scary-movie-6"
+        },
+        "slug": "scary-movie-2026",
+        "tmdb": 1273221,
+        "trakt": 1034092
+      },
+      "title": "Scary Movie",
+      "year": 2026,
+      "myRating": 4,
+      "ratedAt": "2026-08-22T16:47:16.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2026-06-05T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -11082,6 +11478,30 @@
       "airedEpisodes": 10,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:255570",
+      "ids": {
+        "imdb": "tt31438328",
+        "plex": {
+          "guid": "66571cae035869c70e067eb8",
+          "slug": "this-city-is-ours"
+        },
+        "slug": "this-city-is-ours",
+        "tmdb": 255570,
+        "tvdb": 446897,
+        "trakt": 242111
+      },
+      "title": "This City Is Ours",
+      "year": 2025,
+      "myRating": 8,
+      "ratedAt": "2026-08-24T12:33:22.000Z",
+      "plays": 8,
+      "airedEpisodes": 8,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2025-05-11T20:59:00.000Z",
       "favorite": false
     },
     {
