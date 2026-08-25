@@ -368,7 +368,6 @@
   "mcUrl": null,
   "checkedAt": "2026-08-23",
   "rtAttempted": "2026-08-23",
-  "mcUserAttempted": true,
   "rtAudienceAttempted": true
  },
  "show:118357": {
@@ -512,7 +511,6 @@
   "mcUrl": null,
   "checkedAt": "2026-08-23",
   "rtAttempted": "2026-08-23",
-  "mcUserAttempted": true,
   "rtAudienceAttempted": true
  },
  "show:157239": {
@@ -968,7 +966,6 @@
   "mcUrl": null,
   "checkedAt": "2026-08-23",
   "rtAttempted": "2026-08-23",
-  "mcUserAttempted": true,
   "rtAudienceAttempted": true
  },
  "show:61920": {
@@ -992,7 +989,6 @@
   "mcUrl": null,
   "checkedAt": "2026-08-23",
   "rtAttempted": "2026-08-23",
-  "mcUserAttempted": true,
   "rtAudienceAttempted": true
  },
  "show:87108": {
@@ -8807,8 +8803,7 @@
   "rtCandidatesTried": 1,
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/movie/deadpool-wolverine/",
-  "mcUserAttempted": true,
+  "mcUrl": null,
   "checkedAt": "2026-08-24"
  },
  "movie:912649": {
@@ -9067,8 +9062,7 @@
   "rtCandidatesTried": 1,
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/movie/booksmart/",
-  "mcUserAttempted": true,
+  "mcUrl": null,
   "checkedAt": "2026-08-24"
  },
  "movie:4911": {
@@ -9327,8 +9321,7 @@
   "rtCandidatesTried": 1,
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/movie/american-sniper/",
-  "mcUserAttempted": true,
+  "mcUrl": null,
   "checkedAt": "2026-08-24"
  },
  "movie:715931": {
@@ -9457,8 +9450,7 @@
   "rtCandidatesTried": 1,
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/movie/creed-iii/",
-  "mcUserAttempted": true,
+  "mcUrl": null,
   "checkedAt": "2026-08-24"
  },
  "movie:13074": {
