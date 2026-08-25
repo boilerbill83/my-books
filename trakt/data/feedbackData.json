@@ -351,6 +351,17 @@
       "reasonLabel": "Passed over as boring/slow-paced",
       "timestamp": "2026-08-25T00:16:39.000Z",
       "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:67883",
+      "title": "Insecure",
+      "year": 2016,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "too_urban",
+      "reasonLabel": "Urban-setting fatigue (a comedy-drama, not a crime drama like the other too_urban titles — checked against Bill's real loved-genre distribution before treating this as a genre signal; not generalized into scoring, recorded as an exact-title exclusion only)",
+      "timestamp": "2026-08-25T13:49:10.000Z",
+      "excludeFromRecommendations": true
     }
   ]
 }
