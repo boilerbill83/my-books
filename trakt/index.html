@@ -282,7 +282,7 @@
         <div class="tk-row2">
           <div class="tk-card">
             <div class="tk-card-heading">Genres You Rate Highest</div>
-            <div class="tk-card-note">Average rating per genre (min. 3 rated titles). Sorted by taste, not volume.</div>
+            <div class="tk-card-note">Average rating per subgenre (min. 3 rated titles), not TMDB's own broad genre list — "Drama" alone covers 75% of everything, so it can't tell you much. Sorted by taste, not volume.</div>
             <div class="tk-chart-wrap" id="genreChart"></div>
           </div>
           <div class="tk-card">
@@ -319,18 +319,20 @@
 
         <div class="tk-card">
           <div class="tk-card-heading">📋 Field Population &amp; Quality</div>
+          <div class="tk-card-note"><strong>% Populated</strong> is whether a field has any value at all; <strong>% Quality</strong> is stricter — whether that value actually clears a field-specific usefulness bar (e.g. 2+ genre tags, not just 1, or both a Rotten Tomatoes and a Metacritic score, not just one), so a field can be fully populated and still score low on quality if what's there isn't good enough to trust.</div>
           <div class="tk-card-note" id="fieldQualityNote">Loading…</div>
           <div class="tk-table-wrap"><table class="tk-table" id="fieldQualityTable"></table></div>
         </div>
 
         <div class="tk-card">
           <div class="tk-card-heading">🛠️ Improvement Opportunities</div>
-          <div class="tk-card-note">Findings from a full code review of everything under <code>trakt/</code> plus real gaps in the scoring model itself — code-correctness bugs and unused/missing signals together, ranked by real impact on data quality and recommendation accuracy, the same kind of iterative refinement history <a href="../index.html" target="_blank">BBRE</a>, the book engine, went through across 40+ sessions. Each verified against live data, not guessed.</div>
+          <div class="tk-card-note">Findings from a full code review of everything under <code>trakt/</code> plus real gaps in the scoring model itself — code-correctness bugs and unused/missing signals together, ranked by real impact on data quality and recommendation accuracy, the same kind of iterative refinement history <a href="../index.html" target="_blank">BBRE</a>, the book engine, went through across 40+ sessions. Each verified against live data, not guessed. Only open items are shown below — resolved ones are fixed and removed.</div>
+          <div class="tk-card-note" id="improvementResolvedNote"></div>
           <div id="improvementList"></div>
         </div>
 
         <div class="tk-card" style="margin-bottom: 24px;">
-          <div class="tk-card-heading">All Titles (<span id="allTitlesCount">0</span>)</div>
+          <div class="tk-card-heading"><span>All Titles (<span id="allTitlesCount">0</span>)</span></div>
           <div class="tk-card-note">Every watched, watchlisted, and candidate title, with the engine's predicted score. Search, filter, sort by any column, or export.</div>
           <div class="tk-table-toolbar">
             <input type="text" class="tk-search" id="titleSearch" placeholder="Search title, genre, director…" />
