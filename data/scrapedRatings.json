@@ -3663,10 +3663,13 @@
   },
   "culpability|||bruce holsinger": {
     "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found",
-    "checkedAt": "2026-08-12"
+    "amazon": {
+      "rating": 4.4,
+      "count": 21878
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91MerQRUrtL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-26"
   },
   "the gone world|||tom sweterlitsch": {
     "storyGraph": null,
@@ -3953,14 +3956,14 @@
     "amazon": null,
     "coverUrl": null,
     "source": "not_found",
-    "checkedAt": "2026-08-12"
+    "checkedAt": "2026-08-26"
   },
   "the body|||stephen king": {
     "storyGraph": null,
     "amazon": null,
     "coverUrl": null,
     "source": "not_found",
-    "checkedAt": "2026-08-12"
+    "checkedAt": "2026-08-26"
   },
   "thrilling tales of modern men|||danny mcbride": {
     "storyGraph": null,
@@ -3974,17 +3977,23 @@
   },
   "the american way of killing|||malcolm gladwell": {
     "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found",
-    "checkedAt": "2026-08-12"
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/71g+x-5w6-L._SX300_.jpg",
+    "source": "cover_only",
+    "checkedAt": "2026-08-26"
   },
   "up on cove mountain|||earl swift": {
     "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found",
-    "checkedAt": "2026-08-12"
+    "amazon": {
+      "rating": 4.0,
+      "count": 5
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91OqHQNqWpL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-26"
   },
   "how to not die in prison|||taylor sheridan": {
     "storyGraph": null,
@@ -3998,24 +4007,33 @@
   },
   "the munich affair|||james  patterson": {
     "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found",
-    "checkedAt": "2026-08-12"
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/811jfCT+8yL._SX300_.jpg",
+    "source": "cover_only",
+    "checkedAt": "2026-08-26"
   },
   "rock*|||chuck klosterman": {
     "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found",
-    "checkedAt": "2026-08-12"
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/711m2ZIJmHL._SX300_.jpg",
+    "source": "cover_only",
+    "checkedAt": "2026-08-26"
   },
   "cancel me if you can|||dave portnoy": {
     "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found",
-    "checkedAt": "2026-08-12"
+    "amazon": {
+      "rating": 4.7,
+      "count": 1138
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91T27xRr4TL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-08-26"
   },
   "blood, bones, and butter|||gabrielle hamilton": {
     "storyGraph": null,
