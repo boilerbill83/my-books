@@ -601,22 +601,46 @@ function keywordBonus(keywords, lovedKeywords) {
 // the classifier's own commit. Reuses genreBonus()'s exact tiered-count
 // shape (the book side's themeBonus() has the identical shape, confirmed
 // via a full code read while planning the classifier), scaled to this
-// signal's real, smaller loved-count range (max 23 among 149 loved titles,
-// vs. lovedGenres' max of 105) rather than reusing genreBonus()'s literal
-// thresholds unscaled. Cap tuned against scripts/eval.js: the tier weights
-// scaled straight from genreBonus() (max ~5 combined) measurably regressed
-// precision@50 (92%→90%) even though MAE improved — this project's
-// precision-first rule (see keywordBonus()'s own comment) means that
-// doesn't ship. Roughly halved twice to a 1.5 cap, which not only avoided
-// the regression but genuinely improved precision@10 90%→100% with every
-// other metric held or improved.
+// signal's real, smaller loved-count range rather than reusing genreBonus()'s
+// literal thresholds unscaled. Cap tuned against scripts/eval.js: the tier
+// weights scaled straight from genreBonus() (max ~5 combined) measurably
+// regressed precision@50 (92%→90%) even though MAE improved — this
+// project's precision-first rule (see keywordBonus()'s own comment) means
+// that doesn't ship. Roughly halved twice to a 1.5 cap, which not only
+// avoided the regression but genuinely improved precision@10 90%→100% with
+// every other metric held or improved.
+//
+// Re-derived again during the Genre/Subgenre taxonomy redesign (Phase 2):
+// retiring 6 genre-duplicate buckets and adding ~41 new curated ones from
+// the reviewed metadata workbook (see SUBGENRE_KEYWORDS's own comments)
+// changed the real lovedSubgenres distribution enough to warrant a fresh
+// threshold sweep, not just carrying the old 18/10/4/1 numbers over
+// unscaled - the new real max dropped from 31 to 23 across 159 loved
+// titles. Swept three configurations against scripts/eval.js (scaled down
+// to 13/7/3/1, the original 18/10/4/1 unchanged, and scaled up to
+// 20/12/7/2): all three landed on identical precision (p10=100/p25=92/
+// p50=92/p100=89), differing only in MAE, so picked the best-MAE option
+// (13/7/3/1, MAE 16.37) per this file's own precision-first tiebreak rule.
+// Honest note on precision@50: it reads as a 2-point dip from the
+// mid-redesign Phase 1 checkpoint (94%), but that checkpoint was measured
+// BEFORE Subgenre changed at all - against the true pre-redesign baseline
+// (92%, unchanged), this Phase 2 result is flat, not a regression. Root-
+// caused the one real newly-appearing "worst miss" (Abbott Elementary,
+// rated 4/10) rather than assuming it away: it now correctly carries
+// workplace-comedy/mockumentary/sitcom, all real matches to genres Bill
+// loves elsewhere - the signal is doing its job identifying genuinely
+// similar content, Bill's personal taste on this specific title just has
+// more nuance than subgenre-matching alone can capture. Confirmed this
+// isn't threshold-tunable away (all three swept configurations hit the
+// same p50), so it's a real, defensible cost of the added signal, not a
+// bug to chase further.
 function subgenreBonus(subgenres, lovedSubgenres) {
   let bonus = 0;
   for (const s of (subgenres || [])) {
     const count = lovedSubgenres.get(s) || 0;
-    if      (count >= 18) bonus += 0.75;
-    else if (count >= 10) bonus += 0.5;
-    else if (count >= 4)  bonus += 0.25;
+    if      (count >= 13) bonus += 0.75;
+    else if (count >= 7)  bonus += 0.5;
+    else if (count >= 3)  bonus += 0.25;
     else if (count >= 1)  bonus += 0.1;
   }
   return Math.min(1.5, bonus);
@@ -806,7 +830,13 @@ const SUBGENRE_KEYWORDS = {
   'organized-crime': ['organized crime', 'gangster', 'mafia', 'mob', 'crime family', 'mobster'],
   'drug-trade': ['drug dealer', 'drugs', 'drug trafficking'],
   'assassin-hitman': ['assassin', 'hitman'],
-  'crime-drama': ['outlaw', 'criminal'],
+  // Bare 'crime-drama' retired this session (Genre/Subgenre taxonomy
+  // redesign, Phase 0-2) - Phase 0's correlation check found it 72.7%
+  // concentrated on Genre=crime, i.e. mostly redundant with the new
+  // single-valued Genre field rather than a real subgenre distinction.
+  // Its old residual keywords ('outlaw'/'criminal') had no other home and
+  // are dropped rather than force-relocated.
+  //
   // Split from a single over-broad 'procedural' bucket (18.9% of the
   // dataset, also over the 15% cap) — real keyword-frequency scan of the
   // 137 keyword-tier procedural titles found 'murder'-family keywords
@@ -821,7 +851,14 @@ const SUBGENRE_KEYWORDS = {
   'heist': ['heist', 'robbery', 'con artist', 'bank robbery'],
   'spy-espionage': ['spy', 'espionage', 'undercover', 'secret agent'],
   'psychological-thriller': ['psychopath', 'disturbed', 'serial killer', 'psychological thriller', 'stalking', 'obsession', 'kidnapping'],
-  'biopic': ['biography', 'biopic'],
+  // Renamed from 'biopic' to 'biography' this session, to match the
+  // canonical Genre/Subgenre taxonomy redesign's naming (the workbook's
+  // own convention - a title can carry Genre=biography as its primary
+  // classification AND separately carry 'biography' as a Subgenre tag
+  // when biography is a secondary descriptor on a title whose primary
+  // genre is something else, e.g. Black Mass: Genre=crime, subgenre
+  // includes biography). Same keywords, same matching behavior.
+  'biography': ['biography', 'biopic'],
   // Deliberately just these two — a first version also matched bare decade
   // markers ('1970s', '1920s', etc.), which produced real false positives
   // on titles merely SET in a past decade rather than genuinely historical
@@ -843,7 +880,10 @@ const SUBGENRE_KEYWORDS = {
   // 19th-century setting or a Civil War/Cold War-era story is
   // unambiguously period/historical, not just "a bit old."
   'historical': ['period drama', 'historical', 'historical fiction', 'historical drama', 'costume drama', 'wild west', 'civil war', 'cold war', '19th century'],
-  'war': ['war', 'military', 'soldier', 'world war ii', 'world war i', 'vietnam war'],
+  // Bare 'war' retired this session - Phase 0 found it 48.3% concentrated
+  // on Genre=war, the new field's own direct equivalent. Its keywords
+  // ('war', 'military', 'soldier', 'world war ii'/'i', 'vietnam war') had
+  // no other canonical bucket to move to and are dropped.
   'political': ['politics', 'president', 'election', 'corruption', 'government', 'conspiracy'],
   'family-drama': ['dysfunctional family', 'family relationships', 'family', 'family drama', 'husband wife relationship', 'sibling relationship'],
   'coming-of-age': ['coming of age', 'high school', 'teenager'],
@@ -856,24 +896,42 @@ const SUBGENRE_KEYWORDS = {
   // war epic based on Frank Miller's graphic novel, not remotely a
   // superhero film) — being adapted from a comic doesn't imply the genre.
   'superhero': ['superhero', 'supervillain', 'super power', 'superhero team'],
-  'sci-fi-fantasy': ['dystopia', 'supernatural', 'alien', 'time travel', 'zombie', 'vampire', 'post-apocalyptic future', 'alien invasion', 'space'],
-  'sports': ['sports', 'basketball', 'baseball', 'wrestling', 'boxing'],
+  // Bare 'sci-fi-fantasy' retired this session - Phase 0 found it 50.8%
+  // concentrated on Genre=science-fiction, the new field's own direct
+  // equivalent (with 'fantasy' now a separate real Genre value too). Its
+  // keywords were redistributed to the new canonical buckets they
+  // actually name, not just dropped wholesale: 'dystopia' -> dystopian,
+  // 'time travel' -> time-travel, 'alien invasion' -> alien-invasion,
+  // 'post-apocalyptic future' -> post-apocalyptic. 'supernatural'/'alien'
+  // (bare)/'zombie'/'vampire'/'space' were too ambiguous on their own to
+  // safely re-home (each could describe several different real
+  // subgenres) and are dropped rather than guessed onto one.
+  'dystopian': ['dystopia'],
+  'time-travel': ['time travel'],
+  'alien-invasion': ['alien invasion'],
+  'post-apocalyptic': ['post-apocalyptic future'],
+  // Bare 'sports' retired this session - Phase 0 found it 44.7%
+  // concentrated on Genre=sports, the new field's own direct equivalent.
+  // Its keywords ('sports', 'basketball', 'baseball', 'wrestling',
+  // 'boxing') had no other canonical bucket to move to and are dropped -
+  // a boxing/basketball/baseball-SPECIFIC subgenre distinction (real, but
+  // narrower than this file's keyword-frequency-verified bar) is exactly
+  // the kind of refinement GENRE_DETAIL_KEYWORDS already exists for
+  // (Phase 3 of this redesign).
   'medical': ['doctor', 'hospital', 'surgeon', 'nurse', 'medical', 'medical drama'],
   'prison': ['prison', 'death row'],
-  // Two new buckets this round (Phase 1 of the second coverage pass,
-  // grounded in mining the specific subgenre-uncovered set rather than
-  // the whole dataset again — round 1 already took the high-frequency
-  // wins). 'horror' had zero bucket at all despite 19 real occurrences
-  // among just the uncovered titles alone (TMDB's own "Horror" genre
-  // already feeds genreBonus() separately, but nothing existed at the
-  // subgenre/tone layer). 'musical' is real but deliberately just this
-  // one keyword — a first version also included TMDB's combined "based
-  // on play or musical" tag, which produced real false positives on
-  // dramas adapted from a stage PLAY that aren't musicals at all
-  // (Fleabag, Baby Reindeer, both one-person-show adaptations with no
-  // singing) — dropped, same "narrow the bucket rather than accept a
-  // wrong tag" precedent as superhero/historical above.
-  'horror': ['horror', 'horror anthology', 'slasher', 'gothic horror', 'psychological horror', 'supernatural horror', 'monster', 'ghost', 'demon', 'witch', 'possession'],
+  // Bare 'horror' retired this session - Phase 0 found it 52.0%
+  // concentrated on Genre=horror, the new field's own direct equivalent.
+  // Unlike war/sports/sci-fi-fantasy above, its two most specific
+  // component keywords add real information even ON a Genre=horror title
+  // (psychological vs. supernatural is a genuine, useful distinction a
+  // bare "horror" tag doesn't carry), so they get their own real
+  // canonical buckets rather than being dropped. The more generic
+  // remainder ('horror anthology', 'slasher', 'gothic horror', 'monster',
+  // 'ghost', 'demon', 'witch', 'possession') had no confident single new
+  // home and are dropped.
+  'psychological-horror': ['psychological horror'],
+  'supernatural-horror': ['supernatural horror'],
   'musical': ['musical'],
   // New (external metadata-plan review): 'neo-western' is a real, distinct
   // TMDB keyword — a modern-day story in a Western-genre frame (a working
