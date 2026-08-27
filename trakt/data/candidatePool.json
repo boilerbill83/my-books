@@ -2116,9 +2116,19 @@
     },
     {
       "type": "show",
-      "titleKey": "show:2093",
+      "titleKey": "show:226174",
       "ids": {
-        "tmdb": 2093
+        "tmdb": 226174
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:126308",
+      "ids": {
+        "tmdb": 126308
       },
       "title": null,
       "year": null,
