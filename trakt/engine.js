@@ -1665,6 +1665,18 @@ export function confidenceScore(candidate, enrichedMeta) {
   return Math.min(100, c);
 }
 
+// External metadata-plan Priority 4: reasons stay full, human-readable
+// prose (Bill has consistently praised this — e.g. "Ransom Canyon —
+// Similar to 1883 and Yellowstone, which you loved" — and the plan's own
+// success criterion says "the reason field remains human-readable"), but
+// every branch now also prepends a short, stable, machine-parseable tag
+// naming the strongest signal — the plan's actual ask ("analyze
+// recommendation quality," "compare explanations," "measure which signals
+// are effective"). Every reason is now groupable by the text before its
+// first ' — ', with no change to the underlying priority order (the first
+// matching branch already IS the strongest available signal — reason()
+// was always checked in priority order, this doesn't change that, only
+// labels it explicitly).
 export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
   const meta = enrichedMeta[candidate.titleKey];
   if (!meta) return 'Not enough data yet to explain this one — needs TMDB enrichment.';
@@ -1677,7 +1689,8 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
   if (lovedInCollection?.length) {
     const names = lovedInCollection.map(k => idx.watched.get(k)?.title).filter(Boolean).slice(0, 2);
     if (names.length) {
-      return `You loved ${names.join(' and ')} — this is another entry in the same ${meta.belongsToCollection.name.replace(/ Collection$/, '')} franchise.`;
+      const franchiseName = meta.belongsToCollection.name.replace(/ Collection$/, '');
+      return `Franchise Match — You loved ${names.join(' and ')} — this is another entry in the same ${franchiseName} franchise.`;
     }
   }
 
@@ -1685,7 +1698,7 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
   const creatorLabel = candidate.type === 'movie' ? 'director' : 'creator';
   const creatorCount = creator ? (idx.lovedCreators.get(creator) || 0) : 0;
   if (creatorCount > 0) {
-    return `You've loved ${creatorCount} title${creatorCount > 1 ? 's' : ''} from ${creatorLabel} ${creator} before.`;
+    return `Creator Match — You've loved ${creatorCount} title${creatorCount > 1 ? 's' : ''} from ${creatorLabel} ${creator} before.`;
   }
 
   // Checked after creator match, before the general similar-title
@@ -1694,7 +1707,7 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
   const lovedCastMember = (meta.topCast || []).find(actor => idx.lovedActors.get(actor) > 0);
   if (lovedCastMember) {
     const count = idx.lovedActors.get(lovedCastMember);
-    return `You've loved ${count} title${count > 1 ? 's' : ''} with ${lovedCastMember} before.`;
+    return `Cast Affinity — You've loved ${count} title${count > 1 ? 's' : ''} with ${lovedCastMember} before.`;
   }
 
   const citedIds = new Set([...(meta.similarToIds || []), ...(meta.recommendedIds || [])]
@@ -1705,21 +1718,21 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
       .map(k => idx.watched.get(k)?.title)
       .filter(Boolean)
       .slice(0, 2);
-    if (names.length) return `Similar to ${names.join(' and ')}, which you loved.`;
+    if (names.length) return `Similar Title — Similar to ${names.join(' and ')}, which you loved.`;
   }
 
   const reverseCount = idx.reverseSimilar.get(candidate.titleKey) || 0;
   if (reverseCount > 0) {
-    return `Titles you loved list this as similar or recommended (${reverseCount} time${reverseCount > 1 ? 's' : ''}).`;
+    return `Similar Title — Titles you loved list this as similar or recommended (${reverseCount} time${reverseCount > 1 ? 's' : ''}).`;
   }
 
   const topGenres = (meta.genres || []).filter(g => idx.lovedGenres.has(g)).slice(0, 2);
   if (topGenres.length) {
-    return `Fits your taste for ${topGenres.join(' / ')}.`;
+    return `Genre Match — Fits your taste for ${topGenres.join(' / ')}.`;
   }
 
   if (meta.voteAverage != null && meta.voteAverage >= 7.5) {
-    return `Broadly well-regarded (${meta.voteAverage.toFixed(1)}/10 on TMDB).`;
+    return `Community Rating — Broadly well-regarded (${meta.voteAverage.toFixed(1)}/10 on TMDB).`;
   }
 
   const omdbEntry = omdbMeta[candidate.titleKey];
@@ -1727,12 +1740,12 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
   if (crit != null && crit >= CRITIC_NEUTRAL) {
     const realAud = realAudienceScore(omdbEntry);
     return realAud != null
-      ? `Well-reviewed by critics (${crit}/100) and audiences (${realAud}/100).`
-      : `Well-reviewed by critics (${crit}/100 critic score).`;
+      ? `Critically Acclaimed — Well-reviewed by critics (${crit}/100) and audiences (${realAud}/100).`
+      : `Critically Acclaimed — Well-reviewed by critics (${crit}/100 critic score).`;
   }
   const awd = awardsScore(omdbEntry);
   if (awd) {
-    return `Real award recognition (${omdbEntry.awards?.raw || 'wins/nominations found'}).`;
+    return `Award Recognition — Real award recognition (${omdbEntry.awards?.raw || 'wins/nominations found'}).`;
   }
 
   return 'A newer or less-connected title — worth a look, lower confidence.';

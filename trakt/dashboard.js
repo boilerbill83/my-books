@@ -2063,6 +2063,32 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     });
   }
 
+  // Priority 4 (external metadata-plan): reason-field standardization.
+  {
+    const example = [...fromWatchlist, ...fromCandidates].find(c => c.reason && c.reason.includes(' — '));
+    findings.push({
+      id: 'reason-field-standardization',
+      severity: 'good',
+      ratings: { ease: 5, dataQuality: 3, recEngine: 1, ui: 5 },
+      title: `Every recommendation reason now starts with a short, machine-parseable tag — while staying full, human-readable prose`,
+      technical: `<code>reason()</code> in engine.js was already live-computed, never stored, and already priority-ordered by strongest ` +
+        `signal (franchise → creator → cast → similar-title → reverse-similar → genre → critic/audience/awards → fallback) — so "identify ` +
+        `the strongest signal" was already true structurally. What was genuinely missing versus the plan's ask: every branch returned full ` +
+        `prose only, with no short tag a script could group by. Fixed by prepending a stable tag (<code>Franchise Match</code> / ` +
+        `<code>Creator Match</code> / <code>Cast Affinity</code> / <code>Similar Title</code> / <code>Genre Match</code> / <code>Community ` +
+        `Rating</code> / <code>Critically Acclaimed</code> / <code>Award Recognition</code>) followed by \` — \` and the existing sentence, ` +
+        `to every branch except the low-confidence fallback. Deliberately did NOT fully replace the prose with terse tags (the plan's own ` +
+        `literal proposed format) — that would contradict the plan's own "reason field remains human-readable" success criterion and would ` +
+        `be a real UX regression from what Bill has repeatedly praised in this session's own history. Documented in trakt/ENGINE.md §4b. ` +
+        (example ? `Live example right now: "${esc(example.title)}" reads "${esc(example.reason)}".` : ''),
+      plain: `Every recommendation already came with a real explanation (like "You've loved 2 titles from creator Taylor Sheridan before"), ` +
+        `just no short label in front of it. Now each one starts with a short tag (like "Creator Match —") before the same full sentence — ` +
+        `easier to scan or group by machine, without losing the readable explanation.`,
+      impact: `A real usability/auditability improvement with no scoring effect (reason() was never a scoring input) and no downside — the ` +
+        `explanatory sentence Bill has consistently valued is unchanged, just labeled.`,
+    });
+  }
+
   const order = { critical: 0, serious: 1, warning: 2, good: 3 };
   findings.sort((a, b) => order[a.severity] - order[b.severity]);
   return findings;
