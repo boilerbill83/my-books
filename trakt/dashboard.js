@@ -197,7 +197,7 @@ const SUBGENRE_LABEL = {
 const SUBJECT_LABEL = {
   'addiction-recovery': 'Addiction / Recovery', 'grief-loss': 'Grief / Loss', 'trauma-abuse': 'Trauma / Abuse',
   'racism-civil-rights': 'Racism / Civil Rights', 'immigration-refugee': 'Immigration / Refugee',
-  'infidelity-betrayal': 'Infidelity / Betrayal', 'journalism-media': 'Journalism / Media',
+  'infidelity': 'Infidelity / Affairs', 'journalism-media': 'Journalism / Media',
   'cult-extremism': 'Cult / Extremism', 'mental-health': 'Mental Health', 'class-wealth-corporate': 'Class / Wealth / Corporate',
   'lgbtq': 'LGBTQ+',
 };
@@ -370,6 +370,103 @@ function renderGenreChart(stats) {
   renderHBarChart('genreChart',
     stats.map(g => ({ genre: `${g.genre} (${g.count})`, avg: g.avg })),
     { labelKey: 'genre', valueKey: 'avg', maxScale: 10, fmtValue: v => v.toFixed(1), tooltipSuffix: '/10 avg' });
+}
+
+// Bill: "add a table to the dashboard so I can see the distribution and
+// top subjects" — distribution (every watched/watchlisted/candidate
+// title, not just rated ones, so it reflects the real dataset) alongside
+// a rating-preference view (top titles + avg rating, scoped to what's
+// actually been watched and rated — the same "top" framing
+// computeGenreStats() above already uses for subgenres).
+function computeSubjectDistribution(library, watchlist, candidatePool, enrichedMeta, llmTags = {}) {
+  const stats = new Map();
+  const bump = s => {
+    if (!stats.has(s)) stats.set(s, { count: 0, ratedSum: 0, ratedCount: 0, topTitles: [] });
+    return stats.get(s);
+  };
+  let total = 0;
+  const seen = new Set();
+  for (const list of [library.titles, watchlist.titles, candidatePool.titles]) {
+    for (const t of list || []) {
+      if (!t.titleKey || seen.has(t.titleKey)) continue;
+      seen.add(t.titleKey);
+      const meta = enrichedMeta[t.titleKey];
+      if (!meta) continue;
+      total++;
+      for (const s of inferSubjects(meta, llmTags[t.titleKey])) {
+        const e = bump(s);
+        e.count++;
+        if (t.myRating != null) {
+          e.ratedSum += t.myRating; e.ratedCount++;
+          e.topTitles.push({ title: meta.title || t.title, rating: t.myRating });
+        }
+      }
+    }
+  }
+  return [...stats.entries()]
+    .map(([subject, e]) => ({
+      subject: SUBJECT_LABEL[subject] || subject,
+      count: e.count,
+      pct: total ? (e.count / total) * 100 : 0,
+      ratedCount: e.ratedCount,
+      avgRating: e.ratedCount ? e.ratedSum / e.ratedCount : null,
+      topTitles: e.topTitles.sort((a, b) => b.rating - a.rating).slice(0, 3).map(x => `${x.title} (${x.rating}/10)`).join(', '),
+    }))
+    .sort((a, b) => b.count - a.count);
+}
+
+function renderSubjectTable(rows) {
+  const table = document.getElementById('subjectTable');
+  const columns = [
+    { label: 'Subject', get: r => r.subject },
+    { label: 'Count', get: r => r.count, numeric: true },
+    { label: '% of Dataset', get: r => r.pct, numeric: true,
+      render: (td, r) => { td.className = 'num'; td.textContent = r.pct.toFixed(1) + '%'; } },
+    { label: 'Rated', get: r => r.ratedCount, numeric: true },
+    { label: 'Avg Rating', get: r => r.avgRating ?? -1, numeric: true,
+      render: (td, r) => { td.className = 'num'; td.textContent = r.avgRating != null ? r.avgRating.toFixed(1) + '/10' : '—'; } },
+    { label: 'Top Titles', get: r => r.topTitles, render: (td, r) => { td.className = 'tk-genres'; td.textContent = r.topTitles || '—'; } },
+  ];
+
+  let sortCol = 1, sortAsc = false; // default: Count descending — "distribution" first
+
+  function render() {
+    const sorted = [...rows].sort((a, b) => {
+      const va = columns[sortCol].get(a), vb = columns[sortCol].get(b);
+      const cmp = typeof va === 'number' ? va - vb : String(va).localeCompare(String(vb));
+      return sortAsc ? cmp : -cmp;
+    });
+
+    table.innerHTML = '';
+    const thead = document.createElement('thead');
+    const trh = document.createElement('tr');
+    columns.forEach((c, i) => {
+      const th = document.createElement('th');
+      th.textContent = c.label;
+      if (i === sortCol) th.className = 'sorted' + (sortAsc ? ' asc' : '');
+      th.addEventListener('click', () => {
+        if (sortCol === i) sortAsc = !sortAsc; else { sortCol = i; sortAsc = false; }
+        render();
+      });
+      trh.appendChild(th);
+    });
+    thead.appendChild(trh);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    for (const row of sorted) {
+      const tr = document.createElement('tr');
+      columns.forEach(c => {
+        const td = document.createElement('td');
+        if (c.render) c.render(td, row); else { if (c.numeric) td.className = 'num'; td.textContent = c.get(row); }
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+  }
+
+  render();
 }
 
 // Human-readable label per reasonCode, since feedbackData.json's real
@@ -2854,6 +2951,7 @@ async function load() {
     `these sections fill in automatically as the daily enrichment job covers more of your library.`;
 
   renderGenreChart(computeGenreStats(library, enrichedMeta, llmTags));
+  renderSubjectTable(computeSubjectDistribution(library, watchlist, candidatePool, enrichedMeta, llmTags));
   renderDismissalChart(computeDismissalStats(feedback));
   renderPredictionMisses(computePredictionMisses(library, enrichedMeta, omdbMeta, idx), enrichedMeta);
   renderCastList(computeCastStats(library, enrichedMeta));
