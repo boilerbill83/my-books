@@ -912,20 +912,58 @@ export function inferEra(meta, limit = 1) {
 // being too thin (~8-11 keyword instances each) to trust as their own
 // category, per the same "don't force a bucket from weak evidence" rule
 // SUBGENRE_KEYWORDS's own history already established.
+//
+// Full accuracy/specificity audit (Bill's explicit ask, second pass): read
+// every real title matched by every keyword in every bucket (218 titles,
+// dumped and reviewed in full, not sampled) against real knowledge of each
+// title's actual plot/subject matter. Found and fixed 3 more real
+// precision problems, the same class of bug as the 'genocide' catch above
+// - a bare keyword too generic to reliably signal the bucket's real
+// subject:
+// - 'alcohol' (bare) matched 4/4 wrong: Superbad, Neighbors 2: Sorority
+//   Rising, 21 & Over, The Toxic Avenger Unrated - all casual college-
+//   drinking party comedies, not addiction/recovery narratives. Dropped;
+//   'alcoholism'/'alcoholic'/'recovering alcoholic'/etc. (the bucket's
+//   other members) still catch the real cases (A Star Is Born, The
+//   Queen's Gambit, House) without the false-positive risk.
+// - 'betrayal'/'betrayal cycle' (bare) matched mostly wrong: of 11 real
+//   hits, the majority (Barry, MobLand, Oz, The Penguin, The Rip, Tulsa
+//   King, Fast X, The Suicide Squad, American Sicario) are crime/action
+//   titles where "betrayal" means a criminal double-cross, not romantic
+//   infidelity - the bucket's actual intent. Dropped both; the 13 titles
+//   matched purely via 'infidelity' (Big Little Lies, Marriage Story,
+//   TÁR, You, etc.) are all genuinely relationship-themed. Verified this
+//   wasn't just deleting real signal: checked 'Above Suspicion' (an
+//   affair-driven true-crime film that had only matched via bare
+//   'betrayal') and found it also carries a real, unambiguous 'affair'
+//   keyword - added 'affair' to the bucket (2 real, both genuine:
+//   Above Suspicion, Your Friends & Neighbors) to recover it precisely
+//   instead of keeping the broad, error-prone 'betrayal' catch-all.
+//   Bucket renamed 'infidelity-betrayal' -> 'infidelity' to match what
+//   it actually now measures.
+// - 'illness' (bare, in grief-loss) only matched House - a medical-
+//   mystery procedural (already correctly tagged the 'medical' subgenre)
+//   where every episode's premise is diagnosing an illness, not a story
+//   ABOUT grief or loss. Dropped; 'terminal illness'/'terminal cancer'
+//   (specifically mortality-facing, the bucket's real intent) remain.
+// Net effect: coverage dropped slightly (a few titles lost a subject tag
+// entirely rather than keep an inaccurate one) but every remaining tag in
+// these three buckets was re-verified as a real match - the same
+// precision-over-recall tradeoff this file's history consistently makes.
 const SUBJECT_KEYWORDS = {
-  'addiction-recovery': ['alcoholism', 'addiction', 'drug addiction', 'alcoholic', 'drug abuse', 'alcohol', 'recovering alcoholic',
+  'addiction-recovery': ['alcoholism', 'addiction', 'drug addiction', 'alcoholic', 'drug abuse', 'recovering alcoholic',
     'substance abuse', 'sex addiction', 'drug addict', 'crack addict', 'addiction recovery', 'alcoholics anonymous',
     'alcoholic father', 'alcoholic mother', 'addict'],
   'grief-loss': ['grief', 'loss of loved one', 'grieving widower', 'grief & loss', 'grieving', 'grieving sister', 'grieving mother',
     'grieving man', 'grieving father', 'grieving daughter', 'loss of wife', 'loss of job', 'loss of child', 'suicide',
-    'suicide attempt', 'suicide of mother', 'mass suicide', 'cancer', 'terminal illness', 'terminal cancer', 'illness'],
+    'suicide attempt', 'suicide of mother', 'mass suicide', 'cancer', 'terminal illness', 'terminal cancer'],
   'trauma-abuse': ['post-traumatic stress disorder (ptsd)', 'trauma', 'domestic abuse', 'domestic violence', 'sexual abuse',
     'child abuse', 'childhood trauma', 'abuse of power', 'abuse', 'abuse of authority', 'war trauma', 'wartime trauma',
     'traumatized', 'traumatized woman', 'childhood sexual abuse'],
   'racism-civil-rights': ['racism', 'civil rights', 'discrimination', 'homophobia', 'racist', 'slavery', 'escape from slavery',
     'holocaust (shoah) survivor', 'holocaust (shoah)', 'rwandan genocide'],
   'immigration-refugee': ['immigrant', 'refugee', 'immigration', 'immigrant family', 'refugee crisis', 'refugee camp', 'vietnamese refugees'],
-  'infidelity-betrayal': ['infidelity', 'betrayal', 'betrayal cycle'],
+  'infidelity': ['infidelity', 'affair'],
   'journalism-media': ['journalist', 'journalism', 'investigative journalism', 'war journalism', 'television journalist'],
   'cult-extremism': ['cult', 'terrorism', 'terrorist plot', 'satanic cult', 'terrorist attack', 'cult leader', 'counterterrorism',
     'plo terrorist group'],
