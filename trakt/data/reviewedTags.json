@@ -11,7 +11,8 @@
     ],
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:300671": {
     "subjects": [
@@ -25,7 +26,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "war"
   },
   "show:118357": {
     "subjects": [
@@ -46,7 +48,8 @@
     ],
     "era": [
       "late-19th-century"
-    ]
+    ],
+    "genre": "western"
   },
   "show:157744": {
     "subjects": [
@@ -62,7 +65,8 @@
     ],
     "era": [
       "early-20th-century"
-    ]
+    ],
+    "genre": "western"
   },
   "show:108545": {
     "subjects": [
@@ -83,7 +87,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:4608": {
     "subjects": [
@@ -93,7 +98,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:1271": {
     "subjects": [
@@ -108,7 +114,8 @@
     ],
     "era": [
       "classical-antiquity"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:661539": {
     "subjects": [
@@ -122,7 +129,8 @@
     ],
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "biography"
   },
   "show:225120": {
     "subjects": [
@@ -137,7 +145,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:245312": {
     "subjects": [
@@ -152,7 +161,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:447332": {
     "subjects": [
@@ -173,7 +183,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:103992": {
     "subjects": [
@@ -187,7 +198,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:71737": {
     "subjects": [
@@ -202,7 +214,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:125935": {
     "subjects": [
@@ -212,7 +225,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:260458": {
     "subjects": [
@@ -227,7 +241,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:114461": {
     "subjects": [
@@ -242,7 +257,8 @@
     ],
     "era": [
       "far-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:964980": {
     "subjects": [
@@ -257,7 +273,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:157239": {
     "subjects": [
@@ -278,7 +295,8 @@
     ],
     "era": [
       "far-future"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:246386": {
     "subjects": [
@@ -294,7 +312,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:89624": {
     "subjects": [
@@ -304,7 +323,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:64513": {
     "subjects": [
@@ -319,7 +339,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:127585": {
     "subjects": [
@@ -334,7 +355,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:91746": {
     "subjects": [
@@ -349,7 +371,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:190859": {
     "subjects": [
@@ -363,7 +386,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "war"
   },
   "movie:1072790": {
     "subjects": [
@@ -383,7 +407,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "romance"
   },
   "movie:329865": {
     "subjects": [
@@ -404,7 +429,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:65495": {
     "subjects": [
@@ -419,7 +445,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:299536": {
     "subjects": [
@@ -429,7 +456,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:89233": {
     "subjects": [
@@ -444,7 +472,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:339403": {
     "subjects": [
@@ -465,7 +494,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:130853": {
     "subjects": [
@@ -480,7 +510,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:4613": {
     "subjects": [
@@ -495,7 +526,8 @@
     ],
     "era": [
       "world-war-ii"
-    ]
+    ],
+    "genre": "war"
   },
   "show:41727": {
     "subjects": [
@@ -510,7 +542,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:346698": {
     "subjects": [
@@ -525,7 +558,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:46786": {
     "subjects": [
@@ -535,7 +569,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:110173": {
     "subjects": [
@@ -550,7 +585,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:249522": {
     "subjects": [
@@ -569,7 +605,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "documentary"
   },
   "show:154385": {
     "subjects": [
@@ -579,7 +616,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:60059": {
     "subjects": [
@@ -600,7 +638,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:66859": {
     "subjects": [
@@ -621,7 +660,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:39754": {
     "subjects": [
@@ -636,7 +676,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:405774": {
     "subjects": [
@@ -657,7 +698,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:155537": {
     "subjects": [
@@ -667,7 +709,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:855": {
     "subjects": [
@@ -682,7 +725,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "war"
   },
   "movie:261023": {
     "subjects": [
@@ -703,7 +747,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:42009": {
     "subjects": [
@@ -718,7 +763,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:249039": {
     "subjects": [
@@ -728,7 +774,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:116569": {
     "subjects": [
@@ -743,7 +790,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:61986": {
     "subjects": [
@@ -759,7 +807,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:1621": {
     "subjects": [
@@ -774,7 +823,8 @@
     ],
     "era": [
       "early-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:42445": {
     "subjects": [
@@ -789,7 +839,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:60585": {
     "subjects": [
@@ -799,7 +850,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:64554": {
     "subjects": [
@@ -814,7 +866,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:296098": {
     "subjects": [
@@ -835,7 +888,8 @@
     ],
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:60839": {
     "subjects": [
@@ -856,7 +910,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:70964": {
     "subjects": [
@@ -866,7 +921,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:48891": {
     "subjects": [
@@ -876,7 +932,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:718930": {
     "subjects": [
@@ -891,7 +948,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:277439": {
     "subjects": [
@@ -907,7 +965,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:71116": {
     "subjects": [
@@ -928,7 +987,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:713": {
     "subjects": [
@@ -943,7 +1003,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:87108": {
     "subjects": [
@@ -964,7 +1025,8 @@
     ],
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:921": {
     "subjects": [
@@ -979,7 +1041,8 @@
     ],
     "era": [
       "interwar"
-    ]
+    ],
+    "genre": "sports"
   },
   "show:129495": {
     "subjects": [
@@ -994,7 +1057,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:59717": {
     "subjects": [
@@ -1009,7 +1073,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "documentary"
   },
   "movie:974576": {
     "subjects": [
@@ -1030,7 +1095,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:321741": {
     "subjects": [
@@ -1045,7 +1111,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:99747": {
     "subjects": [
@@ -1066,7 +1133,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:68898": {
     "subjects": [
@@ -1081,7 +1149,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:480530": {
     "subjects": [
@@ -1096,7 +1165,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "sports"
   },
   "movie:677179": {
     "subjects": [
@@ -1111,7 +1181,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "sports"
   },
   "show:98201": {
     "subjects": [
@@ -1126,7 +1197,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:4546": {
     "subjects": [
@@ -1141,7 +1213,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:4920": {
     "subjects": [
@@ -1156,7 +1229,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:202555": {
     "subjects": [
@@ -1166,7 +1240,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:70523": {
     "subjects": [
@@ -1187,7 +1262,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:196322": {
     "subjects": [
@@ -1203,7 +1279,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:293660": {
     "subjects": [
@@ -1219,7 +1296,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:533535": {
     "subjects": [
@@ -1235,7 +1313,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:383498": {
     "subjects": [
@@ -1251,7 +1330,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:1406": {
     "subjects": [
@@ -1266,7 +1346,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "western"
   },
   "show:87784": {
     "subjects": [
@@ -1287,7 +1368,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "movie:449443": {
     "subjects": [
@@ -1302,7 +1384,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:69866": {
     "subjects": [
@@ -1312,7 +1395,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:81349": {
     "subjects": [
@@ -1333,7 +1417,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:1405": {
     "subjects": [
@@ -1343,7 +1428,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:131927": {
     "subjects": [
@@ -1358,7 +1444,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:259909": {
     "subjects": [
@@ -1373,7 +1460,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:83251": {
     "subjects": [
@@ -1394,7 +1482,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:63593": {
     "subjects": [
@@ -1409,7 +1498,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:209876": {
     "subjects": [
@@ -1424,7 +1514,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:93749": {
     "subjects": [
@@ -1445,7 +1536,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:64690": {
     "subjects": [
@@ -1466,7 +1558,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:8467": {
     "subjects": [
@@ -1487,7 +1580,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:438631": {
     "subjects": [
@@ -1508,7 +1602,8 @@
     ],
     "era": [
       "far-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:299167": {
     "subjects": [
@@ -1524,7 +1619,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "western"
   },
   "show:226285": {
     "subjects": [
@@ -1539,7 +1635,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:614934": {
     "subjects": [
@@ -1554,7 +1651,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "biography"
   },
   "movie:1583500": {
     "subjects": [
@@ -1568,7 +1666,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "documentary"
   },
   "show:82596": {
     "subjects": [
@@ -1589,7 +1688,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:86848": {
     "subjects": [
@@ -1604,7 +1704,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "horror"
   },
   "movie:264660": {
     "subjects": [
@@ -1620,7 +1721,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:911430": {
     "subjects": [
@@ -1635,7 +1737,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "sports"
   },
   "show:207841": {
     "subjects": [
@@ -1650,7 +1753,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:34967": {
     "subjects": [
@@ -1665,7 +1769,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:211624": {
     "subjects": [
@@ -1681,7 +1786,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:60622": {
     "subjects": [
@@ -1702,7 +1808,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:87049": {
     "subjects": [
@@ -1712,7 +1819,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:108664": {
     "subjects": [
@@ -1733,7 +1841,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:507089": {
     "subjects": [
@@ -1748,7 +1857,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:87917": {
     "subjects": [
@@ -1763,7 +1873,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:359724": {
     "subjects": [
@@ -1778,7 +1889,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "sports"
   },
   "show:307534": {
     "subjects": [
@@ -1799,7 +1911,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:4278": {
     "subjects": [
@@ -1814,7 +1927,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:132016": {
     "subjects": [
@@ -1835,7 +1949,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:218137": {
     "subjects": [
@@ -1849,7 +1964,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "documentary"
   },
   "movie:445571": {
     "subjects": [
@@ -1870,7 +1986,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:1399": {
     "subjects": [
@@ -1885,7 +2002,8 @@
     ],
     "era": [
       "timeless"
-    ]
+    ],
+    "genre": "fantasy"
   },
   "show:107407": {
     "subjects": [
@@ -1900,7 +2018,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:205715": {
     "subjects": [
@@ -1916,7 +2035,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:42282": {
     "subjects": [
@@ -1937,7 +2057,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:558449": {
     "subjects": [
@@ -1952,7 +2073,8 @@
     ],
     "era": [
       "classical-antiquity"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:661374": {
     "subjects": [
@@ -1967,7 +2089,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "show:70573": {
     "subjects": [
@@ -1988,7 +2111,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:79086": {
     "subjects": [
@@ -2003,7 +2127,8 @@
     ],
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:73467": {
     "subjects": [
@@ -2024,7 +2149,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "western"
   },
   "show:67384": {
     "subjects": [
@@ -2045,7 +2171,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:91405": {
     "subjects": [
@@ -2066,7 +2193,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "documentary"
   },
   "movie:980489": {
     "subjects": [
@@ -2081,7 +2209,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "sports"
   },
   "show:137893": {
     "subjects": [
@@ -2096,7 +2225,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:83659": {
     "subjects": [
@@ -2117,7 +2247,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:124101": {
     "subjects": [
@@ -2133,7 +2264,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:59659": {
     "subjects": [
@@ -2148,7 +2280,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:92553": {
     "subjects": [
@@ -2163,7 +2296,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:338766": {
     "subjects": [
@@ -2173,7 +2307,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:96734": {
     "subjects": [
@@ -2188,7 +2323,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:226637": {
     "subjects": [
@@ -2209,7 +2345,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:1425": {
     "subjects": [
@@ -2224,7 +2361,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:110971": {
     "subjects": [
@@ -2245,7 +2383,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "documentary"
   },
   "show:271053": {
     "subjects": [
@@ -2255,7 +2394,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:102619": {
     "subjects": [
@@ -2276,7 +2416,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:88728": {
     "subjects": [
@@ -2297,7 +2438,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:278178": {
     "subjects": [
@@ -2312,7 +2454,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:127235": {
     "subjects": [
@@ -2333,7 +2476,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:11652": {
     "subjects": [
@@ -2348,7 +2492,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "sports"
   },
   "show:114471": {
     "subjects": [
@@ -2358,7 +2503,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:346364": {
     "subjects": [
@@ -2368,7 +2514,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:200875": {
     "subjects": [
@@ -2389,7 +2536,8 @@
     ],
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:2710": {
     "subjects": [
@@ -2405,7 +2553,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:324552": {
     "subjects": [
@@ -2420,7 +2569,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:458156": {
     "subjects": [
@@ -2441,7 +2591,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:603692": {
     "subjects": [
@@ -2462,7 +2613,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:274479": {
     "subjects": [
@@ -2477,7 +2629,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "biography"
   },
   "show:1436": {
     "subjects": [
@@ -2487,7 +2640,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:201304": {
     "subjects": [
@@ -2502,7 +2656,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:99652": {
     "subjects": [
@@ -2518,7 +2673,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:23483": {
     "subjects": [
@@ -2534,7 +2690,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:59859": {
     "subjects": [
@@ -2550,7 +2707,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:614917": {
     "subjects": [
@@ -2560,7 +2718,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "biography"
   },
   "movie:293167": {
     "subjects": [
@@ -2581,7 +2740,8 @@
     ],
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:313369": {
     "subjects": [
@@ -2602,7 +2762,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "romance"
   },
   "show:157741": {
     "subjects": [
@@ -2618,7 +2779,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:262280": {
     "subjects": [
@@ -2633,7 +2795,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:718032": {
     "subjects": [
@@ -2643,7 +2806,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:113962": {
     "subjects": [
@@ -2664,7 +2828,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:95839": {
     "subjects": [
@@ -2685,7 +2850,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:90257": {
     "subjects": [
@@ -2701,7 +2867,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:84958": {
     "subjects": [
@@ -2711,7 +2878,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:244628": {
     "subjects": [
@@ -2726,7 +2894,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:4607": {
     "subjects": [
@@ -2747,7 +2916,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "mystery"
   },
   "show:124800": {
     "subjects": [
@@ -2762,7 +2932,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:99353": {
     "subjects": [
@@ -2783,7 +2954,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "documentary"
   },
   "show:102316": {
     "subjects": [
@@ -2804,7 +2976,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "romance"
   },
   "show:210239": {
     "subjects": [
@@ -2814,7 +2987,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:1104": {
     "subjects": [
@@ -2835,7 +3009,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:90970": {
     "subjects": [
@@ -2845,7 +3020,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:155533": {
     "subjects": [
@@ -2860,7 +3036,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:79696": {
     "subjects": [
@@ -2875,7 +3052,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "movie:1317288": {
     "subjects": [
@@ -2896,7 +3074,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "sports"
   },
   "show:61889": {
     "subjects": [
@@ -2906,7 +3085,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:38472": {
     "subjects": [
@@ -2921,7 +3101,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:46518": {
     "subjects": [
@@ -2936,7 +3117,8 @@
     ],
     "era": [
       "world-war-ii"
-    ]
+    ],
+    "genre": "war"
   },
   "show:76231": {
     "subjects": [
@@ -2951,7 +3133,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:97951": {
     "subjects": [
@@ -2966,7 +3149,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:67744": {
     "subjects": [
@@ -2982,7 +3166,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:118303": {
     "subjects": [
@@ -2992,7 +3177,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:14292": {
     "subjects": [
@@ -3007,7 +3193,8 @@
     ],
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "sports"
   },
   "show:247718": {
     "subjects": [
@@ -3022,7 +3209,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:396371": {
     "subjects": [
@@ -3037,7 +3225,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "biography"
   },
   "show:71446": {
     "subjects": [
@@ -3052,7 +3241,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:60308": {
     "subjects": [
@@ -3067,7 +3257,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "sports"
   },
   "show:70485": {
     "subjects": [
@@ -3083,7 +3274,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:197548": {
     "subjects": [
@@ -3098,7 +3290,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:76178": {
     "subjects": [
@@ -3118,7 +3311,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "documentary"
   },
   "show:63351": {
     "subjects": [
@@ -3133,7 +3327,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:80968": {
     "subjects": [
@@ -3154,7 +3349,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:58957": {
     "subjects": [
@@ -3175,7 +3371,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:1420": {
     "subjects": [
@@ -3190,7 +3387,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:6977": {
     "subjects": [
@@ -3206,7 +3404,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:615457": {
     "subjects": [
@@ -3227,7 +3426,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:250923": {
     "subjects": [
@@ -3247,7 +3447,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "romance"
   },
   "movie:581734": {
     "subjects": [
@@ -3268,7 +3469,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:89905": {
     "subjects": [
@@ -3284,7 +3486,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:1214931": {
     "subjects": [
@@ -3305,7 +3508,8 @@
     ],
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:1339713": {
     "subjects": [
@@ -3325,7 +3529,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:1054867": {
     "subjects": [
@@ -3346,7 +3551,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:240667": {
     "subjects": [
@@ -3367,7 +3573,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "romance"
   },
   "movie:872585": {
     "subjects": [
@@ -3382,7 +3589,8 @@
     ],
     "era": [
       "world-war-ii"
-    ]
+    ],
+    "genre": "biography"
   },
   "show:109939": {
     "subjects": [
@@ -3397,7 +3605,8 @@
     ],
     "era": [
       "18th-century"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:113985": {
     "subjects": [
@@ -3412,7 +3621,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:69740": {
     "subjects": [
@@ -3433,7 +3643,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:158083": {
     "subjects": [
@@ -3448,7 +3659,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:114925": {
     "subjects": [
@@ -3463,7 +3675,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:245927": {
     "subjects": [
@@ -3484,7 +3697,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:8592": {
     "subjects": [
@@ -3500,7 +3714,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:274870": {
     "subjects": [
@@ -3521,7 +3736,8 @@
     ],
     "era": [
       "far-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:60574": {
     "subjects": [
@@ -3536,7 +3752,8 @@
     ],
     "era": [
       "interwar"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:85853": {
     "subjects": [
@@ -3551,7 +3768,8 @@
     ],
     "era": [
       "early-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:114150": {
     "subjects": [
@@ -3572,7 +3790,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:254470": {
     "subjects": [
@@ -3593,7 +3812,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:353616": {
     "subjects": [
@@ -3614,7 +3834,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:112211": {
     "subjects": [
@@ -3629,7 +3850,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:225171": {
     "subjects": [
@@ -3639,7 +3861,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:120998": {
     "subjects": [
@@ -3660,7 +3883,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "show:137252": {
     "subjects": [
@@ -3676,7 +3900,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:582014": {
     "subjects": [
@@ -3691,7 +3916,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:156819": {
     "subjects": [
@@ -3706,7 +3932,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:240993": {
     "subjects": [
@@ -3722,7 +3949,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "western"
   },
   "show:1423": {
     "subjects": [
@@ -3737,7 +3965,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:108978": {
     "subjects": [
@@ -3752,7 +3981,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:333339": {
     "subjects": [
@@ -3767,7 +3997,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:95215": {
     "subjects": [
@@ -3777,7 +4008,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:94028": {
     "subjects": [
@@ -3793,7 +4025,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:264644": {
     "subjects": [
@@ -3814,7 +4047,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:244623": {
     "subjects": [
@@ -3824,7 +4058,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:84977": {
     "subjects": [
@@ -3840,7 +4075,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:72792": {
     "subjects": [
@@ -3855,7 +4091,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:93870": {
     "subjects": [
@@ -3876,7 +4113,8 @@
     ],
     "era": [
       "world-war-ii"
-    ]
+    ],
+    "genre": "war"
   },
   "show:240740": {
     "subjects": [
@@ -3891,7 +4129,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:1273221": {
     "subjects": [
@@ -3912,7 +4151,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:646385": {
     "subjects": [
@@ -3927,7 +4167,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:1400": {
     "subjects": [
@@ -3948,7 +4189,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:1124566": {
     "subjects": [
@@ -3964,7 +4206,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:95396": {
     "subjects": [
@@ -3985,7 +4228,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:92783": {
     "subjects": [
@@ -4000,7 +4244,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:19885": {
     "subjects": [
@@ -4015,7 +4260,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "show:126308": {
     "subjects": [
@@ -4030,7 +4276,8 @@
     ],
     "era": [
       "early-modern"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:273481": {
     "subjects": [
@@ -4045,7 +4292,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:400535": {
     "subjects": [
@@ -4066,7 +4314,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:60573": {
     "subjects": [
@@ -4076,7 +4325,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:125988": {
     "subjects": [
@@ -4091,7 +4341,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:1274": {
     "subjects": [
@@ -4107,7 +4358,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:215995": {
     "subjects": [
@@ -4128,7 +4380,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:119279": {
     "subjects": [
@@ -4149,7 +4402,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:259265": {
     "subjects": [
@@ -4170,7 +4424,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:1409": {
     "subjects": [
@@ -4185,7 +4440,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:251941": {
     "subjects": [
@@ -4195,7 +4451,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:83867": {
     "subjects": [
@@ -4210,7 +4467,8 @@
     ],
     "era": [
       "far-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:321697": {
     "subjects": [
@@ -4225,7 +4483,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "biography"
   },
   "show:248830": {
     "subjects": [
@@ -4240,7 +4499,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:277216": {
     "subjects": [
@@ -4255,7 +4515,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "biography"
   },
   "show:66732": {
     "subjects": [
@@ -4271,7 +4532,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:203744": {
     "subjects": [
@@ -4292,7 +4554,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "movie:363676": {
     "subjects": [
@@ -4307,7 +4570,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "biography"
   },
   "movie:8363": {
     "subjects": [
@@ -4323,7 +4587,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:97546": {
     "subjects": [
@@ -4339,7 +4604,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:130464": {
     "subjects": [
@@ -4354,7 +4620,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:302946": {
     "subjects": [
@@ -4369,7 +4636,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:106454": {
     "subjects": [
@@ -4390,7 +4658,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:219971": {
     "subjects": [
@@ -4411,7 +4680,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:46533": {
     "subjects": [
@@ -4426,7 +4696,8 @@
     ],
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:414906": {
     "subjects": [
@@ -4441,7 +4712,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:250504": {
     "subjects": [
@@ -4457,7 +4729,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:273160": {
     "subjects": [
@@ -4478,7 +4751,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:229711": {
     "subjects": [
@@ -4499,7 +4773,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:76479": {
     "subjects": [
@@ -4509,7 +4784,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:152483": {
     "subjects": [
@@ -4524,7 +4800,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "animation"
   },
   "show:62476": {
     "subjects": [
@@ -4545,7 +4822,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:158011": {
     "subjects": [
@@ -4560,7 +4838,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:1662317": {
     "subjects": [
@@ -4581,7 +4860,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:114655": {
     "subjects": [
@@ -4591,7 +4871,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:222766": {
     "subjects": [
@@ -4606,7 +4887,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:65817": {
     "subjects": [
@@ -4621,7 +4903,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:203857": {
     "subjects": [
@@ -4642,7 +4925,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:122066": {
     "subjects": [
@@ -4657,7 +4941,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:253370": {
     "subjects": [
@@ -4672,7 +4957,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:99346": {
     "subjects": [
@@ -4693,7 +4979,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "western"
   },
   "show:226362": {
     "subjects": [
@@ -4708,7 +4995,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:804095": {
     "subjects": [
@@ -4724,7 +5012,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:49010": {
     "subjects": [
@@ -4734,7 +5023,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:157065": {
     "subjects": [
@@ -4749,7 +5039,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:243316": {
     "subjects": [
@@ -4764,7 +5055,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:236235": {
     "subjects": [
@@ -4785,7 +5077,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:64387": {
     "subjects": [
@@ -4806,7 +5099,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:218351": {
     "subjects": [
@@ -4821,7 +5115,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:69158": {
     "subjects": [
@@ -4836,7 +5131,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:93812": {
     "subjects": [
@@ -4851,7 +5147,8 @@
     ],
     "era": [
       "18th-century"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:273248": {
     "subjects": [
@@ -4872,7 +5169,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "western"
   },
   "show:61123": {
     "subjects": [
@@ -4893,7 +5191,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:217825": {
     "subjects": [
@@ -4908,7 +5207,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "horror"
   },
   "movie:131634": {
     "subjects": [
@@ -4923,7 +5223,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:135251": {
     "subjects": [
@@ -4938,7 +5239,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:253372": {
     "subjects": [
@@ -4948,7 +5250,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:398978": {
     "subjects": [
@@ -4969,7 +5272,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:34415": {
     "subjects": [
@@ -4979,7 +5283,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:79525": {
     "subjects": [
@@ -4994,7 +5299,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "documentary"
   },
   "show:201289": {
     "subjects": [
@@ -5009,7 +5315,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "show:116799": {
     "subjects": [
@@ -5024,7 +5331,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:82856": {
     "subjects": [
@@ -5045,7 +5353,8 @@
     ],
     "era": [
       "far-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:70796": {
     "subjects": [
@@ -5066,7 +5375,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:93716": {
     "subjects": [
@@ -5076,7 +5386,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:504172": {
     "subjects": [
@@ -5097,7 +5408,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:129552": {
     "subjects": [
@@ -5112,7 +5424,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:61859": {
     "subjects": [
@@ -5127,7 +5440,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:66276": {
     "subjects": [
@@ -5137,7 +5451,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:2316": {
     "subjects": [
@@ -5147,7 +5462,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:111800": {
     "subjects": [
@@ -5162,7 +5478,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:71738": {
     "subjects": [
@@ -5177,7 +5494,8 @@
     ],
     "era": [
       "far-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:253941": {
     "subjects": [
@@ -5187,7 +5505,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:135868": {
     "subjects": [
@@ -5203,7 +5522,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:194764": {
     "subjects": [
@@ -5224,7 +5544,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:250307": {
     "subjects": [
@@ -5239,7 +5560,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:206829": {
     "subjects": [
@@ -5254,7 +5576,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:204284": {
     "subjects": [
@@ -5275,7 +5598,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:194728": {
     "subjects": [
@@ -5290,7 +5614,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "movie:281957": {
     "subjects": [
@@ -5305,7 +5630,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "adventure"
   },
   "show:82782": {
     "subjects": [
@@ -5326,7 +5652,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:1306368": {
     "subjects": [
@@ -5341,7 +5668,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:79744": {
     "subjects": [
@@ -5351,7 +5679,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:261041": {
     "subjects": [
@@ -5372,7 +5701,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "documentary"
   },
   "show:134373": {
     "subjects": [
@@ -5382,7 +5712,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:1414": {
     "subjects": [
@@ -5397,7 +5728,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:39852": {
     "subjects": [
@@ -5412,7 +5744,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:1398": {
     "subjects": [
@@ -5422,7 +5755,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:122196": {
     "subjects": [
@@ -5437,7 +5771,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:247767": {
     "subjects": [
@@ -5453,7 +5788,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:933260": {
     "subjects": [
@@ -5468,7 +5804,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:120911": {
     "subjects": [
@@ -5483,7 +5820,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:219760": {
     "subjects": [
@@ -5504,7 +5842,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:75191": {
     "subjects": [
@@ -5525,7 +5864,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "horror"
   },
   "movie:556984": {
     "subjects": [
@@ -5540,7 +5880,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:83851": {
     "subjects": [
@@ -5550,7 +5891,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:254544": {
     "subjects": [
@@ -5565,7 +5907,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:688": {
     "subjects": [
@@ -5580,7 +5923,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:1438": {
     "subjects": [
@@ -5590,7 +5934,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:209922": {
     "subjects": [
@@ -5600,7 +5945,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "show:62699": {
     "subjects": [
@@ -5621,7 +5967,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:255570": {
     "subjects": [
@@ -5636,7 +5983,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:89492": {
     "subjects": [
@@ -5646,7 +5994,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:247522": {
     "subjects": [
@@ -5656,7 +6005,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:361743": {
     "subjects": [
@@ -5666,7 +6016,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:10545": {
     "subjects": [
@@ -5676,7 +6027,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:46648": {
     "subjects": [
@@ -5686,7 +6038,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:153312": {
     "subjects": [
@@ -5696,7 +6049,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:718821": {
     "subjects": [
@@ -5706,7 +6060,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:128095": {
     "subjects": [
@@ -5716,7 +6071,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:248984": {
     "subjects": [
@@ -5726,7 +6082,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:99581": {
     "subjects": [
@@ -5736,7 +6093,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:219788": {
     "subjects": [
@@ -5746,7 +6104,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:86248": {
     "subjects": [
@@ -5756,7 +6115,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:2947": {
     "subjects": [
@@ -5766,7 +6126,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:812583": {
     "subjects": [
@@ -5776,7 +6137,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:308266": {
     "subjects": [
@@ -5786,7 +6148,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:73544": {
     "subjects": [
@@ -5796,7 +6159,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:79788": {
     "subjects": [
@@ -5806,7 +6170,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:125949": {
     "subjects": [
@@ -5816,7 +6181,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:138832": {
     "subjects": [
@@ -5826,7 +6192,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:117821": {
     "subjects": [
@@ -5836,7 +6203,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:9522": {
     "subjects": [
@@ -5846,7 +6214,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:119051": {
     "subjects": [
@@ -5856,7 +6225,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "show:186": {
     "subjects": [
@@ -5866,7 +6236,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:63247": {
     "subjects": [
@@ -5876,7 +6247,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "western"
   },
   "show:83631": {
     "subjects": [
@@ -5886,7 +6258,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:244786": {
     "subjects": [
@@ -5896,7 +6269,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:96237": {
     "subjects": [
@@ -5906,7 +6280,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:270476": {
     "subjects": [
@@ -5916,7 +6291,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:208569": {
     "subjects": [
@@ -5926,7 +6302,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:395834": {
     "subjects": [
@@ -5936,7 +6313,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:124067": {
     "subjects": [
@@ -5946,7 +6324,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:198178": {
     "subjects": [
@@ -5956,7 +6335,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:73586": {
     "subjects": [
@@ -5966,7 +6346,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "western"
   },
   "show:255661": {
     "subjects": [
@@ -5976,7 +6357,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "mystery"
   },
   "show:86430": {
     "subjects": [
@@ -5986,7 +6368,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:216082": {
     "subjects": [
@@ -5996,7 +6379,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:92137": {
     "subjects": [
@@ -6006,7 +6390,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:286709": {
     "subjects": [
@@ -6016,7 +6401,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:291084": {
     "subjects": [
@@ -6026,7 +6412,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:254528": {
     "subjects": [
@@ -6036,7 +6423,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:254420": {
     "subjects": [
@@ -6046,7 +6434,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:287238": {
     "subjects": [
@@ -6056,7 +6445,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:278624": {
     "subjects": [
@@ -6066,7 +6456,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:1318413": {
     "subjects": [
@@ -6076,7 +6467,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "early-20th-century"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:131142": {
     "subjects": [
@@ -6086,7 +6478,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:303630": {
     "subjects": [
@@ -6096,7 +6489,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:273207": {
     "subjects": [
@@ -6106,7 +6500,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:213562": {
     "subjects": [
@@ -6116,7 +6511,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "show:273240": {
     "subjects": [
@@ -6126,7 +6522,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:95350": {
     "subjects": [
@@ -6141,7 +6538,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:1265609": {
     "subjects": [
@@ -6151,7 +6549,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:252107": {
     "subjects": [
@@ -6161,7 +6560,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:1007734": {
     "subjects": [
@@ -6171,7 +6571,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:1236470": {
     "subjects": [
@@ -6181,7 +6582,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:259453": {
     "subjects": [
@@ -6191,7 +6593,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:1244999": {
     "subjects": [
@@ -6201,7 +6604,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "documentary"
   },
   "movie:541671": {
     "subjects": [
@@ -6211,7 +6615,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:43982": {
     "subjects": [
@@ -6221,7 +6626,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:139099": {
     "subjects": [
@@ -6231,7 +6637,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:63646": {
     "subjects": [
@@ -6241,7 +6648,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:290856": {
     "subjects": [
@@ -6251,7 +6659,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:66025": {
     "subjects": [
@@ -6261,14 +6670,16 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:2562": {
     "subjects": [
       "family-dynamics"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "western"
   },
   "show:138971": {
     "subjects": [
@@ -6278,7 +6689,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "western"
   },
   "show:43901": {
     "subjects": [
@@ -6288,7 +6700,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "western"
   },
   "show:1915": {
     "subjects": [
@@ -6298,7 +6711,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:1401": {
     "subjects": [
@@ -6313,7 +6727,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "western"
   },
   "show:122235": {
     "subjects": [
@@ -6323,7 +6738,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:128904": {
     "subjects": [
@@ -6344,7 +6760,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:89498": {
     "subjects": [
@@ -6359,7 +6776,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:5742": {
     "subjects": [
@@ -6380,7 +6798,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "western"
   },
   "show:243396": {
     "subjects": [
@@ -6390,7 +6809,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "western"
   },
   "show:204999": {
     "subjects": [
@@ -6411,7 +6831,8 @@
     ],
     "era": [
       "world-war-ii"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:116450": {
     "subjects": [
@@ -6426,7 +6847,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:90399": {
     "subjects": [
@@ -6447,7 +6869,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:64199": {
     "subjects": [
@@ -6468,7 +6891,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:153657": {
     "subjects": [
@@ -6483,7 +6907,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:66676": {
     "subjects": [
@@ -6498,7 +6923,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:71715": {
     "subjects": [
@@ -6513,7 +6939,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:62620": {
     "subjects": [
@@ -6523,7 +6950,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:68421": {
     "subjects": [
@@ -6538,7 +6966,8 @@
     ],
     "era": [
       "far-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:1705": {
     "subjects": [
@@ -6548,7 +6977,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:119845": {
     "subjects": [
@@ -6563,7 +6993,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:194": {
     "subjects": [
@@ -6573,7 +7004,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:307081": {
     "subjects": [
@@ -6594,7 +7026,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "sports"
   },
   "movie:878361": {
     "subjects": [
@@ -6609,7 +7042,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "biography"
   },
   "movie:332979": {
     "subjects": [
@@ -6624,7 +7058,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "sports"
   },
   "movie:531876": {
     "subjects": [
@@ -6639,7 +7074,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "war"
   },
   "movie:578189": {
     "subjects": [
@@ -6654,7 +7090,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:23168": {
     "subjects": [
@@ -6669,7 +7106,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:402897": {
     "subjects": [
@@ -6684,7 +7122,8 @@
     ],
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:19913": {
     "subjects": [
@@ -6699,7 +7138,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "romance"
   },
   "show:67883": {
     "subjects": [
@@ -6714,7 +7154,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:693": {
     "subjects": [
@@ -6735,7 +7176,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:245219": {
     "subjects": [
@@ -6756,7 +7198,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:81290": {
     "subjects": [
@@ -6771,7 +7214,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:62117": {
     "subjects": [
@@ -6781,7 +7225,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:2204": {
     "subjects": [
@@ -6791,7 +7236,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:225634": {
     "subjects": [
@@ -6801,7 +7247,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:1908": {
     "subjects": [
@@ -6811,7 +7258,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:2933": {
     "subjects": [
@@ -6821,7 +7269,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:262388": {
     "subjects": [
@@ -6842,7 +7291,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:93166": {
     "subjects": [
@@ -6863,7 +7313,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:256317": {
     "subjects": [
@@ -6884,7 +7335,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:900": {
     "subjects": [
@@ -6905,7 +7357,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:1412": {
     "subjects": [
@@ -6915,7 +7368,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:75450": {
     "subjects": [
@@ -6925,7 +7379,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:2691": {
     "subjects": [
@@ -6935,7 +7390,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:69630": {
     "subjects": [
@@ -6945,7 +7401,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:85385": {
     "subjects": [
@@ -6955,7 +7412,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:79618": {
     "subjects": [
@@ -6965,7 +7423,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:1639": {
     "subjects": [
@@ -6975,7 +7434,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:3476": {
     "subjects": [
@@ -6985,7 +7445,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:522931": {
     "subjects": [
@@ -6995,7 +7456,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:208134": {
     "subjects": [
@@ -7005,7 +7467,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:405775": {
     "subjects": [
@@ -7015,7 +7478,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "war"
   },
   "movie:315635": {
     "subjects": [
@@ -7025,7 +7489,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:345887": {
     "subjects": [
@@ -7035,7 +7500,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:997120": {
     "subjects": [
@@ -7045,7 +7511,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:267193": {
     "subjects": [
@@ -7055,7 +7522,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:969492": {
     "subjects": [
@@ -7065,7 +7533,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:383585": {
     "subjects": [
@@ -7075,7 +7544,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "war"
   },
   "movie:87492": {
     "subjects": [
@@ -7085,7 +7555,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:168259": {
     "subjects": [
@@ -7095,7 +7566,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:385687": {
     "subjects": [
@@ -7105,7 +7577,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:385128": {
     "subjects": [
@@ -7115,7 +7588,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:436969": {
     "subjects": [
@@ -7125,7 +7599,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:453": {
     "subjects": [
@@ -7135,7 +7610,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:1061474": {
     "subjects": [
@@ -7145,7 +7621,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:24428": {
     "subjects": [
@@ -7155,7 +7632,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:631843": {
     "subjects": [
@@ -7165,7 +7643,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:798362": {
     "subjects": [
@@ -7175,7 +7654,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:202097": {
     "subjects": [
@@ -7185,7 +7665,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:256711": {
     "subjects": [
@@ -7195,7 +7676,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:95205": {
     "subjects": [
@@ -7205,7 +7687,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:1403": {
     "subjects": [
@@ -7215,7 +7698,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:62643": {
     "subjects": [
@@ -7225,7 +7709,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:112693": {
     "subjects": [
@@ -7235,7 +7720,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:87428": {
     "subjects": [
@@ -7245,7 +7731,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:124364": {
     "subjects": [
@@ -7255,7 +7742,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "show:95004": {
     "subjects": [
@@ -7270,7 +7758,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:201877": {
     "subjects": [
@@ -7285,7 +7774,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "western"
   },
   "show:157732": {
     "subjects": [
@@ -7300,7 +7790,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "western"
   },
   "show:3050": {
     "subjects": [
@@ -7321,7 +7812,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:16997": {
     "subjects": [
@@ -7336,7 +7828,8 @@
     ],
     "era": [
       "world-war-ii"
-    ]
+    ],
+    "genre": "war"
   },
   "show:60726": {
     "subjects": [
@@ -7346,7 +7839,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:66310": {
     "subjects": [
@@ -7356,7 +7850,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:504562": {
     "subjects": [
@@ -7377,7 +7872,8 @@
     ],
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:862557": {
     "subjects": [
@@ -7392,7 +7888,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "sports"
   },
   "movie:1433719": {
     "subjects": [
@@ -7407,7 +7904,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:1293162": {
     "subjects": [
@@ -7422,7 +7920,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:76640": {
     "subjects": [
@@ -7438,7 +7937,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:1082195": {
     "subjects": [
@@ -7453,7 +7953,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:295699": {
     "subjects": [
@@ -7463,7 +7964,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:325133": {
     "subjects": [
@@ -7484,7 +7986,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:107811": {
     "subjects": [
@@ -7505,7 +8008,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:1008953": {
     "subjects": [
@@ -7521,7 +8025,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:4911": {
     "subjects": [
@@ -7536,7 +8041,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:668489": {
     "subjects": [
@@ -7557,7 +8063,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:1428": {
     "subjects": [
@@ -7578,7 +8085,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:634528": {
     "subjects": [
@@ -7593,7 +8101,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:49021": {
     "subjects": [
@@ -7608,7 +8117,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:893297": {
     "subjects": [
@@ -7623,7 +8133,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:1263012": {
     "subjects": [
@@ -7644,7 +8155,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:1078600": {
     "subjects": [
@@ -7659,7 +8171,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "romance"
   },
   "show:4573": {
     "subjects": [
@@ -7680,7 +8193,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:82193": {
     "subjects": [
@@ -7700,7 +8214,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:219": {
     "subjects": [
@@ -7715,7 +8230,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:57389": {
     "subjects": [
@@ -7730,7 +8246,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:211169": {
     "subjects": [
@@ -7745,7 +8262,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:33301": {
     "subjects": [
@@ -7760,7 +8278,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:39351": {
     "subjects": [
@@ -7770,7 +8289,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "fantasy"
   },
   "show:239000": {
     "subjects": [
@@ -7785,7 +8305,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:32940": {
     "subjects": [
@@ -7800,7 +8321,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:262793": {
     "subjects": [
@@ -7815,7 +8337,8 @@
     ],
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:283297": {
     "subjects": [
@@ -7825,7 +8348,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:58937": {
     "subjects": [
@@ -7840,7 +8364,8 @@
     ],
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:62285": {
     "subjects": [
@@ -7850,7 +8375,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:67178": {
     "subjects": [
@@ -7860,7 +8386,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:1411": {
     "subjects": [
@@ -7881,7 +8408,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:60708": {
     "subjects": [
@@ -7891,7 +8419,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:46930": {
     "subjects": [
@@ -7912,7 +8441,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:103768": {
     "subjects": [
@@ -7933,7 +8463,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "fantasy"
   },
   "movie:338969": {
     "subjects": [
@@ -7948,7 +8479,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:625560": {
     "subjects": [
@@ -7962,7 +8494,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:1035259": {
     "subjects": [
@@ -7983,7 +8516,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:449562": {
     "subjects": [
@@ -7998,7 +8532,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:384018": {
     "subjects": [
@@ -8019,7 +8554,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:429351": {
     "subjects": [
@@ -8034,7 +8570,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "war"
   },
   "movie:442065": {
     "subjects": [
@@ -8049,7 +8586,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "war"
   },
   "movie:1093883": {
     "subjects": [
@@ -8069,7 +8607,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "documentary"
   },
   "movie:1429813": {
     "subjects": [
@@ -8090,7 +8629,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:13074": {
     "subjects": [
@@ -8105,7 +8645,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:39254": {
     "subjects": [
@@ -8120,7 +8661,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:1246": {
     "subjects": [
@@ -8135,7 +8677,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "sports"
   },
   "movie:1380682": {
     "subjects": [
@@ -8145,7 +8688,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "sports"
   },
   "show:253": {
     "subjects": [
@@ -8166,7 +8710,8 @@
     ],
     "era": [
       "far-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:2681": {
     "subjects": [
@@ -8187,7 +8732,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:72742": {
     "subjects": [
@@ -8202,7 +8748,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:81358": {
     "subjects": [
@@ -8212,7 +8759,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:97890": {
     "subjects": [
@@ -8227,7 +8775,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:2288": {
     "subjects": [
@@ -8242,7 +8791,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:124394": {
     "subjects": [
@@ -8263,7 +8813,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:105": {
     "subjects": [
@@ -8278,7 +8829,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:41692": {
     "subjects": [
@@ -8293,7 +8845,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "western"
   },
   "show:54650": {
     "subjects": [
@@ -8308,7 +8861,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:101591": {
     "subjects": [
@@ -8323,7 +8877,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:85021": {
     "subjects": [
@@ -8344,7 +8899,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:75540": {
     "subjects": [
@@ -8365,7 +8921,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:113984": {
     "subjects": [
@@ -8380,7 +8937,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:64254": {
     "subjects": [
@@ -8395,7 +8953,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:4057": {
     "subjects": [
@@ -8411,7 +8970,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:245703": {
     "subjects": [
@@ -8426,7 +8986,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:253321": {
     "subjects": [
@@ -8442,7 +9003,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:284605": {
     "subjects": [
@@ -8463,7 +9025,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "show:226174": {
     "subjects": [
@@ -8484,7 +9047,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:287450": {
     "subjects": [
@@ -8505,7 +9069,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:248937": {
     "subjects": [
@@ -8526,7 +9091,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:273866": {
     "subjects": [
@@ -8539,7 +9105,8 @@
       "reflective",
       "romantic",
       "character-driven"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:90669": {
     "subgenres": [
@@ -8551,7 +9118,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-19th-century"
-    ]
+    ],
+    "genre": "mystery"
   },
   "movie:530915": {
     "subgenres": [
@@ -8565,7 +9133,8 @@
     ],
     "era": [
       "world-war-i"
-    ]
+    ],
+    "genre": "war"
   },
   "movie:1100988": {
     "subgenres": [
@@ -8583,7 +9152,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "horror"
   },
   "movie:332562": {
     "subgenres": [
@@ -8595,7 +9165,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:249042": {
     "subgenres": [
@@ -8610,7 +9181,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:1413": {
     "subgenres": [
@@ -8625,7 +9197,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:215866": {
     "subgenres": [
@@ -8640,7 +9213,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "western"
   },
   "movie:915935": {
     "subgenres": [
@@ -8655,7 +9229,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "movie:300668": {
     "subgenres": [
@@ -8676,7 +9251,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:76600": {
     "subgenres": [
@@ -8697,7 +9273,8 @@
     ],
     "era": [
       "far-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:241259": {
     "subgenres": [
@@ -8709,7 +9286,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:66292": {
     "subgenres": [
@@ -8727,7 +9305,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:62852": {
     "subgenres": [
@@ -8745,7 +9324,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:487558": {
     "subgenres": [
@@ -8766,7 +9346,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:1372": {
     "subgenres": [
@@ -8781,7 +9362,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:424694": {
     "subgenres": [
@@ -8802,7 +9384,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "biography"
   },
   "show:1396": {
     "subgenres": [
@@ -8817,7 +9400,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:1215": {
     "subgenres": [
@@ -8832,7 +9416,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:61920": {
     "subgenres": [
@@ -8847,7 +9432,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:937287": {
     "subgenres": [
@@ -8868,7 +9454,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:9693": {
     "subgenres": [
@@ -8889,7 +9476,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:929590": {
     "subgenres": [
@@ -8910,7 +9498,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "war"
   },
   "movie:312221": {
     "subgenres": [
@@ -8925,7 +9514,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "sports"
   },
   "show:113988": {
     "subgenres": [
@@ -8946,7 +9536,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:296524": {
     "subgenres": [
@@ -8961,7 +9552,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:123377": {
     "subgenres": [
@@ -8973,7 +9565,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:110695": {
     "subgenres": [
@@ -8988,7 +9581,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:374720": {
     "subgenres": [
@@ -9006,7 +9600,8 @@
     ],
     "era": [
       "world-war-ii"
-    ]
+    ],
+    "genre": "war"
   },
   "show:1940": {
     "subgenres": [
@@ -9021,7 +9616,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:85552": {
     "subgenres": [
@@ -9033,7 +9629,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:106379": {
     "subgenres": [
@@ -9048,7 +9645,8 @@
     ],
     "era": [
       "far-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:99610": {
     "subgenres": [
@@ -9069,7 +9667,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:419430": {
     "subgenres": [
@@ -9084,7 +9683,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:117581": {
     "subgenres": [
@@ -9099,7 +9699,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:450465": {
     "subgenres": [
@@ -9114,7 +9715,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:490132": {
     "subgenres": [
@@ -9135,7 +9737,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:858024": {
     "subgenres": [
@@ -9153,7 +9756,8 @@
     ],
     "era": [
       "early-modern"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:381284": {
     "subgenres": [
@@ -9168,7 +9772,8 @@
     ],
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "biography"
   },
   "show:198102": {
     "subgenres": [
@@ -9183,7 +9788,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:1407": {
     "subgenres": [
@@ -9204,7 +9810,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:1408": {
     "subgenres": [
@@ -9219,7 +9826,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:9919": {
     "subgenres": [
@@ -9233,7 +9841,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "romance"
   },
   "movie:389015": {
     "subgenres": [
@@ -9251,7 +9860,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "biography"
   },
   "show:90812": {
     "subgenres": [
@@ -9266,7 +9876,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:474350": {
     "subgenres": [
@@ -9287,7 +9898,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "horror"
   },
   "movie:475557": {
     "subgenres": [
@@ -9308,7 +9920,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:522212": {
     "subgenres": [
@@ -9320,7 +9933,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "wrongful-conviction-and-justice"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:466420": {
     "subgenres": [
@@ -9341,7 +9955,8 @@
     ],
     "era": [
       "early-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:72750": {
     "subgenres": [
@@ -9362,7 +9977,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:546554": {
     "subgenres": [
@@ -9383,7 +9999,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "show:244321": {
     "subgenres": [
@@ -9404,7 +10021,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:53606": {
     "subgenres": [
@@ -9425,7 +10043,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:76341": {
     "subgenres": [
@@ -9440,7 +10059,8 @@
     ],
     "era": [
       "far-future"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:523607": {
     "subgenres": [
@@ -9461,7 +10081,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "biography"
   },
   "movie:50839": {
     "subgenres": [
@@ -9482,7 +10103,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:70": {
     "subgenres": [
@@ -9503,7 +10125,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "sports"
   },
   "show:49011": {
     "subgenres": [
@@ -9515,7 +10138,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:62560": {
     "subgenres": [
@@ -9530,7 +10154,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:11635": {
     "subgenres": [
@@ -9545,7 +10170,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:466272": {
     "subgenres": [
@@ -9560,7 +10186,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:3322": {
     "subgenres": [
@@ -9575,7 +10202,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:110382": {
     "subgenres": [
@@ -9593,7 +10221,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:666277": {
     "subgenres": [
@@ -9614,7 +10243,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "romance"
   },
   "movie:388399": {
     "subgenres": [
@@ -9629,7 +10259,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:792307": {
     "subgenres": [
@@ -9650,7 +10281,8 @@
     ],
     "era": [
       "timeless"
-    ]
+    ],
+    "genre": "fantasy"
   },
   "movie:646097": {
     "subgenres": [
@@ -9665,7 +10297,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:4148": {
     "subgenres": [
@@ -9686,7 +10319,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:504608": {
     "subgenres": [
@@ -9698,7 +10332,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "biography"
   },
   "show:34307": {
     "subgenres": [
@@ -9713,7 +10348,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:106388": {
     "subgenres": [
@@ -9725,7 +10361,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:63248": {
     "subgenres": [
@@ -9746,7 +10383,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:1233413": {
     "subgenres": [
@@ -9761,7 +10399,8 @@
     ],
     "era": [
       "early-20th-century"
-    ]
+    ],
+    "genre": "horror"
   },
   "movie:882598": {
     "subgenres": [
@@ -9779,7 +10418,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:106308": {
     "subgenres": [
@@ -9794,7 +10434,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:314365": {
     "subgenres": [
@@ -9812,7 +10453,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:93405": {
     "subgenres": [
@@ -9833,7 +10475,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:37680": {
     "subgenres": [
@@ -9848,7 +10491,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:817758": {
     "subgenres": [
@@ -9863,7 +10507,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:228305": {
     "subgenres": [
@@ -9884,7 +10529,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:577922": {
     "subgenres": [
@@ -9899,7 +10545,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:318846": {
     "subgenres": [
@@ -9914,7 +10561,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:549509": {
     "subgenres": [
@@ -9935,7 +10583,8 @@
     ],
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:310307": {
     "subgenres": [
@@ -9950,7 +10599,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "biography"
   },
   "show:107114": {
     "subgenres": [
@@ -9971,7 +10621,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:1435": {
     "subgenres": [
@@ -9992,7 +10643,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:69478": {
     "subgenres": [
@@ -10013,7 +10665,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:840430": {
     "subgenres": [
@@ -10034,7 +10687,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:695721": {
     "subgenres": [
@@ -10049,7 +10703,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:12162": {
     "subgenres": [
@@ -10064,7 +10719,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "war"
   },
   "movie:850165": {
     "subgenres": [
@@ -10085,7 +10741,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "sports"
   },
   "show:61014": {
     "subgenres": [
@@ -10097,7 +10754,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "early-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:100088": {
     "subgenres": [
@@ -10115,7 +10773,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:54344": {
     "subgenres": [
@@ -10130,7 +10789,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:254320": {
     "subgenres": [
@@ -10145,7 +10805,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:286217": {
     "subgenres": [
@@ -10157,7 +10818,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:593643": {
     "subgenres": [
@@ -10172,7 +10834,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:90282": {
     "subgenres": [
@@ -10187,7 +10850,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:15621": {
     "subgenres": [
@@ -10208,7 +10872,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:290250": {
     "subgenres": [
@@ -10223,7 +10888,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:84661": {
     "subgenres": [
@@ -10238,7 +10904,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "horror"
   },
   "movie:446354": {
     "subgenres": [
@@ -10259,7 +10926,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:129398": {
     "subgenres": [
@@ -10280,7 +10948,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:90259": {
     "subgenres": [
@@ -10292,7 +10961,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "show:111803": {
     "subgenres": [
@@ -10307,7 +10977,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:113367": {
     "subgenres": [
@@ -10328,7 +10999,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:1290879": {
     "subgenres": [
@@ -10343,7 +11015,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:520663": {
     "subgenres": [
@@ -10358,7 +11031,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:601666": {
     "subgenres": [
@@ -10379,7 +11053,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:193756": {
     "subgenres": [
@@ -10391,7 +11066,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "war"
   },
   "movie:475132": {
     "subgenres": [
@@ -10403,7 +11079,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "biography"
   },
   "movie:9567": {
     "subgenres": [
@@ -10424,7 +11101,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "war"
   },
   "movie:395991": {
     "subgenres": [
@@ -10445,7 +11123,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:340613": {
     "subgenres": [
@@ -10466,7 +11145,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:627725": {
     "subgenres": [
@@ -10487,7 +11167,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:207334": {
     "subgenres": [
@@ -10502,7 +11183,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:95341": {
     "subgenres": [
@@ -10517,7 +11199,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:1416": {
     "subgenres": [
@@ -10532,7 +11215,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:612": {
     "subgenres": [
@@ -10553,7 +11237,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:913290": {
     "subgenres": [
@@ -10568,7 +11253,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "horror"
   },
   "movie:339527": {
     "subgenres": [
@@ -10589,7 +11275,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:936075": {
     "subgenres": [
@@ -10610,7 +11297,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "biography"
   },
   "movie:799766": {
     "subgenres": [
@@ -10628,7 +11316,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "biography"
   },
   "movie:897087": {
     "subgenres": [
@@ -10649,7 +11338,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "show:45094": {
     "subgenres": [
@@ -10661,7 +11351,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:287167": {
     "subgenres": [
@@ -10682,7 +11373,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:241272": {
     "subgenres": [
@@ -10697,7 +11389,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "movie:715931": {
     "subgenres": [
@@ -10712,7 +11405,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:882569": {
     "subgenres": [
@@ -10727,7 +11421,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "war"
   },
   "movie:293767": {
     "subgenres": [
@@ -10745,7 +11440,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:28730": {
     "subgenres": [
@@ -10763,7 +11459,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:832964": {
     "subgenres": [
@@ -10778,7 +11475,8 @@
     ],
     "era": [
       "world-war-ii"
-    ]
+    ],
+    "genre": "biography"
   },
   "movie:506680": {
     "subgenres": [
@@ -10790,7 +11488,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "cold-war"
-    ]
+    ],
+    "genre": "biography"
   },
   "show:150": {
     "subgenres": [
@@ -10805,7 +11504,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:60791": {
     "subgenres": [
@@ -10820,7 +11520,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:442249": {
     "subgenres": [
@@ -10841,7 +11542,8 @@
     ],
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "horror"
   },
   "movie:98": {
     "subgenres": [
@@ -10856,7 +11558,8 @@
     ],
     "era": [
       "classical-antiquity"
-    ]
+    ],
+    "genre": "action"
   },
   "show:71694": {
     "subgenres": [
@@ -10871,7 +11574,8 @@
     ],
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:1906": {
     "subgenres": [
@@ -10889,7 +11593,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:17035": {
     "subgenres": [
@@ -10910,7 +11615,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "war"
   },
   "show:73107": {
     "tones": [
@@ -10926,7 +11632,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:81357": {
     "tones": [
@@ -10939,7 +11646,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:147050": {
     "tones": [
@@ -10955,7 +11663,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:545611": {
     "tones": [
@@ -10971,7 +11680,8 @@
     ],
     "era": [
       "multi-era"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:67195": {
     "tones": [
@@ -10984,7 +11694,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "movie:334541": {
     "tones": [
@@ -10997,7 +11708,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:492188": {
     "tones": [
@@ -11013,7 +11725,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:376867": {
     "tones": [
@@ -11029,7 +11742,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:1330021": {
     "tones": [
@@ -11042,7 +11756,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:95480": {
     "tones": [
@@ -11058,7 +11773,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:99657": {
     "tones": [
@@ -11074,7 +11790,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:87523": {
     "tones": [
@@ -11090,7 +11807,8 @@
     ],
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:100883": {
     "tones": [
@@ -11106,7 +11824,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:259731": {
     "tones": [
@@ -11122,7 +11841,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "show:40008": {
     "tones": [
@@ -11138,7 +11858,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:1439930": {
     "tones": [
@@ -11154,7 +11875,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "action"
   },
   "movie:82693": {
     "tones": [
@@ -11167,7 +11889,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "show:208397": {
     "tones": [
@@ -11183,7 +11906,8 @@
     ],
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "show:79410": {
     "tones": [
@@ -11196,7 +11920,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:1056360": {
     "subjects": [
@@ -11206,7 +11931,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:8699": {
     "subjects": [
@@ -11216,7 +11942,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:505600": {
     "subjects": [
@@ -11226,7 +11953,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:701387": {
     "subjects": [
@@ -11236,7 +11964,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:65454": {
     "subjects": [
@@ -11246,7 +11975,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:105169": {
     "subjects": [
@@ -11256,7 +11986,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:391713": {
     "subjects": [
@@ -11266,7 +11997,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:115004": {
     "subjects": [
@@ -11276,7 +12008,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:156933": {
     "subjects": [
@@ -11286,7 +12019,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:416477": {
     "subjects": [
@@ -11296,7 +12030,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "romance"
   },
   "show:123192": {
     "subjects": [
@@ -11306,7 +12041,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:45317": {
     "subjects": [
@@ -11316,7 +12052,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "sports"
   },
   "movie:346685": {
     "subjects": [
@@ -11326,7 +12063,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:273247": {
     "subjects": [
@@ -11336,7 +12074,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:154359": {
     "subjects": [
@@ -11346,7 +12085,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "comedy"
   },
   "movie:359940": {
     "subjects": [
@@ -11356,7 +12096,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:46638": {
     "subjects": [
@@ -11366,7 +12107,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:473033": {
     "subjects": [
@@ -11376,7 +12118,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:78903": {
     "subjects": [
@@ -11386,7 +12129,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:74140": {
     "subjects": [
@@ -11396,7 +12140,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "late-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:78191": {
     "subjects": [
@@ -11406,7 +12151,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "mystery"
   },
   "show:241609": {
     "subjects": [
@@ -11416,7 +12162,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:97630": {
     "subjects": [
@@ -11426,7 +12173,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "movie:875828": {
     "subjects": [
@@ -11436,7 +12184,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "early-20th-century"
-    ]
+    ],
+    "genre": "crime"
   },
   "movie:986097": {
     "subjects": [
@@ -11446,7 +12195,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "horror"
   },
   "show:80307": {
     "subjects": [
@@ -11456,7 +12206,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "crime"
   },
   "show:73375": {
     "subjects": [
@@ -11466,7 +12217,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:17431": {
     "subjects": [
@@ -11476,7 +12228,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "near-future"
-    ]
+    ],
+    "genre": "science-fiction"
   },
   "show:71769": {
     "subjects": [
@@ -11486,7 +12239,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "19th-century"
-    ]
+    ],
+    "genre": "drama"
   },
   "show:199318": {
     "subjects": [
@@ -11496,7 +12250,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:421473": {
     "subjects": [
@@ -11506,7 +12261,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "thriller"
   },
   "show:67026": {
     "subjects": [
@@ -11516,7 +12272,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "drama"
   },
   "movie:59440": {
     "subjects": [
@@ -11526,251 +12283,287 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "era": [
       "contemporary"
-    ]
+    ],
+    "genre": "sports"
   },
   "show:99966": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "horror"
   },
   "movie:109443": {
     "era": [
       "late-20th-century"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "comedy"
   },
   "movie:1064213": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "drama"
   },
   "show:67070": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "comedy"
   },
   "show:75758": {
     "era": [
       "far-future"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "science-fiction"
   },
   "show:73200": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "comedy"
   },
   "show:111141": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "drama"
   },
   "show:73411": {
     "era": [
       "near-future"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "science-fiction"
   },
   "movie:496243": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "thriller"
   },
   "show:70453": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "mystery"
   },
   "show:136311": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "comedy"
   },
   "show:76331": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "drama"
   },
   "show:136315": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "drama"
   },
   "show:225891": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "drama"
   },
   "show:87739": {
     "era": [
       "cold-war"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "drama"
   },
   "show:90296": {
     "era": [
       "late-20th-century"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "crime"
   },
   "show:76177": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "crime"
   },
   "movie:458723": {
     "era": [
       "late-20th-century"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "horror"
   },
   "show:85271": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "mystery"
   },
   "show:88713": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "drama"
   },
   "show:87104": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "drama"
   },
   "show:117488": {
     "era": [
       "late-20th-century"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "drama"
   },
   "movie:1265063": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "drama"
   },
   "movie:760329": {
     "era": [
       "late-20th-century"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "drama"
   },
   "show:245256": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "drama"
   },
   "movie:2295": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "comedy"
   },
   "movie:811208": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "drama"
   },
   "movie:24804": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "comedy"
   },
   "movie:567189": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "action"
   },
   "movie:347629": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "drama"
   },
   "movie:522938": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "action"
   },
   "movie:912649": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "science-fiction"
   },
   "movie:27578": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "thriller"
   },
   "movie:338762": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "action"
   },
   "show:44856": {
     "era": [
       "contemporary"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "genre": "drama"
   }
 }
