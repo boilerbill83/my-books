@@ -972,7 +972,15 @@ const ERA_KEYWORDS = {
 // all, which correctly yields no tag rather than a guessed "contemporary"
 // default - the same "don't force a tag" discipline inferSubgenres()
 // already follows for the 0.5% of titles with no subgenre match.
-export function inferEra(meta, limit = 1) {
+//
+// `reviewed` (a reviewedTags.json entry, same override tier as
+// inferSubgenres()/inferTones()/inferSubjects()) is checked first and,
+// when present, uses the workbook's own 17-value vocabulary
+// (classical-antiquity...timeless) rather than this function's coarse
+// 4-bucket ERA_KEYWORDS scheme - a real vocabulary swap, not just a
+// same-format refinement, same as the other three fields' override tier.
+export function inferEra(meta, limit = 1, reviewed) {
+  if (reviewed?.era?.length) return reviewed.era.slice(0, limit);
   if (!meta) return [];
   return scoreKeywordTags(meta.keywords, ERA_KEYWORDS).slice(0, limit).map(([tag]) => tag);
 }
