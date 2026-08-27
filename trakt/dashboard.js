@@ -615,7 +615,9 @@ const FIELD_REGISTRY = [
     eligible: (t, meta) => !!meta,
     populated: (t, meta) => (meta?.genres?.length || 0) > 0,
     quality: (t, meta) => (meta?.genres?.length || 0) >= 2,
-    note: 'Quality = 2+ genres, so genreBonus() has more than one tag to match.' },
+    values: (t, meta) => meta?.genres || [],
+    note: 'Quality = 2+ genres, blended with the field\'s Specificity score (see computeFieldSpecificity()) — ' +
+      'having 2 tags is worthless if one of them is "Drama" on 75% of everything.' },
   { key: 'overview', label: 'Overview', source: 'TMDB', critical: false,
     eligible: (t, meta) => !!meta,
     populated: (t, meta) => !!meta?.overview,
@@ -705,6 +707,7 @@ const FIELD_REGISTRY = [
     eligible: (t, meta) => !!meta,
     populated: (t, meta, omdb, llmEntry) => inferSubgenres(meta, llmEntry).length > 0,
     quality: (t, meta, omdb, llmEntry) => inferSubgenres(meta, llmEntry).length > 0,
+    values: (t, meta, omdb, llmEntry) => inferSubgenres(meta, llmEntry),
     note: 'Keyword match first, then trakt/data/llmTags.json (Claude Haiku 4.5, per-title, only for titles the ' +
       'free keyword tier misses) — see inferSubgenres() in engine.js. Effectively closed (~99.7%) as of the real ' +
       'LLM tagging pass; the tiny remainder are titles with genuinely no fitting subgenre, not a pending gap.' },
@@ -712,12 +715,14 @@ const FIELD_REGISTRY = [
     eligible: (t, meta) => !!meta,
     populated: (t, meta, omdb, llmEntry) => inferTones(meta, llmEntry).length > 0,
     quality: (t, meta, omdb, llmEntry) => inferTones(meta, llmEntry).length > 0,
+    values: (t, meta, omdb, llmEntry) => inferTones(meta, llmEntry),
     note: 'Same three-tier design as Subgenres (keyword -> overview-text phrase -> LLM), via inferTones(). ' +
       'Fully closed (100%) as of the real LLM tagging pass — every title has some real mood signal.' },
   { key: 'subjects', label: 'Subjects (human-condition topics)', source: 'Derived (keywords)', critical: false,
     eligible: (t, meta) => !!meta,
     populated: (t, meta, omdb, llmEntry) => inferSubjects(meta, llmEntry).length > 0,
     quality: (t, meta, omdb, llmEntry) => inferSubjects(meta, llmEntry).length > 0,
+    values: (t, meta, omdb, llmEntry) => inferSubjects(meta, llmEntry),
     note: 'A second layer beneath genre/subgenre — real social/human-condition subject matter (addiction, ' +
       'grief, trauma, class, etc.), the BBRE-themes-inspired addition. Honestly partial (~28%) since most ' +
       'titles genuinely have no such subject at all — not every story is about addiction or grief.' },
@@ -725,9 +730,61 @@ const FIELD_REGISTRY = [
     eligible: (t, meta) => !!meta,
     populated: (t, meta, omdb, llmEntry) => inferEra(meta).length > 0,
     quality: (t, meta, omdb, llmEntry) => inferEra(meta).length > 0,
+    values: (t, meta) => inferEra(meta),
     note: 'When the STORY is set, not when it was made (that\'s Year, above) — via inferEra(). Honestly ' +
       'partial (~17%) since most titles are contemporary-set with no explicit setting-era keyword at all.' },
 ];
+
+// Bill: "for each field determine the optimal value and then build that
+// into how you measure the quality of each field" — a real, second
+// dimension of "quality" beyond per-row completeness (does THIS title
+// have 2+ tags): dataset-wide SPECIFICITY (is the field's whole value
+// distribution actually granular, or dominated by one mega-value the
+// way raw TMDB genres were before the subgenre work — "Drama" on 75.1%
+// of everything, verified live, the reason that work started at all).
+//
+// "Optimal" is derived per field, not a single hand-picked number like
+// the book side's flat 15% tone cap — different fields have wildly
+// different real cardinality (era: 4 real buckets; subgenre: 34 real
+// values after the recent detail-tier work), so a flat threshold would
+// be far too strict for a small field and far too loose for a large
+// one. Instead: normalized Shannon entropy, a standard information-
+// theory "evenness" measure. For a field with N distinct real values,
+// the mathematically optimal (most specific/informative) distribution
+// is perfectly even — every value used equally often, entropy =
+// log2(N). Real fields are never perfectly even, so the specificity
+// score is actual entropy / that theoretical maximum, expressed as a
+// percentage: 100% would mean perfectly even (the true optimum for
+// that field's own cardinality), 0% would mean one value swallows
+// everything. This generalizes cleanly to any field size with no
+// per-field tuning, unlike a fixed percentage cap.
+function computeFieldSpecificity(titles, enrichedMeta, omdbMeta, llmTags, valuesFn) {
+  const counts = new Map();
+  let totalInstances = 0;
+  for (const t of titles) {
+    const meta = enrichedMeta[t.titleKey];
+    const omdb = omdbMeta[t.titleKey];
+    const llmEntry = llmTags[t.titleKey];
+    for (const v of valuesFn(t, meta, omdb, llmEntry) || []) {
+      counts.set(v, (counts.get(v) || 0) + 1);
+      totalInstances++;
+    }
+  }
+  const distinctCount = counts.size;
+  if (!distinctCount || !totalInstances) return null;
+  const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+  const [topValue, topCount] = sorted[0];
+  const topSharePct = (topCount / totalInstances) * 100;
+  const optimalTopSharePct = (1 / distinctCount) * 100;
+  let entropy = 0;
+  for (const [, count] of counts) {
+    const p = count / totalInstances;
+    entropy -= p * Math.log2(p);
+  }
+  const maxEntropy = Math.log2(distinctCount);
+  const specificityPct = maxEntropy > 0 ? (entropy / maxEntropy) * 100 : 100; // a single-value field is trivially "even"
+  return { distinctCount, topValue, topSharePct, optimalTopSharePct, specificityPct };
+}
 
 function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags = {}) {
   const allTitles = new Map();
@@ -738,19 +795,39 @@ function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, om
 
   return FIELD_REGISTRY.map(f => {
     let eligible = 0, populated = 0, quality = 0;
+    const eligibleTitles = [];
     for (const t of titles) {
       const meta = enrichedMeta[t.titleKey];
       const omdb = omdbMeta[t.titleKey];
       const llmEntry = llmTags[t.titleKey];
       if (!f.eligible(t, meta, omdb)) continue;
       eligible++;
+      eligibleTitles.push(t);
       if (f.populated(t, meta, omdb, llmEntry)) populated++;
       if (f.quality(t, meta, omdb, llmEntry)) quality++;
     }
+    const rowQualityPct = eligible ? (quality / eligible) * 100 : null;
+    // Only fields with a `values` extractor (the taxonomy fields) get a
+    // specificity score — it's meaningless for a scalar field like
+    // Community Rating. Where it applies, % Quality becomes a genuine
+    // blend of two real, distinct questions: "does each row have enough
+    // tags" (rowQualityPct) and "is the field's whole distribution
+    // actually granular, not dominated by one mega-value"
+    // (specificity.specificityPct) — averaged, not one replacing the
+    // other, so a field can't read as high-quality just because every
+    // row is populated while "Drama"-style concentration hides in plain
+    // sight, and can't read as low-quality purely from a specificity
+    // dip while row-level completeness is actually fine.
+    const specificity = f.values
+      ? computeFieldSpecificity(eligibleTitles, enrichedMeta, omdbMeta, llmTags, f.values)
+      : null;
+    const qualityPct = specificity
+      ? (rowQualityPct + specificity.specificityPct) / 2
+      : rowQualityPct;
     return {
       ...f, eligible, populated, quality,
       populatedPct: eligible ? (populated / eligible) * 100 : null,
-      qualityPct: eligible ? (quality / eligible) * 100 : null,
+      qualityPct, rowQualityPct, specificity,
     };
   });
 }
@@ -1056,6 +1133,21 @@ function renderFieldQualityTable(stats) {
       render: (td, r) => { td.className = 'num'; td.appendChild(renderFieldBar(r.populatedPct, r.critical)); } },
     { label: '% Quality', get: r => r.qualityPct ?? -1, numeric: true,
       render: (td, r) => { td.className = 'num'; td.appendChild(renderFieldBar(r.qualityPct, r.critical)); } },
+    { label: 'Specificity (optimal value)', get: r => r.specificity ? r.specificity.specificityPct : -1, numeric: true,
+      render: (td, r) => {
+        td.className = 'tk-genres';
+        if (!r.specificity) { td.textContent = '—'; return; }
+        const s = r.specificity;
+        const pctStr = n => (Math.round(n * 10) / 10).toFixed(1) + '%';
+        const wrap = document.createElement('div');
+        const bar = renderFieldBar(s.specificityPct, false);
+        wrap.appendChild(bar);
+        const detail = document.createElement('div');
+        detail.className = 'tk-field-note';
+        detail.textContent = `${s.distinctCount} distinct values — top: "${s.topValue}" at ${pctStr(s.topSharePct)} (optimal ≤${pctStr(s.optimalTopSharePct)} if evenly spread)`;
+        wrap.appendChild(detail);
+        td.appendChild(wrap);
+      } },
     { label: 'What "Quality" Means', get: r => r.note,
       render: (td, r) => { td.className = 'tk-genres'; td.textContent = r.note; } },
   ];
