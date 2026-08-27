@@ -163,13 +163,13 @@ const LOVED_THRESHOLD = 9;
 // keywords alone can't confidently classify) — it was just never wired
 // into this chart. No new tag vocabulary was invented for this fix; the
 // existing, already-validated classifier was pointed at a second consumer.
-function computeGenreStats(library, enrichedMeta, llmTags = {}) {
+function computeGenreStats(library, enrichedMeta, llmTags = {}, reviewedTags = {}) {
   const stats = new Map();
   for (const t of library.titles || []) {
     if (t.myRating == null) continue;
     const meta = enrichedMeta[t.titleKey];
     if (!meta) continue;
-    for (const g of inferSubgenres(meta, llmTags[t.titleKey])) {
+    for (const g of inferSubgenres(meta, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
       // Refined per-title (not after aggregation) so a WWII drama and a
       // Vietnam War drama bucket separately under their real conflict
       // instead of both landing in one generic "Historical"/"War" bucket
@@ -405,7 +405,7 @@ function renderGenreChart(stats) {
 // a rating-preference view (top titles + avg rating, scoped to what's
 // actually been watched and rated — the same "top" framing
 // computeGenreStats() above already uses for subgenres).
-function computeSubjectDistribution(library, watchlist, candidatePool, enrichedMeta, llmTags = {}) {
+function computeSubjectDistribution(library, watchlist, candidatePool, enrichedMeta, llmTags = {}, reviewedTags = {}) {
   const stats = new Map();
   const bump = s => {
     if (!stats.has(s)) stats.set(s, { count: 0, ratedSum: 0, ratedCount: 0, topTitles: [] });
@@ -420,7 +420,7 @@ function computeSubjectDistribution(library, watchlist, candidatePool, enrichedM
       const meta = enrichedMeta[t.titleKey];
       if (!meta) continue;
       total++;
-      for (const s of inferSubjects(meta, llmTags[t.titleKey])) {
+      for (const s of inferSubjects(meta, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
         const e = bump(s);
         e.count++;
         if (t.myRating != null) {
@@ -1727,7 +1727,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
         const meta = enrichedMeta[t.titleKey];
         if (!meta) continue;
         subTotal++;
-        for (const s of inferSubgenres(meta, llmTags[t.titleKey])) subCounts.set(s, (subCounts.get(s) || 0) + 1);
+        for (const s of inferSubgenres(meta, llmTags[t.titleKey], undefined, idx.reviewedTags?.[t.titleKey])) subCounts.set(s, (subCounts.get(s) || 0) + 1);
       }
     }
     const over15 = [...subCounts.entries()].filter(([, c]) => c / subTotal > 0.15).sort((a, b) => b[1] - a[1]);
@@ -2636,8 +2636,9 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     let withSubgenre = 0, withTone = 0;
     for (const [titleKey, m] of Object.entries(enrichedMeta)) {
       const llmEntry = idx.llmTags?.[titleKey];
-      const subs = inferSubgenres(m, llmEntry);
-      const tones = inferTones(m, llmEntry);
+      const reviewedEntry = idx.reviewedTags?.[titleKey];
+      const subs = inferSubgenres(m, llmEntry, undefined, reviewedEntry);
+      const tones = inferTones(m, llmEntry, undefined, reviewedEntry);
       if (subs.length) withSubgenre++;
       if (tones.length) withTone++;
       for (const s of subs) subgenreCounts[s] = (subgenreCounts[s] || 0) + 1;
@@ -2855,9 +2856,9 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
       // Narrower subgenres, not TMDB's own broad genre list — see
       // computeGenreStats()'s comment for why. Falls back to the raw
       // genres for the rare title with no subgenre match at all.
-      genres: (meta ? inferSubgenres(meta, llmTags[h.titleKey]).map(s => displaySubgenre(s, meta)) : []).join(', ')
+      genres: (meta ? inferSubgenres(meta, llmTags[h.titleKey], undefined, idx.reviewedTags?.[h.titleKey]).map(s => displaySubgenre(s, meta)) : []).join(', ')
         || meta?.genres?.join(', ') || '',
-      subjects: (meta ? inferSubjects(meta, llmTags[h.titleKey]).map(s => SUBJECT_LABEL[s] || s) : []).join(', '),
+      subjects: (meta ? inferSubjects(meta, llmTags[h.titleKey], undefined, idx.reviewedTags?.[h.titleKey]).map(s => SUBJECT_LABEL[s] || s) : []).join(', '),
       era: meta ? (ERA_LABEL[inferEra(meta)[0]] || '') : '',
       creator: (h.type === 'movie' ? meta?.director : meta?.createdBy?.[0]) || '',
     });
@@ -3022,7 +3023,7 @@ function renderAllTitlesTable(allRows) {
 // stubs may still be mid-enrichment.
 const fmtCompact = n => n >= 1000 ? `${(n / 1000).toFixed(n >= 10000 ? 0 : 1)}k` : String(n);
 
-function metaLine(candidate, enrichedMeta, omdbMeta, llmTags = {}) {
+function metaLine(candidate, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags = {}) {
   const meta = enrichedMeta[candidate.titleKey];
   if (!meta) return 'Not enriched yet.';
   const parts = [];
@@ -3031,7 +3032,7 @@ function metaLine(candidate, enrichedMeta, omdbMeta, llmTags = {}) {
   // computeGenreStats()'s comment above for why the raw field alone isn't
   // useful. Falls back to the raw genres if a title has no subgenre match
   // at all (3 of 786 today) so a card never shows blank genre info.
-  const subs = inferSubgenres(meta, llmTags[candidate.titleKey]).slice(0, 2).map(s => displaySubgenre(s, meta));
+  const subs = inferSubgenres(meta, llmTags[candidate.titleKey], undefined, reviewedTags[candidate.titleKey]).slice(0, 2).map(s => displaySubgenre(s, meta));
   if (subs.length) parts.push(subs.join(', '));
   else if (meta.genres?.length) parts.push(meta.genres.slice(0, 2).join(', '));
   const creator = getCreator(candidate.type, meta);
@@ -3068,7 +3069,7 @@ function metaLine(candidate, enrichedMeta, omdbMeta, llmTags = {}) {
 // real variety when it exists. diversityRerank() only reorders for
 // display — it never touches an individual title's bmtreScore, so this
 // has no effect on computeEvalMetrics()'s precision@k.
-function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta, omdbMeta, llmTags = {}) {
+function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags = {}) {
   const el = document.getElementById(sectionId);
   const ranked = [...watchlistItems, ...candidateItems]
     .sort((a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore));
@@ -3088,7 +3089,7 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
           ${typeIcon(c.type)} ${esc(c.title)}${c.year ? ` <span class="tk-year">(${esc(c.year)})</span>` : ''}
           <span class="tk-rec-badge">${c.origin === 'watchlist' ? 'Watchlist' : 'New pick'}</span>
         </div>
-        <div class="tk-rec-meta">${esc(metaLine(c, enrichedMeta, omdbMeta, llmTags))}</div>
+        <div class="tk-rec-meta">${esc(metaLine(c, enrichedMeta, omdbMeta, llmTags, reviewedTags))}</div>
         <div class="tk-rec-reason">${esc(c.reason)}</div>
       </div>
       <div class="tk-rec-score">${Math.round(c.bmtreScore)}</div>
@@ -3264,7 +3265,7 @@ function renderQualityDial(sectionId, { score, components }) {
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
 
-  const [d, library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback, scrapedShowRatings, llmTags] = await Promise.all([
+  const [d, library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback, scrapedShowRatings, llmTags, reviewedTags] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -3274,10 +3275,11 @@ async function load() {
     get('./data/feedbackData.json').catch(() => ({ interactions: [] })),
     get('./data/scrapedShowRatings.json').catch(() => ({})),
     get('./data/llmTags.json').catch(() => ({})),
+    get('./data/reviewedTags.json').catch(() => ({})),
   ]);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
 
-  const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags);
+  const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
   const byType = (list, type) => list.filter(c => c.type === type && enrichedOnly(c));
 
@@ -3295,8 +3297,8 @@ async function load() {
     ...computeFieldQualityFindings(fieldStats, library, watchlist, candidatePool, enrichedMeta, omdbMeta),
   ].sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
 
-  renderRecPanel('movieRecList', byType(fromWatchlist, 'movie'), byType(fromCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags);
-  renderRecPanel('showRecList', byType(fromWatchlist, 'show'), byType(fromCandidates, 'show'), enrichedMeta, omdbMeta, llmTags);
+  renderRecPanel('movieRecList', byType(fromWatchlist, 'movie'), byType(fromCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags, reviewedTags);
+  renderRecPanel('showRecList', byType(fromWatchlist, 'show'), byType(fromCandidates, 'show'), enrichedMeta, omdbMeta, llmTags, reviewedTags);
 
   for (const [type, chartId, noteId, label] of [
     ['movie', 'scoreDistMovieChart', 'scoreDistMovieNote', 'unwatched movies'],
@@ -3346,8 +3348,8 @@ async function load() {
     `Based on the ${fmtNum(enrichedCount)} titles enriched with TMDB data so far (of ${fmtNum((library.titles?.length || 0) + (watchlist.titles?.length || 0))} total) — ` +
     `these sections fill in automatically as the daily enrichment job covers more of your library.`;
 
-  renderGenreChart(computeGenreStats(library, enrichedMeta, llmTags));
-  renderSubjectTable(computeSubjectDistribution(library, watchlist, candidatePool, enrichedMeta, llmTags));
+  renderGenreChart(computeGenreStats(library, enrichedMeta, llmTags, reviewedTags));
+  renderSubjectTable(computeSubjectDistribution(library, watchlist, candidatePool, enrichedMeta, llmTags, reviewedTags));
   renderDismissalChart(computeDismissalStats(feedback));
   renderPredictionMisses(computePredictionMisses(library, enrichedMeta, omdbMeta, idx), enrichedMeta);
   renderCastList(computeCastStats(library, enrichedMeta));

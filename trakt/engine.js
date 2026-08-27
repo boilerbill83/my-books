@@ -144,7 +144,7 @@ function normalizeGenre(g) {
 // static check.
 const STYLE_DISLIKE_REASON_CODES = new Set(['style_dislike']);
 
-export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}) {
+export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, reviewedTags = {}) {
   const watched = new Map();
   for (const t of library.titles || []) watched.set(t.titleKey, t);
 
@@ -181,7 +181,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}) {
 
     ratedSum += t.myRating;
     ratedCount++;
-    for (const tone of inferTones(meta, llmTags[t.titleKey])) {
+    for (const tone of inferTones(meta, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
       if (!toneRatingsRaw.has(tone)) toneRatingsRaw.set(tone, []);
       toneRatingsRaw.get(tone).push(t.myRating);
     }
@@ -237,10 +237,10 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}) {
         if (KEYWORD_STOPLIST.has(kw)) continue;
         lovedKeywords.set(kw, (lovedKeywords.get(kw) || 0) + rw);
       }
-      for (const s of inferSubgenres(meta, llmTags[t.titleKey])) {
+      for (const s of inferSubgenres(meta, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
         lovedSubgenres.set(s, (lovedSubgenres.get(s) || 0) + rw);
       }
-      for (const s of inferSubjects(meta, llmTags[t.titleKey])) {
+      for (const s of inferSubjects(meta, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
         lovedSubjects.set(s, (lovedSubjects.get(s) || 0) + rw);
       }
     }
@@ -292,7 +292,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}) {
         const ng = normalizeGenre(g);
         dismissedGenreProfile.set(ng, (dismissedGenreProfile.get(ng) || 0) + 1);
       }
-      for (const s of inferSubgenres(dmeta, llmTags[e.titleKey])) {
+      for (const s of inferSubgenres(dmeta, llmTags[e.titleKey], undefined, reviewedTags[e.titleKey])) {
         dismissedSubgenreProfile.set(s, (dismissedSubgenreProfile.get(s) || 0) + 1);
       }
     }
@@ -320,7 +320,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}) {
   const showAiringRateLoved = lovedCountByType.show ? lovedShowsAiring / lovedCountByType.show : 0;
   const showAiringOverrep = Math.max(0, showAiringRateLoved - showAiringRateAll);
 
-  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags };
+  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -390,7 +390,7 @@ function dismissAdjust(candidate, meta, creator, idx) {
     for (const g of (meta?.genres || [])) {
       if (idx.dismissedGenreProfile.get(normalizeGenre(g)) > 0) overlap++;
     }
-    for (const s of inferSubgenres(meta, idx.llmTags?.[candidate.titleKey])) {
+    for (const s of inferSubgenres(meta, idx.llmTags?.[candidate.titleKey], undefined, idx.reviewedTags?.[candidate.titleKey])) {
       if (idx.dismissedSubgenreProfile.get(s) > 0) overlap++;
     }
     if (overlap > 0) penalty += Math.max(STYLE_DISLIKE_CAP, overlap * STYLE_DISLIKE_PER_MATCH);
@@ -853,7 +853,17 @@ function scoreKeywordTags(keywords, map) {
 // no single defensible subgenre/tone, so it would mean tagging titles
 // with a guess rather than a real signal, degrading the very scoring
 // signal these fields exist to provide).
-export function inferSubgenres(meta, llmEntry, limit = 3) {
+// `reviewed` (new): a per-title trakt/data/reviewedTags.json entry — a
+// real, curated field-level override from an independent human/external
+// review (e.g. the movie-tv-metadata-for-claude-review.xlsx pass), kept
+// deliberately distinct from llmEntry (an automated per-title LLM tag,
+// used only as a last-resort gap-filler below). Checked FIRST, ahead of
+// the live keyword classifier — the whole point of this tier is that a
+// genuine improvement should actually take effect, not just fill the
+// rare case where the keyword tier finds nothing at all (which is what
+// llmEntry was already limited to).
+export function inferSubgenres(meta, llmEntry, limit = 3, reviewed) {
+  if (reviewed?.subgenres?.length) return reviewed.subgenres.slice(0, limit);
   if (!meta) return [];
   const fromKeywords = scoreKeywordTags(meta.keywords, SUBGENRE_KEYWORDS).slice(0, limit).map(([tag]) => tag);
   if (fromKeywords.length) return fromKeywords;
@@ -915,7 +925,11 @@ function inferTonesFromOverview(meta, limit) {
   return matched.slice(0, limit);
 }
 
-export function inferTones(meta, llmEntry, limit = 4) {
+// See inferSubgenres()'s comment above for the reviewed-vs-llmEntry
+// distinction — same priority shape here: reviewed override first, then
+// keyword/overview tiers, then llmEntry as the last-resort gap-filler.
+export function inferTones(meta, llmEntry, limit = 4, reviewed) {
+  if (reviewed?.tones?.length) return reviewed.tones.slice(0, limit);
   if (!meta) return [];
   const fromKeywords = scoreKeywordTags(meta.keywords, TONE_KEYWORDS).slice(0, limit).map(([tag]) => tag);
   if (fromKeywords.length) return fromKeywords;
@@ -1269,7 +1283,9 @@ export function findTaxonomyCollisions() {
 // (same honest-partial-coverage stance as inferEra() above). No bucket
 // exceeds 5% of the dataset (addiction-recovery, the largest, is 40 of
 // 793) — nowhere near a concentration-cap concern.
-export function inferSubjects(meta, llmEntry, limit = 3) {
+// Same reviewed-override-first priority as inferSubgenres()/inferTones().
+export function inferSubjects(meta, llmEntry, limit = 3, reviewed) {
+  if (reviewed?.subjects?.length) return reviewed.subjects.slice(0, limit);
   if (!meta) return [];
   const fromKeywords = scoreKeywordTags(meta.keywords, SUBJECT_KEYWORDS).slice(0, limit).map(([tag]) => tag);
   if (fromKeywords.length) return fromKeywords;
@@ -1664,9 +1680,10 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   score += castBonus(meta?.topCast, idx.lovedActors);
   score += keywordBonus(meta?.keywords, idx.lovedKeywords);
   const llmEntry = idx.llmTags?.[candidate.titleKey];
-  score += subgenreBonus(inferSubgenres(meta, llmEntry), idx.lovedSubgenres);
-  score += subjectBonus(inferSubjects(meta, llmEntry), idx.lovedSubjects);
-  score += toneSignal(inferTones(meta, llmEntry), idx.toneProfile, idx.globalMeanRating);
+  const reviewedEntry = idx.reviewedTags?.[candidate.titleKey];
+  score += subgenreBonus(inferSubgenres(meta, llmEntry, undefined, reviewedEntry), idx.lovedSubgenres);
+  score += subjectBonus(inferSubjects(meta, llmEntry, undefined, reviewedEntry), idx.lovedSubjects);
+  score += toneSignal(inferTones(meta, llmEntry, undefined, reviewedEntry), idx.toneProfile, idx.globalMeanRating);
 
   // Forward match: this candidate's own TMDB-similar/recommended list
   // includes a title Bill loved.
@@ -1803,13 +1820,14 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
   // carrying that tone; only a tone rated above his global mean is a
   // reason to recommend, not merely a tone that happens to match.
   const llmEntry = idx.llmTags?.[candidate.titleKey];
-  const topSubjects = inferSubjects(meta, llmEntry).filter(s => idx.lovedSubjects.has(s));
+  const reviewedEntry = idx.reviewedTags?.[candidate.titleKey];
+  const topSubjects = inferSubjects(meta, llmEntry, undefined, reviewedEntry).filter(s => idx.lovedSubjects.has(s));
   if (topSubjects.length) {
     return `Subject Match — Touches on ${topSubjects.join(' / ')}, themes you've responded well to.`;
   }
 
   if (idx.toneProfile && idx.globalMeanRating != null) {
-    const topTone = inferTones(meta, llmEntry).find(t => (idx.toneProfile.get(t) ?? -Infinity) > idx.globalMeanRating);
+    const topTone = inferTones(meta, llmEntry, undefined, reviewedEntry).find(t => (idx.toneProfile.get(t) ?? -Infinity) > idx.globalMeanRating);
     if (topTone) {
       return `Tone Match — Has a ${topTone} feel, a tone you've consistently rated above your average.`;
     }
@@ -1837,8 +1855,8 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
 
 // ── Entry point ──────────────────────────────────────────────────────────
 
-export function rankRecommendations(library, watchlist, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}, llmTags = {}) {
-  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags);
+export function rankRecommendations(library, watchlist, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}, llmTags = {}, reviewedTags = {}) {
+  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags);
 
   const candidates = (watchlist.titles || []).filter(c => !idx.excluded.has(c.titleKey));
   const scored = candidates.map(c => ({
@@ -1863,8 +1881,8 @@ export function rankRecommendations(library, watchlist, enrichedMeta, feedback =
 // discover_candidates.js already exclude known watchlist/library keys —
 // but checked here too since a UI silently double-counting the same title
 // under two origins would be worse than a defensive filter).
-export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}, llmTags = {}) {
-  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags);
+export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}, llmTags = {}, reviewedTags = {}) {
+  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags);
   const watchlistKeys = new Set((watchlist.titles || []).map(c => c.titleKey));
 
   const scoreOne = (c, origin) => {
@@ -2005,13 +2023,13 @@ const LIKED_THRESHOLD = 8;    // myRating >= 8/10 — the same looser "would he
                                 // buildIndexes() uses for signal-building.
 const DISLIKED_THRESHOLD = 5; // myRating <= 5/10, for the bottom-catch check
 
-export function computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta, llmTags = {}) {
+export function computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta, llmTags = {}, reviewedTags = {}) {
   const rated = (library.titles || []).filter(t => t.myRating != null && enrichedMeta[t.titleKey]);
 
   const preds = [];
   for (const t of rated) {
     const looLibrary = { titles: (library.titles || []).filter(x => x.titleKey !== t.titleKey) };
-    const idx = buildIndexes(looLibrary, enrichedMeta, feedback, llmTags);
+    const idx = buildIndexes(looLibrary, enrichedMeta, feedback, llmTags, reviewedTags);
     const h = hydrateTitle(t, enrichedMeta);
     const predicted = matchScore(h, idx, enrichedMeta, omdbMeta);
     if (Number.isFinite(predicted)) {

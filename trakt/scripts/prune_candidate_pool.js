@@ -59,8 +59,9 @@ const scrapedShowRatings = readJSON(path.join(DATA_DIR, 'scrapedShowRatings.json
 const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
 const feedback = readJSON(path.join(DATA_DIR, 'feedbackData.json'), { interactions: [] });
 const llmTags = readJSON(path.join(DATA_DIR, 'llmTags.json'), {});
+const reviewedTags = readJSON(path.join(DATA_DIR, 'reviewedTags.json'), {});
 
-const idx = buildIndexes(library, enrichedMeta, feedback, llmTags);
+const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags);
 const watchlistKeys = new Set((watchlist.titles || []).map(c => c.titleKey));
 
 // Same re-edit / non-English / pre-2000-movie / animation exclusions
