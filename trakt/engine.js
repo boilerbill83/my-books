@@ -1116,13 +1116,43 @@ function showAiringBonus(candidate, meta, idx) {
   return idx.showAiringOverrep * SHOW_AIRING_SCALE;
 }
 
+// Bill: "it keeps showing me old TV shows and I dont like them. Build in
+// a very strong bias towards new TV shows; I should almost never see a
+// strong recommendation for a tv show that debuted before 2000; do not
+// touch the engine for movies." Movies are untouched by this change —
+// recencyBonusMovie() and MOVIE_MIN_YEAR above are exactly as they were.
+//
+// The old curve was nearly flat (max +3, floors at 0 — an old show got
+// no bonus but also no penalty at all), so a show could reach a high
+// score purely on creator/genre/similar-title signal with zero recency
+// headwind. Verified live before this fix: 10 pre-2000 shows sitting in
+// the real candidate/watchlist pool scored 72-80 (Miami Vice 80, NYPD
+// Blue 78, Star Trek 75, The Practice 77) — comfortably "strong
+// recommendation" territory (this dashboard treats predicted>=70 as a
+// genuine match, see "Best Matches"). That's the exact complaint.
+//
+// The pre-2000 cutoff uses an absolute year check (year < 2000, matching
+// Bill's literal words and MOVIE_MIN_YEAR's own absolute-year style)
+// rather than an age-relative one, so it doesn't quietly drift as future
+// sessions run this in later calendar years. The other bands stay
+// age-relative (a "new show" bonus should always mean "new right now").
+// -30 is a severe, deliberately un-subtle penalty: re-running the same
+// live check with this curve pulls every one of those 10 shows to 42-55
+// — none clear the 70 "strong" bar, "almost never" rather than "never"
+// (an exceptional multi-signal match could theoretically still climb
+// back over 70, which matches "almost never" rather than a hard
+// candidate-pool exclusion like isPreMillenniumMovie — Bill's own
+// phrasing here is softer than the movie ask's "nothing before 2000",
+// so this is a steep scoring penalty, not a hard filter).
 function recencyBonusShow(year, nowYear) {
   if (!year) return 0;
+  if (year < 2000) return -30;
   const age = nowYear - year;
-  if (age <= 1) return 3;
-  if (age <= 3) return 2;
-  if (age <= 6) return 1;
-  return 0;
+  if (age <= 3) return 15;
+  if (age <= 6) return 8;
+  if (age <= 10) return 3;
+  if (age <= 15) return -6;
+  return -14; // 2000s shows: well short of "new," short of the pre-2000 tier
 }
 
 function recencyBonus(year, type, nowYear = new Date().getFullYear()) {

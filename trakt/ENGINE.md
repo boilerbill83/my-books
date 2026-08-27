@@ -264,11 +264,11 @@ The magnitude was swept 0.5x-2x against `eval.js`: the "obvious" 1x scale
 (shown above) was the smallest scale that kept the full precision@10 gain
 with zero regression anywhere else.
 
-### 3o. Recency — movies **+8 to -15**, shows **0 to +3**
+### 3o. Recency — movies **+8 to -15**, shows **+15 to -30**
 Bill's explicit request: "strongly favor movies from the last 5-10 years,
 nothing before 2000."
 
-**Movies** (`recencyBonusMovie`):
+**Movies** (`recencyBonusMovie`, unchanged):
 | Age | Bonus |
 |---|---|
 | ≤5 years | +8 |
@@ -278,20 +278,37 @@ nothing before 2000."
 | ≤26 years | -9 |
 | older (pre-2000-adjacent) | -15 |
 
-**Shows** (`recencyBonusShow`, a much gentler curve — Bill's ask was
-specifically about movies, and an old show can still be "current" via new
-seasons):
-| Age | Bonus |
+**Shows** (`recencyBonusShow`) — originally a much gentler curve (max +3,
+floors at 0, no penalty at all for an old show). Revised after a second,
+separate Bill request: "it keeps showing me old TV shows and I dont like
+them. Build in a very strong bias towards new TV shows; I should almost
+never see a strong recommendation for a tv show that debuted before
+2000; do not touch the engine for movies." Verified live before the fix:
+10 real pre-2000 shows in the pool scored 72-80 (Miami Vice 80, NYPD
+Blue 78) purely on creator/genre/similar-title signal, since recency
+contributed nothing either way:
+| Year / Age | Bonus |
 |---|---|
-| ≤1 year | +3 |
-| ≤3 years | +2 |
-| ≤6 years | +1 |
-| older | 0 |
+| < 2000 (absolute year, not age-relative) | **-30** |
+| age ≤3 years | +15 |
+| age ≤6 years | +8 |
+| age ≤10 years | +3 |
+| age ≤15 years | -6 |
+| older (2000s, not yet pre-2000) | -14 |
 
-Movies before 2000 are also **hard-excluded** from discovered candidates
-entirely (§5) — the steep negative tail above is belt-and-suspenders for
-watchlist movies, which are never hard-excluded (Bill's own explicit
-picks stay rankable, just honestly low).
+The pre-2000 tier is an absolute year check (`year < 2000`), not age-
+relative like the rest of the curve — matches Bill's literal words and
+`MOVIE_MIN_YEAR`'s own style, and doesn't quietly drift as later
+sessions run this in future calendar years. Deliberately a steep scoring
+penalty, not a hard candidate-pool filter like movies get (§5) — Bill's
+phrasing ("almost never," not "nothing before 2000") leaves room for an
+exceptional multi-signal match to still climb back over the "strong"
+(≥70) bar, verified live: post-fix, every pre-2000 show in the pool caps
+at 50, none reach 70. Movies before 2000 are also **hard-excluded** from
+discovered candidates entirely (§5) — the steep negative tail above is
+belt-and-suspenders for watchlist movies, which are never hard-excluded
+(Bill's own explicit picks stay rankable, just honestly low). Shows have
+no equivalent hard filter, matching the softer ask.
 
 ### 3p. Show-airing-status bonus — **currently 0 (built, tested, not applied)**
 ```
