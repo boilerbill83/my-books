@@ -60,11 +60,17 @@ export function getCreator(type, meta) {
 // getCreator()'s index-0-only contract, a genuine co-creator (e.g. the
 // #2 name on a show Bill loved) got zero affinity credit, and a candidate
 // show TMDB happens to list that same person as creator #2 (not #1) never
-// matched at all. Movies keep a single-entry array (TMDB gives one
-// director per title in this pipeline's extraction, no co-director list).
+// matched at all. Movies now use the same fix: enrich_tmdb.py's
+// extract_entry() was collecting every real TMDB 'Director' crew credit
+// into a `directors` list but only ever kept index 0 — confirmed on a
+// real example (Avengers: Infinity War is genuinely co-directed by Joe
+// AND Anthony Russo, both credited by TMDB, but the cache only ever
+// stored "Joe Russo"). `meta.directors` (plural, new field) is used when
+// present; falls back to the single `director` for cache entries not yet
+// re-fetched with the new field.
 export function getCreators(type, meta) {
   if (!meta) return [];
-  if (type === 'movie') return meta.director ? [meta.director] : [];
+  if (type === 'movie') return meta.directors?.length ? meta.directors : (meta.director ? [meta.director] : []);
   return meta.createdBy || [];
 }
 
@@ -560,22 +566,39 @@ function toneSignal(tones, toneProfile, globalMean) {
 // (18,525 of 59,336) — the rest cite titles outside what Bill has watched,
 // queued, or been offered as a candidate, which is expected and not a bug:
 // TMDB's similar/recommendations network reaches far beyond any one
-// person's own catalog. Deduped and capped at `limit`, citation order
-// preserved (similarToIds before recommendedIds, matching baseSignals()'s
-// own citedIds construction).
+// person's own catalog. Deduped and capped at `limit`.
+//
+// A real, confirmed bug (external metadata-plan review): TMDB's own
+// /similar and /recommendations endpoints bulk-cite thin, low-data titles
+// as "similar" to hundreds of unrelated things — a known behavior on
+// sparse-embedding entries. 104 titles in this dataset have voteCount<50
+// but are cited by 15+ other titles each (some 40-100+ times); two of
+// them ("Thriller", a 1973 UK anthology with 12 votes, and "Romance",
+// 1977, 0 votes) are real TMDB shows, not genre labels, but they read
+// exactly like one by coincidence once surfaced in this field — verified
+// via a real cross-check against enrichedMetadata.json, not assumed.
+// Fixed by resolving ALL citations first, then sorting by the cited
+// title's real voteCount descending before slicing to `limit` — this
+// prefers substantial, recognizable matches whenever one exists, without
+// a hard cutoff that could zero out a title's display entirely if its
+// whole citation network happens to be thin. Scoring (buildIndexes()'s
+// reverseSimilar, baseSignals()'s forward-match) is deliberately left
+// untouched — confirmed only 1 of the 104 thin titles sits in the real
+// candidate pool today (an unenriched stub), so the practical scoring
+// risk of a change there isn't justified; this is a display-only fix.
 export function resolveSimilarTitles(meta, type, enrichedMeta, limit = 5) {
   if (!meta) return [];
   const seen = new Set();
-  const out = [];
+  const resolved = [];
   for (const id of [...(meta.similarToIds || []), ...(meta.recommendedIds || [])]) {
-    if (out.length >= limit) break;
     const key = titleKey(type, id);
     if (seen.has(key)) continue;
     seen.add(key);
     const cited = enrichedMeta[key];
-    if (cited?.title) out.push({ titleKey: key, title: cited.title, year: cited.year ?? null });
+    if (cited?.title) resolved.push({ titleKey: key, title: cited.title, year: cited.year ?? null, voteCount: cited.voteCount ?? 0 });
   }
-  return out;
+  resolved.sort((a, b) => b.voteCount - a.voteCount);
+  return resolved.slice(0, limit).map(({ titleKey, title, year }) => ({ titleKey, title, year }));
 }
 
 // A real Improvement Opportunities finding (Session 53): the book engine's
@@ -1159,6 +1182,19 @@ const SUBJECT_KEYWORDS = {
   'class-wealth-corporate': ['wealthy family', 'wealth', 'wall street', 'working class', 'poverty', 'wealthy', 'class differences',
     'class', 'corporate greed', 'corporate power', 'corporate control', 'corporate conspiracy', 'corporate law', 'finance', 'finances'],
   'lgbtq': ['lgbt'],
+  // New (external metadata-plan review): checked every subject category
+  // the plan suggested against real keyword frequency before adding
+  // anything (this project's standing discipline). Most were either too
+  // thin (military conflict 0, justice system 0), too broad/generic
+  // (bare 'corruption' — 37 occurrences, but already investigated and
+  // rejected in an earlier session: Silo/House of Cards/The Wire all hit
+  // it with no shared real theme), or already covered elsewhere
+  // (organized crime already scored at the subgenre level via
+  // crime-drama; corporate power/greed already in class-wealth-corporate
+  // below). 'survival' (29 real occurrences, zero prior coverage, a
+  // genuinely distinct theme from anything else in this vocabulary) is
+  // the one clean addition.
+  'survival': ['survival'],
 };
 
 // Permanent guardrail (external metadata-plan Priority 3): confirms the
@@ -1714,10 +1750,16 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
     .map(id => titleKey(candidate.type, id)));
   const matchedLoved = [...citedIds].filter(id => idx.lovedTitles.has(id));
   if (matchedLoved.length) {
+    // Prefer substantial (real-voteCount) matches over TMDB's thin/noisy
+    // filler citations — same fix and rationale as resolveSimilarTitles()
+    // above; picking the raw first-2-in-citation-order previously let a
+    // near-zero-vote title win the displayed name over a real match.
     const names = matchedLoved
-      .map(k => idx.watched.get(k)?.title)
-      .filter(Boolean)
-      .slice(0, 2);
+      .map(k => ({ title: idx.watched.get(k)?.title, voteCount: enrichedMeta[k]?.voteCount ?? 0 }))
+      .filter(n => n.title)
+      .sort((a, b) => b.voteCount - a.voteCount)
+      .slice(0, 2)
+      .map(n => n.title);
     if (names.length) return `Similar Title — Similar to ${names.join(' and ')}, which you loved.`;
   }
 
@@ -1729,6 +1771,27 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
   const topGenres = (meta.genres || []).filter(g => idx.lovedGenres.has(g)).slice(0, 2);
   if (topGenres.length) {
     return `Genre Match — Fits your taste for ${topGenres.join(' / ')}.`;
+  }
+
+  // New (external metadata-plan review): toneSignal()/subjectBonus() are
+  // real, live scoring signals in baseSignals() but were never explained
+  // here — a real gap, not by design. Subject Match mirrors Genre Match's
+  // shape exactly (filtered to subjects Bill's own loved titles carry).
+  // Tone Match requires a real *positive* preference, not just presence —
+  // idx.toneProfile[tone] is the average rating of Bill's rated titles
+  // carrying that tone; only a tone rated above his global mean is a
+  // reason to recommend, not merely a tone that happens to match.
+  const llmEntry = idx.llmTags?.[candidate.titleKey];
+  const topSubjects = inferSubjects(meta, llmEntry).filter(s => idx.lovedSubjects.has(s));
+  if (topSubjects.length) {
+    return `Subject Match — Touches on ${topSubjects.join(' / ')}, themes you've responded well to.`;
+  }
+
+  if (idx.toneProfile && idx.globalMeanRating != null) {
+    const topTone = inferTones(meta, llmEntry).find(t => (idx.toneProfile.get(t) ?? -Infinity) > idx.globalMeanRating);
+    if (topTone) {
+      return `Tone Match — Has a ${topTone} feel, a tone you've consistently rated above your average.`;
+    }
   }
 
   if (meta.voteAverage != null && meta.voteAverage >= 7.5) {

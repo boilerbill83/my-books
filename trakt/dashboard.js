@@ -224,7 +224,7 @@ const SUBJECT_LABEL = {
   'racism-civil-rights': 'Racism / Civil Rights', 'immigration-refugee': 'Immigration / Refugee',
   'infidelity': 'Infidelity / Affairs', 'journalism-media': 'Journalism / Media',
   'cult-extremism': 'Cult / Extremism', 'mental-health': 'Mental Health', 'class-wealth-corporate': 'Class / Wealth / Corporate',
-  'lgbtq': 'LGBTQ+',
+  'lgbtq': 'LGBTQ+', 'survival': 'Survival',
 };
 
 const ERA_LABEL = {
