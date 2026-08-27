@@ -659,7 +659,7 @@ const SUBGENRE_KEYWORDS = {
   // existing tag buckets with real synonyms/phrasings TMDB actually uses
   // rather than inventing new sub-buckets off thin, single-keyword
   // evidence (the exact over-reach the book side's Session 16b rejected).
-  'crime-drama': ['organized crime', 'drug dealer', 'drugs', 'gangster', 'mafia', 'mob', 'outlaw', 'criminal', 'hitman', 'assassin'],
+  'crime-drama': ['organized crime', 'drug dealer', 'drugs', 'gangster', 'mafia', 'mob', 'outlaw', 'criminal', 'hitman', 'assassin', 'crime family'],
   'procedural': ['police', 'detective', 'investigation', 'fbi', 'murder investigation', 'police detective', 'cop', 'murder', 'murder mystery', 'whodunit', 'police procedural', 'crime investigation', 'criminal investigation'],
   'legal': ['lawyer', 'courtroom', 'trial', 'attorney', 'judge', 'legal drama'],
   'heist': ['heist', 'robbery', 'con artist', 'bank robbery'],
@@ -689,7 +689,7 @@ const SUBGENRE_KEYWORDS = {
   'historical': ['period drama', 'historical', 'historical fiction', 'historical drama', 'costume drama', 'wild west', 'civil war', 'cold war', '19th century'],
   'war': ['war', 'military', 'soldier', 'world war ii', 'world war i', 'vietnam war'],
   'political': ['politics', 'president', 'election', 'corruption', 'government', 'conspiracy'],
-  'family-drama': ['dysfunctional family', 'family relationships', 'family', 'husband wife relationship', 'sibling relationship'],
+  'family-drama': ['dysfunctional family', 'family relationships', 'family', 'family drama', 'husband wife relationship', 'sibling relationship'],
   'coming-of-age': ['coming of age', 'high school', 'teenager'],
   'romance': ['romance', 'love', 'love triangle'],
   'romcom': ['romcom'],
@@ -719,6 +719,24 @@ const SUBGENRE_KEYWORDS = {
   // wrong tag" precedent as superhero/historical above.
   'horror': ['horror', 'horror anthology', 'slasher', 'gothic horror', 'psychological horror', 'supernatural horror', 'monster', 'ghost', 'demon', 'witch', 'possession'],
   'musical': ['musical'],
+  // New (external metadata-plan review): 'neo-western' is a real, distinct
+  // TMDB keyword — a modern-day story in a Western-genre frame (a working
+  // ranch/family-crime-empire story set today), not the same thing as an
+  // 1800s period western (which stays under 'historical' via 'wild west',
+  // per that bucket's own prior-session reasoning). Verified present at
+  // real frequency (17 titles) before adding, not guessed — caught because
+  // Yellowstone itself, carrying the literal 'neo-western' TMDB keyword,
+  // was scoring ZERO subgenre tags with no bucket to catch it. Kept
+  // narrow (this one keyword only) rather than also folding in 'western'/
+  // 'wild west' here, since those already have a home and a modern
+  // neo-western and a 19th-century western film are genuinely different.
+  // 'western' (bare) added after checking real frequency: only 3 titles
+  // dataset-wide carry it (Ransom Canyon, 1923, Landman — all genuinely
+  // Sheridan-verse Western-framed dramas, 0 false-positive risk found),
+  // unlike a broader 'western'-adjacent term that might catch unrelated
+  // titles. Left out of 'historical' (unlike 'wild west') since these are
+  // near-modern/modern stories, not 1800s period pieces.
+  'neo-western': ['neo-western', 'western'],
 };
 
 const TONE_KEYWORDS = {
@@ -1142,6 +1160,50 @@ const SUBJECT_KEYWORDS = {
     'class', 'corporate greed', 'corporate power', 'corporate control', 'corporate conspiracy', 'corporate law', 'finance', 'finances'],
   'lgbtq': ['lgbt'],
 };
+
+// Permanent guardrail (external metadata-plan Priority 3): confirms the
+// three taxonomy layers stay at genuinely different conceptual levels —
+// subgenres describe content TYPE, tones describe emotional FEEL, subjects
+// describe major THEMES (the plan's own rule: 'dark'/'gritty' belong only
+// in tones, 'organized-crime'/'politics'/'war' only in subjects, etc.).
+// Audited by hand when this was written (0 collisions found — dark/gritty
+// are tone-only, no crime/political/war bucket name leaked into tones),
+// but a hand audit only proves the state at one point in time; this makes
+// the check live and permanent so a future bucket addition can't silently
+// reintroduce the exact drift the plan warns about. Also checks
+// GENRE_DETAIL_KEYWORDS' nested detail labels (e.g. "Organized Crime /
+// Mafia" under crime-drama) against the three top-level vocabularies,
+// since a detail label duplicating an unrelated top-level bucket name
+// would be just as confusing as a top-level collision.
+export function findTaxonomyCollisions() {
+  const layers = {
+    subgenre: Object.keys(SUBGENRE_KEYWORDS),
+    tone: Object.keys(TONE_KEYWORDS),
+    subject: Object.keys(SUBJECT_KEYWORDS),
+  };
+  const detailLabels = [];
+  for (const detail of Object.values(GENRE_DETAIL_KEYWORDS)) {
+    for (const label of Object.keys(detail)) detailLabels.push(label.toLowerCase());
+  }
+
+  const owner = new Map(); // lowercased name -> [layer names it appears in]
+  for (const [layerName, names] of Object.entries(layers)) {
+    for (const name of names) {
+      const key = name.toLowerCase();
+      if (!owner.has(key)) owner.set(key, []);
+      owner.get(key).push(layerName);
+    }
+  }
+  const collisions = [];
+  for (const [name, appearsIn] of owner) {
+    if (appearsIn.length > 1) collisions.push({ name, appearsIn });
+  }
+  for (const label of detailLabels) {
+    const hit = owner.get(label);
+    if (hit) collisions.push({ name: label, appearsIn: [...hit, 'genreDetail'] });
+  }
+  return collisions;
+}
 
 // Real coverage as of this build: 27.5% (218 of 793 real titles) — lower
 // than subgenres/tones (both ~99%+) because this layer targets specific

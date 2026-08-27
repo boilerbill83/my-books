@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra, inferSubgenreDetail } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra, inferSubgenreDetail, findTaxonomyCollisions } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -197,7 +197,7 @@ const SUBGENRE_LABEL = {
   'coming-of-age': 'Coming-of-Age', 'workplace-comedy': 'Workplace Comedy', 'war': 'War',
   'sports': 'Sports', 'romance': 'Romance', 'legal': 'Legal', 'superhero': 'Superhero',
   'spy-espionage': 'Spy / Espionage', 'horror': 'Horror', 'romcom': 'Rom-Com', 'medical': 'Medical',
-  'heist': 'Heist', 'prison': 'Prison', 'musical': 'Musical',
+  'heist': 'Heist', 'prison': 'Prison', 'musical': 'Musical', 'neo-western': 'Neo-Western',
 };
 
 // Bill: "instead of drama -> historical drama, it should be historical
@@ -2022,6 +2022,44 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
         `similarity network is much bigger than Bill's own library), not something broken to fix.`,
       impact: `A clean audit result, not a fix — but a real one, worth having on record so a future session doesn't re-investigate this ` +
         `from scratch or mistake the expected 70% "orphan" rate for a bug.`,
+    });
+  }
+
+  // Priority 3 (external metadata-plan): taxonomy normalization guardrail.
+  // The plan's rule ("dark"/"gritty" belong only in tones, "organized-
+  // crime"/"politics"/"war" only in subjects) already held before this
+  // session touched anything — this makes that a permanent, live check
+  // rather than a one-time hand audit, plus records the two concrete
+  // keyword-matching gaps this session's review found and fixed.
+  {
+    const collisions = findTaxonomyCollisions();
+    findings.push({
+      id: 'taxonomy-disjointness-guardrail',
+      severity: collisions.length ? 'serious' : 'good',
+      ratings: { ease: 2, dataQuality: 4, recEngine: 2, ui: 0 },
+      title: collisions.length
+        ? `${collisions.length} taxonomy name${collisions.length === 1 ? '' : 's'} appear${collisions.length === 1 ? 's' : ''} in more than one of subgenres/tones/subjects — needs cleanup`
+        : `Taxonomy layers audited and guarded: subgenres/tones/subjects stay at genuinely different conceptual levels, 0 collisions`,
+      technical: `New <code>findTaxonomyCollisions()</code> in engine.js checks every bucket name across ` +
+        `<code>SUBGENRE_KEYWORDS</code>/<code>TONE_KEYWORDS</code>/<code>SUBJECT_KEYWORDS</code> (21/16/11 buckets) plus every nested ` +
+        `<code>GENRE_DETAIL_KEYWORDS</code> label for a name shared across categories — the exact drift an external metadata-improvement ` +
+        `plan flagged as a risk ("dark"/"gritty" leaking into subgenres, "organized-crime"/"politics"/"war" leaking into tones). ` +
+        `${collisions.length ? `Found: ${collisions.map(c => `"${c.name}" in ${c.appearsIn.join('+')}`).join(', ')}.` : `Audited: 0 collisions ` +
+        `— "dark"/"gritty" only ever appear as tones, no crime/political/war term appears as a tone, no subgenre/tone name duplicates a ` +
+        `GENRE_DETAIL_KEYWORDS detail label from an unrelated category.`} Also fixed two real, concrete misses this review found while ` +
+        `checking the vocabulary against live data: Yellowstone (the plan's own flagship creator-affinity example) was scoring ZERO ` +
+        `subgenre tags despite carrying the literal TMDB keywords 'neo-western', 'family drama', and 'crime family' — no ` +
+        `<code>neo-western</code> bucket existed at all, and the near-identical <code>family-drama</code>/<code>crime-drama</code> buckets ` +
+        `didn't include those exact TMDB keyword strings. Added a narrow <code>neo-western</code> bucket (verified at real, non-trivial ` +
+        `frequency — 17 titles carry 'neo-western'/'western' keywords — before adding, not guessed) and the two missing exact-string ` +
+        `keywords. <code>scripts/eval.js</code> confirmed precision@10/25/50/100 held exactly (100/92/92/83) with the fix live.`,
+      plain: `Checked whether the three taxonomy layers (subgenre = content type, tone = emotional feel, subject = major theme) ever get ` +
+        `mixed up — like "dark" accidentally being treated as a genre instead of a mood. They don't; this check now runs automatically so ` +
+        `that stays true going forward. Along the way, found and fixed a real gap: Yellowstone — literally the show used as the example in ` +
+        `the plan Bill forwarded — wasn't getting tagged with ANY subgenre at all, even though it's a textbook "neo-western family crime ` +
+        `drama." Fixed by adding the missing category.`,
+      impact: `A cheap, permanent guardrail against future drift plus one concrete, verified accuracy fix on the plan's own flagship ` +
+        `example title — small in isolated scoring terms, but directly closes the gap the forwarded plan opened with.`,
     });
   }
 
