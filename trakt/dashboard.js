@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -192,6 +192,19 @@ const SUBGENRE_LABEL = {
   'sports': 'Sports', 'romance': 'Romance', 'legal': 'Legal', 'superhero': 'Superhero',
   'spy-espionage': 'Spy / Espionage', 'horror': 'Horror', 'romcom': 'Rom-Com', 'medical': 'Medical',
   'heist': 'Heist', 'prison': 'Prison', 'musical': 'Musical',
+};
+
+const SUBJECT_LABEL = {
+  'addiction-recovery': 'Addiction / Recovery', 'grief-loss': 'Grief / Loss', 'trauma-abuse': 'Trauma / Abuse',
+  'racism-civil-rights': 'Racism / Civil Rights', 'immigration-refugee': 'Immigration / Refugee',
+  'infidelity-betrayal': 'Infidelity / Betrayal', 'journalism-media': 'Journalism / Media',
+  'cult-extremism': 'Cult / Extremism', 'mental-health': 'Mental Health', 'class-wealth-corporate': 'Class / Wealth / Corporate',
+  'lgbtq': 'LGBTQ+',
+};
+
+const ERA_LABEL = {
+  'ancient-to-1900': 'Pre-1900', 'early-1900s': 'Early 1900s (1900-1945)', 'mid-late-1900s': 'Mid/Late 1900s (1946-1999)',
+  'future-setting': 'Future',
 };
 
 function computeCastStats(library, enrichedMeta) {
@@ -579,6 +592,19 @@ const FIELD_REGISTRY = [
     quality: (t, meta, omdb, llmEntry) => inferTones(meta, llmEntry).length > 0,
     note: 'Same three-tier design as Subgenres (keyword -> overview-text phrase -> LLM), via inferTones(). ' +
       'Fully closed (100%) as of the real LLM tagging pass — every title has some real mood signal.' },
+  { key: 'subjects', label: 'Subjects (human-condition topics)', source: 'Derived (keywords)', critical: false,
+    eligible: (t, meta) => !!meta,
+    populated: (t, meta, omdb, llmEntry) => inferSubjects(meta, llmEntry).length > 0,
+    quality: (t, meta, omdb, llmEntry) => inferSubjects(meta, llmEntry).length > 0,
+    note: 'A second layer beneath genre/subgenre — real social/human-condition subject matter (addiction, ' +
+      'grief, trauma, class, etc.), the BBRE-themes-inspired addition. Honestly partial (~28%) since most ' +
+      'titles genuinely have no such subject at all — not every story is about addiction or grief.' },
+  { key: 'era', label: 'Era (story setting)', source: 'Derived (keywords)', critical: false,
+    eligible: (t, meta) => !!meta,
+    populated: (t, meta, omdb, llmEntry) => inferEra(meta).length > 0,
+    quality: (t, meta, omdb, llmEntry) => inferEra(meta).length > 0,
+    note: 'When the STORY is set, not when it was made (that\'s Year, above) — via inferEra(). Honestly ' +
+      'partial (~17%) since most titles are contemporary-set with no explicit setting-era keyword at all.' },
 ];
 
 function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags = {}) {
@@ -2338,6 +2364,8 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
       // genres for the rare title with no subgenre match at all.
       genres: (meta ? inferSubgenres(meta, llmTags[h.titleKey]).map(s => SUBGENRE_LABEL[s] || s) : []).join(', ')
         || meta?.genres?.join(', ') || '',
+      subjects: (meta ? inferSubjects(meta, llmTags[h.titleKey]).map(s => SUBJECT_LABEL[s] || s) : []).join(', '),
+      era: meta ? (ERA_LABEL[inferEra(meta)[0]] || '') : '',
       creator: (h.type === 'movie' ? meta?.director : meta?.createdBy?.[0]) || '',
     });
   };
@@ -2409,6 +2437,8 @@ function renderAllTitlesTable(allRows) {
     { label: 'Awards', get: r => r.awardsScore ?? '', numeric: true,
       render: (td, r) => { td.className = 'num'; td.textContent = r.awardsScore ?? ''; if (r.awardsRaw) td.title = r.awardsRaw; } },
     { label: 'Genres', get: r => r.genres, render: (td, r) => { td.className = 'tk-genres'; td.textContent = r.genres || '—'; } },
+    { label: 'Subjects', get: r => r.subjects, render: (td, r) => { td.className = 'tk-genres'; td.textContent = r.subjects || '—'; } },
+    { label: 'Era', get: r => r.era || '', render: (td, r) => { td.textContent = r.era || '—'; } },
     { label: 'Director/Creator', get: r => r.creator || '—' },
   ];
 
@@ -2424,7 +2454,7 @@ function renderAllTitlesTable(allRows) {
       if (type && r.type !== type) return false;
       if (status && r.status !== status) return false;
       if (year && String(r.year) !== year) return false;
-      if (q && !(r.title.toLowerCase().includes(q) || r.genres.toLowerCase().includes(q) || r.creator.toLowerCase().includes(q))) return false;
+      if (q && !(r.title.toLowerCase().includes(q) || r.genres.toLowerCase().includes(q) || r.subjects.toLowerCase().includes(q) || r.creator.toLowerCase().includes(q))) return false;
       return true;
     });
   }

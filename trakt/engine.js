@@ -138,6 +138,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}) {
   const lovedActors = new Map();         // actor name -> count of loved titles they appeared in (topCast)
   const lovedKeywords = new Map();       // free-form TMDB keyword -> count of loved titles carrying it
   const lovedSubgenres = new Map();      // inferSubgenres() tag -> count of loved titles carrying it
+  const lovedSubjects = new Map();       // inferSubjects() tag -> count of loved titles carrying it
   const lovedCountByType = { movie: 0, show: 0 }; // for matchPointScale() below
   // tone -> [ratings], built from EVERY rated title (not just loved) —
   // this is a rating-preference-delta signal (the book side's
@@ -218,6 +219,9 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}) {
       for (const s of inferSubgenres(meta, llmTags[t.titleKey])) {
         lovedSubgenres.set(s, (lovedSubgenres.get(s) || 0) + rw);
       }
+      for (const s of inferSubjects(meta, llmTags[t.titleKey])) {
+        lovedSubjects.set(s, (lovedSubjects.get(s) || 0) + rw);
+      }
     }
   }
 
@@ -295,7 +299,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}) {
   const showAiringRateLoved = lovedCountByType.show ? lovedShowsAiring / lovedCountByType.show : 0;
   const showAiringOverrep = Math.max(0, showAiringRateLoved - showAiringRateAll);
 
-  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, toneProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags };
+  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -480,6 +484,24 @@ function subgenreBonus(subgenres, lovedSubgenres) {
     else if (count >= 10) bonus += 0.5;
     else if (count >= 4)  bonus += 0.25;
     else if (count >= 1)  bonus += 0.1;
+  }
+  return Math.min(1.5, bonus);
+}
+
+// Same tiered-count shape as subgenreBonus() above, thresholds scaled
+// down to this signal's real, much smaller loved-count range (max 10
+// among Bill's real loved titles, vs. subgenres' max of 31 — verified
+// live, not assumed) rather than reusing subgenreBonus()'s literal
+// thresholds unscaled, the same lesson that signal's own tuning history
+// already documents. Cap tuned against scripts/eval.js the same way.
+function subjectBonus(subjects, lovedSubjects) {
+  let bonus = 0;
+  for (const s of (subjects || [])) {
+    const count = lovedSubjects.get(s) || 0;
+    if      (count >= 8) bonus += 0.75;
+    else if (count >= 5) bonus += 0.5;
+    else if (count >= 2) bonus += 0.25;
+    else if (count >= 1) bonus += 0.1;
   }
   return Math.min(1.5, bonus);
 }
@@ -824,6 +846,107 @@ export function inferTones(meta, llmEntry, limit = 4) {
   const fromOverview = inferTonesFromOverview(meta, limit);
   if (fromOverview.length) return fromOverview;
   if (llmEntry?.tones?.length) return llmEntry.tones.slice(0, limit);
+  return [];
+}
+
+// Bill: "add in a field for the era the story was set in" (distinct from
+// year/releaseDate, which is when a title was MADE, not when its story
+// takes place). Same architecture as SUBGENRE_KEYWORDS/TONE_KEYWORDS
+// above — computed live from real TMDB keywords, never persisted, so
+// there's no vocabulary-drift risk to guard against.
+//
+// Deliberately uses bare decade/century markers ("1980s", "19th century")
+// as real signal here, unlike SUBGENRE_KEYWORDS's 'historical' bucket,
+// which explicitly excludes them (the Anchorman false positive documented
+// above — a decade keyword doesn't imply a period-drama MOOD). That
+// exclusion doesn't apply to this field: a bare decade marker is a
+// perfectly reliable signal for the literal, factual question "when is
+// this set," which is all this field claims — verified by spot-checking
+// 25 real matches before shipping (Anchorman correctly lands in
+// mid-late-1900s here, same keyword that was rightly rejected for the
+// mood-implying 'historical' tag).
+const ERA_KEYWORDS = {
+  'ancient-to-1900': ['ancient rome', 'ancient greece', 'ancient world', 'roman empire', 'victorian era', 'victorian england',
+    '19th century', '18th century', '17th century', '16th century', 'gold rush', 'klondike gold rush', 'frontier',
+    'american frontier', '1890s', '1870s', '1850s', 'russian empire'],
+  'early-1900s': ['1900s', '1910s', '1920s', '1930s', '1940s', 'great depression', 'world war i', 'world war ii', 'post world war ii'],
+  'mid-late-1900s': ['1950s', '1960s', '1970s', '1980s', '1990s', 'cold war', 'late 20th century'],
+  'future-setting': ['post-apocalyptic future', 'future', 'near future', 'distant future', 'dark future', '22nd century', '23rd century'],
+};
+
+// A story is set in one period, not several — limit=1 by default (vs.
+// subgenres'/tones' multi-tag defaults), though the underlying scorer is
+// shared. No overview-text or llmTags fallback tier yet (unlike tones) -
+// coverage is honestly partial (17% of the real dataset, verified live)
+// since most titles are contemporary-set with no explicit era keyword at
+// all, which correctly yields no tag rather than a guessed "contemporary"
+// default - the same "don't force a tag" discipline inferSubgenres()
+// already follows for the 0.5% of titles with no subgenre match.
+export function inferEra(meta, limit = 1) {
+  if (!meta) return [];
+  return scoreKeywordTags(meta.keywords, ERA_KEYWORDS).slice(0, limit).map(([tag]) => tag);
+}
+
+// Bill: "improve subject. Look at what we did with BBRE as a guide" —
+// BBRE's canonical `themes` vocabulary (legal, medical, sports, true
+// crime, memoir, etc.) is BMTRE's existing SUBGENRE_KEYWORDS in spirit
+// (genre-adjacent subject/format tags), but BBRE's themes also cover a
+// second, distinct layer this side never had: real human-condition/social
+// subject matter that isn't a genre or format at all - addiction, grief,
+// trauma, immigration, class, etc. SUBJECT_KEYWORDS below is that second
+// layer, deliberately non-overlapping with SUBGENRE_KEYWORDS (checked: no
+// shared keyword between the two maps) rather than a duplicate of it.
+//
+// Every bucket grounded in a real keyword-frequency scan of the live
+// dataset first (same discipline as every SUBGENRE_KEYWORDS/TONE_KEYWORDS
+// addition above), synonyms/variants folded into one bucket rather than
+// left as 1-2-count singletons. One real false positive caught and fixed
+// during verification: bare 'genocide' matched both real historical/
+// social-commentary titles (Killers of the Flower Moon, a documentary on
+// Darfur) AND clearly unrelated fiction (Avengers: Infinity War's
+// Thanos plot, Kung Fu Panda 2's villain backstory) at a 50% real error
+// rate in this dataset - dropped; 'rwandan genocide' (specific, always
+// real) and 'racism'/'slavery'/'holocaust' (the bucket's other members)
+// still cover the legitimate cases without it. Two candidate buckets
+// (illness/disability, feminism/gender) were investigated and dropped for
+// being too thin (~8-11 keyword instances each) to trust as their own
+// category, per the same "don't force a bucket from weak evidence" rule
+// SUBGENRE_KEYWORDS's own history already established.
+const SUBJECT_KEYWORDS = {
+  'addiction-recovery': ['alcoholism', 'addiction', 'drug addiction', 'alcoholic', 'drug abuse', 'alcohol', 'recovering alcoholic',
+    'substance abuse', 'sex addiction', 'drug addict', 'crack addict', 'addiction recovery', 'alcoholics anonymous',
+    'alcoholic father', 'alcoholic mother', 'addict'],
+  'grief-loss': ['grief', 'loss of loved one', 'grieving widower', 'grief & loss', 'grieving', 'grieving sister', 'grieving mother',
+    'grieving man', 'grieving father', 'grieving daughter', 'loss of wife', 'loss of job', 'loss of child', 'suicide',
+    'suicide attempt', 'suicide of mother', 'mass suicide', 'cancer', 'terminal illness', 'terminal cancer', 'illness'],
+  'trauma-abuse': ['post-traumatic stress disorder (ptsd)', 'trauma', 'domestic abuse', 'domestic violence', 'sexual abuse',
+    'child abuse', 'childhood trauma', 'abuse of power', 'abuse', 'abuse of authority', 'war trauma', 'wartime trauma',
+    'traumatized', 'traumatized woman', 'childhood sexual abuse'],
+  'racism-civil-rights': ['racism', 'civil rights', 'discrimination', 'homophobia', 'racist', 'slavery', 'escape from slavery',
+    'holocaust (shoah) survivor', 'holocaust (shoah)', 'rwandan genocide'],
+  'immigration-refugee': ['immigrant', 'refugee', 'immigration', 'immigrant family', 'refugee crisis', 'refugee camp', 'vietnamese refugees'],
+  'infidelity-betrayal': ['infidelity', 'betrayal', 'betrayal cycle'],
+  'journalism-media': ['journalist', 'journalism', 'investigative journalism', 'war journalism', 'television journalist'],
+  'cult-extremism': ['cult', 'terrorism', 'terrorist plot', 'satanic cult', 'terrorist attack', 'cult leader', 'counterterrorism',
+    'plo terrorist group'],
+  'mental-health': ['mental illness', 'mental health', 'depression', 'mental institution', 'mental disorders'],
+  'class-wealth-corporate': ['wealthy family', 'wealth', 'wall street', 'working class', 'poverty', 'wealthy', 'class differences',
+    'class', 'corporate greed', 'corporate power', 'corporate control', 'corporate conspiracy', 'corporate law', 'finance', 'finances'],
+  'lgbtq': ['lgbt'],
+};
+
+// Real coverage as of this build: 27.5% (218 of 793 real titles) — lower
+// than subgenres/tones (both ~99%+) because this layer targets specific
+// human-condition subject matter rather than a near-universal genre/mood
+// axis, and deliberately has no overview-text or LLM fallback tier yet
+// (same honest-partial-coverage stance as inferEra() above). No bucket
+// exceeds 5% of the dataset (addiction-recovery, the largest, is 40 of
+// 793) — nowhere near a concentration-cap concern.
+export function inferSubjects(meta, llmEntry, limit = 3) {
+  if (!meta) return [];
+  const fromKeywords = scoreKeywordTags(meta.keywords, SUBJECT_KEYWORDS).slice(0, limit).map(([tag]) => tag);
+  if (fromKeywords.length) return fromKeywords;
+  if (llmEntry?.subjects?.length) return llmEntry.subjects.slice(0, limit);
   return [];
 }
 
@@ -1202,6 +1325,7 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   score += keywordBonus(meta?.keywords, idx.lovedKeywords);
   const llmEntry = idx.llmTags?.[candidate.titleKey];
   score += subgenreBonus(inferSubgenres(meta, llmEntry), idx.lovedSubgenres);
+  score += subjectBonus(inferSubjects(meta, llmEntry), idx.lovedSubjects);
   score += toneSignal(inferTones(meta, llmEntry), idx.toneProfile, idx.globalMeanRating);
 
   // Forward match: this candidate's own TMDB-similar/recommended list
