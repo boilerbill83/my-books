@@ -4,35 +4,71 @@
       "history-alteration"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "alternate-history",
+      "time-travel"
+    ]
   },
   "movie:300671": {
     "subjects": [
       "military-duty"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "military-drama",
+      "siege-film"
+    ]
   },
   "show:118357": {
     "subjects": [
       "westward-migration"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "frontier-drama",
+      "family-saga",
+      "survival-western"
+    ],
+    "tones": [
+      "epic",
+      "rugged",
+      "melancholic",
+      "emotional"
+    ]
   },
   "show:157744": {
     "subjects": [
       "family-legacy"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "rugged",
+      "epic",
+      "intense",
+      "character-driven"
+    ]
   },
   "show:108545": {
     "subjects": [
       "extraterrestrial-contact"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "first-contact",
+      "science-fiction-mystery",
+      "alien-invasion"
+    ],
+    "tones": [
+      "cerebral",
+      "epic",
+      "ominous",
+      "suspenseful"
+    ]
   },
   "show:4608": {
     "subjects": [
@@ -46,49 +82,88 @@
       "resistance-invasion"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-action",
+      "sword-and-sandal",
+      "war-epic"
+    ]
   },
   "movie:661539": {
     "subjects": [
       "artistic-reinvention"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "music-biography",
+      "historical-drama"
+    ]
   },
   "show:225120": {
     "subjects": [
       "wealth-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "financial-drama",
+      "political-drama",
+      "social-satire"
+    ]
   },
   "show:245312": {
     "subjects": [
       "aging-purpose"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "workplace-comedy",
+      "mystery-comedy",
+      "dramedy"
+    ]
   },
   "movie:447332": {
     "subjects": [
       "family-survival"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "post-apocalyptic",
+      "creature-feature",
+      "survival-horror"
+    ],
+    "tones": [
+      "tense",
+      "suspenseful",
+      "emotional",
+      "atmospheric"
+    ]
   },
   "show:103992": {
     "subjects": [
       "abuse-of-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "psychological-drama",
+      "limited-series"
+    ]
   },
   "show:71737": {
     "subjects": [
       "revenge"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "workplace-comedy",
+      "school-comedy",
+      "sitcom"
+    ]
   },
   "show:125935": {
     "subjects": [
@@ -102,35 +177,67 @@
       "early-adulthood"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "ensemble-comedy",
+      "friendship-comedy",
+      "sitcom"
+    ]
   },
   "show:114461": {
     "subjects": [
       "resisting-authoritarianism"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "space-opera",
+      "action-adventure",
+      "fantasy-adventure"
+    ]
   },
   "movie:964980": {
     "subjects": [
       "business-innovation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "sports-drama",
+      "business-drama",
+      "biography"
+    ]
   },
   "show:157239": {
     "subjects": [
       "human-machine-boundaries"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "science-fiction-horror",
+      "creature-feature",
+      "corporate-dystopia"
+    ],
+    "tones": [
+      "ominous",
+      "visceral",
+      "atmospheric",
+      "suspenseful"
+    ]
   },
   "show:246386": {
     "subjects": [
       "missing-child"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "tense",
+      "suspenseful",
+      "emotional",
+      "twisty"
+    ]
   },
   "show:89624": {
     "subjects": [
@@ -144,49 +251,94 @@
       "public-scandal"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "true-crime",
+      "anthology",
+      "docudrama"
+    ]
   },
   "show:127585": {
     "subjects": [
       "wrongful-conviction"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "neo-noir",
+      "mystery-drama",
+      "romantic-drama"
+    ]
   },
   "show:91746": {
     "subjects": [
       "economic-decline"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "rust-belt-noir",
+      "police-drama",
+      "family-drama"
+    ]
   },
   "movie:190859": {
     "subjects": [
       "combat-trauma"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "military-biography",
+      "combat-drama"
+    ]
   },
   "movie:1072790": {
     "subjects": [
       "romantic-vulnerability"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "romantic-comedy",
+      "enemies-to-lovers"
+    ],
+    "tones": [
+      "witty",
+      "playful",
+      "lighthearted",
+      "warm"
+    ]
   },
   "movie:329865": {
     "subjects": [
       "communication"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "first-contact",
+      "linguistic-science-fiction",
+      "psychological-drama"
+    ],
+    "tones": [
+      "cerebral",
+      "emotional",
+      "atmospheric",
+      "contemplative"
+    ]
   },
   "show:65495": {
     "subjects": [
       "black-creative-ambition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "dramedy",
+      "social-satire",
+      "surreal-comedy"
+    ]
   },
   "movie:299536": {
     "subjects": [
@@ -200,42 +352,78 @@
       "exploration-sacrifice"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "space-drama",
+      "family-drama",
+      "science-fiction-drama"
+    ]
   },
   "movie:339403": {
     "subjects": [
       "escape-from-crime"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "heist-film",
+      "crime-thriller",
+      "car-chase"
+    ],
+    "tones": [
+      "stylish",
+      "energetic",
+      "tense",
+      "romantic"
+    ]
   },
   "show:130853": {
     "subjects": [
       "corruption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "crime-comedy",
+      "detective-fiction",
+      "tropical-noir"
+    ]
   },
   "show:4613": {
     "subjects": [
       "combat-brotherhood"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "military-drama",
+      "historical-miniseries",
+      "ensemble-drama"
+    ]
   },
   "show:41727": {
     "subjects": [
       "identity-reinvention"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "neo-noir",
+      "action-crime",
+      "small-town-crime"
+    ]
   },
   "movie:346698": {
     "subjects": [
       "gender-expectations"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "fantasy-comedy",
+      "social-satire",
+      "adventure-comedy"
+    ]
   },
   "show:46786": {
     "subjects": [
@@ -249,14 +437,28 @@
       "community-complicity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "sports-drama",
+      "small-town-drama",
+      "social-drama"
+    ]
   },
   "show:249522": {
     "subjects": [
       "competition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "reality-competition",
+      "game-show"
+    ],
+    "tones": [
+      "energetic",
+      "suspenseful",
+      "extravagant"
+    ]
   },
   "show:154385": {
     "subjects": [
@@ -270,28 +472,66 @@
       "moral-corruption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "legal-drama",
+      "neo-noir",
+      "tragedy"
+    ],
+    "tones": [
+      "slow-burn",
+      "character-driven",
+      "tense",
+      "tragic"
+    ]
   },
   "show:66859": {
     "subjects": [
       "single-parenthood"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "family-comedy",
+      "dramedy",
+      "slice-of-life"
+    ],
+    "tones": [
+      "warm",
+      "candid",
+      "bittersweet",
+      "character-driven"
+    ]
   },
   "show:39754": {
     "subjects": [
       "celebrity-interviews"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "interview-comedy",
+      "parody",
+      "web-series"
+    ]
   },
   "movie:405774": {
     "subjects": [
       "parental-protection"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "post-apocalyptic",
+      "survival-horror",
+      "psychological-horror"
+    ],
+    "tones": [
+      "tense",
+      "bleak",
+      "suspenseful",
+      "emotional"
+    ]
   },
   "show:155537": {
     "subjects": [
@@ -305,21 +545,42 @@
       "combat-survival"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "combat-film",
+      "military-drama",
+      "docudrama"
+    ]
   },
   "movie:261023": {
     "subjects": [
       "organized-crime-collusion"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "gangster",
+      "true-crime",
+      "biography"
+    ],
+    "tones": [
+      "dark",
+      "brutal",
+      "tense",
+      "brooding"
+    ]
   },
   "show:42009": {
     "subjects": [
       "technology-and-society"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "anthology",
+      "dystopian-science-fiction",
+      "techno-thriller"
+    ]
   },
   "show:249039": {
     "subjects": [
@@ -333,28 +594,49 @@
       "school-shooting-investigation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "police-procedural",
+      "mystery-thriller",
+      "serial-drama"
+    ]
   },
   "show:61986": {
     "subjects": [
       "family-secrets"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "slow-burn",
+      "brooding",
+      "tense",
+      "atmospheric"
+    ]
   },
   "show:1621": {
     "subjects": [
       "political-corruption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "gangster",
+      "period-drama",
+      "political-drama"
+    ]
   },
   "show:42445": {
     "subjects": [
       "political-leadership"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "political-drama",
+      "workplace-drama",
+      "ensemble-drama"
+    ]
   },
   "show:60585": {
     "subjects": [
@@ -368,21 +650,48 @@
       "political-dysfunction"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "political-satire",
+      "science-fiction-comedy",
+      "horror-comedy"
+    ]
   },
   "movie:296098": {
     "subjects": [
       "cold-war-negotiation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-drama",
+      "legal-drama",
+      "spy-drama"
+    ],
+    "tones": [
+      "cerebral",
+      "tense",
+      "restrained",
+      "principled"
+    ]
   },
   "show:60839": {
     "subjects": [
       "female-friendship"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "buddy-comedy",
+      "city-comedy",
+      "sitcom"
+    ],
+    "tones": [
+      "irreverent",
+      "energetic",
+      "absurd",
+      "warm"
+    ]
   },
   "show:70964": {
     "subjects": [
@@ -403,119 +712,229 @@
       "intersecting-agendas"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "action-comedy",
+      "crime-thriller",
+      "ensemble-action"
+    ]
   },
   "show:277439": {
     "subjects": [
       "revenge"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "menacing",
+      "tense",
+      "dark",
+      "suspenseful"
+    ]
   },
   "show:71116": {
     "subjects": [
       "intergenerational-trauma"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "psychological-horror",
+      "supernatural-mystery",
+      "anthology"
+    ],
+    "tones": [
+      "atmospheric",
+      "ominous",
+      "slow-burn",
+      "unsettling"
+    ]
   },
   "show:713": {
     "subjects": [
       "race-and-popular-culture"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "sketch-comedy",
+      "social-satire",
+      "parody"
+    ]
   },
   "show:87108": {
     "subjects": [
       "institutional-deception"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-drama",
+      "disaster-drama",
+      "docudrama"
+    ],
+    "tones": [
+      "bleak",
+      "tense",
+      "harrowing",
+      "atmospheric"
+    ]
   },
   "movie:921": {
     "subjects": [
       "economic-survival"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "boxing-drama",
+      "biography",
+      "historical-drama"
+    ]
   },
   "show:129495": {
     "subjects": [
       "online-identity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "mystery-thriller",
+      "cyber-thriller",
+      "family-drama"
+    ]
   },
   "show:59717": {
     "subjects": [
       "comedic-craft"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "talk-show",
+      "interview-series",
+      "comedy-documentary"
+    ]
   },
   "movie:974576": {
     "subjects": [
       "institutional-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "political-thriller",
+      "religious-drama",
+      "chamber-drama"
+    ],
+    "tones": [
+      "cerebral",
+      "tense",
+      "restrained",
+      "atmospheric"
+    ]
   },
   "movie:321741": {
     "subjects": [
       "sports-health-accountability"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "medical-drama",
+      "sports-drama",
+      "biography"
+    ]
   },
   "show:99747": {
     "subjects": [
       "emotional-infidelity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "relationship-drama",
+      "literary-adaptation",
+      "romantic-drama"
+    ],
+    "tones": [
+      "intimate",
+      "reflective",
+      "melancholic",
+      "character-driven"
+    ]
   },
   "show:68898": {
     "subjects": [
       "creative-persistence"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "show-business-comedy",
+      "autobiographical-comedy",
+      "dramedy"
+    ]
   },
   "movie:480530": {
     "subjects": [
       "legacy-and-revenge"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "boxing-drama",
+      "legacy-sequel",
+      "family-drama"
+    ]
   },
   "movie:677179": {
     "subjects": [
       "guilt-and-reconciliation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "boxing-drama",
+      "rivalry-drama",
+      "character-drama"
+    ]
   },
   "show:98201": {
     "subjects": [
       "truth-and-perception"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "teen-thriller",
+      "mystery-drama",
+      "anthology"
+    ]
   },
   "show:4546": {
     "subjects": [
       "social-norms"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "situational-comedy",
+      "cringe-comedy",
+      "satire"
+    ]
   },
   "show:4920": {
     "subjects": [
       "legal-power-struggles"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "legal-thriller",
+      "conspiracy-drama",
+      "serialized-mystery"
+    ]
   },
   "show:202555": {
     "subjects": [
@@ -529,56 +948,112 @@
       "fate-and-free-will"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "time-travel",
+      "mystery-drama",
+      "family-saga"
+    ],
+    "tones": [
+      "cerebral",
+      "ominous",
+      "atmospheric",
+      "intricate"
+    ]
   },
   "show:196322": {
     "subjects": [
       "alternate-lives"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "cerebral",
+      "suspenseful",
+      "emotional",
+      "twisty"
+    ]
   },
   "movie:293660": {
     "subjects": [
       "identity-and-revenge"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "irreverent",
+      "violent",
+      "witty",
+      "fast-paced"
+    ]
   },
   "movie:533535": {
     "subjects": [
       "redemption-through-partnership"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "irreverent",
+      "energetic",
+      "violent",
+      "heartfelt"
+    ]
   },
   "movie:383498": {
     "subjects": [
       "found-family"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "irreverent",
+      "violent",
+      "heartfelt",
+      "energetic"
+    ]
   },
   "show:1406": {
     "subjects": [
       "community-formation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "revisionist-western",
+      "historical-drama",
+      "ensemble-drama"
+    ]
   },
   "show:87784": {
     "subjects": [
       "parental-loyalty-and-doubt"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "legal-drama",
+      "family-thriller",
+      "psychological-drama"
+    ],
+    "tones": [
+      "tense",
+      "ambiguous",
+      "emotional",
+      "slow-burn"
+    ]
   },
   "movie:449443": {
     "subjects": [
       "law-and-criminality"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "heist-film",
+      "police-thriller",
+      "action-crime"
+    ]
   },
   "show:69866": {
     "subjects": [
@@ -592,7 +1067,18 @@
       "determinism-and-free-will"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "techno-thriller",
+      "philosophical-drama",
+      "mystery"
+    ],
+    "tones": [
+      "cerebral",
+      "atmospheric",
+      "ominous",
+      "slow-burn"
+    ]
   },
   "show:1405": {
     "subjects": [
@@ -606,147 +1092,296 @@
       "inherited-violence"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "serial-killer-drama",
+      "family-drama",
+      "mystery"
+    ]
   },
   "show:259909": {
     "subjects": [
       "redemption-and-consequence"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "serial-killer-drama",
+      "family-drama",
+      "mystery"
+    ]
   },
   "show:83251": {
     "subjects": [
       "coercive-control"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "true-crime",
+      "anthology",
+      "domestic-thriller"
+    ],
+    "tones": [
+      "dark",
+      "tense",
+      "unsettling",
+      "suspenseful"
+    ]
   },
   "show:63593": {
     "subjects": [
       "documentary-form-parody"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "mockumentary",
+      "anthology",
+      "parody"
+    ]
   },
   "show:209876": {
     "subjects": [
       "criminal-consequences"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "drug-crime",
+      "heist-thriller",
+      "character-drama"
+    ]
   },
   "show:93749": {
     "subjects": [
       "medical-abuse"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "true-crime",
+      "medical-thriller",
+      "anthology"
+    ],
+    "tones": [
+      "disturbing",
+      "tense",
+      "procedural",
+      "serious"
+    ]
   },
   "movie:64690": {
     "subjects": [
       "escape-from-criminality"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "neo-noir",
+      "getaway-driver",
+      "romantic-thriller"
+    ],
+    "tones": [
+      "stylish",
+      "brooding",
+      "tense",
+      "atmospheric"
+    ]
   },
   "movie:8467": {
     "subjects": [
       "friendship"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "road-comedy",
+      "buddy-comedy",
+      "slapstick"
+    ],
+    "tones": [
+      "absurd",
+      "lighthearted",
+      "goofy",
+      "energetic"
+    ]
   },
   "movie:438631": {
     "subjects": [
       "power-and-destiny"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "space-opera",
+      "political-epic",
+      "coming-of-age"
+    ],
+    "tones": [
+      "epic",
+      "atmospheric",
+      "cerebral",
+      "ominous"
+    ]
   },
   "show:299167": {
     "subjects": [
       "rebuilding-family-legacy"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "gritty",
+      "intense",
+      "character-driven",
+      "rugged"
+    ]
   },
   "show:226285": {
     "subjects": [
       "unconventional-detection"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "howcatchem",
+      "police-procedural",
+      "comedy-drama"
+    ]
   },
   "movie:614934": {
     "subjects": [
       "fame-and-exploitation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "music-biography",
+      "historical-drama",
+      "show-business-drama"
+    ]
   },
   "movie:1583500": {
     "subjects": [
       "athletic-legacy"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "sports-documentary",
+      "biography"
+    ]
   },
   "show:82596": {
     "subjects": [
       "career-and-romance-abroad"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "romantic-comedy",
+      "workplace-comedy",
+      "fish-out-of-water"
+    ],
+    "tones": [
+      "lighthearted",
+      "colorful",
+      "playful",
+      "aspirational"
+    ]
   },
   "show:86848": {
     "subjects": [
       "faith-versus-rationality"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "supernatural-horror",
+      "procedural",
+      "psychological-mystery"
+    ]
   },
   "movie:264660": {
     "subjects": [
       "artificial-consciousness-and-control"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "cerebral",
+      "tense",
+      "minimalist",
+      "unsettling"
+    ]
   },
   "movie:911430": {
     "subjects": [
       "career-redemption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "auto-racing",
+      "comeback-drama",
+      "team-drama"
+    ]
   },
   "show:207841": {
     "subjects": [
       "counterfeit-empire"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "crime-comedy",
+      "teen-comedy",
+      "friendship-drama"
+    ]
   },
   "show:34967": {
     "subjects": [
       "resistance-and-survival"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "alien-invasion",
+      "post-apocalyptic",
+      "resistance-drama"
+    ]
   },
   "show:211624": {
     "subjects": [
       "climate-displacement"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "emotional",
+      "somber",
+      "intimate",
+      "realistic"
+    ]
   },
   "show:60622": {
     "subjects": [
       "greed-and-moral-collapse"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "anthology",
+      "black-comedy",
+      "neo-noir"
+    ],
+    "tones": [
+      "dark",
+      "quirky",
+      "tense",
+      "atmospheric"
+    ]
   },
   "show:87049": {
     "subjects": [
@@ -760,182 +1395,373 @@
       "disaster-medical-ethics"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "medical-drama",
+      "disaster-drama",
+      "docudrama"
+    ],
+    "tones": [
+      "harrowing",
+      "tense",
+      "serious",
+      "claustrophobic"
+    ]
   },
   "movie:507089": {
     "subjects": [
       "surviving-haunted-animatronics"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "supernatural-horror",
+      "survival-horror",
+      "video-game-adaptation"
+    ]
   },
   "show:87917": {
     "subjects": [
       "space-race-ambition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "alternate-history",
+      "space-drama",
+      "political-drama"
+    ]
   },
   "movie:359724": {
     "subjects": [
       "innovation-versus-bureaucracy"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "auto-racing",
+      "biography",
+      "engineering-drama"
+    ]
   },
   "show:307534": {
     "subjects": [
       "family-adjustment"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "family-comedy",
+      "fish-out-of-water",
+      "sitcom"
+    ],
+    "tones": [
+      "irreverent",
+      "warm",
+      "awkward",
+      "lighthearted"
+    ]
   },
   "show:4278": {
     "subjects": [
       "community-and-football"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "sports-drama",
+      "small-town-drama",
+      "family-drama"
+    ]
   },
   "show:132016": {
     "subjects": [
       "interconnected-consequences"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "crime-thriller",
+      "ensemble-drama",
+      "kidnapping-mystery"
+    ],
+    "tones": [
+      "tense",
+      "intricate",
+      "suspenseful",
+      "character-driven"
+    ]
   },
   "show:218137": {
     "subjects": [
       "professional-golf-competition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "sports-documentary",
+      "docuseries"
+    ]
   },
   "movie:445571": {
     "subjects": [
       "competition-becomes-danger"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "action-comedy",
+      "mystery-comedy",
+      "ensemble-comedy"
+    ],
+    "tones": [
+      "witty",
+      "energetic",
+      "suspenseful",
+      "playful"
+    ]
   },
   "show:1399": {
     "subjects": [
       "struggle-for-political-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "epic-fantasy",
+      "political-drama",
+      "war-fantasy"
+    ]
   },
   "show:107407": {
     "subjects": [
       "watergate-whistleblowing"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "political-drama",
+      "docudrama",
+      "limited-series"
+    ]
   },
   "show:205715": {
     "subjects": [
       "institutional-exploitation-of-youth"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "violent",
+      "satirical",
+      "irreverent",
+      "tense"
+    ]
   },
   "show:42282": {
     "subjects": [
       "young-adult-self-discovery"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "dramedy",
+      "friendship-comedy",
+      "city-comedy"
+    ],
+    "tones": [
+      "awkward",
+      "candid",
+      "self-deprecating",
+      "character-driven"
+    ]
   },
   "movie:558449": {
     "subjects": [
       "restoring-rome"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "sword-and-sandal",
+      "historical-epic",
+      "revenge-drama"
+    ]
   },
   "movie:661374": {
     "subjects": [
       "wealth-and-deception"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "whodunit",
+      "comedy-mystery",
+      "ensemble-mystery"
+    ]
   },
   "show:70573": {
     "subjects": [
       "women-and-performance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "workplace-comedy",
+      "sports-comedy",
+      "ensemble-drama"
+    ],
+    "tones": [
+      "energetic",
+      "heartfelt",
+      "colorful",
+      "character-driven"
+    ]
   },
   "show:79086": {
     "subjects": [
       "organized-crime-and-civil-rights"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "gangster",
+      "historical-drama",
+      "political-drama"
+    ]
   },
   "show:73467": {
     "subjects": [
       "survival-in-the-frontier"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "revisionist-western",
+      "revenge-western",
+      "ensemble-drama"
+    ],
+    "tones": [
+      "gritty",
+      "atmospheric",
+      "intense",
+      "somber"
+    ]
   },
   "show:67384": {
     "subjects": [
       "legal-redemption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "legal-drama",
+      "conspiracy-thriller",
+      "neo-noir"
+    ],
+    "tones": [
+      "gritty",
+      "cynical",
+      "suspenseful",
+      "character-driven"
+    ]
   },
   "show:91405": {
     "subjects": [
       "culinary-cultural-exploration"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "adventurous",
+      "energetic",
+      "curious",
+      "immersive"
+    ],
+    "subgenres": [
+      "travel-documentary",
+      "food-documentary",
+      "adventure-docuseries"
+    ]
   },
   "movie:980489": {
     "subjects": [
       "gamer-to-professional-racer"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "auto-racing",
+      "biography",
+      "underdog-drama"
+    ]
   },
   "show:137893": {
     "subjects": [
       "rise-and-fall-of-a-drug-queenpin"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "drug-crime",
+      "biography",
+      "gangster"
+    ]
   },
   "show:83659": {
     "subjects": [
       "curiosity-and-consequence"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "anthology-horror",
+      "gothic-horror",
+      "cosmic-horror"
+    ],
+    "tones": [
+      "macabre",
+      "atmospheric",
+      "unsettling",
+      "visually-rich"
+    ]
   },
   "show:124101": {
     "subjects": [
       "creative-partnership"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "witty",
+      "sharp",
+      "heartfelt",
+      "character-driven"
+    ]
   },
   "show:59659": {
     "subjects": [
       "technological-innovation-and-connection"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "technology-drama",
+      "workplace-drama",
+      "period-drama"
+    ]
   },
   "show:92553": {
     "subjects": [
       "family-rivalry-and-wrestling"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "sports-drama",
+      "family-drama",
+      "workplace-drama"
+    ]
   },
   "movie:338766": {
     "subjects": [
@@ -949,28 +1775,60 @@
       "romantic-self-examination"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "romantic-dramedy",
+      "music-comedy",
+      "character-study"
+    ]
   },
   "show:226637": {
     "subjects": [
       "unconventional-crime-solving"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "police-procedural",
+      "comedy-drama",
+      "whodunit"
+    ],
+    "tones": [
+      "witty",
+      "clever",
+      "upbeat",
+      "character-driven"
+    ]
   },
   "show:1425": {
     "subjects": [
       "political-ambition-and-manipulation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "political-thriller",
+      "conspiracy-drama",
+      "character-study"
+    ]
   },
   "show:110971": {
     "subjects": [
       "everyday-human-behavior"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "comedy-documentary",
+      "observational-docuseries",
+      "essay-film"
+    ],
+    "tones": [
+      "quirky",
+      "reflective",
+      "deadpan",
+      "warm"
+    ]
   },
   "show:271053": {
     "subjects": [
@@ -984,35 +1842,78 @@
       "consent-and-trauma-recovery"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "psychological-drama",
+      "dark-comedy",
+      "limited-series"
+    ],
+    "tones": [
+      "intimate",
+      "provocative",
+      "unsettling",
+      "candid"
+    ]
   },
   "show:88728": {
     "subjects": [
       "social-discomfort"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "sketch-comedy",
+      "absurdist-comedy",
+      "cringe-comedy"
+    ],
+    "tones": [
+      "absurd",
+      "awkward",
+      "irreverent",
+      "unpredictable"
+    ]
   },
   "show:278178": {
     "subjects": [
       "wrongful-conviction-and-parental-search"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "crime-drama",
+      "mystery-thriller",
+      "conspiracy-thriller"
+    ]
   },
   "show:127235": {
     "subjects": [
       "survival-during-alien-invasion"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "alien-invasion",
+      "ensemble-drama",
+      "apocalyptic-drama"
+    ],
+    "tones": [
+      "slow-burn",
+      "atmospheric",
+      "tense",
+      "somber"
+    ]
   },
   "movie:11652": {
     "subjects": [
       "athletic-perseverance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "football-drama",
+      "biography",
+      "underdog-drama"
+    ]
   },
   "show:114471": {
     "subjects": [
@@ -1033,42 +1934,91 @@
       "cyclical-evil"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "supernatural-horror",
+      "period-horror",
+      "prequel"
+    ],
+    "tones": [
+      "ominous",
+      "atmospheric",
+      "disturbing",
+      "suspenseful"
+    ]
   },
   "show:2710": {
     "subjects": [
       "self-interest-and-dysfunction"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "irreverent",
+      "cynical",
+      "absurd",
+      "chaotic"
+    ]
   },
   "movie:324552": {
     "subjects": [
       "criminal-obligation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "neo-noir",
+      "assassin-thriller",
+      "revenge-action"
+    ]
   },
   "movie:458156": {
     "subjects": [
       "survival-against-the-underworld"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "neo-noir",
+      "assassin-thriller",
+      "fugitive-thriller"
+    ],
+    "tones": [
+      "kinetic",
+      "stylish",
+      "relentless",
+      "violent"
+    ]
   },
   "movie:603692": {
     "subjects": [
       "freedom-from-criminal-rule"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "neo-noir",
+      "assassin-thriller",
+      "martial-arts-action"
+    ],
+    "tones": [
+      "epic",
+      "kinetic",
+      "stylish",
+      "relentless"
+    ]
   },
   "movie:274479": {
     "subjects": [
       "entrepreneurial-resilience"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "business-drama",
+      "family-drama",
+      "inspirational-drama"
+    ]
   },
   "show:1436": {
     "subjects": [
@@ -1082,28 +2032,51 @@
       "lawman-versus-sociopath"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "neo-western",
+      "police-thriller",
+      "limited-series"
+    ]
   },
   "show:99652": {
     "subjects": [
       "marital-oppression-and-agency"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "dark",
+      "inventive",
+      "unsettling",
+      "satirical"
+    ]
   },
   "movie:23483": {
     "subjects": [
       "ordinary-vigilantism"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "irreverent",
+      "violent",
+      "energetic",
+      "satirical"
+    ]
   },
   "movie:59859": {
     "subjects": [
       "vigilante-consequences"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "violent",
+      "irreverent",
+      "energetic",
+      "dark"
+    ]
   },
   "movie:614917": {
     "subjects": [
@@ -1117,28 +2090,61 @@
       "humanity-versus-unknown-nature"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "monster-adventure",
+      "creature-feature",
+      "expedition-film"
+    ],
+    "tones": [
+      "adventurous",
+      "spectacular",
+      "tense",
+      "pulpy"
+    ]
   },
   "movie:313369": {
     "subjects": [
       "love-versus-ambition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "musical-romance",
+      "show-business-drama",
+      "bittersweet-romance"
+    ],
+    "tones": [
+      "romantic",
+      "vibrant",
+      "bittersweet",
+      "nostalgic"
+    ]
   },
   "show:157741": {
     "subjects": [
       "oil-boom-power-and-risk"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "gritty",
+      "sharp",
+      "tense",
+      "character-driven"
+    ]
   },
   "show:262280": {
     "subjects": [
       "undercover-identity-and-drug-smuggling"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "undercover-drama",
+      "espionage-drama",
+      "period-drama"
+    ]
   },
   "movie:718032": {
     "subjects": [
@@ -1152,21 +2158,49 @@
       "counterterrorism-and-personal-sacrifice"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "spy-thriller",
+      "military-drama",
+      "political-thriller"
+    ],
+    "tones": [
+      "tense",
+      "intense",
+      "suspenseful",
+      "character-driven"
+    ]
   },
   "show:95839": {
     "subjects": [
       "grief-and-hidden-marital-trauma"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "psychological-horror",
+      "supernatural-mystery",
+      "gothic-romance"
+    ],
+    "tones": [
+      "atmospheric",
+      "melancholic",
+      "unsettling",
+      "intimate"
+    ]
   },
   "show:90257": {
     "subjects": [
       "motherhood-class-and-race"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "tense",
+      "emotional",
+      "polished",
+      "character-driven"
+    ]
   },
   "show:84958": {
     "subjects": [
@@ -1180,35 +2214,78 @@
       "sisterhood-and-addiction"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "police-procedural",
+      "family-drama",
+      "mystery-thriller"
+    ]
   },
   "show:4607": {
     "subjects": [
       "survival-and-human-connection"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "survival-drama",
+      "science-fiction-mystery",
+      "ensemble-drama"
+    ],
+    "tones": [
+      "mysterious",
+      "emotional",
+      "adventurous",
+      "intricate"
+    ]
   },
   "show:124800": {
     "subjects": [
       "suburban-infidelity-and-murder"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "true-crime",
+      "psychological-drama",
+      "courtroom-drama"
+    ]
   },
   "show:99353": {
     "subjects": [
       "emotional-connection-without-appearance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "reality-romance",
+      "social-experiment",
+      "dating-show"
+    ],
+    "tones": [
+      "emotional",
+      "dramatic",
+      "glossy",
+      "suspenseful"
+    ]
   },
   "show:102316": {
     "subjects": [
       "romantic-development-across-relationships"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "anthology-romance",
+      "romantic-comedy",
+      "character-study"
+    ],
+    "tones": [
+      "warm",
+      "bittersweet",
+      "reflective",
+      "intimate"
+    ]
   },
   "show:210239": {
     "subjects": [
@@ -1222,7 +2299,18 @@
       "identity-and-social-change"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "workplace-drama",
+      "period-drama",
+      "character-study"
+    ],
+    "tones": [
+      "sophisticated",
+      "reflective",
+      "character-driven",
+      "melancholic"
+    ]
   },
   "show:90970": {
     "subjects": [
@@ -1236,21 +2324,42 @@
       "lincoln-assassination-pursuit"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-thriller",
+      "manhunt-drama",
+      "political-drama"
+    ]
   },
   "show:79696": {
     "subjects": [
       "fate-and-second-chances"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "supernatural-mystery",
+      "family-drama",
+      "conspiracy-drama"
+    ]
   },
   "movie:1317288": {
     "subjects": [
       "ambition-and-table-tennis"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "sports-drama",
+      "period-drama",
+      "character-study"
+    ],
+    "tones": [
+      "energetic",
+      "ambitious",
+      "character-driven",
+      "stylish"
+    ]
   },
   "show:61889": {
     "subjects": [
@@ -1264,35 +2373,61 @@
       "trauma-and-agency"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "superhero-noir",
+      "detective-drama",
+      "psychological-thriller"
+    ]
   },
   "show:46518": {
     "subjects": [
       "aerial-combat-brotherhood"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "military-drama",
+      "historical-miniseries",
+      "aviation-drama"
+    ]
   },
   "show:76231": {
     "subjects": [
       "brotherhood-and-outlaw-identity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "biker-drama",
+      "neo-western",
+      "family-drama"
+    ]
   },
   "show:97951": {
     "subjects": [
       "incarceration-and-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "prison-drama",
+      "political-thriller",
+      "neo-noir"
+    ]
   },
   "show:67744": {
     "subjects": [
       "understanding-serial-killers"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "cerebral",
+      "unsettling",
+      "slow-burn",
+      "atmospheric"
+    ]
   },
   "show:118303": {
     "subjects": [
@@ -1306,252 +2441,529 @@
       "teamwork-and-national-competition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "hockey-drama",
+      "biography",
+      "underdog-drama"
+    ]
   },
   "show:247718": {
     "subjects": [
       "organized-crime-family-war"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "gangster",
+      "family-drama",
+      "crime-thriller"
+    ]
   },
   "movie:396371": {
     "subjects": [
       "ambition-and-illegal-gambling"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "crime-drama",
+      "legal-drama",
+      "gambling-drama"
+    ]
   },
   "show:71446": {
     "subjects": [
       "resistance-and-loyalty"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "heist-thriller",
+      "ensemble-drama",
+      "hostage-drama"
+    ]
   },
   "movie:60308": {
     "subjects": [
       "data-driven-innovation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "baseball-drama",
+      "business-drama",
+      "biography"
+    ]
   },
   "show:70485": {
     "subjects": [
       "detective-versus-killer"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "dark",
+      "tense",
+      "suspenseful",
+      "character-driven"
+    ]
   },
   "show:197548": {
     "subjects": [
       "faith-versus-artificial-intelligence"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "science-fiction-comedy",
+      "adventure",
+      "religious-satire"
+    ]
   },
   "show:76178": {
     "subjects": [
       "public-figure-conversations"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "interview-series",
+      "talk-show"
+    ],
+    "tones": [
+      "reflective",
+      "conversational",
+      "warm",
+      "thoughtful"
+    ]
   },
   "show:63351": {
     "subjects": [
       "drug-trafficking-and-state-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "drug-crime",
+      "historical-drama",
+      "biographical-drama"
+    ]
   },
   "show:80968": {
     "subjects": [
       "cartel-formation-and-corruption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "drug-crime",
+      "historical-drama",
+      "political-drama"
+    ],
+    "tones": [
+      "gritty",
+      "tense",
+      "violent",
+      "procedural"
+    ]
   },
   "show:58957": {
     "subjects": [
       "business-advice-as-social-experiment"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "reality-comedy",
+      "mockumentary",
+      "cringe-comedy"
+    ],
+    "tones": [
+      "deadpan",
+      "awkward",
+      "absurd",
+      "inventive"
+    ]
   },
   "show:1420": {
     "subjects": [
       "friendship-and-adult-relationships"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "sitcom",
+      "ensemble-comedy",
+      "romantic-comedy"
+    ]
   },
   "movie:6977": {
     "subjects": [
       "violence-and-moral-order"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "bleak",
+      "tense",
+      "atmospheric",
+      "restrained"
+    ]
   },
   "movie:615457": {
     "subjects": [
       "suppressed-violent-identity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "revenge-action",
+      "crime-thriller",
+      "dark-comedy"
+    ],
+    "tones": [
+      "violent",
+      "kinetic",
+      "darkly-comic",
+      "stylish"
+    ]
   },
   "show:250923": {
     "subjects": [
       "interfaith-romance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "romantic-comedy",
+      "relationship-comedy"
+    ],
+    "tones": [
+      "witty",
+      "warm",
+      "heartfelt",
+      "playful"
+    ]
   },
   "movie:581734": {
     "subjects": [
       "economic-displacement-and-community"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "road-movie",
+      "social-realism",
+      "character-study"
+    ],
+    "tones": [
+      "reflective",
+      "melancholic",
+      "intimate",
+      "naturalistic"
+    ]
   },
   "show:89905": {
     "subjects": [
       "intimacy-and-class"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "intimate",
+      "emotional",
+      "melancholic",
+      "character-driven"
+    ]
   },
   "movie:1214931": {
     "subjects": [
       "justice-after-genocide"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-drama",
+      "courtroom-drama",
+      "psychological-drama"
+    ],
+    "tones": [
+      "serious",
+      "tense",
+      "cerebral",
+      "somber"
+    ]
   },
   "movie:1339713": {
     "subjects": [
       "romantic-fixation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "romantic-drama",
+      "psychological-drama"
+    ],
+    "tones": [
+      "intense",
+      "intimate",
+      "obsessive",
+      "character-driven"
+    ]
   },
   "movie:1054867": {
     "subjects": [
       "revolutionary-past-and-family"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "political-action",
+      "black-comedy",
+      "chase-film"
+    ],
+    "tones": [
+      "chaotic",
+      "satirical",
+      "intense",
+      "energetic"
+    ]
   },
   "show:240667": {
     "subjects": [
       "love-across-time"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "romantic-drama",
+      "literary-adaptation",
+      "bittersweet-romance"
+    ],
+    "tones": [
+      "intimate",
+      "bittersweet",
+      "emotional",
+      "nostalgic"
+    ]
   },
   "movie:872585": {
     "subjects": [
       "scientific-responsibility"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-drama",
+      "science-drama",
+      "political-drama"
+    ]
   },
   "show:109939": {
     "subjects": [
       "identity-and-found-family"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "romantic-comedy",
+      "pirate-adventure",
+      "workplace-comedy"
+    ]
   },
   "show:113985": {
     "subjects": [
       "land-family-and-the-unknown"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "neo-western",
+      "mystery-drama",
+      "time-travel"
+    ]
   },
   "show:69740": {
     "subjects": [
       "family-complicity-in-crime"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "drug-crime",
+      "family-drama",
+      "neo-noir"
+    ],
+    "tones": [
+      "dark",
+      "tense",
+      "atmospheric",
+      "character-driven"
+    ]
   },
   "show:158083": {
     "subjects": [
       "opioid-epidemic"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "medical-drama",
+      "corporate-drama",
+      "docudrama"
+    ]
   },
   "show:114925": {
     "subjects": [
       "privacy-and-celebrity-exploitation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "biographical-drama",
+      "media-satire",
+      "relationship-drama"
+    ]
   },
   "show:245927": {
     "subjects": [
       "political-conspiracy-and-survival"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "political-thriller",
+      "mystery-drama",
+      "dystopian"
+    ],
+    "tones": [
+      "tense",
+      "twisty",
+      "suspenseful",
+      "character-driven"
+    ]
   },
   "show:8592": {
     "subjects": [
       "public-service-and-community"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "optimistic",
+      "witty",
+      "warm",
+      "heartfelt"
+    ]
   },
   "movie:274870": {
     "subjects": [
       "isolation-and-consent"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "space-romance",
+      "survival-drama",
+      "adventure"
+    ],
+    "tones": [
+      "romantic",
+      "atmospheric",
+      "emotional",
+      "suspenseful"
+    ]
   },
   "show:60574": {
     "subjects": [
       "criminal-ambition-and-family"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "gangster",
+      "historical-drama",
+      "family-saga"
+    ]
   },
   "show:85853": {
     "subjects": [
       "justice-and-institutional-corruption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "legal-drama",
+      "detective-noir",
+      "period-drama"
+    ]
   },
   "movie:114150": {
     "subjects": [
       "belonging-through-performance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "musical-comedy",
+      "college-comedy",
+      "competition-film"
+    ],
+    "tones": [
+      "energetic",
+      "witty",
+      "uplifting",
+      "playful"
+    ]
   },
   "movie:254470": {
     "subjects": [
       "team-redemption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "musical-comedy",
+      "competition-film",
+      "ensemble-comedy"
+    ],
+    "tones": [
+      "energetic",
+      "uplifting",
+      "playful",
+      "heartfelt"
+    ]
   },
   "movie:353616": {
     "subjects": [
       "friendship-after-college"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "musical-comedy",
+      "road-comedy",
+      "ensemble-comedy"
+    ],
+    "tones": [
+      "energetic",
+      "nostalgic",
+      "playful",
+      "heartfelt"
+    ]
   },
   "show:112211": {
     "subjects": [
       "adult-friendship"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "friendship-comedy",
+      "relationship-comedy",
+      "sitcom"
+    ]
   },
   "show:225171": {
     "subjects": [
@@ -1565,56 +2977,104 @@
       "truth-detection-and-justice"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "howcatchem",
+      "road-mystery",
+      "comedy-drama"
+    ],
+    "tones": [
+      "witty",
+      "clever",
+      "episodic",
+      "lighthearted"
+    ]
   },
   "show:137252": {
     "subjects": [
       "family-guidance-and-growing-up"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "warm",
+      "heartfelt",
+      "witty",
+      "optimistic"
+    ]
   },
   "movie:582014": {
     "subjects": [
       "accountability-for-abuse"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "revenge-thriller",
+      "black-comedy",
+      "social-thriller"
+    ]
   },
   "show:156819": {
     "subjects": [
       "disinformation-and-surveillance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "conspiracy-thriller",
+      "espionage-drama",
+      "techno-thriller"
+    ]
   },
   "show:240993": {
     "subjects": [
       "land-legacy-and-romance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "romantic",
+      "emotional",
+      "scenic",
+      "character-driven"
+    ]
   },
   "show:1423": {
     "subjects": [
       "family-loyalty-and-violence"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "fixer-drama",
+      "family-drama",
+      "neo-noir"
+    ]
   },
   "show:108978": {
     "subjects": [
       "vigilante-justice"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "crime-thriller",
+      "detective-action",
+      "conspiracy-thriller"
+    ]
   },
   "movie:333339": {
     "subjects": [
       "virtual-reality-and-corporate-control"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "virtual-reality",
+      "adventure",
+      "dystopian"
+    ]
   },
   "show:95215": {
     "subjects": [
@@ -1628,14 +3088,31 @@
       "identity-theft-and-ambition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "stylish",
+      "ominous",
+      "slow-burn",
+      "meticulous"
+    ]
   },
   "movie:264644": {
     "subjects": [
       "captivity-and-recovery"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "survival-drama",
+      "family-drama",
+      "psychological-drama"
+    ],
+    "tones": [
+      "intense",
+      "emotional",
+      "intimate",
+      "hopeful"
+    ]
   },
   "show:244623": {
     "subjects": [
@@ -1649,98 +3126,200 @@
       "trauma-and-self-reckoning"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "cerebral",
+      "darkly-comic",
+      "surreal",
+      "introspective"
+    ]
   },
   "show:72792": {
     "subjects": [
       "missing-child-and-family-secrets"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "mystery-thriller",
+      "suburban-noir",
+      "family-drama"
+    ]
   },
   "show:93870": {
     "subjects": [
       "special-forces-formation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "military-drama",
+      "historical-drama",
+      "ensemble-drama"
+    ],
+    "tones": [
+      "energetic",
+      "irreverent",
+      "intense",
+      "gritty"
+    ]
   },
   "show:240740": {
     "subjects": [
       "forensic-justice-and-family-trauma"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "forensic-procedural",
+      "serial-killer-thriller",
+      "family-drama"
+    ]
   },
   "movie:1273221": {
     "subjects": [
       "horror-film-parody"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "parody",
+      "horror-comedy",
+      "slapstick"
+    ],
+    "tones": [
+      "irreverent",
+      "absurd",
+      "raunchy",
+      "fast-paced"
+    ]
   },
   "movie:646385": {
     "subjects": [
       "legacy-and-copycat-violence"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "slasher",
+      "meta-horror",
+      "mystery-horror"
+    ]
   },
   "show:1400": {
     "subjects": [
       "everyday-self-interest"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "sitcom",
+      "observational-comedy",
+      "ensemble-comedy"
+    ],
+    "tones": [
+      "witty",
+      "cynical",
+      "observational",
+      "lighthearted"
+    ]
   },
   "movie:1124566": {
     "subjects": [
       "family-estrangement-and-art"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "intimate",
+      "melancholic",
+      "reflective",
+      "emotional"
+    ]
   },
   "show:95396": {
     "subjects": [
       "workplace-control-and-identity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "corporate-dystopia",
+      "workplace-thriller",
+      "mystery-drama"
+    ],
+    "tones": [
+      "cerebral",
+      "unsettling",
+      "darkly-comic",
+      "atmospheric"
+    ]
   },
   "show:92783": {
     "subjects": [
       "balancing-career-and-superhero-identity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "superhero-comedy",
+      "legal-comedy",
+      "workplace-comedy"
+    ]
   },
   "show:19885": {
     "subjects": [
       "brilliant-detection-and-obsession"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "detective-drama",
+      "crime-procedural",
+      "literary-adaptation"
+    ]
   },
   "show:126308": {
     "subjects": [
       "political-power-and-cultural-adaptation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-epic",
+      "political-drama",
+      "samurai-drama"
+    ]
   },
   "movie:273481": {
     "subjects": [
       "drug-war-and-moral-compromise"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "crime-thriller",
+      "border-thriller",
+      "action-drama"
+    ]
   },
   "movie:400535": {
     "subjects": [
       "border-conflict-and-escalation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "crime-thriller",
+      "action-drama",
+      "political-thriller"
+    ],
+    "tones": [
+      "grim",
+      "violent",
+      "tense",
+      "suspenseful"
+    ]
   },
   "show:60573": {
     "subjects": [
@@ -1754,42 +3333,91 @@
       "authoritarian-control-and-hidden-truth"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "dystopian",
+      "mystery-drama",
+      "conspiracy-thriller"
+    ]
   },
   "show:1274": {
     "subjects": [
       "death-grief-and-family"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "reflective",
+      "darkly-comic",
+      "emotional",
+      "character-driven"
+    ]
   },
   "show:215995": {
     "subjects": [
       "arson-investigation-and-obsession"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "crime-thriller",
+      "investigative-drama",
+      "psychological-drama"
+    ],
+    "tones": [
+      "dark",
+      "tense",
+      "atmospheric",
+      "character-driven"
+    ]
   },
   "show:119279": {
     "subjects": [
       "human-connection-and-isolation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "anthology",
+      "psychological-drama",
+      "speculative-fiction"
+    ],
+    "tones": [
+      "intimate",
+      "reflective",
+      "emotional",
+      "cerebral"
+    ]
   },
   "show:259265": {
     "subjects": [
       "wedding-anxiety-and-impending-disaster"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "psychological-horror",
+      "wedding-horror",
+      "limited-series"
+    ],
+    "tones": [
+      "ominous",
+      "tense",
+      "unsettling",
+      "suspenseful"
+    ]
   },
   "show:1409": {
     "subjects": [
       "outlaw-loyalty-and-family"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "biker-drama",
+      "family-drama",
+      "neo-western"
+    ]
   },
   "show:251941": {
     "subjects": [
@@ -1803,126 +3431,250 @@
       "rebellion-against-authoritarianism"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "space-opera",
+      "spy-thriller",
+      "political-drama"
+    ]
   },
   "movie:321697": {
     "subjects": [
       "innovation-and-personal-cost"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "technology-drama",
+      "workplace-drama",
+      "character-study"
+    ]
   },
   "show:248830": {
     "subjects": [
       "redemption-through-golf-mentorship"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "sports-comedy",
+      "mentorship-drama",
+      "dramedy"
+    ]
   },
   "movie:277216": {
     "subjects": [
       "music-ambition-and-social-protest"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "music-biography",
+      "historical-drama",
+      "ensemble-drama"
+    ]
   },
   "show:66732": {
     "subjects": [
       "friendship-against-supernatural-threats"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "nostalgic",
+      "suspenseful",
+      "heartfelt",
+      "adventurous"
+    ]
   },
   "show:203744": {
     "subjects": [
       "missing-person-investigation-and-hidden-identity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "neo-noir",
+      "detective-drama",
+      "science-fiction-mystery"
+    ],
+    "tones": [
+      "stylish",
+      "atmospheric",
+      "cerebral",
+      "suspenseful"
+    ]
   },
   "movie:363676": {
     "subjects": [
       "professional-judgment-under-scrutiny"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "aviation-drama",
+      "disaster-drama",
+      "historical-drama"
+    ]
   },
   "movie:8363": {
     "subjects": [
       "teen-friendship-and-growing-up"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "raunchy",
+      "heartfelt",
+      "awkward",
+      "energetic"
+    ]
   },
   "show:97546": {
     "subjects": [
       "kindness-leadership-and-belonging"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "optimistic",
+      "heartfelt",
+      "witty",
+      "uplifting"
+    ]
   },
   "show:130464": {
     "subjects": [
       "toxic-romance-and-deception"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "romantic-drama",
+      "college-drama",
+      "psychological-drama"
+    ]
   },
   "movie:302946": {
     "subjects": [
       "autism-crime-and-family-loyalty"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "crime-thriller",
+      "conspiracy-thriller",
+      "vigilante-action"
+    ]
   },
   "show:106454": {
     "subjects": [
       "murder-through-conflicting-perspectives"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "comedy-mystery",
+      "whodunit",
+      "ensemble-comedy"
+    ],
+    "tones": [
+      "witty",
+      "playful",
+      "twisty",
+      "inventive"
+    ]
   },
   "show:219971": {
     "subjects": [
       "espionage-and-conflicted-loyalty"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "spy-thriller",
+      "political-drama",
+      "psychological-drama"
+    ],
+    "tones": [
+      "tense",
+      "cerebral",
+      "suspenseful",
+      "character-driven"
+    ]
   },
   "show:46533": {
     "subjects": [
       "espionage-marriage-and-loyalty"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "spy-thriller",
+      "family-drama",
+      "period-drama"
+    ]
   },
   "movie:414906": {
     "subjects": [
       "corruption-and-vigilante-justice"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "superhero-noir",
+      "detective-mystery",
+      "serial-killer-thriller"
+    ]
   },
   "show:250504": {
     "subjects": [
       "grief-and-dangerous-obsession"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "dark",
+      "tense",
+      "suspenseful",
+      "character-driven"
+    ]
   },
   "show:273160": {
     "subjects": [
       "beauty-standards-and-biological-conspiracy"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "body-horror",
+      "conspiracy-thriller",
+      "social-satire"
+    ],
+    "tones": [
+      "provocative",
+      "unsettling",
+      "stylish",
+      "suspenseful"
+    ]
   },
   "show:229711": {
     "subjects": [
       "redemption-through-supernatural-bounty-hunting"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "horror-comedy",
+      "supernatural-action",
+      "bounty-hunter-drama"
+    ],
+    "tones": [
+      "darkly-comic",
+      "violent",
+      "energetic",
+      "supernatural"
+    ]
   },
   "show:76479": {
     "subjects": [
@@ -1936,28 +3688,60 @@
       "superhero-corruption-and-chaos"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "superhero-anthology",
+      "dark-comedy",
+      "action-animation"
+    ]
   },
   "show:62476": {
     "subjects": [
       "espionage-identity-and-loyalty"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "spy-thriller",
+      "workplace-drama",
+      "psychological-drama"
+    ],
+    "tones": [
+      "cerebral",
+      "tense",
+      "realistic",
+      "slow-burn"
+    ]
   },
   "movie:158011": {
     "subjects": [
       "emergency-dispatch-and-abduction-rescue"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "kidnapping-thriller",
+      "police-thriller",
+      "real-time-thriller"
+    ]
   },
   "movie:1662317": {
     "subjects": [
       "financial-collapse-and-human-consequences"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "financial-drama",
+      "disaster-drama",
+      "ensemble-drama"
+    ],
+    "tones": [
+      "tense",
+      "serious",
+      "character-driven",
+      "urgent"
+    ]
   },
   "show:114655": {
     "subjects": [
@@ -1971,56 +3755,109 @@
       "assassin-pursuit"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "spy-thriller",
+      "assassin-thriller",
+      "cat-and-mouse"
+    ]
   },
   "show:65817": {
     "subjects": [
       "sex-work-and-urban-change"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "period-drama",
+      "ensemble-drama",
+      "social-realism"
+    ]
   },
   "show:203857": {
     "subjects": [
       "diplomacy-and-political-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "political-drama",
+      "workplace-drama",
+      "marital-drama"
+    ],
+    "tones": [
+      "witty",
+      "tense",
+      "cerebral",
+      "character-driven"
+    ]
   },
   "show:122066": {
     "subjects": [
       "startup-fraud-and-ambition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "biographical-drama",
+      "business-drama",
+      "docudrama"
+    ]
   },
   "show:253370": {
     "subjects": [
       "espionage-and-hybrid-warfare"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "spy-thriller",
+      "political-thriller",
+      "military-drama"
+    ]
   },
   "show:99346": {
     "subjects": [
       "revenge-and-frontier-violence"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "revisionist-western",
+      "revenge-western",
+      "historical-drama"
+    ],
+    "tones": [
+      "atmospheric",
+      "brutal",
+      "lyrical",
+      "melancholic"
+    ]
   },
   "show:226362": {
     "subjects": [
       "collective-survival-against-invasion"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "alien-invasion",
+      "post-apocalyptic",
+      "survival-drama"
+    ]
   },
   "movie:804095": {
     "subjects": [
       "artistic-awakening-and-family-truth"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "nostalgic",
+      "heartfelt",
+      "reflective",
+      "bittersweet"
+    ]
   },
   "show:49010": {
     "subjects": [
@@ -2034,84 +3871,168 @@
       "corruption-and-retribution"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "gothic-horror",
+      "family-saga",
+      "supernatural-horror"
+    ]
   },
   "show:243316": {
     "subjects": [
       "friendship-and-marital-change"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "relationship-comedy",
+      "ensemble-comedy",
+      "dramedy"
+    ]
   },
   "show:236235": {
     "subjects": [
       "criminal-enterprise-and-class"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "gangster",
+      "crime-comedy",
+      "action-crime"
+    ],
+    "tones": [
+      "stylish",
+      "witty",
+      "violent",
+      "fast-paced"
+    ]
   },
   "show:64387": {
     "subjects": [
       "intimacy-and-transactional-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "cool",
+      "provocative",
+      "cerebral",
+      "detached"
+    ],
+    "subgenres": [
+      "anthology",
+      "psychological-drama",
+      "erotic-drama"
+    ]
   },
   "show:218351": {
     "subjects": [
       "heist-aftermath-and-corruption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "heist-drama",
+      "historical-drama",
+      "police-procedural"
+    ]
   },
   "show:69158": {
     "subjects": [
       "law-and-political-resistance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "legal-drama",
+      "political-drama",
+      "workplace-drama"
+    ]
   },
   "show:93812": {
     "subjects": [
       "power-and-reinvention"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-satire",
+      "political-comedy",
+      "black-comedy"
+    ]
   },
   "movie:273248": {
     "subjects": [
       "distrust-and-vengeance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "mystery-western",
+      "chamber-drama",
+      "revisionist-western"
+    ],
+    "tones": [
+      "tense",
+      "violent",
+      "claustrophobic",
+      "darkly-comic"
+    ]
   },
   "show:61123": {
     "subjects": [
       "middle-east-diplomacy-and-secrets"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "political-thriller",
+      "spy-drama",
+      "family-drama"
+    ],
+    "tones": [
+      "complex",
+      "tense",
+      "cerebral",
+      "suspenseful"
+    ]
   },
   "show:217825": {
     "subjects": [
       "survival-and-moral-descent"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "horror-comedy",
+      "urban-gothic",
+      "crime-horror"
+    ]
   },
   "movie:131634": {
     "subjects": [
       "rebellion-and-authoritarian-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "dystopian",
+      "war-adventure",
+      "young-adult"
+    ]
   },
   "show:135251": {
     "subjects": [
       "fame-and-exploitation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "music-drama",
+      "psychological-drama",
+      "show-business-drama"
+    ]
   },
   "show:253372": {
     "subjects": [
@@ -2125,7 +4046,18 @@
       "crime-loyalty-and-regret"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "gangster",
+      "historical-drama",
+      "character-study"
+    ],
+    "tones": [
+      "melancholic",
+      "reflective",
+      "deliberate",
+      "somber"
+    ]
   },
   "show:34415": {
     "subjects": [
@@ -2139,35 +4071,72 @@
       "athletic-dynasty-and-legacy"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "sports-documentary",
+      "biography",
+      "docuseries"
+    ]
   },
   "show:201289": {
     "subjects": [
       "family-secrets-and-protection"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "family-drama",
+      "conspiracy-thriller",
+      "missing-person-mystery"
+    ]
   },
   "show:116799": {
     "subjects": [
       "justice-and-legal-strategy"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "legal-drama",
+      "crime-mystery",
+      "courtroom-drama"
+    ]
   },
   "show:82856": {
     "subjects": [
       "found-family-and-protection"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "space-western",
+      "adventure",
+      "bounty-hunter-drama"
+    ],
+    "tones": [
+      "adventurous",
+      "heartfelt",
+      "atmospheric",
+      "heroic"
+    ]
   },
   "show:70796": {
     "subjects": [
       "female-creative-ambition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "period-comedy",
+      "show-business-comedy",
+      "family-drama"
+    ],
+    "tones": [
+      "witty",
+      "vibrant",
+      "fast-paced",
+      "heartfelt"
+    ]
   },
   "show:93716": {
     "subjects": [
@@ -2181,21 +4150,42 @@
       "late-life-criminal-redemption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "drug-crime",
+      "road-drama",
+      "character-study"
+    ],
+    "tones": [
+      "reflective",
+      "tense",
+      "understated",
+      "bittersweet"
+    ]
   },
   "show:129552": {
     "subjects": [
       "government-conspiracy-and-duty"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "conspiracy-thriller",
+      "spy-thriller",
+      "action-thriller"
+    ]
   },
   "show:61859": {
     "subjects": [
       "infiltrating-arms-trafficking"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "spy-thriller",
+      "undercover-drama",
+      "political-thriller"
+    ]
   },
   "show:66276": {
     "subjects": [
@@ -2216,14 +4206,24 @@
       "espionage-past-and-consequences"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "spy-thriller",
+      "action-drama",
+      "character-study"
+    ]
   },
   "show:71738": {
     "subjects": [
       "space-exploration-and-ethical-dilemmas"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "space-opera",
+      "adventure",
+      "comedy-drama"
+    ]
   },
   "show:253941": {
     "subjects": [
@@ -2237,63 +4237,127 @@
       "captivity-and-therapy"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "claustrophobic",
+      "tense",
+      "cerebral",
+      "unsettling"
+    ]
   },
   "show:194764": {
     "subjects": [
       "criminal-rise-to-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "gangster",
+      "comic-book-crime",
+      "character-drama"
+    ],
+    "tones": [
+      "dark",
+      "gritty",
+      "violent",
+      "character-driven"
+    ]
   },
   "show:250307": {
     "subjects": [
       "emergency-medicine-and-resilience"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "medical-drama",
+      "workplace-drama",
+      "real-time-drama"
+    ]
   },
   "show:206829": {
     "subjects": [
       "authoritarian-dysfunction"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "political-satire",
+      "black-comedy",
+      "palace-drama"
+    ]
   },
   "show:204284": {
     "subjects": [
       "control-and-human-uncertainty"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "reality-comedy",
+      "docu-comedy",
+      "social-experiment"
+    ],
+    "tones": [
+      "awkward",
+      "cerebral",
+      "surreal",
+      "deadpan"
+    ]
   },
   "show:194728": {
     "subjects": [
       "relationship-stagnation-and-mystery"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "comedy-mystery",
+      "romantic-drama",
+      "resort-mystery"
+    ]
   },
   "movie:281957": {
     "subjects": [
       "survival-and-revenge"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "survival-drama",
+      "revenge-western",
+      "historical-drama"
+    ]
   },
   "show:82782": {
     "subjects": [
       "religious-hypocrisy-and-family"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "dark-comedy",
+      "family-comedy",
+      "crime-comedy"
+    ],
+    "tones": [
+      "irreverent",
+      "satirical",
+      "raunchy",
+      "character-driven"
+    ]
   },
   "movie:1306368": {
     "subjects": [
       "police-corruption-and-stolen-money"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "police-thriller",
+      "action-crime",
+      "conspiracy-thriller"
+    ]
   },
   "show:79744": {
     "subjects": [
@@ -2307,7 +4371,18 @@
       "food-and-cultural-identity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "food-documentary",
+      "cultural-history",
+      "investigative-documentary"
+    ],
+    "tones": [
+      "curious",
+      "witty",
+      "informative",
+      "engaging"
+    ]
   },
   "show:134373": {
     "subjects": [
@@ -2321,14 +4396,24 @@
       "police-corruption-and-moral-compromise"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "police-drama",
+      "antihero-drama",
+      "serialized-crime"
+    ]
   },
   "show:39852": {
     "subjects": [
       "hidden-trauma-and-crime"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "anthology",
+      "psychological-mystery",
+      "police-procedural"
+    ]
   },
   "show:1398": {
     "subjects": [
@@ -2342,49 +4427,97 @@
       "truth-and-legal-ambiguity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "true-crime",
+      "legal-drama",
+      "family-drama"
+    ]
   },
   "show:247767": {
     "subjects": [
       "creative-integrity-versus-commerce"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "witty",
+      "chaotic",
+      "satirical",
+      "fast-paced"
+    ]
   },
   "movie:933260": {
     "subjects": [
       "ageism-and-self-rejection"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "body-horror",
+      "social-satire",
+      "show-business-horror"
+    ]
   },
   "show:120911": {
     "subjects": [
       "revenge-and-military-conspiracy"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "conspiracy-thriller",
+      "military-drama",
+      "revenge-action"
+    ]
   },
   "show:219760": {
     "subjects": [
       "warfare-morality-and-spy-identity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "spy-thriller",
+      "military-drama",
+      "conspiracy-thriller"
+    ],
+    "tones": [
+      "intense",
+      "gritty",
+      "suspenseful",
+      "morally-complex"
+    ]
   },
   "show:75191": {
     "subjects": [
       "survival-and-supernatural-dread"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-horror",
+      "survival-drama",
+      "supernatural-horror"
+    ],
+    "tones": [
+      "bleak",
+      "atmospheric",
+      "claustrophobic",
+      "ominous"
+    ]
   },
   "movie:556984": {
     "subjects": [
       "political-protest-and-judicial-injustice"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "legal-drama",
+      "historical-drama",
+      "political-drama"
+    ]
   },
   "show:83851": {
     "subjects": [
@@ -2398,14 +4531,24 @@
       "family-crime-and-business-survival"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "family-drama",
+      "coastal-noir",
+      "crime-thriller"
+    ]
   },
   "show:688": {
     "subjects": [
       "public-service-and-political-governance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "political-drama",
+      "workplace-drama",
+      "ensemble-drama"
+    ]
   },
   "show:1438": {
     "subjects": [
@@ -2426,14 +4569,30 @@
       "faith-power-and-identity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "religious-drama",
+      "political-drama",
+      "character-study"
+    ],
+    "tones": [
+      "stylish",
+      "cerebral",
+      "provocative",
+      "surreal"
+    ]
   },
   "show:255570": {
     "subjects": [
       "crime-loyalty-and-succession"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "gangster",
+      "family-drama",
+      "crime-thriller"
+    ]
   },
   "movie:89492": {
     "subjects": [
@@ -2783,7 +4942,12 @@
       "crime-investigation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "gritty",
+      "character-driven",
+      "dramatic"
+    ]
   },
   "movie:1265609": {
     "subjects": [
@@ -2902,7 +5066,12 @@
       "railroad-expansion-and-revenge"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-western",
+      "revenge-western",
+      "railroad-drama"
+    ]
   },
   "show:122235": {
     "subjects": [
@@ -2916,21 +5085,48 @@
       "indigenous-justice-and-secrets"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "police-procedural",
+      "indigenous-noir",
+      "psychological-mystery"
+    ],
+    "tones": [
+      "atmospheric",
+      "tense",
+      "spiritual",
+      "character-driven"
+    ]
   },
   "show:89498": {
     "subjects": [
       "unconventional-law-enforcement"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "police-procedural",
+      "western-crime",
+      "workplace-drama"
+    ]
   },
   "show:5742": {
     "subjects": [
       "frontier-legacy-and-homecoming"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-western",
+      "frontier-adventure",
+      "miniseries"
+    ],
+    "tones": [
+      "epic",
+      "rugged",
+      "nostalgic",
+      "dramatic"
+    ]
   },
   "show:243396": {
     "subjects": [
@@ -2944,49 +5140,102 @@
       "land-family-and-indigenous-injustice"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-epic",
+      "romantic-drama",
+      "western"
+    ],
+    "tones": [
+      "sweeping",
+      "romantic",
+      "emotional",
+      "visually-rich"
+    ]
   },
   "show:116450": {
     "subjects": [
       "midlife-friendship-and-change"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "romantic-comedy",
+      "friendship-drama",
+      "city-comedy"
+    ]
   },
   "show:90399": {
     "subjects": [
       "power-and-family-rivalry"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "soap-opera",
+      "family-drama",
+      "business-drama"
+    ],
+    "tones": [
+      "dramatic",
+      "glossy",
+      "twisty",
+      "intense"
+    ]
   },
   "show:64199": {
     "subjects": [
       "identity-deception-and-family"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "con-artist-drama",
+      "family-drama",
+      "crime-thriller"
+    ],
+    "tones": [
+      "twisty",
+      "tense",
+      "witty",
+      "character-driven"
+    ]
   },
   "show:153657": {
     "subjects": [
       "justice-and-independent-investigation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "detective-drama",
+      "legal-drama",
+      "neo-noir"
+    ]
   },
   "show:66676": {
     "subjects": [
       "drug-empire-and-survival"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "drug-crime",
+      "gangster",
+      "action-drama"
+    ]
   },
   "show:71715": {
     "subjects": [
       "financial-desperation-and-crime"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "crime-comedy",
+      "family-drama",
+      "heist-comedy"
+    ]
   },
   "show:62620": {
     "subjects": [
@@ -3000,7 +5249,12 @@
       "identity-and-immortality"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "cyberpunk",
+      "neo-noir",
+      "mystery-thriller"
+    ]
   },
   "show:1705": {
     "subjects": [
@@ -3014,7 +5268,12 @@
       "criminal-expansion-and-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "drug-crime",
+      "gangster",
+      "urban-crime"
+    ]
   },
   "show:194": {
     "subjects": [
@@ -3028,84 +5287,162 @@
       "grief-and-boxing-redemption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "boxing-drama",
+      "family-drama",
+      "comeback-drama"
+    ],
+    "tones": [
+      "intense",
+      "emotional",
+      "gritty",
+      "inspirational"
+    ]
   },
   "movie:878361": {
     "subjects": [
       "faith-and-athletic-comeback"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "boxing-drama",
+      "sports-biography",
+      "inspirational-drama"
+    ]
   },
   "movie:332979": {
     "subjects": [
       "recovery-and-athletic-perseverance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "boxing-drama",
+      "biography",
+      "comeback-drama"
+    ]
   },
   "movie:531876": {
     "subjects": [
       "combat-duty-and-survival"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "military-drama",
+      "siege-film",
+      "docudrama"
+    ]
   },
   "movie:578189": {
     "subjects": [
       "police-corruption-and-witness-survival"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "police-thriller",
+      "action-thriller",
+      "conspiracy-drama"
+    ]
   },
   "movie:23168": {
     "subjects": [
       "crime-loyalty-and-escape"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "heist-film",
+      "romantic-thriller",
+      "urban-crime"
+    ]
   },
   "movie:402897": {
     "subjects": [
       "authoritarian-succession-and-absurdity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "political-satire",
+      "black-comedy",
+      "historical-comedy"
+    ]
   },
   "movie:19913": {
     "subjects": [
       "romantic-expectation-and-memory"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "romantic-comedy",
+      "nonlinear-romance",
+      "character-study"
+    ]
   },
   "show:67883": {
     "subjects": [
       "friendship-and-adult-identity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "dramedy",
+      "friendship-comedy",
+      "city-comedy"
+    ]
   },
   "show:693": {
     "subjects": [
       "suburban-secrets-and-relationships"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "mystery-comedy",
+      "soap-opera",
+      "ensemble-drama"
+    ],
+    "tones": [
+      "witty",
+      "twisty",
+      "satirical",
+      "dramatic"
+    ]
   },
   "show:245219": {
     "subjects": [
       "political-reform-and-assassination"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-drama",
+      "political-drama",
+      "biographical-drama"
+    ],
+    "tones": [
+      "tragic",
+      "cerebral",
+      "tense",
+      "darkly-comic"
+    ]
   },
   "show:81290": {
     "subjects": [
       "aging-friendship-and-loss"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "dramedy",
+      "friendship-comedy",
+      "show-business-comedy"
+    ]
   },
   "show:62117": {
     "subjects": [
@@ -3147,28 +5484,72 @@
       "missing-person-investigation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "crime-thriller",
+      "mystery-drama",
+      "conspiracy-thriller"
+    ],
+    "tones": [
+      "suspenseful",
+      "tense",
+      "twisty",
+      "fast-paced"
+    ]
   },
   "show:93166": {
     "subjects": [
       "surveillance-manipulation-and-truth"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "conspiracy-thriller",
+      "techno-thriller",
+      "political-thriller"
+    ],
+    "tones": [
+      "paranoid",
+      "tense",
+      "cerebral",
+      "suspenseful"
+    ]
   },
   "show:256317": {
     "subjects": [
       "serial-killer-pursuit"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "police-procedural",
+      "serial-killer-thriller",
+      "ensemble-drama"
+    ],
+    "tones": [
+      "tense",
+      "suspenseful",
+      "fast-paced",
+      "gritty"
+    ]
   },
   "show:900": {
     "subjects": [
       "adolescent-identity-and-self-destruction"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "teen-drama",
+      "coming-of-age",
+      "ensemble-drama"
+    ],
+    "tones": [
+      "raw",
+      "provocative",
+      "emotional",
+      "chaotic"
+    ]
   },
   "show:1412": {
     "subjects": [
@@ -3420,35 +5801,66 @@
       "political-power-and-family-secrets"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "political-soap",
+      "family-drama",
+      "conspiracy-drama"
+    ]
   },
   "show:201877": {
     "subjects": [
       "frontier-justice-and-reinvention"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-western",
+      "mystery-western",
+      "revenge-drama"
+    ]
   },
   "show:157732": {
     "subjects": [
       "justice-and-legacy"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-western",
+      "biography",
+      "lawman-drama"
+    ]
   },
   "show:3050": {
     "subjects": [
       "legal-ethics-and-justice"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "legal-drama",
+      "courtroom-drama",
+      "workplace-drama"
+    ],
+    "tones": [
+      "cerebral",
+      "tense",
+      "character-driven",
+      "serious"
+    ]
   },
   "show:16997": {
     "subjects": [
       "combat-and-trauma"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "military-drama",
+      "historical-miniseries",
+      "ensemble-drama"
+    ]
   },
   "show:60726": {
     "subjects": [
@@ -3469,42 +5881,79 @@
       "corruption-and-obsessive-detection"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "neo-noir",
+      "detective-mystery",
+      "period-drama"
+    ],
+    "tones": [
+      "atmospheric",
+      "cerebral",
+      "melancholic",
+      "suspenseful"
+    ]
   },
   "movie:862557": {
     "subjects": [
       "faith-and-baseball-perseverance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "baseball-drama",
+      "biography",
+      "inspirational-drama"
+    ]
   },
   "movie:1433719": {
     "subjects": [
       "small-town-defense-against-cartel"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "neo-western",
+      "crime-thriller",
+      "siege-film"
+    ]
   },
   "movie:1293162": {
     "subjects": [
       "cattle-rustling-and-frontier-justice"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "neo-western",
+      "crime-thriller",
+      "survival-action"
+    ]
   },
   "movie:76640": {
     "subjects": [
       "border-town-defense"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "violent",
+      "energetic",
+      "suspenseful",
+      "pulpy"
+    ]
   },
   "movie:1082195": {
     "subjects": [
       "white-supremacist-terrorism-investigation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-thriller",
+      "police-procedural",
+      "true-crime"
+    ]
   },
   "movie:295699": {
     "subjects": [
@@ -3518,119 +5967,246 @@
       "generational-conflict-and-belonging"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "college-comedy",
+      "buddy-comedy",
+      "farce"
+    ],
+    "tones": [
+      "raunchy",
+      "energetic",
+      "absurd",
+      "playful"
+    ]
   },
   "movie:107811": {
     "subjects": [
       "friendship-and-reckless-celebration"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "college-comedy",
+      "buddy-comedy",
+      "road-comedy"
+    ],
+    "tones": [
+      "raunchy",
+      "chaotic",
+      "energetic",
+      "absurd"
+    ]
   },
   "movie:1008953": {
     "subjects": [
       "first-week-of-high-school"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "raunchy",
+      "energetic",
+      "awkward",
+      "playful"
+    ]
   },
   "movie:4911": {
     "subjects": [
       "police-corruption-and-conscience"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "police-thriller",
+      "neo-noir",
+      "historical-drama"
+    ]
   },
   "movie:668489": {
     "subjects": [
       "corruption-and-underworld-rescue"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "crime-thriller",
+      "rescue-action",
+      "neo-noir"
+    ],
+    "tones": [
+      "brutal",
+      "kinetic",
+      "dark",
+      "relentless"
+    ]
   },
   "movie:1428": {
     "subjects": [
       "revolution-and-revenge"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "neo-western",
+      "gunfighter-action",
+      "political-thriller"
+    ],
+    "tones": [
+      "stylish",
+      "violent",
+      "energetic",
+      "pulpy"
+    ]
   },
   "movie:634528": {
     "subjects": [
       "border-crossing-and-protection"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "neo-western",
+      "road-thriller",
+      "crime-drama"
+    ]
   },
   "movie:49021": {
     "subjects": [
       "assassination-and-betrayal"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "spy-thriller",
+      "assassin-action",
+      "conspiracy-thriller"
+    ]
   },
   "movie:893297": {
     "subjects": [
       "cartel-ambition-and-downfall"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "drug-crime",
+      "gangster",
+      "biographical-drama"
+    ]
   },
   "movie:1263012": {
     "subjects": [
       "grievance-hostage-crisis-and-media"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "true-crime",
+      "hostage-thriller",
+      "historical-drama"
+    ],
+    "tones": [
+      "tense",
+      "claustrophobic",
+      "unsettling",
+      "character-driven"
+    ]
   },
   "movie:1078600": {
     "subjects": [
       "opposites-attract-romance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "romantic-drama",
+      "new-adult-romance",
+      "relationship-drama"
+    ]
   },
   "show:4573": {
     "subjects": [
       "late-night-comedy-and-celebrity-culture"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "talk-show",
+      "sketch-comedy",
+      "interview-comedy"
+    ],
+    "tones": [
+      "witty",
+      "irreverent",
+      "absurd",
+      "energetic"
+    ]
   },
   "show:82193": {
     "subjects": [
       "celebrity-conversation-and-deadpan-humor"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "interview-comedy",
+      "talk-show"
+    ],
+    "tones": [
+      "deadpan",
+      "witty",
+      "irreverent",
+      "conversational"
+    ]
   },
   "show:219": {
     "subjects": [
       "identity-and-human-experimentation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "teen-drama",
+      "mystery-drama",
+      "conspiracy-fiction"
+    ]
   },
   "show:57389": {
     "subjects": [
       "gold-rush-survival-and-ambition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-drama",
+      "western",
+      "adventure-drama"
+    ]
   },
   "show:211169": {
     "subjects": [
       "drug-trafficking-and-double-loyalties"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "drug-crime",
+      "period-drama",
+      "family-drama"
+    ]
   },
   "show:33301": {
     "subjects": [
       "unconventional-lawyering-and-friendship"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "legal-comedy",
+      "workplace-comedy",
+      "buddy-comedy"
+    ]
   },
   "show:39351": {
     "subjects": [
@@ -3644,21 +6220,36 @@
       "vigilante-justice-in-a-fractured-state"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "dystopian",
+      "detective-drama",
+      "neo-noir"
+    ]
   },
   "show:32940": {
     "subjects": [
       "crime-morality-and-consequence"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "anthology",
+      "courtroom-drama",
+      "psychological-drama"
+    ]
   },
   "show:262793": {
     "subjects": [
       "cold-war-espionage-and-widowhood"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "spy-thriller",
+      "period-drama",
+      "mystery-drama"
+    ]
   },
   "show:283297": {
     "subjects": [
@@ -3672,7 +6263,12 @@
       "sexuality-research-and-relationships"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "biographical-drama",
+      "medical-drama",
+      "period-drama"
+    ]
   },
   "show:62285": {
     "subjects": [
@@ -3693,7 +6289,18 @@
       "surveillance-and-preventive-justice"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "techno-thriller",
+      "crime-procedural",
+      "conspiracy-drama"
+    ],
+    "tones": [
+      "cerebral",
+      "suspenseful",
+      "dark",
+      "character-driven"
+    ]
   },
   "show:60708": {
     "subjects": [
@@ -3707,98 +6314,202 @@
       "policing-and-social-change"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-procedural",
+      "detective-drama",
+      "period-drama"
+    ],
+    "tones": [
+      "gritty",
+      "atmospheric",
+      "cerebral",
+      "suspenseful"
+    ]
   },
   "show:103768": {
     "subjects": [
       "survival-and-found-family"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "post-apocalyptic",
+      "adventure-drama",
+      "coming-of-age"
+    ],
+    "tones": [
+      "heartfelt",
+      "adventurous",
+      "hopeful",
+      "bittersweet"
+    ]
   },
   "movie:338969": {
     "subjects": [
       "corporate-corruption-and-mutant-heroism"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "superhero-comedy",
+      "body-horror",
+      "splatter"
+    ]
   },
   "movie:625560": {
     "subjects": [
       "young-adult-friendship-and-absurdity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "independent-comedy",
+      "ensemble-comedy"
+    ]
   },
   "movie:1035259": {
     "subjects": [
       "absurd-police-heroism"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "parody",
+      "police-comedy",
+      "slapstick"
+    ],
+    "tones": [
+      "absurd",
+      "fast-paced",
+      "irreverent",
+      "playful"
+    ]
   },
   "movie:449562": {
     "subjects": [
       "con-artistry-and-rivalry"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "con-artist-comedy",
+      "buddy-comedy",
+      "crime-comedy"
+    ]
   },
   "movie:384018": {
     "subjects": [
       "rival-partnership-against-biothreat"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "buddy-action",
+      "spy-action",
+      "science-fiction-action"
+    ],
+    "tones": [
+      "kinetic",
+      "humorous",
+      "spectacular",
+      "fast-paced"
+    ]
   },
   "movie:429351": {
     "subjects": [
       "special-forces-and-afghan-alliance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "military-drama",
+      "historical-action",
+      "team-drama"
+    ]
   },
   "movie:442065": {
     "subjects": [
       "military-sacrifice-and-delayed-recognition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-drama",
+      "biographical-drama",
+      "investigative-drama"
+    ]
   },
   "movie:1093883": {
     "subjects": [
       "marksmanship-competition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "reality-competition",
+      "sports-series"
+    ],
+    "tones": [
+      "competitive",
+      "suspenseful",
+      "energetic",
+      "skill-focused"
+    ]
   },
   "movie:1429813": {
     "subjects": [
       "criminal-survival-in-prison"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "prison-thriller",
+      "crime-action",
+      "dark-comedy"
+    ],
+    "tones": [
+      "gritty",
+      "violent",
+      "witty",
+      "fast-paced"
+    ]
   },
   "movie:13074": {
     "subjects": [
       "journalistic-ethics-and-identity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "sports-drama",
+      "journalism-drama",
+      "character-study"
+    ]
   },
   "movie:39254": {
     "subjects": [
       "father-son-reconnection"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "robot-boxing",
+      "sports-drama",
+      "family-drama"
+    ]
   },
   "movie:1246": {
     "subjects": [
       "aging-legacy-and-one-final-fight"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "boxing-drama",
+      "legacy-sequel",
+      "character-drama"
+    ]
   },
   "movie:1380682": {
     "subjects": [
@@ -3812,21 +6523,48 @@
       "space-exploration-and-humanism"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "space-opera",
+      "adventure",
+      "philosophical-drama"
+    ],
+    "tones": [
+      "adventurous",
+      "optimistic",
+      "cerebral",
+      "iconic"
+    ]
   },
   "show:2681": {
     "subjects": [
       "young-adult-friendship-and-dating"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "sitcom",
+      "buddy-comedy",
+      "relationship-comedy"
+    ],
+    "tones": [
+      "raunchy",
+      "lighthearted",
+      "energetic",
+      "irreverent"
+    ]
   },
   "show:72742": {
     "subjects": [
       "organized-crime-and-family-loyalty"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "gangster",
+      "biographical-drama",
+      "family-drama"
+    ]
   },
   "show:81358": {
     "subjects": [
@@ -3840,130 +6578,2087 @@
       "crime-legacy-and-double-life"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "drug-crime",
+      "family-drama",
+      "campus-drama"
+    ]
   },
   "show:2288": {
     "subjects": [
       "escape-and-conspiracy"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "prison-drama",
+      "conspiracy-thriller",
+      "action-drama"
+    ]
   },
   "show:124394": {
     "subjects": [
       "criminal-coming-of-age"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "drug-crime",
+      "coming-of-age",
+      "family-drama"
+    ],
+    "tones": [
+      "gritty",
+      "tense",
+      "character-driven",
+      "tragic"
+    ]
   },
   "show:105": {
     "subjects": [
       "friendship-love-and-urban-adulthood"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "romantic-comedy",
+      "friendship-comedy",
+      "city-comedy"
+    ]
   },
   "show:41692": {
     "subjects": [
       "friendship-and-frontier-journey"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "historical-western",
+      "cattle-drive",
+      "miniseries"
+    ]
   },
   "show:54650": {
     "subjects": [
       "crime-ambition-and-double-life"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "drug-crime",
+      "gangster",
+      "family-drama"
+    ]
   },
   "show:101591": {
     "subjects": [
       "family-loyalty-and-drug-empire"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "drug-crime",
+      "biographical-drama",
+      "family-drama"
+    ]
   },
   "show:85021": {
     "subjects": [
       "criminal-succession-and-power-war"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "gangster",
+      "action-crime",
+      "family-drama"
+    ],
+    "tones": [
+      "brutal",
+      "kinetic",
+      "tense",
+      "stylish"
+    ]
   },
   "show:75540": {
     "subjects": [
       "racial-injustice-and-cover-up"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "police-drama",
+      "legal-drama",
+      "mystery-drama"
+    ],
+    "tones": [
+      "bleak",
+      "serious",
+      "tense",
+      "emotional"
+    ]
   },
   "show:113984": {
     "subjects": [
       "privilege-consent-and-justice"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "legal-thriller",
+      "political-drama",
+      "psychological-drama"
+    ]
   },
   "show:64254": {
     "subjects": [
       "adult-identity-and-relationships"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "romantic-dramedy",
+      "slice-of-life",
+      "city-comedy"
+    ]
   },
   "show:4057": {
     "subjects": [
       "behavioral-profiling-and-violent-crime"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "dark",
+      "suspenseful",
+      "procedural",
+      "character-driven"
+    ]
   },
   "show:245703": {
     "subjects": [
       "cold-case-investigation-and-trauma"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "detective-drama",
+      "nordic-noir",
+      "mystery"
+    ]
   },
   "show:253321": {
     "subjects": [
       "family-secrets-and-murder"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "tense",
+      "twisty",
+      "emotional",
+      "suspenseful"
+    ]
   },
   "show:284605": {
     "subjects": [
       "grief-and-small-town-secrets"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "crime-mystery",
+      "family-drama",
+      "coastal-noir"
+    ],
+    "tones": [
+      "atmospheric",
+      "somber",
+      "suspenseful",
+      "character-driven"
+    ]
   },
   "show:226174": {
     "subjects": [
       "justice-and-late-career-reinvention"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "legal-drama",
+      "mystery",
+      "procedural"
+    ],
+    "tones": [
+      "witty",
+      "clever",
+      "engaging",
+      "character-driven"
+    ]
   },
   "show:287450": {
     "subjects": [
       "presidential-protection-and-conspiracy"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "political-thriller",
+      "action-drama",
+      "espionage"
+    ],
+    "tones": [
+      "tense",
+      "suspenseful",
+      "fast-paced",
+      "serious"
+    ]
   },
   "show:248937": {
     "subjects": [
       "political-crisis-and-negotiation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "subgenres": [
+      "hostage-thriller",
+      "political-drama",
+      "conspiracy"
+    ],
+    "tones": [
+      "tense",
+      "claustrophobic",
+      "suspenseful",
+      "dramatic"
+    ]
   },
   "show:273866": {
     "subjects": [
       "self-discovery-and-family-expectation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "warm",
+      "reflective",
+      "romantic",
+      "character-driven"
+    ]
+  },
+  "show:90669": {
+    "subgenres": [
+      "historical-mystery",
+      "science-fiction-mystery",
+      "psychological-thriller"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:530915": {
+    "subgenres": [
+      "military-drama",
+      "survival-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1100988": {
+    "subgenres": [
+      "post-apocalyptic",
+      "zombie-horror",
+      "survival-horror"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "bleak",
+      "intense",
+      "suspenseful",
+      "visceral"
+    ]
+  },
+  "movie:332562": {
+    "subgenres": [
+      "music-drama",
+      "romantic-drama",
+      "tragedy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:249042": {
+    "subgenres": [
+      "psychological-drama",
+      "crime-drama",
+      "limited-series"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1413": {
+    "subgenres": [
+      "anthology-horror",
+      "supernatural-horror",
+      "psychological-horror"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:215866": {
+    "subgenres": [
+      "revisionist-western",
+      "survival-western",
+      "historical-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:915935": {
+    "subgenres": [
+      "legal-drama",
+      "psychological-drama",
+      "courtroom-mystery"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:300668": {
+    "subgenres": [
+      "cosmic-horror",
+      "science-fiction-horror",
+      "psychological-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "cerebral",
+      "atmospheric",
+      "unsettling",
+      "surreal"
+    ]
+  },
+  "movie:76600": {
+    "subgenres": [
+      "planetary-romance",
+      "action-adventure",
+      "ecological-science-fiction"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "epic",
+      "immersive",
+      "emotional",
+      "adventurous"
+    ]
+  },
+  "show:241259": {
+    "subgenres": [
+      "psychological-drama",
+      "dark-comedy",
+      "autobiographical-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:66292": {
+    "subgenres": [
+      "psychological-drama",
+      "domestic-mystery",
+      "ensemble-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "tense",
+      "polished",
+      "emotional",
+      "atmospheric"
+    ]
+  },
+  "show:62852": {
+    "subgenres": [
+      "financial-drama",
+      "legal-drama",
+      "political-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "sharp",
+      "tense",
+      "cerebral",
+      "character-driven"
+    ]
+  },
+  "movie:487558": {
+    "subgenres": [
+      "biography",
+      "undercover-drama",
+      "social-satire"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "satirical",
+      "provocative",
+      "tense",
+      "energetic"
+    ]
+  },
+  "movie:1372": {
+    "subgenres": [
+      "war-drama",
+      "political-thriller",
+      "adventure-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:424694": {
+    "subgenres": [
+      "music-biography",
+      "band-drama",
+      "historical-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "uplifting",
+      "emotional",
+      "energetic",
+      "bittersweet"
+    ]
+  },
+  "show:1396": {
+    "subgenres": [
+      "drug-crime",
+      "neo-western",
+      "tragedy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1215": {
+    "subgenres": [
+      "dramedy",
+      "relationship-comedy",
+      "literary-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:61920": {
+    "subgenres": [
+      "romantic-comedy",
+      "family-comedy",
+      "dramedy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:937287": {
+    "subgenres": [
+      "sports-drama",
+      "romantic-drama",
+      "psychological-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "sensual",
+      "tense",
+      "energetic",
+      "stylish"
+    ]
+  },
+  "movie:9693": {
+    "subgenres": [
+      "dystopian",
+      "political-thriller",
+      "survival-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "bleak",
+      "immersive",
+      "tense",
+      "hopeful"
+    ]
+  },
+  "movie:929590": {
+    "subgenres": [
+      "dystopian-war",
+      "road-movie",
+      "journalism-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "tense",
+      "bleak",
+      "visceral",
+      "unsettling"
+    ]
+  },
+  "movie:312221": {
+    "subgenres": [
+      "boxing-drama",
+      "legacy-sequel",
+      "character-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:113988": {
+    "subgenres": [
+      "true-crime",
+      "biographical-drama",
+      "limited-series"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "disturbing",
+      "bleak",
+      "intense",
+      "somber"
+    ]
+  },
+  "movie:296524": {
+    "subgenres": [
+      "disaster-drama",
+      "survival-drama",
+      "docudrama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:123377": {
+    "subgenres": [
+      "biographical-drama",
+      "drug-crime",
+      "family-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:110695": {
+    "subgenres": [
+      "medical-drama",
+      "corporate-drama",
+      "docudrama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:374720": {
+    "subgenres": [
+      "survival-drama",
+      "historical-drama",
+      "ensemble-war"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "tense",
+      "immersive",
+      "restrained",
+      "harrowing"
+    ]
+  },
+  "show:1940": {
+    "subgenres": [
+      "show-business-comedy",
+      "buddy-comedy",
+      "satire"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:85552": {
+    "subgenres": [
+      "teen-drama",
+      "psychological-drama",
+      "ensemble-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:106379": {
+    "subgenres": [
+      "post-apocalyptic",
+      "retrofuturism",
+      "dark-comedy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:99610": {
+    "subgenres": [
+      "romantic-dramedy",
+      "autobiographical-comedy",
+      "relationship-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "intimate",
+      "witty",
+      "bittersweet",
+      "candid"
+    ]
+  },
+  "movie:419430": {
+    "subgenres": [
+      "social-horror",
+      "psychological-horror",
+      "satire"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:117581": {
+    "subgenres": [
+      "family-drama",
+      "teen-drama",
+      "mystery-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:450465": {
+    "subgenres": [
+      "superhero-thriller",
+      "psychological-thriller",
+      "trilogy-finale"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:490132": {
+    "subgenres": [
+      "road-movie",
+      "biography",
+      "friendship-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "warm",
+      "heartfelt",
+      "uplifting",
+      "reflective"
+    ]
+  },
+  "movie:858024": {
+    "subgenres": [
+      "historical-drama",
+      "literary-drama",
+      "family-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "emotional",
+      "intimate",
+      "melancholic",
+      "lyrical"
+    ]
+  },
+  "movie:381284": {
+    "subgenres": [
+      "historical-drama",
+      "workplace-drama",
+      "space-race-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:198102": {
+    "subgenres": [
+      "hijacking-thriller",
+      "real-time-thriller",
+      "conspiracy-thriller"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1407": {
+    "subgenres": [
+      "spy-thriller",
+      "political-thriller",
+      "psychological-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "tense",
+      "paranoid",
+      "suspenseful",
+      "character-driven"
+    ]
+  },
+  "show:1408": {
+    "subgenres": [
+      "medical-procedural",
+      "mystery-drama",
+      "workplace-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:9919": {
+    "subgenres": [
+      "romantic-comedy",
+      "workplace-romance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:389015": {
+    "subgenres": [
+      "sports-biography",
+      "black-comedy",
+      "mockumentary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "darkly-comic",
+      "energetic",
+      "abrasive",
+      "tragic"
+    ]
+  },
+  "show:90812": {
+    "subgenres": [
+      "financial-drama",
+      "workplace-drama",
+      "ensemble-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:474350": {
+    "subgenres": [
+      "supernatural-horror",
+      "creature-feature",
+      "psychological-horror"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "dark",
+      "emotional",
+      "suspenseful",
+      "intense"
+    ]
+  },
+  "movie:475557": {
+    "subgenres": [
+      "psychological-drama",
+      "crime-drama",
+      "character-study"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "bleak",
+      "unsettling",
+      "intense",
+      "tragic"
+    ]
+  },
+  "movie:522212": {
+    "subgenres": [
+      "legal-drama",
+      "biography",
+      "social-justice-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:466420": {
+    "subgenres": [
+      "true-crime",
+      "historical-drama",
+      "western"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "somber",
+      "deliberate",
+      "tragic",
+      "unsettling"
+    ]
+  },
+  "show:72750": {
+    "subgenres": [
+      "spy-thriller",
+      "dark-comedy",
+      "psychological-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "stylish",
+      "darkly-comic",
+      "suspenseful",
+      "provocative"
+    ]
+  },
+  "movie:546554": {
+    "subgenres": [
+      "whodunit",
+      "comedy-mystery",
+      "ensemble-mystery"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "witty",
+      "twisty",
+      "playful",
+      "satirical"
+    ]
+  },
+  "show:244321": {
+    "subgenres": [
+      "historical-drama",
+      "investigative-drama",
+      "limited-series"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "somber",
+      "determined",
+      "tense",
+      "emotional"
+    ]
+  },
+  "show:53606": {
+    "subgenres": [
+      "romantic-dramedy",
+      "relationship-comedy",
+      "ensemble-comedy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "awkward",
+      "candid",
+      "bittersweet",
+      "character-driven"
+    ]
+  },
+  "movie:76341": {
+    "subgenres": [
+      "post-apocalyptic",
+      "road-action",
+      "survival-action"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:523607": {
+    "subgenres": [
+      "music-biography",
+      "romantic-drama",
+      "historical-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "intimate",
+      "emotional",
+      "sophisticated",
+      "bittersweet"
+    ]
+  },
+  "movie:50839": {
+    "subgenres": [
+      "financial-drama",
+      "workplace-thriller",
+      "chamber-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "tense",
+      "cerebral",
+      "restrained",
+      "ominous"
+    ]
+  },
+  "movie:70": {
+    "subgenres": [
+      "boxing-drama",
+      "tragedy",
+      "character-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "emotional",
+      "tragic",
+      "intimate",
+      "inspirational"
+    ]
+  },
+  "show:49011": {
+    "subgenres": [
+      "recovery-comedy",
+      "family-comedy",
+      "sitcom"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:62560": {
+    "subgenres": [
+      "cyber-thriller",
+      "psychological-drama",
+      "conspiracy-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:11635": {
+    "subgenres": [
+      "bro-comedy",
+      "campus-comedy",
+      "buddy-comedy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:466272": {
+    "subgenres": [
+      "period-comedy",
+      "show-business-drama",
+      "alternate-history"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:3322": {
+    "subgenres": [
+      "prison-drama",
+      "ensemble-drama",
+      "social-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:110382": {
+    "subgenres": [
+      "family-saga",
+      "historical-drama",
+      "immigrant-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "epic",
+      "emotional",
+      "poignant",
+      "resilient"
+    ]
+  },
+  "movie:666277": {
+    "subgenres": [
+      "romantic-drama",
+      "immigrant-drama",
+      "character-study"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "intimate",
+      "reflective",
+      "melancholic",
+      "restrained"
+    ]
+  },
+  "movie:388399": {
+    "subgenres": [
+      "historical-thriller",
+      "police-procedural",
+      "docudrama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:792307": {
+    "subgenres": [
+      "absurdist-fantasy",
+      "coming-of-age",
+      "black-comedy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "surreal",
+      "provocative",
+      "whimsical",
+      "visually-rich"
+    ]
+  },
+  "movie:646097": {
+    "subgenres": [
+      "action-thriller",
+      "small-town-crime",
+      "institutional-thriller"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:4148": {
+    "subgenres": [
+      "marriage-drama",
+      "period-drama",
+      "tragedy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "bleak",
+      "intimate",
+      "intense",
+      "tragic"
+    ]
+  },
+  "movie:504608": {
+    "subgenres": [
+      "music-biography",
+      "musical-drama",
+      "recovery-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:34307": {
+    "subgenres": [
+      "family-dramedy",
+      "working-class-drama",
+      "ensemble-comedy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:106388": {
+    "subgenres": [
+      "science-fiction-thriller",
+      "serial-killer-mystery",
+      "time-travel"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:63248": {
+    "subgenres": [
+      "political-drama",
+      "historical-drama",
+      "docudrama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "serious",
+      "complex",
+      "tragic",
+      "character-driven"
+    ]
+  },
+  "movie:1233413": {
+    "subgenres": [
+      "southern-gothic",
+      "vampire-horror",
+      "historical-horror"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:882598": {
+    "subgenres": [
+      "psychological-horror",
+      "supernatural-horror",
+      "curse-horror"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "unsettling",
+      "frightening",
+      "tense",
+      "atmospheric"
+    ]
+  },
+  "show:106308": {
+    "subgenres": [
+      "dramedy",
+      "small-town-comedy",
+      "friendship-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:314365": {
+    "subgenres": [
+      "journalism-drama",
+      "historical-drama",
+      "ensemble-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "serious",
+      "restrained",
+      "principled",
+      "tense"
+    ]
+  },
+  "show:93405": {
+    "subgenres": [
+      "survival-thriller",
+      "dystopian",
+      "social-satire"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "tense",
+      "violent",
+      "satirical",
+      "emotional"
+    ]
+  },
+  "show:37680": {
+    "subgenres": [
+      "legal-drama",
+      "workplace-drama",
+      "buddy-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:817758": {
+    "subgenres": [
+      "music-drama",
+      "psychological-drama",
+      "character-study"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:228305": {
+    "subgenres": [
+      "police-procedural",
+      "family-drama",
+      "heist-thriller"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "gritty",
+      "tense",
+      "emotional",
+      "character-driven"
+    ]
+  },
+  "movie:577922": {
+    "subgenres": [
+      "spy-thriller",
+      "time-travel",
+      "action-thriller"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:318846": {
+    "subgenres": [
+      "financial-drama",
+      "satire",
+      "historical-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:549509": {
+    "subgenres": [
+      "historical-drama",
+      "immigrant-drama",
+      "architectural-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "epic",
+      "austere",
+      "reflective",
+      "intense"
+    ]
+  },
+  "movie:310307": {
+    "subgenres": [
+      "business-drama",
+      "historical-drama",
+      "character-study"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:107114": {
+    "subgenres": [
+      "true-crime",
+      "psychological-drama",
+      "courtroom-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "somber",
+      "unsettling",
+      "intimate",
+      "serious"
+    ]
+  },
+  "show:1435": {
+    "subgenres": [
+      "legal-drama",
+      "political-drama",
+      "workplace-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "intelligent",
+      "polished",
+      "character-driven",
+      "tense"
+    ]
+  },
+  "show:69478": {
+    "subgenres": [
+      "dystopian",
+      "political-drama",
+      "feminist-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "bleak",
+      "intense",
+      "unsettling",
+      "defiant"
+    ]
+  },
+  "movie:840430": {
+    "subgenres": [
+      "dramedy",
+      "school-drama",
+      "holiday-film"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "warm",
+      "melancholic",
+      "witty",
+      "heartfelt"
+    ]
+  },
+  "movie:695721": {
+    "subgenres": [
+      "dystopian",
+      "political-drama",
+      "young-adult"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:12162": {
+    "subgenres": [
+      "military-drama",
+      "psychological-drama",
+      "bomb-disposal"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:850165": {
+    "subgenres": [
+      "wrestling-drama",
+      "biography",
+      "family-tragedy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "emotional",
+      "tragic",
+      "intense",
+      "character-driven"
+    ]
+  },
+  "show:61014": {
+    "subgenres": [
+      "medical-drama",
+      "historical-drama",
+      "workplace-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:100088": {
+    "subgenres": [
+      "post-apocalyptic",
+      "survival-drama",
+      "road-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "emotional",
+      "bleak",
+      "tense",
+      "character-driven"
+    ]
+  },
+  "show:54344": {
+    "subgenres": [
+      "mystery-drama",
+      "psychological-drama",
+      "speculative-fiction"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:254320": {
+    "subgenres": [
+      "absurdist-comedy",
+      "dystopian-romance",
+      "black-comedy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:286217": {
+    "subgenres": [
+      "space-survival",
+      "hard-science-fiction",
+      "adventure"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:593643": {
+    "subgenres": [
+      "horror-comedy",
+      "social-satire",
+      "chamber-thriller"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:90282": {
+    "subgenres": [
+      "workplace-drama",
+      "media-drama",
+      "satire"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:15621": {
+    "subgenres": [
+      "workplace-drama",
+      "political-drama",
+      "media-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "cerebral",
+      "witty",
+      "earnest",
+      "fast-paced"
+    ]
+  },
+  "movie:290250": {
+    "subgenres": [
+      "detective-comedy",
+      "neo-noir",
+      "buddy-comedy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:84661": {
+    "subgenres": [
+      "supernatural-mystery",
+      "police-procedural",
+      "psychological-horror"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:446354": {
+    "subgenres": [
+      "historical-drama",
+      "journalism-drama",
+      "political-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "tense",
+      "principled",
+      "cerebral",
+      "inspirational"
+    ]
+  },
+  "show:129398": {
+    "subgenres": [
+      "spy-drama",
+      "historical-drama",
+      "dark-comedy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "cerebral",
+      "satirical",
+      "stylish",
+      "conflicted"
+    ]
+  },
+  "show:90259": {
+    "subgenres": [
+      "folk-horror",
+      "psychological-drama",
+      "island-mystery"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:111803": {
+    "subgenres": [
+      "social-satire",
+      "anthology",
+      "resort-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:113367": {
+    "subgenres": [
+      "survival-drama",
+      "teen-drama",
+      "conspiracy-mystery"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "intense",
+      "emotional",
+      "suspenseful",
+      "character-driven"
+    ]
+  },
+  "movie:1290879": {
+    "subgenres": [
+      "psychological-thriller",
+      "locked-room-mystery",
+      "maritime-thriller"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:520663": {
+    "subgenres": [
+      "psychological-thriller",
+      "domestic-mystery",
+      "neo-noir"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:601666": {
+    "subgenres": [
+      "black-comedy",
+      "crime-thriller",
+      "social-satire"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "darkly-comic",
+      "cynical",
+      "tense",
+      "stylish"
+    ]
+  },
+  "movie:193756": {
+    "subgenres": [
+      "military-drama",
+      "survival-drama",
+      "docudrama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:475132": {
+    "subgenres": [
+      "war-drama",
+      "journalism-drama",
+      "biographical-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:9567": {
+    "subgenres": [
+      "military-drama",
+      "rescue-mission",
+      "action-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "intense",
+      "somber",
+      "heroic",
+      "suspenseful"
+    ]
+  },
+  "movie:395991": {
+    "subgenres": [
+      "disaster-drama",
+      "biographical-drama",
+      "team-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "heroic",
+      "emotional",
+      "intense",
+      "inspirational"
+    ]
+  },
+  "movie:340613": {
+    "subgenres": [
+      "marriage-drama",
+      "literary-drama",
+      "character-study"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "restrained",
+      "intimate",
+      "tense",
+      "reflective"
+    ]
+  },
+  "movie:627725": {
+    "subgenres": [
+      "business-drama",
+      "historical-drama",
+      "biographical-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "inspirational",
+      "tense",
+      "polished",
+      "character-driven"
+    ]
+  },
+  "show:207334": {
+    "subgenres": [
+      "spy-thriller",
+      "psychological-drama",
+      "road-thriller"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:95341": {
+    "subgenres": [
+      "crime-drama",
+      "adventure-drama",
+      "romantic-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1416": {
+    "subgenres": [
+      "medical-drama",
+      "workplace-drama",
+      "ensemble-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:612": {
+    "subgenres": [
+      "historical-thriller",
+      "spy-drama",
+      "political-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "tense",
+      "cerebral",
+      "somber",
+      "suspenseful"
+    ]
+  },
+  "movie:913290": {
+    "subgenres": [
+      "survival-horror",
+      "mystery-horror",
+      "social-horror"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:339527": {
+    "subgenres": [
+      "supernatural-thriller",
+      "serial-killer-thriller",
+      "police-procedural"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "cerebral",
+      "dark",
+      "suspenseful",
+      "somber"
+    ]
+  },
+  "movie:936075": {
+    "subgenres": [
+      "music-biography",
+      "historical-drama",
+      "show-business-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "energetic",
+      "emotional",
+      "polished",
+      "dramatic"
+    ]
+  },
+  "movie:799766": {
+    "subgenres": [
+      "music-biography",
+      "musical-drama",
+      "fantasy-biography"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "inventive",
+      "emotional",
+      "energetic",
+      "bittersweet"
+    ]
+  },
+  "movie:897087": {
+    "subgenres": [
+      "action-comedy",
+      "political-action",
+      "adventure"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "energetic",
+      "lighthearted",
+      "fast-paced",
+      "suspenseful"
+    ]
+  },
+  "show:45094": {
+    "subgenres": [
+      "serial-killer-thriller",
+      "police-procedural",
+      "cult-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:287167": {
+    "subgenres": [
+      "true-crime",
+      "journalism-drama",
+      "police-procedural"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "serious",
+      "tense",
+      "investigative",
+      "character-driven"
+    ]
+  },
+  "show:241272": {
+    "subgenres": [
+      "teen-thriller",
+      "crime-drama",
+      "ensemble-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:715931": {
+    "subgenres": [
+      "historical-drama",
+      "survival-drama",
+      "biographical-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:882569": {
+    "subgenres": [
+      "military-drama",
+      "rescue-thriller",
+      "survival-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:293767": {
+    "subgenres": [
+      "war-drama",
+      "psychological-drama",
+      "media-satire"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "reflective",
+      "emotional",
+      "somber",
+      "intimate"
+    ]
+  },
+  "movie:28730": {
+    "subgenres": [
+      "journalism-drama",
+      "historical-drama",
+      "war-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "tense",
+      "immersive",
+      "cerebral",
+      "serious"
+    ]
+  },
+  "movie:832964": {
+    "subgenres": [
+      "war-drama",
+      "journalism-drama",
+      "historical-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:506680": {
+    "subgenres": [
+      "faith-drama",
+      "recovery-drama",
+      "historical-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:150": {
+    "subgenres": [
+      "legal-drama",
+      "ensemble-drama",
+      "relationship-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:60791": {
+    "subgenres": [
+      "anthology",
+      "social-drama",
+      "legal-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:442249": {
+    "subgenres": [
+      "dystopian-horror",
+      "action-horror",
+      "political-thriller"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "violent",
+      "tense",
+      "provocative",
+      "suspenseful"
+    ]
+  },
+  "movie:98": {
+    "subgenres": [
+      "historical-epic",
+      "sword-and-sandal",
+      "revenge-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:71694": {
+    "subgenres": [
+      "drug-crime",
+      "historical-drama",
+      "family-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1906": {
+    "subgenres": [
+      "family-dramedy",
+      "social-realism",
+      "ensemble-comedy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "raw",
+      "funny",
+      "chaotic",
+      "heartfelt"
+    ]
+  },
+  "show:17035": {
+    "subgenres": [
+      "military-drama",
+      "docudrama",
+      "ensemble-drama"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "tones": [
+      "gritty",
+      "realistic",
+      "sardonic",
+      "intense"
+    ]
+  },
+  "show:73107": {
+    "tones": [
+      "dark",
+      "satirical",
+      "tense",
+      "character-driven"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:81357": {
+    "tones": [
+      "dark",
+      "bittersweet",
+      "heartfelt",
+      "twisty"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:147050": {
+    "tones": [
+      "cerebral",
+      "unsettling",
+      "slow-burn",
+      "tense"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:545611": {
+    "tones": [
+      "surreal",
+      "energetic",
+      "heartfelt",
+      "existential"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:67195": {
+    "tones": [
+      "surreal",
+      "cerebral",
+      "visually-rich",
+      "unsettling"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:334541": {
+    "tones": [
+      "melancholic",
+      "intimate",
+      "restrained",
+      "emotional"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:492188": {
+    "tones": [
+      "intimate",
+      "emotional",
+      "bittersweet",
+      "character-driven"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:376867": {
+    "tones": [
+      "intimate",
+      "lyrical",
+      "melancholic",
+      "tender"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1330021": {
+    "tones": [
+      "warm",
+      "heartfelt",
+      "reflective",
+      "hopeful"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:95480": {
+    "tones": [
+      "witty",
+      "cynical",
+      "suspenseful",
+      "character-driven"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:99657": {
+    "tones": [
+      "witty",
+      "satirical",
+      "thoughtful",
+      "character-driven"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:87523": {
+    "tones": [
+      "irreverent",
+      "energetic",
+      "satirical",
+      "tragic"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:100883": {
+    "tones": [
+      "witty",
+      "heartfelt",
+      "energetic",
+      "emotional"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:259731": {
+    "tones": [
+      "twisty",
+      "tense",
+      "suspenseful",
+      "atmospheric"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:40008": {
+    "tones": [
+      "dark",
+      "intense",
+      "character-driven",
+      "slow-burn"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1439930": {
+    "tones": [
+      "brutal",
+      "intense",
+      "emotional",
+      "dark"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:82693": {
+    "tones": [
+      "warm",
+      "quirky",
+      "emotional",
+      "hopeful"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:208397": {
+    "tones": [
+      "mysterious",
+      "witty",
+      "emotional",
+      "suspenseful"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:79410": {
+    "tones": [
+      "bittersweet",
+      "darkly-comic",
+      "warm",
+      "reflective"
     ],
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx"
