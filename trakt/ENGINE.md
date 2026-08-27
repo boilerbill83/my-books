@@ -371,6 +371,33 @@ went through, and hasn't gotten one:
 
 ---
 
+## 4b. `reason()` — the explanation string, and its tag prefix
+
+`reason(candidate, idx, enrichedMeta, omdbMeta)` returns one human-readable
+sentence explaining a candidate's score — checked in the same priority
+order the branches are listed here (the first branch that fires wins; that
+branch's signal is, by construction, the strongest evidence available for
+that candidate). As of the external metadata-improvement-plan review, every
+branch's string now starts with a short, stable tag followed by ` — ` and
+then the full explanatory sentence — e.g. `"Creator Match — You've loved 2
+titles from creator Taylor Sheridan before."` The tag makes every reason
+machine-groupable (split on the first ` — `) for analysis/debugging without
+sacrificing the prose Bill has consistently preferred over a terser format.
+
+| Priority | Tag | Fires when |
+|---|---|---|
+| 1 | `Franchise Match` | Candidate shares a TMDB collection with a loved title |
+| 2 | `Creator Match` | Candidate's director/creator matches a loved title's |
+| 3 | `Cast Affinity` | Candidate's `topCast` includes an actor from a loved title |
+| 4 | `Similar Title` | Candidate cited in a loved title's `similarToIds`/`recommendedIds` (forward), or a loved title cites the candidate (reverse) |
+| 5 | `Genre Match` | Candidate shares a genre with `idx.lovedGenres` |
+| 6 | `Community Rating` | TMDB `voteAverage` ≥ 7.5, no stronger signal fired |
+| 7 | `Critically Acclaimed` | OMDb critic score ≥ neutral, no stronger signal fired |
+| 8 | `Award Recognition` | Real OMDb award wins/nominations, no stronger signal fired |
+| — | *(no tag)* | Fallback: `"A newer or less-connected title — worth a look, lower confidence."` |
+
+---
+
 ## 5. Hard candidate filters (never score adjustments — full exclusion)
 
 Applied only in `rankAll()`'s `fromCandidates` list — **never to the
