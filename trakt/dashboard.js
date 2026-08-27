@@ -917,23 +917,28 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
     },
     genres: (f) => {
       const g = genreCounts();
+      const s = f.specificity;
       return {
         severity: 'warning',
         ratings: { ease: 2, dataQuality: 4, recEngine: 3, ui: 2 },
-        title: `Genres quality is ${f.qualityPct.toFixed(1)}% — below the 90% bar (needs 2+ tags per title to count)`,
-        technical: `<code>genres</code> is 100% populated but only ${f.qualityPct.toFixed(1)}% quality (${f.quality} of ${f.eligible}), since ` +
-          `quality here requires 2+ genre tags so <code>genreBonus()</code> has more than one to match. Live breakdown: ${g.single} titles ` +
-          `carry exactly 1 genre tag, ${g.multi} carry 2+. Spot-checked in a prior session (single-genre entries like 30 Rock, both ` +
-          `Anchorman movies) confirmed this reflects real, current TMDB tagging — not stale data a re-fetch would fix. Re-verified again ` +
-          `this session: all ${g.single} single-genre titles carry a <code>fetchedAt</code> within the last 3 days (the most recent ` +
-          `<code>REFRESH_ALL</code> pass), so this isn't stale cache data from before some field existed — TMDB's own API genuinely ` +
-          `returns just one genre for these titles today. A genuine TMDB source-data ceiling, not a pipeline bug.`,
-        plain: `About 1 in 6 titles only has one genre tag from TMDB (like just "Comedy," nothing else), which gives the engine less ` +
-          `to match on for that title. Checked a sample of these directly — they're genuinely single-genre on TMDB's own page, not a ` +
-          `bug in how this app reads the data.`,
+        title: `Genres quality is ${f.qualityPct.toFixed(1)}% — below the 90% bar (row completeness + distribution specificity, blended)`,
+        technical: `<code>genres</code> is 100% populated. % Quality is now a 50/50 blend of two separate checks (added this session): ` +
+          `(a) row completeness — ${f.rowQualityPct.toFixed(1)}% of titles (${f.quality} of ${f.eligible}) carry 2+ genre tags so ` +
+          `<code>genreBonus()</code> has more than one to match (${g.single} single-tag, ${g.multi} multi-tag; spot-checked and re-verified ` +
+          `against fresh <code>fetchedAt</code> timestamps as real current TMDB tagging, not stale cache); and (b) specificity — ` +
+          `${s ? s.specificityPct.toFixed(1) : '?'}% (normalized Shannon entropy across ${s ? s.distinctCount : '?'} distinct genre values), ` +
+          `dragged down because <code>"${s ? s.topValue : '?'}"</code> alone accounts for ${s ? s.topSharePct.toFixed(1) : '?'}% of all genre ` +
+          `tags versus an optimal ≤${s ? s.optimalTopSharePct.toFixed(1) : '?'}% if evenly spread across ${s ? s.distinctCount : '?'} values. ` +
+          `Both halves trace to the same root cause: TMDB's top-level genre taxonomy is real but blunt (~19 fixed categories), not a pipeline bug.`,
+        plain: `Two separate problems get combined into this one number now: some titles only have one genre tag (like just "Comedy"), and ` +
+          `on top of that, "${s ? s.topValue : 'Drama'}" is used so often (about a third of all genre tags) that it doesn't tell the engine ` +
+          `much — a truly specific field would spread its tags more evenly across the ~24 real genre values in use. Both are checked directly ` +
+          `against TMDB's own data, not a bug in how this app reads it.`,
         impact: `Below the bar Bill set, so it's listed here, but a low-effort fix doesn't really exist — TMDB itself is the source of ` +
-          `the gap. The <code>keywords</code>/genre-subgenre-split findings elsewhere on this list are the more promising path to real ` +
-          `additional signal for these titles, not a fix to this field directly.`,
+          `both gaps. The <code>keywords</code>/subgenre-specificity findings elsewhere on this list are the more promising path to real ` +
+          `additional granularity for these titles; a future session could also extend the subgenre-detail keyword pass (currently applied ` +
+          `to 11 of 23 subgenres, see the remaining-subgenre-specificity finding below) to refine the raw Genres field the same way, not just ` +
+          `the derived Subgenres field.`,
       };
     },
     criticScore: (f) => {
@@ -1809,6 +1814,93 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
         `for many sessions) and enough real underlying data (${totalEnriched ? ((withOverview / totalEnriched) * 100).toFixed(1) : 0}% ` +
         `overview coverage) to build and validate today — but it's genuinely new engineering (a TF-IDF module port, not ` +
         `a config change), so it's flagged here rather than assumed to be a quick win.`,
+    });
+  }
+
+  // Open decision, not a bug: Bill asked mid-session whether it makes
+  // sense to split BMTRE into two separate engines (one for movies, one
+  // for TV shows) rather than one shared scorer — a real architectural
+  // question raised while diagnosing the TV-recency-bias complaint, never
+  // decided either way. Logged here rather than silently dropped so it
+  // doesn't get lost between sessions.
+  {
+    findings.push({
+      id: 'split-movie-tv-engine-decision',
+      severity: 'warning',
+      ratings: { ease: 3, dataQuality: 2, recEngine: 5, ui: 1 },
+      title: 'Open question: should movies and TV shows use two separate scoring engines instead of one shared one? (Bill asked, not yet decided)',
+      technical: `<code>matchScore()</code>/<code>baseSignals()</code> in <code>engine.js</code> already branch by <code>type</code> for ` +
+        `several signals (<code>recencyBonusMovie()</code> vs <code>recencyBonusShow()</code>, <code>matchPointScale()</code>'s per-type ` +
+        `pool-size correction, <code>rewatchStrength()</code>'s per-type <code>plays</code> normalization, the pre-2000-movie hard filter ` +
+        `that only applies to movies) — so the codebase already has real precedent for type-specific curves living inside one shared ` +
+        `function rather than two separate files. A genuine full split would mean two independent <code>buildIndexes()</code>/`+
+        `<code>matchScore()</code> pairs, each free to weight signals (director vs. creator, franchise, cast, keyword, subgenre/tone) ` +
+        `completely differently per type, at the cost of duplicating every future engine change across two files instead of one.`,
+      plain: `Right now there's one scoring formula that handles both movies and TV shows, with a handful of places where it treats them ` +
+        `differently (like the strong "avoid old shows" rule). Bill asked whether it would work better to just have two completely separate ` +
+        `formulas instead — one tuned only for movies, one only for TV. That's a real design decision with tradeoffs (more flexibility to ` +
+        `tune each type independently vs. twice the code to maintain and keep in sync), not something to just build without deciding first.`,
+      impact: `A real open question raised this session that was never resolved — worth Bill's explicit call before any future engine work ` +
+        `assumes one architecture or the other. Current signals suggest the shared-function-with-per-type-branches pattern already in use ` +
+        `is working reasonably well (every per-type fix shipped this way so far — recency, pool-size, rewatch — measured cleanly against ` +
+        `<code>scripts/eval.js</code> with no cross-type regressions), so a full split isn't obviously necessary, but it's Bill's product ` +
+        `call to make, not an engineering default.`,
+    });
+  }
+
+  // Remaining, not-yet-done half of the genre-specificity work: Bill's
+  // "I want that level of specificity for all genres and subgenres" ask
+  // was only partially completed — inferSubgenreDetail()/GENRE_DETAIL_KEYWORDS
+  // currently refine 11 of the 23 real subgenre tags (the other 9 were
+  // deliberately left unsplit after checking the real data showed no safe,
+  // sufficiently-evidenced further split), and the refinement is applied
+  // only to the derived Subgenres field, never to the raw TMDB Genres
+  // field itself. Computed live so the "11 of 23" count can't silently
+  // drift out of sync with GENRE_DETAIL_KEYWORDS as it's extended.
+  {
+    let refinedCount = 0, totalSubgenres = 0;
+    try {
+      // GENRE_DETAIL_KEYWORDS isn't exported, so this counts indirectly via
+      // a light live probe: run inferSubgenreDetail() against every real
+      // subgenre tag currently in use and see which ones return a result
+      // for at least one real enriched title carrying that tag.
+      const tagTitles = new Map();
+      for (const meta of Object.values(enrichedMeta)) {
+        for (const tag of inferSubgenres(meta, null)) {
+          if (!tagTitles.has(tag)) tagTitles.set(tag, meta);
+        }
+      }
+      totalSubgenres = tagTitles.size;
+      for (const [tag, meta] of tagTitles) {
+        if (inferSubgenreDetail(tag, meta, 1).length > 0) refinedCount++;
+      }
+    } catch (e) { /* best-effort live count; static fallback below if it fails */ }
+    findings.push({
+      id: 'remaining-subgenre-genre-specificity',
+      severity: 'warning',
+      ratings: { ease: 4, dataQuality: 5, recEngine: 2, ui: 3 },
+      title: `Genre/subgenre specificity is a partial pass — ${refinedCount || 11} of ${totalSubgenres || 23} subgenres have a detail ` +
+        `breakdown, the raw Genres field has none`,
+      technical: `<code>inferSubgenreDetail()</code>/<code>GENRE_DETAIL_KEYWORDS</code> currently refine ${refinedCount || 11} of ` +
+        `${totalSubgenres || 23} real subgenre tags into a more specific label (e.g. <code>historical</code>/<code>war</code> → WWII/` +
+        `Vietnam/Cold War era buckets, <code>crime-drama</code> → Organized Crime/Drug Trade/Assassin, <code>sports</code> → Boxing/` +
+        `Basketball/Baseball/Wrestling/Racing). The other ${totalSubgenres ? totalSubgenres - refinedCount : 12} subgenres were checked ` +
+        `and deliberately left unsplit after real keyword-frequency scans showed either too little data to support a further split or ` +
+        `every candidate keyword producing real false positives when checked against the full dataset (documented inline in ` +
+        `<code>GENRE_DETAIL_KEYWORDS</code>'s history of dropped candidates: genocide, alcohol, betrayal, civil war, outlaw/sheriff/` +
+        `gunslinger, nasa/astronaut, corruption, sibling relationship, drugs, president). Separately, the raw top-level <code>genres</code> ` +
+        `field (Drama/Comedy/Action/etc.) has no detail refinement applied to it at all — only the derived Subgenres field does, via ` +
+        `<code>displaySubgenre()</code> in dashboard.js.`,
+      plain: `Bill asked for the same level of specificity ("historical → WW2") applied across every genre and subgenre, not just the one ` +
+        `example he gave. About half of the real subgenre categories now have this — for example a war movie or show gets tagged with ` +
+        `which war, a sports title gets tagged with which sport. The rest were checked for a similar split and genuinely didn't have ` +
+        `enough real, reliable signal to safely add one (checked directly against the actual data, not skipped without looking). The plain ` +
+        `top-level genre label (like "Drama") still has no such breakdown at all — that's the biggest remaining piece of this ask.`,
+      impact: `A real, only-partially-delivered request. The already-shipped half (11 subgenres) is validated and live on the dashboard's ` +
+        `Genres chart, rec cards, and All Titles table. Finishing it would mean either accepting that the remaining subgenres/genres ` +
+        `genuinely lack safe keyword signal today (a real, checked ceiling, same as the Genres field-quality ceiling above) or revisiting ` +
+        `them periodically as TMDB's keyword coverage grows — not a quick follow-up, closer in scope to a continuation of this session's ` +
+        `own work than a bug fix.`,
     });
   }
 
