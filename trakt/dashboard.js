@@ -198,6 +198,8 @@ const SUBGENRE_LABEL = {
   'sports': 'Sports', 'romance': 'Romance', 'legal': 'Legal', 'superhero': 'Superhero',
   'spy-espionage': 'Spy / Espionage', 'horror': 'Horror', 'romcom': 'Rom-Com', 'medical': 'Medical',
   'heist': 'Heist', 'prison': 'Prison', 'musical': 'Musical', 'neo-western': 'Neo-Western',
+  'organized-crime': 'Organized Crime', 'drug-trade': 'Drug Trade', 'assassin-hitman': 'Assassin / Hitman',
+  'murder-mystery': 'Murder Mystery', 'police-procedural': 'Police Procedural',
 };
 
 // Bill: "instead of drama -> historical drama, it should be historical

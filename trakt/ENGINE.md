@@ -426,19 +426,29 @@ vocabulary drift has no code path to occur through. Three-tier fallback:
 text for mood/craft phrases, (3) a per-title LLM tag cache
 (`trakt/data/llmTags.json`) when both free tiers come back empty.
 
-21 subgenre tags (`crime-drama`, `procedural`, `legal`, `heist`,
+29 subgenre tags (`crime-drama`, `procedural`, `legal`, `heist`,
 `spy-espionage`, `psychological-thriller`, `biopic`, `historical`, `war`,
 `political`, `family-drama`, `coming-of-age`, `romance`, `romcom`,
 `workplace-comedy`, `dark-comedy`, `superhero`, `sci-fi-fantasy`,
-`sports`, `medical`, `prison`, `horror`, `musical`) and 14 tone tags
-(`gritty`, `dark`, `witty`, `satirical`, `hilarious`, `inspirational`,
-`intense`, `suspenseful`, `twisty`, `slow-burn`, `character-driven`,
-`nostalgic`, `melancholy`, `offbeat`, `thoughtful`). Every keyword in both
-lists was verified present at real, non-trivial frequency in the live
-dataset before inclusion — several plausible-looking keywords were tested
-and *rejected* for producing real false positives (documented inline in
-`engine.js`, e.g. `based on comic` wrongly flagged the historical war
-epic "300" as a superhero film).
+`sports`, `medical`, `prison`, `horror`, `musical`, `neo-western`,
+`organized-crime`, `drug-trade`, `assassin-hitman`, `murder-mystery`,
+`police-procedural`) and 14 tone tags (`gritty`, `dark`, `witty`,
+`satirical`, `hilarious`, `inspirational`, `intense`, `suspenseful`,
+`twisty`, `slow-burn`, `character-driven`, `nostalgic`, `melancholy`,
+`offbeat`, `thoughtful`). Every keyword in both lists was verified present
+at real, non-trivial frequency in the live dataset before inclusion —
+several plausible-looking keywords were tested and *rejected* for
+producing real false positives (documented inline in `engine.js`, e.g.
+`based on comic` wrongly flagged the historical war epic "300" as a
+superhero film). `organized-crime`/`drug-trade`/`assassin-hitman`/
+`murder-mystery`/`police-procedural` were split out of the original
+`crime-drama`/`procedural` buckets after both exceeded the 15%-of-dataset
+concentration cap (the same cap this project's tone vocabulary enforces) —
+`crime-drama` was 19.9%, `procedural` was 18.9%; after the split every
+bucket is under 15%, with the two original buckets now holding only their
+genuinely residual keywords (`crime-drama`: `outlaw`/`criminal`;
+`procedural`: `detective`/`investigation`/`fbi`/`criminal investigation`/
+`crime investigation`).
 
 ---
 
