@@ -105,7 +105,7 @@ export function loadAllTitles() {
       // and the story's setting era (distinct from releaseDate below,
       // which is when the title was MADE, not when it's set).
       subjects: inferSubjects(meta, idx.llmTags?.[h.titleKey], undefined, idx.reviewedTags?.[h.titleKey]),
-      era: inferEra(meta)[0] || '',
+      era: inferEra(meta, undefined, idx.reviewedTags?.[h.titleKey])[0] || '',
       topCast: meta.topCast || [],
       releaseDate: meta.releaseDate || meta.firstAirDate || '',
       runtime: meta.runtime ?? meta.episodeRunTime ?? '',

@@ -230,8 +230,19 @@ const SUBJECT_LABEL = {
 };
 
 const ERA_LABEL = {
+  // inferEra()'s own coarse 4-bucket keyword scheme.
   'ancient-to-1900': 'Pre-1900', 'early-1900s': 'Early 1900s (1900-1945)', 'mid-late-1900s': 'Mid/Late 1900s (1946-1999)',
   'future-setting': 'Future',
+  // trakt/data/reviewedTags.json's richer 17-value era vocabulary (from the
+  // reviewed metadata workbook) - a real vocabulary swap, not a subset of
+  // the keys above, since the override tier replaces inferEra()'s output
+  // entirely rather than refining it.
+  'classical-antiquity': 'Classical Antiquity', 'medieval': 'Medieval', 'early-modern': 'Early Modern',
+  '18th-century': '18th Century', '19th-century': '19th Century', 'late-19th-century': 'Late 19th Century',
+  'early-20th-century': 'Early 20th Century', 'world-war-i': 'World War I', 'interwar': 'Interwar',
+  'world-war-ii': 'World War II', 'cold-war': 'Cold War', 'late-20th-century': 'Late 20th Century',
+  'contemporary': 'Contemporary', 'near-future': 'Near Future', 'far-future': 'Far Future',
+  'multi-era': 'Multiple Eras', 'timeless': 'Timeless / Fantastical',
 };
 
 function computeCastStats(library, enrichedMeta) {
@@ -705,36 +716,41 @@ const FIELD_REGISTRY = [
     note: 'Quality = any real award/nomination found via OMDb\'s Awards text. Bill\'s library skews toward ' +
       'well-regarded titles, so most (~80%) genuinely do have some recognition — 0 is still a legitimate ' +
       'answer for a real minority (genuinely un-recognized titles), not evidence of a parsing gap.' },
-  { key: 'subgenres', label: 'Subgenres (beneath genre)', source: 'Derived (keywords + LLM)', critical: false,
+  { key: 'subgenres', label: 'Subgenres (beneath genre)', source: 'Derived (keywords + LLM + reviewed)', critical: false,
     eligible: (t, meta) => !!meta,
-    populated: (t, meta, omdb, llmEntry) => inferSubgenres(meta, llmEntry).length > 0,
-    quality: (t, meta, omdb, llmEntry) => inferSubgenres(meta, llmEntry).length > 0,
-    values: (t, meta, omdb, llmEntry) => inferSubgenres(meta, llmEntry),
+    populated: (t, meta, omdb, llmEntry, reviewed) => inferSubgenres(meta, llmEntry, undefined, reviewed).length > 0,
+    quality: (t, meta, omdb, llmEntry, reviewed) => inferSubgenres(meta, llmEntry, undefined, reviewed).length > 0,
+    values: (t, meta, omdb, llmEntry, reviewed) => inferSubgenres(meta, llmEntry, undefined, reviewed),
     note: 'Keyword match first, then trakt/data/llmTags.json (Claude Haiku 4.5, per-title, only for titles the ' +
-      'free keyword tier misses) — see inferSubgenres() in engine.js. Effectively closed (~99.7%) as of the real ' +
-      'LLM tagging pass; the tiny remainder are titles with genuinely no fitting subgenre, not a pending gap.' },
-  { key: 'tones', label: 'Tones (mood/craft)', source: 'Derived (keywords + overview + LLM)', critical: false,
+      'free keyword tier misses), then trakt/data/reviewedTags.json (a curated override from a hand-reviewed ' +
+      'metadata workbook, checked ahead of both) — see inferSubgenres() in engine.js. Effectively closed ' +
+      '(~99.7%) as of the real LLM tagging pass; the tiny remainder are titles with genuinely no fitting ' +
+      'subgenre, not a pending gap.' },
+  { key: 'tones', label: 'Tones (mood/craft)', source: 'Derived (keywords + overview + LLM + reviewed)', critical: false,
     eligible: (t, meta) => !!meta,
-    populated: (t, meta, omdb, llmEntry) => inferTones(meta, llmEntry).length > 0,
-    quality: (t, meta, omdb, llmEntry) => inferTones(meta, llmEntry).length > 0,
-    values: (t, meta, omdb, llmEntry) => inferTones(meta, llmEntry),
-    note: 'Same three-tier design as Subgenres (keyword -> overview-text phrase -> LLM), via inferTones(). ' +
-      'Fully closed (100%) as of the real LLM tagging pass — every title has some real mood signal.' },
-  { key: 'subjects', label: 'Subjects (human-condition topics)', source: 'Derived (keywords)', critical: false,
+    populated: (t, meta, omdb, llmEntry, reviewed) => inferTones(meta, llmEntry, undefined, reviewed).length > 0,
+    quality: (t, meta, omdb, llmEntry, reviewed) => inferTones(meta, llmEntry, undefined, reviewed).length > 0,
+    values: (t, meta, omdb, llmEntry, reviewed) => inferTones(meta, llmEntry, undefined, reviewed),
+    note: 'Same tiered design as Subgenres (keyword -> overview-text phrase -> LLM -> reviewed override), via ' +
+      'inferTones(). Fully closed (100%) as of the real LLM tagging pass — every title has some real mood signal.' },
+  { key: 'subjects', label: 'Subjects (human-condition topics)', source: 'Derived (keywords + reviewed)', critical: false,
     eligible: (t, meta) => !!meta,
-    populated: (t, meta, omdb, llmEntry) => inferSubjects(meta, llmEntry).length > 0,
-    quality: (t, meta, omdb, llmEntry) => inferSubjects(meta, llmEntry).length > 0,
-    values: (t, meta, omdb, llmEntry) => inferSubjects(meta, llmEntry),
+    populated: (t, meta, omdb, llmEntry, reviewed) => inferSubjects(meta, llmEntry, undefined, reviewed).length > 0,
+    quality: (t, meta, omdb, llmEntry, reviewed) => inferSubjects(meta, llmEntry, undefined, reviewed).length > 0,
+    values: (t, meta, omdb, llmEntry, reviewed) => inferSubjects(meta, llmEntry, undefined, reviewed),
     note: 'A second layer beneath genre/subgenre — real social/human-condition subject matter (addiction, ' +
-      'grief, trauma, class, etc.), the BBRE-themes-inspired addition. Honestly partial (~28%) since most ' +
-      'titles genuinely have no such subject at all — not every story is about addiction or grief.' },
-  { key: 'era', label: 'Era (story setting)', source: 'Derived (keywords)', critical: false,
+      'grief, trauma, class, etc.), the BBRE-themes-inspired addition, plus trakt/data/reviewedTags.json\'s ' +
+      'curated override tier. Partial by design — not every story genuinely has such a subject.' },
+  { key: 'era', label: 'Era (story setting)', source: 'Derived (keywords + reviewed)', critical: false,
     eligible: (t, meta) => !!meta,
-    populated: (t, meta, omdb, llmEntry) => inferEra(meta).length > 0,
-    quality: (t, meta, omdb, llmEntry) => inferEra(meta).length > 0,
-    values: (t, meta) => inferEra(meta),
-    note: 'When the STORY is set, not when it was made (that\'s Year, above) — via inferEra(). Honestly ' +
-      'partial (~17%) since most titles are contemporary-set with no explicit setting-era keyword at all.' },
+    populated: (t, meta, omdb, llmEntry, reviewed) => inferEra(meta, undefined, reviewed).length > 0,
+    quality: (t, meta, omdb, llmEntry, reviewed) => inferEra(meta, undefined, reviewed).length > 0,
+    values: (t, meta, omdb, llmEntry, reviewed) => inferEra(meta, undefined, reviewed),
+    note: 'When the STORY is set, not when it was made (that\'s Year, above) — via inferEra(), plus ' +
+      'trakt/data/reviewedTags.json\'s curated override (the workbook\'s own 17-value era vocabulary, richer ' +
+      'than inferEra()\'s 4-bucket keyword scheme). The keyword tier alone is honestly partial (~17%) since ' +
+      'most titles are contemporary-set with no explicit setting-era keyword at all; the reviewed override ' +
+      'closes most of that gap for the titles the workbook covers.' },
 ];
 
 // Bill: "for each field determine the optimal value and then build that
@@ -760,14 +776,15 @@ const FIELD_REGISTRY = [
 // that field's own cardinality), 0% would mean one value swallows
 // everything. This generalizes cleanly to any field size with no
 // per-field tuning, unlike a fixed percentage cap.
-function computeFieldSpecificity(titles, enrichedMeta, omdbMeta, llmTags, valuesFn) {
+function computeFieldSpecificity(titles, enrichedMeta, omdbMeta, llmTags, valuesFn, reviewedTags = {}) {
   const counts = new Map();
   let totalInstances = 0;
   for (const t of titles) {
     const meta = enrichedMeta[t.titleKey];
     const omdb = omdbMeta[t.titleKey];
     const llmEntry = llmTags[t.titleKey];
-    for (const v of valuesFn(t, meta, omdb, llmEntry) || []) {
+    const reviewed = reviewedTags[t.titleKey];
+    for (const v of valuesFn(t, meta, omdb, llmEntry, reviewed) || []) {
       counts.set(v, (counts.get(v) || 0) + 1);
       totalInstances++;
     }
@@ -788,7 +805,7 @@ function computeFieldSpecificity(titles, enrichedMeta, omdbMeta, llmTags, values
   return { distinctCount, topValue, topSharePct, optimalTopSharePct, specificityPct };
 }
 
-function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags = {}) {
+function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags = {}) {
   const allTitles = new Map();
   for (const t of [...(library.titles || []), ...(watchlist.titles || []), ...(candidatePool.titles || [])]) {
     if (t.titleKey && !allTitles.has(t.titleKey)) allTitles.set(t.titleKey, t);
@@ -802,11 +819,12 @@ function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, om
       const meta = enrichedMeta[t.titleKey];
       const omdb = omdbMeta[t.titleKey];
       const llmEntry = llmTags[t.titleKey];
+      const reviewed = reviewedTags[t.titleKey];
       if (!f.eligible(t, meta, omdb)) continue;
       eligible++;
       eligibleTitles.push(t);
-      if (f.populated(t, meta, omdb, llmEntry)) populated++;
-      if (f.quality(t, meta, omdb, llmEntry)) quality++;
+      if (f.populated(t, meta, omdb, llmEntry, reviewed)) populated++;
+      if (f.quality(t, meta, omdb, llmEntry, reviewed)) quality++;
     }
     const rowQualityPct = eligible ? (quality / eligible) * 100 : null;
     // Only fields with a `values` extractor (the taxonomy fields) get a
@@ -821,7 +839,7 @@ function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, om
     // sight, and can't read as low-quality purely from a specificity
     // dip while row-level completeness is actually fine.
     const specificity = f.values
-      ? computeFieldSpecificity(eligibleTitles, enrichedMeta, omdbMeta, llmTags, f.values)
+      ? computeFieldSpecificity(eligibleTitles, enrichedMeta, omdbMeta, llmTags, f.values, reviewedTags)
       : null;
     const qualityPct = specificity
       ? (rowQualityPct + specificity.specificityPct) / 2
@@ -2859,7 +2877,7 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
       genres: (meta ? inferSubgenres(meta, llmTags[h.titleKey], undefined, idx.reviewedTags?.[h.titleKey]).map(s => displaySubgenre(s, meta)) : []).join(', ')
         || meta?.genres?.join(', ') || '',
       subjects: (meta ? inferSubjects(meta, llmTags[h.titleKey], undefined, idx.reviewedTags?.[h.titleKey]).map(s => SUBJECT_LABEL[s] || s) : []).join(', '),
-      era: meta ? (ERA_LABEL[inferEra(meta)[0]] || '') : '',
+      era: meta ? (ERA_LABEL[inferEra(meta, undefined, idx.reviewedTags?.[h.titleKey])[0]] || '') : '',
       creator: (h.type === 'movie' ? meta?.director : meta?.createdBy?.[0]) || '',
     });
   };
@@ -3290,7 +3308,7 @@ async function load() {
   // (rendered later) share one source of truth — no risk of the two
   // disagreeing about how many findings are actually open.
   const severityOrder = { critical: 0, serious: 1, warning: 2, good: 3 };
-  const fieldStats = computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags);
+  const fieldStats = computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
   const allFindings = [
     ...computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates, llmTags),
     ...computeEngineImprovements(library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, idx, fromWatchlist, fromCandidates),

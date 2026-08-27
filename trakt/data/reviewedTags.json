@@ -8,6 +8,9 @@
     "subgenres": [
       "alternate-history",
       "time-travel"
+    ],
+    "era": [
+      "cold-war"
     ]
   },
   "movie:300671": {
@@ -19,6 +22,9 @@
     "subgenres": [
       "military-drama",
       "siege-film"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:118357": {
@@ -37,6 +43,9 @@
       "rugged",
       "melancholic",
       "emotional"
+    ],
+    "era": [
+      "late-19th-century"
     ]
   },
   "show:157744": {
@@ -50,6 +59,9 @@
       "epic",
       "intense",
       "character-driven"
+    ],
+    "era": [
+      "early-20th-century"
     ]
   },
   "show:108545": {
@@ -68,6 +80,9 @@
       "epic",
       "ominous",
       "suspenseful"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:4608": {
@@ -75,7 +90,10 @@
       "workplace-culture"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:1271": {
     "subjects": [
@@ -87,6 +105,9 @@
       "historical-action",
       "sword-and-sandal",
       "war-epic"
+    ],
+    "era": [
+      "classical-antiquity"
     ]
   },
   "movie:661539": {
@@ -98,6 +119,9 @@
     "subgenres": [
       "music-biography",
       "historical-drama"
+    ],
+    "era": [
+      "cold-war"
     ]
   },
   "show:225120": {
@@ -110,6 +134,9 @@
       "financial-drama",
       "political-drama",
       "social-satire"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:245312": {
@@ -122,6 +149,9 @@
       "workplace-comedy",
       "mystery-comedy",
       "dramedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:447332": {
@@ -140,6 +170,9 @@
       "suspenseful",
       "emotional",
       "atmospheric"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "show:103992": {
@@ -151,6 +184,9 @@
     "subgenres": [
       "psychological-drama",
       "limited-series"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:71737": {
@@ -163,6 +199,9 @@
       "workplace-comedy",
       "school-comedy",
       "sitcom"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:125935": {
@@ -170,7 +209,10 @@
       "public-education"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:260458": {
     "subjects": [
@@ -182,6 +224,9 @@
       "ensemble-comedy",
       "friendship-comedy",
       "sitcom"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:114461": {
@@ -194,6 +239,9 @@
       "space-opera",
       "action-adventure",
       "fantasy-adventure"
+    ],
+    "era": [
+      "far-future"
     ]
   },
   "movie:964980": {
@@ -206,6 +254,9 @@
       "sports-drama",
       "business-drama",
       "biography"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:157239": {
@@ -224,6 +275,9 @@
       "visceral",
       "atmospheric",
       "suspenseful"
+    ],
+    "era": [
+      "far-future"
     ]
   },
   "show:246386": {
@@ -237,6 +291,9 @@
       "suspenseful",
       "emotional",
       "twisty"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:89624": {
@@ -244,7 +301,10 @@
       "family-identity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:64513": {
     "subjects": [
@@ -256,6 +316,9 @@
       "true-crime",
       "anthology",
       "docudrama"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:127585": {
@@ -268,6 +331,9 @@
       "neo-noir",
       "mystery-drama",
       "romantic-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:91746": {
@@ -280,6 +346,9 @@
       "rust-belt-noir",
       "police-drama",
       "family-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:190859": {
@@ -291,6 +360,9 @@
     "subgenres": [
       "military-biography",
       "combat-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1072790": {
@@ -308,6 +380,9 @@
       "playful",
       "lighthearted",
       "warm"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:329865": {
@@ -326,6 +401,9 @@
       "emotional",
       "atmospheric",
       "contemplative"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:65495": {
@@ -338,6 +416,9 @@
       "dramedy",
       "social-satire",
       "surreal-comedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:299536": {
@@ -345,7 +426,10 @@
       "sacrifice"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:89233": {
     "subjects": [
@@ -357,6 +441,9 @@
       "space-drama",
       "family-drama",
       "science-fiction-drama"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "movie:339403": {
@@ -375,6 +462,9 @@
       "energetic",
       "tense",
       "romantic"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:130853": {
@@ -387,6 +477,9 @@
       "crime-comedy",
       "detective-fiction",
       "tropical-noir"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:4613": {
@@ -399,6 +492,9 @@
       "military-drama",
       "historical-miniseries",
       "ensemble-drama"
+    ],
+    "era": [
+      "world-war-ii"
     ]
   },
   "show:41727": {
@@ -411,6 +507,9 @@
       "neo-noir",
       "action-crime",
       "small-town-crime"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:346698": {
@@ -423,6 +522,9 @@
       "fantasy-comedy",
       "social-satire",
       "adventure-comedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:46786": {
@@ -430,7 +532,10 @@
       "mental-illness-and-family"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:110173": {
     "subjects": [
@@ -442,6 +547,9 @@
       "sports-drama",
       "small-town-drama",
       "social-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:249522": {
@@ -458,6 +566,9 @@
       "energetic",
       "suspenseful",
       "extravagant"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:154385": {
@@ -465,7 +576,10 @@
       "anger-and-escalation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:60059": {
     "subjects": [
@@ -483,6 +597,9 @@
       "character-driven",
       "tense",
       "tragic"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:66859": {
@@ -501,6 +618,9 @@
       "candid",
       "bittersweet",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:39754": {
@@ -513,6 +633,9 @@
       "interview-comedy",
       "parody",
       "web-series"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:405774": {
@@ -531,6 +654,9 @@
       "bleak",
       "suspenseful",
       "emotional"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "show:155537": {
@@ -538,7 +664,10 @@
       "criminal-confession"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:855": {
     "subjects": [
@@ -550,6 +679,9 @@
       "combat-film",
       "military-drama",
       "docudrama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:261023": {
@@ -568,6 +700,9 @@
       "brutal",
       "tense",
       "brooding"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:42009": {
@@ -580,6 +715,9 @@
       "anthology",
       "dystopian-science-fiction",
       "techno-thriller"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:249039": {
@@ -587,7 +725,10 @@
       "family-loyalty"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:116569": {
     "subjects": [
@@ -599,6 +740,9 @@
       "police-procedural",
       "mystery-thriller",
       "serial-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:61986": {
@@ -612,6 +756,9 @@
       "brooding",
       "tense",
       "atmospheric"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1621": {
@@ -624,6 +771,9 @@
       "gangster",
       "period-drama",
       "political-drama"
+    ],
+    "era": [
+      "early-20th-century"
     ]
   },
   "show:42445": {
@@ -636,6 +786,9 @@
       "political-drama",
       "workplace-drama",
       "ensemble-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:60585": {
@@ -643,7 +796,10 @@
       "pursuit-of-justice"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:64554": {
     "subjects": [
@@ -655,6 +811,9 @@
       "political-satire",
       "science-fiction-comedy",
       "horror-comedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:296098": {
@@ -673,6 +832,9 @@
       "tense",
       "restrained",
       "principled"
+    ],
+    "era": [
+      "cold-war"
     ]
   },
   "show:60839": {
@@ -691,6 +853,9 @@
       "energetic",
       "absurd",
       "warm"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:70964": {
@@ -698,14 +863,20 @@
       "addiction-and-recovery"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:48891": {
     "subjects": [
       "workplace-community"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:718930": {
     "subjects": [
@@ -717,6 +888,9 @@
       "action-comedy",
       "crime-thriller",
       "ensemble-action"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:277439": {
@@ -730,6 +904,9 @@
       "tense",
       "dark",
       "suspenseful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:71116": {
@@ -748,6 +925,9 @@
       "ominous",
       "slow-burn",
       "unsettling"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:713": {
@@ -760,6 +940,9 @@
       "sketch-comedy",
       "social-satire",
       "parody"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:87108": {
@@ -778,6 +961,9 @@
       "tense",
       "harrowing",
       "atmospheric"
+    ],
+    "era": [
+      "cold-war"
     ]
   },
   "movie:921": {
@@ -790,6 +976,9 @@
       "boxing-drama",
       "biography",
       "historical-drama"
+    ],
+    "era": [
+      "interwar"
     ]
   },
   "show:129495": {
@@ -802,6 +991,9 @@
       "mystery-thriller",
       "cyber-thriller",
       "family-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:59717": {
@@ -814,6 +1006,9 @@
       "talk-show",
       "interview-series",
       "comedy-documentary"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:974576": {
@@ -832,6 +1027,9 @@
       "tense",
       "restrained",
       "atmospheric"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:321741": {
@@ -844,6 +1042,9 @@
       "medical-drama",
       "sports-drama",
       "biography"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:99747": {
@@ -862,6 +1063,9 @@
       "reflective",
       "melancholic",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:68898": {
@@ -874,6 +1078,9 @@
       "show-business-comedy",
       "autobiographical-comedy",
       "dramedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:480530": {
@@ -886,6 +1093,9 @@
       "boxing-drama",
       "legacy-sequel",
       "family-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:677179": {
@@ -898,6 +1108,9 @@
       "boxing-drama",
       "rivalry-drama",
       "character-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:98201": {
@@ -910,6 +1123,9 @@
       "teen-thriller",
       "mystery-drama",
       "anthology"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:4546": {
@@ -922,6 +1138,9 @@
       "situational-comedy",
       "cringe-comedy",
       "satire"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:4920": {
@@ -934,6 +1153,9 @@
       "legal-thriller",
       "conspiracy-drama",
       "serialized-mystery"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:202555": {
@@ -941,7 +1163,10 @@
       "justice-versus-authoritarianism"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:70523": {
     "subjects": [
@@ -959,6 +1184,9 @@
       "ominous",
       "atmospheric",
       "intricate"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:196322": {
@@ -972,6 +1200,9 @@
       "suspenseful",
       "emotional",
       "twisty"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:293660": {
@@ -985,6 +1216,9 @@
       "violent",
       "witty",
       "fast-paced"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:533535": {
@@ -998,6 +1232,9 @@
       "energetic",
       "violent",
       "heartfelt"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "movie:383498": {
@@ -1011,6 +1248,9 @@
       "violent",
       "heartfelt",
       "energetic"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1406": {
@@ -1023,6 +1263,9 @@
       "revisionist-western",
       "historical-drama",
       "ensemble-drama"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "show:87784": {
@@ -1041,6 +1284,9 @@
       "ambiguous",
       "emotional",
       "slow-burn"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:449443": {
@@ -1053,6 +1299,9 @@
       "heist-film",
       "police-thriller",
       "action-crime"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:69866": {
@@ -1060,7 +1309,10 @@
       "friendship-and-ambition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:81349": {
     "subjects": [
@@ -1078,6 +1330,9 @@
       "atmospheric",
       "ominous",
       "slow-burn"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1405": {
@@ -1085,7 +1340,10 @@
       "vigilante-morality"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:131927": {
     "subjects": [
@@ -1097,6 +1355,9 @@
       "serial-killer-drama",
       "family-drama",
       "mystery"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:259909": {
@@ -1109,6 +1370,9 @@
       "serial-killer-drama",
       "family-drama",
       "mystery"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:83251": {
@@ -1127,6 +1391,9 @@
       "tense",
       "unsettling",
       "suspenseful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:63593": {
@@ -1139,6 +1406,9 @@
       "mockumentary",
       "anthology",
       "parody"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:209876": {
@@ -1151,6 +1421,9 @@
       "drug-crime",
       "heist-thriller",
       "character-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:93749": {
@@ -1169,6 +1442,9 @@
       "tense",
       "procedural",
       "serious"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:64690": {
@@ -1187,6 +1463,9 @@
       "brooding",
       "tense",
       "atmospheric"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:8467": {
@@ -1205,6 +1484,9 @@
       "lighthearted",
       "goofy",
       "energetic"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:438631": {
@@ -1223,6 +1505,9 @@
       "atmospheric",
       "cerebral",
       "ominous"
+    ],
+    "era": [
+      "far-future"
     ]
   },
   "show:299167": {
@@ -1236,6 +1521,9 @@
       "intense",
       "character-driven",
       "rugged"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:226285": {
@@ -1248,6 +1536,9 @@
       "howcatchem",
       "police-procedural",
       "comedy-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:614934": {
@@ -1260,6 +1551,9 @@
       "music-biography",
       "historical-drama",
       "show-business-drama"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "movie:1583500": {
@@ -1271,6 +1565,9 @@
     "subgenres": [
       "sports-documentary",
       "biography"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:82596": {
@@ -1289,6 +1586,9 @@
       "colorful",
       "playful",
       "aspirational"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:86848": {
@@ -1301,6 +1601,9 @@
       "supernatural-horror",
       "procedural",
       "psychological-mystery"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:264660": {
@@ -1314,6 +1617,9 @@
       "tense",
       "minimalist",
       "unsettling"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "movie:911430": {
@@ -1326,6 +1632,9 @@
       "auto-racing",
       "comeback-drama",
       "team-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:207841": {
@@ -1338,6 +1647,9 @@
       "crime-comedy",
       "teen-comedy",
       "friendship-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:34967": {
@@ -1350,6 +1662,9 @@
       "alien-invasion",
       "post-apocalyptic",
       "resistance-drama"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "show:211624": {
@@ -1363,6 +1678,9 @@
       "somber",
       "intimate",
       "realistic"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "show:60622": {
@@ -1381,6 +1699,9 @@
       "quirky",
       "tense",
       "atmospheric"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:87049": {
@@ -1388,7 +1709,10 @@
       "lifelong-friendship"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "multi-era"
+    ]
   },
   "show:108664": {
     "subjects": [
@@ -1406,6 +1730,9 @@
       "tense",
       "serious",
       "claustrophobic"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:507089": {
@@ -1418,6 +1745,9 @@
       "supernatural-horror",
       "survival-horror",
       "video-game-adaptation"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:87917": {
@@ -1430,6 +1760,9 @@
       "alternate-history",
       "space-drama",
       "political-drama"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "movie:359724": {
@@ -1442,6 +1775,9 @@
       "auto-racing",
       "biography",
       "engineering-drama"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:307534": {
@@ -1460,6 +1796,9 @@
       "warm",
       "awkward",
       "lighthearted"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:4278": {
@@ -1472,6 +1811,9 @@
       "sports-drama",
       "small-town-drama",
       "family-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:132016": {
@@ -1490,6 +1832,9 @@
       "intricate",
       "suspenseful",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:218137": {
@@ -1501,6 +1846,9 @@
     "subgenres": [
       "sports-documentary",
       "docuseries"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:445571": {
@@ -1519,6 +1867,9 @@
       "energetic",
       "suspenseful",
       "playful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1399": {
@@ -1531,6 +1882,9 @@
       "epic-fantasy",
       "political-drama",
       "war-fantasy"
+    ],
+    "era": [
+      "timeless"
     ]
   },
   "show:107407": {
@@ -1543,6 +1897,9 @@
       "political-drama",
       "docudrama",
       "limited-series"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:205715": {
@@ -1556,6 +1913,9 @@
       "satirical",
       "irreverent",
       "tense"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:42282": {
@@ -1574,6 +1934,9 @@
       "candid",
       "self-deprecating",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:558449": {
@@ -1586,6 +1949,9 @@
       "sword-and-sandal",
       "historical-epic",
       "revenge-drama"
+    ],
+    "era": [
+      "classical-antiquity"
     ]
   },
   "movie:661374": {
@@ -1598,6 +1964,9 @@
       "whodunit",
       "comedy-mystery",
       "ensemble-mystery"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:70573": {
@@ -1616,6 +1985,9 @@
       "heartfelt",
       "colorful",
       "character-driven"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:79086": {
@@ -1628,6 +2000,9 @@
       "gangster",
       "historical-drama",
       "political-drama"
+    ],
+    "era": [
+      "cold-war"
     ]
   },
   "show:73467": {
@@ -1646,6 +2021,9 @@
       "atmospheric",
       "intense",
       "somber"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "show:67384": {
@@ -1664,6 +2042,9 @@
       "cynical",
       "suspenseful",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:91405": {
@@ -1682,6 +2063,9 @@
       "travel-documentary",
       "food-documentary",
       "adventure-docuseries"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:980489": {
@@ -1694,6 +2078,9 @@
       "auto-racing",
       "biography",
       "underdog-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:137893": {
@@ -1706,6 +2093,9 @@
       "drug-crime",
       "biography",
       "gangster"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:83659": {
@@ -1724,6 +2114,9 @@
       "atmospheric",
       "unsettling",
       "visually-rich"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:124101": {
@@ -1737,6 +2130,9 @@
       "sharp",
       "heartfelt",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:59659": {
@@ -1749,6 +2145,9 @@
       "technology-drama",
       "workplace-drama",
       "period-drama"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:92553": {
@@ -1761,6 +2160,9 @@
       "sports-drama",
       "family-drama",
       "workplace-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:338766": {
@@ -1768,7 +2170,10 @@
       "economic-desperation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:96734": {
     "subjects": [
@@ -1780,6 +2185,9 @@
       "romantic-dramedy",
       "music-comedy",
       "character-study"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:226637": {
@@ -1798,6 +2206,9 @@
       "clever",
       "upbeat",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1425": {
@@ -1810,6 +2221,9 @@
       "political-thriller",
       "conspiracy-drama",
       "character-study"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:110971": {
@@ -1828,6 +2242,9 @@
       "reflective",
       "deadpan",
       "warm"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:271053": {
@@ -1835,7 +2252,10 @@
       "friendship-and-career-ambition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:102619": {
     "subjects": [
@@ -1853,6 +2273,9 @@
       "provocative",
       "unsettling",
       "candid"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:88728": {
@@ -1871,6 +2294,9 @@
       "awkward",
       "irreverent",
       "unpredictable"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:278178": {
@@ -1883,6 +2309,9 @@
       "crime-drama",
       "mystery-thriller",
       "conspiracy-thriller"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:127235": {
@@ -1901,6 +2330,9 @@
       "atmospheric",
       "tense",
       "somber"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "movie:11652": {
@@ -1913,6 +2345,9 @@
       "football-drama",
       "biography",
       "underdog-drama"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:114471": {
@@ -1920,14 +2355,20 @@
       "technological-ambition-and-identity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:346364": {
     "subjects": [
       "childhood-fear-and-friendship"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "show:200875": {
     "subjects": [
@@ -1945,6 +2386,9 @@
       "atmospheric",
       "disturbing",
       "suspenseful"
+    ],
+    "era": [
+      "cold-war"
     ]
   },
   "show:2710": {
@@ -1958,6 +2402,9 @@
       "cynical",
       "absurd",
       "chaotic"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:324552": {
@@ -1970,6 +2417,9 @@
       "neo-noir",
       "assassin-thriller",
       "revenge-action"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:458156": {
@@ -1988,6 +2438,9 @@
       "stylish",
       "relentless",
       "violent"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:603692": {
@@ -2006,6 +2459,9 @@
       "kinetic",
       "stylish",
       "relentless"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:274479": {
@@ -2018,6 +2474,9 @@
       "business-drama",
       "family-drama",
       "inspirational-drama"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:1436": {
@@ -2025,7 +2484,10 @@
       "law-and-personal-code"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:201304": {
     "subjects": [
@@ -2037,6 +2499,9 @@
       "neo-western",
       "police-thriller",
       "limited-series"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:99652": {
@@ -2050,6 +2515,9 @@
       "inventive",
       "unsettling",
       "satirical"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:23483": {
@@ -2063,6 +2531,9 @@
       "violent",
       "energetic",
       "satirical"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:59859": {
@@ -2076,6 +2547,9 @@
       "irreverent",
       "energetic",
       "dark"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:614917": {
@@ -2083,7 +2557,10 @@
       "parental-ambition-and-opportunity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:293167": {
     "subjects": [
@@ -2101,6 +2578,9 @@
       "spectacular",
       "tense",
       "pulpy"
+    ],
+    "era": [
+      "cold-war"
     ]
   },
   "movie:313369": {
@@ -2119,6 +2599,9 @@
       "vibrant",
       "bittersweet",
       "nostalgic"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:157741": {
@@ -2132,6 +2615,9 @@
       "sharp",
       "tense",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:262280": {
@@ -2144,6 +2630,9 @@
       "undercover-drama",
       "espionage-drama",
       "period-drama"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "movie:718032": {
@@ -2151,7 +2640,10 @@
       "youthful-connection-and-self-discovery"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "show:113962": {
     "subjects": [
@@ -2169,6 +2661,9 @@
       "intense",
       "suspenseful",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:95839": {
@@ -2187,6 +2682,9 @@
       "melancholic",
       "unsettling",
       "intimate"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:90257": {
@@ -2200,6 +2698,9 @@
       "emotional",
       "polished",
       "character-driven"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:84958": {
@@ -2207,7 +2708,10 @@
       "identity-fate-and-free-will"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "multi-era"
+    ]
   },
   "show:244628": {
     "subjects": [
@@ -2219,6 +2723,9 @@
       "police-procedural",
       "family-drama",
       "mystery-thriller"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:4607": {
@@ -2237,6 +2744,9 @@
       "emotional",
       "adventurous",
       "intricate"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:124800": {
@@ -2249,6 +2759,9 @@
       "true-crime",
       "psychological-drama",
       "courtroom-drama"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:99353": {
@@ -2267,6 +2780,9 @@
       "dramatic",
       "glossy",
       "suspenseful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:102316": {
@@ -2285,6 +2801,9 @@
       "bittersweet",
       "reflective",
       "intimate"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:210239": {
@@ -2292,7 +2811,10 @@
       "midlife-stagnation-and-academic-dysfunction"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:1104": {
     "subjects": [
@@ -2310,6 +2832,9 @@
       "reflective",
       "character-driven",
       "melancholic"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:90970": {
@@ -2317,7 +2842,10 @@
       "technological-coercive-control"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "near-future"
+    ]
   },
   "show:155533": {
     "subjects": [
@@ -2329,6 +2857,9 @@
       "historical-thriller",
       "manhunt-drama",
       "political-drama"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "show:79696": {
@@ -2341,6 +2872,9 @@
       "supernatural-mystery",
       "family-drama",
       "conspiracy-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1317288": {
@@ -2359,6 +2893,9 @@
       "ambitious",
       "character-driven",
       "stylish"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:61889": {
@@ -2366,7 +2903,10 @@
       "vigilante-justice"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:38472": {
     "subjects": [
@@ -2378,6 +2918,9 @@
       "superhero-noir",
       "detective-drama",
       "psychological-thriller"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:46518": {
@@ -2390,6 +2933,9 @@
       "military-drama",
       "historical-miniseries",
       "aviation-drama"
+    ],
+    "era": [
+      "world-war-ii"
     ]
   },
   "show:76231": {
@@ -2402,6 +2948,9 @@
       "biker-drama",
       "neo-western",
       "family-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:97951": {
@@ -2414,6 +2963,9 @@
       "prison-drama",
       "political-thriller",
       "neo-noir"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:67744": {
@@ -2427,6 +2979,9 @@
       "unsettling",
       "slow-burn",
       "atmospheric"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:118303": {
@@ -2434,7 +2989,10 @@
       "sexual-liberation-and-publishing"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "movie:14292": {
     "subjects": [
@@ -2446,6 +3004,9 @@
       "hockey-drama",
       "biography",
       "underdog-drama"
+    ],
+    "era": [
+      "cold-war"
     ]
   },
   "show:247718": {
@@ -2458,6 +3019,9 @@
       "gangster",
       "family-drama",
       "crime-thriller"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:396371": {
@@ -2470,6 +3034,9 @@
       "crime-drama",
       "legal-drama",
       "gambling-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:71446": {
@@ -2482,6 +3049,9 @@
       "heist-thriller",
       "ensemble-drama",
       "hostage-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:60308": {
@@ -2494,6 +3064,9 @@
       "baseball-drama",
       "business-drama",
       "biography"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:70485": {
@@ -2507,6 +3080,9 @@
       "tense",
       "suspenseful",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:197548": {
@@ -2519,6 +3095,9 @@
       "science-fiction-comedy",
       "adventure",
       "religious-satire"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "show:76178": {
@@ -2536,6 +3115,9 @@
       "conversational",
       "warm",
       "thoughtful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:63351": {
@@ -2548,6 +3130,9 @@
       "drug-crime",
       "historical-drama",
       "biographical-drama"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:80968": {
@@ -2566,6 +3151,9 @@
       "tense",
       "violent",
       "procedural"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:58957": {
@@ -2584,6 +3172,9 @@
       "awkward",
       "absurd",
       "inventive"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1420": {
@@ -2596,6 +3187,9 @@
       "sitcom",
       "ensemble-comedy",
       "romantic-comedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:6977": {
@@ -2609,6 +3203,9 @@
       "tense",
       "atmospheric",
       "restrained"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:615457": {
@@ -2627,6 +3224,9 @@
       "kinetic",
       "darkly-comic",
       "stylish"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:250923": {
@@ -2644,6 +3244,9 @@
       "warm",
       "heartfelt",
       "playful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:581734": {
@@ -2662,6 +3265,9 @@
       "melancholic",
       "intimate",
       "naturalistic"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:89905": {
@@ -2675,6 +3281,9 @@
       "emotional",
       "melancholic",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1214931": {
@@ -2693,6 +3302,9 @@
       "tense",
       "cerebral",
       "somber"
+    ],
+    "era": [
+      "cold-war"
     ]
   },
   "movie:1339713": {
@@ -2710,6 +3322,9 @@
       "intimate",
       "obsessive",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1054867": {
@@ -2728,6 +3343,9 @@
       "satirical",
       "intense",
       "energetic"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:240667": {
@@ -2746,6 +3364,9 @@
       "bittersweet",
       "emotional",
       "nostalgic"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "movie:872585": {
@@ -2758,6 +3379,9 @@
       "historical-drama",
       "science-drama",
       "political-drama"
+    ],
+    "era": [
+      "world-war-ii"
     ]
   },
   "show:109939": {
@@ -2770,6 +3394,9 @@
       "romantic-comedy",
       "pirate-adventure",
       "workplace-comedy"
+    ],
+    "era": [
+      "18th-century"
     ]
   },
   "show:113985": {
@@ -2782,6 +3409,9 @@
       "neo-western",
       "mystery-drama",
       "time-travel"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:69740": {
@@ -2800,6 +3430,9 @@
       "tense",
       "atmospheric",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:158083": {
@@ -2812,6 +3445,9 @@
       "medical-drama",
       "corporate-drama",
       "docudrama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:114925": {
@@ -2824,6 +3460,9 @@
       "biographical-drama",
       "media-satire",
       "relationship-drama"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:245927": {
@@ -2842,6 +3481,9 @@
       "twisty",
       "suspenseful",
       "character-driven"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "show:8592": {
@@ -2855,6 +3497,9 @@
       "witty",
       "warm",
       "heartfelt"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:274870": {
@@ -2873,6 +3518,9 @@
       "atmospheric",
       "emotional",
       "suspenseful"
+    ],
+    "era": [
+      "far-future"
     ]
   },
   "show:60574": {
@@ -2885,6 +3533,9 @@
       "gangster",
       "historical-drama",
       "family-saga"
+    ],
+    "era": [
+      "interwar"
     ]
   },
   "show:85853": {
@@ -2897,6 +3548,9 @@
       "legal-drama",
       "detective-noir",
       "period-drama"
+    ],
+    "era": [
+      "early-20th-century"
     ]
   },
   "movie:114150": {
@@ -2915,6 +3569,9 @@
       "witty",
       "uplifting",
       "playful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:254470": {
@@ -2933,6 +3590,9 @@
       "uplifting",
       "playful",
       "heartfelt"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:353616": {
@@ -2951,6 +3611,9 @@
       "nostalgic",
       "playful",
       "heartfelt"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:112211": {
@@ -2963,6 +3626,9 @@
       "friendship-comedy",
       "relationship-comedy",
       "sitcom"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:225171": {
@@ -2970,7 +3636,10 @@
       "individuality-versus-collective-happiness"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "near-future"
+    ]
   },
   "show:120998": {
     "subjects": [
@@ -2988,6 +3657,9 @@
       "clever",
       "episodic",
       "lighthearted"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:137252": {
@@ -3001,6 +3673,9 @@
       "heartfelt",
       "witty",
       "optimistic"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:582014": {
@@ -3013,6 +3688,9 @@
       "revenge-thriller",
       "black-comedy",
       "social-thriller"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:156819": {
@@ -3025,6 +3703,9 @@
       "conspiracy-thriller",
       "espionage-drama",
       "techno-thriller"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:240993": {
@@ -3038,6 +3719,9 @@
       "emotional",
       "scenic",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1423": {
@@ -3050,6 +3734,9 @@
       "fixer-drama",
       "family-drama",
       "neo-noir"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:108978": {
@@ -3062,6 +3749,9 @@
       "crime-thriller",
       "detective-action",
       "conspiracy-thriller"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:333339": {
@@ -3074,6 +3764,9 @@
       "virtual-reality",
       "adventure",
       "dystopian"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "show:95215": {
@@ -3081,7 +3774,10 @@
       "indigenous-youth-and-belonging"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:94028": {
     "subjects": [
@@ -3094,6 +3790,9 @@
       "ominous",
       "slow-burn",
       "meticulous"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "movie:264644": {
@@ -3112,6 +3811,9 @@
       "emotional",
       "intimate",
       "hopeful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:244623": {
@@ -3119,7 +3821,10 @@
       "leadership-in-sports-business"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:84977": {
     "subjects": [
@@ -3132,6 +3837,9 @@
       "darkly-comic",
       "surreal",
       "introspective"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:72792": {
@@ -3144,6 +3852,9 @@
       "mystery-thriller",
       "suburban-noir",
       "family-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:93870": {
@@ -3162,6 +3873,9 @@
       "irreverent",
       "intense",
       "gritty"
+    ],
+    "era": [
+      "world-war-ii"
     ]
   },
   "show:240740": {
@@ -3174,6 +3888,9 @@
       "forensic-procedural",
       "serial-killer-thriller",
       "family-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1273221": {
@@ -3192,6 +3909,9 @@
       "absurd",
       "raunchy",
       "fast-paced"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:646385": {
@@ -3204,6 +3924,9 @@
       "slasher",
       "meta-horror",
       "mystery-horror"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1400": {
@@ -3222,6 +3945,9 @@
       "cynical",
       "observational",
       "lighthearted"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1124566": {
@@ -3235,6 +3961,9 @@
       "melancholic",
       "reflective",
       "emotional"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:95396": {
@@ -3253,6 +3982,9 @@
       "unsettling",
       "darkly-comic",
       "atmospheric"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "show:92783": {
@@ -3265,6 +3997,9 @@
       "superhero-comedy",
       "legal-comedy",
       "workplace-comedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:19885": {
@@ -3277,6 +4012,9 @@
       "detective-drama",
       "crime-procedural",
       "literary-adaptation"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:126308": {
@@ -3289,6 +4027,9 @@
       "historical-epic",
       "political-drama",
       "samurai-drama"
+    ],
+    "era": [
+      "early-modern"
     ]
   },
   "movie:273481": {
@@ -3301,6 +4042,9 @@
       "crime-thriller",
       "border-thriller",
       "action-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:400535": {
@@ -3319,6 +4063,9 @@
       "violent",
       "tense",
       "suspenseful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:60573": {
@@ -3326,7 +4073,10 @@
       "technology-entrepreneurship-and-competition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:125988": {
     "subjects": [
@@ -3338,6 +4088,9 @@
       "dystopian",
       "mystery-drama",
       "conspiracy-thriller"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "show:1274": {
@@ -3351,6 +4104,9 @@
       "darkly-comic",
       "emotional",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:215995": {
@@ -3369,6 +4125,9 @@
       "tense",
       "atmospheric",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:119279": {
@@ -3387,6 +4146,9 @@
       "reflective",
       "emotional",
       "cerebral"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "show:259265": {
@@ -3405,6 +4167,9 @@
       "tense",
       "unsettling",
       "suspenseful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1409": {
@@ -3417,6 +4182,9 @@
       "biker-drama",
       "family-drama",
       "neo-western"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:251941": {
@@ -3424,7 +4192,10 @@
       "underfunded-healthcare-workplace"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:83867": {
     "subjects": [
@@ -3436,6 +4207,9 @@
       "space-opera",
       "spy-thriller",
       "political-drama"
+    ],
+    "era": [
+      "far-future"
     ]
   },
   "movie:321697": {
@@ -3448,6 +4222,9 @@
       "technology-drama",
       "workplace-drama",
       "character-study"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:248830": {
@@ -3460,6 +4237,9 @@
       "sports-comedy",
       "mentorship-drama",
       "dramedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:277216": {
@@ -3472,6 +4252,9 @@
       "music-biography",
       "historical-drama",
       "ensemble-drama"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:66732": {
@@ -3485,6 +4268,9 @@
       "suspenseful",
       "heartfelt",
       "adventurous"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:203744": {
@@ -3503,6 +4289,9 @@
       "atmospheric",
       "cerebral",
       "suspenseful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:363676": {
@@ -3515,6 +4304,9 @@
       "aviation-drama",
       "disaster-drama",
       "historical-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:8363": {
@@ -3528,6 +4320,9 @@
       "heartfelt",
       "awkward",
       "energetic"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:97546": {
@@ -3541,6 +4336,9 @@
       "heartfelt",
       "witty",
       "uplifting"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:130464": {
@@ -3553,6 +4351,9 @@
       "romantic-drama",
       "college-drama",
       "psychological-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:302946": {
@@ -3565,6 +4366,9 @@
       "crime-thriller",
       "conspiracy-thriller",
       "vigilante-action"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:106454": {
@@ -3583,6 +4387,9 @@
       "playful",
       "twisty",
       "inventive"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:219971": {
@@ -3601,6 +4408,9 @@
       "cerebral",
       "suspenseful",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:46533": {
@@ -3613,6 +4423,9 @@
       "spy-thriller",
       "family-drama",
       "period-drama"
+    ],
+    "era": [
+      "cold-war"
     ]
   },
   "movie:414906": {
@@ -3625,6 +4438,9 @@
       "superhero-noir",
       "detective-mystery",
       "serial-killer-thriller"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:250504": {
@@ -3638,6 +4454,9 @@
       "tense",
       "suspenseful",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:273160": {
@@ -3656,6 +4475,9 @@
       "unsettling",
       "stylish",
       "suspenseful"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "show:229711": {
@@ -3674,6 +4496,9 @@
       "violent",
       "energetic",
       "supernatural"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:76479": {
@@ -3681,7 +4506,10 @@
       "corporate-superheroes-and-corruption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:152483": {
     "subjects": [
@@ -3693,6 +4521,9 @@
       "superhero-anthology",
       "dark-comedy",
       "action-animation"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:62476": {
@@ -3711,6 +4542,9 @@
       "tense",
       "realistic",
       "slow-burn"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:158011": {
@@ -3723,6 +4557,9 @@
       "kidnapping-thriller",
       "police-thriller",
       "real-time-thriller"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1662317": {
@@ -3741,6 +4578,9 @@
       "serious",
       "character-driven",
       "urgent"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:114655": {
@@ -3748,7 +4588,10 @@
       "privilege-and-performative-altruism"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:222766": {
     "subjects": [
@@ -3760,6 +4603,9 @@
       "spy-thriller",
       "assassin-thriller",
       "cat-and-mouse"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:65817": {
@@ -3772,6 +4618,9 @@
       "period-drama",
       "ensemble-drama",
       "social-realism"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:203857": {
@@ -3790,6 +4639,9 @@
       "tense",
       "cerebral",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:122066": {
@@ -3802,6 +4654,9 @@
       "biographical-drama",
       "business-drama",
       "docudrama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:253370": {
@@ -3814,6 +4669,9 @@
       "spy-thriller",
       "political-thriller",
       "military-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:99346": {
@@ -3832,6 +4690,9 @@
       "brutal",
       "lyrical",
       "melancholic"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "show:226362": {
@@ -3844,6 +4705,9 @@
       "alien-invasion",
       "post-apocalyptic",
       "survival-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:804095": {
@@ -3857,6 +4721,9 @@
       "heartfelt",
       "reflective",
       "bittersweet"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:49010": {
@@ -3864,7 +4731,10 @@
       "serial-killer-investigation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:157065": {
     "subjects": [
@@ -3876,6 +4746,9 @@
       "gothic-horror",
       "family-saga",
       "supernatural-horror"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:243316": {
@@ -3888,6 +4761,9 @@
       "relationship-comedy",
       "ensemble-comedy",
       "dramedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:236235": {
@@ -3906,6 +4782,9 @@
       "witty",
       "violent",
       "fast-paced"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:64387": {
@@ -3924,6 +4803,9 @@
       "anthology",
       "psychological-drama",
       "erotic-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:218351": {
@@ -3936,6 +4818,9 @@
       "heist-drama",
       "historical-drama",
       "police-procedural"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:69158": {
@@ -3948,6 +4833,9 @@
       "legal-drama",
       "political-drama",
       "workplace-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:93812": {
@@ -3960,6 +4848,9 @@
       "historical-satire",
       "political-comedy",
       "black-comedy"
+    ],
+    "era": [
+      "18th-century"
     ]
   },
   "movie:273248": {
@@ -3978,6 +4869,9 @@
       "violent",
       "claustrophobic",
       "darkly-comic"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "show:61123": {
@@ -3996,6 +4890,9 @@
       "tense",
       "cerebral",
       "suspenseful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:217825": {
@@ -4008,6 +4905,9 @@
       "horror-comedy",
       "urban-gothic",
       "crime-horror"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:131634": {
@@ -4020,6 +4920,9 @@
       "dystopian",
       "war-adventure",
       "young-adult"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "show:135251": {
@@ -4032,6 +4935,9 @@
       "music-drama",
       "psychological-drama",
       "show-business-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:253372": {
@@ -4039,7 +4945,10 @@
       "institutional-abuse-of-gifted-children"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:398978": {
     "subjects": [
@@ -4057,6 +4966,9 @@
       "reflective",
       "deliberate",
       "somber"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:34415": {
@@ -4064,7 +4976,10 @@
       "murder-and-institutional-fallout"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:79525": {
     "subjects": [
@@ -4076,6 +4991,9 @@
       "sports-documentary",
       "biography",
       "docuseries"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:201289": {
@@ -4088,6 +5006,9 @@
       "family-drama",
       "conspiracy-thriller",
       "missing-person-mystery"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:116799": {
@@ -4100,6 +5021,9 @@
       "legal-drama",
       "crime-mystery",
       "courtroom-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:82856": {
@@ -4118,6 +5042,9 @@
       "heartfelt",
       "atmospheric",
       "heroic"
+    ],
+    "era": [
+      "far-future"
     ]
   },
   "show:70796": {
@@ -4136,6 +5063,9 @@
       "vibrant",
       "fast-paced",
       "heartfelt"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:93716": {
@@ -4143,7 +5073,10 @@
       "family-flight-and-idealism"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:504172": {
     "subjects": [
@@ -4161,6 +5094,9 @@
       "tense",
       "understated",
       "bittersweet"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:129552": {
@@ -4173,6 +5109,9 @@
       "conspiracy-thriller",
       "spy-thriller",
       "action-thriller"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:61859": {
@@ -4185,6 +5124,9 @@
       "spy-thriller",
       "undercover-drama",
       "political-thriller"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:66276": {
@@ -4192,14 +5134,20 @@
       "criminal-justice-and-identity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:2316": {
     "subjects": [
       "workplace-community"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:111800": {
     "subjects": [
@@ -4211,6 +5159,9 @@
       "spy-thriller",
       "action-drama",
       "character-study"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:71738": {
@@ -4223,6 +5174,9 @@
       "space-opera",
       "adventure",
       "comedy-drama"
+    ],
+    "era": [
+      "far-future"
     ]
   },
   "show:253941": {
@@ -4230,7 +5184,10 @@
       "local-journalism-and-workplace-reinvention"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:135868": {
     "subjects": [
@@ -4243,6 +5200,9 @@
       "tense",
       "cerebral",
       "unsettling"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:194764": {
@@ -4261,6 +5221,9 @@
       "gritty",
       "violent",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:250307": {
@@ -4273,6 +5236,9 @@
       "medical-drama",
       "workplace-drama",
       "real-time-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:206829": {
@@ -4285,6 +5251,9 @@
       "political-satire",
       "black-comedy",
       "palace-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:204284": {
@@ -4303,6 +5272,9 @@
       "cerebral",
       "surreal",
       "deadpan"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:194728": {
@@ -4315,6 +5287,9 @@
       "comedy-mystery",
       "romantic-drama",
       "resort-mystery"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:281957": {
@@ -4327,6 +5302,9 @@
       "survival-drama",
       "revenge-western",
       "historical-drama"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "show:82782": {
@@ -4345,6 +5323,9 @@
       "satirical",
       "raunchy",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1306368": {
@@ -4357,6 +5338,9 @@
       "police-thriller",
       "action-crime",
       "conspiracy-thriller"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:79744": {
@@ -4364,7 +5348,10 @@
       "career-reinvention-in-policing"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:261041": {
     "subjects": [
@@ -4382,6 +5369,9 @@
       "witty",
       "informative",
       "engaging"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:134373": {
@@ -4389,7 +5379,10 @@
       "college-identity-and-friendship"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:1414": {
     "subjects": [
@@ -4401,6 +5394,9 @@
       "police-drama",
       "antihero-drama",
       "serialized-crime"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:39852": {
@@ -4413,6 +5409,9 @@
       "anthology",
       "psychological-mystery",
       "police-procedural"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1398": {
@@ -4420,7 +5419,10 @@
       "crime-family-and-psychological-conflict"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:122196": {
     "subjects": [
@@ -4432,6 +5434,9 @@
       "true-crime",
       "legal-drama",
       "family-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:247767": {
@@ -4445,6 +5450,9 @@
       "chaotic",
       "satirical",
       "fast-paced"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:933260": {
@@ -4457,6 +5465,9 @@
       "body-horror",
       "social-satire",
       "show-business-horror"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:120911": {
@@ -4469,6 +5480,9 @@
       "conspiracy-thriller",
       "military-drama",
       "revenge-action"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:219760": {
@@ -4487,6 +5501,9 @@
       "gritty",
       "suspenseful",
       "morally-complex"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:75191": {
@@ -4505,6 +5522,9 @@
       "atmospheric",
       "claustrophobic",
       "ominous"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "movie:556984": {
@@ -4517,6 +5537,9 @@
       "legal-drama",
       "historical-drama",
       "political-drama"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:83851": {
@@ -4524,7 +5547,10 @@
       "marital-deception-and-murder"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:254544": {
     "subjects": [
@@ -4536,6 +5562,9 @@
       "family-drama",
       "coastal-noir",
       "crime-thriller"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:688": {
@@ -4548,6 +5577,9 @@
       "political-drama",
       "workplace-drama",
       "ensemble-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1438": {
@@ -4555,14 +5587,20 @@
       "institutions-and-urban-inequality"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:209922": {
     "subjects": [
       "institutional-abuse-and-trauma"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:62699": {
     "subjects": [
@@ -4580,6 +5618,9 @@
       "cerebral",
       "provocative",
       "surreal"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:255570": {
@@ -4592,6 +5633,9 @@
       "gangster",
       "family-drama",
       "crime-thriller"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:89492": {
@@ -4599,343 +5643,490 @@
       "family-dynamics"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:247522": {
     "subjects": [
       "workplace-culture"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:361743": {
     "subjects": [
       "war-conflict"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:10545": {
     "subjects": [
       "justice-legal-system"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:46648": {
     "subjects": [
       "crime-investigation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:153312": {
     "subjects": [
       "organized-crime"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:718821": {
     "subjects": [
       "technology-surveillance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:128095": {
     "subjects": [
       "religion-faith"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "show:248984": {
     "subjects": [
       "law-enforcement"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:99581": {
     "subjects": [
       "family-dynamics"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:219788": {
     "subjects": [
       "family-dynamics"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:86248": {
     "subjects": [
       "paranormal-supernatural"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "near-future"
+    ]
   },
   "show:2947": {
     "subjects": [
       "politics-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:812583": {
     "subjects": [
       "crime-investigation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:308266": {
     "subjects": [
       "power-corruption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:73544": {
     "subjects": [
       "leadership-duty"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "19th-century"
+    ]
   },
   "show:79788": {
     "subjects": [
       "crime-consequences"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:125949": {
     "subjects": [
       "law-enforcement"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:138832": {
     "subjects": [
       "war-conflict"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:117821": {
     "subjects": [
       "identity-belonging"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:9522": {
     "subjects": [
       "identity-belonging"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:119051": {
     "subjects": [
       "friendship-community"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:186": {
     "subjects": [
       "grief-loss"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:63247": {
     "subjects": [
       "artificial-intelligence"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:83631": {
     "subjects": [
       "technology-surveillance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:244786": {
     "subjects": [
       "coming-of-age"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:96237": {
     "subjects": [
       "politics-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:270476": {
     "subjects": [
       "paranormal-supernatural"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:208569": {
     "subjects": [
       "law-enforcement"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:395834": {
     "subjects": [
       "colonialism-indigenous"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:124067": {
     "subjects": [
       "sports-competition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "show:198178": {
     "subjects": [
       "arts-performance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:73586": {
     "subjects": [
       "organized-crime"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:255661": {
     "subjects": [
       "education"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "19th-century"
+    ]
   },
   "show:86430": {
     "subjects": [
       "organized-crime"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:216082": {
     "subjects": [
       "politics-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:92137": {
     "subjects": [
       "organized-crime"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:286709": {
     "subjects": [
       "organized-crime"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "show:291084": {
     "subjects": [
       "healthcare-medicine"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:254528": {
     "subjects": [
       "workplace-culture"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:254420": {
     "subjects": [
       "coming-of-age"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "show:287238": {
     "subjects": [
       "crime-investigation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:278624": {
     "subjects": [
       "crime-consequences"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:1318413": {
     "subjects": [
       "war-conflict"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "early-20th-century"
+    ]
   },
   "show:131142": {
     "subjects": [
       "marriage-relationships"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:303630": {
     "subjects": [
       "justice-legal-system"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:273207": {
     "subjects": [
       "crime-consequences"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:213562": {
     "subjects": [
       "parenthood"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:273240": {
     "subjects": [
       "identity-belonging"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:95350": {
     "subjects": [
@@ -4947,6 +6138,9 @@
       "gritty",
       "character-driven",
       "dramatic"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1265609": {
@@ -4954,84 +6148,120 @@
       "war-conflict"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:252107": {
     "subjects": [
       "technology-surveillance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "movie:1007734": {
     "subjects": [
       "organized-crime"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:1236470": {
     "subjects": [
       "parenthood"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:259453": {
     "subjects": [
       "justice-legal-system"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:1244999": {
     "subjects": [
       "celebrity-fame"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:541671": {
     "subjects": [
       "revenge"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:43982": {
     "subjects": [
       "power-corruption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:139099": {
     "subjects": [
       "friendship-community"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:63646": {
     "subjects": [
       "identity-belonging"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:290856": {
     "subjects": [
       "family-dynamics"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:66025": {
     "subjects": [
       "organized-crime"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:2562": {
     "subjects": [
@@ -5045,21 +6275,30 @@
       "celebrity-fame"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "19th-century"
+    ]
   },
   "show:43901": {
     "subjects": [
       "grief-loss"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:1915": {
     "subjects": [
       "celebrity-fame"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:1401": {
     "subjects": [
@@ -5071,6 +6310,9 @@
       "historical-western",
       "revenge-western",
       "railroad-drama"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "show:122235": {
@@ -5078,7 +6320,10 @@
       "family-and-frontier-justice"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:128904": {
     "subjects": [
@@ -5096,6 +6341,9 @@
       "tense",
       "spiritual",
       "character-driven"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:89498": {
@@ -5108,6 +6356,9 @@
       "police-procedural",
       "western-crime",
       "workplace-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:5742": {
@@ -5126,6 +6377,9 @@
       "rugged",
       "nostalgic",
       "dramatic"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "show:243396": {
@@ -5133,7 +6387,10 @@
       "ranch-succession-and-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:204999": {
     "subjects": [
@@ -5151,6 +6408,9 @@
       "romantic",
       "emotional",
       "visually-rich"
+    ],
+    "era": [
+      "world-war-ii"
     ]
   },
   "show:116450": {
@@ -5163,6 +6423,9 @@
       "romantic-comedy",
       "friendship-drama",
       "city-comedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:90399": {
@@ -5181,6 +6444,9 @@
       "glossy",
       "twisty",
       "intense"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:64199": {
@@ -5199,6 +6465,9 @@
       "tense",
       "witty",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:153657": {
@@ -5211,6 +6480,9 @@
       "detective-drama",
       "legal-drama",
       "neo-noir"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:66676": {
@@ -5223,6 +6495,9 @@
       "drug-crime",
       "gangster",
       "action-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:71715": {
@@ -5235,6 +6510,9 @@
       "crime-comedy",
       "family-drama",
       "heist-comedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:62620": {
@@ -5242,7 +6520,10 @@
       "policing-and-social-dysfunction"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:68421": {
     "subjects": [
@@ -5254,6 +6535,9 @@
       "cyberpunk",
       "neo-noir",
       "mystery-thriller"
+    ],
+    "era": [
+      "far-future"
     ]
   },
   "show:1705": {
@@ -5261,7 +6545,10 @@
       "science-and-paranormal-investigation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:119845": {
     "subjects": [
@@ -5273,6 +6560,9 @@
       "drug-crime",
       "gangster",
       "urban-crime"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:194": {
@@ -5280,7 +6570,10 @@
       "policing-and-personal-struggle"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:307081": {
     "subjects": [
@@ -5298,6 +6591,9 @@
       "emotional",
       "gritty",
       "inspirational"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:878361": {
@@ -5310,6 +6606,9 @@
       "boxing-drama",
       "sports-biography",
       "inspirational-drama"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "movie:332979": {
@@ -5322,6 +6621,9 @@
       "boxing-drama",
       "biography",
       "comeback-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:531876": {
@@ -5334,6 +6636,9 @@
       "military-drama",
       "siege-film",
       "docudrama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:578189": {
@@ -5346,6 +6651,9 @@
       "police-thriller",
       "action-thriller",
       "conspiracy-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:23168": {
@@ -5358,6 +6666,9 @@
       "heist-film",
       "romantic-thriller",
       "urban-crime"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:402897": {
@@ -5370,6 +6681,9 @@
       "political-satire",
       "black-comedy",
       "historical-comedy"
+    ],
+    "era": [
+      "cold-war"
     ]
   },
   "movie:19913": {
@@ -5382,6 +6696,9 @@
       "romantic-comedy",
       "nonlinear-romance",
       "character-study"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:67883": {
@@ -5394,6 +6711,9 @@
       "dramedy",
       "friendship-comedy",
       "city-comedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:693": {
@@ -5412,6 +6732,9 @@
       "twisty",
       "satirical",
       "dramatic"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:245219": {
@@ -5430,6 +6753,9 @@
       "cerebral",
       "tense",
       "darkly-comic"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "show:81290": {
@@ -5442,6 +6768,9 @@
       "dramedy",
       "friendship-comedy",
       "show-business-comedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:62117": {
@@ -5449,35 +6778,50 @@
       "career-reinvention-and-age-deception"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:2204": {
     "subjects": [
       "politics-crime-and-family-loyalty"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:225634": {
     "subjects": [
       "family-abuse-and-parricide"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "show:1908": {
     "subjects": [
       "undercover-policing-and-drug-crime"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "show:2933": {
     "subjects": [
       "identity-fraud-and-family-survival"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:262388": {
     "subjects": [
@@ -5495,6 +6839,9 @@
       "tense",
       "twisty",
       "fast-paced"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:93166": {
@@ -5513,6 +6860,9 @@
       "tense",
       "cerebral",
       "suspenseful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:256317": {
@@ -5531,6 +6881,9 @@
       "suspenseful",
       "fast-paced",
       "gritty"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:900": {
@@ -5549,6 +6902,9 @@
       "provocative",
       "emotional",
       "chaotic"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1412": {
@@ -5556,245 +6912,350 @@
       "corporate-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:75450": {
     "subjects": [
       "identity-belonging"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:2691": {
     "subjects": [
       "family-dynamics"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:69630": {
     "subjects": [
       "friendship-community"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:85385": {
     "subjects": [
       "law-enforcement"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:79618": {
     "subjects": [
       "justice-legal-system"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "show:1639": {
     "subjects": [
       "identity-belonging"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:3476": {
     "subjects": [
       "law-enforcement"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "movie:522931": {
     "subjects": [
       "crime-consequences"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:208134": {
     "subjects": [
       "friendship-community"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:405775": {
     "subjects": [
       "war-conflict"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:315635": {
     "subjects": [
       "coming-of-age"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:345887": {
     "subjects": [
       "espionage-national-security"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:997120": {
     "subjects": [
       "law-enforcement"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:267193": {
     "subjects": [
       "espionage-national-security"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:969492": {
     "subjects": [
       "war-conflict"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:383585": {
     "subjects": [
       "war-conflict"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:87492": {
     "subjects": [
       "sports-competition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:168259": {
     "subjects": [
       "family-dynamics"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:385687": {
     "subjects": [
       "family-dynamics"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:385128": {
     "subjects": [
       "family-dynamics"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:436969": {
     "subjects": [
       "mental-health"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:453": {
     "subjects": [
       "identity-belonging"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:1061474": {
     "subjects": [
       "identity-belonging"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:24428": {
     "subjects": [
       "survival"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:631843": {
     "subjects": [
       "grief-loss"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:798362": {
     "subjects": [
       "family-dynamics"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:202097": {
     "subjects": [
       "justice-legal-system"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:256711": {
     "subjects": [
       "justice-legal-system"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:95205": {
     "subjects": [
       "espionage-national-security"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:1403": {
     "subjects": [
       "identity-belonging"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:62643": {
     "subjects": [
       "memory-reality"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:112693": {
     "subjects": [
       "organized-crime"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:87428": {
     "subjects": [
       "marriage-relationships"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:124364": {
     "subjects": [
       "survival"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:95004": {
     "subjects": [
@@ -5806,6 +7267,9 @@
       "political-soap",
       "family-drama",
       "conspiracy-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:201877": {
@@ -5818,6 +7282,9 @@
       "historical-western",
       "mystery-western",
       "revenge-drama"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "show:157732": {
@@ -5830,6 +7297,9 @@
       "historical-western",
       "biography",
       "lawman-drama"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "show:3050": {
@@ -5848,6 +7318,9 @@
       "tense",
       "character-driven",
       "serious"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:16997": {
@@ -5860,6 +7333,9 @@
       "military-drama",
       "historical-miniseries",
       "ensemble-drama"
+    ],
+    "era": [
+      "world-war-ii"
     ]
   },
   "show:60726": {
@@ -5867,14 +7343,20 @@
       "immortality-and-detection"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:66310": {
     "subjects": [
       "technology-crime-and-ambition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:504562": {
     "subjects": [
@@ -5892,6 +7374,9 @@
       "cerebral",
       "melancholic",
       "suspenseful"
+    ],
+    "era": [
+      "cold-war"
     ]
   },
   "movie:862557": {
@@ -5904,6 +7389,9 @@
       "baseball-drama",
       "biography",
       "inspirational-drama"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "movie:1433719": {
@@ -5916,6 +7404,9 @@
       "neo-western",
       "crime-thriller",
       "siege-film"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1293162": {
@@ -5928,6 +7419,9 @@
       "neo-western",
       "crime-thriller",
       "survival-action"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:76640": {
@@ -5941,6 +7435,9 @@
       "energetic",
       "suspenseful",
       "pulpy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1082195": {
@@ -5953,6 +7450,9 @@
       "historical-thriller",
       "police-procedural",
       "true-crime"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "movie:295699": {
@@ -5960,7 +7460,10 @@
       "college-friendship-and-competition"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "movie:325133": {
     "subjects": [
@@ -5978,6 +7481,9 @@
       "energetic",
       "absurd",
       "playful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:107811": {
@@ -5996,6 +7502,9 @@
       "chaotic",
       "energetic",
       "absurd"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1008953": {
@@ -6009,6 +7518,9 @@
       "energetic",
       "awkward",
       "playful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:4911": {
@@ -6021,6 +7533,9 @@
       "police-thriller",
       "neo-noir",
       "historical-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:668489": {
@@ -6039,6 +7554,9 @@
       "kinetic",
       "dark",
       "relentless"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1428": {
@@ -6057,6 +7575,9 @@
       "violent",
       "energetic",
       "pulpy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:634528": {
@@ -6069,6 +7590,9 @@
       "neo-western",
       "road-thriller",
       "crime-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:49021": {
@@ -6081,6 +7605,9 @@
       "spy-thriller",
       "assassin-action",
       "conspiracy-thriller"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "movie:893297": {
@@ -6093,6 +7620,9 @@
       "drug-crime",
       "gangster",
       "biographical-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1263012": {
@@ -6111,6 +7641,9 @@
       "claustrophobic",
       "unsettling",
       "character-driven"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "movie:1078600": {
@@ -6123,6 +7656,9 @@
       "romantic-drama",
       "new-adult-romance",
       "relationship-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:4573": {
@@ -6141,6 +7677,9 @@
       "irreverent",
       "absurd",
       "energetic"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:82193": {
@@ -6158,6 +7697,9 @@
       "witty",
       "irreverent",
       "conversational"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:219": {
@@ -6170,6 +7712,9 @@
       "teen-drama",
       "mystery-drama",
       "conspiracy-fiction"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:57389": {
@@ -6182,6 +7727,9 @@
       "historical-drama",
       "western",
       "adventure-drama"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "show:211169": {
@@ -6194,6 +7742,9 @@
       "drug-crime",
       "period-drama",
       "family-drama"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:33301": {
@@ -6206,6 +7757,9 @@
       "legal-comedy",
       "workplace-comedy",
       "buddy-comedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:39351": {
@@ -6213,7 +7767,10 @@
       "supernatural-crime-and-heritage"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:239000": {
     "subjects": [
@@ -6225,6 +7782,9 @@
       "dystopian",
       "detective-drama",
       "neo-noir"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "show:32940": {
@@ -6237,6 +7797,9 @@
       "anthology",
       "courtroom-drama",
       "psychological-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:262793": {
@@ -6249,6 +7812,9 @@
       "spy-thriller",
       "period-drama",
       "mystery-drama"
+    ],
+    "era": [
+      "cold-war"
     ]
   },
   "show:283297": {
@@ -6256,7 +7822,10 @@
       "family-secrets-and-inheritance"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:58937": {
     "subjects": [
@@ -6268,6 +7837,9 @@
       "biographical-drama",
       "medical-drama",
       "period-drama"
+    ],
+    "era": [
+      "cold-war"
     ]
   },
   "show:62285": {
@@ -6275,14 +7847,20 @@
       "urban-heroes-and-teamwork"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:67178": {
     "subjects": [
       "vigilante-revenge-and-trauma"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:1411": {
     "subjects": [
@@ -6300,6 +7878,9 @@
       "suspenseful",
       "dark",
       "character-driven"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "show:60708": {
@@ -6307,7 +7888,10 @@
       "city-corruption-and-vigilante-origins"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:46930": {
     "subjects": [
@@ -6325,6 +7909,9 @@
       "atmospheric",
       "cerebral",
       "suspenseful"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "show:103768": {
@@ -6343,6 +7930,9 @@
       "adventurous",
       "hopeful",
       "bittersweet"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "movie:338969": {
@@ -6355,6 +7945,9 @@
       "superhero-comedy",
       "body-horror",
       "splatter"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:625560": {
@@ -6366,6 +7959,9 @@
     "subgenres": [
       "independent-comedy",
       "ensemble-comedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1035259": {
@@ -6384,6 +7980,9 @@
       "fast-paced",
       "irreverent",
       "playful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:449562": {
@@ -6396,6 +7995,9 @@
       "con-artist-comedy",
       "buddy-comedy",
       "crime-comedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:384018": {
@@ -6414,6 +8016,9 @@
       "humorous",
       "spectacular",
       "fast-paced"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:429351": {
@@ -6426,6 +8031,9 @@
       "military-drama",
       "historical-action",
       "team-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:442065": {
@@ -6438,6 +8046,9 @@
       "historical-drama",
       "biographical-drama",
       "investigative-drama"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "movie:1093883": {
@@ -6455,6 +8066,9 @@
       "suspenseful",
       "energetic",
       "skill-focused"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1429813": {
@@ -6473,6 +8087,9 @@
       "violent",
       "witty",
       "fast-paced"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:13074": {
@@ -6485,6 +8102,9 @@
       "sports-drama",
       "journalism-drama",
       "character-study"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:39254": {
@@ -6497,6 +8117,9 @@
       "robot-boxing",
       "sports-drama",
       "family-drama"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "movie:1246": {
@@ -6509,6 +8132,9 @@
       "boxing-drama",
       "legacy-sequel",
       "character-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1380682": {
@@ -6516,7 +8142,10 @@
       "family-sacrifice-and-redemption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:253": {
     "subjects": [
@@ -6534,6 +8163,9 @@
       "optimistic",
       "cerebral",
       "iconic"
+    ],
+    "era": [
+      "far-future"
     ]
   },
   "show:2681": {
@@ -6552,6 +8184,9 @@
       "lighthearted",
       "energetic",
       "irreverent"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:72742": {
@@ -6564,6 +8199,9 @@
       "gangster",
       "biographical-drama",
       "family-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:81358": {
@@ -6571,7 +8209,10 @@
       "criminal-work-and-family-life"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:97890": {
     "subjects": [
@@ -6583,6 +8224,9 @@
       "drug-crime",
       "family-drama",
       "campus-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:2288": {
@@ -6595,6 +8239,9 @@
       "prison-drama",
       "conspiracy-thriller",
       "action-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:124394": {
@@ -6613,6 +8260,9 @@
       "tense",
       "character-driven",
       "tragic"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:105": {
@@ -6625,6 +8275,9 @@
       "romantic-comedy",
       "friendship-comedy",
       "city-comedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:41692": {
@@ -6637,6 +8290,9 @@
       "historical-western",
       "cattle-drive",
       "miniseries"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "show:54650": {
@@ -6649,6 +8305,9 @@
       "drug-crime",
       "gangster",
       "family-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:101591": {
@@ -6661,6 +8320,9 @@
       "drug-crime",
       "biographical-drama",
       "family-drama"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:85021": {
@@ -6679,6 +8341,9 @@
       "kinetic",
       "tense",
       "stylish"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:75540": {
@@ -6697,6 +8362,9 @@
       "serious",
       "tense",
       "emotional"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:113984": {
@@ -6709,6 +8377,9 @@
       "legal-thriller",
       "political-drama",
       "psychological-drama"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:64254": {
@@ -6721,6 +8392,9 @@
       "romantic-dramedy",
       "slice-of-life",
       "city-comedy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:4057": {
@@ -6734,6 +8408,9 @@
       "suspenseful",
       "procedural",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:245703": {
@@ -6746,6 +8423,9 @@
       "detective-drama",
       "nordic-noir",
       "mystery"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:253321": {
@@ -6759,6 +8439,9 @@
       "twisty",
       "emotional",
       "suspenseful"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:284605": {
@@ -6777,6 +8460,9 @@
       "somber",
       "suspenseful",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:226174": {
@@ -6795,6 +8481,9 @@
       "clever",
       "engaging",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:287450": {
@@ -6813,6 +8502,9 @@
       "suspenseful",
       "fast-paced",
       "serious"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:248937": {
@@ -6831,6 +8523,9 @@
       "claustrophobic",
       "suspenseful",
       "dramatic"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:273866": {
@@ -6853,7 +8548,10 @@
       "psychological-thriller"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-19th-century"
+    ]
   },
   "movie:530915": {
     "subgenres": [
@@ -6864,6 +8562,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "military-duty"
+    ],
+    "era": [
+      "world-war-i"
     ]
   },
   "movie:1100988": {
@@ -6879,6 +8580,9 @@
       "intense",
       "suspenseful",
       "visceral"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "movie:332562": {
@@ -6888,7 +8592,10 @@
       "tragedy"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:249042": {
     "subgenres": [
@@ -6900,6 +8607,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "youth-violence"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1413": {
@@ -6912,6 +8622,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "fear-and-trauma"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:215866": {
@@ -6924,6 +8637,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "frontier-conflict"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "movie:915935": {
@@ -6936,6 +8652,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "truth-and-ambiguity"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:300668": {
@@ -6954,6 +8673,9 @@
     ],
     "subjects": [
       "self-destruction"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:76600": {
@@ -6972,6 +8694,9 @@
     ],
     "subjects": [
       "family-protection"
+    ],
+    "era": [
+      "far-future"
     ]
   },
   "show:241259": {
@@ -6981,7 +8706,10 @@
       "autobiographical-drama"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:66292": {
     "subgenres": [
@@ -6996,6 +8724,9 @@
       "polished",
       "emotional",
       "atmospheric"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:62852": {
@@ -7011,6 +8742,9 @@
       "tense",
       "cerebral",
       "character-driven"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:487558": {
@@ -7029,6 +8763,9 @@
     ],
     "subjects": [
       "white-supremacy"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "movie:1372": {
@@ -7041,6 +8778,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "conflict-diamonds"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "movie:424694": {
@@ -7059,6 +8799,9 @@
     ],
     "subjects": [
       "artistic-legacy"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:1396": {
@@ -7071,6 +8814,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "moral-corruption"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1215": {
@@ -7083,6 +8829,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "self-sabotage"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:61920": {
@@ -7095,6 +8844,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "marriage-and-parenthood"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:937287": {
@@ -7113,6 +8865,9 @@
     ],
     "subjects": [
       "ambition-and-desire"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:9693": {
@@ -7131,6 +8886,9 @@
     ],
     "subjects": [
       "human-extinction"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "movie:929590": {
@@ -7149,6 +8907,9 @@
     ],
     "subjects": [
       "societal-collapse"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "movie:312221": {
@@ -7161,6 +8922,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "legacy-and-self-definition"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:113988": {
@@ -7179,6 +8943,9 @@
     ],
     "subjects": [
       "serial-murder-and-systemic-failure"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "movie:296524": {
@@ -7191,6 +8958,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "industrial-negligence"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:123377": {
@@ -7200,7 +8970,10 @@
       "family-drama"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "show:110695": {
     "subgenres": [
@@ -7212,6 +8985,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "opioid-epidemic"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "movie:374720": {
@@ -7227,6 +9003,9 @@
       "immersive",
       "restrained",
       "harrowing"
+    ],
+    "era": [
+      "world-war-ii"
     ]
   },
   "show:1940": {
@@ -7239,6 +9018,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "fame-and-friendship"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:85552": {
@@ -7248,7 +9030,10 @@
       "ensemble-drama"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:106379": {
     "subgenres": [
@@ -7260,6 +9045,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "survival-and-power"
+    ],
+    "era": [
+      "far-future"
     ]
   },
   "show:99610": {
@@ -7278,6 +9066,9 @@
     ],
     "subjects": [
       "addiction-and-intimacy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:419430": {
@@ -7290,6 +9081,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "racial-exploitation"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:117581": {
@@ -7302,6 +9096,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "family-secrets-and-reinvention"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:450465": {
@@ -7314,6 +9111,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "superhuman-identity"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:490132": {
@@ -7332,6 +9132,9 @@
     ],
     "subjects": [
       "racial-prejudice-and-friendship"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "movie:858024": {
@@ -7347,6 +9150,9 @@
       "intimate",
       "melancholic",
       "lyrical"
+    ],
+    "era": [
+      "early-modern"
     ]
   },
   "movie:381284": {
@@ -7359,6 +9165,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "racial-and-gender-barriers"
+    ],
+    "era": [
+      "cold-war"
     ]
   },
   "show:198102": {
@@ -7371,6 +9180,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "airliner-crisis-negotiation"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1407": {
@@ -7389,6 +9201,9 @@
     ],
     "subjects": [
       "counterterrorism-and-loyalty"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1408": {
@@ -7401,6 +9216,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "medical-diagnosis-and-isolation"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:9919": {
@@ -7412,6 +9230,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "deception-to-romance"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:389015": {
@@ -7427,6 +9248,9 @@
       "energetic",
       "abrasive",
       "tragic"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:90812": {
@@ -7439,6 +9263,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "ambition-and-workplace-power"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:474350": {
@@ -7457,6 +9284,9 @@
     ],
     "subjects": [
       "confronting-childhood-trauma"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:475557": {
@@ -7475,6 +9305,9 @@
     ],
     "subjects": [
       "social-alienation-and-violence"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "movie:522212": {
@@ -7505,6 +9338,9 @@
     ],
     "subjects": [
       "indigenous-exploitation-and-murder"
+    ],
+    "era": [
+      "early-20th-century"
     ]
   },
   "show:72750": {
@@ -7523,6 +9359,9 @@
     ],
     "subjects": [
       "obsession-and-identity"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:546554": {
@@ -7541,6 +9380,9 @@
     ],
     "subjects": [
       "family-greed-and-deception"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:244321": {
@@ -7559,6 +9401,9 @@
     ],
     "subjects": [
       "accountability-after-terrorism"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:53606": {
@@ -7577,6 +9422,9 @@
     ],
     "subjects": [
       "romantic-incompatibility-and-growth"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:76341": {
@@ -7589,6 +9437,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "liberation-from-tyranny"
+    ],
+    "era": [
+      "far-future"
     ]
   },
   "movie:523607": {
@@ -7607,6 +9458,9 @@
     ],
     "subjects": [
       "artistic-ambition-and-marriage"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "movie:50839": {
@@ -7625,6 +9479,9 @@
     ],
     "subjects": [
       "financial-crisis-ethics"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:70": {
@@ -7643,6 +9500,9 @@
     ],
     "subjects": [
       "ambition-and-mercy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:49011": {
@@ -7652,7 +9512,10 @@
       "sitcom"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:62560": {
     "subgenres": [
@@ -7664,6 +9527,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "alienation-and-corporate-control"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:11635": {
@@ -7676,6 +9542,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "resisting-adulthood"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:466272": {
@@ -7688,6 +9557,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "hollywood-change-and-friendship"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:3322": {
@@ -7700,6 +9572,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "incarceration-and-institutional-violence"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:110382": {
@@ -7715,6 +9590,9 @@
       "emotional",
       "poignant",
       "resilient"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "movie:666277": {
@@ -7733,6 +9611,9 @@
     ],
     "subjects": [
       "love-and-unlived-possibilities"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:388399": {
@@ -7745,6 +9626,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "terrorism-response-and-community-resilience"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:792307": {
@@ -7763,6 +9647,9 @@
     ],
     "subjects": [
       "female-autonomy-and-self-discovery"
+    ],
+    "era": [
+      "timeless"
     ]
   },
   "movie:646097": {
@@ -7775,6 +9662,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "police-corruption-and-civil-forfeiture"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:4148": {
@@ -7793,6 +9683,9 @@
     ],
     "subjects": [
       "marital-disillusionment"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "movie:504608": {
@@ -7802,7 +9695,10 @@
       "recovery-drama"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "multi-era"
+    ]
   },
   "show:34307": {
     "subgenres": [
@@ -7814,6 +9710,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "family-survival-and-dysfunction"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:106388": {
@@ -7823,7 +9722,10 @@
       "time-travel"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "multi-era"
+    ]
   },
   "show:63248": {
     "subgenres": [
@@ -7841,6 +9743,9 @@
     ],
     "subjects": [
       "housing-desegregation-and-political-cost"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "movie:1233413": {
@@ -7853,6 +9758,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "community-survival-against-supernatural-evil"
+    ],
+    "era": [
+      "early-20th-century"
     ]
   },
   "movie:882598": {
@@ -7868,6 +9776,9 @@
       "frightening",
       "tense",
       "atmospheric"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:106308": {
@@ -7880,6 +9791,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "belonging-and-self-acceptance"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:314365": {
@@ -7895,6 +9809,9 @@
       "restrained",
       "principled",
       "tense"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:93405": {
@@ -7913,6 +9830,9 @@
     ],
     "subjects": [
       "economic-desperation-and-exploitation"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:37680": {
@@ -7925,6 +9845,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "legal-ambition-and-loyalty"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:817758": {
@@ -7937,6 +9860,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "power-abuse-and-artistic-downfall"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:228305": {
@@ -7955,6 +9881,9 @@
     ],
     "subjects": [
       "crime-investigation-and-moral-conflict"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:577922": {
@@ -7967,6 +9896,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "time-inversion-and-global-catastrophe"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "movie:318846": {
@@ -7979,6 +9911,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "financial-crisis-and-systemic-greed"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:549509": {
@@ -7997,6 +9932,9 @@
     ],
     "subjects": [
       "immigrant-ambition-and-artistic-compromise"
+    ],
+    "era": [
+      "cold-war"
     ]
   },
   "movie:310307": {
@@ -8009,6 +9947,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "business-ambition-and-betrayal"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:107114": {
@@ -8027,6 +9968,9 @@
     ],
     "subjects": [
       "digital-coercion-and-accountability"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:1435": {
@@ -8045,6 +9989,9 @@
     ],
     "subjects": [
       "professional-reinvention-and-integrity"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:69478": {
@@ -8063,6 +10010,9 @@
     ],
     "subjects": [
       "reproductive-oppression-and-resistance"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "movie:840430": {
@@ -8081,6 +10031,9 @@
     ],
     "subjects": [
       "loneliness-and-unlikely-connection"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "movie:695721": {
@@ -8093,6 +10046,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "ambition-and-authoritarian-formation"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "movie:12162": {
@@ -8105,6 +10061,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "combat-addiction"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:850165": {
@@ -8123,6 +10082,9 @@
     ],
     "subjects": [
       "family-pressure-and-tragedy"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:61014": {
@@ -8132,7 +10094,10 @@
       "workplace-drama"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "early-20th-century"
+    ]
   },
   "show:100088": {
     "subgenres": [
@@ -8147,6 +10112,9 @@
       "bleak",
       "tense",
       "character-driven"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "show:54344": {
@@ -8159,6 +10127,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "grief-and-meaning"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:254320": {
@@ -8171,6 +10142,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "social-conformity-and-romance"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "movie:286217": {
@@ -8180,7 +10154,10 @@
       "adventure"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "near-future"
+    ]
   },
   "movie:593643": {
     "subgenres": [
@@ -8192,6 +10169,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "class-resentment-and-culinary-elitism"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:90282": {
@@ -8204,6 +10184,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "workplace-power-and-accountability"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:15621": {
@@ -8222,6 +10205,9 @@
     ],
     "subjects": [
       "journalistic-idealism"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:290250": {
@@ -8234,6 +10220,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "corruption-and-unlikely-partnership"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:84661": {
@@ -8246,6 +10235,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "supernatural-evil-and-investigation"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:446354": {
@@ -8264,6 +10256,9 @@
     ],
     "subjects": [
       "press-freedom-and-government-secrecy"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:129398": {
@@ -8282,6 +10277,9 @@
     ],
     "subjects": [
       "divided-identity-and-colonial-power"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:90259": {
@@ -8291,7 +10289,10 @@
       "island-mystery"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:111803": {
     "subgenres": [
@@ -8303,6 +10304,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "privilege-and-social-dysfunction"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:113367": {
@@ -8321,6 +10325,9 @@
     ],
     "subjects": [
       "adolescent-survival-and-experimentation"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1290879": {
@@ -8333,6 +10340,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "credibility-and-murder-at-sea"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:520663": {
@@ -8345,6 +10355,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "isolation-and-unreliable-witness"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:601666": {
@@ -8363,6 +10376,9 @@
     ],
     "subjects": [
       "elder-exploitation-and-greed"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:193756": {
@@ -8372,7 +10388,10 @@
       "docudrama"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:475132": {
     "subgenres": [
@@ -8381,7 +10400,10 @@
       "biographical-drama"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:9567": {
     "subgenres": [
@@ -8399,6 +10421,9 @@
     ],
     "subjects": [
       "military-duty-and-humanitarian-rescue"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:395991": {
@@ -8417,6 +10442,9 @@
     ],
     "subjects": [
       "wildfire-service-and-sacrifice"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:340613": {
@@ -8435,6 +10463,9 @@
     ],
     "subjects": [
       "marital-sacrifice-and-authorship"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:627725": {
@@ -8453,6 +10484,9 @@
     ],
     "subjects": [
       "racial-barriers-and-financial-ambition"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:207334": {
@@ -8465,6 +10499,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "espionage-and-deception"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:95341": {
@@ -8477,6 +10514,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "fugitive-reinvention-and-redemption"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:1416": {
@@ -8489,6 +10529,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "medical-careers-and-personal-relationships"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:612": {
@@ -8507,6 +10550,9 @@
     ],
     "subjects": [
       "revenge-and-moral-cost"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "movie:913290": {
@@ -8519,6 +10565,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "hidden-violence-and-survival"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:339527": {
@@ -8537,6 +10586,9 @@
     ],
     "subjects": [
       "psychic-detection-and-mercy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:936075": {
@@ -8555,6 +10607,9 @@
     ],
     "subjects": [
       "artistic-legacy-and-personal-life"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "movie:799766": {
@@ -8570,6 +10625,9 @@
       "emotional",
       "energetic",
       "bittersweet"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "movie:897087": {
@@ -8588,6 +10646,9 @@
     ],
     "subjects": [
       "journalist-protection-and-coup"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:45094": {
@@ -8597,7 +10658,10 @@
       "cult-drama"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:287167": {
     "subgenres": [
@@ -8615,6 +10679,9 @@
     ],
     "subjects": [
       "phone-hacking-and-institutional-corruption"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:241272": {
@@ -8627,6 +10694,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "teen-violence-and-parental-toxicity"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:715931": {
@@ -8639,6 +10709,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "escape-from-slavery"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "movie:882569": {
@@ -8651,6 +10724,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "military-loyalty-and-repayment"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:293767": {
@@ -8666,6 +10742,9 @@
       "emotional",
       "somber",
       "intimate"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:28730": {
@@ -8681,6 +10760,9 @@
       "immersive",
       "cerebral",
       "serious"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "movie:832964": {
@@ -8693,6 +10775,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "war-photography-and-witness"
+    ],
+    "era": [
+      "world-war-ii"
     ]
   },
   "movie:506680": {
@@ -8702,7 +10787,10 @@
       "historical-drama"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "cold-war"
+    ]
   },
   "show:150": {
     "subgenres": [
@@ -8714,6 +10802,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "young-professionals-and-relationships"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:60791": {
@@ -8726,6 +10817,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "crime-and-social-inequality"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:442249": {
@@ -8744,6 +10838,9 @@
     ],
     "subjects": [
       "state-engineered-violence-and-resistance"
+    ],
+    "era": [
+      "near-future"
     ]
   },
   "movie:98": {
@@ -8756,6 +10853,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "revenge-against-tyranny"
+    ],
+    "era": [
+      "classical-antiquity"
     ]
   },
   "show:71694": {
@@ -8768,6 +10868,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "crack-epidemic-and-criminal-ambition"
+    ],
+    "era": [
+      "late-20th-century"
     ]
   },
   "show:1906": {
@@ -8783,6 +10886,9 @@
       "funny",
       "chaotic",
       "heartfelt"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:17035": {
@@ -8801,6 +10907,9 @@
     ],
     "subjects": [
       "modern-combat-and-leadership-failure"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:73107": {
@@ -8814,6 +10923,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "violence-and-redemption"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:81357": {
@@ -8824,7 +10936,10 @@
       "twisty"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:147050": {
     "tones": [
@@ -8837,6 +10952,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "secrets-and-judgment"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:545611": {
@@ -8850,6 +10968,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "family-acceptance"
+    ],
+    "era": [
+      "multi-era"
     ]
   },
   "show:67195": {
@@ -8860,7 +10981,10 @@
       "unsettling"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:334541": {
     "tones": [
@@ -8870,7 +10994,10 @@
       "emotional"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:492188": {
     "tones": [
@@ -8883,6 +11010,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "divorce-and-family-transition"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:376867": {
@@ -8896,6 +11026,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "identity-and-intimacy"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1330021": {
@@ -8906,7 +11039,10 @@
       "hopeful"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:95480": {
     "tones": [
@@ -8919,6 +11055,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "espionage-failure-and-redemption"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:99657": {
@@ -8932,6 +11071,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "academic-power-and-institutional-change"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:87523": {
@@ -8945,6 +11087,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "abolition-and-violent-resistance"
+    ],
+    "era": [
+      "19th-century"
     ]
   },
   "show:100883": {
@@ -8958,6 +11103,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "adolescent-identity-and-grief"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:259731": {
@@ -8971,6 +11119,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "conflicting-perspectives-and-murder"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:40008": {
@@ -8984,6 +11135,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "crime-investigation"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:1439930": {
@@ -8997,6 +11151,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "purpose-beyond-revenge"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "movie:82693": {
@@ -9007,7 +11164,10 @@
       "hopeful"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:208397": {
     "tones": [
@@ -9020,6 +11180,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
       "afterlife-mystery-and-identity"
+    ],
+    "era": [
+      "contemporary"
     ]
   },
   "show:79410": {
@@ -9030,235 +11193,582 @@
       "reflective"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:1056360": {
     "subjects": [
       "racial-stereotyping"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:8699": {
     "subjects": [
       "workplace-sexism"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "movie:505600": {
     "subjects": [
       "friendship-and-growing-up"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:701387": {
     "subjects": [
       "conspiracy-paranoia"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:65454": {
     "subjects": [
       "family-dysfunction-and-legacy"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:105169": {
     "subjects": [
       "outsider-self-discovery"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:391713": {
     "subjects": [
       "adolescent-independence-and-family"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:115004": {
     "subjects": [
       "grief-and-community-secrets"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:156933": {
     "subjects": [
       "guilt-and-marital-secrets"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:416477": {
     "subjects": [
       "intercultural-romance-and-family"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:123192": {
     "subjects": [
       "trauma-and-fragmented-identity"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "movie:45317": {
     "subjects": [
       "family-and-boxing-redemption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:346685": {
     "subjects": [
       "memory-and-murder"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:273247": {
     "subjects": [
       "investigative-truth-and-corruption"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:154359": {
     "subjects": [
       "healthcare-medicine"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:359940": {
     "subjects": [
       "law-enforcement"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:46638": {
     "subjects": [
       "law-enforcement"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:473033": {
     "subjects": [
       "marriage-relationships"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:78903": {
     "subjects": [
       "religion-faith"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:74140": {
     "subjects": [
       "religion-faith"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "late-20th-century"
+    ]
   },
   "show:78191": {
     "subjects": [
       "crime-investigation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:241609": {
     "subjects": [
       "marriage-relationships"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:97630": {
     "subjects": [
       "espionage-national-security"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:875828": {
     "subjects": [
       "organized-crime"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "early-20th-century"
+    ]
   },
   "movie:986097": {
     "subjects": [
       "religion-faith"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:80307": {
     "subjects": [
       "law-enforcement"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:73375": {
     "subjects": [
       "espionage-national-security"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:17431": {
     "subjects": [
       "artificial-intelligence"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "near-future"
+    ]
   },
   "show:71769": {
     "subjects": [
       "law-enforcement"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "19th-century"
+    ]
   },
   "show:199318": {
     "subjects": [
       "family-dynamics"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:421473": {
     "subjects": [
       "crime-investigation"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "show:67026": {
     "subjects": [
       "politics-power"
     ],
     "reviewedAt": "2026-08-27",
-    "source": "movie-tv-metadata-for-claude-review.xlsx"
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
   },
   "movie:59440": {
     "subjects": [
       "family-rivalry-and-mixed-martial-arts"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx",
+    "era": [
+      "contemporary"
+    ]
+  },
+  "show:99966": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:109443": {
+    "era": [
+      "late-20th-century"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1064213": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:67070": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:75758": {
+    "era": [
+      "far-future"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:73200": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:111141": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:73411": {
+    "era": [
+      "near-future"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:496243": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:70453": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:136311": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:76331": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:136315": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:225891": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:87739": {
+    "era": [
+      "cold-war"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:90296": {
+    "era": [
+      "late-20th-century"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:76177": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:458723": {
+    "era": [
+      "late-20th-century"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:85271": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:88713": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:87104": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:117488": {
+    "era": [
+      "late-20th-century"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1265063": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:760329": {
+    "era": [
+      "late-20th-century"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:245256": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:2295": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:811208": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:24804": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:567189": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:347629": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:522938": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:912649": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:27578": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:338762": {
+    "era": [
+      "contemporary"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:44856": {
+    "era": [
+      "contemporary"
     ],
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx"
