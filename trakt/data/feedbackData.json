@@ -373,6 +373,50 @@
       "reasonLabel": "The show's tone/target audience skews older, distinct from too_old (which is about the show itself feeling dated, not its audience)",
       "timestamp": "2026-08-25T13:50:46.000Z",
       "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:567189",
+      "title": "Tom Clancy's Without Remorse",
+      "year": 2021,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "doesnt_look_good",
+      "reasonLabel": "Doesn't look good — Bill's own judgment call from the trailer/premise, not a mappable data field",
+      "timestamp": "2026-08-27T12:34:26Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:878361",
+      "title": "Big George Foreman",
+      "year": 2023,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "doesnt_look_good",
+      "reasonLabel": "Doesn't look good — Bill's own judgment call from the trailer/premise, not a mappable data field",
+      "timestamp": "2026-08-27T12:34:26Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:882569",
+      "title": "Guy Ritchie's The Covenant",
+      "year": 2023,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "doesnt_look_good",
+      "reasonLabel": "Doesn't look good — Bill's own judgment call from the trailer/premise, not a mappable data field",
+      "timestamp": "2026-08-27T12:34:26Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:634528",
+      "title": "The Marksman",
+      "year": 2021,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "doesnt_look_good",
+      "reasonLabel": "Doesn't look good — Bill's own judgment call from the trailer/premise, not a mappable data field",
+      "timestamp": "2026-08-27T12:34:26Z",
+      "excludeFromRecommendations": true
     }
   ]
 }
