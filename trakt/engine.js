@@ -682,8 +682,28 @@ const SUBGENRE_KEYWORDS = {
   // existing tag buckets with real synonyms/phrasings TMDB actually uses
   // rather than inventing new sub-buckets off thin, single-keyword
   // evidence (the exact over-reach the book side's Session 16b rejected).
-  'crime-drama': ['organized crime', 'drug dealer', 'drugs', 'gangster', 'mafia', 'mob', 'outlaw', 'criminal', 'hitman', 'assassin', 'crime family'],
-  'procedural': ['police', 'detective', 'investigation', 'fbi', 'murder investigation', 'police detective', 'cop', 'murder', 'murder mystery', 'whodunit', 'police procedural', 'crime investigation', 'criminal investigation'],
+  // Split from a single over-broad 'crime-drama' bucket (dashboard finding:
+  // 19.9% of the dataset, over the 15%-concentration cap the book side's
+  // Session 16 tone redesign established). GENRE_DETAIL_KEYWORDS already
+  // had "Organized Crime / Mafia"/"Drug Trade"/"Assassin / Hitman" as
+  // *display-only* refinements nested under crime-drama — promoted those
+  // exact, already-keyword-frequency-verified groupings to real top-level
+  // scored buckets instead of inventing a new split from scratch. Verified
+  // against scripts/eval.js before shipping (precision@10/25/50/100 held).
+  'organized-crime': ['organized crime', 'gangster', 'mafia', 'mob', 'crime family', 'mobster'],
+  'drug-trade': ['drug dealer', 'drugs', 'drug trafficking'],
+  'assassin-hitman': ['assassin', 'hitman'],
+  'crime-drama': ['outlaw', 'criminal'],
+  // Split from a single over-broad 'procedural' bucket (18.9% of the
+  // dataset, also over the 15% cap) — real keyword-frequency scan of the
+  // 137 keyword-tier procedural titles found 'murder'-family keywords
+  // trigger 57 of them (a full 41.6%) versus 'police'-family keywords at
+  // ~20-32 each, so the natural split is investigation TYPE (a murder
+  // mystery vs. a police procedural aren't the same thing), not a further
+  // subdivision of either individually.
+  'murder-mystery': ['murder', 'murder investigation', 'murder mystery', 'whodunit'],
+  'police-procedural': ['police', 'police detective', 'police procedural', 'cop'],
+  'procedural': ['detective', 'investigation', 'fbi', 'criminal investigation', 'crime investigation'],
   'legal': ['lawyer', 'courtroom', 'trial', 'attorney', 'judge', 'legal drama'],
   'heist': ['heist', 'robbery', 'con artist', 'bank robbery'],
   'spy-espionage': ['spy', 'espionage', 'undercover', 'secret agent'],
@@ -1031,11 +1051,12 @@ const HISTORICAL_PERIOD_KEYWORDS = {
 const GENRE_DETAIL_KEYWORDS = {
   'historical': HISTORICAL_PERIOD_KEYWORDS,
   'war': HISTORICAL_PERIOD_KEYWORDS,
-  'crime-drama': {
-    'Organized Crime / Mafia': ['organized crime', 'gangster', 'mafia', 'crime family', 'mobster'],
-    'Drug Trade': ['drug dealer', 'drug trafficking'],
-    'Assassin / Hitman': ['assassin', 'hitman'],
-  },
+  // No entry for 'crime-drama' anymore — its old "Organized Crime / Mafia"/
+  // "Drug Trade"/"Assassin / Hitman" detail labels were promoted to real
+  // top-level SUBGENRE_KEYWORDS buckets (organized-crime/drug-trade/
+  // assassin-hitman) rather than staying as a display-only refinement, so
+  // a title matching any of those keywords now gets that bucket directly
+  // and never reaches the residual 'crime-drama' tag at all.
   'psychological-thriller': {
     'Serial Killer': ['serial killer'],
     'Kidnapping': ['kidnapping'],
