@@ -887,6 +887,59 @@ export function inferEra(meta, limit = 1) {
   return scoreKeywordTags(meta.keywords, ERA_KEYWORDS).slice(0, limit).map(([tag]) => tag);
 }
 
+// Bill: "Let's make genre more specific. instead of drama -> historical
+// drama, it should be historical drama -> WW2" — a third tier beneath
+// SUBGENRE_KEYWORDS's broad 'historical'/'war' buckets, naming the actual
+// real-world conflict/period a title is about (not a century band like
+// ERA_KEYWORDS above — a genuinely different granularity, purpose-built
+// to refine the display layer specifically). Every bucket grounded in a
+// real keyword-frequency scan of the 113 real titles tagged 'historical'
+// or 'war', not guessed.
+//
+// Several candidate keywords were checked against the FULL dataset (not
+// just this subset) and dropped for real ambiguity found doing so:
+// bare 'civil war' matched only 2 titles and both were wrong for "the
+// 1861-65 US Civil War" (Civil War (2024), a fictional NEAR-FUTURE US
+// conflict; Shōgun, Japan's Sengoku-era civil strife) - dropped in favor
+// of 'civil war veteran', which only ever appears on genuinely
+// Reconstruction-era westerns (1883, Hell on Wheels). 'outlaw'/'sheriff'/
+// 'gunslinger'/'bounty hunter' were all checked and rejected the same
+// way real western-bucket candidates were rejected for SUBGENRE_KEYWORDS
+// - each catches plenty of modern-set crime shows too (outlaw: Breaking
+// Bad, Narcos, Sons of Anarchy; sheriff: Joe Pickett, No Country for Old
+// Men, FROM; gunslinger: Justified, a contemporary-set show; bounty
+// hunter: The Mandalorian, a space western with no real-world period at
+// all) - none reliably signal "period Old West" specifically. Bare
+// 'nasa'/'astronaut' were checked and dropped from Space Race for the
+// same reason - they also catch fictional/contemporary space films
+// (The Martian, Armageddon, Austin Powers) that have nothing to do with
+// the real 1960s space race; 'space race'/'moon landing' alone are
+// unambiguous.
+const HISTORICAL_PERIOD_KEYWORDS = {
+  'World War II': ['world war ii'],
+  'World War I': ['world war i'],
+  'Vietnam War': ['vietnam war'],
+  'Iraq War': ['iraq war', 'iraq'],
+  'Afghanistan War': ['afghanistan', 'taliban'],
+  'Cold War': ['cold war'],
+  'American Frontier / Wild West': ['wild west', 'frontier', 'american frontier', 'american west', 'gold rush',
+    'klondike gold rush', 'mining town', 'civil war veteran'],
+  'Ancient World': ['ancient world', 'ancient rome', 'ancient greece', 'roman empire'],
+  'Space Race': ['space race', 'moon landing'],
+  '19th Century / Victorian Era': ['19th century', 'victorian era', 'victorian england'],
+};
+
+// Display-refinement only, not a scoring signal — subgenreBonus() still
+// scores the broader 'historical'/'war' subgenre tags unchanged (this is
+// a labeling specificity upgrade, the same role the subgenre-vs-raw-genre
+// swap played earlier; a scoring integration would need its own
+// eval.js-gated validation before it's safe to add, same rule every
+// other signal in this file was held to).
+export function inferHistoricalPeriod(meta, limit = 1) {
+  if (!meta) return [];
+  return scoreKeywordTags(meta.keywords, HISTORICAL_PERIOD_KEYWORDS).slice(0, limit).map(([tag]) => tag);
+}
+
 // Bill: "improve subject. Look at what we did with BBRE as a guide" —
 // BBRE's canonical `themes` vocabulary (legal, medical, sports, true
 // crime, memoir, etc.) is BMTRE's existing SUBGENRE_KEYWORDS in spirit

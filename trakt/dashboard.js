@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra, inferHistoricalPeriod } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -170,13 +170,19 @@ function computeGenreStats(library, enrichedMeta, llmTags = {}) {
     const meta = enrichedMeta[t.titleKey];
     if (!meta) continue;
     for (const g of inferSubgenres(meta, llmTags[t.titleKey])) {
-      if (!stats.has(g)) stats.set(g, { sum: 0, count: 0 });
-      const e = stats.get(g);
+      // Refined per-title (not after aggregation) so a WWII drama and a
+      // Vietnam War drama bucket separately under their real conflict
+      // instead of both landing in one generic "Historical"/"War" bucket
+      // - see displaySubgenre()'s own comment for why this refinement
+      // exists at all.
+      const label = displaySubgenre(g, meta);
+      if (!stats.has(label)) stats.set(label, { sum: 0, count: 0 });
+      const e = stats.get(label);
       e.sum += t.myRating; e.count++;
     }
   }
   return [...stats.entries()]
-    .map(([genre, e]) => ({ genre: SUBGENRE_LABEL[genre] || genre, avg: e.sum / e.count, count: e.count }))
+    .map(([genre, e]) => ({ genre, avg: e.sum / e.count, count: e.count }))
     .filter(g => g.count >= 3)
     .sort((a, b) => b.avg - a.avg);
 }
@@ -193,6 +199,23 @@ const SUBGENRE_LABEL = {
   'spy-espionage': 'Spy / Espionage', 'horror': 'Horror', 'romcom': 'Rom-Com', 'medical': 'Medical',
   'heist': 'Heist', 'prison': 'Prison', 'musical': 'Musical',
 };
+
+// Bill: "instead of drama -> historical drama, it should be historical
+// drama -> WW2" — when a title's subgenre is 'historical' or 'war' and
+// inferHistoricalPeriod() finds a specific real conflict/period, show
+// that instead of the generic label everywhere a subgenre is displayed
+// (the genre chart, rec cards, the All Titles table) — refining, not
+// duplicating, the existing tag. Falls back to the generic subgenre
+// label for the large majority of historical/war titles with no specific
+// period keyword (a WWII drama with no 'world war ii' keyword still
+// reads as "Historical", never blank).
+function displaySubgenre(tag, meta) {
+  if ((tag === 'historical' || tag === 'war') && meta) {
+    const period = inferHistoricalPeriod(meta)[0];
+    if (period) return period;
+  }
+  return SUBGENRE_LABEL[tag] || tag;
+}
 
 const SUBJECT_LABEL = {
   'addiction-recovery': 'Addiction / Recovery', 'grief-loss': 'Grief / Loss', 'trauma-abuse': 'Trauma / Abuse',
@@ -2459,7 +2482,7 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
       // Narrower subgenres, not TMDB's own broad genre list — see
       // computeGenreStats()'s comment for why. Falls back to the raw
       // genres for the rare title with no subgenre match at all.
-      genres: (meta ? inferSubgenres(meta, llmTags[h.titleKey]).map(s => SUBGENRE_LABEL[s] || s) : []).join(', ')
+      genres: (meta ? inferSubgenres(meta, llmTags[h.titleKey]).map(s => displaySubgenre(s, meta)) : []).join(', ')
         || meta?.genres?.join(', ') || '',
       subjects: (meta ? inferSubjects(meta, llmTags[h.titleKey]).map(s => SUBJECT_LABEL[s] || s) : []).join(', '),
       era: meta ? (ERA_LABEL[inferEra(meta)[0]] || '') : '',
@@ -2635,7 +2658,7 @@ function metaLine(candidate, enrichedMeta, omdbMeta, llmTags = {}) {
   // computeGenreStats()'s comment above for why the raw field alone isn't
   // useful. Falls back to the raw genres if a title has no subgenre match
   // at all (3 of 786 today) so a card never shows blank genre info.
-  const subs = inferSubgenres(meta, llmTags[candidate.titleKey]).slice(0, 2).map(s => SUBGENRE_LABEL[s] || s);
+  const subs = inferSubgenres(meta, llmTags[candidate.titleKey]).slice(0, 2).map(s => displaySubgenre(s, meta));
   if (subs.length) parts.push(subs.join(', '));
   else if (meta.genres?.length) parts.push(meta.genres.slice(0, 2).join(', '));
   const creator = getCreator(candidate.type, meta);
