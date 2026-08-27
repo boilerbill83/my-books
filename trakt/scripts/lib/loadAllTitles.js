@@ -16,7 +16,7 @@ import { fileURLToPath } from 'url';
 import {
   buildIndexes, hydrateTitle, getCreator, matchScore, confidenceScore,
   reason, popularityScore, imdbPopularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings,
-  resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones,
+  resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra,
 } from '../../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -99,6 +99,12 @@ export function loadAllTitles() {
       // persisted — see trakt/data/llmTags.json).
       subgenres: inferSubgenres(meta, idx.llmTags?.[h.titleKey]),
       tones: inferTones(meta, idx.llmTags?.[h.titleKey]),
+      // Real human-condition subject matter beneath subgenre (addiction,
+      // grief, trauma, class, etc. — see inferSubjects()'s own comment)
+      // and the story's setting era (distinct from releaseDate below,
+      // which is when the title was MADE, not when it's set).
+      subjects: inferSubjects(meta, idx.llmTags?.[h.titleKey]),
+      era: inferEra(meta)[0] || '',
       topCast: meta.topCast || [],
       releaseDate: meta.releaseDate || meta.firstAirDate || '',
       runtime: meta.runtime ?? meta.episodeRunTime ?? '',
