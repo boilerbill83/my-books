@@ -109,6 +109,19 @@ def extract_entry(kind, data):
         crew = credits.get('crew') or []
         directors = [c['name'] for c in crew if c.get('job') == 'Director']
         entry['director'] = directors[0] if directors else None
+        # Full co-director list — real bug found via a manual spot-check of
+        # engine.js's creator crediting (external metadata-plan review):
+        # this always collected every real TMDB 'Director' crew credit into
+        # `directors` above but then silently discarded everyone past
+        # index 0. Confirmed on a well-known real example: Avengers:
+        # Infinity War is genuinely co-directed by Joe AND Anthony Russo,
+        # both credited by TMDB, but `director` alone only ever showed
+        # "Joe Russo" — the same undercount pattern already fixed for
+        # shows' createdBy[] earlier this session, just never checked for
+        # movies. Old cache entries won't have this field until re-fetched
+        # (REFRESH_ALL=1) — engine.js's getCreators() falls back to
+        # [director] for those.
+        entry['directors'] = directors
         coll = data.get('belongs_to_collection')
         entry['belongsToCollection'] = {'id': coll['id'], 'name': coll['name']} if coll else None
     else:
