@@ -29,6 +29,18 @@ it up. Mirrors enrich_tmdb.py's RETRY_EMPTIES pattern exactly,
 including the one-retry-only guard (`rtRetriedAt`) so a title that
 genuinely has no RT score in OMDb isn't re-fetched forever.
 
+RETRY_NO_DIRECTOR=1 (or --retry-no-director) is the same one-shot
+retry pattern, for backfilling the 'director' field onto every
+already-cached MOVIE entry from before extract_entry() started
+capturing it (a new field on an existing OMDb response, same as the
+publisher/googleRatingsCount backfill pattern documented on the book
+side — old cache entries don't retroactively gain a field a script
+starts reading later without a forced re-fetch). Movies only: OMDb has
+no analogous director/creator field for shows, so retrying those would
+just burn API calls re-confirming a permanent null. Guarded by
+`directorRetriedAt` so a movie OMDb genuinely has no Director for
+isn't re-fetched forever either.
+
 Needs an OMDB_API_KEY — free tier at omdbapi.com/apikey.aspx (1,000
 requests/day), same pattern as TMDB_API_KEY/GOOGLE_BOOKS_API_KEY: Bill
 creates it himself and sets it as a repo secret; no tool here can do
@@ -44,6 +56,7 @@ CACHE_FILE   = DATA_DIR / 'omdbMetadata.json'
 BATCH_SIZE   = int(sys.argv[1]) if len(sys.argv) > 1 else 150
 API_KEY      = os.environ.get('OMDB_API_KEY', '')
 RETRY_NO_RT  = os.environ.get('RETRY_NO_RT') == '1' or '--retry-no-rt' in sys.argv
+RETRY_NO_DIRECTOR = os.environ.get('RETRY_NO_DIRECTOR') == '1' or '--retry-no-director' in sys.argv
 DELAY        = 0.4
 API_BASE     = 'https://www.omdbapi.com/'
 HEADERS      = {'User-Agent': 'my-books-trakt-omdb-enrichment (personal watch-history app)'}
@@ -165,12 +178,22 @@ def extract_entry(data):
     mc_score = int(mc) if mc and mc.isdigit() else None
     imdb_rating = data.get('imdbRating')
     imdb_votes = data.get('imdbVotes')
+    # OMDb's own 'Director' field, captured alongside everything else on
+    # the same already-fetched call — a real, independent second source for
+    # cross-checking TMDB's crew-credit 'director' (movies only; OMDb has
+    # no per-episode/creator equivalent for shows, so this stays null for
+    # type=show). "N/A" and multi-director "A, B" strings are both real
+    # OMDb responses, not errors — kept as-is (raw string), not parsed
+    # further, since this is a manual-review cross-check, not a scoring
+    # signal that needs a single canonical name.
+    director = data.get('Director')
     return {
         'rottenTomatoes': rt_score,
         'metacritic': mc_score,
         'awards': parse_awards(data.get('Awards')),
         'imdbRating': float(imdb_rating) if imdb_rating not in (None, 'N/A') else None,
         'imdbVotes': int(imdb_votes.replace(',', '')) if imdb_votes not in (None, 'N/A') else None,
+        'director': director if director and director != 'N/A' else None,
         'fetchedAt': time.strftime('%Y-%m-%d'),
     }
 
@@ -222,6 +245,12 @@ def main():
                        and t['titleKey'] in cache
                        and cache[t['titleKey']].get('rottenTomatoes') is None
                        and not cache[t['titleKey']].get('rtRetriedAt')]
+    elif RETRY_NO_DIRECTOR:
+        pending_raw = [t for t in load_titles()
+                       if t['type'] == 'movie'
+                       and t['titleKey'] in cache
+                       and cache[t['titleKey']].get('director') is None
+                       and not cache[t['titleKey']].get('directorRetriedAt')]
     else:
         pending_raw = [t for t in load_titles() if t['titleKey'] not in cache]
     seen, pending = set(), []
@@ -233,6 +262,8 @@ def main():
     batch = pending[:BATCH_SIZE]
     if RETRY_NO_RT:
         print(f'{len(pending)} cached titles missing Rotten Tomatoes, not yet retried, processing {len(batch)}')
+    elif RETRY_NO_DIRECTOR:
+        print(f'{len(pending)} cached movies missing director, not yet retried, processing {len(batch)}')
     else:
         print(f'{len(pending)} titles pending (have an IMDb id, not yet OMDb-enriched), processing {len(batch)}')
 
@@ -254,9 +285,16 @@ def main():
         cache[t['titleKey']] = extract_entry(data)
         if RETRY_NO_RT:
             cache[t['titleKey']]['rtRetriedAt'] = cache[t['titleKey']]['fetchedAt']
+        if RETRY_NO_DIRECTOR:
+            cache[t['titleKey']]['directorRetriedAt'] = cache[t['titleKey']]['fetchedAt']
         rt = cache[t['titleKey']]['rottenTomatoes']
+        director = cache[t['titleKey']]['director']
         found = ' (found!)' if RETRY_NO_RT and rt is not None else ''
-        print(f'  [{i}/{len(batch)}] ok (RT {rt if rt is not None else "—"}{found}) | {t["title"] or t["imdbId"]}')
+        dfound = ' (found!)' if RETRY_NO_DIRECTOR and director is not None else ''
+        if RETRY_NO_DIRECTOR:
+            print(f'  [{i}/{len(batch)}] ok (director {director or "—"}{dfound}) | {t["title"] or t["imdbId"]}')
+        else:
+            print(f'  [{i}/{len(batch)}] ok (RT {rt if rt is not None else "—"}{found}) | {t["title"] or t["imdbId"]}')
         if i % 25 == 0:
             json.dump(cache, open(CACHE_FILE, 'w'), indent=1)
         time.sleep(DELAY)
@@ -268,7 +306,8 @@ def main():
         sys.exit(1)
 
     with_rt = sum(1 for v in cache.values() if v.get('rottenTomatoes') is not None)
-    print(f'done: {len(cache)} cached, {with_rt} with a Rotten Tomatoes score')
+    with_director = sum(1 for v in cache.values() if v.get('director') is not None)
+    print(f'done: {len(cache)} cached, {with_rt} with a Rotten Tomatoes score, {with_director} with a director')
 
 
 if __name__ == '__main__':

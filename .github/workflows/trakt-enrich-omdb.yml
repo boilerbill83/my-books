@@ -13,6 +13,10 @@ on:
         description: 'Re-fetch cached titles missing Rotten Tomatoes specifically (OMDb data can be backfilled after the original fetch)'
         type: boolean
         default: false
+      retry_no_director:
+        description: 'Re-fetch cached movies missing a director (backfills the new director field onto entries cached before it was captured)'
+        type: boolean
+        default: false
 
 jobs:
   enrich:
@@ -28,6 +32,7 @@ jobs:
         env:
           OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
           RETRY_NO_RT: ${{ inputs.retry_no_rt && '1' || '0' }}
+          RETRY_NO_DIRECTOR: ${{ inputs.retry_no_director && '1' || '0' }}
         run: python3 trakt/enrich_omdb.py ${{ inputs.batch_size || 150 }}
         timeout-minutes: 30
       - name: Commit if changed
