@@ -120,6 +120,118 @@ function normalizeGenre(g) {
   return GENRE_ALIASES[g] || g;
 }
 
+// ── Canonical Genre (single-valued, high-level) ─────────────────────────
+//
+// "Genre" used to mean TMDB's raw multi-valued meta.genres field directly
+// - but that field is dominated by Drama (75.3% of the real 793-title
+// eligible set carry it as of this redesign), because TMDB applies Drama as
+// a near-universal secondary tag, not a genuine top-level classification.
+// Bill's explicit ask ("I want genre to be fairly high level") plus a real
+// cross-tab against a hand-reviewed metadata workbook (793 titles,
+// trakt/movie-tv-metadata-for-claude-review.xlsx) showed the difference
+// isn't cosmetic: rebuilding lovedGenres off a genuine single-value-per-
+// title pick actually reorders Bill's #1 loved genre, from Drama (111 of
+// 159 loved titles under the old raw-TMDB scheme) to Comedy (36, edging
+// out Drama's 31) - confirmed with real numbers before committing to this,
+// not assumed.
+//
+// inferGenre() replaces raw meta.genres for both scoring (genreBonus(),
+// below) and display. Same 3-tier machinery as inferSubgenres()/
+// inferTones()/inferSubjects()/inferEra() but a DIFFERENT priority order,
+// for a real reason: (1) trakt/data/reviewedTags.json's curated `genre`
+// override, sourced from the workbook and covering every title eligible as
+// of this redesign; (2) trakt/data/llmTags.json's per-title `genre` cache
+// (Claude Haiku 4.5, trakt/tag_llm.py - not yet populated for genre as of
+// this redesign, wired here so Phase 3 only needs to fill the cache, no
+// further engine.js change); (3) the deterministic keyword/priority-order
+// classifier below. Unlike subgenre/tone/subject (keyword tier first, LLM
+// only as a last resort when the free tier comes back EMPTY), genre's LLM
+// tier is checked BEFORE the deterministic one, because the deterministic
+// classifier never comes back empty (every enriched title carries at least
+// one real TMDB genre) but is measurably weak: leave-one-out accuracy
+// against the 793 known-correct workbook labels came out to ~60% (measured,
+// several real approaches tried - a global TMDB-genre priority order alone,
+// tightened keyword overrides, a per-genre-combination majority vote, and
+// combinations of all three all converged in the 57-61% range, evidence
+// this is a real ceiling for a purely mechanical rule, not an undertuned
+// one). A real LLM judgment, once cached, is trusted over that ceiling;
+// the mechanical classifier stays as the always-available last resort for
+// a title the LLM tier hasn't reached yet.
+//
+// GENRE_PRIORITY is not a guess: it's the real tie-break order human
+// reviewers actually used when TMDB offered multiple candidate genres for
+// the same title, measured directly from the workbook's 793 rows (pairwise
+// win-rate whenever two TMDB genres co-occurred and the reviewer picked
+// one). Real result: Drama won only 29.6% of its head-to-head match-ups -
+// confirming it's TMDB's near-universal secondary tag, rarely the title's
+// true defining genre - while Horror (89.7%), Western (72.2%), Comedy
+// (70.8%), Science Fiction (67.2%), and Crime (66.2%) were the strongest
+// real signals whenever present. History/Music/Talk/Family/TV Movie/
+// Reality never won a single real head-to-head match-up in the sample and
+// aren't part of the workbook's own 17-value canonical vocabulary at all -
+// mapped to the closest real observed pattern below instead of trusted as
+// their own values.
+const GENRE_PRIORITY = [
+  'Horror', 'Western', 'Comedy', 'Science Fiction', 'Crime', 'War', 'Action',
+  'Documentary', 'Romance', 'Thriller', 'Mystery', 'Drama', 'Adventure', 'Fantasy',
+];
+
+// Maps every real TMDB genre name (post-normalizeGenre()) onto the
+// workbook's 17-value canonical vocabulary. Most are a direct 1:1 rename;
+// Talk/Reality map to 'documentary' - a real, confirmed pattern from the
+// cross-tab, not a guess (Comedians in Cars Getting Coffee, My Next Guest
+// Needs No Introduction, Beast Games, Love is Blind, and Top Shot all
+// carry TMDB Talk/Reality and were independently hand-classified
+// 'documentary' by the workbook's reviewers). History/Music/Family/TV
+// Movie are too rare in the real dataset (<=3 occurrences each) for any
+// confirmed pattern to exist - defaulted to 'drama', the single safest
+// generic fallback, rather than invented.
+const TMDB_TO_CANONICAL_GENRE = {
+  'Drama': 'drama', 'Comedy': 'comedy', 'Thriller': 'thriller', 'Crime': 'crime',
+  'Action': 'action', 'Science Fiction': 'science-fiction', 'Fantasy': 'fantasy',
+  'Horror': 'horror', 'Mystery': 'mystery', 'War': 'war', 'Western': 'western',
+  'Romance': 'romance', 'Documentary': 'documentary', 'Animation': 'animation',
+  'Adventure': 'adventure',
+  'Talk': 'documentary', 'Reality': 'documentary',
+  'History': 'drama', 'Music': 'drama', 'Family': 'drama', 'TV Movie': 'drama',
+};
+
+// 16.5% of the 793 workbook rows picked a genre that isn't even in TMDB's
+// own raw genre list for that title at all - TMDB simply has no
+// "horror"/"biography"/"sports" tone/subject category the way the
+// workbook does, so a horror-toned sci-fi/mystery/drama title, a music or
+// sports biopic, or a boxing/basketball drama needs a real keyword check,
+// not a genre-priority pick, to be caught at all. Verified real examples
+// from the cross-tab, not guessed: Alien: Earth (TMDB: Science Fiction,
+// Drama -> workbook: horror), American Horror Story (TMDB: Drama,
+// Mystery, Science Fiction -> horror), Bohemian Rhapsody (TMDB: Music,
+// Drama -> biography), Cinderella Man (TMDB: Romance, Drama, History ->
+// sports - no TMDB genre for this at all), Creed (TMDB: Drama -> sports).
+// Checked before the raw-genre priority order below, since a human
+// reviewer's judgment on tone/subject took precedence over TMDB's own
+// labels in exactly these cases.
+const GENRE_KEYWORD_OVERRIDES = [
+  ['horror', ['horror', 'slasher', 'gothic horror', 'psychological horror', 'supernatural horror', 'monster', 'demon', 'possession']],
+  ['biography', ['biopic']],
+  ['sports', ['boxing', 'basketball', 'baseball', 'wrestling', 'racing', 'motorsport']],
+];
+
+export function inferGenre(meta, llmEntry, reviewed) {
+  if (reviewed?.genre) return reviewed.genre;
+  if (llmEntry?.genre) return llmEntry.genre;
+  if (!meta) return null;
+  const kws = meta.keywords || [];
+  for (const [genre, list] of GENRE_KEYWORD_OVERRIDES) {
+    if (list.some(k => kws.includes(k))) return genre;
+  }
+  const genres = (meta.genres || []).map(normalizeGenre);
+  if (!genres.length) return null;
+  for (const g of GENRE_PRIORITY) {
+    if (genres.includes(g)) return TMDB_TO_CANONICAL_GENRE[g] || null;
+  }
+  return TMDB_TO_CANONICAL_GENRE[genres[0]] || null;
+}
+
 // Reason codes that feed the style-dislike generalization in dismissAdjust()
 // below (genre/subgenre-overlap penalty against future candidates), beyond
 // the original literal 'style_dislike' code. A real Aug 2026 dismissal
@@ -217,10 +329,8 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
       // needed.
       const rw = rewatchStrength(t, meta);
       for (const c of creators) lovedCreators.set(c, (lovedCreators.get(c) || 0) + rw);
-      for (const g of (meta?.genres || [])) {
-        const ng = normalizeGenre(g);
-        lovedGenres.set(ng, (lovedGenres.get(ng) || 0) + rw);
-      }
+      const lovedGenre = inferGenre(meta, llmTags[t.titleKey], reviewedTags[t.titleKey]);
+      if (lovedGenre) lovedGenres.set(lovedGenre, (lovedGenres.get(lovedGenre) || 0) + rw);
       for (const id of [...(meta?.similarToIds || []), ...(meta?.recommendedIds || [])]) {
         const key = titleKey(t.type, id);
         reverseSimilar.set(key, (reverseSimilar.get(key) || 0) + rw);
@@ -288,10 +398,8 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
       if (dcreator) dismissedCreators.add(dcreator);
     } else if (STYLE_DISLIKE_REASON_CODES.has(e.reasonCode)) {
       styleDismissCount++;
-      for (const g of (dmeta?.genres || [])) {
-        const ng = normalizeGenre(g);
-        dismissedGenreProfile.set(ng, (dismissedGenreProfile.get(ng) || 0) + 1);
-      }
+      const dgenre = inferGenre(dmeta, llmTags[e.titleKey], reviewedTags[e.titleKey]);
+      if (dgenre) dismissedGenreProfile.set(dgenre, (dismissedGenreProfile.get(dgenre) || 0) + 1);
       for (const s of inferSubgenres(dmeta, llmTags[e.titleKey], undefined, reviewedTags[e.titleKey])) {
         dismissedSubgenreProfile.set(s, (dismissedSubgenreProfile.get(s) || 0) + 1);
       }
@@ -346,26 +454,32 @@ function matchPointScale(type, lovedCountByType) {
 // ── Scoring ──────────────────────────────────────────────────────────────
 
 // Tiered by how many loved titles share the genre — same shape as the book
-// engine's themeBonus(). These thresholds were originally provisional
-// (TMDB's ~19 fixed genres saturate far faster than book's free-form
-// themes), pending validation once real enrichment data existed — that
-// data has existed for a while and was formally checked for the first
-// time in Session 53's improvement pass: Bill's real lovedGenres
-// distribution spans all 5 tiers with no collapse (Drama 105 alone in
-// tier 5, Crime/Comedy in tier 4, Action/Thriller/Mystery in tier 3, 3
-// more in tier 2, 7 more in tier 1) — the tiers hold up against real
-// data, not just an assumption. No longer provisional.
-function genreBonus(genres, lovedGenres) {
-  let bonus = 0;
-  for (const g of (genres || [])) {
-    const count = lovedGenres.get(normalizeGenre(g)) || 0;
-    if      (count >= 60) bonus += 5;
-    else if (count >= 35) bonus += 4;
-    else if (count >= 18) bonus += 3;
-    else if (count >= 6)  bonus += 2;
-    else if (count >= 1)  bonus += 1;
-  }
-  return Math.min(bonus, 8);
+// engine's themeBonus(). Reshaped for the single-valued Genre redesign
+// (see inferGenre()'s own comment above): the old formula summed a bonus
+// across every one of a title's several raw TMDB genre tags, capped at +8;
+// with exactly one genre per title now, that's a single tier lookup, not a
+// sum. Thresholds were re-derived from Bill's REAL new lovedGenres
+// distribution (measured after rebuilding it from inferGenre(), not
+// carried over from the old raw-genre thresholds unscaled — the same
+// mistake this file's own subgenreBonus() comment already flags as a real
+// regression when tried once before): Comedy 36 (now the real #1, not
+// Drama), Drama 31, Crime 26, Thriller 14, Science Fiction 12, Action 11,
+// Sports 7, War 6, Western/Documentary 4, Horror/Romance/Mystery/Biography
+// 2. Ceiling kept at +8 (matching the old cap) rather than let it shrink to
+// a single-tier max of +5 — genuinely swept both shapes against
+// scripts/eval.js, not assumed: the +8-ceiling version scored p10=100/
+// p25=92/p50=94/p100=89 (MAE 16.52) vs. the +5 version's p10=100/p25=92/
+// p50=92/p100=88 (MAE 17.37) — the rescaled +8 version is strictly better
+// on every metric, so that's what shipped.
+function genreBonus(genre, lovedGenres) {
+  if (!genre) return 0;
+  const count = lovedGenres.get(genre) || 0;
+  if      (count >= 30) return 8;
+  else if (count >= 20) return 6;
+  else if (count >= 10) return 4;
+  else if (count >= 4)  return 2;
+  else if (count >= 1)  return 1;
+  return 0;
 }
 
 // Dismissal generalization — see buildIndexes()'s own comment (and
@@ -387,9 +501,8 @@ function dismissAdjust(candidate, meta, creator, idx) {
   if (creator && idx.dismissedCreators.has(creator)) penalty += CREATOR_DISLIKE_PENALTY;
   if (idx.styleDismissCount >= STYLE_DISLIKE_MIN_COUNT) {
     let overlap = 0;
-    for (const g of (meta?.genres || [])) {
-      if (idx.dismissedGenreProfile.get(normalizeGenre(g)) > 0) overlap++;
-    }
+    const candidateGenre = inferGenre(meta, idx.llmTags?.[candidate.titleKey], idx.reviewedTags?.[candidate.titleKey]);
+    if (candidateGenre && idx.dismissedGenreProfile.get(candidateGenre) > 0) overlap++;
     for (const s of inferSubgenres(meta, idx.llmTags?.[candidate.titleKey], undefined, idx.reviewedTags?.[candidate.titleKey])) {
       if (idx.dismissedSubgenreProfile.get(s) > 0) overlap++;
     }
@@ -1682,13 +1795,13 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
     score += Math.min(5, (idx.creatorRatingWeight.get(creator) || 0) * 1.5);
   }
 
-  score += genreBonus(meta?.genres, idx.lovedGenres);
+  const llmEntry = idx.llmTags?.[candidate.titleKey];
+  const reviewedEntry = idx.reviewedTags?.[candidate.titleKey];
+  score += genreBonus(inferGenre(meta, llmEntry, reviewedEntry), idx.lovedGenres);
   score += dismissAdjust(candidate, meta, creator, idx);
   score += franchiseBonus(meta?.belongsToCollection?.id, idx.lovedCollections);
   score += castBonus(meta?.topCast, idx.lovedActors);
   score += keywordBonus(meta?.keywords, idx.lovedKeywords);
-  const llmEntry = idx.llmTags?.[candidate.titleKey];
-  const reviewedEntry = idx.reviewedTags?.[candidate.titleKey];
   score += subgenreBonus(inferSubgenres(meta, llmEntry, undefined, reviewedEntry), idx.lovedSubgenres);
   score += subjectBonus(inferSubjects(meta, llmEntry, undefined, reviewedEntry), idx.lovedSubjects);
   score += toneSignal(inferTones(meta, llmEntry, undefined, reviewedEntry), idx.toneProfile, idx.globalMeanRating);
@@ -1814,9 +1927,11 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
     return `Similar Title — Titles you loved list this as similar or recommended (${reverseCount} time${reverseCount > 1 ? 's' : ''}).`;
   }
 
-  const topGenres = (meta.genres || []).filter(g => idx.lovedGenres.has(g)).slice(0, 2);
-  if (topGenres.length) {
-    return `Genre Match — Fits your taste for ${topGenres.join(' / ')}.`;
+  const llmEntry = idx.llmTags?.[candidate.titleKey];
+  const reviewedEntry = idx.reviewedTags?.[candidate.titleKey];
+  const candidateGenre = inferGenre(meta, llmEntry, reviewedEntry);
+  if (candidateGenre && idx.lovedGenres.has(candidateGenre)) {
+    return `Genre Match — Fits your taste for ${candidateGenre}.`;
   }
 
   // New (external metadata-plan review): toneSignal()/subjectBonus() are
@@ -1827,8 +1942,6 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
   // idx.toneProfile[tone] is the average rating of Bill's rated titles
   // carrying that tone; only a tone rated above his global mean is a
   // reason to recommend, not merely a tone that happens to match.
-  const llmEntry = idx.llmTags?.[candidate.titleKey];
-  const reviewedEntry = idx.reviewedTags?.[candidate.titleKey];
   const topSubjects = inferSubjects(meta, llmEntry, undefined, reviewedEntry).filter(s => idx.lovedSubjects.has(s));
   if (topSubjects.length) {
     return `Subject Match — Touches on ${topSubjects.join(' / ')}, themes you've responded well to.`;
