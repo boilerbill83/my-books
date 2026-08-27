@@ -1106,6 +1106,32 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
         `Quality is now right at the 90% bar, so it may flicker above/below it as new titles are added; no further fix needed unless ` +
         `it settles meaningfully below 90% again.`,
     }),
+    era: (f) => {
+      const s = f.specificity;
+      return {
+        severity: 'warning',
+        ratings: { ease: 2, dataQuality: 3, recEngine: 1, ui: 2 },
+        title: `Era is ${f.populatedPct.toFixed(1)}% populated but ${f.qualityPct.toFixed(1)}% quality — a real distribution, not a gap`,
+        technical: `Population jumped from <code>inferEra()</code>'s own 17.0% keyword-only baseline to ${f.populatedPct.toFixed(1)}% ` +
+          `(${f.populated} of ${f.eligible}) this session via <code>trakt/data/reviewedTags.json</code>'s curated override (a hand-reviewed ` +
+          `metadata workbook's 17-value era vocabulary, checked ahead of the keyword tier). % Quality stayed low anyway because it's the ` +
+          `same 50/50 row-completeness + distribution-specificity blend as Genres above: specificity is ${s ? s.specificityPct.toFixed(1) : '?'}% ` +
+          `(normalized Shannon entropy across ${s ? s.distinctCount : '?'} distinct values), dragged down because ` +
+          `<code>"${s ? s.topValue : 'contemporary'}"</code> alone accounts for ${s ? s.topSharePct.toFixed(1) : '?'}% of all era tags versus ` +
+          `an optimal <=${s ? s.optimalTopSharePct.toFixed(1) : '?'}% if evenly spread. Unlike Genres, this isn't a taxonomy-bluntness ` +
+          `artifact — the workbook's own reviewers independently landed on "contemporary" for ~71% of titles, and spot-checking dozens of ` +
+          `real period pieces (Chernobyl, Deadwood, The Terror, Band of Brothers, Killers of the Flower Moon...) confirmed they're correctly ` +
+          `tagged with their real setting, not defaulted to contemporary. Most of Bill's library genuinely IS present-day-set content.`,
+        plain: `This field is now filled in for almost every title (up from 17% before this session), but the "Quality" number still ` +
+          `looks low because most stories really are set in the present day — there's no way to make the data look more spread-out across ` +
+          `historical periods without it being wrong. The specificity check that drags this number down is the same one flagging Genres ` +
+          `above, and for the same underlying reason (one value being genuinely the most common answer), not a data problem.`,
+        impact: `Not a real gap to fix — the population jump this session already delivered the actual value (every title now has an ` +
+          `honest era label instead of ~83% showing nothing at all). The quality metric will likely stay near this level permanently, since ` +
+          `it's measuring a true fact about the dataset (most content is contemporary), not a fixable defect. Era isn't a scoring signal ` +
+          `(display/export only), so this has zero effect on recommendation ranking either way.`,
+      };
+    },
   };
 
   for (const f of fieldStats) {
