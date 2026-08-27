@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra, inferHistoricalPeriod } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra, inferSubgenreDetail } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -201,18 +201,20 @@ const SUBGENRE_LABEL = {
 };
 
 // Bill: "instead of drama -> historical drama, it should be historical
-// drama -> WW2" — when a title's subgenre is 'historical' or 'war' and
-// inferHistoricalPeriod() finds a specific real conflict/period, show
-// that instead of the generic label everywhere a subgenre is displayed
-// (the genre chart, rec cards, the All Titles table) — refining, not
-// duplicating, the existing tag. Falls back to the generic subgenre
-// label for the large majority of historical/war titles with no specific
-// period keyword (a WWII drama with no 'world war ii' keyword still
-// reads as "Historical", never blank).
+// drama -> WW2" then "Historical was just an example. I want that level
+// of specificity for all genres and subgenres" — when a title's subgenre
+// has a real, verified detail map in GENRE_DETAIL_KEYWORDS (engine.js)
+// and a specific match is found, show that instead of the generic label
+// everywhere a subgenre is displayed (the genre chart, rec cards, the
+// All Titles table) — refining, not duplicating, the existing tag. Falls
+// back to the generic subgenre label for the majority of titles in any
+// given subgenre with no specific detail keyword, or for subgenres with
+// no detail map at all (a WWII drama with no 'world war ii' keyword
+// still reads as "Historical", never blank).
 function displaySubgenre(tag, meta) {
-  if ((tag === 'historical' || tag === 'war') && meta) {
-    const period = inferHistoricalPeriod(meta)[0];
-    if (period) return period;
+  if (meta) {
+    const detail = inferSubgenreDetail(tag, meta)[0];
+    if (detail) return detail;
   }
   return SUBGENRE_LABEL[tag] || tag;
 }

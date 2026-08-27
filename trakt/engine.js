@@ -929,15 +929,117 @@ const HISTORICAL_PERIOD_KEYWORDS = {
   '19th Century / Victorian Era': ['19th century', 'victorian era', 'victorian england'],
 };
 
+// Bill's follow-up: "Historical was just an example. I want that level of
+// specificity for all genres and subgenres." Generalizes the historical/
+// war refinement above into a per-subgenre lookup table — every entry
+// grounded the same way HISTORICAL_PERIOD_KEYWORDS was: a real keyword-
+// frequency scan of every title carrying that subgenre (793-title
+// dataset), every candidate keyword checked against the FULL dataset
+// (not just the subgenre subset) for cross-context false positives before
+// inclusion.
+//
+// Several subgenres were deliberately left with NO detail map at all
+// after checking: heist (18 titles), medical (19), musical (8), prison
+// (11), romcom (20), horror (29), legal (43), spy-espionage (34) — real
+// keyword clusters within each were either too thin (a handful of
+// instances, the exact "don't force a bucket from weak evidence" rule
+// SUBGENRE_KEYWORDS's own history established) or not genuinely more
+// specific than the subgenre label itself (legal's 'courtroom'/'trial'
+// keywords just restate "legal drama"). 'romance' was also left alone -
+// its own real keyword list had no cluster beyond generic romance
+// markers already implied by the subgenre.
+//
+// Real false positives caught and dropped during verification (same
+// discipline, not skipped): 'corruption' (crime-drama/political
+// candidate) appears across too broad a range of otherwise-unrelated
+// shows (Silo, House of Cards, Daredevil, Narcos: Mexico, Peaky
+// Blinders, Sicario, The Boys, The Wire) to name any one specific
+// category - it's a recurring THEME across many genres, not a distinct
+// sub-category the way "Organized Crime" or "Conspiracy" are. 'sibling
+// relationship' (family-drama candidate, 33 real instances) was
+// similarly too broad - it appears across comedy, drama, and crime
+// shows alike (Succession, Shameless, It's Always Sunny, Six Feet
+// Under) without narrowing anything, since most family-drama titles
+// involve siblings by definition. Both dropped. Two more caught the same
+// way after the maps below were first drafted: bare 'drugs' (Drug Trade
+// candidate) matched real drug-trade crime (Breaking Bad, Narcos, The
+// Shield, Weeds, Snowfall) about as often as pure comedies with a casual
+// drug reference (Superbad, The Hangover, Workaholics, We're the
+// Millers) - dropped, keeping only 'drug dealer'/'drug trafficking'
+// (the criminal-enterprise-specific terms). Bare 'president' (US
+// Presidency / Politics candidate) matched real US politics (Death by
+// Lightning, Designated Survivor) less often than it matched unrelated
+// or non-US presidents (The Hunger Games' fictional dystopian
+// president, a 1943 Mexican patriotic film) - dropped, keeping
+// 'usa politics'/'usa president' (unambiguous).
+const GENRE_DETAIL_KEYWORDS = {
+  'historical': HISTORICAL_PERIOD_KEYWORDS,
+  'war': HISTORICAL_PERIOD_KEYWORDS,
+  'crime-drama': {
+    'Organized Crime / Mafia': ['organized crime', 'gangster', 'mafia', 'crime family', 'mobster'],
+    'Drug Trade': ['drug dealer', 'drug trafficking'],
+    'Assassin / Hitman': ['assassin', 'hitman'],
+  },
+  'psychological-thriller': {
+    'Serial Killer': ['serial killer'],
+    'Kidnapping': ['kidnapping'],
+  },
+  'procedural': {
+    'Whodunit / Mystery': ['whodunit'],
+    'Private Detective': ['private detective'],
+  },
+  'dark-comedy': {
+    'Satire': ['satire'],
+    'Mockumentary': ['mockumentary'],
+  },
+  'workplace-comedy': {
+    'Mockumentary': ['mockumentary'],
+    'Hollywood / Show Business': ['hollywood', 'film industry', 'show business'],
+  },
+  'political': {
+    'US Presidency / Politics': ['usa politics', 'usa president'],
+    'Conspiracy': ['conspiracy'],
+    'Political Assassination': ['political assassination'],
+  },
+  'sci-fi-fantasy': {
+    'Dystopia': ['dystopia'],
+    'Post-Apocalyptic': ['post-apocalyptic future'],
+    'Alien Invasion': ['alien invasion', 'alien'],
+    'Time Travel': ['time travel'],
+    'AI / Robots': ['artificial intelligence (a.i.)', 'robot'],
+  },
+  'biopic': {
+    'Sports Biopic': ['boxer', 'boxing'],
+    'Music Biopic': ['singer', 'musician', 'singer-songwriter', 'pop star', 'music history'],
+  },
+  'coming-of-age': {
+    'High School': ['high school', 'high school student'],
+  },
+  'sports': {
+    'Boxing': ['boxing', 'boxer', 'boxing trainer'],
+    'Basketball': ['basketball', 'national basketball association (nba)'],
+    'Baseball': ['baseball'],
+    'Wrestling': ['wrestling'],
+    'Racing': ['racing', 'motorsport'],
+  },
+  'superhero': {
+    'Marvel / MCU': ['marvel cinematic universe (mcu)'],
+  },
+};
+
 // Display-refinement only, not a scoring signal — subgenreBonus() still
-// scores the broader 'historical'/'war' subgenre tags unchanged (this is
-// a labeling specificity upgrade, the same role the subgenre-vs-raw-genre
-// swap played earlier; a scoring integration would need its own
-// eval.js-gated validation before it's safe to add, same rule every
-// other signal in this file was held to).
-export function inferHistoricalPeriod(meta, limit = 1) {
+// scores the broader subgenre tags unchanged (a labeling specificity
+// upgrade, the same role the subgenre-vs-raw-genre swap played earlier;
+// a scoring integration would need its own eval.js-gated validation
+// before it's safe to add, same rule every other signal in this file
+// was held to). Replaces the old subgenre-specific inferHistoricalPeriod()
+// with a single generalized lookup, since "for all genres and subgenres"
+// makes a dedicated per-subgenre function untenable.
+export function inferSubgenreDetail(subgenreTag, meta, limit = 1) {
   if (!meta) return [];
-  return scoreKeywordTags(meta.keywords, HISTORICAL_PERIOD_KEYWORDS).slice(0, limit).map(([tag]) => tag);
+  const map = GENRE_DETAIL_KEYWORDS[subgenreTag];
+  if (!map) return [];
+  return scoreKeywordTags(meta.keywords, map).slice(0, limit).map(([tag]) => tag);
 }
 
 // Bill: "improve subject. Look at what we did with BBRE as a guide" —
