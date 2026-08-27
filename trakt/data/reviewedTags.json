@@ -1,1 +1,3971 @@
-{}
+{
+  "show:64464": {
+    "subjects": [
+      "history-alteration"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:300671": {
+    "subjects": [
+      "military-duty"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:118357": {
+    "subjects": [
+      "westward-migration"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:157744": {
+    "subjects": [
+      "family-legacy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:108545": {
+    "subjects": [
+      "extraterrestrial-contact"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:4608": {
+    "subjects": [
+      "workplace-culture"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1271": {
+    "subjects": [
+      "resistance-invasion"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:661539": {
+    "subjects": [
+      "artistic-reinvention"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:225120": {
+    "subjects": [
+      "wealth-power"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:245312": {
+    "subjects": [
+      "aging-purpose"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:447332": {
+    "subjects": [
+      "family-survival"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:103992": {
+    "subjects": [
+      "abuse-of-power"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:71737": {
+    "subjects": [
+      "revenge"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:125935": {
+    "subjects": [
+      "public-education"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:260458": {
+    "subjects": [
+      "early-adulthood"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:114461": {
+    "subjects": [
+      "resisting-authoritarianism"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:964980": {
+    "subjects": [
+      "business-innovation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:157239": {
+    "subjects": [
+      "human-machine-boundaries"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:246386": {
+    "subjects": [
+      "missing-child"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:89624": {
+    "subjects": [
+      "family-identity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:64513": {
+    "subjects": [
+      "public-scandal"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:127585": {
+    "subjects": [
+      "wrongful-conviction"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:91746": {
+    "subjects": [
+      "economic-decline"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:190859": {
+    "subjects": [
+      "combat-trauma"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1072790": {
+    "subjects": [
+      "romantic-vulnerability"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:329865": {
+    "subjects": [
+      "communication"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:65495": {
+    "subjects": [
+      "black-creative-ambition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:299536": {
+    "subjects": [
+      "sacrifice"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:89233": {
+    "subjects": [
+      "exploration-sacrifice"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:339403": {
+    "subjects": [
+      "escape-from-crime"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:130853": {
+    "subjects": [
+      "corruption"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:4613": {
+    "subjects": [
+      "combat-brotherhood"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:41727": {
+    "subjects": [
+      "identity-reinvention"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:346698": {
+    "subjects": [
+      "gender-expectations"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:46786": {
+    "subjects": [
+      "mental-illness-and-family"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:110173": {
+    "subjects": [
+      "community-complicity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:249522": {
+    "subjects": [
+      "competition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:154385": {
+    "subjects": [
+      "anger-and-escalation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:60059": {
+    "subjects": [
+      "moral-corruption"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:66859": {
+    "subjects": [
+      "single-parenthood"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:39754": {
+    "subjects": [
+      "celebrity-interviews"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:405774": {
+    "subjects": [
+      "parental-protection"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:155537": {
+    "subjects": [
+      "criminal-confession"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:855": {
+    "subjects": [
+      "combat-survival"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:261023": {
+    "subjects": [
+      "organized-crime-collusion"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:42009": {
+    "subjects": [
+      "technology-and-society"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:249039": {
+    "subjects": [
+      "family-loyalty"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:116569": {
+    "subjects": [
+      "school-shooting-investigation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:61986": {
+    "subjects": [
+      "family-secrets"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1621": {
+    "subjects": [
+      "political-corruption"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:42445": {
+    "subjects": [
+      "political-leadership"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:60585": {
+    "subjects": [
+      "pursuit-of-justice"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:64554": {
+    "subjects": [
+      "political-dysfunction"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:296098": {
+    "subjects": [
+      "cold-war-negotiation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:60839": {
+    "subjects": [
+      "female-friendship"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:70964": {
+    "subjects": [
+      "addiction-and-recovery"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:48891": {
+    "subjects": [
+      "workplace-community"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:718930": {
+    "subjects": [
+      "intersecting-agendas"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:277439": {
+    "subjects": [
+      "revenge"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:71116": {
+    "subjects": [
+      "intergenerational-trauma"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:713": {
+    "subjects": [
+      "race-and-popular-culture"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:87108": {
+    "subjects": [
+      "institutional-deception"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:921": {
+    "subjects": [
+      "economic-survival"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:129495": {
+    "subjects": [
+      "online-identity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:59717": {
+    "subjects": [
+      "comedic-craft"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:974576": {
+    "subjects": [
+      "institutional-power"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:321741": {
+    "subjects": [
+      "sports-health-accountability"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:99747": {
+    "subjects": [
+      "emotional-infidelity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:68898": {
+    "subjects": [
+      "creative-persistence"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:480530": {
+    "subjects": [
+      "legacy-and-revenge"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:677179": {
+    "subjects": [
+      "guilt-and-reconciliation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:98201": {
+    "subjects": [
+      "truth-and-perception"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:4546": {
+    "subjects": [
+      "social-norms"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:4920": {
+    "subjects": [
+      "legal-power-struggles"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:202555": {
+    "subjects": [
+      "justice-versus-authoritarianism"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:70523": {
+    "subjects": [
+      "fate-and-free-will"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:196322": {
+    "subjects": [
+      "alternate-lives"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:293660": {
+    "subjects": [
+      "identity-and-revenge"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:533535": {
+    "subjects": [
+      "redemption-through-partnership"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:383498": {
+    "subjects": [
+      "found-family"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1406": {
+    "subjects": [
+      "community-formation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:87784": {
+    "subjects": [
+      "parental-loyalty-and-doubt"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:449443": {
+    "subjects": [
+      "law-and-criminality"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:69866": {
+    "subjects": [
+      "friendship-and-ambition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:81349": {
+    "subjects": [
+      "determinism-and-free-will"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1405": {
+    "subjects": [
+      "vigilante-morality"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:131927": {
+    "subjects": [
+      "inherited-violence"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:259909": {
+    "subjects": [
+      "redemption-and-consequence"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:83251": {
+    "subjects": [
+      "coercive-control"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:63593": {
+    "subjects": [
+      "documentary-form-parody"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:209876": {
+    "subjects": [
+      "criminal-consequences"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:93749": {
+    "subjects": [
+      "medical-abuse"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:64690": {
+    "subjects": [
+      "escape-from-criminality"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:8467": {
+    "subjects": [
+      "friendship"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:438631": {
+    "subjects": [
+      "power-and-destiny"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:299167": {
+    "subjects": [
+      "rebuilding-family-legacy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:226285": {
+    "subjects": [
+      "unconventional-detection"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:614934": {
+    "subjects": [
+      "fame-and-exploitation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1583500": {
+    "subjects": [
+      "athletic-legacy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:82596": {
+    "subjects": [
+      "career-and-romance-abroad"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:86848": {
+    "subjects": [
+      "faith-versus-rationality"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:264660": {
+    "subjects": [
+      "artificial-consciousness-and-control"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:911430": {
+    "subjects": [
+      "career-redemption"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:207841": {
+    "subjects": [
+      "counterfeit-empire"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:34967": {
+    "subjects": [
+      "resistance-and-survival"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:211624": {
+    "subjects": [
+      "climate-displacement"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:60622": {
+    "subjects": [
+      "greed-and-moral-collapse"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:87049": {
+    "subjects": [
+      "lifelong-friendship"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:108664": {
+    "subjects": [
+      "disaster-medical-ethics"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:507089": {
+    "subjects": [
+      "surviving-haunted-animatronics"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:87917": {
+    "subjects": [
+      "space-race-ambition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:359724": {
+    "subjects": [
+      "innovation-versus-bureaucracy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:307534": {
+    "subjects": [
+      "family-adjustment"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:4278": {
+    "subjects": [
+      "community-and-football"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:132016": {
+    "subjects": [
+      "interconnected-consequences"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:218137": {
+    "subjects": [
+      "professional-golf-competition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:445571": {
+    "subjects": [
+      "competition-becomes-danger"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1399": {
+    "subjects": [
+      "struggle-for-political-power"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:107407": {
+    "subjects": [
+      "watergate-whistleblowing"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:205715": {
+    "subjects": [
+      "institutional-exploitation-of-youth"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:42282": {
+    "subjects": [
+      "young-adult-self-discovery"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:558449": {
+    "subjects": [
+      "restoring-rome"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:661374": {
+    "subjects": [
+      "wealth-and-deception"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:70573": {
+    "subjects": [
+      "women-and-performance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:79086": {
+    "subjects": [
+      "organized-crime-and-civil-rights"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:73467": {
+    "subjects": [
+      "survival-in-the-frontier"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:67384": {
+    "subjects": [
+      "legal-redemption"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:91405": {
+    "subjects": [
+      "culinary-cultural-exploration"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:980489": {
+    "subjects": [
+      "gamer-to-professional-racer"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:137893": {
+    "subjects": [
+      "rise-and-fall-of-a-drug-queenpin"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:83659": {
+    "subjects": [
+      "curiosity-and-consequence"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:124101": {
+    "subjects": [
+      "creative-partnership"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:59659": {
+    "subjects": [
+      "technological-innovation-and-connection"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:92553": {
+    "subjects": [
+      "family-rivalry-and-wrestling"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:338766": {
+    "subjects": [
+      "economic-desperation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:96734": {
+    "subjects": [
+      "romantic-self-examination"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:226637": {
+    "subjects": [
+      "unconventional-crime-solving"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1425": {
+    "subjects": [
+      "political-ambition-and-manipulation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:110971": {
+    "subjects": [
+      "everyday-human-behavior"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:271053": {
+    "subjects": [
+      "friendship-and-career-ambition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:102619": {
+    "subjects": [
+      "consent-and-trauma-recovery"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:88728": {
+    "subjects": [
+      "social-discomfort"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:278178": {
+    "subjects": [
+      "wrongful-conviction-and-parental-search"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:127235": {
+    "subjects": [
+      "survival-during-alien-invasion"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:11652": {
+    "subjects": [
+      "athletic-perseverance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:114471": {
+    "subjects": [
+      "technological-ambition-and-identity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:346364": {
+    "subjects": [
+      "childhood-fear-and-friendship"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:200875": {
+    "subjects": [
+      "cyclical-evil"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:2710": {
+    "subjects": [
+      "self-interest-and-dysfunction"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:324552": {
+    "subjects": [
+      "criminal-obligation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:458156": {
+    "subjects": [
+      "survival-against-the-underworld"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:603692": {
+    "subjects": [
+      "freedom-from-criminal-rule"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:274479": {
+    "subjects": [
+      "entrepreneurial-resilience"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1436": {
+    "subjects": [
+      "law-and-personal-code"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:201304": {
+    "subjects": [
+      "lawman-versus-sociopath"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:99652": {
+    "subjects": [
+      "marital-oppression-and-agency"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:23483": {
+    "subjects": [
+      "ordinary-vigilantism"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:59859": {
+    "subjects": [
+      "vigilante-consequences"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:614917": {
+    "subjects": [
+      "parental-ambition-and-opportunity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:293167": {
+    "subjects": [
+      "humanity-versus-unknown-nature"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:313369": {
+    "subjects": [
+      "love-versus-ambition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:157741": {
+    "subjects": [
+      "oil-boom-power-and-risk"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:262280": {
+    "subjects": [
+      "undercover-identity-and-drug-smuggling"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:718032": {
+    "subjects": [
+      "youthful-connection-and-self-discovery"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:113962": {
+    "subjects": [
+      "counterterrorism-and-personal-sacrifice"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:95839": {
+    "subjects": [
+      "grief-and-hidden-marital-trauma"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:90257": {
+    "subjects": [
+      "motherhood-class-and-race"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:84958": {
+    "subjects": [
+      "identity-fate-and-free-will"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:244628": {
+    "subjects": [
+      "sisterhood-and-addiction"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:4607": {
+    "subjects": [
+      "survival-and-human-connection"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:124800": {
+    "subjects": [
+      "suburban-infidelity-and-murder"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:99353": {
+    "subjects": [
+      "emotional-connection-without-appearance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:102316": {
+    "subjects": [
+      "romantic-development-across-relationships"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:210239": {
+    "subjects": [
+      "midlife-stagnation-and-academic-dysfunction"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1104": {
+    "subjects": [
+      "identity-and-social-change"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:90970": {
+    "subjects": [
+      "technological-coercive-control"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:155533": {
+    "subjects": [
+      "lincoln-assassination-pursuit"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:79696": {
+    "subjects": [
+      "fate-and-second-chances"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1317288": {
+    "subjects": [
+      "ambition-and-table-tennis"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:61889": {
+    "subjects": [
+      "vigilante-justice"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:38472": {
+    "subjects": [
+      "trauma-and-agency"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:46518": {
+    "subjects": [
+      "aerial-combat-brotherhood"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:76231": {
+    "subjects": [
+      "brotherhood-and-outlaw-identity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:97951": {
+    "subjects": [
+      "incarceration-and-power"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:67744": {
+    "subjects": [
+      "understanding-serial-killers"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:118303": {
+    "subjects": [
+      "sexual-liberation-and-publishing"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:14292": {
+    "subjects": [
+      "teamwork-and-national-competition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:247718": {
+    "subjects": [
+      "organized-crime-family-war"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:396371": {
+    "subjects": [
+      "ambition-and-illegal-gambling"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:71446": {
+    "subjects": [
+      "resistance-and-loyalty"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:60308": {
+    "subjects": [
+      "data-driven-innovation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:70485": {
+    "subjects": [
+      "detective-versus-killer"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:197548": {
+    "subjects": [
+      "faith-versus-artificial-intelligence"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:76178": {
+    "subjects": [
+      "public-figure-conversations"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:63351": {
+    "subjects": [
+      "drug-trafficking-and-state-power"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:80968": {
+    "subjects": [
+      "cartel-formation-and-corruption"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:58957": {
+    "subjects": [
+      "business-advice-as-social-experiment"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1420": {
+    "subjects": [
+      "friendship-and-adult-relationships"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:6977": {
+    "subjects": [
+      "violence-and-moral-order"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:615457": {
+    "subjects": [
+      "suppressed-violent-identity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:250923": {
+    "subjects": [
+      "interfaith-romance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:581734": {
+    "subjects": [
+      "economic-displacement-and-community"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:89905": {
+    "subjects": [
+      "intimacy-and-class"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1214931": {
+    "subjects": [
+      "justice-after-genocide"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1339713": {
+    "subjects": [
+      "romantic-fixation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1054867": {
+    "subjects": [
+      "revolutionary-past-and-family"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:240667": {
+    "subjects": [
+      "love-across-time"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:872585": {
+    "subjects": [
+      "scientific-responsibility"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:109939": {
+    "subjects": [
+      "identity-and-found-family"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:113985": {
+    "subjects": [
+      "land-family-and-the-unknown"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:69740": {
+    "subjects": [
+      "family-complicity-in-crime"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:158083": {
+    "subjects": [
+      "opioid-epidemic"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:114925": {
+    "subjects": [
+      "privacy-and-celebrity-exploitation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:245927": {
+    "subjects": [
+      "political-conspiracy-and-survival"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:8592": {
+    "subjects": [
+      "public-service-and-community"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:274870": {
+    "subjects": [
+      "isolation-and-consent"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:60574": {
+    "subjects": [
+      "criminal-ambition-and-family"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:85853": {
+    "subjects": [
+      "justice-and-institutional-corruption"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:114150": {
+    "subjects": [
+      "belonging-through-performance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:254470": {
+    "subjects": [
+      "team-redemption"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:353616": {
+    "subjects": [
+      "friendship-after-college"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:112211": {
+    "subjects": [
+      "adult-friendship"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:225171": {
+    "subjects": [
+      "individuality-versus-collective-happiness"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:120998": {
+    "subjects": [
+      "truth-detection-and-justice"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:137252": {
+    "subjects": [
+      "family-guidance-and-growing-up"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:582014": {
+    "subjects": [
+      "accountability-for-abuse"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:156819": {
+    "subjects": [
+      "disinformation-and-surveillance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:240993": {
+    "subjects": [
+      "land-legacy-and-romance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1423": {
+    "subjects": [
+      "family-loyalty-and-violence"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:108978": {
+    "subjects": [
+      "vigilante-justice"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:333339": {
+    "subjects": [
+      "virtual-reality-and-corporate-control"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:95215": {
+    "subjects": [
+      "indigenous-youth-and-belonging"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:94028": {
+    "subjects": [
+      "identity-theft-and-ambition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:264644": {
+    "subjects": [
+      "captivity-and-recovery"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:244623": {
+    "subjects": [
+      "leadership-in-sports-business"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:84977": {
+    "subjects": [
+      "trauma-and-self-reckoning"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:72792": {
+    "subjects": [
+      "missing-child-and-family-secrets"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:93870": {
+    "subjects": [
+      "special-forces-formation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:240740": {
+    "subjects": [
+      "forensic-justice-and-family-trauma"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1273221": {
+    "subjects": [
+      "horror-film-parody"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:646385": {
+    "subjects": [
+      "legacy-and-copycat-violence"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1400": {
+    "subjects": [
+      "everyday-self-interest"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1124566": {
+    "subjects": [
+      "family-estrangement-and-art"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:95396": {
+    "subjects": [
+      "workplace-control-and-identity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:92783": {
+    "subjects": [
+      "balancing-career-and-superhero-identity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:19885": {
+    "subjects": [
+      "brilliant-detection-and-obsession"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:126308": {
+    "subjects": [
+      "political-power-and-cultural-adaptation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:273481": {
+    "subjects": [
+      "drug-war-and-moral-compromise"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:400535": {
+    "subjects": [
+      "border-conflict-and-escalation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:60573": {
+    "subjects": [
+      "technology-entrepreneurship-and-competition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:125988": {
+    "subjects": [
+      "authoritarian-control-and-hidden-truth"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1274": {
+    "subjects": [
+      "death-grief-and-family"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:215995": {
+    "subjects": [
+      "arson-investigation-and-obsession"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:119279": {
+    "subjects": [
+      "human-connection-and-isolation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:259265": {
+    "subjects": [
+      "wedding-anxiety-and-impending-disaster"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1409": {
+    "subjects": [
+      "outlaw-loyalty-and-family"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:251941": {
+    "subjects": [
+      "underfunded-healthcare-workplace"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:83867": {
+    "subjects": [
+      "rebellion-against-authoritarianism"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:321697": {
+    "subjects": [
+      "innovation-and-personal-cost"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:248830": {
+    "subjects": [
+      "redemption-through-golf-mentorship"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:277216": {
+    "subjects": [
+      "music-ambition-and-social-protest"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:66732": {
+    "subjects": [
+      "friendship-against-supernatural-threats"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:203744": {
+    "subjects": [
+      "missing-person-investigation-and-hidden-identity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:363676": {
+    "subjects": [
+      "professional-judgment-under-scrutiny"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:8363": {
+    "subjects": [
+      "teen-friendship-and-growing-up"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:97546": {
+    "subjects": [
+      "kindness-leadership-and-belonging"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:130464": {
+    "subjects": [
+      "toxic-romance-and-deception"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:302946": {
+    "subjects": [
+      "autism-crime-and-family-loyalty"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:106454": {
+    "subjects": [
+      "murder-through-conflicting-perspectives"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:219971": {
+    "subjects": [
+      "espionage-and-conflicted-loyalty"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:46533": {
+    "subjects": [
+      "espionage-marriage-and-loyalty"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:414906": {
+    "subjects": [
+      "corruption-and-vigilante-justice"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:250504": {
+    "subjects": [
+      "grief-and-dangerous-obsession"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:273160": {
+    "subjects": [
+      "beauty-standards-and-biological-conspiracy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:229711": {
+    "subjects": [
+      "redemption-through-supernatural-bounty-hunting"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:76479": {
+    "subjects": [
+      "corporate-superheroes-and-corruption"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:152483": {
+    "subjects": [
+      "superhero-corruption-and-chaos"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:62476": {
+    "subjects": [
+      "espionage-identity-and-loyalty"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:158011": {
+    "subjects": [
+      "emergency-dispatch-and-abduction-rescue"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1662317": {
+    "subjects": [
+      "financial-collapse-and-human-consequences"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:114655": {
+    "subjects": [
+      "privilege-and-performative-altruism"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:222766": {
+    "subjects": [
+      "assassin-pursuit"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:65817": {
+    "subjects": [
+      "sex-work-and-urban-change"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:203857": {
+    "subjects": [
+      "diplomacy-and-political-power"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:122066": {
+    "subjects": [
+      "startup-fraud-and-ambition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:253370": {
+    "subjects": [
+      "espionage-and-hybrid-warfare"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:99346": {
+    "subjects": [
+      "revenge-and-frontier-violence"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:226362": {
+    "subjects": [
+      "collective-survival-against-invasion"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:804095": {
+    "subjects": [
+      "artistic-awakening-and-family-truth"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:49010": {
+    "subjects": [
+      "serial-killer-investigation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:157065": {
+    "subjects": [
+      "corruption-and-retribution"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:243316": {
+    "subjects": [
+      "friendship-and-marital-change"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:236235": {
+    "subjects": [
+      "criminal-enterprise-and-class"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:64387": {
+    "subjects": [
+      "intimacy-and-transactional-power"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:218351": {
+    "subjects": [
+      "heist-aftermath-and-corruption"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:69158": {
+    "subjects": [
+      "law-and-political-resistance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:93812": {
+    "subjects": [
+      "power-and-reinvention"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:273248": {
+    "subjects": [
+      "distrust-and-vengeance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:61123": {
+    "subjects": [
+      "middle-east-diplomacy-and-secrets"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:217825": {
+    "subjects": [
+      "survival-and-moral-descent"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:131634": {
+    "subjects": [
+      "rebellion-and-authoritarian-power"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:135251": {
+    "subjects": [
+      "fame-and-exploitation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:253372": {
+    "subjects": [
+      "institutional-abuse-of-gifted-children"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:398978": {
+    "subjects": [
+      "crime-loyalty-and-regret"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:34415": {
+    "subjects": [
+      "murder-and-institutional-fallout"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:79525": {
+    "subjects": [
+      "athletic-dynasty-and-legacy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:201289": {
+    "subjects": [
+      "family-secrets-and-protection"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:116799": {
+    "subjects": [
+      "justice-and-legal-strategy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:82856": {
+    "subjects": [
+      "found-family-and-protection"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:70796": {
+    "subjects": [
+      "female-creative-ambition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:93716": {
+    "subjects": [
+      "family-flight-and-idealism"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:504172": {
+    "subjects": [
+      "late-life-criminal-redemption"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:129552": {
+    "subjects": [
+      "government-conspiracy-and-duty"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:61859": {
+    "subjects": [
+      "infiltrating-arms-trafficking"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:66276": {
+    "subjects": [
+      "criminal-justice-and-identity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:2316": {
+    "subjects": [
+      "workplace-community"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:111800": {
+    "subjects": [
+      "espionage-past-and-consequences"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:71738": {
+    "subjects": [
+      "space-exploration-and-ethical-dilemmas"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:253941": {
+    "subjects": [
+      "local-journalism-and-workplace-reinvention"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:135868": {
+    "subjects": [
+      "captivity-and-therapy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:194764": {
+    "subjects": [
+      "criminal-rise-to-power"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:250307": {
+    "subjects": [
+      "emergency-medicine-and-resilience"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:206829": {
+    "subjects": [
+      "authoritarian-dysfunction"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:204284": {
+    "subjects": [
+      "control-and-human-uncertainty"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:194728": {
+    "subjects": [
+      "relationship-stagnation-and-mystery"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:281957": {
+    "subjects": [
+      "survival-and-revenge"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:82782": {
+    "subjects": [
+      "religious-hypocrisy-and-family"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1306368": {
+    "subjects": [
+      "police-corruption-and-stolen-money"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:79744": {
+    "subjects": [
+      "career-reinvention-in-policing"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:261041": {
+    "subjects": [
+      "food-and-cultural-identity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:134373": {
+    "subjects": [
+      "college-identity-and-friendship"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1414": {
+    "subjects": [
+      "police-corruption-and-moral-compromise"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:39852": {
+    "subjects": [
+      "hidden-trauma-and-crime"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1398": {
+    "subjects": [
+      "crime-family-and-psychological-conflict"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:122196": {
+    "subjects": [
+      "truth-and-legal-ambiguity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:247767": {
+    "subjects": [
+      "creative-integrity-versus-commerce"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:933260": {
+    "subjects": [
+      "ageism-and-self-rejection"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:120911": {
+    "subjects": [
+      "revenge-and-military-conspiracy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:219760": {
+    "subjects": [
+      "warfare-morality-and-spy-identity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:75191": {
+    "subjects": [
+      "survival-and-supernatural-dread"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:556984": {
+    "subjects": [
+      "political-protest-and-judicial-injustice"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:83851": {
+    "subjects": [
+      "marital-deception-and-murder"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:254544": {
+    "subjects": [
+      "family-crime-and-business-survival"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:688": {
+    "subjects": [
+      "public-service-and-political-governance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1438": {
+    "subjects": [
+      "institutions-and-urban-inequality"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:209922": {
+    "subjects": [
+      "institutional-abuse-and-trauma"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:62699": {
+    "subjects": [
+      "faith-power-and-identity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:255570": {
+    "subjects": [
+      "crime-loyalty-and-succession"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:89492": {
+    "subjects": [
+      "family-dynamics"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:247522": {
+    "subjects": [
+      "workplace-culture"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:361743": {
+    "subjects": [
+      "war-conflict"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:10545": {
+    "subjects": [
+      "justice-legal-system"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:46648": {
+    "subjects": [
+      "crime-investigation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:153312": {
+    "subjects": [
+      "organized-crime"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:718821": {
+    "subjects": [
+      "technology-surveillance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:128095": {
+    "subjects": [
+      "religion-faith"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:248984": {
+    "subjects": [
+      "law-enforcement"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:99581": {
+    "subjects": [
+      "family-dynamics"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:219788": {
+    "subjects": [
+      "family-dynamics"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:86248": {
+    "subjects": [
+      "paranormal-supernatural"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:2947": {
+    "subjects": [
+      "politics-power"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:812583": {
+    "subjects": [
+      "crime-investigation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:308266": {
+    "subjects": [
+      "power-corruption"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:73544": {
+    "subjects": [
+      "leadership-duty"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:79788": {
+    "subjects": [
+      "crime-consequences"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:125949": {
+    "subjects": [
+      "law-enforcement"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:138832": {
+    "subjects": [
+      "war-conflict"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:117821": {
+    "subjects": [
+      "identity-belonging"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:9522": {
+    "subjects": [
+      "identity-belonging"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:119051": {
+    "subjects": [
+      "friendship-community"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:186": {
+    "subjects": [
+      "grief-loss"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:63247": {
+    "subjects": [
+      "artificial-intelligence"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:83631": {
+    "subjects": [
+      "technology-surveillance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:244786": {
+    "subjects": [
+      "coming-of-age"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:96237": {
+    "subjects": [
+      "politics-power"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:270476": {
+    "subjects": [
+      "paranormal-supernatural"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:208569": {
+    "subjects": [
+      "law-enforcement"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:395834": {
+    "subjects": [
+      "colonialism-indigenous"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:124067": {
+    "subjects": [
+      "sports-competition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:198178": {
+    "subjects": [
+      "arts-performance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:73586": {
+    "subjects": [
+      "organized-crime"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:255661": {
+    "subjects": [
+      "education"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:86430": {
+    "subjects": [
+      "organized-crime"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:216082": {
+    "subjects": [
+      "politics-power"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:92137": {
+    "subjects": [
+      "organized-crime"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:286709": {
+    "subjects": [
+      "organized-crime"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:291084": {
+    "subjects": [
+      "healthcare-medicine"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:254528": {
+    "subjects": [
+      "workplace-culture"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:254420": {
+    "subjects": [
+      "coming-of-age"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:287238": {
+    "subjects": [
+      "crime-investigation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:278624": {
+    "subjects": [
+      "crime-consequences"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1318413": {
+    "subjects": [
+      "war-conflict"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:131142": {
+    "subjects": [
+      "marriage-relationships"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:303630": {
+    "subjects": [
+      "justice-legal-system"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:273207": {
+    "subjects": [
+      "crime-consequences"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:213562": {
+    "subjects": [
+      "parenthood"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:273240": {
+    "subjects": [
+      "identity-belonging"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:95350": {
+    "subjects": [
+      "crime-investigation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1265609": {
+    "subjects": [
+      "war-conflict"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:252107": {
+    "subjects": [
+      "technology-surveillance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1007734": {
+    "subjects": [
+      "organized-crime"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1236470": {
+    "subjects": [
+      "parenthood"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:259453": {
+    "subjects": [
+      "justice-legal-system"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1244999": {
+    "subjects": [
+      "celebrity-fame"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:541671": {
+    "subjects": [
+      "revenge"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:43982": {
+    "subjects": [
+      "power-corruption"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:139099": {
+    "subjects": [
+      "friendship-community"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:63646": {
+    "subjects": [
+      "identity-belonging"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:290856": {
+    "subjects": [
+      "family-dynamics"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:66025": {
+    "subjects": [
+      "organized-crime"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:2562": {
+    "subjects": [
+      "family-dynamics"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:138971": {
+    "subjects": [
+      "celebrity-fame"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:43901": {
+    "subjects": [
+      "grief-loss"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1915": {
+    "subjects": [
+      "celebrity-fame"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1401": {
+    "subjects": [
+      "railroad-expansion-and-revenge"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:122235": {
+    "subjects": [
+      "family-and-frontier-justice"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:128904": {
+    "subjects": [
+      "indigenous-justice-and-secrets"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:89498": {
+    "subjects": [
+      "unconventional-law-enforcement"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:5742": {
+    "subjects": [
+      "frontier-legacy-and-homecoming"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:243396": {
+    "subjects": [
+      "ranch-succession-and-power"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:204999": {
+    "subjects": [
+      "land-family-and-indigenous-injustice"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:116450": {
+    "subjects": [
+      "midlife-friendship-and-change"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:90399": {
+    "subjects": [
+      "power-and-family-rivalry"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:64199": {
+    "subjects": [
+      "identity-deception-and-family"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:153657": {
+    "subjects": [
+      "justice-and-independent-investigation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:66676": {
+    "subjects": [
+      "drug-empire-and-survival"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:71715": {
+    "subjects": [
+      "financial-desperation-and-crime"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:62620": {
+    "subjects": [
+      "policing-and-social-dysfunction"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:68421": {
+    "subjects": [
+      "identity-and-immortality"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1705": {
+    "subjects": [
+      "science-and-paranormal-investigation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:119845": {
+    "subjects": [
+      "criminal-expansion-and-power"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:194": {
+    "subjects": [
+      "policing-and-personal-struggle"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:307081": {
+    "subjects": [
+      "grief-and-boxing-redemption"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:878361": {
+    "subjects": [
+      "faith-and-athletic-comeback"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:332979": {
+    "subjects": [
+      "recovery-and-athletic-perseverance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:531876": {
+    "subjects": [
+      "combat-duty-and-survival"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:578189": {
+    "subjects": [
+      "police-corruption-and-witness-survival"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:23168": {
+    "subjects": [
+      "crime-loyalty-and-escape"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:402897": {
+    "subjects": [
+      "authoritarian-succession-and-absurdity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:19913": {
+    "subjects": [
+      "romantic-expectation-and-memory"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:67883": {
+    "subjects": [
+      "friendship-and-adult-identity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:693": {
+    "subjects": [
+      "suburban-secrets-and-relationships"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:245219": {
+    "subjects": [
+      "political-reform-and-assassination"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:81290": {
+    "subjects": [
+      "aging-friendship-and-loss"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:62117": {
+    "subjects": [
+      "career-reinvention-and-age-deception"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:2204": {
+    "subjects": [
+      "politics-crime-and-family-loyalty"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:225634": {
+    "subjects": [
+      "family-abuse-and-parricide"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1908": {
+    "subjects": [
+      "undercover-policing-and-drug-crime"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:2933": {
+    "subjects": [
+      "identity-fraud-and-family-survival"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:262388": {
+    "subjects": [
+      "missing-person-investigation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:93166": {
+    "subjects": [
+      "surveillance-manipulation-and-truth"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:256317": {
+    "subjects": [
+      "serial-killer-pursuit"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:900": {
+    "subjects": [
+      "adolescent-identity-and-self-destruction"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1412": {
+    "subjects": [
+      "corporate-power"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:75450": {
+    "subjects": [
+      "identity-belonging"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:2691": {
+    "subjects": [
+      "family-dynamics"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:69630": {
+    "subjects": [
+      "friendship-community"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:85385": {
+    "subjects": [
+      "law-enforcement"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:79618": {
+    "subjects": [
+      "justice-legal-system"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1639": {
+    "subjects": [
+      "identity-belonging"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:3476": {
+    "subjects": [
+      "law-enforcement"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:522931": {
+    "subjects": [
+      "crime-consequences"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:208134": {
+    "subjects": [
+      "friendship-community"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:405775": {
+    "subjects": [
+      "war-conflict"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:315635": {
+    "subjects": [
+      "coming-of-age"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:345887": {
+    "subjects": [
+      "espionage-national-security"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:997120": {
+    "subjects": [
+      "law-enforcement"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:267193": {
+    "subjects": [
+      "espionage-national-security"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:969492": {
+    "subjects": [
+      "war-conflict"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:383585": {
+    "subjects": [
+      "war-conflict"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:87492": {
+    "subjects": [
+      "sports-competition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:168259": {
+    "subjects": [
+      "family-dynamics"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:385687": {
+    "subjects": [
+      "family-dynamics"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:385128": {
+    "subjects": [
+      "family-dynamics"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:436969": {
+    "subjects": [
+      "mental-health"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:453": {
+    "subjects": [
+      "identity-belonging"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1061474": {
+    "subjects": [
+      "identity-belonging"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:24428": {
+    "subjects": [
+      "survival"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:631843": {
+    "subjects": [
+      "grief-loss"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:798362": {
+    "subjects": [
+      "family-dynamics"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:202097": {
+    "subjects": [
+      "justice-legal-system"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:256711": {
+    "subjects": [
+      "justice-legal-system"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:95205": {
+    "subjects": [
+      "espionage-national-security"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1403": {
+    "subjects": [
+      "identity-belonging"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:62643": {
+    "subjects": [
+      "memory-reality"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:112693": {
+    "subjects": [
+      "organized-crime"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:87428": {
+    "subjects": [
+      "marriage-relationships"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:124364": {
+    "subjects": [
+      "survival"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:95004": {
+    "subjects": [
+      "political-power-and-family-secrets"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:201877": {
+    "subjects": [
+      "frontier-justice-and-reinvention"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:157732": {
+    "subjects": [
+      "justice-and-legacy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:3050": {
+    "subjects": [
+      "legal-ethics-and-justice"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:16997": {
+    "subjects": [
+      "combat-and-trauma"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:60726": {
+    "subjects": [
+      "immortality-and-detection"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:66310": {
+    "subjects": [
+      "technology-crime-and-ambition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:504562": {
+    "subjects": [
+      "corruption-and-obsessive-detection"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:862557": {
+    "subjects": [
+      "faith-and-baseball-perseverance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1433719": {
+    "subjects": [
+      "small-town-defense-against-cartel"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1293162": {
+    "subjects": [
+      "cattle-rustling-and-frontier-justice"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:76640": {
+    "subjects": [
+      "border-town-defense"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1082195": {
+    "subjects": [
+      "white-supremacist-terrorism-investigation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:295699": {
+    "subjects": [
+      "college-friendship-and-competition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:325133": {
+    "subjects": [
+      "generational-conflict-and-belonging"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:107811": {
+    "subjects": [
+      "friendship-and-reckless-celebration"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1008953": {
+    "subjects": [
+      "first-week-of-high-school"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:4911": {
+    "subjects": [
+      "police-corruption-and-conscience"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:668489": {
+    "subjects": [
+      "corruption-and-underworld-rescue"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1428": {
+    "subjects": [
+      "revolution-and-revenge"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:634528": {
+    "subjects": [
+      "border-crossing-and-protection"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:49021": {
+    "subjects": [
+      "assassination-and-betrayal"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:893297": {
+    "subjects": [
+      "cartel-ambition-and-downfall"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1263012": {
+    "subjects": [
+      "grievance-hostage-crisis-and-media"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1078600": {
+    "subjects": [
+      "opposites-attract-romance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:4573": {
+    "subjects": [
+      "late-night-comedy-and-celebrity-culture"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:82193": {
+    "subjects": [
+      "celebrity-conversation-and-deadpan-humor"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:219": {
+    "subjects": [
+      "identity-and-human-experimentation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:57389": {
+    "subjects": [
+      "gold-rush-survival-and-ambition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:211169": {
+    "subjects": [
+      "drug-trafficking-and-double-loyalties"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:33301": {
+    "subjects": [
+      "unconventional-lawyering-and-friendship"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:39351": {
+    "subjects": [
+      "supernatural-crime-and-heritage"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:239000": {
+    "subjects": [
+      "vigilante-justice-in-a-fractured-state"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:32940": {
+    "subjects": [
+      "crime-morality-and-consequence"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:262793": {
+    "subjects": [
+      "cold-war-espionage-and-widowhood"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:283297": {
+    "subjects": [
+      "family-secrets-and-inheritance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:58937": {
+    "subjects": [
+      "sexuality-research-and-relationships"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:62285": {
+    "subjects": [
+      "urban-heroes-and-teamwork"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:67178": {
+    "subjects": [
+      "vigilante-revenge-and-trauma"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:1411": {
+    "subjects": [
+      "surveillance-and-preventive-justice"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:60708": {
+    "subjects": [
+      "city-corruption-and-vigilante-origins"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:46930": {
+    "subjects": [
+      "policing-and-social-change"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:103768": {
+    "subjects": [
+      "survival-and-found-family"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:338969": {
+    "subjects": [
+      "corporate-corruption-and-mutant-heroism"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:625560": {
+    "subjects": [
+      "young-adult-friendship-and-absurdity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1035259": {
+    "subjects": [
+      "absurd-police-heroism"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:449562": {
+    "subjects": [
+      "con-artistry-and-rivalry"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:384018": {
+    "subjects": [
+      "rival-partnership-against-biothreat"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:429351": {
+    "subjects": [
+      "special-forces-and-afghan-alliance"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:442065": {
+    "subjects": [
+      "military-sacrifice-and-delayed-recognition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1093883": {
+    "subjects": [
+      "marksmanship-competition"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1429813": {
+    "subjects": [
+      "criminal-survival-in-prison"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:13074": {
+    "subjects": [
+      "journalistic-ethics-and-identity"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:39254": {
+    "subjects": [
+      "father-son-reconnection"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1246": {
+    "subjects": [
+      "aging-legacy-and-one-final-fight"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "movie:1380682": {
+    "subjects": [
+      "family-sacrifice-and-redemption"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:253": {
+    "subjects": [
+      "space-exploration-and-humanism"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:2681": {
+    "subjects": [
+      "young-adult-friendship-and-dating"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:72742": {
+    "subjects": [
+      "organized-crime-and-family-loyalty"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:81358": {
+    "subjects": [
+      "criminal-work-and-family-life"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:97890": {
+    "subjects": [
+      "crime-legacy-and-double-life"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:2288": {
+    "subjects": [
+      "escape-and-conspiracy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:124394": {
+    "subjects": [
+      "criminal-coming-of-age"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:105": {
+    "subjects": [
+      "friendship-love-and-urban-adulthood"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:41692": {
+    "subjects": [
+      "friendship-and-frontier-journey"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:54650": {
+    "subjects": [
+      "crime-ambition-and-double-life"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:101591": {
+    "subjects": [
+      "family-loyalty-and-drug-empire"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:85021": {
+    "subjects": [
+      "criminal-succession-and-power-war"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:75540": {
+    "subjects": [
+      "racial-injustice-and-cover-up"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:113984": {
+    "subjects": [
+      "privilege-consent-and-justice"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:64254": {
+    "subjects": [
+      "adult-identity-and-relationships"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:4057": {
+    "subjects": [
+      "behavioral-profiling-and-violent-crime"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:245703": {
+    "subjects": [
+      "cold-case-investigation-and-trauma"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:253321": {
+    "subjects": [
+      "family-secrets-and-murder"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:284605": {
+    "subjects": [
+      "grief-and-small-town-secrets"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:226174": {
+    "subjects": [
+      "justice-and-late-career-reinvention"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:287450": {
+    "subjects": [
+      "presidential-protection-and-conspiracy"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:248937": {
+    "subjects": [
+      "political-crisis-and-negotiation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  },
+  "show:273866": {
+    "subjects": [
+      "self-discovery-and-family-expectation"
+    ],
+    "reviewedAt": "2026-08-27",
+    "source": "movie-tv-metadata-for-claude-review.xlsx"
+  }
+}
