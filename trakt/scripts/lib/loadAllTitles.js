@@ -37,8 +37,9 @@ export function loadAllTitles() {
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
   const feedback = read('feedbackData.json', { interactions: [] });
   const llmTags = read('llmTags.json', {});
+  const reviewedTags = read('reviewedTags.json', {});
 
-  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags);
+  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags);
   const feedbackByKey = new Map((feedback.interactions || []).map(i => [i.titleKey, i]));
 
   const rows = [];
@@ -97,13 +98,13 @@ export function loadAllTitles() {
       // inferTones()'s own comment in engine.js for the design (keyword +
       // overview-text + LLM-tag fallback tiers, only the last one
       // persisted — see trakt/data/llmTags.json).
-      subgenres: inferSubgenres(meta, idx.llmTags?.[h.titleKey]),
-      tones: inferTones(meta, idx.llmTags?.[h.titleKey]),
+      subgenres: inferSubgenres(meta, idx.llmTags?.[h.titleKey], undefined, idx.reviewedTags?.[h.titleKey]),
+      tones: inferTones(meta, idx.llmTags?.[h.titleKey], undefined, idx.reviewedTags?.[h.titleKey]),
       // Real human-condition subject matter beneath subgenre (addiction,
       // grief, trauma, class, etc. — see inferSubjects()'s own comment)
       // and the story's setting era (distinct from releaseDate below,
       // which is when the title was MADE, not when it's set).
-      subjects: inferSubjects(meta, idx.llmTags?.[h.titleKey]),
+      subjects: inferSubjects(meta, idx.llmTags?.[h.titleKey], undefined, idx.reviewedTags?.[h.titleKey]),
       era: inferEra(meta)[0] || '',
       topCast: meta.topCast || [],
       releaseDate: meta.releaseDate || meta.firstAirDate || '',
