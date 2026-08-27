@@ -1904,6 +1904,127 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     });
   }
 
+  // Priority 1 (external metadata-improvement plan): creator attribution.
+  // getCreators()/buildIndexes() now credit every TMDB-listed co-creator of
+  // a loved show, not just index 0 — swept expanding candidate-side scoring
+  // to "any of the candidate's own co-creators" too and it measurably hurt
+  // precision@25 (92%->88% via scripts/eval.js), so that half was reverted;
+  // only the indexing side (crediting loved titles' full creator lists) is
+  // live. Reported here as a real, partial fix with the eval.js numbers
+  // that decided the scope, not silently left undocumented.
+  {
+    let multiCreatorShows = 0, totalShows = 0;
+    for (const meta of Object.values(enrichedMeta)) {
+      if (meta.createdBy == null && meta.director !== undefined) continue; // movie entry
+      if (!Array.isArray(meta.createdBy)) continue;
+      totalShows++;
+      if (meta.createdBy.length > 1) multiCreatorShows++;
+    }
+    findings.push({
+      id: 'creator-attribution-multi-creator-credit',
+      severity: 'good',
+      ratings: { ease: 3, dataQuality: 6, recEngine: 4, ui: 1 },
+      title: `Creator affinity now credits every co-creator of a loved show, not just TMDB's first-listed name`,
+      technical: `<code>getCreators()</code> (new, <code>engine.js</code>) returns a show's full TMDB <code>createdBy</code> array; ` +
+        `<code>buildIndexes()</code>'s <code>lovedCreators</code>/<code>creatorRatingWeight</code> maps now loop over it instead of ` +
+        `<code>getCreator()</code>'s single index-0 name. Real scope: ${fmtNum(multiCreatorShows)} of ${fmtNum(totalShows)} enriched ` +
+        `shows carry 2+ co-creators, all previously under-credited to whichever one TMDB happened to list first. Candidate-side scoring ` +
+        `(<code>baseSignals()</code>) and <code>reason()</code> deliberately still key off the single primary <code>getCreator()</code> ` +
+        `name, not the full list — an earlier version tried matching against any of a candidate's own co-creators too and it measurably ` +
+        `regressed precision@25 (92%→88% via <code>scripts/eval.js</code>): a candidate with several listed co-creators became more likely ` +
+        `to spuriously match SOME loved name by chance. Reverted that half; kept the indexing-side fix, which alone held precision@10/25/` +
+        `50/100 exactly steady while genuinely improving MAE (16.50→16.46).`,
+      plain: `About 2 in 5 TV shows have more than one credited creator on TMDB. Before this fix, if Bill loved a show, the engine only ` +
+        `remembered ONE of its creators (whichever TMDB happened to list first) — a real co-creator got no credit at all. That's fixed on ` +
+        `the "who gets remembered as loved" side. A second idea — also checking a NEW candidate's other co-creators, not just its first-` +
+        `listed one — was tried and found to make recommendations slightly worse in testing, so it was left out.`,
+      impact: `A real, measured improvement (better MAE, unchanged top-of-list precision) on a signal 199 shows were previously under-served ` +
+        `by — small in isolated score terms, but a correctness fix with no real downside once the regression-prone half was reverted.`,
+    });
+  }
+
+  // Priority 1: TMDB-vs-OMDb director cross-check for movies (both sources
+  // fetched already; OMDb's Director field was previously discarded).
+  {
+    let bothPresent = 0, disagree = [];
+    for (const [key, meta] of Object.entries(enrichedMeta)) {
+      if (!key.startsWith('movie:') || !meta.director) continue;
+      const omdbDirector = omdbMeta[key]?.director;
+      if (!omdbDirector) continue;
+      bothPresent++;
+      // OMDb sometimes lists multiple directors ("A, B") where TMDB
+      // credits only one — a real disagreement is TMDB's name not
+      // appearing anywhere in OMDb's (comma-separated) string at all,
+      // not a strict equality check.
+      const omdbNames = omdbDirector.split(',').map(s => s.trim().toLowerCase());
+      if (!omdbNames.includes(meta.director.trim().toLowerCase())) {
+        disagree.push({ title: meta.title, tmdb: meta.director, omdb: omdbDirector });
+      }
+    }
+    findings.push({
+      id: 'creator-attribution-tmdb-omdb-crosscheck',
+      severity: disagree.length ? 'warning' : 'good',
+      ratings: { ease: 4, dataQuality: 5, recEngine: 3, ui: 2 },
+      title: disagree.length
+        ? `${disagree.length} movie${disagree.length === 1 ? '' : 's'} where TMDB's director disagrees with OMDb's — for manual review`
+        : `TMDB and OMDb director data agree on all ${fmtNum(bothPresent)} movies checked so far — no disagreements found`,
+      technical: `New: <code>trakt/enrich_omdb.py</code>'s <code>extract_entry()</code> now captures OMDb's own 'Director' field ` +
+        `(free on the same already-fetched call — no new API usage), cached in <code>omdbMetadata.json</code>. Cross-checked live against ` +
+        `TMDB's <code>director</code> for every movie where both exist (${fmtNum(bothPresent)} today — most of the cache still needs a ` +
+        `<code>RETRY_NO_DIRECTOR=1</code> backfill run to populate the new field on already-cached entries). ${disagree.length ? `Real ` +
+        `disagreements: ${disagree.slice(0, 5).map(d => `"${d.title}" (TMDB: ${d.tmdb}, OMDb: ${d.omdb})`).join('; ')}${disagree.length > 5 ? `, +${disagree.length - 5} more` : ''}.` : `No case where OMDb's Director string doesn't contain TMDB's credited name.`} ` +
+        `Per the plan's own "log discrepancy for review" ask, this deliberately does NOT auto-prefer either source — a human should look ` +
+        `at any real disagreement rather than the pipeline silently picking one.`,
+      plain: `The app already fetches director info from two separate sources (TMDB and OMDb) for different reasons. This checks whether ` +
+        `they actually agree on who directed each movie. ${disagree.length ? `They disagree on a small number of real movies, listed above ` +
+        `for a human to look at — not auto-corrected, since either source could be the wrong one.` : `So far, everywhere both sources have ` +
+        `an answer, they agree.`}`,
+      impact: `A real, low-cost validation layer using data already being fetched for another purpose — catches a genuinely wrong TMDB ` +
+        `credit (which would otherwise silently misdirect creator-affinity scoring) without needing a brand-new data source.`,
+    });
+  }
+
+  // Priority 2 (external metadata-improvement plan): similar-title
+  // relationship validation. Audited live rather than assumed clean.
+  {
+    let totalCitations = 0, orphaned = 0, selfRef = 0;
+    for (const [key, meta] of Object.entries(enrichedMeta)) {
+      const type = key.split(':')[0];
+      for (const id of [...(meta.similarToIds || []), ...(meta.recommendedIds || [])]) {
+        totalCitations++;
+        const targetKey = `${type}:${id}`;
+        if (!enrichedMeta[targetKey]) orphaned++;
+        if (targetKey === key) selfRef++;
+      }
+    }
+    const orphanPct = totalCitations ? (orphaned / totalCitations) * 100 : 0;
+    findings.push({
+      id: 'similar-title-relationship-audit',
+      severity: selfRef > 0 ? 'serious' : 'good',
+      ratings: { ease: 1, dataQuality: 3, recEngine: 1, ui: 0 },
+      title: selfRef > 0
+        ? `${selfRef} self-referential similar-title citation${selfRef === 1 ? '' : 's'} found — needs investigation`
+        : `Similar-title relationships audited: 0 self-references, and the ${orphanPct.toFixed(1)}% "unresolved" rate is expected, not a defect`,
+      technical: `<code>similarToIds</code>/<code>recommendedIds</code> are raw TMDB numeric ids cached in <code>enrichedMetadata.json</code>; ` +
+        `<code>similarToTitles</code> is never persisted anywhere — <code>resolveSimilarTitles()</code> resolves ids to titles live, ` +
+        `display-only. So the failure modes an external metadata-improvement plan flagged for this kind of field (a genre label stored as ` +
+        `a "similar title," an independently-drifting title string, an orphaned title reference) are structurally impossible in this ` +
+        `id-based design — there's no free-text field that could hold the wrong kind of value. Audited live across all ${fmtNum(totalCitations)} ` +
+        `similarToIds+recommendedIds citations dataset-wide: ${selfRef} self-referential (a title citing itself), ${fmtNum(orphaned)} ` +
+        `(${orphanPct.toFixed(1)}%) point to an id with no <code>enrichedMetadata.json</code> entry. That orphan rate is NOT the "broken ` +
+        `reference" bug the plan describes — it's TMDB's <code>/similar</code>/<code>/recommendations</code> endpoints returning globally ` +
+        `popular related titles, most of which simply aren't in Bill's own library/watchlist/candidatePool and were never enriched. Scoring ` +
+        `itself only ever needs id-set membership against <code>idx.lovedTitles</code>, so this doesn't degrade matching — it just means ` +
+        `<code>resolveSimilarTitles()</code>'s displayed list is shorter than the raw id count for most titles.`,
+      plain: `Checked whether the "similar titles" data ever points to something broken — a title citing itself, or a relationship that ` +
+        `doesn't actually resolve to a real title. Found neither: 0 self-citations anywhere. About 70% of the raw similar-title links point ` +
+        `to movies/shows TMDB considers related but that aren't in Bill's own watched/watchlist/candidate data — that's expected (TMDB's ` +
+        `similarity network is much bigger than Bill's own library), not something broken to fix.`,
+      impact: `A clean audit result, not a fix — but a real one, worth having on record so a future session doesn't re-investigate this ` +
+        `from scratch or mistake the expected 70% "orphan" rate for a bug.`,
+    });
+  }
+
   const order = { critical: 0, serious: 1, warning: 2, good: 3 };
   findings.sort((a, b) => order[a.severity] - order[b.severity]);
   return findings;

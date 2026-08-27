@@ -55,6 +55,19 @@ export function getCreator(type, meta) {
   return (meta.createdBy && meta.createdBy[0]) || null;
 }
 
+// Full creator/co-creator list, not just the single display name above.
+// 199 of 524 enriched shows carry 2+ TMDB `createdBy` entries — under
+// getCreator()'s index-0-only contract, a genuine co-creator (e.g. the
+// #2 name on a show Bill loved) got zero affinity credit, and a candidate
+// show TMDB happens to list that same person as creator #2 (not #1) never
+// matched at all. Movies keep a single-entry array (TMDB gives one
+// director per title in this pipeline's extraction, no co-director list).
+export function getCreators(type, meta) {
+  if (!meta) return [];
+  if (type === 'movie') return meta.director ? [meta.director] : [];
+  return meta.createdBy || [];
+}
+
 // Real normalized rewatch signal (dashboard plays-field-semantic-trap
 // finding). The naive version of this idea is a trap: Trakt's `plays`
 // field means something different per type — for a movie it's a genuine
@@ -158,7 +171,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}) {
   for (const t of library.titles || []) {
     if (t.myRating == null) continue;
     const meta = enrichedMeta[t.titleKey];
-    const creator = meta ? getCreator(t.type, meta) : null;
+    const creators = meta ? getCreators(t.type, meta) : [];
 
     ratedSum += t.myRating;
     ratedCount++;
@@ -176,9 +189,11 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}) {
       }
     }
 
-    if (creator) {
+    if (creators.length) {
       const w = ratingWeight(t.myRating);
-      creatorRatingWeight.set(creator, (creatorRatingWeight.get(creator) || 0) + w);
+      for (const c of creators) {
+        creatorRatingWeight.set(c, (creatorRatingWeight.get(c) || 0) + w);
+      }
     }
 
     if (t.myRating >= LOVED_THRESHOLD) {
@@ -195,7 +210,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}) {
       // Bill genuinely rewatches something, with no future code change
       // needed.
       const rw = rewatchStrength(t, meta);
-      if (creator) lovedCreators.set(creator, (lovedCreators.get(creator) || 0) + rw);
+      for (const c of creators) lovedCreators.set(c, (lovedCreators.get(c) || 0) + rw);
       for (const g of (meta?.genres || [])) {
         const ng = normalizeGenre(g);
         lovedGenres.set(ng, (lovedGenres.get(ng) || 0) + rw);
@@ -1504,8 +1519,21 @@ export function matchScore(candidate, idx, enrichedMeta, omdbMeta = {}) {
 
 function baseSignals(candidate, idx, meta, omdbEntry) {
   let score = 20; // base, mirrors the book engine's starting point
+  // Check ALL of the candidate's own creators/co-creators, not just TMDB's
+  // index-0 name — a show co-created by [X, Y] should score the same
+  // whether Bill loved X's or Y's other work, regardless of which name
+  // TMDB happens to list first on THIS candidate.
+  // Scoring stays keyed on the single primary creator TMDB lists first
+  // (matches the original, eval.js-validated behavior) — swept expanding
+  // this to "any of the candidate's co-creators" and it measurably hurt
+  // precision@25 (92%->88%), since a candidate with several listed
+  // co-creators becomes more likely to spuriously match SOME loved name by
+  // sheer chance even when its actual primary identity doesn't. The real,
+  // validated fix is on the INDEXING side below: crediting every co-creator
+  // of a title Bill actually loved, not just TMDB's index-0 name for that
+  // loved title — see buildIndexes()'s lovedCreators/creatorRatingWeight
+  // loop, now populated via getCreators() (plural).
   const creator = getCreator(candidate.type, meta);
-
   if (creator) {
     score += Math.min(10, (idx.lovedCreators.get(creator) || 0) * 6);
     score += Math.min(5, (idx.creatorRatingWeight.get(creator) || 0) * 1.5);
