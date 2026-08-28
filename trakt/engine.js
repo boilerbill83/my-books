@@ -656,8 +656,8 @@ function subjectBonus(subjects, lovedSubjects) {
   let bonus = 0;
   for (const s of (subjects || [])) {
     const count = lovedSubjects.get(s) || 0;
-    if      (count >= 8) bonus += 0.75;
-    else if (count >= 5) bonus += 0.5;
+    if      (count >= 6) bonus += 0.75;
+    else if (count >= 4) bonus += 0.5;
     else if (count >= 2) bonus += 0.25;
     else if (count >= 1) bonus += 0.1;
   }
@@ -1464,6 +1464,35 @@ const SUBJECT_KEYWORDS = {
   'survival': ['survival'],
 };
 
+// The Subjects consolidation pass (post-taxonomy-redesign) added ~40 more
+// canonical bucket names that live ONLY in trakt/data/reviewedTags.json's
+// override tier - they were never given TMDB keyword triggers the way
+// SUBJECT_KEYWORDS' original 12 buckets were, mirroring the same
+// reviewed-only-reachable design Subgenre's own 65-bucket vocabulary
+// already uses for buckets like techno-thriller/supernatural-horror. Kept
+// here as an explicit, single source of truth (not just scattered across
+// reviewedTags.json's raw data) so findTaxonomyCollisions() below can
+// actually check the FULL live subject vocabulary, not just the 12 keys
+// SUBJECT_KEYWORDS happens to define - checking a stale, undercounted list
+// would defeat the guardrail's whole purpose. Two real collisions were
+// found and fixed by renaming during the consolidation itself:
+// 'coming-of-age' -> 'youth-and-adolescence' and 'organized-crime' ->
+// 'crime-syndicate-life' (both had picked a name identical to an existing
+// Subgenre bucket, the exact drift this guardrail exists to catch).
+const SUBJECT_CANONICAL_VOCABULARY = [
+  ...Object.keys(SUBJECT_KEYWORDS),
+  'ambition-reinvention', 'artistic-creative', 'celebrity-fame', 'crime-consequences',
+  'crime-investigation', 'criminal-life', 'crime-syndicate-life', 'deception-secrets',
+  'economic-hardship', 'espionage-national-security', 'family-dynamics', 'fate-and-destiny',
+  'found-family', 'friendship-community', 'frontier-westward', 'healthcare-medicine',
+  'identity-belonging', 'isolation-connection', 'justice-legal-system',
+  'law-enforcement', 'loyalty', 'marriage-relationships', 'parenthood', 'politics-power',
+  'power-corruption', 'redemption', 'religion-faith', 'resistance-rebellion', 'revenge',
+  'sacrifice-duty', 'self-discovery', 'social-inequality', 'sports-competition',
+  'supernatural-paranormal', 'technology-surveillance', 'vigilante-justice', 'war-conflict',
+  'workplace-culture', 'wrongful-conviction', 'youth-and-adolescence',
+];
+
 // Permanent guardrail (external metadata-plan Priority 3): confirms the
 // three taxonomy layers stay at genuinely different conceptual levels —
 // subgenres describe content TYPE, tones describe emotional FEEL, subjects
@@ -1482,7 +1511,7 @@ export function findTaxonomyCollisions() {
   const layers = {
     subgenre: Object.keys(SUBGENRE_KEYWORDS),
     tone: Object.keys(TONE_KEYWORDS),
-    subject: Object.keys(SUBJECT_KEYWORDS),
+    subject: SUBJECT_CANONICAL_VOCABULARY,
   };
   const detailLabels = [];
   for (const detail of Object.values(GENRE_DETAIL_KEYWORDS)) {

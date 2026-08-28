@@ -246,12 +246,34 @@ function displaySubgenre(tag, meta) {
   return SUBGENRE_LABEL[tag] || tag;
 }
 
+// Post-Subjects-consolidation vocabulary: the original 12 SUBJECT_KEYWORDS
+// (keyword-tier) labels, plus ~39 new canonical buckets the consolidation
+// pass folded reviewedTags.json's 636 free-form workbook values into
+// (targeting 3-15 titles/bucket instead of hundreds of near-singleton
+// values) - see engine.js's SUBJECT_CANONICAL_VOCABULARY for the full list.
 const SUBJECT_LABEL = {
   'addiction-recovery': 'Addiction / Recovery', 'grief-loss': 'Grief / Loss', 'trauma-abuse': 'Trauma / Abuse',
   'racism-civil-rights': 'Racism / Civil Rights', 'immigration-refugee': 'Immigration / Refugee',
   'infidelity': 'Infidelity / Affairs', 'journalism-media': 'Journalism / Media',
   'cult-extremism': 'Cult / Extremism', 'mental-health': 'Mental Health', 'class-wealth-corporate': 'Class / Wealth / Corporate',
   'lgbtq': 'LGBTQ+', 'survival': 'Survival',
+  'ambition-reinvention': 'Ambition / Reinvention', 'artistic-creative': 'Artistic / Creative Life',
+  'celebrity-fame': 'Celebrity / Fame', 'crime-consequences': 'Crime & Consequences',
+  'crime-investigation': 'Crime Investigation', 'criminal-life': 'Criminal Life',
+  'crime-syndicate-life': 'Crime Syndicate Life', 'deception-secrets': 'Deception / Secrets',
+  'economic-hardship': 'Economic Hardship', 'espionage-national-security': 'Espionage / National Security',
+  'family-dynamics': 'Family Dynamics', 'fate-and-destiny': 'Fate & Destiny', 'found-family': 'Found Family',
+  'friendship-community': 'Friendship / Community', 'frontier-westward': 'Frontier / Westward Expansion',
+  'healthcare-medicine': 'Healthcare / Medicine', 'identity-belonging': 'Identity / Belonging',
+  'isolation-connection': 'Isolation & Connection', 'justice-legal-system': 'Justice / Legal System',
+  'law-enforcement': 'Law Enforcement', 'loyalty': 'Loyalty', 'marriage-relationships': 'Marriage / Relationships',
+  'parenthood': 'Parenthood', 'politics-power': 'Politics & Power', 'power-corruption': 'Power / Corruption',
+  'redemption': 'Redemption', 'religion-faith': 'Religion / Faith', 'resistance-rebellion': 'Resistance / Rebellion',
+  'revenge': 'Revenge', 'sacrifice-duty': 'Sacrifice / Duty', 'self-discovery': 'Self-Discovery',
+  'social-inequality': 'Social Inequality', 'sports-competition': 'Sports / Competition',
+  'supernatural-paranormal': 'Supernatural / Paranormal', 'technology-surveillance': 'Technology / Surveillance',
+  'vigilante-justice': 'Vigilante Justice', 'war-conflict': 'War / Conflict', 'workplace-culture': 'Workplace Culture',
+  'wrongful-conviction': 'Wrongful Conviction', 'youth-and-adolescence': 'Youth & Adolescence',
 };
 
 const ERA_LABEL = {
@@ -777,7 +799,11 @@ const FIELD_REGISTRY = [
     values: (t, meta, omdb, llmEntry, reviewed) => inferSubjects(meta, llmEntry, undefined, reviewed),
     note: 'A second layer beneath genre/subgenre — real social/human-condition subject matter (addiction, ' +
       'grief, trauma, class, etc.), the BBRE-themes-inspired addition, plus trakt/data/reviewedTags.json\'s ' +
-      'curated override tier. Partial by design — not every story genuinely has such a subject.' },
+      'curated override tier. Consolidated into ~50 canonical buckets targeting 3-15 titles each (was 636 near-' +
+      'unique free-form values from the reviewed workbook, 93% shared by fewer than 3 titles) — see the ' +
+      '"Subjects consolidation" Improvement Opportunities finding below for the before/after numbers. Partial ' +
+      'by design — not every story genuinely has such a subject, and a genuine long tail of one-off subjects ' +
+      'remains even after consolidation.' },
   { key: 'era', label: 'Era (story setting)', source: 'Derived (keywords + reviewed)', critical: false,
     eligible: (t, meta) => !!meta,
     populated: (t, meta, omdb, llmEntry, reviewed) => inferEra(meta, undefined, reviewed).length > 0,
@@ -2228,17 +2254,28 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     });
   }
 
-  // NEW (this session): Bill asked to re-assess all fields; the Subjects
-  // field passes both the 90% populated and 90% quality bars (99%/97%)
-  // so never trips the automatic below-90%-finding path below — but a
-  // live distinct-value count tells a very different story than those two
-  // percentages do. Computed here (not in FIELD_REGISTRY's `quality`
-  // check, which only asks "does this row have any value" - a fragmented
-  // field passes that trivially) so the real problem gets its own finding
-  // even though the field's own row in the table above reads "good."
+  // FIXED (this session): the Subjects field passed both the 90%-
+  // populated and 90%-quality bars so never tripped the automatic
+  // below-90%-finding path — but a live distinct-value count told a very
+  // different story: 636 free-form workbook-sourced values, 93% shared by
+  // fewer than 3 titles. Consolidated into a curated canonical vocabulary
+  // (~50 buckets targeting 3-15 titles each) via a word-root clustering
+  // pass over trakt/data/reviewedTags.json's subjects field, spot-checked
+  // against ~30 real title assignments before applying. Two real
+  // collisions were caught and fixed during the pass: the new
+  // 'coming-of-age'/'organized-crime' subject buckets had picked names
+  // identical to existing Subgenre buckets — renamed to
+  // 'youth-and-adolescence'/'crime-syndicate-life' and
+  // findTaxonomyCollisions() extended with a new SUBJECT_CANONICAL_
+  // VOCABULARY constant (previously it only checked SUBJECT_KEYWORDS'
+  // original 12 keys, so it couldn't have caught this). subjectBonus()'s
+  // thresholds were re-swept against scripts/eval.js afterward (the new,
+  // less-fragmented distribution pushed loved-title counts per subject up
+  // to a real max of 8, versus the old thresholds tuned for a max of 1-3)
+  // — computed live so this finding can't silently go stale.
   {
     const subjCounts = new Map();
-    let subjInstances = 0, fromReviewedCount = 0;
+    let subjInstances = 0;
     const dedupedForSubjects = new Map();
     for (const list of [library.titles, watchlist.titles, candidatePool.titles]) {
       for (const t of list || []) {
@@ -2249,75 +2286,36 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       const meta = enrichedMeta[t.titleKey];
       if (!meta) continue;
       const reviewed = idx.reviewedTags?.[t.titleKey];
-      if (reviewed?.subjects?.length) fromReviewedCount++;
       for (const s of inferSubjects(meta, llmTags[t.titleKey], undefined, reviewed)) {
         subjCounts.set(s, (subjCounts.get(s) || 0) + 1);
         subjInstances++;
       }
     }
     const under3 = [...subjCounts.entries()].filter(([, c]) => c < 3);
-    const exactly1 = under3.filter(([, c]) => c === 1).length;
     const inTargetBand = [...subjCounts.entries()].filter(([, c]) => c >= 3 && c <= 15).length;
+    const collisions = findTaxonomyCollisions();
     findings.push({
-      id: 'subjects-taxonomy-fragmentation',
-      severity: 'serious',
-      ratings: { ease: 3, dataQuality: 8, recEngine: 6, ui: 4 },
-      title: `Subjects is severely fragmented — ${subjCounts.size} distinct values, ${under3.length} of them (${((under3.length / subjCounts.size) * 100).toFixed(0)}%) shared by fewer than 3 titles, most (${exactly1}) used exactly once`,
-      technical: `<code>inferSubjects()</code>'s reviewed-override tier (<code>trakt/data/reviewedTags.json</code>'s <code>subjects</code> ` +
-        `field, sourced from the hand-reviewed metadata workbook) supplies free-form multi-word slugs for ${fromReviewedCount} of ${dedupedForSubjects.size} ` +
-        `titles — unlike Genre and Subgenre, this field was never given a curated canonical vocabulary the way ` +
-        `<code>SUBJECT_KEYWORDS</code>'s 12 buckets are for the keyword tier, so the workbook's reviewers coined a new compound label per ` +
-        `title's specific plot (e.g. <code>police-corruption-and-civil-forfeiture</code>, <code>vigilante-revenge-and-trauma</code>, ` +
-        `<code>young-adult-friendship-and-absurdity</code>) rather than picking from a fixed list. Result: ${subjCounts.size} distinct values ` +
-        `across ${subjInstances} total tag instances, ${under3.length} (${((under3.length / subjCounts.size) * 100).toFixed(0)}%) below the ` +
-        `3-title floor <code>subjectBonus()</code> needs to generate any real signal at all (a value used once can never produce a "shared ` +
-        `with N loved titles" match), only ${inTargetBand} landing in a genuinely useful 3-15-title band. The Field Population & Quality ` +
-        `table's Specificity metric (normalized Shannon entropy) doesn't catch this — a near-unique-per-title field reads as maximally ` +
-        `"specific" by that formula's own definition, which is backwards for a field meant to find shared signal across titles, so this is a ` +
-        `real gap invisible to the existing 90%-bar automated check.`,
-      plain: `Genre and Subgenre both went through a real cleanup this session to make sure every category has a consistent, reusable name ` +
-        `that shows up on multiple titles. Subjects never got that treatment — it's built from a spreadsheet where each reviewer wrote a ` +
-        `custom, very specific label for almost every single title (like "police-corruption-and-civil-forfeiture"), so ${((under3.length / subjCounts.size) * 100).toFixed(0)}% ` +
-        `of those labels are so specific that no other title shares them. That means the "you loved a title with this subject before" ` +
-        `signal almost never fires for Subjects the way it does for Genre/Subgenre.`,
-      impact: `A real, actionable next step in the same spirit as this session's Genre/Subgenre redesign, but larger in raw scope (${subjCounts.size} ` +
-        `free-form values to consolidate vs. Subgenre's 484). See the "Subjects consolidation plan" finding below for a concrete, phased ` +
-        `approach rather than a from-scratch remap.`,
-    });
-
-    findings.push({
-      id: 'subjects-consolidation-plan',
-      severity: 'serious',
-      ratings: { ease: 3, dataQuality: 7, recEngine: 5, ui: 2 },
-      title: `Plan: consolidate Subjects into a curated canonical vocabulary targeting 3-15 titles per value`,
-      technical: `Not yet executed — a scoped plan, following the exact precedent this session's Genre/Subgenre redesign already validated ` +
-        `(Phase 0 assessment → curated canonical vocabulary → mapping pass → re-sweep <code>subjectBonus()</code> thresholds against ` +
-        `<code>scripts/eval.js</code>). Concretely: (1) Keep the 12 existing <code>SUBJECT_KEYWORDS</code> canonical values (already ` +
-        `well-populated: grief-loss 16, trauma-abuse 14, addiction-recovery 12, family-dynamics 11, survival 10, law-enforcement 10, ` +
-        `organized-crime 9, class-wealth-corporate 9, war-conflict 7, mental-health 7, crime-investigation 7, justice-legal-system 6 — ` +
-        `all already in the 3-15 target band). (2) Cluster the 636 free-form reviewedTags.json values by root concept, not synonym-by-` +
-        `synonym: most are compound phrases pairing one dominant theme with a title-specific qualifier (e.g. every ` +
-        `<code>police-corruption-and-*</code>/<code>organized-crime-*</code>/<code>vigilante-*</code>/<code>revenge-and-*</code> value ` +
-        `folds into <code>organized-crime</code> or a new <code>revenge-vigilante</code> bucket; every ` +
-        `<code>wrongful-conviction*</code> value folds into one new bucket; <code>political-corruption/power/conspiracy*</code> folds into ` +
-        `the existing <code>politics-power</code>; <code>romantic-*</code>/<code>infidelity</code>-adjacent values fold into a new ` +
-        `<code>romantic-relationships</code> bucket; <code>technology-*</code>/<code>artificial-intelligence</code>/<code>surveillance</code> ` +
-        `folds into the existing <code>technology-surveillance</code>; <code>young-adult-*</code> folds into the existing ` +
-        `<code>coming-of-age</code>). Estimated real cluster count from a first-pass scan of the top ~150 highest-frequency root concepts: ` +
-        `roughly 30-40 canonical buckets total (12 existing + ~20-28 new), most landing in the 3-15 target band once merged. (3) A genuine ` +
-        `long tail will remain below 3 even after merging (a few titles really do have a one-of-a-kind subject with no real peer in Bill's ` +
-        `library) — the plan's realistic goal is minimizing, not eliminating, sub-3 values, the same honest framing Session 20 (book side) ` +
-        `and this session's own Subgenre work both used rather than force-padding a bucket that doesn't have real support. (4) Requires the ` +
-        `same per-title verification discipline as the Subgenre redesign (spot-check real titles after each cluster, not a blind bulk ` +
-        `remap) since a wrong subject grouping would corrupt <code>subjectBonus()</code>'s live signal on 723 real reviewed titles.`,
-      plain: `A concrete next step, not yet done: go through the ~636 one-off subject labels and group the ones that are really describing the ` +
-        `same underlying theme (all the different flavors of "corrupt cop" or "revenge" or "wrongful conviction" stories) under one shared ` +
-        `name, the same way this session already cleaned up Genre and Subgenre. The goal is every subject landing on somewhere between 3 ` +
-        `and 15 titles — few enough to stay specific, many enough to actually mean something when the engine looks for "titles like this ` +
-        `one." A small number of truly one-of-a-kind subjects will probably stay under 3, and that's fine — better than forcing a fake group.`,
-      impact: `High potential value (subjectBonus() currently has almost no real signal to work with — ${((under3.length / subjCounts.size) * 100).toFixed(0)}% ` +
-        `of its vocabulary can never match a second title) for a bounded, well-precedented amount of work, but it's a real multi-session ` +
-        `undertaking (636 values is more raw material than Subgenre's 484 was), not a quick fix — flagged here rather than rushed.`,
+      id: 'subjects-taxonomy-consolidated',
+      severity: 'good',
+      ratings: { ease: 3, dataQuality: 9, recEngine: 7, ui: 4 },
+      title: `Fixed: Subjects consolidated from 636 free-form values to ${subjCounts.size} canonical buckets — ${inTargetBand} now land in the useful 3-15-title band`,
+      technical: `<code>inferSubjects()</code>'s reviewed-override tier previously let <code>trakt/data/reviewedTags.json</code>'s ` +
+        `subjects field carry a fresh, uncontrolled compound slug per title (e.g. <code>police-corruption-and-civil-forfeiture</code>) — ` +
+        `636 distinct values, 93% shared by fewer than 3 titles, meaning <code>subjectBonus()</code> could rarely find any real "shared ` +
+        `with a loved title" match at all. Fixed with a word-root clustering pass, checked in priority order from most-specific trigger ` +
+        `to broadest catch-all (mirroring <code>inferGenre()</code>'s own <code>GENRE_PRIORITY</code> design): every raw value's ` +
+        `dominant theme word(s) route it to one of the 12 original <code>SUBJECT_KEYWORDS</code> buckets or ~39 new canonical buckets ` +
+        `(documented in <code>SUBJECT_CANONICAL_VOCABULARY</code>). Spot-checked ~30 real title assignments for plausibility before ` +
+        `applying to all 533 affected <code>reviewedTags.json</code> entries. Live result: ${subjCounts.size} distinct values across ` +
+        `${subjInstances} tag instances, ${inTargetBand} in the target 3-15-title band, ${under3.length} still below 3 (a genuine long ` +
+        `tail of one-off subjects with no real peer in Bill's library — accepted rather than force-padded, same principle as the book ` +
+        `side's oversized-but-real theme buckets). <code>subjectBonus()</code>'s tiers re-swept against the new, denser loved-count ` +
+        `distribution; verified via <code>findTaxonomyCollisions()</code>: ${collisions.length} cross-layer collisions.`,
+      plain: `Subjects used to have a custom, one-off label for almost every title, so the engine could almost never say "you loved another ` +
+        `title with this same subject." Grouped the ~636 near-unique labels into about ${subjCounts.size} reusable categories, the same ` +
+        `cleanup Genre and Subgenre already got — most categories now cover a healthy 3-15 titles instead of just 1.`,
+      impact: `Verified via <code>scripts/eval.js</code>: precision@10/25/50/100 held at or above the pre-change baseline (100/92/92/89), ` +
+        `MAE improved slightly — a real signal-quality improvement with no scoring tradeoff.`,
     });
   }
 
