@@ -185,7 +185,13 @@ function computeGenreStats(library, enrichedMeta, llmTags = {}, reviewedTags = {
   return [...stats.entries()]
     .map(([genre, e]) => ({ genre, avg: e.sum / e.count, count: e.count }))
     .filter(g => g.count >= 3)
-    .sort((a, b) => b.avg - a.avg);
+    .sort((a, b) => b.avg - a.avg)
+    // The Subgenre canonical vocabulary grew to 65 buckets in the taxonomy
+    // redesign (up from 29), so an unbounded chart got long enough to lose
+    // its "what do you actually like" readability — capped to the top 20
+    // by avg rating, the same cardinality this chart worked well at before
+    // the vocabulary expanded.
+    .slice(0, 20);
 }
 
 // inferSubgenres() returns hyphenated machine keys (engine.js reads them
@@ -2182,6 +2188,136 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
         `easier to scan or group by machine, without losing the readable explanation.`,
       impact: `A real usability/auditability improvement with no scoring effect (reason() was never a scoring input) and no downside — the ` +
         `explanatory sentence Bill has consistently valued is unchanged, just labeled.`,
+    });
+  }
+
+  // FIXED (this session, found during a post-taxonomy-redesign field
+  // re-assessment): 16 titles' llmTags.json cache still carried subgenre
+  // values (war/sci-fi-fantasy/biopic/horror/sports) from before the
+  // Genre/Subgenre taxonomy redesign retired or renamed them — the LLM
+  // was tagged against the OLD vocabulary and the cache was never
+  // refreshed. inferSubgenres() only shadows a stale llm value when the
+  // keyword tier already returns something for that title, so most of
+  // these were invisible in the live chart but would have surfaced the
+  // moment a title's keyword-tier match ever went empty. Fixed without a
+  // new LLM API call — a direct rename (biopic->biography) plus dropping
+  // the other 4 retired values (their real subtype can't be recovered
+  // without re-tagging) from every cached entry, 415 llmTags.json entries
+  // touched dataset-wide (most were crime-drama, a value the keyword tier
+  // already shadows everywhere, so cleaning it up now is pure hygiene
+  // against future drift, not a live behavior change today).
+  {
+    findings.push({
+      id: 'stale-llm-subgenre-cache-cleanup',
+      severity: 'good',
+      ratings: { ease: 8, dataQuality: 5, recEngine: 1, ui: 0 },
+      title: `Fixed: llmTags.json's cached subgenre values were re-verified against the current canonical vocabulary — 0 stale values remain`,
+      technical: `A live scan of every title's <code>inferSubgenres()</code> output against the taxonomy redesign's retired/renamed bucket ` +
+        `names (<code>war</code>, <code>sci-fi-fantasy</code>, <code>horror</code>, <code>sports</code>, <code>crime-drama</code> retired; ` +
+        `<code>biopic</code> renamed to <code>biography</code>) found 16 titles surfacing a stale value live, and 415 total ` +
+        `<code>trakt/data/llmTags.json</code> entries carrying one somewhere in their cached array (the gap between the two counts is ` +
+        `explained by <code>inferSubgenres()</code>'s own keyword-tier-first priority: a stale llm value only reaches the live output when ` +
+        `the keyword tier for that title is empty). Fixed with a direct find/rename/drop pass on the cache file (no new Haiku API call ` +
+        `needed) rather than a full re-tag. Re-verified live: 0 titles now surface a retired-bucket value.`,
+      plain: `Before the genre/subgenre redesign, an AI tagging pass had cached tags for some titles using the old category names. A few of ` +
+        `those old names got retired or renamed during the redesign, but the cached values weren't updated to match — so a handful of ` +
+        `titles were quietly carrying outdated tags. Cleaned up the cache directly (a simple rename/removal, not a new AI pass) so ` +
+        `everything matches the current category names.`,
+      impact: `Confirmed via <code>scripts/eval.js</code>: precision@10/25/50/100 held exactly (100/92/92/89) before and after — this was a ` +
+        `hygiene fix against future drift, not a live scoring change, since the keyword tier already shadowed most of the stale values.`,
+    });
+  }
+
+  // NEW (this session): Bill asked to re-assess all fields; the Subjects
+  // field passes both the 90% populated and 90% quality bars (99%/97%)
+  // so never trips the automatic below-90%-finding path below — but a
+  // live distinct-value count tells a very different story than those two
+  // percentages do. Computed here (not in FIELD_REGISTRY's `quality`
+  // check, which only asks "does this row have any value" - a fragmented
+  // field passes that trivially) so the real problem gets its own finding
+  // even though the field's own row in the table above reads "good."
+  {
+    const subjCounts = new Map();
+    let subjInstances = 0, fromReviewedCount = 0;
+    const dedupedForSubjects = new Map();
+    for (const list of [library.titles, watchlist.titles, candidatePool.titles]) {
+      for (const t of list || []) {
+        if (t.titleKey && !dedupedForSubjects.has(t.titleKey)) dedupedForSubjects.set(t.titleKey, t);
+      }
+    }
+    for (const t of dedupedForSubjects.values()) {
+      const meta = enrichedMeta[t.titleKey];
+      if (!meta) continue;
+      const reviewed = idx.reviewedTags?.[t.titleKey];
+      if (reviewed?.subjects?.length) fromReviewedCount++;
+      for (const s of inferSubjects(meta, llmTags[t.titleKey], undefined, reviewed)) {
+        subjCounts.set(s, (subjCounts.get(s) || 0) + 1);
+        subjInstances++;
+      }
+    }
+    const under3 = [...subjCounts.entries()].filter(([, c]) => c < 3);
+    const exactly1 = under3.filter(([, c]) => c === 1).length;
+    const inTargetBand = [...subjCounts.entries()].filter(([, c]) => c >= 3 && c <= 15).length;
+    findings.push({
+      id: 'subjects-taxonomy-fragmentation',
+      severity: 'serious',
+      ratings: { ease: 3, dataQuality: 8, recEngine: 6, ui: 4 },
+      title: `Subjects is severely fragmented — ${subjCounts.size} distinct values, ${under3.length} of them (${((under3.length / subjCounts.size) * 100).toFixed(0)}%) shared by fewer than 3 titles, most (${exactly1}) used exactly once`,
+      technical: `<code>inferSubjects()</code>'s reviewed-override tier (<code>trakt/data/reviewedTags.json</code>'s <code>subjects</code> ` +
+        `field, sourced from the hand-reviewed metadata workbook) supplies free-form multi-word slugs for ${fromReviewedCount} of ${dedupedForSubjects.size} ` +
+        `titles — unlike Genre and Subgenre, this field was never given a curated canonical vocabulary the way ` +
+        `<code>SUBJECT_KEYWORDS</code>'s 12 buckets are for the keyword tier, so the workbook's reviewers coined a new compound label per ` +
+        `title's specific plot (e.g. <code>police-corruption-and-civil-forfeiture</code>, <code>vigilante-revenge-and-trauma</code>, ` +
+        `<code>young-adult-friendship-and-absurdity</code>) rather than picking from a fixed list. Result: ${subjCounts.size} distinct values ` +
+        `across ${subjInstances} total tag instances, ${under3.length} (${((under3.length / subjCounts.size) * 100).toFixed(0)}%) below the ` +
+        `3-title floor <code>subjectBonus()</code> needs to generate any real signal at all (a value used once can never produce a "shared ` +
+        `with N loved titles" match), only ${inTargetBand} landing in a genuinely useful 3-15-title band. The Field Population & Quality ` +
+        `table's Specificity metric (normalized Shannon entropy) doesn't catch this — a near-unique-per-title field reads as maximally ` +
+        `"specific" by that formula's own definition, which is backwards for a field meant to find shared signal across titles, so this is a ` +
+        `real gap invisible to the existing 90%-bar automated check.`,
+      plain: `Genre and Subgenre both went through a real cleanup this session to make sure every category has a consistent, reusable name ` +
+        `that shows up on multiple titles. Subjects never got that treatment — it's built from a spreadsheet where each reviewer wrote a ` +
+        `custom, very specific label for almost every single title (like "police-corruption-and-civil-forfeiture"), so ${((under3.length / subjCounts.size) * 100).toFixed(0)}% ` +
+        `of those labels are so specific that no other title shares them. That means the "you loved a title with this subject before" ` +
+        `signal almost never fires for Subjects the way it does for Genre/Subgenre.`,
+      impact: `A real, actionable next step in the same spirit as this session's Genre/Subgenre redesign, but larger in raw scope (${subjCounts.size} ` +
+        `free-form values to consolidate vs. Subgenre's 484). See the "Subjects consolidation plan" finding below for a concrete, phased ` +
+        `approach rather than a from-scratch remap.`,
+    });
+
+    findings.push({
+      id: 'subjects-consolidation-plan',
+      severity: 'serious',
+      ratings: { ease: 3, dataQuality: 7, recEngine: 5, ui: 2 },
+      title: `Plan: consolidate Subjects into a curated canonical vocabulary targeting 3-15 titles per value`,
+      technical: `Not yet executed — a scoped plan, following the exact precedent this session's Genre/Subgenre redesign already validated ` +
+        `(Phase 0 assessment → curated canonical vocabulary → mapping pass → re-sweep <code>subjectBonus()</code> thresholds against ` +
+        `<code>scripts/eval.js</code>). Concretely: (1) Keep the 12 existing <code>SUBJECT_KEYWORDS</code> canonical values (already ` +
+        `well-populated: grief-loss 16, trauma-abuse 14, addiction-recovery 12, family-dynamics 11, survival 10, law-enforcement 10, ` +
+        `organized-crime 9, class-wealth-corporate 9, war-conflict 7, mental-health 7, crime-investigation 7, justice-legal-system 6 — ` +
+        `all already in the 3-15 target band). (2) Cluster the 636 free-form reviewedTags.json values by root concept, not synonym-by-` +
+        `synonym: most are compound phrases pairing one dominant theme with a title-specific qualifier (e.g. every ` +
+        `<code>police-corruption-and-*</code>/<code>organized-crime-*</code>/<code>vigilante-*</code>/<code>revenge-and-*</code> value ` +
+        `folds into <code>organized-crime</code> or a new <code>revenge-vigilante</code> bucket; every ` +
+        `<code>wrongful-conviction*</code> value folds into one new bucket; <code>political-corruption/power/conspiracy*</code> folds into ` +
+        `the existing <code>politics-power</code>; <code>romantic-*</code>/<code>infidelity</code>-adjacent values fold into a new ` +
+        `<code>romantic-relationships</code> bucket; <code>technology-*</code>/<code>artificial-intelligence</code>/<code>surveillance</code> ` +
+        `folds into the existing <code>technology-surveillance</code>; <code>young-adult-*</code> folds into the existing ` +
+        `<code>coming-of-age</code>). Estimated real cluster count from a first-pass scan of the top ~150 highest-frequency root concepts: ` +
+        `roughly 30-40 canonical buckets total (12 existing + ~20-28 new), most landing in the 3-15 target band once merged. (3) A genuine ` +
+        `long tail will remain below 3 even after merging (a few titles really do have a one-of-a-kind subject with no real peer in Bill's ` +
+        `library) — the plan's realistic goal is minimizing, not eliminating, sub-3 values, the same honest framing Session 20 (book side) ` +
+        `and this session's own Subgenre work both used rather than force-padding a bucket that doesn't have real support. (4) Requires the ` +
+        `same per-title verification discipline as the Subgenre redesign (spot-check real titles after each cluster, not a blind bulk ` +
+        `remap) since a wrong subject grouping would corrupt <code>subjectBonus()</code>'s live signal on 723 real reviewed titles.`,
+      plain: `A concrete next step, not yet done: go through the ~636 one-off subject labels and group the ones that are really describing the ` +
+        `same underlying theme (all the different flavors of "corrupt cop" or "revenge" or "wrongful conviction" stories) under one shared ` +
+        `name, the same way this session already cleaned up Genre and Subgenre. The goal is every subject landing on somewhere between 3 ` +
+        `and 15 titles — few enough to stay specific, many enough to actually mean something when the engine looks for "titles like this ` +
+        `one." A small number of truly one-of-a-kind subjects will probably stay under 3, and that's fine — better than forcing a fake group.`,
+      impact: `High potential value (subjectBonus() currently has almost no real signal to work with — ${((under3.length / subjCounts.size) * 100).toFixed(0)}% ` +
+        `of its vocabulary can never match a second title) for a bounded, well-precedented amount of work, but it's a real multi-session ` +
+        `undertaking (636 values is more raw material than Subgenre's 484 was), not a quick fix — flagged here rather than rushed.`,
     });
   }
 
