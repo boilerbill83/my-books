@@ -110,22 +110,36 @@ continuous `ratingWeight()` across *every* rated title by that creator
 with two 10/10s, not just "2 titles either way").
 
 ### 3b. Genre match — capped at **+8**
-Tiered by how many loved titles share the genre (same shape as the book
-engine's `themeBonus()`):
+As of the Genre/Subgenre taxonomy redesign, Genre is a **single, clean
+value** per title (`inferGenre()`), not TMDB's old raw multi-valued
+`genres` array — so `genreBonus()` is a flat tier lookup on one value,
+not a sum across several tags (same shape as the book engine's
+`themeBonus()`, but single-valued instead of summed):
 
-| Loved-title count for this genre | Bonus per genre tag |
+| Loved-title count for this genre | Bonus |
 |---|---|
-| ≥ 60 | +5 |
-| ≥ 35 | +4 |
-| ≥ 18 | +3 |
-| ≥ 6  | +2 |
+| ≥ 30 | +8 |
+| ≥ 20 | +6 |
+| ≥ 10 | +4 |
+| ≥ 4  | +2 |
 | ≥ 1  | +1 |
 
-Summed across all of a candidate's genres, capped at +8 total. TMDB uses
-two different genre vocabularies for movies vs. shows ("Action" vs.
-"Action & Adventure" for the same concept) — `normalizeGenre()` maps both
-to one canonical form before counting, so a genre taught to Bill by a
-loved *show* still credits a matching *movie* candidate.
+Thresholds re-derived empirically against `scripts/eval.js` after the
+redesign (an +8-ceiling tier beat a +5-ceiling tier on every metric, not
+assumed). `inferGenre()` itself is a 3-tier fallback: a
+`trakt/data/reviewedTags.json` curated override (workbook-seeded, checked
+first) → a `trakt/data/llmTags.json` per-title LLM tag → a deterministic
+classifier for everything else — TMDB's own genre-priority order
+(`GENRE_PRIORITY`, e.g. Horror/Western beat the near-universal Drama)
+plus a small keyword-override tier (TMDB has no "biography"/"sports"
+genre of its own, so those get caught by real overview/keyword phrases
+first). `normalizeGenre()` still collapses TMDB's two movie/show genre
+vocabularies ("Action" vs. "Action & Adventure") onto one canonical form
+before either the classifier or `lovedGenres` ever see them, so a genre
+taught to Bill by a loved *show* still credits a matching *movie*
+candidate. See §6 for why Genre and Subgenre are now two separate,
+differently-grained fields instead of Subgenre alone trying to do both
+jobs.
 
 ### 3c. Dismissal generalization — **-15 (creator) or up to -10 (style)**
 A dismissal shouldn't only remove one exact title. Two reason codes carry
@@ -178,18 +192,27 @@ improving MAE.
 
 ### 3g. Subgenre match — capped at **+1.5**
 ```
-+0.75 per subgenre shared with 18+ loved titles
-+0.5  per subgenre shared with 10-17 loved titles
-+0.25 per subgenre shared with 4-9 loved titles
-+0.1  per subgenre shared with 1-3 loved titles
++0.75 per subgenre shared with 13+ loved titles
++0.5  per subgenre shared with 7-12 loved titles
++0.25 per subgenre shared with 3-6 loved titles
++0.1  per subgenre shared with 1-2 loved titles
 ```
 `inferSubgenres()` is a deterministic, keyword-driven classifier sitting
-beneath TMDB's blunt ~19-27 genre taxonomy (Drama alone covers ~69% of the
-dataset) — see §6 for the full tag list. Not persisted anywhere; computed
-live from each title's real TMDB keywords. Cap swept against `eval.js`
-the same way as keywords: a cap scaled straight from `genreBonus()`'s own
-thresholds regressed precision@50, so it was halved twice to 1.5, which
-instead improved precision@10 90%→100% with every other metric held.
+beneath the (now separate, see §3b) Genre field — see §6 for the full,
+post-taxonomy-redesign tag list and vocabulary design. A 3-tier fallback:
+a `trakt/data/reviewedTags.json` curated override (workbook-seeded,
+checked first) → the keyword tier (computed live from each title's real
+TMDB keywords, no persistence) → a `trakt/data/llmTags.json` per-title LLM
+tag as a last resort. Cap swept against `eval.js` the same way as
+keywords: a cap scaled straight from `genreBonus()`'s own thresholds
+regressed precision@50, so it was halved twice to 1.5, which instead
+improved precision@10 90%→100% with every other metric held. Thresholds
+re-swept again after the taxonomy redesign (the 65-bucket canonical
+vocabulary spreads loved-title counts more thinly per bucket than the old
+29-bucket list did) — precision held flat across every configuration
+tried, confirming the small remaining movement (a slight precision@50 dip
+from the redesign itself) traces to real, defensible content-matching
+changes rather than a tunable threshold artifact.
 
 ### 3h. Tone signal — clamped to **±3**
 ```
@@ -415,40 +438,129 @@ honestly low, never hidden:
 
 ---
 
-## 6. Subgenres and tones — the taxonomy beneath TMDB's genres
+## 6. Genre, Subgenre, Tones, Subjects, Era — the taxonomy layers beneath TMDB
 
-`inferSubgenres()`/`inferTones()` are deterministic keyword classifiers,
-**not persisted** to any data file (computed live, unlike the book side's
-hand-edited, persisted theme/tone arrays) — a value returned here can only
-ever be a literal key of `SUBGENRE_KEYWORDS`/`TONE_KEYWORDS`, so
-vocabulary drift has no code path to occur through. Three-tier fallback:
-(1) TMDB keyword match, (2) — tones only — a regex scan of the overview
-text for mood/craft phrases, (3) a per-title LLM tag cache
-(`trakt/data/llmTags.json`) when both free tiers come back empty.
+Bill's brief for the redesign that produced the current shape: **"I want
+genre to be fairly high level and sub-genre to be very specific."** Before
+this, "Genre" was TMDB's raw multi-valued `genres` field (Drama alone sat
+on 75%+ of every enriched title — nominally high-level but too blunt to
+discriminate at all) and "Subgenre" was a 29-bucket keyword classifier that
+had drifted into doing genre's job too — roughly half its buckets
+(`historical`, `war`, `political`, `sci-fi-fantasy`, `sports`, `horror`,
+`biopic`, `crime-drama`, etc.) were really genre-level concepts sitting
+flat in the wrong field. The fix, assessed with real cross-tab numbers
+before any code changed (a hand-reviewed metadata workbook covering all
+793 eligible titles at the time supplied both a clean 18-value Genre
+vocabulary and a rich, if fragmented, 484-value raw Subgenre vocabulary to
+build from):
 
-29 subgenre tags (`crime-drama`, `procedural`, `legal`, `heist`,
-`spy-espionage`, `psychological-thriller`, `biopic`, `historical`, `war`,
-`political`, `family-drama`, `coming-of-age`, `romance`, `romcom`,
-`workplace-comedy`, `dark-comedy`, `superhero`, `sci-fi-fantasy`,
-`sports`, `medical`, `prison`, `horror`, `musical`, `neo-western`,
-`organized-crime`, `drug-trade`, `assassin-hitman`, `murder-mystery`,
-`police-procedural`) and 14 tone tags (`gritty`, `dark`, `witty`,
-`satirical`, `hilarious`, `inspirational`, `intense`, `suspenseful`,
-`twisty`, `slow-burn`, `character-driven`, `nostalgic`, `melancholy`,
-`offbeat`, `thoughtful`). Every keyword in both lists was verified present
-at real, non-trivial frequency in the live dataset before inclusion —
-several plausible-looking keywords were tested and *rejected* for
-producing real false positives (documented inline in `engine.js`, e.g.
-`based on comic` wrongly flagged the historical war epic "300" as a
-superhero film). `organized-crime`/`drug-trade`/`assassin-hitman`/
-`murder-mystery`/`police-procedural` were split out of the original
-`crime-drama`/`procedural` buckets after both exceeded the 15%-of-dataset
-concentration cap (the same cap this project's tone vocabulary enforces) —
-`crime-drama` was 19.9%, `procedural` was 18.9%; after the split every
-bucket is under 15%, with the two original buckets now holding only their
-genuinely residual keywords (`crime-drama`: `outlaw`/`criminal`;
-`procedural`: `detective`/`investigation`/`fbi`/`criminal investigation`/
-`crime investigation`).
+- **Genre** (`inferGenre()`) is now a single, clean, high-level value per
+  title — 17 canonical values (`drama`, `comedy`, `thriller`, `crime`,
+  `action`, `science-fiction`, `fantasy`, `horror`, `mystery`, `war`,
+  `western`, `romance`, `documentary`, `animation`, `adventure`,
+  `biography`, `sports`). See §3b for its 3-tier resolution and scoring.
+- **Subgenre** (`inferSubgenres()`) is now a curated, ~65-bucket canonical
+  vocabulary built specifically to be *very specific* and non-redundant
+  with Genre — every genre-duplicative bucket the old 29-bucket list had
+  (`crime-drama`, `sci-fi-fantasy`, `war`, `sports`, `horror`, `biopic`)
+  was retired, since that signal now lives in Genre itself. New buckets
+  came from the workbook's real, high-frequency, genre-orthogonal values:
+  `neo-noir`, `character-study`, `psychological-drama`, `ensemble`,
+  `workplace-drama`, `crime-thriller`, `biography` (a title's specific
+  *biopic-ness* as a secondary descriptor — distinct from Genre=biography
+  as a title's *primary* classification; both can be true at once, e.g. a
+  Genre=drama title can still carry Subgenre=biography), `mystery-drama`,
+  `military-drama`, `dramedy`, `conspiracy-thriller`, `survival-drama`,
+  `sitcom`, `satire`, `true-crime`, `anthology`, `docudrama`,
+  `buddy-comedy`, `post-apocalyptic`, `psychological-horror`, `dystopian`,
+  `supernatural-horror`, `friendship-comedy`, `mockumentary`,
+  `family-comedy`, `journalism-drama`, `time-travel`, `crime-comedy`,
+  `action-comedy`, `survival-horror`, `financial-drama`,
+  `techno-thriller`, `space-opera`, `absurdist-comedy`, `social-drama`,
+  `creature-feature`, `alien-invasion`, `comedy-mystery`,
+  `supernatural-mystery`, `chamber-drama`, `disaster-drama`,
+  `horror-comedy` — alongside the buckets retained unchanged from the old
+  list (`procedural`, `legal`, `heist`, `spy-espionage`,
+  `psychological-thriller`, `family-drama`, `coming-of-age`, `romcom`,
+  `workplace-comedy`, `dark-comedy`, `prison`, `neo-western`,
+  `organized-crime`, `drug-trade`, `assassin-hitman`, `murder-mystery`,
+  `police-procedural`, `historical`, `political`, `romance`, `medical`,
+  `superhero`, `musical` — confirmed via a real correlation check
+  *not* genre-duplicative before being kept). Real distribution checked
+  before shipping: no bucket exceeds the project's own 15%-of-dataset
+  concentration cap (the same cap the book side's tone-vocabulary redesign
+  established) — `family-drama`, the largest, sits at 14.1%.
+- **Detail layer** (`inferSubgenreDetail()`/`GENRE_DETAIL_KEYWORDS`) —
+  Bill: *"I want that level of specificity for all genres and
+  subgenres"* — nests an even finer label under a subgenre when a
+  confident keyword match exists (`historical` → WWII/Vietnam/Cold War
+  era buckets, `organized-crime` → Mafia/Cartel, etc.). Repurposed rather
+  than retired during the redesign: `sci-fi-fantasy`'s old detail groups
+  (Dystopia, Post-Apocalyptic, Alien Invasion, Time Travel) graduated into
+  real, independently-scored top-level Subgenre buckets since they proved
+  common enough to earn their own tier; `biopic`'s detail group was
+  renamed to `biography`; `supernatural-horror`/`techno-thriller` gained
+  new detail groups. Display-only — never wired into `matchScore()`.
+  Currently a partial pass: most subgenre categories don't have an
+  obvious further split the way `historical` naturally splits into eras
+  (see the dashboard's own live-computed `remaining-subgenre-genre-
+  specificity` Improvement Opportunities finding for current coverage).
+- **Tones** (`inferTones()`) — mood/craft descriptors (`gritty`, `dark`,
+  `witty`, `satirical`, `hilarious`, `inspirational`, `intense`,
+  `suspenseful`, `twisty`, `slow-burn`, `character-driven`, `nostalgic`,
+  `melancholy`, `offbeat`, `thoughtful` — 15 tags), scored via a genuine
+  per-tone rating-preference delta, not a loved-count tier (§3h).
+- **Subjects** (`inferSubjects()`) — real social/human-condition subject
+  matter beneath genre/subgenre (`addiction-recovery`, `grief-loss`,
+  `trauma-abuse`, `racism-civil-rights`, `immigration-refugee`,
+  `infidelity`, `journalism-media`, `cult-extremism`, `mental-health`,
+  `class-wealth-corporate`, `lgbtq`, `survival` — 12 tags), the BBRE-themes
+  -inspired addition. Honestly partial by design (~28% of titles) — not
+  every story genuinely has one.
+- **Era** (`inferEra()`) — when the *story* is set, not when the title was
+  made. A coarse 4-bucket keyword scheme (`ancient-to-1900`,
+  `early-1900s`, `mid-late-1900s`, `future-setting`) on its own, but
+  mostly resolved (99.7%) via the workbook's much richer 17-value era
+  vocabulary through the same reviewed-override tier below.
+
+**All five layers share the same reviewed-override-first priority**: every
+`infer*()` function checks `trakt/data/reviewedTags.json` (the curated,
+per-title override sourced from the hand-reviewed metadata workbook)
+first, then its own free-tier logic (keyword match, and for tones a
+regex scan of the overview text for mood/craft phrases), then
+`trakt/data/llmTags.json` (a per-title Claude Haiku 4.5 tag, used only
+when the free tiers come back empty) as a last resort. None of Subgenre/
+Tone/Subject/Era is persisted to any data file on its own — each is
+computed live from a title's real TMDB keywords/overview plus the
+reviewed-override and LLM caches, so a returned value can only ever be a
+literal key of its own canonical-vocabulary constant (`SUBGENRE_KEYWORDS`
+/`TONE_KEYWORDS`/`SUBJECT_KEYWORDS`), closing off the vocabulary-drift
+code path entirely. Genre is the one exception worth noting: its
+deterministic fallback tier (TMDB genre-priority order + a small keyword-
+override list) almost never returns null, unlike the other four layers'
+honestly-partial keyword tiers, since Genre is meant to be a
+near-universal field the way Subgenre/Subject/Era are not.
+
+Every keyword in every vocabulary was verified present at real,
+non-trivial frequency in the live dataset before inclusion — several
+plausible-looking keywords were tested and *rejected* for producing real
+false positives (documented inline in `engine.js`, e.g. `based on comic`
+wrongly flagged the historical war epic "300" as a superhero film, and
+bare decade-marker keywords wrongly flagged the 1970s-set comedy
+"Anchorman" as historical).
+
+**Drift guardrail**: `findTaxonomyCollisions()` (engine.js) is a
+permanent, live check — mirroring the book side's `findNonCanonicalTones()`
+— that confirms Subgenre/Tone/Subject stay at genuinely different
+conceptual levels (content type vs. emotional feel vs. major theme) and
+that no `GENRE_DETAIL_KEYWORDS` nested label duplicates an unrelated
+top-level bucket name. It deliberately does **not** include Genre in this
+check — a Subgenre bucket sharing a literal name with a Genre value (e.g.
+`romance`, `biography`) is expected and intentional, not drift, since the
+two fields operate at genuinely different specificity levels by design
+(a title can be Genre=drama with Subgenre=romance as a secondary
+descriptor, or Genre=romance itself for a pure romance film). Rendered
+live on the dashboard's Improvement Opportunities list.
 
 ---
 
