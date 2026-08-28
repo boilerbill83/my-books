@@ -5017,9 +5017,13 @@
   "rottenTomatoes": 24,
   "rtAudience": 61,
   "rtUrl": "https://www.rottentomatoes.com/tv/las_finest",
-  "metacriticUser": null,
+  "metacriticUser": 57,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": 50,
+  "mcUrl": "https://www.metacritic.com/tv/las-finest/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:79618": {
   "rottenTomatoes": 88,
@@ -5229,9 +5233,13 @@
   "rottenTomatoes": 95,
   "rtAudience": 91,
   "rtUrl": "https://www.rottentomatoes.com/tv/marvels_agents_of_shield",
-  "metacriticUser": null,
+  "metacriticUser": 74,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": 74,
+  "mcUrl": "https://www.metacritic.com/tv/marvels-agents-of-shield/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:62643": {
   "rottenTomatoes": 89,
