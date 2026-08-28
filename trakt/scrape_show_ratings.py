@@ -1657,6 +1657,18 @@ def scrape_rt(page, title, year, kind, imdb_id=None):
     # path — a coincidentally-live URL that isn't really the right title
     # still gets rejected, this only changes how a URL is found, not
     # whether a found page is trusted.
+    # Year-suffixed variant added after a real, confirmed miss: "Secret
+    # Service" (2026, ITV spy thriller) collides with the earlier "Gordon
+    # Ramsay's Secret Service" — RT disambiguates with the exact same
+    # year-suffix convention already fixed on the Metacritic side
+    # (scrape_metacritic()) and already proven correct for Perry Mason
+    # (perry_mason_2020, found via RT's own search fallback). The bare
+    # "secret_service" guess either loads the wrong show or nothing at
+    # all, and RT's 3-candidate search fallback wasn't reliably finding
+    # "secret_service_2026" either — verified via WebSearch that
+    # rottentomatoes.com/tv/secret_service_2026 is the real page. Mirrors
+    # scrape_metacritic()'s candidate-list shape exactly so this
+    # disambiguation pattern isn't fixed on only one of the two sites.
     direct_urls = []
     for candidate_title in (title, _strip_franchise_prefix(title)):
         if not candidate_title:
@@ -1664,9 +1676,11 @@ def scrape_rt(page, title, year, kind, imdb_id=None):
         slug = _slugify(candidate_title, sep='_')
         if not slug:
             continue
-        u = f'https://www.rottentomatoes.com{path_prefix}{slug}'
-        if u not in direct_urls:
-            direct_urls.append(u)
+        suffixes = ('', f'_{year}') if year else ('',)
+        for suffix in suffixes:
+            u = f'https://www.rottentomatoes.com{path_prefix}{slug}{suffix}'
+            if u not in direct_urls:
+                direct_urls.append(u)
 
     for url in direct_urls:
         try:
