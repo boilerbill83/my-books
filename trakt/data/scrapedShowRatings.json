@@ -7881,22 +7881,28 @@
  "show:113988": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": null,
+  "rtUrl": "https://www.rottentomatoes.com/tv/testament_the_story_of_moses",
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
   "mcUserAttempted": true,
-  "checkedAt": "2026-08-24"
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 3
  },
  "show:91405": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
+  "rottenTomatoes": 84,
+  "rtAudience": 84,
+  "rtUrl": "https://www.rottentomatoes.com/tv/gordon_ramsay_uncharted",
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
   "mcUserAttempted": true,
-  "checkedAt": "2026-08-24"
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": null
  },
  "show:53606": {
   "rottenTomatoes": null,
@@ -7923,14 +7929,17 @@
   "checkedAt": "2026-08-24"
  },
  "show:83867": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
+  "rottenTomatoes": 96,
+  "rtAudience": 89,
+  "rtUrl": "https://www.rottentomatoes.com/tv/andor",
   "metacritic": 84,
   "metacriticUser": 84,
   "mcUrl": "https://www.metacritic.com/tv/andor/",
   "mcUserAttempted": true,
-  "checkedAt": "2026-08-24"
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": null
  },
  "show:62476": {
   "rottenTomatoes": null,
