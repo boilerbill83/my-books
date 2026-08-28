@@ -1682,6 +1682,23 @@ def scrape_rt(page, title, year, kind, imdb_id=None):
             if u not in direct_urls:
                 direct_urls.append(u)
 
+    # Season-1 sub-path tier, added after a second real confirmed case
+    # beyond DAHMER's anthology page: "Hostage" (2025) loads a real,
+    # correctly-named bare show page at hostage_2025, but RT's own
+    # aggregateRating for a single-season limited series lives at the
+    # /s01 sub-path, not the bare show URL itself — the bare page not
+    # carrying a JSON-LD score is genuinely different from a wrong-page
+    # rejection, so it needs its own extra try rather than being
+    # indistinguishable from "nothing here." Only applies to shows
+    # (movies have no seasons); appended after every already-queued show
+    # URL rather than replacing it, so a title that DOES carry its score
+    # on the bare page (the common case, unaffected) never pays for this.
+    if kind == 'show':
+        for base in list(direct_urls):
+            s01 = f'{base}/s01'
+            if s01 not in direct_urls:
+                direct_urls.append(s01)
+
     for url in direct_urls:
         try:
             resp = page.goto(url, wait_until='domcontentloaded', timeout=20_000)
@@ -1880,6 +1897,24 @@ def scrape_metacritic(page, title, year, kind, imdb_id=None):
             u = f'https://www.metacritic.com{path_prefix}{slug}{suffix}/'
             if u not in candidates:
                 candidates.append(u)
+
+    # Season-1 sub-path tier — the same real, confirmed gap as
+    # scrape_rt()'s /s01 addition (see its own comment): "Hostage"
+    # (2025)'s real Metascore (62/100, 14 critics) lives at
+    # metacritic.com/tv/hostage/season-1/, not the bare
+    # metacritic.com/tv/hostage/ page, which loads correctly (right
+    # title) but carries no aggregateRating block of its own. Metacritic
+    # uses "season-N" (word, hyphen, bare number), not RT's "sNN"
+    # zero-padded form — a different convention on each site, so each
+    # scraper needs its own suffix shape, not a shared helper. Only
+    # applies to shows; appended after every already-queued bare/
+    # year-suffixed candidate so a title whose score IS on the bare page
+    # (the common case) is unaffected.
+    if kind == 'show':
+        for base in list(candidates):
+            s1 = f'{base}season-1/'
+            if s1 not in candidates:
+                candidates.append(s1)
 
     result = None
     for guess_url in candidates:
