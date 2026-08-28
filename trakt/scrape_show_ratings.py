@@ -1702,10 +1702,26 @@ def _slugify(text):
     doesn't exist for any possessive-form title. Confirmed by code
     inspection against Metacritic's well-known slug convention (not a
     live fetch — this sandbox can't reach metacritic.com, see the module
-    docstring) — real impact: 24 of 106 real production RT-but-no-MC
-    misses carry an apostrophe (Grey's Anatomy, The Queen's Gambit,
-    Marvel's Jessica Jones, It's Always Sunny in Philadelphia, etc.)."""
-    return re.sub(r'-+', '-', re.sub(r'[^a-z0-9]+', '-', text.lower().replace("'", '').replace('’', ''))).strip('-')
+    docstring) — verified live in production (Aug 2026 real batch): 21 of
+    24 apostrophe titles fixed on the first re-scrape (Grey's Anatomy ->
+    real Metascore 64, The Queen's Gambit -> 79, an exact match to its
+    real, independently known score).
+
+    Same "strip, don't hyphenate" principle applies to a second real
+    punctuation shape found while checking the 3 apostrophe-fix leftovers
+    (Aug 2026): an initialism like "S.H.I.E.L.D." or "L.A." collapses to
+    "shield"/"la" on Metacritic, not "s-h-i-e-l-d"/"l-a" — the periods
+    disappear along with the letter boundaries, not just the periods
+    alone. Matched as 2+ consecutive single-letter-then-period tokens
+    (so "11.22.63" and "A.P. Bio"'s trailing "Bio" are correctly left
+    alone — neither is an all-single-letter run) and collapsed before the
+    general substitution runs. Real impact: 2 of 106 real misses
+    (L.A.'s Finest, Marvel's Agents of S.H.I.E.L.D. once its franchise
+    prefix is stripped) — small on its own, but the same class of bug as
+    the apostrophe fix and cheap to close alongside it."""
+    text = re.sub(r'\b(?:[A-Za-z]\.){2,}', lambda m: m.group(0).replace('.', ''), text)
+    text = text.replace("'", '').replace('’', '')
+    return re.sub(r'-+', '-', re.sub(r'[^a-z0-9]+', '-', text.lower())).strip('-')
 
 
 def scrape_metacritic(page, title, year, kind, imdb_id=None):

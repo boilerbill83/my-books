@@ -5019,11 +5019,7 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/las_finest",
   "metacriticUser": null,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "metacritic": null,
-  "mcUrl": null,
-  "mcUserAttempted": true,
-  "checkedAt": "2026-08-28"
+  "rtAudienceAttempted": true
  },
  "show:79618": {
   "rottenTomatoes": 88,
@@ -5235,11 +5231,7 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/marvels_agents_of_shield",
   "metacriticUser": null,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "metacritic": null,
-  "mcUrl": null,
-  "mcUserAttempted": true,
-  "checkedAt": "2026-08-28"
+  "rtAudienceAttempted": true
  },
  "show:62643": {
   "rottenTomatoes": 89,
