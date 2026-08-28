@@ -1241,15 +1241,59 @@ const HISTORICAL_PERIOD_KEYWORDS = {
 // or non-US presidents (The Hunger Games' fictional dystopian
 // president, a 1943 Mexican patriotic film) - dropped, keeping
 // 'usa politics'/'usa president' (unambiguous).
+// Remapped for the Genre/Subgenre taxonomy redesign (Phase 3): 6
+// SUBGENRE_KEYWORDS buckets were retired as genre-duplicative (Phase 0-2,
+// see SUBGENRE_KEYWORDS's own comments) - their detail maps needed a real
+// decision each, not a blanket delete, since real specificity would
+// otherwise silently vanish:
+// - 'war': removed outright. Its detail map was the exact same
+//   HISTORICAL_PERIOD_KEYWORDS as 'historical' - any war-genre title
+//   that's ALSO a period piece already gets this refinement via the
+//   'historical' entry below, so the separate 'war' entry was truly
+//   redundant, not a real loss.
+// - 'sci-fi-fantasy': its 4 most specific detail groups (Dystopia,
+//   Post-Apocalyptic, Alien Invasion, Time Travel) graduated to real
+//   top-level SCORED SUBGENRE_KEYWORDS buckets (dystopian/post-apocalyptic/
+//   alien-invasion/time-travel) - they no longer need a display-only detail
+//   home, they ARE the subgenre now. The 5th (AI / Robots) had no natural
+//   new subgenre parent and is relocated below, under 'techno-thriller'
+//   (a real Phase 2 addition, the closest thematic fit).
+// - 'biopic': renamed to 'biography', matching SUBGENRE_KEYWORDS' own
+//   rename (same keywords, same matching behavior - inferSubgenres() now
+//   returns 'biography', so this key has to match or the lookup silently
+//   stops firing).
+// - 'sports': kept, deliberately NOT wired to any subgenre tag (there
+//   isn't one anymore - 'sports' subgenre is retired, folded into the new
+//   Genre='sports' field). Real, keyword-frequency-verified detail content
+//   (Boxing/Basketball/Baseball/Wrestling/Racing, plus two new real
+//   additions this pass) shouldn't just be deleted - kept here, keyed by
+//   the same string as the new Genre value, ready for a future
+//   displayGenreDetail()-style consumer (out of scope this session; no
+//   current call site reads a genre-keyed entry from this map).
+// - 'crime-drama': already removed in an earlier session (see the
+//   original comment this replaced) - its detail labels were promoted to
+//   real top-level buckets (organized-crime/drug-trade/assassin-hitman)
+//   even before this redesign.
+//
+// Also added, this pass: a new 'supernatural-horror' detail map (Zombie/
+// Body Horror/Gothic Horror - real, specific horror sub-flavors that add
+// information even on a title already carrying that subgenre tag, same
+// reasoning that split psychological-horror/supernatural-horror out of
+// bare 'horror' in Phase 2) and small real additions to 'historical'
+// (Alternate History), 'political' (Political Satire), and 'musical'
+// (Musical Comedy) - each individually checked against real
+// enrichedMetadata.json keyword frequency before inclusion, not guessed;
+// several other candidates considered during this pass (domestic
+// thriller, cosmic horror, auto racing, psychological mystery, sword and
+// sandal) came back at 0-1 real occurrences and were dropped, the same
+// "verify first" discipline this file has always held itself to. This
+// remains an intentionally partial pass, not exhaustive coverage of every
+// value retired from SUBGENRE_KEYWORDS's canonical vocabulary in Phase 2 -
+// see that phase's own commit for the honest scope note (e.g. Game of
+// Thrones' 'epic-fantasy'/'war-fantasy' still have no real TMDB-keyword-
+// verified detail home as of this pass).
 const GENRE_DETAIL_KEYWORDS = {
-  'historical': HISTORICAL_PERIOD_KEYWORDS,
-  'war': HISTORICAL_PERIOD_KEYWORDS,
-  // No entry for 'crime-drama' anymore — its old "Organized Crime / Mafia"/
-  // "Drug Trade"/"Assassin / Hitman" detail labels were promoted to real
-  // top-level SUBGENRE_KEYWORDS buckets (organized-crime/drug-trade/
-  // assassin-hitman) rather than staying as a display-only refinement, so
-  // a title matching any of those keywords now gets that bucket directly
-  // and never reaches the residual 'crime-drama' tag at all.
+  'historical': { ...HISTORICAL_PERIOD_KEYWORDS, 'Alternate History': ['alternate history'] },
   'psychological-thriller': {
     'Serial Killer': ['serial killer'],
     'Kidnapping': ['kidnapping'],
@@ -1270,27 +1314,36 @@ const GENRE_DETAIL_KEYWORDS = {
     'US Presidency / Politics': ['usa politics', 'usa president'],
     'Conspiracy': ['conspiracy'],
     'Political Assassination': ['political assassination'],
+    'Political Satire': ['political satire'],
   },
-  'sci-fi-fantasy': {
-    'Dystopia': ['dystopia'],
-    'Post-Apocalyptic': ['post-apocalyptic future'],
-    'Alien Invasion': ['alien invasion', 'alien'],
-    'Time Travel': ['time travel'],
+  'techno-thriller': {
     'AI / Robots': ['artificial intelligence (a.i.)', 'robot'],
   },
-  'biopic': {
+  'supernatural-horror': {
+    'Zombie': ['zombie'],
+    'Body Horror': ['body horror'],
+    'Gothic Horror': ['gothic horror'],
+  },
+  'biography': {
     'Sports Biopic': ['boxer', 'boxing'],
     'Music Biopic': ['singer', 'musician', 'singer-songwriter', 'pop star', 'music history'],
   },
   'coming-of-age': {
     'High School': ['high school', 'high school student'],
   },
+  'musical': {
+    'Musical Comedy': ['musical comedy'],
+  },
+  // Dormant - see the comment above. Not reachable from any current
+  // subgenre tag (kept for a future genre-level display consumer).
   'sports': {
     'Boxing': ['boxing', 'boxer', 'boxing trainer'],
     'Basketball': ['basketball', 'national basketball association (nba)'],
     'Baseball': ['baseball'],
     'Wrestling': ['wrestling'],
     'Racing': ['racing', 'motorsport'],
+    'Underdog Story': ['underdog'],
+    'Sports Documentary': ['sports documentary'],
   },
   'superhero': {
     'Marvel / MCU': ['marvel cinematic universe (mcu)'],

@@ -41,11 +41,44 @@ MODEL      = 'claude-haiku-4-5'
 # Exact canonical vocabulary keys from trakt/engine.js's SUBGENRE_KEYWORDS/
 # TONE_KEYWORDS — kept in sync by hand (same discipline the book side's
 # tag_with_haiku.py already uses for its own canonical vocabulary copy).
-SUBGENRES = ['crime-drama', 'procedural', 'legal', 'heist', 'spy-espionage',
-             'psychological-thriller', 'biopic', 'historical', 'war', 'political',
-             'family-drama', 'coming-of-age', 'romance', 'romcom', 'workplace-comedy',
-             'dark-comedy', 'superhero', 'sci-fi-fantasy', 'sports', 'medical',
-             'prison', 'horror', 'musical']
+#
+# Rewritten for the Genre/Subgenre taxonomy redesign (Phase 3): this list
+# had already drifted stale before the redesign even started — missing 5
+# real SUBGENRE_KEYWORDS buckets (organized-crime/drug-trade/assassin-hitman/
+# murder-mystery/police-procedural, added when crime-drama/procedural were
+# split in an earlier session) that this constant was never updated for -
+# a real, concrete illustration of exactly the hand-sync-burden risk this
+# comment already warned about. Now matches engine.js's SUBGENRE_KEYWORDS
+# exactly: crime-drama/war/sci-fi-fantasy/sports/horror/biopic retired
+# (genre-duplicative, see engine.js's own Phase 0-2 comments), biopic
+# renamed to biography, ~41 new curated buckets added from the reviewed
+# metadata workbook. Only the canonical (top-level, scored) 65 buckets are
+# listed here, not GENRE_DETAIL_KEYWORDS' non-scored display refinements.
+SUBGENRES = ['procedural', 'legal', 'heist', 'spy-espionage', 'psychological-thriller',
+             'historical', 'political', 'family-drama', 'coming-of-age', 'romance',
+             'romcom', 'workplace-comedy', 'dark-comedy', 'superhero', 'medical',
+             'prison', 'musical', 'neo-western', 'organized-crime', 'drug-trade',
+             'assassin-hitman', 'murder-mystery', 'police-procedural',
+             'psychological-drama', 'ensemble', 'workplace-drama', 'neo-noir',
+             'character-study', 'crime-thriller', 'biography', 'mystery-drama',
+             'military-drama', 'dramedy', 'conspiracy-thriller', 'survival-drama',
+             'sitcom', 'satire', 'true-crime', 'anthology', 'docudrama', 'buddy-comedy',
+             'post-apocalyptic', 'psychological-horror', 'dystopian', 'supernatural-horror',
+             'mockumentary', 'family-comedy', 'journalism-drama', 'time-travel',
+             'friendship-comedy', 'crime-comedy', 'action-comedy', 'survival-horror',
+             'financial-drama', 'techno-thriller', 'space-opera', 'absurdist-comedy',
+             'social-drama', 'creature-feature', 'alien-invasion', 'comedy-mystery',
+             'supernatural-mystery', 'chamber-drama', 'disaster-drama', 'horror-comedy']
+# Single-valued canonical Genre vocabulary (Phase 1 of the same redesign) -
+# the workbook's own 17-value list (drama through adventure). This is the
+# LLM tier's real gap-filler for inferGenre()'s classifier (engine.js),
+# which measured only ~60% leave-one-out accuracy against the workbook's
+# 793 known-correct labels - see inferGenre()'s own comment for why the
+# LLM tier is checked BEFORE the deterministic one for Genre specifically,
+# unlike Subgenre/Tone's free-tier-first ordering.
+GENRES = ['drama', 'comedy', 'thriller', 'crime', 'action', 'science-fiction',
+          'fantasy', 'horror', 'mystery', 'war', 'western', 'romance',
+          'documentary', 'animation', 'adventure', 'biography', 'sports']
 TONES = ['gritty', 'dark', 'witty', 'satirical', 'hilarious', 'inspirational',
           'intense', 'suspenseful', 'twisty', 'slow-burn', 'character-driven',
           'nostalgic', 'melancholy', 'offbeat', 'thoughtful']
@@ -101,19 +134,22 @@ TMDB keywords: {keywords}
 Plot summary: {overview}
 
 Return exactly this shape:
-{{"subgenres": [...], "tones": [...]}}
+{{"genre": "...", "subgenres": [...], "tones": [...]}}
 
 Rules:
+- genre: exactly ONE value chosen ONLY from this list, the single best-fitting high-level genre: {', '.join(GENRES)}
 - subgenres: 1-3 values chosen ONLY from this list, most fitting first: {', '.join(SUBGENRES)}
 - tones: 1-4 values chosen ONLY from this list, most fitting first: {', '.join(TONES)}
 - Base your answer on the actual genres/keywords/plot summary above, not the title alone.
-- If genuinely nothing in the list fits a category, return an empty array for it rather than forcing a weak match."""
+- For genre specifically: TMDB's own genre tags are a starting point, not the final answer - TMDB over-applies "Drama" as a near-universal secondary tag, so don't default to it just because it's present. Pick whichever single value best captures what the story is actually ABOUT.
+- If genuinely nothing in a list fits (subgenres/tones only, genre always needs a pick), return an empty array for it rather than forcing a weak match."""
     raw, _ = call_haiku(prompt)
     raw = raw.strip().removeprefix('```json').removeprefix('```').removesuffix('```').strip()
     out = json.loads(raw)
+    genre = out.get('genre') if out.get('genre') in GENRES else None
     subgenres = [s for s in out.get('subgenres', []) if s in SUBGENRES][:3]
     tones = [tn for tn in out.get('tones', []) if tn in TONES][:4]
-    return subgenres, tones
+    return genre, subgenres, tones
 
 
 def load_titles():
@@ -168,15 +204,26 @@ def main():
     failures = 0
     for i, t in enumerate(batch, 1):
         try:
-            subgenres, tones = tag_title(t)
+            genre, subgenres, tones = tag_title(t)
         except Exception as e:
             failures += 1
             print(f'  [{i}/{len(batch)}] FAIL {t["title"][:45]}: {e}')
             time.sleep(0.4)
             continue
-        cache[t['titleKey']] = {'subgenres': subgenres, 'tones': tones,
+        # genre is a real bonus of this same batch, not the reason a title
+        # was selected — this script's selection criterion is still purely
+        # "free tiers miss subgenres/tones" (see find_llm_tag_gaps.mjs).
+        # inferGenre() (engine.js) checks this llmEntry.genre tier before
+        # its own weaker (~60% accuracy) deterministic classifier, so any
+        # title that happens to pass through here for subgenre/tone gap-
+        # filling gets a real genre upgrade too, at no extra API cost.
+        # This does NOT yet cover every title whose Genre would benefit
+        # from an LLM classification (only those with a subgenre/tone gap)
+        # — a dedicated genre-only gap pass is a real, separate future
+        # improvement, not attempted this session.
+        cache[t['titleKey']] = {'genre': genre, 'subgenres': subgenres, 'tones': tones,
                                  'taggedAt': time.strftime('%Y-%m-%d')}
-        print(f'  [{i}/{len(batch)}] {len(subgenres)}sub/{len(tones)}tone | {t["title"][:45]}')
+        print(f'  [{i}/{len(batch)}] {genre or "no-genre"}/{len(subgenres)}sub/{len(tones)}tone | {t["title"][:45]}')
         if i % 25 == 0:
             json.dump(cache, open(CACHE_FILE, 'w'), indent=1)
         time.sleep(0.4)

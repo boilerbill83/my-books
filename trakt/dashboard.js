@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra, inferSubgenreDetail, findTaxonomyCollisions } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra, inferGenre, inferSubgenreDetail, findTaxonomyCollisions } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -150,19 +150,20 @@ function renderHBarChart(containerId, data, { labelKey, valueKey, barHeight = 20
 const LOVED_THRESHOLD = 9;
 
 // "Genres You Rate Highest" used to read TMDB's own raw genre field — a
-// blunt ~19/16-word taxonomy where "Drama" alone sits on 75.1% of every
-// enriched title (verified live: 590 of 786) and "Crime" on 33.0%, so the
-// chart was really just restating those two mega-buckets in different
-// orders rather than showing anything Bill could act on (Bill: "drama is
-// way too broad, I want them much more narrow"). A genuinely narrower
-// taxonomy already exists and is already used for real scoring —
-// inferSubgenres() in engine.js (23 real values: crime-drama, procedural,
-// psychological-thriller, dark-comedy, historical, spy-espionage, heist,
-// etc. — keyword-matched against TMDB's own overview/keywords, with a
-// per-title trakt/data/llmTags.json entry as a second pass for titles the
-// keywords alone can't confidently classify) — it was just never wired
-// into this chart. No new tag vocabulary was invented for this fix; the
-// existing, already-validated classifier was pointed at a second consumer.
+// blunt ~19/16-word taxonomy where "Drama" alone sat on 75%+ of every
+// enriched title, so the chart was really just restating one mega-bucket
+// in different orders rather than showing anything Bill could act on
+// (Bill: "drama is way too broad, I want them much more narrow"). This
+// chart deliberately still plots Subgenre, not the new clean single-valued
+// Genre field the taxonomy redesign added (inferGenre(), 17 canonical
+// values, wired into real scoring via genreBonus()) — Subgenre is the
+// finer of the two taxonomies (a curated 65-bucket canonical vocabulary,
+// keyword-matched against TMDB's overview/keywords, with a
+// trakt/data/reviewedTags.json override tier and a trakt/data/llmTags.json
+// LLM pass as fallbacks for titles the keyword tier can't confidently
+// classify) and stays the more useful axis for a "what do you actually
+// like" breakdown; Genre itself is summarized instead in the Field
+// Population & Quality table and its own Improvement Opportunities finding.
 function computeGenreStats(library, enrichedMeta, llmTags = {}, reviewedTags = {}) {
   const stats = new Map();
   for (const t of library.titles || []) {
@@ -190,16 +191,34 @@ function computeGenreStats(library, enrichedMeta, llmTags = {}, reviewedTags = {
 // inferSubgenres() returns hyphenated machine keys (engine.js reads them
 // back for scoring, so they can't be prettied at the source) — a small
 // display-only label map, same spirit as REASON_CODE_SHORT_LABEL below.
+// Post-taxonomy-redesign canonical vocabulary (65 buckets). A handful of
+// old genre-duplicative buckets (crime-drama, sci-fi-fantasy, war, sports,
+// horror, biopic) were retired — that signal now lives in the separate
+// Genre field — so their labels were dropped rather than left dangling.
 const SUBGENRE_LABEL = {
-  'crime-drama': 'Crime Drama', 'procedural': 'Procedural', 'psychological-thriller': 'Psychological Thriller',
-  'family-drama': 'Family Drama', 'dark-comedy': 'Dark Comedy', 'historical': 'Historical',
-  'political': 'Political', 'sci-fi-fantasy': 'Sci-Fi & Fantasy', 'biopic': 'Biopic',
-  'coming-of-age': 'Coming-of-Age', 'workplace-comedy': 'Workplace Comedy', 'war': 'War',
-  'sports': 'Sports', 'romance': 'Romance', 'legal': 'Legal', 'superhero': 'Superhero',
-  'spy-espionage': 'Spy / Espionage', 'horror': 'Horror', 'romcom': 'Rom-Com', 'medical': 'Medical',
-  'heist': 'Heist', 'prison': 'Prison', 'musical': 'Musical', 'neo-western': 'Neo-Western',
+  'procedural': 'Procedural', 'legal': 'Legal', 'heist': 'Heist', 'spy-espionage': 'Spy / Espionage',
+  'psychological-thriller': 'Psychological Thriller', 'family-drama': 'Family Drama',
+  'coming-of-age': 'Coming-of-Age', 'romcom': 'Rom-Com', 'workplace-comedy': 'Workplace Comedy',
+  'dark-comedy': 'Dark Comedy', 'prison': 'Prison', 'neo-western': 'Neo-Western',
   'organized-crime': 'Organized Crime', 'drug-trade': 'Drug Trade', 'assassin-hitman': 'Assassin / Hitman',
-  'murder-mystery': 'Murder Mystery', 'police-procedural': 'Police Procedural',
+  'murder-mystery': 'Murder Mystery', 'police-procedural': 'Police Procedural', 'historical': 'Historical',
+  'political': 'Political', 'romance': 'Romance', 'medical': 'Medical', 'superhero': 'Superhero',
+  'musical': 'Musical',
+  'psychological-drama': 'Psychological Drama', 'ensemble': 'Ensemble', 'workplace-drama': 'Workplace Drama',
+  'neo-noir': 'Neo-Noir', 'character-study': 'Character Study', 'crime-thriller': 'Crime Thriller',
+  'biography': 'Biography', 'mystery-drama': 'Mystery Drama', 'military-drama': 'Military Drama',
+  'dramedy': 'Dramedy', 'conspiracy-thriller': 'Conspiracy Thriller', 'survival-drama': 'Survival Drama',
+  'sitcom': 'Sitcom', 'satire': 'Satire', 'true-crime': 'True Crime', 'anthology': 'Anthology',
+  'docudrama': 'Docudrama', 'buddy-comedy': 'Buddy Comedy', 'post-apocalyptic': 'Post-Apocalyptic',
+  'psychological-horror': 'Psychological Horror', 'dystopian': 'Dystopian',
+  'supernatural-horror': 'Supernatural Horror', 'friendship-comedy': 'Friendship Comedy',
+  'mockumentary': 'Mockumentary', 'family-comedy': 'Family Comedy', 'journalism-drama': 'Journalism Drama',
+  'time-travel': 'Time Travel', 'crime-comedy': 'Crime Comedy', 'action-comedy': 'Action Comedy',
+  'survival-horror': 'Survival Horror', 'financial-drama': 'Financial Drama',
+  'techno-thriller': 'Techno-Thriller', 'space-opera': 'Space Opera', 'absurdist-comedy': 'Absurdist Comedy',
+  'social-drama': 'Social Drama', 'creature-feature': 'Creature Feature', 'alien-invasion': 'Alien Invasion',
+  'comedy-mystery': 'Comedy Mystery', 'supernatural-mystery': 'Supernatural Mystery',
+  'chamber-drama': 'Chamber Drama', 'disaster-drama': 'Disaster Drama', 'horror-comedy': 'Horror Comedy',
 };
 
 // Bill: "instead of drama -> historical drama, it should be historical
@@ -624,13 +643,25 @@ const FIELD_REGISTRY = [
     populated: (t, meta) => !!(t.ids?.imdb || meta?.imdbId),
     quality: (t, meta) => !!(t.ids?.imdb || meta?.imdbId),
     note: 'Needed to join OMDb audience-score/awards data.' },
-  { key: 'genres', label: 'Genres', source: 'TMDB', critical: true,
+  { key: 'genres', label: 'Genres (raw TMDB)', source: 'TMDB', critical: true,
     eligible: (t, meta) => !!meta,
     populated: (t, meta) => (meta?.genres?.length || 0) > 0,
     quality: (t, meta) => (meta?.genres?.length || 0) >= 2,
     values: (t, meta) => meta?.genres || [],
-    note: 'Quality = 2+ genres, blended with the field\'s Specificity score (see computeFieldSpecificity()) — ' +
-      'having 2 tags is worthless if one of them is "Drama" on 75% of everything.' },
+    note: 'The raw multi-valued TMDB field (Drama alone sat on 75%+ of everything) — kept here for reference and ' +
+      'still feeds the keyword-tier fallback in Genre below, but is no longer the field BMTRE scores against ' +
+      'directly. See "Genre (clean, single-valued)" below for the field the taxonomy redesign replaced it with.' },
+  { key: 'genre', label: 'Genre (clean, single-valued)', source: 'Derived (reviewed + LLM + keyword)', critical: true,
+    eligible: (t, meta) => !!meta,
+    populated: (t, meta, omdb, llmEntry, reviewed) => inferGenre(meta, llmEntry, reviewed) != null,
+    quality: (t, meta, omdb, llmEntry, reviewed) => inferGenre(meta, llmEntry, reviewed) != null,
+    values: (t, meta, omdb, llmEntry, reviewed) => { const g = inferGenre(meta, llmEntry, reviewed); return g ? [g] : []; },
+    note: 'The Genre/Subgenre taxonomy redesign\'s new single-valued, high-level field (inferGenre(), 17 canonical ' +
+      'values, workbook-seeded for the 793 reviewed titles) — checks trakt/data/reviewedTags.json first, then ' +
+      'trakt/data/llmTags.json, then a deterministic TMDB-genre-priority-order + keyword-override classifier as a ' +
+      'last resort. Feeds genreBonus() directly (replacing the old raw-genres-array scoring). Quality = any real ' +
+      'assignment; unlike Subgenres/Tones this field is only rarely null, since the deterministic fallback tier ' +
+      'never returns empty as long as the title has any TMDB genre at all.' },
   { key: 'overview', label: 'Overview', source: 'TMDB', critical: false,
     eligible: (t, meta) => !!meta,
     populated: (t, meta) => !!meta?.overview,
@@ -954,11 +985,12 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
           `on top of that, "${s ? s.topValue : 'Drama'}" is used so often (about a third of all genre tags) that it doesn't tell the engine ` +
           `much — a truly specific field would spread its tags more evenly across the ~24 real genre values in use. Both are checked directly ` +
           `against TMDB's own data, not a bug in how this app reads it.`,
-        impact: `Below the bar Bill set, so it's listed here, but a low-effort fix doesn't really exist — TMDB itself is the source of ` +
-          `both gaps. The <code>keywords</code>/subgenre-specificity findings elsewhere on this list are the more promising path to real ` +
-          `additional granularity for these titles; a future session could also extend the subgenre-detail keyword pass (currently applied ` +
-          `to 11 of 23 subgenres, see the remaining-subgenre-specificity finding below) to refine the raw Genres field the same way, not just ` +
-          `the derived Subgenres field.`,
+        impact: `Below the bar Bill set, so it's listed here, but a low-effort fix doesn't really exist for this specific raw TMDB field — ` +
+          `TMDB itself is the source of both gaps, and this field is no longer what BMTRE scores against directly. The Genre/Subgenre ` +
+          `taxonomy redesign already addressed the real underlying concern (a blunt, over-concentrated genre signal) by adding a separate, ` +
+          `clean single-valued "Genre" field (<code>inferGenre()</code>, see its own row below) that <code>genreBonus()</code> now scores ` +
+          `against instead of this raw field — that field doesn't inherit this row's specificity problem. This raw field is kept for ` +
+          `reference and as one of Genre's own fallback-tier inputs, not because closing this specific gap still matters much on its own.`,
       };
     },
     criticScore: (f) => {
@@ -1796,8 +1828,13 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
         `powering your actual recommendation scores for a while — it just was never used to LABEL anything you could ` +
         `see. Now it is, everywhere a genre shows up.`,
       impact: `Directly fixes Bill's reported complaint with real, already-validated data rather than inventing a new ` +
-        `taxonomy — verified live: the chart's most common label went from "Drama" (75.1% of titles) to "crime-drama" ` +
-        `(20.2%), a genuine 3.7x reduction in concentration.`,
+        `taxonomy — verified live: the chart's most common label went from "Drama" (75.1% of titles) to the current ` +
+        `most-common subgenre at a much lower share (see the field's live specificity numbers in Field Population & ` +
+        `Quality above). A later Genre/Subgenre taxonomy redesign went further still, retiring the genre-duplicative ` +
+        `subgenre buckets (crime-drama, sci-fi-fantasy, horror, sports, biopic, war) this fix originally surfaced and ` +
+        `replacing them with a curated 65-bucket vocabulary — no bucket now exceeds the 15%-concentration cap at all ` +
+        `(verified live, zero buckets over the cap as of the current data, down from crime-drama alone sitting at 20.2% ` +
+        `right after this fix originally shipped).`,
     });
     if (over15.length) {
       findings.push({
@@ -1894,22 +1931,29 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     });
   }
 
-  // Remaining, not-yet-done half of the genre-specificity work: Bill's
-  // "I want that level of specificity for all genres and subgenres" ask
-  // was only partially completed — inferSubgenreDetail()/GENRE_DETAIL_KEYWORDS
-  // currently refine 11 of the 23 real subgenre tags (the other 9 were
-  // deliberately left unsplit after checking the real data showed no safe,
-  // sufficiently-evidenced further split), and the refinement is applied
-  // only to the derived Subgenres field, never to the raw TMDB Genres
-  // field itself. Computed live so the "11 of 23" count can't silently
-  // drift out of sync with GENRE_DETAIL_KEYWORDS as it's extended.
+  // Remaining, not-yet-done half of the genre-specificity work. As of the
+  // Genre/Subgenre taxonomy redesign, Genre is no longer "raw TMDB" — it's
+  // now a clean, single-valued, workbook-seeded field (inferGenre(), 17
+  // canonical values) that's already specific and high-signal on its own,
+  // so the original "raw genres field has no detail refinement" framing no
+  // longer describes the real gap. What's still true: GENRE_DETAIL_KEYWORDS
+  // only refines a minority of the live canonical Subgenre vocabulary (65
+  // buckets post-redesign, several genre-duplicative buckets retired,
+  // several new ones added from the workbook). Computed live off the
+  // keyword-tier so the counts can't silently drift as the vocabulary or
+  // GENRE_DETAIL_KEYWORDS is extended.
   {
     let refinedCount = 0, totalSubgenres = 0;
     try {
       // GENRE_DETAIL_KEYWORDS isn't exported, so this counts indirectly via
       // a light live probe: run inferSubgenreDetail() against every real
-      // subgenre tag currently in use and see which ones return a result
-      // for at least one real enriched title carrying that tag.
+      // subgenre tag the keyword tier currently produces and see which ones
+      // return a result for at least one real enriched title carrying that
+      // tag. This only measures the keyword-tier's reachable buckets — the
+      // reviewedTags-only-reachable canonical buckets (e.g. techno-thriller,
+      // supernatural-horror, biography, musical) aren't exercised by this
+      // probe, so the real refined/total ratio across the full live
+      // vocabulary is somewhat higher than what's reported here.
       const tagTitles = new Map();
       for (const meta of Object.values(enrichedMeta)) {
         for (const tag of inferSubgenres(meta, null)) {
@@ -1924,29 +1968,33 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     findings.push({
       id: 'remaining-subgenre-genre-specificity',
       severity: 'warning',
-      ratings: { ease: 4, dataQuality: 5, recEngine: 2, ui: 3 },
-      title: `Genre/subgenre specificity is a partial pass — ${refinedCount || 11} of ${totalSubgenres || 23} subgenres have a detail ` +
-        `breakdown, the raw Genres field has none`,
-      technical: `<code>inferSubgenreDetail()</code>/<code>GENRE_DETAIL_KEYWORDS</code> currently refine ${refinedCount || 11} of ` +
-        `${totalSubgenres || 23} real subgenre tags into a more specific label (e.g. <code>historical</code>/<code>war</code> → WWII/` +
-        `Vietnam/Cold War era buckets, <code>crime-drama</code> → Organized Crime/Drug Trade/Assassin, <code>sports</code> → Boxing/` +
-        `Basketball/Baseball/Wrestling/Racing). The other ${totalSubgenres ? totalSubgenres - refinedCount : 12} subgenres were checked ` +
-        `and deliberately left unsplit after real keyword-frequency scans showed either too little data to support a further split or ` +
-        `every candidate keyword producing real false positives when checked against the full dataset (documented inline in ` +
-        `<code>GENRE_DETAIL_KEYWORDS</code>'s history of dropped candidates: genocide, alcohol, betrayal, civil war, outlaw/sheriff/` +
-        `gunslinger, nasa/astronaut, corruption, sibling relationship, drugs, president). Separately, the raw top-level <code>genres</code> ` +
-        `field (Drama/Comedy/Action/etc.) has no detail refinement applied to it at all — only the derived Subgenres field does, via ` +
-        `<code>displaySubgenre()</code> in dashboard.js.`,
-      plain: `Bill asked for the same level of specificity ("historical → WW2") applied across every genre and subgenre, not just the one ` +
-        `example he gave. About half of the real subgenre categories now have this — for example a war movie or show gets tagged with ` +
-        `which war, a sports title gets tagged with which sport. The rest were checked for a similar split and genuinely didn't have ` +
-        `enough real, reliable signal to safely add one (checked directly against the actual data, not skipped without looking). The plain ` +
-        `top-level genre label (like "Drama") still has no such breakdown at all — that's the biggest remaining piece of this ask.`,
-      impact: `A real, only-partially-delivered request. The already-shipped half (11 subgenres) is validated and live on the dashboard's ` +
-        `Genres chart, rec cards, and All Titles table. Finishing it would mean either accepting that the remaining subgenres/genres ` +
-        `genuinely lack safe keyword signal today (a real, checked ceiling, same as the Genres field-quality ceiling above) or revisiting ` +
-        `them periodically as TMDB's keyword coverage grows — not a quick follow-up, closer in scope to a continuation of this session's ` +
-        `own work than a bug fix.`,
+      ratings: { ease: 4, dataQuality: 4, recEngine: 2, ui: 3 },
+      title: `Subgenre detail refinement covers a minority of the live vocabulary — ${refinedCount || 4} of ${totalSubgenres || 30} ` +
+        `keyword-tier subgenre tags have a detail breakdown`,
+      technical: `The Genre/Subgenre taxonomy redesign replaced Genre's old raw-TMDB field with a clean single-valued canonical field ` +
+        `(<code>inferGenre()</code>, 17 workbook-seeded values) and replaced Subgenre's old 29-bucket keyword list with a curated ` +
+        `65-bucket canonical vocabulary — several genre-duplicative buckets (<code>war</code>, <code>sci-fi-fantasy</code>, ` +
+        `<code>horror</code>, <code>biopic</code>, <code>sports</code>, <code>crime-drama</code>) retired since that signal now lives ` +
+        `in Genre itself, and new buckets (e.g. <code>neo-noir</code>, <code>character-study</code>, <code>techno-thriller</code>, ` +
+        `<code>supernatural-horror</code>) added from the workbook. <code>GENRE_DETAIL_KEYWORDS</code> was remapped onto the new ` +
+        `buckets in the same pass (biopic → biography, sci-fi-fantasy's Dystopia/Post-Apocalyptic/Alien Invasion/Time Travel groups ` +
+        `graduated into real scored top-level buckets, a dormant <code>sports</code> detail key kept for forward-compatibility even ` +
+        `though no live subgenre tag reaches it), but currently only refines ${refinedCount || 4} of the ${totalSubgenres || 30} ` +
+        `real subgenre tags the keyword tier produces (this probe undercounts the true total, since it can't exercise the several ` +
+        `canonical buckets — e.g. <code>techno-thriller</code>, <code>supernatural-horror</code>, <code>biography</code>, ` +
+        `<code>musical</code> — that are currently only reachable via the <code>reviewedTags.json</code> override tier, not the ` +
+        `keyword tier this probe scans).`,
+      plain: `Bill asked for genre to be high-level and subgenre to be very specific, and separately for detail breakdowns ("historical ` +
+        `→ WW2") applied broadly. The high-level/specific split is now done — genre is a clean single label, subgenre is a much more ` +
+        `specific 65-option vocabulary built from a hand-reviewed spreadsheet. What's still only partially done is the finer "which ` +
+        `war/which sport" layer underneath subgenre — most subgenre categories don't have this extra layer yet, mainly because most ` +
+        `of them (character studies, workplace dramas, dark comedies, etc.) don't have an obvious further split the way "historical" ` +
+        `naturally splits into eras.`,
+      impact: `A real, still-partial piece of a much larger request, most of which (the genre/subgenre taxonomy itself) is now done and ` +
+        `live. The remaining detail-layer gap is lower-severity than before the redesign, since subgenre itself is already far more ` +
+        `specific than it used to be — the detail layer is now a nice-to-have refinement on top of a good base, not the only source ` +
+        `of specificity. Closing it further would mean the same keyword-frequency-verification discipline used throughout this ` +
+        `session, applied to the newly-added canonical buckets one at a time.`,
     });
   }
 
@@ -2087,7 +2135,9 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
         ? `${collisions.length} taxonomy name${collisions.length === 1 ? '' : 's'} appear${collisions.length === 1 ? 's' : ''} in more than one of subgenres/tones/subjects — needs cleanup`
         : `Taxonomy layers audited and guarded: subgenres/tones/subjects stay at genuinely different conceptual levels, 0 collisions`,
       technical: `New <code>findTaxonomyCollisions()</code> in engine.js checks every bucket name across ` +
-        `<code>SUBGENRE_KEYWORDS</code>/<code>TONE_KEYWORDS</code>/<code>SUBJECT_KEYWORDS</code> (21/16/11 buckets) plus every nested ` +
+        `<code>SUBGENRE_KEYWORDS</code>/<code>TONE_KEYWORDS</code>/<code>SUBJECT_KEYWORDS</code> (30/15/12 keyword-tier buckets as of ` +
+        `the Genre/Subgenre taxonomy redesign — Subgenre's canonical vocabulary is 65 buckets total, but several are only reachable via ` +
+        `the <code>reviewedTags.json</code> override tier, not the keyword tier this check scans) plus every nested ` +
         `<code>GENRE_DETAIL_KEYWORDS</code> label for a name shared across categories — the exact drift an external metadata-improvement ` +
         `plan flagged as a risk ("dark"/"gritty" leaking into subgenres, "organized-crime"/"politics"/"war" leaking into tones). ` +
         `${collisions.length ? `Found: ${collisions.map(c => `"${c.name}" in ${c.appearsIn.join('+')}`).join(', ')}.` : `Audited: 0 collisions ` +

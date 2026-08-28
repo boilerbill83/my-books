@@ -1,4 +1,4 @@
-name: Tag BMTRE Subgenres/Tones with Haiku
+name: Tag BMTRE Subgenres/Tones/Genre with Haiku
 
 on:
   workflow_dispatch:   # manual only — each run costs real API credits
