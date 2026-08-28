@@ -5703,7 +5703,11 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-28"
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 3,
+  "mcUserAttempted": true
  },
  "movie:1429813": {
   "rottenTomatoes": null,
@@ -7874,7 +7878,11 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-28"
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 3,
+  "mcUserAttempted": true
  },
  "show:113988": {
   "rottenTomatoes": 57,
@@ -7947,7 +7955,11 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-28"
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 3,
+  "mcUserAttempted": true
  },
  "show:61123": {
   "rottenTomatoes": null,
@@ -8317,7 +8329,11 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-28"
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 1,
+  "mcUserAttempted": true
  },
  "show:5742": {
   "rottenTomatoes": null,
@@ -8326,7 +8342,11 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-28"
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 1,
+  "mcUserAttempted": true
  },
  "movie:307081": {
   "rottenTomatoes": 59,
@@ -9253,7 +9273,11 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-28"
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 3,
+  "mcUserAttempted": true
  },
  "movie:338969": {
   "rottenTomatoes": null,
@@ -9522,7 +9546,11 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-28"
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 3,
+  "mcUserAttempted": true
  },
  "movie:442249": {
   "rottenTomatoes": 55,
@@ -9648,7 +9676,11 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-28"
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 3,
+  "mcUserAttempted": true
  },
  "show:248937": {
   "rottenTomatoes": null,
@@ -9657,7 +9689,11 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-28"
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 3,
+  "mcUserAttempted": true
  },
  "show:273866": {
   "rottenTomatoes": 98,
