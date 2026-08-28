@@ -1759,11 +1759,10 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/house-of-cards",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/house-of-cards/",
+  "mcUrl": null,
   "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "rtAudienceAttempted": true
  },
  "show:110971": {
   "rottenTomatoes": 100,
@@ -5151,11 +5150,10 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/perry_mason_2020",
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/perry-mason/",
+  "mcUrl": null,
   "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "rtAudienceAttempted": true
  },
  "show:219971": {
   "rottenTomatoes": 79,
@@ -7879,14 +7877,17 @@
   "checkedAt": "2026-08-24"
  },
  "show:113988": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
+  "rottenTomatoes": 57,
+  "rtAudience": 82,
+  "rtUrl": "https://www.rottentomatoes.com/tv/monster_2022/s01",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "metacritic": 46,
+  "metacriticUser": 71,
+  "mcUrl": "https://www.metacritic.com/tv/monster-2022/season-1/",
   "mcUserAttempted": true,
-  "checkedAt": "2026-08-24"
+  "checkedAt": "2026-08-28",
+  "manuallyVerified": "RT/MC both host this as a Netflix-anthology season sub-page (monster_2022/s01, monster-2022/season-1) that no slug-guess derivable from the stored title (\"DAHMER - Monster: The Jeffrey Dahmer Story\") could reach automatically. Verified against real outside sources (Forbes, ScreenRant, Metacritic season page) rather than scraped."
  },
  "show:91405": {
   "rottenTomatoes": null,
