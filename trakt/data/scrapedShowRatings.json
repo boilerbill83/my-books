@@ -327,12 +327,8 @@
   "rottenTomatoes": 80,
   "rtAudience": 74,
   "rtUrl": "https://www.rottentomatoes.com/tv/jack_ryan",
-  "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-23",
   "rtAttempted": "2026-08-23",
-  "mcUserAttempted": true,
   "rtAudienceAttempted": true
  },
  "show:63646": {
@@ -987,13 +983,9 @@
   "rottenTomatoes": 96,
   "rtAudience": 89,
   "rtUrl": "https://www.rottentomatoes.com/tv/chappelle_s_show",
-  "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-25",
   "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "rtAudienceAttempted": true
  },
  "show:87108": {
   "rottenTomatoes": 95,
@@ -1829,12 +1821,8 @@
   "rottenTomatoes": 96,
   "rtAudience": 79,
   "rtUrl": "https://www.rottentomatoes.com/tv/im_a_virgo",
-  "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
   "rtAttempted": "2026-08-24",
-  "mcUserAttempted": true,
   "rtAudienceAttempted": true
  },
  "show:90812": {
@@ -1890,12 +1878,8 @@
   "rottenTomatoes": 94,
   "rtAudience": 90,
   "rtUrl": "https://www.rottentomatoes.com/tv/its_always_sunny_in_philadelphia",
-  "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
   "rtAttempted": "2026-08-24",
-  "mcUserAttempted": true,
   "rtAudienceAttempted": true
  },
  "show:1436": {
@@ -1986,12 +1970,8 @@
   "rottenTomatoes": 53,
   "rtAudience": 47,
   "rtUrl": "https://www.rottentomatoes.com/tv/liseys_story",
-  "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
   "rtAttempted": "2026-08-24",
-  "mcUserAttempted": true,
   "rtAudienceAttempted": true
  },
  "show:90257": {
@@ -2166,12 +2146,8 @@
   "rottenTomatoes": 92,
   "rtAudience": 90,
   "rtUrl": "https://www.rottentomatoes.com/tv/daredevil",
-  "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
   "rtAttempted": "2026-08-24",
-  "mcUserAttempted": true,
   "rtAudienceAttempted": true
  },
  "show:46518": {
@@ -3354,13 +3330,9 @@
   "rottenTomatoes": 83,
   "rtAudience": 57,
   "rtUrl": "https://www.rottentomatoes.com/tv/the_handmaids_tale",
-  "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "rtAudienceAttempted": true
  },
  "show:217825": {
   "rottenTomatoes": 81,
@@ -3678,13 +3650,9 @@
   "rottenTomatoes": 96,
   "rtAudience": 94,
   "rtUrl": "https://www.rottentomatoes.com/tv/the_queens_gambit",
-  "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "rtAudienceAttempted": true
  },
  "show:206829": {
   "rottenTomatoes": 51,
@@ -4278,13 +4246,9 @@
   "rottenTomatoes": 98,
   "rtAudience": 92,
   "rtUrl": "https://www.rottentomatoes.com/tv/widows_bay",
-  "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "rtAudienceAttempted": true
  },
  "show:208569": {
   "rottenTomatoes": 76,
@@ -5017,13 +4981,9 @@
   "rottenTomatoes": 24,
   "rtAudience": 61,
   "rtUrl": "https://www.rottentomatoes.com/tv/las_finest",
-  "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "rtAudienceAttempted": true
  },
  "show:79618": {
   "rottenTomatoes": 88,
@@ -5233,25 +5193,17 @@
   "rottenTomatoes": 95,
   "rtAudience": 91,
   "rtUrl": "https://www.rottentomatoes.com/tv/marvels_agents_of_shield",
-  "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "rtAudienceAttempted": true
  },
  "show:62643": {
   "rottenTomatoes": 89,
   "rtAudience": 56,
   "rtUrl": "https://www.rottentomatoes.com/tv/dcs_legends_of_tomorrow",
-  "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "rtAudienceAttempted": true
  },
  "show:112693": {
   "rottenTomatoes": 94,
@@ -5306,13 +5258,9 @@
   "rottenTomatoes": 84,
   "rtAudience": 72,
   "rtUrl": "https://www.rottentomatoes.com/tv/greys_anatomy",
-  "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "rtAudienceAttempted": true
  },
  "show:201877": {
   "rottenTomatoes": 71,
@@ -5567,25 +5515,17 @@
   "rottenTomatoes": 78,
   "rtAudience": 70,
   "rtUrl": "https://www.rottentomatoes.com/tv/marvels_the_defenders",
-  "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "rtAudienceAttempted": true
  },
  "show:67178": {
   "rottenTomatoes": 64,
   "rtAudience": 79,
   "rtUrl": "https://www.rottentomatoes.com/tv/marvels_the_punisher",
-  "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "rtAudienceAttempted": true
  },
  "show:195868": {
   "rottenTomatoes": null,
@@ -6035,11 +5975,7 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/cabinet_of_curiosities",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "mcUserAttempted": true,
-  "checkedAt": "2026-08-24"
+  "metacriticUser": null
  },
  "show:38472": {
   "rottenTomatoes": 83,
@@ -6047,11 +5983,7 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/marvels_jessica_jones",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "mcUserAttempted": true,
-  "checkedAt": "2026-08-24"
+  "metacriticUser": null
  },
  "show:93870": {
   "rottenTomatoes": 100,
@@ -6779,11 +6711,7 @@
   "rtUrl": "https://www.rottentomatoes.com/m/five_nights_at_freddys_2",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "mcUserAttempted": true,
-  "checkedAt": "2026-08-24"
+  "metacriticUser": null
  },
  "movie:359724": {
   "rottenTomatoes": 92,
@@ -7236,11 +7164,7 @@
   "rtUrl": "https://www.rottentomatoes.com/m/mollys_game",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "mcUserAttempted": true,
-  "checkedAt": "2026-08-24"
+  "metacriticUser": null
  },
  "movie:60308": {
   "rottenTomatoes": 94,
@@ -8257,11 +8181,7 @@
   "rtUrl": "https://www.rottentomatoes.com/m/were_the_millers",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "mcUserAttempted": true,
-  "checkedAt": "2026-08-24"
+  "metacriticUser": null
  },
  "movie:9522": {
   "rottenTomatoes": 75,
@@ -8557,11 +8477,7 @@
   "rtUrl": "https://www.rottentomatoes.com/m/the_hitmans_wifes_bodyguard",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "mcUserAttempted": true,
-  "checkedAt": "2026-08-24"
+  "metacriticUser": null
  },
  "movie:208134": {
   "rottenTomatoes": 61,
@@ -8677,11 +8593,7 @@
   "rtUrl": "https://www.rottentomatoes.com/m/tom_clancys_without_remorse",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "mcUserAttempted": true,
-  "checkedAt": "2026-08-24"
+  "metacriticUser": null
  },
  "movie:347629": {
   "rottenTomatoes": 77,
@@ -9156,11 +9068,7 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "mcUserAttempted": true,
-  "checkedAt": "2026-08-24"
+  "metacriticUser": null
  },
  "movie:913290": {
   "rottenTomatoes": 92,
@@ -9377,11 +9285,7 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "mcUserAttempted": true,
-  "checkedAt": "2026-08-24"
+  "metacriticUser": null
  },
  "movie:442065": {
   "rottenTomatoes": 62,

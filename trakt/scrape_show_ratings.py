@@ -1693,6 +1693,21 @@ def scrape_rt(page, title, year, kind, imdb_id=None):
 
 # ── Metacritic ────────────────────────────────────────────────────────────
 
+def _slugify(text):
+    """Metacritic's own slug convention drops apostrophes entirely rather
+    than treating them as a word break — "Grey's Anatomy" -> "greys-
+    anatomy", not "grey-s-anatomy". A plain [^a-z0-9]+ -> '-' substitution
+    (the previous approach, still correct for every other punctuation
+    mark) turns an apostrophe into a hyphen instead, guessing a URL that
+    doesn't exist for any possessive-form title. Confirmed by code
+    inspection against Metacritic's well-known slug convention (not a
+    live fetch — this sandbox can't reach metacritic.com, see the module
+    docstring) — real impact: 24 of 106 real production RT-but-no-MC
+    misses carry an apostrophe (Grey's Anatomy, The Queen's Gambit,
+    Marvel's Jessica Jones, It's Always Sunny in Philadelphia, etc.)."""
+    return re.sub(r'-+', '-', re.sub(r'[^a-z0-9]+', '-', text.lower().replace("'", '').replace('’', ''))).strip('-')
+
+
 def scrape_metacritic(page, title, year, kind, imdb_id=None):
     """kind: 'movie' or 'show'. Same search-then-scrape shape as RT.
 
@@ -1724,7 +1739,7 @@ def scrape_metacritic(page, title, year, kind, imdb_id=None):
     # whose real slug doesn't match the naive lowercase-hyphenate guess,
     # but trying it first on every title would waste a full page load on
     # something that has never once worked.
-    slug = re.sub(r'-+', '-', re.sub(r'[^a-z0-9]+', '-', title.lower())).strip('-')
+    slug = _slugify(title)
     guess_url = f'https://www.metacritic.com{path_prefix}{slug}/'
     try:
         resp = page.goto(guess_url, wait_until='domcontentloaded', timeout=20_000)
@@ -1749,7 +1764,7 @@ def scrape_metacritic(page, title, year, kind, imdb_id=None):
     if url is None:
         stripped_title = _strip_franchise_prefix(title)
         if stripped_title:
-            stripped_slug = re.sub(r'-+', '-', re.sub(r'[^a-z0-9]+', '-', stripped_title.lower())).strip('-')
+            stripped_slug = _slugify(stripped_title)
             stripped_guess_url = f'https://www.metacritic.com{path_prefix}{stripped_slug}/'
             try:
                 resp = page.goto(stripped_guess_url, wait_until='domcontentloaded', timeout=20_000)
