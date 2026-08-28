@@ -327,9 +327,13 @@
   "rottenTomatoes": 80,
   "rtAudience": 74,
   "rtUrl": "https://www.rottentomatoes.com/tv/jack_ryan",
-  "metacriticUser": null,
+  "metacriticUser": 66,
   "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": 66,
+  "mcUrl": "https://www.metacritic.com/tv/tom-clancys-jack-ryan/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:63646": {
   "rottenTomatoes": 100,
@@ -983,9 +987,13 @@
   "rottenTomatoes": 96,
   "rtAudience": 89,
   "rtUrl": "https://www.rottentomatoes.com/tv/chappelle_s_show",
-  "metacriticUser": null,
+  "metacriticUser": 89,
   "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": 74,
+  "mcUrl": "https://www.metacritic.com/tv/chappelles-show/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:87108": {
   "rottenTomatoes": 95,
@@ -1821,9 +1829,13 @@
   "rottenTomatoes": 96,
   "rtAudience": 79,
   "rtUrl": "https://www.rottentomatoes.com/tv/im_a_virgo",
-  "metacriticUser": null,
+  "metacriticUser": 60,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": 85,
+  "mcUrl": "https://www.metacritic.com/tv/im-a-virgo/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:90812": {
   "rottenTomatoes": 91,
@@ -1878,9 +1890,13 @@
   "rottenTomatoes": 94,
   "rtAudience": 90,
   "rtUrl": "https://www.rottentomatoes.com/tv/its_always_sunny_in_philadelphia",
-  "metacriticUser": null,
+  "metacriticUser": 87,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": 72,
+  "mcUrl": "https://www.metacritic.com/tv/its-always-sunny-in-philadelphia/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:1436": {
   "rottenTomatoes": 97,
@@ -1970,9 +1986,13 @@
   "rottenTomatoes": 53,
   "rtAudience": 47,
   "rtUrl": "https://www.rottentomatoes.com/tv/liseys_story",
-  "metacriticUser": null,
+  "metacriticUser": 53,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": 49,
+  "mcUrl": "https://www.metacritic.com/tv/liseys-story/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:90257": {
   "rottenTomatoes": 79,
@@ -2146,9 +2166,13 @@
   "rottenTomatoes": 92,
   "rtAudience": 90,
   "rtUrl": "https://www.rottentomatoes.com/tv/daredevil",
-  "metacriticUser": null,
+  "metacriticUser": 89,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": 72,
+  "mcUrl": "https://www.metacritic.com/tv/marvels-daredevil/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:46518": {
   "rottenTomatoes": 85,
@@ -3330,9 +3354,13 @@
   "rottenTomatoes": 83,
   "rtAudience": 57,
   "rtUrl": "https://www.rottentomatoes.com/tv/the_handmaids_tale",
-  "metacriticUser": null,
+  "metacriticUser": 73,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": 80,
+  "mcUrl": "https://www.metacritic.com/tv/the-handmaids-tale/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:217825": {
   "rottenTomatoes": 81,
@@ -3650,9 +3678,13 @@
   "rottenTomatoes": 96,
   "rtAudience": 94,
   "rtUrl": "https://www.rottentomatoes.com/tv/the_queens_gambit",
-  "metacriticUser": null,
+  "metacriticUser": 84,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": 79,
+  "mcUrl": "https://www.metacritic.com/tv/the-queens-gambit/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:206829": {
   "rottenTomatoes": 51,
@@ -4246,9 +4278,13 @@
   "rottenTomatoes": 98,
   "rtAudience": 92,
   "rtUrl": "https://www.rottentomatoes.com/tv/widows_bay",
-  "metacriticUser": null,
+  "metacriticUser": 81,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": 78,
+  "mcUrl": "https://www.metacritic.com/tv/widows-bay/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:208569": {
   "rottenTomatoes": 76,
@@ -4983,7 +5019,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/las_finest",
   "metacriticUser": null,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": null,
+  "mcUrl": null,
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:79618": {
   "rottenTomatoes": 88,
@@ -5195,15 +5235,23 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/marvels_agents_of_shield",
   "metacriticUser": null,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": null,
+  "mcUrl": null,
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:62643": {
   "rottenTomatoes": 89,
   "rtAudience": 56,
   "rtUrl": "https://www.rottentomatoes.com/tv/dcs_legends_of_tomorrow",
-  "metacriticUser": null,
+  "metacriticUser": 65,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": 58,
+  "mcUrl": "https://www.metacritic.com/tv/dcs-legends-of-tomorrow/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:112693": {
   "rottenTomatoes": 94,
@@ -5258,9 +5306,13 @@
   "rottenTomatoes": 84,
   "rtAudience": 72,
   "rtUrl": "https://www.rottentomatoes.com/tv/greys_anatomy",
-  "metacriticUser": null,
+  "metacriticUser": 78,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": 64,
+  "mcUrl": "https://www.metacritic.com/tv/greys-anatomy/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:201877": {
   "rottenTomatoes": 71,
@@ -5515,17 +5567,25 @@
   "rottenTomatoes": 78,
   "rtAudience": 70,
   "rtUrl": "https://www.rottentomatoes.com/tv/marvels_the_defenders",
-  "metacriticUser": null,
+  "metacriticUser": 70,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": 63,
+  "mcUrl": "https://www.metacritic.com/tv/marvels-the-defenders/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:67178": {
   "rottenTomatoes": 64,
   "rtAudience": 79,
   "rtUrl": "https://www.rottentomatoes.com/tv/marvels_the_punisher",
-  "metacriticUser": null,
+  "metacriticUser": 80,
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "metacritic": 55,
+  "mcUrl": "https://www.metacritic.com/tv/marvels-the-punisher/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:195868": {
   "rottenTomatoes": null,
@@ -5975,7 +6035,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/cabinet_of_curiosities",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacriticUser": null
+  "metacriticUser": 66,
+  "metacritic": 72,
+  "mcUrl": "https://www.metacritic.com/tv/guillermo-del-toros-cabinet-of-curiosities/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:38472": {
   "rottenTomatoes": 83,
@@ -5983,7 +6047,11 @@
   "rtUrl": "https://www.rottentomatoes.com/tv/marvels_jessica_jones",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacriticUser": null
+  "metacriticUser": 76,
+  "metacritic": 76,
+  "mcUrl": "https://www.metacritic.com/tv/marvels-jessica-jones/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "show:93870": {
   "rottenTomatoes": 100,
@@ -6711,7 +6779,11 @@
   "rtUrl": "https://www.rottentomatoes.com/m/five_nights_at_freddys_2",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacriticUser": null
+  "metacriticUser": 76,
+  "metacritic": 33,
+  "mcUrl": "https://www.metacritic.com/movie/five-nights-at-freddys/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "movie:359724": {
   "rottenTomatoes": 92,
@@ -7164,7 +7236,11 @@
   "rtUrl": "https://www.rottentomatoes.com/m/mollys_game",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacriticUser": null
+  "metacriticUser": 74,
+  "metacritic": 71,
+  "mcUrl": "https://www.metacritic.com/movie/mollys-game/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "movie:60308": {
   "rottenTomatoes": 94,
@@ -8181,7 +8257,11 @@
   "rtUrl": "https://www.rottentomatoes.com/m/were_the_millers",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacriticUser": null
+  "metacriticUser": 69,
+  "metacritic": 44,
+  "mcUrl": "https://www.metacritic.com/movie/were-the-millers/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "movie:9522": {
   "rottenTomatoes": 75,
@@ -8477,7 +8557,11 @@
   "rtUrl": "https://www.rottentomatoes.com/m/the_hitmans_wifes_bodyguard",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacriticUser": null
+  "metacriticUser": null,
+  "metacritic": null,
+  "mcUrl": null,
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "movie:208134": {
   "rottenTomatoes": 61,
@@ -8593,7 +8677,11 @@
   "rtUrl": "https://www.rottentomatoes.com/m/tom_clancys_without_remorse",
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
-  "metacriticUser": null
+  "metacriticUser": 39,
+  "metacritic": 41,
+  "mcUrl": "https://www.metacritic.com/movie/tom-clancys-without-remorse/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "movie:347629": {
   "rottenTomatoes": 77,
@@ -9068,7 +9156,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacriticUser": null
+  "metacriticUser": 67,
+  "metacritic": 67,
+  "mcUrl": "https://www.metacritic.com/movie/dead-mans-wire/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "movie:913290": {
   "rottenTomatoes": 92,
@@ -9285,7 +9377,11 @@
   "rtAttempted": "2026-08-24",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacriticUser": null
+  "metacriticUser": 59,
+  "metacritic": 53,
+  "mcUrl": "https://www.metacritic.com/movie/billy-lynns-long-halftime-walk/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-28"
  },
  "movie:442065": {
   "rottenTomatoes": 62,
