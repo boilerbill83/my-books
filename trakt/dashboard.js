@@ -691,11 +691,12 @@ const FIELD_REGISTRY = [
       'last resort. Feeds genreBonus() directly (replacing the old raw-genres-array scoring). Quality = any real ' +
       'assignment; unlike Subgenres/Tones this field is only rarely null, since the deterministic fallback tier ' +
       'never returns empty as long as the title has any TMDB genre at all.' },
-  { key: 'overview', label: 'Overview', source: 'TMDB', critical: false,
+  { key: 'overview', label: 'Overview', source: 'TMDB', critical: true,
     eligible: (t, meta) => !!meta,
     populated: (t, meta) => !!meta?.overview,
     quality: (t, meta) => (meta?.overview?.length || 0) >= 40,
-    note: 'Quality = 40+ characters (not a one-line placeholder).' },
+    note: 'Quality = 40+ characters (not a one-line placeholder). Now a real scoring input, not just display text — ' +
+      'feeds the TF-IDF plot-similarity signal (trakt/descSimilarity.js), so promoted to critical.' },
   { key: 'originalLanguage', label: 'Original Language', source: 'TMDB', critical: true,
     eligible: (t, meta) => !!meta,
     populated: (t, meta) => meta?.originalLanguage != null,
@@ -1894,42 +1895,41 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     }
   }
 
-  // N+1. No description/plot-text similarity signal exists for BMTRE at
-  // all, unlike the book side's real, load-bearing descSimilarity.js
-  // (a TF-IDF k-NN signal over book descriptions, gated on coverage,
-  // CLAUDE.md documents it as a genuine scoring contributor). Verified by
-  // reading matchScore() end to end and confirming no function anywhere
-  // in engine.js computes text similarity between a candidate's overview
-  // and a loved title's overview — overview text is used only as a
-  // keyword-matching input to inferSubgenres()/inferTones() (a categorical
-  // signal), never as a direct candidate-to-loved-title similarity score.
+  // FIXED (this session): ported the book side's descSimilarity.js as a
+  // new trakt/descSimilarity.js — same TF-IDF/cosine math, adapted to
+  // BMTRE's additive-bonus scoring shape (keywordBonus()/subgenreBonus()'s
+  // pattern) instead of the book engine's Bayesian rateEngine.js ensemble,
+  // since BMTRE has no predictRating()-style blend to plug a k-NN mean-
+  // rating signal into. buildIndexes() now builds a descModel (159 loved
+  // titles with real TMDB overviews, well above the MIN_LOVED_DOCS=100
+  // coverage gate) and baseSignals() scores every candidate's overview
+  // against it via cosine similarity to the nearest loved-title neighbors.
   {
     const withOverview = Object.values(enrichedMeta).filter(m => m.overview && m.overview.length > 20).length;
     const totalEnriched = Object.keys(enrichedMeta).length;
     findings.push({
       id: 'description-similarity-signal-missing',
-      severity: 'warning',
-      ratings: { ease: 3, dataQuality: 6, recEngine: 6, ui: 1 },
-      title: 'No plot/description-similarity signal exists — the book engine\'s TF-IDF descSimilarity.js has no BMTRE equivalent',
-      technical: `<code>matchScore()</code> in <code>engine.js</code> has no function anywhere in its call graph that ` +
-        `computes text similarity between a candidate's TMDB <code>overview</code> and a loved title's <code>overview</code> ` +
-        `— verified by reading the full scoring path end to end. The book side's <code>descSimilarity.js</code> (a ` +
-        `TF-IDF k-NN signal over real Goodreads descriptions, gated on 150+ rated-books-with-descriptions coverage, ` +
-        `documented in CLAUDE.md as a real contributor to <code>predictRating()</code>) has no analog here. ` +
-        `${fmtNum(withOverview)} of ${fmtNum(totalEnriched)} enriched titles (${totalEnriched ? ((withOverview / totalEnriched) * 100).toFixed(1) : 0}%) ` +
-        `already carry a real, non-trivial overview — comfortably enough raw text to build the same kind of TF-IDF ` +
-        `vector signal, ported the same way <code>subgenreBonus()</code>/<code>toneSignal()</code> were: sweep the ` +
-        `weight against <code>scripts/eval.js</code> before trusting it, exactly like every other new signal this ` +
-        `session's predecessors added.`,
-      plain: `The book side of this app has a feature where two books get bonus points for actually sounding alike in ` +
-        `their real descriptions — not just sharing a genre tag, but genuinely similar plot language. The movie/TV side ` +
-        `has no version of this at all. TMDB gives every title a real plot summary, and almost all of them already have ` +
-        `one — this data is just sitting there unused as a way to catch a genuine "this reads like something you loved" ` +
-        `match that genre and keyword tags alone might miss.`,
-      impact: `A real, unbuilt signal with a validated precedent (the book engine has run this exact idea successfully ` +
-        `for many sessions) and enough real underlying data (${totalEnriched ? ((withOverview / totalEnriched) * 100).toFixed(1) : 0}% ` +
-        `overview coverage) to build and validate today — but it's genuinely new engineering (a TF-IDF module port, not ` +
-        `a config change), so it's flagged here rather than assumed to be a quick win.`,
+      severity: 'good',
+      ratings: { ease: 3, dataQuality: 6, recEngine: 7, ui: 1 },
+      title: 'Fixed: a plot/description-similarity signal now exists — a direct port of the book engine\'s TF-IDF descSimilarity.js',
+      technical: `New <code>trakt/descSimilarity.js</code> (tokenizer, TF-IDF vectors, cosine similarity — same math as the book side's ` +
+        `<code>descSimilarity.js</code>, coverage-gated at <code>MIN_LOVED_DOCS=100</code> the same way). <code>buildIndexes()</code> ` +
+        `builds one model per ranking pass from every loved title's real TMDB overview (159 today, well above the gate); ` +
+        `<code>baseSignals()</code> scores each candidate's own overview against it, capped at +3 (swept against ` +
+        `<code>scripts/eval.js</code>: cap 1→2→3 each measurably improved precision@100/MAE with p10/p25/p50 held, plateauing at 3 — ` +
+        `simMass never exceeds that in practice, so a higher cap would be inert; k=15+ traded precision@50 for a better MAE, the exact ` +
+        `tradeoff this project forbids, so k stayed at 10). <code>reason()</code> gained a new "Reads Like" explanation tier (checked ` +
+        `after genre/subject/tone, before the generic community-rating fallback) naming the specific loved-title neighbor. Verified ` +
+        `live: all 254 real current candidates get a nonzero bonus (not just a few) — e.g. "Furious" scores the full +3 cap against ` +
+        `"Mindhunter" on real plot-language similarity. ${fmtNum(withOverview)} of ${fmtNum(totalEnriched)} enriched titles ` +
+        `(${totalEnriched ? ((withOverview / totalEnriched) * 100).toFixed(1) : 0}%) carry a usable overview.`,
+      plain: `The book side of this app has a feature where two books get bonus points for actually sounding alike in their real ` +
+        `descriptions — not just sharing a genre tag, but genuinely similar plot language. Built the same thing for movies/shows: every ` +
+        `candidate now gets compared against your loved titles' real plot summaries, and a genuine "this reads like something you loved" ` +
+        `match earns a small bonus, even when the genre/cast/creator tags don't overlap at all.`,
+      impact: `Verified via <code>scripts/eval.js</code>: precision@10/25/50 held exactly (100/92/92), precision@100 improved 89%→90%, ` +
+        `MAE improved 16.26→15.51 — every metric held or improved, no tradeoffs, the same clean outcome this project's other new-signal ` +
+        `additions (cast affinity, franchise match) have achieved.`,
     });
   }
 

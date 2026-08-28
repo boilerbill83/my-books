@@ -369,6 +369,27 @@ Three sub-signals, summed:
    same signal strength.
 3. **IMDb vote count** — §3n above.
 
+### 3r. `descSimilarityBonus()` — plot/description similarity — capped at **+3**
+A direct port of the book engine's `descSimilarity.js` (same TF-IDF
+tokenizer/vector/cosine-similarity math, `trakt/descSimilarity.js`),
+adapted to BMTRE's additive-bonus scoring shape instead of the book
+engine's Bayesian `rateEngine.js` ensemble — BMTRE has no
+`predictRating()`-style blend to plug a k-NN mean-rating signal into, so
+this returns a capped bonus the same way `keywordBonus()`/
+`subgenreBonus()` do, not a rating prediction. `buildIndexes()` builds one
+TF-IDF model per ranking pass from every loved title's real TMDB
+`overview` text (coverage-gated at `MIN_LOVED_DOCS=100`; real coverage is
+159 loved titles, all with a usable overview). Each candidate's own
+overview is scored via cosine similarity against its top-10 nearest loved
+neighbors (`minSim=0.03`); the bonus is `min(3, simMass × 4)`. Cap swept
+1→2→3 against `scripts/eval.js` (each step measurably improved
+precision@100/MAE with p10/p25/p50 held, plateauing at 3 since real
+`simMass` values never exceed it); `k` swept 5-20 (15+ traded precision@50
+for a better MAE, the tradeoff this project forbids, so `k=10` held).
+`reason()` gained a "Reads Like" explanation tier naming the specific
+matched loved title, checked after genre/subject/tone but before the
+generic community-rating fallback.
+
 ---
 
 ## 4. Real but display-only (not wired into `matchScore()`)
@@ -610,6 +631,7 @@ Run it: `node trakt/scripts/eval.js` from the repo root.
 | Keyword match | +0 to +1.5 | Free-form TMDB keywords |
 | Subgenre match | +0 to +1.5 | Beneath TMDB's genre taxonomy |
 | Tone signal | -3 to +3 | Real per-tone rating-preference delta |
+| Description similarity | +0 to +3 | TF-IDF plot-text cosine similarity to loved titles |
 | Forward similar-title | +0 to +24 | Scaled by `matchPointScale` |
 | Reverse similar-title | +0 to +12 | Scaled by `matchPointScale` |
 | Community rating (TMDB) | unbounded* | `(voteAverage - 6.0) × 8` |

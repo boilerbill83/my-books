@@ -1,3 +1,5 @@
+import { buildDescModel, descSimilarityBonus } from './descSimilarity.js';
+
 // BMTRE — Bill's Movies & TV Recommendation Engine, Phase 1.
 //
 // Rule-based scorer for trakt/data/watchlist.json candidates, mirroring
@@ -428,7 +430,17 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   const showAiringRateLoved = lovedCountByType.show ? lovedShowsAiring / lovedCountByType.show : 0;
   const showAiringOverrep = Math.max(0, showAiringRateLoved - showAiringRateAll);
 
-  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags };
+  // TF-IDF plot/description similarity to loved titles (dashboard's
+  // "description-similarity-signal-missing" finding) — see
+  // descSimilarity.js for the full port rationale. Built once per
+  // buildIndexes() call (same lifecycle as toneProfile above), not per
+  // candidate, since the loved-title corpus doesn't change within one
+  // ranking pass. Returns null (a true no-op) below MIN_LOVED_DOCS
+  // coverage, same coverage-gated pattern the book side's own
+  // buildDescModel() uses.
+  const descModel = buildDescModel(enrichedMeta, lovedTitles);
+
+  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -1970,7 +1982,17 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   score += showAiringBonus(candidate, meta, idx);
   score += omdbSignal(omdbEntry);
 
-  return { score, forwardMatches, creator };
+  // Plot/description similarity to loved titles (dashboard's
+  // "description-similarity-signal-missing" finding) — a genuine "this
+  // reads like something you loved" text signal, distinct from every
+  // structured-metadata signal above. null (not 0) below coverage, so
+  // descBonus stays a true no-op rather than a silent 0 that could be
+  // confused with "checked, no match".
+  const descResult = descSimilarityBonus(meta?.overview, idx.descModel, candidate.titleKey);
+  const descBonus = descResult ? descResult.bonus : 0;
+  score += descBonus;
+
+  return { score, forwardMatches, creator, descBonus };
 }
 
 function matchScoreMovie(candidate, idx, enrichedMeta, omdbMeta) {
@@ -2091,6 +2113,20 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
     const topTone = inferTones(meta, llmEntry, undefined, reviewedEntry).find(t => (idx.toneProfile.get(t) ?? -Infinity) > idx.globalMeanRating);
     if (topTone) {
       return `Tone Match — Has a ${topTone} feel, a tone you've consistently rated above your average.`;
+    }
+  }
+
+  // Plot/description similarity — checked after the structured-metadata
+  // signals above (genre/subject/tone) but before the generic community-
+  // rating fallback, since a real text-similarity match to a specific
+  // loved title is more concrete than an aggregate rating. Only surfaces
+  // when there's an actual neighbor to name, never a bare score.
+  const descResult = descSimilarityBonus(meta.overview, idx.descModel, candidate.titleKey);
+  if (descResult?.neighbors?.length) {
+    const top = descResult.neighbors[0];
+    const topTitle = idx.watched.get(top.key)?.title;
+    if (topTitle) {
+      return `Reads Like — Plot-similar to ${topTitle}, which you loved.`;
     }
   }
 
