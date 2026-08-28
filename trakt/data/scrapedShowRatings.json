@@ -5707,7 +5707,10 @@
   "rtAttempted": "2026-08-28",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 3,
-  "mcUserAttempted": true
+  "mcUserAttempted": true,
+  "confirmedNoCoverage": true,
+  "confirmedNoCoverageNote": "Bill checked RT/Metacritic directly and confirmed no page exists for this title on either site as of 2026-08-28.",
+  "confirmedNoCoverageAt": "2026-08-28"
  },
  "movie:1429813": {
   "rottenTomatoes": null,
@@ -7882,7 +7885,10 @@
   "rtAttempted": "2026-08-28",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 3,
-  "mcUserAttempted": true
+  "mcUserAttempted": true,
+  "confirmedNoCoverage": true,
+  "confirmedNoCoverageNote": "Bill checked RT/Metacritic directly and confirmed no page exists for this title on either site as of 2026-08-28.",
+  "confirmedNoCoverageAt": "2026-08-28"
  },
  "show:113988": {
   "rottenTomatoes": 57,
@@ -7959,7 +7965,10 @@
   "rtAttempted": "2026-08-28",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 3,
-  "mcUserAttempted": true
+  "mcUserAttempted": true,
+  "confirmedNoCoverage": true,
+  "confirmedNoCoverageNote": "Bill checked RT/Metacritic directly and confirmed no page exists for this title on either site as of 2026-08-28.",
+  "confirmedNoCoverageAt": "2026-08-28"
  },
  "show:61123": {
   "rottenTomatoes": null,
@@ -8333,7 +8342,10 @@
   "rtAttempted": "2026-08-28",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "mcUserAttempted": true
+  "mcUserAttempted": true,
+  "confirmedNoCoverage": true,
+  "confirmedNoCoverageNote": "Bill checked RT/Metacritic directly and confirmed no page exists for this title on either site as of 2026-08-28.",
+  "confirmedNoCoverageAt": "2026-08-28"
  },
  "show:5742": {
   "rottenTomatoes": null,
@@ -8346,7 +8358,10 @@
   "rtAttempted": "2026-08-28",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "mcUserAttempted": true
+  "mcUserAttempted": true,
+  "confirmedNoCoverage": true,
+  "confirmedNoCoverageNote": "Bill checked RT/Metacritic directly and confirmed no page exists for this title on either site as of 2026-08-28.",
+  "confirmedNoCoverageAt": "2026-08-28"
  },
  "movie:307081": {
   "rottenTomatoes": 59,
@@ -9277,7 +9292,10 @@
   "rtAttempted": "2026-08-28",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 3,
-  "mcUserAttempted": true
+  "mcUserAttempted": true,
+  "confirmedNoCoverage": true,
+  "confirmedNoCoverageNote": "Bill checked RT/Metacritic directly and confirmed no page exists for this title on either site as of 2026-08-28.",
+  "confirmedNoCoverageAt": "2026-08-28"
  },
  "movie:338969": {
   "rottenTomatoes": null,
@@ -9550,7 +9568,10 @@
   "rtAttempted": "2026-08-28",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 3,
-  "mcUserAttempted": true
+  "mcUserAttempted": true,
+  "confirmedNoCoverage": true,
+  "confirmedNoCoverageNote": "Bill checked RT/Metacritic directly and confirmed no page exists for this title on either site as of 2026-08-28.",
+  "confirmedNoCoverageAt": "2026-08-28"
  },
  "movie:442249": {
   "rottenTomatoes": 55,
@@ -9693,7 +9714,10 @@
   "rtAttempted": "2026-08-28",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 3,
-  "mcUserAttempted": true
+  "mcUserAttempted": true,
+  "confirmedNoCoverage": true,
+  "confirmedNoCoverageNote": "Bill checked RT/Metacritic directly and confirmed no page exists for this title on either site as of 2026-08-28.",
+  "confirmedNoCoverageAt": "2026-08-28"
  },
  "show:273866": {
   "rottenTomatoes": 98,

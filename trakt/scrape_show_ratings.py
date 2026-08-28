@@ -849,7 +849,18 @@ def _in_cooldown(entry):
     RETRY_COOLDOWN_DAYS — the same one-off-failure-vs-real-no-data
     distinction scrape_ratings.py already makes for Amazon. Factored out
     of is_cached_done() so load_pending() can reuse it for the
-    MC-specific "still worth retrying" check independent of RT."""
+    MC-specific "still worth retrying" check independent of RT.
+
+    A third state exists beyond "found" and "on cooldown": entry.get(
+    'confirmedNoCoverage') — set by hand (not by this script) when a
+    human directly checked RT/MC's own site and confirmed no page exists
+    for a title at all, stronger evidence than a scraper miss (which
+    could still be a URL-guessing gap this file's own history has
+    repeatedly found real fixes for). load_pending() checks this flag
+    directly rather than through this function, since it needs to
+    override needsMC/needsRT permanently — RETRY_COOLDOWN_DAYS would
+    otherwise put the title back in the queue forever, re-attempting a
+    site a human already confirmed has nothing to find."""
     if entry is None:
         return False
     checked_at = entry.get('checkedAt')
@@ -951,12 +962,17 @@ def load_pending(cache):
             seen.add(key)
 
             cached = cache.get(key)
-            needs_mc = (
+            # confirmedNoCoverage overrides the cooldown-retry logic below
+            # entirely — a real, hand-verified "no page exists on this
+            # site at all" (see its own comment near _in_cooldown()) is
+            # stronger evidence than a scraper miss, and shouldn't keep
+            # re-entering the queue every RETRY_COOLDOWN_DAYS forever.
+            needs_mc = not (cached and cached.get('confirmedNoCoverage')) and (
                 cached is None
                 or not cached.get('mcUserAttempted')
                 or (cached.get('metacritic') is None and not _in_cooldown(cached))
             )
-            needs_rt = SCRAPE_RT and (
+            needs_rt = SCRAPE_RT and not (cached and cached.get('confirmedNoCoverage')) and (
                 cached is None
                 or not cached.get('rtAttempted')
                 or not cached.get('rtAudienceAttempted')
