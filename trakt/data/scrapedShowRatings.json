@@ -1757,12 +1757,13 @@
   "rottenTomatoes": 77,
   "rtAudience": 76,
   "rtUrl": "https://www.rottentomatoes.com/tv/house-of-cards",
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-25",
+  "metacritic": 73,
+  "metacriticUser": 80,
+  "mcUrl": "https://www.metacritic.com/tv/house-of-cards-2013/",
+  "checkedAt": "2026-08-28",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:110971": {
   "rottenTomatoes": 100,
@@ -5148,12 +5149,13 @@
   "rottenTomatoes": 80,
   "rtAudience": 77,
   "rtUrl": "https://www.rottentomatoes.com/tv/perry_mason_2020",
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-25",
+  "metacritic": 69,
+  "metacriticUser": 63,
+  "mcUrl": "https://www.metacritic.com/tv/perry-mason-2020/",
+  "checkedAt": "2026-08-28",
   "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true
+  "rtAudienceAttempted": true,
+  "mcUserAttempted": true
  },
  "show:219971": {
   "rottenTomatoes": 79,
