@@ -7881,9 +7881,7 @@
  "show:113988": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/testament_the_story_of_moses",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
@@ -7893,9 +7891,7 @@
  "show:91405": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/gordon_ramsay_uncharted",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
@@ -7929,9 +7925,7 @@
  "show:83867": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/star_wars_the_bad_batch",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
+  "rtUrl": null,
   "metacritic": 84,
   "metacriticUser": 84,
   "mcUrl": "https://www.metacritic.com/tv/andor/",
