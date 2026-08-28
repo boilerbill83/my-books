@@ -5062,13 +5062,17 @@
   "mcUserAttempted": true
  },
  "movie:997120": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
+  "rottenTomatoes": 26,
+  "rtAudience": 26,
+  "rtUrl": "https://www.rottentomatoes.com/m/sniper_rogue_mission",
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": null,
+  "mcUserAttempted": true
  },
  "movie:811208": {
   "rottenTomatoes": 96,
@@ -5088,8 +5092,12 @@
   "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-25"
+  "mcUrl": "https://www.metacritic.com/tv/cupertino/",
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 1,
+  "mcUserAttempted": true
  },
  "show:273207": {
   "rottenTomatoes": null,
@@ -5097,8 +5105,12 @@
   "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-25"
+  "mcUrl": "https://www.metacritic.com/tv/neagley/",
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 1,
+  "mcUserAttempted": true
  },
  "show:213562": {
   "rottenTomatoes": null,
@@ -5106,8 +5118,12 @@
   "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-25"
+  "mcUrl": "https://www.metacritic.com/tv/crystal-lake/",
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 3,
+  "mcUserAttempted": true
  },
  "show:262280": {
   "rottenTomatoes": 97,
@@ -5687,7 +5703,7 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "checkedAt": "2026-08-28"
  },
  "movie:1429813": {
   "rottenTomatoes": null,
@@ -7858,7 +7874,7 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "checkedAt": "2026-08-28"
  },
  "show:113988": {
   "rottenTomatoes": 57,
@@ -7887,13 +7903,17 @@
   "rtCandidatesTried": null
  },
  "show:53606": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "rottenTomatoes": 94,
+  "rtAudience": 87,
+  "rtUrl": "https://www.rottentomatoes.com/tv/love",
+  "metacritic": 73,
+  "metacriticUser": 77,
+  "mcUrl": "https://www.metacritic.com/tv/love-2016/",
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": null,
+  "mcUserAttempted": true
  },
  "show:155533": {
   "rottenTomatoes": 86,
@@ -7927,7 +7947,7 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "checkedAt": "2026-08-28"
  },
  "show:61123": {
   "rottenTomatoes": null,
@@ -7936,7 +7956,11 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 1,
+  "mcUserAttempted": true
  },
  "movie:398978": {
   "rottenTomatoes": 95,
@@ -8293,7 +8317,7 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "checkedAt": "2026-08-28"
  },
  "show:5742": {
   "rottenTomatoes": null,
@@ -8302,7 +8326,7 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "checkedAt": "2026-08-28"
  },
  "movie:307081": {
   "rottenTomatoes": 59,
@@ -8888,19 +8912,27 @@
   "rottenTomatoes": null,
   "rtAudience": null,
   "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 96,
+  "metacriticUser": 32,
+  "mcUrl": "https://www.metacritic.com/tv/tyler-perrys-the-oval/",
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 1,
+  "mcUserAttempted": true
  },
  "show:60726": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "rottenTomatoes": 57,
+  "rtAudience": 92,
+  "rtUrl": "https://www.rottentomatoes.com/tv/forever",
+  "metacritic": 54,
+  "metacriticUser": 86,
+  "mcUrl": "https://www.metacritic.com/tv/forever-2014/",
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": null,
+  "mcUserAttempted": true
  },
  "movie:504562": {
   "rottenTomatoes": 65,
@@ -9205,10 +9237,14 @@
   "rottenTomatoes": null,
   "rtAudience": null,
   "rtUrl": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "metacritic": 97,
+  "metacriticUser": 84,
+  "mcUrl": "https://www.metacritic.com/tv/late-night-with-conan-obrien/",
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 1,
+  "mcUserAttempted": true
  },
  "show:239000": {
   "rottenTomatoes": null,
@@ -9217,7 +9253,7 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "checkedAt": "2026-08-28"
  },
  "movie:338969": {
   "rottenTomatoes": null,
@@ -9486,7 +9522,7 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-24"
+  "checkedAt": "2026-08-28"
  },
  "movie:442249": {
   "rottenTomatoes": 55,
@@ -9612,7 +9648,7 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-27"
+  "checkedAt": "2026-08-28"
  },
  "show:248937": {
   "rottenTomatoes": null,
@@ -9621,7 +9657,7 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-27"
+  "checkedAt": "2026-08-28"
  },
  "show:273866": {
   "rottenTomatoes": 98,
