@@ -5064,14 +5064,11 @@
  "movie:997120": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/m/mission_impossible_dead_reckoning_part_one",
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-24",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "checkedAt": "2026-08-24"
  },
  "movie:811208": {
   "rottenTomatoes": 96,
@@ -5088,38 +5085,29 @@
  "show:303630": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/cupertino",
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/cupertino/",
-  "checkedAt": "2026-08-25",
-  "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "mcUrl": null,
+  "checkedAt": "2026-08-25"
  },
  "show:273207": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/neagley",
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/neagley/",
-  "checkedAt": "2026-08-25",
-  "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "mcUrl": null,
+  "checkedAt": "2026-08-25"
  },
  "show:213562": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/crystal_lake",
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/crystal-lake/",
-  "checkedAt": "2026-08-25",
-  "rtAttempted": "2026-08-23",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "mcUrl": null,
+  "checkedAt": "2026-08-25"
  },
  "show:262280": {
   "rottenTomatoes": 97,
@@ -5695,14 +5683,11 @@
  "movie:1093883": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/m/1036179-hot_shots",
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-08-24",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "mcUserAttempted": true
+  "checkedAt": "2026-08-24"
  },
  "movie:1429813": {
   "rottenTomatoes": null,
@@ -7869,13 +7854,10 @@
  "show:39754": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/the_audacity",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "mcUserAttempted": true,
   "checkedAt": "2026-08-24"
  },
  "show:113988": {
@@ -7907,13 +7889,10 @@
  "show:53606": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/spooky_in_love",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "mcUserAttempted": true,
   "checkedAt": "2026-08-24"
  },
  "show:155533": {
@@ -7944,26 +7923,19 @@
  "show:62476": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/the_bureau_2009_2",
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "mcUserAttempted": true,
-  "checkedAt": "2026-08-24",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "rtCandidatesTried": 3
+  "checkedAt": "2026-08-24"
  },
  "show:61123": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/the_honourable_woman",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "mcUserAttempted": true,
   "checkedAt": "2026-08-24"
  },
  "movie:398978": {
@@ -8317,25 +8289,19 @@
  "show:2562": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/how_the_west_was_won_1977",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "mcUserAttempted": true,
   "checkedAt": "2026-08-24"
  },
  "show:5742": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/return_to_lonesome_dove",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "mcUserAttempted": true,
   "checkedAt": "2026-08-24"
  },
  "movie:307081": {
@@ -8921,27 +8887,19 @@
  "show:95004": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/tyler_perrys_the_oval",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "rtCandidatesTried": 1,
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "mcUserAttempted": true,
   "checkedAt": "2026-08-24"
  },
  "show:60726": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/forever",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "rtCandidatesTried": 3,
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "mcUserAttempted": true,
   "checkedAt": "2026-08-24"
  },
  "movie:504562": {
@@ -9246,27 +9204,19 @@
  "show:4573": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/late_night_with_conan_o_brien",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "rtCandidatesTried": 1,
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "mcUserAttempted": true,
   "checkedAt": "2026-08-24"
  },
  "show:239000": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/moon_knight",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "rtCandidatesTried": 3,
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "mcUserAttempted": true,
   "checkedAt": "2026-08-24"
  },
  "movie:338969": {
@@ -9532,14 +9482,10 @@
  "show:150": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/this_farming_life",
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "rtCandidatesTried": 3,
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "mcUserAttempted": true,
   "checkedAt": "2026-08-24"
  },
  "movie:442249": {
@@ -9662,27 +9608,19 @@
  "show:287450": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/a_very_secret_service",
-  "rtAttempted": "2026-08-27",
-  "rtAudienceAttempted": true,
-  "rtCandidatesTried": 3,
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "mcUserAttempted": true,
   "checkedAt": "2026-08-27"
  },
  "show:248937": {
   "rottenTomatoes": null,
   "rtAudience": null,
-  "rtUrl": "https://www.rottentomatoes.com/tv/hostage_2026",
-  "rtAttempted": "2026-08-27",
-  "rtAudienceAttempted": true,
-  "rtCandidatesTried": 3,
+  "rtUrl": null,
   "metacritic": null,
   "metacriticUser": null,
-  "mcUrl": "https://www.metacritic.com/tv/hostage/",
-  "mcUserAttempted": true,
+  "mcUrl": null,
   "checkedAt": "2026-08-27"
  },
  "show:273866": {
