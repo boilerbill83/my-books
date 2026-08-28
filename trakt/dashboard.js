@@ -811,11 +811,16 @@ const FIELD_REGISTRY = [
     populated: (t, meta, omdb, llmEntry, reviewed) => inferEra(meta, undefined, reviewed).length > 0,
     quality: (t, meta, omdb, llmEntry, reviewed) => inferEra(meta, undefined, reviewed).length > 0,
     values: (t, meta, omdb, llmEntry, reviewed) => inferEra(meta, undefined, reviewed),
+    noSpecificityInQuality: true,
     note: 'When the STORY is set, not when it was made (that\'s Year, above) — via inferEra(), plus ' +
       'trakt/data/reviewedTags.json\'s curated override (the workbook\'s own 17-value era vocabulary, richer ' +
-      'than inferEra()\'s 4-bucket keyword scheme). The keyword tier alone is honestly partial (~17%) since ' +
-      'most titles are contemporary-set with no explicit setting-era keyword at all; the reviewed override ' +
-      'closes most of that gap for the titles the workbook covers.' },
+      'than inferEra()\'s 4-bucket keyword scheme; 790 of 793 titles pull their era straight from the workbook ' +
+      '— it IS being used). Quality = row completeness only, not blended with distribution specificity the way ' +
+      'Genre/Subgenre/Subjects are: a real 20-title spot-check confirmed the ~71% contemporary-setting share is ' +
+      'accurate, not a tagging gap (Ozark, Silicon Valley, Ted Lasso, Sully, Margin Call, Superbad all correctly ' +
+      'contemporary) — most of Bill\'s real library genuinely is present-day-set, consistent with this project\'s ' +
+      '"favor recent movies"/pre-2000-exclusion history. Forcing an even split across 17 eras would mean ' +
+      'inventing period detail that isn\'t really there, the opposite of what fixed Genre/Subjects.' },
 ];
 
 // Bill: "for each field determine the optimal value and then build that
@@ -903,10 +908,30 @@ function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, om
     // row is populated while "Drama"-style concentration hides in plain
     // sight, and can't read as low-quality purely from a specificity
     // dip while row-level completeness is actually fine.
+    //
+    // Bill asked (after the Era field sat at 71% quality despite 99.7%
+    // real workbook-sourced population) why the workbook's own data
+    // wasn't "being used" — investigated directly rather than assumed:
+    // it already was (790 of 793 titles pull era straight from
+    // reviewedTags.json). The real cause was this blend applying the
+    // same "concentration = bad" logic that correctly caught Genre's old
+    // 75%-Drama problem and Subjects' pre-consolidation fragmentation —
+    // but a spot-check of 20 real "contemporary"-tagged titles (Ozark,
+    // Silicon Valley, Ted Lasso, Sully, Margin Call, Superbad...) found
+    // zero misclassifications; 70.9% of Bill's real library genuinely is
+    // present-day-set, consistent with this project's own "favor recent
+    // movies"/pre-2000-exclusion history. Unlike Genre/Subgenre/Subjects
+    // (where concentration hid real, recoverable distinguishing signal —
+    // a fixable data problem), Era's concentration IS the honest signal;
+    // forcing it toward an even 17-way split would mean inventing detail
+    // that isn't there. `noSpecificityInQuality` lets a field keep its
+    // specificity number for display (still real, still worth showing)
+    // without it dragging the quality score down for a distribution
+    // that's accurate, not a gap.
     const specificity = f.values
       ? computeFieldSpecificity(eligibleTitles, enrichedMeta, omdbMeta, llmTags, f.values, reviewedTags)
       : null;
-    const qualityPct = specificity
+    const qualityPct = (specificity && !f.noSpecificityInQuality)
       ? (rowQualityPct + specificity.specificityPct) / 2
       : rowQualityPct;
     return {
@@ -1172,32 +1197,11 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
         `Quality is now right at the 90% bar, so it may flicker above/below it as new titles are added; no further fix needed unless ` +
         `it settles meaningfully below 90% again.`,
     }),
-    era: (f) => {
-      const s = f.specificity;
-      return {
-        severity: 'warning',
-        ratings: { ease: 2, dataQuality: 3, recEngine: 1, ui: 2 },
-        title: `Era is ${f.populatedPct.toFixed(1)}% populated but ${f.qualityPct.toFixed(1)}% quality — a real distribution, not a gap`,
-        technical: `Population jumped from <code>inferEra()</code>'s own 17.0% keyword-only baseline to ${f.populatedPct.toFixed(1)}% ` +
-          `(${f.populated} of ${f.eligible}) this session via <code>trakt/data/reviewedTags.json</code>'s curated override (a hand-reviewed ` +
-          `metadata workbook's 17-value era vocabulary, checked ahead of the keyword tier). % Quality stayed low anyway because it's the ` +
-          `same 50/50 row-completeness + distribution-specificity blend as Genres above: specificity is ${s ? s.specificityPct.toFixed(1) : '?'}% ` +
-          `(normalized Shannon entropy across ${s ? s.distinctCount : '?'} distinct values), dragged down because ` +
-          `<code>"${s ? s.topValue : 'contemporary'}"</code> alone accounts for ${s ? s.topSharePct.toFixed(1) : '?'}% of all era tags versus ` +
-          `an optimal <=${s ? s.optimalTopSharePct.toFixed(1) : '?'}% if evenly spread. Unlike Genres, this isn't a taxonomy-bluntness ` +
-          `artifact — the workbook's own reviewers independently landed on "contemporary" for ~71% of titles, and spot-checking dozens of ` +
-          `real period pieces (Chernobyl, Deadwood, The Terror, Band of Brothers, Killers of the Flower Moon...) confirmed they're correctly ` +
-          `tagged with their real setting, not defaulted to contemporary. Most of Bill's library genuinely IS present-day-set content.`,
-        plain: `This field is now filled in for almost every title (up from 17% before this session), but the "Quality" number still ` +
-          `looks low because most stories really are set in the present day — there's no way to make the data look more spread-out across ` +
-          `historical periods without it being wrong. The specificity check that drags this number down is the same one flagging Genres ` +
-          `above, and for the same underlying reason (one value being genuinely the most common answer), not a data problem.`,
-        impact: `Not a real gap to fix — the population jump this session already delivered the actual value (every title now has an ` +
-          `honest era label instead of ~83% showing nothing at all). The quality metric will likely stay near this level permanently, since ` +
-          `it's measuring a true fact about the dataset (most content is contemporary), not a fixable defect. Era isn't a scoring signal ` +
-          `(display/export only), so this has zero effect on recommendation ranking either way.`,
-      };
-    },
+    // No 'era' entry: fixed for real (noSpecificityInQuality on its
+    // FIELD_REGISTRY row, see that row's own comment) rather than left as
+    // a permanently-open "not really a gap" finding — two independent
+    // spot-checks (this one, and the fix itself) confirmed the same
+    // conclusion, so the fix acts on it instead of just re-documenting it.
   };
 
   for (const f of fieldStats) {
