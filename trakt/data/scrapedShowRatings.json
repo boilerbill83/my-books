@@ -7890,14 +7890,17 @@
   "manuallyVerified": "RT/MC both host this as a Netflix-anthology season sub-page (monster_2022/s01, monster-2022/season-1) that no slug-guess derivable from the stored title (\"DAHMER - Monster: The Jeffrey Dahmer Story\") could reach automatically. Verified against real outside sources (Forbes, ScreenRant, Metacritic season page) rather than scraped."
  },
  "show:91405": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
+  "rottenTomatoes": 84,
+  "rtAudience": 84,
+  "rtUrl": "https://www.rottentomatoes.com/tv/gordon_ramsay_uncharted",
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
   "mcUserAttempted": true,
-  "checkedAt": "2026-08-24"
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": null
  },
  "show:53606": {
   "rottenTomatoes": null,
@@ -7924,14 +7927,17 @@
   "checkedAt": "2026-08-24"
  },
  "show:83867": {
-  "rottenTomatoes": null,
-  "rtAudience": null,
-  "rtUrl": null,
+  "rottenTomatoes": 96,
+  "rtAudience": 89,
+  "rtUrl": "https://www.rottentomatoes.com/tv/andor",
   "metacritic": 84,
   "metacriticUser": 84,
   "mcUrl": "https://www.metacritic.com/tv/andor/",
   "mcUserAttempted": true,
-  "checkedAt": "2026-08-24"
+  "checkedAt": "2026-08-28",
+  "rtAttempted": "2026-08-28",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": null
  },
  "show:62476": {
   "rottenTomatoes": null,
