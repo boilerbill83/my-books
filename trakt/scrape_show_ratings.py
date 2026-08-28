@@ -1638,6 +1638,59 @@ def scrape_rt(page, title, year, kind, imdb_id=None):
     'candidatesTried' count is added to that debug list so a log line
     also shows whether this ever needed more than the first result."""
     from playwright.sync_api import TimeoutError as PWTimeout
+    path_prefix = '/tv/' if kind == 'show' else '/m/'
+
+    # Direct-slug guess FIRST, the same technique that made
+    # scrape_metacritic() reliable (verified live: 21/24 apostrophe
+    # titles, 2/2 initialism titles fixed in production this session) —
+    # RT never had this at all, relying entirely on its own search
+    # ranking, which real production data shows is genuinely unreliable
+    # for a franchise-adjacent or short title: "Andor" searched under
+    # "Star Wars: Andor" ranks "Star Wars: The Bad Batch" first (a real,
+    # confirmed miss — Andor's actual RT score, 96% Tomatometer, sits at
+    # the exact predictable slug rottentomatoes.com/tv/andor, verified
+    # against a real outside source, not guessed). Uses the same
+    # _slugify()/_strip_franchise_prefix() helpers Metacritic already
+    # trusts, tried both with and without the franchise prefix (the plain
+    # title first, since most titles have none to strip). Goes through
+    # the identical extract_rt_scores() identity guards as every other
+    # path — a coincidentally-live URL that isn't really the right title
+    # still gets rejected, this only changes how a URL is found, not
+    # whether a found page is trusted.
+    direct_urls = []
+    for candidate_title in (title, _strip_franchise_prefix(title)):
+        if not candidate_title:
+            continue
+        slug = _slugify(candidate_title, sep='_')
+        if not slug:
+            continue
+        u = f'https://www.rottentomatoes.com{path_prefix}{slug}'
+        if u not in direct_urls:
+            direct_urls.append(u)
+
+    for url in direct_urls:
+        try:
+            resp = page.goto(url, wait_until='domcontentloaded', timeout=20_000)
+            page.wait_for_timeout(random.randint(1500, 2500))
+            if not resp or resp.status >= 400 or 'Page Not Found' in page.content()[:3000]:
+                continue
+            _wait_for_hydration(page)
+            html = page.content()
+        except PWTimeout:
+            continue
+        critic, audience, debug = extract_rt_scores(html, title, year, imdb_id, require_imdb_match=False)
+        diag = _page_diagnostics(resp, html)
+        debug.append({'pageDiagnostics': diag, 'source': 'direct-slug-guess', 'candidateUrl': url})
+        if critic is not None or audience is not None:
+            return {'critic': critic, 'audience': audience, 'url': url, 'debug': debug}
+        time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
+
+    # Fall back to RT's own search page only when neither direct guess
+    # panned out — unlike Metacritic's search fallback (documented as
+    # finding 0 result links across every real test batch), RT's search
+    # page DOES reliably return real result links, just not always in
+    # the right order, which is exactly what RT_SEARCH_CANDIDATES/
+    # require_imdb_match below already guards against.
     try:
         page.goto(f'https://www.rottentomatoes.com/search?search={quote(title)}',
                    wait_until='domcontentloaded', timeout=20_000)
@@ -1646,7 +1699,6 @@ def scrape_rt(page, title, year, kind, imdb_id=None):
     except PWTimeout:
         return None
 
-    path_prefix = '/tv/' if kind == 'show' else '/m/'
     # RT's search results render as <a> tags to /m/<slug> or /tv/<slug>,
     # in the site's own ranked order — take up to RT_SEARCH_CANDIDATES of
     # them, deduplicated, preserving that order.
@@ -1693,7 +1745,7 @@ def scrape_rt(page, title, year, kind, imdb_id=None):
 
 # ── Metacritic ────────────────────────────────────────────────────────────
 
-def _slugify(text):
+def _slugify(text, sep='-'):
     """Metacritic's own slug convention drops apostrophes entirely rather
     than treating them as a word break — "Grey's Anatomy" -> "greys-
     anatomy", not "grey-s-anatomy". A plain [^a-z0-9]+ -> '-' substitution
@@ -1718,10 +1770,18 @@ def _slugify(text):
     general substitution runs. Real impact: 2 of 106 real misses
     (L.A.'s Finest, Marvel's Agents of S.H.I.E.L.D. once its franchise
     prefix is stripped) — small on its own, but the same class of bug as
-    the apostrophe fix and cheap to close alongside it."""
+    the apostrophe fix and cheap to close alongside it.
+
+    `sep` defaults to '-' (Metacritic's real convention, confirmed above)
+    but RT's own real slugs use underscores instead — confirmed against
+    15 already-scraped, real, verified-correct RT URLs in production
+    data (the_westies, your_friends_and_neighbors, off_campus, etc.),
+    every one underscore-separated, zero hyphenated. Guessing a
+    hyphenated URL against RT would 404 every single time; scrape_rt()
+    passes sep='_' for exactly this reason."""
     text = re.sub(r'\b(?:[A-Za-z]\.){2,}', lambda m: m.group(0).replace('.', ''), text)
     text = text.replace("'", '').replace('’', '')
-    return re.sub(r'-+', '-', re.sub(r'[^a-z0-9]+', '-', text.lower())).strip('-')
+    return re.sub(sep + r'+', sep, re.sub(r'[^a-z0-9]+', sep, text.lower())).strip(sep)
 
 
 def scrape_metacritic(page, title, year, kind, imdb_id=None):
