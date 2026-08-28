@@ -22,6 +22,8 @@ Static GitHub Pages app that recommends books from Bill's personal to-read list 
 
 **Standing rule (Bill's explicit instruction): always push finished work to main — never stop to ask permission first.** Committing/pushing to main is the normal, expected end state of a working session here, not a risky action that needs sign-off each time.
 
+**Standing rule (Bill's explicit instruction): always state times in EST when talking to Bill** — workflow run times, "started at," "check back in N minutes," etc. Convert from UTC (what GitHub Actions timestamps/logs report natively) before saying it out loud; don't just relay the raw UTC value. This is about spoken/written communication with Bill, not stored data — cron schedules in workflow YAML files stay in UTC (GitHub Actions requires it), and timestamps written into data files stay whatever format they already use.
+
 ---
 
 ## Project Structure
