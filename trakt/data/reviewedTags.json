@@ -6296,7 +6296,7 @@
   },
   "movie:138832": {
     "subjects": [
-      "war-conflict"
+      "found-family"
     ],
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
@@ -9771,7 +9771,7 @@
       "hopeful"
     ],
     "subjects": [
-      "human-extinction"
+      "societal-collapse"
     ],
     "era": [
       "near-future"
@@ -10778,7 +10778,7 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "subjects": [
-      "time-inversion-and-global-catastrophe"
+      "societal-collapse"
     ],
     "era": [
       "near-future"

@@ -274,6 +274,7 @@ const SUBJECT_LABEL = {
   'supernatural-paranormal': 'Supernatural / Paranormal', 'technology-surveillance': 'Technology / Surveillance',
   'vigilante-justice': 'Vigilante Justice', 'war-conflict': 'War / Conflict', 'workplace-culture': 'Workplace Culture',
   'wrongful-conviction': 'Wrongful Conviction', 'youth-and-adolescence': 'Youth & Adolescence',
+  'societal-collapse': 'Societal Collapse',
 };
 
 const ERA_LABEL = {

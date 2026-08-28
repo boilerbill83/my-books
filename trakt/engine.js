@@ -1490,7 +1490,7 @@ const SUBJECT_CANONICAL_VOCABULARY = [
   'power-corruption', 'redemption', 'religion-faith', 'resistance-rebellion', 'revenge',
   'sacrifice-duty', 'self-discovery', 'social-inequality', 'sports-competition',
   'supernatural-paranormal', 'technology-surveillance', 'vigilante-justice', 'war-conflict',
-  'workplace-culture', 'wrongful-conviction', 'youth-and-adolescence',
+  'workplace-culture', 'wrongful-conviction', 'youth-and-adolescence', 'societal-collapse',
 ];
 
 // Permanent guardrail (external metadata-plan Priority 3): confirms the
