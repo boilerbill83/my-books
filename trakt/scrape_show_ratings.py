@@ -1740,7 +1740,21 @@ def scrape_rt(page, title, year, kind, imdb_id=None):
         if i + 1 < len(urls):
             time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
 
-    return last_result or {'critic': None, 'audience': None, 'url': None, 'debug': []}
+    # Every candidate tried (direct guesses + up to RT_SEARCH_CANDIDATES
+    # search results) came up empty — a real bug found while investigating
+    # DAHMER: this used to return last_result AS-IS, which still carried
+    # the last-tried candidate's `url` even though nothing was ever
+    # confirmed there (DAHMER's cache ended up with rtUrl pointing at the
+    # totally unrelated "Testament: The Story of Moses" — not a wrong
+    # MATCH that was mistakenly accepted, just the last search result
+    # tried before giving up, persisted into the cache as if it were the
+    # resolved page). Null the url out on a genuine total miss so a
+    # future read of the cache can't mistake "we tried this and it
+    # wasn't it" for "this is the title's real RT page."
+    if last_result:
+        last_result['url'] = None
+        return last_result
+    return {'critic': None, 'audience': None, 'url': None, 'debug': []}
 
 
 # ── Metacritic ────────────────────────────────────────────────────────────
@@ -1803,7 +1817,6 @@ def scrape_metacritic(page, title, year, kind, imdb_id=None):
     from playwright.sync_api import TimeoutError as PWTimeout
     path_prefix = '/tv/' if kind == 'show' else '/movie/'
     debug_link_count = None
-    url = None
 
     # Verified reliable across 3 real live test batches (5/5 direct-slug
     # matches, all confirmed correct on spot-check) — Metacritic's own URL
@@ -1815,70 +1828,98 @@ def scrape_metacritic(page, title, year, kind, imdb_id=None):
     # whose real slug doesn't match the naive lowercase-hyphenate guess,
     # but trying it first on every title would waste a full page load on
     # something that has never once worked.
-    slug = _slugify(title)
-    guess_url = f'https://www.metacritic.com{path_prefix}{slug}/'
-    try:
-        resp = page.goto(guess_url, wait_until='domcontentloaded', timeout=20_000)
-        page.wait_for_timeout(random.randint(2000, 3000))
-        if resp and resp.status < 400 and 'Page Not Found' not in page.content()[:3000]:
-            url = guess_url
-    except PWTimeout:
-        pass
+    #
+    # A SECOND real, confirmed gap (Aug 2026, found while investigating
+    # Bill's pushback that a title being "old" shouldn't mean uncovered):
+    # a bare-slug guess can load a genuinely real page (200, no "Page Not
+    # Found") that is nonetheless the WRONG show — a title collision with
+    # an older, unrelated same-named work. House of Cards' bare
+    # "house-of-cards" slug is the 1990 BBC miniseries; the 2013 Netflix
+    # show being tracked here is at "house-of-cards-2013" (verified via
+    # WebSearch against the real metacritic.com URL — Metacritic's own
+    # year-suffix disambiguation convention, the same one this file's
+    # page_title_matches()/_prefix_extension_is_subtitle() already knew
+    # to check FOR when parsing a page's title text, just never generated
+    # as a guess of its own). The identity guard inside extract_metascore()
+    # correctly rejected the wrong bare-slug page (metascore stayed null,
+    # exactly as it should) — but the old code committed to that one URL
+    # the moment it merely LOADED, with no fallback to a year-suffixed
+    # variant once the content guard rejected it, so a real, coverable
+    # title looked like a permanent miss instead of "try the next guess."
+    #
+    # Restructured into one ordered list of candidates, each fully loaded
+    # AND identity-checked (via extract_metascore(), same as every other
+    # path in this file) before moving to the next — mirroring scrape_rt()'s
+    # direct_urls loop. Order preserves the original two tiers (plain
+    # title, then franchise-stripped) as the first attempt for each, with
+    # a year-suffixed retry of each only after its own bare form is tried
+    # and rejected, so the common non-colliding case costs nothing extra.
+    candidates = []
+    for candidate_title in (title, _strip_franchise_prefix(title)):
+        if not candidate_title:
+            continue
+        slug = _slugify(candidate_title)
+        if not slug:
+            continue
+        suffixes = ('', f'-{year}') if year else ('',)
+        for suffix in suffixes:
+            u = f'https://www.metacritic.com{path_prefix}{slug}{suffix}/'
+            if u not in candidates:
+                candidates.append(u)
 
-    # A real, confirmed gap (Aug 2026 production run): a franchise/
-    # possessive-prefixed TMDB title (Star Wars: Andor, Marvel's Jessica
-    # Jones, Tyler Perry's The Oval...) usually gets a real Metacritic
-    # slug built from just the plain show name ("andor", not
-    # "star-wars-andor") — the full-title guess above 404s on all of
-    # these. Try the stripped form too before falling all the way to the
-    # search page, which a real batch already showed returns 0 result
-    # links for titles shaped like this anyway. Still goes through the
-    # exact same extract_metascore()/page_title_matches()/
-    # page_imdb_matches() verification below regardless of which guess
-    # lands a 200, so a coincidentally-wrong stripped-slug page still
-    # gets rejected rather than trusted blind.
-    if url is None:
-        stripped_title = _strip_franchise_prefix(title)
-        if stripped_title:
-            stripped_slug = _slugify(stripped_title)
-            stripped_guess_url = f'https://www.metacritic.com{path_prefix}{stripped_slug}/'
-            try:
-                resp = page.goto(stripped_guess_url, wait_until='domcontentloaded', timeout=20_000)
-                page.wait_for_timeout(random.randint(2000, 3000))
-                if resp and resp.status < 400 and 'Page Not Found' not in page.content()[:3000]:
-                    url = stripped_guess_url
-            except PWTimeout:
-                pass
-
-    if url is None:
+    result = None
+    for guess_url in candidates:
         try:
-            page.goto(f'https://www.metacritic.com/search/{quote(title)}/',
-                       wait_until='domcontentloaded', timeout=20_000)
-            page.wait_for_timeout(random.randint(3500, 5000))
+            resp = page.goto(guess_url, wait_until='domcontentloaded', timeout=20_000)
+            page.wait_for_timeout(random.randint(2000, 3000))
+            if not resp or resp.status >= 400 or 'Page Not Found' in page.content()[:3000]:
+                continue
+            _wait_for_hydration(page)
             html = page.content()
-            all_links = re.findall(r'href="(https://www\.metacritic\.com(?:/tv/|/movie/)[a-z0-9_-]+/?)"', html)
-            debug_link_count = len(all_links)
-            matching = [u for u in all_links if path_prefix in u]
-            if matching:
-                url = matching[0]
         except PWTimeout:
-            pass
+            continue
+        metascore, user_score, nd_debug = extract_metascore(html, title, year, imdb_id)
+        nd_debug['pageDiagnostics'] = _page_diagnostics(resp, html)
+        result = {'metascore': metascore, 'userScore': user_score, 'url': guess_url,
+                  'debug_link_count': debug_link_count, 'nextData': nd_debug}
+        if metascore is not None or user_score is not None:
+            return result
+        time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
+
+    try:
+        page.goto(f'https://www.metacritic.com/search/{quote(title)}/',
+                   wait_until='domcontentloaded', timeout=20_000)
+        page.wait_for_timeout(random.randint(3500, 5000))
+        html = page.content()
+        all_links = re.findall(r'href="(https://www\.metacritic\.com(?:/tv/|/movie/)[a-z0-9_-]+/?)"', html)
+        debug_link_count = len(all_links)
+        matching = [u for u in all_links if path_prefix in u]
+        url = matching[0] if matching else None
+    except PWTimeout:
+        url = None
 
     if url is None:
-        return {'metascore': None, 'userScore': None, 'url': None,
-                'debug_link_count': debug_link_count}
+        # Every direct guess and the search fallback all came up empty or
+        # rejected — same "don't persist a misleading last-tried URL"
+        # fix as scrape_rt()'s equivalent case: a candidate that loaded
+        # but was correctly rejected shouldn't be reported as if it were
+        # the resolved page.
+        if result:
+            result['url'] = None
+            return result
+        return {'metascore': None, 'userScore': None, 'url': None, 'debug_link_count': debug_link_count}
 
     try:
         resp = page.goto(url, wait_until='domcontentloaded', timeout=20_000)
         _wait_for_hydration(page)
         html = page.content()
     except PWTimeout:
-        return {'metascore': None, 'userScore': None, 'url': url, 'debug_link_count': debug_link_count}
+        return {'metascore': None, 'userScore': None, 'url': None, 'debug_link_count': debug_link_count}
 
     metascore, user_score, nd_debug = extract_metascore(html, title, year, imdb_id)
     nd_debug['pageDiagnostics'] = _page_diagnostics(resp, html)
     if metascore is None and user_score is None:
-        return {'metascore': None, 'userScore': None, 'url': url, 'debug_link_count': debug_link_count, 'nextData': nd_debug}
+        return {'metascore': None, 'userScore': None, 'url': None, 'debug_link_count': debug_link_count, 'nextData': nd_debug}
     return {'metascore': metascore, 'userScore': user_score, 'url': url, 'debug_link_count': debug_link_count, 'nextData': nd_debug}
 
 
