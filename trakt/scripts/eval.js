@@ -40,7 +40,7 @@ const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
 const llmTags = read('llmTags.json', {});
 const reviewedTags = read('reviewedTags.json', {});
 
-const m = computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags);
+const m = await computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags);
 
 console.log(`BMTRE eval over ${m.n} watched+rated+enriched titles (leave-one-out)`);
 console.log(`"liked" = myRating >= ${m.likedThreshold}/10; base rate: ${(100 * m.baseRate).toFixed(1)}%   MAE (0-100 scale): ${m.mae.toFixed(2)}`);

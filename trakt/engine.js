@@ -258,7 +258,7 @@ export function inferGenre(meta, llmEntry, reviewed) {
 // static check.
 const STYLE_DISLIKE_REASON_CODES = new Set(['style_dislike']);
 
-export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, reviewedTags = {}) {
+export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, reviewedTags = {}, descModelOverride = undefined) {
   const watched = new Map();
   for (const t of library.titles || []) watched.set(t.titleKey, t);
 
@@ -471,7 +471,22 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   // ranking pass. Returns null (a true no-op) below MIN_LOVED_DOCS
   // coverage, same coverage-gated pattern the book side's own
   // buildDescModel() uses.
-  const descModel = buildDescModel(enrichedMeta, lovedTitles);
+  //
+  // This is by far buildIndexes()'s single most expensive step (~28ms of
+  // a ~46ms total call, measured) — a real performance bug surfaced by
+  // Bill reporting the live dashboard taking 20+ seconds to load:
+  // computeEvalMetrics()'s leave-one-out harness calls buildIndexes() once
+  // per rated title (552 calls), and 552 x ~46ms was the entire delay.
+  // descModelOverride lets a caller doing many buildIndexes() calls in a
+  // row (only computeEvalMetrics() today) skip rebuilding this from
+  // scratch when it already knows the loved-title corpus is unchanged —
+  // excluding a title that ISN'T loved (myRating < LOVED_THRESHOLD) never
+  // changes lovedTitles, so the model built from the full corpus is
+  // exactly correct to reuse for that held-out title too. Never used for
+  // a genuinely held-out LOVED title (that would leak its own description
+  // into its own comparison corpus) — computeEvalMetrics() only passes an
+  // override for the non-loved majority of its loop.
+  const descModel = descModelOverride !== undefined ? descModelOverride : buildDescModel(enrichedMeta, lovedTitles);
 
   return { watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel };
 }
@@ -2401,18 +2416,56 @@ const LIKED_THRESHOLD = 8;    // myRating >= 8/10 — the same looser "would he
                                 // buildIndexes() uses for signal-building.
 const DISLIKED_THRESHOLD = 5; // myRating <= 5/10, for the bottom-catch check
 
-export function computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta, llmTags = {}, reviewedTags = {}) {
+export async function computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta, llmTags = {}, reviewedTags = {}) {
+  // An async function still runs synchronously up to its FIRST await — a
+  // real caller-side bug this yield fixes: without it, a caller doing
+  // `computeEvalMetrics(...).then(...)` (not awaiting) would still block
+  // for the first 40-title chunk (and the sharedDescModel build below)
+  // before this function ever actually yields control back, defeating
+  // the whole point of the periodic yields further down.
+  await new Promise(r => setTimeout(r, 0));
   const rated = (library.titles || []).filter(t => t.myRating != null && enrichedMeta[t.titleKey]);
 
+  // Real performance fix (Bill reported the live dashboard taking 20+
+  // seconds to load): buildIndexes() rebuilds a TF-IDF description model
+  // from every loved title's overview — by far its single most expensive
+  // step (~28ms of a ~46ms call, measured) — and this leave-one-out loop
+  // used to call buildIndexes() fresh 552 times (once per rated title),
+  // so that one step alone cost ~15 of the ~25 real seconds. Excluding a
+  // title that ISN'T loved (myRating < LOVED_THRESHOLD) never changes the
+  // loved-title corpus buildDescModel() reads, so the model built from
+  // the FULL corpus is exactly correct to reuse for every non-loved
+  // held-out title (the majority of this loop) — only a genuinely
+  // held-out LOVED title needs a real rebuild, to avoid leaking that
+  // title's own description into its own comparison corpus. Cuts the
+  // number of real buildDescModel() rebuilds from 552 to roughly the
+  // loved-title count (~159) + 1, with zero change to leave-one-out
+  // correctness for any title.
+  const fullLovedTitles = new Set(
+    (library.titles || []).filter(t => t.myRating >= LOVED_THRESHOLD).map(t => t.titleKey)
+  );
+  const sharedDescModel = buildDescModel(enrichedMeta, fullLovedTitles);
+
   const preds = [];
+  let i = 0;
   for (const t of rated) {
     const looLibrary = { titles: (library.titles || []).filter(x => x.titleKey !== t.titleKey) };
-    const idx = buildIndexes(looLibrary, enrichedMeta, feedback, llmTags, reviewedTags);
+    const descOverride = t.myRating >= LOVED_THRESHOLD ? undefined : sharedDescModel;
+    const idx = buildIndexes(looLibrary, enrichedMeta, feedback, llmTags, reviewedTags, descOverride);
     const h = hydrateTitle(t, enrichedMeta);
     const predicted = matchScore(h, idx, enrichedMeta, omdbMeta);
     if (Number.isFinite(predicted)) {
       preds.push({ predicted, actual: t.myRating * 10, myRating: t.myRating, title: h.title, type: h.type });
     }
+    // Yield to the event loop every 10 titles (~200-400ms/chunk at this
+    // function's measured per-title cost) — in a browser this lets the
+    // main thread actually paint/respond between chunks instead of
+    // freezing solid for the whole several-second pass (the real UX bug
+    // this function's own performance-fix comment above addresses); in
+    // Node (scripts/eval.js) it's a harmless no-op-scale pause. Chunk
+    // size tuned by measurement: 40 left each blocking gap close to a
+    // full second, still noticeably janky if a real click landed mid-chunk.
+    if (++i % 10 === 0) await new Promise(r => setTimeout(r, 0));
   }
   preds.sort((a, b) => b.predicted - a.predicted);
 

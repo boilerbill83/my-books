@@ -688,12 +688,9 @@ const FIELD_REGISTRY = [
     populated: (t, meta, omdb, llmEntry, reviewed) => inferGenre(meta, llmEntry, reviewed) != null,
     quality: (t, meta, omdb, llmEntry, reviewed) => inferGenre(meta, llmEntry, reviewed) != null,
     values: (t, meta, omdb, llmEntry, reviewed) => { const g = inferGenre(meta, llmEntry, reviewed); return g ? [g] : []; },
-    note: 'The Genre/Subgenre taxonomy redesign\'s new single-valued, high-level field (inferGenre(), 17 canonical ' +
-      'values, workbook-seeded for the 793 reviewed titles) — checks trakt/data/reviewedTags.json first, then ' +
-      'trakt/data/llmTags.json, then a deterministic TMDB-genre-priority-order + keyword-override classifier as a ' +
-      'last resort. Feeds genreBonus() directly (replacing the old raw-genres-array scoring). Quality = any real ' +
-      'assignment; unlike Subgenres/Tones this field is only rarely null, since the deterministic fallback tier ' +
-      'never returns empty as long as the title has any TMDB genre at all.' },
+    note: 'The single-valued, high-level field (inferGenre(), 17 canonical values) that feeds genreBonus() ' +
+      'directly, replacing the old raw multi-valued genres array. Quality = any real assignment — rarely null, ' +
+      'since the deterministic fallback tier always returns a value as long as the title has any TMDB genre at all.' },
   { key: 'overview', label: 'Overview', source: 'TMDB', critical: true,
     eligible: (t, meta) => !!meta,
     populated: (t, meta) => !!meta?.overview,
@@ -764,15 +761,8 @@ const FIELD_REGISTRY = [
     populated: (t, meta, omdb) => omdb?.rtAudience != null || omdb?.metacriticUser != null,
     quality: (t, meta, omdb) => omdb?.rtAudience != null && omdb?.metacriticUser != null,
     note: 'RT Popcornmeter / Metacritic user score — genuine audience opinion, distinct from the critic-only ' +
-      'field above. OMDb\'s API never returns either value, so this is scraper-only (trakt/scrape_show_ratings.py). ' +
-      'Used to be structurally capped near 60%: the scraper only ever queued titles where OMDb had no critic score ' +
-      'either, which meant ~98% of movies (already OMDb-critic-covered) never even entered its queue — a real ' +
-      'eligibility bug, not a permanent design constraint, since the same page fetch that finds a critic score ' +
-      'carries the audience score right next to it. Fixed by removing that skip; population is climbing in real ' +
-      'time as the newly-eligible backlog (271 titles) gets scraped. A smaller, genuine ceiling remains below 100% ' +
-      '(some titles are truly absent from both sites, unreleased, or have too few reviews for either to publish a ' +
-      'score — see the "Audience Score" Improvement Opportunities finding below for the live numbers and the ' +
-      '"Metacritic scrape title verification" finding for the accuracy work on values that ARE found).' },
+      'field above; scraper-only, since OMDb\'s API never returns either value. Quality = both present, not just ' +
+      'one — see the Improvement Opportunities findings below for population and accuracy details.' },
   { key: 'awards', label: 'Awards (Oscar/Emmy)', source: 'OMDb', critical: false,
     eligible: (t, meta, omdb) => !!omdb,
     populated: (t, meta, omdb) => omdb?.awards != null,
@@ -803,27 +793,17 @@ const FIELD_REGISTRY = [
     quality: (t, meta, omdb, llmEntry, reviewed) => inferSubjects(meta, llmEntry, undefined, reviewed).length > 0,
     values: (t, meta, omdb, llmEntry, reviewed) => inferSubjects(meta, llmEntry, undefined, reviewed),
     note: 'A second layer beneath genre/subgenre — real social/human-condition subject matter (addiction, ' +
-      'grief, trauma, class, etc.), the BBRE-themes-inspired addition, plus trakt/data/reviewedTags.json\'s ' +
-      'curated override tier. Consolidated into ~50 canonical buckets targeting 3-15 titles each (was 636 near-' +
-      'unique free-form values from the reviewed workbook, 93% shared by fewer than 3 titles) — see the ' +
-      '"Subjects consolidation" Improvement Opportunities finding below for the before/after numbers. Partial ' +
-      'by design — not every story genuinely has such a subject, and a genuine long tail of one-off subjects ' +
-      'remains even after consolidation.' },
+      'grief, trauma, class, etc.), targeting 5-25 titles per canonical bucket. Partial by design — not every ' +
+      'story genuinely has one — see the Subjects consolidation finding below for the live numbers.' },
   { key: 'era', label: 'Era (story setting)', source: 'Derived (keywords + reviewed)', critical: false,
     eligible: (t, meta) => !!meta,
     populated: (t, meta, omdb, llmEntry, reviewed) => inferEra(meta, undefined, reviewed).length > 0,
     quality: (t, meta, omdb, llmEntry, reviewed) => inferEra(meta, undefined, reviewed).length > 0,
     values: (t, meta, omdb, llmEntry, reviewed) => inferEra(meta, undefined, reviewed),
     noSpecificityInQuality: true,
-    note: 'When the STORY is set, not when it was made (that\'s Year, above) — via inferEra(), plus ' +
-      'trakt/data/reviewedTags.json\'s curated override (the workbook\'s own 17-value era vocabulary, richer ' +
-      'than inferEra()\'s 4-bucket keyword scheme; 790 of 793 titles pull their era straight from the workbook ' +
-      '— it IS being used). Quality = row completeness only, not blended with distribution specificity the way ' +
-      'Genre/Subgenre/Subjects are: a real 20-title spot-check confirmed the ~71% contemporary-setting share is ' +
-      'accurate, not a tagging gap (Ozark, Silicon Valley, Ted Lasso, Sully, Margin Call, Superbad all correctly ' +
-      'contemporary) — most of Bill\'s real library genuinely is present-day-set, consistent with this project\'s ' +
-      '"favor recent movies"/pre-2000-exclusion history. Forcing an even split across 17 eras would mean ' +
-      'inventing period detail that isn\'t really there, the opposite of what fixed Genre/Subjects.' },
+    note: 'When the STORY is set, not when it was made (via inferEra(), plus a richer 17-value curated ' +
+      'override for reviewed titles). Quality = row completeness only — the ~71% contemporary-setting share ' +
+      'is a real, verified reflection of Bill\'s library, not a tagging gap.' },
 ];
 
 // Bill: "for each field determine the optimal value and then build that
@@ -3209,16 +3189,30 @@ async function load() {
       ? 'No TMDB data yet — the daily enrichment workflow hasn\'t populated enrichedMetadata.json.'
       : 'Scores rise automatically as more titles get enriched — no manual recalibration needed.');
 
-  const evalMetrics = computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta);
-  const bmtreAccuracy = computeBMTREAccuracy(evalMetrics);
-  renderQualityDial('bmtreAccuracySection', bmtreAccuracy);
-  document.getElementById('bmtreAccuracyFootnote').textContent =
-    `Leave-one-out over ${fmtNum(evalMetrics.n)} watched+rated+enriched titles ` +
-    `(movies n=${evalMetrics.byType.movie?.n ?? 0}, shows n=${evalMetrics.byType.show?.n ?? 0}). ` +
-    `MAE ${evalMetrics.mae.toFixed(1)} vs. a naive always-predict-the-mean baseline of ${evalMetrics.meanBaselineMae.toFixed(1)}` +
-    (evalMetrics.mae > evalMetrics.meanBaselineMae
-      ? ' — the model is currently worse than that trivial baseline on raw magnitude error alone (Bill\'s ratings skew high, so guessing the mean scores well on MAE without ranking anything correctly; this is exactly why precision@k, weighted higher above, is the metric that matters more here).'
-      : ' — the model beats that trivial baseline.');
+  // computeEvalMetrics() is a real leave-one-out pass over every rated
+  // title — still several real seconds even after optimizing
+  // buildIndexes()'s dominant cost (see that function's own comment) — a
+  // genuine page-load performance bug Bill reported ("takes a very long
+  // time"). It's now an async function that yields to the event loop
+  // every 40 titles (see its own comment), so calling it here WITHOUT
+  // awaiting lets the rest of load() below (every other section) render
+  // immediately, and the browser stays responsive/paintable throughout
+  // the several seconds this one diagnostic dial takes to catch up — not
+  // just deferred to start later, genuinely non-blocking the whole way.
+  document.getElementById('bmtreAccuracySection').innerHTML =
+    '<div class="tk-empty">Computing accuracy metrics (a real leave-one-out pass over every rated title — a few seconds)…</div>';
+  document.getElementById('bmtreAccuracyFootnote').textContent = '';
+  computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta).then(evalMetrics => {
+    const bmtreAccuracy = computeBMTREAccuracy(evalMetrics);
+    renderQualityDial('bmtreAccuracySection', bmtreAccuracy);
+    document.getElementById('bmtreAccuracyFootnote').textContent =
+      `Leave-one-out over ${fmtNum(evalMetrics.n)} watched+rated+enriched titles ` +
+      `(movies n=${evalMetrics.byType.movie?.n ?? 0}, shows n=${evalMetrics.byType.show?.n ?? 0}). ` +
+      `MAE ${evalMetrics.mae.toFixed(1)} vs. a naive always-predict-the-mean baseline of ${evalMetrics.meanBaselineMae.toFixed(1)}` +
+      (evalMetrics.mae > evalMetrics.meanBaselineMae
+        ? ' — the model is currently worse than that trivial baseline on raw magnitude error alone (Bill\'s ratings skew high, so guessing the mean scores well on MAE without ranking anything correctly; this is exactly why precision@k, weighted higher above, is the metric that matters more here).'
+        : ' — the model beats that trivial baseline.');
+  });
 
   const generated = new Date(d.generatedAt);
   document.getElementById('subtitleText').textContent =
