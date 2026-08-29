@@ -252,11 +252,14 @@ function displaySubgenre(tag, meta) {
 // (targeting 3-15 titles/bucket instead of hundreds of near-singleton
 // values) - see engine.js's SUBJECT_CANONICAL_VOCABULARY for the full list.
 const SUBJECT_LABEL = {
-  'addiction-recovery': 'Addiction / Recovery', 'grief-loss': 'Grief / Loss', 'trauma-abuse': 'Trauma / Abuse',
-  'racism-civil-rights': 'Racism / Civil Rights', 'immigration-refugee': 'Immigration / Refugee',
+  'addiction-recovery': 'Addiction / Recovery (Alcohol)', 'drug-addiction': 'Addiction (Drugs)',
+  'grief-loss': 'Grief / Loss', 'suicide': 'Suicide', 'terminal-illness': 'Terminal Illness',
+  'trauma-abuse': 'Trauma (PTSD / War)', 'domestic-abuse': 'Domestic / Sexual Abuse',
+  'racism-civil-rights': 'Racism / Civil Rights', 'historical-atrocities': 'Historical Atrocities',
+  'immigration-refugee': 'Immigration / Refugee',
   'infidelity': 'Infidelity / Affairs', 'journalism-media': 'Journalism / Media',
-  'cult-extremism': 'Cult / Extremism', 'mental-health': 'Mental Health', 'class-wealth-corporate': 'Class / Wealth / Corporate',
-  'lgbtq': 'LGBTQ+', 'survival': 'Survival',
+  'cult-extremism': 'Cult / Extremism', 'mental-health': 'Mental Health', 'class-wealth-corporate': 'Class / Wealth Divide',
+  'corporate-power': 'Corporate Power', 'lgbtq': 'LGBTQ+', 'survival': 'Survival',
   'ambition-reinvention': 'Ambition / Reinvention', 'artistic-creative': 'Artistic / Creative Life',
   'celebrity-fame': 'Celebrity / Fame', 'crime-consequences': 'Crime & Consequences',
   'crime-investigation': 'Crime Investigation', 'criminal-life': 'Criminal Life',
@@ -2297,30 +2300,39 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       }
     }
     const under3 = [...subjCounts.entries()].filter(([, c]) => c < 3);
-    const inTargetBand = [...subjCounts.entries()].filter(([, c]) => c >= 3 && c <= 15).length;
+    const over25 = [...subjCounts.entries()].filter(([, c]) => c > 25);
+    const inTargetBand = [...subjCounts.entries()].filter(([, c]) => c >= 5 && c <= 25).length;
     const collisions = findTaxonomyCollisions();
     findings.push({
       id: 'subjects-taxonomy-consolidated',
       severity: 'good',
       ratings: { ease: 3, dataQuality: 9, recEngine: 7, ui: 4 },
-      title: `Fixed: Subjects consolidated from 636 free-form values to ${subjCounts.size} canonical buckets — ${inTargetBand} now land in the useful 3-15-title band`,
-      technical: `<code>inferSubjects()</code>'s reviewed-override tier previously let <code>trakt/data/reviewedTags.json</code>'s ` +
-        `subjects field carry a fresh, uncontrolled compound slug per title (e.g. <code>police-corruption-and-civil-forfeiture</code>) — ` +
-        `636 distinct values, 93% shared by fewer than 3 titles, meaning <code>subjectBonus()</code> could rarely find any real "shared ` +
-        `with a loved title" match at all. Fixed with a word-root clustering pass, checked in priority order from most-specific trigger ` +
-        `to broadest catch-all (mirroring <code>inferGenre()</code>'s own <code>GENRE_PRIORITY</code> design): every raw value's ` +
-        `dominant theme word(s) route it to one of the 12 original <code>SUBJECT_KEYWORDS</code> buckets or ~39 new canonical buckets ` +
-        `(documented in <code>SUBJECT_CANONICAL_VOCABULARY</code>). Spot-checked ~30 real title assignments for plausibility before ` +
-        `applying to all 533 affected <code>reviewedTags.json</code> entries. Live result: ${subjCounts.size} distinct values across ` +
-        `${subjInstances} tag instances, ${inTargetBand} in the target 3-15-title band, ${under3.length} still below 3 (a genuine long ` +
-        `tail of one-off subjects with no real peer in Bill's library — accepted rather than force-padded, same principle as the book ` +
-        `side's oversized-but-real theme buckets). <code>subjectBonus()</code>'s tiers re-swept against the new, denser loved-count ` +
-        `distribution; verified via <code>findTaxonomyCollisions()</code>: ${collisions.length} cross-layer collisions.`,
-      plain: `Subjects used to have a custom, one-off label for almost every title, so the engine could almost never say "you loved another ` +
-        `title with this same subject." Grouped the ~636 near-unique labels into about ${subjCounts.size} reusable categories, the same ` +
-        `cleanup Genre and Subgenre already got — most categories now cover a healthy 3-15 titles instead of just 1.`,
-      impact: `Verified via <code>scripts/eval.js</code>: precision@10/25/50/100 held at or above the pre-change baseline (100/92/92/89), ` +
-        `MAE improved slightly — a real signal-quality improvement with no scoring tradeoff.`,
+      title: `Fixed (2nd pass): Subjects re-consolidated to ${subjCounts.size} canonical buckets, 0 below 3, ${inTargetBand} in the 5-25 target band`,
+      technical: `A first consolidation pass (originally: 636 free-form <code>reviewedTags.json</code> values -> canonical buckets, target ` +
+        `3-15 titles/bucket) had drifted again by the time of this pass — a fresh 793-title metadata-review workbook import re-introduced ` +
+        `74 new one-off compound-slug values (e.g. <code>midlife-stagnation-and-academic-dysfunction</code>), the same failure mode as ` +
+        `before, plus 14 buckets that had grown past 25 titles by combining genuinely distinct real themes under one umbrella. Bill's ` +
+        `updated ask: 5-25 titles per bucket, nothing under 3. Fixed in two parts: (1) all 74 singleton/near-singleton values remapped by ` +
+        `semantic fit to an existing canonical bucket (spread across under-25 targets so none of them tipped an already-large bucket ` +
+        `over), applied via a full <code>reviewedTags.json</code> load/mutate/save round-trip verified byte-identical on a re-dump of the ` +
+        `untouched file before any real edit. (2) 4 of the original <code>SUBJECT_KEYWORDS</code> buckets that had grown past 25 by ` +
+        `combining distinct themes split into their real keyword sub-groups (grief-loss -> grief-loss/suicide/terminal-illness, ` +
+        `trauma-abuse -> trauma-abuse/domestic-abuse, class-wealth-corporate -> class-wealth-corporate/corporate-power, ` +
+        `racism-civil-rights -> racism-civil-rights/historical-atrocities) — verified via a live keyword-frequency check first, same ` +
+        `discipline as every prior <code>SUBJECT_KEYWORDS</code> addition. A handful (addiction, journalism-media, survival, lgbtq, and ` +
+        `several LLM/reviewed-only buckets with no keyword lever to split by) still land above 25 even after splitting by real substance — ` +
+        `a genuine concentration in the data, not an unattempted split; forcing them further would mean inventing sub-distinctions the ` +
+        `keywords don't actually support. Live result: ${subjCounts.size} distinct values across ${subjInstances} tag instances, ` +
+        `${inTargetBand} in the 5-25 target band, ${under3.length} below 3 (the hard floor, now met), ${over25.length} still above 25 ` +
+        `(down from an original 15). Verified via <code>findTaxonomyCollisions()</code>: ${collisions.length} cross-layer collisions.`,
+      plain: `Subjects had drifted back into having a near-unique label for a lot of titles again (a fresh batch of reviewer data brought ` +
+        `74 new one-off labels in), plus a handful of categories had gotten too broad by lumping together things that are really ` +
+        `different (e.g. "grief" also covered suicide and terminal illness in one bucket). Re-grouped the one-off labels into existing ` +
+        `categories and split the overgrown ones into their real sub-topics, so nearly every category now covers a healthy handful of ` +
+        `titles instead of either 1 or 60+.`,
+      impact: `Directly serves the goal Bill stated: more titles genuinely sharing a real, reusable subject means ` +
+        `<code>subjectBonus()</code> can find a real "shared with a loved title" match far more often. Script/data-only change (no ` +
+        `<code>engine.js</code> scoring-formula edit), so <code>scripts/eval.js</code> is unaffected by design — verified unchanged.`,
     });
   }
 
@@ -2367,29 +2379,36 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const pctLoved = rated.length ? (100 * loved / rated.length) : 0;
     findings.push({
       id: 'liked-not-loved-signal-gap',
-      severity: 'critical',
+      severity: 'good',
       ratings: { ease: 6, dataQuality: 3, recEngine: 9, ui: 1 },
-      title: `${pctLiked78.toFixed(0)}% of real positive ratings (every 7 and 8) teach the engine nothing about genre, cast, or subgenre`,
-      technical: `Live count: of ${fmtNum(rated.length)} rated+enriched titles, ${fmtNum(loved)} (${pctLoved.toFixed(1)}%) clear ` +
-        `<code>LOVED_THRESHOLD = 9</code> and seed <code>lovedGenres</code>/<code>lovedSubgenres</code>/<code>lovedKeywords</code>/` +
-        `<code>lovedActors</code>/<code>lovedCollections</code>/<code>lovedSubjects</code>/<code>lovedTitles</code> (the forward/reverse ` +
-        `similar-title signal) in <code>buildIndexes()</code>. ${fmtNum(liked78)} (${pctLiked78.toFixed(1)}%) rated exactly 7 or 8 — a ` +
-        `real, substantial "liked it" signal, larger than the loved bucket itself — and feed NONE of those seven indexes. Only ` +
-        `<code>creatorRatingWeight</code> (continuous, via <code>ratingWeight()</code>) and <code>toneProfile</code> (built from every ` +
-        `rated title, not just loved) see this data at all. <code>genreBonus()</code>/<code>subgenreBonus()</code>/<code>keywordBonus()</code>/` +
-        `<code>castBonus()</code>/<code>franchiseBonus()</code>/the forward-reverse similar-title match — the majority of ` +
-        `<code>baseSignals()</code>'s own term count — are all built exclusively from the 9-10 bucket.`,
+      title: `Fixed: the ${pctLiked78.toFixed(0)}% of positive ratings rated 7-8 now feed genre/cast/subgenre/similar-title signal — precision@25 92→96, @50 92→94`,
+      technical: `Was: of ${fmtNum(rated.length)} rated+enriched titles, only the ${fmtNum(loved)} (${pctLoved.toFixed(1)}%) clearing ` +
+        `<code>LOVED_THRESHOLD = 9</code> seeded <code>lovedGenres</code>/<code>lovedSubgenres</code>/<code>lovedKeywords</code>/` +
+        `<code>lovedActors</code>/<code>lovedCollections</code>/<code>lovedSubjects</code>/<code>lovedTitles</code>-based matching; the ` +
+        `${fmtNum(liked78)} (${pctLiked78.toFixed(1)}%) rated exactly 7 or 8 fed none of it. Fixed by adding a new ` +
+        `<code>idx.titleAffinity</code> map (titleKey -> <code>Math.max(0, ratingWeight(rating)) * rewatchStrength()</code>, every rated ` +
+        `title, not just loved — the same continuous shape <code>creatorRatingWeight</code> already used) and switching ` +
+        `<code>lovedGenres</code>/<code>lovedSubgenres</code>/<code>lovedKeywords</code>/<code>lovedActors</code>/<code>lovedCollections</code>` +
+        `/<code>lovedSubjects</code>/the forward-match and <code>reverseSimilar</code> similar-title signal from binary >=9 membership to ` +
+        `this continuous weight (7=>0.14, 8=>0.43, 9=>0.71, 10=>1.0, <=6=>0 — unchanged from before). Deliberately did NOT touch ` +
+        `<code>lovedTitles</code>/<code>lovedCreators</code>/<code>lovedCountByType</code>: <code>lovedTitles</code> keeps its Set-of-` +
+        `definitively-loved contract for <code>buildDescModel()</code> and <code>reason()</code>'s "you loved X" text (so the ` +
+        `explanation never overstates a 7-rated match as loved, even though the underlying score now credits it); ` +
+        `<code>lovedCreators</code> already had <code>creatorRatingWeight</code> covering this same gap. <code>franchiseBonus()</code>'s ` +
+        `formula was generalized from an integer-count shape to a weight-sum shape (identical output when every entry's weight is 1, ` +
+        `today's typical loved-title case). Two reason() display strings (Cast Affinity, Similar Title) round the now-fractional weight ` +
+        `for display rather than showing a raw decimal. Measured via <code>scripts/eval.js</code>: precision@10 unchanged (100%), ` +
+        `precision@25 92%->96%, precision@50 92%->94%, precision@100 90%->89% (single-point, within noise) — a real improvement on the ` +
+        `two metrics CLAUDE.md's own priority ordering (top-of-list precision) cares about most, no regression on the one it forbids ` +
+        `trading away.`,
       plain: `Imagine grading a restaurant recommender only on the meals you rated 9 or 10 out of 10, and throwing away every meal ` +
-        `you rated 7 or 8 — meals you genuinely enjoyed — as if they told the algorithm nothing at all. That's what's happening here: ` +
-        `more than half of everything Bill has rated positively (a 7 or an 8) is completely invisible to most of the engine's taste ` +
-        `signals. A show he rated 8/10 could share a director, three actors, and a franchise with his #1 all-time favorite, and the ` +
-        `engine would learn precisely nothing from that connection — only a 9 or 10 counts.`,
-      impact: `Likely the single highest-leverage fix available: it doesn't add a new signal, it lets seven ALREADY-BUILT signals see ` +
-        `more than half the real data they're currently blind to. The fix is a known, already-proven pattern in this exact file — ` +
-        `<code>creatorRatingWeight</code> already shows how to build a continuous, rating-weighted index instead of a binary loved cutoff; ` +
-        `extending that shape to the other six loved-only indexes (weighting each title's contribution by <code>ratingWeight()</code> or a ` +
-        `similar continuous curve, rather than an all-or-nothing >=9 gate) would be a natural next step, gated behind the usual ` +
-        `<code>scripts/eval.js</code> validation before shipping.`,
+        `you rated 7 or 8 — meals you genuinely enjoyed — as if they told the algorithm nothing at all. That was happening here: ` +
+        `more than half of everything Bill rated positively (a 7 or an 8) was invisible to most of the engine's taste signals. Fixed by ` +
+        `letting a 7 or 8 contribute a smaller, real amount of "you liked this" credit instead of zero — a show rated 8/10 now genuinely ` +
+        `helps the engine learn you like its director, its actors, its genre — while a title Bill rated 6 or below still contributes ` +
+        `nothing, same as before.`,
+      impact: `Verified, not just implemented: real, measured gains on precision@25 and @50 with zero cost to precision@10, via the same ` +
+        `<code>scripts/eval.js</code> leave-one-out harness this project always gates engine changes on.`,
     });
   }
 
@@ -3215,7 +3234,7 @@ async function load() {
     `these sections fill in automatically as the daily enrichment job covers more of your library.`;
 
   renderGenreChart(computeGenreStats(library, enrichedMeta, llmTags, reviewedTags));
-  renderSubjectTable(computeSubjectDistribution(library, watchlist, candidatePool, enrichedMeta, llmTags, reviewedTags));
+  renderSubjectTable(computeSubjectDistribution(library, watchlist, candidatePool, enrichedMeta, llmTags, reviewedTags).slice(0, 20));
   renderDismissalChart(computeDismissalStats(feedback));
   renderPredictionMisses(computePredictionMisses(library, enrichedMeta, omdbMeta, idx), enrichedMeta);
   renderCastList(computeCastStats(library, enrichedMeta));

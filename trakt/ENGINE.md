@@ -68,30 +68,49 @@ before scoring it, the same leave-one-out discipline the book engine's
 
 - **`LOVED_THRESHOLD = 9`** — a rated title counts as "loved" at
   `myRating >= 9` (Trakt's native 1-10 scale). This is roughly Bill's real
-  top ~26% (130 of 495 ratings are 9-10). Every creator/genre/similar-title/
-  franchise/cast/keyword/subgenre index in `buildIndexes()` is built *only*
-  from loved titles — the direct analog of the book engine's
-  `fiveStarAuthors`/`fiveStarThemes`.
-- **`ratingWeight(rating)`** — a separate, continuous -1..+1 weight used
-  for the `creatorRatingWeight` index (see §3a), computed as
-  `(rating - 6.5) / 3.5`, clamped. 6.5 is Bill's real neutral point
-  (his rating distribution's mode/median sits at 7-8, not the scale's
-  literal midpoint of 5.5) — this is *not* a linear rescale of the book
-  engine's 1-5 curve, it was measured against Bill's actual distribution.
+  top ~26% (130 of 495 ratings are 9-10). `lovedTitles` (a Set),
+  `lovedCreators`, and `lovedCountByType` stay gated strictly to this
+  threshold — `lovedTitles` because `buildDescModel()` and `reason()`'s
+  "you loved X" display text need a Set of definitively-loved titles, not
+  a fuzzy weighted one; `lovedCreators` because `creatorRatingWeight`
+  already covers creator-matching continuously (see below); `lovedCountByType`
+  because `matchPointScale` (§3k) is about raw loved-pool size, not
+  weighted taste strength.
+- **`ratingWeight(rating)`** — a continuous -1..+1 weight, computed as
+  `(rating - 6.5) / 3.5`, clamped. 6.5 is Bill's real neutral point (his
+  rating distribution's mode/median sits at 7-8, not the scale's literal
+  midpoint of 5.5) — this is *not* a linear rescale of the book engine's
+  1-5 curve, it was measured against Bill's actual distribution.
+- **`idx.titleAffinity`** (a Map, titleKey -> weight) — the
+  liked-not-loved-signal-gap fix (dashboard Improvement Opportunities,
+  implemented): `Math.max(0, ratingWeight(rating)) * rewatchStrength()`
+  for *every* rated title, not just loved ones. A rating of 6 or below
+  still contributes exactly 0 (unchanged from the old >=9 gate's excluded
+  set); 7-10 now contribute a real, graded amount instead of an
+  all-or-nothing cutoff (7=>0.14, 8=>0.43, 9=>0.71, 10=>1.0). This is the
+  weight now used to build `lovedGenres`, `lovedSubgenres`,
+  `lovedKeywords`, `lovedActors`, `lovedCollections`, `lovedSubjects`,
+  `reverseSimilar`, and the forward-match sum in §3i — every index the
+  original `creatorRatingWeight` precedent (below) hadn't yet been
+  extended to. Measured via `scripts/eval.js`: precision@10 unchanged
+  (100%), @25 92%->96%, @50 92%->94%, @100 90%->89% (noise) — a real gain
+  on the metrics this project's own priority ordering cares about most.
+- **`creatorRatingWeight`** — the original continuous-weight index (uses
+  `ratingWeight()` directly, no `rewatchStrength()` multiplier), the
+  precedent `titleAffinity` above generalized to six more indexes.
 - Every candidate's score starts at a flat **base of 20** (mirrors the
   book engine's own starting point), then every signal below is added or
   subtracted, and the total is clamped to **[0, 100]**.
 - **`rewatchStrength(title, meta)`** isn't a score term itself — it's a
-  *multiplier* applied when a loved title's rating contributes to the
-  creator/genre/similar-title/franchise/cast/keyword/subgenre indexes.
-  1.0 for a title watched once; for a movie, real repeat-view count
-  (`plays`); for a show, `plays / episodeCount` (floored at 1.0, so a
-  loved show Bill hasn't finished yet — e.g. 18 of 30 episodes, rated
-  10/10 — isn't penalized for incompleteness). **Currently a true no-op**
-  against real data (0 of 168 movies have `plays > 1`; no show's ratio
-  exceeds 1.0) — verified via byte-identical `eval.js` output — but starts
-  contributing the moment Bill genuinely rewatches something, no code
-  change needed.
+  *multiplier* folded into `titleAffinity`/`creatorRatingWeight`'s per-title
+  contribution above. 1.0 for a title watched once; for a movie, real
+  repeat-view count (`plays`); for a show, `plays / episodeCount` (floored
+  at 1.0, so a loved show Bill hasn't finished yet — e.g. 18 of 30
+  episodes, rated 10/10 — isn't penalized for incompleteness).
+  **Currently a true no-op** against real data (0 of 168 movies have
+  `plays > 1`; no show's ratio exceeds 1.0) — verified via byte-identical
+  `eval.js` output — but starts contributing the moment Bill genuinely
+  rewatches something, no code change needed.
 
 ---
 
@@ -159,13 +178,21 @@ genres, and a genre-shaped penalty there would misfire against real matches.
 
 ### 3d. Franchise/collection match — capped at **+15**
 ```
-min(15, 10 + (lovedEntriesInSameCollection - 1) × 3)
+min(15, 10 × min(1, totalWeight) + max(0, totalWeight - 1) × 3)
+  where totalWeight = sum of titleAffinity across every rated entry
+  Bill has in the same collection (§2)
 ```
-TMDB's `belongsToCollection` (movies only — no show equivalent). A single
-loved entry in the same franchise already scores +10 (about as concrete a
-signal as this engine has — an actual sequel/prequel to something Bill
-rated a favorite); each additional loved entry in the same franchise adds
-+3 more. Real examples this fires on: Creed I+II, Deadpool 1+2, Sicario 1+2.
+TMDB's `belongsToCollection` (movies only — no show equivalent). Generalized
+from an integer-count formula to a continuous-weight-sum one (the
+liked-not-loved-signal-gap fix) — identical output to the old formula
+whenever every entry's weight is 1 (a loved, non-rewatched entry, still
+the typical case): one loved entry scores +10, two score +13, etc. A
+liked-only (7-8 rated) sibling now contributes real partial credit (e.g.
+one 8-rated entry: `10 × 0.43 ≈ +4.3`) instead of nothing. `reason()`'s
+"Franchise Match" text still only *names* a sibling `idx.lovedTitles`
+considers definitively loved (>=9) — a liked-only sibling can move the
+score without being called "loved" in the explanation. Real examples this
+fires on: Creed I+II, Deadpool 1+2, Sicario 1+2.
 
 ### 3e. Cast match — capped at **+8**
 ```
@@ -532,12 +559,24 @@ build from):
   `melancholy`, `offbeat`, `thoughtful` — 15 tags), scored via a genuine
   per-tone rating-preference delta, not a loved-count tier (§3h).
 - **Subjects** (`inferSubjects()`) — real social/human-condition subject
-  matter beneath genre/subgenre (`addiction-recovery`, `grief-loss`,
-  `trauma-abuse`, `racism-civil-rights`, `immigration-refugee`,
+  matter beneath genre/subgenre, the BBRE-themes-inspired addition.
+  Honestly partial by design (~52% of titles) — not every story genuinely
+  has one. `SUBJECT_KEYWORDS` (17 keyword-triggered buckets:
+  `addiction-recovery`, `drug-addiction`, `grief-loss`, `suicide`,
+  `terminal-illness`, `trauma-abuse`, `domestic-abuse`,
+  `racism-civil-rights`, `historical-atrocities`, `immigration-refugee`,
   `infidelity`, `journalism-media`, `cult-extremism`, `mental-health`,
-  `class-wealth-corporate`, `lgbtq`, `survival` — 12 tags), the BBRE-themes
-  -inspired addition. Honestly partial by design (~28% of titles) — not
-  every story genuinely has one.
+  `class-wealth-corporate`, `corporate-power`, `lgbtq`, `survival`) plus
+  ~40 more canonical bucket names reachable only via the reviewed-override
+  tier below, documented in `SUBJECT_CANONICAL_VOCABULARY`. Rebalanced
+  twice to a "5-25 titles per bucket, nothing under 3" target (Bill's
+  explicit ask, most recently) — see the dashboard's
+  `subjects-taxonomy-consolidated` Improvement Opportunities finding for
+  the live before/after numbers; several original `SUBJECT_KEYWORDS`
+  buckets that had grown past 25 by combining genuinely distinct real
+  themes (grief + suicide + terminal illness; trauma + domestic abuse;
+  wealth/class + corporate misconduct; racism + historical atrocities)
+  were split into their real keyword sub-groups.
 - **Era** (`inferEra()`) — when the *story* is set, not when the title was
   made. A coarse 4-bucket keyword scheme (`ancient-to-1900`,
   `early-1900s`, `mid-late-1900s`, `future-setting`) on its own, but

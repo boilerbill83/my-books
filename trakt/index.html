@@ -37,11 +37,11 @@
       .tk-card-heading {
         font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; color: var(--accent);
         margin-bottom: 4px;
-        cursor: pointer; display: flex; align-items: center; justify-content: space-between; user-select: none;
+        cursor: pointer; display: flex; align-items: center; justify-content: space-between;
       }
       .tk-card-heading .tk-collapse-chevron {
         font-family: var(--font-sans); font-size: 0.75em; color: var(--text-muted); transition: transform 0.15s;
-        flex-shrink: 0; margin-left: 10px;
+        flex-shrink: 0; margin-left: 10px; user-select: none;
       }
       .tk-card.tk-card-collapsed .tk-collapse-chevron { transform: rotate(-90deg); }
       .tk-card.tk-card-collapsed > *:not(.tk-card-heading) { display: none !important; }
@@ -199,7 +199,8 @@
       .tk-field-note { color: var(--text-muted); font-size: 0.7rem; margin-top: 3px; max-width: 280px; }
       .tk-imp-card { border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; }
       .tk-imp-card:last-child { margin-bottom: 0; }
-      .tk-imp-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; cursor: pointer; user-select: none; }
+      .tk-imp-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; cursor: pointer; }
+      .tk-imp-header .tk-status-pill, .tk-imp-header .tk-collapse-chevron { user-select: none; }
       .tk-imp-header:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
       .tk-imp-title { font-weight: 700; font-size: 0.95rem; flex: 1 1 auto; min-width: 160px; }
       .tk-imp-header .tk-collapse-chevron { font-size: 0.8rem; color: var(--text-muted); transition: transform 0.15s ease; margin-left: auto; }
@@ -298,7 +299,7 @@
 
         <div class="tk-card">
           <div class="tk-card-heading">Subjects</div>
-          <div class="tk-card-note">The real human-condition subject matter beneath genre/subgenre (addiction, grief, trauma, class, etc. — see the Field Population &amp; Quality section below for how this differs from genre). Distribution counts every watched/watchlisted/candidate title; Avg Rating and Top Titles are scoped to what you've actually watched and rated.</div>
+          <div class="tk-card-note">The real human-condition subject matter beneath genre/subgenre (addiction, grief, trauma, class, etc. — see the Field Population &amp; Quality section below for how this differs from genre). Top 20 by count. Distribution counts every watched/watchlisted/candidate title; Avg Rating and Top Titles are scoped to what you've actually watched and rated.</div>
           <div class="tk-table-wrap"><table class="tk-table" id="subjectTable"></table></div>
         </div>
 

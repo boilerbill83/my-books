@@ -265,14 +265,40 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   const lovedTitles = new Set();
   const lovedCreators = new Map();       // creator name -> count of loved titles
   const creatorRatingWeight = new Map(); // creator name -> summed rating-weight across all rated titles
-  const lovedGenres = new Map();         // genre name -> count of loved titles
-  const reverseSimilar = new Map();      // titleKey -> count of loved titles citing it as similar/recommended
-  const lovedCollections = new Map();    // TMDB collection id -> [titleKey, ...] of loved titles in it
-  const lovedActors = new Map();         // actor name -> count of loved titles they appeared in (topCast)
-  const lovedKeywords = new Map();       // free-form TMDB keyword -> count of loved titles carrying it
-  const lovedSubgenres = new Map();      // inferSubgenres() tag -> count of loved titles carrying it
-  const lovedSubjects = new Map();       // inferSubjects() tag -> count of loved titles carrying it
+  const lovedGenres = new Map();         // genre name -> continuous rating-weighted sum (see titleAffinity below)
+  const reverseSimilar = new Map();      // titleKey -> continuous rating-weighted sum of titles citing it as similar/recommended
+  const lovedCollections = new Map();    // TMDB collection id -> [titleKey, ...] of loved (>=9) titles in it
+  const lovedActors = new Map();         // actor name -> continuous rating-weighted sum (topCast)
+  const lovedKeywords = new Map();       // free-form TMDB keyword -> continuous rating-weighted sum
+  const lovedSubgenres = new Map();      // inferSubgenres() tag -> continuous rating-weighted sum
+  const lovedSubjects = new Map();       // inferSubjects() tag -> continuous rating-weighted sum
   const lovedCountByType = { movie: 0, show: 0 }; // for matchPointScale() below
+  // Dashboard's liked-not-loved-signal-gap finding, implemented: genre/
+  // subgenre/keyword/cast/subject/similar-title signal used to come
+  // exclusively from the myRating>=9 bucket (28.8% of rated titles),
+  // leaving the 57.1% rated exactly 7 or 8 — a real, substantial "liked
+  // it" signal, bigger than the loved bucket itself — contributing
+  // nothing. creatorRatingWeight already proved this continuous-weight
+  // shape works; extended it to the maps above via titleAffinity (titleKey
+  // -> non-negative rating weight, every rated title, not just loved).
+  // Deliberately clamped to >=0 (Math.max(0, ratingWeight(...))) rather
+  // than allowing genuinely negative weight through: this finding was
+  // about extending POSITIVE signal to liked-but-not-loved titles, not
+  // about penalizing disliked ones (that's a separate, not-yet-built
+  // finding — no-negative-genre-signal — deliberately not conflated with
+  // this one). A rating of 6 or below contributes exactly 0, same as
+  // before; 7-10 contribute a real, graded amount (7=>0.14, 8=>0.43,
+  // 9=>0.71, 10=>1.0) instead of a flat 1.0-or-nothing cutoff.
+  // lovedTitles/lovedCreators/lovedCountByType are deliberately NOT
+  // changed here: lovedTitles keeps its existing Set-membership contract
+  // (buildDescModel(), reason()'s "you loved X" text, and a dashboard
+  // finding all consume it as a Set of definitively-loved titles, and
+  // reason() naming a liked-not-loved title as if it were a favorite
+  // would overstate the match); lovedCreators already has a second,
+  // already-continuous signal (creatorRatingWeight) covering this same
+  // gap for creator-matching specifically, so it wasn't part of this
+  // finding's "zero signal" claim to begin with.
+  const titleAffinity = new Map(); // titleKey -> non-negative rating weight, every rated+enriched title
   // tone -> [ratings], built from EVERY rated title (not just loved) —
   // this is a rating-preference-delta signal (the book side's
   // buildToneProfile()/toneSignal() shape), which needs both liked and
@@ -319,42 +345,49 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
     if (t.myRating >= LOVED_THRESHOLD) {
       lovedTitles.add(t.titleKey);
       lovedCountByType[t.type] = (lovedCountByType[t.type] || 0) + 1;
-      // A loved title's contribution to every count below is weighted by
-      // how many times Bill has actually watched it, not a flat 1 — see
-      // rewatchStrength()'s own comment. This is a true no-op against
-      // today's real data (every real rewatchStrength value is exactly
-      // 1.0 right now — 0 of 168 movies have plays>1, and no show's
-      // plays/episodes ratio exceeds 1.0 either — verified via
-      // scripts/eval.js producing byte-identical output before/after),
-      // and starts contributing extra weight automatically the moment
-      // Bill genuinely rewatches something, with no future code change
-      // needed.
-      const rw = rewatchStrength(t, meta);
-      for (const c of creators) lovedCreators.set(c, (lovedCreators.get(c) || 0) + rw);
+    }
+
+    // A rated title's contribution to every map below is weighted by both
+    // how positively Bill rated it (0 at <=6, graded 0.14-1.0 at 7-10 —
+    // see this function's own top-of-file comment) and, same as before,
+    // how many times he's actually watched it (rewatchStrength() — a true
+    // no-op against today's real data, see its own comment). A rating of
+    // 6 or below contributes exactly 0, i.e. today's old >=9 gate's
+    // "excluded" titles stay excluded — this only ADDS the 7-8 bucket in,
+    // never subtracts anything a genuinely disliked title used to add
+    // (there was none).
+    const w = Math.max(0, ratingWeight(t.myRating)) * rewatchStrength(t, meta);
+    if (w > 0) {
+      titleAffinity.set(t.titleKey, w);
       const lovedGenre = inferGenre(meta, llmTags[t.titleKey], reviewedTags[t.titleKey]);
-      if (lovedGenre) lovedGenres.set(lovedGenre, (lovedGenres.get(lovedGenre) || 0) + rw);
+      if (lovedGenre) lovedGenres.set(lovedGenre, (lovedGenres.get(lovedGenre) || 0) + w);
       for (const id of [...(meta?.similarToIds || []), ...(meta?.recommendedIds || [])]) {
         const key = titleKey(t.type, id);
-        reverseSimilar.set(key, (reverseSimilar.get(key) || 0) + rw);
+        reverseSimilar.set(key, (reverseSimilar.get(key) || 0) + w);
       }
       const collectionId = meta?.belongsToCollection?.id;
       if (collectionId != null) {
         if (!lovedCollections.has(collectionId)) lovedCollections.set(collectionId, []);
-        lovedCollections.get(collectionId).push(t.titleKey);
+        lovedCollections.get(collectionId).push({ titleKey: t.titleKey, weight: w });
       }
       for (const actor of (meta?.topCast || [])) {
-        lovedActors.set(actor, (lovedActors.get(actor) || 0) + rw);
+        lovedActors.set(actor, (lovedActors.get(actor) || 0) + w);
       }
       for (const kw of (meta?.keywords || [])) {
         if (KEYWORD_STOPLIST.has(kw)) continue;
-        lovedKeywords.set(kw, (lovedKeywords.get(kw) || 0) + rw);
+        lovedKeywords.set(kw, (lovedKeywords.get(kw) || 0) + w);
       }
       for (const s of inferSubgenres(meta, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
-        lovedSubgenres.set(s, (lovedSubgenres.get(s) || 0) + rw);
+        lovedSubgenres.set(s, (lovedSubgenres.get(s) || 0) + w);
       }
       for (const s of inferSubjects(meta, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
-        lovedSubjects.set(s, (lovedSubjects.get(s) || 0) + rw);
+        lovedSubjects.set(s, (lovedSubjects.get(s) || 0) + w);
       }
+    }
+
+    if (t.myRating >= LOVED_THRESHOLD) {
+      const rw = rewatchStrength(t, meta);
+      for (const c of creators) lovedCreators.set(c, (lovedCreators.get(c) || 0) + rw);
     }
   }
 
@@ -440,7 +473,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   // buildDescModel() uses.
   const descModel = buildDescModel(enrichedMeta, lovedTitles);
 
-  return { watched, lovedTitles, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel };
+  return { watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -544,7 +577,15 @@ function franchiseBonus(collectionId, lovedCollections) {
   if (collectionId == null) return 0;
   const lovedInCollection = lovedCollections.get(collectionId);
   if (!lovedInCollection || !lovedInCollection.length) return 0;
-  return Math.min(15, 10 + (lovedInCollection.length - 1) * 3);
+  // Generalizes the old integer-count formula (10 + 3/additional entry) to
+  // continuous per-entry rating weight (liked-not-loved-signal-gap fix) —
+  // identical result to the old formula when every entry's weight is 1
+  // (a loved, non-rewatched title, today's typical case): totalWeight=1 ->
+  // 10, totalWeight=2 -> 13, etc. A liked-only (7-8) entry now contributes
+  // real partial credit instead of nothing.
+  const totalWeight = lovedInCollection.reduce((s, e) => s + e.weight, 0);
+  if (totalWeight <= 0) return 0;
+  return Math.min(15, 10 * Math.min(1, totalWeight) + Math.max(0, totalWeight - 1) * 3);
 }
 
 // A real, verified gap (a dashboard Improvement Opportunities finding):
@@ -1441,25 +1482,45 @@ export function inferSubgenreDetail(subgenreTag, meta, limit = 1) {
 // these three buckets was re-verified as a real match - the same
 // precision-over-recall tradeoff this file's history consistently makes.
 const SUBJECT_KEYWORDS = {
-  'addiction-recovery': ['alcoholism', 'addiction', 'drug addiction', 'alcoholic', 'drug abuse', 'recovering alcoholic',
-    'substance abuse', 'sex addiction', 'drug addict', 'crack addict', 'addiction recovery', 'alcoholics anonymous',
-    'alcoholic father', 'alcoholic mother', 'addict'],
+  // Bill: "fix subjects... buckets should have 5-25 titles, nothing under
+  // 3." Several of the original 12 keyword buckets had grown well past 25
+  // by combining genuinely distinct real-world themes under one umbrella
+  // (grief-loss mixed bereavement + suicide + terminal illness; trauma-abuse
+  // mixed PTSD/war trauma + domestic/sexual abuse; addiction-recovery mixed
+  // alcohol + drugs; class-wealth-corporate mixed personal wealth/class +
+  // corporate misconduct; racism-civil-rights mixed discrimination + the
+  // historical-atrocity keywords). Split each into its real sub-themes
+  // below (verified via a live keyword-frequency check first, same
+  // discipline as every prior SUBJECT_KEYWORDS addition) rather than
+  // force an arbitrary split with no keyword basis. A few (addiction,
+  // grief/bereavement) still land above 25 even split by real substance —
+  // that's the genuine concentration in the data, not an unattempted
+  // split; forcing them further would mean inventing sub-distinctions the
+  // keywords don't actually support, the same "don't force a bucket from
+  // weak evidence" rule this file's own history already established.
+  'addiction-recovery': ['alcoholism', 'alcoholic', 'recovering alcoholic', 'alcoholics anonymous',
+    'alcoholic father', 'alcoholic mother'],
+  'drug-addiction': ['addiction', 'drug addiction', 'drug abuse', 'substance abuse', 'sex addiction',
+    'drug addict', 'crack addict', 'addiction recovery', 'addict'],
   'grief-loss': ['grief', 'loss of loved one', 'grieving widower', 'grief & loss', 'grieving', 'grieving sister', 'grieving mother',
-    'grieving man', 'grieving father', 'grieving daughter', 'loss of wife', 'loss of job', 'loss of child', 'suicide',
-    'suicide attempt', 'suicide of mother', 'mass suicide', 'cancer', 'terminal illness', 'terminal cancer'],
-  'trauma-abuse': ['post-traumatic stress disorder (ptsd)', 'trauma', 'domestic abuse', 'domestic violence', 'sexual abuse',
-    'child abuse', 'childhood trauma', 'abuse of power', 'abuse', 'abuse of authority', 'war trauma', 'wartime trauma',
-    'traumatized', 'traumatized woman', 'childhood sexual abuse'],
-  'racism-civil-rights': ['racism', 'civil rights', 'discrimination', 'homophobia', 'racist', 'slavery', 'escape from slavery',
-    'holocaust (shoah) survivor', 'holocaust (shoah)', 'rwandan genocide'],
+    'grieving man', 'grieving father', 'grieving daughter', 'loss of wife', 'loss of child'],
+  'suicide': ['suicide', 'suicide attempt', 'suicide of mother', 'mass suicide'],
+  'terminal-illness': ['cancer', 'terminal illness', 'terminal cancer'],
+  'trauma-abuse': ['post-traumatic stress disorder (ptsd)', 'trauma', 'childhood trauma', 'war trauma', 'wartime trauma',
+    'traumatized', 'traumatized woman'],
+  'domestic-abuse': ['domestic abuse', 'domestic violence', 'sexual abuse', 'child abuse', 'childhood sexual abuse',
+    'abuse of power', 'abuse', 'abuse of authority'],
+  'racism-civil-rights': ['racism', 'civil rights', 'discrimination', 'homophobia', 'racist'],
+  'historical-atrocities': ['slavery', 'escape from slavery', 'holocaust (shoah) survivor', 'holocaust (shoah)', 'rwandan genocide'],
   'immigration-refugee': ['immigrant', 'refugee', 'immigration', 'immigrant family', 'refugee crisis', 'refugee camp', 'vietnamese refugees'],
   'infidelity': ['infidelity', 'affair'],
   'journalism-media': ['journalist', 'journalism', 'investigative journalism', 'war journalism', 'television journalist'],
   'cult-extremism': ['cult', 'terrorism', 'terrorist plot', 'satanic cult', 'terrorist attack', 'cult leader', 'counterterrorism',
     'plo terrorist group'],
   'mental-health': ['mental illness', 'mental health', 'depression', 'mental institution', 'mental disorders'],
-  'class-wealth-corporate': ['wealthy family', 'wealth', 'wall street', 'working class', 'poverty', 'wealthy', 'class differences',
-    'class', 'corporate greed', 'corporate power', 'corporate control', 'corporate conspiracy', 'corporate law', 'finance', 'finances'],
+  'class-wealth-corporate': ['wealthy family', 'wealth', 'working class', 'poverty', 'wealthy', 'class differences', 'class'],
+  'corporate-power': ['wall street', 'corporate greed', 'corporate power', 'corporate control', 'corporate conspiracy',
+    'corporate law', 'finance', 'finances'],
   'lgbtq': ['lgbt'],
   // New (external metadata-plan review): checked every subject category
   // the plan suggested against real keyword frequency before adding
@@ -1959,11 +2020,16 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   score += toneSignal(inferTones(meta, llmEntry, undefined, reviewedEntry), idx.toneProfile, idx.globalMeanRating);
 
   // Forward match: this candidate's own TMDB-similar/recommended list
-  // includes a title Bill loved.
+  // includes a title Bill rated positively. Sums idx.titleAffinity's
+  // continuous rating weight per cited id (liked-not-loved-signal-gap fix)
+  // instead of counting boolean idx.lovedTitles membership — a citation
+  // to a genuinely loved (9-10) title still contributes close to the old
+  // full 1.0, a citation to a liked-only (7-8) title now contributes a
+  // real, smaller amount instead of nothing.
   const citedIds = new Set([...(meta?.similarToIds || []), ...(meta?.recommendedIds || [])]
     .map(id => titleKey(candidate.type, id)));
   let forwardMatches = 0;
-  for (const id of citedIds) if (idx.lovedTitles.has(id)) forwardMatches++;
+  for (const id of citedIds) forwardMatches += idx.titleAffinity?.get(id) || 0;
   const scale = matchPointScale(candidate.type, idx.lovedCountByType);
   score += Math.min(24, forwardMatches * 8 * scale);
 
@@ -2044,7 +2110,15 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
   const collectionId = meta.belongsToCollection?.id;
   const lovedInCollection = collectionId != null ? idx.lovedCollections.get(collectionId) : null;
   if (lovedInCollection?.length) {
-    const names = lovedInCollection.map(k => idx.watched.get(k)?.title).filter(Boolean).slice(0, 2);
+    // Only NAME entries idx.lovedTitles considers definitively loved
+    // (>=9) here, even though franchiseBonus() above now also credits a
+    // liked-but-not-loved (7-8) sibling — saying "you loved X" about a
+    // 7-rated title would overstate it. A franchise whose only real
+    // contribution is a liked (not loved) sibling falls through to a
+    // weaker reason branch below instead; the score still reflects it,
+    // only the explanation stays conservative.
+    const names = lovedInCollection.filter(e => idx.lovedTitles.has(e.titleKey))
+      .map(e => idx.watched.get(e.titleKey)?.title).filter(Boolean).slice(0, 2);
     if (names.length) {
       const franchiseName = meta.belongsToCollection.name.replace(/ Collection$/, '');
       return `Franchise Match — You loved ${names.join(' and ')} — this is another entry in the same ${franchiseName} franchise.`;
@@ -2063,7 +2137,10 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
   // than a director/creator match (see castBonus()'s own reasoning).
   const lovedCastMember = (meta.topCast || []).find(actor => idx.lovedActors.get(actor) > 0);
   if (lovedCastMember) {
-    const count = idx.lovedActors.get(lovedCastMember);
+    // idx.lovedActors is now a continuous rating-weighted sum (liked-not-
+    // loved-signal-gap fix), not a literal title count — round for
+    // display rather than showing a raw fractional weight like "0.43".
+    const count = Math.max(1, Math.round(idx.lovedActors.get(lovedCastMember)));
     return `Cast Affinity — You've loved ${count} title${count > 1 ? 's' : ''} with ${lovedCastMember} before.`;
   }
 
@@ -2084,9 +2161,13 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
     if (names.length) return `Similar Title — Similar to ${names.join(' and ')}, which you loved.`;
   }
 
-  const reverseCount = idx.reverseSimilar.get(candidate.titleKey) || 0;
-  if (reverseCount > 0) {
-    return `Similar Title — Titles you loved list this as similar or recommended (${reverseCount} time${reverseCount > 1 ? 's' : ''}).`;
+  // idx.reverseSimilar is now a continuous rating-weighted sum (liked-not-
+  // loved-signal-gap fix), not a literal citation count — round for
+  // display rather than showing a raw fractional weight.
+  const reverseWeight = idx.reverseSimilar.get(candidate.titleKey) || 0;
+  if (reverseWeight > 0) {
+    const reverseCount = Math.max(1, Math.round(reverseWeight));
+    return `Similar Title — Titles you rated highly list this as similar or recommended (${reverseCount} time${reverseCount > 1 ? 's' : ''}).`;
   }
 
   const llmEntry = idx.llmTags?.[candidate.titleKey];
