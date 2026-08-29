@@ -287,16 +287,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:193756",
-      "ids": {
-        "tmdb": 193756
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:531876",
       "ids": {
         "tmdb": 531876
@@ -427,16 +417,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:245219",
-      "ids": {
-        "tmdb": 245219
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
       "titleKey": "show:81290",
       "ids": {
         "tmdb": 81290
@@ -477,29 +457,9 @@
     },
     {
       "type": "show",
-      "titleKey": "show:225634",
-      "ids": {
-        "tmdb": 225634
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 6
-    },
-    {
-      "type": "show",
       "titleKey": "show:1908",
       "ids": {
         "tmdb": 1908
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 6
-    },
-    {
-      "type": "show",
-      "titleKey": "show:259731",
-      "ids": {
-        "tmdb": 259731
       },
       "title": null,
       "year": null,
@@ -1087,29 +1047,9 @@
     },
     {
       "type": "show",
-      "titleKey": "show:157732",
-      "ids": {
-        "tmdb": 157732
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
       "titleKey": "show:3050",
       "ids": {
         "tmdb": 3050
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
-      "titleKey": "show:16997",
-      "ids": {
-        "tmdb": 16997
       },
       "title": null,
       "year": null,
@@ -1507,16 +1447,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:67178",
-      "ids": {
-        "tmdb": 67178
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
       "titleKey": "show:1411",
       "ids": {
         "tmdb": 1411
@@ -1767,16 +1697,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:39254",
-      "ids": {
-        "tmdb": 39254
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:1246",
       "ids": {
         "tmdb": 1246
@@ -1874,16 +1794,6 @@
       "title": null,
       "year": null,
       "citedBy": 4
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:98",
-      "ids": {
-        "tmdb": 98
-      },
-      "title": null,
-      "year": null,
-      "citedBy": null
     },
     {
       "type": "show",
@@ -2010,36 +1920,6 @@
       "titleKey": "show:79410",
       "ids": {
         "tmdb": 79410
-      },
-      "title": null,
-      "year": null,
-      "citedBy": null
-    },
-    {
-      "type": "show",
-      "titleKey": "show:17035",
-      "ids": {
-        "tmdb": 17035
-      },
-      "title": null,
-      "year": null,
-      "citedBy": null
-    },
-    {
-      "type": "show",
-      "titleKey": "show:113984",
-      "ids": {
-        "tmdb": 113984
-      },
-      "title": null,
-      "year": null,
-      "citedBy": null
-    },
-    {
-      "type": "show",
-      "titleKey": "show:64254",
-      "ids": {
-        "tmdb": 64254
       },
       "title": null,
       "year": null,

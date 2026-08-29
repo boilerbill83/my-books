@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-08-25T00:18:25.302Z",
-    "movieCount": 180,
-    "showCount": 373
+    "generatedAt": "2026-08-29T16:40:13.440Z",
+    "movieCount": 183,
+    "showCount": 379
   },
   "titles": [
     {
@@ -459,8 +459,8 @@
       "myRating": 9,
       "ratedAt": "2026-08-14T23:34:58.000Z",
       "plays": 9,
-      "airedEpisodes": 9,
-      "completionStatus": "caught-up",
+      "airedEpisodes": 12,
+      "completionStatus": "in-progress",
       "lastWatchedAt": "2026-08-01T01:21:00.000Z",
       "favorite": false
     },
@@ -2520,8 +2520,8 @@
       "myRating": 9,
       "ratedAt": "2026-07-29T00:56:35.000Z",
       "plays": 9,
-      "airedEpisodes": 9,
-      "completionStatus": "caught-up",
+      "airedEpisodes": 10,
+      "completionStatus": "in-progress",
       "lastWatchedAt": "2024-06-26T03:02:00.000Z",
       "favorite": false
     },
@@ -2634,6 +2634,30 @@
       "airedEpisodes": 36,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:245219",
+      "ids": {
+        "imdb": "tt31121364",
+        "plex": {
+          "guid": "65bd41b54da2087c26ef11a4",
+          "slug": "death-by-lightning"
+        },
+        "slug": "death-by-lightning",
+        "tmdb": 245219,
+        "tvdb": 445592,
+        "trakt": 222950
+      },
+      "title": "Death by Lightning",
+      "year": 2025,
+      "myRating": 8,
+      "ratedAt": "2026-08-29T16:34:37.000Z",
+      "plays": 4,
+      "airedEpisodes": 4,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2025-11-06T09:07:00.000Z",
       "favorite": false
     },
     {
@@ -4390,6 +4414,30 @@
     },
     {
       "type": "show",
+      "titleKey": "show:259731",
+      "ids": {
+        "imdb": "tt33035373",
+        "plex": {
+          "guid": "66a33f8ece8cbb431d9b47f9",
+          "slug": "his-and-hers-2026"
+        },
+        "slug": "his-hers-2026",
+        "tmdb": 259731,
+        "tvdb": 452521,
+        "trakt": 249443
+      },
+      "title": "HIS & HERS",
+      "year": 2026,
+      "myRating": 7,
+      "ratedAt": "2026-08-29T16:35:19.000Z",
+      "plays": 6,
+      "airedEpisodes": 6,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-01-08T08:48:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
       "titleKey": "show:1407",
       "ids": {
         "imdb": "tt1796960",
@@ -4848,7 +4896,7 @@
       "myRating": 9,
       "ratedAt": "2025-08-20T00:00:00.000Z",
       "plays": 177,
-      "airedEpisodes": 179,
+      "airedEpisodes": 180,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false
@@ -5269,6 +5317,30 @@
     },
     {
       "type": "show",
+      "titleKey": "show:157732",
+      "ids": {
+        "imdb": "tt15399640",
+        "plex": {
+          "guid": "621a0843249a4b826390cb83",
+          "slug": "lawmen-bass-reeves"
+        },
+        "slug": "lawmen-bass-reeves",
+        "tmdb": 157732,
+        "tvdb": 416503,
+        "trakt": 193367
+      },
+      "title": "Lawmen: Bass Reeves",
+      "year": 2023,
+      "myRating": 9,
+      "ratedAt": "2026-08-29T16:35:36.000Z",
+      "plays": 8,
+      "airedEpisodes": 8,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2023-12-17T08:54:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
       "titleKey": "show:262280",
       "ids": {
         "imdb": "tt33265765",
@@ -5454,6 +5526,27 @@
       "airedEpisodes": 12,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:193756",
+      "ids": {
+        "imdb": "tt1091191",
+        "plex": {
+          "guid": "5d776a1996b655001fde369c",
+          "slug": "lone-survivor"
+        },
+        "slug": "lone-survivor-2013",
+        "tmdb": 193756,
+        "trakt": 120953
+      },
+      "title": "Lone Survivor",
+      "year": 2013,
+      "myRating": 8,
+      "ratedAt": "2026-08-27T12:24:39.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2013-12-24T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -6312,6 +6405,30 @@
       "ratedAt": "2026-08-21T14:52:26.000Z",
       "plays": 1,
       "lastWatchedAt": "2011-09-23T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:225634",
+      "ids": {
+        "imdb": "tt31896788",
+        "plex": {
+          "guid": "606ef58bff5b43002ce0589a",
+          "slug": "monster-2022"
+        },
+        "slug": "monsters-the-lyle-and-erik-menendez-story",
+        "tmdb": 225634,
+        "tvdb": 453544,
+        "trakt": 206920
+      },
+      "title": "Monsters: The Lyle and Erik Menendez Story",
+      "year": 2024,
+      "myRating": 8,
+      "ratedAt": "2026-08-29T16:35:02.000Z",
+      "plays": 9,
+      "airedEpisodes": 9,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2024-09-19T05:06:00.000Z",
       "favorite": false
     },
     {
@@ -7452,7 +7569,7 @@
       "myRating": 8,
       "ratedAt": "2025-04-10T00:00:00.000Z",
       "plays": 24,
-      "airedEpisodes": 28,
+      "airedEpisodes": 29,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false
@@ -7476,6 +7593,27 @@
       "ratedAt": "2018-03-29T00:00:00.000Z",
       "plays": 1,
       "lastWatchedAt": "2018-03-29T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:39254",
+      "ids": {
+        "imdb": "tt0433035",
+        "plex": {
+          "guid": "5d77686ff59e58002189d89b",
+          "slug": "real-steel"
+        },
+        "slug": "real-steel-2011",
+        "tmdb": 39254,
+        "trakt": 25482
+      },
+      "title": "Real Steel",
+      "year": 2011,
+      "myRating": 8,
+      "ratedAt": "2026-08-27T12:24:11.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2011-10-06T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -8139,7 +8277,7 @@
       "myRating": 7,
       "ratedAt": "2026-08-13T13:32:00.000Z",
       "plays": 20,
-      "airedEpisodes": 28,
+      "airedEpisodes": 29,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2025-01-17T02:59:00.000Z",
       "favorite": false
@@ -8586,6 +8724,27 @@
       "favorite": false
     },
     {
+      "type": "movie",
+      "titleKey": "movie:297761",
+      "ids": {
+        "imdb": "tt1386697",
+        "plex": {
+          "guid": "5d776b32fb0d55001f55f7b6",
+          "slug": "suicide-squad-2016"
+        },
+        "slug": "suicide-squad-2016",
+        "tmdb": 297761,
+        "trakt": 193079
+      },
+      "title": "Suicide Squad",
+      "year": 2016,
+      "myRating": 4,
+      "ratedAt": "2026-08-27T12:23:35.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2016-08-05T00:00:00.000Z",
+      "favorite": false
+    },
+    {
       "type": "show",
       "titleKey": "show:37680",
       "ids": {
@@ -8715,7 +8874,7 @@
       "myRating": 9,
       "ratedAt": "2023-05-31T00:00:00.000Z",
       "plays": 34,
-      "airedEpisodes": 37,
+      "airedEpisodes": 38,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false
@@ -9786,6 +9945,30 @@
       "favorite": false
     },
     {
+      "type": "show",
+      "titleKey": "show:254528",
+      "ids": {
+        "imdb": "tt27550719",
+        "plex": {
+          "guid": "6646a03bab6b31fa3ee5e703",
+          "slug": "the-hawk-2026"
+        },
+        "slug": "the-hawk-2026",
+        "tmdb": 254528,
+        "tvdb": 450088,
+        "trakt": 240024
+      },
+      "title": "The Hawk",
+      "year": 2026,
+      "myRating": 8,
+      "ratedAt": "2026-08-28T13:15:03.000Z",
+      "plays": 10,
+      "airedEpisodes": 10,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-07-16T04:37:00.000Z",
+      "favorite": false
+    },
+    {
       "type": "movie",
       "titleKey": "movie:840430",
       "ids": {
@@ -10614,6 +10797,30 @@
       "airedEpisodes": 10,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:16997",
+      "ids": {
+        "imdb": "tt0374463",
+        "plex": {
+          "guid": "5d9c0866e264b7001fc4307b",
+          "slug": "the-pacific"
+        },
+        "slug": "the-pacific",
+        "tmdb": 16997,
+        "tvdb": 85539,
+        "trakt": 16926
+      },
+      "title": "The Pacific",
+      "year": 2010,
+      "myRating": 8,
+      "ratedAt": "2026-08-25T13:47:12.000Z",
+      "plays": 10,
+      "airedEpisodes": 10,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2010-05-17T02:01:00.000Z",
       "favorite": false
     },
     {

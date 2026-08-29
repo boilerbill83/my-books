@@ -1,34 +1,34 @@
 {
-  "generatedAt": "2026-08-25T00:18:17.351Z",
+  "generatedAt": "2026-08-29T16:40:07.873Z",
   "profile": {
     "username": "bill_stoltenberg_27166c",
     "joinedAt": "2026-07-27T14:49:58.000Z"
   },
   "summary": {
-    "moviesWatched": 180,
-    "moviesPlays": 180,
-    "moviesRatings": 179,
-    "moviesMinutes": 22893,
-    "showsWatched": 373,
-    "showsRatings": 380,
-    "episodesWatched": 11045,
-    "episodesPlays": 11045,
-    "episodesMinutes": 474424,
-    "totalRatings": 559,
-    "totalMinutes": 497317,
-    "totalHours": 8289,
-    "avgRating": 7.83
+    "moviesWatched": 183,
+    "moviesPlays": 183,
+    "moviesRatings": 182,
+    "moviesMinutes": 23263,
+    "showsWatched": 379,
+    "showsRatings": 386,
+    "episodesWatched": 11092,
+    "episodesPlays": 11092,
+    "episodesMinutes": 476621,
+    "totalRatings": 568,
+    "totalMinutes": 499884,
+    "totalHours": 8331,
+    "avgRating": 7.82
   },
   "ratingDistribution": {
     "1": 0,
     "2": 2,
     "3": 4,
-    "4": 19,
+    "4": 20,
     "5": 7,
     "6": 48,
-    "7": 112,
-    "8": 205,
-    "9": 83,
+    "7": 113,
+    "8": 211,
+    "9": 84,
     "10": 79
   },
   "activityByYear": [
@@ -105,11 +105,11 @@
     {
       "year": 2010,
       "movies": 2,
-      "episodes": 123
+      "episodes": 133
     },
     {
       "year": 2011,
-      "movies": 3,
+      "movies": 4,
       "episodes": 176
     },
     {
@@ -119,7 +119,7 @@
     },
     {
       "year": 2013,
-      "movies": 4,
+      "movies": 5,
       "episodes": 181
     },
     {
@@ -134,7 +134,7 @@
     },
     {
       "year": 2016,
-      "movies": 16,
+      "movies": 17,
       "episodes": 197
     },
     {
@@ -170,28 +170,28 @@
     {
       "year": 2023,
       "movies": 17,
-      "episodes": 118
+      "episodes": 126
     },
     {
       "year": 2024,
       "movies": 11,
-      "episodes": 97
+      "episodes": 106
     },
     {
       "year": 2025,
       "movies": 12,
-      "episodes": 246
+      "episodes": 250
     },
     {
       "year": 2026,
       "movies": 5,
-      "episodes": 90
+      "episodes": 106
     }
   ],
   "dataCaveats": {
     "undatedEpisodePlays": 7523,
-    "datedEpisodePlays": 3522,
-    "undatedEpisodeSharePct": 68.1
+    "datedEpisodePlays": 3569,
+    "undatedEpisodeSharePct": 67.8
   },
   "topShowsByPlays": [
     {
@@ -216,7 +216,7 @@
       "title": "It's Always Sunny in Philadelphia",
       "year": 2005,
       "plays": 177,
-      "airedEpisodes": 179
+      "airedEpisodes": 180
     },
     {
       "title": "Mom",
@@ -570,12 +570,6 @@
       },
       {
         "type": "show",
-        "title": "The Hawk",
-        "year": 2026,
-        "listedAt": "2026-07-28T20:02:59.000Z"
-      },
-      {
-        "type": "show",
         "title": "Your Friends & Neighbors",
         "year": 2025,
         "listedAt": "2026-07-29T00:12:52.000Z"
@@ -783,6 +777,12 @@
         "title": "Moon",
         "year": 2009,
         "listedAt": "2026-08-24T11:41:45.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Marvel's The Punisher",
+        "year": 2017,
+        "listedAt": "2026-08-27T12:17:50.000Z"
       }
     ]
   },
