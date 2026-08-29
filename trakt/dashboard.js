@@ -2404,10 +2404,18 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const dislikeByGenre = {}, totalByGenre = {};
     for (const t of rated) {
       const m = enrichedMeta[t.titleKey];
-      for (const g of (m.genres || [])) {
-        totalByGenre[g] = (totalByGenre[g] || 0) + 1;
-        if (t.myRating <= 5) dislikeByGenre[g] = (dislikeByGenre[g] || 0) + 1;
-      }
+      // genreBonus()/lovedGenres score against inferGenre()'s single
+      // canonical 17-word genre, not the raw multi-valued TMDB
+      // meta.genres array — using the raw array here would both
+      // double-count a title across several tags AND leave TMDB's
+      // pre-normalizeGenre() duplicate vocabulary in place (e.g. a
+      // show's "Sci-Fi & Fantasy" sitting apart from a movie's "Science
+      // Fiction" for the same real genre), neither of which is what the
+      // signal this finding is about actually consumes.
+      const g = inferGenre(m, idx.llmTags?.[t.titleKey], idx.reviewedTags?.[t.titleKey]);
+      if (!g) continue;
+      totalByGenre[g] = (totalByGenre[g] || 0) + 1;
+      if (t.myRating <= 5) dislikeByGenre[g] = (dislikeByGenre[g] || 0) + 1;
     }
     const baselineRate = rated.length ? rated.filter(t => t.myRating <= 5).length / rated.length : 0;
     const genreRows = Object.keys(totalByGenre)
@@ -2422,21 +2430,31 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       title: worst
         ? `${worst.g} candidates score no differently whether Bill loves or dislikes the genre — real dislike rate ${(worst.rate * 100).toFixed(0)}% vs. ${(baselineRate * 100).toFixed(1)}% baseline`
         : 'No genre has enough rated volume yet to measure a real dislike-rate signal',
-      technical: `Live per-genre dislike rate (genres with 15+ rated titles), Bill's rated titles, myRating<=5 counted as disliked: ` +
+      technical: `Live per-canonical-genre dislike rate (via <code>inferGenre()</code>, the single-valued classifier ` +
+        `<code>genreBonus()</code>/<code>lovedGenres</code> actually consume — not TMDB's raw multi-valued genre tags), genres with ` +
+        `15+ rated titles, Bill's rated titles, myRating<=5 counted as disliked: ` +
         genreRows.slice(0, 5).map(r => `${esc(r.g)} ${r.dislikes}/${r.n} (${(r.rate * 100).toFixed(0)}%)`).join(', ') +
         `. Baseline dislike rate across all ${fmtNum(rated.length)} rated titles: ${(baselineRate * 100).toFixed(1)}%. Despite this real, ` +
         `measurable spread, <code>genreBonus()</code> and <code>subgenreBonus()</code> are both purely additive tiered-count functions ` +
-        `with a floor of 0 — there is no code path for a genre or subgenre to ever subtract from a score. Compare ` +
-        `<code>toneSignal()</code>, which already computes a genuine per-tone rating-preference DELTA (mean rating with the tone minus ` +
-        `Bill's global mean) from the full rated distribution and can swing a score ±3 — proof this exact shape already works and is ` +
-        `eval.js-validated, just never applied one layer up to genre/subgenre.`,
+        `with a floor of 0 — neither one has any code path to subtract from a score. There IS a separate genre/subgenre-level penalty ` +
+        `elsewhere in <code>baseSignals()</code> — <code>dismissAdjust()</code>'s style-dislike component — but it's a different ` +
+        `mechanism entirely: it fires only from explicit dismissal feedback (a title tagged <code>style_dislike</code>), requires 2+ ` +
+        `such dismissals before it activates at all, and is confirmed dormant against today's real <code>feedbackData.json</code> (0 of ` +
+        `38 real dismissals use that reason code). It has no connection to Bill's actual RATING pattern the way this finding is about — ` +
+        `compare <code>toneSignal()</code>, which already computes a genuine per-tone rating-preference DELTA (mean rating with the tone ` +
+        `minus Bill's global mean) from the full rated distribution and can swing a score ±3 — proof this exact ratings-derived shape ` +
+        `already works and is eval.js-validated for tone, just never applied one layer up to genre/subgenre.`,
       plain: `Right now the engine only ever asks "does Bill love this genre" and adds points if so — it never asks "does Bill actually ` +
-        `dislike this genre," even when the real ratings say so clearly. Horror candidates, for example, get scored the same additive way ` +
-        `as any other genre match, even though Bill's own rating history shows he dislikes horror at a rate several times the norm. The ` +
-        `engine has a working example of exactly the fix needed sitting right next to this gap — tone already works this way (it correctly ` +
-        `dings a title for a tone Bill's ratings say he responds poorly to) — it just was never carried over to genre or subgenre.`,
-      impact: `A structural blind spot on the negative side of scoring, not a tuning tweak: right now nothing in <code>baseSignals()</code> ` +
-        `can ever push a candidate down for matching a genre Bill demonstrably dislikes, only up for matching one he loves. Extending ` +
+        `dislike this genre," based on how he's actually rated things, even when the real ratings say so clearly. Horror candidates, for ` +
+        `example, get scored the same additive way as any other genre match, even though Bill's own rating history shows he dislikes ` +
+        `horror at a rate several times the norm. (There's a separate mechanism that can penalize a genre from an explicit "I dismissed ` +
+        `this because of its style" click, but Bill has never actually used it, so it does nothing today.) The engine has a working ` +
+        `example of exactly the fix needed sitting right next to this gap — tone already works this way (it correctly dings a title for ` +
+        `a tone Bill's ratings say he responds poorly to) — it just was never carried over to genre or subgenre.`,
+      impact: `A structural blind spot on the negative side of RATING-derived scoring, not a tuning tweak: right now nothing in ` +
+        `<code>baseSignals()</code> derives a genre/subgenre penalty from Bill's actual rating history the way <code>toneSignal()</code> ` +
+        `does for tone — only from explicit, currently-unused dismissal feedback. In practice, today, nothing pushes a candidate down for ` +
+        `matching a genre Bill demonstrably dislikes by rating pattern, only up for matching one he loves. Extending ` +
         `<code>toneSignal()</code>'s already-proven preference-delta shape to genre (and, once trust floors are met, subgenre) would close ` +
         `it with a pattern this codebase has already built, tuned, and validated once.`,
     });
@@ -2492,12 +2510,17 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     for (const t of rated) {
       const m = enrichedMeta[t.titleKey];
       if (m.voteAverage == null) continue;
-      for (const g of (m.genres || [])) {
-        if (!byGenre[g]) byGenre[g] = { billSum: 0, crowdSum: 0, n: 0 };
-        byGenre[g].billSum += t.myRating;
-        byGenre[g].crowdSum += m.voteAverage;
-        byGenre[g].n++;
-      }
+      // Same canonical-genre fix as finding #2 above: use inferGenre()'s
+      // single 17-word value, not the raw multi-valued/duplicate-vocabulary
+      // TMDB meta.genres array, so this breaks down by the one genre
+      // concept the rest of the engine (genreBonus()/lovedGenres) actually
+      // scores against, and a title isn't counted into several buckets.
+      const g = inferGenre(m, idx.llmTags?.[t.titleKey], idx.reviewedTags?.[t.titleKey]);
+      if (!g) continue;
+      if (!byGenre[g]) byGenre[g] = { billSum: 0, crowdSum: 0, n: 0 };
+      byGenre[g].billSum += t.myRating;
+      byGenre[g].crowdSum += m.voteAverage;
+      byGenre[g].n++;
     }
     const genreRows = Object.entries(byGenre)
       .filter(([, d]) => d.n >= 15)
@@ -2511,18 +2534,18 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       severity: 'serious',
       ratings: { ease: 6, dataQuality: 2, recEngine: 6, ui: 1 },
       title: highest && lowest
-        ? `Bill's rating bias vs. TMDB's crowd swings ${spread.toFixed(2)} points by genre (${esc(highest.g)} +${highest.delta.toFixed(2)} to ${esc(lowest.g)} ${lowest.delta.toFixed(2)}) — but one flat neutral point is used for every candidate`
+        ? `Bill's rating bias vs. TMDB's crowd swings ${spread.toFixed(2)} points by genre (${highest.g} +${highest.delta.toFixed(2)} to ${lowest.g} ${lowest.delta.toFixed(2)}) — but one flat neutral point is used for every candidate`
         : 'Not enough rated volume per genre yet to measure a real genre-dependent crowd bias',
-      technical: `Live per-genre delta (Bill's own average rating minus TMDB's <code>voteAverage</code>, both on a 0-10 scale, genres with ` +
-        `15+ rated titles): ` + genreRows.map(r => `${esc(r.g)} ${r.delta >= 0 ? '+' : ''}${r.delta.toFixed(2)}`).join(', ') +
+      technical: `Live per-canonical-genre delta (via <code>inferGenre()</code>, same single-valued classifier ` +
+        `<code>genreBonus()</code> uses — Bill's own average rating minus TMDB's <code>voteAverage</code>, both on a 0-10 scale, genres ` +
+        `with 15+ rated titles): ` + genreRows.map(r => `${esc(r.g)} ${r.delta >= 0 ? '+' : ''}${r.delta.toFixed(2)}`).join(', ') +
         `. <code>COMMUNITY_NEUTRAL = 6.0</code> and <code>CRITIC_NEUTRAL = 80</code> are each one flat constant applied identically to ` +
         `every candidate in <code>baseSignals()</code>/<code>omdbSignal()</code> regardless of genre — the same crowd rating is credited ` +
         `identically whether it's a Comedy (where Bill runs well above the crowd) or a Horror title (where he runs below it).`,
       plain: `The engine already knows, in aggregate, that Bill tends to rate things a bit higher than the average TMDB voter — that's ` +
         `the "You vs. The Crowd" number on this dashboard. What it doesn't know is that this isn't one flat gap — Bill rates comedies and ` +
-        `political dramas well above what the crowd gives them, but rates horror and sci-fi BELOW what the crowd gives them. A crowd ` +
-        `rating of 7.2 means something different depending on the genre, and the engine currently treats it as meaning the same thing ` +
-        `every time.`,
+        `war movies well above what the crowd gives them, but rates horror titles BELOW what the crowd gives them. A crowd rating of 7.2 ` +
+        `means something different depending on the genre, and the engine currently treats it as meaning the same thing every time.`,
       impact: `A refinement of a signal that already exists and is already trusted, not a new one — replacing the single ` +
         `<code>COMMUNITY_NEUTRAL</code>/<code>CRITIC_NEUTRAL</code> constants with a per-genre neutral point (computed live from ` +
         `<code>idx.lovedGenres</code>'s own rated population, the same "measure it, don't guess it" discipline this file already used for ` +
