@@ -1,6 +1,54 @@
 [
   {
     "type": "show",
+    "titleKey": "show:260458",
+    "ids": {
+      "imdb": "tt33049767",
+      "plex": {
+        "guid": "66aaecf0c7e4d02d38d9afde",
+        "slug": "adults-2025"
+      },
+      "slug": "adults-2025",
+      "tmdb": 260458,
+      "tvdb": 449390,
+      "trakt": 250203
+    },
+    "title": "Adults",
+    "year": 2025,
+    "myRating": 9,
+    "ratedAt": "2026-08-14T23:34:58.000Z",
+    "plays": 9,
+    "airedEpisodes": 12,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "2026-08-01T01:21:00.000Z",
+    "favorite": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:196322",
+    "ids": {
+      "imdb": "tt19231492",
+      "plex": {
+        "guid": "5fd2a1b82de5fd002dd4c7b1",
+        "slug": "dark-matter-2024"
+      },
+      "slug": "dark-matter-2024",
+      "tmdb": 196322,
+      "tvdb": 393159,
+      "trakt": 170597
+    },
+    "title": "Dark Matter",
+    "year": 2024,
+    "myRating": 9,
+    "ratedAt": "2026-07-29T00:56:35.000Z",
+    "plays": 9,
+    "airedEpisodes": 10,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "2024-06-26T03:02:00.000Z",
+    "favorite": false
+  },
+  {
+    "type": "show",
     "titleKey": "show:226285",
     "ids": {
       "imdb": "tt26591110",
@@ -42,7 +90,7 @@
     "myRating": 9,
     "ratedAt": "2025-08-20T00:00:00.000Z",
     "plays": 177,
-    "airedEpisodes": 179,
+    "airedEpisodes": 180,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false
@@ -114,7 +162,7 @@
     "myRating": 8,
     "ratedAt": "2025-04-10T00:00:00.000Z",
     "plays": 24,
-    "airedEpisodes": 28,
+    "airedEpisodes": 29,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false
@@ -138,7 +186,7 @@
     "myRating": 7,
     "ratedAt": "2026-08-13T13:32:00.000Z",
     "plays": 20,
-    "airedEpisodes": 28,
+    "airedEpisodes": 29,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2025-01-17T02:59:00.000Z",
     "favorite": false
@@ -186,7 +234,7 @@
     "myRating": 9,
     "ratedAt": "2023-05-31T00:00:00.000Z",
     "plays": 34,
-    "airedEpisodes": 37,
+    "airedEpisodes": 38,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false

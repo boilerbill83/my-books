@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-08-25T00:18:25.307Z",
+    "generatedAt": "2026-08-29T16:40:13.443Z",
     "count": 42
   },
   "titles": [
@@ -41,25 +41,6 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-07-28T20:02:52.000Z"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:254528",
-      "ids": {
-        "imdb": "tt27550719",
-        "plex": {
-          "guid": "6646a03bab6b31fa3ee5e703",
-          "slug": "the-hawk-2026"
-        },
-        "slug": "the-hawk-2026",
-        "tmdb": 254528,
-        "tvdb": 450088,
-        "trakt": 240024
-      },
-      "title": "The Hawk",
-      "year": 2026,
-      "watchlisted": true,
-      "watchlistedAt": "2026-07-28T20:02:59.000Z"
     },
     {
       "type": "show",
@@ -753,6 +734,25 @@
       "year": 2017,
       "watchlisted": true,
       "watchlistedAt": "2026-08-21T15:30:55.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:67178",
+      "ids": {
+        "imdb": "tt5675620",
+        "plex": {
+          "guid": "5d9c0805e98e47001eb0596e",
+          "slug": "marvels-the-punisher"
+        },
+        "slug": "marvel-s-the-punisher",
+        "tmdb": 67178,
+        "tvdb": 331980,
+        "trakt": 112663
+      },
+      "title": "Marvel's The Punisher",
+      "year": 2017,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-27T12:17:50.000Z"
     },
     {
       "type": "movie",
