@@ -2342,626 +2342,236 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
   const allEnriched = Object.values(enrichedMeta);
 
-  // 1. No evaluation harness at all for BMTRE, unlike the book engine's
-  // scripts/eval.js (leave-one-out precision@k, run before/after every
-  // engine change without exception). Every BMTRE scoring constant tuned
-  // so far (matchPointScale, AUDIENCE_NEUTRAL, AWARDS_MAX, genre tiers)
-  // was "measured against a real distribution" but never validated
-  // against actual held-out prediction accuracy - a materially weaker
-  // guarantee than what the book side requires for any change.
+  const rated = (library.titles || []).filter(t => t.myRating != null && enrichedMeta[t.titleKey]);
+
+  // 1. THE BIGGEST STRUCTURAL FINDING: 57.1% of Bill's real rated titles —
+  // every 7 and 8, the single largest rating bucket by far — contribute
+  // ZERO signal to genre/subgenre/keyword/cast/franchise/subject/similar-
+  // title matching. buildIndexes() only populates lovedGenres,
+  // lovedSubgenres, lovedKeywords, lovedActors, lovedCollections,
+  // lovedSubjects, lovedTitles (forward/reverse similar-title), and
+  // lovedCountByType from titles rated myRating >= LOVED_THRESHOLD (9) —
+  // a hard binary cutoff. Only two signals see the full rated distribution
+  // at all: creatorRatingWeight (a continuous weight via ratingWeight())
+  // and toneProfile (a real preference-delta over every rated title). Every
+  // other signal in the engine — which is most of them — is structurally
+  // blind to whether a candidate resembles the 315 titles Bill genuinely
+  // liked but didn't "love." The eval harness itself treats myRating>=8 as
+  // "liked" (LIKED_THRESHOLD) for precision@k — meaning the metric BMTRE is
+  // graded on already counts 8s as real positive outcomes, while the engine
+  // that produces the ranking never learns anything about WHY from them.
   {
-    const em = computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta);
+    const loved = rated.filter(t => t.myRating >= 9).length;
+    const liked78 = rated.filter(t => t.myRating === 7 || t.myRating === 8).length;
+    const pctLiked78 = rated.length ? (100 * liked78 / rated.length) : 0;
+    const pctLoved = rated.length ? (100 * loved / rated.length) : 0;
     findings.push({
-      id: 'no-eval-harness',
-      severity: 'good',
-      ratings: { ease: 3, dataQuality: 2, recEngine: 9, ui: 1 },
-      title: 'BMTRE has no evaluation harness — every scoring change is unvalidated',
-      technical: `FIXED this session: <code>computeEvalMetrics()</code> (now in <code>engine.js</code>, plus a CLI ` +
-        `wrapper at <code>trakt/scripts/eval.js</code>, mirroring the book side's <code>scripts/eval.js</code>) runs ` +
-        `a real leave-one-out evaluation — each watched+rated title is scored by an index that excludes it, so its ` +
-        `own rating can never leak into its own creator/genre/similar-title signal. Live result right now: ` +
-        `${fmtNum(em.n)} titles evaluated, precision@10 ${em.precisionAtK[10]?.toFixed(0)}%, precision@25 ` +
-        `${em.precisionAtK[25]?.toFixed(0)}%, precision@50 ${em.precisionAtK[50]?.toFixed(0)}%. A real, honest ` +
-        `finding fell out of building this: MAE (${em.mae.toFixed(1)}) is currently worse than a naive always-` +
-        `predict-the-mean baseline (${em.meanBaselineMae.toFixed(1)}) since Bill's ratings skew high — exactly why ` +
-        `the new "BMTRE Accuracy Score" dial weights precision@k well above MAE, the same lesson CLAUDE.md already ` +
-        `states for the book side.`,
-      plain: `The movie/show side now has the same kind of test the book side has always required: before trusting ` +
-        `any scoring change, check it against titles Bill has actually rated. It's live on the dashboard now as a ` +
-        `real accuracy score, not just a plausible guess — and building it immediately surfaced an honest weak spot ` +
-        `(the raw "how far off was the number" measure is currently worse than just guessing the average), which is ` +
-        `exactly the kind of thing this test exists to catch.`,
-      impact: `The most foundational fix on this whole list — every other finding here can now be validated against ` +
-        `real held-out accuracy instead of a plausible guess, the same upgrade the book side's own eval.js gave that ` +
-        `project years ago.`,
+      id: 'liked-not-loved-signal-gap',
+      severity: 'critical',
+      ratings: { ease: 6, dataQuality: 3, recEngine: 9, ui: 1 },
+      title: `${pctLiked78.toFixed(0)}% of real positive ratings (every 7 and 8) teach the engine nothing about genre, cast, or subgenre`,
+      technical: `Live count: of ${fmtNum(rated.length)} rated+enriched titles, ${fmtNum(loved)} (${pctLoved.toFixed(1)}%) clear ` +
+        `<code>LOVED_THRESHOLD = 9</code> and seed <code>lovedGenres</code>/<code>lovedSubgenres</code>/<code>lovedKeywords</code>/` +
+        `<code>lovedActors</code>/<code>lovedCollections</code>/<code>lovedSubjects</code>/<code>lovedTitles</code> (the forward/reverse ` +
+        `similar-title signal) in <code>buildIndexes()</code>. ${fmtNum(liked78)} (${pctLiked78.toFixed(1)}%) rated exactly 7 or 8 — a ` +
+        `real, substantial "liked it" signal, larger than the loved bucket itself — and feed NONE of those seven indexes. Only ` +
+        `<code>creatorRatingWeight</code> (continuous, via <code>ratingWeight()</code>) and <code>toneProfile</code> (built from every ` +
+        `rated title, not just loved) see this data at all. <code>genreBonus()</code>/<code>subgenreBonus()</code>/<code>keywordBonus()</code>/` +
+        `<code>castBonus()</code>/<code>franchiseBonus()</code>/the forward-reverse similar-title match — the majority of ` +
+        `<code>baseSignals()</code>'s own term count — are all built exclusively from the 9-10 bucket.`,
+      plain: `Imagine grading a restaurant recommender only on the meals you rated 9 or 10 out of 10, and throwing away every meal ` +
+        `you rated 7 or 8 — meals you genuinely enjoyed — as if they told the algorithm nothing at all. That's what's happening here: ` +
+        `more than half of everything Bill has rated positively (a 7 or an 8) is completely invisible to most of the engine's taste ` +
+        `signals. A show he rated 8/10 could share a director, three actors, and a franchise with his #1 all-time favorite, and the ` +
+        `engine would learn precisely nothing from that connection — only a 9 or 10 counts.`,
+      impact: `Likely the single highest-leverage fix available: it doesn't add a new signal, it lets seven ALREADY-BUILT signals see ` +
+        `more than half the real data they're currently blind to. The fix is a known, already-proven pattern in this exact file — ` +
+        `<code>creatorRatingWeight</code> already shows how to build a continuous, rating-weighted index instead of a binary loved cutoff; ` +
+        `extending that shape to the other six loved-only indexes (weighting each title's contribution by <code>ratingWeight()</code> or a ` +
+        `similar continuous curve, rather than an all-or-nothing >=9 gate) would be a natural next step, gated behind the usual ` +
+        `<code>scripts/eval.js</code> validation before shipping.`,
     });
   }
 
-  // 2. Real, verified genre-monoculture in the top of the ranked list —
-  // FIXED this session via diversityRerank() in engine.js, applied at the
-  // "You'll Love" display panels specifically (not to rankAll()/
-  // rankRecommendations() themselves, which stay pure score-order for
-  // consumers that need the true rank — the All Titles table, exports,
-  // prune_candidate_pool.js).
+  // 2. No genre/subgenre-level NEGATIVE preference signal exists, despite
+  // real evidence some genres are genuinely disliked at well above the
+  // baseline rate. toneSignal() already proves this exact shape works
+  // (a real preference-delta computed from Bill's full rated distribution,
+  // not just loved-count tiers) and is live-validated in scripts/eval.js —
+  // it's just never been extended to genre or subgenre, which remain
+  // purely additive tiered bonuses with no penalty path at all.
   {
-    const showsRanked = [...fromWatchlist, ...fromCandidates].filter(c => c.type === 'show' && enrichedOnly(c))
-      .sort((a, b) => b.bmtreScore - a.bmtreScore);
-    // Counts each title's PRIMARY genre only (genres[0]) — the same
-    // definition diversityRerank() itself caps against. A count over
-    // every listed genre would be misleading here: most of these shows
-    // are blended Crime+Drama dramas that just alternate which TMDB
-    // lists first, so "how many mention Drama anywhere" barely moves
-    // even when the actual primary-genre mix (what the cap controls)
-    // genuinely diversifies — caught via a live check before shipping,
-    // not assumed to be equivalent.
-    const genreCounts = list => {
-      const counts = {};
-      for (const s of list) {
-        const g = enrichedMeta[s.titleKey]?.genres?.[0];
-        if (g) counts[g] = (counts[g] || 0) + 1;
+    const dislikeByGenre = {}, totalByGenre = {};
+    for (const t of rated) {
+      const m = enrichedMeta[t.titleKey];
+      for (const g of (m.genres || [])) {
+        totalByGenre[g] = (totalByGenre[g] || 0) + 1;
+        if (t.myRating <= 5) dislikeByGenre[g] = (dislikeByGenre[g] || 0) + 1;
       }
-      return Object.entries(counts).sort((a, b) => b[1] - a[1]);
-    };
-    const top8Before = showsRanked.slice(0, 8);
-    const top8After = diversityRerank(showsRanked, enrichedMeta, { windowSize: 8, maxPerGenre: 3 }).slice(0, 8);
-    const beforeTop = genreCounts(top8Before)[0];
-    const afterTop = genreCounts(top8After)[0];
-    findings.push({
-      id: 'no-diversity-reranking',
-      severity: 'good',
-      ratings: { ease: 4, dataQuality: 1, recEngine: 8, ui: 6 },
-      title: 'No diversity re-ranking — the top of the show list was a genre monoculture',
-      technical: `Fixed this session: a new <code>diversityRerank()</code> export in <code>engine.js</code> applies ` +
-        `a soft per-genre cap (max 3 of 8 sharing a primary genre) to the "You'll Love" panels' combined ` +
-        `watchlist+candidate pool before slicing to the visible top 8 — a title over the cap is deferred past ` +
-        `titles that add real variety, not excluded, and the window backfills from the deferred queue if the pool ` +
-        `genuinely lacks enough diversity to fill it. It only reorders for DISPLAY, never touches an individual ` +
-        `title's <code>bmtreScore</code> — <code>rankAll()</code>/<code>rankRecommendations()</code> themselves ` +
-        `(used by the All Titles table, exports, and <code>prune_candidate_pool.js</code>, which need the true ` +
-        `unmodified rank) are untouched, and <code>computeEvalMetrics()</code>'s precision@k is unaffected. Live ` +
-        `check: the real top-8-by-score shows were ${beforeTop ? `${beforeTop[1]} of 8 tagged "${beforeTop[0]}"` : 'n/a'} ` +
-        `before this fix — the diversified panel now shows ${afterTop ? `${afterTop[1]} of 8 tagged "${afterTop[0]}"` : 'n/a'}.`,
-      plain: `The "Shows You'll Love" panel used to just show the 8 highest-scoring shows, which often meant most ` +
-        `or all 8 were the exact same genre — "20 shades of the same thing" instead of real variety. It still shows ` +
-        `your true top picks, but now caps how many of the 8 visible cards can share one genre, pulling in a real ` +
-        `alternative from further down the list when one exists instead of always defaulting to the flat top 8.`,
-      impact: `Verified live against real data, not just designed in the abstract — the actual genre concentration ` +
-        `shown in the panel dropped from ${beforeTop ? beforeTop[1] : '?'}/8 to ${afterTop ? afterTop[1] : '?'}/8 for ` +
-        `today's real ranking.`,
-    });
-  }
-
-  // 3. topCast is cached and well-populated but scores nothing — FIXED
-  // this session.
-  {
-    const withCast = allEnriched.filter(m => m.topCast?.length >= 3).length;
-    const liveMatches = [...fromWatchlist, ...fromCandidates].filter(c => {
-      const cast = enrichedMeta[c.titleKey]?.topCast || [];
-      return cast.some(a => idx.lovedActors?.get(a) > 0);
-    });
-    const example = liveMatches.find(c => /with .+ before/.test(c.reason)); // a cast-led reason, not shadowed by a stronger creator/franchise match
-    findings.push({
-      id: 'cast-signal-unused',
-      severity: 'good',
-      ratings: { ease: 6, dataQuality: 2, recEngine: 6, ui: 3 },
-      title: 'Actor affinity is fully cached and was completely unused in scoring',
-      technical: `Fixed this session: a new <code>idx.lovedActors</code> index (actor name -> count of loved titles ` +
-        `they appeared in, built in <code>buildIndexes()</code> from <code>topCast</code>, which is ` +
-        `${((withCast / allEnriched.length) * 100).toFixed(1)}% populated) and <code>castBonus()</code> in ` +
-        `<code>engine.js</code> — a small, tiered, capped-at-8 bonus (deliberately smaller than the creator/` +
-        `franchise bonuses, since an actor is less determinative of a title's identity than its director). ` +
-        `<code>reason()</code> checks this after creator and franchise matches, before the general similar-title ` +
-        `network. Verified against <code>scripts/eval.js</code> (measured before and after, per this project's ` +
-        `standing discipline): precision@10 jumped 80→90%, precision@100 89→91%, MAE improved 21.27→20.21 — a real, ` +
-        `substantial gain, with precision@25/50 holding steady and nothing regressing. Live check: ${liveMatches.length} ` +
-        `real current candidates get this bonus today` +
-        (example ? ` — e.g. "${esc(example.title)}" now reads: "${esc(example.reason)}"` : '.'),
-      plain: `The app already knew the main actors in almost every title — it just never used that information. Now ` +
-        `a candidate starring an actor from something Bill loved gets a real, modest boost and an honest reason, and ` +
-        `checking this against his actual rating history shows it's a genuinely strong signal, not just plausible in ` +
-        `theory: the top-10 recommendations got noticeably more accurate once this was added.`,
-      impact: `Verified as a real, substantial accuracy gain, not just a plausible addition — precision@10 moving ` +
-        `80→90% on real held-out data is one of the larger single-change improvements measured for this engine so far.`,
-    });
-  }
-
-  // 4. belongsToCollection is cached and Bill demonstrably follows real
-  // franchises — FIXED this session. franchiseBonus() in engine.js now
-  // scores it directly, and reason() surfaces it as the single most
-  // specific explanation available (checked before even a director/
-  // creator match).
-  {
-    const lovedWithCollection = (library.titles || []).filter(t => t.myRating >= 9 && enrichedMeta[t.titleKey]?.belongsToCollection);
-    const withCollection = allEnriched.filter(m => m.belongsToCollection).length;
-    const liveMatches = [...fromWatchlist, ...fromCandidates].filter(c => {
-      const cid = enrichedMeta[c.titleKey]?.belongsToCollection?.id;
-      return cid != null && idx.lovedCollections?.get(cid)?.length > 0;
-    });
-    const example = liveMatches[0];
-    findings.push({
-      id: 'franchise-signal-unused',
-      severity: 'good',
-      ratings: { ease: 6, dataQuality: 2, recEngine: 7, ui: 3 },
-      title: 'Franchise/sequel signal is cached, real, and was completely unused',
-      technical: `Fixed this session: a new <code>franchiseBonus()</code> in <code>engine.js</code> reads ` +
-        `<code>belongsToCollection</code> (cached on ${withCollection} of ${allEnriched.length} enriched movie ` +
-        `titles — TMDB's "collection" concept is movie-only, no show equivalent exists) against a new ` +
-        `<code>idx.lovedCollections</code> index (built in <code>buildIndexes()</code> alongside ` +
-        `<code>lovedGenres</code>/<code>lovedCreators</code>) and awards up to +15 when a candidate shares a ` +
-        `collection with a title Bill loved (9-10 rated) — capped at the same order of magnitude as the creator-` +
-        `match bonus. <code>reason()</code> now checks this FIRST, ahead of even a director/creator match, since a ` +
-        `real sequel to a loved title is about as specific a signal as this engine has. Real, not hypothetical: ` +
-        `${lovedWithCollection.length} of Bill's real loved titles belong to a collection he's demonstrably ` +
-        `following (Creed I+II, Deadpool 1+2, Sicario 1+2, both Anchorman films), and live check right now: ` +
-        `${liveMatches.length} current candidate${liveMatches.length === 1 ? '' : 's'} ${liveMatches.length === 1 ? 'gets' : 'get'} this bonus` +
-        (example ? ` — e.g. "${esc(example.title)}" now reads: "${esc(example.reason)}"` : '.') +
-        ` Verified via <code>scripts/eval.js</code>: precision@100 86→87, MAE 20.69→20.54 (both genuine, small ` +
-        `gains — precision@10/25/50 unchanged at 80/92/92, movie-only precision@10 90%).`,
-      plain: `If Bill loved "Deadpool" and "Deadpool 2," the app now gives "Deadpool & Wolverine" an explicit ` +
-        `"you loved the earlier entries in this franchise" boost and says so directly, instead of only picking that ` +
-        `up indirectly (if at all) through a director match or TMDB's general similar-titles network.`,
-      impact: `High-confidence, low-risk, and now verified working end-to-end — real candidates in today's data get ` +
-        `a correct, specific reason string, and the accuracy check shows a small genuine improvement, not a ` +
-        `regression.`,
-    });
-  }
-
-  // 5. Dismissal generalization doesn't exist — feedbackData.json only
-  // ever excludes the exact title dismissed, never learns from it.
-  {
-    const interactionCount = (feedback?.interactions || []).length;
-    findings.push({
-      id: 'dismissal-generalization',
-      severity: 'good',
-      ratings: { ease: 4, dataQuality: 3, recEngine: 6, ui: 2 },
-      title: 'Dismissal generalization mechanism built and tested this session — dormant until a real one fires',
-      technical: `BUILT: <code>dismissAdjust()</code> in engine.js, the BMTRE equivalent of the book engine's ` +
-        `<code>dismissAdjust</code> (Session 12b there) — a creator-dislike penalty (-15, flat) and a style-dislike ` +
-        `penalty (-3 per overlapping genre/subgenre with the dismissed-title profile, capped at -10, gated behind ` +
-        `2+ real style dismissals so a one-off can't swing a whole bucket — same "needs 2+" floor the book engine ` +
-        `uses). Reads two new reason codes in <code>feedbackData.json</code>: <code>creator_dislike</code> and ` +
-        `<code>style_dislike</code>. All ${interactionCount} real interaction${interactionCount === 1 ? '' : 's'} recorded so far use OTHER reason codes ` +
-        `(already_watched, looks_low_budget, too_urban, too_old, already_have_version_rated, not_interested, ` +
-        `aimed_at_older_demographic) — none of them these two — so the mechanism is dormant against today's real ` +
-        `data by design, not a bug: verified via <code>scripts/eval.js</code> producing byte-identical output ` +
-        `before/after (precision@10/25/50/100 100/92/94/87, MAE 19.89). 'too_urban' looked like the closest real ` +
-        `candidate for style-dislike generalization, but a prior session found it would misfire (Crime/Drama are ` +
-        `Bill's #1/#2 loved genres, and the dismissed titles under that reason overlap real loved titles' genres ` +
-        `heavily) — deliberately left ungeneralized rather than force-fit. Smoke-tested the mechanism actually ` +
-        `works, not just that it compiles: a synthetic <code>creator_dislike</code> against a real director dropped ` +
-        `another real title by that same director from 41.2 to 26.2 (exactly the -15 penalty); a synthetic ` +
-        `2-dismissal <code>style_dislike</code> profile correctly penalized a third real title sharing a genre with ` +
-        `both dismissed titles.`,
-      plain: `If Bill dismisses one bad recommendation, the app used to forget about that exact title and nothing ` +
-        `else — it didn't learn "he probably won't like this director either" or "he's not into this kind of show." ` +
-        `Built the machinery to actually learn from a dismissal the way the book app already does, and tested with ` +
-        `made-up examples that it genuinely works. It won't do anything on real recommendations yet, because none ` +
-        `of the ${interactionCount} real dismissals so far were logged as "it's the director/creator" or "it's this ` +
-        `general style" — but the moment a future dismissal is, this will automatically start using it, with no ` +
-        `further code changes needed.`,
-      impact: `Real infrastructure shipped and verified both ways — harmless today (no real data triggers it) and ` +
-        `functionally correct when it does (proven via synthetic test, not just code review) — closing the gap ` +
-        `identified as cheap to build now and expensive to retrofit later.`,
-    });
-  }
-
-  // 6. The `plays` field means something different for movies vs shows, a
-  // trap for whoever eventually builds a rewatch-based signal. Checked
-  // live rather than assumed: for shows, plays essentially equals
-  // airedEpisodes (it's an episode-play-count, not a rewatch count); for
-  // movies, plays is a genuine rewatch count but currently shows zero
-  // real signal (0 of 50 loved movies have ever been rewatched).
-  findings.push({
-    id: 'plays-field-semantic-trap',
-    severity: 'good',
-    ratings: { ease: 8, dataQuality: 1, recEngine: 1, ui: 1 },
-    title: '`plays` means a different thing for movies vs. shows — normalized and shipped this session',
-    technical: `FIXED: <code>rewatchStrength(t, meta)</code> in engine.js replaces the naive idea (using raw ` +
-      `<code>plays</code> directly, which for a show is a cumulative episode-play count — e.g. Atlanta 41/41, ` +
-      `Billions 84/84 — not a series-rewatch count) with a real normalized signal: movies use <code>plays</code> ` +
-      `directly (a genuine repeat-view count with no episode confound), shows use ` +
-      `<code>plays / numberOfEpisodes</code> (1.0 = watched once, 2.0 = watched twice), clamped to a floor of 1 so ` +
-      `a loved-but-not-yet-caught-up show (a real case: "Tires," 18 of 30 aired episodes, rated 10/10) isn't ` +
-      `penalized for incompleteness. Wired into <code>buildIndexes()</code> as a per-loved-title weight multiplier ` +
-      `on <code>lovedCreators</code>/<code>lovedGenres</code>/<code>reverseSimilar</code>/<code>lovedActors</code>/` +
-      `<code>lovedKeywords</code>/<code>lovedSubgenres</code> (previously each a flat +1 per loved title). Verified ` +
-      `this is a true no-op against today's real data before shipping, not just "shouldn't matter": 0 of 168 real ` +
-      `movies have <code>plays</code> &gt; 1 and no real show's ratio exceeds 1.0, so every real ` +
-      `<code>rewatchStrength()</code> value is exactly 1.0 right now — <code>scripts/eval.js</code> produces ` +
-      `byte-identical output before and after (precision@10/25/50/100 100/92/94/87, MAE 19.89). Starts contributing ` +
-      `real extra weight automatically the first time Bill genuinely rewatches something, with no future code ` +
-      `change needed — the exact "ready to use, not yet observable" shape recency-curve-not-split-by-type's ` +
-      `<code>showAiringBonus()</code> also shipped this session, except this one is verified as a true identity ` +
-      `transform rather than a deliberately-zeroed scale, since there was no nonzero real case to even sweep-test ` +
-      `against.`,
-    plain: `There's a field that records how many times you've watched something, and it looked at first like a ` +
-      `great source of "how much do you REALLY love this" signal beyond just the star rating — but the raw number ` +
-      `meant the wrong thing for TV shows (episode count, not rewatch count). Fixed the math so it means the right ` +
-      `thing for both movies and shows, and wired it in so a loved, heavily-rewatched title will automatically ` +
-      `count extra toward "what genres/actors/directors does Bill love" starting the moment it actually happens — ` +
-      `checked carefully first that this doesn't change anything today (you haven't rewatched anything yet, so the ` +
-      `math currently multiplies everything by exactly 1, i.e. does nothing) before turning it on.`,
-    impact: `Real infrastructure shipped, verified harmless today, ready to contribute the moment real rewatch data ` +
-      `exists — better than leaving it as a documented trap for someone to rebuild later, since the actual fix was ` +
-      `cheap and fully validated.`,
-  });
-
-  // 7. Keywords cached, well-populated, used only for the re-edit filter —
-  // never for actual thematic matching.
-  {
-    const withKeywords = allEnriched.filter(m => m.keywords?.length >= 3).length;
-    findings.push({
-      id: 'keyword-thematic-signal-unused',
-      severity: 'good',
-      ratings: { ease: 5, dataQuality: 3, recEngine: 5, ui: 2 },
-      title: 'Fixed: keywords now a small, validated corroborating scoring signal',
-      technical: `<code>keywords</code> is ${((withKeywords / allEnriched.length) * 100).toFixed(1)}% populated ` +
-        `(${withKeywords} of ${allEnriched.length}) but used to be read nowhere except <code>rankAll()</code>'s ` +
-        `<code>isReEdit()</code> filter. New <code>keywordBonus()</code> in <code>engine.js</code> reads a new ` +
-        `<code>idx.lovedKeywords</code> index (built in <code>buildIndexes()</code> alongside ` +
-        `<code>lovedGenres</code>), tiered the same shape as <code>genreBonus()</code>/<code>castBonus()</code> but ` +
-        `deliberately capped much lower — free-form keywords are noisier than TMDB's fixed genre vocabulary, and a ` +
-        `<code>KEYWORD_STOPLIST</code> filters out pure structural/production tags ("sequel," "aftercreditsstinger," ` +
-        `"miniseries") that carry zero content-taste signal. Cap size was tuned against <code>scripts/eval.js</code>, ` +
-        `not guessed: an initial cap of 4 measurably improved MAE (20.21→18.55) but dropped precision@10 90%→80% — a ` +
-        `real regression on the metric CLAUDE.md says to never trade away for MAE. Halved to a cap of 2, which keeps ` +
-        `precision@10/25/50/100 exactly unchanged (90/92/94/91) while still improving MAE (20.21→19.34) — a genuine, ` +
-        `validated gain, not a guess.`,
-      plain: `Genres are broad buckets — "Crime," "Drama" — but the app also has much more specific tags cached for ` +
-        `almost every title (like "heist," "undercover," "redemption," "single father"). Two crime dramas can share ` +
-        `a genre tag while being nothing alike, or share almost none of their genre tags while actually being very ` +
-        `similar in tone and subject. Those specific tags now give the app a small extra nudge toward titles that ` +
-        `share real content details with what Bill's loved before — kept deliberately small and tested carefully, ` +
-        `since a bigger version of this was tried first and made the top picks measurably worse before being scaled ` +
-        `back to a safe size.`,
-      impact: `Shipped and validated — a real, if modest, accuracy gain (MAE improved 20.21→19.34) with zero cost to ` +
-        `precision at any list depth, confirmed by measuring rather than assuming a "more signal is better" story.`,
-    });
-  }
-
-  // 8. Genre bonus tiers were explicitly marked provisional pending real
-  // data; real data has existed for a while and the tiers were never
-  // formally re-checked until this pass.
-  {
-    const sortedGenres = [...idx.lovedGenres.entries()].sort((a, b) => b[1] - a[1]);
-    findings.push({
-      id: 'genre-tiers-unvalidated',
-      severity: 'good',
-      ratings: { ease: 8, dataQuality: 2, recEngine: 3, ui: 1 },
-      title: 'Fixed: genre bonus tiers formally validated against real data',
-      technical: `<code>genreBonus()</code>'s tier thresholds (≥60/35/18/6/1) carried a code comment calling them ` +
-        `provisional, pending recalibration "once real enrichment data exists." That data has existed for weeks but ` +
-        `was never formally checked. Checked this session against the real <code>lovedGenres</code> distribution ` +
-        `(${sortedGenres.slice(0, 5).map(([g, c]) => `${g}:${c}`).join(', ')}, …): all 5 tiers are populated with no ` +
-        `collapse (tier 5: Drama alone; tier 4: Crime/Comedy; tier 3: Action/Thriller/Mystery; tier 2: 3 more genres; ` +
-        `tier 1: 7 more) — the thresholds hold up against real data. Removed the "provisional" language from ` +
-        `<code>engine.js</code>'s comment and replaced it with the verified distribution, so the promise made in the ` +
-        `code is now actually kept rather than sitting unfulfilled.`,
-      plain: `A piece of the scoring code had a comment saying "these numbers are a placeholder, come back and check ` +
-        `them once there's real data" — and that data had existed for a while, but nobody had gone back and checked. ` +
-        `Doing that check now: the numbers turn out to be genuinely well-spread across every tier, not bunched up in ` +
-        `one bucket. The code comment now says so directly instead of still promising a future check.`,
-      impact: `Low-stakes but now honestly closed rather than left as a stale promise — the kind of small bookkeeping ` +
-        `gap that's easy to forget forever once "seems fine" gets silently treated as "done."`,
-    });
-  }
-
-  // 9. Dropped/abandoned-show signal doesn't exist; completionStatus is
-  // informational only, per CLAUDE.md's own caution. Checked live: how
-  // much real signal actually exists to build this from today.
-  {
-    const showsWithEnoughEpisodes = (library.titles || []).filter(t => t.type === 'show' && t.airedEpisodes > 3);
-    const possiblyDropped = showsWithEnoughEpisodes.filter(t => t.plays > 0 && t.plays < t.airedEpisodes * 0.5);
-    findings.push({
-      id: 'dropped-show-signal',
-      severity: 'warning',
-      ratings: { ease: 4, dataQuality: 2, recEngine: 3, ui: 2 },
-      title: 'No signal for shows Bill started and abandoned',
-      technical: `<code>completionStatus</code> (caught-up/in-progress/unknown) is computed in ` +
-        `<code>build_trakt_library.js</code> but deliberately left informational-only, per CLAUDE.md's own caution ` +
-        `that Trakt's export carries no explicit "dropped" signal (in-progress could mean "actively watching" or ` +
-        `"gave up," indistinguishably). Re-checked with current data volume rather than assumed stale: still only ` +
-        `${possiblyDropped.length} of ${showsWithEnoughEpisodes.length} shows with more than 3 aired episodes show ` +
-        `a real under-50%-watched pattern — the count hasn't grown. Investigated the one real candidate directly ` +
-        `rather than just re-counting it: "Your Friends & Neighbors" (9 of 19 aired episodes watched) turns out to ` +
-        `be a concrete confirmation of the exact false-positive risk already flagged, not a missed real case — it's ` +
-        `a "Returning Series" Bill rated 8/10 (<code>completionStatus: in-progress</code>), i.e. a show he's ` +
-        `demonstrably enjoying and is simply not yet caught up on, not one he gave up on. A naive under-50%-watched ` +
-        `penalty would have wrongly flagged a title Bill actively likes as "dropped." This is stronger evidence ` +
-        `against building the signal now than the raw count alone was.`,
-      plain: `If Bill starts a show and stops halfway through, that's a real signal he's not that into it — but ` +
-        `right now the app can't tell "stopped watching because he doesn't like it" apart from "watching it slowly, ` +
-        `still enjoying it." Re-checked this session with the current data, and looked closely at the one real ` +
-        `candidate case: it turns out to be a show Bill rated 8 out of 10 that he just hasn't finished yet, not one ` +
-        `he actually dropped. That's a good real-world example of exactly why this signal would misfire if built ` +
-        `today — it would have called a show he likes "abandoned."`,
-      impact: `Low current value given how rare the pattern is in today's data (${possiblyDropped.length} ${possiblyDropped.length === 1 ? 'case' : 'cases'}, and ` +
-        `that one case is a false positive on inspection) — worth keeping on the list rather than building ` +
-        `prematurely, exactly the same caution CLAUDE.md already applies to the book side's DNF-penalty history ` +
-        `(needs real feedback data before it's safe to score, not just plausible).`,
-    });
-  }
-
-  // 10. recencyBonus() uses one universal curve for both types despite the
-  // port table already flagging this as a difference not yet handled.
-  findings.push({
-    id: 'recency-curve-not-split-by-type',
-    severity: 'warning',
-    ratings: { ease: 7, dataQuality: 2, recEngine: 4, ui: 1 },
-    title: 'Recency scoring treats a movie and an ongoing show identically',
-    technical: `PARTIALLY FIXED across three sessions: <code>recencyBonus(year)</code> used to apply one universal ` +
-      `age-bucket curve regardless of <code>candidate.type</code>; split into <code>recencyBonusMovie()</code> (a ` +
-      `much steeper curve, plus a hard pre-2000 exclusion for discovered movie candidates) and ` +
-      `<code>recencyBonusShow()</code> (unchanged gentler shape), per Bill's explicit "favor recent movies" ` +
-      `request. The show-side gap — <code>recencyBonusShow()</code> keys off original air year, not whether a ` +
-      `show is still actively producing new content — has now had two genuinely different attempts, not just one ` +
-      `retried harder. Attempt 1 (an earlier session): a flat +1/+2 credit for TMDB's "Returning Series"/"In ` +
-      `Production" status. Measured against <code>scripts/eval.js</code>, made things measurably worse both times ` +
-      `— precision@10 90%→80%, precision@100 91%→86%. Reverted. Attempt 2 (this session, the specific redesign ` +
-      `that attempt's own follow-up note called for): <code>showAiringBonus()</code>, weighted by real loved-show ` +
-      `overlap — <code>buildIndexes()</code>'s new <code>showAiringOverrep</code> compares the real rate of ` +
-      `"still airing" among Bill's loved shows (32.3%) against the baseline rate among all his rated shows ` +
-      `(25.1%), the same overlap-weighting shape <code>genreBonus()</code>/<code>keywordBonus()</code> already ` +
-      `use elsewhere. A <code>SHOW_AIRING_SCALE</code> sweep from 0 to 50 against <code>scripts/eval.js</code> ` +
-      `found the SAME regression at every nonzero value — precision@10 drops to 90% at the very first value tested ` +
-      `(2) and keeps falling to 80% by 15+, while MAE improves the whole way (exactly the MAE-improves-while-` +
-      `precision-drops trade CLAUDE.md says never to make). <code>SHOW_AIRING_SCALE</code> is shipped at 0 (the ` +
-      `index and function are real and computed correctly, just inert) rather than the machinery being deleted — ` +
-      `ready to re-sweep the moment more rated-show volume exists.`,
-    plain: `Movies now get scored on how recent they are much more strongly, which was fixed in an earlier session. ` +
-      `Shows still don't distinguish "started long ago but still has new episodes coming out" from "started long ` +
-      `ago and ended long ago." Two different fixes for that have now been tried and tested against real data — a ` +
-      `simple flat bonus (an earlier session) and, this session, a smarter version that only credits it in ` +
-      `proportion to how much Bill's actual favorite shows lean toward still-airing status. Both made the real ` +
-      `recommendations measurably worse when tested, not better, so both were undone rather than shipped just ` +
-      `because they sounded like they should help.`,
-    impact: `Movie side resolved and verified live (top movie picks are all 2017+ now). Show side remains a real, ` +
-      `open gap — now backed by evidence that two different fix shapes both don't work, which narrows down what a ` +
-      `future attempt should try (a genuinely different signal, or waiting for more rated-show volume), not just ` +
-      `an unexplored idea anymore.`,
-  });
-
-  // 11. Cover images: TMDB's posterPath is already captured by
-  // enrich_tmdb.py and 99.1% populated (1,480 of 1,493 enriched titles),
-  // but grep confirms zero UI code anywhere in trakt/ ever reads it — no
-  // rec card, table row, or recommend.html entry shows a poster. This is
-  // pure UI wiring, not a data gap: the data already exists.
-  {
-    const withPoster = allEnriched.filter(m => m.posterPath).length;
-    findings.push({
-      id: 'cover-images-unused',
-      severity: 'good',
-      ratings: { ease: 9, dataQuality: 1, recEngine: 1, ui: 9 },
-      title: 'Cover images are 99% populated and cached but never shown anywhere',
-      technical: `<code>enrich_tmdb.py</code> already captures TMDB's <code>poster_path</code> as ` +
-        `<code>posterPath</code> on every enriched title (${withPoster} of ${allEnriched.length}, ` +
-        `${((withPoster / allEnriched.length) * 100).toFixed(1)}%). Fixed this session: a new ` +
-        `<code>posterUrl()</code> export in <code>engine.js</code> builds the TMDB CDN image URL ` +
-        `(<code>image.tmdb.org</code> — a public no-auth CDN, unrelated to the blocked ` +
-        `<code>api.themoviedb.org</code> API host), now rendered on the You'll Love rec cards, the Biggest ` +
-        `Prediction Misses / Best Matches rows, and the All Titles table's Cover column.`,
-      plain: `Every movie and show poster was already downloaded and sitting in the data — this session added ` +
-        `real poster thumbnails to the recommendation cards and the big titles table so it's not plain text ` +
-        `anymore.`,
-      impact: `Shipped — real poster art now renders across every major title-list surface in the dashboard.`,
-    });
-  }
-
-  // 12. similarToTitles: similarToIds/recommendedIds are already 100%
-  // populated as raw TMDB ids, and enrichedMetadata.json itself already
-  // has the title/year for the vast majority of those ids (self-
-  // referential lookup, no new fetch needed) - a human-readable resolved
-  // title list is cheap to derive, unlike themes/tones/categories below.
-  {
-    const withIds = allEnriched.filter(m => (m.similarToIds || []).length || (m.recommendedIds || []).length).length;
-    const withResolved = allEnriched.filter(m => resolveSimilarTitles(m, m.type, enrichedMeta, 1).length > 0).length;
-    findings.push({
-      id: 'similar-titles-field-missing',
-      severity: 'good',
-      ratings: { ease: 7, dataQuality: 5, recEngine: 3, ui: 4 },
-      title: 'Fixed: a resolved similarToTitles field now exists',
-      technical: `<code>similarToIds</code>/<code>recommendedIds</code> are 100% populated (${withIds} of ` +
-        `${allEnriched.length}) and already power <code>matchScore()</code>'s forward/reverse match signal, but ` +
-        `there was no human-readable <code>similarToTitles</code> field the way the book side's ` +
-        `<code>goodreadsData.json</code> has. New <code>resolveSimilarTitles()</code> in <code>engine.js</code> ` +
-        `resolves each cited id to a real title via a self-referential lookup against ` +
-        `<code>enrichedMetadata.json</code> itself — no new fetch needed. Checked live rather than assumed: only ` +
-        `ids that happen to already be in our own tracked catalog resolve, which is a real but partial 31.2% of ` +
-        `all citations dataset-wide (the rest cite titles genuinely outside what Bill has watched, queued, or been ` +
-        `offered as a candidate — TMDB's similar-titles network reaches far beyond any one person's catalog, so ` +
-        `this ceiling is expected, not a bug). At the per-title level that's still ${withResolved} of ` +
-        `${allEnriched.length} enriched titles (${((withResolved / allEnriched.length) * 100).toFixed(1)}%) with at ` +
-        `least one resolved name. Wired into <code>loadAllTitles.js</code>/<code>export_extract.js</code> as a new ` +
-        `<code>similarToTitles</code> CSV column, the same role the book side's own column plays in its exports.`,
-      plain: `The engine already knew which titles are similar to which — that's literally how "New pick" cards get ` +
-        `their reason text — but there was no simple readable list anywhere saying "titles similar to this one." ` +
-        `Now there is, in the daily full export, resolved to real names wherever the app already knows them.`,
-      impact: `Shipped — a real, verified data-shape improvement (auditability, not a new scoring signal, since the ` +
-        `ids already did the scoring work) now visible in the exports.`,
-    });
-  }
-
-  // 13. similarToDirectors: fixed this session, same self-referential
-  // derivation as similarToTitles above, with a real corroboration
-  // threshold now designed and applied (2+ resolved similar titles must
-  // share a director before it counts).
-  {
-    const withDirectors = allEnriched.filter(m => resolveSimilarDirectors(m, m.type, enrichedMeta).length > 0).length;
-    findings.push({
-      id: 'similar-directors-field-missing',
-      severity: 'good',
-      ratings: { ease: 5, dataQuality: 4, recEngine: 6, ui: 2 },
-      title: 'Fixed: a similarToDirectors field now exists, with a real corroboration threshold',
-      technical: `The book engine's <code>similarToAuthors</code> bridges a candidate to loved authors directly. ` +
-        `BMTRE had no equivalent field. New <code>resolveSimilarDirectors()</code> in <code>engine.js</code> walks ` +
-        `each title's full <code>similarToIds</code>/<code>recommendedIds</code> citation list (not just the first ` +
-        `few, unlike the display-capped <code>resolveSimilarTitles()</code>), resolves each to a real title via the ` +
-        `same self-referential <code>enrichedMetadata.json</code> lookup, and collects director/creator credits — ` +
-        `the real design decision this needed (per this finding's own prior text): a corroboration threshold, since ` +
-        `one coincidental director match among dozens of citations is noise, not signal. Requires 2+ resolved ` +
-        `similar titles sharing the same director before it counts, capped at the top 3 by corroboration count. ` +
-        `Checked live: ${withDirectors} of ${allEnriched.length} enriched titles (${((withDirectors / allEnriched.length) * 100).toFixed(1)}%) ` +
-        `clear that bar. Wired into <code>loadAllTitles.js</code>/<code>export_extract.js</code> as a new ` +
-        `<code>similarToDirectors</code> CSV column, same as <code>similarToTitles</code> above — display/data-shape ` +
-        `only, not wired into <code>matchScore()</code>, since a real scoring weight would need the same ` +
-        `eval.js-validated tuning <code>keywordBonus()</code> just went through, and this signal has less to draw ` +
-        `from per candidate than keywords do.`,
-      plain: `The book app can say "this book's similar-titles list is full of authors you love." The movie/show ` +
-        `app now has the same thing for directors — but only when at least 2 of a title's own similar titles share ` +
-        `a director, so one coincidental shared name among many unrelated citations doesn't get surfaced as if it ` +
-        `meant something.`,
-      impact: `Shipped as a real, verified data-shape improvement — not yet a scoring signal (would need the same ` +
-        `careful eval.js validation the keyword signal above just went through before it's safe to add scoring ` +
-        `weight).`,
-    });
-  }
-
-  // 14. categories: re-examined this session rather than left as an
-  // unstarted idea. The book side's `categories` field is Google Books'
-  // own free-form, auto-populated (not curated, no vocabulary rules)
-  // category strings — structurally that's exactly what TMDB's `keywords`
-  // field already is for BMTRE (free-form, auto-populated by TMDB, no
-  // curation needed), not a separate thing to build from scratch. Unlike
-  // `themes`/`tones` below (which are CURATED canonical vocabularies with
-  // real design rules — cap enforcement, drift audits, a fixed word list
-  // Bill would need to approve), `categories`' book-side role was always
-  // "raw auto-populated tags," which `keywords` already fills, and now
-  // (this session) `keywords` is also a live, validated scoring signal via
-  // `keywordBonus()` — a stronger role than the book side's `categories`
-  // field even plays there (categories is data-quality-only, not scored).
-  {
-    const withKeywords = allEnriched.filter(m => (m.keywords || []).length >= 3).length;
-    findings.push({
-      id: 'categories-field-missing',
-      severity: 'good',
-      ratings: { ease: 2, dataQuality: 6, recEngine: 5, ui: 3 },
-      title: 'Categories: already filled by keywords, re-examined and closed rather than left open',
-      technical: `On the book side, <code>categories</code> is Google Books' own free-form, auto-populated category ` +
-        `strings — no canonical vocabulary, no curation rules, populated automatically by the source API. TMDB's ` +
-        `<code>keywords</code> field is structurally the same thing for BMTRE: free-form, auto-populated by TMDB, no ` +
-        `vocabulary design needed. It's ${((withKeywords / allEnriched.length) * 100).toFixed(1)}% populated ` +
-        `(${withKeywords} of ${allEnriched.length} with 3+ tags) and, as of this session's ` +
-        `<code>keywordBonus()</code> addition, is also a real, <code>eval.js</code>-validated scoring signal — a ` +
-        `stronger role than <code>categories</code> plays on the book side, where it's data-quality-reporting only, ` +
-        `not scored. Building a second, separate "categories" field alongside an already-equivalent, already-scored ` +
-        `<code>keywords</code> field would be redundant, not a real gap.`,
-      plain: `This finding used to say the app has nothing like the book side's raw, unpolished category tags. ` +
-        `Looking again: it does — TMDB's own free-form keyword tags are exactly that same kind of thing, and they're ` +
-        `already being read by the app (and, as of this session, actually feeding into the recommendation scores). ` +
-        `Building a whole separate field to duplicate what keywords already does wouldn't add anything real.`,
-      impact: `Closed as redundant with the already-shipped keyword work above, not built as a new field — the ` +
-        `honest right call once the actual gap was re-examined rather than assumed.`,
-    });
-  }
-
-  // 15-17. themes/tones/genre-subgenre-split: shipped this session as one
-  // combined fix. inferSubgenres()/inferTones() (trakt/engine.js) — a
-  // deterministic, keyword-driven classifier computed live (never
-  // persisted), grounded in real TMDB keyword data (every keyword verified
-  // present before inclusion) rather than an invented vocabulary. Two real
-  // false positives were caught via hand-spot-checking real titles and
-  // fixed before shipping (see engine.js's own inline comments): 'based on
-  // comic' wrongly tagged "300" (a historical war epic) as superhero, and
-  // bare decade-marker keywords wrongly tagged "Anchorman" (a comedy
-  // merely set in the 1970s) as historical.
-  {
-    const subgenreCounts = {}, toneCounts = {};
-    let withSubgenre = 0, withTone = 0;
-    for (const [titleKey, m] of Object.entries(enrichedMeta)) {
-      const llmEntry = idx.llmTags?.[titleKey];
-      const reviewedEntry = idx.reviewedTags?.[titleKey];
-      const subs = inferSubgenres(m, llmEntry, undefined, reviewedEntry);
-      const tones = inferTones(m, llmEntry, undefined, reviewedEntry);
-      if (subs.length) withSubgenre++;
-      if (tones.length) withTone++;
-      for (const s of subs) subgenreCounts[s] = (subgenreCounts[s] || 0) + 1;
-      for (const t of tones) toneCounts[t] = (toneCounts[t] || 0) + 1;
     }
-    const total = allEnriched.length;
-    const topSubgenre = Object.entries(subgenreCounts).sort((a, b) => b[1] - a[1])[0];
-    const topTone = Object.entries(toneCounts).sort((a, b) => b[1] - a[1])[0];
-    const genreCounts = {};
-    for (const m of allEnriched) for (const g of (m.genres || [])) genreCounts[g] = (genreCounts[g] || 0) + 1;
-    const topGenre = Object.entries(genreCounts).sort((a, b) => b[1] - a[1])[0];
+    const baselineRate = rated.length ? rated.filter(t => t.myRating <= 5).length / rated.length : 0;
+    const genreRows = Object.keys(totalByGenre)
+      .filter(g => totalByGenre[g] >= 15)
+      .map(g => ({ g, n: totalByGenre[g], dislikes: dislikeByGenre[g] || 0, rate: (dislikeByGenre[g] || 0) / totalByGenre[g] }))
+      .sort((a, b) => b.rate - a.rate);
+    const worst = genreRows[0];
     findings.push({
-      id: 'themes-field-missing',
-      severity: 'good',
-      ratings: { ease: 2, dataQuality: 7, recEngine: 7, ui: 3 },
-      title: 'Fixed: a subgenre classifier now exists beneath TMDB\'s blunt genre taxonomy',
-      technical: `TMDB's genre taxonomy is heavily concentrated (<code>${topGenre ? topGenre[0] : 'n/a'}</code> ` +
-        `alone covers ${topGenre ? ((topGenre[1] / total) * 100).toFixed(1) : 0}% of the ${total} enriched titles), ` +
-        `the exact over-concentration shape the book side's <code>thriller</code>/<code>history</code>/<code>memoir</code> ` +
-        `themes hit before their Session 19-21 review. New <code>inferSubgenres()</code> in <code>engine.js</code>: a ` +
-        `21-value keyword-driven classifier (<code>SUBGENRE_KEYWORDS</code>), computed live from each title's real ` +
-        `TMDB keywords, deliberately not persisted (see the function's own comment for why — it sidesteps the ` +
-        `4-file-sync/drift-audit machinery the book side's persisted theme/tone arrays need entirely). Real coverage: ` +
-        `${withSubgenre} of ${total} titles (${((withSubgenre / total) * 100).toFixed(1)}%) get at least one tag; top ` +
-        `value <code>${topSubgenre ? topSubgenre[0] : 'n/a'}</code> at ${topSubgenre ? ((topSubgenre[1] / total) * 100).toFixed(1) : 0}% — well ` +
-        `under the 15% cap the book side's tone vocabulary uses. Every keyword was verified present in the real ` +
-        `dataset before inclusion, and 2 real false positives were caught via hand-spot-checking ~20 real titles ` +
-        `(the same manual-audit discipline Session 16c/17 used) and fixed before shipping — not assumed correct ` +
-        `just because the code ran. Wired into <code>loadAllTitles.js</code>/<code>export_extract.js</code> as a new ` +
-        `<code>subgenres</code> CSV column. <strong>Now also a live scoring signal</strong>: new ` +
-        `<code>subgenreBonus()</code>, same tiered-count shape as <code>genreBonus()</code>, cap tuned against ` +
-        `<code>scripts/eval.js</code> the same way <code>keywordBonus()</code> was — an initial cap scaled straight ` +
-        `from <code>genreBonus()</code>'s own thresholds measurably regressed precision@50 (92%→90%), so it was ` +
-        `roughly halved twice to a cap of 1.5, which instead genuinely improved precision@10 90%→100% with every ` +
-        `other metric held or improved.`,
-      plain: `Genres are broad buckets ("Drama," "Crime"). The app now also tags each title with more specific ` +
-        `subject descriptors underneath that ("legal," "heist," "coming-of-age") derived from TMDB's own real, ` +
-        `specific keyword tags — not guessed, and checked by hand against real titles before shipping (one early ` +
-        `version wrongly called "300" a superhero movie just because it's based on a graphic novel; fixed before ` +
-        `going live). These tags now also nudge the recommendation scores themselves, not just the exported data.`,
-      impact: `Shipped, verified, AND now live in scoring — real coverage on ${((withSubgenre / total) * 100).toFixed(1)}% of the dataset, ` +
-        `a well-distributed vocabulary (no tag over the 15% cap), and a measured accuracy gain with zero regressions.`,
+      id: 'no-negative-genre-signal',
+      severity: 'critical',
+      ratings: { ease: 5, dataQuality: 2, recEngine: 8, ui: 1 },
+      title: worst
+        ? `${worst.g} candidates score no differently whether Bill loves or dislikes the genre — real dislike rate ${(worst.rate * 100).toFixed(0)}% vs. ${(baselineRate * 100).toFixed(1)}% baseline`
+        : 'No genre has enough rated volume yet to measure a real dislike-rate signal',
+      technical: `Live per-genre dislike rate (genres with 15+ rated titles), Bill's rated titles, myRating<=5 counted as disliked: ` +
+        genreRows.slice(0, 5).map(r => `${esc(r.g)} ${r.dislikes}/${r.n} (${(r.rate * 100).toFixed(0)}%)`).join(', ') +
+        `. Baseline dislike rate across all ${fmtNum(rated.length)} rated titles: ${(baselineRate * 100).toFixed(1)}%. Despite this real, ` +
+        `measurable spread, <code>genreBonus()</code> and <code>subgenreBonus()</code> are both purely additive tiered-count functions ` +
+        `with a floor of 0 — there is no code path for a genre or subgenre to ever subtract from a score. Compare ` +
+        `<code>toneSignal()</code>, which already computes a genuine per-tone rating-preference DELTA (mean rating with the tone minus ` +
+        `Bill's global mean) from the full rated distribution and can swing a score ±3 — proof this exact shape already works and is ` +
+        `eval.js-validated, just never applied one layer up to genre/subgenre.`,
+      plain: `Right now the engine only ever asks "does Bill love this genre" and adds points if so — it never asks "does Bill actually ` +
+        `dislike this genre," even when the real ratings say so clearly. Horror candidates, for example, get scored the same additive way ` +
+        `as any other genre match, even though Bill's own rating history shows he dislikes horror at a rate several times the norm. The ` +
+        `engine has a working example of exactly the fix needed sitting right next to this gap — tone already works this way (it correctly ` +
+        `dings a title for a tone Bill's ratings say he responds poorly to) — it just was never carried over to genre or subgenre.`,
+      impact: `A structural blind spot on the negative side of scoring, not a tuning tweak: right now nothing in <code>baseSignals()</code> ` +
+        `can ever push a candidate down for matching a genre Bill demonstrably dislikes, only up for matching one he loves. Extending ` +
+        `<code>toneSignal()</code>'s already-proven preference-delta shape to genre (and, once trust floors are met, subgenre) would close ` +
+        `it with a pattern this codebase has already built, tuned, and validated once.`,
     });
+  }
+
+  // 3. Candidate discovery and candidate SCORING draw from the exact same
+  // TMDB similarity graph — discover_candidates.js sources every candidate
+  // exclusively from loved titles' own similarToIds/recommendedIds, which
+  // is the identical graph baseSignals()'s forward/reverse-match signal
+  // then rewards. A structural closed loop: nothing TMDB's own algorithm
+  // wouldn't already associate with an existing favorite can ever enter
+  // the pool, regardless of what else Bill's real taste might include.
+  // Quantified live below rather than just asserted from reading the
+  // discovery script's source.
+  {
+    const poolTitles = candidatePool.titles || [];
+    const citedByLoved = poolTitles.filter(c => (idx.reverseSimilar.get(c.titleKey) || 0) > 0);
+    const pctClosedLoop = poolTitles.length ? (100 * citedByLoved.length / poolTitles.length) : 0;
     findings.push({
-      id: 'tones-field-missing',
-      severity: 'good',
-      ratings: { ease: 2, dataQuality: 6, recEngine: 6, ui: 3 },
-      title: 'Fixed: a mood/craft tone classifier now exists, same design as subgenres',
-      technical: `Same live-computed, keyword-driven approach as <code>inferSubgenres()</code> above, via new ` +
-        `<code>inferTones()</code>/<code>TONE_KEYWORDS</code> (14 values: gritty, dark, witty, satirical, hilarious, ` +
-        `inspirational, intense, suspenseful, twisty, slow-burn, character-driven, nostalgic, melancholy, offbeat). ` +
-        `Real coverage is honestly lower than subgenres: ${withTone} of ${total} titles (${((withTone / total) * 100).toFixed(1)}%), ` +
-        `since TMDB's keyword vocabulary carries far fewer mood/craft descriptors than content/subject ones (verified ` +
-        `directly — many plausible tone words like "heartwarming," "bleak," "ensemble," "fast-paced" returned zero ` +
-        `real matches anywhere in the dataset and were dropped from the vocabulary rather than kept as permanently- ` +
-        `empty tags). Top value <code>${topTone ? topTone[0] : 'n/a'}</code> at ${topTone ? ((topTone[1] / total) * 100).toFixed(1) : 0}% — nowhere ` +
-        `close to the 15% cap; the real constraint here is coverage breadth, not over-concentration. Wired into the ` +
-        `CSV export as a new <code>tones</code> column. <strong>Now also a live scoring signal</strong>: new ` +
-        `<code>toneSignal()</code>, a genuine per-tone rating-preference delta — the book side's real ` +
-        `<code>toneSignal()</code> mechanic (formula confirmed via a full code read while planning this), rescaled ` +
-        `for BMTRE's 0-100 score/1-10 rating scales. Checked before building: 12 of 13 real tones clear a >=3-rated- ` +
-        `titles trust floor (the same one <code>buildToneProfile()</code> uses on the book side), with real deltas ` +
-        `comparable in size to the book side's own (witty +0.36, inspirational +0.66, gritty -0.30). Multiplier swept ` +
-        `against <code>scripts/eval.js</code> from 1.5 to 15 — results plateau from ~5 upward as the clamp saturates, ` +
-        `so a moderate value was kept deliberately short of that ceiling rather than chasing the single best leave- ` +
-        `one-out decimal. Real, verified result: precision@10 90%→100%, precision@50 92%→94%, precision@100 86%→88%, ` +
-        `MAE 20.17→19.98 — every metric held or improved, no tradeoffs needed.`,
-      plain: `Beyond subject matter, the app now also tags mood and craft — how something FEELS, not just what it's ` +
-        `about (a legal drama can be tense or satirical; those are different things). Coverage is honestly thinner ` +
-        `than the subject tags, because the underlying TMDB data just has fewer mood-related tags to draw from — ` +
-        `several plausible mood words were checked against the real data and dropped entirely rather than shipped ` +
-        `empty, since a tag nothing ever gets isn't worth having. These tags now genuinely nudge scores based on ` +
-        `whether Bill has actually rated that mood higher or lower in the past, not just whether he watches a lot of it.`,
-      impact: `Shipped, verified, AND now live in scoring — an honestly-scoped coverage gap didn't stop this from ` +
-        `becoming a real, measured accuracy gain across every precision tier with zero regressions.`,
+      id: 'closed-loop-discovery',
+      severity: 'serious',
+      ratings: { ease: 4, dataQuality: 3, recEngine: 7, ui: 3 },
+      title: `${pctClosedLoop.toFixed(0)}% of the discovered candidate pool comes from the exact same graph that then scores it`,
+      technical: `<code>trakt/scripts/discover_candidates.js</code> sources every candidate exclusively from ` +
+        `<code>similarToIds</code>/<code>recommendedIds</code> on titles rated >= <code>LOVED_THRESHOLD</code> — TMDB's own ` +
+        `algorithmic "similar to" graph. That is the IDENTICAL data <code>baseSignals()</code>'s forward/reverse-match signal (worth up ` +
+        `to +24/+12) rewards a candidate for appearing in. Live proof, not inference from reading the script: of ${fmtNum(poolTitles.length)} ` +
+        `titles currently in <code>candidatePool.json</code>, ${fmtNum(citedByLoved.length)} (${pctClosedLoop.toFixed(1)}%) are directly ` +
+        `cited by a loved title's own similar/recommended list — discovery and scoring are, structurally, the same graph queried twice.`,
+      plain: `The pool of "new things Bill might like" is built entirely by asking TMDB's own algorithm "what's similar to what Bill ` +
+        `already loves" — and then the recommendation engine's strongest scoring signal is, again, "does TMDB's algorithm consider this ` +
+        `similar to something Bill already loves." It's the same question asked twice, so nothing genuinely outside what TMDB's own ` +
+        `similarity model already associates with his favorites can ever surface, no matter how good a match it might actually be. It's a ` +
+        `filter bubble built into the pipeline's architecture, not a scoring-weight problem a tuning pass could fix.`,
+      impact: `Every other finding on this list is about scoring candidates better — this one is about whether the RIGHT candidates ever ` +
+        `reach scoring at all. A real fix needs a second, independent discovery source: e.g. TMDB's genre-filtered top-rated/popular ` +
+        `endpoints seeded from Bill's real <code>lovedGenres</code> mix rather than title-to-title similarity, or a small explicit ` +
+        `"exploration" quota mixed into <code>candidatePool.json</code> alongside the similarity-graph picks — deliberately sourced ` +
+        `differently so it isn't subject to the same closed loop.`,
     });
+  }
+
+  // 4. COMMUNITY_NEUTRAL (6.0) and CRITIC_NEUTRAL (80) are single flat
+  // constants applied to every candidate regardless of genre — but Bill's
+  // real bias vs. the TMDB crowd average is measurably genre-dependent,
+  // not a fixed offset. The existing "You vs. The Crowd" dashboard stat
+  // already establishes this kind of bias-correction is worth measuring
+  // (a flat +0.18 delta, mirroring the book side's real AMAZON_BIAS_OFFSET
+  // precedent) — this finding shows that single global number hides a much
+  // larger, genre-dependent spread underneath it.
+  {
+    const byGenre = {};
+    for (const t of rated) {
+      const m = enrichedMeta[t.titleKey];
+      if (m.voteAverage == null) continue;
+      for (const g of (m.genres || [])) {
+        if (!byGenre[g]) byGenre[g] = { billSum: 0, crowdSum: 0, n: 0 };
+        byGenre[g].billSum += t.myRating;
+        byGenre[g].crowdSum += m.voteAverage;
+        byGenre[g].n++;
+      }
+    }
+    const genreRows = Object.entries(byGenre)
+      .filter(([, d]) => d.n >= 15)
+      .map(([g, d]) => ({ g, n: d.n, delta: (d.billSum / d.n) - (d.crowdSum / d.n) }))
+      .sort((a, b) => b.delta - a.delta);
+    const highest = genreRows[0];
+    const lowest = genreRows[genreRows.length - 1];
+    const spread = highest && lowest ? highest.delta - lowest.delta : 0;
     findings.push({
-      id: 'genre-subgenre-split-missing',
-      severity: 'good',
-      ratings: { ease: 4, dataQuality: 5, recEngine: 5, ui: 3 },
-      title: 'Fixed: genre/subgenre split shipped as the same classifier as the themes finding above',
-      technical: `This finding proposed exactly the fix <code>inferSubgenres()</code> above delivers: "a keyword- ` +
-        `derived heuristic (TMDB's <code>keywords</code> field... is the natural raw material)". Not a separate ` +
-        `build — the same classifier serves both the "subgenre beneath genre" role and the "themes-field-missing" ` +
-        `role above, since for BMTRE (unlike the book side, where categories/themes are genuinely different fields) ` +
-        `a subgenre tag and a subject-matter theme tag are the same kind of thing sitting beneath the same blunt ` +
-        `genre taxonomy.`,
-      plain: `This was the same gap as the themes finding above, just described from a different angle (genre ` +
-        `needing a second, more specific layer). One fix closes both.`,
-      impact: `Shipped as part of the same change — no separate work needed.`,
+      id: 'flat-community-neutral-ignores-genre-bias',
+      severity: 'serious',
+      ratings: { ease: 6, dataQuality: 2, recEngine: 6, ui: 1 },
+      title: highest && lowest
+        ? `Bill's rating bias vs. TMDB's crowd swings ${spread.toFixed(2)} points by genre (${esc(highest.g)} +${highest.delta.toFixed(2)} to ${esc(lowest.g)} ${lowest.delta.toFixed(2)}) — but one flat neutral point is used for every candidate`
+        : 'Not enough rated volume per genre yet to measure a real genre-dependent crowd bias',
+      technical: `Live per-genre delta (Bill's own average rating minus TMDB's <code>voteAverage</code>, both on a 0-10 scale, genres with ` +
+        `15+ rated titles): ` + genreRows.map(r => `${esc(r.g)} ${r.delta >= 0 ? '+' : ''}${r.delta.toFixed(2)}`).join(', ') +
+        `. <code>COMMUNITY_NEUTRAL = 6.0</code> and <code>CRITIC_NEUTRAL = 80</code> are each one flat constant applied identically to ` +
+        `every candidate in <code>baseSignals()</code>/<code>omdbSignal()</code> regardless of genre — the same crowd rating is credited ` +
+        `identically whether it's a Comedy (where Bill runs well above the crowd) or a Horror title (where he runs below it).`,
+      plain: `The engine already knows, in aggregate, that Bill tends to rate things a bit higher than the average TMDB voter — that's ` +
+        `the "You vs. The Crowd" number on this dashboard. What it doesn't know is that this isn't one flat gap — Bill rates comedies and ` +
+        `political dramas well above what the crowd gives them, but rates horror and sci-fi BELOW what the crowd gives them. A crowd ` +
+        `rating of 7.2 means something different depending on the genre, and the engine currently treats it as meaning the same thing ` +
+        `every time.`,
+      impact: `A refinement of a signal that already exists and is already trusted, not a new one — replacing the single ` +
+        `<code>COMMUNITY_NEUTRAL</code>/<code>CRITIC_NEUTRAL</code> constants with a per-genre neutral point (computed live from ` +
+        `<code>idx.lovedGenres</code>'s own rated population, the same "measure it, don't guess it" discipline this file already used for ` +
+        `<code>matchPointScale</code> and <code>AMAZON_BIAS_OFFSET</code> on the book side) would make the community/critic rating signal ` +
+        `meaningfully more accurate for every candidate, in both directions.`,
+    });
+  }
+
+  // 5. A genuinely unique-to-this-project signal sits completely unused:
+  // Bill has a second, independently mature taste model for himself — the
+  // book engine (BBRE) — and a real, non-trivial share of the movie/show
+  // catalog is adapted from books. No cross-pollination between the two
+  // systems exists at all. Framed deliberately around genre/subject
+  // correlation rather than fragile exact-title matching between two
+  // independent datasets — this project's own history (resolve_titles.py's
+  // real wrong-match incidents, the book side's years of similarToTitles
+  // fuzzy-matching bugs) is a direct, hard-won lesson that a naive title
+  // join between BMTRE and BBRE would likely reproduce the same failure
+  // class, so this is proposed with that risk stated up front, not glossed
+  // over.
+  {
+    const bookBased = allEnriched.filter(m => (m.keywords || []).includes('based on novel or book'));
+    const lovedBookBased = [...idx.lovedTitles].filter(k => (enrichedMeta[k]?.keywords || []).includes('based on novel or book'));
+    const pctBookBased = allEnriched.length ? (100 * bookBased.length / allEnriched.length) : 0;
+    const pctLovedBookBased = idx.lovedTitles.size ? (100 * lovedBookBased.length / idx.lovedTitles.size) : 0;
+    findings.push({
+      id: 'book-adaptation-cross-domain-signal-unused',
+      severity: 'warning',
+      ratings: { ease: 3, dataQuality: 4, recEngine: 5, ui: 2 },
+      title: `${fmtNum(bookBased.length)} titles (${pctBookBased.toFixed(1)}%) are book adaptations, and BMTRE has zero connection to Bill's separate, mature book-taste model`,
+      technical: `Live count: ${fmtNum(bookBased.length)} of ${fmtNum(allEnriched.length)} enriched titles (${pctBookBased.toFixed(1)}%) ` +
+        `carry TMDB's <code>based on novel or book</code> keyword; ${fmtNum(lovedBookBased.length)} of Bill's ${fmtNum(idx.lovedTitles.size)} ` +
+        `loved (9-10 rated) titles (${pctLovedBookBased.toFixed(1)}%) are themselves adaptations. This repo runs a second, independently ` +
+        `built and much more mature recommendation engine for the same person — BBRE, in the book project's own <code>engine.js</code>/` +
+        `<code>bbreEngine.js</code>, with its own curated theme vocabulary (legal, thriller, historical, psychological, etc.) refined over ` +
+        `dozens of sessions. Nothing currently connects the two. A naive fix (fuzzy-matching movie/show titles against ` +
+        `<code>goodreadsData.json</code> book titles) is explicitly NOT proposed here — this exact project has a long, well-documented ` +
+        `history of real bugs from fuzzy cross-dataset title matching (<code>resolve_titles.py</code>'s confirmed wrong-match incidents, ` +
+        `years of the book side's own <code>similarToTitles</code> corruption). The safer, evidence-preferred version is a ` +
+        `THEME/GENRE-level correlation (e.g. Bill's 5-star book theme "legal" correlating with BMTRE's "legal" subgenre) rather than an ` +
+        `exact-title join.`,
+      plain: `This project actually maintains two separate AI "taste profiles" for the same person — one for books, one for movies/shows — ` +
+        `and they've never once talked to each other, even though a meaningful chunk of what Bill watches started life as a book. If Bill's ` +
+        `book engine already knows he loves legal thrillers, that's a real, existing signal this side of the project could use — right now ` +
+        `it's sitting in a completely separate file, unused.`,
+      impact: `Rated honestly lower-priority than the first four findings (smaller effect size, real cross-dataset implementation risk this ` +
+        `codebase has specifically learned to be cautious about) — but genuinely novel: this is the one idea here that isn't "extend an ` +
+        `existing signal further," it's a new SOURCE of signal unique to this project's own two-engine setup, unavailable to a typical ` +
+        `single-domain recommender. Worth a scoping pass before any implementation, not a same-session build.`,
     });
   }
 
