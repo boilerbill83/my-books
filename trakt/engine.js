@@ -808,7 +808,8 @@ function toneSignal(tones, toneProfile, globalMean) {
 // delta, however small, still reshuffled the eval's tied-at-the-100-clamp
 // bucket (dropping personally-loved Daredevil: Born Again/Devs a few
 // points below 100 on a mild action/sci-fi discount, which changed which
-// *other* already-maxed candidates the confidenceScore tiebreak surfaced
+// *other* already-maxed candidates the stable-sort/array-order tiebreak
+// within computeEvalMetrics()'s own tied-at-100 cluster surfaced
 // in the top 25 — Big Little Lies/Lioness, both 7/10) even though the
 // signal never adds a point anywhere. Gating on a deadzone leaves the
 // mild, low-confidence negatives untouched and applies real weight only

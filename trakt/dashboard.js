@@ -2462,7 +2462,8 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `(2) <b>a -0.5 deadzone</b> — penalizing every negative delta, however small, still reshuffled which titles land in the ` +
         `eval's tied-at-the-100-clamp bucket (mild, low-confidence negatives like action -0.18/n=29 or science-fiction -0.37/n=43 ` +
         `knocked a couple of personally-loved candidates a few points below 100, which changed which OTHER already-maxed candidates ` +
-        `the confidence-score tiebreak surfaced in the visible top 25) — gating on a -0.5 threshold leaves those noise-level negatives ` +
+        `the stable-sort/array-order tiebreak within <code>computeEvalMetrics()</code>'s own tied-at-100 cluster surfaced in the ` +
+        `visible top 25) — gating on a -0.5 threshold leaves those noise-level negatives ` +
         `untouched and applies real weight only to genres Bill has demonstrably, sizably rated below his own average. Live genres past ` +
         `that threshold today: ` +
         penalizedGenres.map(r => `${esc(r.g)} (mean ${r.mean.toFixed(2)} vs. ${idx.globalMeanRating.toFixed(2)} global, ${r.penalty.toFixed(1)}-pt penalty)`).join(', ') +
@@ -2619,6 +2620,68 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `codebase has specifically learned to be cautious about) — but genuinely novel: this is the one idea here that isn't "extend an ` +
         `existing signal further," it's a new SOURCE of signal unique to this project's own two-engine setup, unavailable to a typical ` +
         `single-domain recommender. Worth a scoping pass before any implementation, not a same-session build.`,
+    });
+  }
+
+  // 6. Surfaced by an adversarial review of the genreSignal() fix above
+  // (no-negative-genre-signal): baseSignals() clamps every candidate's
+  // final score to [0, 100], and enough loved-signal terms (creator +
+  // franchise + forward/reverse similar-title + genre + cast) can stack
+  // past 100 on a real, strong match that a meaningful share of candidates
+  // don't just approach the ceiling, they hit it exactly and tie there.
+  // Once tied, which of several equally-scored candidates is actually
+  // shown is decided by array order / the confidenceScore tiebreak, not
+  // by any further scoring signal — so two candidates that are genuinely
+  // different matches can be indistinguishable to the ranking the moment
+  // both clear 100. This is exactly the mechanism the genreSignal() fix
+  // above had to route around with a deadzone rather than a plain
+  // penalty; it will keep resurfacing for every future scoring change
+  // that touches an already-strong candidate. Computed live, cheaply,
+  // from the already-scored fromWatchlist/fromCandidates lists this
+  // render already built (no new leave-one-out pass — that exact
+  // recomputation cost is what this session's own performance fix on
+  // computeEvalMetrics() had to eliminate from the page-load path).
+  {
+    const allLive = [...fromWatchlist, ...fromCandidates];
+    const tiedLive = allLive.filter(c => c.bmtreScore === 100).length;
+    const byTypeTop8 = {};
+    for (const type of ['movie', 'show']) {
+      const scored = allLive.filter(c => c.type === type).map(c => c.bmtreScore).sort((a, b) => b - a);
+      const top8 = scored.slice(0, 8);
+      byTypeTop8[type] = { tied: top8.filter(s => s === 100).length, of: top8.length };
+    }
+    findings.push({
+      id: 'score-clamp-saturation',
+      severity: 'serious',
+      ratings: { ease: 3, dataQuality: 3, recEngine: 7, ui: 1 },
+      title: `${byTypeTop8.show.tied} of the current top ${byTypeTop8.show.of} TV picks are tied at exactly 100 — the tie, not the ranking, decides what's shown`,
+      technical: `Live count, this render: ${fmtNum(tiedLive)} of ${fmtNum(allLive.length)} scored watchlist+candidate titles ` +
+        `(${allLive.length ? ((tiedLive / allLive.length) * 100).toFixed(1) : 0}%) sit at the exact 100.0 clamp ceiling. Of the true ` +
+        `top ${byTypeTop8.movie.of} movies by score, ${byTypeTop8.movie.tied} are tied at 100; of the true top ${byTypeTop8.show.of} ` +
+        `shows, ${byTypeTop8.show.tied} are. This isn't a near-tie — <code>baseSignals()</code> clamps the final sum to [0, 100], and ` +
+        `enough loved-signal terms (creator/franchise/forward+reverse-similar-title/genre/cast) stack on a genuinely strong match that ` +
+        `the raw pre-clamp score routinely exceeds 100 well before any of the smaller signals (community rating, keyword match, ` +
+        `description similarity) get a chance to differentiate between two candidates that both clamp to the ceiling. Once tied, which ` +
+        `one is actually shown is decided by <code>confidenceScore</code> (a real but much coarser "how much data do we have" tiebreak, ` +
+        `never meant to carry ranking weight on its own) or plain array order, not by anything about which title is the better match. ` +
+        `An adversarial review of the <code>genreSignal()</code> fix above independently confirmed the same pattern in ` +
+        `<code>computeEvalMetrics()</code>'s leave-one-out harness: 55 of 560 rated titles (9.8%) score exactly 100.0 there too — and ` +
+        `100% of the titles precision@25 grades (the top 25 by score) are tied at 100.000, meaning that metric currently measures which ` +
+        `arbitrary slice of a same-score cluster lands in the first 25 array positions, not real ranking quality. (Not re-run live here — ` +
+        `that specific recomputation is the same expensive leave-one-out pass this session's own performance fix had to stop running on ` +
+        `every page load.) This predates the genreSignal() change; it's inherited scoring-architecture debt the fix had to work around ` +
+        `(the asymmetric clamp + deadzone), not something it introduced.`,
+      plain: `The engine's final score is capped at 100 — but so many good signals can stack up on a genuinely strong match (the right ` +
+        `director, a franchise you love, a similar title, the right genre) that a real chunk of today's top picks don't just get close to ` +
+        `100, they hit exactly 100 and tie there. Once two titles are both sitting at the maximum possible score, the engine has no more ` +
+        `room left to say which one is actually the better recommendation — it just falls back to a much weaker tiebreaker. This matters ` +
+        `right now, not hypothetically: several of the current top TV picks are tied at the ceiling.`,
+      impact: `A structural measurement problem, not a display glitch: it silently limits how well any future scoring improvement can be ` +
+        `verified (a change that only affects already-maxed candidates can't move the ranking at all) and makes the engine's own ` +
+        `precision@25 metric less trustworthy than it looks. The <code>genreSignal()</code> fix above had to design around this exact ` +
+        `issue with a deadzone rather than a plain penalty; a real fix (widening the achievable score range before the display clamp, or ` +
+        `making the clamp cosmetic-only while ranking uses the unclamped sum) would remove the need for that kind of workaround on every ` +
+        `future scoring change, not just this one.`,
     });
   }
 

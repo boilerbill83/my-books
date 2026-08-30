@@ -184,9 +184,15 @@ up front:
   still reshuffled the tied-at-the-100-clamp bucket: mild negatives like
   action (-0.18, n=29) or science-fiction (-0.37, n=43) are noise-level,
   but knocking a couple of personally-loved candidates a few points below
-  100 changed which *other* already-maxed candidates the confidence-score
-  tiebreak surfaced in the visible top 25 — same regression, different
-  cause. Gating on -0.5 leaves noise-level negatives untouched and applies
+  100 changed which *other* already-maxed candidates the stable-sort/
+  array-order tiebreak within `computeEvalMetrics()`'s own tied-at-100
+  cluster surfaced in the visible top 25 — same regression, different
+  cause. (This is `eval.js`'s own tiebreak, not `confidenceScore` — the
+  live dashboard's `rankAll()`/`rankRecommendations()` do use
+  `confidenceScore` as a real secondary sort key, but the eval harness
+  sorts by raw score alone, so the actual mechanism here is plain array
+  order among ties, verified via an adversarial review of this change.)
+  Gating on -0.5 leaves noise-level negatives untouched and applies
   real weight only to genres rated sizably below Bill's own average.
 
 Real measured deltas (globalMeanRating ≈ 7.83): horror 6.37 (-1.47, full
