@@ -21837,5 +21837,22 @@
   "imdbVotes": 5262,
   "director": null,
   "fetchedAt": "2026-08-27"
+ },
+ "movie:297761": {
+  "rottenTomatoes": 26,
+  "metacritic": 40,
+  "awards": {
+   "oscarWins": 1,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 18,
+   "totalNominations": 41,
+   "raw": "Won 1 Oscar. 18 wins & 41 nominations total"
+  },
+  "imdbRating": 5.9,
+  "imdbVotes": 758745,
+  "director": "David Ayer",
+  "fetchedAt": "2026-08-30"
  }
 }
