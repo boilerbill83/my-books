@@ -160490,5 +160490,92 @@
   "year": 2026,
   "type": "show",
   "fetchedAt": "2026-08-27"
+ },
+ "movie:297761": {
+  "genres": [
+   "Action",
+   "Adventure",
+   "Fantasy"
+  ],
+  "overview": "From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the United States government, undertaking high-risk black ops missions in exchange for commuted prison sentences.",
+  "keywords": [
+   "secret mission",
+   "superhero",
+   "anti hero",
+   "villain",
+   "supervillain",
+   "dc extended universe (dceu)"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt1386697",
+  "voteAverage": 5.917,
+  "voteCount": 22360,
+  "popularity": 13.3199,
+  "posterPath": "/sk3FZgh3sRrmr8vyhaitNobMcfh.jpg",
+  "similarToIds": [
+   703771,
+   1271882,
+   64202,
+   76420,
+   328646,
+   1751109,
+   214722,
+   225914,
+   1733020,
+   187916,
+   187922,
+   1564058,
+   1003579,
+   1003580,
+   1003581,
+   618350,
+   618353,
+   618354,
+   618355,
+   818153
+  ],
+  "recommendedIds": [
+   141052,
+   209112,
+   464052,
+   46529,
+   436270,
+   1003579,
+   572802,
+   408648,
+   323027,
+   297802,
+   49521,
+   299536,
+   522016,
+   268,
+   298618,
+   76589,
+   102382,
+   17074,
+   537059,
+   284054
+  ],
+  "topCast": [
+   "Will Smith",
+   "Jared Leto",
+   "Margot Robbie",
+   "Joel Kinnaman",
+   "Viola Davis"
+  ],
+  "releaseDate": "2016-08-03",
+  "runtime": 122,
+  "director": "David Ayer",
+  "directors": [
+   "David Ayer"
+  ],
+  "belongsToCollection": {
+   "id": 531242,
+   "name": "Suicide Squad Collection"
+  },
+  "title": "Suicide Squad",
+  "year": 2016,
+  "type": "movie",
+  "fetchedAt": "2026-08-30"
  }
 }
