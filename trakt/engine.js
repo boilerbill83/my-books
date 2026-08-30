@@ -305,6 +305,15 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   // disliked examples to compute a real per-tone mean, unlike the
   // loved-only counts above.
   const toneRatingsRaw = new Map();
+  // Same shape, one layer up: genre -> [ratings], every rated title
+  // (dashboard's no-negative-genre-signal finding, implemented).
+  // genreBonus() is purely additive (floor 0) — it can credit a genre
+  // Bill loves but has no path to penalize one he demonstrably dislikes
+  // by rating pattern (Horror: real mean 6.37 vs. a 7.84 global mean,
+  // n=27 — not a fluke). toneSignal() already proved this exact
+  // preference-delta shape works; genreSignal() below generalizes it to
+  // genre using the identical formula and trust floor.
+  const genreRatingsRaw = new Map();
   let ratedSum = 0, ratedCount = 0;
   // Weighted-by-loved-show-overlap airing-status signal (dashboard
   // recency-curve-not-split-by-type finding) — see showAiringBonus()
@@ -324,6 +333,11 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
     for (const tone of inferTones(meta, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
       if (!toneRatingsRaw.has(tone)) toneRatingsRaw.set(tone, []);
       toneRatingsRaw.get(tone).push(t.myRating);
+    }
+    const genreForProfile = inferGenre(meta, llmTags[t.titleKey], reviewedTags[t.titleKey]);
+    if (genreForProfile) {
+      if (!genreRatingsRaw.has(genreForProfile)) genreRatingsRaw.set(genreForProfile, []);
+      genreRatingsRaw.get(genreForProfile).push(t.myRating);
     }
 
     if (t.type === 'show') {
@@ -452,6 +466,13 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
       toneProfile.set(tone, ratings.reduce((s, r) => s + r, 0) / ratings.length);
     }
   }
+  // Same >=3-rated-title trust floor as toneProfile, same reasoning.
+  const genreProfile = new Map();
+  for (const [genre, ratings] of genreRatingsRaw) {
+    if (ratings.length >= 3) {
+      genreProfile.set(genre, ratings.reduce((s, r) => s + r, 0) / ratings.length);
+    }
+  }
 
   // Overrepresentation of "still airing" status among loved shows vs. the
   // real baseline rate among all rated shows — 0 if loved shows are no
@@ -488,7 +509,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   // override for the non-loved majority of its loop.
   const descModel = descModelOverride !== undefined ? descModelOverride : buildDescModel(enrichedMeta, lovedTitles);
 
-  return { watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel };
+  return { watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, genreProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -757,6 +778,52 @@ function toneSignal(tones, toneProfile, globalMean) {
     }
   }
   return Math.max(-3, Math.min(3, adj));
+}
+
+// Dashboard's no-negative-genre-signal finding, implemented — genreBonus()
+// (above) is purely additive with a floor of 0: it can credit a genre
+// Bill loves but has no path to penalize one he demonstrably dislikes by
+// rating pattern (real measured example: Horror's mean rating is 6.37 vs.
+// a 7.84 global mean, n=27 — not a fluke). Generalizes toneSignal()'s
+// already-proven, already-validated preference-delta shape to genre,
+// same formula and same >=3-rated-title trust floor (genreProfile).
+// Genre is single-valued (inferGenre()), so this is one lookup, not a
+// sum across several tags. GENRE_SIGNAL_SCALE/CAP were swept against
+// scripts/eval.js, not copied from toneSignal()'s own ±3/×4 unchanged —
+// see the sweep results in this file's own history/commit message.
+// Deliberately asymmetric (penalty-only, capped at 0 on the positive side):
+// a symmetric ±cap version regressed precision@25/@50 in the eval sweep —
+// diagnosed as clamp-saturation, not a real disagreement about "liked"
+// genres. genreBonus() already rewards a candidate for matching a genre
+// Bill's *count* of loved titles favors; stacking a second positive credit
+// from the *rating* signal pushed already-near-100 candidates (e.g. Big
+// Little Lies, Griselda) past the 100 clamp, displacing genuinely-better
+// matches. The actual gap this finding names — horror scoring the same
+// whether Bill loves or hates it — only needs the negative side fixed.
+// A deadzone on small negative deltas is ALSO required, not just the
+// asymmetric clamp: real per-genre deltas span a continuum (action -0.18,
+// science-fiction -0.37 — noise-level, n=29/43 but a tiny true effect —
+// up to mystery -0.54, biography -0.70, horror -1.47, the genuinely
+// disliked tier this finding is actually about). Penalizing EVERY negative
+// delta, however small, still reshuffled the eval's tied-at-the-100-clamp
+// bucket (dropping personally-loved Daredevil: Born Again/Devs a few
+// points below 100 on a mild action/sci-fi discount, which changed which
+// *other* already-maxed candidates the confidenceScore tiebreak surfaced
+// in the top 25 — Big Little Lies/Lioness, both 7/10) even though the
+// signal never adds a point anywhere. Gating on a deadzone leaves the
+// mild, low-confidence negatives untouched and applies real weight only
+// to genres Bill has demonstrably, sizably rated below his own average —
+// restores precision@25/@50 to baseline while still fixing horror.
+const GENRE_SIGNAL_SCALE = 4;
+const GENRE_SIGNAL_CAP = 3;
+const GENRE_SIGNAL_DEADZONE = 0.5;
+function genreSignal(genre, genreProfile, globalMean) {
+  if (!genre || !genreProfile || !genreProfile.size || globalMean == null) return 0;
+  if (!genreProfile.has(genre)) return 0;
+  const delta = genreProfile.get(genre) - globalMean;
+  if (delta > -GENRE_SIGNAL_DEADZONE) return 0;
+  const adj = delta * GENRE_SIGNAL_SCALE;
+  return Math.max(-GENRE_SIGNAL_CAP, Math.min(0, adj));
 }
 
 // A real Improvement Opportunities finding (Session 53): similarToIds/
@@ -2040,7 +2107,9 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
 
   const llmEntry = idx.llmTags?.[candidate.titleKey];
   const reviewedEntry = idx.reviewedTags?.[candidate.titleKey];
-  score += genreBonus(inferGenre(meta, llmEntry, reviewedEntry), idx.lovedGenres);
+  const candidateGenreForScoring = inferGenre(meta, llmEntry, reviewedEntry);
+  score += genreBonus(candidateGenreForScoring, idx.lovedGenres);
+  score += genreSignal(candidateGenreForScoring, idx.genreProfile, idx.globalMeanRating);
   score += dismissAdjust(candidate, meta, creator, idx);
   score += franchiseBonus(meta?.belongsToCollection?.id, idx.lovedCollections);
   score += castBonus(meta?.topCast, idx.lovedActors);
