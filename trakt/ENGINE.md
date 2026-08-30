@@ -160,6 +160,44 @@ candidate. See §6 for why Genre and Subgenre are now two separate,
 differently-grained fields instead of Subgenre alone trying to do both
 jobs.
 
+### 3b-2. Genre rating-preference penalty — clamped to **-3 to 0**
+```
+if (genreMean - globalMeanRating) > -0.5: 0
+else: max(-3, (genreMean - globalMeanRating) × 4)
+```
+`genreBonus()` above only ever rewards a genre Bill has watched a lot of
+(a loved-*count* tier) — it has no path to penalize a genre he's actually
+rated poorly. `genreSignal()` closes that gap: a real per-genre mean-rating
+map (`idx.genreProfile`, same ≥3-rated-title trust floor as `toneProfile`)
+compared against Bill's global mean, generalizing §3h's tone-preference-
+delta shape one layer up to genre. Two departures from a direct tone-signal
+port, both required by real `scripts/eval.js` regressions, not chosen
+up front:
+- **Asymmetric — capped at 0 on the positive side, never adds.**
+  `genreBonus()` already rewards a loved genre by count; a *second*,
+  positive rating-derived credit on top of it pushed already-near-100
+  candidates past the 100-point score clamp, displacing genuinely better
+  matches (precision@25 96%→92% in the eval sweep with a symmetric ±3
+  version, at every tested scale/cap — a clamp-saturation artifact, not
+  a real disagreement about liked genres).
+- **A -0.5 deadzone.** Penalizing every negative delta, however small,
+  still reshuffled the tied-at-the-100-clamp bucket: mild negatives like
+  action (-0.18, n=29) or science-fiction (-0.37, n=43) are noise-level,
+  but knocking a couple of personally-loved candidates a few points below
+  100 changed which *other* already-maxed candidates the confidence-score
+  tiebreak surfaced in the visible top 25 — same regression, different
+  cause. Gating on -0.5 leaves noise-level negatives untouched and applies
+  real weight only to genres rated sizably below Bill's own average.
+
+Real measured deltas (globalMeanRating ≈ 7.83): horror 6.37 (-1.47, full
+-3.0 penalty), biography 7.13 (-0.70, -2.8), mystery 7.30 (-0.53, -2.1);
+action (-0.18) and science-fiction (-0.37) fall inside the deadzone and
+score 0. Verified via `scripts/eval.js`: precision@10/25/50 held exactly
+at baseline (90/96/92) with genreSignal active, precision@100 improved
+88→89, MAE within noise (14.30→14.39) — and via isolated per-candidate
+comparison (signal on vs. off, same candidates): every live horror
+candidate takes exactly the full -3.0 cap.
+
 ### 3c. Dismissal generalization — **-15 (creator) or up to -10 (style)**
 A dismissal shouldn't only remove one exact title. Two reason codes carry
 generalizable meaning:
@@ -669,6 +707,7 @@ Run it: `node trakt/scripts/eval.js` from the repo root.
 | Base score | +20 flat | Starting point before any signal |
 | Creator/director match | +0 to +15 | +10 loved-count, +5 rating-weight |
 | Genre match | +0 to +8 | Tiered by loved-genre count |
+| Genre rating penalty | -3 to 0 | Rating-preference delta, -0.5 deadzone, penalty-only |
 | Dismissal (creator) | -15 flat | `creator_dislike` reason code |
 | Dismissal (style) | 0 to -10 | `style_dislike`, needs 2+ dismissals |
 | Franchise/collection | +0 to +15 | Movies only |
