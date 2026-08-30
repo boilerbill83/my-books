@@ -2922,26 +2922,43 @@ function metaLine(candidate, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags 
   return parts.join(' · ') || 'No genre/creator data yet.';
 }
 
-// The true top 8 by score across both origins (watchlist + discovered
-// candidates) for one type (movie or show) — each card shows real
-// metadata, the engine's predicted score, and its plain-English reason.
-// Previously took the top 4 from each origin BEFORE sorting, which could
-// (and did — see the dashboard's own Improvement Opportunities finding
-// this fixes) silently drop a candidate ranked 5th-8th overall even when
-// it outscored a shown watchlist pick. Sort the full combined pool first,
-// then diversity-rerank (a real, verified fix for a separate finding — a
-// live check found the top 20 shows by raw score were 100% tagged Drama,
-// a genre monoculture purely because that's what scores highest, not
-// because nothing else was available) before taking the top 8, so the
-// panel matches what the engine actually computed while still showing
-// real variety when it exists. diversityRerank() only reorders for
-// display — it never touches an individual title's bmtreScore, so this
-// has no effect on computeEvalMetrics()'s precision@k.
+// A guaranteed 4 watchlist + 4 discovered-candidate split, each half its
+// own top-scored + diversity-reranked picks, then the combined 8 sorted
+// by score for DISPLAY order only. History: this used to be a straight
+// top-4-per-origin block (watchlist block, then candidate block) — Bill
+// flagged a panel "starting with a 44" (a weak watchlist pick sitting
+// above a stronger candidate purely because of block order), so a prior
+// session replaced the split with a pure top-8-by-score-across-both-
+// origins pick. That fixed the ordering complaint but meant a panel could
+// legitimately show 6-8 watchlist picks and 0-2 new ones whenever
+// watchlist scores ran high — which Bill then flagged as losing the
+// discovery half of the panel's whole point. Restored the guaranteed
+// split (his explicit call) but kept the score-sorted DISPLAY order from
+// the fix in between: origin composition is fixed at 4/4, but a strong
+// candidate can still display above a weaker watchlist pick, and vice
+// versa — the "44 at the top" complaint doesn't reproduce, since within
+// each half the top-scored one is picked, and the two halves interleave
+// by score for display. If one origin has fewer than 4 real candidates,
+// the other origin backfills the remainder rather than showing short.
+// diversityRerank() only reorders for display within each half — it
+// never touches an individual title's bmtreScore, so none of this
+// affects computeEvalMetrics()'s precision@k.
 function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags = {}) {
   const el = document.getElementById(sectionId);
-  const ranked = [...watchlistItems, ...candidateItems]
-    .sort((a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore));
-  const picks = diversityRerank(ranked, enrichedMeta, { windowSize: 8, maxPerGenre: 3 }).slice(0, 8);
+  const sortFn = (a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore);
+  const HALF = 4;
+  const wlRanked = diversityRerank([...watchlistItems].sort(sortFn), enrichedMeta, { windowSize: HALF, maxPerGenre: 2 });
+  const candRanked = diversityRerank([...candidateItems].sort(sortFn), enrichedMeta, { windowSize: HALF, maxPerGenre: 2 });
+  let wlPicks = wlRanked.slice(0, HALF);
+  let candPicks = candRanked.slice(0, HALF);
+  // Backfill from the other origin if one side is short (fewer than 4
+  // real titles available), so the panel still shows up to 8 rather than
+  // silently rendering fewer cards than it could.
+  const shortfallFromWl = HALF - wlPicks.length;
+  if (shortfallFromWl > 0) candPicks = candRanked.slice(0, HALF + shortfallFromWl);
+  const shortfallFromCand = HALF - candPicks.length;
+  if (shortfallFromCand > 0) wlPicks = wlRanked.slice(0, HALF + shortfallFromCand);
+  const picks = [...wlPicks, ...candPicks].sort(sortFn);
   if (!picks.length) {
     el.innerHTML = '<div class="tk-empty">Not enough enriched data yet.</div>';
     return;
