@@ -9731,5 +9731,18 @@
   "mcUrl": "https://www.metacritic.com/tv/the-other-bennet-sister/",
   "mcUserAttempted": true,
   "checkedAt": "2026-08-27"
+ },
+ "movie:297761": {
+  "rottenTomatoes": 45,
+  "rtAudience": 45,
+  "rtUrl": "https://www.rottentomatoes.com/m/suicide_squad",
+  "rtAttempted": "2026-08-30",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": null,
+  "metacritic": 40,
+  "metacriticUser": 59,
+  "mcUrl": "https://www.metacritic.com/movie/suicide-squad/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-08-30"
  }
 }
