@@ -37,10 +37,9 @@
       "family-drama"
     ],
     "tones": [
-      "epic",
-      "rugged",
-      "melancholic",
-      "emotional"
+      "gritty",
+      "melancholy",
+      "character-driven"
     ],
     "era": [
       "late-19th-century"
@@ -54,8 +53,7 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "rugged",
-      "epic",
+      "gritty",
       "intense",
       "character-driven"
     ],
@@ -80,9 +78,8 @@
       "alien-invasion"
     ],
     "tones": [
-      "cerebral",
-      "epic",
-      "ominous",
+      "thoughtful",
+      "dark",
       "suspenseful"
     ],
     "era": [
@@ -176,9 +173,9 @@
       "survival-horror"
     ],
     "tones": [
-      "tense",
+      "intense",
       "suspenseful",
-      "emotional",
+      "character-driven",
       "atmospheric"
     ],
     "era": [
@@ -286,8 +283,8 @@
       "creature-feature"
     ],
     "tones": [
-      "ominous",
-      "visceral",
+      "dark",
+      "intense",
       "atmospheric",
       "suspenseful"
     ],
@@ -303,9 +300,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "tense",
+      "intense",
       "suspenseful",
-      "emotional",
+      "character-driven",
       "twisty"
     ],
     "era": [
@@ -401,9 +398,7 @@
     ],
     "tones": [
       "witty",
-      "playful",
-      "lighthearted",
-      "warm"
+      "inspirational"
     ],
     "era": [
       "contemporary"
@@ -420,10 +415,9 @@
       "psychological-drama"
     ],
     "tones": [
-      "cerebral",
-      "emotional",
-      "atmospheric",
-      "contemplative"
+      "thoughtful",
+      "character-driven",
+      "atmospheric"
     ],
     "era": [
       "contemporary"
@@ -485,10 +479,9 @@
       "crime-thriller"
     ],
     "tones": [
-      "stylish",
-      "energetic",
-      "tense",
-      "romantic"
+      "atmospheric",
+      "fast-paced",
+      "intense"
     ],
     "era": [
       "contemporary"
@@ -589,9 +582,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "energetic",
-      "suspenseful",
-      "extravagant"
+      "fast-paced",
+      "suspenseful"
     ],
     "era": [
       "contemporary"
@@ -627,8 +619,8 @@
     "tones": [
       "slow-burn",
       "character-driven",
-      "tense",
-      "tragic"
+      "intense",
+      "dark"
     ],
     "era": [
       "multi-era"
@@ -646,9 +638,9 @@
       "dramedy"
     ],
     "tones": [
-      "warm",
-      "candid",
-      "bittersweet",
+      "inspirational",
+      "thoughtful",
+      "melancholy",
       "character-driven"
     ],
     "era": [
@@ -682,10 +674,10 @@
       "psychological-horror"
     ],
     "tones": [
-      "tense",
-      "bleak",
+      "intense",
+      "dark",
       "suspenseful",
-      "emotional"
+      "character-driven"
     ],
     "era": [
       "near-future"
@@ -736,9 +728,8 @@
     ],
     "tones": [
       "dark",
-      "brutal",
-      "tense",
-      "brooding"
+      "gritty",
+      "intense"
     ],
     "era": [
       "late-20th-century"
@@ -798,8 +789,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "slow-burn",
-      "brooding",
-      "tense",
+      "dark",
+      "intense",
       "atmospheric"
     ],
     "era": [
@@ -884,10 +875,8 @@
       "spy-espionage"
     ],
     "tones": [
-      "cerebral",
-      "tense",
-      "restrained",
-      "principled"
+      "thoughtful",
+      "intense"
     ],
     "era": [
       "cold-war"
@@ -906,10 +895,10 @@
       "sitcom"
     ],
     "tones": [
-      "irreverent",
-      "energetic",
-      "absurd",
-      "warm"
+      "satirical",
+      "fast-paced",
+      "offbeat",
+      "inspirational"
     ],
     "era": [
       "contemporary"
@@ -969,9 +958,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "menacing",
-      "tense",
       "dark",
+      "intense",
       "suspenseful"
     ],
     "era": [
@@ -996,9 +984,8 @@
     ],
     "tones": [
       "atmospheric",
-      "ominous",
-      "slow-burn",
-      "unsettling"
+      "dark",
+      "slow-burn"
     ],
     "era": [
       "contemporary"
@@ -1031,9 +1018,8 @@
       "docudrama"
     ],
     "tones": [
-      "bleak",
-      "tense",
-      "harrowing",
+      "dark",
+      "intense",
       "atmospheric"
     ],
     "era": [
@@ -1093,9 +1079,8 @@
       "chamber-drama"
     ],
     "tones": [
-      "cerebral",
-      "tense",
-      "restrained",
+      "thoughtful",
+      "intense",
       "atmospheric"
     ],
     "era": [
@@ -1128,10 +1113,9 @@
       "romance"
     ],
     "tones": [
-      "intimate",
-      "reflective",
-      "melancholic",
-      "character-driven"
+      "character-driven",
+      "thoughtful",
+      "melancholy"
     ],
     "era": [
       "contemporary"
@@ -1253,10 +1237,9 @@
       "family-drama"
     ],
     "tones": [
-      "cerebral",
-      "ominous",
-      "atmospheric",
-      "intricate"
+      "thoughtful",
+      "dark",
+      "atmospheric"
     ],
     "era": [
       "multi-era"
@@ -1270,9 +1253,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "cerebral",
+      "thoughtful",
       "suspenseful",
-      "emotional",
+      "character-driven",
       "twisty"
     ],
     "era": [
@@ -1291,8 +1274,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "irreverent",
-      "violent",
+      "satirical",
+      "gritty",
       "witty",
       "fast-paced"
     ],
@@ -1312,10 +1295,10 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "irreverent",
-      "energetic",
-      "violent",
-      "heartfelt"
+      "satirical",
+      "fast-paced",
+      "gritty",
+      "inspirational"
     ],
     "era": [
       "multi-era"
@@ -1332,10 +1315,10 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "irreverent",
-      "violent",
-      "heartfelt",
-      "energetic"
+      "satirical",
+      "gritty",
+      "inspirational",
+      "fast-paced"
     ],
     "era": [
       "contemporary"
@@ -1373,9 +1356,8 @@
       "psychological-drama"
     ],
     "tones": [
-      "tense",
-      "ambiguous",
-      "emotional",
+      "intense",
+      "character-driven",
       "slow-burn"
     ],
     "era": [
@@ -1425,9 +1407,9 @@
       "techno-thriller"
     ],
     "tones": [
-      "cerebral",
+      "thoughtful",
       "atmospheric",
-      "ominous",
+      "dark",
       "slow-burn"
     ],
     "era": [
@@ -1492,8 +1474,7 @@
     ],
     "tones": [
       "dark",
-      "tense",
-      "unsettling",
+      "intense",
       "suspenseful"
     ],
     "era": [
@@ -1543,10 +1524,8 @@
       "anthology"
     ],
     "tones": [
-      "disturbing",
-      "tense",
-      "procedural",
-      "serious"
+      "dark",
+      "intense"
     ],
     "era": [
       "contemporary"
@@ -1563,10 +1542,9 @@
       "neo-noir"
     ],
     "tones": [
-      "stylish",
-      "brooding",
-      "tense",
-      "atmospheric"
+      "atmospheric",
+      "dark",
+      "intense"
     ],
     "era": [
       "contemporary"
@@ -1583,10 +1561,9 @@
       "buddy-comedy"
     ],
     "tones": [
-      "absurd",
-      "lighthearted",
-      "goofy",
-      "energetic"
+      "offbeat",
+      "witty",
+      "fast-paced"
     ],
     "era": [
       "contemporary"
@@ -1604,10 +1581,9 @@
       "coming-of-age"
     ],
     "tones": [
-      "epic",
       "atmospheric",
-      "cerebral",
-      "ominous"
+      "thoughtful",
+      "dark"
     ],
     "era": [
       "far-future"
@@ -1623,8 +1599,7 @@
     "tones": [
       "gritty",
       "intense",
-      "character-driven",
-      "rugged"
+      "character-driven"
     ],
     "era": [
       "contemporary"
@@ -1691,10 +1666,9 @@
       "workplace-comedy"
     ],
     "tones": [
-      "lighthearted",
-      "colorful",
-      "playful",
-      "aspirational"
+      "witty",
+      "offbeat",
+      "inspirational"
     ],
     "era": [
       "contemporary"
@@ -1723,10 +1697,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "cerebral",
-      "tense",
-      "minimalist",
-      "unsettling"
+      "thoughtful",
+      "intense",
+      "dark"
     ],
     "era": [
       "near-future"
@@ -1787,10 +1760,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "emotional",
-      "somber",
-      "intimate",
-      "realistic"
+      "character-driven",
+      "dark"
     ],
     "era": [
       "near-future"
@@ -1814,8 +1785,8 @@
     ],
     "tones": [
       "dark",
-      "quirky",
-      "tense",
+      "offbeat",
+      "intense",
       "atmospheric"
     ],
     "era": [
@@ -1851,10 +1822,8 @@
       "docudrama"
     ],
     "tones": [
-      "harrowing",
-      "tense",
-      "serious",
-      "claustrophobic"
+      "dark",
+      "intense"
     ],
     "era": [
       "contemporary"
@@ -1915,10 +1884,10 @@
       "sitcom"
     ],
     "tones": [
-      "irreverent",
-      "warm",
-      "awkward",
-      "lighthearted"
+      "satirical",
+      "inspirational",
+      "offbeat",
+      "witty"
     ],
     "era": [
       "contemporary"
@@ -1950,8 +1919,8 @@
       "ensemble"
     ],
     "tones": [
-      "tense",
-      "intricate",
+      "intense",
+      "thoughtful",
       "suspenseful",
       "character-driven"
     ],
@@ -1984,9 +1953,8 @@
     ],
     "tones": [
       "witty",
-      "energetic",
-      "suspenseful",
-      "playful"
+      "fast-paced",
+      "suspenseful"
     ],
     "era": [
       "contemporary"
@@ -2029,10 +1997,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "violent",
+      "gritty",
       "satirical",
-      "irreverent",
-      "tense"
+      "intense"
     ],
     "era": [
       "contemporary"
@@ -2054,9 +2021,9 @@
       "friendship-comedy"
     ],
     "tones": [
-      "awkward",
-      "candid",
-      "self-deprecating",
+      "offbeat",
+      "thoughtful",
+      "witty",
       "character-driven"
     ],
     "era": [
@@ -2104,9 +2071,9 @@
       "ensemble"
     ],
     "tones": [
-      "energetic",
-      "heartfelt",
-      "colorful",
+      "fast-paced",
+      "inspirational",
+      "offbeat",
       "character-driven"
     ],
     "era": [
@@ -2144,7 +2111,7 @@
       "gritty",
       "atmospheric",
       "intense",
-      "somber"
+      "dark"
     ],
     "era": [
       "19th-century"
@@ -2164,7 +2131,7 @@
     ],
     "tones": [
       "gritty",
-      "cynical",
+      "satirical",
       "suspenseful",
       "character-driven"
     ],
@@ -2180,10 +2147,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "adventurous",
-      "energetic",
-      "curious",
-      "immersive"
+      "fast-paced",
+      "thoughtful",
+      "atmospheric"
     ],
     "era": [
       "contemporary"
@@ -2227,10 +2193,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "macabre",
-      "atmospheric",
-      "unsettling",
-      "visually-rich"
+      "dark",
+      "atmospheric"
     ],
     "era": [
       "multi-era"
@@ -2245,8 +2209,7 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "witty",
-      "sharp",
-      "heartfelt",
+      "inspirational",
       "character-driven"
     ],
     "era": [
@@ -2332,8 +2295,6 @@
     ],
     "tones": [
       "witty",
-      "clever",
-      "upbeat",
       "character-driven"
     ],
     "era": [
@@ -2364,10 +2325,10 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "quirky",
-      "reflective",
-      "deadpan",
-      "warm"
+      "offbeat",
+      "thoughtful",
+      "witty",
+      "inspirational"
     ],
     "era": [
       "contemporary"
@@ -2400,10 +2361,10 @@
       "dark-comedy"
     ],
     "tones": [
-      "intimate",
-      "provocative",
-      "unsettling",
-      "candid"
+      "character-driven",
+      "intense",
+      "dark",
+      "thoughtful"
     ],
     "era": [
       "contemporary"
@@ -2420,10 +2381,9 @@
       "absurdist-comedy"
     ],
     "tones": [
-      "absurd",
-      "awkward",
-      "irreverent",
-      "unpredictable"
+      "offbeat",
+      "satirical",
+      "twisty"
     ],
     "era": [
       "contemporary"
@@ -2458,8 +2418,8 @@
     "tones": [
       "slow-burn",
       "atmospheric",
-      "tense",
-      "somber"
+      "intense",
+      "dark"
     ],
     "era": [
       "near-future"
@@ -2521,9 +2481,8 @@
       "supernatural-horror"
     ],
     "tones": [
-      "ominous",
+      "dark",
       "atmospheric",
-      "disturbing",
       "suspenseful"
     ],
     "era": [
@@ -2538,10 +2497,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "irreverent",
-      "cynical",
-      "absurd",
-      "chaotic"
+      "satirical",
+      "offbeat",
+      "fast-paced"
     ],
     "era": [
       "contemporary"
@@ -2579,10 +2537,10 @@
       "assassin-hitman"
     ],
     "tones": [
-      "kinetic",
-      "stylish",
-      "relentless",
-      "violent"
+      "fast-paced",
+      "atmospheric",
+      "intense",
+      "gritty"
     ],
     "era": [
       "contemporary"
@@ -2600,10 +2558,9 @@
       "assassin-hitman"
     ],
     "tones": [
-      "epic",
-      "kinetic",
-      "stylish",
-      "relentless"
+      "fast-paced",
+      "atmospheric",
+      "intense"
     ],
     "era": [
       "contemporary"
@@ -2663,8 +2620,6 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "dark",
-      "inventive",
-      "unsettling",
       "satirical"
     ],
     "era": [
@@ -2684,10 +2639,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "irreverent",
-      "violent",
-      "energetic",
-      "satirical"
+      "satirical",
+      "gritty",
+      "fast-paced"
     ],
     "era": [
       "contemporary"
@@ -2706,9 +2660,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "violent",
-      "irreverent",
-      "energetic",
+      "gritty",
+      "satirical",
+      "fast-paced",
       "dark"
     ],
     "era": [
@@ -2745,10 +2699,8 @@
       "creature-feature"
     ],
     "tones": [
-      "adventurous",
-      "spectacular",
-      "tense",
-      "pulpy"
+      "fast-paced",
+      "intense"
     ],
     "era": [
       "cold-war"
@@ -2765,9 +2717,8 @@
       "workplace-drama"
     ],
     "tones": [
-      "romantic",
-      "vibrant",
-      "bittersweet",
+      "offbeat",
+      "melancholy",
       "nostalgic"
     ],
     "era": [
@@ -2783,8 +2734,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "gritty",
-      "sharp",
-      "tense",
+      "witty",
+      "intense",
       "character-driven"
     ],
     "era": [
@@ -2840,7 +2791,6 @@
       "political"
     ],
     "tones": [
-      "tense",
       "intense",
       "suspenseful",
       "character-driven"
@@ -2862,9 +2812,9 @@
     ],
     "tones": [
       "atmospheric",
-      "melancholic",
-      "unsettling",
-      "intimate"
+      "melancholy",
+      "dark",
+      "character-driven"
     ],
     "era": [
       "multi-era"
@@ -2878,9 +2828,7 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "tense",
-      "emotional",
-      "polished",
+      "intense",
       "character-driven"
     ],
     "era": [
@@ -2935,10 +2883,10 @@
       "ensemble"
     ],
     "tones": [
-      "mysterious",
-      "emotional",
-      "adventurous",
-      "intricate"
+      "suspenseful",
+      "character-driven",
+      "fast-paced",
+      "thoughtful"
     ],
     "era": [
       "multi-era"
@@ -2968,9 +2916,7 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "emotional",
-      "dramatic",
-      "glossy",
+      "character-driven",
       "suspenseful"
     ],
     "era": [
@@ -2989,10 +2935,10 @@
       "character-study"
     ],
     "tones": [
-      "warm",
-      "bittersweet",
-      "reflective",
-      "intimate"
+      "inspirational",
+      "melancholy",
+      "thoughtful",
+      "character-driven"
     ],
     "era": [
       "contemporary"
@@ -3027,10 +2973,9 @@
       "character-study"
     ],
     "tones": [
-      "sophisticated",
-      "reflective",
+      "thoughtful",
       "character-driven",
-      "melancholic"
+      "melancholy"
     ],
     "era": [
       "late-20th-century"
@@ -3093,10 +3038,9 @@
       "character-study"
     ],
     "tones": [
-      "energetic",
-      "ambitious",
+      "fast-paced",
       "character-driven",
-      "stylish"
+      "atmospheric"
     ],
     "era": [
       "late-20th-century"
@@ -3185,8 +3129,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "cerebral",
-      "unsettling",
+      "thoughtful",
+      "dark",
       "slow-burn",
       "atmospheric"
     ],
@@ -3296,7 +3240,7 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "dark",
-      "tense",
+      "intense",
       "suspenseful",
       "character-driven"
     ],
@@ -3327,10 +3271,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "reflective",
-      "conversational",
-      "warm",
-      "thoughtful"
+      "thoughtful",
+      "inspirational"
     ],
     "era": [
       "contemporary"
@@ -3366,9 +3308,7 @@
     ],
     "tones": [
       "gritty",
-      "tense",
-      "violent",
-      "procedural"
+      "intense"
     ],
     "era": [
       "late-20th-century"
@@ -3385,10 +3325,8 @@
       "mockumentary"
     ],
     "tones": [
-      "deadpan",
-      "awkward",
-      "absurd",
-      "inventive"
+      "witty",
+      "offbeat"
     ],
     "era": [
       "contemporary"
@@ -3418,10 +3356,10 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "bleak",
-      "tense",
+      "dark",
+      "intense",
       "atmospheric",
-      "restrained"
+      "thoughtful"
     ],
     "era": [
       "contemporary"
@@ -3443,10 +3381,10 @@
       "dark-comedy"
     ],
     "tones": [
-      "violent",
-      "kinetic",
-      "darkly-comic",
-      "stylish"
+      "gritty",
+      "fast-paced",
+      "satirical",
+      "atmospheric"
     ],
     "era": [
       "contemporary"
@@ -3465,9 +3403,7 @@
     ],
     "tones": [
       "witty",
-      "warm",
-      "heartfelt",
-      "playful"
+      "inspirational"
     ],
     "era": [
       "contemporary"
@@ -3485,10 +3421,9 @@
       "character-study"
     ],
     "tones": [
-      "reflective",
-      "melancholic",
-      "intimate",
-      "naturalistic"
+      "thoughtful",
+      "melancholy",
+      "character-driven"
     ],
     "era": [
       "contemporary"
@@ -3502,10 +3437,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "intimate",
-      "emotional",
-      "melancholic",
-      "character-driven"
+      "character-driven",
+      "melancholy"
     ],
     "era": [
       "contemporary"
@@ -3528,10 +3461,9 @@
       "psychological-drama"
     ],
     "tones": [
-      "serious",
-      "tense",
-      "cerebral",
-      "somber"
+      "intense",
+      "thoughtful",
+      "dark"
     ],
     "era": [
       "cold-war"
@@ -3550,8 +3482,6 @@
     ],
     "tones": [
       "intense",
-      "intimate",
-      "obsessive",
       "character-driven"
     ],
     "era": [
@@ -3569,10 +3499,9 @@
       "dark-comedy"
     ],
     "tones": [
-      "chaotic",
+      "fast-paced",
       "satirical",
-      "intense",
-      "energetic"
+      "intense"
     ],
     "era": [
       "contemporary"
@@ -3589,9 +3518,8 @@
       "romance"
     ],
     "tones": [
-      "intimate",
-      "bittersweet",
-      "emotional",
+      "character-driven",
+      "melancholy",
       "nostalgic"
     ],
     "era": [
@@ -3658,7 +3586,7 @@
     ],
     "tones": [
       "dark",
-      "tense",
+      "intense",
       "atmospheric",
       "character-driven"
     ],
@@ -3710,7 +3638,7 @@
       "dystopian"
     ],
     "tones": [
-      "tense",
+      "intense",
       "twisty",
       "suspenseful",
       "character-driven"
@@ -3727,10 +3655,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "optimistic",
-      "witty",
-      "warm",
-      "heartfelt"
+      "inspirational",
+      "witty"
     ],
     "era": [
       "contemporary"
@@ -3752,9 +3678,8 @@
       "survival-drama"
     ],
     "tones": [
-      "romantic",
       "atmospheric",
-      "emotional",
+      "character-driven",
       "suspenseful"
     ],
     "era": [
@@ -3803,10 +3728,9 @@
       "coming-of-age"
     ],
     "tones": [
-      "energetic",
+      "fast-paced",
       "witty",
-      "uplifting",
-      "playful"
+      "inspirational"
     ],
     "era": [
       "contemporary"
@@ -3823,10 +3747,9 @@
       "ensemble"
     ],
     "tones": [
-      "energetic",
-      "uplifting",
-      "playful",
-      "heartfelt"
+      "fast-paced",
+      "inspirational",
+      "witty"
     ],
     "era": [
       "contemporary"
@@ -3843,10 +3766,10 @@
       "ensemble"
     ],
     "tones": [
-      "energetic",
+      "fast-paced",
       "nostalgic",
-      "playful",
-      "heartfelt"
+      "witty",
+      "inspirational"
     ],
     "era": [
       "contemporary"
@@ -3894,10 +3817,7 @@
       "dramedy"
     ],
     "tones": [
-      "witty",
-      "clever",
-      "episodic",
-      "lighthearted"
+      "witty"
     ],
     "era": [
       "contemporary"
@@ -3911,10 +3831,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "warm",
-      "heartfelt",
-      "witty",
-      "optimistic"
+      "inspirational",
+      "witty"
     ],
     "era": [
       "contemporary"
@@ -3962,10 +3880,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "romantic",
-      "emotional",
-      "scenic",
-      "character-driven"
+      "character-driven",
+      "atmospheric"
     ],
     "era": [
       "contemporary"
@@ -4043,10 +3959,10 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "stylish",
-      "ominous",
+      "atmospheric",
+      "dark",
       "slow-burn",
-      "meticulous"
+      "thoughtful"
     ],
     "era": [
       "late-20th-century"
@@ -4071,9 +3987,8 @@
     ],
     "tones": [
       "intense",
-      "emotional",
-      "intimate",
-      "hopeful"
+      "character-driven",
+      "inspirational"
     ],
     "era": [
       "contemporary"
@@ -4102,10 +4017,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "cerebral",
-      "darkly-comic",
-      "surreal",
-      "introspective"
+      "thoughtful",
+      "satirical",
+      "offbeat"
     ],
     "era": [
       "multi-era"
@@ -4143,8 +4057,8 @@
       "ensemble"
     ],
     "tones": [
-      "energetic",
-      "irreverent",
+      "fast-paced",
+      "satirical",
       "intense",
       "gritty"
     ],
@@ -4179,9 +4093,9 @@
       "horror-comedy"
     ],
     "tones": [
-      "irreverent",
-      "absurd",
-      "raunchy",
+      "satirical",
+      "offbeat",
+      "hilarious",
       "fast-paced"
     ],
     "era": [
@@ -4212,9 +4126,8 @@
     ],
     "tones": [
       "witty",
-      "cynical",
-      "observational",
-      "lighthearted"
+      "satirical",
+      "thoughtful"
     ],
     "era": [
       "contemporary"
@@ -4228,10 +4141,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "intimate",
-      "melancholic",
-      "reflective",
-      "emotional"
+      "character-driven",
+      "melancholy",
+      "thoughtful"
     ],
     "era": [
       "contemporary"
@@ -4252,9 +4164,9 @@
       "mystery-drama"
     ],
     "tones": [
-      "cerebral",
-      "unsettling",
-      "darkly-comic",
+      "thoughtful",
+      "dark",
+      "satirical",
       "atmospheric"
     ],
     "era": [
@@ -4330,9 +4242,9 @@
       "political"
     ],
     "tones": [
-      "grim",
-      "violent",
-      "tense",
+      "dark",
+      "gritty",
+      "intense",
       "suspenseful"
     ],
     "era": [
@@ -4378,9 +4290,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "reflective",
-      "darkly-comic",
-      "emotional",
+      "thoughtful",
+      "satirical",
       "character-driven"
     ],
     "era": [
@@ -4406,7 +4317,7 @@
     ],
     "tones": [
       "dark",
-      "tense",
+      "intense",
       "atmospheric",
       "character-driven"
     ],
@@ -4426,10 +4337,8 @@
       "psychological-drama"
     ],
     "tones": [
-      "intimate",
-      "reflective",
-      "emotional",
-      "cerebral"
+      "character-driven",
+      "thoughtful"
     ],
     "era": [
       "near-future"
@@ -4446,9 +4355,8 @@
       "psychological-horror"
     ],
     "tones": [
-      "ominous",
-      "tense",
-      "unsettling",
+      "dark",
+      "intense",
       "suspenseful"
     ],
     "era": [
@@ -4556,8 +4464,8 @@
     "tones": [
       "nostalgic",
       "suspenseful",
-      "heartfelt",
-      "adventurous"
+      "inspirational",
+      "fast-paced"
     ],
     "era": [
       "late-20th-century"
@@ -4580,9 +4488,8 @@
       "supernatural-mystery"
     ],
     "tones": [
-      "stylish",
       "atmospheric",
-      "cerebral",
+      "thoughtful",
       "suspenseful"
     ],
     "era": [
@@ -4612,10 +4519,10 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "raunchy",
-      "heartfelt",
-      "awkward",
-      "energetic"
+      "hilarious",
+      "inspirational",
+      "offbeat",
+      "fast-paced"
     ],
     "era": [
       "contemporary"
@@ -4633,10 +4540,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "optimistic",
-      "heartfelt",
-      "witty",
-      "uplifting"
+      "inspirational",
+      "witty"
     ],
     "era": [
       "contemporary"
@@ -4690,9 +4595,7 @@
     ],
     "tones": [
       "witty",
-      "playful",
-      "twisty",
-      "inventive"
+      "twisty"
     ],
     "era": [
       "contemporary"
@@ -4711,8 +4614,8 @@
       "psychological-drama"
     ],
     "tones": [
-      "tense",
-      "cerebral",
+      "intense",
+      "thoughtful",
       "suspenseful",
       "character-driven"
     ],
@@ -4759,7 +4662,7 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "dark",
-      "tense",
+      "intense",
       "suspenseful",
       "character-driven"
     ],
@@ -4783,9 +4686,9 @@
       "satire"
     ],
     "tones": [
-      "provocative",
-      "unsettling",
-      "stylish",
+      "intense",
+      "dark",
+      "atmospheric",
       "suspenseful"
     ],
     "era": [
@@ -4803,10 +4706,9 @@
       "horror-comedy"
     ],
     "tones": [
-      "darkly-comic",
-      "violent",
-      "energetic",
-      "supernatural"
+      "satirical",
+      "gritty",
+      "fast-paced"
     ],
     "era": [
       "contemporary"
@@ -4854,9 +4756,8 @@
       "psychological-drama"
     ],
     "tones": [
-      "cerebral",
-      "tense",
-      "realistic",
+      "thoughtful",
+      "intense",
       "slow-burn"
     ],
     "era": [
@@ -4890,10 +4791,8 @@
       "ensemble"
     ],
     "tones": [
-      "tense",
-      "serious",
-      "character-driven",
-      "urgent"
+      "intense",
+      "character-driven"
     ],
     "era": [
       "contemporary"
@@ -4959,8 +4858,8 @@
     ],
     "tones": [
       "witty",
-      "tense",
-      "cerebral",
+      "intense",
+      "thoughtful",
       "character-driven"
     ],
     "era": [
@@ -5011,9 +4910,9 @@
     ],
     "tones": [
       "atmospheric",
-      "brutal",
-      "lyrical",
-      "melancholic"
+      "gritty",
+      "thoughtful",
+      "melancholy"
     ],
     "era": [
       "19th-century"
@@ -5044,9 +4943,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "nostalgic",
-      "heartfelt",
-      "reflective",
-      "bittersweet"
+      "inspirational",
+      "thoughtful",
+      "melancholy"
     ],
     "era": [
       "late-20th-century"
@@ -5115,9 +5014,9 @@
       "crime-thriller"
     ],
     "tones": [
-      "stylish",
+      "atmospheric",
       "witty",
-      "violent",
+      "gritty",
       "fast-paced"
     ],
     "era": [
@@ -5132,10 +5031,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "cool",
-      "provocative",
-      "cerebral",
-      "detached"
+      "intense",
+      "thoughtful"
     ],
     "subgenres": [
       "anthology",
@@ -5202,10 +5099,9 @@
       "historical"
     ],
     "tones": [
-      "tense",
-      "violent",
-      "claustrophobic",
-      "darkly-comic"
+      "intense",
+      "gritty",
+      "satirical"
     ],
     "era": [
       "19th-century"
@@ -5224,9 +5120,8 @@
       "family-drama"
     ],
     "tones": [
-      "complex",
-      "tense",
-      "cerebral",
+      "thoughtful",
+      "intense",
       "suspenseful"
     ],
     "era": [
@@ -5303,10 +5198,9 @@
       "character-study"
     ],
     "tones": [
-      "melancholic",
-      "reflective",
-      "deliberate",
-      "somber"
+      "melancholy",
+      "thoughtful",
+      "dark"
     ],
     "era": [
       "multi-era"
@@ -5379,10 +5273,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "adventurous",
-      "heartfelt",
-      "atmospheric",
-      "heroic"
+      "fast-paced",
+      "inspirational",
+      "atmospheric"
     ],
     "era": [
       "far-future"
@@ -5402,9 +5295,9 @@
     ],
     "tones": [
       "witty",
-      "vibrant",
+      "offbeat",
       "fast-paced",
-      "heartfelt"
+      "inspirational"
     ],
     "era": [
       "multi-era"
@@ -5436,10 +5329,9 @@
       "character-study"
     ],
     "tones": [
-      "reflective",
-      "tense",
-      "understated",
-      "bittersweet"
+      "thoughtful",
+      "intense",
+      "melancholy"
     ],
     "era": [
       "contemporary"
@@ -5560,10 +5452,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "claustrophobic",
-      "tense",
-      "cerebral",
-      "unsettling"
+      "intense",
+      "thoughtful",
+      "dark"
     ],
     "era": [
       "contemporary"
@@ -5587,7 +5478,6 @@
     "tones": [
       "dark",
       "gritty",
-      "violent",
       "character-driven"
     ],
     "era": [
@@ -5631,10 +5521,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "awkward",
-      "cerebral",
-      "surreal",
-      "deadpan"
+      "offbeat",
+      "thoughtful",
+      "witty"
     ],
     "era": [
       "contemporary"
@@ -5683,9 +5572,8 @@
       "crime-comedy"
     ],
     "tones": [
-      "irreverent",
       "satirical",
-      "raunchy",
+      "hilarious",
       "character-driven"
     ],
     "era": [
@@ -5732,10 +5620,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "curious",
-      "witty",
-      "informative",
-      "engaging"
+      "thoughtful",
+      "witty"
     ],
     "era": [
       "contemporary"
@@ -5826,9 +5712,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "witty",
-      "chaotic",
-      "satirical",
-      "fast-paced"
+      "fast-paced",
+      "satirical"
     ],
     "era": [
       "contemporary"
@@ -5883,7 +5768,7 @@
       "intense",
       "gritty",
       "suspenseful",
-      "morally-complex"
+      "thoughtful"
     ],
     "era": [
       "contemporary"
@@ -5901,10 +5786,9 @@
       "supernatural-horror"
     ],
     "tones": [
-      "bleak",
+      "dark",
       "atmospheric",
-      "claustrophobic",
-      "ominous"
+      "intense"
     ],
     "era": [
       "19th-century"
@@ -6014,10 +5898,10 @@
       "character-study"
     ],
     "tones": [
-      "stylish",
-      "cerebral",
-      "provocative",
-      "surreal"
+      "atmospheric",
+      "thoughtful",
+      "intense",
+      "offbeat"
     ],
     "era": [
       "contemporary"
@@ -6723,8 +6607,7 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "gritty",
-      "character-driven",
-      "dramatic"
+      "character-driven"
     ],
     "era": [
       "contemporary"
@@ -6990,8 +6873,7 @@
     ],
     "tones": [
       "atmospheric",
-      "tense",
-      "spiritual",
+      "intense",
       "character-driven"
     ],
     "era": [
@@ -7024,10 +6906,8 @@
       "historical"
     ],
     "tones": [
-      "epic",
-      "rugged",
-      "nostalgic",
-      "dramatic"
+      "gritty",
+      "nostalgic"
     ],
     "era": [
       "19th-century"
@@ -7060,10 +6940,8 @@
       "romance"
     ],
     "tones": [
-      "sweeping",
-      "romantic",
-      "emotional",
-      "visually-rich"
+      "character-driven",
+      "atmospheric"
     ],
     "era": [
       "world-war-ii"
@@ -7096,8 +6974,6 @@
       "workplace-drama"
     ],
     "tones": [
-      "dramatic",
-      "glossy",
       "twisty",
       "intense"
     ],
@@ -7118,7 +6994,7 @@
     ],
     "tones": [
       "twisty",
-      "tense",
+      "intense",
       "witty",
       "character-driven"
     ],
@@ -7261,7 +7137,7 @@
     ],
     "tones": [
       "intense",
-      "emotional",
+      "character-driven",
       "gritty",
       "inspirational"
     ],
@@ -7396,8 +7272,7 @@
     "tones": [
       "witty",
       "twisty",
-      "satirical",
-      "dramatic"
+      "satirical"
     ],
     "era": [
       "contemporary"
@@ -7416,10 +7291,10 @@
       "biography"
     ],
     "tones": [
-      "tragic",
-      "cerebral",
-      "tense",
-      "darkly-comic"
+      "dark",
+      "thoughtful",
+      "intense",
+      "satirical"
     ],
     "era": [
       "19th-century"
@@ -7534,7 +7409,7 @@
     ],
     "tones": [
       "suspenseful",
-      "tense",
+      "intense",
       "twisty",
       "fast-paced"
     ],
@@ -7555,9 +7430,8 @@
       "political"
     ],
     "tones": [
-      "paranoid",
-      "tense",
-      "cerebral",
+      "intense",
+      "thoughtful",
       "suspenseful"
     ],
     "era": [
@@ -7577,7 +7451,7 @@
       "ensemble"
     ],
     "tones": [
-      "tense",
+      "intense",
       "suspenseful",
       "fast-paced",
       "gritty"
@@ -7598,10 +7472,10 @@
       "ensemble"
     ],
     "tones": [
-      "raw",
-      "provocative",
-      "emotional",
-      "chaotic"
+      "gritty",
+      "intense",
+      "character-driven",
+      "fast-paced"
     ],
     "era": [
       "contemporary"
@@ -8146,10 +8020,9 @@
       "workplace-drama"
     ],
     "tones": [
-      "cerebral",
-      "tense",
-      "character-driven",
-      "serious"
+      "thoughtful",
+      "intense",
+      "character-driven"
     ],
     "era": [
       "contemporary"
@@ -8212,8 +8085,8 @@
     ],
     "tones": [
       "atmospheric",
-      "cerebral",
-      "melancholic",
+      "thoughtful",
+      "melancholy",
       "suspenseful"
     ],
     "era": [
@@ -8272,10 +8145,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "violent",
-      "energetic",
-      "suspenseful",
-      "pulpy"
+      "gritty",
+      "fast-paced",
+      "suspenseful"
     ],
     "era": [
       "contemporary"
@@ -8326,10 +8198,10 @@
       "buddy-comedy"
     ],
     "tones": [
-      "raunchy",
-      "energetic",
-      "absurd",
-      "playful"
+      "hilarious",
+      "fast-paced",
+      "offbeat",
+      "witty"
     ],
     "era": [
       "contemporary"
@@ -8347,10 +8219,9 @@
       "buddy-comedy"
     ],
     "tones": [
-      "raunchy",
-      "chaotic",
-      "energetic",
-      "absurd"
+      "hilarious",
+      "fast-paced",
+      "offbeat"
     ],
     "era": [
       "contemporary"
@@ -8364,10 +8235,10 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "raunchy",
-      "energetic",
-      "awkward",
-      "playful"
+      "hilarious",
+      "fast-paced",
+      "offbeat",
+      "witty"
     ],
     "era": [
       "contemporary"
@@ -8405,10 +8276,10 @@
       "neo-noir"
     ],
     "tones": [
-      "brutal",
-      "kinetic",
+      "gritty",
+      "fast-paced",
       "dark",
-      "relentless"
+      "intense"
     ],
     "era": [
       "contemporary"
@@ -8426,10 +8297,9 @@
       "political"
     ],
     "tones": [
-      "stylish",
-      "violent",
-      "energetic",
-      "pulpy"
+      "atmospheric",
+      "gritty",
+      "fast-paced"
     ],
     "era": [
       "contemporary"
@@ -8492,9 +8362,8 @@
       "historical"
     ],
     "tones": [
-      "tense",
-      "claustrophobic",
-      "unsettling",
+      "intense",
+      "dark",
       "character-driven"
     ],
     "era": [
@@ -8524,9 +8393,9 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "witty",
-      "irreverent",
-      "absurd",
-      "energetic"
+      "satirical",
+      "offbeat",
+      "fast-paced"
     ],
     "era": [
       "contemporary"
@@ -8540,10 +8409,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "deadpan",
       "witty",
-      "irreverent",
-      "conversational"
+      "satirical"
     ],
     "era": [
       "contemporary"
@@ -8745,7 +8612,7 @@
       "conspiracy-thriller"
     ],
     "tones": [
-      "cerebral",
+      "thoughtful",
       "suspenseful",
       "dark",
       "character-driven"
@@ -8784,7 +8651,7 @@
     "tones": [
       "gritty",
       "atmospheric",
-      "cerebral",
+      "thoughtful",
       "suspenseful"
     ],
     "era": [
@@ -8803,10 +8670,9 @@
       "coming-of-age"
     ],
     "tones": [
-      "heartfelt",
-      "adventurous",
-      "hopeful",
-      "bittersweet"
+      "inspirational",
+      "fast-paced",
+      "melancholy"
     ],
     "era": [
       "near-future"
@@ -8848,10 +8714,10 @@
       "satire"
     ],
     "tones": [
-      "absurd",
+      "offbeat",
       "fast-paced",
-      "irreverent",
-      "playful"
+      "satirical",
+      "witty"
     ],
     "era": [
       "contemporary"
@@ -8880,10 +8746,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "kinetic",
-      "humorous",
-      "spectacular",
-      "fast-paced"
+      "fast-paced",
+      "witty"
     ],
     "era": [
       "contemporary"
@@ -8927,10 +8791,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "competitive",
       "suspenseful",
-      "energetic",
-      "skill-focused"
+      "fast-paced"
     ],
     "era": [
       "contemporary"
@@ -8948,7 +8810,6 @@
     ],
     "tones": [
       "gritty",
-      "violent",
       "witty",
       "fast-paced"
     ],
@@ -9024,10 +8885,9 @@
       "space-opera"
     ],
     "tones": [
-      "adventurous",
-      "optimistic",
-      "cerebral",
-      "iconic"
+      "fast-paced",
+      "inspirational",
+      "thoughtful"
     ],
     "era": [
       "far-future"
@@ -9046,10 +8906,10 @@
       "friendship-comedy"
     ],
     "tones": [
-      "raunchy",
-      "lighthearted",
-      "energetic",
-      "irreverent"
+      "hilarious",
+      "witty",
+      "fast-paced",
+      "satirical"
     ],
     "era": [
       "contemporary"
@@ -9130,9 +8990,9 @@
     ],
     "tones": [
       "gritty",
-      "tense",
+      "intense",
       "character-driven",
-      "tragic"
+      "dark"
     ],
     "era": [
       "late-20th-century"
@@ -9212,10 +9072,10 @@
       "family-drama"
     ],
     "tones": [
-      "brutal",
-      "kinetic",
-      "tense",
-      "stylish"
+      "gritty",
+      "fast-paced",
+      "intense",
+      "atmospheric"
     ],
     "era": [
       "contemporary"
@@ -9234,10 +9094,9 @@
       "mystery-drama"
     ],
     "tones": [
-      "bleak",
-      "serious",
-      "tense",
-      "emotional"
+      "dark",
+      "intense",
+      "character-driven"
     ],
     "era": [
       "contemporary"
@@ -9284,7 +9143,6 @@
     "tones": [
       "dark",
       "suspenseful",
-      "procedural",
       "character-driven"
     ],
     "era": [
@@ -9318,9 +9176,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "tense",
+      "intense",
       "twisty",
-      "emotional",
+      "character-driven",
       "suspenseful"
     ],
     "era": [
@@ -9343,7 +9201,7 @@
     ],
     "tones": [
       "atmospheric",
-      "somber",
+      "dark",
       "suspenseful",
       "character-driven"
     ],
@@ -9364,8 +9222,6 @@
     ],
     "tones": [
       "witty",
-      "clever",
-      "engaging",
       "character-driven"
     ],
     "era": [
@@ -9383,10 +9239,9 @@
       "political"
     ],
     "tones": [
-      "tense",
+      "intense",
       "suspenseful",
-      "fast-paced",
-      "serious"
+      "fast-paced"
     ],
     "era": [
       "contemporary"
@@ -9403,10 +9258,8 @@
       "political"
     ],
     "tones": [
-      "tense",
-      "claustrophobic",
-      "suspenseful",
-      "dramatic"
+      "intense",
+      "suspenseful"
     ],
     "era": [
       "contemporary"
@@ -9420,9 +9273,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "warm",
-      "reflective",
-      "romantic",
+      "inspirational",
+      "thoughtful",
       "character-driven"
     ],
     "genre": "drama",
@@ -9466,10 +9318,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "bleak",
+      "dark",
       "intense",
-      "suspenseful",
-      "visceral"
+      "suspenseful"
     ],
     "era": [
       "near-future"
@@ -9552,10 +9403,10 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "cerebral",
+      "thoughtful",
       "atmospheric",
-      "unsettling",
-      "surreal"
+      "dark",
+      "offbeat"
     ],
     "subjects": [
       "self-discovery"
@@ -9569,10 +9420,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "epic",
-      "immersive",
-      "emotional",
-      "adventurous"
+      "atmospheric",
+      "character-driven",
+      "fast-paced"
     ],
     "subjects": [
       "family-dynamics"
@@ -9602,9 +9452,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "tense",
-      "polished",
-      "emotional",
+      "intense",
+      "character-driven",
       "atmospheric"
     ],
     "era": [
@@ -9621,9 +9470,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "sharp",
-      "tense",
-      "cerebral",
+      "witty",
+      "intense",
+      "thoughtful",
       "character-driven"
     ],
     "era": [
@@ -9641,9 +9490,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "satirical",
-      "provocative",
-      "tense",
-      "energetic"
+      "intense",
+      "fast-paced"
     ],
     "subjects": [
       "racism-civil-rights"
@@ -9675,10 +9523,10 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "uplifting",
-      "emotional",
-      "energetic",
-      "bittersweet"
+      "inspirational",
+      "character-driven",
+      "fast-paced",
+      "melancholy"
     ],
     "subjects": [
       "artistic-creative"
@@ -9743,10 +9591,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "sensual",
-      "tense",
-      "energetic",
-      "stylish"
+      "intense",
+      "fast-paced",
+      "atmospheric"
     ],
     "subjects": [
       "ambition-reinvention"
@@ -9765,10 +9612,10 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "bleak",
-      "immersive",
-      "tense",
-      "hopeful"
+      "dark",
+      "atmospheric",
+      "intense",
+      "inspirational"
     ],
     "subjects": [
       "societal-collapse"
@@ -9785,10 +9632,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "tense",
-      "bleak",
-      "visceral",
-      "unsettling"
+      "intense",
+      "dark"
     ],
     "subjects": [
       "societal-collapse"
@@ -9820,10 +9665,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "disturbing",
-      "bleak",
-      "intense",
-      "somber"
+      "dark",
+      "intense"
     ],
     "subjects": [
       "crime-investigation"
@@ -9885,10 +9728,10 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "tense",
-      "immersive",
-      "restrained",
-      "harrowing"
+      "intense",
+      "atmospheric",
+      "thoughtful",
+      "dark"
     ],
     "era": [
       "world-war-ii"
@@ -9947,10 +9790,10 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "intimate",
+      "character-driven",
       "witty",
-      "bittersweet",
-      "candid"
+      "melancholy",
+      "thoughtful"
     ],
     "subjects": [
       "addiction-recovery"
@@ -10013,10 +9856,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "warm",
-      "heartfelt",
-      "uplifting",
-      "reflective"
+      "inspirational",
+      "thoughtful"
     ],
     "subjects": [
       "racism-civil-rights"
@@ -10035,10 +9876,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "emotional",
-      "intimate",
-      "melancholic",
-      "lyrical"
+      "character-driven",
+      "melancholy",
+      "thoughtful"
     ],
     "era": [
       "early-modern"
@@ -10083,8 +9923,7 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "tense",
-      "paranoid",
+      "intense",
       "suspenseful",
       "character-driven"
     ],
@@ -10133,10 +9972,10 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "darkly-comic",
-      "energetic",
-      "abrasive",
-      "tragic"
+      "satirical",
+      "fast-paced",
+      "gritty",
+      "dark"
     ],
     "era": [
       "late-20th-century"
@@ -10169,7 +10008,7 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "dark",
-      "emotional",
+      "character-driven",
       "suspenseful",
       "intense"
     ],
@@ -10189,10 +10028,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "bleak",
-      "unsettling",
-      "intense",
-      "tragic"
+      "dark",
+      "intense"
     ],
     "subjects": [
       "crime-consequences"
@@ -10222,10 +10059,7 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "somber",
-      "deliberate",
-      "tragic",
-      "unsettling"
+      "dark"
     ],
     "subjects": [
       "crime-investigation"
@@ -10244,10 +10078,10 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "stylish",
-      "darkly-comic",
+      "atmospheric",
+      "satirical",
       "suspenseful",
-      "provocative"
+      "intense"
     ],
     "subjects": [
       "identity-belonging"
@@ -10267,7 +10101,6 @@
     "tones": [
       "witty",
       "twisty",
-      "playful",
       "satirical"
     ],
     "subjects": [
@@ -10286,10 +10119,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "somber",
-      "determined",
-      "tense",
-      "emotional"
+      "dark",
+      "intense",
+      "character-driven"
     ],
     "subjects": [
       "cult-extremism"
@@ -10308,9 +10140,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "awkward",
-      "candid",
-      "bittersweet",
+      "offbeat",
+      "thoughtful",
+      "melancholy",
       "character-driven"
     ],
     "subjects": [
@@ -10344,10 +10176,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "intimate",
-      "emotional",
-      "sophisticated",
-      "bittersweet"
+      "character-driven",
+      "thoughtful",
+      "melancholy"
     ],
     "subjects": [
       "artistic-creative"
@@ -10365,10 +10196,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "tense",
-      "cerebral",
-      "restrained",
-      "ominous"
+      "intense",
+      "thoughtful",
+      "dark"
     ],
     "subjects": [
       "economic-hardship"
@@ -10385,9 +10215,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "emotional",
-      "tragic",
-      "intimate",
+      "character-driven",
+      "dark",
       "inspirational"
     ],
     "subjects": [
@@ -10478,10 +10307,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "epic",
-      "emotional",
-      "poignant",
-      "resilient"
+      "character-driven",
+      "melancholy",
+      "inspirational"
     ],
     "era": [
       "multi-era"
@@ -10496,10 +10324,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "intimate",
-      "reflective",
-      "melancholic",
-      "restrained"
+      "character-driven",
+      "thoughtful",
+      "melancholy"
     ],
     "subjects": [
       "marriage-relationships"
@@ -10533,10 +10360,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "surreal",
-      "provocative",
-      "whimsical",
-      "visually-rich"
+      "offbeat",
+      "intense",
+      "atmospheric"
     ],
     "subjects": [
       "self-discovery"
@@ -10564,10 +10390,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "bleak",
-      "intimate",
-      "intense",
-      "tragic"
+      "dark",
+      "character-driven",
+      "intense"
     ],
     "subjects": [
       "marriage-relationships"
@@ -10622,9 +10447,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "serious",
-      "complex",
-      "tragic",
+      "thoughtful",
+      "dark",
       "character-driven"
     ],
     "subjects": [
@@ -10654,9 +10478,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "unsettling",
-      "frightening",
-      "tense",
+      "dark",
+      "intense",
       "atmospheric"
     ],
     "era": [
@@ -10688,10 +10511,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "serious",
-      "restrained",
-      "principled",
-      "tense"
+      "thoughtful",
+      "intense"
     ],
     "era": [
       "contemporary"
@@ -10706,10 +10527,10 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "tense",
-      "violent",
+      "intense",
+      "gritty",
       "satirical",
-      "emotional"
+      "character-driven"
     ],
     "subjects": [
       "economic-hardship"
@@ -10758,8 +10579,7 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "gritty",
-      "tense",
-      "emotional",
+      "intense",
       "character-driven"
     ],
     "subjects": [
@@ -10808,9 +10628,7 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "epic",
-      "austere",
-      "reflective",
+      "thoughtful",
       "intense"
     ],
     "subjects": [
@@ -10846,10 +10664,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "somber",
-      "unsettling",
-      "intimate",
-      "serious"
+      "dark",
+      "character-driven"
     ],
     "subjects": [
       "technology-surveillance"
@@ -10868,10 +10684,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "intelligent",
-      "polished",
+      "thoughtful",
       "character-driven",
-      "tense"
+      "intense"
     ],
     "subjects": [
       "workplace-culture"
@@ -10889,10 +10704,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "bleak",
-      "intense",
-      "unsettling",
-      "defiant"
+      "dark",
+      "intense"
     ],
     "subjects": [
       "resistance-rebellion"
@@ -10909,10 +10722,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "warm",
-      "melancholic",
-      "witty",
-      "heartfelt"
+      "inspirational",
+      "melancholy",
+      "witty"
     ],
     "subjects": [
       "isolation-connection"
@@ -10959,10 +10771,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "emotional",
-      "tragic",
-      "intense",
-      "character-driven"
+      "character-driven",
+      "dark",
+      "intense"
     ],
     "subjects": [
       "family-dynamics"
@@ -10993,10 +10804,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "emotional",
-      "bleak",
-      "tense",
-      "character-driven"
+      "character-driven",
+      "dark",
+      "intense"
     ],
     "era": [
       "near-future"
@@ -11079,9 +10889,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "cerebral",
+      "thoughtful",
       "witty",
-      "earnest",
       "fast-paced"
     ],
     "subjects": [
@@ -11132,9 +10941,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "tense",
-      "principled",
-      "cerebral",
+      "intense",
+      "thoughtful",
       "inspirational"
     ],
     "subjects": [
@@ -11154,10 +10962,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "cerebral",
+      "thoughtful",
       "satirical",
-      "stylish",
-      "conflicted"
+      "atmospheric"
     ],
     "subjects": [
       "identity-belonging"
@@ -11202,9 +11009,8 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "intense",
-      "emotional",
-      "suspenseful",
-      "character-driven"
+      "character-driven",
+      "suspenseful"
     ],
     "subjects": [
       "youth-and-adolescence"
@@ -11252,10 +11058,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "darkly-comic",
-      "cynical",
-      "tense",
-      "stylish"
+      "satirical",
+      "intense",
+      "atmospheric"
     ],
     "subjects": [
       "class-wealth-corporate"
@@ -11298,8 +11103,7 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "intense",
-      "somber",
-      "heroic",
+      "dark",
       "suspenseful"
     ],
     "subjects": [
@@ -11318,8 +11122,7 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "heroic",
-      "emotional",
+      "character-driven",
       "intense",
       "inspirational"
     ],
@@ -11338,10 +11141,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "restrained",
-      "intimate",
-      "tense",
-      "reflective"
+      "thoughtful",
+      "character-driven",
+      "intense"
     ],
     "subjects": [
       "artistic-creative"
@@ -11361,8 +11163,7 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "inspirational",
-      "tense",
-      "polished",
+      "intense",
       "character-driven"
     ],
     "subjects": [
@@ -11427,9 +11228,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "tense",
-      "cerebral",
-      "somber",
+      "intense",
+      "thoughtful",
+      "dark",
       "suspenseful"
     ],
     "subjects": [
@@ -11462,10 +11263,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "cerebral",
+      "thoughtful",
       "dark",
-      "suspenseful",
-      "somber"
+      "suspenseful"
     ],
     "subjects": [
       "supernatural-paranormal"
@@ -11484,10 +11284,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "energetic",
-      "emotional",
-      "polished",
-      "dramatic"
+      "fast-paced",
+      "character-driven"
     ],
     "subjects": [
       "artistic-creative"
@@ -11504,10 +11302,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "inventive",
-      "emotional",
-      "energetic",
-      "bittersweet"
+      "character-driven",
+      "fast-paced",
+      "melancholy"
     ],
     "era": [
       "multi-era"
@@ -11521,9 +11318,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "energetic",
-      "lighthearted",
       "fast-paced",
+      "witty",
       "suspenseful"
     ],
     "subjects": [
@@ -11555,9 +11351,7 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "serious",
-      "tense",
-      "investigative",
+      "intense",
       "character-driven"
     ],
     "subjects": [
@@ -11621,10 +11415,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "reflective",
-      "emotional",
-      "somber",
-      "intimate"
+      "thoughtful",
+      "character-driven",
+      "dark"
     ],
     "era": [
       "contemporary"
@@ -11639,10 +11432,9 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "tense",
-      "immersive",
-      "cerebral",
-      "serious"
+      "intense",
+      "atmospheric",
+      "thoughtful"
     ],
     "era": [
       "late-20th-century"
@@ -11714,9 +11506,8 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "violent",
-      "tense",
-      "provocative",
+      "gritty",
+      "intense",
       "suspenseful"
     ],
     "subjects": [
@@ -11765,10 +11556,10 @@
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
-      "raw",
-      "funny",
-      "chaotic",
-      "heartfelt"
+      "gritty",
+      "hilarious",
+      "fast-paced",
+      "inspirational"
     ],
     "era": [
       "contemporary"
@@ -11785,8 +11576,7 @@
     "source": "movie-tv-metadata-for-claude-review.xlsx",
     "tones": [
       "gritty",
-      "realistic",
-      "sardonic",
+      "satirical",
       "intense"
     ],
     "subjects": [
@@ -11801,7 +11591,7 @@
     "tones": [
       "dark",
       "satirical",
-      "tense",
+      "intense",
       "character-driven"
     ],
     "reviewedAt": "2026-08-27",
@@ -11822,8 +11612,8 @@
   "show:81357": {
     "tones": [
       "dark",
-      "bittersweet",
-      "heartfelt",
+      "melancholy",
+      "inspirational",
       "twisty"
     ],
     "reviewedAt": "2026-08-27",
@@ -11840,10 +11630,10 @@
   },
   "show:147050": {
     "tones": [
-      "cerebral",
-      "unsettling",
+      "thoughtful",
+      "dark",
       "slow-burn",
-      "tense"
+      "intense"
     ],
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
@@ -11860,10 +11650,10 @@
   },
   "movie:545611": {
     "tones": [
-      "surreal",
-      "energetic",
-      "heartfelt",
-      "existential"
+      "offbeat",
+      "fast-paced",
+      "inspirational",
+      "thoughtful"
     ],
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
@@ -11881,10 +11671,10 @@
   },
   "show:67195": {
     "tones": [
-      "surreal",
-      "cerebral",
-      "visually-rich",
-      "unsettling"
+      "offbeat",
+      "thoughtful",
+      "atmospheric",
+      "dark"
     ],
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
@@ -11899,10 +11689,9 @@
   },
   "movie:334541": {
     "tones": [
-      "melancholic",
-      "intimate",
-      "restrained",
-      "emotional"
+      "melancholy",
+      "character-driven",
+      "thoughtful"
     ],
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
@@ -11917,10 +11706,8 @@
   },
   "movie:492188": {
     "tones": [
-      "intimate",
-      "emotional",
-      "bittersweet",
-      "character-driven"
+      "character-driven",
+      "melancholy"
     ],
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
@@ -11939,10 +11726,10 @@
   },
   "movie:376867": {
     "tones": [
-      "intimate",
-      "lyrical",
-      "melancholic",
-      "tender"
+      "character-driven",
+      "thoughtful",
+      "melancholy",
+      "inspirational"
     ],
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
@@ -11960,10 +11747,8 @@
   },
   "movie:1330021": {
     "tones": [
-      "warm",
-      "heartfelt",
-      "reflective",
-      "hopeful"
+      "inspirational",
+      "thoughtful"
     ],
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
@@ -11979,7 +11764,7 @@
   "show:95480": {
     "tones": [
       "witty",
-      "cynical",
+      "satirical",
       "suspenseful",
       "character-driven"
     ],
@@ -12021,10 +11806,9 @@
   },
   "show:87523": {
     "tones": [
-      "irreverent",
-      "energetic",
       "satirical",
-      "tragic"
+      "fast-paced",
+      "dark"
     ],
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
@@ -12044,9 +11828,9 @@
   "show:100883": {
     "tones": [
       "witty",
-      "heartfelt",
-      "energetic",
-      "emotional"
+      "inspirational",
+      "fast-paced",
+      "character-driven"
     ],
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
@@ -12065,7 +11849,7 @@
   "show:259731": {
     "tones": [
       "twisty",
-      "tense",
+      "intense",
       "suspenseful",
       "atmospheric"
     ],
@@ -12106,9 +11890,9 @@
   },
   "movie:1439930": {
     "tones": [
-      "brutal",
+      "gritty",
       "intense",
-      "emotional",
+      "character-driven",
       "dark"
     ],
     "reviewedAt": "2026-08-27",
@@ -12127,10 +11911,9 @@
   },
   "movie:82693": {
     "tones": [
-      "warm",
-      "quirky",
-      "emotional",
-      "hopeful"
+      "inspirational",
+      "offbeat",
+      "character-driven"
     ],
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
@@ -12146,10 +11929,9 @@
   },
   "show:208397": {
     "tones": [
-      "mysterious",
+      "suspenseful",
       "witty",
-      "emotional",
-      "suspenseful"
+      "character-driven"
     ],
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",
@@ -12167,10 +11949,10 @@
   },
   "show:79410": {
     "tones": [
-      "bittersweet",
-      "darkly-comic",
-      "warm",
-      "reflective"
+      "melancholy",
+      "satirical",
+      "inspirational",
+      "thoughtful"
     ],
     "reviewedAt": "2026-08-27",
     "source": "movie-tv-metadata-for-claude-review.xlsx",

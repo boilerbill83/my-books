@@ -556,8 +556,14 @@ build from):
 - **Tones** (`inferTones()`) — mood/craft descriptors (`gritty`, `dark`,
   `witty`, `satirical`, `hilarious`, `inspirational`, `intense`,
   `suspenseful`, `twisty`, `slow-burn`, `character-driven`, `nostalgic`,
-  `melancholy`, `offbeat`, `thoughtful` — 15 tags), scored via a genuine
-  per-tone rating-preference delta, not a loved-count tier (§3h).
+  `melancholy`, `offbeat`, `thoughtful`, `atmospheric`, `fast-paced` — 17
+  tags), scored via a genuine per-tone rating-preference delta, not a
+  loved-count tier (§3h). The reviewed-override tier (`reviewedTags.json`)
+  had drifted to 139 near-free-form values (the same fragmentation bug
+  Subjects hit) before a consolidation pass remapped them onto this
+  canonical set — Specificity 71%→90%, `scripts/eval.js` held or improved
+  on every metric (precision@10/25/50 unchanged, @100 87%→88%, MAE
+  14.48→14.30).
 - **Subjects** (`inferSubjects()`) — real social/human-condition subject
   matter beneath genre/subgenre, the BBRE-themes-inspired addition.
   Honestly partial by design (~52% of titles) — not every story genuinely

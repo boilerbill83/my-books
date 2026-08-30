@@ -1068,6 +1068,21 @@ const TONE_KEYWORDS = {
   // are), the safest kind of addition per this file's own established
   // discipline.
   'thoughtful': ['thoughtful', 'philosophical'],
+  // Two new buckets added during the Tones consolidation pass (same
+  // fragmentation bug Subjects had — reviewedTags.json's 'tones' field
+  // had drifted to 139 near-free-form values, most with no fit among the
+  // 13 buckets above). 'atmospheric' (mood/craft via visual style — 35
+  // real reviewedTags.json occurrences) and 'fast-paced' (pacing/energy —
+  // energetic+fast-paced+kinetic combined, 56 occurrences) were both
+  // genuinely distinct concepts with no clean existing fit, not folded
+  // into a near-miss bucket. Keyword-tier support checked and found thin
+  // for both (real TMDB keyword frequency is low) — kept honest rather
+  // than invented; both are reachable via the reviewed-override tier
+  // today, same reviewed-only-reachable pattern several Subjects/
+  // Subgenre buckets already use, and can grow a real keyword tier later
+  // if frequency ever justifies it.
+  'atmospheric': ['atmospheric', 'dark atmosphere'],
+  'fast-paced': [],
 };
 
 function scoreKeywordTags(keywords, map) {
