@@ -907,11 +907,14 @@ function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, om
     // (where concentration hid real, recoverable distinguishing signal —
     // a fixable data problem), Era's concentration IS the honest signal;
     // forcing it toward an even 17-way split would mean inventing detail
-    // that isn't there. `noSpecificityInQuality` lets a field keep its
-    // specificity number for display (still real, still worth showing)
-    // without it dragging the quality score down for a distribution
-    // that's accurate, not a gap.
-    const specificity = f.values
+    // that isn't there. Originally `noSpecificityInQuality` still showed
+    // the raw specificity number/bar for reference — but that bar still
+    // rendered a ⚠ caution color at 42%, reading as a problem even though
+    // it wasn't counted anywhere. Bill's explicit follow-up: don't just
+    // exclude it from quality, don't display it as a concern at all — so
+    // this flag now also skips computing specificity for the field
+    // entirely (renders "—", same as a field with no `values` fn).
+    const specificity = (f.values && !f.noSpecificityInQuality)
       ? computeFieldSpecificity(eligibleTitles, enrichedMeta, omdbMeta, llmTags, f.values, reviewedTags)
       : null;
     const qualityPct = (specificity && !f.noSpecificityInQuality)
