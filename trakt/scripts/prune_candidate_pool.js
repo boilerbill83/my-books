@@ -38,7 +38,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { buildIndexes, matchScore, hydrateTitle, isPreMillenniumMovie, isAnimation, mergeScrapedShowRatings } from '../engine.js';
+import { buildIndexes, matchScore, matchScoreRaw, hydrateTitle, isPreMillenniumMovie, isAnimation, mergeScrapedShowRatings } from '../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -93,7 +93,16 @@ for (const c of candidatePool.titles || []) {
 const scored = live.map(c => {
   const h = hydrateTitle(c, enrichedMeta);
   const enriched = !!enrichedMeta[c.titleKey];
-  return { raw: c, hydrated: h, score: enriched ? matchScore(h, idx, enrichedMeta, omdbMeta) : null, enriched };
+  return {
+    raw: c, hydrated: h, enriched,
+    score: enriched ? matchScore(h, idx, enrichedMeta, omdbMeta) : null,
+    // Eviction ranks by the real, unclamped score (score-clamp-saturation
+    // fix) — a large share of strong candidates display as an identical
+    // 100, and ranking eviction by that clamped number left ties decided
+    // by array order rather than which title is actually the better
+    // match. `score` above still drives the printed log/display value.
+    scoreRaw: enriched ? matchScoreRaw(h, idx, enrichedMeta, omdbMeta) : null,
+  };
 });
 
 const notYetEnriched = scored.filter(s => !s.enriched);
@@ -111,7 +120,7 @@ for (const s of scored) {
 const kept = new Set();
 const evicted = [];
 for (const type of Object.keys(byType)) {
-  const ranked = byType[type].sort((a, b) => (b.score ?? -1) - (a.score ?? -1));
+  const ranked = byType[type].sort((a, b) => (b.scoreRaw ?? -1) - (a.scoreRaw ?? -1));
   ranked.slice(0, CAP_PER_TYPE).forEach(s => kept.add(s.raw.titleKey));
   ranked.slice(CAP_PER_TYPE).forEach(s => evicted.push(s));
 }
@@ -129,7 +138,7 @@ console.log(`\nExcluded via feedback, kept regardless of cap (never scored, neve
 for (const s of excluded) console.log(`  kept (excluded): ${enrichedMeta[s.titleKey]?.title || s.title || s.titleKey}`);
 
 console.log(`\nEvicted (below top ${CAP_PER_TYPE} for its type): ${evicted.length}`);
-for (const s of evicted.sort((a, b) => a.raw.type.localeCompare(b.raw.type) || (a.score - b.score))) {
+for (const s of evicted.sort((a, b) => a.raw.type.localeCompare(b.raw.type) || (a.scoreRaw - b.scoreRaw))) {
   console.log(`  evicted: ${(s.score ?? 0).toFixed(1)} | ${s.raw.type} | ${s.hydrated.title} (${s.hydrated.year})`);
 }
 
