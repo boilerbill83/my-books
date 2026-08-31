@@ -2548,26 +2548,33 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const spread = highest && lowest ? highest.delta - lowest.delta : 0;
     findings.push({
       id: 'flat-community-neutral-ignores-genre-bias',
-      severity: 'serious',
-      ratings: { ease: 6, dataQuality: 2, recEngine: 6, ui: 1 },
+      severity: 'warning',
+      ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
       title: highest && lowest
-        ? `Bill's rating bias vs. TMDB's crowd swings ${spread.toFixed(2)} points by genre (${highest.g} +${highest.delta.toFixed(2)} to ${lowest.g} ${lowest.delta.toFixed(2)}) — but one flat neutral point is used for every candidate`
+        ? `Tested: a per-genre COMMUNITY_NEUTRAL (real ${spread.toFixed(2)}-point bias spread, ${highest.g} +${highest.delta.toFixed(2)} to ${lowest.g} ${lowest.delta.toFixed(2)}) regressed precision — reverted, kept as a documented dead end`
         : 'Not enough rated volume per genre yet to measure a real genre-dependent crowd bias',
       technical: `Live per-canonical-genre delta (via <code>inferGenre()</code>, same single-valued classifier ` +
         `<code>genreBonus()</code> uses — Bill's own average rating minus TMDB's <code>voteAverage</code>, both on a 0-10 scale, genres ` +
         `with 15+ rated titles): ` + genreRows.map(r => `${esc(r.g)} ${r.delta >= 0 ? '+' : ''}${r.delta.toFixed(2)}`).join(', ') +
-        `. <code>COMMUNITY_NEUTRAL = 6.0</code> and <code>CRITIC_NEUTRAL = 80</code> are each one flat constant applied identically to ` +
-        `every candidate in <code>baseSignals()</code>/<code>omdbSignal()</code> regardless of genre — the same crowd rating is credited ` +
-        `identically whether it's a Comedy (where Bill runs well above the crowd) or a Horror title (where he runs below it).`,
-      plain: `The engine already knows, in aggregate, that Bill tends to rate things a bit higher than the average TMDB voter — that's ` +
-        `the "You vs. The Crowd" number on this dashboard. What it doesn't know is that this isn't one flat gap — Bill rates comedies and ` +
-        `war movies well above what the crowd gives them, but rates horror titles BELOW what the crowd gives them. A crowd rating of 7.2 ` +
-        `means something different depending on the genre, and the engine currently treats it as meaning the same thing every time.`,
-      impact: `A refinement of a signal that already exists and is already trusted, not a new one — replacing the single ` +
-        `<code>COMMUNITY_NEUTRAL</code>/<code>CRITIC_NEUTRAL</code> constants with a per-genre neutral point (computed live from ` +
-        `<code>idx.lovedGenres</code>'s own rated population, the same "measure it, don't guess it" discipline this file already used for ` +
-        `<code>matchPointScale</code> and <code>AMAZON_BIAS_OFFSET</code> on the book side) would make the community/critic rating signal ` +
-        `meaningfully more accurate for every candidate, in both directions.`,
+        `. This real spread motivated actually building the fix — a <code>communityGenreNeutral</code> map in ` +
+        `<code>buildIndexes()</code> (per-genre mean of <code>myRating - voteAverage</code>, same shape as <code>genreProfile</code>) ` +
+        `substituting for the flat <code>COMMUNITY_NEUTRAL</code> in <code>baseSignals()</code>'s community-rating term. Swept the ` +
+        `per-genre trust floor 3 through 30 rated titles against <code>scripts/eval.js</code>: every value tested REGRESSED — ` +
+        `precision@25 96%->92% at floor<=10, precision@100 93%->88-90% at every floor from 3 to 30 — only disabling the mechanism ` +
+        `entirely recovered the pre-existing baseline (90/96/94/93, MAE 14.15). Root cause: the bias estimate itself is a ` +
+        `<i>difference</i> of two already-noisy values (Bill's own rating and TMDB's crowd average), carrying roughly double the ` +
+        `variance of a plain per-genre mean the way <code>genreProfile</code>/<code>toneProfile</code> compute theirs — even genres ` +
+        `with real volume don't estimate this specific quantity reliably enough to correct the neutral point without introducing more ` +
+        `noise than the correction removes. Reverted in full (not shipped inert) rather than left half-built.`,
+      plain: `This looked like a clean win on paper — Bill really does rate comedies higher and horror lower than the average crowd ` +
+        `does, by a real, measured amount. But building the actual fix and testing it against real held-out predictions showed it makes ` +
+        `the engine's picks measurably worse, not better, no matter how much data was required before trusting the correction. The most ` +
+        `likely reason: the correction itself is calculated by subtracting two already-imperfect numbers from each other, which stacks ` +
+        `up more noise than the fix removes. Tested honestly and reverted rather than shipped because it sounded reasonable.`,
+      impact: `A genuine negative result, not an unexplored idea — worth keeping on record so a future session doesn't re-propose the ` +
+        `same fix without the sweep data that already disproved it. If this is revisited, the real next step isn't a different trust ` +
+        `floor (all of 3-30 failed identically) but a less noise-prone way to estimate the bias itself — e.g. a shrinkage/regularized ` +
+        `estimate toward the global +0.18 bias rather than a raw per-genre difference-of-means.`,
     });
   }
 

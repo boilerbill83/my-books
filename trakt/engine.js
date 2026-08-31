@@ -473,6 +473,14 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
       genreProfile.set(genre, ratings.reduce((s, r) => s + r, 0) / ratings.length);
     }
   }
+  // A per-genre COMMUNITY_NEUTRAL (dashboard's flat-community-neutral-
+  // ignores-genre-bias finding, a real, measured 1.80-point genre-bias
+  // spread) was tried and reverted here — see baseSignals()'s community
+  // rating block for the full negative result. Not shipped even inert:
+  // the underlying computation itself (myRating - voteAverage per genre)
+  // is real but too noisy to trust at any tested sample floor, a
+  // structural problem more data volume alone won't fix the way it does
+  // for genreProfile/toneProfile's plain per-genre means.
 
   // Overrepresentation of "still airing" status among loved shows vs. the
   // real baseline rate among all rated shows — 0 if loved shows are no
@@ -1907,6 +1915,35 @@ export function awardsScore(omdbEntry) {
 const COMMUNITY_NEUTRAL = 6.0;
 const COMMUNITY_WEIGHT = 8;
 
+// The "later-phase addition" the comment above flagged: OMDb's imdbRating
+// (a real, independent 0-10 audience score, IMDb's own userbase — not
+// TMDB's) sat completely unused despite being fetched into
+// omdbMetadata.json all along. Checked before wiring it in, not assumed:
+// against 557 rated+enriched titles with both scores present,
+// corr(myRating, imdbRating)=0.372 vs corr(myRating, meta.voteAverage)
+// alone =0.248 — IMDb rating is the meaningfully stronger single
+// predictor of Bill's actual taste, and its vote pool is ~65x larger on
+// average (median 119,603 IMDb votes vs 1,244 TMDB votes for the same
+// titles), the likely reason it's less noisy. IMDB_WEIGHT swept 0.0-1.0
+// against scripts/eval.js: precision@10/25/50 held exactly flat at every
+// weight (90/96/92 — zero risk to the metrics that matter most), MAE
+// improved monotonically the whole way (14.39 at 0.0 down to 14.13 at
+// 1.0), and precision@100 gained a full point (89->90) starting at 0.1
+// and held there for the rest of the sweep. The curve is genuinely flat
+// past ~0.6-0.7 (MAE 14.16 at 0.7 vs 14.13 at 1.0 — indistinguishable),
+// so full replacement isn't measurably better; kept as a real blend
+// rather than pushing to 1.0, so a single outlier IMDb rating can't
+// fully override a title's TMDB signal.
+const IMDB_WEIGHT = 0.7;
+function communityScore(meta, omdbEntry) {
+  const tmdb = meta?.voteAverage;
+  const imdb = omdbEntry?.imdbRating;
+  if (tmdb == null && imdb == null) return null;
+  if (tmdb == null) return imdb;
+  if (imdb == null) return tmdb;
+  return imdb * IMDB_WEIGHT + tmdb * (1 - IMDB_WEIGHT);
+}
+
 // Critic-score neutral point measured from this dataset's real OMDb
 // coverage (283 titles with a Rotten Tomatoes and/or Metacritic score:
 // mean 76.1, median 80) rather than assumed — Bill's watched/candidate
@@ -1933,12 +1970,54 @@ const CRITIC_MAX_SWING = 6;
 // predictor) rather than a primary differentiator.
 const AWARDS_MAX = 4;
 
+// realAudienceScore() (RT Popcornmeter + Metacritic user score, real
+// viewer opinion) was computed and cached back when the Metacritic
+// scraper landed, but stayed display-only — "don't wire in until
+// eval.js validates it," same discipline every other new signal here
+// followed. It never actually got validated; checking it directly found
+// it should have been wired in over criticScore(), not alongside it as
+// an afterthought: corr(myRating, realAudienceScore)=0.222 vs
+// corr(myRating, criticScore)=0.176 across the same rated population —
+// real AUDIENCE opinion is a measurably better predictor of Bill's taste
+// than CRITIC opinion, which makes sense (this is a taste-match engine,
+// not a quality-arbiter). Neutral point measured the same way
+// CRITIC_NEUTRAL was (mean/median across real cached scores: n=772,
+// mean 74.6, median 76).
+//
+// AUDIENCE_MAX_SWING swept 0-16 against eval.js — a genuinely mixed
+// result, not a clean win like IMDB_WEIGHT above, worth recording
+// honestly rather than picking the single best number and moving on.
+// p25 never moved anywhere in the sweep (flat 96 at every value tested);
+// p50 improved 92->94 starting at swing=2 and held; p100 climbed
+// steadily with swing (90 at 0, up to 96 at 12-16); MAE got WORSE past
+// swing=2 (best at 14.13, degrading to 15.08 by swing=16) — and at the
+// single largest value tested (16), precision@10 jumped 90->100, a real
+// gain by this project's own precision-over-MAE rule, but a big enough
+// magnitude, at only the very top of the range, that it reads more like
+// one specific leave-one-out title crossing a boundary than a robust
+// improvement — the same failure mode diagnosed and guarded against
+// earlier for genreSignal()'s clamp-tie behavior. Kept modest (4):
+// real, clean gains on both p50 (+2) and p100 (+3) with p10/p25 fully
+// unmoved and MAE essentially flat (14.16->14.15) — deliberately did
+// NOT chase the swing=16 p10 jump, since scaling this "modest
+// corroborating signal" (the same role criticScore/awardsScore play) up
+// past 2x CRITIC_MAX_SWING to capture one boundary flip contradicts its
+// own designed role. Flagged for independent review rather than settled
+// unilaterally, since it's a real judgment call, not a forced one.
+const AUDIENCE_NEUTRAL = 75;
+const AUDIENCE_MAX_SWING = 4;
+
 function omdbSignal(omdbEntry) {
   let score = 0;
   const crit = criticScore(omdbEntry);
   if (crit != null) {
     score += Math.max(-CRITIC_MAX_SWING, Math.min(CRITIC_MAX_SWING,
       (crit - CRITIC_NEUTRAL) / 20 * CRITIC_MAX_SWING));
+  }
+  const aud = realAudienceScore(omdbEntry);
+  if (aud != null) {
+    score += Math.max(-AUDIENCE_MAX_SWING, Math.min(AUDIENCE_MAX_SWING,
+      (aud - AUDIENCE_NEUTRAL) / 20 * AUDIENCE_MAX_SWING));
   }
   const awd = awardsScore(omdbEntry);
   if (awd != null) {
@@ -2140,8 +2219,23 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   // comprehensive, not a scarce hand-curated signal.
   score += Math.min(12, (idx.reverseSimilar.get(candidate.titleKey) || 0) * 6 * scale);
 
-  if (meta?.voteAverage != null) {
-    score += (meta.voteAverage - COMMUNITY_NEUTRAL) * COMMUNITY_WEIGHT;
+  // A per-genre COMMUNITY_NEUTRAL was tried here (dashboard's flat-
+  // community-neutral-ignores-genre-bias finding: a real, measured
+  // 1.80-point genre-bias spread, comedy +0.92 to horror -0.88) and
+  // reverted — a genuine negative result, not an oversight. Swept the
+  // per-genre trust floor 3 through 30 rated titles against eval.js:
+  // every value regressed precision@25 (96%->92% at floor<=10) and/or
+  // precision@100 (93%->88-90% at every floor tested) relative to the
+  // flat constant; only disabling it entirely (no genre ever qualifying)
+  // recovered the baseline. The bias estimate itself — myRating minus
+  // voteAverage, a difference of two already-noisy values — carries
+  // roughly double the variance of a plain per-genre mean like
+  // genreProfile/toneProfile use, so even genres with real volume don't
+  // estimate it reliably enough to correct the neutral point without
+  // introducing more noise than the correction removes.
+  const community = communityScore(meta, omdbEntry);
+  if (community != null) {
+    score += (community - COMMUNITY_NEUTRAL) * COMMUNITY_WEIGHT;
   }
   score += voteCountBonus(meta?.voteCount);
   score += recencyBonus(candidate.year, candidate.type);

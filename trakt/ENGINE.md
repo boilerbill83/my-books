@@ -329,14 +329,44 @@ match. `matchPointScale(type, lovedCountByType)` returns
 (unchanged), a measured multiplier (not a guessed "movies score too low"
 fudge) for the smaller one. Revisit if the loved counts shift substantially.
 
-### 3l. Community rating (TMDB) — uncapped, but bounded by TMDB's own 0-10 scale
+### 3l. Community rating (TMDB + IMDb, blended) — uncapped, but bounded by the 0-10 input scale
 ```
-(voteAverage - 6.0) × 8
+communityScore = imdbRating × 0.7 + voteAverage × 0.3   // both present
+                = whichever one exists                   // only one present
+(communityScore - 6.0) × 8
 ```
-`COMMUNITY_NEUTRAL = 6.0` is TMDB's real typical rating for popular
-titles. TMDB-only in Phase 1 — no multi-source bias offset yet (the book
-engine only added a second-source offset, `AMAZON_BIAS_OFFSET`, after its
-Goodreads-only signal had matured; same sequencing planned here).
+The multi-source blend the section above once called "planned" —
+`communityScore()` folds in OMDb's `imdbRating` (the book engine's
+`AMAZON_BIAS_OFFSET` precedent, applied here as a weighted blend instead
+of a flat offset). Checked before wiring in, not assumed: across 557
+rated+enriched titles with both scores present, `corr(myRating,
+imdbRating)=0.372` vs `corr(myRating, voteAverage alone)=0.248` — IMDb
+rating is the meaningfully stronger single predictor of Bill's taste,
+and its vote pool runs ~65x larger on average (median 119,603 IMDb votes
+vs 1,244 TMDB votes for the same titles) — the likely reason it's less
+noisy. `IMDB_WEIGHT` swept 0.0-1.0 against `eval.js`: precision@10/25/50
+held exactly flat at every weight tested, MAE improved monotonically the
+whole way (14.39 at 0.0 down to 14.13 at 1.0), and precision@100 gained a
+full point (89→90) from 0.1 onward. The curve is genuinely flat past
+~0.6-0.7 (MAE 14.16 at 0.7 vs 14.13 at 1.0 — indistinguishable), so full
+replacement isn't measurably better; kept as a real blend (0.7) rather
+than pushed to 1.0, so a single outlier IMDb rating can't fully override
+a title's TMDB signal. `COMMUNITY_NEUTRAL = 6.0` is unchanged — TMDB's
+and IMDb's typical ratings for popular titles land close enough together
+that one flat neutral point still fits both sides of the blend.
+
+A **per-genre** `COMMUNITY_NEUTRAL` was also tried (a real, measured
+1.80-point genre-bias spread — comedy +0.92, horror -0.88 — surfaced by
+the dashboard's `flat-community-neutral-ignores-genre-bias` finding) and
+reverted: every trust floor swept from 3 to 30 rated titles regressed
+precision@25 and/or precision@100 relative to the flat constant, with
+none coming close to matching the flat baseline's real numbers. Root
+cause: the bias estimate itself (`myRating - voteAverage` per genre) is
+a *difference* of two already-noisy values, carrying roughly double the
+variance of a plain per-genre mean the way `genreProfile`/`toneProfile`
+compute theirs — more rated volume per genre doesn't fix that the way it
+does for those. See the dashboard finding's own updated writeup for the
+full sweep numbers; not shipped even inert.
 
 ### 3m. Vote count (TMDB "how many people rated this") — capped at **+4**
 ```
@@ -419,26 +449,53 @@ nonzero value and keeps falling), even though MAE improves the whole way
 the signal shape changes or more rated-show volume exists.
 
 ### 3q. `omdbSignal()` — OMDb/scraper-sourced signals, combined
-Three sub-signals, summed:
+Four sub-signals, summed:
 
 1. **Critic score swing, clamped to ±6**:
    ```
    clamp((criticScore - 80) / 20 × 6, -6, +6)
    ```
-   `criticScore()` averages RT Tomatometer + Metacritic Metascore (only
-   the professional-critic aggregate — see §4 for the audience-opinion
-   counterpart, which is *not* wired into scoring). `CRITIC_NEUTRAL = 80`
-   is this dataset's real median among titles with any critic score
-   (mean 76.1) — Bill's pool skews toward well-regarded titles. Missing
-   critic data contributes nothing (not a penalty).
-2. **Awards, scaled to 0-+4**: `(awardsScore / 100) × 4`. `awardsScore()`
+   `criticScore()` averages RT Tomatometer + Metacritic Metascore — the
+   professional-critic aggregate. `CRITIC_NEUTRAL = 80` is this dataset's
+   real median among titles with any critic score (mean 76.1) — Bill's
+   pool skews toward well-regarded titles. Missing critic data
+   contributes nothing (not a penalty).
+2. **Real audience score swing, clamped to ±4**:
+   ```
+   clamp((realAudienceScore - 75) / 20 × 4, -4, +4)
+   ```
+   `realAudienceScore()` (RT Popcornmeter + Metacritic user score — genuine
+   viewer opinion, only ever populated by the Metacritic scraper, since
+   OMDb's API never returns either field) was computed and cached from the
+   day the scraper landed but stayed display-only pending validation.
+   Checked, not assumed: `corr(myRating, realAudienceScore)=0.222` vs
+   `corr(myRating, criticScore)=0.176` across the same rated population —
+   real AUDIENCE opinion predicts Bill's taste better than CRITIC opinion,
+   consistent with this being a taste-match engine, not a quality arbiter.
+   `AUDIENCE_NEUTRAL = 75` is this dataset's real mean/median (n=772, mean
+   74.6, median 76). `AUDIENCE_MAX_SWING` swept 0-16 against `eval.js`: a
+   real but mixed result — p25 never moved anywhere in the sweep; p50
+   improved 92→94 from swing 2 onward; p100 climbed steadily with swing
+   (90 at 0 up to 96 at 12-16); MAE got *worse* past swing 2 (best 14.13,
+   degrading to 15.08 by 16); and at the single largest value tested (16),
+   precision@10 jumped 90→100 — a real gain by this project's precision-
+   over-MAE rule, but at a magnitude (>2x `CRITIC_MAX_SWING`) and a single
+   boundary point in the sweep that reads more like one leave-one-out
+   title crossing a rank threshold than a robust improvement, the same
+   clamp-tie failure mode `genreSignal()` (§3b-2) had to guard against.
+   Shipped at swing=4: real, clean gains on p50 (+2) and p100 (+3) with
+   p10/p25 fully unmoved and MAE essentially flat — deliberately did not
+   chase the swing=16 boundary flip, since scaling this "modest
+   corroborating signal" role up past what `criticScore`/`awardsScore`
+   use contradicts its own designed weight.
+3. **Awards, scaled to 0-+4**: `(awardsScore / 100) × 4`. `awardsScore()`
    itself weights Oscar wins ×40, Oscar noms ×15, Emmy wins ×20, Emmy
    noms ×8, other wins ×2, other noms ×1, clamped 0-100. Scaled down
    from that raw 0-100 range because the real distribution is heavily
    right-skewed (many legitimate 0s, but p75+ saturates at 100) — full
    weight would collapse "won something" and "won everything" into the
    same signal strength.
-3. **IMDb vote count** — §3n above.
+4. **IMDb vote count** — §3n above.
 
 ### 3r. `descSimilarityBonus()` — plot/description similarity — capped at **+3**
 A direct port of the book engine's `descSimilarity.js` (same TF-IDF
@@ -470,10 +527,6 @@ table, CSV export) but deliberately don't affect ranking yet — each would
 need the same `eval.js`-validated tuning pass every scoring signal above
 went through, and hasn't gotten one:
 
-- **`realAudienceScore()`** — RT Popcornmeter + Metacritic user score, the
-  genuine *viewer*-opinion counterpart to the critic aggregate in §3q.
-  Only ever populated via `trakt/scrape_show_ratings.py` (OMDb's API never
-  returns either value).
 - **`resolveSimilarTitles()` / `resolveSimilarDirectors()`** — human-
   readable names resolved from `similarToIds`/`recommendedIds`, and
   directors corroborated by 2+ resolved similar titles. The book engine's
@@ -724,13 +777,14 @@ Run it: `node trakt/scripts/eval.js` from the repo root.
 | Description similarity | +0 to +3 | TF-IDF plot-text cosine similarity to loved titles |
 | Forward similar-title | +0 to +24 | Scaled by `matchPointScale` |
 | Reverse similar-title | +0 to +12 | Scaled by `matchPointScale` |
-| Community rating (TMDB) | unbounded* | `(voteAverage - 6.0) × 8` |
+| Community rating (TMDB+IMDb blend) | unbounded* | `(communityScore - 6.0) × 8`, IMDb weighted 0.7 |
 | Vote count (TMDB) | +0 to +4 | "How many ratings" #1 |
 | IMDb vote count | +0 to +3 | "How many ratings" #2 |
 | Recency (movie) | -15 to +8 | Steep, per Bill's explicit ask |
 | Recency (show) | 0 to +3 | Gentle — shows don't age like movies |
 | Show-airing bonus | 0 | Built, tested, currently inert (scale=0) |
 | Critic score (OMDb) | -6 to +6 | RT/Metacritic critic aggregate |
+| Real audience score (OMDb) | -4 to +4 | RT Popcornmeter + Metacritic user score |
 | Awards (OMDb) | +0 to +4 | Oscar/Emmy-weighted |
 | **Final score** | **clamped 0-100** | |
 
