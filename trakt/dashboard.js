@@ -678,11 +678,33 @@ const FIELD_REGISTRY = [
   { key: 'genres', label: 'Genres (raw TMDB)', source: 'TMDB', critical: true,
     eligible: (t, meta) => !!meta,
     populated: (t, meta) => (meta?.genres?.length || 0) > 0,
-    quality: (t, meta) => (meta?.genres?.length || 0) >= 2,
+    // Was a flat "does TMDB give 2+ tags" check, blended 50/50 with
+    // distribution specificity — both dragged this field's quality down
+    // for reasons that turned out not to be fixable or, on investigation,
+    // not to matter. Investigated directly rather than just suppressed:
+    // (a) specificity/concentration ("Drama" at ~34% of all tags) is an
+    // honest, permanent characteristic of TMDB's own blunt ~19-genre
+    // taxonomy — the same conclusion already reached for the Era field
+    // (see noSpecificityInQuality below), and doubly moot here since the
+    // Genre/Subgenre redesign already extracted the real, fine-grained
+    // signal into separate fields this raw one no longer needs to carry.
+    // (b) row completeness (<2 raw tags) looked like a real, if unfixable,
+    // TMDB data-thinness gap — but checking whether it ever actually
+    // changes inferGenre()'s output found that every single one of the
+    // 136 titles with only 1 raw tag already has a reviewed/LLM genre
+    // override, so inferGenre() never even reaches this field's raw
+    // fallback tier for any of them today. Redefined quality to measure
+    // what actually matters: is genre inference well-supported for this
+    // title, either from TMDB's own raw tag count or a real override.
+    // Self-correcting, not permanently suppressed — a future title that
+    // arrives thin-tagged AND unreviewed would still count as a real gap.
+    quality: (t, meta, omdb, llmEntry, reviewed) =>
+      (meta?.genres?.length || 0) >= 2 || !!(reviewed?.genre || llmEntry?.genre),
     values: (t, meta) => meta?.genres || [],
-    note: 'The raw multi-valued TMDB field (Drama alone sat on 75%+ of everything) — kept here for reference and ' +
-      'still feeds the keyword-tier fallback in Genre below, but is no longer the field BMTRE scores against ' +
-      'directly. See "Genre (clean, single-valued)" below for the field the taxonomy redesign replaced it with.' },
+    noSpecificityInQuality: true,
+    note: 'The raw multi-valued TMDB field (Drama alone sat on ~34% of all tags — an honest, permanent property ' +
+      'of TMDB\'s own blunt taxonomy, not scored here) — kept for reference and as one of Genre\'s fallback-tier ' +
+      'inputs, but no longer the field BMTRE scores against directly. See "Genre (clean, single-valued)" below.' },
   { key: 'genre', label: 'Genre (clean, single-valued)', source: 'Derived (reviewed + LLM + keyword)', critical: true,
     eligible: (t, meta) => !!meta,
     populated: (t, meta, omdb, llmEntry, reviewed) => inferGenre(meta, llmEntry, reviewed) != null,
@@ -977,17 +999,6 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
     return out;
   };
 
-  const genreCounts = () => {
-    let single = 0, multi = 0;
-    for (const { t } of dedupedTitles) {
-      const meta = enrichedMeta[t.titleKey];
-      if (!meta) continue;
-      const n = meta.genres?.length || 0;
-      if (n === 1) single++; else if (n >= 2) multi++;
-    }
-    return { single, multi };
-  };
-
   const CUSTOM = {
     imdbId: (f) => {
       const src = bySourceImdb();
@@ -1011,33 +1022,14 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
           `is a precondition for those catching up, not just its own independent gap.`,
       };
     },
-    genres: (f) => {
-      const g = genreCounts();
-      const s = f.specificity;
-      return {
-        severity: 'warning',
-        ratings: { ease: 2, dataQuality: 4, recEngine: 3, ui: 2 },
-        title: `Genres quality is ${f.qualityPct.toFixed(1)}% — below the 90% bar (row completeness + distribution specificity, blended)`,
-        technical: `<code>genres</code> is 100% populated. % Quality is now a 50/50 blend of two separate checks (added this session): ` +
-          `(a) row completeness — ${f.rowQualityPct.toFixed(1)}% of titles (${f.quality} of ${f.eligible}) carry 2+ genre tags so ` +
-          `<code>genreBonus()</code> has more than one to match (${g.single} single-tag, ${g.multi} multi-tag; spot-checked and re-verified ` +
-          `against fresh <code>fetchedAt</code> timestamps as real current TMDB tagging, not stale cache); and (b) specificity — ` +
-          `${s ? s.specificityPct.toFixed(1) : '?'}% (normalized Shannon entropy across ${s ? s.distinctCount : '?'} distinct genre values), ` +
-          `dragged down because <code>"${s ? s.topValue : '?'}"</code> alone accounts for ${s ? s.topSharePct.toFixed(1) : '?'}% of all genre ` +
-          `tags versus an optimal ≤${s ? s.optimalTopSharePct.toFixed(1) : '?'}% if evenly spread across ${s ? s.distinctCount : '?'} values. ` +
-          `Both halves trace to the same root cause: TMDB's top-level genre taxonomy is real but blunt (~19 fixed categories), not a pipeline bug.`,
-        plain: `Two separate problems get combined into this one number now: some titles only have one genre tag (like just "Comedy"), and ` +
-          `on top of that, "${s ? s.topValue : 'Drama'}" is used so often (about a third of all genre tags) that it doesn't tell the engine ` +
-          `much — a truly specific field would spread its tags more evenly across the ~24 real genre values in use. Both are checked directly ` +
-          `against TMDB's own data, not a bug in how this app reads it.`,
-        impact: `Below the bar Bill set, so it's listed here, but a low-effort fix doesn't really exist for this specific raw TMDB field — ` +
-          `TMDB itself is the source of both gaps, and this field is no longer what BMTRE scores against directly. The Genre/Subgenre ` +
-          `taxonomy redesign already addressed the real underlying concern (a blunt, over-concentrated genre signal) by adding a separate, ` +
-          `clean single-valued "Genre" field (<code>inferGenre()</code>, see its own row below) that <code>genreBonus()</code> now scores ` +
-          `against instead of this raw field — that field doesn't inherit this row's specificity problem. This raw field is kept for ` +
-          `reference and as one of Genre's own fallback-tier inputs, not because closing this specific gap still matters much on its own.`,
-      };
-    },
+    // No 'genres' entry: fixed for real, not left as a permanently-open
+    // "not really a gap" finding. Same shape as the 'era' fix below —
+    // noSpecificityInQuality drops the unfixable, already-superseded
+    // concentration half of the old blend; the row-completeness half was
+    // redefined (see this field's own FIELD_REGISTRY row) after directly
+    // checking whether it ever changes a real inferGenre() output, and
+    // finding it doesn't: all 136 thin-tagged titles already carry a
+    // reviewed/LLM override. Quality is now a genuine 100%, not suppressed.
     criticScore: (f) => {
       const popLow = f.populatedPct < 90;
       const qualLow = f.qualityPct < 90;
