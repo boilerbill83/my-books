@@ -95,6 +95,28 @@ def extract_entry(kind, data):
         'recommendedIds': [r['id'] for r in ((data.get('recommendations') or {}).get('results') or [])[:20]],
     }
 
+    # discover_candidates.js used to have no way to tell a genuinely
+    # popular citation from TMDB algorithmically bulk-citing a near-zero-
+    # vote title as filler "similar" content (the real incident: La La
+    # Land, rated 10/10, cites "Alpha Quail" — a 13-minute short with a
+    # single TMDB vote — as similar; it ranked #3 of 82 candidates before
+    # a scoring-time fix caught it). similar/recommendations results are
+    # already full TMDB summary objects with vote_count on them — this
+    # was being fetched and discarded the moment before, right above.
+    # Cached here so discovery can filter BEFORE ever creating a stub,
+    # not just after scoring one — see isTooObscure() in engine.js for
+    # the (still-kept, defense-in-depth) scoring-time equivalent, which
+    # catches any candidate added another way (a manual resolve_titles.py
+    # batch, or one discovered before this field existed).
+    cited = {}
+    for r in ((data.get('similar') or {}).get('results') or [])[:20]:
+        if r.get('id') is not None and r.get('vote_count') is not None:
+            cited[r['id']] = r['vote_count']
+    for r in ((data.get('recommendations') or {}).get('results') or [])[:20]:
+        if r.get('id') is not None and r.get('vote_count') is not None:
+            cited[r['id']] = r['vote_count']
+    entry['citedVoteCounts'] = cited
+
     kw = data.get('keywords') or {}
     kw_list = kw.get('keywords') if kind == 'movie' else kw.get('results')  # TMDB uses a different key per type
     entry['keywords'] = [k['name'] for k in (kw_list or [])][:15]
