@@ -49,13 +49,37 @@ for (const t of [...library.titles, ...watchlist.titles, ...existingPool.titles]
 
 const lovedSources = library.titles.filter(t => t.myRating >= LOVED_THRESHOLD && enrichedMeta[t.titleKey]);
 
+// Real incident: La La Land (rated 10/10) cites "Alpha Quail" — a
+// 13-minute short with a single TMDB vote — as similar; it discovered
+// its way to #3 of 82 candidates before a scoring-time fix caught it
+// (engine.js's isTooObscure(), still kept as a defense-in-depth
+// safety net for candidates that reach the pool another way). This is
+// the prevent-at-the-source half: enrich_tmdb.py now caches each
+// similar/recommendations result's real vote_count alongside the bare
+// id (citedVoteCounts, keyed by bare TMDB id) — data TMDB was already
+// returning and this script was already discarding — so a citation
+// this thin can be skipped before a stub is ever created, not just
+// filtered out after. Keep this threshold equal to engine.js's
+// MIN_CANDIDATE_VOTE_COUNT (not imported — this script is a pure,
+// dependency-free local computation by design); if one changes, change
+// the other. Missing citedVoteCounts (an older cache entry, not yet
+// re-fetched) defaults to allowed, not rejected — same "don't punish
+// missing data" rule isTooObscure() itself follows.
+const MIN_CANDIDATE_VOTE_COUNT = 5;
+
 const citationCount = new Map(); // titleKey -> count
+let skippedTooObscure = 0;
 for (const t of lovedSources) {
   const meta = enrichedMeta[t.titleKey];
   const ids = new Set([...(meta.similarToIds || []), ...(meta.recommendedIds || [])]);
   for (const tmdbId of ids) {
     const key = `${t.type}:${tmdbId}`;
     if (known.has(key)) continue;
+    const voteCount = meta.citedVoteCounts?.[tmdbId];
+    if (voteCount != null && voteCount < MIN_CANDIDATE_VOTE_COUNT) {
+      skippedTooObscure++;
+      continue;
+    }
     citationCount.set(key, (citationCount.get(key) || 0) + 1);
   }
 }
@@ -89,6 +113,7 @@ for (const c of ranked) historyKeys.add(c.titleKey);
 writeJSON(HISTORY_PATH, { titleKeys: [...historyKeys] });
 
 console.log(`${lovedSources.length} loved+enriched sources scanned.`);
+console.log(`${skippedTooObscure} citation(s) skipped for having <${MIN_CANDIDATE_VOTE_COUNT} TMDB votes (never became a stub).`);
 console.log(`${citationCount.size} unique new candidates found, added top ${ranked.length} (by citation count).`);
 console.log(`trakt/data/candidatePool.json now has ${merged.length} total candidates.`);
 console.log(`Movies: ${ranked.filter(c => c.type === 'movie').length}, Shows: ${ranked.filter(c => c.type === 'show').length}`);

@@ -612,19 +612,35 @@ IMDb id at all, had ranked #3 of 82 movie candidates. Decomposed its
 score before deciding what to fix, not guessed: +32 of its 84 raw points
 came from the community-rating term alone (a "10/10" that was really one
 anonymous vote, treated identically to a well-supported average); the
-rest came from a forward similar-title match, itself likely inflated by
-TMDB's own `/similar`/`/recommendations` endpoints bulk-citing thin,
-sparse-embedding titles as filler matches — the same behavior
-`resolveSimilarTitles()`'s own citation-pollution fix (`engine.js`)
-documents for the *display* layer, encountered here on the *scoring*
-side instead. Both signals elevating the candidate trace to the same
-root cause — near-zero real audience data — so a
-single-signal patch wouldn't have fully fixed it; the threshold excludes
-the candidate outright instead. **5** was picked from the real data, not
-a round number in isolation: candidate movies cluster at `voteCount=1`
-then jump straight to 52+; candidate shows have one title at 2 then jump
-to 14+ (real, if niche, aggregate opinion) — any threshold from 3-13
-draws an identical line through that gap for both types.
+rest came from a forward similar-title match — traced to its real source,
+La La Land (rated 10/10) citing it via TMDB's own `/similar` endpoint —
+itself likely inflated by TMDB bulk-citing thin, sparse-embedding titles
+as filler matches, the same behavior `resolveSimilarTitles()`'s own
+citation-pollution fix (`engine.js`) documents for the *display* layer,
+encountered here on the *scoring* side instead. Both signals elevating
+the candidate trace to the same root cause — near-zero real audience
+data — so a single-signal patch wouldn't have fully fixed it; the
+threshold excludes the candidate outright instead. **5** was picked from
+the real data, not a round number in isolation: candidate movies cluster
+at `voteCount=1` then jump straight to 52+; candidate shows have one
+title at 2 then jump to 14+ (real, if niche, aggregate opinion) — any
+threshold from 3-13 draws an identical line through that gap for both
+types.
+
+This filter only catches a too-obscure title once it's already a
+candidate — the same root cause is also addressed one step earlier, at
+*discovery*: `trakt/scripts/discover_candidates.js` builds the candidate
+pool purely from citation ids (`similarToIds`/`recommendedIds`) with no
+metadata of its own to filter on, so a thin citation like Alpha Quail's
+used to become a stub unconditionally. `enrich_tmdb.py` now also caches
+each `/similar`/`/recommendations` result's `vote_count` (data TMDB
+already returns, previously discarded the moment after fetching) as
+`citedVoteCounts` on the citing title's own enrichedMetadata.json entry,
+so `discover_candidates.js` can skip a citation below the same threshold
+before ever creating a stub — not just filter one out after scoring it.
+`isTooObscure` stays regardless, as a defense-in-depth catch for any
+candidate that reaches the pool another way (a manual
+`resolve_titles.py` batch, or one discovered before this field existed).
 
 ---
 
