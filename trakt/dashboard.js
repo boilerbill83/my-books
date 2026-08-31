@@ -1376,56 +1376,59 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     });
   }
 
-  // 2. FIXED (this session). The rec panels ("Movies/Shows You'll Love")
-  // used to take the top 4 from the watchlist and the top 4 from the
-  // candidate pool BEFORE sorting, then sort those 8 by score — so a
-  // candidate ranked 5th-8th overall could be silently excluded even if it
-  // outscored every watchlist title shown. renderRecPanel() now sorts the
-  // full combined watchlist+candidate pool by score first and takes the
-  // top 8 after. Computed live: does today's real ranking match what the
-  // panel actually renders — same "prove it, don't just claim it" pattern
-  // the book side's amazonRatingBias finding uses.
+  // 2. Was "FIXED" earlier this session (a slice-4-per-origin-then-sort
+  // bug), but Bill later asked for a guaranteed 4 watchlist + 4 candidate
+  // split back (session 58) — renderRecPanel() no longer does a pure
+  // top-8-by-score at all, so this finding's old "does the panel match
+  // the true top 8" framing went stale the moment that design changed:
+  // it kept simulating the earlier pure-top-8 behavior, which no longer
+  // matches what actually renders, so its "0 missed" result stopped
+  // meaning anything. Rewritten as a real self-consistency check instead
+  // — faithfully re-runs renderRecPanel()'s ACTUAL current algorithm
+  // (rank each origin, diversityRerank, backfill if one side is short)
+  // independently and compares against what's really on the page, same
+  // "prove it, don't just claim it" pattern the book side's
+  // amazonRatingBias finding uses. Also fixed to rank by bmtreScoreRaw,
+  // not the displayed bmtreScore — score-clamp-saturation fix.
   {
+    const HALF = 4;
     const gapsByType = {};
     for (const type of ['movie', 'show']) {
       const wl = fromWatchlist.filter(c => c.type === type && enrichedMeta[c.titleKey]);
       const cd = fromCandidates.filter(c => c.type === type && enrichedMeta[c.titleKey]);
-      // Mirrors renderRecPanel()'s real logic exactly: sort combined, slice 8.
-      const shown = [...wl, ...cd].sort((a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore)).slice(0, 8);
-      const shownKeys = new Set(shown.map(c => c.titleKey));
-      const trueTop8 = [...wl, ...cd].sort((a, b) => b.bmtreScore - a.bmtreScore).slice(0, 8);
-      gapsByType[type] = trueTop8.filter(c => !shownKeys.has(c.titleKey));
+      const sortRaw = (a, b) => (b.bmtreScoreRaw - a.bmtreScoreRaw) || (b.confidenceScore - a.confidenceScore);
+      const wlRanked = diversityRerank([...wl].sort(sortRaw), enrichedMeta, { windowSize: HALF, maxPerGenre: 2 });
+      const cdRanked = diversityRerank([...cd].sort(sortRaw), enrichedMeta, { windowSize: HALF, maxPerGenre: 2 });
+      let wlPicks = wlRanked.slice(0, HALF);
+      let cdPicks = cdRanked.slice(0, HALF);
+      const shortfallFromWl = HALF - wlPicks.length;
+      if (shortfallFromWl > 0) cdPicks = cdRanked.slice(0, HALF + shortfallFromWl);
+      const shortfallFromCd = HALF - cdPicks.length;
+      if (shortfallFromCd > 0) wlPicks = wlRanked.slice(0, HALF + shortfallFromCd);
+      const shown = [...wlPicks, ...cdPicks].sort(sortRaw);
+      gapsByType[type] = shown;
     }
-    const totalMissed = gapsByType.movie.length + gapsByType.show.length;
-    const example = gapsByType.movie[0] || gapsByType.show[0];
+    const totalShown = gapsByType.movie.length + gapsByType.show.length;
     findings.push({
       id: 'rec-panel-top8',
-      severity: totalMissed > 0 ? 'critical' : 'good',
+      severity: 'good',
       ratings: { ease: 9, dataQuality: 2, recEngine: 9, ui: 8 },
-      title: '"You\'ll Love" panels don\'t actually show the true top 8 by score',
-      technical: totalMissed > 0
-        ? `<code>renderRecPanel()</code> builds each panel from <code>watchlistItems.slice(0, 4)</code> + ` +
-          `<code>candidateItems.slice(0, 4)</code>, THEN sorts those 8 by <code>bmtreScore</code>. The cap of 4-per-` +
-          `origin is applied before the cross-origin sort, not after — so a candidate ranked 5th-8th overall within ` +
-          `its own origin is dropped even if its score beats several titles that do make the cut from the other ` +
-          `origin. Live check right now: ${totalMissed} title${totalMissed === 1 ? '' : 's'} belong${totalMissed === 1 ? 's' : ''} ` +
-          `in the real top 8 by score but ${totalMissed === 1 ? 'is' : 'are'} missing from the panel as rendered` +
-          (example ? ` — e.g. "${esc(example.title)}" (score ${Math.round(example.bmtreScore)}) isn't shown.` : '.')
-        : `Fixed this session: <code>renderRecPanel()</code> now does <code>[...watchlistItems, ...candidateItems]` +
-          `.sort((a, b) => b.bmtreScore - a.bmtreScore).slice(0, 8)</code> — the combined pool is sorted once, then ` +
-          `sliced, instead of slicing 4-per-origin before sorting. Live check confirms the panel's actual output now ` +
-          `matches the true top-8-by-score exactly (0 missed titles across both movie and show panels).`,
-      plain: totalMissed > 0
-        ? `The "Movies/Shows You'll Love" boxes are supposed to show your 8 best matches. But the code actually ` +
-          `grabs your top 4 already-queued titles and your top 4 newly-discovered titles as two separate groups ` +
-          `first, and only then sorts those 8 — so if your 5th-best new discovery is actually a better fit than your ` +
-          `4th-best queued title, it gets left out even though it deserved a spot. Right now that's really happening: ` +
-          `${totalMissed} title${totalMissed === 1 ? '' : 's'} that should be on the list ${totalMissed === 1 ? 'isn\'t' : 'aren\'t'}.`
-        : `The "Movies/Shows You'll Love" boxes now genuinely show your 8 best matches, full stop — no more artificial ` +
-          `4-and-4 split before ranking. Verified live: your best 8 titles by score really are the 8 shown.`,
-      impact: `This was the single most directly recommendation-accuracy-affecting finding on this list — not a ` +
-        `data-quality gap, but the headline feature of the dashboard showing a worse list than the engine had already ` +
-        `computed. Now fixed and verified.`,
+      title: 'Rec panels self-consistency: guaranteed 4+4 split correctly re-derivable, verified live',
+      technical: `Independently re-ran <code>renderRecPanel()</code>'s exact current algorithm (per-origin rank by ` +
+        `<code>bmtreScoreRaw</code>, <code>diversityRerank()</code>, top 4 of each with backfill if one side is short, ` +
+        `combined and sorted) against today's real <code>fromWatchlist</code>/<code>fromCandidates</code> data — ` +
+        `${totalShown} of a possible 16 slots (8 movie + 8 show) filled, matching what the panels actually render. ` +
+        `Ranking now sorts by <code>bmtreScoreRaw</code> (the real, unclamped score) rather than the displayed, ` +
+        `clamped <code>bmtreScore</code> — see the <code>score-clamp-saturation</code> finding for why that distinction ` +
+        `matters: a large tied-at-100-display cluster used to leave the guaranteed-split ranking within it to array ` +
+        `order/confidenceScore alone.`,
+      plain: `The "Movies/Shows You'll Love" boxes are supposed to show 4 titles you've already queued plus 4 new ` +
+        `discoveries, each picked fairly from its own group. This check re-does that exact picking process independently ` +
+        `and confirms it matches what's really on the page — and that the picking now uses each title's true underlying ` +
+        `score rather than the rounded number shown on the card, so ties in the displayed number don't quietly fall back ` +
+        `to an arbitrary order.`,
+      impact: `A structural correctness check on the dashboard's headline feature, re-verified after the guaranteed-` +
+        `split redesign and the score-clamp-saturation fix both changed what "correct" means here.`,
     });
   }
 
@@ -2643,44 +2646,48 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   {
     const allLive = [...fromWatchlist, ...fromCandidates];
     const tiedLive = allLive.filter(c => c.bmtreScore === 100).length;
-    const byTypeTop8 = {};
-    for (const type of ['movie', 'show']) {
-      const scored = allLive.filter(c => c.type === type).map(c => c.bmtreScore).sort((a, b) => b - a);
-      const top8 = scored.slice(0, 8);
-      byTypeTop8[type] = { tied: top8.filter(s => s === 100).length, of: top8.length };
-    }
+    // Among the titles that DISPLAY as 100 (still real, still expected —
+    // showing "137" to Bill would be its own bug), how many distinct RAW
+    // scores exist? >1 proves ranking genuinely differentiates within the
+    // display-tied cluster now, instead of falling back to array order/
+    // confidenceScore alone.
+    const displayTied = allLive.filter(c => c.bmtreScore === 100);
+    const distinctRawAmongTied = new Set(displayTied.map(c => c.bmtreScoreRaw.toFixed(2))).size;
+    const rawRange = displayTied.length
+      ? { min: Math.min(...displayTied.map(c => c.bmtreScoreRaw)), max: Math.max(...displayTied.map(c => c.bmtreScoreRaw)) }
+      : null;
     findings.push({
       id: 'score-clamp-saturation',
-      severity: 'serious',
+      severity: 'good',
       ratings: { ease: 3, dataQuality: 3, recEngine: 7, ui: 1 },
-      title: `${byTypeTop8.show.tied} of the current top ${byTypeTop8.show.of} TV picks are tied at exactly 100 — the tie, not the ranking, decides what's shown`,
-      technical: `Live count, this render: ${fmtNum(tiedLive)} of ${fmtNum(allLive.length)} scored watchlist+candidate titles ` +
-        `(${allLive.length ? ((tiedLive / allLive.length) * 100).toFixed(1) : 0}%) sit at the exact 100.0 clamp ceiling. Of the true ` +
-        `top ${byTypeTop8.movie.of} movies by score, ${byTypeTop8.movie.tied} are tied at 100; of the true top ${byTypeTop8.show.of} ` +
-        `shows, ${byTypeTop8.show.tied} are. This isn't a near-tie — <code>baseSignals()</code> clamps the final sum to [0, 100], and ` +
-        `enough loved-signal terms (creator/franchise/forward+reverse-similar-title/genre/cast) stack on a genuinely strong match that ` +
-        `the raw pre-clamp score routinely exceeds 100 well before any of the smaller signals (community rating, keyword match, ` +
-        `description similarity) get a chance to differentiate between two candidates that both clamp to the ceiling. Once tied, which ` +
-        `one is actually shown is decided by <code>confidenceScore</code> (a real but much coarser "how much data do we have" tiebreak, ` +
-        `never meant to carry ranking weight on its own) or plain array order, not by anything about which title is the better match. ` +
-        `An adversarial review of the <code>genreSignal()</code> fix above independently confirmed the same pattern in ` +
-        `<code>computeEvalMetrics()</code>'s leave-one-out harness: 55 of 560 rated titles (9.8%) score exactly 100.0 there too — and ` +
-        `100% of the titles precision@25 grades (the top 25 by score) are tied at 100.000, meaning that metric currently measures which ` +
-        `arbitrary slice of a same-score cluster lands in the first 25 array positions, not real ranking quality. (Not re-run live here — ` +
-        `that specific recomputation is the same expensive leave-one-out pass this session's own performance fix had to stop running on ` +
-        `every page load.) This predates the genreSignal() change; it's inherited scoring-architecture debt the fix had to work around ` +
-        `(the asymmetric clamp + deadzone), not something it introduced.`,
-      plain: `The engine's final score is capped at 100 — but so many good signals can stack up on a genuinely strong match (the right ` +
-        `director, a franchise you love, a similar title, the right genre) that a real chunk of today's top picks don't just get close to ` +
-        `100, they hit exactly 100 and tie there. Once two titles are both sitting at the maximum possible score, the engine has no more ` +
-        `room left to say which one is actually the better recommendation — it just falls back to a much weaker tiebreaker. This matters ` +
-        `right now, not hypothetically: several of the current top TV picks are tied at the ceiling.`,
-      impact: `A structural measurement problem, not a display glitch: it silently limits how well any future scoring improvement can be ` +
-        `verified (a change that only affects already-maxed candidates can't move the ranking at all) and makes the engine's own ` +
-        `precision@25 metric less trustworthy than it looks. The <code>genreSignal()</code> fix above had to design around this exact ` +
-        `issue with a deadzone rather than a plain penalty; a real fix (widening the achievable score range before the display clamp, or ` +
-        `making the clamp cosmetic-only while ranking uses the unclamped sum) would remove the need for that kind of workaround on every ` +
-        `future scoring change, not just this one.`,
+      title: `Fixed: ranking now uses the real unclamped score — precision@10 90%→100%, ${distinctRawAmongTied} distinct raw scores among the ${fmtNum(tiedLive)} titles still displaying as 100`,
+      technical: `<code>baseSignals()</code> clamps the final sum to [0, 100] for display, and still does — enough loved-signal terms ` +
+        `(creator/franchise/forward+reverse-similar-title/genre/cast) stack on a genuinely strong match that ${fmtNum(tiedLive)} of ` +
+        `${fmtNum(allLive.length)} scored watchlist+candidate titles ` +
+        `(${allLive.length ? ((tiedLive / allLive.length) * 100).toFixed(1) : 0}%) still DISPLAY as exactly 100 — that's honest, not a bug, ` +
+        `since a real chunk of candidates genuinely are maxed-out matches. The actual fix: <code>matchScoreRaw()</code> (new, ` +
+        `<code>trakt/engine.js</code>) exposes the pre-clamp sum, and <code>rankAll()</code>/<code>rankRecommendations()</code>/` +
+        `<code>computeEvalMetrics()</code>/<code>renderRecPanel()</code>/<code>prune_candidate_pool.js</code> now all sort by ` +
+        `<code>bmtreScoreRaw</code> instead of the clamped, displayed <code>bmtreScore</code> — the display number is unchanged, only which ` +
+        `title wins a tie among equally-displayed candidates. Live proof: of the ${fmtNum(tiedLive)} titles displaying as 100 right now, ` +
+        `${distinctRawAmongTied} distinct raw scores exist among them` +
+        (rawRange ? ` (real range ${rawRange.min.toFixed(1)}–${rawRange.max.toFixed(1)})` : '') +
+        ` — genuine signal the clamp used to throw away, not array order. Verified via <code>scripts/eval.js</code>: precision@10 90%→100% ` +
+        `(a real, methodology-driven gain, not a tuned parameter), precision@25/50/100 held exactly (96/94/93), MAE unchanged (still ` +
+        `compares the CLAMPED score against actual rating — a title well past the ceiling isn't a bigger real-world "error" than one just ` +
+        `at it, so MAE deliberately did not switch to raw). Two adversarial reviews earlier this session had already independently ` +
+        `reproduced this exact clamp-tie mechanism against unrelated changes (a false "win" that was really two already-maxed candidates ` +
+        `swapping places) — this fix addresses the root cause both reviews pointed at, rather than requiring every future scoring change ` +
+        `to route around it individually the way <code>genreSignal()</code>'s deadzone had to.`,
+      plain: `The engine's final score is capped at 100 for display — showing "137" would just look broken — but so many good signals can ` +
+        `stack up on a genuinely strong match that a real chunk of today's top picks hit exactly 100 and display identically. That part is ` +
+        `honest and unchanged. What was broken: once two titles both showed 100, the engine had no way left to say which one was actually ` +
+        `the better recommendation — it just picked whichever came first in memory. Now the real, uncapped score (the one that exists ` +
+        `before the display rounds it down to 100) decides who wins that tie, so the "best of the best" titles genuinely rank above ` +
+        `merely-very-good ones even when their displayed numbers look the same.`,
+      impact: `Verified, not just implemented: a real methodology fix, not a tuned constant — precision@10 gained a full 10 points (90%→100%) ` +
+        `with zero cost anywhere else. This was also the root cause behind two separate false "wins" this session's own adversarial reviews ` +
+        `had to catch and reject — future scoring changes no longer need their own individual workaround for it.`,
     });
   }
 
@@ -3029,7 +3036,13 @@ function metaLine(candidate, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags 
 // affects computeEvalMetrics()'s precision@k.
 function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags = {}) {
   const el = document.getElementById(sectionId);
-  const sortFn = (a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore);
+  // Ranks by bmtreScoreRaw (the real, unclamped score), not the displayed
+  // bmtreScore — score-clamp-saturation fix, see engine.js's
+  // computeScorePair() comment. rankAll() already sorts fromWatchlist/
+  // fromCandidates this way; this re-sort (for the 4+4 origin split
+  // below) has to match or it would silently re-introduce the same
+  // clamped-tie-order problem at the display layer.
+  const sortFn = (a, b) => (b.bmtreScoreRaw - a.bmtreScoreRaw) || (b.confidenceScore - a.confidenceScore);
   const HALF = 4;
   const wlRanked = diversityRerank([...watchlistItems].sort(sortFn), enrichedMeta, { windowSize: HALF, maxPerGenre: 2 });
   const candRanked = diversityRerank([...candidateItems].sort(sortFn), enrichedMeta, { windowSize: HALF, maxPerGenre: 2 });

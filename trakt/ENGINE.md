@@ -31,29 +31,53 @@ buildIndexes(library, enrichedMetadata, feedback, llmTags)
         │  creators, loved genres, tone-preference deltas, dismissal
         │  profiles, etc.)
         ▼
-matchScore(candidate, idx, enrichedMetadata, omdbMeta)
-        │
-        │  candidate.type routes to matchScoreMovie/matchScoreShow, both
-        │  of which just call baseSignals() and clamp the result to 0-100
-        ▼
 baseSignals(candidate, idx, meta, omdbEntry)
         │
         │  starts at 20 and adds/subtracts every signal in §3 below
         ▼
-   final score (0-100), plus reason(...) (a plain-English explanation)
-   and confidenceScore(...) (a separate "how much data do we actually
-   have" tiebreaker — never affects rank on its own)
+   { raw, clamped }  — computeScorePair() (internal)
+        │
+        ├─ matchScore(...)    → clamped to [0,100] — every DISPLAY use
+        │                        (rec-card numbers, All Titles table, CSV)
+        └─ matchScoreRaw(...) → the real, unclamped sum — every RANKING
+                                  use (see the clamp-saturation note below)
 ```
+
+**Two returns, one computation** (score-clamp-saturation fix): enough
+loved-signal terms (creator+franchise+forward/reverse-similar+genre+cast)
+stack on a genuinely strong match that a real share of candidates' raw
+sum exceeds 100 well before the smaller signals get a chance to
+differentiate them — they all display as an identical 100. That display
+clamp is real and stays (showing "137" would just look broken), but
+ranking BY the clamped value meant every tied-at-100 candidate fell back
+to `confidenceScore` or plain array order to decide who's actually shown
+— a much weaker signal than the real difference the clamp was throwing
+away. `matchScore()` keeps its exact prior public contract (a 0-100
+number); `matchScoreRaw()` is new and is what every ranking consumer
+below now sorts by. Verified via `scripts/eval.js`: precision@10
+90%→100% (a real, methodology-driven gain — not a tuned constant),
+precision@25/50/100 held exactly, MAE unchanged (MAE deliberately still
+compares the CLAMPED score against `actual` — a title well past the
+ceiling isn't a bigger real-world "error" than one just at it). Two
+adversarial reviews earlier the same session had already independently
+reproduced this exact clamp-tie mechanism against unrelated changes (a
+false "win" that was really two already-maxed candidates swapping
+places) before this fix addressed the root cause directly.
 
 Two entry points wrap this for real UI consumers:
 
 - **`rankRecommendations(library, watchlist, ...)`** — scores the watchlist
-  only, sorted by score then confidence. Used by `recommend.html`.
+  only, sorted by raw score then confidence. Used by `recommend.html`.
 - **`rankAll(library, watchlist, candidatePool, ...)`** — scores the
   watchlist *and* the discovered candidate pool as two separate ranked
-  lists (`fromWatchlist` / `fromCandidates`), so the dashboard can show
-  "top picks from what you already queued" alongside "top new discoveries."
-  This is where the hard candidate filters in §5 apply.
+  lists (`fromWatchlist` / `fromCandidates`, sorted by raw score), so the
+  dashboard can show "top picks from what you already queued" alongside
+  "top new discoveries." This is where the hard candidate filters in §5
+  apply. Every scored object here carries both `bmtreScore` (clamped,
+  for display) and `bmtreScoreRaw` (for any further ranking — the
+  dashboard's `renderRecPanel()` re-sort for its 4+4 origin split uses
+  `bmtreScoreRaw` too, and so does `prune_candidate_pool.js`'s eviction
+  ranking).
 
 Everything above runs against `idx`, which is rebuilt once per ranking
 pass from Bill's real rated history — not persisted, not cached across
@@ -741,10 +765,15 @@ Reports:
 - **precision@10/25/50/100** — of the top-K titles by predicted score,
   what fraction did Bill actually rate ≥8/10? **This is the metric that
   matters most** (per this project's precision-first rule) — never
-  sacrifice it for a better MAE.
-- **MAE** — mean absolute error between predicted (0-100) and actual
-  (myRating × 10), also compared against a naive "always predict the
-  mean" baseline (Bill's ratings skew high enough that this trivial
+  sacrifice it for a better MAE. Ranked by `predictedRaw` (the unclamped
+  score, score-clamp-saturation fix — see §1), not the displayed,
+  clamped `predicted` — a large tied-at-100 cluster in `predicted` used
+  to leave this ranking to array order alone.
+- **MAE** — mean absolute error between predicted (0-100, the CLAMPED
+  value — deliberately not `predictedRaw`, since a title well past the
+  100 ceiling isn't a bigger real-world "error" than one just at it) and
+  actual (myRating × 10), also compared against a naive "always predict
+  the mean" baseline (Bill's ratings skew high enough that this trivial
   baseline can beat a real model on MAE alone without ranking anything
   correctly — a known, documented, non-alarming pattern here).
 - **Bottom-50 catch rate** — of the 50 lowest-scored titles, how many did

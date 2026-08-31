@@ -2158,9 +2158,15 @@ export function isAnimation(candidate, enrichedMeta) {
 }
 
 export function matchScore(candidate, idx, enrichedMeta, omdbMeta = {}) {
-  return candidate.type === 'movie'
-    ? matchScoreMovie(candidate, idx, enrichedMeta, omdbMeta)
-    : matchScoreShow(candidate, idx, enrichedMeta, omdbMeta);
+  return computeScorePair(candidate, idx, enrichedMeta, omdbMeta).clamped;
+}
+
+// The real, unclamped score — see computeScorePair()'s comment below for
+// why this exists. Ranking (rankAll/rankRecommendations/
+// computeEvalMetrics/prune_candidate_pool.js) sorts by this, never by the
+// clamped matchScore() value.
+export function matchScoreRaw(candidate, idx, enrichedMeta, omdbMeta = {}) {
+  return computeScorePair(candidate, idx, enrichedMeta, omdbMeta).raw;
 }
 
 function baseSignals(candidate, idx, meta, omdbEntry) {
@@ -2255,16 +2261,25 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   return { score, forwardMatches, creator, descBonus };
 }
 
-function matchScoreMovie(candidate, idx, enrichedMeta, omdbMeta) {
+// score-clamp-saturation fix (dashboard Improvement Opportunities): the
+// [0,100] display clamp below is real and stays — showing Bill a score of
+// "137" would just look broken — but a real share of strong candidates'
+// PRE-clamp sum exceeds 100 (creator+franchise+genre+forward/reverse-
+// similar+cast credit all stacking on a genuinely great match), so they
+// all display as an identical 100 and, once tied, the only thing left to
+// rank them by was array order / confidenceScore — a much weaker signal
+// than the real score difference the clamp was throwing away. Two
+// adversarial reviews of unrelated changes this session each
+// independently reproduced this exact failure mode (a "win" that was
+// really just two already-maxed candidates swapping places). Fix:
+// matchScoreRaw() below exposes the real, unclamped sum so ranking can
+// use it; matchScore() keeps returning the clamped 0-100 value for
+// every display use (rec-card numbers, the All Titles table, CSV
+// export) — nothing a user actually looks at changes shape.
+function computeScorePair(candidate, idx, enrichedMeta, omdbMeta) {
   const meta = enrichedMeta[candidate.titleKey];
   const { score } = baseSignals(candidate, idx, meta, omdbMeta[candidate.titleKey]);
-  return Math.max(0, Math.min(100, score));
-}
-
-function matchScoreShow(candidate, idx, enrichedMeta, omdbMeta) {
-  const meta = enrichedMeta[candidate.titleKey];
-  const { score } = baseSignals(candidate, idx, meta, omdbMeta[candidate.titleKey]);
-  return Math.max(0, Math.min(100, score));
+  return { raw: score, clamped: Math.max(0, Math.min(100, score)) };
 }
 
 // "How much data do we actually have to trust this ranking" — a tiebreaker,
@@ -2431,14 +2446,21 @@ export function rankRecommendations(library, watchlist, enrichedMeta, feedback =
   const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags);
 
   const candidates = (watchlist.titles || []).filter(c => !idx.excluded.has(c.titleKey));
-  const scored = candidates.map(c => ({
-    ...c,
-    bmtreScore: matchScore(c, idx, enrichedMeta, omdbMeta),
-    confidenceScore: confidenceScore(c, enrichedMeta),
-    reason: reason(c, idx, enrichedMeta, omdbMeta),
-  }));
+  const scored = candidates.map(c => {
+    const { raw, clamped } = computeScorePair(c, idx, enrichedMeta, omdbMeta);
+    return {
+      ...c,
+      bmtreScore: clamped,
+      bmtreScoreRaw: raw,
+      confidenceScore: confidenceScore(c, enrichedMeta),
+      reason: reason(c, idx, enrichedMeta, omdbMeta),
+    };
+  });
 
-  scored.sort((a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore));
+  // Ranks by the real, unclamped score — see computeScorePair()'s comment
+  // above for why bmtreScore (the displayed, clamped value) isn't used
+  // here.
+  scored.sort((a, b) => (b.bmtreScoreRaw - a.bmtreScoreRaw) || (b.confidenceScore - a.confidenceScore));
 
   return { selected: scored, idx };
 }
@@ -2459,16 +2481,21 @@ export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedbac
 
   const scoreOne = (c, origin) => {
     const h = hydrateTitle(c, enrichedMeta);
+    const { raw, clamped } = computeScorePair(h, idx, enrichedMeta, omdbMeta);
     return {
       ...h,
       origin,
-      bmtreScore: matchScore(h, idx, enrichedMeta, omdbMeta),
+      bmtreScore: clamped,
+      bmtreScoreRaw: raw,
       confidenceScore: confidenceScore(h, enrichedMeta),
       reason: reason(h, idx, enrichedMeta, omdbMeta),
     };
   };
 
-  const byScore = (a, b) => (b.bmtreScore - a.bmtreScore) || (b.confidenceScore - a.confidenceScore);
+  // Ranks by the real, unclamped score — see computeScorePair()'s comment
+  // near matchScore()/matchScoreRaw() for why bmtreScore (the displayed,
+  // clamped value) isn't used here.
+  const byScore = (a, b) => (b.bmtreScoreRaw - a.bmtreScoreRaw) || (b.confidenceScore - a.confidenceScore);
 
   const fromWatchlist = (watchlist.titles || [])
     .filter(c => !idx.excluded.has(c.titleKey))
@@ -2632,9 +2659,14 @@ export async function computeEvalMetrics(library, enrichedMeta, feedback, omdbMe
     const descOverride = t.myRating >= LOVED_THRESHOLD ? undefined : sharedDescModel;
     const idx = buildIndexes(looLibrary, enrichedMeta, feedback, llmTags, reviewedTags, descOverride);
     const h = hydrateTitle(t, enrichedMeta);
-    const predicted = matchScore(h, idx, enrichedMeta, omdbMeta);
-    if (Number.isFinite(predicted)) {
-      preds.push({ predicted, actual: t.myRating * 10, myRating: t.myRating, title: h.title, type: h.type });
+    // predicted (clamped) still drives MAE below — a title well past the
+    // 100 ceiling isn't a bigger real-world "error" than one just at it.
+    // predictedRaw drives ranking/precision@k, so a large tied-at-100
+    // cluster in the clamped value doesn't collapse into array-order —
+    // see computeScorePair()'s comment (score-clamp-saturation fix).
+    const { raw: predictedRaw, clamped: predicted } = computeScorePair(h, idx, enrichedMeta, omdbMeta);
+    if (Number.isFinite(predictedRaw)) {
+      preds.push({ predicted, predictedRaw, actual: t.myRating * 10, myRating: t.myRating, title: h.title, type: h.type });
     }
     // Yield to the event loop every 10 titles (~200-400ms/chunk at this
     // function's measured per-title cost) — in a browser this lets the
@@ -2646,7 +2678,10 @@ export async function computeEvalMetrics(library, enrichedMeta, feedback, omdbMe
     // full second, still noticeably janky if a real click landed mid-chunk.
     if (++i % 10 === 0) await new Promise(r => setTimeout(r, 0));
   }
-  preds.sort((a, b) => b.predicted - a.predicted);
+  // Ranks by predictedRaw (unclamped) so precision@k below isn't measuring
+  // array-order within a saturated tied-at-100 cluster — see
+  // computeScorePair()'s comment (score-clamp-saturation fix).
+  preds.sort((a, b) => b.predictedRaw - a.predictedRaw);
 
   const n = preds.length;
   const liked = x => x.myRating >= LIKED_THRESHOLD;
@@ -2698,7 +2733,7 @@ export async function computeEvalMetrics(library, enrichedMeta, feedback, omdbMe
     if (!typePreds.length) continue;
     const tn = typePreds.length;
     const tMae = typePreds.reduce((s, x) => s + Math.abs(x.predicted - x.actual), 0) / tn;
-    const top10 = [...typePreds].sort((a, b) => b.predicted - a.predicted).slice(0, Math.min(10, tn));
+    const top10 = [...typePreds].sort((a, b) => b.predictedRaw - a.predictedRaw).slice(0, Math.min(10, tn));
     byType[type] = { n: tn, mae: tMae, precisionAt10: 100 * top10.filter(liked).length / top10.length };
   }
 
