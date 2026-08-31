@@ -2157,6 +2157,37 @@ export function isAnimation(candidate, enrichedMeta) {
   return (enrichedMeta[candidate.titleKey]?.genres || []).includes('Animation');
 }
 
+// Bill flagged a real bad recommendation directly: "Alpha Quail" (a
+// 13-minute short, TMDB voteCount=1, no IMDb id at all) had ranked #3 of
+// 82 movie candidates. Decomposed its score before deciding what to fix:
+// +32 of its 84 raw points came from the community-rating term alone
+// ((voteAverage 10 - COMMUNITY_NEUTRAL 6.0) × COMMUNITY_WEIGHT 8) — a
+// "10/10" that's really one anonymous vote, treated identically to a
+// well-supported average. The rest came from a forward similar-title
+// match — and TMDB's own /similar+/recommendations endpoints are already
+// documented (see resolveSimilarTitles()'s citation-pollution fix above)
+// to bulk-cite thin, sparse-embedding titles as filler "similar" matches
+// to hundreds of unrelated things. Both signals elevating this candidate
+// trace to the same root cause (near-zero real data), so a single-signal
+// patch (e.g. discounting voteAverage alone) wouldn't fully fix it — the
+// title itself isn't ready to be recommended with any confidence. Hard
+// filter, same precedent as isReEdit/isNonEnglish/isPreMillenniumMovie/
+// isAnimation: never applied to the watchlist (Bill's own real picks are
+// never censored, whatever their vote count). Checked the real
+// distribution before picking a threshold, not guessed: candidate movies
+// cluster at voteCount=1 (Fall, Alpha Quail, Top Shot, How I Spent My
+// Summer Vacation) then jump straight to 52+; candidate shows have one
+// title at 2 (Knight Watchmen) then jump to 14+ (This Life, Ambitions,
+// Off Centre — real, if niche, aggregate opinion, not noise). Any
+// threshold from 3-13 draws an identical line through that real gap for
+// both types — 5 is the clean, defensible middle of it, not a round
+// number picked in isolation.
+const MIN_CANDIDATE_VOTE_COUNT = 5;
+export function isTooObscure(candidate, enrichedMeta) {
+  const voteCount = enrichedMeta[candidate.titleKey]?.voteCount;
+  return voteCount != null && voteCount < MIN_CANDIDATE_VOTE_COUNT;
+}
+
 export function matchScore(candidate, idx, enrichedMeta, omdbMeta = {}) {
   return matchScorePair(candidate, idx, enrichedMeta, omdbMeta).clamped;
 }
@@ -2537,7 +2568,8 @@ export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedbac
   const fromCandidates = (candidatePool.titles || [])
     .filter(c => !idx.excluded.has(c.titleKey) && !watchlistKeys.has(c.titleKey)
       && !idx.watched.has(c.titleKey) && !isReEdit(c) && !isNonEnglish(c)
-      && !isPreMillenniumMovie(c, enrichedMeta) && !isAnimation(c, enrichedMeta))
+      && !isPreMillenniumMovie(c, enrichedMeta) && !isAnimation(c, enrichedMeta)
+      && !isTooObscure(c, enrichedMeta))
     .map(c => scoreOne(c, 'candidate'))
     .sort(byScore);
 

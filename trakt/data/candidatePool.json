@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-08-31T01:36:34.157Z",
-    "count": 200,
+    "generatedAt": "2026-08-31T20:40:35.389Z",
+    "count": 195,
     "capPerType": 100
   },
   "titles": [
@@ -707,16 +707,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:811208",
-      "ids": {
-        "tmdb": 811208
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:24804",
       "ids": {
         "tmdb": 24804
@@ -1387,16 +1377,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:239000",
-      "ids": {
-        "tmdb": 239000
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
       "titleKey": "show:32940",
       "ids": {
         "tmdb": 32940
@@ -1527,16 +1507,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:625560",
-      "ids": {
-        "tmdb": 625560
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:1035259",
       "ids": {
         "tmdb": 1035259
@@ -1657,29 +1627,9 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:1093883",
-      "ids": {
-        "tmdb": 1093883
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:59440",
       "ids": {
         "tmdb": 59440
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:1429813",
-      "ids": {
-        "tmdb": 1429813
       },
       "title": null,
       "year": null,

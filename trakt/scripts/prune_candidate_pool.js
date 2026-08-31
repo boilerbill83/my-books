@@ -38,7 +38,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { buildIndexes, matchScorePair, hydrateTitle, isPreMillenniumMovie, isAnimation, mergeScrapedShowRatings } from '../engine.js';
+import { buildIndexes, matchScorePair, hydrateTitle, isPreMillenniumMovie, isAnimation, isTooObscure, mergeScrapedShowRatings } from '../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -64,10 +64,10 @@ const reviewedTags = readJSON(path.join(DATA_DIR, 'reviewedTags.json'), {});
 const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags);
 const watchlistKeys = new Set((watchlist.titles || []).map(c => c.titleKey));
 
-// Same re-edit / non-English / pre-2000-movie / animation exclusions
-// rankAll() applies to candidates (never to the watchlist - that's Bill's
-// own real data) - a candidate that would never surface anyway shouldn't
-// occupy a cap slot.
+// Same re-edit / non-English / pre-2000-movie / animation / too-obscure
+// exclusions rankAll() applies to candidates (never to the watchlist -
+// that's Bill's own real data) - a candidate that would never surface
+// anyway shouldn't occupy a cap slot.
 const isReEdit = c => (enrichedMeta[c.titleKey]?.keywords || []).includes('edited from film');
 const isNonEnglish = c => {
   const lang = enrichedMeta[c.titleKey]?.originalLanguage;
@@ -83,7 +83,8 @@ for (const c of candidatePool.titles || []) {
     continue;
   }
   if (watchlistKeys.has(c.titleKey) || idx.watched.has(c.titleKey)
-      || isReEdit(c) || isNonEnglish(c) || isPreMillenniumMovie(c, enrichedMeta) || isAnimation(c, enrichedMeta)) {
+      || isReEdit(c) || isNonEnglish(c) || isPreMillenniumMovie(c, enrichedMeta) || isAnimation(c, enrichedMeta)
+      || isTooObscure(c, enrichedMeta)) {
     stale.push(c);
     continue;
   }
