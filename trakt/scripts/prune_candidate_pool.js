@@ -38,7 +38,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { buildIndexes, matchScore, matchScoreRaw, hydrateTitle, isPreMillenniumMovie, isAnimation, mergeScrapedShowRatings } from '../engine.js';
+import { buildIndexes, matchScorePair, hydrateTitle, isPreMillenniumMovie, isAnimation, mergeScrapedShowRatings } from '../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -93,15 +93,18 @@ for (const c of candidatePool.titles || []) {
 const scored = live.map(c => {
   const h = hydrateTitle(c, enrichedMeta);
   const enriched = !!enrichedMeta[c.titleKey];
+  // One matchScorePair() call gets both values from a single baseSignals()
+  // pass, instead of matchScore()+matchScoreRaw() independently recomputing
+  // it twice. Eviction ranks by scoreRaw (score-clamp-saturation fix) — a
+  // large share of strong candidates display as an identical 100, and
+  // ranking eviction by that clamped number left ties decided by array
+  // order rather than which title is actually the better match. `score`
+  // still drives the printed log/display value.
+  const pair = enriched ? matchScorePair(h, idx, enrichedMeta, omdbMeta) : null;
   return {
     raw: c, hydrated: h, enriched,
-    score: enriched ? matchScore(h, idx, enrichedMeta, omdbMeta) : null,
-    // Eviction ranks by the real, unclamped score (score-clamp-saturation
-    // fix) — a large share of strong candidates display as an identical
-    // 100, and ranking eviction by that clamped number left ties decided
-    // by array order rather than which title is actually the better
-    // match. `score` above still drives the printed log/display value.
-    scoreRaw: enriched ? matchScoreRaw(h, idx, enrichedMeta, omdbMeta) : null,
+    score: pair ? pair.clamped : null,
+    scoreRaw: pair ? pair.raw : null,
   };
 });
 

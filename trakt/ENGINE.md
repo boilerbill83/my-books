@@ -768,7 +768,18 @@ Reports:
   sacrifice it for a better MAE. Ranked by `predictedRaw` (the unclamped
   score, score-clamp-saturation fix — see §1), not the displayed,
   clamped `predicted` — a large tied-at-100 cluster in `predicted` used
-  to leave this ranking to array order alone.
+  to leave this ranking to array order alone. That fix moved precision@10
+  90%→100% — a real, broad re-ranking of the old tied cluster (an
+  adversarial review dumped the actual before/after top-10/15 and found
+  8 titles swapped in, all liked, none within 6 raw points of what they
+  displaced — not a single fragile boundary flip). One honest caveat
+  worth carrying forward, not a flaw the fix introduced: the *new*
+  rank-10/rank-11 boundary is close (raw scores 0.10 apart as of this
+  writing). That's inherent to any n=10 metric over continuous scores —
+  it means a future small, otherwise-legitimate scoring tweak could
+  nudge precision@10 back toward 90% without that being a regression on
+  its own; check what actually crossed the boundary before treating a
+  drop here as a real problem.
 - **MAE** — mean absolute error between predicted (0-100, the CLAMPED
   value — deliberately not `predictedRaw`, since a title well past the
   100 ceiling isn't a bigger real-world "error" than one just at it) and
