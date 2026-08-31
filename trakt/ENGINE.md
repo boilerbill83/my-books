@@ -602,8 +602,29 @@ honestly low, never hidden:
 | `isAnimation` | Any title carrying the TMDB "Animation" genre |
 | `isReEdit` | Titles carrying TMDB's `edited from film` keyword (theatrical re-cuts of something Bill already watched under a different id) |
 | `isNonEnglish` | `originalLanguage` present and not `en` (missing language defaults to *allowed*, not excluded) |
+| `isTooObscure` | TMDB `voteCount` present and **&lt; 5** (missing voteCount — not yet enriched — defaults to *allowed*, not excluded) |
 | already watched/watchlisted | A candidate whose `titleKey` is already in the library or watchlist (handles the case where Bill watches/watchlists something on Trakt directly that was also sitting in the discovered pool) |
 | `idx.excluded` | Any title with an explicit `excludeFromRecommendations` feedback entry |
+
+`isTooObscure` exists because Bill flagged a real bad recommendation
+directly: "Alpha Quail," a 13-minute short with a single TMDB vote and no
+IMDb id at all, had ranked #3 of 82 movie candidates. Decomposed its
+score before deciding what to fix, not guessed: +32 of its 84 raw points
+came from the community-rating term alone (a "10/10" that was really one
+anonymous vote, treated identically to a well-supported average); the
+rest came from a forward similar-title match, itself likely inflated by
+TMDB's own `/similar`/`/recommendations` endpoints bulk-citing thin,
+sparse-embedding titles as filler matches — the same behavior
+`resolveSimilarTitles()`'s own citation-pollution fix (`engine.js`)
+documents for the *display* layer, encountered here on the *scoring*
+side instead. Both signals elevating the candidate trace to the same
+root cause — near-zero real audience data — so a
+single-signal patch wouldn't have fully fixed it; the threshold excludes
+the candidate outright instead. **5** was picked from the real data, not
+a round number in isolation: candidate movies cluster at `voteCount=1`
+then jump straight to 52+; candidate shows have one title at 2 then jump
+to 14+ (real, if niche, aggregate opinion) — any threshold from 3-13
+draws an identical line through that gap for both types.
 
 ---
 

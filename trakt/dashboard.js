@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra, inferGenre, inferSubgenreDetail, findTaxonomyCollisions } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra, inferGenre, inferSubgenreDetail, findTaxonomyCollisions, isTooObscure } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -1342,7 +1342,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       const lang = enrichedMeta[c.titleKey]?.originalLanguage;
       return lang != null && lang !== 'en';
     };
-    const wasted = (candidatePool.titles || []).filter(c => isReEdit(c) || isNonEnglish(c));
+    const wasted = (candidatePool.titles || []).filter(c => isReEdit(c) || isNonEnglish(c) || isTooObscure(c, enrichedMeta));
     const total = (candidatePool.titles || []).length;
     findings.push({
       id: 'pool-cap-waste',
@@ -1356,18 +1356,21 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
           `titles from the "New pick" panels at render time — so the bug isn't a bad recommendation slipping through, ` +
           `it's cap capacity silently spent on a title that was never going to be shown, crowding out a real candidate ` +
           `that could have taken that slot instead. Live count right now: ${wasted.length} of ${total} pool slots ` +
-          `(${total ? ((wasted.length / total) * 100).toFixed(1) : 0}%) are re-edits or non-English titles.`
-        : `Fixed this session: <code>prune_candidate_pool.js</code> now actually calls <code>isReEdit()</code>/ ` +
-          `<code>isNonEnglish()</code>/<code>isPreMillenniumMovie()</code> (also new this session) when deciding ` +
-          `which candidates count toward the 100-per-type cap, folding them into the same "stale, remove outright" ` +
-          `bucket as already-watched/watchlisted titles, and the script was re-run against the live pool. Live check ` +
-          `confirms 0 of ${total} current pool slots are re-edits or non-English titles.`,
+          `(${total ? ((wasted.length / total) * 100).toFixed(1) : 0}%) are re-edits, non-English, or too-obscure ` +
+          `(<code>isTooObscure()</code>, TMDB voteCount &lt; 5) titles.`
+        : `Fixed: <code>prune_candidate_pool.js</code> calls <code>isReEdit()</code>/<code>isNonEnglish()</code>/ ` +
+          `<code>isPreMillenniumMovie()</code>/<code>isTooObscure()</code> when deciding which candidates count toward ` +
+          `the 100-per-type cap, folding them into the same "stale, remove outright" bucket as already-watched/` +
+          `watchlisted titles, and the script is re-run against the live pool after each addition to this filter list ` +
+          `(<code>isTooObscure()</code> most recently, after Bill flagged "Alpha Quail" — a 13-minute short with a ` +
+          `single TMDB vote — ranking #3 of 82 movie candidates). Live check confirms 0 of ${total} current pool slots ` +
+          `are re-edits, non-English, or too-obscure.`,
       plain: wasted.length > 0
         ? `There's a cap of 100 movies and 100 TV shows in the "maybe you'll like this" pile. But right now, ` +
           `${wasted.length} of those 200 slots are taken up by titles that the app has already privately decided it ` +
-          `will never actually show you (foreign-language titles, or things like a PG-13 re-edit of a movie you've ` +
-          `already seen). Those titles are just sitting there uselessly instead of making room for something that ` +
-          `could genuinely make your recommendation list better.`
+          `will never actually show you (foreign-language titles, a PG-13 re-edit of a movie you've already seen, or a ` +
+          `title with next to no real audience data behind it). Those titles are just sitting there uselessly instead ` +
+          `of making room for something that could genuinely make your recommendation list better.`
         : `The cap of 100 movies and 100 TV shows in the "maybe you'll like this" pile no longer wastes any slots on ` +
           `titles the app was already privately planning to never show you. Every slot is now occupied by something ` +
           `that can actually compete for a spot on your recommendation list.`,
