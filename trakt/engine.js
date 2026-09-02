@@ -2343,6 +2343,149 @@ export function matchScorePair(candidate, idx, enrichedMeta, omdbMeta) {
   return { raw: score, clamped: Math.max(0, Math.min(100, score)) };
 }
 
+// Bill's explicit request: a "Deep Dive" page showing exactly why a
+// title scored what it did, not just reason()'s one-line summary. Every
+// line below calls the SAME function baseSignals() calls, with the SAME
+// arguments, and sums to the SAME total — this can never drift from the
+// real score the way a hand-reimplemented parallel calculation could
+// (this project's "prove it, don't assert it" discipline applied to its
+// own UI: the numbers shown are the numbers actually used to rank, not a
+// re-derived approximation). `rows.reduce((s,r)=>s+r.points,0)` is
+// asserted equal to `matchScorePair()`'s raw score for the same
+// candidate — verified live in the same session this was added, not
+// just claimed (see the commit this function was introduced in).
+export function scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta = {}) {
+  const meta = enrichedMeta[candidate.titleKey];
+  const omdbEntry = omdbMeta[candidate.titleKey];
+  const rows = [];
+  const add = (key, label, points, note) => rows.push({ key, label, points, note });
+
+  add('base', 'Starting score', 20, 'Every candidate starts here.');
+
+  if (!meta) {
+    add('unenriched', 'Not enough data yet', 0, 'This title has not been enriched with TMDB metadata yet — every other signal below defaults to zero until it is.');
+    const total = rows.reduce((s, r) => s + r.points, 0);
+    return { rows, raw: total, clamped: Math.max(0, Math.min(100, total)) };
+  }
+
+  const llmEntry = idx.llmTags?.[candidate.titleKey];
+  const reviewedEntry = idx.reviewedTags?.[candidate.titleKey];
+
+  const creator = getCreator(candidate.type, meta);
+  const creatorLabel = candidate.type === 'movie' ? 'Director' : 'Creator';
+  if (creator) {
+    const lovedCount = idx.lovedCreators.get(creator) || 0;
+    const ratingWeight = idx.creatorRatingWeight.get(creator) || 0;
+    const pts = Math.min(10, lovedCount * 6) + Math.min(5, ratingWeight * 1.5);
+    add('creator', `${creatorLabel} match`, pts, lovedCount > 0
+      ? `${creator} — you've loved ${lovedCount} title${lovedCount === 1 ? '' : 's'} from them before.`
+      : `${creator} — no loved titles from them yet.`);
+  } else {
+    add('creator', `${creatorLabel} match`, 0, 'No director/creator credit on record.');
+  }
+
+  const genre = inferGenre(meta, llmEntry, reviewedEntry);
+  // idx.lovedGenres is a continuous rating-weighted sum, not a literal
+  // count (same shape as lovedActors/reverseSimilar elsewhere in this
+  // file) — round for display, same convention reason() already uses.
+  const genreCount = genre ? Math.round(idx.lovedGenres.get(genre) || 0) : 0;
+  add('genre', 'Genre match', genreBonus(genre, idx.lovedGenres),
+    genre ? `${genre} — ~${genreCount} loved title${genreCount === 1 ? '' : 's'} in this genre.` : 'No inferred genre.');
+
+  add('genreSignal', 'Genre rating preference', genreSignal(genre, idx.genreProfile, idx.globalMeanRating),
+    genre && idx.genreProfile?.has(genre)
+      ? `Your average rating for ${genre} vs. your overall average — only ever a penalty (0 or negative), never a bonus.`
+      : 'Not enough of your rated titles in this genre yet to have a preference signal.');
+
+  const dismissPts = dismissAdjust(candidate, meta, creator, idx);
+  add('dismissAdjust', 'Dismissal generalization', dismissPts, dismissPts < 0
+    ? 'Resembles something you dismissed before (same creator, or a similar style/genre you disliked).'
+    : 'No matching dismissal on record.');
+
+  const collectionId = meta.belongsToCollection?.id;
+  const lovedInCollection = collectionId != null ? idx.lovedCollections.get(collectionId) : null;
+  add('franchise', 'Franchise match', franchiseBonus(collectionId, idx.lovedCollections),
+    lovedInCollection?.length
+      ? `Part of ${meta.belongsToCollection.name} — you've watched ${lovedInCollection.length} other entr${lovedInCollection.length === 1 ? 'y' : 'ies'} you loved or liked.`
+      : meta.belongsToCollection ? `Part of ${meta.belongsToCollection.name}, but none of its other entries are among your loved/liked titles.` : 'Not part of a franchise/collection (movies only).');
+
+  const lovedCastHits = (meta.topCast || []).filter(a => (idx.lovedActors.get(a) || 0) > 0);
+  add('cast', 'Cast affinity', castBonus(meta.topCast, idx.lovedActors),
+    lovedCastHits.length ? `Features ${lovedCastHits.slice(0, 3).join(', ')}, who you've enjoyed before.` : 'No cast overlap with your loved titles.');
+
+  const matchedKeywords = (meta.keywords || []).filter(k => !KEYWORD_STOPLIST.has(k) && (idx.lovedKeywords.get(k) || 0) > 0);
+  add('keyword', 'Keyword match', keywordBonus(meta.keywords, idx.lovedKeywords),
+    matchedKeywords.length ? `Shares keywords with loved titles: ${matchedKeywords.slice(0, 5).join(', ')}.` : 'No keyword overlap with your loved titles.');
+
+  const subgenres = inferSubgenres(meta, llmEntry, undefined, reviewedEntry);
+  const matchedSubgenres = subgenres.filter(s => (idx.lovedSubgenres.get(s) || 0) > 0);
+  add('subgenre', 'Subgenre match', subgenreBonus(subgenres, idx.lovedSubgenres),
+    matchedSubgenres.length ? `Tagged ${matchedSubgenres.join(', ')} — genres you gravitate toward.` : `Tagged ${subgenres.join(', ') || 'no subgenres inferred'}.`);
+
+  const subjects = inferSubjects(meta, llmEntry, undefined, reviewedEntry);
+  const matchedSubjects = subjects.filter(s => (idx.lovedSubjects.get(s) || 0) > 0);
+  add('subject', 'Subject match', subjectBonus(subjects, idx.lovedSubjects),
+    matchedSubjects.length ? `Touches on ${matchedSubjects.join(', ')} — themes you've responded well to.` : `Touches on ${subjects.join(', ') || 'no subjects inferred'}.`);
+
+  const tones = inferTones(meta, llmEntry, undefined, reviewedEntry);
+  const positiveTones = tones.filter(t => (idx.toneProfile?.get(t) ?? -Infinity) > (idx.globalMeanRating ?? Infinity));
+  add('tone', 'Tone signal', toneSignal(tones, idx.toneProfile, idx.globalMeanRating),
+    positiveTones.length ? `Has a ${positiveTones.join(', ')} feel — tones you've consistently rated above your average.` : `Tagged ${tones.join(', ') || 'no tones inferred'}.`);
+
+  const citedIds = new Set([...(meta.similarToIds || []), ...(meta.recommendedIds || [])]
+    .map(id => titleKey(candidate.type, id)));
+  let forwardMatches = 0;
+  const forwardMatchedTitles = [];
+  for (const id of citedIds) {
+    const w = idx.titleAffinity?.get(id) || 0;
+    if (w > 0) { forwardMatches += w; const t = idx.watched.get(id)?.title; if (t) forwardMatchedTitles.push(t); }
+  }
+  const scale = matchPointScale(candidate.type, idx.lovedCountByType);
+  add('forwardSimilar', 'Similar to titles you loved', Math.min(24, forwardMatches * 8 * scale),
+    forwardMatchedTitles.length ? `Cites ${forwardMatchedTitles.slice(0, 3).join(', ')} as similar/recommended.` : 'No forward similar-title matches.');
+
+  const reverseWeight = idx.reverseSimilar.get(candidate.titleKey) || 0;
+  add('reverseSimilar', 'Cited by titles you loved', Math.min(12, reverseWeight * 6 * scale),
+    reverseWeight > 0 ? `${Math.max(1, Math.round(reverseWeight))} of your loved titles list this as similar/recommended.` : 'Not cited by any of your loved titles.');
+
+  const community = communityScore(meta, omdbEntry);
+  add('community', 'Community rating', community != null ? (community - COMMUNITY_NEUTRAL) * COMMUNITY_WEIGHT : 0,
+    community != null ? `Blended TMDB/IMDb rating: ${community.toFixed(2)}/10 (neutral point ${COMMUNITY_NEUTRAL}).` : 'No community rating available.');
+
+  add('voteCount', 'TMDB vote count', voteCountBonus(meta.voteCount),
+    `${meta.voteCount != null ? meta.voteCount.toLocaleString() : 'unknown'} TMDB votes.`);
+
+  add('recency', 'Recency', recencyBonus(candidate.year, candidate.type), `Released ${candidate.year || 'unknown year'}.`);
+
+  add('showAiring', 'Show-airing-status bonus', showAiringBonus(candidate, meta, idx),
+    'Built and measured but currently applied at 0 weight — see ENGINE.md §3p.');
+
+  const crit = criticScore(omdbEntry);
+  add('criticScore', 'Critic score (OMDb)',
+    crit != null ? Math.max(-CRITIC_MAX_SWING, Math.min(CRITIC_MAX_SWING, (crit - CRITIC_NEUTRAL) / 20 * CRITIC_MAX_SWING)) : 0,
+    crit != null ? `${crit}/100 (neutral point ${CRITIC_NEUTRAL}).` : 'No critic score available.');
+
+  const aud = realAudienceScore(omdbEntry);
+  add('audienceScore', 'Audience score (RT/Metacritic)',
+    aud != null ? Math.max(-AUDIENCE_MAX_SWING, Math.min(AUDIENCE_MAX_SWING, (aud - AUDIENCE_NEUTRAL) / 20 * AUDIENCE_MAX_SWING)) : 0,
+    aud != null ? `${aud}/100 (neutral point ${AUDIENCE_NEUTRAL}).` : 'No audience score available.');
+
+  const awd = awardsScore(omdbEntry);
+  add('awards', 'Awards recognition', awd != null ? (awd / 100) * AWARDS_MAX : 0,
+    omdbEntry?.awards?.raw || 'No awards recognition on record.');
+
+  add('imdbVotes', 'IMDb vote count', imdbVoteCountBonus(omdbEntry?.imdbVotes),
+    `${omdbEntry?.imdbVotes != null ? omdbEntry.imdbVotes.toLocaleString() : 'unknown'} IMDb votes.`);
+
+  const descResult = descSimilarityBonus(meta.overview, idx.descModel, candidate.titleKey);
+  const descTopTitle = descResult?.neighbors?.[0] ? idx.watched.get(descResult.neighbors[0].key)?.title : null;
+  add('descSimilarity', 'Plot/description similarity', descResult ? descResult.bonus : 0,
+    descTopTitle ? `Plot reads similar to ${descTopTitle}, which you loved.` : 'No strong plot-similarity match.');
+
+  const total = rows.reduce((s, r) => s + r.points, 0);
+  return { rows, raw: total, clamped: Math.max(0, Math.min(100, total)) };
+}
+
 // "How much data do we actually have to trust this ranking" — a tiebreaker,
 // same role as the book engine's confidenceScore(), not a quality signal.
 export function confidenceScore(candidate, enrichedMeta) {

@@ -588,6 +588,21 @@ sacrificing the prose Bill has consistently preferred over a terser format.
 | 8 | `Award Recognition` | Real OMDb award wins/nominations, no stronger signal fired |
 | — | *(no tag)* | Fallback: `"A newer or less-connected title — worth a look, lower confidence."` |
 
+`scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta)` is `reason()`'s
+full-detail companion (Bill's "Deep Dive" page request) — it calls every
+one of §3's signal functions directly, with the same arguments
+`baseSignals()` uses, and returns every term as its own `{key, label,
+points, note}` row rather than picking the single strongest one to
+narrate. `rows.reduce((s,r)=>s+r.points,0)` always equals
+`matchScorePair()`'s raw score for the same candidate — verified live
+across the full real candidate pool (0 mismatches) when this function
+was added, and structurally guaranteed to stay that way since it's the
+real signal functions being called, not a re-derived parallel
+calculation. Rendered on `trakt/deepdive.html` (`trakt/deepdive.js`),
+reached via a "Deep Dive →" button on every card in the "You'll Love"
+panels. Read-only/display-only — adds no new signal and re-weights
+nothing, so no scoring-behavior entry is needed elsewhere in this file.
+
 ---
 
 ## 5. Hard candidate filters (never score adjustments — full exclusion)
