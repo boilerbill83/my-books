@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deep Dive</title>
+    <meta name="description" content="Full metadata and a real score breakdown for one title, from BMTRE's actual scoring signals" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" /></noscript>
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+      /* Same status palette as index.html's own dial/badges — not in the
+         shared styles.css, so redefined here for this standalone page. */
+      :root {
+        --status-good: #0ca30c; --status-warning: #fab219;
+        --status-serious: #ec835a; --status-critical: #d03b3b;
+      }
+      .dd-empty-page { padding: 60px 20px; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+      .dd-empty-page a { color: var(--accent); }
+      .dd-empty { color: var(--text-muted); font-size: 0.82rem; }
+
+      .dd-hero {
+        display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card);
+        border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+        padding: 20px; margin-bottom: 20px; flex-wrap: wrap;
+      }
+      .dd-poster { width: 130px; height: 195px; border-radius: 8px; object-fit: cover; flex-shrink: 0; background: var(--bg-subtle); border: 1px solid var(--border); }
+      .dd-poster-empty { border: 1px dashed var(--border); }
+      .dd-hero-body { flex: 1; min-width: 240px; }
+      .dd-hero-title { font-family: var(--font-serif); font-weight: 700; font-style: italic; font-size: 1.6rem; color: var(--accent); line-height: 1.2; }
+      .dd-hero-title .dd-year { color: var(--text-muted); font-weight: 400; font-style: normal; font-size: 1.1rem; }
+      .dd-hero-tags { margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; }
+      .dd-hero-reason { margin-top: 10px; font-size: 0.9rem; color: var(--text); line-height: 1.5; }
+      .dd-hero-ids { margin-top: 10px; font-size: 0.8rem; }
+      .dd-hero-ids a { color: var(--accent); text-decoration: none; margin-right: 4px; }
+      .dd-hero-ids a:hover { text-decoration: underline; }
+      .dd-hero-scores { text-align: center; flex-shrink: 0; padding-left: 10px; }
+      .dd-score-big { font-family: var(--font-sans); font-weight: 700; font-size: 2.6rem; color: var(--accent); line-height: 1; }
+      .dd-score-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 2px; }
+      .dd-score-sub { font-size: 0.76rem; color: var(--text-muted); margin-top: 4px; }
+
+      .dd-status-tag {
+        display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 2px 9px;
+        border-radius: 999px; white-space: nowrap; background: var(--bg-subtle); color: var(--text-muted);
+      }
+      .dd-status-watched { background: color-mix(in srgb, var(--status-good) 15%, transparent); color: var(--status-good); }
+      .dd-status-watchlist { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); }
+      .dd-status-candidate { background: color-mix(in srgb, var(--status-warning) 20%, transparent); color: #8a5c00; }
+      .dd-status-airing { background: color-mix(in srgb, var(--status-warning) 22%, transparent); color: #8a5c00; }
+      .dd-status-rated { background: var(--bg-subtle); color: var(--text); }
+
+      .dd-card {
+        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+        box-shadow: var(--shadow); padding: 18px 20px; margin-bottom: 20px;
+      }
+      .dd-card-heading { font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+      .dd-card-note { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
+
+      .dd-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      @media (max-width: 720px) { .dd-grid2 { grid-template-columns: 1fr; } .dd-hero { flex-direction: column; align-items: center; text-align: center; } .dd-hero-scores { padding-left: 0; } }
+
+      .dd-field { margin-bottom: 12px; }
+      .dd-field:last-child { margin-bottom: 0; }
+      .dd-field-label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); margin-bottom: 4px; }
+      .dd-field-row {
+        display: flex; justify-content: space-between; gap: 10px; font-size: 0.85rem;
+        padding: 6px 0; border-bottom: 1px solid var(--border);
+      }
+      .dd-field-row:last-child { border-bottom: none; }
+      .dd-field-row .dd-field-label { margin-bottom: 0; }
+
+      .dd-chip {
+        display: inline-block; font-size: 0.76rem; padding: 3px 9px; border-radius: 999px;
+        background: var(--bg-subtle); color: var(--text); margin: 0 4px 4px 0;
+      }
+      .dd-chip-loved { background: color-mix(in srgb, var(--status-good) 15%, transparent); color: var(--status-good); font-weight: 600; }
+
+      .dd-overview { font-size: 0.88rem; line-height: 1.6; color: var(--text); }
+
+      .dd-breakdown { display: flex; flex-direction: column; }
+      .dd-breakdown-row {
+        display: grid; grid-template-columns: 180px 1fr 70px; gap: 12px; align-items: center;
+        padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.84rem;
+      }
+      .dd-breakdown-row:last-child { border-bottom: none; }
+      .dd-breakdown-label { font-weight: 600; }
+      .dd-breakdown-note { color: var(--text-muted); font-size: 0.8rem; }
+      .dd-breakdown-pts { font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+      .dd-pts-pos { color: var(--status-good); }
+      .dd-pts-neg { color: var(--status-critical); }
+      .dd-pts-zero { color: var(--text-muted); font-weight: 400; }
+      .dd-breakdown-total { margin-top: 4px; padding-top: 12px; border-top: 2px solid var(--border); font-size: 0.92rem; }
+      .dd-breakdown-total .dd-breakdown-pts { color: var(--accent); }
+      @media (max-width: 640px) {
+        .dd-breakdown-row { grid-template-columns: 1fr; gap: 2px; }
+        .dd-breakdown-pts { text-align: left; }
+      }
+
+      .dd-simple-list { display: flex; flex-direction: column; }
+      .dd-metric-row {
+        display: flex; align-items: center; justify-content: space-between; gap: 10px;
+        padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem;
+      }
+      .dd-metric-row:last-child { border-bottom: none; }
+      .dd-metric-row a { color: var(--text); text-decoration: none; }
+      .dd-metric-row a:hover { color: var(--accent); text-decoration: underline; }
+      .dd-metric-score { font-weight: 600; font-size: 0.8rem; padding: 2px 9px; border-radius: 999px; background: var(--bg-subtle); color: var(--accent); white-space: nowrap; }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="site-header">
+        <div class="container header-inner">
+          <a class="header-quality-link" href="./index.html">← Dashboard</a>
+          <div class="header-status">
+            <span id="statusText">Loading…</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="container" style="padding-top:24px; padding-bottom:40px;">
+        <div id="ddContent">Loading…</div>
+      </div>
+    </div>
+
+    <script type="module" src="./deepdive.js"></script>
+  </body>
+</html>

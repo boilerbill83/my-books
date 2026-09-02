@@ -3140,6 +3140,7 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
         </div>
         <div class="tk-rec-meta">${esc(metaLine(c, enrichedMeta, omdbMeta, llmTags, reviewedTags))}</div>
         <div class="tk-rec-reason">${esc(c.reason)}</div>
+        <a class="tk-deepdive-btn" href="./deepdive.html?key=${encodeURIComponent(c.titleKey)}">Deep Dive →</a>
       </div>
       <div class="tk-rec-score">${Math.round(c.bmtreScore)}</div>
     </div>
