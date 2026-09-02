@@ -154,6 +154,19 @@ def extract_entry(kind, data):
         entry['status'] = data.get('status')
         entry['numberOfSeasons'] = data.get('number_of_seasons')
         entry['numberOfEpisodes'] = data.get('number_of_episodes')
+        # Bill: "I only watch a season once that season is complete" - a
+        # show can sit at status="Returning Series" for years between
+        # seasons while everything released so far is fully watchable, so
+        # status alone can't tell isActivelyAiring() (engine.js) whether a
+        # season is genuinely mid-release right now. next_episode_to_air is
+        # only populated by TMDB when a specific next episode is actually
+        # scheduled/recent - the real "still airing" signal.
+        next_ep = data.get('next_episode_to_air')
+        entry['nextEpisodeToAir'] = {
+            'airDate': next_ep.get('air_date'),
+            'seasonNumber': next_ep.get('season_number'),
+            'episodeNumber': next_ep.get('episode_number'),
+        } if next_ep else None
 
     return entry
 

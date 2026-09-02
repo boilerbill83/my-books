@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra, inferGenre, inferSubgenreDetail, findTaxonomyCollisions, isTooObscure } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra, inferGenre, inferSubgenreDetail, findTaxonomyCollisions, isTooObscure, isActivelyAiring } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -50,6 +50,14 @@ const statusTag = status => {
   if (!m) return '';
   return `<span class="tk-status-tag ${m.cls}">${m.label}</span>`;
 };
+
+// Bill's explicit request: a visible marker for a show whose current
+// season is still actively airing (isActivelyAiring() in engine.js) -
+// used in the All Titles table's own Airing column and the Currently
+// Airing list below, wherever such a title needs to be flagged as "not
+// fully watchable yet" without touching its actual predicted score.
+const airingBadge = () =>
+  `<span class="tk-status-tag tk-status-tag-airing" title="A new episode of this show's current season hasn't aired yet">🕐 Airing</span>`;
 
 const NS = 'http://www.w3.org/2000/svg';
 const svgEl = (tag, attrs = {}) => {
@@ -628,6 +636,42 @@ function renderBestMatches(stats, enrichedMeta) {
       <span class="tk-metric-score">predicted ${Math.round(r.predicted)}, rated ${r.myRating}/10</span>
     </div>
   `;
+  }).join('');
+}
+
+// Bill's explicit request, alongside excluding actively-airing shows from
+// the You'll Love panel: "add a table to the dashboard with shows
+// currently airing that I will love so I can stay up to date on those."
+// Draws from both origins (watchlist + candidate pool) at their real,
+// unfiltered bmtreScoreRaw — nothing here is display-only-excluded the
+// way renderRecPanel() is, since the entire point of this list is to
+// surface exactly what got pulled out of that panel and why it still
+// matters (a genuinely strong prediction, just not watchable in full
+// yet). Movies are never included (isActivelyAiring() is show-only).
+function renderAiringSoonList(fromWatchlist, fromCandidates, enrichedMeta) {
+  const el = document.getElementById('airingSoonList');
+  const airing = [...fromWatchlist, ...fromCandidates]
+    .filter(c => isActivelyAiring(c, enrichedMeta))
+    .sort((a, b) => b.bmtreScoreRaw - a.bmtreScoreRaw);
+  if (!airing.length) {
+    el.innerHTML = '<div class="tk-empty">Nothing you\'d love is actively airing right now — check back later.</div>';
+    return;
+  }
+  el.innerHTML = airing.slice(0, 12).map(c => {
+    const poster = posterUrl(c.titleKey, enrichedMeta);
+    const next = enrichedMeta[c.titleKey]?.nextEpisodeToAir;
+    const epLabel = next?.seasonNumber != null && next?.episodeNumber != null
+      ? ` (S${next.seasonNumber}E${next.episodeNumber})` : '';
+    const nextLabel = next?.airDate ? `next episode ${next.airDate}${epLabel}` : 'airing now';
+    return `
+    <div class="tk-metric-row">
+      ${posterImgHtml(poster, 'tk-metric-poster', 38, 57)}
+      <span class="tk-metric-name">
+        ${typeIcon(c.type)} ${esc(c.title)}
+        <span class="tk-metric-sub">${c.year ? `(${c.year}) · ` : ''}${esc(nextLabel)}${c.origin === 'watchlist' ? ' · Watchlist' : ''}</span>
+      </span>
+      <span class="tk-metric-score">${Math.round(c.bmtreScore)}</span>
+    </div>`;
   }).join('');
 }
 
@@ -1397,8 +1441,12 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     const HALF = 4;
     const gapsByType = {};
     for (const type of ['movie', 'show']) {
-      const wl = fromWatchlist.filter(c => c.type === type && enrichedMeta[c.titleKey]);
-      const cd = fromCandidates.filter(c => c.type === type && enrichedMeta[c.titleKey]);
+      // Same isActivelyAiring() exclusion renderRecPanel() applies (Bill's
+      // "exclude from You'll Love, don't touch the score" request) - left
+      // out here this check would flag a false mismatch the moment an
+      // airing show gets pulled from the real panel.
+      const wl = fromWatchlist.filter(c => c.type === type && enrichedMeta[c.titleKey] && !isActivelyAiring(c, enrichedMeta));
+      const cd = fromCandidates.filter(c => c.type === type && enrichedMeta[c.titleKey] && !isActivelyAiring(c, enrichedMeta));
       const sortRaw = (a, b) => (b.bmtreScoreRaw - a.bmtreScoreRaw) || (b.confidenceScore - a.confidenceScore);
       const wlRanked = diversityRerank([...wl].sort(sortRaw), enrichedMeta, { windowSize: HALF, maxPerGenre: 2 });
       const cdRanked = diversityRerank([...cd].sort(sortRaw), enrichedMeta, { windowSize: HALF, maxPerGenre: 2 });
@@ -2810,6 +2858,7 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
     rows.push({
       titleKey: h.titleKey, posterUrl: posterUrl(h.titleKey, enrichedMeta),
       title: h.title || '(untitled — not yet enriched)', year: h.year, type: h.type, status,
+      airing: isActivelyAiring(h, enrichedMeta),
       myRating: myRating ?? null, tmdbRating: meta?.voteAverage ?? null,
       predictedScore: Math.round(matchScore(h, idx, enrichedMeta, omdbMeta)),
       popularity: popularityScore(meta?.voteCount),
@@ -2884,6 +2933,8 @@ function renderAllTitlesTable(allRows) {
       render: (td, r) => { td.textContent = `${typeIcon(r.type)} ${typeLabel(r.type)}`; } },
     { label: 'Status', get: r => r.status,
       render: (td, r) => { td.innerHTML = statusTag(r.status); } },
+    { label: 'Airing', get: r => r.airing ? 'Airing' : '',
+      render: (td, r) => { if (r.airing) td.innerHTML = airingBadge(); } },
     { label: 'My Rating', get: r => r.myRating ?? '', numeric: true },
     { label: 'Predicted Score', get: r => r.predictedScore ?? '', numeric: true },
     { label: 'TMDB Rating', get: r => r.tmdbRating != null ? Math.round(r.tmdbRating * 10) / 10 : '', numeric: true },
@@ -3043,6 +3094,15 @@ function metaLine(candidate, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags 
 // affects computeEvalMetrics()'s precision@k.
 function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags = {}) {
   const el = document.getElementById(sectionId);
+  // Bill: "exclude it from the You'll Love panel but don't adjust the
+  // actual predicted score." Pulled out here, at the display layer only -
+  // same precedent as diversityRerank() below, which also never touches
+  // bmtreScore/bmtreScoreRaw. A title dropped here still scores and ranks
+  // normally everywhere else (the All Titles table, computeEvalMetrics(),
+  // the new "Currently Airing" list) - only this specific ranked panel
+  // hides it, since watching it isn't actually possible in full yet.
+  watchlistItems = watchlistItems.filter(c => !isActivelyAiring(c, enrichedMeta));
+  candidateItems = candidateItems.filter(c => !isActivelyAiring(c, enrichedMeta));
   // Ranks by bmtreScoreRaw (the real, unclamped score), not the displayed
   // bmtreScore — score-clamp-saturation fix, see engine.js's
   // computeScorePair() comment. rankAll() already sorts fromWatchlist/
@@ -3288,6 +3348,7 @@ async function load() {
 
   renderRecPanel('movieRecList', byType(fromWatchlist, 'movie'), byType(fromCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags, reviewedTags);
   renderRecPanel('showRecList', byType(fromWatchlist, 'show'), byType(fromCandidates, 'show'), enrichedMeta, omdbMeta, llmTags, reviewedTags);
+  renderAiringSoonList(fromWatchlist, fromCandidates, enrichedMeta);
 
   for (const [type, chartId, noteId, label] of [
     ['movie', 'scoreDistMovieChart', 'scoreDistMovieNote', 'unwatched movies'],

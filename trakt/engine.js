@@ -2188,6 +2188,32 @@ export function isTooObscure(candidate, enrichedMeta) {
   return voteCount != null && voteCount < MIN_CANDIDATE_VOTE_COUNT;
 }
 
+// Bill: "I only watch a season once that season is complete, so Ted
+// Lasso being #1 doesn't help me." Traced live: Ted Lasso sits on both
+// his library (seasons 1-3, rated 9/10) and his watchlist (season 4) -
+// TMDB's status field for it reads "Returning Series," which stays true
+// for years between seasons even while everything released so far is
+// fully watchable, so it's not a useful "still airing right now" signal
+// on its own. next_episode_to_air is: TMDB only populates it when a
+// specific next episode is actually scheduled/recent, i.e. a season is
+// genuinely mid-release right now.
+//
+// Unlike every other filter in this file (isReEdit/isNonEnglish/
+// isPreMillenniumMovie/isAnimation/isTooObscure), this one intentionally
+// DOES apply to the watchlist. Those filters exempt Bill's own picks
+// because they're relevance judgment calls the engine shouldn't
+// second-guess about a title he explicitly chose; this isn't a relevance
+// call - it's a literal "not watchable in full yet" fact about a title
+// he already queued. Display-only, by Bill's explicit request: never
+// subtracted from bmtreScore or bmtreScoreRaw - the prediction is still
+// real and honest, only which list a title appears in changes (see
+// dashboard.js's renderRecPanel()/renderAiringSoonList()). Movies don't
+// have episodes, so always false for type 'movie'.
+export function isActivelyAiring(candidate, enrichedMeta) {
+  if (candidate.type !== 'show') return false;
+  return enrichedMeta[candidate.titleKey]?.nextEpisodeToAir != null;
+}
+
 export function matchScore(candidate, idx, enrichedMeta, omdbMeta = {}) {
   return matchScorePair(candidate, idx, enrichedMeta, omdbMeta).clamped;
 }
