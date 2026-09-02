@@ -606,6 +606,36 @@ honestly low, never hidden:
 | already watched/watchlisted | A candidate whose `titleKey` is already in the library or watchlist (handles the case where Bill watches/watchlists something on Trakt directly that was also sitting in the discovered pool) |
 | `idx.excluded` | Any title with an explicit `excludeFromRecommendations` feedback entry |
 
+**`isActivelyAiring` is a different kind of filter and isn't in the table
+above.** Every filter in the table is a hard exclusion from
+`rankAll()`'s `fromCandidates` list, deliberately never applied to the
+watchlist. `isActivelyAiring(candidate, enrichedMeta)` is the opposite
+shape on both counts: it's applied at the *display* layer only
+(`dashboard.js`'s `renderRecPanel()`, which builds the "You'll Love"
+panels — see `trakt/dashboard.js`), and it deliberately *does* apply to
+the watchlist. Bill: "I only watch a season once that season is
+complete, so Ted Lasso being #1 doesn't help me" — traced live, Ted
+Lasso sits on both his library (seasons 1-3, rated 9/10) and his
+watchlist (season 4), so its creator/genre/cast signals are maxed out
+and it was ranking #1, but TMDB's `status` field ("Returning Series")
+can't tell "will get more seasons someday" from "actively airing right
+now" — it stays that value for years between seasons even while
+everything released so far is fully watchable. The real signal is
+TMDB's `next_episode_to_air`, only populated when a specific next
+episode is actually scheduled/recent; cached as `nextEpisodeToAir` by
+`enrich_tmdb.py`. Every other filter above exempts the watchlist because
+it's Bill's own explicit pick and excluding it would be the engine
+second-guessing a relevance judgment call that isn't the engine's to
+make; this isn't a relevance call at all, it's a literal "not watchable
+in full yet" fact about a title he already queued, so the exemption
+doesn't apply. And unlike the table's filters, it's **display-only by
+design** — `bmtreScore`/`bmtreScoreRaw` are never touched, so an
+actively-airing title still scores and ranks normally everywhere else
+(the All Titles table, `computeEvalMetrics()`) and shows up in its own
+"Currently Airing — You'll Love" list on the dashboard
+(`renderAiringSoonList()`) so nothing goes invisible, just out of the
+one panel where it isn't actionable yet.
+
 `isTooObscure` exists because Bill flagged a real bad recommendation
 directly: "Alpha Quail," a 13-minute short with a single TMDB vote and no
 IMDb id at all, had ranked #3 of 82 movie candidates. Decomposed its
