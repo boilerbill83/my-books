@@ -11,7 +11,7 @@
 //
 // The actual metric (computeEvalMetrics) lives in ../engine.js, not here
 // — engine.js has no Node-specific imports (fs/path/url), so
-// dashboard.js can import it directly into the browser for the new
+// quality.js can import it directly into the browser for the
 // "BMTRE Accuracy Score" dial, the same single-source-of-truth
 // discipline the book side's own scripts/eval.js already uses (Session
 // 33: data_quality_report.js imports computeEvalMetrics rather than

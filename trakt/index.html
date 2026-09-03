@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bill's Trakt Dashboard</title>
-    <meta name="description" content="Movie and TV watch stats from Bill's Trakt account, rebuilt from a periodic data export" />
+    <title>🍿 What to Watch</title>
+    <meta name="description" content="What to watch next, built from Bill's real Trakt rating history" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- Async (preload + swap-on-load), not a plain render-blocking
@@ -12,237 +12,65 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" /></noscript>
     <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="./dashboard.css" />
     <style>
-      .tk-title {
-        font-family: var(--font-serif); font-weight: 700; font-style: italic;
-        font-size: 2rem; color: var(--accent); margin-bottom: 2px;
-      }
-      .tk-subtitle { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 22px; }
+      /* Discover-only — everything shared lives in dashboard.css. */
+      .tk-nav-current { font-weight: 700; color: var(--text); pointer-events: none; }
+      .tk-taste-line { font-family: var(--font-serif); font-style: italic; font-size: 1rem; color: var(--text); margin: -6px 0 20px; line-height: 1.4; }
 
-      .tk-tiles {
-        display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 12px; margin-bottom: 26px;
-      }
-      .tk-tile {
-        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
-        padding: 14px 16px; box-shadow: var(--shadow);
-      }
-      .tk-tile-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; font-weight: 600; }
-      .tk-tile-value { font-family: var(--font-sans); font-weight: 600; font-size: 1.7rem; color: var(--text); margin-top: 4px; }
-
-      .tk-card {
-        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
-        padding: 18px 20px; margin-bottom: 22px; box-shadow: var(--shadow);
-      }
-      .tk-card-heading {
-        font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; color: var(--accent);
-        margin-bottom: 4px;
-        cursor: pointer; display: flex; align-items: center; justify-content: space-between;
-      }
-      .tk-card-heading .tk-collapse-chevron {
-        font-family: var(--font-sans); font-size: 0.75em; color: var(--text-muted); transition: transform 0.15s;
-        flex-shrink: 0; margin-left: 10px; user-select: none;
-      }
-      .tk-card.tk-card-collapsed .tk-collapse-chevron { transform: rotate(-90deg); }
-      .tk-card.tk-card-collapsed > *:not(.tk-card-heading) { display: none !important; }
-      .tk-card-note { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
-      .tk-caveat {
-        background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 6px;
-        padding: 8px 12px; font-size: 0.76rem; color: var(--text-muted); margin-top: 10px;
+      .tk-hero-card { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
+      .tk-hero-poster { flex-shrink: 0; }
+      .tk-hero-img { width: 150px; height: 225px; border-radius: 8px; object-fit: cover; background: var(--bg-subtle); border: 1px solid var(--border); }
+      .tk-hero-img-empty { border: 1px dashed var(--border); }
+      .tk-hero-body { flex: 1; min-width: 240px; }
+      .tk-hero-kicker { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin-bottom: 6px; }
+      .tk-hero-title { font-family: var(--font-serif); font-weight: 700; font-style: italic; font-size: 1.5rem; color: var(--text); line-height: 1.2; }
+      .tk-hero-year { color: var(--text-muted); font-weight: 400; font-style: normal; font-size: 1.1rem; }
+      .tk-hero-badge { font-size: 0.66rem; font-weight: 600; padding: 2px 9px; border-radius: 999px; background: var(--bg-subtle); color: var(--text-muted); margin-left: 10px; vertical-align: middle; }
+      .tk-hero-meta { font-size: 0.82rem; color: var(--accent); margin-top: 8px; font-weight: 500; }
+      .tk-hero-reason { font-size: 0.88rem; color: var(--text); margin-top: 6px; line-height: 1.5; }
+      .tk-hero-actions { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
+      .tk-hero-alt { font-size: 0.78rem; color: var(--text-muted); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
+      .tk-hero-score { text-align: center; flex-shrink: 0; padding-left: 10px; }
+      .tk-hero-score-num { font-family: var(--font-sans); font-weight: 700; font-size: 3rem; line-height: 1; }
+      .tk-hero-score-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 4px; }
+      @media (max-width: 640px) {
+        .tk-hero-card { flex-direction: column; align-items: center; text-align: center; }
+        .tk-hero-actions { justify-content: center; }
+        .tk-hero-score { padding-left: 0; }
       }
 
-      .tk-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-      @media (max-width: 780px) { .tk-row2 { grid-template-columns: 1fr; } }
+      .tk-surprise-btn { font-size: 0.9rem; padding: 10px 20px; font-weight: 600; }
+      .tk-chip-row { display: flex; gap: 8px; margin: 10px 0; flex-wrap: wrap; }
+      .tk-chip { font-size: 0.78rem; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); cursor: pointer; }
+      .tk-chip.active { border-color: var(--accent); color: var(--accent); font-weight: 600; background: color-mix(in srgb, var(--accent) 8%, transparent); }
+      @keyframes tk-reveal { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+      .tk-reveal { animation: tk-reveal 0.3s ease; }
 
-      .tk-chart-wrap { position: relative; }
-      .tk-bar { fill: var(--accent); }
-      .tk-bar:hover { fill: var(--accent-hover); }
-      .tk-axis-label { fill: var(--text-muted); font-size: 10px; font-family: var(--font-sans); }
-      .tk-gridline { stroke: var(--border); stroke-width: 1; }
-      .tk-value-label { fill: var(--text-muted); font-size: 10px; font-family: var(--font-sans); font-weight: 600; }
+      .tk-byl-row { margin-bottom: 20px; }
+      .tk-byl-row:last-child { margin-bottom: 0; }
+      .tk-byl-heading { font-weight: 600; font-size: 0.92rem; margin-bottom: 10px; }
 
-      .tk-tooltip {
-        position: absolute; pointer-events: none; opacity: 0; transition: opacity 0.1s;
-        background: var(--accent); color: #fff; font-size: 0.75rem; padding: 4px 9px;
-        border-radius: 5px; white-space: nowrap; transform: translate(-50%, -130%);
-        z-index: 5;
-      }
-      .tk-tooltip.active { opacity: 1; }
+      .tk-shelf { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 4px; }
+      .tk-shelf-card { flex-shrink: 0; width: 108px; text-decoration: none; color: inherit; }
+      .tk-shelf-poster { width: 92px; height: 138px; border-radius: 6px; object-fit: cover; background: var(--bg-subtle); border: 1px solid var(--border); display: block; }
+      .tk-shelf-poster-empty { border: 1px dashed var(--border); }
+      .tk-shelf-score { font-size: 0.7rem; font-weight: 700; color: var(--accent); background: var(--bg-card); border: 1px solid var(--border); border-radius: 999px; padding: 1px 7px; display: inline-block; margin-top: 5px; }
+      .tk-shelf-title { font-size: 0.78rem; font-weight: 600; margin-top: 3px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+      .tk-shelf-runtime { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+      .tk-shelf-card:hover .tk-shelf-title { color: var(--accent); }
 
-      .tk-list { display: flex; flex-direction: column; gap: 0; }
-      .tk-list-row {
-        display: flex; align-items: center; justify-content: space-between; gap: 10px;
-        padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem;
-      }
-      .tk-list-row:last-child { border-bottom: none; }
-      .tk-list-rank { color: var(--text-muted); font-size: 0.78rem; width: 20px; flex-shrink: 0; }
-      .tk-list-title { flex: 1; min-width: 0; }
-      .tk-list-title .tk-year { color: var(--text-muted); font-weight: 400; }
-      .tk-list-score {
-        font-weight: 600; font-size: 0.78rem; padding: 2px 8px; border-radius: 999px;
-        background: var(--bg-subtle); color: var(--accent); white-space: nowrap;
-      }
-
-      .tk-empty { padding: 20px; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
-
-      /* ── Recommendations preview ── */
-      .tk-rec-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 6px; }
-      .tk-rec-card {
-        display: flex; gap: 14px; align-items: center; background: var(--bg-subtle);
-        border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px;
-        min-height: 96px; box-sizing: border-box;
-      }
-      .tk-rec-rank { font-family: var(--font-serif); font-weight: 700; font-size: 1.2rem; color: var(--border); width: 26px; flex-shrink: 0; text-align: center; }
-      .tk-rec-poster { width: 60px; height: 90px; border-radius: 6px; object-fit: cover; flex-shrink: 0; background: var(--bg-card); border: 1px solid var(--border); }
-      .tk-rec-poster-empty { border: 1px dashed var(--border); }
-      .tk-rec-body { flex: 1; min-width: 0; }
-      .tk-rec-title { font-weight: 600; font-size: 0.95rem; }
-      .tk-rec-title .tk-year { color: var(--text-muted); font-weight: 400; }
-      /* Every title in the app links out to its real Trakt page (or a
-         Trakt search, for a discovered candidate with no Trakt identity
-         yet) — same link treatment everywhere: inherits surrounding
-         text color/weight, only a hover underline hints it's clickable. */
-      .tk-trakt-link { color: inherit; text-decoration: none; }
-      .tk-trakt-link:hover { text-decoration: underline; color: var(--accent); }
-      .tk-rec-badge {
-        font-size: 0.64rem; font-weight: 600; padding: 2px 7px; border-radius: 999px;
-        background: var(--bg-card); color: var(--text-muted); margin-left: 8px; vertical-align: middle;
-      }
-      .tk-rec-meta { font-size: 0.78rem; color: var(--accent); margin-top: 4px; font-weight: 500; }
-      .tk-rec-reason { font-size: 0.8rem; color: var(--text-muted); margin-top: 3px; }
-      .tk-deepdive-btn {
-        display: inline-block; font-size: 0.72rem; font-weight: 600; color: var(--accent);
-        text-decoration: none; margin-top: 6px; padding: 3px 10px; border: 1px solid var(--accent);
-        border-radius: 999px;
-      }
-      .tk-deepdive-btn:hover { background: var(--accent); color: #fff; }
-      .tk-rec-score { font-family: var(--font-sans); font-weight: 600; font-size: 1.25rem; color: var(--accent); flex-shrink: 0; }
-      .tk-rec-seeall { font-size: 0.82rem; text-align: right; }
-      .tk-rec-seeall a { color: var(--accent); text-decoration: none; font-weight: 600; }
-      .tk-rec-seeall a:hover { text-decoration: underline; }
-
-      /* ── Metadata & Engine Quality dial (mirrors quality-dashboard.html's renderDial) ── */
-      :root {
-        --status-good: #0ca30c; --status-warning: #fab219;
-        --status-serious: #ec835a; --status-critical: #d03b3b;
-      }
-      .tk-quality-row { display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap; }
-      .tk-dial-wrap { position: relative; width: 180px; height: 180px; flex-shrink: 0; }
-      .tk-dial-center {
-        position: absolute; inset: 0; display: flex; flex-direction: column;
-        align-items: center; justify-content: center; text-align: center;
-      }
-      .tk-dial-number { font-family: var(--font-sans); font-weight: 700; font-size: 2.8rem; line-height: 1; }
-      .tk-dial-label { font-size: 0.66rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 2px; }
-      .tk-components { flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 12px; }
-      .tk-component-head { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px; }
-      .tk-component-head strong { font-weight: 600; color: var(--text); }
-      .tk-meter-track { height: 8px; border-radius: 5px; background: var(--bg-subtle); overflow: hidden; }
-      .tk-meter-fill { height: 100%; border-radius: 5px; }
-      .tk-quality-footnote {
-        font-size: 0.78rem; color: var(--text-muted); margin-top: 14px; padding-top: 12px;
-        border-top: 1px solid var(--border); line-height: 1.5;
-      }
-
-      /* ── Genre/creator/cast lists ── */
-      .tk-metric-row {
-        display: flex; align-items: center; justify-content: space-between; gap: 10px;
-        padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem;
-      }
-      .tk-metric-row:last-child { border-bottom: none; }
-      .tk-metric-poster { width: 38px; height: 57px; border-radius: 4px; object-fit: cover; flex-shrink: 0; background: var(--bg-subtle); border: 1px solid var(--border); }
-      .tk-metric-poster-empty { border: 1px dashed var(--border); }
-      .tk-metric-name { flex: 1; min-width: 0; }
-      .tk-metric-sub { color: var(--text-muted); font-size: 0.76rem; }
-      .tk-metric-score {
-        font-weight: 600; font-size: 0.8rem; padding: 2px 9px; border-radius: 999px;
-        background: var(--bg-subtle); color: var(--accent); white-space: nowrap;
-      }
-
-      .tk-crowd-stat { text-align: center; padding: 10px 0; }
-      .tk-crowd-number { font-family: var(--font-sans); font-weight: 700; font-size: 2.6rem; color: var(--accent); }
-      .tk-crowd-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
-      .tk-crowd-detail { font-size: 0.76rem; color: var(--text-muted); margin-top: 10px; }
-
-      /* ── All-titles table ── */
-      .tk-table-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
-      .tk-search {
-        font: inherit; font-size: 0.85rem; padding: 7px 12px; border: 1px solid var(--border);
-        border-radius: var(--radius); background: var(--bg-card); color: var(--text); flex: 1; max-width: 340px;
-      }
-      .tk-select {
-        font: inherit; font-size: 0.85rem; padding: 7px 10px; border: 1px solid var(--border);
-        border-radius: var(--radius); background: var(--bg-card); color: var(--text);
-      }
-      .tk-btn {
-        font: inherit; font-size: 0.8rem; padding: 7px 14px; border: 1px solid var(--border);
-        border-radius: var(--radius); background: #fff; color: var(--text); cursor: pointer;
-      }
-      .tk-btn:hover { border-color: var(--accent); }
-      .tk-btn.active { border-color: var(--accent); color: var(--accent); font-weight: 600; }
-      .tk-table-wrap { overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
-      table.tk-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
-      table.tk-table th, table.tk-table td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
-      .tk-table-poster { width: 40px; height: 60px; border-radius: 4px; object-fit: cover; display: block; background: var(--bg-subtle); border: 1px solid var(--border); }
-      table.tk-table th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); cursor: pointer; user-select: none; white-space: nowrap; }
-      table.tk-table th:hover { color: var(--accent); }
-      table.tk-table th.sorted::after { content: ' ▾'; }
-      table.tk-table th.sorted.asc::after { content: ' ▴'; }
-      table.tk-table tbody tr:hover { background: var(--bg-subtle); }
-      table.tk-table td.num { font-variant-numeric: tabular-nums; text-align: right; }
-      .tk-status-pill {
-        display: inline-flex; align-items: center; gap: 4px; font-size: 0.76rem; font-weight: 600;
-        padding: 2px 8px; border-radius: 999px; white-space: nowrap;
-      }
-      .tk-status-good { background: color-mix(in srgb, var(--status-good) 15%, transparent); color: var(--status-good); }
-      .tk-status-warning { background: color-mix(in srgb, var(--status-warning) 20%, transparent); color: #8a5c00; }
-      .tk-status-serious { background: color-mix(in srgb, var(--status-serious) 18%, transparent); color: #a3441f; }
-      .tk-status-critical { background: color-mix(in srgb, var(--status-critical) 15%, transparent); color: var(--status-critical); }
-      .tk-status-tag {
-        display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap;
-      }
-      .tk-status-tag-watched { background: color-mix(in srgb, var(--status-good) 15%, transparent); color: var(--status-good); }
-      .tk-status-tag-watchlist { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); }
-      .tk-status-tag-candidate { background: color-mix(in srgb, var(--status-warning) 20%, transparent); color: #8a5c00; }
-      .tk-status-tag-dismissed { background: color-mix(in srgb, var(--status-critical) 15%, transparent); color: var(--status-critical); }
-      .tk-status-tag-airing { background: color-mix(in srgb, var(--status-warning) 22%, transparent); color: #8a5c00; }
-      .tk-field-bar-track { width: 90px; height: 6px; border-radius: 4px; background: var(--bg-subtle); overflow: hidden; display: inline-block; vertical-align: middle; margin-right: 8px; }
-      .tk-field-bar-fill { height: 100%; border-radius: 4px; }
-      table.tk-table td.tk-genres { color: var(--text-muted); font-size: 0.78rem; }
-      .tk-field-note { color: var(--text-muted); font-size: 0.7rem; margin-top: 3px; max-width: 280px; }
-      .tk-imp-card { border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; }
-      .tk-imp-card:last-child { margin-bottom: 0; }
-      .tk-imp-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; cursor: pointer; }
-      .tk-imp-header .tk-status-pill, .tk-imp-header .tk-collapse-chevron { user-select: none; }
-      .tk-imp-header:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-      .tk-imp-title { font-weight: 700; font-size: 0.95rem; flex: 1 1 auto; min-width: 160px; }
-      .tk-imp-header .tk-collapse-chevron { font-size: 0.8rem; color: var(--text-muted); transition: transform 0.15s ease; margin-left: auto; }
-      .tk-imp-card.tk-imp-collapsed .tk-collapse-chevron { transform: rotate(-90deg); }
-      .tk-imp-card.tk-imp-collapsed .tk-imp-header { margin-bottom: 0; }
-      .tk-imp-card:not(.tk-imp-collapsed) .tk-imp-ratings { margin-top: 4px; }
-      .tk-imp-card.tk-imp-collapsed .tk-imp-details { display: none; }
-      .tk-imp-section-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); margin-bottom: 4px; margin-top: 10px; }
-      .tk-imp-section-label:first-of-type { margin-top: 0; }
-      .tk-imp-technical, .tk-imp-impact { font-size: 0.85rem; line-height: 1.55; }
-      .tk-imp-plain { font-size: 0.85rem; line-height: 1.55; background: var(--bg-subtle); border-radius: 8px; padding: 10px 12px; }
-      .tk-imp-ratings { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 10px; }
-      .tk-imp-rating { min-width: 0; }
-      .tk-imp-rating-label { font-size: 0.68rem; color: var(--text-muted); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .tk-imp-rating-track { height: 5px; border-radius: 3px; background: var(--bg-subtle); overflow: hidden; }
-      .tk-imp-rating-fill { height: 100%; border-radius: 3px; }
-      .tk-imp-rating-num { font-size: 0.7rem; font-weight: 600; color: var(--text); margin-top: 2px; }
-      @media (max-width: 640px) { .tk-imp-ratings { grid-template-columns: repeat(2, 1fr); } }
-      @media (max-width: 480px) {
-        .tk-metric-row { flex-wrap: wrap; }
-        .tk-metric-score { margin-left: 38px; }
-      }
+      .tk-progress-track { height: 4px; border-radius: 3px; background: var(--bg-subtle); overflow: hidden; margin-top: 5px; max-width: 200px; }
+      .tk-progress-fill { height: 100%; border-radius: 3px; background: var(--accent); }
     </style>
   </head>
   <body>
     <div class="app-shell">
       <header class="site-header">
         <div class="container header-inner">
-          <a class="header-quality-link" href="./recommend.html">Recommend →</a>
+          <span class="tk-nav-current">🍿 Discover</span>
+          <a class="header-quality-link" href="./quality.html">📋 Data Quality</a>
+          <a class="header-quality-link" href="./recommend.html">Full ranked list →</a>
           <a class="header-quality-link" href="../index.html">← Books</a>
           <div class="header-status">
             <span id="statusText">Loading…</span>
@@ -251,8 +79,23 @@
       </header>
 
       <div class="container" style="padding-top:24px;">
-        <div class="tk-title">📊 Bill's Trakt Dashboard</div>
+        <div class="tk-title">🍿 What to Watch</div>
         <div class="tk-subtitle" id="subtitleText">Loading…</div>
+        <div class="tk-taste-line" id="tasteLine"></div>
+
+        <div class="tk-card" style="margin-bottom: 24px;" id="heroPick"></div>
+
+        <div class="tk-card" style="margin-bottom: 24px;">
+          <div class="tk-card-heading">🎲 Surprise Me</div>
+          <div class="tk-card-note">Not feeling the top pick? Draw a random title from your real top 40 — weighted toward your best matches, not a flat coin flip.</div>
+          <div class="tk-chip-row">
+            <button class="tk-chip active" data-surprise-type="">Either</button>
+            <button class="tk-chip" data-surprise-type="movie">🎬 Movie</button>
+            <button class="tk-chip" data-surprise-type="show">📺 Show</button>
+          </div>
+          <button class="tk-btn tk-surprise-btn" id="surpriseBtn">🎲 Surprise me</button>
+          <div id="surpriseResult" hidden style="margin-top:14px;"></div>
+        </div>
 
         <div class="tk-row2" style="margin-bottom:14px;">
           <div class="tk-card">
@@ -266,6 +109,31 @@
         </div>
         <div class="tk-rec-seeall" style="margin-bottom:24px;"><a href="./recommend.html">See the full ranked watchlist →</a></div>
 
+        <div class="tk-row2" style="margin-bottom:14px;">
+          <div class="tk-card">
+            <div class="tk-card-heading">⏱️ Got Two Hours?</div>
+            <div class="tk-card-note">Movies ≤120 min from your real top picks.</div>
+            <div class="tk-shelf" id="quickWatchShelf"></div>
+          </div>
+          <div class="tk-card">
+            <div class="tk-card-heading">📦 Weekend Binge</div>
+            <div class="tk-card-note">Shows ≤10 episodes from your real top picks — short enough to actually finish.</div>
+            <div class="tk-shelf" id="bingeShelf"></div>
+          </div>
+        </div>
+
+        <div class="tk-card" style="margin-bottom: 24px;">
+          <div class="tk-card-heading">📼 Because You Loved…</div>
+          <div class="tk-card-note">Real picks connected to your real 10/10s via TMDB's own similar-title network — the same signal that drives your scores, just grouped by what earned it. Rotates daily.</div>
+          <div id="becauseYouLoved"></div>
+        </div>
+
+        <div class="tk-card" style="margin-bottom: 24px;">
+          <div class="tk-card-heading">▶️ Pick Up Where You Left Off</div>
+          <div class="tk-card-note">Shows you're mid-season on, sorted by how close you are to caught up.</div>
+          <div id="continueWatching"></div>
+        </div>
+
         <div class="tk-card" style="margin-bottom: 24px;">
           <div class="tk-card-heading">🕐 Currently Airing — You'll Love</div>
           <div class="tk-card-note">Shows scored just as highly as anything above, pulled out of the "You'll Love" panels because their current season isn't fully out yet — you wait for a season to finish before starting it, so these wouldn't actually be watchable. Check back here once a season wraps.</div>
@@ -278,35 +146,6 @@
           <div class="tk-table-wrap"><table class="tk-table" id="airingFinaleTable"></table></div>
         </div>
 
-        <div class="tk-card">
-          <div class="tk-card-heading">📈 Metadata &amp; Engine Quality</div>
-          <div class="tk-card-note">How much real content data BMTRE actually has to work with — not data completeness in general, but whether the engine has what it needs to make good predictions.</div>
-          <div class="tk-quality-row" id="qualitySection"></div>
-          <div class="tk-quality-footnote" id="qualityFootnote"></div>
-        </div>
-
-        <div class="tk-card">
-          <div class="tk-card-heading">🎯 BMTRE Accuracy Score</div>
-          <div class="tk-card-note">Not data completeness — whether the engine's actual predictions are good. Leave-one-out evaluation (each watched+rated title scored by a version of the index that excludes it, so its own rating can never leak into its own signal) over every real watched+rated title, mirroring the book side's <code>scripts/eval.js</code> — the #1 gap this dashboard flagged since Session 51.</div>
-          <div class="tk-quality-row" id="bmtreAccuracySection"></div>
-          <div class="tk-quality-footnote" id="bmtreAccuracyFootnote"></div>
-        </div>
-
-        <div class="tk-tiles" id="statTiles"></div>
-
-        <div class="tk-row2" style="margin-bottom:14px;">
-          <div class="tk-card">
-            <div class="tk-card-heading">Predicted Score Distribution — Movies</div>
-            <div class="tk-card-note" id="scoreDistMovieNote">Loading…</div>
-            <div class="tk-chart-wrap" id="scoreDistMovieChart"></div>
-          </div>
-          <div class="tk-card">
-            <div class="tk-card-heading">Predicted Score Distribution — Shows</div>
-            <div class="tk-card-note" id="scoreDistShowNote">Loading…</div>
-            <div class="tk-chart-wrap" id="scoreDistShowChart"></div>
-          </div>
-        </div>
-
         <div class="tk-card-note" id="genreSectionScopeNote" style="margin-bottom:14px;"></div>
 
         <div class="tk-row2">
@@ -316,56 +155,27 @@
             <div class="tk-chart-wrap" id="genreChart"></div>
           </div>
           <div class="tk-card">
-            <div class="tk-card-heading">Biggest Prediction Misses</div>
-            <div class="tk-card-note">Where the engine's predicted score disagrees most with your actual rating, among watched titles — an honest look at where the model is wrong, not just where it's right.</div>
-            <div class="tk-list" id="predictionMissesList"></div>
-          </div>
-        </div>
-
-        <div class="tk-card">
-          <div class="tk-card-heading">Subjects</div>
-          <div class="tk-card-note">The real human-condition subject matter beneath genre/subgenre (addiction, grief, trauma, class, etc. — see the Field Population &amp; Quality section below for how this differs from genre). Top 20 by count. Distribution counts every watched/watchlisted/candidate title; Avg Rating and Top Titles are scoped to what you've actually watched and rated.</div>
-          <div class="tk-table-wrap"><table class="tk-table" id="subjectTable"></table></div>
-        </div>
-
-        <div class="tk-row2">
-          <div class="tk-card">
             <div class="tk-card-heading">Most-Watched Actors</div>
             <div class="tk-card-note">Top-billed cast, counted across every enriched watched title.</div>
             <div class="tk-list" id="castList"></div>
           </div>
+        </div>
+
+        <div class="tk-row2">
           <div class="tk-card">
             <div class="tk-card-heading">You vs. The Crowd</div>
             <div class="tk-card-note">Your rating vs. TMDB's average, for titles both have rated.</div>
             <div id="crowdCompare"></div>
           </div>
+          <div class="tk-card">
+            <div class="tk-card-heading">Best Matches</div>
+            <div class="tk-card-note">Watched titles where the engine's predicted score AND your actual rating both agree it's a great fit (predicted ≥ 70, rated ≥ 8/10) — the real evidence for "the engine gets it right." Its honest counterpart, the biggest misses, lives on the <a href="./quality.html">Data Quality</a> page.</div>
+            <div class="tk-list" id="bestMatchesList"></div>
+          </div>
         </div>
 
-        <div class="tk-card">
-          <div class="tk-card-heading">Best Matches</div>
-          <div class="tk-card-note">Watched titles where the engine's predicted score AND your actual rating both agree it's a great fit (predicted ≥ 70, rated ≥ 8/10) — the real evidence for "the engine gets it right."</div>
-          <div class="tk-list" id="bestMatchesList"></div>
-        </div>
-
-        <div class="tk-card" id="dismissalsCard">
-          <div class="tk-card-heading">Dismissal Reasons</div>
-          <div class="tk-card-note">Why titles got excluded from recommendations, tracked from real feedback — feeds the taste model directly (each exclusion is checked against Bill's actual rating history before it's ever generalized into a scoring signal, not applied on category alone).</div>
-          <div class="tk-chart-wrap" id="dismissalChart"></div>
-        </div>
-
-        <div class="tk-card">
-          <div class="tk-card-heading">📋 Field Population &amp; Quality</div>
-          <div class="tk-card-note"><strong>% Populated</strong> is whether a field has any value at all; <strong>% Quality</strong> is stricter — whether that value actually clears a field-specific usefulness bar (e.g. 2+ genre tags, not just 1, or both a Rotten Tomatoes and a Metacritic score, not just one) and, for genre/subgenre/tone/subject/era, whether the field's whole value distribution is actually granular rather than dominated by one mega-value (Specificity, a normalized-entropy score comparing the real distribution to a perfectly even one) — so a field can be fully populated with every row "valid" and still score low if what's there isn't good enough to trust or isn't specific enough to be useful.</div>
-          <div class="tk-card-note" id="fieldQualityNote">Loading…</div>
-          <div class="tk-table-wrap"><table class="tk-table" id="fieldQualityTable"></table></div>
-        </div>
-
-        <div class="tk-card">
-          <div class="tk-card-heading">🛠️ Improvement Opportunities</div>
-          <div class="tk-card-note">Findings from a full code review of everything under <code>trakt/</code> plus real gaps in the scoring model itself — code-correctness bugs and unused/missing signals together, ranked by real impact on data quality and recommendation accuracy, the same kind of iterative refinement history <a href="../index.html" target="_blank">BBRE</a>, the book engine, went through across 40+ sessions. Each verified against live data, not guessed. Only open items are shown below — resolved ones are fixed and removed.</div>
-          <div class="tk-card-note" id="improvementResolvedNote"></div>
-          <div id="improvementList"></div>
-        </div>
+        <div class="tk-card-heading" style="margin: 8px 0 -4px;">Your Watching, by the Numbers</div>
+        <div class="tk-tiles" id="statTiles"></div>
 
         <div class="tk-card" style="margin-bottom: 24px;">
           <div class="tk-card-heading"><span>All Titles (<span id="allTitlesCount">0</span>)</span></div>
@@ -400,6 +210,6 @@
       </div>
     </div>
 
-    <script type="module" src="./dashboard.js"></script>
+    <script type="module" src="./discover.js"></script>
   </body>
 </html>

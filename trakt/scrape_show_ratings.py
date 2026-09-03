@@ -13,7 +13,7 @@ Results are cached separately in trakt/data/scrapedShowRatings.json
 (never blended into omdbMetadata.json itself, so the source of every
 value stays traceable — same discipline that keeps TMDB/OMDb/scraped
 data in three separate cache files throughout this project) and merged
-at read time by dashboard.js/recommend.js/prune_candidate_pool.js: OMDb's
+at read time by discover.js/quality.js/recommend.js/prune_candidate_pool.js: OMDb's
 own rottenTomatoes/metacritic values win when present (movies), this
 cache fills the gap only when OMDb has neither (mostly shows).
 
