@@ -9,6 +9,14 @@ on:
         description: 'Max new candidates to discover per type (movie/show) this run'
         type: number
         default: 30
+      explore_max_new_per_type:
+        description: 'Max new genre-explore candidates to discover per type this run (independent of the similarity-graph discovery above - see discover_explore.py)'
+        type: number
+        default: 20
+      explore_top_genres_per_type:
+        description: 'How many of Bill''s real top loved genres to query TMDB /discover against, per type'
+        type: number
+        default: 4
       enrich_batch_size:
         description: 'How many titles enrich_tmdb.py should process this run'
         type: number
@@ -34,6 +42,12 @@ jobs:
 
       - name: Discover new candidates from loved titles' TMDB similar/recommendations network
         run: node trakt/scripts/discover_candidates.js ${{ inputs.max_new_per_type || 30 }}
+
+      - name: Discover new candidates from TMDB's genre-filtered /discover endpoint (independent of the similarity graph above)
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: python3 trakt/discover_explore.py ${{ inputs.explore_max_new_per_type || 20 }} ${{ inputs.explore_top_genres_per_type || 4 }}
+        timeout-minutes: 10
 
       - name: Enrich newly-discovered candidates via TMDB
         env:
