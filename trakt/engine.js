@@ -2901,7 +2901,9 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
 export function rankRecommendations(library, watchlist, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}, llmTags = {}, reviewedTags = {}) {
   const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags);
 
-  const candidates = (watchlist.titles || []).filter(c => !idx.excluded.has(c.titleKey));
+  // See the matching comment on rankAll()'s fromWatchlist below for why
+  // a watchlist entry also needs to check idx.watched, not just excluded.
+  const candidates = (watchlist.titles || []).filter(c => !idx.excluded.has(c.titleKey) && !idx.watched.has(c.titleKey));
   const scored = candidates.map(c => {
     const { raw, clamped } = matchScorePair(c, idx, enrichedMeta, omdbMeta);
     return {
@@ -2953,8 +2955,16 @@ export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedbac
   // clamped value) isn't used here.
   const byScore = (a, b) => (b.bmtreScoreRaw - a.bmtreScoreRaw) || (b.confidenceScore - a.confidenceScore);
 
+  // A watchlist entry can go stale the same way a candidate can (Session
+  // 48 already defended fromCandidates below against this): Bill watches
+  // and rates something on Trakt directly without also removing it from
+  // his Trakt watchlist — Trakt treats watched-history and watchlist as
+  // independent lists, so this is real, current data, not corrupted
+  // input (e.g. "The Lowdown," rated 9/10 in library.json, still sitting
+  // in watchlist.json). Without this check it would show up as a "new
+  // pick" for a show Bill has already seen and rated.
   const fromWatchlist = (watchlist.titles || [])
-    .filter(c => !idx.excluded.has(c.titleKey))
+    .filter(c => !idx.excluded.has(c.titleKey) && !idx.watched.has(c.titleKey))
     .map(c => scoreOne(c, 'watchlist'))
     .sort(byScore);
 

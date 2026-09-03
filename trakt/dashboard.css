@@ -157,11 +157,6 @@
         background: var(--bg-subtle); color: var(--accent); white-space: nowrap;
       }
 
-      .tk-crowd-stat { text-align: center; padding: 10px 0; }
-      .tk-crowd-number { font-family: var(--font-sans); font-weight: 700; font-size: 2.6rem; color: var(--accent); }
-      .tk-crowd-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
-      .tk-crowd-detail { font-size: 0.76rem; color: var(--text-muted); margin-top: 10px; }
-
       /* ── All-titles table ── */
       .tk-table-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
       .tk-search {
