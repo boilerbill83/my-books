@@ -168,6 +168,19 @@ def extract_entry(kind, data):
             'episodeNumber': next_ep.get('episode_number'),
         } if next_ep else None
 
+        # Bill: Matlock is "a network show aimed at an older audience" -
+        # asked to capture and downgrade that pattern. TMDB's own
+        # `networks` field (CBS/NBC/ABC/Fox/The CW = broadcast vs. Netflix/
+        # HBO/Apple TV+/etc. = streaming/cable) is a real, orthogonal-to-
+        # genre signal never captured before now - genre-based attempts at
+        # this exact idea (too_urban, too_low_brow reason codes in
+        # feedbackData.json) were already tried and reverted because Bill's
+        # own loved titles share the same genres/subgenres a genre penalty
+        # would hit. Whether broadcast-network status actually correlates
+        # with Bill's real ratings needs checking against his real data
+        # before any engine.js signal is built on it - not assumed here.
+        entry['networks'] = [n['name'] for n in (data.get('networks') or [])]
+
     return entry
 
 
