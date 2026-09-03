@@ -16,7 +16,7 @@ on:
       cap_per_type:
         description: 'Candidate pool cap per type (movies/shows), lowest scorers evicted beyond this'
         type: number
-        default: 100
+        default: 200
 
 jobs:
   discover:
@@ -50,7 +50,7 @@ jobs:
         # candidate, so a failed enrich step just means this week's new
         # stubs sit unscored (kept) until a future run enriches them.
         if: always()
-        run: node trakt/scripts/prune_candidate_pool.js ${{ inputs.cap_per_type || 100 }}
+        run: node trakt/scripts/prune_candidate_pool.js ${{ inputs.cap_per_type || 200 }}
 
       - name: Commit if changed
         if: always()

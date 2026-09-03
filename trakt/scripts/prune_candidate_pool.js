@@ -1,7 +1,9 @@
 #!/usr/bin/env node
-// Caps trakt/data/candidatePool.json at a fixed size per type (default 100
-// movies + 100 shows), keeping the highest-scoring candidates and evicting
-// the lowest. Scores use the exact same matchScore()/buildIndexes() engine
+// Caps trakt/data/candidatePool.json at a fixed size per type (default 200
+// movies + 200 shows - doubled from the original 100/100 per Bill's
+// explicit request for a bigger candidate pool), keeping the highest-
+// scoring candidates and evicting the lowest. Scores use the exact same
+// matchScore()/buildIndexes() engine
 // trakt/engine.js's rankAll() uses to render "New pick" cards, so a
 // candidate's eviction risk always matches what it would actually show on
 // the dashboard - no separate ranking logic to drift out of sync.
@@ -43,7 +45,7 @@ import { buildIndexes, matchScorePair, hydrateTitle, isPreMillenniumMovie, isAni
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..', '..');
 const DATA_DIR = path.join(ROOT, 'trakt', 'data');
-const CAP_PER_TYPE = parseInt(process.argv[2], 10) || 100;
+const CAP_PER_TYPE = parseInt(process.argv[2], 10) || 200;
 
 const readJSON = (p, fallback) => {
   try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return fallback; }
