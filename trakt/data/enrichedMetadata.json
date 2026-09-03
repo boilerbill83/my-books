@@ -352274,5 +352274,329 @@
   "year": 1972,
   "type": "movie",
   "fetchedAt": "2026-09-03"
+ },
+ "show:299939": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "Trapped in a cruel Victorian-era household, Lizzie Borden kills her parents in a gory ax murder that shocks the nation.",
+  "keywords": [
+   "massachusetts",
+   "murder",
+   "miniseries",
+   "19th century",
+   "crime",
+   "axe"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "",
+  "voteAverage": 0.0,
+  "voteCount": 0,
+  "popularity": 7.5087,
+  "posterPath": "/57XScX1aYtKi1LvHYFQLPUxVhTG.jpg",
+  "similarToIds": [
+   238337,
+   238339,
+   554,
+   238151,
+   28599,
+   352,
+   514,
+   58808,
+   124374,
+   124416,
+   91827,
+   206402,
+   124189,
+   28527,
+   28574,
+   58757,
+   304556,
+   304561,
+   28804,
+   58950
+  ],
+  "recommendedIds": [
+   156946,
+   124800,
+   248416,
+   286801,
+   280511,
+   287238,
+   220801,
+   65784,
+   270734,
+   99346,
+   105804,
+   213306,
+   220056,
+   68315,
+   72742,
+   245773,
+   225634,
+   3476,
+   277439,
+   155533
+  ],
+  "citedVoteCounts": {
+   "238337": 1,
+   "238339": 43,
+   "554": 9,
+   "238151": 107,
+   "28599": 18,
+   "352": 16,
+   "514": 8,
+   "58808": 50,
+   "124374": 2,
+   "124416": 128,
+   "91827": 10,
+   "206402": 6,
+   "124189": 3,
+   "28527": 3,
+   "28574": 10,
+   "58757": 1,
+   "304556": 0,
+   "304561": 1,
+   "28804": 2,
+   "58950": 10,
+   "156946": 39,
+   "124800": 503,
+   "248416": 51,
+   "286801": 551,
+   "280511": 50,
+   "287238": 89,
+   "220801": 533,
+   "65784": 350,
+   "270734": 56,
+   "99346": 247,
+   "105804": 240,
+   "213306": 319,
+   "220056": 192,
+   "68315": 859,
+   "72742": 80,
+   "245773": 46,
+   "225634": 542,
+   "3476": 143,
+   "277439": 169,
+   "155533": 98
+  },
+  "topCast": [
+   "Ella Beatty",
+   "Vicky Krieps",
+   "Sarah Paulson",
+   "Charlie Hunnam",
+   "Rebecca Hall"
+  ],
+  "topCastDetail": [
+   {
+    "id": 4481381,
+    "name": "Ella Beatty",
+    "gender": 1
+   },
+   {
+    "id": 1080195,
+    "name": "Vicky Krieps",
+    "gender": 1
+   },
+   {
+    "id": 34490,
+    "name": "Sarah Paulson",
+    "gender": 1
+   },
+   {
+    "id": 56365,
+    "name": "Charlie Hunnam",
+    "gender": 2
+   },
+   {
+    "id": 15556,
+    "name": "Rebecca Hall",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2026-09-17",
+  "episodeRunTime": null,
+  "createdBy": [
+   "Ian Brennan"
+  ],
+  "status": "Returning Series",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 8,
+  "nextEpisodeToAir": {
+   "airDate": "2026-09-17",
+   "seasonNumber": 1,
+   "episodeNumber": 1
+  },
+  "currentSeasonFinale": {
+   "seasonNumber": 1,
+   "episodeCount": 8,
+   "finaleEpisodeNumber": 8,
+   "finaleDate": "2026-09-17"
+  },
+  "networks": [
+   "Netflix"
+  ],
+  "title": "Monster: Lizzie Borden",
+  "year": 2026,
+  "type": "show",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:780609": {
+  "genres": [
+   "Horror",
+   "Thriller",
+   "Fantasy"
+  ],
+  "overview": "In the aftermath of a personal tragedy, Harper retreats alone to the beautiful English countryside, hoping to find a place to heal. But someone \u2014 or something \u2014 from the surrounding woods appears to be stalking her, and what begins as simmering dread becomes a fully-formed nightmare, inhabited by her darkest memories and fears.",
+  "keywords": [
+   "countryside",
+   "vacation",
+   "woods",
+   "flashback",
+   "church",
+   "police officer",
+   "apple tree",
+   "grieving",
+   "intruder",
+   "body horror",
+   "pub",
+   "loss of husband",
+   "house rental"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt13841850",
+  "voteAverage": 6.061,
+  "voteCount": 1399,
+  "popularity": 7.3104,
+  "posterPath": "/jo1Kv3P3UgDVk7JnUFr2Cl8WWUM.jpg",
+  "similarToIds": [
+   22825,
+   22970,
+   284303,
+   284305,
+   23202,
+   284270,
+   645046,
+   466565,
+   1220685,
+   466980,
+   24124,
+   1415147,
+   467940,
+   24648,
+   286371,
+   25713,
+   1417120,
+   63,
+   162
+  ],
+  "recommendedIds": [
+   514593,
+   2668,
+   1368314,
+   675531,
+   782936,
+   1127175,
+   621151,
+   1081208,
+   660335,
+   13549,
+   740903,
+   1282980,
+   11427,
+   1338972,
+   1063877,
+   431185,
+   1353117,
+   49365,
+   74725,
+   630586
+  ],
+  "citedVoteCounts": {
+   "22825": 1936,
+   "22970": 8774,
+   "284303": 1735,
+   "284305": 331,
+   "23202": 2121,
+   "284270": 256,
+   "645046": 3,
+   "466565": 272,
+   "1220685": 0,
+   "466980": 57,
+   "24124": 471,
+   "1415147": 0,
+   "467940": 1,
+   "24648": 50,
+   "286371": 13,
+   "25713": 37,
+   "1417120": 1,
+   "63": 9348,
+   "162": 14001,
+   "514593": 1009,
+   "2668": 7536,
+   "1368314": 822,
+   "675531": 328,
+   "782936": 220,
+   "1127175": 51,
+   "621151": 469,
+   "1081208": 69,
+   "660335": 198,
+   "13549": 286,
+   "740903": 107,
+   "1282980": 86,
+   "11427": 620,
+   "1338972": 60,
+   "1063877": 1050,
+   "431185": 346,
+   "1353117": 166,
+   "49365": 138,
+   "74725": 909,
+   "630586": 1379
+  },
+  "topCast": [
+   "Jessie Buckley",
+   "Rory Kinnear",
+   "Paapa Essiedu",
+   "Gayle Rankin",
+   "Sarah Twomey"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1498158,
+    "name": "Jessie Buckley",
+    "gender": 1
+   },
+   {
+    "id": 139549,
+    "name": "Rory Kinnear",
+    "gender": 2
+   },
+   {
+    "id": 1611824,
+    "name": "Paapa Essiedu",
+    "gender": 2
+   },
+   {
+    "id": 1782144,
+    "name": "Gayle Rankin",
+    "gender": 1
+   },
+   {
+    "id": 1977143,
+    "name": "Sarah Twomey",
+    "gender": 0
+   }
+  ],
+  "releaseDate": "2022-05-20",
+  "runtime": 100,
+  "director": "Alex Garland",
+  "directors": [
+   "Alex Garland"
+  ],
+  "belongsToCollection": null,
+  "title": "Men",
+  "year": 2022,
+  "type": "movie",
+  "fetchedAt": "2026-09-03"
  }
 }
