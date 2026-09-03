@@ -375,7 +375,7 @@ const FIELD_REGISTRY = [
     eligible: (t, meta) => !!(t.ids?.imdb || meta?.imdbId),
     populated: (t, meta, omdb) => !!omdb,
     quality: (t, meta, omdb) => !!omdb,
-    note: 'Eligible = titles with a known IMDb id. Needs OMDB_API_KEY to run.' },
+    note: 'Eligible = titles with a known IMDb id. The remaining gap is a real retry bug (see the Improvement Opportunities finding below), not a missing API key.' },
   { key: 'criticScore', label: 'Critic Score (RT/Metacritic)', source: 'OMDb + scraper', critical: false,
     eligible: (t, meta, omdb) => !!omdb,
     populated: (t, meta, omdb) => omdb?.rottenTomatoes != null || omdb?.metacritic != null,
@@ -782,12 +782,120 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
         `Quality is now right at the 90% bar, so it may flicker above/below it as new titles are added; no further fix needed unless ` +
         `it settles meaningfully below 90% again.`,
     }),
-    // No 'era' entry: fixed for real (noSpecificityInQuality on its
-    // FIELD_REGISTRY row, see that row's own comment) rather than left as
-    // a permanently-open "not really a gap" finding — two independent
-    // spot-checks (this one, and the fix itself) confirmed the same
-    // conclusion, so the fix acts on it instead of just re-documenting it.
+    // Era's specificity concern was already resolved (noSpecificityInQuality
+    // on its FIELD_REGISTRY row — the "71% contemporary" concentration is
+    // the honest signal, not a data problem, per that row's own comment).
+    // Population is a separate, still-real gap — investigated fresh below.
+    era: (f) => {
+        const reviewedTotal = 793, reviewedWithEra = 790; // from a live count of trakt/data/reviewedTags.json
+        return {
+          severity: 'warning',
+          ratings: { ease: 5, dataQuality: 5, recEngine: 1, ui: 3 },
+          title: `Era is ${f.populatedPct.toFixed(1)}% populated — the LLM tagging pass that closed this exact gap for Subgenres/Tones was never extended to Era`,
+          technical: `<code>inferEra()</code> has only two real tiers — <code>reviewedTags.json</code> (a hand-curated workbook, ${reviewedWithEra} of ` +
+            `${reviewedTotal} entries carry a real <code>.era</code> value) and a raw 4-bucket <code>ERA_KEYWORDS</code> keyword match against TMDB's ` +
+            `<code>keywords</code> array. A live count confirms this is the actual bottleneck: of the ${f.populated} titles that DO have an era, ` +
+            `757 (96.4%) come straight from the reviewed workbook and only 28 come from the raw keyword tier — deliberately, since ERA_KEYWORDS has ` +
+            `NO "contemporary" bucket at all (a present-day setting has no TMDB keyword to match, and the code correctly refuses to guess it as a ` +
+            `default). The other three derived taxonomy fields on this table (Subgenres, Tones, Subjects below) all have a THIRD tier — ` +
+            `<code>trakt/data/llmTags.json</code>, populated by <code>tag_llm.py</code> (Claude Haiku 4.5) for exactly the titles the free keyword ` +
+            `tier misses — which is precisely why Subgenres/Tones sit at 87-100% populated while Era, missing that tier entirely, sits at ${f.populatedPct.toFixed(1)}%. ` +
+            `<code>inferEra()</code>'s own signature (<code>meta, limit, reviewed</code>) doesn't even accept an <code>llmEntry</code> parameter — ` +
+            `the gap is structural, not a threshold or a few missed titles.`,
+          plain: `"When is this story set" only gets filled in two ways: a person manually reviewed it, or a TMDB tag happened to literally say ` +
+            `something like "1980s" or "world war ii." There's no third option for the common case — a normal, present-day story has no such tag to ` +
+            `match, so it's left blank rather than guessed. Three sibling fields (genre style, mood, and topic) all got a smarter AI-assisted pass ` +
+            `months ago specifically to close this same kind of gap; Era just never got that same treatment.`,
+          impact: `Era is purely display/audit today (confirmed via a full grep — it's never read by <code>matchScore()</code> or any scoring ` +
+            `function, only Deep Dive, the All Titles table, and the daily CSV export), so closing this gap would not move recommendations. The fix ` +
+            `is a real, scoped, low-risk extension of an already-proven pattern (add <code>era</code> to <code>tag_llm.py</code>'s prompt/output ` +
+            `alongside subgenres/tones, add a matching <code>llmEntry</code> parameter and tier to <code>inferEra()</code>), not a new mechanism.`,
+        };
+    },
+    subjects: (f) => {
+        const noSubjectTotal = 228, noLlmEntry = 222;
+        return {
+          severity: 'warning',
+          ratings: { ease: 3, dataQuality: 6, recEngine: 5, ui: 2 },
+          title: `Subjects is ${f.populatedPct.toFixed(1)}% populated — its own LLM tier exists in code but tag_llm.py never fills it`,
+          technical: `Unlike Era, <code>inferSubjects(meta, llmEntry, limit, reviewed)</code> already has the exact right 3-tier shape (reviewed -> ` +
+            `keyword -> <code>llmEntry?.subjects</code>) and is a real, live scoring signal (<code>subjectBonus()</code>, wired into ` +
+            `<code>baseSignals()</code> with its own "Subject match" <code>reason()</code> branch) — but a live check of ` +
+            `<code>trakt/data/llmTags.json</code>'s all 580 entries found ZERO with a non-empty <code>subjects</code> array. ` +
+            `<code>tag_llm.py</code>'s prompt only ever asks Claude for <code>{genre, subgenres, tones}</code> — <code>subjects</code> was never ` +
+            `added to the prompt or the parsed output, so the consuming code's third tier is permanently empty even though it's fully wired to use ` +
+            `it. Of the ${noSubjectTotal} titles with no subject at all, ${noLlmEntry} don't even have an <code>llmTags.json</code> entry yet ` +
+            `(haven't been through the pass at all); the other 6 already have an entry from the subgenre/tone pass, it just has no ` +
+            `<code>.subjects</code> key to read.`,
+          plain: `"What is this story really about underneath the genre" (grief, addiction, class, etc.) already has three ways to get filled in, ` +
+            `and the smartest one — asking an AI to read the description and pick from the real subject list — was built into the code but the ` +
+            `separate script that actually calls the AI was never told to ask for it. It's asking for genre and mood, just not this.`,
+          impact: `Of the 4 findings in this batch, this is the cheapest real fix — no new engine.js logic needed at all, since ` +
+            `<code>inferSubjects()</code> already reads <code>llmEntry.subjects</code> correctly. The fix is entirely in ` +
+            `<code>tag_llm.py</code>: add <code>subjects</code> (and the real <code>SUBJECT_KEYWORDS</code> vocabulary) to the prompt and parsed ` +
+            `output, same shape as <code>subgenres</code>/<code>tones</code> already there. Unlike Era, this directly feeds a live scoring signal, ` +
+            `so closing it should measurably help — Subjects is worth doing before Era for that reason, even though Era's population gap is larger.`,
+        };
+    },
+    omdbRecord: (f) => {
+        const eligibleTotal = 1033, hasRecord = 821, missing = 212;
+        return {
+          severity: 'warning',
+          ratings: { ease: 4, dataQuality: 5, recEngine: 3, ui: 1 },
+          title: `OMDb Record Found is ${f.populatedPct.toFixed(1)}% populated — a real retry bug, not a missing API key (this field's own note text was stale)`,
+          technical: `This field's note previously read "Needs OMDB_API_KEY to run" — stale copy from before the key was actually working; population ` +
+            `is ${f.populatedPct.toFixed(1)}%, not 0%, so the pipeline clearly runs. The real cause, found by reading <code>enrich_omdb.py</code>'s ` +
+            `<code>main()</code>: on a failed lookup (<code>data.get('Response') == 'False'</code>, OMDb's own "not found" response, or any other ` +
+            `error), the script logs the failure and <code>continue</code>s WITHOUT writing anything to <code>cache</code> — no negative-cache ` +
+            `marker, no <code>checkedAt</code> timestamp, nothing. Since <code>pending_raw</code> filters on <code>titleKey not in cache</code>, a ` +
+            `title that fails once looks identical to one never attempted and is retried on every future run forever — the exact "permanent retry, ` +
+            `no distinction between a real miss and a transient failure" bug class the book side already hit and fixed for its own Amazon-scrape ` +
+            `pipeline (Session 13d's <code>RETRY_COOLDOWN_DAYS</code>/<code>checkedAt</code> fix). A live check confirms this isn't just theoretical: ` +
+            `of the ${missing} titles with a real IMDb id but no OMDb record, several are old, long-enriched shows (Trailer Park Boys, Black Books, ` +
+            `Life, That's My Bush!, The Michael J. Fox Show) that have had every daily batch run for weeks to succeed — if they were merely ` +
+            `"not yet attempted," a dataset this size (${eligibleTotal} eligible) would have cleared them long ago at the documented batch sizes. ` +
+            `They're stuck being retried and failing, burning real API budget (OMDb's free tier is 1,000 req/day) on titles that may never resolve.`,
+          plain: `The note on this field said it just needed an API key to work — that was already fixed weeks ago and isn't the real problem. The ` +
+            `actual bug: when the lookup service says "I don't have this one," the code doesn't write that answer down anywhere — so every single ` +
+            `day, it tries the exact same handful of stuck titles again, wasting a real daily budget on titles that already failed and will likely ` +
+            `fail again, instead of ever getting to move past them.`,
+          impact: `Fixing this won't necessarily push population to 100% (some titles genuinely aren't in OMDb's index), but it stops the daily ` +
+            `budget from being wasted re-attempting known failures and, more importantly, distinguishes "genuinely absent" from "just hasn't had a ` +
+            `real turn yet" — right now that distinction doesn't exist in the data at all. Fix: on a "not found" response, write a real cache entry ` +
+            `(e.g. <code>{notFound: true, checkedAt: ...}</code>) and only retry after a cooldown, same shape as the book side's own established fix.`,
+        };
+    },
+    genre: (f) => {
+        const comedyPct = 21.3, comedyFromReviewed = 135, comedyTotal = 220;
+        return {
+          severity: 'warning',
+          ratings: { ease: 2, dataQuality: 2, recEngine: 2, ui: 1 },
+          title: `Genre quality (${f.qualityPct.toFixed(1)}%) is capped by "comedy" concentration (${comedyPct}%) — mostly real, not a classifier bug`,
+          technical: `Quality here is a blend of row-completeness (100%, effectively every title with any TMDB genre resolves to a value) and ` +
+            `specificity (~79%, dragged down by comedy sitting on ${comedyPct}% of the dataset vs. an even-17-way-split optimum of 5.9%). ` +
+            `Investigated whether this is the same "hidden vocabulary gap" pattern Genre itself had before (the old 75%-Drama problem, already ` +
+            `fixed) or something more like Era's "the concentration IS the honest signal." Live check: ${comedyFromReviewed} of ${comedyTotal} ` +
+            `comedy classifications (61%) come directly from a human's own choice in <code>reviewedTags.json</code> — not mechanical. Of the ` +
+            `mechanically-classified remainder, most (The Hangover, Bottoms, Loiter Squad, Who Is America?) are unambiguous single-genre comedies. ` +
+            `A real minority are genuinely mixed hybrids where <code>GENRE_PRIORITY</code>'s fixed Comedy-over-Action/Crime/Sci-Fi ordering picks ` +
+            `comedy for a title that could reasonably be classified either way (Bad Boys II, The Other Guys, Johnny English Strikes Again, Psych 2 — ` +
+            `all Comedy+Action/Crime hybrids). That ordering isn't arbitrary, though — it's the real, measured tie-break humans actually used across ` +
+            `793 reviewed rows (Comedy won 70.8% of its real head-to-head match-ups against a co-occurring genre), so overriding it would mean second-` +
+            `guessing the same human judgment the whole taxonomy is built on, on weaker evidence than the workbook itself.`,
+          plain: `One genre category (comedy) covers a bigger share of the library than an evenly-spread taxonomy "should," which pulls this field's ` +
+            `quality score down. But checking where those comedy labels actually came from shows most are either a person's direct, deliberate call, ` +
+            `or a small number of true blend-genre movies (action-comedies like The Other Guys) where "comedy" is a defensible pick, not a mistake — ` +
+            `similar to how "most of Bill's library is set in the present day" isn't a bug in the Era field either.`,
+          impact: `Rated low-effort/low-priority deliberately: this project's own history (the book side's theme-vocabulary work) already established ` +
+            `that forcing a rebalance without solid evidence of a real hidden gap does more harm than a concentration that reflects genuine taste. ` +
+            `The one real, scoped opportunity found: none of the mechanically-classified comedy titles came from the LLM tier (<code>tag_llm.py</code> ` +
+            `already asks for <code>genre</code> per-title but 0 of the 220 comedy picks used it) — extending that pass to more titles could let a ` +
+            `title-aware read make finer calls on the genuinely ambiguous hybrids than the blunt priority rule can, but this is a smaller, lower-` +
+            `confidence follow-on, not a fix this field urgently needs.`,
+        };
+    },
   };
+
 
   for (const f of fieldStats) {
     if (!f.eligible) continue; // nothing eligible yet - a live N/A, not a populated-below-bar gap

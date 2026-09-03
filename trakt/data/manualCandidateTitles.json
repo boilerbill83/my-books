@@ -1,10 +1,10 @@
 {
-  "movies": [],
+  "movies": ["Palm Springs"],
   "shows": [
     "Mr. & Mrs. Smith", "Parish", "Missing You", "Dept. Q", "The Better Sister",
     "The Survivors", "Matlock", "Queenie", "English Teacher", "Expats", "Shogun",
     "Butterfly", "Secret Service", "Hostage", "Demascus", "The Other Bennet Sister",
     "Mob War: Philadelphia vs. The Mafia", "Mafia: Most Wanted", "All's Fair",
-    "Losing Judgment", "Dalliance", "Chumbak", "Mousetrap"
+    "Losing Judgment", "Dalliance", "Chumbak", "Mousetrap", "Margot's Got Money Trouble"
   ]
 }
