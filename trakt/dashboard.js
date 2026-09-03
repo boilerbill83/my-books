@@ -681,6 +681,116 @@ function renderAiringSoonList(fromWatchlist, fromCandidates, enrichedMeta) {
   }).join('');
 }
 
+// Bill: "add a new table to the dashboard with all shows currently airing;
+// along with the season finale date; and a countdown to how many days
+// until that happens." Broader than the "Currently Airing — You'll Love"
+// list above (which only covers unwatched recommendation candidates,
+// scored) — this covers every show Bill is actually tracking (library +
+// watchlist) that isActivelyAiring() confirms is genuinely mid-season
+// right now, regardless of predicted score. Reads currentSeasonFinale
+// (enrich_tmdb.py's own comment explains why the finale needs a second,
+// season-detail TMDB call — next_episode_to_air only ever names the
+// single next episode, not the season's last one). finaleDate can be
+// null (TMDB hasn't scheduled that far into the season yet) — shown
+// honestly as "TBD" rather than guessed at.
+function computeCurrentlyAiringShows(library, watchlist, enrichedMeta) {
+  const rows = [];
+  for (const [list, origin] of [[library.titles, 'Library'], [watchlist.titles, 'Watchlist']]) {
+    for (const t of list) {
+      if (t.type !== 'show') continue;
+      if (!isActivelyAiring(t, enrichedMeta)) continue;
+      const meta = enrichedMeta[t.titleKey] || {};
+      const next = meta.nextEpisodeToAir;
+      const finale = meta.currentSeasonFinale;
+      let daysUntilFinale = null;
+      if (finale?.finaleDate) {
+        const today = new Date(); today.setHours(0, 0, 0, 0);
+        const finaleD = new Date(finale.finaleDate + 'T00:00:00');
+        daysUntilFinale = Math.round((finaleD - today) / 86400000);
+      }
+      rows.push({
+        type: 'show', titleKey: t.titleKey, title: t.title, year: t.year, ids: t.ids,
+        origin,
+        season: next?.seasonNumber ?? finale?.seasonNumber ?? null,
+        nextEpisode: next?.episodeNumber ?? null,
+        nextEpisodeDate: next?.airDate ?? null,
+        finaleEpisode: finale?.finaleEpisodeNumber ?? null,
+        finaleDate: finale?.finaleDate ?? null,
+        daysUntilFinale,
+      });
+    }
+  }
+  return rows;
+}
+
+function renderAiringFinaleTable(rows) {
+  const table = document.getElementById('airingFinaleTable');
+  if (!rows.length) {
+    table.parentElement.innerHTML = '<div class="tk-empty">Nothing you\'re tracking is actively airing right now.</div>';
+    return;
+  }
+  const columns = [
+    { label: 'Show', get: r => r.title,
+      render: (td, r) => { td.innerHTML = `${typeIcon('show')} ${titleLink(r)}${r.year ? ` <span class="tk-metric-sub">(${esc(r.year)})</span>` : ''}`; } },
+    { label: 'Status', get: r => r.origin },
+    { label: 'Now Airing', get: r => (r.season ?? 0) * 1000 + (r.nextEpisode ?? 0), numeric: true,
+      render: (td, r) => { td.textContent = r.season != null && r.nextEpisode != null ? `S${r.season}E${r.nextEpisode}` : '—'; } },
+    { label: 'Next Episode', get: r => r.nextEpisodeDate || '',
+      render: (td, r) => { td.textContent = r.nextEpisodeDate || 'TBD'; } },
+    { label: 'Season Finale', get: r => r.finaleDate || (r.finaleEpisode ? '9999-99-99' : ''),
+      render: (td, r) => {
+        if (r.finaleDate) td.textContent = `${r.finaleDate} (S${r.season}E${r.finaleEpisode})`;
+        else if (r.finaleEpisode) td.textContent = `TBD (S${r.season}E${r.finaleEpisode})`;
+        else td.textContent = 'Unknown';
+      } },
+    { label: 'Days Until Finale', get: r => r.daysUntilFinale ?? Infinity, numeric: true,
+      render: (td, r) => {
+        td.className = 'num';
+        td.textContent = r.daysUntilFinale == null ? '—' : (r.daysUntilFinale <= 0 ? 'Airs today' : `${r.daysUntilFinale}d`);
+      } },
+  ];
+
+  let sortCol = 5, sortAsc = true; // default: Days Until Finale ascending — soonest first
+
+  function render() {
+    const sorted = [...rows].sort((a, b) => {
+      const va = columns[sortCol].get(a), vb = columns[sortCol].get(b);
+      const cmp = typeof va === 'number' ? va - vb : String(va).localeCompare(String(vb));
+      return sortAsc ? cmp : -cmp;
+    });
+
+    table.innerHTML = '';
+    const thead = document.createElement('thead');
+    const trh = document.createElement('tr');
+    columns.forEach((c, i) => {
+      const th = document.createElement('th');
+      th.textContent = c.label;
+      if (i === sortCol) th.className = 'sorted' + (sortAsc ? ' asc' : '');
+      th.addEventListener('click', () => {
+        if (sortCol === i) sortAsc = !sortAsc; else { sortCol = i; sortAsc = true; }
+        render();
+      });
+      trh.appendChild(th);
+    });
+    thead.appendChild(trh);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    for (const row of sorted) {
+      const tr = document.createElement('tr');
+      columns.forEach(c => {
+        const td = document.createElement('td');
+        if (c.render) c.render(td, row); else td.textContent = esc(c.get(row));
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+  }
+
+  render();
+}
+
 function renderCastList(stats) {
   const el = document.getElementById('castList');
   if (!stats.length) { el.innerHTML = '<div class="tk-empty">Not enough enriched titles yet.</div>'; return; }
@@ -3362,6 +3472,7 @@ async function load() {
   renderRecPanel('movieRecList', byType(fromWatchlist, 'movie'), byType(fromCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags, reviewedTags);
   renderRecPanel('showRecList', byType(fromWatchlist, 'show'), byType(fromCandidates, 'show'), enrichedMeta, omdbMeta, llmTags, reviewedTags);
   renderAiringSoonList(fromWatchlist, fromCandidates, enrichedMeta);
+  renderAiringFinaleTable(computeCurrentlyAiringShows(library, watchlist, enrichedMeta));
 
   for (const [type, chartId, noteId, label] of [
     ['movie', 'scoreDistMovieChart', 'scoreDistMovieNote', 'unwatched movies'],
