@@ -144,7 +144,7 @@ function renderBestMatches(stats, enrichedMeta) {
 // You Watch Together" table) so both read the exact same status/airing
 // logic and can never disagree about what "In Progress" or "Season
 // Finale" means for a given title.
-function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored }, enrichedMeta) {
+function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored }, enrichedMeta, upcomingSeasons = {}) {
   const base = inLib || inWl || inCandidate || scored || { titleKey, type: titleKey.split(':')[0] };
   const h = hydrateTitle(base, enrichedMeta);
 
@@ -182,10 +182,14 @@ function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored },
     finaleDate: finale?.finaleDate ?? null,
     daysUntilFinale,
     score: scored ? scored.bmtreScore : null,
+    // Real, hand-researched renewal/premiere status for whenever TMDB
+    // itself has nothing scheduled yet (see upcomingSeasons.json's own
+    // header comment — never guessed, every entry cites real sources).
+    upcoming: upcomingSeasons[titleKey] || null,
   };
 }
 
-function computeWatchStatusRows(library, watchlist, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta) {
+function computeWatchStatusRows(library, watchlist, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons = {}) {
   const libByKey = new Map((library.titles || []).map(t => [t.titleKey, t]));
   const wlByKey = new Map((watchlist.titles || []).map(t => [t.titleKey, t]));
   // A show can genuinely sit in BOTH currentlyWatching.json and
@@ -206,7 +210,7 @@ function computeWatchStatusRows(library, watchlist, fromWatchlist, fromCandidate
     inLib: libByKey.get(titleKey), inWl: wlByKey.get(titleKey),
     inCandidate: scoredByKey.get(titleKey)?.origin === 'candidate' ? scoredByKey.get(titleKey) : null,
     progress: progressByKey.get(titleKey), scored: scoredByKey.get(titleKey),
-  }, enrichedMeta));
+  }, enrichedMeta, upcomingSeasons));
 }
 
 // "Shows You Watch Together" — Bill: "I want to manually tag these so
@@ -215,7 +219,7 @@ function computeWatchStatusRows(library, watchlist, fromWatchlist, fromCandidate
 // season), every tagged title gets a row regardless of status — Bill said
 // he still wants to see them, so a tagged show that's fully caught up or
 // not yet started still needs to appear, not just the currently-active ones.
-function computeCoWatchRows(tagKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta) {
+function computeCoWatchRows(tagKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons = {}) {
   const libByKey = new Map((library.titles || []).map(t => [t.titleKey, t]));
   const wlByKey = new Map((watchlist.titles || []).map(t => [t.titleKey, t]));
   const cpByKey = new Map((candidatePool.titles || []).map(t => [t.titleKey, t]));
@@ -224,7 +228,32 @@ function computeCoWatchRows(tagKeys, library, watchlist, candidatePool, fromWatc
   return tagKeys.map(titleKey => buildWatchRow(titleKey, {
     inLib: libByKey.get(titleKey), inWl: wlByKey.get(titleKey), inCandidate: cpByKey.get(titleKey),
     progress: progressByKey.get(titleKey), scored: scoredByKey.get(titleKey),
-  }, enrichedMeta));
+  }, enrichedMeta, upcomingSeasons));
+}
+
+// Short table-cell label for an upcomingSeasons.json entry — reads the
+// entry's own hand-written shortWindow field directly rather than trying
+// to pattern-match a date out of the full researched sentence (window):
+// a first version did that with a regex and it was a real, live bug — the
+// full sentence often mentions OTHER dates in passing (when filming
+// started, when filming wrapped) that aren't the premiere date at all,
+// or explicitly says a date is a guess, not a confirmed one; the regex
+// couldn't tell the difference and surfaced wrong or misleadingly
+// confident dates (e.g. reading Ginny & Georgia's "filming wrapped March
+// 2026" as if that were the Season 4 premiere, when the real, sourced
+// fact is the season was delayed OUT of 2026 entirely). shortWindow is
+// hand-picked with full context instead, so this can't happen again.
+function summarizeUpcoming(u) {
+  if (!u) return '';
+  if (u.status === 'canceled') return 'Canceled';
+  if (u.status === 'ended') return 'Series ended';
+  if (u.status === 'uncertain') return `S${u.season} uncertain`;
+  if (u.status === 'unconfirmed') return 'No next season yet';
+  return `S${u.season} · ${u.shortWindow}`; // 'renewed'
+}
+function upcomingSortKey(u) {
+  if (!u) return 9;
+  return { renewed: 0, uncertain: 1, unconfirmed: 2, canceled: 3, ended: 4 }[u.status] ?? 5;
 }
 
 function renderWatchStatusTable(elementId, rows, emptyText) {
@@ -260,6 +289,20 @@ function renderWatchStatusTable(elementId, rows, emptyText) {
       render: (td, r) => {
         td.className = 'num';
         td.textContent = r.daysUntilFinale == null ? '—' : (r.daysUntilFinale <= 0 ? 'Airs today' : `${r.daysUntilFinale}d`);
+      } },
+    // Bill: "Shows You Watch Together data is incomplete. Do online
+    // research and see which ones have a new season coming." TMDB's
+    // nextEpisodeToAir/currentSeasonFinale (the columns above) only ever
+    // exist once a season is actually scheduled — a show that's renewed
+    // but not yet dated, or canceled, is otherwise invisible. Reads
+    // upcomingSeasons.json (real, hand-researched, sourced — see that
+    // file's own header comment), never guessed.
+    { label: 'Next Season', get: r => upcomingSortKey(r.upcoming),
+      render: (td, r) => {
+        const label = summarizeUpcoming(r.upcoming);
+        if (!label) { td.textContent = '—'; return; }
+        td.textContent = label;
+        if (r.upcoming?.window) td.title = `${r.upcoming.window}\n\nSource: ${r.upcoming.source}`;
       } },
     { label: 'Score', get: r => r.score ?? -1, numeric: true,
       render: (td, r) => { td.className = 'num'; td.textContent = r.score != null ? Math.round(r.score) : '—'; } },
@@ -839,7 +882,7 @@ function renderTasteLine(genreStats, crowdCompare, castStats, tenRatedCount) {
 
 async function load() {
   const { dashboard: d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback,
-          llmTags, reviewedTags, currentlyWatching, coWatchTags } = await loadAllData();
+          llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons } = await loadAllData();
 
   const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
@@ -881,10 +924,10 @@ async function load() {
   renderBecauseYouLoved(computeBecauseYouLoved(library, pool, enrichedMeta), enrichedMeta);
 
   renderWatchStatusTable('coWatchTable',
-    computeCoWatchRows(coWatchKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta),
+    computeCoWatchRows(coWatchKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons),
     'Nothing tagged yet.');
   renderWatchStatusTable('airingStatusTable',
-    computeWatchStatusRows(soloLibrary, soloWatchlistData, soloWatchlist, soloCandidates, soloCurrentlyWatching, enrichedMeta),
+    computeWatchStatusRows(soloLibrary, soloWatchlistData, soloWatchlist, soloCandidates, soloCurrentlyWatching, enrichedMeta, upcomingSeasons),
     'Nothing you\'re tracking or would love is currently mid-season or airing.');
 
   const enrichedCount = Object.keys(enrichedMeta).length;
