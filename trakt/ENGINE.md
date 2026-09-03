@@ -617,6 +617,31 @@ for a better MAE, the tradeoff this project forbids, so `k=10` held).
 matched loved title, checked after genre/subject/tone but before the
 generic community-rating fallback.
 
+### 3s. Show popularity (TMDB's own `popularity` trending score) — shows only, clamped to **±8**
+TMDB's title-level `popularity` field — a proprietary trending/buzz
+metric, distinct from `voteCount`/`voteAverage` — was captured on every
+enriched title since Session 44 but never read anywhere in scoring until
+Session 60. Checked real correlation with `myRating` first (an "out of
+the blue, might not work" idea, per this project's own discipline of
+verifying before building): ~0 for movies (`r=0.002`), but a genuine,
+monotonic `r=0.20` for shows (bucketed by popularity quartile: 7.57 →
+7.58 → 7.90 → 8.47 average `myRating`) — hence shows-only. `popularity`
+is itself correlated with `voteCount` (`r=0.72`) and `voteAverage`
+(`r=0.59`), both already scored (§3l, §3m), so the real risk was
+redundancy rather than a new independent signal — resolved by an
+`eval.js` sweep rather than reasoning about it: weight 0 through 10 in
+fine (0.5) steps found a clean, real maximum at `SHOW_POPULARITY_WEIGHT=2`
+— precision@10 90%→100% with precision@25/@50/@100 and MAE all held
+*exactly* — confirmed as a substantively sound swap (Breaking Bad,
+`myRating=10`, entering the leave-one-out top 10 in place of Presumed
+Innocent, `myRating=7`), not a coin-flip boundary crossing. Weight ≥2.5
+starts trading precision@50 away for no further precision@10 gain, so 2
+is the deliberate ceiling, not a rounder or larger number.
+`SHOW_POPULARITY_NEUTRAL=1.28` is the real dataset median
+`log10(popularity+1)` across rated shows. Symmetric like `communityScore()`
+— a below-neutral popularity is real negative evidence too, not just
+absence of positive evidence.
+
 ---
 
 ## 4. Real but display-only (not wired into `matchScore()`)
@@ -1030,6 +1055,7 @@ Run it: `node trakt/scripts/eval.js` from the repo root.
 | Community rating (TMDB+IMDb blend) | unbounded* | `(communityScore - 6.0) × 8`, IMDb weighted 0.7 |
 | Vote count (TMDB) | +0 to +4 | "How many ratings" #1 |
 | IMDb vote count | +0 to +3 | "How many ratings" #2 |
+| Show popularity (TMDB trending) | -8 to +8 | Shows only; `r=0.20` w/ myRating, movies ~0 |
 | Recency (movie) | -15 to +8 | Steep, per Bill's explicit ask |
 | Recency (show) | 0 to +3 | Gentle — shows don't age like movies |
 | Show-airing bonus | 0 | Built, tested, currently inert (scale=0) |
