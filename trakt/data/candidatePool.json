@@ -1,7 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-09-03T15:39:07Z",
-    "count": 446
+    "generatedAt": "2026-09-03T19:38:11.053Z",
+    "count": 430,
+    "capPerType": 200
   },
   "titles": [
     {
@@ -2186,16 +2187,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:59440",
-      "ids": {
-        "tmdb": 59440
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "show",
       "titleKey": "show:909",
       "ids": {
         "tmdb": 909
@@ -2259,16 +2250,6 @@
       "titleKey": "show:124897",
       "ids": {
         "tmdb": 124897
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "show",
-      "titleKey": "show:60066",
-      "ids": {
-        "tmdb": 60066
       },
       "title": null,
       "year": null,
@@ -2356,16 +2337,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:61343",
-      "ids": {
-        "tmdb": 61343
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
       "titleKey": "show:1424",
       "ids": {
         "tmdb": 1424
@@ -2406,16 +2377,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:91932",
-      "ids": {
-        "tmdb": 91932
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
       "titleKey": "show:1086",
       "ids": {
         "tmdb": 1086
@@ -2439,16 +2400,6 @@
       "titleKey": "show:819",
       "ids": {
         "tmdb": 819
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
-      "titleKey": "show:24",
-      "ids": {
-        "tmdb": 24
       },
       "title": null,
       "year": null,
@@ -2726,16 +2677,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:63210",
-      "ids": {
-        "tmdb": 63210
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
       "titleKey": "show:79240",
       "ids": {
         "tmdb": 79240
@@ -2869,16 +2810,6 @@
       "titleKey": "show:43016",
       "ids": {
         "tmdb": 43016
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "show",
-      "titleKey": "show:81144",
-      "ids": {
-        "tmdb": 81144
       },
       "title": null,
       "year": null,
@@ -3066,29 +2997,9 @@
     },
     {
       "type": "show",
-      "titleKey": "show:83135",
-      "ids": {
-        "tmdb": 83135
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "show",
       "titleKey": "show:70391",
       "ids": {
         "tmdb": 70391
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "show",
-      "titleKey": "show:86686",
-      "ids": {
-        "tmdb": 86686
       },
       "title": null,
       "year": null,
@@ -4326,26 +4237,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:2093",
-      "ids": {
-        "tmdb": 2093
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:226633",
-      "ids": {
-        "tmdb": 226633
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
       "titleKey": "show:258902",
       "ids": {
         "tmdb": 258902
@@ -4406,59 +4297,9 @@
     },
     {
       "type": "show",
-      "titleKey": "show:285970",
-      "ids": {
-        "tmdb": 285970
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
       "titleKey": "show:258742",
       "ids": {
         "tmdb": 258742
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:259200",
-      "ids": {
-        "tmdb": 259200
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:330540",
-      "ids": {
-        "tmdb": 330540
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:313172",
-      "ids": {
-        "tmdb": 313172
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:290193",
-      "ids": {
-        "tmdb": 290193
       },
       "title": null,
       "year": null,
