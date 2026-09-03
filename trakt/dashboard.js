@@ -10,7 +10,7 @@
 // computed client-side from library/watchlist/enrichedMetadata.json via
 // trakt/engine.js, the same way trakt/recommend.js does for the full list.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra, inferGenre, inferSubgenreDetail, findTaxonomyCollisions, isTooObscure, isActivelyAiring } from './engine.js';
+import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra, inferGenre, inferSubgenreDetail, findTaxonomyCollisions, isTooObscure, isActivelyAiring, traktUrl } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -39,6 +39,12 @@ const posterImgHtml = (url, cssClass, w, h) => url
 // a one-off badge in a single section.
 const typeIcon = t => t === 'movie' ? '🎬' : '📺';
 const typeLabel = t => t === 'movie' ? 'Movie' : 'TV';
+// Bill's explicit request: "make it so that all titles in the app are
+// clickable and take me right to that page in Trakt." One shared helper
+// so every title-rendering surface (rec cards, metric rows, the All
+// Titles table) links out identically, rather than each spot
+// reimplementing the same <a> markup.
+const titleLink = c => `<a class="tk-trakt-link" href="${esc(traktUrl(c))}" target="_blank" rel="noopener">${esc(c.title)}</a>`;
 const STATUS_META = {
   Watched:    { cls: 'tk-status-tag-watched',    label: 'Watched' },
   Watchlist:  { cls: 'tk-status-tag-watchlist',  label: 'Watchlist' },
@@ -347,7 +353,7 @@ function computePredictionMisses(library, enrichedMeta, omdbMeta, idx) {
       const h = hydrateTitle(t, enrichedMeta);
       const predicted = matchScore(h, idx, enrichedMeta, omdbMeta);
       const actual = t.myRating * 10;
-      return { titleKey: t.titleKey, title: h.title, year: h.year, type: h.type, myRating: t.myRating, predicted, actual, diff: predicted - actual };
+      return { titleKey: t.titleKey, title: h.title, year: h.year, type: h.type, ids: t.ids, myRating: t.myRating, predicted, actual, diff: predicted - actual };
     });
   const overPredicted = [...rows].sort((a, b) => b.diff - a.diff).slice(0, 5);
   const underPredicted = [...rows].sort((a, b) => a.diff - b.diff).slice(0, 5);
@@ -367,7 +373,7 @@ function computeBestMatches(library, enrichedMeta, omdbMeta, idx) {
       const h = hydrateTitle(t, enrichedMeta);
       const predicted = matchScore(h, idx, enrichedMeta, omdbMeta);
       const actual = t.myRating * 10;
-      return { titleKey: t.titleKey, title: h.title, year: h.year, type: h.type, myRating: t.myRating, predicted, actual };
+      return { titleKey: t.titleKey, title: h.title, year: h.year, type: h.type, ids: t.ids, myRating: t.myRating, predicted, actual };
     });
   const matches = rows.filter(r => r.predicted >= 70 && r.actual >= 80).sort((a, b) => b.predicted - a.predicted);
   return { total: rows.length, matches };
@@ -610,7 +616,7 @@ function renderPredictionMisses(stats, enrichedMeta) {
     return `
     <div class="tk-metric-row">
       ${posterImgHtml(poster, 'tk-metric-poster', 38, 57)}
-      <span class="tk-metric-name">${typeIcon(r.type)} ${esc(r.title)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
+      <span class="tk-metric-name">${typeIcon(r.type)} ${titleLink(r)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
       <span class="tk-metric-score" style="color:${dir === 'over' ? 'var(--status-critical)' : 'var(--status-serious)'};">
         ${dir === 'over' ? 'predicted' : 'rated'} ${dir === 'over' ? Math.round(r.predicted) : r.myRating + '/10'} vs. ${dir === 'over' ? 'rated ' + r.myRating + '/10' : 'predicted ' + Math.round(r.predicted)}
       </span>
@@ -632,7 +638,7 @@ function renderBestMatches(stats, enrichedMeta) {
     return `
     <div class="tk-metric-row">
       ${posterImgHtml(poster, 'tk-metric-poster', 38, 57)}
-      <span class="tk-metric-name">${typeIcon(r.type)} ${esc(r.title)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
+      <span class="tk-metric-name">${typeIcon(r.type)} ${titleLink(r)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
       <span class="tk-metric-score">predicted ${Math.round(r.predicted)}, rated ${r.myRating}/10</span>
     </div>
   `;
@@ -667,7 +673,7 @@ function renderAiringSoonList(fromWatchlist, fromCandidates, enrichedMeta) {
     <div class="tk-metric-row">
       ${posterImgHtml(poster, 'tk-metric-poster', 38, 57)}
       <span class="tk-metric-name">
-        ${typeIcon(c.type)} ${esc(c.title)}
+        ${typeIcon(c.type)} ${titleLink(c)}
         <span class="tk-metric-sub">${c.year ? `(${c.year}) · ` : ''}${esc(nextLabel)}${c.origin === 'watchlist' ? ' · Watchlist' : ''}</span>
       </span>
       <span class="tk-metric-score">${Math.round(c.bmtreScore)}</span>
@@ -2856,7 +2862,7 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
     // say so too rather than still calling it "Candidate."
     if (idx.excluded.has(h.titleKey)) status = 'Dismissed';
     rows.push({
-      titleKey: h.titleKey, posterUrl: posterUrl(h.titleKey, enrichedMeta),
+      titleKey: h.titleKey, posterUrl: posterUrl(h.titleKey, enrichedMeta), ids: h.ids,
       title: h.title || '(untitled — not yet enriched)', year: h.year, type: h.type, status,
       airing: isActivelyAiring(h, enrichedMeta),
       myRating: myRating ?? null, tmdbRating: meta?.voteAverage ?? null,
@@ -2927,7 +2933,8 @@ function renderAllTitlesTable(allRows) {
           td.appendChild(img);
         }
       } },
-    { label: 'Title', get: r => r.title },
+    { label: 'Title', get: r => r.title,
+      render: (td, r) => { td.innerHTML = titleLink(r); } },
     { label: 'Year', get: r => r.year ?? '', numeric: true },
     { label: 'Type', get: r => typeLabel(r.type),
       render: (td, r) => { td.textContent = `${typeIcon(r.type)} ${typeLabel(r.type)}`; } },
@@ -3135,7 +3142,7 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
       ${posterImgHtml(poster, 'tk-rec-poster', 60, 90)}
       <div class="tk-rec-body">
         <div class="tk-rec-title">
-          ${typeIcon(c.type)} ${esc(c.title)}${c.year ? ` <span class="tk-year">(${esc(c.year)})</span>` : ''}
+          ${typeIcon(c.type)} ${titleLink(c)}${c.year ? ` <span class="tk-year">(${esc(c.year)})</span>` : ''}
           <span class="tk-rec-badge">${c.origin === 'watchlist' ? 'Watchlist' : 'New pick'}</span>
         </div>
         <div class="tk-rec-meta">${esc(metaLine(c, enrichedMeta, omdbMeta, llmTags, reviewedTags))}</div>

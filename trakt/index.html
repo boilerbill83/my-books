@@ -98,6 +98,12 @@
       .tk-rec-body { flex: 1; min-width: 0; }
       .tk-rec-title { font-weight: 600; font-size: 0.95rem; }
       .tk-rec-title .tk-year { color: var(--text-muted); font-weight: 400; }
+      /* Every title in the app links out to its real Trakt page (or a
+         Trakt search, for a discovered candidate with no Trakt identity
+         yet) — same link treatment everywhere: inherits surrounding
+         text color/weight, only a hover underline hints it's clickable. */
+      .tk-trakt-link { color: inherit; text-decoration: none; }
+      .tk-trakt-link:hover { text-decoration: underline; color: var(--accent); }
       .tk-rec-badge {
         font-size: 0.64rem; font-weight: 600; padding: 2px 7px; border-radius: 999px;
         background: var(--bg-card); color: var(--text-muted); margin-left: 8px; vertical-align: middle;
