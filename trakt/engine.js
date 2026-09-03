@@ -2229,27 +2229,33 @@ function recencyBonus(year, type, nowYear = new Date().getFullYear()) {
 // either factor alone: pre-2018 Big4-network shows actually rate
 // slightly ABOVE Bill's global mean (8.50 vs 8.35, n=14) - his classic-
 // network-TV favorites - while 2018+ Big4-network shows rate well
-// below both his own baseline for that era (6.30 vs 7.73 for
-// everything else released 2018+, n=10 each) and the pre-2018 Big4
-// bucket. Not one or two outliers: 6.30 comes from a real mix (3
-// genuine dislikes at 4/10 - High Potential, Will Trent, Abbott
-// Elementary - plus a middling 6, against 6 fine-to-good 7-8s), a
-// meaningfully worse hit rate than the ~10-15% dislike base rate would
-// predict. 2018 (not a later cutoff) was picked over more dramatic-
-// looking later cutoffs (2020+ shows an even bigger gap, 5.20 vs 7.66)
-// specifically for sample size - n=10 vs n=5 - matching this project's
-// standing preference for more data over a maximally dramatic effect
-// size measured on too few titles.
+// below both his own baseline for that era and the pre-2018 Big4
+// bucket. A first cut used a 2018 threshold (n=10, avg 6.30) for
+// sample size, but that blended in a genuinely fine sub-band: 2018-2019
+// Big4 shows (A.P. Bio, Almost Family, Evil, Manifest, The Rookie)
+// average 7.40 - basically normal, no real signal there at all. The
+// actual bad cluster is 2020+ specifically (avg 5.20, n=5): not one
+// outlier - 4 genuine dislikes (Abbott Elementary, Will Trent, High
+// Potential all 4/10, St. Denis Medical 6/10) against a single
+// exception (Elsbeth, 8/10), a meaningfully worse hit rate than the
+// ~10-15% base dislike rate would predict. Tightened to 2020 once this
+// was found - trades some sample size (n=5) for a real, un-diluted
+// effect rather than a broader window that includes titles the data
+// says don't deserve the penalty.
 //
-// Modest, capped, penalty-only (never a bonus) - the same shape
-// genreSignal() already established for a real-but-imperfect negative
-// pattern, not a hard exclusion. Magnitude (-4) swept against
-// scripts/eval.js alongside -2/-6/-8 before picking one - see this
-// function's call site in baseSignals() and the commit this was added
-// in for the sweep result.
+// Penalty-only (never a bonus) - the same shape genreSignal() already
+// established for a real-but-imperfect negative pattern. Magnitude
+// swept against scripts/eval.js (-2 through -15): precision@10/25/50/100
+// were completely flat across the whole range (only 10-15 real
+// candidates ever qualify, none near a fragile top-k boundary), so
+// -16 was set from a direct, explicit Bill request ("Matlock shouldn't
+// be more than 85") rather than the metric, which had nothing to say
+// about magnitude either way. Verified: 0 of Bill's 103 real loved
+// (9-10 rated) shows are hit by the 2020+ threshold (tighter than the
+// original 2018 cut, so strictly safer on this count too).
 const BIG4_NETWORKS = new Set(['CBS', 'NBC', 'ABC', 'FOX']);
-const MODERN_NETWORK_TV_YEAR = 2018;
-const MODERN_NETWORK_TV_PENALTY = -6;
+const MODERN_NETWORK_TV_YEAR = 2020;
+const MODERN_NETWORK_TV_PENALTY = -16;
 function modernNetworkTvPenalty(candidate, meta) {
   if (candidate.type !== 'show') return 0;
   if (!(meta?.networks || []).some(n => BIG4_NETWORKS.has(n))) return 0;
@@ -2591,7 +2597,7 @@ export function scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta = {}) {
   const onBig4 = (meta.networks || []).filter(n => BIG4_NETWORKS.has(n));
   add('modernNetworkTv', 'Modern network TV', modernNetworkTvPenalty(candidate, meta),
     onBig4.length
-      ? `Airs on ${onBig4.join('/')}${(candidate.year || meta.year) >= MODERN_NETWORK_TV_YEAR ? ' — 2018+ Big4 shows rate well below your baseline for that era.' : ' — but pre-2018, your classic-network-TV era, which rates fine.'}`
+      ? `Airs on ${onBig4.join('/')}${(candidate.year || meta.year) >= MODERN_NETWORK_TV_YEAR ? ' — 2020+ Big4 shows rate well below your baseline for that era.' : ' — but pre-2020, which rates fine (including your classic-network-TV era).'}`
       : 'Not a Big4 broadcast network show (CBS/NBC/ABC/FOX).');
 
   const crit = criticScore(omdbEntry);
