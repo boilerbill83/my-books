@@ -25,6 +25,14 @@ cache membership — a one-off backfill for when extract_entry() gains a
 new field that already-cached entries don't carry (the cache only ever
 stores the extracted subset, so a new field can't be recovered without
 a real re-fetch).
+
+REFRESH_AIRING=1 (or --refresh-airing) re-fetches only already-cached
+shows whose last fetch showed them as airing-relevant (a real
+nextEpisodeToAir, or status Returning Series/In Production) — a cheaper,
+targeted alternative to REFRESH_ALL for keeping time-sensitive fields
+(nextEpisodeToAir, currentSeasonFinale) fresh, since the normal
+cache-membership skip means an already-cached title is never revisited
+on its own.
 """
 
 import json, os, sys, time, urllib.request, urllib.parse, urllib.error
@@ -41,6 +49,20 @@ RETRY_EMPTIES = os.environ.get('RETRY_EMPTIES') == '1' or '--retry-empties' in s
 # only ever stores the extracted subset, not the raw TMDB response, so
 # there's no way to backfill a new field without a real re-fetch.
 REFRESH_ALL = os.environ.get('REFRESH_ALL') == '1' or '--refresh-all' in sys.argv
+# Targeted mode for keeping "still airing" data fresh without the cost of
+# a full-corpus REFRESH_ALL: re-fetches only already-cached shows whose
+# LAST fetch already showed them as airing-relevant (a real
+# next_episode_to_air, or a status of Returning Series/In Production).
+# Needed for two reasons: (1) backfilling a newly-added field (like
+# currentSeasonFinale below) onto shows the normal cache-membership skip
+# would otherwise never revisit, same as REFRESH_ALL's own reason for
+# existing, just scoped down; (2) next_episode_to_air/currentSeasonFinale
+# are themselves time-sensitive — once cached, a normal run never revisits
+# an already-cached title, so a mid-season show's "next episode" would go
+# stale forever without some periodic refresh mechanism. This is that
+# mechanism, kept cheap by only touching the subset that could plausibly
+# have new airing data, not all ~2,800+ cached titles.
+REFRESH_AIRING = os.environ.get('REFRESH_AIRING') == '1' or '--refresh-airing' in sys.argv
 API_KEY    = os.environ.get('TMDB_API_KEY', '')
 DELAY      = 0.35  # seconds between titles — one call per title, generous TMDB rate limit
 
@@ -73,6 +95,14 @@ def tmdb_detail(kind, tmdb_id):
     tmdb_kind = 'movie' if kind == 'movie' else 'tv'
     url = (f'{API_BASE}/{tmdb_kind}/{tmdb_id}'
            f'?api_key={API_KEY}&append_to_response=credits,keywords,similar,recommendations,external_ids')
+    return get_json(url)
+
+
+def tmdb_season_detail(tmdb_id, season_number):
+    """Full episode list for one season — the only way to learn a season's
+    finale date, since /tv/{id}'s own next_episode_to_air only ever names
+    the single next episode, not the season's last one."""
+    url = f'{API_BASE}/tv/{tmdb_id}/season/{season_number}?api_key={API_KEY}'
     return get_json(url)
 
 
@@ -185,6 +215,34 @@ def extract_entry(kind, data):
             'episodeNumber': next_ep.get('episode_number'),
         } if next_ep else None
 
+        # Bill: "add a table with all shows currently airing, the season
+        # finale date, and a countdown." next_episode_to_air only ever
+        # names the single next episode, not the season's last one, so a
+        # real finale date needs a second call to the season-detail
+        # endpoint (the only place TMDB exposes a season's full episode
+        # list). Scoped to shows with a real next_episode_to_air only —
+        # everything else (movies, shows between seasons, ended shows)
+        # has no "current season" to ask about, so this never fires for
+        # the bulk of the corpus. finaleDate can be null (a season TMDB
+        # hasn't fully scheduled yet, e.g. episode dates TBD past a
+        # certain point) — the finale EPISODE is always known (the max
+        # episode_number in the season's list), the DATE isn't
+        # guaranteed; both are cached honestly rather than guessed.
+        entry['currentSeasonFinale'] = None
+        if next_ep and next_ep.get('season_number') is not None:
+            season_num = next_ep['season_number']
+            season_data, _, _ = tmdb_season_detail(data.get('id'), season_num)
+            time.sleep(DELAY)
+            episodes = (season_data or {}).get('episodes') or []
+            if episodes:
+                last_ep = max(episodes, key=lambda e: e.get('episode_number') or 0)
+                entry['currentSeasonFinale'] = {
+                    'seasonNumber': season_num,
+                    'episodeCount': len(episodes),
+                    'finaleEpisodeNumber': last_ep.get('episode_number'),
+                    'finaleDate': last_ep.get('air_date'),
+                }
+
         # Bill: Matlock is "a network show aimed at an older audience" -
         # asked to capture and downgrade that pattern. TMDB's own
         # `networks` field (CBS/NBC/ABC/Fox/The CW = broadcast vs. Netflix/
@@ -227,6 +285,11 @@ def main():
                    if t.get('titleKey') and t['titleKey'] in cache
                    and not cache[t['titleKey']].get('overview')
                    and not cache[t['titleKey']].get('retriedAt')]
+    elif REFRESH_AIRING:
+        pending = [t for t in load_titles()
+                   if t.get('titleKey') and t['titleKey'] in cache
+                   and (cache[t['titleKey']].get('nextEpisodeToAir')
+                        or cache[t['titleKey']].get('status') in ('Returning Series', 'In Production'))]
     else:
         pending = [t for t in load_titles()
                    if t.get('titleKey') and t['titleKey'] not in cache]

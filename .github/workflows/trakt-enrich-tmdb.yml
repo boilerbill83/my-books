@@ -13,6 +13,10 @@ on:
         description: 'Re-fetch every title regardless of cache (one-off backfill for a new field)'
         type: boolean
         default: false
+      refresh_airing:
+        description: 'Re-fetch only already-cached airing-relevant shows (nextEpisodeToAir or Returning Series/In Production) - keeps season/episode timing data fresh without a full refresh_all'
+        type: boolean
+        default: false
       batch_size:
         description: 'How many titles to enrich this run (default 150 on schedule)'
         type: number
@@ -33,6 +37,7 @@ jobs:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
           RETRY_EMPTIES: ${{ inputs.retry_empties && '1' || '0' }}
           REFRESH_ALL: ${{ inputs.refresh_all && '1' || '0' }}
+          REFRESH_AIRING: ${{ inputs.refresh_airing && '1' || '0' }}
         run: python3 trakt/enrich_tmdb.py ${{ inputs.batch_size || 150 }}
         timeout-minutes: 30
       - name: Commit if changed
