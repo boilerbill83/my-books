@@ -123,7 +123,24 @@ def extract_entry(kind, data):
 
     credits = data.get('credits') or {}
     cast = credits.get('cast') or []
-    entry['topCast'] = [c['name'] for c in sorted(cast, key=lambda c: c.get('order', 999))[:5]]
+    sorted_cast = sorted(cast, key=lambda c: c.get('order', 999))[:5]
+    entry['topCast'] = [c['name'] for c in sorted_cast]
+    # Bill: "maybe if the lead female is over 70, I rarely like those" -
+    # a follow-up to the network-TV finding (Matlock's lead, Kathy Bates,
+    # is over 70). TMDB's credits.cast objects already carry `id` and
+    # `gender` (0 unspecified/1 female/2 male/3 non-binary) - captured
+    # here alongside the existing name-only topCast (kept as-is, since
+    # engine.js's castBonus()/lovedActors/reason() all key off it by name
+    # already and changing its shape would be a much larger, riskier
+    # refactor for no benefit). `id` is what a future person-lookup pass
+    # (birthday, for real age) will need - TMDB's TV/movie detail
+    # response has no birthdate itself, only a separate `/person/{id}`
+    # call does. Not yet used for scoring - this is the data half of the
+    # investigation, not the signal itself.
+    entry['topCastDetail'] = [
+        {'id': c.get('id'), 'name': c.get('name'), 'gender': c.get('gender')}
+        for c in sorted_cast
+    ]
 
     if kind == 'movie':
         entry['releaseDate'] = data.get('release_date')
