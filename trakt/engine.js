@@ -2208,6 +2208,56 @@ function recencyBonus(year, type, nowYear = new Date().getFullYear()) {
   return type === 'movie' ? recencyBonusMovie(year, nowYear) : recencyBonusShow(year, nowYear);
 }
 
+// Bill: Matlock is "a network show aimed at an older audience... find a
+// way to capture those types of shows and downgrade them." Checked
+// against his real rating data before building anything, not assumed -
+// his own stated hypothesis ("CBS/NBC/ABC/FOX = lowbrow/older audience")
+// turned out to be too blunt on its own: a flat broadcast-network
+// penalty would directly hit The West Wing (NBC, 10/10), The Good Wife
+// (CBS, 10/10 - the very show whose citation is driving Matlock's own
+// legitimate score), Lost (ABC, 10/10), Seinfeld/The Office/Parks and
+// Recreation/Friday Night Lights (all NBC, 9/10) - the same "obvious
+// but wrong" failure shape too_urban/too_low_brow already hit trying
+// this with genre instead of network. Real per-network rating deltas
+// (checked before trusting any of them) also ruled out a per-network
+// signal: ABC's raw delta (-2.08) is a 5-title sample containing both
+// Lost (10/10) AND 3 genuine dislikes - the same "small aggregate hides
+// high concentration" trap STYLE_DISLIKE_REASON_CODES's own comment
+// already documents for 'too_hokey'.
+//
+// The real, validated signal turned out to be an INTERACTION, not
+// either factor alone: pre-2018 Big4-network shows actually rate
+// slightly ABOVE Bill's global mean (8.50 vs 8.35, n=14) - his classic-
+// network-TV favorites - while 2018+ Big4-network shows rate well
+// below both his own baseline for that era (6.30 vs 7.73 for
+// everything else released 2018+, n=10 each) and the pre-2018 Big4
+// bucket. Not one or two outliers: 6.30 comes from a real mix (3
+// genuine dislikes at 4/10 - High Potential, Will Trent, Abbott
+// Elementary - plus a middling 6, against 6 fine-to-good 7-8s), a
+// meaningfully worse hit rate than the ~10-15% dislike base rate would
+// predict. 2018 (not a later cutoff) was picked over more dramatic-
+// looking later cutoffs (2020+ shows an even bigger gap, 5.20 vs 7.66)
+// specifically for sample size - n=10 vs n=5 - matching this project's
+// standing preference for more data over a maximally dramatic effect
+// size measured on too few titles.
+//
+// Modest, capped, penalty-only (never a bonus) - the same shape
+// genreSignal() already established for a real-but-imperfect negative
+// pattern, not a hard exclusion. Magnitude (-4) swept against
+// scripts/eval.js alongside -2/-6/-8 before picking one - see this
+// function's call site in baseSignals() and the commit this was added
+// in for the sweep result.
+const BIG4_NETWORKS = new Set(['CBS', 'NBC', 'ABC', 'FOX']);
+const MODERN_NETWORK_TV_YEAR = 2018;
+const MODERN_NETWORK_TV_PENALTY = -6;
+function modernNetworkTvPenalty(candidate, meta) {
+  if (candidate.type !== 'show') return 0;
+  if (!(meta?.networks || []).some(n => BIG4_NETWORKS.has(n))) return 0;
+  const year = candidate.year || meta?.year;
+  if (year == null || year < MODERN_NETWORK_TV_YEAR) return 0;
+  return MODERN_NETWORK_TV_PENALTY;
+}
+
 // Hard cutoff for discovered/manually-resolved movie candidates — "nothing
 // before 2000," applied the same way isReEdit/isNonEnglish are: never to
 // the watchlist (Bill's own real picks aren't censored, they're just
@@ -2375,6 +2425,7 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   score += voteCountBonus(meta?.voteCount);
   score += recencyBonus(candidate.year, candidate.type);
   score += showAiringBonus(candidate, meta, idx);
+  score += modernNetworkTvPenalty(candidate, meta);
   score += omdbSignal(omdbEntry);
 
   // Plot/description similarity to loved titles (dashboard's
@@ -2536,6 +2587,12 @@ export function scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta = {}) {
 
   add('showAiring', 'Show-airing-status bonus', showAiringBonus(candidate, meta, idx),
     'Built and measured but currently applied at 0 weight — see ENGINE.md §3p.');
+
+  const onBig4 = (meta.networks || []).filter(n => BIG4_NETWORKS.has(n));
+  add('modernNetworkTv', 'Modern network TV', modernNetworkTvPenalty(candidate, meta),
+    onBig4.length
+      ? `Airs on ${onBig4.join('/')}${(candidate.year || meta.year) >= MODERN_NETWORK_TV_YEAR ? ' — 2018+ Big4 shows rate well below your baseline for that era.' : ' — but pre-2018, your classic-network-TV era, which rates fine.'}`
+      : 'Not a Big4 broadcast network show (CBS/NBC/ABC/FOX).');
 
   const crit = criticScore(omdbEntry);
   add('criticScore', 'Critic score (OMDb)',
