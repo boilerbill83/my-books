@@ -231,6 +231,91 @@ function computeCoWatchRows(tagKeys, library, watchlist, candidatePool, fromWatc
   }, enrichedMeta, upcomingSeasons));
 }
 
+// Bill: "I still don't love the way this works; make the initial view
+// prettier with the cover image; let there be a button to toggle to the
+// table view. The pretty view should only show those that are currently
+// airing or have completed a season but I haven't watched it yet." Two
+// concrete signals from the same row shape buildWatchRow() already
+// produces: isAiring (a real episode 1 has aired this season, per Session
+// 59's strict definition) OR episodesReady > 0 (aired episodes sitting
+// unwatched — the closest available proxy for "a season's out and I
+// haven't watched it," since this pipeline only tracks an aggregate
+// aired-vs-watched episode count, not per-season completion). A fully
+// caught-up ("Watched") or not-yet-started ("Watchlist"/"New Pick") show
+// with nothing airing and nothing ready stays out of the pretty view —
+// it's still in the table view, unchanged, since Bill's original ask
+// ("I still want to see them") for the full list stands.
+function isCoWatchReady(row) {
+  return row.isAiring || (row.episodesReady ?? 0) > 0;
+}
+
+// Airing-and-mid-season rows first (soonest finale first, same priority
+// as the table's own default sort), then ready-but-not-airing rows by how
+// much is stacked up.
+function sortCoWatchReady(rows) {
+  return [...rows].sort((a, b) => {
+    if (a.isAiring !== b.isAiring) return a.isAiring ? -1 : 1;
+    if (a.isAiring) {
+      const da = a.daysUntilFinale ?? Infinity, db = b.daysUntilFinale ?? Infinity;
+      if (da !== db) return da - db;
+    }
+    return (b.episodesReady ?? 0) - (a.episodesReady ?? 0);
+  });
+}
+
+function coWatchCardSubtitle(row) {
+  if (row.isAiring && row.episodesReady) {
+    return `Airing now · ${row.episodesReady} episode${row.episodesReady === 1 ? '' : 's'} ready`;
+  }
+  if (row.isAiring) {
+    return row.nextEpisodeDate ? `Airing now · next S${row.season}E${row.nextEpisode} on ${row.nextEpisodeDate}` : 'Airing now';
+  }
+  if (row.episodesReady) {
+    return `${row.episodesReady} episode${row.episodesReady === 1 ? '' : 's'} ready to watch`;
+  }
+  return row.status;
+}
+
+function renderCoWatchCards(elementId, rows, enrichedMeta) {
+  const el = document.getElementById(elementId);
+  const ready = sortCoWatchReady(rows.filter(isCoWatchReady));
+  if (!ready.length) {
+    el.innerHTML = '<div class="tk-empty">Nothing ready to watch together right now — switch to the table view for the full tagged list.</div>';
+    return;
+  }
+  el.innerHTML = ready.map(r => {
+    const poster = posterUrl(r.titleKey, enrichedMeta, 'w154');
+    return `
+    <a class="tk-shelf-card" href="./deepdive.html?key=${encodeURIComponent(r.titleKey)}">
+      ${posterImgHtml(poster, 'tk-shelf-poster', 92, 138)}
+      ${r.score != null ? `<div class="tk-shelf-score">${Math.round(r.score)}</div>` : ''}
+      <div class="tk-shelf-title">${esc(r.title)}</div>
+      <div class="tk-shelf-runtime">${esc(coWatchCardSubtitle(r))}</div>
+    </a>`;
+  }).join('');
+}
+
+// Button toggles which of the two pre-rendered views (cards / table) is
+// visible — both are always rendered by load() above regardless of which
+// is showing, so switching is instant with no re-fetch or re-render.
+// Wired once per page load, guarded so a stale click handler can't stack
+// up if this were ever called twice.
+let coWatchToggleWired = false;
+function initCoWatchViewToggle() {
+  if (coWatchToggleWired) return;
+  coWatchToggleWired = true;
+  const btn = document.getElementById('coWatchViewToggle');
+  const cardsEl = document.getElementById('coWatchCards');
+  const tableWrap = document.getElementById('coWatchTableWrap');
+  if (!btn || !cardsEl || !tableWrap) return;
+  btn.addEventListener('click', () => {
+    const switchingToTable = tableWrap.hidden; // currently showing cards
+    tableWrap.hidden = !switchingToTable;
+    cardsEl.hidden = switchingToTable;
+    btn.textContent = switchingToTable ? 'Show card view' : 'Show table view';
+  });
+}
+
 // Short table-cell label for an upcomingSeasons.json entry — reads the
 // entry's own hand-written shortWindow field directly rather than trying
 // to pattern-match a date out of the full researched sentence (window):
@@ -949,9 +1034,10 @@ async function load() {
 
   renderBecauseYouLoved(computeBecauseYouLoved(library, pool, enrichedMeta), enrichedMeta);
 
-  renderWatchStatusTable('coWatchTable',
-    computeCoWatchRows(coWatchKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons),
-    'Nothing tagged yet.');
+  const coWatchRows = computeCoWatchRows(coWatchKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons);
+  renderCoWatchCards('coWatchCards', coWatchRows, enrichedMeta);
+  renderWatchStatusTable('coWatchTable', coWatchRows, 'Nothing tagged yet.');
+  initCoWatchViewToggle();
   renderWatchStatusTable('airingStatusTable',
     computeWatchStatusRows(soloLibrary, soloWatchlistData, soloWatchlist, soloCandidates, soloCurrentlyWatching, enrichedMeta, upcomingSeasons),
     'Nothing you\'re tracking or would love is currently mid-season or airing.');

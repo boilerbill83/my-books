@@ -59,6 +59,8 @@
       .tk-shelf-title { font-size: 0.78rem; font-weight: 600; margin-top: 3px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
       .tk-shelf-runtime { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
       .tk-shelf-card:hover .tk-shelf-title { color: var(--accent); }
+
+      .tk-cowatch-toolbar { margin-bottom: 12px; }
     </style>
   </head>
   <body>
@@ -127,8 +129,10 @@
 
         <div class="tk-card" style="margin-bottom: 24px;">
           <div class="tk-card-heading">📺 Shows You Watch Together</div>
-          <div class="tk-card-note">Manually tagged — shows you only watch with your wife, kept out of the solo picks above and grouped here instead. Same status/airing info as the table below, just scoped to this list.</div>
-          <div class="tk-table-wrap"><table class="tk-table" id="coWatchTable"></table></div>
+          <div class="tk-card-note">Manually tagged — shows you only watch with your wife, kept out of the solo picks above and grouped here instead. This card view shows only what's actually airing or has an unwatched episode ready right now; switch to the table for the full tagged list and airing-schedule detail.</div>
+          <div class="tk-cowatch-toolbar"><button type="button" class="tk-btn" id="coWatchViewToggle">Show table view</button></div>
+          <div class="tk-shelf" id="coWatchCards"></div>
+          <div class="tk-table-wrap" id="coWatchTableWrap" hidden><table class="tk-table" id="coWatchTable"></table></div>
         </div>
 
         <div class="tk-card" style="margin-bottom: 24px;">
