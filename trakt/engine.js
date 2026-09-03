@@ -715,12 +715,13 @@ function castPositionWeight(pos) {
   return Math.max(0.2, 1 - pos * 0.2);
 }
 
-// TEMP placeholder — a real trakt-enrich-person.yml REFRESH_ALL run is
-// in flight to backfill popularity onto all ~4,867 cached people; this
-// gets replaced with J.K. Simmons' real, verified TMDB popularity score
-// (Bill's own named example, The Westies) the moment that data lands, not
-// left as a guess. See prestigeScore()'s own comment below.
-const STAR_POWER_REFERENCE = 10;
+// Real, verified value — trakt-enrich-person.yml's REFRESH_ALL run
+// (Sep 2026) backfilled popularity onto all 4,867 cached people; J.K.
+// Simmons' real TMDB popularity is 9.988, landing right around the 99th
+// percentile of that full distribution (p99=10.75, median=1.99, mean=
+// 2.62) — genuinely "a known star," not an arbitrary round number. See
+// prestigeScore()'s own comment below.
+const STAR_POWER_REFERENCE = 9.988;
 
 function castBonus(topCast, lovedActors) {
   let bonus = 0;
@@ -828,14 +829,14 @@ export function isPrestigeFormat(meta) {
 // as "unknown," not "no star power" — the same "don't punish missing
 // data" convention isTooObscure()/showAiringBonus() already follow.
 //
-// STAR_POWER_REFERENCE is TMDB's own popularity score for J.K. Simmons
-// (The Westies, Bill's own named example) at the time this was written —
-// used as a concrete, real anchor point for "clearly a known star" rather
-// than an invented round number. Re-check this anchor once
-// trakt-enrich-person.yml's popularity backfill has run for real (see
-// this file's own header note on real-data validation before trusting a
-// threshold) and adjust if TMDB's popularity scale or this reference
-// person's own score has drifted.
+// STAR_POWER_REFERENCE is TMDB's own real popularity score for J.K.
+// Simmons (The Westies, Bill's own named example) — a concrete, verified
+// anchor point for "clearly a known star" rather than an invented round
+// number. Confirmed against the full real distribution once
+// trakt-enrich-person.yml's REFRESH_ALL backfill landed (Sep 2026, 4,867
+// people): 9.988 sits right at the 99th percentile (p99=10.75), not an
+// arbitrary pick — re-check if this reference person's own score or
+// TMDB's popularity scale drifts meaningfully in the future.
 function starPowerRaw(topCast, personMeta) {
   if (!topCast || !topCast.length || !personMeta) return null;
   let weighted = 0, totalWeight = 0, any = false;
@@ -863,8 +864,17 @@ export function prestigeScore(candidate, meta, omdbEntry, personMeta = {}) {
   const awards = awardsScore(omdbEntry);
   if (awards) score += Math.round(awards * 0.15);
   if ((meta.keywords || []).includes('miniseries')) score += 5;
+  // Positive-only: real star power is real evidence of prestige, but its
+  // ABSENCE isn't evidence against it — plenty of acclaimed limited series
+  // lean on strong character actors rather than A-listers, and format +
+  // critic acclaim above already carry most of the real signal. Checked
+  // against the real distribution once it landed (4,867 people: median
+  // 1.99, p90 5.37, p99/J.K.-Simmons-level 9.988-10.75) before picking a
+  // linear scale — a plain ratio against the reference alone would have
+  // floored almost the entire distribution at the same value, since the
+  // median sits at only ~20% of it.
   const star = starPowerRaw(meta?.topCastDetail, personMeta);
-  if (star != null) score += Math.max(-10, Math.min(20, Math.round((star / STAR_POWER_REFERENCE - 1) * 20)));
+  if (star != null) score += Math.max(0, Math.min(15, Math.round((star / STAR_POWER_REFERENCE) * 15)));
   return Math.max(0, Math.min(100, score));
 }
 
