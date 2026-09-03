@@ -1,10 +1,15 @@
-name: Resolve Manual Candidate Titles (TMDB search)
+name: Enrich Trakt People (TMDB person lookup)
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: 'How many people to enrich this run'
+        type: number
+        default: 300
 
 jobs:
-  resolve:
+  enrich:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -13,11 +18,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Resolve titles to TMDB ids and add stub candidates
+      - name: Fetch birthday/gender for lead cast members from TMDB
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
-        run: python3 trakt/resolve_titles.py
-        timeout-minutes: 15
+        run: python3 trakt/enrich_person.py ${{ inputs.batch_size || 300 }}
+        timeout-minutes: 30
       - name: Commit if changed
         if: always()
         run: |
@@ -33,15 +38,12 @@ jobs:
           # discarding a real TMDB API-fetch pass (topCastDetail backfill, run
           # 33701084686) that had already succeeded locally.
           BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-          git add trakt/data/
+          git add trakt/data/personMetadata.json
           if git diff --staged --quiet; then
-            echo "No new candidates."
+            echo "No new person metadata."
             exit 0
           fi
-          git commit -m "Resolve manual candidate titles via TMDB search [automated]"
-          # Same race the TMDB enrichment job hit: a long run can lose a
-          # push to any other scheduled workflow that lands on main first.
-          # Rebase and retry rather than losing a long run's real output.
+          git commit -m "Enrich Trakt person metadata via TMDB [automated]"
           for i in 1 2 3 4 5; do
             if git push; then
               exit 0
