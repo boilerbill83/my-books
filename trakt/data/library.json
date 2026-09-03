@@ -1,10 +1,31 @@
 {
   "meta": {
-    "generatedAt": "2026-08-29T16:40:13.440Z",
-    "movieCount": 183,
-    "showCount": 379
+    "generatedAt": "2026-09-03T01:19:41.637Z",
+    "movieCount": 193,
+    "showCount": 384
   },
   "titles": [
+    {
+      "type": "movie",
+      "titleKey": "movie:19913",
+      "ids": {
+        "imdb": "tt1022603",
+        "plex": {
+          "guid": "5d776845e6d55c002040f828",
+          "slug": "500-days-of-summer"
+        },
+        "slug": "500-days-of-summer-2009",
+        "tmdb": 19913,
+        "trakt": 12224
+      },
+      "title": "(500) Days of Summer",
+      "year": 2009,
+      "myRating": 10,
+      "ratedAt": "2026-09-03T01:03:40.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2009-07-17T00:00:00.000Z",
+      "favorite": false
+    },
     {
       "type": "show",
       "titleKey": "show:64464",
@@ -603,6 +624,27 @@
       "airedEpisodes": 13,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:513576",
+      "ids": {
+        "imdb": "tt7374948",
+        "plex": {
+          "guid": "5d777037594b2b001e746eb0",
+          "slug": "always-be-my-maybe-2019"
+        },
+        "slug": "always-be-my-maybe-2019",
+        "tmdb": 513576,
+        "trakt": 363519
+      },
+      "title": "Always Be My Maybe",
+      "year": 2019,
+      "myRating": 7,
+      "ratedAt": "2026-09-03T01:03:57.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2019-05-31T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -3262,6 +3304,27 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:295699",
+      "ids": {
+        "imdb": "tt2937696",
+        "plex": {
+          "guid": "5d776b2b51dd69001fe2d094",
+          "slug": "everybody-wants-some"
+        },
+        "slug": "everybody-wants-some-2016",
+        "tmdb": 295699,
+        "trakt": 195629
+      },
+      "title": "Everybody Wants Some!!",
+      "year": 2016,
+      "myRating": 6,
+      "ratedAt": "2026-08-31T20:41:17.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2026-08-31T20:41:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:545611",
       "ids": {
         "imdb": "tt6710474",
@@ -3627,6 +3690,27 @@
       "ratedAt": "2019-11-15T00:00:00.000Z",
       "plays": 1,
       "lastWatchedAt": "2019-11-15T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:121986",
+      "ids": {
+        "imdb": "tt2347569",
+        "plex": {
+          "guid": "5d77697a23d5a3001f4f834f",
+          "slug": "frances-ha"
+        },
+        "slug": "frances-ha-2013",
+        "tmdb": 121986,
+        "trakt": 84456
+      },
+      "title": "Frances Ha",
+      "year": 2013,
+      "myRating": 8,
+      "ratedAt": "2026-09-03T01:03:29.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2013-05-17T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -4734,8 +4818,8 @@
       },
       "title": "Industry",
       "year": 2020,
-      "myRating": 8,
-      "ratedAt": "2026-03-01T00:00:00.000Z",
+      "myRating": 9,
+      "ratedAt": "2026-08-31T00:03:57.000Z",
       "plays": 32,
       "airedEpisodes": 32,
       "completionStatus": "caught-up",
@@ -4764,6 +4848,30 @@
       "airedEpisodes": 30,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:95665",
+      "ids": {
+        "imdb": "tt8740976",
+        "plex": {
+          "guid": "5f5b54b2db89f700421733f1",
+          "slug": "inventing-anna"
+        },
+        "slug": "inventing-anna",
+        "tmdb": 95665,
+        "tvdb": 371944,
+        "trakt": 154957
+      },
+      "title": "Inventing Anna",
+      "year": 2022,
+      "myRating": 8,
+      "ratedAt": "2026-08-31T00:05:01.000Z",
+      "plays": 9,
+      "airedEpisodes": 9,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2022-02-11T09:23:00.000Z",
       "favorite": false
     },
     {
@@ -4896,9 +5004,33 @@
       "myRating": 9,
       "ratedAt": "2025-08-20T00:00:00.000Z",
       "plays": 177,
-      "airedEpisodes": 180,
+      "airedEpisodes": 181,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:122235",
+      "ids": {
+        "imdb": "tt14271652",
+        "plex": {
+          "guid": "6067dc29ee1f68002d0469b4",
+          "slug": "joe-pickett"
+        },
+        "slug": "joe-pickett",
+        "tmdb": 122235,
+        "tvdb": 399244,
+        "trakt": 175861
+      },
+      "title": "Joe Pickett",
+      "year": 2021,
+      "myRating": 8,
+      "ratedAt": "2026-09-02T23:45:18.000Z",
+      "plays": 20,
+      "airedEpisodes": 20,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2023-07-30T07:45:00.000Z",
       "favorite": false
     },
     {
@@ -5427,7 +5559,7 @@
       "myRating": 7,
       "ratedAt": "2024-12-15T00:00:00.000Z",
       "plays": 16,
-      "airedEpisodes": 20,
+      "airedEpisodes": 21,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false
@@ -5739,6 +5871,30 @@
       "airedEpisodes": 20,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:278624",
+      "ids": {
+        "imdb": "tt34866681",
+        "plex": {
+          "guid": "67507127b734a2ab5d683713",
+          "slug": "lucky-2026"
+        },
+        "slug": "lucky-2026",
+        "tmdb": 278624,
+        "tvdb": 457437,
+        "trakt": 265812
+      },
+      "title": "Lucky",
+      "year": 2026,
+      "myRating": 10,
+      "ratedAt": "2026-09-01T18:10:28.000Z",
+      "plays": 7,
+      "airedEpisodes": 7,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-09-01T18:10:00.000Z",
       "favorite": false
     },
     {
@@ -6205,6 +6361,27 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:780609",
+      "ids": {
+        "imdb": "tt13841850",
+        "plex": {
+          "guid": "5fed11260a708b002d1431be",
+          "slug": "men-2022"
+        },
+        "slug": "men-2022",
+        "tmdb": 780609,
+        "trakt": 617534
+      },
+      "title": "Men",
+      "year": 2022,
+      "myRating": 2,
+      "ratedAt": "2026-08-31T20:41:31.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2026-08-31T20:41:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:70",
       "ids": {
         "imdb": "tt0405159",
@@ -6429,6 +6606,27 @@
       "airedEpisodes": 9,
       "completionStatus": "caught-up",
       "lastWatchedAt": "2024-09-19T05:06:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:17431",
+      "ids": {
+        "imdb": "tt1182345",
+        "plex": {
+          "guid": "5d7768402ec6b5001f6bdd2b",
+          "slug": "moon"
+        },
+        "slug": "moon-2009",
+        "tmdb": 17431,
+        "trakt": 10655
+      },
+      "title": "Moon",
+      "year": 2009,
+      "myRating": 4,
+      "ratedAt": "2026-09-02T23:45:10.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2026-09-02T23:44:00.000Z",
       "favorite": false
     },
     {
@@ -7569,7 +7767,7 @@
       "myRating": 8,
       "ratedAt": "2025-04-10T00:00:00.000Z",
       "plays": 24,
-      "airedEpisodes": 29,
+      "airedEpisodes": 30,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false
@@ -7863,6 +8061,30 @@
       "airedEpisodes": 12,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:245256",
+      "ids": {
+        "imdb": "tt31122777",
+        "plex": {
+          "guid": "65bd41c1414230404b768a2e",
+          "slug": "say-nothing"
+        },
+        "slug": "say-nothing",
+        "tmdb": 245256,
+        "tvdb": 445610,
+        "trakt": 222933
+      },
+      "title": "Say Nothing",
+      "year": 2024,
+      "myRating": 2,
+      "ratedAt": "2026-09-02T23:51:44.000Z",
+      "plays": 9,
+      "airedEpisodes": 9,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-09-02T23:51:00.000Z",
       "favorite": false
     },
     {
@@ -8281,6 +8503,27 @@
       "completionStatus": "in-progress",
       "lastWatchedAt": "2025-01-17T02:59:00.000Z",
       "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:82693",
+      "ids": {
+        "imdb": "tt1045658",
+        "plex": {
+          "guid": "5d7768c996b655001fdc1d6f",
+          "slug": "silver-linings-playbook"
+        },
+        "slug": "silver-linings-playbook-2012",
+        "tmdb": 82693,
+        "trakt": 61867
+      },
+      "title": "Silver Linings Playbook",
+      "year": 2012,
+      "myRating": 10,
+      "ratedAt": "2026-08-31T21:08:37.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2012-11-16T00:00:00.000Z",
+      "favorite": true
     },
     {
       "type": "movie",
@@ -8790,6 +9033,30 @@
       "favorite": false
     },
     {
+      "type": "show",
+      "titleKey": "show:126301",
+      "ids": {
+        "imdb": "tt11173006",
+        "plex": {
+          "guid": "60ad299761a7d4002d44e055",
+          "slug": "super-pumped"
+        },
+        "slug": "super-pumped",
+        "tmdb": 126301,
+        "tvdb": 403415,
+        "trakt": 185581
+      },
+      "title": "Super Pumped",
+      "year": 2022,
+      "myRating": 9,
+      "ratedAt": "2026-08-31T00:04:11.000Z",
+      "plays": 7,
+      "airedEpisodes": 7,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2022-04-11T02:59:00.000Z",
+      "favorite": false
+    },
+    {
       "type": "movie",
       "titleKey": "movie:8363",
       "ids": {
@@ -8874,7 +9141,7 @@
       "myRating": 9,
       "ratedAt": "2023-05-31T00:00:00.000Z",
       "plays": 34,
-      "airedEpisodes": 38,
+      "airedEpisodes": 39,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false
@@ -9408,6 +9675,27 @@
       "favorite": false
     },
     {
+      "type": "movie",
+      "titleKey": "movie:1422",
+      "ids": {
+        "imdb": "tt0407887",
+        "plex": {
+          "guid": "5d77682985719b001f3a14bd",
+          "slug": "the-departed"
+        },
+        "slug": "the-departed-2006",
+        "tmdb": 1422,
+        "trakt": 952
+      },
+      "title": "The Departed",
+      "year": 2006,
+      "myRating": 10,
+      "ratedAt": "2026-09-02T23:45:48.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2006-10-05T00:00:00.000Z",
+      "favorite": false
+    },
+    {
       "type": "show",
       "titleKey": "show:65817",
       "ids": {
@@ -9921,6 +10209,27 @@
       "airedEpisodes": 66,
       "completionStatus": "caught-up",
       "lastWatchedAt": "2025-05-27T04:56:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:18785",
+      "ids": {
+        "imdb": "tt1119646",
+        "plex": {
+          "guid": "5d7768437e9a3c0020c6f5ed",
+          "slug": "the-hangover"
+        },
+        "slug": "the-hangover-2009",
+        "tmdb": 18785,
+        "trakt": 11534
+      },
+      "title": "The Hangover",
+      "year": 2009,
+      "myRating": 9,
+      "ratedAt": "2026-09-03T01:04:41.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2009-06-05T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -12241,6 +12550,27 @@
       "plays": 1,
       "lastWatchedAt": "2025-11-26T00:00:00.000Z",
       "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:69",
+      "ids": {
+        "imdb": "tt0358273",
+        "plex": {
+          "guid": "5d77682485719b001f3a041e",
+          "slug": "walk-the-line"
+        },
+        "slug": "walk-the-line-2005",
+        "tmdb": 69,
+        "trakt": 40
+      },
+      "title": "Walk the Line",
+      "year": 2005,
+      "myRating": 10,
+      "ratedAt": "2026-09-03T01:04:52.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2005-11-18T00:00:00.000Z",
+      "favorite": true
     },
     {
       "type": "show",
