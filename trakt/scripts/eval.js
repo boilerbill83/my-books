@@ -43,16 +43,16 @@ const reviewedTags = read('reviewedTags.json', {});
 const m = await computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags);
 
 console.log(`BMTRE eval over ${m.n} watched+rated+enriched titles (leave-one-out)`);
-console.log(`"liked" = myRating >= ${m.likedThreshold}/10; base rate: ${(100 * m.baseRate).toFixed(1)}%   MAE (0-100 scale): ${m.mae.toFixed(2)}`);
+console.log(`"liked" = myRating >= ${m.likedThreshold}/10; base rate: ${(100 * m.baseRate).toFixed(1)}%   raw MAE: ${m.mae.toFixed(2)}   calibrated MAE: ${m.calibratedMae.toFixed(2)}`);
 for (const k of [10, 25, 50, 100]) {
   if (m.precisionAtK[k] != null) console.log(`precision@${k}: ${m.precisionAtK[k].toFixed(1)}%`);
 }
 console.log(`bottom-50 catches <=5/10: ${m.bottomCatch}/${m.bottomPossible} of the achievable ceiling ` +
   `(${m.bottomCatch}/50 of the raw slice; chance would catch ${m.bottomChance.toFixed(1)})`);
 console.log(`naive always-predict-mean baseline MAE: ${m.meanBaselineMae.toFixed(2)} — ` +
-  (m.mae > m.meanBaselineMae
-    ? 'the model is currently WORSE than this trivial baseline on raw magnitude error (real, not a bug — Bill\'s ratings skew high, so guessing the mean scores well on MAE alone; this is exactly why precision@k, not MAE, is the metric that matters, same principle CLAUDE.md already states for the book side).'
-    : 'the model beats this trivial baseline.'));
+  (m.calibratedMae > m.meanBaselineMae
+    ? 'even calibrated (see engine.js\'s calibrateScore()), the model is still WORSE than this trivial baseline on raw magnitude error; this is exactly why precision@k, not MAE, is the metric that matters, same principle CLAUDE.md already states for the book side.'
+    : 'the calibrated model beats this trivial baseline (the raw, uncalibrated score alone would not — matchScore() was only ever designed to rank correctly, not to hit an absolute 0-100 scale directly).'));
 
 console.log('\nBy type:');
 for (const [type, s] of Object.entries(m.byType)) {
