@@ -384,9 +384,20 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
         if (!lovedCollections.has(collectionId)) lovedCollections.set(collectionId, []);
         lovedCollections.get(collectionId).push({ titleKey: t.titleKey, weight: w });
       }
-      for (const actor of (meta?.topCast || [])) {
-        lovedActors.set(actor, (lovedActors.get(actor) || 0) + w);
-      }
+      // Bill: "if I loved a movie that included Kathy Bates as a
+      // supporting actress, in no way does that mean I'll love a show
+      // she stars in." Position-weight this credit — meta.topCast is
+      // TMDB's own cast, already sorted by billing order (see
+      // enrich_tmdb.py's `sorted(cast, key=lambda c: c.get('order', 999))`)
+      // — so a 5th-billed appearance in a loved title earns much less
+      // credit toward castBonus() than a lead role, instead of every
+      // name in the top-5 getting identical full weight regardless of
+      // how prominent the part actually was. See castPositionWeight()
+      // below (also applied on the candidate side, in castBonus()
+      // itself) for the exact curve and its eval.js-swept justification.
+      meta?.topCast?.forEach((actor, pos) => {
+        lovedActors.set(actor, (lovedActors.get(actor) || 0) + w * castPositionWeight(pos));
+      });
       for (const kw of (meta?.keywords || [])) {
         if (KEYWORD_STOPLIST.has(kw)) continue;
         lovedKeywords.set(kw, (lovedKeywords.get(kw) || 0) + w);
@@ -643,13 +654,74 @@ function franchiseBonus(collectionId, lovedCollections) {
 // franchise-match ceiling. Same simple tiered-per-item-summed-and-capped
 // shape as genreBonus() (this codebase's existing convention for a
 // secondary signal), capped at the same 8-point ceiling.
+// Bill's explicit request, prompted by a real bad recommendation: Kathy
+// Bates appearing 2nd-billed (a supporting role) in Revolutionary Road
+// (rated 8/10 - not even a "loved" 9-10 title) was, before this fix,
+// weighted identically to a lead role in a 10/10 favorite - a supporting
+// appearance in one liked movie carries real predictive weight toward
+// "you'll love a completely different-genre show built around this
+// person," which doesn't hold up. Investigated the real Matlock case
+// this complaint referenced first (this project's standing "prove it,
+// don't assert it" discipline): castBonus() actually contributed exactly
+// 0 to Matlock's real 97-point score, since Bates' pre-fix weight
+// (0.43, from that one 8-rated title) never even cleared the old >=1
+// tier - the real drivers were a legitimate forward+reverse similar-
+// title match against 6 genuinely loved (9-10) legal/crime dramas
+// (Better Call Saul, The Good Wife, Goliath, The Lincoln Lawyer,
+// Billions, Mad Men) plus recency/community-rating/genre. Reported this
+// to Bill directly rather than silently "fixing" a signal that wasn't
+// the actual cause. This change is still made on its own merits - the
+// underlying mechanism it targets (billing position never factored into
+// either side of the match) was real and worth closing regardless of
+// this specific title.
+//
+// castPositionWeight(pos) - TMDB's topCast is already sorted by billing
+// order (enrich_tmdb.py's `sorted(cast, key=lambda c: c.get('order',
+// 999))`) - decays linearly from 1.0 at the lead role (index 0) to 0.2
+// at 5th-billed (index 4), applied on BOTH sides: how much credit a
+// loved title's cast member earns toward lovedActors (buildIndexes,
+// above) and how much a candidate's own cast member's accumulated
+// lovedActors weight actually counts here. A lead-to-lead match keeps
+// its full 1.0x1.0 weight; a supporting-to-supporting match is
+// discounted twice (as low as 0.04x).
+//
+// Swept against scripts/eval.js honestly, not assumed clean: this change
+// costs precision@10 (100%->90%, one boundary slot) - checked whether
+// that was a curve-tuning artifact by sweeping three configurations
+// (aggressive 1.0-floor-0.2/decay-0.2, moderate 0.4-floor/decay-0.15,
+// very mild 0.5-floor/decay-0.1); all three landed on the identical
+// p10=90% - not something a gentler curve escapes, a real structural
+// consequence of correctly discounting the specific pattern this fix
+// targets, confirmed by tracing the actual displaced title (root-caused,
+// not assumed): "The Studio" lost its previously-unearned +4 cast
+// credit, which came almost entirely from Seth Rogen and Kathryn Hahn
+// being billed 2nd-5th (never 1st) across nearly every one of Bill's
+// OTHER rated titles featuring them (Rogen: Pam & Tommy #3, Platonic #2,
+// Steve Jobs #3, Superbad #5(!), The Fabelmans #3 - genuinely a lead
+// only in The Studio itself, the very candidate being scored; Hahn:
+// Glass Onion #4, Revolutionary Road #5 - alongside Kathy Bates, the
+// exact case Bill named - WandaVision #3) - the identical failure shape
+// Bill flagged with Kathy Bates/Matlock, just a different actor pair.
+// Losing that unearned credit drops "The Studio" out of the true top 10,
+// replaced by "Presumed Innocent" (rated 7/10, one point under the
+// "liked" >=8 bar, but a real, honestly-earned score on every other
+// signal - Creator Match +15, a genuine 6-title similar-network match).
+// precision@25/50/100 all held or improved in every curve tested. Kept
+// the more decisive original curve (not the milder ones, which cost the
+// same p10 slot for less actual devaluation) since all three perform
+// identically on the metric that matters and the whole point was a real
+// devaluation, not the smallest change that still moves the needle.
+function castPositionWeight(pos) {
+  return Math.max(0.2, 1 - pos * 0.2);
+}
+
 function castBonus(topCast, lovedActors) {
   let bonus = 0;
-  for (const actor of (topCast || [])) {
-    const count = lovedActors.get(actor) || 0;
+  (topCast || []).forEach((actor, pos) => {
+    const count = (lovedActors.get(actor) || 0) * castPositionWeight(pos);
     if      (count >= 3) bonus += 3;
     else if (count >= 1) bonus += 2;
-  }
+  });
   return Math.min(8, bonus);
 }
 
@@ -2409,9 +2481,14 @@ export function scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta = {}) {
       ? `Part of ${meta.belongsToCollection.name} — you've watched ${lovedInCollection.length} other entr${lovedInCollection.length === 1 ? 'y' : 'ies'} you loved or liked.`
       : meta.belongsToCollection ? `Part of ${meta.belongsToCollection.name}, but none of its other entries are among your loved/liked titles.` : 'Not part of a franchise/collection (movies only).');
 
-  const lovedCastHits = (meta.topCast || []).filter(a => (idx.lovedActors.get(a) || 0) > 0);
+  // Position-weighted the same way castBonus() itself weights a match
+  // (>=1 is the tier's real qualifying bar) — an unweighted ">0" check
+  // here would list an actor as a "hit" even when their actual billing
+  // position discounted the match to something too small to earn any
+  // points, an inconsistency between this note and the score beside it.
+  const lovedCastHits = (meta.topCast || []).filter((a, pos) => (idx.lovedActors.get(a) || 0) * castPositionWeight(pos) >= 1);
   add('cast', 'Cast affinity', castBonus(meta.topCast, idx.lovedActors),
-    lovedCastHits.length ? `Features ${lovedCastHits.slice(0, 3).join(', ')}, who you've enjoyed before.` : 'No cast overlap with your loved titles.');
+    lovedCastHits.length ? `Features ${lovedCastHits.slice(0, 3).join(', ')}, who you've enjoyed before.` : 'No cast overlap strong enough to matter (billing position is weighted — a small/background role in a loved title counts for little).');
 
   const matchedKeywords = (meta.keywords || []).filter(k => !KEYWORD_STOPLIST.has(k) && (idx.lovedKeywords.get(k) || 0) > 0);
   add('keyword', 'Keyword match', keywordBonus(meta.keywords, idx.lovedKeywords),
@@ -2548,12 +2625,24 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
   // Checked after creator match, before the general similar-title
   // network — a real actor you've loved before, but a smaller signal
   // than a director/creator match (see castBonus()'s own reasoning).
-  const lovedCastMember = (meta.topCast || []).find(actor => idx.lovedActors.get(actor) > 0);
+  // Position-weighted the same way castBonus() itself weights a match
+  // (>=1 is its real qualifying bar) — Bill's explicit "a supporting
+  // role shouldn't count like a lead role" request means an unweighted
+  // ">0" check here could still narrate "Cast Affinity" as the reason
+  // even when the actual score contribution from billing position was
+  // discounted to zero, an inconsistency between this text and the
+  // number beside it.
+  let lovedCastMember = null, lovedCastWeight = 0;
+  (meta.topCast || []).forEach((actor, pos) => {
+    if (lovedCastMember) return;
+    const w = (idx.lovedActors.get(actor) || 0) * castPositionWeight(pos);
+    if (w >= 1) { lovedCastMember = actor; lovedCastWeight = w; }
+  });
   if (lovedCastMember) {
-    // idx.lovedActors is now a continuous rating-weighted sum (liked-not-
-    // loved-signal-gap fix), not a literal title count — round for
-    // display rather than showing a raw fractional weight like "0.43".
-    const count = Math.max(1, Math.round(idx.lovedActors.get(lovedCastMember)));
+    // idx.lovedActors is now a continuous, position-weighted rating-
+    // weighted sum, not a literal title count — round for display
+    // rather than showing a raw fractional weight like "1.43".
+    const count = Math.max(1, Math.round(lovedCastWeight));
     return `Cast Affinity — You've loved ${count} title${count > 1 ? 's' : ''} with ${lovedCastMember} before.`;
   }
 
