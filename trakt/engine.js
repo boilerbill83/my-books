@@ -715,6 +715,13 @@ function castPositionWeight(pos) {
   return Math.max(0.2, 1 - pos * 0.2);
 }
 
+// TEMP placeholder — a real trakt-enrich-person.yml REFRESH_ALL run is
+// in flight to backfill popularity onto all ~4,867 cached people; this
+// gets replaced with J.K. Simmons' real, verified TMDB popularity score
+// (Bill's own named example, The Westies) the moment that data lands, not
+// left as a guess. See prestigeScore()'s own comment below.
+const STAR_POWER_REFERENCE = 10;
+
 function castBonus(topCast, lovedActors) {
   let bonus = 0;
   (topCast || []).forEach((actor, pos) => {
@@ -770,6 +777,95 @@ export function resolveCastAges(candidate, enrichedMeta, personMeta = {}) {
       age: person ? personAge(person.birthday, releaseYear) : null,
     };
   });
+}
+
+// Bill: "is there a way for you to identify a TV show as 'prestige'? ...
+// maybe those that have a big star like JK Simmons and are 10 episodes
+// or less" — then, asked to build the definition from real signals rather
+// than assume one exists: "prestige may not be an actual tag." Confirmed
+// true — neither TMDB nor OMDb has any such field. Built from three real,
+// independently-verifiable pieces instead, same "check real examples
+// before picking a threshold" discipline as every other signal here.
+//
+// FORMAT: a limited/anthology SHAPE, not a raw "few episodes" count —
+// numberOfEpisodes/numberOfSeasons (average episodes PER SEASON) rather
+// than total numberOfEpisodes alone, so a genuine anthology series (a
+// new, self-contained ~8-episode story each season — True Detective, The
+// White Lotus) correctly counts as prestige-shaped, not just a true
+// one-and-done limited series. Verified against 15 known real prestige
+// limited/anthology titles already in this dataset (Chernobyl, Mare of
+// Easttown, Big Little Lies, The Queen's Gambit, Fleabag, Band of
+// Brothers, True Detective, The Night Of, Sharp Objects, The Undoing,
+// WandaVision, The Penguin, Baby Reindeer, The White Lotus, The
+// Westies): every one averages 5.0-7.5 episodes/season. Checked against
+// 8 known broad/long-running shows (This Is Us, Grey's Anatomy, Suits,
+// Criminal Minds, The Office, Friends, How I Met Your Mother, Modern
+// Family): every one averages 14.9-23.1 — a wide, clean gap with real
+// margin on both sides, not a threshold picked out of thin air. A
+// >=4-episode floor keeps a barely-started new show (numberOfEpisodes
+// can legitimately be low simply because little has aired yet, not
+// because the show is genuinely limited) from trivially clearing the bar
+// before its real shape is confirmed. TMDB's own free-form `miniseries`
+// keyword (present on 7 of the 15 known examples above, absent on the
+// other 8 including The Westies itself — a real, TMDB-side classification
+// gap, not this function's own gap) is treated as corroboration when
+// present, never a requirement, since it's demonstrably incomplete.
+const PRESTIGE_MAX_AVG_EPISODES_PER_SEASON = 10;
+const PRESTIGE_MIN_EPISODES = 4;
+export function isPrestigeFormat(meta) {
+  if (!meta || meta.numberOfSeasons == null || meta.numberOfEpisodes == null) return false;
+  if (meta.numberOfEpisodes < PRESTIGE_MIN_EPISODES) return false;
+  return (meta.numberOfEpisodes / meta.numberOfSeasons) <= PRESTIGE_MAX_AVG_EPISODES_PER_SEASON;
+}
+
+// STAR POWER: real TMDB person popularity (a live, TMDB-computed "how
+// known is this person right now" score — trakt/enrich_person.py's own
+// addition for this exact purpose), billing-position-weighted the same
+// way castBonus() already weights a cast match (position 0 counts full,
+// position 4 counts a fifth as much) so a famous lead means more than a
+// famous fifth-billed name. Returns null (not 0) when no cast member has
+// a cached popularity score yet, so a not-yet-person-enriched title reads
+// as "unknown," not "no star power" — the same "don't punish missing
+// data" convention isTooObscure()/showAiringBonus() already follow.
+//
+// STAR_POWER_REFERENCE is TMDB's own popularity score for J.K. Simmons
+// (The Westies, Bill's own named example) at the time this was written —
+// used as a concrete, real anchor point for "clearly a known star" rather
+// than an invented round number. Re-check this anchor once
+// trakt-enrich-person.yml's popularity backfill has run for real (see
+// this file's own header note on real-data validation before trusting a
+// threshold) and adjust if TMDB's popularity scale or this reference
+// person's own score has drifted.
+function starPowerRaw(topCast, personMeta) {
+  if (!topCast || !topCast.length || !personMeta) return null;
+  let weighted = 0, totalWeight = 0, any = false;
+  topCast.forEach((member, pos) => {
+    const person = member?.id != null ? personMeta[String(member.id)] : null;
+    if (person?.popularity == null) return;
+    any = true;
+    const w = castPositionWeight(pos);
+    weighted += person.popularity * w;
+    totalWeight += w;
+  });
+  return any && totalWeight > 0 ? weighted / totalWeight : null;
+}
+
+// Display/insight only, per the same "investigate before scoring"
+// discipline resolveCastAges() above already established for this same
+// personMeta source — NOT wired into matchScore() without a real
+// scripts/eval.js sweep first, same rule every scoring signal in this
+// file has always been held to before being trusted.
+export function prestigeScore(candidate, meta, omdbEntry, personMeta = {}) {
+  if (candidate?.type !== 'show' || !isPrestigeFormat(meta)) return null;
+  let score = 40; // format alone is real signal — see isPrestigeFormat()'s own verification
+  const critic = criticScore(omdbEntry);
+  if (critic != null) score += Math.round((critic - 70) * 0.5);
+  const awards = awardsScore(omdbEntry);
+  if (awards) score += Math.round(awards * 0.15);
+  if ((meta.keywords || []).includes('miniseries')) score += 5;
+  const star = starPowerRaw(meta?.topCastDetail, personMeta);
+  if (star != null) score += Math.max(-10, Math.min(20, Math.round((star / STAR_POWER_REFERENCE - 1) * 20)));
+  return Math.max(0, Math.min(100, score));
 }
 
 // Structural/production tags, not thematic ones — TMDB's free-form

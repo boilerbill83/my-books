@@ -446,7 +446,7 @@ function initCollapsibleCards() {
 async function loadAllData() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
   const [dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback,
-         scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons] = await Promise.all([
+         scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -470,9 +470,16 @@ async function loadAllData() {
     // otherwise be invisible. { titleKey: { status, season, window,
     // source, researchedAt } }; never guessed — see each entry's source.
     get('./data/upcomingSeasons.json').catch(() => ({})),
+    // TMDB /person/{id} cache (enrich_person.py) — birthday/gender (Deep
+    // Dive's cast-age display) and, as of the prestige-identification
+    // work, each person's own real popularity score (Bill: "is there a
+    // way to identify a show as prestige... a big star like JK Simmons").
+    // Keyed by TMDB person id, not titleKey. {} is a safe empty default
+    // (deepdive.js already establishes this pattern for the same file).
+    get('./data/personMetadata.json').catch(() => ({})),
   ]);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
-  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons };
+  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta };
 }
 
 // Best Matches (Discover) and Prediction Misses (Quality) are two views of
