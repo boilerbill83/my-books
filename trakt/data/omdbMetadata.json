@@ -22993,5 +22993,2538 @@
   "imdbVotes": 6468,
   "director": "J.J. Perry",
   "fetchedAt": "2026-09-01"
+ },
+ "show:299939": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": "Max Winkler",
+  "fetchedAt": "2026-09-03"
+ },
+ "show:99741": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 2,
+   "raw": "2 nominations total"
+  },
+  "imdbRating": 7.2,
+  "imdbVotes": 5521,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:780609": {
+  "rottenTomatoes": 69,
+  "metacritic": 65,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 36,
+   "raw": "2 wins & 36 nominations total"
+  },
+  "imdbRating": 6.0,
+  "imdbVotes": 75010,
+  "director": "Alex Garland",
+  "fetchedAt": "2026-09-03"
+ },
+ "show:128098": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 2,
+   "totalWins": 6,
+   "totalNominations": 47,
+   "raw": "Nominated for 2 Primetime Emmys. 6 wins & 47 nominations total"
+  },
+  "imdbRating": 7.6,
+  "imdbVotes": 41086,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:210729": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": 66,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:3796": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 4,
+   "totalNominations": 22,
+   "raw": "4 wins & 22 nominations total"
+  },
+  "imdbRating": 8.5,
+  "imdbVotes": 57010,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:59440": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 7.1,
+  "imdbVotes": 1527,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:909": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 1,
+   "raw": "Nominated for 1 BAFTA Award1 nomination total"
+  },
+  "imdbRating": 8.1,
+  "imdbVotes": 2357,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:903": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 3,
+   "totalNominations": 3,
+   "raw": "Won 2 BAFTA 3 wins & 3 nominations total"
+  },
+  "imdbRating": 8.4,
+  "imdbVotes": 64111,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:3797": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 3,
+   "raw": "2 wins & 3 nominations"
+  },
+  "imdbRating": 8.3,
+  "imdbVotes": 35667,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:555": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 4,
+   "raw": "4 nominations"
+  },
+  "imdbRating": 7.3,
+  "imdbVotes": 2079,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:58932": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 3,
+   "raw": "3 nominations"
+  },
+  "imdbRating": 7.0,
+  "imdbVotes": 13086,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:58942": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 2,
+   "raw": "1 win & 2 nominations total"
+  },
+  "imdbRating": 6.5,
+  "imdbVotes": 5533,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:124897": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 1,
+   "raw": "1 nomination total"
+  },
+  "imdbRating": 6.5,
+  "imdbVotes": 6674,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:60066": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 7.4,
+  "imdbVotes": 2422,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:57276": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 5,
+   "raw": "5 nominations total"
+  },
+  "imdbRating": 8.1,
+  "imdbVotes": 25488,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:92782": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 1,
+   "emmyNominations": 0,
+   "totalWins": 9,
+   "totalNominations": 17,
+   "raw": "Won 1 Primetime Emmy. 9 wins & 17 nominations total"
+  },
+  "imdbRating": 6.2,
+  "imdbVotes": 130412,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:92749": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 1,
+   "emmyNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 38,
+   "raw": "Won 1 Primetime Emmy. 2 wins & 38 nominations total"
+  },
+  "imdbRating": 7.3,
+  "imdbVotes": 310145,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:274820": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 7.0,
+  "imdbVotes": 3507,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:32294": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 1,
+   "emmyNominations": 0,
+   "totalWins": 11,
+   "totalNominations": 16,
+   "raw": "Won 1 Primetime Emmy. 11 wins & 16 nominations total"
+  },
+  "imdbRating": 7.4,
+  "imdbVotes": 16992,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:58460": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 3,
+   "raw": "3 nominations"
+  },
+  "imdbRating": 7.3,
+  "imdbVotes": 14101,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:91502": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 3,
+   "raw": "1 win & 3 nominations total"
+  },
+  "imdbRating": 8.2,
+  "imdbVotes": 2532,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:1437": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 1,
+   "emmyNominations": 0,
+   "totalWins": 5,
+   "totalNominations": 8,
+   "raw": "Won 1 Primetime Emmy. 5 wins & 8 nominations total"
+  },
+  "imdbRating": 8.9,
+  "imdbVotes": 302093,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:61343": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 6.5,
+  "imdbVotes": 1881,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:1424": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 4,
+   "emmyNominations": 0,
+   "totalWins": 59,
+   "totalNominations": 163,
+   "raw": "Won 4 Primetime Emmys. 59 wins & 163 nominations total"
+  },
+  "imdbRating": 8.0,
+  "imdbVotes": 331217,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:71789": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 2,
+   "totalWins": 0,
+   "totalNominations": 3,
+   "raw": "Nominated for 2 Primetime Emmys. 3 nominations total"
+  },
+  "imdbRating": 7.9,
+  "imdbVotes": 38843,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:74253": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 0,
+   "raw": "1 win total"
+  },
+  "imdbRating": 7.2,
+  "imdbVotes": 3034,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:38967": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 2,
+   "totalWins": 0,
+   "totalNominations": 7,
+   "raw": "Nominated for 2 Primetime Emmys. 7 nominations total"
+  },
+  "imdbRating": 7.6,
+  "imdbVotes": 13706,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:91932": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 7.2,
+  "imdbVotes": 550,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:1086": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 7.0,
+  "imdbVotes": 5074,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:1459": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 8.4,
+  "imdbVotes": 4962,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:819": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 2,
+   "raw": "Nominated for 1 BAFTA Award2 nominations total"
+  },
+  "imdbRating": 7.5,
+  "imdbVotes": 728,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:24": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 1,
+   "raw": "1 nomination total"
+  },
+  "imdbRating": 6.5,
+  "imdbVotes": 125,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:223300": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:91875": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 2,
+   "raw": "2 nominations total"
+  },
+  "imdbRating": 7.7,
+  "imdbVotes": 25409,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:96628": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 6,
+   "totalNominations": 6,
+   "raw": "6 wins & 6 nominations total"
+  },
+  "imdbRating": 7.6,
+  "imdbVotes": 22668,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:79680": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 1,
+   "totalWins": 10,
+   "totalNominations": 34,
+   "raw": "Nominated for 1 Primetime Emmy. 10 wins & 34 nominations total"
+  },
+  "imdbRating": 6.9,
+  "imdbVotes": 74053,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:239243": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 6.1,
+  "imdbVotes": 432,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:104954": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 6,
+   "raw": "6 nominations total"
+  },
+  "imdbRating": 7.5,
+  "imdbVotes": 10373,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:92926": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 5,
+   "raw": "Nominated for 2 BAFTA 5 nominations total"
+  },
+  "imdbRating": 7.7,
+  "imdbVotes": 22419,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:93287": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 1,
+   "emmyNominations": 0,
+   "totalWins": 5,
+   "totalNominations": 57,
+   "raw": "Won 1 Primetime Emmy. 5 wins & 57 nominations total"
+  },
+  "imdbRating": 7.0,
+  "imdbVotes": 66697,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:206903": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 2,
+   "raw": "1 win & 2 nominations total"
+  },
+  "imdbRating": 7.8,
+  "imdbVotes": 2564,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:61871": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 2,
+   "raw": "1 win & 2 nominations total"
+  },
+  "imdbRating": 7.8,
+  "imdbVotes": 11501,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:242054": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 4,
+   "totalWins": 2,
+   "totalNominations": 17,
+   "raw": "Nominated for 4 Primetime Emmys. 2 wins & 17 nominations total"
+  },
+  "imdbRating": 7.7,
+  "imdbVotes": 60888,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:121710": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 6.7,
+  "imdbVotes": 42005,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:75967": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 7.8,
+  "imdbVotes": 4378,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:88989": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 4,
+   "totalNominations": 15,
+   "raw": "4 wins & 15 nominations total"
+  },
+  "imdbRating": 6.9,
+  "imdbVotes": 73818,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:63761": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 8,
+   "raw": "1 win & 8 nominations total"
+  },
+  "imdbRating": 7.7,
+  "imdbVotes": 3384,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:154827": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 20,
+   "raw": "20 nominations total"
+  },
+  "imdbRating": 7.3,
+  "imdbVotes": 1464,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:216795": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 4,
+   "raw": "4 nominations total"
+  },
+  "imdbRating": 7.0,
+  "imdbVotes": 3720,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:65701": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 11,
+   "totalNominations": 15,
+   "raw": "11 wins & 15 nominations total"
+  },
+  "imdbRating": 8.7,
+  "imdbVotes": 2447,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:64043": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 6,
+   "raw": "6 nominations total"
+  },
+  "imdbRating": 7.5,
+  "imdbVotes": 9736,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:67136": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 4,
+   "emmyNominations": 0,
+   "totalWins": 67,
+   "totalNominations": 276,
+   "raw": "Won 4 Primetime Emmys. 67 wins & 276 nominations total"
+  },
+  "imdbRating": 8.7,
+  "imdbVotes": 171979,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:32406": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 1,
+   "emmyNominations": 0,
+   "totalWins": 6,
+   "totalNominations": 31,
+   "raw": "Won 1 Primetime Emmy. 6 wins & 31 nominations total"
+  },
+  "imdbRating": 8.1,
+  "imdbVotes": 17078,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:130578": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 1,
+   "raw": "1 nomination"
+  },
+  "imdbRating": 7.4,
+  "imdbVotes": 4770,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:103516": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 2,
+   "totalWins": 13,
+   "totalNominations": 47,
+   "raw": "Nominated for 2 Primetime Emmys. 13 wins & 47 nominations total"
+  },
+  "imdbRating": 8.2,
+  "imdbVotes": 75901,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:92830": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 5,
+   "totalWins": 6,
+   "totalNominations": 30,
+   "raw": "Nominated for 5 Primetime Emmys. 6 wins & 30 nominations total"
+  },
+  "imdbRating": 7.0,
+  "imdbVotes": 259868,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:202879": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 12,
+   "raw": "12 nominations total"
+  },
+  "imdbRating": 7.0,
+  "imdbVotes": 42734,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:63210": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 13,
+   "totalNominations": 23,
+   "raw": "13 wins & 23 nominations total"
+  },
+  "imdbRating": 6.5,
+  "imdbVotes": 75853,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:79240": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 3,
+   "raw": "3 nominations total"
+  },
+  "imdbRating": 7.3,
+  "imdbVotes": 29354,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:47640": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 3,
+   "totalNominations": 27,
+   "raw": "3 wins & 27 nominations total"
+  },
+  "imdbRating": 7.3,
+  "imdbVotes": 92325,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:106158": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 5,
+   "raw": "2 wins & 5 nominations total"
+  },
+  "imdbRating": 7.7,
+  "imdbVotes": 12534,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:88055": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 1,
+   "totalWins": 4,
+   "totalNominations": 12,
+   "raw": "Nominated for 1 Primetime Emmy. 4 wins & 12 nominations total"
+  },
+  "imdbRating": 7.4,
+  "imdbVotes": 51930,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:113959": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 2,
+   "raw": "2 nominations total"
+  },
+  "imdbRating": 7.2,
+  "imdbVotes": 7516,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:46952": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 1,
+   "emmyNominations": 0,
+   "totalWins": 3,
+   "totalNominations": 33,
+   "raw": "Won 1 Primetime Emmy. 3 wins & 33 nominations total"
+  },
+  "imdbRating": 7.9,
+  "imdbVotes": 298634,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:69480": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 10,
+   "totalNominations": 35,
+   "raw": "10 wins & 35 nominations"
+  },
+  "imdbRating": 7.5,
+  "imdbVotes": 4707,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:92053": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 3,
+   "raw": "1 win & 3 nominations"
+  },
+  "imdbRating": 7.6,
+  "imdbVotes": 9571,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:1950": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 2,
+   "totalWins": 3,
+   "totalNominations": 35,
+   "raw": "Nominated for 2 Primetime Emmys. 3 wins & 35 nominations total"
+  },
+  "imdbRating": 7.5,
+  "imdbVotes": 16129,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:67743": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 39,
+   "totalNominations": 48,
+   "raw": "39 wins & 48 nominations total"
+  },
+  "imdbRating": 7.8,
+  "imdbVotes": 12548,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:126167": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 4,
+   "totalNominations": 10,
+   "raw": "Nominated for 2 BAFTA 4 wins & 10 nominations total"
+  },
+  "imdbRating": 7.4,
+  "imdbVotes": 30596,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:116761": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 7,
+   "raw": "Nominated for 1 BAFTA Award2 wins & 7 nominations total"
+  },
+  "imdbRating": 8.3,
+  "imdbVotes": 14172,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:91821": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 7.1,
+  "imdbVotes": 1290,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:43016": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 5,
+   "emmyNominations": 0,
+   "totalWins": 15,
+   "totalNominations": 44,
+   "raw": "Won 5 Primetime Emmys. 15 wins & 44 nominations total"
+  },
+  "imdbRating": 7.9,
+  "imdbVotes": 30787,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:81144": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 8,
+   "totalNominations": 24,
+   "raw": "8 wins & 24 nominations total"
+  },
+  "imdbRating": 6.8,
+  "imdbVotes": 12383,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:93288": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 6,
+   "raw": "Nominated for 1 BAFTA Award1 win & 6 nominations total"
+  },
+  "imdbRating": 7.5,
+  "imdbVotes": 8896,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:1772": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 9,
+   "totalNominations": 23,
+   "raw": "9 wins & 23 nominations total"
+  },
+  "imdbRating": 8.4,
+  "imdbVotes": 5601,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:85702": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 4,
+   "totalWins": 2,
+   "totalNominations": 27,
+   "raw": "Nominated for 4 Primetime Emmys. 2 wins & 27 nominations total"
+  },
+  "imdbRating": 8.1,
+  "imdbVotes": 15759,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:261363": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 1,
+   "raw": "1 nomination total"
+  },
+  "imdbRating": 7.6,
+  "imdbVotes": 4117,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:71885": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 2,
+   "totalWins": 0,
+   "totalNominations": 28,
+   "raw": "Nominated for 2 Primetime Emmys. 28 nominations total"
+  },
+  "imdbRating": 6.6,
+  "imdbVotes": 7110,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:77485": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 5,
+   "totalNominations": 17,
+   "raw": "5 wins & 17 nominations total"
+  },
+  "imdbRating": 7.0,
+  "imdbVotes": 4028,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:84584": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 1,
+   "raw": "1 win & 1 nomination total"
+  },
+  "imdbRating": 7.3,
+  "imdbVotes": 11646,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:275724": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 2,
+   "raw": "2 nominations total"
+  },
+  "imdbRating": 6.9,
+  "imdbVotes": 293,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:127390": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 1,
+   "raw": "1 nomination"
+  },
+  "imdbRating": 6.5,
+  "imdbVotes": 2017,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:243861": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 2,
+   "raw": "2 nominations total"
+  },
+  "imdbRating": 7.4,
+  "imdbVotes": 2761,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:87017": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 1,
+   "totalWins": 17,
+   "totalNominations": 46,
+   "raw": "Nominated for 1 Primetime Emmy. 17 wins & 46 nominations total"
+  },
+  "imdbRating": 7.5,
+  "imdbVotes": 12144,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:156390": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 8,
+   "raw": "8 nominations total"
+  },
+  "imdbRating": 6.4,
+  "imdbVotes": 2139,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:63333": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 6,
+   "raw": "6 nominations total"
+  },
+  "imdbRating": 8.5,
+  "imdbVotes": 186546,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:39604": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 7.3,
+  "imdbVotes": 2286,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:1395": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 22,
+   "totalNominations": 39,
+   "raw": "22 wins & 39 nominations total"
+  },
+  "imdbRating": 7.5,
+  "imdbVotes": 211315,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:1415": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 2,
+   "totalWins": 7,
+   "totalNominations": 18,
+   "raw": "Nominated for 2 Primetime Emmys. 7 wins & 18 nominations total"
+  },
+  "imdbRating": 7.9,
+  "imdbVotes": 125973,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:291339": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 6.9,
+  "imdbVotes": 1859,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:83135": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 1,
+   "totalWins": 5,
+   "totalNominations": 13,
+   "raw": "Nominated for 1 Primetime Emmy. 5 wins & 13 nominations total"
+  },
+  "imdbRating": 6.0,
+  "imdbVotes": 20291,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:70391": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 2,
+   "totalWins": 1,
+   "totalNominations": 11,
+   "raw": "Nominated for 2 Primetime Emmys. 1 win & 11 nominations total"
+  },
+  "imdbRating": 7.2,
+  "imdbVotes": 20170,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:86686": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 13,
+   "raw": "1 win & 13 nominations total"
+  },
+  "imdbRating": 7.0,
+  "imdbVotes": 9847,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:62822": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 3,
+   "totalNominations": 11,
+   "raw": "Nominated for 2 BAFTA 3 wins & 11 nominations total"
+  },
+  "imdbRating": 7.9,
+  "imdbVotes": 44912,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:93289": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 1,
+   "raw": "2 wins & 1 nomination total"
+  },
+  "imdbRating": 7.0,
+  "imdbVotes": 18330,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:125282": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 5,
+   "totalNominations": 12,
+   "raw": "5 wins & 12 nominations total"
+  },
+  "imdbRating": 7.0,
+  "imdbVotes": 12697,
+  "director": "Michael Offer",
+  "fetchedAt": "2026-09-03"
+ },
+ "show:202308": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 4,
+   "raw": "1 win & 4 nominations total"
+  },
+  "imdbRating": 6.0,
+  "imdbVotes": 4706,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:106349": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 0,
+   "raw": "2 wins total"
+  },
+  "imdbRating": 7.2,
+  "imdbVotes": 7293,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:1431": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 6,
+   "emmyNominations": 0,
+   "totalWins": 68,
+   "totalNominations": 127,
+   "raw": "Won 6 Primetime Emmys. 68 wins & 127 nominations total"
+  },
+  "imdbRating": 7.7,
+  "imdbVotes": 93691,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:66023": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 4,
+   "raw": "2 wins & 4 nominations total"
+  },
+  "imdbRating": 7.3,
+  "imdbVotes": 39841,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:70168": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 7.3,
+  "imdbVotes": 12083,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "show:136739": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 2,
+   "raw": "1 win & 2 nominations total"
+  },
+  "imdbRating": 6.8,
+  "imdbVotes": 5352,
+  "director": null,
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:625169": {
+  "rottenTomatoes": 62,
+  "metacritic": 44,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 2,
+   "raw": "2 nominations total"
+  },
+  "imdbRating": 6.9,
+  "imdbVotes": 9856,
+  "director": "Ty Roberts",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:2502": {
+  "rottenTomatoes": 81,
+  "metacritic": 73,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 5,
+   "totalNominations": 22,
+   "raw": "5 wins & 22 nominations total"
+  },
+  "imdbRating": 7.7,
+  "imdbVotes": 510436,
+  "director": "Paul Greengrass",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:2503": {
+  "rottenTomatoes": 92,
+  "metacritic": 85,
+  "awards": {
+   "oscarWins": 3,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 29,
+   "totalNominations": 42,
+   "raw": "Won 3 Oscars. 29 wins & 42 nominations total"
+  },
+  "imdbRating": 8.0,
+  "imdbVotes": 681537,
+  "director": "Paul Greengrass",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:262500": {
+  "rottenTomatoes": 29,
+  "metacritic": 42,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 4,
+   "totalNominations": 18,
+   "raw": "4 wins & 18 nominations total"
+  },
+  "imdbRating": 6.2,
+  "imdbVotes": 269895,
+  "director": "Robert Schwentke",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:22821": {
+  "rottenTomatoes": 23,
+  "metacritic": 24,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 6.2,
+  "imdbVotes": 68675,
+  "director": "Troy Duffy",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:23169": {
+  "rottenTomatoes": 26,
+  "metacritic": 40,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 5,
+   "totalNominations": 5,
+   "raw": "5 wins & 5 nominations total"
+  },
+  "imdbRating": 7.1,
+  "imdbVotes": 164536,
+  "director": "Allen Coulter",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:423": {
+  "rottenTomatoes": 95,
+  "metacritic": 85,
+  "awards": {
+   "oscarWins": 3,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 57,
+   "totalNominations": 74,
+   "raw": "Won 3 Oscars. 57 wins & 74 nominations total"
+  },
+  "imdbRating": 8.5,
+  "imdbVotes": 1010154,
+  "director": "Roman Polanski",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:262504": {
+  "rottenTomatoes": 11,
+  "metacritic": 33,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 3,
+   "totalNominations": 12,
+   "raw": "3 wins & 12 nominations total"
+  },
+  "imdbRating": 5.7,
+  "imdbVotes": 145353,
+  "director": "Robert Schwentke",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:2501": {
+  "rottenTomatoes": 84,
+  "metacritic": 68,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 3,
+   "totalNominations": 6,
+   "raw": "3 wins & 6 nominations total"
+  },
+  "imdbRating": 7.8,
+  "imdbVotes": 609951,
+  "director": "Doug Liman",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:22954": {
+  "rottenTomatoes": 76,
+  "metacritic": 74,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 2,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 12,
+   "totalNominations": 38,
+   "raw": "Nominated for 2 Oscars. 12 wins & 38 nominations total"
+  },
+  "imdbRating": 7.3,
+  "imdbVotes": 172199,
+  "director": "Clint Eastwood",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:22881": {
+  "rottenTomatoes": 66,
+  "metacritic": 53,
+  "awards": {
+   "oscarWins": 1,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 9,
+   "totalNominations": 30,
+   "raw": "Won 1 Oscar. 9 wins & 30 nominations total"
+  },
+  "imdbRating": 7.6,
+  "imdbVotes": 383190,
+  "director": "John Lee Hancock",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:283995": {
+  "rottenTomatoes": 85,
+  "metacritic": 67,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 1,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 15,
+   "totalNominations": 62,
+   "raw": "Nominated for 1 Oscar. 15 wins & 62 nominations total"
+  },
+  "imdbRating": 7.6,
+  "imdbVotes": 828114,
+  "director": "James Gunn",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:22511": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 6.3,
+  "imdbVotes": 4349,
+  "director": "Bam Margera",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:22824": {
+  "rottenTomatoes": 18,
+  "metacritic": 34,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 1,
+   "raw": "1 nomination total"
+  },
+  "imdbRating": 5.9,
+  "imdbVotes": 85388,
+  "director": "Olatunde Osunsanmi",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:23172": {
+  "rottenTomatoes": 12,
+  "metacritic": 27,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 2,
+   "raw": "2 nominations total"
+  },
+  "imdbRating": 5.5,
+  "imdbVotes": 48910,
+  "director": "Brian Levant",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:284296": {
+  "rottenTomatoes": 85,
+  "metacritic": 81,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 5,
+   "totalNominations": 21,
+   "raw": "5 wins & 21 nominations total"
+  },
+  "imdbRating": 6.4,
+  "imdbVotes": 28296,
+  "director": "Chris Rock",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:786": {
+  "rottenTomatoes": 91,
+  "metacritic": 90,
+  "awards": {
+   "oscarWins": 1,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 54,
+   "totalNominations": 103,
+   "raw": "Won 1 Oscar. 54 wins & 103 nominations total"
+  },
+  "imdbRating": 7.9,
+  "imdbVotes": 313640,
+  "director": "Cameron Crowe",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:824": {
+  "rottenTomatoes": 75,
+  "metacritic": 66,
+  "awards": {
+   "oscarWins": 2,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 89,
+   "totalNominations": 133,
+   "raw": "Won 2 Oscars. 89 wins & 133 nominations total"
+  },
+  "imdbRating": 7.6,
+  "imdbVotes": 312853,
+  "director": "Baz Luhrmann",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:1200208": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 48,
+   "totalNominations": 7,
+   "raw": "48 wins & 7 nominations total"
+  },
+  "imdbRating": 5.1,
+  "imdbVotes": 555,
+  "director": "Dominic Higgins, Ian Higgins",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:310": {
+  "rottenTomatoes": 48,
+  "metacritic": 46,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 7,
+   "totalNominations": 9,
+   "raw": "7 wins & 9 nominations total"
+  },
+  "imdbRating": 6.8,
+  "imdbVotes": 466929,
+  "director": "Tom Shadyac",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:350": {
+  "rottenTomatoes": 75,
+  "metacritic": 62,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 2,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 21,
+   "totalNominations": 53,
+   "raw": "Nominated for 2 Oscars. 21 wins & 53 nominations total"
+  },
+  "imdbRating": 7.0,
+  "imdbVotes": 545163,
+  "director": "David Frankel",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:176124": {
+  "rottenTomatoes": 55,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 5.9,
+  "imdbVotes": 3434,
+  "director": "David Boyd",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:285": {
+  "rottenTomatoes": 43,
+  "metacritic": 50,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 2,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 23,
+   "totalNominations": 51,
+   "raw": "Nominated for 2 Oscars. 23 wins & 51 nominations total"
+  },
+  "imdbRating": 7.2,
+  "imdbVotes": 743246,
+  "director": "Gore Verbinski",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:393": {
+  "rottenTomatoes": 84,
+  "metacritic": 83,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 23,
+   "totalNominations": 84,
+   "raw": "23 wins & 84 nominations total"
+  },
+  "imdbRating": 8.0,
+  "imdbVotes": 869309,
+  "director": "Quentin Tarantino",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:284053": {
+  "rottenTomatoes": 93,
+  "metacritic": 74,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 6,
+   "totalNominations": 50,
+   "raw": "6 wins & 50 nominations total"
+  },
+  "imdbRating": 7.9,
+  "imdbVotes": 892533,
+  "director": "Taika Waititi",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:271404": {
+  "rottenTomatoes": 70,
+  "metacritic": 46,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 5.3,
+  "imdbVotes": 24899,
+  "director": "Liam O'Donnell",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:1034065": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 0,
+   "raw": "1 win total"
+  },
+  "imdbRating": 5.9,
+  "imdbVotes": 1821,
+  "director": "Nick Nevern",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:592643": {
+  "rottenTomatoes": 70,
+  "metacritic": 56,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 0,
+   "raw": "1 win"
+  },
+  "imdbRating": 6.5,
+  "imdbVotes": 3845,
+  "director": "Nick Sarkisov",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:1009640": {
+  "rottenTomatoes": 29,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 5.0,
+  "imdbVotes": 1143,
+  "director": "Steve Barnett",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:883": {
+  "rottenTomatoes": 63,
+  "metacritic": 65,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 9,
+   "raw": "2 wins & 9 nominations total"
+  },
+  "imdbRating": 7.0,
+  "imdbVotes": 69509,
+  "director": "Jim Jarmusch",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:528761": {
+  "rottenTomatoes": 62,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 6.0,
+  "imdbVotes": 2438,
+  "director": "Claude Lalonde",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:22803": {
+  "rottenTomatoes": 26,
+  "metacritic": 34,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 3,
+   "totalNominations": 5,
+   "raw": "3 wins & 5 nominations total"
+  },
+  "imdbRating": 7.4,
+  "imdbVotes": 343332,
+  "director": "F. Gary Gray",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:22798": {
+  "rottenTomatoes": 86,
+  "metacritic": 68,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 8,
+   "raw": "8 nominations total"
+  },
+  "imdbRating": 6.9,
+  "imdbVotes": 71615,
+  "director": "Drew Barrymore",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:113294": {
+  "rottenTomatoes": 83,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 0,
+   "raw": "1 win"
+  },
+  "imdbRating": 6.2,
+  "imdbVotes": 3918,
+  "director": "Regan Hall",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:272": {
+  "rottenTomatoes": 85,
+  "metacritic": 70,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 1,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 15,
+   "totalNominations": 79,
+   "raw": "Nominated for 1 Oscar. 15 wins & 79 nominations total"
+  },
+  "imdbRating": 8.2,
+  "imdbVotes": 1709629,
+  "director": "Christopher Nolan",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:284052": {
+  "rottenTomatoes": 89,
+  "metacritic": 72,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 1,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 21,
+   "totalNominations": 68,
+   "raw": "Nominated for 1 Oscar. 21 wins & 68 nominations total"
+  },
+  "imdbRating": 7.5,
+  "imdbVotes": 877590,
+  "director": "Scott Derrickson",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:284054": {
+  "rottenTomatoes": 96,
+  "metacritic": 88,
+  "awards": {
+   "oscarWins": 3,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 125,
+   "totalNominations": 289,
+   "raw": "Won 3 Oscars. 125 wins & 289 nominations total"
+  },
+  "imdbRating": 7.3,
+  "imdbVotes": 907405,
+  "director": "Ryan Coogler",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:388191": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 5.5,
+  "imdbVotes": 1886,
+  "director": "John Lyde",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:109418": {
+  "rottenTomatoes": 8,
+  "metacritic": 19,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 5,
+   "totalNominations": 15,
+   "raw": "5 wins & 15 nominations total"
+  },
+  "imdbRating": 5.4,
+  "imdbVotes": 190524,
+  "director": "Dennis Dugan",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:814340": {
+  "rottenTomatoes": 85,
+  "metacritic": 69,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 6,
+   "totalNominations": 14,
+   "raw": "6 wins & 14 nominations total"
+  },
+  "imdbRating": 7.3,
+  "imdbVotes": 30893,
+  "director": "Cooper Raiff",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:22832": {
+  "rottenTomatoes": 25,
+  "metacritic": 34,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 6.3,
+  "imdbVotes": 78970,
+  "director": "James McTeigue",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:466622": {
+  "rottenTomatoes": 28,
+  "metacritic": 45,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 3,
+   "raw": "2 wins & 3 nominations total"
+  },
+  "imdbRating": 5.4,
+  "imdbVotes": 21251,
+  "director": "Reed Morano",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:631939": {
+  "rottenTomatoes": 0,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 3.2,
+  "imdbVotes": 1182,
+  "director": "Jose Magan",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:1289601": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 6.4,
+  "imdbVotes": 1288,
+  "director": "Bren Foster",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:666750": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 5.3,
+  "imdbVotes": 1637,
+  "director": "Ivan Silvestrini",
+  "fetchedAt": "2026-09-03"
+ },
+ "movie:74998": {
+  "rottenTomatoes": 28,
+  "metacritic": 38,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 1,
+   "raw": "1 nomination total"
+  },
+  "imdbRating": 6.1,
+  "imdbVotes": 48815,
+  "director": "Roger Donaldson",
+  "fetchedAt": "2026-09-03"
  }
 }
