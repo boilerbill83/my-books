@@ -2750,6 +2750,77 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
+  // 7. Bill's follow-up "more improvement ideas" ask — two more structural
+  // signals checked and swept, both real correlations that failed to
+  // produce a net eval.js win, joining the creator-critic-trust-gap above
+  // as documented dead ends rather than silently dropped.
+  {
+    const rows = (library.titles || []).filter(t => t.type === 'show' && t.myRating != null && enrichedMeta[t.titleKey]?.numberOfSeasons != null);
+    const buckets = [[1,2],[2,3],[3,5],[5,8],[8,Infinity]];
+    const bucketAvgs = buckets.map(([lo, hi]) => {
+      const b = rows.filter(t => enrichedMeta[t.titleKey].numberOfSeasons >= lo && enrichedMeta[t.titleKey].numberOfSeasons < hi);
+      return b.length ? b.reduce((s, t) => s + t.myRating, 0) / b.length : null;
+    });
+    findings.push({
+      id: 'season-count-signal-tested',
+      severity: 'warning',
+      ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
+      title: `Tested: a show season-count signal (real inverted-U pattern) never produced a net precision gain — not shipped, kept as a documented dead end`,
+      technical: `Live bucket averages (myRating, n=${rows.length} rated shows): 1-2 seasons ${bucketAvgs[0]?.toFixed(2)}, 2-3 ${bucketAvgs[1]?.toFixed(2)}, ` +
+        `3-5 ${bucketAvgs[2]?.toFixed(2)}, 5-8 ${bucketAvgs[3]?.toFixed(2)}, 8+ ${bucketAvgs[4]?.toFixed(2)} — a real, non-monotonic inverted-U ` +
+        `(<code>r=0.186</code> linear, but the shape rises then drops), suggesting a sweet spot around 5-8 seasons rather than "more is always ` +
+        `better." Built a scratch prototype (a tiered bonus matching these real bucket deltas, scaled by a swept constant) — but ` +
+        `<code>numberOfSeasons</code> is heavily collinear with two signals already scored: <code>r=0.908</code> with ` +
+        `<code>numberOfEpisodes</code> (already <code>voteCountBonus</code>-adjacent) and <code>r=0.604</code> with the just-shipped show-` +
+        `popularity signal (§3s). Swept scale 0 through 10 against <code>scripts/eval.js</code>: scale=1 (the raw measured deltas, unamplified) ` +
+        `changed nothing at all — precision@10/25/50/100 and MAE all identical to baseline — and every scale beyond that only ever traded ` +
+        `precision@50 away (98%→94% at scale≥4) for, at best, a partial precision@100 offset (91%→93%), never a clean win the way the show-` +
+        `popularity signal produced. Root cause: the real per-season-count rating advantage is already substantially explained by the popularity/` +
+        `vote-count signals a longer-running show naturally scores higher on, so this adds redundant credit rather than new information.`,
+      plain: `Do shows that ran for a "sweet spot" number of seasons (roughly 5-8) get rated better than ones that wrapped up fast or dragged on ` +
+        `forever? The real data says yes, a little — but a working test version of a scoring bonus based on this didn't actually make any real ` +
+        `predictions better, because season count turns out to mostly be another way of measuring "how popular/long-lived is this show," which ` +
+        `the engine already scores through other signals. Adding this on top was redundant, not new information.`,
+      impact: `A genuine negative result — worth keeping on record so a future session doesn't re-propose the same idea without this sweep data. ` +
+        `Distinct from the creator critic-trust-gap dead end above in mechanism (collinearity with an existing signal, not double-counting a ` +
+        `categorical match), same practical outcome: not shipped.`,
+    });
+  }
+
+  {
+    const premiumNetworks = ['HBO', 'Showtime', 'AMC'];
+    const rows = (library.titles || []).filter(t => t.type === 'show' && t.myRating != null && enrichedMeta[t.titleKey]?.networks?.some(n => premiumNetworks.includes(n)));
+    const avg = rows.length ? rows.reduce((s, t) => s + t.myRating, 0) / rows.length : null;
+    const allShows = (library.titles || []).filter(t => t.type === 'show' && t.myRating != null);
+    const overallAvg = allShows.length ? allShows.reduce((s, t) => s + t.myRating, 0) / allShows.length : null;
+    findings.push({
+      id: 'premium-network-signal-tested',
+      severity: 'warning',
+      ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
+      title: `Tested: a premium-network (HBO/Showtime/AMC) bonus regressed precision@50 with no net gain — not shipped, kept as a documented dead end`,
+      technical: `Live check: HBO/Showtime/AMC shows average myRating ${avg?.toFixed(2)} vs. ${overallAvg?.toFixed(2)} across all ${allShows.length} ` +
+        `rated shows (n=${rows.length}) — a real, positive delta. Checked for the obvious confound first (a single loved creator inflating the ` +
+        `average, the exact failure mode that sank the creator-critic-trust-gap idea above): confirmed diffuse, not concentrated — the most any ` +
+        `single creator repeats within these three networks is 5 of 54 HBO shows (David Simon), unlike Paramount+ (deliberately excluded from this ` +
+        `test) where 7 of 16 rated shows are Taylor Sheridan alone, already fully credited via the existing creator-match signal. Swept a flat ` +
+        `on-premium-network bonus (scale 0-15) against <code>scripts/eval.js</code> anyway, since a real correlation deserved a real test rather ` +
+        `than being dismissed on the Paramount+ finding alone: scale 1-2 changed nothing at all (identical to baseline on every metric), scale≥4 ` +
+        `only ever cost precision@50 (98%→96%) for no compensating gain until an unrealistically large scale=15 (91%→92% on precision@100, with ` +
+        `MAE clearly degrading 14.64→14.70). Root cause, the same shape as the season-count finding above even though the redundancy mechanism is ` +
+        `different: a well-regarded HBO/Showtime/AMC show already scores well through community rating and vote count, so a flat network bonus ` +
+        `mostly pays out on titles that already score high through other paths rather than lifting a genuinely under-scored one.`,
+      plain: `Does watching something on HBO, Showtime, or AMC specifically predict a higher rating, beyond what genre/creator/popularity already ` +
+        `capture? Checked carefully for the obvious trap first (one loved creator's shows dominating a network's average, which is exactly what ` +
+        `sank the Paramount+/Taylor Sheridan pattern — deliberately excluded from this test) and confirmed these three networks' advantage is ` +
+        `real and spread across many different creators, not one. But testing a working scoring bonus against real held-out predictions still ` +
+        `showed no net benefit — a well-regarded show on these networks is already scoring well through the engine's existing signals, so a flat ` +
+        `network bonus mostly duplicates credit rather than adding anything new.`,
+      impact: `A genuine negative result on a hypothesis that survived its first sanity check (no creator-concentration trap) but still failed the ` +
+        `real test — worth keeping on record for the same reason as the other dead ends in this list. Paramount+ specifically was excluded ` +
+        `up front rather than tested and rejected, since the creator-concentration evidence for it was already conclusive.`,
+    });
+  }
+
   const order = { critical: 0, serious: 1, warning: 2, good: 3 };
   findings.sort((a, b) => order[a.severity] - order[b.severity]);
   return findings;
