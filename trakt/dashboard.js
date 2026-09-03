@@ -694,8 +694,17 @@ function renderAiringSoonList(fromWatchlist, fromCandidates, enrichedMeta) {
 // null (TMDB hasn't scheduled that far into the season yet) — shown
 // honestly as "TBD" rather than guessed at.
 function computeCurrentlyAiringShows(library, watchlist, enrichedMeta) {
-  const rows = [];
-  for (const [list, origin] of [[library.titles, 'Library'], [watchlist.titles, 'Watchlist']]) {
+  // A show can genuinely sit in BOTH library.json and watchlist.json at
+  // once (same titleKey) - real Trakt behavior, not a data bug (the same
+  // overlap rankAll() had to defensively handle for candidates back in
+  // Session 48's "Tom Clancy's Jack Ryan" case): Bill is partway through
+  // it (library, in-progress) AND has it flagged on his watchlist, e.g.
+  // as a reminder to keep going. Deduped here by titleKey so it doesn't
+  // render as two rows for the same show - Library wins the Status label
+  // when both exist, since it's the more informative state (he's actively
+  // watching, not just planning to).
+  const byKey = new Map();
+  for (const [list, origin] of [[watchlist.titles, 'Watchlist'], [library.titles, 'Library']]) {
     for (const t of list) {
       if (t.type !== 'show') continue;
       if (!isActivelyAiring(t, enrichedMeta)) continue;
@@ -708,7 +717,7 @@ function computeCurrentlyAiringShows(library, watchlist, enrichedMeta) {
         const finaleD = new Date(finale.finaleDate + 'T00:00:00');
         daysUntilFinale = Math.round((finaleD - today) / 86400000);
       }
-      rows.push({
+      byKey.set(t.titleKey, {
         type: 'show', titleKey: t.titleKey, title: t.title, year: t.year, ids: t.ids,
         origin,
         season: next?.seasonNumber ?? finale?.seasonNumber ?? null,
@@ -720,7 +729,7 @@ function computeCurrentlyAiringShows(library, watchlist, enrichedMeta) {
       });
     }
   }
-  return rows;
+  return [...byKey.values()];
 }
 
 function renderAiringFinaleTable(rows) {
