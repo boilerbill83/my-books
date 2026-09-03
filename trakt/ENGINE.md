@@ -485,6 +485,53 @@ belt-and-suspenders for watchlist movies, which are never hard-excluded
 (Bill's own explicit picks stay rankable, just honestly low). Shows have
 no equivalent hard filter, matching the softer ask.
 
+### 3o-2. Modern network TV — shows only, **-6** (penalty-only)
+
+Bill: Matlock is "a network show aimed at an older audience — find a
+way to capture those types of shows and downgrade them." Checked
+against real rating data before building anything: his own stated
+hypothesis (any CBS/NBC/ABC/FOX show = lowbrow/older-skewing) was too
+blunt on its own — a flat broadcast-network penalty would hit The West
+Wing (NBC, 10/10), The Good Wife (CBS, 10/10 — the very show whose
+citation drives Matlock's own legitimate score), Lost (ABC, 10/10),
+Seinfeld/The Office/Parks and Recreation/Friday Night Lights (all NBC,
+9/10) — the same "obvious but wrong" shape `too_urban`/`too_low_brow`
+already hit trying this with genre instead of network (§ dismissal
+generalization above). Per-network deltas were checked too and also
+ruled out (ABC's raw -2.08 delta is a 5-title sample containing both
+Lost, 10/10, and 3 genuine dislikes — too concentrated/thin to trust).
+
+The real signal is an **interaction**: pre-2018 Big4-network shows
+actually rate slightly *above* Bill's global mean (8.50 vs. 8.35,
+n=14 — his classic-network-TV favorites), while 2018+ Big4-network
+shows rate well below both his baseline for that era and the pre-2018
+Big4 bucket (6.30 vs. 7.73 for everything else released 2018+, n=10
+each). Not one or two outliers — a real mix (3 genuine dislikes at
+4/10 plus a middling 6, against 6 fine-to-good 7-8s), a meaningfully
+worse hit rate than the ~10-15% base dislike rate would predict.
+
+```
+if type === 'show' AND networks ∩ {CBS, NBC, ABC, FOX} AND year >= 2018:
+  -6
+else: 0
+```
+
+2018 (not a later, more dramatic-looking cutoff — 2020+ shows an even
+bigger gap, 5.20 vs. 7.66) was picked for sample size: n=10 vs. n=5,
+this project's standing preference for more data over a maximally
+dramatic effect measured on too few titles. -6 was picked from an
+`eval.js` sweep (-2 through -15): precision@10/25/50/100 were
+completely flat across the whole range (only 10-15 real candidates
+ever qualify, none near a fragile top-k boundary), so the magnitude
+was set from the real measured effect size (a ~1.4-point average
+rating gap) rather than the metric, landing between `genreSignal()`'s
+-3 cap (a milder, broader pattern) and `recencyBonusShow`'s -14/-30
+tail (reserved for near-certain mismatches). Verified live: Matlock
+(CBS, 2024) drops 97→91 — still a real, earned score from its genuine
+similar-title/genre/community-rating signal, just honestly discounted
+for the pattern Bill flagged. 15 real candidates affected as of this
+build.
+
 ### 3p. Show-airing-status bonus — **currently 0 (built, tested, not applied)**
 ```
 showAiringOverrep × SHOW_AIRING_SCALE   // SHOW_AIRING_SCALE = 0
