@@ -1878,21 +1878,35 @@ export function posterUrl(titleKey, enrichedMeta, size = 'w154') {
 // clickable and take me right to that page in Trakt." Every library/
 // watchlist title already carries a real Trakt slug (`ids.slug`, 100%
 // coverage confirmed — straight from Bill's own Trakt export, not
-// derived), so those get a direct, guaranteed-correct link to Trakt's
-// real page (trakt.tv/movies/{slug} or trakt.tv/shows/{slug} — Trakt's
-// actual, documented URL scheme). Discovered candidates (candidatePool.json)
-// have no Trakt identity yet (0% slug coverage — they only exist via a
-// TMDB citation, never added to Bill's real Trakt account), so those
-// fall back to Trakt's own search page rather than a guessed/unverified
-// deep-link URL this project's own discipline forbids fabricating.
+// derived), so those get a direct link; discovered candidates
+// (candidatePool.json) have no Trakt identity yet (0% slug coverage —
+// they only exist via a TMDB citation, never added to Bill's real Trakt
+// account), so those fall back to a search rather than a guessed/
+// unverified deep-link URL this project's own discipline forbids
+// fabricating.
+//
+// Fixed real link-rot bug (Sep 2026, reported live: "the Trakt links
+// aren't working," e.g. Bad Sisters, a candidatePool stub): Trakt
+// migrated their whole web app from the bare `trakt.tv` domain to
+// `app.trakt.tv` (confirmed via real, current external reports — a
+// March 2026 GitHub issue and an April 2026 forum thread both document
+// trakt.tv now redirecting to app.trakt.tv, and that redirect is
+// independently confirmed broken for multi-segment/query-string paths,
+// e.g. seerr-team/seerr#2773: `trakt.tv/search/tmdb/{id}?id_type=movie`
+// redirects to a bare `app.trakt.tv/search?id_type=movie` with the id
+// silently dropped). Rather than rely on that redirect at all, this now
+// targets app.trakt.tv directly for both cases, verified against Trakt's
+// own real, current frontend source (github.com/trakt/trakt-web): the
+// `movies/[slug]` and `shows/[slug]` SvelteKit routes confirm the slug
+// path shape is unchanged, and the search route's own
+// `+page.svelte` source shows it reads `searchParams.get("q")` — NOT
+// `query`, which is what the old (also-broken) fallback sent.
 export function traktUrl(candidate) {
   const kind = candidate?.type === 'movie' ? 'movies' : 'shows';
   const slug = candidate?.ids?.slug;
-  if (slug) return `https://trakt.tv/${kind}/${slug}`;
+  if (slug) return `https://app.trakt.tv/${kind}/${slug}`;
   // No confirmed slug — search rather than guess a deep-link id/slug URL.
-  // Reuses the same movies/shows path segment Trakt's real title pages
-  // use (verified above), scoped to type so the results aren't mixed.
-  return `https://trakt.tv/search/${kind}?query=${encodeURIComponent(candidate?.title || '')}`;
+  return `https://app.trakt.tv/search?q=${encodeURIComponent(candidate?.title || '')}`;
 }
 
 // Popularity as a real 0-100 display metric (not just a small scoring
