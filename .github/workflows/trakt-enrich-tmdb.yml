@@ -40,6 +40,16 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Rebase onto whatever branch actually triggered this run, not a
+          # hardcoded main - a real bug found 2026-09-03: manually dispatching
+          # these workflows against a feature branch (common this session, for
+          # faster iteration than waiting on the daily main-branch schedule)
+          # meant a push-reject retry rebased onto origin/main instead of the
+          # feature branch it was actually running on, producing real merge
+          # conflicts against unrelated main-branch history and silently
+          # discarding a real TMDB API-fetch pass (topCastDetail backfill, run
+          # 33701084686) that had already succeeded locally.
+          BRANCH="$(git rev-parse --abbrev-ref HEAD)"
           git add trakt/data/
           if git diff --staged --quiet; then
             echo "No new metadata."
@@ -55,9 +65,9 @@ jobs:
             if git push; then
               exit 0
             fi
-            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest main."
-            git fetch origin main
-            git rebase origin/main
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest $BRANCH."
+            git fetch origin "$BRANCH"
+            git rebase "origin/$BRANCH"
           done
           echo "::error::Failed to push after 5 rebase attempts."
           exit 1
