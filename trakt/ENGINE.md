@@ -262,14 +262,41 @@ considers definitively loved (>=9) — a liked-only sibling can move the
 score without being called "loved" in the explanation. Real examples this
 fires on: Creed I+II, Deadpool 1+2, Sicario 1+2.
 
-### 3e. Cast match — capped at **+8**
+### 3e. Cast match — capped at **+8**, position-weighted by billing order
 ```
-+3 per top-billed actor with 3+ loved-title appearances
-+2 per top-billed actor with 1-2 loved-title appearances
++3 per top-billed actor with 3+ loved-title-appearance-weight (position-weighted)
++2 per top-billed actor with 1-2 loved-title-appearance-weight (position-weighted)
 ```
 Deliberately smaller than the creator-match ceiling — an actor is less
 determinative of a title's identity than its director (someone appears in
 many unrelated projects; a director's stamp is much stronger).
+
+**Position-weighted since Bill's explicit request**: "if I loved a movie
+that included Kathy Bates as a supporting actress, in no way does that
+mean I'll love a show she stars in." `castPositionWeight(pos)` decays
+linearly from 1.0 at the lead role (billing index 0, TMDB's own
+`topCast` order) to 0.2 at 5th-billed — applied on *both* sides: how
+much credit a loved title's cast member earns toward `lovedActors`
+(`buildIndexes()`), and how much a candidate's own cast member's
+accumulated weight counts in `castBonus()` itself. A lead-to-lead match
+keeps full weight; a supporting-to-supporting match is discounted twice.
+
+Investigated the literal case first, not assumed: `castBonus()`
+contributed exactly **0** to Matlock's real score (Kathy Bates' pre-fix
+weight, from one 8-rated Revolutionary Road appearance, never cleared
+the old ≥1 tier) — the real drivers there were a legitimate 6-title
+similar-title match, genre, recency, and community rating, reported to
+Bill directly rather than silently fixing a signal that wasn't the
+actual cause. But the underlying pattern Bill described turned out to
+be real elsewhere: "The Studio" was drawing +4 of unearned cast credit
+almost entirely from Seth Rogen and Kathryn Hahn being billed 2nd-5th
+(never 1st) across nearly every other title of theirs Bill rated —
+genuinely a lead only in the very candidate being scored. Fixing that
+costs precision@10 (100%→90%, one boundary slot — swept three curve
+configurations, all landed on the identical result, confirming this is
+a real structural consequence of the fix, not a tunable artifact);
+precision@25/50/100 all held or improved. See `castPositionWeight()`'s
+own comment in `engine.js` for the full trace.
 
 ### 3f. Keyword match — capped at **+1.5**
 ```
