@@ -446,7 +446,7 @@ function initCollapsibleCards() {
 async function loadAllData() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
   const [dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback,
-         scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags] = await Promise.all([
+         scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -464,9 +464,15 @@ async function loadAllData() {
     // section instead). { tagName: [titleKey, ...] }; starts {} so a
     // missing file just means no tags yet, not an error.
     get('./data/coWatchTags.json').catch(() => ({})),
+    // Real, hand-researched renewal/premiere status for a show between
+    // seasons — TMDB's nextEpisodeToAir only ever exists once a season is
+    // actually scheduled, so "renewed, no date yet" or "canceled" would
+    // otherwise be invisible. { titleKey: { status, season, window,
+    // source, researchedAt } }; never guessed — see each entry's source.
+    get('./data/upcomingSeasons.json').catch(() => ({})),
   ]);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
-  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags };
+  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons };
 }
 
 // Best Matches (Discover) and Prediction Misses (Quality) are two views of
