@@ -1,4 +1,4 @@
-import { rankRecommendations, mergeScrapedShowRatings } from './engine.js';
+import { rankRecommendations, mergeScrapedShowRatings, traktUrl } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -35,7 +35,7 @@ async function load() {
       <div class="rc-rank">${i + 1}</div>
       <div class="rc-body">
         <div class="rc-row-title">
-          ${esc(c.title)}${c.year ? ` <span class="rc-year">(${esc(c.year)})</span>` : ''}
+          <a class="rc-trakt-link" href="${esc(traktUrl(c))}" target="_blank" rel="noopener">${esc(c.title)}</a>${c.year ? ` <span class="rc-year">(${esc(c.year)})</span>` : ''}
           <span class="rc-badge">${c.type === 'movie' ? 'Movie' : 'Show'}</span>
         </div>
         <div class="rc-reason">${esc(c.reason)}</div>

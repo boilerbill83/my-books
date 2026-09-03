@@ -10,7 +10,7 @@ import {
   rankAll, hydrateTitle, matchScorePair, confidenceScore, reason, scoreBreakdown,
   isActivelyAiring, posterUrl, criticScore, realAudienceScore, awardsScore,
   mergeScrapedShowRatings, resolveSimilarTitles, resolveSimilarDirectors,
-  getCreators, inferSubgenres, inferTones, inferSubjects, inferEra,
+  getCreators, inferSubgenres, inferTones, inferSubjects, inferEra, traktUrl,
 } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
@@ -91,7 +91,7 @@ async function load() {
 
   const statusTagCls = { Watched: 'dd-status-watched', Watchlist: 'dd-status-watchlist', Candidate: 'dd-status-candidate' }[status] || '';
 
-  const idsRow = [];
+  const idsRow = [`<a href="${esc(traktUrl(candidate))}" target="_blank" rel="noopener">Trakt ↗</a>`];
   if (meta.imdbId) idsRow.push(`<a href="https://www.imdb.com/title/${esc(meta.imdbId)}/" target="_blank" rel="noopener">IMDb ↗</a>`);
   if (raw.ids?.tmdb != null) {
     const tmdbKind = candidate.type === 'movie' ? 'movie' : 'tv';
