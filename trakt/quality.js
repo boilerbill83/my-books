@@ -2461,6 +2461,153 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
+  // 5b. Investigated the worst prediction misses/underrates from eval.js
+  // directly (scoreBreakdown() on each) hunting for a real, fixable
+  // pattern, not just anecdotes. First hypothesis — recency curves
+  // (recencyBonusMovie/Show) fighting a real revealed preference for
+  // older content, since 5 of 8 worst-UNDERrated titles were pre-2010
+  // with steep negative recency penalties — was WRONG, caught and
+  // corrected by Bill directly: "I only added older movies that I loved.
+  // I add all new movies even if I don't like them." Verified against
+  // real data below rather than taking either claim on faith. The
+  // corrected, real finding is about what this selection bias does to
+  // eval.js's own reliability and to every myRating-derived preference
+  // signal for older titles, not about the recency curve being
+  // miscalibrated (recencyBonusMovie/Show's steep bias toward recent
+  // content was Bill's own explicit, twice-stated request — see
+  // Session 52's comments on both functions — and this finding doesn't
+  // second-guess that ask).
+  {
+    const disliked = rated.filter(t => t.myRating <= 5);
+    const dislikedYears = disliked.map(t => {
+      const m = enrichedMeta[t.titleKey];
+      const d = m?.releaseDate || m?.firstAirDate;
+      return d ? parseInt(d.slice(0, 4), 10) : null;
+    }).filter(Boolean);
+    const dislikedPre2000 = dislikedYears.filter(y => y < 2000).length;
+    const dislikedPre2010 = dislikedYears.filter(y => y < 2010).length;
+    const oldestDisliked = dislikedYears.length ? Math.min(...dislikedYears) : null;
+    findings.push({
+      id: 'library-recency-selection-bias',
+      severity: 'warning',
+      ratings: { ease: 2, dataQuality: 3, recEngine: 4, ui: 1 },
+      title: `Bill's library was built with an asymmetric selection bias by era — 0 of ${fmtNum(disliked.length)} disliked titles predate 2000, only ${dislikedPre2010} predate 2010`,
+      technical: `Confirmed directly by Bill, then verified against real data rather than assumed: older titles were only ever added to ` +
+        `<code>library.json</code> when he already loved them; recent titles are added comprehensively regardless of whether he ends up ` +
+        `liking them. Live count: of ${fmtNum(disliked.length)} disliked (myRating<=5, the same threshold <code>computeEvalMetrics()</code>'s ` +
+        `own <code>DISLIKED_THRESHOLD</code> uses) rated+enriched titles, ` +
+        `${dislikedPre2000} predate 2000 and only ${dislikedPre2010} predate 2010${oldestDisliked ? ` (the single oldest disliked title is from ${oldestDisliked})` : ''}. ` +
+        `Practical consequences: (1) every <code>myRating</code>-derived preference signal — <code>genreProfile</code>, ` +
+        `<code>toneProfile</code>, <code>creatorRatingWeight</code> — structurally cannot learn "Bill dislikes X in older titles" for ` +
+        `anything from this era, since no negative example of an older title exists in the training data to learn it from, not because ` +
+        `no such title exists in the world. (2) A by-release-year breakdown of <code>computeEvalMetrics()</code>'s leave-one-out residuals ` +
+        `(predicted minus actual) shows older titles' predictions running well below actual rating — a pattern that looks, on the surface, ` +
+        `like the model underrating good old titles, but is really just this same selection bias reflected back: the pre-2000/2000s subset ` +
+        `of the library is a pre-filtered, nearly-all-loved sample, not a representative one, so of course actual ratings in that bucket ` +
+        `look uniformly high regardless of what any scoring signal does. This also means Session 52's steep, explicit recency-penalty ask ` +
+        `("nothing before 2000" for shows, "last 5-10 years" for movies) is plausibly doing necessary corrective work no organic signal ` +
+        `could do on its own — the engine has no way to discover "not every old movie is a 10/10" from data that structurally excludes ` +
+        `disliked old movies.`,
+      plain: `Bill only ever adds an old movie or show to his tracked history when he already knows he loves it — he doesn't bother ` +
+        `logging old stuff he watched and disliked. But for anything new, he logs everything, good or bad. That's a completely reasonable ` +
+        `way to use a watch-tracking app, but it means the "how accurate is the engine" number reported by this project's evaluation tool ` +
+        `can be misleading for older titles specifically: it can look like the engine is bad at predicting how Bill will rate old movies, ` +
+        `when the real explanation is that there's no example anywhere of an old movie he actually disliked for the engine to learn from — ` +
+        `it's a gap in the data, not a mistake in the math. Worth keeping in mind for anyone reading this project's own accuracy numbers ` +
+        `broken down by release year in the future.`,
+      impact: `A methodology caveat, not a scoring bug to fix — the value here is in NOT drawing the wrong conclusion from a real pattern in ` +
+        `the data (this session started to propose loosening the recency penalty based on exactly this pattern before Bill caught the ` +
+        `flawed premise). Documented so a future session doesn't make the same mistake independently.`,
+    });
+  }
+
+  // 5c. Same investigation, a genuinely separate finding: computed each
+  // scored signal's own correlation with actual myRating across all 576
+  // rated+enriched titles (real leave-one-out scoreBreakdown() calls, not
+  // a synthetic check) to see which signals carry real individual
+  // predictive weight versus which are mostly along for the ride. Not
+  // recomputed live on every page load — the full leave-one-out sweep
+  // this required (500+ real buildIndexes() rebuilds) is the same order
+  // of cost computeEvalMetrics() already has to run deliberately
+  // asynchronously to avoid blocking initial render; this finding reports
+  // the real numbers from a one-off run instead, same precedent as the
+  // flat-community-neutral-ignores-genre-bias finding's own historical
+  // per-genre delta table above.
+  {
+    findings.push({
+      id: 'weak-keyword-desc-signal-correlation',
+      severity: 'warning',
+      ratings: { ease: 3, dataQuality: 2, recEngine: 5, ui: 1 },
+      title: 'Keyword-match and plot-description-similarity have by far the weakest individual correlation with actual rating of any scored signal',
+      technical: `Real leave-one-out correlation of each signal's own point contribution (via <code>scoreBreakdown()</code>) against actual ` +
+        `<code>myRating</code>, across all 576 rated+enriched titles: community rating 0.349, forward similar-title match 0.240, ` +
+        `director/creator match 0.181, reverse similar-title match 0.152, genre match 0.148, cast affinity 0.124, keyword match ` +
+        `<b>0.074</b>, plot/description similarity <b>0.070</b>. The bottom two are close to noise level and roughly a third the strength ` +
+        `of the strongest signals, despite both contributing real, non-trivial points (keyword mean +1.32/max +1.5; description mean ` +
+        `+2.06/max +3.0 per candidate). This doesn't necessarily mean either signal is worthless in combination — a weak individual ` +
+        `correlation can still add real marginal value alongside stronger signals, and <code>description-similarity-signal-missing</code> ` +
+        `(this list, resolved) was already validated via a full <code>scripts/eval.js</code> sweep showing its cap (1→2→3) measurably ` +
+        `helped precision@100/MAE when added — so this finding isn't "these are broken," it's "these are the two least-individually-` +
+        `evidenced signals in the whole additive stack, worth a dedicated ablation check (does removing either change eval.js results at ` +
+        `all) rather than assuming their historical validation still holds exactly as tuned."`,
+      plain: `The engine scores a candidate by adding together many small pieces of evidence — does it share a director you love, does it ` +
+        `match a genre you love, does its plot sound like something you loved, and so on. Checked how well each individual piece of ` +
+        `evidence actually lines up with your real ratings on its own, and two of them — matching keywords, and matching plot descriptions ` +
+        `— turned out to be the weakest predictors by a clear margin, close to a coin flip's worth of real signal. They still add real ` +
+        `points to a candidate's score today. This isn't proof they're useless (weak signals can still help when combined with strong ` +
+        `ones), but it's a real, previously-unmeasured fact about how much each piece of the formula is actually pulling its weight.`,
+      impact: `A diagnostic finding, not a proven bug — flags where a future re-tuning pass would get the most value for the least risk: ` +
+        `these two signals' weights/caps have the least individual evidence behind them of anything in the model.`,
+    });
+  }
+
+  // 5d. Structural gap check, not a currently-observed problem: diversityRerank()
+  // caps a candidate's raw TMDB genre (genres[0]) at maxPerGenre within its
+  // display window, but has no equivalent cap on director/creator — nothing
+  // stops a single prolific creator from occupying most of a recommendation
+  // window if several of their titles happen to score well simultaneously.
+  // Checked live against today's real top-8/top-20 ranked pool (same
+  // diversityRerank() call the dashboard's own rec panels use) rather than
+  // asserting this from reading the code alone.
+  {
+    const HALF = 8;
+    let maxCreatorRepeat = 0, maxCreatorName = null;
+    for (const type of ['movie', 'show']) {
+      const pool = [...fromWatchlist, ...fromCandidates].filter(c => c.type === type && enrichedMeta[c.titleKey]);
+      const sortFn = (a, b) => (b.bmtreScoreRaw - a.bmtreScoreRaw) || (b.confidenceScore - a.confidenceScore);
+      const ranked = diversityRerank([...pool].sort(sortFn), enrichedMeta, { windowSize: 20, maxPerGenre: 5 }).slice(0, 20);
+      const counts = {};
+      for (const c of ranked) {
+        const creator = getCreator(c.type, enrichedMeta[c.titleKey]);
+        if (creator) counts[creator] = (counts[creator] || 0) + 1;
+      }
+      for (const [name, n] of Object.entries(counts)) {
+        if (n > maxCreatorRepeat) { maxCreatorRepeat = n; maxCreatorName = name; }
+      }
+    }
+    findings.push({
+      id: 'diversity-rerank-no-creator-cap',
+      severity: 'warning',
+      ratings: { ease: 5, dataQuality: 1, recEngine: 3, ui: 4 },
+      title: `diversityRerank() caps genre clustering in recommendation windows but has no equivalent cap on director/creator (today's real max repeat: ${maxCreatorName ? `${esc(maxCreatorName)} ×${maxCreatorRepeat}` : 'none'})`,
+      technical: `<code>diversityRerank()</code>'s only diversity axis is <code>normalizeGenre(meta.genres[0])</code> (TMDB's raw primary ` +
+        `genre), capped at <code>maxPerGenre</code> per display window. There is no analogous check on <code>getCreator()</code> — if ` +
+        `several titles from the same prolific director/showrunner all score well at once (a real possibility once <code>franchiseBonus()</code> ` +
+        `and creator-match are both firing for that person's other work), nothing stops them from crowding out a recommendation window the ` +
+        `same way unlimited genre repetition used to. Checked live against today's real top-20 watchlist+candidate pool for both types: ` +
+        `worst current repeat is ${maxCreatorName ? `${esc(maxCreatorName)} at ${maxCreatorRepeat} of 20` : 'no repeats at all'} — not an ` +
+        `active problem today, but a real, unguarded gap that could bite the moment the candidate pool or a creator's catalog shifts, the ` +
+        `same "latent risk, not yet biting" category as this list's <code>franchise-signal-unused</code>/<code>dropped-show-signal</code> ` +
+        `findings before they were addressed.`,
+      plain: `When picking which recommendations to actually show, the app already makes sure it isn't showing you 8 crime dramas in a row — ` +
+        `it caps how many of one genre can appear together. It does NOT do the same thing for directors or show creators, so in principle ` +
+        `one person's catalog could crowd out a recommendation list the same way one genre used to. Checked the real current list and this ` +
+        `isn't happening right now, but there's no code actually preventing it if it ever does.`,
+      impact: `Low urgency (verified 0-1 real repeats in today's pool) but cheap to close off — the same <code>maxPerGenre</code>-style cap, ` +
+        `applied to <code>getCreator()</code> instead of genre, reusing the exact mechanism already proven to work.`,
+    });
+  }
+
   // 6. Surfaced by an adversarial review of the genreSignal() fix above
   // (no-negative-genre-signal): baseSignals() clamps every candidate's
   // final score to [0, 100], and enough loved-signal terms (creator +
