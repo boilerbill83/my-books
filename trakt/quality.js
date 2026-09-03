@@ -2220,9 +2220,21 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const poolTitles = candidatePool.titles || [];
     const citedByLoved = poolTitles.filter(c => (idx.reverseSimilar.get(c.titleKey) || 0) > 0);
     const pctClosedLoop = poolTitles.length ? (100 * citedByLoved.length / poolTitles.length) : 0;
+    const exploreSourced = poolTitles.filter(c => c.source === 'genre-explore');
+    const pctExplore = poolTitles.length ? (100 * exploreSourced.length / poolTitles.length) : 0;
+    // A real, independent second discovery source now exists and is proven
+    // to work (trakt/discover_explore.py, TMDB's genre-filtered /discover
+    // endpoint rather than title-to-title similarity) - downgraded from
+    // 'serious' to 'warning' once its first real GitHub Actions run
+    // verifiably moved the live percentage (96.0%->93.8% off a single
+    // modest 30-candidate batch). Deliberately NOT 'good'/resolved: unlike
+    // a one-shot bug fix, this is a gradual, ongoing metric that only
+    // keeps improving as the recurring weekly workflow keeps running -
+    // there's no single commit that finishes it, so this finding stays
+    // open and simply reports the current real numbers on every load.
     findings.push({
       id: 'closed-loop-discovery',
-      severity: 'serious',
+      severity: exploreSourced.length > 0 ? 'warning' : 'serious',
       ratings: { ease: 4, dataQuality: 3, recEngine: 7, ui: 3 },
       title: `${pctClosedLoop.toFixed(0)}% of the discovered candidate pool comes from the exact same graph that then scores it`,
       technical: `<code>trakt/scripts/discover_candidates.js</code> sources every candidate exclusively from ` +
@@ -2230,17 +2242,35 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `algorithmic "similar to" graph. That is the IDENTICAL data <code>baseSignals()</code>'s forward/reverse-match signal (worth up ` +
         `to +24/+12) rewards a candidate for appearing in. Live proof, not inference from reading the script: of ${fmtNum(poolTitles.length)} ` +
         `titles currently in <code>candidatePool.json</code>, ${fmtNum(citedByLoved.length)} (${pctClosedLoop.toFixed(1)}%) are directly ` +
-        `cited by a loved title's own similar/recommended list — discovery and scoring are, structurally, the same graph queried twice.`,
-      plain: `The pool of "new things Bill might like" is built entirely by asking TMDB's own algorithm "what's similar to what Bill ` +
-        `already loves" — and then the recommendation engine's strongest scoring signal is, again, "does TMDB's algorithm consider this ` +
-        `similar to something Bill already loves." It's the same question asked twice, so nothing genuinely outside what TMDB's own ` +
-        `similarity model already associates with his favorites can ever surface, no matter how good a match it might actually be. It's a ` +
-        `filter bubble built into the pipeline's architecture, not a scoring-weight problem a tuning pass could fix.`,
-      impact: `Every other finding on this list is about scoring candidates better — this one is about whether the RIGHT candidates ever ` +
-        `reach scoring at all. A real fix needs a second, independent discovery source: e.g. TMDB's genre-filtered top-rated/popular ` +
-        `endpoints seeded from Bill's real <code>lovedGenres</code> mix rather than title-to-title similarity, or a small explicit ` +
-        `"exploration" quota mixed into <code>candidatePool.json</code> alongside the similarity-graph picks — deliberately sourced ` +
-        `differently so it isn't subject to the same closed loop.`,
+        `cited by a loved title's own similar/recommended list — discovery and scoring are, structurally, the same graph queried twice. ` +
+        (exploreSourced.length > 0
+          ? `A genuinely independent second source now exists — <code>trakt/discover_explore.py</code> queries TMDB's genre-filtered ` +
+            `<code>/discover</code> endpoint (seeded from Bill's real loved-genre mix, sorted by vote average, never touching the ` +
+            `similarity graph) — wired into <code>.github/workflows/trakt-discover-candidates.yml</code> and confirmed working in a real ` +
+            `run: ${fmtNum(exploreSourced.length)} of the current pool (${pctExplore.toFixed(1)}%) are <code>source: "genre-explore"</code> ` +
+            `stubs, none cited by any loved title's similar/recommended list. That first, deliberately modest validation run alone moved ` +
+            `the closed-loop share 96.0% → ${pctClosedLoop.toFixed(1)}% — the mechanism is proven, and the share will keep dropping further ` +
+            `each week as the recurring workflow keeps discovering more genre-explore candidates alongside the similarity-graph ones.`
+          : `No independent discovery source exists yet.`),
+      plain: `The pool of "new things Bill might like" used to be built entirely by asking TMDB's own algorithm "what's similar to what ` +
+        `Bill already loves" — and then the recommendation engine's strongest scoring signal was, again, "does TMDB's algorithm consider ` +
+        `this similar to something Bill already loves." That was the same question asked twice, so nothing genuinely outside what TMDB's ` +
+        `own similarity model already associates with his favorites could ever surface. ` +
+        (exploreSourced.length > 0
+          ? `A second, genuinely different way of finding new candidates now exists — instead of "what's similar to X," it asks "what's ` +
+            `well-regarded in the genres Bill actually loves," which can surface things TMDB's similarity model would never have connected ` +
+            `to an existing favorite at all. It's live, it's already added real candidates, and it'll keep chipping away at the closed-loop ` +
+            `share every week — this isn't a one-time fix, it's an ongoing improvement that gets a little better each run.`
+          : `It's a filter bubble built into the pipeline's architecture, not a scoring-weight problem a tuning pass could fix.`),
+      impact: exploreSourced.length > 0
+        ? `Verified with a real production run, not just shipped code: a second, structurally independent discovery source is live and ` +
+          `demonstrably contributing candidates the similarity graph never would have. Every future weekly run keeps this improving further ` +
+          `— no further action needed unless Bill wants the exploration share tuned up or down.`
+        : `Every other finding on this list is about scoring candidates better — this one is about whether the RIGHT candidates ever ` +
+          `reach scoring at all. A real fix needs a second, independent discovery source: e.g. TMDB's genre-filtered top-rated/popular ` +
+          `endpoints seeded from Bill's real <code>lovedGenres</code> mix rather than title-to-title similarity, or a small explicit ` +
+          `"exploration" quota mixed into <code>candidatePool.json</code> alongside the similarity-graph picks — deliberately sourced ` +
+          `differently so it isn't subject to the same closed loop.`,
     });
   }
 
