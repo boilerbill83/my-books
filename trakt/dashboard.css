@@ -1,0 +1,236 @@
+/* Shared styles for Discover (index.html) and Data Quality (quality.html) —
+   extracted from the original single-page trakt/dashboard.js's inline
+   <style> block. Both pages link this after ../styles.css; each keeps only
+   its own page-specific rules inline (Discover: hero/Surprise-Me/Because-
+   You-Loved/shelves/progress-bar styles new to the split). */
+
+      .tk-title {
+        font-family: var(--font-serif); font-weight: 700; font-style: italic;
+        font-size: 2rem; color: var(--accent); margin-bottom: 2px;
+      }
+      .tk-subtitle { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 22px; }
+
+      .tk-tiles {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px; margin-bottom: 26px;
+      }
+      .tk-tile {
+        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+        padding: 14px 16px; box-shadow: var(--shadow);
+      }
+      .tk-tile-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; font-weight: 600; }
+      .tk-tile-value { font-family: var(--font-sans); font-weight: 600; font-size: 1.7rem; color: var(--text); margin-top: 4px; }
+
+      .tk-card {
+        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+        padding: 18px 20px; margin-bottom: 22px; box-shadow: var(--shadow);
+      }
+      .tk-card-heading {
+        font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; color: var(--accent);
+        margin-bottom: 4px;
+        cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+      }
+      .tk-card-heading .tk-collapse-chevron {
+        font-family: var(--font-sans); font-size: 0.75em; color: var(--text-muted); transition: transform 0.15s;
+        flex-shrink: 0; margin-left: 10px; user-select: none;
+      }
+      .tk-card.tk-card-collapsed .tk-collapse-chevron { transform: rotate(-90deg); }
+      .tk-card.tk-card-collapsed > *:not(.tk-card-heading) { display: none !important; }
+      .tk-card-note { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
+      .tk-caveat {
+        background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 6px;
+        padding: 8px 12px; font-size: 0.76rem; color: var(--text-muted); margin-top: 10px;
+      }
+
+      .tk-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      @media (max-width: 780px) { .tk-row2 { grid-template-columns: 1fr; } }
+      /* Classic CSS Grid overflow trap (same one hit on the book side's own
+         dashboard, Session 14c): a grid item's default min-width:auto means
+         it won't shrink below its content's min-content size, so a wide
+         horizontally-scrolling child (e.g. Discover's .tk-shelf) can push
+         its own .tk-card past its track's real width even though the
+         .tk-row2 container itself measures correctly. */
+      .tk-row2 > .tk-card { min-width: 0; }
+
+      .tk-chart-wrap { position: relative; }
+      .tk-bar { fill: var(--accent); }
+      .tk-bar:hover { fill: var(--accent-hover); }
+      .tk-axis-label { fill: var(--text-muted); font-size: 10px; font-family: var(--font-sans); }
+      .tk-gridline { stroke: var(--border); stroke-width: 1; }
+      .tk-value-label { fill: var(--text-muted); font-size: 10px; font-family: var(--font-sans); font-weight: 600; }
+
+      .tk-tooltip {
+        position: absolute; pointer-events: none; opacity: 0; transition: opacity 0.1s;
+        background: var(--accent); color: #fff; font-size: 0.75rem; padding: 4px 9px;
+        border-radius: 5px; white-space: nowrap; transform: translate(-50%, -130%);
+        z-index: 5;
+      }
+      .tk-tooltip.active { opacity: 1; }
+
+      .tk-list { display: flex; flex-direction: column; gap: 0; }
+      .tk-list-row {
+        display: flex; align-items: center; justify-content: space-between; gap: 10px;
+        padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem;
+      }
+      .tk-list-row:last-child { border-bottom: none; }
+      .tk-list-rank { color: var(--text-muted); font-size: 0.78rem; width: 20px; flex-shrink: 0; }
+      .tk-list-title { flex: 1; min-width: 0; }
+      .tk-list-title .tk-year { color: var(--text-muted); font-weight: 400; }
+      .tk-list-score {
+        font-weight: 600; font-size: 0.78rem; padding: 2px 8px; border-radius: 999px;
+        background: var(--bg-subtle); color: var(--accent); white-space: nowrap;
+      }
+
+      .tk-empty { padding: 20px; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+
+      /* ── Recommendations preview ── */
+      .tk-rec-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 6px; }
+      .tk-rec-card {
+        display: flex; gap: 14px; align-items: center; background: var(--bg-subtle);
+        border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px;
+        min-height: 96px; box-sizing: border-box;
+      }
+      .tk-rec-rank { font-family: var(--font-serif); font-weight: 700; font-size: 1.2rem; color: var(--border); width: 26px; flex-shrink: 0; text-align: center; }
+      .tk-rec-poster { width: 60px; height: 90px; border-radius: 6px; object-fit: cover; flex-shrink: 0; background: var(--bg-card); border: 1px solid var(--border); }
+      .tk-rec-poster-empty { border: 1px dashed var(--border); }
+      .tk-rec-body { flex: 1; min-width: 0; }
+      .tk-rec-title { font-weight: 600; font-size: 0.95rem; }
+      .tk-rec-title .tk-year { color: var(--text-muted); font-weight: 400; }
+      /* Every title in the app links out to its real Trakt page (or a
+         Trakt search, for a discovered candidate with no Trakt identity
+         yet) — same link treatment everywhere: inherits surrounding
+         text color/weight, only a hover underline hints it's clickable. */
+      .tk-trakt-link { color: inherit; text-decoration: none; }
+      .tk-trakt-link:hover { text-decoration: underline; color: var(--accent); }
+      .tk-rec-badge {
+        font-size: 0.64rem; font-weight: 600; padding: 2px 7px; border-radius: 999px;
+        background: var(--bg-card); color: var(--text-muted); margin-left: 8px; vertical-align: middle;
+      }
+      .tk-rec-meta { font-size: 0.78rem; color: var(--accent); margin-top: 4px; font-weight: 500; }
+      .tk-rec-reason { font-size: 0.8rem; color: var(--text-muted); margin-top: 3px; }
+      .tk-deepdive-btn {
+        display: inline-block; font-size: 0.72rem; font-weight: 600; color: var(--accent);
+        text-decoration: none; margin-top: 6px; padding: 3px 10px; border: 1px solid var(--accent);
+        border-radius: 999px;
+      }
+      .tk-deepdive-btn:hover { background: var(--accent); color: #fff; }
+      .tk-rec-score { font-family: var(--font-sans); font-weight: 600; font-size: 1.25rem; color: var(--accent); flex-shrink: 0; }
+      .tk-rec-seeall { font-size: 0.82rem; text-align: right; }
+      .tk-rec-seeall a { color: var(--accent); text-decoration: none; font-weight: 600; }
+      .tk-rec-seeall a:hover { text-decoration: underline; }
+
+      /* ── Metadata & Engine Quality dial (mirrors quality-dashboard.html's renderDial) ── */
+      :root {
+        --status-good: #0ca30c; --status-warning: #fab219;
+        --status-serious: #ec835a; --status-critical: #d03b3b;
+      }
+      .tk-quality-row { display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap; }
+      .tk-dial-wrap { position: relative; width: 180px; height: 180px; flex-shrink: 0; }
+      .tk-dial-center {
+        position: absolute; inset: 0; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; text-align: center;
+      }
+      .tk-dial-number { font-family: var(--font-sans); font-weight: 700; font-size: 2.8rem; line-height: 1; }
+      .tk-dial-label { font-size: 0.66rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 2px; }
+      .tk-components { flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 12px; }
+      .tk-component-head { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px; }
+      .tk-component-head strong { font-weight: 600; color: var(--text); }
+      .tk-meter-track { height: 8px; border-radius: 5px; background: var(--bg-subtle); overflow: hidden; }
+      .tk-meter-fill { height: 100%; border-radius: 5px; }
+      .tk-quality-footnote {
+        font-size: 0.78rem; color: var(--text-muted); margin-top: 14px; padding-top: 12px;
+        border-top: 1px solid var(--border); line-height: 1.5;
+      }
+
+      /* ── Genre/creator/cast lists ── */
+      .tk-metric-row {
+        display: flex; align-items: center; justify-content: space-between; gap: 10px;
+        padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem;
+      }
+      .tk-metric-row:last-child { border-bottom: none; }
+      .tk-metric-poster { width: 38px; height: 57px; border-radius: 4px; object-fit: cover; flex-shrink: 0; background: var(--bg-subtle); border: 1px solid var(--border); }
+      .tk-metric-poster-empty { border: 1px dashed var(--border); }
+      .tk-metric-name { flex: 1; min-width: 0; }
+      .tk-metric-sub { color: var(--text-muted); font-size: 0.76rem; }
+      .tk-metric-score {
+        font-weight: 600; font-size: 0.8rem; padding: 2px 9px; border-radius: 999px;
+        background: var(--bg-subtle); color: var(--accent); white-space: nowrap;
+      }
+
+      .tk-crowd-stat { text-align: center; padding: 10px 0; }
+      .tk-crowd-number { font-family: var(--font-sans); font-weight: 700; font-size: 2.6rem; color: var(--accent); }
+      .tk-crowd-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
+      .tk-crowd-detail { font-size: 0.76rem; color: var(--text-muted); margin-top: 10px; }
+
+      /* ── All-titles table ── */
+      .tk-table-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
+      .tk-search {
+        font: inherit; font-size: 0.85rem; padding: 7px 12px; border: 1px solid var(--border);
+        border-radius: var(--radius); background: var(--bg-card); color: var(--text); flex: 1; max-width: 340px;
+      }
+      .tk-select {
+        font: inherit; font-size: 0.85rem; padding: 7px 10px; border: 1px solid var(--border);
+        border-radius: var(--radius); background: var(--bg-card); color: var(--text);
+      }
+      .tk-btn {
+        font: inherit; font-size: 0.8rem; padding: 7px 14px; border: 1px solid var(--border);
+        border-radius: var(--radius); background: #fff; color: var(--text); cursor: pointer;
+      }
+      .tk-btn:hover { border-color: var(--accent); }
+      .tk-btn.active { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+      .tk-table-wrap { overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+      table.tk-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+      table.tk-table th, table.tk-table td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+      .tk-table-poster { width: 40px; height: 60px; border-radius: 4px; object-fit: cover; display: block; background: var(--bg-subtle); border: 1px solid var(--border); }
+      table.tk-table th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); cursor: pointer; user-select: none; white-space: nowrap; }
+      table.tk-table th:hover { color: var(--accent); }
+      table.tk-table th.sorted::after { content: ' ▾'; }
+      table.tk-table th.sorted.asc::after { content: ' ▴'; }
+      table.tk-table tbody tr:hover { background: var(--bg-subtle); }
+      table.tk-table td.num { font-variant-numeric: tabular-nums; text-align: right; }
+      .tk-status-pill {
+        display: inline-flex; align-items: center; gap: 4px; font-size: 0.76rem; font-weight: 600;
+        padding: 2px 8px; border-radius: 999px; white-space: nowrap;
+      }
+      .tk-status-good { background: color-mix(in srgb, var(--status-good) 15%, transparent); color: var(--status-good); }
+      .tk-status-warning { background: color-mix(in srgb, var(--status-warning) 20%, transparent); color: #8a5c00; }
+      .tk-status-serious { background: color-mix(in srgb, var(--status-serious) 18%, transparent); color: #a3441f; }
+      .tk-status-critical { background: color-mix(in srgb, var(--status-critical) 15%, transparent); color: var(--status-critical); }
+      .tk-status-tag {
+        display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap;
+      }
+      .tk-status-tag-watched { background: color-mix(in srgb, var(--status-good) 15%, transparent); color: var(--status-good); }
+      .tk-status-tag-watchlist { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); }
+      .tk-status-tag-candidate { background: color-mix(in srgb, var(--status-warning) 20%, transparent); color: #8a5c00; }
+      .tk-status-tag-dismissed { background: color-mix(in srgb, var(--status-critical) 15%, transparent); color: var(--status-critical); }
+      .tk-status-tag-airing { background: color-mix(in srgb, var(--status-warning) 22%, transparent); color: #8a5c00; }
+      .tk-field-bar-track { width: 90px; height: 6px; border-radius: 4px; background: var(--bg-subtle); overflow: hidden; display: inline-block; vertical-align: middle; margin-right: 8px; }
+      .tk-field-bar-fill { height: 100%; border-radius: 4px; }
+      table.tk-table td.tk-genres { color: var(--text-muted); font-size: 0.78rem; }
+      .tk-field-note { color: var(--text-muted); font-size: 0.7rem; margin-top: 3px; max-width: 280px; }
+      .tk-imp-card { border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; }
+      .tk-imp-card:last-child { margin-bottom: 0; }
+      .tk-imp-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; cursor: pointer; }
+      .tk-imp-header .tk-status-pill, .tk-imp-header .tk-collapse-chevron { user-select: none; }
+      .tk-imp-header:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .tk-imp-title { font-weight: 700; font-size: 0.95rem; flex: 1 1 auto; min-width: 160px; }
+      .tk-imp-header .tk-collapse-chevron { font-size: 0.8rem; color: var(--text-muted); transition: transform 0.15s ease; margin-left: auto; }
+      .tk-imp-card.tk-imp-collapsed .tk-collapse-chevron { transform: rotate(-90deg); }
+      .tk-imp-card.tk-imp-collapsed .tk-imp-header { margin-bottom: 0; }
+      .tk-imp-card:not(.tk-imp-collapsed) .tk-imp-ratings { margin-top: 4px; }
+      .tk-imp-card.tk-imp-collapsed .tk-imp-details { display: none; }
+      .tk-imp-section-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); margin-bottom: 4px; margin-top: 10px; }
+      .tk-imp-section-label:first-of-type { margin-top: 0; }
+      .tk-imp-technical, .tk-imp-impact { font-size: 0.85rem; line-height: 1.55; }
+      .tk-imp-plain { font-size: 0.85rem; line-height: 1.55; background: var(--bg-subtle); border-radius: 8px; padding: 10px 12px; }
+      .tk-imp-ratings { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 10px; }
+      .tk-imp-rating { min-width: 0; }
+      .tk-imp-rating-label { font-size: 0.68rem; color: var(--text-muted); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .tk-imp-rating-track { height: 5px; border-radius: 3px; background: var(--bg-subtle); overflow: hidden; }
+      .tk-imp-rating-fill { height: 100%; border-radius: 3px; }
+      .tk-imp-rating-num { font-size: 0.7rem; font-weight: 600; color: var(--text); margin-top: 2px; }
+      @media (max-width: 640px) { .tk-imp-ratings { grid-template-columns: repeat(2, 1fr); } }
+      @media (max-width: 480px) {
+        .tk-metric-row { flex-wrap: wrap; }
+        .tk-metric-score { margin-left: 38px; }
+      }

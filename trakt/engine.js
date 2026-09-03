@@ -2420,7 +2420,7 @@ export function isTooObscure(candidate, enrichedMeta) {
 // he already queued. Display-only, by Bill's explicit request: never
 // subtracted from bmtreScore or bmtreScoreRaw - the prediction is still
 // real and honest, only which list a title appears in changes (see
-// dashboard.js's renderRecPanel()/renderAiringSoonList()). Movies don't
+// discover.js's renderRecPanel()/renderAiringSoonList()). Movies don't
 // have episodes, so always false for type 'movie'.
 export function isActivelyAiring(candidate, enrichedMeta) {
   if (candidate.type !== 'show') return false;
@@ -3054,7 +3054,7 @@ export function diversityRerank(scoredList, enrichedMeta, { windowSize = 8, maxP
 // eval.js rebuilds buildTasteModel per held-out book), actually track
 // how Bill rated it for real.
 //
-// Lives here (not in scripts/eval.js) specifically so dashboard.js can
+// Lives here (not in scripts/eval.js) specifically so quality.js can
 // import it directly into the browser for the "BMTRE Accuracy Score"
 // dial — engine.js has no Node-specific imports (fs/path/url), unlike
 // scripts/eval.js's CLI wrapper, which would fail to load in a browser.

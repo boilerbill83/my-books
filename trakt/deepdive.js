@@ -2,10 +2,10 @@
 // card that opens a dedicated page showing ALL metadata for that title
 // plus a full, real breakdown of why it scored what it did (not just the
 // one-line reason() summary the rec card already shows). Self-contained
-// module (doesn't import dashboard.js — that file runs its own load() at
-// the bottom and expects a completely different set of page elements to
-// exist, so importing it here would throw) — same convention recommend.js
-// already follows for the same reason.
+// module (doesn't import discover.js/quality.js — those each run their own
+// load() at the bottom and expect a completely different set of page
+// elements to exist, so importing either here would throw) — same
+// convention recommend.js already follows for the same reason.
 import {
   rankAll, hydrateTitle, matchScorePair, confidenceScore, reason, scoreBreakdown,
   isActivelyAiring, posterUrl, criticScore, realAudienceScore, awardsScore,
@@ -35,7 +35,7 @@ async function load() {
   const content = document.getElementById('ddContent');
 
   if (!key) {
-    content.innerHTML = '<div class="dd-empty-page">No title specified. Go back to the <a href="./index.html">dashboard</a> and click "Deep Dive" on a title.</div>';
+    content.innerHTML = '<div class="dd-empty-page">No title specified. Go back to <a href="./index.html">Discover</a> and click "Deep Dive" on a title.</div>';
     statusEl.textContent = 'No title';
     return;
   }

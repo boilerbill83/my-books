@@ -4,7 +4,8 @@ BMTRE (Bill's Movies & TV Recommendation Engine) is the scoring engine behind
 `trakt/`'s recommendations — the "You'll Love" panels, the All Titles table's
 Predicted Score column, and `trakt/recommend.html`. All of it lives in
 `trakt/engine.js`, a pure-function module with no Node-specific imports (so
-`trakt/dashboard.js` can import it directly into the browser).
+`trakt/discover.js`/`trakt/quality.js` can import it directly into the
+browser).
 
 This file documents *every* signal that feeds a score, its exact weight/cap,
 and — where it matters — why that number is what it is. Every weight below
@@ -728,8 +729,8 @@ above.** Every filter in the table is a hard exclusion from
 `rankAll()`'s `fromCandidates` list, deliberately never applied to the
 watchlist. `isActivelyAiring(candidate, enrichedMeta)` is the opposite
 shape on both counts: it's applied at the *display* layer only
-(`dashboard.js`'s `renderRecPanel()`, which builds the "You'll Love"
-panels — see `trakt/dashboard.js`), and it deliberately *does* apply to
+(`discover.js`'s `renderRecPanel()`, which builds the "You'll Love"
+panels — see `trakt/discover.js`), and it deliberately *does* apply to
 the watchlist. Bill: "I only watch a season once that season is
 complete, so Ted Lasso being #1 doesn't help me" — traced live, Ted
 Lasso sits on both his library (seasons 1-3, rated 9/10) and his

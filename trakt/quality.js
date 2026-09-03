@@ -1,360 +1,25 @@
-// Bill's Trakt Dashboard — reads trakt/data/dashboard.json, a compact
-// summary built from a full Trakt account-data-export zip by
-// scripts/build_trakt_dashboard.js. This page has no write path of its
-// own; refreshing the data means re-running that script against a fresh
-// export and pushing the regenerated JSON. See CLAUDE.md's "Trakt
-// Dashboard" section for the update workflow.
-//
-// Also renders BMTRE's two headline outcomes (Session 45): a live top-5
-// recommendations preview and a Metadata & Engine Quality score — both
-// computed client-side from library/watchlist/enrichedMetadata.json via
-// trakt/engine.js, the same way trakt/recommend.js does for the full list.
+// Data Quality — "is the engine/data healthy." Bill: "split the dashboard
+// into three focused pages... the second should focus on data quality."
+// Split out of the original single-page trakt/dashboard.js; the discovery
+// half (You'll Love panels, hero pick, taste stats) moved to
+// trakt/discover.js — see that file's own header for why.
 
-import { rankAll, getCreator, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings, posterUrl, computeEvalMetrics, diversityRerank, resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra, inferGenre, inferSubgenreDetail, findTaxonomyCollisions, isTooObscure, isActivelyAiring, traktUrl } from './engine.js';
+import {
+  rankAll, getCreator, criticScore, realAudienceScore, awardsScore, posterUrl,
+  computeEvalMetrics, diversityRerank, resolveSimilarTitles, inferSubgenres, inferTones,
+  inferSubjects, inferEra, inferGenre, inferSubgenreDetail, findTaxonomyCollisions,
+  isTooObscure, isActivelyAiring, isPreMillenniumMovie, matchScoreRaw, hydrateTitle,
+  matchScore, rankRecommendations, reason, rewatchStrength, titleKey, buildIndexes,
+} from './engine.js';
+import {
+  esc, fmtNum, posterImgHtml, typeIcon, titleLink, svgEl, renderHBarChart, SUBJECT_LABEL,
+  metaLine, scoreTier, initCollapsibleCards, loadAllData, predictedVsActualRows,
+} from './dashboardShared.js';
 
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
-  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
-}[c]));
-
-const fmtNum = n => (n ?? 0).toLocaleString('en-US');
-
-// A cached posterPath can go stale if TMDB moves/reprocesses the underlying
-// image asset after enrich_tmdb.py fetched it (a real, if partial, cause of
-// "the images aren't loading" bug reports — this app can't tell a genuinely
-// broken URL from a network hiccup without a live browser to check against).
-// The onerror handler below swaps a broken poster for the exact same
-// empty-placeholder markup a title with no cached posterPath at all already
-// gets, so a stale path degrades to the existing "no cover" look instead of
-// a broken-image icon, at every one of the 3 places a poster renders as an
-// HTML string (the 4th, the All Titles table, builds the <img> via DOM APIs
-// directly and gets the same onerror behavior inline there instead).
-const posterImgHtml = (url, cssClass, w, h) => url
-  ? `<img class="${cssClass}" src="${esc(url)}" alt="" loading="lazy" width="${w}" height="${h}" ` +
-    `onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'${cssClass} ${cssClass}-empty'}))">`
-  : `<div class="${cssClass} ${cssClass}-empty"></div>`;
-
-// Consistent visual language for movie/show and watched/watchlist/candidate,
-// used everywhere a title appears (rec cards, metric rows, the All Titles
-// table) — Bill's explicit ask for a systematic cue "throughout" rather than
-// a one-off badge in a single section.
-const typeIcon = t => t === 'movie' ? '🎬' : '📺';
-const typeLabel = t => t === 'movie' ? 'Movie' : 'TV';
-// Bill's explicit request: "make it so that all titles in the app are
-// clickable and take me right to that page in Trakt." One shared helper
-// so every title-rendering surface (rec cards, metric rows, the All
-// Titles table) links out identically, rather than each spot
-// reimplementing the same <a> markup.
-const titleLink = c => `<a class="tk-trakt-link" href="${esc(traktUrl(c))}" target="_blank" rel="noopener">${esc(c.title)}</a>`;
-const STATUS_META = {
-  Watched:    { cls: 'tk-status-tag-watched',    label: 'Watched' },
-  Watchlist:  { cls: 'tk-status-tag-watchlist',  label: 'Watchlist' },
-  Candidate:  { cls: 'tk-status-tag-candidate',  label: 'Candidate' },
-  Dismissed:  { cls: 'tk-status-tag-dismissed',  label: 'Dismissed' },
-};
-const statusTag = status => {
-  const m = STATUS_META[status];
-  if (!m) return '';
-  return `<span class="tk-status-tag ${m.cls}">${m.label}</span>`;
-};
-
-// Bill's explicit request: a visible marker for a show whose current
-// season is still actively airing (isActivelyAiring() in engine.js) -
-// used in the All Titles table's own Airing column and the Currently
-// Airing list below, wherever such a title needs to be flagged as "not
-// fully watchable yet" without touching its actual predicted score.
-const airingBadge = () =>
-  `<span class="tk-status-tag tk-status-tag-airing" title="A new episode of this show's current season hasn't aired yet">🕐 Airing</span>`;
-
-const NS = 'http://www.w3.org/2000/svg';
-const svgEl = (tag, attrs = {}) => {
-  const el = document.createElementNS(NS, tag);
-  for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
-  return el;
-};
-
-// ── Stat tiles ───────────────────────────────────────────────────────────
-
-function renderStatTiles(summary) {
-  const tiles = [
-    ['Movies watched', fmtNum(summary.moviesWatched)],
-    ['Shows watched', fmtNum(summary.showsWatched)],
-    ['Episodes watched', fmtNum(summary.episodesWatched)],
-    ['Hours watched', fmtNum(summary.totalHours)],
-    ['Total ratings', fmtNum(summary.totalRatings)],
-    ['Average rating', summary.avgRating != null ? `${summary.avgRating} / 10` : '—'],
-  ];
-  document.getElementById('statTiles').innerHTML = tiles.map(([label, value]) => `
-    <div class="tk-tile">
-      <div class="tk-tile-label">${esc(label)}</div>
-      <div class="tk-tile-value">${esc(value)}</div>
-    </div>
-  `).join('');
-}
-
-// ── Horizontal bar chart (genres) ───────────────────────────────────────
-
-function renderHBarChart(containerId, data, { labelKey, valueKey, barHeight = 20, maxScale, fmtValue = fmtNum, tooltipSuffix = '' }) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = '';
-  if (!data.length) { container.innerHTML = '<div class="tk-empty">No data.</div>'; return; }
-
-  const width = 700;
-  const gap = 6;
-  const rowH = barHeight + gap;
-  const height = data.length * rowH + 10;
-  const marginLeft = 170, marginRight = 60;
-  const plotW = width - marginLeft - marginRight;
-  const maxVal = maxScale ?? Math.max(1, ...data.map(d => d[valueKey]));
-
-  // viewBox scales the content; width is left as 100% and height MUST be
-  // 'auto' (never a raw px number equal to the viewBox height) so the
-  // rendered box always matches the viewBox's own aspect ratio exactly. A
-  // fixed-px height attribute here previously fought the intrinsic
-  // preserveAspectRatio="xMidYMid meet" scaling the moment the container
-  // was narrower than the 700-unit viewBox (true for both the two-column
-  // desktop layout and, worse, the single-column mobile one) — the chart
-  // rendered shrunk-down and letterboxed inside its own box, reading as
-  // "small/zoomed out" with soft-looking (actually just downscaled) text.
-  const svg = svgEl('svg', { viewBox: `0 0 ${width} ${height}`, width: '100%', style: 'display:block; height:auto;' });
-
-  const tooltip = document.createElement('div');
-  tooltip.className = 'tk-tooltip';
-  const wrap = document.createElement('div');
-  wrap.style.position = 'relative';
-  wrap.appendChild(svg);
-  wrap.appendChild(tooltip);
-  container.appendChild(wrap);
-
-  data.forEach((d, i) => {
-    const y = i * rowH + 5;
-    const barW = Math.max((d[valueKey] / maxVal) * plotW, 2);
-
-    const label = svgEl('text', {
-      x: marginLeft - 8, y: y + barHeight / 2 + 4, class: 'tk-axis-label', 'text-anchor': 'end',
-    });
-    label.textContent = d[labelKey].length > 26 ? d[labelKey].slice(0, 25) + '…' : d[labelKey];
-    svg.appendChild(label);
-
-    const rect = svgEl('rect', {
-      x: marginLeft, y, width: barW, height: barHeight, rx: 4, ry: 4, class: 'tk-bar',
-    });
-    svg.appendChild(rect);
-
-    const valueLabel = svgEl('text', {
-      x: marginLeft + barW + 6, y: y + barHeight / 2 + 4, class: 'tk-value-label',
-    });
-    valueLabel.textContent = fmtValue(d[valueKey]);
-    svg.appendChild(valueLabel);
-
-    rect.addEventListener('pointerenter', () => {
-      tooltip.textContent = `${d[labelKey]}: ${fmtValue(d[valueKey])}${tooltipSuffix}`;
-      tooltip.classList.add('active');
-      tooltip.style.left = `${((marginLeft + barW / 2) / width) * 100}%`;
-      tooltip.style.top = `${(y / height) * 100}%`;
-    });
-    rect.addEventListener('pointerleave', () => tooltip.classList.remove('active'));
-  });
-}
-
-// ── Genre / creator / cast / crowd-comparison metrics ───────────────────
-// All scoped to the enriched subset only (currently a fraction of the full
-// library — see the scope note rendered above these sections) since TMDB
-// enrichment runs incrementally, not all-at-once.
-
-const LOVED_THRESHOLD = 9;
-
-// "Genres You Rate Highest" used to read TMDB's own raw genre field — a
-// blunt ~19/16-word taxonomy where "Drama" alone sat on 75%+ of every
-// enriched title, so the chart was really just restating one mega-bucket
-// in different orders rather than showing anything Bill could act on
-// (Bill: "drama is way too broad, I want them much more narrow"). This
-// chart deliberately still plots Subgenre, not the new clean single-valued
-// Genre field the taxonomy redesign added (inferGenre(), 17 canonical
-// values, wired into real scoring via genreBonus()) — Subgenre is the
-// finer of the two taxonomies (a curated 65-bucket canonical vocabulary,
-// keyword-matched against TMDB's overview/keywords, with a
-// trakt/data/reviewedTags.json override tier and a trakt/data/llmTags.json
-// LLM pass as fallbacks for titles the keyword tier can't confidently
-// classify) and stays the more useful axis for a "what do you actually
-// like" breakdown; Genre itself is summarized instead in the Field
-// Population & Quality table and its own Improvement Opportunities finding.
-function computeGenreStats(library, enrichedMeta, llmTags = {}, reviewedTags = {}) {
-  const stats = new Map();
-  for (const t of library.titles || []) {
-    if (t.myRating == null) continue;
-    const meta = enrichedMeta[t.titleKey];
-    if (!meta) continue;
-    for (const g of inferSubgenres(meta, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
-      // Refined per-title (not after aggregation) so a WWII drama and a
-      // Vietnam War drama bucket separately under their real conflict
-      // instead of both landing in one generic "Historical"/"War" bucket
-      // - see displaySubgenre()'s own comment for why this refinement
-      // exists at all.
-      const label = displaySubgenre(g, meta);
-      if (!stats.has(label)) stats.set(label, { sum: 0, count: 0 });
-      const e = stats.get(label);
-      e.sum += t.myRating; e.count++;
-    }
-  }
-  return [...stats.entries()]
-    .map(([genre, e]) => ({ genre, avg: e.sum / e.count, count: e.count }))
-    .filter(g => g.count >= 3)
-    .sort((a, b) => b.avg - a.avg)
-    // The Subgenre canonical vocabulary grew to 65 buckets in the taxonomy
-    // redesign (up from 29), so an unbounded chart got long enough to lose
-    // its "what do you actually like" readability — capped to the top 20
-    // by avg rating, the same cardinality this chart worked well at before
-    // the vocabulary expanded.
-    .slice(0, 20);
-}
-
-// inferSubgenres() returns hyphenated machine keys (engine.js reads them
-// back for scoring, so they can't be prettied at the source) — a small
-// display-only label map, same spirit as REASON_CODE_SHORT_LABEL below.
-// Post-taxonomy-redesign canonical vocabulary (65 buckets). A handful of
-// old genre-duplicative buckets (crime-drama, sci-fi-fantasy, war, sports,
-// horror, biopic) were retired — that signal now lives in the separate
-// Genre field — so their labels were dropped rather than left dangling.
-const SUBGENRE_LABEL = {
-  'procedural': 'Procedural', 'legal': 'Legal', 'heist': 'Heist', 'spy-espionage': 'Spy / Espionage',
-  'psychological-thriller': 'Psychological Thriller', 'family-drama': 'Family Drama',
-  'coming-of-age': 'Coming-of-Age', 'romcom': 'Rom-Com', 'workplace-comedy': 'Workplace Comedy',
-  'dark-comedy': 'Dark Comedy', 'prison': 'Prison', 'neo-western': 'Neo-Western',
-  'organized-crime': 'Organized Crime', 'drug-trade': 'Drug Trade', 'assassin-hitman': 'Assassin / Hitman',
-  'murder-mystery': 'Murder Mystery', 'police-procedural': 'Police Procedural', 'historical': 'Historical',
-  'political': 'Political', 'romance': 'Romance', 'medical': 'Medical', 'superhero': 'Superhero',
-  'musical': 'Musical',
-  'psychological-drama': 'Psychological Drama', 'ensemble': 'Ensemble', 'workplace-drama': 'Workplace Drama',
-  'neo-noir': 'Neo-Noir', 'character-study': 'Character Study', 'crime-thriller': 'Crime Thriller',
-  'biography': 'Biography', 'mystery-drama': 'Mystery Drama', 'military-drama': 'Military Drama',
-  'dramedy': 'Dramedy', 'conspiracy-thriller': 'Conspiracy Thriller', 'survival-drama': 'Survival Drama',
-  'sitcom': 'Sitcom', 'satire': 'Satire', 'true-crime': 'True Crime', 'anthology': 'Anthology',
-  'docudrama': 'Docudrama', 'buddy-comedy': 'Buddy Comedy', 'post-apocalyptic': 'Post-Apocalyptic',
-  'psychological-horror': 'Psychological Horror', 'dystopian': 'Dystopian',
-  'supernatural-horror': 'Supernatural Horror', 'friendship-comedy': 'Friendship Comedy',
-  'mockumentary': 'Mockumentary', 'family-comedy': 'Family Comedy', 'journalism-drama': 'Journalism Drama',
-  'time-travel': 'Time Travel', 'crime-comedy': 'Crime Comedy', 'action-comedy': 'Action Comedy',
-  'survival-horror': 'Survival Horror', 'financial-drama': 'Financial Drama',
-  'techno-thriller': 'Techno-Thriller', 'space-opera': 'Space Opera', 'absurdist-comedy': 'Absurdist Comedy',
-  'social-drama': 'Social Drama', 'creature-feature': 'Creature Feature', 'alien-invasion': 'Alien Invasion',
-  'comedy-mystery': 'Comedy Mystery', 'supernatural-mystery': 'Supernatural Mystery',
-  'chamber-drama': 'Chamber Drama', 'disaster-drama': 'Disaster Drama', 'horror-comedy': 'Horror Comedy',
-};
-
-// Bill: "instead of drama -> historical drama, it should be historical
-// drama -> WW2" then "Historical was just an example. I want that level
-// of specificity for all genres and subgenres" — when a title's subgenre
-// has a real, verified detail map in GENRE_DETAIL_KEYWORDS (engine.js)
-// and a specific match is found, show that instead of the generic label
-// everywhere a subgenre is displayed (the genre chart, rec cards, the
-// All Titles table) — refining, not duplicating, the existing tag. Falls
-// back to the generic subgenre label for the majority of titles in any
-// given subgenre with no specific detail keyword, or for subgenres with
-// no detail map at all (a WWII drama with no 'world war ii' keyword
-// still reads as "Historical", never blank).
-function displaySubgenre(tag, meta) {
-  if (meta) {
-    const detail = inferSubgenreDetail(tag, meta)[0];
-    if (detail) return detail;
-  }
-  return SUBGENRE_LABEL[tag] || tag;
-}
-
-// Post-Subjects-consolidation vocabulary: the original 12 SUBJECT_KEYWORDS
-// (keyword-tier) labels, plus ~39 new canonical buckets the consolidation
-// pass folded reviewedTags.json's 636 free-form workbook values into
-// (targeting 3-15 titles/bucket instead of hundreds of near-singleton
-// values) - see engine.js's SUBJECT_CANONICAL_VOCABULARY for the full list.
-const SUBJECT_LABEL = {
-  'addiction-recovery': 'Addiction / Recovery (Alcohol)', 'drug-addiction': 'Addiction (Drugs)',
-  'grief-loss': 'Grief / Loss', 'suicide': 'Suicide', 'terminal-illness': 'Terminal Illness',
-  'trauma-abuse': 'Trauma (PTSD / War)', 'domestic-abuse': 'Domestic / Sexual Abuse',
-  'racism-civil-rights': 'Racism / Civil Rights', 'historical-atrocities': 'Historical Atrocities',
-  'immigration-refugee': 'Immigration / Refugee',
-  'infidelity': 'Infidelity / Affairs', 'journalism-media': 'Journalism / Media',
-  'cult-extremism': 'Cult / Extremism', 'mental-health': 'Mental Health', 'class-wealth-corporate': 'Class / Wealth Divide',
-  'corporate-power': 'Corporate Power', 'lgbtq': 'LGBTQ+', 'survival': 'Survival',
-  'ambition-reinvention': 'Ambition / Reinvention', 'artistic-creative': 'Artistic / Creative Life',
-  'celebrity-fame': 'Celebrity / Fame', 'crime-consequences': 'Crime & Consequences',
-  'crime-investigation': 'Crime Investigation', 'criminal-life': 'Criminal Life',
-  'crime-syndicate-life': 'Crime Syndicate Life', 'deception-secrets': 'Deception / Secrets',
-  'economic-hardship': 'Economic Hardship', 'espionage-national-security': 'Espionage / National Security',
-  'family-dynamics': 'Family Dynamics', 'fate-and-destiny': 'Fate & Destiny', 'found-family': 'Found Family',
-  'friendship-community': 'Friendship / Community', 'frontier-westward': 'Frontier / Westward Expansion',
-  'healthcare-medicine': 'Healthcare / Medicine', 'identity-belonging': 'Identity / Belonging',
-  'isolation-connection': 'Isolation & Connection', 'justice-legal-system': 'Justice / Legal System',
-  'law-enforcement': 'Law Enforcement', 'loyalty': 'Loyalty', 'marriage-relationships': 'Marriage / Relationships',
-  'parenthood': 'Parenthood', 'politics-power': 'Politics & Power', 'power-corruption': 'Power / Corruption',
-  'redemption': 'Redemption', 'religion-faith': 'Religion / Faith', 'resistance-rebellion': 'Resistance / Rebellion',
-  'revenge': 'Revenge', 'sacrifice-duty': 'Sacrifice / Duty', 'self-discovery': 'Self-Discovery',
-  'social-inequality': 'Social Inequality', 'sports-competition': 'Sports / Competition',
-  'supernatural-paranormal': 'Supernatural / Paranormal', 'technology-surveillance': 'Technology / Surveillance',
-  'vigilante-justice': 'Vigilante Justice', 'war-conflict': 'War / Conflict', 'workplace-culture': 'Workplace Culture',
-  'wrongful-conviction': 'Wrongful Conviction', 'youth-and-adolescence': 'Youth & Adolescence',
-  'societal-collapse': 'Societal Collapse',
-};
-
-const ERA_LABEL = {
-  // inferEra()'s own coarse 4-bucket keyword scheme.
-  'ancient-to-1900': 'Pre-1900', 'early-1900s': 'Early 1900s (1900-1945)', 'mid-late-1900s': 'Mid/Late 1900s (1946-1999)',
-  'future-setting': 'Future',
-  // trakt/data/reviewedTags.json's richer 17-value era vocabulary (from the
-  // reviewed metadata workbook) - a real vocabulary swap, not a subset of
-  // the keys above, since the override tier replaces inferEra()'s output
-  // entirely rather than refining it.
-  'classical-antiquity': 'Classical Antiquity', 'medieval': 'Medieval', 'early-modern': 'Early Modern',
-  '18th-century': '18th Century', '19th-century': '19th Century', 'late-19th-century': 'Late 19th Century',
-  'early-20th-century': 'Early 20th Century', 'world-war-i': 'World War I', 'interwar': 'Interwar',
-  'world-war-ii': 'World War II', 'cold-war': 'Cold War', 'late-20th-century': 'Late 20th Century',
-  'contemporary': 'Contemporary', 'near-future': 'Near Future', 'far-future': 'Far Future',
-  'multi-era': 'Multiple Eras', 'timeless': 'Timeless / Fantastical',
-};
-
-function computeCastStats(library, enrichedMeta) {
-  const counts = new Map();
-  for (const t of library.titles || []) {
-    const meta = enrichedMeta[t.titleKey];
-    if (!meta?.topCast) continue;
-    for (const actor of meta.topCast) counts.set(actor, (counts.get(actor) || 0) + 1);
-  }
-  return [...counts.entries()]
-    .map(([actor, count]) => ({ actor, count }))
-    .filter(a => a.count >= 2)
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 12);
-}
-
-function computeCrowdCompare(library, enrichedMeta) {
-  let sumMine = 0, sumTmdb = 0, n = 0;
-  for (const t of library.titles || []) {
-    if (t.myRating == null) continue;
-    const meta = enrichedMeta[t.titleKey];
-    if (meta?.voteAverage == null) continue;
-    sumMine += t.myRating; sumTmdb += meta.voteAverage; n++;
-  }
-  if (!n) return null;
-  return { n, mineAvg: sumMine / n, tmdbAvg: sumTmdb / n, diff: (sumMine - sumTmdb) / n };
-}
-
-// Predicted score (matchScore, 0-100) vs. actual rating (myRating scaled
-// to 0-100) for every watched+rated+enriched title — the same "does the
-// model's prediction match reality" check the book side's eval.js runs
-// formally, but computed live here since BMTRE has no eval harness yet
-// (a gap this session's own Improvement Opportunities list flags as
-// finding #1 under "Recommendation Engine Improvements"). Replaces
-// "Directors & Creators You Love" (Bill: not interesting) with something
-// that speaks directly to "how strong is the engine" — verified against
-// real data before shipping: 533 titles, real, notable misses on both
-// sides (e.g. How to Lose a Guy in 10 Days predicted 29, rated 10/10).
+// Row-building shared with Best Matches (Discover) via predictedVsActualRows()
+// so the two pages can never disagree about a title's predicted score.
 function computePredictionMisses(library, enrichedMeta, omdbMeta, idx) {
-  const rows = (library.titles || [])
-    .filter(t => enrichedMeta[t.titleKey] && t.myRating != null)
-    .map(t => {
-      const h = hydrateTitle(t, enrichedMeta);
-      const predicted = matchScore(h, idx, enrichedMeta, omdbMeta);
-      const actual = t.myRating * 10;
-      return { titleKey: t.titleKey, title: h.title, year: h.year, type: h.type, ids: t.ids, myRating: t.myRating, predicted, actual, diff: predicted - actual };
-    });
+  const rows = predictedVsActualRows(library, enrichedMeta, omdbMeta, idx);
   const overPredicted = [...rows].sort((a, b) => b.diff - a.diff).slice(0, 5);
   const underPredicted = [...rows].sort((a, b) => a.diff - b.diff).slice(0, 5);
   return { n: rows.length, overPredicted, underPredicted };
@@ -366,25 +31,6 @@ function computePredictionMisses(library, enrichedMeta, omdbMeta, idx) {
 // "Franchises You're Following" (Bill: not interesting). Verified: 144 of
 // 533 watched+rated+enriched titles qualify (predicted >= 70, actual >=
 // 80) — a real, sizeable set, not a cherry-picked handful.
-function computeBestMatches(library, enrichedMeta, omdbMeta, idx) {
-  const rows = (library.titles || [])
-    .filter(t => enrichedMeta[t.titleKey] && t.myRating != null)
-    .map(t => {
-      const h = hydrateTitle(t, enrichedMeta);
-      const predicted = matchScore(h, idx, enrichedMeta, omdbMeta);
-      const actual = t.myRating * 10;
-      return { titleKey: t.titleKey, title: h.title, year: h.year, type: h.type, ids: t.ids, myRating: t.myRating, predicted, actual };
-    });
-  const matches = rows.filter(r => r.predicted >= 70 && r.actual >= 80).sort((a, b) => b.predicted - a.predicted);
-  return { total: rows.length, matches };
-}
-
-// ── Predicted-score distribution (unwatched titles) ─────────────────────
-// Movies and shows are kept as separate small multiples rather than one
-// combined histogram — their real means differ enough (movies ~43,
-// shows ~56, from a thinner loved-movie source pool per CLAUDE.md) that
-// merging them would blur a real, worth-seeing difference, the same
-// small-multiples-over-one-crowded-chart call the genre/year charts made.
 
 function computeScoreDistribution(items) {
   const scores = items.map(c => c.bmtreScore);
@@ -405,11 +51,13 @@ function computeScoreDistribution(items) {
 // its own spread) is symmetric, the property that actually matters for
 // "does this look normal" — skewness in real units, not a formal
 // normality test, but an honest, computed check rather than an assumed one.
+
 function shapeNote(dist) {
   const skew = dist.sd ? (dist.mean - dist.median) / dist.sd : 0;
   if (Math.abs(skew) < 0.2) return 'Roughly bell-shaped — mean and median are close.';
   return skew > 0 ? 'Skewed toward lower scores (a long tail of weak matches).' : 'Skewed toward higher scores.';
 }
+
 
 function renderScoreHistogram(containerId, bins) {
   const container = document.getElementById(containerId);
@@ -469,18 +117,7 @@ function renderScoreHistogram(containerId, bins) {
   });
 }
 
-function renderGenreChart(stats) {
-  renderHBarChart('genreChart',
-    stats.map(g => ({ genre: `${g.genre} (${g.count})`, avg: g.avg })),
-    { labelKey: 'genre', valueKey: 'avg', maxScale: 10, fmtValue: v => v.toFixed(1), tooltipSuffix: '/10 avg' });
-}
 
-// Bill: "add a table to the dashboard so I can see the distribution and
-// top subjects" — distribution (every watched/watchlisted/candidate
-// title, not just rated ones, so it reflects the real dataset) alongside
-// a rating-preference view (top titles + avg rating, scoped to what's
-// actually been watched and rated — the same "top" framing
-// computeGenreStats() above already uses for subgenres).
 function computeSubjectDistribution(library, watchlist, candidatePool, enrichedMeta, llmTags = {}, reviewedTags = {}) {
   const stats = new Map();
   const bump = s => {
@@ -517,6 +154,7 @@ function computeSubjectDistribution(library, watchlist, candidatePool, enrichedM
     }))
     .sort((a, b) => b.count - a.count);
 }
+
 
 function renderSubjectTable(rows) {
   const table = document.getElementById('subjectTable');
@@ -575,6 +213,7 @@ function renderSubjectTable(rows) {
 // Human-readable label per reasonCode, since feedbackData.json's real
 // reasonLabel text is a full sentence (context for the engine/a future
 // reader), not a chart-axis-sized string.
+
 const REASON_CODE_SHORT_LABEL = {
   already_watched: 'Already watched',
   already_have_version_rated: 'Already have a rated version',
@@ -584,6 +223,7 @@ const REASON_CODE_SHORT_LABEL = {
   not_interested: 'Not interested',
   aimed_at_older_demographic: 'Aimed at older demographic',
 };
+
 
 function computeDismissalStats(feedback) {
   const dismissals = (feedback?.interactions || []).filter(i => i.interactionType === 'dismiss');
@@ -600,6 +240,7 @@ function computeDismissalStats(feedback) {
   };
 }
 
+
 function renderDismissalChart(stats) {
   const el = document.getElementById('dismissalChart');
   if (!stats.n) { el.innerHTML = '<div class="tk-empty">No dismissals tracked yet.</div>'; return; }
@@ -607,6 +248,7 @@ function renderDismissalChart(stats) {
     stats.byReason.map(r => ({ reason: `${r.label} (${r.count})`, count: r.count })),
     { labelKey: 'reason', valueKey: 'count', maxScale: Math.max(...stats.byReason.map(r => r.count)), fmtValue: v => String(v), tooltipSuffix: ' dismissed' });
 }
+
 
 function renderPredictionMisses(stats, enrichedMeta) {
   const el = document.getElementById('predictionMissesList');
@@ -630,214 +272,7 @@ function renderPredictionMisses(stats, enrichedMeta) {
   `;
 }
 
-function renderBestMatches(stats, enrichedMeta) {
-  const el = document.getElementById('bestMatchesList');
-  if (!stats.matches.length) { el.innerHTML = '<div class="tk-empty">Not enough enriched, rated titles yet.</div>'; return; }
-  el.innerHTML = stats.matches.slice(0, 12).map(r => {
-    const poster = posterUrl(r.titleKey, enrichedMeta);
-    return `
-    <div class="tk-metric-row">
-      ${posterImgHtml(poster, 'tk-metric-poster', 38, 57)}
-      <span class="tk-metric-name">${typeIcon(r.type)} ${titleLink(r)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
-      <span class="tk-metric-score">predicted ${Math.round(r.predicted)}, rated ${r.myRating}/10</span>
-    </div>
-  `;
-  }).join('');
-}
 
-// Bill's explicit request, alongside excluding actively-airing shows from
-// the You'll Love panel: "add a table to the dashboard with shows
-// currently airing that I will love so I can stay up to date on those."
-// Draws from both origins (watchlist + candidate pool) at their real,
-// unfiltered bmtreScoreRaw — nothing here is display-only-excluded the
-// way renderRecPanel() is, since the entire point of this list is to
-// surface exactly what got pulled out of that panel and why it still
-// matters (a genuinely strong prediction, just not watchable in full
-// yet). Movies are never included (isActivelyAiring() is show-only).
-function renderAiringSoonList(fromWatchlist, fromCandidates, enrichedMeta) {
-  const el = document.getElementById('airingSoonList');
-  const airing = [...fromWatchlist, ...fromCandidates]
-    .filter(c => isActivelyAiring(c, enrichedMeta))
-    .sort((a, b) => b.bmtreScoreRaw - a.bmtreScoreRaw);
-  if (!airing.length) {
-    el.innerHTML = '<div class="tk-empty">Nothing you\'d love is actively airing right now — check back later.</div>';
-    return;
-  }
-  el.innerHTML = airing.slice(0, 12).map(c => {
-    const poster = posterUrl(c.titleKey, enrichedMeta);
-    const next = enrichedMeta[c.titleKey]?.nextEpisodeToAir;
-    const epLabel = next?.seasonNumber != null && next?.episodeNumber != null
-      ? ` (S${next.seasonNumber}E${next.episodeNumber})` : '';
-    const nextLabel = next?.airDate ? `next episode ${next.airDate}${epLabel}` : 'airing now';
-    return `
-    <div class="tk-metric-row">
-      ${posterImgHtml(poster, 'tk-metric-poster', 38, 57)}
-      <span class="tk-metric-name">
-        ${typeIcon(c.type)} ${titleLink(c)}
-        <span class="tk-metric-sub">${c.year ? `(${c.year}) · ` : ''}${esc(nextLabel)}${c.origin === 'watchlist' ? ' · Watchlist' : ''}</span>
-      </span>
-      <span class="tk-metric-score">${Math.round(c.bmtreScore)}</span>
-    </div>`;
-  }).join('');
-}
-
-// Bill: "add a new table to the dashboard with all shows currently airing;
-// along with the season finale date; and a countdown to how many days
-// until that happens." Broader than the "Currently Airing — You'll Love"
-// list above (which only covers unwatched recommendation candidates,
-// scored) — this covers every show Bill is actually tracking (library +
-// watchlist) that isActivelyAiring() confirms is genuinely mid-season
-// right now, regardless of predicted score. Reads currentSeasonFinale
-// (enrich_tmdb.py's own comment explains why the finale needs a second,
-// season-detail TMDB call — next_episode_to_air only ever names the
-// single next episode, not the season's last one). finaleDate can be
-// null (TMDB hasn't scheduled that far into the season yet) — shown
-// honestly as "TBD" rather than guessed at.
-function computeCurrentlyAiringShows(library, watchlist, enrichedMeta) {
-  // A show can genuinely sit in BOTH library.json and watchlist.json at
-  // once (same titleKey) - real Trakt behavior, not a data bug (the same
-  // overlap rankAll() had to defensively handle for candidates back in
-  // Session 48's "Tom Clancy's Jack Ryan" case): Bill is partway through
-  // it (library, in-progress) AND has it flagged on his watchlist, e.g.
-  // as a reminder to keep going. Deduped here by titleKey so it doesn't
-  // render as two rows for the same show - Library wins the Status label
-  // when both exist, since it's the more informative state (he's actively
-  // watching, not just planning to).
-  const byKey = new Map();
-  for (const [list, origin] of [[watchlist.titles, 'Watchlist'], [library.titles, 'Library']]) {
-    for (const t of list) {
-      if (t.type !== 'show') continue;
-      if (!isActivelyAiring(t, enrichedMeta)) continue;
-      const meta = enrichedMeta[t.titleKey] || {};
-      const next = meta.nextEpisodeToAir;
-      const finale = meta.currentSeasonFinale;
-      let daysUntilFinale = null;
-      if (finale?.finaleDate) {
-        const today = new Date(); today.setHours(0, 0, 0, 0);
-        const finaleD = new Date(finale.finaleDate + 'T00:00:00');
-        daysUntilFinale = Math.round((finaleD - today) / 86400000);
-      }
-      byKey.set(t.titleKey, {
-        type: 'show', titleKey: t.titleKey, title: t.title, year: t.year, ids: t.ids,
-        origin,
-        season: next?.seasonNumber ?? finale?.seasonNumber ?? null,
-        nextEpisode: next?.episodeNumber ?? null,
-        nextEpisodeDate: next?.airDate ?? null,
-        finaleEpisode: finale?.finaleEpisodeNumber ?? null,
-        finaleDate: finale?.finaleDate ?? null,
-        daysUntilFinale,
-      });
-    }
-  }
-  return [...byKey.values()];
-}
-
-function renderAiringFinaleTable(rows) {
-  const table = document.getElementById('airingFinaleTable');
-  if (!rows.length) {
-    table.parentElement.innerHTML = '<div class="tk-empty">Nothing you\'re tracking is actively airing right now.</div>';
-    return;
-  }
-  const columns = [
-    { label: 'Show', get: r => r.title,
-      render: (td, r) => { td.innerHTML = `${typeIcon('show')} ${titleLink(r)}${r.year ? ` <span class="tk-metric-sub">(${esc(r.year)})</span>` : ''}`; } },
-    { label: 'Status', get: r => r.origin },
-    { label: 'Now Airing', get: r => (r.season ?? 0) * 1000 + (r.nextEpisode ?? 0), numeric: true,
-      render: (td, r) => { td.textContent = r.season != null && r.nextEpisode != null ? `S${r.season}E${r.nextEpisode}` : '—'; } },
-    { label: 'Next Episode', get: r => r.nextEpisodeDate || '',
-      render: (td, r) => { td.textContent = r.nextEpisodeDate || 'TBD'; } },
-    { label: 'Season Finale', get: r => r.finaleDate || (r.finaleEpisode ? '9999-99-99' : ''),
-      render: (td, r) => {
-        if (r.finaleDate) td.textContent = `${r.finaleDate} (S${r.season}E${r.finaleEpisode})`;
-        else if (r.finaleEpisode) td.textContent = `TBD (S${r.season}E${r.finaleEpisode})`;
-        else td.textContent = 'Unknown';
-      } },
-    { label: 'Days Until Finale', get: r => r.daysUntilFinale ?? Infinity, numeric: true,
-      render: (td, r) => {
-        td.className = 'num';
-        td.textContent = r.daysUntilFinale == null ? '—' : (r.daysUntilFinale <= 0 ? 'Airs today' : `${r.daysUntilFinale}d`);
-      } },
-  ];
-
-  let sortCol = 5, sortAsc = true; // default: Days Until Finale ascending — soonest first
-
-  function render() {
-    const sorted = [...rows].sort((a, b) => {
-      const va = columns[sortCol].get(a), vb = columns[sortCol].get(b);
-      const cmp = typeof va === 'number' ? va - vb : String(va).localeCompare(String(vb));
-      return sortAsc ? cmp : -cmp;
-    });
-
-    table.innerHTML = '';
-    const thead = document.createElement('thead');
-    const trh = document.createElement('tr');
-    columns.forEach((c, i) => {
-      const th = document.createElement('th');
-      th.textContent = c.label;
-      if (i === sortCol) th.className = 'sorted' + (sortAsc ? ' asc' : '');
-      th.addEventListener('click', () => {
-        if (sortCol === i) sortAsc = !sortAsc; else { sortCol = i; sortAsc = true; }
-        render();
-      });
-      trh.appendChild(th);
-    });
-    thead.appendChild(trh);
-    table.appendChild(thead);
-
-    const tbody = document.createElement('tbody');
-    for (const row of sorted) {
-      const tr = document.createElement('tr');
-      columns.forEach(c => {
-        const td = document.createElement('td');
-        if (c.render) c.render(td, row); else td.textContent = esc(c.get(row));
-        tr.appendChild(td);
-      });
-      tbody.appendChild(tr);
-    }
-    table.appendChild(tbody);
-  }
-
-  render();
-}
-
-function renderCastList(stats) {
-  const el = document.getElementById('castList');
-  if (!stats.length) { el.innerHTML = '<div class="tk-empty">Not enough enriched titles yet.</div>'; return; }
-  el.innerHTML = stats.map(a => `
-    <div class="tk-metric-row">
-      <span class="tk-metric-name">${esc(a.actor)}</span>
-      <span class="tk-metric-score">${a.count} title${a.count > 1 ? 's' : ''}</span>
-    </div>
-  `).join('');
-}
-
-function renderCrowdCompare(compare) {
-  const el = document.getElementById('crowdCompare');
-  if (!compare) { el.innerHTML = '<div class="tk-empty">Not enough enriched, rated titles yet.</div>'; return; }
-  const dir = compare.diff > 0 ? 'higher than' : compare.diff < 0 ? 'lower than' : 'the same as';
-  el.innerHTML = `
-    <div class="tk-crowd-stat">
-      <div class="tk-crowd-number">${compare.diff > 0 ? '+' : ''}${compare.diff.toFixed(2)}</div>
-      <div class="tk-crowd-label">You rate ${Math.abs(compare.diff).toFixed(2)} points ${dir} TMDB on average</div>
-      <div class="tk-crowd-detail">Your avg ${compare.mineAvg.toFixed(2)}/10 vs. TMDB's ${compare.tmdbAvg.toFixed(2)}/10, across ${compare.n} rated titles.</div>
-    </div>`;
-}
-
-// ── All-titles filterable/sortable table ────────────────────────────────
-
-// ── Field Population & Quality ───────────────────────────────────────────
-// Mirrors the book project's FIELD_REGISTRY-driven data-quality report in
-// spirit (per-field Percent Populated + a stricter Quality check, critical
-// fields held to a higher bar), but computed live client-side from the
-// already-fetched JSON rather than a separate scripts/data_quality_report.js
-// + dated snapshot pipeline — this dashboard has always computed everything
-// (recommendations, genre stats, crowd comparison) on page load from the
-// committed data files, so a static one-off report would be a second,
-// divergent architecture for no real benefit at this dataset's size.
-// "Populated" = the field carries a real value. "Quality" is a stricter,
-// same-field check for whether that value is actually useful to BMTRE (e.g.
-// a genres array existing vs. having 2+ entries to match against) - not a
-// second independent metric.
 const FIELD_REGISTRY = [
   { key: 'imdbId', label: 'IMDb ID', source: 'Trakt/TMDB', critical: true,
     eligible: () => true,
@@ -1020,6 +455,7 @@ const FIELD_REGISTRY = [
 // that field's own cardinality), 0% would mean one value swallows
 // everything. This generalizes cleanly to any field size with no
 // per-field tuning, unlike a fixed percentage cap.
+
 function computeFieldSpecificity(titles, enrichedMeta, omdbMeta, llmTags, valuesFn, reviewedTags = {}) {
   const counts = new Map();
   let totalInstances = 0;
@@ -1048,6 +484,7 @@ function computeFieldSpecificity(titles, enrichedMeta, omdbMeta, llmTags, values
   const specificityPct = maxEntropy > 0 ? (entropy / maxEntropy) * 100 : 100; // a single-value field is trivially "even"
   return { distinctCount, topValue, topSharePct, optimalTopSharePct, specificityPct };
 }
+
 
 function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags = {}) {
   const allTitles = new Map();
@@ -1138,6 +575,7 @@ function computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, om
 // future session gets
 // a generic finding built from its own FIELD_REGISTRY note rather than
 // silently going unlisted, per Bill's literal "any field" instruction.
+
 function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePool, enrichedMeta, omdbMeta) {
   const findings = [];
 
@@ -1381,6 +819,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
   return findings;
 }
 
+
 function fieldStatus(pct, critical) {
   if (pct == null) return { cls: 'tk-status-warning', icon: '—', label: 'N/A' };
   const goodMin = critical ? 90 : 80;
@@ -1389,6 +828,7 @@ function fieldStatus(pct, critical) {
   if (pct >= warnMin) return { cls: 'tk-status-warning', icon: '⚠', label: 'Fair' };
   return { cls: 'tk-status-critical', icon: '✗', label: 'Low' };
 }
+
 
 function renderFieldQualityTable(stats) {
   const table = document.getElementById('fieldQualityTable');
@@ -1461,6 +901,7 @@ function renderFieldQualityTable(stats) {
   render();
 }
 
+
 function renderFieldBar(pct, critical) {
   const wrap = document.createElement('span');
   if (pct == null) {
@@ -1495,6 +936,7 @@ function renderFieldBar(pct, critical) {
 // load (so the numbers can't go stale or become placeholder claims); the
 // other three describe a real code-level gap whose severity doesn't change
 // run to run, but still carry the concrete numbers that established it.
+
 function computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates, llmTags = {}) {
   const findings = [];
 
@@ -2503,6 +1945,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
 // against live data before being included; one hypothesis (a rewatch-count
 // signal from the raw `plays` field) was caught and reframed after the
 // check disproved the naive version of it — see finding 6.
+
 function computeEngineImprovements(library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, idx, fromWatchlist, fromCandidates) {
   const findings = [];
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
@@ -2876,6 +2319,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   return findings;
 }
 
+
 function renderImprovementOpportunities(findings, targetId = 'improvementList') {
   const el = document.getElementById(targetId);
   // Bill: "once something is resolved, remove it from the list" — a
@@ -2969,344 +2413,7 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList') 
 // computed here for every row, including already-watched titles, so it
 // doubles as an honesty check against My Rating, the same role You vs.
 // The Crowd plays for TMDB's rating.
-function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, llmTags = {}) {
-  const rows = [];
-  const addRow = (t, status, myRating) => {
-    const h = hydrateTitle(t, enrichedMeta);
-    const meta = enrichedMeta[h.titleKey];
-    const omdb = omdbMeta[h.titleKey];
-    // A dismissed title (feedbackData.json's excludeFromRecommendations) is
-    // no longer a real candidate — idx.excluded already keeps it out of
-    // every recommendation surface, so the table's own status label should
-    // say so too rather than still calling it "Candidate."
-    if (idx.excluded.has(h.titleKey)) status = 'Dismissed';
-    rows.push({
-      titleKey: h.titleKey, posterUrl: posterUrl(h.titleKey, enrichedMeta), ids: h.ids,
-      title: h.title || '(untitled — not yet enriched)', year: h.year, type: h.type, status,
-      airing: isActivelyAiring(h, enrichedMeta),
-      myRating: myRating ?? null, tmdbRating: meta?.voteAverage ?? null,
-      predictedScore: Math.round(matchScore(h, idx, enrichedMeta, omdbMeta)),
-      popularity: popularityScore(meta?.voteCount),
-      voteCount: meta?.voteCount ?? null,
-      imdbVotes: omdb?.imdbVotes ?? null,
-      criticScore: criticScore(omdb),
-      audienceScore: realAudienceScore(omdb),
-      awardsScore: awardsScore(omdb),
-      awardsRaw: omdb?.awards?.raw || '',
-      // Narrower subgenres, not TMDB's own broad genre list — see
-      // computeGenreStats()'s comment for why. Falls back to the raw
-      // genres for the rare title with no subgenre match at all.
-      genres: (meta ? inferSubgenres(meta, llmTags[h.titleKey], undefined, idx.reviewedTags?.[h.titleKey]).map(s => displaySubgenre(s, meta)) : []).join(', ')
-        || meta?.genres?.join(', ') || '',
-      subjects: (meta ? inferSubjects(meta, llmTags[h.titleKey], undefined, idx.reviewedTags?.[h.titleKey]).map(s => SUBJECT_LABEL[s] || s) : []).join(', '),
-      era: meta ? (ERA_LABEL[inferEra(meta, undefined, idx.reviewedTags?.[h.titleKey])[0]] || '') : '',
-      creator: (h.type === 'movie' ? meta?.director : meta?.createdBy?.[0]) || '',
-    });
-  };
-  for (const t of library.titles || []) addRow(t, 'Watched', t.myRating);
-  for (const t of watchlist.titles || []) addRow(t, 'Watchlist', null);
-  for (const t of candidatePool.titles || []) addRow(t, 'Candidate', null);
-  return rows;
-}
 
-function tableToCSV(table) {
-  const csvCell = s => /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
-  const headerCells = [...table.querySelectorAll('thead th')].map(th => csvCell(th.textContent.replace(/[▾▴]/g, '').trim()));
-  const rows = [...table.querySelectorAll('tbody tr')].map(tr =>
-    [...tr.children].map(td => csvCell(td.textContent.trim())).join(','));
-  return [headerCells.join(','), ...rows].join('\r\n');
-}
-
-function downloadCSV(table, filename) {
-  const csv = tableToCSV(table);
-  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = filename;
-  document.body.appendChild(a); a.click(); a.remove();
-  URL.revokeObjectURL(url);
-}
-
-const TOP_N_DEFAULT = 20;
-
-function renderAllTitlesTable(allRows) {
-  const table = document.getElementById('allTitlesTable');
-  const searchInput = document.getElementById('titleSearch');
-  const typeFilter = document.getElementById('titleTypeFilter');
-  const statusFilter = document.getElementById('titleStatusFilter');
-  const yearFilter = document.getElementById('titleYearFilter');
-  const airingFilter = document.getElementById('titleAiringFilter');
-  const showAllBtn = document.getElementById('titleShowAllBtn');
-
-  const years = [...new Set(allRows.map(r => r.year).filter(Boolean))].sort((a, b) => b - a);
-  yearFilter.innerHTML = '<option value="">All Years</option>' +
-    years.map(y => `<option value="${y}">${y}</option>`).join('');
-
-  const columns = [
-    { label: 'Cover', get: () => '', sortable: false,
-      render: (td, r) => {
-        if (r.posterUrl) {
-          const img = document.createElement('img');
-          img.src = r.posterUrl; img.alt = ''; img.loading = 'lazy'; img.width = 40; img.height = 60;
-          img.className = 'tk-table-poster';
-          img.onerror = () => { img.remove(); };
-          td.appendChild(img);
-        }
-      } },
-    { label: 'Title', get: r => r.title,
-      render: (td, r) => { td.innerHTML = titleLink(r); } },
-    { label: 'Year', get: r => r.year ?? '', numeric: true },
-    { label: 'Type', get: r => typeLabel(r.type),
-      render: (td, r) => { td.textContent = `${typeIcon(r.type)} ${typeLabel(r.type)}`; } },
-    { label: 'Status', get: r => r.status,
-      render: (td, r) => { td.innerHTML = statusTag(r.status); } },
-    { label: 'Airing', get: r => r.airing ? 'Airing' : '',
-      render: (td, r) => { if (r.airing) td.innerHTML = airingBadge(); } },
-    { label: 'My Rating', get: r => r.myRating ?? '', numeric: true },
-    { label: 'Predicted Score', get: r => r.predictedScore ?? '', numeric: true },
-    { label: 'TMDB Rating', get: r => r.tmdbRating != null ? Math.round(r.tmdbRating * 10) / 10 : '', numeric: true },
-    { label: 'Popularity', get: r => r.popularity ?? '', numeric: true },
-    { label: 'Ratings', get: r => r.voteCount ?? '', numeric: true,
-      render: (td, r) => { td.className = 'num'; td.textContent = r.voteCount != null ? fmtNum(r.voteCount) : ''; } },
-    { label: 'IMDb Votes', get: r => r.imdbVotes ?? '', numeric: true,
-      render: (td, r) => { td.className = 'num'; td.textContent = r.imdbVotes != null ? fmtNum(r.imdbVotes) : ''; } },
-    { label: 'Critic Score', get: r => r.criticScore ?? '', numeric: true },
-    { label: 'Audience Score', get: r => r.audienceScore ?? '', numeric: true },
-    { label: 'Awards', get: r => r.awardsScore ?? '', numeric: true,
-      render: (td, r) => { td.className = 'num'; td.textContent = r.awardsScore ?? ''; if (r.awardsRaw) td.title = r.awardsRaw; } },
-    { label: 'Genres', get: r => r.genres, render: (td, r) => { td.className = 'tk-genres'; td.textContent = r.genres || '—'; } },
-    { label: 'Subjects', get: r => r.subjects, render: (td, r) => { td.className = 'tk-genres'; td.textContent = r.subjects || '—'; } },
-    { label: 'Era', get: r => r.era || '', render: (td, r) => { td.textContent = r.era || '—'; } },
-    { label: 'Director/Creator', get: r => r.creator || '—' },
-  ];
-
-  let sortCol = 5, sortAsc = false; // default: My Rating desc (index 5 now that Cover is column 0)
-  let showAll = false;
-
-  function filtered() {
-    const q = (searchInput.value || '').trim().toLowerCase();
-    const type = typeFilter.value;
-    const status = statusFilter.value;
-    const year = yearFilter.value;
-    const airing = airingFilter.value;
-    return allRows.filter(r => {
-      if (type && r.type !== type) return false;
-      if (status && r.status !== status) return false;
-      if (year && String(r.year) !== year) return false;
-      if (airing === 'airing' && !r.airing) return false;
-      if (airing === 'not-airing' && r.airing) return false;
-      if (q && !(r.title.toLowerCase().includes(q) || r.genres.toLowerCase().includes(q) || r.subjects.toLowerCase().includes(q) || r.creator.toLowerCase().includes(q))) return false;
-      return true;
-    });
-  }
-
-  function render() {
-    const rows = filtered();
-    const sorted = [...rows].sort((a, b) => {
-      const va = columns[sortCol].get(a), vb = columns[sortCol].get(b);
-      const cmp = typeof va === 'number' ? va - vb : String(va).localeCompare(String(vb));
-      return sortAsc ? cmp : -cmp;
-    });
-    document.getElementById('allTitlesCount').textContent = fmtNum(rows.length);
-    showAllBtn.textContent = showAll ? `Show top ${TOP_N_DEFAULT}` : `Show all ${fmtNum(rows.length)}`;
-    showAllBtn.classList.toggle('active', showAll);
-
-    const display = showAll ? sorted : sorted.slice(0, TOP_N_DEFAULT);
-
-    table.innerHTML = '';
-    const thead = document.createElement('thead');
-    const trh = document.createElement('tr');
-    columns.forEach((c, i) => {
-      const th = document.createElement('th');
-      th.textContent = c.label;
-      if (i === sortCol) th.className = 'sorted' + (sortAsc ? ' asc' : '');
-      th.addEventListener('click', () => {
-        if (sortCol === i) sortAsc = !sortAsc; else { sortCol = i; sortAsc = false; }
-        render();
-      });
-      trh.appendChild(th);
-    });
-    thead.appendChild(trh);
-    table.appendChild(thead);
-
-    const tbody = document.createElement('tbody');
-    if (!display.length) {
-      const tr = document.createElement('tr');
-      const td = document.createElement('td');
-      td.colSpan = columns.length; td.className = 'tk-empty'; td.textContent = 'No matches.';
-      tr.appendChild(td); tbody.appendChild(tr);
-    }
-    for (const row of display) {
-      const tr = document.createElement('tr');
-      columns.forEach(c => {
-        const td = document.createElement('td');
-        if (c.numeric) td.className = 'num';
-        // textContent already escapes safely on assignment — esc() is for
-        // building innerHTML strings (the rec-card templates above), and
-        // wrapping it around a textContent assignment double-processes
-        // entities instead of escaping anything: a title like "Chappelle's
-        // Show" rendered as the literal text "Chappelle&#39;s Show".
-        if (c.render) c.render(td, row); else td.textContent = c.get(row);
-        tr.appendChild(td);
-      });
-      tbody.appendChild(tr);
-    }
-    table.appendChild(tbody);
-  }
-
-  render();
-  searchInput.addEventListener('input', render);
-  typeFilter.addEventListener('change', render);
-  statusFilter.addEventListener('change', render);
-  yearFilter.addEventListener('change', render);
-  airingFilter.addEventListener('change', render);
-  showAllBtn.addEventListener('click', () => { showAll = !showAll; render(); });
-  document.getElementById('titleCsvBtn').addEventListener('click', () => downloadCSV(table, 'trakt-all-titles.csv'));
-}
-
-// ── Recommendations preview ─────────────────────────────────────────────
-
-// One line of real metadata under the title: genres, director/creator,
-// TMDB community rating — whatever's actually present, since candidate
-// stubs may still be mid-enrichment.
-const fmtCompact = n => n >= 1000 ? `${(n / 1000).toFixed(n >= 10000 ? 0 : 1)}k` : String(n);
-
-function metaLine(candidate, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags = {}) {
-  const meta = enrichedMeta[candidate.titleKey];
-  if (!meta) return 'Not enriched yet.';
-  const parts = [];
-  // Narrower subgenres (e.g. "Crime Drama, Procedural"), not TMDB's own
-  // broad genre list (e.g. "Drama, Crime" on 75%/33% of everything) — see
-  // computeGenreStats()'s comment above for why the raw field alone isn't
-  // useful. Falls back to the raw genres if a title has no subgenre match
-  // at all (3 of 786 today) so a card never shows blank genre info.
-  const subs = inferSubgenres(meta, llmTags[candidate.titleKey], undefined, reviewedTags[candidate.titleKey]).slice(0, 2).map(s => displaySubgenre(s, meta));
-  if (subs.length) parts.push(subs.join(', '));
-  else if (meta.genres?.length) parts.push(meta.genres.slice(0, 2).join(', '));
-  const creator = getCreator(candidate.type, meta);
-  if (creator) parts.push(candidate.type === 'movie' ? `dir. ${creator}` : `by ${creator}`);
-  if (meta.voteAverage != null) {
-    const ratings = meta.voteCount != null ? ` (${fmtCompact(meta.voteCount)} ratings)` : '';
-    parts.push(`${meta.voteAverage.toFixed(1)}/10 on TMDB${ratings}`);
-  }
-  const omdbEntry = omdbMeta?.[candidate.titleKey];
-  if (omdbEntry?.imdbVotes != null) parts.push(`${fmtCompact(omdbEntry.imdbVotes)} IMDb votes`);
-  const critic = criticScore(omdbEntry);
-  if (critic != null) parts.push(`${critic}/100 critics`);
-  const audience = realAudienceScore(omdbEntry);
-  if (audience != null) parts.push(`${audience}/100 audience`);
-  const awardsText = omdbEntry?.awards?.raw;
-  if (awardsText && awardsText !== 'N/A') {
-    parts.push(awardsText.length > 40 ? awardsText.slice(0, 40) + '…' : awardsText);
-  }
-  return parts.join(' · ') || 'No genre/creator data yet.';
-}
-
-// A guaranteed 4 watchlist + 4 discovered-candidate split, each half its
-// own top-scored + diversity-reranked picks, then the combined 8 sorted
-// by score for DISPLAY order only. History: this used to be a straight
-// top-4-per-origin block (watchlist block, then candidate block) — Bill
-// flagged a panel "starting with a 44" (a weak watchlist pick sitting
-// above a stronger candidate purely because of block order), so a prior
-// session replaced the split with a pure top-8-by-score-across-both-
-// origins pick. That fixed the ordering complaint but meant a panel could
-// legitimately show 6-8 watchlist picks and 0-2 new ones whenever
-// watchlist scores ran high — which Bill then flagged as losing the
-// discovery half of the panel's whole point. Restored the guaranteed
-// split (his explicit call) but kept the score-sorted DISPLAY order from
-// the fix in between: origin composition is fixed at 4/4, but a strong
-// candidate can still display above a weaker watchlist pick, and vice
-// versa — the "44 at the top" complaint doesn't reproduce, since within
-// each half the top-scored one is picked, and the two halves interleave
-// by score for display. If one origin has fewer than 4 real candidates,
-// the other origin backfills the remainder rather than showing short.
-// diversityRerank() only reorders for display within each half — it
-// never touches an individual title's bmtreScore, so none of this
-// affects computeEvalMetrics()'s precision@k.
-function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags = {}) {
-  const el = document.getElementById(sectionId);
-  // Bill: "exclude it from the You'll Love panel but don't adjust the
-  // actual predicted score." Pulled out here, at the display layer only -
-  // same precedent as diversityRerank() below, which also never touches
-  // bmtreScore/bmtreScoreRaw. A title dropped here still scores and ranks
-  // normally everywhere else (the All Titles table, computeEvalMetrics(),
-  // the new "Currently Airing" list) - only this specific ranked panel
-  // hides it, since watching it isn't actually possible in full yet.
-  watchlistItems = watchlistItems.filter(c => !isActivelyAiring(c, enrichedMeta));
-  candidateItems = candidateItems.filter(c => !isActivelyAiring(c, enrichedMeta));
-  // Ranks by bmtreScoreRaw (the real, unclamped score), not the displayed
-  // bmtreScore — score-clamp-saturation fix, see engine.js's
-  // computeScorePair() comment. rankAll() already sorts fromWatchlist/
-  // fromCandidates this way; this re-sort (for the 4+4 origin split
-  // below) has to match or it would silently re-introduce the same
-  // clamped-tie-order problem at the display layer.
-  const sortFn = (a, b) => (b.bmtreScoreRaw - a.bmtreScoreRaw) || (b.confidenceScore - a.confidenceScore);
-  const HALF = 4;
-  const wlRanked = diversityRerank([...watchlistItems].sort(sortFn), enrichedMeta, { windowSize: HALF, maxPerGenre: 2 });
-  const candRanked = diversityRerank([...candidateItems].sort(sortFn), enrichedMeta, { windowSize: HALF, maxPerGenre: 2 });
-  let wlPicks = wlRanked.slice(0, HALF);
-  let candPicks = candRanked.slice(0, HALF);
-  // Backfill from the other origin if one side is short (fewer than 4
-  // real titles available), so the panel still shows up to 8 rather than
-  // silently rendering fewer cards than it could.
-  const shortfallFromWl = HALF - wlPicks.length;
-  if (shortfallFromWl > 0) candPicks = candRanked.slice(0, HALF + shortfallFromWl);
-  const shortfallFromCand = HALF - candPicks.length;
-  if (shortfallFromCand > 0) wlPicks = wlRanked.slice(0, HALF + shortfallFromCand);
-  const picks = [...wlPicks, ...candPicks].sort(sortFn);
-  if (!picks.length) {
-    el.innerHTML = '<div class="tk-empty">Not enough enriched data yet.</div>';
-    return;
-  }
-  el.innerHTML = picks.map((c, i) => {
-    const poster = posterUrl(c.titleKey, enrichedMeta);
-    return `
-    <div class="tk-rec-card">
-      <div class="tk-rec-rank">${i + 1}</div>
-      ${posterImgHtml(poster, 'tk-rec-poster', 60, 90)}
-      <div class="tk-rec-body">
-        <div class="tk-rec-title">
-          ${typeIcon(c.type)} ${titleLink(c)}${c.year ? ` <span class="tk-year">(${esc(c.year)})</span>` : ''}
-          <span class="tk-rec-badge">${c.origin === 'watchlist' ? 'Watchlist' : 'New pick'}</span>
-        </div>
-        <div class="tk-rec-meta">${esc(metaLine(c, enrichedMeta, omdbMeta, llmTags, reviewedTags))}</div>
-        <div class="tk-rec-reason">${esc(c.reason)}</div>
-        <a class="tk-deepdive-btn" href="./deepdive.html?key=${encodeURIComponent(c.titleKey)}">Deep Dive →</a>
-      </div>
-      <div class="tk-rec-score">${Math.round(c.bmtreScore)}</div>
-    </div>
-  `;
-  }).join('');
-}
-
-// ── Metadata & Engine Quality score ─────────────────────────────────────
-// Not a general data-completeness score — specifically "does BMTRE have
-// what it needs to make a good prediction." Two components track whether
-// the engine's actual signal sources (the watchlist it recommends from,
-// and the loved titles its indexes are built from) have real content
-// data; the other two track whether that data is any good once present.
-
-function scoreTier(score) {
-  if (score >= 90) return { color: 'var(--status-good)', label: 'Excellent' };
-  if (score >= 75) return { color: '#b8860b', label: 'Good' }; // darker gold — warning color fails text contrast
-  if (score >= 60) return { color: 'var(--status-serious)', label: 'Fair' };
-  return { color: 'var(--status-critical)', label: 'Poor' };
-}
-
-// BMTRE Accuracy Score — not data completeness (that's the dial above),
-// whether the engine's actual predictions are good, via
-// computeEvalMetrics()'s leave-one-out evaluation. Weighted toward
-// precision@25/@50 (the bulk of the useful recommendation surface, same
-// principle CLAUDE.md states for the book side: top-of-list precision
-// outranks MAE) rather than precision@10 alone (n=10, high-variance, and
-// close to guaranteed to look good by construction). MAE gets a real but
-// low weight and is graded against a measured ceiling (2x the naive
-// always-predict-the-mean baseline) rather than an assumed one — Bill's
-// ratings skew high enough that the naive baseline is already quite low,
-// so MAE alone would flatter the score if weighted heavily; this is
-// exactly the trap the book side's own BBRE Accuracy Score fell into on
-// its first version (Session 33) before Bill's "be more critical"
-// pushback led to the Session 34 recalibration this mirrors.
 function computeBMTREAccuracy(evalMetrics) {
   const m = evalMetrics;
   const p = k => m.precisionAtK[k] ?? 0;
@@ -3356,6 +2463,7 @@ function computeBMTREAccuracy(evalMetrics) {
 // from first principles; if the open-finding count changes a lot in a
 // future session, these multipliers may need a fresh look the same way
 // the book side's have been revisited more than once.
+
 function computeMetadataQuality(library, watchlist, enrichedMeta, selected, findings) {
   const watchlistTitles = watchlist.titles || [];
   const watchlistEnriched = watchlistTitles.filter(t => enrichedMeta[t.titleKey]);
@@ -3390,6 +2498,7 @@ function computeMetadataQuality(library, watchlist, enrichedMeta, selected, find
   return { score, components, watchlistEnrichedCount: watchlistEnriched.length, watchlistTotal: watchlistTitles.length,
     lovedEnrichedCount: lovedEnriched.length, lovedTotal: lovedTitles.length };
 }
+
 
 function renderQualityDial(sectionId, { score, components }) {
   const section = document.getElementById(sectionId);
@@ -3443,32 +2552,24 @@ function renderQualityDial(sectionId, { score, components }) {
 
 // ── Load + render ─────────────────────────────────────────────────────────
 
-async function load() {
-  const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
 
-  const [d, library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback, scrapedShowRatings, llmTags, reviewedTags] = await Promise.all([
-    get('./data/dashboard.json'),
-    get('./data/library.json').catch(() => ({ titles: [] })),
-    get('./data/watchlist.json').catch(() => ({ titles: [] })),
-    get('./data/candidatePool.json').catch(() => ({ titles: [] })),
-    get('./data/enrichedMetadata.json').catch(() => ({})),
-    get('./data/omdbMetadata.json').catch(() => ({})),
-    get('./data/feedbackData.json').catch(() => ({ interactions: [] })),
-    get('./data/scrapedShowRatings.json').catch(() => ({})),
-    get('./data/llmTags.json').catch(() => ({})),
-    get('./data/reviewedTags.json').catch(() => ({})),
-  ]);
-  const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
+async function load() {
+  const { dashboard: d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback,
+          llmTags, reviewedTags } = await loadAllData();
 
   const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
   const byType = (list, type) => list.filter(c => c.type === type && enrichedOnly(c));
 
+  const generated = new Date(d.generatedAt);
+  document.getElementById('subtitleText').textContent =
+    `Last refreshed ${generated.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} ` +
+    `at ${generated.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`;
+  document.getElementById('statusText').textContent = 'Loaded from export';
+
   // Computed once, early, so both the Metadata & Engine Quality score
-  // (which now folds in a real penalty for open findings, per Bill's
-  // explicit "97 is too generous given all the improvement ideas we
-  // have" pushback) and the Improvement Opportunities card itself
-  // (rendered later) share one source of truth — no risk of the two
+  // (which folds in a real penalty for open findings) and the Improvement
+  // Opportunities card share one source of truth — no risk of the two
   // disagreeing about how many findings are actually open.
   const severityOrder = { critical: 0, serious: 1, warning: 2, good: 3 };
   const fieldStats = computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
@@ -3478,10 +2579,34 @@ async function load() {
     ...computeFieldQualityFindings(fieldStats, library, watchlist, candidatePool, enrichedMeta, omdbMeta),
   ].sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
 
-  renderRecPanel('movieRecList', byType(fromWatchlist, 'movie'), byType(fromCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags, reviewedTags);
-  renderRecPanel('showRecList', byType(fromWatchlist, 'show'), byType(fromCandidates, 'show'), enrichedMeta, omdbMeta, llmTags, reviewedTags);
-  renderAiringSoonList(fromWatchlist, fromCandidates, enrichedMeta);
-  renderAiringFinaleTable(computeCurrentlyAiringShows(library, watchlist, enrichedMeta));
+  const quality = computeMetadataQuality(library, watchlist, enrichedMeta, fromWatchlist, allFindings);
+  renderQualityDial('qualitySection', quality);
+  document.getElementById('qualityFootnote').textContent =
+    `${quality.watchlistEnrichedCount}/${quality.watchlistTotal} watchlist titles enriched, ` +
+    `${quality.lovedEnrichedCount}/${quality.lovedTotal} loved titles (9-10 rated) enriched. ` +
+    (quality.watchlistEnrichedCount === 0
+      ? 'No TMDB data yet — the daily enrichment workflow hasn\'t populated enrichedMetadata.json.'
+      : 'Scores rise automatically as more titles get enriched — no manual recalibration needed.');
+
+  // computeEvalMetrics() is a real leave-one-out pass over every rated
+  // title — several real seconds. Kicked off here WITHOUT awaiting so the
+  // rest of this page (every other section below) renders immediately and
+  // stays responsive/paintable the whole time this one dial takes to catch
+  // up, not just deferred to start later.
+  document.getElementById('bmtreAccuracySection').innerHTML =
+    '<div class="tk-empty">Computing accuracy metrics (a real leave-one-out pass over every rated title — a few seconds)…</div>';
+  document.getElementById('bmtreAccuracyFootnote').textContent = '';
+  computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta).then(evalMetrics => {
+    const bmtreAccuracy = computeBMTREAccuracy(evalMetrics);
+    renderQualityDial('bmtreAccuracySection', bmtreAccuracy);
+    document.getElementById('bmtreAccuracyFootnote').textContent =
+      `Leave-one-out over ${fmtNum(evalMetrics.n)} watched+rated+enriched titles ` +
+      `(movies n=${evalMetrics.byType.movie?.n ?? 0}, shows n=${evalMetrics.byType.show?.n ?? 0}). ` +
+      `MAE ${evalMetrics.mae.toFixed(1)} vs. a naive always-predict-the-mean baseline of ${evalMetrics.meanBaselineMae.toFixed(1)}` +
+      (evalMetrics.mae > evalMetrics.meanBaselineMae
+        ? ' — the model is currently worse than that trivial baseline on raw magnitude error alone (Bill\'s ratings skew high, so guessing the mean scores well on MAE without ranking anything correctly; this is exactly why precision@k, weighted higher above, is the metric that matters more here).'
+        : ' — the model beats that trivial baseline.');
+  });
 
   for (const [type, chartId, noteId, label] of [
     ['movie', 'scoreDistMovieChart', 'scoreDistMovieNote', 'unwatched movies'],
@@ -3498,60 +2623,9 @@ async function load() {
       `${fmtNum(dist.n)} ${label} — mean ${dist.mean.toFixed(0)}, median ${dist.median.toFixed(0)}, σ ${dist.sd.toFixed(0)}. ${shapeNote(dist)}`;
   }
 
-  const quality = computeMetadataQuality(library, watchlist, enrichedMeta, fromWatchlist, allFindings);
-  renderQualityDial('qualitySection', quality);
-  document.getElementById('qualityFootnote').textContent =
-    `${quality.watchlistEnrichedCount}/${quality.watchlistTotal} watchlist titles enriched, ` +
-    `${quality.lovedEnrichedCount}/${quality.lovedTotal} loved titles (9-10 rated) enriched. ` +
-    (quality.watchlistEnrichedCount === 0
-      ? 'No TMDB data yet — the daily enrichment workflow hasn\'t populated enrichedMetadata.json.'
-      : 'Scores rise automatically as more titles get enriched — no manual recalibration needed.');
-
-  // computeEvalMetrics() is a real leave-one-out pass over every rated
-  // title — still several real seconds even after optimizing
-  // buildIndexes()'s dominant cost (see that function's own comment) — a
-  // genuine page-load performance bug Bill reported ("takes a very long
-  // time"). It's now an async function that yields to the event loop
-  // every 40 titles (see its own comment), so calling it here WITHOUT
-  // awaiting lets the rest of load() below (every other section) render
-  // immediately, and the browser stays responsive/paintable throughout
-  // the several seconds this one diagnostic dial takes to catch up — not
-  // just deferred to start later, genuinely non-blocking the whole way.
-  document.getElementById('bmtreAccuracySection').innerHTML =
-    '<div class="tk-empty">Computing accuracy metrics (a real leave-one-out pass over every rated title — a few seconds)…</div>';
-  document.getElementById('bmtreAccuracyFootnote').textContent = '';
-  computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta).then(evalMetrics => {
-    const bmtreAccuracy = computeBMTREAccuracy(evalMetrics);
-    renderQualityDial('bmtreAccuracySection', bmtreAccuracy);
-    document.getElementById('bmtreAccuracyFootnote').textContent =
-      `Leave-one-out over ${fmtNum(evalMetrics.n)} watched+rated+enriched titles ` +
-      `(movies n=${evalMetrics.byType.movie?.n ?? 0}, shows n=${evalMetrics.byType.show?.n ?? 0}). ` +
-      `MAE ${evalMetrics.mae.toFixed(1)} vs. a naive always-predict-the-mean baseline of ${evalMetrics.meanBaselineMae.toFixed(1)}` +
-      (evalMetrics.mae > evalMetrics.meanBaselineMae
-        ? ' — the model is currently worse than that trivial baseline on raw magnitude error alone (Bill\'s ratings skew high, so guessing the mean scores well on MAE without ranking anything correctly; this is exactly why precision@k, weighted higher above, is the metric that matters more here).'
-        : ' — the model beats that trivial baseline.');
-  });
-
-  const generated = new Date(d.generatedAt);
-  document.getElementById('subtitleText').textContent =
-    `Last refreshed ${generated.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} ` +
-    `at ${generated.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`;
-  document.getElementById('statusText').textContent = 'Loaded from export';
-
-  renderStatTiles(d.summary);
-
-  const enrichedCount = Object.keys(enrichedMeta).length;
-  document.getElementById('genreSectionScopeNote').textContent =
-    `Based on the ${fmtNum(enrichedCount)} titles enriched with TMDB data so far (of ${fmtNum((library.titles?.length || 0) + (watchlist.titles?.length || 0))} total) — ` +
-    `these sections fill in automatically as the daily enrichment job covers more of your library.`;
-
-  renderGenreChart(computeGenreStats(library, enrichedMeta, llmTags, reviewedTags));
-  renderSubjectTable(computeSubjectDistribution(library, watchlist, candidatePool, enrichedMeta, llmTags, reviewedTags).slice(0, 20));
-  renderDismissalChart(computeDismissalStats(feedback));
   renderPredictionMisses(computePredictionMisses(library, enrichedMeta, omdbMeta, idx), enrichedMeta);
-  renderCastList(computeCastStats(library, enrichedMeta));
-  renderCrowdCompare(computeCrowdCompare(library, enrichedMeta));
-  renderBestMatches(computeBestMatches(library, enrichedMeta, omdbMeta, idx), enrichedMeta);
+  renderDismissalChart(computeDismissalStats(feedback));
+  renderSubjectTable(computeSubjectDistribution(library, watchlist, candidatePool, enrichedMeta, llmTags, reviewedTags).slice(0, 20));
 
   renderFieldQualityTable(fieldStats);
   const totalTitles = (library.titles?.length || 0) + (watchlist.titles?.length || 0) + (candidatePool.titles?.length || 0);
@@ -3564,46 +2638,8 @@ async function load() {
       : `${fmtNum(omdbFound)}/${fmtNum(omdbEligible)} eligible titles have an OMDb record.`);
 
   renderImprovementOpportunities(allFindings);
-
-  renderAllTitlesTable(buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, llmTags));
 }
 
-// ── Collapsible sections ─────────────────────────────────────────────────
-// Bill: "make all sections collapseable." Runs independently of load()'s
-// data fetch — the card headings already exist in the static HTML, so
-// there's no reason to wait on a network round trip before wiring this
-// up. Per-card state persists in localStorage (a private, per-viewer
-// convenience — never shared, never read by anyone but this browser)
-// keyed by the heading's own text, so a card's collapsed/expanded state
-// survives a reload without needing a stable id added to every card in
-// index.html by hand.
-function initCollapsibleCards() {
-  document.querySelectorAll('.tk-card').forEach(card => {
-    const heading = card.querySelector('.tk-card-heading');
-    if (!heading || heading.querySelector('.tk-collapse-chevron')) return;
-    const key = 'tk-collapsed:' + heading.textContent.trim();
-    const chevron = document.createElement('span');
-    chevron.className = 'tk-collapse-chevron';
-    chevron.textContent = '▾';
-    heading.appendChild(chevron);
-    heading.setAttribute('role', 'button');
-    heading.setAttribute('tabindex', '0');
-
-    let collapsed = false;
-    try { collapsed = localStorage.getItem(key) === '1'; } catch {}
-    card.classList.toggle('tk-card-collapsed', collapsed);
-
-    const toggle = () => {
-      collapsed = !collapsed;
-      card.classList.toggle('tk-card-collapsed', collapsed);
-      try { localStorage.setItem(key, collapsed ? '1' : '0'); } catch {}
-    };
-    heading.addEventListener('click', toggle);
-    heading.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
-    });
-  });
-}
 initCollapsibleCards();
 
 load().catch(err => {

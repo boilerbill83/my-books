@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📋 Trakt Data Quality</title>
+    <meta name="description" content="Is BMTRE's data and engine healthy? Score dials, field population, and every open Improvement Opportunity, verified against real data." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" /></noscript>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="./dashboard.css" />
+    <style>
+      /* Quality-only. */
+      .tk-nav-current { font-weight: 700; color: var(--text); pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="site-header">
+        <div class="container header-inner">
+          <a class="header-quality-link" href="./index.html">🍿 Discover</a>
+          <span class="tk-nav-current">📋 Data Quality</span>
+          <a class="header-quality-link" href="./recommend.html">Full ranked list →</a>
+          <a class="header-quality-link" href="../index.html">← Books</a>
+          <div class="header-status">
+            <span id="statusText">Loading…</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="container" style="padding-top:24px;">
+        <div class="tk-title">📋 Trakt Data Quality</div>
+        <div class="tk-subtitle" id="subtitleText">Loading…</div>
+
+        <div class="tk-row2" style="margin-bottom:14px;">
+          <div class="tk-card">
+            <div class="tk-card-heading">📈 Metadata &amp; Engine Quality</div>
+            <div class="tk-card-note">How much real content data BMTRE actually has to work with — not data completeness in general, but whether the engine has what it needs to make good predictions.</div>
+            <div class="tk-quality-row" id="qualitySection"></div>
+            <div class="tk-quality-footnote" id="qualityFootnote"></div>
+          </div>
+          <div class="tk-card">
+            <div class="tk-card-heading">🎯 BMTRE Accuracy Score</div>
+            <div class="tk-card-note">Not data completeness — whether the engine's actual predictions are good. Leave-one-out evaluation (each watched+rated title scored by a version of the index that excludes it, so its own rating can never leak into its own signal) over every real watched+rated title, mirroring the book side's <code>scripts/eval.js</code>.</div>
+            <div class="tk-quality-row" id="bmtreAccuracySection"></div>
+            <div class="tk-quality-footnote" id="bmtreAccuracyFootnote"></div>
+          </div>
+        </div>
+
+        <div class="tk-row2" style="margin-bottom:14px;">
+          <div class="tk-card">
+            <div class="tk-card-heading">Predicted Score Distribution — Movies</div>
+            <div class="tk-card-note" id="scoreDistMovieNote">Loading…</div>
+            <div class="tk-chart-wrap" id="scoreDistMovieChart"></div>
+          </div>
+          <div class="tk-card">
+            <div class="tk-card-heading">Predicted Score Distribution — Shows</div>
+            <div class="tk-card-note" id="scoreDistShowNote">Loading…</div>
+            <div class="tk-chart-wrap" id="scoreDistShowChart"></div>
+          </div>
+        </div>
+
+        <div class="tk-row2">
+          <div class="tk-card">
+            <div class="tk-card-heading">Biggest Prediction Misses</div>
+            <div class="tk-card-note">Where the engine's predicted score disagrees most with your actual rating, among watched titles — an honest look at where the model is wrong, not just where it's right. Its positive counterpart, Best Matches, lives on the <a href="./index.html">Discover</a> page.</div>
+            <div class="tk-list" id="predictionMissesList"></div>
+          </div>
+          <div class="tk-card" id="dismissalsCard">
+            <div class="tk-card-heading">Dismissal Reasons</div>
+            <div class="tk-card-note">Why titles got excluded from recommendations, tracked from real feedback — feeds the taste model directly (each exclusion is checked against Bill's actual rating history before it's ever generalized into a scoring signal, not applied on category alone).</div>
+            <div class="tk-chart-wrap" id="dismissalChart"></div>
+          </div>
+        </div>
+
+        <div class="tk-card">
+          <div class="tk-card-heading">Subjects</div>
+          <div class="tk-card-note">The real human-condition subject matter beneath genre/subgenre (addiction, grief, trauma, class, etc. — see Field Population &amp; Quality below for how this differs from genre). Top 20 by count. Distribution counts every watched/watchlisted/candidate title; Avg Rating and Top Titles are scoped to what you've actually watched and rated.</div>
+          <div class="tk-table-wrap"><table class="tk-table" id="subjectTable"></table></div>
+        </div>
+
+        <div class="tk-card">
+          <div class="tk-card-heading">📋 Field Population &amp; Quality</div>
+          <div class="tk-card-note"><strong>% Populated</strong> is whether a field has any value at all; <strong>% Quality</strong> is stricter — whether that value actually clears a field-specific usefulness bar (e.g. 2+ genre tags, not just 1, or both a Rotten Tomatoes and a Metacritic score, not just one) and, for genre/subgenre/tone/subject/era, whether the field's whole value distribution is actually granular rather than dominated by one mega-value (Specificity, a normalized-entropy score comparing the real distribution to a perfectly even one) — so a field can be fully populated with every row "valid" and still score low if what's there isn't good enough to trust or isn't specific enough to be useful.</div>
+          <div class="tk-card-note" id="fieldQualityNote">Loading…</div>
+          <div class="tk-table-wrap"><table class="tk-table" id="fieldQualityTable"></table></div>
+        </div>
+
+        <div class="tk-card" style="margin-bottom: 24px;">
+          <div class="tk-card-heading">🛠️ Improvement Opportunities</div>
+          <div class="tk-card-note">Findings from a full code review of everything under <code>trakt/</code> plus real gaps in the scoring model itself — code-correctness bugs and unused/missing signals together, ranked by real impact on data quality and recommendation accuracy, the same kind of iterative refinement history <a href="../index.html" target="_blank">BBRE</a>, the book engine, went through across 40+ sessions. Each verified against live data, not guessed. Only open items are shown below — resolved ones are fixed and removed.</div>
+          <div class="tk-card-note" id="improvementResolvedNote"></div>
+          <div id="improvementList"></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./quality.js"></script>
+  </body>
+</html>
