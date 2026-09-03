@@ -2175,6 +2175,23 @@ export function awardsScore(omdbEntry) {
 const COMMUNITY_NEUTRAL = 6.0;
 const COMMUNITY_WEIGHT = 8;
 
+// TMDB's own title-level `popularity` (a trending/buzz score, distinct
+// from voteCount/voteAverage — captured on every enriched title since
+// Session 44 but never scored until now). Real correlation with myRating
+// is ~0 for movies but a genuine, monotonic 0.20 for shows (checked
+// Session 60), so this is shows-only. NEUTRAL is the real dataset median
+// log10(popularity+1) across rated shows. Validated against
+// scripts/eval.js at weight 1.5 through 3.5 in 0.5 steps before landing
+// here: weight=2 is the clean maximum — precision@10 90%->100% with
+// precision@25/@50/@100 and MAE all held exactly, verified as a real,
+// substantively sound swap (Breaking Bad, myRating 10, entering the top
+// 10 in place of Presumed Innocent, myRating 7) not a coin-flip boundary
+// crossing. Weight>=2.5 starts trading precision@50 away for no further
+// p10 gain, so 2 (not higher) is deliberate.
+const SHOW_POPULARITY_NEUTRAL = 1.28;
+const SHOW_POPULARITY_WEIGHT = 2;
+const SHOW_POPULARITY_CAP = 8;
+
 // The "later-phase addition" the comment above flagged: OMDb's imdbRating
 // (a real, independent 0-10 audience score, IMDb's own userbase — not
 // TMDB's) sat completely unused despite being fetched into
@@ -2635,6 +2652,12 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
     score += (community - COMMUNITY_NEUTRAL) * COMMUNITY_WEIGHT;
   }
   score += voteCountBonus(meta?.voteCount);
+  // Symmetric like communityScore() — a below-neutral popularity is real
+  // negative evidence too, not just absence of positive evidence.
+  if (candidate.type === 'show' && meta?.popularity != null) {
+    const logPop = Math.log10(Math.max(1, meta.popularity) + 1);
+    score += Math.max(-SHOW_POPULARITY_CAP, Math.min(SHOW_POPULARITY_CAP, (logPop - SHOW_POPULARITY_NEUTRAL) * SHOW_POPULARITY_WEIGHT));
+  }
   score += recencyBonus(candidate.year, candidate.type);
   score += showAiringBonus(candidate, meta, idx);
   score += modernNetworkTvPenalty(candidate, meta);
@@ -2794,6 +2817,14 @@ export function scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta = {}) {
 
   add('voteCount', 'TMDB vote count', voteCountBonus(meta.voteCount),
     `${meta.voteCount != null ? meta.voteCount.toLocaleString() : 'unknown'} TMDB votes.`);
+
+  const showPopPts = (candidate.type === 'show' && meta.popularity != null)
+    ? Math.max(-SHOW_POPULARITY_CAP, Math.min(SHOW_POPULARITY_CAP, (Math.log10(Math.max(1, meta.popularity) + 1) - SHOW_POPULARITY_NEUTRAL) * SHOW_POPULARITY_WEIGHT))
+    : 0;
+  add('showPopularity', 'Show popularity (TMDB trending score)', showPopPts,
+    candidate.type === 'show'
+      ? `TMDB popularity ${meta.popularity != null ? meta.popularity.toFixed(1) : 'unknown'} (neutral point ${SHOW_POPULARITY_NEUTRAL} on a log10 scale).`
+      : 'Movie — not scored (real correlation with myRating is ~0 for movies, checked Session 60).');
 
   add('recency', 'Recency', recencyBonus(candidate.year, candidate.type), `Released ${candidate.year || 'unknown year'}.`);
 
