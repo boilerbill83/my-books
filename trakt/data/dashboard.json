@@ -1,35 +1,35 @@
 {
-  "generatedAt": "2026-08-29T16:40:07.873Z",
+  "generatedAt": "2026-09-03T01:19:37.560Z",
   "profile": {
     "username": "bill_stoltenberg_27166c",
     "joinedAt": "2026-07-27T14:49:58.000Z"
   },
   "summary": {
-    "moviesWatched": 183,
-    "moviesPlays": 183,
-    "moviesRatings": 182,
-    "moviesMinutes": 23263,
-    "showsWatched": 379,
-    "showsRatings": 386,
-    "episodesWatched": 11092,
-    "episodesPlays": 11092,
-    "episodesMinutes": 476621,
-    "totalRatings": 568,
-    "totalMinutes": 499884,
-    "totalHours": 8331,
+    "moviesWatched": 193,
+    "moviesPlays": 193,
+    "moviesRatings": 192,
+    "moviesMinutes": 24369,
+    "showsWatched": 384,
+    "showsRatings": 391,
+    "episodesWatched": 11144,
+    "episodesPlays": 11144,
+    "episodesMinutes": 479354,
+    "totalRatings": 583,
+    "totalMinutes": 503723,
+    "totalHours": 8395,
     "avgRating": 7.82
   },
   "ratingDistribution": {
     "1": 0,
-    "2": 2,
+    "2": 4,
     "3": 4,
-    "4": 20,
+    "4": 21,
     "5": 7,
-    "6": 48,
-    "7": 113,
-    "8": 211,
-    "9": 84,
-    "10": 79
+    "6": 49,
+    "7": 114,
+    "8": 213,
+    "9": 87,
+    "10": 84
   },
   "activityByYear": [
     {
@@ -79,12 +79,12 @@
     },
     {
       "year": 2005,
-      "movies": 2,
+      "movies": 3,
       "episodes": 92
     },
     {
       "year": 2006,
-      "movies": 3,
+      "movies": 4,
       "episodes": 106
     },
     {
@@ -99,7 +99,7 @@
     },
     {
       "year": 2009,
-      "movies": 1,
+      "movies": 3,
       "episodes": 126
     },
     {
@@ -114,12 +114,12 @@
     },
     {
       "year": 2012,
-      "movies": 3,
+      "movies": 4,
       "episodes": 202
     },
     {
       "year": 2013,
-      "movies": 5,
+      "movies": 6,
       "episodes": 181
     },
     {
@@ -149,7 +149,7 @@
     },
     {
       "year": 2019,
-      "movies": 16,
+      "movies": 17,
       "episodes": 215
     },
     {
@@ -160,17 +160,17 @@
     {
       "year": 2021,
       "movies": 5,
-      "episodes": 69
+      "episodes": 79
     },
     {
       "year": 2022,
       "movies": 12,
-      "episodes": 151
+      "episodes": 167
     },
     {
       "year": 2023,
       "movies": 17,
-      "episodes": 126
+      "episodes": 136
     },
     {
       "year": 2024,
@@ -184,14 +184,14 @@
     },
     {
       "year": 2026,
-      "movies": 5,
-      "episodes": 106
+      "movies": 8,
+      "episodes": 122
     }
   ],
   "dataCaveats": {
     "undatedEpisodePlays": 7523,
-    "datedEpisodePlays": 3569,
-    "undatedEpisodeSharePct": 67.8
+    "datedEpisodePlays": 3621,
+    "undatedEpisodeSharePct": 67.5
   },
   "topShowsByPlays": [
     {
@@ -216,7 +216,7 @@
       "title": "It's Always Sunny in Philadelphia",
       "year": 2005,
       "plays": 177,
-      "airedEpisodes": 180
+      "airedEpisodes": 181
     },
     {
       "title": "Mom",
@@ -286,6 +286,30 @@
     }
   ],
   "topRatedMovies": [
+    {
+      "title": "Walk the Line",
+      "year": 2005,
+      "rating": 10,
+      "ratedAt": "2026-09-03T01:04:52.000Z"
+    },
+    {
+      "title": "(500) Days of Summer",
+      "year": 2009,
+      "rating": 10,
+      "ratedAt": "2026-09-03T01:03:40.000Z"
+    },
+    {
+      "title": "The Departed",
+      "year": 2006,
+      "rating": 10,
+      "ratedAt": "2026-09-02T23:45:48.000Z"
+    },
+    {
+      "title": "Silver Linings Playbook",
+      "year": 2012,
+      "rating": 10,
+      "ratedAt": "2026-08-31T21:08:37.000Z"
+    },
     {
       "title": "Margin Call",
       "year": 2011,
@@ -381,33 +405,15 @@
       "year": 2012,
       "rating": 10,
       "ratedAt": "2026-08-21T14:13:28.000Z"
-    },
-    {
-      "title": "Superbad",
-      "year": 2007,
-      "rating": 10,
-      "ratedAt": "2026-08-21T14:13:15.000Z"
-    },
-    {
-      "title": "Dumb and Dumber",
-      "year": 1994,
-      "rating": 10,
-      "ratedAt": "2026-08-21T14:13:02.000Z"
-    },
-    {
-      "title": "Wedding Crashers",
-      "year": 2005,
-      "rating": 10,
-      "ratedAt": "2026-08-21T14:12:49.000Z"
-    },
-    {
-      "title": "Old School",
-      "year": 2003,
-      "rating": 10,
-      "ratedAt": "2026-08-21T14:12:35.000Z"
     }
   ],
   "topRatedShows": [
+    {
+      "title": "Lucky",
+      "year": 2026,
+      "rating": 10,
+      "ratedAt": "2026-09-01T18:10:28.000Z"
+    },
     {
       "title": "Horace and Pete",
       "year": 2016,
@@ -521,12 +527,6 @@
       "year": 2019,
       "rating": 10,
       "ratedAt": "2026-07-29T00:49:18.000Z"
-    },
-    {
-      "title": "Love",
-      "year": 2016,
-      "rating": 10,
-      "ratedAt": "2026-07-29T00:27:22.000Z"
     }
   ],
   "watchlist": {
@@ -597,12 +597,6 @@
         "title": "Furious",
         "year": 2026,
         "listedAt": "2026-07-29T00:30:04.000Z"
-      },
-      {
-        "type": "show",
-        "title": "Lucky",
-        "year": 2026,
-        "listedAt": "2026-07-29T00:30:18.000Z"
       },
       {
         "type": "movie",
@@ -750,12 +744,6 @@
       },
       {
         "type": "show",
-        "title": "Say Nothing",
-        "year": 2024,
-        "listedAt": "2026-08-21T15:29:55.000Z"
-      },
-      {
-        "type": "show",
         "title": "Bodyguard",
         "year": 2018,
         "listedAt": "2026-08-21T15:30:03.000Z"
@@ -773,21 +761,33 @@
         "listedAt": "2026-08-21T15:30:55.000Z"
       },
       {
-        "type": "movie",
-        "title": "Moon",
-        "year": 2009,
-        "listedAt": "2026-08-24T11:41:45.000Z"
-      },
-      {
         "type": "show",
         "title": "Marvel's The Punisher",
         "year": 2017,
         "listedAt": "2026-08-27T12:17:50.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Monster: Lizzie Borden",
+        "year": null,
+        "listedAt": "2026-08-30T19:23:03.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Devils",
+        "year": 2020,
+        "listedAt": "2026-08-31T00:04:38.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Hotel Cocaine",
+        "year": 2024,
+        "listedAt": "2026-09-03T00:45:39.000Z"
       }
     ]
   },
   "favorites": {
-    "count": 29,
+    "count": 31,
     "items": [
       {
         "type": "show",
@@ -962,6 +962,18 @@
         "title": "Master of None",
         "year": 2015,
         "listedAt": "2026-08-22T16:42:22.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Silver Linings Playbook",
+        "year": 2012,
+        "listedAt": "2026-08-31T21:08:40.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Walk the Line",
+        "year": 2005,
+        "listedAt": "2026-09-03T01:04:52.000Z"
       }
     ]
   }

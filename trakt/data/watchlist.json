@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-08-29T16:40:13.443Z",
+    "generatedAt": "2026-09-03T01:19:41.642Z",
     "count": 42
   },
   "titles": [
@@ -136,25 +136,6 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-07-29T00:30:04.000Z"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:278624",
-      "ids": {
-        "imdb": "tt34866681",
-        "plex": {
-          "guid": "67507127b734a2ab5d683713",
-          "slug": "lucky-2026"
-        },
-        "slug": "lucky-2026",
-        "tmdb": 278624,
-        "tvdb": 457437,
-        "trakt": 265812
-      },
-      "title": "Lucky",
-      "year": 2026,
-      "watchlisted": true,
-      "watchlistedAt": "2026-07-29T00:30:18.000Z"
     },
     {
       "type": "movie",
@@ -642,25 +623,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:245256",
-      "ids": {
-        "imdb": "tt31122777",
-        "plex": {
-          "guid": "65bd41c1414230404b768a2e",
-          "slug": "say-nothing"
-        },
-        "slug": "say-nothing",
-        "tmdb": 245256,
-        "tvdb": 445610,
-        "trakt": 222933
-      },
-      "title": "Say Nothing",
-      "year": 2024,
-      "watchlisted": true,
-      "watchlistedAt": "2026-08-21T15:29:55.000Z"
-    },
-    {
-      "type": "show",
       "titleKey": "show:139099",
       "ids": {
         "imdb": "tt16152716",
@@ -718,6 +680,25 @@
     },
     {
       "type": "show",
+      "titleKey": "show:211169",
+      "ids": {
+        "imdb": "tt17676706",
+        "plex": {
+          "guid": "6335dbc54f521dd892878d3d",
+          "slug": "hotel-cocaine"
+        },
+        "slug": "hotel-cocaine",
+        "tmdb": 211169,
+        "tvdb": 425443,
+        "trakt": 198574
+      },
+      "title": "Hotel Cocaine",
+      "year": 2024,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-03T00:45:39.000Z"
+    },
+    {
+      "type": "show",
       "titleKey": "show:63646",
       "ids": {
         "imdb": "tt4643084",
@@ -755,22 +736,42 @@
       "watchlistedAt": "2026-08-27T12:17:50.000Z"
     },
     {
-      "type": "movie",
-      "titleKey": "movie:17431",
+      "type": "show",
+      "titleKey": "show:299939",
       "ids": {
-        "imdb": "tt1182345",
+        "imdb": "tt37538664",
         "plex": {
-          "guid": "5d7768402ec6b5001f6bdd2b",
-          "slug": "moon"
+          "guid": null,
+          "slug": null
         },
-        "slug": "moon-2009",
-        "tmdb": 17431,
-        "trakt": 10655
+        "slug": "monster-lizzie-borden",
+        "tmdb": 299939,
+        "tvdb": null,
+        "trakt": 297898
       },
-      "title": "Moon",
-      "year": 2009,
+      "title": "Monster: Lizzie Borden",
+      "year": null,
       "watchlisted": true,
-      "watchlistedAt": "2026-08-24T11:41:45.000Z"
+      "watchlistedAt": "2026-08-30T19:23:03.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:99741",
+      "ids": {
+        "imdb": "tt7939218",
+        "plex": {
+          "guid": "5d9c09082df347001e3bbdf4",
+          "slug": "devils"
+        },
+        "slug": "devils",
+        "tmdb": 99741,
+        "tvdb": 473740,
+        "trakt": 152257
+      },
+      "title": "Devils",
+      "year": 2020,
+      "watchlisted": true,
+      "watchlistedAt": "2026-08-31T00:04:38.000Z"
     },
     {
       "type": "show",
