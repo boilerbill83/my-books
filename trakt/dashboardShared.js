@@ -446,7 +446,7 @@ function initCollapsibleCards() {
 async function loadAllData() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
   const [dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback,
-         scrapedShowRatings, llmTags, reviewedTags, currentlyWatching] = await Promise.all([
+         scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -458,9 +458,15 @@ async function loadAllData() {
     get('./data/llmTags.json').catch(() => ({})),
     get('./data/reviewedTags.json').catch(() => ({})),
     get('./data/currentlyWatching.json').catch(() => []),
+    // Manual co-viewing tags (Bill: "I want to manually tag these so they
+    // only show up here" — shows he only watches with someone else, kept
+    // out of the solo-oriented rec surfaces and grouped into their own
+    // section instead). { tagName: [titleKey, ...] }; starts {} so a
+    // missing file just means no tags yet, not an error.
+    get('./data/coWatchTags.json').catch(() => ({})),
   ]);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
-  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching };
+  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags };
 }
 
 // Best Matches (Discover) and Prediction Misses (Quality) are two views of

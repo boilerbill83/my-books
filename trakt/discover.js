@@ -21,7 +21,10 @@ import {
   predictedVsActualRows,
 } from './dashboardShared.js';
 
-function renderStatTiles(summary) {
+// crowdCompare (computeCrowdCompare()'s output) folds in here as one more
+// tile — see the comment where its old dedicated card used to be, above
+// buildAllTitlesRows(), for why.
+function renderStatTiles(summary, crowdCompare) {
   const tiles = [
     ['Movies watched', fmtNum(summary.moviesWatched)],
     ['Shows watched', fmtNum(summary.showsWatched)],
@@ -30,6 +33,10 @@ function renderStatTiles(summary) {
     ['Total ratings', fmtNum(summary.totalRatings)],
     ['Average rating', summary.avgRating != null ? `${summary.avgRating} / 10` : '—'],
   ];
+  if (crowdCompare) {
+    const dir = crowdCompare.diff > 0 ? 'higher' : crowdCompare.diff < 0 ? 'lower' : 'even with';
+    tiles.push(['vs. TMDB crowd', `${crowdCompare.diff > 0 ? '+' : ''}${crowdCompare.diff.toFixed(2)} ${dir}`]);
+  }
   document.getElementById('statTiles').innerHTML = tiles.map(([label, value]) => `
     <div class="tk-tile">
       <div class="tk-tile-label">${esc(label)}</div>
@@ -124,124 +131,141 @@ function renderBestMatches(stats, enrichedMeta) {
   }).join('');
 }
 
-// Bill's explicit request, alongside excluding actively-airing shows from
-// the You'll Love panel: "add a table to the dashboard with shows
-// currently airing that I will love so I can stay up to date on those."
-// Draws from both origins (watchlist + candidate pool) at their real,
-// unfiltered bmtreScoreRaw — nothing here is display-only-excluded the
-// way renderRecPanel() is, since the entire point of this list is to
-// surface exactly what got pulled out of that panel and why it still
-// matters (a genuinely strong prediction, just not watchable in full
-// yet). Movies are never included (isActivelyAiring() is show-only).
+// Bill: "combine Pick Up Where You Left Off, Currently Airing — You'll
+// Love, and Currently Airing — Season Finale Tracker into one table; my
+// goal is to see what is airing and how soon I will be able to watch
+// it." One row per show that's either mid-season (has unwatched episodes
+// already out) or genuinely airing right now, wherever it comes from —
+// in-progress (currentlyWatching.json), tracked (library/watchlist), or
+// a scored would-love pick (fromWatchlist/fromCandidates) — instead of
+// three separate lists a reader had to cross-reference by hand.
+//
+// buildWatchRow() is shared with computeCoWatchRows() below (the "Shows
+// You Watch Together" table) so both read the exact same status/airing
+// logic and can never disagree about what "In Progress" or "Season
+// Finale" means for a given title.
+function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored }, enrichedMeta) {
+  const base = inLib || inWl || inCandidate || scored || { titleKey, type: titleKey.split(':')[0] };
+  const h = hydrateTitle(base, enrichedMeta);
 
-function renderAiringSoonList(fromWatchlist, fromCandidates, enrichedMeta) {
-  const el = document.getElementById('airingSoonList');
-  const airing = [...fromWatchlist, ...fromCandidates]
-    .filter(c => isActivelyAiring(c, enrichedMeta))
-    .sort((a, b) => b.bmtreScoreRaw - a.bmtreScoreRaw);
-  if (!airing.length) {
-    el.innerHTML = '<div class="tk-empty">Nothing you\'d love is actively airing right now — check back later.</div>';
-    return;
+  let status, episodesReady = null;
+  if (progress && progress.plays < progress.airedEpisodes) {
+    status = 'In Progress'; episodesReady = progress.airedEpisodes - progress.plays;
+  } else if (inLib) {
+    status = 'Watched';
+  } else if (inWl) {
+    status = 'Watchlist';
+  } else {
+    status = 'New Pick';
   }
-  el.innerHTML = airing.slice(0, 12).map(c => {
-    const poster = posterUrl(c.titleKey, enrichedMeta);
-    const next = enrichedMeta[c.titleKey]?.nextEpisodeToAir;
-    const epLabel = next?.seasonNumber != null && next?.episodeNumber != null
-      ? ` (S${next.seasonNumber}E${next.episodeNumber})` : '';
-    const nextLabel = next?.airDate ? `next episode ${next.airDate}${epLabel}` : 'airing now';
-    return `
-    <div class="tk-metric-row">
-      ${posterImgHtml(poster, 'tk-metric-poster', 38, 57)}
-      <span class="tk-metric-name">
-        ${typeIcon(c.type)} ${titleLink(c)}
-        <span class="tk-metric-sub">${c.year ? `(${c.year}) · ` : ''}${esc(nextLabel)}${c.origin === 'watchlist' ? ' · Watchlist' : ''}</span>
-      </span>
-      <span class="tk-metric-score">${Math.round(c.bmtreScore)}</span>
-    </div>`;
-  }).join('');
+
+  const meta = enrichedMeta[titleKey] || {};
+  const next = meta.nextEpisodeToAir;
+  const finale = meta.currentSeasonFinale;
+  let daysUntilFinale = null;
+  if (finale?.finaleDate) {
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    daysUntilFinale = Math.round((new Date(finale.finaleDate + 'T00:00:00') - today) / 86400000);
+  }
+
+  return {
+    titleKey, title: h.title, year: h.year, type: h.type, ids: h.ids, status,
+    episodesReady,
+    airedEpisodes: inLib?.airedEpisodes ?? progress?.airedEpisodes ?? null,
+    plays: inLib?.plays ?? progress?.plays ?? null,
+    myRating: inLib?.myRating ?? null,
+    isAiring: isActivelyAiring(h, enrichedMeta),
+    season: next?.seasonNumber ?? finale?.seasonNumber ?? null,
+    nextEpisode: next?.episodeNumber ?? null,
+    nextEpisodeDate: next?.airDate ?? null,
+    finaleEpisode: finale?.finaleEpisodeNumber ?? null,
+    finaleDate: finale?.finaleDate ?? null,
+    daysUntilFinale,
+    score: scored ? scored.bmtreScore : null,
+  };
 }
 
-// Bill: "add a new table to the dashboard with all shows currently airing;
-// along with the season finale date; and a countdown to how many days
-// until that happens." Broader than the "Currently Airing — You'll Love"
-// list above (which only covers unwatched recommendation candidates,
-// scored) — this covers every show Bill is actually tracking (library +
-// watchlist) that isActivelyAiring() confirms is genuinely mid-season
-// right now, regardless of predicted score. Reads currentSeasonFinale
-// (enrich_tmdb.py's own comment explains why the finale needs a second,
-// season-detail TMDB call — next_episode_to_air only ever names the
-// single next episode, not the season's last one). finaleDate can be
-// null (TMDB hasn't scheduled that far into the season yet) — shown
-// honestly as "TBD" rather than guessed at.
+function computeWatchStatusRows(library, watchlist, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta) {
+  const libByKey = new Map((library.titles || []).map(t => [t.titleKey, t]));
+  const wlByKey = new Map((watchlist.titles || []).map(t => [t.titleKey, t]));
+  // A show can genuinely sit in BOTH currentlyWatching.json and
+  // library.json/watchlist.json at once, or be actively airing while also
+  // mid-season locally — real Trakt behavior, not a data bug (the same
+  // overlap rankAll() already defends against for candidates, Session 48's
+  // "Tom Clancy's Jack Ryan" case). Deduped by titleKey below.
+  const progressByKey = new Map((currentlyWatching || []).filter(t => t.type === 'show').map(t => [t.titleKey, t]));
+  const scoredByKey = new Map([...fromWatchlist, ...fromCandidates].map(c => [c.titleKey, c]));
 
-function computeCurrentlyAiringShows(library, watchlist, enrichedMeta) {
-  // A show can genuinely sit in BOTH library.json and watchlist.json at
-  // once (same titleKey) - real Trakt behavior, not a data bug (the same
-  // overlap rankAll() had to defensively handle for candidates back in
-  // Session 48's "Tom Clancy's Jack Ryan" case): Bill is partway through
-  // it (library, in-progress) AND has it flagged on his watchlist, e.g.
-  // as a reminder to keep going. Deduped here by titleKey so it doesn't
-  // render as two rows for the same show - Library wins the Status label
-  // when both exist, since it's the more informative state (he's actively
-  // watching, not just planning to).
-  const byKey = new Map();
-  for (const [list, origin] of [[watchlist.titles, 'Watchlist'], [library.titles, 'Library']]) {
-    for (const t of list) {
-      if (t.type !== 'show') continue;
-      if (!isActivelyAiring(t, enrichedMeta)) continue;
-      const meta = enrichedMeta[t.titleKey] || {};
-      const next = meta.nextEpisodeToAir;
-      const finale = meta.currentSeasonFinale;
-      let daysUntilFinale = null;
-      if (finale?.finaleDate) {
-        const today = new Date(); today.setHours(0, 0, 0, 0);
-        const finaleD = new Date(finale.finaleDate + 'T00:00:00');
-        daysUntilFinale = Math.round((finaleD - today) / 86400000);
-      }
-      byKey.set(t.titleKey, {
-        type: 'show', titleKey: t.titleKey, title: t.title, year: t.year, ids: t.ids,
-        origin,
-        season: next?.seasonNumber ?? finale?.seasonNumber ?? null,
-        nextEpisode: next?.episodeNumber ?? null,
-        nextEpisodeDate: next?.airDate ?? null,
-        finaleEpisode: finale?.finaleEpisodeNumber ?? null,
-        finaleDate: finale?.finaleDate ?? null,
-        daysUntilFinale,
-      });
-    }
-  }
-  return [...byKey.values()];
+  const keys = new Set();
+  for (const t of currentlyWatching || []) if (t.type === 'show' && t.plays < t.airedEpisodes) keys.add(t.titleKey);
+  for (const t of library.titles || []) if (t.type === 'show' && isActivelyAiring(t, enrichedMeta)) keys.add(t.titleKey);
+  for (const t of watchlist.titles || []) if (t.type === 'show' && isActivelyAiring(t, enrichedMeta)) keys.add(t.titleKey);
+  for (const c of [...fromWatchlist, ...fromCandidates]) if (isActivelyAiring(c, enrichedMeta)) keys.add(c.titleKey);
+
+  return [...keys].map(titleKey => buildWatchRow(titleKey, {
+    inLib: libByKey.get(titleKey), inWl: wlByKey.get(titleKey),
+    inCandidate: scoredByKey.get(titleKey)?.origin === 'candidate' ? scoredByKey.get(titleKey) : null,
+    progress: progressByKey.get(titleKey), scored: scoredByKey.get(titleKey),
+  }, enrichedMeta));
 }
 
+// "Shows You Watch Together" — Bill: "I want to manually tag these so
+// they only show up here. I still want to see them..." Unlike
+// computeWatchStatusRows() above (only rows for something airing/mid-
+// season), every tagged title gets a row regardless of status — Bill said
+// he still wants to see them, so a tagged show that's fully caught up or
+// not yet started still needs to appear, not just the currently-active ones.
+function computeCoWatchRows(tagKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta) {
+  const libByKey = new Map((library.titles || []).map(t => [t.titleKey, t]));
+  const wlByKey = new Map((watchlist.titles || []).map(t => [t.titleKey, t]));
+  const cpByKey = new Map((candidatePool.titles || []).map(t => [t.titleKey, t]));
+  const progressByKey = new Map((currentlyWatching || []).map(t => [t.titleKey, t]));
+  const scoredByKey = new Map([...fromWatchlist, ...fromCandidates].map(c => [c.titleKey, c]));
+  return tagKeys.map(titleKey => buildWatchRow(titleKey, {
+    inLib: libByKey.get(titleKey), inWl: wlByKey.get(titleKey), inCandidate: cpByKey.get(titleKey),
+    progress: progressByKey.get(titleKey), scored: scoredByKey.get(titleKey),
+  }, enrichedMeta));
+}
 
-function renderAiringFinaleTable(rows) {
-  const table = document.getElementById('airingFinaleTable');
+function renderWatchStatusTable(elementId, rows, emptyText) {
+  const table = document.getElementById(elementId);
   if (!rows.length) {
-    table.parentElement.innerHTML = '<div class="tk-empty">Nothing you\'re tracking is actively airing right now.</div>';
+    table.parentElement.innerHTML = `<div class="tk-empty">${esc(emptyText)}</div>`;
     return;
   }
   const columns = [
     { label: 'Show', get: r => r.title,
-      render: (td, r) => { td.innerHTML = `${typeIcon('show')} ${titleLink(r)}${r.year ? ` <span class="tk-metric-sub">(${esc(r.year)})</span>` : ''}`; } },
-    { label: 'Status', get: r => r.origin },
+      render: (td, r) => { td.innerHTML = `${typeIcon(r.type)} ${titleLink(r)}${r.year ? ` <span class="tk-metric-sub">(${esc(r.year)})</span>` : ''}`; } },
+    { label: 'Status', get: r => r.status,
+      render: (td, r) => { td.textContent = r.status + (r.myRating != null ? ` · ${r.myRating}/10` : ''); } },
+    { label: 'Ready Now', get: r => r.episodesReady ?? -1, numeric: true,
+      render: (td, r) => { td.textContent = r.episodesReady ? `${r.episodesReady} episode${r.episodesReady === 1 ? '' : 's'}` : '—'; } },
     { label: 'Now Airing', get: r => (r.season ?? 0) * 1000 + (r.nextEpisode ?? 0), numeric: true,
       render: (td, r) => { td.textContent = r.season != null && r.nextEpisode != null ? `S${r.season}E${r.nextEpisode}` : '—'; } },
     { label: 'Next Episode', get: r => r.nextEpisodeDate || '',
-      render: (td, r) => { td.textContent = r.nextEpisodeDate || 'TBD'; } },
+      // Gated on the season actually having a scheduled next episode at
+      // all, not on isAiring — isAiring (Session 59's episode-1 fix)
+      // deliberately stays false until an episode 1 has actually aired,
+      // but a season's premiere/finale dates are often already scheduled
+      // before that, and "how soon can I watch it" wants that shown, not
+      // hidden behind the stricter airing-badge definition.
+      render: (td, r) => { td.textContent = r.season != null ? (r.nextEpisodeDate || 'TBD') : '—'; } },
     { label: 'Season Finale', get: r => r.finaleDate || (r.finaleEpisode ? '9999-99-99' : ''),
       render: (td, r) => {
         if (r.finaleDate) td.textContent = `${r.finaleDate} (S${r.season}E${r.finaleEpisode})`;
         else if (r.finaleEpisode) td.textContent = `TBD (S${r.season}E${r.finaleEpisode})`;
-        else td.textContent = 'Unknown';
+        else td.textContent = r.season != null ? 'Unknown' : '—';
       } },
     { label: 'Days Until Finale', get: r => r.daysUntilFinale ?? Infinity, numeric: true,
       render: (td, r) => {
         td.className = 'num';
         td.textContent = r.daysUntilFinale == null ? '—' : (r.daysUntilFinale <= 0 ? 'Airs today' : `${r.daysUntilFinale}d`);
       } },
+    { label: 'Score', get: r => r.score ?? -1, numeric: true,
+      render: (td, r) => { td.className = 'num'; td.textContent = r.score != null ? Math.round(r.score) : '—'; } },
   ];
 
-  let sortCol = 5, sortAsc = true; // default: Days Until Finale ascending — soonest first
+  let sortCol = 6, sortAsc = true; // default: Days Until Finale ascending — soonest first
 
   function render() {
     const sorted = [...rows].sort((a, b) => {
@@ -295,17 +319,11 @@ function renderCastList(stats) {
 }
 
 
-function renderCrowdCompare(compare) {
-  const el = document.getElementById('crowdCompare');
-  if (!compare) { el.innerHTML = '<div class="tk-empty">Not enough enriched, rated titles yet.</div>'; return; }
-  const dir = compare.diff > 0 ? 'higher than' : compare.diff < 0 ? 'lower than' : 'the same as';
-  el.innerHTML = `
-    <div class="tk-crowd-stat">
-      <div class="tk-crowd-number">${compare.diff > 0 ? '+' : ''}${compare.diff.toFixed(2)}</div>
-      <div class="tk-crowd-label">You rate ${Math.abs(compare.diff).toFixed(2)} points ${dir} TMDB on average</div>
-      <div class="tk-crowd-detail">Your avg ${compare.mineAvg.toFixed(2)}/10 vs. TMDB's ${compare.tmdbAvg.toFixed(2)}/10, across ${compare.n} rated titles.</div>
-    </div>`;
-}
+// Bill: "You vs. The Crowd - this takes up a lot of space; maybe squeeze
+// it in somewhere else." Folded into the stat-tiles row (renderStatTiles)
+// as one more compact tile instead of its own full card — the taste-line
+// sentence already gives the one-line version of this same stat, so the
+// tile just needs to carry the precise number, not a full explanation.
 
 // ── All-titles filterable/sortable table ────────────────────────────────
 
@@ -800,28 +818,6 @@ function renderBecauseYouLoved(rows, enrichedMeta) {
 // lastWatchedAt carries a real 1970-01-01 placeholder on roughly half of
 // these (a bulk-import artifact documented elsewhere in this project) —
 // never displayed here for that reason.
-function renderContinueWatching(currentlyWatching, enrichedMeta) {
-  const el = document.getElementById('continueWatching');
-  const rows = (currentlyWatching || [])
-    .filter(t => t.plays < t.airedEpisodes)
-    .map(t => ({ ...t, left: t.airedEpisodes - t.plays }))
-    .sort((a, b) => a.left - b.left);
-  if (!rows.length) { el.innerHTML = '<div class="tk-empty">Nothing in progress right now.</div>'; return; }
-  el.innerHTML = rows.map(t => {
-    const poster = posterUrl(t.titleKey, enrichedMeta, 'w154');
-    const pct = Math.max(2, Math.round((t.plays / t.airedEpisodes) * 100));
-    return `
-    <div class="tk-metric-row">
-      ${posterImgHtml(poster, 'tk-metric-poster', 38, 57)}
-      <span class="tk-metric-name">
-        ${typeIcon(t.type)} ${titleLink(t)}
-        <span class="tk-metric-sub">${t.myRating != null ? `you rate it ${esc(t.myRating)}/10 · ` : ''}${t.left} episode${t.left === 1 ? '' : 's'} left${isActivelyAiring(t, enrichedMeta) ? ' ' + airingBadge() : ''}</span>
-        <div class="tk-progress-track"><div class="tk-progress-fill" style="width:${pct}%"></div></div>
-      </span>
-      <span class="tk-metric-score">${t.plays} / ${t.airedEpisodes}</span>
-    </div>`;
-  }).join('');
-}
 
 // 6. Your taste, in one line — a small, low-risk personality blurb built
 // entirely from stats the page already computes for other sections.
@@ -843,11 +839,24 @@ function renderTasteLine(genreStats, crowdCompare, castStats, tenRatedCount) {
 
 async function load() {
   const { dashboard: d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback,
-          llmTags, reviewedTags, currentlyWatching } = await loadAllData();
+          llmTags, reviewedTags, currentlyWatching, coWatchTags } = await loadAllData();
 
   const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
   const byType = (list, type) => list.filter(c => c.type === type && enrichedOnly(c));
+
+  // Manually tagged co-viewing shows (Bill: "I want to manually tag these
+  // so they only show up here") — pulled out of every solo-oriented
+  // surface below (hero, Surprise Me, both You'll Love panels, the time-
+  // budget shelves, Because You Loved, and the main airing table) and
+  // shown only in their own "Shows You Watch Together" section instead.
+  const coWatchKeys = [...new Set(Object.values(coWatchTags || {}).flat())];
+  const coWatchSet = new Set(coWatchKeys);
+  const soloWatchlist = fromWatchlist.filter(c => !coWatchSet.has(c.titleKey));
+  const soloCandidates = fromCandidates.filter(c => !coWatchSet.has(c.titleKey));
+  const soloLibrary = { titles: (library.titles || []).filter(t => !coWatchSet.has(t.titleKey)) };
+  const soloWatchlistData = { titles: (watchlist.titles || []).filter(t => !coWatchSet.has(t.titleKey)) };
+  const soloCurrentlyWatching = (currentlyWatching || []).filter(t => !coWatchSet.has(t.titleKey));
 
   const generated = new Date(d.generatedAt);
   document.getElementById('subtitleText').textContent =
@@ -859,21 +868,24 @@ async function load() {
   // shared pool (discoverPool) feeds the hero, Surprise Me, and both
   // shelves below, so nothing here can surface that the You'll Love panels
   // themselves would refuse.
-  const pool = discoverPool(fromWatchlist, fromCandidates, enrichedMeta);
+  const pool = discoverPool(soloWatchlist, soloCandidates, enrichedMeta);
   renderHero(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
   initSurprise(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
 
-  renderRecPanel('movieRecList', byType(fromWatchlist, 'movie'), byType(fromCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags, reviewedTags);
-  renderRecPanel('showRecList', byType(fromWatchlist, 'show'), byType(fromCandidates, 'show'), enrichedMeta, omdbMeta, llmTags, reviewedTags);
+  renderRecPanel('movieRecList', byType(soloWatchlist, 'movie'), byType(soloCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags, reviewedTags);
+  renderRecPanel('showRecList', byType(soloWatchlist, 'show'), byType(soloCandidates, 'show'), enrichedMeta, omdbMeta, llmTags, reviewedTags);
 
   renderShelf('quickWatchShelf', pool.filter(c => c.type === 'movie' && (enrichedMeta[c.titleKey].runtime ?? 999) <= 120).slice(0, 6), enrichedMeta);
   renderShelf('bingeShelf', pool.filter(c => c.type === 'show' && (enrichedMeta[c.titleKey].numberOfEpisodes ?? 999) <= 10).slice(0, 6), enrichedMeta);
 
   renderBecauseYouLoved(computeBecauseYouLoved(library, pool, enrichedMeta), enrichedMeta);
-  renderContinueWatching(currentlyWatching, enrichedMeta);
 
-  renderAiringSoonList(fromWatchlist, fromCandidates, enrichedMeta);
-  renderAiringFinaleTable(computeCurrentlyAiringShows(library, watchlist, enrichedMeta));
+  renderWatchStatusTable('coWatchTable',
+    computeCoWatchRows(coWatchKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta),
+    'Nothing tagged yet.');
+  renderWatchStatusTable('airingStatusTable',
+    computeWatchStatusRows(soloLibrary, soloWatchlistData, soloWatchlist, soloCandidates, soloCurrentlyWatching, enrichedMeta),
+    'Nothing you\'re tracking or would love is currently mid-season or airing.');
 
   const enrichedCount = Object.keys(enrichedMeta).length;
   document.getElementById('genreSectionScopeNote').textContent =
@@ -886,12 +898,11 @@ async function load() {
   const tenRatedCount = (library.titles || []).filter(t => t.myRating === 10).length;
   renderGenreChart(genreStats);
   renderCastList(castStats);
-  renderCrowdCompare(crowdCompare);
   renderTasteLine(genreStats, crowdCompare, castStats, tenRatedCount);
 
   renderBestMatches(computeBestMatches(library, enrichedMeta, omdbMeta, idx), enrichedMeta);
 
-  renderStatTiles(d.summary);
+  renderStatTiles(d.summary, crowdCompare);
 
   renderAllTitlesTable(buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, llmTags));
 }
