@@ -2678,6 +2678,78 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
+  // 6. Bill's "totally out of the blue" ask this session: is there a
+  // creator-level "does Bill trust this person more or less than critics
+  // do" signal worth adding, the same way COMMUNITY_NEUTRAL corrects for
+  // Bill-vs-crowd bias but per-person instead of per-genre? Real, clean
+  // examples exist both directions (Taylor Sheridan/David E. Kelley/Ridley
+  // Scott: Bill rates well above critics; Denis Villeneuve/Noah Hawley/
+  // Andy Muschietti: well below). Built a scratch prototype
+  // (creatorCriticGap in buildIndexes(), a capped +/- adjustment in
+  // baseSignals(), gated on the same >=3-rated-title trust floor
+  // genreProfile/toneProfile already use) and swept it against
+  // scripts/eval.js before touching the real engine — this project's
+  // standing discipline for exactly this shape of idea, since the
+  // near-identical flat-community-neutral-ignores-genre-bias signal above
+  // already failed the same way once.
+  {
+    const raw = new Map();
+    for (const t of library.titles || []) {
+      if (t.myRating == null) continue;
+      const m = enrichedMeta[t.titleKey];
+      if (!m) continue;
+      const creator = getCreator(t.type, m);
+      if (!creator) continue;
+      const critic = criticScore(omdbMeta[t.titleKey]);
+      if (critic == null) continue;
+      if (!raw.has(creator)) raw.set(creator, []);
+      raw.get(creator).push(true);
+    }
+    let gapCreators = 0, alreadyLoved = 0;
+    for (const [creator, rows] of raw) {
+      if (rows.length < 3) continue;
+      gapCreators++;
+      if ((idx.lovedCreators.get(creator) || 0) > 0) alreadyLoved++;
+    }
+    findings.push({
+      id: 'creator-critic-trust-gap-tested',
+      severity: 'warning',
+      ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
+      title: `Tested: a per-creator critic-trust-gap signal regressed precision@50/@100 at every weight tried — not shipped, kept as a documented dead end`,
+      technical: `Real, clean examples exist both directions — Bill rates Adam McKay/Ridley Scott/Todd Phillips/Taylor Sheridan/David E. Kelley well ` +
+        `above critic consensus (gaps +1.2 to +2.4 on a 0-10 scale, n=3-9 rated+critic-scored titles each), and Denis Villeneuve/Andy Muschietti/` +
+        `Noah Hawley well below (gaps -2.0 to -2.9) — real held-out data confirms the mechanism: Dune is currently the engine's single biggest ` +
+        `miss (predicted 71.4, actual 2/10), and Denis Villeneuve's measured gap (Bill rates him meaningfully below critic consensus) is exactly ` +
+        `the correction that miss needs, even though the aggregate sweep below shows this doesn't hold up as a general-purpose signal. Built a ` +
+        `scratch prototype: a <code>creatorCriticGap</code> map in <code>buildIndexes()</code> (mean myRating minus ` +
+        `mean critic score, gated on the same >=3-rated-title trust floor <code>genreProfile</code>/<code>toneProfile</code> already use), applied ` +
+        `as a capped symmetric adjustment in <code>baseSignals()</code>. Swept the weight 0 through 6 against <code>scripts/eval.js</code> ` +
+        `(576 rated+enriched titles): weight=0 exactly reproduces the real baseline (p10=90/p25=96/p50=98/p100=91, MAE=14.65 — confirms the ` +
+        `wiring itself is correct), but every nonzero weight tested REGRESSED — precision@50 98%→96% at weight=1 and 98%→94% at weight>=2, ` +
+        `precision@100 91%→90% at weight>=2, plateauing there through weight=6 (the cap saturating) with MAE moving at most 14.65→14.63, well ` +
+        `inside noise and nowhere near enough to justify the precision loss under this project's own precision-over-MAE priority. Currently ` +
+        `${gapCreators} creators clear the trust floor; live-checked overlap with the existing director/creator-match signal ` +
+        `(<code>idx.lovedCreators</code>) shows ${alreadyLoved} of ${gapCreators} (${gapCreators ? Math.round(alreadyLoved / gapCreators * 100) : 0}%) ` +
+        `already trigger it — meaning most of this signal's effect is a second, noisier adjustment stacked on an already-strong existing match, ` +
+        `not new information. Root cause, the same structural failure as the already-documented <code>flat-community-neutral-ignores-genre-bias` +
+        `</code> dead end above: the gap itself is a <i>difference</i> of two already-noisy values (Bill's own rating and a critic aggregate), and ` +
+        `per-creator sample sizes here (n=3-9) are even smaller than that signal's own failed per-genre floors (3-30).`,
+      plain: `This session's own "out of the blue, might not work" idea: does Bill trust some directors/showrunners more than critics do, and ` +
+        `some less? The real data says clearly yes — he rates Taylor Sheridan and Ridley Scott noticeably higher than critics on average, and ` +
+        `Denis Villeneuve and Noah Hawley noticeably lower. Built a working test version of a scoring bonus/penalty based on this and checked it ` +
+        `against real held-out predictions before touching anything real, the same way every signal in this project gets validated. It made the ` +
+        `engine's picks measurably worse, not better, at every strength tried. The most likely reason: most creators strong enough to trust this ` +
+        `correction for are ones Bill already demonstrably loves, so the existing director-match bonus already covers them — this just adds a ` +
+        `second, noisier vote on top of an already-strong signal, and this dataset simply doesn't have many examples yet of an under-the-radar ` +
+        `creator Bill would newly discover this way.`,
+      impact: `A genuine negative result, not an unexplored idea — worth keeping on record so a future session doesn't re-propose the same fix ` +
+        `without the sweep data that already disproved it. Not a permanent dead end the way the per-genre signal is, though: as Bill rates more ` +
+        `titles by creators he hasn't already loved (the only case this signal could ever add real information), a future re-test with more ` +
+        `volume in that specific bucket is the honest next step, not a different weight or trust floor — every value from 1 to 6 failed the same ` +
+        `way here.`,
+    });
+  }
+
   const order = { critical: 0, serious: 1, warning: 2, good: 3 };
   findings.sort((a, b) => order[a.severity] - order[b.severity]);
   return findings;
