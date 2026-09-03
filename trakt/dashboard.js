@@ -2916,6 +2916,7 @@ function renderAllTitlesTable(allRows) {
   const typeFilter = document.getElementById('titleTypeFilter');
   const statusFilter = document.getElementById('titleStatusFilter');
   const yearFilter = document.getElementById('titleYearFilter');
+  const airingFilter = document.getElementById('titleAiringFilter');
   const showAllBtn = document.getElementById('titleShowAllBtn');
 
   const years = [...new Set(allRows.map(r => r.year).filter(Boolean))].sort((a, b) => b - a);
@@ -2968,10 +2969,13 @@ function renderAllTitlesTable(allRows) {
     const type = typeFilter.value;
     const status = statusFilter.value;
     const year = yearFilter.value;
+    const airing = airingFilter.value;
     return allRows.filter(r => {
       if (type && r.type !== type) return false;
       if (status && r.status !== status) return false;
       if (year && String(r.year) !== year) return false;
+      if (airing === 'airing' && !r.airing) return false;
+      if (airing === 'not-airing' && r.airing) return false;
       if (q && !(r.title.toLowerCase().includes(q) || r.genres.toLowerCase().includes(q) || r.subjects.toLowerCase().includes(q) || r.creator.toLowerCase().includes(q))) return false;
       return true;
     });
@@ -3036,6 +3040,7 @@ function renderAllTitlesTable(allRows) {
   typeFilter.addEventListener('change', render);
   statusFilter.addEventListener('change', render);
   yearFilter.addEventListener('change', render);
+  airingFilter.addEventListener('change', render);
   showAllBtn.addEventListener('click', () => { showAll = !showAll; render(); });
   document.getElementById('titleCsvBtn').addEventListener('click', () => downloadCSV(table, 'trakt-all-titles.csv'));
 }
