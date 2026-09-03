@@ -106,6 +106,10 @@
         font-size: 0.64rem; font-weight: 600; padding: 2px 7px; border-radius: 999px;
         background: var(--bg-card); color: var(--text-muted); margin-left: 8px; vertical-align: middle;
       }
+      /* Reuses the existing gold status-warning tone (not a new color) —
+         icon + label already carries the meaning, same "never color alone"
+         rule every other status pill on this dashboard follows. */
+      .tk-prestige-badge { background: color-mix(in srgb, var(--status-warning) 20%, transparent); color: #8a5c00; }
       .tk-rec-meta { font-size: 0.78rem; color: var(--accent); margin-top: 4px; font-weight: 500; }
       .tk-rec-reason { font-size: 0.8rem; color: var(--text-muted); margin-top: 3px; }
       .tk-deepdive-btn {

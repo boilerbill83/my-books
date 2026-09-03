@@ -12,7 +12,7 @@
 import {
   rankAll, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore,
   awardsScore, posterUrl, diversityRerank, inferSubgenres, inferSubjects, inferEra,
-  isActivelyAiring, traktUrl,
+  isActivelyAiring, traktUrl, prestigeScore,
 } from './engine.js';
 import {
   esc, fmtNum, fmtCompact, posterImgHtml, typeIcon, typeLabel, titleLink, statusTag,
@@ -495,7 +495,7 @@ function renderCastList(stats) {
 // a genres array existing vs. having 2+ entries to match against) - not a
 // second independent metric.
 
-function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, llmTags = {}) {
+function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, llmTags = {}, personMeta = {}) {
   const rows = [];
   const addRow = (t, status, myRating) => {
     const h = hydrateTitle(t, enrichedMeta);
@@ -527,6 +527,7 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
       subjects: (meta ? inferSubjects(meta, llmTags[h.titleKey], undefined, idx.reviewedTags?.[h.titleKey]).map(s => SUBJECT_LABEL[s] || s) : []).join(', '),
       era: meta ? (ERA_LABEL[inferEra(meta, undefined, idx.reviewedTags?.[h.titleKey])[0]] || '') : '',
       creator: (h.type === 'movie' ? meta?.director : meta?.createdBy?.[0]) || '',
+      prestige: meta ? prestigeScore(h, meta, omdb, personMeta) : null,
     });
   };
   for (const t of library.titles || []) addRow(t, 'Watched', t.myRating);
@@ -588,6 +589,16 @@ function renderAllTitlesTable(allRows) {
     { label: 'Subjects', get: r => r.subjects, render: (td, r) => { td.className = 'tk-genres'; td.textContent = r.subjects || '—'; } },
     { label: 'Era', get: r => r.era || '', render: (td, r) => { td.textContent = r.era || '—'; } },
     { label: 'Director/Creator', get: r => r.creator || '—' },
+    // Bill: "is there a way to identify a TV show as prestige... maybe
+    // those that have a big star like JK Simmons and are 10 episodes or
+    // less." Appended at the end (not inserted earlier) so it can never
+    // shift any other column's numeric index/sortCol default — see
+    // engine.js's prestigeScore()/isPrestigeFormat() for the real,
+    // verified-against-known-examples definition. null (not 0) for
+    // movies/not-yet-enriched titles/shows that don't clear the format
+    // bar at all — "not applicable," never "scored zero."
+    { label: 'Prestige', get: r => r.prestige ?? '', numeric: true,
+      render: (td, r) => { td.className = 'num'; td.textContent = r.prestige != null ? r.prestige : '—'; } },
   ];
 
   let sortCol = 5, sortAsc = false; // default: My Rating desc (index 5 now that Cover is column 0)
@@ -680,7 +691,7 @@ function renderAllTitlesTable(allRows) {
 // TMDB community rating — whatever's actually present, since candidate
 // stubs may still be mid-enrichment.
 
-function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags = {}) {
+function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags = {}, personMeta = {}) {
   const el = document.getElementById(sectionId);
   // Bill: "exclude it from the You'll Love panel but don't adjust the
   // actual predicted score." Pulled out here, at the display layer only -
@@ -717,6 +728,14 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
   }
   el.innerHTML = picks.map((c, i) => {
     const poster = posterUrl(c.titleKey, enrichedMeta);
+    // Bill: "is there a way to identify a TV show as prestige... maybe
+    // those that have a big star and are 10 episodes or less." >=50 is a
+    // deliberately generous "worth flagging" bar, not "definitely great" —
+    // isPrestigeFormat() itself is the real gate (format alone is worth
+    // 40 of the 100 possible points), this just skips the low end of the
+    // graded range so the badge stays meaningful rather than showing on
+    // every single format-qualifying title regardless of any other signal.
+    const prestige = c.type === 'show' ? prestigeScore(c, enrichedMeta[c.titleKey], omdbMeta[c.titleKey], personMeta) : null;
     return `
     <div class="tk-rec-card">
       <div class="tk-rec-rank">${i + 1}</div>
@@ -725,6 +744,7 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
         <div class="tk-rec-title">
           ${typeIcon(c.type)} ${titleLink(c)}${c.year ? ` <span class="tk-year">(${esc(c.year)})</span>` : ''}
           <span class="tk-rec-badge">${c.origin === 'watchlist' ? 'Watchlist' : 'New pick'}</span>
+          ${prestige != null && prestige >= 50 ? `<span class="tk-rec-badge tk-prestige-badge" title="Limited/anthology format (10 or fewer episodes per season) with real critic acclaim and/or a well-known cast — see Deep Dive for the full breakdown">🏆 Prestige</span>` : ''}
         </div>
         <div class="tk-rec-meta">${esc(metaLine(c, enrichedMeta, omdbMeta, llmTags, reviewedTags))}</div>
         <div class="tk-rec-reason">${esc(c.reason)}</div>
@@ -993,7 +1013,7 @@ function renderTasteLine(genreStats, crowdCompare, castStats, tenRatedCount) {
 
 async function load() {
   const { dashboard: d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback,
-          llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons } = await loadAllData();
+          llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta } = await loadAllData();
 
   const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
@@ -1026,8 +1046,8 @@ async function load() {
   renderHero(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
   initSurprise(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
 
-  renderRecPanel('movieRecList', byType(soloWatchlist, 'movie'), byType(soloCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags, reviewedTags);
-  renderRecPanel('showRecList', byType(soloWatchlist, 'show'), byType(soloCandidates, 'show'), enrichedMeta, omdbMeta, llmTags, reviewedTags);
+  renderRecPanel('movieRecList', byType(soloWatchlist, 'movie'), byType(soloCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
+  renderRecPanel('showRecList', byType(soloWatchlist, 'show'), byType(soloCandidates, 'show'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
 
   renderShelf('quickWatchShelf', pool.filter(c => c.type === 'movie' && (enrichedMeta[c.titleKey].runtime ?? 999) <= 120).slice(0, 6), enrichedMeta);
   renderShelf('bingeShelf', pool.filter(c => c.type === 'show' && (enrichedMeta[c.titleKey].numberOfEpisodes ?? 999) <= 10).slice(0, 6), enrichedMeta);
@@ -1059,7 +1079,7 @@ async function load() {
 
   renderStatTiles(d.summary, crowdCompare);
 
-  renderAllTitlesTable(buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, llmTags));
+  renderAllTitlesTable(buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, llmTags, personMeta));
 }
 
 initCollapsibleCards();
