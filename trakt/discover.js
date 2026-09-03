@@ -262,16 +262,23 @@ function renderWatchStatusTable(elementId, rows, emptyText) {
     table.parentElement.innerHTML = `<div class="tk-empty">${esc(emptyText)}</div>`;
     return;
   }
+  // Bill: "So many of these columns are blank. If the show isn't airing,
+  // hide them by default." A row is either mid-season (the 4 airing-
+  // schedule columns) or between seasons (the Next Season column) —
+  // rarely both — so showing all of them at once left most cells empty.
+  // Hidden by default, toggle to reveal; keyed by string id rather than
+  // array index so hiding/showing columns can't desync sort tracking
+  // from a click on a column that's since moved or disappeared.
   const columns = [
-    { label: 'Show', get: r => r.title,
+    { key: 'show', label: 'Show', get: r => r.title,
       render: (td, r) => { td.innerHTML = `${typeIcon(r.type)} ${titleLink(r)}${r.year ? ` <span class="tk-metric-sub">(${esc(r.year)})</span>` : ''}`; } },
-    { label: 'Status', get: r => r.status,
+    { key: 'status', label: 'Status', get: r => r.status,
       render: (td, r) => { td.textContent = r.status + (r.myRating != null ? ` · ${r.myRating}/10` : ''); } },
-    { label: 'Ready Now', get: r => r.episodesReady ?? -1, numeric: true,
+    { key: 'readyNow', label: 'Ready Now', get: r => r.episodesReady ?? -1, numeric: true,
       render: (td, r) => { td.textContent = r.episodesReady ? `${r.episodesReady} episode${r.episodesReady === 1 ? '' : 's'}` : '—'; } },
-    { label: 'Now Airing', get: r => (r.season ?? 0) * 1000 + (r.nextEpisode ?? 0), numeric: true,
+    { key: 'nowAiring', label: 'Now Airing', airingCol: true, get: r => (r.season ?? 0) * 1000 + (r.nextEpisode ?? 0), numeric: true,
       render: (td, r) => { td.textContent = r.season != null && r.nextEpisode != null ? `S${r.season}E${r.nextEpisode}` : '—'; } },
-    { label: 'Next Episode', get: r => r.nextEpisodeDate || '',
+    { key: 'nextEpisode', label: 'Next Episode', airingCol: true, get: r => r.nextEpisodeDate || '',
       // Gated on the season actually having a scheduled next episode at
       // all, not on isAiring — isAiring (Session 59's episode-1 fix)
       // deliberately stays false until an episode 1 has actually aired,
@@ -279,13 +286,13 @@ function renderWatchStatusTable(elementId, rows, emptyText) {
       // before that, and "how soon can I watch it" wants that shown, not
       // hidden behind the stricter airing-badge definition.
       render: (td, r) => { td.textContent = r.season != null ? (r.nextEpisodeDate || 'TBD') : '—'; } },
-    { label: 'Season Finale', get: r => r.finaleDate || (r.finaleEpisode ? '9999-99-99' : ''),
+    { key: 'seasonFinale', label: 'Season Finale', airingCol: true, get: r => r.finaleDate || (r.finaleEpisode ? '9999-99-99' : ''),
       render: (td, r) => {
         if (r.finaleDate) td.textContent = `${r.finaleDate} (S${r.season}E${r.finaleEpisode})`;
         else if (r.finaleEpisode) td.textContent = `TBD (S${r.season}E${r.finaleEpisode})`;
         else td.textContent = r.season != null ? 'Unknown' : '—';
       } },
-    { label: 'Days Until Finale', get: r => r.daysUntilFinale ?? Infinity, numeric: true,
+    { key: 'daysUntilFinale', label: 'Days Until Finale', airingCol: true, get: r => r.daysUntilFinale ?? Infinity, numeric: true,
       render: (td, r) => {
         td.className = 'num';
         td.textContent = r.daysUntilFinale == null ? '—' : (r.daysUntilFinale <= 0 ? 'Airs today' : `${r.daysUntilFinale}d`);
@@ -297,22 +304,41 @@ function renderWatchStatusTable(elementId, rows, emptyText) {
     // but not yet dated, or canceled, is otherwise invisible. Reads
     // upcomingSeasons.json (real, hand-researched, sourced — see that
     // file's own header comment), never guessed.
-    { label: 'Next Season', get: r => upcomingSortKey(r.upcoming),
+    { key: 'nextSeason', label: 'Next Season', get: r => upcomingSortKey(r.upcoming),
       render: (td, r) => {
         const label = summarizeUpcoming(r.upcoming);
         if (!label) { td.textContent = '—'; return; }
         td.textContent = label;
         if (r.upcoming?.window) td.title = `${r.upcoming.window}\n\nSource: ${r.upcoming.source}`;
       } },
-    { label: 'Score', get: r => r.score ?? -1, numeric: true,
+    { key: 'score', label: 'Score', get: r => r.score ?? -1, numeric: true,
       render: (td, r) => { td.className = 'num'; td.textContent = r.score != null ? Math.round(r.score) : '—'; } },
   ];
 
-  let sortCol = 6, sortAsc = true; // default: Days Until Finale ascending — soonest first
+  let sortKey = 'daysUntilFinale', sortAsc = true; // default: soonest finale first, even while that column is hidden
+  let showAiringCols = false; // hidden by default per Bill's ask
+
+  // The toggle is a real DOM sibling inserted once, not rebuilt on every
+  // render() (unlike thead/tbody below) — rebuilding it would drop the
+  // checkbox's own state/focus on every sort click.
+  let toolbar = table.parentElement.querySelector('.tk-watch-toolbar');
+  if (!toolbar) {
+    toolbar = document.createElement('label');
+    toolbar.className = 'tk-watch-toolbar';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.addEventListener('change', () => { showAiringCols = cb.checked; render(); });
+    toolbar.appendChild(cb);
+    toolbar.appendChild(document.createTextNode(' Show airing-schedule columns (Now Airing, Next Episode, Season Finale, Days Until Finale)'));
+    table.parentElement.insertBefore(toolbar, table);
+  }
 
   function render() {
+    const visibleColumns = columns.filter(c => showAiringCols || !c.airingCol);
+
     const sorted = [...rows].sort((a, b) => {
-      const va = columns[sortCol].get(a), vb = columns[sortCol].get(b);
+      const col = columns.find(c => c.key === sortKey);
+      const va = col.get(a), vb = col.get(b);
       const cmp = typeof va === 'number' ? va - vb : String(va).localeCompare(String(vb));
       return sortAsc ? cmp : -cmp;
     });
@@ -320,12 +346,12 @@ function renderWatchStatusTable(elementId, rows, emptyText) {
     table.innerHTML = '';
     const thead = document.createElement('thead');
     const trh = document.createElement('tr');
-    columns.forEach((c, i) => {
+    visibleColumns.forEach(c => {
       const th = document.createElement('th');
       th.textContent = c.label;
-      if (i === sortCol) th.className = 'sorted' + (sortAsc ? ' asc' : '');
+      if (c.key === sortKey) th.className = 'sorted' + (sortAsc ? ' asc' : '');
       th.addEventListener('click', () => {
-        if (sortCol === i) sortAsc = !sortAsc; else { sortCol = i; sortAsc = true; }
+        if (sortKey === c.key) sortAsc = !sortAsc; else { sortKey = c.key; sortAsc = true; }
         render();
       });
       trh.appendChild(th);
@@ -336,7 +362,7 @@ function renderWatchStatusTable(elementId, rows, emptyText) {
     const tbody = document.createElement('tbody');
     for (const row of sorted) {
       const tr = document.createElement('tr');
-      columns.forEach(c => {
+      visibleColumns.forEach(c => {
         const td = document.createElement('td');
         if (c.render) c.render(td, row); else td.textContent = esc(c.get(row));
         tr.appendChild(td);
