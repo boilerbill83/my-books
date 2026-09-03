@@ -634,6 +634,34 @@ went through, and hasn't gotten one:
   All Titles table and CSV export. The underlying raw counts *do* feed
   scoring (§3m, §3n) — only the 0-100 display transform itself is unused
   by `matchScore()`.
+- **`resolveCastAges(candidate, enrichedMeta, personMeta)`** — Bill's
+  follow-up to the `modernNetworkTvPenalty`/Matlock finding: "maybe if
+  the main female lead is over 70, I rarely like those," then broadened
+  to "the age of the top five stars by their listed order; this will
+  help us see what I like." `personMeta` comes from
+  `trakt/data/personMetadata.json` (`enrich_person.py`, TMDB's
+  `/person/{id}` endpoint — the only place a birthdate lives; title-detail
+  responses carry cast id/name/gender but never birthday). Returns each
+  of a title's up-to-5 billed cast members with `position`/`name`/
+  `gender`/`age` (age at `candidate.year`, year-level precision — matches
+  how every other year-based signal in this file already treats
+  `candidate.year` as canonical). **Investigated before deciding whether
+  to score it, not after** — the same discipline `modernNetworkTvPenalty`
+  used: pulled real lead age + rating for 558 of 576 rated titles
+  (96.9% resolvable). The exact hypothesis Bill proposed is disproven —
+  female leads 70+ average 7.75/10 (n=4: Sally Field/*Remarkably Bright
+  Creatures* 7, Helen Mirren/*1923* 8, Jean Smart/*Hacks* 8, Youn
+  Yuh-jung/*Pachinko* 8), not meaningfully different from female leads
+  under 70 (7.59, n=199) or the 7.84 overall baseline. Broadened the
+  check rather than stopping at the narrow case: lead age vs. rating
+  Pearson correlation is 0.048 (no relationship), every age-decade bucket
+  from the 20s through the 70s averages within ~0.5 of each other (the
+  70s bucket is actually the *highest* at 8.55, opposite the hypothesis),
+  and "any of the top 5 billed ≥70" (n=81, avg 7.83) vs. "none" (n=477,
+  avg 7.84) are statistically indistinguishable. No age-based scoring
+  signal exists here for good reason — the data doesn't support one.
+  Display-only, wired into Deep Dive's "People" card ("Top Cast, by
+  billing order — age at release").
 
 ---
 
