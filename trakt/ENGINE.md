@@ -709,11 +709,33 @@ watchlist (season 4), so its creator/genre/cast signals are maxed out
 and it was ranking #1, but TMDB's `status` field ("Returning Series")
 can't tell "will get more seasons someday" from "actively airing right
 now" — it stays that value for years between seasons even while
-everything released so far is fully watchable. The real signal is
-TMDB's `next_episode_to_air`, only populated when a specific next
-episode is actually scheduled/recent; cached as `nextEpisodeToAir` by
-`enrich_tmdb.py`. Every other filter above exempts the watchlist because
-it's Bill's own explicit pick and excluding it would be the engine
+everything released so far is fully watchable.
+
+The real signal went through two iterations. The first version treated
+bare presence of TMDB's `next_episode_to_air` (cached as
+`nextEpisodeToAir` by `enrich_tmdb.py`) as "airing" — on the assumption
+TMDB only populates it once a season is genuinely mid-release. Bill
+caught this as wrong in the wild: "Stick has that badge but it is not
+airing; the last episode was a while ago." Real data confirmed the
+assumption was false — TMDB populates `next_episode_to_air` the moment a
+premiere date is confirmed, even months out (Stick's real value pointed
+to S2E1 on 2026-11-03, 61 days out at the time); a live scan found 35+
+shows carrying this field, ranging 0-157 days from air, not a rare edge
+case. Bill's precise correction ("don't say airing until the first
+episode of a season has actually aired... it should get the badge on
+11/4/26" — the day after Stick's real S2E1 air date) is exactly what
+`episodeNumber > 1` tests, with no date-math or arbitrary day-count
+threshold needed: TMDB only advances `next_episode_to_air`'s
+`episodeNumber` past 1 once that season's real premiere has actually
+aired and their own data has rolled forward past it.
+`isActivelyAiring(candidate, enrichedMeta)` is therefore
+`next != null && next.episodeNumber != null && next.episodeNumber > 1`.
+Verified against real data: of 42 shows carrying `nextEpisodeToAir`, only
+12 (those genuinely mid-season, e.g. Reacher S4E6, Silo S3E10, Ted Lasso
+S4E6) now pass; the other 30 (Stick, Slow Horses, Abbott Elementary,
+Elsbeth, and more, all sitting on an unaired season premiere) correctly
+don't. Every other filter above exempts the watchlist because it's
+Bill's own explicit pick and excluding it would be the engine
 second-guessing a relevance judgment call that isn't the engine's to
 make; this isn't a relevance call at all, it's a literal "not watchable
 in full yet" fact about a title he already queued, so the exemption
@@ -723,7 +745,10 @@ actively-airing title still scores and ranks normally everywhere else
 (the All Titles table, `computeEvalMetrics()`) and shows up in its own
 "Currently Airing — You'll Love" list on the dashboard
 (`renderAiringSoonList()`) so nothing goes invisible, just out of the
-one panel where it isn't actionable yet.
+one panel where it isn't actionable yet. The All Titles table also
+carries an "Airing: All / Currently Airing / Not Airing" filter dropdown
+reading the same `isActivelyAiring()` result, for browsing either set
+directly.
 
 `isTooObscure` exists because Bill flagged a real bad recommendation
 directly: "Alpha Quail," a 13-minute short with a single TMDB vote and no

@@ -2343,9 +2343,26 @@ export function isTooObscure(candidate, enrichedMeta) {
 // TMDB's status field for it reads "Returning Series," which stays true
 // for years between seasons even while everything released so far is
 // fully watchable, so it's not a useful "still airing right now" signal
-// on its own. next_episode_to_air is: TMDB only populates it when a
-// specific next episode is actually scheduled/recent, i.e. a season is
-// genuinely mid-release right now.
+// on its own.
+//
+// Originally used bare presence of next_episode_to_air as the signal,
+// on the assumption TMDB only populates it once a season is genuinely
+// mid-release. Real data disproved that (Bill: "Stick has that badge
+// but it is not airing; the last episode was a while ago") - TMDB
+// populates this field the moment a premiere date is confirmed, even
+// months out (Stick's real value pointed to S2E1 on 2026-11-03, 61
+// days from today; a live scan found 35 shows total with this field,
+// ranging 0 to 157 days out - not a rare edge case). The real, precise
+// rule (Bill: "don't say airing until the first episode of a season
+// has actually aired... it should get the badge on 11/4/26" - the day
+// after Stick's real S2E1 air date): `episodeNumber > 1` is exactly
+// this test, no date-math or arbitrary day-count threshold needed -
+// TMDB only advances next_episode_to_air's episodeNumber past 1 once
+// that season's real premiere has actually aired and their own data
+// has rolled forward past it. episodeNumber === 1 means the "next"
+// episode IS the unaired season premiere; anything greater means at
+// least one real episode of the current season already aired and
+// we're genuinely mid-release, waiting on the next one.
 //
 // Unlike every other filter in this file (isReEdit/isNonEnglish/
 // isPreMillenniumMovie/isAnimation/isTooObscure), this one intentionally
@@ -2360,7 +2377,8 @@ export function isTooObscure(candidate, enrichedMeta) {
 // have episodes, so always false for type 'movie'.
 export function isActivelyAiring(candidate, enrichedMeta) {
   if (candidate.type !== 'show') return false;
-  return enrichedMeta[candidate.titleKey]?.nextEpisodeToAir != null;
+  const next = enrichedMeta[candidate.titleKey]?.nextEpisodeToAir;
+  return next != null && next.episodeNumber != null && next.episodeNumber > 1;
 }
 
 export function matchScore(candidate, idx, enrichedMeta, omdbMeta = {}) {
