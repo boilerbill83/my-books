@@ -11,10 +11,11 @@ trakt/data/personMetadata.json, keyed by TMDB person id (not titleKey —
 the same person can be the lead of several titles, and this cache is
 shared/amortized across all of them, not per-title).
 
-Only processes the LEAD (billing position 0) of each title's
-topCastDetail — the question is specifically about a show/movie's
-lead, not its whole ensemble, and it keeps the person-lookup volume to
-roughly one call per unique lead actor rather than 5x that.
+Processes all 5 of each title's topCastDetail entries (Bill: "the age
+of the top five stars by their listed order; this will help us see
+what I like") — not just the lead, so the full billing-order age
+profile of a title's cast is available for exploration, not only a
+single lead/no-lead signal.
 
 Run manually:   python3 trakt/enrich_person.py [batch_size]
 GitHub Action:  .github/workflows/trakt-enrich-person.yml
@@ -62,23 +63,28 @@ def person_detail(person_id):
 
 
 def load_lead_person_ids():
-    """The lead (billing position 0) of every title's topCastDetail,
-    across watchlist/library/candidatePool — enrich_tmdb.py's own
-    priority order isn't relevant here since this reads already-cached
-    enrichedMetadata.json rather than fetching titles itself."""
+    """Bill: "let's add this as metadata; the age of the top five [cast]
+    by their listed order; this will help us see what I like" — broadened
+    from lead-only to every one of topCastDetail's top-5 billing slots,
+    across watchlist/library/candidatePool. Real volume tradeoff (~5x
+    more unique people than lead-only), but still amortized: the same
+    actor appearing across many titles is only ever fetched once, and
+    TMDB's rate limit has headroom for it (same DELAY as enrich_tmdb.py).
+    engine.js's age()/castAges() consumes this by billing order, not
+    just "the lead," per Bill's own framing."""
     if not ENRICHED_FILE.exists():
         return {}
     enriched = json.load(open(ENRICHED_FILE))
-    leads = {}  # person id -> name (for logging only; cache is id-keyed)
+    people = {}  # person id -> name (for logging only; cache is id-keyed)
     for entry in enriched.values():
         detail = entry.get('topCastDetail')
         if not detail:
             continue
-        lead = detail[0]
-        pid = lead.get('id')
-        if pid is not None:
-            leads[pid] = lead.get('name')
-    return leads
+        for member in detail:
+            pid = member.get('id')
+            if pid is not None:
+                people[pid] = member.get('name')
+    return people
 
 
 def main():
@@ -87,11 +93,11 @@ def main():
         sys.exit(1)
 
     cache = json.load(open(CACHE_FILE)) if CACHE_FILE.exists() else {}
-    leads = load_lead_person_ids()
-    pending = [(pid, name) for pid, name in leads.items() if str(pid) not in cache]
+    people = load_lead_person_ids()
+    pending = [(pid, name) for pid, name in people.items() if str(pid) not in cache]
 
     batch = pending[:BATCH_SIZE]
-    print(f'{len(leads)} unique lead actors found across all enriched titles, '
+    print(f'{len(people)} unique top-5-billed cast members found across all enriched titles, '
           f'{len(pending)} not yet person-enriched, processing {len(batch)}')
 
     failures = 0
