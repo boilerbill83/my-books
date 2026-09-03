@@ -11,6 +11,7 @@ import {
   isActivelyAiring, posterUrl, criticScore, realAudienceScore, awardsScore,
   mergeScrapedShowRatings, resolveSimilarTitles, resolveSimilarDirectors,
   getCreators, inferSubgenres, inferTones, inferSubjects, inferEra, traktUrl,
+  resolveCastAges,
 } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
@@ -40,7 +41,7 @@ async function load() {
   }
 
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback, scrapedShowRatings, llmTags, reviewedTags] = await Promise.all([
+  const [library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback, scrapedShowRatings, llmTags, reviewedTags, personMeta] = await Promise.all([
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
     get('./data/candidatePool.json').catch(() => ({ titles: [] })),
@@ -50,6 +51,7 @@ async function load() {
     get('./data/scrapedShowRatings.json').catch(() => ({})),
     get('./data/llmTags.json').catch(() => ({})),
     get('./data/reviewedTags.json').catch(() => ({})),
+    get('./data/personMetadata.json').catch(() => ({})),
   ]);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
 
@@ -85,6 +87,7 @@ async function load() {
   const subjects = inferSubjects(meta, llmTags[key], undefined, reviewedTags?.[key]);
   const era = inferEra(meta, undefined, reviewedTags?.[key]);
   const myRating = status === 'Watched' ? raw.myRating : null;
+  const castAges = resolveCastAges(candidate, enrichedMeta, personMeta);
 
   document.title = `Deep Dive — ${candidate.title || key}`;
   statusEl.textContent = `${candidate.type === 'movie' ? 'Movie' : 'TV Show'} · ${status}`;
@@ -153,7 +156,12 @@ async function load() {
       <div class="dd-card">
         <div class="dd-card-heading">👥 People</div>
         <div class="dd-field"><span class="dd-field-label">${candidate.type === 'movie' ? 'Director(s)' : 'Creator(s)'}</span><div>${chips(creators)}</div></div>
-        <div class="dd-field"><span class="dd-field-label">Top Cast</span><div>${chips(meta.topCast)}</div></div>
+        <div class="dd-field">
+          <span class="dd-field-label">Top Cast, by billing order — age at release</span>
+          <div>${castAges.length ? castAges.map(c => `
+            <span class="dd-chip" title="Billing position ${c.position + 1}">${esc(c.name)}${c.age != null ? ` (${c.age})` : ''}</span>
+          `).join('') : chips(meta.topCast)}</div>
+        </div>
         ${meta.belongsToCollection ? `<div class="dd-field"><span class="dd-field-label">Franchise</span><div>${esc(meta.belongsToCollection.name)}</div></div>` : ''}
       </div>
     </div>

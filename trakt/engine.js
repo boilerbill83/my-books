@@ -725,6 +725,53 @@ function castBonus(topCast, lovedActors) {
   return Math.min(8, bonus);
 }
 
+// Bill's follow-up to the modernNetworkTvPenalty/Matlock finding:
+// "maybe if the [main] female [lead] is over 70; I rarely like those" —
+// then, once told the real signal needs a birthday TMDB's title-detail
+// response doesn't carry: "build a database with actor's name and DOB;
+// then calculate their age by when the show or movie was released,"
+// broadened to "the age of the top five stars by their listed order;
+// this will help us see what I like" (not lead-only). personMeta comes
+// from trakt/data/personMetadata.json (enrich_person.py, keyed by TMDB
+// person id, see that file's own comment for the two-endpoint reason).
+// Year-level precision only (birthYear vs. releaseYear), matching how
+// every other year-based signal in this file already treats
+// candidate.year as the canonical release-time reference (recencyBonus
+// et al.) — a title's exact release month/day is cached
+// (meta.releaseDate/firstAirDate) but never used at that precision
+// anywhere else here, and "68 vs. 69" doesn't matter for this kind of
+// insight the way it would for, say, box-office-window analysis.
+function personAge(birthday, releaseYear) {
+  if (!birthday || !releaseYear) return null;
+  const birthYear = parseInt(String(birthday).slice(0, 4), 10);
+  if (!Number.isFinite(birthYear)) return null;
+  return releaseYear - birthYear;
+}
+
+// Display/insight only, per Bill's own framing ("this will help us see
+// what I like") — NOT wired into matchScore(). Unlike every other signal
+// in this file, this one was investigated with the birthday data BEFORE
+// deciding whether a scoring signal is warranted (see ENGINE.md's own
+// section on this, added once trakt/data/personMetadata.json had real
+// data to check the "female lead 70+" hypothesis against) — the
+// investigation, not this resolver, is what decides whether a
+// leadAgePenalty()-shaped function belongs here too.
+export function resolveCastAges(candidate, enrichedMeta, personMeta = {}) {
+  const meta = enrichedMeta[candidate.titleKey];
+  const detail = meta?.topCastDetail;
+  if (!detail || !detail.length) return [];
+  const releaseYear = candidate.year || meta?.year;
+  return detail.map((member, pos) => {
+    const person = member.id != null ? personMeta[String(member.id)] : null;
+    return {
+      position: pos,
+      name: member.name,
+      gender: member.gender, // TMDB: 0 unspecified, 1 female, 2 male, 3 non-binary
+      age: person ? personAge(person.birthday, releaseYear) : null,
+    };
+  });
+}
+
 // Structural/production tags, not thematic ones — TMDB's free-form
 // keyword field mixes both, and these carry zero content-taste signal
 // (every sequel gets "sequel," every mid-credits-scene movie gets
