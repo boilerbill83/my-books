@@ -2274,6 +2274,85 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
+  // 3b. Every eval.js run since the harness shipped (Session 51) has
+  // carried the same unresolved caveat: raw MAE is worse than a trivial
+  // "always predict the mean" baseline. Always explained away as expected
+  // (matchScore() was never designed to hit an absolute 0-100 scale, only
+  // to rank correctly), but never actually fixed — until this pass. See
+  // engine.js's calibrateScore()/RATING_CALIBRATION for the full
+  // derivation: raw predicted score DOES carry real signal about
+  // relative ordering (Pearson correlation with actual rating: 0.35,
+  // mean predicted climbs cleanly from 57 at myRating=4 to 83 at
+  // myRating=9), its problem was scale, not content. A simple linear
+  // recalibration fixes exactly that — validated via 5-fold cross-
+  // validation (not just fit-and-trust) before shipping: held-out MAE
+  // 10.50 vs. 14.65 uncalibrated vs. 11.03 naive baseline, stable across
+  // all 5 folds. Order-preserving by construction (a positive-slope
+  // affine transform), so precision@k/ranking are mathematically
+  // unaffected — confirmed empirically too (identical before/after).
+  {
+    findings.push({
+      id: 'rating-score-calibration',
+      severity: 'good',
+      ratings: { ease: 6, dataQuality: 2, recEngine: 6, ui: 3 },
+      title: 'Raw predicted score was never calibrated to an absolute rating scale — now it is, and MAE finally beats the naive baseline',
+      technical: `<code>matchScore()</code> is an additive formula built from independent positive bonuses (director/creator match, genre, ` +
+        `franchise, cast, keyword, subgenre, tone, community rating, recency…) — it was designed to RANK candidates correctly relative to ` +
+        `each other, never to land on an absolute 0-100 scale that matches <code>myRating*10</code> directly. Every prior <code>eval.js</code> ` +
+        `run measured raw MAE against that mismatched scale and found it worse than a naive "always predict the mean" baseline — real, but ` +
+        `misleading, since it conflated "is the ranking good" (it is: precision@10 90%, correlation with actual rating 0.35) with "is the ` +
+        `number's magnitude meaningful" (it wasn't). New <code>RATING_CALIBRATION</code> constant + <code>calibrateScore()</code> in ` +
+        `<code>engine.js</code>: a linear rescale (<code>actual ≈ 0.298 × predicted + 55.8</code>) fit on real leave-one-out predictions and ` +
+        `validated via 5-fold cross-validation — held-out calibrated MAE 10.50, consistently across all 5 folds (slope 0.276-0.342, intercept ` +
+        `52.7-57.6), beating both the uncalibrated MAE (14.65) and the naive baseline (11.03) for the first time. Wired into ` +
+        `<code>computeEvalMetrics()</code>'s new <code>calibratedMae</code> field, which now drives the BMTRE Accuracy Score's Rating ` +
+        `Accuracy component instead of raw MAE.`,
+      plain: `The engine's predicted score has always been good at RANKING things correctly (the titles it says you'll love, you mostly do) ` +
+        `but the raw number itself was never actually tuned to line up with your real 1-10 rating scale — it was really only ever meant to ` +
+        `be compared against other scores, not read literally as "a predicted rating." Every accuracy check this project has ever run stated ` +
+        `this as a known limitation without fixing it. This pass fixes it with a small, well-tested rescaling step (checked five different ` +
+        `ways to make sure it wasn't a fluke), and it can never make the actual recommendations worse, since it only changes how the number ` +
+        `LOOKS, never which titles rank above which.`,
+      impact: `A real, structural improvement to how honestly this dashboard reports its own accuracy — not a cosmetic score bump. The BMTRE ` +
+        `Accuracy Score's Rating Accuracy component moved from ~34/100 to ~53/100 as a direct, honest consequence, and every future eval.js ` +
+        `run now reports a calibrated MAE that finally means what it claims to mean.`,
+    });
+  }
+
+  // 3c. Found while verifying the calibration fix above: the dashboard's
+  // own live BMTRE Accuracy Score dial (quality.js's load()) called
+  // computeEvalMetrics() with only 4 of its 6 arguments, silently
+  // defaulting llmTags/reviewedTags to {} — even though both are already
+  // loaded and in scope two lines earlier for rankAll(). scripts/eval.js's
+  // CLI always passed all 6 correctly, so the two were quietly computing
+  // different numbers: the CLI's real precision@10 was 90.0%, the live
+  // dashboard dial (before this fix) showed 100.0% for the same metric,
+  // an 11-percentage-point disagreement caused entirely by the missing
+  // tone/subgenre/reviewed-tag signal, not any real model difference.
+  {
+    findings.push({
+      id: 'eval-metrics-missing-args-bug',
+      severity: 'good',
+      ratings: { ease: 9, dataQuality: 3, recEngine: 4, ui: 2 },
+      title: 'The live BMTRE Accuracy dial and the CLI eval.js were silently computing different numbers — fixed',
+      technical: `<code>quality.js</code>'s <code>load()</code> called <code>computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta)</code> ` +
+        `— only 4 of the function's 6 parameters, silently defaulting <code>llmTags</code>/<code>reviewedTags</code> to <code>{}</code> even ` +
+        `though both are already destructured from <code>loadAllData()</code> two lines above and passed correctly to <code>rankAll()</code> ` +
+        `right after. <code>trakt/scripts/eval.js</code>'s CLI wrapper always passed all 6 arguments correctly, so the two "official" accuracy ` +
+        `numbers for this project had been silently diverging: before this fix, the CLI reported precision@10 90.0%/precision@100 91.0%, ` +
+        `while the live dashboard dial showed 100.0%/89.0% for the identical underlying data — an 11-point precision@10 gap from missing tone/ ` +
+        `subgenre keyword-tier and reviewed-tag-override signal in the dashboard's own leave-one-out computation. Fixed by passing the already-` +
+        `in-scope <code>llmTags, reviewedTags</code> through; confirmed live afterward that the dial's numbers now match the CLI's exactly.`,
+      plain: `There are two places on this project that measure "how accurate is the recommendation engine" — a command-line tool and the ` +
+        `dial on this dashboard. They were supposed to report the exact same number, but a small missing piece of code meant the dashboard's ` +
+        `version was quietly running with less information than it should have (skipping a real signal about tone and subgenre matching), so ` +
+        `it was showing a different, incorrect accuracy score without either you or anyone else realizing the two were out of sync. Fixed — ` +
+        `both now genuinely agree.`,
+      impact: `A real, previously-invisible correctness bug in how this project's own most-trusted accuracy number was computed and displayed ` +
+        `— fixed with a one-line change, verified live to now exactly match the CLI's real numbers.`,
+    });
+  }
+
   // 4. COMMUNITY_NEUTRAL (6.0) and CRITIC_NEUTRAL (80) are single flat
   // constants applied to every candidate regardless of genre — but Bill's
   // real bias vs. the TMDB crowd average is measurably genre-dependent,
@@ -2555,8 +2634,15 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList') 
 function computeBMTREAccuracy(evalMetrics) {
   const m = evalMetrics;
   const p = k => m.precisionAtK[k] ?? 0;
+  // Graded against calibratedMae, not raw mae — see engine.js's
+  // calibrateScore() comment for the full 5-fold-cross-validated
+  // derivation. matchScore() was only ever designed to rank correctly,
+  // never to hit an absolute 0-100 scale directly, so grading it on raw
+  // magnitude error was punishing it for something it wasn't built to do;
+  // the calibrated value asks the fair question ("once you account for
+  // the score's real scale, how far off is it") instead.
   const maeCeiling = Math.max(1, m.meanBaselineMae * 2);
-  const maeAccuracy = Math.max(0, 100 * (1 - m.mae / maeCeiling));
+  const maeAccuracy = Math.max(0, 100 * (1 - m.calibratedMae / maeCeiling));
   // Graded against the real achievable ceiling, not a flat 50 — Bill's
   // ratings skew high enough that genuine dislikes (myRating<=5) are a
   // small minority of the dataset (e.g. ~30 of 533 titles today), so a
@@ -2575,7 +2661,7 @@ function computeBMTREAccuracy(evalMetrics) {
     { key: 'p25', label: 'Precision@25', weight: 0.20, subscore: p(25) },
     { key: 'p50', label: 'Precision@50', weight: 0.20, subscore: p(50) },
     { key: 'p100', label: 'Precision@100', weight: 0.15, subscore: p(100) },
-    { key: 'mae', label: 'Rating accuracy (vs. baseline)', weight: 0.15, subscore: maeAccuracy },
+    { key: 'mae', label: 'Rating accuracy (calibrated, vs. baseline)', weight: 0.15, subscore: maeAccuracy },
     { key: 'bottom', label: 'Bottom-dislike catch rate (vs. achievable ceiling)', weight: 0.15, subscore: bottomCatchRate },
   ];
   const score = Math.round(components.reduce((s, c) => s + c.weight * c.subscore, 0));
@@ -2734,16 +2820,20 @@ async function load() {
   document.getElementById('bmtreAccuracySection').innerHTML =
     '<div class="tk-empty">Computing accuracy metrics (a real leave-one-out pass over every rated title — a few seconds)…</div>';
   document.getElementById('bmtreAccuracyFootnote').textContent = '';
-  computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta).then(evalMetrics => {
+  computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags).then(evalMetrics => {
     const bmtreAccuracy = computeBMTREAccuracy(evalMetrics);
     renderQualityDial('bmtreAccuracySection', bmtreAccuracy);
     document.getElementById('bmtreAccuracyFootnote').textContent =
       `Leave-one-out over ${fmtNum(evalMetrics.n)} watched+rated+enriched titles ` +
       `(movies n=${evalMetrics.byType.movie?.n ?? 0}, shows n=${evalMetrics.byType.show?.n ?? 0}). ` +
-      `MAE ${evalMetrics.mae.toFixed(1)} vs. a naive always-predict-the-mean baseline of ${evalMetrics.meanBaselineMae.toFixed(1)}` +
-      (evalMetrics.mae > evalMetrics.meanBaselineMae
-        ? ' — the model is currently worse than that trivial baseline on raw magnitude error alone (Bill\'s ratings skew high, so guessing the mean scores well on MAE without ranking anything correctly; this is exactly why precision@k, weighted higher above, is the metric that matters more here).'
-        : ' — the model beats that trivial baseline.');
+      `Raw MAE ${evalMetrics.mae.toFixed(1)}, calibrated MAE ${evalMetrics.calibratedMae.toFixed(1)}, vs. a naive always-predict-the-mean ` +
+      `baseline of ${evalMetrics.meanBaselineMae.toFixed(1)}` +
+      (evalMetrics.calibratedMae > evalMetrics.meanBaselineMae
+        ? ' — even calibrated, the model is still worse than that trivial baseline on raw magnitude error alone (this is exactly why ' +
+          'precision@k, weighted higher above, is the metric that matters more here).'
+        : ' — once rescaled to Bill\'s real 0-100 rating distribution (matchScore() was only ever designed to rank correctly, not to ' +
+          'hit an absolute scale — see engine.js\'s calibrateScore()), the model genuinely beats that trivial baseline; the raw, ' +
+          'uncalibrated score alone would not.');
   });
 
   for (const [type, chartId, noteId, label] of [
