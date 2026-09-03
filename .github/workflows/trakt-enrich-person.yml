@@ -7,6 +7,10 @@ on:
         description: 'How many people to enrich this run'
         type: number
         default: 300
+      refresh_all:
+        description: 'Re-fetch every already-cached person too (one-off backfill for a new field, e.g. popularity)'
+        type: boolean
+        default: false
 
 jobs:
   enrich:
@@ -18,11 +22,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Fetch birthday/gender for lead cast members from TMDB
+      - name: Fetch birthday/gender/popularity for lead cast members from TMDB
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          REFRESH_ALL: ${{ inputs.refresh_all && '1' || '' }}
         run: python3 trakt/enrich_person.py ${{ inputs.batch_size || 300 }}
-        timeout-minutes: 30
+        timeout-minutes: 45
       - name: Commit if changed
         if: always()
         run: |
