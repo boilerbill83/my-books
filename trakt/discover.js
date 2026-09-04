@@ -811,6 +811,82 @@ function runtimeLabel(c, enrichedMeta) {
   return `${seasonPart}${meta.numberOfEpisodes} episode${meta.numberOfEpisodes === 1 ? '' : 's'}${perEp}`;
 }
 
+// Cast line for the currently-watching hero — reuses the same
+// topCast/topCastDetail data metaLine() has access to but metaLine() itself
+// never surfaces names, only counts/ratings, so this is a small dedicated
+// helper rather than overloading that function's own scope.
+function castLine(meta) {
+  if (!meta?.topCast?.length) return '';
+  return meta.topCast.slice(0, 5).join(', ');
+}
+
+// Bill: "instead of 'start here tonight', let's showcase what I am
+// currently watching." Prefers, in order: (1) Bill's own manually-stated
+// current watch (currentlyWatchingFeature.json — see that file's own
+// "note" field for why this exists rather than deriving everything from
+// Trakt: a title he just started tonight may not be in a Trakt
+// export/sync yet, and this project never fabricates Trakt history to
+// paper over that gap), (2) the most recently-watched real in-progress
+// show from currentlyWatching.json (excludes the documented 1970-01-01
+// bulk-import placeholder), (3) falls back to the original "top
+// recommendation" hero when neither exists, so the section is never empty.
+function pickCurrentlyWatching(feature, currentlyWatching, enrichedMeta) {
+  if (feature?.titleKey && enrichedMeta[feature.titleKey]) {
+    return { titleKey: feature.titleKey, type: feature.titleKey.split(':')[0], facts: feature.facts, progress: currentlyWatching.find(t => t.titleKey === feature.titleKey) };
+  }
+  const real = currentlyWatching
+    .filter(t => t.type === 'show' && t.plays < t.airedEpisodes && t.lastWatchedAt && t.lastWatchedAt !== '1970-01-01T00:00:00.000Z' && enrichedMeta[t.titleKey])
+    .sort((a, b) => new Date(b.lastWatchedAt) - new Date(a.lastWatchedAt));
+  if (real.length) return { titleKey: real[0].titleKey, type: 'show', facts: null, progress: real[0] };
+  return null;
+}
+
+function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
+  const el = document.getElementById('heroPick');
+  const meta = enrichedMeta[pick.titleKey];
+  const candidate = { titleKey: pick.titleKey, type: pick.type, title: meta.title, year: meta.year };
+  const poster = posterUrl(pick.titleKey, enrichedMeta, 'w342');
+  const omdbEntry = omdbMeta?.[pick.titleKey];
+  const critic = criticScore(omdbEntry);
+  const audience = realAudienceScore(omdbEntry);
+  const cast = castLine(meta);
+  const progressText = pick.progress
+    ? `${pick.progress.plays} of ${pick.progress.airedEpisodes} episode${pick.progress.airedEpisodes === 1 ? '' : 's'} watched`
+    : null;
+  const scoreVal = meta.voteAverage != null ? meta.voteAverage.toFixed(1) : null;
+  el.innerHTML = `
+    <div class="tk-hero-poster">${posterImgHtml(poster, 'tk-hero-img', 150, 225)}</div>
+    <div class="tk-hero-body">
+      <div class="tk-hero-kicker">📺 Currently Watching</div>
+      <div class="tk-hero-title">
+        ${typeIcon(pick.type)} ${titleLink(candidate)}${meta.year ? ` <span class="tk-hero-year">(${esc(meta.year)})</span>` : ''}
+        ${meta.networks?.length ? `<span class="tk-hero-badge">${esc(meta.networks[0])}</span>` : ''}
+      </div>
+      <div class="tk-hero-meta">${esc([runtimeLabel(candidate, enrichedMeta), metaLine(candidate, enrichedMeta, omdbMeta, llmTags, reviewedTags)].filter(Boolean).join(' · '))}</div>
+      ${cast ? `<div class="tk-hero-cast">Starring ${esc(cast)}</div>` : ''}
+      ${progressText ? `<div class="tk-hero-progress">${esc(progressText)}</div>` : ''}
+      ${meta.overview ? `<div class="tk-hero-reason">${esc(meta.overview)}</div>` : ''}
+      <div class="tk-hero-actions">
+        <a class="tk-btn" href="./deepdive.html?key=${encodeURIComponent(pick.titleKey)}">🔎 Deep Dive</a>
+        <a class="tk-btn" href="${esc(traktUrl(candidate))}" target="_blank" rel="noopener">Open on Trakt ↗</a>
+      </div>
+      ${pick.facts?.length ? `
+        <div class="tk-hero-facts">
+          <div class="tk-hero-facts-title">The Real Story</div>
+          ${pick.facts.map(f => `<div class="tk-hero-fact">${esc(f.text)}${f.source ? ` <a href="${esc(f.source)}" target="_blank" rel="noopener" class="tk-hero-fact-source">${esc(f.sourceLabel || 'source')}</a>` : ''}</div>`).join('')}
+        </div>
+      ` : ''}
+    </div>
+    ${scoreVal ? `
+    <div class="tk-hero-score">
+      <div class="tk-hero-score-num">${scoreVal}</div>
+      <div class="tk-hero-score-label">TMDB rating</div>
+      ${critic != null ? `<div class="tk-hero-score-sub">${critic}/100 critics</div>` : ''}
+      ${audience != null ? `<div class="tk-hero-score-sub">${audience}/100 audience</div>` : ''}
+    </div>` : ''}
+  `;
+}
+
 // 1. Tonight's Top Pick — pool[0], full-width hero above the panels.
 // Returns the picked candidate so load() can assert it equals the #1 card
 // of the matching You'll Love panel (same pool, same sort — provably true,
@@ -1028,7 +1104,8 @@ function renderTasteLine(genreStats, crowdCompare, castStats, tenRatedCount) {
 
 async function load() {
   const { dashboard: d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback,
-          llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta } = await loadAllData();
+          llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
+          currentlyWatchingFeature } = await loadAllData();
 
   const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
@@ -1058,7 +1135,9 @@ async function load() {
   // shelves below, so nothing here can surface that the You'll Love panels
   // themselves would refuse.
   const pool = discoverPool(soloWatchlist, soloCandidates, enrichedMeta);
-  renderHero(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
+  const watchingNow = pickCurrentlyWatching(currentlyWatchingFeature, soloCurrentlyWatching, enrichedMeta);
+  if (watchingNow) renderCurrentlyWatchingHero(watchingNow, enrichedMeta, omdbMeta, llmTags, reviewedTags);
+  else renderHero(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
   initSurprise(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
 
   renderRecPanel('movieRecList', byType(soloWatchlist, 'movie'), byType(soloCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
