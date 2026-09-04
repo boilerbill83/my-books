@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-09-03T01:19:37.560Z",
+  "generatedAt": "2026-09-04T14:55:11.242Z",
   "profile": {
     "username": "bill_stoltenberg_27166c",
     "joinedAt": "2026-07-27T14:49:58.000Z"
   },
   "summary": {
-    "moviesWatched": 193,
-    "moviesPlays": 193,
-    "moviesRatings": 192,
-    "moviesMinutes": 24369,
-    "showsWatched": 384,
-    "showsRatings": 391,
-    "episodesWatched": 11144,
-    "episodesPlays": 11144,
-    "episodesMinutes": 479354,
-    "totalRatings": 583,
-    "totalMinutes": 503723,
-    "totalHours": 8395,
-    "avgRating": 7.82
+    "moviesWatched": 198,
+    "moviesPlays": 198,
+    "moviesRatings": 197,
+    "moviesMinutes": 24947,
+    "showsWatched": 389,
+    "showsRatings": 396,
+    "episodesWatched": 11367,
+    "episodesPlays": 11367,
+    "episodesMinutes": 490648,
+    "totalRatings": 593,
+    "totalMinutes": 515595,
+    "totalHours": 8593,
+    "avgRating": 7.81
   },
   "ratingDistribution": {
     "1": 0,
@@ -25,11 +25,11 @@
     "3": 4,
     "4": 21,
     "5": 7,
-    "6": 49,
-    "7": 114,
-    "8": 213,
+    "6": 51,
+    "7": 116,
+    "8": 218,
     "9": 87,
-    "10": 84
+    "10": 85
   },
   "activityByYear": [
     {
@@ -79,7 +79,7 @@
     },
     {
       "year": 2005,
-      "movies": 3,
+      "movies": 4,
       "episodes": 92
     },
     {
@@ -104,7 +104,7 @@
     },
     {
       "year": 2010,
-      "movies": 2,
+      "movies": 3,
       "episodes": 133
     },
     {
@@ -120,52 +120,52 @@
     {
       "year": 2013,
       "movies": 6,
-      "episodes": 181
+      "episodes": 194
     },
     {
       "year": 2014,
       "movies": 3,
-      "episodes": 188
+      "episodes": 201
     },
     {
       "year": 2015,
       "movies": 18,
-      "episodes": 170
+      "episodes": 183
     },
     {
       "year": 2016,
       "movies": 17,
-      "episodes": 197
+      "episodes": 220
     },
     {
       "year": 2017,
       "movies": 16,
-      "episodes": 201
+      "episodes": 232
     },
     {
       "year": 2018,
       "movies": 15,
-      "episodes": 202
+      "episodes": 232
     },
     {
       "year": 2019,
       "movies": 17,
-      "episodes": 215
+      "episodes": 246
     },
     {
       "year": 2020,
-      "movies": 4,
-      "episodes": 61
+      "movies": 5,
+      "episodes": 73
     },
     {
       "year": 2021,
       "movies": 5,
-      "episodes": 79
+      "episodes": 91
     },
     {
       "year": 2022,
       "movies": 12,
-      "episodes": 167
+      "episodes": 195
     },
     {
       "year": 2023,
@@ -179,19 +179,19 @@
     },
     {
       "year": 2025,
-      "movies": 12,
+      "movies": 13,
       "episodes": 250
     },
     {
       "year": 2026,
-      "movies": 8,
-      "episodes": 122
+      "movies": 9,
+      "episodes": 139
     }
   ],
   "dataCaveats": {
     "undatedEpisodePlays": 7523,
-    "datedEpisodePlays": 3621,
-    "undatedEpisodeSharePct": 67.5
+    "datedEpisodePlays": 3844,
+    "undatedEpisodeSharePct": 66.2
   },
   "topShowsByPlays": [
     {
@@ -286,6 +286,12 @@
     }
   ],
   "topRatedMovies": [
+    {
+      "title": "The Town",
+      "year": 2010,
+      "rating": 10,
+      "ratedAt": "2026-09-04T14:51:52.000Z"
+    },
     {
       "title": "Walk the Line",
       "year": 2005,
@@ -399,12 +405,6 @@
       "year": 2012,
       "rating": 10,
       "ratedAt": "2026-08-21T14:13:41.000Z"
-    },
-    {
-      "title": "This Is 40",
-      "year": 2012,
-      "rating": 10,
-      "ratedAt": "2026-08-21T14:13:28.000Z"
     }
   ],
   "topRatedShows": [
@@ -690,12 +690,6 @@
       },
       {
         "type": "movie",
-        "title": "War Machine",
-        "year": 2026,
-        "listedAt": "2026-08-21T15:27:26.000Z"
-      },
-      {
-        "type": "movie",
         "title": "After the Hunt",
         "year": 2025,
         "listedAt": "2026-08-21T15:27:42.000Z"
@@ -783,6 +777,12 @@
         "title": "Hotel Cocaine",
         "year": 2024,
         "listedAt": "2026-09-03T00:45:39.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Bad Sisters",
+        "year": 2022,
+        "listedAt": "2026-09-03T19:46:55.000Z"
       }
     ]
   },
