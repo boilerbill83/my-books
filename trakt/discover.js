@@ -702,6 +702,21 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
   // hides it, since watching it isn't actually possible in full yet.
   watchlistItems = watchlistItems.filter(c => !isActivelyAiring(c, enrichedMeta));
   candidateItems = candidateItems.filter(c => !isActivelyAiring(c, enrichedMeta));
+  // Bill: "The Dark Knight is one of my top recommendations... what if we
+  // just excluded comic book movies from the top 10?... don't change the
+  // score, just filter them out from that one section." Same display-only
+  // precedent as isActivelyAiring above, but scoped like the taste-based
+  // filters in rankAll() (isReEdit/isNonEnglish/isPreMillenniumMovie/
+  // isAnimation) — never applied to the watchlist, since a superhero title
+  // Bill queued himself is his own real pick, not the engine's discovery.
+  // Root cause this is masking, not fixing: Session 64 found candidates
+  // like this score high mainly via a mutual TMDB citation with Deadpool/
+  // Watchmen (real Bill favorites that are themselves genre outliers, see
+  // the dashboard's loved-title-category-anomaly-signal finding) — tested
+  // a real scoring fix for that and it regressed precision@10 broadly, so
+  // this display-only exclusion is the safe version Bill explicitly asked
+  // for instead.
+  candidateItems = candidateItems.filter(c => !inferSubgenres(enrichedMeta[c.titleKey], llmTags[c.titleKey], undefined, reviewedTags[c.titleKey]).includes('superhero'));
   // Ranks by bmtreScoreRaw (the real, unclamped score), not the displayed
   // bmtreScore — score-clamp-saturation fix, see engine.js's
   // computeScorePair() comment. rankAll() already sorts fromWatchlist/
