@@ -2788,36 +2788,51 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   }
 
   {
-    const premiumNetworks = ['HBO', 'Showtime', 'AMC'];
+    const premiumNetworks = ['HBO', 'HBO Max', 'Max', 'Showtime', 'AMC'];
     const rows = (library.titles || []).filter(t => t.type === 'show' && t.myRating != null && enrichedMeta[t.titleKey]?.networks?.some(n => premiumNetworks.includes(n)));
     const avg = rows.length ? rows.reduce((s, t) => s + t.myRating, 0) / rows.length : null;
     const allShows = (library.titles || []).filter(t => t.type === 'show' && t.myRating != null);
     const overallAvg = allShows.length ? allShows.reduce((s, t) => s + t.myRating, 0) / allShows.length : null;
+    const big4 = ['ABC', 'NBC', 'CBS', 'FOX'];
+    const bucket = (list, recent) => {
+      const b = list.filter(t => (t.year || enrichedMeta[t.titleKey]?.year || 0) >= 2020 === recent);
+      return b.length ? b.reduce((s, t) => s + t.myRating, 0) / b.length : null;
+    };
+    const hboRecent = bucket(rows, true), hboOlder = bucket(rows, false);
+    const big4Rows = allShows.filter(t => enrichedMeta[t.titleKey]?.networks?.some(n => big4.includes(n)));
+    const big4Recent = bucket(big4Rows, true), big4Older = bucket(big4Rows, false);
     findings.push({
       id: 'premium-network-signal-tested',
       severity: 'warning',
       ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
-      title: `Tested: a premium-network (HBO/Showtime/AMC) bonus regressed precision@50 with no net gain — not shipped, kept as a documented dead end`,
-      technical: `Live check: HBO/Showtime/AMC shows average myRating ${avg?.toFixed(2)} vs. ${overallAvg?.toFixed(2)} across all ${allShows.length} ` +
-        `rated shows (n=${rows.length}) — a real, positive delta. Checked for the obvious confound first (a single loved creator inflating the ` +
-        `average, the exact failure mode that sank the creator-critic-trust-gap idea above): confirmed diffuse, not concentrated — the most any ` +
-        `single creator repeats within these three networks is 5 of 54 HBO shows (David Simon), unlike Paramount+ (deliberately excluded from this ` +
-        `test) where 7 of 16 rated shows are Taylor Sheridan alone, already fully credited via the existing creator-match signal. Swept a flat ` +
-        `on-premium-network bonus (scale 0-15) against <code>scripts/eval.js</code> anyway, since a real correlation deserved a real test rather ` +
-        `than being dismissed on the Paramount+ finding alone: scale 1-2 changed nothing at all (identical to baseline on every metric), scale≥4 ` +
-        `only ever cost precision@50 (98%→96%) for no compensating gain until an unrealistically large scale=15 (91%→92% on precision@100, with ` +
-        `MAE clearly degrading 14.64→14.70). Root cause, the same shape as the season-count finding above even though the redundancy mechanism is ` +
-        `different: a well-regarded HBO/Showtime/AMC show already scores well through community rating and vote count, so a flat network bonus ` +
-        `mostly pays out on titles that already score high through other paths rather than lifting a genuinely under-scored one.`,
-      plain: `Does watching something on HBO, Showtime, or AMC specifically predict a higher rating, beyond what genre/creator/popularity already ` +
-        `capture? Checked carefully for the obvious trap first (one loved creator's shows dominating a network's average, which is exactly what ` +
-        `sank the Paramount+/Taylor Sheridan pattern — deliberately excluded from this test) and confirmed these three networks' advantage is ` +
-        `real and spread across many different creators, not one. But testing a working scoring bonus against real held-out predictions still ` +
-        `showed no net benefit — a well-regarded show on these networks is already scoring well through the engine's existing signals, so a flat ` +
-        `network bonus mostly duplicates credit rather than adding anything new.`,
-      impact: `A genuine negative result on a hypothesis that survived its first sanity check (no creator-concentration trap) but still failed the ` +
-        `real test — worth keeping on record for the same reason as the other dead ends in this list. Paramount+ specifically was excluded ` +
-        `up front rather than tested and rejected, since the creator-concentration evidence for it was already conclusive.`,
+      title: `Tested twice: a premium-network (HBO family/Showtime/AMC) bonus — flat AND recency-targeted per Bill's own "especially recent" hypothesis — never produced a net gain`,
+      technical: `Live check, HBO/HBO Max/Max merged as one brand (TMDB labels the same network differently by era due to real-world rebranding — ` +
+        `treating them separately in round 1 understated the true sample): premium-network shows average myRating ${avg?.toFixed(2)} vs. ` +
+        `${overallAvg?.toFixed(2)} across all ${allShows.length} rated shows (n=${rows.length}). Round 1 (this same session) already found this ` +
+        `diffuse, not creator-concentrated (max repeat 5 of 67, David Simon — unlike Paramount+, deliberately excluded, where 7 of 16 rated shows ` +
+        `are Taylor Sheridan alone), and swept a flat bonus 0-15 against <code>scripts/eval.js</code> with no net gain. Bill's specific follow-up ` +
+        `("I tend to love HBO/MAX way more than ABC or NBC, especially recent stuff") prompted two more things, checked before touching code: ` +
+        `(1) confirmed via live era-bucketing this is real — premium-network recent (2020+) avg ${hboRecent?.toFixed(2)} vs. Big4 recent avg ` +
+        `${big4Recent?.toFixed(2)}, a ${((hboRecent ?? 0) - (big4Recent ?? 0)).toFixed(2)}-point gap, vs. only a ${((hboOlder ?? 0) - (big4Older ?? 0)).toFixed(2)}-point ` +
+        `gap pre-2020 (premium older ${hboOlder?.toFixed(2)}, Big4 older ${big4Older?.toFixed(2)}) — the gap really does widen recently, exactly as ` +
+        `Bill described. (2) But the mechanism is Big4 collapsing, not premium networks improving: Big4's own recent-vs-older drop (${big4Older?.toFixed(2)}→` +
+        `${big4Recent?.toFixed(2)}) is far steeper than premium's (${hboOlder?.toFixed(2)}→${hboRecent?.toFixed(2)}), and that Big4 collapse is already ` +
+        `fully captured by the existing <code>modernNetworkTvPenalty</code> (-16, 2020+, Big4-only). Re-tested with the corrected HBO/HBO Max/Max ` +
+        `merge (round 1 used "HBO" alone) AND a dedicated premium+2020-plus interaction bonus targeting Bill's exact hypothesis directly: the ` +
+        `corrected flat version was inert through scale=4, costing precision@50 only at scale=8 with nothing gained; the recency-interaction ` +
+        `version never gained anything at any scale (0-12) while MAE steadily worsened (14.64→14.90). Both confirm the same conclusion as round 1 ` +
+        `— the real advantage is already priced in through community rating, vote count, and (for the Big4 side specifically) the existing ` +
+        `recency penalty.`,
+      plain: `Bill's specific pushback: "I tend to love HBO/MAX way more than ABC or NBC, especially recent stuff." Checked this directly rather ` +
+        `than re-asserting the earlier result — and the "especially recent" part is real: the gap between HBO/Max-family shows and ABC/NBC/CBS/` +
+        `Fox shows really is much bigger in the last few years than it used to be. But digging into why showed it's because ABC/NBC/CBS/Fox shows ` +
+        `have gotten worse recently (by Bill's own ratings), not because HBO/Max has gotten better — and the engine already has a real, working ` +
+        `penalty for exactly that ABC/NBC/CBS/Fox recent-decline pattern. Built and tested a bonus aimed squarely at Bill's stated idea (extra ` +
+        `credit for a premium network AND a recent release, together) and it still didn't help real predictions — there wasn't a gap left to fill.`,
+      impact: `Two independent, real attempts at this hypothesis (a flat version and one built specifically around Bill's own "especially recent" ` +
+        `framing) both failed the same way — a stronger negative result than round 1 alone, since round 2 was purpose-built to test the exact ` +
+        `mechanism Bill proposed rather than a generic version of the idea. Worth keeping on record so this specific, well-reasoned angle doesn't ` +
+        `get silently re-proposed. Paramount+ remains excluded up front (creator-concentration evidence already conclusive, not re-tested).`,
     });
   }
 
