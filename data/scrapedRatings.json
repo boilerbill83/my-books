@@ -4221,10 +4221,13 @@
   },
   "you\u2019ll love it here|||natalie sue": {
     "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found",
-    "checkedAt": "2026-08-21"
+    "amazon": {
+      "rating": 4.1,
+      "count": 159
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/71FcuV5b2oL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-09-04"
   },
   "the hard thing about hard things|||ben horowitz": {
     "storyGraph": null,
