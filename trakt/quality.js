@@ -2836,6 +2836,66 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
+  // 9. Root-caused Bill's real complaint ("comic book movies should almost
+  // never appear as a top recommendation") down to a specific mechanism,
+  // not a blanket genre problem — checking why Zack Snyder's Justice
+  // League scored 93.0 found BOTH its forward-match (+23.45) AND reverse-
+  // match (+12.00) credit traced back to the exact same single title,
+  // Deadpool — a mutual TMDB citation pair (Deadpool cites JL, JL cites
+  // Deadpool back) double-counted as two independent votes from one
+  // source. Checked how widespread this is before designing a fix.
+  {
+    const lovedTitles = (library.titles || []).filter(t => t.myRating != null && t.myRating >= 9);
+    const lovedKeys = new Set(lovedTitles.map(t => t.titleKey));
+    const pool = [...fromWatchlist, ...fromCandidates];
+    let totalWithBoth = 0, mutualCount = 0;
+    for (const c of pool) {
+      const m = enrichedMeta[c.titleKey];
+      if (!m) continue;
+      const cites = new Set([...(m.similarToIds || []), ...(m.recommendedIds || [])].map(id => titleKey(c.type, id)));
+      const citingLoved = [...cites].filter(k => lovedKeys.has(k));
+      if (!citingLoved.length) continue;
+      const citedByLoved = lovedTitles.filter(t => {
+        const lm = enrichedMeta[t.titleKey];
+        if (!lm) return false;
+        const c2 = new Set([...(lm.similarToIds || []), ...(lm.recommendedIds || [])].map(id => titleKey(t.type, id)));
+        return c2.has(c.titleKey);
+      });
+      if (!citedByLoved.length) continue;
+      totalWithBoth++;
+      if (citingLoved.some(k => citedByLoved.some(t => t.titleKey === k))) mutualCount++;
+    }
+    findings.push({
+      id: 'mutual-citation-double-count-tested',
+      severity: 'warning',
+      ratings: { ease: 3, dataQuality: 2, recEngine: 3, ui: 1 },
+      title: `Root-caused the comic-book-movie complaint to a real mechanism (mutual citation double-counting) — confirmed it fixes the specific case, but a general fix regressed precision, so it wasn't shipped`,
+      technical: `Live check: of the ${totalWithBoth} watchlist/candidate titles with both a forward AND reverse loved-title citation match, ` +
+        `${mutualCount} (${totalWithBoth ? Math.round(mutualCount / totalWithBoth * 100) : 0}%) have the SAME loved title counted in both directions — ` +
+        `TMDB's similar/recommendations endpoints are frequently symmetric for closely-related titles, so a single relationship (e.g. Deadpool↔` +
+        `Zack Snyder's Justice League) gets harvested from both titles' own API responses and credited as two independent votes rather than one. ` +
+        `Built a scratch fix in <code>buildIndexes()</code>: when adding a loved title's citation to <code>reverseSimilar</code>, skip it if the ` +
+        `cited candidate also cites that same loved title back (already captured via the forward-match term instead). Confirmed it does exactly ` +
+        `what it's supposed to on the case that motivated it — Zack Snyder's Justice League's raw score drops 91.2→83.6 with the fix on. But swept ` +
+        `against <code>scripts/eval.js</code> across the whole pool and it REGRESSED broadly: precision@10 100%→90%, precision@50 98%→94%, ` +
+        `precision@100 91%→90%, for only a marginal MAE gain (14.64→14.59). Root cause of the regression: most mutual citations in this dataset ` +
+        `are genuine strong corroboration, not artifacts — e.g. "The Westies" cites and is cited back by 5 different loved crime dramas ` +
+        `(Boardwalk Empire, Mayor of Kingstown, Mindhunter, Peaky Blinders, The Sopranos), a real, deep genre match the blanket fix would have ` +
+        `discounted right alongside the genuine Deadpool/Justice League anomaly.`,
+      plain: `Bill's real complaint: comic-book movies keep showing up as top picks despite him not caring for most of them. Traced the actual ` +
+        `cause for one specific case (Zack Snyder's Justice League) and found something real and fixable: its high score came largely from citing ` +
+        `Deadpool as "similar" AND being cited back by Deadpool — the same single relationship counted twice. Built a fix, confirmed it correctly ` +
+        `pulled that title's score down by a real amount, then tested it against every other real recommendation before shipping it — and it made ` +
+        `many other GOOD recommendations noticeably worse, because in most cases (unrelated to comic books) two titles citing each other back and ` +
+        `forth really is a strong, legitimate sign they're alike. Fixing the Deadpool/Justice League case specifically would have broken a lot of ` +
+        `other correct ones.`,
+      impact: `A genuine negative result on a real, correctly-diagnosed mechanism — the anomaly itself is confirmed real (not a false lead), but ` +
+        `a general-purpose fix isn't safe here the same way it wasn't for the earlier superhero-genre attempts. The one bad case this investigation ` +
+        `was built around (Zack Snyder's Justice League) is already handled the safe way — an exact-title dismissal, same as Eurovision. Worth ` +
+        `keeping on record so a future session sees the real sweep numbers before re-attempting a broader version of this fix.`,
+    });
+  }
+
   const order = { critical: 0, serious: 1, warning: 2, good: 3 };
   findings.sort((a, b) => order[a.severity] - order[b.severity]);
   return findings;
