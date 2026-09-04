@@ -417,6 +417,50 @@
       "reasonLabel": "Doesn't look good — Bill's own judgment call from the trailer/premise, not a mappable data field",
       "timestamp": "2026-08-27T12:34:26Z",
       "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:531454",
+      "title": "Eurovision Song Contest: The Story of Fire Saga",
+      "year": 2020,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "too_hokey",
+      "reasonLabel": "Too hokey — Bill's own judgment call from the trailer/premise, not a mappable data field",
+      "timestamp": "2026-09-03T00:00:00Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:791373",
+      "title": "Zack Snyder's Justice League",
+      "year": 2021,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "too_comicbooky",
+      "reasonLabel": "Too comicbooky — part of Bill's broader stated dislike of mainstream superhero-ensemble movies; investigated as a possible genre/subgenre-level signal (see Session 64) and NOT generalized, since Bill's own real rating history contradicts a blanket superhero penalty (Deadpool 10/10, Watchmen 10/10, Marvel's Daredevil 9/10) the same way a prior session's 'too_hokey' generalization attempt already found — recorded as an exact-title exclusion only",
+      "timestamp": "2026-09-03T00:00:00Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:272",
+      "title": "Batman Begins",
+      "year": 2005,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "already_watched",
+      "reasonLabel": "Already watched — Bill confirmed he just updated this on Trakt directly; not yet reflected in this project's committed data, which only ever updates from a fresh Trakt export upload (never a live API call, per this project's standing rule) — remove this exclusion once a new export confirms it in library.json",
+      "timestamp": "2026-09-03T00:00:00Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:436969",
+      "title": "The Suicide Squad",
+      "year": 2021,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "already_watched",
+      "reasonLabel": "Bill says already rated — real data check found only the separate 2016 'Suicide Squad' (myRating 4/10) in library.json, not this 2021 James Gunn film specifically; could be a real Trakt-export lag (same as Batman Begins) or a mix-up between the two similarly-named films — excluded either way pending a fresh export; remove or replace with the confirmed real rating once one arrives",
+      "timestamp": "2026-09-03T00:00:00Z",
+      "excludeFromRecommendations": true
     }
   ]
 }
