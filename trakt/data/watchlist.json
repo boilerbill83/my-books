@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-03T01:19:41.642Z",
+    "generatedAt": "2026-09-04T14:55:15.748Z",
     "count": 42
   },
   "titles": [
@@ -305,24 +305,6 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-08-11T00:07:34.000Z"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:1265609",
-      "ids": {
-        "imdb": "tt15940132",
-        "plex": {
-          "guid": "618e27b6646c288531cde0e1",
-          "slug": "war-machine-2026"
-        },
-        "slug": "war-machine-2026",
-        "tmdb": 1265609,
-        "trakt": 1026879
-      },
-      "title": "War Machine",
-      "year": 2026,
-      "watchlisted": true,
-      "watchlistedAt": "2026-08-21T15:27:26.000Z"
     },
     {
       "type": "show",
@@ -753,6 +735,25 @@
       "year": null,
       "watchlisted": true,
       "watchlistedAt": "2026-08-30T19:23:03.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:199318",
+      "ids": {
+        "imdb": "tt15469618",
+        "plex": {
+          "guid": "623def01f8aeb8075b72cce6",
+          "slug": "bad-sisters"
+        },
+        "slug": "bad-sisters",
+        "tmdb": 199318,
+        "tvdb": 418182,
+        "trakt": 194998
+      },
+      "title": "Bad Sisters",
+      "year": 2022,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-03T19:46:55.000Z"
     },
     {
       "type": "show",

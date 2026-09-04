@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-09-03T01:19:41.637Z",
-    "movieCount": 193,
-    "showCount": 384
+    "generatedAt": "2026-09-04T14:55:15.745Z",
+    "movieCount": 198,
+    "showCount": 389
   },
   "titles": [
     {
@@ -480,7 +480,7 @@
       "myRating": 9,
       "ratedAt": "2026-08-14T23:34:58.000Z",
       "plays": 9,
-      "airedEpisodes": 12,
+      "airedEpisodes": 13,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2026-08-01T01:21:00.000Z",
       "favorite": false
@@ -1141,6 +1141,30 @@
     },
     {
       "type": "show",
+      "titleKey": "show:199318",
+      "ids": {
+        "imdb": "tt15469618",
+        "plex": {
+          "guid": "623def01f8aeb8075b72cce6",
+          "slug": "bad-sisters"
+        },
+        "slug": "bad-sisters",
+        "tmdb": 199318,
+        "tvdb": 418182,
+        "trakt": 194998
+      },
+      "title": "Bad Sisters",
+      "year": 2022,
+      "myRating": 7,
+      "ratedAt": "2026-09-03T19:46:53.000Z",
+      "plays": 10,
+      "airedEpisodes": 18,
+      "completionStatus": "in-progress",
+      "lastWatchedAt": "2022-10-14T01:58:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
       "titleKey": "show:4613",
       "ids": {
         "imdb": "tt0185906",
@@ -1254,6 +1278,27 @@
       "airedEpisodes": 50,
       "completionStatus": "caught-up",
       "lastWatchedAt": "2017-04-25T02:44:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:272",
+      "ids": {
+        "imdb": "tt0372784",
+        "plex": {
+          "guid": "5d776cc1ad5437001f7c8420",
+          "slug": "batman-begins"
+        },
+        "slug": "batman-begins-2005",
+        "tmdb": 272,
+        "trakt": 228
+      },
+      "title": "Batman Begins",
+      "year": 2005,
+      "myRating": 6,
+      "ratedAt": "2026-09-04T12:53:06.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2005-06-15T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -2562,7 +2607,7 @@
       "myRating": 9,
       "ratedAt": "2026-07-29T00:56:35.000Z",
       "plays": 9,
-      "airedEpisodes": 10,
+      "airedEpisodes": 11,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2024-06-26T03:02:00.000Z",
       "favorite": false
@@ -3075,6 +3120,30 @@
       "ratedAt": null,
       "plays": 1,
       "lastWatchedAt": "2011-09-16T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:206828",
+      "ids": {
+        "imdb": "tt34385331",
+        "plex": {
+          "guid": "6943f0185c1d277eda251d1c",
+          "slug": "dtf-st-louis-1"
+        },
+        "slug": "dtf-st-louis",
+        "tmdb": 206828,
+        "tvdb": 468739,
+        "trakt": 197136
+      },
+      "title": "DTF St. Louis",
+      "year": 2026,
+      "myRating": 6,
+      "ratedAt": "2026-09-03T19:47:11.000Z",
+      "plays": 7,
+      "airedEpisodes": 7,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-04-13T00:56:00.000Z",
       "favorite": false
     },
     {
@@ -7105,6 +7174,30 @@
     },
     {
       "type": "show",
+      "titleKey": "show:1424",
+      "ids": {
+        "imdb": "tt2372162",
+        "plex": {
+          "guid": "5d9c086c3c3f87001f34f634",
+          "slug": "orange-is-the-new-black"
+        },
+        "slug": "orange-is-the-new-black",
+        "tmdb": 1424,
+        "tvdb": 264586,
+        "trakt": 1415
+      },
+      "title": "Orange Is the New Black",
+      "year": 2013,
+      "myRating": 8,
+      "ratedAt": "2026-09-03T15:23:08.000Z",
+      "plays": 91,
+      "airedEpisodes": 91,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2019-07-26T08:30:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
       "titleKey": "show:109939",
       "ids": {
         "imdb": "tt11000902",
@@ -7969,6 +8062,30 @@
     },
     {
       "type": "show",
+      "titleKey": "show:254953",
+      "ids": {
+        "imdb": "tt32420734",
+        "plex": {
+          "guid": "664c912d9ecccd2ff053cd86",
+          "slug": "rooster"
+        },
+        "slug": "rooster",
+        "tmdb": 254953,
+        "tvdb": 457770,
+        "trakt": 240718
+      },
+      "title": "Rooster",
+      "year": 2026,
+      "myRating": 8,
+      "ratedAt": "2026-09-03T19:47:20.000Z",
+      "plays": 10,
+      "airedEpisodes": 10,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-05-11T02:31:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
       "titleKey": "show:244623",
       "ids": {
         "imdb": "tt14879018",
@@ -8499,7 +8616,7 @@
       "myRating": 7,
       "ratedAt": "2026-08-13T13:32:00.000Z",
       "plays": 20,
-      "airedEpisodes": 29,
+      "airedEpisodes": 30,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2025-01-17T02:59:00.000Z",
       "favorite": false
@@ -9993,8 +10110,8 @@
       "myRating": 8,
       "ratedAt": "2024-03-07T00:00:00.000Z",
       "plays": 8,
-      "airedEpisodes": 8,
-      "completionStatus": "caught-up",
+      "airedEpisodes": 16,
+      "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false
     },
@@ -11743,6 +11860,27 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:23168",
+      "ids": {
+        "imdb": "tt0840361",
+        "plex": {
+          "guid": "5d77684be870fd001f19dbb5",
+          "slug": "the-town"
+        },
+        "slug": "the-town-2010",
+        "tmdb": 23168,
+        "trakt": 14027
+      },
+      "title": "The Town",
+      "year": 2010,
+      "myRating": 10,
+      "ratedAt": "2026-09-04T14:51:52.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2010-09-17T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:556984",
       "ids": {
         "imdb": "tt1070874",
@@ -11808,6 +11946,27 @@
       "airedEpisodes": 8,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:529485",
+      "ids": {
+        "imdb": "tt8544498",
+        "plex": {
+          "guid": "5d77705981ba41001faee238",
+          "slug": "the-way-back-2020"
+        },
+        "slug": "the-way-back-2020",
+        "tmdb": 529485,
+        "trakt": 379254
+      },
+      "title": "The Way Back",
+      "year": 2020,
+      "myRating": 8,
+      "ratedAt": "2026-09-04T14:52:08.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2020-03-06T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -12063,6 +12222,30 @@
       "airedEpisodes": 7,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:67136",
+      "ids": {
+        "imdb": "tt5555260",
+        "plex": {
+          "guid": "5d9c0805e98e47001eb058dc",
+          "slug": "this-is-us"
+        },
+        "slug": "this-is-us",
+        "tmdb": 67136,
+        "tvdb": 311714,
+        "trakt": 107690
+      },
+      "title": "This Is Us",
+      "year": 2016,
+      "myRating": 8,
+      "ratedAt": "2026-09-03T11:46:31.000Z",
+      "plays": 105,
+      "airedEpisodes": 105,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2022-05-25T01:43:00.000Z",
       "favorite": false
     },
     {
@@ -12615,6 +12798,48 @@
       "ratedAt": "2016-08-19T00:00:00.000Z",
       "plays": 1,
       "lastWatchedAt": "2016-08-19T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1265609",
+      "ids": {
+        "imdb": "tt15940132",
+        "plex": {
+          "guid": "618e27b6646c288531cde0e1",
+          "slug": "war-machine-2026"
+        },
+        "slug": "war-machine-2026",
+        "tmdb": 1265609,
+        "trakt": 1026879
+      },
+      "title": "War Machine",
+      "year": 2026,
+      "myRating": 8,
+      "ratedAt": "2026-09-04T14:52:19.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2026-09-04T14:52:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1241436",
+      "ids": {
+        "imdb": "tt31434639",
+        "plex": {
+          "guid": "65dab8b5947189942fd7ba1e",
+          "slug": "warfare-2025"
+        },
+        "slug": "warfare-2025",
+        "tmdb": 1241436,
+        "trakt": 1004891
+      },
+      "title": "Warfare",
+      "year": 2025,
+      "myRating": 7,
+      "ratedAt": "2026-09-04T14:52:00.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2025-04-11T00:00:00.000Z",
       "favorite": false
     },
     {

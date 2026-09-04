@@ -18,9 +18,33 @@
     "myRating": 9,
     "ratedAt": "2026-08-14T23:34:58.000Z",
     "plays": 9,
-    "airedEpisodes": 12,
+    "airedEpisodes": 13,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2026-08-01T01:21:00.000Z",
+    "favorite": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:199318",
+    "ids": {
+      "imdb": "tt15469618",
+      "plex": {
+        "guid": "623def01f8aeb8075b72cce6",
+        "slug": "bad-sisters"
+      },
+      "slug": "bad-sisters",
+      "tmdb": 199318,
+      "tvdb": 418182,
+      "trakt": 194998
+    },
+    "title": "Bad Sisters",
+    "year": 2022,
+    "myRating": 7,
+    "ratedAt": "2026-09-03T19:46:53.000Z",
+    "plays": 10,
+    "airedEpisodes": 18,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "2022-10-14T01:58:00.000Z",
     "favorite": false
   },
   {
@@ -42,7 +66,7 @@
     "myRating": 9,
     "ratedAt": "2026-07-29T00:56:35.000Z",
     "plays": 9,
-    "airedEpisodes": 10,
+    "airedEpisodes": 11,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2024-06-26T03:02:00.000Z",
     "favorite": false
@@ -186,7 +210,7 @@
     "myRating": 7,
     "ratedAt": "2026-08-13T13:32:00.000Z",
     "plays": 20,
-    "airedEpisodes": 29,
+    "airedEpisodes": 30,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2025-01-17T02:59:00.000Z",
     "favorite": false
@@ -235,6 +259,30 @@
     "ratedAt": "2023-05-31T00:00:00.000Z",
     "plays": 34,
     "airedEpisodes": 39,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:236235",
+    "ids": {
+      "imdb": "tt13210838",
+      "plex": {
+        "guid": "6365f4db354ca0d2edfad043",
+        "slug": "the-gentlemen"
+      },
+      "slug": "the-gentlemen",
+      "tmdb": 236235,
+      "tvdb": 426845,
+      "trakt": 211407
+    },
+    "title": "The Gentlemen",
+    "year": 2024,
+    "myRating": 8,
+    "ratedAt": "2024-03-07T00:00:00.000Z",
+    "plays": 8,
+    "airedEpisodes": 16,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false
