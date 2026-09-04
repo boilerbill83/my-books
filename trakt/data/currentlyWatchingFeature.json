@@ -1,0 +1,32 @@
+{
+  "titleKey": "show:286709",
+  "setAt": "2026-09-04T00:00:00Z",
+  "note": "Bill's own stated current watch, told directly in chat — not yet reflected in a Trakt export/sync (The Westies isn't in library.json or currentlyWatching.json as of the Sep 4 2026 import). Manually pointed here rather than fabricating a Trakt watch event, same honesty precedent as feedbackData.json's already_watched entries. Update or clear this file the next time Bill names a different current watch, or once currentlyWatching.json picks it up for real.",
+  "facts": [
+    {
+      "text": "The Westies gang was real. Founded by Jimmy Coonan in Hell's Kitchen in the 1960s, they became the top Irish mob in New York after Coonan had rival boss Mickey Spillane murdered in 1977 with help from the Gambino family — then became the Gambinos' own enforcement arm, carrying out assigned executions and sharing in weekly profits.",
+      "source": "https://en.wikipedia.org/wiki/Westies",
+      "sourceLabel": "Wikipedia"
+    },
+    {
+      "text": "Law enforcement attributed at least 30 unsolved murders to the real Westies — one of the most violent gangs in New York City history.",
+      "source": "https://allthatsinteresting.com/mickey-featherstone",
+      "sourceLabel": "All That's Interesting"
+    },
+    {
+      "text": "The gang's downfall came from the inside: Mickey Featherstone, Coonan's second-in-command and a Vietnam veteran, was arrested for murder and flipped, testifying against his own crew rather than face 25 years in prison. He was released in 1988.",
+      "source": "https://en.wikipedia.org/wiki/Mickey_Featherstone",
+      "sourceLabel": "Wikipedia"
+    },
+    {
+      "text": "J.K. Simmons plays Eamon Sweeney, the show's fictionalized gang leader — described as charismatic but ruthless, old-school neighborhood loyalty masking fierce criminal ambition.",
+      "source": "https://collider.com/the-westies-true-story-titus-welliver-crime-thriller/",
+      "sourceLabel": "Collider"
+    },
+    {
+      "text": "The series is set against a real flashpoint: construction of the Jacob Javits Convention Center on the Westies' own Hell's Kitchen turf in the early 1980s, which promised a financial windfall and set off the internal power struggle the show dramatizes.",
+      "source": "https://boxofficehype.com/the-westies-2026-release-date-cast-story-why-mgms-new-crime-drama-is-generating-buzz/",
+      "sourceLabel": "Box Office Hype"
+    }
+  ]
+}

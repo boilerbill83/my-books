@@ -446,7 +446,8 @@ function initCollapsibleCards() {
 async function loadAllData() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
   const [dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback,
-         scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta] = await Promise.all([
+         scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
+         currentlyWatchingFeature] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -477,9 +478,14 @@ async function loadAllData() {
     // Keyed by TMDB person id, not titleKey. {} is a safe empty default
     // (deepdive.js already establishes this pattern for the same file).
     get('./data/personMetadata.json').catch(() => ({})),
+    // Bill's own stated current watch, told directly rather than derived
+    // from a Trakt export — see the file's own "note" field. { titleKey,
+    // facts: [{text, source, sourceLabel}] }; null is a safe empty default
+    // (no manual pointer set → the hero falls back to its normal pick).
+    get('./data/currentlyWatchingFeature.json').catch(() => null),
   ]);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
-  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta };
+  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature };
 }
 
 // Best Matches (Discover) and Prediction Misses (Quality) are two views of
