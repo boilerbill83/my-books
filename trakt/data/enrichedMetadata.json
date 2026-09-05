@@ -360994,5 +360994,169 @@
   "year": 2026,
   "type": "movie",
   "fetchedAt": "2026-09-05"
+ },
+ "movie:176": {
+  "genres": [
+   "Horror",
+   "Mystery",
+   "Crime"
+  ],
+  "overview": "Two men wake up to find themselves shackled in a grimy, abandoned bathroom. As they struggle to comprehend their predicament, they discover a disturbing tape left behind by the sadistic mastermind known as Jigsaw. With a chilling voice and cryptic instructions, Jigsaw informs them that they must partake in a gruesome game in order to secure their freedom.",
+  "keywords": [
+   "sadism",
+   "shotgun",
+   "detective",
+   "flashback",
+   "hospital",
+   "doctor",
+   "torture",
+   "sadist",
+   "survival horror",
+   "chained",
+   "bludgeoning",
+   "death match",
+   "booby trap",
+   "disguised voice",
+   "mind game"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0387564",
+  "voteAverage": 7.4,
+  "voteCount": 10291,
+  "popularity": 21.2521,
+  "posterPath": "/rLNSOudrayDBo1uqXjrhxcjODIC.jpg",
+  "similarToIds": [
+   663,
+   670,
+   678,
+   680,
+   692,
+   754,
+   763,
+   764,
+   765,
+   766,
+   769,
+   572,
+   444230,
+   588,
+   623,
+   626,
+   627,
+   629,
+   635,
+   262056
+  ],
+  "recommendedIds": [
+   298250,
+   41439,
+   214,
+   663,
+   11917,
+   602734,
+   951491,
+   1107166,
+   297608,
+   619778,
+   808396,
+   101669,
+   1081208,
+   837,
+   74725,
+   759902,
+   244610,
+   13515,
+   4232,
+   1330421
+  ],
+  "citedVoteCounts": {
+   "663": 4212,
+   "670": 10155,
+   "678": 662,
+   "680": 30790,
+   "692": 583,
+   "754": 6087,
+   "763": 1907,
+   "764": 4684,
+   "765": 3634,
+   "766": 3651,
+   "769": 14705,
+   "572": 242,
+   "444230": 7,
+   "588": 5067,
+   "623": 2495,
+   "626": 1447,
+   "627": 10622,
+   "629": 11691,
+   "635": 1791,
+   "262056": 4,
+   "298250": 4040,
+   "41439": 3377,
+   "214": 5067,
+   "11917": 3895,
+   "602734": 2350,
+   "951491": 2455,
+   "1107166": 209,
+   "297608": 1532,
+   "619778": 2726,
+   "808396": 294,
+   "101669": 478,
+   "1081208": 70,
+   "837": 2555,
+   "74725": 909,
+   "759902": 378,
+   "244610": 393,
+   "13515": 2114,
+   "4232": 8192,
+   "1330421": 240
+  },
+  "topCast": [
+   "Tobin Bell",
+   "Cary Elwes",
+   "Leigh Whannell",
+   "Danny Glover",
+   "Monica Potter"
+  ],
+  "topCastDetail": [
+   {
+    "id": 2144,
+    "name": "Tobin Bell",
+    "gender": 2
+   },
+   {
+    "id": 2130,
+    "name": "Cary Elwes",
+    "gender": 2
+   },
+   {
+    "id": 2128,
+    "name": "Leigh Whannell",
+    "gender": 2
+   },
+   {
+    "id": 2047,
+    "name": "Danny Glover",
+    "gender": 2
+   },
+   {
+    "id": 2140,
+    "name": "Monica Potter",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2004-10-01",
+  "runtime": 103,
+  "director": "James Wan",
+  "directors": [
+   "James Wan"
+  ],
+  "belongsToCollection": {
+   "id": 656,
+   "name": "Saw Collection"
+  },
+  "title": "Saw",
+  "year": 2004,
+  "type": "movie",
+  "fetchedAt": "2026-09-05"
  }
 }
