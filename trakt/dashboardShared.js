@@ -447,7 +447,7 @@ async function loadAllData() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
   const [dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback,
          scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
-         currentlyWatchingFeature] = await Promise.all([
+         currentlyWatchingFeature, familyWatchlist] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -483,9 +483,13 @@ async function loadAllData() {
     // facts: [{text, source, sourceLabel}] }; null is a safe empty default
     // (no manual pointer set → the hero falls back to its normal pick).
     get('./data/currentlyWatchingFeature.json').catch(() => null),
+    // Bill's own curated "watch with the whole family" list — see the
+    // file's own "note" field. { titles: [{titleKey, theatricalReleaseDate,
+    // streaming, sources}] }; {titles:[]} is a safe empty default.
+    get('./data/familyWatchlist.json').catch(() => ({ titles: [] })),
   ]);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
-  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature };
+  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist };
 }
 
 // Best Matches (Discover) and Prediction Misses (Quality) are two views of

@@ -450,6 +450,28 @@
       "reasonLabel": "Too comicbooky — Bill's initial belief that he'd already rated this was checked against the real Sep 4 2026 Trakt export (198 movies, up from 168) and ruled out (absent from both library.json and watchlist.json, distinct from the separate 2016 'Suicide Squad' he did rate 4/10); Bill then confirmed the real reason is taste, same category as Zack Snyder's Justice League — not generalized into scoring per Session 64's findings, exact-title exclusion only",
       "timestamp": "2026-09-04T00:00:00Z",
       "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:1101412",
+      "title": "Fall 2: Deadpoint",
+      "year": 2026,
+      "type": "movie",
+      "interactionType": "category_exclude",
+      "reasonCode": "family_watch_list",
+      "reasonLabel": "Not a taste dismissal — added to Bill's separate Family Watch List (movies to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:969681",
+      "title": "Spider-Man: Brand New Day",
+      "year": 2026,
+      "type": "movie",
+      "interactionType": "category_exclude",
+      "reasonCode": "family_watch_list",
+      "reasonLabel": "Not a taste dismissal — added to Bill's separate Family Watch List (movies to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
+      "timestamp": "2026-09-05T00:00:00Z",
+      "excludeFromRecommendations": true
     }
   ]
 }

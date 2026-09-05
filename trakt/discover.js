@@ -887,6 +887,63 @@ function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, revi
   `;
 }
 
+// Bill: "let's create a new table for movies I want to watch with my whole
+// family." A separate, manually-curated list, not derived from Trakt at
+// all — see familyWatchlist.json's own "note" field for the full data-
+// flow (each entry also lives in candidatePool.json for real TMDB
+// enrichment, and in feedbackData.json with excludeFromRecommendations so
+// it never shows up in the solo You'll Love flow or competes for a
+// candidate-pool cap slot). releaseDate/streaming are real, hand-
+// researched fields per Bill's explicit ask ("make sure you include
+// release date and when I will be able to stream it") — TMDB has no
+// reliable field for either, especially a forward-looking streaming date,
+// so this mirrors upcomingSeasons.json's "real, hand-researched, never
+// guessed" precedent rather than inventing one.
+function fmtDate(iso) {
+  if (!iso) return null;
+  return new Date(iso + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+}
+
+function renderFamilyWatchList(familyWatchlist, enrichedMeta) {
+  const el = document.getElementById('familyWatchList');
+  if (!el) return;
+  const titles = familyWatchlist?.titles || [];
+  if (!titles.length) { el.innerHTML = '<div class="tk-empty">Nothing on the family list yet.</div>'; return; }
+  el.innerHTML = `<div class="tk-fwl-grid">${titles.map(t => {
+    const meta = enrichedMeta[t.titleKey];
+    const poster = posterUrl(t.titleKey, enrichedMeta, 'w342');
+    const title = meta?.title || t.title;
+    const year = meta?.year || t.year;
+    const s = t.streaming || {};
+    const rows = [];
+    if (t.theatricalReleaseDate) {
+      rows.push(`<div class="tk-fwl-streaming-row"><span class="tk-fwl-streaming-label">In theaters:</span> ${esc(fmtDate(t.theatricalReleaseDate))}</div>`);
+    }
+    if (s.digitalRentBuy) {
+      rows.push(`<div class="tk-fwl-streaming-row"><span class="tk-fwl-streaming-label">Rent/buy digitally:</span> ${esc(fmtDate(s.digitalRentBuy.date))}${s.digitalRentBuy.confirmed === false ? ' <span class="tk-fwl-estimate">(estimated, not yet confirmed)</span>' : ''}</div>`);
+    }
+    if (s.subscriptionStreaming) {
+      rows.push(`<div class="tk-fwl-streaming-row"><span class="tk-fwl-streaming-label">Streaming on ${esc(s.subscriptionStreaming.platform)}:</span> ${esc(fmtDate(s.subscriptionStreaming.date))}${s.subscriptionStreaming.confirmed === false ? ' <span class="tk-fwl-estimate">(estimated, not yet confirmed)</span>' : ''}</div>`);
+    }
+    if (s.physicalMedia) {
+      rows.push(`<div class="tk-fwl-streaming-row"><span class="tk-fwl-streaming-label">DVD/Blu-ray:</span> ${esc(fmtDate(s.physicalMedia.date))}${s.physicalMedia.confirmed === false ? ' <span class="tk-fwl-estimate">(estimated, not yet confirmed)</span>' : ''}</div>`);
+    }
+    const note = s.digitalRentBuy?.note || s.subscriptionStreaming?.note;
+    return `
+      <div class="tk-fwl-card">
+        ${posterImgHtml(poster, 'tk-fwl-poster', 60, 90)}
+        <div class="tk-fwl-body">
+          <div class="tk-fwl-title">${esc(title)}${year ? ` <span class="tk-hero-year">(${esc(year)})</span>` : ''}</div>
+          ${meta?.genres?.length ? `<div class="tk-fwl-meta">${esc(meta.genres.slice(0, 2).join(', '))}</div>` : ''}
+          <div class="tk-fwl-streaming">${rows.join('')}</div>
+          ${note ? `<div class="tk-fwl-estimate">${esc(note)}</div>` : ''}
+          ${t.sources?.length ? `<div class="tk-fwl-sources">${t.sources.map((u, i) => `<a href="${esc(u)}" target="_blank" rel="noopener">source ${i + 1}</a>`).join('')}</div>` : ''}
+        </div>
+      </div>
+    `;
+  }).join('')}</div>`;
+}
+
 // 1. Tonight's Top Pick — pool[0], full-width hero above the panels.
 // Returns the picked candidate so load() can assert it equals the #1 card
 // of the matching You'll Love panel (same pool, same sort — provably true,
@@ -1105,7 +1162,7 @@ function renderTasteLine(genreStats, crowdCompare, castStats, tenRatedCount) {
 async function load() {
   const { dashboard: d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback,
           llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
-          currentlyWatchingFeature } = await loadAllData();
+          currentlyWatchingFeature, familyWatchlist } = await loadAllData();
 
   const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
@@ -1139,6 +1196,7 @@ async function load() {
   if (watchingNow) renderCurrentlyWatchingHero(watchingNow, enrichedMeta, omdbMeta, llmTags, reviewedTags);
   else renderHero(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
   initSurprise(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
+  renderFamilyWatchList(familyWatchlist, enrichedMeta);
 
   renderRecPanel('movieRecList', byType(soloWatchlist, 'movie'), byType(soloCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
   renderRecPanel('showRecList', byType(soloWatchlist, 'show'), byType(soloCandidates, 'show'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);

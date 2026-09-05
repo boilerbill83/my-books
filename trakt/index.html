@@ -70,6 +70,25 @@
       .tk-shelf-card:hover .tk-shelf-title { color: var(--accent); }
 
       .tk-cowatch-toolbar { margin-bottom: 12px; }
+
+      .tk-fwl-grid { display: flex; flex-direction: column; gap: 14px; }
+      .tk-fwl-card { display: flex; gap: 14px; padding: 12px; border: 1px solid var(--border); border-radius: 8px; }
+      .tk-fwl-poster { width: 60px; height: 90px; border-radius: 6px; object-fit: cover; background: var(--bg-subtle); border: 1px solid var(--border); flex-shrink: 0; }
+      .tk-fwl-poster-empty { border: 1px dashed var(--border); }
+      .tk-fwl-body { flex: 1; min-width: 0; }
+      .tk-fwl-title { font-weight: 600; font-size: 0.95rem; }
+      .tk-fwl-meta { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+      .tk-fwl-streaming { font-size: 0.85rem; margin-top: 8px; line-height: 1.6; }
+      .tk-fwl-streaming-row { display: flex; gap: 6px; align-items: baseline; flex-wrap: wrap; }
+      .tk-fwl-streaming-label { font-weight: 600; color: var(--text); }
+      .tk-fwl-estimate { font-size: 0.72rem; color: var(--text-muted); font-style: italic; }
+      .tk-fwl-sources { margin-top: 8px; display: flex; gap: 10px; flex-wrap: wrap; }
+      .tk-fwl-sources a { font-size: 0.72rem; color: var(--accent); text-decoration: none; }
+      .tk-fwl-sources a:hover { text-decoration: underline; }
+      @media (max-width: 640px) {
+        .tk-fwl-card { flex-direction: column; align-items: center; text-align: center; }
+        .tk-fwl-streaming-row { justify-content: center; }
+      }
     </style>
   </head>
   <body>
@@ -142,6 +161,12 @@
           <div class="tk-cowatch-toolbar"><button type="button" class="tk-btn" id="coWatchViewToggle">Show table view</button></div>
           <div class="tk-shelf" id="coWatchCards"></div>
           <div class="tk-table-wrap" id="coWatchTableWrap" hidden><table class="tk-table" id="coWatchTable"></table></div>
+        </div>
+
+        <div class="tk-card" style="margin-bottom: 24px;">
+          <div class="tk-card-heading">👨‍👩‍👧‍👦 Family Watch List</div>
+          <div class="tk-card-note">Movies to watch with the whole family — a separate list from your solo picks above, so these never compete for a candidate-pool slot or show up uninvited in You'll Love. Release date and streaming availability are real, hand-researched (never guessed) since no metadata source tracks that reliably.</div>
+          <div id="familyWatchList"></div>
         </div>
 
         <div class="tk-card" style="margin-bottom: 24px;">
