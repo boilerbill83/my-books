@@ -360675,5 +360675,170 @@
   "year": 2023,
   "type": "show",
   "fetchedAt": "2026-09-03"
+ },
+ "movie:969681": {
+  "genres": [
+   "Science Fiction",
+   "Action",
+   "Adventure"
+  ],
+  "overview": "Fighting crime full-time as Spider-Man in a world that doesn't remember him\u2014and the pressure of seeing his old friends move on without him\u2014sparks a change in Peter Parker he may not have the power to control. But that transformation might also be the only thing that can stop a shocking new threat to the city and those he loves - a powerful villain no one can even see.",
+  "keywords": [
+   "mind control",
+   "new york city",
+   "hero",
+   "mutation",
+   "secret identity",
+   "superhero",
+   "spider",
+   "villain",
+   "based on comic",
+   "sequel",
+   "transhumanism",
+   "super power",
+   "masked vigilante",
+   "spider web",
+   "aftercreditsstinger"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt22084616",
+  "voteAverage": 7.874,
+  "voteCount": 2409,
+  "popularity": 857.7444,
+  "posterPath": "/bjiS5ipwxb9JFy3XRRN4OAilSeX.jpg",
+  "similarToIds": [
+   644,
+   646,
+   657,
+   667,
+   668,
+   673,
+   674,
+   675,
+   679,
+   681,
+   682,
+   691,
+   752,
+   767,
+   580,
+   584,
+   444292,
+   630,
+   636,
+   625985
+  ],
+  "recommendedIds": [
+   634649,
+   102382,
+   271110,
+   580489,
+   298618,
+   100402,
+   283995,
+   141052,
+   10138,
+   986056,
+   24428,
+   246655,
+   1452,
+   1930,
+   284054,
+   99861,
+   299536,
+   609681,
+   436270,
+   1771
+  ],
+  "citedVoteCounts": {
+   "644": 6837,
+   "646": 4146,
+   "657": 3446,
+   "667": 2551,
+   "668": 2208,
+   "673": 23575,
+   "674": 22569,
+   "675": 21168,
+   "679": 11137,
+   "681": 2433,
+   "682": 2342,
+   "691": 2298,
+   "752": 15885,
+   "767": 21140,
+   "580": 1205,
+   "584": 8338,
+   "444292": 4,
+   "630": 6263,
+   "636": 1103,
+   "625985": 14,
+   "634649": 22987,
+   "102382": 14685,
+   "271110": 24509,
+   "580489": 11389,
+   "298618": 5216,
+   "100402": 20405,
+   "283995": 23377,
+   "141052": 13905,
+   "10138": 22846,
+   "986056": 3994,
+   "24428": 39579,
+   "246655": 14063,
+   "1452": 4686,
+   "1930": 19038,
+   "284054": 23907,
+   "99861": 24955,
+   "299536": 32790,
+   "609681": 3610,
+   "436270": 7221,
+   "1771": 23174
+  },
+  "topCast": [
+   "Tom Holland",
+   "Zendaya",
+   "Mark Ruffalo",
+   "Jon Bernthal",
+   "Jacob Batalon"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1136406,
+    "name": "Tom Holland",
+    "gender": 2
+   },
+   {
+    "id": 505710,
+    "name": "Zendaya",
+    "gender": 1
+   },
+   {
+    "id": 103,
+    "name": "Mark Ruffalo",
+    "gender": 2
+   },
+   {
+    "id": 19498,
+    "name": "Jon Bernthal",
+    "gender": 2
+   },
+   {
+    "id": 1649152,
+    "name": "Jacob Batalon",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2026-07-29",
+  "runtime": 145,
+  "director": "Destin Daniel Cretton",
+  "directors": [
+   "Destin Daniel Cretton"
+  ],
+  "belongsToCollection": {
+   "id": 531241,
+   "name": "Spider-Man (MCU) Collection"
+  },
+  "title": "Spider-Man: Brand New Day",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-09-05"
  }
 }
