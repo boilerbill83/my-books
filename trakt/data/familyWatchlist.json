@@ -1,0 +1,58 @@
+{
+  "note": "Bill's own curated list of movies to watch with his whole family — a separate category from the solo recommendation flow. Each entry's titleKey also exists in candidatePool.json (source: family-watch-list) so it gets real TMDB enrichment (poster/genre/overview) for free, and in feedbackData.json with excludeFromRecommendations so it never surfaces in the solo You'll Love panels or competes for a candidate-pool cap slot. releaseDate and streaming are real, hand-researched fields (via WebSearch against real outside sources, never guessed) — TMDB has no reliable field for either, especially forward-looking VOD/streaming dates, so this mirrors the same discipline trakt/data/upcomingSeasons.json already established for renewal status.",
+  "titles": [
+    {
+      "titleKey": "movie:1101412",
+      "title": "Fall 2: Deadpoint",
+      "year": 2026,
+      "addedAt": "2026-09-05T00:00:00Z",
+      "theatricalReleaseDate": "2026-09-02",
+      "streaming": {
+        "status": "in_theaters",
+        "digitalRentBuy": {
+          "date": "2026-10-01",
+          "confirmed": false,
+          "note": "Estimated, not officially locked — tracking sites list it as \"expected October 2026\" and expect it to firm up after the film's theatrical run"
+        },
+        "physicalMedia": {
+          "date": "2026-11-01",
+          "confirmed": false,
+          "note": "Estimated DVD/Blu-ray window, not officially confirmed"
+        },
+        "subscriptionStreaming": null
+      },
+      "sources": [
+        "https://en.wikipedia.org/wiki/Fall_2:_Deadpoint",
+        "https://www.comicbasics.com/heres-when-the-vertigo-inducing-fall-2-deadpoint-sequel-might-get-a-streaming-release/",
+        "https://www.themoviedb.org/movie/1101412-fall-2-deadpoint"
+      ]
+    },
+    {
+      "titleKey": "movie:969681",
+      "title": "Spider-Man: Brand New Day",
+      "year": 2026,
+      "addedAt": "2026-09-05T00:00:00Z",
+      "theatricalReleaseDate": "2026-07-31",
+      "streaming": {
+        "status": "in_theaters",
+        "digitalRentBuy": {
+          "date": "2026-09-29",
+          "confirmed": false,
+          "note": "Reported target date for Digital HD (Amazon Prime Video, iTunes, Vudu, Google Play) purchase/rental — not Bill's existing subscriptions, a pay-per-title purchase"
+        },
+        "physicalMedia": null,
+        "subscriptionStreaming": {
+          "platform": "Netflix",
+          "date": "2027-02-26",
+          "confirmed": false,
+          "note": "Sony holds this film's Pay-1 streaming deal with Netflix (not Disney+, despite being Marvel-branded, since Sony — not Disney — produced it), reported for roughly 7 months post-theatrical. Disney+ would only get it later still, on an unannounced date, after the Netflix window."
+        }
+      },
+      "sources": [
+        "https://en.wikipedia.org/wiki/Spider-Man:_Brand_New_Day",
+        "https://www.forbes.com/sites/timlammers/2026/07/31/why-spider-man-brand-new-day-streaming-debut-will-take-longer-than-most-sony-pvod-releases/",
+        "https://www.themoviedb.org/movie/969681-spider-man-brand-new-day"
+      ]
+    }
+  ]
+}
