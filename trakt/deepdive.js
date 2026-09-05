@@ -11,7 +11,7 @@ import {
   isActivelyAiring, posterUrl, criticScore, realAudienceScore, awardsScore,
   mergeScrapedShowRatings, resolveSimilarTitles, resolveSimilarDirectors,
   getCreators, inferSubgenres, inferTones, inferSubjects, inferEra, traktUrl,
-  resolveCastAges, prestigeScore,
+  resolveCastAges, prestigeScore, prestigeQualityScore, isPrestigeFormat,
 } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
@@ -88,7 +88,8 @@ async function load() {
   const era = inferEra(meta, undefined, reviewedTags?.[key]);
   const myRating = status === 'Watched' ? raw.myRating : null;
   const castAges = resolveCastAges(candidate, enrichedMeta, personMeta);
-  const prestige = candidate.type === 'show' ? prestigeScore(candidate, meta, omdbEntry, personMeta) : null;
+  const prestige = candidate.type === 'show' ? prestigeQualityScore(candidate, meta, omdbEntry, personMeta) : null;
+  const prestigeFormatOk = candidate.type === 'show' && isPrestigeFormat(meta);
 
   document.title = `Deep Dive — ${candidate.title || key}`;
   statusEl.textContent = `${candidate.type === 'movie' ? 'Movie' : 'TV Show'} · ${status}`;
@@ -180,7 +181,7 @@ async function load() {
         <div class="dd-field-row"><span class="dd-field-label">Blended Audience Score</span><span>${aud != null ? aud + '/100' : '—'}</span></div>
         <div class="dd-field-row"><span class="dd-field-label">Awards Score</span><span>${awd != null ? awd + '/100' : '—'}</span></div>
         <div class="dd-field"><span class="dd-field-label">Awards (raw)</span><div>${esc(omdbEntry?.awards?.raw || 'No awards data.')}</div></div>
-        ${candidate.type === 'show' ? `<div class="dd-field-row"><span class="dd-field-label">🏆 Prestige Score</span><span>${prestige != null ? prestige + '/100' : 'Not a limited/anthology format (10 or fewer episodes per season, on average)'}</span></div>` : ''}
+        ${candidate.type === 'show' ? `<div class="dd-field-row"><span class="dd-field-label">🏆 Prestige Score</span><span>${prestige != null ? prestige + '/100' : 'Not enough data yet'}${prestigeFormatOk ? '' : ' <span class="dd-field-note">(does not qualify as prestige format — averages more than 10 episodes per season, so this score reflects critic/awards/cast evidence only, not format)</span>'}</span></div>` : ''}
 
       <div class="dd-card">
         <div class="dd-card-heading">📅 Release / Airing</div>

@@ -688,6 +688,37 @@ went through, and hasn't gotten one:
   signal exists here for good reason — the data doesn't support one.
   Display-only, wired into Deep Dive's "People" card ("Top Cast, by
   billing order — age at release").
+- **`isPrestigeFormat(meta)` / `prestigeScore(candidate, meta, omdbEntry,
+  personMeta)` / `prestigeQualityScore(candidate, meta, omdbEntry,
+  personMeta)`** — Bill's "is there a way to identify a show as prestige...
+  maybe those with a big star and 10 or fewer episodes." `isPrestigeFormat()`
+  checks average episodes/season (≤10, ≥4 total to avoid a barely-started
+  show trivially clearing the bar) — verified against 15 known real
+  prestige limited/anthology titles (5.0-7.5 avg) vs. 8 known broad/long-
+  running shows (14.9-23.1 avg), a wide, clean gap. `prestigeScore()` is
+  the real, format-gated answer used everywhere a badge/classification
+  means something (the 🏆 rec-panel badge, the All Titles table's Prestige
+  column) — returns `null` for a show that isn't limited/anthology-shaped,
+  full stop, regardless of how good it otherwise is. Internally: format
+  alone contributes +40 (real signal on its own), then critic score,
+  awards, a `miniseries` keyword bonus, and position-weighted cast
+  popularity (`STAR_POWER_REFERENCE` = J.K. Simmons' real TMDB popularity,
+  the 99th percentile) stack on top, clamped 0-100.
+  `prestigeQualityScore()` is Deep-Dive-only (Bill's follow-up after
+  looking up Hannibal and not seeing a score there): the same underlying
+  formula, but format becomes a *conditional* +40 inside it rather than a
+  hard gate, so a non-qualifying show still shows a real number reflecting
+  whatever critic/awards/star-power evidence it has — Hannibal (NBC,
+  13 eps/season, no cached critic score, real Emmy-nominated awards
+  history, Mads Mikkelsen's real star power) lands at 31/100, nowhere near
+  "prestige," matching Bill's own explicit judgment that a 13-episode NBC
+  drama isn't prestige regardless of critical reputation. Never used for
+  the badge/table classification — those stay exclusively on
+  `prestigeScore()`, unchanged, so a non-format show can never earn the
+  badge no matter how high `prestigeQualityScore()` goes. Both display-
+  only, not wired into `matchScore()` — a real scoring weight would need
+  the same `eval.js`-gated validation every real signal in this file goes
+  through first.
 
 ---
 
