@@ -919,10 +919,15 @@ function renderFamilyWatchList(familyWatchlist, enrichedMeta) {
     const s = t.streaming || {};
     const rows = [];
     if (t.theatricalReleaseDate) {
-      rows.push(`<div class="tk-fwl-streaming-row"><span class="tk-fwl-streaming-label">In theaters:</span> ${esc(fmtDate(t.theatricalReleaseDate))}</div>`);
+      // "In theaters" only makes sense for an upcoming/current release —
+      // an already-released classic (e.g. Saw, 2004) needs "Released"
+      // instead, or the label reads as if it's still playing in cinemas.
+      const isUpcoming = new Date(t.theatricalReleaseDate + 'T00:00:00Z') > new Date();
+      rows.push(`<div class="tk-fwl-streaming-row"><span class="tk-fwl-streaming-label">${isUpcoming ? 'In theaters' : 'Released'}:</span> ${esc(fmtDate(t.theatricalReleaseDate))}</div>`);
     }
     if (s.digitalRentBuy) {
-      rows.push(`<div class="tk-fwl-streaming-row"><span class="tk-fwl-streaming-label">Rent/buy digitally:</span> ${esc(fmtDate(s.digitalRentBuy.date))}${s.digitalRentBuy.confirmed === false ? ' <span class="tk-fwl-estimate">(estimated, not yet confirmed)</span>' : ''}</div>`);
+      const label = s.digitalRentBuy.date ? esc(fmtDate(s.digitalRentBuy.date)) : 'Already available';
+      rows.push(`<div class="tk-fwl-streaming-row"><span class="tk-fwl-streaming-label">Rent/buy digitally:</span> ${label}${s.digitalRentBuy.confirmed === false ? ' <span class="tk-fwl-estimate">(estimated, not yet confirmed)</span>' : ''}</div>`);
     }
     if (s.subscriptionStreaming) {
       rows.push(`<div class="tk-fwl-streaming-row"><span class="tk-fwl-streaming-label">Streaming on ${esc(s.subscriptionStreaming.platform)}:</span> ${esc(fmtDate(s.subscriptionStreaming.date))}${s.subscriptionStreaming.confirmed === false ? ' <span class="tk-fwl-estimate">(estimated, not yet confirmed)</span>' : ''}</div>`);
@@ -930,7 +935,11 @@ function renderFamilyWatchList(familyWatchlist, enrichedMeta) {
     if (s.physicalMedia) {
       rows.push(`<div class="tk-fwl-streaming-row"><span class="tk-fwl-streaming-label">DVD/Blu-ray:</span> ${esc(fmtDate(s.physicalMedia.date))}${s.physicalMedia.confirmed === false ? ' <span class="tk-fwl-estimate">(estimated, not yet confirmed)</span>' : ''}</div>`);
     }
-    const note = s.digitalRentBuy?.note || s.subscriptionStreaming?.note;
+    // Collect every real note, not just the first found — a title can
+    // legitimately have more than one worth showing (e.g. Saw's digital
+    // availability note AND its Netflix-move note, a case that didn't
+    // exist when this only ever picked one via `||`).
+    const notes = [s.digitalRentBuy?.note, s.subscriptionStreaming?.note, s.physicalMedia?.note].filter(Boolean);
     return `
       <div class="tk-fwl-card">
         ${posterImgHtml(poster, 'tk-fwl-poster', 60, 90)}
@@ -938,7 +947,7 @@ function renderFamilyWatchList(familyWatchlist, enrichedMeta) {
           <div class="tk-fwl-title">${esc(title)}${year ? ` <span class="tk-hero-year">(${esc(year)})</span>` : ''}</div>
           ${meta?.genres?.length ? `<div class="tk-fwl-meta">${esc(meta.genres.slice(0, 2).join(', '))}</div>` : ''}
           <div class="tk-fwl-streaming">${rows.join('')}</div>
-          ${note ? `<div class="tk-fwl-estimate">${esc(note)}</div>` : ''}
+          ${notes.map(n => `<div class="tk-fwl-estimate">${esc(n)}</div>`).join('')}
           ${t.sources?.length ? `<div class="tk-fwl-sources">${t.sources.map((u, i) => `<a href="${esc(u)}" target="_blank" rel="noopener">source ${i + 1}</a>`).join('')}</div>` : ''}
         </div>
       </div>

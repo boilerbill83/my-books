@@ -53,6 +53,33 @@
         "https://www.forbes.com/sites/timlammers/2026/07/31/why-spider-man-brand-new-day-streaming-debut-will-take-longer-than-most-sony-pvod-releases/",
         "https://www.themoviedb.org/movie/969681-spider-man-brand-new-day"
       ]
+    },
+    {
+      "titleKey": "movie:176",
+      "title": "Saw",
+      "year": 2004,
+      "addedAt": "2026-09-05T00:00:00Z",
+      "theatricalReleaseDate": "2004-10-29",
+      "streaming": {
+        "status": "released",
+        "digitalRentBuy": {
+          "date": null,
+          "confirmed": true,
+          "note": "Already available to rent/buy on Amazon Video, Apple TV Store, and Fandango at Home"
+        },
+        "physicalMedia": null,
+        "subscriptionStreaming": {
+          "platform": "Netflix",
+          "date": "2026-03-19",
+          "confirmed": true,
+          "note": "The full Saw franchise (all 9 films at the time) moved to Netflix on March 19, 2026. Also currently free with ads on Tubi."
+        }
+      },
+      "sources": [
+        "https://www.netflix.com/title/70003226",
+        "https://www.justwatch.com/us/movie/saw",
+        "https://www.themoviedb.org/movie/176-saw"
+      ]
     }
   ]
 }

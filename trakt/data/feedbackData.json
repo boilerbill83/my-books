@@ -472,6 +472,17 @@
       "reasonLabel": "Not a taste dismissal — added to Bill's separate Family Watch List (movies to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
       "timestamp": "2026-09-05T00:00:00Z",
       "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:176",
+      "title": "Saw",
+      "year": 2004,
+      "type": "movie",
+      "interactionType": "category_exclude",
+      "reasonCode": "family_watch_list",
+      "reasonLabel": "Not a taste dismissal — added to Bill's separate Family Watch List (movies to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
+      "timestamp": "2026-09-05T01:00:00Z",
+      "excludeFromRecommendations": true
     }
   ]
 }
