@@ -873,7 +873,15 @@ function starPowerRaw(topCast, personMeta) {
 function prestigeQualityRaw(meta, omdbEntry, personMeta) {
   let score = isPrestigeFormat(meta) ? 40 : 0; // format alone is real signal — see isPrestigeFormat()'s own verification
   const critic = criticScore(omdbEntry);
-  if (critic != null) score += Math.round((critic - 70) * 0.5);
+  // Reuses CRITIC_NEUTRAL (defined below, measured from this dataset's
+  // real critic-score distribution — see its own comment) rather than an
+  // independently-invented number. An earlier version of this formula
+  // hardcoded 70 here without checking it against real data, while the
+  // file's own already-validated neutral for this exact same field sat a
+  // few lines away — caught during a self-review and fixed so both
+  // consumers of criticScore() share one real, grounded center point
+  // instead of two different guesses at what "average" means.
+  if (critic != null) score += Math.round((critic - CRITIC_NEUTRAL) * 0.5);
   const awards = awardsScore(omdbEntry);
   if (awards) score += Math.round(awards * 0.15);
   if ((meta.keywords || []).includes('miniseries')) score += 5;
@@ -895,6 +903,18 @@ export function prestigeScore(candidate, meta, omdbEntry, personMeta = {}) {
   if (candidate?.type !== 'show' || !isPrestigeFormat(meta)) return null;
   return prestigeQualityRaw(meta, omdbEntry, personMeta);
 }
+
+// The rec-panel 🏆 badge's "worth flagging" bar (discover.js). Originally
+// 50 ("half of 100"), never independently validated — when the critic-
+// score term above was corrected to use the real CRITIC_NEUTRAL (80)
+// instead of an invented 70, average scores dropped ~4.5 points across
+// the live dataset and would have silently un-badged 86 currently-badged
+// shows purely from the neutral-point fix, not a real taste change.
+// Recalibrated here instead: 45 reproduces almost exactly the same real
+// badge coverage today (346 of 643 enriched shows vs. the old formula's
+// 328) as a deliberate choice — the accuracy fix shouldn't also make the
+// badge quietly much rarer as a side effect.
+export const PRESTIGE_BADGE_THRESHOLD = 45;
 
 // Deep-Dive-only: always computes for any enriched show, format-qualifying
 // or not, so Bill can see the real underlying number (and judge it

@@ -12,7 +12,7 @@
 import {
   rankAll, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore,
   awardsScore, posterUrl, diversityRerank, inferSubgenres, inferSubjects, inferEra,
-  isActivelyAiring, traktUrl, prestigeScore,
+  isActivelyAiring, traktUrl, prestigeScore, PRESTIGE_BADGE_THRESHOLD,
 } from './engine.js';
 import {
   esc, fmtNum, fmtCompact, posterImgHtml, typeIcon, typeLabel, titleLink, statusTag,
@@ -744,12 +744,14 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
   el.innerHTML = picks.map((c, i) => {
     const poster = posterUrl(c.titleKey, enrichedMeta);
     // Bill: "is there a way to identify a TV show as prestige... maybe
-    // those that have a big star and are 10 episodes or less." >=50 is a
-    // deliberately generous "worth flagging" bar, not "definitely great" —
-    // isPrestigeFormat() itself is the real gate (format alone is worth
-    // 40 of the 100 possible points), this just skips the low end of the
-    // graded range so the badge stays meaningful rather than showing on
-    // every single format-qualifying title regardless of any other signal.
+    // those that have a big star and are 10 episodes or less." The badge
+    // threshold is a deliberately generous "worth flagging" bar, not
+    // "definitely great" — isPrestigeFormat() itself is the real gate
+    // (format alone is worth 40 of the 100 possible points), this just
+    // skips the low end of the graded range so the badge stays meaningful
+    // rather than showing on every single format-qualifying title
+    // regardless of any other signal. See PRESTIGE_BADGE_THRESHOLD's own
+    // comment in engine.js for why it's 45, not 50.
     const prestige = c.type === 'show' ? prestigeScore(c, enrichedMeta[c.titleKey], omdbMeta[c.titleKey], personMeta) : null;
     return `
     <div class="tk-rec-card">
@@ -759,7 +761,7 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
         <div class="tk-rec-title">
           ${typeIcon(c.type)} ${titleLink(c)}${c.year ? ` <span class="tk-year">(${esc(c.year)})</span>` : ''}
           <span class="tk-rec-badge">${c.origin === 'watchlist' ? 'Watchlist' : 'New pick'}</span>
-          ${prestige != null && prestige >= 50 ? `<span class="tk-rec-badge tk-prestige-badge" title="Limited/anthology format (10 or fewer episodes per season) with real critic acclaim and/or a well-known cast — see Deep Dive for the full breakdown">🏆 Prestige</span>` : ''}
+          ${prestige != null && prestige >= PRESTIGE_BADGE_THRESHOLD ? `<span class="tk-rec-badge tk-prestige-badge" title="Limited/anthology format (10 or fewer episodes per season) with real critic acclaim and/or a well-known cast — see Deep Dive for the full breakdown">🏆 Prestige</span>` : ''}
         </div>
         <div class="tk-rec-meta">${esc(metaLine(c, enrichedMeta, omdbMeta, llmTags, reviewedTags))}</div>
         <div class="tk-rec-reason">${esc(c.reason)}</div>
