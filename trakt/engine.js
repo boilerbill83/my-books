@@ -856,9 +856,22 @@ function starPowerRaw(topCast, personMeta) {
 // personMeta source — NOT wired into matchScore() without a real
 // scripts/eval.js sweep first, same rule every scoring signal in this
 // file has always been held to before being trusted.
-export function prestigeScore(candidate, meta, omdbEntry, personMeta = {}) {
-  if (candidate?.type !== 'show' || !isPrestigeFormat(meta)) return null;
-  let score = 40; // format alone is real signal — see isPrestigeFormat()'s own verification
+//
+// Shared by two exports below: prestigeScore() (format-gated — the real
+// "does this qualify as prestige" answer used everywhere a badge/
+// classification means something, e.g. the 🏆 rec-panel badge and the All
+// Titles table) and prestigeQualityScore() (ungated — Bill's explicit ask
+// after the Hannibal case: "show the prestige score on the deep dive"
+// even for a show he agrees isn't prestige, like a 13-episode NBC drama.
+// The format credit becomes a conditional +40 inside the shared formula
+// rather than a hard early-return, so a non-qualifying show still gets
+// honest credit for real critic/awards/star-power evidence without ever
+// reaching the range a format-qualifying show can — Hannibal (no critic
+// score cached, real awards, Mikkelsen's real star power) lands at a real
+// 26/100 under this formula, nowhere close to "prestige," which is
+// exactly the outcome Bill's own judgment call on the show would predict.
+function prestigeQualityRaw(meta, omdbEntry, personMeta) {
+  let score = isPrestigeFormat(meta) ? 40 : 0; // format alone is real signal — see isPrestigeFormat()'s own verification
   const critic = criticScore(omdbEntry);
   if (critic != null) score += Math.round((critic - 70) * 0.5);
   const awards = awardsScore(omdbEntry);
@@ -876,6 +889,23 @@ export function prestigeScore(candidate, meta, omdbEntry, personMeta = {}) {
   const star = starPowerRaw(meta?.topCastDetail, personMeta);
   if (star != null) score += Math.max(0, Math.min(15, Math.round((star / STAR_POWER_REFERENCE) * 15)));
   return Math.max(0, Math.min(100, score));
+}
+
+export function prestigeScore(candidate, meta, omdbEntry, personMeta = {}) {
+  if (candidate?.type !== 'show' || !isPrestigeFormat(meta)) return null;
+  return prestigeQualityRaw(meta, omdbEntry, personMeta);
+}
+
+// Deep-Dive-only: always computes for any enriched show, format-qualifying
+// or not, so Bill can see the real underlying number (and judge it
+// himself, the way he did for Hannibal) instead of a bare "doesn't
+// qualify" message. Never used for the 🏆 badge/table classification —
+// those stay exclusively gated by prestigeScore()/isPrestigeFormat(),
+// unchanged, so a non-format show can never earn the badge no matter how
+// high this number goes.
+export function prestigeQualityScore(candidate, meta, omdbEntry, personMeta = {}) {
+  if (candidate?.type !== 'show' || !meta) return null;
+  return prestigeQualityRaw(meta, omdbEntry, personMeta);
 }
 
 // Structural/production tags, not thematic ones — TMDB's free-form
