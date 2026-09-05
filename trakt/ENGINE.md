@@ -709,16 +709,28 @@ went through, and hasn't gotten one:
   formula, but format becomes a *conditional* +40 inside it rather than a
   hard gate, so a non-qualifying show still shows a real number reflecting
   whatever critic/awards/star-power evidence it has — Hannibal (NBC,
-  13 eps/season, no cached critic score, real Emmy-nominated awards
-  history, Mads Mikkelsen's real star power) lands at 31/100, nowhere near
-  "prestige," matching Bill's own explicit judgment that a 13-episode NBC
-  drama isn't prestige regardless of critical reputation. Never used for
-  the badge/table classification — those stay exclusively on
-  `prestigeScore()`, unchanged, so a non-format show can never earn the
+  13 eps/season, real critic score, real Emmy-nominated awards history,
+  Mads Mikkelsen's real star power) lands at 26/100, nowhere near "prestige," matching Bill's own explicit judgment that a
+  13-episode NBC drama isn't prestige regardless of critical reputation.
+  Never used for the badge/table classification — those stay exclusively
+  on `prestigeScore()`, unchanged, so a non-format show can never earn the
   badge no matter how high `prestigeQualityScore()` goes. Both display-
   only, not wired into `matchScore()` — a real scoring weight would need
   the same `eval.js`-gated validation every real signal in this file goes
-  through first.
+  through first. **Self-review correction (Sep 2026)**: the critic-score
+  term originally used a hardcoded neutral point of 70, invented rather
+  than measured, while `omdbSignal()`'s own already-validated neutral for
+  the identical `criticScore()` field (`CRITIC_NEUTRAL`, derived from this
+  dataset's real distribution) sat a few lines away in the same file.
+  Fixed to reuse `CRITIC_NEUTRAL` (80) instead of two different guesses at
+  "average" for one input — this shifted scores down ~4.5 points on
+  average across the real dataset, which would have silently un-badged 86
+  currently-badged shows purely from the fix, not a real taste change.
+  Recalibrated `PRESTIGE_BADGE_THRESHOLD` (rec-panel badge only) from an
+  unvalidated 50 to 45, which reproduces almost exactly the same real
+  badge coverage (346 of 480 format-qualifying shows vs. the old formula's
+  328) — the accuracy fix on its own, not a decision to make the badge
+  meaningfully rarer.
 
 ---
 
