@@ -27090,5 +27090,56 @@
   "imdbVotes": 76600,
   "director": null,
   "fetchedAt": "2026-09-04"
+ },
+ "movie:1101412": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": "Michael Spierig, Peter Spierig",
+  "fetchedAt": "2026-09-05"
+ },
+ "movie:969681": {
+  "rottenTomatoes": null,
+  "metacritic": 66,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 1,
+   "raw": "1 nomination total"
+  },
+  "imdbRating": 8.1,
+  "imdbVotes": 183571,
+  "director": "Destin Daniel Cretton",
+  "fetchedAt": "2026-09-05"
+ },
+ "movie:176": {
+  "rottenTomatoes": 50,
+  "metacritic": 46,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 9,
+   "totalNominations": 10,
+   "raw": "9 wins & 10 nominations total"
+  },
+  "imdbRating": 7.6,
+  "imdbVotes": 508842,
+  "director": "James Wan",
+  "fetchedAt": "2026-09-05"
  }
 }
