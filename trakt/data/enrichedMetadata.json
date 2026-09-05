@@ -360840,5 +360840,159 @@
   "year": 2026,
   "type": "movie",
   "fetchedAt": "2026-09-05"
+ },
+ "movie:1101412": {
+  "genres": [
+   "Thriller"
+  ],
+  "overview": "On a perilous climb across Thailand's Mount Kwan, two climbers become trapped thousands of feet above the ground, where vertigo-inducing heights, sheer exposure, and impossible odds turn every moment into a fight for survival.",
+  "keywords": [
+   "sequel",
+   "rock climbing",
+   "sport climbing",
+   "climb",
+   "mountain climber"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt31192372",
+  "voteAverage": 5.7,
+  "voteCount": 9,
+  "popularity": 71.6522,
+  "posterPath": "/sY65bOZcjQqO6VdpOXLN5VcW61e.jpg",
+  "similarToIds": [
+   11237,
+   11246,
+   11281,
+   11284,
+   11357,
+   11361,
+   11442,
+   11133,
+   11569,
+   11675,
+   11683,
+   11679,
+   12095,
+   11917,
+   14863,
+   15092,
+   1582770,
+   15440,
+   15641,
+   1406744
+  ],
+  "recommendedIds": [
+   985939,
+   135397,
+   11678,
+   522016,
+   423087,
+   351286,
+   385687,
+   762430,
+   37821,
+   46041,
+   19345,
+   82992,
+   507086,
+   900409,
+   1319895,
+   4772,
+   575264,
+   21735,
+   453405,
+   13387
+  ],
+  "citedVoteCounts": {
+   "11237": 1134,
+   "11246": 414,
+   "11281": 2302,
+   "11284": 1518,
+   "11357": 2095,
+   "11361": 1367,
+   "11442": 1438,
+   "11133": 789,
+   "11569": 869,
+   "11675": 1848,
+   "11683": 1869,
+   "11679": 2083,
+   "12095": 532,
+   "11917": 3895,
+   "14863": 379,
+   "15092": 3244,
+   "1582770": 159,
+   "15440": 298,
+   "15641": 304,
+   "1406744": 0,
+   "985939": 4830,
+   "135397": 21876,
+   "11678": 1199,
+   "522016": 1176,
+   "423087": 401,
+   "351286": 12974,
+   "385687": 6473,
+   "762430": 1412,
+   "37821": 2344,
+   "46041": 89,
+   "19345": 233,
+   "82992": 11334,
+   "507086": 7255,
+   "900409": 74,
+   "1319895": 108,
+   "4772": 321,
+   "575264": 5336,
+   "21735": 127,
+   "453405": 5562,
+   "13387": 3764
+  },
+  "topCast": [
+   "Harriet Slater",
+   "Arsema Thomas",
+   "Tom Brittney",
+   "Virginia Gardner",
+   "Sahajak Boonthanakit"
+  ],
+  "topCastDetail": [
+   {
+    "id": 2480853,
+    "name": "Harriet Slater",
+    "gender": 1
+   },
+   {
+    "id": 3486664,
+    "name": "Arsema Thomas",
+    "gender": 1
+   },
+   {
+    "id": 1626604,
+    "name": "Tom Brittney",
+    "gender": 2
+   },
+   {
+    "id": 1279279,
+    "name": "Virginia Gardner",
+    "gender": 1
+   },
+   {
+    "id": 521673,
+    "name": "Sahajak Boonthanakit",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2026-09-01",
+  "runtime": 98,
+  "director": "Michael Spierig",
+  "directors": [
+   "Michael Spierig",
+   "Peter Spierig"
+  ],
+  "belongsToCollection": {
+   "id": 1102372,
+   "name": "Fall Collection"
+  },
+  "title": "Fall 2: Deadpoint",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-09-05"
  }
 }
