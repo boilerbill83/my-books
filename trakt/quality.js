@@ -373,9 +373,15 @@ const FIELD_REGISTRY = [
       'on too small a sample to trust as a popularity signal.' },
   { key: 'omdbRecord', label: 'OMDb Record Found', source: 'OMDb', critical: false,
     eligible: (t, meta) => !!(t.ids?.imdb || meta?.imdbId),
-    populated: (t, meta, omdb) => !!omdb,
-    quality: (t, meta, omdb) => !!omdb,
-    note: 'Eligible = titles with a known IMDb id. The remaining gap is a real retry bug (see the Improvement Opportunities finding below), not a missing API key.' },
+    // Checks fetchedAt specifically, not bare truthiness — enrich_omdb.py
+    // now writes a negative-cache marker on a failed lookup ({omdbError,
+    // checkedAt}, no fetchedAt) so the daily job stops retrying a known
+    // permanent failure forever (see the omdbRecord finding below); that
+    // marker is a real object but NOT a real OMDb record, so counting it
+    // as "populated" here would quietly overstate this field's coverage.
+    populated: (t, meta, omdb) => !!omdb?.fetchedAt,
+    quality: (t, meta, omdb) => !!omdb?.fetchedAt,
+    note: 'Eligible = titles with a known IMDb id. A negative-cache marker (a confirmed failed lookup) does not count as populated.' },
   { key: 'criticScore', label: 'Critic Score (RT/Metacritic)', source: 'OMDb + scraper', critical: false,
     eligible: (t, meta, omdb) => !!omdb,
     populated: (t, meta, omdb) => omdb?.rottenTomatoes != null || omdb?.metacritic != null,
@@ -838,31 +844,30 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
         };
     },
     omdbRecord: (f) => {
-        const eligibleTotal = 1033, hasRecord = 821, missing = 212;
         return {
           severity: 'warning',
           ratings: { ease: 4, dataQuality: 5, recEngine: 3, ui: 1 },
-          title: `OMDb Record Found is ${f.populatedPct.toFixed(1)}% populated — a real retry bug, not a missing API key (this field's own note text was stale)`,
-          technical: `This field's note previously read "Needs OMDB_API_KEY to run" — stale copy from before the key was actually working; population ` +
-            `is ${f.populatedPct.toFixed(1)}%, not 0%, so the pipeline clearly runs. The real cause, found by reading <code>enrich_omdb.py</code>'s ` +
-            `<code>main()</code>: on a failed lookup (<code>data.get('Response') == 'False'</code>, OMDb's own "not found" response, or any other ` +
-            `error), the script logs the failure and <code>continue</code>s WITHOUT writing anything to <code>cache</code> — no negative-cache ` +
-            `marker, no <code>checkedAt</code> timestamp, nothing. Since <code>pending_raw</code> filters on <code>titleKey not in cache</code>, a ` +
-            `title that fails once looks identical to one never attempted and is retried on every future run forever — the exact "permanent retry, ` +
-            `no distinction between a real miss and a transient failure" bug class the book side already hit and fixed for its own Amazon-scrape ` +
-            `pipeline (Session 13d's <code>RETRY_COOLDOWN_DAYS</code>/<code>checkedAt</code> fix). A live check confirms this isn't just theoretical: ` +
-            `of the ${missing} titles with a real IMDb id but no OMDb record, several are old, long-enriched shows (Trailer Park Boys, Black Books, ` +
-            `Life, That's My Bush!, The Michael J. Fox Show) that have had every daily batch run for weeks to succeed — if they were merely ` +
-            `"not yet attempted," a dataset this size (${eligibleTotal} eligible) would have cleared them long ago at the documented batch sizes. ` +
-            `They're stuck being retried and failing, burning real API budget (OMDb's free tier is 1,000 req/day) on titles that may never resolve.`,
-          plain: `The note on this field said it just needed an API key to work — that was already fixed weeks ago and isn't the real problem. The ` +
-            `actual bug: when the lookup service says "I don't have this one," the code doesn't write that answer down anywhere — so every single ` +
-            `day, it tries the exact same handful of stuck titles again, wasting a real daily budget on titles that already failed and will likely ` +
-            `fail again, instead of ever getting to move past them.`,
-          impact: `Fixing this won't necessarily push population to 100% (some titles genuinely aren't in OMDb's index), but it stops the daily ` +
-            `budget from being wasted re-attempting known failures and, more importantly, distinguishes "genuinely absent" from "just hasn't had a ` +
-            `real turn yet" — right now that distinction doesn't exist in the data at all. Fix: on a "not found" response, write a real cache entry ` +
-            `(e.g. <code>{notFound: true, checkedAt: ...}</code>) and only retry after a cooldown, same shape as the book side's own established fix.`,
+          title: `OMDb Record Found is ${f.populatedPct.toFixed(1)}% populated — the permanent-retry bug is fixed, remaining gap is a mix of genuine OMDb misses and the fix's own retry cooldown`,
+          technical: `Root cause (found by reading <code>enrich_omdb.py</code>'s <code>main()</code>): on a failed lookup (<code>data.get('Response') == 'False'</code>, ` +
+            `OMDb's own "not found"/"Error getting data." response, or any other error), the script logged the failure and <code>continue</code>d WITHOUT writing ` +
+            `anything to <code>cache</code> — no negative-cache marker, no <code>checkedAt</code> timestamp, nothing. Since <code>pending_raw</code> filtered on ` +
+            `<code>titleKey not in cache</code>, a title that failed once looked identical to one never attempted and was retried on every future run forever — the ` +
+            `exact "permanent retry, no distinction between a real miss and a transient failure" bug class the book side already hit and fixed for its own ` +
+            `Amazon-scrape pipeline (Session 13d's <code>RETRY_COOLDOWN_DAYS</code>). Confirmed live, not just theoretical: this broke the daily scheduled workflow ` +
+            `outright on 2026-09-06 — "Monsters: The Lyle and Erik Menendez Story" (tt31896788, a real, correctly-sourced IMDb id from Bill's own Trakt export) got a ` +
+            `persistent "Error getting data." from OMDb's backend, verified non-transient via two identical retries hours apart, and being the sole pending title that ` +
+            `day meant it alone tripped the all-failed guard and failed the whole job. <b>Fixed</b>: a failed lookup now writes <code>{omdbError, checkedAt}</code> to ` +
+            `the cache (no <code>fetchedAt</code>, so it's never mistaken for a real record — the dashboard's own <code>populated</code>/<code>quality</code> checks ` +
+            `for this field were updated to require <code>fetchedAt</code> specifically, not bare truthiness, so this fix can't quietly inflate this field's own ` +
+            `reported population), and is only retried after a 14-day cooldown (<code>is_stale_negative()</code>) rather than every single day.`,
+          plain: `When the lookup service says "I don't have this one," the code now actually writes that answer down — so it stops burning a real daily API budget re-trying ` +
+            `the exact same known failures every day forever, and (this was the real, live-hit problem) stops the whole daily job from breaking outright when the day's ` +
+            `entire to-do list happens to be one of these stuck titles.`,
+          impact: `Doesn't push population to 100% — some titles genuinely aren't in OMDb's index, and that's a real, honest ceiling, not a bug. What it fixes is real: no more ` +
+            `daily job failures from a stuck singleton, no more wasted API budget re-confirming the same known misses every day, and — the actual dashboard-visible ` +
+            `benefit — this field's own reported ${f.populatedPct.toFixed(1)}% (${f.populated} of ${f.eligible} eligible) now means "has a confirmed real OMDb record," ` +
+            `not "we tried at some point, successfully or not." Not yet re-verified against a real production run — the fix hasn't executed against live data yet as of ` +
+            `this writeup.`,
         };
     },
     genre: (f) => {
