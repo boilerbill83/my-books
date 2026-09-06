@@ -351,7 +351,7 @@
       "title": "tag_llm.py now asks for subjects too — closes the field-quality-subjects gap at zero extra API cost",
       "summary": "inferSubjects() (engine.js) already had the exact right 3-tier shape (reviewed -> keyword -> llmEntry?.subjects), a real live scoring signal (subjectBonus()), but tag_llm.py's prompt never asked the LLM for subjects, so the third tier was permanently empty on the producing side. Added a SUBJECTS canonical-vocabulary constant and wired it into the same already-planned prompt/response, and extended find_llm_tag_gaps.mjs to also select a title purely for a subject gap, not just subgenre/tone. Also fixed a real, separate pre-existing bug found while doing this: the subgenre/tone gap checks never passed inferSubgenres()/inferTones()'s reviewed-tier parameter, wrongly counting a reviewed-workbook-only title as a gap.",
       "before": { "p10": 90, "p25": 96, "p50": 98, "p100": 90, "mae": 14.57, "note": "subjects field-quality gap: 228 of ~1,057 titles with no subject at all, 222 with no llmTags.json entry" },
-      "after": { "note": "real production run in progress as of this entry — see the next release log entry for the actual before/after eval.js numbers once the run completes and is verified" }
+      "after": { "p10": 90, "p25": 96, "p50": 98, "p100": 91, "mae": 14.57, "note": "verified in real production (run completed, 692-title batch): Subjects population jumped 77.9%→99.2% (1,049 of 1,057 titles), only 18 titles left with any tagging gap at all (12 subgenre, 1 tone, 8 subject) — self-resolved the field-quality-subjects finding" }
     }
   ]
 }
