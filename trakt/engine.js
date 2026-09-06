@@ -1991,13 +1991,18 @@ export function findTaxonomyCollisions() {
   return collisions;
 }
 
-// Real coverage as of this build: 27.5% (218 of 793 real titles) — lower
-// than subgenres/tones (both ~99%+) because this layer targets specific
-// human-condition subject matter rather than a near-universal genre/mood
-// axis, and deliberately has no overview-text or LLM fallback tier yet
-// (same honest-partial-coverage stance as inferEra() above). No bucket
+// This layer targets specific human-condition subject matter rather than
+// a near-universal genre/mood axis, so real coverage is naturally lower
+// than subgenres/tones even with all three tiers live — a large share of
+// plot-driven genre titles (a straightforward heist or procedural, say)
+// genuinely have no deeper human-condition theme to tag, and tag_llm.py's
+// own prompt explicitly tells the LLM tier not to force one. No bucket
 // exceeds 5% of the dataset (addiction-recovery, the largest, is 40 of
-// 793) — nowhere near a concentration-cap concern.
+// 793) — nowhere near a concentration-cap concern. The third (LLM) tier
+// below was fixed to actually populate (previously dead code — see the
+// now-resolved field-quality-subjects Improvement Opportunities finding)
+// once tag_llm.py's prompt was extended to ask for subjects too, at zero
+// extra API cost per title already being tagged for subgenre/tone.
 // Same reviewed-override-first priority as inferSubgenres()/inferTones().
 export function inferSubjects(meta, llmEntry, limit = 3, reviewed) {
   if (reviewed?.subjects?.length) return reviewed.subjects.slice(0, limit);

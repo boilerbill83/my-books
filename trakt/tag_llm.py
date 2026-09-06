@@ -82,6 +82,32 @@ GENRES = ['drama', 'comedy', 'thriller', 'crime', 'action', 'science-fiction',
 TONES = ['gritty', 'dark', 'witty', 'satirical', 'hilarious', 'inspirational',
           'intense', 'suspenseful', 'twisty', 'slow-burn', 'character-driven',
           'nostalgic', 'melancholy', 'offbeat', 'thoughtful']
+# Exact canonical vocabulary from trakt/engine.js's SUBJECT_KEYWORDS keys
+# plus SUBJECT_CANONICAL_VOCABULARY's reviewed-only-reachable additions
+# (kept in sync by hand, same discipline as SUBGENRES/TONES above). Added
+# per the field-quality-subjects Improvement Opportunities finding:
+# inferSubjects() (engine.js) already has the exact right 3-tier shape
+# (reviewed -> keyword -> llmEntry?.subjects) and is a real, live scoring
+# signal (subjectBonus()), but this script never asked for it — the third
+# tier was permanently empty even though the consuming code was fully
+# wired to use it. Zero extra API cost for any title already selected for
+# subgenre/tone tagging; find_llm_tag_gaps.mjs also now selects a title
+# purely for a subject gap even when its subgenre/tone are already covered.
+SUBJECTS = ['addiction-recovery', 'drug-addiction', 'grief-loss', 'suicide', 'terminal-illness',
+            'trauma-abuse', 'domestic-abuse', 'racism-civil-rights', 'historical-atrocities',
+            'immigration-refugee', 'infidelity', 'journalism-media', 'cult-extremism',
+            'mental-health', 'class-wealth-corporate', 'corporate-power', 'lgbtq', 'survival',
+            'ambition-reinvention', 'artistic-creative', 'celebrity-fame', 'crime-consequences',
+            'crime-investigation', 'criminal-life', 'crime-syndicate-life', 'deception-secrets',
+            'economic-hardship', 'espionage-national-security', 'family-dynamics',
+            'fate-and-destiny', 'found-family', 'friendship-community', 'frontier-westward',
+            'healthcare-medicine', 'identity-belonging', 'isolation-connection',
+            'justice-legal-system', 'law-enforcement', 'loyalty', 'marriage-relationships',
+            'parenthood', 'politics-power', 'power-corruption', 'redemption', 'religion-faith',
+            'resistance-rebellion', 'revenge', 'sacrifice-duty', 'self-discovery',
+            'social-inequality', 'sports-competition', 'supernatural-paranormal',
+            'technology-surveillance', 'vigilante-justice', 'war-conflict', 'workplace-culture',
+            'wrongful-conviction', 'youth-and-adolescence', 'societal-collapse']
 
 
 def get_json(url, body, headers, timeout=60):
@@ -134,22 +160,25 @@ TMDB keywords: {keywords}
 Plot summary: {overview}
 
 Return exactly this shape:
-{{"genre": "...", "subgenres": [...], "tones": [...]}}
+{{"genre": "...", "subgenres": [...], "tones": [...], "subjects": [...]}}
 
 Rules:
 - genre: exactly ONE value chosen ONLY from this list, the single best-fitting high-level genre: {', '.join(GENRES)}
 - subgenres: 1-3 values chosen ONLY from this list, most fitting first: {', '.join(SUBGENRES)}
 - tones: 1-4 values chosen ONLY from this list, most fitting first: {', '.join(TONES)}
+- subjects: 0-3 values chosen ONLY from this list, most fitting first — the real human-condition subject matter underneath the genre/plot (grief, addiction, class, identity, etc.), NOT a restatement of genre or subgenre: {', '.join(SUBJECTS)}
 - Base your answer on the actual genres/keywords/plot summary above, not the title alone.
 - For genre specifically: TMDB's own genre tags are a starting point, not the final answer - TMDB over-applies "Drama" as a near-universal secondary tag, so don't default to it just because it's present. Pick whichever single value best captures what the story is actually ABOUT.
-- If genuinely nothing in a list fits (subgenres/tones only, genre always needs a pick), return an empty array for it rather than forcing a weak match."""
+- For subjects specifically: only pick a value if the plot summary or keywords genuinely support it — an empty array is a normal, correct answer for a large share of plot-driven genre titles that have no deeper human-condition theme beyond their genre (e.g. a straightforward heist or procedural), don't force one.
+- If genuinely nothing in a list fits (subgenres/tones/subjects only, genre always needs a pick), return an empty array for it rather than forcing a weak match."""
     raw, _ = call_haiku(prompt)
     raw = raw.strip().removeprefix('```json').removeprefix('```').removesuffix('```').strip()
     out = json.loads(raw)
     genre = out.get('genre') if out.get('genre') in GENRES else None
     subgenres = [s for s in out.get('subgenres', []) if s in SUBGENRES][:3]
     tones = [tn for tn in out.get('tones', []) if tn in TONES][:4]
-    return genre, subgenres, tones
+    subjects = [s for s in out.get('subjects', []) if s in SUBJECTS][:3]
+    return genre, subgenres, tones, subjects
 
 
 def load_titles():
@@ -204,26 +233,24 @@ def main():
     failures = 0
     for i, t in enumerate(batch, 1):
         try:
-            genre, subgenres, tones = tag_title(t)
+            genre, subgenres, tones, subjects = tag_title(t)
         except Exception as e:
             failures += 1
             print(f'  [{i}/{len(batch)}] FAIL {t["title"][:45]}: {e}')
             time.sleep(0.4)
             continue
-        # genre is a real bonus of this same batch, not the reason a title
-        # was selected — this script's selection criterion is still purely
-        # "free tiers miss subgenres/tones" (see find_llm_tag_gaps.mjs).
+        # genre/subjects are both a real bonus of this same batch, not the
+        # reason a title was selected — this script's selection criterion
+        # is "free tiers miss subgenres/tones/subjects" (see
+        # find_llm_tag_gaps.mjs, extended to include subjects gaps too).
         # inferGenre() (engine.js) checks this llmEntry.genre tier before
-        # its own weaker (~60% accuracy) deterministic classifier, so any
-        # title that happens to pass through here for subgenre/tone gap-
-        # filling gets a real genre upgrade too, at no extra API cost.
-        # This does NOT yet cover every title whose Genre would benefit
-        # from an LLM classification (only those with a subgenre/tone gap)
-        # — a dedicated genre-only gap pass is a real, separate future
-        # improvement, not attempted this session.
+        # its own weaker (~60% accuracy) deterministic classifier, and
+        # inferSubjects() checks llmEntry.subjects as its own third tier —
+        # any title that passes through here gets both, at no extra API
+        # cost beyond the subgenre/tone call already being made.
         cache[t['titleKey']] = {'genre': genre, 'subgenres': subgenres, 'tones': tones,
-                                 'taggedAt': time.strftime('%Y-%m-%d')}
-        print(f'  [{i}/{len(batch)}] {genre or "no-genre"}/{len(subgenres)}sub/{len(tones)}tone | {t["title"][:45]}')
+                                 'subjects': subjects, 'taggedAt': time.strftime('%Y-%m-%d')}
+        print(f'  [{i}/{len(batch)}] {genre or "no-genre"}/{len(subgenres)}sub/{len(tones)}tone/{len(subjects)}subj | {t["title"][:45]}')
         if i % 25 == 0:
             json.dump(cache, open(CACHE_FILE, 'w'), indent=1)
         time.sleep(0.4)

@@ -447,7 +447,7 @@ async function loadAllData() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
   const [dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback,
          scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
-         currentlyWatchingFeature, familyWatchlist] = await Promise.all([
+         currentlyWatchingFeature, familyWatchlist, releaseLog] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -487,9 +487,15 @@ async function loadAllData() {
     // file's own "note" field. { titles: [{titleKey, theatricalReleaseDate,
     // streaming, sources}] }; {titles:[]} is a safe empty default.
     get('./data/familyWatchlist.json').catch(() => ({ titles: [] })),
+    // A human-readable release log of real BMTRE engine/data-pipeline
+    // changes, each with a real before/after (eval.js numbers where the
+    // harness existed at the time, a qualitative note otherwise) — see the
+    // file's own "note" field. { entries: [...] }; {entries:[]} is a safe
+    // empty default (never blocks the rest of the page on a missing file).
+    get('./data/releaseLog.json').catch(() => ({ entries: [] })),
   ]);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
-  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist };
+  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog };
 }
 
 // Best Matches (Discover) and Prediction Misses (Quality) are two views of
