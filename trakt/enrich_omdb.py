@@ -58,6 +58,23 @@ API_KEY      = os.environ.get('OMDB_API_KEY', '')
 RETRY_NO_RT  = os.environ.get('RETRY_NO_RT') == '1' or '--retry-no-rt' in sys.argv
 RETRY_NO_DIRECTOR = os.environ.get('RETRY_NO_DIRECTOR') == '1' or '--retry-no-director' in sys.argv
 DELAY        = 0.4
+# A failed lookup used to write nothing to the cache at all, so a title
+# that fails once looked identical to one never attempted and got
+# re-tried on every single future run forever — confirmed as a real,
+# live-hit bug (not just theoretical) on 2026-09-06: "Monsters: The Lyle
+# and Erik Menendez Story" (tt31896788, a real, correctly-sourced IMDb id
+# from Bill's own Trakt export) gets a persistent "Error getting data."
+# from OMDb's own backend, verified non-transient via two identical
+# retries hours apart — and being the sole pending title on a given day
+# meant it alone tripped the all-failed guard below and broke the whole
+# scheduled job, every day, indefinitely. Mirrors the book side's own
+# established fix for the identical failure shape (scrape_ratings.py's
+# RETRY_COOLDOWN_DAYS, Session 13d) — a negative-cache entry distinct
+# from a real extract_entry() result (no 'fetchedAt', just 'checkedAt'),
+# retried only after the cooldown so a genuine transient hiccup still
+# gets a second chance eventually, without hammering OMDb daily on a
+# title that may never resolve.
+RETRY_COOLDOWN_DAYS = 14
 API_BASE     = 'https://www.omdbapi.com/'
 HEADERS      = {'User-Agent': 'my-books-trakt-omdb-enrichment (personal watch-history app)'}
 
@@ -198,6 +215,23 @@ def extract_entry(data):
     }
 
 
+def is_stale_negative(entry):
+    """True for a negative-cache entry (a prior failed lookup — has
+    'checkedAt' but no 'fetchedAt', unlike a real extract_entry() result,
+    which always sets 'fetchedAt') whose cooldown has elapsed, so it's
+    fair to retry. A permanent OMDb-side miss looks identical to a
+    transient hiccup from here — cheap to keep re-checking occasionally
+    rather than guess which one it is."""
+    if 'fetchedAt' in entry or 'checkedAt' not in entry:
+        return False
+    try:
+        checked = time.strptime(entry['checkedAt'], '%Y-%m-%d')
+    except (KeyError, ValueError):
+        return True
+    age_days = (time.mktime(time.localtime()) - time.mktime(checked)) / 86400
+    return age_days >= RETRY_COOLDOWN_DAYS
+
+
 def load_titles():
     """Same watchlist -> library -> candidatePool priority as
     enrich_tmdb.py. Needs each title's IMDb id: library/watchlist carry
@@ -252,7 +286,8 @@ def main():
                        and cache[t['titleKey']].get('director') is None
                        and not cache[t['titleKey']].get('directorRetriedAt')]
     else:
-        pending_raw = [t for t in load_titles() if t['titleKey'] not in cache]
+        pending_raw = [t for t in load_titles()
+                       if t['titleKey'] not in cache or is_stale_negative(cache[t['titleKey']])]
     seen, pending = set(), []
     for t in pending_raw:
         if t['titleKey'] not in seen:
@@ -279,6 +314,7 @@ def main():
             failures += 1
             err = (data or {}).get('Error') or error_body or f'status {status}'
             print(f'  [{i}/{len(batch)}] FAIL ({err}) | {t["title"] or t["imdbId"]}')
+            cache[t['titleKey']] = {'omdbError': err, 'checkedAt': time.strftime('%Y-%m-%d')}
             time.sleep(DELAY)
             continue
 
