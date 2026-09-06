@@ -3223,23 +3223,40 @@ export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedbac
 // backfilled from the deferred queue in original score order rather than
 // left under-filled — running out of diversity is never a reason to show
 // fewer picks than requested.
-export function diversityRerank(scoredList, enrichedMeta, { windowSize = 8, maxPerGenre = 3 } = {}) {
+//
+// maxPerCreator added per the diversity-rerank-no-creator-cap Improvement
+// Opportunities finding: this function had a diversity axis for genre but
+// none for director/creator — nothing stopped several titles from the
+// same prolific creator (a real possibility once franchiseBonus() and a
+// creator match can both fire for that person's other work) from crowding
+// out a window the same way unlimited genre repetition used to, before
+// the genre cap above was added. A title deferred for either reason is
+// still just deferred, not excluded, same as the genre-only version.
+export function diversityRerank(scoredList, enrichedMeta, { windowSize = 8, maxPerGenre = 3, maxPerCreator = 2 } = {}) {
   if (!scoredList.length) return scoredList;
   const primaryGenre = c => {
     const genres = enrichedMeta[c.titleKey]?.genres || [];
     return genres.length ? normalizeGenre(genres[0]) : null;
   };
+  const creatorOf = c => getCreator(c.type, enrichedMeta[c.titleKey]);
 
   const genreCounts = new Map();
+  const creatorCounts = new Map();
   const placed = [];
   const deferred = [];
 
   for (const c of scoredList) {
     const g = primaryGenre(c);
-    const count = g ? (genreCounts.get(g) || 0) : 0;
-    if (placed.length < windowSize && (!g || count < maxPerGenre)) {
+    const creator = creatorOf(c);
+    const genreCount = g ? (genreCounts.get(g) || 0) : 0;
+    const creatorCount = creator ? (creatorCounts.get(creator) || 0) : 0;
+    const fits = placed.length < windowSize
+      && (!g || genreCount < maxPerGenre)
+      && (!creator || creatorCount < maxPerCreator);
+    if (fits) {
       placed.push(c);
-      if (g) genreCounts.set(g, count + 1);
+      if (g) genreCounts.set(g, genreCount + 1);
+      if (creator) creatorCounts.set(creator, creatorCount + 1);
     } else {
       deferred.push(c);
     }

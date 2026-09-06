@@ -330,6 +330,28 @@
       "summary": "A failed OMDb lookup wrote nothing to the cache, so a permanently-failing title (Monsters: The Lyle and Erik Menendez Story, a real, correctly-sourced IMDb id) was retried every single day forever — and being the sole pending title one day, it alone broke the whole scheduled workflow. Fixed with the same RETRY_COOLDOWN_DAYS pattern the book side already established for the identical failure shape (Session 13d).",
       "before": { "p10": 90, "p25": 96, "p50": 98, "p100": 90, "note": "the daily trakt-enrich-omdb.yml workflow was failing outright; engine.js scoring untouched by this pipeline fix" },
       "after": { "p10": 90, "p25": 96, "p50": 98, "p100": 90, "note": "verified in real production: 530 other pending titles enriched cleanly in the same run, the one real failure got the expected negative-cache marker, OMDb Record Found field reads a genuine 100%/100%" }
+    },
+    {
+      "id": "diversity-rerank-creator-cap",
+      "date": "2026-09-06",
+      "session": "74",
+      "category": "ui",
+      "outcome": "shipped",
+      "title": "diversityRerank() now caps director/creator repetition too, not just genre",
+      "summary": "diversityRerank()'s only diversity axis was TMDB's raw primary genre, capped per display window — nothing stopped several titles from the same prolific director/showrunner from crowding out a window if franchiseBonus() and a creator match both fired for that person's other work simultaneously. New maxPerCreator option (default 2), reusing the exact defer-not-exclude/backfill-if-thin mechanism the genre cap already uses. Display-only, same as the genre cap — reorders an already-scored list for the rec panels, never touches matchScore()/bmtreScore.",
+      "before": { "p10": 90, "p25": 96, "p50": 98, "p100": 90 },
+      "after": { "p10": 90, "p25": 96, "p50": 98, "p100": 90, "note": "byte-identical, as designed (display-only fix, computeEvalMetrics() scores one title at a time and never touches diversityRerank()); verified live that today's real top-20 pool for both types stays within the new cap" }
+    },
+    {
+      "id": "subjects-llm-tier-wired",
+      "date": "2026-09-06",
+      "session": "74",
+      "category": "engine",
+      "outcome": "shipped",
+      "title": "tag_llm.py now asks for subjects too — closes the field-quality-subjects gap at zero extra API cost",
+      "summary": "inferSubjects() (engine.js) already had the exact right 3-tier shape (reviewed -> keyword -> llmEntry?.subjects), a real live scoring signal (subjectBonus()), but tag_llm.py's prompt never asked the LLM for subjects, so the third tier was permanently empty on the producing side. Added a SUBJECTS canonical-vocabulary constant and wired it into the same already-planned prompt/response, and extended find_llm_tag_gaps.mjs to also select a title purely for a subject gap, not just subgenre/tone. Also fixed a real, separate pre-existing bug found while doing this: the subgenre/tone gap checks never passed inferSubgenres()/inferTones()'s reviewed-tier parameter, wrongly counting a reviewed-workbook-only title as a gap.",
+      "before": { "p10": 90, "p25": 96, "p50": 98, "p100": 90, "mae": 14.57, "note": "subjects field-quality gap: 228 of ~1,057 titles with no subject at all, 222 with no llmTags.json entry" },
+      "after": { "note": "real production run in progress as of this entry — see the next release log entry for the actual before/after eval.js numbers once the run completes and is verified" }
     }
   ]
 }

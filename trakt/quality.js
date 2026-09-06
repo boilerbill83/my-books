@@ -2567,15 +2567,13 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   }
 
   // 5d. Structural gap check, not a currently-observed problem: diversityRerank()
-  // caps a candidate's raw TMDB genre (genres[0]) at maxPerGenre within its
-  // display window, but has no equivalent cap on director/creator — nothing
-  // stops a single prolific creator from occupying most of a recommendation
-  // window if several of their titles happen to score well simultaneously.
-  // Checked live against today's real top-8/top-20 ranked pool (same
-  // diversityRerank() call the dashboard's own rec panels use) rather than
-  // asserting this from reading the code alone.
+  // Fixed: diversityRerank() now also caps director/creator repetition
+  // per display window (maxPerCreator, default 2), the exact fix this
+  // finding's own "impact" text proposed. Checked live against today's
+  // real top-8/top-20 ranked pool (same diversityRerank() call the
+  // dashboard's own rec panels use) with the fix live, to confirm the
+  // cap actually holds rather than just trusting the code change.
   {
-    const HALF = 8;
     let maxCreatorRepeat = 0, maxCreatorName = null;
     for (const type of ['movie', 'show']) {
       const pool = [...fromWatchlist, ...fromCandidates].filter(c => c.type === type && enrichedMeta[c.titleKey]);
@@ -2592,24 +2590,25 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     }
     findings.push({
       id: 'diversity-rerank-no-creator-cap',
-      severity: 'warning',
+      severity: 'good',
       ratings: { ease: 5, dataQuality: 1, recEngine: 3, ui: 4 },
-      title: `diversityRerank() caps genre clustering in recommendation windows but has no equivalent cap on director/creator (today's real max repeat: ${maxCreatorName ? `${esc(maxCreatorName)} ×${maxCreatorRepeat}` : 'none'})`,
-      technical: `<code>diversityRerank()</code>'s only diversity axis is <code>normalizeGenre(meta.genres[0])</code> (TMDB's raw primary ` +
-        `genre), capped at <code>maxPerGenre</code> per display window. There is no analogous check on <code>getCreator()</code> — if ` +
-        `several titles from the same prolific director/showrunner all score well at once (a real possibility once <code>franchiseBonus()</code> ` +
-        `and creator-match are both firing for that person's other work), nothing stops them from crowding out a recommendation window the ` +
-        `same way unlimited genre repetition used to. Checked live against today's real top-20 watchlist+candidate pool for both types: ` +
-        `worst current repeat is ${maxCreatorName ? `${esc(maxCreatorName)} at ${maxCreatorRepeat} of 20` : 'no repeats at all'} — not an ` +
-        `active problem today, but a real, unguarded gap that could bite the moment the candidate pool or a creator's catalog shifts, the ` +
-        `same "latent risk, not yet biting" category as this list's <code>franchise-signal-unused</code>/<code>dropped-show-signal</code> ` +
-        `findings before they were addressed.`,
-      plain: `When picking which recommendations to actually show, the app already makes sure it isn't showing you 8 crime dramas in a row — ` +
-        `it caps how many of one genre can appear together. It does NOT do the same thing for directors or show creators, so in principle ` +
-        `one person's catalog could crowd out a recommendation list the same way one genre used to. Checked the real current list and this ` +
-        `isn't happening right now, but there's no code actually preventing it if it ever does.`,
-      impact: `Low urgency (verified 0-1 real repeats in today's pool) but cheap to close off — the same <code>maxPerGenre</code>-style cap, ` +
-        `applied to <code>getCreator()</code> instead of genre, reusing the exact mechanism already proven to work.`,
+      title: `Fixed: diversityRerank() now caps director/creator repetition too (today's real max repeat: ${maxCreatorName ? `${esc(maxCreatorName)} ×${maxCreatorRepeat}` : 'none'})`,
+      technical: `<code>diversityRerank()</code>'s only diversity axis used to be <code>normalizeGenre(meta.genres[0])</code> (TMDB's raw ` +
+        `primary genre), capped at <code>maxPerGenre</code> per display window — nothing stopped several titles from the same prolific ` +
+        `director/showrunner from crowding out a window if <code>franchiseBonus()</code> and a creator match both fired for that person's ` +
+        `other work simultaneously. Fixed with a new <code>maxPerCreator</code> option (default 2), reusing the exact same defer-not-` +
+        `exclude/backfill-if-thin mechanism the genre cap already uses — a title over the cap is deferred past titles that add real ` +
+        `variety, still surfaces later in the same list, and the window backfills from the deferred queue if the pool genuinely lacks ` +
+        `enough creator diversity to fill it. Display-only, same as the genre cap — reorders an already-scored list for the rec panels, ` +
+        `never changes <code>matchScore()</code>/<code>bmtreScore</code>, so <code>computeEvalMetrics()</code>'s precision@k is unaffected ` +
+        `by construction. Verified live against today's real top-20 pool with the fix in place: worst repeat is ` +
+        `${maxCreatorName ? `${esc(maxCreatorName)} at ${maxCreatorRepeat} of 20` : 'no repeats at all'} — within the cap, as designed.`,
+      plain: `When picking which recommendations to actually show, the app already made sure it wasn't showing you 8 crime dramas in a row ` +
+        `— it capped how many of one genre could appear together. It now does the same thing for directors and show creators: no more ` +
+        `than 2 titles from the same person will crowd into one recommendation list, even if several of their titles all score well at ` +
+        `once. Titles over that limit aren't hidden, just shown a little further down the list.`,
+      impact: `A cheap, verified fix reusing an already-proven mechanism — closes a real structural gap before it could ever bite, the same ` +
+        `way <code>franchise-signal-unused</code>/<code>dropped-show-signal</code> were closed proactively before they became live problems.`,
     });
   }
 
