@@ -229,6 +229,23 @@
       .tk-imp-rating-fill { height: 100%; border-radius: 3px; }
       .tk-imp-rating-num { font-size: 0.7rem; font-weight: 600; color: var(--text); margin-top: 2px; }
       @media (max-width: 640px) { .tk-imp-ratings { grid-template-columns: repeat(2, 1fr); } }
+
+      /* Release Log */
+      .tk-rlog-date { display: flex; flex-direction: column; font-size: 0.72rem; color: var(--text-muted); white-space: nowrap; min-width: 74px; }
+      .tk-rlog-session { font-weight: 600; }
+      .tk-rlog-outcome { font-size: 0.72rem; font-weight: 600; white-space: nowrap; }
+      .tk-rlog-outcome-shipped { color: var(--status-good); }
+      .tk-rlog-outcome-reverted { color: var(--status-warning); }
+      .tk-rlog-metrics { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 4px; }
+      .tk-rlog-metric { background: var(--bg-subtle); border-radius: 8px; padding: 6px 10px; min-width: 74px; text-align: center; }
+      .tk-rlog-metric-label { font-size: 0.66rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.02em; }
+      .tk-rlog-metric-vals { font-size: 0.78rem; font-weight: 600; margin-top: 2px; white-space: nowrap; }
+      .tk-rlog-metric-delta { font-size: 0.7rem; font-weight: 700; margin-top: 1px; }
+      @media (max-width: 640px) {
+        #releaseLogList .tk-imp-header { flex-direction: column; align-items: flex-start; }
+        .tk-rlog-date { flex-direction: row; gap: 8px; }
+      }
+
       @media (max-width: 480px) {
         .tk-metric-row { flex-wrap: wrap; }
         .tk-metric-score { margin-left: 38px; }

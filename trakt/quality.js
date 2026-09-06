@@ -3210,12 +3210,89 @@ function renderQualityDial(sectionId, { score, components }) {
   section.appendChild(componentsWrap);
 }
 
+// ── Release Log ──────────────────────────────────────────────────────────
+// A human-readable history of real BMTRE engine/data-pipeline changes, each
+// with a real before-and-after of the engine (leave-one-out eval.js numbers
+// for entries from Session 53 onward, once that harness existed; a real
+// qualitative before/after quote for earlier entries) — Bill's own request:
+// "build a log that shows the change and the before and after of the
+// engine... kind of like a release log." Populated from trakt/data/
+// releaseLog.json, itself backfilled by mining every session in CLAUDE.md's
+// own log for a real, verifiable before/after claim, not reconstructed from
+// memory — new entries are appended going forward as real changes ship.
+const METRIC_LABELS = { p10: 'p@10', p25: 'p@25', p50: 'p@50', p100: 'p@100', mae: 'MAE' };
+function renderMetricDelta(before, after) {
+  if (!before || !after) return '';
+  const cells = [];
+  for (const key of ['p10', 'p25', 'p50', 'p100', 'mae']) {
+    const b = before[key], a = after[key];
+    if (b == null || a == null) continue;
+    const isMae = key === 'mae';
+    const delta = isMae ? b - a : a - b; // for MAE, lower is better, so flip the sign of "improvement"
+    const dir = delta > 0.001 ? 'good' : delta < -0.001 ? 'critical' : 'muted';
+    const arrow = delta > 0.001 ? '▲' : delta < -0.001 ? '▼' : '—';
+    const fmt = v => isMae ? v.toFixed(2) : `${v}%`;
+    cells.push(`
+      <div class="tk-rlog-metric">
+        <div class="tk-rlog-metric-label">${METRIC_LABELS[key]}</div>
+        <div class="tk-rlog-metric-vals">${fmt(b)} → ${fmt(a)}</div>
+        <div class="tk-rlog-metric-delta" style="color:${dir === 'muted' ? 'var(--text-muted)' : `var(--status-${dir})`}">${arrow} ${isMae ? Math.abs(delta).toFixed(2) : Math.abs(delta).toFixed(0)}</div>
+      </div>`);
+  }
+  return cells.length ? `<div class="tk-rlog-metrics">${cells.join('')}</div>` : '';
+}
+function renderReleaseLog(entries, targetId = 'releaseLogList') {
+  const el = document.getElementById(targetId);
+  if (!el) return;
+  const catMeta = {
+    engine: { label: 'Engine signal', cls: 'tk-status-good' },
+    measurement: { label: 'Measurement/eval', cls: 'tk-status-warning' },
+    data: { label: 'Data pipeline', cls: 'tk-status-serious' },
+    ui: { label: 'Display only', cls: 'tk-status-critical' },
+  };
+  const outcomeLabel = { shipped: '✓ Shipped', reverted: '↩ Tested, reverted' };
+  const sorted = [...entries].sort((a, b) => (b.date || '').localeCompare(a.date || '') || (b.id || '').localeCompare(a.id || ''));
+  el.innerHTML = sorted.map((e, i) => {
+    const cat = catMeta[e.category] || { label: e.category, cls: 'tk-status-warning' };
+    const hasMetrics = e.before && e.after && ['p10', 'p25', 'p50', 'p100', 'mae'].some(k => e.before[k] != null && e.after[k] != null);
+    return `
+      <div class="tk-imp-card tk-imp-collapsed" data-rlog-index="${i}">
+        <div class="tk-imp-header" role="button" tabindex="0">
+          <div class="tk-rlog-date">${esc(e.date || '')}<span class="tk-rlog-session">Session ${esc(e.session || '?')}</span></div>
+          <div class="tk-imp-title">${esc(e.title)}</div>
+          <span class="tk-status-pill ${cat.cls}">${esc(cat.label)}</span>
+          <span class="tk-rlog-outcome tk-rlog-outcome-${esc(e.outcome || 'shipped')}">${esc(outcomeLabel[e.outcome] || e.outcome || '')}</span>
+          <span class="tk-collapse-chevron">▾</span>
+        </div>
+        ${hasMetrics ? renderMetricDelta(e.before, e.after) : ''}
+        <div class="tk-imp-details">
+          <div class="tk-imp-section-label">What changed</div>
+          <div class="tk-imp-technical">${esc(e.summary || '')}</div>
+          ${!hasMetrics ? `
+            <div class="tk-imp-section-label">Before</div>
+            <div class="tk-imp-plain">${esc((e.before && e.before.note) || '—')}</div>
+            <div class="tk-imp-section-label">After</div>
+            <div class="tk-imp-plain">${esc((e.after && e.after.note) || '—')}</div>` : (
+            (e.before?.note || e.after?.note) ? `
+            <div class="tk-imp-section-label">Additional context</div>
+            <div class="tk-imp-plain">${esc(e.before?.note || '')}${e.before?.note && e.after?.note ? '<br>' : ''}${esc(e.after?.note || '')}</div>` : ''
+          )}
+        </div>
+      </div>`;
+  }).join('');
+  el.querySelectorAll('.tk-imp-header').forEach(header => {
+    const toggle = () => header.closest('.tk-imp-card').classList.toggle('tk-imp-collapsed');
+    header.addEventListener('click', toggle);
+    header.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+  });
+}
+
 // ── Load + render ─────────────────────────────────────────────────────────
 
 
 async function load() {
   const { dashboard: d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback,
-          llmTags, reviewedTags } = await loadAllData();
+          llmTags, reviewedTags, releaseLog } = await loadAllData();
 
   const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
@@ -3302,6 +3379,7 @@ async function load() {
       : `${fmtNum(omdbFound)}/${fmtNum(omdbEligible)} eligible titles have an OMDb record.`);
 
   renderImprovementOpportunities(allFindings);
+  renderReleaseLog(releaseLog?.entries || []);
 }
 
 initCollapsibleCards();
