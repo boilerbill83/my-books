@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-06T13:16:49.263Z",
+    "generatedAt": "2026-09-06T23:59:20.237Z",
     "count": 439,
     "capPerType": 200
   },
@@ -50,16 +50,6 @@
       "titleKey": "show:128904",
       "ids": {
         "tmdb": 128904
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "show",
-      "titleKey": "show:89498",
-      "ids": {
-        "tmdb": 89498
       },
       "title": null,
       "year": null,
@@ -250,16 +240,6 @@
       "titleKey": "movie:531876",
       "ids": {
         "tmdb": 531876
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:475132",
-      "ids": {
-        "tmdb": 475132
       },
       "title": null,
       "year": null,
@@ -600,16 +580,6 @@
       "titleKey": "movie:267193",
       "ids": {
         "tmdb": 267193
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:969492",
-      "ids": {
-        "tmdb": 969492
       },
       "title": null,
       "year": null,
@@ -1037,16 +1007,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:339527",
-      "ids": {
-        "tmdb": 339527
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:936075",
       "ids": {
         "tmdb": 936075
@@ -1287,16 +1247,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:442065",
-      "ids": {
-        "tmdb": 442065
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:28730",
       "ids": {
         "tmdb": 28730
@@ -1330,16 +1280,6 @@
       "titleKey": "movie:59440",
       "ids": {
         "tmdb": 59440
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:13074",
-      "ids": {
-        "tmdb": 13074
       },
       "title": null,
       "year": null,
@@ -1707,16 +1647,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:238126",
-      "ids": {
-        "tmdb": 238126
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
       "titleKey": "show:124152",
       "ids": {
         "tmdb": 124152
@@ -1947,16 +1877,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:463272",
-      "ids": {
-        "tmdb": 463272
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:501979",
       "ids": {
         "tmdb": 501979
@@ -2000,26 +1920,6 @@
       "titleKey": "movie:8961",
       "ids": {
         "tmdb": 8961
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:8909",
-      "ids": {
-        "tmdb": 8909
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:821427",
-      "ids": {
-        "tmdb": 821427
       },
       "title": null,
       "year": null,
@@ -2167,16 +2067,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:555",
-      "ids": {
-        "tmdb": 555
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "show",
       "titleKey": "show:58942",
       "ids": {
         "tmdb": 58942
@@ -2200,16 +2090,6 @@
       "titleKey": "show:57276",
       "ids": {
         "tmdb": 57276
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "show",
-      "titleKey": "show:92782",
-      "ids": {
-        "tmdb": 92782
       },
       "title": null,
       "year": null,
@@ -2317,16 +2197,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:819",
-      "ids": {
-        "tmdb": 819
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
       "titleKey": "show:223300",
       "ids": {
         "tmdb": 223300
@@ -2407,16 +2277,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:284605",
-      "ids": {
-        "tmdb": 284605
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
       "titleKey": "show:61871",
       "ids": {
         "tmdb": 61871
@@ -2437,16 +2297,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:121710",
-      "ids": {
-        "tmdb": 121710
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
       "titleKey": "show:75967",
       "ids": {
         "tmdb": 75967
@@ -2460,16 +2310,6 @@
       "titleKey": "show:88989",
       "ids": {
         "tmdb": 88989
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
-      "titleKey": "show:63761",
-      "ids": {
-        "tmdb": 63761
       },
       "title": null,
       "year": null,
@@ -2847,16 +2687,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:106349",
-      "ids": {
-        "tmdb": 106349
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "show",
       "titleKey": "show:1431",
       "ids": {
         "tmdb": 1431
@@ -2997,16 +2827,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:22511",
-      "ids": {
-        "tmdb": 22511
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 4
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:284296",
       "ids": {
         "tmdb": 284296
@@ -3027,16 +2847,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:824",
-      "ids": {
-        "tmdb": 824
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:1200208",
       "ids": {
         "tmdb": 1200208
@@ -3047,29 +2857,9 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:310",
-      "ids": {
-        "tmdb": 310
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:350",
       "ids": {
         "tmdb": 350
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:285",
-      "ids": {
-        "tmdb": 285
       },
       "title": null,
       "year": null,
@@ -3107,49 +2897,9 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:883",
-      "ids": {
-        "tmdb": 883
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:528761",
       "ids": {
         "tmdb": 528761
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:22803",
-      "ids": {
-        "tmdb": 22803
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:22798",
-      "ids": {
-        "tmdb": 22798
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:113294",
-      "ids": {
-        "tmdb": 113294
       },
       "title": null,
       "year": null,
@@ -3177,16 +2927,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:388191",
-      "ids": {
-        "tmdb": 388191
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:109418",
       "ids": {
         "tmdb": 109418
@@ -3207,29 +2947,9 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:466622",
-      "ids": {
-        "tmdb": 466622
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:1289601",
       "ids": {
         "tmdb": 1289601
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:666750",
-      "ids": {
-        "tmdb": 666750
       },
       "title": null,
       "year": null,
@@ -3250,36 +2970,6 @@
       "titleKey": "movie:392",
       "ids": {
         "tmdb": 392
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:523773",
-      "ids": {
-        "tmdb": 523773
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:245906",
-      "ids": {
-        "tmdb": 245906
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:10878",
-      "ids": {
-        "tmdb": 10878
       },
       "title": null,
       "year": null,
@@ -3310,26 +3000,6 @@
       "titleKey": "movie:363992",
       "ids": {
         "tmdb": 363992
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:489243",
-      "ids": {
-        "tmdb": 489243
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:928270",
-      "ids": {
-        "tmdb": 928270
       },
       "title": null,
       "year": null,
@@ -3437,16 +3107,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:787",
-      "ids": {
-        "tmdb": 787
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:447365",
       "ids": {
         "tmdb": 447365
@@ -3457,49 +3117,9 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:284286",
-      "ids": {
-        "tmdb": 284286
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:2289",
-      "ids": {
-        "tmdb": 2289
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:1094974",
-      "ids": {
-        "tmdb": 1094974
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:285423",
       "ids": {
         "tmdb": 285423
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:27310",
-      "ids": {
-        "tmdb": 27310
       },
       "title": null,
       "year": null,
@@ -3517,69 +3137,9 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:421",
-      "ids": {
-        "tmdb": 421
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:1076487",
-      "ids": {
-        "tmdb": 1076487
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:316152",
-      "ids": {
-        "tmdb": 316152
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:22947",
       "ids": {
         "tmdb": 22947
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:9763",
-      "ids": {
-        "tmdb": 9763
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:857655",
-      "ids": {
-        "tmdb": 857655
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:6535",
-      "ids": {
-        "tmdb": 6535
       },
       "title": null,
       "year": null,
@@ -3600,46 +3160,6 @@
       "titleKey": "movie:429194",
       "ids": {
         "tmdb": 429194
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:9741",
-      "ids": {
-        "tmdb": 9741
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:565348",
-      "ids": {
-        "tmdb": 565348
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:644",
-      "ids": {
-        "tmdb": 644
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:455236",
-      "ids": {
-        "tmdb": 455236
       },
       "title": null,
       "year": null,
@@ -3687,39 +3207,9 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:932420",
-      "ids": {
-        "tmdb": 932420
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:647785",
       "ids": {
         "tmdb": 647785
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:486131",
-      "ids": {
-        "tmdb": 486131
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:1220246",
-      "ids": {
-        "tmdb": 1220246
       },
       "title": null,
       "year": null,
@@ -3806,40 +3296,10 @@
       "source": "bill-manual"
     },
     {
-      "type": "show",
-      "titleKey": "show:222026",
-      "ids": {
-        "tmdb": 222026
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:401",
-      "ids": {
-        "tmdb": 401
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
       "type": "movie",
       "titleKey": "movie:57157",
       "ids": {
         "tmdb": 57157
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:427900",
-      "ids": {
-        "tmdb": 427900
       },
       "title": null,
       "year": null,
@@ -3950,17 +3410,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:614945",
-      "ids": {
-        "tmdb": 614945
-      },
-      "title": "Voicemails for Isabelle",
-      "year": 2026,
-      "source": "genre-explore",
-      "discoveredVia": "Comedy"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:122",
       "ids": {
         "tmdb": 122
@@ -4038,28 +3487,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:69050",
-      "ids": {
-        "tmdb": 69050
-      },
-      "title": "Riverdale",
-      "year": 2017,
-      "source": "genre-explore",
-      "discoveredVia": "Crime"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:245026",
-      "ids": {
-        "tmdb": 245026
-      },
-      "title": "Wizards Beyond Waverly Place",
-      "year": 2024,
-      "source": "genre-explore",
-      "discoveredVia": "Comedy"
-    },
-    {
-      "type": "show",
       "titleKey": "show:70785",
       "ids": {
         "tmdb": 70785
@@ -4131,16 +3558,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:51828",
-      "ids": {
-        "tmdb": 51828
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:44009",
       "ids": {
         "tmdb": 44009
@@ -4154,26 +3571,6 @@
       "titleKey": "movie:339397",
       "ids": {
         "tmdb": 339397
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:975043",
-      "ids": {
-        "tmdb": 975043
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:450489",
-      "ids": {
-        "tmdb": 450489
       },
       "title": null,
       "year": null,
@@ -4224,16 +3621,6 @@
       "titleKey": "show:18053",
       "ids": {
         "tmdb": 18053
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "show",
-      "titleKey": "show:138169",
-      "ids": {
-        "tmdb": 138169
       },
       "title": null,
       "year": null,
@@ -4293,17 +3680,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:696374",
-      "ids": {
-        "tmdb": 696374
-      },
-      "title": "Gabriel's Inferno",
-      "year": 2020,
-      "source": "genre-explore",
-      "discoveredVia": "Drama"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:77",
       "ids": {
         "tmdb": 77
@@ -4312,17 +3688,6 @@
       "year": 2000,
       "source": "genre-explore",
       "discoveredVia": "Thriller"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:724089",
-      "ids": {
-        "tmdb": 724089
-      },
-      "title": "Gabriel's Inferno: Part II",
-      "year": 2020,
-      "source": "genre-explore",
-      "discoveredVia": "Drama"
     },
     {
       "type": "movie",
@@ -4356,17 +3721,6 @@
       "year": 2013,
       "source": "genre-explore",
       "discoveredVia": "Thriller"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:761053",
-      "ids": {
-        "tmdb": 761053
-      },
-      "title": "Gabriel's Inferno: Part III",
-      "year": 2020,
-      "source": "genre-explore",
-      "discoveredVia": "Drama"
     },
     {
       "type": "movie",
@@ -4422,6 +3776,695 @@
       "year": 2020,
       "source": "genre-explore",
       "discoveredVia": "Drama"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1140498",
+      "ids": {
+        "tmdb": 1140498
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:50646",
+      "ids": {
+        "tmdb": 50646
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:3172",
+      "ids": {
+        "tmdb": 3172
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1154538",
+      "ids": {
+        "tmdb": 1154538
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:241008",
+      "ids": {
+        "tmdb": 241008
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:123149",
+      "ids": {
+        "tmdb": 123149
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:76747",
+      "ids": {
+        "tmdb": 76747
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:69061",
+      "ids": {
+        "tmdb": 69061
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:219937",
+      "ids": {
+        "tmdb": 219937
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:207718",
+      "ids": {
+        "tmdb": 207718
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:122194",
+      "ids": {
+        "tmdb": 122194
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:287231",
+      "ids": {
+        "tmdb": 287231
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:225221",
+      "ids": {
+        "tmdb": 225221
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:92628",
+      "ids": {
+        "tmdb": 92628
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:71884",
+      "ids": {
+        "tmdb": 71884
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1105832",
+      "ids": {
+        "tmdb": 1105832
+      },
+      "title": "Simón",
+      "year": 2023,
+      "source": "genre-explore",
+      "discoveredVia": "Drama"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:752",
+      "ids": {
+        "tmdb": 752
+      },
+      "title": "V for Vendetta",
+      "year": 2006,
+      "source": "genre-explore",
+      "discoveredVia": "Thriller"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:377462",
+      "ids": {
+        "tmdb": 377462
+      },
+      "title": "O.J.: Made in America",
+      "year": 2016,
+      "source": "genre-explore",
+      "discoveredVia": "Crime"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:447362",
+      "ids": {
+        "tmdb": 447362
+      },
+      "title": "Life in a Year",
+      "year": 2020,
+      "source": "genre-explore",
+      "discoveredVia": "Romance"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:687163",
+      "ids": {
+        "tmdb": 687163
+      },
+      "title": "Project Hail Mary",
+      "year": 2026,
+      "source": "genre-explore",
+      "discoveredVia": "Science Fiction"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1317149",
+      "ids": {
+        "tmdb": 1317149
+      },
+      "title": "I Swear",
+      "year": 2025,
+      "source": "genre-explore",
+      "discoveredVia": "History"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1124",
+      "ids": {
+        "tmdb": 1124
+      },
+      "title": "The Prestige",
+      "year": 2006,
+      "source": "genre-explore",
+      "discoveredVia": "Mystery"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:630566",
+      "ids": {
+        "tmdb": 630566
+      },
+      "title": "Clouds",
+      "year": 2020,
+      "source": "genre-explore",
+      "discoveredVia": "Drama"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:379170",
+      "ids": {
+        "tmdb": 379170
+      },
+      "title": "Sherlock: The Abominable Bride",
+      "year": 2016,
+      "source": "genre-explore",
+      "discoveredVia": "Thriller"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:106646",
+      "ids": {
+        "tmdb": 106646
+      },
+      "title": "The Wolf of Wall Street",
+      "year": 2013,
+      "source": "genre-explore",
+      "discoveredVia": "Comedy"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:470044",
+      "ids": {
+        "tmdb": 470044
+      },
+      "title": "The Hate U Give",
+      "year": 2018,
+      "source": "genre-explore",
+      "discoveredVia": "Crime"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:527641",
+      "ids": {
+        "tmdb": 527641
+      },
+      "title": "Five Feet Apart",
+      "year": 2019,
+      "source": "genre-explore",
+      "discoveredVia": "Romance"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1022256",
+      "ids": {
+        "tmdb": 1022256
+      },
+      "title": "Selena Gomez: My Mind & Me",
+      "year": 2022,
+      "source": "genre-explore",
+      "discoveredVia": "Music"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:324786",
+      "ids": {
+        "tmdb": 324786
+      },
+      "title": "Hacksaw Ridge",
+      "year": 2016,
+      "source": "genre-explore",
+      "discoveredVia": "War"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:606856",
+      "ids": {
+        "tmdb": 606856
+      },
+      "title": "Togo",
+      "year": 2019,
+      "source": "genre-explore",
+      "discoveredVia": "History"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:120467",
+      "ids": {
+        "tmdb": 120467
+      },
+      "title": "The Grand Budapest Hotel",
+      "year": 2014,
+      "source": "genre-explore",
+      "discoveredVia": "Comedy"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:394269",
+      "ids": {
+        "tmdb": 394269
+      },
+      "title": "Lemonade",
+      "year": 2016,
+      "source": "genre-explore",
+      "discoveredVia": "Music"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:693134",
+      "ids": {
+        "tmdb": 693134
+      },
+      "title": "Dune: Part Two",
+      "year": 2024,
+      "source": "genre-explore",
+      "discoveredVia": "Science Fiction"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1058616",
+      "ids": {
+        "tmdb": 1058616
+      },
+      "title": "20 Days in Mariupol",
+      "year": 2023,
+      "source": "genre-explore",
+      "discoveredVia": "War"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:21634",
+      "ids": {
+        "tmdb": 21634
+      },
+      "title": "Prayers for Bobby",
+      "year": 2009,
+      "source": "genre-explore",
+      "discoveredVia": "History"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1301421",
+      "ids": {
+        "tmdb": 1301421
+      },
+      "title": "The Sheep Detectives",
+      "year": 2026,
+      "source": "genre-explore",
+      "discoveredVia": "Mystery"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:400608",
+      "ids": {
+        "tmdb": 400608
+      },
+      "title": "Bo Burnham: Make Happy",
+      "year": 2016,
+      "source": "genre-explore",
+      "discoveredVia": "Comedy"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:550776",
+      "ids": {
+        "tmdb": 550776
+      },
+      "title": "Believe Me: The Abduction of Lisa McVey",
+      "year": 2018,
+      "source": "genre-explore",
+      "discoveredVia": "Crime"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:398818",
+      "ids": {
+        "tmdb": 398818
+      },
+      "title": "Call Me by Your Name",
+      "year": 2017,
+      "source": "genre-explore",
+      "discoveredVia": "Romance"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:373558",
+      "ids": {
+        "tmdb": 373558
+      },
+      "title": "Taylor Swift: The 1989 World Tour - Live",
+      "year": 2015,
+      "source": "genre-explore",
+      "discoveredVia": "Music"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:515001",
+      "ids": {
+        "tmdb": 515001
+      },
+      "title": "Jojo Rabbit",
+      "year": 2019,
+      "source": "genre-explore",
+      "discoveredVia": "War"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:4348",
+      "ids": {
+        "tmdb": 4348
+      },
+      "title": "Pride & Prejudice",
+      "year": 2005,
+      "source": "genre-explore",
+      "discoveredVia": "Romance"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:400928",
+      "ids": {
+        "tmdb": 400928
+      },
+      "title": "Gifted",
+      "year": 2017,
+      "source": "genre-explore",
+      "discoveredVia": "Comedy"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:762975",
+      "ids": {
+        "tmdb": 762975
+      },
+      "title": "Purple Hearts",
+      "year": 2022,
+      "source": "genre-explore",
+      "discoveredVia": "Romance"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:371759",
+      "ids": {
+        "tmdb": 371759
+      },
+      "title": "Doctor Who: The Husbands of River Song",
+      "year": 2015,
+      "source": "genre-explore",
+      "discoveredVia": "Science Fiction"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:76203",
+      "ids": {
+        "tmdb": 76203
+      },
+      "title": "12 Years a Slave",
+      "year": 2013,
+      "source": "genre-explore",
+      "discoveredVia": "History"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:568332",
+      "ids": {
+        "tmdb": 568332
+      },
+      "title": "Taylor Swift: Reputation Stadium Tour",
+      "year": 2018,
+      "source": "genre-explore",
+      "discoveredVia": "Music"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:426618",
+      "ids": {
+        "tmdb": 426618
+      },
+      "title": "Where Hands Touch",
+      "year": 2018,
+      "source": "genre-explore",
+      "discoveredVia": "War"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:556574",
+      "ids": {
+        "tmdb": 556574
+      },
+      "title": "Hamilton",
+      "year": 2025,
+      "source": "genre-explore",
+      "discoveredVia": "History"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:337404",
+      "ids": {
+        "tmdb": 337404
+      },
+      "title": "Cruella",
+      "year": 2021,
+      "source": "genre-explore",
+      "discoveredVia": "Crime"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:152532",
+      "ids": {
+        "tmdb": 152532
+      },
+      "title": "Dallas Buyers Club",
+      "year": 2013,
+      "source": "genre-explore",
+      "discoveredVia": "History"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1646",
+      "ids": {
+        "tmdb": 1646
+      },
+      "title": "Freedom Writers",
+      "year": 2007,
+      "source": "genre-explore",
+      "discoveredVia": "Crime"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:449176",
+      "ids": {
+        "tmdb": 449176
+      },
+      "title": "Love, Simon",
+      "year": 2018,
+      "source": "genre-explore",
+      "discoveredVia": "Romance"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:654754",
+      "ids": {
+        "tmdb": 654754
+      },
+      "title": "Billie Eilish: The World's a Little Blurry",
+      "year": 2021,
+      "source": "genre-explore",
+      "discoveredVia": "Music"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:491480",
+      "ids": {
+        "tmdb": 491480
+      },
+      "title": "The Boy Who Harnessed the Wind",
+      "year": 2019,
+      "source": "genre-explore",
+      "discoveredVia": "History"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:831223",
+      "ids": {
+        "tmdb": 831223
+      },
+      "title": "Gone Mom: The Disappearance of Jennifer Dulos",
+      "year": 2021,
+      "source": "genre-explore",
+      "discoveredVia": "Mystery"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1160164",
+      "ids": {
+        "tmdb": 1160164
+      },
+      "title": "TAYLOR SWIFT | THE ERAS TOUR",
+      "year": 2023,
+      "source": "genre-explore",
+      "discoveredVia": "Music"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:33602",
+      "ids": {
+        "tmdb": 33602
+      },
+      "title": "Temple Grandin",
+      "year": 2010,
+      "source": "genre-explore",
+      "discoveredVia": "History"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:930094",
+      "ids": {
+        "tmdb": 930094
+      },
+      "title": "Red, White & Royal Blue",
+      "year": 2023,
+      "source": "genre-explore",
+      "discoveredVia": "Romance"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1137844",
+      "ids": {
+        "tmdb": 1137844
+      },
+      "title": "Mayday",
+      "year": 2026,
+      "source": "genre-explore",
+      "discoveredVia": "War"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:296096",
+      "ids": {
+        "tmdb": 296096
+      },
+      "title": "Me Before You",
+      "year": 2016,
+      "source": "genre-explore",
+      "discoveredVia": "Romance"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:205",
+      "ids": {
+        "tmdb": 205
+      },
+      "title": "Hotel Rwanda",
+      "year": 2004,
+      "source": "genre-explore",
+      "discoveredVia": "War"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:225647",
+      "ids": {
+        "tmdb": 225647
+      },
+      "title": "Boots",
+      "year": 2025,
+      "source": "genre-explore",
+      "discoveredVia": "War & Politics"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:128876",
+      "ids": {
+        "tmdb": 128876
+      },
+      "title": "The Beatles: Get Back",
+      "year": 2021,
+      "source": "genre-explore",
+      "discoveredVia": "Documentary"
     }
   ]
 }
