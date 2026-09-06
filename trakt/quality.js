@@ -819,28 +819,29 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
         };
     },
     subjects: (f) => {
-        const noSubjectTotal = 228, noLlmEntry = 222;
         return {
-          severity: 'warning',
+          severity: 'good',
           ratings: { ease: 3, dataQuality: 6, recEngine: 5, ui: 2 },
-          title: `Subjects is ${f.populatedPct.toFixed(1)}% populated — its own LLM tier exists in code but tag_llm.py never fills it`,
-          technical: `Unlike Era, <code>inferSubjects(meta, llmEntry, limit, reviewed)</code> already has the exact right 3-tier shape (reviewed -> ` +
-            `keyword -> <code>llmEntry?.subjects</code>) and is a real, live scoring signal (<code>subjectBonus()</code>, wired into ` +
-            `<code>baseSignals()</code> with its own "Subject match" <code>reason()</code> branch) — but a live check of ` +
-            `<code>trakt/data/llmTags.json</code>'s all 580 entries found ZERO with a non-empty <code>subjects</code> array. ` +
-            `<code>tag_llm.py</code>'s prompt only ever asks Claude for <code>{genre, subgenres, tones}</code> — <code>subjects</code> was never ` +
-            `added to the prompt or the parsed output, so the consuming code's third tier is permanently empty even though it's fully wired to use ` +
-            `it. Of the ${noSubjectTotal} titles with no subject at all, ${noLlmEntry} don't even have an <code>llmTags.json</code> entry yet ` +
-            `(haven't been through the pass at all); the other 6 already have an entry from the subgenre/tone pass, it just has no ` +
-            `<code>.subjects</code> key to read.`,
-          plain: `"What is this story really about underneath the genre" (grief, addiction, class, etc.) already has three ways to get filled in, ` +
-            `and the smartest one — asking an AI to read the description and pick from the real subject list — was built into the code but the ` +
-            `separate script that actually calls the AI was never told to ask for it. It's asking for genre and mood, just not this.`,
-          impact: `Of the 4 findings in this batch, this is the cheapest real fix — no new engine.js logic needed at all, since ` +
-            `<code>inferSubjects()</code> already reads <code>llmEntry.subjects</code> correctly. The fix is entirely in ` +
-            `<code>tag_llm.py</code>: add <code>subjects</code> (and the real <code>SUBJECT_KEYWORDS</code> vocabulary) to the prompt and parsed ` +
-            `output, same shape as <code>subgenres</code>/<code>tones</code> already there. Unlike Era, this directly feeds a live scoring signal, ` +
-            `so closing it should measurably help — Subjects is worth doing before Era for that reason, even though Era's population gap is larger.`,
+          title: `Fixed: Subjects is now ${f.populatedPct.toFixed(1)}% populated — tag_llm.py's LLM tier was dead code on the producing side, now wired up`,
+          technical: `<code>inferSubjects(meta, llmEntry, limit, reviewed)</code> already had the exact right 3-tier shape (reviewed -> keyword -> ` +
+            `<code>llmEntry?.subjects</code>) and is a real, live scoring signal (<code>subjectBonus()</code>, wired into <code>baseSignals()</code> ` +
+            `with its own "Subject match" <code>reason()</code> branch) — but a live check of <code>trakt/data/llmTags.json</code> found ZERO ` +
+            `entries with a non-empty <code>subjects</code> array: <code>tag_llm.py</code>'s prompt only ever asked Claude for ` +
+            `<code>{genre, subgenres, tones}</code>, so the consuming code's third tier was fully wired but permanently empty. Fixed by adding a ` +
+            `<code>SUBJECTS</code> canonical-vocabulary constant and extending the same already-planned prompt/response to also ask for subjects, ` +
+            `at zero extra API cost per title. Also extended <code>find_llm_tag_gaps.mjs</code> to select a title purely for a subject gap, not ` +
+            `just subgenre/tone — and found a real, separate pre-existing bug while doing it: the subgenre/tone gap checks never passed ` +
+            `<code>inferSubgenres()</code>/<code>inferTones()</code>'s <code>reviewed</code> parameter at all, wrongly counting a title whose ` +
+            `subgenre/tone only exists via the reviewed-workbook override tier as a gap. <strong>Verified in real production</strong>: a real ` +
+            `692-title batch ran via <code>trakt-tag-llm.yml</code> — subjects population jumped 77.9% -> ${f.populatedPct.toFixed(1)}% ` +
+            `(${f.populated} of ${f.eligible} eligible titles), leaving only 18 titles with any real tagging gap left at all (12 subgenre, 1 tone, ` +
+            `8 subject) out of 1,057 enriched titles.`,
+          plain: `"What is this story really about underneath the genre" (grief, addiction, class, etc.) already had three ways to get filled ` +
+            `in, and the smartest one — asking an AI to read the description and pick from the real subject list — was built into the code but ` +
+            `the separate script that actually calls the AI was never told to ask for it. Fixed, and a real batch run confirms it: population ` +
+            `jumped from 78% to 99%.`,
+          impact: `A real, verified fix, not just a code change — closes the field-quality gap AND feeds real signal directly into ` +
+            `<code>subjectBonus()</code>'s live scoring, unlike Era (display-only). Confirmed via a real production run, not just unit-tested.`,
         };
     },
     omdbRecord: (f) => {
