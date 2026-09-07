@@ -618,6 +618,46 @@
       "after": {
         "note": "closed-loop share dropped to 84.5% (371 of 439 pool titles cited by a loved title) after this real, much larger batch - a 9.3-point real drop vs. the earlier validation batch's 2.2-point move, confirming the mechanism scales rather than being a one-off fluke. genre-explore-sourced share of the pool: 16.2% (71 of 439), up from a small single-digit share after the first validation batch. eval.js unaffected by design (candidatePool.json isn't read by the eval harness): p10=90/p25=96/p50=98/p100=91, held exactly."
       }
+    },
+    {
+      "id": "subgenre-rating-preference-signal",
+      "date": "2026-09-07",
+      "session": "76",
+      "category": "engine",
+      "outcome": "shipped",
+      "title": "New no-negative-subgenre-signal: genreSignal() generalized one layer finer to the 65-bucket subgenre vocabulary",
+      "summary": "Bill: \"all of the ideas are still low impact\" - the honest correlation-audit/ablation-test investigation from the prior entry came back reassuring rather than exploitable, which wasn't a satisfying answer. Checked real subgenre-level rating deltas before building anything (this project's standing discipline) and found a materially cleaner signal than the existing genre-level no-negative-genre-signal fix: several horror-family subgenres (creature-feature, supernatural-horror, psychological-horror, survival-horror, horror-comedy) carry deltas 2-6x bigger than plain Horror's own broad genre-level delta, and a title whose dominant classified Genre isn't Horror at all never trips the genre-level penalty. New subgenreProfile (same >=3-rated-title trust floor) feeds a new subgenreSignal(), multi-valued like toneSignal() (sums each matching subgenre's deadzone-gated delta) with the same asymmetric penalty-only clamp as genreSignal(). Constants swept independently against scripts/eval.js: deadzone 0.5-0.9 all produced a real precision@10 gain, but only the 0.65-0.75 band held precision@100 exactly at baseline too - shipped at scale=3/cap=3/deadzone=0.7. Also fixed a real, separate bug found along the way: the Improvement Opportunities severity badge was hardcoded to 'warning' (Low impact) for nearly every open finding regardless of its own hand-graded recEngine rating - severity now derives from the ratings already on each finding (and closed-loop-discovery's severity now tracks its live percentage directly, not a boolean 'has the fix ever run').",
+      "before": {
+        "p10": 90,
+        "p25": 96,
+        "p50": 98,
+        "p100": 91,
+        "mae": 14.58,
+        "note": "raw MAE with SUBGENRE_SIGNAL_SCALE=0 (the true control - no subgenreSignal contribution). Open Improvement Opportunities findings: 2 read as anything above 'Low impact' out of 16 open at the time (both conditional live-bug-detection findings, unrelated to this fix)."
+      },
+      "after": {
+        "p10": 100,
+        "p25": 96,
+        "p50": 98,
+        "p100": 91,
+        "mae": 14.69,
+        "note": "precision@10 90->100% with @25/@50/@100 held exactly (96/98/91) and MAE moved negligibly (noise-level on 586 leave-one-out titles) - a clean win, zero measured tradeoffs. Verified live against the real pool: 47 of 431 current candidates take a real -2 to -3 point penalty today (Barbarian, The Cabin in the Woods, HIM, the Bourne trilogy, several CSI-family procedurals, Avengers: Endgame among them), a sane, plausible set. Severity recalibration: 6 of 18 open findings now correctly read Medium or High impact (up from 2), directly grounded in their own already-graded recEngine ratings rather than a stale default."
+      }
+    },
+    {
+      "id": "closed-loop-discovery-third-run-ceiling",
+      "date": "2026-09-07",
+      "session": "76",
+      "category": "measurement",
+      "outcome": "shipped",
+      "title": "Third, larger genre-explore discovery batch found the real ceiling instead of further progress - an honest negative result, documented rather than overclaimed",
+      "summary": "Triggered trakt-discover-candidates.yml a third time (explore_max_new_per_type=200, explore_top_genres_per_type=15, run 34079092314) to keep pushing closed-loop-discovery's 84.5% down further. It didn't move. Root-caused from the real job log rather than guessed: discover_candidates.js (the original similarity-graph discoverer) runs unconditionally in the same workflow every time and added 60 new closed-loop-sourced candidates in this run alone, while genre-explore added 28 new ones - the old method re-fills the pool with exactly what this finding is about just as fast as the new method removes it. A real, useful finding about the actual mechanism, not a chase for a bigger number: making further progress needs the two discovery methods rebalanced against each other (e.g. shrinking discover_candidates.js's own default batch size, or reserving a guaranteed pool-share for genre-explore during pruning), not just genre-explore's own inputs turned up further. The quality.js finding text was rewritten to report this honestly rather than silently re-asserting the old 93.8%->84.5% claim against a number that didn't actually move a third time.",
+      "before": {
+        "note": "closed-loop share 84.5% (371 of 439 pool titles), after the second real batch (Session 75)"
+      },
+      "after": {
+        "note": "closed-loop share unchanged at 84.5% (371 of 439 pool titles) after a third, deliberately much larger real batch - genre-explore share of the pool ticked up only slightly, 16.2%->16.4% (71->72 of 439), since 27 of the newly-discovered genre-explore candidates were themselves evicted by the same prune pass that let in 60 new similarity-graph candidates. eval.js unaffected by design (candidatePool.json isn't read by the eval harness): p10=90/p25=96/p50=98/p100=91, held exactly."
+      }
     }
   ]
 }

@@ -337,6 +337,48 @@ tried, confirming the small remaining movement (a slight precision@50 dip
 from the redesign itself) traces to real, defensible content-matching
 changes rather than a tunable threshold artifact.
 
+### 3g-2. Subgenre rating-preference penalty — clamped to **-3 to 0**
+```
+for each of a candidate's subgenres:
+  if (subgenreMean - globalMeanRating) > -0.7: skip
+  else: adj += (subgenreMean - globalMeanRating) × 3
+return max(-3, min(0, adj))
+```
+§3b-2's genre-level rating-preference penalty one layer finer, built the
+same session Bill pushed back that every open Improvement Opportunities
+item read as "low impact": checked real subgenre-level deltas first
+(this project's standing discipline) rather than assuming genre-level
+already covered the ground, and found it measurably didn't — several
+horror-family subgenres carry deltas 2-6x bigger than plain Horror's own
+genre-level delta (creature-feature -3.22 n=5, supernatural-horror -2.52
+n=10, psychological-horror -1.64 n=11, survival-horror -1.42 n=5,
+horror-comedy -1.22 n=5, vs. Horror's own -1.47), and a title whose
+dominant classified Genre isn't Horror at all (e.g. a thriller with a
+psychological-horror subgenre tag) never trips §3b-2's genre-level
+penalty in the first place. Same asymmetric penalty-only shape and same
+reasoning as §3b-2 (`subgenreBonus()` already rewards a positive match,
+so a second positive credit would re-hit the identical clamp-saturation
+failure mode) — but multi-valued like tone, not single-valued like genre,
+so it sums each matching subgenre's deadzone-gated delta rather than one
+lookup.
+
+Constants swept independently against `scripts/eval.js`, not copied from
+§3b-2's `GENRE_SIGNAL_*` unchanged: deadzone 0.5-0.9 all produced a real
+precision@10 gain (90%→100%), but only the 0.65-0.75 band held
+precision@100 exactly at the pre-change baseline (91%) too — 0.5-0.6 and
+0.8+ each cost a point somewhere. Shipped at scale=3/cap=3/deadzone=0.7,
+the center of that stable band. Real result: precision@10 90%→100%,
+precision@25/50/100 held exactly (96/98/91), raw MAE moved negligibly
+(14.58→14.69, noise-level on a 586-title leave-one-out set) — a clean
+win with zero measured tradeoffs. Verified live against the real
+candidate pool: 47 of 431 current candidates take a real penalty today
+(post-apocalyptic, survival-horror, alien-invasion, comedy-mystery,
+creature-feature, space-opera, murder-mystery, supernatural-horror,
+psychological-horror, horror-comedy, assassin-hitman all clear the
+deadzone), landing on a plausible, sane set (Barbarian, The Cabin in the
+Woods, HIM, the Bourne trilogy, several CSI-family procedurals, Avengers:
+Endgame) rather than an arbitrary or surprising one.
+
 ### 3h. Tone signal — clamped to **±3**
 ```
 Σ over candidate's tones of (tonePreferenceMean - globalMeanRating) × 4
@@ -1091,6 +1133,7 @@ Run it: `node trakt/scripts/eval.js` from the repo root.
 | Cast match | +0 to +8 | Top-billed actors |
 | Keyword match | +0 to +1.5 | Free-form TMDB keywords |
 | Subgenre match | +0 to +1.5 | Beneath TMDB's genre taxonomy |
+| Subgenre rating penalty | -3 to 0 | Rating-preference delta, -0.7 deadzone, penalty-only |
 | Tone signal | -3 to +3 | Real per-tone rating-preference delta |
 | Description similarity | +0 to +3 | TF-IDF plot-text cosine similarity to loved titles |
 | Forward similar-title | +0 to +24 | Scaled by `matchPointScale` |
