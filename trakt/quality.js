@@ -2233,11 +2233,16 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     // endpoint rather than title-to-title similarity) - downgraded from
     // 'serious' to 'warning' once its first real GitHub Actions run
     // verifiably moved the live percentage (96.0%->93.8% off a single
-    // modest 30-candidate batch). Deliberately NOT 'good'/resolved: unlike
-    // a one-shot bug fix, this is a gradual, ongoing metric that only
-    // keeps improving as the recurring weekly workflow keeps running -
-    // there's no single commit that finishes it, so this finding stays
-    // open and simply reports the current real numbers on every load.
+    // modest 30-candidate batch, 2026-09-03). A second, deliberately much
+    // larger run (2026-09-06: explore_max_new_per_type=100,
+    // explore_top_genres_per_type=12, run 34068301783) moved it further
+    // still, 93.8%->84.5% - a real, substantial drop from genuinely scaling
+    // up the same proven mechanism, not a fluke of the first small batch.
+    // Deliberately NOT 'good'/resolved: unlike a one-shot bug fix, this is
+    // a gradual, ongoing metric that only keeps improving as the recurring
+    // weekly workflow keeps running - there's no single commit that
+    // finishes it, so this finding stays open and simply reports the
+    // current real numbers on every load.
     findings.push({
       id: 'closed-loop-discovery',
       severity: exploreSourced.length > 0 ? 'warning' : 'serious',
@@ -2254,9 +2259,11 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
             `<code>/discover</code> endpoint (seeded from Bill's real loved-genre mix, sorted by vote average, never touching the ` +
             `similarity graph) — wired into <code>.github/workflows/trakt-discover-candidates.yml</code> and confirmed working in a real ` +
             `run: ${fmtNum(exploreSourced.length)} of the current pool (${pctExplore.toFixed(1)}%) are <code>source: "genre-explore"</code> ` +
-            `stubs, none cited by any loved title's similar/recommended list. That first, deliberately modest validation run alone moved ` +
-            `the closed-loop share 96.0% → ${pctClosedLoop.toFixed(1)}% — the mechanism is proven, and the share will keep dropping further ` +
-            `each week as the recurring workflow keeps discovering more genre-explore candidates alongside the similarity-graph ones.`
+            `stubs, none cited by any loved title's similar/recommended list. The first, deliberately modest validation run moved the ` +
+            `closed-loop share 96.0% → 93.8%; a second, genuinely large-scale run (100 candidates/type, top 12 loved genres/type) moved it ` +
+            `further still to ${pctClosedLoop.toFixed(1)}% — real, compounding evidence the mechanism works at scale, not a one-off fluke ` +
+            `of the first small batch. The share will keep dropping further each week as the recurring workflow keeps discovering more ` +
+            `genre-explore candidates alongside the similarity-graph ones.`
           : `No independent discovery source exists yet.`),
       plain: `The pool of "new things Bill might like" used to be built entirely by asking TMDB's own algorithm "what's similar to what ` +
         `Bill already loves" — and then the recommendation engine's strongest scoring signal was, again, "does TMDB's algorithm consider ` +
