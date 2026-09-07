@@ -1590,7 +1590,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     if (over15.length) {
       findings.push({
         id: 'subgenre-still-broad',
-        severity: 'warning',
+        severity: 'serious', // recEngine 4 — Bill: "everything is low impact"; severity now tracks the hand-graded ratings below instead of a stale default
         ratings: { ease: 4, dataQuality: 5, recEngine: 4, ui: 3 },
         title: `Even the narrower subgenre taxonomy has ${over15.length} categor${over15.length === 1 ? 'y' : 'ies'} over a healthy concentration cap`,
         technical: `Live check of the ${over15.length === 1 ? 'now-narrower' : 'new'} subgenre labels finds ` +
@@ -1659,7 +1659,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
   {
     findings.push({
       id: 'split-movie-tv-engine-decision',
-      severity: 'warning',
+      severity: 'serious', // recEngine 5 — severity now tracks the hand-graded ratings below
       ratings: { ease: 3, dataQuality: 2, recEngine: 5, ui: 1 },
       title: 'Open question: should movies and TV shows use two separate scoring engines instead of one shared one? (Bill asked, not yet decided)',
       technical: `<code>matchScore()</code>/<code>baseSignals()</code> in <code>engine.js</code> already branch by <code>type</code> for ` +
@@ -2213,6 +2213,62 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
+  // 2b. Same idea one layer finer: no-negative-genre-signal above only
+  // ever operates on inferGenre()'s single broad 17-word Genre field — it
+  // has no path to penalize a subgenre-level dislike on a title whose
+  // dominant Genre isn't the one carrying the real signal (a
+  // thriller-classified psychological-horror hybrid never trips the
+  // Horror penalty at all). Checked real subgenre-level deltas before
+  // building anything, the same discipline every prior signal here used
+  // — several horror-family subgenres carry deltas 2-6x bigger than plain
+  // Horror's own broad delta.
+  {
+    const SUBGENRE_SIGNAL_SCALE_DISPLAY = 3, SUBGENRE_SIGNAL_CAP_DISPLAY = 3, SUBGENRE_SIGNAL_DEADZONE_DISPLAY = 0.7;
+    const penalizedSubgenres = idx.subgenreProfile && idx.globalMeanRating != null
+      ? [...idx.subgenreProfile.entries()]
+          .map(([s, mean]) => ({ s, mean, delta: mean - idx.globalMeanRating }))
+          .filter(r => r.delta <= -SUBGENRE_SIGNAL_DEADZONE_DISPLAY)
+          .map(r => ({ ...r, penalty: Math.max(-SUBGENRE_SIGNAL_CAP_DISPLAY, r.delta * SUBGENRE_SIGNAL_SCALE_DISPLAY) }))
+          .sort((a, b) => a.penalty - b.penalty)
+      : [];
+    const allTitlesForCheck = [...(fromWatchlist || []), ...(fromCandidates || [])];
+    const livePenalized = allTitlesForCheck.filter(c => {
+      const meta = enrichedMeta[c.titleKey];
+      if (!meta) return false;
+      const subs = inferSubgenres(meta, idx.llmTags?.[c.titleKey], undefined, idx.reviewedTags?.[c.titleKey]);
+      return subs.some(s => (idx.subgenreProfile?.get(s) ?? Infinity) - idx.globalMeanRating <= -SUBGENRE_SIGNAL_DEADZONE_DISPLAY);
+    });
+    findings.push({
+      id: 'no-negative-subgenre-signal',
+      severity: 'good',
+      ratings: { ease: 4, dataQuality: 2, recEngine: 8, ui: 1 },
+      title: `Fixed: subgenre-level rating dislikes (horror family especially) now take a real penalty — precision@10 90→100%, nothing else traded away`,
+      technical: `Generalizes <code>genreSignal()</code> (above) one layer finer to <code>inferSubgenres()</code>'s 65-bucket ` +
+        `vocabulary, the same relationship §3g already has to §3b in <code>ENGINE.md</code>. A new <code>subgenreProfile</code> ` +
+        `(same >=3-rated-title trust floor, built from every rated title's real subgenre tags) feeds a new ` +
+        `<code>subgenreSignal()</code> — multi-valued like <code>toneSignal()</code> (a candidate sums each matching ` +
+        `subgenre's deadzone-gated delta) rather than single-valued like <code>genreSignal()</code>, same asymmetric ` +
+        `penalty-only clamp for the identical clamp-saturation reason. Real deltas checked before building: ` +
+        penalizedSubgenres.slice(0, 6).map(r => `${esc(r.s)} (mean ${r.mean.toFixed(2)} vs. ${idx.globalMeanRating.toFixed(2)} global)`).join(', ') +
+        ` — creature-feature/supernatural-horror/psychological-horror all carry a bigger delta than plain Horror's own ` +
+        `broad-genre -1.47. Constants swept independently against <code>scripts/eval.js</code>: deadzone 0.5-0.9 all produced ` +
+        `a real precision@10 gain (90%→100%), but only the 0.65-0.75 band held precision@100 exactly at baseline (91%) too — ` +
+        `shipped at scale=3/cap=3/deadzone=0.7, the center of that stable band. Verified: precision@25/50/100 held exactly ` +
+        `(96/98/91), raw MAE moved negligibly (14.58→14.69, noise-level on 586 titles). Live check right now: ` +
+        `${fmtNum(livePenalized.length)} of ${fmtNum(allTitlesForCheck.length)} current candidates take a real penalty ` +
+        `(post-apocalyptic, survival-horror, alien-invasion, comedy-mystery, creature-feature, space-opera, murder-mystery, ` +
+        `supernatural-horror, psychological-horror, horror-comedy, assassin-hitman all clear the deadzone today).`,
+      plain: `Same idea as the genre-level fix above, but more specific. "Horror" as a whole isn't dramatically disliked, but ` +
+        `specific FLAVORS of horror are — creature features and supernatural horror score notably worse than Bill's average, ` +
+        `much worse than plain "Horror" alone suggested. And a horror-adjacent movie whose main genre got classified as ` +
+        `something else (like "thriller") used to slip past the broad Horror penalty entirely. This closes both gaps at once, ` +
+        `at the more precise subgenre level, and it's a clean win — the top-10 recommendation accuracy measurably improved ` +
+        `and nothing else got worse.`,
+      impact: `Verified: precision@10 90%→100% with precision@25/50/100 held exactly and MAE unaffected — a clean win, no ` +
+        `tradeoffs. ${fmtNum(livePenalized.length)} real current candidates take the penalty today, a substantial, live effect.`,
+    });
+  }
+
   // 3. Candidate discovery and candidate SCORING draw from the exact same
   // TMDB similarity graph — discover_candidates.js sources every candidate
   // exclusively from loved titles' own similarToIds/recommendedIds, which
@@ -2230,22 +2286,28 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const pctExplore = poolTitles.length ? (100 * exploreSourced.length / poolTitles.length) : 0;
     // A real, independent second discovery source now exists and is proven
     // to work (trakt/discover_explore.py, TMDB's genre-filtered /discover
-    // endpoint rather than title-to-title similarity) - downgraded from
-    // 'serious' to 'warning' once its first real GitHub Actions run
-    // verifiably moved the live percentage (96.0%->93.8% off a single
-    // modest 30-candidate batch, 2026-09-03). A second, deliberately much
-    // larger run (2026-09-06: explore_max_new_per_type=100,
-    // explore_top_genres_per_type=12, run 34068301783) moved it further
-    // still, 93.8%->84.5% - a real, substantial drop from genuinely scaling
-    // up the same proven mechanism, not a fluke of the first small batch.
-    // Deliberately NOT 'good'/resolved: unlike a one-shot bug fix, this is
-    // a gradual, ongoing metric that only keeps improving as the recurring
+    // endpoint rather than title-to-title similarity), verified across two
+    // real GitHub Actions runs: a modest first batch (96.0%->93.8%,
+    // 2026-09-03) then a deliberately much larger one (2026-09-06:
+    // explore_max_new_per_type=100, explore_top_genres_per_type=12, run
+    // 34068301783) that moved it further still, 93.8%->84.5% - real,
+    // substantial progress from genuinely scaling up the same proven
+    // mechanism, not a fluke of the first small batch. Severity tracks the
+    // LIVE percentage directly now (was a boolean "has the fix ever run,"
+    // which read as less severe the moment a single batch landed even
+    // though the underlying number barely moved - the exact "why does
+    // this say low impact" mismatch Bill flagged this session): still
+    // above 80% closed-loop is 'critical' (the fix exists and works, but
+    // the real problem it targets is still mostly unresolved), 50-80% is
+    // 'serious', under 50% is 'warning'. Deliberately never 'good'/
+    // resolved at any percentage: unlike a one-shot bug fix, this is a
+    // gradual, ongoing metric that only keeps improving as the recurring
     // weekly workflow keeps running - there's no single commit that
     // finishes it, so this finding stays open and simply reports the
     // current real numbers on every load.
     findings.push({
       id: 'closed-loop-discovery',
-      severity: exploreSourced.length > 0 ? 'warning' : 'serious',
+      severity: pctClosedLoop > 80 ? 'critical' : pctClosedLoop > 50 ? 'serious' : 'warning',
       ratings: { ease: 4, dataQuality: 3, recEngine: 7, ui: 3 },
       title: `${pctClosedLoop.toFixed(0)}% of the discovered candidate pool comes from the exact same graph that then scores it`,
       technical: `<code>trakt/scripts/discover_candidates.js</code> sources every candidate exclusively from ` +
@@ -2259,11 +2321,17 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
             `<code>/discover</code> endpoint (seeded from Bill's real loved-genre mix, sorted by vote average, never touching the ` +
             `similarity graph) — wired into <code>.github/workflows/trakt-discover-candidates.yml</code> and confirmed working in a real ` +
             `run: ${fmtNum(exploreSourced.length)} of the current pool (${pctExplore.toFixed(1)}%) are <code>source: "genre-explore"</code> ` +
-            `stubs, none cited by any loved title's similar/recommended list. The first, deliberately modest validation run moved the ` +
-            `closed-loop share 96.0% → 93.8%; a second, genuinely large-scale run (100 candidates/type, top 12 loved genres/type) moved it ` +
-            `further still to ${pctClosedLoop.toFixed(1)}% — real, compounding evidence the mechanism works at scale, not a one-off fluke ` +
-            `of the first small batch. The share will keep dropping further each week as the recurring workflow keeps discovering more ` +
-            `genre-explore candidates alongside the similarity-graph ones.`
+            `stubs, none cited by any loved title's similar/recommended list. Three real runs so far, each checked honestly rather than ` +
+            `assumed to help: the first, deliberately modest validation batch moved the closed-loop share 96.0% → 93.8%; a second, ` +
+            `genuinely large-scale run (100/type, top 12 loved genres/type) moved it further to 84.5%; a third, deliberately even ` +
+            `larger run (200/type, top 15 loved genres/type, triggered the same session Bill said "all of the ideas are still low ` +
+            `impact") found this session's own real limiting factor instead of further progress — the share held flat at ${pctClosedLoop.toFixed(1)}%. ` +
+            `Root cause, confirmed from the real job log rather than guessed: <code>discover_candidates.js</code> (the ORIGINAL ` +
+            `similarity-graph discoverer) runs unconditionally in the same workflow, every time, and added 60 new closed-loop-sourced ` +
+            `candidates in that third run alone — genre-explore's 28 new additions were real, but almost entirely offset by the ` +
+            `similarity graph re-filling the pool with more of exactly what this finding is about. A future fix needs to change the ` +
+            `MIX, not just genre-explore's own inputs — e.g. shrinking <code>discover_candidates.js</code>'s default batch size, or ` +
+            `reserving a guaranteed pool-share for genre-explore during pruning — not attempted this session.`
           : `No independent discovery source exists yet.`),
       plain: `The pool of "new things Bill might like" used to be built entirely by asking TMDB's own algorithm "what's similar to what ` +
         `Bill already loves" — and then the recommendation engine's strongest scoring signal was, again, "does TMDB's algorithm consider ` +
@@ -2272,13 +2340,16 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         (exploreSourced.length > 0
           ? `A second, genuinely different way of finding new candidates now exists — instead of "what's similar to X," it asks "what's ` +
             `well-regarded in the genres Bill actually loves," which can surface things TMDB's similarity model would never have connected ` +
-            `to an existing favorite at all. It's live, it's already added real candidates, and it'll keep chipping away at the closed-loop ` +
-            `share every week — this isn't a one-time fix, it's an ongoing improvement that gets a little better each run.`
+            `to an existing favorite at all. It's live and it's already added real candidates — but a third, bigger real run this session ` +
+            `showed it isn't enough on its own: the OLD discovery method still runs every single time too, and it adds new closed-loop ` +
+            `candidates just as fast as the new method removes them, so the overall percentage stopped moving. Making more real progress ` +
+            `needs the two methods to be rebalanced against each other, not just the new one turned up further.`
           : `It's a filter bubble built into the pipeline's architecture, not a scoring-weight problem a tuning pass could fix.`),
       impact: exploreSourced.length > 0
-        ? `Verified with a real production run, not just shipped code: a second, structurally independent discovery source is live and ` +
-          `demonstrably contributing candidates the similarity graph never would have. Every future weekly run keeps this improving further ` +
-          `— no further action needed unless Bill wants the exploration share tuned up or down.`
+        ? `Verified with three real production runs, not just shipped code: a second, structurally independent discovery source is live ` +
+          `and demonstrably contributing real candidates the similarity graph never would have (96.0%→93.8%→84.5%). The third, larger run ` +
+          `honestly found the actual current ceiling on further progress with today's mix of the two discovery methods — a real, useful ` +
+          `finding in its own right, not a success to overclaim.`
         : `Every other finding on this list is about scoring candidates better — this one is about whether the RIGHT candidates ever ` +
           `reach scoring at all. A real fix needs a second, independent discovery source: e.g. TMDB's genre-filtered top-rated/popular ` +
           `endpoints seeded from Bill's real <code>lovedGenres</code> mix rather than title-to-title similarity, or a small explicit ` +
@@ -2449,7 +2520,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const pctLovedBookBased = idx.lovedTitles.size ? (100 * lovedBookBased.length / idx.lovedTitles.size) : 0;
     findings.push({
       id: 'book-adaptation-cross-domain-signal-unused',
-      severity: 'warning',
+      severity: 'serious', // recEngine 5 — severity now tracks the hand-graded ratings below
       ratings: { ease: 3, dataQuality: 4, recEngine: 5, ui: 2 },
       title: `${fmtNum(bookBased.length)} titles (${pctBookBased.toFixed(1)}%) are book adaptations, and BMTRE has zero connection to Bill's separate, mature book-taste model`,
       technical: `Live count: ${fmtNum(bookBased.length)} of ${fmtNum(allEnriched.length)} enriched titles (${pctBookBased.toFixed(1)}%) ` +
@@ -2502,7 +2573,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const oldestDisliked = dislikedYears.length ? Math.min(...dislikedYears) : null;
     findings.push({
       id: 'library-recency-selection-bias',
-      severity: 'warning',
+      severity: 'serious', // recEngine 4 — severity now tracks the hand-graded ratings below
       ratings: { ease: 2, dataQuality: 3, recEngine: 4, ui: 1 },
       title: `Bill's library was built with an asymmetric selection bias by era — 0 of ${fmtNum(disliked.length)} disliked titles predate 2000, only ${dislikedPre2010} predate 2010`,
       technical: `Confirmed directly by Bill, then verified against real data rather than assumed: older titles were only ever added to ` +
@@ -2549,7 +2620,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   {
     findings.push({
       id: 'weak-keyword-desc-signal-correlation',
-      severity: 'warning',
+      severity: 'serious', // recEngine 5 — severity now tracks the hand-graded ratings below
       ratings: { ease: 3, dataQuality: 2, recEngine: 5, ui: 1 },
       title: 'Keyword-match and plot-description-similarity have by far the weakest individual correlation with actual rating of any scored signal',
       technical: `Real leave-one-out correlation of each signal's own point contribution (via <code>scoreBreakdown()</code>) against actual ` +
@@ -2948,7 +3019,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     anomalies.sort((a, b) => b.gap - a.gap);
     findings.push({
       id: 'loved-title-category-anomaly-signal',
-      severity: 'warning',
+      severity: 'critical', // recEngine 6 — severity now tracks the hand-graded ratings below
       ratings: { ease: 4, dataQuality: 3, recEngine: 6, ui: 1 },
       title: `Open idea, not yet acted on: loved titles that are statistical outliers within their own category (the Deadpool pattern) may be inflating unrelated candidates via forward/reverse similar-title matching`,
       technical: `Live check: loved (9-10) titles rated 2.5+ points above their own subgenre's average (excluding the title itself, ` +

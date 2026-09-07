@@ -314,6 +314,19 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   // preference-delta shape works; genreSignal() below generalizes it to
   // genre using the identical formula and trust floor.
   const genreRatingsRaw = new Map();
+  // Same shape, one layer finer: subgenre -> [ratings], every rated
+  // title. Bill: "all of the ideas are still low impact" — checked real
+  // subgenre-level deltas before building anything (this project's
+  // standing discipline) and found a real, cleaner signal than genre
+  // alone: several horror-family subgenres carry deltas 2-6x bigger than
+  // Horror's own broad genre-level delta (creature-feature -3.22 n=5,
+  // supernatural-horror -2.52 n=10, psychological-horror -1.64 n=11 —
+  // genreSignal()'s own comment cites plain Horror at -1.47), since a
+  // title tagged e.g. "psychological-horror" but genre-classified as
+  // "thriller" (its dominant TMDB signal) never triggers the broad-genre
+  // penalty at all. subgenreSignal() below generalizes genreSignal()'s
+  // formula one more level down.
+  const subgenreRatingsRaw = new Map();
   let ratedSum = 0, ratedCount = 0;
   // Weighted-by-loved-show-overlap airing-status signal (dashboard
   // recency-curve-not-split-by-type finding) — see showAiringBonus()
@@ -338,6 +351,10 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
     if (genreForProfile) {
       if (!genreRatingsRaw.has(genreForProfile)) genreRatingsRaw.set(genreForProfile, []);
       genreRatingsRaw.get(genreForProfile).push(t.myRating);
+    }
+    for (const s of inferSubgenres(meta, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
+      if (!subgenreRatingsRaw.has(s)) subgenreRatingsRaw.set(s, []);
+      subgenreRatingsRaw.get(s).push(t.myRating);
     }
 
     if (t.type === 'show') {
@@ -484,6 +501,15 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
       genreProfile.set(genre, ratings.reduce((s, r) => s + r, 0) / ratings.length);
     }
   }
+  // Same >=3-rated-title trust floor, one level finer — see
+  // subgenreRatingsRaw's own comment above for why this catches real
+  // deltas genreProfile alone smooths over.
+  const subgenreProfile = new Map();
+  for (const [s, ratings] of subgenreRatingsRaw) {
+    if (ratings.length >= 3) {
+      subgenreProfile.set(s, ratings.reduce((a, r) => a + r, 0) / ratings.length);
+    }
+  }
   // A per-genre COMMUNITY_NEUTRAL (dashboard's flat-community-neutral-
   // ignores-genre-bias finding, a real, measured 1.80-point genre-bias
   // spread) was tried and reverted here — see baseSignals()'s community
@@ -528,7 +554,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   // override for the non-loved majority of its loop.
   const descModel = descModelOverride !== undefined ? descModelOverride : buildDescModel(enrichedMeta, lovedTitles);
 
-  return { watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, genreProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel };
+  return { watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, genreProfile, subgenreProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -1108,6 +1134,38 @@ function genreSignal(genre, genreProfile, globalMean) {
   if (delta > -GENRE_SIGNAL_DEADZONE) return 0;
   const adj = delta * GENRE_SIGNAL_SCALE;
   return Math.max(-GENRE_SIGNAL_CAP, Math.min(0, adj));
+}
+
+// genreSignal() one level finer, generalized to subgenre (multi-valued,
+// like tone — a candidate can carry several, so this sums each matching
+// subgenre's deadzone-gated delta rather than looking up one value).
+// Checked real data before building (Bill: "all of the ideas are still
+// low impact" — this session's response): subgenre-level deltas are
+// materially cleaner than genre-level for the horror family specifically
+// (creature-feature -3.22 n=5, supernatural-horror -2.52 n=10,
+// psychological-horror -1.64 n=11, survival-horror -1.42 n=5,
+// horror-comedy -1.22 n=5 — genreSignal()'s own broad "Horror" delta is
+// -1.47), and catches titles whose dominant classified Genre isn't
+// Horror at all (a thriller-classified psychological-horror hybrid never
+// trips genreSignal() today). Same asymmetric penalty-only shape and
+// same reasoning as genreSignal() — subgenreBonus() already rewards a
+// positive match, so a second positive credit here would just re-hit
+// the same 100-clamp-saturation failure mode genreSignal()'s own history
+// already worked through. Constants swept independently against
+// scripts/eval.js, not copied from GENRE_SIGNAL_* unchanged.
+const SUBGENRE_SIGNAL_SCALE = 3;
+const SUBGENRE_SIGNAL_CAP = 3;
+const SUBGENRE_SIGNAL_DEADZONE = 0.7;
+function subgenreSignal(subgenres, subgenreProfile, globalMean) {
+  if (!subgenreProfile || !subgenreProfile.size || globalMean == null) return 0;
+  let adj = 0;
+  for (const s of (subgenres || [])) {
+    if (!subgenreProfile.has(s)) continue;
+    const delta = subgenreProfile.get(s) - globalMean;
+    if (delta > -SUBGENRE_SIGNAL_DEADZONE) continue;
+    adj += delta * SUBGENRE_SIGNAL_SCALE;
+  }
+  return Math.max(-SUBGENRE_SIGNAL_CAP, Math.min(0, adj));
 }
 
 // A real Improvement Opportunities finding (Session 53): similarToIds/
@@ -2663,7 +2721,9 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   score += franchiseBonus(meta?.belongsToCollection?.id, idx.lovedCollections);
   score += castBonus(meta?.topCast, idx.lovedActors);
   score += keywordBonus(meta?.keywords, idx.lovedKeywords);
-  score += subgenreBonus(inferSubgenres(meta, llmEntry, undefined, reviewedEntry), idx.lovedSubgenres);
+  const candidateSubgenresForScoring = inferSubgenres(meta, llmEntry, undefined, reviewedEntry);
+  score += subgenreBonus(candidateSubgenresForScoring, idx.lovedSubgenres);
+  score += subgenreSignal(candidateSubgenresForScoring, idx.subgenreProfile, idx.globalMeanRating);
   score += subjectBonus(inferSubjects(meta, llmEntry, undefined, reviewedEntry), idx.lovedSubjects);
   score += toneSignal(inferTones(meta, llmEntry, undefined, reviewedEntry), idx.toneProfile, idx.globalMeanRating);
 
@@ -2839,6 +2899,12 @@ export function scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta = {}) {
   const matchedSubgenres = subgenres.filter(s => (idx.lovedSubgenres.get(s) || 0) > 0);
   add('subgenre', 'Subgenre match', subgenreBonus(subgenres, idx.lovedSubgenres),
     matchedSubgenres.length ? `Tagged ${matchedSubgenres.join(', ')} — genres you gravitate toward.` : `Tagged ${subgenres.join(', ') || 'no subgenres inferred'}.`);
+
+  const negativeSubgenres = subgenres.filter(s => idx.subgenreProfile?.has(s) && (idx.subgenreProfile.get(s) - (idx.globalMeanRating ?? 0)) <= -SUBGENRE_SIGNAL_DEADZONE);
+  add('subgenreSignal', 'Subgenre rating preference', subgenreSignal(subgenres, idx.subgenreProfile, idx.globalMeanRating),
+    negativeSubgenres.length
+      ? `Your average rating for ${negativeSubgenres.join(', ')} runs meaningfully below your overall average — only ever a penalty, never a bonus.`
+      : 'No subgenre tag here that you\'ve demonstrably rated below your own average.');
 
   const subjects = inferSubjects(meta, llmEntry, undefined, reviewedEntry);
   const matchedSubjects = subjects.filter(s => (idx.lovedSubjects.get(s) || 0) > 0);
