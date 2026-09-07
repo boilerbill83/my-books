@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-06T23:59:20.237Z",
+    "generatedAt": "2026-09-07T03:17:17.237Z",
     "count": 439,
     "capPerType": 200
   },
@@ -1527,16 +1527,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:91239",
-      "ids": {
-        "tmdb": 91239
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 14
-    },
-    {
-      "type": "show",
       "titleKey": "show:91445",
       "ids": {
         "tmdb": 91445
@@ -1650,16 +1640,6 @@
       "titleKey": "show:124152",
       "ids": {
         "tmdb": 124152
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
-      "titleKey": "show:40520",
-      "ids": {
-        "tmdb": 40520
       },
       "title": null,
       "year": null,
@@ -2117,16 +2097,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:58460",
-      "ids": {
-        "tmdb": 58460
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "show",
       "titleKey": "show:91502",
       "ids": {
         "tmdb": 91502
@@ -2427,16 +2397,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:88055",
-      "ids": {
-        "tmdb": 88055
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
       "titleKey": "show:113959",
       "ids": {
         "tmdb": 113959
@@ -2470,16 +2430,6 @@
       "titleKey": "show:92053",
       "ids": {
         "tmdb": 92053
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
-      "titleKey": "show:1950",
-      "ids": {
-        "tmdb": 1950
       },
       "title": null,
       "year": null,
@@ -2687,16 +2637,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:1431",
-      "ids": {
-        "tmdb": 1431
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "show",
       "titleKey": "show:70168",
       "ids": {
         "tmdb": 70168
@@ -2887,26 +2827,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:1034065",
-      "ids": {
-        "tmdb": 1034065
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:528761",
-      "ids": {
-        "tmdb": 528761
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:284052",
       "ids": {
         "tmdb": 284052
@@ -3010,16 +2930,6 @@
       "titleKey": "movie:717980",
       "ids": {
         "tmdb": 717980
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:846956",
-      "ids": {
-        "tmdb": 846956
       },
       "title": null,
       "year": null,
@@ -3240,16 +3150,6 @@
       "titleKey": "show:194741",
       "ids": {
         "tmdb": 194741
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:244243",
-      "ids": {
-        "tmdb": 244243
       },
       "title": null,
       "year": null,
@@ -3962,17 +3862,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:447362",
-      "ids": {
-        "tmdb": 447362
-      },
-      "title": "Life in a Year",
-      "year": 2020,
-      "source": "genre-explore",
-      "discoveredVia": "Romance"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:687163",
       "ids": {
         "tmdb": 687163
@@ -4190,17 +4079,6 @@
       "year": 2017,
       "source": "genre-explore",
       "discoveredVia": "Romance"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:373558",
-      "ids": {
-        "tmdb": 373558
-      },
-      "title": "Taylor Swift: The 1989 World Tour - Live",
-      "year": 2015,
-      "source": "genre-explore",
-      "discoveredVia": "Music"
     },
     {
       "type": "movie",
@@ -4424,17 +4302,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:296096",
-      "ids": {
-        "tmdb": 296096
-      },
-      "title": "Me Before You",
-      "year": 2016,
-      "source": "genre-explore",
-      "discoveredVia": "Romance"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:205",
       "ids": {
         "tmdb": 205
@@ -4465,6 +4332,140 @@
       "year": 2021,
       "source": "genre-explore",
       "discoveredVia": "Documentary"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:221486",
+      "ids": {
+        "tmdb": 221486
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:2693",
+      "ids": {
+        "tmdb": 2693
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:120462",
+      "ids": {
+        "tmdb": 120462
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:85723",
+      "ids": {
+        "tmdb": 85723
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:85949",
+      "ids": {
+        "tmdb": 85949
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:67683",
+      "ids": {
+        "tmdb": 67683
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:89572",
+      "ids": {
+        "tmdb": 89572
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:606234",
+      "ids": {
+        "tmdb": 606234
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:942199",
+      "ids": {
+        "tmdb": 942199
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:68718",
+      "ids": {
+        "tmdb": 68718
+      },
+      "title": "Django Unchained",
+      "year": 2012,
+      "source": "genre-explore",
+      "discoveredVia": "Western"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:698508",
+      "ids": {
+        "tmdb": 698508
+      },
+      "title": "Redeeming Love",
+      "year": 2022,
+      "source": "genre-explore",
+      "discoveredVia": "Western"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:537996",
+      "ids": {
+        "tmdb": 537996
+      },
+      "title": "The Ballad of Buster Scruggs",
+      "year": 2018,
+      "source": "genre-explore",
+      "discoveredVia": "Western"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:756999",
+      "ids": {
+        "tmdb": 756999
+      },
+      "title": "The Black Phone",
+      "year": 2022,
+      "source": "genre-explore",
+      "discoveredVia": "Horror"
     }
   ]
 }
