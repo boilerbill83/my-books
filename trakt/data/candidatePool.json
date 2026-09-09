@@ -4466,6 +4466,16 @@
       "year": 2022,
       "source": "genre-explore",
       "discoveredVia": "Horror"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:258036",
+      "ids": {
+        "tmdb": 258036
+      },
+      "title": null,
+      "year": null,
+      "source": "currently-watching-feature"
     }
   ]
 }

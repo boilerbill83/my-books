@@ -483,6 +483,17 @@
       "reasonLabel": "Not a taste dismissal — added to Bill's separate Family Watch List (movies to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
       "timestamp": "2026-09-05T01:00:00Z",
       "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:258036",
+      "title": "The Audacity",
+      "year": 2026,
+      "type": "show",
+      "interactionType": "category_exclude",
+      "reasonCode": "currently_watching_feature",
+      "reasonLabel": "Not a taste dismissal — Bill's own stated current watch (currentlyWatchingFeature.json), added to candidatePool.json only to get real TMDB enrichment for the Discover page hero card; excluded from recommendations/pruning so it never surfaces as a \"new pick\" for something he's already mid-episode on",
+      "timestamp": "2026-09-09T00:00:00Z",
+      "excludeFromRecommendations": true
     }
   ]
 }
