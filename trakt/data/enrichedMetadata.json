@@ -420482,5 +420482,163 @@
   "year": 2018,
   "type": "movie",
   "fetchedAt": "2026-09-07"
+ },
+ "show:258036": {
+  "genres": [
+   "Drama",
+   "Comedy"
+  ],
+  "overview": "Inside the bubble of Silicon Valley, a data-mining CEO strives to turn insight and influence into profit and power in this darkly comedic look at the warped dreams, outsized egos, and ethical lapses of the self-styled inventors of the future.",
+  "keywords": [
+   "corruption",
+   "silicon valley",
+   "dark comedy",
+   "tech company",
+   "comedic",
+   "thriller"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt30923123",
+  "voteAverage": 7.091,
+  "voteCount": 22,
+  "popularity": 9.4508,
+  "posterPath": "/ea6hHjW8yWjROSYwynpWsYc4mYZ.jpg",
+  "similarToIds": [
+   238549,
+   91827,
+   91854,
+   407,
+   430,
+   357,
+   124548,
+   304919,
+   28751,
+   91902,
+   58951,
+   623,
+   305058,
+   206916,
+   206828,
+   719,
+   275388,
+   909,
+   275603,
+   125118
+  ],
+  "recommendedIds": [
+   60573,
+   65315,
+   122066,
+   75967,
+   4415,
+   81349,
+   243861,
+   62704,
+   206925,
+   206829,
+   112211,
+   211,
+   33922,
+   64396,
+   39702,
+   57284,
+   219788,
+   203614,
+   236235,
+   92621
+  ],
+  "citedVoteCounts": {
+   "238549": 11,
+   "91827": 10,
+   "91854": 0,
+   "407": 44,
+   "430": 6,
+   "357": 21,
+   "124548": 0,
+   "304919": 0,
+   "28751": 0,
+   "91902": 31,
+   "58951": 29,
+   "623": 25,
+   "305058": 0,
+   "206916": 40,
+   "206828": 122,
+   "719": 32,
+   "275388": 163,
+   "909": 39,
+   "275603": 0,
+   "125118": 36,
+   "60573": 2018,
+   "65315": 110,
+   "122066": 369,
+   "75967": 60,
+   "4415": 138,
+   "81349": 861,
+   "243861": 26,
+   "62704": 812,
+   "206925": 39,
+   "206829": 157,
+   "112211": 221,
+   "211": 42,
+   "33922": 182,
+   "64396": 196,
+   "39702": 221,
+   "57284": 41,
+   "219788": 89,
+   "203614": 104,
+   "236235": 888,
+   "92621": 253
+  },
+  "topCast": [
+   "Billy Magnussen",
+   "Sarah Goldberg",
+   "Zach Galifianakis",
+   "Meaghan Rath",
+   "Lucy Punch"
+  ],
+  "topCastDetail": [
+   {
+    "id": 141034,
+    "name": "Billy Magnussen",
+    "gender": 2
+   },
+   {
+    "id": 1377686,
+    "name": "Sarah Goldberg",
+    "gender": 1
+   },
+   {
+    "id": 58225,
+    "name": "Zach Galifianakis",
+    "gender": 2
+   },
+   {
+    "id": 303020,
+    "name": "Meaghan Rath",
+    "gender": 1
+   },
+   {
+    "id": 66446,
+    "name": "Lucy Punch",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2026-04-05",
+  "episodeRunTime": null,
+  "createdBy": [
+   "Jonathan Glatzer"
+  ],
+  "status": "Returning Series",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 8,
+  "nextEpisodeToAir": null,
+  "currentSeasonFinale": null,
+  "networks": [
+   "AMC"
+  ],
+  "title": "The Audacity",
+  "year": 2026,
+  "type": "show",
+  "fetchedAt": "2026-09-09"
  }
 }
