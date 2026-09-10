@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-10T12:55:13.157Z",
-    "count": 432,
+    "generatedAt": "2026-09-10T12:57:02.436Z",
+    "count": 440,
     "capPerType": 200
   },
   "titles": [
@@ -3027,16 +3027,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:285423",
-      "ids": {
-        "tmdb": 285423
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:187596",
       "ids": {
         "tmdb": 187596
@@ -3160,16 +3150,6 @@
       "titleKey": "show:258902",
       "ids": {
         "tmdb": 258902
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:95556",
-      "ids": {
-        "tmdb": 95556
       },
       "title": null,
       "year": null,
@@ -4264,16 +4244,6 @@
       "citedBy": 1
     },
     {
-      "type": "show",
-      "titleKey": "show:89572",
-      "ids": {
-        "tmdb": 89572
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
       "type": "movie",
       "titleKey": "movie:606234",
       "ids": {
@@ -4386,6 +4356,117 @@
       "title": null,
       "year": null,
       "source": "bill-manual"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:169917",
+      "ids": {
+        "tmdb": 169917
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 3
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:419835",
+      "ids": {
+        "tmdb": 419835
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 2
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:399057",
+      "ids": {
+        "tmdb": 399057
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 2
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:684281",
+      "ids": {
+        "tmdb": 684281
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 2
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:292011",
+      "ids": {
+        "tmdb": 292011
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 2
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:443463",
+      "ids": {
+        "tmdb": 443463
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 2
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:399404",
+      "ids": {
+        "tmdb": 399404
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 2
+    },
+    {
+      "type": "show",
+      "titleKey": "show:222674",
+      "ids": {
+        "tmdb": 222674
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:262594",
+      "ids": {
+        "tmdb": 262594
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "show",
+      "titleKey": "show:73178",
+      "ids": {
+        "tmdb": 73178
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 1
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:250658",
+      "ids": {
+        "tmdb": 250658
+      },
+      "title": "The Internet's Own Boy: The Story of Aaron Swartz",
+      "year": 2014,
+      "source": "genre-explore",
+      "discoveredVia": "Crime"
     }
   ]
 }
