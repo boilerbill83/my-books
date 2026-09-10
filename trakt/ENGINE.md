@@ -379,6 +379,57 @@ deadzone), landing on a plausible, sane set (Barbarian, The Cabin in the
 Woods, HIM, the Bourne trilogy, several CSI-family procedurals, Avengers:
 Endgame) rather than an arbitrary or surprising one.
 
+### 3g-3. Superhero content-maturity signal — **+10 (mature) or -6 (non-mature), superhero subgenre only**
+```
+if !subgenres.includes('superhero'): return 0
+rated = omdbEntry.rated  // OMDb's own content rating
+if rated in {R, NC-17, TV-MA}: return +10
+if rated in {G, PG, PG-13, TV-G, TV-Y, TV-Y7, TV-Y7-FV, TV-PG, TV-14}: return -6
+else (missing/Not Rated/unrecognized): return 0
+```
+The real root-cause diagnosis behind the Deadpool / Zack Snyder's
+Justice League anomaly (see `loved-title-category-anomaly-signal` and
+`mutual-citation-double-count-tested` on the dashboard) — Bill asked
+directly what's actually different about Deadpool vs. other comic-book
+movies (his own hypotheses: R-rated, Ryan Reynolds, especially funny,
+crude, gory). Checked all 18 of his rated superhero-subgenre titles
+against real data (2026-09-10) rather than guessing: the tone classifier
+doesn't even tag Deadpool `funny` (it gets `satirical`/`witty`, shared
+broadly across the whole superhero population, not distinguishing), and
+no crude/gory keyword vocabulary exists in this dataset's TMDB keywords
+at all. Ryan Reynolds is real but small-n (n=3, and all 3 are also
+mature-rated, so it can't be disentangled from content maturity with
+this data). Content maturity is the clean, non-confounded signal:
+mature-rated (R/TV-MA) superhero titles average **8.3/10** vs. **5.9/10**
+for non-mature ones (n=18, real MPAA/TV ratings, cross-checked via
+WebSearch for the less-certain TV entries) — and the gap holds even
+excluding every Reynolds title.
+
+Validated before shipping by sweeping a hand-labeled proxy of this exact
+18-title population against `scripts/eval.js`: scale=0 (baseline)
+precision@10 90%, scale=1 precision@10 **100%** (all 3 Deadpool titles
+correctly enter the leave-one-out top 10, displacing only a
+genuinely-not-liked title — Presumed Innocent, 7/10), precision@25/50
+held exactly, precision@100 90%→91%, MAE moved <0.1. Plateaus at
+scale=1; scale=1.5 and 2 gave no further movement either direction — no
+regression at any tested scale, a cleaner result than either of the two
+structural fixes tried and rejected earlier the same session (a
+genre-level superhero penalty and a mutual-citation dedup, both of which
+regressed precision@10 broadly).
+
+**Real production data starts empty** — `enrich_omdb.py`'s
+`extract_entry()` only just started capturing OMDb's `Rated` field
+(2026-09-10); this signal is a true no-op (confirmed via a byte-identical
+`scripts/eval.js` run before/after shipping the code) until the
+`RETRY_NO_RATED` one-shot backfill (`enrich_omdb.py --retry-no-rated`,
+`.github/workflows/trakt-enrich-omdb.yml`'s `retry_no_rated` dispatch
+input) actually populates `omdbMetadata.json`'s `rated` field on
+already-cached entries — same "starts inert, contributes real weight
+once real data lands" pattern as §3-somewhere's `rewatchStrength()`.
+Scoped to the superhero subgenre only, matching the actual diagnosed
+problem — not generalized to a broader "Bill prefers mature content"
+signal without separately validating that wider claim.
+
 ### 3h. Tone signal — clamped to **±3**
 ```
 Σ over candidate's tones of (tonePreferenceMean - globalMeanRating) × 4
@@ -1162,6 +1213,7 @@ Run it: `node trakt/scripts/eval.js` from the repo root.
 | Keyword match | +0 to +1.5 | Free-form TMDB keywords |
 | Subgenre match | +0 to +1.5 | Beneath TMDB's genre taxonomy |
 | Subgenre rating penalty | -3 to 0 | Rating-preference delta, -0.7 deadzone, penalty-only |
+| Superhero content maturity | -6 to +10 | Superhero subgenre only; R/TV-MA vs. PG-13/TV-14; needs OMDb `rated` backfill |
 | Tone signal | -3 to +3 | Real per-tone rating-preference delta |
 | Description similarity | +0 to +3 | TF-IDF plot-text cosine similarity to loved titles |
 | Forward similar-title | +0 to +24 | Scaled by `matchPointScale` |
