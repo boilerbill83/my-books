@@ -3245,7 +3245,16 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList') 
 
 function computeBMTREAccuracy(evalMetrics) {
   const m = evalMetrics;
-  const p = k => m.precisionAtK[k] ?? 0;
+  // Grades against greatMatchPrecisionAtK (8+/10, "genuinely great
+  // match"), not the plain precisionAtK (6+) — corrected 2026-09-10
+  // after fixing LIKED_THRESHOLD to Bill's real "liked" bar (6, from a
+  // never-validated 8) revealed precision@k against it had lost most of
+  // its discriminating power (88.6% of the evaluated pool clears 6+, so
+  // even a near-random ranking scores close to that by chance). The
+  // great-match tier is Bill's own explicit choice ("Option 1": keep a
+  // second, stricter tier) for the metric that should actually move this
+  // dial.
+  const p = k => m.greatMatchPrecisionAtK?.[k] ?? 0;
   // Graded against calibratedMae, not raw mae — see engine.js's
   // calibrateScore() comment for the full 5-fold-cross-validated
   // derivation. matchScore() was only ever designed to rank correctly,
@@ -3269,10 +3278,10 @@ function computeBMTREAccuracy(evalMetrics) {
   const bottomCatchRate = m.bottomPossible > 0 ? 100 * m.bottomCatch / m.bottomPossible : 100;
 
   const components = [
-    { key: 'p10', label: 'Precision@10', weight: 0.15, subscore: p(10) },
-    { key: 'p25', label: 'Precision@25', weight: 0.20, subscore: p(25) },
-    { key: 'p50', label: 'Precision@50', weight: 0.20, subscore: p(50) },
-    { key: 'p100', label: 'Precision@100', weight: 0.15, subscore: p(100) },
+    { key: 'p10', label: 'Precision@10 (great match, 8+/10)', weight: 0.15, subscore: p(10) },
+    { key: 'p25', label: 'Precision@25 (great match, 8+/10)', weight: 0.20, subscore: p(25) },
+    { key: 'p50', label: 'Precision@50 (great match, 8+/10)', weight: 0.20, subscore: p(50) },
+    { key: 'p100', label: 'Precision@100 (great match, 8+/10)', weight: 0.15, subscore: p(100) },
     { key: 'mae', label: 'Rating accuracy (calibrated, vs. baseline)', weight: 0.15, subscore: maeAccuracy },
     { key: 'bottom', label: 'Bottom-dislike catch rate (vs. achievable ceiling)', weight: 0.15, subscore: bottomCatchRate },
   ];
