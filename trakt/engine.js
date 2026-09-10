@@ -3548,12 +3548,25 @@ export function diversityRerank(scoredList, enrichedMeta, { windowSize = 8, maxP
 // import it directly into the browser for the "BMTRE Accuracy Score"
 // dial — engine.js has no Node-specific imports (fs/path/url), unlike
 // scripts/eval.js's CLI wrapper, which would fail to load in a browser.
-const LIKED_THRESHOLD = 8;    // myRating >= 8/10 — the same looser "would he
-                                // enjoy this" bar the dashboard's own Best
-                                // Matches section already established, not
-                                // the stricter myRating >= 9 "loved" bar
-                                // buildIndexes() uses for signal-building.
-const DISLIKED_THRESHOLD = 5; // myRating <= 5/10, for the bottom-catch check
+// Corrected 2026-09-10 per Bill's own direct, explicit correction: "If a
+// movie is 7/10, that doesn't mean I didn't like it. Anything under 6
+// means I didn't like it." The previous value (8) was never actually
+// validated against Bill's real stated preference — it was inferred
+// from the dashboard's own Best Matches section (itself never checked
+// with him either, now fixed to match — see discover.js's
+// computeBestMatches()). This is a foundational correction: every
+// precision@k number in every prior session's eval.js run was computed
+// against the WRONG "liked" bar, so those historical numbers are not
+// directly comparable to numbers computed from this point forward.
+const LIKED_THRESHOLD = 6;    // myRating >= 6/10 — Bill's real bar, and now
+                                // exactly complementary with
+                                // DISLIKED_THRESHOLD below (no gap: <6 is
+                                // disliked, >=6 is liked), unlike the old
+                                // 8/5 split which left 6-7 unclassified by
+                                // either metric.
+const DISLIKED_THRESHOLD = 5; // myRating <= 5/10 ("anything under 6"),
+                                // for the bottom-catch check — already
+                                // matched Bill's real bar, unchanged.
 
 // Every eval.js run since this harness shipped has carried the same
 // caveat: raw MAE is WORSE than a trivial "always predict the mean"

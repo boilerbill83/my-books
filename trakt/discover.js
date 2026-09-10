@@ -89,9 +89,16 @@ function computeCrowdCompare(library, enrichedMeta) {
 // Row-building shared with Prediction Misses (Quality) via
 // predictedVsActualRows() so the two pages can never disagree about a
 // title's predicted score.
+//
+// actual >= 60 (myRating >= 6), corrected 2026-09-10 per Bill's own
+// direct correction — this section's original actual >= 80 threshold
+// was the exact assumption engine.js's LIKED_THRESHOLD was modeled on
+// (see that constant's own comment), and both were wrong: "If a movie
+// is 7/10, that doesn't mean I didn't like it. Anything under 6 means I
+// didn't like it."
 function computeBestMatches(library, enrichedMeta, omdbMeta, idx) {
   const rows = predictedVsActualRows(library, enrichedMeta, omdbMeta, idx);
-  const matches = rows.filter(r => r.predicted >= 70 && r.actual >= 80).sort((a, b) => b.predicted - a.predicted);
+  const matches = rows.filter(r => r.predicted >= 70 && r.actual >= 60).sort((a, b) => b.predicted - a.predicted);
   return { total: rows.length, matches };
 }
 
