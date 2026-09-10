@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-09-04T14:55:15.745Z",
-    "movieCount": 198,
-    "showCount": 389
+    "generatedAt": "2026-09-10T12:45:23.920Z",
+    "movieCount": 212,
+    "showCount": 392
   },
   "titles": [
     {
@@ -48,6 +48,27 @@
       "airedEpisodes": 8,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:76203",
+      "ids": {
+        "imdb": "tt2024544",
+        "plex": {
+          "guid": "5d7768ba0ea56a001e2a96e5",
+          "slug": "12-years-a-slave"
+        },
+        "slug": "12-years-a-slave-2013",
+        "tmdb": 76203,
+        "trakt": 56258
+      },
+      "title": "12 Years a Slave",
+      "year": 2013,
+      "myRating": 6,
+      "ratedAt": "2026-09-10T12:15:37.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2013-10-18T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -1371,6 +1392,69 @@
       "airedEpisodes": 18,
       "completionStatus": "caught-up",
       "lastWatchedAt": "2026-04-16T07:55:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:132344",
+      "ids": {
+        "imdb": "tt2209418",
+        "plex": {
+          "guid": "5d77699796b655001fdd3597",
+          "slug": "before-midnight"
+        },
+        "slug": "before-midnight-2013",
+        "tmdb": 132344,
+        "trakt": 89883
+      },
+      "title": "Before Midnight",
+      "year": 2013,
+      "myRating": 9,
+      "ratedAt": "2026-09-10T12:25:11.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2013-05-24T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:76",
+      "ids": {
+        "imdb": "tt0112471",
+        "plex": {
+          "guid": "5d7768243c3c2a001fbca859",
+          "slug": "before-sunrise"
+        },
+        "slug": "before-sunrise-1995",
+        "tmdb": 76,
+        "trakt": 46
+      },
+      "title": "Before Sunrise",
+      "year": 1995,
+      "myRating": 8,
+      "ratedAt": "2026-09-10T12:25:19.000Z",
+      "plays": 1,
+      "lastWatchedAt": "1995-01-27T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:80",
+      "ids": {
+        "imdb": "tt0381681",
+        "plex": {
+          "guid": "5d7768248718ba001e3115fa",
+          "slug": "before-sunset"
+        },
+        "slug": "before-sunset-2004",
+        "tmdb": 80,
+        "trakt": 50
+      },
+      "title": "Before Sunset",
+      "year": 2004,
+      "myRating": 9,
+      "ratedAt": "2026-09-10T12:24:59.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2004-07-02T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -2911,6 +2995,30 @@
     },
     {
       "type": "show",
+      "titleKey": "show:219937",
+      "ids": {
+        "imdb": "tt32252772",
+        "plex": {
+          "guid": "664faabf369d5f316d6dbf6a",
+          "slug": "dexter-original-sin"
+        },
+        "slug": "dexter-original-sin",
+        "tmdb": 219937,
+        "tvdb": 430780,
+        "trakt": 202335
+      },
+      "title": "Dexter: Original Sin",
+      "year": 2024,
+      "myRating": 8,
+      "ratedAt": "2026-09-09T16:17:45.000Z",
+      "plays": 10,
+      "airedEpisodes": 10,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2025-02-17T03:50:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
       "titleKey": "show:259909",
       "ids": {
         "imdb": "tt33043892",
@@ -3186,6 +3294,27 @@
       "ratedAt": "2021-10-22T00:00:00.000Z",
       "plays": 1,
       "lastWatchedAt": "2021-10-22T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:693134",
+      "ids": {
+        "imdb": "tt15239678",
+        "plex": {
+          "guid": "5eb8f22237ccbe0041723253",
+          "slug": "dune-part-two"
+        },
+        "slug": "dune-part-two-2024",
+        "tmdb": 693134,
+        "trakt": 537449
+      },
+      "title": "Dune: Part Two",
+      "year": 2024,
+      "myRating": 2,
+      "ratedAt": "2026-09-10T12:15:52.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2024-03-01T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -4245,6 +4374,27 @@
       "favorite": false
     },
     {
+      "type": "movie",
+      "titleKey": "movie:210577",
+      "ids": {
+        "imdb": "tt2267998",
+        "plex": {
+          "guid": "5d776a3fad5437001f777107",
+          "slug": "gone-girl"
+        },
+        "slug": "gone-girl-2014",
+        "tmdb": 210577,
+        "trakt": 130355
+      },
+      "title": "Gone Girl",
+      "year": 2014,
+      "myRating": 9,
+      "ratedAt": "2026-09-10T12:18:47.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2014-10-03T00:00:00.000Z",
+      "favorite": false
+    },
+    {
       "type": "show",
       "titleKey": "show:91405",
       "ids": {
@@ -4425,6 +4575,30 @@
       "ratedAt": "2025-11-26T00:00:00.000Z",
       "plays": 1,
       "lastWatchedAt": "2025-11-26T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:12940",
+      "ids": {
+        "imdb": "tt0446622",
+        "plex": {
+          "guid": "5d9c080f2192ba001f30628e",
+          "slug": "hard-knocks-1"
+        },
+        "slug": "hard-knocks",
+        "tmdb": 12940,
+        "tvdb": 82402,
+        "trakt": 12884
+      },
+      "title": "Hard Knocks",
+      "year": 2001,
+      "myRating": 6,
+      "ratedAt": "2026-09-09T16:15:29.000Z",
+      "plays": 107,
+      "airedEpisodes": 107,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-09-02T01:52:00.000Z",
       "favorite": false
     },
     {
@@ -5073,7 +5247,7 @@
       "myRating": 9,
       "ratedAt": "2025-08-20T00:00:00.000Z",
       "plays": 177,
-      "airedEpisodes": 181,
+      "airedEpisodes": 182,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false
@@ -5100,6 +5274,27 @@
       "airedEpisodes": 20,
       "completionStatus": "caught-up",
       "lastWatchedAt": "2023-07-30T07:45:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:245891",
+      "ids": {
+        "imdb": "tt2911666",
+        "plex": {
+          "guid": "5d776a8afb0d55001f5490a7",
+          "slug": "john-wick"
+        },
+        "slug": "john-wick-2014",
+        "tmdb": 245891,
+        "trakt": 149640
+      },
+      "title": "John Wick",
+      "year": 2014,
+      "myRating": 7,
+      "ratedAt": "2026-09-10T12:18:53.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2014-10-24T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -5628,7 +5823,7 @@
       "myRating": 7,
       "ratedAt": "2024-12-15T00:00:00.000Z",
       "plays": 16,
-      "airedEpisodes": 21,
+      "airedEpisodes": 22,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false
@@ -7750,6 +7945,27 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:146233",
+      "ids": {
+        "imdb": "tt1392214",
+        "plex": {
+          "guid": "5d7769b57a53e9001e6ee30a",
+          "slug": "prisoners"
+        },
+        "slug": "prisoners-2013",
+        "tmdb": 146233,
+        "trakt": 96797
+      },
+      "title": "Prisoners",
+      "year": 2013,
+      "myRating": 7,
+      "ratedAt": "2026-09-10T12:18:41.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2013-09-20T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:582014",
       "ids": {
         "imdb": "tt9620292",
@@ -7860,7 +8076,7 @@
       "myRating": 8,
       "ratedAt": "2025-04-10T00:00:00.000Z",
       "plays": 24,
-      "airedEpisodes": 30,
+      "airedEpisodes": 31,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false
@@ -8106,6 +8322,27 @@
       "airedEpisodes": 20,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:96721",
+      "ids": {
+        "imdb": "tt1979320",
+        "plex": {
+          "guid": "5d7768fc7a53e9001e6de76c",
+          "slug": "rush-2013"
+        },
+        "slug": "rush-2013",
+        "tmdb": 96721,
+        "trakt": 70421
+      },
+      "title": "Rush",
+      "year": 2013,
+      "myRating": 6,
+      "ratedAt": "2026-09-10T12:24:52.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2013-09-12T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -8529,6 +8766,27 @@
       "airedEpisodes": 33,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:11324",
+      "ids": {
+        "imdb": "tt1130884",
+        "plex": {
+          "guid": "5d7768365af944001f1fa488",
+          "slug": "shutter-island"
+        },
+        "slug": "shutter-island-2010",
+        "tmdb": 11324,
+        "trakt": 6422
+      },
+      "title": "Shutter Island",
+      "year": 2010,
+      "myRating": 10,
+      "ratedAt": "2026-09-10T12:19:11.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2010-02-18T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -9258,7 +9516,7 @@
       "myRating": 9,
       "ratedAt": "2023-05-31T00:00:00.000Z",
       "plays": 34,
-      "airedEpisodes": 39,
+      "airedEpisodes": 40,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false
@@ -9765,6 +10023,27 @@
       "airedEpisodes": 10,
       "completionStatus": "caught-up",
       "lastWatchedAt": "2024-01-15T04:09:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:49026",
+      "ids": {
+        "imdb": "tt1345836",
+        "plex": {
+          "guid": "5d7768883ab0e7001f503bc0",
+          "slug": "the-dark-knight-rises"
+        },
+        "slug": "the-dark-knight-rises-2012",
+        "tmdb": 49026,
+        "trakt": 34073
+      },
+      "title": "The Dark Knight Rises",
+      "year": 2012,
+      "myRating": 5,
+      "ratedAt": "2026-09-10T12:19:18.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2012-07-20T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -10551,6 +10830,27 @@
       "favorite": false
     },
     {
+      "type": "movie",
+      "titleKey": "movie:205596",
+      "ids": {
+        "imdb": "tt2084970",
+        "plex": {
+          "guid": "5d776a35fb0d55001f53de82",
+          "slug": "the-imitation-game"
+        },
+        "slug": "the-imitation-game-2014",
+        "tmdb": 205596,
+        "trakt": 127828
+      },
+      "title": "The Imitation Game",
+      "year": 2014,
+      "myRating": 9,
+      "ratedAt": "2026-09-10T12:19:05.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2014-11-28T00:00:00.000Z",
+      "favorite": false
+    },
+    {
       "type": "show",
       "titleKey": "show:253372",
       "ids": {
@@ -10638,6 +10938,27 @@
       "airedEpisodes": 44,
       "completionStatus": "caught-up",
       "lastWatchedAt": "2014-08-02T02:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:45269",
+      "ids": {
+        "imdb": "tt1504320",
+        "plex": {
+          "guid": "5d776880decfcd001f2ead76",
+          "slug": "the-kings-speech"
+        },
+        "slug": "the-king-s-speech-2010",
+        "tmdb": 45269,
+        "trakt": 30866
+      },
+      "title": "The King's Speech",
+      "year": 2010,
+      "myRating": 8,
+      "ratedAt": "2026-09-10T12:19:48.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2011-01-07T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -11268,8 +11589,8 @@
       "myRating": 10,
       "ratedAt": "2026-08-16T02:26:08.000Z",
       "plays": 10,
-      "airedEpisodes": 10,
-      "completionStatus": "caught-up",
+      "airedEpisodes": 20,
+      "completionStatus": "in-progress",
       "lastWatchedAt": "2025-09-04T10:33:00.000Z",
       "favorite": false
     },
@@ -11995,6 +12316,30 @@
     },
     {
       "type": "show",
+      "titleKey": "show:286709",
+      "ids": {
+        "imdb": "tt31849235",
+        "plex": {
+          "guid": "67f0f2a94a6dc1c58d90d164",
+          "slug": "the-westies"
+        },
+        "slug": "the-westies",
+        "tmdb": 286709,
+        "tvdb": 461627,
+        "trakt": 279635
+      },
+      "title": "The Westies",
+      "year": 2026,
+      "myRating": 10,
+      "ratedAt": "2026-09-09T16:14:56.000Z",
+      "plays": 8,
+      "airedEpisodes": 8,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-08-23T04:59:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
       "titleKey": "show:111803",
       "ids": {
         "imdb": "tt13406094",
@@ -12063,6 +12408,27 @@
       "airedEpisodes": 60,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:106646",
+      "ids": {
+        "imdb": "tt0993846",
+        "plex": {
+          "guid": "5d77691c9ab54400214efcc8",
+          "slug": "the-wolf-of-wall-street"
+        },
+        "slug": "the-wolf-of-wall-street-2013",
+        "tmdb": 106646,
+        "trakt": 75735
+      },
+      "title": "The Wolf of Wall Street",
+      "year": 2013,
+      "myRating": 9,
+      "ratedAt": "2026-09-10T12:15:17.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2013-12-25T00:00:00.000Z",
       "favorite": false
     },
     {

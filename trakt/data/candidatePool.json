@@ -3557,18 +3557,7 @@
       "source": "genre-explore",
       "discoveredVia": "Drama"
     },
-    {
-      "type": "movie",
-      "titleKey": "movie:11324",
-      "ids": {
-        "tmdb": 11324
-      },
-      "title": "Shutter Island",
-      "year": 2010,
-      "source": "genre-explore",
-      "discoveredVia": "Thriller"
-    },
-    {
+        {
       "type": "movie",
       "titleKey": "movie:77",
       "ids": {
@@ -3601,29 +3590,7 @@
       "source": "genre-explore",
       "discoveredVia": "Action"
     },
-    {
-      "type": "movie",
-      "titleKey": "movie:146233",
-      "ids": {
-        "tmdb": 146233
-      },
-      "title": "Prisoners",
-      "year": 2013,
-      "source": "genre-explore",
-      "discoveredVia": "Thriller"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:205596",
-      "ids": {
-        "tmdb": 205596
-      },
-      "title": "The Imitation Game",
-      "year": 2014,
-      "source": "genre-explore",
-      "discoveredVia": "Thriller"
-    },
-    {
+            {
       "type": "movie",
       "titleKey": "movie:299534",
       "ids": {
@@ -3747,17 +3714,7 @@
       "year": null,
       "citedBy": 1
     },
-    {
-      "type": "show",
-      "titleKey": "show:219937",
-      "ids": {
-        "tmdb": 219937
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
+        {
       "type": "show",
       "titleKey": "show:207718",
       "ids": {
@@ -3905,18 +3862,7 @@
       "source": "genre-explore",
       "discoveredVia": "Thriller"
     },
-    {
-      "type": "movie",
-      "titleKey": "movie:106646",
-      "ids": {
-        "tmdb": 106646
-      },
-      "title": "The Wolf of Wall Street",
-      "year": 2013,
-      "source": "genre-explore",
-      "discoveredVia": "Comedy"
-    },
-    {
+        {
       "type": "movie",
       "titleKey": "movie:470044",
       "ids": {
@@ -3982,18 +3928,7 @@
       "source": "genre-explore",
       "discoveredVia": "Music"
     },
-    {
-      "type": "movie",
-      "titleKey": "movie:693134",
-      "ids": {
-        "tmdb": 693134
-      },
-      "title": "Dune: Part Two",
-      "year": 2024,
-      "source": "genre-explore",
-      "discoveredVia": "Science Fiction"
-    },
-    {
+        {
       "type": "movie",
       "titleKey": "movie:1058616",
       "ids": {
@@ -4103,18 +4038,7 @@
       "source": "genre-explore",
       "discoveredVia": "Science Fiction"
     },
-    {
-      "type": "movie",
-      "titleKey": "movie:76203",
-      "ids": {
-        "tmdb": 76203
-      },
-      "title": "12 Years a Slave",
-      "year": 2013,
-      "source": "genre-explore",
-      "discoveredVia": "History"
-    },
-    {
+        {
       "type": "movie",
       "titleKey": "movie:568332",
       "ids": {
@@ -4413,17 +4337,7 @@
       "year": null,
       "source": "currently-watching-feature"
     },
-    {
-      "type": "movie",
-      "titleKey": "movie:96721",
-      "ids": {
-        "tmdb": 96721
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
+        {
       "type": "movie",
       "titleKey": "movie:988046",
       "ids": {

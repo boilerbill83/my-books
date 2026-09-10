@@ -114,7 +114,7 @@
     "myRating": 9,
     "ratedAt": "2025-08-20T00:00:00.000Z",
     "plays": 177,
-    "airedEpisodes": 181,
+    "airedEpisodes": 182,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false
@@ -138,7 +138,7 @@
     "myRating": 7,
     "ratedAt": "2024-12-15T00:00:00.000Z",
     "plays": 16,
-    "airedEpisodes": 21,
+    "airedEpisodes": 22,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false
@@ -186,7 +186,7 @@
     "myRating": 8,
     "ratedAt": "2025-04-10T00:00:00.000Z",
     "plays": 24,
-    "airedEpisodes": 30,
+    "airedEpisodes": 31,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false
@@ -258,7 +258,7 @@
     "myRating": 9,
     "ratedAt": "2023-05-31T00:00:00.000Z",
     "plays": 34,
-    "airedEpisodes": 39,
+    "airedEpisodes": 40,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false
@@ -285,6 +285,30 @@
     "airedEpisodes": 16,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:253941",
+    "ids": {
+      "imdb": "tt32159809",
+      "plex": {
+        "guid": "663c5c9154860a808df84899",
+        "slug": "the-paper-2025"
+      },
+      "slug": "the-paper-2025",
+      "tmdb": 253941,
+      "tvdb": 449872,
+      "trakt": 239158
+    },
+    "title": "The Paper",
+    "year": 2025,
+    "myRating": 10,
+    "ratedAt": "2026-08-16T02:26:08.000Z",
+    "plays": 10,
+    "airedEpisodes": 20,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "2025-09-04T10:33:00.000Z",
     "favorite": false
   },
   {
