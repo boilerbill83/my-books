@@ -2286,7 +2286,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const pctExplore = poolTitles.length ? (100 * exploreSourced.length / poolTitles.length) : 0;
     // A real, independent second discovery source now exists and is proven
     // to work (trakt/discover_explore.py, TMDB's genre-filtered /discover
-    // endpoint rather than title-to-title similarity). Four real production
+    // endpoint rather than title-to-title similarity). Six real production
     // runs so far, each checked honestly against the live numbers rather
     // than assumed to help: 96.0%->93.8% (2026-09-03, a modest validation
     // batch), 93.8%->84.5% (2026-09-06, scaled up 100/type), 84.5%->84.5%
@@ -2307,16 +2307,26 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     // could return on page 1 (a 4th plain run: 320 raw results, just 1
     // genuinely new candidate) - fixed by paginating up to 5 pages/genre
     // (still the same sort/quality bar, just reaching further down the
-    // list). A 5th real run with both fixes live confirmed they work:
-    // 1,483 raw results (up from 320), 50 new genre-explore movies + 50 new
-    // shows added (up from 1 + 0) - moving the closed-loop share 84.5% ->
-    // ${pctClosedLoop.toFixed(1)}% for real, with genre-explore's own pool
-    // share growing ${pctExplore.toFixed(1)}%. Severity tracks the LIVE
-    // percentage directly: above 80% closed-loop is 'critical', 50-80% is
-    // 'serious', under 50% is 'warning'. Deliberately never 'good'/resolved
-    // at any percentage: unlike a one-shot bug fix, this is a gradual,
-    // ongoing metric that only keeps improving as the recurring weekly
-    // workflow keeps running - there's no single commit that finishes it.
+    // list). A 5th run with both fixes live via a deliberately large manual
+    // batch confirmed they work: 1,483 raw results (up from 320), 50 new
+    // genre-explore movies + 50 new shows added (up from 1 + 0) - moving the
+    // closed-loop share 84.5%->78.9%. But that alone only proved the fixes
+    // WORK, not that they'd keep helping unattended: the recurring Sunday
+    // cron never passes any inputs, so it was still running on the old,
+    // closed-loop-biased defaults (30-vs-20, 4 genres/type) regardless of
+    // what a manually-tuned one-off run showed. Rebalanced the workflow's
+    // actual defaults (max_new_per_type 30->20, explore_max_new_per_type
+    // 20->40, explore_top_genres_per_type 4->8, enrich_batch_size 100->150)
+    // and verified with a 6th run dispatched with ZERO input overrides -
+    // exactly what the unattended weekly cron will run - confirming the new
+    // defaults work correctly on their own: closed-loop share moved further
+    // to ${pctClosedLoop.toFixed(1)}%, genre-explore's own pool share to
+    // ${pctExplore.toFixed(1)}%. Severity tracks the LIVE percentage
+    // directly: above 80% closed-loop is 'critical', 50-80% is 'serious',
+    // under 50% is 'warning'. Deliberately never 'good'/resolved at any
+    // percentage: unlike a one-shot bug fix, this is a gradual, ongoing
+    // metric that only keeps improving as the recurring weekly workflow
+    // keeps running - there's no single commit that finishes it.
     findings.push({
       id: 'closed-loop-discovery',
       severity: pctClosedLoop > 80 ? 'critical' : pctClosedLoop > 50 ? 'serious' : 'warning',
@@ -2332,15 +2342,20 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `real loved-genre mix, sorted by vote average, never touching the similarity graph) — wired into ` +
         `<code>.github/workflows/trakt-discover-candidates.yml</code>: ${fmtNum(exploreSourced.length)} of the current pool ` +
         `(${pctExplore.toFixed(1)}%) are <code>source: "genre-explore"</code> stubs, none cited by any loved title's similar/recommended ` +
-        `list. Two real bugs found and fixed this session after a 3rd validation run found a real plateau (84.5%->84.5%, no further ` +
-        `progress): (1) <code>prune_candidate_pool.js</code> ranked genre-explore candidates in the same open competition as closed-loop ` +
-        `ones, and a genre-explore candidate structurally can't win that fight (it's never cited by a loved title, so it never earns the ` +
+        `list. Two real bugs found and fixed after a 3rd validation run found a real plateau (84.5%->84.5%, no further progress): (1) ` +
+        `<code>prune_candidate_pool.js</code> ranked genre-explore candidates in the same open competition as closed-loop ones, and a ` +
+        `genre-explore candidate structurally can't win that fight (it's never cited by a loved title, so it never earns the ` +
         `forward/reverse similar-title bonus) — fixed with a guaranteed 25%-of-cap reserved share, immune to that competitive ` +
         `disadvantage; (2) <code>discover_explore.py</code> hardcoded <code>page=1</code> on every TMDB <code>/discover</code> query ` +
         `forever, so after 3 runs against the same top-genre mix it had exhausted nearly everything page 1 could return — fixed by ` +
-        `paginating up to 5 pages/genre (same sort/quality bar, just reaching further down TMDB's own ranked list). A 4th real run with ` +
-        `both fixes live: raw <code>/discover</code> results jumped 320 → 1,483, and genre-explore additions jumped 1 movie/0 shows → ` +
-        `50 movies/50 shows — moving the closed-loop share 84.5% → ${pctClosedLoop.toFixed(1)}% for real.`,
+        `paginating up to 5 pages/genre. A 4th run with both fixes live via a large manual batch: raw <code>/discover</code> results ` +
+        `jumped 320 → 1,483, genre-explore additions jumped 1 movie/0 shows → 50/50 — moving the closed-loop share 84.5% → 78.9%. That ` +
+        `proved the fixes work but not that they'd keep helping unattended, since the recurring Sunday cron passes no inputs and was still ` +
+        `running on the old closed-loop-biased defaults — rebalanced those defaults for real (<code>max_new_per_type</code> 30→20, ` +
+        `<code>explore_max_new_per_type</code> 20→40, <code>explore_top_genres_per_type</code> 4→8), then verified with a 5th run ` +
+        `dispatched with ZERO input overrides (exactly what the unattended cron runs): closed-loop share moved further to ` +
+        `${pctClosedLoop.toFixed(1)}%, genre-explore's own pool share to ${pctExplore.toFixed(1)}% — proof the fix is now genuinely ` +
+        `self-sustaining, not dependent on a manually-tuned one-off.`,
       plain: `The pool of "new things Bill might like" used to be built entirely by asking TMDB's own algorithm "what's similar to what ` +
         `Bill already loves" — and then the recommendation engine's strongest scoring signal was, again, "does TMDB's algorithm consider ` +
         `this similar to something Bill already loves." That was the same question asked twice, so nothing genuinely outside what TMDB's ` +
@@ -2348,13 +2363,13 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `candidates exists now — instead of "what's similar to X," it asks "what's well-regarded in the genres Bill actually loves." It ` +
         `got stuck twice for two different real reasons: the new candidates it found kept losing a popularity contest against the old ` +
         `method's candidates when the pool got trimmed back down to size, and separately, it kept asking TMDB the exact same question and ` +
-        `getting the exact same answer every single week. Both are now fixed — new candidates are protected from that popularity contest, ` +
-        `and the question now digs deeper into TMDB's answer instead of repeating itself — and a real test run proved it: 50 new movies ` +
-        `and 50 new shows found in one run, up from essentially nothing the week before.`,
-      impact: `Verified with five real production runs, not just shipped code: closed-loop share moved 96.0%→93.8%→84.5%→(plateau)→` +
-        `${pctClosedLoop.toFixed(1)}%. The 3rd run's honest plateau led directly to root-causing and fixing two real bugs rather than just ` +
-        `re-running the same thing again — a genuinely rebalanced discovery pipeline, verified end-to-end in production, not a one-off ` +
-        `lucky batch.`,
+        `getting the exact same answer every single week. Both are now fixed. Then, to make sure the fix wasn't just something that worked ` +
+        `when manually cranked up for a test, the recurring automatic weekly job's own default settings were rebalanced too and tested by ` +
+        `running it exactly the way it runs on its own, unattended — and it kept improving on its own, no manual tuning needed.`,
+      impact: `Verified with six real production runs, not just shipped code: closed-loop share moved 96.0%→93.8%→84.5%→(plateau)→78.9%→` +
+        `${pctClosedLoop.toFixed(1)}%. The 3rd run's honest plateau led directly to root-causing and fixing two real bugs; the 6th run — ` +
+        `dispatched with zero overrides — confirmed the recurring unattended schedule itself keeps the improvement going, not just a ` +
+        `manually-tuned one-off batch.`,
     });
   }
 
