@@ -56,6 +56,19 @@ MIN_VOTE_COUNT = 150  # a "genuinely well-regarded, not a fluke" floor - deliber
                        # since that one only screens out near-zero-data filler citations,
                        # while this source is explicitly hunting for well-established titles
                        # outside the similarity bubble, not just anything non-obscure.
+MAX_PAGES_PER_GENRE = 5  # Real bug found and fixed 2026-09: page=1 only, forever, meant
+                          # each genre query returned the SAME top-20-by-vote_average titles
+                          # every run - after 3 real production runs querying the same top
+                          # genres, discoveredHistory.json's permanent "known" tracking had
+                          # exhausted nearly all of page 1 (a 4th real run: 320 raw results
+                          # across 16 genre queries yielded just 1 new candidate total).
+                          # TMDB's own vote_average-sorted list is far longer than 20 items -
+                          # paginating deeper (still vote_average-sorted, so quality doesn't
+                          # degrade, it just reaches further down the same ranked list) finds
+                          # genuinely new candidates the exact same query has simply not
+                          # reached yet. Bounded at 5 pages/genre (100 titles) to keep the
+                          # per-run API-call count reasonable; stops early per-genre once a
+                          # page returns fewer than 20 results (real end of TMDB's data).
 
 API_KEY = os.environ.get('TMDB_API_KEY', '')
 HEADERS = {'User-Agent': 'my-books-trakt-enrichment (personal watch-history app)'}
@@ -159,24 +172,31 @@ def main():
             if genre_id is None:
                 skipped_unmapped.append(f'{kind}:{genre_name}')
                 continue
-            url = (f'{API_BASE}/discover/{tmdb_kind}?api_key={API_KEY}'
-                   f'&with_genres={genre_id}&sort_by=vote_average.desc'
-                   f'&vote_count.gte={MIN_VOTE_COUNT}&with_original_language=en&page=1')
-            if date_gte_param:
-                url += f'&{date_gte_param}'
-            data, status, err = get_json(url)
-            time.sleep(DELAY)
-            if status == 401:
-                print(f'ERROR: TMDB rejected the API key (401) mid-run. Response: {err!r}', file=sys.stderr)
-                sys.exit(1)
-            if not data:
-                print(f'  WARNING: /discover/{tmdb_kind} for genre {genre_name!r} failed '
-                      f'(status {status}, {err!r}) - skipping this genre.', file=sys.stderr)
-                continue
-            results = data.get('results') or []
-            total_raw += len(results)
-            per_genre_results.append((genre_name, results))
-            print(f'  {kind}/{genre_name}: {len(results)} raw results (vote_count>={MIN_VOTE_COUNT}, en, sorted by vote_average)')
+            genre_results = []
+            for page in range(1, MAX_PAGES_PER_GENRE + 1):
+                url = (f'{API_BASE}/discover/{tmdb_kind}?api_key={API_KEY}'
+                       f'&with_genres={genre_id}&sort_by=vote_average.desc'
+                       f'&vote_count.gte={MIN_VOTE_COUNT}&with_original_language=en&page={page}')
+                if date_gte_param:
+                    url += f'&{date_gte_param}'
+                data, status, err = get_json(url)
+                time.sleep(DELAY)
+                if status == 401:
+                    print(f'ERROR: TMDB rejected the API key (401) mid-run. Response: {err!r}', file=sys.stderr)
+                    sys.exit(1)
+                if not data:
+                    if page == 1:
+                        print(f'  WARNING: /discover/{tmdb_kind} for genre {genre_name!r} failed '
+                              f'(status {status}, {err!r}) - skipping this genre.', file=sys.stderr)
+                    break
+                page_results = data.get('results') or []
+                genre_results.extend(page_results)
+                if len(page_results) < 20:
+                    break  # real end of TMDB's result list for this query
+            total_raw += len(genre_results)
+            per_genre_results.append((genre_name, genre_results))
+            print(f'  {kind}/{genre_name}: {len(genre_results)} raw results across up to {MAX_PAGES_PER_GENRE} pages '
+                  f'(vote_count>={MIN_VOTE_COUNT}, en, sorted by vote_average)')
 
         # Round-robin across genres so the cap doesn't get consumed entirely
         # by whichever genre happened to be queried first - keeps the added
