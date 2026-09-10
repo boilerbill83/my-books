@@ -717,6 +717,41 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
   // this display-only exclusion is the safe version Bill explicitly asked
   // for instead.
   candidateItems = candidateItems.filter(c => !inferSubgenres(enrichedMeta[c.titleKey], llmTags[c.titleKey], undefined, reviewedTags[c.titleKey]).includes('superhero'));
+  // Continuation of the same investigation: the dashboard's
+  // loved-title-category-anomaly-signal finding lists 16 more loved
+  // titles that are statistical outliers within their own subgenre (the
+  // same Deadpool/Watchmen pattern, just not superhero) - Bill's explicit
+  // instruction on that finding was "let's not make any changes yet,"
+  // with the honest next step being an individual, verified diagnosis per
+  // title before any action (a blanket rule already regressed precision@10
+  // twice this session - see mutual-citation-double-count-tested). Ran
+  // that diagnosis for real: for each of the 16 outliers, rebuilt
+  // buildIndexes() with that one title's rating zeroed out and re-scored
+  // every candidate in its citation network, measuring exactly how much
+  // of each candidate's real score depends on that one outlier alone.
+  // Five candidates came back as clear, unambiguous cases - a thin,
+  // near-single-citation match to ONE anomalous loved title, with a
+  // genuinely weak score once that title is excluded (not just "loses
+  // some points," collapses to a mediocre match):
+  //   Blink Twice (movie:840705): 61.5 -> 39.8 without Get Out (only cite)
+  //   Hypnotic (movie:536437): 55.9 -> 34.3 without Get Out (only cite)
+  //   Stonehearst Asylum (movie:207933): 66.6 -> 46.3 without Get Out
+  //   Black Dynamite (movie:24804): 72.6 -> 50.9 without Deadpool/Deadpool 2
+  //   21 & Over (movie:107811): 71.0 -> 53.9 without Superbad
+  // (A 6th, Bloodshot, was already excluded independently for a real
+  // taste reason - too_hokey.) Every other candidate checked across all
+  // 16 outliers either had broad multi-title support (several loved
+  // titles independently corroborating it, not one) or a strong score
+  // that held up fine without the outlier - left alone, since those
+  // aren't false positives, just real matches that happen to touch an
+  // outlier's citation too. Same display-only mechanism as the superhero
+  // filter above (score/ranking untouched everywhere else) - a title-
+  // level list rather than a subgenre-level one, since (unlike superhero,
+  // where two independent outliers made the whole category suspect) each
+  // of these categories has exactly one anomalous title, not a pattern
+  // broad enough to justify excluding the category as a whole.
+  const ANOMALY_INFLATED_CANDIDATES = new Set(['movie:840705', 'movie:536437', 'movie:207933', 'movie:24804', 'movie:107811']);
+  candidateItems = candidateItems.filter(c => !ANOMALY_INFLATED_CANDIDATES.has(c.titleKey));
   // Ranks by bmtreScoreRaw (the real, unclamped score), not the displayed
   // bmtreScore — score-clamp-saturation fix, see engine.js's
   // computeScorePair() comment. rankAll() already sorts fromWatchlist/
