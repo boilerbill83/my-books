@@ -1168,6 +1168,52 @@ function subgenreSignal(subgenres, subgenreProfile, globalMean) {
   return Math.max(-SUBGENRE_SIGNAL_CAP, Math.min(0, adj));
 }
 
+// Content-maturity signal, superhero subgenre only — the real root-cause
+// diagnosis behind the Deadpool/Zack Snyder's Justice League anomaly
+// (loved-title-category-anomaly-signal, mutual-citation-double-count-
+// tested). Bill asked directly what's actually different about Deadpool
+// vs. other comic-book movies (funny? crude? gory? R-rated? Ryan
+// Reynolds?) — checked all 18 of his rated superhero-subgenre titles
+// (2026-09-10) rather than guessing: the tone classifier doesn't even
+// tag Deadpool 'funny' (it gets 'satirical'/'witty', shared broadly
+// across the whole superhero population, not distinguishing), and no
+// 'crude'/'gory' keyword vocabulary exists in this dataset's TMDB
+// keywords at all. Ryan Reynolds is real but small-n (n=3, all 3 also
+// happen to be mature-rated, so it can't be disentangled from content
+// maturity with this data). Content maturity (R/TV-MA vs. PG-13/TV-14)
+// is the clean, non-confounded signal: mature-rated superhero titles
+// average 8.3/10 vs. 5.9/10 for family-friendlier ones (n=18, verified
+// against real MPAA/TV ratings, cross-checked via WebSearch for the
+// less-certain TV entries) — and the pattern holds even excluding every
+// Reynolds title. Validated by sweeping a hand-labeled proxy of this
+// exact 18-title population against scripts/eval.js before shipping:
+// precision@10 90%->100% (all 3 Deadpool titles correctly entered the
+// leave-one-out top 10, displacing only a genuinely-not-liked title),
+// precision@25/50 held exactly, precision@100 90%->91%, MAE moved less
+// than 0.1 — plateaus at scale=1, no gain or regression through scale=2.
+// Real production data for omdbEntry.rated starts empty (extract_entry()
+// only just started capturing OMDb's 'Rated' field) — this is a true
+// no-op until the RETRY_NO_RATED backfill (enrich_omdb.py) actually
+// populates it, same "starts inert, contributes real weight once real
+// data lands" pattern as rewatchStrength()'s plays-field fix.
+const MATURE_RATINGS = new Set(['R', 'NC-17', 'TV-MA']);
+const NON_MATURE_RATINGS = new Set(['G', 'PG', 'PG-13', 'TV-G', 'TV-Y', 'TV-Y7', 'TV-Y7-FV', 'TV-PG', 'TV-14']);
+function isMatureContent(omdbEntry) {
+  const rated = omdbEntry?.rated;
+  if (!rated) return null;
+  if (MATURE_RATINGS.has(rated)) return true;
+  if (NON_MATURE_RATINGS.has(rated)) return false;
+  return null; // 'Not Rated'/'Unrated'/anything unrecognized — no signal, not a guess
+}
+const MATURE_CONTENT_BONUS = 10;
+const MATURE_CONTENT_PENALTY = -6;
+function matureContentSignal(subgenres, omdbEntry) {
+  if (!subgenres || !subgenres.includes('superhero')) return 0;
+  const mature = isMatureContent(omdbEntry);
+  if (mature == null) return 0;
+  return mature ? MATURE_CONTENT_BONUS : MATURE_CONTENT_PENALTY;
+}
+
 // A real Improvement Opportunities finding (Session 53): similarToIds/
 // recommendedIds are 100% populated and already drive matchScore()'s
 // forward/reverse match signal, but there was no human-readable
@@ -2724,6 +2770,7 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   const candidateSubgenresForScoring = inferSubgenres(meta, llmEntry, undefined, reviewedEntry);
   score += subgenreBonus(candidateSubgenresForScoring, idx.lovedSubgenres);
   score += subgenreSignal(candidateSubgenresForScoring, idx.subgenreProfile, idx.globalMeanRating);
+  score += matureContentSignal(candidateSubgenresForScoring, omdbEntry);
   score += subjectBonus(inferSubjects(meta, llmEntry, undefined, reviewedEntry), idx.lovedSubjects);
   score += toneSignal(inferTones(meta, llmEntry, undefined, reviewedEntry), idx.toneProfile, idx.globalMeanRating);
 
@@ -2905,6 +2952,13 @@ export function scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta = {}) {
     negativeSubgenres.length
       ? `Your average rating for ${negativeSubgenres.join(', ')} runs meaningfully below your overall average — only ever a penalty, never a bonus.`
       : 'No subgenre tag here that you\'ve demonstrably rated below your own average.');
+
+  const matureVerdict = isMatureContent(omdbEntry);
+  add('matureContent', 'Superhero content maturity', matureContentSignal(subgenres, omdbEntry),
+    !subgenres.includes('superhero') ? 'Not a superhero title — this signal only applies there.'
+      : matureVerdict == null ? 'No content-rating data yet for this title.'
+      : matureVerdict ? `Rated ${omdbEntry.rated} — your superhero-subgenre ratings run notably higher for mature (R/TV-MA) titles.`
+      : `Rated ${omdbEntry.rated} — your superhero-subgenre ratings run notably lower for non-mature titles.`);
 
   const subjects = inferSubjects(meta, llmEntry, undefined, reviewedEntry);
   const matchedSubjects = subjects.filter(s => (idx.lovedSubjects.get(s) || 0) > 0);
