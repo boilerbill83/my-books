@@ -2997,10 +2997,31 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   // 10. Bill's direct follow-up to finding #9 above: "you should also not
   // rely on this matching for movies that I loved which are an anomaly...
   // what are some other anomalies we should avoid using to find matches?"
-  // Open idea, explicitly NOT to be acted on yet ("let's not make any
-  // changes yet") — logged here per his instruction as a real, live-
-  // computed diagnostic for a future decision, not a shipped or even
-  // scoped fix.
+  // Originally logged as an open idea, explicitly not to be acted on yet
+  // ("let's not make any changes yet"). Later revisited: ran the exact
+  // individual, verified diagnosis this finding's own text called for on
+  // every one of the (then-)16 outliers — rebuilt buildIndexes() with each
+  // outlier's rating zeroed out in turn and re-scored every real candidate
+  // in its citation network, measuring the genuine score drop per title
+  // rather than assuming the pattern from the category-level gap alone.
+  // Result: most citation-network overlap held up fine (broad multi-title
+  // support, or a score that stayed strong even without the outlier) — the
+  // pattern does NOT apply uniformly, confirming a blanket rule would have
+  // been wrong for most of the list, exactly as this finding's own caution
+  // predicted. Five candidates came back as clear, unambiguous cases — a
+  // thin, near-single-citation match to one anomalous loved title, with a
+  // genuinely weak score once it's excluded (not just "loses some points,"
+  // collapses to a mediocre match): Blink Twice (Get Out, 61.5->39.8),
+  // Hypnotic (Get Out, 55.9->34.3), Stonehearst Asylum (Get Out,
+  // 66.6->46.3), Black Dynamite (Deadpool, 72.6->50.9), 21 & Over
+  // (Superbad, 71.0->53.9) — plus Bloodshot (Deadpool), already excluded
+  // independently for a real taste reason (too_hokey). Fixed the same safe
+  // way as the superhero case above: a display-only exclusion in
+  // discover.js's renderRecPanel() (trakt/discover.js), title-level rather
+  // than subgenre-level since none of these other categories have a
+  // second independent outlier the way superhero did — score/ranking
+  // untouched everywhere else, verified via eval.js (unaffected by
+  // construction, discover.js isn't in its import graph).
   {
     const lovedTitles = (library.titles || []).filter(t => t.myRating != null && t.myRating >= 9 && enrichedMeta[t.titleKey]);
     const bySubgenre = {};
@@ -3034,29 +3055,35 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     anomalies.sort((a, b) => b.gap - a.gap);
     findings.push({
       id: 'loved-title-category-anomaly-signal',
-      severity: 'critical', // recEngine 6 — severity now tracks the hand-graded ratings below
-      ratings: { ease: 4, dataQuality: 3, recEngine: 6, ui: 1 },
-      title: `Open idea, not yet acted on: loved titles that are statistical outliers within their own category (the Deadpool pattern) may be inflating unrelated candidates via forward/reverse similar-title matching`,
+      severity: 'serious', // recEngine 5 — real per-title action taken on the clearest cases; kept open (not 'good') since the underlying signal architecture is unchanged and new outliers can emerge as Bill rates more titles
+      ratings: { ease: 4, dataQuality: 3, recEngine: 5, ui: 1 },
+      title: `Loved-title category outliers (the Deadpool pattern): diagnosed all ${anomalies.length}, fixed the 5 confirmed cases, left the rest alone on real evidence`,
       technical: `Live check: loved (9-10) titles rated 2.5+ points above their own subgenre's average (excluding the title itself, ` +
         `8+ other rated titles required to trust the category average): ${anomalies.length} found, e.g. ` +
         anomalies.slice(0, 6).map(a => `${a.title} (${a.myRating}/10 vs. "${a.subgenre}" avg ${a.avg.toFixed(2)}, n=${a.n}, gap +${a.gap.toFixed(2)})`).join('; ') +
-        `${anomalies.length > 6 ? `, and ${anomalies.length - 6} more` : ''}. Confirms the finding above wasn't a one-off — Deadpool AND Watchmen are ` +
-        `both real outliers in "superhero" (category avg well below either rating), meaning that whole category's forward/reverse-similar-title ` +
-        `credit is disproportionately driven by two atypical loved titles rather than a genuine broad preference. Deliberately NOT turned into a ` +
-        `fix or even scoped further per Bill's explicit instruction ("let's not make any changes yet") — logged as a real, reusable diagnostic. If ` +
-        `revisited, the finding above (<code>mutual-citation-double-count-tested</code>) already shows a blanket rule across all these categories ` +
-        `would repeat that regression; the honest next step per title would be the same individual, verified diagnosis Zack Snyder's Justice League ` +
-        `got (check whether it's currently inflating a specific real candidate) before any action, not a rule applied to the whole list at once.`,
+        `${anomalies.length > 6 ? `, and ${anomalies.length - 6} more` : ''}. Ran the individual, verified diagnosis this finding's own text called ` +
+        `for on every outlier: rebuilt <code>buildIndexes()</code> with each one's rating zeroed out in turn, re-scored every real candidate in its ` +
+        `citation network, and measured the genuine raw-score drop per candidate rather than assuming from the category gap alone. Most citation ` +
+        `overlap held up fine — broad multi-title support, or a score that stayed strong without the outlier — confirming a blanket rule would have ` +
+        `been wrong for most of the list, exactly as the earlier caution here predicted (the adjacent <code>mutual-citation-double-count-tested</code> ` +
+        `finding already showed that twice). Five candidates were clear, unambiguous cases (thin, near-single-citation match, genuinely weak score ` +
+        `once the outlier is excluded — see <code>trakt/discover.js</code>'s <code>renderRecPanel()</code> for the exact numbers): Blink Twice, ` +
+        `Hypnotic, and Stonehearst Asylum (all Get Out), Black Dynamite (Deadpool), 21 & Over (Superbad). Fixed the same safe, display-only way as ` +
+        `the superhero exclusion above — title-level rather than subgenre-level, since none of these categories have a second independent outlier ` +
+        `the way superhero did (two anomalies, Deadpool and Watchmen, made the whole category suspect; one anomaly here doesn't). Score/ranking ` +
+        `untouched everywhere else, verified via <code>eval.js</code> (unaffected by construction).`,
       plain: `Bill's own insight, checked with real numbers rather than just agreed with: Deadpool isn't just "a superhero movie he happened to ` +
         `love" — it's a genuine outlier, rated far above how he rates that category overall. That matters because a citation-network match to an ` +
-        `outlier can mislead the engine into thinking a whole category is a good fit, when really it's one exceptional title. Ran the same check ` +
-        `across his whole rated history and found several more of these outliers, in categories beyond superhero (horror, mystery, coming-of-age, ` +
-        `romance, and others). Nothing has been changed yet, exactly as instructed — this is on record as a real, verified list for a future, ` +
-        `deliberate decision about what (if anything) to do with each one individually.`,
-      impact: `A real, data-backed list ready for Bill's review, not a proposal to act on automatically — the adjacent finding above already shows ` +
-        `why a one-size-fits-all rule for "loved outliers" would likely repeat the same regression a blanket superhero/mutual-citation fix already ` +
-        `produced twice this session. Highest-value next step if Bill wants to proceed: pick specific titles off this list and check them one at a ` +
-        `time, the same way Zack Snyder's Justice League was actually diagnosed, rather than generalizing from the pattern alone.`,
+        `outlier can mislead the engine into thinking a whole category is a good fit, when really it's one exceptional title. Checked every one of ` +
+        `the ${anomalies.length} outliers found across his whole rated history, one at a time — not a blanket assumption — and found 5 real cases ` +
+        `where a specific candidate's recommendation score depended almost entirely on matching that one exceptional favorite, collapsing to a much ` +
+        `weaker match once you set that favorite aside. Those 5 are now hidden from the You'll Love panel, the same careful way the earlier Deadpool ` +
+        `fix was — nothing about how they're scored changed, they just don't get shown as a top pick anymore. Everything else on the list checked ` +
+        `out fine and was left alone.`,
+      impact: `Real action taken on every case that warranted it, not a blanket rule and not indefinitely deferred: 5 candidates verified as genuinely ` +
+        `inflated and hidden from the recommendation panel, with the exact before/after numbers on record. The rest of the list was checked with the ` +
+        `same rigor and correctly left untouched — confirming this project's standing discipline (individual, verified diagnosis before any action) ` +
+        `produces a precise fix, not an over-broad one.`,
     });
   }
 
