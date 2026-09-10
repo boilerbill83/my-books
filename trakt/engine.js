@@ -336,6 +336,61 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   // rate, not an assumed one.
   let ratedShowsTotal = 0, ratedShowsAiring = 0, lovedShowsAiring = 0;
 
+  // Live anomaly detection for citation-credit reweighting (see
+  // citationCreditMultiplier()'s own comment for the full design/
+  // validation). Needs a preliminary pass — the main loop below already
+  // consumes this while building reverseSimilar, so the full picture of
+  // every rated title's subgenre membership has to exist first. Same
+  // 2.5-gap-vs-subgenre-average definition the dashboard's loved-title-
+  // category-anomaly-signal finding already established (not a new
+  // threshold invented here) — an 8+ other-rated-title floor to trust
+  // the category average, same as that finding's own live check.
+  const subgenreRatingsForAnomaly = {};
+  for (const t of library.titles || []) {
+    if (t.myRating == null || !enrichedMeta[t.titleKey]) continue;
+    const m = enrichedMeta[t.titleKey];
+    for (const s of inferSubgenres(m, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
+      (subgenreRatingsForAnomaly[s] ||= []).push(t.myRating);
+    }
+  }
+  const anomalousLovedKeys = new Set();
+  const anomalyDetails = new Map(); // titleKey -> { subgenre, myRating, categoryAvg, gap, viaFranchise }
+  for (const t of library.titles || []) {
+    if (t.myRating == null || t.myRating < LOVED_THRESHOLD || !enrichedMeta[t.titleKey]) continue;
+    const m = enrichedMeta[t.titleKey];
+    let best = null;
+    for (const s of inferSubgenres(m, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
+      const cat = subgenreRatingsForAnomaly[s];
+      if (!cat || cat.length < 8) continue;
+      const avgExcl = (cat.reduce((a, b) => a + b, 0) - t.myRating) / (cat.length - 1);
+      const gap = t.myRating - avgExcl;
+      if (gap >= 2.5 && (!best || gap > best.gap)) best = { subgenre: s, categoryAvg: avgExcl, gap, n: cat.length - 1 };
+    }
+    if (best) {
+      anomalousLovedKeys.add(t.titleKey);
+      anomalyDetails.set(t.titleKey, { myRating: t.myRating, ...best, viaFranchise: false });
+    }
+  }
+  // Franchise expansion: a real sequel/prequel of a confirmed anomaly
+  // shares its distinguishing identity even if its own gap falls just
+  // under the threshold (Deadpool 2/Deadpool & Wolverine both sit at
+  // gap 1.88, just under 2.5 — tested directly: including them measurably
+  // helped The Suicide Squad 2021's real score move, since 2 of its 3
+  // Deadpool citations would otherwise keep full, undiscounted credit).
+  const anomalyCollections = new Map(); // collection id -> the anomaly titleKey that earned it
+  for (const k of anomalousLovedKeys) {
+    const cid = enrichedMeta[k]?.belongsToCollection?.id;
+    if (cid != null && !anomalyCollections.has(cid)) anomalyCollections.set(cid, k);
+  }
+  for (const t of library.titles || []) {
+    if (t.myRating == null || t.myRating < LOVED_THRESHOLD || !enrichedMeta[t.titleKey] || anomalousLovedKeys.has(t.titleKey)) continue;
+    const cid = enrichedMeta[t.titleKey]?.belongsToCollection?.id;
+    if (cid != null && anomalyCollections.has(cid)) {
+      anomalousLovedKeys.add(t.titleKey);
+      anomalyDetails.set(t.titleKey, { myRating: t.myRating, viaFranchise: true, franchiseSource: anomalyCollections.get(cid) });
+    }
+  }
+
   for (const t of library.titles || []) {
     if (t.myRating == null) continue;
     const meta = enrichedMeta[t.titleKey];
@@ -394,7 +449,11 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
       if (lovedGenre) lovedGenres.set(lovedGenre, (lovedGenres.get(lovedGenre) || 0) + w);
       for (const id of [...(meta?.similarToIds || []), ...(meta?.recommendedIds || [])]) {
         const key = titleKey(t.type, id);
-        reverseSimilar.set(key, (reverseSimilar.get(key) || 0) + w);
+        const citedMeta = enrichedMeta[key];
+        const mult = citedMeta
+          ? citationCreditMultiplier(citedMeta, llmTags[key], reviewedTags[key], meta, llmTags[t.titleKey], reviewedTags[t.titleKey], t.titleKey, anomalousLovedKeys)
+          : 1;
+        reverseSimilar.set(key, (reverseSimilar.get(key) || 0) + w * mult);
       }
       const collectionId = meta?.belongsToCollection?.id;
       if (collectionId != null) {
@@ -554,7 +613,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   // override for the non-loved majority of its loop.
   const descModel = descModelOverride !== undefined ? descModelOverride : buildDescModel(enrichedMeta, lovedTitles);
 
-  return { watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, genreProfile, subgenreProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel };
+  return { watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, genreProfile, subgenreProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel, anomalousLovedKeys, anomalyDetails, enrichedMetaRef: enrichedMeta };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -1680,6 +1739,72 @@ export function inferTones(meta, llmEntry, limit = 4, reviewed) {
   if (fromOverview.length) return fromOverview;
   if (llmEntry?.tones?.length) return llmEntry.tones.slice(0, limit);
   return [];
+}
+
+// Citation-credit reweighting — the real fix behind Opportunity #1
+// (deadpool-citation-inflation, quality.js), built and validated
+// 2026-09-10. Two prior structural attempts this session at fixing the
+// "comic-book movies keep out-scoring what Bill actually likes" problem
+// both failed: a genre-level superhero penalty and a mutual-citation
+// dedup (mutual-citation-double-count-tested) each regressed
+// precision@10 broadly, because they discounted the citation-match
+// signal too bluntly (a whole genre, or every mutual pair) — most
+// mutual citations in this dataset ARE genuine corroboration (e.g. "The
+// Westies" cited by 5 real loved crime dramas).
+//
+// This mechanism is different in kind, not just degree: it discounts a
+// SPECIFIC (candidate, cited-loved-title) citation only when (a) the
+// cited loved title is itself a real statistical outlier in its own
+// category (rated 2.5+ points above its own subgenre's average — the
+// same live definition the dashboard's loved-title-category-anomaly-
+// signal finding already uses) AND (b) the candidate doesn't actually
+// share that loved title's distinguishing TONE. Real numbers behind the
+// tone choice: among genuine loved-to-loved citations dataset-wide,
+// mean tone-Jaccard is 0.376 (n=281); The Suicide Squad (2021) and Zack
+// Snyder's Justice League — both real, confirmed rejections despite
+// citing Deadpool — sit at 0.10-0.17, well below that; a real, working
+// match like The Westies' citations average 0.61.
+//
+// A first, broader version (discounting EVERY citation by tone overlap,
+// not just ones touching a known outlier) was built and rejected before
+// this one: even genuine matches rarely hit perfect tone-Jaccard=1.0
+// (titles carry only 2-4 tone tags), so any floor below 1.0 taxed
+// nearly every citation in the dataset (358 of 431 real candidates
+// moved by >0.5pt) — regressing precision@10 at every tested floor
+// (0.2-0.8), never recovering, because it eroded marginal-but-real
+// matches at the sharp p@10 boundary (e.g. Mare of Easttown, whose real
+// 0.33-0.60 tone overlap with its own genuine citers still isn't 1.0)
+// just as much as it discounted genuinely bad ones. Scoping the
+// discount to only anomaly-linked citations shrank the real blast
+// radius to 14 of 431 candidates (3.2%) — all plausible (Black
+// Dynamite, already independently flagged via discover.js's older
+// ANOMALY_INFLATED_CANDIDATES list; Marvel's Luke Cage, Titans, Arrow,
+// Gotham) — with ZERO regression on precision@10/25/MAE and a genuine
+// improvement on precision@50 (94%->96%) and @100 (85%->86-87%) across
+// every tested floor.
+const CITATION_WEIGHT_FLOOR = 0.3;
+function toneJaccard(tagsA, tagsB) {
+  if (!tagsA.length || !tagsB.length) return 0;
+  const a = new Set(tagsA), b = new Set(tagsB);
+  const inter = [...a].filter(x => b.has(x)).length;
+  const union = new Set([...a, ...b]).size;
+  return union ? inter / union : 0;
+}
+function citationCreditMultiplier(candidateMeta, candidateLlm, candidateReviewed, lovedMeta, lovedLlm, lovedReviewed, lovedKey, anomalousLovedKeys) {
+  if (!anomalousLovedKeys?.has(lovedKey)) return 1;
+  // Franchise exemption: a loved title's own real sequels/prequels share
+  // its distinguishing identity even when their own tone tags aren't a
+  // perfect match (e.g. Deadpool "witty" vs. Deadpool & Wolverine
+  // "inspirational") — without this, the very titles that make Deadpool
+  // an outlier got discounted by their own outlier-ness, knocking the
+  // original Deadpool below its own sequels in a real leave-one-out test.
+  const collectionId = candidateMeta?.belongsToCollection?.id;
+  if (collectionId != null && collectionId === lovedMeta?.belongsToCollection?.id) return 1;
+  const j = toneJaccard(
+    inferTones(candidateMeta, candidateLlm, undefined, candidateReviewed),
+    inferTones(lovedMeta, lovedLlm, undefined, lovedReviewed),
+  );
+  return CITATION_WEIGHT_FLOOR + (1 - CITATION_WEIGHT_FLOOR) * j;
 }
 
 // Bill: "add in a field for the era the story was set in" (distinct from
@@ -2819,7 +2944,15 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   const citedIds = new Set([...(meta?.similarToIds || []), ...(meta?.recommendedIds || [])]
     .map(id => titleKey(candidate.type, id)));
   let forwardMatches = 0;
-  for (const id of citedIds) forwardMatches += idx.titleAffinity?.get(id) || 0;
+  for (const id of citedIds) {
+    const raw = idx.titleAffinity?.get(id) || 0;
+    if (raw <= 0) continue;
+    const lovedMeta = idx.enrichedMetaRef?.[id];
+    const mult = lovedMeta
+      ? citationCreditMultiplier(meta, llmEntry, reviewedEntry, lovedMeta, idx.llmTags?.[id], idx.reviewedTags?.[id], id, idx.anomalousLovedKeys)
+      : 1;
+    forwardMatches += raw * mult;
+  }
   const scale = matchPointScale(candidate.type, idx.lovedCountByType);
   score += Math.min(24, forwardMatches * 8 * scale);
 
@@ -3014,13 +3147,24 @@ export function scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta = {}) {
     .map(id => titleKey(candidate.type, id)));
   let forwardMatches = 0;
   const forwardMatchedTitles = [];
+  let forwardDiscounted = false;
   for (const id of citedIds) {
     const w = idx.titleAffinity?.get(id) || 0;
-    if (w > 0) { forwardMatches += w; const t = idx.watched.get(id)?.title; if (t) forwardMatchedTitles.push(t); }
+    if (w <= 0) continue;
+    const lovedMeta = idx.enrichedMetaRef?.[id];
+    const mult = lovedMeta
+      ? citationCreditMultiplier(meta, llmEntry, reviewedEntry, lovedMeta, idx.llmTags?.[id], idx.reviewedTags?.[id], id, idx.anomalousLovedKeys)
+      : 1;
+    if (mult < 1) forwardDiscounted = true;
+    forwardMatches += w * mult;
+    const t = idx.watched.get(id)?.title;
+    if (t) forwardMatchedTitles.push(t);
   }
   const scale = matchPointScale(candidate.type, idx.lovedCountByType);
   add('forwardSimilar', 'Similar to titles you loved', Math.min(24, forwardMatches * 8 * scale),
-    forwardMatchedTitles.length ? `Cites ${forwardMatchedTitles.slice(0, 3).join(', ')} as similar/recommended.` : 'No forward similar-title matches.');
+    forwardMatchedTitles.length
+      ? `Cites ${forwardMatchedTitles.slice(0, 3).join(', ')} as similar/recommended.${forwardDiscounted ? ' (Partial credit — the cited loved title is a real statistical outlier in its own category, and this candidate doesn\'t share its distinguishing tone.)' : ''}`
+      : 'No forward similar-title matches.');
 
   const reverseWeight = idx.reverseSimilar.get(candidate.titleKey) || 0;
   add('reverseSimilar', 'Cited by titles you loved', Math.min(12, reverseWeight * 6 * scale),
