@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-10T12:30:03.161Z",
-    "count": 440,
+    "generatedAt": "2026-09-10T12:55:13.157Z",
+    "count": 432,
     "capPerType": 200
   },
   "titles": [
@@ -3557,7 +3557,7 @@
       "source": "genre-explore",
       "discoveredVia": "Drama"
     },
-        {
+    {
       "type": "movie",
       "titleKey": "movie:77",
       "ids": {
@@ -3590,7 +3590,7 @@
       "source": "genre-explore",
       "discoveredVia": "Action"
     },
-            {
+    {
       "type": "movie",
       "titleKey": "movie:299534",
       "ids": {
@@ -3714,7 +3714,7 @@
       "year": null,
       "citedBy": 1
     },
-        {
+    {
       "type": "show",
       "titleKey": "show:207718",
       "ids": {
@@ -3862,7 +3862,7 @@
       "source": "genre-explore",
       "discoveredVia": "Thriller"
     },
-        {
+    {
       "type": "movie",
       "titleKey": "movie:470044",
       "ids": {
@@ -3928,7 +3928,7 @@
       "source": "genre-explore",
       "discoveredVia": "Music"
     },
-        {
+    {
       "type": "movie",
       "titleKey": "movie:1058616",
       "ids": {
@@ -4038,7 +4038,7 @@
       "source": "genre-explore",
       "discoveredVia": "Science Fiction"
     },
-        {
+    {
       "type": "movie",
       "titleKey": "movie:568332",
       "ids": {
@@ -4337,7 +4337,7 @@
       "year": null,
       "source": "currently-watching-feature"
     },
-        {
+    {
       "type": "movie",
       "titleKey": "movie:988046",
       "ids": {

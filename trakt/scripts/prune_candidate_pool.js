@@ -47,6 +47,36 @@ const ROOT = path.resolve(__dirname, '..', '..');
 const DATA_DIR = path.join(ROOT, 'trakt', 'data');
 const CAP_PER_TYPE = parseInt(process.argv[2], 10) || 200;
 
+// Real, verified bug (Improvement Opportunities' closed-loop-discovery
+// finding, quality.js): candidate discovery and candidate SCORING both
+// draw on the same TMDB similarity graph, so a second, independent
+// discovery source (trakt/discover_explore.py, TMDB's genre-filtered
+// /discover endpoint) was built to break the loop - but pruning ranks
+// every live candidate together in one competitive pool by raw score,
+// and a genre-explore candidate is BY DESIGN never cited by a loved
+// title's similar/recommended list (that's the whole point - it's a
+// genuinely different discovery path), so it structurally never earns
+// the forward/reverse similar-title bonus (+24/+12 combined) a
+// closed-loop candidate gets almost for free. Three real production
+// runs confirmed this isn't hypothetical: the closed-loop share
+// plateaued at 84.5% even as more genre-explore candidates were
+// discovered, because they kept losing the pruning competition as fast
+// as they were added. Live proof as of this fix: shows have only 9
+// genre-explore candidates against 200+ closed-loop ones - not because
+// discovery found few, but because pruning had already evicted most of
+// them across prior runs.
+//
+// Fix: reserve a guaranteed pool-share for genre-explore candidates,
+// per type, immune to the scoring disadvantage above - the top
+// RESERVED_EXPLORE_SHARE fraction of CAP_PER_TYPE slots go to the
+// best-scoring genre-explore candidates regardless of how they'd fare
+// against closed-loop ones in an open competition; only the remaining
+// slots are filled by the best overall (any leftover genre-explore
+// candidates included, competing normally). 25% chosen as a real,
+// meaningful floor without letting the newer, thinner-metadata source
+// dominate the pool outright.
+const RESERVED_EXPLORE_SHARE = 0.25;
+
 const readJSON = (p, fallback) => {
   try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return fallback; }
 };
@@ -123,12 +153,22 @@ for (const s of scored) {
   if (s.enriched) (byType[s.raw.type] ||= []).push(s);
 }
 
+const reservedSlots = Math.round(CAP_PER_TYPE * RESERVED_EXPLORE_SHARE);
 const kept = new Set();
 const evicted = [];
+const reservedKept = { movie: 0, show: 0 };
 for (const type of Object.keys(byType)) {
-  const ranked = byType[type].sort((a, b) => (b.scoreRaw ?? -1) - (a.scoreRaw ?? -1));
-  ranked.slice(0, CAP_PER_TYPE).forEach(s => kept.add(s.raw.titleKey));
-  ranked.slice(CAP_PER_TYPE).forEach(s => evicted.push(s));
+  const explore = byType[type].filter(s => s.raw.source === 'genre-explore')
+    .sort((a, b) => (b.scoreRaw ?? -1) - (a.scoreRaw ?? -1));
+  const guaranteed = explore.slice(0, reservedSlots);
+  guaranteed.forEach(s => kept.add(s.raw.titleKey));
+  reservedKept[type] = guaranteed.length;
+
+  const remainingSlots = CAP_PER_TYPE - guaranteed.length;
+  const rest = byType[type].filter(s => !kept.has(s.raw.titleKey))
+    .sort((a, b) => (b.scoreRaw ?? -1) - (a.scoreRaw ?? -1));
+  rest.slice(0, remainingSlots).forEach(s => kept.add(s.raw.titleKey));
+  rest.slice(remainingSlots).forEach(s => evicted.push(s));
 }
 // Not-yet-enriched candidates are never evicted by this pass (see warning above).
 for (const s of notYetEnriched) kept.add(s.raw.titleKey);
@@ -142,6 +182,9 @@ for (const s of stale) console.log(`  removed (stale): ${enrichedMeta[s.titleKey
 
 console.log(`\nExcluded via feedback, kept regardless of cap (never scored, never shown): ${excluded.length}`);
 for (const s of excluded) console.log(`  kept (excluded): ${enrichedMeta[s.titleKey]?.title || s.title || s.titleKey}`);
+
+console.log(`\nGenre-explore reserved share (${(RESERVED_EXPLORE_SHARE * 100).toFixed(0)}% of ${CAP_PER_TYPE} = ${reservedSlots} slots/type), ` +
+  `guaranteed regardless of score: movies ${reservedKept.movie}, shows ${reservedKept.show}.`);
 
 console.log(`\nEvicted (below top ${CAP_PER_TYPE} for its type): ${evicted.length}`);
 for (const s of evicted.sort((a, b) => a.raw.type.localeCompare(b.raw.type) || (a.scoreRaw - b.scoreRaw))) {
