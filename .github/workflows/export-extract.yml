@@ -26,6 +26,23 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="$(git rev-parse --abbrev-ref HEAD)"
           git add output/all-books-*.csv
-          git diff --staged --quiet && echo "No change to commit." || \
-            (git commit -m "Weekly full book extract [automated]" && git push)
+          if git diff --staged --quiet; then
+            echo "No change to commit."
+            exit 0
+          fi
+          git commit -m "Weekly full book extract [automated]"
+          # Same push-race hardening as the Trakt-side workflows (Session 50)
+          # and data-quality-report.yml (hit for real 2026-09-10) - rebase
+          # and retry rather than losing a real run's output.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest $BRANCH."
+            git fetch origin "$BRANCH"
+            git rebase "origin/$BRANCH"
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1
