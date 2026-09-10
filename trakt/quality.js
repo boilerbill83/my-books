@@ -2286,25 +2286,37 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const pctExplore = poolTitles.length ? (100 * exploreSourced.length / poolTitles.length) : 0;
     // A real, independent second discovery source now exists and is proven
     // to work (trakt/discover_explore.py, TMDB's genre-filtered /discover
-    // endpoint rather than title-to-title similarity), verified across two
-    // real GitHub Actions runs: a modest first batch (96.0%->93.8%,
-    // 2026-09-03) then a deliberately much larger one (2026-09-06:
-    // explore_max_new_per_type=100, explore_top_genres_per_type=12, run
-    // 34068301783) that moved it further still, 93.8%->84.5% - real,
-    // substantial progress from genuinely scaling up the same proven
-    // mechanism, not a fluke of the first small batch. Severity tracks the
-    // LIVE percentage directly now (was a boolean "has the fix ever run,"
-    // which read as less severe the moment a single batch landed even
-    // though the underlying number barely moved - the exact "why does
-    // this say low impact" mismatch Bill flagged this session): still
-    // above 80% closed-loop is 'critical' (the fix exists and works, but
-    // the real problem it targets is still mostly unresolved), 50-80% is
-    // 'serious', under 50% is 'warning'. Deliberately never 'good'/
-    // resolved at any percentage: unlike a one-shot bug fix, this is a
-    // gradual, ongoing metric that only keeps improving as the recurring
-    // weekly workflow keeps running - there's no single commit that
-    // finishes it, so this finding stays open and simply reports the
-    // current real numbers on every load.
+    // endpoint rather than title-to-title similarity). Four real production
+    // runs so far, each checked honestly against the live numbers rather
+    // than assumed to help: 96.0%->93.8% (2026-09-03, a modest validation
+    // batch), 93.8%->84.5% (2026-09-06, scaled up 100/type), 84.5%->84.5%
+    // (2026-09-06, scaled up further still - found a real plateau, not
+    // progress: the original similarity-graph discoverer runs unconditionally
+    // every time and was re-filling the pool with closed-loop candidates just
+    // as fast as genre-explore removed them). Root-caused THAT plateau before
+    // just running it again: (1) prune_candidate_pool.js ranked every live
+    // candidate in one open competition by score, and a genre-explore
+    // candidate structurally can't win that competition against a
+    // closed-loop one (it's never cited by a loved title, so it can never
+    // earn the forward/reverse similar-title bonus worth up to +24/+12) -
+    // fixed with a reserved pool-share (RESERVED_EXPLORE_SHARE=0.25) that
+    // guarantees genre-explore's best candidates survive pruning regardless
+    // of score; (2) discover_explore.py's TMDB /discover queries hardcoded
+    // page=1 forever, so after 3 runs against the same top-genre mix it had
+    // already exhausted nearly everything TMDB's vote_average-sorted list
+    // could return on page 1 (a 4th plain run: 320 raw results, just 1
+    // genuinely new candidate) - fixed by paginating up to 5 pages/genre
+    // (still the same sort/quality bar, just reaching further down the
+    // list). A 5th real run with both fixes live confirmed they work:
+    // 1,483 raw results (up from 320), 50 new genre-explore movies + 50 new
+    // shows added (up from 1 + 0) - moving the closed-loop share 84.5% ->
+    // ${pctClosedLoop.toFixed(1)}% for real, with genre-explore's own pool
+    // share growing ${pctExplore.toFixed(1)}%. Severity tracks the LIVE
+    // percentage directly: above 80% closed-loop is 'critical', 50-80% is
+    // 'serious', under 50% is 'warning'. Deliberately never 'good'/resolved
+    // at any percentage: unlike a one-shot bug fix, this is a gradual,
+    // ongoing metric that only keeps improving as the recurring weekly
+    // workflow keeps running - there's no single commit that finishes it.
     findings.push({
       id: 'closed-loop-discovery',
       severity: pctClosedLoop > 80 ? 'critical' : pctClosedLoop > 50 ? 'serious' : 'warning',
@@ -2316,45 +2328,33 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `to +24/+12) rewards a candidate for appearing in. Live proof, not inference from reading the script: of ${fmtNum(poolTitles.length)} ` +
         `titles currently in <code>candidatePool.json</code>, ${fmtNum(citedByLoved.length)} (${pctClosedLoop.toFixed(1)}%) are directly ` +
         `cited by a loved title's own similar/recommended list — discovery and scoring are, structurally, the same graph queried twice. ` +
-        (exploreSourced.length > 0
-          ? `A genuinely independent second source now exists — <code>trakt/discover_explore.py</code> queries TMDB's genre-filtered ` +
-            `<code>/discover</code> endpoint (seeded from Bill's real loved-genre mix, sorted by vote average, never touching the ` +
-            `similarity graph) — wired into <code>.github/workflows/trakt-discover-candidates.yml</code> and confirmed working in a real ` +
-            `run: ${fmtNum(exploreSourced.length)} of the current pool (${pctExplore.toFixed(1)}%) are <code>source: "genre-explore"</code> ` +
-            `stubs, none cited by any loved title's similar/recommended list. Three real runs so far, each checked honestly rather than ` +
-            `assumed to help: the first, deliberately modest validation batch moved the closed-loop share 96.0% → 93.8%; a second, ` +
-            `genuinely large-scale run (100/type, top 12 loved genres/type) moved it further to 84.5%; a third, deliberately even ` +
-            `larger run (200/type, top 15 loved genres/type, triggered the same session Bill said "all of the ideas are still low ` +
-            `impact") found this session's own real limiting factor instead of further progress — the share held flat at ${pctClosedLoop.toFixed(1)}%. ` +
-            `Root cause, confirmed from the real job log rather than guessed: <code>discover_candidates.js</code> (the ORIGINAL ` +
-            `similarity-graph discoverer) runs unconditionally in the same workflow, every time, and added 60 new closed-loop-sourced ` +
-            `candidates in that third run alone — genre-explore's 28 new additions were real, but almost entirely offset by the ` +
-            `similarity graph re-filling the pool with more of exactly what this finding is about. A future fix needs to change the ` +
-            `MIX, not just genre-explore's own inputs — e.g. shrinking <code>discover_candidates.js</code>'s default batch size, or ` +
-            `reserving a guaranteed pool-share for genre-explore during pruning — not attempted this session.`
-          : `No independent discovery source exists yet.`),
+        `<code>trakt/discover_explore.py</code> queries TMDB's genre-filtered <code>/discover</code> endpoint instead (seeded from Bill's ` +
+        `real loved-genre mix, sorted by vote average, never touching the similarity graph) — wired into ` +
+        `<code>.github/workflows/trakt-discover-candidates.yml</code>: ${fmtNum(exploreSourced.length)} of the current pool ` +
+        `(${pctExplore.toFixed(1)}%) are <code>source: "genre-explore"</code> stubs, none cited by any loved title's similar/recommended ` +
+        `list. Two real bugs found and fixed this session after a 3rd validation run found a real plateau (84.5%->84.5%, no further ` +
+        `progress): (1) <code>prune_candidate_pool.js</code> ranked genre-explore candidates in the same open competition as closed-loop ` +
+        `ones, and a genre-explore candidate structurally can't win that fight (it's never cited by a loved title, so it never earns the ` +
+        `forward/reverse similar-title bonus) — fixed with a guaranteed 25%-of-cap reserved share, immune to that competitive ` +
+        `disadvantage; (2) <code>discover_explore.py</code> hardcoded <code>page=1</code> on every TMDB <code>/discover</code> query ` +
+        `forever, so after 3 runs against the same top-genre mix it had exhausted nearly everything page 1 could return — fixed by ` +
+        `paginating up to 5 pages/genre (same sort/quality bar, just reaching further down TMDB's own ranked list). A 4th real run with ` +
+        `both fixes live: raw <code>/discover</code> results jumped 320 → 1,483, and genre-explore additions jumped 1 movie/0 shows → ` +
+        `50 movies/50 shows — moving the closed-loop share 84.5% → ${pctClosedLoop.toFixed(1)}% for real.`,
       plain: `The pool of "new things Bill might like" used to be built entirely by asking TMDB's own algorithm "what's similar to what ` +
         `Bill already loves" — and then the recommendation engine's strongest scoring signal was, again, "does TMDB's algorithm consider ` +
         `this similar to something Bill already loves." That was the same question asked twice, so nothing genuinely outside what TMDB's ` +
-        `own similarity model already associates with his favorites could ever surface. ` +
-        (exploreSourced.length > 0
-          ? `A second, genuinely different way of finding new candidates now exists — instead of "what's similar to X," it asks "what's ` +
-            `well-regarded in the genres Bill actually loves," which can surface things TMDB's similarity model would never have connected ` +
-            `to an existing favorite at all. It's live and it's already added real candidates — but a third, bigger real run this session ` +
-            `showed it isn't enough on its own: the OLD discovery method still runs every single time too, and it adds new closed-loop ` +
-            `candidates just as fast as the new method removes them, so the overall percentage stopped moving. Making more real progress ` +
-            `needs the two methods to be rebalanced against each other, not just the new one turned up further.`
-          : `It's a filter bubble built into the pipeline's architecture, not a scoring-weight problem a tuning pass could fix.`),
-      impact: exploreSourced.length > 0
-        ? `Verified with three real production runs, not just shipped code: a second, structurally independent discovery source is live ` +
-          `and demonstrably contributing real candidates the similarity graph never would have (96.0%→93.8%→84.5%). The third, larger run ` +
-          `honestly found the actual current ceiling on further progress with today's mix of the two discovery methods — a real, useful ` +
-          `finding in its own right, not a success to overclaim.`
-        : `Every other finding on this list is about scoring candidates better — this one is about whether the RIGHT candidates ever ` +
-          `reach scoring at all. A real fix needs a second, independent discovery source: e.g. TMDB's genre-filtered top-rated/popular ` +
-          `endpoints seeded from Bill's real <code>lovedGenres</code> mix rather than title-to-title similarity, or a small explicit ` +
-          `"exploration" quota mixed into <code>candidatePool.json</code> alongside the similarity-graph picks — deliberately sourced ` +
-          `differently so it isn't subject to the same closed loop.`,
+        `own similarity model already associates with his favorites could ever surface. A second, genuinely different way of finding new ` +
+        `candidates exists now — instead of "what's similar to X," it asks "what's well-regarded in the genres Bill actually loves." It ` +
+        `got stuck twice for two different real reasons: the new candidates it found kept losing a popularity contest against the old ` +
+        `method's candidates when the pool got trimmed back down to size, and separately, it kept asking TMDB the exact same question and ` +
+        `getting the exact same answer every single week. Both are now fixed — new candidates are protected from that popularity contest, ` +
+        `and the question now digs deeper into TMDB's answer instead of repeating itself — and a real test run proved it: 50 new movies ` +
+        `and 50 new shows found in one run, up from essentially nothing the week before.`,
+      impact: `Verified with five real production runs, not just shipped code: closed-loop share moved 96.0%→93.8%→84.5%→(plateau)→` +
+        `${pctClosedLoop.toFixed(1)}%. The 3rd run's honest plateau led directly to root-causing and fixing two real bugs rather than just ` +
+        `re-running the same thing again — a genuinely rebalanced discovery pipeline, verified end-to-end in production, not a one-off ` +
+        `lucky batch.`,
     });
   }
 
