@@ -17,7 +17,14 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..', '..');
 const DATA_DIR = path.join(ROOT, 'trakt', 'data');
-const MAX_NEW = parseInt(process.argv[2], 10) || 150;
+// Real latent bug found and fixed 2026-09: `parseInt(...) || 150` treats an
+// explicit 0 the same as "not provided" (0 is falsy in JS), silently falling
+// back to the 150 default instead of actually disabling discovery for a run -
+// caught while trying to pass 0 to isolate discover_explore.py's own effect
+// in a test run. Number.isNaN() distinguishes "no valid number given" from
+// "the number given was zero."
+const MAX_NEW_ARG = parseInt(process.argv[2], 10);
+const MAX_NEW = Number.isNaN(MAX_NEW_ARG) ? 150 : MAX_NEW_ARG;
 const LOVED_THRESHOLD = 9;
 
 const readJSON = (p, fallback) => {
