@@ -5,22 +5,35 @@ on:
     - cron: '0 10 * * 0'   # weekly, Sundays 10 AM UTC (after both daily 8/9 AM enrichment jobs)
   workflow_dispatch:
     inputs:
+      # Defaults rebalanced 2026-09 per the closed-loop-discovery dashboard
+      # finding: discover_candidates.js (the similarity-graph discoverer)
+      # and discover_explore.py (the independent genre-explore discoverer,
+      # fixed to paginate this same session) used to run at a 30-vs-20
+      # ratio, biased toward the closed-loop side. A real production run
+      # this session (explore_max_new_per_type=50, explore_top_genres_per_type=8,
+      # with the pagination fix live) found 50 new genre-explore candidates
+      # PER TYPE in one run - proof this source can sustain a much higher
+      # rate than the old default assumed. Rebalanced toward genre-explore
+      # and throttled the closed-loop side back moderately (not disabled -
+      # it still serves a real purpose: following Bill's taste as he rates
+      # new loved titles) so every future UNATTENDED weekly run keeps
+      # shrinking the closed-loop share, not just a manually-dispatched one.
       max_new_per_type:
         description: 'Max new candidates to discover per type (movie/show) this run'
         type: number
-        default: 30
+        default: 20
       explore_max_new_per_type:
         description: 'Max new genre-explore candidates to discover per type this run (independent of the similarity-graph discovery above - see discover_explore.py)'
         type: number
-        default: 20
+        default: 40
       explore_top_genres_per_type:
         description: 'How many of Bill''s real top loved genres to query TMDB /discover against, per type'
         type: number
-        default: 4
+        default: 8
       enrich_batch_size:
         description: 'How many titles enrich_tmdb.py should process this run'
         type: number
-        default: 100
+        default: 150
       cap_per_type:
         description: 'Candidate pool cap per type (movies/shows), lowest scorers evicted beyond this'
         type: number
@@ -41,19 +54,19 @@ jobs:
           python-version: '3.11'
 
       - name: Discover new candidates from loved titles' TMDB similar/recommendations network
-        run: node trakt/scripts/discover_candidates.js ${{ inputs.max_new_per_type || 30 }}
+        run: node trakt/scripts/discover_candidates.js ${{ inputs.max_new_per_type || 20 }}
 
       - name: Discover new candidates from TMDB's genre-filtered /discover endpoint (independent of the similarity graph above)
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
-        run: python3 trakt/discover_explore.py ${{ inputs.explore_max_new_per_type || 20 }} ${{ inputs.explore_top_genres_per_type || 4 }}
-        timeout-minutes: 10
+        run: python3 trakt/discover_explore.py ${{ inputs.explore_max_new_per_type || 40 }} ${{ inputs.explore_top_genres_per_type || 8 }}
+        timeout-minutes: 15
 
       - name: Enrich newly-discovered candidates via TMDB
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
-        run: python3 trakt/enrich_tmdb.py ${{ inputs.enrich_batch_size || 100 }}
-        timeout-minutes: 20
+        run: python3 trakt/enrich_tmdb.py ${{ inputs.enrich_batch_size || 150 }}
+        timeout-minutes: 30
 
       - name: Prune pool to cap size, evicting lowest scorers
         # Runs even if the TMDB enrich step above failed (e.g. a bad/expired
