@@ -286,7 +286,7 @@ function renderCoWatchCards(elementId, rows, enrichedMeta) {
   el.innerHTML = ready.map(r => {
     const poster = posterUrl(r.titleKey, enrichedMeta, 'w154');
     return `
-    <a class="tk-shelf-card" href="./deepdive.html?key=${encodeURIComponent(r.titleKey)}">
+    <a class="tk-shelf-card" href="${esc(traktUrl(r))}" target="_blank" rel="noopener">
       ${posterImgHtml(poster, 'tk-shelf-poster', 92, 138)}
       ${r.score != null ? `<div class="tk-shelf-score">${Math.round(r.score)}</div>` : ''}
       <div class="tk-shelf-title">${esc(r.title)}</div>
@@ -1067,7 +1067,7 @@ function renderShelf(containerId, items, enrichedMeta) {
   el.innerHTML = items.map(c => {
     const poster = posterUrl(c.titleKey, enrichedMeta, 'w154');
     return `
-    <a class="tk-shelf-card" href="./deepdive.html?key=${encodeURIComponent(c.titleKey)}">
+    <a class="tk-shelf-card" href="${esc(traktUrl(c))}" target="_blank" rel="noopener">
       ${posterImgHtml(poster, 'tk-shelf-poster', 92, 138)}
       <div class="tk-shelf-score">${Math.round(c.bmtreScore)}</div>
       <div class="tk-shelf-title">${esc(c.title)}</div>
@@ -1135,7 +1135,7 @@ function renderBecauseYouLoved(rows, enrichedMeta) {
       <div class="tk-shelf">${items.map(c => {
         const poster = posterUrl(c.titleKey, enrichedMeta, 'w154');
         return `
-        <a class="tk-shelf-card" href="./deepdive.html?key=${encodeURIComponent(c.titleKey)}">
+        <a class="tk-shelf-card" href="${esc(traktUrl(c))}" target="_blank" rel="noopener">
           ${posterImgHtml(poster, 'tk-shelf-poster', 92, 138)}
           <div class="tk-shelf-score">${Math.round(c.bmtreScore)}</div>
           <div class="tk-shelf-title">${esc(c.title)}</div>
