@@ -3061,7 +3061,20 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList') 
   // via the full, unfiltered allFindings array passed to
   // computeMetadataQuality() elsewhere) — only this render is filtered.
   const resolvedCount = findings.filter(f => f.severity === 'good').length;
-  const open = findings.filter(f => f.severity !== 'good');
+  // Bill: "number these with 1 being at the top that is the highest
+  // impact." The caller already sorts allFindings by severity tier
+  // (critical/serious/warning), but ties within a tier aren't broken by
+  // anything meaningful — two 'serious' findings could carry recEngine
+  // ratings of 4 and 6 and render in whatever order the three compute*()
+  // functions happened to concatenate them. Re-sorting here by severity
+  // then recEngine (desc) then dataQuality (desc) gives the #1-N numbers
+  // below a real, defensible meaning instead of an arbitrary tiebreak.
+  const severityOrder = { critical: 0, serious: 1, warning: 2, good: 3 };
+  const open = findings
+    .filter(f => f.severity !== 'good')
+    .sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]
+      || (b.ratings?.recEngine ?? 0) - (a.ratings?.recEngine ?? 0)
+      || (b.ratings?.dataQuality ?? 0) - (a.ratings?.dataQuality ?? 0));
   const noteEl = document.getElementById('improvementResolvedNote');
   if (noteEl) {
     noteEl.textContent = resolvedCount
@@ -3115,6 +3128,7 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList') 
     return `
       <div class="tk-imp-card tk-imp-collapsed" data-imp-index="${i}">
         <div class="tk-imp-header" role="button" tabindex="0">
+          <span class="tk-imp-rank">#${i + 1}</span>
           <div class="tk-imp-title">${esc(f.title)}</div>
           <span class="tk-status-pill ${sev.cls}">${sev.icon} ${sev.label}</span>
           <span class="tk-collapse-chevron">▾</span>
