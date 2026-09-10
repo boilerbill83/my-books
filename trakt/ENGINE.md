@@ -313,6 +313,33 @@ structural (non-taste) tags (`sequel`, `aftercreditsstinger`, `remake`,
 1.5, which holds precision@10/25/50/100 exactly unchanged while still
 improving MAE.
 
+### 3f-2. Breaking the fourth wall — flat **+6**
+```
+if candidate.keywords includes 'breaking the fourth wall': +6
+else: 0
+```
+A single, dedicated keyword signal, deliberately separate from §3f
+(capped at +1.5 across ALL keywords combined — too diluted for one tag
+to register). Built 2026-09-10 from a real deep-dive into what
+distinguishes Deadpool from other superhero titles Bill has rejected
+(The Suicide Squad 2021, Zack Snyder's Justice League) — see
+`deadpool-citation-inflation` on the dashboard for the full
+investigation. §3b-3's content-maturity signal turned out NOT to
+cleanly separate them (both rejected titles are R-rated too, and even
+share a similar dark/satirical tone profile). "Breaking the fourth
+wall" does, and generalizes well beyond superhero titles: 26 titles in
+the dataset carry it, 7 rated by Bill, every one 6-10/10 (Deadpool 2 9,
+House of Cards 9, Deadpool & Wolverine 9, Fleabag 8, Winning Time 8,
+We're the Millers 8, She-Hulk 6) — zero disliked, zero dismissed.
+Swept 0-12 against `scripts/eval.js`: too sparse (n=7) to move
+precision@k measurably at any scale (flat through p10/p25/p50, p100
+ticks 85→86 only at scale≥9), but zero regression anywhere either —
+shipped at 6, the tested midpoint. **Does not by itself fix the
+Suicide Squad/Justice League over-scoring** — neither carries this
+keyword, so this signal never touches them. See the dashboard finding
+for the real cause (the citation-match signal below) and why a tag
+alone can't fix it.
+
 ### 3g. Subgenre match — capped at **+1.5**
 ```
 +0.75 per subgenre shared with 13+ loved titles
@@ -1211,6 +1238,7 @@ Run it: `node trakt/scripts/eval.js` from the repo root.
 | Franchise/collection | +0 to +15 | Movies only |
 | Cast match | +0 to +8 | Top-billed actors |
 | Keyword match | +0 to +1.5 | Free-form TMDB keywords |
+| Breaking the fourth wall | +0 or +6 | Single dedicated keyword; real cross-genre signal, n=7 |
 | Subgenre match | +0 to +1.5 | Beneath TMDB's genre taxonomy |
 | Subgenre rating penalty | -3 to 0 | Rating-preference delta, -0.7 deadzone, penalty-only |
 | Superhero content maturity | -6 to +10 | Superhero subgenre only; R/TV-MA vs. PG-13/TV-14; needs OMDb `rated` backfill |

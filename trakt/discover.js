@@ -709,21 +709,15 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
   // hides it, since watching it isn't actually possible in full yet.
   watchlistItems = watchlistItems.filter(c => !isActivelyAiring(c, enrichedMeta));
   candidateItems = candidateItems.filter(c => !isActivelyAiring(c, enrichedMeta));
-  // Bill: "The Dark Knight is one of my top recommendations... what if we
-  // just excluded comic book movies from the top 10?... don't change the
-  // score, just filter them out from that one section." Same display-only
-  // precedent as isActivelyAiring above, but scoped like the taste-based
-  // filters in rankAll() (isReEdit/isNonEnglish/isPreMillenniumMovie/
-  // isAnimation) — never applied to the watchlist, since a superhero title
-  // Bill queued himself is his own real pick, not the engine's discovery.
-  // Root cause this is masking, not fixing: Session 64 found candidates
-  // like this score high mainly via a mutual TMDB citation with Deadpool/
-  // Watchmen (real Bill favorites that are themselves genre outliers, see
-  // the dashboard's loved-title-category-anomaly-signal finding) — tested
-  // a real scoring fix for that and it regressed precision@10 broadly, so
-  // this display-only exclusion is the safe version Bill explicitly asked
-  // for instead.
-  candidateItems = candidateItems.filter(c => !inferSubgenres(enrichedMeta[c.titleKey], llmTags[c.titleKey], undefined, reviewedTags[c.titleKey]).includes('superhero'));
+  // REMOVED 2026-09-10 (Bill: "unhide those movies from the AI. I want to
+  // see the actual recommendations") — this used to blanket-filter every
+  // superhero-subgenre candidate from this panel (Session 66, in response
+  // to The Dark Knight showing up as a top pick). Bill explicitly asked to
+  // see the real, unmasked output instead of a display-layer cover-up
+  // while a real fix is worked out (see matureContentSignal() and the new
+  // "deadpool-outlier-signal-gap" Improvement Opportunities finding in
+  // quality.js for the actual in-progress investigation). The score itself
+  // was never touched by this filter either way — only what rendered here.
   // Continuation of the same investigation: the dashboard's
   // loved-title-category-anomaly-signal finding lists 16 more loved
   // titles that are statistical outliers within their own subgenre (the
