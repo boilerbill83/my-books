@@ -1,28 +1,9 @@
 {
   "meta": {
-    "generatedAt": "2026-09-04T14:55:15.748Z",
+    "generatedAt": "2026-09-10T12:45:23.926Z",
     "count": 42
   },
   "titles": [
-    {
-      "type": "show",
-      "titleKey": "show:286709",
-      "ids": {
-        "imdb": "tt31849235",
-        "plex": {
-          "guid": "67f0f2a94a6dc1c58d90d164",
-          "slug": "the-westies"
-        },
-        "slug": "the-westies",
-        "tmdb": 286709,
-        "tvdb": 461627,
-        "trakt": 279635
-      },
-      "title": "The Westies",
-      "year": 2026,
-      "watchlisted": true,
-      "watchlistedAt": "2026-07-28T20:02:37.000Z"
-    },
     {
       "type": "show",
       "titleKey": "show:291084",
@@ -678,6 +659,24 @@
       "year": 2024,
       "watchlisted": true,
       "watchlistedAt": "2026-09-03T00:45:39.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:698948",
+      "ids": {
+        "imdb": "tt12262116",
+        "plex": {
+          "guid": "5eb8f284e789f50040bc3818",
+          "slug": "thirteen-lives"
+        },
+        "slug": "thirteen-lives-2022",
+        "tmdb": 698948,
+        "trakt": 542616
+      },
+      "title": "Thirteen Lives",
+      "year": 2022,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-10T12:20:11.000Z"
     },
     {
       "type": "show",

@@ -1,39 +1,44 @@
 {
-  "generatedAt": "2026-09-04T14:55:11.242Z",
+  "generatedAt": "2026-09-10T12:45:18.171Z",
   "profile": {
     "username": "bill_stoltenberg_27166c",
     "joinedAt": "2026-07-27T14:49:58.000Z"
   },
   "summary": {
-    "moviesWatched": 198,
-    "moviesPlays": 198,
-    "moviesRatings": 197,
-    "moviesMinutes": 24947,
-    "showsWatched": 389,
-    "showsRatings": 396,
-    "episodesWatched": 11367,
-    "episodesPlays": 11367,
-    "episodesMinutes": 490648,
-    "totalRatings": 593,
-    "totalMinutes": 515595,
-    "totalHours": 8593,
-    "avgRating": 7.81
+    "moviesWatched": 212,
+    "moviesPlays": null,
+    "moviesRatings": 211,
+    "moviesMinutes": null,
+    "showsWatched": 392,
+    "showsRatings": 399,
+    "episodesWatched": null,
+    "episodesPlays": null,
+    "episodesMinutes": null,
+    "totalRatings": 610,
+    "totalMinutes": 0,
+    "totalHours": 0,
+    "avgRating": null
   },
   "ratingDistribution": {
     "1": 0,
-    "2": 4,
-    "3": 4,
-    "4": 21,
-    "5": 7,
-    "6": 51,
-    "7": 116,
-    "8": 218,
-    "9": 87,
-    "10": 85
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0
   },
   "activityByYear": [
     {
       "year": 1994,
+      "movies": 1,
+      "episodes": 0
+    },
+    {
+      "year": 1995,
       "movies": 1,
       "episodes": 0
     },
@@ -60,12 +65,12 @@
     {
       "year": 2001,
       "movies": 1,
-      "episodes": 42
+      "episodes": 48
     },
     {
       "year": 2002,
       "movies": 0,
-      "episodes": 44
+      "episodes": 50
     },
     {
       "year": 2003,
@@ -74,7 +79,7 @@
     },
     {
       "year": 2004,
-      "movies": 3,
+      "movies": 4,
       "episodes": 74
     },
     {
@@ -90,108 +95,108 @@
     {
       "year": 2007,
       "movies": 3,
-      "episodes": 118
+      "episodes": 123
     },
     {
       "year": 2008,
       "movies": 1,
-      "episodes": 102
+      "episodes": 107
     },
     {
       "year": 2009,
       "movies": 3,
-      "episodes": 126
+      "episodes": 131
     },
     {
       "year": 2010,
-      "movies": 3,
-      "episodes": 133
+      "movies": 4,
+      "episodes": 138
     },
     {
       "year": 2011,
-      "movies": 4,
+      "movies": 5,
       "episodes": 176
     },
     {
       "year": 2012,
-      "movies": 4,
-      "episodes": 202
+      "movies": 5,
+      "episodes": 207
     },
     {
       "year": 2013,
-      "movies": 6,
-      "episodes": 194
+      "movies": 11,
+      "episodes": 199
     },
     {
       "year": 2014,
-      "movies": 3,
-      "episodes": 201
+      "movies": 6,
+      "episodes": 206
     },
     {
       "year": 2015,
       "movies": 18,
-      "episodes": 183
+      "episodes": 188
     },
     {
       "year": 2016,
       "movies": 17,
-      "episodes": 220
+      "episodes": 225
     },
     {
       "year": 2017,
       "movies": 16,
-      "episodes": 232
+      "episodes": 237
     },
     {
       "year": 2018,
       "movies": 15,
-      "episodes": 232
+      "episodes": 237
     },
     {
       "year": 2019,
       "movies": 17,
-      "episodes": 246
+      "episodes": 251
     },
     {
       "year": 2020,
       "movies": 5,
-      "episodes": 73
+      "episodes": 78
     },
     {
       "year": 2021,
       "movies": 5,
-      "episodes": 91
+      "episodes": 96
     },
     {
       "year": 2022,
       "movies": 12,
-      "episodes": 195
+      "episodes": 200
     },
     {
       "year": 2023,
       "movies": 17,
-      "episodes": 136
+      "episodes": 141
     },
     {
       "year": 2024,
-      "movies": 11,
-      "episodes": 106
+      "movies": 12,
+      "episodes": 115
     },
     {
       "year": 2025,
       "movies": 13,
-      "episodes": 250
+      "episodes": 261
     },
     {
       "year": 2026,
       "movies": 9,
-      "episodes": 139
+      "episodes": 152
     }
   ],
   "dataCaveats": {
     "undatedEpisodePlays": 7523,
-    "datedEpisodePlays": 3844,
-    "undatedEpisodeSharePct": 66.2
+    "datedEpisodePlays": 3969,
+    "undatedEpisodeSharePct": 65.5
   },
   "topShowsByPlays": [
     {
@@ -216,7 +221,7 @@
       "title": "It's Always Sunny in Philadelphia",
       "year": 2005,
       "plays": 177,
-      "airedEpisodes": 181
+      "airedEpisodes": 182
     },
     {
       "title": "Mom",
@@ -286,6 +291,12 @@
     }
   ],
   "topRatedMovies": [
+    {
+      "title": "Shutter Island",
+      "year": 2010,
+      "rating": 10,
+      "ratedAt": "2026-09-10T12:19:11.000Z"
+    },
     {
       "title": "The Town",
       "year": 2010,
@@ -399,15 +410,15 @@
       "year": 2011,
       "rating": 10,
       "ratedAt": "2026-08-21T14:52:26.000Z"
-    },
-    {
-      "title": "Pitch Perfect",
-      "year": 2012,
-      "rating": 10,
-      "ratedAt": "2026-08-21T14:13:41.000Z"
     }
   ],
   "topRatedShows": [
+    {
+      "title": "The Westies",
+      "year": 2026,
+      "rating": 10,
+      "ratedAt": "2026-09-09T16:14:56.000Z"
+    },
     {
       "title": "Lucky",
       "year": 2026,
@@ -521,12 +532,6 @@
       "year": 2019,
       "rating": 10,
       "ratedAt": "2026-07-29T00:56:11.000Z"
-    },
-    {
-      "title": "Chernobyl",
-      "year": 2019,
-      "rating": 10,
-      "ratedAt": "2026-07-29T00:49:18.000Z"
     }
   ],
   "watchlist": {
@@ -555,12 +560,6 @@
         "title": "Marshals",
         "year": 2026,
         "listedAt": "2026-07-28T19:26:36.000Z"
-      },
-      {
-        "type": "show",
-        "title": "The Westies",
-        "year": 2026,
-        "listedAt": "2026-07-28T20:02:37.000Z"
       },
       {
         "type": "show",
@@ -783,6 +782,12 @@
         "title": "Bad Sisters",
         "year": 2022,
         "listedAt": "2026-09-03T19:46:55.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Thirteen Lives",
+        "year": 2022,
+        "listedAt": "2026-09-10T12:20:11.000Z"
       }
     ]
   },
