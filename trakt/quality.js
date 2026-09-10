@@ -3045,6 +3045,48 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
+  // N. Bill's own idea (asked directly, not a diagnostic): "I tell you a
+  // movie, you present a similarity score for every candidate." A real,
+  // buildable feature, not a scoring bug — logged per his explicit "add
+  // as an opportunity" request rather than built now, same precedent as
+  // loved-title-category-anomaly-signal above. Confirmed the core math
+  // already exists and doesn't need to be invented: descSimilarity.js
+  // already exports a working TF-IDF cosine() function, just never called
+  // pairwise between two specific titles (only ever against the whole
+  // loved-title corpus at once, for the additive descSimilarity bonus).
+  {
+    findings.push({
+      id: 'pairwise-title-similarity-score-feature',
+      severity: 'serious', // recEngine 5 — severity now tracks the hand-graded ratings below
+      ratings: { ease: 6, dataQuality: 7, recEngine: 5, ui: 9 },
+      title: `New feature idea (Bill's own request): pick a title, get a similarity score for every candidate against just that one title`,
+      technical: `Every scoring path today (<code>matchScore()</code>, <code>rankAll()</code>, the You'll Love panels) answers "how well does ` +
+        `this candidate match Bill's WHOLE loved profile" — there is no path that answers "how similar is candidate X to THIS ONE specific ` +
+        `title." Manually reconstructed a rough version of it this turn to answer the Before-trilogy question, using pieces that already exist ` +
+        `separately: direct TMDB citation match (a candidate's <code>similarToIds</code>/<code>recommendedIds</code> containing the reference ` +
+        `title's tmdb id, or vice versa), shared director/creator (<code>getCreator()</code>, already used by <code>franchiseBonus()</code>/ ` +
+        `<code>castBonus()</code>), cast overlap (<code>topCast</code>, the same signal <code>castBonus()</code> already weights by billing ` +
+        `order), genre/subgenre/tone/subject overlap (<code>inferGenre()</code>/<code>inferSubgenres()</code>/<code>inferTones()</code>/ ` +
+        `<code>inferSubjects()</code>, all already deterministic and already scored elsewhere), keyword overlap, and — the piece that needed ` +
+        `zero new math — <code>descSimilarity.js</code>'s already-exported <code>cosine(a, b)</code> function applied directly between the two ` +
+        `titles' own TF-IDF description vectors, instead of its current use (one title's vector against the whole loved-title corpus). A real ` +
+        `pairwise <code>similarityScore(referenceKey, candidateKey, enrichedMeta, idx)</code> would combine these into one normalized 0-100 ` +
+        `number per candidate and rank the pool by it — a genuinely new function (nothing today combines these signals pairwise), but every ` +
+        `individual signal it would draw on is already computed and validated elsewhere in the codebase, not new territory. UI would need a ` +
+        `title picker (reference title Bill names) plus a ranked results table, most closely resembling the existing All Titles table's ` +
+        `sortable-column pattern. Deliberately separate from <code>matchScore()</code> and would not touch it — a read-only exploration tool, ` +
+        `not a new scoring signal, so <code>scripts/eval.js</code> is unaffected by design if built.`,
+      plain: `Right now, if Bill says "I love this specific movie," the app can only answer with his WHOLE taste profile — a fresh top-8 list ` +
+        `built from everything he's ever rated highly. There's no way to ask "just show me things similar to THIS ONE movie." This idea adds ` +
+        `exactly that: type in a title, and every candidate gets its own number showing how close a match it is to that one movie specifically ` +
+        `— so instead of one blended recommendation list, Bill could ask "what's most like Before Sunset" and get a real ranked, numeric answer.`,
+      impact: `Not built — logged per Bill's explicit request, exactly like the loved-title-anomaly finding above. Worth noting the value ` +
+        `directly: answering "what's similar to the Before trilogy" this session required a one-off manual script; this feature would make that ` +
+        `kind of question self-service and instant for any title Bill names, at essentially no new scoring risk since it stays fully separate ` +
+        `from <code>matchScore()</code>.`,
+    });
+  }
+
   const order = { critical: 0, serious: 1, warning: 2, good: 3 };
   findings.sort((a, b) => order[a.severity] - order[b.severity]);
   return findings;
