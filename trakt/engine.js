@@ -993,6 +993,40 @@ function keywordBonus(keywords, lovedKeywords) {
   return Math.min(1.5, bonus);
 }
 
+// A single, dedicated, validated keyword signal — deliberately separate
+// from the generic keywordBonus() above (capped at +1.5 total across
+// ALL keywords, too diluted for a single tag to register). Built
+// 2026-09-10 from a real deep-dive into what actually distinguishes
+// Deadpool from other superhero titles Bill has rejected (The Suicide
+// Squad 2021, Zack Snyder's Justice League) — see quality.js's
+// "deadpool-citation-inflation" Improvement Opportunities finding for
+// the full investigation. matureContentSignal() (content rating) turned
+// out NOT to cleanly separate them — both rejected titles are R-rated
+// and even carry a similar dark/satirical tone profile to Deadpool.
+// 'breaking the fourth wall' (TMDB's own keyword for direct-to-camera/
+// meta-narrative address) does: checked across the FULL dataset, not
+// just superhero titles — 26 titles carry it, 7 rated by Bill, every
+// one 6-10/10 (Deadpool 2 9, House of Cards 9, Deadpool & Wolverine 9,
+// Fleabag 8, Winning Time 8, We're the Millers 8, She-Hulk 6), zero
+// disliked, zero dismissed. Genuinely cross-genre, not a Deadpool-
+// specific artifact. Swept 0-12 against scripts/eval.js: real, n=7 is
+// too sparse to move precision@k measurably at any scale (flat through
+// p10/p25/p50, p100 ticks 85->86 only at scale>=9), but zero regression
+// anywhere either — shipped at 6 (the tested midpoint) as a safe, real,
+// validated addition. Does NOT by itself explain why The Suicide Squad
+// 2021/Zack Snyder's Justice League still over-score (neither carries
+// this keyword at all) — that's a separate, harder, NOT-yet-fixed
+// problem: ~36% and ~34% of their respective scores come from the
+// forward/reverse similar-title citation-match signal alone, which
+// treats every citation as equally trustworthy regardless of whether
+// the cited connection reflects what Bill actually responded to. See
+// the dashboard finding for why a tag-based fix can't resolve that
+// piece and what a real structural fix would need.
+const FOURTH_WALL_BONUS = 6;
+function fourthWallBonus(keywords) {
+  return (keywords || []).includes('breaking the fourth wall') ? FOURTH_WALL_BONUS : 0;
+}
+
 // The scoring-integration step the taxonomy plan deliberately deferred
 // ("a scoring weight needs the same eval.js-gated validation keywordBonus()
 // went through") — attempted and validated this session, not bundled into
@@ -2767,6 +2801,7 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   score += franchiseBonus(meta?.belongsToCollection?.id, idx.lovedCollections);
   score += castBonus(meta?.topCast, idx.lovedActors);
   score += keywordBonus(meta?.keywords, idx.lovedKeywords);
+  score += fourthWallBonus(meta?.keywords);
   const candidateSubgenresForScoring = inferSubgenres(meta, llmEntry, undefined, reviewedEntry);
   score += subgenreBonus(candidateSubgenresForScoring, idx.lovedSubgenres);
   score += subgenreSignal(candidateSubgenresForScoring, idx.subgenreProfile, idx.globalMeanRating);
@@ -2941,6 +2976,11 @@ export function scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta = {}) {
   const matchedKeywords = (meta.keywords || []).filter(k => !KEYWORD_STOPLIST.has(k) && (idx.lovedKeywords.get(k) || 0) > 0);
   add('keyword', 'Keyword match', keywordBonus(meta.keywords, idx.lovedKeywords),
     matchedKeywords.length ? `Shares keywords with loved titles: ${matchedKeywords.slice(0, 5).join(', ')}.` : 'No keyword overlap with your loved titles.');
+
+  add('fourthWall', 'Breaking the fourth wall', fourthWallBonus(meta.keywords),
+    (meta.keywords || []).includes('breaking the fourth wall')
+      ? 'Direct-to-camera/meta-narrative address — real, cross-genre positive signal (Deadpool, Fleabag, House of Cards, We\'re the Millers all rated 8+).'
+      : 'No fourth-wall-breaking narration detected.');
 
   const subgenres = inferSubgenres(meta, llmEntry, undefined, reviewedEntry);
   const matchedSubgenres = subgenres.filter(s => (idx.lovedSubgenres.get(s) || 0) > 0);

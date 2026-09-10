@@ -10,6 +10,7 @@ import {
   inferSubjects, inferEra, inferGenre, inferSubgenreDetail, findTaxonomyCollisions,
   isTooObscure, isActivelyAiring, isPreMillenniumMovie, matchScoreRaw, hydrateTitle,
   matchScore, rankRecommendations, reason, rewatchStrength, titleKey, buildIndexes,
+  scoreBreakdown,
 } from './engine.js';
 import {
   esc, fmtNum, posterImgHtml, typeIcon, titleLink, svgEl, renderHBarChart, SUBJECT_LABEL,
@@ -3126,6 +3127,99 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       impact: `Real, working feature verified end-to-end: the title picker, the results table (sortable/searchable/filterable/CSV-exportable), ` +
         `the include-watched toggle, and the Deep Dive cross-link (pre-filling the reference title via a URL param) all confirmed live with ` +
         `real data — no console errors, no overflow at desktop or 375px mobile.`,
+    });
+  }
+
+  // N+1. Opportunity #1 (Bill's explicit instruction, 2026-09-10): "unhide
+  // those movies from the AI... then deep dive into Deadpool and see if
+  // there is another field or tag you can create to isolate this and fix
+  // the outlier problem." Unhid the superhero-subgenre filter in
+  // discover.js's renderRecPanel() (the display-only mask from finding #9
+  // above) so the real, unmasked recommendations show again. Deep-dived
+  // by comparing Deadpool's real data against the two titles Bill has
+  // actually confirmed rejecting despite them ALSO being superhero
+  // candidates: The Suicide Squad (2021, dismissed too_comicbooky) and
+  // Zack Snyder's Justice League (dismissed too_comicbooky) — not Suicide
+  // Squad (2016), a different film Bill already rated 4/10 for real, no
+  // fix needed there. Checked every hypothesis with live data before
+  // building anything: content rating doesn't separate them (both
+  // rejected titles are R-rated, same as Deadpool); tone doesn't either
+  // (The Suicide Squad 2021 carries dark/hilarious/offbeat/satirical —
+  // essentially Deadpool's own tone profile). Found one real, clean,
+  // cross-genre signal that DOES separate them — TMDB's own "breaking the
+  // fourth wall" keyword (direct-to-camera/meta-narrative address):
+  // present on 2 of 3 Deadpool films, absent from both rejected titles,
+  // and correlates with an 8+/10 rating on every one of the 7 titles in
+  // Bill's whole library that carry it, none disliked or dismissed — real
+  // signal, not a Deadpool-specific artifact. Shipped as engine.js's
+  // fourthWallBonus() (+6 flat), validated via scripts/eval.js (zero
+  // regression at any tested scale). But this does NOT fix the actual
+  // outlier problem, and says so plainly rather than overclaiming: The
+  // Suicide Squad 2021 and Zack Snyder's Justice League carry the
+  // keyword on neither side, so the new signal never touches them.
+  {
+    const problemKeys = [
+      { key: 'movie:436969', label: 'The Suicide Squad (2021)' },
+      { key: 'movie:791373', label: "Zack Snyder's Justice League" },
+    ];
+    const problemLines = [];
+    for (const { key, label } of problemKeys) {
+      const meta = enrichedMeta[key];
+      if (!meta) continue;
+      const breakdown = scoreBreakdown({ titleKey: key, type: 'movie', year: meta.year }, idx, enrichedMeta, omdbMeta);
+      const total = breakdown.rows.reduce((s, r) => s + r.points, 0);
+      const citeTotal = breakdown.rows.filter(r => r.key === 'forwardSimilar' || r.key === 'reverseSimilar').reduce((s, r) => s + r.points, 0);
+      problemLines.push({ label, total, citeTotal, sharePct: total ? 100 * citeTotal / total : 0 });
+    }
+    // Broader structural check, not just the 2 known cases: of every real
+    // candidate in the live pool, how many have citation-match (forward +
+    // reverse) contributing over a third of their total score? A high
+    // count means this isn't a narrow, 2-title edge case.
+    const pool = [...fromWatchlist, ...fromCandidates].filter(c => enrichedMeta[c.titleKey]);
+    let heavyCiteCount = 0;
+    for (const c of pool) {
+      const breakdown = scoreBreakdown(c, idx, enrichedMeta, omdbMeta);
+      const total = breakdown.rows.reduce((s, r) => s + r.points, 0);
+      if (total <= 0) continue;
+      const citeTotal = breakdown.rows.filter(r => r.key === 'forwardSimilar' || r.key === 'reverseSimilar').reduce((s, r) => s + r.points, 0);
+      if (citeTotal / total >= 0.30) heavyCiteCount++;
+    }
+    findings.push({
+      id: 'deadpool-citation-inflation',
+      severity: 'critical',
+      ratings: { ease: 2, dataQuality: 4, recEngine: 8, ui: 1 },
+      title: `Opportunity #1: found a real, validated tag for what Deadpool's rejected look-alikes lack — but it doesn't fix the actual outlier problem, and that's on record honestly`,
+      technical: `Unhid discover.js's superhero-subgenre display filter per Bill's explicit instruction. Compared Deadpool's real data against the ` +
+        `two confirmed-rejected superhero titles (The Suicide Squad 2021 and Zack Snyder's Justice League, both dismissed too_comicbooky — ` +
+        `distinct from Suicide Squad 2016, a different film already rated 4/10 for real): neither content rating nor tone separates them (both ` +
+        `rejected titles are R-rated; The Suicide Squad 2021 even carries dark/hilarious/offbeat/satirical, essentially Deadpool's own tone ` +
+        `profile). Found one real, generalizing signal instead — TMDB's 'breaking the fourth wall' keyword: 26 titles dataset-wide carry it, 7 ` +
+        `rated by Bill, every one 6-10/10, zero disliked or dismissed, real cross-genre spread (Fleabag, House of Cards, We're the Millers, not ` +
+        `just superhero titles). Shipped as <code>fourthWallBonus()</code> (+6 flat), verified via <code>scripts/eval.js</code> (zero regression ` +
+        `at any swept scale 0-12). ${problemLines.map(p => `<strong>${esc(p.label)}</strong>: total score ${p.total.toFixed(1)}, ` +
+        `citation-match (forward+reverse similar-title) alone contributes ${p.citeTotal.toFixed(1)} (${p.sharePct.toFixed(1)}%) — carries the ` +
+        `'breaking the fourth wall' keyword on neither side, so the new signal never touches it.`).join(' ')} Live pool scan: ` +
+        `${heavyCiteCount} of ${pool.length} current real candidates get 30%+ of their entire score from citation-match alone — not a narrow, ` +
+        `2-title edge case. Two structural fixes to citation-match itself were already tried and rejected this session (a genre-level penalty, ` +
+        `a mutual-citation dedup — see <code>mutual-citation-double-count-tested</code>) — both regressed precision@10 broadly, because most ` +
+        `mutual citations in this dataset ARE genuine corroboration. The real fix this points toward, not yet built or tested: WEIGHT citation ` +
+        `credit by how much the candidate and the cited loved title actually share (tags, tone, fourth-wall, keyword overlap) instead of ` +
+        `crediting every citation equally regardless of what the connection is actually made of — a different mechanism than the two already-` +
+        `failed attempts (which discounted or removed citations outright rather than reweighting them), but untested and real work to build ` +
+        `and validate safely.`,
+      plain: `Bill asked two things: stop hiding the comic-book movies from the AI's real output, and dig deeper into why Deadpool gets it right ` +
+        `while other comic-book movies don't — find an actual tag, not just a rating filter. The digging found something real: movies and shows ` +
+        `that talk directly to the camera or otherwise "break the fourth wall" are something Bill consistently rates highly, across every genre, ` +
+        `not just superhero movies — a real taste signal, now built into the engine. But it's honest to say this doesn't solve the problem Bill ` +
+        `actually cares about: the two comic-book movies he explicitly said he didn't like (The Suicide Squad, Zack Snyder's Justice League) ` +
+        `don't have this quality either way, so the new signal doesn't touch them. What's actually inflating their scores is a different, deeper ` +
+        `mechanism — the engine gives full credit any time a movie shows up in Deadpool's "similar titles" list on TMDB, treating that citation ` +
+        `as equally trustworthy no matter what it's actually based on. No tag fixes that; it needs the citation credit ITSELF to become smarter ` +
+        `about what a "similar" connection is actually worth, which is real, harder engineering not yet attempted.`,
+      impact: `The most significant known unsolved gap in the recommendation engine right now: nearly a third of the score on real, currently-` +
+        `visible comic-book candidates comes from a mechanism with no taste-quality check on it at all, and two already-tried structural fixes ` +
+        `both backfired broadly. A real fix (weighted, not binary, citation credit) is a genuinely different, untested approach from what's ` +
+        `failed so far — worth attempting carefully, with the same eval.js-gated discipline, rather than indefinitely deferred.`,
     });
   }
 
