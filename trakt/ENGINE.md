@@ -773,6 +773,34 @@ went through, and hasn't gotten one:
   badge coverage (346 of 480 format-qualifying shows vs. the old formula's
   328) — the accuracy fix on its own, not a decision to make the badge
   meaningfully rarer.
+- **`similarityScore(referenceKey, candidateKey, enrichedMeta, idx)`** —
+  Bill's own request: "I tell you a movie you present a similarity score
+  for every candidate." Answers a genuinely different question than
+  everything else in this file: not "how well does this match Bill's WHOLE
+  loved profile" (that's `matchScore()`), but "how similar is this
+  candidate to THIS ONE specific title Bill names." Built as the
+  `trakt/similar.html`/`similar.js` page. Never called from `matchScore()`/
+  `buildIndexes()`'s own internals or from `scripts/eval.js` — a completely
+  standalone, symmetric title-vs-title comparison. Nine signals, weights
+  principled but explicitly *not* `eval.js`-swept (there's no ground truth
+  for "is title A similar to title B" the way `myRating` grounds every real
+  scoring signal above): direct TMDB citation match (mutual 30 / one-way 18
+  / none 0, symmetric — unlike §3i/§3j's forward/reverse split, since this
+  is title-vs-title, not candidate-vs-whole-loved-corpus), director/creator
+  exact match (`getCreator()`, +15), cast overlap (`topCast`, billing-
+  weighted on both sides via `castPositionWeight()`, capped +15), genre
+  exact match (`inferGenre()`, +10), subgenre/tone/subject overlap
+  (`inferSubgenres()`/`inferTones()`/`inferSubjects()`, Jaccard-scaled, +12/
+  +8/+8), keyword overlap (Jaccard-scaled, +10), and plot/description
+  cosine similarity (+22 — reuses `idx.descModel`, already built by
+  `buildIndexes()` for §3r, via `model.vec(tokenize(overview))` on each
+  title + `cosine()` between them; zero new math, both already exported
+  from `descSimilarity.js`). Max raw 130, clamped 0-100 for display, same
+  raw/clamped shape as `matchScorePair()`. Sanity-checked against known
+  real pairs before shipping: Before Sunrise vs. Before Sunset scores 47
+  (same director/cast/genre/keywords), Before Sunset vs. an unrelated
+  horror title scores 0, self-comparison lands at 80 (near-max on every
+  signal except self-citation, which a title never earns against itself).
 
 ---
 

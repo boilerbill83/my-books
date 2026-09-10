@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🔍 Similar To…</title>
+    <meta name="description" content="Pick any title and see a similarity score for every other title, computed against just that one — not Bill's whole taste profile." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" /></noscript>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="./dashboard.css" />
+    <style>
+      /* Similar-To-only — everything shared lives in dashboard.css. */
+      .tk-nav-current { font-weight: 700; color: var(--text); pointer-events: none; }
+
+      .tk-picker-wrap { position: relative; max-width: 460px; }
+      .tk-picker-wrap .tk-search { width: 100%; max-width: none; box-sizing: border-box; }
+      .tk-picker-suggestions {
+        position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 20;
+        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+        box-shadow: var(--shadow); max-height: 320px; overflow-y: auto;
+      }
+      .tk-picker-row { display: flex; align-items: baseline; gap: 8px; padding: 8px 12px; cursor: pointer; font-size: 0.86rem; }
+      .tk-picker-row:hover, .tk-picker-row:focus { background: var(--bg-subtle); outline: none; }
+      .tk-picker-title { flex: 1; color: var(--text); }
+      .tk-picker-year { color: var(--text-muted); font-size: 0.78rem; }
+
+      .tk-ref-card { display: flex; gap: 16px; align-items: flex-start; margin-top: 16px; }
+      .tk-ref-poster { flex-shrink: 0; width: 90px; height: 135px; border-radius: 6px; object-fit: cover; background: var(--bg-subtle); border: 1px solid var(--border); }
+      .tk-ref-body { flex: 1; min-width: 200px; }
+      .tk-ref-title { font-family: var(--font-serif); font-weight: 700; font-style: italic; font-size: 1.2rem; color: var(--text); line-height: 1.2; }
+      .tk-ref-year { color: var(--text-muted); font-weight: 400; font-style: normal; font-size: 0.9rem; }
+      .tk-ref-meta { font-size: 0.82rem; color: var(--accent); margin-top: 6px; font-weight: 500; }
+      .tk-cb-label { display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--text); }
+      @media (max-width: 640px) {
+        .tk-picker-wrap { max-width: none; }
+        .tk-ref-card { flex-direction: column; align-items: center; text-align: center; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="site-header">
+        <div class="container header-inner">
+          <a class="header-quality-link" href="./index.html">🍿 Discover</a>
+          <a class="header-quality-link" href="./quality.html">📋 Data Quality</a>
+          <span class="tk-nav-current">🔍 Similar To…</span>
+          <a class="header-quality-link" href="./recommend.html">Full ranked list →</a>
+          <a class="header-quality-link" href="../index.html">← Books</a>
+          <div class="header-status">
+            <span id="statusText">Loading…</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="container" style="padding-top:24px;">
+        <div class="tk-title">🔍 Similar To…</div>
+        <div class="tk-subtitle">Pick any title you know — watched, watchlisted, or a discovered candidate — and see a real similarity score for every other title against just that one, not your whole taste profile.</div>
+
+        <div class="tk-card" style="margin-bottom: 24px;">
+          <div class="tk-card-heading">Pick a title</div>
+          <div class="tk-picker-wrap">
+            <input type="text" class="tk-search" id="refSearch" placeholder="Type a movie or show title…" autocomplete="off" />
+            <div class="tk-picker-suggestions" id="refSuggestions" role="listbox" hidden></div>
+          </div>
+          <div id="refHeader"></div>
+        </div>
+
+        <div class="tk-card" id="resultsCard" hidden>
+          <div class="tk-card-heading"><span>Similarity Results (<span id="resultsCount">0</span>)</span></div>
+          <div class="tk-card-note">Every other title, scored purely on how similar it is to the one you picked above — direct TMDB citation match, shared director/cast, genre/subgenre/tone/subject overlap, keyword overlap, and plot-description similarity. Deliberately separate from your real recommendation score.</div>
+          <div class="tk-table-toolbar">
+            <input type="text" class="tk-search" id="resultsSearch" placeholder="Search title or reason…" />
+            <select class="tk-select" id="resultsTypeFilter">
+              <option value="">All Types</option>
+              <option value="movie">Movies</option>
+              <option value="show">TV</option>
+            </select>
+            <select class="tk-select" id="resultsStatusFilter">
+              <option value="">All Statuses</option>
+              <option value="Watched">Watched</option>
+              <option value="Watchlist">Watchlist</option>
+              <option value="Candidate">Candidate</option>
+            </select>
+            <label class="tk-cb-label"><input type="checkbox" id="includeWatchedCheck" /> Include already-watched titles</label>
+            <button class="tk-btn" id="resultsShowAllBtn">Show all</button>
+            <button class="tk-btn" id="resultsCsvBtn">Download CSV</button>
+          </div>
+          <div class="tk-table-wrap"><table class="tk-table" id="resultsTable"></table></div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./similar.js"></script>
+  </body>
+</html>
