@@ -490,6 +490,70 @@ titles only, since hand-curated `similarToTitles` coverage was sparse),
 this applies unconditionally — TMDB's similar/recommendations network is
 comprehensive, not scarce hand-curated data.
 
+### 3j-2. Citation-credit reweighting — applies to §3i/§3j, floor **0.3**
+```
+for each (candidate, cited-loved-title) pair in the forward/reverse
+similar-title match above:
+  if cited-loved-title not in anomalousLovedKeys: multiplier = 1  (no change)
+  else if same belongsToCollection (franchise): multiplier = 1  (exempt)
+  else: multiplier = 0.3 + 0.7 × toneJaccard(candidate, cited-loved-title)
+
+anomalousLovedKeys = every myRating>=9 title rated 2.5+ points above its
+own subgenre's average (8+ other rated titles required to trust the
+average) — live-computed every buildIndexes() call, not hardcoded —
+plus any loved title sharing a belongsToCollection with a confirmed one.
+```
+The real fix behind Opportunity #1 (`deadpool-citation-inflation` on the
+dashboard), shipped 2026-09-10 after two broader structural attempts
+this session both regressed precision@10 (a genre-level superhero
+penalty, and a flat mutual-citation dedup — see
+`mutual-citation-double-count-tested`). Root cause both earlier attempts
+shared: they discounted the citation-match signal too bluntly (a whole
+genre, or every mutual pair) — most mutual citations in this dataset ARE
+genuine corroboration (e.g. "The Westies," cited by 5 real loved crime
+dramas).
+
+This mechanism only discounts a citation when the cited loved title is
+itself a confirmed statistical outlier (e.g. Deadpool, rated 10/10 vs. a
+7.06 average across the rest of the superhero subgenre) AND the
+candidate doesn't share that title's distinguishing *tone* — genre and
+subgenre overlap are deliberately excluded from the overlap check (both
+are already separately, fully credited via §3b/§3g, and both are too
+broad/structural to discriminate a real match from a spurious one — The
+Suicide Squad 2021 and Deadpool share genre/subgenre almost completely).
+Real numbers behind the tone choice: genuine loved-to-loved citations
+dataset-wide average 0.376 tone-Jaccard (n=281); The Suicide Squad
+(2021) and Zack Snyder's Justice League — both real, confirmed
+rejections despite citing Deadpool — sit at 0.10-0.17; a genuine match
+like The Westies' own citations average 0.61.
+
+A first, broader version (discounting *every* citation by tone overlap,
+not just ones touching a confirmed outlier) was built and rejected
+first: even genuine matches rarely hit perfect tone-Jaccard=1.0 (titles
+carry only 2-4 tone tags), so any floor below 1.0 taxed nearly every
+citation in the dataset (358 of 431 real candidates moved by >0.5pt) —
+regressing precision@10 at every tested floor (0.2-0.8), never
+recovering, because it eroded marginal-but-real matches at the sharp
+p@10 boundary (e.g. Mare of Easttown, whose real 0.33-0.60 tone overlap
+with its own genuine citers still isn't 1.0) just as much as it
+discounted genuinely bad ones — it even discounted Deadpool's own
+sequels enough to knock the original Deadpool out of its own top-10
+(their tone tags aren't identical either — "witty" vs. "inspirational"),
+which is why the franchise exemption exists. Scoping the discount to
+only anomaly-linked citations shrank the real blast radius to 14 of 431
+candidates (3.2%) — all plausible (Black Dynamite, Marvel's Luke Cage,
+Titans, Arrow, Gotham) — with **zero regression** on precision@10/25/
+MAE and a genuine improvement on precision@50 (94%→96%) and @100
+(85%→86-87%) across every tested floor.
+
+Real, verified effect: The Suicide Squad (2021) 103.2→88.2 raw,
+Zack Snyder's Justice League 100.6→81.6 raw (both now genuinely below
+the 100 clamp) — Deadpool, Deadpool & Wolverine, The Westies, and Mare
+of Easttown all completely unchanged. Retired the two older display-
+only masks this replaced: `discover.js`'s blanket superhero-subgenre
+filter and its title-level `ANOMALY_INFLATED_CANDIDATES` list — both
+redundant now that the real score reflects the fix directly.
+
 ### 3k. `matchPointScale` — the movie/show pool-size compensation
 Bill has roughly half as many loved movies as loved shows (measured: 50
 vs. 99). Since TMDB's similar/recommendations network never crosses
@@ -1244,8 +1308,8 @@ Run it: `node trakt/scripts/eval.js` from the repo root.
 | Superhero content maturity | -6 to +10 | Superhero subgenre only; R/TV-MA vs. PG-13/TV-14; needs OMDb `rated` backfill |
 | Tone signal | -3 to +3 | Real per-tone rating-preference delta |
 | Description similarity | +0 to +3 | TF-IDF plot-text cosine similarity to loved titles |
-| Forward similar-title | +0 to +24 | Scaled by `matchPointScale` |
-| Reverse similar-title | +0 to +12 | Scaled by `matchPointScale` |
+| Forward similar-title | +0 to +24 | Scaled by `matchPointScale`; citation credit reweighted 0.3-1.0× when the cited loved title is a confirmed category outlier |
+| Reverse similar-title | +0 to +12 | Scaled by `matchPointScale`; same reweighting |
 | Community rating (TMDB+IMDb blend) | unbounded* | `(communityScore - 6.0) × 8`, IMDb weighted 0.7 |
 | Vote count (TMDB) | +0 to +4 | "How many ratings" #1 |
 | IMDb vote count | +0 to +3 | "How many ratings" #2 |

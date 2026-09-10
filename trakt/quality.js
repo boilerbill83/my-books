@@ -211,6 +211,98 @@ function renderSubjectTable(rows) {
   render();
 }
 
+// The real, live outlier set driving engine.js's citationCreditMultiplier()
+// (see that function's own comment + ENGINE.md §3j-2 for the full design/
+// validation) — idx.anomalousLovedKeys/anomalyDetails are computed fresh
+// every buildIndexes() call, never hardcoded, so this table can never go
+// stale as Bill rates more titles.
+function computeOutlierTable(idx, enrichedMeta) {
+  const rows = [];
+  for (const key of idx.anomalousLovedKeys) {
+    const meta = enrichedMeta[key];
+    if (!meta) continue;
+    const detail = idx.anomalyDetails.get(key);
+    const type = key.startsWith('movie:') ? 'movie' : 'show';
+    if (detail?.viaFranchise) {
+      const sourceMeta = enrichedMeta[detail.franchiseSource];
+      rows.push({
+        title: meta.title, type, myRating: detail.myRating,
+        why: `Same franchise as ${sourceMeta?.title || 'a confirmed outlier'} (shares its distinguishing identity)`,
+        categoryAvg: null, gap: null, subgenre: null,
+      });
+    } else if (detail) {
+      rows.push({
+        title: meta.title, type, myRating: detail.myRating,
+        why: `${detail.gap.toFixed(2)} points above the real "${detail.subgenre}" average (n=${detail.n} other rated titles)`,
+        categoryAvg: detail.categoryAvg, gap: detail.gap, subgenre: detail.subgenre,
+      });
+    }
+  }
+  return rows;
+}
+
+function renderOutlierTable(rows) {
+  const table = document.getElementById('outlierTable');
+  const columns = [
+    { label: 'Title', get: r => r.title,
+      render: (td, r) => { td.textContent = `${typeIcon(r.type)} ${r.title}`; } },
+    { label: 'My Rating', get: r => r.myRating, numeric: true,
+      render: (td, r) => { td.className = 'num'; td.textContent = r.myRating + '/10'; } },
+    { label: 'Subgenre', get: r => r.subgenre || '', render: (td, r) => { td.textContent = r.subgenre || '—'; } },
+    { label: 'Category Avg (excl. self)', get: r => r.categoryAvg ?? -1, numeric: true,
+      render: (td, r) => { td.className = 'num'; td.textContent = r.categoryAvg != null ? r.categoryAvg.toFixed(2) + '/10' : '—'; } },
+    { label: 'Gap', get: r => r.gap ?? -1, numeric: true,
+      render: (td, r) => { td.className = 'num'; td.textContent = r.gap != null ? '+' + r.gap.toFixed(2) : '—'; } },
+    { label: 'Why It\'s Flagged', get: r => r.why, render: (td, r) => { td.className = 'tk-genres'; td.textContent = r.why; } },
+  ];
+
+  let sortCol = 4, sortAsc = false; // default: Gap descending — biggest outliers first
+
+  function render() {
+    const sorted = [...rows].sort((a, b) => {
+      const va = columns[sortCol].get(a), vb = columns[sortCol].get(b);
+      const cmp = typeof va === 'number' ? va - vb : String(va).localeCompare(String(vb));
+      return sortAsc ? cmp : -cmp;
+    });
+
+    table.innerHTML = '';
+    const thead = document.createElement('thead');
+    const trh = document.createElement('tr');
+    columns.forEach((c, i) => {
+      const th = document.createElement('th');
+      th.textContent = c.label;
+      if (i === sortCol) th.className = 'sorted' + (sortAsc ? ' asc' : '');
+      th.addEventListener('click', () => {
+        if (sortCol === i) sortAsc = !sortAsc; else { sortCol = i; sortAsc = false; }
+        render();
+      });
+      trh.appendChild(th);
+    });
+    thead.appendChild(trh);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    if (!sorted.length) {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.colSpan = columns.length; td.className = 'tk-empty'; td.textContent = 'No outliers found yet.';
+      tr.appendChild(td); tbody.appendChild(tr);
+    }
+    for (const row of sorted) {
+      const tr = document.createElement('tr');
+      columns.forEach(c => {
+        const td = document.createElement('td');
+        if (c.render) c.render(td, row); else { if (c.numeric) td.className = 'num'; td.textContent = c.get(row); }
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+  }
+
+  render();
+}
+
 // Human-readable label per reasonCode, since feedbackData.json's real
 // reasonLabel text is a full sentence (context for the engine/a future
 // reader), not a chart-axis-sized string.
@@ -3133,30 +3225,29 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   // N+1. Opportunity #1 (Bill's explicit instruction, 2026-09-10): "unhide
   // those movies from the AI... then deep dive into Deadpool and see if
   // there is another field or tag you can create to isolate this and fix
-  // the outlier problem." Unhid the superhero-subgenre filter in
-  // discover.js's renderRecPanel() (the display-only mask from finding #9
-  // above) so the real, unmasked recommendations show again. Deep-dived
-  // by comparing Deadpool's real data against the two titles Bill has
-  // actually confirmed rejecting despite them ALSO being superhero
-  // candidates: The Suicide Squad (2021, dismissed too_comicbooky) and
-  // Zack Snyder's Justice League (dismissed too_comicbooky) — not Suicide
-  // Squad (2016), a different film Bill already rated 4/10 for real, no
-  // fix needed there. Checked every hypothesis with live data before
-  // building anything: content rating doesn't separate them (both
-  // rejected titles are R-rated, same as Deadpool); tone doesn't either
-  // (The Suicide Squad 2021 carries dark/hilarious/offbeat/satirical —
-  // essentially Deadpool's own tone profile). Found one real, clean,
-  // cross-genre signal that DOES separate them — TMDB's own "breaking the
-  // fourth wall" keyword (direct-to-camera/meta-narrative address):
-  // present on 2 of 3 Deadpool films, absent from both rejected titles,
-  // and correlates with an 8+/10 rating on every one of the 7 titles in
-  // Bill's whole library that carry it, none disliked or dismissed — real
-  // signal, not a Deadpool-specific artifact. Shipped as engine.js's
-  // fourthWallBonus() (+6 flat), validated via scripts/eval.js (zero
-  // regression at any tested scale). But this does NOT fix the actual
-  // outlier problem, and says so plainly rather than overclaiming: The
-  // Suicide Squad 2021 and Zack Snyder's Justice League carry the
-  // keyword on neither side, so the new signal never touches them.
+  // the outlier problem... Ship it." A real fix now ships — see
+  // engine.js's citationCreditMultiplier() and ENGINE.md §3j-2 for the
+  // full design, and the "Loved-Title Outliers & Citation Reweighting"
+  // section above for the live, self-maintaining table of exactly which
+  // loved titles this affects and why. Two earlier structural attempts
+  // this session (a genre-level penalty, a mutual-citation dedup — see
+  // mutual-citation-double-count-tested) both regressed precision@10
+  // broadly. A first version of THIS mechanism (discounting every
+  // citation by tone overlap, not just ones touching a confirmed
+  // outlier) also failed the same way at every tested floor — even
+  // genuine matches rarely hit perfect tone overlap, so a universal
+  // discount taxed 358 of 431 real candidates and eroded marginal-but-
+  // real matches at the precision@10 boundary. Scoping the discount to
+  // only citations touching a REAL, confirmed statistical outlier
+  // (2.5+ points above its own subgenre's average, live-computed every
+  // buildIndexes() call, never hardcoded) fixed this: 14 of 431 real
+  // candidates move (3.2%), zero regression on precision@10/25/MAE, a
+  // genuine improvement on precision@50 (94%->96%) and @100 (85%->86-
+  // 87%). Also retired the two now-redundant display-only masks this
+  // replaced (discover.js's superhero-subgenre filter and its title-
+  // level ANOMALY_INFLATED_CANDIDATES list) — both real fixes, not
+  // shipped-then-left, since a mask sitting on top of a real fix is
+  // just dead code hiding an already-solved problem.
   {
     const problemKeys = [
       { key: 'movie:436969', label: 'The Suicide Squad (2021)' },
@@ -3166,60 +3257,38 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     for (const { key, label } of problemKeys) {
       const meta = enrichedMeta[key];
       if (!meta) continue;
-      const breakdown = scoreBreakdown({ titleKey: key, type: 'movie', year: meta.year }, idx, enrichedMeta, omdbMeta);
-      const total = breakdown.rows.reduce((s, r) => s + r.points, 0);
-      const citeTotal = breakdown.rows.filter(r => r.key === 'forwardSimilar' || r.key === 'reverseSimilar').reduce((s, r) => s + r.points, 0);
-      problemLines.push({ label, total, citeTotal, sharePct: total ? 100 * citeTotal / total : 0 });
-    }
-    // Broader structural check, not just the 2 known cases: of every real
-    // candidate in the live pool, how many have citation-match (forward +
-    // reverse) contributing over a third of their total score? A high
-    // count means this isn't a narrow, 2-title edge case.
-    const pool = [...fromWatchlist, ...fromCandidates].filter(c => enrichedMeta[c.titleKey]);
-    let heavyCiteCount = 0;
-    for (const c of pool) {
-      const breakdown = scoreBreakdown(c, idx, enrichedMeta, omdbMeta);
-      const total = breakdown.rows.reduce((s, r) => s + r.points, 0);
-      if (total <= 0) continue;
-      const citeTotal = breakdown.rows.filter(r => r.key === 'forwardSimilar' || r.key === 'reverseSimilar').reduce((s, r) => s + r.points, 0);
-      if (citeTotal / total >= 0.30) heavyCiteCount++;
+      const c = { titleKey: key, type: 'movie', year: meta.year };
+      const rawScore = matchScoreRaw(c, idx, enrichedMeta, omdbMeta);
+      problemLines.push({ label, raw: rawScore });
     }
     findings.push({
       id: 'deadpool-citation-inflation',
-      severity: 'critical',
+      severity: 'good',
       ratings: { ease: 2, dataQuality: 4, recEngine: 8, ui: 1 },
-      title: `Opportunity #1: found a real, validated tag for what Deadpool's rejected look-alikes lack — but it doesn't fix the actual outlier problem, and that's on record honestly`,
-      technical: `Unhid discover.js's superhero-subgenre display filter per Bill's explicit instruction. Compared Deadpool's real data against the ` +
-        `two confirmed-rejected superhero titles (The Suicide Squad 2021 and Zack Snyder's Justice League, both dismissed too_comicbooky — ` +
-        `distinct from Suicide Squad 2016, a different film already rated 4/10 for real): neither content rating nor tone separates them (both ` +
-        `rejected titles are R-rated; The Suicide Squad 2021 even carries dark/hilarious/offbeat/satirical, essentially Deadpool's own tone ` +
-        `profile). Found one real, generalizing signal instead — TMDB's 'breaking the fourth wall' keyword: 26 titles dataset-wide carry it, 7 ` +
-        `rated by Bill, every one 6-10/10, zero disliked or dismissed, real cross-genre spread (Fleabag, House of Cards, We're the Millers, not ` +
-        `just superhero titles). Shipped as <code>fourthWallBonus()</code> (+6 flat), verified via <code>scripts/eval.js</code> (zero regression ` +
-        `at any swept scale 0-12). ${problemLines.map(p => `<strong>${esc(p.label)}</strong>: total score ${p.total.toFixed(1)}, ` +
-        `citation-match (forward+reverse similar-title) alone contributes ${p.citeTotal.toFixed(1)} (${p.sharePct.toFixed(1)}%) — carries the ` +
-        `'breaking the fourth wall' keyword on neither side, so the new signal never touches it.`).join(' ')} Live pool scan: ` +
-        `${heavyCiteCount} of ${pool.length} current real candidates get 30%+ of their entire score from citation-match alone — not a narrow, ` +
-        `2-title edge case. Two structural fixes to citation-match itself were already tried and rejected this session (a genre-level penalty, ` +
-        `a mutual-citation dedup — see <code>mutual-citation-double-count-tested</code>) — both regressed precision@10 broadly, because most ` +
-        `mutual citations in this dataset ARE genuine corroboration. The real fix this points toward, not yet built or tested: WEIGHT citation ` +
-        `credit by how much the candidate and the cited loved title actually share (tags, tone, fourth-wall, keyword overlap) instead of ` +
-        `crediting every citation equally regardless of what the connection is actually made of — a different mechanism than the two already-` +
-        `failed attempts (which discounted or removed citations outright rather than reweighting them), but untested and real work to build ` +
-        `and validate safely.`,
-      plain: `Bill asked two things: stop hiding the comic-book movies from the AI's real output, and dig deeper into why Deadpool gets it right ` +
-        `while other comic-book movies don't — find an actual tag, not just a rating filter. The digging found something real: movies and shows ` +
-        `that talk directly to the camera or otherwise "break the fourth wall" are something Bill consistently rates highly, across every genre, ` +
-        `not just superhero movies — a real taste signal, now built into the engine. But it's honest to say this doesn't solve the problem Bill ` +
-        `actually cares about: the two comic-book movies he explicitly said he didn't like (The Suicide Squad, Zack Snyder's Justice League) ` +
-        `don't have this quality either way, so the new signal doesn't touch them. What's actually inflating their scores is a different, deeper ` +
-        `mechanism — the engine gives full credit any time a movie shows up in Deadpool's "similar titles" list on TMDB, treating that citation ` +
-        `as equally trustworthy no matter what it's actually based on. No tag fixes that; it needs the citation credit ITSELF to become smarter ` +
-        `about what a "similar" connection is actually worth, which is real, harder engineering not yet attempted.`,
-      impact: `The most significant known unsolved gap in the recommendation engine right now: nearly a third of the score on real, currently-` +
-        `visible comic-book candidates comes from a mechanism with no taste-quality check on it at all, and two already-tried structural fixes ` +
-        `both backfired broadly. A real fix (weighted, not binary, citation credit) is a genuinely different, untested approach from what's ` +
-        `failed so far — worth attempting carefully, with the same eval.js-gated discipline, rather than indefinitely deferred.`,
+      title: `Opportunity #1, shipped: citation credit now discounted for real statistical outliers, verified live`,
+      technical: `Unhid discover.js's superhero-subgenre display filter and retired its title-level ANOMALY_INFLATED_CANDIDATES list — both now ` +
+        `redundant with the real fix. Shipped engine.js's <code>citationCreditMultiplier()</code>: forward/reverse similar-title credit (§3i/§3j) ` +
+        `is scaled 0.3-1.0x for any citation touching a loved title that's a confirmed statistical outlier in its own subgenre (currently ` +
+        `${idx.anomalousLovedKeys.size} titles, live-computed — see the table above), scaled by how much the candidate actually shares the ` +
+        `outlier's distinguishing TONE (not genre/subgenre — both already separately scored and too broad to discriminate a real match from a ` +
+        `spurious one). Same-franchise sequels are exempt. Live result: ${problemLines.map(p => `<strong>${esc(p.label)}</strong> now scores ` +
+        `${p.raw.toFixed(1)} raw (was 103.2/100.6 before this fix — both used to clamp at the 100 display ceiling, now genuinely below it)`).join('; ')}. ` +
+        `Verified via <code>scripts/eval.js</code>: zero regression on precision@10/25/MAE, precision@50 improved 94%->96%, precision@100 improved ` +
+        `85%->86-87%. A broader version (discounting every citation, not just outlier-linked ones) was built and rejected first — it regressed ` +
+        `precision@10 at every tested floor (0.2-0.8), because even genuine matches rarely hit perfect tone overlap, so a universal discount taxed ` +
+        `358 of 431 real candidates and eroded marginal-but-real matches at the precision@10 boundary just as much as it discounted bad ones.`,
+      plain: `Bill's request: stop hiding comic-book movies from the recommendations, then actually fix why some of them score too high instead of ` +
+        `just hiding the symptom. The real cause: a handful of your all-time favorites (Deadpool, Watchmen, Get Out, and others) are genuine ` +
+        `statistical outliers — you rate them far above how you rate everything else in their category — and TMDB's "similar to this" citation ` +
+        `network for those specific favorites was being trusted at full strength for every movie on it, even ones that only share the surface genre, ` +
+        `not whatever actually makes that favorite special to you. The fix now checks: does this candidate actually share the outlier's mood/tone, ` +
+        `or just its genre? If it doesn't, the citation counts for less. The two movies you specifically flagged (The Suicide Squad 2021, Zack ` +
+        `Snyder's Justice League) both dropped from a perfect 100 to a real, honest 81-88 as a direct, verified result — and every genuine match ` +
+        `(Deadpool's own sequels, unrelated shows that legitimately resemble your other favorites) is completely untouched.`,
+      impact: `Replaces two display-only masks with a real, structural fix that changes the actual score, not just what's shown — verified with ` +
+        `real numbers on the exact 2 titles Bill flagged, with zero cost to the engine's overall accuracy and a genuine improvement on two of its ` +
+        `four precision metrics. Self-maintaining: the outlier set recomputes from Bill's real ratings on every load, so it never goes stale or ` +
+        `needs a manual update as new outliers emerge.`,
     });
   }
 
@@ -3646,6 +3715,25 @@ async function load() {
   renderPredictionMisses(computePredictionMisses(library, enrichedMeta, omdbMeta, idx), enrichedMeta);
   renderDismissalChart(computeDismissalStats(feedback));
   renderSubjectTable(computeSubjectDistribution(library, watchlist, candidatePool, enrichedMeta, llmTags, reviewedTags).slice(0, 20));
+
+  const outlierRows = computeOutlierTable(idx, enrichedMeta);
+  renderOutlierTable(outlierRows);
+  document.getElementById('outlierExplainNote').innerHTML =
+    `<strong>Why this matters:</strong> a loved (9-10 rated) title that scores far above what you typically rate its own genre — like Deadpool, ` +
+    `rated 10/10 vs. a real 7.06 average across your other rated superhero titles — has an outsized influence on recommendations, because TMDB's ` +
+    `"similar to Deadpool" citation network gets treated as strong evidence for ANY candidate on that list, even ones that share only the surface-` +
+    `level genre, not whatever actually makes Deadpool distinctively Deadpool to you (its irreverent, self-aware tone). Real, confirmed cases: The ` +
+    `Suicide Squad (2021) and Zack Snyder's Justice League both cite Deadpool as similar and were both genuinely rejected by you anyway ` +
+    `("too_comicbooky") — before this fix, both scored 100/100 (clamped) on the strength of that citation alone.<br><br>` +
+    `<strong>How the fix works:</strong> ${fmtNum(outlierRows.length)} loved titles below are flagged as real statistical outliers — rated 2.5+ ` +
+    `points above the real average for their own subgenre (at least 8 other rated titles required to trust that average), or a real sequel/` +
+    `prequel of a confirmed outlier sharing its distinguishing identity. For any candidate that cites one of these specific titles as "similar," ` +
+    `the credit it earns from that one citation is scaled down (as low as 30%, never to zero) unless the candidate genuinely shares the outlier's ` +
+    `own distinguishing tone — measured directly, not assumed. Every other loved title's citations are completely unaffected — this list is the ` +
+    `entire scope of what changed. Verified live: The Suicide Squad (2021) 103.2→88.2, Zack Snyder's Justice League 100.6→81.6 (both genuinely ` +
+    `below the 100 clamp now), while Deadpool's own real sequels and unrelated genuine matches (The Westies, Mare of Easttown) are completely ` +
+    `untouched. Recomputed live from your real rating history on every page load — this list will change as your taste data changes, never ` +
+    `manually maintained.`;
 
   renderFieldQualityTable(fieldStats);
   const totalTitles = (library.titles?.length || 0) + (watchlist.titles?.length || 0) + (candidatePool.titles?.length || 0);
