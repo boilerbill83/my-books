@@ -496,6 +496,7 @@ for each (candidate, cited-loved-title) pair in the forward/reverse
 similar-title match above:
   if cited-loved-title not in anomalousLovedKeys: multiplier = 1  (no change)
   else if same belongsToCollection (franchise): multiplier = 1  (exempt)
+  else if either side has zero tone tags: multiplier = 1  (unknown, not penalized)
   else: multiplier = 0.3 + 0.7 × toneJaccard(candidate, cited-loved-title)
 
 anomalousLovedKeys = every myRating>=9 title rated 2.5+ points above its
@@ -503,6 +504,24 @@ own subgenre's average (8+ other rated titles required to trust the
 average) — live-computed every buildIndexes() call, not hardcoded —
 plus any loved title sharing a belongsToCollection with a confirmed one.
 ```
+**Missing-tone-data fix (2026-09-10, same day as launch):** a real post-
+ship audit (Bill: "double check what you did... what are some potential
+flaws") found `toneJaccard()` was returning 0 — the worst possible
+score — whenever either title had zero tone tags, silently treating
+"we don't know" as "we checked and they share nothing." Real, measured
+scale: 11.9% of enriched titles (128/1,075) carry no tone tags at all,
+and 9 of 59 real candidates touched by an anomaly citation were being
+floored to the maximum discount purely for lacking data (Marvel's Luke
+Cage, Stonehearst Asylum, Hypnotic among them) — never because an
+actual tone mismatch was found. Fixed: `toneJaccard()` now returns
+`null` (not 0) when either side has no tags, and `citationCreditMultiplier()`
+treats `null` as multiplier=1 (benefit of the doubt, no discount) rather
+than the floor. Re-verified via `scripts/eval.js`: byte-identical
+(p10=100/p25=96/p50=96/p100=87) — the fix only touches candidates that
+were being wrongly penalized, never the ones the mechanism was built to
+catch (The Suicide Squad 2021 and Zack Snyder's Justice League both have
+real tone data on both sides and are completely unaffected, still 88.2/
+81.6 raw).
 The real fix behind Opportunity #1 (`deadpool-citation-inflation` on the
 dashboard), shipped 2026-09-10 after two broader structural attempts
 this session both regressed precision@10 (a genre-level superhero
