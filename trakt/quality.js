@@ -3088,44 +3088,44 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   }
 
   // N. Bill's own idea (asked directly, not a diagnostic): "I tell you a
-  // movie, you present a similarity score for every candidate." A real,
-  // buildable feature, not a scoring bug — logged per his explicit "add
-  // as an opportunity" request rather than built now, same precedent as
-  // loved-title-category-anomaly-signal above. Confirmed the core math
-  // already exists and doesn't need to be invented: descSimilarity.js
-  // already exports a working TF-IDF cosine() function, just never called
-  // pairwise between two specific titles (only ever against the whole
-  // loved-title corpus at once, for the additive descSimilarity bonus).
+  // movie, you present a similarity score for every candidate." Logged,
+  // then Bill said "put together a plan, let's do this the right way" —
+  // planned via EnterPlanMode/ExitPlanMode and built for real. Shipped as
+  // engine.js's similarityScore(referenceKey, candidateKey, enrichedMeta,
+  // idx) — nine signals (direct TMDB citation, director/creator, cast,
+  // genre, subgenre/tone/subject overlap, keyword overlap, plot/description
+  // cosine similarity reusing idx.descModel — zero new math) — plus a new
+  // trakt/similar.html/similar.js page (title picker + a sortable/
+  // searchable/CSV-exportable results table, modeled on the All Titles
+  // table's own pattern) and a cross-link from Deep Dive's existing
+  // "Similar Titles (TMDB)" card. See ENGINE.md §4 for the full signal/
+  // weight table. Deliberately standalone — never called from
+  // matchScore()/buildIndexes()'s own internals or from scripts/eval.js,
+  // verified byte-identical before/after (p10=90/p25=96/p50=96/p100=90).
   {
     findings.push({
       id: 'pairwise-title-similarity-score-feature',
-      severity: 'serious', // recEngine 5 — severity now tracks the hand-graded ratings below
+      severity: 'good',
       ratings: { ease: 6, dataQuality: 7, recEngine: 5, ui: 9 },
-      title: `New feature idea (Bill's own request): pick a title, get a similarity score for every candidate against just that one title`,
-      technical: `Every scoring path today (<code>matchScore()</code>, <code>rankAll()</code>, the You'll Love panels) answers "how well does ` +
-        `this candidate match Bill's WHOLE loved profile" — there is no path that answers "how similar is candidate X to THIS ONE specific ` +
-        `title." Manually reconstructed a rough version of it this turn to answer the Before-trilogy question, using pieces that already exist ` +
-        `separately: direct TMDB citation match (a candidate's <code>similarToIds</code>/<code>recommendedIds</code> containing the reference ` +
-        `title's tmdb id, or vice versa), shared director/creator (<code>getCreator()</code>, already used by <code>franchiseBonus()</code>/ ` +
-        `<code>castBonus()</code>), cast overlap (<code>topCast</code>, the same signal <code>castBonus()</code> already weights by billing ` +
-        `order), genre/subgenre/tone/subject overlap (<code>inferGenre()</code>/<code>inferSubgenres()</code>/<code>inferTones()</code>/ ` +
-        `<code>inferSubjects()</code>, all already deterministic and already scored elsewhere), keyword overlap, and — the piece that needed ` +
-        `zero new math — <code>descSimilarity.js</code>'s already-exported <code>cosine(a, b)</code> function applied directly between the two ` +
-        `titles' own TF-IDF description vectors, instead of its current use (one title's vector against the whole loved-title corpus). A real ` +
-        `pairwise <code>similarityScore(referenceKey, candidateKey, enrichedMeta, idx)</code> would combine these into one normalized 0-100 ` +
-        `number per candidate and rank the pool by it — a genuinely new function (nothing today combines these signals pairwise), but every ` +
-        `individual signal it would draw on is already computed and validated elsewhere in the codebase, not new territory. UI would need a ` +
-        `title picker (reference title Bill names) plus a ranked results table, most closely resembling the existing All Titles table's ` +
-        `sortable-column pattern. Deliberately separate from <code>matchScore()</code> and would not touch it — a read-only exploration tool, ` +
-        `not a new scoring signal, so <code>scripts/eval.js</code> is unaffected by design if built.`,
-      plain: `Right now, if Bill says "I love this specific movie," the app can only answer with his WHOLE taste profile — a fresh top-8 list ` +
-        `built from everything he's ever rated highly. There's no way to ask "just show me things similar to THIS ONE movie." This idea adds ` +
-        `exactly that: type in a title, and every candidate gets its own number showing how close a match it is to that one movie specifically ` +
-        `— so instead of one blended recommendation list, Bill could ask "what's most like Before Sunset" and get a real ranked, numeric answer.`,
-      impact: `Not built — logged per Bill's explicit request, exactly like the loved-title-anomaly finding above. Worth noting the value ` +
-        `directly: answering "what's similar to the Before trilogy" this session required a one-off manual script; this feature would make that ` +
-        `kind of question self-service and instant for any title Bill names, at essentially no new scoring risk since it stays fully separate ` +
-        `from <code>matchScore()</code>.`,
+      title: `Shipped: pick a title, get a similarity score for every other title against just that one`,
+      technical: `New page <code>trakt/similar.html</code>/<code>similar.js</code>, linked from every page's header nav and cross-linked from ` +
+        `Deep Dive's "Similar Titles (TMDB)" card. Core function <code>similarityScore(referenceKey, candidateKey, enrichedMeta, idx)</code> ` +
+        `in <code>engine.js</code> combines direct TMDB citation match (mutual 30 / one-way 18, symmetric — unlike matchScore()'s forward/` +
+        `reverse split, since this is title-vs-title not candidate-vs-whole-loved-corpus), director/creator exact match (+15), billing-weighted ` +
+        `cast overlap (+15), genre exact match (+10), subgenre/tone/subject Jaccard overlap (+12/+8/+8), keyword Jaccard overlap (+10), and ` +
+        `plot/description cosine similarity (+22, reusing <code>idx.descModel</code> — already built by <code>buildIndexes()</code>, zero new ` +
+        `math). Max raw 130, clamped 0-100. Sanity-checked against known real pairs before wiring up any UI: Before Sunrise vs. Before Sunset ` +
+        `scores 47 (same director/cast/genre/keywords), Before Sunset vs. an unrelated horror title scores 0, self-comparison lands at 80 ` +
+        `(near-max on every signal except self-citation). <code>scripts/eval.js</code> confirmed byte-identical before/after ` +
+        `(p10=90/p25=96/p50=96/p100=90) — the function is never called from <code>matchScore()</code>/<code>buildIndexes()</code>'s own ` +
+        `internals or from the eval harness's import graph, by construction, not just by convention.`,
+      plain: `Bill's own ask, built the way he asked for it: type in a title, and every other title in the dataset gets its own number showing ` +
+        `how close a match it is to that one movie or show specifically — genre, cast, director, plot language, and TMDB's own "similar to" ` +
+        `data all factored in. A completely separate tool from the main recommendation engine, so it can't accidentally change what actually ` +
+        `gets recommended day to day.`,
+      impact: `Real, working feature verified end-to-end: the title picker, the results table (sortable/searchable/filterable/CSV-exportable), ` +
+        `the include-watched toggle, and the Deep Dive cross-link (pre-filling the reference title via a URL param) all confirmed live with ` +
+        `real data — no console errors, no overflow at desktop or 375px mobile.`,
     });
   }
 

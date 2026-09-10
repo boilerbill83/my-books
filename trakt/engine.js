@@ -1,4 +1,4 @@
-import { buildDescModel, descSimilarityBonus } from './descSimilarity.js';
+import { buildDescModel, descSimilarityBonus, cosine, tokenize } from './descSimilarity.js';
 
 // BMTRE — Bill's Movies & TV Recommendation Engine, Phase 1.
 //
@@ -737,7 +737,7 @@ function franchiseBonus(collectionId, lovedCollections) {
 // same p10 slot for less actual devaluation) since all three perform
 // identically on the metric that matters and the whole point was a real
 // devaluation, not the smallest change that still moves the needle.
-function castPositionWeight(pos) {
+export function castPositionWeight(pos) {
   return Math.max(0.2, 1 - pos * 0.2);
 }
 
@@ -2982,6 +2982,143 @@ export function scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta = {}) {
 
   const total = rows.reduce((s, r) => s + r.points, 0);
   return { rows, raw: total, clamped: Math.max(0, Math.min(100, total)) };
+}
+
+// Pairwise title-similarity score — "how similar is THIS candidate to THIS
+// ONE specific reference title," not "how well does it match Bill's whole
+// loved profile" (that's matchScore()/scoreBreakdown() above). Bill's own
+// request: "I tell you a movie you present a similarity score for every
+// candidate." A deliberately standalone function — never called from
+// matchScore()/buildIndexes()'s own internals or from scripts/eval.js, so
+// it can't affect real recommendation scoring or the eval harness by
+// construction, not just by convention.
+//
+// Weights are principled (each signal's max points roughly tracks its
+// counterpart in matchScore()'s own weight table — direct citation match
+// and cast/creator overlap weighted heaviest, matching how forwardSimilar/
+// creator/cast are the heaviest signals there too) but explicitly NOT swept
+// against scripts/eval.js — there's no ground truth for "is title A similar
+// to title B" the way there's a real myRating to validate matchScore()
+// against, so these constants are a reasoned starting point, not a tuned
+// one. Max raw total 130, clamped to 0-100 for display, same raw/clamped
+// shape as matchScorePair() — maxing every single signal isn't meant to be
+// the common case.
+export function similarityScore(referenceKey, candidateKey, enrichedMeta, idx) {
+  const rows = [];
+  const add = (key, label, points, note) => rows.push({ key, label, points, note });
+
+  const refMeta = enrichedMeta[referenceKey];
+  const candMeta = enrichedMeta[candidateKey];
+  if (!refMeta || !candMeta) {
+    add('unenriched', 'Not enough data yet', 0, 'One or both titles have not been enriched with TMDB metadata yet.');
+    return { raw: 0, clamped: 0, rows };
+  }
+
+  const refType = referenceKey.split(':')[0];
+  const candType = candidateKey.split(':')[0];
+  const refId = Number(referenceKey.split(':')[1]);
+  const candId = Number(candidateKey.split(':')[1]);
+
+  // Direct citation match — the single strongest "TMDB's own algorithm
+  // thinks these are alike" signal, symmetric here (unlike matchScore()'s
+  // forward/reverse split, since this is title-vs-title, not candidate-vs-
+  // whole-loved-corpus): a mutual citation (each cites the other) is a
+  // stronger match than a one-directional one. Only meaningful within one
+  // type — TMDB tmdb ids aren't unique across movie/tv, so a cross-type
+  // comparison skips this signal (everything else below is type-agnostic).
+  let citationPts = 0;
+  let citationNote = 'No direct TMDB citation either way.';
+  if (refType === candType) {
+    const refCites = new Set([...(refMeta.similarToIds || []), ...(refMeta.recommendedIds || [])]);
+    const candCites = new Set([...(candMeta.similarToIds || []), ...(candMeta.recommendedIds || [])]);
+    const refCitesCand = refCites.has(candId);
+    const candCitesRef = candCites.has(refId);
+    if (refCitesCand && candCitesRef) { citationPts = 30; citationNote = 'Each cites the other as similar/recommended on TMDB — a mutual match.'; }
+    else if (refCitesCand || candCitesRef) { citationPts = 18; citationNote = 'One cites the other as similar/recommended on TMDB.'; }
+  }
+  add('citation', 'Direct TMDB citation', citationPts, citationNote);
+
+  // Director/Creator exact match.
+  const refCreator = getCreator(refType, refMeta);
+  const candCreator = getCreator(candType, candMeta);
+  const creatorMatch = !!(refCreator && candCreator && refCreator === candCreator);
+  add('creator', candType === 'movie' ? 'Director match' : 'Creator match', creatorMatch ? 15 : 0,
+    creatorMatch ? `Both from ${refCreator}.` : 'No shared director/creator credit.');
+
+  // Cast overlap, billing-weighted on both sides (title-vs-title, not vs.
+  // Bill's history — castPositionWeight() reused, not idx.lovedActors).
+  const refCast = refMeta.topCast || [];
+  const candCast = candMeta.topCast || [];
+  let castPts = 0;
+  const sharedCast = [];
+  refCast.forEach((actor, refPos) => {
+    const candPos = candCast.indexOf(actor);
+    if (candPos === -1) return;
+    sharedCast.push(actor);
+    castPts += 15 * castPositionWeight(refPos) * castPositionWeight(candPos);
+  });
+  castPts = Math.min(15, castPts);
+  add('cast', 'Cast overlap', castPts,
+    sharedCast.length ? `Shares ${sharedCast.slice(0, 3).join(', ')}.` : 'No cast overlap.');
+
+  // Genre match (single-valued, exact).
+  const refGenre = inferGenre(refMeta, idx?.llmTags?.[referenceKey], idx?.reviewedTags?.[referenceKey]);
+  const candGenre = inferGenre(candMeta, idx?.llmTags?.[candidateKey], idx?.reviewedTags?.[candidateKey]);
+  const genreMatch = !!(refGenre && candGenre && refGenre === candGenre);
+  add('genre', 'Genre match', genreMatch ? 10 : 0, genreMatch ? `Both ${refGenre}.` : 'Different inferred genre.');
+
+  // Multi-valued tag-set overlaps, scored by Jaccard fraction of each
+  // signal's own max points — 0 when either set is empty (no false
+  // "perfect match" from two titles that both have no data here).
+  const jaccard = (a, b) => {
+    if (!a.length || !b.length) return 0;
+    const setA = new Set(a), setB = new Set(b);
+    const inter = [...setA].filter(x => setB.has(x)).length;
+    const union = new Set([...setA, ...setB]).size;
+    return union ? inter / union : 0;
+  };
+
+  const refSubgenres = inferSubgenres(refMeta, idx?.llmTags?.[referenceKey], undefined, idx?.reviewedTags?.[referenceKey]);
+  const candSubgenres = inferSubgenres(candMeta, idx?.llmTags?.[candidateKey], undefined, idx?.reviewedTags?.[candidateKey]);
+  const sharedSubgenres = refSubgenres.filter(s => candSubgenres.includes(s));
+  add('subgenre', 'Subgenre overlap', Math.round(jaccard(refSubgenres, candSubgenres) * 12),
+    sharedSubgenres.length ? `Shares ${sharedSubgenres.join(', ')}.` : 'No shared subgenre tags.');
+
+  const refTones = inferTones(refMeta, idx?.llmTags?.[referenceKey], undefined, idx?.reviewedTags?.[referenceKey]);
+  const candTones = inferTones(candMeta, idx?.llmTags?.[candidateKey], undefined, idx?.reviewedTags?.[candidateKey]);
+  const sharedTones = refTones.filter(t => candTones.includes(t));
+  add('tone', 'Tone overlap', Math.round(jaccard(refTones, candTones) * 8),
+    sharedTones.length ? `Shares a ${sharedTones.join(', ')} feel.` : 'No shared tone tags.');
+
+  const refSubjects = inferSubjects(refMeta, idx?.llmTags?.[referenceKey], undefined, idx?.reviewedTags?.[referenceKey]);
+  const candSubjects = inferSubjects(candMeta, idx?.llmTags?.[candidateKey], undefined, idx?.reviewedTags?.[candidateKey]);
+  const sharedSubjects = refSubjects.filter(s => candSubjects.includes(s));
+  add('subject', 'Subject overlap', Math.round(jaccard(refSubjects, candSubjects) * 8),
+    sharedSubjects.length ? `Both touch on ${sharedSubjects.join(', ')}.` : 'No shared subject tags.');
+
+  const refKeywords = (refMeta.keywords || []).filter(k => !KEYWORD_STOPLIST.has(k));
+  const candKeywords = (candMeta.keywords || []).filter(k => !KEYWORD_STOPLIST.has(k));
+  const sharedKeywords = refKeywords.filter(k => candKeywords.includes(k));
+  add('keyword', 'Keyword overlap', Math.round(jaccard(refKeywords, candKeywords) * 10),
+    sharedKeywords.length ? `Shares keywords: ${sharedKeywords.slice(0, 5).join(', ')}.` : 'No shared keywords.');
+
+  // Description similarity — reuses idx.descModel (already built by
+  // buildIndexes(), no new math) rather than the whole-loved-corpus
+  // descSimilarityBonus() shape, since this needs exactly two specific
+  // titles' vectors compared to each other, not one query against many.
+  let descPts = 0;
+  let descNote = 'No plot-similarity signal available.';
+  if (idx?.descModel && refMeta.overview?.length >= 40 && candMeta.overview?.length >= 40) {
+    const refVec = idx.descModel.vec(tokenize(refMeta.overview));
+    const candVec = idx.descModel.vec(tokenize(candMeta.overview));
+    const sim = cosine(refVec, candVec);
+    descPts = Math.max(0, Math.round(sim * 22));
+    descNote = `Plot-language cosine similarity: ${sim.toFixed(2)}.`;
+  }
+  add('descSimilarity', 'Plot/description similarity', descPts, descNote);
+
+  const total = rows.reduce((s, r) => s + r.points, 0);
+  return { raw: total, clamped: Math.max(0, Math.min(100, total)), rows };
 }
 
 // "How much data do we actually have to trust this ranking" — a tiebreaker,

@@ -210,6 +210,7 @@ async function load() {
             <a href="./deepdive.html?key=${encodeURIComponent(s.titleKey)}">${esc(s.title)}${s.year ? ` (${esc(s.year)})` : ''}</a>
             ${idx.lovedTitles.has(s.titleKey) ? '<span class="dd-chip dd-chip-loved">loved</span>' : ''}
           </div>`).join('')}</div>` : '<div class="dd-empty">No similar-title data.</div>'}
+        <div class="dd-field-row" style="margin-top:8px;"><a href="./similar.html?key=${encodeURIComponent(candidate.titleKey)}">See full ranked comparison →</a></div>
       </div>
       <div class="dd-card">
         <div class="dd-card-heading">🎬 Similar ${candidate.type === 'movie' ? 'Directors' : 'Creators'}</div>
