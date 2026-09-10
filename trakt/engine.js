@@ -1783,8 +1783,18 @@ export function inferTones(meta, llmEntry, limit = 4, reviewed) {
 // improvement on precision@50 (94%->96%) and @100 (85%->86-87%) across
 // every tested floor.
 const CITATION_WEIGHT_FLOOR = 0.3;
+// Returns null (not 0) when either side has no tone data at all — "we
+// don't know" is a genuinely different case from "we checked and they
+// share nothing," and the two must not be scored the same. Found via a
+// real post-ship audit (2026-09-10, Bill: "double check what you did"):
+// 11.9% of enriched titles (128/1,075) carry zero tone tags, and 9 of 59
+// real candidates touched by an anomaly citation were being silently
+// floored to the maximum discount purely for lacking data, not because
+// any actual mismatch was ever checked (Marvel's Luke Cage, Stonehearst
+// Asylum, Hypnotic among them) — treating missing data as proof of a bad
+// match is a real, asymmetric, punitive default this fixes.
 function toneJaccard(tagsA, tagsB) {
-  if (!tagsA.length || !tagsB.length) return 0;
+  if (!tagsA.length || !tagsB.length) return null;
   const a = new Set(tagsA), b = new Set(tagsB);
   const inter = [...a].filter(x => b.has(x)).length;
   const union = new Set([...a, ...b]).size;
@@ -1804,6 +1814,10 @@ function citationCreditMultiplier(candidateMeta, candidateLlm, candidateReviewed
     inferTones(candidateMeta, candidateLlm, undefined, candidateReviewed),
     inferTones(lovedMeta, lovedLlm, undefined, lovedReviewed),
   );
+  // No tone data on one or both sides — benefit of the doubt, no
+  // discount, rather than defaulting to the worst case. See
+  // toneJaccard()'s own comment for the real, measured scale of this gap.
+  if (j == null) return 1;
   return CITATION_WEIGHT_FLOOR + (1 - CITATION_WEIGHT_FLOOR) * j;
 }
 
