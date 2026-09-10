@@ -3567,6 +3567,13 @@ const LIKED_THRESHOLD = 6;    // myRating >= 6/10 — Bill's real bar, and now
 const DISLIKED_THRESHOLD = 5; // myRating <= 5/10 ("anything under 6"),
                                 // for the bottom-catch check — already
                                 // matched Bill's real bar, unchanged.
+// Second, stricter tier added the same session LIKED_THRESHOLD was
+// corrected — Bill's Option 1 choice, once the 6+ correction revealed
+// precision@k against it had lost most of its discriminating power
+// (93.9% of everything Bill has ever rated clears 6+). "Genuinely great
+// match," one notch below buildIndexes()'s stricter 9-10 LOVED_THRESHOLD
+// used for signal-building — see greatMatchPrecisionAtK below.
+const GREAT_MATCH_THRESHOLD = 8;
 
 // Every eval.js run since this harness shipped has carried the same
 // caveat: raw MAE is WORSE than a trivial "always predict the mean"
@@ -3655,6 +3662,46 @@ export async function computeEvalMetrics(library, enrichedMeta, feedback, omdbMe
     // full second, still noticeably janky if a real click landed mid-chunk.
     if (++i % 10 === 0) await new Promise(r => setTimeout(r, 0));
   }
+
+  // Fold in real, taste-based dismissals as "not liked" ground truth
+  // (Bill's explicit instruction, 2026-09-10: "you can use the dismissed
+  // movies as 'not liked'"). Excludes bookkeeping-only dismissals that
+  // say nothing about taste — already_watched/already_have_version_rated
+  // (a duplicate record, not a rejection), family_watch_list (the
+  // opposite of "not liked" — these are titles Bill explicitly WANTS to
+  // watch, just excluded from the solo rec flow), and
+  // currently_watching_feature (a UI pointer, not a judgment). Checked
+  // dismissAdjust() before relying on this: none of the real dismissals
+  // here use the creator_dislike/style_dislike codes it reads, so
+  // scoring them isn't circularly biased by their own presence in
+  // feedback — this is their engine's *unrelated* natural prediction,
+  // genuine ground truth to test against. Scored against one full idx
+  // (built from the complete rated library, no leave-one-out needed — a
+  // dismissed title never contributed to idx in the first place, since
+  // it carries no myRating). actual=0/myRating=0 — a confident dismissal
+  // before ever watching is at least as strong a rejection as a
+  // completed-and-rated 1/10, so it's treated the same way, never
+  // milder.
+  const BOOKKEEPING_DISMISS_CODES = new Set([
+    'already_watched', 'already_have_version_rated', 'family_watch_list', 'currently_watching_feature',
+  ]);
+  const tasteRejected = (feedback?.interactions || []).filter(e =>
+    e.excludeFromRecommendations && e.interactionType === 'dismiss'
+    && !BOOKKEEPING_DISMISS_CODES.has(e.reasonCode) && enrichedMeta[e.titleKey]
+  );
+  let dismissedCount = 0;
+  if (tasteRejected.length) {
+    const fullIdx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, sharedDescModel);
+    for (const e of tasteRejected) {
+      const h = hydrateTitle({ titleKey: e.titleKey, type: e.type, year: e.year }, enrichedMeta);
+      const { raw: predictedRaw, clamped: predicted } = matchScorePair(h, fullIdx, enrichedMeta, omdbMeta);
+      if (Number.isFinite(predictedRaw)) {
+        preds.push({ predicted, predictedRaw, actual: 0, myRating: 0, title: h.title, type: h.type, dismissed: true });
+        dismissedCount++;
+      }
+    }
+  }
+
   // Ranks by predictedRaw (unclamped) so precision@k below isn't measuring
   // array-order within a saturated tied-at-100 cluster — see
   // matchScorePair()'s comment (score-clamp-saturation fix).
@@ -3663,29 +3710,58 @@ export async function computeEvalMetrics(library, enrichedMeta, feedback, omdbMe
   const n = preds.length;
   const liked = x => x.myRating >= LIKED_THRESHOLD;
   const disliked = x => x.myRating <= DISLIKED_THRESHOLD;
+  // A second, stricter tier (Bill's "Option 1", 2026-09-10) — after
+  // correcting LIKED_THRESHOLD to his real bar (6, from a never-validated
+  // 8), precision@k against it lost most of its power to discriminate a
+  // good ranker from a mediocre one: 93.9% of everything Bill has ever
+  // rated clears 6+, so even a near-random ranking scores close to that
+  // by chance. greatMatch (8+, "genuinely great match," matching
+  // buildIndexes()'s own "liked" tier terminology for 7-8s, one notch
+  // below the stricter 9-10 "loved" bar signal-building uses) is the
+  // real discriminating metric going forward — computeBMTREAccuracy()'s
+  // dial now grades against this tier, not the diluted one.
+  const greatMatch = x => x.myRating >= GREAT_MATCH_THRESHOLD;
   const baseRate = preds.filter(liked).length / n;
-  const mae = preds.reduce((s, x) => s + Math.abs(x.predicted - x.actual), 0) / n;
+
+  // MAE stays scoped to REAL numeric ratings only (excludes dismissed
+  // entries) — a dismissal's actual=0 is a synthetic ranking proxy
+  // ("should sink to the bottom"), not a real rating on the same 0-100
+  // scale everything else here is measured against. Folding it into a
+  // magnitude-error metric would mostly just test whether the model can
+  // hit an arbitrary floor value it was never given any signal to find
+  // (dismissals like looks_low_budget are about production value TMDB
+  // metadata can't see at all), inflating MAE for a reason unrelated to
+  // real rating-accuracy. Precision@k and bottom-catch below are exactly
+  // the ranking-relevant metrics dismissals SHOULD inform (Bill's actual
+  // instruction — "not liked," a ranking label, not a rating value) —
+  // both still use the full preds array, dismissals included.
+  const ratedPreds = preds.filter(x => !x.dismissed);
+  const ratedN = ratedPreds.length;
+  const mae = ratedPreds.reduce((s, x) => s + Math.abs(x.predicted - x.actual), 0) / ratedN;
   // See calibrateScore()'s own comment for the full derivation (5-fold
   // cross-validated, not just fit-and-trust) — an order-preserving affine
   // rescale of the same predictions, so this never changes precision@k or
   // any ranking, only how literally the raw score's magnitude should be
   // read against Bill's real 0-100 rating scale.
-  const calibratedMae = preds.reduce((s, x) => s + Math.abs(calibrateScore(x.predicted) - x.actual), 0) / n;
+  const calibratedMae = ratedPreds.reduce((s, x) => s + Math.abs(calibrateScore(x.predicted) - x.actual), 0) / ratedN;
 
   // A real, honest baseline check: Bill's ratings skew high (mean ~78/100
   // in this dataset), so a trivial "always predict the mean" guess can
   // score deceptively well on raw MAE alone without ranking anything
   // correctly — exactly why CLAUDE.md already states precision@k
   // outranks MAE for the book side, and why this dial weights MAE low.
-  const meanActual = preds.reduce((s, x) => s + x.actual, 0) / n;
-  const meanBaselineMae = preds.reduce((s, x) => s + Math.abs(meanActual - x.actual), 0) / n;
+  const meanActual = ratedPreds.reduce((s, x) => s + x.actual, 0) / ratedN;
+  const meanBaselineMae = ratedPreds.reduce((s, x) => s + Math.abs(meanActual - x.actual), 0) / ratedN;
 
   const precisionAtK = {};
+  const greatMatchPrecisionAtK = {};
   for (const k of [10, 25, 50, 100]) {
     if (k > n) continue;
-    const hit = preds.slice(0, k).filter(liked).length;
-    precisionAtK[k] = 100 * hit / k;
+    const topK = preds.slice(0, k);
+    precisionAtK[k] = 100 * topK.filter(liked).length / k;
+    greatMatchPrecisionAtK[k] = 100 * topK.filter(greatMatch).length / k;
   }
+  const greatMatchBaseRate = preds.filter(greatMatch).length / n;
 
   const bottom = preds.slice(-50);
   const bottomCatch = bottom.filter(disliked).length;
@@ -3703,7 +3779,7 @@ export async function computeEvalMetrics(library, enrichedMeta, feedback, omdbMe
   const bottomPossible = Math.min(50, totalDisliked);
 
   const worstMisses = preds.filter(x => x.myRating <= 4).slice(0, 8)
-    .map(x => ({ predicted: x.predicted, myRating: x.myRating, title: x.title, type: x.type }));
+    .map(x => ({ predicted: x.predicted, myRating: x.myRating, title: x.title, type: x.type, dismissed: !!x.dismissed }));
   const worstUnderrated = [...preds].filter(x => x.myRating >= 9).sort((a, b) => a.predicted - b.predicted).slice(0, 8)
     .map(x => ({ predicted: x.predicted, myRating: x.myRating, title: x.title, type: x.type }));
 
@@ -3712,16 +3788,20 @@ export async function computeEvalMetrics(library, enrichedMeta, feedback, omdbMe
   // combined precision number could hide one type dragging the other.
   const byType = {};
   for (const type of ['movie', 'show']) {
+    // Ranking pool (precisionAt10) includes dismissals of this type, same
+    // reasoning as the top-level metrics above; MAE stays rated-only.
     const typePreds = preds.filter(x => x.type === type);
-    if (!typePreds.length) continue;
-    const tn = typePreds.length;
-    const tMae = typePreds.reduce((s, x) => s + Math.abs(x.predicted - x.actual), 0) / tn;
-    const top10 = [...typePreds].sort((a, b) => b.predictedRaw - a.predictedRaw).slice(0, Math.min(10, tn));
+    const typeRatedPreds = typePreds.filter(x => !x.dismissed);
+    if (!typeRatedPreds.length) continue;
+    const tn = typeRatedPreds.length;
+    const tMae = typeRatedPreds.reduce((s, x) => s + Math.abs(x.predicted - x.actual), 0) / tn;
+    const top10 = [...typePreds].sort((a, b) => b.predictedRaw - a.predictedRaw).slice(0, Math.min(10, typePreds.length));
     byType[type] = { n: tn, mae: tMae, precisionAt10: 100 * top10.filter(liked).length / top10.length };
   }
 
   return {
     n, baseRate, mae, calibratedMae, meanBaselineMae, precisionAtK, bottomCatch, bottomChance, bottomPossible,
     worstMisses, worstUnderrated, byType, likedThreshold: LIKED_THRESHOLD,
+    greatMatchPrecisionAtK, greatMatchBaseRate, greatMatchThreshold: GREAT_MATCH_THRESHOLD, dismissedCount,
   };
 }

@@ -42,10 +42,15 @@ const reviewedTags = read('reviewedTags.json', {});
 
 const m = await computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags);
 
-console.log(`BMTRE eval over ${m.n} watched+rated+enriched titles (leave-one-out)`);
+console.log(`BMTRE eval over ${m.n} watched+rated+enriched+dismissed titles (leave-one-out) — includes ${m.dismissedCount} real taste-based dismissals scored as "not liked" (Bill's own instruction, 2026-09-10)`);
 console.log(`"liked" = myRating >= ${m.likedThreshold}/10; base rate: ${(100 * m.baseRate).toFixed(1)}%   raw MAE: ${m.mae.toFixed(2)}   calibrated MAE: ${m.calibratedMae.toFixed(2)}`);
+console.log(`precision@k ("liked", ${m.likedThreshold}+) — informational only: nearly saturated (base rate ${(100 * m.baseRate).toFixed(1)}%), doesn't discriminate well anymore since correcting the threshold to Bill's real bar:`);
 for (const k of [10, 25, 50, 100]) {
-  if (m.precisionAtK[k] != null) console.log(`precision@${k}: ${m.precisionAtK[k].toFixed(1)}%`);
+  if (m.precisionAtK[k] != null) console.log(`  precision@${k}: ${m.precisionAtK[k].toFixed(1)}%`);
+}
+console.log(`precision@k ("great match", ${m.greatMatchThreshold}+/10) — THE real discriminating metric (base rate ${(100 * m.greatMatchBaseRate).toFixed(1)}%):`);
+for (const k of [10, 25, 50, 100]) {
+  if (m.greatMatchPrecisionAtK[k] != null) console.log(`  precision@${k}: ${m.greatMatchPrecisionAtK[k].toFixed(1)}%`);
 }
 console.log(`bottom-50 catches <=5/10: ${m.bottomCatch}/${m.bottomPossible} of the achievable ceiling ` +
   `(${m.bottomCatch}/50 of the raw slice; chance would catch ${m.bottomChance.toFixed(1)})`);
@@ -59,7 +64,7 @@ for (const [type, s] of Object.entries(m.byType)) {
   console.log(`  ${type}: n=${s.n} MAE=${s.mae.toFixed(2)} precision@10=${s.precisionAt10.toFixed(1)}%`);
 }
 
-console.log('\nWorst misses (predicted high, rated <=4/10):');
-m.worstMisses.forEach(x => console.log(`  pred ${x.predicted.toFixed(1)} actual ${x.myRating}/10 [${x.type}] — ${x.title.slice(0, 55)}`));
+console.log('\nWorst misses (predicted high, rated <=4/10, or dismissed):');
+m.worstMisses.forEach(x => console.log(`  pred ${x.predicted.toFixed(1)} actual ${x.dismissed ? 'DISMISSED' : `${x.myRating}/10`} [${x.type}] — ${x.title.slice(0, 55)}`));
 console.log('\nWorst underrated (loved by Bill, predicted low):');
 m.worstUnderrated.forEach(x => console.log(`  pred ${x.predicted.toFixed(1)} actual ${x.myRating}/10 [${x.type}] — ${x.title.slice(0, 55)}`));
