@@ -26,6 +26,25 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="$(git rev-parse --abbrev-ref HEAD)"
           git add output/data-quality-report-*.md output/data-quality-report-*.json output/data-quality-index.json
-          git diff --staged --quiet && echo "No change to commit." || \
-            (git commit -m "Daily data quality report [automated]" && git push)
+          if git diff --staged --quiet; then
+            echo "No change to commit."
+            exit 0
+          fi
+          git commit -m "Daily data quality report [automated]"
+          # Real push race hit 2026-09-10: this job's single-attempt push
+          # was rejected by a concurrent push to main and the whole job
+          # failed, losing that day's report - the same failure mode the
+          # Trakt-side workflows were already hardened against (Session 50).
+          # Rebase and retry rather than losing a real run's output.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest $BRANCH."
+            git fetch origin "$BRANCH"
+            git rebase "origin/$BRANCH"
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1
