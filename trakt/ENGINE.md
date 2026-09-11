@@ -244,6 +244,34 @@ sign-off, since he set the cap number twice now (2, then 3) and a third
 unprompted increase would be overriding his own stated boundary rather
 than reporting a real finding for him to act on.
 
+**Cap kept at 3, which-3 made a real judgment call instead of a
+list-order truncation (2026-09-11, Bill: "let's keep it at 3; use your
+best judgement on which ones to include"):** the 4+-co-creator gap above
+was previously resolved by naive truncation — `createdBy[:3]`, keeping
+whoever TMDB happened to list first. Checked on the real Ted Lasso
+example and found this arbitrary, not a judgment call at all: it would
+keep Bill Lawrence/Jason Sudeikis/Joe Kelly and drop Brendan Hunt
+specifically, purely because of list position. Replaced with a real,
+measurable ranking: every createdBy name (not just bonus EP candidates,
+which already had this treatment) is ranked by real total episode count
+from `aggregate_credits` — covering the show's whole run, the same
+reason that endpoint exists at all — and the top `CREATOR_CREDITS_CAP`
+win. A name absent from `aggregate_credits` (a real, if rare, data gap)
+is ranked last rather than dropped outright, so a missing ranking signal
+never costs a real createdBy credit the old naive-truncation code would
+have kept. Movies were deliberately left on list order — TMDB crew
+entries carry no per-title episode-count equivalent for directors, and
+the real 3+-co-director cases found (Airplane!, Shrek 2, the
+Spider-Verse films, segment-director anthologies like New York, I Love
+You) are genuine equal-billing ensembles with no principled way to
+rank importance from data alone, unlike the show side where a real
+signal exists. Verified with synthetic-but-realistic unit tests before
+shipping (Ted Lasso's exact real name/episode-count shape, a solo-
+creator-plus-EP-fill case, and an exactly-at-cap no-op case) — TMDB's
+`aggregate_credits` schema still isn't independently verifiable from
+this sandbox, so the real proof is the next live re-fetch, same
+discipline as every other TMDB-shaped assumption in this file.
+
 ### 3b. Genre match — capped at **+8**
 As of the Genre/Subgenre taxonomy redesign, Genre is a **single, clean
 value** per title (`inferGenre()`), not TMDB's old raw multi-valued
