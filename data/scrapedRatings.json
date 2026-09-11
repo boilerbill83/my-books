@@ -4272,5 +4272,55 @@
     "coverUrl": null,
     "source": "not_found",
     "checkedAt": "2026-09-04"
+  },
+  "the infinity machine|||sebastian mallaby": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.7,
+      "count": 1188
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91nZiBJWZJL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-09-11"
+  },
+  "the most dangerous games|||mrbeast": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.1,
+      "count": 174
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81HHCRvyUBL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-09-11"
+  },
+  "sometimes i scare myself|||jeneva rose": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.0,
+      "count": 22544
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81cckgdKyAL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-09-11"
+  },
+  "one of us is dead|||jeneva rose": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.2,
+      "count": 15347
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81P4DExz5nL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-09-11"
+  },
+  "blockers|||michael lewis": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/71AP90Yp-oL._SX300_.jpg",
+    "source": "cover_only",
+    "checkedAt": "2026-09-11"
   }
 }
