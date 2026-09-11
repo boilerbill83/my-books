@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-11T17:19:08.008Z",
-    "count": 441,
+    "generatedAt": "2026-09-11T23:24:40Z",
+    "count": 527,
     "capPerType": 200
   },
   "titles": [
@@ -1841,7 +1841,7 @@
       "ids": {
         "tmdb": 1181678
       },
-      "title": "¿Quieres ser mi hijo?",
+      "title": "\u00bfQuieres ser mi hijo?",
       "year": 2023,
       "source": "genre-explore",
       "discoveredVia": "Comedy"
@@ -4610,6 +4610,866 @@
       "year": 2013,
       "source": "book-theme-explore",
       "discoveredVia": "book-theme:legal"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:105",
+      "ids": {
+        "tmdb": 105
+      },
+      "title": "Back to the Future",
+      "year": 1985,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:118",
+      "ids": {
+        "tmdb": 118
+      },
+      "title": "Charlie and the Chocolate Factory",
+      "year": 2005,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:329",
+      "ids": {
+        "tmdb": 329
+      },
+      "title": "Jurassic Park",
+      "year": 1993,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1892",
+      "ids": {
+        "tmdb": 1892
+      },
+      "title": "Return of the Jedi",
+      "year": 1983,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:558",
+      "ids": {
+        "tmdb": 558
+      },
+      "title": "Spider-Man 2",
+      "year": 2004,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:11",
+      "ids": {
+        "tmdb": 11
+      },
+      "title": "Star Wars",
+      "year": 1977,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1893",
+      "ids": {
+        "tmdb": 1893
+      },
+      "title": "Star Wars: Episode I - The Phantom Menace",
+      "year": 1999,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1891",
+      "ids": {
+        "tmdb": 1891
+      },
+      "title": "The Empire Strikes Back",
+      "year": 1980,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1781",
+      "ids": {
+        "tmdb": 1781
+      },
+      "title": "An Inconvenient Truth",
+      "year": 2006,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1430",
+      "ids": {
+        "tmdb": 1430
+      },
+      "title": "Bowling for Columbine",
+      "year": 2002,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1777",
+      "ids": {
+        "tmdb": 1777
+      },
+      "title": "Fahrenheit 9/11",
+      "year": 2004,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:12094",
+      "ids": {
+        "tmdb": 12094
+      },
+      "title": "Jackass Number Two",
+      "year": 2006,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:9012",
+      "ids": {
+        "tmdb": 9012
+      },
+      "title": "Jackass: The Movie",
+      "year": 2002,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:14048",
+      "ids": {
+        "tmdb": 14048
+      },
+      "title": "Man on Wire",
+      "year": 2008,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:9372",
+      "ids": {
+        "tmdb": 9372
+      },
+      "title": "Super Size Me",
+      "year": 2004,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:13576",
+      "ids": {
+        "tmdb": 13576
+      },
+      "title": "This Is It",
+      "year": 2009,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:162",
+      "ids": {
+        "tmdb": 162
+      },
+      "title": "Edward Scissorhands",
+      "year": 1990,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:9738",
+      "ids": {
+        "tmdb": 9738
+      },
+      "title": "Fantastic Four",
+      "year": 2005,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:620",
+      "ids": {
+        "tmdb": 620
+      },
+      "title": "Ghostbusters",
+      "year": 1984,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:8844",
+      "ids": {
+        "tmdb": 8844
+      },
+      "title": "Jumanji",
+      "year": 1995,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1593",
+      "ids": {
+        "tmdb": 1593
+      },
+      "title": "Night at the Museum",
+      "year": 2006,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:854",
+      "ids": {
+        "tmdb": 854
+      },
+      "title": "The Mask",
+      "year": 1994,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:564",
+      "ids": {
+        "tmdb": 564
+      },
+      "title": "The Mummy",
+      "year": 1999,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:568",
+      "ids": {
+        "tmdb": 568
+      },
+      "title": "Apollo 13",
+      "year": 1995,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:197",
+      "ids": {
+        "tmdb": 197
+      },
+      "title": "Braveheart",
+      "year": 1995,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:3131",
+      "ids": {
+        "tmdb": 3131
+      },
+      "title": "Gangs of New York",
+      "year": 2002,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:676",
+      "ids": {
+        "tmdb": 676
+      },
+      "title": "Pearl Harbor",
+      "year": 2001,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:11322",
+      "ids": {
+        "tmdb": 11322
+      },
+      "title": "Public Enemies",
+      "year": 2009,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1955",
+      "ids": {
+        "tmdb": 1955
+      },
+      "title": "The Elephant Man",
+      "year": 1980,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:2024",
+      "ids": {
+        "tmdb": 2024
+      },
+      "title": "The Patriot",
+      "year": 2000,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:117",
+      "ids": {
+        "tmdb": 117
+      },
+      "title": "The Untouchables",
+      "year": 1987,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:170",
+      "ids": {
+        "tmdb": 170
+      },
+      "title": "28 Days Later",
+      "year": 2002,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:578",
+      "ids": {
+        "tmdb": 578
+      },
+      "title": "Jaws",
+      "year": 1975,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1576",
+      "ids": {
+        "tmdb": 1576
+      },
+      "title": "Resident Evil",
+      "year": 2002,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:4232",
+      "ids": {
+        "tmdb": 4232
+      },
+      "title": "Scream",
+      "year": 1996,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:2668",
+      "ids": {
+        "tmdb": 2668
+      },
+      "title": "Sleepy Hollow",
+      "year": 1999,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:9552",
+      "ids": {
+        "tmdb": 9552
+      },
+      "title": "The Exorcist",
+      "year": 1973,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:694",
+      "ids": {
+        "tmdb": 694
+      },
+      "title": "The Shining",
+      "year": 1980,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1091",
+      "ids": {
+        "tmdb": 1091
+      },
+      "title": "The Thing",
+      "year": 1982,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:19908",
+      "ids": {
+        "tmdb": 19908
+      },
+      "title": "Zombieland",
+      "year": 2009,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:65",
+      "ids": {
+        "tmdb": 65
+      },
+      "title": "8 Mile",
+      "year": 2002,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:88",
+      "ids": {
+        "tmdb": 88
+      },
+      "title": "Dirty Dancing",
+      "year": 1987,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:2005",
+      "ids": {
+        "tmdb": 2005
+      },
+      "title": "Sister Act",
+      "year": 1992,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:9762",
+      "ids": {
+        "tmdb": 9762
+      },
+      "title": "Step Up",
+      "year": 2006,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:8328",
+      "ids": {
+        "tmdb": 8328
+      },
+      "title": "Step Up 2: The Streets",
+      "year": 2008,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1584",
+      "ids": {
+        "tmdb": 1584
+      },
+      "title": "The School of Rock",
+      "year": 2003,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:15121",
+      "ids": {
+        "tmdb": 15121
+      },
+      "title": "The Sound of Music",
+      "year": 1965,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:4951",
+      "ids": {
+        "tmdb": 4951
+      },
+      "title": "10 Things I Hate About You",
+      "year": 1999,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1824",
+      "ids": {
+        "tmdb": 1824
+      },
+      "title": "50 First Dates",
+      "year": 2004,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:2105",
+      "ids": {
+        "tmdb": 2105
+      },
+      "title": "American Pie",
+      "year": 1999,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:137",
+      "ids": {
+        "tmdb": 137
+      },
+      "title": "Groundhog Day",
+      "year": 1993,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:153",
+      "ids": {
+        "tmdb": 153
+      },
+      "title": "Lost in Translation",
+      "year": 2003,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:18239",
+      "ids": {
+        "tmdb": 18239
+      },
+      "title": "The Twilight Saga: New Moon",
+      "year": 2009,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:744",
+      "ids": {
+        "tmdb": 744
+      },
+      "title": "Top Gun",
+      "year": 1986,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:6479",
+      "ids": {
+        "tmdb": 6479
+      },
+      "title": "I Am Legend",
+      "year": 2007,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:557",
+      "ids": {
+        "tmdb": 557
+      },
+      "title": "Spider-Man",
+      "year": 2002,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:603",
+      "ids": {
+        "tmdb": 603
+      },
+      "title": "The Matrix",
+      "year": 1999,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:28",
+      "ids": {
+        "tmdb": 28
+      },
+      "title": "Apocalypse Now",
+      "year": 1979,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:935",
+      "ids": {
+        "tmdb": 935
+      },
+      "title": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
+      "year": 1964,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:770",
+      "ids": {
+        "tmdb": 770
+      },
+      "title": "Gone with the Wind",
+      "year": 1939,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:7555",
+      "ids": {
+        "tmdb": 7555
+      },
+      "title": "Rambo",
+      "year": 2008,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:7446",
+      "ids": {
+        "tmdb": 7446
+      },
+      "title": "Tropic Thunder",
+      "year": 2008,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:11072",
+      "ids": {
+        "tmdb": 11072
+      },
+      "title": "Blazing Saddles",
+      "year": 1974,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:642",
+      "ids": {
+        "tmdb": 642
+      },
+      "title": "Butch Cassidy and the Sundance Kid",
+      "year": 1969,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:581",
+      "ids": {
+        "tmdb": 581
+      },
+      "title": "Dances with Wolves",
+      "year": 1990,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:4476",
+      "ids": {
+        "tmdb": 4476
+      },
+      "title": "Legends of the Fall",
+      "year": 1994,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:6038",
+      "ids": {
+        "tmdb": 6038
+      },
+      "title": "Shanghai Knights",
+      "year": 2003,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1656",
+      "ids": {
+        "tmdb": 1656
+      },
+      "title": "The Legend of Zorro",
+      "year": 2005,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:11969",
+      "ids": {
+        "tmdb": 11969
+      },
+      "title": "Tombstone",
+      "year": 1993,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:33",
+      "ids": {
+        "tmdb": 33
+      },
+      "title": "Unforgiven",
+      "year": 1992,
+      "source": "old-title-review"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:8487",
+      "ids": {
+        "tmdb": 8487
+      },
+      "title": "Wild Wild West",
+      "year": 1999,
+      "source": "old-title-review"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:4658",
+      "ids": {
+        "tmdb": 4658
+      },
+      "title": "ALF",
+      "year": 1986,
+      "source": "old-title-review"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:4482",
+      "ids": {
+        "tmdb": 4482
+      },
+      "title": "Bewitched",
+      "year": 1964,
+      "source": "old-title-review"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:3452",
+      "ids": {
+        "tmdb": 3452
+      },
+      "title": "Frasier",
+      "year": 1993,
+      "source": "old-title-review"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:4313",
+      "ids": {
+        "tmdb": 4313
+      },
+      "title": "Full House",
+      "year": 1987,
+      "source": "old-title-review"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:4610",
+      "ids": {
+        "tmdb": 4610
+      },
+      "title": "Hannah Montana",
+      "year": 2006,
+      "source": "old-title-review"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:1660",
+      "ids": {
+        "tmdb": 1660
+      },
+      "title": "I Dream of Jeannie",
+      "year": 1965,
+      "source": "old-title-review"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:4345",
+      "ids": {
+        "tmdb": 4345
+      },
+      "title": "Saved by the Bell",
+      "year": 1989,
+      "source": "old-title-review"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:5371",
+      "ids": {
+        "tmdb": 5371
+      },
+      "title": "iCarly",
+      "year": 2007,
+      "source": "old-title-review"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:2426",
+      "ids": {
+        "tmdb": 2426
+      },
+      "title": "Angel",
+      "year": 1999,
+      "source": "old-title-review"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:57243",
+      "ids": {
+        "tmdb": 57243
+      },
+      "title": "Doctor Who",
+      "year": 2005,
+      "source": "old-title-review"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:19614",
+      "ids": {
+        "tmdb": 19614
+      },
+      "title": "It",
+      "year": 1990,
+      "source": "old-title-review"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:2384",
+      "ids": {
+        "tmdb": 2384
+      },
+      "title": "Knight Rider",
+      "year": 1982,
+      "source": "old-title-review"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:31295",
+      "ids": {
+        "tmdb": 31295
+      },
+      "title": "Misfits",
+      "year": 2009,
+      "source": "old-title-review"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:314",
+      "ids": {
+        "tmdb": 314
+      },
+      "title": "Star Trek: Enterprise",
+      "year": 2001,
+      "source": "old-title-review"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:4616",
+      "ids": {
+        "tmdb": 4616
+      },
+      "title": "Xena: Warrior Princess",
+      "year": 1995,
+      "source": "old-title-review"
     }
   ]
 }

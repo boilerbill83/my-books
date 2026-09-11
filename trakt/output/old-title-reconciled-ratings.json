@@ -1,0 +1,882 @@
+[
+  {
+    "title": "Back to the Future",
+    "year": 1985,
+    "type": "movie",
+    "titleKey": "movie:105",
+    "tmdbId": 105,
+    "targetGenre": "Adventure",
+    "rawRating": 10,
+    "bucket": "rated"
+  },
+  {
+    "title": "Charlie and the Chocolate Factory",
+    "year": 2005,
+    "type": "movie",
+    "titleKey": "movie:118",
+    "tmdbId": 118,
+    "targetGenre": "Adventure",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Jurassic Park",
+    "year": 1993,
+    "type": "movie",
+    "titleKey": "movie:329",
+    "tmdbId": 329,
+    "targetGenre": "Adventure",
+    "rawRating": 9,
+    "bucket": "rated"
+  },
+  {
+    "title": "Return of the Jedi",
+    "year": 1983,
+    "type": "movie",
+    "titleKey": "movie:1892",
+    "tmdbId": 1892,
+    "targetGenre": "Adventure",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Spider-Man 2",
+    "year": 2004,
+    "type": "movie",
+    "titleKey": "movie:558",
+    "tmdbId": 558,
+    "targetGenre": "Adventure",
+    "rawRating": 7,
+    "bucket": "rated"
+  },
+  {
+    "title": "Star Wars",
+    "year": 1977,
+    "type": "movie",
+    "titleKey": "movie:11",
+    "tmdbId": 11,
+    "targetGenre": "Adventure",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Star Wars: Episode I - The Phantom Menace",
+    "year": 1999,
+    "type": "movie",
+    "titleKey": "movie:1893",
+    "tmdbId": 1893,
+    "targetGenre": "Adventure",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "The Empire Strikes Back",
+    "year": 1980,
+    "type": "movie",
+    "titleKey": "movie:1891",
+    "tmdbId": 1891,
+    "targetGenre": "Adventure",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "An Inconvenient Truth",
+    "year": 2006,
+    "type": "movie",
+    "titleKey": "movie:1781",
+    "tmdbId": 1781,
+    "targetGenre": "Documentary",
+    "rawRating": 2,
+    "bucket": "rated"
+  },
+  {
+    "title": "Bowling for Columbine",
+    "year": 2002,
+    "type": "movie",
+    "titleKey": "movie:1430",
+    "tmdbId": 1430,
+    "targetGenre": "Documentary",
+    "rawRating": 3,
+    "bucket": "rated"
+  },
+  {
+    "title": "Fahrenheit 9/11",
+    "year": 2004,
+    "type": "movie",
+    "titleKey": "movie:1777",
+    "tmdbId": 1777,
+    "targetGenre": "Documentary",
+    "rawRating": 3,
+    "bucket": "rated"
+  },
+  {
+    "title": "Grizzly Man",
+    "year": 2005,
+    "type": "movie",
+    "titleKey": "movie:501",
+    "tmdbId": 501,
+    "targetGenre": "Documentary",
+    "rawRating": null,
+    "bucket": "blank"
+  },
+  {
+    "title": "Jackass Number Two",
+    "year": 2006,
+    "type": "movie",
+    "titleKey": "movie:12094",
+    "tmdbId": 12094,
+    "targetGenre": "Documentary",
+    "rawRating": 8,
+    "bucket": "rated"
+  },
+  {
+    "title": "Jackass: The Movie",
+    "year": 2002,
+    "type": "movie",
+    "titleKey": "movie:9012",
+    "tmdbId": 9012,
+    "targetGenre": "Documentary",
+    "rawRating": 8,
+    "bucket": "rated"
+  },
+  {
+    "title": "Man on Wire",
+    "year": 2008,
+    "type": "movie",
+    "titleKey": "movie:14048",
+    "tmdbId": 14048,
+    "targetGenre": "Documentary",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Super Size Me",
+    "year": 2004,
+    "type": "movie",
+    "titleKey": "movie:9372",
+    "tmdbId": 9372,
+    "targetGenre": "Documentary",
+    "rawRating": 4,
+    "bucket": "rated"
+  },
+  {
+    "title": "This Is It",
+    "year": 2009,
+    "type": "movie",
+    "titleKey": "movie:13576",
+    "tmdbId": 13576,
+    "targetGenre": "Documentary",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Edward Scissorhands",
+    "year": 1990,
+    "type": "movie",
+    "titleKey": "movie:162",
+    "tmdbId": 162,
+    "targetGenre": "Fantasy",
+    "rawRating": 6,
+    "bucket": "rated"
+  },
+  {
+    "title": "Fantastic Four",
+    "year": 2005,
+    "type": "movie",
+    "titleKey": "movie:9738",
+    "tmdbId": 9738,
+    "targetGenre": "Fantasy",
+    "rawRating": 3,
+    "bucket": "rated"
+  },
+  {
+    "title": "Ghostbusters",
+    "year": 1984,
+    "type": "movie",
+    "titleKey": "movie:620",
+    "tmdbId": 620,
+    "targetGenre": "Fantasy",
+    "rawRating": 10,
+    "bucket": "rated"
+  },
+  {
+    "title": "Jumanji",
+    "year": 1995,
+    "type": "movie",
+    "titleKey": "movie:8844",
+    "tmdbId": 8844,
+    "targetGenre": "Fantasy",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Night at the Museum",
+    "year": 2006,
+    "type": "movie",
+    "titleKey": "movie:1593",
+    "tmdbId": 1593,
+    "targetGenre": "Fantasy",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "The Mask",
+    "year": 1994,
+    "type": "movie",
+    "titleKey": "movie:854",
+    "tmdbId": 854,
+    "targetGenre": "Fantasy",
+    "rawRating": 8,
+    "bucket": "rated"
+  },
+  {
+    "title": "The Mummy",
+    "year": 1999,
+    "type": "movie",
+    "titleKey": "movie:564",
+    "tmdbId": 564,
+    "targetGenre": "Fantasy",
+    "rawRating": 2,
+    "bucket": "rated"
+  },
+  {
+    "title": "Apollo 13",
+    "year": 1995,
+    "type": "movie",
+    "titleKey": "movie:568",
+    "tmdbId": 568,
+    "targetGenre": "History",
+    "rawRating": 10,
+    "bucket": "rated"
+  },
+  {
+    "title": "Braveheart",
+    "year": 1995,
+    "type": "movie",
+    "titleKey": "movie:197",
+    "tmdbId": 197,
+    "targetGenre": "History",
+    "rawRating": 8,
+    "bucket": "rated"
+  },
+  {
+    "title": "Gangs of New York",
+    "year": 2002,
+    "type": "movie",
+    "titleKey": "movie:3131",
+    "tmdbId": 3131,
+    "targetGenre": "History",
+    "rawRating": 9,
+    "bucket": "rated"
+  },
+  {
+    "title": "Pearl Harbor",
+    "year": 2001,
+    "type": "movie",
+    "titleKey": "movie:676",
+    "tmdbId": 676,
+    "targetGenre": "History",
+    "rawRating": 6,
+    "bucket": "rated"
+  },
+  {
+    "title": "Public Enemies",
+    "year": 2009,
+    "type": "movie",
+    "titleKey": "movie:11322",
+    "tmdbId": 11322,
+    "targetGenre": "History",
+    "rawRating": 10,
+    "bucket": "rated"
+  },
+  {
+    "title": "The Elephant Man",
+    "year": 1980,
+    "type": "movie",
+    "titleKey": "movie:1955",
+    "tmdbId": 1955,
+    "targetGenre": "History",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "The Patriot",
+    "year": 2000,
+    "type": "movie",
+    "titleKey": "movie:2024",
+    "tmdbId": 2024,
+    "targetGenre": "History",
+    "rawRating": 3,
+    "bucket": "rated"
+  },
+  {
+    "title": "The Untouchables",
+    "year": 1987,
+    "type": "movie",
+    "titleKey": "movie:117",
+    "tmdbId": 117,
+    "targetGenre": "History",
+    "rawRating": 4,
+    "bucket": "rated"
+  },
+  {
+    "title": "28 Days Later",
+    "year": 2002,
+    "type": "movie",
+    "titleKey": "movie:170",
+    "tmdbId": 170,
+    "targetGenre": "Horror",
+    "rawRating": 8,
+    "bucket": "rated"
+  },
+  {
+    "title": "Jaws",
+    "year": 1975,
+    "type": "movie",
+    "titleKey": "movie:578",
+    "tmdbId": 578,
+    "targetGenre": "Horror",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Resident Evil",
+    "year": 2002,
+    "type": "movie",
+    "titleKey": "movie:1576",
+    "tmdbId": 1576,
+    "targetGenre": "Horror",
+    "rawRating": 2,
+    "bucket": "rated"
+  },
+  {
+    "title": "Scream",
+    "year": 1996,
+    "type": "movie",
+    "titleKey": "movie:4232",
+    "tmdbId": 4232,
+    "targetGenre": "Horror",
+    "rawRating": 7,
+    "bucket": "rated"
+  },
+  {
+    "title": "Sleepy Hollow",
+    "year": 1999,
+    "type": "movie",
+    "titleKey": "movie:2668",
+    "tmdbId": 2668,
+    "targetGenre": "Horror",
+    "rawRating": 4,
+    "bucket": "rated"
+  },
+  {
+    "title": "The Exorcist",
+    "year": 1973,
+    "type": "movie",
+    "titleKey": "movie:9552",
+    "tmdbId": 9552,
+    "targetGenre": "Horror",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "The Shining",
+    "year": 1980,
+    "type": "movie",
+    "titleKey": "movie:694",
+    "tmdbId": 694,
+    "targetGenre": "Horror",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "The Thing",
+    "year": 1982,
+    "type": "movie",
+    "titleKey": "movie:1091",
+    "tmdbId": 1091,
+    "targetGenre": "Horror",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Zombieland",
+    "year": 2009,
+    "type": "movie",
+    "titleKey": "movie:19908",
+    "tmdbId": 19908,
+    "targetGenre": "Horror",
+    "rawRating": 9,
+    "bucket": "rated"
+  },
+  {
+    "title": "8 Mile",
+    "year": 2002,
+    "type": "movie",
+    "titleKey": "movie:65",
+    "tmdbId": 65,
+    "targetGenre": "Music",
+    "rawRating": 10,
+    "bucket": "rated"
+  },
+  {
+    "title": "August Rush",
+    "year": 2007,
+    "type": "movie",
+    "titleKey": "movie:5123",
+    "tmdbId": 5123,
+    "targetGenre": "Music",
+    "rawRating": null,
+    "bucket": "blank"
+  },
+  {
+    "title": "Dirty Dancing",
+    "year": 1987,
+    "type": "movie",
+    "titleKey": "movie:88",
+    "tmdbId": 88,
+    "targetGenre": "Music",
+    "rawRating": 0,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Sister Act",
+    "year": 1992,
+    "type": "movie",
+    "titleKey": "movie:2005",
+    "tmdbId": 2005,
+    "targetGenre": "Music",
+    "rawRating": 3,
+    "bucket": "rated"
+  },
+  {
+    "title": "Step Up",
+    "year": 2006,
+    "type": "movie",
+    "titleKey": "movie:9762",
+    "tmdbId": 9762,
+    "targetGenre": "Music",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Step Up 2: The Streets",
+    "year": 2008,
+    "type": "movie",
+    "titleKey": "movie:8328",
+    "tmdbId": 8328,
+    "targetGenre": "Music",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "The School of Rock",
+    "year": 2003,
+    "type": "movie",
+    "titleKey": "movie:1584",
+    "tmdbId": 1584,
+    "targetGenre": "Music",
+    "rawRating": 9,
+    "bucket": "rated"
+  },
+  {
+    "title": "The Sound of Music",
+    "year": 1965,
+    "type": "movie",
+    "titleKey": "movie:15121",
+    "tmdbId": 15121,
+    "targetGenre": "Music",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "10 Things I Hate About You",
+    "year": 1999,
+    "type": "movie",
+    "titleKey": "movie:4951",
+    "tmdbId": 4951,
+    "targetGenre": "Romance",
+    "rawRating": 8,
+    "bucket": "rated"
+  },
+  {
+    "title": "50 First Dates",
+    "year": 2004,
+    "type": "movie",
+    "titleKey": "movie:1824",
+    "tmdbId": 1824,
+    "targetGenre": "Romance",
+    "rawRating": 8,
+    "bucket": "rated"
+  },
+  {
+    "title": "American Pie",
+    "year": 1999,
+    "type": "movie",
+    "titleKey": "movie:2105",
+    "tmdbId": 2105,
+    "targetGenre": "Romance",
+    "rawRating": 9,
+    "bucket": "rated"
+  },
+  {
+    "title": "Groundhog Day",
+    "year": 1993,
+    "type": "movie",
+    "titleKey": "movie:137",
+    "tmdbId": 137,
+    "targetGenre": "Romance",
+    "rawRating": 10,
+    "bucket": "rated"
+  },
+  {
+    "title": "Lost in Translation",
+    "year": 2003,
+    "type": "movie",
+    "titleKey": "movie:153",
+    "tmdbId": 153,
+    "targetGenre": "Romance",
+    "rawRating": 7,
+    "bucket": "rated"
+  },
+  {
+    "title": "The Twilight Saga: New Moon",
+    "year": 2009,
+    "type": "movie",
+    "titleKey": "movie:18239",
+    "tmdbId": 18239,
+    "targetGenre": "Romance",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Top Gun",
+    "year": 1986,
+    "type": "movie",
+    "titleKey": "movie:744",
+    "tmdbId": 744,
+    "targetGenre": "Romance",
+    "rawRating": 7,
+    "bucket": "rated"
+  },
+  {
+    "title": "I Am Legend",
+    "year": 2007,
+    "type": "movie",
+    "titleKey": "movie:6479",
+    "tmdbId": 6479,
+    "targetGenre": "Science Fiction",
+    "rawRating": 7,
+    "bucket": "rated"
+  },
+  {
+    "title": "Spider-Man",
+    "year": 2002,
+    "type": "movie",
+    "titleKey": "movie:557",
+    "tmdbId": 557,
+    "targetGenre": "Science Fiction",
+    "rawRating": 8,
+    "bucket": "rated"
+  },
+  {
+    "title": "The Matrix",
+    "year": 1999,
+    "type": "movie",
+    "titleKey": "movie:603",
+    "tmdbId": 603,
+    "targetGenre": "Science Fiction",
+    "rawRating": 10,
+    "bucket": "rated"
+  },
+  {
+    "title": "Apocalypse Now",
+    "year": 1979,
+    "type": "movie",
+    "titleKey": "movie:28",
+    "tmdbId": 28,
+    "targetGenre": "War",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
+    "year": 1964,
+    "type": "movie",
+    "titleKey": "movie:935",
+    "tmdbId": 935,
+    "targetGenre": "War",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Gone with the Wind",
+    "year": 1939,
+    "type": "movie",
+    "titleKey": "movie:770",
+    "tmdbId": 770,
+    "targetGenre": "War",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Rambo",
+    "year": 2008,
+    "type": "movie",
+    "titleKey": "movie:7555",
+    "tmdbId": 7555,
+    "targetGenre": "War",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Tropic Thunder",
+    "year": 2008,
+    "type": "movie",
+    "titleKey": "movie:7446",
+    "tmdbId": 7446,
+    "targetGenre": "War",
+    "rawRating": 8,
+    "bucket": "rated"
+  },
+  {
+    "title": "Blazing Saddles",
+    "year": 1974,
+    "type": "movie",
+    "titleKey": "movie:11072",
+    "tmdbId": 11072,
+    "targetGenre": "Western",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Butch Cassidy and the Sundance Kid",
+    "year": 1969,
+    "type": "movie",
+    "titleKey": "movie:642",
+    "tmdbId": 642,
+    "targetGenre": "Western",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Dances with Wolves",
+    "year": 1990,
+    "type": "movie",
+    "titleKey": "movie:581",
+    "tmdbId": 581,
+    "targetGenre": "Western",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Legends of the Fall",
+    "year": 1994,
+    "type": "movie",
+    "titleKey": "movie:4476",
+    "tmdbId": 4476,
+    "targetGenre": "Western",
+    "rawRating": 6,
+    "bucket": "rated"
+  },
+  {
+    "title": "Shanghai Knights",
+    "year": 2003,
+    "type": "movie",
+    "titleKey": "movie:6038",
+    "tmdbId": 6038,
+    "targetGenre": "Western",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "The Legend of Zorro",
+    "year": 2005,
+    "type": "movie",
+    "titleKey": "movie:1656",
+    "tmdbId": 1656,
+    "targetGenre": "Western",
+    "rawRating": 6,
+    "bucket": "rated"
+  },
+  {
+    "title": "Tombstone",
+    "year": 1993,
+    "type": "movie",
+    "titleKey": "movie:11969",
+    "tmdbId": 11969,
+    "targetGenre": "Western",
+    "rawRating": 6,
+    "bucket": "rated"
+  },
+  {
+    "title": "Unforgiven",
+    "year": 1992,
+    "type": "movie",
+    "titleKey": "movie:33",
+    "tmdbId": 33,
+    "targetGenre": "Western",
+    "rawRating": 6,
+    "bucket": "rated"
+  },
+  {
+    "title": "Wild Wild West",
+    "year": 1999,
+    "type": "movie",
+    "titleKey": "movie:8487",
+    "tmdbId": 8487,
+    "targetGenre": "Western",
+    "rawRating": 9,
+    "bucket": "rated"
+  },
+  {
+    "title": "ALF",
+    "year": 1986,
+    "type": "show",
+    "titleKey": "show:4658",
+    "tmdbId": 4658,
+    "targetGenre": "Family",
+    "rawRating": 3,
+    "bucket": "rated"
+  },
+  {
+    "title": "Bewitched",
+    "year": 1964,
+    "type": "show",
+    "titleKey": "show:4482",
+    "tmdbId": 4482,
+    "targetGenre": "Family",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Frasier",
+    "year": 1993,
+    "type": "show",
+    "titleKey": "show:3452",
+    "tmdbId": 3452,
+    "targetGenre": "Family",
+    "rawRating": 8,
+    "bucket": "rated"
+  },
+  {
+    "title": "Full House",
+    "year": 1987,
+    "type": "show",
+    "titleKey": "show:4313",
+    "tmdbId": 4313,
+    "targetGenre": "Family",
+    "rawRating": 6,
+    "bucket": "rated"
+  },
+  {
+    "title": "Hannah Montana",
+    "year": 2006,
+    "type": "show",
+    "titleKey": "show:4610",
+    "tmdbId": 4610,
+    "targetGenre": "Family",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "I Dream of Jeannie",
+    "year": 1965,
+    "type": "show",
+    "titleKey": "show:1660",
+    "tmdbId": 1660,
+    "targetGenre": "Family",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Saved by the Bell",
+    "year": 1989,
+    "type": "show",
+    "titleKey": "show:4345",
+    "tmdbId": 4345,
+    "targetGenre": "Family",
+    "rawRating": 10,
+    "bucket": "rated"
+  },
+  {
+    "title": "iCarly",
+    "year": 2007,
+    "type": "show",
+    "titleKey": "show:5371",
+    "tmdbId": 5371,
+    "targetGenre": "Family",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Angel",
+    "year": 1999,
+    "type": "show",
+    "titleKey": "show:2426",
+    "tmdbId": 2426,
+    "targetGenre": "Sci-Fi & Fantasy",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Doctor Who",
+    "year": 2005,
+    "type": "show",
+    "titleKey": "show:57243",
+    "tmdbId": 57243,
+    "targetGenre": "Sci-Fi & Fantasy",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "It",
+    "year": 1990,
+    "type": "show",
+    "titleKey": "show:19614",
+    "tmdbId": 19614,
+    "targetGenre": "Sci-Fi & Fantasy",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Knight Rider",
+    "year": 1982,
+    "type": "show",
+    "titleKey": "show:2384",
+    "tmdbId": 2384,
+    "targetGenre": "Sci-Fi & Fantasy",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Misfits",
+    "year": 2009,
+    "type": "show",
+    "titleKey": "show:31295",
+    "tmdbId": 31295,
+    "targetGenre": "Sci-Fi & Fantasy",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Star Trek: Enterprise",
+    "year": 2001,
+    "type": "show",
+    "titleKey": "show:314",
+    "tmdbId": 314,
+    "targetGenre": "Sci-Fi & Fantasy",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  },
+  {
+    "title": "Xena: Warrior Princess",
+    "year": 1995,
+    "type": "show",
+    "titleKey": "show:4616",
+    "tmdbId": 4616,
+    "targetGenre": "Sci-Fi & Fantasy",
+    "rawRating": 1,
+    "bucket": "not_interested"
+  }
+]

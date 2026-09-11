@@ -7,7 +7,7 @@
       "type": "movie",
       "interactionType": "dismiss",
       "reasonCode": "already_watched",
-      "reasonLabel": "Already watched and rated 10/10 — missing from the Trakt export (pre-dates his Trakt account or wasn't logged there)",
+      "reasonLabel": "Already watched and rated 10/10 \u2014 missing from the Trakt export (pre-dates his Trakt account or wasn't logged there)",
       "timestamp": "2026-08-21T19:15:00Z",
       "excludeFromRecommendations": true
     },
@@ -40,7 +40,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "too_urban",
-      "reasonLabel": "Urban crime-drama setting fatigue — checked against Bill's real loved-genre distribution before treating this as a genre signal (Crime/Drama are his #1/#2 loved genres, 105/47 loved titles) and confirmed a genre-level penalty would misfire badly (e.g. The Wire, 90/100 loved, is the same subject); not generalized into scoring, recorded as an exact-title exclusion only",
+      "reasonLabel": "Urban crime-drama setting fatigue \u2014 checked against Bill's real loved-genre distribution before treating this as a genre signal (Crime/Drama are his #1/#2 loved genres, 105/47 loved titles) and confirmed a genre-level penalty would misfire badly (e.g. The Wire, 90/100 loved, is the same subject); not generalized into scoring, recorded as an exact-title exclusion only",
       "timestamp": "2026-08-22T16:50:26.807Z",
       "excludeFromRecommendations": true
     },
@@ -51,7 +51,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "too_old",
-      "reasonLabel": "Passed over for feeling dated — checked against Bill's real loved-show-by-year distribution before treating release year as a generalizable signal and confirmed it would misfire (24 of his 99 loved shows are pre-2010, including Seinfeld '89/Oz '97/The Sopranos '99); not generalized into scoring, recorded as an exact-title exclusion only",
+      "reasonLabel": "Passed over for feeling dated \u2014 checked against Bill's real loved-show-by-year distribution before treating release year as a generalizable signal and confirmed it would misfire (24 of his 99 loved shows are pre-2010, including Seinfeld '89/Oz '97/The Sopranos '99); not generalized into scoring, recorded as an exact-title exclusion only",
       "timestamp": "2026-08-22T16:50:26.807Z",
       "excludeFromRecommendations": true
     },
@@ -62,7 +62,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "already_have_version_rated",
-      "reasonLabel": "A different version/edition of a show Bill has already watched and rated is sitting in library.json — this is the other one",
+      "reasonLabel": "A different version/edition of a show Bill has already watched and rated is sitting in library.json \u2014 this is the other one",
       "timestamp": "2026-08-22T16:50:26.807Z",
       "excludeFromRecommendations": true
     },
@@ -73,7 +73,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "too_urban",
-      "reasonLabel": "Urban crime-drama setting fatigue — checked against Bill's real loved-genre distribution before treating this as a genre signal (Crime/Drama are his #1/#2 loved genres, 105/47 loved titles) and confirmed a genre-level penalty would misfire badly (e.g. The Wire, 90/100 loved, is the same subject); not generalized into scoring, recorded as an exact-title exclusion only",
+      "reasonLabel": "Urban crime-drama setting fatigue \u2014 checked against Bill's real loved-genre distribution before treating this as a genre signal (Crime/Drama are his #1/#2 loved genres, 105/47 loved titles) and confirmed a genre-level penalty would misfire badly (e.g. The Wire, 90/100 loved, is the same subject); not generalized into scoring, recorded as an exact-title exclusion only",
       "timestamp": "2026-08-22T16:50:26.807Z",
       "excludeFromRecommendations": true
     },
@@ -84,7 +84,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "too_old",
-      "reasonLabel": "Passed over for feeling dated — checked against Bill's real loved-show-by-year distribution before treating release year as a generalizable signal and confirmed it would misfire (24 of his 99 loved shows are pre-2010, including Seinfeld '89/Oz '97/The Sopranos '99); not generalized into scoring, recorded as an exact-title exclusion only",
+      "reasonLabel": "Passed over for feeling dated \u2014 checked against Bill's real loved-show-by-year distribution before treating release year as a generalizable signal and confirmed it would misfire (24 of his 99 loved shows are pre-2010, including Seinfeld '89/Oz '97/The Sopranos '99); not generalized into scoring, recorded as an exact-title exclusion only",
       "timestamp": "2026-08-22T16:50:26.807Z",
       "excludeFromRecommendations": true
     },
@@ -95,7 +95,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "too_old",
-      "reasonLabel": "Passed over for feeling dated — checked against Bill's real loved-show-by-year distribution before treating release year as a generalizable signal and confirmed it would misfire (24 of his 99 loved shows are pre-2010, including Seinfeld '89/Oz '97/The Sopranos '99); not generalized into scoring, recorded as an exact-title exclusion only",
+      "reasonLabel": "Passed over for feeling dated \u2014 checked against Bill's real loved-show-by-year distribution before treating release year as a generalizable signal and confirmed it would misfire (24 of his 99 loved shows are pre-2010, including Seinfeld '89/Oz '97/The Sopranos '99); not generalized into scoring, recorded as an exact-title exclusion only",
       "timestamp": "2026-08-22T16:50:26.807Z",
       "excludeFromRecommendations": true
     },
@@ -106,7 +106,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "too_urban",
-      "reasonLabel": "Urban crime-drama setting fatigue — checked against Bill's real loved-genre distribution before treating this as a genre signal (Crime/Drama are his #1/#2 loved genres, 105/47 loved titles) and confirmed a genre-level penalty would misfire badly (e.g. The Wire, 90/100 loved, is the same subject); not generalized into scoring, recorded as an exact-title exclusion only",
+      "reasonLabel": "Urban crime-drama setting fatigue \u2014 checked against Bill's real loved-genre distribution before treating this as a genre signal (Crime/Drama are his #1/#2 loved genres, 105/47 loved titles) and confirmed a genre-level penalty would misfire badly (e.g. The Wire, 90/100 loved, is the same subject); not generalized into scoring, recorded as an exact-title exclusion only",
       "timestamp": "2026-08-22T16:50:26.807Z",
       "excludeFromRecommendations": true
     },
@@ -117,7 +117,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "too_urban",
-      "reasonLabel": "Urban crime-drama setting fatigue — checked against Bill's real loved-genre distribution before treating this as a genre signal (Crime/Drama are his #1/#2 loved genres, 105/47 loved titles) and confirmed a genre-level penalty would misfire badly (e.g. The Wire, 90/100 loved, is the same subject); not generalized into scoring, recorded as an exact-title exclusion only",
+      "reasonLabel": "Urban crime-drama setting fatigue \u2014 checked against Bill's real loved-genre distribution before treating this as a genre signal (Crime/Drama are his #1/#2 loved genres, 105/47 loved titles) and confirmed a genre-level penalty would misfire badly (e.g. The Wire, 90/100 loved, is the same subject); not generalized into scoring, recorded as an exact-title exclusion only",
       "timestamp": "2026-08-22T16:50:26.807Z",
       "excludeFromRecommendations": true
     },
@@ -139,7 +139,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "too_urban",
-      "reasonLabel": "Urban crime-drama setting fatigue — checked against Bill's real loved-genre distribution before treating this as a genre signal (Crime/Drama are his #1/#2 loved genres, 105/47 loved titles) and confirmed a genre-level penalty would misfire badly (e.g. The Wire, 90/100 loved, is the same subject); not generalized into scoring, recorded as an exact-title exclusion only",
+      "reasonLabel": "Urban crime-drama setting fatigue \u2014 checked against Bill's real loved-genre distribution before treating this as a genre signal (Crime/Drama are his #1/#2 loved genres, 105/47 loved titles) and confirmed a genre-level penalty would misfire badly (e.g. The Wire, 90/100 loved, is the same subject); not generalized into scoring, recorded as an exact-title exclusion only",
       "timestamp": "2026-08-22T16:50:26.807Z",
       "excludeFromRecommendations": true
     },
@@ -161,7 +161,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "already_watched",
-      "reasonLabel": "Bill has already watched this — missing from the Trakt export (not logged there, same gap the Gladiator (2000) exclusion documented)",
+      "reasonLabel": "Bill has already watched this \u2014 missing from the Trakt export (not logged there, same gap the Gladiator (2000) exclusion documented)",
       "timestamp": "2026-08-22T16:50:26.807Z",
       "excludeFromRecommendations": true
     },
@@ -172,7 +172,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "already_watched",
-      "reasonLabel": "Bill has already watched this — missing from the Trakt export (not logged there, same gap the Gladiator (2000) exclusion documented)",
+      "reasonLabel": "Bill has already watched this \u2014 missing from the Trakt export (not logged there, same gap the Gladiator (2000) exclusion documented)",
       "timestamp": "2026-08-22T16:50:26.807Z",
       "excludeFromRecommendations": true
     },
@@ -183,7 +183,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "already_watched",
-      "reasonLabel": "Bill has already watched this — missing from the Trakt export (not logged there, same gap the Gladiator (2000) exclusion documented)",
+      "reasonLabel": "Bill has already watched this \u2014 missing from the Trakt export (not logged there, same gap the Gladiator (2000) exclusion documented)",
       "timestamp": "2026-08-22T16:50:26.807Z",
       "excludeFromRecommendations": true
     },
@@ -194,7 +194,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "too_old",
-      "reasonLabel": "Passed over for feeling dated — checked against Bill's real loved-show-by-year distribution before treating release year as a generalizable signal and confirmed it would misfire (24 of his 99 loved shows are pre-2010, including Seinfeld '89/Oz '97/The Sopranos '99); not generalized into scoring, recorded as an exact-title exclusion only",
+      "reasonLabel": "Passed over for feeling dated \u2014 checked against Bill's real loved-show-by-year distribution before treating release year as a generalizable signal and confirmed it would misfire (24 of his 99 loved shows are pre-2010, including Seinfeld '89/Oz '97/The Sopranos '99); not generalized into scoring, recorded as an exact-title exclusion only",
       "timestamp": "2026-08-22T16:50:26.807Z",
       "excludeFromRecommendations": true
     },
@@ -205,7 +205,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "too_hokey",
-      "reasonLabel": "Too hokey/campy — tried generalizing via genre/subgenre overlap (superhero subgenre, aggregate loved-weight 6) but a real scripts/eval.js run caught a regression: that entire weight comes from exactly Deadpool (10/10) and Deadpool 2 (9/10), both real Bill favorites, so the penalty was hitting loved titles directly; reverted (see STYLE_DISLIKE_REASON_CODES's comment in engine.js) — recorded as an exact-title exclusion only",
+      "reasonLabel": "Too hokey/campy \u2014 tried generalizing via genre/subgenre overlap (superhero subgenre, aggregate loved-weight 6) but a real scripts/eval.js run caught a regression: that entire weight comes from exactly Deadpool (10/10) and Deadpool 2 (9/10), both real Bill favorites, so the penalty was hitting loved titles directly; reverted (see STYLE_DISLIKE_REASON_CODES's comment in engine.js) \u2014 recorded as an exact-title exclusion only",
       "timestamp": "2026-08-24T13:11:14.176Z",
       "excludeFromRecommendations": true
     },
@@ -216,7 +216,7 @@
       "type": "movie",
       "interactionType": "dismiss",
       "reasonCode": "too_hokey",
-      "reasonLabel": "Too hokey/campy — generalization was tried and reverted for this whole group after a real regression (see DC's Legends of Tomorrow's entry for the full rationale); recorded as an exact-title exclusion only",
+      "reasonLabel": "Too hokey/campy \u2014 generalization was tried and reverted for this whole group after a real regression (see DC's Legends of Tomorrow's entry for the full rationale); recorded as an exact-title exclusion only",
       "timestamp": "2026-08-24T13:11:14.176Z",
       "excludeFromRecommendations": true
     },
@@ -227,7 +227,7 @@
       "type": "movie",
       "interactionType": "dismiss",
       "reasonCode": "too_hokey",
-      "reasonLabel": "Too hokey/campy — generalization was tried and reverted for this whole group after a real regression (see DC's Legends of Tomorrow's entry for the full rationale); recorded as an exact-title exclusion only",
+      "reasonLabel": "Too hokey/campy \u2014 generalization was tried and reverted for this whole group after a real regression (see DC's Legends of Tomorrow's entry for the full rationale); recorded as an exact-title exclusion only",
       "timestamp": "2026-08-24T13:11:14.176Z",
       "excludeFromRecommendations": true
     },
@@ -238,7 +238,7 @@
       "type": "movie",
       "interactionType": "dismiss",
       "reasonCode": "too_hokey",
-      "reasonLabel": "Too hokey/campy — generalization was tried and reverted for this whole group after a real regression (see DC's Legends of Tomorrow's entry for the full rationale); recorded as an exact-title exclusion only",
+      "reasonLabel": "Too hokey/campy \u2014 generalization was tried and reverted for this whole group after a real regression (see DC's Legends of Tomorrow's entry for the full rationale); recorded as an exact-title exclusion only",
       "timestamp": "2026-08-24T13:11:14.176Z",
       "excludeFromRecommendations": true
     },
@@ -249,7 +249,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "too_kiddish",
-      "reasonLabel": "Too young-skewing/juvenile in tone — grouped with too_hokey for a genre/subgenre generalization attempt that was reverted after a real scripts/eval.js regression (see STYLE_DISLIKE_REASON_CODES's comment in engine.js); recorded as an exact-title exclusion only",
+      "reasonLabel": "Too young-skewing/juvenile in tone \u2014 grouped with too_hokey for a genre/subgenre generalization attempt that was reverted after a real scripts/eval.js regression (see STYLE_DISLIKE_REASON_CODES's comment in engine.js); recorded as an exact-title exclusion only",
       "timestamp": "2026-08-24T13:11:14.176Z",
       "excludeFromRecommendations": true
     },
@@ -260,7 +260,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "too_low_brow",
-      "reasonLabel": "Perceived as lower-brow network procedural — checked against Bill's real loved-subgenre weights before deciding whether to generalize (procedural sits at loved-weight 26, crime-drama at 30 — Bill genuinely loves a lot of this content) and found it would misfire the same way too_urban did; not generalized into scoring, recorded as an exact-title exclusion only",
+      "reasonLabel": "Perceived as lower-brow network procedural \u2014 checked against Bill's real loved-subgenre weights before deciding whether to generalize (procedural sits at loved-weight 26, crime-drama at 30 \u2014 Bill genuinely loves a lot of this content) and found it would misfire the same way too_urban did; not generalized into scoring, recorded as an exact-title exclusion only",
       "timestamp": "2026-08-24T13:11:14.176Z",
       "excludeFromRecommendations": true
     },
@@ -271,7 +271,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "too_low_brow",
-      "reasonLabel": "Perceived as lower-brow network soap/procedural — same too_low_brow rationale as Person of Interest's entry (checked against Bill's real loved procedural/crime-drama weights, found it would misfire if generalized); not generalized into scoring, recorded as an exact-title exclusion only",
+      "reasonLabel": "Perceived as lower-brow network soap/procedural \u2014 same too_low_brow rationale as Person of Interest's entry (checked against Bill's real loved procedural/crime-drama weights, found it would misfire if generalized); not generalized into scoring, recorded as an exact-title exclusion only",
       "timestamp": "2026-08-24T13:11:14.176Z",
       "excludeFromRecommendations": true
     },
@@ -282,7 +282,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "too_low_brow",
-      "reasonLabel": "Perceived as lower-brow network procedural — same too_low_brow rationale as Person of Interest's entry (checked against Bill's real loved procedural/crime-drama weights, found it would misfire if generalized); not generalized into scoring, recorded as an exact-title exclusion only",
+      "reasonLabel": "Perceived as lower-brow network procedural \u2014 same too_low_brow rationale as Person of Interest's entry (checked against Bill's real loved procedural/crime-drama weights, found it would misfire if generalized); not generalized into scoring, recorded as an exact-title exclusion only",
       "timestamp": "2026-08-24T13:11:14.176Z",
       "excludeFromRecommendations": true
     },
@@ -326,7 +326,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "not_english_language",
-      "reasonLabel": "Passed over for feeling too foreign-language/subtitled, despite TMDB listing its originalLanguage as 'en' (a real English-language USA Network production, heavy Spanish dialogue/setting) — not a mappable TMDB language-field signal, so not generalized into scoring; recorded as an exact-title exclusion only",
+      "reasonLabel": "Passed over for feeling too foreign-language/subtitled, despite TMDB listing its originalLanguage as 'en' (a real English-language USA Network production, heavy Spanish dialogue/setting) \u2014 not a mappable TMDB language-field signal, so not generalized into scoring; recorded as an exact-title exclusion only",
       "timestamp": "2026-08-24T13:11:14.176Z",
       "excludeFromRecommendations": true
     },
@@ -359,7 +359,7 @@
       "type": "show",
       "interactionType": "dismiss",
       "reasonCode": "too_urban",
-      "reasonLabel": "Urban-setting fatigue (a comedy-drama, not a crime drama like the other too_urban titles — checked against Bill's real loved-genre distribution before treating this as a genre signal; not generalized into scoring, recorded as an exact-title exclusion only)",
+      "reasonLabel": "Urban-setting fatigue (a comedy-drama, not a crime drama like the other too_urban titles \u2014 checked against Bill's real loved-genre distribution before treating this as a genre signal; not generalized into scoring, recorded as an exact-title exclusion only)",
       "timestamp": "2026-08-25T13:49:10.000Z",
       "excludeFromRecommendations": true
     },
@@ -381,7 +381,7 @@
       "type": "movie",
       "interactionType": "dismiss",
       "reasonCode": "doesnt_look_good",
-      "reasonLabel": "Doesn't look good — Bill's own judgment call from the trailer/premise, not a mappable data field",
+      "reasonLabel": "Doesn't look good \u2014 Bill's own judgment call from the trailer/premise, not a mappable data field",
       "timestamp": "2026-08-27T12:34:26Z",
       "excludeFromRecommendations": true
     },
@@ -392,7 +392,7 @@
       "type": "movie",
       "interactionType": "dismiss",
       "reasonCode": "doesnt_look_good",
-      "reasonLabel": "Doesn't look good — Bill's own judgment call from the trailer/premise, not a mappable data field",
+      "reasonLabel": "Doesn't look good \u2014 Bill's own judgment call from the trailer/premise, not a mappable data field",
       "timestamp": "2026-08-27T12:34:26Z",
       "excludeFromRecommendations": true
     },
@@ -403,7 +403,7 @@
       "type": "movie",
       "interactionType": "dismiss",
       "reasonCode": "doesnt_look_good",
-      "reasonLabel": "Doesn't look good — Bill's own judgment call from the trailer/premise, not a mappable data field",
+      "reasonLabel": "Doesn't look good \u2014 Bill's own judgment call from the trailer/premise, not a mappable data field",
       "timestamp": "2026-08-27T12:34:26Z",
       "excludeFromRecommendations": true
     },
@@ -414,7 +414,7 @@
       "type": "movie",
       "interactionType": "dismiss",
       "reasonCode": "doesnt_look_good",
-      "reasonLabel": "Doesn't look good — Bill's own judgment call from the trailer/premise, not a mappable data field",
+      "reasonLabel": "Doesn't look good \u2014 Bill's own judgment call from the trailer/premise, not a mappable data field",
       "timestamp": "2026-08-27T12:34:26Z",
       "excludeFromRecommendations": true
     },
@@ -425,7 +425,7 @@
       "type": "movie",
       "interactionType": "dismiss",
       "reasonCode": "too_hokey",
-      "reasonLabel": "Too hokey — Bill's own judgment call from the trailer/premise, not a mappable data field",
+      "reasonLabel": "Too hokey \u2014 Bill's own judgment call from the trailer/premise, not a mappable data field",
       "timestamp": "2026-09-03T00:00:00Z",
       "excludeFromRecommendations": true
     },
@@ -436,7 +436,7 @@
       "type": "movie",
       "interactionType": "dismiss",
       "reasonCode": "too_comicbooky",
-      "reasonLabel": "Too comicbooky — part of Bill's broader stated dislike of mainstream superhero-ensemble movies; investigated as a possible genre/subgenre-level signal (see Session 64) and NOT generalized, since Bill's own real rating history contradicts a blanket superhero penalty (Deadpool 10/10, Watchmen 10/10, Marvel's Daredevil 9/10) the same way a prior session's 'too_hokey' generalization attempt already found — recorded as an exact-title exclusion only",
+      "reasonLabel": "Too comicbooky \u2014 part of Bill's broader stated dislike of mainstream superhero-ensemble movies; investigated as a possible genre/subgenre-level signal (see Session 64) and NOT generalized, since Bill's own real rating history contradicts a blanket superhero penalty (Deadpool 10/10, Watchmen 10/10, Marvel's Daredevil 9/10) the same way a prior session's 'too_hokey' generalization attempt already found \u2014 recorded as an exact-title exclusion only",
       "timestamp": "2026-09-03T00:00:00Z",
       "excludeFromRecommendations": true
     },
@@ -447,7 +447,7 @@
       "type": "movie",
       "interactionType": "dismiss",
       "reasonCode": "too_comicbooky",
-      "reasonLabel": "Too comicbooky — Bill's initial belief that he'd already rated this was checked against the real Sep 4 2026 Trakt export (198 movies, up from 168) and ruled out (absent from both library.json and watchlist.json, distinct from the separate 2016 'Suicide Squad' he did rate 4/10); Bill then confirmed the real reason is taste, same category as Zack Snyder's Justice League — not generalized into scoring per Session 64's findings, exact-title exclusion only",
+      "reasonLabel": "Too comicbooky \u2014 Bill's initial belief that he'd already rated this was checked against the real Sep 4 2026 Trakt export (198 movies, up from 168) and ruled out (absent from both library.json and watchlist.json, distinct from the separate 2016 'Suicide Squad' he did rate 4/10); Bill then confirmed the real reason is taste, same category as Zack Snyder's Justice League \u2014 not generalized into scoring per Session 64's findings, exact-title exclusion only",
       "timestamp": "2026-09-04T00:00:00Z",
       "excludeFromRecommendations": true
     },
@@ -458,7 +458,7 @@
       "type": "movie",
       "interactionType": "category_exclude",
       "reasonCode": "family_watch_list",
-      "reasonLabel": "Not a taste dismissal — added to Bill's separate Family Watch List (movies to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
+      "reasonLabel": "Not a taste dismissal \u2014 added to Bill's separate Family Watch List (movies to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
       "timestamp": "2026-09-05T00:00:00Z",
       "excludeFromRecommendations": true
     },
@@ -469,7 +469,7 @@
       "type": "movie",
       "interactionType": "category_exclude",
       "reasonCode": "family_watch_list",
-      "reasonLabel": "Not a taste dismissal — added to Bill's separate Family Watch List (movies to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
+      "reasonLabel": "Not a taste dismissal \u2014 added to Bill's separate Family Watch List (movies to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
       "timestamp": "2026-09-05T00:00:00Z",
       "excludeFromRecommendations": true
     },
@@ -480,7 +480,7 @@
       "type": "movie",
       "interactionType": "category_exclude",
       "reasonCode": "family_watch_list",
-      "reasonLabel": "Not a taste dismissal — added to Bill's separate Family Watch List (movies to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
+      "reasonLabel": "Not a taste dismissal \u2014 added to Bill's separate Family Watch List (movies to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
       "timestamp": "2026-09-05T01:00:00Z",
       "excludeFromRecommendations": true
     },
@@ -491,8 +491,426 @@
       "type": "show",
       "interactionType": "category_exclude",
       "reasonCode": "currently_watching_feature",
-      "reasonLabel": "Not a taste dismissal — Bill's own stated current watch (currentlyWatchingFeature.json), added to candidatePool.json only to get real TMDB enrichment for the Discover page hero card; excluded from recommendations/pruning so it never surfaces as a \"new pick\" for something he's already mid-episode on",
+      "reasonLabel": "Not a taste dismissal \u2014 Bill's own stated current watch (currentlyWatchingFeature.json), added to candidatePool.json only to get real TMDB enrichment for the Discover page hero card; excluded from recommendations/pruning so it never surfaces as a \"new pick\" for something he's already mid-episode on",
       "timestamp": "2026-09-09T00:00:00Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:118",
+      "title": "Charlie and the Chocolate Factory",
+      "year": 2005,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:1892",
+      "title": "Return of the Jedi",
+      "year": 1983,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:11",
+      "title": "Star Wars",
+      "year": 1977,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:1893",
+      "title": "Star Wars: Episode I - The Phantom Menace",
+      "year": 1999,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:1891",
+      "title": "The Empire Strikes Back",
+      "year": 1980,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:14048",
+      "title": "Man on Wire",
+      "year": 2008,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:13576",
+      "title": "This Is It",
+      "year": 2009,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:8844",
+      "title": "Jumanji",
+      "year": 1995,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:1593",
+      "title": "Night at the Museum",
+      "year": 2006,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:1955",
+      "title": "The Elephant Man",
+      "year": 1980,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:578",
+      "title": "Jaws",
+      "year": 1975,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:9552",
+      "title": "The Exorcist",
+      "year": 1973,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:694",
+      "title": "The Shining",
+      "year": 1980,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:1091",
+      "title": "The Thing",
+      "year": 1982,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:88",
+      "title": "Dirty Dancing",
+      "year": 1987,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 0 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:9762",
+      "title": "Step Up",
+      "year": 2006,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:8328",
+      "title": "Step Up 2: The Streets",
+      "year": 2008,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:15121",
+      "title": "The Sound of Music",
+      "year": 1965,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:18239",
+      "title": "The Twilight Saga: New Moon",
+      "year": 2009,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:28",
+      "title": "Apocalypse Now",
+      "year": 1979,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:935",
+      "title": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
+      "year": 1964,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:770",
+      "title": "Gone with the Wind",
+      "year": 1939,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:7555",
+      "title": "Rambo",
+      "year": 2008,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:11072",
+      "title": "Blazing Saddles",
+      "year": 1974,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:642",
+      "title": "Butch Cassidy and the Sundance Kid",
+      "year": 1969,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:581",
+      "title": "Dances with Wolves",
+      "year": 1990,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:6038",
+      "title": "Shanghai Knights",
+      "year": 2003,
+      "type": "movie",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:4482",
+      "title": "Bewitched",
+      "year": 1964,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:4610",
+      "title": "Hannah Montana",
+      "year": 2006,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:1660",
+      "title": "I Dream of Jeannie",
+      "year": 1965,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:5371",
+      "title": "iCarly",
+      "year": 2007,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:2426",
+      "title": "Angel",
+      "year": 1999,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:57243",
+      "title": "Doctor Who",
+      "year": 2005,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:19614",
+      "title": "It",
+      "year": 1990,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:2384",
+      "title": "Knight Rider",
+      "year": 1982,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:31295",
+      "title": "Misfits",
+      "year": 2009,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:314",
+      "title": "Star Trek: Enterprise",
+      "year": 2001,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:4616",
+      "title": "Xena: Warrior Princess",
+      "year": 1995,
+      "type": "show",
+      "interactionType": "dismiss",
+      "reasonCode": "declined_old_title_review",
+      "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
+      "timestamp": "2026-09-11T23:24:40Z",
       "excludeFromRecommendations": true
     }
   ]
