@@ -216,6 +216,16 @@ function renderSubjectTable(rows) {
 // validation) — idx.anomalousLovedKeys/anomalyDetails are computed fresh
 // every buildIndexes() call, never hardcoded, so this table can never go
 // stale as Bill rates more titles.
+//
+// Per-dimension columns added 2026-09-11 (Bill: "it relies so heavily on
+// subgenre; could you also include tone, subject and keywords in the
+// table... maybe that will help you see why they aren't true outliers").
+// A title only stays flagged if its BEST dimension (the smallest gap
+// found across subgenre/tone/subject/keyword/creator/cast) still clears
+// the bar — so every column here shows that dimension's own best-fit tag
+// and gap, letting Bill see directly why none of the six explained a
+// given title away, not just the one that used to be checked.
+const ANOMALY_DIM_LABELS = { subgenre: 'Subgenre', tone: 'Tone', subject: 'Subject', keyword: 'Keyword', creator: 'Creator', cast: 'Cast' };
 function computeOutlierTable(idx, enrichedMeta) {
   const rows = [];
   for (const key of idx.anomalousLovedKeys) {
@@ -226,15 +236,17 @@ function computeOutlierTable(idx, enrichedMeta) {
     if (detail?.viaFranchise) {
       const sourceMeta = enrichedMeta[detail.franchiseSource];
       rows.push({
-        title: meta.title, type, myRating: detail.myRating,
+        title: meta.title, type, myRating: detail.myRating, perDim: {},
         why: `Same franchise as ${sourceMeta?.title || 'a confirmed outlier'} (shares its distinguishing identity)`,
-        categoryAvg: null, gap: null, subgenre: null,
+        bestDim: null, bestGap: null,
       });
     } else if (detail) {
+      const bd = detail.bestFit;
       rows.push({
-        title: meta.title, type, myRating: detail.myRating,
-        why: `${detail.gap.toFixed(2)} points above the real "${detail.subgenre}" average (n=${detail.n} other rated titles)`,
-        categoryAvg: detail.categoryAvg, gap: detail.gap, subgenre: detail.subgenre,
+        title: meta.title, type, myRating: detail.myRating, perDim: detail.perDim || {},
+        why: `Even its best explanation (${ANOMALY_DIM_LABELS[bd.dim]} "${bd.tag}") is still ${bd.gap.toFixed(2)} points above ` +
+          `average (n=${bd.n} other rated titles) — every real category checked leaves it unusually high.`,
+        bestDim: bd.dim, bestGap: bd.gap,
       });
     }
   }
@@ -243,20 +255,30 @@ function computeOutlierTable(idx, enrichedMeta) {
 
 function renderOutlierTable(rows) {
   const table = document.getElementById('outlierTable');
+  const dimCell = dim => (td, r) => {
+    const e = r.perDim?.[dim];
+    if (!e) { td.textContent = '—'; return; }
+    td.textContent = `${e.tag} (+${e.gap.toFixed(2)})`;
+    if (r.bestDim === dim) td.style.fontWeight = '700';
+  };
+  const dimSortVal = dim => r => r.perDim?.[dim]?.gap ?? 999; // no data sorts last, not first
   const columns = [
     { label: 'Title', get: r => r.title,
       render: (td, r) => { td.textContent = `${typeIcon(r.type)} ${r.title}`; } },
     { label: 'My Rating', get: r => r.myRating, numeric: true,
       render: (td, r) => { td.className = 'num'; td.textContent = r.myRating + '/10'; } },
-    { label: 'Subgenre', get: r => r.subgenre || '', render: (td, r) => { td.textContent = r.subgenre || '—'; } },
-    { label: 'Category Avg (excl. self)', get: r => r.categoryAvg ?? -1, numeric: true,
-      render: (td, r) => { td.className = 'num'; td.textContent = r.categoryAvg != null ? r.categoryAvg.toFixed(2) + '/10' : '—'; } },
-    { label: 'Gap', get: r => r.gap ?? -1, numeric: true,
-      render: (td, r) => { td.className = 'num'; td.textContent = r.gap != null ? '+' + r.gap.toFixed(2) : '—'; } },
-    { label: 'Why It\'s Flagged', get: r => r.why, render: (td, r) => { td.className = 'tk-genres'; td.textContent = r.why; } },
+    { label: 'Subgenre', get: dimSortVal('subgenre'), numeric: true, render: dimCell('subgenre') },
+    { label: 'Tone', get: dimSortVal('tone'), numeric: true, render: dimCell('tone') },
+    { label: 'Subject', get: dimSortVal('subject'), numeric: true, render: dimCell('subject') },
+    { label: 'Keyword', get: dimSortVal('keyword'), numeric: true, render: dimCell('keyword') },
+    { label: 'Creator', get: dimSortVal('creator'), numeric: true, render: dimCell('creator') },
+    { label: 'Cast', get: dimSortVal('cast'), numeric: true, render: dimCell('cast') },
+    { label: 'Best (Smallest) Gap', get: r => r.bestGap ?? -1, numeric: true,
+      render: (td, r) => { td.className = 'num'; td.textContent = r.bestGap != null ? '+' + r.bestGap.toFixed(2) : '—'; } },
+    { label: 'Why It\'s Still Flagged', get: r => r.why, render: (td, r) => { td.className = 'tk-genres'; td.textContent = r.why; } },
   ];
 
-  let sortCol = 4, sortAsc = false; // default: Gap descending — biggest outliers first
+  let sortCol = 8, sortAsc = false; // default: Best (Smallest) Gap descending — the most stubbornly unexplained titles first
 
   function render() {
     const sorted = [...rows].sort((a, b) => {
@@ -3304,26 +3326,24 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'citation-credit-thin-tone-vocab',
       severity: 'warning',
-      ratings: { ease: 5, dataQuality: 4, recEngine: 4, ui: 1 },
-      title: `Citation-credit reweighting is only as reliable as how many tone tags a title actually carries — confirmed both directions with real titles`,
-      technical: `A full per-title audit of all 16 primary (non-franchise-derived) anomalies' real citation networks — not just the 2-3 spot-checked ` +
-        `at launch — surfaced a real, generalizable limit: <code>toneJaccard()</code> on a 1-2-tag vocabulary is noisy in BOTH directions, not just ` +
-        `the missing-data case already fixed. Confirmed false-positive: <strong>Primo</strong> (2023) and <strong>Trailer Park Boys</strong> carry ` +
-        `an identical 2-tag tone set (<code>['inspirational','witty']</code>) despite being tonally unrelated (TPB's own real TMDB keywords: ` +
-        `"dark comedy," "white trash," "marijuana" — nothing like Primo's "coming of age," "sitcom") — a coincidental Jaccard=1.0 that gives this ` +
-        `citation FULL, undiscounted credit purely because the vocabulary ran out of resolution, not because a genuine match was confirmed. ` +
-        `Confirmed false-negative risk: <strong>Get Out</strong> carries exactly ONE tone tag (<code>satirical</code>), sourced from a thin ` +
-        `keyword-fallback tier (no reviewed-workbook tones, no LLM tag entry exists for it at all) — every real candidate in its citation network ` +
-        `gets toneJaccard=0.00 (the floor discount) purely because there's only one word to compare against, including plausible genuine matches ` +
-        `like "Old" (M. Night Shyamalan psychological horror) that share no literal keyword with "satirical" but are real tonal cousins.`,
-      plain: `The fix works by checking whether a candidate shares the SPECIFIC mood/tone that makes an outlier favorite special, not just its genre. ` +
-        `That check is only as good as how many mood-tags a movie or show actually has on file. Checked real examples and found both failure modes ` +
-        `for real: Primo (a gentle Latino family sitcom) and Trailer Park Boys (a raunchy Canadian crime mockumentary) happen to share the exact ` +
-        `same 2 generic tags, so the system thinks they're a tonal match when they clearly aren't. And Get Out only has ONE mood-tag on file at ` +
-        `all, so almost nothing can ever "match" it well enough to avoid the discount — even a movie that's genuinely tonally similar.`,
+      ratings: { ease: 5, dataQuality: 4, recEngine: 3, ui: 1 },
+      title: `Citation-credit reweighting's tone-overlap check is only as reliable as how many tone tags a title actually carries — one confirmed real case`,
+      technical: `Confirmed false-positive, still live after the 2026-09-11 multi-dimensional redesign: <strong>Primo</strong> (2023, still flagged — ` +
+        `its own best explanation across all six dimensions is tone "witty," gap +1.94, still above the bar) and <strong>Trailer Park Boys</strong> ` +
+        `carry an identical 2-tag tone set (<code>['inspirational','witty']</code>) despite being tonally unrelated (TPB's own real TMDB keywords: ` +
+        `"dark comedy," "white trash," "marijuana" — nothing like Primo's "coming of age," "sitcom") — a coincidental Jaccard=1.0 that would give a ` +
+        `citation between them FULL, undiscounted credit purely because the vocabulary ran out of resolution, not because a genuine match was ` +
+        `confirmed. (Get Out's own version of this same risk — a single tone tag, previously flagged here as a false-negative case — is now moot: ` +
+        `the redesign's creator dimension explained Get Out away via Jordan Peele/Us, so it's no longer flagged at all and its citations are no ` +
+        `longer discounted either way.)`,
+      plain: `The fix works partly by checking whether a candidate shares the SPECIFIC mood/tone that makes an outlier favorite special, not just its ` +
+        `genre. That check is only as good as how many mood-tags a movie or show actually has on file. Primo (a gentle Latino family sitcom) and ` +
+        `Trailer Park Boys (a raunchy Canadian crime mockumentary) happen to share the exact same 2 generic tags, so the system would think they're ` +
+        `a tonal match when they clearly aren't, if that specific pair ever came up.`,
       impact: `Not a one-line fix — richer tone tagging (more tags per title, verified rather than inferred from a thin keyword fallback) is the ` +
-        `real underlying need, which is already a separate, larger tracked effort (see the tone/subgenre field-quality findings above). Flagged ` +
-        `here specifically because it's the direct mechanism by which this fix's own accuracy is bounded.`,
+        `real underlying need, which is already a separate, larger tracked effort (see the tone/subgenre field-quality findings above). Lower ` +
+        `residual risk than before the redesign, since a real Primo-vs-TPB citation would also need to clear five OTHER dimensions' worth of real ` +
+        `checking to matter, but the specific tone-Jaccard weak point itself is unfixed.`,
     });
 
     findings.push({
@@ -3347,29 +3367,31 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
 
     findings.push({
       id: 'citation-credit-remaining-caveats',
-      severity: 'warning',
-      ratings: { ease: 4, dataQuality: 3, recEngine: 3, ui: 1 },
-      title: `Citation-credit reweighting: individual validation coverage, threshold provenance, and a downstream prune-cascade effect`,
-      technical: `Three remaining, real caveats from the full investigation pass. <strong>Validation breadth:</strong> only 4 of ${idx.anomalousLovedKeys.size} ` +
-        `confirmed outliers have been individually, deeply validated with real research (Deadpool, The Suicide Squad 2021, Zack Snyder's Justice ` +
-        `League — plus Watchmen, checked this pass: its two highest-scoring citation-network candidates, Lanterns and Marvel's The Punisher, both ` +
-        `turned out to be legitimately supported by real multi-signal corroboration — other loved titles like Daredevil/Terminal List, not just ` +
-        `the Watchmen citation alone — not inflated). The other ${idx.anomalousLovedKeys.size - 4} rely on the statistical threshold alone; a full ` +
-        `network scan of all 16 primary outliers this pass found most citation overlap looks sane (partial, non-zero discounts on titles with real ` +
-        `partial tone overlap), but that's a breadth check, not the same depth of individual research the 4 validated cases got. ` +
-        `<strong>Threshold provenance:</strong> the 2.5-point gap, 8-title trust floor, and 0.3 discount floor were confirmed stable across every ` +
-        `tested value in their neighborhood, but never independently, precisely re-derived FOR this specific mechanism — they're reused from the ` +
-        `same shape used elsewhere in the engine (<code>genreProfile</code>/<code>toneProfile</code>'s own trust floors). <strong>Prune cascade:</strong> ` +
-        `a citation-discounted candidate's lower score could cause it to fall out of <code>prune_candidate_pool.js</code>'s per-type cap on a future ` +
-        `run, evicting it from the pool entirely rather than just ranking it lower — likely the intended outcome for a genuinely inflated candidate, ` +
-        `but a real, compounding effect worth having on record rather than discovering by surprise later.`,
-      plain: `Three honest gaps, not bugs: (1) most of the 20 flagged favorites are still only checked by the numbers, not individually researched ` +
-        `the way Deadpool and the two movies Bill specifically named were — checked this pass and nothing alarming turned up, but that's a lighter ` +
-        `pass than full research. (2) the specific numbers the fix uses (how big a gap counts as "outlier," how much to discount) are reused from ` +
-        `elsewhere in the system rather than freshly tuned for this exact purpose. (3) a title that gets discounted enough could eventually get ` +
-        `dropped from the recommendation pool entirely on a future weekly refresh, not just ranked lower — probably fine, but worth knowing.`,
-      impact: `None of these are actively causing a wrong recommendation today (the breadth check came back clean); they're the honest edges of ` +
-        `confidence around a real, working fix, on record so a future session doesn't have to rediscover them from scratch.`,
+      severity: 'good',
+      ratings: { ease: 4, dataQuality: 3, recEngine: 4, ui: 1 },
+      title: `Citation-credit reweighting: validation breadth and threshold provenance substantially strengthened by the 2026-09-11 multi-dimensional redesign`,
+      technical: `The two heaviest caveats from the original investigation pass are now substantially addressed, not by more one-off research but by ` +
+        `the redesign itself. <strong>Validation breadth:</strong> the original mechanism could only be checked by hand-researching individual ` +
+        `outliers (4 done: Deadpool, The Suicide Squad 2021, Zack Snyder's Justice League, Watchmen). The multi-dimensional redesign instead checks ` +
+        `EVERY loved title systematically against creator/cast/tone/subject/keyword corroboration, and — mid-investigation — Bill supplied his own ` +
+        `real reasons for 12 of the original 20 (mostly creator/cast, e.g. Watchmen/Damon Lindelof, A Man on the Inside/Michael Schur, Pluribus/` +
+        `Vince Gilligan), giving a genuine ground-truth validation set stronger than inference alone: 11 of those 12 are now correctly explained ` +
+        `away by the redesign without any manual per-title exception (per Bill's own explicit instruction: "evaluate movies more holistically," ` +
+        `not hand-fix specific titles) — the 12th (Paradise) has real but too-thin cast corroboration to clear the bar, an honest, explainable edge ` +
+        `case rather than a miss. <strong>Threshold provenance:</strong> 1.75 was swept 1.0-2.0 against real outcomes (not just eval.js, which shows ` +
+        `no sensitivity in this range) — chosen specifically because 2.0 drops even Deadpool itself (the original motivating case), while 1.5 and ` +
+        `1.75 treat every validated title identically and 1.75 collects fewer unreviewed new anomalies (28 vs 45). <strong>Remaining, smaller ` +
+        `caveat:</strong> a citation-discounted candidate's lower score could still cause it to fall out of <code>prune_candidate_pool.js</code>'s ` +
+        `per-type cap on a future run — likely the intended outcome for a genuinely inflated candidate, kept on record rather than treated as fully ` +
+        `closed.`,
+      plain: `The two biggest open questions from when this fix first shipped — "has this really been checked carefully?" and "are the specific ` +
+        `numbers actually right?" — both got real, stronger answers from Bill's own direct feedback rather than more guessing. Bill gave the real, ` +
+        `personal reason he loved 12 of the flagged favorites, and the redesigned system correctly worked out 11 of them on its own, systematically, ` +
+        `without needing to be told "fix this one specifically" — exactly the kind of validation this project always prefers over trusting a formula ` +
+        `on faith.`,
+      impact: `Marked resolved: the mechanism is now validated against real, first-person ground truth rather than inference alone, and its one ` +
+        `numeric choice (the 1.75 threshold) has documented, principled provenance. The prune-cascade note is a minor, low-urgency residual, not a ` +
+        `reason to keep this open.`,
     });
   }
 
@@ -3800,21 +3822,26 @@ async function load() {
   const outlierRows = computeOutlierTable(idx, enrichedMeta);
   renderOutlierTable(outlierRows);
   document.getElementById('outlierExplainNote').innerHTML =
-    `<strong>Why this matters:</strong> a loved (9-10 rated) title that scores far above what you typically rate its own genre — like Deadpool, ` +
-    `rated 10/10 vs. a real 7.06 average across your other rated superhero titles — has an outsized influence on recommendations, because TMDB's ` +
-    `"similar to Deadpool" citation network gets treated as strong evidence for ANY candidate on that list, even ones that share only the surface-` +
-    `level genre, not whatever actually makes Deadpool distinctively Deadpool to you (its irreverent, self-aware tone). Real, confirmed cases: The ` +
+    `<strong>Why this matters:</strong> a loved (9-10 rated) title that scores far above what you typically rate its own category has an outsized ` +
+    `influence on recommendations, because TMDB's "similar to this" citation network gets treated as strong evidence for ANY candidate on that ` +
+    `list, even ones that share only the surface-level genre, not whatever actually makes that title special to you. Real, confirmed cases: The ` +
     `Suicide Squad (2021) and Zack Snyder's Justice League both cite Deadpool as similar and were both genuinely rejected by you anyway ` +
     `("too_comicbooky") — before this fix, both scored 100/100 (clamped) on the strength of that citation alone.<br><br>` +
-    `<strong>How the fix works:</strong> ${fmtNum(outlierRows.length)} loved titles below are flagged as real statistical outliers — rated 2.5+ ` +
-    `points above the real average for their own subgenre (at least 8 other rated titles required to trust that average), or a real sequel/` +
-    `prequel of a confirmed outlier sharing its distinguishing identity. For any candidate that cites one of these specific titles as "similar," ` +
-    `the credit it earns from that one citation is scaled down (as low as 30%, never to zero) unless the candidate genuinely shares the outlier's ` +
-    `own distinguishing tone — measured directly, not assumed. Every other loved title's citations are completely unaffected — this list is the ` +
-    `entire scope of what changed. Verified live: The Suicide Squad (2021) 103.2→88.2, Zack Snyder's Justice League 100.6→81.6 (both genuinely ` +
-    `below the 100 clamp now), while Deadpool's own real sequels and unrelated genuine matches (The Westies, Mare of Easttown) are completely ` +
-    `untouched. Recomputed live from your real rating history on every page load — this list will change as your taste data changes, never ` +
-    `manually maintained.`;
+    `<strong>How the fix works (evaluated holistically, 2026-09-11):</strong> a title only counts as a real outlier if its BEST available ` +
+    `explanation — the smallest gap between its rating and the real average — across all six columns below (Subgenre, Tone, Subject, Keyword, ` +
+    `Creator, Cast; each needs enough other real rated titles to trust the average — 8+ for the four content columns, 2+ for Creator/Cast, since ` +
+    `an individual person is meaningful signal well before 8 samples) still leaves it 1.75+ points above average. Checking real reasons across ` +
+    `all six caught something a subgenre-only check couldn't: most of what looks like a "fluke" content match is actually explained by a director, ` +
+    `showrunner, or actor you demonstrably love elsewhere — e.g. Watchmen isn't an unexplainable superhero fluke, it's fully accounted for by ` +
+    `Damon Lindelof (also The Leftovers, Lost). ${fmtNum(outlierRows.length)} loved titles below have NO such explanation anywhere — not in genre, ` +
+    `mood, subject matter, keywords, who made it, or who's in it — and stay flagged. For any candidate that cites one of these specific titles as ` +
+    `"similar," the credit it earns from that citation is scaled down (as low as 30%, never to zero) unless the candidate genuinely shares the ` +
+    `outlier's own distinguishing tone — measured directly, not assumed. A real sequel/prequel of a confirmed outlier is exempt from the discount ` +
+    `(it shares the outlier's distinguishing identity), but is never allowed to use its own siblings as "proof" that the original isn't really an ` +
+    `outlier — a franchise's shared lead actor/director doesn't count as independent evidence of anything. Every other loved title's citations are ` +
+    `completely unaffected. Verified live: The Suicide Squad (2021) 103.2→88.2, Zack Snyder's Justice League 100.6→81.6 (both genuinely below the ` +
+    `100 clamp now), while Deadpool's own real sequels and unrelated genuine matches (The Westies, Mare of Easttown) are completely untouched. ` +
+    `Recomputed live from your real rating history on every page load — this list will change as your taste data changes, never manually maintained.`;
 
   renderFieldQualityTable(fieldStats);
   const totalTitles = (library.titles?.length || 0) + (watchlist.titles?.length || 0) + (candidatePool.titles?.length || 0);

@@ -499,10 +499,17 @@ similar-title match above:
   else if either side has zero tone tags: multiplier = 0.65  (unknown — see below)
   else: multiplier = 0.3 + 0.7 × toneJaccard(candidate, cited-loved-title)
 
-anomalousLovedKeys = every myRating>=9 title rated 2.5+ points above its
-own subgenre's average (8+ other rated titles required to trust the
-average) — live-computed every buildIndexes() call, not hardcoded —
-plus any loved title sharing a belongsToCollection with a confirmed one.
+anomalousLovedKeys = every myRating>=9 title whose BEST explanation —
+the smallest gap between its rating and the real average, across all
+six dimensions below — still clears 1.75:
+  subgenre / tone / subject / keyword   (8+ other rated titles required)
+  creator / cast                        (2+ other rated titles required,
+                                          excluding any title sharing this
+                                          title's own belongsToCollection)
+plus any loved title sharing a belongsToCollection with a confirmed one
+(franchise expansion — see below). Live-computed every buildIndexes()
+call, never hardcoded. See "Multi-dimensional redesign" below for why
+subgenre-only was replaced.
 ```
 **Missing-tone-data fix (2026-09-10, same day as launch):** a real post-
 ship audit (Bill: "double check what you did... what are some potential
@@ -557,6 +564,50 @@ Note this alone doesn't guarantee a discounted candidate drops out of a
 separate, already-tracked issue) that even a moderately-scored,
 honestly-discounted movie can still be competitive; the fix corrects the
 *signal*, not the size of the pool it's competing in.
+
+**Multi-dimensional redesign (2026-09-11):** Bill: "it relies so heavily
+on subgenre; could you also include tone, subject and keywords... maybe
+that will help you see why they aren't true outliers" — then, mid-
+investigation, supplied his own real reasons for 12 of the original 20
+outliers, evaluated holistically rather than as a request for manual
+per-title exceptions ("I don't want you to manually make any changes
+based on this, I want you to evaluate movies more holistically; these
+are some examples you can draw from"). Mostly creator/cast affinity
+(Watchmen: "producer was the same guy from lost" — Damon Lindelof, also
+The Leftovers/Lost; A Man on the Inside: "love michael schur comedies" —
+also Brooklyn Nine-Nine/Parks and Rec; Pluribus: "vince gilligan" — also
+Breaking Bad/Better Call Saul; several "the actors"), not subgenre at
+all. The original design picked each title's single WORST-fitting
+subgenre (largest gap) — but every loved (9-10) title is, by
+construction, near the top of Bill's whole rating scale, so it shows
+SOME positive gap against almost any category average; picking the
+worst one manufactures an "anomaly" out of titles that fit comfortably
+into a different, equally real categorization. Redesigned to require the
+BEST explanation across all six dimensions above to still clear the bar
+— confirmed via a live 20-title audit that adding creator/cast explained
+away far more than tone/subject/keyword alone (16→10 of the original 20
+at the shipped threshold; of the 12 Bill personally named a reason for,
+only 4 remain — Paradise/Primo have real but too-thin cast/creator
+corroboration to clear 1.75; Pitch Perfect/A Star Is Born's real reason,
+"contemporary musicals," is a genuine taxonomy gap — see the
+SUBGENRE_KEYWORDS 'musical' entry — not a scoring bug). Threshold (1.75)
+swept 1.0-2.0 against `scripts/eval.js`: no real sensitivity in that
+range (same as CITATION_WEIGHT_UNKNOWN's own sweep the day before), so
+picked against the real, named outcome instead — at 2.0, even Deadpool
+itself drops out (the original motivating case); 1.5 and 1.75 treat
+every validated title identically but 1.75 collects fewer new,
+unreviewed anomalies overall (28 vs 45 total).
+
+**A real bug caught before shipping, not after:** creator/cast
+corroboration initially had no franchise exclusion — Ryan Reynolds
+"explained away" Deadpool using nothing but Deadpool 2/Deadpool &
+Wolverine, which is circular (the same identity appearing in its own
+sequels, not independent taste evidence), and silently un-flagged
+Deadpool entirely until a same-`belongsToCollection` exclusion was added
+to the creator/cast corroboration pool specifically (content dimensions
+don't need this — a franchise sharing a subgenre/tone tag with its own
+sequels is a real, non-circular pattern, unlike sharing a literal
+person's identity).
 
 This mechanism only discounts a citation when the cited loved title is
 itself a confirmed statistical outlier (e.g. Deadpool, rated 10/10 vs. a
