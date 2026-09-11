@@ -307,46 +307,68 @@ def extract_entry(kind, data):
         # comment for why plain `credits` isn't enough for shows) if a
         # slot remains, capped at CREATOR_CREDITS_CAP total (raised 2->3
         # the same session — see the movie-side comment above for the
-        # real Star City/For All Mankind regression that caused it). Ranked
-        # by total episode count when more than one EP candidate exists,
-        # so the person with the most real, sustained involvement wins the
-        # one available slot, not whoever TMDB happens to list first.
-        # TMDB's aggregate_credits crew shape isn't independently
-        # verifiable from this sandbox (api.themoviedb.org is blocked here
-        # the same as every other TMDB endpoint) — written defensively to
-        # handle either a documented `jobs` array (a person can hold
-        # multiple job titles across a show's run) or a flat `job` string,
-        # verified for real once this runs via the GitHub Action against
-        # live data, same as every other TMDB-shaped assumption in this
-        # file.
-        creator_credits = list(entry['createdBy'][:CREATOR_CREDITS_CAP])
-        if len(creator_credits) < CREATOR_CREDITS_CAP:
-            agg_crew = ((data.get('aggregate_credits') or {}).get('crew')) or []
-            ep_candidates = []
-            for c in agg_crew:
-                name = c.get('name')
-                if not name or name in creator_credits:
-                    continue
-                jobs = c.get('jobs')
-                if isinstance(jobs, list):
-                    ep_jobs = [j for j in jobs if j.get('job') == 'Executive Producer']
-                    if not ep_jobs:
-                        continue
-                    episode_count = max((j.get('episode_count') or 0) for j in ep_jobs)
-                elif c.get('job') == 'Executive Producer':
-                    episode_count = c.get('total_episode_count') or c.get('episode_count') or 0
-                else:
-                    continue
-                ep_candidates.append((episode_count, name))
-            ep_candidates.sort(key=lambda x: -x[0])
-            seen = set(creator_credits)
-            for _, name in ep_candidates:
-                if name in seen:
-                    continue
-                creator_credits.append(name)
-                seen.add(name)
-                if len(creator_credits) >= CREATOR_CREDITS_CAP:
-                    break
+        # real Star City/For All Mankind regression that caused it).
+        #
+        # Which N to keep, when there's a real choice to make (2026-09-11,
+        # Bill: "use your best judgement on which ones to include"): every
+        # name — createdBy AND any bonus EP candidate alike — is ranked by
+        # the SAME real, measurable signal: total episode count from
+        # aggregate_credits (covers the show's whole run, not just its
+        # latest season — see tmdb_detail()'s comment for why that
+        # distinction matters). This replaces a naive "keep whichever
+        # names TMDB happened to list first" truncation, which was caught
+        # doing something real and wrong on a real example: Ted Lasso's 4
+        # true co-creators (Bill Lawrence, Jason Sudeikis, Joe Kelly,
+        # Brendan Hunt) would keep the first 3 in TMDB's listed order and
+        # drop Brendan Hunt specifically — arbitrary, not a judgment call
+        # at all. A createdBy name absent from aggregate_credits entirely
+        # (some real, obscure, or catalog-only credits genuinely are) is
+        # kept at the back of the ranking rather than dropped outright,
+        # so a data gap in the ranking signal never costs a real createdBy
+        # credit the old code would have kept. TMDB's aggregate_credits
+        # crew shape isn't independently verifiable from this sandbox
+        # (api.themoviedb.org is blocked here the same as every other
+        # TMDB endpoint) — written defensively to handle either a
+        # documented `jobs` array (a person can hold multiple job titles
+        # across a show's run) or a flat `job` string, verified for real
+        # once this runs via the GitHub Action against live data, same as
+        # every other TMDB-shaped assumption in this file.
+        agg_crew = ((data.get('aggregate_credits') or {}).get('crew')) or []
+        episode_counts = {}   # name -> real episode count, any job (the ranking signal)
+        is_ep = set()         # names holding a real 'Executive Producer' job somewhere
+        for c in agg_crew:
+            name = c.get('name')
+            if not name:
+                continue
+            jobs = c.get('jobs')
+            if isinstance(jobs, list):
+                count = max((j.get('episode_count') or 0) for j in jobs) if jobs else 0
+                if any(j.get('job') == 'Executive Producer' for j in jobs):
+                    is_ep.add(name)
+            else:
+                count = c.get('total_episode_count') or c.get('episode_count') or 0
+                if c.get('job') == 'Executive Producer':
+                    is_ep.add(name)
+            episode_counts[name] = max(episode_counts.get(name, 0), count)
+
+        created_by_names = entry['createdBy']
+        if len(created_by_names) > CREATOR_CREDITS_CAP:
+            ranked = sorted(
+                range(len(created_by_names)),
+                key=lambda i: (-episode_counts.get(created_by_names[i], 0), i),
+            )
+            creator_credits = [created_by_names[i] for i in ranked[:CREATOR_CREDITS_CAP]]
+        else:
+            creator_credits = list(created_by_names)
+            if len(creator_credits) < CREATOR_CREDITS_CAP:
+                ep_candidates = sorted(
+                    (name for name in is_ep if name not in creator_credits),
+                    key=lambda name: -episode_counts.get(name, 0),
+                )
+                for name in ep_candidates:
+                    creator_credits.append(name)
+                    if len(creator_credits) >= CREATOR_CREDITS_CAP:
+                        break
         entry['creatorCredits'] = creator_credits
 
     return entry
