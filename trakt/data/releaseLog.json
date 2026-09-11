@@ -688,6 +688,21 @@
       "after": {
         "note": "Removing either signal moved zero precision@k values at any k (10/25/50/100), for both the 'liked' and 'great match' thresholds - every ranked list came back byte-identical. Raw MAE did move measurably: 15.02 baseline -> 15.20 without keyword, 15.29 without description (calibratedMAE unaffected). Conclusion: both signals are safe to keep exactly as tuned - no ranking cost to removing them, but a real MAE cost, so removing either would be a pure loss. Finding flipped to resolved with this proof; the real engine.js was not touched (only scratch ablation copies)."
       }
+    },
+    {
+      "id": "closed-loop-discovery-big-bang-fix",
+      "date": "2026-09-11",
+      "session": "77",
+      "category": "measurement",
+      "outcome": "shipped",
+      "title": "Big-bang fix for closed-loop-discovery: stopped wasting picks on animated titles, rebalanced discovery rates and the reserved floor together",
+      "summary": "A zero-override verification run earlier the same day moved the closed-loop share the wrong way (75.7% -> 76.4%). Root-caused with the real job log rather than re-running blind: discover_explore.py was wasting a real share of its own additions on animated titles (Kung Fu Panda 4, Toy Story 3, My Little Pony, Scooby-Doo...) that isAnimation() discards on every prune pass regardless of score. A direct sweep test (RESERVED_EXPLORE_SHARE 25% through 50%, against the real live pool) also proved the reserved floor wasn't even binding at 25% - genre-explore's real surviving count (81 movies/51 shows) was already below every tested floor. Shipped three changes together rather than one more incremental lever: (1) discover_explore.py now excludes Animation at the TMDB /discover query itself; (2) weekly workflow defaults rebalanced again (max_new_per_type 20->10, explore_max_new_per_type 40->60, explore_top_genres_per_type 8->12) - fixed both the input schema default AND the `|| N` fallback the schedule trigger actually uses, since inputs.* is undefined on a cron firing; (3) RESERVED_EXPLORE_SHARE raised 25%->45%, now meaningful once (1)-(2) gave genre-explore real headroom. Triggered one large one-time seeding run (150/type, 15 genres) under the fix to grow real supply immediately rather than wait weeks.",
+      "before": {
+        "note": "closed-loop share 76.4% (337 of 441 pool titles), a real regression from the prior 75.7% checkpoint - both discoverers had added their full quota, but closed-loop's citation-bonus advantage still won more of the open pruning competition; genre-explore reserved slots stuck at 50/50 despite the floor being technically raiseable, confirming supply (not the floor) was the real constraint"
+      },
+      "after": {
+        "note": "closed-loop share 72.6% (320 of 441 pool titles) - the largest single-run drop of the whole multi-session effort. Genre-explore's own pool share nearly doubled, 29.9% -> 44.0% (194 of 441); reserved slots hit their full 90/90 (up from 50/50, previously one type stuck below it); only 14 titles stale-removed this run (down from 44 the run before, the animation fix visibly working). eval.js unaffected by design (candidatePool.json isn't read by the eval harness): p10/p25/p50/p100 held at 100/96/98/95."
+      }
     }
   ]
 }
