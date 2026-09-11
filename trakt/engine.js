@@ -340,35 +340,123 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   // citationCreditMultiplier()'s own comment for the full design/
   // validation). Needs a preliminary pass — the main loop below already
   // consumes this while building reverseSimilar, so the full picture of
-  // every rated title's subgenre membership has to exist first. Same
-  // 2.5-gap-vs-subgenre-average definition the dashboard's loved-title-
-  // category-anomaly-signal finding already established (not a new
-  // threshold invented here) — an 8+ other-rated-title floor to trust
-  // the category average, same as that finding's own live check.
-  const subgenreRatingsForAnomaly = {};
+  // every rated title's category membership has to exist first.
+  //
+  // Cross-dimensional corroboration (2026-09-11, Bill: "it relies so
+  // heavily on subgenre; could you also include tone, subject and
+  // keywords... maybe that will help you see why they aren't true
+  // outliers" — then, mid-investigation, Bill supplied his own real
+  // reasons for 12 of the original 20: mostly creator/cast affinity,
+  // e.g. "producer was the same guy from lost" for Watchmen, "the
+  // actors" for several). The original version picked each title's
+  // SINGLE worst-fitting subgenre (largest gap) — but every loved (9-10)
+  // title is, by construction, near the top of Bill's whole rating
+  // scale, so it shows SOME positive gap against almost any category
+  // average; picking the worst one manufactures an "anomaly" out of
+  // titles that fit comfortably into a different, equally real
+  // categorization. A title now only counts as a genuine outlier if its
+  // BEST available explanation — the smallest gap across every well-
+  // supported tag in ALL SIX dimensions below — still clears the bar.
+  // Adding creator/cast (Bill's own stated reasons for most of these)
+  // explained away far more than tone/subject/keyword alone: of the
+  // original 20, 10 remain at the shipped threshold, and of the 12 Bill
+  // personally named a reason for, only 4 do (Paradise/Primo have real
+  // but too-thin cast/creator corroboration to clear the bar; Pitch
+  // Perfect/A Star Is Born's real reason — "contemporary musicals" — is
+  // a genuine taxonomy gap, not a scoring bug, see the SUBGENRE_KEYWORDS
+  // 'musical' entry's own comment).
+  //
+  // Content dims (subgenre/tone/subject/keyword) keep the original 8+
+  // other-rated-title floor to trust a category average. Creator/cast
+  // use a much lower floor (2+) since individual people are meaningful
+  // signal well before 8 samples — Bill's own confirmed cases (Michael
+  // Schur, Vince Gilligan) only have 2 other rated titles each. Person
+  // dims also exclude any OTHER title sharing this title's own
+  // belongsToCollection: without this, a franchise's shared lead actor/
+  // director trivially "explains away" the franchise's own anomaly using
+  // nothing but its own sequels (Ryan Reynolds "explaining" Deadpool via
+  // Deadpool 2/Deadpool & Wolverine) — caught live before shipping, not
+  // theorized: it silently un-flagged Deadpool, the original motivating
+  // case, until this exclusion was added.
+  const ANOMALY_DIM_MIN_N = { subgenre: 8, tone: 8, subject: 8, keyword: 8, creator: 2, cast: 2 };
+  // Swept 1.0-2.0 against scripts/eval.js (which showed no real
+  // sensitivity across the range, same as CITATION_WEIGHT_UNKNOWN's own
+  // sweep the day before — this dataset's leave-one-out set can't
+  // discriminate a change this narrow) and against the real, named
+  // outcome: at 2.0, even Deadpool itself drops out (the original
+  // motivating case); 1.5 and 1.75 give byte-identical treatment of
+  // every validated title but 1.75 collects fewer new, unreviewed
+  // anomalies overall (28 vs 45) — the tighter net with no real cost.
+  const ANOMALY_GAP_THRESHOLD = 1.75;
+  const PERSON_DIMS = new Set(['creator', 'cast']);
+  const ANOMALY_DIMS = Object.keys(ANOMALY_DIM_MIN_N);
+  const anomalyDimTagsFor = (type, m, key) => ({
+    subgenre: inferSubgenres(m, llmTags[key], undefined, reviewedTags[key]),
+    tone: inferTones(m, llmTags[key], undefined, reviewedTags[key]),
+    subject: inferSubjects(m, llmTags[key], undefined, reviewedTags[key]),
+    keyword: (m.keywords || []).filter(k => !KEYWORD_STOPLIST.has(k)),
+    creator: getCreators(type, m),
+    cast: (m.topCast || []).slice(0, 5),
+  });
+  const dimRatingsForAnomaly = { subgenre: {}, tone: {}, subject: {}, keyword: {}, creator: {}, cast: {} };
   for (const t of library.titles || []) {
     if (t.myRating == null || !enrichedMeta[t.titleKey]) continue;
     const m = enrichedMeta[t.titleKey];
-    for (const s of inferSubgenres(m, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
-      (subgenreRatingsForAnomaly[s] ||= []).push(t.myRating);
+    const tagsByDim = anomalyDimTagsFor(t.type, m, t.titleKey);
+    for (const dim of ANOMALY_DIMS) {
+      // Person dims carry {myRating, titleKey, collectionId} so a
+      // title's own franchise can be excluded per-candidate below;
+      // content dims keep the plain rating (cheaper, and self-exclusion
+      // there is just "remove one occurrence of my own rating").
+      const entry = PERSON_DIMS.has(dim)
+        ? { myRating: t.myRating, titleKey: t.titleKey, collectionId: m.belongsToCollection?.id ?? null }
+        : t.myRating;
+      for (const tag of tagsByDim[dim]) (dimRatingsForAnomaly[dim][tag] ||= []).push(entry);
     }
   }
   const anomalousLovedKeys = new Set();
-  const anomalyDetails = new Map(); // titleKey -> { subgenre, myRating, categoryAvg, gap, viaFranchise }
+  const anomalyDetails = new Map(); // titleKey -> { myRating, perDim, bestFit, worstFit, viaFranchise, subgenre, categoryAvg, gap, n }
   for (const t of library.titles || []) {
     if (t.myRating == null || t.myRating < LOVED_THRESHOLD || !enrichedMeta[t.titleKey]) continue;
     const m = enrichedMeta[t.titleKey];
-    let best = null;
-    for (const s of inferSubgenres(m, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
-      const cat = subgenreRatingsForAnomaly[s];
-      if (!cat || cat.length < 8) continue;
-      const avgExcl = (cat.reduce((a, b) => a + b, 0) - t.myRating) / (cat.length - 1);
-      const gap = t.myRating - avgExcl;
-      if (gap >= 2.5 && (!best || gap > best.gap)) best = { subgenre: s, categoryAvg: avgExcl, gap, n: cat.length - 1 };
+    const tCollectionId = m.belongsToCollection?.id ?? null;
+    const tagsByDim = anomalyDimTagsFor(t.type, m, t.titleKey);
+    let minEntry = null, maxEntry = null;
+    const perDim = {};
+    for (const dim of ANOMALY_DIMS) {
+      let dimBest = null;
+      for (const tag of tagsByDim[dim]) {
+        const rawCat = dimRatingsForAnomaly[dim][tag];
+        let cat;
+        if (PERSON_DIMS.has(dim)) {
+          cat = (rawCat || [])
+            .filter(e => e.titleKey !== t.titleKey && !(tCollectionId != null && e.collectionId === tCollectionId))
+            .map(e => e.myRating);
+        } else {
+          // Content dims: rawCat is every rated title's raw rating,
+          // including this title's own — exclude it by removing exactly
+          // one occurrence of t.myRating (a value filter would over-
+          // remove when two titles happen to share the same rating).
+          cat = (rawCat || []).slice();
+          const selfIdx = cat.indexOf(t.myRating);
+          if (selfIdx !== -1) cat.splice(selfIdx, 1);
+        }
+        if (!cat || cat.length < ANOMALY_DIM_MIN_N[dim]) continue;
+        const avgExcl = cat.reduce((a, b) => a + b, 0) / cat.length;
+        const gap = t.myRating - avgExcl;
+        const entry = { dim, tag, categoryAvg: avgExcl, gap, n: cat.length };
+        if (!dimBest || gap < dimBest.gap) dimBest = entry;
+        if (!minEntry || gap < minEntry.gap) minEntry = entry;
+        if (!maxEntry || gap > maxEntry.gap) maxEntry = entry;
+      }
+      perDim[dim] = dimBest;
     }
-    if (best) {
+    if (minEntry && minEntry.gap >= ANOMALY_GAP_THRESHOLD) {
       anomalousLovedKeys.add(t.titleKey);
-      anomalyDetails.set(t.titleKey, { myRating: t.myRating, ...best, viaFranchise: false });
+      anomalyDetails.set(t.titleKey, {
+        myRating: t.myRating, viaFranchise: false, perDim, bestFit: minEntry, worstFit: maxEntry,
+        subgenre: maxEntry.tag, categoryAvg: maxEntry.categoryAvg, gap: maxEntry.gap, n: maxEntry.n,
+      });
     }
   }
   // Franchise expansion: a real sequel/prequel of a confirmed anomaly
@@ -1548,7 +1636,17 @@ const SUBGENRE_KEYWORDS = {
   // home and are dropped.
   'psychological-horror': ['psychological horror'],
   'supernatural-horror': ['supernatural horror'],
-  'musical': ['musical'],
+  // 'singing competition' added 2026-09-11 (Bill's real stated reason for
+  // loving Pitch Perfect: "I like contemporary musicals") — verified
+  // Pitch Perfect itself carries no literal 'musical' TMDB keyword at
+  // all, only 'singing competition', so the bare trigger above was
+  // silently missing a real, canonical musical. Checked real frequency
+  // before adding (3 occurrences dataset-wide, all genuinely musical
+  // titles) rather than guessing. A Star Is Born's own keywords (concert,
+  // aspiring singer, pop star) were checked too and deliberately NOT
+  // added — those terms are common on non-musical music-industry dramas/
+  // biopics as well, so adding them would be a guess, not a verified fix.
+  'musical': ['musical', 'singing competition'],
   // New (external metadata-plan review): 'neo-western' is a real, distinct
   // TMDB keyword — a modern-day story in a Western-genre frame (a working
   // ranch/family-crime-empire story set today), not the same thing as an
