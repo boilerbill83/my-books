@@ -748,6 +748,21 @@
       "after": {
         "note": "Finding retired (severity: good, no longer shown in the open Improvement Opportunities list) with the full investigation and real numbers preserved in its record. The underlying discovery mechanisms (RESERVED_EXPLORE_SHARE, genre-explore, book-theme-explore) are completely unchanged - a real, healthy ~50/50 source-tagged split exists in the pool today, verified without needing further discovery-pipeline work."
       }
+    },
+    {
+      "id": "old-dislikes-missing-data-major-gap",
+      "date": "2026-09-11",
+      "session": "77",
+      "category": "measurement",
+      "outcome": "tested-and-reverted",
+      "title": "Confirmed a major, real engine gap by testing (and failing) the obvious fix: no negative data exists for pre-2010 content",
+      "summary": "Bill proposed a real fix for the library-recency-selection-bias finding: discount old ratings by a date-based guardrail, \"adjust everything to the 2026 version of Bill\" (his own example: loved Superbad, might not today). Investigated whether the data could even support a date-based version first - it could not. Bill only started using Trakt in 2026, so ratedAt reflects when a rating was typed in, not when the opinion was formed: 41% of all ratings cluster on a handful of 2026 bulk-import dates, and Superbad itself is ratedAt 2026-08-21 despite being a 2007 film. lastWatchedAt looked like a fix until checked against real release dates: for 29% of rated movies it is literally the title's own release date, a known placeholder from the Session 42-43 CSV-import project, not a real watch memory. Bill's resolution: assume content was watched on release date, making content age the only honest proxy available. Built contentAgeWeight() (half-life decay) and wired it into every myRating-derived preference signal in buildIndexes() - genreProfile/toneProfile/subgenreProfile (converted from simple to weighted mean), creatorRatingWeight, lovedGenres/lovedSubgenres/lovedSubjects/lovedKeywords/lovedActors/lovedCollections/reverseSimilar, lovedCreators. Swept 9 half-life values (5 to 100,000 years) against scripts/eval.js before shipping, per this project's standing discipline. Real, unambiguous, monotonic result: every tested strength made held-out predictions worse than doing nothing - MAE climbed steadily from 14.89 (disabled) to 21.31 (most aggressive), great-match precision@10 dropped 100%->90% at even the gentlest decay (50-year half-life). Reverted in full. Root cause: discounting old ratings only removes signal (old titles are almost all loved, per the original selection-bias finding) without adding the missing negative examples back - pure information loss. Reported honestly rather than shipping something that measurably hurts recommendations. Bill's response, upgrading this to opportunity #1: \"This is a big opportunity... We found a major gap in our engine.\" Presented 4 real options (curated recognition-based rating list; corroboration-based weighting instead of age-based; wire real dismissals into genreProfile/toneProfile going forward; surface the blind spot in confidenceScore()/reason() rather than correcting it) and upgraded the library-recency-selection-bias dashboard finding to severity critical / High impact with the full investigation and options recorded.",
+      "before": {
+        "note": "library-recency-selection-bias tracked as a lower-priority methodology caveat (severity: serious, \"Medium impact\") - documented but not treated as an active, high-value opportunity."
+      },
+      "after": {
+        "note": "Upgraded to severity critical / \"High impact\" (Bill's explicit priority), with a real, tested negative result (the content-age-decay sweep) proving the gap cannot be closed algorithmically, only with real data, plus 4 concrete next-step options recorded. engine.js fully reverted to its pre-investigation state - eval.js confirmed byte-identical (p10/p25/p50/p100 unchanged)."
+      }
     }
   ]
 }
