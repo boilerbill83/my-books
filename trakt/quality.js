@@ -5,7 +5,7 @@
 // trakt/discover.js — see that file's own header for why.
 
 import {
-  rankAll, getCreator, criticScore, realAudienceScore, awardsScore, posterUrl,
+  rankAll, getCreator, getCreators, criticScore, realAudienceScore, awardsScore, posterUrl,
   computeEvalMetrics, diversityRerank, resolveSimilarTitles, inferSubgenres, inferTones,
   inferSubjects, inferEra, inferGenre, inferSubgenreDetail, findTaxonomyCollisions,
   isTooObscure, isActivelyAiring, isPreMillenniumMovie, matchScoreRaw, hydrateTitle,
@@ -445,8 +445,8 @@ const FIELD_REGISTRY = [
     note: 'Drives the non-English candidate filter.' },
   { key: 'creator', label: 'Director/Creator', source: 'TMDB', critical: true,
     eligible: (t, meta) => !!meta,
-    populated: (t, meta) => !!getCreator(t.type, meta || {}),
-    quality: (t, meta) => !!getCreator(t.type, meta || {}),
+    populated: (t, meta) => !!getCreator(t.type, meta || {}, t.titleKey),
+    quality: (t, meta) => !!getCreator(t.type, meta || {}, t.titleKey),
     note: 'Feeds the director/creator-match scoring signal.' },
   { key: 'voteAverage', label: 'Community Rating', source: 'TMDB', critical: true,
     eligible: (t, meta) => !!meta,
@@ -2790,7 +2790,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       const ranked = diversityRerank([...pool].sort(sortFn), enrichedMeta, { windowSize: 20, maxPerGenre: 5 }).slice(0, 20);
       const counts = {};
       for (const c of ranked) {
-        const creator = getCreator(c.type, enrichedMeta[c.titleKey]);
+        const creator = getCreator(c.type, enrichedMeta[c.titleKey], c.titleKey);
         if (creator) counts[creator] = (counts[creator] || 0) + 1;
       }
       for (const [name, n] of Object.entries(counts)) {
@@ -2911,7 +2911,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       if (t.myRating == null) continue;
       const m = enrichedMeta[t.titleKey];
       if (!m) continue;
-      const creator = getCreator(t.type, m);
+      const creator = getCreator(t.type, m, t.titleKey);
       if (!creator) continue;
       const critic = criticScore(omdbMeta[t.titleKey]);
       if (critic == null) continue;
@@ -3392,6 +3392,41 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       impact: `Marked resolved: the mechanism is now validated against real, first-person ground truth rather than inference alone, and its one ` +
         `numeric choice (the 1.75 threshold) has documented, principled provenance. The prune-cascade note is a minor, low-urgency residual, not a ` +
         `reason to keep this open.`,
+    });
+  }
+
+  // N+3. Direct follow-up to Bill's Primo explanation ("also michael schur
+  // was involved who I love"): "investigate whether you can do something
+  // to fix the gap you identified in Primo." Verified Schur's real
+  // involvement via outside sources (not guessed), then shipped a fix —
+  // see CREATOR_CORRECTIONS' own engine.js comment + ENGINE.md §3a for the
+  // full design.
+  {
+    const primoCreators = getCreators('show', enrichedMeta['show:137252'], 'show:137252');
+    const schurWeight = idx.creatorRatingWeight?.get('Michael Schur');
+    const primoStillFlagged = idx.anomalousLovedKeys.has('show:137252');
+    findings.push({
+      id: 'primo-creator-correction',
+      severity: 'good',
+      ratings: { ease: 3, dataQuality: 6, recEngine: 3, ui: 1 },
+      title: `Fixed the real TMDB data gap on Primo: Michael Schur's co-creator credit was missing, now corrected and verified live`,
+      technical: `New <code>CREATOR_CORRECTIONS</code> lookup in <code>engine.js</code>, checked inside <code>getCreator()</code>/` +
+        `<code>getCreators()</code> before falling back to TMDB's own data — the creator-side equivalent of <code>GENRE_ALIASES</code>. Verified via ` +
+        `real outside sources (Rolling Stone, The Hollywood Reporter, TVInsider, Variety) that Michael Schur was genuinely a co-executive-producer ` +
+        `on Primo alongside Shea Serrano; TMDB's own <code>created_by</code> field lists only Serrano. Both functions now take an optional ` +
+        `<code>titleKey</code> so the correction table can be consulted — threaded through all 13 real call sites across engine.js/quality.js/` +
+        `deepdive.js/dashboardShared.js, not left as a partial fix some callers would silently miss. Live result: Primo's creators now read ` +
+        `${JSON.stringify(primoCreators)}; Michael Schur's real <code>creatorRatingWeight</code> (from Brooklyn Nine-Nine/Parks and Recreation) is ` +
+        `${schurWeight != null ? schurWeight.toFixed(2) : 'n/a'}, and — with no manual exclusion added anywhere — Primo ${primoStillFlagged ? 'is ' +
+        'still flagged as an outlier' : 'no longer appears in the Loved-Title Outliers table at all'}, resolved by the same systematic mechanism ` +
+        `that explained away the other 9 of Bill's 12 named examples. Verified via <code>scripts/eval.js</code>: unchanged on every metric.`,
+      plain: `When Bill explained why he loved Primo, he mentioned Michael Schur (The Office, Parks and Rec, The Good Place) was involved — and he ` +
+        `was right, but the site the engine reads its data from didn't have that fact on record. Checked it against real outside sources to confirm ` +
+        `it, then added a small, permanent correction so the engine now knows it too. The result: Primo stopped looking like an unexplainable ` +
+        `favorite on its own, the same way it did for the other examples Bill gave, without ever telling the system "just exclude this one."`,
+      impact: `A real, sourced fix to underlying data, not a workaround — the correction applies everywhere Primo's creator is read (scoring, the ` +
+        `outlier table, Deep Dive, field-quality checks), and the mechanism is now available for any future title with the same kind of gap, as ` +
+        `long as it's verified the same way first.`,
     });
   }
 

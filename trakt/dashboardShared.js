@@ -345,7 +345,7 @@ function metaLine(candidate, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags 
   const subs = inferSubgenres(meta, llmTags[candidate.titleKey], undefined, reviewedTags[candidate.titleKey]).slice(0, 2).map(s => displaySubgenre(s, meta));
   if (subs.length) parts.push(subs.join(', '));
   else if (meta.genres?.length) parts.push(meta.genres.slice(0, 2).join(', '));
-  const creator = getCreator(candidate.type, meta);
+  const creator = getCreator(candidate.type, meta, candidate.titleKey);
   if (creator) parts.push(candidate.type === 'movie' ? `dir. ${creator}` : `by ${creator}`);
   if (meta.voteAverage != null) {
     const ratings = meta.voteCount != null ? ` (${fmtCompact(meta.voteCount)} ratings)` : '';
