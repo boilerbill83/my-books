@@ -2680,10 +2680,10 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const oldestDisliked = dislikedYears.length ? Math.min(...dislikedYears) : null;
     findings.push({
       id: 'library-recency-selection-bias',
-      severity: 'critical',
-      ratings: { ease: 2, dataQuality: 8, recEngine: 8, ui: 1 },
+      severity: 'serious', // recEngine 8, ease upgraded 2->7 — Option 1 (curated recognition list) is now built and executed end-to-end, real data collected; downgraded from critical since the gap is actively closing, not just diagnosed, but kept open (not 'good') until the ratings actually land in library.json via a real Trakt export
+      ratings: { ease: 7, dataQuality: 8, recEngine: 8, ui: 1 },
       shortTitle: 'Old Dislikes Missing Data',
-      title: `Opportunity #1: Bill's library has an asymmetric selection bias by era — 0 of ${fmtNum(disliked.length)} disliked titles predate 2000, only ${dislikedPre2010} predate 2010 — and a real test proved no algorithm can fix it, only real data can`,
+      title: `Opportunity #1 (in progress): Bill's library has an asymmetric selection bias by era — 0 of ${fmtNum(disliked.length)} disliked titles predate 2000, only ${dislikedPre2010} predate 2010 — real data collection is underway (Option 1 shipped, 48 real ratings ready to import)`,
       technical: `Confirmed directly by Bill, then verified against real data rather than assumed: older titles were only ever added to ` +
         `<code>library.json</code> when he already loved them; recent titles are added comprehensively regardless of whether he ends up ` +
         `liking them. Live count: of ${fmtNum(disliked.length)} disliked (myRating<=5, the same threshold <code>computeEvalMetrics()</code>'s ` +
@@ -2707,18 +2707,39 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `the reason code that mechanism reads) — doesn't retroactively fix the pre-2010 gap, since the only real old-era dismissals today ` +
         `use the deliberately-excluded circular <code>too_old</code> reason, but makes better use of data already being collected for ` +
         `future dismissals; (4) surface the blind spot in <code>confidenceScore()</code>/<code>reason()</code> rather than correcting it — ` +
-        `flag when a prediction leans heavily on an era with zero negative examples, an honesty fix rather than a data fix.`,
+        `flag when a prediction leans heavily on an era with zero negative examples, an honesty fix rather than a data fix. ` +
+        `<strong>Option 1 shipped this session, end to end</strong>: <code>trakt/build_old_title_review_list.py</code> pulled 100 real, ` +
+        `well-known pre-2010 titles from TMDB's own <code>/discover</code> endpoint, deliberately weighted toward Bill's real ` +
+        `under-represented genres (Horror, Western, Romance, Documentary, War, Music, Fantasy, computed live from his actual rated-title ` +
+        `counts, never guessed) and floored at 1990 (Bill, born 1983: "basically almost any movie or tv show before 1990 I have never ` +
+        `wanted to see" — independently confirmed by real research on the "reminiscence bump" and by this batch's own result, every ` +
+        `pre-1990 title came back "never wanted to see it"). Built into a spreadsheet, filled in by Bill, and reconciled by hand per his ` +
+        `explicit rules: a duplicate title (12 legitimately matched two target genres, a real script bug now fixed at the source) resolved ` +
+        `by taking the lower of its two ratings; any rating of exactly 1 (or the one 0, Dirty Dancing) reclassified as "declined to watch" ` +
+        `rather than real watched-and-disliked data, per Bill's own clarification that a 1 means "I didn't want to see it." Result: 48 real ` +
+        `ratings (Trakt's native 1-10 scale) and 38 real declined-interest titles. <code>trakt/process_old_title_ratings.py</code> added ` +
+        `both as <code>candidatePool.json</code> stubs and ran them through the real <code>trakt-enrich-tmdb.yml</code> pipeline (all 48 ` +
+        `resolved a real <code>imdbId</code>); the 38 declined-interest titles also got an immediate <code>feedbackData.json</code> ` +
+        `dismiss entry (<code>declined_old_title_review</code>) so they can never surface as a recommendation. ` +
+        `<code>trakt/build_old_title_trakt_import.py</code> then produced <code>trakt/output/old-title-trakt-import.csv</code> — 48 rows in ` +
+        `Trakt's own verified-working import schema, <code>watched_at</code> set to each title's real release year per Bill's own standing ` +
+        `ruling ("assume I watched everything on the release date"), ready for him to upload through Trakt's importer.`,
       plain: `Bill only ever adds an old movie or show to his tracked history when he already knows he loves it — he doesn't bother ` +
         `logging old stuff he watched and disliked. But for anything new, he logs everything, good or bad. That means the engine has ` +
         `literally never seen an example of an old movie or show he didn't like — it's not that it's bad at judging old content, it's that ` +
         `it's never been shown the other half of the picture. Tried the obvious algorithmic fix (trust old ratings less, since an old ` +
         `opinion might not hold up today) and tested it properly before shipping — it made things worse every time, because discounting old ` +
-        `ratings just throws away real positive signal without adding back the missing negative examples. That's actually useful to know: ` +
-        `it proves this gap can't be papered over with a formula, real new data is the only way to close it — the options above are all ` +
-        `about getting that real data, or being honest about not having it.`,
-      impact: `Bill's own call: the biggest, most concrete opportunity currently on this list, not a background caveat. Verified twice over — ` +
-        `once by the original selection-bias discovery, and again by a real failed fix that proves the gap has measurable teeth. Worth ` +
-        `picking one of the four options above and actually starting it, rather than leaving it as a documented caveat indefinitely.`,
+        `ratings just throws away real positive signal without adding back the missing negative examples. That proved the gap can't be ` +
+        `papered over with a formula, so the real fix got built instead: a list of 100 well-known older movies/shows, picked to land ` +
+        `specifically in genres Bill hasn't rated much, was turned into a spreadsheet and sent to him to fill in honestly. He did, and the ` +
+        `results were reconciled into 48 real ratings and 38 "never wanted to see it" declines. A file is now built and ready for Bill to ` +
+        `upload through Trakt's own website — once he does, and a future Trakt export pulls those ratings in, the engine will finally have ` +
+        `real examples of old titles Bill didn't like, not just the old titles he loved.`,
+      impact: `Bill's own call: the biggest, most concrete opportunity on this list, and now the furthest along — not a background caveat, ` +
+        `not just a diagnosed gap, but a real, delivered file waiting on one human step. The only thing left is Bill uploading ` +
+        `<code>trakt/output/old-title-trakt-import.csv</code> to Trakt and a future session pulling in the resulting export per the ` +
+        `documented import workflow — at that point <code>scripts/eval.js</code> should be re-run for real and the honest before/after ` +
+        `reported back, the same discipline every other shipped signal on this dashboard already followed.`,
     });
   }
 
