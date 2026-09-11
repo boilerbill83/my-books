@@ -235,6 +235,32 @@
       .tk-imp-rating-num { font-size: 0.7rem; font-weight: 600; color: var(--text); margin-top: 2px; }
       @media (max-width: 640px) { .tk-imp-ratings { grid-template-columns: repeat(2, 1fr); } }
 
+      /* Improvement Opportunities — tile grid (Release Log below keeps the
+         original .tk-imp-card list style; these are new, separate classes). */
+      .tk-imp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+      @media (max-width: 1100px) { .tk-imp-grid { grid-template-columns: repeat(2, 1fr); } }
+      @media (max-width: 640px) { .tk-imp-grid { grid-template-columns: 1fr; } }
+      .tk-imp-tile {
+        border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px;
+        cursor: pointer; background: var(--bg-card); display: flex; flex-direction: column; gap: 8px;
+        text-align: left; font: inherit; color: inherit; width: 100%;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      }
+      .tk-imp-tile:hover, .tk-imp-tile:focus-visible { border-color: var(--accent); box-shadow: 0 4px 14px rgba(0,0,0,0.1); }
+      .tk-imp-tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .tk-imp-tile-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+      .tk-imp-tile-title { font-weight: 700; font-size: 0.86rem; line-height: 1.35; }
+      .tk-imp-tile .tk-imp-ratings { margin-bottom: 0; }
+      .tk-imp-tile-hint { font-size: 0.7rem; color: var(--text-muted); margin-top: auto; }
+
+      /* Modal — full write-up for one Improvement Opportunities tile.
+         margin:auto restores native <dialog> centering, which this site's
+         global `* { margin: 0 }` reset (styles.css) otherwise silently
+         cancels — without it the dialog pins to the top-left corner. */
+      .tk-imp-modal { max-width: 640px; width: 92%; margin: auto; max-height: 85vh; }
+      .tk-imp-modal .dialog-body { max-height: 80vh; overflow-y: auto; }
+      .tk-imp-modal .tk-imp-section-label:first-of-type { margin-top: 4px; }
+
       /* Release Log */
       .tk-rlog-date { display: flex; flex-direction: column; font-size: 0.72rem; color: var(--text-muted); white-space: nowrap; min-width: 74px; }
       .tk-rlog-session { font-weight: 600; }
