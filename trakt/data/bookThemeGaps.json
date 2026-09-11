@@ -1,0 +1,103 @@
+{
+  "generatedAt": "2026-09-11T17:18:28.087Z",
+  "methodology": "ratio = (theme's share of Bill's real 5-star-read theme tags) / (its mapped BMTRE genre/subgenre/subject tag's share of his real loved-title rating-weighted score). ratio > 1 means the theme is proportionally bigger in his book taste than his current screen taste (and therefore the citation-graph-seeded candidate pool) already reflects. Evidence floor: bookCount >= 15. Gap floor: ratio > 1.15.",
+  "gaps": [
+    {
+      "key": "legal",
+      "bookThemes": [
+        "legal",
+        "courtroom"
+      ],
+      "bookCount": 48,
+      "ratio": 3.08,
+      "tags": [
+        "subgenre:legal"
+      ],
+      "mode": "keyword",
+      "searchQuery": "lawyer"
+    },
+    {
+      "key": "psychological",
+      "bookThemes": [
+        "psychological"
+      ],
+      "bookCount": 35,
+      "ratio": 2.44,
+      "tags": [
+        "subgenre:psychological-thriller",
+        "subgenre:psychological-horror"
+      ],
+      "mode": "keyword",
+      "searchQuery": "psychological thriller"
+    },
+    {
+      "key": "thriller",
+      "bookThemes": [
+        "thriller"
+      ],
+      "bookCount": 109,
+      "ratio": 1.93,
+      "tags": [
+        "genre:thriller"
+      ],
+      "mode": "genre",
+      "tmdbGenreNames": {
+        "movie": "Thriller",
+        "show": null
+      }
+    },
+    {
+      "key": "business",
+      "bookThemes": [
+        "business"
+      ],
+      "bookCount": 19,
+      "ratio": 1.49,
+      "tags": [
+        "subject:corporate-power",
+        "subject:class-wealth-corporate"
+      ],
+      "mode": "keyword",
+      "searchQuery": "business"
+    },
+    {
+      "key": "biography",
+      "bookThemes": [
+        "biography"
+      ],
+      "bookCount": 19,
+      "ratio": 1.47,
+      "tags": [
+        "genre:biography"
+      ],
+      "mode": "keyword",
+      "searchQuery": "biography"
+    },
+    {
+      "key": "sports",
+      "bookThemes": [
+        "sports"
+      ],
+      "bookCount": 27,
+      "ratio": 1.23,
+      "tags": [
+        "genre:sports"
+      ],
+      "mode": "keyword",
+      "searchQuery": "sports"
+    },
+    {
+      "key": "tech history",
+      "bookThemes": [
+        "tech history"
+      ],
+      "bookCount": 19,
+      "ratio": 1.23,
+      "tags": [
+        "subject:technology-surveillance"
+      ],
+      "mode": "keyword",
+      "searchQuery": "silicon valley"
+    }
+  ]
+}

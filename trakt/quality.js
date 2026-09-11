@@ -2319,8 +2319,10 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const poolTitles = candidatePool.titles || [];
     const citedByLoved = poolTitles.filter(c => (idx.reverseSimilar.get(c.titleKey) || 0) > 0);
     const pctClosedLoop = poolTitles.length ? (100 * citedByLoved.length / poolTitles.length) : 0;
-    const exploreSourced = poolTitles.filter(c => c.source === 'genre-explore');
+    const exploreSourced = poolTitles.filter(c => c.source === 'genre-explore' || c.source === 'book-theme-explore');
     const pctExplore = poolTitles.length ? (100 * exploreSourced.length / poolTitles.length) : 0;
+    const bookThemeSourced = poolTitles.filter(c => c.source === 'book-theme-explore');
+    const pctBookTheme = poolTitles.length ? (100 * bookThemeSourced.length / poolTitles.length) : 0;
     // A real, independent second discovery source now exists and is proven
     // to work (trakt/discover_explore.py, TMDB's genre-filtered /discover
     // endpoint rather than title-to-title similarity). Eight real production
@@ -2411,7 +2413,17 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `<code>RESERVED_EXPLORE_SHARE</code> raised 25%→45%. A large one-time seeding run under the fix hit the full 90/90 reserved ` +
         `slots/type (up from 50/50, one type previously stuck below it) with only 14 titles stale-removed (down from 44 the run before) ` +
         `— moving the closed-loop share 76.4% → ${pctClosedLoop.toFixed(1)}%, genre-explore's own pool share to ` +
-        `${pctExplore.toFixed(1)}%, the largest single-run drop of the whole effort.`,
+        `${pctExplore.toFixed(1)}%, the largest single-run drop of the whole effort. A THIRD, independent discovery source was added ` +
+        `2026-09-11: <code>discover_explore.py</code>'s <code>book-theme-explore</code> pass, seeded not from Trakt watch history at all ` +
+        `but from <code>trakt/data/bookThemeGaps.json</code> (<code>compute_book_theme_gaps.js</code>) — real BBRE (book) themes ` +
+        `proportionally over-represented in Bill's 5-star reads vs. his current screen taste (legal 3.1x, psychological 2.4x, thriller ` +
+        `1.9x, business/biography ~1.5x, sports/tech-history ~1.2x). A theme with a real native TMDB genre reuses the genre-query path ` +
+        `directly (thriller → TMDB's real "Thriller" genre); everything else resolves a real TMDB keyword id live via ` +
+        `<code>/search/keyword</code> (never a guessed id) and queries with <code>with_keywords=</code>. Folded into the same ` +
+        `<code>RESERVED_EXPLORE_SHARE</code> protected bucket as genre-explore in <code>prune_candidate_pool.js</code> (same structural ` +
+        `disadvantage against closed-loop candidates in an open scoring competition applies). Currently ${fmtNum(bookThemeSourced.length)} ` +
+        `of the pool (${pctBookTheme.toFixed(1)}%) are <code>source: "book-theme-explore"</code> stubs — this is a genuinely different ` +
+        `discovery axis from either prior source (Trakt-history-independent), not just a bigger version of genre-explore.`,
       plain: `The pool of "new things Bill might like" used to be built entirely by asking TMDB's own algorithm "what's similar to what ` +
         `Bill already loves" — and then the recommendation engine's strongest scoring signal was, again, "does TMDB's algorithm consider ` +
         `this similar to something Bill already loves." A second, genuinely different way of finding new candidates exists now — instead ` +
@@ -2421,7 +2433,10 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `week and getting the exact same answer; and finally, wasting a real chunk of its own picks on cartoons and kids' shows that get ` +
         `thrown out immediately anyway. Fixed all three at once in a deliberate "big bang" push rather than one more incremental tweak, ` +
         `then ran one large batch to seed real growth immediately — and it worked, the biggest single drop in the closed-loop share of ` +
-        `the whole effort.`,
+        `the whole effort. A third source was then added on top: instead of asking "what's similar to X" or "what's well-regarded in a ` +
+        `genre Bill already watches a lot of," it asks a genuinely different question — "what does Bill's separate BOOK-reading history ` +
+        `say he might like that his current screen taste doesn't reflect yet." Legal thrillers and psychological fiction are his single ` +
+        `biggest over-representations in books vs. what he currently watches, so those get specifically hunted for now.`,
       impact: `Verified with eight real production runs, not just shipped code: closed-loop share moved 96.0%→93.8%→84.5%→(plateau)→78.9%` +
         `→75.7%→76.4% (a real regression, caught and root-caused rather than ignored)→${pctClosedLoop.toFixed(1)}%. Each setback led ` +
         `directly to root-causing and fixing a real, previously-hidden bug rather than just re-running the same batch and hoping — a ` +

@@ -718,6 +718,21 @@
       "after": {
         "note": "387 of 483 real watchlist+candidate titles (80.1%) get a nonzero book-taste bonus today. scripts/eval.js at the shipped cap=0.75: \"liked\" precision@10/25/50/100 held exactly at 100.0/96.0/98.0/95.0 vs. the disabled baseline; the real discriminating \"great match\" (8+/10) metric held precision@10/25 at 100.0/88.0% (identical to disabled) and genuinely improved precision@50 92.0% -> 94.0% - zero measured tradeoff on the protected metrics."
       }
+    },
+    {
+      "id": "book-theme-discovery-seeding",
+      "date": "2026-09-11",
+      "session": "77",
+      "category": "discovery",
+      "outcome": "shipped",
+      "title": "A third, independent candidate-discovery source: real BBRE book-theme gaps seed new TMDB searches",
+      "summary": "Bill: \"my main focus is improving the recommendation and prediction scoring engine\" - chose to steer candidate DISCOVERY with real BBRE book-theme data rather than a scoring-engine change. Built compute_book_theme_gaps.js: for every theme in BOOK_THEME_TO_MOVIE_TAGS (now exported), computes the ratio of (theme's share of Bill's real 5-star-read book themes) to (its mapped BMTRE genre/subgenre/subject tag's share of his real loved-title rating-weighted score) - a ratio > 1 means the theme is proportionally bigger in his book taste than his current screen taste/candidate pool already reflects. Evidence floor bookCount>=15, gap floor ratio>1.15. Real result: legal (3.08x, merging legal+courtroom onto the same subgenre:legal tag), psychological (2.44x), thriller (1.93x), business (1.49x), biography (1.47x), sports (1.23x), tech history (1.23x). Extended discover_explore.py with a second, independent seeding pass (book-theme-explore) reading this ranked list: themes with a real native TMDB genre (thriller->\"Thriller\") reuse the existing genre-query machinery unchanged; everything else (business/biography/sports/tech-history/psychological have no native TMDB genre at all) resolves a real TMDB keyword id live via /search/keyword (never a guessed id, same discipline this script already applies to genre ids) and queries with with_keywords=. This is the FIRST discovery source in the pipeline not seeded from Trakt watch history at all - it can reach genuinely underexplored territory (legal-thriller/business candidates) neither the citation-graph discoverer nor genre-explore's own Trakt-genre seeding could ever surface. Folded into the same RESERVED_EXPLORE_SHARE protected bucket as genre-explore in prune_candidate_pool.js (same structural disadvantage against closed-loop candidates applies). Verified via a monkeypatched-network unit test (synthetic TMDB responses, no real API calls) before spending real quota: confirmed correct genre-vs-keyword mode dispatch, keyword-id caching (6 calls not 12), graceful skip-and-log on an unresolvable keyword (simulated for \"biography\"), zero duplicate titleKeys across both discovery passes and the existing pool. Deliberately NOT a matchScore()/baseSignals() change - only WHICH candidates get discovered, never how any candidate is scored once found; every book-theme-explore stub still competes purely on the engine's existing signals (including bookTasteBonus() itself, not guaranteed to score well).",
+      "before": {
+        "note": "Both existing discovery sources (the citation-graph discoverer and genre-explore) draw exclusively from Bill's screen (Trakt) history - his real book taste (a mature, independent signal, thousands of 5-star-read data points) had zero influence on which NEW candidates ever entered the pool."
+      },
+      "after": {
+        "note": "A third, measurable discovery source (source: \"book-theme-explore\") is live in the weekly workflow with its own tunable cap (default 15/type) and its own reserved pool-share protection. eval.js confirmed byte-identical before/after (p10/p25/p50/p100 unchanged) - this change only affects which candidates can be discovered, never how any candidate is scored."
+      }
     }
   ]
 }
