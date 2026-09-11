@@ -673,6 +673,21 @@
       "after": {
         "note": "closed-loop share 75.7% (334 of 441 pool titles) on the zero-override defaults run - a genuine further drop from the 78.9% manual-batch checkpoint, confirming the rebalanced defaults keep improving the pool on their own, not just under a manually-tuned one-off. genre-explore's own pool share also grew to 28.8% (127 of 441, up from 16.4% at the last documented checkpoint). eval.js unaffected by design (candidatePool.json isn't read by the eval harness): precision@10/25/50/100 held exactly."
       }
+    },
+    {
+      "id": "weak-signal-ablation-check",
+      "date": "2026-09-11",
+      "session": "77",
+      "category": "measurement",
+      "outcome": "shipped",
+      "title": "Ran the dedicated ablation check the weak-keyword-desc-signal-correlation finding itself called for, rather than leaving it as an open diagnostic",
+      "summary": "That finding measured keyword-match and plot-description-similarity as the two weakest individually-correlated scored signals (0.074/0.070 vs. 0.124-0.349 for everything else) but explicitly stopped short of testing whether removing either would actually change anything, since a weak individual correlation doesn't prove a signal adds nothing in combination. Built two scratch copies of engine.js - one with keywordBonus() hardcoded to return 0, one with descSimilarity.js's bonus cap zeroed - and scored each against the real, current computeEvalMetrics() (n=639) to check directly rather than continue assuming.",
+      "before": {
+        "note": "Open diagnostic: two signals with the weakest individual rating-correlation in the model (0.074 keyword, 0.070 description), contributing real points but with their actual ranking impact unmeasured."
+      },
+      "after": {
+        "note": "Removing either signal moved zero precision@k values at any k (10/25/50/100), for both the 'liked' and 'great match' thresholds - every ranked list came back byte-identical. Raw MAE did move measurably: 15.02 baseline -> 15.20 without keyword, 15.29 without description (calibratedMAE unaffected). Conclusion: both signals are safe to keep exactly as tuned - no ranking cost to removing them, but a real MAE cost, so removing either would be a pure loss. Finding flipped to resolved with this proof; the real engine.js was not touched (only scratch ablation copies)."
+      }
     }
   ]
 }

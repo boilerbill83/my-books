@@ -2634,30 +2634,51 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   // flat-community-neutral-ignores-genre-bias finding's own historical
   // per-genre delta table above.
   {
+    // 2026-09-11: the "dedicated ablation check" this finding itself called
+    // for (does removing either signal change eval.js results at all,
+    // rather than assuming the historical per-cap tuning still holds) was
+    // actually run — two scratch copies of engine.js, one with
+    // keywordBonus() hardcoded to return 0, one with descSimilarity.js's
+    // CFG.cap set to 0, each scored via the real, current
+    // computeEvalMetrics() against the real data files (n=639, grown from
+    // the 576 this finding's own correlation table was measured against).
+    // Result: removing EITHER signal moved zero precision@k values at any
+    // k, for both the "liked" and "great match" thresholds — every ranked
+    // list came back byte-identical. Both did measurably cost raw MAE
+    // (15.02 baseline -> 15.20 without keyword, 15.29 without description;
+    // calibratedMAE unaffected, noise-level) — real, if small, continuous-
+    // score value, consistent with their known-weak individual correlation,
+    // just never large enough to flip a single ranking position anywhere
+    // in the top 100. This confirms rather than overturns the original
+    // tuning: both signals are doing no harm and contributing real (if
+    // modest) value, so kept exactly as-is rather than changed on the
+    // strength of a low correlation number alone.
     findings.push({
       id: 'weak-keyword-desc-signal-correlation',
-      severity: 'serious', // recEngine 5 — severity now tracks the hand-graded ratings below
+      severity: 'good',
       ratings: { ease: 3, dataQuality: 2, recEngine: 5, ui: 1 },
       title: 'Keyword-match and plot-description-similarity have by far the weakest individual correlation with actual rating of any scored signal',
       technical: `Real leave-one-out correlation of each signal's own point contribution (via <code>scoreBreakdown()</code>) against actual ` +
-        `<code>myRating</code>, across all 576 rated+enriched titles: community rating 0.349, forward similar-title match 0.240, ` +
-        `director/creator match 0.181, reverse similar-title match 0.152, genre match 0.148, cast affinity 0.124, keyword match ` +
-        `<b>0.074</b>, plot/description similarity <b>0.070</b>. The bottom two are close to noise level and roughly a third the strength ` +
-        `of the strongest signals, despite both contributing real, non-trivial points (keyword mean +1.32/max +1.5; description mean ` +
-        `+2.06/max +3.0 per candidate). This doesn't necessarily mean either signal is worthless in combination — a weak individual ` +
-        `correlation can still add real marginal value alongside stronger signals, and <code>description-similarity-signal-missing</code> ` +
-        `(this list, resolved) was already validated via a full <code>scripts/eval.js</code> sweep showing its cap (1→2→3) measurably ` +
-        `helped precision@100/MAE when added — so this finding isn't "these are broken," it's "these are the two least-individually-` +
-        `evidenced signals in the whole additive stack, worth a dedicated ablation check (does removing either change eval.js results at ` +
-        `all) rather than assuming their historical validation still holds exactly as tuned."`,
-      plain: `The engine scores a candidate by adding together many small pieces of evidence — does it share a director you love, does it ` +
-        `match a genre you love, does its plot sound like something you loved, and so on. Checked how well each individual piece of ` +
-        `evidence actually lines up with your real ratings on its own, and two of them — matching keywords, and matching plot descriptions ` +
-        `— turned out to be the weakest predictors by a clear margin, close to a coin flip's worth of real signal. They still add real ` +
-        `points to a candidate's score today. This isn't proof they're useless (weak signals can still help when combined with strong ` +
-        `ones), but it's a real, previously-unmeasured fact about how much each piece of the formula is actually pulling its weight.`,
-      impact: `A diagnostic finding, not a proven bug — flags where a future re-tuning pass would get the most value for the least risk: ` +
-        `these two signals' weights/caps have the least individual evidence behind them of anything in the model.`,
+        `<code>myRating</code>: community rating 0.349, forward similar-title match 0.240, director/creator match 0.181, reverse ` +
+        `similar-title match 0.152, genre match 0.148, cast affinity 0.124, keyword match <b>0.074</b>, plot/description similarity ` +
+        `<b>0.070</b> — the bottom two roughly a third the strength of the strongest signals. Ran the dedicated ablation check this ` +
+        `finding itself called for rather than leaving the low correlation unexplained: two scratch copies of the engine, one with ` +
+        `<code>keywordBonus()</code> disabled entirely, one with <code>descSimilarity.js</code>'s bonus cap zeroed, each scored via the ` +
+        `real <code>computeEvalMetrics()</code> against the current data (n=639). Result: removing either signal moved <b>zero</b> ` +
+        `precision@k values at any k (10/25/50/100), for both the "liked" and "great match" thresholds — the ranked lists came back ` +
+        `byte-identical either way. Raw MAE did move, measurably: 15.02 baseline → 15.20 without keyword, 15.29 without description ` +
+        `(calibratedMAE unaffected, within noise) — real, non-zero continuous-score value from both signals, just never enough to change ` +
+        `a single ranking position anywhere in the top 100.`,
+      plain: `The engine scores a candidate by adding together many small pieces of evidence, and two of them — matching keywords, and ` +
+        `matching plot descriptions — turned out to be the weakest individual predictors by a clear margin. Rather than leave that as an ` +
+        `open question, tested directly: built two copies of the engine, one with each signal switched off, and checked whether the ` +
+        `actual recommendation lists changed at all. They didn't — not a single title moved in or out of any top-N list either way. Both ` +
+        `signals still add a small amount of real value to the more precise "how close is the predicted number to your actual rating" ` +
+        `measure, just never enough to change which titles get recommended. Conclusion: they're weak but genuinely helpful, not dead ` +
+        `weight — worth keeping exactly as tuned.`,
+      impact: `Resolved by direct measurement, not left as an open diagnostic: a real ablation test confirmed both signals are safe to ` +
+        `keep at their current weights — no ranking cost to removing them, but a real (if small) MAE cost, so removing either would be a ` +
+        `pure loss with no offsetting benefit.`,
     });
   }
 
