@@ -722,12 +722,15 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
   // with each outlier's rating zeroed out) also lived here until the same
   // date, retired for the same reason once a REAL fix shipped instead:
   // engine.js's citationCreditMultiplier() now discounts exactly this
-  // pattern at the score level — every one of these 5 titles now scores
-  // 40-70 on its own real merits (verified live, well below the real
-  // ~78-94 top-10 threshold), so a redundant display-only mask on top of
-  // a real fix would just be dead code hiding an already-solved problem.
-  // See quality.js's "deadpool-citation-inflation" Improvement
-  // Opportunities finding for the full investigation and validation.
+  // pattern at the score level. Re-verified live (2026-09-11, "thoroughly
+  // investigate all outliers"): all 5 now score 46.3-69.7 raw, every one
+  // comfortably below the real current top-15 movie candidate cutoff
+  // (76.1) — a first check of this claimed otherwise (a broken sort
+  // comparator produced a garbage "top 10," wrongly suggesting 2 titles
+  // were still competitive) and was caught and fixed before trusting the
+  // result. See quality.js's "deadpool-citation-inflation" and
+  // "loved-title-category-anomaly-signal" Improvement Opportunities
+  // findings for the full investigation and real before/after numbers.
   // Ranks by bmtreScoreRaw (the real, unclamped score), not the displayed
   // bmtreScore — score-clamp-saturation fix, see engine.js's
   // computeScorePair() comment. rankAll() already sorts fromWatchlist/

@@ -3148,35 +3148,30 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     anomalies.sort((a, b) => b.gap - a.gap);
     findings.push({
       id: 'loved-title-category-anomaly-signal',
-      severity: 'serious', // recEngine 5 — real per-title action taken on the clearest cases; kept open (not 'good') since the underlying signal architecture is unchanged and new outliers can emerge as Bill rates more titles
-      ratings: { ease: 4, dataQuality: 3, recEngine: 5, ui: 1 },
-      title: `Loved-title category outliers (the Deadpool pattern): diagnosed all ${anomalies.length}, fixed the 5 confirmed cases, left the rest alone on real evidence`,
+      severity: 'good',
+      ratings: { ease: 3, dataQuality: 3, recEngine: 4, ui: 1 },
+      title: `Loved-title category outliers (the Deadpool pattern): all ${anomalies.length} diagnosed, real display mask retired, verified live it's genuinely superseded`,
       technical: `Live check: loved (9-10) titles rated 2.5+ points above their own subgenre's average (excluding the title itself, ` +
         `8+ other rated titles required to trust the category average): ${anomalies.length} found, e.g. ` +
         anomalies.slice(0, 6).map(a => `${a.title} (${a.myRating}/10 vs. "${a.subgenre}" avg ${a.avg.toFixed(2)}, n=${a.n}, gap +${a.gap.toFixed(2)})`).join('; ') +
-        `${anomalies.length > 6 ? `, and ${anomalies.length - 6} more` : ''}. Ran the individual, verified diagnosis this finding's own text called ` +
-        `for on every outlier: rebuilt <code>buildIndexes()</code> with each one's rating zeroed out in turn, re-scored every real candidate in its ` +
-        `citation network, and measured the genuine raw-score drop per candidate rather than assuming from the category gap alone. Most citation ` +
-        `overlap held up fine — broad multi-title support, or a score that stayed strong without the outlier — confirming a blanket rule would have ` +
-        `been wrong for most of the list, exactly as the earlier caution here predicted (the adjacent <code>mutual-citation-double-count-tested</code> ` +
-        `finding already showed that twice). Five candidates were clear, unambiguous cases (thin, near-single-citation match, genuinely weak score ` +
-        `once the outlier is excluded — see <code>trakt/discover.js</code>'s <code>renderRecPanel()</code> for the exact numbers): Blink Twice, ` +
-        `Hypnotic, and Stonehearst Asylum (all Get Out), Black Dynamite (Deadpool), 21 & Over (Superbad). Fixed the same safe, display-only way as ` +
-        `the superhero exclusion above — title-level rather than subgenre-level, since none of these categories have a second independent outlier ` +
-        `the way superhero did (two anomalies, Deadpool and Watchmen, made the whole category suspect; one anomaly here doesn't). Score/ranking ` +
-        `untouched everywhere else, verified via <code>eval.js</code> (unaffected by construction).`,
+        `${anomalies.length > 6 ? `, and ${anomalies.length - 6} more` : ''}. An earlier pass this session hid 5 clear cases (Blink Twice, Hypnotic, ` +
+        `Stonehearst Asylum, Black Dynamite, 21 & Over) via a title-level display-only mask in <code>discover.js</code> — that mask was since ` +
+        `<strong>retired</strong> once the real, structural fix (<code>citationCreditMultiplier()</code>, the "deadpool-citation-inflation" finding) ` +
+        `shipped and covers the same pattern at the score level instead of the display level. Re-checked live after retiring the mask, not assumed ` +
+        `safe (a first attempt at this check used a broken sort comparator that produced a garbage "top 10," wrongly suggesting 2 of the 5 were ` +
+        `still competitive — caught and fixed before shipping this finding, not after): all 5 now score 46.3-69.7 raw, every one comfortably below ` +
+        `the real current top-15 movie candidate cutoff (76.1). 21 & Over specifically also turned out, on individual investigation, to have real ` +
+        `non-spurious tone overlap with Superbad (Jaccard 0.75 — both raunchy, fast-paced coming-of-age comedies) rather than a spurious citation ` +
+        `match, so its still-being-discounted-but-non-floored score reflects a genuinely partial match now, not an artifact.`,
       plain: `Bill's own insight, checked with real numbers rather than just agreed with: Deadpool isn't just "a superhero movie he happened to ` +
-        `love" — it's a genuine outlier, rated far above how he rates that category overall. That matters because a citation-network match to an ` +
-        `outlier can mislead the engine into thinking a whole category is a good fit, when really it's one exceptional title. Checked every one of ` +
-        `the ${anomalies.length} outliers found across his whole rated history, one at a time — not a blanket assumption — and found 5 real cases ` +
-        `where a specific candidate's recommendation score depended almost entirely on matching that one exceptional favorite, collapsing to a much ` +
-        `weaker match once you set that favorite aside. Those 5 are now hidden from the You'll Love panel, the same careful way the earlier Deadpool ` +
-        `fix was — nothing about how they're scored changed, they just don't get shown as a top pick anymore. Everything else on the list checked ` +
-        `out fine and was left alone.`,
-      impact: `Real action taken on every case that warranted it, not a blanket rule and not indefinitely deferred: 5 candidates verified as genuinely ` +
-        `inflated and hidden from the recommendation panel, with the exact before/after numbers on record. The rest of the list was checked with the ` +
-        `same rigor and correctly left untouched — confirming this project's standing discipline (individual, verified diagnosis before any action) ` +
-        `produces a precise fix, not an over-broad one.`,
+        `love" — it's a genuine outlier, rated far above how he rates that category overall, and the same pattern shows up for a handful of other ` +
+        `favorites too. An early version of the fix hid 5 specific titles from the recommendation panel by name; that's since been replaced by a ` +
+        `real fix that changes the actual score instead of just hiding the result, which is the more honest approach Bill asked for. Followed up on ` +
+        `that switch with real numbers rather than assuming it worked, and confirmed it did: all 5 previously-hidden titles now score well below ` +
+        `what it actually takes to be a real top pick today.`,
+      impact: `Real action taken on every case that warranted it, replaced with a real structural fix, and the replacement verified live rather than ` +
+        `trusted on faith — confirming this project's standing discipline (individual, verified diagnosis, checked again after any change that could ` +
+        `have quietly broken it) held up here too.`,
     });
   }
 
@@ -3289,6 +3284,92 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `real numbers on the exact 2 titles Bill flagged, with zero cost to the engine's overall accuracy and a genuine improvement on two of its ` +
         `four precision metrics. Self-maintaining: the outlier set recomputes from Bill's real ratings on every load, so it never goes stale or ` +
         `needs a manual update as new outliers emerge.`,
+    });
+  }
+
+  // N+2. Bill's direct follow-up after shipping Opportunity #1: "Double
+  // check what you did... What are some potential flaws or unintended
+  // consequences?" then "Yes fix it now. Add others to the improvement
+  // list. Make sure you thoroughly investigate all outliers." The
+  // missing-tone-data flaw found in the double-check was fixed
+  // immediately (see toneJaccard()/citationCreditMultiplier()'s own
+  // 2026-09-10/11 comments — it took two passes, the first fix's own
+  // "benefit of the doubt" default turned out to be the opposite
+  // unjustified extreme, caught by this same thorough investigation).
+  // These three findings cover what's left: real, live-verified limits
+  // of the mechanism rather than bugs with a clean one-line fix.
+  {
+    let movieAnomalies = 0, showAnomalies = 0;
+    for (const k of idx.anomalousLovedKeys) (k.startsWith('movie:') ? movieAnomalies++ : showAnomalies++);
+    findings.push({
+      id: 'citation-credit-thin-tone-vocab',
+      severity: 'warning',
+      ratings: { ease: 5, dataQuality: 4, recEngine: 4, ui: 1 },
+      title: `Citation-credit reweighting is only as reliable as how many tone tags a title actually carries — confirmed both directions with real titles`,
+      technical: `A full per-title audit of all 16 primary (non-franchise-derived) anomalies' real citation networks — not just the 2-3 spot-checked ` +
+        `at launch — surfaced a real, generalizable limit: <code>toneJaccard()</code> on a 1-2-tag vocabulary is noisy in BOTH directions, not just ` +
+        `the missing-data case already fixed. Confirmed false-positive: <strong>Primo</strong> (2023) and <strong>Trailer Park Boys</strong> carry ` +
+        `an identical 2-tag tone set (<code>['inspirational','witty']</code>) despite being tonally unrelated (TPB's own real TMDB keywords: ` +
+        `"dark comedy," "white trash," "marijuana" — nothing like Primo's "coming of age," "sitcom") — a coincidental Jaccard=1.0 that gives this ` +
+        `citation FULL, undiscounted credit purely because the vocabulary ran out of resolution, not because a genuine match was confirmed. ` +
+        `Confirmed false-negative risk: <strong>Get Out</strong> carries exactly ONE tone tag (<code>satirical</code>), sourced from a thin ` +
+        `keyword-fallback tier (no reviewed-workbook tones, no LLM tag entry exists for it at all) — every real candidate in its citation network ` +
+        `gets toneJaccard=0.00 (the floor discount) purely because there's only one word to compare against, including plausible genuine matches ` +
+        `like "Old" (M. Night Shyamalan psychological horror) that share no literal keyword with "satirical" but are real tonal cousins.`,
+      plain: `The fix works by checking whether a candidate shares the SPECIFIC mood/tone that makes an outlier favorite special, not just its genre. ` +
+        `That check is only as good as how many mood-tags a movie or show actually has on file. Checked real examples and found both failure modes ` +
+        `for real: Primo (a gentle Latino family sitcom) and Trailer Park Boys (a raunchy Canadian crime mockumentary) happen to share the exact ` +
+        `same 2 generic tags, so the system thinks they're a tonal match when they clearly aren't. And Get Out only has ONE mood-tag on file at ` +
+        `all, so almost nothing can ever "match" it well enough to avoid the discount — even a movie that's genuinely tonally similar.`,
+      impact: `Not a one-line fix — richer tone tagging (more tags per title, verified rather than inferred from a thin keyword fallback) is the ` +
+        `real underlying need, which is already a separate, larger tracked effort (see the tone/subgenre field-quality findings above). Flagged ` +
+        `here specifically because it's the direct mechanism by which this fix's own accuracy is bounded.`,
+    });
+
+    findings.push({
+      id: 'citation-credit-franchise-exemption-shows',
+      severity: 'warning',
+      ratings: { ease: 6, dataQuality: 3, recEngine: 3, ui: 1 },
+      title: `Franchise exemption only has a real code path for movies — ${showAnomalies} of ${idx.anomalousLovedKeys.size} confirmed outliers are shows with no equivalent`,
+      technical: `<code>citationCreditMultiplier()</code>'s franchise exemption checks <code>belongsToCollection</code>, a TMDB concept that only ` +
+        `exists for movies — a show has no equivalent field, so a real sequel/spin-off show of an outlier (the exact case the exemption exists to ` +
+        `protect, proven necessary for Deadpool & Wolverine vs. the original Deadpool) has no protection if one is ever loved. Live count: ` +
+        `${movieAnomalies} of ${idx.anomalousLovedKeys.size} confirmed anomalies are movies (protected), ${showAnomalies} are shows (not). No ` +
+        `real failure case exists yet — checked live and found no currently-loved show sits in a real spin-off/sequel relationship with one of ` +
+        `its own outlier siblings — so this is a latent gap, not an active bug, the same "flagged because it contradicts the design's own stated ` +
+        `intent, not because it's biting today" framing this dashboard already uses for similar structural gaps.`,
+      plain: `The safety net that protects a favorite's own real sequels from getting unfairly discounted only works for movies right now, because ` +
+        `of a quirk in what TMDB's data provides. If Bill ever rates a TV show spin-off of one of his outlier shows highly, that specific ` +
+        `protection wouldn't kick in. Nothing is broken today — just checked and confirmed there's no current case where this would matter yet.`,
+      impact: `Low urgency (zero live cases), but worth a real fix eventually — likely a show-side proxy using shared creator + matching title ` +
+        `prefix/keyword rather than a literal collection id, since TV doesn't have TMDB's movie-only franchise grouping.`,
+    });
+
+    findings.push({
+      id: 'citation-credit-remaining-caveats',
+      severity: 'warning',
+      ratings: { ease: 4, dataQuality: 3, recEngine: 3, ui: 1 },
+      title: `Citation-credit reweighting: individual validation coverage, threshold provenance, and a downstream prune-cascade effect`,
+      technical: `Three remaining, real caveats from the full investigation pass. <strong>Validation breadth:</strong> only 4 of ${idx.anomalousLovedKeys.size} ` +
+        `confirmed outliers have been individually, deeply validated with real research (Deadpool, The Suicide Squad 2021, Zack Snyder's Justice ` +
+        `League — plus Watchmen, checked this pass: its two highest-scoring citation-network candidates, Lanterns and Marvel's The Punisher, both ` +
+        `turned out to be legitimately supported by real multi-signal corroboration — other loved titles like Daredevil/Terminal List, not just ` +
+        `the Watchmen citation alone — not inflated). The other ${idx.anomalousLovedKeys.size - 4} rely on the statistical threshold alone; a full ` +
+        `network scan of all 16 primary outliers this pass found most citation overlap looks sane (partial, non-zero discounts on titles with real ` +
+        `partial tone overlap), but that's a breadth check, not the same depth of individual research the 4 validated cases got. ` +
+        `<strong>Threshold provenance:</strong> the 2.5-point gap, 8-title trust floor, and 0.3 discount floor were confirmed stable across every ` +
+        `tested value in their neighborhood, but never independently, precisely re-derived FOR this specific mechanism — they're reused from the ` +
+        `same shape used elsewhere in the engine (<code>genreProfile</code>/<code>toneProfile</code>'s own trust floors). <strong>Prune cascade:</strong> ` +
+        `a citation-discounted candidate's lower score could cause it to fall out of <code>prune_candidate_pool.js</code>'s per-type cap on a future ` +
+        `run, evicting it from the pool entirely rather than just ranking it lower — likely the intended outcome for a genuinely inflated candidate, ` +
+        `but a real, compounding effect worth having on record rather than discovering by surprise later.`,
+      plain: `Three honest gaps, not bugs: (1) most of the 20 flagged favorites are still only checked by the numbers, not individually researched ` +
+        `the way Deadpool and the two movies Bill specifically named were — checked this pass and nothing alarming turned up, but that's a lighter ` +
+        `pass than full research. (2) the specific numbers the fix uses (how big a gap counts as "outlier," how much to discount) are reused from ` +
+        `elsewhere in the system rather than freshly tuned for this exact purpose. (3) a title that gets discounted enough could eventually get ` +
+        `dropped from the recommendation pool entirely on a future weekly refresh, not just ranked lower — probably fine, but worth knowing.`,
+      impact: `None of these are actively causing a wrong recommendation today (the breadth check came back clean); they're the honest edges of ` +
+        `confidence around a real, working fix, on record so a future session doesn't have to rediscover them from scratch.`,
     });
   }
 

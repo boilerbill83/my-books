@@ -496,7 +496,7 @@ for each (candidate, cited-loved-title) pair in the forward/reverse
 similar-title match above:
   if cited-loved-title not in anomalousLovedKeys: multiplier = 1  (no change)
   else if same belongsToCollection (franchise): multiplier = 1  (exempt)
-  else if either side has zero tone tags: multiplier = 1  (unknown, not penalized)
+  else if either side has zero tone tags: multiplier = 0.65  (unknown — see below)
   else: multiplier = 0.3 + 0.7 × toneJaccard(candidate, cited-loved-title)
 
 anomalousLovedKeys = every myRating>=9 title rated 2.5+ points above its
@@ -531,6 +531,32 @@ shared: they discounted the citation-match signal too bluntly (a whole
 genre, or every mutual pair) — most mutual citations in this dataset ARE
 genuine corroboration (e.g. "The Westies," cited by 5 real loved crime
 dramas).
+
+**Missing-tone-data default corrected again (2026-09-11):** Bill's
+follow-up ("thoroughly investigate all outliers") surfaced that the
+2026-09-10 fix's full-credit (multiplier=1) default for missing tone
+data was itself the opposite unjustified extreme — checking all 20
+confirmed outliers' real citation networks (not just the 2-3 spot-
+checked at launch) found Stonehearst Asylum and Hypnotic, both citing
+the Get Out anomaly and both carrying zero tone data, had gone right
+back to a near-undiscounted score (66.6 and 55.9 raw) the moment
+"unknown" meant "assume a match" — exactly the loophole the mechanism
+exists to close, just from the other direction. Neither extreme is
+defensible for genuine uncertainty. Fixed to `CITATION_WEIGHT_UNKNOWN`
+(0.65, the midpoint of the discount range) — a real, moderate discount
+that isn't a guess dressed up as confidence either way. `scripts/eval.js`
+showed **zero measurable difference across the entire 0.3-1.0 range**
+tested (p10=100/p25=96/p50=96/p100=87 identical throughout) — this
+dataset's leave-one-out set isn't large enough to discriminate a change
+this narrow, so the choice is a principled default, not something
+eval.js could pick. Practical effect: Stonehearst Asylum 66.6->60.3,
+Hypnotic 55.9->48.3, Marvel's Luke Cage 80.1->77.3 (still a reasonable,
+non-devastated score for a title with genuinely uncertain tone fit).
+Note this alone doesn't guarantee a discounted candidate drops out of a
+"top 10" list — the current movie-candidate pool is thin enough (a
+separate, already-tracked issue) that even a moderately-scored,
+honestly-discounted movie can still be competitive; the fix corrects the
+*signal*, not the size of the pool it's competing in.
 
 This mechanism only discounts a citation when the cited loved title is
 itself a confirmed statistical outlier (e.g. Deadpool, rated 10/10 vs. a
