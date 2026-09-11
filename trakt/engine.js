@@ -83,8 +83,12 @@ const CREATOR_CORRECTIONS = {
 // a show's primary creator — the closest 1:1 analog to a book's author
 // (usually one person per title, same as the book engine's model).
 //
-// meta.creatorCredits (2026-09-11) is enrich_tmdb.py's new, capped-at-2
-// field — director(s)/createdBy first, then a real producer/executive
+// meta.creatorCredits (2026-09-11) is enrich_tmdb.py's new field, capped
+// at CREATOR_CREDITS_CAP there (3, raised from 2 the same session after
+// a real regression: capping at 2 silently dropped a genuine 3rd
+// co-creator on shows like For All Mankind that TMDB actually credits
+// three people for — see enrich_tmdb.py's own comment for the full
+// story) — director(s)/createdBy first, then a real producer/executive
 // producer (shows: from aggregate_credits, catching someone credited
 // across a show's whole run even when absent from its most recent
 // season) if a slot remains — checked before the raw director/createdBy

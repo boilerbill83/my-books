@@ -183,9 +183,10 @@ far though, two directors/executives/producers/showrunners for each
 title" — generalizes `CREATOR_CORRECTIONS` (a one-off, hand-verified
 correction table) into a real data-pipeline field covering the whole
 dataset, not just Primo. `enrich_tmdb.py`'s `extract_entry()` now builds
-`entry['creatorCredits']`, capped at exactly 2 names: real director(s)/
-`createdBy` first, then a real producer/executive producer appended only
-if a slot remains.
+`entry['creatorCredits']`: real director(s)/`createdBy` first, then a
+real producer/executive producer appended only if a slot remains, capped
+at `CREATOR_CREDITS_CAP` — **3**, raised from the original 2 the same
+session (see below).
 - **Movies**: the extra name comes from the same `credits.crew` list
   already fetched for Director — a movie has one complete crew list, no
   extra API call needed. Filtered to `job in ('Producer', 'Executive
@@ -215,11 +216,33 @@ if a slot remains.
   functions fall back to the old director/createdBy-only logic until
   then, so shipping the code change alone is a guaranteed no-op
   (confirmed via `scripts/eval.js`: byte-identical before/after).
-  `CREATOR_CORRECTIONS`'s one Primo entry is left in place as a safety
-  net even after this ships — once a real re-fetch confirms Primo's own
-  `creatorCredits` independently includes Schur (which the aggregate-
-  credits logic above should produce on its own), the hand-written entry
-  becomes redundant and can be removed.
+  `CREATOR_CORRECTIONS`'s one Primo entry is confirmed redundant as of
+  the first real backfill — Primo's own `creatorCredits` now
+  independently reads `['Shea Serrano', 'Michael Schur']` straight from
+  TMDB's `aggregate_credits`, exactly matching the hand-written entry —
+  left in place anyway as a harmless, zero-cost safety net rather than
+  removed on the spot.
+
+**Cap raised 2→3, same session (Bill: "you can allow a third"):** the
+first real backfill (1,086 titles) surfaced a genuine regression, not
+just the intended new-producer-credit gains — Star City (a candidate)
+dropped 7.1 raw points because its co-creator Ben Nedivi lost his
+creator-match credit. Root cause traced with a real before/after score
+breakdown: Bill's loved show **For All Mankind** (9/10) genuinely has 3
+TMDB-credited co-creators (Matt Wolpert, Ronald D. Moore, Ben Nedivi),
+and the cap of 2 was silently dropping the 3rd — a real, already-known
+co-creator, not a speculative producer guess the cap was ever meant to
+gate. Raised to 3 and re-verified live: For All Mankind's
+`creatorCredits` now keeps all 3, Star City's creator-match credit is
+restored. **Known, disclosed remaining gap**: some real titles have 4+
+genuine co-creators and will still lose one even at a cap of 3 — found
+by checking Bill's own rated titles directly, not assumed away: Ted
+Lasso (9/10, 4 co-creators), American Crime Story, Beartown, Beast
+Games, Detroiters, Documentary Now! (all 4-creator, all rated 7-8), The
+Studio (5 creators, rated 8). Not fixed further without Bill's explicit
+sign-off, since he set the cap number twice now (2, then 3) and a third
+unprompted increase would be overriding his own stated boundary rather
+than reporting a real finding for him to act on.
 
 ### 3b. Genre match — capped at **+8**
 As of the Genre/Subgenre taxonomy redesign, Genre is a **single, clean
