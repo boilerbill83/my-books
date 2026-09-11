@@ -1,0 +1,53 @@
+name: Build Old-Title Review List (TMDB discover)
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_count:
+        description: 'How many titles the review list should contain'
+        type: number
+        default: 100
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build the real, under-represented-genre pre-2010 review list from TMDB
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: python3 trakt/build_old_title_review_list.py ${{ inputs.target_count || 100 }}
+        timeout-minutes: 15
+      - name: Commit if changed
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Rebase onto whatever branch actually triggered this run, not a
+          # hardcoded main - same real bug this pipeline's other workflows
+          # already document (2026-09-03): a push-reject retry rebasing
+          # onto origin/main instead of the feature branch it actually ran
+          # on would produce real merge conflicts and silently discard a
+          # real TMDB fetch pass that had already succeeded locally.
+          BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+          git add trakt/output/old-title-review-manifest.json
+          if git diff --staged --quiet; then
+            echo "No manifest change."
+            exit 0
+          fi
+          git commit -m "Build old-title review list (Opportunity #1 data collection) [automated]"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest $BRANCH."
+            git fetch origin "$BRANCH"
+            git rebase "origin/$BRANCH"
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1
