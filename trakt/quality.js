@@ -3322,6 +3322,45 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
 }
 
 
+// Shared by both the tile grid (renderImprovementOpportunities) and its
+// click-to-open modal (openImpModal) — hoisted to module scope so neither
+// duplicates the severity/ratings presentation logic.
+const IMP_SEV_META = {
+  critical: { cls: 'tk-status-critical', icon: '✗', label: 'High impact' },
+  serious: { cls: 'tk-status-serious', icon: '⚠', label: 'Medium impact' },
+  warning: { cls: 'tk-status-warning', icon: '⚠', label: 'Low impact' },
+  good: { cls: 'tk-status-good', icon: '✓', label: 'Resolved' },
+};
+// 1-10 scale on 4 independent axes (ease of implementation, data quality
+// improvement, recommendation engine improvement, UI improvement) — a
+// judgment call grounded in each finding's own technical/impact writeup,
+// not a further live computation. Rendered as small labeled meters (never
+// color alone — a number is always printed) so the four axes stay
+// scannable without reading every paragraph, the same discipline the
+// severity pill already uses.
+const IMP_RATING_META = [
+  { key: 'ease', label: 'Ease' },
+  { key: 'dataQuality', label: 'Data quality' },
+  { key: 'recEngine', label: 'Rec. engine' },
+  { key: 'ui', label: 'UI' },
+];
+const impRatingColor = n => n >= 7 ? 'var(--status-good)' : n >= 4 ? 'var(--status-warning)' : 'var(--status-critical)';
+const renderImpRatings = ratings => {
+  if (!ratings) return '';
+  return `
+    <div class="tk-imp-ratings">
+      ${IMP_RATING_META.map(r => `
+        <div class="tk-imp-rating">
+          <div class="tk-imp-rating-label">${r.label}</div>
+          <div class="tk-imp-rating-track"><div class="tk-imp-rating-fill" style="width:${ratings[r.key] * 10}%; background:${impRatingColor(ratings[r.key])};"></div></div>
+          <div class="tk-imp-rating-num">${ratings[r.key]}/10</div>
+        </div>
+      `).join('')}
+    </div>`;
+};
+
+let impOpenFindings = [];
+
 function renderImprovementOpportunities(findings, targetId = 'improvementList') {
   const el = document.getElementById(targetId);
   // Bill: "once something is resolved, remove it from the list" — a
@@ -3353,75 +3392,57 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList') 
       : '';
   }
   findings = open;
-  const sevMeta = {
-    critical: { cls: 'tk-status-critical', icon: '✗', label: 'High impact' },
-    serious: { cls: 'tk-status-serious', icon: '⚠', label: 'Medium impact' },
-    warning: { cls: 'tk-status-warning', icon: '⚠', label: 'Low impact' },
-    good: { cls: 'tk-status-good', icon: '✓', label: 'Resolved' },
-  };
-  // 1-10 scale on 4 independent axes (ease of implementation, data
-  // quality improvement, recommendation engine improvement, UI
-  // improvement) — a judgment call grounded in each finding's own
-  // technical/impact writeup above, not a further live computation.
-  // Rendered as small labeled meters (never color alone — a number is
-  // always printed) so the four axes stay scannable without reading
-  // every paragraph, the same discipline the severity pill already uses.
-  const ratingMeta = [
-    { key: 'ease', label: 'Ease' },
-    { key: 'dataQuality', label: 'Data quality' },
-    { key: 'recEngine', label: 'Rec. engine' },
-    { key: 'ui', label: 'UI' },
-  ];
-  const ratingColor = n => n >= 7 ? 'var(--status-good)' : n >= 4 ? 'var(--status-warning)' : 'var(--status-critical)';
-  const renderRatings = ratings => {
-    if (!ratings) return '';
-    return `
-      <div class="tk-imp-ratings">
-        ${ratingMeta.map(r => `
-          <div class="tk-imp-rating">
-            <div class="tk-imp-rating-label">${r.label}</div>
-            <div class="tk-imp-rating-track"><div class="tk-imp-rating-fill" style="width:${ratings[r.key] * 10}%; background:${ratingColor(ratings[r.key])};"></div></div>
-            <div class="tk-imp-rating-num">${ratings[r.key]}/10</div>
-          </div>
-        `).join('')}
-      </div>`;
-  };
+  impOpenFindings = findings;
 
-  // Bill: "Improvement Opportunities takes up too much space; show each
-  // as a small card with the title and metrics, then make it expandable
-  // to view all of the information." Each card now renders collapsed by
-  // default (title + severity pill + the 4 ratings meters only) with a
-  // click-to-expand for the technical/plain-English/impact write-ups —
-  // same collapse-on-click mechanism as the whole-section collapse
-  // above, just scoped to one card instead of a whole section.
+  // Bill: "visualize the Improvement Opportunities differently; show them
+  // as tiles so we can see four across the screen; then when you click on
+  // a card, it gives you all the info." A compact grid (title + severity
+  // pill + the 4 ratings meters) replaces the old collapsible-list-item
+  // design; the full technical/plain-English/impact write-up now opens in
+  // a modal instead of expanding inline, since an inline expansion inside
+  // a 4-wide grid would badly misalign every tile sharing that row.
+  el.classList.add('tk-imp-grid');
   el.innerHTML = findings.map((f, i) => {
-    const sev = sevMeta[f.severity];
+    const sev = IMP_SEV_META[f.severity];
     return `
-      <div class="tk-imp-card tk-imp-collapsed" data-imp-index="${i}">
-        <div class="tk-imp-header" role="button" tabindex="0">
+      <button type="button" class="tk-imp-tile" data-imp-index="${i}">
+        <div class="tk-imp-tile-top">
           <span class="tk-imp-rank">#${i + 1}</span>
-          <div class="tk-imp-title">${esc(f.title)}</div>
           <span class="tk-status-pill ${sev.cls}">${sev.icon} ${sev.label}</span>
-          <span class="tk-collapse-chevron">▾</span>
         </div>
-        ${renderRatings(f.ratings)}
-        <div class="tk-imp-details">
-          <div class="tk-imp-section-label">Technical description</div>
-          <div class="tk-imp-technical">${f.technical}</div>
-          <div class="tk-imp-section-label">In plain English</div>
-          <div class="tk-imp-plain">${f.plain}</div>
-          <div class="tk-imp-section-label">Impact</div>
-          <div class="tk-imp-impact">${f.impact}</div>
-        </div>
-      </div>
+        <div class="tk-imp-tile-title">${esc(f.title)}</div>
+        ${renderImpRatings(f.ratings)}
+        <div class="tk-imp-tile-hint">Click for full details →</div>
+      </button>
     `;
   }).join('');
 
-  el.querySelectorAll('.tk-imp-header').forEach(header => {
-    const toggle = () => header.closest('.tk-imp-card').classList.toggle('tk-imp-collapsed');
-    header.addEventListener('click', toggle);
-    header.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+  el.querySelectorAll('.tk-imp-tile').forEach(tile => {
+    tile.addEventListener('click', () => openImpModal(impOpenFindings[Number(tile.dataset.impIndex)]));
   });
+}
+
+function openImpModal(f) {
+  const modal = document.getElementById('impModal');
+  if (!modal || !f) return;
+  const sev = IMP_SEV_META[f.severity];
+  modal.querySelector('#impModalPill').innerHTML = `<span class="tk-status-pill ${sev.cls}">${sev.icon} ${sev.label}</span>`;
+  modal.querySelector('#impModalTitle').textContent = f.title;
+  modal.querySelector('#impModalRatings').innerHTML = renderImpRatings(f.ratings);
+  modal.querySelector('#impModalTechnical').innerHTML = f.technical;
+  modal.querySelector('#impModalPlain').innerHTML = f.plain;
+  modal.querySelector('#impModalImpact').innerHTML = f.impact;
+  if (typeof modal.showModal === 'function') modal.showModal();
+  else modal.setAttribute('open', '');
+}
+
+function initImpModal() {
+  const modal = document.getElementById('impModal');
+  if (!modal) return;
+  modal.querySelector('#impModalClose')?.addEventListener('click', () => modal.close());
+  // Click on the backdrop (the <dialog> element itself, outside its content
+  // box) closes it — native <dialog> doesn't do this automatically.
+  modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });
 }
 
 // Predicted Score reuses the same matchScore() the recommendation panels
@@ -3755,6 +3776,7 @@ async function load() {
 }
 
 initCollapsibleCards();
+initImpModal();
 
 load().catch(err => {
   document.getElementById('statusText').textContent = 'Failed to load dashboard data — see console.';

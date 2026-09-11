@@ -37,10 +37,27 @@
 
         <div class="tk-card" style="margin-bottom: 24px;">
           <div class="tk-card-heading">🛠️ Improvement Opportunities</div>
-          <div class="tk-card-note">Findings from a full code review of everything under <code>trakt/</code> plus real gaps in the scoring model itself — code-correctness bugs and unused/missing signals together, ranked by real impact on data quality and recommendation accuracy, the same kind of iterative refinement history <a href="../index.html" target="_blank">BBRE</a>, the book engine, went through across 40+ sessions. Each verified against live data, not guessed. Only open items are shown below — resolved ones are fixed and removed.</div>
+          <div class="tk-card-note">Findings from a full code review of everything under <code>trakt/</code> plus real gaps in the scoring model itself — code-correctness bugs and unused/missing signals together, ranked by real impact on data quality and recommendation accuracy, the same kind of iterative refinement history <a href="../index.html" target="_blank">BBRE</a>, the book engine, went through across 40+ sessions. Each verified against live data, not guessed. Only open items are shown below — resolved ones are fixed and removed. Click a tile for the full write-up.</div>
           <div class="tk-card-note" id="improvementResolvedNote"></div>
           <div id="improvementList"></div>
         </div>
+
+        <dialog id="impModal" class="dialog tk-imp-modal">
+          <div class="dialog-body">
+            <div class="dialog-header">
+              <h3 id="impModalTitle">Finding</h3>
+              <button type="button" id="impModalClose" aria-label="Close">✕</button>
+            </div>
+            <div id="impModalPill"></div>
+            <div id="impModalRatings"></div>
+            <div class="tk-imp-section-label">Technical description</div>
+            <div class="tk-imp-technical" id="impModalTechnical"></div>
+            <div class="tk-imp-section-label">In plain English</div>
+            <div class="tk-imp-plain" id="impModalPlain"></div>
+            <div class="tk-imp-section-label">Impact</div>
+            <div class="tk-imp-impact" id="impModalImpact"></div>
+          </div>
+        </dialog>
 
         <div class="tk-row2" style="margin-bottom:14px;">
           <div class="tk-card">

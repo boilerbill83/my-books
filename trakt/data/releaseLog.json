@@ -658,6 +658,21 @@
       "after": {
         "note": "closed-loop share unchanged at 84.5% (371 of 439 pool titles) after a third, deliberately much larger real batch - genre-explore share of the pool ticked up only slightly, 16.2%->16.4% (71->72 of 439), since 27 of the newly-discovered genre-explore candidates were themselves evicted by the same prune pass that let in 60 new similarity-graph candidates. eval.js unaffected by design (candidatePool.json isn't read by the eval harness): p10=90/p25=96/p50=98/p100=91, held exactly."
       }
+    },
+    {
+      "id": "closed-loop-discovery-rebalanced-and-verified",
+      "date": "2026-09-11",
+      "session": "77",
+      "category": "measurement",
+      "outcome": "shipped",
+      "title": "Fixed the real bottleneck behind the closed-loop-discovery plateau, rebalanced the recurring workflow's own defaults, and verified the fix holds on an unattended zero-override run",
+      "summary": "Continued from Session 76's honest 84.5% plateau (discover_candidates.js, the original TMDB-similarity discoverer, was re-filling the pool with closed-loop candidates just as fast as genre-explore removed them). Root-caused and fixed two real mechanisms rather than just running the same batch again: (1) prune_candidate_pool.js ranked genre-explore candidates in the same open competition as closed-loop ones, and a genre-explore candidate structurally can't win that fight (it's never cited by a loved title, so it never earns the forward/reverse similar-title bonus) - fixed with a guaranteed 25%-of-cap reserved share, immune to that disadvantage; (2) discover_explore.py hardcoded page=1 on every TMDB /discover query forever, so after 3 runs against the same top-genre mix it had exhausted nearly everything page 1 could return - fixed by paginating up to 5 pages/genre. A large manual validation batch with both fixes live moved the share 84.5%->78.9% (raw /discover results 320->1,483, genre-explore additions 1 movie/0 shows -> 50/50). That proved the fixes work but not that they'd keep helping unattended, since the recurring Sunday cron passes no input overrides at all - rebalanced the workflow's own defaults for real (max_new_per_type 30->20, explore_max_new_per_type 20->40, explore_top_genres_per_type 4->8, enrich_batch_size 100->150) and verified with a real run dispatched with ZERO input overrides, exactly what the unattended weekly cron will run. Also removed the now-resolved Loved-Title Outliers & Citation Reweighting table from the dashboard (its citation-credit-discount fixes had already been verified and folded into resolved findings) and moved Improvement Opportunities to the top of the page.",
+      "before": {
+        "note": "closed-loop share 84.5% (371 of 439 pool titles), plateaued across two consecutive real batches (Session 76)"
+      },
+      "after": {
+        "note": "closed-loop share 75.7% (334 of 441 pool titles) on the zero-override defaults run - a genuine further drop from the 78.9% manual-batch checkpoint, confirming the rebalanced defaults keep improving the pool on their own, not just under a manually-tuned one-off. genre-explore's own pool share also grew to 28.8% (127 of 441, up from 16.4% at the last documented checkpoint). eval.js unaffected by design (candidatePool.json isn't read by the eval harness): precision@10/25/50/100 held exactly."
+      }
     }
   ]
 }
