@@ -1041,6 +1041,82 @@ is the deliberate ceiling, not a rounder or larger number.
 — a below-neutral popularity is real negative evidence too, not just
 absence of positive evidence.
 
+### 3t. Book taste correlation (`bookTasteBonus()`) — capped at **+0.75**
+
+Closes the dashboard's `book-adaptation-cross-domain-signal-unused`
+finding: this repo runs two independently-built recommendation engines for
+the same person — BBRE (the book engine, root-level `engine.js`/
+`bbreEngine.js`) and BMTRE (this file) — and nothing connected them,
+despite BBRE having a mature, already-validated theme-preference signal
+(`themeBonus()`, book side). Deliberately NOT a title-level join (TMDB's
+`based on novel or book` keyword never names the source book, and this
+project has a long, documented history of real bugs from fuzzy cross-
+dataset title matching — `resolve_titles.py`'s confirmed wrong matches,
+years of the book side's own `similarToTitles` corruption). Instead
+correlates BBRE's real per-theme 5-star-read counts (`computeBookThemeCounts()`,
+reading `data/goodreadsData.json` at the repo root — the exact same
+`shelf==='read' && myRating===5` tally BBRE's own `fiveStarThemes` uses,
+so the two counts can never drift apart) with this candidate's own inferred
+Genre/Subgenre/Subject tags, via a hand-curated `BOOK_THEME_TO_MOVIE_TAGS`
+table (28 of BBRE's 35 canonical themes mapped; `memoir`/`high-concept`/
+`YA`/`contemporary`/`noir`/`food`/`music history` deliberately left
+unmapped — no real BMTRE-side equivalent, not forced). Applies to every
+candidate, not just confirmed adaptations, since it never depends on
+knowing which specific book a title came from. Live today: 387 of 483 real
+watchlist+candidate titles (80.1%) get a nonzero bonus.
+
+Positive-only, loved-count-tiered — the same tier shape as `genreBonus()`/
+`subgenreBonus()` (this file), mirroring BBRE's own `themeBonus()`
+philosophy rather than inventing a new curve (`>=40→+0.75`, `>=20→+0.5`,
+`>=8→+0.25`, `>=1→+0.1` per matched theme, summed, then clamped by
+`BOOK_TASTE_BONUS_CAP`). Deliberately capped lower than BMTRE's own native
+genre/subgenre signals — this is corroborating evidence from a different
+domain's rating history, not a primary BMTRE signal, so it should never
+outweigh what BMTRE already knows about Bill's actual movie/show taste.
+
+Swept `BOOK_TASTE_BONUS_CAP` 0 through 1.5 against `scripts/eval.js` —
+this **did** surface a real, cap-dependent precision@10 regression, not a
+false alarm: at cap=1.0 and above, two 7/10-rated shows whose theme profile
+happens to line up tightly with Bill's book taste (Presumed Innocent —
+legal/courtroom, one of his single biggest book-theme concentrations;
+Lioness — spy/military) get boosted into the top-10 leave-one-out ranking,
+displacing genuine 8+/10 matches. (An earlier same-session guess blamed an
+unrelated candidate-pool data shift instead — wrong; a full cap sweep with
+titles printed at each value traced it precisely to this signal, at this
+threshold, with these two shows.) Full sweep ("great match" precision@10/
+25/50/100, base rate 62%):
+
+| cap | p10 | p25 | p50 | p100 |
+|---|---|---|---|---|
+| 0 (disabled) | 100 | 88 | 92 | 89 |
+| 0.1 – 0.6 | 100 | 88 | 92 | 88 |
+| **0.75 (shipped)** | **100** | **88** | **94** | **88** |
+| 1.0 – 1.25 | 90 | 88 | 94 | 88 |
+| 1.5 | 80 | 88 | 94 | 88 |
+
+0.75 is the highest cap that holds precision@10/25 exactly at the
+signal-disabled baseline while genuinely improving precision@50 (92→94,
+held through every higher cap too) — the "liked" metric (a much weaker
+discriminator at 88.6% base rate) is unaffected by the cap at every value
+tested (100/96/98/95 throughout). Shipped at 0.75, not the top of the
+tested range, per this project's standing rule that precision@10/25 is
+never traded away.
+
+`buildIndexes()` takes `bookThemeCounts` as a new final positional
+parameter (default `{}`, a true no-op — every call site not yet updated
+degrades safely rather than breaking); every real caller (`rankAll()`,
+`rankRecommendations()`, `computeEvalMetrics()`, `prune_candidate_pool.js`,
+`export_extract.js`/`loadAllTitles.js`, `scripts/eval.js`, and every
+browser page via `dashboardShared.js`'s `loadAllData()` or, for
+`deepdive.js`/`recommend.js`'s own independent fetch blocks, a matching
+`../data/goodreadsData.json` fetch) threads it through — the exact
+"update every real call site in the same pass" discipline the
+`eval-metrics-missing-args-bug` finding's own history exists to prevent a
+future silent-divergence repeat of. `reason()` gained a matching
+explanation tier ("You love legal, courtroom-themed books — this shares
+that theme"), checked after Genre/Subject/Tone Match, before the plot-
+description-similarity tier.
+
 ---
 
 ## 4. Real but display-only (not wired into `matchScore()`)

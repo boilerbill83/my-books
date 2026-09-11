@@ -23,10 +23,11 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { computeEvalMetrics, mergeScrapedShowRatings } from '../engine.js';
+import { computeEvalMetrics, mergeScrapedShowRatings, computeBookThemeCounts } from '../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.resolve(__dirname, '..', 'data');
+const ROOT_DATA_DIR = path.resolve(__dirname, '..', '..', 'data');
 
 const read = (name, fallback) => {
   try { return JSON.parse(fs.readFileSync(path.join(DATA_DIR, name), 'utf8')); } catch { return fallback; }
@@ -39,8 +40,13 @@ const scrapedShowRatings = read('scrapedShowRatings.json', {});
 const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
 const llmTags = read('llmTags.json', {});
 const reviewedTags = read('reviewedTags.json', {});
+// book-adaptation-cross-domain-signal-unused: BBRE's real theme-preference
+// data, read from the book side's own root-level data/ dir.
+let goodreadsData = { books: [] };
+try { goodreadsData = JSON.parse(fs.readFileSync(path.join(ROOT_DATA_DIR, 'goodreadsData.json'), 'utf8')); } catch {}
+const bookThemeCounts = computeBookThemeCounts(goodreadsData);
 
-const m = await computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags);
+const m = await computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
 
 console.log(`BMTRE eval over ${m.n} watched+rated+enriched+dismissed titles (leave-one-out) — includes ${m.dismissedCount} real taste-based dismissals scored as "not liked" (Bill's own instruction, 2026-09-10)`);
 console.log(`"liked" = myRating >= ${m.likedThreshold}/10; base rate: ${(100 * m.baseRate).toFixed(1)}%   raw MAE: ${m.mae.toFixed(2)}   calibrated MAE: ${m.calibratedMae.toFixed(2)}`);

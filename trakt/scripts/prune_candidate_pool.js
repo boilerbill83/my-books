@@ -40,7 +40,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { buildIndexes, matchScorePair, hydrateTitle, isPreMillenniumMovie, isAnimation, isTooObscure, mergeScrapedShowRatings } from '../engine.js';
+import { buildIndexes, matchScorePair, hydrateTitle, isPreMillenniumMovie, isAnimation, isTooObscure, mergeScrapedShowRatings, computeBookThemeCounts } from '../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -107,8 +107,14 @@ const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
 const feedback = readJSON(path.join(DATA_DIR, 'feedbackData.json'), { interactions: [] });
 const llmTags = readJSON(path.join(DATA_DIR, 'llmTags.json'), {});
 const reviewedTags = readJSON(path.join(DATA_DIR, 'reviewedTags.json'), {});
+// book-adaptation-cross-domain-signal-unused: BBRE's (the book engine's)
+// real theme-preference data, read from the book side's own data/ dir
+// (root-level, not trakt/data/) - see computeBookThemeCounts()'s own
+// comment in engine.js for why this can never drift from BBRE's own count.
+const goodreadsData = readJSON(path.join(ROOT, 'data', 'goodreadsData.json'), { books: [] });
+const bookThemeCounts = computeBookThemeCounts(goodreadsData);
 
-const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags);
+const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, undefined, bookThemeCounts);
 const watchlistKeys = new Set((watchlist.titles || []).map(c => c.titleKey));
 
 // Same re-edit / non-English / pre-2000-movie / animation / too-obscure
