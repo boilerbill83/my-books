@@ -2617,22 +2617,57 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
-  // 5b. Investigated the worst prediction misses/underrates from eval.js
-  // directly (scoreBreakdown() on each) hunting for a real, fixable
-  // pattern, not just anecdotes. First hypothesis — recency curves
-  // (recencyBonusMovie/Show) fighting a real revealed preference for
-  // older content, since 5 of 8 worst-UNDERrated titles were pre-2010
-  // with steep negative recency penalties — was WRONG, caught and
-  // corrected by Bill directly: "I only added older movies that I loved.
-  // I add all new movies even if I don't like them." Verified against
-  // real data below rather than taking either claim on faith. The
-  // corrected, real finding is about what this selection bias does to
-  // eval.js's own reliability and to every myRating-derived preference
-  // signal for older titles, not about the recency curve being
-  // miscalibrated (recencyBonusMovie/Show's steep bias toward recent
-  // content was Bill's own explicit, twice-stated request — see
-  // Session 52's comments on both functions — and this finding doesn't
-  // second-guess that ask).
+  // 5b. UPGRADED 2026-09-11 to opportunity #1, Bill's explicit call ("This
+  // is a big opportunity... We found a major gap in our engine") after a
+  // real, empirical test proved the gap has real teeth, not just a
+  // theoretical caveat. Originally investigated for the worst prediction
+  // misses/underrates from eval.js directly (scoreBreakdown() on each)
+  // hunting for a real, fixable pattern, not just anecdotes. First
+  // hypothesis — recency curves (recencyBonusMovie/Show) fighting a real
+  // revealed preference for older content, since 5 of 8 worst-UNDERrated
+  // titles were pre-2010 with steep negative recency penalties — was
+  // WRONG, caught and corrected by Bill directly: "I only added older
+  // movies that I loved. I add all new movies even if I don't like them."
+  // Verified against real data below rather than taking either claim on
+  // faith.
+  //
+  // Bill then proposed a real fix — a date-based guardrail discounting old
+  // ratings ("adjust everything to the 2026 version of Bill," his own
+  // example being Superbad). Investigated whether the data could even
+  // support a DATE-based version first: it couldn't — Bill only started
+  // using Trakt in 2026, so ratedAt is just "when I typed this in" (41% of
+  // all ratings cluster on a handful of 2026 bulk-import dates; Superbad
+  // itself is ratedAt 2026-08-21 despite being a 2007 film) and
+  // lastWatchedAt is, for 29% of rated movies, literally the title's own
+  // release date (a known Session 42-43 CSV-import placeholder, not a real
+  // watch memory). Bill's own resolution: assume content was watched on
+  // its release date, making content age the only honest proxy available.
+  //
+  // BUILT AND TESTED FOR REAL (not just proposed): a half-life content-age
+  // decay applied to every myRating-derived preference signal
+  // (genreProfile/toneProfile/subgenreProfile, creatorRatingWeight,
+  // lovedGenres/lovedSubgenres/lovedSubjects/lovedKeywords/lovedActors/
+  // lovedCollections/reverseSimilar, lovedCreators) — swept 9 half-life
+  // values (5 to 100,000 years, the latter as an effectively-disabled
+  // control) against scripts/eval.js. Real, unambiguous, monotonic result:
+  // EVERY tested strength made held-out predictions worse than doing
+  // nothing — MAE climbed steadily from 14.89 (disabled) to 21.31 (most
+  // aggressive), and "great match" precision@10 dropped from 100% to 90%
+  // at even the gentlest decay tested (a 50-year half-life). Reverted in
+  // full, not shipped even inert. Root cause: discounting old ratings only
+  // REMOVES signal (old = almost all loved, per the selection bias below)
+  // without ADDING the missing negative examples — pure information loss,
+  // not a fix. This negative result is itself real evidence the
+  // underlying gap has teeth: there is no way to algorithmically correct
+  // for missing data that isn't there. Confirms the corrected, real
+  // finding is about what the selection bias does to every myRating-
+  // derived preference signal and to eval.js's own reliability for older
+  // titles — not about the recency curve being miscalibrated
+  // (recencyBonusMovie/Show's steep bias toward recent content was Bill's
+  // own explicit, twice-stated request — see Session 52's comments on
+  // both functions — this finding doesn't second-guess that ask; if
+  // anything, the missing-negative-data gap is a real argument that curve
+  // is doing necessary corrective work no organic signal could do alone).
   {
     const disliked = rated.filter(t => t.myRating <= 5);
     const dislikedYears = disliked.map(t => {
@@ -2645,36 +2680,45 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const oldestDisliked = dislikedYears.length ? Math.min(...dislikedYears) : null;
     findings.push({
       id: 'library-recency-selection-bias',
-      severity: 'serious', // recEngine 4 — severity now tracks the hand-graded ratings below
-      ratings: { ease: 2, dataQuality: 3, recEngine: 4, ui: 1 },
+      severity: 'critical',
+      ratings: { ease: 2, dataQuality: 8, recEngine: 8, ui: 1 },
       shortTitle: 'Old Dislikes Missing Data',
-      title: `Bill's library was built with an asymmetric selection bias by era — 0 of ${fmtNum(disliked.length)} disliked titles predate 2000, only ${dislikedPre2010} predate 2010`,
+      title: `Opportunity #1: Bill's library has an asymmetric selection bias by era — 0 of ${fmtNum(disliked.length)} disliked titles predate 2000, only ${dislikedPre2010} predate 2010 — and a real test proved no algorithm can fix it, only real data can`,
       technical: `Confirmed directly by Bill, then verified against real data rather than assumed: older titles were only ever added to ` +
         `<code>library.json</code> when he already loved them; recent titles are added comprehensively regardless of whether he ends up ` +
         `liking them. Live count: of ${fmtNum(disliked.length)} disliked (myRating<=5, the same threshold <code>computeEvalMetrics()</code>'s ` +
         `own <code>DISLIKED_THRESHOLD</code> uses) rated+enriched titles, ` +
         `${dislikedPre2000} predate 2000 and only ${dislikedPre2010} predate 2010${oldestDisliked ? ` (the single oldest disliked title is from ${oldestDisliked})` : ''}. ` +
-        `Practical consequences: (1) every <code>myRating</code>-derived preference signal — <code>genreProfile</code>, ` +
-        `<code>toneProfile</code>, <code>creatorRatingWeight</code> — structurally cannot learn "Bill dislikes X in older titles" for ` +
-        `anything from this era, since no negative example of an older title exists in the training data to learn it from, not because ` +
-        `no such title exists in the world. (2) A by-release-year breakdown of <code>computeEvalMetrics()</code>'s leave-one-out residuals ` +
-        `(predicted minus actual) shows older titles' predictions running well below actual rating — a pattern that looks, on the surface, ` +
-        `like the model underrating good old titles, but is really just this same selection bias reflected back: the pre-2000/2000s subset ` +
-        `of the library is a pre-filtered, nearly-all-loved sample, not a representative one, so of course actual ratings in that bucket ` +
-        `look uniformly high regardless of what any scoring signal does. This also means Session 52's steep, explicit recency-penalty ask ` +
-        `("nothing before 2000" for shows, "last 5-10 years" for movies) is plausibly doing necessary corrective work no organic signal ` +
-        `could do on its own — the engine has no way to discover "not every old movie is a 10/10" from data that structurally excludes ` +
-        `disliked old movies.`,
+        `Practical consequences: every <code>myRating</code>-derived preference signal — <code>genreProfile</code>, ` +
+        `<code>toneProfile</code>, <code>subgenreProfile</code>, <code>creatorRatingWeight</code>, every <code>loved*</code> map — ` +
+        `structurally cannot learn "Bill dislikes X in older titles" for anything from this era, since no negative example of an older ` +
+        `title exists in the training data to learn it from, not because no such title exists in the world. A real content-age-decay fix ` +
+        `was built and tested against <code>scripts/eval.js</code> (9 half-life values, 5-100,000 years) — every strength made predictions ` +
+        `measurably worse (MAE 14.89->21.31, precision@10 100%->90% even at the gentlest decay), confirming empirically that this cannot be ` +
+        `fixed by re-weighting existing data — only real negative examples for the pre-2010 era close it. Four concrete options assessed, ` +
+        `not mutually exclusive: (1) a curated recognition-based rating list — well-known pre-2010 titles Bill hasn't logged, pulled from ` +
+        `real TMDB popularity data and deliberately weighted toward genres he doesn't already show strong preference for, maximizing the ` +
+        `odds of surfacing genuine dislikes rather than re-confirming favorites (the same mechanism that worked for the original movie-` +
+        `import project, Session 42's movies_to_rate_top50.xlsx, aimed specifically at this gap instead of general backfill); (2) a ` +
+        `corroboration-based weighting scheme — discount an old rating only where NO recent rating in the same genre/tone corroborates it, ` +
+        `rather than a blanket age decay, which might dodge the information-loss failure mode above but needs its own real ` +
+        `<code>scripts/eval.js</code> sweep before shipping, no guarantee it survives contact with real data either; (3) wire real content-` +
+        `based dismissals into <code>genreProfile</code>/<code>toneProfile</code> going forward (currently dormant — no real dismissal uses ` +
+        `the reason code that mechanism reads) — doesn't retroactively fix the pre-2010 gap, since the only real old-era dismissals today ` +
+        `use the deliberately-excluded circular <code>too_old</code> reason, but makes better use of data already being collected for ` +
+        `future dismissals; (4) surface the blind spot in <code>confidenceScore()</code>/<code>reason()</code> rather than correcting it — ` +
+        `flag when a prediction leans heavily on an era with zero negative examples, an honesty fix rather than a data fix.`,
       plain: `Bill only ever adds an old movie or show to his tracked history when he already knows he loves it — he doesn't bother ` +
-        `logging old stuff he watched and disliked. But for anything new, he logs everything, good or bad. That's a completely reasonable ` +
-        `way to use a watch-tracking app, but it means the "how accurate is the engine" number reported by this project's evaluation tool ` +
-        `can be misleading for older titles specifically: it can look like the engine is bad at predicting how Bill will rate old movies, ` +
-        `when the real explanation is that there's no example anywhere of an old movie he actually disliked for the engine to learn from — ` +
-        `it's a gap in the data, not a mistake in the math. Worth keeping in mind for anyone reading this project's own accuracy numbers ` +
-        `broken down by release year in the future.`,
-      impact: `A methodology caveat, not a scoring bug to fix — the value here is in NOT drawing the wrong conclusion from a real pattern in ` +
-        `the data (this session started to propose loosening the recency penalty based on exactly this pattern before Bill caught the ` +
-        `flawed premise). Documented so a future session doesn't make the same mistake independently.`,
+        `logging old stuff he watched and disliked. But for anything new, he logs everything, good or bad. That means the engine has ` +
+        `literally never seen an example of an old movie or show he didn't like — it's not that it's bad at judging old content, it's that ` +
+        `it's never been shown the other half of the picture. Tried the obvious algorithmic fix (trust old ratings less, since an old ` +
+        `opinion might not hold up today) and tested it properly before shipping — it made things worse every time, because discounting old ` +
+        `ratings just throws away real positive signal without adding back the missing negative examples. That's actually useful to know: ` +
+        `it proves this gap can't be papered over with a formula, real new data is the only way to close it — the options above are all ` +
+        `about getting that real data, or being honest about not having it.`,
+      impact: `Bill's own call: the biggest, most concrete opportunity currently on this list, not a background caveat. Verified twice over — ` +
+        `once by the original selection-bias discovery, and again by a real failed fix that proves the gap has measurable teeth. Worth ` +
+        `picking one of the four options above and actually starting it, rather than leaving it as a documented caveat indefinitely.`,
     });
   }
 
