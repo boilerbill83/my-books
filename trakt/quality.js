@@ -2637,6 +2637,43 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
+  // 5a. Phase 2 of the book-taste plan above, deliberately scoped and
+  // deferred rather than built in the same session — an open decision
+  // awaiting Bill's explicit go-ahead, same framing as the
+  // split-movie-tv-engine-decision finding below. The plan's own
+  // "Impact on BBRE" section is the authoritative source for the caution
+  // here — logged as a finding so it isn't lost between sessions, not
+  // because it's a bug.
+  {
+    findings.push({
+      id: 'movie-taste-informs-books-phase2',
+      severity: 'warning',
+      ratings: { ease: 3, dataQuality: 4, recEngine: 3, ui: 1 },
+      shortTitle: 'Movie Taste → Book Recs (Phase 2)',
+      title: 'Open opportunity, deliberately deferred: the same book-taste correlation could run in reverse — BBRE (book recs) reading Bill\'s real movie/TV taste — but not built without Bill\'s explicit go-ahead first',
+      technical: `Phase 1 (shipped, see the finding above) reads BBRE's real book-theme preferences into BMTRE's <code>bookTasteBonus()</code> ` +
+        `one direction only. The identical <code>BOOK_THEME_TO_MOVIE_TAGS</code> correlation table, read in reverse (a candidate book's ` +
+        `theme -> Bill's real BMTRE genre/subgenre/subject preferences, the same <code>lovedGenres</code>/<code>genreProfile</code>-style ` +
+        `data this file already computes from his rated Trakt history), could feed a small, symmetric <code>movieTasteBonus()</code> into ` +
+        `the book project's own <code>bbreEngine.js</code> — the same additive-adjustment slot <code>toneSignal()</code>/` +
+        `<code>softRomancePenalty()</code> already occupy there. NOT built this session. Real reason for caution, not just conservatism: ` +
+        `CLAUDE.md's own Evaluation Discipline section documents BBRE as already near its tuning ceiling — "Author/theme weight tuning... ` +
+        `flat or traded p25 for MAE. The model is at its ceiling." Adding a new signal to an engine already documented as saturated carries ` +
+        `real regression risk that BMTRE (which shipped several genuine, measured precision gains from new signals across this project's ` +
+        `history) does not currently share to the same degree. If pursued, it needs the identical discipline Phase 1 just went through — a ` +
+        `real <code>scripts/eval.js</code>-equivalent sweep on the BOOK side (<code>scripts/eval.js</code>/<code>validate_review.js</code>) ` +
+        `before shipping, not assumed safe by analogy to Phase 1's own clean result.`,
+      plain: `This session made the movie/TV recommendation engine smarter by teaching it Bill's real book preferences. The same trick could ` +
+        `work in reverse — teaching the BOOK recommendation engine what kinds of movies and shows Bill actually loves, so a book similar to ` +
+        `a show he's obsessed with could get a small boost too. It wasn't built yet on purpose: the book engine has been tuned for a very ` +
+        `long time and its own documentation says it's already about as good as small tweaks can make it, so bolting on a brand-new signal ` +
+        `carries a real risk of quietly making book recommendations worse rather than better. This needs Bill to explicitly say "go ahead" ` +
+        `and, if he does, the same careful before/after testing this session just did for the movie side.`,
+      impact: `A real, scoped opportunity carried over from the approved plan behind the shipped Phase 1 signal above — not a bug, an ` +
+        `explicit deferral. Worth Bill's call before any future session assumes it should (or shouldn't) be built.`,
+    });
+  }
+
   // 5b. Investigated the worst prediction misses/underrates from eval.js
   // directly (scoreBreakdown() on each) hunting for a real, fixable
   // pattern, not just anecdotes. First hypothesis — recency curves
