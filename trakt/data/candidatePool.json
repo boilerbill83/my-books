@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-10T13:21:24.991Z",
-    "count": 440,
+    "generatedAt": "2026-09-11T12:29:25.103Z",
+    "count": 441,
     "capPerType": 200
   },
   "titles": [
@@ -1067,29 +1067,9 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:28730",
-      "ids": {
-        "tmdb": 28730
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:1439930",
       "ids": {
         "tmdb": 1439930
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:832964",
-      "ids": {
-        "tmdb": 832964
       },
       "title": null,
       "year": null,
@@ -1497,16 +1477,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:956",
-      "ids": {
-        "tmdb": 956
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 4
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:501979",
       "ids": {
         "tmdb": 501979
@@ -1614,16 +1584,6 @@
       "title": null,
       "year": null,
       "citedBy": 2
-    },
-    {
-      "type": "show",
-      "titleKey": "show:210729",
-      "ids": {
-        "tmdb": 210729
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 4
     },
     {
       "type": "show",
@@ -2007,16 +1967,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:625169",
-      "ids": {
-        "tmdb": 625169
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 7
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:2503",
       "ids": {
         "tmdb": 2503
@@ -2060,16 +2010,6 @@
       "titleKey": "movie:22954",
       "ids": {
         "tmdb": 22954
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 4
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:22881",
-      "ids": {
-        "tmdb": 22881
       },
       "title": null,
       "year": null,
@@ -2227,16 +2167,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:302",
-      "ids": {
-        "tmdb": 302
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:625568",
       "ids": {
         "tmdb": 625568
@@ -2297,29 +2227,9 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:429194",
-      "ids": {
-        "tmdb": 429194
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:791373",
       "ids": {
         "tmdb": 791373
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:629176",
-      "ids": {
-        "tmdb": 629176
       },
       "title": null,
       "year": null,
@@ -2993,17 +2903,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:4348",
-      "ids": {
-        "tmdb": 4348
-      },
-      "title": "Pride & Prejudice",
-      "year": 2005,
-      "source": "genre-explore",
-      "discoveredVia": "Romance"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:400928",
       "ids": {
         "tmdb": 400928
@@ -3151,17 +3050,6 @@
       },
       "title": "Django Unchained",
       "year": 2012,
-      "source": "genre-explore",
-      "discoveredVia": "Western"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:698508",
-      "ids": {
-        "tmdb": 698508
-      },
-      "title": "Redeeming Love",
-      "year": 2022,
       "source": "genre-explore",
       "discoveredVia": "Western"
     },
@@ -3339,16 +3227,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:878375",
-      "ids": {
-        "tmdb": 878375
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:44603",
       "ids": {
         "tmdb": 44603
@@ -3419,16 +3297,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:53182",
-      "ids": {
-        "tmdb": 53182
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:931285",
       "ids": {
         "tmdb": 931285
@@ -3478,16 +3346,6 @@
       "citedBy": 1
     },
     {
-      "type": "movie",
-      "titleKey": "movie:67660",
-      "ids": {
-        "tmdb": 67660
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
       "type": "show",
       "titleKey": "show:40632",
       "ids": {
@@ -3502,16 +3360,6 @@
       "titleKey": "show:210916",
       "ids": {
         "tmdb": 210916
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "show",
-      "titleKey": "show:100575",
-      "ids": {
-        "tmdb": 100575
       },
       "title": null,
       "year": null,
@@ -3689,16 +3537,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:95439",
-      "ids": {
-        "tmdb": 95439
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "show",
       "titleKey": "show:72039",
       "ids": {
         "tmdb": 72039
@@ -3778,28 +3616,6 @@
       "year": 2013,
       "source": "genre-explore",
       "discoveredVia": "Romance"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:1186532",
-      "ids": {
-        "tmdb": 1186532
-      },
-      "title": "The Forge",
-      "year": 2024,
-      "source": "genre-explore",
-      "discoveredVia": "Drama"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:678512",
-      "ids": {
-        "tmdb": 678512
-      },
-      "title": "Sound of Freedom",
-      "year": 2023,
-      "source": "genre-explore",
-      "discoveredVia": "Action"
     },
     {
       "type": "movie",
@@ -3957,17 +3773,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:63193",
-      "ids": {
-        "tmdb": 63193
-      },
-      "title": "Front of the Class",
-      "year": 2008,
-      "source": "genre-explore",
-      "discoveredVia": "Drama"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:950396",
       "ids": {
         "tmdb": 950396
@@ -4009,17 +3814,6 @@
       "year": 2019,
       "source": "genre-explore",
       "discoveredVia": "Drama"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:21510",
-      "ids": {
-        "tmdb": 21510
-      },
-      "title": "White Collar",
-      "year": 2009,
-      "source": "genre-explore",
-      "discoveredVia": "Crime"
     },
     {
       "type": "show",
@@ -4122,17 +3916,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:79460",
-      "ids": {
-        "tmdb": 79460
-      },
-      "title": "Legacies",
-      "year": 2018,
-      "source": "genre-explore",
-      "discoveredVia": "Drama"
-    },
-    {
-      "type": "show",
       "titleKey": "show:44264",
       "ids": {
         "tmdb": 44264
@@ -4141,17 +3924,6 @@
       "year": 2013,
       "source": "genre-explore",
       "discoveredVia": "Crime"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:79242",
-      "ids": {
-        "tmdb": 79242
-      },
-      "title": "Chilling Adventures of Sabrina",
-      "year": 2018,
-      "source": "genre-explore",
-      "discoveredVia": "Mystery"
     },
     {
       "type": "show",
@@ -4340,17 +4112,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:18165",
-      "ids": {
-        "tmdb": 18165
-      },
-      "title": "The Vampire Diaries",
-      "year": 2009,
-      "source": "genre-explore",
-      "discoveredVia": "Drama"
-    },
-    {
-      "type": "show",
       "titleKey": "show:74577",
       "ids": {
         "tmdb": 74577
@@ -4417,39 +4178,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:127626",
-      "ids": {
-        "tmdb": 127626
-      },
-      "title": "How to Become a Tyrant",
-      "year": 2021,
-      "source": "genre-explore",
-      "discoveredVia": "War & Politics"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:202297",
-      "ids": {
-        "tmdb": 202297
-      },
-      "title": "Fire Country",
-      "year": 2022,
-      "source": "genre-explore",
-      "discoveredVia": "Crime"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:85950",
-      "ids": {
-        "tmdb": 85950
-      },
-      "title": "Pearson",
-      "year": 2019,
-      "source": "genre-explore",
-      "discoveredVia": "War & Politics"
-    },
-    {
-      "type": "show",
       "titleKey": "show:2902",
       "ids": {
         "tmdb": 2902
@@ -4458,17 +4186,6 @@
       "year": 2000,
       "source": "genre-explore",
       "discoveredVia": "Drama"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:61929",
-      "ids": {
-        "tmdb": 61929
-      },
-      "title": "The Jinx",
-      "year": 2015,
-      "source": "genre-explore",
-      "discoveredVia": "Crime"
     },
     {
       "type": "show",
@@ -4483,17 +4200,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:61852",
-      "ids": {
-        "tmdb": 61852
-      },
-      "title": "Henry Danger",
-      "year": 2014,
-      "source": "genre-explore",
-      "discoveredVia": "Sci-Fi & Fantasy"
-    },
-    {
-      "type": "show",
       "titleKey": "show:66871",
       "ids": {
         "tmdb": 66871
@@ -4504,26 +4210,337 @@
       "discoveredVia": "War & Politics"
     },
     {
-      "type": "show",
-      "titleKey": "show:2734",
+      "type": "movie",
+      "titleKey": "movie:948549",
       "ids": {
-        "tmdb": 2734
+        "tmdb": 948549
       },
-      "title": "Law & Order: Special Victims Unit",
-      "year": 1999,
+      "title": null,
+      "year": null,
+      "citedBy": 15
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:787752",
+      "ids": {
+        "tmdb": 787752
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 12
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:585244",
+      "ids": {
+        "tmdb": 585244
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 8
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:774752",
+      "ids": {
+        "tmdb": 774752
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 6
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:787699",
+      "ids": {
+        "tmdb": 787699
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 6
+    },
+    {
+      "type": "show",
+      "titleKey": "show:157064",
+      "ids": {
+        "tmdb": 157064
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 7
+    },
+    {
+      "type": "show",
+      "titleKey": "show:207411",
+      "ids": {
+        "tmdb": 207411
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 4
+    },
+    {
+      "type": "show",
+      "titleKey": "show:1427",
+      "ids": {
+        "tmdb": 1427
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 4
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:367412",
+      "ids": {
+        "tmdb": 367412
+      },
+      "title": "Whiplash",
+      "year": 2013,
+      "source": "genre-explore",
+      "discoveredVia": "Music"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:637649",
+      "ids": {
+        "tmdb": 637649
+      },
+      "title": "Wrath of Man",
+      "year": 2021,
+      "source": "genre-explore",
+      "discoveredVia": "Thriller"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:207703",
+      "ids": {
+        "tmdb": 207703
+      },
+      "title": "Kingsman: The Secret Service",
+      "year": 2015,
+      "source": "genre-explore",
+      "discoveredVia": "Crime"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1122573",
+      "ids": {
+        "tmdb": 1122573
+      },
+      "title": "In the Grey",
+      "year": 2026,
+      "source": "genre-explore",
+      "discoveredVia": "Thriller"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:4982",
+      "ids": {
+        "tmdb": 4982
+      },
+      "title": "American Gangster",
+      "year": 2007,
+      "source": "genre-explore",
+      "discoveredVia": "Crime"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:242575",
+      "ids": {
+        "tmdb": 242575
+      },
+      "title": "Good Day, Ramon",
+      "year": 2013,
+      "source": "genre-explore",
+      "discoveredVia": "Drama"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:489999",
+      "ids": {
+        "tmdb": 489999
+      },
+      "title": "Searching",
+      "year": 2018,
+      "source": "genre-explore",
+      "discoveredVia": "Thriller"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:3580",
+      "ids": {
+        "tmdb": 3580
+      },
+      "title": "Changeling",
+      "year": 2008,
+      "source": "genre-explore",
+      "discoveredVia": "Crime"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:502033",
+      "ids": {
+        "tmdb": 502033
+      },
+      "title": "Sound of Metal",
+      "year": 2020,
+      "source": "genre-explore",
+      "discoveredVia": "Music"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:109424",
+      "ids": {
+        "tmdb": 109424
+      },
+      "title": "Captain Phillips",
+      "year": 2013,
+      "source": "genre-explore",
+      "discoveredVia": "Thriller"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:522402",
+      "ids": {
+        "tmdb": 522402
+      },
+      "title": "Finch",
+      "year": 2021,
+      "source": "genre-explore",
+      "discoveredVia": "Adventure"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:79084",
+      "ids": {
+        "tmdb": 79084
+      },
+      "title": "POSE",
+      "year": 2018,
+      "source": "genre-explore",
+      "discoveredVia": "Drama"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:61244",
+      "ids": {
+        "tmdb": 61244
+      },
+      "title": "Happy Valley",
+      "year": 2014,
       "source": "genre-explore",
       "discoveredVia": "Crime"
     },
     {
       "type": "show",
-      "titleKey": "show:32716",
+      "titleKey": "show:84231",
       "ids": {
-        "tmdb": 32716
+        "tmdb": 84231
       },
-      "title": "Kickin' It",
-      "year": 2011,
+      "title": "Wayne",
+      "year": 2019,
       "source": "genre-explore",
       "discoveredVia": "Comedy"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:62650",
+      "ids": {
+        "tmdb": 62650
+      },
+      "title": "Chicago Med",
+      "year": 2015,
+      "source": "genre-explore",
+      "discoveredVia": "Drama"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:66857",
+      "ids": {
+        "tmdb": 66857
+      },
+      "title": "Shooter",
+      "year": 2016,
+      "source": "genre-explore",
+      "discoveredVia": "War & Politics"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:80748",
+      "ids": {
+        "tmdb": 80748
+      },
+      "title": "FBI",
+      "year": 2018,
+      "source": "genre-explore",
+      "discoveredVia": "Crime"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:46511",
+      "ids": {
+        "tmdb": 46511
+      },
+      "title": "Utopia",
+      "year": 2013,
+      "source": "genre-explore",
+      "discoveredVia": "Mystery"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:76887",
+      "ids": {
+        "tmdb": 76887
+      },
+      "title": "The Little Drummer Girl",
+      "year": 2018,
+      "source": "genre-explore",
+      "discoveredVia": "War & Politics"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:8358",
+      "ids": {
+        "tmdb": 8358
+      },
+      "title": "Lie to Me",
+      "year": 2009,
+      "source": "genre-explore",
+      "discoveredVia": "Mystery"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:77169",
+      "ids": {
+        "tmdb": 77169
+      },
+      "title": "Cobra Kai",
+      "year": 2018,
+      "source": "genre-explore",
+      "discoveredVia": "Comedy"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:71365",
+      "ids": {
+        "tmdb": 71365
+      },
+      "title": "Battlestar Galactica",
+      "year": 2003,
+      "source": "genre-explore",
+      "discoveredVia": "Sci-Fi & Fantasy"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:76773",
+      "ids": {
+        "tmdb": 76773
+      },
+      "title": "Station 19",
+      "year": 2018,
+      "source": "genre-explore",
+      "discoveredVia": "Action & Adventure"
     }
   ]
 }
