@@ -1783,6 +1783,10 @@ export function inferTones(meta, llmEntry, limit = 4, reviewed) {
 // improvement on precision@50 (94%->96%) and @100 (85%->86-87%) across
 // every tested floor.
 const CITATION_WEIGHT_FLOOR = 0.3;
+// Deliberately the midpoint of [CITATION_WEIGHT_FLOOR, 1] — see the
+// 2026-09-11 comment on citationCreditMultiplier() below for why neither
+// extreme is defensible for a title with no tone data at all.
+const CITATION_WEIGHT_UNKNOWN = (CITATION_WEIGHT_FLOOR + 1) / 2;
 // Returns null (not 0) when either side has no tone data at all — "we
 // don't know" is a genuinely different case from "we checked and they
 // share nothing," and the two must not be scored the same. Found via a
@@ -1814,10 +1818,25 @@ function citationCreditMultiplier(candidateMeta, candidateLlm, candidateReviewed
     inferTones(candidateMeta, candidateLlm, undefined, candidateReviewed),
     inferTones(lovedMeta, lovedLlm, undefined, lovedReviewed),
   );
-  // No tone data on one or both sides — benefit of the doubt, no
-  // discount, rather than defaulting to the worst case. See
-  // toneJaccard()'s own comment for the real, measured scale of this gap.
-  if (j == null) return 1;
+  // No tone data on one or both sides. The 2026-09-10 fix defaulted this
+  // to full credit (1) — "benefit of the doubt" — but a same-day live
+  // audit (2026-09-11, checking all 20 confirmed outliers' real citation
+  // networks candidate-by-candidate, not just the 2-3 spot-checked at
+  // launch) found that default reopens exactly the loophole this whole
+  // mechanism exists to close: Stonehearst Asylum and Hypnotic (both cite
+  // the Get Out anomaly, both carry zero tone data of their own) went
+  // right back to a near-undiscounted score once "unknown" meant "assume
+  // a match" rather than "assume a mismatch." Full credit is just the
+  // opposite unjustified extreme from the original floor-on-missing-data
+  // bug — genuine uncertainty deserves neither. CITATION_WEIGHT_UNKNOWN
+  // (the midpoint of the discount range) is the honest middle ground:
+  // a real, moderate reduction reflecting "we genuinely don't know,"
+  // not a guess dressed up as either confidence direction.
+  // scripts/eval.js showed zero measurable difference across the whole
+  // 0.3-1.0 range (this dataset's leave-one-out set isn't large enough
+  // to discriminate a change this narrow) — the choice here is a
+  // principled default, not something eval.js could pick for us.
+  if (j == null) return CITATION_WEIGHT_UNKNOWN;
   return CITATION_WEIGHT_FLOOR + (1 - CITATION_WEIGHT_FLOOR) * j;
 }
 
