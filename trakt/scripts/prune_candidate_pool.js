@@ -90,6 +90,17 @@ const CAP_PER_TYPE = parseInt(process.argv[2], 10) || 200;
 // above the pre-fix real count so the floor has room to matter as weekly
 // discovery keeps adding genuinely-new, no-longer-wasted candidates,
 // while still leaving the closed-loop side the majority (55%) of the pool.
+//
+// Broadened 2026-09-11 to also cover source: 'book-theme-explore'
+// (discover_explore.py, seeded from real BBRE book-theme gaps rather than
+// Trakt genre history — see that script's module docstring). Same exact
+// structural disadvantage applies: a book-theme-explore candidate is by
+// design never cited by a loved title's similar/recommended list either,
+// so it would lose the same open scoring competition against closed-loop
+// candidates for the same reason genre-explore did — protecting it the
+// same way, in the same reserved bucket, rather than building a third,
+// separate reserved share per source.
+const RESERVED_EXPLORE_SOURCES = new Set(['genre-explore', 'book-theme-explore']);
 const RESERVED_EXPLORE_SHARE = 0.45;
 
 const readJSON = (p, fallback) => {
@@ -178,12 +189,17 @@ const reservedSlots = Math.round(CAP_PER_TYPE * RESERVED_EXPLORE_SHARE);
 const kept = new Set();
 const evicted = [];
 const reservedKept = { movie: 0, show: 0 };
+// Per-source breakdown of the reserved bucket, so book-theme-explore's own
+// share stays as directly measurable as genre-explore's already was — not
+// folded into one opaque combined number.
+const reservedKeptBySource = { movie: { 'genre-explore': 0, 'book-theme-explore': 0 }, show: { 'genre-explore': 0, 'book-theme-explore': 0 } };
 for (const type of Object.keys(byType)) {
-  const explore = byType[type].filter(s => s.raw.source === 'genre-explore')
+  const explore = byType[type].filter(s => RESERVED_EXPLORE_SOURCES.has(s.raw.source))
     .sort((a, b) => (b.scoreRaw ?? -1) - (a.scoreRaw ?? -1));
   const guaranteed = explore.slice(0, reservedSlots);
   guaranteed.forEach(s => kept.add(s.raw.titleKey));
   reservedKept[type] = guaranteed.length;
+  for (const s of guaranteed) reservedKeptBySource[type][s.raw.source] = (reservedKeptBySource[type][s.raw.source] || 0) + 1;
 
   const remainingSlots = CAP_PER_TYPE - guaranteed.length;
   const rest = byType[type].filter(s => !kept.has(s.raw.titleKey))
@@ -204,8 +220,10 @@ for (const s of stale) console.log(`  removed (stale): ${enrichedMeta[s.titleKey
 console.log(`\nExcluded via feedback, kept regardless of cap (never scored, never shown): ${excluded.length}`);
 for (const s of excluded) console.log(`  kept (excluded): ${enrichedMeta[s.titleKey]?.title || s.title || s.titleKey}`);
 
-console.log(`\nGenre-explore reserved share (${(RESERVED_EXPLORE_SHARE * 100).toFixed(0)}% of ${CAP_PER_TYPE} = ${reservedSlots} slots/type), ` +
-  `guaranteed regardless of score: movies ${reservedKept.movie}, shows ${reservedKept.show}.`);
+console.log(`\nReserved discovery-source share (${(RESERVED_EXPLORE_SHARE * 100).toFixed(0)}% of ${CAP_PER_TYPE} = ${reservedSlots} slots/type), ` +
+  `guaranteed regardless of score: movies ${reservedKept.movie} (genre-explore ${reservedKeptBySource.movie['genre-explore']}, ` +
+  `book-theme-explore ${reservedKeptBySource.movie['book-theme-explore']}), shows ${reservedKept.show} (genre-explore ` +
+  `${reservedKeptBySource.show['genre-explore']}, book-theme-explore ${reservedKeptBySource.show['book-theme-explore']}).`);
 
 console.log(`\nEvicted (below top ${CAP_PER_TYPE} for its type): ${evicted.length}`);
 for (const s of evicted.sort((a, b) => a.raw.type.localeCompare(b.raw.type) || (a.scoreRaw - b.scoreRaw))) {

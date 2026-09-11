@@ -52,6 +52,10 @@ on:
         description: 'How many of Bill''s real top loved genres to query TMDB /discover against, per type'
         type: number
         default: 12
+      book_theme_max_new_per_type:
+        description: 'Max new book-theme-explore candidates to discover per type this run (a THIRD, independent discovery source seeded from real BBRE book-theme gaps rather than Trakt genre history - see compute_book_theme_gaps.js / discover_explore.py)'
+        type: number
+        default: 15
       enrich_batch_size:
         description: 'How many titles enrich_tmdb.py should process this run'
         type: number
@@ -84,11 +88,20 @@ jobs:
         # the cron.
         run: node trakt/scripts/discover_candidates.js ${{ inputs.max_new_per_type || 10 }}
 
-      - name: Discover new candidates from TMDB's genre-filtered /discover endpoint (independent of the similarity graph above)
+      - name: Compute book-theme discovery gaps (BBRE book-theme counts vs. BMTRE loved-title genre/subgenre/subject scores)
+        # A real, verified evidence-weighted ranking (trakt/scripts/compute_book_theme_gaps.js),
+        # not a hand-picked list - written to trakt/data/bookThemeGaps.json for
+        # discover_explore.py's book-theme-explore pass to read below. Purely
+        # local computation (both goodreadsData.json and the Trakt data files
+        # are already checked out), no network calls, so it can't fail on a
+        # bad/missing TMDB key - runs unconditionally before that step.
+        run: node trakt/scripts/compute_book_theme_gaps.js
+
+      - name: Discover new candidates from TMDB's genre-filtered /discover endpoint AND from real book-theme gaps (both independent of the similarity graph above)
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
-        run: python3 trakt/discover_explore.py ${{ inputs.explore_max_new_per_type || 60 }} ${{ inputs.explore_top_genres_per_type || 12 }}
-        timeout-minutes: 15
+        run: python3 trakt/discover_explore.py ${{ inputs.explore_max_new_per_type || 60 }} ${{ inputs.explore_top_genres_per_type || 12 }} ${{ inputs.book_theme_max_new_per_type || 15 }}
+        timeout-minutes: 20
 
       - name: Enrich newly-discovered candidates via TMDB
         env:

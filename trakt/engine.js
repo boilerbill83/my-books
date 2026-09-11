@@ -1314,7 +1314,12 @@ function subjectBonus(subjects, lovedSubjects) {
 // SUBGENRE_KEYWORDS/SUBJECT_KEYWORDS history already established. Tag keys
 // are prefixed by which BMTRE taxonomy layer they belong to (genre:/
 // subgenre:/subject:) since the three are separate namespaces.
-const BOOK_THEME_TO_MOVIE_TAGS = {
+// Exported (not just used internally by bookTasteBonus()) so
+// compute_book_theme_gaps.js can read the exact same table rather than
+// hand-duplicating it — the identical "one source of truth" discipline
+// computeBookThemeCounts()'s own comment already establishes for this
+// feature. Purely additive — no scoring/matchScore() behavior change.
+export const BOOK_THEME_TO_MOVIE_TAGS = {
   'legal': ['subgenre:legal'],
   'courtroom': ['subgenre:legal'],
   'historical': ['subgenre:historical'],
