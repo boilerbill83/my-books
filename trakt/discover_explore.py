@@ -165,6 +165,17 @@ def main():
             # Mirrors engine.js's isPreMillenniumMovie() hard filter (movies
             # only) - no point discovering a candidate that can never surface.
             date_gte_param = 'primary_release_date.gte=2000-01-01'
+        # Mirrors engine.js's isAnimation() hard filter (both types) - real,
+        # verified waste found 2026-09-11: a run's own stale-removal log
+        # showed a large share of "new this run" candidates were animated
+        # titles (Kung Fu Panda 4, Toy Story 3, My Little Pony, Scooby-Doo,
+        # Steven Universe, etc.) surfaced as secondary matches within
+        # Comedy/Adventure/Action-family /discover queries, then thrown away
+        # on the very next prune pass regardless of score or reserved-share
+        # protection - wasted API calls, wasted enrichment, wasted discovery
+        # slots that never had a real chance to compete. Fetched live from
+        # the same genre_id_maps already built above, never hand-typed.
+        animation_id = genre_id_maps[kind].get('Animation')
 
         per_genre_results = []  # list of lists, one per genre, already vote_average-sorted by TMDB
         for genre_name, loved_count in top_genres:
@@ -179,6 +190,8 @@ def main():
                        f'&vote_count.gte={MIN_VOTE_COUNT}&with_original_language=en&page={page}')
                 if date_gte_param:
                     url += f'&{date_gte_param}'
+                if animation_id is not None and genre_id != animation_id:
+                    url += f'&without_genres={animation_id}'
                 data, status, err = get_json(url)
                 time.sleep(DELAY)
                 if status == 401:
