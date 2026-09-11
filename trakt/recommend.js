@@ -1,4 +1,4 @@
-import { rankRecommendations, mergeScrapedShowRatings, traktUrl } from './engine.js';
+import { rankRecommendations, mergeScrapedShowRatings, traktUrl, computeBookThemeCounts } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -6,7 +6,7 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
 
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [library, watchlist, enrichedMeta, feedback, omdbMetaRaw, scrapedShowRatings, llmTags] = await Promise.all([
+  const [library, watchlist, enrichedMeta, feedback, omdbMetaRaw, scrapedShowRatings, llmTags, reviewedTags, goodreadsData] = await Promise.all([
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
     get('./data/enrichedMetadata.json').catch(() => ({})),
@@ -14,15 +14,24 @@ async function load() {
     get('./data/omdbMetadata.json').catch(() => ({})),
     get('./data/scrapedShowRatings.json').catch(() => ({})),
     get('./data/llmTags.json').catch(() => ({})),
+    // Was missing entirely before (rankRecommendations() silently fell
+    // back to {} for this param) - caught and fixed while wiring through
+    // bookThemeCounts, the 8th positional param, since leaving this gap
+    // would have meant bookThemeCounts landing in reviewedTags' own slot.
+    get('./data/reviewedTags.json').catch(() => ({})),
+    // book-adaptation-cross-domain-signal-unused: BBRE's own committed
+    // data, a sibling of trakt/ at the repo root.
+    get('../data/goodreadsData.json').catch(() => ({ books: [] })),
   ]);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
+  const bookThemeCounts = computeBookThemeCounts(goodreadsData);
 
   const enrichedCount = Object.keys(enrichedMeta).length;
   document.getElementById('subtitleText').textContent =
     `${watchlist.titles?.length || 0} watchlist titles · ${enrichedCount} enriched with TMDB data`;
   document.getElementById('statusText').textContent = 'Scored';
 
-  const { selected } = rankRecommendations(library, watchlist, enrichedMeta, feedback, omdbMeta, llmTags);
+  const { selected } = rankRecommendations(library, watchlist, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
 
   const el = document.getElementById('recList');
   if (!selected.length) {

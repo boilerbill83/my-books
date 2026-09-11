@@ -12,7 +12,7 @@
 
 import {
   getCreator, hydrateTitle, matchScore, mergeScrapedShowRatings, criticScore,
-  realAudienceScore, inferSubgenres, inferSubgenreDetail, traktUrl,
+  realAudienceScore, inferSubgenres, inferSubgenreDetail, traktUrl, computeBookThemeCounts,
 } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
@@ -447,7 +447,7 @@ async function loadAllData() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
   const [dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback,
          scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
-         currentlyWatchingFeature, familyWatchlist, releaseLog] = await Promise.all([
+         currentlyWatchingFeature, familyWatchlist, releaseLog, goodreadsData] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -493,9 +493,17 @@ async function loadAllData() {
     // file's own "note" field. { entries: [...] }; {entries:[]} is a safe
     // empty default (never blocks the rest of the page on a missing file).
     get('./data/releaseLog.json').catch(() => ({ entries: [] })),
+    // book-adaptation-cross-domain-signal-unused: BBRE's (the book
+    // engine's) own committed data, read from the book side's data/ dir at
+    // the repo root (a sibling of trakt/, not a subfolder — same repo, no
+    // cross-repo complexity). {books:[]} is a safe empty default so a
+    // missing/renamed file degrades this one signal to zero rather than
+    // blocking the whole page.
+    get('../data/goodreadsData.json').catch(() => ({ books: [] })),
   ]);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
-  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog };
+  const bookThemeCounts = computeBookThemeCounts(goodreadsData);
+  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog, bookThemeCounts };
 }
 
 // Best Matches (Discover) and Prediction Misses (Quality) are two views of

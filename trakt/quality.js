@@ -2576,48 +2576,64 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
-  // 5. A genuinely unique-to-this-project signal sits completely unused:
-  // Bill has a second, independently mature taste model for himself — the
-  // book engine (BBRE) — and a real, non-trivial share of the movie/show
-  // catalog is adapted from books. No cross-pollination between the two
-  // systems exists at all. Framed deliberately around genre/subject
-  // correlation rather than fragile exact-title matching between two
-  // independent datasets — this project's own history (resolve_titles.py's
-  // real wrong-match incidents, the book side's years of similarToTitles
-  // fuzzy-matching bugs) is a direct, hard-won lesson that a naive title
-  // join between BMTRE and BBRE would likely reproduce the same failure
-  // class, so this is proposed with that risk stated up front, not glossed
-  // over.
+  // 5. SHIPPED — was: a genuinely unique-to-this-project signal sitting
+  // completely unused. Bill has a second, independently mature taste model
+  // for himself (BBRE, the book engine) and a real, non-trivial share of
+  // the movie/show catalog is adapted from books — nothing connected the
+  // two. Investigated via EnterPlanMode, approved, and implemented as a
+  // THEME/GENRE-level correlation (never a fuzzy title join between the two
+  // independent datasets — this project's own history, resolve_titles.py's
+  // confirmed wrong-match incidents and the book side's years of
+  // similarToTitles fuzzy-matching corruption, is a direct, hard-won lesson
+  // a naive join would likely reproduce). See bookTasteBonus()'s own code
+  // comment and ENGINE.md §3t for the full design.
   {
     const bookBased = allEnriched.filter(m => (m.keywords || []).includes('based on novel or book'));
     const lovedBookBased = [...idx.lovedTitles].filter(k => (enrichedMeta[k]?.keywords || []).includes('based on novel or book'));
     const pctBookBased = allEnriched.length ? (100 * bookBased.length / allEnriched.length) : 0;
     const pctLovedBookBased = idx.lovedTitles.size ? (100 * lovedBookBased.length / idx.lovedTitles.size) : 0;
+    const totalRealThemeCount = Object.keys(idx.bookThemeCounts || {}).length;
     findings.push({
       id: 'book-adaptation-cross-domain-signal-unused',
-      severity: 'serious', // recEngine 5 — severity now tracks the hand-graded ratings below
+      severity: 'good',
       ratings: { ease: 3, dataQuality: 4, recEngine: 5, ui: 2 },
       shortTitle: 'Book Taste Data Unused',
-      title: `${fmtNum(bookBased.length)} titles (${pctBookBased.toFixed(1)}%) are book adaptations, and BMTRE has zero connection to Bill's separate, mature book-taste model`,
-      technical: `Live count: ${fmtNum(bookBased.length)} of ${fmtNum(allEnriched.length)} enriched titles (${pctBookBased.toFixed(1)}%) ` +
-        `carry TMDB's <code>based on novel or book</code> keyword; ${fmtNum(lovedBookBased.length)} of Bill's ${fmtNum(idx.lovedTitles.size)} ` +
-        `loved (9-10 rated) titles (${pctLovedBookBased.toFixed(1)}%) are themselves adaptations. This repo runs a second, independently ` +
-        `built and much more mature recommendation engine for the same person — BBRE, in the book project's own <code>engine.js</code>/` +
-        `<code>bbreEngine.js</code>, with its own curated theme vocabulary (legal, thriller, historical, psychological, etc.) refined over ` +
-        `dozens of sessions. Nothing currently connects the two. A naive fix (fuzzy-matching movie/show titles against ` +
-        `<code>goodreadsData.json</code> book titles) is explicitly NOT proposed here — this exact project has a long, well-documented ` +
-        `history of real bugs from fuzzy cross-dataset title matching (<code>resolve_titles.py</code>'s confirmed wrong-match incidents, ` +
-        `years of the book side's own <code>similarToTitles</code> corruption). The safer, evidence-preferred version is a ` +
-        `THEME/GENRE-level correlation (e.g. Bill's 5-star book theme "legal" correlating with BMTRE's "legal" subgenre) rather than an ` +
-        `exact-title join.`,
-      plain: `This project actually maintains two separate AI "taste profiles" for the same person — one for books, one for movies/shows — ` +
-        `and they've never once talked to each other, even though a meaningful chunk of what Bill watches started life as a book. If Bill's ` +
-        `book engine already knows he loves legal thrillers, that's a real, existing signal this side of the project could use — right now ` +
-        `it's sitting in a completely separate file, unused.`,
-      impact: `Rated honestly lower-priority than the first four findings (smaller effect size, real cross-dataset implementation risk this ` +
-        `codebase has specifically learned to be cautious about) — but genuinely novel: this is the one idea here that isn't "extend an ` +
-        `existing signal further," it's a new SOURCE of signal unique to this project's own two-engine setup, unavailable to a typical ` +
-        `single-domain recommender. Worth a scoping pass before any implementation, not a same-session build.`,
+      title: `Shipped: BMTRE now reads Bill's real BBRE (book) theme preferences — ${fmtNum(bookBased.length)} titles ` +
+        `(${pctBookBased.toFixed(1)}%) are book adaptations, and this signal no longer goes to waste`,
+      technical: `New <code>bookTasteBonus()</code> in <code>trakt/engine.js</code>, fed by a new, pure <code>computeBookThemeCounts()</code> ` +
+        `that reads <code>data/goodreadsData.json</code> directly (BBRE's own committed data, a sibling of <code>trakt/</code> at the repo ` +
+        `root) and tallies Bill's real 5-star-read <code>themes[]</code> — the identical aggregation BBRE's own <code>fiveStarThemes</code> ` +
+        `already does, so the two counts can never drift apart. A new <code>BOOK_THEME_TO_MOVIE_TAGS</code> hand-curated correlation table ` +
+        `maps 28 of BBRE's 35 canonical book themes to a BMTRE <code>genre:</code>/<code>subgenre:</code>` +
+        `/<code>subject:</code> tag (e.g. book theme "legal" -> BMTRE subgenre "legal"; "true crime" -> subjects "crime-investigation"/` +
+        `"crime-consequences") — 7 themes deliberately left unmapped with no real movie-side equivalent (memoir, high-concept, YA, ` +
+        `contemporary, noir, food, music history). Bill's own read data currently carries real 5-star-read counts for ${totalRealThemeCount} ` +
+        `distinct themes, live-computed every render, not hardcoded. <code>bookTasteBonus()</code> is positive-only, tiered by Bill's real 5-star-read count ` +
+        `per theme (mirrors <code>genreBonus()</code>'s exact tier shape), capped at +0.75. Live today: 387 of 483 real watchlist+candidate ` +
+        `titles (80.1%) get a nonzero bonus. Threaded through every real <code>buildIndexes()</code> call site (dashboard pages via ` +
+        `<code>dashboardShared.js</code>'s <code>loadAllData()</code>, <code>prune_candidate_pool.js</code>, <code>eval.js</code>, ` +
+        `<code>loadAllTitles.js</code>/<code>export_extract.js</code>, and a real pre-existing bug fixed along the way — ` +
+        `<code>recommend.js</code> was silently missing the <code>reviewedTags</code> parameter entirely). <code>scoreBreakdown()</code> ` +
+        `and <code>reason()</code> both gained a "Book Taste" tier for explainability. Verified via <code>scripts/eval.js</code> swept ` +
+        `across cap 0-1.5 (11 values, not just endpoints) — this genuinely caught a real regression, not a false alarm: at cap>=1.0, two ` +
+        `7/10-rated shows whose real theme profile lines up tightly with Bill's book taste (Presumed Innocent — legal/courtroom, one of his ` +
+        `single biggest book-theme concentrations; Lioness — spy/military) get boosted into the top-10 leave-one-out ranking ahead of genuine ` +
+        `8+/10 matches, dropping "great match" precision@10 100%->90%/80%. Shipped at the highest cap that holds precision@10/25 exactly at ` +
+        `the signal-disabled baseline (100.0/88.0%) while genuinely improving precision@50 (92.0%->94.0%, held through every higher cap too) ` +
+        `— "liked" precision@10/25/50/100 is unaffected by the cap at every value tested (100.0/96.0/98.0/95.0 throughout). See ENGINE.md ` +
+        `§3t's full sweep table.`,
+      plain: `This project runs two separate AI "taste profiles" for the same person — one for books, one for movies/shows — and until this ` +
+        `fix they'd never talked to each other, even though a meaningful chunk of what Bill watches started life as a book. Now, if Bill's ` +
+        `book engine already knows he loves legal thrillers, a legal-thriller movie gets a small real credit for that too. Built the safe way ` +
+        `(matching the KIND of story, like "legal" or "historical," not trying to guess which exact book a movie came from) specifically ` +
+        `because this project has been burned before by that riskier approach on both the book and movie side. Along the way, testing this ` +
+        `properly caught a real case where too much credit backfired — two shows that fit Bill's book taste almost too perfectly (a legal ` +
+        `drama, a spy show) started crowding out titles he actually rated higher — so the credit given was dialed back to the exact point ` +
+        `where that stopped happening.`,
+      impact: `A new SOURCE of signal unique to this project's own two-engine setup, not just an extension of an existing one — genuinely ` +
+        `novel among everything else on this list. Real, measured coverage (80.1% of live candidates) with a genuine gain at precision@50 ` +
+        `and zero tradeoff on the metric this project prioritizes most (precision@10/25) — verified by a real regression sweep, not assumed ` +
+        `safe.`,
     });
   }
 
@@ -3782,9 +3798,9 @@ function renderReleaseLog(entries, targetId = 'releaseLogList') {
 
 async function load() {
   const { dashboard: d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback,
-          llmTags, reviewedTags, releaseLog } = await loadAllData();
+          llmTags, reviewedTags, releaseLog, bookThemeCounts } = await loadAllData();
 
-  const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags);
+  const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
   const byType = (list, type) => list.filter(c => c.type === type && enrichedOnly(c));
 
@@ -3823,7 +3839,7 @@ async function load() {
   document.getElementById('bmtreAccuracySection').innerHTML =
     '<div class="tk-empty">Computing accuracy metrics (a real leave-one-out pass over every rated title — a few seconds)…</div>';
   document.getElementById('bmtreAccuracyFootnote').textContent = '';
-  computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags).then(evalMetrics => {
+  computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts).then(evalMetrics => {
     const bmtreAccuracy = computeBMTREAccuracy(evalMetrics);
     renderQualityDial('bmtreAccuracySection', bmtreAccuracy);
     document.getElementById('bmtreAccuracyFootnote').textContent =

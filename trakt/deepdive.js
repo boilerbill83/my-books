@@ -11,7 +11,7 @@ import {
   isActivelyAiring, posterUrl, criticScore, realAudienceScore, awardsScore,
   mergeScrapedShowRatings, resolveSimilarTitles, resolveSimilarDirectors,
   getCreators, inferSubgenres, inferTones, inferSubjects, inferEra, traktUrl,
-  resolveCastAges, prestigeScore, prestigeQualityScore, isPrestigeFormat,
+  resolveCastAges, prestigeScore, prestigeQualityScore, isPrestigeFormat, computeBookThemeCounts,
 } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
@@ -41,7 +41,7 @@ async function load() {
   }
 
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback, scrapedShowRatings, llmTags, reviewedTags, personMeta] = await Promise.all([
+  const [library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback, scrapedShowRatings, llmTags, reviewedTags, personMeta, goodreadsData] = await Promise.all([
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
     get('./data/candidatePool.json').catch(() => ({ titles: [] })),
@@ -52,8 +52,13 @@ async function load() {
     get('./data/llmTags.json').catch(() => ({})),
     get('./data/reviewedTags.json').catch(() => ({})),
     get('./data/personMetadata.json').catch(() => ({})),
+    // book-adaptation-cross-domain-signal-unused: BBRE's own committed
+    // data, a sibling of trakt/ at the repo root — see dashboardShared.js's
+    // loadAllData() for the same fetch.
+    get('../data/goodreadsData.json').catch(() => ({ books: [] })),
   ]);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
+  const bookThemeCounts = computeBookThemeCounts(goodreadsData);
 
   let raw = library.titles.find(t => t.titleKey === key);
   let status = 'Watched';
@@ -66,7 +71,7 @@ async function load() {
     return;
   }
 
-  const { idx } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags);
+  const { idx } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
   const candidate = hydrateTitle(raw, enrichedMeta);
   const meta = enrichedMeta[key] || {};
   const omdbEntry = omdbMeta[key];

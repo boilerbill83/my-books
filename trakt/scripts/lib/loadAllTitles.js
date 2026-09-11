@@ -16,11 +16,12 @@ import { fileURLToPath } from 'url';
 import {
   buildIndexes, hydrateTitle, getCreator, matchScore, confidenceScore,
   reason, popularityScore, imdbPopularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings,
-  resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra,
+  resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra, computeBookThemeCounts,
 } from '../../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.resolve(__dirname, '..', '..', 'data');
+const ROOT_DATA_DIR = path.resolve(__dirname, '..', '..', '..', 'data');
 
 const read = (name, fallback) => {
   try { return JSON.parse(fs.readFileSync(path.join(DATA_DIR, name), 'utf8')); }
@@ -38,8 +39,13 @@ export function loadAllTitles() {
   const feedback = read('feedbackData.json', { interactions: [] });
   const llmTags = read('llmTags.json', {});
   const reviewedTags = read('reviewedTags.json', {});
+  // book-adaptation-cross-domain-signal-unused: BBRE's real theme-
+  // preference data, read from the book side's own root-level data/ dir.
+  let goodreadsData = { books: [] };
+  try { goodreadsData = JSON.parse(fs.readFileSync(path.join(ROOT_DATA_DIR, 'goodreadsData.json'), 'utf8')); } catch {}
+  const bookThemeCounts = computeBookThemeCounts(goodreadsData);
 
-  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags);
+  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, undefined, bookThemeCounts);
   const feedbackByKey = new Map((feedback.interactions || []).map(i => [i.titleKey, i]));
 
   const rows = [];

@@ -307,7 +307,7 @@ export function inferGenre(meta, llmEntry, reviewed) {
 // static check.
 const STYLE_DISLIKE_REASON_CODES = new Set(['style_dislike']);
 
-export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, reviewedTags = {}, descModelOverride = undefined) {
+export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, reviewedTags = {}, descModelOverride = undefined, bookThemeCounts = {}) {
   const watched = new Map();
   for (const t of library.titles || []) watched.set(t.titleKey, t);
 
@@ -750,7 +750,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   // override for the non-loved majority of its loop.
   const descModel = descModelOverride !== undefined ? descModelOverride : buildDescModel(enrichedMeta, lovedTitles);
 
-  return { watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, genreProfile, subgenreProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel, anomalousLovedKeys, anomalyDetails, enrichedMetaRef: enrichedMeta };
+  return { watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, genreProfile, subgenreProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel, anomalousLovedKeys, anomalyDetails, bookThemeCounts, enrichedMetaRef: enrichedMeta };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -1290,6 +1290,115 @@ function subjectBonus(subjects, lovedSubjects) {
     else if (count >= 1) bonus += 0.1;
   }
   return Math.min(1.5, bonus);
+}
+
+// book-adaptation-cross-domain-signal-unused (dashboard finding): this repo
+// runs two independently-built, independently-tuned recommendation engines
+// for the same person — BBRE (the book engine, root-level engine.js/
+// bbreEngine.js) and BMTRE (this file) — and nothing connects them, despite
+// a real, non-trivial share of BMTRE's own catalog being book adaptations
+// and BBRE having a mature, already-validated theme-preference signal
+// BMTRE has zero access to. Deliberately NOT a title-level join (BBRE's own
+// similarToTitles field has years of documented fuzzy-cross-dataset-
+// matching bugs, and TMDB's "based on novel or book" keyword never names
+// the actual source book) — this correlates BBRE's real theme-preference
+// counts with BMTRE's own Genre/Subgenre/Subject tags instead, so it
+// applies to every candidate, not just confirmed adaptations, and never
+// depends on knowing which specific book a title came from.
+//
+// Hand-curated, verified for real semantic fit rather than forced — about
+// two thirds of BBRE's 32 canonical themes map cleanly; the rest (memoir,
+// high-concept, YA, contemporary, noir, food, music history) have no real
+// BMTRE-side equivalent and are deliberately left unmapped, the same
+// "don't force a bucket from weak evidence" rule this file's own
+// SUBGENRE_KEYWORDS/SUBJECT_KEYWORDS history already established. Tag keys
+// are prefixed by which BMTRE taxonomy layer they belong to (genre:/
+// subgenre:/subject:) since the three are separate namespaces.
+const BOOK_THEME_TO_MOVIE_TAGS = {
+  'legal': ['subgenre:legal'],
+  'courtroom': ['subgenre:legal'],
+  'historical': ['subgenre:historical'],
+  'history': ['subgenre:historical'],
+  'political': ['subgenre:political', 'subject:politics-power'],
+  'crime': ['genre:crime'],
+  'mystery': ['genre:mystery', 'subgenre:murder-mystery'],
+  'psychological': ['subgenre:psychological-thriller', 'subgenre:psychological-horror'],
+  'domestic suspense': ['subgenre:psychological-thriller', 'subject:domestic-abuse'],
+  'thriller': ['genre:thriller'],
+  'suspense': ['genre:thriller'],
+  'horror': ['genre:horror'],
+  'romance': ['genre:romance'],
+  'spy': ['subgenre:spy-espionage'],
+  'speculative': ['genre:science-fiction'],
+  'sci-fi': ['genre:science-fiction'],
+  'biography': ['genre:biography'],
+  'sports': ['genre:sports'],
+  'military': ['genre:war', 'subject:war-conflict'],
+  'true crime': ['subject:crime-investigation', 'subject:crime-consequences'],
+  'finance': ['subject:corporate-power'],
+  'business': ['subject:corporate-power', 'subject:class-wealth-corporate'],
+  'psychology': ['subject:mental-health'],
+  'tech history': ['subject:technology-surveillance'],
+  'social commentary': ['subject:social-inequality'],
+  'adventure': ['genre:adventure'],
+  'humor': ['genre:comedy'],
+  'comedy': ['genre:comedy'],
+};
+
+// Pure, browser-safe — takes the already-parsed goodreadsData.json object
+// (same {meta, books, indexes} shape both the browser fetch and a Node
+// script's fs.readFileSync+JSON.parse produce) and returns the exact same
+// per-theme 5-star-read tally BBRE's own themeBonus()/fiveStarThemes uses
+// (engine.js's buildIndexes(), book side), so the two counts can never
+// drift apart. A plain {theme: count} object, not a Map, since this is the
+// one piece of book-side data that crosses a JSON-serialization boundary
+// (Node script -> nothing to serialize; browser fetch -> already JSON).
+export function computeBookThemeCounts(goodreadsData) {
+  const counts = {};
+  for (const b of (goodreadsData?.books || [])) {
+    if (b.shelf !== 'read' || b.myRating !== 5) continue;
+    for (const t of (b.themes || [])) {
+      const key = String(t).toLowerCase();
+      counts[key] = (counts[key] || 0) + 1;
+    }
+  }
+  return counts;
+}
+
+// Positive-only, loved-count-tiered — the exact same tier shape as
+// genreBonus() (this file), mirroring BBRE's own themeBonus() tier
+// philosophy rather than inventing a new curve. Deliberately smaller/
+// capped lower than genreBonus()/subgenreBonus() (BMTRE's own native
+// signals) — this is corroborating secondary evidence from a DIFFERENT
+// domain's rating history, not a primary BMTRE signal, so it should never
+// outweigh what BMTRE already knows about Bill's actual movie/show taste.
+// Cap/tiers swept against scripts/eval.js before shipping, not assumed
+// from BBRE's own numbers unchanged.
+// Swept 0 through 1.5 against scripts/eval.js before settling here — NOT
+// the originally-planned 1.5 (a real regression, caught by the sweep, not
+// a false alarm from an unrelated data shift as first suspected: at
+// cap>=1.0, two 7/10-rated legal/spy shows (Presumed Innocent, Lioness)
+// get boosted into the top-10 leave-one-out ranking ahead of genuine
+// 8+/10 matches, dropping "great match" precision@10 100%->90%/80%).
+// 0.75 is the highest cap that holds precision@10/25 exactly at the
+// signal-disabled baseline (100/88) while genuinely improving
+// precision@50 (92->94) — see ENGINE.md §3t for the full sweep table.
+const BOOK_TASTE_BONUS_CAP = 0.75;
+function bookTasteBonus(candidateTags, bookThemeCounts) {
+  if (!bookThemeCounts || !Object.keys(bookThemeCounts).length) return 0;
+  let bonus = 0;
+  const matchedThemes = new Set();
+  for (const [theme, tags] of Object.entries(BOOK_THEME_TO_MOVIE_TAGS)) {
+    if (matchedThemes.has(theme)) continue;
+    if (!tags.some(t => candidateTags.has(t))) continue;
+    const count = bookThemeCounts[theme] || 0;
+    if      (count >= 40) bonus += 0.75;
+    else if (count >= 20) bonus += 0.5;
+    else if (count >= 8)  bonus += 0.25;
+    else if (count >= 1)  bonus += 0.1;
+    matchedThemes.add(theme);
+  }
+  return Math.min(BOOK_TASTE_BONUS_CAP, bonus);
 }
 
 // The book side's toneSignal() equivalent: a genuine per-tone rating-
@@ -3111,8 +3220,18 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   score += subgenreBonus(candidateSubgenresForScoring, idx.lovedSubgenres);
   score += subgenreSignal(candidateSubgenresForScoring, idx.subgenreProfile, idx.globalMeanRating);
   score += matureContentSignal(candidateSubgenresForScoring, omdbEntry);
-  score += subjectBonus(inferSubjects(meta, llmEntry, undefined, reviewedEntry), idx.lovedSubjects);
+  const candidateSubjectsForScoring = inferSubjects(meta, llmEntry, undefined, reviewedEntry);
+  score += subjectBonus(candidateSubjectsForScoring, idx.lovedSubjects);
   score += toneSignal(inferTones(meta, llmEntry, undefined, reviewedEntry), idx.toneProfile, idx.globalMeanRating);
+  // book-adaptation-cross-domain-signal-unused: correlates BBRE's (the
+  // book engine's) real theme-preference data with this candidate's own
+  // Genre/Subgenre/Subject tags — see bookTasteBonus()'s own comment.
+  const candidateTagsForBookTaste = new Set([
+    candidateGenreForScoring ? `genre:${candidateGenreForScoring}` : null,
+    ...candidateSubgenresForScoring.map(s => `subgenre:${s}`),
+    ...candidateSubjectsForScoring.map(s => `subject:${s}`),
+  ].filter(Boolean));
+  score += bookTasteBonus(candidateTagsForBookTaste, idx.bookThemeCounts);
 
   // Forward match: this candidate's own TMDB-similar/recommended list
   // includes a title Bill rated positively. Sums idx.titleAffinity's
@@ -3317,6 +3436,17 @@ export function scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta = {}) {
   const matchedSubjects = subjects.filter(s => (idx.lovedSubjects.get(s) || 0) > 0);
   add('subject', 'Subject match', subjectBonus(subjects, idx.lovedSubjects),
     matchedSubjects.length ? `Touches on ${matchedSubjects.join(', ')} — themes you've responded well to.` : `Touches on ${subjects.join(', ') || 'no subjects inferred'}.`);
+
+  const bookTasteTags = new Set([
+    genre ? `genre:${genre}` : null,
+    ...subgenres.map(s => `subgenre:${s}`),
+    ...subjects.map(s => `subject:${s}`),
+  ].filter(Boolean));
+  const matchedBookThemes = Object.entries(BOOK_THEME_TO_MOVIE_TAGS)
+    .filter(([theme, tags]) => tags.some(t => bookTasteTags.has(t)) && (idx.bookThemeCounts?.[theme] || 0) > 0)
+    .map(([theme]) => theme);
+  add('bookTaste', 'Book taste correlation', bookTasteBonus(bookTasteTags, idx.bookThemeCounts),
+    matchedBookThemes.length ? `You love ${matchedBookThemes.join(', ')}-themed books — this shares that theme.` : 'No correlation with your book-reading themes.');
 
   const tones = inferTones(meta, llmEntry, undefined, reviewedEntry);
   const positiveTones = tones.filter(t => (idx.toneProfile?.get(t) ?? -Infinity) > (idx.globalMeanRating ?? Infinity));
@@ -3675,6 +3805,24 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
     }
   }
 
+  // book-adaptation-cross-domain-signal-unused: checked after the other
+  // structured-metadata tiers (genre/subject/tone), before description
+  // similarity — see bookTasteBonus()'s own comment for the full design.
+  {
+    const candidateGenre = inferGenre(meta, llmEntry, reviewedEntry);
+    const bookTasteTags = new Set([
+      candidateGenre ? `genre:${candidateGenre}` : null,
+      ...inferSubgenres(meta, llmEntry, undefined, reviewedEntry).map(s => `subgenre:${s}`),
+      ...inferSubjects(meta, llmEntry, undefined, reviewedEntry).map(s => `subject:${s}`),
+    ].filter(Boolean));
+    const matchedBookThemes = Object.entries(BOOK_THEME_TO_MOVIE_TAGS)
+      .filter(([theme, tags]) => tags.some(t => bookTasteTags.has(t)) && (idx.bookThemeCounts?.[theme] || 0) > 0)
+      .map(([theme]) => theme);
+    if (matchedBookThemes.length) {
+      return `Book Taste — You love ${matchedBookThemes.slice(0, 2).join(', ')}-themed books — this shares that theme.`;
+    }
+  }
+
   // Plot/description similarity — checked after the structured-metadata
   // signals above (genre/subject/tone) but before the generic community-
   // rating fallback, since a real text-similarity match to a specific
@@ -3711,8 +3859,8 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
 
 // ── Entry point ──────────────────────────────────────────────────────────
 
-export function rankRecommendations(library, watchlist, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}, llmTags = {}, reviewedTags = {}) {
-  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags);
+export function rankRecommendations(library, watchlist, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}, llmTags = {}, reviewedTags = {}, bookThemeCounts = {}) {
+  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, undefined, bookThemeCounts);
 
   // See the matching comment on rankAll()'s fromWatchlist below for why
   // a watchlist entry also needs to check idx.watched, not just excluded.
@@ -3746,8 +3894,8 @@ export function rankRecommendations(library, watchlist, enrichedMeta, feedback =
 // discover_candidates.js already exclude known watchlist/library keys —
 // but checked here too since a UI silently double-counting the same title
 // under two origins would be worse than a defensive filter).
-export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}, llmTags = {}, reviewedTags = {}) {
-  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags);
+export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}, llmTags = {}, reviewedTags = {}, bookThemeCounts = {}) {
+  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, undefined, bookThemeCounts);
   const watchlistKeys = new Set((watchlist.titles || []).map(c => c.titleKey));
 
   const scoreOne = (c, origin) => {
@@ -3970,7 +4118,7 @@ export function calibrateScore(predicted) {
   return RATING_CALIBRATION.slope * predicted + RATING_CALIBRATION.intercept;
 }
 
-export async function computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta, llmTags = {}, reviewedTags = {}) {
+export async function computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta, llmTags = {}, reviewedTags = {}, bookThemeCounts = {}) {
   // An async function still runs synchronously up to its FIRST await — a
   // real caller-side bug this yield fixes: without it, a caller doing
   // `computeEvalMetrics(...).then(...)` (not awaiting) would still block
@@ -4005,7 +4153,7 @@ export async function computeEvalMetrics(library, enrichedMeta, feedback, omdbMe
   for (const t of rated) {
     const looLibrary = { titles: (library.titles || []).filter(x => x.titleKey !== t.titleKey) };
     const descOverride = t.myRating >= LOVED_THRESHOLD ? undefined : sharedDescModel;
-    const idx = buildIndexes(looLibrary, enrichedMeta, feedback, llmTags, reviewedTags, descOverride);
+    const idx = buildIndexes(looLibrary, enrichedMeta, feedback, llmTags, reviewedTags, descOverride, bookThemeCounts);
     const h = hydrateTitle(t, enrichedMeta);
     // predicted (clamped) still drives MAE below — a title well past the
     // 100 ceiling isn't a bigger real-world "error" than one just at it.
@@ -4055,7 +4203,7 @@ export async function computeEvalMetrics(library, enrichedMeta, feedback, omdbMe
   );
   let dismissedCount = 0;
   if (tasteRejected.length) {
-    const fullIdx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, sharedDescModel);
+    const fullIdx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, sharedDescModel, bookThemeCounts);
     for (const e of tasteRejected) {
       const h = hydrateTitle({ titleKey: e.titleKey, type: e.type, year: e.year }, enrichedMeta);
       const { raw: predictedRaw, clamped: predicted } = matchScorePair(h, fullIdx, enrichedMeta, omdbMeta);

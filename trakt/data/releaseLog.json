@@ -1,5 +1,5 @@
 {
-  "note": "A release log for BMTRE (the Trakt recommendation engine) \u2014 every real scoring/data-pipeline change, with a real before-and-after of the engine wherever one exists. Entries from Session 53 onward carry real leave-one-out eval.js numbers (computeEvalMetrics(): precision@10/25/50/100, MAE); entries before Session 53 predate that harness (it didn't exist yet) and carry a qualitative before/after instead, quoted from the same real verification each session actually ran. Populated by mining CLAUDE.md's own session log for every entry with a real, verifiable before/after claim \u2014 not reconstructed from memory. New entries are appended going forward as real changes ship; this file is never used for scoring, purely a human-readable history.",
+  "note": "A release log for BMTRE (the Trakt recommendation engine) — every real scoring/data-pipeline change, with a real before-and-after of the engine wherever one exists. Entries from Session 53 onward carry real leave-one-out eval.js numbers (computeEvalMetrics(): precision@10/25/50/100, MAE); entries before Session 53 predate that harness (it didn't exist yet) and carry a qualitative before/after instead, quoted from the same real verification each session actually ran. Populated by mining CLAUDE.md's own session log for every entry with a real, verifiable before/after claim — not reconstructed from memory. New entries are appended going forward as real changes ship; this file is never used for scoring, purely a human-readable history.",
   "entries": [
     {
       "id": "engine-v1-launch",
@@ -7,8 +7,8 @@
       "session": "44",
       "category": "engine",
       "outcome": "shipped",
-      "title": "BMTRE Phase 1 launches \u2014 rule-based scorer ported from BBRE",
-      "summary": "First working engine.js: titleKey(type,tmdbId)-based indexing (no fuzzy title matching needed at all, unlike the book engine's history), buildIndexes()/genreBonus()/forward-reverse similarToIds matching/confidenceScore()/reason() ported directly from the book engine's shapes. No eval harness existed yet \u2014 scoring correctness verified via a synthetic-data smoke test (hand-traced one result's score component-by-component), not a real precision measurement.",
+      "title": "BMTRE Phase 1 launches — rule-based scorer ported from BBRE",
+      "summary": "First working engine.js: titleKey(type,tmdbId)-based indexing (no fuzzy title matching needed at all, unlike the book engine's history), buildIndexes()/genreBonus()/forward-reverse similarToIds matching/confidenceScore()/reason() ported directly from the book engine's shapes. No eval harness existed yet — scoring correctness verified via a synthetic-data smoke test (hand-traced one result's score component-by-component), not a real precision measurement.",
       "before": {
         "note": "No recommendation engine for movies/TV existed at all."
       },
@@ -22,13 +22,13 @@
       "session": "50",
       "category": "engine",
       "outcome": "shipped",
-      "title": "matchPointScale() \u2014 corrects for Bill's ~2x more loved shows than loved movies",
+      "title": "matchPointScale() — corrects for Bill's ~2x more loved shows than loved movies",
       "summary": "The forward/reverse similar-title signal could only ever compare a candidate against loved titles of its own type, and movies structurally had far fewer loved anchors (50) than shows (99), capping every movie's ceiling. matchPointScale(type, lovedCountByType) scales the smaller pool's per-match point value up by the measured ratio, self-correcting as the pools shift.",
       "before": {
-        "note": "Gladiator (a real director match + 2 forward + 1 reverse title match) capped at 85.9/100; only 1 of 116 movies scored \u226563."
+        "note": "Gladiator (a real director match + 2 forward + 1 reverse title match) capped at 85.9/100; only 1 of 116 movies scored ≥63."
       },
       "after": {
-        "note": "Gladiator scores 99.8/100; movies scoring \u226563 rose from 1 to 11 of 116. Median barely moved (41.9\u219242.0) since the fix raises the ceiling for a strong match, not the typical case \u2014 correctly."
+        "note": "Gladiator scores 99.8/100; movies scoring ≥63 rose from 1 to 11 of 116. Median barely moved (41.9→42.0) since the fix raises the ceiling for a strong match, not the typical case — correctly."
       }
     },
     {
@@ -37,13 +37,13 @@
       "session": "50",
       "category": "engine",
       "outcome": "shipped",
-      "title": "normalizeGenre() \u2014 merges TMDB's separate movie/show genre vocabularies",
+      "title": "normalizeGenre() — merges TMDB's separate movie/show genre vocabularies",
       "summary": "TMDB labels the same concept differently by type (movie \"Action\" vs. show \"Action & Adventure\"), silently splitting lovedGenres credit into two smaller buckets instead of one combined one.",
       "before": {
         "note": "A loved movie's \"Action\" (15 uses) and a loved show's \"Action & Adventure\" (7 uses) accumulated into separate lovedGenres buckets instead of a combined 22."
       },
       "after": {
-        "note": "Genre credit combines correctly across types via GENRE_ALIASES \u2014 verified via diagnostic not to be the main driver of the movie score-ceiling gap (matchPointScale above was), but a real, independent fix."
+        "note": "Genre credit combines correctly across types via GENRE_ALIASES — verified via diagnostic not to be the main driver of the movie score-ceiling gap (matchPointScale above was), but a real, independent fix."
       }
     },
     {
@@ -52,8 +52,8 @@
       "session": "51",
       "category": "engine",
       "outcome": "shipped",
-      "title": "omdbSignal() \u2014 audience/critic score and awards wired into live scoring",
-      "summary": "audienceScore()/awardsScore() had been display-only since Session 49, pending real OMDb data. With 890 titles now OMDb-enriched, folded into baseSignals(): audience/critic neutral point set to 80 (this dataset's real measured median), capped \u00b16; awards scaled to a max +4 bonus so \"won something\" doesn't read the same as \"won everything.\"",
+      "title": "omdbSignal() — audience/critic score and awards wired into live scoring",
+      "summary": "audienceScore()/awardsScore() had been display-only since Session 49, pending real OMDb data. With 890 titles now OMDb-enriched, folded into baseSignals(): audience/critic neutral point set to 80 (this dataset's real measured median), capped ±6; awards scaled to a max +4 bonus so \"won something\" doesn't read the same as \"won everything.\"",
       "before": {
         "note": "audienceScore()/awardsScore() computed and cached but never affected a candidate's rank."
       },
@@ -83,7 +83,7 @@
       "category": "engine",
       "outcome": "shipped",
       "title": "recencyBonusMovie()/recencyBonusShow() split from one shared curve",
-      "summary": "Bill: \"strongly favor movies from the last 5-10 years, nothing before 2000.\" The single recencyBonus(year) was split into a steep movie-only curve (+8 at \u22645yr, down to -15 pre-2000-adjacent) and an unchanged show curve, plus a new hard isPreMillenniumMovie() candidate-exclusion filter (watchlist exempt).",
+      "summary": "Bill: \"strongly favor movies from the last 5-10 years, nothing before 2000.\" The single recencyBonus(year) was split into a steep movie-only curve (+8 at ≤5yr, down to -15 pre-2000-adjacent) and an unchanged show curve, plus a new hard isPreMillenniumMovie() candidate-exclusion filter (watchlist exempt).",
       "before": {
         "note": "Recency curve identical for movies and shows; pre-2000 movies could freely surface as candidates."
       },
@@ -98,7 +98,7 @@
       "category": "data",
       "outcome": "shipped",
       "title": "prune_candidate_pool.js actually calls its own re-edit/non-English filters",
-      "summary": "isReEdit()/isNonEnglish() existed but were never called when deciding what counts toward the 100-per-type candidate-pool cap \u2014 titles that could never surface as a recommendation still occupied real cap slots.",
+      "summary": "isReEdit()/isNonEnglish() existed but were never called when deciding what counts toward the 100-per-type candidate-pool cap — titles that could never surface as a recommendation still occupied real cap slots.",
       "before": {
         "note": "42 stale candidates (pre-2000 classics, non-English titles, one theatrical re-edit) occupying cap slots they could never actually be shown from."
       },
@@ -112,10 +112,10 @@
       "session": "53",
       "category": "measurement",
       "outcome": "shipped",
-      "title": "computeEvalMetrics() \u2014 BMTRE's first real evaluation harness",
+      "title": "computeEvalMetrics() — BMTRE's first real evaluation harness",
       "summary": "Leave-one-out precision@10/25/50/100 + MAE + bottom-50 catch rate, built directly in engine.js (mirroring the book engine's scripts/eval.js, LIKED_THRESHOLD=8/10) so every future scoring change could be measured against a real number, not just spot-checked.",
       "before": {
-        "note": "Every prior BMTRE scoring change (Sessions 44-52) was validated only by inspecting individual candidates by hand \u2014 no aggregate accuracy measurement existed for this engine."
+        "note": "Every prior BMTRE scoring change (Sessions 44-52) was validated only by inspecting individual candidates by hand — no aggregate accuracy measurement existed for this engine."
       },
       "after": {
         "note": "First real measured baseline: BMTRE Accuracy Score 65/100. Every scoring change from this point on in the log below carries real before/after eval.js numbers."
@@ -127,7 +127,7 @@
       "session": "53",
       "category": "engine",
       "outcome": "shipped",
-      "title": "castBonus() \u2014 top-billed cast affinity signal",
+      "title": "castBonus() — top-billed cast affinity signal",
       "summary": "topCast (93.4% populated) had been cached but never scored. New idx.lovedActors index plus a small, tiered, capped-at-8 bonus (deliberately smaller than the creator/franchise bonuses, since an actor is less determinative of a title's identity than its director). One of the larger single-change improvements measured for this engine.",
       "before": {
         "p10": 80,
@@ -147,7 +147,7 @@
       "session": "53",
       "category": "engine",
       "outcome": "shipped",
-      "title": "franchiseBonus() \u2014 TMDB collection/franchise match signal",
+      "title": "franchiseBonus() — TMDB collection/franchise match signal",
       "summary": "belongsToCollection was cached on 146 movie titles but never scored, despite 17 of Bill's real loved titles demonstrably following a franchise (Creed I+II, Deadpool 1+2, Sicario 1+2, both Anchorman films).",
       "before": {
         "p10": 80,
@@ -170,15 +170,15 @@
       "session": "53",
       "category": "engine",
       "outcome": "shipped",
-      "title": "keywordBonus() \u2014 TMDB free-form keyword signal, cap tuned against eval.js",
+      "title": "keywordBonus() — TMDB free-form keyword signal, cap tuned against eval.js",
       "summary": "TMDB's free-form keywords, previously read only by the isReEdit() filter, are BMTRE's closest analog to the book engine's theme vocabulary. Cap size tuned by sweeping against eval.js, not guessed.",
       "before": {
         "mae": 20.21,
-        "note": "an initial cap of 4 improved MAE to 18.55 but dropped precision@10 90%\u219280% \u2014 a real regression on the metric this project forbids trading away; reverted."
+        "note": "an initial cap of 4 improved MAE to 18.55 but dropped precision@10 90%→80% — a real regression on the metric this project forbids trading away; reverted."
       },
       "after": {
         "mae": 19.34,
-        "note": "cap halved to 2 \u2014 held precision@10/25/50/100 exactly unchanged while still improving MAE."
+        "note": "cap halved to 2 — held precision@10/25/50/100 exactly unchanged while still improving MAE."
       }
     },
     {
@@ -187,7 +187,7 @@
       "session": "53",
       "category": "engine",
       "outcome": "shipped",
-      "title": "subgenreBonus() + toneSignal() \u2014 first taxonomy-based scoring signals",
+      "title": "subgenreBonus() + toneSignal() — first taxonomy-based scoring signals",
       "summary": "New inferSubgenres()/inferTones() deterministic keyword classifiers (21 subgenres, 14 tones at the time) wired into scoring for the first time. subgenreBonus()'s cap swept down to 1.5 after a naive port (scaled straight from genreBonus()'s own thresholds) regressed precision@50; toneSignal()'s multiplier swept 1.5-15, plateauing from ~5, kept at 4.",
       "before": {
         "p10": 90,
@@ -208,8 +208,8 @@
       "session": "53",
       "category": "engine",
       "outcome": "reverted",
-      "title": "TMDB status field (\"Returning Series\") recency-gap fix \u2014 attempted, reverted",
-      "summary": "Tried to fix the show-recency gap (an old-but-still-airing show scoring as \"old\" as a finished one) with a flat status-based credit for ~17.8% of all shows. Both a flat +2 and +1 credit measurably hurt eval.js \u2014 reverted rather than shipped, documented as a real, now evidence-backed open gap rather than an unexplored idea.",
+      "title": "TMDB status field (\"Returning Series\") recency-gap fix — attempted, reverted",
+      "summary": "Tried to fix the show-recency gap (an old-but-still-airing show scoring as \"old\" as a finished one) with a flat status-based credit for ~17.8% of all shows. Both a flat +2 and +1 credit measurably hurt eval.js — reverted rather than shipped, documented as a real, now evidence-backed open gap rather than an unexplored idea.",
       "before": {
         "p10": 90,
         "p100": 91
@@ -226,15 +226,15 @@
       "session": "54",
       "category": "data",
       "outcome": "shipped",
-      "title": "parse_awards() bug fix \u2014 252 records corrected from a wrong zero",
-      "summary": "enrich_omdb.py's parse_awards() only recognized OMDb's combined \"N wins & M nominations total\" text shape, silently reading every other real format (bare \"N win(s) total\", no trailing \"total\", etc.) as zero recognition. Re-parsed all 1,343 already-cached records locally (no new API calls) \u2014 the true zero-recognition rate corrected from a bug-inflated 32.2% to a real 15.4%.",
+      "title": "parse_awards() bug fix — 252 records corrected from a wrong zero",
+      "summary": "enrich_omdb.py's parse_awards() only recognized OMDb's combined \"N wins & M nominations total\" text shape, silently reading every other real format (bare \"N win(s) total\", no trailing \"total\", etc.) as zero recognition. Re-parsed all 1,343 already-cached records locally (no new API calls) — the true zero-recognition rate corrected from a bug-inflated 32.2% to a real 15.4%.",
       "before": {
         "p10": 100,
         "note": "overnight-session baseline"
       },
       "after": {
         "p10": 90,
-        "note": "one real, accepted boundary-title regression: \"Presumed Innocent\" (21 real total nominations, previously misparsed to 0) edged out \"Deadpool 2\" by a 0.37-point margin in a tightly-clustered near-100 cluster. Kept the data fix over reverting a confirmed bug for a single-slot swap at the edge of a high-variance n=10 metric \u2014 self-resolved later the same session."
+        "note": "one real, accepted boundary-title regression: \"Presumed Innocent\" (21 real total nominations, previously misparsed to 0) edged out \"Deadpool 2\" by a 0.37-point margin in a tightly-clustered near-100 cluster. Kept the data fix over reverting a confirmed bug for a single-slot swap at the edge of a high-variance n=10 metric — self-resolved later the same session."
       }
     },
     {
@@ -244,7 +244,7 @@
       "category": "engine",
       "outcome": "shipped",
       "title": "Subgenre/tone keyword-synonym expansion restores precision@10 as a side effect",
-      "summary": "26 new subgenre + 15 new tone real keyword synonyms added to existing tag buckets (each verified at real frequency first, spot-checked for false positives). Coverage: subgenres 64.6%\u219269.8%, tones 18.1%\u219225.6% \u2014 both signals already live in scoring.",
+      "summary": "26 new subgenre + 15 new tone real keyword synonyms added to existing tag buckets (each verified at real frequency first, spot-checked for false positives). Coverage: subgenres 64.6%→69.8%, tones 18.1%→25.6% — both signals already live in scoring.",
       "before": {
         "p10": 90
       },
@@ -259,8 +259,8 @@
       "session": "54",
       "category": "engine",
       "outcome": "shipped",
-      "title": "Overnight pass \u2014 dismissAdjust(), rewatchStrength(), a swept-and-shipped-inert recency signal",
-      "summary": "Worked all 9 then-open Improvement Opportunities in one unattended overnight pass. dismissAdjust() (creator-dislike/style-dislike penalties, mirroring the book engine's equivalent) and rewatchStrength() (plays-field normalization) both shipped as verified no-ops today \u2014 dormant/inert against current real data, ready to contribute the moment real dismissals or rewatches exist. A show-airing-status weighted signal was swept scale 0-50 and failed at every nonzero value (precision@10 dropped to 90% at the first step) \u2014 shipped at scale=0 (real, correct, inert) rather than deleted, to narrow what a future attempt should try.",
+      "title": "Overnight pass — dismissAdjust(), rewatchStrength(), a swept-and-shipped-inert recency signal",
+      "summary": "Worked all 9 then-open Improvement Opportunities in one unattended overnight pass. dismissAdjust() (creator-dislike/style-dislike penalties, mirroring the book engine's equivalent) and rewatchStrength() (plays-field normalization) both shipped as verified no-ops today — dormant/inert against current real data, ready to contribute the moment real dismissals or rewatches exist. A show-airing-status weighted signal was swept scale 0-50 and failed at every nonzero value (precision@10 dropped to 90% at the first step) — shipped at scale=0 (real, correct, inert) rather than deleted, to narrow what a future attempt should try.",
       "before": {
         "p10": 100,
         "p25": 92,
@@ -282,8 +282,8 @@
       "session": "55",
       "category": "engine",
       "outcome": "shipped",
-      "title": "Genre/Subgenre taxonomy redesign \u2014 single-valued Genre, curated 65-bucket Subgenre",
-      "summary": "Bill: \"I want genre to be fairly high level and sub-genre to be very specific.\" 5-phase project: new single-valued inferGenre() (17 canonical values, workbook-seeded, +8-ceiling genreBonus() beat +5 on every eval.js metric), a curated ~65-bucket Subgenre vocabulary (6 genre-duplicative buckets retired, ~40 added from a hand-reviewed workbook), subgenreBonus() thresholds re-swept 18/10/4/1\u219213/7/3/1 for the denser vocabulary.",
+      "title": "Genre/Subgenre taxonomy redesign — single-valued Genre, curated 65-bucket Subgenre",
+      "summary": "Bill: \"I want genre to be fairly high level and sub-genre to be very specific.\" 5-phase project: new single-valued inferGenre() (17 canonical values, workbook-seeded, +8-ceiling genreBonus() beat +5 on every eval.js metric), a curated ~65-bucket Subgenre vocabulary (6 genre-duplicative buckets retired, ~40 added from a hand-reviewed workbook), subgenreBonus() thresholds re-swept 18/10/4/1→13/7/3/1 for the denser vocabulary.",
       "before": {
         "note": "TMDB's raw genres field had Drama on 75.3% of titles (too blunt to discriminate); inferSubgenres() had drifted into doing genre's job too (42.4% of its tag instances were genre-level concepts like historical/war/political sitting flat in the wrong field)."
       },
@@ -297,8 +297,8 @@
       "session": "56",
       "category": "engine",
       "outcome": "shipped",
-      "title": "descSimilarity.js \u2014 TF-IDF plot-description similarity signal ported from the book engine",
-      "summary": "BMTRE had no plot/description-similarity signal at all, unlike the book engine's real, load-bearing descSimilarity.js. Ported the identical tokenizer/TF-IDF/cosine math, adapted to BMTRE's additive-bonus shape. Cap swept 1\u21922\u21923 (each step measurably improved precision@100/MAE with p10/25/50 held, plateauing at 3); k swept 5-20 (15+ traded precision@50 for a better MAE, forbidden \u2014 k=10 held).",
+      "title": "descSimilarity.js — TF-IDF plot-description similarity signal ported from the book engine",
+      "summary": "BMTRE had no plot/description-similarity signal at all, unlike the book engine's real, load-bearing descSimilarity.js. Ported the identical tokenizer/TF-IDF/cosine math, adapted to BMTRE's additive-bonus shape. Cap swept 1→2→3 (each step measurably improved precision@100/MAE with p10/25/50 held, plateauing at 3); k swept 5-20 (15+ traded precision@50 for a better MAE, forbidden — k=10 held).",
       "before": {
         "p10": 100,
         "p25": 92,
@@ -320,7 +320,7 @@
       "session": "56",
       "category": "engine",
       "outcome": "shipped",
-      "title": "subjectBonus() tiers re-swept after Subjects taxonomy consolidation (636\u2192129 buckets)",
+      "title": "subjectBonus() tiers re-swept after Subjects taxonomy consolidation (636→129 buckets)",
       "summary": "Denser canonical Subject buckets pushed real per-book loved-title counts up to a max of 8 (was 1-3 under the old fragmented free-form vocabulary), which the old tiers weren't calibrated for.",
       "before": {
         "p50": 92,
@@ -337,8 +337,8 @@
       "session": "57",
       "category": "engine",
       "outcome": "shipped",
-      "title": "idx.titleAffinity \u2014 every rated title now contributes signal, not just 9-10s",
-      "summary": "57.1% of Bill's rated titles (every 7 and 8) fed zero signal to lovedGenres/lovedSubgenres/lovedKeywords/lovedActors/lovedCollections/lovedSubjects/the forward-reverse similar-title match, all hard-gated at myRating>=9, while only creatorRatingWeight used a continuous rating-weight. Generalized that continuous-weight shape to the other six (clamped non-negative, so a 6-or-below rating still contributes exactly 0 \u2014 purely additive).",
+      "title": "idx.titleAffinity — every rated title now contributes signal, not just 9-10s",
+      "summary": "57.1% of Bill's rated titles (every 7 and 8) fed zero signal to lovedGenres/lovedSubgenres/lovedKeywords/lovedActors/lovedCollections/lovedSubjects/the forward-reverse similar-title match, all hard-gated at myRating>=9, while only creatorRatingWeight used a continuous rating-weight. Generalized that continuous-weight shape to the other six (clamped non-negative, so a 6-or-below rating still contributes exactly 0 — purely additive).",
       "before": {
         "p10": 100,
         "p25": 92,
@@ -359,8 +359,8 @@
       "session": "58",
       "category": "engine",
       "outcome": "shipped",
-      "title": "genreSignal() \u2014 first negative-preference signal (horror candidates finally penalized)",
-      "summary": "Horror candidates scored no differently whether Bill loves or dislikes the genre (real dislike rate 33% vs. a 5.7% baseline). Two real regressions were found and root-caused before shipping, not assumed away: a symmetric \u00b13 clamp pushed already-near-100 candidates past the 100-point display clamp, displacing better matches (fixed: asymmetric, penalty-only); even asymmetric, penalizing every negative delta however small regressed precision@25 via the same clamp-tie mechanism from the other direction (fixed: a -0.5 deadzone, so only genres rated sizably below Bill's own average \u2014 mystery -0.53, biography -0.70, horror -1.47 \u2014 ever take a penalty).",
+      "title": "genreSignal() — first negative-preference signal (horror candidates finally penalized)",
+      "summary": "Horror candidates scored no differently whether Bill loves or dislikes the genre (real dislike rate 33% vs. a 5.7% baseline). Two real regressions were found and root-caused before shipping, not assumed away: a symmetric ±3 clamp pushed already-near-100 candidates past the 100-point display clamp, displacing better matches (fixed: asymmetric, penalty-only); even asymmetric, penalizing every negative delta however small regressed precision@25 via the same clamp-tie mechanism from the other direction (fixed: a -0.5 deadzone, so only genres rated sizably below Bill's own average — mystery -0.53, biography -0.70, horror -1.47 — ever take a penalty).",
       "before": {
         "p10": 90,
         "p25": 96,
@@ -382,8 +382,8 @@
       "session": "59",
       "category": "measurement",
       "outcome": "shipped",
-      "title": "calibrateScore() \u2014 a linear recalibration closing the long-standing MAE-vs-baseline gap",
-      "summary": "matchScore()'s raw 0-100 output was only ever designed to rank candidates correctly relative to each other, never to land on an absolute scale matching myRating*10 directly \u2014 real signal existed (Pearson r=0.35 with actual rating) but MAE kept losing to the naive mean-baseline, a caveat repeated across dozens of prior sessions. A simple affine fix: actual \u2248 0.298 \u00d7 predicted + 55.8, validated via 5-fold cross-validation before shipping (held-out calibrated MAE 10.50 vs. 14.65 uncalibrated vs. 11.03 naive baseline, stable across all 5 folds). Order-preserving by construction and scoped only to the evaluation/accuracy-reporting layer \u2014 the live displayed score, ranking, and rec panels are completely untouched.",
+      "title": "calibrateScore() — a linear recalibration closing the long-standing MAE-vs-baseline gap",
+      "summary": "matchScore()'s raw 0-100 output was only ever designed to rank candidates correctly relative to each other, never to land on an absolute scale matching myRating*10 directly — real signal existed (Pearson r=0.35 with actual rating) but MAE kept losing to the naive mean-baseline, a caveat repeated across dozens of prior sessions. A simple affine fix: actual ≈ 0.298 × predicted + 55.8, validated via 5-fold cross-validation before shipping (held-out calibrated MAE 10.50 vs. 14.65 uncalibrated vs. 11.03 naive baseline, stable across all 5 folds). Order-preserving by construction and scoped only to the evaluation/accuracy-reporting layer — the live displayed score, ranking, and rec panels are completely untouched.",
       "before": {
         "p10": 90,
         "p25": 96,
@@ -396,7 +396,7 @@
         "p25": 96,
         "p50": 98,
         "p100": 91,
-        "note": "bit-for-bit identical ranking metrics (as designed \u2014 this changes only the reported accuracy number, not the live score); calibrated MAE now genuinely beats the naive baseline"
+        "note": "bit-for-bit identical ranking metrics (as designed — this changes only the reported accuracy number, not the live score); calibrated MAE now genuinely beats the naive baseline"
       }
     },
     {
@@ -405,10 +405,10 @@
       "session": "59",
       "category": "measurement",
       "outcome": "shipped",
-      "title": "Dashboard BMTRE Accuracy dial was silently under-measuring signal \u2014 a measurement bug, not an engine bug",
+      "title": "Dashboard BMTRE Accuracy dial was silently under-measuring signal — a measurement bug, not an engine bug",
       "summary": "quality.js's load() called computeEvalMetrics() with only 4 of 6 real parameters, silently defaulting llmTags/reviewedTags to {} even though both were already loaded two lines above (and used correctly by the very next rankAll() call). The dashboard's own \"official\" accuracy numbers had been diverging from the CLI's for as long as this dial existed.",
       "before": {
-        "note": "Dashboard dial showed precision@10 100.0% vs. the CLI's real 90.0% \u2014 an 11-point phantom gap from missing tone/subgenre/reviewed-tag signal in the dial's own computation."
+        "note": "Dashboard dial showed precision@10 100.0% vs. the CLI's real 90.0% — an 11-point phantom gap from missing tone/subgenre/reviewed-tag signal in the dial's own computation."
       },
       "after": {
         "note": "One-line fix (thread the already-loaded values through); dial now matches the CLI exactly (90/96/98/91) on every subsequent load."
@@ -420,13 +420,13 @@
       "session": "59",
       "category": "data",
       "outcome": "shipped",
-      "title": "discover_explore.py \u2014 a second, independent candidate-discovery source",
-      "summary": "discover_candidates.js sourced every candidate exclusively from loved titles' TMDB similarToIds/recommendedIds \u2014 the identical graph baseSignals()'s forward/reverse-match signal (worth up to +24/+12) then rewards a candidate for appearing in. discover_explore.py queries TMDB's genre-filtered /discover endpoint instead, seeded from Bill's real loved-genre mix, never touching the similarity graph \u2014 wired into the weekly trakt-discover-candidates.yml workflow.",
+      "title": "discover_explore.py — a second, independent candidate-discovery source",
+      "summary": "discover_candidates.js sourced every candidate exclusively from loved titles' TMDB similarToIds/recommendedIds — the identical graph baseSignals()'s forward/reverse-match signal (worth up to +24/+12) then rewards a candidate for appearing in. discover_explore.py queries TMDB's genre-filtered /discover endpoint instead, seeded from Bill's real loved-genre mix, never touching the similarity graph — wired into the weekly trakt-discover-candidates.yml workflow.",
       "before": {
-        "note": "96.0% of the discovered candidate pool came from the exact same graph that then scores it \u2014 discovery and scoring were structurally the same question asked twice."
+        "note": "96.0% of the discovered candidate pool came from the exact same graph that then scores it — discovery and scoring were structurally the same question asked twice."
       },
       "after": {
-        "note": "One deliberately modest real validation run (15 new movies + 15 new shows) dropped the closed-loop share 96.0%\u219293.8% \u2014 the mechanism is proven and keeps chipping away at the share every week the recurring workflow runs."
+        "note": "One deliberately modest real validation run (15 new movies + 15 new shows) dropped the closed-loop share 96.0%→93.8% — the mechanism is proven and keeps chipping away at the share every week the recurring workflow runs."
       }
     },
     {
@@ -435,8 +435,8 @@
       "session": "61",
       "category": "engine",
       "outcome": "shipped",
-      "title": "Show-level TMDB popularity \u2014 a genuinely unused field finally scored",
-      "summary": "TMDB's title-level popularity (a trending/buzz metric, distinct from voteCount/voteAverage) had been captured on every enriched title since Session 44 but never read anywhere in scoring. Correlation check found r\u22480.002 for movies but a real, monotonic r=0.20 for shows. Weight swept 0-10, then finer 1.5-3.5 \u2014 a clean maximum at weight=2.",
+      "title": "Show-level TMDB popularity — a genuinely unused field finally scored",
+      "summary": "TMDB's title-level popularity (a trending/buzz metric, distinct from voteCount/voteAverage) had been captured on every enriched title since Session 44 but never read anywhere in scoring. Correlation check found r≈0.002 for movies but a real, monotonic r=0.20 for shows. Weight swept 0-10, then finer 1.5-3.5 — a clean maximum at weight=2.",
       "before": {
         "p10": 90,
         "p25": 96,
@@ -457,13 +457,13 @@
       "session": "62-63",
       "category": "engine",
       "outcome": "reverted",
-      "title": "Season-count and premium-network (HBO/Max) signals \u2014 tested twice, both real dead ends",
-      "summary": "Bill pushed back on the first premium-network negative result with a specific hypothesis (\"I tend to love HBO/MAX way more than ABC or NBC, especially recent stuff\") \u2014 checked directly and found it's genuinely true (premium networks score 2.54 points above Big4 in the 2020+ era specifically). A second, purpose-built recency-interaction signal was swept anyway. Both this and the separate season-count signal were already substantially explained by signals the engine already scores (popularity/vote-count/community-rating/creator-match), so the new credit mostly stacked on titles that already scored well.",
+      "title": "Season-count and premium-network (HBO/Max) signals — tested twice, both real dead ends",
+      "summary": "Bill pushed back on the first premium-network negative result with a specific hypothesis (\"I tend to love HBO/MAX way more than ABC or NBC, especially recent stuff\") — checked directly and found it's genuinely true (premium networks score 2.54 points above Big4 in the 2020+ era specifically). A second, purpose-built recency-interaction signal was swept anyway. Both this and the separate season-count signal were already substantially explained by signals the engine already scores (popularity/vote-count/community-rating/creator-match), so the new credit mostly stacked on titles that already scored well.",
       "before": {
-        "note": "Season count: a real inverted-U pattern (1-2 seasons 7.58 avg \u2192 5-8 seasons 8.61 \u2192 8+ seasons 7.83). Premium network: a real 2.54-point era-bucketed advantage in the 2020s specifically."
+        "note": "Season count: a real inverted-U pattern (1-2 seasons 7.58 avg → 5-8 seasons 8.61 → 8+ seasons 7.83). Premium network: a real 2.54-point era-bucketed advantage in the 2020s specifically."
       },
       "after": {
-        "note": "Every tested scale of both signals either changed nothing or only cost precision@50 (98%\u219294-96%) for no compensating gain. Not shipped; documented as two permanent, evidence-backed dashboard dead-end records."
+        "note": "Every tested scale of both signals either changed nothing or only cost precision@50 (98%→94-96%) for no compensating gain. Not shipped; documented as two permanent, evidence-backed dashboard dead-end records."
       }
     },
     {
@@ -472,7 +472,7 @@
       "session": "64",
       "category": "engine",
       "outcome": "reverted",
-      "title": "Mutual-citation double-counting fix \u2014 correctly diagnosed, but the general-purpose fix regressed broadly",
+      "title": "Mutual-citation double-counting fix — correctly diagnosed, but the general-purpose fix regressed broadly",
       "summary": "Zack Snyder's Justice League (93.0 raw) had both its forward AND reverse similar-title credit trace to the exact same single mutual TMDB citation with Deadpool, counted as two independent votes instead of one. Checked how widespread this is before building anything: 84% of all forward+reverse matches dataset-wide are mutual citations.",
       "before": {
         "p10": 100,
@@ -486,7 +486,7 @@
         "p50": 94,
         "p100": 90,
         "mae": 14.59,
-        "note": "the blanket fix correctly dropped Justice League's raw score 91.2\u219283.6 but regressed the whole pool broadly \u2014 most mutual citations are genuine deep corroboration (e.g. The Westies, cited by 5 different loved crime dramas), not artifacts. Not shipped; solved instead via a display-only filter two sessions later."
+        "note": "the blanket fix correctly dropped Justice League's raw score 91.2→83.6 but regressed the whole pool broadly — most mutual citations are genuine deep corroboration (e.g. The Westies, cited by 5 different loved crime dramas), not artifacts. Not shipped; solved instead via a display-only filter two sessions later."
       }
     },
     {
@@ -495,7 +495,7 @@
       "session": "66",
       "category": "ui",
       "outcome": "shipped",
-      "title": "Superhero-subgenre display filter on the You'll Love panel \u2014 score untouched",
+      "title": "Superhero-subgenre display filter on the You'll Love panel — score untouched",
       "summary": "Bill: \"exclude comic book movies from the top 10... don't change the score, just filter them out from that one section.\" The safe, display-only alternative to the scoring fix above, which had already regressed broadly.",
       "before": {
         "p10": 100,
@@ -508,7 +508,7 @@
         "p25": 96,
         "p50": 98,
         "p100": 91,
-        "note": "byte-identical, as designed \u2014 The Dark Knight/Zack Snyder's Justice League/Doctor Strange are excluded from the You'll Love panel only; they still score and rank normally everywhere else (All Titles table, CSV export, eval.js)."
+        "note": "byte-identical, as designed — The Dark Knight/Zack Snyder's Justice League/Doctor Strange are excluded from the You'll Love panel only; they still score and rank normally everywhere else (All Titles table, CSV export, eval.js)."
       }
     },
     {
@@ -517,14 +517,14 @@
       "session": "71",
       "category": "measurement",
       "outcome": "shipped",
-      "title": "prestigeQualityRaw() critic-neutral-point correction (70\u219280) + badge threshold recalibration",
-      "summary": "The Prestige score's critic-score term hardcoded an invented neutral point (70) instead of reusing the dataset's own already-validated CRITIC_NEUTRAL (80, already live in real scoring via omdbSignal()). Fixing it would have silently un-badged 86 currently-\ud83c\udfc6-badged shows \u2014 presented the tradeoff via AskUserQuestion; Bill chose to keep the fix and recalibrate PRESTIGE_BADGE_THRESHOLD to 45 (swept 42-48) to preserve real-world badge coverage.",
+      "title": "prestigeQualityRaw() critic-neutral-point correction (70→80) + badge threshold recalibration",
+      "summary": "The Prestige score's critic-score term hardcoded an invented neutral point (70) instead of reusing the dataset's own already-validated CRITIC_NEUTRAL (80, already live in real scoring via omdbSignal()). Fixing it would have silently un-badged 86 currently-🏆-badged shows — presented the tradeoff via AskUserQuestion; Bill chose to keep the fix and recalibrate PRESTIGE_BADGE_THRESHOLD to 45 (swept 42-48) to preserve real-world badge coverage.",
       "before": {
         "p10": 90,
         "p25": 96,
         "p50": 98,
         "p100": 91,
-        "note": "Prestige has never been read by matchScore() \u2014 a pure display/insight signal"
+        "note": "Prestige has never been read by matchScore() — a pure display/insight signal"
       },
       "after": {
         "p10": 90,
@@ -540,8 +540,8 @@
       "session": "73",
       "category": "data",
       "outcome": "shipped",
-      "title": "OMDb enrichment permanent-retry bug \u2014 negative-cache marker + 14-day cooldown",
-      "summary": "A failed OMDb lookup wrote nothing to the cache, so a permanently-failing title (Monsters: The Lyle and Erik Menendez Story, a real, correctly-sourced IMDb id) was retried every single day forever \u2014 and being the sole pending title one day, it alone broke the whole scheduled workflow. Fixed with the same RETRY_COOLDOWN_DAYS pattern the book side already established for the identical failure shape (Session 13d).",
+      "title": "OMDb enrichment permanent-retry bug — negative-cache marker + 14-day cooldown",
+      "summary": "A failed OMDb lookup wrote nothing to the cache, so a permanently-failing title (Monsters: The Lyle and Erik Menendez Story, a real, correctly-sourced IMDb id) was retried every single day forever — and being the sole pending title one day, it alone broke the whole scheduled workflow. Fixed with the same RETRY_COOLDOWN_DAYS pattern the book side already established for the identical failure shape (Session 13d).",
       "before": {
         "p10": 90,
         "p25": 96,
@@ -564,7 +564,7 @@
       "category": "ui",
       "outcome": "shipped",
       "title": "diversityRerank() now caps director/creator repetition too, not just genre",
-      "summary": "diversityRerank()'s only diversity axis was TMDB's raw primary genre, capped per display window \u2014 nothing stopped several titles from the same prolific director/showrunner from crowding out a window if franchiseBonus() and a creator match both fired for that person's other work simultaneously. New maxPerCreator option (default 2), reusing the exact defer-not-exclude/backfill-if-thin mechanism the genre cap already uses. Display-only, same as the genre cap \u2014 reorders an already-scored list for the rec panels, never touches matchScore()/bmtreScore.",
+      "summary": "diversityRerank()'s only diversity axis was TMDB's raw primary genre, capped per display window — nothing stopped several titles from the same prolific director/showrunner from crowding out a window if franchiseBonus() and a creator match both fired for that person's other work simultaneously. New maxPerCreator option (default 2), reusing the exact defer-not-exclude/backfill-if-thin mechanism the genre cap already uses. Display-only, same as the genre cap — reorders an already-scored list for the rec panels, never touches matchScore()/bmtreScore.",
       "before": {
         "p10": 90,
         "p25": 96,
@@ -585,7 +585,7 @@
       "session": "74",
       "category": "engine",
       "outcome": "shipped",
-      "title": "tag_llm.py now asks for subjects too \u2014 closes the field-quality-subjects gap at zero extra API cost",
+      "title": "tag_llm.py now asks for subjects too — closes the field-quality-subjects gap at zero extra API cost",
       "summary": "inferSubjects() (engine.js) already had the exact right 3-tier shape (reviewed -> keyword -> llmEntry?.subjects), a real live scoring signal (subjectBonus()), but tag_llm.py's prompt never asked the LLM for subjects, so the third tier was permanently empty on the producing side. Added a SUBJECTS canonical-vocabulary constant and wired it into the same already-planned prompt/response, and extended find_llm_tag_gaps.mjs to also select a title purely for a subject gap, not just subgenre/tone. Also fixed a real, separate pre-existing bug found while doing this: the subgenre/tone gap checks never passed inferSubgenres()/inferTones()'s reviewed-tier parameter, wrongly counting a reviewed-workbook-only title as a gap.",
       "before": {
         "p10": 90,
@@ -601,7 +601,7 @@
         "p50": 98,
         "p100": 91,
         "mae": 14.57,
-        "note": "verified in real production (run completed, 692-title batch): Subjects population jumped 77.9%\u219299.2% (1,049 of 1,057 titles), only 18 titles left with any tagging gap at all (12 subgenre, 1 tone, 8 subject) \u2014 self-resolved the field-quality-subjects finding"
+        "note": "verified in real production (run completed, 692-title batch): Subjects population jumped 77.9%→99.2% (1,049 of 1,057 titles), only 18 titles left with any tagging gap at all (12 subgenre, 1 tone, 8 subject) — self-resolved the field-quality-subjects finding"
       }
     },
     {
@@ -702,6 +702,21 @@
       },
       "after": {
         "note": "closed-loop share 72.6% (320 of 441 pool titles) - the largest single-run drop of the whole multi-session effort. Genre-explore's own pool share nearly doubled, 29.9% -> 44.0% (194 of 441); reserved slots hit their full 90/90 (up from 50/50, previously one type stuck below it); only 14 titles stale-removed this run (down from 44 the run before, the animation fix visibly working). eval.js unaffected by design (candidatePool.json isn't read by the eval harness): p10/p25/p50/p100 held at 100/96/98/95."
+      }
+    },
+    {
+      "id": "book-taste-cross-domain-signal",
+      "date": "2026-09-11",
+      "session": "77",
+      "category": "engine",
+      "outcome": "shipped",
+      "title": "BMTRE now reads BBRE (the book engine) taste data — a new book-taste correlation signal, not just an extension of an existing one",
+      "summary": "Bill asked to investigate the dashboard's book-adaptation-cross-domain-signal-unused finding and plan the fix, \"including the impact on both apps.\" Planned via EnterPlanMode: this repo runs two independently-built, independently-tuned recommendation engines for the same person (BBRE for books, BMTRE for movies/TV) with zero cross-pollination, despite real semantic overlap between BBRE's 35-value canonical theme vocabulary and BMTRE's Genre/Subgenre/Subject taxonomy. Deliberately NOT a fuzzy title join between the two datasets (this project's own history — resolve_titles.py's confirmed wrong matches, the book side's years of similarToTitles corruption — is a direct lesson that risk was already ruled out for) — built as a theme/tag correlation instead. New computeBookThemeCounts() reads data/goodreadsData.json directly and tallies Bill's real 5-star-read themes, identical to BBRE's own fiveStarThemes aggregation so the two counts can never drift apart. New BOOK_THEME_TO_MOVIE_TAGS hand-curated table maps 28 of 35 canonical book themes to a BMTRE genre/subgenre/subject tag. New bookTasteBonus() (positive-only, tiered by loved-count, capped +1.5, mirrors genreBonus()'s shape) wired into baseSignals(), scoreBreakdown(), and a new reason() explanation tier. Threaded bookThemeCounts through every real buildIndexes() call site in one pass (dashboardShared.js's loadAllData(), prune_candidate_pool.js, eval.js, loadAllTitles.js/export_extract.js) specifically to avoid repeating the eval-metrics-missing-args-bug failure class already documented on this project. Caught and fixed a real, separate pre-existing bug along the way: recommend.js was silently missing the reviewedTags parameter entirely (would have misaligned bookThemeCounts into the wrong positional slot if left unfixed). Verified via an 11-value scripts/eval.js sweep (cap 0 through 1.5) before shipping — this genuinely caught a real cap-dependent regression, not a false alarm: at cap>=1.0, two 7/10-rated shows whose theme profile lines up tightly with Bill's book taste (Presumed Innocent - legal/courtroom; Lioness - spy/military) get boosted into the leave-one-out top 10 ahead of genuine 8+/10 matches. Shipped at cap=0.75, the highest value that holds \"great match\" precision@10/25 exactly at the signal-disabled baseline (100.0/88.0%) while genuinely improving precision@50 (92.0% -> 94.0%). Phase 1 only — a symmetric movie-taste-informs-books Phase 2 was scoped in the plan but deliberately deferred as a separate future decision, since CLAUDE.md documents BBRE as already near its tuning ceiling.",
+      "before": {
+        "note": "Zero connection between the two engines. 15.9% of Bill's loved (9-10 rated) movies/shows are themselves book adaptations, and BBRE's mature, real theme-preference data (thriller 109, memoir 39, psychological 35, legal 26 five-star-read counts, etc.) was completely invisible to BMTRE."
+      },
+      "after": {
+        "note": "387 of 483 real watchlist+candidate titles (80.1%) get a nonzero book-taste bonus today. scripts/eval.js at the shipped cap=0.75: \"liked\" precision@10/25/50/100 held exactly at 100.0/96.0/98.0/95.0 vs. the disabled baseline; the real discriminating \"great match\" (8+/10) metric held precision@10/25 at 100.0/88.0% (identical to disabled) and genuinely improved precision@50 92.0% -> 94.0% - zero measured tradeoff on the protected metrics."
       }
     }
   ]
