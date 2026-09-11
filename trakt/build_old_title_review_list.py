@@ -48,6 +48,20 @@ DATA_DIR = ROOT / 'trakt' / 'data'
 OUTPUT_DIR = ROOT / 'trakt' / 'output'
 TARGET_COUNT = int(sys.argv[1]) if len(sys.argv) > 1 else 100
 CUTOFF_YEAR = 2010  # matches the exact boundary the library-recency-selection-bias finding uses
+# Bill, born 1983: "basically almost any movie or tv show before 1990 I have
+# never wanted to see" - confirmed by real research, not just his own
+# impression: the "reminiscence bump" (cross-cultural, consistently ages
+# 5-30, peak impact in the teens - see Vice/HuffPost/Medium coverage of the
+# underlying psychology research) means pop-culture preference forms almost
+# entirely inside that window. Content from before it opens isn't a taste
+# judgment at all, just outside the window his brain was ever forming
+# preferences in - the first real batch (2026-09) confirmed this exactly:
+# every pre-1990 title in that batch came back "never wanted to see it."
+# Floored here so future batches don't keep spending review-list slots on
+# titles that can only ever produce a non-informative "not interested"
+# result, never the real watched-and-disliked data this whole exercise
+# exists to find.
+MIN_YEAR = 1990
 MIN_VOTE_COUNT_MOVIE = 800   # a real "everyone's heard of this" bar for movies
 MIN_VOTE_COUNT_SHOW = 150    # TV shows carry far fewer TMDB votes than movies at any popularity tier
 MAX_PAGES_PER_GENRE = 3
@@ -134,6 +148,18 @@ def main():
         animation_id = genre_id_maps[kind].get('Animation')
         date_field_param = 'primary_release_date.lte' if kind == 'movie' else 'first_air_date.lte'
         min_votes = MIN_VOTE_COUNT_MOVIE if kind == 'movie' else MIN_VOTE_COUNT_SHOW
+        # Global across ALL target genres for this type, not reset per genre -
+        # a title that legitimately matches two queried genres (Star Wars:
+        # Adventure AND Science Fiction) must only ever occupy one review-list
+        # slot, not one per matching genre. Real bug found in the first real
+        # batch (2026-09): 12 titles appeared twice (Star Wars, Back to the
+        # Future, Braveheart, ALF, and 8 more) because the old per-genre-only
+        # `seen_this_genre` reset let the same TMDB id through a second time
+        # under a different targetGenre - Bill had to manually dedupe the
+        # returned spreadsheet by hand (min-of-duplicate-ratings) before the
+        # data could be used. Fixed at the source here so no future batch
+        # repeats it.
+        seen_titlekeys = set()
 
         for genre_name in TARGET_GENRES[kind]:
             genre_id = genre_id_maps[kind].get(genre_name)
@@ -143,10 +169,12 @@ def main():
 
             genre_results = []
             for page in range(1, MAX_PAGES_PER_GENRE + 1):
+                date_field_gte = 'primary_release_date.gte' if kind == 'movie' else 'first_air_date.gte'
                 url = (f'{API_BASE}/discover/{tmdb_kind}?api_key={API_KEY}'
                        f'&with_genres={genre_id}&sort_by=vote_count.desc'
                        f'&vote_count.gte={min_votes}&with_original_language=en'
-                       f'&{date_field_param}={CUTOFF_YEAR - 1}-12-31&page={page}')
+                       f'&{date_field_param}={CUTOFF_YEAR - 1}-12-31'
+                       f'&{date_field_gte}={MIN_YEAR}-01-01&page={page}')
                 if animation_id is not None and genre_id != animation_id:
                     url += f'&without_genres={animation_id}'
                 data, status, err = get_json(url)
@@ -166,15 +194,14 @@ def main():
             total_raw += len(genre_results)
             print(f'  {kind}/{genre_name}: {len(genre_results)} raw results (vote_count>={min_votes}, pre-{CUTOFF_YEAR}, en)')
 
-            seen_this_genre = set()
             for r in genre_results:
                 tmdb_id = r.get('id')
                 if tmdb_id is None:
                     continue
                 title_key = f'{kind}:{tmdb_id}'
-                if title_key in known or title_key in seen_this_genre:
+                if title_key in known or title_key in seen_titlekeys:
                     continue
-                seen_this_genre.add(title_key)
+                seen_titlekeys.add(title_key)
                 date_field = 'release_date' if kind == 'movie' else 'first_air_date'
                 name_field = 'title' if kind == 'movie' else 'name'
                 date_str = r.get(date_field)
