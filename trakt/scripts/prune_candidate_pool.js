@@ -75,7 +75,22 @@ const CAP_PER_TYPE = parseInt(process.argv[2], 10) || 200;
 // candidates included, competing normally). 25% chosen as a real,
 // meaningful floor without letting the newer, thinner-metadata source
 // dominate the pool outright.
-const RESERVED_EXPLORE_SHARE = 0.25;
+//
+// Raised 25%->45% 2026-09-11 as part of a deliberate "big bang" push
+// after two real, verified findings: (1) a direct sweep test (25% through
+// 50%, against the real live pool) proved the OLD 25% floor was not
+// actually binding at all - genre-explore's real surviving count (81
+// movies / 51 shows) was already below every tested floor, so raising it
+// alone changed nothing; (2) discover_explore.py was wastefully fetching
+// and enriching animated titles that isAnimation() discards on every
+// prune pass regardless of score or reserved-share protection (fixed the
+// same day, see discover_explore.py's own without_genres addition) -
+// freeing up real headroom for the genre-explore side to actually grow
+// past its old ceiling. 45% (90/200 slots/type) is deliberately well
+// above the pre-fix real count so the floor has room to matter as weekly
+// discovery keeps adding genuinely-new, no-longer-wasted candidates,
+// while still leaving the closed-loop side the majority (55%) of the pool.
+const RESERVED_EXPLORE_SHARE = 0.45;
 
 const readJSON = (p, fallback) => {
   try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return fallback; }

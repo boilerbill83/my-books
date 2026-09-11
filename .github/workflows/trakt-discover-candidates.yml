@@ -18,18 +18,40 @@ on:
       # it still serves a real purpose: following Bill's taste as he rates
       # new loved titles) so every future UNATTENDED weekly run keeps
       # shrinking the closed-loop share, not just a manually-dispatched one.
+      #
+      # Rebalanced again 2026-09-11 ("big bang" push): a zero-override
+      # verification run under the FIRST rebalance (20 vs 40/8) actually
+      # moved the closed-loop share the WRONG way (75.7%->76.4%) - both
+      # discoverers added their full quota (40 closed-loop, 80 genre-
+      # explore raw additions), but closed-loop's citation-bonus scoring
+      # advantage meant its new additions won far more of the open,
+      # non-reserved pruning competition. Root-caused with the real job
+      # log, not guessed: discover_explore.py was also wasting a real
+      # share of its own additions on animated titles that isAnimation()
+      # discards on every prune regardless of score (fixed the same day,
+      # see discover_explore.py). Three changes together, not one: (1)
+      # max_new_per_type throttled 20->10 (closed-loop structurally wins
+      # open competition, so slowing its OWN growth rate matters more than
+      # genre-explore's raw volume alone); (2) explore_max_new_per_type
+      # raised 40->60 and explore_top_genres_per_type 8->12 (the prior
+      # 8-genre mix was already largely exhausted - 1483 raw /discover
+      # results yielded only 80 genuinely new candidates that run); (3)
+      # prune_candidate_pool.js's RESERVED_EXPLORE_SHARE raised 25%->45%
+      # (see that file's own comment - a direct sweep test proved the old
+      # 25% floor wasn't even binding, so this alone would have done
+      # nothing without fixes 1-2 first).
       max_new_per_type:
         description: 'Max new candidates to discover per type (movie/show) this run'
         type: number
-        default: 20
+        default: 10
       explore_max_new_per_type:
         description: 'Max new genre-explore candidates to discover per type this run (independent of the similarity-graph discovery above - see discover_explore.py)'
         type: number
-        default: 40
+        default: 60
       explore_top_genres_per_type:
         description: 'How many of Bill''s real top loved genres to query TMDB /discover against, per type'
         type: number
-        default: 8
+        default: 12
       enrich_batch_size:
         description: 'How many titles enrich_tmdb.py should process this run'
         type: number
@@ -54,12 +76,18 @@ jobs:
           python-version: '3.11'
 
       - name: Discover new candidates from loved titles' TMDB similar/recommendations network
-        run: node trakt/scripts/discover_candidates.js ${{ inputs.max_new_per_type || 20 }}
+        # NOTE: inputs.* is undefined on a schedule-triggered run (no
+        # workflow_dispatch inputs exist for a cron firing), so these ||
+        # fallbacks - not the input schema's own `default:` above - are
+        # what actually governs the real unattended weekly run. Keep both
+        # in sync; a schema-only default change silently does nothing for
+        # the cron.
+        run: node trakt/scripts/discover_candidates.js ${{ inputs.max_new_per_type || 10 }}
 
       - name: Discover new candidates from TMDB's genre-filtered /discover endpoint (independent of the similarity graph above)
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
-        run: python3 trakt/discover_explore.py ${{ inputs.explore_max_new_per_type || 40 }} ${{ inputs.explore_top_genres_per_type || 8 }}
+        run: python3 trakt/discover_explore.py ${{ inputs.explore_max_new_per_type || 60 }} ${{ inputs.explore_top_genres_per_type || 12 }}
         timeout-minutes: 15
 
       - name: Enrich newly-discovered candidates via TMDB
