@@ -2306,142 +2306,70 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
-  // 3. Candidate discovery and candidate SCORING draw from the exact same
-  // TMDB similarity graph — discover_candidates.js sources every candidate
-  // exclusively from loved titles' own similarToIds/recommendedIds, which
-  // is the identical graph baseSignals()'s forward/reverse-match signal
-  // then rewards. A structural closed loop: nothing TMDB's own algorithm
-  // wouldn't already associate with an existing favorite can ever enter
-  // the pool, regardless of what else Bill's real taste might include.
-  // Quantified live below rather than just asserted from reading the
-  // discovery script's source.
+  // 3. RETIRED 2026-09-11 — was tracked as an open, gradually-improving
+  // metric across ~10 sessions and a lot of real work (see the CLAUDE.md
+  // session log / Release Log for the full history: the "big bang" fix,
+  // the animation-waste bug, the reserved-share-not-binding bug, the
+  // book-theme-explore third source). Bill's explicit call after hearing
+  // the real math: "I don't think I care about discovery source. I just
+  // want the best candidates." Investigated whether the metric could even
+  // reach its own stated target before accepting that framing — it can't,
+  // for a reason worth recording so a future session doesn't re-open this:
+  // "closed-loop %" is computed as "is this candidate cited by a loved
+  // title's similar/recommended list," which is a property of the
+  // CANDIDATE (real, independent titles genuinely do cite each other on
+  // TMDB when they're both well-regarded titles in the same genre), not of
+  // HOW it was discovered. A real sweep proved this conclusively: even
+  // with the citation-graph discoverer's output completely deleted from
+  // the pool (100% elimination, tested directly against live data), the
+  // metric still read 53% — a real, structural floor no amount of
+  // discovery-source rebalancing can push below, because ~2/3 of
+  // genre-explore/book-theme-explore's OWN candidates independently turn
+  // out to also be cited by a loved title. The metric was conflating
+  // "discovered via the citation graph" with "happens to be cited by a
+  // loved title" — two different things — and had been measuring the
+  // wrong one the whole time.
+  //
+  // The goal the metric was actually a proxy for — candidate discovery
+  // shouldn't be 100% bounded by TMDB's own similarity algorithm — is
+  // separately, genuinely true: source-tagged (genre-explore +
+  // book-theme-explore) candidates are a real ~50% of the pool today, and
+  // discover_explore.py/compute_book_theme_gaps.js keep finding titles
+  // (On the Basis of Sex, Boston Legal, The Social Dilemma, BlackBerry...)
+  // the citation-graph discoverer structurally never would have. None of
+  // that required this metric to exist or to be tracked — it's a property
+  // of the discovery scripts themselves, verified once via a real
+  // production run, not something that needs ongoing dashboard monitoring.
+  // RESERVED_EXPLORE_SHARE, genre-explore, and book-theme-explore all stay
+  // exactly as they are; only the dashboard tracking is retired.
   {
     const poolTitles = candidatePool.titles || [];
-    const citedByLoved = poolTitles.filter(c => (idx.reverseSimilar.get(c.titleKey) || 0) > 0);
-    const pctClosedLoop = poolTitles.length ? (100 * citedByLoved.length / poolTitles.length) : 0;
-    const exploreSourced = poolTitles.filter(c => c.source === 'genre-explore' || c.source === 'book-theme-explore');
-    const pctExplore = poolTitles.length ? (100 * exploreSourced.length / poolTitles.length) : 0;
-    const bookThemeSourced = poolTitles.filter(c => c.source === 'book-theme-explore');
-    const pctBookTheme = poolTitles.length ? (100 * bookThemeSourced.length / poolTitles.length) : 0;
-    // A real, independent second discovery source now exists and is proven
-    // to work (trakt/discover_explore.py, TMDB's genre-filtered /discover
-    // endpoint rather than title-to-title similarity). Eight real production
-    // runs so far, each checked honestly against the live numbers rather
-    // than assumed to help: 96.0%->93.8% (2026-09-03, a modest validation
-    // batch), 93.8%->84.5% (2026-09-06, scaled up 100/type), 84.5%->84.5%
-    // (2026-09-06, scaled up further still - a real plateau: the original
-    // similarity-graph discoverer runs unconditionally every time and was
-    // re-filling the pool with closed-loop candidates just as fast as
-    // genre-explore removed them). Root-caused THAT plateau: (1)
-    // prune_candidate_pool.js ranked every live candidate in one open
-    // competition by score, and a genre-explore candidate structurally
-    // can't win that fight (it's never cited by a loved title, so it never
-    // earns the forward/reverse similar-title bonus worth up to +24/+12) -
-    // fixed with a reserved pool-share, immune to that disadvantage; (2)
-    // discover_explore.py hardcoded page=1 forever, exhausting the same
-    // top-genre mix after 3 runs - fixed by paginating up to 5 pages/genre.
-    // A 4th run with both fixes: closed-loop share 84.5%->78.9%. A 5th run
-    // with the recurring workflow's own defaults rebalanced (verified with
-    // ZERO input overrides, exactly what the unattended cron runs): 78.9%
-    // ->75.7%, proving the fix self-sustains. A 6th run (still zero
-    // overrides, one week later) moved the WRONG way: 75.7%->76.4% - both
-    // discoverers added their full quota, but closed-loop's citation-bonus
-    // advantage meant its new additions still won more of the open
-    // competition than genre-explore's did. Root-caused with the real job
-    // log rather than re-running blind: discover_explore.py was ALSO
-    // wasting a real share of its own additions on animated titles
-    // (Kung Fu Panda 4, Toy Story 3, My Little Pony, Scooby-Doo, Steven
-    // Universe...) surfaced as secondary matches within Comedy/Adventure/
-    // Action-family /discover queries - isAnimation() discards these on
-    // every prune pass regardless of score or reserved-share protection,
-    // so every animated pick was fetched, added, and enriched for nothing.
-    // A direct sweep test (RESERVED_EXPLORE_SHARE 25% through 50%, against
-    // the real live pool) also proved the reserved floor wasn't even
-    // binding at the old 25% - genre-explore's real surviving count (81
-    // movies/51 shows) was already below every tested floor. A "big bang"
-    // fix shipped three changes together: (a) discover_explore.py now
-    // excludes Animation at the TMDB query itself; (b) max_new_per_type
-    // (closed-loop) throttled 20->10, explore_max_new_per_type 40->60,
-    // explore_top_genres_per_type 8->12 (both the input schema default AND
-    // the `|| N` fallback the schedule trigger actually uses); (c)
-    // RESERVED_EXPLORE_SHARE raised 25%->45%, now meaningful once (a)-(b)
-    // gave genre-explore real headroom to grow into it. A large one-time
-    // seeding run (150/type, 15 genres) under the fix: reserved share hit
-    // its full 90/90 slots/type (up from 50/50, both types now AT the
-    // floor rather than one stuck below it), only 14 stale-removed (down
-    // from 44 the run before - the animation fix visibly working) - moving
-    // the closed-loop share 76.4%->${pctClosedLoop.toFixed(1)}%, genre-
-    // explore's own pool share to ${pctExplore.toFixed(1)}%, the largest
-    // single-run drop of the whole effort. Severity tracks the LIVE
-    // percentage directly: above 80% closed-loop is 'critical', 50-80% is
-    // 'serious', under 50% is 'warning'. Deliberately never 'good'/resolved
-    // at any percentage: unlike a one-shot bug fix, this is a gradual,
-    // ongoing metric that only keeps improving as the recurring weekly
-    // workflow keeps running - there's no single commit that finishes it.
+    const sourceTagged = poolTitles.filter(c => c.source === 'genre-explore' || c.source === 'book-theme-explore');
+    const pctSourceTagged = poolTitles.length ? (100 * sourceTagged.length / poolTitles.length) : 0;
     findings.push({
       id: 'closed-loop-discovery',
-      severity: pctClosedLoop > 80 ? 'critical' : pctClosedLoop > 50 ? 'serious' : 'warning',
-      ratings: { ease: 4, dataQuality: 3, recEngine: 7, ui: 3 },
+      severity: 'good',
+      ratings: { ease: 4, dataQuality: 3, recEngine: 2, ui: 3 },
       shortTitle: 'New Picks Too Similar',
-      title: `${pctClosedLoop.toFixed(0)}% of the discovered candidate pool comes from the exact same graph that then scores it`,
-      technical: `<code>trakt/scripts/discover_candidates.js</code> sources every candidate exclusively from ` +
-        `<code>similarToIds</code>/<code>recommendedIds</code> on titles rated >= <code>LOVED_THRESHOLD</code> — TMDB's own ` +
-        `algorithmic "similar to" graph. That is the IDENTICAL data <code>baseSignals()</code>'s forward/reverse-match signal (worth up ` +
-        `to +24/+12) rewards a candidate for appearing in. Live proof, not inference from reading the script: of ${fmtNum(poolTitles.length)} ` +
-        `titles currently in <code>candidatePool.json</code>, ${fmtNum(citedByLoved.length)} (${pctClosedLoop.toFixed(1)}%) are directly ` +
-        `cited by a loved title's own similar/recommended list — discovery and scoring are, structurally, the same graph queried twice. ` +
-        `<code>trakt/discover_explore.py</code> queries TMDB's genre-filtered <code>/discover</code> endpoint instead (seeded from Bill's ` +
-        `real loved-genre mix, sorted by vote average, never touching the similarity graph) — wired into ` +
-        `<code>.github/workflows/trakt-discover-candidates.yml</code>: ${fmtNum(exploreSourced.length)} of the current pool ` +
-        `(${pctExplore.toFixed(1)}%) are <code>source: "genre-explore"</code> stubs, none cited by any loved title's similar/recommended ` +
-        `list. Two real bugs found and fixed after a 3rd validation run found a real plateau (84.5%->84.5%, no further progress): (1) ` +
-        `<code>prune_candidate_pool.js</code> ranked genre-explore candidates in the same open competition as closed-loop ones, and a ` +
-        `genre-explore candidate structurally can't win that fight (it's never cited by a loved title, so it never earns the ` +
-        `forward/reverse similar-title bonus) — fixed with a guaranteed reserved share, immune to that competitive disadvantage; (2) ` +
-        `<code>discover_explore.py</code> hardcoded <code>page=1</code> on every TMDB <code>/discover</code> query forever — fixed by ` +
-        `paginating up to 5 pages/genre. A 5th run (zero-override, exactly what the unattended cron runs) confirmed those fixes ` +
-        `self-sustain: 84.5% → 78.9% → 75.7%. A 6th run, one week later, moved the WRONG way (75.7% → 76.4%): both discoverers added ` +
-        `their full quota, but closed-loop's citation-bonus advantage still won more of the open competition. Root-caused a THIRD real ` +
-        `bug from that run's own log: <code>discover_explore.py</code> was wasting a real share of its own additions on animated titles ` +
-        `(secondary matches within Comedy/Adventure/Action-family <code>/discover</code> queries) that <code>isAnimation()</code> ` +
-        `discards on every prune pass regardless of score or reserved-share protection. A direct sweep test (25% through 50%) also ` +
-        `proved the reserved floor wasn't even binding at 25% — genre-explore's real surviving count was already below every tested ` +
-        `floor. A "big bang" fix shipped all three together: Animation excluded at the TMDB query itself; ` +
-        `<code>max_new_per_type</code> (closed-loop) throttled 20→10 while <code>explore_max_new_per_type</code> 40→60 and ` +
-        `<code>explore_top_genres_per_type</code> 8→12 (both the schema default AND the <code>|| N</code> fallback the schedule ` +
-        `trigger actually uses — a real trap, since <code>inputs.*</code> is undefined on a cron firing); ` +
-        `<code>RESERVED_EXPLORE_SHARE</code> raised 25%→45%. A large one-time seeding run under the fix hit the full 90/90 reserved ` +
-        `slots/type (up from 50/50, one type previously stuck below it) with only 14 titles stale-removed (down from 44 the run before) ` +
-        `— moving the closed-loop share 76.4% → ${pctClosedLoop.toFixed(1)}%, genre-explore's own pool share to ` +
-        `${pctExplore.toFixed(1)}%, the largest single-run drop of the whole effort. A THIRD, independent discovery source was added ` +
-        `2026-09-11: <code>discover_explore.py</code>'s <code>book-theme-explore</code> pass, seeded not from Trakt watch history at all ` +
-        `but from <code>trakt/data/bookThemeGaps.json</code> (<code>compute_book_theme_gaps.js</code>) — real BBRE (book) themes ` +
-        `proportionally over-represented in Bill's 5-star reads vs. his current screen taste (legal 3.1x, psychological 2.4x, thriller ` +
-        `1.9x, business/biography ~1.5x, sports/tech-history ~1.2x). A theme with a real native TMDB genre reuses the genre-query path ` +
-        `directly (thriller → TMDB's real "Thriller" genre); everything else resolves a real TMDB keyword id live via ` +
-        `<code>/search/keyword</code> (never a guessed id) and queries with <code>with_keywords=</code>. Folded into the same ` +
-        `<code>RESERVED_EXPLORE_SHARE</code> protected bucket as genre-explore in <code>prune_candidate_pool.js</code> (same structural ` +
-        `disadvantage against closed-loop candidates in an open scoring competition applies). Currently ${fmtNum(bookThemeSourced.length)} ` +
-        `of the pool (${pctBookTheme.toFixed(1)}%) are <code>source: "book-theme-explore"</code> stubs — this is a genuinely different ` +
-        `discovery axis from either prior source (Trakt-history-independent), not just a bigger version of genre-explore.`,
-      plain: `The pool of "new things Bill might like" used to be built entirely by asking TMDB's own algorithm "what's similar to what ` +
-        `Bill already loves" — and then the recommendation engine's strongest scoring signal was, again, "does TMDB's algorithm consider ` +
-        `this similar to something Bill already loves." A second, genuinely different way of finding new candidates exists now — instead ` +
-        `of "what's similar to X," it asks "what's well-regarded in the genres Bill actually loves." It kept getting stuck for a series ` +
-        `of real, different reasons, each one root-caused rather than just re-run and hoped-better: new candidates losing a popularity ` +
-        `contest against the old method's candidates once the pool got trimmed back to size; asking TMDB the exact same question every ` +
-        `week and getting the exact same answer; and finally, wasting a real chunk of its own picks on cartoons and kids' shows that get ` +
-        `thrown out immediately anyway. Fixed all three at once in a deliberate "big bang" push rather than one more incremental tweak, ` +
-        `then ran one large batch to seed real growth immediately — and it worked, the biggest single drop in the closed-loop share of ` +
-        `the whole effort. A third source was then added on top: instead of asking "what's similar to X" or "what's well-regarded in a ` +
-        `genre Bill already watches a lot of," it asks a genuinely different question — "what does Bill's separate BOOK-reading history ` +
-        `say he might like that his current screen taste doesn't reflect yet." Legal thrillers and psychological fiction are his single ` +
-        `biggest over-representations in books vs. what he currently watches, so those get specifically hunted for now.`,
-      impact: `Verified with eight real production runs, not just shipped code: closed-loop share moved 96.0%→93.8%→84.5%→(plateau)→78.9%` +
-        `→75.7%→76.4% (a real regression, caught and root-caused rather than ignored)→${pctClosedLoop.toFixed(1)}%. Each setback led ` +
-        `directly to root-causing and fixing a real, previously-hidden bug rather than just re-running the same batch and hoping — a ` +
-        `regression caught this same session led straight to the animation-waste fix, which produced the largest single drop of the ` +
-        `whole effort.`,
+      title: 'Retired: the "closed-loop discovery" percentage was proven mathematically incapable of reflecting discovery diversity, and Bill said he doesn\'t care about discovery source anyway',
+      technical: `Real sweep test against the live pool (not assumed): with every citation-graph-discovered candidate deleted entirely ` +
+        `(0 remaining), the old metric still read 53% — a structural floor, not a fixable gap, since it measures "is this candidate cited ` +
+        `by a loved title" (a property of the title itself in TMDB's data — real titles genuinely co-cite each other) rather than "how was ` +
+        `this candidate discovered." Continuing to chase the old number would have meant deleting real, working discovery output for zero ` +
+        `measurable gain past 53%. The metric it should have been (source-tagged share of the pool) is healthy today without any further ` +
+        `work: ${fmtNum(sourceTagged.length)} of ${fmtNum(poolTitles.length)} candidates (${pctSourceTagged.toFixed(1)}%) come from ` +
+        `<code>genre-explore</code>/<code>book-theme-explore</code>, roughly balanced against the citation-graph discoverer. ` +
+        `<code>RESERVED_EXPLORE_SHARE</code> and both independent discovery scripts remain unchanged — this finding retiring doesn't ` +
+        `touch any of the actual discovery or scoring mechanics, only the dashboard's own tracking of a mis-defined percentage.`,
+      plain: `This dashboard used to track "what percent of new picks come from the same method that also scores them," and a lot of real ` +
+        `work went into pushing that number down over many sessions. Turned out the number itself was broken: even after completely ` +
+        `deleting the method it was worried about, it still read 53%, because well-known movies and shows in the same genre just ` +
+        `naturally reference each other on TMDB regardless of how you found them — that's not a bug, just how the data works. Bill's own ` +
+        `call once he heard the real math: he doesn't actually care which method found a candidate, only whether it's a good match — so ` +
+        `there's nothing left worth tracking here. The two independent discovery methods this effort built are still running and still ` +
+        `finding real, good candidates the old method alone never would have; that part of the work stands on its own.`,
+      impact: `Retired by explicit decision, not silently dropped — the full investigation and the real numbers behind it are recorded ` +
+        `here so a future session doesn't re-open this same question from scratch.`,
     });
   }
 

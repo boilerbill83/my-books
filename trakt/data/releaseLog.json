@@ -733,6 +733,21 @@
       "after": {
         "note": "A third, measurable discovery source (source: \"book-theme-explore\") is live in the weekly workflow with its own tunable cap (default 15/type) and its own reserved pool-share protection. eval.js confirmed byte-identical before/after (p10/p25/p50/p100 unchanged) - this change only affects which candidates can be discovered, never how any candidate is scored."
       }
+    },
+    {
+      "id": "closed-loop-discovery-metric-retired",
+      "date": "2026-09-11",
+      "session": "77",
+      "category": "measurement",
+      "outcome": "retired",
+      "title": "Retired the closed-loop-discovery dashboard metric after proving it can never reflect discovery diversity",
+      "summary": "Bill: \"keep working on that until it is low impact\" (the closed-loop-discovery finding, #1 on the dashboard at 72.3%). Before grinding further, tested whether the target was even reachable: raised RESERVED_EXPLORE_SHARE and swept a range of values against the real pool - discovered the mechanism is currently INERT (0 evictions happen at the current pool size, so the reserved floor never binds regardless of its value). Pivoted to testing a genuine ceiling on closed-loop-sourced candidates instead - swept 55% down to 0% (fully deleting every citation-graph-discovered candidate from the pool). Real, surprising result: even at 0% closed-loop-tagged candidates remaining, the metric still read 53%, because ~2/3 of genre-explore/book-theme-explore's OWN candidates independently turn out to also be cited by a loved title on TMDB (real titles in the same genre naturally cite each other). The metric was conflating \"discovered via the citation graph\" with \"happens to be cited by a loved title\" - two different things - and had a mathematically provable floor around 50-53% no discovery-composition change could cross. Reported this honestly to Bill rather than continuing to chase an unreachable number or silently declaring victory. Bill's explicit call: \"I don't think I care about discovery source. I just want the best candidates\" - asked what the downside of ignoring the metric entirely would be. Answered directly (zero engine impact either way - the metric is pure dashboard reporting, unrelated to matchScore()/rankAll()/RESERVED_EXPLORE_SHARE, all of which stay unchanged) and retired the finding (severity: good, matching the established dead-end-investigation pattern used elsewhere on this dashboard - e.g. creator-critic-trust-gap-tested - rather than silently deleting it, so a future session does not re-open the same already-answered question).",
+      "before": {
+        "note": "closed-loop-discovery tracked as an open, actionable finding at 72.3% (severity: serious, \"Medium impact\"), with an implied path to \"warning\"/\"Low impact\" below 50% that turned out to be mathematically unreachable via discovery-source changes alone."
+      },
+      "after": {
+        "note": "Finding retired (severity: good, no longer shown in the open Improvement Opportunities list) with the full investigation and real numbers preserved in its record. The underlying discovery mechanisms (RESERVED_EXPLORE_SHARE, genre-explore, book-theme-explore) are completely unchanged - a real, healthy ~50/50 source-tagged split exists in the pool today, verified without needing further discovery-pipeline work."
+      }
     }
   ]
 }
