@@ -82,9 +82,20 @@ const CREATOR_CORRECTIONS = {
 // The single "creative author" signal for a title: a movie's director or
 // a show's primary creator — the closest 1:1 analog to a book's author
 // (usually one person per title, same as the book engine's model).
+//
+// meta.creatorCredits (2026-09-11) is enrich_tmdb.py's new, capped-at-2
+// field — director(s)/createdBy first, then a real producer/executive
+// producer (shows: from aggregate_credits, catching someone credited
+// across a show's whole run even when absent from its most recent
+// season) if a slot remains — checked before the raw director/createdBy
+// fields below so a title re-fetched with the new pipeline picks it up
+// automatically. Falls back to the old logic for any cache entry not yet
+// re-fetched (REFRESH_ALL needed to backfill, same pattern as every
+// other new enrichedMetadata.json field this project has added).
 export function getCreator(type, meta, titleKey) {
   if (CREATOR_CORRECTIONS[titleKey]) return CREATOR_CORRECTIONS[titleKey][0];
   if (!meta) return null;
+  if (meta.creatorCredits?.length) return meta.creatorCredits[0];
   if (type === 'movie') return meta.director || null;
   return (meta.createdBy && meta.createdBy[0]) || null;
 }
@@ -105,6 +116,7 @@ export function getCreator(type, meta, titleKey) {
 export function getCreators(type, meta, titleKey) {
   if (CREATOR_CORRECTIONS[titleKey]) return CREATOR_CORRECTIONS[titleKey];
   if (!meta) return [];
+  if (meta.creatorCredits?.length) return meta.creatorCredits;
   if (type === 'movie') return meta.directors?.length ? meta.directors : (meta.director ? [meta.director] : []);
   return meta.createdBy || [];
 }

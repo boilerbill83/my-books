@@ -91,10 +91,26 @@ def get_json(url, timeout=10):
 
 
 def tmdb_detail(kind, tmdb_id):
-    """kind: 'movie' or 'show' (mapped to TMDB's 'tv'). One call, full detail."""
+    """kind: 'movie' or 'show' (mapped to TMDB's 'tv'). One call, full detail.
+
+    Shows additionally append aggregate_credits (2026-09-11, Bill: "let's
+    make sure if someone i love like jj abrams gets credit even if he is
+    only the second producer"). Plain `credits` on a /tv/{id} request only
+    ever returns the LATEST season's crew, not the show's full run — real,
+    documented TMDB behavior, confirmed via multiple independent sources
+    since api.themoviedb.org itself is unreachable from this interactive
+    session (same standing constraint as every other TMDB call in this
+    project). `aggregate_credits` is the one endpoint that reliably
+    surfaces a real Executive Producer credited across a show's whole run
+    even when they're absent from whatever season happened to air most
+    recently — exactly the Michael Schur/Primo case this was built for.
+    Movies don't need the extra call: a movie has one crew list, period,
+    already complete in the plain `credits` append."""
     tmdb_kind = 'movie' if kind == 'movie' else 'tv'
-    url = (f'{API_BASE}/{tmdb_kind}/{tmdb_id}'
-           f'?api_key={API_KEY}&append_to_response=credits,keywords,similar,recommendations,external_ids')
+    appends = 'credits,keywords,similar,recommendations,external_ids'
+    if kind != 'movie':
+        appends += ',aggregate_credits'
+    url = f'{API_BASE}/{tmdb_kind}/{tmdb_id}?api_key={API_KEY}&append_to_response={appends}'
     return get_json(url)
 
 
@@ -193,6 +209,18 @@ def extract_entry(kind, data):
         entry['directors'] = directors
         coll = data.get('belongs_to_collection')
         entry['belongsToCollection'] = {'id': coll['id'], 'name': coll['name']} if coll else None
+        # creatorCredits: real director(s) first, then a real producer/
+        # executive producer if a slot remains, capped at 2 total — see
+        # tmdb_detail()'s own comment for why (Bill: capture someone loved
+        # "even if he is only the second producer," but "not too far,"
+        # capped at 2). Movie crew is already complete in `credits` (no
+        # season-limitation the way TV has), so no extra data is needed.
+        creator_credits = list(directors[:2])
+        if len(creator_credits) < 2:
+            producers = [c['name'] for c in crew if c.get('job') in ('Producer', 'Executive Producer')
+                         and c['name'] not in creator_credits]
+            creator_credits += producers[:2 - len(creator_credits)]
+        entry['creatorCredits'] = creator_credits
     else:
         entry['firstAirDate'] = data.get('first_air_date')
         ert = data.get('episode_run_time') or []
@@ -255,6 +283,50 @@ def extract_entry(kind, data):
         # with Bill's real ratings needs checking against his real data
         # before any engine.js signal is built on it - not assumed here.
         entry['networks'] = [n['name'] for n in (data.get('networks') or [])]
+
+        # creatorCredits: real createdBy name(s) first, then a real
+        # executive producer (from aggregate_credits — see tmdb_detail()'s
+        # comment for why plain `credits` isn't enough for shows) if a
+        # slot remains, capped at 2 total. Ranked by total episode count
+        # when more than one EP candidate exists, so the person with the
+        # most real, sustained involvement wins the one available slot,
+        # not whoever TMDB happens to list first. TMDB's aggregate_credits
+        # crew shape isn't independently verifiable from this sandbox
+        # (api.themoviedb.org is blocked here the same as every other TMDB
+        # endpoint) — written defensively to handle either a documented
+        # `jobs` array (a person can hold multiple job titles across a
+        # show's run) or a flat `job` string, verified for real once this
+        # runs via the GitHub Action against live data, same as every
+        # other TMDB-shaped assumption in this file.
+        creator_credits = list(entry['createdBy'][:2])
+        if len(creator_credits) < 2:
+            agg_crew = ((data.get('aggregate_credits') or {}).get('crew')) or []
+            ep_candidates = []
+            for c in agg_crew:
+                name = c.get('name')
+                if not name or name in creator_credits:
+                    continue
+                jobs = c.get('jobs')
+                if isinstance(jobs, list):
+                    ep_jobs = [j for j in jobs if j.get('job') == 'Executive Producer']
+                    if not ep_jobs:
+                        continue
+                    episode_count = max((j.get('episode_count') or 0) for j in ep_jobs)
+                elif c.get('job') == 'Executive Producer':
+                    episode_count = c.get('total_episode_count') or c.get('episode_count') or 0
+                else:
+                    continue
+                ep_candidates.append((episode_count, name))
+            ep_candidates.sort(key=lambda x: -x[0])
+            seen = set(creator_credits)
+            for _, name in ep_candidates:
+                if name in seen:
+                    continue
+                creator_credits.append(name)
+                seen.add(name)
+                if len(creator_credits) >= 2:
+                    break
+        entry['creatorCredits'] = creator_credits
 
     return entry
 
