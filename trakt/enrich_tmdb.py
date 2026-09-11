@@ -65,6 +65,18 @@ REFRESH_ALL = os.environ.get('REFRESH_ALL') == '1' or '--refresh-all' in sys.arg
 REFRESH_AIRING = os.environ.get('REFRESH_AIRING') == '1' or '--refresh-airing' in sys.argv
 API_KEY    = os.environ.get('TMDB_API_KEY', '')
 DELAY      = 0.35  # seconds between titles — one call per title, generous TMDB rate limit
+# Max names in entry['creatorCredits'] (real director(s)/showrunner(s) first,
+# then a real producer/executive producer filling any remaining slot) — see
+# extract_entry()'s own comments for the full history. Started at 2 (Bill:
+# "two directors/executives/producers/showrunners... let's not go too far"),
+# raised to 3 the same session after a real regression: Star City lost
+# co-creator Ben Nedivi's credit because For All Mankind (which Bill loves)
+# genuinely has 3 TMDB-credited co-creators, and a cap of 2 silently dropped
+# a real, already-known one rather than just limiting speculative producer
+# additions. Some real titles have 4+ genuine co-creators (Ted Lasso: Bill
+# Lawrence, Jason Sudeikis, Joe Kelly, Brendan Hunt) and will still lose one
+# under this cap — a known, disclosed limitation, not silently unresolved.
+CREATOR_CREDITS_CAP = 3
 
 HEADERS = {'User-Agent': 'my-books-trakt-enrichment (personal watch-history app)'}
 API_BASE = 'https://api.themoviedb.org/3'
@@ -210,16 +222,22 @@ def extract_entry(kind, data):
         coll = data.get('belongs_to_collection')
         entry['belongsToCollection'] = {'id': coll['id'], 'name': coll['name']} if coll else None
         # creatorCredits: real director(s) first, then a real producer/
-        # executive producer if a slot remains, capped at 2 total — see
-        # tmdb_detail()'s own comment for why (Bill: capture someone loved
-        # "even if he is only the second producer," but "not too far,"
-        # capped at 2). Movie crew is already complete in `credits` (no
-        # season-limitation the way TV has), so no extra data is needed.
-        creator_credits = list(directors[:2])
-        if len(creator_credits) < 2:
+        # executive producer if a slot remains, capped at CREATOR_CREDITS_CAP
+        # total — see tmdb_detail()'s own comment for why (Bill: capture
+        # someone loved "even if he is only the second producer," but "not
+        # too far" — originally capped at 2, raised to 3 the same session
+        # after a real regression surfaced: Star City lost co-creator Ben
+        # Nedivi's credit because For All Mankind, which Bill loves, has 3
+        # genuine TMDB-credited co-creators and the old cap-of-2 silently
+        # dropped the 3rd one, even though he was never a "second producer"
+        # guess — he's a real, already-known co-creator. Bill's call: "you
+        # can allow a third"). Movie crew is already complete in `credits`
+        # (no season-limitation the way TV has), so no extra data is needed.
+        creator_credits = list(directors[:CREATOR_CREDITS_CAP])
+        if len(creator_credits) < CREATOR_CREDITS_CAP:
             producers = [c['name'] for c in crew if c.get('job') in ('Producer', 'Executive Producer')
                          and c['name'] not in creator_credits]
-            creator_credits += producers[:2 - len(creator_credits)]
+            creator_credits += producers[:CREATOR_CREDITS_CAP - len(creator_credits)]
         entry['creatorCredits'] = creator_credits
     else:
         entry['firstAirDate'] = data.get('first_air_date')
@@ -287,19 +305,22 @@ def extract_entry(kind, data):
         # creatorCredits: real createdBy name(s) first, then a real
         # executive producer (from aggregate_credits — see tmdb_detail()'s
         # comment for why plain `credits` isn't enough for shows) if a
-        # slot remains, capped at 2 total. Ranked by total episode count
-        # when more than one EP candidate exists, so the person with the
-        # most real, sustained involvement wins the one available slot,
-        # not whoever TMDB happens to list first. TMDB's aggregate_credits
-        # crew shape isn't independently verifiable from this sandbox
-        # (api.themoviedb.org is blocked here the same as every other TMDB
-        # endpoint) — written defensively to handle either a documented
-        # `jobs` array (a person can hold multiple job titles across a
-        # show's run) or a flat `job` string, verified for real once this
-        # runs via the GitHub Action against live data, same as every
-        # other TMDB-shaped assumption in this file.
-        creator_credits = list(entry['createdBy'][:2])
-        if len(creator_credits) < 2:
+        # slot remains, capped at CREATOR_CREDITS_CAP total (raised 2->3
+        # the same session — see the movie-side comment above for the
+        # real Star City/For All Mankind regression that caused it). Ranked
+        # by total episode count when more than one EP candidate exists,
+        # so the person with the most real, sustained involvement wins the
+        # one available slot, not whoever TMDB happens to list first.
+        # TMDB's aggregate_credits crew shape isn't independently
+        # verifiable from this sandbox (api.themoviedb.org is blocked here
+        # the same as every other TMDB endpoint) — written defensively to
+        # handle either a documented `jobs` array (a person can hold
+        # multiple job titles across a show's run) or a flat `job` string,
+        # verified for real once this runs via the GitHub Action against
+        # live data, same as every other TMDB-shaped assumption in this
+        # file.
+        creator_credits = list(entry['createdBy'][:CREATOR_CREDITS_CAP])
+        if len(creator_credits) < CREATOR_CREDITS_CAP:
             agg_crew = ((data.get('aggregate_credits') or {}).get('crew')) or []
             ep_candidates = []
             for c in agg_crew:
@@ -324,7 +345,7 @@ def extract_entry(kind, data):
                     continue
                 creator_credits.append(name)
                 seen.add(name)
-                if len(creator_credits) >= 2:
+                if len(creator_credits) >= CREATOR_CREDITS_CAP:
                     break
         entry['creatorCredits'] = creator_credits
 
