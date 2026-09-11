@@ -48,10 +48,42 @@ export function hydrateTitle(c, enrichedMeta) {
   return { ...c, title: c.title || meta?.title || c.title, year: c.year || meta?.year || c.year };
 }
 
+// Verified corrections to TMDB's own `createdBy`/`director(s)` data,
+// keyed by titleKey — a small, hardcoded lookup table (same shape as
+// GENRE_ALIASES) checked inside getCreator()/getCreators() themselves,
+// rather than a full reviewedTags.json-style override tier (that file's
+// 3-way subgenre/tone/subject fallback machinery is real complexity this
+// single, rare correction doesn't need). Both functions now take an
+// optional titleKey so this table can be consulted — threaded through
+// every real call site in engine.js/quality.js/deepdive.js/
+// dashboardShared.js so the correction applies consistently everywhere a
+// creator is read, not just in the places someone remembered to update.
+//
+// TMDB's `created_by` field is known to only capture a subset of a real
+// show's credited executive producers — it's a formal "creator" credit,
+// not a full crew list — so a real co-creator can be entirely invisible
+// to every creator-based signal (creatorRatingWeight, lovedCreators, the
+// anomaly-detection creator dimension, matchScore's creator-match bonus)
+// with no way for the engine to know unless someone checks by hand.
+//
+// 2026-09-11 (Bill: "also michael schur was involved who I love" — about
+// Primo, one of the loved-title-anomaly-table's flagged outliers):
+// verified via real outside sources (not guessed) that Michael Schur was
+// genuinely a co-executive-producer on Primo alongside Shea Serrano
+// (Rolling Stone, The Hollywood Reporter, TVInsider, Variety all credit
+// both by name) — TMDB's own `created_by` for this title lists only
+// Serrano. This is a one-off, hand-verified fix, not a systemic sweep;
+// add more entries here only after the same real-source verification,
+// never guessed.
+const CREATOR_CORRECTIONS = {
+  'show:137252': ['Shea Serrano', 'Michael Schur'], // Primo
+};
+
 // The single "creative author" signal for a title: a movie's director or
 // a show's primary creator — the closest 1:1 analog to a book's author
 // (usually one person per title, same as the book engine's model).
-export function getCreator(type, meta) {
+export function getCreator(type, meta, titleKey) {
+  if (CREATOR_CORRECTIONS[titleKey]) return CREATOR_CORRECTIONS[titleKey][0];
   if (!meta) return null;
   if (type === 'movie') return meta.director || null;
   return (meta.createdBy && meta.createdBy[0]) || null;
@@ -70,7 +102,8 @@ export function getCreator(type, meta) {
 // stored "Joe Russo"). `meta.directors` (plural, new field) is used when
 // present; falls back to the single `director` for cache entries not yet
 // re-fetched with the new field.
-export function getCreators(type, meta) {
+export function getCreators(type, meta, titleKey) {
+  if (CREATOR_CORRECTIONS[titleKey]) return CREATOR_CORRECTIONS[titleKey];
   if (!meta) return [];
   if (type === 'movie') return meta.directors?.length ? meta.directors : (meta.director ? [meta.director] : []);
   return meta.createdBy || [];
@@ -395,7 +428,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
     tone: inferTones(m, llmTags[key], undefined, reviewedTags[key]),
     subject: inferSubjects(m, llmTags[key], undefined, reviewedTags[key]),
     keyword: (m.keywords || []).filter(k => !KEYWORD_STOPLIST.has(k)),
-    creator: getCreators(type, m),
+    creator: getCreators(type, m, key),
     cast: (m.topCast || []).slice(0, 5),
   });
   const dimRatingsForAnomaly = { subgenre: {}, tone: {}, subject: {}, keyword: {}, creator: {}, cast: {} };
@@ -482,7 +515,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   for (const t of library.titles || []) {
     if (t.myRating == null) continue;
     const meta = enrichedMeta[t.titleKey];
-    const creators = meta ? getCreators(t.type, meta) : [];
+    const creators = meta ? getCreators(t.type, meta, t.titleKey) : [];
 
     ratedSum += t.myRating;
     ratedCount++;
@@ -618,7 +651,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
     if (!e.excludeFromRecommendations) continue;
     const dmeta = enrichedMeta[e.titleKey];
     if (e.reasonCode === 'creator_dislike') {
-      const dcreator = dmeta ? getCreator(e.type, dmeta) : null;
+      const dcreator = dmeta ? getCreator(e.type, dmeta, e.titleKey) : null;
       if (dcreator) dismissedCreators.add(dcreator);
     } else if (STYLE_DISLIKE_REASON_CODES.has(e.reasonCode)) {
       styleDismissCount++;
@@ -1471,7 +1504,7 @@ export function resolveSimilarDirectors(meta, type, enrichedMeta, limit = 3) {
     seenTitles.add(key);
     const cited = enrichedMeta[key];
     if (!cited?.title) continue;
-    const creator = getCreator(type, cited);
+    const creator = getCreator(type, cited, key);
     if (creator) counts.set(creator, (counts.get(creator) || 0) + 1);
   }
   return [...counts.entries()]
@@ -3042,7 +3075,7 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   // of a title Bill actually loved, not just TMDB's index-0 name for that
   // loved title — see buildIndexes()'s lovedCreators/creatorRatingWeight
   // loop, now populated via getCreators() (plural).
-  const creator = getCreator(candidate.type, meta);
+  const creator = getCreator(candidate.type, meta, candidate.titleKey);
   if (creator) {
     score += Math.min(10, (idx.lovedCreators.get(creator) || 0) * 6);
     score += Math.min(5, (idx.creatorRatingWeight.get(creator) || 0) * 1.5);
@@ -3190,7 +3223,7 @@ export function scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta = {}) {
   const llmEntry = idx.llmTags?.[candidate.titleKey];
   const reviewedEntry = idx.reviewedTags?.[candidate.titleKey];
 
-  const creator = getCreator(candidate.type, meta);
+  const creator = getCreator(candidate.type, meta, candidate.titleKey);
   const creatorLabel = candidate.type === 'movie' ? 'Director' : 'Creator';
   if (creator) {
     const lovedCount = idx.lovedCreators.get(creator) || 0;
@@ -3408,8 +3441,8 @@ export function similarityScore(referenceKey, candidateKey, enrichedMeta, idx) {
   add('citation', 'Direct TMDB citation', citationPts, citationNote);
 
   // Director/Creator exact match.
-  const refCreator = getCreator(refType, refMeta);
-  const candCreator = getCreator(candType, candMeta);
+  const refCreator = getCreator(refType, refMeta, referenceKey);
+  const candCreator = getCreator(candType, candMeta, candidateKey);
   const creatorMatch = !!(refCreator && candCreator && refCreator === candCreator);
   add('creator', candType === 'movie' ? 'Director match' : 'Creator match', creatorMatch ? 15 : 0,
     creatorMatch ? `Both from ${refCreator}.` : 'No shared director/creator credit.');
@@ -3498,7 +3531,7 @@ export function confidenceScore(candidate, enrichedMeta) {
   let c = 20;
   if (meta.genres?.length) c += 15;
   if (meta.overview) c += 10;
-  if (getCreator(candidate.type, meta)) c += 15;
+  if (getCreator(candidate.type, meta, candidate.titleKey)) c += 15;
   const simCount = (meta.similarToIds?.length || 0) + (meta.recommendedIds?.length || 0);
   c += Math.min(20, simCount);
   c += voteCountBonus(meta.voteCount) * 5;
@@ -3542,7 +3575,7 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
     }
   }
 
-  const creator = getCreator(candidate.type, meta);
+  const creator = getCreator(candidate.type, meta, candidate.titleKey);
   const creatorLabel = candidate.type === 'movie' ? 'director' : 'creator';
   const creatorCount = creator ? (idx.lovedCreators.get(creator) || 0) : 0;
   if (creatorCount > 0) {
@@ -3810,7 +3843,7 @@ export function diversityRerank(scoredList, enrichedMeta, { windowSize = 8, maxP
     const genres = enrichedMeta[c.titleKey]?.genres || [];
     return genres.length ? normalizeGenre(genres[0]) : null;
   };
-  const creatorOf = c => getCreator(c.type, enrichedMeta[c.titleKey]);
+  const creatorOf = c => getCreator(c.type, enrichedMeta[c.titleKey], c.titleKey);
 
   const genreCounts = new Map();
   const creatorCounts = new Map();

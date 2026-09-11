@@ -153,6 +153,28 @@ continuous `ratingWeight()` across *every* rated title by that creator
 (so a creator with one 10/10 and one 3/10 nets a smaller bonus than one
 with two 10/10s, not just "2 titles either way").
 
+**`CREATOR_CORRECTIONS`** (2026-09-11): a small, titleKey-keyed lookup
+`getCreator()`/`getCreators()` both check first, before falling back to
+TMDB's own `createdBy`/`director(s)` data — the creator-side equivalent
+of `GENRE_ALIASES`. TMDB's `created_by` field only captures a formal
+"creator" credit, not a full executive-producer list, so a real co-
+creator can be completely invisible to every creator-based signal here
+(this one, `lovedCreators`, the anomaly-detection creator dimension in
+§3j-2) with no way to know unless verified by hand. First entry: Primo
+(`show:137252`) — Bill named Michael Schur as a real reason he loved it;
+verified via real outside sources (Rolling Stone, The Hollywood
+Reporter, TVInsider, Variety all credit Schur as co-EP alongside Shea
+Serrano) that TMDB's own `created_by: ['Shea Serrano']` was missing him
+entirely. Correcting it dropped Primo off the anomaly-detection table
+(§3j-2) on its own — no manual exclusion needed — since Schur's real
+`creatorRatingWeight` from Brooklyn Nine-Nine/Parks and Recreation now
+correctly counts as corroboration. Both `getCreator()`/`getCreators()`
+take an optional `titleKey` parameter so this table can be consulted;
+threaded through every real call site (engine.js, quality.js,
+deepdive.js, dashboardShared.js) rather than left as a partial fix. Add
+future entries only after the same real-source verification — never
+guessed.
+
 ### 3b. Genre match — capped at **+8**
 As of the Genre/Subgenre taxonomy redesign, Genre is a **single, clean
 value** per title (`inferGenre()`), not TMDB's old raw multi-valued

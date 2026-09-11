@@ -81,7 +81,7 @@ async function load() {
   const awd = awardsScore(omdbEntry);
   const similarTitles = resolveSimilarTitles(meta, candidate.type, enrichedMeta, 8);
   const similarDirectors = resolveSimilarDirectors(meta, candidate.type, enrichedMeta, 5);
-  const creators = getCreators(candidate.type, meta);
+  const creators = getCreators(candidate.type, meta, key);
   const subgenres = inferSubgenres(meta, llmTags[key], undefined, reviewedTags?.[key]);
   const tones = inferTones(meta, llmTags[key], undefined, reviewedTags?.[key]);
   const subjects = inferSubjects(meta, llmTags[key], undefined, reviewedTags?.[key]);
