@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-11T13:32:56.158Z",
+    "generatedAt": "2026-09-11T17:19:08.008Z",
     "count": 441,
     "capPerType": 200
   },
@@ -210,16 +210,6 @@
       "titleKey": "movie:395991",
       "ids": {
         "tmdb": 395991
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:578189",
-      "ids": {
-        "tmdb": 578189
       },
       "title": null,
       "year": null,
@@ -1717,16 +1707,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:1289601",
-      "ids": {
-        "tmdb": 1289601
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:65034",
       "ids": {
         "tmdb": 65034
@@ -3092,17 +3072,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:1600",
-      "ids": {
-        "tmdb": 1600
-      },
-      "title": "Ned's Declassified School Survival Guide",
-      "year": 2004,
-      "source": "genre-explore",
-      "discoveredVia": "Comedy"
-    },
-    {
-      "type": "show",
       "titleKey": "show:224372",
       "ids": {
         "tmdb": 224372
@@ -3973,17 +3942,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:653664",
-      "ids": {
-        "tmdb": 653664
-      },
-      "title": "Dinner in America",
-      "year": 2020,
-      "source": "genre-explore",
-      "discoveredVia": "Romance"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:381288",
       "ids": {
         "tmdb": 381288
@@ -4248,17 +4206,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:76874",
-      "ids": {
-        "tmdb": 76874
-      },
-      "title": "Alexa & Katie",
-      "year": 2018,
-      "source": "genre-explore",
-      "discoveredVia": "Comedy"
-    },
-    {
-      "type": "show",
       "titleKey": "show:211684",
       "ids": {
         "tmdb": 211684
@@ -4278,28 +4225,6 @@
       "year": 2023,
       "source": "genre-explore",
       "discoveredVia": "Documentary"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:79863",
-      "ids": {
-        "tmdb": 79863
-      },
-      "title": "Pretty Little Liars: The Perfectionists",
-      "year": 2019,
-      "source": "genre-explore",
-      "discoveredVia": "Mystery"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:5768",
-      "ids": {
-        "tmdb": 5768
-      },
-      "title": "Paradise City",
-      "year": 2021,
-      "source": "genre-explore",
-      "discoveredVia": "Sci-Fi & Fantasy"
     },
     {
       "type": "show",
@@ -4369,17 +4294,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:71912",
-      "ids": {
-        "tmdb": 71912
-      },
-      "title": "The Witcher",
-      "year": 2019,
-      "source": "genre-explore",
-      "discoveredVia": "Action & Adventure"
-    },
-    {
-      "type": "show",
       "titleKey": "show:279471",
       "ids": {
         "tmdb": 279471
@@ -4399,17 +4313,6 @@
       "year": 2017,
       "source": "genre-explore",
       "discoveredVia": "Comedy"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:97175",
-      "ids": {
-        "tmdb": 97175
-      },
-      "title": "Fate: The Winx Saga",
-      "year": 2021,
-      "source": "genre-explore",
-      "discoveredVia": "Sci-Fi & Fantasy"
     },
     {
       "type": "show",
@@ -4443,28 +4346,6 @@
       "year": 2017,
       "source": "genre-explore",
       "discoveredVia": "Comedy"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:17174",
-      "ids": {
-        "tmdb": 17174
-      },
-      "title": "Ghosts",
-      "year": 2019,
-      "source": "genre-explore",
-      "discoveredVia": "Sci-Fi & Fantasy"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:99583",
-      "ids": {
-        "tmdb": 99583
-      },
-      "title": "Danger Force",
-      "year": 2020,
-      "source": "genre-explore",
-      "discoveredVia": "Sci-Fi & Fantasy"
     },
     {
       "type": "show",
@@ -4556,17 +4437,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:14188",
-      "ids": {
-        "tmdb": 14188
-      },
-      "title": "The Angry Video Game Nerd",
-      "year": 2004,
-      "source": "genre-explore",
-      "discoveredVia": "Documentary"
-    },
-    {
-      "type": "show",
       "titleKey": "show:133748",
       "ids": {
         "tmdb": 133748
@@ -4575,17 +4445,6 @@
       "year": 2023,
       "source": "genre-explore",
       "discoveredVia": "Action & Adventure"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:114705",
-      "ids": {
-        "tmdb": 114705
-      },
-      "title": "Night Stalker: The Hunt for a Serial Killer",
-      "year": 2021,
-      "source": "genre-explore",
-      "discoveredVia": "Documentary"
     },
     {
       "type": "show",
@@ -4599,15 +4458,158 @@
       "discoveredVia": "Documentary"
     },
     {
-      "type": "show",
-      "titleKey": "show:116989",
+      "type": "movie",
+      "titleKey": "movie:1368166",
       "ids": {
-        "tmdb": 116989
+        "tmdb": 1368166
       },
-      "title": "Crime Scene: The Vanishing at the Cecil Hotel",
+      "title": "The Housemaid",
+      "year": 2025,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:psychological"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1016084",
+      "ids": {
+        "tmdb": 1016084
+      },
+      "title": "BlackBerry",
+      "year": 2023,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:tech history"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:339380",
+      "ids": {
+        "tmdb": 339380
+      },
+      "title": "On the Basis of Sex",
+      "year": 2018,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:legal"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:4598",
+      "ids": {
+        "tmdb": 4598
+      },
+      "title": "Boston Legal",
+      "year": 2004,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:legal"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:82428",
+      "ids": {
+        "tmdb": 82428
+      },
+      "title": "All American",
+      "year": 2018,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:sports"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:80743",
+      "ids": {
+        "tmdb": 80743
+      },
+      "title": "Insatiable",
+      "year": 2018,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:legal"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:286801",
+      "ids": {
+        "tmdb": 286801
+      },
+      "title": "Monster: The Ed Gein Story",
+      "year": 2025,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:psychological"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:65856",
+      "ids": {
+        "tmdb": 65856
+      },
+      "title": "Girlboss",
+      "year": 2017,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:business"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:69851",
+      "ids": {
+        "tmdb": 69851
+      },
+      "title": "FEUD",
+      "year": 2017,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:biography"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:96716",
+      "ids": {
+        "tmdb": 96716
+      },
+      "title": "Big Shot",
       "year": 2021,
-      "source": "genre-explore",
-      "discoveredVia": "Documentary"
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:sports"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:253376",
+      "ids": {
+        "tmdb": 253376
+      },
+      "title": "The Girlfriend",
+      "year": 2025,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:psychological"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:82883",
+      "ids": {
+        "tmdb": 82883
+      },
+      "title": "The Act",
+      "year": 2019,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:biography"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:83050",
+      "ids": {
+        "tmdb": 83050
+      },
+      "title": "Spinning Out",
+      "year": 2020,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:sports"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:46619",
+      "ids": {
+        "tmdb": 46619
+      },
+      "title": "Rectify",
+      "year": 2013,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:legal"
     }
   ]
 }
