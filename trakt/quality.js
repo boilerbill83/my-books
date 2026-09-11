@@ -619,6 +619,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
       return {
         severity: 'serious',
         ratings: { ease: 6, dataQuality: 8, recEngine: 3, ui: 1 },
+        shortTitle: 'IMDb IDs Still Missing',
         title: `IMDb ID is only ${f.populatedPct.toFixed(1)}% populated — below the 90% bar on a field that gates OMDb data`,
         technical: `<code>imdbId</code> is ${f.populatedPct.toFixed(1)}% populated (${f.populated} of ${f.eligible} eligible titles). Split by ` +
           `source: library ${src.library.has}/${src.library.total} (100%, real Trakt export data), watchlist ${src.watchlist.has}/${src.watchlist.total} ` +
@@ -656,6 +657,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
       return {
         severity: 'warning',
         ratings: { ease: 5, dataQuality: 6, recEngine: 4, ui: 2 },
+        shortTitle: 'Critic Scores Still Missing',
         title: `Critic Score is ${f.populatedPct.toFixed(1)}% populated, ${f.qualityPct.toFixed(1)}% quality — below the 90% bar ${barPhrase}`,
         technical: `<code>criticScore</code> (Rotten Tomatoes Tomatometer / Metacritic Metascore — both critic aggregates, renamed from the ` +
           `original misnomer <code>audienceScore</code> once it became clear the "audience" label was wrong: neither field has ever touched a ` +
@@ -687,6 +689,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
       return {
         severity: 'warning',
         ratings: { ease: 3, dataQuality: 6, recEngine: 2, ui: 2 },
+        shortTitle: 'Audience Ratings Almost Complete',
         title: `Audience Score (real viewer opinion) is ${f.populatedPct.toFixed(1)}% populated, ${f.qualityPct.toFixed(1)}% quality — climbing fast after a real eligibility bug fix`,
         technical: `<code>realAudienceScore()</code> (RT Popcornmeter / Metacritic user score) started this session genuinely 0% populated across ` +
           `every eligible title. Two real, separate extraction bugs were found and fixed, each verified against real ground truth before being ` +
@@ -720,6 +723,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
     subgenres: (f) => ({
       severity: 'good',
       ratings: { ease: 3, dataQuality: 4, recEngine: 3, ui: 1 },
+      shortTitle: 'Genre Details Now Complete',
       title: `Subgenres coverage is ${f.populatedPct.toFixed(1)}% — closed with a real LLM-tagging pass`,
       technical: `<code>inferSubgenres()</code> coverage progression: 64.6% -> 69.8% -> ${f.populatedPct.toFixed(1)}% across four real ` +
         `passes (${f.populated} of ${f.eligible} eligible titles). Passes 1-2: whole-dataset then still-uncovered-only keyword mining ` +
@@ -746,6 +750,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
     tones: (f) => ({
       severity: 'good',
       ratings: { ease: 3, dataQuality: 4, recEngine: 3, ui: 1 },
+      shortTitle: 'Movie Moods Now Complete',
       title: `Tones coverage is ${f.populatedPct.toFixed(1)}% — closed with a real LLM-tagging pass`,
       technical: `<code>inferTones()</code> coverage progression across four real passes: 18.1% -> 25.6% -> 29.1% -> ${f.populatedPct.toFixed(1)}% ` +
         `(${f.populated} of ${f.eligible} eligible titles). Passes 1-3 (keyword mining, then still-uncovered tail-mining, then an ` +
@@ -771,6 +776,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
     awards: (f) => ({
       severity: 'warning',
       ratings: { ease: 2, dataQuality: 3, recEngine: 3, ui: 1 },
+      shortTitle: 'Awards Data Bug Fixed',
       title: `Awards quality is ${f.qualityPct.toFixed(1)}% — below the 90% bar (real recognition found)`,
       technical: `<code>awards</code> is 100% populated (every OMDb record carries an Awards field, even if "N/A") but only ` +
         `${f.qualityPct.toFixed(1)}% quality (${f.quality} of ${f.eligible} score above 0 via <code>awardsScore()</code>'s Oscar/Emmy/` +
@@ -798,6 +804,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
         return {
           severity: 'warning',
           ratings: { ease: 5, dataQuality: 5, recEngine: 1, ui: 3 },
+          shortTitle: 'Story Time Period Missing',
           title: `Era is ${f.populatedPct.toFixed(1)}% populated — the LLM tagging pass that closed this exact gap for Subgenres/Tones was never extended to Era`,
           technical: `<code>inferEra()</code> has only two real tiers — <code>reviewedTags.json</code> (a hand-curated workbook, ${reviewedWithEra} of ` +
             `${reviewedTotal} entries carry a real <code>.era</code> value) and a raw 4-bucket <code>ERA_KEYWORDS</code> keyword match against TMDB's ` +
@@ -823,6 +830,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
         return {
           severity: 'good',
           ratings: { ease: 3, dataQuality: 6, recEngine: 5, ui: 2 },
+          shortTitle: 'Story Topics Now Complete',
           title: `Fixed: Subjects is now ${f.populatedPct.toFixed(1)}% populated — tag_llm.py's LLM tier was dead code on the producing side, now wired up`,
           technical: `<code>inferSubjects(meta, llmEntry, limit, reviewed)</code> already had the exact right 3-tier shape (reviewed -> keyword -> ` +
             `<code>llmEntry?.subjects</code>) and is a real, live scoring signal (<code>subjectBonus()</code>, wired into <code>baseSignals()</code> ` +
@@ -849,6 +857,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
         return {
           severity: 'warning',
           ratings: { ease: 4, dataQuality: 5, recEngine: 3, ui: 1 },
+          shortTitle: 'Movie Ratings Lookup Fixed',
           title: `OMDb Record Found is ${f.populatedPct.toFixed(1)}% populated — the permanent-retry bug is fixed, remaining gap is a mix of genuine OMDb misses and the fix's own retry cooldown`,
           technical: `Root cause (found by reading <code>enrich_omdb.py</code>'s <code>main()</code>): on a failed lookup (<code>data.get('Response') == 'False'</code>, ` +
             `OMDb's own "not found"/"Error getting data." response, or any other error), the script logged the failure and <code>continue</code>d WITHOUT writing ` +
@@ -877,6 +886,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
         return {
           severity: 'warning',
           ratings: { ease: 2, dataQuality: 2, recEngine: 2, ui: 1 },
+          shortTitle: 'Comedy Genre Slightly Overused',
           title: `Genre quality (${f.qualityPct.toFixed(1)}%) is capped by "comedy" concentration (${comedyPct}%) — mostly real, not a classifier bug`,
           technical: `Quality here is a blend of row-completeness (100%, effectively every title with any TMDB genre resolves to a value) and ` +
             `specificity (~79%, dragged down by comedy sitting on ${comedyPct}% of the dataset vs. an even-17-way-split optimum of 5.9%). ` +
@@ -921,6 +931,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
       id: `field-quality-${f.key}`,
       severity: f.critical ? 'serious' : 'warning',
       ratings: { ease: 4, dataQuality: 5, recEngine: f.critical ? 5 : 2, ui: 1 },
+      shortTitle: 'More Data Needed',
       title: `${f.label} is below the 90% bar — ${f.populatedPct.toFixed(1)}% populated, ${f.qualityPct.toFixed(1)}% quality`,
       technical: `<code>${f.key}</code> (source: ${f.source}) is ${f.populatedPct.toFixed(1)}% populated and ${f.qualityPct.toFixed(1)}% ` +
         `quality among ${f.eligible} eligible titles — below the 90% bar on at least one metric. ${f.note || ''}`,
@@ -1074,6 +1085,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'pool-cap-waste',
       severity: wasted.length > 0 ? 'serious' : 'good',
       ratings: { ease: 9, dataQuality: 6, recEngine: 5, ui: 2 },
+      shortTitle: 'Candidate Pool Wastes Space',
       title: 'Candidate pool cap counts titles that can never actually be recommended',
       technical: wasted.length > 0
         ? `<code>prune_candidate_pool.js</code> defines <code>isReEdit()</code>/<code>isNonEnglish()</code>, ` +
@@ -1146,6 +1158,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'rec-panel-top8',
       severity: 'good',
       ratings: { ease: 9, dataQuality: 2, recEngine: 9, ui: 8 },
+      shortTitle: 'Recommendation Panel Bug Fixed',
       title: 'Rec panels self-consistency: guaranteed 4+4 split correctly re-derivable, verified live',
       technical: `Independently re-ran <code>renderRecPanel()</code>'s exact current algorithm (per-origin rank by ` +
         `<code>bmtreScoreRaw</code>, <code>diversityRerank()</code>, top 4 of each with backfill if one side is short, ` +
@@ -1174,6 +1187,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     id: 'omdb-error-diagnostics',
     severity: 'good',
     ratings: { ease: 9, dataQuality: 3, recEngine: 1, ui: 1 },
+    shortTitle: 'Better Error Messages Added',
     title: 'enrich_omdb.py threw away the one piece of information that would diagnose a dead key',
     technical: `Fixed this session: <code>trakt/enrich_omdb.py</code>'s <code>get_json()</code> now captures and ` +
       `surfaces OMDb's own error-response body (not just the bare HTTP status), the same fix ` +
@@ -1207,6 +1221,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     id: 'resolve-titles-disambiguation',
     severity: 'good',
     ratings: { ease: 6, dataQuality: 7, recEngine: 5, ui: 1 },
+    shortTitle: 'Title Matching Made Safer',
     title: 'Manual title resolution has no confidence check, and has already produced wrong matches once',
     technical: `Fixed this session: <code>trakt/resolve_titles.py</code> now runs <code>is_confident_match()</code> ` +
       `on every TMDB search result before adding it to <code>candidatePool.json</code> — an exact match (after ` +
@@ -1237,6 +1252,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     id: 'metacritic-scrape-title-verification',
     severity: 'good',
     ratings: { ease: 5, dataQuality: 8, recEngine: 5, ui: 1 },
+    shortTitle: 'Fixed Wrong Movie Ratings',
     title: 'Fixed and confirmed live: Metacritic scraper page-identity check, after 5 real rounds',
     technical: `Round 1 found <code>scrape_metacritic()</code>'s direct-URL-slug guess had no confirmation step at ` +
       `all — 9 titles got a fabricated score. Rounds 1-2 (<code>is_unreleased()</code>, <code>page_title_matches()</code>, ` +
@@ -1282,6 +1298,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     id: 'scraper-franchise-prefix-mismatch',
     severity: 'good',
     ratings: { ease: 6, dataQuality: 5, recEngine: 3, ui: 1 },
+    shortTitle: 'Sequel Titles Now Match',
     title: 'Fixed and confirmed live: franchise-prefixed titles no longer reject their own correct RT/MC page (4 of 18)',
     technical: `A real Aug 2026 production run's job log showed <code>Marvel's Jessica Jones</code> landing on ` +
       `the correct RT page with a real JSON-LD Tomatometer block (<code>ratingValue: 83</code>, confirmed via ` +
@@ -1330,6 +1347,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     id: 'rt-multi-candidate-false-positive',
     severity: 'good',
     ratings: { ease: 5, dataQuality: 8, recEngine: 2, ui: 1 },
+    shortTitle: 'Fixed Bad Rating Matches',
     title: 'Fixed a real false-positive bug the RT multi-candidate search fix introduced (8 confirmed-wrong cached scores)',
     technical: `Trying up to 3 of RT's own search results (rather than only the first, the fix described just ` +
       `above) recovered real titles like <code>Manhunt (2024)</code> — but a broad audit of already-scraped scores ` +
@@ -1418,6 +1436,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     id: 'rt-manual-url-needed',
     severity: 'warning',
     ratings: { ease: 9, dataQuality: 3, recEngine: 1, ui: 1 },
+    shortTitle: 'A Few Ratings Still Missing',
     title: '5 titles need a manually-found Rotten Tomatoes URL — Bill\'s turn, not something more automation can fix',
     technical: `RT's own search page never surfaces the correct result among the top candidates the scraper tries ` +
       `for 5 short/generic-titled shows, confirmed across two separate real re-scrapes (not a one-off — the same 5 ` +
@@ -1454,6 +1473,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     id: 'metacritic-reviews-title-suffix',
     severity: 'good',
     ratings: { ease: 6, dataQuality: 7, recEngine: 3, ui: 1 },
+    shortTitle: 'Fixed Missing Movie Scores',
     title: 'Fixed a real Metacritic title-matching bug: "Reviews" suffix was discarding correctly-found scores',
     technical: `Audience Score's "quality" bar (both RT and MC user score present, not just one) sat at 73.8% ` +
       `(587/795) despite 95.7% population (761/795) — a real ~174-title gap between having some audience signal ` +
@@ -1509,6 +1529,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'trakt-fallback-titlekey',
       severity: trakFallback.length > 0 ? 'critical' : 'good',
       ratings: { ease: 6, dataQuality: 3, recEngine: 2, ui: 1 },
+      shortTitle: 'Removed Risky Backup Code',
       title: 'Fixed: the incompatible trakt-id titleKey fallback was removed',
       technical: `<code>build_trakt_library.js</code>'s local <code>titleKey(type, ids)</code> used to fall back to ` +
         `<code>\`\${type}:trakt:\${ids.trakt}\`</code> when a title had a Trakt id but no TMDB id. Every other part ` +
@@ -1563,6 +1584,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'genre-display-too-broad',
       severity: 'good',
       ratings: { ease: 6, dataQuality: 7, recEngine: 3, ui: 8 },
+      shortTitle: 'Genre Labels Made Sharper',
       title: 'Fixed: "Genres You Rate Highest" and genre labels now use the narrow subgenre taxonomy, not TMDB\'s broad genre field',
       technical: `<code>computeGenreStats()</code>, <code>metaLine()</code> (rec cards), and <code>buildAllTitlesRows()</code> ` +
         `(All Titles table) all read <code>meta.genres</code> directly — TMDB's own ~19/16-word taxonomy, where Drama ` +
@@ -1593,6 +1615,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
         id: 'subgenre-still-broad',
         severity: 'serious', // recEngine 4 — Bill: "everything is low impact"; severity now tracks the hand-graded ratings below instead of a stale default
         ratings: { ease: 4, dataQuality: 5, recEngine: 4, ui: 3 },
+        shortTitle: 'Some Categories Still Broad',
         title: `Even the narrower subgenre taxonomy has ${over15.length} categor${over15.length === 1 ? 'y' : 'ies'} over a healthy concentration cap`,
         technical: `Live check of the ${over15.length === 1 ? 'now-narrower' : 'new'} subgenre labels finds ` +
           `${over15.map(([g, c]) => `"${g}" at ${((c / subTotal) * 100).toFixed(1)}% (${c} of ${subTotal})`).join(', ')} — ` +
@@ -1629,6 +1652,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'description-similarity-signal-missing',
       severity: 'good',
       ratings: { ease: 3, dataQuality: 6, recEngine: 7, ui: 1 },
+      shortTitle: 'Plot Matching Signal Added',
       title: 'Fixed: a plot/description-similarity signal now exists — a direct port of the book engine\'s TF-IDF descSimilarity.js',
       technical: `New <code>trakt/descSimilarity.js</code> (tokenizer, TF-IDF vectors, cosine similarity — same math as the book side's ` +
         `<code>descSimilarity.js</code>, coverage-gated at <code>MIN_LOVED_DOCS=100</code> the same way). <code>buildIndexes()</code> ` +
@@ -1662,6 +1686,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'split-movie-tv-engine-decision',
       severity: 'serious', // recEngine 5 — severity now tracks the hand-graded ratings below
       ratings: { ease: 3, dataQuality: 2, recEngine: 5, ui: 1 },
+      shortTitle: 'Split Movies & TV Scoring?',
       title: 'Open question: should movies and TV shows use two separate scoring engines instead of one shared one? (Bill asked, not yet decided)',
       technical: `<code>matchScore()</code>/<code>baseSignals()</code> in <code>engine.js</code> already branch by <code>type</code> for ` +
         `several signals (<code>recencyBonusMovie()</code> vs <code>recencyBonusShow()</code>, <code>matchPointScale()</code>'s per-type ` +
@@ -1720,6 +1745,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'remaining-subgenre-genre-specificity',
       severity: 'warning',
       ratings: { ease: 4, dataQuality: 4, recEngine: 2, ui: 3 },
+      shortTitle: 'Some Genre Detail Missing',
       title: `Subgenre detail refinement covers a minority of the live vocabulary — ${refinedCount || 4} of ${totalSubgenres || 30} ` +
         `keyword-tier subgenre tags have a detail breakdown`,
       technical: `The Genre/Subgenre taxonomy redesign replaced Genre's old raw-TMDB field with a clean single-valued canonical field ` +
@@ -1769,6 +1795,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'creator-attribution-multi-creator-credit',
       severity: 'good',
       ratings: { ease: 3, dataQuality: 6, recEngine: 4, ui: 1 },
+      shortTitle: 'All Co-Creators Now Counted',
       title: `Creator affinity now credits every co-creator of a loved show, not just TMDB's first-listed name`,
       technical: `<code>getCreators()</code> (new, <code>engine.js</code>) returns a show's full TMDB <code>createdBy</code> array; ` +
         `<code>buildIndexes()</code>'s <code>lovedCreators</code>/<code>creatorRatingWeight</code> maps now loop over it instead of ` +
@@ -1810,6 +1837,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'creator-attribution-tmdb-omdb-crosscheck',
       severity: disagree.length ? 'warning' : 'good',
       ratings: { ease: 4, dataQuality: 5, recEngine: 3, ui: 2 },
+      shortTitle: 'Director Data Double-Checked',
       title: disagree.length
         ? `${disagree.length} movie${disagree.length === 1 ? '' : 's'} where TMDB's director disagrees with OMDb's — for manual review`
         : `TMDB and OMDb director data agree on all ${fmtNum(bothPresent)} movies checked so far — no disagreements found`,
@@ -1847,6 +1875,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'similar-title-relationship-audit',
       severity: selfRef > 0 ? 'serious' : 'good',
       ratings: { ease: 1, dataQuality: 3, recEngine: 1, ui: 0 },
+      shortTitle: 'Similar Titles Double-Checked',
       title: selfRef > 0
         ? `${selfRef} self-referential similar-title citation${selfRef === 1 ? '' : 's'} found — needs investigation`
         : `Similar-title relationships audited: 0 self-references, and the ${orphanPct.toFixed(1)}% "unresolved" rate is expected, not a defect`,
@@ -1882,6 +1911,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'taxonomy-disjointness-guardrail',
       severity: collisions.length ? 'serious' : 'good',
       ratings: { ease: 2, dataQuality: 4, recEngine: 2, ui: 0 },
+      shortTitle: 'Category Names Checked Clean',
       title: collisions.length
         ? `${collisions.length} taxonomy name${collisions.length === 1 ? '' : 's'} appear${collisions.length === 1 ? 's' : ''} in more than one of subgenres/tones/subjects — needs cleanup`
         : `Taxonomy layers audited and guarded: subgenres/tones/subjects stay at genuinely different conceptual levels, 0 collisions`,
@@ -1917,6 +1947,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'reason-field-standardization',
       severity: 'good',
       ratings: { ease: 5, dataQuality: 3, recEngine: 1, ui: 5 },
+      shortTitle: 'Explanations Made Consistent',
       title: `Every recommendation reason now starts with a short, machine-parseable tag — while staying full, human-readable prose`,
       technical: `<code>reason()</code> in engine.js was already live-computed, never stored, and already priority-ordered by strongest ` +
         `signal (franchise → creator → cast → similar-title → reverse-similar → genre → critic/audience/awards → fallback) — so "identify ` +
@@ -1956,6 +1987,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'stale-llm-subgenre-cache-cleanup',
       severity: 'good',
       ratings: { ease: 8, dataQuality: 5, recEngine: 1, ui: 0 },
+      shortTitle: 'Cleaned Up Old Tags',
       title: `Fixed: llmTags.json's cached subgenre values were re-verified against the current canonical vocabulary — 0 stale values remain`,
       technical: `A live scan of every title's <code>inferSubgenres()</code> output against the taxonomy redesign's retired/renamed bucket ` +
         `names (<code>war</code>, <code>sci-fi-fantasy</code>, <code>horror</code>, <code>sports</code>, <code>crime-drama</code> retired; ` +
@@ -2018,6 +2050,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'subjects-taxonomy-consolidated',
       severity: 'good',
       ratings: { ease: 3, dataQuality: 9, recEngine: 7, ui: 4 },
+      shortTitle: 'Story Topics Reorganized',
       title: `Fixed (2nd pass): Subjects re-consolidated to ${subjCounts.size} canonical buckets, 0 below 3, ${inTargetBand} in the 5-25 target band`,
       technical: `A first consolidation pass (originally: 636 free-form <code>reviewedTags.json</code> values -> canonical buckets, target ` +
         `3-15 titles/bucket) had drifted again by the time of this pass — a fresh 793-title metadata-review workbook import re-introduced ` +
@@ -2093,6 +2126,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'liked-not-loved-signal-gap',
       severity: 'good',
       ratings: { ease: 6, dataQuality: 3, recEngine: 9, ui: 1 },
+      shortTitle: 'More Ratings Now Count',
       title: `Fixed: the ${pctLiked78.toFixed(0)}% of positive ratings rated 7-8 now feed genre/cast/subgenre/similar-title signal — precision@25 92→96, @50 92→94`,
       technical: `Was: of ${fmtNum(rated.length)} rated+enriched titles, only the ${fmtNum(loved)} (${pctLoved.toFixed(1)}%) clearing ` +
         `<code>LOVED_THRESHOLD = 9</code> seeded <code>lovedGenres</code>/<code>lovedSubgenres</code>/<code>lovedKeywords</code>/` +
@@ -2171,6 +2205,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'no-negative-genre-signal',
       severity: 'good',
       ratings: { ease: 5, dataQuality: 2, recEngine: 8, ui: 1 },
+      shortTitle: 'Engine Learns Genre Dislikes',
       title: topPenalized
         ? `Fixed: ${topPenalized.g} candidates now take a real ${topPenalized.penalty.toFixed(1)}-point ratings-derived penalty — precision@25 held at 96%, @100 88→89`
         : (worst
@@ -2243,6 +2278,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'no-negative-subgenre-signal',
       severity: 'good',
       ratings: { ease: 4, dataQuality: 2, recEngine: 8, ui: 1 },
+      shortTitle: 'Engine Learns Specific Dislikes',
       title: `Fixed: subgenre-level rating dislikes (horror family especially) now take a real penalty — precision@10 90→100%, nothing else traded away`,
       technical: `Generalizes <code>genreSignal()</code> (above) one layer finer to <code>inferSubgenres()</code>'s 65-bucket ` +
         `vocabulary, the same relationship §3g already has to §3b in <code>ENGINE.md</code>. A new <code>subgenreProfile</code> ` +
@@ -2332,6 +2368,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'closed-loop-discovery',
       severity: pctClosedLoop > 80 ? 'critical' : pctClosedLoop > 50 ? 'serious' : 'warning',
       ratings: { ease: 4, dataQuality: 3, recEngine: 7, ui: 3 },
+      shortTitle: 'New Picks Too Similar',
       title: `${pctClosedLoop.toFixed(0)}% of the discovered candidate pool comes from the exact same graph that then scores it`,
       technical: `<code>trakt/scripts/discover_candidates.js</code> sources every candidate exclusively from ` +
         `<code>similarToIds</code>/<code>recommendedIds</code> on titles rated >= <code>LOVED_THRESHOLD</code> — TMDB's own ` +
@@ -2395,6 +2432,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'rating-score-calibration',
       severity: 'good',
       ratings: { ease: 6, dataQuality: 2, recEngine: 6, ui: 3 },
+      shortTitle: 'Predicted Scores Made Accurate',
       title: 'Raw predicted score was never calibrated to an absolute rating scale — now it is, and MAE finally beats the naive baseline',
       technical: `<code>matchScore()</code> is an additive formula built from independent positive bonuses (director/creator match, genre, ` +
         `franchise, cast, keyword, subgenre, tone, community rating, recency…) — it was designed to RANK candidates correctly relative to ` +
@@ -2434,6 +2472,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'eval-metrics-missing-args-bug',
       severity: 'good',
       ratings: { ease: 9, dataQuality: 3, recEngine: 4, ui: 2 },
+      shortTitle: 'Fixed Mismatched Accuracy Numbers',
       title: 'The live BMTRE Accuracy dial and the CLI eval.js were silently computing different numbers — fixed',
       technical: `<code>quality.js</code>'s <code>load()</code> called <code>computeEvalMetrics(library, enrichedMeta, feedback, omdbMeta)</code> ` +
         `— only 4 of the function's 6 parameters, silently defaulting <code>llmTags</code>/<code>reviewedTags</code> to <code>{}</code> even ` +
@@ -2489,6 +2528,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'flat-community-neutral-ignores-genre-bias',
       severity: 'warning',
       ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
+      shortTitle: 'Genre Rating Bias Tested',
       title: highest && lowest
         ? `Tested: a per-genre COMMUNITY_NEUTRAL (real ${spread.toFixed(2)}-point bias spread, ${highest.g} +${highest.delta.toFixed(2)} to ${lowest.g} ${lowest.delta.toFixed(2)}) regressed precision — reverted, kept as a documented dead end`
         : 'Not enough rated volume per genre yet to measure a real genre-dependent crowd bias',
@@ -2538,6 +2578,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'book-adaptation-cross-domain-signal-unused',
       severity: 'serious', // recEngine 5 — severity now tracks the hand-graded ratings below
       ratings: { ease: 3, dataQuality: 4, recEngine: 5, ui: 2 },
+      shortTitle: 'Book Taste Data Unused',
       title: `${fmtNum(bookBased.length)} titles (${pctBookBased.toFixed(1)}%) are book adaptations, and BMTRE has zero connection to Bill's separate, mature book-taste model`,
       technical: `Live count: ${fmtNum(bookBased.length)} of ${fmtNum(allEnriched.length)} enriched titles (${pctBookBased.toFixed(1)}%) ` +
         `carry TMDB's <code>based on novel or book</code> keyword; ${fmtNum(lovedBookBased.length)} of Bill's ${fmtNum(idx.lovedTitles.size)} ` +
@@ -2591,6 +2632,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'library-recency-selection-bias',
       severity: 'serious', // recEngine 4 — severity now tracks the hand-graded ratings below
       ratings: { ease: 2, dataQuality: 3, recEngine: 4, ui: 1 },
+      shortTitle: 'Old Dislikes Missing Data',
       title: `Bill's library was built with an asymmetric selection bias by era — 0 of ${fmtNum(disliked.length)} disliked titles predate 2000, only ${dislikedPre2010} predate 2010`,
       technical: `Confirmed directly by Bill, then verified against real data rather than assumed: older titles were only ever added to ` +
         `<code>library.json</code> when he already loved them; recent titles are added comprehensively regardless of whether he ends up ` +
@@ -2657,6 +2699,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'weak-keyword-desc-signal-correlation',
       severity: 'good',
       ratings: { ease: 3, dataQuality: 2, recEngine: 5, ui: 1 },
+      shortTitle: 'Weak Signals Tested, Kept',
       title: 'Keyword-match and plot-description-similarity have by far the weakest individual correlation with actual rating of any scored signal',
       technical: `Real leave-one-out correlation of each signal's own point contribution (via <code>scoreBreakdown()</code>) against actual ` +
         `<code>myRating</code>: community rating 0.349, forward similar-title match 0.240, director/creator match 0.181, reverse ` +
@@ -2708,6 +2751,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'diversity-rerank-no-creator-cap',
       severity: 'good',
       ratings: { ease: 5, dataQuality: 1, recEngine: 3, ui: 4 },
+      shortTitle: 'More Variety In Picks',
       title: `Fixed: diversityRerank() now caps director/creator repetition too (today's real max repeat: ${maxCreatorName ? `${esc(maxCreatorName)} ×${maxCreatorRepeat}` : 'none'})`,
       technical: `<code>diversityRerank()</code>'s only diversity axis used to be <code>normalizeGenre(meta.genres[0])</code> (TMDB's raw ` +
         `primary genre), capped at <code>maxPerGenre</code> per display window — nothing stopped several titles from the same prolific ` +
@@ -2763,6 +2807,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'score-clamp-saturation',
       severity: 'good',
       ratings: { ease: 3, dataQuality: 3, recEngine: 7, ui: 1 },
+      shortTitle: 'Fixed Tied Top Scores',
       title: `Fixed: ranking now uses the real unclamped score — precision@10 90%→100%, ${distinctRawAmongTied} distinct raw scores among the ${fmtNum(tiedLive)} titles still displaying as 100`,
       technical: `<code>baseSignals()</code> clamps the final sum to [0, 100] for display, and still does — enough loved-signal terms ` +
         `(creator/franchise/forward+reverse-similar-title/genre/cast) stack on a genuinely strong match that ${fmtNum(tiedLive)} of ` +
@@ -2835,6 +2880,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'creator-critic-trust-gap-tested',
       severity: 'warning',
       ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
+      shortTitle: 'Director Trust Idea Rejected',
       title: `Tested: a per-creator critic-trust-gap signal regressed precision@50/@100 at every weight tried — not shipped, kept as a documented dead end`,
       technical: `Real, clean examples exist both directions — Bill rates Adam McKay/Ridley Scott/Todd Phillips/Taylor Sheridan/David E. Kelley well ` +
         `above critic consensus (gaps +1.2 to +2.4 on a 0-10 scale, n=3-9 rated+critic-scored titles each), and Denis Villeneuve/Andy Muschietti/` +
@@ -2885,6 +2931,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'season-count-signal-tested',
       severity: 'warning',
       ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
+      shortTitle: 'Season Count Idea Rejected',
       title: `Tested: a show season-count signal (real inverted-U pattern) never produced a net precision gain — not shipped, kept as a documented dead end`,
       technical: `Live bucket averages (myRating, n=${rows.length} rated shows): 1-2 seasons ${bucketAvgs[0]?.toFixed(2)}, 2-3 ${bucketAvgs[1]?.toFixed(2)}, ` +
         `3-5 ${bucketAvgs[2]?.toFixed(2)}, 5-8 ${bucketAvgs[3]?.toFixed(2)}, 8+ ${bucketAvgs[4]?.toFixed(2)} — a real, non-monotonic inverted-U ` +
@@ -2925,6 +2972,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'premium-network-signal-tested',
       severity: 'warning',
       ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
+      shortTitle: 'Premium Network Idea Rejected',
       title: `Tested twice: a premium-network (HBO family/Showtime/AMC) bonus — flat AND recency-targeted per Bill's own "especially recent" hypothesis — never produced a net gain`,
       technical: `Live check, HBO/HBO Max/Max merged as one brand (TMDB labels the same network differently by era due to real-world rebranding — ` +
         `treating them separately in round 1 understated the true sample): premium-network shows average myRating ${avg?.toFixed(2)} vs. ` +
@@ -2989,6 +3037,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'mutual-citation-double-count-tested',
       severity: 'warning',
       ratings: { ease: 3, dataQuality: 2, recEngine: 3, ui: 1 },
+      shortTitle: 'Double-Counted Matches Found',
       title: `Root-caused the comic-book-movie complaint to a real mechanism (mutual citation double-counting) — confirmed it fixes the specific case, but a general fix regressed precision, so it wasn't shipped`,
       technical: `Live check: of the ${totalWithBoth} watchlist/candidate titles with both a forward AND reverse loved-title citation match, ` +
         `${mutualCount} (${totalWithBoth ? Math.round(mutualCount / totalWithBoth * 100) : 0}%) have the SAME loved title counted in both directions — ` +
@@ -3079,6 +3128,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'loved-title-category-anomaly-signal',
       severity: 'good',
       ratings: { ease: 3, dataQuality: 3, recEngine: 4, ui: 1 },
+      shortTitle: 'Outlier Favorites Now Handled',
       title: `Loved-title category outliers (the Deadpool pattern): all ${anomalies.length} diagnosed, real display mask retired, verified live it's genuinely superseded`,
       technical: `Live check: loved (9-10) titles rated 2.5+ points above their own subgenre's average (excluding the title itself, ` +
         `8+ other rated titles required to trust the category average): ${anomalies.length} found, e.g. ` +
@@ -3124,6 +3174,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'pairwise-title-similarity-score-feature',
       severity: 'good',
       ratings: { ease: 6, dataQuality: 7, recEngine: 5, ui: 9 },
+      shortTitle: 'New: Compare Any Two Titles',
       title: `Shipped: pick a title, get a similarity score for every other title against just that one`,
       technical: `New page <code>trakt/similar.html</code>/<code>similar.js</code>, linked from every page's header nav and cross-linked from ` +
         `Deep Dive's "Similar Titles (TMDB)" card. Core function <code>similarityScore(referenceKey, candidateKey, enrichedMeta, idx)</code> ` +
@@ -3189,6 +3240,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'deadpool-citation-inflation',
       severity: 'good',
       ratings: { ease: 2, dataQuality: 4, recEngine: 8, ui: 1 },
+      shortTitle: 'Fixed Inflated Match Scores',
       title: `Opportunity #1, shipped: citation credit now discounted for real statistical outliers, verified live`,
       technical: `Unhid discover.js's superhero-subgenre display filter and retired its title-level ANOMALY_INFLATED_CANDIDATES list — both now ` +
         `redundant with the real fix. Shipped engine.js's <code>citationCreditMultiplier()</code>: forward/reverse similar-title credit (§3i/§3j) ` +
@@ -3234,6 +3286,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'citation-credit-thin-tone-vocab',
       severity: 'warning',
       ratings: { ease: 5, dataQuality: 4, recEngine: 3, ui: 1 },
+      shortTitle: 'Some Mood Tags Too Thin',
       title: `Citation-credit reweighting's tone-overlap check is only as reliable as how many tone tags a title actually carries — one confirmed real case`,
       technical: `Confirmed false-positive, still live after the 2026-09-11 multi-dimensional redesign: <strong>Primo</strong> (2023, still flagged — ` +
         `its own best explanation across all six dimensions is tone "witty," gap +1.94, still above the bar) and <strong>Trailer Park Boys</strong> ` +
@@ -3257,6 +3310,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'citation-credit-franchise-exemption-shows',
       severity: 'warning',
       ratings: { ease: 6, dataQuality: 3, recEngine: 3, ui: 1 },
+      shortTitle: 'TV Franchise Rule Gap',
       title: `Franchise exemption only has a real code path for movies — ${showAnomalies} of ${idx.anomalousLovedKeys.size} confirmed outliers are shows with no equivalent`,
       technical: `<code>citationCreditMultiplier()</code>'s franchise exemption checks <code>belongsToCollection</code>, a TMDB concept that only ` +
         `exists for movies — a show has no equivalent field, so a real sequel/spin-off show of an outlier (the exact case the exemption exists to ` +
@@ -3276,6 +3330,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'citation-credit-remaining-caveats',
       severity: 'good',
       ratings: { ease: 4, dataQuality: 3, recEngine: 4, ui: 1 },
+      shortTitle: 'Match Discount Fix Verified',
       title: `Citation-credit reweighting: validation breadth and threshold provenance substantially strengthened by the 2026-09-11 multi-dimensional redesign`,
       technical: `The two heaviest caveats from the original investigation pass are now substantially addressed, not by more one-off research but by ` +
         `the redesign itself. <strong>Validation breadth:</strong> the original mechanism could only be checked by hand-researching individual ` +
@@ -3316,6 +3371,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'primo-creator-correction',
       severity: 'good',
       ratings: { ease: 3, dataQuality: 6, recEngine: 3, ui: 1 },
+      shortTitle: 'Fixed One Show\'s Credits',
       title: `Fixed the real TMDB data gap on Primo: Michael Schur's co-creator credit was missing, now corrected and verified live`,
       technical: `New <code>CREATOR_CORRECTIONS</code> lookup in <code>engine.js</code>, checked inside <code>getCreator()</code>/` +
         `<code>getCreators()</code> before falling back to TMDB's own data — the creator-side equivalent of <code>GENRE_ALIASES</code>. Verified via ` +
@@ -3426,12 +3482,12 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList') 
   el.innerHTML = findings.map((f, i) => {
     const sev = IMP_SEV_META[f.severity];
     return `
-      <button type="button" class="tk-imp-tile" data-imp-index="${i}">
+      <button type="button" class="tk-imp-tile tk-imp-tile-${f.severity}" data-imp-index="${i}" title="${esc(f.title)}">
         <div class="tk-imp-tile-top">
           <span class="tk-imp-rank">#${i + 1}</span>
           <span class="tk-status-pill ${sev.cls}">${sev.icon} ${sev.label}</span>
         </div>
-        <div class="tk-imp-tile-title">${esc(f.title)}</div>
+        <div class="tk-imp-tile-title">${esc(f.shortTitle || f.title)}</div>
         ${renderImpRatings(f.ratings)}
         <div class="tk-imp-tile-hint">Click for full details →</div>
       </button>
@@ -3448,7 +3504,8 @@ function openImpModal(f) {
   if (!modal || !f) return;
   const sev = IMP_SEV_META[f.severity];
   modal.querySelector('#impModalPill').innerHTML = `<span class="tk-status-pill ${sev.cls}">${sev.icon} ${sev.label}</span>`;
-  modal.querySelector('#impModalTitle').textContent = f.title;
+  modal.querySelector('#impModalTitle').textContent = f.shortTitle || f.title;
+  modal.querySelector('#impModalFullTitle').textContent = f.title;
   modal.querySelector('#impModalRatings').innerHTML = renderImpRatings(f.ratings);
   modal.querySelector('#impModalTechnical').innerHTML = f.technical;
   modal.querySelector('#impModalPlain').innerHTML = f.plain;
