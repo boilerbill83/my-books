@@ -175,6 +175,52 @@ deepdive.js, dashboardShared.js) rather than left as a partial fix. Add
 future entries only after the same real-source verification — never
 guessed.
 
+**`meta.creatorCredits` — systematic pipeline version (2026-09-11):**
+Bill's direct follow-up to the Primo fix — "let's do the same for all
+shows and movies... let's make sure if someone i love like jj abrams
+gets credit even if he is only the second producer... let's not go too
+far though, two directors/executives/producers/showrunners for each
+title" — generalizes `CREATOR_CORRECTIONS` (a one-off, hand-verified
+correction table) into a real data-pipeline field covering the whole
+dataset, not just Primo. `enrich_tmdb.py`'s `extract_entry()` now builds
+`entry['creatorCredits']`, capped at exactly 2 names: real director(s)/
+`createdBy` first, then a real producer/executive producer appended only
+if a slot remains.
+- **Movies**: the extra name comes from the same `credits.crew` list
+  already fetched for Director — a movie has one complete crew list, no
+  extra API call needed. Filtered to `job in ('Producer', 'Executive
+  Producer')`.
+- **Shows**: needed a genuinely new data source. Plain `credits` on a
+  `/tv/{id}` request only returns the LATEST season's crew (real,
+  documented TMDB behavior — confirmed via multiple independent sources,
+  since api.themoviedb.org itself is unreachable from this interactive
+  session, the same standing constraint every TMDB call in this project
+  has always worked under). `aggregate_credits` (newly appended to
+  `tmdb_detail()`'s show requests) is the endpoint that reliably surfaces
+  a real Executive Producer credited across a show's WHOLE run, even
+  when absent from whichever season happened to air most recently —
+  exactly the Schur/Primo shape. When more than one real EP candidate
+  exists, the one with the highest total episode count wins the single
+  available slot, not whoever TMDB happens to list first.
+- `getCreator()`/`getCreators()` both check `meta.creatorCredits` first,
+  ahead of the raw `director`/`directors`/`createdBy` fields (which stay
+  completely unchanged for other real readers — `discover.js`'s CSV
+  export column and `quality.js`'s multi-creator-show field-quality check
+  both read the raw TMDB fields directly and would have been corrupted
+  by mixing producer names into them, so a separate field was used
+  instead of overloading the existing ones).
+- Existing cache entries have no `creatorCredits` until re-fetched
+  (`REFRESH_ALL=1`, same backfill mechanism every other new
+  `enrichedMetadata.json` field in this project has needed) — both
+  functions fall back to the old director/createdBy-only logic until
+  then, so shipping the code change alone is a guaranteed no-op
+  (confirmed via `scripts/eval.js`: byte-identical before/after).
+  `CREATOR_CORRECTIONS`'s one Primo entry is left in place as a safety
+  net even after this ships — once a real re-fetch confirms Primo's own
+  `creatorCredits` independently includes Schur (which the aggregate-
+  credits logic above should produce on its own), the hand-written entry
+  becomes redundant and can be removed.
+
 ### 3b. Genre match — capped at **+8**
 As of the Genre/Subgenre taxonomy redesign, Genre is a **single, clean
 value** per title (`inferGenre()`), not TMDB's old raw multi-valued
