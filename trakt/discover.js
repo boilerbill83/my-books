@@ -543,9 +543,6 @@ function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, revi
   const critic = criticScore(omdbEntry);
   const audience = realAudienceScore(omdbEntry);
   const cast = castLine(meta);
-  const progressText = pick.progress
-    ? `${pick.progress.plays} of ${pick.progress.airedEpisodes} episode${pick.progress.airedEpisodes === 1 ? '' : 's'} watched`
-    : null;
   const scoreVal = meta.voteAverage != null ? meta.voteAverage.toFixed(1) : null;
   el.innerHTML = `
     <div class="tk-hero-poster">${posterImgHtml(poster, 'tk-hero-img', 150, 225)}</div>
@@ -557,7 +554,6 @@ function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, revi
       </div>
       <div class="tk-hero-meta">${esc([runtimeLabel(candidate, enrichedMeta), metaLine(candidate, enrichedMeta, omdbMeta, llmTags, reviewedTags)].filter(Boolean).join(' · '))}</div>
       ${cast ? `<div class="tk-hero-cast">Starring ${esc(cast)}</div>` : ''}
-      ${progressText ? `<div class="tk-hero-progress">${esc(progressText)}</div>` : ''}
       ${meta.overview ? `<div class="tk-hero-reason">${esc(meta.overview)}</div>` : ''}
       <div class="tk-hero-actions">
         <a class="tk-btn" href="./deepdive.html?key=${encodeURIComponent(pick.titleKey)}">🔎 Deep Dive</a>
