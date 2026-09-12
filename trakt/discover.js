@@ -476,9 +476,9 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
 // features") ─────────────────────────────────────────────────────────────
 // All built from data already computed for the rec panels — no new TMDB
 // fetches, no new pipeline. One pool feeds every discovery surface below
-// (hero, Surprise Me, shelves, Because You Loved) so nothing can surface
-// here that the You'll Love panels would refuse: the exact same
-// enriched-and-not-actively-airing filter renderRecPanel() already applies.
+// (hero, shelves, Because You Loved) so nothing can surface here that the
+// You'll Love panels would refuse: the exact same enriched-and-not-
+// actively-airing filter renderRecPanel() already applies.
 
 const byScore = (a, b) => (b.bmtreScoreRaw - a.bmtreScoreRaw) || (b.confidenceScore - a.confidenceScore);
 
@@ -681,75 +681,7 @@ function renderHero(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
   return top;
 }
 
-// 2. Surprise Me — a decision-fatigue solver. Draws from the top 40 of the
-// pool (optionally filtered by type), weighted so #1 is roughly 4x likelier
-// than #40 (rank-based linear weight, not uniform) — still leans toward
-// quality picks, not a flat random draw. One re-roll if it repeats the
-// previous pick.
-let lastSurprisePick = null;
-function drawSurprise(pool, typeFilter) {
-  const candidates = (typeFilter ? pool.filter(c => c.type === typeFilter) : pool).slice(0, 40);
-  if (!candidates.length) return null;
-  const weights = candidates.map((c, i) => candidates.length - i + 10);
-  const total = weights.reduce((s, w) => s + w, 0);
-  const drawOne = () => {
-    let r = Math.random() * total;
-    for (let i = 0; i < weights.length; i++) {
-      r -= weights[i];
-      if (r <= 0) return candidates[i];
-    }
-    return candidates[candidates.length - 1];
-  };
-  let pick = drawOne();
-  if (pick.titleKey === lastSurprisePick && candidates.length > 1) pick = drawOne();
-  lastSurprisePick = pick.titleKey;
-  return { pick, rank: candidates.indexOf(pick) + 1, poolSize: candidates.length };
-}
-
-function renderSurprise(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags, typeFilter) {
-  const result = drawSurprise(pool, typeFilter);
-  const resultEl = document.getElementById('surpriseResult');
-  const btn = document.getElementById('surpriseBtn');
-  if (!result) { resultEl.hidden = true; return; }
-  const { pick, rank, poolSize } = result;
-  const poster = posterUrl(pick.titleKey, enrichedMeta, 'w342');
-  const poolLabel = typeFilter === 'movie' ? 'movies' : typeFilter === 'show' ? 'shows' : 'picks';
-  resultEl.hidden = false;
-  resultEl.classList.remove('tk-reveal');
-  void resultEl.offsetWidth; // restart the CSS animation on every spin
-  resultEl.classList.add('tk-reveal');
-  resultEl.innerHTML = `
-    <div class="tk-rec-card">
-      ${posterImgHtml(poster, 'tk-rec-poster', 60, 90)}
-      <div class="tk-rec-body">
-        <div class="tk-rec-title">${typeIcon(pick.type)} ${titleLink(pick)}${pick.year ? ` <span class="tk-rec-year">(${esc(pick.year)})</span>` : ''}</div>
-        <div class="tk-rec-meta">${esc([runtimeLabel(pick, enrichedMeta), metaLine(pick, enrichedMeta, omdbMeta, llmTags, reviewedTags)].filter(Boolean).join(' · '))}</div>
-        <div class="tk-rec-reason">${esc(pick.reason)}</div>
-        <div class="tk-rec-sub">Drawn from your top ${poolSize} ${poolLabel} — this one ranks #${rank}.</div>
-        <a class="tk-btn" href="./deepdive.html?key=${encodeURIComponent(pick.titleKey)}">🔎 Deep Dive</a>
-      </div>
-      <div class="tk-rec-score">${Math.round(pick.bmtreScore)}</div>
-    </div>
-  `;
-  btn.textContent = '🎲 Spin again';
-}
-
-function initSurprise(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
-  const btn = document.getElementById('surpriseBtn');
-  const chips = document.querySelectorAll('[data-surprise-type]');
-  let activeType = '';
-  let hasSpun = false;
-  const spin = () => { renderSurprise(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags, activeType); hasSpun = true; };
-  btn.addEventListener('click', spin);
-  chips.forEach(chip => chip.addEventListener('click', () => {
-    chips.forEach(c => c.classList.remove('active'));
-    chip.classList.add('active');
-    activeType = chip.dataset.surpriseType;
-    if (hasSpun) spin();
-  }));
-}
-
-// 3. Got Two Hours? / Weekend Binge — quick-pick shelves for a real
+// 2. Got Two Hours? / Weekend Binge — quick-pick shelves for a real
 // time budget. Movies <=120min, shows <=10 episodes, top 6 each from the
 // pool (already score-sorted).
 function renderShelf(containerId, items, enrichedMeta) {
@@ -767,7 +699,7 @@ function renderShelf(containerId, items, enrichedMeta) {
   }).join('');
 }
 
-// 4. Because You Loved… — a Netflix-style presentation of a signal that
+// 3. Because You Loved… — a Netflix-style presentation of a signal that
 // already drives real scoring (forward/reverse similarToIds/recommendedIds
 // matches), not a new one. Anchors = real 10/10-rated titles with >=2 pool
 // titles citing them (either direction — TMDB ids are per-type namespaces,
@@ -837,13 +769,13 @@ function renderBecauseYouLoved(rows, enrichedMeta) {
   `).join('');
 }
 
-// 5. Pick Up Where You Left Off — currentlyWatching.json is a bare array
+// 4. Pick Up Where You Left Off — currentlyWatching.json is a bare array
 // (unlike library/watchlist/candidatePool's {titles:[...]} shape).
 // lastWatchedAt carries a real 1970-01-01 placeholder on roughly half of
 // these (a bulk-import artifact documented elsewhere in this project) —
 // never displayed here for that reason.
 
-// 6. Your taste, in one line — a small, low-risk personality blurb built
+// 5. Your taste, in one line — a small, low-risk personality blurb built
 // entirely from stats the page already computes for other sections.
 function renderTasteLine(genreStats, crowdCompare, castStats, tenRatedCount) {
   const el = document.getElementById('tasteLine');
@@ -872,9 +804,9 @@ async function load() {
 
   // Manually tagged co-viewing shows (Bill: "I want to manually tag these
   // so they only show up here") — pulled out of every solo-oriented
-  // surface below (hero, Surprise Me, both You'll Love panels, the time-
-  // budget shelves, Because You Loved, and the main airing table) and
-  // shown only in their own "Shows You Watch Together" section instead.
+  // surface below (hero, both You'll Love panels, the time-budget
+  // shelves, Because You Loved, and the main airing table) and shown
+  // only in their own "Shows You Watch Together" section instead.
   const coWatchKeys = [...new Set(Object.values(coWatchTags || {}).flat())];
   const coWatchSet = new Set(coWatchKeys);
   const soloWatchlist = fromWatchlist.filter(c => !coWatchSet.has(c.titleKey));
@@ -890,14 +822,13 @@ async function load() {
   document.getElementById('statusText').textContent = 'Loaded from export';
 
   // Picks first, per Bill's "make sure the main one is fun" ask — the one
-  // shared pool (discoverPool) feeds the hero, Surprise Me, and both
-  // shelves below, so nothing here can surface that the You'll Love panels
-  // themselves would refuse.
+  // shared pool (discoverPool) feeds the hero and both shelves below, so
+  // nothing here can surface that the You'll Love panels themselves would
+  // refuse.
   const pool = discoverPool(soloWatchlist, soloCandidates, enrichedMeta);
   const watchingNow = pickCurrentlyWatching(currentlyWatchingFeature, soloCurrentlyWatching, enrichedMeta);
   if (watchingNow) renderCurrentlyWatchingHero(watchingNow, enrichedMeta, omdbMeta, llmTags, reviewedTags);
   else renderHero(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
-  initSurprise(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
   renderFamilyWatchList(familyWatchlist, enrichedMeta);
 
   renderRecPanel('movieRecList', byType(soloWatchlist, 'movie'), byType(soloCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);

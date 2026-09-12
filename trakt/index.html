@@ -49,13 +49,6 @@
         .tk-hero-fact { text-align: left; }
       }
 
-      .tk-surprise-btn { font-size: 0.9rem; padding: 10px 20px; font-weight: 600; }
-      .tk-chip-row { display: flex; gap: 8px; margin: 10px 0; flex-wrap: wrap; }
-      .tk-chip { font-size: 0.78rem; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); cursor: pointer; }
-      .tk-chip.active { border-color: var(--accent); color: var(--accent); font-weight: 600; background: color-mix(in srgb, var(--accent) 8%, transparent); }
-      @keyframes tk-reveal { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-      .tk-reveal { animation: tk-reveal 0.3s ease; }
-
       .tk-byl-row { margin-bottom: 20px; }
       .tk-byl-row:last-child { margin-bottom: 0; }
       .tk-byl-heading { font-weight: 600; font-size: 0.92rem; margin-bottom: 10px; }
@@ -106,18 +99,6 @@
         <div class="tk-taste-line" id="tasteLine"></div>
 
         <div class="tk-card tk-hero-card" style="margin-bottom: 24px;" id="heroPick"></div>
-
-        <div class="tk-card" style="margin-bottom: 24px;">
-          <div class="tk-card-heading">🎲 Surprise Me</div>
-          <div class="tk-card-note">Not feeling the top pick? Draw a random title from your real top 40 — weighted toward your best matches, not a flat coin flip.</div>
-          <div class="tk-chip-row">
-            <button class="tk-chip active" data-surprise-type="">Either</button>
-            <button class="tk-chip" data-surprise-type="movie">🎬 Movie</button>
-            <button class="tk-chip" data-surprise-type="show">📺 Show</button>
-          </div>
-          <button class="tk-btn tk-surprise-btn" id="surpriseBtn">🎲 Surprise me</button>
-          <div id="surpriseResult" hidden style="margin-top:14px;"></div>
-        </div>
 
         <div class="tk-row2" style="margin-bottom:14px;">
           <div class="tk-card">
