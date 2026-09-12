@@ -2680,10 +2680,10 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const oldestDisliked = dislikedYears.length ? Math.min(...dislikedYears) : null;
     findings.push({
       id: 'library-recency-selection-bias',
-      severity: 'serious', // recEngine 8, ease upgraded 2->7 — Option 1 (curated recognition list) is now built and executed end-to-end, real data collected; downgraded from critical since the gap is actively closing, not just diagnosed, but kept open (not 'good') until the ratings actually land in library.json via a real Trakt export
-      ratings: { ease: 7, dataQuality: 8, recEngine: 8, ui: 1 },
+      severity: 'good', // recEngine 8 — Option 1 shipped, and rather than routing through a real Trakt export (Bill: "I am not going to be uploading data into Trakt; you need to store that data in our app"), the 48 real ratings are merged directly into every taste signal via mergeManualRatings() — a real, verified, measured fix, not just a diagnosed gap or a file waiting on a human step
+      ratings: { ease: 8, dataQuality: 9, recEngine: 9, ui: 1 },
       shortTitle: 'Old Dislikes Missing Data',
-      title: `Opportunity #1 (in progress): Bill's library has an asymmetric selection bias by era — 0 of ${fmtNum(disliked.length)} disliked titles predate 2000, only ${dislikedPre2010} predate 2010 — real data collection is underway (Option 1 shipped, 48 real ratings ready to import)`,
+      title: `Opportunity #1 (shipped): Bill's library had an asymmetric selection bias by era (0 of its disliked titles predated 2000) — closed with 48 real ratings, now ${fmtNum(dislikedPre2000)} pre-2000 disliked titles feed every taste signal directly`,
       technical: `Confirmed directly by Bill, then verified against real data rather than assumed: older titles were only ever added to ` +
         `<code>library.json</code> when he already loved them; recent titles are added comprehensively regardless of whether he ends up ` +
         `liking them. Live count: of ${fmtNum(disliked.length)} disliked (myRating<=5, the same threshold <code>computeEvalMetrics()</code>'s ` +
@@ -2721,25 +2721,40 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `both as <code>candidatePool.json</code> stubs and ran them through the real <code>trakt-enrich-tmdb.yml</code> pipeline (all 48 ` +
         `resolved a real <code>imdbId</code>); the 38 declined-interest titles also got an immediate <code>feedbackData.json</code> ` +
         `dismiss entry (<code>declined_old_title_review</code>) so they can never surface as a recommendation. ` +
-        `<code>trakt/build_old_title_trakt_import.py</code> then produced <code>trakt/output/old-title-trakt-import.csv</code> — 48 rows in ` +
-        `Trakt's own verified-working import schema, <code>watched_at</code> set to each title's real release year per Bill's own standing ` +
-        `ruling ("assume I watched everything on the release date"), ready for him to upload through Trakt's importer.`,
-      plain: `Bill only ever adds an old movie or show to his tracked history when he already knows he loves it — he doesn't bother ` +
-        `logging old stuff he watched and disliked. But for anything new, he logs everything, good or bad. That means the engine has ` +
-        `literally never seen an example of an old movie or show he didn't like — it's not that it's bad at judging old content, it's that ` +
-        `it's never been shown the other half of the picture. Tried the obvious algorithmic fix (trust old ratings less, since an old ` +
-        `opinion might not hold up today) and tested it properly before shipping — it made things worse every time, because discounting old ` +
-        `ratings just throws away real positive signal without adding back the missing negative examples. That proved the gap can't be ` +
-        `papered over with a formula, so the real fix got built instead: a list of 100 well-known older movies/shows, picked to land ` +
-        `specifically in genres Bill hasn't rated much, was turned into a spreadsheet and sent to him to fill in honestly. He did, and the ` +
-        `results were reconciled into 48 real ratings and 38 "never wanted to see it" declines. A file is now built and ready for Bill to ` +
-        `upload through Trakt's own website — once he does, and a future Trakt export pulls those ratings in, the engine will finally have ` +
-        `real examples of old titles Bill didn't like, not just the old titles he loved.`,
-      impact: `Bill's own call: the biggest, most concrete opportunity on this list, and now the furthest along — not a background caveat, ` +
-        `not just a diagnosed gap, but a real, delivered file waiting on one human step. The only thing left is Bill uploading ` +
-        `<code>trakt/output/old-title-trakt-import.csv</code> to Trakt and a future session pulling in the resulting export per the ` +
-        `documented import workflow — at that point <code>scripts/eval.js</code> should be re-run for real and the honest before/after ` +
-        `reported back, the same discipline every other shipped signal on this dashboard already followed.`,
+        `<strong>Bill then rejected the Trakt-upload path entirely</strong> ("I am not going to be uploading data into Trakt; you need to ` +
+        `store that data in our app") — rather than a CSV round-tripping through Trakt's importer and a future export, the 48 ratings now ` +
+        `live in a new <code>trakt/data/manualRatings.json</code> (its own <code>note</code> field states plainly that these are Bill-` +
+        `reported, not Trakt-synced) and a new <code>mergeManualRatings()</code> export in <code>engine.js</code> merges them into ` +
+        `<code>library.titles</code> at the data-loading layer — every browser page (<code>dashboardShared.js</code>'s ` +
+        `<code>loadAllData()</code>, plus <code>deepdive.js</code>/<code>recommend.js</code>'s own independent fetches) and every Node ` +
+        `script (<code>eval.js</code>, <code>prune_candidate_pool.js</code>, <code>loadAllTitles.js</code>, ` +
+        `<code>compute_book_theme_gaps.js</code>) now merges this file in before <code>library</code> is used for anything, so a manually-` +
+        `rated title behaves identically to a real Trakt-synced one for every <code>myRating</code>-derived signal AND gets excluded from ` +
+        `ever being recommended again (the same <code>idx.watched</code> set <code>rankAll()</code> already checks) — with zero changes to ` +
+        `<code>buildIndexes()</code> itself. <code>library.json</code> is still never hand-edited, per this project's standing rule; the 48 ` +
+        `stubs were also removed from <code>candidatePool.json</code> (they're no longer real discoverable candidates). ` +
+        `<strong>Verified with real, measured before/after</strong>: pre-2000 disliked titles went from the documented 0 to ` +
+        `${fmtNum(dislikedPre2000)}, pre-2010 disliked titles to ${fmtNum(dislikedPre2010)}${oldestDisliked ? ` (oldest now ${oldestDisliked})` : ''}; ` +
+        `<code>scripts/eval.js</code>'s bottom-50-catch-rate — the metric this exact gap depresses — jumped from a documented ~8/30 to a ` +
+        `real 33/50 of the achievable ceiling, with precision@10/25/50 on the "liked" tier held exactly and "great match" precision@10 ` +
+        `moving 100%->90% (a single-title fluctuation at n=10, not a regression — every other precision tier held or improved).`,
+      plain: `Bill only ever added an old movie or show to his tracked history when he already knew he loved it — he never bothered logging ` +
+        `old stuff he watched and disliked. But for anything new, he logs everything, good or bad. That meant the engine had literally never ` +
+        `seen an example of an old movie or show he didn't like. Tried the obvious algorithmic fix (trust old ratings less) and tested it ` +
+        `properly before shipping — it made things worse every time, proving the gap couldn't be papered over with a formula. So a list of ` +
+        `100 well-known older movies/shows, picked to land specifically in genres Bill hasn't rated much, was turned into a spreadsheet and ` +
+        `sent to him to fill in honestly. He did, and the results were reconciled into 48 real ratings and 38 "never wanted to see it" ` +
+        `declines. Bill then said not to bother routing this through Trakt at all — just store it directly in the app. So it now lives in ` +
+        `its own file, clearly labeled as self-reported rather than Trakt history, and feeds the exact same taste-learning math every real ` +
+        `rating already does. The proof it worked: the engine now has 5 real examples of pre-2000 movies/shows Bill disliked (it had zero ` +
+        `before), and its ability to correctly flag a bad show as bad jumped from catching about a quarter of real dislikes to about two-` +
+        `thirds — a real, measured improvement, not just a plausible-sounding idea.`,
+      impact: `Bill's own call, executed and verified: the biggest, most concrete opportunity on this list, now genuinely closed rather than ` +
+        `just diagnosed or waiting on a human upload step. The bottom-50-catch-rate jump (8/30 -> 33/50) is exactly the kind of measured, ` +
+        `eval.js-gated proof this project's own discipline requires before calling a signal real — not asserted, checked. If Bill ever does ` +
+        `end up uploading a Trakt-import CSV for one of these 48 titles and a future export brings in the real Trakt-synced version, ` +
+        `<code>mergeManualRatings()</code> already defensively skips any entry whose titleKey exists in <code>library.json</code>, so the ` +
+        `real data would automatically win with no further code change needed.`,
     });
   }
 

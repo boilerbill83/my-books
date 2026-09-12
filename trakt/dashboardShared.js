@@ -13,6 +13,7 @@
 import {
   getCreator, hydrateTitle, matchScore, mergeScrapedShowRatings, criticScore,
   realAudienceScore, inferSubgenres, inferSubgenreDetail, traktUrl, computeBookThemeCounts,
+  mergeManualRatings,
 } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
@@ -445,9 +446,9 @@ function initCollapsibleCards() {
 // other files), so it's returned as-is, not unwrapped.
 async function loadAllData() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback,
+  const [dashboard, libraryRaw, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback,
          scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
-         currentlyWatchingFeature, familyWatchlist, releaseLog, goodreadsData] = await Promise.all([
+         currentlyWatchingFeature, familyWatchlist, releaseLog, goodreadsData, manualRatings] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -500,7 +501,14 @@ async function loadAllData() {
     // missing/renamed file degrades this one signal to zero rather than
     // blocking the whole page.
     get('../data/goodreadsData.json').catch(() => ({ books: [] })),
+    // Real ratings Bill gave directly to this app instead of through a
+    // Trakt export (2026-09-11: "I am not going to be uploading data into
+    // Trakt; you need to store that data in our app") — see the file's own
+    // `note` field and mergeManualRatings()'s comment for the full design.
+    // {titles:[]} is a safe empty default.
+    get('./data/manualRatings.json').catch(() => ({ titles: [] })),
   ]);
+  const library = mergeManualRatings(libraryRaw, manualRatings);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
   const bookThemeCounts = computeBookThemeCounts(goodreadsData);
   return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog, bookThemeCounts };

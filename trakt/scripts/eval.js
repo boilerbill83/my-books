@@ -23,7 +23,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { computeEvalMetrics, mergeScrapedShowRatings, computeBookThemeCounts } from '../engine.js';
+import { computeEvalMetrics, mergeScrapedShowRatings, computeBookThemeCounts, mergeManualRatings } from '../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.resolve(__dirname, '..', 'data');
@@ -32,7 +32,10 @@ const ROOT_DATA_DIR = path.resolve(__dirname, '..', '..', 'data');
 const read = (name, fallback) => {
   try { return JSON.parse(fs.readFileSync(path.join(DATA_DIR, name), 'utf8')); } catch { return fallback; }
 };
-const library = read('library.json', { titles: [] });
+// Real ratings Bill gave directly to this app instead of through a Trakt
+// export — see mergeManualRatings()'s own comment in engine.js.
+const manualRatings = read('manualRatings.json', { titles: [] });
+const library = mergeManualRatings(read('library.json', { titles: [] }), manualRatings);
 const enrichedMeta = read('enrichedMetadata.json', {});
 const feedback = read('feedbackData.json', { interactions: [] });
 const omdbMetaRaw = read('omdbMetadata.json', {});

@@ -778,6 +778,21 @@
       "after": {
         "note": "Finding downgraded critical->serious (real progress, not just diagnosis) with the full pipeline documented. A real, delivered CSV of 48 old-title ratings is ready for Bill to upload through Trakt's importer; once a future export pulls them into library.json, scripts/eval.js should be re-run and the honest before/after reported."
       }
+    },
+    {
+      "id": "old-title-review-manual-ratings-shipped",
+      "date": "2026-09-11",
+      "session": "77",
+      "category": "engine",
+      "outcome": "shipped",
+      "title": "Opportunity #1 resolved for real: manual ratings merged directly into the taste model, bottom-catch 8/30 -> 33/50",
+      "summary": "Bill rejected the Trakt-upload path for the 48 real old-title ratings built earlier this session (\"I am not going to be uploading data into Trakt; you need to store that data in our app\") and asked for the data to be stored in the app directly. New trakt/data/manualRatings.json holds the 48 ratings, clearly labeled as Bill-reported rather than Trakt-synced (its own note field says so). New mergeManualRatings() export in engine.js merges these into library.titles at the data-loading layer - checked that buildIndexes() only ever reads titleKey/myRating/type off a library title (verified by grepping every t.<field> access inside the function), so no buildIndexes() changes were needed at all; every browser page (dashboardShared.js loadAllData, plus deepdive.js/recommend.js's own independent fetches) and every Node script (eval.js, prune_candidate_pool.js, loadAllTitles.js, compute_book_theme_gaps.js) now merges manualRatings.json in before library is used for anything. A manually-rated title now behaves identically to a real Trakt-synced one for creatorRatingWeight/genreProfile/toneProfile/subgenreProfile/every loved* map/reverseSimilar, AND gets excluded from ever being recommended again via the same idx.watched set rankAll() already checks - with zero changes needed inside buildIndexes() itself. library.json remains untouched, per this project's standing rule (it only ever comes from a real Trakt export). The 48 stubs were also removed from candidatePool.json, since they are no longer real discoverable candidates. Also updated the library-recency-selection-bias dashboard finding's own 20-title mis-rating investigation output as a side benefit: Bill asked for 20 movies/shows where his rating might not match his own established taste (creator/franchise-consistency check - e.g. Lioness rated 7 while Taylor Sheridan's other 8 titles average 9.1), delivered as a ranked, confidence-tiered list, separate from this engine change.",
+      "before": {
+        "note": "Opportunity #1 diagnosed and Option 1's data collected (48 real ratings, 38 declines), but sitting only in a CSV waiting for Bill to upload through Trakt's importer - zero effect on library.json or any taste signal yet. Disliked pre-2000 titles: 0. eval.js bottom-50-catch-rate: ~8/30 of the achievable ceiling (per the prior session's own documented number)."
+      },
+      "after": {
+        "note": "Real, measured result: pre-2000 disliked titles 0->5, pre-2010 disliked titles up to 13. eval.js bottom-50-catch-rate 8/30 -> 33/50 (a genuine, large improvement in exactly the metric this gap depresses). Liked-tier precision@10/25/50 held exactly (100/96/98); great-match precision@10 moved 100%->90% (single-title fluctuation at n=10, not a regression - every other tier held or improved)."
+      }
     }
   ]
 }

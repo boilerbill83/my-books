@@ -40,7 +40,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { buildIndexes, matchScorePair, hydrateTitle, isPreMillenniumMovie, isAnimation, isTooObscure, mergeScrapedShowRatings, computeBookThemeCounts } from '../engine.js';
+import { buildIndexes, matchScorePair, hydrateTitle, isPreMillenniumMovie, isAnimation, isTooObscure, mergeScrapedShowRatings, computeBookThemeCounts, mergeManualRatings } from '../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -108,7 +108,13 @@ const readJSON = (p, fallback) => {
 };
 const writeJSON = (p, data) => fs.writeFileSync(p, JSON.stringify(data, null, 2) + '\n');
 
-const library = readJSON(path.join(DATA_DIR, 'library.json'), { titles: [] });
+// Real ratings Bill gave directly to this app instead of through a Trakt
+// export — see mergeManualRatings()'s own comment in engine.js. Merged in
+// before anything else touches `library` so a manually-rated title is
+// treated as watched (and its taste signal counted) everywhere below,
+// same as this session's browser-page loaders.
+const manualRatings = readJSON(path.join(DATA_DIR, 'manualRatings.json'), { titles: [] });
+const library = mergeManualRatings(readJSON(path.join(DATA_DIR, 'library.json'), { titles: [] }), manualRatings);
 const watchlist = readJSON(path.join(DATA_DIR, 'watchlist.json'), { titles: [] });
 const candidatePool = readJSON(path.join(DATA_DIR, 'candidatePool.json'), { titles: [] });
 const enrichedMeta = readJSON(path.join(DATA_DIR, 'enrichedMetadata.json'), {});
