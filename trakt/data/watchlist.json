@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-10T12:45:23.926Z",
+    "generatedAt": "2026-09-12T00:02:53.069Z",
     "count": 42
   },
   "titles": [
@@ -720,18 +720,18 @@
       "type": "show",
       "titleKey": "show:299939",
       "ids": {
-        "imdb": "tt37538664",
+        "imdb": "tt13207736",
         "plex": {
           "guid": null,
           "slug": null
         },
-        "slug": "monster-lizzie-borden",
+        "slug": "monster-the-lizzie-borden-story",
         "tmdb": 299939,
         "tvdb": null,
         "trakt": 297898
       },
-      "title": "Monster: Lizzie Borden",
-      "year": null,
+      "title": "Monster: The Lizzie Borden Story",
+      "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-08-30T19:23:03.000Z"
     },

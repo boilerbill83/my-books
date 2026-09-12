@@ -23,25 +23,27 @@ export function loadTraktExport(exportDir) {
       .filter(f => /^watched-history-\d+\.json$/.test(f))
       .sort((a, b) => parseInt(a.match(/\d+/)[0]) - parseInt(b.match(/\d+/)[0]));
 
-  const globShows = () =>
+  // Generic glob for a `<prefix>.json` OR `<prefix>-N.json` (Trakt paginates
+  // at 250 items/file once a list grows past one page — first hit for real
+  // in the movies files, 2026-09-11 export: watched-movies-1.json +
+  // watched-movies-2.json, no bare watched-movies.json at all). Sorted
+  // numerically (not lexically — "-10" must sort after "-9", not before
+  // "-2") so a future export with 10+ pages concatenates in the right order,
+  // though order doesn't actually matter for any of these lists today.
+  const globPaginated = prefix =>
     fs.readdirSync(exportDir)
-      .filter(f => /^watched-shows(-\d+)?\.json$/.test(f))
-      .sort();
-
-  const globShowRatings = () =>
-    fs.readdirSync(exportDir)
-      .filter(f => /^ratings-shows(-\d+)?\.json$/.test(f))
-      .sort();
+      .filter(f => new RegExp(`^${prefix}(-\\d+)?\\.json$`).test(f))
+      .sort((a, b) => (parseInt(a.match(/-(\d+)\.json$/)?.[1]) || 0) - (parseInt(b.match(/-(\d+)\.json$/)?.[1]) || 0));
 
   const stats = readJSON('user-stats.json', {});
   const profile = readJSON('user-profile.json', {});
-  const watchedMovies = readJSON('watched-movies.json', []);
-  const ratingsMovies = readJSON('ratings-movies.json', []);
+  const watchedMovies = globPaginated('watched-movies').flatMap(f => readJSON(f, []));
+  const ratingsMovies = globPaginated('ratings-movies').flatMap(f => readJSON(f, []));
   const watchlist = readJSON('lists-watchlist.json', []);
   const favorites = readJSON('lists-favorites.json', []);
 
-  const watchedShows = globShows().flatMap(f => readJSON(f, []));
-  const ratingsShows = globShowRatings().flatMap(f => readJSON(f, []));
+  const watchedShows = globPaginated('watched-shows').flatMap(f => readJSON(f, []));
+  const ratingsShows = globPaginated('ratings-shows').flatMap(f => readJSON(f, []));
 
   const historyFiles = globHistory();
   let history = [];
