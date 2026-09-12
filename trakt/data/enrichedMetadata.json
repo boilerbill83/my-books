@@ -622168,5 +622168,167 @@
   "year": 2013,
   "type": "movie",
   "fetchedAt": "2026-09-12"
+ },
+ "movie:1280738": {
+  "genres": [
+   "Action",
+   "Crime",
+   "Thriller"
+  ],
+  "overview": "After a criminal network kidnaps Wang Wei's daughter and the corrupt police refuse to assist him, Wei sets out on his own to locate her. Navin, a tenacious journalist whose wife has mysteriously vanished, is his only ally. In this explosive martial arts showdown, the unlikely duo fights the kidnappers ruthlessly driven by a furious vengeance.",
+  "keywords": [
+   "martial arts",
+   "kung fu",
+   "rescue mission",
+   "police corruption",
+   "child trafficking",
+   "child kidnapping",
+   "missing wife",
+   "child rescue",
+   "relentless vengeance",
+   "dynamic duo"
+  ],
+  "originalLanguage": "zh",
+  "imdbId": "tt33311069",
+  "voteAverage": 8.186,
+  "voteCount": 708,
+  "popularity": 38.2622,
+  "posterPath": "/zP19YO60jwEsfKd5Qf1UvA5uJu8.jpg",
+  "similarToIds": [
+   933723,
+   115516,
+   554530,
+   111323,
+   112331,
+   945732,
+   380104,
+   156007,
+   756999,
+   604113,
+   203509,
+   204528,
+   203458,
+   1147859,
+   137119,
+   931920,
+   598910,
+   195803,
+   261258,
+   261183
+  ],
+  "recommendedIds": [
+   45408,
+   180894,
+   24411,
+   256474,
+   250388,
+   14362,
+   534490,
+   8909,
+   2140,
+   25006,
+   4141,
+   1387382,
+   13054,
+   9437,
+   15379,
+   395990,
+   10651,
+   14172,
+   538207,
+   6723
+  ],
+  "citedVoteCounts": {
+   "933723": 0,
+   "115516": 9,
+   "554530": 1,
+   "111323": 14,
+   "112331": 6,
+   "945732": 0,
+   "380104": 3,
+   "156007": 22,
+   "756999": 6060,
+   "604113": 0,
+   "203509": 4,
+   "204528": 3,
+   "203458": 1,
+   "1147859": 0,
+   "137119": 32,
+   "931920": 0,
+   "598910": 1,
+   "195803": 2,
+   "261258": 4,
+   "261183": 1,
+   "45408": 208,
+   "180894": 442,
+   "24411": 238,
+   "256474": 390,
+   "250388": 264,
+   "14362": 532,
+   "534490": 642,
+   "8909": 7773,
+   "2140": 1402,
+   "25006": 49,
+   "4141": 2182,
+   "1387382": 439,
+   "13054": 243,
+   "9437": 1953,
+   "15379": 589,
+   "395990": 2880,
+   "10651": 981,
+   "14172": 281,
+   "538207": 362,
+   "6723": 637
+  },
+  "topCast": [
+   "Xie Miao",
+   "Joe Taslim",
+   "Yang Enyou",
+   "Yayan Ruhian",
+   "JeeJa Yanin"
+  ],
+  "topCastDetail": [
+   {
+    "id": 83487,
+    "name": "Xie Miao",
+    "gender": 2
+   },
+   {
+    "id": 592496,
+    "name": "Joe Taslim",
+    "gender": 2
+   },
+   {
+    "id": 2956442,
+    "name": "Yang Enyou",
+    "gender": 1
+   },
+   {
+    "id": 142019,
+    "name": "Yayan Ruhian",
+    "gender": 2
+   },
+   {
+    "id": 135347,
+    "name": "JeeJa Yanin",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2026-06-10",
+  "runtime": 113,
+  "director": "Kenji Tanigaki",
+  "directors": [
+   "Kenji Tanigaki"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Kenji Tanigaki",
+   "Frank Hui",
+   "Tam Chi-San"
+  ],
+  "title": "The Furious",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-09-12"
  }
 }
