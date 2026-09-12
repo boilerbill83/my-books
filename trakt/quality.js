@@ -3491,43 +3491,52 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   // Bill's own explicit ask (2026-09-12): "create a text notification when
   // I show on my watchlist hits one of these conditions: season premiere,
   // two days before a season finale and day after a season finale; I have
-  // a twilio account we can use." Logged as a real, scoped feature idea
-  // rather than built outright - this dashboard's own precedent (e.g. the
-  // split-movie-tv-engine-decision finding) is that a new capability gets
-  // surfaced here first so its shape is visible before code lands.
+  // a twilio account we can use." Built the same day (trakt/notify_watchlist.py
+  // + .github/workflows/trakt-notify-watchlist.yml) — this finding now
+  // tracks the real remaining blocker, not the original pre-build proposal.
   {
     const wlShows = (watchlist.titles || []).filter(t => t.type === 'show');
     const withNextEp = wlShows.filter(t => enrichedMeta[t.titleKey]?.nextEpisodeToAir);
     const withFinale = wlShows.filter(t => enrichedMeta[t.titleKey]?.currentSeasonFinale);
     findings.push({
       id: 'twilio-sms-watchlist-alerts',
-      severity: 'critical', // Bill: "add a new high priority improvement idea"
+      severity: 'serious', // built and tested; blocked on one external account issue, not "not yet built"
       ratings: { ease: 5, dataQuality: 8, recEngine: 2, ui: 7 },
       shortTitle: 'Text Alerts for Watchlist Shows',
-      title: `New feature (Bill's request): text Bill via Twilio on 3 real watchlist events — season premiere, 2 days before a finale, day after a finale`,
-      technical: `Not yet built — a scoped proposal. All 3 conditions are already computable from data this pipeline collects daily, no new TMDB ` +
-        `calls needed: <code>enrichedMetadata.json</code>'s <code>nextEpisodeToAir</code> (season premiere = <code>episodeNumber === 1</code> whose ` +
-        `<code>airDate</code> is today — the exact test <code>isActivelyAiring()</code> already uses in reverse) and ` +
-        `<code>currentSeasonFinale.finaleDate</code> (2-days-before / day-after are both simple date-diff checks against today). Live coverage right ` +
-        `now: ${fmtNum(wlShows.length)} shows on the watchlist, ${fmtNum(withNextEp.length)} with a real scheduled next episode and ` +
-        `${fmtNum(withFinale.length)} with a tracked finale date — the 3 conditions would already be checkable for over a third of the list today, ` +
-        `growing as <code>trakt-enrich-tmdb.yml</code>'s daily run keeps these fields fresh. Proposed shape: a new small script ` +
-        `(<code>trakt/notify_watchlist.py</code>, mirroring <code>enrich_omdb.py</code>'s style) run by a new daily <code>workflow_dispatch</code>` +
-        `+<code>schedule</code> workflow, reading <code>watchlist.json</code>+<code>enrichedMetadata.json</code> (already committed, no new fetch), ` +
-        `checking the 3 date conditions per show, and POSTing to Twilio's Messages API ` +
-        `(<code>https://api.twilio.com/2010-04-01/Accounts/{SID}/Messages.json</code>) when one fires. Needs 3 new repo secrets Bill would create ` +
-        `himself — <code>TWILIO_ACCOUNT_SID</code>, <code>TWILIO_AUTH_TOKEN</code>, <code>TWILIO_FROM_NUMBER</code> (plus his own destination ` +
-        `number, either a 4th secret or hardcoded in the script since it's not sensitive) — same pattern already established for ` +
-        `<code>TMDB_API_KEY</code>/<code>OMDB_API_KEY</code>. A new <code>trakt/data/notificationState.json</code> (titleKey -> ` +
-        `{lastPremiereSent, lastFinaleWarnSent, lastFinaleFollowupSent}) would dedupe so a condition true on exactly one real calendar day can't ` +
-        `double-send if the daily job ever runs twice, or re-send every day it stays true due to a date-math edge case.`,
+      title: `Built (Bill's request): text Bill via Twilio on 3 real watchlist events — season premiere, 2 days before a finale, day after a finale — but blocked on a persistent Twilio auth failure`,
+      technical: `Shipped: <code>trakt/notify_watchlist.py</code> (mirrors <code>enrich_omdb.py</code>'s style) reads <code>watchlist.json</code>+` +
+        `<code>enrichedMetadata.json</code> (already committed, no new fetch), checks 3 date conditions per show — season premiere ` +
+        `(<code>nextEpisodeToAir.episodeNumber === 1</code> whose <code>airDate</code> is today), 2-days-before-finale and day-after-finale ` +
+        `(both simple date-diffs against <code>currentSeasonFinale.finaleDate</code>) — and POSTs to Twilio's Messages API when one fires. ` +
+        `<code>find_events()</code> is a pure, unit-tested function (real watchlist data + synthetic dates covering all 3 conditions, the dedup ` +
+        `path, and the no-event case). <code>trakt/data/notificationState.json</code> (titleKey -> {lastPremiereSent, lastFinaleWarnSent, ` +
+        `lastFinaleFollowupSent}) dedupes so a condition true on one calendar day can't double-send. Live coverage: ${fmtNum(wlShows.length)} ` +
+        `shows on the watchlist, ${fmtNum(withNextEp.length)} with a real scheduled next episode, ${fmtNum(withFinale.length)} with a tracked ` +
+        `finale date. Daily <code>.github/workflows/trakt-notify-watchlist.yml</code> (11 AM UTC) + <code>workflow_dispatch</code> with a ` +
+        `<code>test_send</code> mode (sends one fixed real text, skipping real event-finding, so the pipeline can be verified on a day with no ` +
+        `real premiere/finale event). <strong>Currently blocked</strong>: 4 consecutive real <code>test_send</code> runs all failed identically ` +
+        `with <code>Twilio error 20003: Authenticate</code>, even after Bill re-verified and re-saved all 4 secrets (<code>TWILIO_ACCOUNT_SID</code>, ` +
+        `<code>TWILIO_AUTH_TOKEN</code>, <code>TWILIO_FROM_NUMBER</code>, <code>TWILIO_TO_NUMBER</code>) fresh from the Twilio console, confirmed ` +
+        `on his main (not a subaccount) Twilio account. Added a safe shape-only diagnostic (length/prefix, never the value itself) to rule out a ` +
+        `stray whitespace/wrong-field issue — it came back exactly correct (Account SID: 34 chars, <code>AC</code> prefix; Auth Token: 32 chars; ` +
+        `both phone numbers 12-char E.164 with a leading <code>+</code>), so the credentials are correctly shaped but still not a valid pair ` +
+        `according to Twilio. Also worth noting: the From number is toll-free and needed Twilio's own one-time Toll-Free Verification (a separate ` +
+        `step from this auth failure — verification gates whether SMS sends once authenticated, but error 20003 happens before that check even ` +
+        `runs). Next step, Bill's own: test the same SID/Token pair directly against Twilio's API Explorer ` +
+        `(<code>console.twilio.com/us1/develop/api-explorer/api/messages</code>), bypassing GitHub secrets entirely, to isolate whether the pair ` +
+        `itself is invalid (needs re-copying character-by-character, or a fresh Auth Token) or the account itself has a restriction. Separately, ` +
+        `Bill asked to hardcode his phone number into the script instead of the <code>TWILIO_TO_NUMBER</code> secret — deferred ("let's deal with ` +
+        `it later") since this repo is public (the number would sit in plain text in git history essentially permanently) and it wouldn't address ` +
+        `the actual blocker anyway (error 20003 fires at the authentication step, before Twilio ever looks at To/From).`,
       plain: `Bill wants a text message when a show on his watchlist is about to premiere a new season, is 2 days from its season finale, or just ` +
-        `finished its finale yesterday — so he knows exactly when to tune in without checking the dashboard. The good news: this app already ` +
-        `tracks the exact dates needed for all 3 alerts, every day, for real shows on his watchlist — building this is mostly wiring up a new ` +
-        `scheduled check plus a text-message send through Twilio (which Bill already has an account for), not new data collection.`,
-      impact: `Bill's own explicit, named priority — a real, buildable feature with the hard data-availability question already answered (yes, the ` +
-        `dates exist). The only real blocker is Bill creating the 3 Twilio secrets; everything else is a normal script + workflow, the same shape ` +
-        `as a dozen other pipelines already running in this repo.`,
+        `finished its finale yesterday. The code for this is fully built and tested — it's not what's stopping it. What's stopping it is that ` +
+        `every real attempt to send a text through Twilio gets rejected with an "Authenticate" error, meaning the Account SID and Auth Token ` +
+        `Bill entered don't check out as a valid pair, even though they're the right length and format. Bill needs to test them directly against ` +
+        `Twilio's own website (not through this app) to find out whether it's a typo somewhere in the middle of one of the values, or something ` +
+        `wrong with the Twilio account itself.`,
+      impact: `Bill's own explicit, named priority, and the only thing standing between "built and tested" and "actually texting Bill" is a Twilio ` +
+        `credential mismatch outside this codebase's control. Everything else — the 3 event conditions, the dedup logic, the daily schedule, the ` +
+        `test-send mode — is done and verified.`,
     });
   }
 
