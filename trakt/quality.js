@@ -3503,7 +3503,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       severity: 'serious', // built and tested; blocked on one external account issue, not "not yet built"
       ratings: { ease: 5, dataQuality: 8, recEngine: 2, ui: 7 },
       shortTitle: 'Text Alerts for Watchlist Shows',
-      title: `Built (Bill's request): text Bill via Twilio on 3 real watchlist events — season premiere, 2 days before a finale, day after a finale — but blocked on a persistent Twilio auth failure`,
+      title: `Built (Bill's request): text Bill via Twilio on 3 real watchlist events — season premiere, 2 days before a finale, day after a finale — blocked on a suspended Twilio account`,
       technical: `Shipped: <code>trakt/notify_watchlist.py</code> (mirrors <code>enrich_omdb.py</code>'s style) reads <code>watchlist.json</code>+` +
         `<code>enrichedMetadata.json</code> (already committed, no new fetch), checks 3 date conditions per show — season premiere ` +
         `(<code>nextEpisodeToAir.episodeNumber === 1</code> whose <code>airDate</code> is today), 2-days-before-finale and day-after-finale ` +
@@ -3514,29 +3514,26 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `shows on the watchlist, ${fmtNum(withNextEp.length)} with a real scheduled next episode, ${fmtNum(withFinale.length)} with a tracked ` +
         `finale date. Daily <code>.github/workflows/trakt-notify-watchlist.yml</code> (11 AM UTC) + <code>workflow_dispatch</code> with a ` +
         `<code>test_send</code> mode (sends one fixed real text, skipping real event-finding, so the pipeline can be verified on a day with no ` +
-        `real premiere/finale event). <strong>Currently blocked</strong>: 4 consecutive real <code>test_send</code> runs all failed identically ` +
-        `with <code>Twilio error 20003: Authenticate</code>, even after Bill re-verified and re-saved all 4 secrets (<code>TWILIO_ACCOUNT_SID</code>, ` +
-        `<code>TWILIO_AUTH_TOKEN</code>, <code>TWILIO_FROM_NUMBER</code>, <code>TWILIO_TO_NUMBER</code>) fresh from the Twilio console, confirmed ` +
-        `on his main (not a subaccount) Twilio account. Added a safe shape-only diagnostic (length/prefix, never the value itself) to rule out a ` +
-        `stray whitespace/wrong-field issue — it came back exactly correct (Account SID: 34 chars, <code>AC</code> prefix; Auth Token: 32 chars; ` +
-        `both phone numbers 12-char E.164 with a leading <code>+</code>), so the credentials are correctly shaped but still not a valid pair ` +
-        `according to Twilio. Also worth noting: the From number is toll-free and needed Twilio's own one-time Toll-Free Verification (a separate ` +
-        `step from this auth failure — verification gates whether SMS sends once authenticated, but error 20003 happens before that check even ` +
-        `runs). Next step, Bill's own: test the same SID/Token pair directly against Twilio's API Explorer ` +
-        `(<code>console.twilio.com/us1/develop/api-explorer/api/messages</code>), bypassing GitHub secrets entirely, to isolate whether the pair ` +
-        `itself is invalid (needs re-copying character-by-character, or a fresh Auth Token) or the account itself has a restriction. Separately, ` +
-        `Bill asked to hardcode his phone number into the script instead of the <code>TWILIO_TO_NUMBER</code> secret — deferred ("let's deal with ` +
-        `it later") since this repo is public (the number would sit in plain text in git history essentially permanently) and it wouldn't address ` +
-        `the actual blocker anyway (error 20003 fires at the authentication step, before Twilio ever looks at To/From).`,
+        `real premiere/finale event). <strong>Root cause found and confirmed</strong>: 5 consecutive real <code>test_send</code> runs all failed ` +
+        `identically with <code>Twilio error 20003: Authenticate</code>, despite a safe shape-only diagnostic (length/prefix, never the value ` +
+        `itself) confirming all 4 secrets were exactly correctly formatted (Account SID: 34 chars, <code>AC</code> prefix; Auth Token: 32 chars; ` +
+        `both phone numbers 12-char E.164). Bill then logged into the Twilio console directly and found the real answer: the account itself is ` +
+        `suspended ("We are sorry, your Twilio account is currently suspended... contact our support team to reactivate your account") — nothing ` +
+        `to do with the credential values or this code at all; a suspended account rejects every API authentication attempt regardless of how ` +
+        `correct the SID/Token pair is, which is exactly the failure mode observed. <strong>Next step, Bill's own</strong>: contact Twilio support ` +
+        `to reactivate the account. Once that's done, the existing SID/Token/numbers should work as-is with zero code changes. Separately, Bill ` +
+        `asked to hardcode his phone number into the script instead of the <code>TWILIO_TO_NUMBER</code> secret — deferred ("let's deal with it ` +
+        `later") since this repo is public (the number would sit in plain text in git history essentially permanently) and it wouldn't have ` +
+        `addressed this blocker anyway (error 20003 fires at the authentication step, before Twilio ever looks at To/From).`,
       plain: `Bill wants a text message when a show on his watchlist is about to premiere a new season, is 2 days from its season finale, or just ` +
-        `finished its finale yesterday. The code for this is fully built and tested — it's not what's stopping it. What's stopping it is that ` +
-        `every real attempt to send a text through Twilio gets rejected with an "Authenticate" error, meaning the Account SID and Auth Token ` +
-        `Bill entered don't check out as a valid pair, even though they're the right length and format. Bill needs to test them directly against ` +
-        `Twilio's own website (not through this app) to find out whether it's a typo somewhere in the middle of one of the values, or something ` +
-        `wrong with the Twilio account itself.`,
-      impact: `Bill's own explicit, named priority, and the only thing standing between "built and tested" and "actually texting Bill" is a Twilio ` +
-        `credential mismatch outside this codebase's control. Everything else — the 3 event conditions, the dedup logic, the daily schedule, the ` +
-        `test-send mode — is done and verified.`,
+        `finished its finale yesterday. The code for this is fully built and tested — it was never what was stopping it. What's stopping it, ` +
+        `confirmed directly in the Twilio dashboard, is that Bill's Twilio account itself has been suspended by Twilio — a billing/compliance ` +
+        `hold on their end, unrelated to anything in this app. Every text send fails the same way regardless of how correct the account ID and ` +
+        `password-equivalent are, because a suspended account can't authenticate at all. Bill needs to contact Twilio support to lift the ` +
+        `suspension; nothing else needs to change once that happens.`,
+      impact: `Bill's own explicit, named priority, and the only thing standing between "built and tested" and "actually texting Bill" is a ` +
+        `Twilio account suspension entirely outside this codebase's control. Everything else — the 3 event conditions, the dedup logic, the ` +
+        `daily schedule, the test-send mode — is done, verified, and ready to work the moment the account is reactivated.`,
     });
   }
 
