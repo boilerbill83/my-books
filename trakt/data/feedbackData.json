@@ -912,6 +912,17 @@
       "reasonLabel": "Not real watched-and-disliked Trakt data - part of the Opportunity #1 (library-recency-selection-bias) old-title review batch: Bill rated this exactly 1 on the review spreadsheet's 1-10 scale, which he explicitly clarified means \"I didn't want to see it\" (a declined-interest signal), not a real watch-and-dislike event. Excluded from recommendations so it never resurfaces as a \"new pick\"; kept as an exact-title exclusion only, not generalized into dismissAdjust()'s style-dislike profile without a real eval.js-validated sweep first.",
       "timestamp": "2026-09-11T23:24:40Z",
       "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:1280738",
+      "title": "The Furious",
+      "year": 2026,
+      "type": "movie",
+      "interactionType": "category_exclude",
+      "reasonCode": "co_watch_list",
+      "reasonLabel": "Not a taste dismissal — added to candidatePool.json only to get real TMDB enrichment for the pinned \"Next Up\" card on trakt/watch-together.html (Bill's Shows We Watch Together page); it's non-English (Chinese), which prune_candidate_pool.js/rankAll() treat as a hard exclusion filter everywhere else, and without this entry a routine prune would delete it outright and break the pinned card. Excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for (or getting evicted from) a candidate-pool cap slot on unrelated personal-taste/language signals.",
+      "timestamp": "2026-09-12T00:00:00Z",
+      "excludeFromRecommendations": true
     }
   ]
 }
