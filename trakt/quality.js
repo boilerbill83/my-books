@@ -3500,10 +3500,10 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const withFinale = wlShows.filter(t => enrichedMeta[t.titleKey]?.currentSeasonFinale);
     findings.push({
       id: 'twilio-sms-watchlist-alerts',
-      severity: 'serious', // built and tested; blocked on one external account issue, not "not yet built"
+      severity: 'good', // built, tested, and now confirmed genuinely working end-to-end with a real received text
       ratings: { ease: 5, dataQuality: 8, recEngine: 2, ui: 7 },
       shortTitle: 'Text Alerts for Watchlist Shows',
-      title: `Built (Bill's request): text Bill via Twilio on 3 real watchlist events — season premiere, 2 days before a finale, day after a finale — blocked on a suspended Twilio account`,
+      title: `Resolved (Bill's request): text Bill via Twilio on 3 real watchlist events — season premiere, 2 days before a finale, day after a finale`,
       technical: `Shipped: <code>trakt/notify_watchlist.py</code> (mirrors <code>enrich_omdb.py</code>'s style) reads <code>watchlist.json</code>+` +
         `<code>enrichedMetadata.json</code> (already committed, no new fetch), checks 3 date conditions per show — season premiere ` +
         `(<code>nextEpisodeToAir.episodeNumber === 1</code> whose <code>airDate</code> is today), 2-days-before-finale and day-after-finale ` +
@@ -3513,27 +3513,21 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `lastFinaleFollowupSent}) dedupes so a condition true on one calendar day can't double-send. Live coverage: ${fmtNum(wlShows.length)} ` +
         `shows on the watchlist, ${fmtNum(withNextEp.length)} with a real scheduled next episode, ${fmtNum(withFinale.length)} with a tracked ` +
         `finale date. Daily <code>.github/workflows/trakt-notify-watchlist.yml</code> (11 AM UTC) + <code>workflow_dispatch</code> with a ` +
-        `<code>test_send</code> mode (sends one fixed real text, skipping real event-finding, so the pipeline can be verified on a day with no ` +
-        `real premiere/finale event). <strong>Root cause found and confirmed</strong>: 5 consecutive real <code>test_send</code> runs all failed ` +
+        `<code>test_send</code> mode. <strong>Root cause found and fixed</strong>: 5 consecutive real <code>test_send</code> runs all failed ` +
         `identically with <code>Twilio error 20003: Authenticate</code>, despite a safe shape-only diagnostic (length/prefix, never the value ` +
-        `itself) confirming all 4 secrets were exactly correctly formatted (Account SID: 34 chars, <code>AC</code> prefix; Auth Token: 32 chars; ` +
-        `both phone numbers 12-char E.164). Bill then logged into the Twilio console directly and found the real answer: the account itself is ` +
-        `suspended ("We are sorry, your Twilio account is currently suspended... contact our support team to reactivate your account") — nothing ` +
-        `to do with the credential values or this code at all; a suspended account rejects every API authentication attempt regardless of how ` +
-        `correct the SID/Token pair is, which is exactly the failure mode observed. <strong>Next step, Bill's own</strong>: contact Twilio support ` +
-        `to reactivate the account. Once that's done, the existing SID/Token/numbers should work as-is with zero code changes. Separately, Bill ` +
-        `asked to hardcode his phone number into the script instead of the <code>TWILIO_TO_NUMBER</code> secret — deferred ("let's deal with it ` +
-        `later") since this repo is public (the number would sit in plain text in git history essentially permanently) and it wouldn't have ` +
-        `addressed this blocker anyway (error 20003 fires at the authentication step, before Twilio ever looks at To/From).`,
-      plain: `Bill wants a text message when a show on his watchlist is about to premiere a new season, is 2 days from its season finale, or just ` +
-        `finished its finale yesterday. The code for this is fully built and tested — it was never what was stopping it. What's stopping it, ` +
-        `confirmed directly in the Twilio dashboard, is that Bill's Twilio account itself has been suspended by Twilio — a billing/compliance ` +
-        `hold on their end, unrelated to anything in this app. Every text send fails the same way regardless of how correct the account ID and ` +
-        `password-equivalent are, because a suspended account can't authenticate at all. Bill needs to contact Twilio support to lift the ` +
-        `suspension; nothing else needs to change once that happens.`,
-      impact: `Bill's own explicit, named priority, and the only thing standing between "built and tested" and "actually texting Bill" is a ` +
-        `Twilio account suspension entirely outside this codebase's control. Everything else — the 3 event conditions, the dedup logic, the ` +
-        `daily schedule, the test-send mode — is done, verified, and ready to work the moment the account is reactivated.`,
+        `itself) confirming all 4 secrets were exactly correctly formatted. Bill then found the real cause directly in the Twilio console: the ` +
+        `account was suspended for a $0 balance — nothing to do with the credential values or this code. Bill added funds; ` +
+        `<strong>confirmed genuinely working end-to-end</strong> on the very next real <code>test_send</code> run — Twilio returned a real ` +
+        `message sid (<code>SM5b81ce7fae62b67cc834a950651f01e6</code>) and Bill confirmed receiving the actual text on his phone. The daily ` +
+        `schedule is now live and will text him automatically on real premiere/finale events going forward, no further action needed. ` +
+        `Separately, Bill's ask to hardcode his phone number into the script instead of the <code>TWILIO_TO_NUMBER</code> secret stayed ` +
+        `deferred ("let's deal with it later") since this repo is public and it was never actually the blocker.`,
+      plain: `Bill wanted a text message when a show on his watchlist is about to premiere a new season, is 2 days from its season finale, or just ` +
+        `finished its finale yesterday. It's done and working: after several failed attempts that turned out to be Twilio suspending Bill's ` +
+        `account for a zero balance (not a bug here), he added funds and a real test text landed on his phone. The daily check now runs on its ` +
+        `own every morning — nothing left for Bill to do.`,
+      impact: `Bill's own explicit, named priority — shipped, debugged through to a real external blocker, and confirmed working with an actual ` +
+        `text received on his phone. Closed the loop start to finish in one session.`,
     });
   }
 
