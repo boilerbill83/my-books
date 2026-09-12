@@ -1695,26 +1695,42 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
   {
     findings.push({
       id: 'split-movie-tv-engine-decision',
-      severity: 'serious', // recEngine 5 — severity now tracks the hand-graded ratings below
+      severity: 'warning', // investigated with real evidence; recommendation given, final call still Bill's
       ratings: { ease: 3, dataQuality: 2, recEngine: 5, ui: 1 },
       shortTitle: 'Split Movies & TV Scoring?',
-      title: 'Open question: should movies and TV shows use two separate scoring engines instead of one shared one? (Bill asked, not yet decided)',
-      technical: `<code>matchScore()</code>/<code>baseSignals()</code> in <code>engine.js</code> already branch by <code>type</code> for ` +
-        `several signals (<code>recencyBonusMovie()</code> vs <code>recencyBonusShow()</code>, <code>matchPointScale()</code>'s per-type ` +
-        `pool-size correction, <code>rewatchStrength()</code>'s per-type <code>plays</code> normalization, the pre-2000-movie hard filter ` +
-        `that only applies to movies) — so the codebase already has real precedent for type-specific curves living inside one shared ` +
-        `function rather than two separate files. A genuine full split would mean two independent <code>buildIndexes()</code>/`+
-        `<code>matchScore()</code> pairs, each free to weight signals (director vs. creator, franchise, cast, keyword, subgenre/tone) ` +
-        `completely differently per type, at the cost of duplicating every future engine change across two files instead of one.`,
-      plain: `Right now there's one scoring formula that handles both movies and TV shows, with a handful of places where it treats them ` +
-        `differently (like the strong "avoid old shows" rule). Bill asked whether it would work better to just have two completely separate ` +
-        `formulas instead — one tuned only for movies, one only for TV. That's a real design decision with tradeoffs (more flexibility to ` +
-        `tune each type independently vs. twice the code to maintain and keep in sync), not something to just build without deciding first.`,
-      impact: `A real open question raised this session that was never resolved — worth Bill's explicit call before any future engine work ` +
-        `assumes one architecture or the other. Current signals suggest the shared-function-with-per-type-branches pattern already in use ` +
-        `is working reasonably well (every per-type fix shipped this way so far — recency, pool-size, rewatch — measured cleanly against ` +
-        `<code>scripts/eval.js</code> with no cross-type regressions), so a full split isn't obviously necessary, but it's Bill's product ` +
-        `call to make, not an engineering default.`,
+      title: 'Investigated (Bill asked): should movies and TV shows use two separate scoring engines? Real evidence points against it',
+      technical: `Investigated with live data rather than reasoned about abstractly. Cataloged every existing type-specific branch in ` +
+        `<code>engine.js</code> (<code>recencyBonusMovie()</code> vs <code>recencyBonusShow()</code>, <code>getCreator()</code>'s ` +
+        `director-vs-creator split, <code>matchPointScale()</code>'s per-type pool-size correction, <code>rewatchStrength()</code>'s ` +
+        `per-type <code>plays</code> normalization, the pre-2000-movie hard filter, TV-airing-status penalty, show-popularity signal) ` +
+        `against the ~15 signals that stay fully shared (genre, cast, keyword, subgenre, subject, tone, franchise, forward/reverse ` +
+        `similar-title match, community rating, vote count). Then ran <code>scripts/eval.js</code>'s real <code>byType</code> breakdown: ` +
+        `precision@10 is 100% for BOTH movies and shows — no type is underserved on the metric CLAUDE.md itself prioritizes above all ` +
+        `others. The one real gap found: movie MAE (18.84) is meaningfully worse than show MAE (13.92). Traced it with ` +
+        `<code>scoreBreakdown()</code> on the worst-underrated titles (real 9-10/10 loved movies predicted lowest) rather than guessing: ` +
+        `6 of the 7 worst-underrated titles are OLD movies (Dumb and Dumber '94, Ghostbusters '84, Groundhog Day '93, Wild Wild West ` +
+        `'99, Wedding Crashers '05, How to Lose a Guy in 10 Days '03) getting crushed almost entirely by one signal — ` +
+        `<code>recency: -15</code> on 4 of 5 checked, the single largest negative term in every case. That curve is already ` +
+        `type-specific (Session 52, Bill's own explicit "strongly favor movies from the last 5-10 years" ask) — a full engine split ` +
+        `wouldn't change it at all, since the identical curve would still live in a movie-only engine. Further traced WHY this is ` +
+        `showing up now: 44 of the 48 titles in <code>manualRatings.json</code>'s "old-title-review" backfill batch (added ` +
+        `2026-09-11, one day before this investigation) are movies spanning 1984-2009, 13 of them rated 9-10 — a real, recent data ` +
+        `addition skewed almost entirely toward old movies, not a structural flaw in how movies and shows are scored.`,
+      plain: `Bill asked whether movies and TV shows should get two completely separate scoring formulas instead of one shared one. ` +
+        `Checked it for real rather than guessing: the shared formula already treats movies and shows differently everywhere it ` +
+        `actually matters (recency, director vs. creator credit, how "still airing" works, etc.) — a full split would mean copying ` +
+        `about 15 more rules that already work fine for both into two separate files, doubling the maintenance work for every future ` +
+        `change. The one real difference found — the app currently predicts old, beloved movies a bit less accurately than old, ` +
+        `beloved shows — turned out to be caused by something else entirely: Bill rated a batch of 44 mostly-old favorite movies by ` +
+        `hand just yesterday, and the "favor recent movies" rule (which Bill asked for on purpose) is now pulling their predicted ` +
+        `scores down harder than it does for shows, since that rule doesn't exist on the show side. Splitting the whole engine in two ` +
+        `wouldn't fix that — the same rule would still be there.`,
+      impact: `A real, evidence-backed recommendation against a full split: precision (the metric that matters most) is already perfect ` +
+        `for both types under the current shared architecture, and the one real accuracy gap found traces to a single already-` +
+        `type-specific parameter colliding with a fresh data addition, not a missing architectural boundary. Still Bill's call to make ` +
+        `— but the case for "we need two engines" doesn't hold up against what the data actually shows. A narrower, real follow-up ` +
+        `question this surfaced: should the movie recency penalty apply as strongly to a title Bill has already watched and rated (a ` +
+        `known fact, not a prediction) as it does to an unwatched candidate (where steering toward recent releases is the actual point)?`,
     });
   }
 
