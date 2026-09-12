@@ -3261,8 +3261,8 @@
   "imdbVotes": 415,
   "director": null,
   "rated": null,
-  "fetchedAt": "2026-09-10",
-  "ratedRetriedAt": "2026-09-10"
+  "fetchedAt": "2026-09-12",
+  "directorRetriedAt": "2026-09-12"
  },
  "show:82596": {
   "rottenTomatoes": null,
@@ -14180,7 +14180,10 @@
   },
   "imdbRating": 7.3,
   "imdbVotes": 24032,
-  "fetchedAt": "2026-08-21"
+  "director": "Skye Borgman",
+  "rated": "TV-MA",
+  "fetchedAt": "2026-09-12",
+  "directorRetriedAt": "2026-09-12"
  },
  "movie:1229958": {
   "rottenTomatoes": 92,
@@ -14375,7 +14378,10 @@
   },
   "imdbRating": 7.5,
   "imdbVotes": 401380,
-  "fetchedAt": "2026-08-21"
+  "director": "Martin Scorsese",
+  "rated": "PG-13",
+  "fetchedAt": "2026-09-12",
+  "directorRetriedAt": "2026-09-12"
  },
  "movie:60243": {
   "rottenTomatoes": 99,
