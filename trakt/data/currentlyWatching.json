@@ -18,7 +18,7 @@
     "myRating": 9,
     "ratedAt": "2026-08-14T23:34:58.000Z",
     "plays": 9,
-    "airedEpisodes": 13,
+    "airedEpisodes": 15,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2026-08-01T01:21:00.000Z",
     "favorite": false
@@ -66,7 +66,7 @@
     "myRating": 9,
     "ratedAt": "2026-07-29T00:56:35.000Z",
     "plays": 9,
-    "airedEpisodes": 11,
+    "airedEpisodes": 12,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2024-06-26T03:02:00.000Z",
     "favorite": false
@@ -135,8 +135,8 @@
     },
     "title": "Lioness",
     "year": 2023,
-    "myRating": 7,
-    "ratedAt": "2024-12-15T00:00:00.000Z",
+    "myRating": 10,
+    "ratedAt": "2026-09-11T23:50:02.000Z",
     "plays": 16,
     "airedEpisodes": 22,
     "completionStatus": "in-progress",

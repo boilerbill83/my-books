@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-11T23:52:28Z",
-    "count": 479,
+    "generatedAt": "2026-09-12T00:03:45Z",
+    "count": 457,
     "capPerType": 200
   },
   "titles": [
@@ -217,16 +217,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:340613",
-      "ids": {
-        "tmdb": 340613
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:402897",
       "ids": {
         "tmdb": 402897
@@ -387,16 +377,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:2295",
-      "ids": {
-        "tmdb": 2295
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 5
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:405775",
       "ids": {
         "tmdb": 405775
@@ -440,16 +420,6 @@
       "titleKey": "movie:383585",
       "ids": {
         "tmdb": 383585
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:87492",
-      "ids": {
-        "tmdb": 87492
       },
       "title": null,
       "year": null,
@@ -727,29 +697,9 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:612",
-      "ids": {
-        "tmdb": 612
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:1263012",
       "ids": {
         "tmdb": 1263012
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:936075",
-      "ids": {
-        "tmdb": 936075
       },
       "title": null,
       "year": null,
@@ -1307,16 +1257,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:25",
-      "ids": {
-        "tmdb": 25
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:7485",
       "ids": {
         "tmdb": 7485
@@ -1657,16 +1597,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:786",
-      "ids": {
-        "tmdb": 786
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:350",
       "ids": {
         "tmdb": 350
@@ -1848,28 +1778,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:155",
-      "ids": {
-        "tmdb": 155
-      },
-      "title": "The Dark Knight",
-      "year": 2008,
-      "source": "genre-explore",
-      "discoveredVia": "Thriller"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:157336",
-      "ids": {
-        "tmdb": 157336
-      },
-      "title": "Interstellar",
-      "year": 2014,
-      "source": "genre-explore",
-      "discoveredVia": "Drama"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:122",
       "ids": {
         "tmdb": 122
@@ -1900,17 +1808,6 @@
       "year": 2020,
       "source": "genre-explore",
       "discoveredVia": "Drama"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:16869",
-      "ids": {
-        "tmdb": 16869
-      },
-      "title": "Inglourious Basterds",
-      "year": 2009,
-      "source": "genre-explore",
-      "discoveredVia": "Thriller"
     },
     {
       "type": "show",
@@ -2035,17 +1932,6 @@
       "title": null,
       "year": null,
       "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:77",
-      "ids": {
-        "tmdb": 77
-      },
-      "title": "Memento",
-      "year": 2000,
-      "source": "genre-explore",
-      "discoveredVia": "Thriller"
     },
     {
       "type": "movie",
@@ -2176,17 +2062,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:687163",
-      "ids": {
-        "tmdb": 687163
-      },
-      "title": "Project Hail Mary",
-      "year": 2026,
-      "source": "genre-explore",
-      "discoveredVia": "Science Fiction"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:1317149",
       "ids": {
         "tmdb": 1317149
@@ -2261,17 +2136,6 @@
       "year": 2019,
       "source": "genre-explore",
       "discoveredVia": "History"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:120467",
-      "ids": {
-        "tmdb": 120467
-      },
-      "title": "The Grand Budapest Hotel",
-      "year": 2014,
-      "source": "genre-explore",
-      "discoveredVia": "Comedy"
     },
     {
       "type": "movie",
@@ -2493,17 +2357,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:68718",
-      "ids": {
-        "tmdb": 68718
-      },
-      "title": "Django Unchained",
-      "year": 2012,
-      "source": "genre-explore",
-      "discoveredVia": "Western"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:537996",
       "ids": {
         "tmdb": 537996
@@ -2566,26 +2419,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:399057",
-      "ids": {
-        "tmdb": 399057
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:292011",
-      "ids": {
-        "tmdb": 292011
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:443463",
       "ids": {
         "tmdb": 443463
@@ -2609,16 +2442,6 @@
       "titleKey": "movie:454652",
       "ids": {
         "tmdb": 454652
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:400617",
-      "ids": {
-        "tmdb": 400617
       },
       "title": null,
       "year": null,
@@ -2896,17 +2719,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:1368337",
-      "ids": {
-        "tmdb": 1368337
-      },
-      "title": "The Odyssey",
-      "year": 2026,
-      "source": "genre-explore",
-      "discoveredVia": "Action"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:776503",
       "ids": {
         "tmdb": 776503
@@ -2959,17 +2771,6 @@
       "year": 2003,
       "source": "genre-explore",
       "discoveredVia": "Crime"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:7345",
-      "ids": {
-        "tmdb": 7345
-      },
-      "title": "There Will Be Blood",
-      "year": 2007,
-      "source": "genre-explore",
-      "discoveredVia": "Drama"
     },
     {
       "type": "movie",
@@ -3204,17 +3005,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:13223",
-      "ids": {
-        "tmdb": 13223
-      },
-      "title": "Gran Torino",
-      "year": 2008,
-      "source": "genre-explore",
-      "discoveredVia": "Drama"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:522627",
       "ids": {
         "tmdb": 522627
@@ -3420,17 +3210,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:4982",
-      "ids": {
-        "tmdb": 4982
-      },
-      "title": "American Gangster",
-      "year": 2007,
-      "source": "genre-explore",
-      "discoveredVia": "Crime"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:242575",
       "ids": {
         "tmdb": 242575
@@ -3599,16 +3378,6 @@
       "titleKey": "movie:1011477",
       "ids": {
         "tmdb": 1011477
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 5
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:4771",
-      "ids": {
-        "tmdb": 4771
       },
       "title": null,
       "year": null,

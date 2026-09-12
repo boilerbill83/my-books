@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-09-10T12:45:23.920Z",
-    "movieCount": 212,
-    "showCount": 392
+    "generatedAt": "2026-09-12T00:02:53.064Z",
+    "movieCount": 252,
+    "showCount": 393
   },
   "titles": [
     {
@@ -177,12 +177,33 @@
       },
       "title": "1923",
       "year": 2022,
-      "myRating": 8,
-      "ratedAt": "2025-04-06T00:00:00.000Z",
+      "myRating": 10,
+      "ratedAt": "2026-09-11T23:50:32.000Z",
       "plays": 15,
       "airedEpisodes": 15,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:170",
+      "ids": {
+        "imdb": "tt0289043",
+        "plex": {
+          "guid": "5d776824f54112001f5bbdd7",
+          "slug": "28-days-later"
+        },
+        "slug": "28-days-later-2002",
+        "tmdb": 170,
+        "trakt": 135
+      },
+      "title": "28 Days Later",
+      "year": 2002,
+      "myRating": 9,
+      "ratedAt": "2026-09-11T23:43:16.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2002-11-01T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -273,6 +294,27 @@
       "ratedAt": "2026-08-21T15:21:39.000Z",
       "plays": 1,
       "lastWatchedAt": "2007-03-07T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:40807",
+      "ids": {
+        "imdb": "tt1306980",
+        "plex": {
+          "guid": "5d7768743ab0e7001f501974",
+          "slug": "50-50-2011-1"
+        },
+        "slug": "50-50-2011",
+        "tmdb": 40807,
+        "trakt": 26878
+      },
+      "title": "50/50",
+      "year": 2011,
+      "myRating": 8,
+      "ratedAt": "2026-09-11T23:43:33.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2011-09-30T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -501,7 +543,7 @@
       "myRating": 9,
       "ratedAt": "2026-08-14T23:34:58.000Z",
       "plays": 9,
-      "airedEpisodes": 13,
+      "airedEpisodes": 15,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2026-08-01T01:21:00.000Z",
       "favorite": false
@@ -649,6 +691,27 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:786",
+      "ids": {
+        "imdb": "tt0181875",
+        "plex": {
+          "guid": "5d776828e6d55c002040b279",
+          "slug": "almost-famous"
+        },
+        "slug": "almost-famous-2000",
+        "tmdb": 786,
+        "trakt": 629
+      },
+      "title": "Almost Famous",
+      "year": 2000,
+      "myRating": 8,
+      "ratedAt": "2026-09-11T23:42:59.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2000-09-15T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:513576",
       "ids": {
         "imdb": "tt7374948",
@@ -711,6 +774,27 @@
       "ratedAt": "2023-12-15T00:00:00.000Z",
       "plays": 1,
       "lastWatchedAt": "2023-12-15T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:4982",
+      "ids": {
+        "imdb": "tt0765429",
+        "plex": {
+          "guid": "5d77682eeb5d26001f1df4c9",
+          "slug": "american-gangster"
+        },
+        "slug": "american-gangster-2007",
+        "tmdb": 4982,
+        "trakt": 2913
+      },
+      "title": "American Gangster",
+      "year": 2007,
+      "myRating": 8,
+      "ratedAt": "2026-09-11T23:33:43.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2007-11-02T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -1738,6 +1822,27 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:44214",
+      "ids": {
+        "imdb": "tt0947798",
+        "plex": {
+          "guid": "5d77687d33f255001e857fdb",
+          "slug": "black-swan"
+        },
+        "slug": "black-swan-2010",
+        "tmdb": 44214,
+        "trakt": 29936
+      },
+      "title": "Black Swan",
+      "year": 2010,
+      "myRating": 10,
+      "ratedAt": "2026-09-11T23:43:10.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2010-12-03T00:00:00.000Z",
+      "favorite": true
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:487558",
       "ids": {
         "imdb": "tt7349662",
@@ -1800,6 +1905,27 @@
       "airedEpisodes": 33,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:160588",
+      "ids": {
+        "imdb": "tt2334873",
+        "plex": {
+          "guid": "5d7769d596b655001fddae2c",
+          "slug": "blue-jasmine"
+        },
+        "slug": "blue-jasmine-2013",
+        "tmdb": 160588,
+        "trakt": 103812
+      },
+      "title": "Blue Jasmine",
+      "year": 2013,
+      "myRating": 6,
+      "ratedAt": "2026-09-11T23:42:46.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2013-08-23T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -2328,6 +2454,69 @@
       "favorite": false
     },
     {
+      "type": "movie",
+      "titleKey": "movie:2292",
+      "ids": {
+        "imdb": "tt0109445",
+        "plex": {
+          "guid": "5d77682ba091de001f2e6c94",
+          "slug": "clerks"
+        },
+        "slug": "clerks-1994",
+        "tmdb": 2292,
+        "trakt": 1613
+      },
+      "title": "Clerks",
+      "year": 1994,
+      "myRating": 8,
+      "ratedAt": "2026-09-11T12:20:07.000Z",
+      "plays": 1,
+      "lastWatchedAt": "1994-10-19T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:2295",
+      "ids": {
+        "imdb": "tt0424345",
+        "plex": {
+          "guid": "5d9f34ee6fc551001ef7f1a8",
+          "slug": "clerks-ii"
+        },
+        "slug": "clerks-ii-2006",
+        "tmdb": 2295,
+        "trakt": 1616
+      },
+      "title": "Clerks II",
+      "year": 2006,
+      "myRating": 10,
+      "ratedAt": "2026-09-11T12:19:57.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2006-07-21T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:635891",
+      "ids": {
+        "imdb": "tt11128440",
+        "plex": {
+          "guid": "5e163371ef1040003f249045",
+          "slug": "clerks-iii"
+        },
+        "slug": "clerks-iii-2022",
+        "tmdb": 635891,
+        "trakt": 475091
+      },
+      "title": "Clerks III",
+      "year": 2022,
+      "myRating": 6,
+      "ratedAt": "2026-09-11T12:20:31.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2022-09-04T00:00:00.000Z",
+      "favorite": false
+    },
+    {
       "type": "show",
       "titleKey": "show:129495",
       "ids": {
@@ -2580,7 +2769,7 @@
       "type": "show",
       "titleKey": "show:113988",
       "ids": {
-        "imdb": "tt13207736",
+        "imdb": null,
         "plex": {
           "guid": "606ef58bff5b43002ce0589a",
           "slug": "monster-2022"
@@ -2691,7 +2880,7 @@
       "myRating": 9,
       "ratedAt": "2026-07-29T00:56:35.000Z",
       "plays": 9,
-      "airedEpisodes": 11,
+      "airedEpisodes": 12,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2024-06-26T03:02:00.000Z",
       "favorite": false
@@ -3087,6 +3276,27 @@
       "airedEpisodes": 7,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:68718",
+      "ids": {
+        "imdb": "tt1853728",
+        "plex": {
+          "guid": "5d7768adebdf2200209c5d46",
+          "slug": "django-unchained"
+        },
+        "slug": "django-unchained-2012",
+        "tmdb": 68718,
+        "trakt": 50131
+      },
+      "title": "Django Unchained",
+      "year": 2012,
+      "myRating": 7,
+      "ratedAt": "2026-09-11T23:44:06.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2012-12-25T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -3892,6 +4102,27 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:87492",
+      "ids": {
+        "imdb": "tt1100089",
+        "plex": {
+          "guid": "5d7768e2ad5437001f751cf8",
+          "slug": "foxcatcher"
+        },
+        "slug": "foxcatcher-2014",
+        "tmdb": 87492,
+        "trakt": 65748
+      },
+      "title": "Foxcatcher",
+      "year": 2014,
+      "myRating": 7,
+      "ratedAt": "2026-09-11T12:20:53.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2014-11-14T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:121986",
       "ids": {
         "imdb": "tt2347569",
@@ -4051,6 +4282,48 @@
       "completionStatus": "caught-up",
       "lastWatchedAt": "2019-05-20T02:20:00.000Z",
       "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:3131",
+      "ids": {
+        "imdb": "tt0217505",
+        "plex": {
+          "guid": "5d77682c999c64001ec2d8f7",
+          "slug": "gangs-of-new-york"
+        },
+        "slug": "gangs-of-new-york-2002",
+        "tmdb": 3131,
+        "trakt": 2100
+      },
+      "title": "Gangs of New York",
+      "year": 2002,
+      "myRating": 6,
+      "ratedAt": "2026-09-11T23:45:28.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2002-12-19T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:401",
+      "ids": {
+        "imdb": "tt0333766",
+        "plex": {
+          "guid": "5d7768266f4521001ea98bda",
+          "slug": "garden-state"
+        },
+        "slug": "garden-state-2004",
+        "tmdb": 401,
+        "trakt": 319
+      },
+      "title": "Garden State",
+      "year": 2004,
+      "myRating": 10,
+      "ratedAt": "2026-09-11T23:43:54.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2004-07-28T00:00:00.000Z",
+      "favorite": true
     },
     {
       "type": "show",
@@ -4375,6 +4648,27 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:4771",
+      "ids": {
+        "imdb": "tt0452623",
+        "plex": {
+          "guid": "5d77682e3c3c2a001fbcc9df",
+          "slug": "gone-baby-gone"
+        },
+        "slug": "gone-baby-gone-2007",
+        "tmdb": 4771,
+        "trakt": 2786
+      },
+      "title": "Gone Baby Gone",
+      "year": 2007,
+      "myRating": 9,
+      "ratedAt": "2026-09-11T23:33:51.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2007-10-19T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:210577",
       "ids": {
         "imdb": "tt2267998",
@@ -4420,6 +4714,27 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:13223",
+      "ids": {
+        "imdb": "tt1205489",
+        "plex": {
+          "guid": "5d77683a999c64001ec30324",
+          "slug": "gran-torino"
+        },
+        "slug": "gran-torino-2008",
+        "tmdb": 13223,
+        "trakt": 7759
+      },
+      "title": "Gran Torino",
+      "year": 2008,
+      "myRating": 7,
+      "ratedAt": "2026-09-11T23:45:34.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2008-12-12T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:980489",
       "ids": {
         "imdb": "tt4495098",
@@ -4437,6 +4752,27 @@
       "ratedAt": "2026-08-21T14:28:49.000Z",
       "plays": 1,
       "lastWatchedAt": "2023-08-11T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:49047",
+      "ids": {
+        "imdb": "tt1454468",
+        "plex": {
+          "guid": "5d77688833f255001e858e7b",
+          "slug": "gravity-2013"
+        },
+        "slug": "gravity-2013",
+        "tmdb": 49047,
+        "trakt": 34093
+      },
+      "title": "Gravity",
+      "year": 2013,
+      "myRating": 8,
+      "ratedAt": "2026-09-11T23:42:53.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2013-10-04T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -4905,6 +5241,27 @@
       "favorite": false
     },
     {
+      "type": "movie",
+      "titleKey": "movie:6479",
+      "ids": {
+        "imdb": "tt0480249",
+        "plex": {
+          "guid": "5d7768302ec6b5001f6bb366",
+          "slug": "i-am-legend"
+        },
+        "slug": "i-am-legend-2007",
+        "tmdb": 6479,
+        "trakt": 3642
+      },
+      "title": "I Am Legend",
+      "year": 2007,
+      "myRating": 7,
+      "ratedAt": "2026-09-11T23:46:39.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2007-12-14T00:00:00.000Z",
+      "favorite": false
+    },
+    {
       "type": "show",
       "titleKey": "show:271053",
       "ids": {
@@ -5067,6 +5424,48 @@
       "airedEpisodes": 32,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:16869",
+      "ids": {
+        "imdb": "tt0361748",
+        "plex": {
+          "guid": "5d77683f880197001ec9598e",
+          "slug": "inglourious-basterds"
+        },
+        "slug": "inglourious-basterds-2009",
+        "tmdb": 16869,
+        "trakt": 10322
+      },
+      "title": "Inglourious Basterds",
+      "year": 2009,
+      "myRating": 9,
+      "ratedAt": "2026-09-11T23:35:37.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2009-08-21T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:157336",
+      "ids": {
+        "imdb": "tt0816692",
+        "plex": {
+          "guid": "5d7769cefb0d55001f530acd",
+          "slug": "interstellar"
+        },
+        "slug": "interstellar-2014",
+        "tmdb": 157336,
+        "trakt": 102156
+      },
+      "title": "Interstellar",
+      "year": 2014,
+      "myRating": 10,
+      "ratedAt": "2026-09-11T12:21:00.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2014-11-05T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -5253,6 +5652,27 @@
       "favorite": false
     },
     {
+      "type": "movie",
+      "titleKey": "movie:25",
+      "ids": {
+        "imdb": "tt0418763",
+        "plex": {
+          "guid": "5d7768242ec6b5001f6ba129",
+          "slug": "jarhead"
+        },
+        "slug": "jarhead-2005",
+        "tmdb": 25,
+        "trakt": 20
+      },
+      "title": "Jarhead",
+      "year": 2005,
+      "myRating": 7,
+      "ratedAt": "2026-09-11T23:43:05.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2005-11-04T00:00:00.000Z",
+      "favorite": false
+    },
+    {
       "type": "show",
       "titleKey": "show:122235",
       "ids": {
@@ -5401,6 +5821,27 @@
       "plays": 1,
       "lastWatchedAt": "2015-12-25T00:00:00.000Z",
       "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:7326",
+      "ids": {
+        "imdb": "tt0467406",
+        "plex": {
+          "guid": "5d77683161141d001fb14b26",
+          "slug": "juno"
+        },
+        "slug": "juno-2007",
+        "tmdb": 7326,
+        "trakt": 3887
+      },
+      "title": "Juno",
+      "year": 2007,
+      "myRating": 10,
+      "ratedAt": "2026-09-11T23:43:43.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2007-12-05T00:00:00.000Z",
+      "favorite": true
     },
     {
       "type": "movie",
@@ -5820,8 +6261,8 @@
       },
       "title": "Lioness",
       "year": 2023,
-      "myRating": 7,
-      "ratedAt": "2024-12-15T00:00:00.000Z",
+      "myRating": 10,
+      "ratedAt": "2026-09-11T23:50:02.000Z",
       "plays": 16,
       "airedEpisodes": 22,
       "completionStatus": "in-progress",
@@ -6625,6 +7066,27 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:77",
+      "ids": {
+        "imdb": "tt0209144",
+        "plex": {
+          "guid": "5d776d1796b655001fe3f324",
+          "slug": "memento-2000"
+        },
+        "slug": "memento-2000",
+        "tmdb": 77,
+        "trakt": 47
+      },
+      "title": "Memento",
+      "year": 2000,
+      "myRating": 10,
+      "ratedAt": "2026-09-10T14:56:41.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2001-03-16T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:780609",
       "ids": {
         "imdb": "tt13841850",
@@ -6642,6 +7104,27 @@
       "ratedAt": "2026-08-31T20:41:31.000Z",
       "plays": 1,
       "lastWatchedAt": "2026-08-31T20:41:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:936075",
+      "ids": {
+        "imdb": "tt11378946",
+        "plex": {
+          "guid": "5e165a6310faa5004010238c",
+          "slug": "michael-2025"
+        },
+        "slug": "michael-2026",
+        "tmdb": 936075,
+        "trakt": 751145
+      },
+      "title": "Michael",
+      "year": 2026,
+      "myRating": 2,
+      "ratedAt": "2026-09-11T23:44:02.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2026-04-24T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -6984,6 +7467,27 @@
       "airedEpisodes": 8,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:612",
+      "ids": {
+        "imdb": "tt0408306",
+        "plex": {
+          "guid": "5d776827999c64001ec2c7f7",
+          "slug": "munich"
+        },
+        "slug": "munich-2005",
+        "tmdb": 612,
+        "trakt": 488
+      },
+      "title": "Munich",
+      "year": 2005,
+      "myRating": 8,
+      "ratedAt": "2026-09-11T23:35:27.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2005-12-23T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -7741,6 +8245,27 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:400617",
+      "ids": {
+        "imdb": "tt5776858",
+        "plex": {
+          "guid": "5d9f3d00dfd12800208aa2b9",
+          "slug": "phantom-thread"
+        },
+        "slug": "phantom-thread-2017",
+        "tmdb": 400617,
+        "trakt": 244389
+      },
+      "title": "Phantom Thread",
+      "year": 2017,
+      "myRating": 8,
+      "ratedAt": "2026-09-11T12:20:47.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2017-12-25T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:114150",
       "ids": {
         "imdb": "tt1981677",
@@ -7911,8 +8436,8 @@
       },
       "title": "Presumed Innocent",
       "year": 2024,
-      "myRating": 7,
-      "ratedAt": "2024-07-24T00:00:00.000Z",
+      "myRating": 9,
+      "ratedAt": "2026-09-11T23:50:17.000Z",
       "plays": 8,
       "airedEpisodes": 8,
       "completionStatus": "caught-up",
@@ -7966,6 +8491,27 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:687163",
+      "ids": {
+        "imdb": "tt12042730",
+        "plex": {
+          "guid": "5e91843e9bec79003fe50ffb",
+          "slug": "project-hail-mary"
+        },
+        "slug": "project-hail-mary-2026",
+        "tmdb": 687163,
+        "trakt": 531178
+      },
+      "title": "Project Hail Mary",
+      "year": 2026,
+      "myRating": 10,
+      "ratedAt": "2026-09-11T23:33:59.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2026-03-20T00:00:00.000Z",
+      "favorite": true
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:582014",
       "ids": {
         "imdb": "tt9620292",
@@ -7983,6 +8529,27 @@
       "ratedAt": "2020-12-25T00:00:00.000Z",
       "plays": 1,
       "lastWatchedAt": "2020-12-25T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:8051",
+      "ids": {
+        "imdb": "tt0272338",
+        "plex": {
+          "guid": "5d9f34f506d220001feb35f8",
+          "slug": "punch-drunk-love"
+        },
+        "slug": "punch-drunk-love-2002",
+        "tmdb": 8051,
+        "trakt": 4018
+      },
+      "title": "Punch-Drunk Love",
+      "year": 2002,
+      "myRating": 7,
+      "ratedAt": "2026-09-11T23:45:44.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2002-10-11T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -8031,6 +8598,27 @@
       "airedEpisodes": 18,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2025-04-17T08:53:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1677",
+      "ids": {
+        "imdb": "tt0350258",
+        "plex": {
+          "guid": "5d776d17f617c90020185ee2",
+          "slug": "ray"
+        },
+        "slug": "ray-2004",
+        "tmdb": 1677,
+        "trakt": 1117
+      },
+      "title": "Ray",
+      "year": 2004,
+      "myRating": 8,
+      "ratedAt": "2026-09-11T23:43:50.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2004-10-29T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -8208,6 +8796,27 @@
       "ratedAt": "2026-08-21T15:21:32.000Z",
       "plays": 1,
       "lastWatchedAt": "2008-12-19T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:292011",
+      "ids": {
+        "imdb": "tt3513548",
+        "plex": {
+          "guid": "5d776b20594b2b001e6d0220",
+          "slug": "richard-jewell"
+        },
+        "slug": "richard-jewell-2019",
+        "tmdb": 292011,
+        "trakt": 188825
+      },
+      "title": "Richard Jewell",
+      "year": 2019,
+      "myRating": 8,
+      "ratedAt": "2026-09-11T12:18:48.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2019-12-13T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -8829,6 +9438,27 @@
       "ratedAt": "2018-06-29T00:00:00.000Z",
       "plays": 1,
       "lastWatchedAt": "2018-06-29T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:9675",
+      "ids": {
+        "imdb": "tt0375063",
+        "plex": {
+          "guid": "5d77683354c0f0001f303365",
+          "slug": "sideways"
+        },
+        "slug": "sideways-2004",
+        "tmdb": 9675,
+        "trakt": 4947
+      },
+      "title": "Sideways",
+      "year": 2004,
+      "myRating": 9,
+      "ratedAt": "2026-09-11T23:43:20.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2004-10-22T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -9661,6 +10291,48 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:4512",
+      "ids": {
+        "imdb": "tt0443680",
+        "plex": {
+          "guid": "5d77682e5af944001f1f851b",
+          "slug": "the-assassination-of-jesse-james-by-the-coward-robert-ford"
+        },
+        "slug": "the-assassination-of-jesse-james-by-the-coward-robert-ford-2007",
+        "tmdb": 4512,
+        "trakt": 2647
+      },
+      "title": "The Assassination of Jesse James by the Coward Robert Ford",
+      "year": 2007,
+      "myRating": 6,
+      "ratedAt": "2026-09-11T23:43:39.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2007-09-21T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:2567",
+      "ids": {
+        "imdb": "tt0338751",
+        "plex": {
+          "guid": "5d77682b85719b001f3a1a7c",
+          "slug": "the-aviator"
+        },
+        "slug": "the-aviator-2004",
+        "tmdb": 2567,
+        "trakt": 1752
+      },
+      "title": "The Aviator",
+      "year": 2004,
+      "myRating": 9,
+      "ratedAt": "2026-09-11T23:45:23.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2004-12-17T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:414906",
       "ids": {
         "imdb": "tt1877830",
@@ -10023,6 +10695,27 @@
       "airedEpisodes": 10,
       "completionStatus": "caught-up",
       "lastWatchedAt": "2024-01-15T04:09:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:155",
+      "ids": {
+        "imdb": "tt0468569",
+        "plex": {
+          "guid": "5d7768247e9a3c0020c6a8f3",
+          "slug": "the-dark-knight"
+        },
+        "slug": "the-dark-knight-2008",
+        "tmdb": 155,
+        "trakt": 120
+      },
+      "title": "The Dark Knight",
+      "year": 2008,
+      "myRating": 4,
+      "ratedAt": "2026-09-11T12:18:20.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2008-07-18T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -10560,6 +11253,27 @@
       "favorite": true
     },
     {
+      "type": "movie",
+      "titleKey": "movie:120467",
+      "ids": {
+        "imdb": "tt2278388",
+        "plex": {
+          "guid": "5d776974f617c9002015fda3",
+          "slug": "the-grand-budapest-hotel"
+        },
+        "slug": "the-grand-budapest-hotel-2014",
+        "tmdb": 120467,
+        "trakt": 83614
+      },
+      "title": "The Grand Budapest Hotel",
+      "year": 2014,
+      "myRating": 4,
+      "ratedAt": "2026-09-11T12:18:29.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2014-03-07T00:00:00.000Z",
+      "favorite": false
+    },
+    {
       "type": "show",
       "titleKey": "show:93812",
       "ids": {
@@ -10938,6 +11652,27 @@
       "airedEpisodes": 44,
       "completionStatus": "caught-up",
       "lastWatchedAt": "2014-08-02T02:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:399057",
+      "ids": {
+        "imdb": "tt5715874",
+        "plex": {
+          "guid": "5d776c43f617c9002017f842",
+          "slug": "the-killing-of-a-sacred-deer"
+        },
+        "slug": "the-killing-of-a-sacred-deer-2017",
+        "tmdb": 399057,
+        "trakt": 242259
+      },
+      "title": "The Killing of a Sacred Deer",
+      "year": 2017,
+      "myRating": 6,
+      "ratedAt": "2026-09-10T14:57:15.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2017-11-03T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -11448,6 +12183,27 @@
       "airedEpisodes": 8,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1368337",
+      "ids": {
+        "imdb": "tt33764258",
+        "plex": {
+          "guid": "670cb74204e43056959bd4b3",
+          "slug": "the-odyssey-2026"
+        },
+        "slug": "the-odyssey-2026",
+        "tmdb": 1368337,
+        "trakt": 1117351
+      },
+      "title": "The Odyssey",
+      "year": 2026,
+      "myRating": 8,
+      "ratedAt": "2026-09-10T14:56:57.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2026-07-17T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -12291,6 +13047,27 @@
       "favorite": false
     },
     {
+      "type": "movie",
+      "titleKey": "movie:147773",
+      "ids": {
+        "imdb": "tt1727388",
+        "plex": {
+          "guid": "5d7769b996b655001fdd7b10",
+          "slug": "the-way-way-back"
+        },
+        "slug": "the-way-way-back-2013",
+        "tmdb": 147773,
+        "trakt": 97617
+      },
+      "title": "The Way Way Back",
+      "year": 2013,
+      "myRating": 8,
+      "ratedAt": "2026-09-11T23:43:26.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2013-07-05T00:00:00.000Z",
+      "favorite": false
+    },
+    {
       "type": "show",
       "titleKey": "show:688",
       "ids": {
@@ -12360,6 +13137,27 @@
       "airedEpisodes": 21,
       "completionStatus": "caught-up",
       "lastWatchedAt": "2025-04-07T02:27:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:340613",
+      "ids": {
+        "imdb": "tt3750872",
+        "plex": {
+          "guid": "5d776ba37a53e9001e72ba21",
+          "slug": "the-wife"
+        },
+        "slug": "the-wife-2017",
+        "tmdb": 340613,
+        "trakt": 221047
+      },
+      "title": "The Wife",
+      "year": 2017,
+      "myRating": 8,
+      "ratedAt": "2026-09-10T14:34:37.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2026-09-10T14:34:00.000Z",
       "favorite": false
     },
     {
@@ -12520,6 +13318,27 @@
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:7345",
+      "ids": {
+        "imdb": "tt0469494",
+        "plex": {
+          "guid": "5d77683161141d001fb14b29",
+          "slug": "there-will-be-blood"
+        },
+        "slug": "there-will-be-blood-2007",
+        "tmdb": 7345,
+        "trakt": 3894
+      },
+      "title": "There Will Be Blood",
+      "year": 2007,
+      "myRating": 10,
+      "ratedAt": "2026-09-11T23:35:52.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2007-12-26T00:00:00.000Z",
+      "favorite": true
     },
     {
       "type": "show",
@@ -12960,6 +13779,30 @@
       "airedEpisodes": 16,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:248852",
+      "ids": {
+        "imdb": "tt31710822",
+        "plex": {
+          "guid": "65f136abc4656c4712b545a4",
+          "slug": "untamed"
+        },
+        "slug": "untamed",
+        "tmdb": 248852,
+        "tvdb": 447456,
+        "trakt": 230614
+      },
+      "title": "UNTAMED",
+      "year": 2025,
+      "myRating": 8,
+      "ratedAt": "2026-09-11T23:29:20.000Z",
+      "plays": 6,
+      "airedEpisodes": 6,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2025-07-17T07:52:00.000Z",
       "favorite": false
     },
     {
@@ -13626,6 +14469,27 @@
       "airedEpisodes": 8,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:72190",
+      "ids": {
+        "imdb": "tt0816711",
+        "plex": {
+          "guid": "5d7768b31999bc0020dce522",
+          "slug": "world-war-z"
+        },
+        "slug": "world-war-z-2013",
+        "tmdb": 72190,
+        "trakt": 53002
+      },
+      "title": "World War Z",
+      "year": 2013,
+      "myRating": 8,
+      "ratedAt": "2026-09-11T23:46:32.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2013-06-21T00:00:00.000Z",
       "favorite": false
     },
     {

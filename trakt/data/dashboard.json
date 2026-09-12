@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-09-10T12:45:18.171Z",
+  "generatedAt": "2026-09-12T00:02:45.976Z",
   "profile": {
     "username": "bill_stoltenberg_27166c",
     "joinedAt": "2026-07-27T14:49:58.000Z"
   },
   "summary": {
-    "moviesWatched": 212,
+    "moviesWatched": 252,
     "moviesPlays": null,
-    "moviesRatings": 211,
+    "moviesRatings": 251,
     "moviesMinutes": null,
-    "showsWatched": 392,
-    "showsRatings": 399,
+    "showsWatched": 393,
+    "showsRatings": 400,
     "episodesWatched": null,
     "episodesPlays": null,
     "episodesMinutes": null,
-    "totalRatings": 610,
+    "totalRatings": 651,
     "totalMinutes": 0,
     "totalHours": 0,
     "avgRating": null
@@ -34,7 +34,7 @@
   "activityByYear": [
     {
       "year": 1994,
-      "movies": 1,
+      "movies": 2,
       "episodes": 0
     },
     {
@@ -59,17 +59,17 @@
     },
     {
       "year": 2000,
-      "movies": 1,
+      "movies": 2,
       "episodes": 43
     },
     {
       "year": 2001,
-      "movies": 1,
+      "movies": 2,
       "episodes": 48
     },
     {
       "year": 2002,
-      "movies": 0,
+      "movies": 3,
       "episodes": 50
     },
     {
@@ -79,57 +79,57 @@
     },
     {
       "year": 2004,
-      "movies": 4,
+      "movies": 8,
       "episodes": 74
     },
     {
       "year": 2005,
-      "movies": 4,
+      "movies": 6,
       "episodes": 92
     },
     {
       "year": 2006,
-      "movies": 4,
+      "movies": 5,
       "episodes": 106
     },
     {
       "year": 2007,
-      "movies": 3,
+      "movies": 9,
       "episodes": 123
     },
     {
       "year": 2008,
-      "movies": 1,
+      "movies": 3,
       "episodes": 107
     },
     {
       "year": 2009,
-      "movies": 3,
+      "movies": 4,
       "episodes": 131
     },
     {
       "year": 2010,
-      "movies": 4,
+      "movies": 5,
       "episodes": 138
     },
     {
       "year": 2011,
-      "movies": 5,
+      "movies": 6,
       "episodes": 176
     },
     {
       "year": 2012,
-      "movies": 5,
+      "movies": 6,
       "episodes": 207
     },
     {
       "year": 2013,
-      "movies": 11,
+      "movies": 15,
       "episodes": 199
     },
     {
       "year": 2014,
-      "movies": 6,
+      "movies": 9,
       "episodes": 206
     },
     {
@@ -144,7 +144,7 @@
     },
     {
       "year": 2017,
-      "movies": 16,
+      "movies": 18,
       "episodes": 237
     },
     {
@@ -154,7 +154,7 @@
     },
     {
       "year": 2019,
-      "movies": 17,
+      "movies": 18,
       "episodes": 251
     },
     {
@@ -169,7 +169,7 @@
     },
     {
       "year": 2022,
-      "movies": 12,
+      "movies": 13,
       "episodes": 200
     },
     {
@@ -185,18 +185,18 @@
     {
       "year": 2025,
       "movies": 13,
-      "episodes": 261
+      "episodes": 267
     },
     {
       "year": 2026,
-      "movies": 9,
+      "movies": 13,
       "episodes": 152
     }
   ],
   "dataCaveats": {
     "undatedEpisodePlays": 7523,
-    "datedEpisodePlays": 3969,
-    "undatedEpisodeSharePct": 65.5
+    "datedEpisodePlays": 3975,
+    "undatedEpisodeSharePct": 65.4
   },
   "topShowsByPlays": [
     {
@@ -292,6 +292,54 @@
   ],
   "topRatedMovies": [
     {
+      "title": "Garden State",
+      "year": 2004,
+      "rating": 10,
+      "ratedAt": "2026-09-11T23:43:54.000Z"
+    },
+    {
+      "title": "Juno",
+      "year": 2007,
+      "rating": 10,
+      "ratedAt": "2026-09-11T23:43:43.000Z"
+    },
+    {
+      "title": "Black Swan",
+      "year": 2010,
+      "rating": 10,
+      "ratedAt": "2026-09-11T23:43:10.000Z"
+    },
+    {
+      "title": "There Will Be Blood",
+      "year": 2007,
+      "rating": 10,
+      "ratedAt": "2026-09-11T23:35:52.000Z"
+    },
+    {
+      "title": "Project Hail Mary",
+      "year": 2026,
+      "rating": 10,
+      "ratedAt": "2026-09-11T23:33:59.000Z"
+    },
+    {
+      "title": "Interstellar",
+      "year": 2014,
+      "rating": 10,
+      "ratedAt": "2026-09-11T12:21:00.000Z"
+    },
+    {
+      "title": "Clerks II",
+      "year": 2006,
+      "rating": 10,
+      "ratedAt": "2026-09-11T12:19:57.000Z"
+    },
+    {
+      "title": "Memento",
+      "year": 2000,
+      "rating": 10,
+      "ratedAt": "2026-09-10T14:56:41.000Z"
+    },
+    {
       "title": "Shutter Island",
       "year": 2010,
       "rating": 10,
@@ -362,57 +410,21 @@
       "year": 2023,
       "rating": 10,
       "ratedAt": "2026-08-24T12:25:44.000Z"
-    },
-    {
-      "title": "Obsession",
-      "year": 2026,
-      "rating": 10,
-      "ratedAt": "2026-08-21T15:27:00.000Z"
-    },
-    {
-      "title": "Whiplash",
-      "year": 2014,
-      "rating": 10,
-      "ratedAt": "2026-08-21T15:22:10.000Z"
-    },
-    {
-      "title": "The Hurt Locker",
-      "year": 2008,
-      "rating": 10,
-      "ratedAt": "2026-08-21T15:21:58.000Z"
-    },
-    {
-      "title": "Zero Dark Thirty",
-      "year": 2012,
-      "rating": 10,
-      "ratedAt": "2026-08-21T15:21:52.000Z"
-    },
-    {
-      "title": "How to Lose a Guy in 10 Days",
-      "year": 2003,
-      "rating": 10,
-      "ratedAt": "2026-08-21T15:21:26.000Z"
-    },
-    {
-      "title": "The Fighter",
-      "year": 2010,
-      "rating": 10,
-      "ratedAt": "2026-08-21T15:17:08.000Z"
-    },
-    {
-      "title": "Black Hawk Down",
-      "year": 2001,
-      "rating": 10,
-      "ratedAt": "2026-08-21T15:17:01.000Z"
-    },
-    {
-      "title": "Moneyball",
-      "year": 2011,
-      "rating": 10,
-      "ratedAt": "2026-08-21T14:52:26.000Z"
     }
   ],
   "topRatedShows": [
+    {
+      "title": "1923",
+      "year": 2022,
+      "rating": 10,
+      "ratedAt": "2026-09-11T23:50:32.000Z"
+    },
+    {
+      "title": "Lioness",
+      "year": 2023,
+      "rating": 10,
+      "ratedAt": "2026-09-11T23:50:02.000Z"
+    },
     {
       "title": "The Westies",
       "year": 2026,
@@ -520,18 +532,6 @@
       "year": 1997,
       "rating": 10,
       "ratedAt": "2026-07-29T01:19:58.000Z"
-    },
-    {
-      "title": "The Sopranos",
-      "year": 1999,
-      "rating": 10,
-      "ratedAt": "2026-07-29T01:19:25.000Z"
-    },
-    {
-      "title": "Watchmen",
-      "year": 2019,
-      "rating": 10,
-      "ratedAt": "2026-07-29T00:56:11.000Z"
     }
   ],
   "watchlist": {
@@ -761,8 +761,8 @@
       },
       {
         "type": "show",
-        "title": "Monster: Lizzie Borden",
-        "year": null,
+        "title": "Monster: The Lizzie Borden Story",
+        "year": 2026,
         "listedAt": "2026-08-30T19:23:03.000Z"
       },
       {
@@ -792,7 +792,7 @@
     ]
   },
   "favorites": {
-    "count": 31,
+    "count": 36,
     "items": [
       {
         "type": "show",
@@ -979,6 +979,36 @@
         "title": "Walk the Line",
         "year": 2005,
         "listedAt": "2026-09-03T01:04:52.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Project Hail Mary",
+        "year": 2026,
+        "listedAt": "2026-09-11T23:33:59.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "There Will Be Blood",
+        "year": 2007,
+        "listedAt": "2026-09-11T23:35:52.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Black Swan",
+        "year": 2010,
+        "listedAt": "2026-09-11T23:43:10.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Juno",
+        "year": 2007,
+        "listedAt": "2026-09-11T23:43:44.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Garden State",
+        "year": 2004,
+        "listedAt": "2026-09-11T23:43:54.000Z"
       }
     ]
   }
