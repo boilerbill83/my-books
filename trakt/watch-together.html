@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📺 Shows We Watch Together</title>
+    <meta name="description" content="What's ready to watch, and what's coming up next — for the shows we watch together." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" /></noscript>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="./dashboard.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="site-header">
+        <div class="container header-inner">
+          <span class="tk-nav-current">📺 Shows We Watch Together</span>
+          <div class="header-status">
+            <span id="statusText">Loading…</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="container" style="padding-top:24px;">
+        <div class="tk-title">📺 Shows We Watch Together</div>
+        <div class="tk-subtitle" id="subtitleText">What's ready to watch right now, and what's coming up next.</div>
+
+        <div class="tk-card" style="margin-bottom: 24px;">
+          <div class="tk-cowatch-toolbar"><button type="button" class="tk-btn" id="coWatchViewToggle">Show table view</button></div>
+          <div class="tk-shelf" id="coWatchCards"></div>
+          <div class="tk-table-wrap" id="coWatchTableWrap" hidden><table class="tk-table" id="coWatchTable"></table></div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./watch-together.js"></script>
+  </body>
+</html>
