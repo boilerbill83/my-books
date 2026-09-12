@@ -12,6 +12,7 @@ import {
   mergeScrapedShowRatings, resolveSimilarTitles, resolveSimilarDirectors,
   getCreators, inferSubgenres, inferTones, inferSubjects, inferEra, traktUrl,
   resolveCastAges, prestigeScore, prestigeQualityScore, isPrestigeFormat, computeBookThemeCounts,
+  mergeManualRatings,
 } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
@@ -41,7 +42,7 @@ async function load() {
   }
 
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [library, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback, scrapedShowRatings, llmTags, reviewedTags, personMeta, goodreadsData] = await Promise.all([
+  const [libraryRaw, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback, scrapedShowRatings, llmTags, reviewedTags, personMeta, goodreadsData, manualRatings] = await Promise.all([
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
     get('./data/candidatePool.json').catch(() => ({ titles: [] })),
@@ -56,7 +57,12 @@ async function load() {
     // data, a sibling of trakt/ at the repo root — see dashboardShared.js's
     // loadAllData() for the same fetch.
     get('../data/goodreadsData.json').catch(() => ({ books: [] })),
+    // Real ratings Bill gave directly to this app instead of through a
+    // Trakt export — see dashboardShared.js's loadAllData() for the same
+    // fetch and mergeManualRatings()'s own comment for the full design.
+    get('./data/manualRatings.json').catch(() => ({ titles: [] })),
   ]);
+  const library = mergeManualRatings(libraryRaw, manualRatings);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
   const bookThemeCounts = computeBookThemeCounts(goodreadsData);
 

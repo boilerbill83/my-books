@@ -54,7 +54,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { computeBookThemeCounts, buildIndexes, BOOK_THEME_TO_MOVIE_TAGS } from '../engine.js';
+import { computeBookThemeCounts, buildIndexes, BOOK_THEME_TO_MOVIE_TAGS, mergeManualRatings } from '../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.resolve(__dirname, '..', 'data');
@@ -67,7 +67,10 @@ const read = (dir, name, fallback) => {
 const goodreadsData = read(ROOT_DATA_DIR, 'goodreadsData.json', { books: [] });
 const bookCounts = computeBookThemeCounts(goodreadsData);
 
-const library = read(DATA_DIR, 'library.json', { titles: [] });
+// Real ratings Bill gave directly to this app instead of through a Trakt
+// export — see mergeManualRatings()'s own comment in engine.js.
+const manualRatings = read(DATA_DIR, 'manualRatings.json', { titles: [] });
+const library = mergeManualRatings(read(DATA_DIR, 'library.json', { titles: [] }), manualRatings);
 const enrichedMeta = read(DATA_DIR, 'enrichedMetadata.json', {});
 const feedback = read(DATA_DIR, 'feedbackData.json', { interactions: [] });
 const llmTags = read(DATA_DIR, 'llmTags.json', {});

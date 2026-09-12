@@ -1,4 +1,4 @@
-import { rankRecommendations, mergeScrapedShowRatings, traktUrl, computeBookThemeCounts } from './engine.js';
+import { rankRecommendations, mergeScrapedShowRatings, traktUrl, computeBookThemeCounts, mergeManualRatings } from './engine.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -6,7 +6,7 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
 
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [library, watchlist, enrichedMeta, feedback, omdbMetaRaw, scrapedShowRatings, llmTags, reviewedTags, goodreadsData] = await Promise.all([
+  const [libraryRaw, watchlist, enrichedMeta, feedback, omdbMetaRaw, scrapedShowRatings, llmTags, reviewedTags, goodreadsData, manualRatings] = await Promise.all([
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
     get('./data/enrichedMetadata.json').catch(() => ({})),
@@ -22,7 +22,11 @@ async function load() {
     // book-adaptation-cross-domain-signal-unused: BBRE's own committed
     // data, a sibling of trakt/ at the repo root.
     get('../data/goodreadsData.json').catch(() => ({ books: [] })),
+    // Real ratings Bill gave directly to this app instead of through a
+    // Trakt export — see mergeManualRatings()'s own comment for the full design.
+    get('./data/manualRatings.json').catch(() => ({ titles: [] })),
   ]);
+  const library = mergeManualRatings(libraryRaw, manualRatings);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
   const bookThemeCounts = computeBookThemeCounts(goodreadsData);
 

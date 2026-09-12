@@ -17,6 +17,7 @@ import {
   buildIndexes, hydrateTitle, getCreator, matchScore, confidenceScore,
   reason, popularityScore, imdbPopularityScore, criticScore, realAudienceScore, awardsScore, mergeScrapedShowRatings,
   resolveSimilarTitles, resolveSimilarDirectors, inferSubgenres, inferTones, inferSubjects, inferEra, computeBookThemeCounts,
+  mergeManualRatings,
 } from '../../engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -29,7 +30,12 @@ const read = (name, fallback) => {
 };
 
 export function loadAllTitles() {
-  const library = read('library.json', { titles: [] });
+  // Real ratings Bill gave directly to this app instead of through a Trakt
+  // export — see mergeManualRatings()'s own comment in engine.js. Merged in
+  // so these rows export as real "Watched" rows with a real myRating, same
+  // as every other consumer of `library` in this codebase.
+  const manualRatings = read('manualRatings.json', { titles: [] });
+  const library = mergeManualRatings(read('library.json', { titles: [] }), manualRatings);
   const watchlist = read('watchlist.json', { titles: [] });
   const candidatePool = read('candidatePool.json', { titles: [] });
   const enrichedMeta = read('enrichedMetadata.json', {});

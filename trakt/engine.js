@@ -2735,6 +2735,40 @@ export function mergeScrapedShowRatings(omdbMeta, scrapedShowRatings) {
   return merged;
 }
 
+// Real ratings Bill gave directly to this app rather than through a Trakt
+// export — his explicit standing choice (2026-09-11, on the Opportunity #1
+// old-title-review batch): "I am not going to be uploading data into
+// Trakt; you need to store that data in our app." library.json itself is
+// still never hand-edited (it only ever comes from a real Trakt export,
+// per this project's standing rule) — instead these live in their own
+// trakt/data/manualRatings.json (see that file's own `note` field) and get
+// merged into library.titles right here, at the data-loading layer, the
+// same place mergeScrapedShowRatings() merges in its own out-of-band
+// source. Every buildIndexes() call site already receives whatever
+// `library` its caller passes in, so merging BEFORE that call — rather
+// than adding a new buildIndexes() parameter and threading it through
+// every one of its ~10 call sites — means a manually-rated title behaves
+// identically to a real Trakt-synced one for every myRating-derived signal
+// (creatorRatingWeight, genreProfile/toneProfile/subgenreProfile,
+// lovedGenres/lovedSubgenres/lovedActors/lovedKeywords/lovedCollections,
+// reverseSimilar, lovedTitles) AND gets excluded from ever being
+// recommended again (buildIndexes()'s own `watched` Map, and therefore
+// rankAll()'s `!idx.watched.has(...)` filter, is built straight from
+// library.titles) with zero engine.js changes needed beyond this function.
+// Defensively skips a manual entry whose titleKey is already a real
+// library title (should never happen — a title only gets a manual rating
+// because Bill's real Trakt history doesn't have it yet — but a title
+// that DOES later show up in a fresh export should let the real data win,
+// not silently double-count).
+export function mergeManualRatings(library, manualRatings) {
+  const entries = manualRatings?.titles || manualRatings?.ratings || [];
+  if (!entries.length) return library;
+  const existingKeys = new Set((library?.titles || []).map(t => t.titleKey));
+  const toAdd = entries.filter(e => e.titleKey && !existingKeys.has(e.titleKey));
+  if (!toAdd.length) return library;
+  return { ...library, titles: [...(library?.titles || []), ...toAdd] };
+}
+
 // The professional-critic aggregate (RT Tomatometer + Metacritic
 // Metascore, both critic-review aggregators) — NOT what actual viewers
 // thought. Named audienceScore() until this session, which was a real

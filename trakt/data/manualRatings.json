@@ -1,0 +1,437 @@
+{
+  "note": "Real ratings Bill gave directly to this app, not synced from a Trakt export - his explicit standing choice (2026-09-11): \"I am not going to be uploading data into Trakt; you need to store that data in our app.\" Merged into library.titles by mergeManualRatings() (engine.js) for every taste-signal purpose (creatorRatingWeight, genreProfile/toneProfile/subgenreProfile, every loved* map, reverseSimilar) exactly as if these were real Trakt-synced rated titles, and into idx.watched the same way so they can never surface as a recommendation again - but kept in this separate file so a manually-entered rating is never confused with a genuine Trakt watch event, and library.json itself is never hand-edited (it only ever comes from a real Trakt export, per this project's standing rule). Source: the Opportunity #1 old-title-review batch (library-recency-selection-bias dashboard finding) - 48 well-known pre-2010 titles, deliberately weighted toward Bill's under-represented genres, rated via a spreadsheet he filled in by hand. If Bill ever does upload a Trakt-import CSV for one of these titles and a fresh export brings in the real Trakt-synced version, mergeManualRatings() defensively skips any entry whose titleKey already exists in library.json, so the real data always wins and this file should be pruned of that entry at that point (not required for correctness, just hygiene).",
+  "titles": [
+    {
+      "type": "movie",
+      "titleKey": "movie:105",
+      "title": "Back to the Future",
+      "year": 1985,
+      "myRating": 10,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:329",
+      "title": "Jurassic Park",
+      "year": 1993,
+      "myRating": 9,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:558",
+      "title": "Spider-Man 2",
+      "year": 2004,
+      "myRating": 7,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1781",
+      "title": "An Inconvenient Truth",
+      "year": 2006,
+      "myRating": 2,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1430",
+      "title": "Bowling for Columbine",
+      "year": 2002,
+      "myRating": 3,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1777",
+      "title": "Fahrenheit 9/11",
+      "year": 2004,
+      "myRating": 3,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:12094",
+      "title": "Jackass Number Two",
+      "year": 2006,
+      "myRating": 8,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:9012",
+      "title": "Jackass: The Movie",
+      "year": 2002,
+      "myRating": 8,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:9372",
+      "title": "Super Size Me",
+      "year": 2004,
+      "myRating": 4,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:162",
+      "title": "Edward Scissorhands",
+      "year": 1990,
+      "myRating": 6,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:9738",
+      "title": "Fantastic Four",
+      "year": 2005,
+      "myRating": 3,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:620",
+      "title": "Ghostbusters",
+      "year": 1984,
+      "myRating": 10,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:854",
+      "title": "The Mask",
+      "year": 1994,
+      "myRating": 8,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:564",
+      "title": "The Mummy",
+      "year": 1999,
+      "myRating": 2,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:568",
+      "title": "Apollo 13",
+      "year": 1995,
+      "myRating": 10,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:197",
+      "title": "Braveheart",
+      "year": 1995,
+      "myRating": 8,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:3131",
+      "title": "Gangs of New York",
+      "year": 2002,
+      "myRating": 9,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:676",
+      "title": "Pearl Harbor",
+      "year": 2001,
+      "myRating": 6,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:11322",
+      "title": "Public Enemies",
+      "year": 2009,
+      "myRating": 10,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:2024",
+      "title": "The Patriot",
+      "year": 2000,
+      "myRating": 3,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:117",
+      "title": "The Untouchables",
+      "year": 1987,
+      "myRating": 4,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:170",
+      "title": "28 Days Later",
+      "year": 2002,
+      "myRating": 8,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1576",
+      "title": "Resident Evil",
+      "year": 2002,
+      "myRating": 2,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:4232",
+      "title": "Scream",
+      "year": 1996,
+      "myRating": 7,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:2668",
+      "title": "Sleepy Hollow",
+      "year": 1999,
+      "myRating": 4,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:19908",
+      "title": "Zombieland",
+      "year": 2009,
+      "myRating": 9,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:65",
+      "title": "8 Mile",
+      "year": 2002,
+      "myRating": 10,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:2005",
+      "title": "Sister Act",
+      "year": 1992,
+      "myRating": 3,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1584",
+      "title": "The School of Rock",
+      "year": 2003,
+      "myRating": 9,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:4951",
+      "title": "10 Things I Hate About You",
+      "year": 1999,
+      "myRating": 8,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1824",
+      "title": "50 First Dates",
+      "year": 2004,
+      "myRating": 8,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:2105",
+      "title": "American Pie",
+      "year": 1999,
+      "myRating": 9,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:137",
+      "title": "Groundhog Day",
+      "year": 1993,
+      "myRating": 10,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:153",
+      "title": "Lost in Translation",
+      "year": 2003,
+      "myRating": 7,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:744",
+      "title": "Top Gun",
+      "year": 1986,
+      "myRating": 7,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:6479",
+      "title": "I Am Legend",
+      "year": 2007,
+      "myRating": 7,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:557",
+      "title": "Spider-Man",
+      "year": 2002,
+      "myRating": 8,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:603",
+      "title": "The Matrix",
+      "year": 1999,
+      "myRating": 10,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:7446",
+      "title": "Tropic Thunder",
+      "year": 2008,
+      "myRating": 8,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:4476",
+      "title": "Legends of the Fall",
+      "year": 1994,
+      "myRating": 6,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1656",
+      "title": "The Legend of Zorro",
+      "year": 2005,
+      "myRating": 6,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:11969",
+      "title": "Tombstone",
+      "year": 1993,
+      "myRating": 6,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:33",
+      "title": "Unforgiven",
+      "year": 1992,
+      "myRating": 6,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:8487",
+      "title": "Wild Wild West",
+      "year": 1999,
+      "myRating": 9,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:4658",
+      "title": "ALF",
+      "year": 1986,
+      "myRating": 3,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:3452",
+      "title": "Frasier",
+      "year": 1993,
+      "myRating": 8,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:4313",
+      "title": "Full House",
+      "year": 1987,
+      "myRating": 6,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:4345",
+      "title": "Saved by the Bell",
+      "year": 1989,
+      "myRating": 10,
+      "source": "old-title-review",
+      "dateAdded": "2026-09-11T23:52:11Z"
+    }
+  ]
+}
