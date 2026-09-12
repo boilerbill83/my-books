@@ -11,6 +11,94 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" /></noscript>
     <link rel="stylesheet" href="../styles.css" />
     <link rel="stylesheet" href="./dashboard.css" />
+    <style>
+      /* watch-together.html-only — a richer, standalone card design (not
+         the compact .tk-shelf-card grid the main Discover page uses for
+         this same data) since this page's whole purpose is being the nice
+         one to hand someone else. */
+      .wt-stats {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 12px; margin-bottom: 26px;
+      }
+      .wt-stat {
+        background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+        padding: 12px 16px; box-shadow: var(--shadow); text-align: center;
+      }
+      .wt-stat-value { font-family: var(--font-serif); font-weight: 700; font-size: 1.8rem; color: var(--accent); }
+      .wt-stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; font-weight: 600; margin-top: 2px; }
+
+      .wt-section { margin-bottom: 28px; }
+      .wt-section[hidden] { display: none; }
+      .wt-section-heading {
+        font-family: var(--font-serif); font-weight: 700; font-style: italic; font-size: 1.25rem;
+        color: var(--text); margin-bottom: 4px; display: flex; align-items: baseline; gap: 8px;
+      }
+      .wt-section-note { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 14px; }
+
+      .wt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+
+      .wt-card {
+        display: flex; gap: 14px; background: var(--bg-card); border: 1px solid var(--border);
+        border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow);
+        text-decoration: none; color: inherit; transition: transform 0.12s, box-shadow 0.12s;
+        min-width: 0; /* grid item's own default min-width:auto trap — see .wt-card-body's comment */
+        box-sizing: border-box;
+      }
+      .wt-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.1); }
+      .wt-poster { width: 92px; height: 138px; border-radius: 6px; object-fit: cover; background: var(--bg-subtle); border: 1px solid var(--border); flex-shrink: 0; display: block; }
+      .wt-poster-empty { border: 1px dashed var(--border); }
+      /* min-width:0 overrides a flex child's default min-width:auto, which
+         otherwise refuses to shrink below its content's natural width (the
+         same CSS Grid/Flexbox overflow trap dashboard.css's own .tk-row2 >
+         .tk-card rule already documents) — without it, a long unbroken
+         metaLine()/overview string pushed .wt-card past its .wt-grid
+         column width, causing real horizontal page overflow on mobile. */
+      .wt-card-body { flex: 1; min-width: 0; }
+      .wt-card-title, .wt-extra, .wt-overview, .wt-note { overflow-wrap: break-word; }
+
+      .wt-status-pill {
+        display: inline-block; font-size: 0.68rem; font-weight: 700; padding: 3px 10px;
+        border-radius: 999px; margin-bottom: 6px; max-width: 100%; box-sizing: border-box;
+      }
+      .wt-status-ready { background: color-mix(in srgb, var(--status-good) 18%, transparent); color: #0b7a0b; }
+      .wt-status-airing { background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent); }
+      .wt-status-caughtup { background: var(--bg-subtle); color: var(--text-muted); }
+      .wt-status-pinned { background: color-mix(in srgb, var(--status-warning) 22%, transparent); color: #8a5c00; }
+
+      .wt-card-title { font-family: var(--font-serif); font-weight: 700; font-size: 1.05rem; line-height: 1.25; color: var(--text); }
+      .wt-year { color: var(--text-muted); font-weight: 400; font-size: 0.9rem; }
+
+      .wt-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+      .wt-chip {
+        font-size: 0.68rem; font-weight: 600; padding: 2px 8px; border-radius: 999px;
+        background: var(--bg-subtle); color: var(--text-muted); border: 1px solid var(--border);
+      }
+      .wt-badges { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+      .wt-badge { font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 5px; }
+      .wt-badge-rating { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); }
+      .wt-badge-tmdb { background: var(--bg-subtle); color: var(--text-muted); }
+      .wt-badge-rated { background: var(--bg-subtle); color: var(--text-muted); }
+      .wt-badge-network { background: color-mix(in srgb, var(--status-good) 14%, transparent); color: #0b7a0b; }
+
+      .wt-extra { font-size: 0.74rem; color: var(--text-muted); margin-top: 7px; line-height: 1.4; }
+      .wt-overview { font-size: 0.8rem; color: var(--text); margin-top: 7px; line-height: 1.45; }
+      .wt-note { font-size: 0.78rem; color: var(--text-muted); margin-top: 7px; font-weight: 600; }
+      .wt-note-airing { color: var(--accent); }
+
+      /* Pinned "next up" card — noticeably bigger, own section. */
+      .wt-card-big { padding: 20px; gap: 20px; }
+      .wt-poster-big { width: 130px; height: 195px; }
+      .wt-card-big .wt-card-title { font-size: 1.4rem; }
+      .wt-card-big .wt-overview { font-size: 0.9rem; }
+
+      .wt-fulllist-toggle { margin: 8px 0 16px; }
+
+      @media (max-width: 640px) {
+        .wt-grid { grid-template-columns: 1fr; }
+        .wt-card-big { flex-direction: column; align-items: center; text-align: center; }
+        .wt-card-big .wt-chips, .wt-card-big .wt-badges { justify-content: center; }
+      }
+    </style>
   </head>
   <body>
     <div class="app-shell">
@@ -23,15 +111,48 @@
         </div>
       </header>
 
-      <div class="container" style="padding-top:24px;">
+      <div class="container" style="padding-top:24px;" id="wtRoot">
         <div class="tk-title">📺 Shows We Watch Together</div>
         <div class="tk-subtitle" id="subtitleText">What's ready to watch right now, and what's coming up next.</div>
 
-        <div class="tk-card" style="margin-bottom: 24px;">
-          <div class="tk-cowatch-toolbar"><button type="button" class="tk-btn" id="coWatchViewToggle">Show table view</button></div>
-          <div class="tk-shelf" id="coWatchCards"></div>
-          <div class="tk-table-wrap" id="coWatchTableWrap" hidden><table class="tk-table" id="coWatchTable"></table></div>
+        <div class="wt-stats">
+          <div class="wt-stat"><div class="wt-stat-value" id="wtStatTotal">—</div><div class="wt-stat-label">Tagged</div></div>
+          <div class="wt-stat"><div class="wt-stat-value" id="wtStatReady">—</div><div class="wt-stat-label">Ready to Binge</div></div>
+          <div class="wt-stat"><div class="wt-stat-value" id="wtStatAiring">—</div><div class="wt-stat-label">Airing Now</div></div>
+          <div class="wt-stat"><div class="wt-stat-value" id="wtStatCaughtUp">—</div><div class="wt-stat-label">Caught Up</div></div>
         </div>
+
+        <div class="wt-section">
+          <div class="wt-section-heading">🎬 Next Up</div>
+          <div class="wt-section-note">Pinned to the top.</div>
+          <div id="wtPinnedSection"></div>
+        </div>
+
+        <div class="wt-section">
+          <div class="wt-section-heading">✅ Ready to Binge</div>
+          <div class="wt-section-note">The season's fully out — nothing left to wait on.</div>
+          <div class="wt-grid" id="wtReadySection"></div>
+        </div>
+
+        <div class="wt-section">
+          <div class="wt-section-heading">📡 Airing Now</div>
+          <div class="wt-section-note">Mid-season — new episodes still coming.</div>
+          <div class="wt-grid" id="wtAiringSection"></div>
+        </div>
+
+        <div class="wt-section">
+          <div class="wt-section-heading">⏳ Caught Up</div>
+          <div class="wt-section-note">Watched everything that's out — here's what's next.</div>
+          <div class="wt-grid" id="wtCaughtUpSection"></div>
+        </div>
+
+        <div class="wt-section" id="wtNotStartedWrap">
+          <div class="wt-section-heading">🆕 Not Started</div>
+          <div class="wt-grid" id="wtNotStartedSection"></div>
+        </div>
+
+        <button type="button" class="tk-btn wt-fulllist-toggle" id="wtFullListToggle">Show full list</button>
+        <div class="tk-table-wrap" id="wtFullListWrap" hidden><table class="tk-table" id="wtFullTable"></table></div>
       </div>
     </div>
     <script type="module" src="./watch-together.js"></script>
