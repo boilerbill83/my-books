@@ -1,32 +1,32 @@
 {
-  "titleKey": "show:258036",
-  "setAt": "2026-09-09T00:00:00Z",
-  "note": "Bill's own stated current watch, told directly in chat — not yet reflected in a Trakt export/sync (The Audacity is not in library.json or watchlist.json as of this update). Manually pointed here rather than fabricating a Trakt watch event, same honesty precedent as feedbackData.json's already_watched entries. Update or clear this file the next time Bill names a different current watch, or once currentlyWatching.json picks it up for real.",
+  "titleKey": "show:125988",
+  "setAt": "2026-09-12T00:00:00Z",
+  "note": "Bill's own stated current watch, told directly in chat (2026-09-12: \"I completed the audacity; now I'm watching silo\") — supersedes the prior pointer at show:258036 (The Audacity). Unlike that entry, Silo IS in library.json/watchlist.json, but its cached plays/airedEpisodes (20/30, lastWatchedAt 2025-01-17) predates his real-time Season 3 progress — the last Trakt export he uploaded (Sep 4 2026) was taken before he'd started Season 3, so this pointer carries the real-time fact a stale export can't yet reflect. Update or clear this file the next time Bill names a different current watch, or once a fresh export's plays/airedEpisodes genuinely catches up.",
   "facts": [
     {
-      "text": "The Audacity is set in Palo Alto and follows tech CEO Duncan Park (Billy Magnussen), inspired by real Silicon Valley archetypes like Elon Musk and Mark Zuckerberg. Creator Jonathan Glatzer said he was specifically drawn to the tier just below the very top of tech power — \"the wannabes, the also-rans\" who want the tippy top but can't quite reach it.",
-      "source": "https://www.hollywoodreporter.com/tv/tv-features/the-audacity-creator-series-premiere-interview-1236562638/",
-      "sourceLabel": "Hollywood Reporter"
+      "text": "Hugh Howey's source trilogy is Wool, Shift, and Dust. Seasons 1-2 adapted Wool; Season 3 (premiered July 3, 2026) shifts to adapting Shift — a prequel-flavored book explaining how and why the silo was built in the first place.",
+      "source": "https://time.com/6276524/silo-apple-tv-books/",
+      "sourceLabel": "TIME"
     },
     {
-      "text": "The show's premise — a CEO blackmailing his own therapist — is personal for Glatzer: he grew up with a therapist mother and a psychiatrist stepfather who both kept offices in the family home, with clients from their small New Jersey town frequently around.",
-      "source": "https://www.yahoo.com/entertainment/tv/articles/audacity-creator-star-want-remind-100000996.html",
-      "sourceLabel": "Yahoo Entertainment"
+      "text": "Apple renewed Silo for both Season 3 and Season 4 in one announcement back in December 2024 — and confirmed Season 4 will be the show's last, completing the full book trilogy.",
+      "source": "https://www.tvline.com/news/silo-renewed-season-3-ending-season-4-rebecca-ferguson-1235388800/",
+      "sourceLabel": "TVLine"
     },
     {
-      "text": "AMC renewed the show for a second season in March 2026 — before it had even premiered on April 12, 2026, an unusually early vote of confidence for a new series.",
-      "source": "https://en.wikipedia.org/wiki/The_Audacity",
-      "sourceLabel": "Wikipedia"
+      "text": "Critical reception has climbed every season on Rotten Tomatoes — 88% for Season 1, 92% for Season 2, and a perfect 100% critics' score for Season 3 — though Season 3's audience score (58%) lags well behind critics, a real critic/audience divide over the books-to-show liberties.",
+      "source": "https://www.rottentomatoes.com/tv/silo",
+      "sourceLabel": "Rotten Tomatoes"
     },
     {
-      "text": "The 8-episode first season premiered on AMC/AMC+ in April 2026, then made its Netflix US streaming debut months later on August 19, 2026 — a two-stage release AMC has used for several of its recent prestige shows.",
-      "source": "https://www.netflix.com/tudum/articles/the-audacity-release-date-cast-news",
-      "sourceLabel": "Netflix Tudum"
+      "text": "Showrunner Graham Yost (Band of Brothers, Justified, The Americans) has been open about restructuring Howey's original timeline for TV — pulling entire episodes out of single sentences in the books — with Howey himself staying on as a consulting producer and publicly defending some of the bigger changes as improvements.",
+      "source": "https://www.cbr.com/apple-tv-silo-season-3-shift-from-books-explained/",
+      "sourceLabel": "CBR"
     },
     {
-      "text": "Real critical reception is mixed-to-positive: 70% on Rotten Tomatoes and 63 on Metacritic. Reviewers were lukewarm on the show as a whole but specifically praised Billy Magnussen's lead performance.",
-      "source": "https://www.goldderby.com/tv/2026/audacity-reviews-billy-magnussen/",
-      "sourceLabel": "Gold Derby"
+      "text": "Season 3 finished filming by May 2025, but Season 4 — the finale — didn't start filming until months later, giving the production a real gap between the two final seasons rather than shooting them back-to-back.",
+      "source": "https://www.cbr.com/apple-tv-silo-season-4-wraps-filming/",
+      "sourceLabel": "CBR"
     }
   ]
 }

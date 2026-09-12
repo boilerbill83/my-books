@@ -601,20 +601,47 @@ function computeWatchStatusRows(library, watchlist, fromWatchlist, fromCandidate
 
   // Bill: "'What's Airing & When You Can Watch' should only include shows
   // on my watchlist" — this table is a "when can I actually watch what I'm
-  // already planning to" utility, and candidate/library-only rows (a
-  // recommendation he hasn't queued, or an airing show he's already fully
-  // caught up on with no real reason to track its next episode) were
-  // noise, not useful. All 4 detection criteria below still run — they
-  // decide the rich status content (in-progress-ness, isAiring, finale
-  // dates) — but the final row set is intersected with real watchlist
-  // membership, the single source of truth for "am I actually planning to
-  // watch this."
-  const keys = new Set();
-  for (const t of currentlyWatching || []) if (t.type === 'show' && t.plays < t.airedEpisodes) keys.add(t.titleKey);
-  for (const t of library.titles || []) if (t.type === 'show' && isActivelyAiring(t, enrichedMeta)) keys.add(t.titleKey);
-  for (const t of watchlist.titles || []) if (t.type === 'show' && isActivelyAiring(t, enrichedMeta)) keys.add(t.titleKey);
-  for (const c of [...fromWatchlist, ...fromCandidates]) if (isActivelyAiring(c, enrichedMeta)) keys.add(c.titleKey);
-  const watchlistOnlyKeys = [...keys].filter(k => wlByKey.has(k));
+  // already planning to" utility, so the row set is always intersected
+  // with real watchlist membership, the single source of truth for "am I
+  // actually planning to watch this."
+  //
+  // Row-inclusion window (Bill, 2026-09-12): "include every tv show on my
+  // watch list that has at least one episode airing in the last 30 days
+  // or in the next 30 days" — broader than the prior isActivelyAiring()-
+  // only gate (which requires episode 2+ of an already-mid-season show,
+  // so it missed an imminent premiere or a season that just wrapped).
+  // Uses the two real per-show date fields this pipeline actually has:
+  // nextEpisodeToAir.airDate (always forward-looking) covers the "next 30
+  // days" half; currentSeasonFinale.finaleDate covers both halves (a
+  // scheduled-but-not-yet-aired finale within 30 days, or one that
+  // already aired within the last 30). isActivelyAiring() itself is still
+  // computed per-row (buildWatchRow()'s isAiring field) for display, just
+  // no longer the row-inclusion gate.
+  //
+  // Known, honest limitation: this isn't a per-episode air history — only
+  // the single next episode and the current season's finale are tracked,
+  // not every episode date in between. And currentSeasonFinale is only
+  // ever populated by enrich_tmdb.py while a season has a scheduled
+  // next_episode_to_air; once a season fully airs and nothing new is
+  // scheduled yet, the next REFRESH_AIRING pass nulls it back out (TMDB
+  // itself stops reporting a "next episode" to key the season-detail
+  // lookup off), so a show can fall out of "recently aired" coverage a
+  // few days after its real finale, once this pipeline's own daily
+  // re-enrichment catches up to that.
+  const now = new Date(); now.setHours(0, 0, 0, 0);
+  const withinDays = (dateStr, minDays, maxDays) => {
+    if (!dateStr) return false;
+    const days = Math.round((new Date(dateStr + 'T00:00:00') - now) / 86400000);
+    return days >= minDays && days <= maxDays;
+  };
+  const hasRecentOrUpcomingEpisode = titleKey => {
+    const meta = enrichedMeta[titleKey] || {};
+    return withinDays(meta.nextEpisodeToAir?.airDate, 0, 30)
+        || withinDays(meta.currentSeasonFinale?.finaleDate, -30, 30);
+  };
+  const watchlistOnlyKeys = (watchlist.titles || [])
+    .filter(t => t.type === 'show' && hasRecentOrUpcomingEpisode(t.titleKey))
+    .map(t => t.titleKey);
 
   return watchlistOnlyKeys.map(titleKey => buildWatchRow(titleKey, {
     inLib: libByKey.get(titleKey), inWl: wlByKey.get(titleKey),
