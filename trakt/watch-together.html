@@ -93,10 +93,21 @@
 
       .wt-fulllist-toggle { margin: 8px 0 16px; }
 
+      .wt-hero-photo-wrap {
+        margin: 0 0 24px; border-radius: var(--radius); overflow: hidden;
+        box-shadow: var(--shadow); border: 1px solid var(--border);
+      }
+      .wt-hero-photo { display: block; width: 100%; max-height: 420px; object-fit: cover; object-position: center 30%; }
+      .wt-hero-caption {
+        text-align: center; font-family: var(--font-serif); font-style: italic;
+        color: var(--text-muted); font-size: 0.95rem; margin: -14px 0 26px;
+      }
+
       @media (max-width: 640px) {
         .wt-grid { grid-template-columns: 1fr; }
         .wt-card-big { flex-direction: column; align-items: center; text-align: center; }
         .wt-card-big .wt-chips, .wt-card-big .wt-badges { justify-content: center; }
+        .wt-hero-photo { max-height: 260px; }
       }
     </style>
   </head>
@@ -114,6 +125,11 @@
       <div class="container" style="padding-top:24px;" id="wtRoot">
         <div class="tk-title">📺 Shows We Watch Together</div>
         <div class="tk-subtitle" id="subtitleText">What's ready to watch right now, and what's coming up next.</div>
+
+        <div class="wt-hero-photo-wrap">
+          <img class="wt-hero-photo" src="./images/watch-together-hero.webp" alt="Bill and his wife on the couch with popcorn and coffee, ready for a show." loading="eager" />
+        </div>
+        <div class="wt-hero-caption">This is our happy place. ❤️</div>
 
         <div class="wt-stats">
           <div class="wt-stat"><div class="wt-stat-value" id="wtStatTotal">—</div><div class="wt-stat-label">Tagged</div></div>
