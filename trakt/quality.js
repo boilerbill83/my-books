@@ -1079,7 +1079,18 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       const lang = enrichedMeta[c.titleKey]?.originalLanguage;
       return lang != null && lang !== 'en';
     };
-    const wasted = (candidatePool.titles || []).filter(c => isReEdit(c) || isNonEnglish(c) || isTooObscure(c, enrichedMeta));
+    // A candidate excluded via feedbackData.json (idx.excluded) is a
+    // deliberate keep, not wasted space — prune_candidate_pool.js already
+    // carves these out into their own "kept unconditionally, never
+    // competes for a cap slot" bucket (see that script's own header
+    // comment on the dismissal-data-loss bug this exists to prevent), so
+    // this live check needs the same carve-out or it double-counts a
+    // title that was never actually eligible for a cap slot in the first
+    // place. Real example this caught: "The Furious" (movie:1280738),
+    // pinned on watch-together.html, is deliberately non-English — it was
+    // reading as "wasted" here even after being correctly excluded.
+    const wasted = (candidatePool.titles || []).filter(c =>
+      !idx.excluded.has(c.titleKey) && (isReEdit(c) || isNonEnglish(c) || isTooObscure(c, enrichedMeta)));
     const total = (candidatePool.titles || []).length;
     findings.push({
       id: 'pool-cap-waste',
