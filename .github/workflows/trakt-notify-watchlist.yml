@@ -1,0 +1,61 @@
+name: Notify Watchlist (Twilio SMS alerts)
+
+on:
+  schedule:
+    - cron: '0 11 * * *'   # daily 11 AM UTC (after TMDB 8 AM + OMDb 9 AM enrichment, and the 10:30 AM show-ratings scrape, so today's premiere/finale dates are fresh; safely past the UTC/US-Eastern date-rollover crossover too)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Log what would be sent without actually texting (no Twilio call, no secrets required)'
+        type: boolean
+        default: false
+      test_send:
+        description: 'Send one fixed real test text via Twilio, skipping real event-finding (use this to confirm credentials/toll-free verification work)'
+        type: boolean
+        default: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check watchlist premiere/finale events and text via Twilio
+        env:
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_FROM_NUMBER: ${{ secrets.TWILIO_FROM_NUMBER }}
+          TWILIO_TO_NUMBER: ${{ secrets.TWILIO_TO_NUMBER }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
+          TEST_SEND: ${{ inputs.test_send && '1' || '0' }}
+        run: python3 trakt/notify_watchlist.py
+        timeout-minutes: 10
+      - name: Commit if changed
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Same race every other Trakt workflow's commit step already
+          # guards against — a long-running job can lose its push to an
+          # unrelated scheduled workflow landing on main first.
+          BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+          git add trakt/data/notificationState.json
+          if git diff --staged --quiet; then
+            echo "No new notification state."
+            exit 0
+          fi
+          git commit -m "Update watchlist notification state [automated]"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest $BRANCH."
+            git fetch origin "$BRANCH"
+            git rebase "origin/$BRANCH"
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1
