@@ -159,6 +159,21 @@ def main():
               'run) — see trakt/notify_watchlist.py\'s docstring.', file=sys.stderr)
         sys.exit(1)
 
+    # Safe shape diagnostics — never print the actual secret values, only
+    # their length/prefix, so a wrong-format credential (a stray trailing
+    # newline from a copy-paste, an API Key SID instead of an Account SID,
+    # etc.) is visible in the job log without ever exposing anything
+    # sensitive. Added after 3 consecutive real TEST_SEND runs all failed
+    # with the identical "Twilio error 20003: Authenticate" despite Bill
+    # re-verifying/re-saving all 4 secrets fresh each time.
+    if not DRY_RUN:
+        print(f'Credential shape check (values never printed): '
+              f'ACCOUNT_SID len={len(ACCOUNT_SID)} prefix={ACCOUNT_SID[:2]!r} '
+              f'(want len=34, prefix=\'AC\'); '
+              f'AUTH_TOKEN len={len(AUTH_TOKEN)} (want len=32); '
+              f'FROM_NUMBER len={len(FROM_NUMBER)} starts_plus={FROM_NUMBER.startswith("+")}; '
+              f'TO_NUMBER len={len(TO_NUMBER)} starts_plus={TO_NUMBER.startswith("+")}')
+
     if TEST_SEND:
         ok, info = send_sms('✅ Test text from trakt/notify_watchlist.py — Twilio setup is working.')
         if not ok:
