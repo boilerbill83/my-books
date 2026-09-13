@@ -77,6 +77,12 @@ export function hydrateTitle(c, enrichedMeta) {
 // never guessed.
 const CREATOR_CORRECTIONS = {
   'show:137252': ['Shea Serrano', 'Michael Schur'], // Primo
+  // 2026-09-13 (Director Data Double-Checked finding, quality.js): TMDB's
+  // director field for Simon (2023) reads "Diego Vincentini" — a genuine
+  // typo (extra 'n'), not a name-format variant. OMDb, Wikipedia, IMDb,
+  // and the director's own press interviews all confirm the real spelling
+  // is "Diego Vicentini." Verified via real outside sources, not guessed.
+  'movie:1105832': ['Diego Vicentini'], // Simón (2023)
 };
 
 // The single "creative author" signal for a title: a movie's director or
