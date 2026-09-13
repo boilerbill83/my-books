@@ -689,6 +689,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
       return {
         severity: 'warning',
         ratings: { ease: 3, dataQuality: 6, recEngine: 2, ui: 2 },
+        estTokens: 12000, // small: real ceiling largely reached, little left to automate
         shortTitle: 'Audience Ratings Almost Complete',
         title: `Audience Score (real viewer opinion) is ${f.populatedPct.toFixed(1)}% populated, ${f.qualityPct.toFixed(1)}% quality — climbing fast after a real eligibility bug fix`,
         technical: `<code>realAudienceScore()</code> (RT Popcornmeter / Metacritic user score) started this session genuinely 0% populated across ` +
@@ -804,6 +805,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
         return {
           severity: 'warning',
           ratings: { ease: 5, dataQuality: 5, recEngine: 1, ui: 3 },
+          estTokens: 38000, // proven pattern (LLM tagging tier) to replicate for Era
           shortTitle: 'Story Time Period Missing',
           title: `Era is ${f.populatedPct.toFixed(1)}% populated — the LLM tagging pass that closed this exact gap for Subgenres/Tones was never extended to Era`,
           technical: `<code>inferEra()</code> has only two real tiers — <code>reviewedTags.json</code> (a hand-curated workbook, ${reviewedWithEra} of ` +
@@ -1447,6 +1449,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     id: 'rt-manual-url-needed',
     severity: 'warning',
     ratings: { ease: 9, dataQuality: 3, recEngine: 1, ui: 1 },
+    estTokens: 8000, // Bill's turn; trivial once the 5 URLs are in hand
     shortTitle: 'A Few Ratings Still Missing',
     title: '5 titles need a manually-found Rotten Tomatoes URL — Bill\'s turn, not something more automation can fix',
     technical: `RT's own search page never surfaces the correct result among the top candidates the scraper tries ` +
@@ -1698,6 +1701,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       severity: 'warning', // investigated with real evidence; recommendation given, final call still Bill's
       backlog: true, // Bill: parked in the Backlog section — investigated and recommended against, not urgent, not forgotten
       ratings: { ease: 3, dataQuality: 2, recEngine: 5, ui: 1 },
+      estTokens: 35000, // scoped recency-penalty fix + eval sweep, not a full engine split
       shortTitle: 'Split Movies & TV Scoring?',
       title: 'Investigated (Bill asked): should movies and TV shows use two separate scoring engines? Real evidence points against it',
       technical: `Investigated with live data rather than reasoned about abstractly. Cataloged every existing type-specific branch in ` +
@@ -1773,6 +1777,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       id: 'remaining-subgenre-genre-specificity',
       severity: 'warning',
       ratings: { ease: 4, dataQuality: 4, recEngine: 2, ui: 3 },
+      estTokens: 50000, // many buckets, each needing its own keyword-frequency verification
       shortTitle: 'Some Genre Detail Missing',
       title: `Subgenre detail refinement covers a minority of the live vocabulary — ${refinedCount || 4} of ${totalSubgenres || 30} ` +
         `keyword-tier subgenre tags have a detail breakdown`,
@@ -2567,6 +2572,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'flat-community-neutral-ignores-genre-bias',
       severity: 'warning',
       ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
+      estTokens: 25000, // a real shrinkage-estimator retry, the one untried angle
       shortTitle: 'Genre Rating Bias Tested',
       title: highest && lowest
         ? `Tested: a per-genre COMMUNITY_NEUTRAL (real ${spread.toFixed(2)}-point bias spread, ${highest.g} +${highest.delta.toFixed(2)} to ${lowest.g} ${lowest.delta.toFixed(2)}) regressed precision — reverted, kept as a documented dead end`
@@ -2670,6 +2676,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       severity: 'warning',
       backlog: true, // Bill: parked in the Backlog section — a real, scoped opportunity, deliberately not urgent
       ratings: { ease: 3, dataQuality: 4, recEngine: 3, ui: 1 },
+      estTokens: 55000, // mirrors Phase 1's real shipped scope, on the book side's own eval harness
       shortTitle: 'Movie Taste → Book Recs (Phase 2)',
       title: 'Open opportunity, deliberately deferred: the same book-taste correlation could run in reverse — BBRE (book recs) reading Bill\'s real movie/TV taste — but not built without Bill\'s explicit go-ahead first',
       technical: `Phase 1 (shipped, see the finding above) reads BBRE's real book-theme preferences into BMTRE's <code>bookTasteBonus()</code> ` +
@@ -3053,6 +3060,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'creator-critic-trust-gap-tested',
       severity: 'warning',
       ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
+      estTokens: 15000, // re-run the already-built prototype once more rating volume exists
       shortTitle: 'Director Trust Idea Rejected',
       title: `Tested: a per-creator critic-trust-gap signal regressed precision@50/@100 at every weight tried — not shipped, kept as a documented dead end`,
       technical: `Real, clean examples exist both directions — Bill rates Adam McKay/Ridley Scott/Todd Phillips/Taylor Sheridan/David E. Kelley well ` +
@@ -3104,6 +3112,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'season-count-signal-tested',
       severity: 'warning',
       ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
+      estTokens: 5000, // fully closed, nothing further proposed
       shortTitle: 'Season Count Idea Rejected',
       title: `Tested: a show season-count signal (real inverted-U pattern) never produced a net precision gain — not shipped, kept as a documented dead end`,
       technical: `Live bucket averages (myRating, n=${rows.length} rated shows): 1-2 seasons ${bucketAvgs[0]?.toFixed(2)}, 2-3 ${bucketAvgs[1]?.toFixed(2)}, ` +
@@ -3145,6 +3154,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'premium-network-signal-tested',
       severity: 'warning',
       ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
+      estTokens: 5000, // fully closed, tested twice already
       shortTitle: 'Premium Network Idea Rejected',
       title: `Tested twice: a premium-network (HBO family/Showtime/AMC) bonus — flat AND recency-targeted per Bill's own "especially recent" hypothesis — never produced a net gain`,
       technical: `Live check, HBO/HBO Max/Max merged as one brand (TMDB labels the same network differently by era due to real-world rebranding — ` +
@@ -3210,6 +3220,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'mutual-citation-double-count-tested',
       severity: 'warning',
       ratings: { ease: 3, dataQuality: 2, recEngine: 3, ui: 1 },
+      estTokens: 10000, // the one bad case is already handled; a narrower general fix is a small experiment
       shortTitle: 'Double-Counted Matches Found',
       title: `Root-caused the comic-book-movie complaint to a real mechanism (mutual citation double-counting) — confirmed it fixes the specific case, but a general fix regressed precision, so it wasn't shipped`,
       technical: `Live check: of the ${totalWithBoth} watchlist/candidate titles with both a forward AND reverse loved-title citation match, ` +
@@ -3490,6 +3501,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'citation-credit-thin-tone-vocab',
       severity: thinUnionCases.length ? 'warning' : 'good',
       ratings: { ease: 5, dataQuality: 4, recEngine: 3, ui: 1 },
+      estTokens: 80000, // its own writeup: richer tagging is a large, separate tracked effort
       shortTitle: 'Some Mood Tags Too Thin',
       title: thinUnionCases.length
         ? `Fixed the false-positive mechanism (confidence now scales with tone-tag richness) — ${thinUnionCases.length} live case${thinUnionCases.length === 1 ? '' : 's'} still gets a real, meaningful discount instead of none`
@@ -3527,6 +3539,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'citation-credit-franchise-exemption-shows',
       severity: 'warning',
       ratings: { ease: 6, dataQuality: 3, recEngine: 3, ui: 1 },
+      estTokens: 35000, // new show-side franchise-proxy signal + testing
       shortTitle: 'TV Franchise Rule Gap',
       title: `Franchise exemption only has a real code path for movies — ${showAnomalies} of ${idx.anomalousLovedKeys.size} confirmed outliers are shows with no equivalent`,
       technical: `<code>citationCreditMultiplier()</code>'s franchise exemption checks <code>belongsToCollection</code>, a TMDB concept that only ` +
@@ -3676,6 +3689,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       severity: 'warning',
       backlog: true, // Bill: log the idea, don't build yet — needs a real curated list first
       ratings: { ease: 4, dataQuality: 3, recEngine: 4, ui: 2 },
+      estTokens: 25000, // wiring once a list exists; most of the real work is Bill's own curation
       shortTitle: 'Showrunner Quality Assurance',
       title: `Idea: a curated prestige-showrunner list, independent of Bill's own rating history — checked the two named examples first, both already work correctly today`,
       technical: `Checked live before proposing anything: <code>idx.creatorRatingWeight</code>/<code>idx.lovedCreators</code> already correctly ` +
@@ -3730,6 +3744,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       severity: 'warning',
       backlog: true, // Bill: log the idea, needs more thought before touching scoring
       ratings: { ease: 2, dataQuality: 5, recEngine: 5, ui: 1 },
+      estTokens: 45000, // open-ended detection research, likely several dead ends before any real signal
       shortTitle: 'Nostalgia Ratings May Mislead',
       title: `Idea: does a childhood-nostalgia rating on an old title (Bill's own example: Saved by the Bell, 10/10) get treated as reliable taste signal the same as any other loved title?`,
       technical: `Bill's real concern, in his own words: he rated <strong>Saved by the Bell</strong> (1989)${savedByTheBell ? ` ${savedByTheBell.myRating}/10` : ' 10/10'} ` +
@@ -3793,6 +3808,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'genre-pair-interaction-untested',
       severity: 'warning',
       ratings: { ease: 4, dataQuality: 3, recEngine: 6, ui: 1 },
+      estTokens: 55000, // new function + trust floor + cap + eval sweep + ship
       shortTitle: 'Genre Combos Carry Real Signal',
       title: `New idea: genreBonus()/genreSignal() only ever see ONE genre per title — real genre PAIRS show interaction effects the single-valued classifier throws away`,
       technical: `<code>inferGenre()</code> deliberately reduces TMDB's raw multi-valued <code>genres</code> array to a single canonical value for ` +
@@ -3828,6 +3844,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'cited-vote-counts-signal-unused',
       severity: 'warning',
       ratings: { ease: 5, dataQuality: 3, recEngine: 4, ui: 1 },
+      estTokens: 45000, // same shape as the already-shipped tone-Jaccard confidence fix
       shortTitle: 'Citation Weight Ignores Popularity',
       title: `New idea: enrich_tmdb.py has captured a real, ${((100 * withCitedVotes / totalEnrichedForCV) || 0).toFixed(1)}%-populated field (citedVoteCounts) that engine.js never reads at all`,
       technical: `<code>enrich_tmdb.py</code>'s <code>citedVoteCounts</code> (the real TMDB <code>vote_count</code> of every title in a candidate's own ` +
@@ -3871,6 +3888,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'mature-content-signal-too-narrow',
       severity: 'warning',
       ratings: { ease: 3, dataQuality: 5, recEngine: 6, ui: 1 },
+      estTokens: 30000, // re-scoping existing code, not a new mechanism
       shortTitle: 'Mature-Content Bonus Too Narrow',
       title: `New idea: matureContentSignal() only fires for the superhero subgenre, but the real R/TV-MA preference is general — ${fmtNum(matureRatings.length)} mature titles average ${matureAvg?.toFixed(2)} vs. ${fmtNum(nonMatureRatings.length)} non-mature at ${nonMatureAvg?.toFixed(2)}`,
       technical: `<code>matureContentSignal()</code> (engine.js) was deliberately scoped to fire only when a candidate carries the ` +
@@ -3904,6 +3922,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'production-company-signal-missing',
       severity: 'warning',
       ratings: { ease: 5, dataQuality: 2, recEngine: 3, ui: 1 },
+      estTokens: 65000, // needs a full enrichment round trip before any signal work can start
       shortTitle: 'Studio/Production Signal Missing',
       title: `New idea: TMDB's production_companies field is never captured at all — a studio-affinity signal (A24, Blumhouse, etc.) has no data to test yet`,
       technical: `Checked <code>enrich_tmdb.py</code>'s <code>extract_entry()</code> directly: it captures genres, keywords, cast/crew credits, ` +
@@ -3942,6 +3961,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       id: 'desc-similarity-thin-overview-risk',
       severity: 'warning',
       ratings: { ease: 4, dataQuality: 2, recEngine: 2, ui: 1 },
+      estTokens: 25000, // mirrors an already-proven pattern, smaller lift than building one from scratch
       shortTitle: 'Thin Overviews May Inflate Matches',
       title: `New idea (latent, not yet caught live): descSimilarityBonus() has no vocabulary-richness confidence scaling — the exact bug class just fixed for tone-Jaccard could recur here`,
       technical: `Direct structural parallel to <code>citation-credit-thin-tone-vocab</code> (fixed earlier this session): ` +
@@ -4004,21 +4024,33 @@ const impPillText = f => {
 // hardcoded 'warning', so a real recEngine=6 idea and a recEngine=1 dead
 // end both rendered as identically "Low impact" again.
 //
-// Follow-up (same day): "add a severity score from 1-100... remove UI as
-// a consideration... what do you propose as a way to weigh the other
-// factors?" then, when asked, "remember I am most focused on improving
-// the accuracy of the prediction engine." Proposed and confirmed: a
-// weighted blend of the 3 remaining axes, recEngine weighted far above
-// the other two since that's the explicit, repeated priority — this is a
-// priority score (impact blended with effort), not a pure severity score
-// in the strict sense (which would ignore ease entirely), a tradeoff
-// stated directly to Bill before building this.
-const IMPACT_WEIGHTS = { recEngine: 0.70, dataQuality: 0.20, ease: 0.10 };
+// Follow-up #1 (same day): "add a severity score from 1-100... remove UI
+// as a consideration... what do you propose as a way to weigh the other
+// factors?" First version blended in ease (effort) as a small tiebreaker
+// — a priority score, not a pure severity one.
+//
+// Follow-up #2: "I don't care about priority; take that out of the
+// weight... use an indicator to show me how hard it is to do; estimate
+// the number of tokens it would take to completely solve the problem and
+// use that as the calculation." Two changes: (1) the 1-100 score is now
+// PURE impact — recEngine and dataQuality only, no ease at all, so it
+// never rewards a finding for being cheap; (2) "how hard" moved to its
+// own separate indicator (estTokens below), grounded in a real unit for
+// this specific project (an AI-agent coding session) rather than an
+// abstract 1-10 "ease" guess — a rough estimate of how many tokens a
+// Claude Code session would spend actually building, testing (the real
+// scripts/eval.js sweep + Playwright verification this project's own
+// discipline always requires), and shipping the fix, calibrated against
+// this session's own directly-observed real costs for similarly-scoped
+// changes (a self-contained new signal + sweep + ship ~= 40-55K; a small
+// scoping/threshold tweak to already-existing code ~= 25-35K; something
+// needing a new data-collection round trip through a real GitHub Actions
+// enrichment run first ~= 60K+; Bill's-turn/no-code items ~= under 10K).
+const IMPACT_WEIGHTS = { recEngine: 0.75, dataQuality: 0.25 };
 function computeImpactScore(ratings) {
   const r = ratings || {};
   const raw = IMPACT_WEIGHTS.recEngine * (r.recEngine ?? 0)
-    + IMPACT_WEIGHTS.dataQuality * (r.dataQuality ?? 0)
-    + IMPACT_WEIGHTS.ease * (r.ease ?? 0);
+    + IMPACT_WEIGHTS.dataQuality * (r.dataQuality ?? 0);
   return Math.round(raw * 10); // each axis is 1-10, weights sum to 1 → 1-100
 }
 // Tier cutoffs picked against this dashboard's real live score
@@ -4032,6 +4064,27 @@ function deriveImpactSeverity(score) {
   if (s >= 50) return 'critical';
   if (s >= 30) return 'serious';
   return 'warning';
+}
+// Effort tiers for the new estTokens indicator — a rough order-of-
+// magnitude bucket on top of the real estimate (always shown together,
+// never the tier alone) so the tile stays scannable without doing
+// mental math on a raw token count.
+const EFFORT_TIERS = [
+  { max: 15000, icon: '🟢', label: 'Quick' },
+  { max: 40000, icon: '🟡', label: 'Moderate' },
+  { max: 65000, icon: '🟠', label: 'Substantial' },
+  { max: Infinity, icon: '🔴', label: 'Major' },
+];
+function effortTier(estTokens) {
+  return EFFORT_TIERS.find(t => estTokens <= t.max) || EFFORT_TIERS[EFFORT_TIERS.length - 1];
+}
+function fmtTokens(n) {
+  return n >= 1000 ? `~${Math.round(n / 1000)}K` : `~${n}`;
+}
+function effortBadgeHtml(f) {
+  if (f.estTokens == null) return '';
+  const tier = effortTier(f.estTokens);
+  return `<span class="tk-imp-effort" title="Rough estimate of how many tokens a session would take to completely solve this">${tier.icon} ${fmtTokens(f.estTokens)} tokens · ${tier.label}</span>`;
 }
 // A small, explicit exclusion list — the handful of findings whose
 // severity is a LIVE CONDITIONAL toggling between an active-problem state
@@ -4059,20 +4112,23 @@ function applyImpactSeverity(findings) {
   }
   return findings;
 }
-// 1-10 scale on 3 independent axes (ease of implementation, data quality
-// improvement, recommendation engine improvement) — a judgment call
-// grounded in each finding's own technical/impact writeup, not a further
-// live computation. UI improvement was a 4th axis, dropped per Bill's
-// explicit request ("remove UI as a consideration") — findings still
-// carry a ratings.ui value in source (removing it from 60+ individual
-// finding literals would be pure churn with no behavioral effect, the
-// same "unused field left in place" tolerance this project already
-// extends to other dead data), it's just no longer read here. Rendered
-// as small labeled meters (never color alone — a number is always
-// printed) so the axes stay scannable without reading every paragraph,
-// the same discipline the severity pill already uses.
+// 1-10 scale on 2 independent VALUE axes (data quality improvement,
+// recommendation engine improvement) — a judgment call grounded in each
+// finding's own technical/impact writeup, not a further live computation.
+// These are the only two axes the 1-100 score above is built from. UI
+// (dropped earlier) and Ease (dropped per Bill: "I don't care about
+// priority; take that out of the weight... use an indicator to show me
+// how hard it is to do" — effort now shown separately via the real
+// estTokens estimate, not blended into impact) are both gone from this
+// list. Findings still carry ratings.ease/ratings.ui values in source
+// (removing them from 60+ individual finding literals would be pure
+// churn with no behavioral effect, the same "unused field left in place"
+// tolerance this project already extends to other dead data), they're
+// just no longer read here. Rendered as small labeled meters (never
+// color alone — a number is always printed) so the axes stay scannable
+// without reading every paragraph, the same discipline the severity pill
+// already uses.
 const IMP_RATING_META = [
-  { key: 'ease', label: 'Ease' },
   { key: 'dataQuality', label: 'Data quality' },
   { key: 'recEngine', label: 'Rec. engine' },
 ];
@@ -4167,6 +4223,7 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList', 
           <span class="tk-status-pill ${sev.cls}">${sev.icon} ${impPillText(f)}</span>
         </div>
         <div class="tk-imp-tile-title">${esc(f.shortTitle || f.title)}</div>
+        ${effortBadgeHtml(f)}
         ${renderImpRatings(f.ratings)}
         <div class="tk-imp-tile-hint">Click for full details →</div>
       </button>
@@ -4182,7 +4239,7 @@ function openImpModal(f) {
   const modal = document.getElementById('impModal');
   if (!modal || !f) return;
   const sev = IMP_SEV_META[f.severity];
-  modal.querySelector('#impModalPill').innerHTML = `<span class="tk-status-pill ${sev.cls}">${sev.icon} ${impPillText(f)}</span>`;
+  modal.querySelector('#impModalPill').innerHTML = `<span class="tk-status-pill ${sev.cls}">${sev.icon} ${impPillText(f)}</span> ${effortBadgeHtml(f)}`;
   modal.querySelector('#impModalTitle').textContent = f.shortTitle || f.title;
   modal.querySelector('#impModalFullTitle').textContent = f.title;
   modal.querySelector('#impModalRatings').innerHTML = renderImpRatings(f.ratings);
