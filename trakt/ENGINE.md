@@ -576,6 +576,38 @@ Scoped to the superhero subgenre only, matching the actual diagnosed
 problem — not generalized to a broader "Bill prefers mature content"
 signal without separately validating that wider claim.
 
+### 3g-4. General (non-superhero) content-rating preference — clamped to **±5**, per-genre profile
+```
+if subgenres.includes('superhero'): return 0  // already covered by §3g-3's own, separately-calibrated effect
+delta = matureContentGenreProfile.get(candidate's inferred Genre)
+if delta == null: return 0  // not enough of BOTH mature+non-mature rated titles in this genre yet (floor: 5 each)
+mature = isMatureContent(omdbEntry)
+if mature == null: return 0  // no OMDb `rated` data yet
+adj = (mature ? delta : -delta) * 5
+return clamp(adj, -5, +5)
+```
+`mature-content-signal-too-narrow` (dashboard finding): §3g-3's superhero-only content-maturity effect turned out not to be
+superhero-specific once real OMDb `rated` data existed for enough of the library to check — a live, whole-library check found
+mature-rated (R/NC-17/TV-MA) titles average meaningfully higher than non-mature ones across every genre with enough data, not
+just superhero. Real per-genre deltas (mature-rated mean minus non-mature mean, both buckets ≥5 rated titles): thriller +1.13
+(n=53), crime +1.07 (n=93), biography +1.07 (n=17), drama +0.73 (n=130), science-fiction +0.38 (n=46) — real, but an order of
+magnitude smaller than §3g-3's own 2.6-point superhero-specific gap, so this signal keeps its own, separately-swept, smaller
+constants rather than reusing §3g-3's +10/-6 unchanged. Superhero-tagged titles are excluded from this profile's own training
+data (`buildIndexes()`), so the two signals can never double-count the same evidence.
+
+`matureContentGenreProfile` (`buildIndexes()`) is a `genreProfile`/`subgenreProfile`-shaped Map: for each genre with ≥5 rated
+titles in EACH of the mature/non-mature buckets (`MATURE_CONTENT_GENRE_TRUST_FLOOR`), the real mature-minus-non-mature rating
+delta for that genre. `omdbMeta` is threaded into `buildIndexes()` as a new (backward-compatible, default `{}`) parameter
+specifically to make this profile possible — every real call site (`rankAll`, `rankRecommendations`, both internal
+`computeEvalMetrics()` calls, `similar.js`, `prune_candidate_pool.js`) was updated to pass it through.
+
+`MATURE_CONTENT_GENRE_SCALE`/`_CAP` swept together (0 through 10) against `scripts/eval.js`'s "great match" (8+/10) metric —
+every value below 5 held precision@25 at the signal-disabled baseline (96%) with no gain; 5-6 is a clean, stable plateau —
+precision@25 96%→**100%** (a real gain, holding through 6), precision@10 unchanged at 100%, only a single-title cost each to
+precision@100 (91%→90%) and bottom-50 catch (30/50→29/50 — both within a 1-of-100/1-of-50 leave-one-out swap's noise floor).
+Scale≥7 breaks precision@50 (96%→92%, a real regression, not noise). Shipped at **SCALE=5, CAP=5** — the center of the stable
+band, not the edge of it.
+
 ### 3h. Tone signal — clamped to **±3**
 ```
 Σ over candidate's tones of (tonePreferenceMean - globalMeanRating) × 4
@@ -1618,33 +1650,41 @@ Run it: `node trakt/scripts/eval.js` from the repo root.
 | Signal | Range | Notes |
 |---|---|---|
 | Base score | +20 flat | Starting point before any signal |
-| Creator/director match | +0 to +15 | +10 loved-count, +5 rating-weight |
-| Genre match | +0 to +8 | Tiered by loved-genre count |
-| Genre rating penalty | -3 to 0 | Rating-preference delta, -0.5 deadzone, penalty-only |
+| Creator/director match | +0 to +15 | +10 loved-count (capped), +5 rating-weight (capped) |
+| Genre match | +0 to +8 | Tiered by loved-genre count (§3b) |
+| Genre rating penalty | -3 to 0 | Rating-preference delta, -0.5 deadzone, penalty-only (§3b-2) |
 | Dismissal (creator) | -15 flat | `creator_dislike` reason code |
 | Dismissal (style) | 0 to -10 | `style_dislike`, needs 2+ dismissals |
-| Franchise/collection | +0 to +15 | Movies only |
-| Cast match | +0 to +8 | Top-billed actors |
+| Franchise/collection | +0 to +15 | Movies only; +10 for one loved/liked entry (rating-weighted, continuous) + 3/additional |
+| Cast match | +0 to +8 | Top-billed actors, billing-position-weighted |
 | Keyword match | +0 to +1.5 | Free-form TMDB keywords |
 | Breaking the fourth wall | +0 or +6 | Single dedicated keyword; real cross-genre signal, n=7 |
-| Subgenre match | +0 to +1.5 | Beneath TMDB's genre taxonomy |
-| Subgenre rating penalty | -3 to 0 | Rating-preference delta, -0.7 deadzone, penalty-only |
-| Superhero content maturity | -6 to +10 | Superhero subgenre only; R/TV-MA vs. PG-13/TV-14; needs OMDb `rated` backfill |
+| Subgenre match | +0 to +1.5 | Beneath TMDB's genre taxonomy (§3g) |
+| Subgenre rating penalty | -3 to 0 | Rating-preference delta, -0.7 deadzone, penalty-only (§3g-2) |
+| Superhero content maturity | -6 to +10 | Superhero subgenre only; R/TV-MA vs. PG-13/TV-14; needs OMDb `rated` (§3g-3) |
+| General content-rating preference | -5 to +5 | Non-superhero genres, per-genre rating-preference delta; excludes superhero titles from its own training data (§3g-4) |
+| Subject match | +0 to +1.5 | Human-condition subject matter beneath genre/subgenre |
+| Book taste correlation | +0 to +0.75 | Cross-app: BBRE's real 5★-read theme counts vs. this title's Genre/Subgenre/Subject tags (§3t) |
 | Tone signal | -3 to +3 | Real per-tone rating-preference delta |
-| Description similarity | +0 to +3 | TF-IDF plot-text cosine similarity to loved titles |
+| Description similarity | +0 to +3 | TF-IDF plot-text cosine similarity to loved titles (§3r) |
 | Forward similar-title | +0 to +24 | Scaled by `matchPointScale`; citation credit reweighted 0.3-1.0× when the cited loved title is a confirmed category outlier |
 | Reverse similar-title | +0 to +12 | Scaled by `matchPointScale`; same reweighting |
 | Community rating (TMDB+IMDb blend) | unbounded* | `(communityScore - 6.0) × 8`, IMDb weighted 0.7 |
 | Vote count (TMDB) | +0 to +4 | "How many ratings" #1 |
 | IMDb vote count | +0 to +3 | "How many ratings" #2 |
-| Show popularity (TMDB trending) | -8 to +8 | Shows only; `r=0.20` w/ myRating, movies ~0 |
+| Show popularity (TMDB trending) | -8 to +8 | Shows only; `r=0.20` w/ myRating, movies ~0 (§3s) |
 | Recency (movie) | -15 to +8 | Steep, per Bill's explicit ask |
-| Recency (show) | 0 to +3 | Gentle — shows don't age like movies |
+| Recency (show) | -30 to +15 | Gentler curve shape, but a genuinely wider range than movies (§3o) — shows don't age by release year the way movies do |
 | Show-airing bonus | 0 | Built, tested, currently inert (scale=0) |
+| Modern network TV | -16 flat | Big4 (CBS/NBC/ABC/FOX) shows, 2020+ only (§3o-2) |
 | Critic score (OMDb) | -6 to +6 | RT/Metacritic critic aggregate |
 | Real audience score (OMDb) | -4 to +4 | RT Popcornmeter + Metacritic user score |
 | Awards (OMDb) | +0 to +4 | Oscar/Emmy-weighted |
 | **Final score** | **clamped 0-100** | |
+
+A companion, plain-English version of this same table — one row per signal with a "why this weight" explanation, no code
+references — is rendered live on the [Data Quality dashboard](../trakt/quality.html)'s "⚖️ Scoring Weights" card, for anyone
+who wants the reasoning without reading this file.
 
 \* Bounded in practice by TMDB's 0-10 rating scale (roughly -48 to +32,
 though real values cluster far tighter around the neutral point).

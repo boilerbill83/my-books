@@ -313,7 +313,7 @@ export function inferGenre(meta, llmEntry, reviewed) {
 // static check.
 const STYLE_DISLIKE_REASON_CODES = new Set(['style_dislike']);
 
-export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, reviewedTags = {}, descModelOverride = undefined, bookThemeCounts = {}) {
+export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, reviewedTags = {}, descModelOverride = undefined, bookThemeCounts = {}, omdbMeta = {}) {
   const watched = new Map();
   for (const t of library.titles || []) watched.set(t.titleKey, t);
 
@@ -382,6 +382,16 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   // penalty at all. subgenreSignal() below generalizes genreSignal()'s
   // formula one more level down.
   const subgenreRatingsRaw = new Map();
+  // genre -> {mature: [ratings], nonmature: [ratings]} for the content-
+  // maturity signal (dashboard's mature-content-signal-too-narrow finding)
+  // — see matureContentGenreSignal()'s own comment for the full rationale
+  // and real per-genre deltas that motivated this. Superhero titles are
+  // excluded from this map entirely (checked below, per-title) since
+  // they're already covered by the separately-calibrated, much larger
+  // matureContentSignal() effect — mixing the two would double-count the
+  // same real preference for any title that's both superhero AND, say,
+  // genre-classified as action.
+  const matureContentGenreRatingsRaw = new Map();
   let ratedSum = 0, ratedCount = 0;
   // Weighted-by-loved-show-overlap airing-status signal (dashboard
   // recency-curve-not-split-by-type finding) — see showAiringBonus()
@@ -550,9 +560,19 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
       if (!genreRatingsRaw.has(genreForProfile)) genreRatingsRaw.set(genreForProfile, []);
       genreRatingsRaw.get(genreForProfile).push(t.myRating);
     }
-    for (const s of inferSubgenres(meta, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
+    const subgenresForProfile = inferSubgenres(meta, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey]);
+    for (const s of subgenresForProfile) {
       if (!subgenreRatingsRaw.has(s)) subgenreRatingsRaw.set(s, []);
       subgenreRatingsRaw.get(s).push(t.myRating);
+    }
+    if (genreForProfile && !subgenresForProfile.includes('superhero')) {
+      const mature = isMatureContent(omdbMeta[t.titleKey]);
+      if (mature != null) {
+        if (!matureContentGenreRatingsRaw.has(genreForProfile)) {
+          matureContentGenreRatingsRaw.set(genreForProfile, { mature: [], nonmature: [] });
+        }
+        matureContentGenreRatingsRaw.get(genreForProfile)[mature ? 'mature' : 'nonmature'].push(t.myRating);
+      }
     }
 
     if (t.type === 'show') {
@@ -712,6 +732,31 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
       subgenreProfile.set(s, ratings.reduce((a, r) => a + r, 0) / ratings.length);
     }
   }
+  // mature-content-signal-too-narrow: a real, general R/TV-MA preference
+  // exists beyond just superhero (dashboard's own live check: mature-rated
+  // titles average 7.93 vs. 7.49 for non-mature, n=618, +0.44 overall) —
+  // but it's NOT uniform across genres. Checked per-genre before building
+  // anything (excluding superhero titles, whose own dedicated signal
+  // already accounts for their much larger 2.6-point effect): real,
+  // trustworthy positive deltas in thriller (+1.13, n=53), crime (+1.07,
+  // n=93), biography (+1.07, n=17), drama (+0.73, n=130), science-fiction
+  // (+0.38, n=46) — while comedy/sports/mystery/romance/horror show ~0 or
+  // negative deltas on real (if smaller) samples. A flat universal bonus
+  // would have force-applied credit onto genres with no real signal (or
+  // a real NEGATIVE one, like romance) — exactly the failure mode already
+  // documented for the reverted flat-community-neutral-ignores-genre-bias
+  // attempt. This computes a genuine per-genre delta instead, same
+  // trust-floor-gated shape as genreProfile/subgenreProfile/toneProfile —
+  // requires BOTH the mature and non-mature buckets within a genre to
+  // individually clear MATURE_CONTENT_GENRE_TRUST_FLOOR before that
+  // genre's delta is trusted at all, so a thin sample can't swing it.
+  const matureContentGenreProfile = new Map();
+  for (const [genre, buckets] of matureContentGenreRatingsRaw) {
+    if (buckets.mature.length < MATURE_CONTENT_GENRE_TRUST_FLOOR || buckets.nonmature.length < MATURE_CONTENT_GENRE_TRUST_FLOOR) continue;
+    const matAvg = buckets.mature.reduce((a, r) => a + r, 0) / buckets.mature.length;
+    const nonAvg = buckets.nonmature.reduce((a, r) => a + r, 0) / buckets.nonmature.length;
+    matureContentGenreProfile.set(genre, matAvg - nonAvg);
+  }
   // A per-genre COMMUNITY_NEUTRAL (dashboard's flat-community-neutral-
   // ignores-genre-bias finding, a real, measured 1.80-point genre-bias
   // spread) was tried and reverted here — see baseSignals()'s community
@@ -756,7 +801,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   // override for the non-loved majority of its loop.
   const descModel = descModelOverride !== undefined ? descModelOverride : buildDescModel(enrichedMeta, lovedTitles);
 
-  return { watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, genreProfile, subgenreProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel, anomalousLovedKeys, anomalyDetails, bookThemeCounts, enrichedMetaRef: enrichedMeta };
+  return { watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, genreProfile, subgenreProfile, matureContentGenreProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel, anomalousLovedKeys, anomalyDetails, bookThemeCounts, enrichedMetaRef: enrichedMeta };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -1562,6 +1607,37 @@ function matureContentSignal(subgenres, omdbEntry) {
   const mature = isMatureContent(omdbEntry);
   if (mature == null) return 0;
   return mature ? MATURE_CONTENT_BONUS : MATURE_CONTENT_PENALTY;
+}
+
+// mature-content-signal-too-narrow (dashboard): the general, non-superhero
+// content-maturity preference above — see matureContentGenreProfile's own
+// buildIndexes() comment for the real per-genre deltas that justify this.
+// SCALE/CAP swept against scripts/eval.js (see trakt/ENGINE.md §3g-4 for the
+// real sweep table) rather than copied from matureContentSignal()'s own
+// constants unchanged — that signal was calibrated against a 2.6-point
+// superhero-specific effect; this one's real deltas top out around 1.1,
+// so reusing +10/-6 unchanged would have been a guess, not a measurement.
+// Swept SCALE/CAP together (0 through 10) against scripts/eval.js's real
+// "great match" (8+/10) metric — the script's own labeled "real
+// discriminating metric": every value below 5 held precision@25 at
+// baseline (96%) with no gain; 5-6 is a clean, stable plateau —
+// precision@25 96%->100% (a real gain, holding through 6),
+// precision@10 unchanged, only a single-title cost each to precision@100
+// (91->90) and bottom-50 catch (30->29, both within a 1-of-100/1-of-50
+// leave-one-out swap's noise floor). Scale>=7 breaks precision@50
+// (96%->92%, a real regression, not noise) — shipped at 5, the center of
+// the stable band, not the edge.
+const MATURE_CONTENT_GENRE_TRUST_FLOOR = 5; // min rated titles in EACH of mature/non-mature within a genre
+const MATURE_CONTENT_GENRE_SCALE = 5;
+const MATURE_CONTENT_GENRE_CAP = 5;
+function matureContentGenreSignal(genre, subgenres, omdbEntry, matureContentGenreProfile) {
+  if ((subgenres || []).includes('superhero')) return 0; // already covered by matureContentSignal()'s own, separately-calibrated effect
+  const delta = matureContentGenreProfile?.get(genre);
+  if (delta == null) return 0;
+  const mature = isMatureContent(omdbEntry);
+  if (mature == null) return 0;
+  const adj = (mature ? delta : -delta) * MATURE_CONTENT_GENRE_SCALE;
+  return Math.max(-MATURE_CONTENT_GENRE_CAP, Math.min(MATURE_CONTENT_GENRE_CAP, adj));
 }
 
 // A real Improvement Opportunities finding (Session 53): similarToIds/
@@ -3283,6 +3359,7 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   score += subgenreBonus(candidateSubgenresForScoring, idx.lovedSubgenres);
   score += subgenreSignal(candidateSubgenresForScoring, idx.subgenreProfile, idx.globalMeanRating);
   score += matureContentSignal(candidateSubgenresForScoring, omdbEntry);
+  score += matureContentGenreSignal(candidateGenreForScoring, candidateSubgenresForScoring, omdbEntry, idx.matureContentGenreProfile);
   const candidateSubjectsForScoring = inferSubjects(meta, llmEntry, undefined, reviewedEntry);
   score += subjectBonus(candidateSubjectsForScoring, idx.lovedSubjects);
   score += toneSignal(inferTones(meta, llmEntry, undefined, reviewedEntry), idx.toneProfile, idx.globalMeanRating);
@@ -3494,6 +3571,14 @@ export function scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta = {}) {
       : matureVerdict == null ? 'No content-rating data yet for this title.'
       : matureVerdict ? `Rated ${omdbEntry.rated} — your superhero-subgenre ratings run notably higher for mature (R/TV-MA) titles.`
       : `Rated ${omdbEntry.rated} — your superhero-subgenre ratings run notably lower for non-mature titles.`);
+
+  const genreMatureDelta = genre ? idx.matureContentGenreProfile?.get(genre) : null;
+  add('matureContentGenre', 'Genre content-rating preference', matureContentGenreSignal(genre, subgenres, omdbEntry, idx.matureContentGenreProfile),
+    subgenres.includes('superhero') ? 'Superhero title — already covered by the signal above.'
+      : genreMatureDelta == null ? `Not enough rated ${genre || 'titles in this genre'} of both content ratings yet to have a preference signal.`
+      : matureVerdict == null ? 'No content-rating data yet for this title.'
+      : matureVerdict ? `Rated ${omdbEntry.rated} — your ${genre} ratings run higher for mature (R/TV-MA) titles.`
+      : `Rated ${omdbEntry.rated} — your ${genre} ratings run higher for non-mature titles.`);
 
   const subjects = inferSubjects(meta, llmEntry, undefined, reviewedEntry);
   const matchedSubjects = subjects.filter(s => (idx.lovedSubjects.get(s) || 0) > 0);
@@ -3923,7 +4008,7 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
 // ── Entry point ──────────────────────────────────────────────────────────
 
 export function rankRecommendations(library, watchlist, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}, llmTags = {}, reviewedTags = {}, bookThemeCounts = {}) {
-  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, undefined, bookThemeCounts);
+  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, undefined, bookThemeCounts, omdbMeta);
 
   // See the matching comment on rankAll()'s fromWatchlist below for why
   // a watchlist entry also needs to check idx.watched, not just excluded.
@@ -3958,7 +4043,7 @@ export function rankRecommendations(library, watchlist, enrichedMeta, feedback =
 // but checked here too since a UI silently double-counting the same title
 // under two origins would be worse than a defensive filter).
 export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedback = { interactions: [] }, omdbMeta = {}, llmTags = {}, reviewedTags = {}, bookThemeCounts = {}) {
-  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, undefined, bookThemeCounts);
+  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, undefined, bookThemeCounts, omdbMeta);
   const watchlistKeys = new Set((watchlist.titles || []).map(c => c.titleKey));
 
   const scoreOne = (c, origin) => {
@@ -4216,7 +4301,7 @@ export async function computeEvalMetrics(library, enrichedMeta, feedback, omdbMe
   for (const t of rated) {
     const looLibrary = { titles: (library.titles || []).filter(x => x.titleKey !== t.titleKey) };
     const descOverride = t.myRating >= LOVED_THRESHOLD ? undefined : sharedDescModel;
-    const idx = buildIndexes(looLibrary, enrichedMeta, feedback, llmTags, reviewedTags, descOverride, bookThemeCounts);
+    const idx = buildIndexes(looLibrary, enrichedMeta, feedback, llmTags, reviewedTags, descOverride, bookThemeCounts, omdbMeta);
     const h = hydrateTitle(t, enrichedMeta);
     // predicted (clamped) still drives MAE below — a title well past the
     // 100 ceiling isn't a bigger real-world "error" than one just at it.
@@ -4266,7 +4351,7 @@ export async function computeEvalMetrics(library, enrichedMeta, feedback, omdbMe
   );
   let dismissedCount = 0;
   if (tasteRejected.length) {
-    const fullIdx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, sharedDescModel, bookThemeCounts);
+    const fullIdx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, sharedDescModel, bookThemeCounts, omdbMeta);
     for (const e of tasteRejected) {
       const h = hydrateTitle({ titleKey: e.titleKey, type: e.type, year: e.year }, enrichedMeta);
       const { raw: predictedRaw, clamped: predicted } = matchScorePair(h, fullIdx, enrichedMeta, omdbMeta);

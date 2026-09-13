@@ -131,7 +131,7 @@ const reviewedTags = readJSON(path.join(DATA_DIR, 'reviewedTags.json'), {});
 const goodreadsData = readJSON(path.join(ROOT, 'data', 'goodreadsData.json'), { books: [] });
 const bookThemeCounts = computeBookThemeCounts(goodreadsData);
 
-const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, undefined, bookThemeCounts);
+const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, undefined, bookThemeCounts, omdbMeta);
 const watchlistKeys = new Set((watchlist.titles || []).map(c => c.titleKey));
 
 // Same re-edit / non-English / pre-2000-movie / animation / too-obscure
