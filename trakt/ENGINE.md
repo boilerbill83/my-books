@@ -761,6 +761,39 @@ Titans, Arrow, Gotham) — with **zero regression** on precision@10/25/
 MAE and a genuine improvement on precision@50 (94%→96%) and @100
 (85%→86-87%) across every tested floor.
 
+**Thin-tone-vocab confidence scaling (2026-09-13):** `citation-credit-
+thin-tone-vocab` on the dashboard flagged that a raw Jaccard=1.0 gets
+full, undiscounted trust even when it's backed by almost no real
+vocabulary — the original example (Primo vs. Trailer Park Boys, both
+`['inspirational','witty']`) turned out moot for an unrelated reason
+(Primo has since dropped off `anomalousLovedKeys` entirely, so
+`citationCreditMultiplier()` never reaches the tone check for it), but a
+live rescan of the real citation network found a currently-active case
+with the identical shape: *Wall Street: Money Never Sleeps* cites
+*Creed III* (a real anomaly) sharing only one tone tag (`'intense'`) for
+a coincidental Jaccard=1.0. Fixed: `toneJaccard()` no longer returns the
+raw score directly — it blends toward `TONE_JACCARD_NEUTRAL_PRIOR`
+(0.376, the same real measured mean cited above) in proportion to how
+few distinct tags actually back the comparison:
+```
+union = |tagsA ∪ tagsB|
+confidence = min(1, union / TONE_JACCARD_MIN_RELIABLE_UNION)   // 4
+toneJaccard = confidence × rawJaccard + (1 - confidence) × 0.376
+```
+`TONE_JACCARD_MIN_RELIABLE_UNION` (4) matches `inferTones()`'s own
+per-title tag cap — a union at or above it means the comparison is
+backed by as much real vocabulary as the tagging scheme can provide, so
+it's trusted at full strength; below it, the result is pulled toward the
+"we don't know" prior in the same spirit `CITATION_WEIGHT_UNKNOWN`
+already treats genuine uncertainty. Real effect on the live case above:
+multiplier moved from 1.0 (full credit) to 0.78 (a real, proportional
+discount). Swept `TONE_JACCARD_MIN_RELIABLE_UNION` 2-8 against
+`scripts/eval.js`: **zero measurable difference at any value tested**
+(p10=100/p25=96/p50=96/p100=91 identical throughout) — the same kind of
+narrow-blast-radius insensitivity `CITATION_WEIGHT_UNKNOWN`'s own sweep
+already documented — so 4 is kept as the principled, non-arbitrary
+choice rather than a value `eval.js` could pick for us.
+
 Real, verified effect: The Suicide Squad (2021) 103.2→88.2 raw,
 Zack Snyder's Justice League 100.6→81.6 raw (both now genuinely below
 the 100 clamp) — Deadpool, Deadpool & Wolverine, The Westies, and Mare
