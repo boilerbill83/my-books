@@ -3982,6 +3982,51 @@ const IMP_SEV_META = {
   warning: { cls: 'tk-status-warning', icon: '⚠', label: 'Low impact' },
   good: { cls: 'tk-status-good', icon: '✓', label: 'Resolved' },
 };
+
+// Bill: "they're all tagged as low impact so I don't know where to
+// start... how can we better indicate where we should spend our time?"
+// Root cause, found by actually pulling every finding's severity next to
+// its own hand-graded ratings.recEngine: severity was a bare, hand-typed
+// literal per finding, never actually derived from the ratings sitting
+// right next to it — a one-time manual pass (2026-09 "everything is low
+// impact" fix) corrected a handful of findings at the time, but every
+// finding added since (this session's own tone-vocab fix, the 3 backlog
+// adds, and all 5 new engine ideas) defaulted straight back to a
+// hardcoded 'warning', so a real recEngine=6 idea and a recEngine=1 dead
+// end both rendered as identically "Low impact" again. Fixed for real,
+// not with another one-time pass: severity for "is this worth doing"
+// findings now DERIVES from ratings.recEngine live, every render, so it
+// can't drift out of sync again as new findings get added.
+function deriveImpactSeverity(recEngine) {
+  const re = recEngine ?? 0;
+  if (re >= 6) return 'critical';
+  if (re >= 4) return 'serious';
+  return 'warning';
+}
+// A small, explicit exclusion list — findings whose severity is a live
+// "is there a real bug/corruption issue right now" check (self-citations,
+// taxonomy collisions, an unenrichable titleKey format, wasted candidate-
+// pool cap slots, director-data disagreements), not an "how much would
+// building this idea help the rec engine" judgment. Those two questions
+// are genuinely different axes — a real data-integrity bug deserves
+// urgency independent of how low its recEngine score happens to be — so
+// they keep their own condition-driven severity rather than being
+// reduced to the recEngine scale. Matched by exact id, or by prefix for
+// the per-field `field-quality-${key}` findings (computeFieldQualityFindings()).
+const IMPACT_SEVERITY_OVERRIDE_EXEMPT_PREFIXES = ['field-quality-'];
+const IMPACT_SEVERITY_OVERRIDE_EXEMPT_IDS = new Set([
+  'pool-cap-waste', 'trakt-fallback-titlekey', 'creator-attribution-tmdb-omdb-crosscheck',
+  'similar-title-relationship-audit', 'taxonomy-disjointness-guardrail',
+]);
+function applyImpactSeverity(findings) {
+  for (const f of findings) {
+    if (f.severity === 'good') continue; // resolved — no urgency to signal
+    if (IMPACT_SEVERITY_OVERRIDE_EXEMPT_IDS.has(f.id)) continue;
+    if (IMPACT_SEVERITY_OVERRIDE_EXEMPT_PREFIXES.some(p => f.id?.startsWith(p))) continue;
+    f.severity = deriveImpactSeverity(f.ratings?.recEngine);
+  }
+  return findings;
+}
 // 1-10 scale on 4 independent axes (ease of implementation, data quality
 // improvement, recommendation engine improvement, UI improvement) — a
 // judgment call grounded in each finding's own technical/impact writeup,
@@ -4379,11 +4424,11 @@ async function load() {
   // disagreeing about how many findings are actually open.
   const severityOrder = { critical: 0, serious: 1, warning: 2, good: 3 };
   const fieldStats = computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
-  const allFindings = [
+  const allFindings = applyImpactSeverity([
     ...computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates, llmTags),
     ...computeEngineImprovements(library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, idx, fromWatchlist, fromCandidates),
     ...computeFieldQualityFindings(fieldStats, library, watchlist, candidatePool, enrichedMeta, omdbMeta),
-  ].sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
+  ]).sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
 
   const quality = computeMetadataQuality(library, watchlist, enrichedMeta, fromWatchlist, allFindings);
   renderQualityDial('qualitySection', quality);
