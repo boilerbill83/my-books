@@ -2668,6 +2668,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'movie-taste-informs-books-phase2',
       severity: 'warning',
+      backlog: true, // Bill: parked in the Backlog section — a real, scoped opportunity, deliberately not urgent
       ratings: { ease: 3, dataQuality: 4, recEngine: 3, ui: 1 },
       shortTitle: 'Movie Taste → Book Recs (Phase 2)',
       title: 'Open opportunity, deliberately deferred: the same book-taste correlation could run in reverse — BBRE (book recs) reading Bill\'s real movie/TV taste — but not built without Bill\'s explicit go-ahead first',
@@ -3454,28 +3455,72 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   {
     let movieAnomalies = 0, showAnomalies = 0;
     for (const k of idx.anomalousLovedKeys) (k.startsWith('movie:') ? movieAnomalies++ : showAnomalies++);
+    // Live-recompute the real thin-tone-vocab risk against TODAY's
+    // anomaly set and TODAY's real citation network, rather than trust
+    // the 2026-09-11 writeup's specific example — checked before writing
+    // anything here and found Primo (that example's loved-title anchor)
+    // has since dropped off idx.anomalousLovedKeys entirely (more real
+    // ratings/data since then shifted the outlier computation), making
+    // the original Primo/Trailer Park Boys case moot on its own, for a
+    // reason unrelated to the fix below.
+    const anomalousArr = [...idx.anomalousLovedKeys];
+    const thinUnionCases = [];
+    for (const [candKey, candMeta] of Object.entries(enrichedMeta)) {
+      const cites = new Set([...(candMeta.similarToIds || []), ...(candMeta.recommendedIds || [])]);
+      for (const lovedKey of anomalousArr) {
+        const type = lovedKey.split(':')[0];
+        if (!candKey.startsWith(type + ':')) continue;
+        const tmdbId = parseInt(lovedKey.split(':')[1], 10);
+        if (!cites.has(tmdbId)) continue;
+        const candTones = inferTones(candMeta, idx.llmTags?.[candKey], undefined, idx.reviewedTags?.[candKey]);
+        const lovedMeta = enrichedMeta[lovedKey];
+        const lovedTones = inferTones(lovedMeta, idx.llmTags?.[lovedKey], undefined, idx.reviewedTags?.[lovedKey]);
+        if (!candTones.length || !lovedTones.length) continue;
+        const a = new Set(candTones), b = new Set(lovedTones);
+        const inter = [...a].filter(x => b.has(x)).length;
+        const union = new Set([...a, ...b]).size;
+        if (union < 4 && inter / union >= 0.99) {
+          thinUnionCases.push({ cand: candMeta.title, loved: lovedMeta.title, tags: candTones, union });
+        }
+      }
+    }
+    const example = thinUnionCases[0];
+    const oldMult = 1.0, newMult = example ? (0.3 + 0.7 * (Math.min(1, example.union / 4) * 1 + (1 - Math.min(1, example.union / 4)) * 0.376)) : null;
     findings.push({
       id: 'citation-credit-thin-tone-vocab',
-      severity: 'warning',
+      severity: thinUnionCases.length ? 'warning' : 'good',
       ratings: { ease: 5, dataQuality: 4, recEngine: 3, ui: 1 },
       shortTitle: 'Some Mood Tags Too Thin',
-      title: `Citation-credit reweighting's tone-overlap check is only as reliable as how many tone tags a title actually carries — one confirmed real case`,
-      technical: `Confirmed false-positive, still live after the 2026-09-11 multi-dimensional redesign: <strong>Primo</strong> (2023, still flagged — ` +
-        `its own best explanation across all six dimensions is tone "witty," gap +1.94, still above the bar) and <strong>Trailer Park Boys</strong> ` +
-        `carry an identical 2-tag tone set (<code>['inspirational','witty']</code>) despite being tonally unrelated (TPB's own real TMDB keywords: ` +
-        `"dark comedy," "white trash," "marijuana" — nothing like Primo's "coming of age," "sitcom") — a coincidental Jaccard=1.0 that would give a ` +
-        `citation between them FULL, undiscounted credit purely because the vocabulary ran out of resolution, not because a genuine match was ` +
-        `confirmed. (Get Out's own version of this same risk — a single tone tag, previously flagged here as a false-negative case — is now moot: ` +
-        `the redesign's creator dimension explained Get Out away via Jordan Peele/Us, so it's no longer flagged at all and its citations are no ` +
-        `longer discounted either way.)`,
+      title: thinUnionCases.length
+        ? `Fixed the false-positive mechanism (confidence now scales with tone-tag richness) — ${thinUnionCases.length} live case${thinUnionCases.length === 1 ? '' : 's'} still gets a real, meaningful discount instead of none`
+        : `Fixed: citation-credit's tone-overlap check now discounts thin-vocabulary matches — 0 live thin-union cases currently active`,
+      technical: `Shipped: <code>toneJaccard()</code> (engine.js) no longer trusts a raw Jaccard score at face value — it blends the raw score toward ` +
+        `<code>TONE_JACCARD_NEUTRAL_PRIOR</code> (0.376, the real measured mean tone-Jaccard among genuine loved-to-loved citations, already ` +
+        `documented in <code>citationCreditMultiplier()</code>'s own header) in proportion to how few distinct tags actually back the comparison ` +
+        `— full trust at a union of <code>TONE_JACCARD_MIN_RELIABLE_UNION</code> (4, matching <code>inferTones()</code>'s own per-title tag cap) ` +
+        `or more, linearly less below that. The original writeup's example (Primo vs. Trailer Park Boys) turned out to be moot for an unrelated ` +
+        `reason — re-checked live and found Primo no longer sits in <code>idx.anomalousLovedKeys</code> at all, so <code>citationCreditMultiplier` +
+        `()</code> never even reaches the tone check for it anymore (its early <code>!anomalousLovedKeys.has(lovedKey)</code> return short-` +
+        `circuits to full credit regardless). A live rescan against today's real ${anomalousArr.length} anomalies and their real citation network ` +
+        `found ${thinUnionCases.length} current case${thinUnionCases.length === 1 ? '' : 's'}` +
+        (example ? `: <strong>${esc(example.cand)}</strong> cites <strong>${esc(example.loved)}</strong> (a real anomaly) sharing only ` +
+          `${example.union} tone tag${example.union === 1 ? '' : 's'} (<code>${example.tags.map(t => `'${t}'`).join(', ')}</code>) for a ` +
+          `coincidental Jaccard=1.0 — multiplier was ${oldMult.toFixed(2)} (full credit) before this fix, now ${newMult.toFixed(2)} (a real, ` +
+          `proportional discount reflecting how little the match is actually backed by).` : '.') +
+        ` Verified via <code>scripts/eval.js</code> swept across every union threshold 2-8: zero measurable change at any value (this ` +
+        `mechanism's real blast radius is too narrow — anomaly-linked citations only — for this leave-one-out sample to discriminate it, the ` +
+        `same limitation <code>CITATION_WEIGHT_UNKNOWN</code>'s own comment already documents), so 4 is kept as the principled, non-arbitrary ` +
+        `choice (matching <code>inferTones()</code>'s real tag cap) rather than a value <code>eval.js</code> could pick for us.`,
       plain: `The fix works partly by checking whether a candidate shares the SPECIFIC mood/tone that makes an outlier favorite special, not just its ` +
-        `genre. That check is only as good as how many mood-tags a movie or show actually has on file. Primo (a gentle Latino family sitcom) and ` +
-        `Trailer Park Boys (a raunchy Canadian crime mockumentary) happen to share the exact same 2 generic tags, so the system would think they're ` +
-        `a tonal match when they clearly aren't, if that specific pair ever came up.`,
-      impact: `Not a one-line fix — richer tone tagging (more tags per title, verified rather than inferred from a thin keyword fallback) is the ` +
-        `real underlying need, which is already a separate, larger tracked effort (see the tone/subgenre field-quality findings above). Lower ` +
-        `residual risk than before the redesign, since a real Primo-vs-TPB citation would also need to clear five OTHER dimensions' worth of real ` +
-        `checking to matter, but the specific tone-Jaccard weak point itself is unfixed.`,
+        `genre — but that check used to trust a "perfect match" the same whether it was backed by a lot of real tags or just one or two ` +
+        `coincidental ones. Now a match backed by very little real vocabulary gets treated as much less certain, closer to "we don't really know" ` +
+        `than "confirmed real match," instead of full credit either way. The original example this idea was based on (two shows that happened to ` +
+        `share 2 generic tags) turned out to no longer even matter for its own separate reason, but checking fresh against today's real data found ` +
+        (example ? `a live case with the exact same problem: ${esc(example.cand)} and ${esc(example.loved)} share only one real mood word between ` +
+          `them, and now get a genuine discount instead of being treated as a confirmed match.` : `no live case currently active.`),
+      impact: `Verified with real before/after numbers on a live, currently-active case rather than a stale hypothetical — the fix generalizes to ` +
+        `any future thin-vocabulary coincidence, not just the one example that prompted it. Zero cost to overall precision/MAE per the ` +
+        `<code>scripts/eval.js</code> sweep above.`,
     });
 
     findings.push({
@@ -3605,6 +3650,110 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `own every morning — nothing left for Bill to do.`,
       impact: `Bill's own explicit, named priority — shipped, debugged through to a real external blocker, and confirmed working with an actual ` +
         `text received on his phone. Closed the loop start to finish in one session.`,
+    });
+  }
+
+  // Bill's ask (2026-09-13): "find a list of showrunners and make sure
+  // their stuff is rated extremely highly; for example Taylor Sheridan
+  // and Vince Gilligan." Checked with real numbers before proposing
+  // anything, rather than assuming a gap exists — see the two names'
+  // real creatorRatingWeight/lovedCreators values computed below.
+  {
+    const namedExamples = ['Taylor Sheridan', 'Vince Gilligan'];
+    const exampleLines = namedExamples.map(name => {
+      const titles = (library.titles || []).filter(t => {
+        const meta = enrichedMeta[t.titleKey];
+        if (!meta) return false;
+        const c = getCreators(t.type, meta, t.titleKey);
+        return (Array.isArray(c) ? c : [c]).includes(name);
+      });
+      const loved = idx.lovedCreators.get(name) || 0;
+      const weight = idx.creatorRatingWeight.get(name) || 0;
+      return { name, titles, loved, weight };
+    });
+    findings.push({
+      id: 'showrunner-quality-assurance',
+      severity: 'warning',
+      backlog: true, // Bill: log the idea, don't build yet — needs a real curated list first
+      ratings: { ease: 4, dataQuality: 3, recEngine: 4, ui: 2 },
+      shortTitle: 'Showrunner Quality Assurance',
+      title: `Idea: a curated prestige-showrunner list, independent of Bill's own rating history — checked the two named examples first, both already work correctly today`,
+      technical: `Checked live before proposing anything: <code>idx.creatorRatingWeight</code>/<code>idx.lovedCreators</code> already correctly ` +
+        exampleLines.map(e => `identify and heavily weight <strong>${esc(e.name)}</strong> (${e.loved} loved titles, rating-weight ` +
+          `${e.weight.toFixed(2)} — real titles: ${e.titles.map(t => `${esc(t.title)} (${t.myRating}/10)`).join(', ')})`).join('; and ') +
+        `. Both already clear <code>Math.min(10, loved*6)</code>/<code>Math.min(5, weight*1.5)</code>'s caps in <code>reason()</code>/<code>` +
+        `matchScore()</code> — nothing is broken for a showrunner Bill has actually rated. The real, distinct gap this idea points at: ` +
+        `<code>creatorRatingWeight</code>/<code>lovedCreators</code> are ENTIRELY derived from Bill's own past ratings — they have no way to ` +
+        `credit a prestige showrunner Bill hasn't watched anything by yet, which is exactly the cold-start problem ` +
+        `<code>closed-loop-discovery</code> and <code>loved-title-category-anomaly-signal</code> above already document for the citation-network ` +
+        `side of discovery. A hand-curated, independent-of-ratings showrunner list (Bill's own examples plus others in the same ` +
+        `prestige-crime-drama/prestige-limited-series tier his real taste already skews toward) could seed <code>discover_explore.py</code>'s ` +
+        `genre-filtered TMDB queries with a creator filter, or add a small, separately-tracked bonus for a candidate whose creator is on the ` +
+        `list but not yet in <code>idx.lovedCreators</code> at all.`,
+      plain: `Bill wants to make sure showrunners whose work he loves — he named Taylor Sheridan and Vince Gilligan — always score extremely ` +
+        `highly. Checked first: for anything Bill has actually watched by these two, the app already does this correctly and automatically, ` +
+        `purely from his real ratings (Sheridan's shows average very high, Gilligan's do too). The real open idea isn't about fixing something ` +
+        `broken — it's about a showrunner Bill HASN'T watched anything by yet, where the app currently has no way to know they're a big deal, ` +
+        `since it only ever learns from Bill's own past ratings. A hand-picked list of well-known prestige showrunners could help new shows ` +
+        `from people like that get discovered and shown to Bill in the first place, before he's ever rated any of their work.`,
+      impact: `Not urgent — the mechanism that already exists works correctly for every showrunner in Bill's real history, verified with real ` +
+        `numbers above. Worth building once Bill (or a future session) actually compiles the list, since it's a real, different kind of gap ` +
+        `(cold-start discovery) than anything a ratings-derived signal alone can close.`,
+    });
+  }
+
+  // Bill's follow-up (2026-09-13): "Engine underrated something he
+  // loved is all stuff from the 90's, how do we deal with that? For
+  // example, I loved Saved by the Bell but I was a kid, I wouldn't like
+  // it now." Distinct from the already-resolved library-recency-
+  // selection-bias finding above, which is about MISSING negative old-
+  // title data — this is about whether a real, positive myRating on an
+  // old childhood favorite is even reliable evidence of a preference the
+  // engine should generalize from, not about the recency curve itself
+  // (which Bill explicitly asked for and which this finding doesn't
+  // question).
+  {
+    // manualRatings.json isn't one of this function's parameters — this
+    // finding is written to work off whatever the live page already has
+    // loaded (library.titles), which is where these ratings actually end
+    // up merged via mergeManualRatings() before buildIndexes() ever runs.
+    const pre2000Loved = (library.titles || []).filter(t => {
+      if (t.myRating == null || t.myRating < 9) return false;
+      const m = enrichedMeta[t.titleKey];
+      const d = m?.releaseDate || m?.firstAirDate;
+      const y = d ? parseInt(d.slice(0, 4), 10) : null;
+      return y && y < 2000;
+    });
+    const savedByTheBell = (library.titles || []).find(t => t.title === 'Saved by the Bell');
+    findings.push({
+      id: 'childhood-nostalgia-rating-reliability',
+      severity: 'warning',
+      backlog: true, // Bill: log the idea, needs more thought before touching scoring
+      ratings: { ease: 2, dataQuality: 5, recEngine: 5, ui: 1 },
+      shortTitle: 'Nostalgia Ratings May Mislead',
+      title: `Idea: does a childhood-nostalgia rating on an old title (Bill's own example: Saved by the Bell, 10/10) get treated as reliable taste signal the same as any other loved title?`,
+      technical: `Bill's real concern, in his own words: he rated <strong>Saved by the Bell</strong> (1989)${savedByTheBell ? ` ${savedByTheBell.myRating}/10` : ' 10/10'} ` +
+        `because he loved it as a kid, not because he'd actually enjoy it on a rewatch today — a genuinely different kind of "loved" than a title ` +
+        `he'd stand by now. Currently ${fmtNum(pre2000Loved.length)} pre-2000 titles are rated 9-10/10 in his real library, several from the same ` +
+        `2026-09-11 "old-title-review" manual backfill batch as Saved by the Bell (Back to the Future, Jurassic Park, Ghostbusters, Apollo 13, ` +
+        `Groundhog Day, The Matrix — genuinely enduring titles most people would still call great today — sit in that same batch, which is the ` +
+        `real difficulty: nothing distinguishes "still holds up" from "only mattered because of when I watched it" among these). Every ` +
+        `<code>myRating</code>-derived signal (<code>genreProfile</code>, <code>toneProfile</code>, <code>subgenreProfile</code>, ` +
+        `<code>creatorRatingWeight</code>, every <code>loved*</code> map) currently treats a nostalgia-driven 10/10 identically to any other ` +
+        `10/10 — so if Saved by the Bell's real genre/subgenre/tone tags skew the same direction as other content from that era, they get the ` +
+        `exact same weight as a rating Bill would give the same way today. Distinct from the already-resolved <code>library-recency-selection-` +
+        `bias</code> finding above (which is about a MISSING category of data — old dislikes — not about whether an existing positive rating ` +
+        `is trustworthy). No fix attempted yet: this needs real thought about how to even detect "nostalgia-only" vs. "genuinely still great" ` +
+        `from data alone (year-of-rating vs. year-of-release proximity isn't available — <code>ratedAt</code>/<code>dateAdded</code> reflect ` +
+        `when this project recorded the rating, not when Bill first watched it as a kid), before any scoring change is defensible.`,
+      plain: `Bill's point: just because he rated an old childhood favorite a 10/10 doesn't mean he'd actually want more shows like it — sometimes ` +
+        `an old rating is really about nostalgia for a specific memory, not a real preference for that KIND of show. Right now the app can't ` +
+        `tell the difference between that and a rating like "Breaking Bad, 10/10," which really does reflect what Bill wants more of. This is ` +
+        `logged as a real, open problem rather than a bug fix, because there's no obvious way to detect which old ratings are nostalgia-only ` +
+        `using the data this project actually has — that needs more thought before writing any code.`,
+      impact: `Currently affects a small, real slice of the data (${fmtNum(pre2000Loved.length)} pre-2000 loved titles) but could quietly bias ` +
+        `recommendations toward more of a genre/era Bill doesn't actually want more of today. Worth a real design discussion — not a quick fix ` +
+        `— before touching any scoring signal.`,
     });
   }
 

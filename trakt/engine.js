@@ -2064,12 +2064,30 @@ const CITATION_WEIGHT_UNKNOWN = (CITATION_WEIGHT_FLOOR + 1) / 2;
 // any actual mismatch was ever checked (Marvel's Luke Cage, Stonehearst
 // Asylum, Hypnotic among them) — treating missing data as proof of a bad
 // match is a real, asymmetric, punitive default this fixes.
+// Real mean tone-Jaccard among genuine loved-to-loved citations (see
+// citationCreditMultiplier()'s own header comment, n=281) — the neutral
+// prior a thin-vocabulary Jaccard result gets blended toward below, so
+// "we found a coincidental match on 1-2 generic tags" isn't scored the
+// same as "we found a real match backed by real vocabulary."
+const TONE_JACCARD_NEUTRAL_PRIOR = 0.376;
+// citation-credit-thin-tone-vocab (quality.js): Primo and Trailer Park
+// Boys carry an identical 2-tag tone set (['inspirational','witty'])
+// despite being tonally unrelated (TPB's real keywords: "dark comedy,"
+// "white trash"; Primo's: "coming of age," "sitcom") — a coincidental
+// Jaccard=1.0 from a union of only 2 tags, not genuine corroborating
+// evidence. A union at or above this size is trusted at full strength;
+// below it, the raw Jaccard is blended toward the neutral prior in
+// proportion to how thin the vocabulary actually is.
+const TONE_JACCARD_MIN_RELIABLE_UNION = 4;
 function toneJaccard(tagsA, tagsB) {
   if (!tagsA.length || !tagsB.length) return null;
   const a = new Set(tagsA), b = new Set(tagsB);
   const inter = [...a].filter(x => b.has(x)).length;
-  const union = new Set([...a, ...b]).size;
-  return union ? inter / union : 0;
+  const union = new Set([...a, ...b]);
+  if (!union.size) return 0;
+  const rawJ = inter / union.size;
+  const confidence = Math.min(1, union.size / TONE_JACCARD_MIN_RELIABLE_UNION);
+  return confidence * rawJ + (1 - confidence) * TONE_JACCARD_NEUTRAL_PRIOR;
 }
 function citationCreditMultiplier(candidateMeta, candidateLlm, candidateReviewed, lovedMeta, lovedLlm, lovedReviewed, lovedKey, anomalousLovedKeys) {
   if (!anomalousLovedKeys?.has(lovedKey)) return 1;
