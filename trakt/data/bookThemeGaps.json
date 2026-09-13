@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T17:18:28.087Z",
+  "generatedAt": "2026-09-13T13:57:33.100Z",
   "methodology": "ratio = (theme's share of Bill's real 5-star-read theme tags) / (its mapped BMTRE genre/subgenre/subject tag's share of his real loved-title rating-weighted score). ratio > 1 means the theme is proportionally bigger in his book taste than his current screen taste (and therefore the citation-graph-seeded candidate pool) already reflects. Evidence floor: bookCount >= 15. Gap floor: ratio > 1.15.",
   "gaps": [
     {
@@ -9,7 +9,7 @@
         "courtroom"
       ],
       "bookCount": 48,
-      "ratio": 3.08,
+      "ratio": 3.22,
       "tags": [
         "subgenre:legal"
       ],
@@ -22,7 +22,7 @@
         "psychological"
       ],
       "bookCount": 35,
-      "ratio": 2.44,
+      "ratio": 2.4,
       "tags": [
         "subgenre:psychological-thriller",
         "subgenre:psychological-horror"
@@ -36,7 +36,7 @@
         "thriller"
       ],
       "bookCount": 109,
-      "ratio": 1.93,
+      "ratio": 1.95,
       "tags": [
         "genre:thriller"
       ],
@@ -47,12 +47,25 @@
       }
     },
     {
+      "key": "biography",
+      "bookThemes": [
+        "biography"
+      ],
+      "bookCount": 19,
+      "ratio": 1.67,
+      "tags": [
+        "genre:biography"
+      ],
+      "mode": "keyword",
+      "searchQuery": "biography"
+    },
+    {
       "key": "business",
       "bookThemes": [
         "business"
       ],
       "bookCount": 19,
-      "ratio": 1.49,
+      "ratio": 1.6,
       "tags": [
         "subject:corporate-power",
         "subject:class-wealth-corporate"
@@ -61,25 +74,12 @@
       "searchQuery": "business"
     },
     {
-      "key": "biography",
-      "bookThemes": [
-        "biography"
-      ],
-      "bookCount": 19,
-      "ratio": 1.47,
-      "tags": [
-        "genre:biography"
-      ],
-      "mode": "keyword",
-      "searchQuery": "biography"
-    },
-    {
       "key": "sports",
       "bookThemes": [
         "sports"
       ],
       "bookCount": 27,
-      "ratio": 1.23,
+      "ratio": 1.4,
       "tags": [
         "genre:sports"
       ],
@@ -92,7 +92,7 @@
         "tech history"
       ],
       "bookCount": 19,
-      "ratio": 1.23,
+      "ratio": 1.32,
       "tags": [
         "subject:technology-surveillance"
       ],
