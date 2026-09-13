@@ -3757,6 +3757,216 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
+  // Bill's ask (2026-09-13): "go back through all improvement ideas and
+  // the backlog and re-assess them completely... come up with 5 new
+  // ideas... the goal is to improve the recommendation engine." Every
+  // idea below was checked against real, live data before being listed —
+  // several other candidates (season-count-style runtime correlation,
+  // "based on comic"/anthology keyword dismissal generalization, an
+  // actor+director "duo" bonus, watchlist membership as a weak taste
+  // signal) were investigated the same way and dropped because the real
+  // numbers didn't support them or the ground was already covered by an
+  // existing finding/dead end — not included here since they'd just be
+  // more documented negative results, not new ideas worth Bill's time.
+  {
+    const rated = (library.titles || []).filter(t => t.myRating != null && enrichedMeta[t.titleKey]);
+    const singleGenreCounts = {};
+    for (const t of rated) for (const g of (enrichedMeta[t.titleKey].genres || [])) (singleGenreCounts[g] ||= []).push(t.myRating);
+    const singleGenreAvg = {};
+    for (const [g, v] of Object.entries(singleGenreCounts)) singleGenreAvg[g] = v.reduce((a, b) => a + b, 0) / v.length;
+    const pairCounts = {};
+    for (const t of rated) {
+      const genres = (enrichedMeta[t.titleKey].genres || []).slice().sort();
+      for (let i = 0; i < genres.length; i++) for (let j = i + 1; j < genres.length; j++) {
+        const key = genres[i] + '+' + genres[j];
+        (pairCounts[key] ||= []).push(t.myRating);
+      }
+    }
+    const pairResults = Object.entries(pairCounts).filter(([, v]) => v.length >= 15).map(([k, v]) => {
+      const [a, b] = k.split('+');
+      const expected = (singleGenreAvg[a] + singleGenreAvg[b]) / 2;
+      const actual = v.reduce((x, y) => x + y, 0) / v.length;
+      return { pair: k, n: v.length, actual, expected, delta: actual - expected };
+    }).sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
+    const topPairs = pairResults.slice(0, 5);
+    findings.push({
+      id: 'genre-pair-interaction-untested',
+      severity: 'warning',
+      ratings: { ease: 4, dataQuality: 3, recEngine: 6, ui: 1 },
+      shortTitle: 'Genre Combos Carry Real Signal',
+      title: `New idea: genreBonus()/genreSignal() only ever see ONE genre per title — real genre PAIRS show interaction effects the single-valued classifier throws away`,
+      technical: `<code>inferGenre()</code> deliberately reduces TMDB's raw multi-valued <code>genres</code> array to a single canonical value for ` +
+        `scoring (the Session 55 high-level-Genre redesign) — but that raw multi-genre array is still fully populated and unused for scoring beyond ` +
+        `the one value that survives the reduction. Live check: comparing each genre PAIR's real average <code>myRating</code> against what the ` +
+        `AVERAGE of its two individual genres' own averages would predict (n>=15 rated titles per pair) finds real, non-trivial interaction effects ` +
+        `— ${topPairs.map(p => `<strong>${esc(p.pair)}</strong> (n=${p.n}, actual ${p.actual.toFixed(2)} vs. ${p.expected.toFixed(2)} expected, ` +
+          `delta ${p.delta >= 0 ? '+' : ''}${p.delta.toFixed(2)})`).join('; ')}. This is genuinely different information from either genre scored ` +
+        `alone — a Comedy+Romance combo earns real credit beyond what Comedy or Romance separately would suggest, the same way a rom-com reads as ` +
+        `its own distinct thing to a person, not just "a bit of each." Not yet built: would need a new <code>genrePairBonus()</code>/` +
+        `<code>genrePairSignal()</code> reading the raw <code>genres</code> array directly (bypassing <code>inferGenre()</code>'s single-value ` +
+        `reduction), with its own trust floor and cap, swept against <code>scripts/eval.js</code> before shipping — the exact discipline every ` +
+        `other signal on this list already went through.`,
+      plain: `The app currently boils every movie/show down to ONE main genre label for scoring purposes, even though most titles really have two or ` +
+        `three (a movie can be both a comedy AND a romance). Checking the real data shows that specific COMBINATIONS matter beyond either genre ` +
+        `alone — Bill rates comedy-romances noticeably higher than "average of how he rates comedies and how he rates romances separately" would ` +
+        `predict, and some combinations (like action-crime) score noticeably lower than expected. That's real information the app currently throws ` +
+        `away the moment it picks just one label. Building this would mean a new, smaller bonus specifically for genre PAIRS, tested carefully ` +
+        `before it's trusted with real recommendations.`,
+      impact: `A real, verified signal with decent sample sizes (15-96 rated titles per pair) that nothing today captures — genuinely new information, ` +
+        `not a re-run of an idea already tried. Needs the standard eval.js validation pass before shipping, same as every other signal here; not ` +
+        `guaranteed to survive that pass (several ideas on this list didn't), but grounded in real numbers rather than a guess.`,
+    });
+  }
+
+  {
+    let withCitedVotes = 0, totalEnrichedForCV = 0;
+    for (const m of Object.values(enrichedMeta)) {
+      totalEnrichedForCV++;
+      if (m.citedVoteCounts && Object.keys(m.citedVoteCounts).length) withCitedVotes++;
+    }
+    findings.push({
+      id: 'cited-vote-counts-signal-unused',
+      severity: 'warning',
+      ratings: { ease: 5, dataQuality: 3, recEngine: 4, ui: 1 },
+      shortTitle: 'Citation Weight Ignores Popularity',
+      title: `New idea: enrich_tmdb.py has captured a real, ${((100 * withCitedVotes / totalEnrichedForCV) || 0).toFixed(1)}%-populated field (citedVoteCounts) that engine.js never reads at all`,
+      technical: `<code>enrich_tmdb.py</code>'s <code>citedVoteCounts</code> (the real TMDB <code>vote_count</code> of every title in a candidate's own ` +
+        `<code>similarToIds</code>/<code>recommendedIds</code> arrays, captured at enrichment time) is ${fmtNum(withCitedVotes)} of ` +
+        `${fmtNum(totalEnrichedForCV)} enriched titles (${((100 * withCitedVotes / totalEnrichedForCV) || 0).toFixed(1)}%) populated — grepped ` +
+        `<code>engine.js</code>/<code>quality.js</code> and confirmed zero real usages anywhere; the field is written and never read. Today's ` +
+        `forward/reverse similar-title match (§3i/§3j) treats every citation identically regardless of how well-corroborated the CITED title's own ` +
+        `TMDB standing is — a candidate citing a title with 3 real votes counts exactly the same as one citing a title with 18,000 votes, even ` +
+        `though TMDB's own "similar" algorithm is well-documented as noisier for low-vote-count titles. This mirrors the exact reasoning already ` +
+        `behind <code>voteCountBonus()</code> (a candidate's OWN vote count matters) — applied one level removed, to the citation network's own ` +
+        `reliability rather than the candidate's own popularity. Not yet built: a confidence multiplier on forward/reverse match credit scaled by ` +
+        `the cited title's real vote count (low-vote citations discounted, similar in spirit to the thin-tone-vocab confidence fix shipped this ` +
+        `same session, just keyed on a different field) would need its own real threshold/curve swept against <code>scripts/eval.js</code>.`,
+      plain: `When the app checks "does this candidate resemble something Bill loved," it currently trusts every match equally, whether the loved ` +
+        `title it's matching against is something widely known and well-reviewed or something extremely obscure with almost no real votes on ` +
+        `TMDB. A field that would tell the app which is which has been collected this whole time and never actually used. Using it could mean a ` +
+        `match against a well-established, widely-agreed-upon "similar" title counts for more than a match against a title so obscure that TMDB's ` +
+        `own similarity guess for it is shakier to begin with.`,
+      impact: `A genuinely unused, already-collected field — zero new enrichment cost to try this. Real value untested; needs the standard ` +
+        `before/after eval.js sweep, same as the genre-pair idea above, before it's trusted with real scoring.`,
+    });
+  }
+
+  {
+    const MATURE = new Set(['R', 'NC-17', 'TV-MA']);
+    const NONMATURE = new Set(['G', 'PG', 'PG-13', 'TV-G', 'TV-Y', 'TV-Y7', 'TV-Y7-FV', 'TV-PG', 'TV-14']);
+    const matureRatings = [], nonMatureRatings = [];
+    let ratedPopulated = 0, ratedEligible = 0;
+    for (const t of (library.titles || [])) {
+      const o = omdbMeta[t.titleKey];
+      if (!o) continue;
+      ratedEligible++;
+      if (o.rated) ratedPopulated++;
+      if (t.myRating == null || !o.rated) continue;
+      if (MATURE.has(o.rated)) matureRatings.push(t.myRating);
+      else if (NONMATURE.has(o.rated)) nonMatureRatings.push(t.myRating);
+    }
+    const avg = a => a.length ? a.reduce((x, y) => x + y, 0) / a.length : null;
+    const matureAvg = avg(matureRatings), nonMatureAvg = avg(nonMatureRatings);
+    findings.push({
+      id: 'mature-content-signal-too-narrow',
+      severity: 'warning',
+      ratings: { ease: 3, dataQuality: 5, recEngine: 6, ui: 1 },
+      shortTitle: 'Mature-Content Bonus Too Narrow',
+      title: `New idea: matureContentSignal() only fires for the superhero subgenre, but the real R/TV-MA preference is general — ${fmtNum(matureRatings.length)} mature titles average ${matureAvg?.toFixed(2)} vs. ${fmtNum(nonMatureRatings.length)} non-mature at ${nonMatureAvg?.toFixed(2)}`,
+      technical: `<code>matureContentSignal()</code> (engine.js) was deliberately scoped to fire only when a candidate carries the ` +
+        `<code>superhero</code> subgenre — its own code comment notes this was built when <code>omdbEntry.rated</code> "starts empty" in real ` +
+        `production data. That's no longer true: <code>omdb.rated</code> is now ${fmtNum(ratedPopulated)} of ${fmtNum(ratedEligible)} ` +
+        `(${((100 * ratedPopulated / ratedEligible) || 0).toFixed(1)}%) populated in the real library, following the OMDb backfill that ran since ` +
+        `that scoping decision was made. A live, library-wide (not superhero-scoped) check finds the real preference is general, not superhero-` +
+        `specific: mature-rated (R/NC-17/TV-MA) titles average ${matureAvg?.toFixed(2)}/10 (n=${matureRatings.length}) vs. ` +
+        `${nonMatureAvg?.toFixed(2)}/10 (n=${nonMatureRatings.length}) for non-mature — a real ${(matureAvg - nonMatureAvg).toFixed(2)}-point gap ` +
+        `across Bill's WHOLE rated library, not just superhero titles. The existing signal is real and already validated (a genuine ` +
+        `precision@10 90%->100% gain when it shipped, per its own header comment) — the open question is whether the same real preference, now ` +
+        `backed by much more data than existed when the narrow scoping decision was made, generalizes safely beyond superhero the way it did for ` +
+        `that one subgenre, or whether superhero was a special case (Deadpool's own R-rating being central to why Bill loves it specifically) that ` +
+        `wouldn't hold the same way for, say, a mature-rated drama or comedy.`,
+      plain: `There's already a small bonus/penalty for R-rated vs. more family-friendly superhero movies, because Bill clearly prefers the ` +
+        `R-rated ones (Deadpool being the obvious example). But the real data now shows this preference isn't just a superhero thing — across ` +
+        `Bill's WHOLE library, mature-rated (R, TV-MA) content rates meaningfully higher on average than everything else, by almost half a point ` +
+        `on a 10-point scale. The existing bonus was built back when this content-rating data barely existed yet, so it was only tested on the one ` +
+        `case where enough data existed at the time. Now that the data covers almost the whole library, it's worth checking whether widening this ` +
+        `bonus beyond just superhero movies would help.`,
+      impact: `A real, current, general effect backed by ${fmtNum(matureRatings.length + nonMatureRatings.length)} rated titles with real content-` +
+        `rating data — this data didn't exist in this volume when the narrow scoping decision was made, so it's a genuinely new opportunity, not a ` +
+        `re-litigation of an old one. Needs a real <code>scripts/eval.js</code> sweep of a broadened version before shipping — the same real risk ` +
+        `every genre-level generalization attempt on this list has hit before (a real average difference doesn't always survive contact with ` +
+        `held-out precision testing).`,
+    });
+  }
+
+  {
+    findings.push({
+      id: 'production-company-signal-missing',
+      severity: 'warning',
+      ratings: { ease: 5, dataQuality: 2, recEngine: 3, ui: 1 },
+      shortTitle: 'Studio/Production Signal Missing',
+      title: `New idea: TMDB's production_companies field is never captured at all — a studio-affinity signal (A24, Blumhouse, etc.) has no data to test yet`,
+      technical: `Checked <code>enrich_tmdb.py</code>'s <code>extract_entry()</code> directly: it captures genres, keywords, cast/crew credits, ` +
+        `collection membership, network, and more — but never TMDB's <code>production_companies</code> field, which is a standard part of the same ` +
+        `already-fetched <code>/movie/{id}</code>/<code>/tv/{id}</code> response (no extra API call needed, the same "already being fetched, just ` +
+        `not captured" pattern that closed the <code>publisher</code> gap on the book side and the <code>originalLanguage</code>/<code>imdbId</code> ` +
+        `gaps on this one). Distinct from <code>belongsToCollection</code> (a specific franchise, already scored via <code>franchiseBonus()</code>) — ` +
+        `a production company/studio (A24, Blumhouse, 87North) is a different kind of creative-identity signal, closer in spirit to ` +
+        `<code>getCreator()</code>/<code>castBonus()</code> but at the STUDIO level rather than an individual person. Genuinely unverified until the ` +
+        `data exists — unlike the other ideas here, this can't be checked against real numbers yet, since the field isn't captured at all. The real ` +
+        `next step, if pursued, is adding it to <code>extract_entry()</code>, running a <code>REFRESH_ALL</code> backfill pass (the same mechanism ` +
+        `already used for <code>originalLanguage</code>/<code>topCastDetail</code> gaps), and only then checking whether a real correlation exists ` +
+        `before building any scoring signal — the same "verify before building" discipline every other signal here went through.`,
+      plain: `Some studios have a real reputation for a certain kind of movie — A24 for artsy/prestige horror and drama, Blumhouse for low-budget ` +
+        `horror, etc. The app already gives credit for a favorite director or actor, but has no idea which studio made something, because that ` +
+        `piece of information was never collected in the first place, even though it's sitting right there in the same data the app already ` +
+        `fetches. This is a "we'd need to go get the data first" idea, not a "here's a proven effect" one — the honest next step is capturing it ` +
+        `and then checking whether Bill's real ratings actually cluster by studio before building anything on top of it.`,
+      impact: `Unverified by design — flagged as a real, low-cost-to-capture gap (no new API calls, just reading one more field TMDB already sends) ` +
+        `worth investigating, not a confirmed opportunity the way the other ideas here are. Should not be built past the data-capture step without ` +
+        `first checking for a real correlation, the same way every other real signal on this list was checked before being proposed.`,
+    });
+  }
+
+  {
+    const model = idx.descModel;
+    let thinLovedDocs = 0, totalLovedDocs = 0, minTokens = null;
+    if (model) {
+      totalLovedDocs = model.lovedDocs.length;
+      for (const d of model.lovedDocs) {
+        if (minTokens == null || d.tokens.length < minTokens) minTokens = d.tokens.length;
+        if (d.tokens.length <= 12) thinLovedDocs++;
+      }
+    }
+    findings.push({
+      id: 'desc-similarity-thin-overview-risk',
+      severity: 'warning',
+      ratings: { ease: 4, dataQuality: 2, recEngine: 2, ui: 1 },
+      shortTitle: 'Thin Overviews May Inflate Matches',
+      title: `New idea (latent, not yet caught live): descSimilarityBonus() has no vocabulary-richness confidence scaling — the exact bug class just fixed for tone-Jaccard could recur here`,
+      technical: `Direct structural parallel to <code>citation-credit-thin-tone-vocab</code> (fixed earlier this session): ` +
+        `<code>descSimilarityBonus()</code> only requires an overview of 40+ characters before trusting a cosine-similarity match at full strength — ` +
+        `no scaling for how few real content words actually back the comparison. Live check of the ${fmtNum(totalLovedDocs)} loved-title overviews ` +
+        `the description model is built from: token counts (after stopword removal) range as low as ${fmtNum(minTokens ?? 0)}, and ` +
+        `${fmtNum(thinLovedDocs)} loved titles have 12 or fewer real content words in their overview — thin enough that a coincidental match on ` +
+        `just 2-3 shared words could produce a high cosine score the same way 2 shared tone tags did for Primo/Trailer Park Boys. A live scan for ` +
+        `an ACTIVE case (any current watchlist/candidate title with a thin overview scoring a high similarity, mirroring the real Wall Street/` +
+        `Creed III case found for the tone-vocab fix) came back with zero live cases today — this is a real structural gap, not yet a confirmed ` +
+        `live false positive, the same "flagged because it contradicts the design's intent, not because it's biting today" framing this dashboard ` +
+        `already uses for the TV Franchise Rule Gap finding above. If a future session finds a live case, the fix would follow the identical ` +
+        `pattern already shipped for <code>toneJaccard()</code>: scale trust by a real richness measure (token count) rather than only requiring a ` +
+        `bare length minimum.`,
+      plain: `Earlier this session, a real bug was fixed where two shows got treated as a "confirmed mood match" purely because they happened to ` +
+        `share 2 generic mood words, even though they weren't really alike. The plot-description matching feature has the exact same shape of ` +
+        `risk — a very short, thin plot summary could coincidentally share a few words with a loved title's summary and get treated as a real, ` +
+        `confirmed match. Checked for a live example of this actually happening today and didn't find one — so this is a real, structural risk ` +
+        `worth watching for, not a confirmed problem yet.`,
+      impact: `Preventive, not corrective — no live case found today, unlike the tone-vocab fix this mirrors. Worth a periodic re-check (the same live ` +
+        `scan used to write this finding) rather than a proactive code change, since building a fix for a risk with zero current instances would be ` +
+        `guessing at the right confidence curve with no real data to validate it against.`,
+    });
+  }
+
   const order = { critical: 0, serious: 1, warning: 2, good: 3 };
   findings.sort((a, b) => order[a.severity] - order[b.severity]);
   return findings;
