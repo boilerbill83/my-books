@@ -1696,6 +1696,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     findings.push({
       id: 'split-movie-tv-engine-decision',
       severity: 'warning', // investigated with real evidence; recommendation given, final call still Bill's
+      backlog: true, // Bill: parked in the Backlog section — investigated and recommended against, not urgent, not forgotten
       ratings: { ease: 3, dataQuality: 2, recEngine: 5, ui: 1 },
       shortTitle: 'Split Movies & TV Scoring?',
       title: 'Investigated (Bill asked): should movies and TV shows use two separate scoring engines? Real evidence points against it',
@@ -3601,10 +3602,25 @@ const renderImpRatings = ratings => {
     </div>`;
 };
 
-let impOpenFindings = [];
-
-function renderImprovementOpportunities(findings, targetId = 'improvementList') {
+// Bill: "create a new section called backlog." A backlogged finding is a
+// consciously-deferred one (not a bug still being tracked, not something
+// resolved) — its own third disposition alongside "open" and "resolved
+// (severity: good)", marked via a `backlog: true` flag on the finding
+// object rather than a severity value, since its real severity/ratings
+// still describe the underlying issue accurately and shouldn't be
+// overwritten just to park it. renderImprovementOpportunities() takes a
+// pre-filtered findings array, so the caller decides which findings go to
+// which section — this function itself doesn't know about "backlog" at
+// all, same shape as it not knowing what "resolved" means beyond the
+// severity check.
+//
+// noteId is parametrized (was hardcoded to 'improvementResolvedNote')
+// specifically so this function is safe to call twice for two different
+// sections (main list + backlog) without the second call's resolved-count
+// text silently overwriting the first's on a shared element id.
+function renderImprovementOpportunities(findings, targetId = 'improvementList', noteId = 'improvementResolvedNote') {
   const el = document.getElementById(targetId);
+  if (!el) return;
   // Bill: "once something is resolved, remove it from the list" — a
   // resolved (severity: 'good') finding no longer needs a fix, so keeping
   // it visible just makes the list longer without giving Bill anything
@@ -3627,14 +3643,12 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList') 
     .sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]
       || (b.ratings?.recEngine ?? 0) - (a.ratings?.recEngine ?? 0)
       || (b.ratings?.dataQuality ?? 0) - (a.ratings?.dataQuality ?? 0));
-  const noteEl = document.getElementById('improvementResolvedNote');
+  const noteEl = noteId ? document.getElementById(noteId) : null;
   if (noteEl) {
     noteEl.textContent = resolvedCount
       ? `${resolvedCount} previously-flagged issue${resolvedCount === 1 ? '' : 's'} ${resolvedCount === 1 ? 'has' : 'have'} been fixed and verified, and ${resolvedCount === 1 ? 'is' : 'are'} no longer shown here.`
       : '';
   }
-  findings = open;
-  impOpenFindings = findings;
 
   // Bill: "visualize the Improvement Opportunities differently; show them
   // as tiles so we can see four across the screen; then when you click on
@@ -3643,8 +3657,19 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList') 
   // design; the full technical/plain-English/impact write-up now opens in
   // a modal instead of expanding inline, since an inline expansion inside
   // a 4-wide grid would badly misalign every tile sharing that row.
+  //
+  // openImpModal is wired via a closure over `open` (this call's own
+  // findings array) rather than a shared module-level array — a real bug
+  // caught before it ever shipped: with two calls to this function now
+  // (main list + backlog), a shared array would have the second call's
+  // findings silently replace the first's, breaking every tile's modal
+  // click in whichever section rendered first.
   el.classList.add('tk-imp-grid');
-  el.innerHTML = findings.map((f, i) => {
+  if (!open.length) {
+    el.innerHTML = '<div class="tk-empty">Nothing here right now.</div>';
+    return;
+  }
+  el.innerHTML = open.map((f, i) => {
     const sev = IMP_SEV_META[f.severity];
     return `
       <button type="button" class="tk-imp-tile tk-imp-tile-${f.severity}" data-imp-index="${i}" title="${esc(f.title)}">
@@ -3660,7 +3685,7 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList') 
   }).join('');
 
   el.querySelectorAll('.tk-imp-tile').forEach(tile => {
-    tile.addEventListener('click', () => openImpModal(impOpenFindings[Number(tile.dataset.impIndex)]));
+    tile.addEventListener('click', () => openImpModal(open[Number(tile.dataset.impIndex)]));
   });
 }
 
@@ -4014,7 +4039,8 @@ async function load() {
       ? `OMDb fields (audience score, awards) are ${fmtNum(omdbEligible)} titles eligible but 0 enriched — needs the OMDB_API_KEY secret before that pipeline can run.`
       : `${fmtNum(omdbFound)}/${fmtNum(omdbEligible)} eligible titles have an OMDb record.`);
 
-  renderImprovementOpportunities(allFindings);
+  renderImprovementOpportunities(allFindings.filter(f => !f.backlog));
+  renderImprovementOpportunities(allFindings.filter(f => f.backlog), 'backlogList', null);
   renderReleaseLog(releaseLog?.entries || []);
 }
 
