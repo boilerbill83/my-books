@@ -1845,10 +1845,43 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
 
   // Priority 1: TMDB-vs-OMDb director cross-check for movies (both sources
   // fetched already; OMDb's Director field was previously discarded).
+  //
+  // 2026-09-13: Bill asked to look into this — investigated every live
+  // disagreement by hand (WebSearch against real outside sources) rather
+  // than leaving the raw string-mismatch list sitting there unexplained.
+  // Real result: zero genuine wrong-director credits. All 5 flagged cases
+  // were the SAME real person, in two shapes: (1) a diacritic difference
+  // TMDB and OMDb just render differently (Adrian Grünberg/Grunberg) — a
+  // safe, mechanical normalization fix, via stripAccents() below; (2) a
+  // nickname/initials vs. full-name variant, verified via real outside
+  // sources per case, not assumed (David S. F. Wilson/Dave Wilson on
+  // Bloodshot — the full form is his own official directing credit; Raja
+  // Collins/RJ Collins on American Sicario — Rotten Tomatoes' own celebrity
+  // page URL literally redirects "raja_collins" to the RJ Collins profile).
+  // One real, genuine typo WAS found (Diego Vincentini vs. the correct
+  // Diego Vicentini, confirmed via IMDb/Wikipedia/his own press interviews
+  // for Simón) — fixed via engine.js's CREATOR_CORRECTIONS (the same
+  // verified-override table the Primo/Michael Schur fix already
+  // established), so this check now reads through getCreator() rather than
+  // the raw TMDB field, picking the correction up automatically instead of
+  // needing a second, separate suppression here.
+  const stripAccents = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const normalizeNameForCompare = s => stripAccents(s.trim().toLowerCase()).replace(/[.\s]+/g, ' ').trim();
+  // Verified by hand (real outside sources, not assumed) as the same real
+  // person credited two different ways across TMDB/OMDb — a nickname/
+  // initials vs. full-name variant, not a data error. Diacritic-only
+  // differences don't need an entry here; normalizeNameForCompare() already
+  // handles those. Add a new pair only after the same real-source check.
+  const KNOWN_SAME_PERSON_VARIANTS = new Set([
+    'dave wilson|david s f wilson', // Bloodshot (2020) — sorted alphabetically, matching the pairKey below
+    'raja collins|rj collins',      // American Sicario (2021)
+  ]);
   {
     let bothPresent = 0, disagree = [];
     for (const [key, meta] of Object.entries(enrichedMeta)) {
-      if (!key.startsWith('movie:') || !meta.director) continue;
+      if (!key.startsWith('movie:')) continue;
+      const tmdbDirector = getCreator('movie', meta, key);
+      if (!tmdbDirector) continue;
       const omdbDirector = omdbMeta[key]?.director;
       if (!omdbDirector) continue;
       bothPresent++;
@@ -1856,10 +1889,15 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       // credits only one — a real disagreement is TMDB's name not
       // appearing anywhere in OMDb's (comma-separated) string at all,
       // not a strict equality check.
-      const omdbNames = omdbDirector.split(',').map(s => s.trim().toLowerCase());
-      if (!omdbNames.includes(meta.director.trim().toLowerCase())) {
-        disagree.push({ title: meta.title, tmdb: meta.director, omdb: omdbDirector });
-      }
+      const tmdbNorm = normalizeNameForCompare(tmdbDirector);
+      const omdbNames = omdbDirector.split(',').map(s => s.trim());
+      const matches = omdbNames.some(n => {
+        const nNorm = normalizeNameForCompare(n);
+        if (nNorm === tmdbNorm) return true;
+        const pairKey = [tmdbNorm, nNorm].sort().join('|');
+        return KNOWN_SAME_PERSON_VARIANTS.has(pairKey);
+      });
+      if (!matches) disagree.push({ title: meta.title, tmdb: tmdbDirector, omdb: omdbDirector });
     }
     findings.push({
       id: 'creator-attribution-tmdb-omdb-crosscheck',
@@ -1868,20 +1906,31 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       shortTitle: 'Director Data Double-Checked',
       title: disagree.length
         ? `${disagree.length} movie${disagree.length === 1 ? '' : 's'} where TMDB's director disagrees with OMDb's — for manual review`
-        : `TMDB and OMDb director data agree on all ${fmtNum(bothPresent)} movies checked so far — no disagreements found`,
-      technical: `New: <code>trakt/enrich_omdb.py</code>'s <code>extract_entry()</code> now captures OMDb's own 'Director' field ` +
-        `(free on the same already-fetched call — no new API usage), cached in <code>omdbMetadata.json</code>. Cross-checked live against ` +
-        `TMDB's <code>director</code> for every movie where both exist (${fmtNum(bothPresent)} today — most of the cache still needs a ` +
-        `<code>RETRY_NO_DIRECTOR=1</code> backfill run to populate the new field on already-cached entries). ${disagree.length ? `Real ` +
-        `disagreements: ${disagree.slice(0, 5).map(d => `"${d.title}" (TMDB: ${d.tmdb}, OMDb: ${d.omdb})`).join('; ')}${disagree.length > 5 ? `, +${disagree.length - 5} more` : ''}.` : `No case where OMDb's Director string doesn't contain TMDB's credited name.`} ` +
-        `Per the plan's own "log discrepancy for review" ask, this deliberately does NOT auto-prefer either source — a human should look ` +
-        `at any real disagreement rather than the pipeline silently picking one.`,
-      plain: `The app already fetches director info from two separate sources (TMDB and OMDb) for different reasons. This checks whether ` +
-        `they actually agree on who directed each movie. ${disagree.length ? `They disagree on a small number of real movies, listed above ` +
-        `for a human to look at — not auto-corrected, since either source could be the wrong one.` : `So far, everywhere both sources have ` +
-        `an answer, they agree.`}`,
-      impact: `A real, low-cost validation layer using data already being fetched for another purpose — catches a genuinely wrong TMDB ` +
-        `credit (which would otherwise silently misdirect creator-affinity scoring) without needing a brand-new data source.`,
+        : `TMDB and OMDb director data agree on all ${fmtNum(bothPresent)} movies checked (name-format differences normalized, verified case by case)`,
+      technical: `<code>trakt/enrich_omdb.py</code>'s <code>extract_entry()</code> captures OMDb's own 'Director' field (free on the same ` +
+        `already-fetched call), cached in <code>omdbMetadata.json</code>. Cross-checked live against <code>getCreator()</code>'s value ` +
+        `(TMDB, corrected via <code>CREATOR_CORRECTIONS</code> where verified) for every movie where both exist (${fmtNum(bothPresent)} today). ` +
+        `Investigated every real disagreement by hand this session (WebSearch against outside sources) rather than leaving the raw mismatch ` +
+        `list unexplained: of the original 5, one was a real TMDB typo (Diego Vincentini → the correct Diego Vicentini, confirmed via IMDb/` +
+        `Wikipedia/his own press interviews for Simón) — fixed via a new <code>CREATOR_CORRECTIONS</code> entry, the same mechanism the Primo/` +
+        `Michael Schur fix already established. The rest were the same real person credited two different ways: a diacritic rendering ` +
+        `difference (Adrian Grünberg/Grunberg — now normalized away automatically) and two nickname/initials-vs-full-name pairs, each verified ` +
+        `via a real outside source (David S. F. Wilson/Dave Wilson on Bloodshot; Raja Collins/RJ Collins on American Sicario — Rotten Tomatoes' ` +
+        `own celebrity-page URL redirects "raja_collins" to the RJ Collins profile) and recorded in a small hand-verified allowlist so this ` +
+        `check doesn't keep re-flagging an already-confirmed non-issue. ${disagree.length ? `Remaining real disagreements: ` +
+        `${disagree.slice(0, 5).map(d => `"${d.title}" (TMDB: ${d.tmdb}, OMDb: ${d.omdb})`).join('; ')}${disagree.length > 5 ? `, +${disagree.length - 5} more` : ''}.` : ``} ` +
+        `Per the plan's own "log discrepancy for review" ask, a genuinely new disagreement still doesn't get auto-resolved by guessing which ` +
+        `source is right — it needs the same real-source check before either a correction or an allowlist entry.`,
+      plain: `The app fetches director info from two separate sources (TMDB and OMDb) and checks whether they agree on who directed each ` +
+        `movie. Investigated the real disagreements by hand instead of just listing them: turned out to be one genuine typo in TMDB's data ` +
+        `(now corrected) and a few cases where both sources are right, just using a different form of the same person's name (a nickname, or ` +
+        `an accent mark rendered differently) — verified against real outside sources for each one, not assumed. ${disagree.length ? `A ` +
+        `small number of real disagreements remain, listed above for review.` : `Everywhere both sources have an answer, they now agree — ` +
+        `either for real, or because the difference was already checked and confirmed harmless.`}`,
+      impact: `A real, low-cost validation layer using data already being fetched for another purpose. This pass found and fixed one genuine ` +
+        `wrong director credit (which would have silently misdirected creator-affinity scoring for Simón) and confirmed the rest of the raw ` +
+        `mismatches were false alarms from name formatting, not data errors — closing the loop on the original ask rather than leaving a bare ` +
+        `list of unexplained disagreements.`,
     });
   }
 
