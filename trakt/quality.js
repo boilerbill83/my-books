@@ -3982,6 +3982,15 @@ const IMP_SEV_META = {
   warning: { cls: 'tk-status-warning', icon: '⚠', label: 'Low impact' },
   good: { cls: 'tk-status-good', icon: '✓', label: 'Resolved' },
 };
+// Prints the 1-100 score right in the pill (never color/tier alone) for
+// every finding that has one — the small exempt set of live data-
+// integrity checks (see IMPACT_SEVERITY_OVERRIDE_EXEMPT_*) never gets an
+// impactScore at all, since that number specifically answers "how much
+// would building this idea help," not "is this bug currently active."
+const impPillText = f => {
+  const sev = IMP_SEV_META[f.severity];
+  return f.impactScore != null ? `${f.impactScore} · ${sev.label}` : sev.label;
+};
 
 // Bill: "they're all tagged as low impact so I don't know where to
 // start... how can we better indicate where we should spend our time?"
@@ -3993,27 +4002,50 @@ const IMP_SEV_META = {
 // finding added since (this session's own tone-vocab fix, the 3 backlog
 // adds, and all 5 new engine ideas) defaulted straight back to a
 // hardcoded 'warning', so a real recEngine=6 idea and a recEngine=1 dead
-// end both rendered as identically "Low impact" again. Fixed for real,
-// not with another one-time pass: severity for "is this worth doing"
-// findings now DERIVES from ratings.recEngine live, every render, so it
-// can't drift out of sync again as new findings get added.
-function deriveImpactSeverity(recEngine) {
-  const re = recEngine ?? 0;
-  if (re >= 6) return 'critical';
-  if (re >= 4) return 'serious';
+// end both rendered as identically "Low impact" again.
+//
+// Follow-up (same day): "add a severity score from 1-100... remove UI as
+// a consideration... what do you propose as a way to weigh the other
+// factors?" then, when asked, "remember I am most focused on improving
+// the accuracy of the prediction engine." Proposed and confirmed: a
+// weighted blend of the 3 remaining axes, recEngine weighted far above
+// the other two since that's the explicit, repeated priority — this is a
+// priority score (impact blended with effort), not a pure severity score
+// in the strict sense (which would ignore ease entirely), a tradeoff
+// stated directly to Bill before building this.
+const IMPACT_WEIGHTS = { recEngine: 0.70, dataQuality: 0.20, ease: 0.10 };
+function computeImpactScore(ratings) {
+  const r = ratings || {};
+  const raw = IMPACT_WEIGHTS.recEngine * (r.recEngine ?? 0)
+    + IMPACT_WEIGHTS.dataQuality * (r.dataQuality ?? 0)
+    + IMPACT_WEIGHTS.ease * (r.ease ?? 0);
+  return Math.round(raw * 10); // each axis is 1-10, weights sum to 1 → 1-100
+}
+// Tier cutoffs picked against this dashboard's real live score
+// distribution (findings top out in the 50s-60s today — no open finding
+// maxes every axis at once, which is realistic: the easy, high-value
+// ones get built quickly, what's left is harder or more marginal),
+// re-checked whenever the real distribution shifts rather than assumed
+// fixed forever.
+function deriveImpactSeverity(score) {
+  const s = score ?? 0;
+  if (s >= 50) return 'critical';
+  if (s >= 30) return 'serious';
   return 'warning';
 }
-// A small, explicit exclusion list — findings whose severity is a live
-// "is there a real bug/corruption issue right now" check (self-citations,
-// taxonomy collisions, an unenrichable titleKey format, wasted candidate-
-// pool cap slots, director-data disagreements), not an "how much would
-// building this idea help the rec engine" judgment. Those two questions
-// are genuinely different axes — a real data-integrity bug deserves
-// urgency independent of how low its recEngine score happens to be — so
-// they keep their own condition-driven severity rather than being
-// reduced to the recEngine scale. Matched by exact id, or by prefix for
-// the per-field `field-quality-${key}` findings (computeFieldQualityFindings()).
-const IMPACT_SEVERITY_OVERRIDE_EXEMPT_PREFIXES = ['field-quality-'];
+// A small, explicit exclusion list — the handful of findings whose
+// severity is a LIVE CONDITIONAL toggling between an active-problem state
+// and 'good'/resolved (self-citations, taxonomy collisions, an
+// unenrichable titleKey format, wasted candidate-pool cap slots,
+// director-data disagreements) rather than a static, hand-typed literal.
+// "Is there a real data-integrity bug right now" deserves its own urgency
+// independent of a recEngine score, so these keep their own condition-
+// driven severity and get no 1-100 priority score at all. Checked before
+// building this: every field-quality-* finding (computeFieldQualityFindings())
+// uses a plain static severity literal, not a live conditional, so those
+// ARE scored normally below — they're real, static "here's an idea worth
+// prioritizing" writeups (same shape and same drift risk the rest of this
+// list had before deriveImpactSeverity existed), not a live bug check.
 const IMPACT_SEVERITY_OVERRIDE_EXEMPT_IDS = new Set([
   'pool-cap-waste', 'trakt-fallback-titlekey', 'creator-attribution-tmdb-omdb-crosscheck',
   'similar-title-relationship-audit', 'taxonomy-disjointness-guardrail',
@@ -4022,23 +4054,27 @@ function applyImpactSeverity(findings) {
   for (const f of findings) {
     if (f.severity === 'good') continue; // resolved — no urgency to signal
     if (IMPACT_SEVERITY_OVERRIDE_EXEMPT_IDS.has(f.id)) continue;
-    if (IMPACT_SEVERITY_OVERRIDE_EXEMPT_PREFIXES.some(p => f.id?.startsWith(p))) continue;
-    f.severity = deriveImpactSeverity(f.ratings?.recEngine);
+    f.impactScore = computeImpactScore(f.ratings);
+    f.severity = deriveImpactSeverity(f.impactScore);
   }
   return findings;
 }
-// 1-10 scale on 4 independent axes (ease of implementation, data quality
-// improvement, recommendation engine improvement, UI improvement) — a
-// judgment call grounded in each finding's own technical/impact writeup,
-// not a further live computation. Rendered as small labeled meters (never
-// color alone — a number is always printed) so the four axes stay
-// scannable without reading every paragraph, the same discipline the
-// severity pill already uses.
+// 1-10 scale on 3 independent axes (ease of implementation, data quality
+// improvement, recommendation engine improvement) — a judgment call
+// grounded in each finding's own technical/impact writeup, not a further
+// live computation. UI improvement was a 4th axis, dropped per Bill's
+// explicit request ("remove UI as a consideration") — findings still
+// carry a ratings.ui value in source (removing it from 60+ individual
+// finding literals would be pure churn with no behavioral effect, the
+// same "unused field left in place" tolerance this project already
+// extends to other dead data), it's just no longer read here. Rendered
+// as small labeled meters (never color alone — a number is always
+// printed) so the axes stay scannable without reading every paragraph,
+// the same discipline the severity pill already uses.
 const IMP_RATING_META = [
   { key: 'ease', label: 'Ease' },
   { key: 'dataQuality', label: 'Data quality' },
   { key: 'recEngine', label: 'Rec. engine' },
-  { key: 'ui', label: 'UI' },
 ];
 const impRatingColor = n => n >= 7 ? 'var(--status-good)' : n >= 4 ? 'var(--status-warning)' : 'var(--status-critical)';
 const renderImpRatings = ratings => {
@@ -4085,17 +4121,17 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList', 
   // Bill: "number these with 1 being at the top that is the highest
   // impact." The caller already sorts allFindings by severity tier
   // (critical/serious/warning), but ties within a tier aren't broken by
-  // anything meaningful — two 'serious' findings could carry recEngine
-  // ratings of 4 and 6 and render in whatever order the three compute*()
-  // functions happened to concatenate them. Re-sorting here by severity
-  // then recEngine (desc) then dataQuality (desc) gives the #1-N numbers
-  // below a real, defensible meaning instead of an arbitrary tiebreak.
+  // anything meaningful on their own. Re-sorting here by severity, then
+  // the real 1-100 impactScore (desc, same weighted number the pill
+  // shows — the exempt data-integrity findings have no impactScore, so
+  // fall back to recEngine/dataQuality for those few), gives the #1-N
+  // numbers below a real, defensible meaning instead of an arbitrary
+  // tiebreak.
   const severityOrder = { critical: 0, serious: 1, warning: 2, good: 3 };
   const open = findings
     .filter(f => f.severity !== 'good')
     .sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]
-      || (b.ratings?.recEngine ?? 0) - (a.ratings?.recEngine ?? 0)
-      || (b.ratings?.dataQuality ?? 0) - (a.ratings?.dataQuality ?? 0));
+      || (b.impactScore ?? computeImpactScore(b.ratings)) - (a.impactScore ?? computeImpactScore(a.ratings)));
   const noteEl = noteId ? document.getElementById(noteId) : null;
   if (noteEl) {
     noteEl.textContent = resolvedCount
@@ -4128,7 +4164,7 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList', 
       <button type="button" class="tk-imp-tile tk-imp-tile-${f.severity}" data-imp-index="${i}" title="${esc(f.title)}">
         <div class="tk-imp-tile-top">
           <span class="tk-imp-rank">#${i + 1}</span>
-          <span class="tk-status-pill ${sev.cls}">${sev.icon} ${sev.label}</span>
+          <span class="tk-status-pill ${sev.cls}">${sev.icon} ${impPillText(f)}</span>
         </div>
         <div class="tk-imp-tile-title">${esc(f.shortTitle || f.title)}</div>
         ${renderImpRatings(f.ratings)}
@@ -4146,7 +4182,7 @@ function openImpModal(f) {
   const modal = document.getElementById('impModal');
   if (!modal || !f) return;
   const sev = IMP_SEV_META[f.severity];
-  modal.querySelector('#impModalPill').innerHTML = `<span class="tk-status-pill ${sev.cls}">${sev.icon} ${sev.label}</span>`;
+  modal.querySelector('#impModalPill').innerHTML = `<span class="tk-status-pill ${sev.cls}">${sev.icon} ${impPillText(f)}</span>`;
   modal.querySelector('#impModalTitle').textContent = f.shortTitle || f.title;
   modal.querySelector('#impModalFullTitle').textContent = f.title;
   modal.querySelector('#impModalRatings').innerHTML = renderImpRatings(f.ratings);
