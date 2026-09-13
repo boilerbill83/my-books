@@ -220,7 +220,7 @@ function renderResultsTable(allRows, enrichedMeta) {
 async function load() {
   const { library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, bookThemeCounts } = await loadAllData();
 
-  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, undefined, bookThemeCounts);
+  const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, undefined, bookThemeCounts, omdbMeta);
   const titleIndex = buildTitleIndex(library, watchlist, candidatePool, enrichedMeta);
 
   document.getElementById('statusText').textContent = `${fmtNum(titleIndex.length)} titles ready to compare`;

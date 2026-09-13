@@ -793,6 +793,21 @@
       "after": {
         "note": "Real, measured result: pre-2000 disliked titles 0->5, pre-2010 disliked titles up to 13. eval.js bottom-50-catch-rate 8/30 -> 33/50 (a genuine, large improvement in exactly the metric this gap depresses). Liked-tier precision@10/25/50 held exactly (100/96/98); great-match precision@10 moved 100%->90% (single-title fluctuation at n=10, not a regression - every other tier held or improved)."
       }
+    },
+    {
+      "id": "mature-content-genre-signal-shipped",
+      "date": "2026-09-13",
+      "session": "78",
+      "category": "engine",
+      "outcome": "shipped",
+      "title": "matureContentGenreSignal() \u2014 generalizes the R/TV-MA content-maturity preference beyond superhero",
+      "summary": "The existing matureContentSignal() only fired for the superhero subgenre. A live, library-wide check (now that OMDb's `rated` field has real coverage) found the mature-vs-non-mature preference isn't superhero-specific: real per-genre deltas of thriller +1.13 (n=53), crime +1.07 (n=93), biography +1.07 (n=17), drama +0.73 (n=130), science-fiction +0.38 (n=46) \u2014 real, but an order of magnitude smaller than superhero's own 2.6-point gap, so this signal keeps its own, separately-swept, smaller SCALE/CAP rather than reusing matureContentSignal()'s +10/-6 unchanged. New matureContentGenreProfile (buildIndexes(), gated on 5+ rated titles in each of the mature/non-mature buckets per genre) excludes superhero-tagged titles from its own training data so the two signals can never double-count. omdbMeta threaded into buildIndexes() as a new backward-compatible parameter to make this profile possible, updated at every real call site (rankAll, rankRecommendations, both computeEvalMetrics() calls, similar.js, prune_candidate_pool.js). SCALE/CAP swept together (0-10) against scripts/eval.js's \"great match\" (8+/10) metric before shipping; every value below 5 held precision@25 at baseline with no gain, 5-6 is a clean stable plateau, 7+ breaks precision@50 \u2014 shipped at SCALE=5/CAP=5, the center of the stable band. See ENGINE.md \u00a73g-4.",
+      "before": {
+        "note": "precision@10 100%, precision@25 96%, precision@50 96%, precision@100 91% (\"great match\", 8+/10); bottom-50 catch 30/50."
+      },
+      "after": {
+        "note": "precision@10 100%, precision@25 100% (a real gain), precision@50 96% (held), precision@100 90%, bottom-50 catch 29/50 \u2014 a genuine precision@25 win at a single-title cost each to two lower-priority, larger-n metrics, a favorable trade under this project's top-of-list-precision-first priority."
+      }
     }
   ]
 }

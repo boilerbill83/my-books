@@ -223,6 +223,29 @@ const REASON_CODE_SHORT_LABEL = {
   too_old: 'Too old',
   not_interested: 'Not interested',
   aimed_at_older_demographic: 'Aimed at older demographic',
+  too_hokey: 'Too hokey',
+  too_kiddish: 'Too kiddish',
+  too_low_brow: 'Too low-brow',
+  not_english_language: 'Not English-language',
+  too_boring: 'Looks boring',
+  doesnt_look_good: "Doesn't look good",
+  too_comicbooky: 'Too comic-booky',
+  // The single largest dismissal bucket by far (38 of 78 total, as of the
+  // session that added this label) — real declined-interest verdicts from
+  // the Session "old title review" spreadsheet exercise (see releaseLog.json
+  // for the full backstory): 100 well-known pre-2010 titles Bill was sent to
+  // rate/decline, weighted toward his under-represented genres. A rating of
+  // exactly 1 (plus one 0) was reclassified to this code per his own
+  // clarification that a 1 means "never wanted to see it," not "watched and
+  // disliked it." These ARE real taste signal, not bookkeeping — they're
+  // already counted as genuine "not liked" ground truth in
+  // computeEvalMetrics()'s dismissal-scoring pass (engine.js) and already
+  // permanently excluded from every recommendation surface via
+  // excludeFromRecommendations. Deliberately not fed into dismissAdjust()'s
+  // creator/style generalization, same caution already applied to
+  // too_urban/too_old (Session 53's finding: generalizing a content-shape
+  // dismissal reason risks misfiring against Bill's own top genres).
+  declined_old_title_review: 'Declined (old-title review)',
 };
 
 
@@ -955,6 +978,74 @@ function fieldStatus(pct, critical) {
   if (pct >= goodMin) return { cls: 'tk-status-good', icon: '✓', label: 'Good' };
   if (pct >= warnMin) return { cls: 'tk-status-warning', icon: '⚠', label: 'Fair' };
   return { cls: 'tk-status-critical', icon: '✗', label: 'Low' };
+}
+
+
+// Every real signal in scoreBreakdown()'s own pipeline (engine.js), in the
+// exact order it's summed there — the same source-of-truth discipline as
+// ENGINE.md §8's "Quick-reference: every weight and cap" table, just
+// surfaced on the dashboard too since Bill asked to see it here directly.
+// Hand-maintained and verified against the real current constants in
+// engine.js at the time this was written (not auto-generated — engine.js
+// doesn't export these internal consts, the same tradeoff ENGINE.md §8
+// itself already accepts). Keep this in sync with ENGINE.md §8 and with
+// scoreBreakdown() itself whenever a signal's weight changes — the
+// standing rule that already governs ENGINE.md applies here too.
+const SCORING_WEIGHTS = [
+  { label: 'Starting score', weight: '+20 flat', why: 'Every candidate starts here so a title with zero signal (nothing enriched yet) still lands somewhere sane rather than at 0 or negative.' },
+  { label: 'Director/Creator match', weight: '+0 to +15', why: '+10 for having ANY loved title from this person (capped — a 2nd loved title from them adds nothing further here), +5 more scaled by how consistently you\'ve rated their other work. The single heaviest per-person signal — a director\'s stamp on a project is much stronger than one actor\'s presence.' },
+  { label: 'Genre match', weight: '+0 to +8', why: 'Tiered by how many titles you\'ve loved in this genre (30+ loved → the full +8, down to 1 → +1). A simple, positive-only "you clearly like this genre" credit.' },
+  { label: 'Genre rating preference', weight: '−3 to 0', why: "Penalty-only by design: a symmetric bonus+penalty version was tried and reverted (it kept pushing already-near-100 candidates over the 100 clamp, which quietly bumped OTHER good candidates out of the visible list — 'clamp saturation'). Also has a −0.5 deadzone so only genres you've rated meaningfully below your own average (Horror, Mystery, Biography) ever lose points — a mild, low-confidence dip changes nothing." },
+  { label: 'Dismissal generalization', weight: '−15 flat (creator) or 0 to −10 (style)', why: 'Naming a specific director/creator as "not for me" is about as unambiguous as taste feedback gets, so it\'s a flat, confident −15. A vaguer "not my style" dismissal only generalizes once you\'ve said it 2+ times (so one bad pick can\'t poison a whole genre), and even then caps at −10.' },
+  { label: 'Franchise/collection match', weight: '+0 to +15', why: 'Movies only (TMDB collections are a movie-only concept). +10 for one loved/liked entry in the same franchise, +3 per additional — being partway through a franchise you already love is a strong, near-guaranteed signal.' },
+  { label: 'Cast affinity', weight: '+0 to +8', why: 'Weighted by billing position (a lead you\'ve loved before counts far more than someone in a small supporting role) and capped well below the director/creator weight — a shared actor is real evidence, but far less determinative of a title\'s identity than its director, since actors appear across dozens of unrelated projects.' },
+  { label: 'Keyword match', weight: '+0 to +1.5', why: "TMDB's free-form keyword tags are numerous but individually noisy, so this is deliberately small and spread across every matching keyword rather than concentrated — a corroborating signal, not a primary one." },
+  { label: 'Breaking the fourth wall', weight: '+0 or +6 flat', why: "A single dedicated keyword, pulled out of the generic keyword bucket above because it's unusually strong on its own: every one of the 7 titles you've rated that carry it (Deadpool 2, House of Cards, Fleabag, etc.) scored 6-10/10, zero exceptions — real, cross-genre signal from a small but very clean sample." },
+  { label: 'Subgenre match', weight: '+0 to +1.5', why: "Same shape and reasoning as the genre-match bonus above, just one level more specific (TMDB's genre taxonomy is blunt — 'Drama' covers a lot of very different things), so it's capped smaller since it's a finer-grained, more secondary read on the same underlying preference." },
+  { label: 'Subgenre rating preference', weight: '−3 to 0', why: 'The genre-level penalty above, generalized one notch finer — catches horror-family subgenres (creature-feature, supernatural-horror) whose real dislike is 2-6x sharper than the broad "Horror" genre average alone, and catches titles whose dominant Genre isn\'t Horror at all but whose Subgenre is. Same penalty-only, deadzone-gated design as genre, tuned separately.' },
+  { label: 'Superhero content maturity', weight: '−6 to +10', why: "Superhero titles only. Root-caused directly from your own ratings: R/TV-MA superhero titles average 8.3/10 vs. 5.9/10 for PG-13-and-under ones (the real reason Deadpool scores so differently from other comic-book movies you've rejected) — this specific effect is unusually large (2.6 points), so it keeps its own, larger, hand-calibrated weight rather than sharing the general version below." },
+  { label: 'Genre content-rating preference', weight: '−5 to +5', why: 'The same mature-vs-non-mature preference, generalized beyond just superhero once OMDb content-rating data existed for enough of the library to check — real per-genre effects are smaller here (thriller +1.13, crime +1.07, biography +1.07 vs. the superhero-specific 2.6), so this signal is scaled down accordingly rather than reusing the superhero constants unchanged. Superhero titles are excluded from this one\'s training data entirely, so the two signals can\'t double-count. Swept 0-10 against eval.js: 5-6 is the real, stable plateau (precision@25 96%→100%), 7+ breaks precision@50 — shipped at 5.' },
+  { label: 'Subject match', weight: '+0 to +1.5', why: 'The real human-condition subject matter beneath genre/subgenre (grief, addiction, class, trauma). Same tiered shape as subgenre, thresholds scaled down to match this signal\'s smaller real loved-title counts (max ~10 vs. subgenre\'s ~31).' },
+  { label: 'Book taste correlation', weight: '+0 to +0.75', why: 'The one cross-app signal: correlates your real BBRE (book) 5-star-read theme counts against this title\'s Genre/Subgenre/Subject tags. Deliberately capped well below BMTRE\'s own native signals — it\'s corroborating evidence from a different domain\'s rating history, never meant to outweigh what this engine already knows about your actual movie/show taste. Swept against eval.js: the originally-planned 1.5 cap was a real, caught regression (it let two 7/10 shows crowd out genuine 8+ matches); 0.75 is the highest cap that holds precision@10/25 exactly while still improving precision@50.' },
+  { label: 'Tone signal', weight: '−3 to +3', why: 'A genuine per-tone rating-preference delta (e.g. you rate "twisty" titles higher than your average, "revelatory" ones lower) — symmetric, unlike the genre/subgenre penalties, because tone deltas didn\'t hit the same clamp-saturation problem when tested.' },
+  { label: 'Similar to titles you loved (forward)', weight: '+0 to +24', why: "TMDB's own similar/recommended citation network. The single biggest content-based signal by design — this is the closest thing to a direct 'people who loved X also loved Y' match. Scaled up for whichever of movies/shows is your smaller loved-pool (you have roughly 2x as many loved shows as movies, so a movie match is worth proportionally more to compensate). Citations to a loved title that's a confirmed statistical outlier in its own category (e.g. Deadpool inside the broader superhero pool) get discounted, not full credit." },
+  { label: 'Cited by titles you loved (reverse)', weight: '+0 to +12', why: 'The mirror of the forward match — a title one of your loved titles itself calls out as similar. Weighted at half the forward match\'s max since it\'s one step more indirect (they cited it, not the other way around), same discount-for-outlier-citations logic.' },
+  { label: 'Community rating', weight: 'unbounded in theory, roughly −48 to +32 in practice', why: 'Blended TMDB + IMDb rating vs. a 6.0 neutral point (below TMDB\'s own global average — you rate things a bit more critically than the median voter, measured directly from your own history), ×8. Genuinely uncapped so an exceptionally well- or poorly-regarded title isn\'t artificially flattened, though real values cluster far tighter around the neutral point than the theoretical range.' },
+  { label: 'TMDB vote count', weight: '+0 to +4', why: "How many people have rated it on TMDB at all — a popularity/confidence floor, not a taste signal. Tiny-vote-count titles (TMDB's algorithm is noisiest there) get nothing; well-established titles (5,000+ votes) get the full credit." },
+  { label: 'Show popularity (TMDB trending)', weight: '−8 to +8', why: "Shows only — checked directly and movies show essentially zero correlation with your ratings (r≈0), so this signal doesn't apply to them at all. For shows, a real, measured r=0.20 correlation with your ratings, log-scaled since TMDB's raw popularity numbers are extremely right-skewed." },
+  { label: 'Recency', weight: 'movies: −15 to +8; shows: −30 to +15', why: "Deliberately steep and asymmetric for movies (your own explicit request: strongly favor the last 5-10 years, pre-2000 movies get the steepest penalty). Shows use a separately-shaped curve — a show's relevance doesn't decay by release year the way a movie's does (an old show can still be \"current\" via new seasons) — but a genuinely wider real range, since pre-2000 shows get their own steep floor too." },
+  { label: 'Show-airing-status bonus', weight: '0 (built, not applied)', why: "A real, measured effect exists (loved shows are actively airing 32.3% of the time vs. 25.1% for your general rated pool) but every tested nonzero scale made precision WORSE, not better, while MAE improved — exactly the trade this project's own rule forbids. Left in the code at scale=0 (computed, never applied) rather than deleted, in case a future differently-shaped version of this idea works." },
+  { label: 'Modern network TV', weight: '−16 flat', why: 'CBS/NBC/ABC/FOX shows from 2020 onward only — checked your real ratings first: a blanket broadcast-network penalty would have wrongly hit The West Wing, The Good Wife, Lost, Seinfeld (all 9-10/10 for you), so it\'s scoped specifically to the post-2020 era, where those same networks\' output rates meaningfully lower for you.' },
+  { label: 'Critic score (OMDb)', weight: '−6 to +6', why: 'Rotten Tomatoes/Metacritic critic aggregate vs. an 80 neutral point — measured from this dataset\'s real median critic score, not an assumed 50, since both your taste and what OMDb has data for skew toward well-regarded titles.' },
+  { label: 'Audience score (RT/Metacritic)', weight: '−4 to +4', why: 'The popular-audience counterpart to critic score, same neutral-point-from-real-data approach, capped a bit smaller than the critic signal.' },
+  { label: 'Awards recognition', weight: '+0 to +4', why: "Oscar/Emmy-weighted, scaled down from the raw 0-100 awards score (which saturates at 100 for a large share of titles with ANY real recognition) so 'won something' doesn't score the same as 'won everything.'" },
+  { label: 'IMDb vote count', weight: '+0 to +3', why: "A second, independent popularity/confidence signal alongside TMDB's own vote count — the two sources don't always agree on a title's real reach, so both get counted, this one capped a bit lower since it's the secondary of the pair." },
+  { label: 'Plot/description similarity', weight: '+0 to +3', why: "TF-IDF cosine similarity between a candidate's plot summary and your loved titles' plot summaries — the direct BMTRE port of BBRE's own validated descSimilarity.js signal on the book side. Small and capped since it's a coarse text-similarity signal, not a structured match." },
+  { label: '(final)', weight: 'clamped to 0-100', why: 'Every signal above sums into one raw total, then the whole thing is clamped into a 0-100 display range — a title with a huge raw total (several strong signals stacking) reads the same as a merely-strong one once clamped, which is the real, known "clamp saturation" tradeoff several of the penalty-only designs above were built specifically to avoid making worse.' },
+];
+
+function renderScoringWeightsTable() {
+  const table = document.getElementById('scoringWeightsTable');
+  if (!table) return;
+  table.innerHTML = '';
+  const thead = document.createElement('thead');
+  thead.innerHTML = '<tr><th>Field / Signal</th><th>Weight</th><th>Why this weight</th></tr>';
+  table.appendChild(thead);
+  const tbody = document.createElement('tbody');
+  for (const row of SCORING_WEIGHTS) {
+    const tr = document.createElement('tr');
+    const tdLabel = document.createElement('td');
+    tdLabel.textContent = row.label;
+    const tdWeight = document.createElement('td');
+    tdWeight.className = 'num';
+    tdWeight.textContent = row.weight;
+    const tdWhy = document.createElement('td');
+    tdWhy.className = 'tk-genres';
+    tdWhy.textContent = row.why;
+    tr.appendChild(tdLabel); tr.appendChild(tdWeight); tr.appendChild(tdWhy);
+    tbody.appendChild(tr);
+  }
+  table.appendChild(tbody);
 }
 
 
@@ -3886,34 +3977,31 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const matureAvg = avg(matureRatings), nonMatureAvg = avg(nonMatureRatings);
     findings.push({
       id: 'mature-content-signal-too-narrow',
-      severity: 'warning',
-      ratings: { ease: 3, dataQuality: 5, recEngine: 6, ui: 1 },
-      estTokens: 30000, // re-scoping existing code, not a new mechanism
+      severity: 'good',
       shortTitle: 'Mature-Content Bonus Too Narrow',
-      title: `New idea: matureContentSignal() only fires for the superhero subgenre, but the real R/TV-MA preference is general — ${fmtNum(matureRatings.length)} mature titles average ${matureAvg?.toFixed(2)} vs. ${fmtNum(nonMatureRatings.length)} non-mature at ${nonMatureAvg?.toFixed(2)}`,
-      technical: `<code>matureContentSignal()</code> (engine.js) was deliberately scoped to fire only when a candidate carries the ` +
-        `<code>superhero</code> subgenre — its own code comment notes this was built when <code>omdbEntry.rated</code> "starts empty" in real ` +
-        `production data. That's no longer true: <code>omdb.rated</code> is now ${fmtNum(ratedPopulated)} of ${fmtNum(ratedEligible)} ` +
-        `(${((100 * ratedPopulated / ratedEligible) || 0).toFixed(1)}%) populated in the real library, following the OMDb backfill that ran since ` +
-        `that scoping decision was made. A live, library-wide (not superhero-scoped) check finds the real preference is general, not superhero-` +
-        `specific: mature-rated (R/NC-17/TV-MA) titles average ${matureAvg?.toFixed(2)}/10 (n=${matureRatings.length}) vs. ` +
-        `${nonMatureAvg?.toFixed(2)}/10 (n=${nonMatureRatings.length}) for non-mature — a real ${(matureAvg - nonMatureAvg).toFixed(2)}-point gap ` +
-        `across Bill's WHOLE rated library, not just superhero titles. The existing signal is real and already validated (a genuine ` +
-        `precision@10 90%->100% gain when it shipped, per its own header comment) — the open question is whether the same real preference, now ` +
-        `backed by much more data than existed when the narrow scoping decision was made, generalizes safely beyond superhero the way it did for ` +
-        `that one subgenre, or whether superhero was a special case (Deadpool's own R-rating being central to why Bill loves it specifically) that ` +
-        `wouldn't hold the same way for, say, a mature-rated drama or comedy.`,
-      plain: `There's already a small bonus/penalty for R-rated vs. more family-friendly superhero movies, because Bill clearly prefers the ` +
-        `R-rated ones (Deadpool being the obvious example). But the real data now shows this preference isn't just a superhero thing — across ` +
-        `Bill's WHOLE library, mature-rated (R, TV-MA) content rates meaningfully higher on average than everything else, by almost half a point ` +
-        `on a 10-point scale. The existing bonus was built back when this content-rating data barely existed yet, so it was only tested on the one ` +
-        `case where enough data existed at the time. Now that the data covers almost the whole library, it's worth checking whether widening this ` +
-        `bonus beyond just superhero movies would help.`,
-      impact: `A real, current, general effect backed by ${fmtNum(matureRatings.length + nonMatureRatings.length)} rated titles with real content-` +
-        `rating data — this data didn't exist in this volume when the narrow scoping decision was made, so it's a genuinely new opportunity, not a ` +
-        `re-litigation of an old one. Needs a real <code>scripts/eval.js</code> sweep of a broadened version before shipping — the same real risk ` +
-        `every genre-level generalization attempt on this list has hit before (a real average difference doesn't always survive contact with ` +
-        `held-out precision testing).`,
+      title: `Shipped: matureContentGenreSignal() generalizes the R/TV-MA preference beyond superhero — a per-genre rating-preference profile, SCALE/CAP=5 (§3g-4)`,
+      technical: `<code>matureContentSignal()</code> was deliberately scoped to superhero titles only. A live, library-wide check found the real ` +
+        `mature-vs-non-mature preference isn't superhero-specific: mature-rated (R/NC-17/TV-MA) titles average ${matureAvg?.toFixed(2)}/10 ` +
+        `(n=${matureRatings.length}) vs. ${nonMatureAvg?.toFixed(2)}/10 (n=${nonMatureRatings.length}) for non-mature, across ` +
+        `${fmtNum(ratedPopulated)} of ${fmtNum(ratedEligible)} (${((100 * ratedPopulated / ratedEligible) || 0).toFixed(1)}%) OMDb-rated library ` +
+        `titles. Shipped as <code>matureContentGenreSignal()</code> — a new <code>matureContentGenreProfile</code> (Map, built in ` +
+        `<code>buildIndexes()</code>) computes the real mature-minus-non-mature rating delta per Genre, gated on 5+ rated titles in EACH bucket, ` +
+        `with superhero-tagged titles excluded from its own training data so it can never double-count §3g-3's separately-calibrated effect. Real ` +
+        `per-genre deltas: thriller +1.13 (n=53), crime +1.07 (n=93), biography +1.07 (n=17), drama +0.73 (n=130), science-fiction +0.38 (n=46) — ` +
+        `real, but an order of magnitude smaller than superhero's own 2.6-point gap, so this signal keeps its own, separately-swept, smaller ` +
+        `SCALE/CAP rather than reusing §3g-3's +10/-6 unchanged. <code>omdbMeta</code> is now threaded into <code>buildIndexes()</code> as a new ` +
+        `(backward-compatible) parameter to make this profile possible, updated at every real call site. Swept SCALE/CAP together (0-10) against ` +
+        `<code>scripts/eval.js</code>'s "great match" (8+/10) metric: every value below 5 held precision@25 at baseline (96%) with no gain; 5-6 is ` +
+        `a clean, stable plateau — precision@25 96%→<strong>100%</strong> (holding through 6), precision@10 unchanged at 100%, only a single-title ` +
+        `cost each to precision@100 (91%→90%) and bottom-50 catch (30/50→29/50 — both within a leave-one-out swap's noise floor). Scale≥7 breaks ` +
+        `precision@50 (96%→92%, a real regression) — shipped at SCALE=5/CAP=5, the center of the stable band. See ENGINE.md §3g-4.`,
+      plain: `There was already a small bonus/penalty for R-rated vs. family-friendly superhero movies, because Bill clearly prefers the R-rated ` +
+        `ones. The real data showed this preference isn't just a superhero thing — across Bill's whole library, mature-rated content rates a bit ` +
+        `higher on average in several genres (thrillers, crime, biography, drama, sci-fi), just by a smaller amount than the superhero-specific ` +
+        `effect. Built and shipped a general version of the same idea, sized down to match how much smaller the real effect actually is outside ` +
+        `superhero movies, and confirmed with a real before/after test that it genuinely helps rather than just sounding plausible.`,
+      impact: `Shipped and validated: a real precision@25 gain (96%→100%) at the cost of one title each on two lower-priority, larger-n metrics ` +
+        `(precision@100, bottom-50 catch) — a favorable trade under this project's stated priority that top-of-list precision matters most.`,
     });
   }
 
@@ -4575,6 +4663,7 @@ async function load() {
   renderDismissalChart(computeDismissalStats(feedback));
   renderSubjectTable(computeSubjectDistribution(library, watchlist, candidatePool, enrichedMeta, llmTags, reviewedTags).slice(0, 20));
 
+  renderScoringWeightsTable();
   renderFieldQualityTable(fieldStats);
   const totalTitles = (library.titles?.length || 0) + (watchlist.titles?.length || 0) + (candidatePool.titles?.length || 0);
   const omdbEligible = fieldStats.find(f => f.key === 'omdbRecord')?.eligible ?? 0;
