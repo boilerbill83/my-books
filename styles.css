@@ -39,6 +39,17 @@ body {
   align-items: center;
   justify-content: flex-end;
   gap: 16px;
+  flex-wrap: wrap;
+}
+/* Real bug, caught live on Bill's phone (Sept 14 2026): with no wrap, a
+   right-aligned (flex-end) row on a narrow viewport clips off its LEFT-most
+   items with no scroll affordance — invisible, not just squeezed. On the
+   trakt/ pages that's the "🍿 Discover"/"📋 Data Quality" nav links, since
+   they sit first in DOM order. flex-wrap alone fixes the clipping; this
+   media query also switches to left-aligned reading order once wrapped,
+   since a right-aligned multi-line nav reads oddly top-to-bottom. */
+@media (max-width: 600px) {
+  .header-inner { justify-content: flex-start; gap: 8px 14px; }
 }
 
 /* ── LOGO (now lives beside Currently Reading) ── */
