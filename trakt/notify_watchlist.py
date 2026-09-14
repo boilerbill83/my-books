@@ -52,6 +52,16 @@ Twilio credentials/toll-free-verification state can be confirmed for
 real (a genuine send, not just a dry run) on a day with no actual
 premiere/finale event to trigger one naturally. Never writes to
 notificationState.json.
+
+Bill's follow-up request (2026-09-15): "also include the cover image
+of the show in the text." Each text is now an MMS carrying the show's
+real TMDB poster (Twilio's Messages API accepts an optional MediaUrl
+alongside Body — no separate endpoint) — reuses the exact
+image.tmdb.org CDN convention engine.js's posterUrl() already
+established (public, no-auth, unrelated to the api.themoviedb.org host
+this sandbox's own network policy blocks — Twilio's servers fetch it
+fine). A show with no cached posterPath yet sends as plain SMS rather
+than failing or blocking on it.
 """
 
 import base64, json, os, sys, urllib.error, urllib.parse, urllib.request
@@ -71,18 +81,35 @@ TEST_SEND = os.environ.get('TEST_SEND') == '1' or '--test-send' in sys.argv
 
 TWILIO_URL = 'https://api.twilio.com/2010-04-01/Accounts/{sid}/Messages.json'
 
+# Same public, no-auth CDN convention engine.js's posterUrl() already
+# established — a moderate size (w500) balances real poster quality
+# against MMS carrier size limits (well under any real limit either way;
+# TMDB's own images are small).
+TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w500'
 
-def send_sms(body):
+
+def poster_url(meta):
+    """Real TMDB poster URL for a show's cached metadata, or None if it
+    hasn't been enriched with a poster yet — never guessed/fabricated."""
+    path = (meta or {}).get('posterPath')
+    return f'{TMDB_IMAGE_BASE}{path}' if path else None
+
+
+def send_sms(body, media_url=None):
     """POSTs to Twilio's Messages API. Returns (ok, info) — info is the
     created message's sid on success, or a human-readable error: Twilio's
     own error code + message when it gives one (e.g. real error 30032
     'Toll-Free Number Not Verified/Registered'), not just a bare status
-    code."""
+    code. media_url, when given, sends as a real MMS (Twilio's own
+    MediaUrl parameter) with the show's cover image attached."""
     if DRY_RUN:
-        print(f'  [DRY RUN] would send: {body!r}')
+        print(f'  [DRY RUN] would send: {body!r}' + (f' (with image: {media_url})' if media_url else ''))
         return True, 'dry-run'
     url = TWILIO_URL.format(sid=ACCOUNT_SID)
-    data = urllib.parse.urlencode({'To': TO_NUMBER, 'From': FROM_NUMBER, 'Body': body}).encode()
+    fields = {'To': TO_NUMBER, 'From': FROM_NUMBER, 'Body': body}
+    if media_url:
+        fields['MediaUrl'] = media_url
+    data = urllib.parse.urlencode(fields).encode()
     creds = base64.b64encode(f'{ACCOUNT_SID}:{AUTH_TOKEN}'.encode()).decode()
     req = urllib.request.Request(url, data=data, headers={'Authorization': f'Basic {creds}'})
     try:
@@ -113,21 +140,24 @@ def load_watchlist_shows():
 
 
 def find_events(shows, today, state):
-    """Returns a list of (titleKey, stateKey, message) for every real,
-    not-yet-sent event true today. Pure function of its inputs (no I/O,
-    no sending) so it can be unit-tested directly against synthetic
-    dates without a real Twilio account."""
+    """Returns a list of (titleKey, stateKey, message, posterUrl) for every
+    real, not-yet-sent event true today — posterUrl is None when the show
+    has no cached poster yet, never guessed. Pure function of its inputs
+    (no I/O, no sending) so it can be unit-tested directly against
+    synthetic dates without a real Twilio account."""
     events = []
     for t in shows:
         title_key, title = t['titleKey'], t.get('title') or title_key
         meta = t.get('meta', {})
         s = state.get(title_key, {})
+        poster = poster_url(meta)
 
         next_ep = meta.get('nextEpisodeToAir')
         if next_ep and next_ep.get('episodeNumber') == 1 and next_ep.get('airDate') == today.isoformat():
             if s.get('lastPremiereSent') != today.isoformat():
                 events.append((title_key, 'lastPremiereSent',
-                                f'\U0001F4FA {title} premieres tonight! Season {next_ep.get("seasonNumber")} is here.'))
+                                f'\U0001F4FA {title} premieres tonight! Season {next_ep.get("seasonNumber")} is here.',
+                                poster))
 
         finale = meta.get('currentSeasonFinale')
         finale_date_str = finale.get('finaleDate') if finale else None
@@ -140,12 +170,14 @@ def find_events(shows, today, state):
                 if s.get('lastFinaleWarnSent') != today.isoformat():
                     events.append((title_key, 'lastFinaleWarnSent',
                                     f'⏳ {title}\'s season {finale.get("seasonNumber")} finale airs in 2 days '
-                                    f'({finale_date_str}).'))
+                                    f'({finale_date_str}).',
+                                    poster))
             if finale_date == today - timedelta(days=1):
                 if s.get('lastFinaleFollowupSent') != today.isoformat():
                     events.append((title_key, 'lastFinaleFollowupSent',
                                     f'✅ {title}\'s season {finale.get("seasonNumber")} finale aired yesterday '
-                                    f'— it\'s all out now.'))
+                                    f'— it\'s all out now.',
+                                    poster))
     return events
 
 
@@ -175,11 +207,20 @@ def main():
               f'TO_NUMBER len={len(TO_NUMBER)} starts_plus={TO_NUMBER.startswith("+")}')
 
     if TEST_SEND:
-        ok, info = send_sms('✅ Test text from trakt/notify_watchlist.py — Twilio setup is working.')
+        # Also validates the real MMS path, not just plain SMS — picks a
+        # real poster off the actual watchlist (never a hardcoded/guessed
+        # URL) so a toll-free-verification or media-fetch problem specific
+        # to MMS shows up here too, not just on the next real event.
+        test_shows = load_watchlist_shows()
+        test_poster = next((p for p in (poster_url(t.get('meta', {})) for t in test_shows) if p), None)
+        body = '✅ Test text from trakt/notify_watchlist.py — Twilio setup is working.'
+        if test_poster:
+            body += ' (Testing MMS with a real cover image too.)'
+        ok, info = send_sms(body, media_url=test_poster)
         if not ok:
             print(f'ERROR: test send failed: {info}', file=sys.stderr)
             sys.exit(1)
-        print(f'Test text sent OK ({info}).')
+        print(f'Test text sent OK ({info}).' + (f' Poster: {test_poster}' if test_poster else ' (no watchlist poster available to test MMS with)'))
         return
 
     today = date.today()
@@ -191,8 +232,8 @@ def main():
     print(f'{len(events)} real event(s) to send today')
 
     sent, failed = 0, 0
-    for title_key, state_key, message in events:
-        ok, info = send_sms(message)
+    for title_key, state_key, message, poster in events:
+        ok, info = send_sms(message, media_url=poster)
         if ok:
             sent += 1
             state.setdefault(title_key, {})[state_key] = today.isoformat()

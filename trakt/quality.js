@@ -3747,11 +3747,18 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `message sid (<code>SM5b81ce7fae62b67cc834a950651f01e6</code>) and Bill confirmed receiving the actual text on his phone. The daily ` +
         `schedule is now live and will text him automatically on real premiere/finale events going forward, no further action needed. ` +
         `Separately, Bill's ask to hardcode his phone number into the script instead of the <code>TWILIO_TO_NUMBER</code> secret stayed ` +
-        `deferred ("let's deal with it later") since this repo is public and it was never actually the blocker.`,
+        `deferred ("let's deal with it later") since this repo is public and it was never actually the blocker. <strong>Follow-up (Bill: "also ` +
+        `include the cover image of the show in the text")</strong>: every text is now a real MMS — <code>send_sms()</code> gained an optional ` +
+        `<code>media_url</code> parameter (Twilio's own <code>MediaUrl</code> field alongside <code>Body</code>, same endpoint, no new API), and ` +
+        `a new <code>poster_url()</code> reuses <code>engine.js</code>'s exact <code>image.tmdb.org</code> CDN convention. A show with no cached ` +
+        `poster yet degrades to plain SMS rather than failing. <code>TEST_SEND</code> now also validates the real MMS path (attaches a real ` +
+        `poster pulled from the live watchlist, never a hardcoded URL) so a media-specific delivery problem would surface there too, not just on ` +
+        `the next real event.`,
       plain: `Bill wanted a text message when a show on his watchlist is about to premiere a new season, is 2 days from its season finale, or just ` +
         `finished its finale yesterday. It's done and working: after several failed attempts that turned out to be Twilio suspending Bill's ` +
         `account for a zero balance (not a bug here), he added funds and a real test text landed on his phone. The daily check now runs on its ` +
-        `own every morning — nothing left for Bill to do.`,
+        `own every morning — nothing left for Bill to do. He then asked for the show's cover image in the text too — now every alert is a real ` +
+        `picture message with the poster attached, not just plain text.`,
       impact: `Bill's own explicit, named priority — shipped, debugged through to a real external blocker, and confirmed working with an actual ` +
         `text received on his phone. Closed the loop start to finish in one session.`,
     });
