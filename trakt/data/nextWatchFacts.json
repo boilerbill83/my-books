@@ -60,6 +60,21 @@
           "sourceLabel": "About Amazon"
         }
       ]
+    },
+    "show:108978": {
+      "title": "Reacher",
+      "facts": [
+        {
+          "text": "Season 4 adapts the 13th Reacher novel, \"Gone Tomorrow\" — moved from the book's New York setting to Philadelphia, where a chance subway encounter with a troubled woman pulls Reacher into a conspiracy involving a missing USB drive and enemies at the highest ranks of power.",
+          "source": "https://en.wikipedia.org/wiki/Reacher_season_4",
+          "sourceLabel": "Wikipedia"
+        },
+        {
+          "text": "Showrunners have called it the darkest, bloodiest season yet — trading the rural-noir feel of earlier seasons for a higher-stakes spy thriller. The finale (episode 8 of 8) airs September 16, 2026, and Prime Video renewed the show for Season 5 back in May.",
+          "source": "https://www.highonfilms.com/reacher-season-4-release-date-cast-plot-episode-schedule-and-how-to-watch/",
+          "sourceLabel": "High on Films"
+        }
+      ]
     }
   }
 }

@@ -448,7 +448,7 @@ async function loadAllData() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
   const [dashboard, libraryRaw, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback,
          scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
-         currentlyWatchingFeature, familyWatchlist, releaseLog, goodreadsData, manualRatings, nextWatchFacts] = await Promise.all([
+         currentlyWatchingFeature, familyWatchlist, releaseLog, goodreadsData, manualRatings, nextWatchFacts, nextWatchPins] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -513,11 +513,18 @@ async function loadAllData() {
     // {title, facts:[{text,source,sourceLabel}]} } }; {shows:{}} is a safe
     // empty default (a selected show just renders without a facts block).
     get('./data/nextWatchFacts.json').catch(() => ({ shows: {} })),
+    // Manual, disclosed exceptions to My Next Watch's live "recently
+    // wrapped" selection — see the file's own "note" field for why this
+    // exists (a title one day short of clearing the real finale-date bar,
+    // pinned in at Bill's explicit request rather than waiting). {
+    // titleKeys: [] } is a safe empty default — no pins, pure live
+    // selection.
+    get('./data/nextWatchPins.json').catch(() => ({ titleKeys: [] })),
   ]);
   const library = mergeManualRatings(libraryRaw, manualRatings);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
   const bookThemeCounts = computeBookThemeCounts(goodreadsData);
-  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog, bookThemeCounts, nextWatchFacts };
+  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog, bookThemeCounts, nextWatchFacts, nextWatchPins };
 }
 
 // Best Matches (Discover) and Prediction Misses (Quality) are two views of

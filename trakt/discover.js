@@ -128,7 +128,12 @@ function renderBestMatches(stats, enrichedMeta) {
   const el = document.getElementById('bestMatchesList');
   if (!stats.matches.length) { el.innerHTML = '<div class="tk-empty">Not enough enriched, rated titles yet.</div>'; return; }
   el.innerHTML = stats.matches.slice(0, 12).map(r => {
-    const poster = posterUrl(r.titleKey, enrichedMeta);
+    // 'w92' (real TMDB size), not the default 'w154' — this renders as a
+    // 38x57 thumbnail, and every default-size posterUrl() call across
+    // this dashboard was fetching a needlessly large image relative to
+    // its real display size (real, measured contributor to "images are
+    // slow to load" — fixed at every call site, not just this one).
+    const poster = posterUrl(r.titleKey, enrichedMeta, 'w92');
     return `
     <div class="tk-metric-row">
       ${posterImgHtml(poster, 'tk-metric-poster', 38, 57)}
@@ -191,7 +196,7 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
     // say so too rather than still calling it "Candidate."
     if (idx.excluded.has(h.titleKey)) status = 'Dismissed';
     rows.push({
-      titleKey: h.titleKey, posterUrl: posterUrl(h.titleKey, enrichedMeta), ids: h.ids,
+      titleKey: h.titleKey, posterUrl: posterUrl(h.titleKey, enrichedMeta, 'w92'), ids: h.ids,
       title: h.title || '(untitled — not yet enriched)', year: h.year, type: h.type, status,
       airing: isActivelyAiring(h, enrichedMeta),
       myRating: myRating ?? null, tmdbRating: meta?.voteAverage ?? null,
@@ -433,7 +438,10 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
     return;
   }
   el.innerHTML = picks.map((c, i) => {
-    const poster = posterUrl(c.titleKey, enrichedMeta);
+    // 'w92' (real TMDB size) — this renders as a 60x90 tk-rec-poster, not
+    // the much larger default 'w154' (see renderBestMatches()'s own
+    // comment on this same fix).
+    const poster = posterUrl(c.titleKey, enrichedMeta, 'w92');
     // Bill: "is there a way to identify a TV show as prestige... maybe
     // those that have a big star and are 10 episodes or less." The badge
     // threshold is a deliberately generous "worth flagging" bar, not
@@ -621,12 +629,29 @@ function isRecentlyWrappedSeason(meta, today) {
 // belt-and-suspenders precedent isExcluded()'s own watched/watchlist
 // double-check already established elsewhere in this file, rather than
 // depending on every future caller remembering to pre-filter correctly.
-function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, coWatchSet = new Set(), today = new Date()) {
-  return fromWatchlist
-    .filter(c => c.type === 'show' && c.titleKey !== excludeKey && !coWatchSet.has(c.titleKey)
+// pinnedKeys (nextWatchPins.json — see that file's own "note") go first,
+// guaranteed shown regardless of isRecentlyWrappedSeason(), then the
+// remaining slots fill from the normal live ranking — naturally bumping
+// whichever live pick would otherwise have been last, rather than
+// hardcoding which title to remove.
+function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, coWatchSet = new Set(), pinnedKeys = [], today = new Date()) {
+  const byKey = new Map(fromWatchlist.map(c => [c.titleKey, c]));
+  // A pin isn't guaranteed to be in fromWatchlist — rankAll() correctly
+  // excludes a title from there once it's already in the watched library
+  // too (the real Reacher case: Bill is mid-Season-4, so it's an
+  // in-progress watch, not a fresh watchlist pick, and never gets scored
+  // into fromWatchlist at all). renderNextWatch() only ever needs
+  // titleKey/type to look everything else up via enrichedMeta, so a
+  // minimal stand-in object is a complete, correct fallback here.
+  const pinned = pinnedKeys
+    .map(k => byKey.get(k) || (enrichedMeta[k] ? { titleKey: k, type: k.split(':')[0] } : null))
+    .filter(c => c && c.type === 'show' && c.titleKey !== excludeKey && !coWatchSet.has(c.titleKey) && enrichedMeta[c.titleKey]);
+  const pinnedSet = new Set(pinned.map(c => c.titleKey));
+  const live = fromWatchlist
+    .filter(c => c.type === 'show' && c.titleKey !== excludeKey && !coWatchSet.has(c.titleKey) && !pinnedSet.has(c.titleKey)
       && enrichedMeta[c.titleKey] && isRecentlyWrappedSeason(enrichedMeta[c.titleKey], today))
-    .sort((a, b) => b.bmtreScoreRaw - a.bmtreScoreRaw)
-    .slice(0, 4);
+    .sort((a, b) => b.bmtreScoreRaw - a.bmtreScoreRaw);
+  return [...pinned, ...live].slice(0, 4);
 }
 
 function renderNextWatch(picks, enrichedMeta, nextWatchFacts) {
@@ -636,7 +661,10 @@ function renderNextWatch(picks, enrichedMeta, nextWatchFacts) {
   el.innerHTML = picks.map(c => {
     const meta = enrichedMeta[c.titleKey];
     const candidate = { titleKey: c.titleKey, type: c.type, title: meta.title, year: meta.year };
-    const poster = posterUrl(c.titleKey, enrichedMeta, 'w185');
+    // 'w154' — the card shrank to a 100px-wide poster (see index.html's
+    // #nextWatch CSS), so 'w185' (barely bigger than the earlier full-size
+    // card's 70px display) is now more oversized than it needs to be.
+    const poster = posterUrl(c.titleKey, enrichedMeta, 'w154');
     const facts = factsByKey[c.titleKey]?.facts || [];
     // Just the single strongest fact, clamped to 3 lines via CSS — a
     // compact grid tile has no room for the 2-3 facts the full-size hero
@@ -872,7 +900,7 @@ function renderTasteLine(genreStats, crowdCompare, castStats, tenRatedCount) {
 async function load() {
   const { dashboard: d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback,
           llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
-          currentlyWatchingFeature, familyWatchlist, bookThemeCounts, nextWatchFacts } = await loadAllData();
+          currentlyWatchingFeature, familyWatchlist, bookThemeCounts, nextWatchFacts, nextWatchPins } = await loadAllData();
 
   const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
@@ -909,7 +937,7 @@ async function load() {
   // Bill: "put currently watching on the left and my next watch on the
   // right" — excludes whatever's already showing on the left so the two
   // panels can never duplicate a title.
-  const nextWatchPicks = pickNextWatch(soloWatchlist, enrichedMeta, watchingNow?.titleKey ?? null, coWatchSet);
+  const nextWatchPicks = pickNextWatch(soloWatchlist, enrichedMeta, watchingNow?.titleKey ?? null, coWatchSet, nextWatchPins?.titleKeys || []);
   renderNextWatch(nextWatchPicks, enrichedMeta, nextWatchFacts);
 
   renderFamilyWatchList(familyWatchlist, enrichedMeta);
