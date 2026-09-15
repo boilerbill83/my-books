@@ -553,7 +553,7 @@ function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, revi
   const cast = castLine(meta);
   const scoreVal = meta.voteAverage != null ? meta.voteAverage.toFixed(1) : null;
   el.innerHTML = `
-    <div class="tk-hero-poster">${posterImgHtml(poster, 'tk-hero-img', 150, 225)}</div>
+    <div class="tk-hero-poster">${posterImgHtml(poster, 'tk-hero-img', 150, 225, true)}</div>
     <div class="tk-hero-body">
       <div class="tk-hero-kicker">📺 Currently Watching</div>
       <div class="tk-hero-title">
@@ -672,7 +672,7 @@ function renderNextWatch(picks, enrichedMeta, nextWatchFacts) {
     const fact = facts[0];
     return `
       <div class="tk-nw-card">
-        ${posterImgHtml(poster, 'tk-nw-poster', 100, 150)}
+        ${posterImgHtml(poster, 'tk-nw-poster', 100, 150, true)}
         <div class="tk-nw-body">
           <div class="tk-nw-title">${titleLink(candidate)}${meta.year ? ` <span class="tk-hero-year">(${esc(meta.year)})</span>` : ''}</div>
           ${fact
@@ -762,7 +762,7 @@ function renderHero(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
   const poster = posterUrl(top.titleKey, enrichedMeta, 'w342');
   const tier = scoreTier(top.bmtreScore);
   el.innerHTML = `
-    <div class="tk-hero-poster">${posterImgHtml(poster, 'tk-hero-img', 150, 225)}</div>
+    <div class="tk-hero-poster">${posterImgHtml(poster, 'tk-hero-img', 150, 225, true)}</div>
     <div class="tk-hero-body">
       <div class="tk-hero-kicker">🎯 Start here tonight</div>
       <div class="tk-hero-title">
