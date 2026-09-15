@@ -576,6 +576,74 @@ function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, revi
   `;
 }
 
+// Bill (2026-09-15): "split the top of the dashboard. Put currently
+// watching on the left and my next watch on the right. These should be
+// shows from my watchlist that recently wrapped up a season."
+//
+// "Recently wrapped" has a real data gap: enrichedMetadata.json only ever
+// carries currentSeasonFinale for a show that STILL has (or very recently
+// had) an active nextEpisodeToAir pointer — enrich_tmdb.py's season-
+// endpoint call is gated on that. A show that's been over a while has no
+// cached finale date at all. So this checks, in order: (1) if a
+// currentSeasonFinale IS cached, trust it exactly — a future finaleDate
+// means still airing regardless of what nextEpisodeToAir separately says
+// (this is the real fix for a live bug caught by hand: Lanterns' stale
+// nextEpisodeToAir pointer made it look "done" when its real finale was
+// 3 weeks out — its finaleDate caught what the episode-number check
+// missed); (2) no cached finale but a future nextEpisodeToAir exists →
+// still airing; (3) neither → fall back to firstAirDate as a coarser
+// recency proxy (biased toward UNDERcounting recency for a multi-week
+// weekly rollout, since the real finale is always later than the
+// premiere — a safe direction to be wrong in for "recently").
+const NEXT_WATCH_WINDOW_DAYS = 210; // ~7 months — a generous but real "recently" bar
+function isRecentlyWrappedSeason(meta, today) {
+  const finale = meta.currentSeasonFinale;
+  if (finale?.finaleDate) {
+    const finaleDate = new Date(finale.finaleDate + 'T00:00:00Z');
+    if (finaleDate > today) return false;
+    return Math.round((today - finaleDate) / 86400000) <= NEXT_WATCH_WINDOW_DAYS;
+  }
+  const next = meta.nextEpisodeToAir;
+  if (next?.airDate && new Date(next.airDate + 'T00:00:00Z') > today) return false;
+  const firstAir = meta.firstAirDate ? new Date(meta.firstAirDate + 'T00:00:00Z') : null;
+  if (!firstAir || firstAir > today) return false;
+  return Math.round((today - firstAir) / 86400000) <= NEXT_WATCH_WINDOW_DAYS;
+}
+
+// Ranked by the engine's real predicted fit (fromWatchlist's bmtreScore) —
+// Bill's own "guess my top four" — but the score itself is never shown,
+// per his explicit ask; it's purely the ranking mechanism.
+function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, today = new Date()) {
+  return fromWatchlist
+    .filter(c => c.type === 'show' && c.titleKey !== excludeKey && enrichedMeta[c.titleKey]
+      && isRecentlyWrappedSeason(enrichedMeta[c.titleKey], today))
+    .sort((a, b) => b.bmtreScoreRaw - a.bmtreScoreRaw)
+    .slice(0, 4);
+}
+
+function renderNextWatch(picks, enrichedMeta, nextWatchFacts) {
+  const el = document.getElementById('nextWatch');
+  if (!picks.length) { el.innerHTML = '<div class="tk-empty">Nothing on your watchlist has recently wrapped a season.</div>'; return; }
+  const factsByKey = nextWatchFacts?.shows || {};
+  el.innerHTML = picks.map(c => {
+    const meta = enrichedMeta[c.titleKey];
+    const candidate = { titleKey: c.titleKey, type: c.type, title: meta.title, year: meta.year };
+    const poster = posterUrl(c.titleKey, enrichedMeta, 'w185');
+    const facts = factsByKey[c.titleKey]?.facts || [];
+    return `
+      <div class="tk-nw-card">
+        ${posterImgHtml(poster, 'tk-nw-poster', 70, 105)}
+        <div class="tk-nw-body">
+          <div class="tk-nw-title">${titleLink(candidate)}${meta.year ? ` <span class="tk-hero-year">(${esc(meta.year)})</span>` : ''}</div>
+          ${facts.length ? facts.slice(0, 3).map(f =>
+            `<div class="tk-nw-fact">${esc(f.text)}${f.source ? ` <a href="${esc(f.source)}" target="_blank" rel="noopener" class="tk-hero-fact-source">${esc(f.sourceLabel || 'source')}</a>` : ''}</div>`
+          ).join('') : `<div class="tk-nw-fact tk-nw-fact-empty">${esc(meta.overview || 'No summary yet.')}</div>`}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
 // Bill: "let's create a new table for movies I want to watch with my whole
 // family." A separate, manually-curated list, not derived from Trakt at
 // all — see familyWatchlist.json's own "note" field for the full data-
@@ -792,7 +860,7 @@ function renderTasteLine(genreStats, crowdCompare, castStats, tenRatedCount) {
 async function load() {
   const { dashboard: d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback,
           llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
-          currentlyWatchingFeature, familyWatchlist, bookThemeCounts } = await loadAllData();
+          currentlyWatchingFeature, familyWatchlist, bookThemeCounts, nextWatchFacts } = await loadAllData();
 
   const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
@@ -825,6 +893,13 @@ async function load() {
   const watchingNow = pickCurrentlyWatching(currentlyWatchingFeature, soloCurrentlyWatching, enrichedMeta);
   if (watchingNow) renderCurrentlyWatchingHero(watchingNow, enrichedMeta, omdbMeta, llmTags, reviewedTags);
   else renderHero(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
+
+  // Bill: "put currently watching on the left and my next watch on the
+  // right" — excludes whatever's already showing on the left so the two
+  // panels can never duplicate a title.
+  const nextWatchPicks = pickNextWatch(soloWatchlist, enrichedMeta, watchingNow?.titleKey ?? null);
+  renderNextWatch(nextWatchPicks, enrichedMeta, nextWatchFacts);
+
   renderFamilyWatchList(familyWatchlist, enrichedMeta);
 
   renderRecPanel('movieRecList', byType(soloWatchlist, 'movie'), byType(soloCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);

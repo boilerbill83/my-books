@@ -448,7 +448,7 @@ async function loadAllData() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
   const [dashboard, libraryRaw, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback,
          scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
-         currentlyWatchingFeature, familyWatchlist, releaseLog, goodreadsData, manualRatings] = await Promise.all([
+         currentlyWatchingFeature, familyWatchlist, releaseLog, goodreadsData, manualRatings, nextWatchFacts] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -507,11 +507,17 @@ async function loadAllData() {
     // `note` field and mergeManualRatings()'s comment for the full design.
     // {titles:[]} is a safe empty default.
     get('./data/manualRatings.json').catch(() => ({ titles: [] })),
+    // Real, hand-researched "fun facts about the newest season" for
+    // whichever watchlist shows the My Next Watch panel's live selection
+    // picks — see the file's own "note" field. { shows: { titleKey:
+    // {title, facts:[{text,source,sourceLabel}]} } }; {shows:{}} is a safe
+    // empty default (a selected show just renders without a facts block).
+    get('./data/nextWatchFacts.json').catch(() => ({ shows: {} })),
   ]);
   const library = mergeManualRatings(libraryRaw, manualRatings);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
   const bookThemeCounts = computeBookThemeCounts(goodreadsData);
-  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog, bookThemeCounts };
+  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog, bookThemeCounts, nextWatchFacts };
 }
 
 // Best Matches (Discover) and Prediction Misses (Quality) are two views of

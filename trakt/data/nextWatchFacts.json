@@ -1,0 +1,65 @@
+{
+  "note": "Real, hand-researched 'fun facts about the newest season' for the Discover page's 'My Next Watch' panel (Bill, 2026-09-15: 'these should be shows from my watchlist that recently wrapped up a season... don't show scores, just the image, the title and a couple fun facts from the newest season'). Same sourced-never-fabricated discipline as currentlyWatchingFeature.json's own facts array. WHICH 4 shows the panel features is live-computed every page load (see discover.js's pickNextWatch()/isRecentlyWrappedSeason()) — this file only supplies facts for whichever shows have actually been researched. A show the live selection picks with no entry here simply renders without a facts block (poster + title only) rather than blocking or fabricating anything, the same graceful-degradation precedent currentlyWatchingFeature.json's own facts field established. Re-research and add an entry here whenever the live top-4 selection shifts to a new, not-yet-covered show.",
+  "shows": {
+    "show:287238": {
+      "title": "Furious",
+      "facts": [
+        {
+          "text": "Loosely inspired by the 1987 film Black Widow — but flips its premise. Where the movie shocked audiences with the idea that a woman might kill for money, Furious is about a female serial killer targeting powerful men tied to a web of abuse, told with real nuance about motive rather than shock value.",
+          "source": "https://www.npr.org/2026/08/06/nx-s1-5922197/furious-hulu-black-widow",
+          "sourceLabel": "NPR"
+        },
+        {
+          "text": "Created by Elizabeth Meriwether (New Girl), starring Emmy Rossum (Shameless) as the FBI agent chasing Lola Petticrew's calculating killer. All 8 episodes are out now — the finale aired August 31, 2026 — and Hulu renewed it for Season 2 within two weeks of the premiere.",
+          "source": "https://en.wikipedia.org/wiki/Furious_(TV_series)",
+          "sourceLabel": "Wikipedia"
+        }
+      ]
+    },
+    "show:273240": {
+      "title": "Off Campus",
+      "facts": [
+        {
+          "text": "Based on Elle Kennedy's best-selling college-hockey romance novels. All 8 episodes of Season 1 dropped on Prime Video the same day (May 13, 2026) rather than weekly.",
+          "source": "https://www.aboutamazon.com/news/entertainment/off-campus-hockey-series-prime-video",
+          "sourceLabel": "About Amazon"
+        },
+        {
+          "text": "Follows quiet, music-loving student Hannah Wells falling for hockey captain Garrett Graham at fictional Briar University — already renewed for a Season 2 with new cast additions.",
+          "source": "https://www.yahoo.com/entertainment/tv/articles/everything-know-off-campus-show-210800201.html",
+          "sourceLabel": "Yahoo Entertainment"
+        }
+      ]
+    },
+    "show:252107": {
+      "title": "Star City",
+      "facts": [
+        {
+          "text": "A spinoff from the same creative team behind For All Mankind, set in the real, once-secret Soviet cosmonaut training city just outside Moscow during the Cold War space race.",
+          "source": "https://www.smithsonianmag.com/history/soviet-cosmonauts-trained-at-star-city-as-they-raced-to-beat-america-to-the-moon-now-a-new-tv-series-imagines-what-happened-behind-the-bases-walls-180988823/",
+          "sourceLabel": "Smithsonian Magazine"
+        },
+        {
+          "text": "Because so little about the real place was ever publicly documented, the show's creators had wide latitude to invent — the season finale aired July 10, 2026, with all 8 episodes now out.",
+          "source": "https://www.indiewire.com/features/interviews/star-city-found-new-stories-inside-soviet-space-program-1235205084/",
+          "sourceLabel": "IndieWire"
+        }
+      ]
+    },
+    "show:254420": {
+      "title": "Elle",
+      "facts": [
+        {
+          "text": "A Legally Blonde prequel — set in 1995, following a teenage Elle Woods through the high-school friendships, forbidden romance, and fashion choices that shaped her before Harvard.",
+          "source": "https://www.tvinsider.com/1176038/elle-legally-blonde-prequel-series-premiere-date-cast-trailer-plot/",
+          "sourceLabel": "TV Insider"
+        },
+        {
+          "text": "Produced by Reese Witherspoon's Hello Sunshine banner, with Lexi Minetree stepping into the role Witherspoon originated on film. All 8 episodes released the same day (July 1, 2026) — Season 2 isn't expected until mid-2027.",
+          "source": "https://www.aboutamazon.com/news/entertainment/elle-prime-video-legally-blonde",
+          "sourceLabel": "About Amazon"
+        }
+      ]
+    }
+  }
+}

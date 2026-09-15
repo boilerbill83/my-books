@@ -48,6 +48,22 @@
         .tk-hero-fact { text-align: left; }
       }
 
+      /* My Next Watch — compact poster+title+facts rows, no score (Bill's
+         explicit ask: "don't show scores, just the image, the title and a
+         couple fun facts"). Reuses .tk-hero-fact-source/.tk-hero-year from
+         the hero card's own styles above rather than duplicating them. */
+      #nextWatch { display: flex; flex-direction: column; gap: 14px; }
+      .tk-nw-card { display: flex; gap: 12px; }
+      .tk-nw-poster { width: 70px; height: 105px; border-radius: 6px; object-fit: cover; background: var(--bg-subtle); border: 1px solid var(--border); flex-shrink: 0; }
+      .tk-nw-poster-empty { border: 1px dashed var(--border); }
+      .tk-nw-body { flex: 1; min-width: 0; }
+      .tk-nw-title { font-family: var(--font-serif); font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 4px; }
+      .tk-nw-fact { font-size: 0.8rem; color: var(--text); line-height: 1.45; margin-top: 4px; }
+      .tk-nw-fact-empty { color: var(--text-muted); font-style: italic; }
+      @media (max-width: 640px) {
+        .tk-nw-card { gap: 10px; }
+      }
+
       .tk-byl-row { margin-bottom: 20px; }
       .tk-byl-row:last-child { margin-bottom: 0; }
       .tk-byl-heading { font-weight: 600; font-size: 0.92rem; margin-bottom: 10px; }
@@ -97,7 +113,14 @@
         <div class="tk-subtitle" id="subtitleText">Loading…</div>
         <div class="tk-taste-line" id="tasteLine"></div>
 
-        <div class="tk-card tk-hero-card" style="margin-bottom: 24px;" id="heroPick"></div>
+        <div class="tk-row2" style="margin-bottom: 24px; align-items: start;">
+          <div class="tk-card tk-hero-card" id="heroPick"></div>
+          <div class="tk-card">
+            <div class="tk-card-heading">🍿 My Next Watch</div>
+            <div class="tk-card-note">From your watchlist, recently wrapped and ready to start.</div>
+            <div id="nextWatch"></div>
+          </div>
+        </div>
 
         <div class="tk-row2" style="margin-bottom:14px;">
           <div class="tk-card">
