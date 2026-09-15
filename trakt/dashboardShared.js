@@ -34,8 +34,16 @@ const fmtNum = n => (n ?? 0).toLocaleString('en-US');
 // HTML string (the 4th, the All Titles table, builds the <img> via DOM APIs
 // directly and gets the same onerror behavior inline there instead).
 
-const posterImgHtml = (url, cssClass, w, h) => url
-  ? `<img class="${cssClass}" src="${esc(url)}" alt="" loading="lazy" width="${w}" height="${h}" ` +
+// eager=true skips loading="lazy" for posters that render in the initial
+// viewport (the hero card, the My Next Watch grid) — lazy-loading an
+// above-the-fold image is a real, known anti-pattern (some browsers defer
+// the fetch behind a layout/intersection check even though the image is
+// already visible, the opposite of what you want for the first thing on
+// the page); every other, further-down-the-page usage keeps the default
+// lazy behavior, which is the right call there.
+const posterImgHtml = (url, cssClass, w, h, eager = false) => url
+  ? `<img class="${cssClass}" src="${esc(url)}" alt="" loading="${eager ? 'eager' : 'lazy'}" ` +
+    `${eager ? 'fetchpriority="high" ' : ''}width="${w}" height="${h}" ` +
     `onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'${cssClass} ${cssClass}-empty'}))">`
   : `<div class="${cssClass} ${cssClass}-empty"></div>`;
 
