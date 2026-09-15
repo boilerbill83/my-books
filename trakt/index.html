@@ -48,6 +48,29 @@
         .tk-hero-fact { text-align: left; }
       }
 
+      /* Top row: Currently Watching (hero, text-heavy, genuinely tall —
+         cast/overview/rating line/multiple sourced facts) beside My Next
+         Watch (a compact fixed-size tile grid). Reusing .tk-row2's plain
+         1fr/1fr split here put My Next Watch in a column as wide as the
+         hero's, but its actual content (a 216px-wide 2x2 grid of 100px
+         tiles) never came close to filling it — a real, visible "why is
+         half this card blank" white-space problem Bill flagged from a
+         live screenshot. A fixed 280px second column (216px grid + card
+         padding + a little breathing room) instead of 1fr sizes the card
+         to roughly its actual content width — tried grid-template-columns:
+         1fr auto first, but "auto" track sizing measures a text child's
+         *unwrapped* max-content width, so the card-note sentence (wider
+         unwrapped than the poster grid) pulled the column back out wide
+         again; a fixed width sidesteps that and just lets the note wrap
+         normally. align-items: start keeps the shorter card from
+         stretching to the hero's full height (stretching would just
+         relocate the same blank space inside a taller border, not remove
+         it). Falls back to .tk-row2's own single-column stack at the same
+         breakpoint. */
+      .tk-top-row { display: grid; grid-template-columns: 1fr 280px; gap: 20px; align-items: start; }
+      @media (max-width: 780px) { .tk-top-row { grid-template-columns: 1fr; } }
+      .tk-nw-card-wrap { min-width: 0; }
+
       /* My Next Watch — a compact 2x2 tile grid, no score (Bill's explicit
          ask: "don't show scores, just the image, the title and a couple
          fun facts", then "make it a 4x4 grid and make the whole thing a
@@ -126,9 +149,9 @@
         <div class="tk-subtitle" id="subtitleText">Loading…</div>
         <div class="tk-taste-line" id="tasteLine"></div>
 
-        <div class="tk-row2" style="margin-bottom: 24px; align-items: start;">
+        <div class="tk-top-row" style="margin-bottom: 24px;">
           <div class="tk-card tk-hero-card" id="heroPick"></div>
-          <div class="tk-card">
+          <div class="tk-card tk-nw-card-wrap">
             <div class="tk-card-heading">🍿 My Next Watch</div>
             <div class="tk-card-note">From your watchlist, recently wrapped and ready to start.</div>
             <div id="nextWatch"></div>
