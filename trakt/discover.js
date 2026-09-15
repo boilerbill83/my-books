@@ -638,14 +638,18 @@ function renderNextWatch(picks, enrichedMeta, nextWatchFacts) {
     const candidate = { titleKey: c.titleKey, type: c.type, title: meta.title, year: meta.year };
     const poster = posterUrl(c.titleKey, enrichedMeta, 'w185');
     const facts = factsByKey[c.titleKey]?.facts || [];
+    // Just the single strongest fact, clamped to 3 lines via CSS — a
+    // compact grid tile has no room for the 2-3 facts the full-size hero
+    // card shows.
+    const fact = facts[0];
     return `
       <div class="tk-nw-card">
-        ${posterImgHtml(poster, 'tk-nw-poster', 70, 105)}
+        ${posterImgHtml(poster, 'tk-nw-poster', 100, 150)}
         <div class="tk-nw-body">
           <div class="tk-nw-title">${titleLink(candidate)}${meta.year ? ` <span class="tk-hero-year">(${esc(meta.year)})</span>` : ''}</div>
-          ${facts.length ? facts.slice(0, 3).map(f =>
-            `<div class="tk-nw-fact">${esc(f.text)}${f.source ? ` <a href="${esc(f.source)}" target="_blank" rel="noopener" class="tk-hero-fact-source">${esc(f.sourceLabel || 'source')}</a>` : ''}</div>`
-          ).join('') : `<div class="tk-nw-fact tk-nw-fact-empty">${esc(meta.overview || 'No summary yet.')}</div>`}
+          ${fact
+            ? `<div class="tk-nw-fact">${esc(fact.text)}${fact.source ? ` <a href="${esc(fact.source)}" target="_blank" rel="noopener" class="tk-hero-fact-source">${esc(fact.sourceLabel || 'source')}</a>` : ''}</div>`
+            : `<div class="tk-nw-fact tk-nw-fact-empty">${esc(meta.overview || 'No summary yet.')}</div>`}
         </div>
       </div>
     `;
