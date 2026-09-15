@@ -9925,7 +9925,7 @@
   "metacriticUser": null,
   "mcUrl": null,
   "mcUserAttempted": true,
-  "checkedAt": "2026-09-01"
+  "checkedAt": "2026-09-15"
  },
  "show:238126": {
   "rottenTomatoes": 45,
@@ -10003,7 +10003,7 @@
   "metacriticUser": null,
   "mcUrl": null,
   "mcUserAttempted": true,
-  "checkedAt": "2026-09-01"
+  "checkedAt": "2026-09-15"
  },
  "show:87058": {
   "rottenTomatoes": 89,
@@ -10094,7 +10094,7 @@
   "metacriticUser": null,
   "mcUrl": null,
   "mcUserAttempted": true,
-  "checkedAt": "2026-09-01"
+  "checkedAt": "2026-09-15"
  },
  "show:71693": {
   "rottenTomatoes": 80,
@@ -17960,5 +17960,18 @@
   "mcUrl": "https://www.metacritic.com/tv/constellation/",
   "mcUserAttempted": true,
   "checkedAt": "2026-09-14"
+ },
+ "show:95259": {
+  "rottenTomatoes": 82,
+  "rtAudience": 76,
+  "rtUrl": "https://www.rottentomatoes.com/tv/dare_me",
+  "rtAttempted": "2026-09-15",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": null,
+  "metacritic": 73,
+  "metacriticUser": 70,
+  "mcUrl": "https://www.metacritic.com/tv/dare-me/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-09-15"
  }
 }
