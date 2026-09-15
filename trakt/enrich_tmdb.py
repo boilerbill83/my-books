@@ -259,6 +259,24 @@ def extract_entry(kind, data):
             'episodeNumber': next_ep.get('episode_number'),
         } if next_ep else None
 
+        # Bill: "My Next Watch" cards should say when the most recent
+        # episode aired, for a show whose season has already wrapped (no
+        # nextEpisodeToAir left to look at). TMDB's /tv/{id} response
+        # already carries last_episode_to_air as a sibling field to
+        # next_episode_to_air on the exact same call already being made
+        # here — no extra request needed, unlike currentSeasonFinale's
+        # dedicated season-detail call below. Cached even for a show
+        # that's still airing (nextEpisodeToAir non-null too) so a single
+        # field always answers "what's the latest episode out," not just
+        # "what's coming next."
+        last_ep = data.get('last_episode_to_air')
+        entry['lastEpisodeToAir'] = {
+            'airDate': last_ep.get('air_date'),
+            'seasonNumber': last_ep.get('season_number'),
+            'episodeNumber': last_ep.get('episode_number'),
+            'name': last_ep.get('name'),
+        } if last_ep else None
+
         # Bill: "add a table with all shows currently airing, the season
         # finale date, and a countdown." next_episode_to_air only ever
         # names the single next episode, not the season's last one, so a
