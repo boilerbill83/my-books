@@ -542,6 +542,15 @@ function pickCurrentlyWatching(feature, currentlyWatching, enrichedMeta) {
   return null;
 }
 
+// Bill: "make the left smaller" — capping the sourced-facts list is the
+// single biggest lever on the hero card's own height (each fact runs
+// 2-3 lines) without cutting anything load-bearing (poster/title/meta/
+// cast/overview/actions all stay). 3 was picked, not a lower number,
+// because "The Real Story" is Bill's own named feature from when this
+// hero card was first built — trimming it to nothing would undercut the
+// point of the section, just its length.
+const HERO_FACTS_CAP = 3;
+
 function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
   const el = document.getElementById('heroPick');
   const meta = enrichedMeta[pick.titleKey];
@@ -570,7 +579,7 @@ function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, revi
       ${pick.facts?.length ? `
         <div class="tk-hero-facts">
           <div class="tk-hero-facts-title">The Real Story</div>
-          ${pick.facts.map(f => `<div class="tk-hero-fact">${esc(f.text)}${f.source ? ` <a href="${esc(f.source)}" target="_blank" rel="noopener" class="tk-hero-fact-source">${esc(f.sourceLabel || 'source')}</a>` : ''}</div>`).join('')}
+          ${pick.facts.slice(0, HERO_FACTS_CAP).map(f => `<div class="tk-hero-fact">${esc(f.text)}${f.source ? ` <a href="${esc(f.source)}" target="_blank" rel="noopener" class="tk-hero-fact-source">${esc(f.sourceLabel || 'source')}</a>` : ''}</div>`).join('')}
         </div>
       ` : ''}
     </div>
@@ -654,29 +663,61 @@ function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, coWatchSet = new
   return [...pinned, ...live].slice(0, 4);
 }
 
-function renderNextWatch(picks, enrichedMeta, nextWatchFacts) {
+// "when the most recent episode aired" (Bill's explicit ask). TMDB's
+// lastEpisodeToAir (enrich_tmdb.py, added alongside this) is the direct
+// answer and always backward-looking, unlike nextEpisodeToAir/
+// currentSeasonFinale which can point at a date still in the future (the
+// exact reason isRecentlyWrappedSeason() above has to guard on "is the
+// finale date actually in the past yet"). Falls back to a genuinely-past
+// currentSeasonFinale for any show enriched before this field existed —
+// degrades to null (row omitted, never guessed) rather than showing a
+// stale or future-dated "most recent" episode.
+function mostRecentEpisodeLabel(meta, today) {
+  const last = meta.lastEpisodeToAir;
+  if (last?.airDate) {
+    const ep = `S${last.seasonNumber}E${last.episodeNumber}`;
+    const name = last.name ? ` "${last.name}"` : '';
+    return `Most recent: ${ep}${name} · aired ${fmtDate(last.airDate)}`;
+  }
+  const finale = meta.currentSeasonFinale;
+  if (finale?.finaleDate && new Date(finale.finaleDate + 'T00:00:00Z') <= today) {
+    return `Most recent: S${finale.seasonNumber}E${finale.finaleEpisodeNumber} (season finale) · aired ${fmtDate(finale.finaleDate)}`;
+  }
+  return null;
+}
+
+// Bill: "this layout is boring; add in more information about those four
+// shows, including when the most recent episode aired" — redesigned from
+// a compact 2x2 tile grid to a vertical list of richer rows (bigger
+// poster, network badge, the same metaLine() one-liner the hero and
+// rec-card panels already use for genre/creator/rating, the new most-
+// recent-episode line, and up to 2 facts instead of 1) — both to answer
+// "boring" with real substance and, as a side effect of the extra
+// content per row, to naturally grow this panel's total height back
+// toward the hero's own (see the "make the left smaller and the right
+// bigger" layout comment on .tk-top-row in index.html).
+function renderNextWatch(picks, enrichedMeta, omdbMeta, llmTags, reviewedTags, nextWatchFacts, today = new Date()) {
   const el = document.getElementById('nextWatch');
   if (!picks.length) { el.innerHTML = '<div class="tk-empty">Nothing on your watchlist has recently wrapped a season.</div>'; return; }
   const factsByKey = nextWatchFacts?.shows || {};
   el.innerHTML = picks.map(c => {
     const meta = enrichedMeta[c.titleKey];
     const candidate = { titleKey: c.titleKey, type: c.type, title: meta.title, year: meta.year };
-    // 'w154' — the card shrank to a 100px-wide poster (see index.html's
-    // #nextWatch CSS), so 'w185' (barely bigger than the earlier full-size
-    // card's 70px display) is now more oversized than it needs to be.
-    const poster = posterUrl(c.titleKey, enrichedMeta, 'w154');
-    const facts = factsByKey[c.titleKey]?.facts || [];
-    // Just the single strongest fact, clamped to 3 lines via CSS — a
-    // compact grid tile has no room for the 2-3 facts the full-size hero
-    // card shows.
-    const fact = facts[0];
+    const poster = posterUrl(c.titleKey, enrichedMeta, 'w185');
+    const facts = (factsByKey[c.titleKey]?.facts || []).slice(0, 2);
+    const episodeLine = mostRecentEpisodeLabel(meta, today);
     return `
       <div class="tk-nw-card">
-        ${posterImgHtml(poster, 'tk-nw-poster', 100, 150, true)}
+        ${posterImgHtml(poster, 'tk-nw-poster', 92, 138, true)}
         <div class="tk-nw-body">
-          <div class="tk-nw-title">${titleLink(candidate)}${meta.year ? ` <span class="tk-hero-year">(${esc(meta.year)})</span>` : ''}</div>
-          ${fact
-            ? `<div class="tk-nw-fact">${esc(fact.text)}${fact.source ? ` <a href="${esc(fact.source)}" target="_blank" rel="noopener" class="tk-hero-fact-source">${esc(fact.sourceLabel || 'source')}</a>` : ''}</div>`
+          <div class="tk-nw-title">
+            ${titleLink(candidate)}${meta.year ? ` <span class="tk-hero-year">(${esc(meta.year)})</span>` : ''}
+            ${meta.networks?.length ? `<span class="tk-hero-badge">${esc(meta.networks[0])}</span>` : ''}
+          </div>
+          <div class="tk-nw-meta">${esc([runtimeLabel(candidate, enrichedMeta), metaLine(candidate, enrichedMeta, omdbMeta, llmTags, reviewedTags)].filter(Boolean).join(' · '))}</div>
+          ${episodeLine ? `<div class="tk-nw-episode">📅 ${esc(episodeLine)}</div>` : ''}
+          ${facts.length
+            ? facts.map(f => `<div class="tk-nw-fact">${esc(f.text)}${f.source ? ` <a href="${esc(f.source)}" target="_blank" rel="noopener" class="tk-hero-fact-source">${esc(f.sourceLabel || 'source')}</a>` : ''}</div>`).join('')
             : `<div class="tk-nw-fact tk-nw-fact-empty">${esc(meta.overview || 'No summary yet.')}</div>`}
         </div>
       </div>
@@ -938,7 +979,7 @@ async function load() {
   // right" — excludes whatever's already showing on the left so the two
   // panels can never duplicate a title.
   const nextWatchPicks = pickNextWatch(soloWatchlist, enrichedMeta, watchingNow?.titleKey ?? null, coWatchSet, nextWatchPins?.titleKeys || []);
-  renderNextWatch(nextWatchPicks, enrichedMeta, nextWatchFacts);
+  renderNextWatch(nextWatchPicks, enrichedMeta, omdbMeta, llmTags, reviewedTags, nextWatchFacts);
 
   renderFamilyWatchList(familyWatchlist, enrichedMeta);
 
