@@ -128,7 +128,7 @@ function renderResultsTable(allRows, enrichedMeta) {
 
   const columns = [
     { label: 'Cover', get: () => '', sortable: false,
-      render: (td, r) => { td.innerHTML = posterImgHtml(posterUrl(r.titleKey, enrichedMeta), 'tk-table-poster', 40, 60); } },
+      render: (td, r) => { td.innerHTML = posterImgHtml(posterUrl(r.titleKey, enrichedMeta, 'w92'), 'tk-table-poster', 40, 60); } },
     { label: 'Title', get: r => r.title,
       render: (td, r) => { td.innerHTML = titleLink(r); } },
     { label: 'Year', get: r => r.year ?? '', numeric: true },
