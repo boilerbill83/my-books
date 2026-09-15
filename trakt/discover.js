@@ -613,10 +613,18 @@ function isRecentlyWrappedSeason(meta, today) {
 // Ranked by the engine's real predicted fit (fromWatchlist's bmtreScore) —
 // Bill's own "guess my top four" — but the score itself is never shown,
 // per his explicit ask; it's purely the ranking mechanism.
-function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, today = new Date()) {
+//
+// coWatchSet is explicitly re-checked HERE, not just relied on via the
+// caller already passing a pre-filtered soloWatchlist — Bill's explicit
+// ask ("exclude anything on the shows we watch together list") gets its
+// own guaranteed enforcement at the point of selection, the same
+// belt-and-suspenders precedent isExcluded()'s own watched/watchlist
+// double-check already established elsewhere in this file, rather than
+// depending on every future caller remembering to pre-filter correctly.
+function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, coWatchSet = new Set(), today = new Date()) {
   return fromWatchlist
-    .filter(c => c.type === 'show' && c.titleKey !== excludeKey && enrichedMeta[c.titleKey]
-      && isRecentlyWrappedSeason(enrichedMeta[c.titleKey], today))
+    .filter(c => c.type === 'show' && c.titleKey !== excludeKey && !coWatchSet.has(c.titleKey)
+      && enrichedMeta[c.titleKey] && isRecentlyWrappedSeason(enrichedMeta[c.titleKey], today))
     .sort((a, b) => b.bmtreScoreRaw - a.bmtreScoreRaw)
     .slice(0, 4);
 }
@@ -897,7 +905,7 @@ async function load() {
   // Bill: "put currently watching on the left and my next watch on the
   // right" — excludes whatever's already showing on the left so the two
   // panels can never duplicate a title.
-  const nextWatchPicks = pickNextWatch(soloWatchlist, enrichedMeta, watchingNow?.titleKey ?? null);
+  const nextWatchPicks = pickNextWatch(soloWatchlist, enrichedMeta, watchingNow?.titleKey ?? null, coWatchSet);
   renderNextWatch(nextWatchPicks, enrichedMeta, nextWatchFacts);
 
   renderFamilyWatchList(familyWatchlist, enrichedMeta);
