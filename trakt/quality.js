@@ -278,7 +278,10 @@ function renderPredictionMisses(stats, enrichedMeta) {
   const el = document.getElementById('predictionMissesList');
   if (!stats.n) { el.innerHTML = '<div class="tk-empty">Not enough enriched, rated titles yet.</div>'; return; }
   const row = (r, dir) => {
-    const poster = posterUrl(r.titleKey, enrichedMeta);
+    // 'w92' (real TMDB size), not the default 'w154' — this renders as a
+    // 38x57 thumbnail; fixed at every oversized default-size posterUrl()
+    // call across the dashboard (Bill: "images... are very slow to load").
+    const poster = posterUrl(r.titleKey, enrichedMeta, 'w92');
     return `
     <div class="tk-metric-row">
       ${posterImgHtml(poster, 'tk-metric-poster', 38, 57)}
@@ -3933,36 +3936,28 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   }
 
   {
-    let withCitedVotes = 0, totalEnrichedForCV = 0;
-    for (const m of Object.values(enrichedMeta)) {
-      totalEnrichedForCV++;
-      if (m.citedVoteCounts && Object.keys(m.citedVoteCounts).length) withCitedVotes++;
-    }
     findings.push({
       id: 'cited-vote-counts-signal-unused',
-      severity: 'warning',
-      ratings: { ease: 5, dataQuality: 3, recEngine: 4, ui: 1 },
-      estTokens: 45000, // same shape as the already-shipped tone-Jaccard confidence fix
+      severity: 'good',
       shortTitle: 'Citation Weight Ignores Popularity',
-      title: `New idea: enrich_tmdb.py has captured a real, ${((100 * withCitedVotes / totalEnrichedForCV) || 0).toFixed(1)}%-populated field (citedVoteCounts) that engine.js never reads at all`,
-      technical: `<code>enrich_tmdb.py</code>'s <code>citedVoteCounts</code> (the real TMDB <code>vote_count</code> of every title in a candidate's own ` +
-        `<code>similarToIds</code>/<code>recommendedIds</code> arrays, captured at enrichment time) is ${fmtNum(withCitedVotes)} of ` +
-        `${fmtNum(totalEnrichedForCV)} enriched titles (${((100 * withCitedVotes / totalEnrichedForCV) || 0).toFixed(1)}%) populated — grepped ` +
-        `<code>engine.js</code>/<code>quality.js</code> and confirmed zero real usages anywhere; the field is written and never read. Today's ` +
-        `forward/reverse similar-title match (§3i/§3j) treats every citation identically regardless of how well-corroborated the CITED title's own ` +
-        `TMDB standing is — a candidate citing a title with 3 real votes counts exactly the same as one citing a title with 18,000 votes, even ` +
-        `though TMDB's own "similar" algorithm is well-documented as noisier for low-vote-count titles. This mirrors the exact reasoning already ` +
-        `behind <code>voteCountBonus()</code> (a candidate's OWN vote count matters) — applied one level removed, to the citation network's own ` +
-        `reliability rather than the candidate's own popularity. Not yet built: a confidence multiplier on forward/reverse match credit scaled by ` +
-        `the cited title's real vote count (low-vote citations discounted, similar in spirit to the thin-tone-vocab confidence fix shipped this ` +
-        `same session, just keyed on a different field) would need its own real threshold/curve swept against <code>scripts/eval.js</code>.`,
-      plain: `When the app checks "does this candidate resemble something Bill loved," it currently trusts every match equally, whether the loved ` +
-        `title it's matching against is something widely known and well-reviewed or something extremely obscure with almost no real votes on ` +
-        `TMDB. A field that would tell the app which is which has been collected this whole time and never actually used. Using it could mean a ` +
-        `match against a well-established, widely-agreed-upon "similar" title counts for more than a match against a title so obscure that TMDB's ` +
-        `own similarity guess for it is shakier to begin with.`,
-      impact: `A genuinely unused, already-collected field — zero new enrichment cost to try this. Real value untested; needs the standard ` +
-        `before/after eval.js sweep, same as the genre-pair idea above, before it's trusted with real scoring.`,
+      title: `Resolved differently: citedVoteCounts removed entirely rather than wired into scoring — real load-time cost, confirmed zero usage anywhere`,
+      technical: `This field (the real TMDB <code>vote_count</code> of every title in a candidate's own <code>similarToIds</code>/` +
+        `<code>recommendedIds</code> arrays) was flagged here as a genuinely unused, already-collected field worth trying as a citation-confidence ` +
+        `signal. Before building that, Bill reported the app "very slow to load" — a real payload-size audit of <code>enrichedMetadata.json</code> ` +
+        `(fetched in full on every page load) found <code>citedVoteCounts</code> was its single largest field: 1.53MB of value bytes alone, ~2.4MB ` +
+        `including its own key/structure overhead — 21.7% of the whole 10.98MB file. Re-confirmed via a repo-wide grep that it was still ` +
+        `genuinely read nowhere (not even by <code>discover_candidates.js</code>, which an earlier comment in <code>enrich_tmdb.py</code> implied ` +
+        `it fed — that wiring never actually happened) before removing it: dropped from <code>enrich_tmdb.py</code>'s capture going forward and ` +
+        `stripped from all 4,630 existing entries via the exact Python <code>json.dump</code> round-trip already proven byte-identical for this ` +
+        `machine-written file. File size 10.98MB → 8.61MB. <code>isTooObscure()</code>'s own candidate-vote-count filter (a different, still-` +
+        `intact mechanism reading the candidate's OWN <code>voteCount</code>, not a citation's) is unaffected. Recoverable in full via a ` +
+        `<code>REFRESH_ALL</code> enrichment pass if a citation-confidence signal is ever properly built and validated.`,
+      plain: `This used to be "here's an unused field that might make a good future signal." Instead, it turned out to be the single biggest thing ` +
+        `making the app slow to load — over a fifth of the whole metadata file, downloaded on every visit, for a feature that was never actually ` +
+        `built. Removed it rather than build on it. If someone wants to try that signal idea for real later, the data can be re-fetched from TMDB ` +
+        `in one pass — nothing is permanently lost.`,
+      impact: `A real, measured load-time win (21.7% smaller metadata file) traded for an unbuilt, unvalidated idea — the right call given Bill's ` +
+        `explicit performance complaint outweighed a speculative signal that had sat unused since it was first flagged.`,
     });
   }
 

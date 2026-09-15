@@ -153,27 +153,25 @@ def extract_entry(kind, data):
         'recommendedIds': [r['id'] for r in ((data.get('recommendations') or {}).get('results') or [])[:20]],
     }
 
-    # discover_candidates.js used to have no way to tell a genuinely
-    # popular citation from TMDB algorithmically bulk-citing a near-zero-
-    # vote title as filler "similar" content (the real incident: La La
-    # Land, rated 10/10, cites "Alpha Quail" — a 13-minute short with a
-    # single TMDB vote — as similar; it ranked #3 of 82 candidates before
-    # a scoring-time fix caught it). similar/recommendations results are
-    # already full TMDB summary objects with vote_count on them — this
-    # was being fetched and discarded the moment before, right above.
-    # Cached here so discovery can filter BEFORE ever creating a stub,
-    # not just after scoring one — see isTooObscure() in engine.js for
-    # the (still-kept, defense-in-depth) scoring-time equivalent, which
-    # catches any candidate added another way (a manual resolve_titles.py
-    # batch, or one discovered before this field existed).
-    cited = {}
-    for r in ((data.get('similar') or {}).get('results') or [])[:20]:
-        if r.get('id') is not None and r.get('vote_count') is not None:
-            cited[r['id']] = r['vote_count']
-    for r in ((data.get('recommendations') or {}).get('results') or [])[:20]:
-        if r.get('id') is not None and r.get('vote_count') is not None:
-            cited[r['id']] = r['vote_count']
-    entry['citedVoteCounts'] = cited
+    # citedVoteCounts (removed 2026-09-15): originally added so
+    # discover_candidates.js could tell a genuinely popular citation from
+    # TMDB algorithmically bulk-citing a near-zero-vote title as filler
+    # "similar" content (the real incident: La La Land, rated 10/10,
+    # cites "Alpha Quail" — a 13-minute short with a single TMDB vote —
+    # as similar; it ranked #3 of 82 candidates before a scoring-time fix
+    # caught it, via isTooObscure() below, which still stands and still
+    # catches this the same way). That intended discovery-time use of
+    # this field never actually got wired into discover_candidates.js —
+    # verified via a repo-wide grep before removing it — so it sat
+    # genuinely unread (quality.js's own now-resolved
+    # cited-vote-counts-signal-unused finding had already flagged this).
+    # Dropped for real, measured payload-size reasons (Bill: "images and
+    # the app as a whole are very slow to load") — it was the single
+    # largest field in enrichedMetadata.json at 1.53MB of real value
+    # bytes (~2.4MB including its own key/structure overhead), 21.7% of
+    # the whole file, on a page that fetches the entire file on every
+    # load. Recoverable in full via a REFRESH_ALL pass if a future
+    # citation-confidence signal ever gets properly wired in.
 
     kw = data.get('keywords') or {}
     kw_list = kw.get('keywords') if kind == 'movie' else kw.get('results')  # TMDB uses a different key per type
