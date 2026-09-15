@@ -1,0 +1,58 @@
+name: Cache Poster Images (local copies)
+
+on:
+  schedule:
+    - cron: '0 12 * * *'   # daily noon UTC (after the TMDB/OMDb enrichment jobs, so new titles have a posterPath to cache by the time this runs)
+  workflow_dispatch:
+    inputs:
+      refresh_all:
+        description: 'Re-fetch every poster regardless of whether a local file already exists'
+        type: boolean
+        default: false
+      batch_size:
+        description: 'How many posters to fetch this run (default 300)'
+        type: number
+        default: 300
+
+jobs:
+  cache-posters:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download real poster images for every library/watchlist/candidate title
+        env:
+          REFRESH_ALL: ${{ inputs.refresh_all && '1' || '0' }}
+        run: python3 trakt/scripts/cache_posters.py ${{ inputs.batch_size || 300 }}
+        timeout-minutes: 25
+      - name: Commit if changed
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Rebase onto whatever branch actually triggered this run, not a
+          # hardcoded main — same real lesson trakt-enrich-tmdb.yml's own
+          # commit step already learned (Session 2026-09-03): a manual
+          # dispatch against a feature branch must rebase onto that same
+          # branch on a push conflict, not main.
+          BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+          git add trakt/data/posters/
+          if git diff --staged --quiet; then
+            echo "No new posters."
+            exit 0
+          fi
+          git commit -m "Cache poster images [automated]"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest $BRANCH."
+            git fetch origin "$BRANCH"
+            git rebase "origin/$BRANCH"
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1
