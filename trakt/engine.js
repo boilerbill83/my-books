@@ -2680,16 +2680,36 @@ function voteCountBonus(voteCount) {
 }
 
 // Cover images: enrich_tmdb.py already captures TMDB's posterPath on
-// 99%+ of enriched titles, but nothing in trakt/ ever rendered it (a
-// real Improvement Opportunities finding — data existed, no UI ever
-// used it). TMDB's image CDN is public with no auth/CORS restriction,
-// same as any <img src> — image.tmdb.org, not api.themoviedb.org (the
-// API host this sandbox's proxy blocks; the CDN is unrelated and is the
-// end user's own browser fetching it at view time, not this session).
-const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/';
+// 99%+ of enriched titles. Originally served straight from TMDB's own
+// public image CDN (image.tmdb.org) — no auth/CORS restriction, so it
+// worked from any browser without a proxy. Real, confirmed report from
+// Bill (2026-09-15) broke that assumption: on his work computer,
+// image.tmdb.org specifically is blocked by network policy while this
+// same dashboard's own domain (boilerbill83.github.io) "loads fine" —
+// a corporate content filter blocking a third-party media/CDN domain by
+// category, not a bug in this code. Since GitHub Pages is static with no
+// server-side proxying, the real fix is to stop depending on a
+// third-party image host at all: trakt/scripts/cache_posters.py
+// pre-downloads the real poster bytes for every library/watchlist/
+// candidatePool title and commits them under trakt/data/posters/ — this
+// now serves that local, same-origin copy instead. `size` is kept as a
+// parameter for every existing call site's sake but no longer changes
+// anything — cache_posters.py caches one fixed size (w185, a real
+// middle ground with a genuine retina margin at every on-page display
+// size from 38px up to the 150px hero poster) rather than one file per
+// requested size, since committing real files (not fetching per-request)
+// makes the old "right-sized image" tradeoff moot — the byte cost is
+// paid once in the repo, not on every page load. A title not yet cached
+// here (a brand-new discovery, before the next cache_posters.py run
+// catches up) returns a path that 404s, which posterImgHtml()'s existing
+// onerror handler already turns into the same graceful empty-poster
+// placeholder a title with no TMDB poster at all gets — deliberately no
+// fallback to the live TMDB URL, so a title slipping through this cache
+// can never quietly reintroduce the exact problem it exists to solve.
 export function posterUrl(titleKey, enrichedMeta, size = 'w154') {
   const path = enrichedMeta[titleKey]?.posterPath;
-  return path ? `${TMDB_IMAGE_BASE}${size}${path}` : null;
+  if (!path) return null;
+  return `./data/posters/${titleKey.replace(':', '-')}.jpg`;
 }
 
 // Bill's explicit request: "make it so that all titles in the app are
