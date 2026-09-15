@@ -48,21 +48,34 @@
         .tk-hero-fact { text-align: left; }
       }
 
-      /* My Next Watch — compact poster+title+facts rows, no score (Bill's
-         explicit ask: "don't show scores, just the image, the title and a
-         couple fun facts"). Reuses .tk-hero-fact-source/.tk-hero-year from
-         the hero card's own styles above rather than duplicating them. */
-      #nextWatch { display: flex; flex-direction: column; gap: 14px; }
-      .tk-nw-card { display: flex; gap: 12px; }
-      .tk-nw-poster { width: 70px; height: 105px; border-radius: 6px; object-fit: cover; background: var(--bg-subtle); border: 1px solid var(--border); flex-shrink: 0; }
+      /* My Next Watch — a compact 2x2 tile grid, no score (Bill's explicit
+         ask: "don't show scores, just the image, the title and a couple
+         fun facts", then "make it a 4x4 grid and make the whole thing a
+         lot smaller" — 2 columns x 2 rows is the real grid a 4-item panel
+         supports; poster-on-top tiles instead of the original poster-
+         beside-text rows, everything scaled down: smaller poster, smaller
+         type, a single clamped fact instead of two full ones). Reuses
+         .tk-hero-fact-source from the hero card's own styles above rather
+         than duplicating it. */
+      /* Fixed, small pixel sizing (not width:100% of the grid cell) is
+         the actual "a lot smaller" — a percentage width would just track
+         whatever the half-column happens to be, which isn't small at all
+         on a wide screen. 100px wide is a little over half the hero
+         poster's own 150px. */
+      #nextWatch { display: grid; grid-template-columns: repeat(2, 100px); gap: 12px 16px; justify-content: start; }
+      .tk-nw-card { display: flex; flex-direction: column; width: 100px; }
+      .tk-nw-poster { width: 100px; height: 150px; border-radius: 5px; object-fit: cover; background: var(--bg-subtle); border: 1px solid var(--border); display: block; }
       .tk-nw-poster-empty { border: 1px dashed var(--border); }
-      .tk-nw-body { flex: 1; min-width: 0; }
-      .tk-nw-title { font-family: var(--font-serif); font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 4px; }
-      .tk-nw-fact { font-size: 0.8rem; color: var(--text); line-height: 1.45; margin-top: 4px; }
-      .tk-nw-fact-empty { color: var(--text-muted); font-style: italic; }
+      .tk-nw-body { min-width: 0; }
+      .tk-nw-title { font-family: var(--font-serif); font-weight: 700; font-size: 0.72rem; color: var(--text); margin-top: 4px; line-height: 1.2; }
+      .tk-nw-fact { font-size: 0.62rem; color: var(--text-muted); line-height: 1.3; margin-top: 2px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+      .tk-nw-fact-empty { font-style: italic; }
       @media (max-width: 640px) {
-        .tk-nw-card { gap: 10px; }
+        #nextWatch { grid-template-columns: repeat(2, 1fr); justify-content: unset; max-width: 232px; margin: 0 auto; }
+        .tk-nw-card, .tk-nw-poster { width: 100%; }
       }
+      .tk-nw-fact .tk-hero-fact-source { font-size: 0.62rem; }
+      .tk-nw-title .tk-hero-year { font-size: 0.7rem; }
 
       .tk-byl-row { margin-bottom: 20px; }
       .tk-byl-row:last-child { margin-bottom: 0; }
