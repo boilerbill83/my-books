@@ -268,9 +268,18 @@ function computeDismissalStats(feedback) {
 function renderDismissalChart(stats) {
   const el = document.getElementById('dismissalChart');
   if (!stats.n) { el.innerHTML = '<div class="tk-empty">No dismissals tracked yet.</div>'; return; }
+  // Bill: "Dismissal Reasons isn't tall enough" — its card sits beside
+  // Biggest Prediction Misses (10 real rows) in a .tk-row2, which already
+  // stretches both card BOXES to equal height by default, but the chart's
+  // own bars (barHeight 22 at the shared default) left most of that
+  // stretched space empty below it. barHeight 34 here (bigger than the
+  // shared default, not tied to matching the sibling's exact row count —
+  // that's content-dependent and would drift) makes real, standalone use
+  // of the space; #dismissalsCard's CSS (dashboard.css) also centers
+  // whatever gap remains rather than dumping it all below the chart.
   renderHBarChart('dismissalChart',
     stats.byReason.map(r => ({ reason: `${r.label} (${r.count})`, count: r.count })),
-    { labelKey: 'reason', valueKey: 'count', maxScale: Math.max(...stats.byReason.map(r => r.count)), fmtValue: v => String(v), tooltipSuffix: ' dismissed' });
+    { labelKey: 'reason', valueKey: 'count', maxScale: Math.max(...stats.byReason.map(r => r.count)), fmtValue: v => String(v), tooltipSuffix: ' dismissed', barHeight: 34 });
 }
 
 
