@@ -532,3 +532,62 @@ below top 25). Committed in 4 logical batches (matched-book updates +
 bookId + top10 drift + duplicate merges together since they're all one
 `goodreadsData.json` pass; candidatePool.json citation repoint; the
 Famesick dismissal; this doc update) and pushed to both branches.
+
+## Third import round (Session, `goodreads_library_export_5.csv`, 818 rows)
+
+Cleanest round yet: 817 of 818 rows matched (the 1 unmatched is the
+currently-reading book, tracked separately in `currentlyReading.json`), 0
+CSV-internal duplicates. ~35 field diffs (isbn/isbn13/year/publisher/
+dateRead) plus 11 pages conflicts, each resolved via real outside-source
+verification per the standing rule — including 2 cases (*The Final Score*,
+*Not Quite Dead Yet*) where the fresh CSV's isbn/pages pointed to a
+different printing and our existing stored values were correct, so the
+CSV's numbers were rejected outright rather than trusted by default. 4
+bookId backfills, 4 bookId mismatches adopted, 6 top10 additions + 1
+removal (`American Fantasy`, field omitted per the established
+top10-is-omitted-not-false convention).
+
+**13 automated-sync stub books** (`sync_goodreads.py` bare-minimum entries
+with no bookKey/bookId/themes/tones/comps) backfilled with real
+bookKey/bookId and fully enriched via research: *Our Dumb Century*,
+*Blockers*, *SH\*T SHOW*, *The Infinity Machine*, *The Most Dangerous
+Games*, *Sometimes I Scare Myself*, *One of Us Is Dead*, *Down and Out in
+Paradise*, *The Hard Thing About Hard Things*, *The Outsiders*, *Apple in
+China*, *You'll Love It Here*, *Hollywood, Ending*. One bare-stub duplicate
+(*Raised*) deleted — already existed elsewhere fully enriched, 0 citations
+pointed to it.
+
+**New matching-bug lesson (found and fixed this round, not previously
+documented)**: the dry-run's "missing books" check was originally computed
+by tracking matched books via a `bookKey` string Set — silently wrong for
+any book with no `bookKey` (the stub-book case above), since
+`matchedKeys.has(undefined)` is never true even on a correct match. Fixed
+by tracking matched-ness via a `Set` of real object references instead
+(mutate the book object in place with a `_src` tag, never spread-copy it —
+a spread copy breaks reference equality too). Any future dry-run script
+should track matches this way from the start, not by a possibly-absent
+string key.
+
+**Missing-books review**: 149 books with no CSV match (136 already
+`dnf:true`, no action needed; of 13 non-dnf, 8 already had a real
+`feedbackData.json` dismissal from a prior round). The remaining 4 were
+asked directly rather than guessed — *The Origins of the Cornbread Mafia*,
+*11/22/63*, *World Travel: An Irreverent Guide*, *Coach: Lessons on the
+Game of Life*. Bill's answer: he read all four (confirmed — all already
+correctly `shelf: read` with real ratings in our data) and had
+accidentally removed them from his Goodreads shelves; fixed on the
+Goodreads side, so they'll re-match on the next import. **No
+`feedbackData.json` write needed** — these were never a dismissal case,
+just a temporary Goodreads-side shelf glitch now corrected at the source.
+Logged here so a future session doesn't re-flag them as an unexplained
+anomaly if they briefly reappear as "missing" again before Bill's fix
+propagates.
+
+**Verified**: 965 total books, 0 missing bookKey, 0 broken similarToTitles
+refs, 0 self-citations. `eval.js` unchanged (p10=100/p25=96/p50=96,
+MAE=0.760). `validate_review.js` unchanged (informational, 11/13 keeps
+below top 25 — consistent with the ongoing drift Session 33/35 already
+explained as legitimate pool-quality improvement, not a regression).
+Committed as one pass (field diffs + bookId work + stub enrichment +
+duplicate deletion, since they were all applied sequentially to the same
+file in one sitting) and pushed to both branches.
