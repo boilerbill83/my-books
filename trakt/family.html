@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>👨‍👩‍👧‍👦 Family Watch List</title>
+    <meta name="description" content="Movies to watch with the whole family, and the ones we've already loved." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" /></noscript>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="./dashboard.css" />
+    <style>
+      /* family.html-only. The actual card styling (.tk-fwl-*) lives in
+         dashboard.css now — shared with the Discover page's own Family
+         Watch List card, see that file's own comment. */
+      .fam-loved-toggle { margin: 4px 0 16px; }
+      .fam-loved-note { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="site-header">
+        <div class="container header-inner">
+          <span class="tk-nav-current">👨‍👩‍👧‍👦 Family Watch List</span>
+          <div class="header-status">
+            <span id="statusText">Loading…</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="container" style="padding-top:24px;">
+        <div class="tk-title">👨‍👩‍👧‍👦 Family Watch List</div>
+        <div class="tk-subtitle" id="subtitleText">Movies to watch with the whole family.</div>
+
+        <div class="tk-card" style="margin-bottom: 24px;">
+          <div class="tk-card-heading">🎬 Want to Watch</div>
+          <div class="tk-card-note">A separate list from the solo picks on <a href="./index.html">Discover</a> — these never compete for a candidate-pool slot or show up uninvited in You'll Love. Release date and streaming availability are real, hand-researched (never guessed) since no metadata source tracks that reliably.</div>
+          <div id="familyWatchList"></div>
+        </div>
+
+        <div class="tk-card" style="margin-bottom: 24px;">
+          <div class="tk-card-heading">❤️ Movies We've Loved</div>
+          <div class="fam-loved-note">Movies the whole family has already watched and loved — kept here as a taste reference, not a queue. Hidden by default; click to see them.</div>
+          <button type="button" class="tk-btn fam-loved-toggle" id="lovedToggle">Show movies we've loved</button>
+          <div id="lovedMovies" hidden></div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./family.js"></script>
+  </body>
+</html>
