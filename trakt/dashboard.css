@@ -53,11 +53,32 @@
       .tk-row2 > .tk-card { min-width: 0; }
 
       .tk-chart-wrap { position: relative; }
+      /* Bill: "Dismissal Reasons isn't tall enough" (it sits beside
+         Biggest Prediction Misses in a .tk-row2, which grid's default
+         align-items:stretch already equal-heights — the two card BOXES
+         match, but the shorter chart's own content left a big blank gap
+         at the card's bottom). Scoped to #dismissalsCard rather than the
+         shared .tk-chart-wrap class (used by other charts too, where this
+         centering isn't relevant/wanted) — makes the card a column flex
+         so the heading/note stay pinned at top and the chart wrap takes
+         the remaining space, then centers its own (fixed-height) content
+         within that remaining space rather than leaving it all below. */
+      #dismissalsCard { display: flex; flex-direction: column; }
+      #dismissalsCard .tk-chart-wrap { flex: 1; display: flex; flex-direction: column; justify-content: center; }
       .tk-bar { fill: var(--accent); }
       .tk-bar:hover { fill: var(--accent-hover); }
-      .tk-axis-label { fill: var(--text-muted); font-size: 10px; font-family: var(--font-sans); }
+      /* Bill: "Genres You Rate Highest - hard to read the labels." 10px was
+         genuinely small even before accounting for the chart's own
+         responsive scaling (renderHBarChart's SVG is a fixed 700-unit
+         viewBox rendered at 100% width — narrower than 700px on any
+         two-column card layout, so the 10px text renders smaller than its
+         own number suggests). Bumped to 13px for both axis and value
+         labels — affects the two real hbar charts sharing this rule
+         (Genres You Rate Highest, Dismissal Reasons), a readability win
+         for both. */
+      .tk-axis-label { fill: var(--text-muted); font-size: 13px; font-family: var(--font-sans); }
       .tk-gridline { stroke: var(--border); stroke-width: 1; }
-      .tk-value-label { fill: var(--text-muted); font-size: 10px; font-family: var(--font-sans); font-weight: 600; }
+      .tk-value-label { fill: var(--text-muted); font-size: 13px; font-family: var(--font-sans); font-weight: 600; }
 
       .tk-tooltip {
         position: absolute; pointer-events: none; opacity: 0; transition: opacity 0.1s;

@@ -95,16 +95,20 @@ const svgEl = (tag, attrs = {}) => {
 };
 
 
-function renderHBarChart(containerId, data, { labelKey, valueKey, barHeight = 20, maxScale, fmtValue = fmtNum, tooltipSuffix = '' }) {
+function renderHBarChart(containerId, data, { labelKey, valueKey, barHeight = 22, maxScale, fmtValue = fmtNum, tooltipSuffix = '' }) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
   if (!data.length) { container.innerHTML = '<div class="tk-empty">No data.</div>'; return; }
 
   const width = 700;
-  const gap = 6;
+  const gap = 8;
   const rowH = barHeight + gap;
   const height = data.length * rowH + 10;
-  const marginLeft = 170, marginRight = 60;
+  // marginLeft widened 170->190 (and the label truncation below shortened
+  // 26->22 chars) alongside the 10px->13px label bump above — a wider
+  // font at the same margin/truncation would have started clipping into
+  // the bars themselves on longer genre names.
+  const marginLeft = 190, marginRight = 60;
   const plotW = width - marginLeft - marginRight;
   const maxVal = maxScale ?? Math.max(1, ...data.map(d => d[valueKey]));
 
@@ -134,7 +138,7 @@ function renderHBarChart(containerId, data, { labelKey, valueKey, barHeight = 20
     const label = svgEl('text', {
       x: marginLeft - 8, y: y + barHeight / 2 + 4, class: 'tk-axis-label', 'text-anchor': 'end',
     });
-    label.textContent = d[labelKey].length > 26 ? d[labelKey].slice(0, 25) + '…' : d[labelKey];
+    label.textContent = d[labelKey].length > 22 ? d[labelKey].slice(0, 21) + '…' : d[labelKey];
     svg.appendChild(label);
 
     const rect = svgEl('rect', {
@@ -204,12 +208,14 @@ function computeGenreStats(library, enrichedMeta, llmTags = {}, reviewedTags = {
     .map(([genre, e]) => ({ genre, avg: e.sum / e.count, count: e.count }))
     .filter(g => g.count >= 3)
     .sort((a, b) => b.avg - a.avg)
-    // The Subgenre canonical vocabulary grew to 65 buckets in the taxonomy
-    // redesign (up from 29), so an unbounded chart got long enough to lose
-    // its "what do you actually like" readability — capped to the top 20
-    // by avg rating, the same cardinality this chart worked well at before
-    // the vocabulary expanded.
-    .slice(0, 20);
+    // Bill: "make the text bigger and cut out some of the bottom values
+    // so it isn't too tall" — capped to the top 12 (was 20, itself already
+    // a cut-down from an unbounded list after the 65-bucket taxonomy
+    // redesign) now that the labels also render at a bigger font size
+    // (dashboard.css's .tk-axis-label/.tk-value-label, same session) —
+    // 20 rows at the bigger, more readable size would have made the chart
+    // taller, not shorter.
+    .slice(0, 12);
 }
 
 // inferSubgenres() returns hyphenated machine keys (engine.js reads them
@@ -564,6 +570,12 @@ function predictedVsActualRows(library, enrichedMeta, omdbMeta, idx) {
 // You Watch Together" table) so both read the exact same status/airing
 // logic and can never disagree about what "In Progress" or "Season
 // Finale" means for a given title.
+// Shared by the Next Episode and Days Until Finale columns below — one
+// consistent "Xd" / "Airs today" / "—" formatting for any day-count field.
+function fmtDaysOut(days) {
+  return days == null ? '—' : (days <= 0 ? 'Airs today' : `${days}d`);
+}
+
 function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored }, enrichedMeta, upcomingSeasons = {}) {
   const base = inLib || inWl || inCandidate || scored || { titleKey, type: titleKey.split(':')[0] };
   const h = hydrateTitle(base, enrichedMeta);
@@ -582,11 +594,21 @@ function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored },
   const meta = enrichedMeta[titleKey] || {};
   const next = meta.nextEpisodeToAir;
   const finale = meta.currentSeasonFinale;
-  let daysUntilFinale = null;
-  if (finale?.finaleDate) {
-    const today = new Date(); today.setHours(0, 0, 0, 0);
-    daysUntilFinale = Math.round((new Date(finale.finaleDate + 'T00:00:00') - today) / 86400000);
-  }
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const daysUntil = iso => iso ? Math.round((new Date(iso + 'T00:00:00') - today) / 86400000) : null;
+  let daysUntilFinale = daysUntil(finale?.finaleDate);
+  // Bill: "The Lowdown is coming out soon but it says 77d" — a real bug,
+  // not a display nitpick. daysUntilFinale alone answers "how long until
+  // this season wraps," which reads as "far away" for a show that hasn't
+  // even premiered yet (The Lowdown S2: premiere Oct 14, finale Dec 2 —
+  // the table showed the 77-day finale gap with nothing telling you the
+  // premiere itself is only 28 days out). daysUntilNextEpisode answers
+  // the table's own stated goal instead — "how soon can I watch it,"
+  // whether that next watchable thing is a premiere or a new episode
+  // mid-season — and is now the default sort key below instead of
+  // daysUntilFinale, so an imminent premiere doesn't rank behind an
+  // already-airing show just because its finale happens to be sooner.
+  const daysUntilNextEpisode = daysUntil(next?.airDate);
 
   return {
     titleKey, title: h.title, year: h.year, type: h.type, ids: h.ids, status,
@@ -598,6 +620,7 @@ function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored },
     season: next?.seasonNumber ?? finale?.seasonNumber ?? null,
     nextEpisode: next?.episodeNumber ?? null,
     nextEpisodeDate: next?.airDate ?? null,
+    daysUntilNextEpisode,
     finaleEpisode: finale?.finaleEpisodeNumber ?? null,
     finaleDate: finale?.finaleDate ?? null,
     daysUntilFinale,
@@ -821,14 +844,20 @@ function renderWatchStatusTable(elementId, rows, emptyText) {
       render: (td, r) => { td.textContent = r.episodesReady ? `${r.episodesReady} episode${r.episodesReady === 1 ? '' : 's'}` : '—'; } },
     { key: 'nowAiring', label: 'Now Airing', airingCol: true, get: r => (r.season ?? 0) * 1000 + (r.nextEpisode ?? 0), numeric: true,
       render: (td, r) => { td.textContent = r.season != null && r.nextEpisode != null ? `S${r.season}E${r.nextEpisode}` : '—'; } },
-    { key: 'nextEpisode', label: 'Next Episode', airingCol: true, get: r => r.nextEpisodeDate || '',
+    { key: 'nextEpisode', label: 'Next Episode', airingCol: true, get: r => r.daysUntilNextEpisode ?? Infinity, numeric: true,
       // Gated on the season actually having a scheduled next episode at
       // all, not on isAiring — isAiring (Session 59's episode-1 fix)
       // deliberately stays false until an episode 1 has actually aired,
       // but a season's premiere/finale dates are often already scheduled
       // before that, and "how soon can I watch it" wants that shown, not
-      // hidden behind the stricter airing-badge definition.
-      render: (td, r) => { td.textContent = r.season != null ? (r.nextEpisodeDate || 'TBD') : '—'; } },
+      // hidden behind the stricter airing-badge definition. Now shows the
+      // day-count too (fmtDaysOut), not just the bare date — the same
+      // "how soon" answer the Days Until Finale column already gave, but
+      // for the thing that's actually coming up next (Bill: "The Lowdown
+      // is coming out soon but it says 77d" — that 77d was days until
+      // the season 2 FINALE, with no countdown anywhere to the Oct 14
+      // premiere itself, the actual next watchable thing).
+      render: (td, r) => { td.textContent = r.season != null ? (r.nextEpisodeDate ? `${r.nextEpisodeDate} (${fmtDaysOut(r.daysUntilNextEpisode)})` : 'TBD') : '—'; } },
     { key: 'seasonFinale', label: 'Season Finale', airingCol: true, get: r => r.finaleDate || (r.finaleEpisode ? '9999-99-99' : ''),
       render: (td, r) => {
         if (r.finaleDate) td.textContent = `${r.finaleDate} (S${r.season}E${r.finaleEpisode})`;
@@ -836,10 +865,7 @@ function renderWatchStatusTable(elementId, rows, emptyText) {
         else td.textContent = r.season != null ? 'Unknown' : '—';
       } },
     { key: 'daysUntilFinale', label: 'Days Until Finale', airingCol: true, get: r => r.daysUntilFinale ?? Infinity, numeric: true,
-      render: (td, r) => {
-        td.className = 'num';
-        td.textContent = r.daysUntilFinale == null ? '—' : (r.daysUntilFinale <= 0 ? 'Airs today' : `${r.daysUntilFinale}d`);
-      } },
+      render: (td, r) => { td.className = 'num'; td.textContent = r.daysUntilFinale == null ? '—' : fmtDaysOut(r.daysUntilFinale); } },
     // Bill: "Shows You Watch Together data is incomplete. Do online
     // research and see which ones have a new season coming." TMDB's
     // nextEpisodeToAir/currentSeasonFinale (the columns above) only ever
@@ -858,7 +884,14 @@ function renderWatchStatusTable(elementId, rows, emptyText) {
       render: (td, r) => { td.className = 'num'; td.textContent = r.score != null ? Math.round(r.score) : '—'; } },
   ];
 
-  let sortKey = 'daysUntilFinale', sortAsc = true; // default: soonest finale first, even while that column is hidden
+  // Default sort: soonest NEXT EPISODE first (premiere or mid-season),
+  // not soonest finale — was daysUntilFinale, which ranked a show that
+  // hasn't even premiered yet behind an already-airing show purely
+  // because its finale happened to land sooner (the exact "Lowdown says
+  // 77d" bug above). "When's the next thing I can actually watch" is
+  // this whole table's stated purpose; a season's finale date is only
+  // ever the answer to that once the season is already underway.
+  let sortKey = 'nextEpisode', sortAsc = true;
   let showAiringCols = false; // hidden by default per Bill's ask
 
   // The toggle is a real DOM sibling inserted once, not rebuilt on every
