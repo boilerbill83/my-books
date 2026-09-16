@@ -17591,7 +17591,7 @@
         "twisty"
       ],
       "themeToneReviewed": true,
-      "coverUrl": ""
+      "coverUrl": "https://books.google.com/books/content?id=yLZIygEACAAJ&printsec=frontcover&img=1&zoom=2&source=gbs_api"
     },
     {
       "bookKey": "going-zero|anthony-mccarten",
@@ -39192,7 +39192,6 @@
       "tones": [],
       "dnf": false
     },
-    
     {
       "bookKey": "hollywood-ending|john-green",
       "bookId": "250252723",
@@ -39209,10 +39208,26 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "fiction",
-      "themes": ["contemporary", "social commentary"],
-      "tones": ["poignant", "character-driven"],
-      "similarToAuthors": ["David Nicholls", "Rainbow Rowell", "Sally Rooney", "Taylor Jenkins Reid"],
-      "similarToTitles": ["My Friends", "The Seven Husbands of Evelyn Hugo", "Daisy Jones & The Six", "Lessons in Chemistry"],
+      "themes": [
+        "contemporary",
+        "social commentary"
+      ],
+      "tones": [
+        "poignant",
+        "character-driven"
+      ],
+      "similarToAuthors": [
+        "David Nicholls",
+        "Rainbow Rowell",
+        "Sally Rooney",
+        "Taylor Jenkins Reid"
+      ],
+      "similarToTitles": [
+        "My Friends",
+        "The Seven Husbands of Evelyn Hugo",
+        "Daisy Jones & The Six",
+        "Lessons in Chemistry"
+      ],
       "dnf": false
     },
     {
@@ -39232,10 +39247,25 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "fiction",
-      "themes": ["contemporary", "humor"],
-      "tones": ["funny", "heartwarming"],
-      "similarToAuthors": ["Graeme Simsion", "Taylor Jenkins Reid", "Kevin Wilson"],
-      "similarToTitles": ["The Rosie Project (Don Tillman, #1)", "The Seven Husbands of Evelyn Hugo", "Lessons in Chemistry", "My Friends"],
+      "themes": [
+        "contemporary",
+        "humor"
+      ],
+      "tones": [
+        "funny",
+        "heartwarming"
+      ],
+      "similarToAuthors": [
+        "Graeme Simsion",
+        "Taylor Jenkins Reid",
+        "Kevin Wilson"
+      ],
+      "similarToTitles": [
+        "The Rosie Project (Don Tillman, #1)",
+        "The Seven Husbands of Evelyn Hugo",
+        "Lessons in Chemistry",
+        "My Friends"
+      ],
       "dnf": false
     },
     {
@@ -39255,10 +39285,27 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "nonfiction",
-      "themes": ["business", "tech history"],
-      "tones": ["conversational", "thoughtful"],
-      "similarToAuthors": ["Phil Knight", "Brad Stone", "Walter Isaacson", "Michael Lewis"],
-      "similarToTitles": ["Shoe Dog", "The Everything Store: Jeff Bezos and the Age of Amazon", "Super Pumped: The Battle for Uber", "That Will Never Work: The Birth of Netflix and the Amazing Life of an Idea", "The Power Law: Venture Capital and the Making of the New Future"],
+      "themes": [
+        "business",
+        "tech history"
+      ],
+      "tones": [
+        "conversational",
+        "thoughtful"
+      ],
+      "similarToAuthors": [
+        "Phil Knight",
+        "Brad Stone",
+        "Walter Isaacson",
+        "Michael Lewis"
+      ],
+      "similarToTitles": [
+        "Shoe Dog",
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Super Pumped: The Battle for Uber",
+        "That Will Never Work: The Birth of Netflix and the Amazing Life of an Idea",
+        "The Power Law: Venture Capital and the Making of the New Future"
+      ],
       "dnf": false
     },
     {
@@ -39277,10 +39324,26 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "nonfiction",
-      "themes": ["business", "finance"],
-      "tones": ["thoughtful", "revelatory"],
-      "similarToAuthors": ["Michael Lewis", "Brad Stone", "Roger Lowenstein", "Andrew Ross Sorkin"],
-      "similarToTitles": ["The Power Law: Venture Capital and the Making of the New Future", "Bad Company: Private Equity and the Death of the American Dream", "Shoe Dog", "The Everything Store: Jeff Bezos and the Age of Amazon"],
+      "themes": [
+        "business",
+        "finance"
+      ],
+      "tones": [
+        "thoughtful",
+        "revelatory"
+      ],
+      "similarToAuthors": [
+        "Michael Lewis",
+        "Brad Stone",
+        "Roger Lowenstein",
+        "Andrew Ross Sorkin"
+      ],
+      "similarToTitles": [
+        "The Power Law: Venture Capital and the Making of the New Future",
+        "Bad Company: Private Equity and the Death of the American Dream",
+        "Shoe Dog",
+        "The Everything Store: Jeff Bezos and the Age of Amazon"
+      ],
       "dnf": false
     },
     {
@@ -39299,10 +39362,27 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "nonfiction",
-      "themes": ["business", "tech history"],
-      "tones": ["investigative", "revelatory"],
-      "similarToAuthors": ["Brad Stone", "Walter Isaacson", "Mike Isaac", "Nick Bilton"],
-      "similarToTitles": ["The Everything Store: Jeff Bezos and the Age of Amazon", "Steve Jobs", "Super Pumped: The Battle for Uber", "Empire of AI: Dreams and Nightmares in Sam Altman's OpenAI", "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution"],
+      "themes": [
+        "business",
+        "tech history"
+      ],
+      "tones": [
+        "investigative",
+        "revelatory"
+      ],
+      "similarToAuthors": [
+        "Brad Stone",
+        "Walter Isaacson",
+        "Mike Isaac",
+        "Nick Bilton"
+      ],
+      "similarToTitles": [
+        "The Everything Store: Jeff Bezos and the Age of Amazon",
+        "Steve Jobs",
+        "Super Pumped: The Battle for Uber",
+        "Empire of AI: Dreams and Nightmares in Sam Altman's OpenAI",
+        "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution"
+      ],
       "dnf": false
     },
     {
@@ -39321,10 +39401,27 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "nonfiction",
-      "themes": ["biography", "food"],
-      "tones": ["gritty", "investigative"],
-      "similarToAuthors": ["Anthony Bourdain", "David Chang", "Ruth Reichl", "Michael Ruhlman"],
-      "similarToTitles": ["Bourdain: The Definitive Oral Biography", "Care and Feeding", "Eat a Peach", "Yes, Chef", "Taste: My Life Through Food"],
+      "themes": [
+        "biography",
+        "food"
+      ],
+      "tones": [
+        "gritty",
+        "investigative"
+      ],
+      "similarToAuthors": [
+        "Anthony Bourdain",
+        "David Chang",
+        "Ruth Reichl",
+        "Michael Ruhlman"
+      ],
+      "similarToTitles": [
+        "Bourdain: The Definitive Oral Biography",
+        "Care and Feeding",
+        "Eat a Peach",
+        "Yes, Chef",
+        "Taste: My Life Through Food"
+      ],
       "dnf": false
     },
     {
@@ -39342,10 +39439,29 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "fiction",
-      "themes": ["thriller", "crime", "humor"],
-      "tones": ["dark", "gritty", "tense"],
-      "similarToAuthors": ["Harlan Coben", "James Patterson", "Michael Connelly", "Lee Child"],
-      "similarToTitles": ["Best Offer Wins", "None of This Is True", "Home Is Where the Bodies Are", "The Perfect Marriage", "The Tenant"],
+      "themes": [
+        "thriller",
+        "crime",
+        "humor"
+      ],
+      "tones": [
+        "dark",
+        "gritty",
+        "tense"
+      ],
+      "similarToAuthors": [
+        "Harlan Coben",
+        "James Patterson",
+        "Michael Connelly",
+        "Lee Child"
+      ],
+      "similarToTitles": [
+        "Best Offer Wins",
+        "None of This Is True",
+        "Home Is Where the Bodies Are",
+        "The Perfect Marriage",
+        "The Tenant"
+      ],
       "dnf": false
     },
     {
@@ -39364,10 +39480,27 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "nonfiction",
-      "themes": ["tech history", "business"],
-      "tones": ["investigative", "revelatory"],
-      "similarToAuthors": ["Walter Isaacson", "Brad Stone", "Nick Bilton", "Michael Lewis"],
-      "similarToTitles": ["Empire of AI: Dreams and Nightmares in Sam Altman's OpenAI", "The Optimist: Sam Altman, OpenAI, and the Race to Invent the Future", "The Scaling Curve: Dario Amodei, Anthropic, and the Race to Build and Survive Superintelligence", "AI Valley: Microsoft, Google, and the Trillion-Dollar Race to Cash In on Artificial Intelligence", "Steve Jobs"],
+      "themes": [
+        "tech history",
+        "business"
+      ],
+      "tones": [
+        "investigative",
+        "revelatory"
+      ],
+      "similarToAuthors": [
+        "Walter Isaacson",
+        "Brad Stone",
+        "Nick Bilton",
+        "Michael Lewis"
+      ],
+      "similarToTitles": [
+        "Empire of AI: Dreams and Nightmares in Sam Altman's OpenAI",
+        "The Optimist: Sam Altman, OpenAI, and the Race to Invent the Future",
+        "The Scaling Curve: Dario Amodei, Anthropic, and the Race to Build and Survive Superintelligence",
+        "AI Valley: Microsoft, Google, and the Trillion-Dollar Race to Cash In on Artificial Intelligence",
+        "Steve Jobs"
+      ],
       "dnf": false
     },
     {
@@ -39387,10 +39520,27 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "fiction",
-      "themes": ["thriller", "high-concept", "adventure"],
-      "tones": ["propulsive", "twisty"],
-      "similarToAuthors": ["James Patterson", "Suzanne Collins", "Andy Weir", "Blake Crouch"],
-      "similarToTitles": ["Going Zero", "Worst Case Scenario", "The Running Man", "The One (Dark Future #1)"],
+      "themes": [
+        "thriller",
+        "high-concept",
+        "adventure"
+      ],
+      "tones": [
+        "propulsive",
+        "twisty"
+      ],
+      "similarToAuthors": [
+        "James Patterson",
+        "Suzanne Collins",
+        "Andy Weir",
+        "Blake Crouch"
+      ],
+      "similarToTitles": [
+        "Going Zero",
+        "Worst Case Scenario",
+        "The Running Man",
+        "The One (Dark Future #1)"
+      ],
       "dnf": false
     },
     {
@@ -39410,10 +39560,28 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "fiction",
-      "themes": ["horror", "thriller", "suspense"],
-      "tones": ["dark", "tense", "twisty"],
-      "similarToAuthors": ["Freida McFadden", "B.A. Paris", "Lisa Jewell", "Shari Lapena"],
-      "similarToTitles": ["You Shouldn't Have Come Here", "The Perfect Marriage", "Home Is Where the Bodies Are", "Behind Closed Doors"],
+      "themes": [
+        "horror",
+        "thriller",
+        "suspense"
+      ],
+      "tones": [
+        "dark",
+        "tense",
+        "twisty"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "B.A. Paris",
+        "Lisa Jewell",
+        "Shari Lapena"
+      ],
+      "similarToTitles": [
+        "You Shouldn't Have Come Here",
+        "The Perfect Marriage",
+        "Home Is Where the Bodies Are",
+        "Behind Closed Doors"
+      ],
       "dnf": false
     },
     {
@@ -39433,10 +39601,29 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "fiction",
-      "themes": ["thriller", "domestic suspense", "psychological"],
-      "tones": ["twisty", "dark", "tense"],
-      "similarToAuthors": ["Freida McFadden", "B.A. Paris", "Lisa Jewell", "Shari Lapena"],
-      "similarToTitles": ["The Perfect Marriage", "The Perfect Divorce (Perfect, #2)", "Home Is Where the Bodies Are", "Behind Closed Doors", "The Housemaid (The Housemaid, #1)"],
+      "themes": [
+        "thriller",
+        "domestic suspense",
+        "psychological"
+      ],
+      "tones": [
+        "twisty",
+        "dark",
+        "tense"
+      ],
+      "similarToAuthors": [
+        "Freida McFadden",
+        "B.A. Paris",
+        "Lisa Jewell",
+        "Shari Lapena"
+      ],
+      "similarToTitles": [
+        "The Perfect Marriage",
+        "The Perfect Divorce (Perfect, #2)",
+        "Home Is Where the Bodies Are",
+        "Behind Closed Doors",
+        "The Housemaid (The Housemaid, #1)"
+      ],
       "dnf": false
     },
     {
@@ -39456,10 +39643,27 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "nonfiction",
-      "themes": ["political", "social commentary"],
-      "tones": ["investigative", "revelatory"],
-      "similarToAuthors": ["Malcolm Gladwell", "John Carreyrou", "Ben Mezrich", "Ben Horowitz"],
-      "similarToTitles": ["The Fifth Risk: Undoing Democracy", "Who Is Government?: The Untold Story of Public Service", "The Premonition: A Pandemic Story", "Flash Boys: A Wall Street Revolt", "The Big Short: Inside the Doomsday Machine"],
+      "themes": [
+        "political",
+        "social commentary"
+      ],
+      "tones": [
+        "investigative",
+        "revelatory"
+      ],
+      "similarToAuthors": [
+        "Malcolm Gladwell",
+        "John Carreyrou",
+        "Ben Mezrich",
+        "Ben Horowitz"
+      ],
+      "similarToTitles": [
+        "The Fifth Risk: Undoing Democracy",
+        "Who Is Government?: The Untold Story of Public Service",
+        "The Premonition: A Pandemic Story",
+        "Flash Boys: A Wall Street Revolt",
+        "The Big Short: Inside the Doomsday Machine"
+      ],
       "dnf": false
     },
     {
@@ -39478,10 +39682,25 @@
       "shelf": "to-read",
       "myRating": 0,
       "type": "nonfiction",
-      "themes": ["humor", "political"],
-      "tones": ["satirical", "funny"],
-      "similarToAuthors": ["Chuck Klosterman", "P.J. O'Rourke", "Dave Barry", "Christopher Buckley"],
-      "similarToTitles": ["Eating the Dinosaur", "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto", "A Heartbreaking Work of Staggering Genius"],
+      "themes": [
+        "humor",
+        "political"
+      ],
+      "tones": [
+        "satirical",
+        "funny"
+      ],
+      "similarToAuthors": [
+        "Chuck Klosterman",
+        "P.J. O'Rourke",
+        "Dave Barry",
+        "Christopher Buckley"
+      ],
+      "similarToTitles": [
+        "Eating the Dinosaur",
+        "Sex, Drugs, and Cocoa Puffs: A Low Culture Manifesto",
+        "A Heartbreaking Work of Staggering Genius"
+      ],
       "dnf": false
     }
   ],
