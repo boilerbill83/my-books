@@ -500993,5 +500993,247 @@
   "year": 2010,
   "type": "show",
   "fetchedAt": "2026-09-13"
+ },
+ "movie:726209": {
+  "genres": [
+   "Drama",
+   "Mystery",
+   "Thriller"
+  ],
+  "overview": "A family's getaway to a luxurious rental home takes an ominous turn when a cyberattack knocks out their devices\u2014and two strangers appear at their door.",
+  "keywords": [
+   "based on novel or book",
+   "blackout",
+   "crisis",
+   "vacation",
+   "deer",
+   "apocalypse",
+   "armageddon",
+   "family",
+   "social issues",
+   "desperate",
+   "anxious",
+   "psychological",
+   "slow burn",
+   "house rental",
+   "disheartening"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt12747748",
+  "voteAverage": 6.374,
+  "voteCount": 3414,
+  "popularity": 8.408,
+  "posterPath": "/29rhl1xopxA7JlGVVsf1UHfYPvN.jpg",
+  "similarToIds": [
+   634544,
+   11362,
+   11372,
+   11387,
+   11426,
+   11428,
+   828936,
+   11439,
+   11454,
+   11457,
+   11524,
+   11542,
+   269036,
+   11549,
+   11560,
+   11569,
+   269069,
+   452038,
+   1212046,
+   11423
+  ],
+  "recommendedIds": [
+   758679,
+   102780,
+   402446,
+   398181,
+   40821,
+   340666,
+   500840,
+   1700,
+   19052,
+   798362,
+   615658,
+   3594,
+   4547,
+   833425,
+   7442,
+   264644,
+   1381027,
+   294795,
+   141,
+   846956
+  ],
+  "topCast": [
+   "Julia Roberts",
+   "Ethan Hawke",
+   "Mahershala Ali",
+   "Myha'la",
+   "Farrah Mackenzie"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1204,
+    "name": "Julia Roberts",
+    "gender": 1
+   },
+   {
+    "id": 569,
+    "name": "Ethan Hawke",
+    "gender": 2
+   },
+   {
+    "id": 932967,
+    "name": "Mahershala Ali",
+    "gender": 2
+   },
+   {
+    "id": 2673750,
+    "name": "Myha'la",
+    "gender": 1
+   },
+   {
+    "id": 1548301,
+    "name": "Farrah Mackenzie",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2023-11-22",
+  "runtime": 140,
+  "director": "Sam Esmail",
+  "directors": [
+   "Sam Esmail"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Sam Esmail",
+   "Rumaan Alam",
+   "Daniel M. Stillman"
+  ],
+  "title": "Leave the World Behind",
+  "year": 2023,
+  "type": "movie",
+  "fetchedAt": "2026-09-16"
+ },
+ "movie:1284041": {
+  "genres": [
+   "Horror",
+   "Science Fiction",
+   "Thriller"
+  ],
+  "overview": "A family suddenly sealed inside their home must work together to survive against dwindling resources and the ominous threat keeping them trapped.",
+  "keywords": [
+   "monster",
+   "isolation",
+   "water monster",
+   "sea creature",
+   "baffled",
+   "disapproving",
+   "dangerous rain"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt32268156",
+  "voteAverage": 6.871,
+  "voteCount": 1341,
+  "popularity": 39.8161,
+  "posterPath": "/6JU7E8Vv2M11egkctWVOScxWR75.jpg",
+  "similarToIds": [
+   814,
+   841,
+   445602,
+   927,
+   445761,
+   1397905,
+   1091,
+   1255,
+   928,
+   262841,
+   1272,
+   1400097,
+   4234,
+   4289,
+   4365,
+   1581218,
+   264660,
+   264644,
+   629957,
+   1400838
+  ],
+  "recommendedIds": [
+   443791,
+   24655,
+   993867,
+   8851,
+   345940,
+   74,
+   505948,
+   969686,
+   335866,
+   26865,
+   37618,
+   1217585,
+   615656,
+   28763,
+   1086260,
+   1101383,
+   27118,
+   435,
+   8698,
+   2675
+  ],
+  "topCast": [
+   "Greta Lee",
+   "Wagner Moura",
+   "Riley Chung",
+   "Noah Alexander Sosnowski",
+   "Emma Ho"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1260481,
+    "name": "Greta Lee",
+    "gender": 1
+   },
+   {
+    "id": 52583,
+    "name": "Wagner Moura",
+    "gender": 2
+   },
+   {
+    "id": 4434705,
+    "name": "Riley Chung",
+    "gender": 1
+   },
+   {
+    "id": 3294227,
+    "name": "Noah Alexander Sosnowski",
+    "gender": 2
+   },
+   {
+    "id": 2482368,
+    "name": "Emma Ho",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2026-08-06",
+  "runtime": 110,
+  "director": "Louis Leterrier",
+  "directors": [
+   "Louis Leterrier"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Louis Leterrier",
+   "Kori Adelson",
+   "Oly Obst"
+  ],
+  "title": "The Last House",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-09-16"
  }
 }
