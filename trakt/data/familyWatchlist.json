@@ -80,6 +80,62 @@
         "https://www.justwatch.com/us/movie/saw",
         "https://www.themoviedb.org/movie/176-saw"
       ]
+    },
+    {
+      "titleKey": "movie:726209",
+      "title": "Leave the World Behind",
+      "year": 2023,
+      "addedAt": "2026-09-16T00:00:00Z",
+      "theatricalReleaseDate": "2023-11-22",
+      "streaming": {
+        "status": "released",
+        "digitalRentBuy": null,
+        "physicalMedia": null,
+        "subscriptionStreaming": {
+          "platform": "Netflix",
+          "date": "2023-12-08",
+          "confirmed": true,
+          "note": "Limited theatrical release Nov 22, 2023 (Oscar-qualifying run) ahead of its wide Netflix debut Dec 8, 2023 — already available."
+        }
+      },
+      "sources": [
+        "https://en.wikipedia.org/wiki/Leave_the_World_Behind_(film)",
+        "https://www.netflix.com/title/81314956",
+        "https://www.themoviedb.org/movie/726209-leave-the-world-behind"
+      ]
     }
-  ]
+  ],
+  "loved": {
+    "note": "Movies the whole family has already watched and loved — a taste/context signal ('so you know what we like'), not a want-to-watch queue. Hidden from the family.html UI by default, revealed via a toggle button (Bill's explicit ask). Get Out/The Call/Obsession are also real entries in Bill's own library.json with real ratings (10, 9, 10) — already excluded from solo recommendations via engine.js's idx.watched, no further exclusion needed. The Last House (2026) isn't in Bill's personal Trakt history, so it also carries a candidatePool.json stub (for real TMDB enrichment) and a feedbackData.json exclusion (so it never surfaces as a solo \"New pick\"), matching the want-to-watch titles' own established pattern.",
+    "titles": [
+      {
+        "titleKey": "movie:419430",
+        "title": "Get Out",
+        "year": 2017,
+        "myRating": 10,
+        "addedAt": "2026-09-16T00:00:00Z"
+      },
+      {
+        "titleKey": "movie:158011",
+        "title": "The Call",
+        "year": 2013,
+        "myRating": 9,
+        "addedAt": "2026-09-16T00:00:00Z"
+      },
+      {
+        "titleKey": "movie:1339713",
+        "title": "Obsession",
+        "year": 2026,
+        "myRating": 10,
+        "addedAt": "2026-09-16T00:00:00Z"
+      },
+      {
+        "titleKey": "movie:1284041",
+        "title": "The Last House",
+        "year": 2026,
+        "myRating": null,
+        "addedAt": "2026-09-16T00:00:00Z"
+      }
+    ]
+  }
 }

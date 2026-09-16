@@ -444,7 +444,13 @@ function initCollapsibleCards() {
       card.classList.toggle('tk-card-collapsed', collapsed);
       try { localStorage.setItem(key, collapsed ? '1' : '0'); } catch {}
     };
-    heading.addEventListener('click', toggle);
+    // Bill: "make that clickable when I click the section title" — a
+    // heading can now contain a real <a> (see .tk-heading-link in
+    // dashboard.css) linking to a dedicated page. Since this listener is
+    // on the whole heading div, a click on that nested link would bubble
+    // up and toggle collapse right as the browser navigates away — check
+    // for a link ancestor first and let it navigate instead.
+    heading.addEventListener('click', e => { if (!e.target.closest('a')) toggle(); });
     heading.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
     });
@@ -951,6 +957,109 @@ function renderWatchStatusTable(elementId, rows, emptyText) {
   render();
 }
 
+// Bill: "let's create a new table for movies I want to watch with my whole
+// family." A separate, manually-curated list, not derived from Trakt at
+// all — see familyWatchlist.json's own "note" field for the full data-
+// flow (each entry also lives in candidatePool.json for real TMDB
+// enrichment, and in feedbackData.json with excludeFromRecommendations so
+// it never shows up in the solo You'll Love flow or competes for a
+// candidate-pool cap slot). releaseDate/streaming are real, hand-
+// researched fields per Bill's explicit ask ("make sure you include
+// release date and when I will be able to stream it") — TMDB has no
+// reliable field for either, especially a forward-looking streaming date,
+// so this mirrors upcomingSeasons.json's "real, hand-researched, never
+// guessed" precedent rather than inventing one. Moved here from
+// discover.js once trakt/family.html (Bill: "build a new URL for this
+// too") became a second real caller — same drift-prevention discipline
+// as loadAllData()/predictedVsActualRows() above.
+function fmtDate(iso) {
+  if (!iso) return null;
+  return new Date(iso + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+}
+
+function renderFamilyWatchList(familyWatchlist, enrichedMeta, elementId = 'familyWatchList') {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  const titles = familyWatchlist?.titles || [];
+  if (!titles.length) { el.innerHTML = '<div class="tk-empty">Nothing on the family list yet.</div>'; return; }
+  el.innerHTML = `<div class="tk-fwl-grid">${titles.map(t => {
+    const meta = enrichedMeta[t.titleKey];
+    const poster = posterUrl(t.titleKey, enrichedMeta, 'w342');
+    const title = meta?.title || t.title;
+    const year = meta?.year || t.year;
+    const s = t.streaming || {};
+    const rows = [];
+    if (t.theatricalReleaseDate) {
+      // "In theaters" only makes sense for an upcoming/current release —
+      // an already-released classic (e.g. Saw, 2004) needs "Released"
+      // instead, or the label reads as if it's still playing in cinemas.
+      const isUpcoming = new Date(t.theatricalReleaseDate + 'T00:00:00Z') > new Date();
+      rows.push(`<div class="tk-fwl-streaming-row"><span class="tk-fwl-streaming-label">${isUpcoming ? 'In theaters' : 'Released'}:</span> ${esc(fmtDate(t.theatricalReleaseDate))}</div>`);
+    }
+    if (s.digitalRentBuy) {
+      const label = s.digitalRentBuy.date ? esc(fmtDate(s.digitalRentBuy.date)) : 'Already available';
+      rows.push(`<div class="tk-fwl-streaming-row"><span class="tk-fwl-streaming-label">Rent/buy digitally:</span> ${label}${s.digitalRentBuy.confirmed === false ? ' <span class="tk-fwl-estimate">(estimated, not yet confirmed)</span>' : ''}</div>`);
+    }
+    if (s.subscriptionStreaming) {
+      rows.push(`<div class="tk-fwl-streaming-row"><span class="tk-fwl-streaming-label">Streaming on ${esc(s.subscriptionStreaming.platform)}:</span> ${esc(fmtDate(s.subscriptionStreaming.date))}${s.subscriptionStreaming.confirmed === false ? ' <span class="tk-fwl-estimate">(estimated, not yet confirmed)</span>' : ''}</div>`);
+    }
+    if (s.physicalMedia) {
+      rows.push(`<div class="tk-fwl-streaming-row"><span class="tk-fwl-streaming-label">DVD/Blu-ray:</span> ${esc(fmtDate(s.physicalMedia.date))}${s.physicalMedia.confirmed === false ? ' <span class="tk-fwl-estimate">(estimated, not yet confirmed)</span>' : ''}</div>`);
+    }
+    // Collect every real note, not just the first found — a title can
+    // legitimately have more than one worth showing (e.g. Saw's digital
+    // availability note AND its Netflix-move note, a case that didn't
+    // exist when this only ever picked one via `||`).
+    const notes = [s.digitalRentBuy?.note, s.subscriptionStreaming?.note, s.physicalMedia?.note].filter(Boolean);
+    return `
+      <div class="tk-fwl-card">
+        ${posterImgHtml(poster, 'tk-fwl-poster', 60, 90)}
+        <div class="tk-fwl-body">
+          <div class="tk-fwl-title">${esc(title)}${year ? ` <span class="tk-hero-year">(${esc(year)})</span>` : ''}</div>
+          ${meta?.genres?.length ? `<div class="tk-fwl-meta">${esc(meta.genres.slice(0, 2).join(', '))}</div>` : ''}
+          <div class="tk-fwl-streaming">${rows.join('')}</div>
+          ${notes.map(n => `<div class="tk-fwl-estimate">${esc(n)}</div>`).join('')}
+          ${t.sources?.length ? `<div class="tk-fwl-sources">${t.sources.map((u, i) => `<a href="${esc(u)}" target="_blank" rel="noopener">source ${i + 1}</a>`).join('')}</div>` : ''}
+        </div>
+      </div>
+    `;
+  }).join('')}</div>`;
+}
+
+// Bill: "In family movies we love, I want you to also add movies we
+// loved so you know what we like, you can hide these from the UI unless
+// I press a button to show them." A separate bucket from the want-to-
+// watch titles above (familyWatchlist.json's own "loved" key, see that
+// file's header note) — no streaming/release info needed (these are
+// already-watched), just enough to recognize each one at a glance. Reuses
+// the same .tk-fwl-card visual language as the want-to-watch grid rather
+// than inventing a second card style, minus the streaming block that
+// doesn't apply here. Rendered into a hidden-by-default container on
+// trakt/family.html; the reveal toggle itself lives in family.js since
+// it's page-specific UI state, not shared render logic.
+function renderLovedMovies(familyWatchlist, enrichedMeta, elementId = 'lovedMovies') {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  const titles = familyWatchlist?.loved?.titles || [];
+  if (!titles.length) { el.innerHTML = '<div class="tk-empty">Nothing tagged as a family favorite yet.</div>'; return; }
+  el.innerHTML = `<div class="tk-fwl-grid">${titles.map(t => {
+    const meta = enrichedMeta[t.titleKey];
+    const poster = posterUrl(t.titleKey, enrichedMeta, 'w342');
+    const title = meta?.title || t.title;
+    const year = meta?.year || t.year;
+    return `
+      <div class="tk-fwl-card">
+        ${posterImgHtml(poster, 'tk-fwl-poster', 60, 90)}
+        <div class="tk-fwl-body">
+          <div class="tk-fwl-title">${esc(title)}${year ? ` <span class="tk-hero-year">(${esc(year)})</span>` : ''}</div>
+          ${meta?.genres?.length ? `<div class="tk-fwl-meta">${esc(meta.genres.slice(0, 2).join(', '))}</div>` : ''}
+          ${t.myRating != null ? `<div class="tk-fwl-estimate">Rated ${esc(t.myRating)}/10</div>` : ''}
+        </div>
+      </div>
+    `;
+  }).join('')}</div>`;
+}
+
 
 export {
   esc, fmtNum, posterImgHtml, typeIcon, typeLabel, titleLink, STATUS_META, statusTag,
@@ -959,5 +1068,5 @@ export {
   scoreTier, initCollapsibleCards, loadAllData, predictedVsActualRows,
   buildWatchRow, computeWatchStatusRows, computeCoWatchRows, isCoWatchReady, sortCoWatchReady,
   coWatchCardSubtitle, renderCoWatchCards, initCoWatchViewToggle, summarizeUpcoming,
-  upcomingSortKey, renderWatchStatusTable,
+  upcomingSortKey, renderWatchStatusTable, fmtDate, renderFamilyWatchList, renderLovedMovies,
 };

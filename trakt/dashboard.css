@@ -353,3 +353,37 @@
    and now watch-together.html), relying on bare browser defaults. */
 .tk-watch-toolbar { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 10px; cursor: pointer; }
 .tk-watch-toolbar input { cursor: pointer; }
+
+/* Family Watch List cards (want-to-watch AND, on family.html only, the
+   hidden-by-default loved-movies reveal) — moved here from index.html's
+   own <style> block once trakt/family.html became a second real caller
+   of renderFamilyWatchList()/renderLovedMovies(), same drift-prevention
+   reasoning as .tk-shelf/.tk-watch-toolbar above. */
+.tk-fwl-grid { display: flex; flex-direction: column; gap: 14px; }
+.tk-fwl-card { display: flex; gap: 14px; padding: 12px; border: 1px solid var(--border); border-radius: 8px; }
+.tk-fwl-poster { width: 60px; height: 90px; border-radius: 6px; object-fit: cover; background: var(--bg-subtle); border: 1px solid var(--border); flex-shrink: 0; }
+.tk-fwl-poster-empty { border: 1px dashed var(--border); }
+.tk-fwl-body { flex: 1; min-width: 0; }
+.tk-fwl-title { font-weight: 600; font-size: 0.95rem; }
+.tk-fwl-meta { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+.tk-fwl-streaming { font-size: 0.85rem; margin-top: 8px; line-height: 1.6; }
+.tk-fwl-streaming-row { display: flex; gap: 6px; align-items: baseline; flex-wrap: wrap; }
+.tk-fwl-streaming-label { font-weight: 600; color: var(--text); }
+.tk-fwl-estimate { font-size: 0.72rem; color: var(--text-muted); font-style: italic; }
+.tk-fwl-sources { margin-top: 8px; display: flex; gap: 10px; flex-wrap: wrap; }
+.tk-fwl-sources a { font-size: 0.72rem; color: var(--accent); text-decoration: none; }
+.tk-fwl-sources a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .tk-fwl-card { flex-direction: column; align-items: center; text-align: center; }
+  .tk-fwl-streaming-row { justify-content: center; }
+}
+
+/* Clickable card headings (Bill: "make that clickable when I click the
+   section title") — a link inside a .tk-card-heading that already has
+   its own click-to-collapse handler (initCollapsibleCards() below).
+   Styled to read as the heading itself, not a generic blue link; the
+   collapse handler is taught to ignore clicks that land on this link
+   (see initCollapsibleCards()'s own comment) so navigation isn't
+   swallowed by the toggle. */
+.tk-heading-link { color: inherit; text-decoration: none; }
+.tk-heading-link:hover { text-decoration: underline; }
