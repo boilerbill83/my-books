@@ -65,7 +65,9 @@ function readiness(row) {
     return { tier: 'airingNow', label: `📡 Airing Now${readyPart}`, cls: 'wt-status-airing' };
   }
   if (row.status === 'In Progress' || row.status === 'Watched') {
-    return { tier: 'caughtUp', label: '⏳ Caught Up', cls: 'wt-status-caughtup' };
+    return row.watchDateUnverified
+      ? { tier: 'caughtUp', label: '⏳ Caught Up ⚠️', cls: 'wt-status-caughtup' }
+      : { tier: 'caughtUp', label: '⏳ Caught Up', cls: 'wt-status-caughtup' };
   }
   return { tier: 'notStarted', label: '🆕 Not Started Yet', cls: 'wt-status-pinned' };
 }
@@ -87,6 +89,16 @@ function finaleText(row) {
   return `${row.daysUntilFinale} day${row.daysUntilFinale === 1 ? '' : 's'} until the season finale`;
 }
 
+// See build_trakt_library.js's hasConfirmedWatchDate comment for the full
+// investigation (Bill, 2026-09-17: Hacks). Not a claim this show is wrong
+// — just honest visibility that Trakt has no dated per-episode evidence
+// backing "caught up" here, so it's worth a quick gut-check.
+function unverifiedText(row) {
+  return row.watchDateUnverified
+    ? "No dated watch history on record — Trakt only has an undated bulk entry for every episode. Worth double-checking this is really caught up."
+    : null;
+}
+
 function renderCard(row, enrichedMeta, omdbMeta, llmTags, reviewedTags, { big = false } = {}) {
   const meta = enrichedMeta[row.titleKey];
   const omdbEntry = omdbMeta?.[row.titleKey];
@@ -95,6 +107,7 @@ function renderCard(row, enrichedMeta, omdbMeta, llmTags, reviewedTags, { big = 
   const overview = meta?.overview ? (meta.overview.length > 220 ? meta.overview.slice(0, 219) + '…' : meta.overview) : '';
   const upcoming = upcomingText(row);
   const finale = finaleText(row);
+  const unverified = unverifiedText(row);
 
   return `
     <a class="wt-card ${big ? 'wt-card-big' : ''}" href="${esc(traktUrl(row))}" target="_blank" rel="noopener">
@@ -108,6 +121,7 @@ function renderCard(row, enrichedMeta, omdbMeta, llmTags, reviewedTags, { big = 
         ${overview ? `<div class="wt-overview">${esc(overview)}</div>` : ''}
         ${finale ? `<div class="wt-note wt-note-airing">🕐 ${esc(finale)}</div>` : ''}
         ${upcoming ? `<div class="wt-note">📅 ${esc(upcoming)}</div>` : ''}
+        ${unverified ? `<div class="wt-note">⚠️ ${esc(unverified)}</div>` : ''}
       </div>
     </a>`;
 }

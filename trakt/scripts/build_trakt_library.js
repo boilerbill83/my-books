@@ -60,8 +60,54 @@ function titleKey(type, ids) {
 }
 
 const {
-  watchedMovies, ratingsMovies, watchlist, favorites, watchedShows, ratingsShows,
+  watchedMovies, ratingsMovies, watchlist, favorites, watchedShows, ratingsShows, history,
 } = loadTraktExport(exportDir);
+
+// ── Per-episode watch-date confidence (Bill, 2026-09-17) ────────────────
+//
+// Real, confirmed case: Hacks showed plays=47/airedEpisodes=47 ("caught
+// up") in a fresh, non-stale export, but Bill said they genuinely hadn't
+// caught up together. Investigated deeply (not just the aggregate
+// numbers) — every one of Hacks' 47 logged episode watches carries
+// Trakt's 1970-01-01 placeholder date (the documented bulk-import/no-
+// per-episode-date artifact, CLAUDE.md's dataCaveats) instead of a real
+// one. That alone isn't a reliable "not really watched" signal on its
+// own — 273 of 393 shows in this same export are 100% placeholder-dated
+// this way, including shows definitely fully watched (Breaking Bad, The
+// Wire, Love Is Blind) — so a code rule that distrusts every fully-
+// placeholder show would falsely flag most of the library. There is no
+// way to algorithmically re-derive which specific shows are genuinely
+// caught up vs. not from Trakt's own export data alone; the real fix for
+// a wrong case is correcting the watched state in Trakt itself so a
+// future export reflects it accurately.
+//
+// What IS worth doing in code: `history` (real per-episode watch events,
+// loaded by loadTraktExport() but never previously read by this script —
+// a real, previously-unused data source) is the only place a genuine
+// per-episode date exists at all, so it's the only way to tell "we have
+// at least one dated, individually-logged watch on record for this show"
+// apart from "everything we know about this show's watch history came
+// from an undated bulk action." hasConfirmedWatchDate surfaces that
+// distinction as an honest per-show confidence flag (not a correction)
+// so the co-watch UI can flag low-confidence "caught up" claims for
+// Bill's own review instead of either blindly trusting them or silently
+// overriding them with a hand-maintained per-title list.
+//
+// Verified before relying on this: for every one of the 393 shows in a
+// real export, the distinct (season, episode) pairs found in `history`
+// exactly match the show's own aggregate `plays` count — so `history`
+// really does cover a show's complete watch record in this export, and
+// hasConfirmedWatchDate: false means "genuinely zero real dates on
+// record," not "we just don't have the data."
+const confirmedDateByShowKey = new Map();
+for (const e of history) {
+  if (e.type !== 'episode' || !e.show?.ids) continue;
+  const key = titleKey('show', e.show.ids);
+  if (!key) continue;
+  const isReal = e.watched_at && !e.watched_at.startsWith('1970-01-01');
+  if (isReal) confirmedDateByShowKey.set(key, true);
+  else if (!confirmedDateByShowKey.has(key)) confirmedDateByShowKey.set(key, false);
+}
 
 // ── Favorites lookup (by titleKey) ──────────────────────────────────────
 
@@ -129,6 +175,11 @@ const showRecords = watchedShows.map(w => {
     completionStatus: completionStatus(w.plays, w.show.aired_episodes),
     lastWatchedAt: w.last_watched_at,
     favorite: key ? favoriteKeys.has(key) : false,
+    // See the confirmedDateByShowKey comment above. null = no episode
+    // history at all for this show in this export (nothing to check);
+    // false = every logged episode watch is placeholder-dated; true = at
+    // least one real, individually-logged date exists.
+    hasConfirmedWatchDate: key && confirmedDateByShowKey.has(key) ? confirmedDateByShowKey.get(key) : null,
   };
 });
 

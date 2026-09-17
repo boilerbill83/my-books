@@ -658,6 +658,18 @@ function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored },
     upcoming: upcomingSeasons[titleKey] || null,
     coWatchStatus: coWatchOverride?.status || null,
     coWatchNote: coWatchOverride?.overrideNote || null,
+    // Bill, 2026-09-17: a real, confirmed case (Hacks) where "caught up"
+    // per Trakt's own aggregate numbers wasn't actually true, and there's
+    // no way to algorithmically tell which fully-placeholder-dated show is
+    // wrong this way vs. genuinely, correctly caught up (see
+    // build_trakt_library.js's hasConfirmedWatchDate comment for the full
+    // investigation — 273 of 393 shows share this exact shape, most of
+    // them genuinely fully watched). Rather than guess, surface the honest
+    // uncertainty: true only when this show reads "caught up" AND every
+    // episode watch on record is a placeholder-dated bulk entry, zero real
+    // per-episode dates anywhere — a real signal to double-check, not a
+    // claim that it's actually wrong.
+    watchDateUnverified: status === 'Watched' && inLib?.hasConfirmedWatchDate === false,
   };
 }
 
@@ -877,6 +889,10 @@ function renderWatchStatusTable(elementId, rows, emptyText) {
     { key: 'status', label: 'Status', get: r => r.status,
       render: (td, r) => {
         td.textContent = r.status + (r.myRating != null ? ` · ${r.myRating}/10` : '');
+        if (r.watchDateUnverified) {
+          td.textContent += ' ⚠️';
+          td.title = "No confirmed watch date on record for this show — every logged episode is a placeholder-dated bulk entry, not an individually-timestamped watch. Usually still genuinely watched, but worth a quick double-check.";
+        }
         if (r.coWatchNote) td.title = r.coWatchNote;
       } },
     { key: 'readyNow', label: 'Ready Now', get: r => r.episodesReady ?? -1, numeric: true,
