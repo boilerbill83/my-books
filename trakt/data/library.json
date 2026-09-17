@@ -2,7 +2,7 @@
   "meta": {
     "generatedAt": "2026-09-17T19:13:37.401Z",
     "movieCount": 253,
-    "showCount": 393
+    "showCount": 392
   },
   "titles": [
     {
@@ -3778,31 +3778,6 @@
       "lastWatchedAt": "2011-09-12T03:01:00.000Z",
       "favorite": true,
       "hasConfirmedWatchDate": true
-    },
-    {
-      "type": "show",
-      "titleKey": "show:85552",
-      "ids": {
-        "imdb": "tt8772296",
-        "plex": {
-          "guid": "5d9c091b170e24001f2af270",
-          "slug": "euphoria-us"
-        },
-        "slug": "euphoria-2019",
-        "tmdb": 85552,
-        "tvdb": 360261,
-        "trakt": 144629
-      },
-      "title": "Euphoria",
-      "year": 2019,
-      "myRating": 8,
-      "ratedAt": "2026-05-31T00:00:00.000Z",
-      "plays": 24,
-      "airedEpisodes": 24,
-      "completionStatus": "caught-up",
-      "lastWatchedAt": "1970-01-01T00:00:00.000Z",
-      "favorite": false,
-      "hasConfirmedWatchDate": false
     },
     {
       "type": "movie",
