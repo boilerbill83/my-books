@@ -39,6 +39,18 @@ function ratingBadges(row, meta, omdbEntry) {
 // episodesReady (aired-minus-watched) together fully answer this — no new
 // data needed, just a clearer read of what buildWatchRow() already computes.
 function readiness(row) {
+  // Manual co-watch override (coWatchProgress.json) wins outright — Bill
+  // told us directly that Trakt's own numbers are wrong for this title
+  // right now, in one direction or the other. See that file's own "note".
+  if (row.coWatchStatus === 'caught-up') {
+    return { tier: 'caughtUp', label: '⏳ Caught Up', cls: 'wt-status-caughtup' };
+  }
+  if (row.coWatchStatus === 'behind') {
+    const ready = row.episodesReady ?? 0;
+    return ready > 0
+      ? { tier: 'readyToBinge', label: `✅ Season Complete — ${ready} Episode${ready === 1 ? '' : 's'} Ready`, cls: 'wt-status-ready' }
+      : { tier: 'readyToBinge', label: '✅ Not Caught Up Yet — Ready to Watch', cls: 'wt-status-ready' };
+  }
   if (row.type === 'movie') {
     return row.status === 'Watched'
       ? { tier: 'caughtUp', label: '✓ Watched', cls: 'wt-status-caughtup' }
@@ -112,7 +124,7 @@ async function load() {
   const subtitleEl = document.getElementById('subtitleText');
   try {
     const { library, watchlist, candidatePool, enrichedMeta, omdbMeta,
-            llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons } = await loadAllData();
+            llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, coWatchProgress } = await loadAllData();
 
     const coWatchKeys = [...new Set(Object.values(coWatchTags || {}).flat())];
     if (!coWatchKeys.length) {
@@ -121,7 +133,7 @@ async function load() {
       return;
     }
 
-    const coWatchRows = computeCoWatchRows(coWatchKeys, library, watchlist, candidatePool, [], [], currentlyWatching, enrichedMeta, upcomingSeasons);
+    const coWatchRows = computeCoWatchRows(coWatchKeys, library, watchlist, candidatePool, [], [], currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress);
     const byKey = new Map(coWatchRows.map(r => [r.titleKey, r]));
 
     const pinned = byKey.get(PINNED_KEY);

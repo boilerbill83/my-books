@@ -468,7 +468,8 @@ async function loadAllData() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
   const [dashboard, libraryRaw, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback,
          scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
-         currentlyWatchingFeature, familyWatchlist, releaseLog, goodreadsData, manualRatings, nextWatchFacts, nextWatchPins] = await Promise.all([
+         currentlyWatchingFeature, familyWatchlist, releaseLog, goodreadsData, manualRatings, nextWatchFacts, nextWatchPins,
+         coWatchProgressRaw] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -540,11 +541,20 @@ async function loadAllData() {
     // titleKeys: [] } is a safe empty default — no pins, pure live
     // selection.
     get('./data/nextWatchPins.json').catch(() => ({ titleKeys: [] })),
+    // Manual override of co-watching progress — Trakt's 'plays' count
+    // reflects Bill's own personal watch history, not specifically what he
+    // and his wife have watched together, so it can go stale in either
+    // direction between exports (looks behind when they've actually caught
+    // up, or looks caught up when they haven't). See the file's own "note"
+    // field. {overrides:{}} is a safe empty default — no overrides, pure
+    // Trakt-derived readiness, same as before this file existed.
+    get('./data/coWatchProgress.json').catch(() => ({ overrides: {} })),
   ]);
   const library = mergeManualRatings(libraryRaw, manualRatings);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
   const bookThemeCounts = computeBookThemeCounts(goodreadsData);
-  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog, bookThemeCounts, nextWatchFacts, nextWatchPins };
+  const coWatchProgress = coWatchProgressRaw?.overrides || {};
+  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog, bookThemeCounts, nextWatchFacts, nextWatchPins, coWatchProgress };
 }
 
 // Best Matches (Discover) and Prediction Misses (Quality) are two views of
@@ -582,7 +592,7 @@ function fmtDaysOut(days) {
   return days == null ? '—' : (days <= 0 ? 'Airs today' : `${days}d`);
 }
 
-function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored }, enrichedMeta, upcomingSeasons = {}) {
+function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored }, enrichedMeta, upcomingSeasons = {}, coWatchProgress = {}) {
   const base = inLib || inWl || inCandidate || scored || { titleKey, type: titleKey.split(':')[0] };
   const h = hydrateTitle(base, enrichedMeta);
 
@@ -596,6 +606,17 @@ function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored },
   } else {
     status = 'New Pick';
   }
+
+  // Manual co-watch override (see coWatchProgress.json's own "note" field):
+  // Trakt's plays count is Bill's personal watch history, not specifically
+  // what he's watched together with his wife, so it can read either "behind"
+  // when they've actually caught up, or "caught up" when they haven't.
+  // 'caught-up' zeroes out episodesReady so isCoWatchReady()/readiness()
+  // both agree nothing's waiting; 'behind' is a pure status flag consumed
+  // directly by isCoWatchReady()/readiness() below, since we don't have a
+  // real episode count to substitute for episodesReady in that direction.
+  const coWatchOverride = coWatchProgress[titleKey] || null;
+  if (coWatchOverride?.status === 'caught-up') episodesReady = 0;
 
   const meta = enrichedMeta[titleKey] || {};
   const next = meta.nextEpisodeToAir;
@@ -635,10 +656,12 @@ function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored },
     // itself has nothing scheduled yet (see upcomingSeasons.json's own
     // header comment — never guessed, every entry cites real sources).
     upcoming: upcomingSeasons[titleKey] || null,
+    coWatchStatus: coWatchOverride?.status || null,
+    coWatchNote: coWatchOverride?.overrideNote || null,
   };
 }
 
-function computeWatchStatusRows(library, watchlist, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons = {}) {
+function computeWatchStatusRows(library, watchlist, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons = {}, coWatchProgress = {}) {
   const libByKey = new Map((library.titles || []).map(t => [t.titleKey, t]));
   const wlByKey = new Map((watchlist.titles || []).map(t => [t.titleKey, t]));
   // A show can genuinely sit in BOTH currentlyWatching.json and
@@ -697,7 +720,7 @@ function computeWatchStatusRows(library, watchlist, fromWatchlist, fromCandidate
     inLib: libByKey.get(titleKey), inWl: wlByKey.get(titleKey),
     inCandidate: scoredByKey.get(titleKey)?.origin === 'candidate' ? scoredByKey.get(titleKey) : null,
     progress: progressByKey.get(titleKey), scored: scoredByKey.get(titleKey),
-  }, enrichedMeta, upcomingSeasons));
+  }, enrichedMeta, upcomingSeasons, coWatchProgress));
 }
 
 // "Shows You Watch Together" — Bill: "I want to manually tag these so
@@ -706,7 +729,7 @@ function computeWatchStatusRows(library, watchlist, fromWatchlist, fromCandidate
 // season), every tagged title gets a row regardless of status — Bill said
 // he still wants to see them, so a tagged show that's fully caught up or
 // not yet started still needs to appear, not just the currently-active ones.
-function computeCoWatchRows(tagKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons = {}) {
+function computeCoWatchRows(tagKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons = {}, coWatchProgress = {}) {
   const libByKey = new Map((library.titles || []).map(t => [t.titleKey, t]));
   const wlByKey = new Map((watchlist.titles || []).map(t => [t.titleKey, t]));
   const cpByKey = new Map((candidatePool.titles || []).map(t => [t.titleKey, t]));
@@ -715,7 +738,7 @@ function computeCoWatchRows(tagKeys, library, watchlist, candidatePool, fromWatc
   return tagKeys.map(titleKey => buildWatchRow(titleKey, {
     inLib: libByKey.get(titleKey), inWl: wlByKey.get(titleKey), inCandidate: cpByKey.get(titleKey),
     progress: progressByKey.get(titleKey), scored: scoredByKey.get(titleKey),
-  }, enrichedMeta, upcomingSeasons));
+  }, enrichedMeta, upcomingSeasons, coWatchProgress));
 }
 
 // Bill: "I still don't love the way this works; make the initial view
@@ -733,6 +756,10 @@ function computeCoWatchRows(tagKeys, library, watchlist, candidatePool, fromWatc
 // it's still in the table view, unchanged, since Bill's original ask
 // ("I still want to see them") for the full list stands.
 function isCoWatchReady(row) {
+  // Manual co-watch override wins outright — Bill told us directly, so it
+  // overrides whatever the (possibly stale) Trakt-derived signals say.
+  if (row.coWatchStatus === 'caught-up') return false;
+  if (row.coWatchStatus === 'behind') return true;
   return row.isAiring || (row.episodesReady ?? 0) > 0;
 }
 
@@ -751,6 +778,9 @@ function sortCoWatchReady(rows) {
 }
 
 function coWatchCardSubtitle(row) {
+  if (row.coWatchStatus === 'behind' && !row.episodesReady) {
+    return 'Not caught up together yet';
+  }
   if (row.isAiring && row.episodesReady) {
     return `Airing now · ${row.episodesReady} episode${row.episodesReady === 1 ? '' : 's'} ready`;
   }
@@ -845,7 +875,10 @@ function renderWatchStatusTable(elementId, rows, emptyText) {
     { key: 'show', label: 'Show', get: r => r.title,
       render: (td, r) => { td.innerHTML = `${typeIcon(r.type)} ${titleLink(r)}${r.year ? ` <span class="tk-metric-sub">(${esc(r.year)})</span>` : ''}`; } },
     { key: 'status', label: 'Status', get: r => r.status,
-      render: (td, r) => { td.textContent = r.status + (r.myRating != null ? ` · ${r.myRating}/10` : ''); } },
+      render: (td, r) => {
+        td.textContent = r.status + (r.myRating != null ? ` · ${r.myRating}/10` : '');
+        if (r.coWatchNote) td.title = r.coWatchNote;
+      } },
     { key: 'readyNow', label: 'Ready Now', get: r => r.episodesReady ?? -1, numeric: true,
       render: (td, r) => { td.textContent = r.episodesReady ? `${r.episodesReady} episode${r.episodesReady === 1 ? '' : 's'}` : '—'; } },
     { key: 'nowAiring', label: 'Now Airing', airingCol: true, get: r => (r.season ?? 0) * 1000 + (r.nextEpisode ?? 0), numeric: true,
