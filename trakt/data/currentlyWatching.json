@@ -101,6 +101,31 @@
   },
   {
     "type": "show",
+    "titleKey": "show:124101",
+    "ids": {
+      "imdb": "tt11815682",
+      "plex": {
+        "guid": "608599a4ac0818002c5e0de3",
+        "slug": "hacks-1"
+      },
+      "slug": "hacks-2021",
+      "tmdb": 124101,
+      "tvdb": 401582,
+      "trakt": 179632
+    },
+    "title": "Hacks",
+    "year": 2021,
+    "myRating": 8,
+    "ratedAt": "2026-05-28T00:00:00.000Z",
+    "plays": 37,
+    "airedEpisodes": 47,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false,
+    "hasConfirmedWatchDate": false
+  },
+  {
+    "type": "show",
     "titleKey": "show:2710",
     "ids": {
       "imdb": "tt0472954",
@@ -118,7 +143,7 @@
     "myRating": 9,
     "ratedAt": "2025-08-20T00:00:00.000Z",
     "plays": 177,
-    "airedEpisodes": 182,
+    "airedEpisodes": 183,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -143,7 +168,7 @@
     "myRating": 10,
     "ratedAt": "2026-09-11T23:50:02.000Z",
     "plays": 16,
-    "airedEpisodes": 22,
+    "airedEpisodes": 23,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -193,7 +218,7 @@
     "myRating": 8,
     "ratedAt": "2025-04-10T00:00:00.000Z",
     "plays": 24,
-    "airedEpisodes": 31,
+    "airedEpisodes": 32,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -223,6 +248,31 @@
     "lastWatchedAt": "2025-01-17T02:59:00.000Z",
     "favorite": false,
     "hasConfirmedWatchDate": true
+  },
+  {
+    "type": "show",
+    "titleKey": "show:95480",
+    "ids": {
+      "imdb": "tt5875444",
+      "plex": {
+        "guid": "5e1622a54f2292003e912fcf",
+        "slug": "slow-horses"
+      },
+      "slug": "slow-horses",
+      "tmdb": 95480,
+      "tvdb": 372264,
+      "trakt": 155534
+    },
+    "title": "Slow Horses",
+    "year": 2022,
+    "myRating": 8,
+    "ratedAt": "2025-10-29T00:00:00.000Z",
+    "plays": 30,
+    "airedEpisodes": 31,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false,
+    "hasConfirmedWatchDate": false
   },
   {
     "type": "show",
@@ -268,7 +318,7 @@
     "myRating": 9,
     "ratedAt": "2023-05-31T00:00:00.000Z",
     "plays": 34,
-    "airedEpisodes": 40,
+    "airedEpisodes": 41,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -315,38 +365,13 @@
     },
     "title": "The Paper",
     "year": 2025,
-    "myRating": 10,
-    "ratedAt": "2026-08-16T02:26:08.000Z",
+    "myRating": 8,
+    "ratedAt": "2026-09-12T17:10:07.000Z",
     "plays": 10,
     "airedEpisodes": 20,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2025-09-04T10:33:00.000Z",
     "favorite": false,
-    "hasConfirmedWatchDate": true
-  },
-  {
-    "type": "show",
-    "titleKey": "show:247522",
-    "ids": {
-      "imdb": "tt31491435",
-      "plex": {
-        "guid": "65df741280e2a6434615dcf0",
-        "slug": "tires-2"
-      },
-      "slug": "tires",
-      "tmdb": 247522,
-      "tvdb": 446718,
-      "trakt": 228099
-    },
-    "title": "Tires",
-    "year": 2024,
-    "myRating": 10,
-    "ratedAt": "2026-08-11T00:07:50.000Z",
-    "plays": 18,
-    "airedEpisodes": 30,
-    "completionStatus": "in-progress",
-    "lastWatchedAt": "2025-06-05T04:31:00.000Z",
-    "favorite": true,
     "hasConfirmedWatchDate": true
   },
   {
