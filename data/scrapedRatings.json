@@ -4322,5 +4322,32 @@
     "coverUrl": "https://m.media-amazon.com/images/I/71AP90Yp-oL._SX300_.jpg",
     "source": "cover_only",
     "checkedAt": "2026-09-11"
+  },
+  "our dumb century|||scott dikkers": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 264
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91NjOh0YexL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-09-17"
+  },
+  "say you'll remember me|||abby jimenez": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-09-17"
+  },
+  "the night we met|||abby jimenez": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.2,
+      "count": 41904
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81hW-nscpyL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-09-17"
   }
 }
