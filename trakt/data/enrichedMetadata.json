@@ -501202,5 +501202,93 @@
   "year": 2026,
   "type": "movie",
   "fetchedAt": "2026-09-16"
+ },
+ "movie:1492640": {
+  "genres": [
+   "Thriller",
+   "Crime",
+   "History"
+  ],
+  "overview": "Follow Ted Kaczynski's transformation from Harvard prodigy into the infamous Unabomber. Subjected to controversial psychological experiments by Professor Henry Murray, Kaczynski's troubled past resurfaces decades later when his manhunt, led by FBI agent Joanne Miller, brings to light the chilling consequences of ambition and isolation.",
+  "keywords": [],
+  "originalLanguage": "en",
+  "imdbId": "tt6933238",
+  "voteAverage": 0.0,
+  "voteCount": 0,
+  "popularity": 4.8814,
+  "posterPath": "/39aMkR8Y5vhCG9dTkjiqRl8AVqp.jpg",
+  "similarToIds": [],
+  "recommendedIds": [
+   395458,
+   835112,
+   457962,
+   615115,
+   800815,
+   46041,
+   1020662,
+   1075519,
+   714968,
+   520016,
+   476678,
+   1128377,
+   878183,
+   190955,
+   1530875,
+   1659087,
+   656940,
+   1128546,
+   1211776,
+   808023
+  ],
+  "topCast": [
+   "Jacob Tremblay",
+   "Russell Crowe",
+   "Shailene Woodley",
+   "Annabelle Wallis",
+   "Alexander Ludwig"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1277188,
+    "name": "Jacob Tremblay",
+    "gender": 2
+   },
+   {
+    "id": 934,
+    "name": "Russell Crowe",
+    "gender": 2
+   },
+   {
+    "id": 94185,
+    "name": "Shailene Woodley",
+    "gender": 1
+   },
+   {
+    "id": 82809,
+    "name": "Annabelle Wallis",
+    "gender": 1
+   },
+   {
+    "id": 23498,
+    "name": "Alexander Ludwig",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2026-09-25",
+  "runtime": 0,
+  "director": "Janus Metz",
+  "directors": [
+   "Janus Metz"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Janus Metz",
+   "Sophie Cassidy",
+   "Sam Chalsen"
+  ],
+  "title": "UNABOMBER",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-09-17"
  }
 }
