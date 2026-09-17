@@ -608,13 +608,24 @@ function predictedVsActualRows(library, enrichedMeta, omdbMeta, idx) {
 // Finale" means for a given title.
 // Shared by the Next Episode and Days Until Finale columns below — one
 // consistent "Xd" / "Airs today" / "—" formatting for any day-count field.
+// Bill, 2026-09-18: "Reacher days until finale 'airs today' but it doesn't
+// air today, right?" — a real bug, not a nitpick: `days <= 0` treated a
+// NEGATIVE day count (a date already in the past — Reacher's finale aired
+// yesterday) identically to exactly 0 (today), so anything from 1 day to
+// however-many-days-ago all read as "Airs today." Now distinguishes the
+// three real cases: in the future ("Nd"), today ("Airs today"), already
+// happened ("Nd ago").
 function fmtDaysOut(days) {
-  return days == null ? '—' : (days <= 0 ? 'Airs today' : `${days}d`);
+  if (days == null) return '—';
+  if (days < 0) return `${-days}d ago`;
+  if (days === 0) return 'Airs today';
+  return `${days}d`;
 }
 
 function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored }, enrichedMeta, upcomingSeasons = {}, coWatchProgress = {}) {
   const base = inLib || inWl || inCandidate || scored || { titleKey, type: titleKey.split(':')[0] };
   const h = hydrateTitle(base, enrichedMeta);
+  const meta = enrichedMeta[titleKey] || {};
 
   let status, episodesReady = null;
   if (progress && progress.plays < progress.airedEpisodes) {
@@ -628,6 +639,21 @@ function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored },
     status = 'Watched';
   } else if (inWl) {
     status = 'Watchlist';
+    // Bill, 2026-09-18: "Monster Lizzie Borden has aired but that isn't
+    // clear from this table" — a real gap: episodesReady was only ever
+    // computed from Trakt's own plays/airedEpisodes, which don't exist at
+    // all for a title with zero watch history. A never-started watchlist
+    // show could have a whole season sitting there, aired and unwatched,
+    // with nothing in the row signaling it. lastEpisodeToAir (TMDB's own
+    // "most recently confirmed-aired episode" pointer, already fetched,
+    // never previously read here) is the one real, already-available
+    // confirmation that episodes exist and are watchable — conservative by
+    // design: it only counts the latest season's episode number, so a
+    // never-touched show with multiple past seasons will undercount
+    // (better to undercount than to claim episodes are ready that aren't).
+    if (h.type === 'show' && meta.lastEpisodeToAir?.episodeNumber) {
+      episodesReady = meta.lastEpisodeToAir.episodeNumber;
+    }
   } else {
     status = 'New Pick';
   }
@@ -649,7 +675,6 @@ function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored },
   if (coWatchOverride?.status === 'caught-up') { episodesReady = 0; status = 'Watched'; }
   else if (coWatchOverride?.status === 'behind') { status = 'New Episodes'; }
 
-  const meta = enrichedMeta[titleKey] || {};
   const next = meta.nextEpisodeToAir;
   const finale = meta.currentSeasonFinale;
   const today = new Date(); today.setHours(0, 0, 0, 0);
@@ -717,9 +742,17 @@ function computeWatchStatusRows(library, watchlist, fromWatchlist, fromCandidate
 
   // Bill: "'What's Airing & When You Can Watch' should only include shows
   // on my watchlist" — this table is a "when can I actually watch what I'm
-  // already planning to" utility, so the row set is always intersected
-  // with real watchlist membership, the single source of truth for "am I
-  // actually planning to watch this."
+  // already planning to" utility, so the row set was originally intersected
+  // with watchlist membership alone. Bill, 2026-09-18: "why isn't dark
+  // matter on the list?" — a real, since-uncovered gap in that original
+  // scoping: a show he's already actively watching (real plays<airedEpisodes
+  // progress in library.json) isn't necessarily ALSO on his Trakt watchlist
+  // (Dark Matter wasn't), so a strictly watchlist-only gate silently drops
+  // exactly the shows most likely to have a new, unwatched episode worth
+  // surfacing here. "Already planning to watch this" is equally true of a
+  // show he's mid-way through as one still sitting on the watchlist — so
+  // the row set now unions both: watchlist membership, OR a library show
+  // genuinely in progress (completionStatus === 'in-progress').
   //
   // Row-inclusion window (Bill, 2026-09-12): "include every tv show on my
   // watch list that has at least one episode airing in the last 30 days
@@ -755,11 +788,15 @@ function computeWatchStatusRows(library, watchlist, fromWatchlist, fromCandidate
     return withinDays(meta.nextEpisodeToAir?.airDate, 0, 30)
         || withinDays(meta.currentSeasonFinale?.finaleDate, -30, 30);
   };
-  const watchlistOnlyKeys = (watchlist.titles || [])
+  const watchlistKeys = (watchlist.titles || [])
     .filter(t => t.type === 'show' && hasRecentOrUpcomingEpisode(t.titleKey))
     .map(t => t.titleKey);
+  const inProgressLibraryKeys = (library.titles || [])
+    .filter(t => t.type === 'show' && t.completionStatus === 'in-progress' && hasRecentOrUpcomingEpisode(t.titleKey))
+    .map(t => t.titleKey);
+  const trackedKeys = [...new Set([...watchlistKeys, ...inProgressLibraryKeys])];
 
-  return watchlistOnlyKeys.map(titleKey => buildWatchRow(titleKey, {
+  return trackedKeys.map(titleKey => buildWatchRow(titleKey, {
     inLib: libByKey.get(titleKey), inWl: wlByKey.get(titleKey),
     inCandidate: scoredByKey.get(titleKey)?.origin === 'candidate' ? scoredByKey.get(titleKey) : null,
     progress: progressByKey.get(titleKey), scored: scoredByKey.get(titleKey),
@@ -919,7 +956,12 @@ function renderWatchStatusTable(elementId, rows, emptyText) {
       render: (td, r) => { td.innerHTML = `${typeIcon(r.type)} ${titleLink(r)}${r.year ? ` <span class="tk-metric-sub">(${esc(r.year)})</span>` : ''}`; } },
     { key: 'status', label: 'Status', get: r => r.status,
       render: (td, r) => {
-        td.textContent = r.status + (r.myRating != null ? ` · ${r.myRating}/10` : '');
+        // Bill, 2026-09-18: "why does the Lowdown say 9/10 watched?" — a
+        // real ambiguity, not just a rating: "Watched · 9/10" reads just as
+        // easily as "9 of 10 episodes" as it does "rated 9 out of 10." A
+        // star makes it unambiguously a rating, matching the convention
+        // watch-together.js's ratingBadges() already uses elsewhere.
+        td.textContent = r.status + (r.myRating != null ? ` · ★${r.myRating}/10` : '');
         if (r.watchDateUnverified) {
           td.textContent += ' ⚠️';
           td.title = "No confirmed watch date on record for this show — every logged episode is a placeholder-dated bulk entry, not an individually-timestamped watch. Usually still genuinely watched, but worth a quick double-check.";
