@@ -10623,11 +10623,11 @@
   "rtAttempted": "2026-09-03",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": 1,
-  "metacritic": null,
+  "metacritic": 96,
   "metacriticUser": null,
-  "mcUrl": null,
+  "mcUrl": "https://www.metacritic.com/tv/monster-the-lizzie-borden-story/",
   "mcUserAttempted": true,
-  "checkedAt": "2026-09-03"
+  "checkedAt": "2026-09-17"
  },
  "show:99741": {
   "rottenTomatoes": 33,
@@ -17973,5 +17973,31 @@
   "mcUrl": "https://www.metacritic.com/tv/dare-me/",
   "mcUserAttempted": true,
   "checkedAt": "2026-09-15"
+ },
+ "movie:726209": {
+  "rottenTomatoes": 67,
+  "rtAudience": 72,
+  "rtUrl": "https://www.rottentomatoes.com/m/leave_the_world_behind",
+  "rtAttempted": "2026-09-17",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": null,
+  "metacritic": 68,
+  "metacriticUser": 48,
+  "mcUrl": "https://www.metacritic.com/movie/leave-the-world-behind/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-09-17"
+ },
+ "movie:1284041": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "rtAttempted": "2026-09-17",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 3,
+  "metacritic": 42,
+  "metacriticUser": 43,
+  "mcUrl": "https://www.metacritic.com/movie/the-last-house/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-09-17"
  }
 }
