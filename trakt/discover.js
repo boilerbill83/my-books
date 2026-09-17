@@ -235,7 +235,9 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
   // precedence buildWatchRow() already uses for status derivation.
   const seenKeys = new Set();
   for (const t of library.titles || []) {
-    addRow(t, t.completionStatus === 'in-progress' ? 'In Progress' : 'Watched', t.myRating);
+    // "New Episodes," not "In Progress" — see STATUS_META's own comment
+    // in dashboardShared.js for why (Bill doesn't log partial progress).
+    addRow(t, t.completionStatus === 'in-progress' ? 'New Episodes' : 'Watched', t.myRating);
     seenKeys.add(t.titleKey);
   }
   for (const t of watchlist.titles || []) { if (!seenKeys.has(t.titleKey)) { addRow(t, 'Watchlist', null); seenKeys.add(t.titleKey); } }
