@@ -37744,5 +37744,41 @@
   "director": null,
   "rated": "TV-MA",
   "fetchedAt": "2026-09-14"
+ },
+ "movie:726209": {
+  "rottenTomatoes": 73,
+  "metacritic": 68,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 3,
+   "totalNominations": 16,
+   "raw": "3 wins & 16 nominations total"
+  },
+  "imdbRating": 6.4,
+  "imdbVotes": 238837,
+  "director": "Sam Esmail",
+  "rated": "R",
+  "fetchedAt": "2026-09-17"
+ },
+ "movie:1284041": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": "Louis Leterrier",
+  "rated": null,
+  "fetchedAt": "2026-09-17"
  }
 }
