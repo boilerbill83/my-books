@@ -742,17 +742,18 @@ function computeWatchStatusRows(library, watchlist, fromWatchlist, fromCandidate
 
   // Bill: "'What's Airing & When You Can Watch' should only include shows
   // on my watchlist" — this table is a "when can I actually watch what I'm
-  // already planning to" utility, so the row set was originally intersected
-  // with watchlist membership alone. Bill, 2026-09-18: "why isn't dark
-  // matter on the list?" — a real, since-uncovered gap in that original
-  // scoping: a show he's already actively watching (real plays<airedEpisodes
-  // progress in library.json) isn't necessarily ALSO on his Trakt watchlist
-  // (Dark Matter wasn't), so a strictly watchlist-only gate silently drops
-  // exactly the shows most likely to have a new, unwatched episode worth
-  // surfacing here. "Already planning to watch this" is equally true of a
-  // show he's mid-way through as one still sitting on the watchlist — so
-  // the row set now unions both: watchlist membership, OR a library show
-  // genuinely in progress (completionStatus === 'in-progress').
+  // already planning to" utility, so the row set is always intersected
+  // with real watchlist membership, the single source of truth for "am I
+  // actually planning to watch this."
+  //
+  // Bill, 2026-09-18: briefly broadened this to also include any in-
+  // progress library show (Dark Matter wasn't on the watchlist but had
+  // real partial progress) — then deliberately reverted, after weighing
+  // it: Trakt has no "I dropped this" signal, so a genuinely-abandoned
+  // show would sit in this table forever claiming "new episodes ready"
+  // with no way to tell that apart from one he's actually still on.
+  // Watchlist membership stays the single, deliberate signal — a show he
+  // wants tracked here needs to actually be on the watchlist.
   //
   // Row-inclusion window (Bill, 2026-09-12): "include every tv show on my
   // watch list that has at least one episode airing in the last 30 days
@@ -788,15 +789,11 @@ function computeWatchStatusRows(library, watchlist, fromWatchlist, fromCandidate
     return withinDays(meta.nextEpisodeToAir?.airDate, 0, 30)
         || withinDays(meta.currentSeasonFinale?.finaleDate, -30, 30);
   };
-  const watchlistKeys = (watchlist.titles || [])
+  const watchlistOnlyKeys = (watchlist.titles || [])
     .filter(t => t.type === 'show' && hasRecentOrUpcomingEpisode(t.titleKey))
     .map(t => t.titleKey);
-  const inProgressLibraryKeys = (library.titles || [])
-    .filter(t => t.type === 'show' && t.completionStatus === 'in-progress' && hasRecentOrUpcomingEpisode(t.titleKey))
-    .map(t => t.titleKey);
-  const trackedKeys = [...new Set([...watchlistKeys, ...inProgressLibraryKeys])];
 
-  return trackedKeys.map(titleKey => buildWatchRow(titleKey, {
+  return watchlistOnlyKeys.map(titleKey => buildWatchRow(titleKey, {
     inLib: libByKey.get(titleKey), inWl: wlByKey.get(titleKey),
     inCandidate: scoredByKey.get(titleKey)?.origin === 'candidate' ? scoredByKey.get(titleKey) : null,
     progress: progressByKey.get(titleKey), scored: scoredByKey.get(titleKey),
