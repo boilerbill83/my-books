@@ -632,20 +632,22 @@ function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored },
     status = 'New Pick';
   }
 
-  // Manual co-watch override (see coWatchProgress.json's own "note" field):
-  // Trakt's plays count is Bill's personal watch history, not specifically
-  // what he's watched together with his wife, so it can read either "behind"
-  // when they've actually caught up, or "caught up" when they haven't.
-  // 'caught-up' zeroes out episodesReady AND resets status to 'Watched'
-  // (not just the readiness boolean — a row that still literally says "New
-  // Episodes" while Bill told us it's done is exactly the kind of stale-
-  // looking label this whole mechanism exists to avoid) so
-  // isCoWatchReady()/readiness()/the table's own Status column all agree;
-  // 'behind' is a pure status flag consumed directly by isCoWatchReady()/
-  // readiness() below, since we don't have a real episode count to
-  // substitute for episodesReady in that direction.
+  // Manual co-watch override (see coWatchProgress.json's own "note" field).
+  // This app has no live connection to Trakt (standing project rule) — it
+  // only ever reflects the last uploaded export, so it can read either
+  // "caught-up" (Trakt/the export says not-done, but Bill's real progress
+  // is ahead of it — Tires) or "behind" (Trakt/the export says done, but
+  // it was wrongly bulk-marked and Bill hasn't re-exported since correcting
+  // it — Hacks, Euphoria) relative to right now.
+  // Both directions also reset `status`, not just the readiness signal —
+  // a row that still literally says "Watched" or "New Episodes" while
+  // contradicting the override right next to it is exactly the kind of
+  // stale-looking label this mechanism exists to avoid, and every consumer
+  // (isCoWatchReady()/readiness()/the table's own Status column) needs to
+  // agree, not just the ones that happen to read episodesReady.
   const coWatchOverride = coWatchProgress[titleKey] || null;
   if (coWatchOverride?.status === 'caught-up') { episodesReady = 0; status = 'Watched'; }
+  else if (coWatchOverride?.status === 'behind') { status = 'New Episodes'; }
 
   const meta = enrichedMeta[titleKey] || {};
   const next = meta.nextEpisodeToAir;
