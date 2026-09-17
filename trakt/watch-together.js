@@ -64,7 +64,7 @@ function readiness(row) {
     const readyPart = ready > 0 ? `, ${ready} ready` : '';
     return { tier: 'airingNow', label: `📡 Airing Now${readyPart}`, cls: 'wt-status-airing' };
   }
-  if (row.status === 'In Progress' || row.status === 'Watched') {
+  if (row.status === 'New Episodes' || row.status === 'Watched') {
     return row.watchDateUnverified
       ? { tier: 'caughtUp', label: '⏳ Caught Up ⚠️', cls: 'wt-status-caughtup' }
       : { tier: 'caughtUp', label: '⏳ Caught Up', cls: 'wt-status-caughtup' };

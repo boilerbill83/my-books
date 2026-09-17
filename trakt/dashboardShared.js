@@ -69,12 +69,22 @@ const STATUS_META = {
   // Lowdown premieres, will it go back to the watch list?" — no (the
   // watchlist-dedup fix holds regardless), but the All Titles table used
   // to collapse every library.json title to a flat "Watched" label
-  // whether it was genuinely caught up or mid-a-new-season, which was its
-  // own real gap this question surfaced. A title with plays < airedEpisodes
-  // (real, live Trakt numbers once a fresh export captures the new
-  // season) now reads "In Progress" instead — distinct from Watched,
-  // still distinct from Watchlist so no duplicate-row regression.
-  'In Progress': { cls: 'tk-status-tag-inprogress', label: 'In Progress' },
+  // whether it was genuinely caught up or a new season had aired since,
+  // which was its own real gap this question surfaced. A title with
+  // plays < airedEpisodes (real, live Trakt numbers once a fresh export
+  // captures the new season) now reads distinctly from Watched.
+  //
+  // Named "New Episodes," not "In Progress" — corrected by Bill the same
+  // day: "I don't mark things as in progress. I watch the whole batch at
+  // once and don't update Trakt until I complete the whole season." He
+  // never logs partial progress, so plays < airedEpisodes never actually
+  // means "partway through, watching episode by episode" for him — it
+  // only ever means "a batch aired that I haven't told Trakt I finished
+  // yet," whether that's 1 new episode or a whole unstarted season.
+  // "In Progress" implied a week-by-week tracking model this data doesn't
+  // and can't reflect; "New Episodes" doesn't claim to know more than
+  // that.
+  'New Episodes': { cls: 'tk-status-tag-inprogress', label: 'New Episodes' },
   Watchlist:    { cls: 'tk-status-tag-watchlist',  label: 'Watchlist' },
   Candidate:    { cls: 'tk-status-tag-candidate',  label: 'Candidate' },
   Dismissed:    { cls: 'tk-status-tag-dismissed',  label: 'Dismissed' },
@@ -594,7 +604,7 @@ function predictedVsActualRows(library, enrichedMeta, omdbMeta, idx) {
 // already established between Discover and Quality.
 // buildWatchRow() is shared with computeCoWatchRows() below (the "Shows
 // You Watch Together" table) so both read the exact same status/airing
-// logic and can never disagree about what "In Progress" or "Season
+// logic and can never disagree about what "New Episodes" or "Season
 // Finale" means for a given title.
 // Shared by the Next Episode and Days Until Finale columns below — one
 // consistent "Xd" / "Airs today" / "—" formatting for any day-count field.
@@ -608,7 +618,12 @@ function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored },
 
   let status, episodesReady = null;
   if (progress && progress.plays < progress.airedEpisodes) {
-    status = 'In Progress'; episodesReady = progress.airedEpisodes - progress.plays;
+    // Bill: "I don't mark things as in progress. I watch the whole batch
+    // at once and don't update Trakt until I complete the whole season" —
+    // this state never means "currently watching, partway through,"
+    // since he never logs partial progress. It only ever means "aired
+    // episodes exist that Trakt hasn't been told are finished yet."
+    status = 'New Episodes'; episodesReady = progress.airedEpisodes - progress.plays;
   } else if (inLib) {
     status = 'Watched';
   } else if (inWl) {
@@ -621,12 +636,16 @@ function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored },
   // Trakt's plays count is Bill's personal watch history, not specifically
   // what he's watched together with his wife, so it can read either "behind"
   // when they've actually caught up, or "caught up" when they haven't.
-  // 'caught-up' zeroes out episodesReady so isCoWatchReady()/readiness()
-  // both agree nothing's waiting; 'behind' is a pure status flag consumed
-  // directly by isCoWatchReady()/readiness() below, since we don't have a
-  // real episode count to substitute for episodesReady in that direction.
+  // 'caught-up' zeroes out episodesReady AND resets status to 'Watched'
+  // (not just the readiness boolean — a row that still literally says "New
+  // Episodes" while Bill told us it's done is exactly the kind of stale-
+  // looking label this whole mechanism exists to avoid) so
+  // isCoWatchReady()/readiness()/the table's own Status column all agree;
+  // 'behind' is a pure status flag consumed directly by isCoWatchReady()/
+  // readiness() below, since we don't have a real episode count to
+  // substitute for episodesReady in that direction.
   const coWatchOverride = coWatchProgress[titleKey] || null;
-  if (coWatchOverride?.status === 'caught-up') episodesReady = 0;
+  if (coWatchOverride?.status === 'caught-up') { episodesReady = 0; status = 'Watched'; }
 
   const meta = enrichedMeta[titleKey] || {};
   const next = meta.nextEpisodeToAir;

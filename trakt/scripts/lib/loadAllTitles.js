@@ -171,7 +171,11 @@ export function loadAllTitles() {
   // had it on the to watch list").
   const seenKeys = new Set();
   for (const t of library.titles || []) {
-    addRow(t, t.completionStatus === 'in-progress' ? 'In Progress' : 'Watched');
+    // "New Episodes," not "In Progress" — see STATUS_META's own comment
+    // in trakt/dashboardShared.js for why (Bill doesn't log partial
+    // progress; this state only ever means "an unfinished-per-Trakt batch
+    // exists," never "currently watching episode by episode").
+    addRow(t, t.completionStatus === 'in-progress' ? 'New Episodes' : 'Watched');
     seenKeys.add(t.titleKey);
   }
   for (const t of watchlist.titles || []) { if (!seenKeys.has(t.titleKey)) { addRow(t, 'Watchlist'); seenKeys.add(t.titleKey); } }
