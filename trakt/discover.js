@@ -234,7 +234,10 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
   // single source of truth over watchlist over candidate — same
   // precedence buildWatchRow() already uses for status derivation.
   const seenKeys = new Set();
-  for (const t of library.titles || []) { addRow(t, 'Watched', t.myRating); seenKeys.add(t.titleKey); }
+  for (const t of library.titles || []) {
+    addRow(t, t.completionStatus === 'in-progress' ? 'In Progress' : 'Watched', t.myRating);
+    seenKeys.add(t.titleKey);
+  }
   for (const t of watchlist.titles || []) { if (!seenKeys.has(t.titleKey)) { addRow(t, 'Watchlist', null); seenKeys.add(t.titleKey); } }
   for (const t of candidatePool.titles || []) { if (!seenKeys.has(t.titleKey)) { addRow(t, 'Candidate', null); seenKeys.add(t.titleKey); } }
   return rows;

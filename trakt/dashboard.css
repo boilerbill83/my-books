@@ -220,6 +220,7 @@
         display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap;
       }
       .tk-status-tag-watched { background: color-mix(in srgb, var(--status-good) 15%, transparent); color: var(--status-good); }
+      .tk-status-tag-inprogress { background: color-mix(in srgb, var(--status-warning) 22%, transparent); color: #8a5c00; }
       .tk-status-tag-watchlist { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); }
       .tk-status-tag-candidate { background: color-mix(in srgb, var(--status-warning) 20%, transparent); color: #8a5c00; }
       .tk-status-tag-dismissed { background: color-mix(in srgb, var(--status-critical) 15%, transparent); color: var(--status-critical); }
