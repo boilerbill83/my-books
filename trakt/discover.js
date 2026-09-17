@@ -220,9 +220,23 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
       prestige: meta ? prestigeScore(h, meta, omdb, personMeta) : null,
     });
   };
-  for (const t of library.titles || []) addRow(t, 'Watched', t.myRating);
-  for (const t of watchlist.titles || []) addRow(t, 'Watchlist', null);
-  for (const t of candidatePool.titles || []) addRow(t, 'Candidate', null);
+  // Bill, 2026-09-17: "I marked all seasons as watched in Trakt but you
+  // had it on the to watch list" (Tires) — a real bug, not staleness. A
+  // title can genuinely sit in BOTH library.json and watchlist.json at
+  // once (Trakt's watched-history and watchlist are independent lists;
+  // finishing a show doesn't remove it from your watchlist — the exact
+  // real overlap rankAll() already had to defend against for The Lowdown
+  // back in Session 59, confirmed still in this same data: 11 titles
+  // including Tires and The Lowdown itself are in both files right now).
+  // This function added an unconditional row per source list with no
+  // dedup at all, so any such title got a real "Watched" row AND a ghost
+  // "Watchlist" row for the exact same title. seenKeys makes library the
+  // single source of truth over watchlist over candidate — same
+  // precedence buildWatchRow() already uses for status derivation.
+  const seenKeys = new Set();
+  for (const t of library.titles || []) { addRow(t, 'Watched', t.myRating); seenKeys.add(t.titleKey); }
+  for (const t of watchlist.titles || []) { if (!seenKeys.has(t.titleKey)) { addRow(t, 'Watchlist', null); seenKeys.add(t.titleKey); } }
+  for (const t of candidatePool.titles || []) { if (!seenKeys.has(t.titleKey)) { addRow(t, 'Candidate', null); seenKeys.add(t.titleKey); } }
   return rows;
 }
 

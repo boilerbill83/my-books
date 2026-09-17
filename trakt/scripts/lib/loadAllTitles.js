@@ -160,9 +160,19 @@ export function loadAllTitles() {
     });
   };
 
-  for (const t of library.titles || []) addRow(t, 'Watched');
-  for (const t of watchlist.titles || []) addRow(t, 'Watchlist');
-  for (const t of candidatePool.titles || []) addRow(t, 'Candidate');
+  // Same dedup as buildAllTitlesRows() (trakt/discover.js) — a title can
+  // genuinely sit in BOTH library.json and watchlist.json at once (Trakt's
+  // watched-history and watchlist are independent lists; finishing a show
+  // doesn't remove it from your watchlist), and without this, the daily
+  // extract would silently double a row (once "Watched", once "Watchlist")
+  // for any such title. Real, confirmed case, not hypothetical: 11 titles
+  // including Tires and The Lowdown sit in both files as of this fix
+  // (Bill, 2026-09-17: "I marked all seasons as watched in Trakt but you
+  // had it on the to watch list").
+  const seenKeys = new Set();
+  for (const t of library.titles || []) { addRow(t, 'Watched'); seenKeys.add(t.titleKey); }
+  for (const t of watchlist.titles || []) { if (!seenKeys.has(t.titleKey)) { addRow(t, 'Watchlist'); seenKeys.add(t.titleKey); } }
+  for (const t of candidatePool.titles || []) { if (!seenKeys.has(t.titleKey)) { addRow(t, 'Candidate'); seenKeys.add(t.titleKey); } }
 
   return { rows, library, watchlist, candidatePool, enrichedMeta, omdbMeta };
 }
