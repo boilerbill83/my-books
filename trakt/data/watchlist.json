@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-17T13:27:39.298Z",
-    "count": 42
+    "generatedAt": "2026-09-17T19:13:37.405Z",
+    "count": 47
   },
   "titles": [
     {
@@ -180,8 +180,8 @@
       "ids": {
         "imdb": "tt33539520",
         "plex": {
-          "guid": null,
-          "slug": null
+          "guid": "6995dd6b96c7221de9313980",
+          "slug": "neagley"
         },
         "slug": "neagley",
         "tmdb": 273207,
@@ -286,25 +286,6 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-08-11T00:07:34.000Z"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:247522",
-      "ids": {
-        "imdb": "tt31491435",
-        "plex": {
-          "guid": "65df741280e2a6434615dcf0",
-          "slug": "tires-2"
-        },
-        "slug": "tires",
-        "tmdb": 247522,
-        "tvdb": 446718,
-        "trakt": 228099
-      },
-      "title": "Tires",
-      "year": 2024,
-      "watchlisted": true,
-      "watchlistedAt": "2026-08-11T00:07:54.000Z"
     },
     {
       "type": "movie",
@@ -722,8 +703,8 @@
       "ids": {
         "imdb": "tt13207736",
         "plex": {
-          "guid": null,
-          "slug": null
+          "guid": "606ef58bff5b43002ce0589a",
+          "slug": "monster-2022"
         },
         "slug": "monster-the-lizzie-borden-story",
         "tmdb": 299939,
@@ -756,6 +737,25 @@
     },
     {
       "type": "show",
+      "titleKey": "show:196322",
+      "ids": {
+        "imdb": "tt19231492",
+        "plex": {
+          "guid": "5fd2a1b82de5fd002dd4c7b1",
+          "slug": "dark-matter-2024"
+        },
+        "slug": "dark-matter-2024",
+        "tmdb": 196322,
+        "tvdb": 393159,
+        "trakt": 170597
+      },
+      "title": "Dark Matter",
+      "year": 2024,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-12T00:40:23.000Z"
+    },
+    {
+      "type": "show",
       "titleKey": "show:99741",
       "ids": {
         "imdb": "tt7939218",
@@ -772,6 +772,100 @@
       "year": 2020,
       "watchlisted": true,
       "watchlistedAt": "2026-08-31T00:04:38.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:2710",
+      "ids": {
+        "imdb": "tt0472954",
+        "plex": {
+          "guid": "5d9c0875170e24001f2ab27e",
+          "slug": "its-always-sunny-in-philadelphia"
+        },
+        "slug": "it-s-always-sunny-in-philadelphia",
+        "tmdb": 2710,
+        "tvdb": 75805,
+        "trakt": 2692
+      },
+      "title": "It's Always Sunny in Philadelphia",
+      "year": 2005,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-12T00:40:26.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:113962",
+      "ids": {
+        "imdb": "tt13111078",
+        "plex": {
+          "guid": "62ac863c44b73ea95829962c",
+          "slug": "lioness-1"
+        },
+        "slug": "lioness",
+        "tmdb": 113962,
+        "tvdb": 388589,
+        "trakt": 167187
+      },
+      "title": "Lioness",
+      "year": 2023,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-12T00:40:29.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:85552",
+      "ids": {
+        "imdb": "tt8772296",
+        "plex": {
+          "guid": "5d9c091b170e24001f2af270",
+          "slug": "euphoria-us"
+        },
+        "slug": "euphoria-2019",
+        "tmdb": 85552,
+        "tvdb": 360261,
+        "trakt": 144629
+      },
+      "title": "Euphoria",
+      "year": 2019,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-12T20:24:45.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1492640",
+      "ids": {
+        "imdb": "tt6933238",
+        "plex": {
+          "guid": "5d776d53ad5437001f7d30ae",
+          "slug": "unabomber-1"
+        },
+        "slug": "unabomber-2026",
+        "tmdb": 1492640,
+        "trakt": 1224034
+      },
+      "title": "UNABOMBER",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-16T23:30:00.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:124101",
+      "ids": {
+        "imdb": "tt11815682",
+        "plex": {
+          "guid": "608599a4ac0818002c5e0de3",
+          "slug": "hacks-1"
+        },
+        "slug": "hacks-2021",
+        "tmdb": 124101,
+        "tvdb": 401582,
+        "trakt": 179632
+      },
+      "title": "Hacks",
+      "year": 2021,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-17T13:25:07.000Z"
     },
     {
       "type": "show",

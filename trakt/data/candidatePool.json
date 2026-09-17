@@ -1,7 +1,7 @@
 {
   "meta": {
     "generatedAt": "2026-09-13T13:59:38.869Z",
-    "count": 482,
+    "count": 481,
     "capPerType": 200
   },
   "titles": [
@@ -1933,17 +1933,6 @@
       "year": 2011,
       "source": "genre-explore",
       "discoveredVia": "Thriller"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:27205",
-      "ids": {
-        "tmdb": 27205
-      },
-      "title": "Inception",
-      "year": 2010,
-      "source": "genre-explore",
-      "discoveredVia": "Action"
     },
     {
       "type": "movie",
