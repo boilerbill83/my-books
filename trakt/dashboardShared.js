@@ -64,10 +64,20 @@ const typeLabel = t => t === 'movie' ? 'Movie' : 'TV';
 const titleLink = c => `<a class="tk-trakt-link" href="${esc(traktUrl(c))}" target="_blank" rel="noopener">${esc(c.title)}</a>`;
 
 const STATUS_META = {
-  Watched:    { cls: 'tk-status-tag-watched',    label: 'Watched' },
-  Watchlist:  { cls: 'tk-status-tag-watchlist',  label: 'Watchlist' },
-  Candidate:  { cls: 'tk-status-tag-candidate',  label: 'Candidate' },
-  Dismissed:  { cls: 'tk-status-tag-dismissed',  label: 'Dismissed' },
+  Watched:      { cls: 'tk-status-tag-watched',    label: 'Watched' },
+  // Bill, 2026-09-17: "once the first episode of the next season of
+  // Lowdown premieres, will it go back to the watch list?" — no (the
+  // watchlist-dedup fix holds regardless), but the All Titles table used
+  // to collapse every library.json title to a flat "Watched" label
+  // whether it was genuinely caught up or mid-a-new-season, which was its
+  // own real gap this question surfaced. A title with plays < airedEpisodes
+  // (real, live Trakt numbers once a fresh export captures the new
+  // season) now reads "In Progress" instead — distinct from Watched,
+  // still distinct from Watchlist so no duplicate-row regression.
+  'In Progress': { cls: 'tk-status-tag-inprogress', label: 'In Progress' },
+  Watchlist:    { cls: 'tk-status-tag-watchlist',  label: 'Watchlist' },
+  Candidate:    { cls: 'tk-status-tag-candidate',  label: 'Candidate' },
+  Dismissed:    { cls: 'tk-status-tag-dismissed',  label: 'Dismissed' },
 };
 
 const statusTag = status => {

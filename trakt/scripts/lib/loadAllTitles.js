@@ -170,7 +170,10 @@ export function loadAllTitles() {
   // (Bill, 2026-09-17: "I marked all seasons as watched in Trakt but you
   // had it on the to watch list").
   const seenKeys = new Set();
-  for (const t of library.titles || []) { addRow(t, 'Watched'); seenKeys.add(t.titleKey); }
+  for (const t of library.titles || []) {
+    addRow(t, t.completionStatus === 'in-progress' ? 'In Progress' : 'Watched');
+    seenKeys.add(t.titleKey);
+  }
   for (const t of watchlist.titles || []) { if (!seenKeys.has(t.titleKey)) { addRow(t, 'Watchlist'); seenKeys.add(t.titleKey); } }
   for (const t of candidatePool.titles || []) { if (!seenKeys.has(t.titleKey)) { addRow(t, 'Candidate'); seenKeys.add(t.titleKey); } }
 
