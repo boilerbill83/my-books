@@ -648,6 +648,27 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
     return out;
   };
 
+  // Scoped omdbMeta field counts, restricted to titles actually in the
+  // CURRENT deduped population (the same set fieldStats' own `eligible`/
+  // `populated` figures describe) rather than the raw omdbMetadata.json
+  // cache directly. Real bug found and fixed here: omdbMeta on disk keeps
+  // entries for titles later evicted from candidatePool.json by
+  // prune_candidate_pool.js (no cleanup step removes them) — a raw
+  // Object.values(omdbMeta) scan over-counts by exactly that orphaned
+  // slice, producing a count that can exceed the reported eligible total
+  // (caught live: rtAudTotal read 1287 against only 1156 eligible titles,
+  // a logically impossible "more populated than eligible" claim).
+  const scopedOmdbFieldCounts = (fields) => {
+    const out = {};
+    for (const f of fields) out[f] = 0;
+    for (const { t } of dedupedTitles) {
+      const o = omdbMeta[t.titleKey];
+      if (!o) continue;
+      for (const f of fields) if (o[f] != null) out[f]++;
+    }
+    return out;
+  };
+
   const CUSTOM = {
     imdbId: (f) => {
       const src = bySourceImdb();
@@ -684,11 +705,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
       const popLow = f.populatedPct < 90;
       const qualLow = f.qualityPct < 90;
       const barPhrase = popLow && qualLow ? 'on both' : popLow ? 'on population' : 'on quality';
-      let rtTotal = 0, mcTotal = 0;
-      for (const o of Object.values(omdbMeta || {})) {
-        if (o.rottenTomatoes != null) rtTotal++;
-        if (o.metacritic != null) mcTotal++;
-      }
+      const { rottenTomatoes: rtTotal, metacritic: mcTotal } = scopedOmdbFieldCounts(['rottenTomatoes', 'metacritic']);
       return {
         severity: 'warning',
         ratings: { ease: 5, dataQuality: 6, recEngine: 4, ui: 2 },
@@ -703,8 +720,8 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
           `<code>name</code> actually named the show being looked up (a show's RT page can embed more than one such block, e.g. a "similar ` +
           `shows" rail). Fixed via per-block name matching and re-verified against 12 real, independently researched Tomatometer scores (12/12 ` +
           `matched within a few points) before being re-enabled. RT now merges the same way Metacritic always did — OMDb's own value wins when ` +
-          `present (rare for shows), the scraper only fills a null — currently ${rtTotal} of ${Object.keys(omdbMeta || {}).length} OMDb-cached ` +
-          `titles have an RT score, ${mcTotal} have Metacritic; a real scraper backfill run is what actually moves these numbers going forward, ` +
+          `present (rare for shows), the scraper only fills a null — currently ${rtTotal} of ${f.eligible} OMDb-eligible titles ` +
+          `have an RT score, ${mcTotal} have Metacritic; a real scraper backfill run is what actually moves these numbers going forward, ` +
           `not a code change.`,
         plain: `Not every title has a critic score, and even titles that do often only have one of the two (Rotten Tomatoes or Metacritic), not ` +
           `both — "quality" here means having both. Rotten Tomatoes scraping was turned back on this session after finding and fixing the real ` +
@@ -716,11 +733,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
       };
     },
     audienceScore: (f) => {
-      let rtAudTotal = 0, mcUserTotal = 0;
-      for (const o of Object.values(omdbMeta || {})) {
-        if (o.rtAudience != null) rtAudTotal++;
-        if (o.metacriticUser != null) mcUserTotal++;
-      }
+      const { rtAudience: rtAudTotal, metacriticUser: mcUserTotal } = scopedOmdbFieldCounts(['rtAudience', 'metacriticUser']);
       return {
         severity: 'warning',
         ratings: { ease: 3, dataQuality: 6, recEngine: 2, ui: 2 },
