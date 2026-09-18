@@ -1,8 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-13T13:59:38.869Z",
-    "count": 481,
-    "capPerType": 200
+    "generatedAt": "2026-09-18T01:24:24Z",
+    "count": 499
   },
   "titles": [
     {
@@ -1761,7 +1760,7 @@
       "ids": {
         "tmdb": 1181678
       },
-      "title": "¿Quieres ser mi hijo?",
+      "title": "\u00bfQuieres ser mi hijo?",
       "year": 2023,
       "source": "genre-explore",
       "discoveredVia": "Comedy"
@@ -5021,6 +5020,186 @@
       "title": "The Last House",
       "year": 2026,
       "source": "family-watch-list"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:118642",
+      "ids": {
+        "tmdb": 118642
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:194741",
+      "ids": {
+        "tmdb": 194741
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:244243",
+      "ids": {
+        "tmdb": 244243
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:253321",
+      "ids": {
+        "tmdb": 253321
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:284605",
+      "ids": {
+        "tmdb": 284605
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:2093",
+      "ids": {
+        "tmdb": 2093
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:46381",
+      "ids": {
+        "tmdb": 46381
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:95556",
+      "ids": {
+        "tmdb": 95556
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:287450",
+      "ids": {
+        "tmdb": 287450
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:222026",
+      "ids": {
+        "tmdb": 222026
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:301498",
+      "ids": {
+        "tmdb": 301498
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:285970",
+      "ids": {
+        "tmdb": 285970
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:258742",
+      "ids": {
+        "tmdb": 258742
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:259200",
+      "ids": {
+        "tmdb": 259200
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:330540",
+      "ids": {
+        "tmdb": 330540
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:313172",
+      "ids": {
+        "tmdb": 313172
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:290193",
+      "ids": {
+        "tmdb": 290193
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:285418",
+      "ids": {
+        "tmdb": 285418
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
     }
   ]
 }
