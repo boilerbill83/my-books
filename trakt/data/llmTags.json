@@ -18565,5 +18565,480 @@
    "historical-atrocities"
   ],
   "taggedAt": "2026-09-18"
+ },
+ "show:116135": {
+  "genre": "war",
+  "subgenres": [
+   "historical",
+   "military-drama",
+   "survival-drama"
+  ],
+  "tones": [
+   "gritty",
+   "dark",
+   "intense",
+   "character-driven"
+  ],
+  "subjects": [
+   "war-conflict",
+   "survival",
+   "loyalty"
+  ],
+  "era": null,
+  "taggedAt": "2026-09-18"
+ },
+ "movie:948549": {
+  "genre": "crime",
+  "subgenres": [
+   "crime-thriller",
+   "neo-noir"
+  ],
+  "tones": [
+   "gritty",
+   "dark",
+   "intense",
+   "character-driven"
+  ],
+  "subjects": [
+   "addiction-recovery",
+   "lgbtq",
+   "ambition-reinvention"
+  ],
+  "era": "contemporary",
+  "taggedAt": "2026-09-18"
+ },
+ "movie:1008048": {
+  "genre": "thriller",
+  "subgenres": [
+   "crime-thriller",
+   "political"
+  ],
+  "tones": [
+   "gritty",
+   "intense",
+   "suspenseful",
+   "dark"
+  ],
+  "subjects": [
+   "resistance-rebellion",
+   "corporate-power",
+   "class-wealth-corporate"
+  ],
+  "era": "contemporary",
+  "taggedAt": "2026-09-18"
+ },
+ "movie:1677": {
+  "genre": "biography",
+  "subgenres": [
+   "musical",
+   "character-study"
+  ],
+  "tones": [
+   "inspirational",
+   "melancholy",
+   "character-driven"
+  ],
+  "subjects": [
+   "artistic-creative",
+   "ambition-reinvention",
+   "trauma-abuse"
+  ],
+  "era": "late-20th-century",
+  "taggedAt": "2026-09-18"
+ },
+ "show:62320": {
+  "genre": "comedy",
+  "subgenres": [
+   "dramedy",
+   "ensemble",
+   "family-comedy"
+  ],
+  "tones": [
+   "witty",
+   "character-driven",
+   "thoughtful",
+   "offbeat"
+  ],
+  "subjects": [
+   "marriage-relationships",
+   "identity-belonging",
+   "lgbtq"
+  ],
+  "era": "contemporary",
+  "taggedAt": "2026-09-18"
+ },
+ "movie:473033": {
+  "genre": "crime",
+  "subgenres": [
+   "crime-thriller",
+   "character-study",
+   "dark-comedy"
+  ],
+  "tones": [
+   "gritty",
+   "dark",
+   "intense",
+   "suspenseful"
+  ],
+  "subjects": [
+   "addiction-recovery",
+   "class-wealth-corporate",
+   "ambition-reinvention"
+  ],
+  "era": "contemporary",
+  "taggedAt": "2026-09-18"
+ },
+ "movie:49026": {
+  "genre": "action",
+  "subgenres": [
+   "superhero",
+   "crime-thriller",
+   "psychological-drama"
+  ],
+  "tones": [
+   "gritty",
+   "dark",
+   "intense",
+   "suspenseful"
+  ],
+  "subjects": [
+   "power-corruption",
+   "redemption",
+   "sacrifice-duty"
+  ],
+  "era": "contemporary",
+  "taggedAt": "2026-09-18"
+ },
+ "show:93544": {
+  "genre": "crime",
+  "subgenres": [
+   "organized-crime",
+   "drug-trade",
+   "crime-thriller"
+  ],
+  "tones": [
+   "gritty",
+   "dark",
+   "intense",
+   "character-driven"
+  ],
+  "subjects": [
+   "criminal-life",
+   "ambition-reinvention",
+   "loyalty"
+  ],
+  "era": "contemporary",
+  "taggedAt": "2026-09-18"
+ },
+ "movie:69": {
+  "genre": "biography",
+  "subgenres": [
+   "musical",
+   "character-study"
+  ],
+  "tones": [
+   "gritty",
+   "melancholy",
+   "inspirational",
+   "character-driven"
+  ],
+  "subjects": [
+   "addiction-recovery",
+   "celebrity-fame",
+   "artistic-creative"
+  ],
+  "era": "late-20th-century",
+  "taggedAt": "2026-09-18"
+ },
+ "show:295778": {
+  "genre": "comedy",
+  "subgenres": [
+   "dramedy",
+   "workplace-comedy",
+   "medical"
+  ],
+  "tones": [
+   "witty",
+   "nostalgic",
+   "character-driven"
+  ],
+  "subjects": [
+   "friendship-community",
+   "workplace-culture",
+   "healthcare-medicine"
+  ],
+  "era": "contemporary",
+  "taggedAt": "2026-09-18"
+ },
+ "movie:1124": {
+  "genre": "mystery",
+  "subgenres": [
+   "psychological-thriller",
+   "mystery-drama"
+  ],
+  "tones": [
+   "dark",
+   "twisty",
+   "intense",
+   "slow-burn"
+  ],
+  "subjects": [
+   "ambition-reinvention",
+   "deception-secrets"
+  ],
+  "era": "early-20th-century",
+  "taggedAt": "2026-09-18"
+ },
+ "movie:242582": {
+  "genre": "crime",
+  "subgenres": [
+   "psychological-thriller",
+   "character-study",
+   "crime-thriller"
+  ],
+  "tones": [
+   "gritty",
+   "dark",
+   "intense",
+   "character-driven"
+  ],
+  "subjects": [
+   "ambition-reinvention",
+   "deception-secrets",
+   "power-corruption"
+  ],
+  "era": "contemporary",
+  "taggedAt": "2026-09-18"
+ },
+ "movie:11072": {
+  "genre": "western",
+  "subgenres": [
+   "satire",
+   "buddy-comedy",
+   "dark-comedy"
+  ],
+  "tones": [
+   "witty",
+   "satirical",
+   "hilarious",
+   "offbeat"
+  ],
+  "subjects": [
+   "racism-civil-rights",
+   "identity-belonging"
+  ],
+  "era": "late-19th-century",
+  "taggedAt": "2026-09-18"
+ },
+ "movie:988046": {
+  "genre": "documentary",
+  "subgenres": [
+   "true-crime",
+   "mystery-drama"
+  ],
+  "tones": [
+   "dark",
+   "intense",
+   "suspenseful",
+   "gritty"
+  ],
+  "subjects": [
+   "crime-investigation",
+   "deception-secrets",
+   "trauma-abuse"
+  ],
+  "era": "contemporary",
+  "taggedAt": "2026-09-18"
+ },
+ "show:71578": {
+  "genre": "comedy",
+  "subgenres": [
+   "coming-of-age",
+   "family-drama",
+   "dramedy"
+  ],
+  "tones": [
+   "thoughtful",
+   "offbeat",
+   "character-driven"
+  ],
+  "subjects": [
+   "self-discovery",
+   "identity-belonging",
+   "lgbtq"
+  ],
+  "era": "contemporary",
+  "taggedAt": "2026-09-18"
+ },
+ "movie:8051": {
+  "genre": "romance",
+  "subgenres": [
+   "psychological-drama",
+   "character-study"
+  ],
+  "tones": [
+   "offbeat",
+   "character-driven",
+   "melancholy",
+   "dark"
+  ],
+  "subjects": [
+   "mental-health",
+   "trauma-abuse",
+   "isolation-connection"
+  ],
+  "era": "contemporary",
+  "taggedAt": "2026-09-18"
+ },
+ "show:82744": {
+  "genre": "war",
+  "subgenres": [
+   "dark-comedy",
+   "military-drama",
+   "satire"
+  ],
+  "tones": [
+   "satirical",
+   "dark",
+   "witty",
+   "character-driven"
+  ],
+  "subjects": [
+   "power-corruption",
+   "war-conflict"
+  ],
+  "era": "world-war-ii",
+  "taggedAt": "2026-09-18"
+ },
+ "movie:322": {
+  "genre": "crime",
+  "subgenres": [
+   "psychological-thriller",
+   "crime-thriller",
+   "mystery-drama"
+  ],
+  "tones": [
+   "gritty",
+   "dark",
+   "intense",
+   "slow-burn"
+  ],
+  "subjects": [
+   "grief-loss",
+   "trauma-abuse",
+   "loyalty"
+  ],
+  "era": "contemporary",
+  "taggedAt": "2026-09-18"
+ },
+ "show:106292": {
+  "genre": "fantasy",
+  "subgenres": [
+   "musical",
+   "coming-of-age",
+   "family-comedy"
+  ],
+  "tones": [
+   "inspirational",
+   "witty",
+   "character-driven"
+  ],
+  "subjects": [
+   "self-discovery",
+   "found-family",
+   "artistic-creative"
+  ],
+  "era": "contemporary",
+  "taggedAt": "2026-09-18"
+ },
+ "movie:786": {
+  "genre": "drama",
+  "subgenres": [
+   "coming-of-age",
+   "biography",
+   "musical"
+  ],
+  "tones": [
+   "character-driven",
+   "nostalgic",
+   "melancholy",
+   "thoughtful"
+  ],
+  "subjects": [
+   "artistic-creative",
+   "celebrity-fame",
+   "self-discovery"
+  ],
+  "era": "late-20th-century",
+  "taggedAt": "2026-09-18"
+ },
+ "show:273866": {
+  "genre": "romance",
+  "subgenres": [
+   "romcom",
+   "character-study"
+  ],
+  "tones": [
+   "witty",
+   "character-driven",
+   "offbeat"
+  ],
+  "subjects": [
+   "self-discovery",
+   "ambition-reinvention"
+  ],
+  "era": "19th-century",
+  "taggedAt": "2026-09-18"
+ },
+ "show:313298": {
+  "genre": "documentary",
+  "subgenres": [],
+  "tones": [
+   "thoughtful",
+   "inspirational"
+  ],
+  "subjects": [],
+  "era": "timeless",
+  "taggedAt": "2026-09-18"
+ },
+ "show:245902": {
+  "genre": "documentary",
+  "subgenres": [
+   "true-crime",
+   "docudrama"
+  ],
+  "tones": [
+   "gritty",
+   "dark",
+   "intense"
+  ],
+  "subjects": [
+   "trauma-abuse",
+   "power-corruption",
+   "celebrity-fame"
+  ],
+  "era": "late-20th-century",
+  "taggedAt": "2026-09-18"
+ },
+ "movie:552178": {
+  "genre": "thriller",
+  "subgenres": [
+   "legal",
+   "conspiracy-thriller",
+   "true-crime"
+  ],
+  "tones": [
+   "gritty",
+   "dark",
+   "intense",
+   "slow-burn"
+  ],
+  "subjects": [
+   "corporate-power",
+   "justice-legal-system",
+   "deception-secrets"
+  ],
+  "era": "contemporary",
+  "taggedAt": "2026-09-18"
  }
 }
