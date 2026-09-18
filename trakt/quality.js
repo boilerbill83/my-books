@@ -4091,30 +4091,32 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   {
     findings.push({
       id: 'production-company-signal-missing',
-      severity: 'warning',
-      ratings: { ease: 5, dataQuality: 2, recEngine: 3, ui: 1 },
-      estTokens: 65000, // needs a full enrichment round trip before any signal work can start
-      shortTitle: 'Studio/Production Signal Missing',
-      title: `New idea: TMDB's production_companies field is never captured at all — a studio-affinity signal (A24, Blumhouse, etc.) has no data to test yet`,
-      technical: `Checked <code>enrich_tmdb.py</code>'s <code>extract_entry()</code> directly: it captures genres, keywords, cast/crew credits, ` +
-        `collection membership, network, and more — but never TMDB's <code>production_companies</code> field, which is a standard part of the same ` +
-        `already-fetched <code>/movie/{id}</code>/<code>/tv/{id}</code> response (no extra API call needed, the same "already being fetched, just ` +
-        `not captured" pattern that closed the <code>publisher</code> gap on the book side and the <code>originalLanguage</code>/<code>imdbId</code> ` +
-        `gaps on this one). Distinct from <code>belongsToCollection</code> (a specific franchise, already scored via <code>franchiseBonus()</code>) — ` +
-        `a production company/studio (A24, Blumhouse, 87North) is a different kind of creative-identity signal, closer in spirit to ` +
-        `<code>getCreator()</code>/<code>castBonus()</code> but at the STUDIO level rather than an individual person. Genuinely unverified until the ` +
-        `data exists — unlike the other ideas here, this can't be checked against real numbers yet, since the field isn't captured at all. The real ` +
-        `next step, if pursued, is adding it to <code>extract_entry()</code>, running a <code>REFRESH_ALL</code> backfill pass (the same mechanism ` +
-        `already used for <code>originalLanguage</code>/<code>topCastDetail</code> gaps), and only then checking whether a real correlation exists ` +
-        `before building any scoring signal — the same "verify before building" discipline every other signal here went through.`,
-      plain: `Some studios have a real reputation for a certain kind of movie — A24 for artsy/prestige horror and drama, Blumhouse for low-budget ` +
-        `horror, etc. The app already gives credit for a favorite director or actor, but has no idea which studio made something, because that ` +
-        `piece of information was never collected in the first place, even though it's sitting right there in the same data the app already ` +
-        `fetches. This is a "we'd need to go get the data first" idea, not a "here's a proven effect" one — the honest next step is capturing it ` +
-        `and then checking whether Bill's real ratings actually cluster by studio before building anything on top of it.`,
-      impact: `Unverified by design — flagged as a real, low-cost-to-capture gap (no new API calls, just reading one more field TMDB already sends) ` +
-        `worth investigating, not a confirmed opportunity the way the other ideas here are. Should not be built past the data-capture step without ` +
-        `first checking for a real correlation, the same way every other real signal on this list was checked before being proposed.`,
+      severity: 'good',
+      shortTitle: 'Studio Signal Tested, Not Shipped',
+      title: `Data captured, real correlation found, scoring signal built and tested — regressed precision, not shipped`,
+      technical: `Followed this finding's own documented plan in full. <strong>(1) Captured the data</strong>: <code>enrich_tmdb.py</code>'s ` +
+        `<code>extract_entry()</code> now reads TMDB's <code>production_companies</code> field (capped at 3), already part of the same fetched ` +
+        `response — no extra API call. A real <code>REFRESH_ALL</code> backfill ran against all ~1,300 titles; 99.8% of rated+enriched library ` +
+        `titles now carry it. <strong>(2) Checked for a real correlation</strong> before building anything: a genuine spread exists (global mean ` +
+        `7.83; top studio 101 Studios at 9.36, n=11; bottom Amblin Entertainment at 6.33, n=6). <strong>But checked for redundancy with existing ` +
+        `signals before trusting it</strong> — the same overlap check that sank the earlier creator-critic-trust-gap and premium-network ideas — ` +
+        `and found it immediately: 101 Studios and Bosque Ranch Productions (the two highest-rated) are Taylor Sheridan's own production ` +
+        `companies, 100% already covered by <code>lovedCreators</code>; Amblin (5/6), John Wells Productions (4/5), and Apatow Productions (7/8) ` +
+        `were similarly dominated by creator overlap. <strong>(3) Built a real scratch prototype anyway</strong> rather than stopping at the ` +
+        `overlap estimate (a real eval.js test is more conclusive than a reasoned-about redundancy guess) — <code>studioBonus()</code>, the exact ` +
+        `same tiered-count shape as <code>subjectBonus()</code>/<code>subgenreBonus()</code>, capped at 1.5. Result: precision@100 regressed ` +
+        `89%→88% with calibrated MAE getting WORSE (11.42→11.48, not better) — a clean loss, no compensating gain anywhere. Not shipped; ` +
+        `<code>engine.js</code> confirmed byte-identical to its pre-experiment state.`,
+      plain: `Some studios do have a real reputation for a certain kind of movie — the data confirms it. But checking closer showed the effect is ` +
+        `mostly just "Bill loves Taylor Sheridan" and "Bill loves a few other specific creators" wearing a studio-shaped disguise, since those ` +
+        `creators' own production companies show up as the studio. The app already gives credit for a favorite creator directly, so adding a ` +
+        `second, studio-level credit on top mostly just double-counts the same preference rather than teaching the app anything new. Built a real ` +
+        `test version anyway and it made the engine's real predictions measurably worse, not better, confirming the redundancy theory rather than ` +
+        `just assuming it.`,
+      impact: `A genuine negative result, not an unexplored idea — worth keeping on record so a future session doesn't re-propose the same signal ` +
+        `without this real data. The captured <code>productionCompanies</code> field itself stays (real, verified, zero cost to keep) for a ` +
+        `future idea that might use it differently — e.g. a studio-diversity check in <code>diversityRerank()</code> — just not this direct ` +
+        `rating-affinity shape.`,
     });
   }
 
