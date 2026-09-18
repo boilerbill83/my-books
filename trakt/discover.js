@@ -215,7 +215,7 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
       genres: (meta ? inferSubgenres(meta, llmTags[h.titleKey], undefined, idx.reviewedTags?.[h.titleKey]).map(s => displaySubgenre(s, meta)) : []).join(', ')
         || meta?.genres?.join(', ') || '',
       subjects: (meta ? inferSubjects(meta, llmTags[h.titleKey], undefined, idx.reviewedTags?.[h.titleKey]).map(s => SUBJECT_LABEL[s] || s) : []).join(', '),
-      era: meta ? (ERA_LABEL[inferEra(meta, undefined, idx.reviewedTags?.[h.titleKey])[0]] || '') : '',
+      era: meta ? (ERA_LABEL[inferEra(meta, llmTags[h.titleKey], undefined, idx.reviewedTags?.[h.titleKey])[0]] || '') : '',
       creator: (h.type === 'movie' ? meta?.director : meta?.createdBy?.[0]) || '',
       prestige: meta ? prestigeScore(h, meta, omdb, personMeta) : null,
     });

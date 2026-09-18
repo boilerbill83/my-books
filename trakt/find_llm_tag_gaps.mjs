@@ -12,7 +12,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { inferSubgenres, inferTones, inferSubjects } from './engine.js';
+import { inferSubgenres, inferTones, inferSubjects, inferEra } from './engine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.join(__dirname, 'data');
@@ -47,7 +47,14 @@ for (const list of [watchlist.titles, library.titles, candidatePool.titles]) {
 // the real, previously-undiscovered gap trakt/quality.js's own
 // field-quality-subjects finding flagged (inferSubjects() already reads
 // llmEntry?.subjects correctly; tag_llm.py's prompt just never asked for it).
-let subgenreGaps = 0, toneGaps = 0, subjectGaps = 0;
+// Era added to this gap check (story-time-period-missing dashboard
+// finding): the same zero-extra-API-cost logic as the Subjects addition
+// above — tag_llm.py's prompt now also asks for era on every selected
+// title, so widening selection to catch an era-only gap (subgenre/tone/
+// subjects already covered, but no era) costs nothing extra per call,
+// and closes the real structural reason Era sat at 67% while the other
+// three closed to 87-100%: it never had a third LLM tier at all.
+let subgenreGaps = 0, toneGaps = 0, subjectGaps = 0, eraGaps = 0;
 const gaps = [];
 for (const [titleKey] of seen) {
   const meta = enrichedMeta[titleKey];
@@ -66,13 +73,15 @@ for (const [titleKey] of seen) {
   const subs = inferSubgenres(meta, undefined, 3, reviewed);
   const tones = inferTones(meta, undefined, 4, reviewed);
   const subjects = inferSubjects(meta, undefined, 3, reviewed);
-  const isGap = subs.length === 0 || tones.length === 0 || subjects.length === 0;
+  const era = inferEra(meta, undefined, 1, reviewed);
+  const isGap = subs.length === 0 || tones.length === 0 || subjects.length === 0 || era.length === 0;
   if (isGap) gaps.push(titleKey);
   if (subs.length === 0) subgenreGaps++;
   if (tones.length === 0) toneGaps++;
   if (subjects.length === 0) subjectGaps++;
+  if (era.length === 0) eraGaps++;
 }
 
 fs.writeFileSync(path.join(DATA_DIR, 'llmTagGaps.json'), JSON.stringify(gaps));
-console.log(`${gaps.length} of ${seen.size} enriched titles have a real gap (empty subgenres and/or tones and/or subjects) — wrote trakt/data/llmTagGaps.json`);
-console.log(`  breakdown: ${subgenreGaps} subgenre gaps, ${toneGaps} tone gaps, ${subjectGaps} subject gaps (titles can overlap across these)`);
+console.log(`${gaps.length} of ${seen.size} enriched titles have a real gap (empty subgenres and/or tones and/or subjects and/or era) — wrote trakt/data/llmTagGaps.json`);
+console.log(`  breakdown: ${subgenreGaps} subgenre gaps, ${toneGaps} tone gaps, ${subjectGaps} subject gaps, ${eraGaps} era gaps (titles can overlap across these)`);

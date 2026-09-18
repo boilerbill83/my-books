@@ -1644,9 +1644,16 @@ build from):
   were split into their real keyword sub-groups.
 - **Era** (`inferEra()`) — when the *story* is set, not when the title was
   made. A coarse 4-bucket keyword scheme (`ancient-to-1900`,
-  `early-1900s`, `mid-late-1900s`, `future-setting`) on its own, but
-  mostly resolved (99.7%) via the workbook's much richer 17-value era
-  vocabulary through the same reviewed-override tier below.
+  `early-1900s`, `mid-late-1900s`, `future-setting`) at its own free tier
+  — this bullet previously (inaccurately) claimed the field was "mostly
+  resolved (99.7%)," a number that actually belonged to Subjects/Tones;
+  Era's own real population sat at 67% until `story-time-period-missing`
+  (quality.js) traced the gap to a real structural cause: unlike the
+  other three derived fields, Era never had a third LLM-tagged tier at
+  all, and `ERA_KEYWORDS` has no `contemporary` bucket (no TMDB keyword
+  says "this is present-day"), so a normal present-day-set story was
+  structurally unreachable by the free tier alone. Fixed by adding the
+  same LLM tier the other three already had — see below.
 
 **All five layers share the same reviewed-override-first priority**: every
 `infer*()` function checks `trakt/data/reviewedTags.json` (the curated,

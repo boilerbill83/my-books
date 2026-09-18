@@ -2344,6 +2344,20 @@ const ERA_KEYWORDS = {
   'future-setting': ['post-apocalyptic future', 'future', 'near future', 'distant future', 'dark future', '22nd century', '23rd century'],
 };
 
+// The reviewed workbook's own richer 16-value era scheme (used by both
+// the reviewed override tier and, as of story-time-period-missing, the
+// LLM tier's own output — tag_llm.py's ERAS constant, kept in sync by
+// hand) — distinct from ERA_KEYWORDS' coarser 4-bucket scheme above,
+// which only the raw keyword tier uses. Registered with
+// findTaxonomyCollisions() below so a future era-bucket addition can't
+// silently collide with an unrelated Subgenre/Tone/Subject name.
+const ERAS_CANONICAL_VOCABULARY = [
+  'classical-antiquity', 'early-modern', '18th-century', 'late-19th-century',
+  '19th-century', 'early-20th-century', 'interwar', 'world-war-i', 'world-war-ii',
+  'cold-war', 'late-20th-century', 'contemporary', 'near-future', 'far-future',
+  'multi-era', 'timeless',
+];
+
 // A story is set in one period, not several — limit=1 by default (vs.
 // subgenres'/tones' multi-tag defaults), though the underlying scorer is
 // shared. No overview-text or llmTags fallback tier yet (unlike tones) -
@@ -2359,10 +2373,29 @@ const ERA_KEYWORDS = {
 // (classical-antiquity...timeless) rather than this function's coarse
 // 4-bucket ERA_KEYWORDS scheme - a real vocabulary swap, not just a
 // same-format refinement, same as the other three fields' override tier.
-export function inferEra(meta, limit = 1, reviewed) {
+//
+// story-time-period-missing (quality.js): the other three derived fields
+// all get a third, LLM-tagged tier (tag_llm.py, Claude Haiku 4.5) for
+// exactly the titles the free keyword tier misses — this field never did,
+// which is the real, structural reason it sat at 67% populated while the
+// others closed to 87-100%. llmEntry (a llmTags.json entry, same shape as
+// the other three functions' second parameter — signature reordered to
+// match) is checked LAST, only when both the reviewed override AND the
+// keyword tier come back empty, same fallback-only priority as
+// inferSubgenres()'s own llmEntry tier — a real keyword-backed tag is
+// never second-guessed by the LLM's looser read. tag_llm.py's era pick
+// uses the same richer 17-value workbook vocabulary as the reviewed tier
+// (not the coarse 4-bucket ERA_KEYWORDS scheme), since the two tiers
+// should describe the same granularity — including `contemporary`, the
+// one real value ERA_KEYWORDS structurally cannot produce at all (no
+// present-day setting carries an explicit "this is now" TMDB keyword).
+export function inferEra(meta, llmEntry, limit = 1, reviewed) {
   if (reviewed?.era?.length) return reviewed.era.slice(0, limit);
   if (!meta) return [];
-  return scoreKeywordTags(meta.keywords, ERA_KEYWORDS).slice(0, limit).map(([tag]) => tag);
+  const fromKeywords = scoreKeywordTags(meta.keywords, ERA_KEYWORDS).slice(0, limit).map(([tag]) => tag);
+  if (fromKeywords.length) return fromKeywords;
+  if (llmEntry?.era) return [llmEntry.era].slice(0, limit);
+  return [];
 }
 
 // Bill: "Let's make genre more specific. instead of drama -> historical
@@ -2741,6 +2774,7 @@ export function findTaxonomyCollisions() {
     subgenre: Object.keys(SUBGENRE_KEYWORDS),
     tone: Object.keys(TONE_KEYWORDS),
     subject: SUBJECT_CANONICAL_VOCABULARY,
+    era: ERAS_CANONICAL_VOCABULARY,
   };
   const detailLabels = [];
   for (const detail of Object.values(GENRE_DETAIL_KEYWORDS)) {
