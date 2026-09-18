@@ -501290,5 +501290,229 @@
   "year": 2026,
   "type": "movie",
   "fetchedAt": "2026-09-17"
+ },
+ "show:46381": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "A half-caste beauty emigrates from India to Great Britain, pursues fame and fortune at the cost of personal happiness, and becomes a Hollywood movie star while suppressing the truth of her heritage.",
+  "keywords": [],
+  "originalLanguage": "en",
+  "imdbId": "tt0093808",
+  "voteAverage": 5.0,
+  "voteCount": 3,
+  "popularity": 2.4865,
+  "posterPath": "/gW4RU5HobJLNkuGUAovyBXiSwRC.jpg",
+  "similarToIds": [],
+  "recommendedIds": [
+   33155,
+   107365,
+   262848,
+   90399,
+   51537,
+   286617,
+   214259,
+   116761,
+   13643,
+   81154,
+   13561,
+   65805,
+   68780,
+   100575,
+   1526,
+   81747,
+   211564,
+   2199,
+   211180,
+   213338
+  ],
+  "topCast": [
+   "Mia Sara",
+   "Kirk Douglas",
+   "Gary Cady",
+   "Claire Bloom",
+   "Chaim Topol"
+  ],
+  "topCastDetail": [
+   {
+    "id": 29091,
+    "name": "Mia Sara",
+    "gender": 1
+   },
+   {
+    "id": 2090,
+    "name": "Kirk Douglas",
+    "gender": 2
+   },
+   {
+    "id": 189425,
+    "name": "Gary Cady",
+    "gender": 2
+   },
+   {
+    "id": 29545,
+    "name": "Claire Bloom",
+    "gender": 1
+   },
+   {
+    "id": 10501,
+    "name": "Chaim Topol",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "1987-05-10",
+  "episodeRunTime": 116,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 2,
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "1987-05-17",
+   "seasonNumber": 1,
+   "episodeNumber": 2,
+   "name": "Part 2"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "ABC"
+  ],
+  "creatorCredits": [
+   "Frank von Zerneck"
+  ],
+  "title": "Queenie",
+  "year": 1987,
+  "type": "show",
+  "fetchedAt": "2026-09-18"
+ },
+ "show:285418": {
+  "genres": [
+   "Comedy",
+   "Drama"
+  ],
+  "overview": "A 50-year-old divorcee searches for sex and love whilst juggling caring for her ailing parents and parenting her should-be grown up son.",
+  "keywords": [
+   "parenting",
+   "divorcee",
+   "divorced woman",
+   "mother son relationship",
+   "family caregiving"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt35949226",
+  "voteAverage": 0.0,
+  "voteCount": 0,
+  "popularity": 4.4583,
+  "posterPath": "/bk1zbzbu0xaYQuIANv4Pe8HHyAY.jpg",
+  "similarToIds": [
+   91825,
+   92461,
+   124897,
+   239629,
+   125394,
+   207658,
+   93097,
+   93290,
+   93392,
+   125879,
+   125694,
+   208146,
+   1448,
+   93969,
+   1739,
+   240955,
+   306944,
+   126991,
+   2147,
+   2262
+  ],
+  "recommendedIds": [
+   67280,
+   66859,
+   34307,
+   62320,
+   93290,
+   61637,
+   63161,
+   116450,
+   64043,
+   69555,
+   66230,
+   87428,
+   156401,
+   1088,
+   2595,
+   112077,
+   73925,
+   119181,
+   211,
+   96734
+  ],
+  "topCast": [
+   "Sharon Horgan",
+   "Rupert Friend",
+   "Sharlene Whyte",
+   "Aran Murphy",
+   "Robbie Gee"
+  ],
+  "topCastDetail": [
+   {
+    "id": 21676,
+    "name": "Sharon Horgan",
+    "gender": 1
+   },
+   {
+    "id": 36669,
+    "name": "Rupert Friend",
+    "gender": 2
+   },
+   {
+    "id": 1756550,
+    "name": "Sharlene Whyte",
+    "gender": 1
+   },
+   {
+    "id": 4210247,
+    "name": "Aran Murphy",
+    "gender": 2
+   },
+   {
+    "id": 1119,
+    "name": "Robbie Gee",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2026-09-20",
+  "episodeRunTime": null,
+  "createdBy": [
+   "Sharon Horgan"
+  ],
+  "status": "Returning Series",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 8,
+  "nextEpisodeToAir": {
+   "airDate": "2026-09-20",
+   "seasonNumber": 1,
+   "episodeNumber": 1
+  },
+  "lastEpisodeToAir": null,
+  "currentSeasonFinale": {
+   "seasonNumber": 1,
+   "episodeCount": 8,
+   "finaleEpisodeNumber": 8,
+   "finaleDate": "2026-11-01"
+  },
+  "networks": [
+   "HBO"
+  ],
+  "creatorCredits": [
+   "Sharon Horgan",
+   "Jim Klever-Weis",
+   "Faye Dorn"
+  ],
+  "title": "Youth",
+  "year": 2026,
+  "type": "show",
+  "fetchedAt": "2026-09-18"
  }
 }
