@@ -348,6 +348,52 @@ at baseline (90/96/92) with genreSignal active, precision@100 improved
 comparison (signal on vs. off, same candidates): every live horror
 candidate takes exactly the full -3.0 cap.
 
+### 3b-3. Genre-*pair* rating-preference signal — clamped to **-3 to +3**
+```
+pairs = every unordered pair of a title's (deduped, normalized) genres
+for each pair with >=3 of Bill's rated titles sharing it:
+  delta = pairMeanRating - globalMeanRating
+  if |delta| < 0.7: skip
+  adj += delta × 4
+return clamp(adj, -3, +3)
+```
+`genreSignal()` (§3b-2) and `genreBonus()` both operate on a SINGLE genre at
+a time — neither can see that a specific *combination* of genres runs higher
+or lower for Bill than either genre does alone (e.g. Comedy+Crime landing
+well above Bill's Comedy-alone or Crime-alone average, or a genre pair he
+generally dislikes for reasons the single-genre view can't isolate). This
+signal reads a title's real, deduped `genres[]` array directly (bypassing
+`inferGenre()`'s single-value reduction — the whole point is to see multiple
+genres at once) and builds every unordered pair, checking each against a
+per-pair mean-rating map (`idx.genrePairProfile`, same ≥3-rated-title trust
+floor as every other rating-preference signal in this file).
+
+Deliberately **symmetric** (unlike `genreSignal()`/`subgenreSignal()`) —
+and this is the correct, verified choice, not an oversight: no
+`genrePairBonus()` exists anywhere to grant positive credit for a loved
+genre *combination* by count, so a positive pair-level delta here is
+genuinely new information, not a duplicate of credit already paid out
+elsewhere. (Contrast §3b-2/§3g-2, which are penalty-only specifically
+*because* their positive side would double-pay credit `genreBonus()`/
+`subgenreBonus()` already grant.)
+
+Constants swept independently against `scripts/eval.js`, not assumed from a
+sibling signal: `SCALE` 1-8 all held precision@10/25/50 exactly, with
+scale 4-6 tied for the best MAE (11.42) and scale=8 alone regressing
+precision@100 (89%→88%, a clamp-saturation artifact past that point) — 4
+picked as the conservative start of that plateau. `DEADZONE` swept 0.3/0.5/
+0.7/1.0 at scale=4: 0.7 strictly dominated every other tested value
+(precision@50 92% vs. 90% at 0.5/1.0 and 89% at 1.0's own MAE cost, tied-
+or-better on every other metric) — 0.3 traded precision@100 away (89%→88%)
+for the same precision@50 gain 0.7 gets for free, and 1.0 lost both MAE
+(11.42→11.46) and bottom-50 catch (29→26/50) for no compensating gain.
+
+Verified via `scripts/eval.js`, true before/after (signal fully off at
+scale=0 vs. shipped scale=4/deadzone=0.7/cap=3, same 763-title eval set):
+"great match" (8+/10) precision@50 90%→92%, calibrated MAE 11.45→11.42,
+bottom-50 catch 28→29/50 — all genuine gains, zero tradeoffs — with
+precision@10/25/100 held exactly (100%/100%/89%) throughout.
+
 ### 3c. Dismissal generalization — **-15 (creator) or up to -10 (style)**
 A dismissal shouldn't only remove one exact title. Two reason codes carry
 generalizable meaning:
@@ -1653,6 +1699,7 @@ Run it: `node trakt/scripts/eval.js` from the repo root.
 | Creator/director match | +0 to +15 | +10 loved-count (capped), +5 rating-weight (capped) |
 | Genre match | +0 to +8 | Tiered by loved-genre count (§3b) |
 | Genre rating penalty | -3 to 0 | Rating-preference delta, -0.5 deadzone, penalty-only (§3b-2) |
+| Genre-pair signal | -3 to +3 | Rating-preference delta per genre combo, -0.7 deadzone, symmetric (§3b-3) |
 | Dismissal (creator) | -15 flat | `creator_dislike` reason code |
 | Dismissal (style) | 0 to -10 | `style_dislike`, needs 2+ dismissals |
 | Franchise/collection | +0 to +15 | Movies only; +10 for one loved/liked entry (rating-weighted, continuous) + 3/additional |

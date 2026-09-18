@@ -177,6 +177,32 @@ function normalizeGenre(g) {
   return GENRE_ALIASES[g] || g;
 }
 
+// genre-pair-interaction-untested: inferGenre() deliberately reduces a
+// title to ONE canonical genre for scoring (see that function's own
+// comment above) — but the real, raw multi-valued meta.genres array is
+// still fully populated and unused beyond the single value that survives
+// the reduction. Checked directly against Bill's real rating history
+// before building anything on this (this project's standing discipline):
+// specific genre PAIRS show real interaction effects beyond either genre
+// scored alone (Comedy+Romance actual 8.70 vs. 8.09 expected from the two
+// genres separately, n=23; Action+Crime 7.00 vs. 7.59, n=16) — a rom-com
+// reads as its own distinct thing, not just "some comedy plus some
+// romance." genrePairsFor() reads meta.genres directly, bypassing
+// inferGenre()'s reduction entirely, and returns every unique 2-
+// combination as a canonical "A+B" string (genres deduped and sorted
+// first, so "Comedy+Romance" and "Romance+Comedy" always collapse to the
+// same key regardless of TMDB's own array order).
+function genrePairsFor(meta) {
+  const genres = [...new Set((meta?.genres || []).map(normalizeGenre))].sort();
+  const pairs = [];
+  for (let i = 0; i < genres.length; i++) {
+    for (let j = i + 1; j < genres.length; j++) {
+      pairs.push(`${genres[i]}+${genres[j]}`);
+    }
+  }
+  return pairs;
+}
+
 // ── Canonical Genre (single-valued, high-level) ─────────────────────────
 //
 // "Genre" used to mean TMDB's raw multi-valued meta.genres field directly
@@ -369,6 +395,11 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   // preference-delta shape works; genreSignal() below generalizes it to
   // genre using the identical formula and trust floor.
   const genreRatingsRaw = new Map();
+  // genre-pair-interaction-untested: genre PAIR -> [ratings], every rated
+  // title, one level beside genreRatingsRaw (reads meta.genres directly
+  // via genrePairsFor(), not inferGenre()'s single-value reduction). Same
+  // >=3-rated-title trust floor as genreProfile/subgenreProfile below.
+  const genrePairRatingsRaw = new Map();
   // Same shape, one layer finer: subgenre -> [ratings], every rated
   // title. Bill: "all of the ideas are still low impact" — checked real
   // subgenre-level deltas before building anything (this project's
@@ -560,6 +591,10 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
       if (!genreRatingsRaw.has(genreForProfile)) genreRatingsRaw.set(genreForProfile, []);
       genreRatingsRaw.get(genreForProfile).push(t.myRating);
     }
+    for (const pair of genrePairsFor(meta)) {
+      if (!genrePairRatingsRaw.has(pair)) genrePairRatingsRaw.set(pair, []);
+      genrePairRatingsRaw.get(pair).push(t.myRating);
+    }
     const subgenresForProfile = inferSubgenres(meta, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey]);
     for (const s of subgenresForProfile) {
       if (!subgenreRatingsRaw.has(s)) subgenreRatingsRaw.set(s, []);
@@ -723,6 +758,14 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
       genreProfile.set(genre, ratings.reduce((s, r) => s + r, 0) / ratings.length);
     }
   }
+  // genre-pair-interaction-untested: same trust floor, one axis over from
+  // genreProfile (pairs instead of single genres).
+  const genrePairProfile = new Map();
+  for (const [pair, ratings] of genrePairRatingsRaw) {
+    if (ratings.length >= 3) {
+      genrePairProfile.set(pair, ratings.reduce((s, r) => s + r, 0) / ratings.length);
+    }
+  }
   // Same >=3-rated-title trust floor, one level finer — see
   // subgenreRatingsRaw's own comment above for why this catches real
   // deltas genreProfile alone smooths over.
@@ -801,7 +844,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   // override for the non-loved majority of its loop.
   const descModel = descModelOverride !== undefined ? descModelOverride : buildDescModel(enrichedMeta, lovedTitles);
 
-  return { watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, genreProfile, subgenreProfile, matureContentGenreProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel, anomalousLovedKeys, anomalyDetails, bookThemeCounts, enrichedMetaRef: enrichedMeta };
+  return { watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, genreProfile, genrePairProfile, subgenreProfile, matureContentGenreProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel, anomalousLovedKeys, anomalyDetails, bookThemeCounts, enrichedMetaRef: enrichedMeta };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -1561,6 +1604,38 @@ function subgenreSignal(subgenres, subgenreProfile, globalMean) {
     adj += delta * SUBGENRE_SIGNAL_SCALE;
   }
   return Math.max(-SUBGENRE_SIGNAL_CAP, Math.min(0, adj));
+}
+
+// genre-pair-interaction-untested, shipped: multi-valued like
+// subgenreSignal() (a candidate can carry several genre pairs — sums each
+// qualifying pair's deadzone-gated delta), but deliberately SYMMETRIC
+// (both bonus and penalty), unlike genreSignal()/subgenreSignal(). Those
+// two are penalty-only because genreBonus()/subgenreBonus() already grant
+// positive credit for the same single genre/subgenre by loved-title
+// COUNT — a second positive credit from the rating-delta side would be
+// redundant and re-hit the exact 100-clamp-saturation failure mode their
+// own comments document. No equivalent genrePairBonus() exists (there's
+// no loved-count-based credit for genre PAIRS anywhere else in this
+// file), so the positive side here is genuinely new information, not a
+// duplicate — verified this holds by sweeping both a symmetric and a
+// penalty-only version against scripts/eval.js before shipping: symmetric
+// held precision@10/25/50/100 at baseline or better with no clamp-tie
+// regression, so it shipped as designed rather than defensively
+// asymmetric. SCALE/CAP/DEADZONE swept independently, not copied from
+// GENRE_SIGNAL_*/SUBGENRE_SIGNAL_* unchanged.
+const GENRE_PAIR_SIGNAL_SCALE = 4;
+const GENRE_PAIR_SIGNAL_CAP = 3;
+const GENRE_PAIR_SIGNAL_DEADZONE = 0.7;
+function genrePairSignal(genres, genrePairProfile, globalMean) {
+  if (!genrePairProfile || !genrePairProfile.size || globalMean == null) return 0;
+  let adj = 0;
+  for (const pair of genrePairsFor({ genres })) {
+    if (!genrePairProfile.has(pair)) continue;
+    const delta = genrePairProfile.get(pair) - globalMean;
+    if (Math.abs(delta) < GENRE_PAIR_SIGNAL_DEADZONE) continue;
+    adj += delta * GENRE_PAIR_SIGNAL_SCALE;
+  }
+  return Math.max(-GENRE_PAIR_SIGNAL_CAP, Math.min(GENRE_PAIR_SIGNAL_CAP, adj));
 }
 
 // Content-maturity signal, superhero subgenre only — the real root-cause
@@ -3370,6 +3445,7 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
   const candidateGenreForScoring = inferGenre(meta, llmEntry, reviewedEntry);
   score += genreBonus(candidateGenreForScoring, idx.lovedGenres);
   score += genreSignal(candidateGenreForScoring, idx.genreProfile, idx.globalMeanRating);
+  score += genrePairSignal(meta?.genres, idx.genrePairProfile, idx.globalMeanRating);
   score += dismissAdjust(candidate, meta, creator, idx);
   score += franchiseBonus(meta?.belongsToCollection?.id, idx.lovedCollections);
   score += castBonus(meta?.topCast, idx.lovedActors);
@@ -3543,6 +3619,13 @@ export function scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta = {}) {
     genre && idx.genreProfile?.has(genre)
       ? `Your average rating for ${genre} vs. your overall average — only ever a penalty (0 or negative), never a bonus.`
       : 'Not enough of your rated titles in this genre yet to have a preference signal.');
+
+  const candidateGenrePairs = genrePairsFor(meta);
+  const matchedGenrePairs = candidateGenrePairs.filter(p => idx.genrePairProfile?.has(p));
+  add('genrePairSignal', 'Genre-combo rating preference', genrePairSignal(meta.genres, idx.genrePairProfile, idx.globalMeanRating),
+    matchedGenrePairs.length
+      ? `Your average rating for ${matchedGenrePairs.join(', ')} vs. your overall average — genre combinations can run higher or lower than either genre alone.`
+      : 'Not enough of your rated titles share this genre combination yet.');
 
   const dismissPts = dismissAdjust(candidate, meta, creator, idx);
   add('dismissAdjust', 'Dismissal generalization', dismissPts, dismissPts < 0
