@@ -151,6 +151,24 @@ def extract_entry(kind, data):
         'posterPath': data.get('poster_path'),
         'similarToIds': [r['id'] for r in ((data.get('similar') or {}).get('results') or [])[:20]],
         'recommendedIds': [r['id'] for r in ((data.get('recommendations') or {}).get('results') or [])[:20]],
+        # Studio/Production Signal Missing (quality.js): production_companies
+        # is a standard top-level field on both /movie/{id} and /tv/{id} —
+        # already sitting in the same response this call already fetches, no
+        # extra API cost, same "already being fetched, just not captured"
+        # pattern as originalLanguage/imdbId before it. Distinct from
+        # belongsToCollection (a specific franchise, already scored via
+        # franchiseBonus()) — this is the STUDIO that made it (A24,
+        # Blumhouse, 87North), a different creative-identity signal, closer
+        # in spirit to getCreator()/castBonus() but one level up. Capped at
+        # 3 (a title rarely has more than a couple of real, meaningful
+        # production companies; TMDB sometimes lists distribution/financing
+        # entities past that point that don't carry the same creative-
+        # identity signal). Data-capture only — no scoring signal is built
+        # on this yet; the real next step is a REFRESH_ALL backfill, then
+        # checking for a real correlation with Bill's ratings before
+        # proposing any weight, the same discipline every other signal here
+        # went through.
+        'productionCompanies': [c['name'] for c in (data.get('production_companies') or [])][:3],
     }
 
     # citedVoteCounts (removed 2026-09-15): originally added so
