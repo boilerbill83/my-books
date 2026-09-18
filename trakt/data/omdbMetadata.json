@@ -37780,5 +37780,23 @@
   "director": "Louis Leterrier",
   "rated": null,
   "fetchedAt": "2026-09-17"
+ },
+ "movie:1492640": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": "Janus Metz",
+  "rated": "R",
+  "fetchedAt": "2026-09-18"
  }
 }
