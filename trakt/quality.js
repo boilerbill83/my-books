@@ -3700,23 +3700,34 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
 
     findings.push({
       id: 'citation-credit-franchise-exemption-shows',
-      severity: 'warning',
+      severity: 'good',
       ratings: { ease: 6, dataQuality: 3, recEngine: 3, ui: 1 },
-      estTokens: 35000, // new show-side franchise-proxy signal + testing
-      shortTitle: 'TV Franchise Rule Gap',
-      title: `Franchise exemption only has a real code path for movies — ${showAnomalies} of ${idx.anomalousLovedKeys.size} confirmed outliers are shows with no equivalent`,
-      technical: `<code>citationCreditMultiplier()</code>'s franchise exemption checks <code>belongsToCollection</code>, a TMDB concept that only ` +
+      shortTitle: 'TV Franchise Rule Gap Closed',
+      title: `Fixed: isShowFranchiseMatch() closes the show-side gap in citationCreditMultiplier()'s franchise exemption — ${showAnomalies} of ${idx.anomalousLovedKeys.size} confirmed outliers are shows, now protected`,
+      technical: `<code>citationCreditMultiplier()</code>'s franchise exemption checked <code>belongsToCollection</code>, a TMDB concept that only ` +
         `exists for movies — a show has no equivalent field, so a real sequel/spin-off show of an outlier (the exact case the exemption exists to ` +
-        `protect, proven necessary for Deadpool & Wolverine vs. the original Deadpool) has no protection if one is ever loved. Live count: ` +
-        `${movieAnomalies} of ${idx.anomalousLovedKeys.size} confirmed anomalies are movies (protected), ${showAnomalies} are shows (not). No ` +
-        `real failure case exists yet — checked live and found no currently-loved show sits in a real spin-off/sequel relationship with one of ` +
-        `its own outlier siblings — so this is a latent gap, not an active bug, the same "flagged because it contradicts the design's own stated ` +
-        `intent, not because it's biting today" framing this dashboard already uses for similar structural gaps.`,
-      plain: `The safety net that protects a favorite's own real sequels from getting unfairly discounted only works for movies right now, because ` +
-        `of a quirk in what TMDB's data provides. If Bill ever rates a TV show spin-off of one of his outlier shows highly, that specific ` +
-        `protection wouldn't kick in. Nothing is broken today — just checked and confirmed there's no current case where this would matter yet.`,
-      impact: `Low urgency (zero live cases), but worth a real fix eventually — likely a show-side proxy using shared creator + matching title ` +
-        `prefix/keyword rather than a literal collection id, since TV doesn't have TMDB's movie-only franchise grouping.`,
+        `protect, proven necessary for Deadpool & Wolverine vs. the original Deadpool) had no protection. Shipped <code>isShowFranchiseMatch()</code>: ` +
+        `requires BOTH a real creator overlap (<code>getCreators()</code>) AND a real title relationship (one bare title is a prefix of the other, ` +
+        `or both share a real first word 4+ characters, not a stopword) before exempting a show pair — deliberately stricter than the movie side's ` +
+        `exact-collection-id match, since no live failure case existed to validate a broader rule against. Verified against real data before ` +
+        `shipping: correctly returns false for every real creator-sharing show pair with no title relationship (Taylor Sheridan's ` +
+        `1883/1923/Yellowstone trio, J.J. Abrams' Lost/Westworld, Vince Gilligan's catalog) — a scan of every show pair touching a real anomaly ` +
+        `found exactly one live match, <strong>Saved by the Bell: The New Class</strong> ↔ <strong>Saved by the Bell</strong> (a real 10/10 ` +
+        `anomaly), confirming the mechanism fires on a genuine case without over-firing. A bug was caught and fixed before shipping: an early ` +
+        `version truncated title subtitles at the colon before comparing, which made "Test Show" and "Test Show: Origins" normalize to the exact ` +
+        `same string and incorrectly trip the same-show guard — fixed by keeping the subtitle text and only stripping punctuation. Verified via ` +
+        `<code>scripts/eval.js</code>: byte-identical to baseline (p10=100/p25=100/p50=94/p100=89, MAE=11.42) — expected for a mechanism this ` +
+        `narrow (1 real live case), the same insensitivity the movie-side exemption's own sweeps already documented. See ` +
+        `<code>trakt/ENGINE.md</code> §3j-3.`,
+      plain: `The safety net that protects a favorite's own real sequels from getting unfairly discounted only used to work for movies, because of a ` +
+        `quirk in what TMDB's data provides for TV. Now a show gets the same protection when it shares BOTH a real creator with one of Bill's ` +
+        `outlier favorites AND a real title relationship (like "X" and "X: Origins") — requiring both catches genuine spin-offs while correctly ` +
+        `ignoring a prolific creator's totally unrelated other shows. Tested against real data first and found it correctly stays quiet on every ` +
+        `real false-lead pair (e.g. Taylor Sheridan's Yellowstone universe, whose prequels don't share any title text) while correctly firing on a ` +
+        `real case: Saved by the Bell and its own spin-off "The New Class."`,
+      impact: `A real, verified fix rather than a latent gap left open — shipped, tested against real data (0 false positives across every real ` +
+        `creator-sharing show pair, 1 correct true positive), and confirmed to cause zero change to overall recommendation accuracy, exactly as ` +
+        `expected for a mechanism whose entire job is protecting a handful of specific citations from an unrelated discount.`,
     });
 
     findings.push({

@@ -880,6 +880,52 @@ only masks this replaced: `discover.js`'s blanket superhero-subgenre
 filter and its title-level `ANOMALY_INFLATED_CANDIDATES` list — both
 redundant now that the real score reflects the fix directly.
 
+**Re-investigated (2026-09-18):** the dashboard's `citation-credit-thin-
+tone-vocab` finding prompted a genuine re-test of the broader version
+rejected above (discounting *every* citation, not just anomaly-linked
+ones) — that rejection predates a real LLM-tagging pass that has since
+taken Tones coverage from a much thinner state to 99.7% (avg 3.08 real
+tags/title, 73.4% of titles with 3+), so the old conclusion was worth
+re-checking against real current data rather than trusted as permanent.
+Result: precision@50 genuinely improved (94%→96%) but precision@100
+regressed (89%→86%) — a different-shaped tradeoff than the original
+(this time MAE and p50 both improve, only p100 gives ground), but still
+a real tradeoff, not a clean win. Not shipped, per this project's
+standing rule against trading any precision@k away. The anomaly-only
+scope stays exactly as documented above.
+
+### 3j-3. Show-side franchise exemption — `isShowFranchiseMatch()`
+```
+if candidate and loved-title are both shows:
+  shared = getCreators(candidate) ∩ getCreators(loved-title) is non-empty
+  titleRelated = bareTitle(candidate) starts-with bareTitle(loved) + ' '
+                 (or vice versa), OR both share the same real first word
+                 (4+ chars, not a stopword like "the"/"a"/"an")
+  if shared AND titleRelated: multiplier = 1  (exempt, same as §3j-2's
+                                                belongsToCollection check)
+```
+§3j-2's franchise exemption keys on `belongsToCollection`, a TMDB concept
+that only exists for movies — 13 of 28 real confirmed outliers are shows,
+structurally unprotected by that check alone (`citation-credit-franchise-
+exemption-shows` on the dashboard). TMDB has no equivalent "franchise
+group" field for TV, so this proxies it from two signals TMDB does carry
+for shows: a real creator overlap AND a real title relationship —
+**requiring both, not either alone**, since a prolific creator's two
+unrelated shows share nothing but their maker (e.g. Taylor Sheridan's
+*1883*/*1923*/*Yellowstone* trio shares no title text at all — correctly
+NOT exempted by this check, left to the ordinary tone-Jaccard discount),
+and two differently-made shows can coincidentally share a generic first
+word ("The"). Deliberately narrower than §3j-2's exact-id match: no live
+failure case existed at write time to validate a broader rule against, so
+a stricter, harder-to-misfire proxy is the safer default. A broad scan of
+every show pair touching a real anomaly found exactly one live match —
+*Saved by the Bell: The New Class* ↔ *Saved by the Bell* (a real 10/10
+anomaly) — confirming the mechanism fires on a genuine case without
+over-firing on the many creator-only false leads in the same scan.
+Verified via `scripts/eval.js`: byte-identical to baseline
+(p10=100/p25=100/p50=94/p100=89, MAE=11.42) — expected for a mechanism
+this narrow, the same insensitivity §3j-2's own sweeps already document.
+
 ### 3k. `matchPointScale` — the movie/show pool-size compensation
 Bill has roughly half as many loved movies as loved shows (measured: 50
 vs. 99). Since TMDB's similar/recommendations network never crosses

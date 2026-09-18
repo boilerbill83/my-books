@@ -649,7 +649,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
         const key = titleKey(t.type, id);
         const citedMeta = enrichedMeta[key];
         const mult = citedMeta
-          ? citationCreditMultiplier(citedMeta, llmTags[key], reviewedTags[key], meta, llmTags[t.titleKey], reviewedTags[t.titleKey], t.titleKey, anomalousLovedKeys)
+          ? citationCreditMultiplier(citedMeta, llmTags[key], reviewedTags[key], meta, llmTags[t.titleKey], reviewedTags[t.titleKey], t.titleKey, anomalousLovedKeys, key)
           : 1;
         reverseSimilar.set(key, (reverseSimilar.get(key) || 0) + w * mult);
       }
@@ -2230,6 +2230,46 @@ const TONE_JACCARD_NEUTRAL_PRIOR = 0.376;
 // below it, the raw Jaccard is blended toward the neutral prior in
 // proportion to how thin the vocabulary actually is.
 const TONE_JACCARD_MIN_RELIABLE_UNION = 4;
+// citation-credit-franchise-exemption-shows (quality.js): the movie-side
+// franchise exemption above keys on belongsToCollection, a TMDB concept
+// that simply doesn't exist for shows — 13 of 28 real confirmed outliers
+// are shows, all structurally unprotected by that check alone. TMDB has
+// no equivalent "franchise group" field for TV, so this proxies it from
+// two signals TMDB does carry for shows: a real creator overlap (the
+// same person(s) made both) AND a real title relationship (one title is
+// a genuine continuation of the other's name, not just a coincidental
+// word overlap) — requiring BOTH, not either alone, since a prolific
+// creator's two unrelated shows share nothing but their maker, and two
+// differently-made shows can coincidentally share a generic first word.
+// Deliberately narrower than the movie side's exact-id match: no live
+// failure case exists yet to validate against (checked before writing
+// this), so a stricter, harder-to-misfire proxy is the safer default —
+// widening it only makes sense once a real spin-off case actually shows
+// up and gets missed.
+// Punctuation-only normalization — deliberately does NOT truncate at a
+// colon/dash the way a "same show, different cut" dedup normalizer would.
+// A real spin-off's subtitle (e.g. "Origins") lives exactly where that
+// truncation would have thrown it away, so keeping it is what lets the
+// prefix check below actually see it.
+function bareShowTitle(title) {
+  return (title || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+}
+const SHOW_TITLE_STOPWORDS = new Set(['the', 'a', 'an']);
+function isShowFranchiseMatch(candidateMeta, candidateKey, lovedMeta, lovedKey) {
+  if (!candidateKey?.startsWith('show:') || !lovedKey?.startsWith('show:')) return false;
+  const candCreators = new Set(getCreators('show', candidateMeta, candidateKey));
+  const lovedCreators = getCreators('show', lovedMeta, lovedKey);
+  if (!candCreators.size || !lovedCreators.length) return false;
+  const sharedCreator = lovedCreators.some(c => candCreators.has(c));
+  if (!sharedCreator) return false;
+  const candTitle = bareShowTitle(candidateMeta?.title);
+  const lovedTitle = bareShowTitle(lovedMeta?.title);
+  if (!candTitle || !lovedTitle || candTitle === lovedTitle) return false; // no title, or the same show cited under two keys
+  if (candTitle.startsWith(lovedTitle + ' ') || lovedTitle.startsWith(candTitle + ' ')) return true;
+  const candFirst = candTitle.split(' ')[0];
+  const lovedFirst = lovedTitle.split(' ')[0];
+  return candFirst.length >= 4 && !SHOW_TITLE_STOPWORDS.has(candFirst) && candFirst === lovedFirst;
+}
 function toneJaccard(tagsA, tagsB) {
   if (!tagsA.length || !tagsB.length) return null;
   const a = new Set(tagsA), b = new Set(tagsB);
@@ -2240,7 +2280,7 @@ function toneJaccard(tagsA, tagsB) {
   const confidence = Math.min(1, union.size / TONE_JACCARD_MIN_RELIABLE_UNION);
   return confidence * rawJ + (1 - confidence) * TONE_JACCARD_NEUTRAL_PRIOR;
 }
-function citationCreditMultiplier(candidateMeta, candidateLlm, candidateReviewed, lovedMeta, lovedLlm, lovedReviewed, lovedKey, anomalousLovedKeys) {
+function citationCreditMultiplier(candidateMeta, candidateLlm, candidateReviewed, lovedMeta, lovedLlm, lovedReviewed, lovedKey, anomalousLovedKeys, candidateKey) {
   if (!anomalousLovedKeys?.has(lovedKey)) return 1;
   // Franchise exemption: a loved title's own real sequels/prequels share
   // its distinguishing identity even when their own tone tags aren't a
@@ -2250,6 +2290,9 @@ function citationCreditMultiplier(candidateMeta, candidateLlm, candidateReviewed
   // original Deadpool below its own sequels in a real leave-one-out test.
   const collectionId = candidateMeta?.belongsToCollection?.id;
   if (collectionId != null && collectionId === lovedMeta?.belongsToCollection?.id) return 1;
+  // Show-side analog (citation-credit-franchise-exemption-shows) — see
+  // isShowFranchiseMatch()'s own header comment for the full design.
+  if (isShowFranchiseMatch(candidateMeta, candidateKey, lovedMeta, lovedKey)) return 1;
   const j = toneJaccard(
     inferTones(candidateMeta, candidateLlm, undefined, candidateReviewed),
     inferTones(lovedMeta, lovedLlm, undefined, lovedReviewed),
@@ -3484,7 +3527,7 @@ function baseSignals(candidate, idx, meta, omdbEntry) {
     if (raw <= 0) continue;
     const lovedMeta = idx.enrichedMetaRef?.[id];
     const mult = lovedMeta
-      ? citationCreditMultiplier(meta, llmEntry, reviewedEntry, lovedMeta, idx.llmTags?.[id], idx.reviewedTags?.[id], id, idx.anomalousLovedKeys)
+      ? citationCreditMultiplier(meta, llmEntry, reviewedEntry, lovedMeta, idx.llmTags?.[id], idx.reviewedTags?.[id], id, idx.anomalousLovedKeys, candidate.titleKey)
       : 1;
     forwardMatches += raw * mult;
   }
@@ -3714,7 +3757,7 @@ export function scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta = {}) {
     if (w <= 0) continue;
     const lovedMeta = idx.enrichedMetaRef?.[id];
     const mult = lovedMeta
-      ? citationCreditMultiplier(meta, llmEntry, reviewedEntry, lovedMeta, idx.llmTags?.[id], idx.reviewedTags?.[id], id, idx.anomalousLovedKeys)
+      ? citationCreditMultiplier(meta, llmEntry, reviewedEntry, lovedMeta, idx.llmTags?.[id], idx.reviewedTags?.[id], id, idx.anomalousLovedKeys, candidate.titleKey)
       : 1;
     if (mult < 1) forwardDiscounted = true;
     forwardMatches += w * mult;
