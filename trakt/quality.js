@@ -869,31 +869,34 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
     // the honest signal, not a data problem, per that row's own comment).
     // Population is a separate, still-real gap — investigated fresh below.
     era: (f) => {
-        const reviewedTotal = 793, reviewedWithEra = 790; // from a live count of trakt/data/reviewedTags.json
         return {
           severity: 'warning',
-          ratings: { ease: 5, dataQuality: 5, recEngine: 1, ui: 3 },
-          estTokens: 38000, // proven pattern (LLM tagging tier) to replicate for Era
+          ratings: { ease: 4, dataQuality: 6, recEngine: 1, ui: 3 },
+          estTokens: 6000, // the LLM tier is now shipped — what's left is triggering/verifying a real backfill batch
           shortTitle: 'Story Time Period Missing',
-          title: `Era is ${f.populatedPct.toFixed(1)}% populated — the LLM tagging pass that closed this exact gap for Subgenres/Tones was never extended to Era`,
-          technical: `<code>inferEra()</code> has only two real tiers — <code>reviewedTags.json</code> (a hand-curated workbook, ${reviewedWithEra} of ` +
-            `${reviewedTotal} entries carry a real <code>.era</code> value) and a raw 4-bucket <code>ERA_KEYWORDS</code> keyword match against TMDB's ` +
-            `<code>keywords</code> array. A live count confirms this is the actual bottleneck: of the ${f.populated} titles that DO have an era, ` +
-            `757 (96.4%) come straight from the reviewed workbook and only 28 come from the raw keyword tier — deliberately, since ERA_KEYWORDS has ` +
-            `NO "contemporary" bucket at all (a present-day setting has no TMDB keyword to match, and the code correctly refuses to guess it as a ` +
-            `default). The other three derived taxonomy fields on this table (Subgenres, Tones, Subjects below) all have a THIRD tier — ` +
-            `<code>trakt/data/llmTags.json</code>, populated by <code>tag_llm.py</code> (Claude Haiku 4.5) for exactly the titles the free keyword ` +
-            `tier misses — which is precisely why Subgenres/Tones sit at 87-100% populated while Era, missing that tier entirely, sits at ${f.populatedPct.toFixed(1)}%. ` +
-            `<code>inferEra()</code>'s own signature (<code>meta, limit, reviewed</code>) doesn't even accept an <code>llmEntry</code> parameter — ` +
-            `the gap is structural, not a threshold or a few missed titles.`,
-          plain: `"When is this story set" only gets filled in two ways: a person manually reviewed it, or a TMDB tag happened to literally say ` +
-            `something like "1980s" or "world war ii." There's no third option for the common case — a normal, present-day story has no such tag to ` +
-            `match, so it's left blank rather than guessed. Three sibling fields (genre style, mood, and topic) all got a smarter AI-assisted pass ` +
-            `months ago specifically to close this same kind of gap; Era just never got that same treatment.`,
-          impact: `Era is purely display/audit today (confirmed via a full grep — it's never read by <code>matchScore()</code> or any scoring ` +
-            `function, only Deep Dive, the All Titles table, and the daily CSV export), so closing this gap would not move recommendations. The fix ` +
-            `is a real, scoped, low-risk extension of an already-proven pattern (add <code>era</code> to <code>tag_llm.py</code>'s prompt/output ` +
-            `alongside subgenres/tones, add a matching <code>llmEntry</code> parameter and tier to <code>inferEra()</code>), not a new mechanism.`,
+          title: `Era is ${f.populatedPct.toFixed(1)}% populated — the LLM tier now exists, but a real caching bug let the first real run backfill only 24 of 359 gaps`,
+          technical: `The 3-tier LLM extension this finding originally proposed is now shipped: <code>inferEra(meta, llmEntry, limit, reviewed)</code> ` +
+            `gained the <code>llmEntry</code> parameter, <code>tag_llm.py</code>'s prompt now asks for <code>era</code> on every title it already ` +
+            `tags (zero extra API cost), and <code>find_llm_tag_gaps.mjs</code> now includes era in its gap check. The first real ` +
+            `<code>workflow_dispatch</code> run (batch_size 500) found <strong>359 genuine era gaps</strong> but only tagged <strong>24</strong> of ` +
+            `them — root-caused via the job's own log rather than assumed: <code>tag_llm.py</code>'s <code>main()</code> filtered ` +
+            `<code>pending</code> with a flat <code>k not in cache</code> check, so any title that already had ANY <code>llmTags.json</code> entry ` +
+            `(most were tagged for subgenres/tones back on 2026-08-23, long before the <code>era</code> field existed) was silently treated as ` +
+            `"already done" forever, even though it never actually got an era value — the same "looks retried, never actually is" bug class ` +
+            `<code>enrich_omdb.py</code>'s <code>is_stale_negative()</code> was already built to guard against on a sibling pipeline. Confirmed live: ` +
+            `1,177 of 1,201 cached entries predate <code>era</code> entirely. Fixed by checking field-completeness per cached entry (` +
+            `<code>genre</code>/<code>subjects</code>/<code>era</code> all present) instead of bare cache membership — re-running the check locally ` +
+            `against the real data confirms this unlocks <strong>789</strong> titles the old logic could never have reached, no matter how many ` +
+            `future runs it got. Not yet re-run at scale against the fixed script — the real backfill is the next step.`,
+          plain: `A smarter AI-assisted pass to fill in "when is this story set" was built and given one test run — but a bug meant it only fixed 24 ` +
+            `titles instead of the roughly 360 that actually need it, because it wrongly treated "this title has ever been tagged for ANYTHING" as ` +
+            `"this title has everything, skip it," even for titles tagged months before the era feature existed. Found and fixed the bug; the real, ` +
+            `full-size backfill run is the next step to actually see the population number move.`,
+          impact: `Era is purely display/audit today (confirmed via a full grep — never read by <code>matchScore()</code> or any scoring function, ` +
+            `only Deep Dive, the All Titles table, and the daily CSV export), so this doesn't move recommendations either way. The remaining work is ` +
+            `mechanical: trigger <code>trakt-tag-llm.yml</code> for real against the fixed script and verify the population number actually moves ` +
+            `before calling this resolved, the same "only claim resolved once verified with real production data" discipline every other LLM-tier ` +
+            `rollout on this list already followed.`,
         };
     },
     subjects: (f) => {

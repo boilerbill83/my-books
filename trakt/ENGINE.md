@@ -1653,7 +1653,16 @@ build from):
   all, and `ERA_KEYWORDS` has no `contemporary` bucket (no TMDB keyword
   says "this is present-day"), so a normal present-day-set story was
   structurally unreachable by the free tier alone. Fixed by adding the
-  same LLM tier the other three already had — see below.
+  same LLM tier the other three already had — see below. **A second, real
+  bug found while exercising the new tier (2026-09-18)**: `tag_llm.py`'s
+  own `pending` filter excluded any title already carrying ANY
+  `llmTags.json` entry, regardless of whether that entry predated the
+  `era` field — since most entries were cached back when only
+  subgenres/tones existed, the first real backfill run found 359 genuine
+  era gaps but could only reach 24 of them. Fixed by checking per-entry
+  field-completeness (`genre`/`subjects`/`era` all present) instead of
+  bare cache membership, unlocking the other 789 previously-unreachable
+  titles for a future run.
 
 **All five layers share the same reviewed-override-first priority**: every
 `infer*()` function checks `trakt/data/reviewedTags.json` (the curated,
