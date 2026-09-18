@@ -256,7 +256,26 @@ def main():
         sys.exit(1)
     gap_keys = set(json.load(open(gaps_file)))
     by_key = {t['titleKey']: t for t in all_titles}
-    pending = [by_key[k] for k in gap_keys if k in by_key and k not in cache]
+
+    # A title already in `cache` is only truly done once it carries every
+    # field this script now writes. Real bug found and fixed 2026-09-18:
+    # this used to be a flat `k not in cache` check, so any title tagged
+    # BEFORE a field was added (genre/subjects landed together on
+    # 2026-08-24/09-06; era landed 2026-09-18) got permanently skipped the
+    # moment it had ANY cache entry, even though it never actually got that
+    # newer field. Confirmed live: 1,177 of 1,201 cached entries predate
+    # `era` entirely, and of the 359 real era gaps find_llm_tag_gaps.mjs
+    # found, only 24 were ever reachable under the old check — the other
+    # 335 could never be fixed by any future run, the exact "looks retried,
+    # never actually is" bug class this project's negative-cache history
+    # already knows (see trakt/enrich_omdb.py's is_stale_negative()). A
+    # `subjects`-key check alone would suffice today (it's the oldest of
+    # the three add-on fields still missing anywhere), but checking all
+    # three keeps this correct through any future field addition too.
+    def is_complete(entry):
+        return 'genre' in entry and 'subjects' in entry and 'era' in entry
+    pending = [by_key[k] for k in gap_keys
+               if k in by_key and (k not in cache or not is_complete(cache[k]))]
 
     batch = pending[:BATCH_SIZE]
     print(f'{len(pending)} titles need LLM tagging (free tiers miss both fields), processing {len(batch)}')
