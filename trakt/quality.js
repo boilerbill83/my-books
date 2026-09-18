@@ -3672,7 +3672,16 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         ` Verified via <code>scripts/eval.js</code> swept across every union threshold 2-8: zero measurable change at any value (this ` +
         `mechanism's real blast radius is too narrow — anomaly-linked citations only — for this leave-one-out sample to discriminate it, the ` +
         `same limitation <code>CITATION_WEIGHT_UNKNOWN</code>'s own comment already documents), so 4 is kept as the principled, non-arbitrary ` +
-        `choice (matching <code>inferTones()</code>'s real tag cap) rather than a value <code>eval.js</code> could pick for us.`,
+        `choice (matching <code>inferTones()</code>'s real tag cap) rather than a value <code>eval.js</code> could pick for us. ` +
+        `<strong>Re-investigated (Bill: "start on" this finding):</strong> the anomaly-only gate exists because widening this same discount to ` +
+        `ALL citations was tried once before and regressed precision at every tested floor — but that test predates a real LLM-tagging pass that ` +
+        `since took Tones coverage from a much thinner state to 99.7%, average real tags/title 3.08 (73.4% of titles now carry 3+ tags). Worth a ` +
+        `genuine re-test rather than trusting a stale conclusion. Built a scratch variant removing the <code>!anomalousLovedKeys?.has(lovedKey)` +
+        `</code> gate entirely (every citation gets the same tone-Jaccard-based discount, not just anomaly-linked ones) and ran it against the ` +
+        `real <code>scripts/eval.js</code> harness: precision@50 genuinely improved (94%&rarr;96%) but precision@100 regressed (89%&rarr;86%) — a ` +
+        `real tradeoff, not a clean win, and this project's standing rule is to never trade any precision@k away for a gain elsewhere. Not shipped ` +
+        `— the anomaly-only scope stays. The richer tag data changed the SHAPE of the old regression (this time p50 improves, not just p100/MAE), ` +
+        `but didn't eliminate it.`,
       plain: `The fix works partly by checking whether a candidate shares the SPECIFIC mood/tone that makes an outlier favorite special, not just its ` +
         `genre — but that check used to trust a "perfect match" the same whether it was backed by a lot of real tags or just one or two ` +
         `coincidental ones. Now a match backed by very little real vocabulary gets treated as much less certain, closer to "we don't really know" ` +
@@ -3682,7 +3691,11 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
           `them, and now get a genuine discount instead of being treated as a confirmed match.` : `no live case currently active.`),
       impact: `Verified with real before/after numbers on a live, currently-active case rather than a stale hypothetical — the fix generalizes to ` +
         `any future thin-vocabulary coincidence, not just the one example that prompted it. Zero cost to overall precision/MAE per the ` +
-        `<code>scripts/eval.js</code> sweep above.`,
+        `<code>scripts/eval.js</code> sweep above. The natural next step (widening the same idea to every citation, not just anomaly-linked ones) ` +
+        `was re-tested for real against today's much richer tag data rather than left as an untested assumption — genuinely closer to a win than ` +
+        `the original attempt, but still a real tradeoff (p50 up, p100 down), so it stays un-shipped. This finding will likely stay open ` +
+        `indefinitely at a low, single-digit case count — that's the honest, by-design residual of a discount-not-exclude mechanism, not an ` +
+        `unfinished fix.`,
     });
 
     findings.push({
