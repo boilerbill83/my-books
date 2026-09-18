@@ -11,18 +11,30 @@ whether to close this gap with an LLM pass vs. a free-but-lower-
 quality genre-only fallback vs. accepting the keyword/overview ceiling
 as-is).
 
-Writes to trakt/data/llmTags.json (titleKey -> {subgenres, tones,
-taggedAt}), a separate cache never merged into enrichedMetadata.json —
-same discipline as omdbMetadata.json/scrapedShowRatings.json, so the
-source of every subgenre/tone tag stays traceable. engine.js's
-inferSubgenres()/inferTones() consult this as a third, lowest-priority
-tier — only when both the keyword and (tones only) overview-text tiers
-already returned nothing, never overriding a higher-confidence tag.
+Also tags genre, subjects, and era on every selected title at zero extra
+API cost (one call already covers all five fields) — genre and subjects
+were added once each was found to have a real, wired-but-unused LLM tier
+(inferGenre()/inferSubjects()); era was added once inferEra() gained one
+(story-time-period-missing — Era never had a third tier at all before,
+which is why it sat at 67% populated while the free-tier-plus-LLM fields
+closed to 87-100%).
+
+Writes to trakt/data/llmTags.json (titleKey -> {genre, subgenres, tones,
+subjects, era, taggedAt}), a separate cache never merged into
+enrichedMetadata.json — same discipline as omdbMetadata.json/
+scrapedShowRatings.json, so the source of every tag stays traceable.
+engine.js's inferSubgenres()/inferTones()/inferSubjects()/inferEra() each
+consult this as their own third, lowest-priority tier — only when the
+free tiers already returned nothing, never overriding a higher-confidence
+tag (inferGenre() is the one exception, checking its LLM tier BEFORE its
+own weaker deterministic classifier — see that function's own comment).
 
 Every returned tag is filtered against the exact same canonical
 SUBGENRE_KEYWORDS/TONE_KEYWORDS vocabulary keys engine.js already uses
-— no invented tags, same guardrail tag_with_haiku.py itself already
-uses for the book side's canonical theme/tone vocabulary.
+(era against reviewedTags.json's real vocabulary, the richer scheme
+inferEra()'s reviewed tier already uses, not engine.js's coarser
+ERA_KEYWORDS) — no invented tags, same guardrail tag_with_haiku.py
+itself already uses for the book side's canonical theme/tone vocabulary.
 
 Run manually:   ANTHROPIC_API_KEY=... python3 trakt/tag_llm.py [batch_size]
 GitHub Action:  .github/workflows/trakt-tag-llm.yml (manual dispatch only)
@@ -108,6 +120,22 @@ SUBJECTS = ['addiction-recovery', 'drug-addiction', 'grief-loss', 'suicide', 'te
             'social-inequality', 'sports-competition', 'supernatural-paranormal',
             'technology-surveillance', 'vigilante-justice', 'war-conflict', 'workplace-culture',
             'wrongful-conviction', 'youth-and-adolescence', 'societal-collapse']
+# Exact canonical vocabulary from trakt/data/reviewedTags.json's real .era
+# values (the workbook's own richer scheme, not engine.js's coarse
+# 4-bucket ERA_KEYWORDS) — kept in sync by hand, same discipline as
+# SUBGENRES/TONES/SUBJECTS above. Added per the story-time-period-missing
+# Improvement Opportunities finding: inferEra() never had a third LLM tier
+# at all (unlike the other three fields), which is the real reason it sat
+# at 67% populated while the others closed to 87-100% — ERA_KEYWORDS has
+# no "contemporary" bucket (no TMDB keyword says "this is present-day"),
+# so a present-day story was structurally unreachable by the free tier.
+# Zero extra API cost for any title already selected for subgenre/tone/
+# subject tagging; find_llm_tag_gaps.mjs also now selects a title purely
+# for an era gap.
+ERAS = ['classical-antiquity', 'early-modern', '18th-century', 'late-19th-century',
+        '19th-century', 'early-20th-century', 'interwar', 'world-war-i', 'world-war-ii',
+        'cold-war', 'late-20th-century', 'contemporary', 'near-future', 'far-future',
+        'multi-era', 'timeless']
 
 
 def get_json(url, body, headers, timeout=60):
@@ -160,17 +188,19 @@ TMDB keywords: {keywords}
 Plot summary: {overview}
 
 Return exactly this shape:
-{{"genre": "...", "subgenres": [...], "tones": [...], "subjects": [...]}}
+{{"genre": "...", "subgenres": [...], "tones": [...], "subjects": [...], "era": "..."}}
 
 Rules:
 - genre: exactly ONE value chosen ONLY from this list, the single best-fitting high-level genre: {', '.join(GENRES)}
 - subgenres: 1-3 values chosen ONLY from this list, most fitting first: {', '.join(SUBGENRES)}
 - tones: 1-4 values chosen ONLY from this list, most fitting first: {', '.join(TONES)}
 - subjects: 0-3 values chosen ONLY from this list, most fitting first — the real human-condition subject matter underneath the genre/plot (grief, addiction, class, identity, etc.), NOT a restatement of genre or subgenre: {', '.join(SUBJECTS)}
+- era: exactly ONE value chosen ONLY from this list — WHEN THE STORY IS SET (not when the title was made): {', '.join(ERAS)}
 - Base your answer on the actual genres/keywords/plot summary above, not the title alone.
 - For genre specifically: TMDB's own genre tags are a starting point, not the final answer - TMDB over-applies "Drama" as a near-universal secondary tag, so don't default to it just because it's present. Pick whichever single value best captures what the story is actually ABOUT.
 - For subjects specifically: only pick a value if the plot summary or keywords genuinely support it — an empty array is a normal, correct answer for a large share of plot-driven genre titles that have no deeper human-condition theme beyond their genre (e.g. a straightforward heist or procedural), don't force one.
-- If genuinely nothing in a list fits (subgenres/tones/subjects only, genre always needs a pick), return an empty array for it rather than forcing a weak match."""
+- For era specifically: "contemporary" is the correct answer for the large majority of present-day-set stories — pick it whenever nothing in the plot/keywords signals a different real-world time period. Use "timeless" only for a story with no identifiable real-world period at all (a fable, an abstract setting). Use "multi-era" only when the story genuinely spans multiple distinct periods (e.g. a dual 1940s/present-day timeline), not just a long single-era span.
+- If genuinely nothing in a list fits (subgenres/tones/subjects only — genre and era always need a pick), return an empty array for it rather than forcing a weak match."""
     raw, _ = call_haiku(prompt)
     raw = raw.strip().removeprefix('```json').removeprefix('```').removesuffix('```').strip()
     out = json.loads(raw)
@@ -178,7 +208,8 @@ Rules:
     subgenres = [s for s in out.get('subgenres', []) if s in SUBGENRES][:3]
     tones = [tn for tn in out.get('tones', []) if tn in TONES][:4]
     subjects = [s for s in out.get('subjects', []) if s in SUBJECTS][:3]
-    return genre, subgenres, tones, subjects
+    era = out.get('era') if out.get('era') in ERAS else None
+    return genre, subgenres, tones, subjects, era
 
 
 def load_titles():
@@ -233,24 +264,25 @@ def main():
     failures = 0
     for i, t in enumerate(batch, 1):
         try:
-            genre, subgenres, tones, subjects = tag_title(t)
+            genre, subgenres, tones, subjects, era = tag_title(t)
         except Exception as e:
             failures += 1
             print(f'  [{i}/{len(batch)}] FAIL {t["title"][:45]}: {e}')
             time.sleep(0.4)
             continue
-        # genre/subjects are both a real bonus of this same batch, not the
-        # reason a title was selected — this script's selection criterion
-        # is "free tiers miss subgenres/tones/subjects" (see
-        # find_llm_tag_gaps.mjs, extended to include subjects gaps too).
-        # inferGenre() (engine.js) checks this llmEntry.genre tier before
-        # its own weaker (~60% accuracy) deterministic classifier, and
-        # inferSubjects() checks llmEntry.subjects as its own third tier —
-        # any title that passes through here gets both, at no extra API
+        # genre/subjects/era are all a real bonus of this same batch, not
+        # the reason a title was selected — this script's selection
+        # criterion is "free tiers miss subgenres/tones/subjects/era" (see
+        # find_llm_tag_gaps.mjs). inferGenre() (engine.js) checks this
+        # llmEntry.genre tier before its own weaker (~60% accuracy)
+        # deterministic classifier, inferSubjects() checks llmEntry.subjects
+        # as its own third tier, and inferEra() checks llmEntry.era as its
+        # own third (and, until this change, entirely missing) tier — any
+        # title that passes through here gets all three, at no extra API
         # cost beyond the subgenre/tone call already being made.
         cache[t['titleKey']] = {'genre': genre, 'subgenres': subgenres, 'tones': tones,
-                                 'subjects': subjects, 'taggedAt': time.strftime('%Y-%m-%d')}
-        print(f'  [{i}/{len(batch)}] {genre or "no-genre"}/{len(subgenres)}sub/{len(tones)}tone/{len(subjects)}subj | {t["title"][:45]}')
+                                 'subjects': subjects, 'era': era, 'taggedAt': time.strftime('%Y-%m-%d')}
+        print(f'  [{i}/{len(batch)}] {genre or "no-genre"}/{len(subgenres)}sub/{len(tones)}tone/{len(subjects)}subj/{era or "no-era"} | {t["title"][:45]}')
         if i % 25 == 0:
             json.dump(cache, open(CACHE_FILE, 'w'), indent=1)
         time.sleep(0.4)

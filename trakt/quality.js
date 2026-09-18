@@ -463,15 +463,16 @@ const FIELD_REGISTRY = [
     note: 'A second layer beneath genre/subgenre — real social/human-condition subject matter (addiction, ' +
       'grief, trauma, class, etc.), targeting 5-25 titles per canonical bucket. Partial by design — not every ' +
       'story genuinely has one — see the Subjects consolidation finding below for the live numbers.' },
-  { key: 'era', label: 'Era (story setting)', source: 'Derived (keywords + reviewed)', critical: false,
+  { key: 'era', label: 'Era (story setting)', source: 'Derived (keywords + LLM + reviewed)', critical: false,
     eligible: (t, meta) => !!meta,
-    populated: (t, meta, omdb, llmEntry, reviewed) => inferEra(meta, undefined, reviewed).length > 0,
-    quality: (t, meta, omdb, llmEntry, reviewed) => inferEra(meta, undefined, reviewed).length > 0,
-    values: (t, meta, omdb, llmEntry, reviewed) => inferEra(meta, undefined, reviewed),
+    populated: (t, meta, omdb, llmEntry, reviewed) => inferEra(meta, llmEntry, undefined, reviewed).length > 0,
+    quality: (t, meta, omdb, llmEntry, reviewed) => inferEra(meta, llmEntry, undefined, reviewed).length > 0,
+    values: (t, meta, omdb, llmEntry, reviewed) => inferEra(meta, llmEntry, undefined, reviewed),
     noSpecificityInQuality: true,
-    note: 'When the STORY is set, not when it was made (via inferEra(), plus a richer 17-value curated ' +
-      'override for reviewed titles). Quality = row completeness only — the ~71% contemporary-setting share ' +
-      'is a real, verified reflection of Bill\'s library, not a tagging gap.' },
+    note: 'When the STORY is set, not when it was made (via inferEra() — keyword tier, then trakt/data/llmTags.json ' +
+      'for titles the free tier misses, then trakt/data/reviewedTags.json\'s richer curated override, checked first). ' +
+      'Quality = row completeness only — the real contemporary-setting share is a real, verified reflection of ' +
+      'Bill\'s library, not a tagging gap.' },
 ];
 
 // Bill: "for each field determine the optimal value and then build that

@@ -96,7 +96,7 @@ async function load() {
   const subgenres = inferSubgenres(meta, llmTags[key], undefined, reviewedTags?.[key]);
   const tones = inferTones(meta, llmTags[key], undefined, reviewedTags?.[key]);
   const subjects = inferSubjects(meta, llmTags[key], undefined, reviewedTags?.[key]);
-  const era = inferEra(meta, undefined, reviewedTags?.[key]);
+  const era = inferEra(meta, llmTags[key], undefined, reviewedTags?.[key]);
   const myRating = status === 'Watched' ? raw.myRating : null;
   const castAges = resolveCastAges(candidate, enrichedMeta, personMeta);
   const prestige = candidate.type === 'show' ? prestigeQualityScore(candidate, meta, omdbEntry, personMeta) : null;
