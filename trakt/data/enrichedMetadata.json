@@ -501514,5 +501514,133 @@
   "year": 2026,
   "type": "show",
   "fetchedAt": "2026-09-18"
+ },
+ "show:295778": {
+  "genres": [
+   "Comedy"
+  ],
+  "overview": "J.D. & Turk scrub in together for the first time in a long time\u2013medicine has changed, interns have changed, but their bromance has stood the test of time. Characters new and old navigate the waters of Sacred Heart with laughter, heart and some surprises along the way.",
+  "keywords": [
+   "sequel",
+   "hospital",
+   "bromance",
+   "doctor",
+   "dramedy",
+   "medical drama",
+   "workplace comedy",
+   "dramatic",
+   "adoring",
+   "compassionate",
+   "excited"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt40197357",
+  "voteAverage": 7.8,
+  "voteCount": 105,
+  "popularity": 30.6906,
+  "posterPath": "/nNNM50G7p9C3n4vgidCiybsIdHA.jpg",
+  "similarToIds": [
+   245325,
+   34642,
+   62264,
+   95486,
+   95487,
+   2180,
+   2117,
+   2131,
+   62180,
+   62187,
+   95380,
+   62117,
+   2207,
+   62412,
+   62414,
+   2269,
+   2301,
+   2305,
+   2312,
+   2316
+  ],
+  "recommendedIds": [
+   44857,
+   1456,
+   60766,
+   1530,
+   202101,
+   62649,
+   1100,
+   4454,
+   4477,
+   115,
+   2996,
+   72313,
+   63398,
+   2316,
+   971,
+   1964,
+   3968,
+   110,
+   1849,
+   3253
+  ],
+  "topCast": [
+   "Zach Braff",
+   "Donald Faison",
+   "Sarah Chalke"
+  ],
+  "topCastDetail": [
+   {
+    "id": 5367,
+    "name": "Zach Braff",
+    "gender": 2
+   },
+   {
+    "id": 49002,
+    "name": "Donald Faison",
+    "gender": 2
+   },
+   {
+    "id": 49001,
+    "name": "Sarah Chalke",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2026-02-25",
+  "episodeRunTime": null,
+  "createdBy": [
+   "Bill Lawrence"
+  ],
+  "status": "Returning Series",
+  "numberOfSeasons": 2,
+  "numberOfEpisodes": 12,
+  "nextEpisodeToAir": {
+   "airDate": "2026-09-30",
+   "seasonNumber": 2,
+   "episodeNumber": 1
+  },
+  "lastEpisodeToAir": {
+   "airDate": "2026-04-15",
+   "seasonNumber": 1,
+   "episodeNumber": 9,
+   "name": "My Celebration"
+  },
+  "currentSeasonFinale": {
+   "seasonNumber": 2,
+   "episodeCount": 6,
+   "finaleEpisodeNumber": 6,
+   "finaleDate": "2026-10-28"
+  },
+  "networks": [
+   "ABC"
+  ],
+  "creatorCredits": [
+   "Bill Lawrence",
+   "Jeff Ingold",
+   "Judy Reyes"
+  ],
+  "title": "Scrubs",
+  "year": 2026,
+  "type": "show",
+  "fetchedAt": "2026-09-18"
  }
 }
