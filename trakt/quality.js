@@ -769,10 +769,11 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
           `~62% this finding previously described as final.`,
       };
     },
+    // Same false-permanently-resolved bug as Subjects/Tones, same fix.
     subgenres: (f) => ({
-      severity: 'good',
+      severity: (f.populatedPct < 90 || f.qualityPct < 90) ? 'warning' : 'good',
       ratings: { ease: 3, dataQuality: 4, recEngine: 3, ui: 1 },
-      shortTitle: 'Genre Details Now Complete',
+      shortTitle: (f.populatedPct < 90 || f.qualityPct < 90) ? 'Genre Details Drifted Again' : 'Genre Details Now Complete',
       title: `Subgenres coverage is ${f.populatedPct.toFixed(1)}% — closed with a real LLM-tagging pass`,
       technical: `<code>inferSubgenres()</code> coverage progression: 64.6% -> 69.8% -> ${f.populatedPct.toFixed(1)}% across four real ` +
         `passes (${f.populated} of ${f.eligible} eligible titles). Passes 1-2: whole-dataset then still-uncovered-only keyword mining ` +
@@ -791,15 +792,26 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
         `session, per your choice, had an AI read each remaining title's real genre/keyword/plot info individually and pick the best-` +
         `fitting category — the same technique the book side already uses for its own tagging. Closed almost the entire remaining gap ` +
         `(coverage now ${f.populatedPct.toFixed(1)}%) with real, spot-checked accuracy, not a guess. Only 2 titles have no real fit and ` +
-        `were correctly left blank rather than forced.`,
-      impact: `Real coverage essentially closed (${f.populatedPct.toFixed(1)}%, up from 64.6% at the start of this work) with genuine ` +
-        `per-title accuracy, not a generic default — and it measurably helped the recommendation engine too (MAE improved, no precision ` +
-        `metric regressed). The 2 remaining gaps are legitimate "no real fit" cases, not a data or process gap.`,
+        `were correctly left blank rather than forced.` +
+        (f.populatedPct < 90 || f.qualityPct < 90
+          ? ` Since then, real new titles have kept getting discovered and none have gone through that same AI tagging step yet — coverage ` +
+            `has genuinely drifted back down to ${f.populatedPct.toFixed(1)}% as a result, not a re-opened bug.`
+          : ''),
+      impact: (f.populatedPct < 90 || f.qualityPct < 90)
+        ? `Not a new problem — the exact same proven fix, it just needs a fresh run against the ${f.eligible - f.populated} titles ` +
+          `discovered since the last one. Re-triggering <code>trakt-tag-llm.yml</code> should close this the same way it did the first time.`
+        : `Real coverage essentially closed (${f.populatedPct.toFixed(1)}%, up from 64.6% at the start of this work) with genuine ` +
+          `per-title accuracy, not a generic default — and it measurably helped the recommendation engine too (MAE improved, no precision ` +
+          `metric regressed). The 2 remaining gaps are legitimate "no real fit" cases, not a data or process gap.`,
     }),
+    // Same false-permanently-resolved bug as Subjects above, same fix:
+    // severity was hardcoded 'good' the moment the real LLM batch closed
+    // this gap, so it could never re-surface once new untagged titles
+    // (Youth batch, genre-explore rounds) dragged live coverage back down.
     tones: (f) => ({
-      severity: 'good',
+      severity: (f.populatedPct < 90 || f.qualityPct < 90) ? 'warning' : 'good',
       ratings: { ease: 3, dataQuality: 4, recEngine: 3, ui: 1 },
-      shortTitle: 'Movie Moods Now Complete',
+      shortTitle: (f.populatedPct < 90 || f.qualityPct < 90) ? 'Movie Moods Drifted Again' : 'Movie Moods Now Complete',
       title: `Tones coverage is ${f.populatedPct.toFixed(1)}% — closed with a real LLM-tagging pass`,
       technical: `<code>inferTones()</code> coverage progression across four real passes: 18.1% -> 25.6% -> 29.1% -> ${f.populatedPct.toFixed(1)}% ` +
         `(${f.populated} of ${f.eligible} eligible titles). Passes 1-3 (keyword mining, then still-uncovered tail-mining, then an ` +
@@ -817,10 +829,17 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
         `subject matter, no matter how the free approaches were tuned. This session, per your choice, had an AI read each remaining ` +
         `title's real context individually and pick the best-fitting mood words — closing nearly all of the remaining gap with real, ` +
         `spot-checked accuracy. It also happened to make the recommendation engine slightly more accurate in the process, not just more ` +
-        `complete.`,
-      impact: `Real coverage essentially closed (${f.populatedPct.toFixed(1)}%, up from 18.1% at the start of this work) with genuine ` +
-        `per-title accuracy. A genuine win-win — closing the data gap also improved live recommendation accuracy, unlike the earlier ` +
-        `overview-text pass which traded a small amount of ranking precision for real coverage.`,
+        `complete.` +
+        (f.populatedPct < 90 || f.qualityPct < 90
+          ? ` Since then, real new titles have kept getting discovered and none have gone through that same AI tagging step yet — coverage ` +
+            `has genuinely drifted back down to ${f.populatedPct.toFixed(1)}% as a result, not a re-opened bug.`
+          : ''),
+      impact: (f.populatedPct < 90 || f.qualityPct < 90)
+        ? `Not a new problem — the exact same proven fix, it just needs a fresh run against the ${f.eligible - f.populated} titles ` +
+          `discovered since the last one. Re-triggering <code>trakt-tag-llm.yml</code> should close this the same way it did the first time.`
+        : `Real coverage essentially closed (${f.populatedPct.toFixed(1)}%, up from 18.1% at the start of this work) with genuine ` +
+          `per-title accuracy. A genuine win-win — closing the data gap also improved live recommendation accuracy, unlike the earlier ` +
+          `overview-text pass which traded a small amount of ranking precision for real coverage.`,
     }),
     awards: (f) => ({
       severity: 'warning',
@@ -877,10 +896,19 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
         };
     },
     subjects: (f) => {
+        // Bug found + fixed in a later re-assessment pass: this finding was
+        // hardcoded severity:'good' at the moment the real LLM batch closed
+        // the gap (99.2% at the time), the exact false-permanently-resolved
+        // pattern already caught once for "Genre" — new titles discovered
+        // since (Youth resolve batch, several genre-explore rounds) never
+        // went through tag_llm.py, so live population has drifted back down
+        // without this finding ever re-surfacing to say so. Now computed
+        // live like every other field-quality finding, not a one-time flag.
+        const isOpenNow = f.populatedPct < 90 || f.qualityPct < 90;
         return {
-          severity: 'good',
+          severity: isOpenNow ? 'warning' : 'good',
           ratings: { ease: 3, dataQuality: 6, recEngine: 5, ui: 2 },
-          shortTitle: 'Story Topics Now Complete',
+          shortTitle: isOpenNow ? 'Story Topics Drifted Again' : 'Story Topics Now Complete',
           title: `Fixed: Subjects is now ${f.populatedPct.toFixed(1)}% populated — tag_llm.py's LLM tier was dead code on the producing side, now wired up`,
           technical: `<code>inferSubjects(meta, llmEntry, limit, reviewed)</code> already had the exact right 3-tier shape (reviewed -> keyword -> ` +
             `<code>llmEntry?.subjects</code>) and is a real, live scoring signal (<code>subjectBonus()</code>, wired into <code>baseSignals()</code> ` +
@@ -898,9 +926,15 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
           plain: `"What is this story really about underneath the genre" (grief, addiction, class, etc.) already had three ways to get filled ` +
             `in, and the smartest one — asking an AI to read the description and pick from the real subject list — was built into the code but ` +
             `the separate script that actually calls the AI was never told to ask for it. Fixed, and a real batch run confirms it: population ` +
-            `jumped from 78% to 99%.`,
-          impact: `A real, verified fix, not just a code change — closes the field-quality gap AND feeds real signal directly into ` +
-            `<code>subjectBonus()</code>'s live scoring, unlike Era (display-only). Confirmed via a real production run, not just unit-tested.`,
+            `jumped from 78% to 99% at the time.` +
+            (isOpenNow ? ` Since then, real new titles have kept getting discovered (a resolve batch, several rounds of TMDB-similarity discovery) ` +
+              `and none of them have gone through that same AI tagging step yet — population has genuinely drifted back down to ` +
+              `${f.populatedPct.toFixed(1)}% as a result, not a re-opened bug.` : ''),
+          impact: isOpenNow
+            ? `Not a new problem — the exact same proven fix, it just needs a fresh run against the ${f.eligible - f.populated} titles ` +
+              `discovered since the last one. Re-triggering <code>trakt-tag-llm.yml</code> should close this the same way it did the first time.`
+            : `A real, verified fix, not just a code change — closes the field-quality gap AND feeds real signal directly into ` +
+              `<code>subjectBonus()</code>'s live scoring, unlike Era (display-only). Confirmed via a real production run, not just unit-tested.`,
         };
     },
     omdbRecord: (f) => {
@@ -4275,7 +4309,17 @@ const renderImpRatings = ratings => {
 // specifically so this function is safe to call twice for two different
 // sections (main list + backlog) without the second call's resolved-count
 // text silently overwriting the first's on a shared element id.
-function renderImprovementOpportunities(findings, targetId = 'improvementList', noteId = 'improvementResolvedNote') {
+//
+// maxCount (Bill: "just show the top ten opportunities for now") caps how
+// many OPEN (non-'good') findings render, applied after the same severity-
+// then-impactScore sort that numbers them — so "top 10" always means the
+// 10 highest-ranked, never an arbitrary array-order slice. Only the main-
+// list call passes this; the backlog call leaves it null (uncapped) since
+// backlog items are a deliberately separate, smaller, non-competing bucket
+// per Bill's own "that doesn't count in the ten" instruction — they were
+// already excluded from this list's input array before maxCount is ever
+// applied, not truncated by it.
+function renderImprovementOpportunities(findings, targetId = 'improvementList', noteId = 'improvementResolvedNote', maxCount = null) {
   const el = document.getElementById(targetId);
   if (!el) return;
   // Bill: "once something is resolved, remove it from the list" — a
@@ -4296,15 +4340,22 @@ function renderImprovementOpportunities(findings, targetId = 'improvementList', 
   // numbers below a real, defensible meaning instead of an arbitrary
   // tiebreak.
   const severityOrder = { critical: 0, serious: 1, warning: 2, good: 3 };
-  const open = findings
+  const openRanked = findings
     .filter(f => f.severity !== 'good')
     .sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]
       || (b.impactScore ?? computeImpactScore(b.ratings)) - (a.impactScore ?? computeImpactScore(a.ratings)));
+  const truncatedCount = maxCount != null && openRanked.length > maxCount ? openRanked.length - maxCount : 0;
+  const open = maxCount != null ? openRanked.slice(0, maxCount) : openRanked;
   const noteEl = noteId ? document.getElementById(noteId) : null;
   if (noteEl) {
-    noteEl.textContent = resolvedCount
-      ? `${resolvedCount} previously-flagged issue${resolvedCount === 1 ? '' : 's'} ${resolvedCount === 1 ? 'has' : 'have'} been fixed and verified, and ${resolvedCount === 1 ? 'is' : 'are'} no longer shown here.`
-      : '';
+    noteEl.textContent = [
+      resolvedCount
+        ? `${resolvedCount} previously-flagged issue${resolvedCount === 1 ? '' : 's'} ${resolvedCount === 1 ? 'has' : 'have'} been fixed and verified, and ${resolvedCount === 1 ? 'is' : 'are'} no longer shown here.`
+        : '',
+      truncatedCount
+        ? `Showing the top ${maxCount} by impact; ${truncatedCount} lower-priority open item${truncatedCount === 1 ? '' : 's'} not shown here.`
+        : '',
+    ].filter(Boolean).join(' ');
   }
 
   // Bill: "visualize the Improvement Opportunities differently; show them
@@ -4698,7 +4749,7 @@ async function load() {
       ? `OMDb fields (audience score, awards) are ${fmtNum(omdbEligible)} titles eligible but 0 enriched — needs the OMDB_API_KEY secret before that pipeline can run.`
       : `${fmtNum(omdbFound)}/${fmtNum(omdbEligible)} eligible titles have an OMDb record.`);
 
-  renderImprovementOpportunities(allFindings.filter(f => !f.backlog));
+  renderImprovementOpportunities(allFindings.filter(f => !f.backlog), 'improvementList', 'improvementResolvedNote', 10);
   renderImprovementOpportunities(allFindings.filter(f => f.backlog), 'backlogList', null);
   renderReleaseLog(releaseLog?.entries || []);
 }
