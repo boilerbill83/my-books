@@ -11407,7 +11407,7 @@
   "metacriticUser": null,
   "mcUrl": null,
   "mcUserAttempted": true,
-  "checkedAt": "2026-09-04"
+  "checkedAt": "2026-09-18"
  },
  "show:103516": {
   "rottenTomatoes": 92,
@@ -11576,7 +11576,7 @@
   "metacriticUser": null,
   "mcUrl": null,
   "mcUserAttempted": true,
-  "checkedAt": "2026-09-04"
+  "checkedAt": "2026-09-18"
  },
  "show:43016": {
   "rottenTomatoes": 71,
@@ -11650,11 +11650,11 @@
   "rtAttempted": "2026-09-04",
   "rtAudienceAttempted": true,
   "rtCandidatesTried": null,
-  "metacritic": null,
-  "metacriticUser": null,
-  "mcUrl": null,
+  "metacritic": 71,
+  "metacriticUser": 51,
+  "mcUrl": "https://www.metacritic.com/tv/grown-ish/",
   "mcUserAttempted": true,
-  "checkedAt": "2026-09-04"
+  "checkedAt": "2026-09-18"
  },
  "movie:272": {
   "rottenTomatoes": 85,
@@ -17999,5 +17999,18 @@
   "mcUrl": "https://www.metacritic.com/movie/the-last-house/",
   "mcUserAttempted": true,
   "checkedAt": "2026-09-17"
+ },
+ "movie:1492640": {
+  "rottenTomatoes": null,
+  "rtAudience": null,
+  "rtUrl": null,
+  "rtAttempted": "2026-09-18",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": 2,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": "https://www.metacritic.com/movie/unabomber/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-09-18"
  }
 }
