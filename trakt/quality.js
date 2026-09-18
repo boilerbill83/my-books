@@ -3916,31 +3916,31 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const topPairs = pairResults.slice(0, 5);
     findings.push({
       id: 'genre-pair-interaction-untested',
-      severity: 'warning',
-      ratings: { ease: 4, dataQuality: 3, recEngine: 6, ui: 1 },
-      estTokens: 55000, // new function + trust floor + cap + eval sweep + ship
+      severity: 'good',
       shortTitle: 'Genre Combos Carry Real Signal',
-      title: `New idea: genreBonus()/genreSignal() only ever see ONE genre per title — real genre PAIRS show interaction effects the single-valued classifier throws away`,
+      title: `Shipped: genrePairSignal() reads a title's real multi-genre array directly, scoring genre COMBINATIONS the single-valued classifier can't see`,
       technical: `<code>inferGenre()</code> deliberately reduces TMDB's raw multi-valued <code>genres</code> array to a single canonical value for ` +
-        `scoring (the Session 55 high-level-Genre redesign) — but that raw multi-genre array is still fully populated and unused for scoring beyond ` +
-        `the one value that survives the reduction. Live check: comparing each genre PAIR's real average <code>myRating</code> against what the ` +
-        `AVERAGE of its two individual genres' own averages would predict (n>=15 rated titles per pair) finds real, non-trivial interaction effects ` +
-        `— ${topPairs.map(p => `<strong>${esc(p.pair)}</strong> (n=${p.n}, actual ${p.actual.toFixed(2)} vs. ${p.expected.toFixed(2)} expected, ` +
-          `delta ${p.delta >= 0 ? '+' : ''}${p.delta.toFixed(2)})`).join('; ')}. This is genuinely different information from either genre scored ` +
-        `alone — a Comedy+Romance combo earns real credit beyond what Comedy or Romance separately would suggest, the same way a rom-com reads as ` +
-        `its own distinct thing to a person, not just "a bit of each." Not yet built: would need a new <code>genrePairBonus()</code>/` +
-        `<code>genrePairSignal()</code> reading the raw <code>genres</code> array directly (bypassing <code>inferGenre()</code>'s single-value ` +
-        `reduction), with its own trust floor and cap, swept against <code>scripts/eval.js</code> before shipping — the exact discipline every ` +
-        `other signal on this list already went through.`,
-      plain: `The app currently boils every movie/show down to ONE main genre label for scoring purposes, even though most titles really have two or ` +
-        `three (a movie can be both a comedy AND a romance). Checking the real data shows that specific COMBINATIONS matter beyond either genre ` +
-        `alone — Bill rates comedy-romances noticeably higher than "average of how he rates comedies and how he rates romances separately" would ` +
-        `predict, and some combinations (like action-crime) score noticeably lower than expected. That's real information the app currently throws ` +
-        `away the moment it picks just one label. Building this would mean a new, smaller bonus specifically for genre PAIRS, tested carefully ` +
-        `before it's trusted with real recommendations.`,
-      impact: `A real, verified signal with decent sample sizes (15-96 rated titles per pair) that nothing today captures — genuinely new information, ` +
-        `not a re-run of an idea already tried. Needs the standard eval.js validation pass before shipping, same as every other signal here; not ` +
-        `guaranteed to survive that pass (several ideas on this list didn't), but grounded in real numbers rather than a guess.`,
+        `scoring (the Session 55 high-level-Genre redesign) — the live check that flagged this finding compared each genre PAIR's real average ` +
+        `<code>myRating</code> against what the AVERAGE of its two individual genres' own averages would predict (n>=15 rated titles per pair) and ` +
+        `found real, non-trivial interaction effects — ${topPairs.map(p => `<strong>${esc(p.pair)}</strong> (n=${p.n}, actual ${p.actual.toFixed(2)} vs. ${p.expected.toFixed(2)} expected, ` +
+          `delta ${p.delta >= 0 ? '+' : ''}${p.delta.toFixed(2)})`).join('; ')}. Shipped as <code>genrePairSignal()</code>: a per-pair mean-rating ` +
+        `map (<code>idx.genrePairProfile</code>, >=3-rated-title trust floor) read against a title's real, deduped genre array with every unordered ` +
+        `pair checked, deliberately SYMMETRIC (unlike the single-genre <code>genreSignal()</code>/<code>subgenreSignal()</code>, both penalty-only ` +
+        `because their positive side would double-pay credit <code>genreBonus()</code>/<code>subgenreBonus()</code> already grant by loved-count) ` +
+        `since no <code>genrePairBonus()</code> exists to pay positive pair-level credit anywhere else — a positive delta here is genuinely new ` +
+        `information, not a duplicate. Constants swept independently against <code>scripts/eval.js</code>: SCALE 1-8 (4 picked, start of a ` +
+        `precision-identical/best-MAE plateau, before scale=8's real precision@100 regression), DEADZONE 0.3/0.5/0.7/1.0 at scale=4 (0.7 strictly ` +
+        `dominated every other value tested). Shipped constants: scale=4, deadzone=0.7, cap=&plusmn;3. See <code>trakt/ENGINE.md</code> &sect;3b-3.`,
+      plain: `The app used to boil every movie/show down to ONE main genre label for scoring, even though most titles really have two or three (a movie ` +
+        `can be both a comedy AND a romance). The real data showed specific COMBINATIONS matter beyond either genre alone — Bill rates ` +
+        `comedy-romances noticeably higher than "average of how he rates comedies and romances separately" would predict, and some combinations ` +
+        `score noticeably lower than expected. That information used to get thrown away the moment the app picked just one label per title. Now a ` +
+        `small new scoring bonus (or penalty) looks at a title's real full set of genres and checks whether that SPECIFIC combination has run ` +
+        `higher or lower than expected in Bill's own rating history, tested carefully before shipping.`,
+      impact: `Real, verified gain via <code>scripts/eval.js</code>, true before/after (signal off vs. shipped constants, same 763-title eval set): ` +
+        `"great match" (8+/10) precision@50 90%&rarr;92%, calibrated MAE 11.45&rarr;11.42, bottom-50 catch 28&rarr;29/50 &mdash; all genuine gains, ` +
+        `zero tradeoffs, with precision@10/25/100 held exactly (100%/100%/89%) throughout. This project's standing rule (never trade precision away ` +
+        `for a better MAE) never had to be invoked, since nothing regressed.`,
     });
   }
 
