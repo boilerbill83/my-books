@@ -9,10 +9,15 @@
   "lastFinaleFollowupSent": "2026-09-17"
  },
  "show:260458": {
-  "lastFinaleWarnSent": "2026-09-15"
+  "lastFinaleWarnSent": "2026-09-15",
+  "lastFinaleFollowupSent": "2026-09-18"
  },
  "show:299939": {
   "lastFinaleWarnSent": "2026-09-15",
-  "lastPremiereSent": "2026-09-17"
+  "lastPremiereSent": "2026-09-17",
+  "lastFinaleFollowupSent": "2026-09-18"
+ },
+ "show:113962": {
+  "lastFinaleWarnSent": "2026-09-18"
  }
 }
