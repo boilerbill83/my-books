@@ -3911,7 +3911,12 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   // old childhood favorite is even reliable evidence of a preference the
   // engine should generalize from, not about the recency curve itself
   // (which Bill explicitly asked for and which this finding doesn't
-  // question).
+  // question). Merged 2026-09-19 with a second, more general version of
+  // the same underlying question (Bill's real #9 from "Project Beta": does
+  // an older RATING, not just an old release, warrant full weight?) —
+  // both are really "how much should we trust a dated signal," just
+  // triggered by different evidence, so kept as one finding rather than
+  // two overlapping ones per Bill's own "merge if appropriate" steer.
   {
     // manualRatings.json isn't one of this function's parameters — this
     // finding is written to work off whatever the live page already has
@@ -3925,14 +3930,21 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       return y && y < 2000;
     });
     const savedByTheBell = (library.titles || []).find(t => t.title === 'Saved by the Bell');
+    const rated = (library.titles || []).filter(t => t.myRating != null && t.ratedAt);
+    const loved = rated.filter(t => t.myRating >= 9);
+    const byYear = new Map();
+    for (const t of rated) { const y = t.ratedAt.slice(0, 4); byYear.set(y, (byYear.get(y) || 0) + 1); }
+    const thisYear = new Date().getFullYear().toString();
+    const pctThisYear = rated.length ? (100 * (byYear.get(thisYear) || 0) / rated.length) : 0;
+    const pctLovedThisYear = loved.length ? (100 * loved.filter(t => t.ratedAt.slice(0, 4) === thisYear).length / loved.length) : 0;
     findings.push({
       id: 'childhood-nostalgia-rating-reliability',
       severity: 'warning',
       backlog: true, // Bill: log the idea, needs more thought before touching scoring
       ratings: { ease: 2, dataQuality: 5, recEngine: 5, ui: 1 },
       estTokens: 45000, // open-ended detection research, likely several dead ends before any real signal
-      shortTitle: 'Nostalgia Ratings May Mislead',
-      title: `Idea: does a childhood-nostalgia rating on an old title (Bill's own example: Saved by the Bell, 10/10) get treated as reliable taste signal the same as any other loved title?`,
+      shortTitle: 'Old/Dated Ratings May Mislead',
+      title: `Idea (two merged): does a childhood-nostalgia rating on an old title (Bill's example: Saved by the Bell, 10/10), or a rating whose ratedAt timestamp is really just an import/backfill date, get treated as reliable taste signal the same as any other loved title?`,
       technical: `Bill's real concern, in his own words: he rated <strong>Saved by the Bell</strong> (1989)${savedByTheBell ? ` ${savedByTheBell.myRating}/10` : ' 10/10'} ` +
         `because he loved it as a kid, not because he'd actually enjoy it on a rewatch today — a genuinely different kind of "loved" than a title ` +
         `he'd stand by now. Currently ${fmtNum(pre2000Loved.length)} pre-2000 titles are rated 9-10/10 in his real library, several from the same ` +
@@ -3941,20 +3953,34 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `real difficulty: nothing distinguishes "still holds up" from "only mattered because of when I watched it" among these). Every ` +
         `<code>myRating</code>-derived signal (<code>genreProfile</code>, <code>toneProfile</code>, <code>subgenreProfile</code>, ` +
         `<code>creatorRatingWeight</code>, every <code>loved*</code> map) currently treats a nostalgia-driven 10/10 identically to any other ` +
-        `10/10 — so if Saved by the Bell's real genre/subgenre/tone tags skew the same direction as other content from that era, they get the ` +
-        `exact same weight as a rating Bill would give the same way today. Distinct from the already-resolved <code>library-recency-selection-` +
-        `bias</code> finding above (which is about a MISSING category of data — old dislikes — not about whether an existing positive rating ` +
-        `is trustworthy). No fix attempted yet: this needs real thought about how to even detect "nostalgia-only" vs. "genuinely still great" ` +
-        `from data alone (year-of-rating vs. year-of-release proximity isn't available — <code>ratedAt</code>/<code>dateAdded</code> reflect ` +
-        `when this project recorded the rating, not when Bill first watched it as a kid), before any scoring change is defensible.`,
-      plain: `Bill's point: just because he rated an old childhood favorite a 10/10 doesn't mean he'd actually want more shows like it — sometimes ` +
-        `an old rating is really about nostalgia for a specific memory, not a real preference for that KIND of show. Right now the app can't ` +
-        `tell the difference between that and a rating like "Breaking Bad, 10/10," which really does reflect what Bill wants more of. This is ` +
-        `logged as a real, open problem rather than a bug fix, because there's no obvious way to detect which old ratings are nostalgia-only ` +
-        `using the data this project actually has — that needs more thought before writing any code.`,
-      impact: `Currently affects a small, real slice of the data (${fmtNum(pre2000Loved.length)} pre-2000 loved titles) but could quietly bias ` +
-        `recommendations toward more of a genre/era Bill doesn't actually want more of today. Worth a real design discussion — not a quick fix ` +
-        `— before touching any scoring signal.`,
+        `10/10. <strong>The second, related angle</strong> (Bill's real #9 from "Project Beta"): live-checked, ${pctThisYear.toFixed(1)}% of all ` +
+        `${fmtNum(rated.length)} rated library titles, and ${pctLovedThisYear.toFixed(1)}% of the ${fmtNum(loved.length)} rated 9-10/10 ` +
+        `specifically, carry a ${thisYear} <code>ratedAt</code> — a real, stark concentration that raises the same trust question from the other ` +
+        `direction: should an older rating count less toward taste-profile signals than a recent one? Checked before proposing anything: ` +
+        `<code>ratedAt</code> records when this project recorded the rating (an import/backfill timestamp), not necessarily when Bill's actual ` +
+        `enthusiasm was current — several real bulk passes this ${thisYear} session history (the Trakt export imports, the manual "old-title-` +
+        `review" spreadsheet exercise) landed hundreds of ratings for long-since-watched titles on the same handful of dates, so a naive decay ` +
+        `keyed on <code>ratedAt</code> could systematically penalize a genuine long-standing favorite purely because it got backfilled/re-` +
+        `confirmed in one batch — the same "can't tell genuine signal from an artifact of when the data entered this project" trap the ` +
+        `nostalgia-rating question already has, just triggered by import timing instead of release year. Distinct from the already-resolved ` +
+        `<code>library-recency-selection-bias</code> finding above (which is about a MISSING category of data — old dislikes — not about whether ` +
+        `an existing positive rating, or its timestamp, is trustworthy) and from <code>rewatchStrength()</code>/<code>recencyBonusMovie/Show()</code> ` +
+        `(both already shipped, both key off release/watch dates, never rating date). No fix attempted for either angle: both need real thought ` +
+        `about how to detect "genuinely dated, still holds up" vs. "just an artifact of when this project recorded it" from data alone before any ` +
+        `scoring change is defensible.`,
+      plain: `Two versions of the same underlying question, merged into one finding. First: just because Bill rated an old childhood favorite a ` +
+        `10/10 doesn't mean he'd actually want more shows like it — sometimes an old rating is really about nostalgia for a specific memory, not a ` +
+        `real preference for that KIND of show. Second: an old 9/10 rating from years ago probably shouldn't count exactly as much as a 9/10 he ` +
+        `gave last month, since taste can drift — checked the real data and found something that looks dramatic (${pctThisYear.toFixed(0)}% of all ` +
+        `his ratings are dated this year), but that's very likely because of how and when ratings got ENTERED into this project (several big ` +
+        `import/backfill sessions), not because Bill suddenly rated almost everything in the last year. Both need the same kind of care: the app ` +
+        `currently can't tell "a rating that genuinely reflects Bill's taste right now" apart from "a rating that's old, or was just recently typed ` +
+        `in, for reasons that have nothing to do with how much he'd want more of that kind of show" — that needs more thought before writing any ` +
+        `code, for either angle.`,
+      impact: `Currently affects a small, real slice of the data directly (${fmtNum(pre2000Loved.length)} pre-2000 loved titles) but the ratedAt ` +
+        `concentration touches a much larger share of the whole rated library — both could quietly bias recommendations toward (or away from) a ` +
+        `genre/era Bill doesn't actually feel that way about today. Worth a real design discussion — not a quick fix — before touching any scoring ` +
+        `signal for either.`,
     });
   }
 
@@ -4209,7 +4235,10 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'export-predicted-score-mixes-watched-titles',
       severity: 'warning',
-      backlog: true, // documentation fix, not an engine change — no eval.js impact either way
+      // Not backlog — a cheap, concrete, no-decision-needed fix (add a
+      // flag column / report caveat), not something parked pending
+      // curation or a design call. Per Bill's standing rule (CLAUDE.md):
+      // only mark a finding backlog when he explicitly says to.
       ratings: { ease: 6, dataQuality: 6, recEngine: 1, ui: 3 },
       estTokens: 12000, // one new CSV column / one new report caveat line
       shortTitle: 'Export Mixes Watched + Real Candidates',
@@ -4251,7 +4280,11 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'prestige-bait-weak-personal-signal',
       severity: 'warning',
-      backlog: true, // Bill: log the idea, don't build yet — needs an eval.js sweep before it's defensible
+      // Not backlog — real, verified, and the next step (an eval.js
+      // sweep) is a normal investigation step, not something parked
+      // pending Bill's own curation/decision. Per his standing rule
+      // (CLAUDE.md): only mark a finding backlog when he explicitly
+      // says to.
       ratings: { ease: 4, dataQuality: 2, recEngine: 5, ui: 1 },
       estTokens: 20000, // a capped down-weight term + the same eval.js sweep discipline every other signal here used
       shortTitle: '"Prestige Bait" Not Down-Weighted',
@@ -4276,44 +4309,6 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       impact: `Real and verified (${fmtNum(prestigeBait.length)} live titles), but not proven to actually hurt recommendation quality — these titles ` +
         `already score in the 50s-60s, well below the pool average, so they aren't currently crowding out better matches. Worth testing with a real ` +
         `eval.js sweep before building, the same discipline every other signal here required.`,
-    });
-  }
-
-  {
-    const rated = (library.titles || []).filter(t => t.myRating != null && t.ratedAt);
-    const loved = rated.filter(t => t.myRating >= 9);
-    const byYear = new Map();
-    for (const t of rated) { const y = t.ratedAt.slice(0, 4); byYear.set(y, (byYear.get(y) || 0) + 1); }
-    const thisYear = new Date().getFullYear().toString();
-    const pctThisYear = rated.length ? (100 * (byYear.get(thisYear) || 0) / rated.length) : 0;
-    const pctLovedThisYear = loved.length ? (100 * loved.filter(t => t.ratedAt.slice(0,4) === thisYear).length / loved.length) : 0;
-    findings.push({
-      id: 'rating-date-temporal-decay',
-      severity: 'warning',
-      backlog: true, // Bill: log the idea, needs the same bulk-import-timing check library-recency-selection-bias already had to do
-      ratings: { ease: 3, dataQuality: 3, recEngine: 4, ui: 1 },
-      estTokens: 35000, // real risk of a dead end the same shape as library-recency-selection-bias — validate before building
-      shortTitle: 'Rating-Date Decay Untested',
-      title: `Idea (Bill's real #9): should an older RATING (by ratedAt, not release year) count less toward taste-profile signals than a recent one?`,
-      technical: `Live-checked: ${pctThisYear.toFixed(1)}% of all ${fmtNum(rated.length)} rated library titles, and ` +
-        `${pctLovedThisYear.toFixed(1)}% of the ${fmtNum(loved.length)} rated 9-10/10 specifically, carry a ${thisYear} <code>ratedAt</code> — a real, ` +
-        `stark concentration. But this needs the exact same caution <code>childhood-nostalgia-rating-reliability</code> and the already-shipped ` +
-        `<code>library-recency-selection-bias</code> both had to work through first: <code>ratedAt</code> records when this project recorded the ` +
-        `rating (an import/backfill timestamp), not necessarily when Bill's actual enthusiasm was current — several real bulk passes this ` +
-        `${thisYear} session history (the Trakt export imports, the manual "old-title-review" spreadsheet exercise) landed hundreds of ratings for ` +
-        `long-since-watched titles on the same handful of dates. A naive decay keyed on <code>ratedAt</code> could systematically penalize a genuine ` +
-        `long-standing favorite purely because it got backfilled/re-confirmed in one batch, rewarding titles rated individually as they're watched — ` +
-        `the opposite of the intended "track current taste" effect, and a materially different, unvalidated risk from anything currently shipped ` +
-        `(<code>rewatchStrength()</code> and <code>recencyBonusMovie/Show()</code> both key off release/watch dates, never rating date).`,
-      plain: `Bill's idea: an old 9/10 rating from years ago probably shouldn't count exactly as much as a 9/10 he gave last month, since taste can ` +
-        `drift. Checked the real data and found something that looks dramatic (${pctThisYear.toFixed(0)}% of all his ratings are dated this year) — ` +
-        `but that's very likely because of how and when ratings got ENTERED into this project (several big import/backfill sessions), not because ` +
-        `Bill suddenly rated almost everything in the last year. Building a decay signal on that date without untangling the two first risks ` +
-        `punishing genuine long-time favorites just because they happened to get backfilled in one batch — the exact trap a past idea about old ` +
-        `movies already ran into and had to work around.`,
-      impact: `A real, interesting idea, but genuinely risky to build without more investigation first — needs a way to tell "genuinely rated a while ` +
-        `ago, spread out" apart from "backfilled in one batch on ${thisYear}'s import dates" before any decay curve is defensible. Logged as open, ` +
-        `not attempted.`,
     });
   }
 
