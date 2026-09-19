@@ -1662,7 +1662,12 @@ build from):
   era gaps but could only reach 24 of them. Fixed by checking per-entry
   field-completeness (`genre`/`subjects`/`era` all present) instead of
   bare cache membership, unlocking the other 789 previously-unreachable
-  titles for a future run.
+  titles for a future run. **Re-run and verified (2026-09-19)**: the real
+  backfill against the fixed script landed 807 real `era` values in
+  `llmTags.json` (up from 23), moving Era's real population from 67% to
+  99.6% (1,155 of 1,160 eligible titles) — confirmed via a live script
+  reproducing `computeFieldQuality()`'s exact computation against the
+  merged post-run data, not assumed from the fix alone.
 
 **All five layers share the same reviewed-override-first priority**: every
 `infer*()` function checks `trakt/data/reviewedTags.json` (the curated,

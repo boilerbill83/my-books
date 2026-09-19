@@ -869,34 +869,35 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
     // the honest signal, not a data problem, per that row's own comment).
     // Population is a separate, still-real gap — investigated fresh below.
     era: (f) => {
+        const isOpenNow = f.populatedPct < 90 || f.qualityPct < 90;
         return {
-          severity: 'warning',
-          ratings: { ease: 4, dataQuality: 6, recEngine: 1, ui: 3 },
-          estTokens: 6000, // the LLM tier is now shipped — what's left is triggering/verifying a real backfill batch
-          shortTitle: 'Story Time Period Missing',
-          title: `Era is ${f.populatedPct.toFixed(1)}% populated — the LLM tier now exists, but a real caching bug let the first real run backfill only 24 of 359 gaps`,
-          technical: `The 3-tier LLM extension this finding originally proposed is now shipped: <code>inferEra(meta, llmEntry, limit, reviewed)</code> ` +
+          severity: isOpenNow ? 'warning' : 'good',
+          shortTitle: isOpenNow ? 'Story Time Period Missing' : 'Story Time Period Backfilled',
+          title: isOpenNow
+            ? `Era is ${f.populatedPct.toFixed(1)}% populated — the LLM tier exists but hasn't closed the gap yet`
+            : `Era jumped from 67% to ${f.populatedPct.toFixed(1)}% populated — the LLM tier shipped, a real caching bug that blocked it was found and fixed, and a full backfill confirmed the fix`,
+          technical: `The 3-tier LLM extension this finding originally proposed is shipped: <code>inferEra(meta, llmEntry, limit, reviewed)</code> ` +
             `gained the <code>llmEntry</code> parameter, <code>tag_llm.py</code>'s prompt now asks for <code>era</code> on every title it already ` +
-            `tags (zero extra API cost), and <code>find_llm_tag_gaps.mjs</code> now includes era in its gap check. The first real ` +
-            `<code>workflow_dispatch</code> run (batch_size 500) found <strong>359 genuine era gaps</strong> but only tagged <strong>24</strong> of ` +
-            `them — root-caused via the job's own log rather than assumed: <code>tag_llm.py</code>'s <code>main()</code> filtered ` +
-            `<code>pending</code> with a flat <code>k not in cache</code> check, so any title that already had ANY <code>llmTags.json</code> entry ` +
-            `(most were tagged for subgenres/tones back on 2026-08-23, long before the <code>era</code> field existed) was silently treated as ` +
-            `"already done" forever, even though it never actually got an era value — the same "looks retried, never actually is" bug class ` +
-            `<code>enrich_omdb.py</code>'s <code>is_stale_negative()</code> was already built to guard against on a sibling pipeline. Confirmed live: ` +
-            `1,177 of 1,201 cached entries predate <code>era</code> entirely. Fixed by checking field-completeness per cached entry (` +
-            `<code>genre</code>/<code>subjects</code>/<code>era</code> all present) instead of bare cache membership — re-running the check locally ` +
-            `against the real data confirms this unlocks <strong>789</strong> titles the old logic could never have reached, no matter how many ` +
-            `future runs it got. Not yet re-run at scale against the fixed script — the real backfill is the next step.`,
-          plain: `A smarter AI-assisted pass to fill in "when is this story set" was built and given one test run — but a bug meant it only fixed 24 ` +
-            `titles instead of the roughly 360 that actually need it, because it wrongly treated "this title has ever been tagged for ANYTHING" as ` +
-            `"this title has everything, skip it," even for titles tagged months before the era feature existed. Found and fixed the bug; the real, ` +
-            `full-size backfill run is the next step to actually see the population number move.`,
-          impact: `Era is purely display/audit today (confirmed via a full grep — never read by <code>matchScore()</code> or any scoring function, ` +
-            `only Deep Dive, the All Titles table, and the daily CSV export), so this doesn't move recommendations either way. The remaining work is ` +
-            `mechanical: trigger <code>trakt-tag-llm.yml</code> for real against the fixed script and verify the population number actually moves ` +
-            `before calling this resolved, the same "only claim resolved once verified with real production data" discipline every other LLM-tier ` +
-            `rollout on this list already followed.`,
+            `tags (zero extra API cost), and <code>find_llm_tag_gaps.mjs</code> includes era in its gap check. The first real ` +
+            `<code>workflow_dispatch</code> run found 359 genuine era gaps but only tagged 24 of them — root-caused via the job's own log: ` +
+            `<code>tag_llm.py</code>'s <code>main()</code> filtered <code>pending</code> with a flat <code>k not in cache</code> check, so any title ` +
+            `that already had ANY <code>llmTags.json</code> entry (most were tagged for subgenres/tones back on 2026-08-23, long before the ` +
+            `<code>era</code> field existed) was silently treated as "already done" forever, even though it never actually got an era value — the ` +
+            `same "looks retried, never actually is" bug class <code>enrich_omdb.py</code>'s <code>is_stale_negative()</code> was already built to ` +
+            `guard against on a sibling pipeline. Fixed by checking field-completeness per cached entry (<code>genre</code>/<code>subjects</code>/` +
+            `<code>era</code> all present) instead of bare cache membership. <strong>Re-ran for real against the fixed script</strong> ` +
+            `(<code>trakt-tag-llm.yml</code>, batch_size 800, run <code>35408360056</code> plus the earlier partial run that had already landed a ` +
+            `large share before a premature cancel) — verified via a live script reproducing <code>computeFieldQuality()</code>'s exact era ` +
+            `computation against the merged post-run data: <strong>1,155 of 1,160 eligible titles now carry a real era (99.6%, up from 67%)</strong>. ` +
+            `<code>llmTags.json</code> itself went from 23 real <code>era</code> values to 807.`,
+          plain: `A smarter AI-assisted pass to fill in "when is this story set" was built, but a bug meant its first real run only fixed 24 titles ` +
+            `instead of the roughly 360 that needed it — it wrongly treated "this title has ever been tagged for ANYTHING" as "done, skip it," even ` +
+            `for titles tagged months before the era feature existed. Found the bug, fixed it, and ran the real backfill: population jumped from ` +
+            `about 2 in 3 titles to over 99 in 100, verified against the actual post-run data rather than just assumed from the fix alone.`,
+          impact: `Era is purely display/audit (confirmed via a full grep — never read by <code>matchScore()</code> or any scoring function, only ` +
+            `Deep Dive, the All Titles table, and the daily CSV export), so this didn't move recommendations — but it's a real, verified data-quality ` +
+            `fix (a genuine bug that would have silently blocked every future era-backfill attempt forever, not just this one) and the field itself ` +
+            `is now honestly complete for anyone reading Deep Dive or the export.`,
         };
     },
     subjects: (f) => {
