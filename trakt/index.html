@@ -16,30 +16,67 @@
     <style>
       /* Discover-only — everything shared lives in dashboard.css. */
       .tk-nav-current { font-weight: 700; color: var(--text); pointer-events: none; }
-      .tk-taste-line { font-family: var(--font-serif); font-style: italic; font-size: 1rem; color: var(--text); margin: -6px 0 20px; line-height: 1.4; }
+      /* Brief: "shorten or compact the long italic intro into a tighter
+         stats line." The generated sentence (renderTasteLine(),
+         discover.js — real computed stats, out of scope to rewrite) was
+         set in the page's big italic serif voice, reading as a second
+         headline competing with the title. Demoted to a small plain
+         caption, same visual register as .tk-subtitle right above it, so
+         both read together as one tight "stats line" block under the
+         title rather than title → headline → headline. */
+      .tk-taste-line { font-family: var(--font-sans); font-style: normal; font-size: 0.85rem; color: var(--text-muted); margin: 0 0 22px; line-height: 1.5; }
 
-      .tk-hero-card { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
+      /* Currently Watching hero: brief asks for "slightly more visual
+         weight (subtle different background or stronger border) so it
+         feels like the hero" — a warm-tinted background (not the flat
+         white every other .tk-card uses) plus a heavier 2px border in the
+         warm accent does exactly that without a loud color change. */
+      #heroPick {
+        background: linear-gradient(160deg, var(--bg-card) 0%, var(--accent-warm-soft) 130%);
+        border: 2px solid var(--accent-warm); box-shadow: var(--shadow-card);
+      }
+      .tk-hero-card { display: flex; gap: 22px; align-items: flex-start; flex-wrap: wrap; }
       .tk-hero-poster { flex-shrink: 0; }
-      .tk-hero-img { width: 150px; height: 225px; border-radius: 8px; object-fit: cover; background: var(--bg-subtle); border: 1px solid var(--border); }
+      .tk-hero-img { width: 150px; height: 225px; border-radius: 8px; object-fit: cover; background: var(--bg-subtle); border: 1px solid var(--border); box-shadow: 0 3px 10px rgba(44,26,14,0.16); }
       .tk-hero-img-empty { border: 1px dashed var(--border); }
       .tk-hero-body { flex: 1; min-width: 240px; }
-      .tk-hero-kicker { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin-bottom: 6px; }
-      .tk-hero-title { font-family: var(--font-serif); font-weight: 700; font-style: italic; font-size: 1.5rem; color: var(--text); line-height: 1.2; }
+      .tk-hero-kicker { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent-warm); margin-bottom: 8px; }
+      .tk-hero-title { font-family: var(--font-serif); font-weight: 700; font-style: italic; font-size: 1.65rem; color: var(--text); line-height: 1.2; }
       .tk-hero-year { color: var(--text-muted); font-weight: 400; font-style: normal; font-size: 1.1rem; }
-      .tk-hero-badge { font-size: 0.66rem; font-weight: 600; padding: 2px 9px; border-radius: 999px; background: var(--bg-subtle); color: var(--text-muted); margin-left: 10px; vertical-align: middle; }
-      .tk-hero-meta { font-size: 0.82rem; color: var(--accent); margin-top: 8px; font-weight: 500; }
-      .tk-hero-reason { font-size: 0.88rem; color: var(--text); margin-top: 6px; line-height: 1.5; }
+      /* Streaming/network badge — brief: "strengthen streaming service
+         badges so they are more readable." Was a barely-there muted-text
+         pill (2.8:1 against the card, below AA even for large text); now
+         a real solid-tinted badge with the structural accent color, the
+         same treatment status tags elsewhere on this dashboard already
+         use for "this is a real, meaningful label," not decoration. */
+      .tk-hero-badge { font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 14%, var(--bg-card)); color: var(--accent); margin-left: 10px; vertical-align: middle; }
+      .tk-hero-meta { font-size: 0.82rem; color: var(--accent); margin-top: 10px; font-weight: 500; }
       .tk-hero-cast { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; }
-      .tk-hero-actions { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
-      .tk-hero-alt { font-size: 0.78rem; color: var(--text-muted); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
-      .tk-hero-score { text-align: center; flex-shrink: 0; padding-left: 10px; }
-      .tk-hero-score-num { font-family: var(--font-sans); font-weight: 700; font-size: 3rem; line-height: 1; }
-      .tk-hero-score-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 4px; }
+      /* Brief: "soften long plot text (consider collapse/expand)." A pure
+         CSS line-clamp keeps this visual-only (no new JS/interaction
+         logic) — a plot summary reads as a short, scannable teaser rather
+         than a full paragraph competing with the facts below it. */
+      .tk-hero-reason {
+        font-size: 0.88rem; color: var(--text); margin-top: 8px; line-height: 1.55;
+        display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+      }
+      .tk-hero-actions { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
+      .tk-hero-alt { font-size: 0.78rem; color: var(--text-muted); margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+      /* Hero score made the dominant element here too, matching the rec
+         cards' own new score-pill treatment — same accent, same "this is
+         the number that matters" visual language throughout the page. */
+      .tk-hero-score { text-align: center; flex-shrink: 0; padding-left: 12px; }
+      .tk-hero-score-num {
+        font-family: var(--font-sans); font-weight: 800; font-size: 2.6rem; line-height: 1;
+        color: var(--accent-warm); background: var(--accent-warm-soft); border-radius: 14px;
+        padding: 10px 18px; display: inline-block;
+      }
+      .tk-hero-score-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 8px; font-weight: 600; }
       .tk-hero-score-sub { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
-      .tk-hero-facts { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+      .tk-hero-facts { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
       .tk-hero-facts-title { font-family: var(--font-serif); font-weight: 700; font-style: italic; font-size: 0.95rem; color: var(--text); margin-bottom: 8px; }
       .tk-hero-fact { font-size: 0.84rem; color: var(--text); line-height: 1.5; margin-bottom: 8px; }
-      .tk-hero-fact-source { font-size: 0.72rem; color: var(--accent); text-decoration: none; white-space: nowrap; }
+      .tk-hero-fact-source { font-size: 0.72rem; color: var(--accent-warm); text-decoration: none; white-space: nowrap; font-weight: 600; }
       .tk-hero-fact-source:hover { text-decoration: underline; }
       @media (max-width: 640px) {
         .tk-hero-card { flex-direction: column; align-items: center; text-align: center; }

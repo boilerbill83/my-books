@@ -479,7 +479,7 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
       <div class="tk-rec-body">
         <div class="tk-rec-title">
           ${typeIcon(c.type)} ${titleLink(c)}${c.year ? ` <span class="tk-year">(${esc(c.year)})</span>` : ''}
-          <span class="tk-rec-badge">${c.origin === 'watchlist' ? 'Watchlist' : 'New pick'}</span>
+          <span class="tk-rec-badge${c.origin === 'watchlist' ? '' : ' tk-rec-badge-new'}">${c.origin === 'watchlist' ? 'Watchlist' : 'New pick'}</span>
           ${prestige != null && prestige >= PRESTIGE_BADGE_THRESHOLD ? `<span class="tk-rec-badge tk-prestige-badge" title="Limited/anthology format (10 or fewer episodes per season) with real critic acclaim and/or a well-known cast — see Deep Dive for the full breakdown">🏆 Prestige</span>` : ''}
         </div>
         <div class="tk-rec-meta">${esc(metaLine(c, enrichedMeta, omdbMeta, llmTags, reviewedTags))}</div>
@@ -593,7 +593,7 @@ function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, revi
       ${cast ? `<div class="tk-hero-cast">Starring ${esc(cast)}</div>` : ''}
       ${meta.overview ? `<div class="tk-hero-reason">${esc(meta.overview)}</div>` : ''}
       <div class="tk-hero-actions">
-        <a class="tk-btn" href="./deepdive.html?key=${encodeURIComponent(pick.titleKey)}">🔎 Deep Dive</a>
+        <a class="tk-btn tk-btn-primary" href="./deepdive.html?key=${encodeURIComponent(pick.titleKey)}">🔎 Deep Dive</a>
         <a class="tk-btn" href="${esc(traktUrl(candidate))}" target="_blank" rel="noopener">Open on Trakt ↗</a>
       </div>
       ${pick.facts?.length ? `
@@ -747,12 +747,12 @@ function renderHero(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
       <div class="tk-hero-kicker">🎯 Start here tonight</div>
       <div class="tk-hero-title">
         ${typeIcon(top.type)} ${titleLink(top)}${top.year ? ` <span class="tk-hero-year">(${esc(top.year)})</span>` : ''}
-        <span class="tk-hero-badge">${top.origin === 'watchlist' ? 'Watchlist' : 'New pick'}</span>
+        <span class="tk-hero-badge${top.origin === 'watchlist' ? '' : ' tk-hero-badge-new'}">${top.origin === 'watchlist' ? 'Watchlist' : 'New pick'}</span>
       </div>
       <div class="tk-hero-meta">${esc([runtimeLabel(top, enrichedMeta), metaLine(top, enrichedMeta, omdbMeta, llmTags, reviewedTags)].filter(Boolean).join(' · '))}</div>
       <div class="tk-hero-reason">${esc(top.reason)}</div>
       <div class="tk-hero-actions">
-        <a class="tk-btn" href="./deepdive.html?key=${encodeURIComponent(top.titleKey)}">🔎 Deep Dive</a>
+        <a class="tk-btn tk-btn-primary" href="./deepdive.html?key=${encodeURIComponent(top.titleKey)}">🔎 Deep Dive</a>
         <a class="tk-btn" href="${esc(traktUrl(top))}" target="_blank" rel="noopener">Open on Trakt ↗</a>
       </div>
       ${otherType ? `<div class="tk-hero-alt">Not in the mood for a ${top.type === 'movie' ? 'movie' : 'show'}? The top ${otherType.type === 'movie' ? 'movie' : 'show'} is ${esc(otherType.title)} at ${Math.round(otherType.bmtreScore)}.</div>` : ''}
