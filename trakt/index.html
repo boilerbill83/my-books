@@ -73,7 +73,13 @@
       }
       .tk-hero-score-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 8px; font-weight: 600; }
       .tk-hero-score-sub { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
-      .tk-hero-facts { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+      /* Capped + internally scrolled (Bill's live feedback on the top row,
+         2026-09-19: "make them the same height") rather than left to grow
+         unboundedly with however many sourced facts a given show has —
+         this is what makes the hero's total height predictable enough for
+         .tk-top-row's stretch match below to actually work, same scoped-
+         scroll pattern already proven on #familyWatchList/#nextWatch. */
+      .tk-hero-facts { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); max-height: 260px; overflow-y: auto; padding-right: 4px; }
       .tk-hero-facts-title { font-family: var(--font-serif); font-weight: 700; font-style: italic; font-size: 0.95rem; color: var(--text); margin-bottom: 8px; }
       .tk-hero-fact { font-size: 0.84rem; color: var(--text); line-height: 1.5; margin-bottom: 8px; }
       .tk-hero-fact-source { font-size: 0.72rem; color: var(--accent-warm); text-decoration: none; white-space: nowrap; font-weight: 600; }
@@ -86,23 +92,22 @@
       }
 
       /* Top row: Currently Watching (hero) beside My Next Watch.
-         align-items: start, not the usual stretch default — deliberate
-         exception per CLAUDE.md's own paired-row rule ("don't override to
-         start unless the shorter card's content genuinely shouldn't be
-         inflated"). Tried stretch first: the hero's real height varies
-         with how much sourced-fact text a given "currently watching" show
-         has (unrelated to My Next Watch's own content), and Bill flagged
-         the result as looking bad — an ~8-card grid stretched to match a
-         ~1100px hero left a large, clearly-empty gap below the cards, the
-         same failure mode already fixed once this session for Shows You
-         Watch Together / Family Watch List. My Next Watch's own card count
-         is real content that shouldn't be padded out to fill unrelated
-         space, so each column now sizes to its own natural height instead
-         — not "raw background exposed," since both are real bordered
-         .tk-card boxes, just genuinely different heights. */
-      .tk-top-row { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 20px; align-items: start; }
+         First attempt used align-items: start (see git history for the
+         reasoning) since the hero's height varied unboundedly with how
+         many sourced facts a show has and stretching a short card grid to
+         match looked like a big empty gap — the same failure mode already
+         hit once this session on Shows You Watch Together / Family Watch
+         List. Bill's follow-up feedback made clear he wants the boxes to
+         actually match, not just avoid the empty-gap look, so the real
+         fix (same one used for Family Watch List) is upstream: .tk-hero-
+         facts above is now capped+scrolled, which bounds the hero's own
+         height to something predictable — with that in place, stretch
+         goes back to CLAUDE.md's own default, and .tk-nw-card-wrap flexes
+         its card grid to fill the matched height rather than leaving raw
+         background exposed below a short 2-row grid. */
+      .tk-top-row { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 20px; align-items: stretch; }
       @media (max-width: 780px) { .tk-top-row { grid-template-columns: 1fr; } }
-      .tk-nw-card-wrap { min-width: 0; }
+      .tk-nw-card-wrap { min-width: 0; display: flex; flex-direction: column; }
 
       /* My Next Watch redesigned (Bill, 2026-09-19: "make it visual... I
          want to be able to see everything, not just the top four") from a
@@ -111,12 +116,13 @@
          Watch Together / What's Airing already render via
          renderWatchCards() (dashboardShared.js), wrapped instead of
          horizontally scrolled since this list can now run well past a
-         single scrollable row. Capped with an internal scroll (not forced
-         to fill available height — see .tk-top-row's own comment above)
-         so a large qualifying count doesn't grow the card unboundedly;
-         same reasoning as #subjectTable's own scoped scroll elsewhere on
-         this page. */
-      #nextWatch { display: flex; flex-wrap: wrap; gap: 12px; max-height: 560px; overflow-y: auto; padding-right: 4px; }
+         single scrollable row. flex:1 (not a fixed max-height) so the grid
+         fills whatever height .tk-top-row's stretch gives this card —
+         align-content:flex-start keeps a short card count anchored to the
+         top rather than spread out, and overflow-y:auto only engages if a
+         future large qualifying count would otherwise overflow the
+         stretched height. */
+      #nextWatch { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 12px; flex: 1; overflow-y: auto; padding-right: 4px; }
 
       /* .tk-shelf/.tk-shelf-card/.tk-cowatch-toolbar/.tk-watch-toolbar moved
          to dashboard.css — watch-together.html needs the exact same rules
