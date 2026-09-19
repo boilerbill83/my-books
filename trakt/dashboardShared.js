@@ -876,7 +876,12 @@ function coWatchCardSubtitle(row) {
 // "What's Airing" (below) — same tk-shelf-card markup, just a different
 // subtitle line per caller, so the two card views can't visually drift
 // apart the way two independently-styled card grids eventually would.
-function renderWatchCards(elementId, rows, enrichedMeta, subtitleFn, emptyText) {
+// reasonFn is optional (co-watch/airing callers omit it, so their cards
+// render exactly as before) — added for My Next Watch specifically
+// (Bill's live feedback, 2026-09-19: the stretched card fills a
+// hero-matched height, but a real "why this" line is what should fill
+// that space, not blank card background).
+function renderWatchCards(elementId, rows, enrichedMeta, subtitleFn, emptyText, reasonFn) {
   const el = document.getElementById(elementId);
   if (!rows.length) {
     el.innerHTML = `<div class="tk-empty">${esc(emptyText)}</div>`;
@@ -884,12 +889,14 @@ function renderWatchCards(elementId, rows, enrichedMeta, subtitleFn, emptyText) 
   }
   el.innerHTML = rows.map(r => {
     const poster = posterUrl(r.titleKey, enrichedMeta, 'w154');
+    const reasonText = reasonFn ? reasonFn(r) : null;
     return `
     <a class="tk-shelf-card" href="${esc(traktUrl(r))}" target="_blank" rel="noopener">
       ${posterImgHtml(poster, 'tk-shelf-poster', 92, 138)}
       ${r.score != null ? `<div class="tk-shelf-score">${Math.round(r.score)}</div>` : ''}
       <div class="tk-shelf-title">${esc(r.title)}</div>
       <div class="tk-shelf-runtime">${esc(subtitleFn(r))}</div>
+      ${reasonText ? `<div class="tk-shelf-reason">${esc(reasonText)}</div>` : ''}
     </a>`;
   }).join('');
 }

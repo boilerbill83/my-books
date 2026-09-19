@@ -122,7 +122,26 @@
          top rather than spread out, and overflow-y:auto only engages if a
          future large qualifying count would otherwise overflow the
          stretched height. */
-      #nextWatch { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 12px; flex: 1; overflow-y: auto; padding-right: 4px; }
+      #nextWatch { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 14px; flex: 1; overflow-y: auto; padding-right: 4px; }
+
+      /* Bill's live feedback, 2026-09-19: with the top row stretched to
+         match Currently Watching's height, a short My Next Watch card
+         count (renderWatchCards' default 108px-wide/92px-poster card,
+         sized for the horizontally-scrolled co-watch/airing shelves) left
+         a large blank area below 2 rows of small cards — "add in
+         information so it's not a blank white space." Fixed two ways at
+         once, both real content rather than empty padding: (1) a wider,
+         bigger-postered card scoped to just this grid so each card is
+         more readable and naturally taller; (2) renderNextWatch() now
+         passes a real reasonFn (dashboardShared.js's renderWatchCards),
+         so every card also shows its own real BMTRE "why this" line —
+         same real reason text the rec cards elsewhere on this page
+         already surface, not filler. Together these make the same 7-8
+         real cards genuinely fill the matched height on a typical
+         desktop width, rather than trying to stretch or pad content that
+         isn't there. */
+      #nextWatch .tk-shelf-card { width: 138px; }
+      #nextWatch .tk-shelf-poster { width: 118px; height: 177px; }
 
       /* .tk-shelf/.tk-shelf-card/.tk-cowatch-toolbar/.tk-watch-toolbar moved
          to dashboard.css — watch-together.html needs the exact same rules
