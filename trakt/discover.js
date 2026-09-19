@@ -706,19 +706,26 @@ function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, coWatchSet = new
 // horizontally scrolled (.tk-nw-grid, index.html) since this list can now
 // run well past what a single scrollable row could show at once. The
 // score is still deliberately never shown, per Bill's original explicit
-// ask when this panel was first built — subtitleFn reports the same
-// "when did this last air" fact the old rich rows led with instead.
+// ask when this panel was first built — subtitleFn reports genre + TMDB
+// rating alongside the same "when did this last air" fact the old rich
+// rows led with, per his live follow-up feedback ("add in metadata to the
+// shows on the right") — real metadata, still no predicted score.
 // fromWatchlist candidates already carry real title/year/ids (hydrateTitle
 // spreads the source watchlist.json fields), so no per-card metadata
 // lookup or adapter is needed beyond what renderWatchCards() itself does.
 function renderNextWatch(picks, enrichedMeta) {
   const subtitleFn = c => {
     const meta = enrichedMeta[c.titleKey] || {};
+    const parts = [];
+    if (meta.genres?.[0]) parts.push(meta.genres[0]);
+    if (meta.voteAverage != null) parts.push(`${meta.voteAverage.toFixed(1)} TMDB`);
     const last = meta.lastEpisodeToAir?.airDate;
-    if (last) return `Last aired ${fmtDate(last)}`;
-    const finale = meta.currentSeasonFinale?.finaleDate;
-    if (finale) return `Season finale ${fmtDate(finale)}`;
-    return 'Ready to watch';
+    if (last) parts.push(`Last aired ${fmtDate(last)}`);
+    else {
+      const finale = meta.currentSeasonFinale?.finaleDate;
+      parts.push(finale ? `Season finale ${fmtDate(finale)}` : 'Ready to watch');
+    }
+    return parts.join(' · ');
   };
   renderWatchCards('nextWatch', picks, enrichedMeta, subtitleFn,
     'Nothing ready on your watchlist right now — everything\'s either mid-season, already watched, or hasn\'t aired an episode in the last six months.');

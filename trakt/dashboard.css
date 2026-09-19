@@ -37,6 +37,19 @@
   --border: #ddcbb2;
 }
 
+/* Bill's live feedback on the redesign: "a ton of white space when I view
+   on my widescreen monitor... get everything to stretch horizontally
+   based on the monitor/viewing device." The shared styles.css's own
+   .container is a flat max-width:1200px, sized for the book app's mostly-
+   text pages — fine there, but this dashboard is full of grids/tables/
+   charts that have real room to breathe on a 1920px+ display. Overriding
+   it here (not in styles.css) keeps the book app's own pages untouched.
+   min(1700px, 94vw) genuinely stretches with the viewport rather than
+   jumping to one new fixed number — grows on a wide monitor, still has a
+   ceiling so line lengths and table density don't run away on an
+   ultrawide (3440px+) display. */
+.container { max-width: min(1700px, 94vw); }
+
 /* Header/nav — brief: "clearer primary vs secondary links." Scoped to
    .header-inner (present on every trakt page's shared header markup, same
    scoping technique as the tokens above) rather than editing the shared
