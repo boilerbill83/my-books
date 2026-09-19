@@ -4234,17 +4234,23 @@
   },
   "the hard thing about hard things|||ben horowitz": {
     "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found",
-    "checkedAt": "2026-09-05"
+    "amazon": {
+      "rating": 4.6,
+      "count": 15931
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81eQAtzupsL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-09-19"
   },
   "the outsiders|||william n. thorndike jr.": {
     "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found",
-    "checkedAt": "2026-09-05"
+    "amazon": {
+      "rating": 4.6,
+      "count": 4236
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/61Cth988JcL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-09-19"
   },
   "apple in china|||patrick  mcgee": {
     "storyGraph": null,
