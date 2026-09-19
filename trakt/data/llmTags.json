@@ -4429,16 +4429,22 @@
   "taggedAt": "2026-09-18"
  },
  "show:82193": {
+  "genre": "comedy",
   "subgenres": [
-   "workplace-comedy"
+   "mockumentary"
   ],
   "tones": [
-   "hilarious",
    "witty",
+   "hilarious",
    "offbeat",
    "satirical"
   ],
-  "taggedAt": "2026-08-23"
+  "subjects": [
+   "celebrity-fame",
+   "friendship-community"
+  ],
+  "era": "contemporary",
+  "taggedAt": "2026-09-19"
  },
  "show:89233": {
   "genre": "science-fiction",
@@ -19779,7 +19785,7 @@
  "show:63404": {
   "genre": "comedy",
   "subgenres": [
-   "ensemble"
+   "sitcom"
   ],
   "tones": [
    "witty",
@@ -19787,9 +19793,11 @@
    "offbeat"
   ],
   "subjects": [
+   "sports-competition",
    "friendship-community"
   ],
-  "taggedAt": "2026-09-18"
+  "era": "contemporary",
+  "taggedAt": "2026-09-19"
  },
  "movie:550988": {
   "genre": "comedy",
