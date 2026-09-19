@@ -755,18 +755,20 @@ function computeWatchStatusRows(library, watchlist, fromWatchlist, fromCandidate
   // Watchlist membership stays the single, deliberate signal — a show he
   // wants tracked here needs to actually be on the watchlist.
   //
-  // Row-inclusion window (Bill, 2026-09-12): "include every tv show on my
-  // watch list that has at least one episode airing in the last 30 days
-  // or in the next 30 days" — broader than the prior isActivelyAiring()-
-  // only gate (which requires episode 2+ of an already-mid-season show,
-  // so it missed an imminent premiere or a season that just wrapped).
-  // Uses the two real per-show date fields this pipeline actually has:
-  // nextEpisodeToAir.airDate (always forward-looking) covers the "next 30
-  // days" half; currentSeasonFinale.finaleDate covers both halves (a
-  // scheduled-but-not-yet-aired finale within 30 days, or one that
-  // already aired within the last 30). isActivelyAiring() itself is still
-  // computed per-row (buildWatchRow()'s isAiring field) for display, just
-  // no longer the row-inclusion gate.
+  // Row-inclusion window, revised (Bill: "once a show is finished, it
+  // should move to 'watch next' section" — this table and My Next Watch
+  // need to be mutually exclusive, not overlapping for up to 30 days after
+  // a finale). Originally included a finale up to 30 days in the PAST too
+  // (Bill, 2026-09-12: "in the last 30 days or in the next 30 days"), but
+  // that meant a fully-wrapped show lingered here looking "airing" for a
+  // month after there was nothing left to wait for. Now only a
+  // not-yet-happened finale (0 to 30 days out) keeps a row here — the
+  // moment it airs, the show drops out of this table and picks up in My
+  // Next Watch instead (pickNextWatch() in discover.js, gated on
+  // !isActivelyAiring() rather than this table's own window). An imminent
+  // premiere still counts via nextEpisodeToAir.airDate (the "next 30 days"
+  // half, unchanged). isActivelyAiring() itself is still computed per-row
+  // (buildWatchRow()'s isAiring field) for display, just not the gate.
   //
   // Known, honest limitation: this isn't a per-episode air history — only
   // the single next episode and the current season's finale are tracked,
@@ -787,7 +789,7 @@ function computeWatchStatusRows(library, watchlist, fromWatchlist, fromCandidate
   const hasRecentOrUpcomingEpisode = titleKey => {
     const meta = enrichedMeta[titleKey] || {};
     return withinDays(meta.nextEpisodeToAir?.airDate, 0, 30)
-        || withinDays(meta.currentSeasonFinale?.finaleDate, -30, 30);
+        || withinDays(meta.currentSeasonFinale?.finaleDate, 0, 30);
   };
   const watchlistOnlyKeys = (watchlist.titles || [])
     .filter(t => t.type === 'show' && hasRecentOrUpcomingEpisode(t.titleKey))
@@ -870,44 +872,94 @@ function coWatchCardSubtitle(row) {
   return row.status;
 }
 
-function renderCoWatchCards(elementId, rows, enrichedMeta) {
+// Shared poster-card renderer behind both "Shows You Watch Together" and
+// "What's Airing" (below) — same tk-shelf-card markup, just a different
+// subtitle line per caller, so the two card views can't visually drift
+// apart the way two independently-styled card grids eventually would.
+function renderWatchCards(elementId, rows, enrichedMeta, subtitleFn, emptyText) {
   const el = document.getElementById(elementId);
-  const ready = sortCoWatchReady(rows.filter(isCoWatchReady));
-  if (!ready.length) {
-    el.innerHTML = '<div class="tk-empty">Nothing ready to watch together right now — switch to the table view for the full tagged list.</div>';
+  if (!rows.length) {
+    el.innerHTML = `<div class="tk-empty">${esc(emptyText)}</div>`;
     return;
   }
-  el.innerHTML = ready.map(r => {
+  el.innerHTML = rows.map(r => {
     const poster = posterUrl(r.titleKey, enrichedMeta, 'w154');
     return `
     <a class="tk-shelf-card" href="${esc(traktUrl(r))}" target="_blank" rel="noopener">
       ${posterImgHtml(poster, 'tk-shelf-poster', 92, 138)}
       ${r.score != null ? `<div class="tk-shelf-score">${Math.round(r.score)}</div>` : ''}
       <div class="tk-shelf-title">${esc(r.title)}</div>
-      <div class="tk-shelf-runtime">${esc(coWatchCardSubtitle(r))}</div>
+      <div class="tk-shelf-runtime">${esc(subtitleFn(r))}</div>
     </a>`;
   }).join('');
+}
+
+function renderCoWatchCards(elementId, rows, enrichedMeta) {
+  const ready = sortCoWatchReady(rows.filter(isCoWatchReady));
+  renderWatchCards(elementId, ready, enrichedMeta, coWatchCardSubtitle,
+    'Nothing ready to watch together right now — switch to the table view for the full tagged list.');
+}
+
+// "What's Airing" card subtitle — the airing-table analog of
+// coWatchCardSubtitle() above, tailored to this table's own real fields
+// (no coWatchStatus override here, that's a co-watch-only concept). Same
+// priority as the table's own Ready Now / Next Episode / Season Finale
+// columns: episodes already waiting beats a future date, and a scheduled
+// next episode beats a bare "Now Airing" badge with no date yet.
+function airingCardSubtitle(row) {
+  if (row.episodesReady) {
+    return `${row.episodesReady} episode${row.episodesReady === 1 ? '' : 's'} ready to watch`;
+  }
+  if (row.isAiring && row.nextEpisodeDate) {
+    return `Next: S${row.season}E${row.nextEpisode} · ${fmtDaysOut(row.daysUntilNextEpisode)}`;
+  }
+  if (row.isAiring) return 'Airing now';
+  if (row.nextEpisodeDate) return `Premieres S${row.season}E${row.nextEpisode} · ${fmtDaysOut(row.daysUntilNextEpisode)}`;
+  if (row.finaleDate) return `Season finale ${fmtDaysOut(row.daysUntilFinale)}`;
+  return row.status;
+}
+
+// Sorted the same way the table's own default column (Next Episode) is:
+// soonest real "next watchable thing" first, whether that's an already-
+// scheduled episode or (lacking one) the season finale date.
+function sortAiringCards(rows) {
+  return [...rows].sort((a, b) => {
+    const da = a.daysUntilNextEpisode ?? a.daysUntilFinale ?? Infinity;
+    const db = b.daysUntilNextEpisode ?? b.daysUntilFinale ?? Infinity;
+    return da - db;
+  });
+}
+
+function renderAiringCards(elementId, rows, enrichedMeta) {
+  renderWatchCards(elementId, sortAiringCards(rows), enrichedMeta, airingCardSubtitle,
+    'Nothing you\'re tracking or would love is currently mid-season or airing — switch to the table view for the full list.');
 }
 
 // Button toggles which of the two pre-rendered views (cards / table) is
 // visible — both are always rendered by load() above regardless of which
 // is showing, so switching is instant with no re-fetch or re-render.
-// Wired once per page load, guarded so a stale click handler can't stack
-// up if this were ever called twice.
-let coWatchToggleWired = false;
-function initCoWatchViewToggle() {
-  if (coWatchToggleWired) return;
-  coWatchToggleWired = true;
-  const btn = document.getElementById('coWatchViewToggle');
-  const cardsEl = document.getElementById('coWatchCards');
-  const tableWrap = document.getElementById('coWatchTableWrap');
+// Wired once per page load (per id set), guarded so a stale click handler
+// can't stack up if this were ever called twice for the same button.
+const viewToggleWired = new Set();
+function initViewToggle(btnId, cardsId, tableWrapId) {
+  if (viewToggleWired.has(btnId)) return;
+  const btn = document.getElementById(btnId);
+  const cardsEl = document.getElementById(cardsId);
+  const tableWrap = document.getElementById(tableWrapId);
   if (!btn || !cardsEl || !tableWrap) return;
+  viewToggleWired.add(btnId);
   btn.addEventListener('click', () => {
     const switchingToTable = tableWrap.hidden; // currently showing cards
     tableWrap.hidden = !switchingToTable;
     cardsEl.hidden = switchingToTable;
     btn.textContent = switchingToTable ? 'Show card view' : 'Show table view';
   });
+}
+function initCoWatchViewToggle() {
+  initViewToggle('coWatchViewToggle', 'coWatchCards', 'coWatchTableWrap');
+}
+function initAiringViewToggle() {
+  initViewToggle('airingViewToggle', 'airingCards', 'airingTableWrap');
 }
 
 // Short table-cell label for an upcomingSeasons.json entry — reads the
@@ -1186,6 +1238,6 @@ export {
   displaySubgenre, SUBJECT_LABEL, ERA_LABEL, tableToCSV, downloadCSV, fmtCompact, metaLine,
   scoreTier, initCollapsibleCards, loadAllData, predictedVsActualRows,
   buildWatchRow, computeWatchStatusRows, computeCoWatchRows, isCoWatchReady, sortCoWatchReady,
-  coWatchCardSubtitle, renderCoWatchCards, initCoWatchViewToggle, summarizeUpcoming,
-  upcomingSortKey, renderWatchStatusTable, fmtDate, renderFamilyWatchList, renderLovedMovies,
+  coWatchCardSubtitle, renderCoWatchCards, renderAiringCards, initCoWatchViewToggle, initAiringViewToggle,
+  summarizeUpcoming, upcomingSortKey, renderWatchStatusTable, fmtDate, renderFamilyWatchList, renderLovedMovies,
 };

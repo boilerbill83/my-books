@@ -19,8 +19,8 @@ import {
   airingBadge, renderHBarChart, computeGenreStats, displaySubgenre, SUBJECT_LABEL,
   ERA_LABEL, downloadCSV, metaLine, scoreTier, initCollapsibleCards, loadAllData,
   predictedVsActualRows, computeWatchStatusRows, computeCoWatchRows,
-  renderCoWatchCards, initCoWatchViewToggle, renderWatchStatusTable,
-  fmtDate, renderFamilyWatchList,
+  renderCoWatchCards, renderAiringCards, initCoWatchViewToggle, initAiringViewToggle,
+  renderWatchStatusTable, fmtDate, renderFamilyWatchList,
 } from './dashboardShared.js';
 
 // crowdCompare (computeCrowdCompare()'s output) folds in here as one more
@@ -614,39 +614,23 @@ function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, revi
 }
 
 // Bill (2026-09-15): "split the top of the dashboard. Put currently
-// watching on the left and my next watch on the right. These should be
-// shows from my watchlist that recently wrapped up a season."
+// watching on the left and my next watch on the right." Originally scoped
+// to shows that recently wrapped a season; broadened (2026-09-19, Bill:
+// "these will be things on the watch list and highly rated") to every
+// watchlist show that's ready to watch right now, not just freshly-wrapped
+// ones. "Ready right now" reuses isActivelyAiring() (the same episode-1-
+// has-actually-aired definition the You'll Love panels already gate on,
+// engine.js) rather than a bespoke recency window: a show either IS
+// currently mid-season (stays in the "What's Airing" table instead, see
+// dashboardShared.js's computeWatchStatusRows()) or it isn't, in which
+// case there's nothing left to wait for — whether it never started, is
+// between seasons, or its season just wrapped, all read the same way
+// here: ready. This also implements Bill's explicit follow-up ("once a
+// show is finished, it should move to 'watch next' section") for free —
+// the moment isActivelyAiring() flips false, a show is simultaneously
+// excluded from What's Airing (its own row-inclusion window) and eligible
+// here, with no separate hand-off logic needed.
 //
-// "Recently wrapped" has a real data gap: enrichedMetadata.json only ever
-// carries currentSeasonFinale for a show that STILL has (or very recently
-// had) an active nextEpisodeToAir pointer — enrich_tmdb.py's season-
-// endpoint call is gated on that. A show that's been over a while has no
-// cached finale date at all. So this checks, in order: (1) if a
-// currentSeasonFinale IS cached, trust it exactly — a future finaleDate
-// means still airing regardless of what nextEpisodeToAir separately says
-// (this is the real fix for a live bug caught by hand: Lanterns' stale
-// nextEpisodeToAir pointer made it look "done" when its real finale was
-// 3 weeks out — its finaleDate caught what the episode-number check
-// missed); (2) no cached finale but a future nextEpisodeToAir exists →
-// still airing; (3) neither → fall back to firstAirDate as a coarser
-// recency proxy (biased toward UNDERcounting recency for a multi-week
-// weekly rollout, since the real finale is always later than the
-// premiere — a safe direction to be wrong in for "recently").
-const NEXT_WATCH_WINDOW_DAYS = 210; // ~7 months — a generous but real "recently" bar
-function isRecentlyWrappedSeason(meta, today) {
-  const finale = meta.currentSeasonFinale;
-  if (finale?.finaleDate) {
-    const finaleDate = new Date(finale.finaleDate + 'T00:00:00Z');
-    if (finaleDate > today) return false;
-    return Math.round((today - finaleDate) / 86400000) <= NEXT_WATCH_WINDOW_DAYS;
-  }
-  const next = meta.nextEpisodeToAir;
-  if (next?.airDate && new Date(next.airDate + 'T00:00:00Z') > today) return false;
-  const firstAir = meta.firstAirDate ? new Date(meta.firstAirDate + 'T00:00:00Z') : null;
-  if (!firstAir || firstAir > today) return false;
-  return Math.round((today - firstAir) / 86400000) <= NEXT_WATCH_WINDOW_DAYS;
-}
-
 // Ranked by the engine's real predicted fit (fromWatchlist's bmtreScore) —
 // Bill's own "guess my top four" — but the score itself is never shown,
 // per his explicit ask; it's purely the ranking mechanism.
@@ -659,11 +643,11 @@ function isRecentlyWrappedSeason(meta, today) {
 // double-check already established elsewhere in this file, rather than
 // depending on every future caller remembering to pre-filter correctly.
 // pinnedKeys (nextWatchPins.json — see that file's own "note") go first,
-// guaranteed shown regardless of isRecentlyWrappedSeason(), then the
-// remaining slots fill from the normal live ranking — naturally bumping
-// whichever live pick would otherwise have been last, rather than
-// hardcoding which title to remove.
-function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, coWatchSet = new Set(), pinnedKeys = [], today = new Date()) {
+// guaranteed shown regardless of airing status, then the remaining slots
+// fill from the normal live ranking — naturally bumping whichever live
+// pick would otherwise have been last, rather than hardcoding which title
+// to remove.
+function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, coWatchSet = new Set(), pinnedKeys = []) {
   const byKey = new Map(fromWatchlist.map(c => [c.titleKey, c]));
   // A pin isn't guaranteed to be in fromWatchlist — rankAll() correctly
   // excludes a title from there once it's already in the watched library
@@ -678,7 +662,7 @@ function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, coWatchSet = new
   const pinnedSet = new Set(pinned.map(c => c.titleKey));
   const live = fromWatchlist
     .filter(c => c.type === 'show' && c.titleKey !== excludeKey && !coWatchSet.has(c.titleKey) && !pinnedSet.has(c.titleKey)
-      && enrichedMeta[c.titleKey] && isRecentlyWrappedSeason(enrichedMeta[c.titleKey], today))
+      && enrichedMeta[c.titleKey] && !isActivelyAiring(c, enrichedMeta))
     .sort((a, b) => b.bmtreScoreRaw - a.bmtreScoreRaw);
   return [...pinned, ...live].slice(0, 4);
 }
@@ -686,12 +670,11 @@ function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, coWatchSet = new
 // "when the most recent episode aired" (Bill's explicit ask). TMDB's
 // lastEpisodeToAir (enrich_tmdb.py, added alongside this) is the direct
 // answer and always backward-looking, unlike nextEpisodeToAir/
-// currentSeasonFinale which can point at a date still in the future (the
-// exact reason isRecentlyWrappedSeason() above has to guard on "is the
-// finale date actually in the past yet"). Falls back to a genuinely-past
-// currentSeasonFinale for any show enriched before this field existed —
-// degrades to null (row omitted, never guessed) rather than showing a
-// stale or future-dated "most recent" episode.
+// currentSeasonFinale which can point at a date still in the future.
+// Falls back to a genuinely-past currentSeasonFinale for any show
+// enriched before this field existed — degrades to null (row omitted,
+// never guessed) rather than showing a stale or future-dated "most
+// recent" episode.
 function mostRecentEpisodeLabel(meta, today) {
   const last = meta.lastEpisodeToAir;
   if (last?.airDate) {
@@ -718,7 +701,7 @@ function mostRecentEpisodeLabel(meta, today) {
 // bigger" layout comment on .tk-top-row in index.html).
 function renderNextWatch(picks, enrichedMeta, omdbMeta, llmTags, reviewedTags, nextWatchFacts, today = new Date()) {
   const el = document.getElementById('nextWatch');
-  if (!picks.length) { el.innerHTML = '<div class="tk-empty">Nothing on your watchlist has recently wrapped a season.</div>'; return; }
+  if (!picks.length) { el.innerHTML = '<div class="tk-empty">Nothing ready on your watchlist right now — everything\'s either mid-season or already watched.</div>'; return; }
   const factsByKey = nextWatchFacts?.shows || {};
   el.innerHTML = picks.map(c => {
     const meta = enrichedMeta[c.titleKey];
@@ -784,94 +767,6 @@ function renderHero(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
     </div>
   `;
   return top;
-}
-
-// 2. Got Two Hours? / Weekend Binge — quick-pick shelves for a real
-// time budget. Movies <=120min, shows <=10 episodes, top 6 each from the
-// pool (already score-sorted).
-function renderShelf(containerId, items, enrichedMeta) {
-  const el = document.getElementById(containerId);
-  if (!items.length) { el.innerHTML = '<div class="tk-empty">Nothing qualifies yet.</div>'; return; }
-  el.innerHTML = items.map(c => {
-    const poster = posterUrl(c.titleKey, enrichedMeta, 'w154');
-    return `
-    <a class="tk-shelf-card" href="${esc(traktUrl(c))}" target="_blank" rel="noopener">
-      ${posterImgHtml(poster, 'tk-shelf-poster', 92, 138)}
-      <div class="tk-shelf-score">${Math.round(c.bmtreScore)}</div>
-      <div class="tk-shelf-title">${esc(c.title)}</div>
-      <div class="tk-shelf-runtime">${esc(runtimeLabel(c, enrichedMeta))}</div>
-    </a>`;
-  }).join('');
-}
-
-// 3. Because You Loved… — a Netflix-style presentation of a signal that
-// already drives real scoring (forward/reverse similarToIds/recommendedIds
-// matches), not a new one. Anchors = real 10/10-rated titles with >=2 pool
-// titles citing them (either direction — TMDB ids are per-type namespaces,
-// so same-type only). Ranked by the mean score of each anchor's own top 5
-// connections, rotated daily so the page doesn't look identical every
-// visit, picked greedily preferring the other type each row and never
-// repeating a title already shown in an earlier row.
-function computeBecauseYouLoved(library, pool, enrichedMeta) {
-  const anchors = (library.titles || []).filter(t => t.myRating === 10 && enrichedMeta[t.titleKey] && t.ids?.tmdb != null);
-  const rows = [];
-  for (const anchor of anchors) {
-    const anchorMeta = enrichedMeta[anchor.titleKey];
-    const anchorTmdb = anchor.ids.tmdb;
-    const connected = pool.filter(c => {
-      if (c.type !== anchor.type || c.titleKey === anchor.titleKey) return false;
-      const cMeta = enrichedMeta[c.titleKey];
-      const cTmdb = c.ids?.tmdb;
-      const forward = (cMeta.similarToIds || []).includes(anchorTmdb) || (cMeta.recommendedIds || []).includes(anchorTmdb);
-      const reverse = cTmdb != null && ((anchorMeta.similarToIds || []).includes(cTmdb) || (anchorMeta.recommendedIds || []).includes(cTmdb));
-      return forward || reverse;
-    }).sort(byScore);
-    if (connected.length < 2) continue;
-    const top5 = connected.slice(0, 5);
-    const meanScore = top5.reduce((s, c) => s + c.bmtreScoreRaw, 0) / top5.length;
-    rows.push({ anchor, connected, meanScore });
-  }
-  rows.sort((a, b) => b.meanScore - a.meanScore);
-  const top9 = rows.slice(0, 9);
-  if (!top9.length) return [];
-  const startIdx = Math.floor(Date.now() / 86400000) % top9.length;
-  const rotated = [...top9.slice(startIdx), ...top9.slice(0, startIdx)];
-
-  const shown = new Set();
-  const picked = [];
-  let preferType = null;
-  const remaining = [...rotated];
-  while (remaining.length && picked.length < 3) {
-    let idx = preferType ? remaining.findIndex(r => r.anchor.type === preferType) : -1;
-    if (idx === -1) idx = 0;
-    const row = remaining.splice(idx, 1)[0];
-    const items = row.connected.filter(c => !shown.has(c.titleKey)).slice(0, 5);
-    if (!items.length) continue;
-    items.forEach(c => shown.add(c.titleKey));
-    picked.push({ anchor: row.anchor, items });
-    preferType = row.anchor.type === 'movie' ? 'show' : 'movie';
-  }
-  return picked;
-}
-
-function renderBecauseYouLoved(rows, enrichedMeta) {
-  const el = document.getElementById('becauseYouLoved');
-  if (!rows.length) { el.innerHTML = '<div class="tk-empty">Not enough connected picks yet — check back as more of your loved titles get enriched.</div>'; return; }
-  el.innerHTML = rows.map(({ anchor, items }) => `
-    <div class="tk-byl-row">
-      <div class="tk-byl-heading">Because you loved ${typeIcon(anchor.type)} ${esc(anchor.title)} 10/10</div>
-      <div class="tk-shelf">${items.map(c => {
-        const poster = posterUrl(c.titleKey, enrichedMeta, 'w154');
-        return `
-        <a class="tk-shelf-card" href="${esc(traktUrl(c))}" target="_blank" rel="noopener">
-          ${posterImgHtml(poster, 'tk-shelf-poster', 92, 138)}
-          <div class="tk-shelf-score">${Math.round(c.bmtreScore)}</div>
-          <div class="tk-shelf-title">${esc(c.title)}</div>
-          <div class="tk-shelf-runtime">${c.origin === 'watchlist' ? 'On your watchlist' : 'New pick'}</div>
-        </a>`;
-      }).join('')}</div>
-    </div>
-  `).join('');
 }
 
 // 4. Pick Up Where You Left Off — currentlyWatching.json is a bare array
@@ -943,21 +838,27 @@ async function load() {
 
   renderFamilyWatchList(familyWatchlist, enrichedMeta);
 
+  // Bill: "the separate section for me to find new shows will be the
+  // existing Shows You'll Love. If I show on my 'watch next' or 'shows we
+  // watch together', it shouldn't show up here." Co-watch is already
+  // excluded (soloWatchlist/soloCandidates, above) — this adds the same
+  // exclusion for whatever My Next Watch just picked, so a title can never
+  // appear in both panels at once. Movies aren't affected (My Next Watch
+  // is shows-only), so movieRecList's pool is untouched.
+  const nextWatchKeySet = new Set(nextWatchPicks.map(c => c.titleKey));
+  const showWatchlistForRec = byType(soloWatchlist, 'show').filter(c => !nextWatchKeySet.has(c.titleKey));
   renderRecPanel('movieRecList', byType(soloWatchlist, 'movie'), byType(soloCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
-  renderRecPanel('showRecList', byType(soloWatchlist, 'show'), byType(soloCandidates, 'show'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
-
-  renderShelf('quickWatchShelf', pool.filter(c => c.type === 'movie' && (enrichedMeta[c.titleKey].runtime ?? 999) <= 120).slice(0, 6), enrichedMeta);
-  renderShelf('bingeShelf', pool.filter(c => c.type === 'show' && (enrichedMeta[c.titleKey].numberOfEpisodes ?? 999) <= 10).slice(0, 6), enrichedMeta);
-
-  renderBecauseYouLoved(computeBecauseYouLoved(library, pool, enrichedMeta), enrichedMeta);
+  renderRecPanel('showRecList', showWatchlistForRec, byType(soloCandidates, 'show'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
 
   const coWatchRows = computeCoWatchRows(coWatchKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress);
   renderCoWatchCards('coWatchCards', coWatchRows, enrichedMeta);
   renderWatchStatusTable('coWatchTable', coWatchRows, 'Nothing tagged yet.');
   initCoWatchViewToggle();
-  renderWatchStatusTable('airingStatusTable',
-    computeWatchStatusRows(soloLibrary, soloWatchlistData, soloWatchlist, soloCandidates, soloCurrentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress),
+  const airingRows = computeWatchStatusRows(soloLibrary, soloWatchlistData, soloWatchlist, soloCandidates, soloCurrentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress);
+  renderAiringCards('airingCards', airingRows, enrichedMeta);
+  renderWatchStatusTable('airingStatusTable', airingRows,
     'Nothing you\'re tracking or would love is currently mid-season or airing.');
+  initAiringViewToggle();
 
   const enrichedCount = Object.keys(enrichedMeta).length;
   document.getElementById('genreSectionScopeNote').textContent =

@@ -1,32 +1,32 @@
 {
-  "titleKey": "show:125988",
-  "setAt": "2026-09-12T00:00:00Z",
-  "note": "Bill's own stated current watch, told directly in chat (2026-09-12: \"I completed the audacity; now I'm watching silo\") — supersedes the prior pointer at show:258036 (The Audacity). Unlike that entry, Silo IS in library.json/watchlist.json, but its cached plays/airedEpisodes (20/30, lastWatchedAt 2025-01-17) predates his real-time Season 3 progress — the last Trakt export he uploaded (Sep 4 2026) was taken before he'd started Season 3, so this pointer carries the real-time fact a stale export can't yet reflect. Update or clear this file the next time Bill names a different current watch, or once a fresh export's plays/airedEpisodes genuinely catches up.",
+  "titleKey": "show:108978",
+  "setAt": "2026-09-19T17:54:52.789Z",
+  "note": "Bill's own stated current watch, told directly in chat (2026-09-19: \"currently watching, which is now [R]eacher\") — supersedes the prior pointer at show:125988 (Silo). Reacher genuinely sits in BOTH library.json (in-progress, myRating 8, 24 of 32 episodes) and watchlist.json (watchlisted separately, real Trakt behavior — same overlap already documented for The Lowdown) — the library entry alone would already make it eligible as a real in-progress watch. Update or clear this file the next time Bill names a different current watch.",
   "facts": [
     {
-      "text": "Hugh Howey's source trilogy is Wool, Shift, and Dust. Seasons 1-2 adapted Wool; Season 3 (premiered July 3, 2026) shifts to adapting Shift — a prequel-flavored book explaining how and why the silo was built in the first place.",
-      "source": "https://time.com/6276524/silo-apple-tv-books/",
-      "sourceLabel": "TIME"
+      "text": "Season 4 premiered August 12, 2026 and adapts Gone Tomorrow (book #13 in Lee Child's series) — the show doesn't follow publication order at all (S1=Killing Floor #1, S2=Bad Luck and Trouble #11, S3=Persuader #7), which works because each novel is a standalone thriller starting fresh in a new city.",
+      "source": "https://en.wikipedia.org/wiki/Reacher_season_4",
+      "sourceLabel": "Wikipedia"
     },
     {
-      "text": "Apple renewed Silo for both Season 3 and Season 4 in one announcement back in December 2024 — and confirmed Season 4 will be the show's last, completing the full book trilogy.",
-      "source": "https://www.tvline.com/news/silo-renewed-season-3-ending-season-4-rebecca-ferguson-1235388800/",
-      "sourceLabel": "TVLine"
+      "text": "Unlike the first three seasons, all set in small towns, Season 4 moves the action to Philadelphia — Reacher gets pulled into a conspiracy involving a missing USB drive after meeting a troubled woman on a train.",
+      "source": "https://www.techradar.com/streaming/amazon-prime-video/reacher-season-4-everything-we-know-so-far-about-the-hit-prime-video-shows-return",
+      "sourceLabel": "TechRadar"
     },
     {
-      "text": "Critical reception has climbed every season on Rotten Tomatoes — 88% for Season 1, 92% for Season 2, and a perfect 100% critics' score for Season 3 — though Season 3's audience score (58%) lags well behind critics, a real critic/audience divide over the books-to-show liberties.",
-      "source": "https://www.rottentomatoes.com/tv/silo",
-      "sourceLabel": "Rotten Tomatoes"
+      "text": "Lee Child personally signed off on Alan Ritchson's casting, calling his build \"perfectly accurate\" to the books — a direct contrast to the earlier Tom Cruise films, where Child later admitted \"the readers, ultimately, were right\" to object to the casting.",
+      "source": "https://www.aol.com/jack-reacher-author-lee-child-121436206.html",
+      "sourceLabel": "AOL"
     },
     {
-      "text": "Showrunner Graham Yost (Band of Brothers, Justified, The Americans) has been open about restructuring Howey's original timeline for TV — pulling entire episodes out of single sentences in the books — with Howey himself staying on as a consulting producer and publicly defending some of the bigger changes as improvements.",
-      "source": "https://www.cbr.com/apple-tv-silo-season-3-shift-from-books-explained/",
-      "sourceLabel": "CBR"
+      "text": "Ritchson put on real muscle for the role (reports vary 30-35 lbs) through short, high-intensity strength-and-speed training rather than pure bodybuilding — his own words: \"I couldn't just bulk up like a bodybuilder — I had to train for strength and speed.\"",
+      "source": "https://www.tomsguide.com/news/alan-ritchson-packed-on-30-pounds-of-muscle-to-play-reacher-heres-how",
+      "sourceLabel": "Tom's Guide"
     },
     {
-      "text": "Season 3 finished filming by May 2025, but Season 4 — the finale — didn't start filming until months later, giving the production a real gap between the two final seasons rather than shooting them back-to-back.",
-      "source": "https://www.cbr.com/apple-tv-silo-season-4-wraps-filming/",
-      "sourceLabel": "CBR"
+      "text": "Season 4 holds a 94% critics' score on Rotten Tomatoes — technically the series' lowest (S1 92%, S2 and S3 both 98%) but still a strong, well-reviewed season by any normal standard.",
+      "source": "https://www.forbes.com/sites/timlammers/2026/08/11/reacher-season-4-rotten-tomatoes-critics-score-marks-series-low/",
+      "sourceLabel": "Forbes"
     }
   ]
 }
