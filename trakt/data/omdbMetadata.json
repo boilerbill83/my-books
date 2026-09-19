@@ -37798,5 +37798,23 @@
   "director": "Janus Metz",
   "rated": "R",
   "fetchedAt": "2026-09-18"
+ },
+ "show:295778": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 8.4,
+  "imdbVotes": 6705,
+  "director": null,
+  "rated": null,
+  "fetchedAt": "2026-09-19"
  }
 }
