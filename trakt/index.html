@@ -48,54 +48,38 @@
         .tk-hero-fact { text-align: left; }
       }
 
-      /* Top row: Currently Watching (hero) beside My Next Watch. History:
-         first reused .tk-row2's plain 1fr/1fr split, which put My Next
-         Watch (then a tiny 216px 2x2 tile grid) in a column as wide as
-         the hero's, leaving a big visible blank area — fixed by shrinking
-         the column to a fixed 280px. Bill's follow-up flagged the result
-         as still uneven ("the left and right should be even vertically;
-         make the left smaller and the right bigger") and the compact grid
-         as "boring." Real fix on both axes at once: My Next Watch's cards
-         got substantially richer (network badge, metaLine() genre/rating,
-         a new "most recent episode aired" line, up to 2 facts instead of
-         1 — see renderNextWatch() in discover.js), which needs real width
-         to read well, not a narrow sidebar; and the hero's own fact list
-         is now capped (HERO_FACTS_CAP in discover.js) instead of showing
-         every sourced fact, trimming its height from the other direction.
-         0.85fr/1.15fr gives the richer, now-taller right column more
-         room than the left, per Bill's explicit "right bigger." With both
-         cards now carrying comparable density (poster+meta+facts on each
-         side), align-items: stretch is back — the two cards should end up
-         close enough in natural height that stretching just closes the
-         small residual gap with the shorter card's own background/border
-         rather than leaving raw page background exposed beside it. */
-      .tk-top-row { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 20px; align-items: stretch; }
+      /* Top row: Currently Watching (hero) beside My Next Watch.
+         align-items: start, not the usual stretch default — deliberate
+         exception per CLAUDE.md's own paired-row rule ("don't override to
+         start unless the shorter card's content genuinely shouldn't be
+         inflated"). Tried stretch first: the hero's real height varies
+         with how much sourced-fact text a given "currently watching" show
+         has (unrelated to My Next Watch's own content), and Bill flagged
+         the result as looking bad — an ~8-card grid stretched to match a
+         ~1100px hero left a large, clearly-empty gap below the cards, the
+         same failure mode already fixed once this session for Shows You
+         Watch Together / Family Watch List. My Next Watch's own card count
+         is real content that shouldn't be padded out to fill unrelated
+         space, so each column now sizes to its own natural height instead
+         — not "raw background exposed," since both are real bordered
+         .tk-card boxes, just genuinely different heights. */
+      .tk-top-row { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 20px; align-items: start; }
       @media (max-width: 780px) { .tk-top-row { grid-template-columns: 1fr; } }
       .tk-nw-card-wrap { min-width: 0; }
 
-      /* My Next Watch — a vertical list of 4 rows, each a smaller sibling
-         of the hero card's own poster-beside-text shape (not the earlier
-         poster-on-top tile grid) so the extra fields (network badge, meta
-         line, most-recent-episode line, 2 facts) have somewhere to sit
-         without cramming. */
-      #nextWatch { display: flex; flex-direction: column; }
-      .tk-nw-card { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); }
-      .tk-nw-card:first-child { padding-top: 0; }
-      .tk-nw-card:last-child { padding-bottom: 0; border-bottom: none; }
-      .tk-nw-poster { width: 92px; height: 138px; flex-shrink: 0; border-radius: 6px; object-fit: cover; background: var(--bg-subtle); border: 1px solid var(--border); display: block; }
-      .tk-nw-poster-empty { border: 1px dashed var(--border); }
-      .tk-nw-body { flex: 1; min-width: 0; }
-      .tk-nw-title { font-family: var(--font-serif); font-weight: 700; font-size: 0.92rem; color: var(--text); line-height: 1.25; }
-      .tk-nw-meta { font-size: 0.74rem; color: var(--accent); font-weight: 500; margin-top: 4px; }
-      .tk-nw-episode { font-size: 0.74rem; color: var(--text-muted); margin-top: 4px; }
-      .tk-nw-fact { font-size: 0.76rem; color: var(--text); line-height: 1.4; margin-top: 5px; }
-      .tk-nw-fact-empty { font-style: italic; color: var(--text-muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-      @media (max-width: 640px) {
-        .tk-nw-card { flex-direction: column; align-items: center; text-align: center; }
-        .tk-nw-poster { width: 120px; height: 180px; }
-      }
-      .tk-nw-fact .tk-hero-fact-source { font-size: 0.7rem; }
-      .tk-nw-title .tk-hero-year { font-size: 0.82rem; }
+      /* My Next Watch redesigned (Bill, 2026-09-19: "make it visual... I
+         want to be able to see everything, not just the top four") from a
+         vertical list of 4 rich rows to a poster-card grid showing every
+         qualifying show — reuses the same tk-shelf-card markup Shows You
+         Watch Together / What's Airing already render via
+         renderWatchCards() (dashboardShared.js), wrapped instead of
+         horizontally scrolled since this list can now run well past a
+         single scrollable row. Capped with an internal scroll (not forced
+         to fill available height — see .tk-top-row's own comment above)
+         so a large qualifying count doesn't grow the card unboundedly;
+         same reasoning as #subjectTable's own scoped scroll elsewhere on
+         this page. */
+      #nextWatch { display: flex; flex-wrap: wrap; gap: 12px; max-height: 560px; overflow-y: auto; padding-right: 4px; }
 
       /* .tk-shelf/.tk-shelf-card/.tk-cowatch-toolbar/.tk-watch-toolbar moved
          to dashboard.css — watch-together.html needs the exact same rules
@@ -112,13 +96,23 @@
          .tk-row2 box-height check (align-items: stretch, on by default)
          passes fine — both boxes measure identical. But co-watch's own
          content (a single row of poster cards, ~180px) is far shorter
-         than Family Watch List's richly-detailed entries, leaving an
-         ~800px empty gap at the bottom of the stretched box — the SECOND
-         failure mode CLAUDE.md's paired-row rule calls out, same shape as
-         #dismissalsCard's fix on the Quality page (quality.html's own
-         paired-row history). Scoped to #coWatchSection specifically, not
-         .tk-shelf generally — the What's Airing card grid below also uses
-         .tk-shelf but renders full-width with no sibling to match. */
+         than Family Watch List's richly-detailed entries (~1200px+ for 4
+         real entries), the SECOND failure mode CLAUDE.md's paired-row rule
+         calls out. First attempt centered the short content within the
+         full stretched height (the #dismissalsCard pattern on the Quality
+         page) — technically closed the gap, but Bill flagged it as still
+         looking bad: centering a small card row inside an ~1200px box
+         just reads as a huge empty margin above AND below, not "fixed."
+         Real fix: cap Family Watch List's own height with an internal
+         scroll instead of letting it balloon (same scoped-scroll pattern
+         #subjectTable already uses elsewhere on this page) — with both
+         sides bounded to a normal card height, align-items: stretch on
+         .tk-row2 now has a small, reasonable gap to close, and centering
+         genuinely reads as intentional instead of empty. Scoped to
+         index.html's own #familyWatchList specifically, not .tk-fwl-grid
+         generally — trakt/family.html's own full-page listing wants no
+         such cap. */
+      #familyWatchList { max-height: 560px; overflow-y: auto; padding-right: 4px; }
       #coWatchSection { display: flex; flex-direction: column; }
       #coWatchSection #coWatchCards { flex: 1; align-items: center; }
     </style>
@@ -147,7 +141,7 @@
           <div class="tk-card tk-hero-card" id="heroPick"></div>
           <div class="tk-card tk-nw-card-wrap">
             <div class="tk-card-heading">🍿 My Next Watch</div>
-            <div class="tk-card-note">From your watchlist, sorted by how much you'll love it — anything currently airing stays in What's Airing below until it wraps.</div>
+            <div class="tk-card-note">From your watchlist, sorted by how much you'll love it — anything currently airing stays in What's Airing below until it wraps, and anything that hasn't aired an episode in the last six months is left out.</div>
             <div id="nextWatch"></div>
           </div>
         </div>
