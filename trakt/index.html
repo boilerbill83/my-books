@@ -97,10 +97,6 @@
       .tk-nw-fact .tk-hero-fact-source { font-size: 0.7rem; }
       .tk-nw-title .tk-hero-year { font-size: 0.82rem; }
 
-      .tk-byl-row { margin-bottom: 20px; }
-      .tk-byl-row:last-child { margin-bottom: 0; }
-      .tk-byl-heading { font-weight: 600; font-size: 0.92rem; margin-bottom: 10px; }
-
       /* .tk-shelf/.tk-shelf-card/.tk-cowatch-toolbar/.tk-watch-toolbar moved
          to dashboard.css — watch-together.html needs the exact same rules
          and duplicating them per-page is exactly the kind of drift that
@@ -111,6 +107,20 @@
          the exact same card styling for both its Want to Watch and
          Movies We've Loved sections, same drift-prevention reasoning as
          the .tk-shelf/.tk-watch-toolbar move noted above. */
+
+      /* Shows You Watch Together / Family Watch List paired row: the
+         .tk-row2 box-height check (align-items: stretch, on by default)
+         passes fine — both boxes measure identical. But co-watch's own
+         content (a single row of poster cards, ~180px) is far shorter
+         than Family Watch List's richly-detailed entries, leaving an
+         ~800px empty gap at the bottom of the stretched box — the SECOND
+         failure mode CLAUDE.md's paired-row rule calls out, same shape as
+         #dismissalsCard's fix on the Quality page (quality.html's own
+         paired-row history). Scoped to #coWatchSection specifically, not
+         .tk-shelf generally — the What's Airing card grid below also uses
+         .tk-shelf but renders full-width with no sibling to match. */
+      #coWatchSection { display: flex; flex-direction: column; }
+      #coWatchSection #coWatchCards { flex: 1; align-items: center; }
     </style>
   </head>
   <body>
@@ -137,7 +147,7 @@
           <div class="tk-card tk-hero-card" id="heroPick"></div>
           <div class="tk-card tk-nw-card-wrap">
             <div class="tk-card-heading">🍿 My Next Watch</div>
-            <div class="tk-card-note">From your watchlist, recently wrapped and ready to start.</div>
+            <div class="tk-card-note">From your watchlist, sorted by how much you'll love it — anything currently airing stays in What's Airing below until it wraps.</div>
             <div id="nextWatch"></div>
           </div>
         </div>
@@ -149,48 +159,33 @@
           </div>
           <div class="tk-card">
             <div class="tk-card-heading">📺 Shows You'll Love</div>
+            <div class="tk-card-note">Find something new — anything already on My Next Watch or Shows You Watch Together is left out, so this is only ever genuinely new ground.</div>
             <div class="tk-rec-list" id="showRecList"></div>
           </div>
         </div>
         <div class="tk-rec-seeall" style="margin-bottom:24px;"><a href="./recommend.html">See the full ranked watchlist →</a></div>
 
-        <div class="tk-row2" style="margin-bottom:14px;">
-          <div class="tk-card">
-            <div class="tk-card-heading">⏱️ Got Two Hours?</div>
-            <div class="tk-card-note">Movies ≤120 min from your real top picks.</div>
-            <div class="tk-shelf" id="quickWatchShelf"></div>
+        <div class="tk-row2" style="margin-bottom:24px;">
+          <div class="tk-card" id="coWatchSection">
+            <div class="tk-card-heading">📺 <a href="./watch-together.html" class="tk-heading-link">Shows You Watch Together</a></div>
+            <div class="tk-card-note">Manually tagged — shows you only watch with your wife, kept out of the solo picks above and grouped here instead. This card view shows only what's actually airing or has an unwatched episode ready right now; switch to the table for the full tagged list and airing-schedule detail.</div>
+            <div class="tk-cowatch-toolbar"><button type="button" class="tk-btn" id="coWatchViewToggle">Show table view</button></div>
+            <div class="tk-shelf" id="coWatchCards"></div>
+            <div class="tk-table-wrap" id="coWatchTableWrap" hidden><table class="tk-table" id="coWatchTable"></table></div>
           </div>
           <div class="tk-card">
-            <div class="tk-card-heading">📦 Weekend Binge</div>
-            <div class="tk-card-note">Shows ≤10 episodes from your real top picks — short enough to actually finish.</div>
-            <div class="tk-shelf" id="bingeShelf"></div>
+            <div class="tk-card-heading">👨‍👩‍👧‍👦 <a href="./family.html" class="tk-heading-link">Family Watch List</a></div>
+            <div class="tk-card-note">Movies to watch with the whole family — a separate list from your solo picks above, so these never compete for a candidate-pool slot or show up uninvited in You'll Love. Release date and streaming availability are real, hand-researched (never guessed) since no metadata source tracks that reliably.</div>
+            <div id="familyWatchList"></div>
           </div>
-        </div>
-
-        <div class="tk-card" style="margin-bottom: 24px;">
-          <div class="tk-card-heading">📼 Because You Loved…</div>
-          <div class="tk-card-note">Real picks connected to your real 10/10s via TMDB's own similar-title network — the same signal that drives your scores, just grouped by what earned it. Rotates daily.</div>
-          <div id="becauseYouLoved"></div>
-        </div>
-
-        <div class="tk-card" style="margin-bottom: 24px;">
-          <div class="tk-card-heading">📺 <a href="./watch-together.html" class="tk-heading-link">Shows You Watch Together</a></div>
-          <div class="tk-card-note">Manually tagged — shows you only watch with your wife, kept out of the solo picks above and grouped here instead. This card view shows only what's actually airing or has an unwatched episode ready right now; switch to the table for the full tagged list and airing-schedule detail.</div>
-          <div class="tk-cowatch-toolbar"><button type="button" class="tk-btn" id="coWatchViewToggle">Show table view</button></div>
-          <div class="tk-shelf" id="coWatchCards"></div>
-          <div class="tk-table-wrap" id="coWatchTableWrap" hidden><table class="tk-table" id="coWatchTable"></table></div>
-        </div>
-
-        <div class="tk-card" style="margin-bottom: 24px;">
-          <div class="tk-card-heading">👨‍👩‍👧‍👦 <a href="./family.html" class="tk-heading-link">Family Watch List</a></div>
-          <div class="tk-card-note">Movies to watch with the whole family — a separate list from your solo picks above, so these never compete for a candidate-pool slot or show up uninvited in You'll Love. Release date and streaming availability are real, hand-researched (never guessed) since no metadata source tracks that reliably.</div>
-          <div id="familyWatchList"></div>
         </div>
 
         <div class="tk-card" style="margin-bottom: 24px;">
           <div class="tk-card-heading">📅 What's Airing &amp; When You Can Watch</div>
-          <div class="tk-card-note">Everything you're mid-season on, plus anything you'd love that's currently airing — episodes already waiting for you, the next episode date, the season finale date, and a countdown to it, all in one place. Sort any column; defaults to soonest finale first.</div>
-          <div class="tk-table-wrap"><table class="tk-table" id="airingStatusTable"></table></div>
+          <div class="tk-card-note">Everything you're mid-season on, plus anything you'd love that's currently airing — episodes already waiting for you, the next episode date, the season finale date, and a countdown to it, all in one place. A show drops off this list the moment its season wraps and picks up in My Next Watch instead. Sort any column in the table view; defaults to the soonest next episode.</div>
+          <div class="tk-cowatch-toolbar"><button type="button" class="tk-btn" id="airingViewToggle">Show table view</button></div>
+          <div class="tk-shelf" id="airingCards"></div>
+          <div class="tk-table-wrap" id="airingTableWrap" hidden><table class="tk-table" id="airingStatusTable"></table></div>
         </div>
 
         <div class="tk-card-note" id="genreSectionScopeNote" style="margin-bottom:14px;"></div>
