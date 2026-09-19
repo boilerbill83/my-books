@@ -4164,6 +4164,159 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
+  // Bill's ask (2026-09-19, "Project Beta"): assessed a 10-item list of
+  // improvement ideas from his own read of the 2026-09-18 all-titles CSV
+  // export, checked every one against real live data before deciding
+  // add-or-discard — not implemented, per his explicit "don't do any
+  // now." 7 of the 10 were discarded, each for a real, verified reason
+  // rather than a guess (documented in the session's own commit history,
+  // not repeated here to avoid a 10-item wall of dead-end prose):
+  // creator-concentration/exact-100 saturation (already fixed —
+  // rankAll() ranks by the real unclamped score, and diversityRerank()
+  // already caps creator repetition; a live top-50 check found max
+  // creator repeat = 2, not a monoculture), airing-signal activation and
+  // in-progress momentum ranking (SHOW_AIRING_SCALE was already swept to
+  // 0 after a real eval.js regression at every nonzero weight — Session
+  // 54 — and Project Alpha's own "What's Airing"/"My Next Watch"
+  // rework already gives in-progress content the dedicated UI treatment
+  // the idea itself proposed as the fallback once scores saturate),
+  // softening the >=9 threshold (already shipped as liked-not-loved-
+  // signal-gap), and too_urban/fatigue generalization (already tested
+  // twice and rejected — Session 53/64 — its own dismissed titles'
+  // genres, Drama/Crime, are Bill's own top loved genres). The movie-
+  // rewatch idea was also discarded: rewatchStrength() already exists,
+  // confirmed as a correct, verified no-op today (0 of 294 movies have
+  // plays > 1), ready the moment Bill genuinely rewatches something —
+  // the proposed alternative (rating-recency as a "still care" proxy)
+  // would double-count against the temporal-decay idea below rather
+  // than add anything distinct. 2 of the 10 were real, novel, and
+  // added below; a 3rd finding (not from Bill's list) documents the
+  // actual root cause behind 3 of the 7 discards: the CSV export itself.
+  {
+    const enrichedRows = [
+      ...(library.titles || []).map(t => ({ ...t, status: 'Watched' })),
+      ...(watchlist.titles || []).map(t => ({ ...t, status: 'Watchlist' })),
+      ...(candidatePool.titles || []).map(t => ({ ...t, status: 'Candidate' })),
+    ].filter(c => enrichedMeta[c.titleKey]?.genres);
+    let watchedAt100 = 0, notWatchedAt100 = 0;
+    for (const c of enrichedRows) {
+      const h = hydrateTitle(c, enrichedMeta);
+      const score = Math.round(matchScore(h, idx, enrichedMeta, omdbMeta));
+      if (score >= 100) { if (c.status === 'Watched') watchedAt100++; else notWatchedAt100++; }
+    }
+    const realCandidatesAt100 = [...fromWatchlist, ...fromCandidates].filter(c => c.bmtreScore >= 100);
+    const distinctRawAt100 = new Set(realCandidatesAt100.map(c => Math.round(c.bmtreScoreRaw * 100) / 100)).size;
+    findings.push({
+      id: 'export-predicted-score-mixes-watched-titles',
+      severity: 'warning',
+      backlog: true, // documentation fix, not an engine change — no eval.js impact either way
+      ratings: { ease: 6, dataQuality: 6, recEngine: 1, ui: 3 },
+      estTokens: 12000, // one new CSV column / one new report caveat line
+      shortTitle: 'Export Mixes Watched + Real Candidates',
+      title: `Root cause behind 3 of Bill's 10 "Project Beta" ideas: the daily CSV export's predictedScore column scores every row, including already-watched titles, with no flag distinguishing a real recommendation candidate from an honesty-check-only row`,
+      technical: `Live-verified today: of ${fmtNum(watchedAt100 + notWatchedAt100)} enriched rows scoring exactly 100 in ` +
+        `<code>trakt/scripts/lib/loadAllTitles.js</code>'s row set (library + watchlist + candidatePool, the same set ` +
+        `<code>export_extract.js</code> writes to <code>trakt/output/all-titles-*.csv</code>), <strong>${fmtNum(watchedAt100)} are already-` +
+        `watched</strong> titles — trivially near-ceiling because many ARE the loved anchors themselves (self/sibling creator, franchise, and ` +
+        `similar-title matches) — and only <strong>${fmtNum(notWatchedAt100)}</strong> are real watchlist/candidate rows that could ever actually ` +
+        `surface as a recommendation. Reading the CSV's predictedScore column without filtering by Status produces exactly the false read Bill's ` +
+        `own analysis hit: "143 titles at exactly 100... 96 driven by Creator Match" and "16 in-progress shows average 92.8" both count watched-and-` +
+        `airing/watched-and-loved rows, which were never going to compete for a recommendation slot in the first place. The real, actionable number ` +
+        `is much smaller and already has real ranking resolution underneath the display clamp: only ${fmtNum(realCandidatesAt100.length)} of ` +
+        `${fmtNum(fromWatchlist.length + fromCandidates.length)} real watchlist/candidate rows clamp to a display 100, and those ` +
+        `${fmtNum(realCandidatesAt100.length)} have ${fmtNum(distinctRawAt100)} distinct real (unclamped) scores — <code>rankAll()</code> already ` +
+        `sorts by <code>bmtreScoreRaw</code>, not the clamped display value, so they aren't actually tied for ranking purposes even though the CSV ` +
+        `and the UI both show "100" for all of them (<code>score-clamp-saturation</code>, already fixed).`,
+      plain: `Bill did his own real analysis of the daily data export and found what looked like several real problems — too many titles tied at a ` +
+        `perfect 100 score, one creator dominating the top of the list, in-progress shows all maxed out. Checked every one against the live app and ` +
+        `found the app itself is fine — the actual bug is in the export: it lists a predicted score for EVERY title, including ones Bill has already ` +
+        `watched (shown just as an honesty check, "does the score roughly match what he actually rated it"), mixed in with the real, unwatched ` +
+        `candidates without any label saying which is which. A loved show scoring 100 against itself isn't a ranking problem — it was never going to ` +
+        `be recommended, it's already been watched. Once that's filtered out, the real numbers look completely different and healthy.`,
+      impact: `Doesn't change how recommendations are ranked at all — that's already correct. Worth fixing anyway so a future spreadsheet read of the ` +
+        `export doesn't repeat the same false alarm: add a boolean/flag column (e.g. "isRecommendationEligible") or a report caveat noting the ` +
+        `predictedScore column includes already-watched rows for comparison only.`,
+    });
+  }
+
+  {
+    const all = [...fromWatchlist, ...fromCandidates];
+    const prestigeBait = all.filter(c => {
+      const omdb = omdbMeta[c.titleKey] || {};
+      const best = Math.max(omdb.rottenTomatoes || 0, omdb.metacritic || 0);
+      return best >= 80 && c.bmtreScore < 65;
+    });
+    const example = prestigeBait.sort((a, b) => (Math.max((omdbMeta[b.titleKey]||{}).rottenTomatoes||0,(omdbMeta[b.titleKey]||{}).metacritic||0)) - (Math.max((omdbMeta[a.titleKey]||{}).rottenTomatoes||0,(omdbMeta[a.titleKey]||{}).metacritic||0)))[0];
+    const exOmdb = example ? (omdbMeta[example.titleKey] || {}) : null;
+    findings.push({
+      id: 'prestige-bait-weak-personal-signal',
+      severity: 'warning',
+      backlog: true, // Bill: log the idea, don't build yet — needs an eval.js sweep before it's defensible
+      ratings: { ease: 4, dataQuality: 2, recEngine: 5, ui: 1 },
+      estTokens: 20000, // a capped down-weight term + the same eval.js sweep discipline every other signal here used
+      shortTitle: '"Prestige Bait" Not Down-Weighted',
+      title: `Idea (Bill's real #7): ${fmtNum(prestigeBait.length)} of ${fmtNum(all.length)} live candidates (${(100*prestigeBait.length/all.length).toFixed(1)}%) have real RT/Metacritic scores of 80+ but a predicted score under 65, driven mostly by genre alone`,
+      technical: `Live-verified, not assumed: ${fmtNum(prestigeBait.length)} current watchlist/candidate titles carry a real critic score >=80 ` +
+        `(OMDb, RT or Metacritic) while scoring under 65 in <code>matchScore()</code>` +
+        (example ? ` — e.g. <strong>${esc(example.title)}</strong> (RT ${exOmdb.rottenTomatoes ?? '—'}, MC ${exOmdb.metacritic ?? '—'}) scores ` +
+          `${example.bmtreScore.toFixed(1)}` : '') +
+        `. <code>criticScore()</code>'s own neutral point (<code>CRITIC_NEUTRAL = 80</code>) already means a score of 80 nets close to zero credit ` +
+        `on its own — these titles are low mostly for lack of a real personal-affinity signal (no creator/franchise/similar-title/keyword match), not ` +
+        `because critic acclaim is actively hurting them. Bill's proposed fix (an active down-weight when critic score is high but personal coverage ` +
+        `is thin) is a different, untested idea from anything currently shipped — distinct from <code>flat-community-neutral-ignores-genre-bias</code> ` +
+        `above (that finding is about the TMDB crowd-rating neutral point varying by genre, not about critic-score-vs-personal-signal interaction). ` +
+        `Not tested against <code>scripts/eval.js</code> yet, per Bill's explicit "don't do any now" — needs the same sweep discipline every other ` +
+        `signal in this file went through before being trusted, since an active penalty risks the same clamp/regression traps ` +
+        `<code>no-negative-genre-signal</code>'s own history hit before landing on a safe deadzone.`,
+      plain: `Bill's observation: some critically-acclaimed movies/shows show up with a surprisingly low predicted score, seemingly because the app ` +
+        `only really has "this matches your genre" to go on for them — no director, cast, or similar-title connection to anything Bill has actually ` +
+        `loved. Confirmed this is real and not rare (${(100*prestigeBait.length/all.length).toFixed(0)}% of everything currently in the pool). The ` +
+        `open question is whether the app should actively push these DOWN further (Bill's proposal) or just leave them where they already land — ` +
+        `they're not winning top slots today, so this needs a real before/after accuracy test before deciding either way, not a guess.`,
+      impact: `Real and verified (${fmtNum(prestigeBait.length)} live titles), but not proven to actually hurt recommendation quality — these titles ` +
+        `already score in the 50s-60s, well below the pool average, so they aren't currently crowding out better matches. Worth testing with a real ` +
+        `eval.js sweep before building, the same discipline every other signal here required.`,
+    });
+  }
+
+  {
+    const rated = (library.titles || []).filter(t => t.myRating != null && t.ratedAt);
+    const loved = rated.filter(t => t.myRating >= 9);
+    const byYear = new Map();
+    for (const t of rated) { const y = t.ratedAt.slice(0, 4); byYear.set(y, (byYear.get(y) || 0) + 1); }
+    const thisYear = new Date().getFullYear().toString();
+    const pctThisYear = rated.length ? (100 * (byYear.get(thisYear) || 0) / rated.length) : 0;
+    const pctLovedThisYear = loved.length ? (100 * loved.filter(t => t.ratedAt.slice(0,4) === thisYear).length / loved.length) : 0;
+    findings.push({
+      id: 'rating-date-temporal-decay',
+      severity: 'warning',
+      backlog: true, // Bill: log the idea, needs the same bulk-import-timing check library-recency-selection-bias already had to do
+      ratings: { ease: 3, dataQuality: 3, recEngine: 4, ui: 1 },
+      estTokens: 35000, // real risk of a dead end the same shape as library-recency-selection-bias — validate before building
+      shortTitle: 'Rating-Date Decay Untested',
+      title: `Idea (Bill's real #9): should an older RATING (by ratedAt, not release year) count less toward taste-profile signals than a recent one?`,
+      technical: `Live-checked: ${pctThisYear.toFixed(1)}% of all ${fmtNum(rated.length)} rated library titles, and ` +
+        `${pctLovedThisYear.toFixed(1)}% of the ${fmtNum(loved.length)} rated 9-10/10 specifically, carry a ${thisYear} <code>ratedAt</code> — a real, ` +
+        `stark concentration. But this needs the exact same caution <code>childhood-nostalgia-rating-reliability</code> and the already-shipped ` +
+        `<code>library-recency-selection-bias</code> both had to work through first: <code>ratedAt</code> records when this project recorded the ` +
+        `rating (an import/backfill timestamp), not necessarily when Bill's actual enthusiasm was current — several real bulk passes this ` +
+        `${thisYear} session history (the Trakt export imports, the manual "old-title-review" spreadsheet exercise) landed hundreds of ratings for ` +
+        `long-since-watched titles on the same handful of dates. A naive decay keyed on <code>ratedAt</code> could systematically penalize a genuine ` +
+        `long-standing favorite purely because it got backfilled/re-confirmed in one batch, rewarding titles rated individually as they're watched — ` +
+        `the opposite of the intended "track current taste" effect, and a materially different, unvalidated risk from anything currently shipped ` +
+        `(<code>rewatchStrength()</code> and <code>recencyBonusMovie/Show()</code> both key off release/watch dates, never rating date).`,
+      plain: `Bill's idea: an old 9/10 rating from years ago probably shouldn't count exactly as much as a 9/10 he gave last month, since taste can ` +
+        `drift. Checked the real data and found something that looks dramatic (${pctThisYear.toFixed(0)}% of all his ratings are dated this year) — ` +
+        `but that's very likely because of how and when ratings got ENTERED into this project (several big import/backfill sessions), not because ` +
+        `Bill suddenly rated almost everything in the last year. Building a decay signal on that date without untangling the two first risks ` +
+        `punishing genuine long-time favorites just because they happened to get backfilled in one batch — the exact trap a past idea about old ` +
+        `movies already ran into and had to work around.`,
+      impact: `A real, interesting idea, but genuinely risky to build without more investigation first — needs a way to tell "genuinely rated a while ` +
+        `ago, spread out" apart from "backfilled in one batch on ${thisYear}'s import dates" before any decay curve is defensible. Logged as open, ` +
+        `not attempted.`,
+    });
+  }
+
   const order = { critical: 0, serious: 1, warning: 2, good: 3 };
   findings.sort((a, b) => order[a.severity] - order[b.severity]);
   return findings;
