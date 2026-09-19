@@ -18012,5 +18012,18 @@
   "mcUrl": "https://www.metacritic.com/movie/unabomber/",
   "mcUserAttempted": true,
   "checkedAt": "2026-09-18"
+ },
+ "show:295778": {
+  "rottenTomatoes": 83,
+  "rtAudience": 86,
+  "rtUrl": "https://www.rottentomatoes.com/tv/scrubs",
+  "rtAttempted": "2026-09-19",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": null,
+  "metacritic": 74,
+  "metacriticUser": 85,
+  "mcUrl": "https://www.metacritic.com/tv/scrubs/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-09-19"
  }
 }
