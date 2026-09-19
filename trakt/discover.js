@@ -19,7 +19,7 @@ import {
   airingBadge, renderHBarChart, computeGenreStats, displaySubgenre, SUBJECT_LABEL,
   ERA_LABEL, downloadCSV, metaLine, scoreTier, initCollapsibleCards, loadAllData,
   predictedVsActualRows, computeWatchStatusRows, computeCoWatchRows,
-  renderCoWatchCards, renderAiringCards, initCoWatchViewToggle, initAiringViewToggle,
+  renderWatchCards, renderCoWatchCards, renderAiringCards, initCoWatchViewToggle, initAiringViewToggle,
   renderWatchStatusTable, fmtDate, renderFamilyWatchList,
 } from './dashboardShared.js';
 
@@ -631,9 +631,25 @@ function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, revi
 // excluded from What's Airing (its own row-inclusion window) and eligible
 // here, with no separate hand-off logic needed.
 //
+// Second recency filter added same day (Bill: "only include shows that
+// have aired at least one episode in the last six months") — a show that
+// finished its run years ago and just happens to still sit on the
+// watchlist isn't a real "what's next" candidate the way a recently-active
+// one is. hasAiredRecently() below reads the same two real per-show date
+// fields dashboardShared.js's computeWatchStatusRows() already relies on
+// for recency: lastEpisodeToAir (always backward-looking) first, then a
+// genuinely-past currentSeasonFinale as a fallback for shows enriched
+// before that field existed. A show with no air-date signal at all is excluded, not
+// defaulted to included — same "don't guess" discipline as everywhere
+// else in this file. Checked live before shipping: 34 of 36 enriched
+// watchlist shows carry lastEpisodeToAir, 23 pass the 6-month bar — a
+// real, non-degenerate filter, not one that empties the list.
+//
 // Ranked by the engine's real predicted fit (fromWatchlist's bmtreScore) —
 // Bill's own "guess my top four" — but the score itself is never shown,
-// per his explicit ask; it's purely the ranking mechanism.
+// per his explicit ask; it's purely the ranking mechanism. No longer
+// capped to four (Bill: "I want to be able to see everything, not just
+// the top four") — every qualifying show is returned, ranked.
 //
 // coWatchSet is explicitly re-checked HERE, not just relied on via the
 // caller already passing a pre-filtered soloWatchlist — Bill's explicit
@@ -642,13 +658,28 @@ function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, revi
 // belt-and-suspenders precedent isExcluded()'s own watched/watchlist
 // double-check already established elsewhere in this file, rather than
 // depending on every future caller remembering to pre-filter correctly.
+// watchlistKeys is the SAME kind of belt-and-suspenders check (Bill:
+// "or one not on my watch list") — every current pick already verified as
+// a real watchlist.json member before this was added, but re-checking
+// membership here directly (rather than trusting fromWatchlist's own
+// provenance) closes the gap for good, the same reasoning coWatchSet
+// already got.
 // pinnedKeys (nextWatchPins.json — see that file's own "note") go first,
-// guaranteed shown regardless of airing status, then the remaining slots
-// fill from the normal live ranking — naturally bumping whichever live
-// pick would otherwise have been last, rather than hardcoding which title
-// to remove.
-function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, coWatchSet = new Set(), pinnedKeys = []) {
+// guaranteed shown regardless of airing/recency status, then the
+// remaining picks fill from the normal live ranking.
+const RECENT_AIR_WINDOW_DAYS = 182; // ~6 months, Bill's explicit bar
+function hasAiredRecently(meta, today) {
+  const withinWindow = dateStr => {
+    if (!dateStr) return false;
+    const d = new Date(dateStr + 'T00:00:00Z');
+    if (d > today) return false; // scheduled but hasn't aired yet doesn't count as "has aired"
+    return Math.round((today - d) / 86400000) <= RECENT_AIR_WINDOW_DAYS;
+  };
+  return withinWindow(meta.lastEpisodeToAir?.airDate) || withinWindow(meta.currentSeasonFinale?.finaleDate);
+}
+function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, coWatchSet = new Set(), pinnedKeys = [], watchlistKeys = null, today = new Date()) {
   const byKey = new Map(fromWatchlist.map(c => [c.titleKey, c]));
+  const onWatchlist = k => !watchlistKeys || watchlistKeys.has(k);
   // A pin isn't guaranteed to be in fromWatchlist — rankAll() correctly
   // excludes a title from there once it's already in the watched library
   // too (the real Reacher case: Bill is mid-Season-4, so it's an
@@ -658,74 +689,39 @@ function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, coWatchSet = new
   // minimal stand-in object is a complete, correct fallback here.
   const pinned = pinnedKeys
     .map(k => byKey.get(k) || (enrichedMeta[k] ? { titleKey: k, type: k.split(':')[0] } : null))
-    .filter(c => c && c.type === 'show' && c.titleKey !== excludeKey && !coWatchSet.has(c.titleKey) && enrichedMeta[c.titleKey]);
+    .filter(c => c && c.type === 'show' && c.titleKey !== excludeKey && !coWatchSet.has(c.titleKey) && onWatchlist(c.titleKey) && enrichedMeta[c.titleKey]);
   const pinnedSet = new Set(pinned.map(c => c.titleKey));
   const live = fromWatchlist
-    .filter(c => c.type === 'show' && c.titleKey !== excludeKey && !coWatchSet.has(c.titleKey) && !pinnedSet.has(c.titleKey)
-      && enrichedMeta[c.titleKey] && !isActivelyAiring(c, enrichedMeta))
+    .filter(c => c.type === 'show' && c.titleKey !== excludeKey && !coWatchSet.has(c.titleKey) && !pinnedSet.has(c.titleKey) && onWatchlist(c.titleKey)
+      && enrichedMeta[c.titleKey] && !isActivelyAiring(c, enrichedMeta) && hasAiredRecently(enrichedMeta[c.titleKey], today))
     .sort((a, b) => b.bmtreScoreRaw - a.bmtreScoreRaw);
-  return [...pinned, ...live].slice(0, 4);
+  return [...pinned, ...live];
 }
 
-// "when the most recent episode aired" (Bill's explicit ask). TMDB's
-// lastEpisodeToAir (enrich_tmdb.py, added alongside this) is the direct
-// answer and always backward-looking, unlike nextEpisodeToAir/
-// currentSeasonFinale which can point at a date still in the future.
-// Falls back to a genuinely-past currentSeasonFinale for any show
-// enriched before this field existed — degrades to null (row omitted,
-// never guessed) rather than showing a stale or future-dated "most
-// recent" episode.
-function mostRecentEpisodeLabel(meta, today) {
-  const last = meta.lastEpisodeToAir;
-  if (last?.airDate) {
-    const ep = `S${last.seasonNumber}E${last.episodeNumber}`;
-    const name = last.name ? ` "${last.name}"` : '';
-    return `Most recent: ${ep}${name} · aired ${fmtDate(last.airDate)}`;
-  }
-  const finale = meta.currentSeasonFinale;
-  if (finale?.finaleDate && new Date(finale.finaleDate + 'T00:00:00Z') <= today) {
-    return `Most recent: S${finale.seasonNumber}E${finale.finaleEpisodeNumber} (season finale) · aired ${fmtDate(finale.finaleDate)}`;
-  }
-  return null;
-}
-
-// Bill: "this layout is boring; add in more information about those four
-// shows, including when the most recent episode aired" — redesigned from
-// a compact 2x2 tile grid to a vertical list of richer rows (bigger
-// poster, network badge, the same metaLine() one-liner the hero and
-// rec-card panels already use for genre/creator/rating, the new most-
-// recent-episode line, and up to 2 facts instead of 1) — both to answer
-// "boring" with real substance and, as a side effect of the extra
-// content per row, to naturally grow this panel's total height back
-// toward the hero's own (see the "make the left smaller and the right
-// bigger" layout comment on .tk-top-row in index.html).
-function renderNextWatch(picks, enrichedMeta, omdbMeta, llmTags, reviewedTags, nextWatchFacts, today = new Date()) {
-  const el = document.getElementById('nextWatch');
-  if (!picks.length) { el.innerHTML = '<div class="tk-empty">Nothing ready on your watchlist right now — everything\'s either mid-season or already watched.</div>'; return; }
-  const factsByKey = nextWatchFacts?.shows || {};
-  el.innerHTML = picks.map(c => {
-    const meta = enrichedMeta[c.titleKey];
-    const candidate = { titleKey: c.titleKey, type: c.type, title: meta.title, year: meta.year };
-    const poster = posterUrl(c.titleKey, enrichedMeta, 'w185');
-    const facts = (factsByKey[c.titleKey]?.facts || []).slice(0, 2);
-    const episodeLine = mostRecentEpisodeLabel(meta, today);
-    return `
-      <div class="tk-nw-card">
-        ${posterImgHtml(poster, 'tk-nw-poster', 92, 138, true)}
-        <div class="tk-nw-body">
-          <div class="tk-nw-title">
-            ${titleLink(candidate)}${meta.year ? ` <span class="tk-hero-year">(${esc(meta.year)})</span>` : ''}
-            ${meta.networks?.length ? `<span class="tk-hero-badge">${esc(meta.networks[0])}</span>` : ''}
-          </div>
-          <div class="tk-nw-meta">${esc([runtimeLabel(candidate, enrichedMeta), metaLine(candidate, enrichedMeta, omdbMeta, llmTags, reviewedTags)].filter(Boolean).join(' · '))}</div>
-          ${episodeLine ? `<div class="tk-nw-episode">📅 ${esc(episodeLine)}</div>` : ''}
-          ${facts.length
-            ? facts.map(f => `<div class="tk-nw-fact">${esc(f.text)}${f.source ? ` <a href="${esc(f.source)}" target="_blank" rel="noopener" class="tk-hero-fact-source">${esc(f.sourceLabel || 'source')}</a>` : ''}</div>`).join('')
-            : `<div class="tk-nw-fact tk-nw-fact-empty">${esc(meta.overview || 'No summary yet.')}</div>`}
-        </div>
-      </div>
-    `;
-  }).join('');
+// Redesigned from a vertical list of rich rows (poster/network/facts/most-
+// recent-episode line) to a poster-card grid (Bill, 2026-09-19: "make it
+// visual... I want to be able to see everything, not just the top four")
+// — the same tk-shelf-card markup renderWatchCards() already established
+// for Shows You Watch Together / What's Airing, wrapped instead of
+// horizontally scrolled (.tk-nw-grid, index.html) since this list can now
+// run well past what a single scrollable row could show at once. The
+// score is still deliberately never shown, per Bill's original explicit
+// ask when this panel was first built — subtitleFn reports the same
+// "when did this last air" fact the old rich rows led with instead.
+// fromWatchlist candidates already carry real title/year/ids (hydrateTitle
+// spreads the source watchlist.json fields), so no per-card metadata
+// lookup or adapter is needed beyond what renderWatchCards() itself does.
+function renderNextWatch(picks, enrichedMeta) {
+  const subtitleFn = c => {
+    const meta = enrichedMeta[c.titleKey] || {};
+    const last = meta.lastEpisodeToAir?.airDate;
+    if (last) return `Last aired ${fmtDate(last)}`;
+    const finale = meta.currentSeasonFinale?.finaleDate;
+    if (finale) return `Season finale ${fmtDate(finale)}`;
+    return 'Ready to watch';
+  };
+  renderWatchCards('nextWatch', picks, enrichedMeta, subtitleFn,
+    'Nothing ready on your watchlist right now — everything\'s either mid-season, already watched, or hasn\'t aired an episode in the last six months.');
 }
 
 // fmtDate()/renderFamilyWatchList() moved to dashboardShared.js (Bill:
@@ -796,7 +792,7 @@ function renderTasteLine(genreStats, crowdCompare, castStats, tenRatedCount) {
 async function load() {
   const { dashboard: d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback,
           llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
-          currentlyWatchingFeature, familyWatchlist, bookThemeCounts, nextWatchFacts, nextWatchPins, coWatchProgress } = await loadAllData();
+          currentlyWatchingFeature, familyWatchlist, bookThemeCounts, nextWatchPins, coWatchProgress } = await loadAllData();
 
   const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
@@ -832,9 +828,12 @@ async function load() {
 
   // Bill: "put currently watching on the left and my next watch on the
   // right" — excludes whatever's already showing on the left so the two
-  // panels can never duplicate a title.
-  const nextWatchPicks = pickNextWatch(soloWatchlist, enrichedMeta, watchingNow?.titleKey ?? null, coWatchSet, nextWatchPins?.titleKeys || []);
-  renderNextWatch(nextWatchPicks, enrichedMeta, omdbMeta, llmTags, reviewedTags, nextWatchFacts);
+  // panels can never duplicate a title. watchlistKeys (real watchlist.json
+  // membership, co-watch already filtered) is the same belt-and-suspenders
+  // re-check coWatchSet already gets — see pickNextWatch()'s own comment.
+  const watchlistKeys = new Set(soloWatchlistData.titles.map(t => t.titleKey));
+  const nextWatchPicks = pickNextWatch(soloWatchlist, enrichedMeta, watchingNow?.titleKey ?? null, coWatchSet, nextWatchPins?.titleKeys || [], watchlistKeys);
+  renderNextWatch(nextWatchPicks, enrichedMeta);
 
   renderFamilyWatchList(familyWatchlist, enrichedMeta);
 

@@ -1238,6 +1238,6 @@ export {
   displaySubgenre, SUBJECT_LABEL, ERA_LABEL, tableToCSV, downloadCSV, fmtCompact, metaLine,
   scoreTier, initCollapsibleCards, loadAllData, predictedVsActualRows,
   buildWatchRow, computeWatchStatusRows, computeCoWatchRows, isCoWatchReady, sortCoWatchReady,
-  coWatchCardSubtitle, renderCoWatchCards, renderAiringCards, initCoWatchViewToggle, initAiringViewToggle,
+  coWatchCardSubtitle, renderWatchCards, renderCoWatchCards, renderAiringCards, initCoWatchViewToggle, initAiringViewToggle,
   summarizeUpcoming, upcomingSortKey, renderWatchStatusTable, fmtDate, renderFamilyWatchList, renderLovedMovies,
 };
