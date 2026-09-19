@@ -728,7 +728,8 @@ function renderNextWatch(picks, enrichedMeta) {
     return parts.join(' · ');
   };
   renderWatchCards('nextWatch', picks, enrichedMeta, subtitleFn,
-    'Nothing ready on your watchlist right now — everything\'s either mid-season, already watched, or hasn\'t aired an episode in the last six months.');
+    'Nothing ready on your watchlist right now — everything\'s either mid-season, already watched, or hasn\'t aired an episode in the last six months.',
+    c => c.reason);
 }
 
 // fmtDate()/renderFamilyWatchList() moved to dashboardShared.js (Bill:
