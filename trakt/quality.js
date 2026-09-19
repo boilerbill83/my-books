@@ -4280,35 +4280,41 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'prestige-bait-weak-personal-signal',
       severity: 'warning',
-      // Not backlog — real, verified, and the next step (an eval.js
-      // sweep) is a normal investigation step, not something parked
-      // pending Bill's own curation/decision. Per his standing rule
-      // (CLAUDE.md): only mark a finding backlog when he explicitly
-      // says to.
-      ratings: { ease: 4, dataQuality: 2, recEngine: 5, ui: 1 },
-      estTokens: 20000, // a capped down-weight term + the same eval.js sweep discipline every other signal here used
-      shortTitle: '"Prestige Bait" Not Down-Weighted',
-      title: `Idea (Bill's real #7): ${fmtNum(prestigeBait.length)} of ${fmtNum(all.length)} live candidates (${(100*prestigeBait.length/all.length).toFixed(1)}%) have real RT/Metacritic scores of 80+ but a predicted score under 65, driven mostly by genre alone`,
-      technical: `Live-verified, not assumed: ${fmtNum(prestigeBait.length)} current watchlist/candidate titles carry a real critic score >=80 ` +
-        `(OMDb, RT or Metacritic) while scoring under 65 in <code>matchScore()</code>` +
-        (example ? ` — e.g. <strong>${esc(example.title)}</strong> (RT ${exOmdb.rottenTomatoes ?? '—'}, MC ${exOmdb.metacritic ?? '—'}) scores ` +
-          `${example.bmtreScore.toFixed(1)}` : '') +
-        `. <code>criticScore()</code>'s own neutral point (<code>CRITIC_NEUTRAL = 80</code>) already means a score of 80 nets close to zero credit ` +
-        `on its own — these titles are low mostly for lack of a real personal-affinity signal (no creator/franchise/similar-title/keyword match), not ` +
-        `because critic acclaim is actively hurting them. Bill's proposed fix (an active down-weight when critic score is high but personal coverage ` +
-        `is thin) is a different, untested idea from anything currently shipped — distinct from <code>flat-community-neutral-ignores-genre-bias</code> ` +
-        `above (that finding is about the TMDB crowd-rating neutral point varying by genre, not about critic-score-vs-personal-signal interaction). ` +
-        `Not tested against <code>scripts/eval.js</code> yet, per Bill's explicit "don't do any now" — needs the same sweep discipline every other ` +
-        `signal in this file went through before being trusted, since an active penalty risks the same clamp/regression traps ` +
-        `<code>no-negative-genre-signal</code>'s own history hit before landing on a safe deadzone.`,
-      plain: `Bill's observation: some critically-acclaimed movies/shows show up with a surprisingly low predicted score, seemingly because the app ` +
-        `only really has "this matches your genre" to go on for them — no director, cast, or similar-title connection to anything Bill has actually ` +
-        `loved. Confirmed this is real and not rare (${(100*prestigeBait.length/all.length).toFixed(0)}% of everything currently in the pool). The ` +
-        `open question is whether the app should actively push these DOWN further (Bill's proposal) or just leave them where they already land — ` +
-        `they're not winning top slots today, so this needs a real before/after accuracy test before deciding either way, not a guess.`,
-      impact: `Real and verified (${fmtNum(prestigeBait.length)} live titles), but not proven to actually hurt recommendation quality — these titles ` +
-        `already score in the 50s-60s, well below the pool average, so they aren't currently crowding out better matches. Worth testing with a real ` +
-        `eval.js sweep before building, the same discipline every other signal here required.`,
+      ratings: { ease: 2, dataQuality: 2, recEngine: 2, ui: 1 },
+      estTokens: 5000, // tested and rejected — nothing cheap left to try without a fundamentally different signal
+      shortTitle: '"Prestige Bait" — Tested, Rejected',
+      title: `Tested (Bill's real #7, sharpened by Grok's real leave-one-out misses): a down-weight for high-critic-score/thin-personal-signal candidates regressed precision@50/@100 at every tested strength — rejected, not shipped`,
+      technical: `The original framing (${fmtNum(prestigeBait.length)} of ${fmtNum(all.length)} live candidates, ${(100*prestigeBait.length/all.length).toFixed(1)}%, ` +
+        `have a real critic score >=80 but score under 65) turned out to describe a different failure than the one Grok's real title-level examples ` +
+        `actually showed. The concrete misses (Suits predicted 89.7 rated 4/10, Say Nothing 97.1→2, Game of Thrones 91.9→3, Dune: Part Two 83.9→2, ` +
+        `The Dark Knight 89.3→4, Dune 72.4→2 — all real, pulled from a live <code>scoreBreakdown()</code> run) are the OPPOSITE shape: high predicted ` +
+        `scores from a STRONG "Similar to titles you loved" and Community Rating credit (9-24pts and 13-24pts respectively, both near their caps), ` +
+        `not a weak one — critic score itself barely moves any of them (mostly under +-3pts). <code>toneSignal()</code>/<code>subgenreSignal()</code> ` +
+        `were already correctly negative on several (Dune -2.5/-3.0, Dune: Part Two -0.7/-3.0, The Dark Knight -0.2/-2.5) but too small to overcome the ` +
+        `similar-title/community credit. Tested two real fixes via the actual leave-one-out harness (scratch copy of engine.js, both compared against ` +
+        `the identical 763-title baseline — MAE 16.27, p10/p25/p50/p100 100/100/96/96, great-match p10/p25/p50/p100 100/100/90/88): (1) simply raising ` +
+        `<code>TONE_SIGNAL_CAP</code>/<code>SUBGENRE_SIGNAL_CAP</code> (3 through 10, 12 combinations) moved nothing at all — every precision figure ` +
+        `held bit-for-bit identical to baseline, confirming these specific misses' preference signals were already capped or too small in absolute terms ` +
+        `for a blanket cap raise to reach them. (2) A targeted "conflict dampener" (an extra penalty, scaled by how much positive ` +
+        `<code>forwardMatches</code>+reverse-similar credit a candidate has, applied only when the combined tone+subgenre preference signal is already ` +
+        `negative) swept 0 through 8: MAE did improve at first (16.27->16.19 at scale 3) but reversed at higher scale (16.60 at scale 8, worse than ` +
+        `baseline) — and precision@50 regressed immediately at the very first nonzero test (96%->94%, scale 0.5) and never recovered, with ` +
+        `precision@100 eroding further as scale increased (96->96->96->94->92->90) and great-match-precision@100 sliding the whole way down ` +
+        `(88->88->87->87->85->84->83). precision@10/@25 (both the plain and great-match versions) held at 100/100 throughout every scale tested, but ` +
+        `that's cold comfort against a real, escalating regression everywhere else — the classic "helps the known misses' MAE, quietly reshuffles ` +
+        `everything else" failure mode this project's history has hit repeatedly with interaction-style signals (the reverted premium-network bonus, ` +
+        `creator-critic-trust-gap, the original symmetric genre signal). Not shipped.`,
+      plain: `Bill and Grok both flagged real cases where a title with high critic acclaim and a strong "similar to something you loved" match still got ` +
+        `predicted way too high — Suits, Game of Thrones, both Dune movies, The Dark Knight — despite Bill rating them all low. Built two different ` +
+        `real fixes and tested each one against every one of Bill's actual ratings to see if it would genuinely improve predictions overall, not just ` +
+        `these specific titles. The simple version (just make the existing "does this match your usual tone" signal count for more) didn't do anything ` +
+        `at all — it wasn't the limiting factor. The more targeted version (specifically push down a title when it has a real taste-mismatch signal AND ` +
+        `a big generic "similar to" credit) did fix these misses on paper, but broke something else in the process — a real, measurable slice of other, ` +
+        `unrelated predictions got worse in exchange, and that trade got worse the harder the fix pushed. Neither is worth shipping as-is.`,
+      impact: `Tested and rejected — not a data gap, not something left undone. These specific misses (Suits/Dune/Dark Knight/Game of Thrones) appear to ` +
+        `be genuine idiosyncratic taste calls (Bill likes the genre/director/network these cite but not these particular titles) that current metadata ` +
+        `can't reliably distinguish from a real match without breaking other predictions. Would need a fundamentally different, more specific signal ` +
+        `(plot-level, not genre/tone-level) to close this gap safely — not a tuning knob on what already exists.`,
     });
   }
 
