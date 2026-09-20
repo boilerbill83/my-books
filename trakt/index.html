@@ -165,18 +165,28 @@
          page) — technically closed the gap, but Bill flagged it as still
          looking bad: centering a small card row inside an ~1200px box
          just reads as a huge empty margin above AND below, not "fixed."
-         Real fix: cap Family Watch List's own height with an internal
-         scroll instead of letting it balloon (same scoped-scroll pattern
-         #subjectTable already uses elsewhere on this page) — with both
-         sides bounded to a normal card height, align-items: stretch on
-         .tk-row2 now has a small, reasonable gap to close, and centering
-         genuinely reads as intentional instead of empty. Scoped to
-         index.html's own #familyWatchList specifically, not .tk-fwl-grid
-         generally — trakt/family.html's own full-page listing wants no
-         such cap. */
+         Capping Family Watch List's own height helped, but with the real
+         tagged-show count now regularly running past what one horizontally-
+         scrolling row can show, the gap came back (Bill's live screenshot,
+         2026-09-20) — a big empty area above/below a single row PLUS a
+         horizontal scrollbar hiding real cards off-screen, the exact
+         "lots of white space and horizontal scroll" pattern now in
+         CLAUDE.md's own standing rule. Real fix, matching the one already
+         proven on My Next Watch: stop horizontally scrolling a shelf that
+         has room to wrap. #coWatchCards overrides .tk-shelf's horizontal-
+         scroll-strip layout with a wrapping grid (same shape as #nextWatch)
+         scoped to this card only — trakt/watch-together.html's own full-page
+         listing, and #airingCards elsewhere on this page, keep the
+         horizontal-scroll .tk-shelf default, which is fine there since
+         neither sits in a height-matched pairing against a much taller
+         sibling. */
       #familyWatchList { max-height: 560px; overflow-y: auto; padding-right: 4px; }
       #coWatchSection { display: flex; flex-direction: column; }
-      #coWatchSection #coWatchCards { flex: 1; align-items: center; }
+      #coWatchSection #coWatchCards {
+        flex: 1; align-content: flex-start; flex-wrap: wrap; overflow-x: visible; overflow-y: auto; padding-right: 4px;
+      }
+      #coWatchSection #coWatchCards .tk-shelf-card { width: 138px; }
+      #coWatchSection #coWatchCards .tk-shelf-poster { width: 118px; height: 177px; }
     </style>
   </head>
   <body>
