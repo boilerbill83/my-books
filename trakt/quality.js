@@ -4318,6 +4318,58 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
+  // Grok's real "Project Beta Part 2" guidance, item #4: subjects (96%
+  // populated, real per-subject rating differences visible on the Quality
+  // page's Subjects table) but zero top-level recommendation reasons ever
+  // cite one. Checked both halves of that claim against live data before
+  // testing anything.
+  {
+    const all = [...fromWatchlist, ...fromCandidates];
+    const genreMatchTop = all.filter(c => c.reason?.startsWith('Genre Match'));
+    let shadowedSubjectMatch = 0;
+    for (const c of genreMatchTop) {
+      const meta = enrichedMeta[c.titleKey];
+      const llmEntry = idx.llmTags?.[c.titleKey];
+      const reviewedEntry = idx.reviewedTags?.[c.titleKey];
+      const subjects = inferSubjects(meta, llmEntry, undefined, reviewedEntry).filter(s => idx.lovedSubjects.has(s));
+      if (subjects.length) shadowedSubjectMatch++;
+    }
+    findings.push({
+      id: 'subject-bonus-undertuned',
+      severity: 'warning',
+      ratings: { ease: 3, dataQuality: 2, recEngine: 2, ui: 2 },
+      estTokens: 8000, // the reason()-shadowing fix is cheap; the scoring-magnitude half is closed, not worth further tokens
+      shortTitle: 'Subject Signal: Undersized + Shadowed',
+      title: `Tested (Grok's real #4): subjectBonus() is capped far smaller than every other signal (1.5 of a ~100pt scale) and its reason() explanation tier never wins live — both halves verified, only the second is fixable`,
+      technical: `Both parts of Grok's observation checked against live data before testing anything. (1) Magnitude: <code>subjectBonus()</code> ` +
+        `caps at 1.5 total points — small next to creator (15), forward-match (24), community rating (variable, often 15-24). Swept two real ` +
+        `fixes via a scratch copy of engine.js against the same 763-title leave-one-out baseline (MAE 16.27, p10/p25/p50/p100 100/100/96/96): ` +
+        `raising just the CAP (1.5 through 8, 6 values) moved nothing at all — every precision figure held bit-for-bit identical, meaning the cap ` +
+        `was never actually the binding constraint for any title in the eval set. Raising the underlying per-tier point VALUES (0.75/0.5/0.25/0.1 ` +
+        `scaled 1x-4x, cap raised to 8 so it couldn't clip) did move MAE (16.27->16.11, a real, monotonic improvement) but precision@50 and great-` +
+        `match-precision@50 both regressed at the very first nonzero test (96%->94%, 90%->88%) and never recovered through scale 4 — the same ` +
+        `"helps MAE, quietly costs precision elsewhere" pattern <code>prestige-bait-weak-personal-signal</code> above just hit. Not shipped. ` +
+        `(2) Reason-text shadowing: confirmed live — 0 of ${fmtNum(all.length)} current candidates get "Subject Match" as their displayed reason, ` +
+        `and it's structural, not a data gap: <code>reason()</code> checks Genre Match before Subject Match, and of the ` +
+        `${fmtNum(genreMatchTop.length)} candidates currently topped by Genre Match, all ${fmtNum(shadowedSubjectMatch)} of them ALSO carry a real, ` +
+        `qualifying subject match that's simply never shown, since Genre Match almost always fires first (a candidate needs literally any genre ` +
+        `Bill has any rated exposure to, which covers nearly everything). This is a display/transparency gap, independent of the scoring question ` +
+        `above — a candidate can be correctly using subject data in its score while the shown explanation never mentions it.`,
+      plain: `Bill and Grok both asked: subjects data looks good and real book-to-tone-style preference differences show up on the Quality page — ` +
+        `is it actually being used? Checked two different things. First, does giving subjects more scoring weight help predictions overall? Tested ` +
+        `it for real and the answer is no — it makes the specific numbers used to grade the model look a little better on average, but a real slice ` +
+        `of predictions elsewhere get worse in the trade, so it's not a net win. Second, does the app ever actually TELL Bill "recommended for this ` +
+        `subject/theme"? Checked and the answer is also no, for a different, real reason: whenever a title also matches Bill's taste by genre — ` +
+        `which is almost always — the app explains its pick with the genre match instead, even on the many titles where a real subject match ` +
+        `exists too. That second part is a real, fixable gap (just change which explanation wins), separate from the scoring question, which is ` +
+        `closed.`,
+      impact: `Scoring-magnitude half is closed — tested, real negative result, not worth revisiting without a fundamentally different approach ` +
+        `(same conclusion as prestige-bait-weak-personal-signal above). The reason-text shadowing half is real and still open: cheap to fix (add a ` +
+        `subject clause onto Genre Match's own text, or check Subject Match first when both are present), would make the displayed explanation more ` +
+        `accurate without touching any actual score.`,
+    });
+  }
+
   const order = { critical: 0, serious: 1, warning: 2, good: 3 };
   findings.sort((a, b) => order[a.severity] - order[b.severity]);
   return findings;
