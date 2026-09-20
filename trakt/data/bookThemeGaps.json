@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T13:57:33.100Z",
+  "generatedAt": "2026-09-20T13:47:17.954Z",
   "methodology": "ratio = (theme's share of Bill's real 5-star-read theme tags) / (its mapped BMTRE genre/subgenre/subject tag's share of his real loved-title rating-weighted score). ratio > 1 means the theme is proportionally bigger in his book taste than his current screen taste (and therefore the citation-graph-seeded candidate pool) already reflects. Evidence floor: bookCount >= 15. Gap floor: ratio > 1.15.",
   "gaps": [
     {
@@ -9,7 +9,7 @@
         "courtroom"
       ],
       "bookCount": 48,
-      "ratio": 3.22,
+      "ratio": 3.32,
       "tags": [
         "subgenre:legal"
       ],
@@ -22,7 +22,7 @@
         "psychological"
       ],
       "bookCount": 35,
-      "ratio": 2.4,
+      "ratio": 2.3,
       "tags": [
         "subgenre:psychological-thriller",
         "subgenre:psychological-horror"
@@ -36,7 +36,7 @@
         "thriller"
       ],
       "bookCount": 109,
-      "ratio": 1.95,
+      "ratio": 1.88,
       "tags": [
         "genre:thriller"
       ],
@@ -47,25 +47,12 @@
       }
     },
     {
-      "key": "biography",
-      "bookThemes": [
-        "biography"
-      ],
-      "bookCount": 19,
-      "ratio": 1.67,
-      "tags": [
-        "genre:biography"
-      ],
-      "mode": "keyword",
-      "searchQuery": "biography"
-    },
-    {
       "key": "business",
       "bookThemes": [
         "business"
       ],
       "bookCount": 19,
-      "ratio": 1.6,
+      "ratio": 1.64,
       "tags": [
         "subject:corporate-power",
         "subject:class-wealth-corporate"
@@ -92,7 +79,7 @@
         "tech history"
       ],
       "bookCount": 19,
-      "ratio": 1.32,
+      "ratio": 1.28,
       "tags": [
         "subject:technology-surveillance"
       ],

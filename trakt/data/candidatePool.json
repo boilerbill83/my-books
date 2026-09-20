@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-18T01:28:51.495Z",
+    "generatedAt": "2026-09-20T13:48:56.410Z",
     "count": 482,
     "capPerType": 200
   },
@@ -870,16 +870,6 @@
       "titleKey": "movie:429351",
       "ids": {
         "tmdb": 429351
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:293767",
-      "ids": {
-        "tmdb": 293767
       },
       "title": null,
       "year": null,
@@ -2348,16 +2338,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:988046",
-      "ids": {
-        "tmdb": 988046
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:263115",
       "ids": {
         "tmdb": 263115
@@ -2650,17 +2630,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:801058",
-      "ids": {
-        "tmdb": 801058
-      },
-      "title": "Seaspiracy",
-      "year": 2021,
-      "source": "genre-explore",
-      "discoveredVia": "Crime"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:406997",
       "ids": {
         "tmdb": 406997
@@ -2823,17 +2792,6 @@
       "year": 2023,
       "source": "genre-explore",
       "discoveredVia": "Crime"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:34524",
-      "ids": {
-        "tmdb": 34524
-      },
-      "title": "Teen Wolf",
-      "year": 2011,
-      "source": "genre-explore",
-      "discoveredVia": "Sci-Fi & Fantasy"
     },
     {
       "type": "show",
@@ -3065,16 +3023,6 @@
       "citedBy": 6
     },
     {
-      "type": "movie",
-      "titleKey": "movie:787699",
-      "ids": {
-        "tmdb": 787699
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 6
-    },
-    {
       "type": "show",
       "titleKey": "show:207411",
       "ids": {
@@ -3282,16 +3230,6 @@
       "citedBy": 5
     },
     {
-      "type": "movie",
-      "titleKey": "movie:787738",
-      "ids": {
-        "tmdb": 787738
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
       "type": "show",
       "titleKey": "show:239946",
       "ids": {
@@ -3343,17 +3281,6 @@
       "year": 2019,
       "source": "genre-explore",
       "discoveredVia": "Thriller"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:1579",
-      "ids": {
-        "tmdb": 1579
-      },
-      "title": "Apocalypto",
-      "year": 2006,
-      "source": "genre-explore",
-      "discoveredVia": "Action"
     },
     {
       "type": "movie",
@@ -3456,17 +3383,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:587",
-      "ids": {
-        "tmdb": 587
-      },
-      "title": "Big Fish",
-      "year": 2003,
-      "source": "genre-explore",
-      "discoveredVia": "Adventure"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:316029",
       "ids": {
         "tmdb": 316029
@@ -3541,17 +3457,6 @@
       "year": 2022,
       "source": "genre-explore",
       "discoveredVia": "War"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:829280",
-      "ids": {
-        "tmdb": 829280
-      },
-      "title": "Enola Holmes 2",
-      "year": 2022,
-      "source": "genre-explore",
-      "discoveredVia": "Mystery"
     },
     {
       "type": "movie",
@@ -3632,17 +3537,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:697843",
-      "ids": {
-        "tmdb": 697843
-      },
-      "title": "Extraction 2",
-      "year": 2023,
-      "source": "genre-explore",
-      "discoveredVia": "Crime"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:340666",
       "ids": {
         "tmdb": 340666
@@ -3651,17 +3545,6 @@
       "year": 2016,
       "source": "genre-explore",
       "discoveredVia": "Thriller"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:1228710",
-      "ids": {
-        "tmdb": 1228710
-      },
-      "title": "The Mandalorian and Grogu",
-      "year": 2026,
-      "source": "genre-explore",
-      "discoveredVia": "Science Fiction"
     },
     {
       "type": "movie",
@@ -4559,16 +4442,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:207484",
-      "ids": {
-        "tmdb": 207484
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
       "titleKey": "show:240558",
       "ids": {
         "tmdb": 240558
@@ -4610,17 +4483,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:4133",
-      "ids": {
-        "tmdb": 4133
-      },
-      "title": "Blow",
-      "year": 2001,
-      "source": "genre-explore",
-      "discoveredVia": "Crime"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:786892",
       "ids": {
         "tmdb": 786892
@@ -4643,17 +4505,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:576845",
-      "ids": {
-        "tmdb": 576845
-      },
-      "title": "Last Night in Soho",
-      "year": 2021,
-      "source": "genre-explore",
-      "discoveredVia": "Horror"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:550988",
       "ids": {
         "tmdb": 550988
@@ -4662,28 +4513,6 @@
       "year": 2021,
       "source": "genre-explore",
       "discoveredVia": "Science Fiction"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:1381027",
-      "ids": {
-        "tmdb": 1381027
-      },
-      "title": "Good Boy",
-      "year": 2026,
-      "source": "genre-explore",
-      "discoveredVia": "Mystery"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:327331",
-      "ids": {
-        "tmdb": 327331
-      },
-      "title": "The Dirt",
-      "year": 2019,
-      "source": "genre-explore",
-      "discoveredVia": "Music"
     },
     {
       "type": "movie",
@@ -4698,17 +4527,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:75656",
-      "ids": {
-        "tmdb": 75656
-      },
-      "title": "Now You See Me",
-      "year": 2013,
-      "source": "genre-explore",
-      "discoveredVia": "Crime"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:13475",
       "ids": {
         "tmdb": 13475
@@ -4717,28 +4535,6 @@
       "year": 2009,
       "source": "genre-explore",
       "discoveredVia": "Science Fiction"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:618588",
-      "ids": {
-        "tmdb": 618588
-      },
-      "title": "Arthur the King",
-      "year": 2024,
-      "source": "genre-explore",
-      "discoveredVia": "Adventure"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:863873",
-      "ids": {
-        "tmdb": 863873
-      },
-      "title": "Caddo Lake",
-      "year": 2024,
-      "source": "genre-explore",
-      "discoveredVia": "Mystery"
     },
     {
       "type": "movie",
@@ -4764,17 +4560,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:481848",
-      "ids": {
-        "tmdb": 481848
-      },
-      "title": "The Call of the Wild",
-      "year": 2020,
-      "source": "genre-explore",
-      "discoveredVia": "Adventure"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:59436",
       "ids": {
         "tmdb": 59436
@@ -4796,39 +4581,6 @@
       "discoveredVia": "Crime"
     },
     {
-      "type": "movie",
-      "titleKey": "movie:466532",
-      "ids": {
-        "tmdb": 466532
-      },
-      "title": "Clara",
-      "year": 2018,
-      "source": "genre-explore",
-      "discoveredVia": "Science Fiction"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:828613",
-      "ids": {
-        "tmdb": 828613
-      },
-      "title": "About Fate",
-      "year": 2022,
-      "source": "genre-explore",
-      "discoveredVia": "Comedy"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:1127110",
-      "ids": {
-        "tmdb": 1127110
-      },
-      "title": "Diablo",
-      "year": 2025,
-      "source": "genre-explore",
-      "discoveredVia": "Crime"
-    },
-    {
       "type": "show",
       "titleKey": "show:287620",
       "ids": {
@@ -4838,17 +4590,6 @@
       "year": 2026,
       "source": "genre-explore",
       "discoveredVia": "Comedy"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:392982",
-      "ids": {
-        "tmdb": 392982
-      },
-      "title": "Marshall",
-      "year": 2017,
-      "source": "book-theme-explore",
-      "discoveredVia": "book-theme:legal"
     },
     {
       "type": "movie",
@@ -4871,28 +4612,6 @@
       "year": 2013,
       "source": "book-theme-explore",
       "discoveredVia": "book-theme:tech history"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:12569",
-      "ids": {
-        "tmdb": 12569
-      },
-      "title": "Extract",
-      "year": 2009,
-      "source": "book-theme-explore",
-      "discoveredVia": "book-theme:business"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:978592",
-      "ids": {
-        "tmdb": 978592
-      },
-      "title": "Sleeping Dogs",
-      "year": 2024,
-      "source": "book-theme-explore",
-      "discoveredVia": "book-theme:psychological"
     },
     {
       "type": "movie",
@@ -4937,17 +4656,6 @@
       "year": 2019,
       "source": "book-theme-explore",
       "discoveredVia": "book-theme:psychological"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:97180",
-      "ids": {
-        "tmdb": 97180
-      },
-      "title": "Selena: The Series",
-      "year": 2020,
-      "source": "book-theme-explore",
-      "discoveredVia": "book-theme:biography"
     },
     {
       "type": "show",
@@ -5032,6 +4740,301 @@
       "title": null,
       "year": null,
       "source": "bill-manual"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:387426",
+      "ids": {
+        "tmdb": 387426
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 12
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:399440",
+      "ids": {
+        "tmdb": 399440
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 12
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:573435",
+      "ids": {
+        "tmdb": 573435
+      },
+      "title": "Bad Boys: Ride or Die",
+      "year": 2024,
+      "source": "genre-explore",
+      "discoveredVia": "Crime"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:51876",
+      "ids": {
+        "tmdb": 51876
+      },
+      "title": "Limitless",
+      "year": 2011,
+      "source": "genre-explore",
+      "discoveredVia": "Mystery"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:614409",
+      "ids": {
+        "tmdb": 614409
+      },
+      "title": "To All the Boys: Always and Forever",
+      "year": 2021,
+      "source": "genre-explore",
+      "discoveredVia": "Comedy"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:180",
+      "ids": {
+        "tmdb": 180
+      },
+      "title": "Minority Report",
+      "year": 2002,
+      "source": "genre-explore",
+      "discoveredVia": "Science Fiction"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:129670",
+      "ids": {
+        "tmdb": 129670
+      },
+      "title": "Nebraska",
+      "year": 2013,
+      "source": "genre-explore",
+      "discoveredVia": "Adventure"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:948713",
+      "ids": {
+        "tmdb": 948713
+      },
+      "title": "The Last Kingdom: Seven Kings Must Die",
+      "year": 2023,
+      "source": "genre-explore",
+      "discoveredVia": "War"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:491418",
+      "ids": {
+        "tmdb": 491418
+      },
+      "title": "Instant Family",
+      "year": 2018,
+      "source": "genre-explore",
+      "discoveredVia": "Comedy"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:675353",
+      "ids": {
+        "tmdb": 675353
+      },
+      "title": "Sonic the Hedgehog 2",
+      "year": 2022,
+      "source": "genre-explore",
+      "discoveredVia": "Adventure"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:810171",
+      "ids": {
+        "tmdb": 810171
+      },
+      "title": "The Valet",
+      "year": 2022,
+      "source": "genre-explore",
+      "discoveredVia": "Romance"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:119450",
+      "ids": {
+        "tmdb": 119450
+      },
+      "title": "Dawn of the Planet of the Apes",
+      "year": 2014,
+      "source": "genre-explore",
+      "discoveredVia": "Science Fiction"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1371185",
+      "ids": {
+        "tmdb": 1371185
+      },
+      "title": "Song Sung Blue",
+      "year": 2025,
+      "source": "genre-explore",
+      "discoveredVia": "Music"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:607259",
+      "ids": {
+        "tmdb": 607259
+      },
+      "title": "Fatherhood",
+      "year": 2021,
+      "source": "genre-explore",
+      "discoveredVia": "Comedy"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:818750",
+      "ids": {
+        "tmdb": 818750
+      },
+      "title": "The In Between",
+      "year": 2022,
+      "source": "genre-explore",
+      "discoveredVia": "Science Fiction"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:54138",
+      "ids": {
+        "tmdb": 54138
+      },
+      "title": "Star Trek Into Darkness",
+      "year": 2013,
+      "source": "genre-explore",
+      "discoveredVia": "Science Fiction"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:986056",
+      "ids": {
+        "tmdb": 986056
+      },
+      "title": "Thunderbolts*",
+      "year": 2025,
+      "source": "genre-explore",
+      "discoveredVia": "Science Fiction"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:411728",
+      "ids": {
+        "tmdb": 411728
+      },
+      "title": "The Professor and the Madman",
+      "year": 2019,
+      "source": "genre-explore",
+      "discoveredVia": "Mystery"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:504949",
+      "ids": {
+        "tmdb": 504949
+      },
+      "title": "The King",
+      "year": 2019,
+      "source": "genre-explore",
+      "discoveredVia": "War"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1272837",
+      "ids": {
+        "tmdb": 1272837
+      },
+      "title": "28 Years Later: The Bone Temple",
+      "year": 2026,
+      "source": "genre-explore",
+      "discoveredVia": "Horror"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:674324",
+      "ids": {
+        "tmdb": 674324
+      },
+      "title": "The Banshees of Inisherin",
+      "year": 2022,
+      "source": "genre-explore",
+      "discoveredVia": "Comedy"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:860159",
+      "ids": {
+        "tmdb": 860159
+      },
+      "title": "Crush",
+      "year": 2022,
+      "source": "genre-explore",
+      "discoveredVia": "Romance"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1182047",
+      "ids": {
+        "tmdb": 1182047
+      },
+      "title": "The Apprentice",
+      "year": 2024,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:legal"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:9740",
+      "ids": {
+        "tmdb": 9740
+      },
+      "title": "Hannibal",
+      "year": 2001,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:psychological"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:759054",
+      "ids": {
+        "tmdb": 759054
+      },
+      "title": "Rise",
+      "year": 2022,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:sports"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:90795",
+      "ids": {
+        "tmdb": 90795
+      },
+      "title": "Most Dangerous Game",
+      "year": 2020,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:psychological"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:129612",
+      "ids": {
+        "tmdb": 129612
+      },
+      "title": "Echoes",
+      "year": 2022,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:psychological"
     }
   ]
 }
