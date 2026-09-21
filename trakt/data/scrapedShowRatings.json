@@ -1591,10 +1591,7 @@
   "metacriticUser": 64,
   "mcUrl": "https://www.metacritic.com/tv/girls/",
   "checkedAt": "2026-08-24",
-  "mcUserAttempted": true,
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "rtCandidatesTried": 3
+  "mcUserAttempted": true
  },
  "show:70573": {
   "rottenTomatoes": null,
@@ -1604,10 +1601,7 @@
   "metacriticUser": 79,
   "mcUrl": "https://www.metacritic.com/tv/glow/",
   "checkedAt": "2026-08-24",
-  "mcUserAttempted": true,
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "rtCandidatesTried": 3
+  "mcUserAttempted": true
  },
  "show:79086": {
   "rottenTomatoes": 84,
@@ -5301,10 +5295,7 @@
   "metacriticUser": 68,
   "mcUrl": "https://www.metacritic.com/tv/from/",
   "checkedAt": "2026-08-24",
-  "mcUserAttempted": true,
-  "rtAttempted": "2026-08-24",
-  "rtAudienceAttempted": true,
-  "rtCandidatesTried": 3
+  "mcUserAttempted": true
  },
  "show:1416": {
   "rottenTomatoes": 84,
