@@ -4108,23 +4108,35 @@ export function reason(candidate, idx, enrichedMeta, omdbMeta = {}) {
 
   const llmEntry = idx.llmTags?.[candidate.titleKey];
   const reviewedEntry = idx.reviewedTags?.[candidate.titleKey];
+
+  // Subject Match checked BEFORE Genre Match (reordered 2026-09-21, part
+  // of "going back through Project Beta" — Grok's real #4): subjectBonus()
+  // is a real, live scoring signal in baseSignals() but was structurally
+  // shadowed here — Genre Match almost always fires first, since a
+  // candidate only needs ANY genre Bill has any rated exposure to (nearly
+  // everything), so a candidate could correctly be using subject data in
+  // its score while the shown explanation never mentioned it (confirmed
+  // live before this fix: 0 candidates ever displayed "Subject Match",
+  // even when a real qualifying subject existed alongside their shown
+  // Genre Match). Subject is also the more specific of the two signals
+  // post-taxonomy-redesign (a ~59-bucket vocabulary vs. Genre's 17), so
+  // this ordering also matches this function's own general specific-
+  // before-generic tier design (Franchise > Creator > Cast > Similar
+  // Title > ... > Genre), not just a shadowing patch.
+  const topSubjects = inferSubjects(meta, llmEntry, undefined, reviewedEntry).filter(s => idx.lovedSubjects.has(s));
+  if (topSubjects.length) {
+    return `Subject Match — Touches on ${topSubjects.join(' / ')}, themes you've responded well to.`;
+  }
+
   const candidateGenre = inferGenre(meta, llmEntry, reviewedEntry);
   if (candidateGenre && idx.lovedGenres.has(candidateGenre)) {
     return `Genre Match — Fits your taste for ${candidateGenre}.`;
   }
 
-  // New (external metadata-plan review): toneSignal()/subjectBonus() are
-  // real, live scoring signals in baseSignals() but were never explained
-  // here — a real gap, not by design. Subject Match mirrors Genre Match's
-  // shape exactly (filtered to subjects Bill's own loved titles carry).
   // Tone Match requires a real *positive* preference, not just presence —
   // idx.toneProfile[tone] is the average rating of Bill's rated titles
   // carrying that tone; only a tone rated above his global mean is a
   // reason to recommend, not merely a tone that happens to match.
-  const topSubjects = inferSubjects(meta, llmEntry, undefined, reviewedEntry).filter(s => idx.lovedSubjects.has(s));
-  if (topSubjects.length) {
-    return `Subject Match — Touches on ${topSubjects.join(' / ')}, themes you've responded well to.`;
-  }
 
   if (idx.toneProfile && idx.globalMeanRating != null) {
     const topTone = inferTones(meta, llmEntry, undefined, reviewedEntry).find(t => (idx.toneProfile.get(t) ?? -Infinity) > idx.globalMeanRating);

@@ -149,6 +149,17 @@ export function loadAllTitles() {
       exclusionReasonCode: fb?.reasonCode || '',
       exclusionReasonLabel: fb?.reasonLabel || '',
       // Live-computed BMTRE engine outputs (same functions the dashboard uses)
+      // predictedScore below is computed for EVERY row, including already-
+      // watched titles (an honesty check — "does the score roughly match
+      // what Bill actually rated it" — not a real recommendation), so a
+      // spreadsheet read of this column alone can look alarming (many
+      // watched/loved titles score near 100 simply because they're the
+      // loved anchors matchScore() itself is built from). isRecommendation-
+      // Eligible makes that filter explicit rather than requiring status
+      // to be cross-referenced by hand — see the "Project Beta" finding
+      // this closes (export-predicted-score-mixes-watched-titles) in
+      // trakt/quality.js for the real analysis that surfaced this gap.
+      isRecommendationEligible: status === 'Watchlist' || status === 'Candidate',
       predictedScore: meta.genres ? Math.round(matchScore(h, idx, enrichedMeta, omdbMeta)) : '',
       confidenceScore: meta.genres ? confidenceScore(h, enrichedMeta) : '',
       popularityScore: popularityScore(meta.voteCount),

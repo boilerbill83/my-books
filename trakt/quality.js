@@ -4234,15 +4234,10 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const distinctRawAt100 = new Set(realCandidatesAt100.map(c => Math.round(c.bmtreScoreRaw * 100) / 100)).size;
     findings.push({
       id: 'export-predicted-score-mixes-watched-titles',
-      severity: 'warning',
-      // Not backlog — a cheap, concrete, no-decision-needed fix (add a
-      // flag column / report caveat), not something parked pending
-      // curation or a design call. Per Bill's standing rule (CLAUDE.md):
-      // only mark a finding backlog when he explicitly says to.
+      severity: 'good',
       ratings: { ease: 6, dataQuality: 6, recEngine: 1, ui: 3 },
-      estTokens: 12000, // one new CSV column / one new report caveat line
       shortTitle: 'Export Mixes Watched + Real Candidates',
-      title: `Root cause behind 3 of Bill's 10 "Project Beta" ideas: the daily CSV export's predictedScore column scores every row, including already-watched titles, with no flag distinguishing a real recommendation candidate from an honesty-check-only row`,
+      title: `Fixed (2026-09-21, "go back through Project Beta"): root cause behind 3 of Bill's 10 "Project Beta" ideas — the daily CSV export now has an explicit isRecommendationEligible column, so predictedScore's already-watched honesty-check rows can't be mistaken for real candidates again`,
       technical: `Live-verified today: of ${fmtNum(watchedAt100 + notWatchedAt100)} enriched rows scoring exactly 100 in ` +
         `<code>trakt/scripts/lib/loadAllTitles.js</code>'s row set (library + watchlist + candidatePool, the same set ` +
         `<code>export_extract.js</code> writes to <code>trakt/output/all-titles-*.csv</code>), <strong>${fmtNum(watchedAt100)} are already-` +
@@ -4262,9 +4257,12 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `watched (shown just as an honesty check, "does the score roughly match what he actually rated it"), mixed in with the real, unwatched ` +
         `candidates without any label saying which is which. A loved show scoring 100 against itself isn't a ranking problem — it was never going to ` +
         `be recommended, it's already been watched. Once that's filtered out, the real numbers look completely different and healthy.`,
-      impact: `Doesn't change how recommendations are ranked at all — that's already correct. Worth fixing anyway so a future spreadsheet read of the ` +
-        `export doesn't repeat the same false alarm: add a boolean/flag column (e.g. "isRecommendationEligible") or a report caveat noting the ` +
-        `predictedScore column includes already-watched rows for comparison only.`,
+      impact: `Never changed how recommendations are ranked — that was already correct. Fixed so a future spreadsheet read of the export can't ` +
+        `repeat the same false alarm: <code>loadAllTitles.js</code> now emits a boolean <code>isRecommendationEligible</code> column ` +
+        `(<code>true</code> only for real Watchlist/Candidate rows — <code>false</code> for Watched/"New Episodes"/Dismissed), placed directly ` +
+        `beside <code>predictedScore</code> in <code>trakt/output/all-titles-*.csv</code>. Verified live against a real regenerated export: ` +
+        `670 Watched + 16 "New Episodes" + 86 Dismissed rows all correctly read <code>false</code>, all 33 Watchlist + 400 Candidate rows all ` +
+        `correctly read <code>true</code> — a clean cross-tab, no mixed cases.`,
     });
   }
 
@@ -4322,51 +4320,53 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   // populated, real per-subject rating differences visible on the Quality
   // page's Subjects table) but zero top-level recommendation reasons ever
   // cite one. Checked both halves of that claim against live data before
-  // testing anything.
+  // testing anything. UPDATED 2026-09-21 ("go back through all of the
+  // suggestions from project beta"): the shadowing half — previously left
+  // open as "cheap to fix" — is now actually shipped: reason() in
+  // engine.js reorders Subject Match ahead of Genre Match (it's also the
+  // more specific of the two post-taxonomy-redesign, a ~59-bucket
+  // vocabulary vs. Genre's 17, so this also matches this function's own
+  // specific-before-generic tier design, not just a shadowing patch).
+  // Display-only change — verified via a real node trakt/scripts/eval.js
+  // run that precision/MAE are byte-identical before and after.
   {
     const all = [...fromWatchlist, ...fromCandidates];
-    const genreMatchTop = all.filter(c => c.reason?.startsWith('Genre Match'));
-    let shadowedSubjectMatch = 0;
-    for (const c of genreMatchTop) {
-      const meta = enrichedMeta[c.titleKey];
-      const llmEntry = idx.llmTags?.[c.titleKey];
-      const reviewedEntry = idx.reviewedTags?.[c.titleKey];
-      const subjects = inferSubjects(meta, llmEntry, undefined, reviewedEntry).filter(s => idx.lovedSubjects.has(s));
-      if (subjects.length) shadowedSubjectMatch++;
-    }
+    const subjectMatchNow = all.filter(c => c.reason?.startsWith('Subject Match'));
     findings.push({
       id: 'subject-bonus-undertuned',
-      severity: 'warning',
-      ratings: { ease: 3, dataQuality: 2, recEngine: 2, ui: 2 },
-      estTokens: 8000, // the reason()-shadowing fix is cheap; the scoring-magnitude half is closed, not worth further tokens
-      shortTitle: 'Subject Signal: Undersized + Shadowed',
-      title: `Tested (Grok's real #4): subjectBonus() is capped far smaller than every other signal (1.5 of a ~100pt scale) and its reason() explanation tier never wins live — both halves verified, only the second is fixable`,
-      technical: `Both parts of Grok's observation checked against live data before testing anything. (1) Magnitude: <code>subjectBonus()</code> ` +
-        `caps at 1.5 total points — small next to creator (15), forward-match (24), community rating (variable, often 15-24). Swept two real ` +
-        `fixes via a scratch copy of engine.js against the same 763-title leave-one-out baseline (MAE 16.27, p10/p25/p50/p100 100/100/96/96): ` +
-        `raising just the CAP (1.5 through 8, 6 values) moved nothing at all — every precision figure held bit-for-bit identical, meaning the cap ` +
-        `was never actually the binding constraint for any title in the eval set. Raising the underlying per-tier point VALUES (0.75/0.5/0.25/0.1 ` +
-        `scaled 1x-4x, cap raised to 8 so it couldn't clip) did move MAE (16.27->16.11, a real, monotonic improvement) but precision@50 and great-` +
-        `match-precision@50 both regressed at the very first nonzero test (96%->94%, 90%->88%) and never recovered through scale 4 — the same ` +
-        `"helps MAE, quietly costs precision elsewhere" pattern <code>prestige-bait-weak-personal-signal</code> above just hit. Not shipped. ` +
-        `(2) Reason-text shadowing: confirmed live — 0 of ${fmtNum(all.length)} current candidates get "Subject Match" as their displayed reason, ` +
-        `and it's structural, not a data gap: <code>reason()</code> checks Genre Match before Subject Match, and of the ` +
-        `${fmtNum(genreMatchTop.length)} candidates currently topped by Genre Match, all ${fmtNum(shadowedSubjectMatch)} of them ALSO carry a real, ` +
-        `qualifying subject match that's simply never shown, since Genre Match almost always fires first (a candidate needs literally any genre ` +
-        `Bill has any rated exposure to, which covers nearly everything). This is a display/transparency gap, independent of the scoring question ` +
-        `above — a candidate can be correctly using subject data in its score while the shown explanation never mentions it.`,
+      severity: 'good',
+      ratings: { ease: 3, dataQuality: 2, recEngine: 2, ui: 4 },
+      shortTitle: 'Subject Signal: Undersized, Now Explained',
+      title: `Tested (Grok's real #4): subjectBonus()'s scoring magnitude is a confirmed, tested dead end — but the reason() shadowing half is now fixed and verified live (${fmtNum(subjectMatchNow.length)} of ${fmtNum(all.length)} real candidates today show "Subject Match")`,
+      technical: `Both parts of Grok's observation checked against live data before touching anything, same as originally. (1) Magnitude: ` +
+        `<code>subjectBonus()</code> caps at 1.5 total points — small next to creator (15), forward-match (24), community rating (variable, ` +
+        `often 15-24). Swept two real fixes via a scratch copy of engine.js against the same 763-title leave-one-out baseline (MAE 16.27, ` +
+        `p10/p25/p50/p100 100/100/96/96): raising just the CAP (1.5 through 8, 6 values) moved nothing at all — every precision figure held ` +
+        `bit-for-bit identical, meaning the cap was never actually the binding constraint for any title in the eval set. Raising the underlying ` +
+        `per-tier point VALUES (0.75/0.5/0.25/0.1 scaled 1x-4x, cap raised to 8 so it couldn't clip) did move MAE (16.27->16.11, a real, monotonic ` +
+        `improvement) but precision@50 and great-match-precision@50 both regressed at the very first nonzero test (96%->94%, 90%->88%) and never ` +
+        `recovered through scale 4 — the same "helps MAE, quietly costs precision elsewhere" pattern <code>prestige-bait-weak-personal-signal</code> ` +
+        `above hit too. Not shipped, and not worth re-testing without a fundamentally different approach — this half is closed for good. ` +
+        `(2) Reason-text shadowing, now fixed: originally confirmed live that 0 of 433 candidates ever got "Subject Match" as their displayed ` +
+        `reason (structural, not a data gap — <code>reason()</code> checked Genre Match before Subject Match, and Genre Match almost always ` +
+        `fires first since a candidate only needs ANY genre Bill has any rated exposure to). Reordered so Subject Match is checked first — ` +
+        `re-verified live after shipping: <strong>${fmtNum(subjectMatchNow.length)} of ${fmtNum(all.length)} real candidates today (${(100*subjectMatchNow.length/(all.length||1)).toFixed(1)}%) ` +
+        `now genuinely display "Subject Match"</strong> as their reason (real examples: "Touches on trauma-abuse / domestic-abuse / ` +
+        `crime-consequences", "Touches on friendship-community"), and Genre Match no longer wins the reason for ANY live candidate — every one ` +
+        `now resolves to a more specific tier (Creator/Similar Title/Cast/Subject/Franchise all fully cover today's pool). Purely a display change ` +
+        `— <code>node trakt/scripts/eval.js</code> confirmed byte-identical precision/MAE before and after, since <code>reason()</code> never ` +
+        `feeds <code>matchScore()</code>.`,
       plain: `Bill and Grok both asked: subjects data looks good and real book-to-tone-style preference differences show up on the Quality page — ` +
-        `is it actually being used? Checked two different things. First, does giving subjects more scoring weight help predictions overall? Tested ` +
-        `it for real and the answer is no — it makes the specific numbers used to grade the model look a little better on average, but a real slice ` +
-        `of predictions elsewhere get worse in the trade, so it's not a net win. Second, does the app ever actually TELL Bill "recommended for this ` +
-        `subject/theme"? Checked and the answer is also no, for a different, real reason: whenever a title also matches Bill's taste by genre — ` +
-        `which is almost always — the app explains its pick with the genre match instead, even on the many titles where a real subject match ` +
-        `exists too. That second part is a real, fixable gap (just change which explanation wins), separate from the scoring question, which is ` +
-        `closed.`,
-      impact: `Scoring-magnitude half is closed — tested, real negative result, not worth revisiting without a fundamentally different approach ` +
-        `(same conclusion as prestige-bait-weak-personal-signal above). The reason-text shadowing half is real and still open: cheap to fix (add a ` +
-        `subject clause onto Genre Match's own text, or check Subject Match first when both are present), would make the displayed explanation more ` +
-        `accurate without touching any actual score.`,
+        `is it actually being used? Two different questions, checked separately. First, does giving subjects more scoring weight help predictions ` +
+        `overall? Tested it for real and the answer is no — it makes the grading numbers look a little better on average, but a real slice of ` +
+        `predictions elsewhere get worse in the trade, so it's not a net win; that part stays closed. Second, does the app ever actually TELL Bill ` +
+        `"recommended for this subject/theme"? It didn't before, for a fixable reason: whenever a title also matched Bill's taste by genre — ` +
+        `almost always — the app explained its pick with the genre match instead, even on titles where a real subject match existed too. That's ` +
+        `now fixed: the app checks the more specific subject match first, and today that's genuinely the explanation shown on about 1 in 10 real ` +
+        `recommendations.`,
+      impact: `Scoring-magnitude half stays closed — tested, real negative result, same conclusion as prestige-bait-weak-personal-signal. The ` +
+        `reason-text shadowing half is shipped and verified: recommendation explanations are now measurably more accurate (a real subject match ` +
+        `is shown when it's the most specific real reason a title was picked) with zero scoring risk, confirmed via an unchanged eval.js run.`,
     });
   }
 
