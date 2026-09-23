@@ -3956,7 +3956,7 @@
     "amazon": null,
     "coverUrl": null,
     "source": "not_found",
-    "checkedAt": "2026-09-09"
+    "checkedAt": "2026-09-23"
   },
   "the body|||stephen king": {
     "storyGraph": null,
@@ -3980,13 +3980,10 @@
   },
   "the american way of killing|||malcolm gladwell": {
     "storyGraph": null,
-    "amazon": {
-      "rating": null,
-      "count": null
-    },
-    "coverUrl": "https://m.media-amazon.com/images/I/71PYjcI1U0L._SX300_.jpg",
-    "source": "cover_only",
-    "checkedAt": "2026-09-09"
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-09-23"
   },
   "up on cove mountain|||earl swift": {
     "storyGraph": null,
@@ -4011,12 +4008,12 @@
   "the munich affair|||james  patterson": {
     "storyGraph": null,
     "amazon": {
-      "rating": null,
-      "count": null
+      "rating": 4.5,
+      "count": 13
     },
     "coverUrl": "https://m.media-amazon.com/images/I/811jfCT+8yL._SX300_.jpg",
-    "source": "cover_only",
-    "checkedAt": "2026-09-09"
+    "source": "amazon",
+    "checkedAt": "2026-09-23"
   },
   "rock*|||chuck klosterman": {
     "storyGraph": null,
@@ -4026,7 +4023,7 @@
     },
     "coverUrl": "https://m.media-amazon.com/images/I/711m2ZIJmHL._SX300_.jpg",
     "source": "cover_only",
-    "checkedAt": "2026-09-09"
+    "checkedAt": "2026-09-23"
   },
   "cancel me if you can|||dave portnoy": {
     "storyGraph": null,
