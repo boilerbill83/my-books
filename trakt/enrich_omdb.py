@@ -323,6 +323,13 @@ def main():
             pending.append(t)
 
     batch = pending[:BATCH_SIZE]
+    # Snapshot which batch titles are genuinely first-time attempts
+    # (never in cache before) vs. a cooldown-expired retry of an already-
+    # known negative (see is_stale_negative() above) — BEFORE the loop
+    # below starts mutating cache[t['titleKey']] in place, which would
+    # make every title look "already cached" by the time this check ran
+    # if computed lazily instead.
+    first_attempt = {t['titleKey']: t['titleKey'] not in cache for t in batch}
     if RETRY_NO_RT:
         print(f'{len(pending)} cached titles missing Rotten Tomatoes, not yet retried, processing {len(batch)}')
     elif RETRY_NO_DIRECTOR:
@@ -333,6 +340,7 @@ def main():
         print(f'{len(pending)} titles pending (have an IMDb id, not yet OMDb-enriched), processing {len(batch)}')
 
     failures = 0
+    first_attempt_failures = 0
     for i, t in enumerate(batch, 1):
         data, status, error_body = omdb_lookup(t['imdbId'])
         if status == 401:
@@ -342,6 +350,8 @@ def main():
             sys.exit(1)
         if not data or data.get('Response') == 'False':
             failures += 1
+            if first_attempt[t['titleKey']]:
+                first_attempt_failures += 1
             err = (data or {}).get('Error') or error_body or f'status {status}'
             print(f'  [{i}/{len(batch)}] FAIL ({err}) | {t["title"] or t["imdbId"]}')
             cache[t['titleKey']] = {'omdbError': err, 'checkedAt': time.strftime('%Y-%m-%d')}
@@ -372,10 +382,29 @@ def main():
         time.sleep(DELAY)
 
     json.dump(cache, open(CACHE_FILE, 'w'), indent=1)
-    if batch and failures == len(batch):
-        print('ERROR: every title in this batch failed — treat as a real failure, not a quiet success.',
+    # Gated on first_attempt_failures, not just failures == len(batch): a
+    # batch made up entirely of cooldown-expired retries of ALREADY-known
+    # negatives (is_stale_negative() above) failing again isn't a real
+    # signal of a systemic problem — a title OMDb has never covered can
+    # keep failing forever without that meaning anything broke today. A
+    # real, live-hit case: "Monsters: The Lyle and Erik Menendez Story"
+    # was the sole pending title on 2026-09-06 (first failure, before it
+    # had any cache entry) AND again on 2026-09-24 (its cooldown expired,
+    # retried, failed identically) — the negative-cache/cooldown fix
+    # above only spaced these 14 days apart, it never stopped a lone
+    # known-flaky retry from tripping this guard and hard-failing the
+    # whole scheduled job every time its cooldown lapses, forever. A
+    # genuinely NEW title failing (never cached before) is real signal
+    # worth failing loudly over, regardless of batch size — a dead key or
+    # a service-wide outage hits first-timers just as hard as repeats.
+    if batch and failures == len(batch) and first_attempt_failures > 0:
+        print(f'ERROR: every title in this batch failed, including {first_attempt_failures} genuinely new '
+              f'title(s) never attempted before — treat as a real failure, not a quiet success.',
               file=sys.stderr)
         sys.exit(1)
+    elif batch and failures == len(batch):
+        print(f'All {failures} failure(s) this run were cooldown-expired retries of already-known OMDb '
+              f'misses (no new titles), not a fresh problem — exiting 0.')
 
     with_rt = sum(1 for v in cache.values() if v.get('rottenTomatoes') is not None)
     with_director = sum(1 for v in cache.values() if v.get('director') is not None)
