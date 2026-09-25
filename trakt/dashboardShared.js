@@ -478,48 +478,21 @@ function initCollapsibleCards() {
 }
 
 // ⭐ Gold star — "can't wait to watch this next" (Bill, 2026-09-25).
-// Local-first via localStorage — same pattern the book side's app.js
-// established for exactly this shape of problem (a user-actionable
-// preference on a static site with no backend of its own): a star
-// registers instantly with no round-trip through Claude, and
-// trakt/data/starredTitles.json (committed) is the durable, cross-device
-// copy, synced whenever Bill uses the "Copy starred list" button (My
-// Next Watch, discover.js) and gives the result back to Claude to
-// commit. Until synced, a star set on one device/browser only shows
-// there — the same honest tradeoff the book side's feedback-persistence
-// pattern already accepted, not something this project can avoid on a
-// static GitHub Pages site.
-const STAR_STORAGE_KEY = 'tk_starredTitles';
-function readLocalStars() {
-  try {
-    const raw = localStorage.getItem(STAR_STORAGE_KEY);
-    return raw ? new Set(JSON.parse(raw)) : new Set();
-  } catch { return new Set(); }
-}
-function writeLocalStars(set) {
-  try { localStorage.setItem(STAR_STORAGE_KEY, JSON.stringify([...set])); } catch {}
-}
-// Unions the committed file with this browser's own localStorage — a
-// star synced in from another device always shows here too, even before
-// this browser's own star button has ever been touched.
-function loadStarredTitles(committed) {
-  const set = readLocalStars();
-  for (const k of committed?.titleKeys || []) set.add(k);
+// First built as a manual click-to-star toggle (localStorage + a "Copy
+// starred list" button synced into a committed JSON file); Bill rejected
+// that the same day ("No I don't need a toggle. I will just tell you
+// what is a good star and you can code it in. For now it is everything
+// I marked as a favorite in Trakt") — so the star is now a plain,
+// live-computed rule reading the real `favorite` flag every watched/
+// watchlisted title already carries straight from Bill's own Trakt
+// export (library.json/watchlist.json), not a separate preference to
+// maintain. If Bill names other titles later, that's a rule change made
+// here directly, not a new stored-preference mechanism.
+function computeFavoriteStars(library, watchlist) {
+  const set = new Set();
+  for (const t of library?.titles || []) if (t.favorite) set.add(t.titleKey);
+  for (const t of watchlist?.titles || []) if (t.favorite) set.add(t.titleKey);
   return set;
-}
-function toggleStarredTitle(titleKey, currentSet) {
-  const next = new Set(currentSet);
-  if (next.has(titleKey)) next.delete(titleKey); else next.add(titleKey);
-  writeLocalStars(next);
-  return next;
-}
-// Builds the exact JSON shape trakt/data/starredTitles.json itself uses,
-// so what Bill copies can be pasted straight in with no reformatting.
-function starredTitlesJSON(set) {
-  return JSON.stringify({
-    note: 'Bill\'s own "gold star — can\'t wait to watch this next" picks, set via the ⭐ button on My Next Watch cards (trakt/index.html). Synced from localStorage via the "Copy starred list" button — replace titleKeys below with the copied array whenever Bill shares a fresh export. A star here always sorts to the very top of My Next Watch, ahead of even a manual nextWatchPins.json entry, since it\'s Bill\'s own explicit, strongest "I want this" signal.',
-    titleKeys: [...set],
-  }, null, 1);
 }
 
 // Both Discover and Quality fetch the identical 10 data files and do the
@@ -534,7 +507,7 @@ async function loadAllData() {
   const [dashboard, libraryRaw, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback,
          scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
          currentlyWatchingFeature, familyWatchlist, releaseLog, goodreadsData, manualRatings, nextWatchFacts, nextWatchPins,
-         coWatchProgressRaw, starredTitlesCommitted] = await Promise.all([
+         coWatchProgressRaw] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -614,20 +587,12 @@ async function loadAllData() {
     // field. {overrides:{}} is a safe empty default — no overrides, pure
     // Trakt-derived readiness, same as before this file existed.
     get('./data/coWatchProgress.json').catch(() => ({ overrides: {} })),
-    // ⭐ Bill's own "gold star — can't wait to watch this next" picks (Bill,
-    // 2026-09-25: "This is my one stop shop to decide what to watch
-    // next... let's find a way to gold star the ones I can't wait to
-    // watch next") — the durable, cross-device copy; see
-    // loadStarredTitles()'s own comment for how this merges with
-    // whatever's in THIS browser's localStorage. {titleKeys:[]} is a safe
-    // empty default — no committed stars yet, pure local state.
-    get('./data/starredTitles.json').catch(() => ({ titleKeys: [] })),
   ]);
   const library = mergeManualRatings(libraryRaw, manualRatings);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
   const bookThemeCounts = computeBookThemeCounts(goodreadsData);
   const coWatchProgress = coWatchProgressRaw?.overrides || {};
-  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog, bookThemeCounts, nextWatchFacts, nextWatchPins, coWatchProgress, starredTitlesCommitted };
+  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog, bookThemeCounts, nextWatchFacts, nextWatchPins, coWatchProgress };
 }
 
 // Best Matches (Discover) and Prediction Misses (Quality) are two views of
@@ -935,14 +900,14 @@ function coWatchCardSubtitle(row) {
 // hero-matched height, but a real "why this" line is what should fill
 // that space, not blank card background).
 //
-// starredSet/onStarToggle are also optional (omitted, every other
-// caller's cards render exactly as before) — the ⭐ gold-star button
-// (Bill, 2026-09-25, "let's find a way to gold star the ones I can't
-// wait to watch next"), currently wired up by My Next Watch only. The
-// button sits inside the card's own <a href="...traktUrl"> wrapper, so
-// its click handler stops propagation — otherwise a star click would
-// also navigate to Trakt.
-function renderWatchCards(elementId, rows, enrichedMeta, subtitleFn, emptyText, reasonFn, starredSet = null, onStarToggle = null) {
+// starredSet is also optional (omitted, every other caller's cards
+// render exactly as before) — a ⭐ badge for a real Trakt favorite
+// (Bill, 2026-09-25: "let's find a way to gold star the ones I can't
+// wait to watch next" → "I will just tell you what is a good star...
+// for now it is everything I marked as a favorite in Trakt"),
+// currently wired up by My Next Watch only. Purely a live-computed
+// display badge, not a click target — see computeFavoriteStars().
+function renderWatchCards(elementId, rows, enrichedMeta, subtitleFn, emptyText, reasonFn, starredSet = null) {
   const el = document.getElementById(elementId);
   if (!rows.length) {
     el.innerHTML = `<div class="tk-empty">${esc(emptyText)}</div>`;
@@ -951,8 +916,7 @@ function renderWatchCards(elementId, rows, enrichedMeta, subtitleFn, emptyText, 
   el.innerHTML = rows.map(r => {
     const poster = posterUrl(r.titleKey, enrichedMeta, 'w154');
     const reasonText = reasonFn ? reasonFn(r) : null;
-    const starred = starredSet?.has(r.titleKey);
-    const starHtml = starredSet ? `<button type="button" class="tk-star-btn${starred ? ' tk-star-btn-on' : ''}" data-titlekey="${esc(r.titleKey)}" title="${starred ? 'Remove gold star' : "Gold star — can't wait to watch this"}" aria-label="${starred ? 'Remove gold star' : 'Add gold star'}">${starred ? '★' : '☆'}</button>` : '';
+    const starHtml = starredSet?.has(r.titleKey) ? '<div class="tk-star-badge" title="One of your real Trakt favorites">★</div>' : '';
     return `
     <a class="tk-shelf-card" href="${esc(traktUrl(r))}" target="_blank" rel="noopener">
       ${starHtml}
@@ -963,14 +927,6 @@ function renderWatchCards(elementId, rows, enrichedMeta, subtitleFn, emptyText, 
       ${reasonText ? `<div class="tk-shelf-reason">${esc(reasonText)}</div>` : ''}
     </a>`;
   }).join('');
-  if (onStarToggle) {
-    el.querySelectorAll('.tk-star-btn').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.preventDefault(); e.stopPropagation();
-        onStarToggle(btn.dataset.titlekey);
-      });
-    });
-  }
 }
 
 function renderCoWatchCards(elementId, rows, enrichedMeta) {
@@ -1319,5 +1275,5 @@ export {
   buildWatchRow, computeWatchStatusRows, computeCoWatchRows, isCoWatchReady, sortCoWatchReady,
   coWatchCardSubtitle, renderWatchCards, renderCoWatchCards, renderAiringCards, initCoWatchViewToggle, initAiringViewToggle,
   summarizeUpcoming, upcomingSortKey, renderWatchStatusTable, fmtDate, renderFamilyWatchList, renderLovedMovies,
-  loadStarredTitles, toggleStarredTitle, starredTitlesJSON,
+  computeFavoriteStars,
 };
