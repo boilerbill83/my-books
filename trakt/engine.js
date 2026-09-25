@@ -3480,7 +3480,33 @@ export function isTooObscure(candidate, enrichedMeta) {
 export function isActivelyAiring(candidate, enrichedMeta) {
   if (candidate.type !== 'show') return false;
   const next = enrichedMeta[candidate.titleKey]?.nextEpisodeToAir;
-  return next != null && next.episodeNumber != null && next.episodeNumber > 1;
+  if (next == null || next.episodeNumber == null || next.episodeNumber <= 1) return false;
+  // Bill (2026-09-25, "why isn't Lioness one of my next shows to watch?"):
+  // the episodeNumber>1 check alone only ever meant "TMDB has confirmed
+  // episode 1 of this season aired" — it never checked whether the NEXT
+  // episode TMDB is pointing at has itself already aired. TMDB's own
+  // next_episode_to_air field only gets nulled out once its daily crawl
+  // notices nothing is scheduled after it (the documented lag: "a show
+  // can fall out of 'recently aired' coverage a few days after its real
+  // finale, once this pipeline's own daily re-enrichment catches up"), so
+  // a show whose season fully wrapped days or weeks ago can keep reading
+  // as "airing" the whole time. Confirmed live: 16 real shows were stuck
+  // this way, up to 23 days past their own next-episode date (Good
+  // Mythical Morning) — Lioness itself 5 days past (S3E8, its own season
+  // finale). A stale pointer whose real airDate has already passed no
+  // longer counts as airing; a missing airDate (rare, an incompletely-
+  // enriched title) falls back to trusting episodeNumber alone rather
+  // than being silently excluded — same "don't guess, but don't over-
+  // trust a missing field either" balance this function already struck.
+  // Never read by matchScore()/baseSignals() (display/filtering only —
+  // grepped to confirm before this change), so this carries zero scoring
+  // risk; verified via an unchanged eval.js run regardless.
+  if (next.airDate) {
+    const airDate = new Date(next.airDate + 'T00:00:00Z');
+    const today = new Date(); today.setUTCHours(0, 0, 0, 0);
+    if (airDate < today) return false;
+  }
+  return true;
 }
 
 export function matchScore(candidate, idx, enrichedMeta, omdbMeta = {}) {

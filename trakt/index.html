@@ -213,7 +213,7 @@
           <div class="tk-card tk-hero-card" id="heroPick"></div>
           <div class="tk-card tk-nw-card-wrap">
             <div class="tk-card-heading">🍿 My Next Watch</div>
-            <div class="tk-card-note">From your watchlist, sorted by how much you'll love it — anything currently airing stays in What's Airing below until it wraps, and anything that hasn't aired an episode in the last six months is left out.</div>
+            <div class="tk-card-note">From your watchlist, sorted by how much you'll love it — shows you've already started are in Catching Up instead, anything currently airing stays in What's Airing until it wraps, and anything that hasn't aired an episode in the last six months is left out.</div>
             <div id="nextWatch"></div>
           </div>
         </div>
@@ -252,6 +252,14 @@
           <div class="tk-cowatch-toolbar"><button type="button" class="tk-btn" id="airingViewToggle">Show table view</button></div>
           <div class="tk-shelf" id="airingCards"></div>
           <div class="tk-table-wrap" id="airingTableWrap" hidden><table class="tk-table" id="airingStatusTable"></table></div>
+        </div>
+
+        <div class="tk-card" style="margin-bottom: 24px;">
+          <div class="tk-card-heading">⏩ Catching Up</div>
+          <div class="tk-card-note">Shows on your watchlist you've genuinely already started — real aired episodes still unwatched — but nothing's scheduled soon enough to land in What's Airing above. Ranked by your own rating first (clearest sign you're actually into it), then by how much is stacked up. Trakt has no "I dropped this" signal, so nothing here is filtered by guesswork — your rating and episode count are shown as-is so you can judge for yourself.</div>
+          <div class="tk-cowatch-toolbar"><button type="button" class="tk-btn" id="catchingUpViewToggle">Show table view</button></div>
+          <div class="tk-shelf" id="catchingUpCards"></div>
+          <div class="tk-table-wrap" id="catchingUpTableWrap" hidden><table class="tk-table" id="catchingUpTable"></table></div>
         </div>
 
         <div class="tk-card-note" id="genreSectionScopeNote" style="margin-bottom:14px;"></div>
