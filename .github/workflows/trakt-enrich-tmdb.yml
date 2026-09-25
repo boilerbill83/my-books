@@ -40,6 +40,34 @@ jobs:
           REFRESH_AIRING: ${{ inputs.refresh_airing && '1' || '0' }}
         run: python3 trakt/enrich_tmdb.py ${{ inputs.batch_size || 150 }}
         timeout-minutes: 30
+      # Bill (2026-09-25): "why isn't Lioness one of my next shows to
+      # watch?" traced back to this exact gap — REFRESH_AIRING existed as
+      # a mode but was only ever wired to a manual workflow_dispatch
+      # checkbox, so an already-cached show's nextEpisodeToAir/
+      # currentSeasonFinale never got revisited once the daily step above
+      # (new titles only, mutually exclusive with REFRESH_AIRING inside
+      # enrich_tmdb.py's own mode selection) had already cached it once.
+      # A second, dedicated step rather than folding this into the first
+      # one — the script's mode logic is deliberately single-purpose per
+      # run (same discipline every other Trakt enrichment script here
+      # follows), so two clear, separately-logged steps beat one step
+      # trying to do both under a shared batch budget. Skipped on an
+      # explicit refresh_all/retry_empties/refresh_airing dispatch (those
+      # already cover this ground, or the manual refresh_airing checkbox
+      # already ran it above) — only runs for real on the daily schedule
+      # or a plain, no-special-input manual dispatch. 332 airing-relevant
+      # shows as of this session (65 needing the extra season-detail
+      # call) — real measured cost ~3-8 minutes, comfortably inside the
+      # timeout. Bill's explicit choice (daily, not weekly): "a date can
+      # go up to ~6 days stale" under weekly was the dealbreaker, since
+      # this exact bug was only 5 days stale.
+      - name: Refresh already-cached shows' next-episode/finale dates
+        if: ${{ !inputs.refresh_all && !inputs.retry_empties && !inputs.refresh_airing }}
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          REFRESH_AIRING: '1'
+        run: python3 trakt/enrich_tmdb.py 500
+        timeout-minutes: 20
       - name: Commit if changed
         if: always()
         run: |
