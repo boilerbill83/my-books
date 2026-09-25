@@ -4389,5 +4389,25 @@
     "coverUrl": "https://m.media-amazon.com/images/I/71LWaPy3gjL._SX300_.jpg",
     "source": "amazon",
     "checkedAt": "2026-09-24"
+  },
+  "the gift|||freida mcfadden": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 3.6,
+      "count": 61708
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81ktTdffX1L._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-09-25"
+  },
+  "no country for old men|||cormac mccarthy": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.5,
+      "count": 16259
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91N6ZkX-SSL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-09-25"
   }
 }
