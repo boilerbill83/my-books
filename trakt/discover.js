@@ -20,7 +20,7 @@ import {
   ERA_LABEL, downloadCSV, metaLine, scoreTier, initCollapsibleCards, loadAllData,
   predictedVsActualRows, computeWatchStatusRows, computeCoWatchRows, buildWatchRow,
   renderWatchCards, renderCoWatchCards, renderAiringCards, initCoWatchViewToggle, initAiringViewToggle,
-  initCatchingUpViewToggle, renderWatchStatusTable, fmtDate, renderFamilyWatchList,
+  renderWatchStatusTable, fmtDate, renderFamilyWatchList,
 } from './dashboardShared.js';
 
 // crowdCompare (computeCrowdCompare()'s output) folds in here as one more
@@ -665,8 +665,9 @@ function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, revi
 // provenance) closes the gap for good, the same reasoning coWatchSet
 // already got.
 // pinnedKeys (nextWatchPins.json — see that file's own "note") go first,
-// guaranteed shown regardless of airing/recency status, then the
-// remaining picks fill from the normal live ranking.
+// guaranteed shown regardless of airing/recency status, then genuinely
+// in-progress watchlist shows, then the remaining never-started picks
+// fill from the normal live ranking.
 const RECENT_AIR_WINDOW_DAYS = 182; // ~6 months, Bill's explicit bar
 function hasAiredRecently(meta, today) {
   const withinWindow = dateStr => {
@@ -677,7 +678,53 @@ function hasAiredRecently(meta, today) {
   };
   return withinWindow(meta.lastEpisodeToAir?.airDate) || withinWindow(meta.currentSeasonFinale?.finaleDate);
 }
-function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, coWatchSet = new Set(), pinnedKeys = [], watchlistKeys = null, today = new Date()) {
+
+// In-progress watchlist shows — folded directly into My Next Watch per
+// Bill's explicit ask (2026-09-25: "I don't want a catching up card. I
+// want them all in the my next watch card"), reversing the earlier
+// "⏩ Catching Up" section this same session had shipped as a separate
+// card. Same real criteria as that section had (on the watchlist,
+// genuinely in-progress — plays < airedEpisodes — not already covered by
+// What's Airing, not co-watched, not the Currently Watching hero), just
+// merged into one list instead of rendered separately. Reuses
+// buildWatchRow() (already exported from dashboardShared.js) for the row
+// shape rather than hand-building one, so title/poster/traktUrl all
+// resolve correctly the same way every other buildWatchRow() consumer
+// already gets for free.
+//
+// Sorted AHEAD of never-started picks (own internal order: rating desc,
+// then how much is stacked up) — a show Bill's demonstrably already
+// invested in (a real rating, real watch progress) is a more concrete
+// "watch this next" signal than a predicted-fit score on something he's
+// never started. No attempt to guess which are "dropped" — Trakt has no
+// such signal, and this project's own prior investigation
+// (quality.js's dropped-show-signal finding) found a genuinely-abandoned
+// show is rare in Bill's real data (1 of 366 shows with 3+ episodes) —
+// every card just shows the real rating and backlog size so Bill can
+// judge for himself.
+function pickInProgressWatchlist(library, watchlist, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress, excludeKey, coWatchSet, pinnedSet, onWatchlist, airingKeys) {
+  const libByKey = new Map((library.titles || []).map(t => [t.titleKey, t]));
+  const wlByKey = new Map((watchlist.titles || []).map(t => [t.titleKey, t]));
+  const progressByKey = new Map((currentlyWatching || []).map(t => [t.titleKey, t]));
+  const scoredByKey = new Map([...fromWatchlist, ...fromCandidates].map(c => [c.titleKey, c]));
+  const keys = (library.titles || [])
+    .filter(t => t.type === 'show' && t.titleKey !== excludeKey && !coWatchSet.has(t.titleKey)
+      && !pinnedSet.has(t.titleKey) && onWatchlist(t.titleKey) && !airingKeys.has(t.titleKey)
+      && t.plays != null && t.airedEpisodes != null && t.plays < t.airedEpisodes && enrichedMeta[t.titleKey])
+    .map(t => t.titleKey);
+  return keys
+    .map(titleKey => ({ ...buildWatchRow(titleKey, {
+        inLib: libByKey.get(titleKey), inWl: wlByKey.get(titleKey), inCandidate: null,
+        progress: progressByKey.get(titleKey), scored: scoredByKey.get(titleKey),
+      }, enrichedMeta, upcomingSeasons, coWatchProgress), inProgress: true }))
+    .sort((a, b) => {
+      const ra = a.myRating ?? -1, rb = b.myRating ?? -1;
+      if (ra !== rb) return rb - ra;
+      return (b.episodesReady ?? 0) - (a.episodesReady ?? 0);
+    });
+}
+
+function pickNextWatch(fromWatchlist, fromCandidates, library, watchlist, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress, excludeKey, coWatchSet = new Set(), pinnedKeys = [], watchlistKeys = null, airingKeys = new Set(), today = new Date()) {
   const byKey = new Map(fromWatchlist.map(c => [c.titleKey, c]));
   const onWatchlist = k => !watchlistKeys || watchlistKeys.has(k);
   // A pin isn't guaranteed to be in fromWatchlist — rankAll() correctly
@@ -691,11 +738,12 @@ function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, coWatchSet = new
     .map(k => byKey.get(k) || (enrichedMeta[k] ? { titleKey: k, type: k.split(':')[0] } : null))
     .filter(c => c && c.type === 'show' && c.titleKey !== excludeKey && !coWatchSet.has(c.titleKey) && onWatchlist(c.titleKey) && enrichedMeta[c.titleKey]);
   const pinnedSet = new Set(pinned.map(c => c.titleKey));
+  const inProgress = pickInProgressWatchlist(library, watchlist, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress, excludeKey, coWatchSet, pinnedSet, onWatchlist, airingKeys);
   const live = fromWatchlist
     .filter(c => c.type === 'show' && c.titleKey !== excludeKey && !coWatchSet.has(c.titleKey) && !pinnedSet.has(c.titleKey) && onWatchlist(c.titleKey)
       && enrichedMeta[c.titleKey] && !isActivelyAiring(c, enrichedMeta) && hasAiredRecently(enrichedMeta[c.titleKey], today))
     .sort((a, b) => b.bmtreScoreRaw - a.bmtreScoreRaw);
-  return [...pinned, ...live];
+  return [...pinned, ...inProgress, ...live];
 }
 
 // Redesigned from a vertical list of rich rows (poster/network/facts/most-
@@ -713,8 +761,22 @@ function pickNextWatch(fromWatchlist, enrichedMeta, excludeKey, coWatchSet = new
 // fromWatchlist candidates already carry real title/year/ids (hydrateTitle
 // spreads the source watchlist.json fields), so no per-card metadata
 // lookup or adapter is needed beyond what renderWatchCards() itself does.
+// subtitleFn/reasonFn both branch on c.inProgress (set by
+// pickInProgressWatchlist() above) — a show Bill's already partway
+// through gets its real backlog/rating shown (the same subtitle the
+// short-lived standalone "Catching Up" card used), a never-started pick
+// keeps its original genre/rating/last-aired subtitle plus the engine's
+// real explanation. The two read differently enough at a glance (an
+// episode count + "so far" vs. a genre/rating line) that mixing them in
+// one list doesn't need a visual divider to stay legible.
 function renderNextWatch(picks, enrichedMeta) {
   const subtitleFn = c => {
+    if (c.inProgress) {
+      const parts = [];
+      if (c.episodesReady) parts.push(`${c.episodesReady} episode${c.episodesReady === 1 ? '' : 's'} ready`);
+      if (c.myRating != null) parts.push(`rated ${c.myRating}/10 so far`);
+      return parts.join(' · ') || 'Ready to continue';
+    }
     const meta = enrichedMeta[c.titleKey] || {};
     const parts = [];
     if (meta.genres?.[0]) parts.push(meta.genres[0]);
@@ -729,95 +791,7 @@ function renderNextWatch(picks, enrichedMeta) {
   };
   renderWatchCards('nextWatch', picks, enrichedMeta, subtitleFn,
     'Nothing ready on your watchlist right now — everything\'s either mid-season, already watched, or hasn\'t aired an episode in the last six months.',
-    c => c.reason);
-}
-
-// ⏩ Catching Up — Bill (2026-09-25): "why isn't Lioness one of my next
-// shows to watch?" Root cause: Lioness is genuinely in-progress (16 of 23
-// aired episodes watched, already rated 10/10) AND on the watchlist, but
-// its season finale aired 5 days before this check — outside What's
-// Airing's 0-30-day FORWARD window — and it never reaches My Next Watch
-// at all, since rankAll() correctly excludes anything already in
-// idx.watched (the exact "Reacher" case pickNextWatch()'s own comment
-// above already documents). Checked how common this actually is before
-// building anything: 9 real shows share this exact gap right now
-// (Lioness, Your Friends & Neighbors, Silo, Ransom Canyon, Adults, The
-// Paper, Bad Sisters, Dark Matter, Hacks) — genuinely behind, genuinely
-// on the watchlist, with no home in any existing section.
-//
-// Deliberately narrower than the "Dark Matter" attempt (2026-09-18) that
-// was tried and reverted for What's Airing itself — that one dropped the
-// watchlist-membership requirement ENTIRELY (any in-progress LIBRARY
-// show, watchlisted or not), which is what made a truly-abandoned show
-// indistinguishable from one still being watched. This section keeps
-// watchlist membership as the anchor — Bill's own established "single,
-// deliberate signal for 'am I actually planning to watch this'" — and
-// only widens WHEN a real in-progress watchlist show gets surfaced, from
-// "has an imminent scheduled episode" to "has ANY real aired-and-
-// unwatched content." Mutually exclusive with What's Airing by
-// construction (airingKeys, computed from that table's own real rows —
-// not a second copy of its date-window logic) and with My Next Watch by
-// data source (that pool never includes an idx.watched title at all).
-//
-// Real risk, addressed honestly rather than hidden: Trakt has no "I
-// dropped this" signal, and this project's own prior investigation
-// (quality.js's dropped-show-signal finding) found a genuinely-abandoned
-// show is rare in Bill's real data (1 of 366 shows with 3+ episodes).
-// Rather than build an unvalidated heuristic to silently guess which of
-// these he's still into, every row shows his real rating and how far
-// behind he is (catchingUpCardSubtitle below) so HE can tell at a
-// glance — the same "surface honest uncertainty, don't guess" discipline
-// watchDateUnverified already uses elsewhere in this file.
-function pickCatchingUpKeys(library, watchlistKeys, enrichedMeta, excludeKey, coWatchSet, airingKeys) {
-  return (library.titles || [])
-    .filter(t => t.type === 'show'
-      && t.titleKey !== excludeKey
-      && !coWatchSet.has(t.titleKey)
-      && watchlistKeys.has(t.titleKey)
-      && !airingKeys.has(t.titleKey)
-      && t.plays != null && t.airedEpisodes != null && t.plays < t.airedEpisodes
-      && enrichedMeta[t.titleKey])
-    .map(t => t.titleKey);
-}
-
-// Rating first (the clearest "how much are you actually into this"
-// signal available — he's already watched enough to rate it), backlog
-// size as the tiebreak.
-function sortCatchingUp(rows) {
-  return [...rows].sort((a, b) => {
-    const ra = a.myRating ?? -1, rb = b.myRating ?? -1;
-    if (ra !== rb) return rb - ra;
-    return (b.episodesReady ?? 0) - (a.episodesReady ?? 0);
-  });
-}
-
-function catchingUpCardSubtitle(row) {
-  const parts = [];
-  if (row.episodesReady) parts.push(`${row.episodesReady} episode${row.episodesReady === 1 ? '' : 's'} ready`);
-  if (row.myRating != null) parts.push(`rated ${row.myRating}/10 so far`);
-  return parts.join(' · ') || row.status;
-}
-
-// Reuses buildWatchRow() directly (already exported from
-// dashboardShared.js) rather than adding a fourth computeXRows() sibling
-// there — computeWatchStatusRows()/computeCoWatchRows() live in that
-// shared file because watch-together.html needs the co-watch one too;
-// Catching Up is solo-only (co-watched shows already have their own
-// always-visible section regardless of status), so it stays local here,
-// same precedent as pickNextWatch()/pickCurrentlyWatching() above.
-function renderCatchingUp(keys, library, watchlist, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress) {
-  const libByKey = new Map((library.titles || []).map(t => [t.titleKey, t]));
-  const wlByKey = new Map((watchlist.titles || []).map(t => [t.titleKey, t]));
-  const progressByKey = new Map((currentlyWatching || []).map(t => [t.titleKey, t]));
-  const scoredByKey = new Map([...fromWatchlist, ...fromCandidates].map(c => [c.titleKey, c]));
-  const rows = sortCatchingUp(keys.map(titleKey => buildWatchRow(titleKey, {
-    inLib: libByKey.get(titleKey), inWl: wlByKey.get(titleKey), inCandidate: null,
-    progress: progressByKey.get(titleKey), scored: scoredByKey.get(titleKey),
-  }, enrichedMeta, upcomingSeasons, coWatchProgress)));
-  renderWatchCards('catchingUpCards', rows, enrichedMeta, catchingUpCardSubtitle,
-    'Nothing to catch up on right now — everything you\'re behind on is either airing soon (see What\'s Airing below) or fully wrapped up.');
-  renderWatchStatusTable('catchingUpTable', rows, 'Nothing to catch up on right now.');
-  initCatchingUpViewToggle();
+    c => c.inProgress ? 'You\'re already partway through this one.' : c.reason);
 }
 
 // fmtDate()/renderFamilyWatchList() moved to dashboardShared.js (Bill:
@@ -927,8 +901,16 @@ async function load() {
   // panels can never duplicate a title. watchlistKeys (real watchlist.json
   // membership, co-watch already filtered) is the same belt-and-suspenders
   // re-check coWatchSet already gets — see pickNextWatch()'s own comment.
+  //
+  // airingRows/airingKeys computed here (moved ahead of the What's Airing
+  // render call below) so pickNextWatch() can exclude anything already
+  // covered there — reuses What's Airing's own real row set, not a second
+  // copy of hasRecentOrUpcomingEpisode()'s date-window logic, so the two
+  // sections can never drift out of sync about what's "airing soon."
   const watchlistKeys = new Set(soloWatchlistData.titles.map(t => t.titleKey));
-  const nextWatchPicks = pickNextWatch(soloWatchlist, enrichedMeta, watchingNow?.titleKey ?? null, coWatchSet, nextWatchPins?.titleKeys || [], watchlistKeys);
+  const airingRows = computeWatchStatusRows(soloLibrary, soloWatchlistData, soloWatchlist, soloCandidates, soloCurrentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress);
+  const airingKeys = new Set(airingRows.map(r => r.titleKey));
+  const nextWatchPicks = pickNextWatch(soloWatchlist, soloCandidates, soloLibrary, soloWatchlistData, soloCurrentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress, watchingNow?.titleKey ?? null, coWatchSet, nextWatchPins?.titleKeys || [], watchlistKeys, airingKeys);
   renderNextWatch(nextWatchPicks, enrichedMeta);
 
   renderFamilyWatchList(familyWatchlist, enrichedMeta);
@@ -949,18 +931,10 @@ async function load() {
   renderCoWatchCards('coWatchCards', coWatchRows, enrichedMeta);
   renderWatchStatusTable('coWatchTable', coWatchRows, 'Nothing tagged yet.');
   initCoWatchViewToggle();
-  const airingRows = computeWatchStatusRows(soloLibrary, soloWatchlistData, soloWatchlist, soloCandidates, soloCurrentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress);
   renderAiringCards('airingCards', airingRows, enrichedMeta);
   renderWatchStatusTable('airingStatusTable', airingRows,
     'Nothing you\'re tracking or would love is currently mid-season or airing.');
   initAiringViewToggle();
-
-  // airingKeys reuses What's Airing's own real row set (not a second copy
-  // of hasRecentOrUpcomingEpisode()'s date-window logic) so Catching Up
-  // can never drift out of sync with what What's Airing actually shows.
-  const airingKeys = new Set(airingRows.map(r => r.titleKey));
-  const catchingUpKeys = pickCatchingUpKeys(soloLibrary, watchlistKeys, enrichedMeta, watchingNow?.titleKey ?? null, coWatchSet, airingKeys);
-  renderCatchingUp(catchingUpKeys, soloLibrary, soloWatchlistData, soloWatchlist, soloCandidates, soloCurrentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress);
 
   const enrichedCount = Object.keys(enrichedMeta).length;
   document.getElementById('genreSectionScopeNote').textContent =

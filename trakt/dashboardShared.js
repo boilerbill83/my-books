@@ -968,9 +968,6 @@ function initCoWatchViewToggle() {
 function initAiringViewToggle() {
   initViewToggle('airingViewToggle', 'airingCards', 'airingTableWrap');
 }
-function initCatchingUpViewToggle() {
-  initViewToggle('catchingUpViewToggle', 'catchingUpCards', 'catchingUpTableWrap');
-}
 
 // Short table-cell label for an upcomingSeasons.json entry — reads the
 // entry's own hand-written shortWindow field directly rather than trying
@@ -1249,6 +1246,5 @@ export {
   scoreTier, initCollapsibleCards, loadAllData, predictedVsActualRows,
   buildWatchRow, computeWatchStatusRows, computeCoWatchRows, isCoWatchReady, sortCoWatchReady,
   coWatchCardSubtitle, renderWatchCards, renderCoWatchCards, renderAiringCards, initCoWatchViewToggle, initAiringViewToggle,
-  initCatchingUpViewToggle,
   summarizeUpcoming, upcomingSortKey, renderWatchStatusTable, fmtDate, renderFamilyWatchList, renderLovedMovies,
 };
