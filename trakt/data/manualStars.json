@@ -1,0 +1,7 @@
+{
+ "note": "Titles Bill has directly told Claude to gold-star on My Next Watch, on top of the automatic rule (real Trakt favorites — see computeFavoriteStars() in dashboardShared.js). Not a UI toggle (Bill explicitly rejected that, 2026-09-25: \"I will just tell you what is a good star and you can code it in\") — Claude edits this file by hand whenever Bill names a title in chat.",
+ "titleKeys": [
+  "show:113962",
+  "show:95350"
+ ]
+}

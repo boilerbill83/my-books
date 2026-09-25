@@ -482,16 +482,20 @@ function initCollapsibleCards() {
 // starred list" button synced into a committed JSON file); Bill rejected
 // that the same day ("No I don't need a toggle. I will just tell you
 // what is a good star and you can code it in. For now it is everything
-// I marked as a favorite in Trakt") — so the star is now a plain,
-// live-computed rule reading the real `favorite` flag every watched/
-// watchlisted title already carries straight from Bill's own Trakt
-// export (library.json/watchlist.json), not a separate preference to
-// maintain. If Bill names other titles later, that's a rule change made
-// here directly, not a new stored-preference mechanism.
-function computeFavoriteStars(library, watchlist) {
+// I marked as a favorite in Trakt") — so the star is a live-computed
+// rule reading the real `favorite` flag every watched/watchlisted title
+// already carries straight from Bill's own Trakt export
+// (library.json/watchlist.json), unioned with trakt/data/manualStars.json
+// — titles Bill has since named directly in chat that aren't (or can't
+// be, e.g. an unreleased watchlist-only show) flagged favorite in Trakt
+// itself (e.g. Lioness, Lanterns — both 2026-09-25). Not a stored
+// preference the UI writes to; Claude edits that file by hand per Bill's
+// own instruction above.
+function computeFavoriteStars(library, watchlist, manualStars) {
   const set = new Set();
   for (const t of library?.titles || []) if (t.favorite) set.add(t.titleKey);
   for (const t of watchlist?.titles || []) if (t.favorite) set.add(t.titleKey);
+  for (const k of manualStars?.titleKeys || []) set.add(k);
   return set;
 }
 
@@ -507,7 +511,7 @@ async function loadAllData() {
   const [dashboard, libraryRaw, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback,
          scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
          currentlyWatchingFeature, familyWatchlist, releaseLog, goodreadsData, manualRatings, nextWatchFacts, nextWatchPins,
-         coWatchProgressRaw] = await Promise.all([
+         coWatchProgressRaw, manualStars] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -587,12 +591,17 @@ async function loadAllData() {
     // field. {overrides:{}} is a safe empty default — no overrides, pure
     // Trakt-derived readiness, same as before this file existed.
     get('./data/coWatchProgress.json').catch(() => ({ overrides: {} })),
+    // ⭐ Gold-star titles Bill has named directly in chat, on top of the
+    // automatic real-Trakt-favorite rule — see computeFavoriteStars()'s
+    // own comment and the file's own "note" field. {titleKeys:[]} is a
+    // safe empty default — no manual stars, pure Trakt-favorite-derived.
+    get('./data/manualStars.json').catch(() => ({ titleKeys: [] })),
   ]);
   const library = mergeManualRatings(libraryRaw, manualRatings);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
   const bookThemeCounts = computeBookThemeCounts(goodreadsData);
   const coWatchProgress = coWatchProgressRaw?.overrides || {};
-  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog, bookThemeCounts, nextWatchFacts, nextWatchPins, coWatchProgress };
+  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog, bookThemeCounts, nextWatchFacts, nextWatchPins, coWatchProgress, manualStars };
 }
 
 // Best Matches (Discover) and Prediction Misses (Quality) are two views of

@@ -882,7 +882,8 @@ function renderTasteLine(genreStats, crowdCompare, castStats, tenRatedCount) {
 async function load() {
   const { dashboard: d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback,
           llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
-          currentlyWatchingFeature, familyWatchlist, bookThemeCounts, nextWatchPins, coWatchProgress
+          currentlyWatchingFeature, familyWatchlist, bookThemeCounts, nextWatchPins, coWatchProgress,
+          manualStars
         } = await loadAllData();
 
   const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
@@ -933,10 +934,10 @@ async function load() {
   const airingKeys = new Set(airingRows.map(r => r.titleKey));
   const nextWatchPicks = pickNextWatch(soloWatchlist, soloCandidates, soloLibrary, soloWatchlistData, soloCurrentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress, watchingNow?.titleKey ?? null, coWatchSet, nextWatchPins?.titleKeys || [], watchlistKeys, airingKeys);
   // ⭐ Gold star — a real Trakt favorite (library.json/watchlist.json's
-  // own `favorite` flag from Bill's export), computed live off the full
-  // (not co-watch-filtered) data — see computeFavoriteStars()'s own
-  // comment for why this is a plain rule now, not a stored preference.
-  const starredSet = computeFavoriteStars(library, watchlist);
+  // own `favorite` flag from Bill's export) unioned with manualStars.json
+  // (titles Bill has named directly), computed live off the full (not
+  // co-watch-filtered) data — see computeFavoriteStars()'s own comment.
+  const starredSet = computeFavoriteStars(library, watchlist, manualStars);
   renderNextWatch(nextWatchPicks, enrichedMeta, starredSet);
 
   renderFamilyWatchList(familyWatchlist, enrichedMeta);
