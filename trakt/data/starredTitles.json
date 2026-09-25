@@ -1,0 +1,4 @@
+{
+ "note": "Bill's own \"gold star — can't wait to watch this next\" picks, set via the ⭐ button on My Next Watch cards (trakt/index.html). Local-first via localStorage in Bill's own browser — this committed file is the durable, cross-device copy, kept in sync via the \"Copy starred list\" button on My Next Watch: Bill clicks it, pastes the result to Claude, Claude replaces titleKeys below and commits. A star here always sorts to the very top of My Next Watch, ahead of even a manual nextWatchPins.json entry, since it's Bill's own explicit, strongest \"I want this\" signal.",
+ "titleKeys": []
+}
