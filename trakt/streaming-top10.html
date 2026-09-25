@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🏆 The Streaming Top 10</title>
+    <meta name="description" content="A weekly, editorial take on what TV shows people are watching, talking about, and worth watching right now — not just a raw popularity ranking." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,600&family=Inter:wght@400;500;600&display=swap" /></noscript>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="./dashboard.css" />
+    <style>
+      /* streaming-top10.html-only. Editorial-magazine card layout — richer
+         than the dashboard's usual compact .tk-rec-card rows, since each
+         entry here carries real written copy (why it's here / why watch /
+         vibe), not just a score and a one-line reason. */
+      .st10-methodology { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 4px; }
+      .st10-list { display: flex; flex-direction: column; gap: 18px; }
+      .st10-card { display: flex; gap: 18px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+      .st10-rank { font-family: var(--font-serif); font-weight: 700; font-size: 1.7rem; color: var(--border); flex-shrink: 0; width: 38px; text-align: center; align-self: flex-start; }
+      .st10-poster { flex-shrink: 0; }
+      .st10-poster-img { width: 120px; height: 180px; border-radius: 8px; object-fit: cover; background: var(--bg-card); border: 1px solid var(--border); display: block; box-shadow: 0 2px 8px rgba(44,26,14,0.14); }
+      .st10-poster-img-empty { border: 1px dashed var(--border); }
+      .st10-body { flex: 1; min-width: 0; }
+      .st10-title-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+      .st10-title { font-family: var(--font-serif); font-weight: 700; font-size: 1.25rem; }
+      .st10-tag { font-size: 0.78rem; font-weight: 700; }
+      .st10-platform { font-size: 0.82rem; color: var(--accent); font-weight: 600; margin-top: 2px; margin-bottom: 10px; }
+      .st10-section { font-size: 0.88rem; line-height: 1.55; margin-bottom: 9px; }
+      .st10-label { display: block; font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 2px; }
+      .st10-commitment { font-size: 0.78rem; color: var(--text-muted); font-style: italic; margin-top: 6px; }
+      .st10-sources { font-size: 0.68rem; color: var(--text-muted); margin-top: 10px; }
+      .st10-sources a { color: var(--text-muted); }
+      .st10-sources a:hover { color: var(--accent); }
+      @media (max-width: 640px) {
+        .st10-card { flex-direction: column; }
+        .st10-rank { width: auto; text-align: left; }
+        .st10-poster-img { width: 100%; height: auto; aspect-ratio: 2 / 3; max-width: 200px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="site-header">
+        <div class="container header-inner">
+          <a class="header-quality-link" href="./index.html">🍿 Discover</a>
+          <a class="header-quality-link" href="./quality.html">📋 Data Quality</a>
+          <a class="header-quality-link" href="./similar.html">🔍 Similar To…</a>
+          <span class="tk-nav-current">🏆 Streaming Top 10</span>
+          <a class="header-quality-link" href="./recommend.html">Full ranked list →</a>
+          <a class="header-quality-link" href="../index.html">← Books</a>
+          <div class="header-status">
+            <span id="statusText">Loading…</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="container" style="padding-top:24px;">
+        <div class="tk-title">🏆 The Streaming Top 10</div>
+        <div class="tk-subtitle" id="weekOfText">Loading…</div>
+
+        <div class="tk-card" style="margin-bottom: 24px;">
+          <div class="tk-card-heading">What is this?</div>
+          <div class="st10-methodology" id="methodologyText"></div>
+          <div class="st10-methodology" style="margin-top:8px;">Not Bill's personal taste, not BMTRE's scoring engine — a general read on what's actually happening across every major streaming service this week, researched fresh from real sources (Nielsen, JustWatch, entertainment press, awards coverage). It won't auto-update; ask Claude to re-research it for a new week whenever you want a fresh list.</div>
+        </div>
+
+        <div class="st10-list" id="top10List"></div>
+      </div>
+    </div>
+    <script type="module" src="./streaming-top10.js"></script>
+  </body>
+</html>

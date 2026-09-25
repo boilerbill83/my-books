@@ -1,0 +1,153 @@
+{
+ "note": "Real, hand-researched weekly editorial Top 10 (Bill, 2026-09-25: build a modern replacement for The Ringer's old Weekly Top 10). This is a general-audience feature about what's happening across the whole TV landscape right now — NOT derived from Bill's own Trakt data or BMTRE's scoring engine, and not personalized to him at all (it happens to overlap with several shows he watches, since those are genuinely the biggest shows on TV right now too). Nielsen and JustWatch have no free public API this static site could call, and this project's standing rule is never fabricate a metric — so this list is real research (WebSearch against Nielsen/HollywoodReporter/JustWatch/Variety/entertainment press/Emmy coverage), synthesized into a ranked, opinionated list per the methodology below, and committed as data. It does NOT refresh itself automatically — ask Claude to research and rebuild it for a fresh week when you want an update, the same 'real but Claude-refreshed, not a live pipeline' pattern this project already uses for upcomingSeasons.json/familyWatchlist.json.",
+ "methodology": "Scored on four weighted dimensions, per Bill's own detailed brief: Audience 30% (is anyone actually watching — Nielsen minutes, JustWatch rank), Current Momentum 25% (is interest rising right now, not just sustained), Cultural Buzz 25% (is it being talked about — reviews, awards, entertainment press, viral moments), Watchability/Editorial Relevance 20% (is it actually a good recommendation this week — accessible, well-reviewed, worth starting). The raw score is an internal ranking mechanism only, never shown. Every entry below cites its real sources; nothing is invented.",
+ "weekOf": "2026-09-25",
+ "generatedAt": "2026-09-25T21:00:00.000Z",
+ "shows": [
+  {
+   "rank": 1,
+   "title": "Reacher",
+   "titleKey": "show:108978",
+   "platform": "Prime Video",
+   "tag": "HOT",
+   "whyHere": "Reacher has been the single most-watched thing on any streaming service for five straight weeks, clearing a billion viewing minutes every one of them — a run its own new spinoff, Neagley, is now riding right alongside it. That's not just a big number, it's a number that refuses to come down.",
+   "whyWatch": "Alan Ritchson beats up an entire town's worth of bad guys while solving a conspiracy, and it never once slows down to explain why that's fun.",
+   "vibe": "Jack Reacher by way of a procedural you can't stop clicking 'next episode' on.",
+   "commitment": "4 seasons | ~45–60 min episodes",
+   "sources": [
+    {"label": "Hollywood Reporter — Streaming Ratings, Sept 7-13", "url": "https://www.hollywoodreporter.com/tv/tv-news/streaming-ratings-sept-7-13-2026-1236709681/"},
+    {"label": "JustWatch — Streaming Charts", "url": "https://www.justwatch.com/us/streaming-charts"}
+   ]
+  },
+  {
+   "rank": 2,
+   "title": "The Gentlemen",
+   "titleKey": "show:236235",
+   "platform": "Netflix",
+   "tag": "HOT",
+   "whyHere": "Season two dropped as a full binge on September 3rd and has only gotten bigger since, jumping 22% in its second week to 881 million minutes watched. Critics who found the first season a little slight are calling this one the real thing — an 81% on Rotten Tomatoes that's actually held up, not just an opening-weekend number.",
+   "whyWatch": "A posh English drug empire, a lot of very calm men making very violent threats, and plotting where every scene earns its own twist.",
+   "vibe": "Guy Ritchie's own movie universe, if it got eight hours to breathe instead of two.",
+   "commitment": "2 seasons | 8 episodes, ~50 min each",
+   "sources": [
+    {"label": "Hollywood Reporter — Streaming Ratings, Sept 7-13", "url": "https://www.hollywoodreporter.com/tv/tv-news/streaming-ratings-sept-7-13-2026-1236709681/"},
+    {"label": "Forbes — The Gentlemen S2 RT score", "url": "https://www.forbes.com/sites/timlammers/2026/09/03/the-gentlemen-season-2-lands-100-rotten-tomatoes-score-in-early-reviews/"}
+   ]
+  },
+  {
+   "rank": 3,
+   "title": "Lanterns",
+   "titleKey": "show:95350",
+   "platform": "HBO Max",
+   "tag": "RISING",
+   "whyHere": "Each new episode has pulled in more viewers than the last — episode three alone hit 10 million worldwide in three days, and the show's cumulative audience has cleared 20 million. That's a rare growth curve for a show this far into its run, and with the finale landing October 4th, this is the week to catch up before everyone's talking about how it ends.",
+   "whyWatch": "A grounded, R-rated murder mystery that happens to star two space cops with magic rings — John Stewart and Hal Jordan investigating something much darker than the comics ever let them.",
+   "vibe": "True Detective wearing a Green Lantern ring.",
+   "commitment": "1 season (8 episodes, in progress) | ~55–60 min episodes",
+   "sources": [
+    {"label": "Variety — Lanterns Episode 3 ratings", "url": "https://variety.com/2026/tv/news/lanterns-episode-3-ratings-10-million-viewers-hbo-max-1236850717/"},
+    {"label": "ScreenRant — Lanterns viewership", "url": "https://screenrant.com/lanterns-hbo-max-dc-thriller-viewership-watch/"}
+   ]
+  },
+  {
+   "rank": 4,
+   "title": "Widow's Bay",
+   "titleKey": "show:270476",
+   "platform": "Apple TV+",
+   "tag": "BUZZY",
+   "whyHere": "This is the actual TV story of the week: Widow's Bay walked into the Emmys on September 14th and walked out with 14 wins — including Outstanding Comedy Series and three acting trophies — the biggest comedy sweep of the night. A show that already finished its season five months ago just became the thing everyone's re-discovering.",
+   "whyWatch": "A New England town's worth of Stephen-King-flavored urban legends, played for horror and genuine laughs in the same scene — a much harder trick than it sounds.",
+   "vibe": "An anthology of campfire stories that somehow also gives you characters you'll miss.",
+   "commitment": "1 season (10 episodes) | ~30 min episodes",
+   "sources": [
+    {"label": "ABC7 — 78th Emmy Awards winners", "url": "https://abc7.com/story/emmys-2026-full-list-winners-nominees-78th-primetime-emmy-awards/19831393/"},
+    {"label": "Roger Ebert — Widow's Bay review", "url": "https://www.rogerebert.com/streaming/widows-bay-apple-tv-review-2026"}
+   ]
+  },
+  {
+   "rank": 5,
+   "title": "MobLand",
+   "titleKey": "show:247718",
+   "platform": "Paramount+",
+   "tag": "HOT",
+   "whyHere": "Tom Hardy, Pierce Brosnan, and Helen Mirren came back for season two on September 18th, rolling out one Friday at a time through November — appointment viewing in an era when almost nothing else asks for it. It was already renewed for a third season before this one even wrapped.",
+   "whyWatch": "A crime family eating itself from the inside, with three actors who could each carry a show alone instead sharing every scene.",
+   "vibe": "Succession's family knife-fights, except everyone's actually armed.",
+   "commitment": "2 seasons (10 episodes each) | ~50–60 min episodes",
+   "sources": [
+    {"label": "How-To Geek — MobLand Season 2", "url": "https://www.howtogeek.com/tom-hardy-guy-ritchie-mobland-season-2-paramount-plus-streaming-september-2026/"}
+   ]
+  },
+  {
+   "rank": 6,
+   "title": "Slow Horses",
+   "titleKey": "show:95480",
+   "platform": "Apple TV+",
+   "tag": "ESTABLISHED",
+   "whyHere": "Season six premiered September 16th, and the fact that Apple had already filmed season seven before this one even aired says everything about how secure this show's position is. It isn't chasing a moment — it's been the moment, six seasons running, without a real weak one yet.",
+   "whyWatch": "Gary Oldman as the worst-smelling, sharpest spy in British intelligence, running a dumping-ground office of disgraced MI5 agents who keep accidentally saving the world.",
+   "vibe": "A le Carré novel that remembered to be funny.",
+   "commitment": "6 seasons | ~45 min episodes",
+   "sources": [
+    {"label": "Tom's Guide — Slow Horses season updates", "url": "https://tomsguide.com/entertainment/apple-tv-plus/slow-horses-season-5"}
+   ]
+  },
+  {
+   "rank": 7,
+   "title": "The Pitt",
+   "titleKey": "show:250307",
+   "platform": "HBO Max",
+   "tag": "BUZZY",
+   "whyHere": "The Pitt won Outstanding Drama Series at the Emmys on September 14th, out-nominated everything else on TV with 12 nods. It's between seasons right now — season two wrapped in April — but an Emmy sweep is exactly the kind of moment that turns 'I've been meaning to' into 'I'm starting tonight.'",
+   "whyWatch": "A single 15-hour ER shift, told in real time, that makes every other medical drama look like it isn't even trying.",
+   "vibe": "ER, if it had been shot like 24 and written by people who'd actually worked a trauma floor.",
+   "commitment": "2 seasons (15 episodes each) | ~40–60 min episodes",
+   "sources": [
+    {"label": "ABC7 — 78th Emmy Awards winners", "url": "https://abc7.com/story/emmys-2026-full-list-winners-nominees-78th-primetime-emmy-awards/19831393/"}
+   ]
+  },
+  {
+   "rank": 8,
+   "title": "Neagley",
+   "titleKey": "show:273207",
+   "platform": "Prime Video",
+   "tag": "RISING",
+   "whyHere": "Reacher's own spinoff just wrapped its first season and is riding straight onto the JustWatch top 10 on the franchise's momentum — proof Prime Video is betting the whole Reacher universe can carry its own shows, not just cameo in each other's.",
+   "whyWatch": "Frances Neagley gets her own case to run, no Reacher required, and she's just as merciless about solving it.",
+   "vibe": "A Reacher spinoff that earns the word 'spinoff' instead of just borrowing the name.",
+   "commitment": "1 season (8 episodes) | ~45 min episodes",
+   "sources": [
+    {"label": "JustWatch — Streaming Charts", "url": "https://www.justwatch.com/us/streaming-charts"}
+   ]
+  },
+  {
+   "rank": 9,
+   "title": "The Doll",
+   "titleKey": null,
+   "platform": "Netflix",
+   "tag": "UNDER-THE-RADAR",
+   "whyHere": "Six tightly-wound episodes of 19th-century Warsaw class drama landed September 16th and quietly climbed onto the JustWatch charts without the marketing push a Gentlemen or a Lanterns gets. Critics are split on whether six episodes was enough room, but nobody's split on whether it's worth those six.",
+   "whyWatch": "A sharp-tongued aristocrat trying to become a writer in a world built to stop her, filmed like it actually cost what it looks like it cost.",
+   "vibe": "A prestige costume drama that moves like it knows you have other things to watch this week.",
+   "commitment": "1 season (6 episodes) | ~50–60 min episodes",
+   "sources": [
+    {"label": "But Why Tho? — The Doll review", "url": "https://butwhytho.net/2026/09/the-doll-review-2026-netflix/"},
+    {"label": "What's on Netflix — The Doll review", "url": "https://www.whats-on-netflix.com/what-to-watch/the-doll-netflix-polish-period-drama-review/"}
+   ]
+  },
+  {
+   "rank": 10,
+   "title": "The Secret Lives of Mormon Wives",
+   "titleKey": null,
+   "platform": "Hulu",
+   "tag": "RISING",
+   "whyHere": "Season five premiered September 10th and immediately pulled the show back onto Nielsen's weekly streaming charts — not a reality-only ranking, the same chart Reacher and The Gentlemen are on. That's a real audience, not a niche one.",
+   "whyWatch": "The messiest, most soap-opera-adjacent reality show currently airing, and it knows exactly what it is.",
+   "vibe": "Real Housewives, except everyone involved is 26 and the stakes somehow feel higher.",
+   "commitment": "5 seasons | ~40–50 min episodes",
+   "sources": [
+    {"label": "Hollywood Reporter — Streaming Ratings, Sept 7-13", "url": "https://www.hollywoodreporter.com/tv/tv-news/streaming-ratings-sept-7-13-2026-1236709681/"}
+   ]
+  }
+ ]
+}
