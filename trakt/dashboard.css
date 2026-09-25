@@ -477,6 +477,15 @@
   background: #fff; color: var(--status-warning);
   font-size: 1.05rem; line-height: 1; box-shadow: 0 1px 4px rgba(44,26,14,0.3);
 }
+/* Gold outline on the cover art itself (Bill, 2026-09-25: "give the cover
+   titles a clean gold outline too for those with a star") — a detached
+   ring via outline-offset rather than replacing the poster's own border,
+   so the art stays untouched and the gold reads as a frame around it, not
+   a color change on the image edge. */
+.tk-shelf-card-starred .tk-shelf-poster {
+  outline: 2px solid var(--status-warning);
+  outline-offset: 2px;
+}
 /* Same score-pill language as the ranked-list cards (.tk-rec-score),
    scaled down for this smaller card format — still the warm accent, still
    the most visually forward element on the card. */

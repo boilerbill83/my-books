@@ -925,9 +925,10 @@ function renderWatchCards(elementId, rows, enrichedMeta, subtitleFn, emptyText, 
   el.innerHTML = rows.map(r => {
     const poster = posterUrl(r.titleKey, enrichedMeta, 'w154');
     const reasonText = reasonFn ? reasonFn(r) : null;
-    const starHtml = starredSet?.has(r.titleKey) ? '<div class="tk-star-badge" title="One of your real Trakt favorites">★</div>' : '';
+    const starred = starredSet?.has(r.titleKey);
+    const starHtml = starred ? '<div class="tk-star-badge" title="One of your real Trakt favorites">★</div>' : '';
     return `
-    <a class="tk-shelf-card" href="${esc(traktUrl(r))}" target="_blank" rel="noopener">
+    <a class="tk-shelf-card${starred ? ' tk-shelf-card-starred' : ''}" href="${esc(traktUrl(r))}" target="_blank" rel="noopener">
       ${starHtml}
       ${posterImgHtml(poster, 'tk-shelf-poster', 92, 138)}
       ${r.score != null ? `<div class="tk-shelf-score">${Math.round(r.score)}</div>` : ''}
