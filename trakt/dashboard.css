@@ -462,22 +462,21 @@
 .tk-shelf-card { position: relative; flex-shrink: 0; width: 108px; text-decoration: none; color: inherit; }
 .tk-shelf-poster { width: 92px; height: 138px; border-radius: 8px; object-fit: cover; background: var(--bg-subtle); border: 1px solid var(--border); display: block; box-shadow: 0 2px 8px rgba(44,26,14,0.14); }
 .tk-shelf-poster-empty { border: 1px dashed var(--border); }
-/* ⭐ Gold star (Bill, 2026-09-25: "let's find a way to gold star the
-   ones I can't wait to watch next") — sits on top of the poster's own
-   top-right corner; never-color-alone isn't a concern here since the
-   glyph itself (☆ vs ★) already carries the on/off state, not just the
-   fill color. Currently wired up by My Next Watch only (renderWatchCards()'s
-   starredSet/onStarToggle params are optional, so every other .tk-shelf-card
-   consumer — co-watch, What's Airing — renders exactly as before). */
-.tk-star-btn {
+/* ⭐ Gold star badge — a real Trakt favorite (Bill, 2026-09-25: "let's
+   find a way to gold star the ones I can't wait to watch next" → "for
+   now it is everything I marked as a favorite in Trakt"). Sits on top of
+   the poster's own top-right corner; purely a live-computed indicator,
+   not a click target — see computeFavoriteStars() in dashboardShared.js.
+   Currently wired up by My Next Watch only (renderWatchCards()'s
+   starredSet param is optional, so every other .tk-shelf-card consumer —
+   co-watch, What's Airing — renders exactly as before). */
+.tk-star-badge {
   position: absolute; top: 4px; right: 4px; z-index: 2;
   width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
-  border-radius: 50%; border: none; cursor: pointer; padding: 0;
-  background: rgba(255,255,255,0.88); color: var(--text-muted);
+  border-radius: 50%; padding: 0;
+  background: #fff; color: var(--status-warning);
   font-size: 1.05rem; line-height: 1; box-shadow: 0 1px 4px rgba(44,26,14,0.3);
 }
-.tk-star-btn:hover { color: var(--status-warning); background: #fff; }
-.tk-star-btn-on { color: var(--status-warning); background: #fff; }
 /* Same score-pill language as the ranked-list cards (.tk-rec-score),
    scaled down for this smaller card format — still the warm accent, still
    the most visually forward element on the card. */

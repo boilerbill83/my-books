@@ -21,7 +21,7 @@ import {
   predictedVsActualRows, computeWatchStatusRows, computeCoWatchRows, buildWatchRow,
   renderWatchCards, renderCoWatchCards, renderAiringCards, initCoWatchViewToggle, initAiringViewToggle,
   renderWatchStatusTable, fmtDate, renderFamilyWatchList,
-  loadStarredTitles, toggleStarredTitle, starredTitlesJSON,
+  computeFavoriteStars,
 } from './dashboardShared.js';
 
 // crowdCompare (computeCrowdCompare()'s output) folds in here as one more
@@ -772,14 +772,15 @@ function pickNextWatch(fromWatchlist, fromCandidates, library, watchlist, curren
 // one list doesn't need a visual divider to stay legible.
 // ⭐ Gold star (Bill, 2026-09-25: "This is my one stop shop to decide
 // what to watch next... let's find a way to gold star the ones I can't
-// wait to watch next"). A starred card sorts to the very front of the
-// list, ahead of even in-progress/pinned rows — Bill explicitly clicking
-// a star is a stronger, more deliberate "watch this next" signal than
-// anything the live ranking or a manual nextWatchPins.json entry can
-// infer on its own. Relative order is preserved within each of the two
-// resulting groups (stars keep pickNextWatch()'s own order among
-// themselves, so starring several titles doesn't scramble how they
-// compare to each other).
+// wait to watch next" → "No I don't need a toggle... for now it is
+// everything I marked as a favorite in Trakt"). A starred card sorts to
+// the very front of the list, ahead of even in-progress/pinned rows — a
+// real Trakt favorite is a stronger, more deliberate "watch this next"
+// signal than anything the live ranking or a manual nextWatchPins.json
+// entry can infer on its own. Relative order is preserved within each of
+// the two resulting groups (stars keep pickNextWatch()'s own order among
+// themselves, so several favorites don't scramble how they compare to
+// each other).
 function sortWithStarsFirst(picks, starredSet) {
   if (!starredSet?.size) return picks;
   const starred = picks.filter(c => starredSet.has(c.titleKey));
@@ -787,7 +788,7 @@ function sortWithStarsFirst(picks, starredSet) {
   return [...starred, ...rest];
 }
 
-function renderNextWatch(picks, enrichedMeta, starredSet, onStarToggle) {
+function renderNextWatch(picks, enrichedMeta, starredSet) {
   const subtitleFn = c => {
     if (c.inProgress) {
       const parts = [];
@@ -810,31 +811,7 @@ function renderNextWatch(picks, enrichedMeta, starredSet, onStarToggle) {
   renderWatchCards('nextWatch', sortWithStarsFirst(picks, starredSet), enrichedMeta, subtitleFn,
     'Nothing ready on your watchlist right now — everything\'s either mid-season, already watched, or hasn\'t aired an episode in the last six months.',
     c => c.inProgress ? 'You\'re already partway through this one.' : c.reason,
-    starredSet, onStarToggle);
-}
-
-// Copy-to-clipboard sync button (My Next Watch's toolbar) — the durable
-// half of the local-first star pattern. Bill clicks it after starring
-// something, pastes the result back to Claude, who replaces
-// trakt/data/starredTitles.json's titleKeys and commits — the same
-// "Copy JSON" round-trip the book side's app.js already established for
-// this exact static-site-with-no-backend problem shape.
-function initStarCopyButton(getStarredSet) {
-  const btn = document.getElementById('starCopyBtn');
-  if (!btn) return;
-  btn.addEventListener('click', async () => {
-    const json = starredTitlesJSON(getStarredSet());
-    try {
-      await navigator.clipboard.writeText(json);
-      const original = btn.textContent;
-      btn.textContent = 'Copied!';
-      setTimeout(() => { btn.textContent = original; }, 1800);
-    } catch {
-      // Clipboard API can be blocked (no HTTPS context, permissions) —
-      // fall back to a manual-select prompt rather than failing silently.
-      window.prompt('Copy this and paste it to Claude:', json);
-    }
-  });
+    starredSet);
 }
 
 // fmtDate()/renderFamilyWatchList() moved to dashboardShared.js (Bill:
@@ -905,8 +882,8 @@ function renderTasteLine(genreStats, crowdCompare, castStats, tenRatedCount) {
 async function load() {
   const { dashboard: d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback,
           llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
-          currentlyWatchingFeature, familyWatchlist, bookThemeCounts, nextWatchPins, coWatchProgress,
-          starredTitlesCommitted } = await loadAllData();
+          currentlyWatchingFeature, familyWatchlist, bookThemeCounts, nextWatchPins, coWatchProgress
+        } = await loadAllData();
 
   const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
@@ -955,18 +932,12 @@ async function load() {
   const airingRows = computeWatchStatusRows(soloLibrary, soloWatchlistData, soloWatchlist, soloCandidates, soloCurrentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress);
   const airingKeys = new Set(airingRows.map(r => r.titleKey));
   const nextWatchPicks = pickNextWatch(soloWatchlist, soloCandidates, soloLibrary, soloWatchlistData, soloCurrentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress, watchingNow?.titleKey ?? null, coWatchSet, nextWatchPins?.titleKeys || [], watchlistKeys, airingKeys);
-  // ⭐ Gold star — local-first (this browser's localStorage), unioned with
-  // whatever's already been synced into the committed starredTitles.json
-  // (see loadStarredTitles()'s own comment). starredSet is reassigned, not
-  // const, since toggling needs to update the closure both the re-render
-  // below AND the "Copy starred list" button read from.
-  let starredSet = loadStarredTitles(starredTitlesCommitted);
-  const onStarToggle = titleKey => {
-    starredSet = toggleStarredTitle(titleKey, starredSet);
-    renderNextWatch(nextWatchPicks, enrichedMeta, starredSet, onStarToggle);
-  };
-  renderNextWatch(nextWatchPicks, enrichedMeta, starredSet, onStarToggle);
-  initStarCopyButton(() => starredSet);
+  // ⭐ Gold star — a real Trakt favorite (library.json/watchlist.json's
+  // own `favorite` flag from Bill's export), computed live off the full
+  // (not co-watch-filtered) data — see computeFavoriteStars()'s own
+  // comment for why this is a plain rule now, not a stored preference.
+  const starredSet = computeFavoriteStars(library, watchlist);
+  renderNextWatch(nextWatchPicks, enrichedMeta, starredSet);
 
   renderFamilyWatchList(familyWatchlist, enrichedMeta);
 
