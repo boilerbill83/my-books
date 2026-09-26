@@ -1,7 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-09-26T00:30:22Z",
-    "count": 500
+    "generatedAt": "2026-09-26T04:16:07.004Z",
+    "count": 484,
+    "capPerType": 200
   },
   "titles": [
     {
@@ -1296,16 +1297,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:124897",
-      "ids": {
-        "tmdb": 124897
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "show",
       "titleKey": "show:57276",
       "ids": {
         "tmdb": 57276
@@ -1740,7 +1731,7 @@
       "ids": {
         "tmdb": 1181678
       },
-      "title": "\u00bfQuieres ser mi hijo?",
+      "title": "¿Quieres ser mi hijo?",
       "year": 2023,
       "source": "genre-explore",
       "discoveredVia": "Comedy"
@@ -5034,156 +5025,6 @@
       "year": 2022,
       "source": "book-theme-explore",
       "discoveredVia": "book-theme:psychological"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:118642",
-      "ids": {
-        "tmdb": 118642
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:194741",
-      "ids": {
-        "tmdb": 194741
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:244243",
-      "ids": {
-        "tmdb": 244243
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:284605",
-      "ids": {
-        "tmdb": 284605
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:2093",
-      "ids": {
-        "tmdb": 2093
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:46381",
-      "ids": {
-        "tmdb": 46381
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:287450",
-      "ids": {
-        "tmdb": 287450
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:222026",
-      "ids": {
-        "tmdb": 222026
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:301498",
-      "ids": {
-        "tmdb": 301498
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:285970",
-      "ids": {
-        "tmdb": 285970
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:258742",
-      "ids": {
-        "tmdb": 258742
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:259200",
-      "ids": {
-        "tmdb": 259200
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:330540",
-      "ids": {
-        "tmdb": 330540
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:313172",
-      "ids": {
-        "tmdb": 313172
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:290193",
-      "ids": {
-        "tmdb": 290193
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
     },
     {
       "type": "show",
