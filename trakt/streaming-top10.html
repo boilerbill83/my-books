@@ -29,8 +29,34 @@
          the bottom — same "center within the remaining space" fix already
          used for #dismissalsCard. .st10-rank keeps its own flex-start
          override below so the rank number still pins near the top. */
-      .st10-card { display: flex; align-items: center; gap: 18px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
-      .st10-rank { font-family: var(--font-serif); font-weight: 700; font-size: 1.7rem; color: var(--border); flex-shrink: 0; width: 38px; text-align: center; align-self: flex-start; }
+      .st10-card { position: relative; display: flex; align-items: center; gap: 18px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+      .st10-rank { font-family: var(--font-serif); font-weight: 700; font-size: 1.7rem; color: var(--border); flex-shrink: 0; width: 38px; text-align: center; align-self: flex-start; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+      /* Week-over-week rank movement (Bill, 2026-09-26: same real diff
+         notify_streaming_top10.py's Tuesday text alert already computes,
+         via streamingTop10Previous.json — the page and the text can never
+         disagree). Small enough not to compete with the rank number
+         itself, colored by direction; NEW gets the accent-warm treatment
+         to read as a positive discovery, not an error state. */
+      .st10-rank-delta { font-family: var(--font-sans, inherit); font-size: 0.62rem; font-weight: 700; line-height: 1; padding: 2px 5px; border-radius: 999px; }
+      .st10-rank-up { color: var(--status-good); background: color-mix(in srgb, var(--status-good) 15%, transparent); }
+      .st10-rank-down { color: var(--status-critical); background: color-mix(in srgb, var(--status-critical) 12%, transparent); }
+      .st10-rank-new { color: var(--accent-warm); background: var(--accent-warm-soft); }
+      /* Quick "Not interested" dismiss (Bill, 2026-09-26) — local-only
+         staging, see streaming-top10.js's LOCAL_DISMISS_KEY comment for
+         what it actually does. Pinned to the card's own top-right corner
+         (position: relative above) rather than inside the head-row, so it
+         never competes for space with the title/tag/score layout at any
+         viewport width. */
+      .st10-dismiss-btn { position: absolute; top: 10px; right: 10px; z-index: 3; width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); font-size: 0.8rem; line-height: 1; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+      .st10-dismiss-btn:hover { background: var(--status-critical); color: #fff; border-color: var(--status-critical); }
+      .st10-favorites-summary { font-size: 0.85rem; color: var(--text); background: var(--accent-warm-soft); border: 1px solid var(--accent-warm); border-radius: 8px; padding: 10px 14px; margin-bottom: 16px; }
+      .st10-dismiss-status { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 14px; flex-wrap: wrap; }
+      /* [hidden]'s own display:none from the UA stylesheet has equal
+         specificity to the class rule above and loses on source order —
+         the same real bug class watch-together.html's .wt-section[hidden]
+         already had to guard against. Without this, dismissStatusEl.hidden
+         = true silently has no visual effect. */
+      .st10-dismiss-status[hidden] { display: none; }
       .st10-poster { flex-shrink: 0; position: relative; }
       .st10-poster-img { width: 100px; height: 150px; border-radius: 8px; object-fit: cover; background: var(--bg-card); border: 1px solid var(--border); display: block; box-shadow: 0 2px 8px rgba(44,26,14,0.14); }
       /* Gold star favorite badge (Bill, 2026-09-26: "Reacher should have a
@@ -101,13 +127,27 @@
         <div class="tk-card" style="margin-bottom: 24px;">
           <div class="tk-card-heading">What is this?</div>
           <div class="st10-methodology" id="methodologyText"></div>
-          <div class="st10-methodology" style="margin-top:8px;">The ranking itself is editorial, not personalized — a general read on what's actually happening across every major streaming service this week, researched from real sources (Nielsen, JustWatch, entertainment press, awards coverage). Each card also shows your own real data where it exists: your Trakt status, a predicted BMTRE score, and genre/subgenre/topic tags — display only, they never affect the editorial ranking above.</div>
+          <div class="st10-methodology" style="margin-top:8px;">The ranking itself is editorial, not personalized — a general read on what's actually happening across every major streaming service this week, researched from real sources (Nielsen, JustWatch, entertainment press, awards coverage). Each card also shows your own real data where it exists: your Trakt status, a predicted BMTRE score, genre/subgenre/topic tags, and how far it's moved since last week — display only, they never affect the editorial ranking above.</div>
         </div>
+
+        <div class="st10-favorites-summary" id="st10FavoritesSummary" hidden></div>
 
         <div class="st10-toolbar">
           <span class="st10-toolbar-label">Filter by your Trakt status:</span>
           <div class="st10-checkboxes" id="st10StatusFilter"></div>
+        </div>
+        <div class="st10-toolbar">
+          <span class="st10-toolbar-label">Filter by platform:</span>
+          <div class="st10-checkboxes" id="st10PlatformFilter"></div>
+        </div>
+        <div class="st10-toolbar">
           <span class="st10-toolbar-count" id="st10FilterCount"></span>
+        </div>
+
+        <div class="st10-dismiss-status" id="st10DismissStatus" hidden>
+          <span id="st10DismissCount"></span>
+          <button class="tk-btn" id="st10CopyDismissedBtn" type="button">Copy JSON</button>
+          <button class="tk-btn" id="st10ClearDismissedBtn" type="button">Clear</button>
         </div>
 
         <div class="st10-list" id="top10List"></div>
