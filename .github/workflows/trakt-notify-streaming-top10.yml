@@ -59,7 +59,16 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-          git add trakt/data/streamingTop10NotifyState.json
+          # The state file doesn't exist until the first real (non-test,
+          # non-dry-run) send writes it — a literal `git add` on a
+          # not-yet-existing path fails hard under bash -e (exit 128),
+          # the exact bug class Session 16e already hit and fixed on the
+          # book side's audit-log workflow. Guard with -f so a TEST_SEND
+          # or an already-notified-this-week no-op run doesn't crash the
+          # whole step just because there's nothing to commit yet.
+          if [ -f trakt/data/streamingTop10NotifyState.json ]; then
+            git add trakt/data/streamingTop10NotifyState.json
+          fi
           if git diff --staged --quiet; then
             echo "No new notify state."
             exit 0
