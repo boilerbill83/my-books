@@ -1164,7 +1164,7 @@ TF-IDF model per ranking pass from every loved title's real TMDB
 `overview` text (coverage-gated at `MIN_LOVED_DOCS=100`; real coverage is
 159 loved titles, all with a usable overview). Each candidate's own
 overview is scored via cosine similarity against its top-10 nearest loved
-neighbors (`minSim=0.03`); the bonus is `min(3, simMass × 4)`. Cap swept
+neighbors (`minSim=0.03`); the raw bonus is `min(3, simMass × 4)`. Cap swept
 1→2→3 against `scripts/eval.js` (each step measurably improved
 precision@100/MAE with p10/p25/p50 held, plateauing at 3 since real
 `simMass` values never exceed it); `k` swept 5-20 (15+ traded precision@50
@@ -1172,6 +1172,27 @@ for a better MAE, the tradeoff this project forbids, so `k=10` held).
 `reason()` gained a "Reads Like" explanation tier naming the specific
 matched loved title, checked after genre/subject/tone but before the
 generic community-rating fallback.
+
+**Thin-overview confidence scaling** (`desc-similarity-thin-overview-risk`
+dashboard finding): a genuinely short candidate overview (a handful of
+real content words after stopword removal) could accumulate a
+near-full-strength bonus purely from small coincidental overlaps with
+several loved titles at once, not real similarity to any one of them —
+confirmed live (21 real candidates, e.g. Line of Duty at 6 tokens and
+Grey's Anatomy at 11, scoring 80%+ of the cap). Fixed the same shape of
+bug already fixed for `toneJaccard()` (§3c-ish, tone-vocab thin-match
+discount), but scaled differently: rather than blending toward a nonzero
+"typical coincidental overlap" prior (right for tone tags drawn from a
+small 24-word vocabulary), the bonus scales straight toward 0 —
+`bonus = rawBonus × min(1, queryTokens.length / CFG.minReliableTokens)`,
+`minReliableTokens=12` (matching the loved-side thin-doc threshold
+already used elsewhere in this file) — since two independently-written
+plot summaries share essentially nothing by pure chance once there's
+real vocabulary in play, so there's no equivalent nonzero floor to blend
+toward. Swept 8/12/15/18 against `scripts/eval.js`: byte-identical
+precision at every value (the affected titles are unrated
+watchlist/candidates, outside the eval harness's own sample) — 12 kept
+as the already-derived, principled choice.
 
 ### 3s. Show popularity (TMDB's own `popularity` trending score) — shows only, clamped to **±8**
 TMDB's title-level `popularity` field — a proprietary trending/buzz

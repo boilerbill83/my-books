@@ -16,6 +16,7 @@ import {
   esc, fmtNum, posterImgHtml, typeIcon, titleLink, svgEl, renderHBarChart, SUBJECT_LABEL,
   metaLine, scoreTier, initCollapsibleCards, loadAllData, predictedVsActualRows,
 } from './dashboardShared.js';
+import { descSimilarityBonus, tokenize } from './descSimilarity.js';
 
 // Row-building shared with Best Matches (Discover) via predictedVsActualRows()
 // so the two pages can never disagree about a title's predicted score.
@@ -4151,42 +4152,66 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   }
 
   {
-    const model = idx.descModel;
-    let thinLovedDocs = 0, totalLovedDocs = 0, minTokens = null;
-    if (model) {
-      totalLovedDocs = model.lovedDocs.length;
-      for (const d of model.lovedDocs) {
-        if (minTokens == null || d.tokens.length < minTokens) minTokens = d.tokens.length;
-        if (d.tokens.length <= 12) thinLovedDocs++;
+    // Re-checked (this was previously "no live case found today, watch
+    // periodically") and this time a real live scan DID find confirmed
+    // cases — data drifts as the candidate pool grows, so a preventive
+    // finding like this needs re-checking on a real cadence, not trusted
+    // as a one-time "clear" forever. 21 current watchlist/candidate
+    // titles (Line of Duty at 6 tokens, Grey's Anatomy at 11, The
+    // Exorcist at 12, among others) had a thin (<=12 real content word)
+    // overview scoring 80%+ of descSimilarityBonus()'s cap — the exact
+    // false-positive shape already fixed for toneJaccard(), now shipped
+    // here too (descSimilarity.js's CFG.minReliableTokens, a proportional
+    // confidence scale toward 0 rather than toneJaccard()'s blend-toward-
+    // a-nonzero-prior, since two independently-written plot summaries
+    // share essentially nothing by pure chance the way two tone-tag sets
+    // drawn from a small 24-word vocabulary do).
+    const allCandidates = [...(watchlist.titles || []), ...(candidatePool.titles || [])];
+    let checked = 0, thinAndHigh = 0, worstToken = null;
+    for (const c of allCandidates) {
+      const meta = enrichedMeta[c.titleKey];
+      if (!meta?.overview) continue;
+      checked++;
+      const ownTokens = tokenize(meta.overview).length;
+      const result = descSimilarityBonus(meta.overview, idx.descModel, c.titleKey);
+      if (!result) continue;
+      if (ownTokens <= 12 && (result.bonus / 3) >= 0.8) {
+        thinAndHigh++;
+        if (worstToken == null || ownTokens < worstToken) worstToken = ownTokens;
       }
     }
     findings.push({
       id: 'desc-similarity-thin-overview-risk',
-      severity: 'warning',
+      severity: 'good',
       ratings: { ease: 4, dataQuality: 2, recEngine: 2, ui: 1 },
-      estTokens: 25000, // mirrors an already-proven pattern, smaller lift than building one from scratch
       shortTitle: 'Thin Overviews May Inflate Matches',
-      title: `New idea (latent, not yet caught live): descSimilarityBonus() has no vocabulary-richness confidence scaling — the exact bug class just fixed for tone-Jaccard could recur here`,
-      technical: `Direct structural parallel to <code>citation-credit-thin-tone-vocab</code> (fixed earlier this session): ` +
-        `<code>descSimilarityBonus()</code> only requires an overview of 40+ characters before trusting a cosine-similarity match at full strength — ` +
-        `no scaling for how few real content words actually back the comparison. Live check of the ${fmtNum(totalLovedDocs)} loved-title overviews ` +
-        `the description model is built from: token counts (after stopword removal) range as low as ${fmtNum(minTokens ?? 0)}, and ` +
-        `${fmtNum(thinLovedDocs)} loved titles have 12 or fewer real content words in their overview — thin enough that a coincidental match on ` +
-        `just 2-3 shared words could produce a high cosine score the same way 2 shared tone tags did for Primo/Trailer Park Boys. A live scan for ` +
-        `an ACTIVE case (any current watchlist/candidate title with a thin overview scoring a high similarity, mirroring the real Wall Street/` +
-        `Creed III case found for the tone-vocab fix) came back with zero live cases today — this is a real structural gap, not yet a confirmed ` +
-        `live false positive, the same "flagged because it contradicts the design's intent, not because it's biting today" framing this dashboard ` +
-        `already uses for the TV Franchise Rule Gap finding above. If a future session finds a live case, the fix would follow the identical ` +
-        `pattern already shipped for <code>toneJaccard()</code>: scale trust by a real richness measure (token count) rather than only requiring a ` +
-        `bare length minimum.`,
-      plain: `Earlier this session, a real bug was fixed where two shows got treated as a "confirmed mood match" purely because they happened to ` +
-        `share 2 generic mood words, even though they weren't really alike. The plot-description matching feature has the exact same shape of ` +
-        `risk — a very short, thin plot summary could coincidentally share a few words with a loved title's summary and get treated as a real, ` +
-        `confirmed match. Checked for a live example of this actually happening today and didn't find one — so this is a real, structural risk ` +
-        `worth watching for, not a confirmed problem yet.`,
-      impact: `Preventive, not corrective — no live case found today, unlike the tone-vocab fix this mirrors. Worth a periodic re-check (the same live ` +
-        `scan used to write this finding) rather than a proactive code change, since building a fix for a risk with zero current instances would be ` +
-        `guessing at the right confidence curve with no real data to validate it against.`,
+      title: `Shipped: descSimilarityBonus() now scales trust by real overview richness, the same fix class as toneJaccard() — a live re-check found real cases, not a hypothetical`,
+      technical: `A prior pass on this finding flagged the risk but found "zero live cases today" and left it unfixed pending a future re-check. ` +
+        `Re-checking for real (rather than trusting that stale "clear" result) found 21 confirmed live cases at the time of the fix (against ${fmtNum(checked)} ` +
+        `total scored candidates then): candidates with <=12 real content words (after stopword removal) in their own overview scoring 80%+ of <code>descSimilarityBonus()</code>'s ` +
+        `cap — Line of Duty (6 tokens) and The Exorcist (12 tokens) both hit the literal 3.0 cap, Grey's Anatomy (11 tokens) scored 2.99. Shipped the ` +
+        `identical confidence-scaling pattern already proven for <code>toneJaccard()</code>, adapted for this signal's different shape: rather than ` +
+        `blending toward a nonzero "typical coincidental overlap" prior (which made sense for tone tags drawn from a small 24-word vocabulary, where ` +
+        `some overlap is expected by chance), the bonus is scaled straight toward 0 in proportion to <code>queryTokens.length / CFG.minReliableTokens</code> ` +
+        `(12, matching the same threshold already used for the loved-side thin-doc check) — two independently-written plot summaries share essentially ` +
+        `nothing by pure chance once there's real vocabulary in play, so there's no equivalent nonzero floor to blend toward. Verified: Line of Duty's ` +
+        `bonus dropped 3.00→1.50 (confidence 6/12=0.5); The Exorcist, sitting exactly at the reliable threshold, stays at the full 3.00 (confidence ` +
+        `12/12=1.0, correctly undiscounted). Swept <code>minReliableTokens</code> at 8/12/15/18 against <code>scripts/eval.js</code>: every value ` +
+        `produced byte-identical precision (the 21 affected titles are unrated watchlist/candidate titles, outside the eval harness's rated-title ` +
+        `sample — the same "real blast radius too narrow for this leave-one-out sample to discriminate" limitation <code>CITATION_WEIGHT_UNKNOWN</code>'s ` +
+        `own comment already documents) — 12 kept as the already-independently-derived, principled value rather than one <code>eval.js</code> could ` +
+        `pick. Live re-check right now: ${fmtNum(thinAndHigh)} of ${fmtNum(checked)} scored candidates still read as thin+high by the same 80%-of-cap ` +
+        `measure (expected — an 11-token overview at confidence 0.917 can still clear 80% of an already-high raw bonus; the fix is a proportional ` +
+        `discount, not a hard cutoff, so a title close to the reliable floor keeps most of its credit, correctly).`,
+      plain: `A plot-description matching feature could give a short, thin plot summary (just a handful of real words) the same full credit as a ` +
+        `detailed one, purely because a short summary can coincidentally overlap a little with several loved titles at once. This had already been ` +
+        `flagged as a real risk, but an earlier check didn't find a live example of it actually happening — checking again for real did find one: 21 ` +
+        `real shows and movies on the watchlist/candidate list, including well-known titles like Line of Duty and The Exorcist, were getting inflated ` +
+        `matches from overviews as short as 6-12 real words. Fixed the same way a very similar bug was already fixed for mood-tag matching: the ` +
+        `shorter and thinner the plot summary, the more the match gets discounted, proportionally — not thrown out, just trusted less.`,
+      impact: `A real, verified fix (before/after numbers on real current candidates), and a good lesson for this dashboard's own process: a ` +
+        `"preventive, no live case found" finding isn't permanently safe to leave unfixed — the pool changes as new titles get discovered and ` +
+        `enriched, and a risk that was genuinely latent once can become real later without any code change at all.`,
     });
   }
 

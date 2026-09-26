@@ -32,7 +32,7 @@ function tfVector(tokens) {
 
 const MIN_LOVED_DOCS = 100; // real loved-title-with-overview coverage today: 159
 // tunable at runtime for eval sweeps; defaults are production values
-export const CFG = { k: 10, minSim: 0.03, cap: 3 };
+export const CFG = { k: 10, minSim: 0.03, cap: 3, minReliableTokens: 12 };
 
 /**
  * @param {object} enrichedMeta — titleKey -> {overview, ...}
@@ -82,11 +82,30 @@ export function cosine(a, b) {
  * "this reads like something you loved" signal, distinct from every other
  * BMTRE signal (all of which key off structured metadata: genre, cast,
  * keywords, similar-title ids) since this reads the actual plot language.
+ *
+ * desc-similarity-thin-overview-risk (quality.js dashboard finding): a
+ * real, structural parallel to the tone-Jaccard thin-vocabulary bug fixed
+ * for citationCreditMultiplier() — a genuinely short query overview (a
+ * handful of real content words after stopword removal) can rack up a
+ * near-full-strength bonus purely because a short, generic summary
+ * coincidentally overlaps a little with many different loved titles at
+ * once, not because it's really similar to any one of them. Confirmed
+ * live (not just hypothesized): 21 real current candidates with <=12
+ * content tokens in their own overview were scoring 80%+ of the cap,
+ * e.g. Line of Duty (6 tokens) and Grey's Anatomy (11 tokens) both at the
+ * literal 3.0 cap. Unlike toneJaccard()'s blend-toward-a-nonzero-prior
+ * fix, two independently-written plot summaries share essentially
+ * nothing by pure chance once there's enough real vocabulary in play —
+ * there's no equivalent "typical coincidental overlap" floor to blend
+ * toward, so this scales the bonus straight toward 0 in proportion to how
+ * few real words actually back the match, rather than blending toward a
+ * fabricated prior.
  * @returns { bonus, neighbors } or null if below threshold
  */
 export function descSimilarityBonus(overview, model, excludeKey) {
   if (!model || !overview || overview.length < 40) return null;
-  const q = model.vec(tokenize(overview));
+  const queryTokens = tokenize(overview);
+  const q = model.vec(queryTokens);
   const sims = model.lovedDocs
     .filter(d => d.key !== excludeKey) // a candidate can't match itself (matters for eval.js's leave-one-out sweep)
     .map(d => ({ key: d.key, sim: cosine(q, d.vec) }))
@@ -98,6 +117,8 @@ export function descSimilarityBonus(overview, model, excludeKey) {
   // Scaled the same way keywordBonus() scales its own match count into a
   // small capped bonus — one voice among many additive signals, not a
   // takeover; swept against scripts/eval.js before trusting the constant.
-  const bonus = Math.min(CFG.cap, simMass * 4);
+  const rawBonus = Math.min(CFG.cap, simMass * 4);
+  const confidence = Math.min(1, queryTokens.length / CFG.minReliableTokens);
+  const bonus = rawBonus * confidence;
   return { bonus, neighbors: sims };
 }
