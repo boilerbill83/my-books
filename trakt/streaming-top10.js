@@ -49,8 +49,15 @@ function findOwnRecord(titleKey, library, watchlist, candidatePool) {
 // no entry in any of the 3 lists above at all — genuinely different from
 // "Dismissed" (which means he actively said no), so it gets its own
 // honest, undramatic label rather than being forced into an existing
-// status that doesn't fit.
-const NOT_TRACKED_HTML = '<span class="tk-status-tag st10-status-untracked">Not on your Trakt</span>';
+// status that doesn't fit. Used both as the plain-text status (for the
+// filter dropdown) and, via statusTagHtml(), as the rendered badge.
+const NOT_TRACKED_LABEL = 'Not on your Trakt';
+
+function statusTagHtml(label) {
+  return label === NOT_TRACKED_LABEL
+    ? `<span class="tk-status-tag st10-status-untracked">${esc(label)}</span>`
+    : statusTag(label);
+}
 
 function enrichShow(show, ctx) {
   const { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback } = ctx;
@@ -58,7 +65,7 @@ function enrichShow(show, ctx) {
   const meta = titleKey ? enrichedMeta[titleKey] : null;
   const type = titleKey ? titleKey.split(':')[0] : (show.type || 'show');
 
-  let statusHtml = NOT_TRACKED_HTML;
+  let statusLabel = NOT_TRACKED_LABEL;
   let ids = null;
   let predictedScore = null;
   let genreLabel = null;
@@ -77,8 +84,8 @@ function enrichShow(show, ctx) {
     const isRealDismiss = (feedback?.interactions || []).some(
       e => e.titleKey === titleKey && e.interactionType === 'dismiss'
     );
-    if (isRealDismiss) statusHtml = statusTag('Dismissed');
-    else if (status) statusHtml = statusTag(status);
+    if (isRealDismiss) statusLabel = 'Dismissed';
+    else if (status) statusLabel = status;
 
     if (meta) {
       predictedScore = Math.round(matchScore({ type, titleKey }, idx, enrichedMeta, omdbMeta));
@@ -91,7 +98,7 @@ function enrichShow(show, ctx) {
   const traktCandidate = hydrateTitle({ type, titleKey, ids, title: show.title }, enrichedMeta);
   const poster = titleKey ? posterUrl(titleKey, enrichedMeta, 'w342') : null;
 
-  return { ...show, type, statusHtml, predictedScore, genreLabel, subgenreLabels, subjectLabels, traktLink: traktUrl(traktCandidate), poster };
+  return { ...show, type, statusLabel, predictedScore, genreLabel, subgenreLabels, subjectLabels, traktLink: traktUrl(traktCandidate), poster };
 }
 
 function renderShow(show) {
@@ -113,7 +120,7 @@ function renderShow(show) {
           </div>
           <div class="st10-platform-row">
             <span class="st10-platform">${esc(show.platform)}</span>
-            ${show.statusHtml}
+            ${statusTagHtml(show.statusLabel)}
           </div>
           ${metaBits.length ? `<div class="st10-metabits">${metaBits.map(esc).join(' · ')}</div>` : ''}
         </div>
@@ -144,7 +151,37 @@ async function load() {
   const ctx = { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback };
 
   const shows = data.shows.map(s => enrichShow(s, ctx));
-  document.getElementById('top10List').innerHTML = shows.map(renderShow).join('');
+
+  // Status filter — per Bill's request. Options are built live from
+  // whatever statuses this week's real 10 shows actually carry (never a
+  // hardcoded list), so a status with zero matches this week (e.g.
+  // "Dismissed") simply doesn't appear as a choice at all.
+  const listEl = document.getElementById('top10List');
+  const emptyEl = document.getElementById('st10EmptyMsg');
+  const countEl = document.getElementById('st10FilterCount');
+  const filterEl = document.getElementById('st10StatusFilter');
+
+  const statusCounts = new Map();
+  for (const s of shows) statusCounts.set(s.statusLabel, (statusCounts.get(s.statusLabel) || 0) + 1);
+  // A fixed display order (rather than alphabetical or count-sorted) so
+  // the dropdown reads the same way every week even as which statuses
+  // are present changes.
+  const STATUS_ORDER = ['Watched', 'New Episodes', 'Watchlist', 'Candidate', 'Dismissed', NOT_TRACKED_LABEL];
+  const presentStatuses = STATUS_ORDER.filter(s => statusCounts.has(s));
+
+  filterEl.innerHTML = `<option value="">All statuses (${shows.length})</option>` +
+    presentStatuses.map(s => `<option value="${esc(s)}">${esc(s)} (${statusCounts.get(s)})</option>`).join('');
+
+  function renderFiltered() {
+    const chosen = filterEl.value;
+    const visible = chosen ? shows.filter(s => s.statusLabel === chosen) : shows;
+    listEl.innerHTML = visible.map(renderShow).join('');
+    emptyEl.hidden = visible.length > 0;
+    countEl.textContent = chosen ? `Showing ${visible.length} of ${shows.length}` : '';
+  }
+
+  filterEl.addEventListener('change', renderFiltered);
+  renderFiltered();
 
   initCollapsibleCards();
 }
