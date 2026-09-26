@@ -920,7 +920,7 @@
       "type": "movie",
       "interactionType": "category_exclude",
       "reasonCode": "co_watch_list",
-      "reasonLabel": "Not a taste dismissal — added to candidatePool.json only to get real TMDB enrichment for the pinned \"Next Up\" card on trakt/watch-together.html (Bill's Shows We Watch Together page); it's non-English (Chinese), which prune_candidate_pool.js/rankAll() treat as a hard exclusion filter everywhere else, and without this entry a routine prune would delete it outright and break the pinned card. Excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for (or getting evicted from) a candidate-pool cap slot on unrelated personal-taste/language signals.",
+      "reasonLabel": "Not a taste dismissal \u2014 added to candidatePool.json only to get real TMDB enrichment for the pinned \"Next Up\" card on trakt/watch-together.html (Bill's Shows We Watch Together page); it's non-English (Chinese), which prune_candidate_pool.js/rankAll() treat as a hard exclusion filter everywhere else, and without this entry a routine prune would delete it outright and break the pinned card. Excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for (or getting evicted from) a candidate-pool cap slot on unrelated personal-taste/language signals.",
       "timestamp": "2026-09-12T00:00:00Z",
       "excludeFromRecommendations": true
     },
@@ -931,7 +931,7 @@
       "type": "movie",
       "interactionType": "category_exclude",
       "reasonCode": "family_watch_list",
-      "reasonLabel": "Not a taste dismissal — added to Bill's separate Family Watch List (movies to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
+      "reasonLabel": "Not a taste dismissal \u2014 added to Bill's separate Family Watch List (movies to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
       "timestamp": "2026-09-16T00:00:00Z",
       "excludeFromRecommendations": true
     },
@@ -942,7 +942,7 @@
       "type": "movie",
       "interactionType": "category_exclude",
       "reasonCode": "family_watch_list",
-      "reasonLabel": "Not a taste dismissal — a movie the whole family loved together (familyWatchlist.json's \"loved\" bucket, hidden-by-default on trakt/family.html), not a Bill-personal Trakt rating like Get Out/The Call/Obsession (which are already excluded via idx.watched). Excluded here so it never surfaces as a solo \"New pick\" now that it also has a candidatePool.json stub for real TMDB enrichment.",
+      "reasonLabel": "Not a taste dismissal \u2014 a movie the whole family loved together (familyWatchlist.json's \"loved\" bucket, hidden-by-default on trakt/family.html), not a Bill-personal Trakt rating like Get Out/The Call/Obsession (which are already excluded via idx.watched). Excluded here so it never surfaces as a solo \"New pick\" now that it also has a candidatePool.json stub for real TMDB enrichment.",
       "timestamp": "2026-09-16T00:00:00Z",
       "excludeFromRecommendations": true
     },
@@ -953,7 +953,7 @@
       "type": "show",
       "interactionType": "category_exclude",
       "reasonCode": "streaming_top10_editorial",
-      "reasonLabel": "Not a taste dismissal — an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
+      "reasonLabel": "Not a taste dismissal \u2014 an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
       "timestamp": "2026-09-26T00:00:00Z",
       "excludeFromRecommendations": true
     },
@@ -964,8 +964,107 @@
       "type": "show",
       "interactionType": "category_exclude",
       "reasonCode": "streaming_top10_editorial",
-      "reasonLabel": "Not a taste dismissal — an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
+      "reasonLabel": "Not a taste dismissal \u2014 an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
       "timestamp": "2026-09-26T00:00:00Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:95350",
+      "title": "Lanterns",
+      "year": null,
+      "type": "show",
+      "interactionType": "category_exclude",
+      "reasonCode": "streaming_top10_editorial",
+      "reasonLabel": "Not a taste dismissal \u2014 an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
+      "timestamp": "2026-09-26T00:30:19Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:270476",
+      "title": "Widow's Bay",
+      "year": null,
+      "type": "show",
+      "interactionType": "category_exclude",
+      "reasonCode": "streaming_top10_editorial",
+      "reasonLabel": "Not a taste dismissal \u2014 an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
+      "timestamp": "2026-09-26T00:30:19Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:299939",
+      "title": "Monster: The Lizzie Borden Story",
+      "year": null,
+      "type": "show",
+      "interactionType": "category_exclude",
+      "reasonCode": "streaming_top10_editorial",
+      "reasonLabel": "Not a taste dismissal \u2014 an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
+      "timestamp": "2026-09-26T00:30:19Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:108978",
+      "title": "Reacher",
+      "year": null,
+      "type": "show",
+      "interactionType": "category_exclude",
+      "reasonCode": "streaming_top10_editorial",
+      "reasonLabel": "Not a taste dismissal \u2014 an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
+      "timestamp": "2026-09-26T00:30:20Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:250307",
+      "title": "The Pitt",
+      "year": null,
+      "type": "show",
+      "interactionType": "category_exclude",
+      "reasonCode": "streaming_top10_editorial",
+      "reasonLabel": "Not a taste dismissal \u2014 an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
+      "timestamp": "2026-09-26T00:30:20Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:1413",
+      "title": "American Horror Story: 13",
+      "year": null,
+      "type": "show",
+      "interactionType": "category_exclude",
+      "reasonCode": "streaming_top10_editorial",
+      "reasonLabel": "Not a taste dismissal \u2014 an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
+      "timestamp": "2026-09-26T00:30:21Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:236235",
+      "title": "The Gentlemen",
+      "year": null,
+      "type": "show",
+      "interactionType": "category_exclude",
+      "reasonCode": "streaming_top10_editorial",
+      "reasonLabel": "Not a taste dismissal \u2014 an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
+      "timestamp": "2026-09-26T00:30:21Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:225171",
+      "title": "Pluribus",
+      "year": null,
+      "type": "show",
+      "interactionType": "category_exclude",
+      "reasonCode": "streaming_top10_editorial",
+      "reasonLabel": "Not a taste dismissal \u2014 an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
+      "timestamp": "2026-09-26T00:30:21Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:228305",
+      "title": "Task",
+      "year": null,
+      "type": "show",
+      "interactionType": "category_exclude",
+      "reasonCode": "streaming_top10_editorial",
+      "reasonLabel": "Not a taste dismissal \u2014 an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
+      "timestamp": "2026-09-26T00:30:22Z",
       "excludeFromRecommendations": true
     }
   ]
