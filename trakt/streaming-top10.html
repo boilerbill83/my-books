@@ -22,14 +22,9 @@
       .st10-list { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
       .st10-card { display: flex; gap: 18px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
       .st10-rank { font-family: var(--font-serif); font-weight: 700; font-size: 1.7rem; color: var(--border); flex-shrink: 0; width: 38px; text-align: center; align-self: flex-start; }
-      .st10-poster { flex-shrink: 0; position: relative; }
+      .st10-poster { flex-shrink: 0; }
       .st10-poster-img { width: 100px; height: 150px; border-radius: 8px; object-fit: cover; background: var(--bg-card); border: 1px solid var(--border); display: block; box-shadow: 0 2px 8px rgba(44,26,14,0.14); }
       .st10-poster-img-empty { border: 1px dashed var(--border); }
-      /* Gold star — a real Trakt favorite (computeFavoriteStars(), same
-         mechanism the Discover page's My Next Watch already uses). Display
-         badge only, per Bill's explicit choice (2026-09-26): doesn't affect
-         which shows appear on this editorial list, just marks the overlap. */
-      .st10-card-starred .st10-poster-img { outline: 2px solid var(--status-warning); outline-offset: 2px; }
       .st10-body { flex: 1; min-width: 0; }
       .st10-head-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
       .st10-title-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
