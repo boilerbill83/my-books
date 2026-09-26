@@ -113,11 +113,32 @@ def call_claude():
     return text_blocks[-1].strip()
 
 
+def extract_json_object(text):
+    """
+    Pulls the {...} object out of a response that may carry markdown fences
+    AND/OR leading prose before the JSON (a real failure hit on the first
+    production run: the prompt says "no preamble," but the model's final
+    text block still opened with a short sentence before the fenced block,
+    which plain removeprefix('```json') doesn't strip since the fence
+    itself isn't at position 0 — producing the exact "Expecting value:
+    line 1 column 1" error json.loads gives on a string that doesn't start
+    with valid JSON, even though the *tail* of the string looks fine).
+    Finds the first '{' and the matching last '}' and parses just that
+    span, so any prose before or after is simply ignored rather than
+    tripping the parser.
+    """
+    start = text.find('{')
+    end = text.rfind('}')
+    if start == -1 or end == -1 or end < start:
+        raise ValueError(f'no JSON object found in response — tail: ...{text[-300:]!r}')
+    return text[start:end + 1]
+
+
 def parse_shows():
     raw = call_claude()
-    raw = raw.removeprefix('```json').removeprefix('```').removesuffix('```').strip()
+    candidate = extract_json_object(raw)
     try:
-        parsed = json.loads(raw)
+        parsed = json.loads(candidate)
     except json.JSONDecodeError as e:
         raise ValueError(f'{e} — raw response tail: ...{raw[-300:]!r}') from e
     shows = parsed.get('shows')
