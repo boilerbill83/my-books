@@ -249,8 +249,9 @@ def main():
     feedback_path = DATA_DIR / 'feedbackData.json'
     feedback = json.load(open(feedback_path)) if feedback_path.exists() else {'interactions': []}
 
-    known = set()
-    for t in library['titles'] + watchlist['titles'] + pool['titles']:
+    lib_wl_keys = {t['titleKey'] for t in library['titles'] + watchlist['titles'] if t.get('titleKey')}
+    known = set(lib_wl_keys)
+    for t in pool['titles']:
         if t.get('titleKey'):
             known.add(t['titleKey'])
 
@@ -258,7 +259,17 @@ def main():
         key = resolve_show_titlekey(s['title'], known, pool['titles'], history_keys)
         s['titleKey'] = key
         s.setdefault('sources', [])
-        if key:
+        # Only exclude a title from Bill's personal You'll Love flow when
+        # it's genuinely NOT his own real Trakt data — a pure
+        # candidatePool-only discovery added just so this editorial page
+        # can enrich/display it. A real bug hit on the first production
+        # run: excluding EVERY resolved title unconditionally also pulled
+        # genuine watchlist picks (e.g. Lanterns, Monster: The Lizzie
+        # Borden Story) out of rankAll()'s fromWatchlist entirely, since
+        # that filter checks idx.excluded — Bill's own real data must
+        # never be excluded from his own recommendations just because it
+        # also happens to be trending this week.
+        if key and key not in lib_wl_keys:
             add_feedback_exclusion(feedback, key, s['title'])
 
     pool['meta'] = {'generatedAt': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'count': len(pool['titles'])}
