@@ -57,4 +57,3 @@ be picked up.
 
 ---
 
-- ZZZ_TEST_ENTRY_DELETE_ME_DO_NOT_KEEP | not_interested

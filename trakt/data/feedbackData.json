@@ -1022,6 +1022,17 @@
       "reasonLabel": "Not a taste dismissal \u2014 an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
       "timestamp": "2026-09-26T14:12:19Z",
       "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": null,
+      "title": "ZZZ_TEST_ENTRY_DELETE_ME_DO_NOT_KEEP",
+      "year": null,
+      "type": null,
+      "interactionType": "dismiss",
+      "reasonCode": "not_interested",
+      "reasonLabel": "General pass, no specific reason",
+      "timestamp": "2026-09-26T21:18:11Z",
+      "excludeFromRecommendations": true
     }
   ]
 }
