@@ -1,0 +1,87 @@
+name: Refresh Streaming Top 10 (Claude research)
+
+# Daily, per Bill's explicit ask. Real cost note: each run is one Claude
+# call (web search + editorial write-up) plus up to 10 cheap TMDB lookups
+# — a few cents to roughly $0.50/run, not the "tens of dollars per pass"
+# scale that got the theme/tone audit's own daily schedule turned off in
+# Session 16f — but it IS real, recurring, billed cost, and the
+# underlying data (Nielsen's weekly numbers) only actually changes about
+# once a week, so most days this will re-research and land on a
+# near-identical list. Dial the cron down to weekly (e.g. '0 13 * * 1')
+# if that redundancy isn't worth it.
+
+on:
+  schedule:
+    - cron: '0 13 * * *'   # daily 1 PM UTC (after every other Trakt enrichment job)
+  workflow_dispatch: {}
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Research and rebuild The Streaming Top 10
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: python3 trakt/refresh_streaming_top10.py
+        timeout-minutes: 10
+      - name: Commit if changed
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Rebase onto whatever branch actually triggered this run, not a
+          # hardcoded main — same real bug trakt-resolve-titles.yml already
+          # documents hitting on 2026-09-03 when manually dispatched against
+          # a feature branch.
+          BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+          git add trakt/data/streamingTop10.json trakt/data/candidatePool.json trakt/data/discoveredHistory.json trakt/data/feedbackData.json
+          if git diff --staged --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git commit -m "Refresh The Streaming Top 10 via Claude research [automated]"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest $BRANCH."
+            git fetch origin "$BRANCH"
+            git rebase "origin/$BRANCH"
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1
+      - name: Enrich any newly-discovered candidates
+        if: always()
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: python3 trakt/enrich_tmdb.py
+        timeout-minutes: 10
+      - name: Commit enrichment if changed
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+          git add trakt/data/enrichedMetadata.json
+          if git diff --staged --quiet; then
+            echo "No new enrichment."
+            exit 0
+          fi
+          git commit -m "Enrich Trakt metadata via TMDB [automated]"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest $BRANCH."
+            git fetch origin "$BRANCH"
+            git rebase "origin/$BRANCH"
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1

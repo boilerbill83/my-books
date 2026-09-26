@@ -17,27 +17,40 @@
          entry here carries real written copy (why it's here / why watch /
          vibe), not just a score and a one-line reason. */
       .st10-methodology { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 4px; }
-      .st10-list { display: flex; flex-direction: column; gap: 18px; }
+      /* 2-column grid, per Bill's ask: rank 1 & 2 side by side on the same
+         row, 3 & 4 below that, etc. Collapses to 1 column on mobile. */
+      .st10-list { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
       .st10-card { display: flex; gap: 18px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
       .st10-rank { font-family: var(--font-serif); font-weight: 700; font-size: 1.7rem; color: var(--border); flex-shrink: 0; width: 38px; text-align: center; align-self: flex-start; }
       .st10-poster { flex-shrink: 0; }
-      .st10-poster-img { width: 120px; height: 180px; border-radius: 8px; object-fit: cover; background: var(--bg-card); border: 1px solid var(--border); display: block; box-shadow: 0 2px 8px rgba(44,26,14,0.14); }
+      .st10-poster-img { width: 100px; height: 150px; border-radius: 8px; object-fit: cover; background: var(--bg-card); border: 1px solid var(--border); display: block; box-shadow: 0 2px 8px rgba(44,26,14,0.14); }
       .st10-poster-img-empty { border: 1px dashed var(--border); }
       .st10-body { flex: 1; min-width: 0; }
+      .st10-head-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
       .st10-title-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-      .st10-title { font-family: var(--font-serif); font-weight: 700; font-size: 1.25rem; }
-      .st10-tag { font-size: 0.78rem; font-weight: 700; }
-      .st10-platform { font-size: 0.82rem; color: var(--accent); font-weight: 600; margin-top: 2px; margin-bottom: 10px; }
-      .st10-section { font-size: 0.88rem; line-height: 1.55; margin-bottom: 9px; }
-      .st10-label { display: block; font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 2px; }
-      .st10-commitment { font-size: 0.78rem; color: var(--text-muted); font-style: italic; margin-top: 6px; }
-      .st10-sources { font-size: 0.68rem; color: var(--text-muted); margin-top: 10px; }
-      .st10-sources a { color: var(--text-muted); }
-      .st10-sources a:hover { color: var(--accent); }
+      .st10-title { font-family: var(--font-serif); font-weight: 700; font-size: 1.2rem; text-decoration: none; color: var(--text); }
+      .st10-title:hover { color: var(--accent); text-decoration: underline; }
+      .st10-tag { font-size: 0.76rem; font-weight: 700; }
+      .st10-platform-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 3px; margin-bottom: 6px; }
+      .st10-platform { font-size: 0.82rem; color: var(--accent); font-weight: 600; }
+      .st10-metabits { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px; }
+      .st10-section { font-size: 0.85rem; line-height: 1.55; margin-bottom: 9px; }
+      .st10-label { display: block; font-size: 0.64rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 2px; }
+      .st10-commitment { font-size: 0.76rem; color: var(--text-muted); font-style: italic; margin-top: 6px; }
+      .st10-score { flex-shrink: 0; text-align: center; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 7px 10px; min-width: 64px; }
+      .st10-score-num { font-family: var(--font-serif); font-weight: 700; font-size: 1.3rem; color: var(--accent); line-height: 1; }
+      .st10-score-label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 3px; }
+      .st10-score-empty { font-size: 0.62rem; color: var(--text-muted); font-style: italic; padding: 10px 8px; min-width: 78px; }
+      .st10-status-untracked { background: var(--bg-card); color: var(--text-muted); border: 1px solid var(--border); }
+      @media (max-width: 900px) {
+        .st10-list { grid-template-columns: 1fr; }
+      }
       @media (max-width: 640px) {
         .st10-card { flex-direction: column; }
         .st10-rank { width: auto; text-align: left; }
         .st10-poster-img { width: 100%; height: auto; aspect-ratio: 2 / 3; max-width: 200px; }
+        .st10-head-row { flex-direction: column; }
+        .st10-score { align-self: flex-start; }
       }
     </style>
   </head>
@@ -64,7 +77,7 @@
         <div class="tk-card" style="margin-bottom: 24px;">
           <div class="tk-card-heading">What is this?</div>
           <div class="st10-methodology" id="methodologyText"></div>
-          <div class="st10-methodology" style="margin-top:8px;">Not Bill's personal taste, not BMTRE's scoring engine — a general read on what's actually happening across every major streaming service this week, researched fresh from real sources (Nielsen, JustWatch, entertainment press, awards coverage). It won't auto-update; ask Claude to re-research it for a new week whenever you want a fresh list.</div>
+          <div class="st10-methodology" style="margin-top:8px;">The ranking itself is editorial, not personalized — a general read on what's actually happening across every major streaming service this week, researched from real sources (Nielsen, JustWatch, entertainment press, awards coverage). Each card also shows your own real data where it exists: your Trakt status, a predicted BMTRE score, and genre/subgenre/topic tags — display only, they never affect the editorial ranking above.</div>
         </div>
 
         <div class="st10-list" id="top10List"></div>
