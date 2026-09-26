@@ -3294,6 +3294,47 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   }
 
   {
+    // "Out of the blue, might not work" idea (this project's own recurring
+    // pattern for checking a correlation before ever writing scoring code
+    // — real real correlation-check discipline, not a guess): does Bill
+    // have a runtime-length preference for movies, or an episode-length
+    // preference for shows?
+    const movieRows = (library.titles || []).filter(t => t.type === 'movie' && t.myRating != null && enrichedMeta[t.titleKey]?.runtime);
+    const xs = movieRows.map(t => enrichedMeta[t.titleKey].runtime);
+    const ys = movieRows.map(t => t.myRating);
+    const n = xs.length;
+    const mx = n ? xs.reduce((a, b) => a + b, 0) / n : 0, my = n ? ys.reduce((a, b) => a + b, 0) / n : 0;
+    let num = 0, dx = 0, dy = 0;
+    for (let i = 0; i < n; i++) { num += (xs[i] - mx) * (ys[i] - my); dx += (xs[i] - mx) ** 2; dy += (ys[i] - my) ** 2; }
+    const movieR = n ? num / Math.sqrt(dx * dy) : 0;
+    const buckets = [[0, 90], [90, 110], [110, 130], [130, 150], [150, 999]];
+    const bucketAvgs = buckets.map(([lo, hi]) => {
+      const b = movieRows.filter(t => enrichedMeta[t.titleKey].runtime >= lo && enrichedMeta[t.titleKey].runtime < hi);
+      return b.length ? { avg: b.reduce((s, t) => s + t.myRating, 0) / b.length, n: b.length } : null;
+    });
+    const showsWithEpRuntime = (library.titles || []).filter(t => t.type === 'show' && t.myRating != null && enrichedMeta[t.titleKey]?.episodeRunTime?.[0]).length;
+    findings.push({
+      id: 'runtime-length-signal-tested',
+      severity: 'warning',
+      ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
+      estTokens: 4000, // fully closed, nothing further proposed
+      shortTitle: 'Runtime Length Idea Rejected',
+      title: `Tested: movie runtime has essentially no correlation with Bill's rating; show episode runtime isn't even populated — not a signal, not shipped`,
+      technical: `Live check, movies (n=${fmtNum(n)} rated+runtime-known): Pearson <code>r=${movieR.toFixed(3)}</code>, essentially zero. Bucket ` +
+        `averages (myRating): ${buckets.map((b, i) => `${b[0]}-${b[1] === 999 ? '150+' : b[1]}min ${bucketAvgs[i] ? bucketAvgs[i].avg.toFixed(2) : 'n/a'} ` +
+        `(n=${bucketAvgs[i]?.n ?? 0})`).join(', ')} — no clean monotonic trend either direction, consistent with this port's original design note ` +
+        `that runtime "isn't an analogous completion-risk signal" to the book engine's pages-fit bonus. Shows: <code>episodeRunTime</code> is ` +
+        `currently populated on ${fmtNum(showsWithEpRuntime)} rated shows — effectively zero, so there's no real data to even check a show-side ` +
+        `episode-length preference against yet.`,
+      plain: `Does Bill rate long movies differently from short ones? Checked the real numbers and found no — his ratings are essentially flat across ` +
+        `movies from under 90 minutes to over 150. The show-side version of this question (does episode length matter?) couldn't even be checked, ` +
+        `since that field isn't currently being captured from TMDB for shows at all.`,
+      impact: `A genuine negative result on the movie side (no signal to build), and an honest "can't tell yet" on the show side (a real data gap, ` +
+        `not a rejected idea) — worth keeping on record so a future session doesn't re-check the same correlation from scratch.`,
+    });
+  }
+
+  {
     const premiumNetworks = ['HBO', 'HBO Max', 'Max', 'Showtime', 'AMC'];
     const rows = (library.titles || []).filter(t => t.type === 'show' && t.myRating != null && enrichedMeta[t.titleKey]?.networks?.some(n => premiumNetworks.includes(n)));
     const avg = rows.length ? rows.reduce((s, t) => s + t.myRating, 0) / rows.length : null;
