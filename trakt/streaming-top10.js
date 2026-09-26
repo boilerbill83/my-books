@@ -17,7 +17,7 @@
 // slug for it — a title he's never watched/watchlisted correctly falls
 // back to a Trakt search instead of a guessed link, same as everywhere
 // else in this app.
-import { esc, posterImgHtml, initCollapsibleCards, STATUS_META, statusTag, SUBJECT_LABEL, displaySubgenre, loadAllData } from './dashboardShared.js';
+import { esc, posterImgHtml, initCollapsibleCards, STATUS_META, statusTag, SUBJECT_LABEL, displaySubgenre, loadAllData, computeFavoriteStars } from './dashboardShared.js';
 import { posterUrl, hydrateTitle, traktUrl, rankAll, matchScore, inferGenre, inferSubgenres, inferSubjects } from './engine.js';
 
 const TAG_META = {
@@ -60,7 +60,7 @@ function statusTagHtml(label) {
 }
 
 function enrichShow(show, ctx) {
-  const { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback } = ctx;
+  const { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback, starredSet } = ctx;
   const titleKey = show.titleKey;
   const meta = titleKey ? enrichedMeta[titleKey] : null;
   const type = titleKey ? titleKey.split(':')[0] : (show.type || 'show');
@@ -97,20 +97,28 @@ function enrichShow(show, ctx) {
 
   const traktCandidate = hydrateTitle({ type, titleKey, ids, title: show.title }, enrichedMeta);
   const poster = titleKey ? posterUrl(titleKey, enrichedMeta, 'w342') : null;
+  const starred = !!(titleKey && starredSet?.has(titleKey));
 
-  return { ...show, type, statusLabel, predictedScore, genreLabel, subgenreLabels, subjectLabels, traktLink: traktUrl(traktCandidate), poster };
+  return { ...show, type, statusLabel, predictedScore, genreLabel, subgenreLabels, subjectLabels, traktLink: traktUrl(traktCandidate), poster, starred };
 }
 
-function renderShow(show) {
+// displayRank is the show's position in the CURRENT filtered/backfilled
+// view (always 1-10), which can differ from show.rank (its real position
+// in this week's full researched pool) once a checkbox filter reorders
+// things — shown as the "Top 10" position the page's own name promises,
+// while each card's status badge still honestly reflects why a
+// filtered-out-category show ended up here (backfill).
+function renderShow(show, displayRank) {
   const tag = TAG_META[show.tag] || { emoji: '', cssVar: '--text' };
   const metaBits = [show.genreLabel, ...show.subgenreLabels, ...show.subjectLabels].filter(Boolean);
   const scoreHtml = show.predictedScore != null
     ? `<div class="st10-score"><div class="st10-score-num">${show.predictedScore}</div><div class="st10-score-label">predicted score</div></div>`
     : `<div class="st10-score st10-score-empty">not enough data yet</div>`;
+  const starHtml = show.starred ? '<div class="tk-star-badge" title="One of your real Trakt favorites">★</div>' : '';
   return `
-  <article class="st10-card">
-    <div class="st10-rank">#${show.rank}</div>
-    <div class="st10-poster">${posterImgHtml(show.poster, 'st10-poster-img', 120, 180)}</div>
+  <article class="st10-card${show.starred ? ' st10-card-starred' : ''}">
+    <div class="st10-rank">#${displayRank}</div>
+    <div class="st10-poster">${starHtml}${posterImgHtml(show.poster, 'st10-poster-img', 120, 180)}</div>
     <div class="st10-body">
       <div class="st10-head-row">
         <div>
@@ -135,7 +143,7 @@ function renderShow(show) {
 }
 
 async function load() {
-  const [data, { library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, bookThemeCounts }] =
+  const [data, { library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, bookThemeCounts, manualStars: manualStarsData }] =
     await Promise.all([
       fetch('./data/streamingTop10.json').then(r => r.json()),
       loadAllData(),
@@ -148,14 +156,21 @@ async function load() {
   document.getElementById('statusText').textContent = 'Loaded';
 
   const { idx } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
-  const ctx = { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback };
+  const starredSet = computeFavoriteStars(library, watchlist, manualStarsData);
+  const ctx = { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback, starredSet };
 
-  const shows = data.shows.map(s => enrichShow(s, ctx));
+  const shows = data.shows.map(s => enrichShow(s, ctx)).sort((a, b) => a.rank - b.rank);
+  const TARGET_COUNT = 10;
 
-  // Status filter — per Bill's request. Options are built live from
-  // whatever statuses this week's real 10 shows actually carry (never a
-  // hardcoded list), so a status with zero matches this week (e.g.
-  // "Dismissed") simply doesn't appear as a choice at all.
+  // Status checkboxes — per Bill's request (2026-09-26: "make the filter
+  // a checkbox so I can choose what to include; it should always show 10
+  // shows"). This week's real researched pool is intentionally larger
+  // than 10 (see refresh_streaming_top10.py) specifically so a narrowed
+  // checkbox selection has real material to backfill from — the display
+  // is always exactly 10 real, already-researched shows, never fewer,
+  // never a placeholder. Options are built live from whatever statuses
+  // this week's real pool actually carries (never hardcoded), so a status
+  // with zero matches this week just doesn't appear as a choice.
   const listEl = document.getElementById('top10List');
   const emptyEl = document.getElementById('st10EmptyMsg');
   const countEl = document.getElementById('st10FilterCount');
@@ -164,20 +179,36 @@ async function load() {
   const statusCounts = new Map();
   for (const s of shows) statusCounts.set(s.statusLabel, (statusCounts.get(s.statusLabel) || 0) + 1);
   // A fixed display order (rather than alphabetical or count-sorted) so
-  // the dropdown reads the same way every week even as which statuses
+  // the checkboxes read the same way every week even as which statuses
   // are present changes.
   const STATUS_ORDER = ['Watched', 'New Episodes', 'Watchlist', 'Candidate', 'Dismissed', NOT_TRACKED_LABEL];
   const presentStatuses = STATUS_ORDER.filter(s => statusCounts.has(s));
 
-  filterEl.innerHTML = `<option value="">All statuses (${shows.length})</option>` +
-    presentStatuses.map(s => `<option value="${esc(s)}">${esc(s)} (${statusCounts.get(s)})</option>`).join('');
+  filterEl.innerHTML = presentStatuses.map(s => `
+    <label class="st10-checkbox-label">
+      <input type="checkbox" value="${esc(s)}" checked>
+      ${esc(s)} (${statusCounts.get(s)})
+    </label>`).join('');
 
   function renderFiltered() {
-    const chosen = filterEl.value;
-    const visible = chosen ? shows.filter(s => s.statusLabel === chosen) : shows;
-    listEl.innerHTML = visible.map(renderShow).join('');
+    const checked = new Set([...filterEl.querySelectorAll('input:checked')].map(cb => cb.value));
+    const matching = shows.filter(s => checked.has(s.statusLabel));
+    const backfill = shows.filter(s => !checked.has(s.statusLabel));
+    // Fill to exactly TARGET_COUNT, highest-ranked first, backfilling
+    // from outside the checked categories whenever the filter alone
+    // doesn't produce enough — so the page never goes sparse or empty
+    // just because Bill unchecked a category with few matches this week.
+    const visible = [...matching, ...backfill].slice(0, TARGET_COUNT);
+    listEl.innerHTML = visible.map((s, i) => renderShow(s, i + 1)).join('');
     emptyEl.hidden = visible.length > 0;
-    countEl.textContent = chosen ? `Showing ${visible.length} of ${shows.length}` : '';
+    if (matching.length >= TARGET_COUNT || checked.size === presentStatuses.length) {
+      countEl.textContent = '';
+    } else if (matching.length === 0) {
+      countEl.textContent = `Nothing matches your filter this week — showing the full top ${TARGET_COUNT} instead.`;
+    } else {
+      countEl.textContent = `${matching.length} match${matching.length === 1 ? 'es' : ''} your filter, ` +
+        `${TARGET_COUNT - matching.length} more filled in from the rest of this week's list.`;
+    }
   }
 
   filterEl.addEventListener('change', renderFiltered);
