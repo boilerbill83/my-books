@@ -1,0 +1,64 @@
+name: Process pending Streaming Top 10 dismissals
+
+# Bill (2026-09-26): "Is there a way to do this that doesn't require my
+# intervention?" — a static site can't safely commit to this PUBLIC repo
+# on its own (no way to hold a write credential client-side without
+# exposing it to anyone who visits the page), so instead of new
+# infrastructure, Bill edits trakt/data/pendingDismissals.md himself
+# (write access he already has) and this workflow picks up the commit
+# automatically — no token, no proxy, no further action from him.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'trakt/data/pendingDismissals.md'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Log what would be processed without writing files'
+        type: boolean
+        default: false
+
+jobs:
+  process:
+    # This job's own commit below also touches pendingDismissals.md —
+    # GitHub's documented behavior is that a push made with the default
+    # GITHUB_TOKEN doesn't itself trigger further push-based workflow
+    # runs, but this is the first push-triggered workflow in this repo
+    # (everything else is schedule/workflow_dispatch), so this explicit
+    # guard is a real backstop against a self-retrigger loop, not just
+    # decorative.
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Convert pending dismissal lines into real feedbackData.json entries
+        run: python3 trakt/process_pending_dismissals.py ${{ inputs.dry_run && '--dry-run' || '' }}
+        timeout-minutes: 5
+      - name: Commit if changed
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+          git add trakt/data/pendingDismissals.md trakt/data/feedbackData.json
+          if git diff --staged --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git commit -m "Process pending Streaming Top 10 dismissals [automated]"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest $BRANCH."
+            git fetch origin "$BRANCH"
+            git rebase "origin/$BRANCH"
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1

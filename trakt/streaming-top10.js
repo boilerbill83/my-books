@@ -48,16 +48,26 @@ const TAG_META = {
 
 const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
 
-// Local-only "Not interested" dismissals (Bill, 2026-09-26). Same
-// localStorage-then-copy-to-commit pattern app.js's copyFeedbackBtn already
-// established on the book side (LOCAL_FEEDBACK_KEY there, 'mybooks_
-// feedback_v1') — this is a STAGING layer only. Clicking the button hides
-// the card immediately on this device (via dismissedTitles below) and
-// queues a real feedbackData.json-shaped interaction object for Bill to
-// hand to Claude and commit for real, same as the book side's flow — it
-// never writes to the committed file itself (a static page can't), and it
-// never marks the card's status badge "Dismissed" (that stays reserved
-// for a genuine committed interaction, checked separately in enrichShow).
+// Local-only "Not interested" dismissals (Bill, 2026-09-26) — a STAGING
+// layer only, same localStorage idea app.js's copyFeedbackBtn established
+// on the book side (LOCAL_FEEDBACK_KEY there, 'mybooks_feedback_v1').
+// Clicking the button hides the card immediately on this device (via
+// dismissedTitles below) and queues an interaction for later commit; it
+// never writes to the committed file itself (a static page genuinely
+// can't — see below), and it never marks the card's status badge
+// "Dismissed" (that stays reserved for a genuine committed interaction,
+// checked separately in enrichShow).
+//
+// How it actually gets committed (Bill, same day: "is there a way to do
+// this that doesn't require my intervention?"): a truly zero-intervention
+// path would need a write credential reachable from the browser, which
+// this PUBLIC repo can't safely hold client-side. Instead of new backend
+// infrastructure, Bill periodically copies the queued list (via the
+// button below) as plain `- Title | reasonCode` lines and pastes them
+// into trakt/data/pendingDismissals.md himself — real write access he
+// already has, no token exposure — and trakt/process_pending_
+// dismissals.py (triggered by that commit) converts them into real
+// feedbackData.json entries automatically from there.
 const LOCAL_DISMISS_KEY = 'st10_local_dismissals_v1';
 
 function loadLocalDismissals() {
@@ -394,10 +404,14 @@ async function load() {
   }
 
   document.getElementById('st10CopyDismissedBtn').addEventListener('click', async () => {
-    const json = JSON.stringify({ interactions: localDismissals }, null, 2);
+    // Plain `- Title | reasonCode` lines, one per queued dismissal — the
+    // exact format trakt/data/pendingDismissals.md's own header asks for,
+    // so pasting this straight below that file's `---` marker (via
+    // GitHub's own web editor) is all that's needed; no JSON, no chat.
+    const lines = localDismissals.map(d => `- ${d.title} | ${d.reasonCode}`).join('\n');
     try {
-      await navigator.clipboard.writeText(json);
-      document.getElementById('statusText').textContent = 'Dismissals copied — paste into a chat with Claude to commit them to feedbackData.json.';
+      await navigator.clipboard.writeText(lines);
+      document.getElementById('statusText').textContent = 'Copied — paste below the "---" in trakt/data/pendingDismissals.md on GitHub and commit.';
     } catch {
       document.getElementById('statusText').textContent = 'Clipboard unavailable — check browser permissions.';
     }
