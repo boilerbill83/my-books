@@ -4457,6 +4457,76 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
+  // Bill shared an external AI's review of BMTRE and asked "use what is
+  // valuable and discard the rest." Most of that feedback was collaborative-
+  // filtering/neural-ranker advice that doesn't fit a single-user engine
+  // with no cohort to learn from (already discarded, correctly). But two of
+  // its points survived a second, harder look and are genuine, previously
+  // unexamined gaps — logged here rather than fixed blind, matching this
+  // project's own established practice of surfacing a finding before acting
+  // on it (see subject-bonus-undertuned and liked-not-loved-signal-gap above
+  // for the same discipline applied to Grok's and Bill's own prior review
+  // rounds).
+  {
+    findings.push({
+      id: 'audience-score-no-sample-size-guard',
+      severity: 'warning',
+      ratings: { ease: 3, dataQuality: 2, recEngine: 5, ui: 1 },
+      shortTitle: 'Audience Score Has No Small-Sample Guard',
+      title: `realAudienceScore()/criticScore() feed omdbSignal() (±4/±6 swing) with no review-count confidence check — 64.2% of merged OMDb+scraped titles carry an audience score, criticScore 79.1%, neither weighted by how many reviews back it`,
+      technical: `<code>omdbSignal()</code> (engine.js) applies a symmetric ±<code>AUDIENCE_MAX_SWING</code> (4) around <code>AUDIENCE_NEUTRAL</code> ` +
+        `from <code>realAudienceScore()</code> (RT Popcornmeter + Metacritic user score) and ±<code>CRITIC_MAX_SWING</code> (6) from ` +
+        `<code>criticScore()</code> (RT Tomatometer + Metascore) for every title that has one — a title with 8 real audience ratings gets the exact ` +
+        `same weight as one with 50,000. This is a different, narrower gap than the TMDB community-rating small-sample guard already covered by ` +
+        `<code>voteCountBonus()</code>/<code>imdbVoteCountBonus()</code> (an earlier, too-hasty dismissal of this same point conflated the two — ` +
+        `TMDB's own <code>voteAverage</code> IS confidence-gated by real vote count; RT/Metacritic's audience/critic scores are not). Checked whether ` +
+        `it's even fixable today: <code>trakt/scrape_show_ratings.py</code>'s Metacritic critic-score extractor (<code>extract_metascore()</code>) ` +
+        `already sees a real <code>ratingCount</code>/<code>reviewCount</code> value transiently — used only as a fabrication guard (reject a score ` +
+        `with an explicit zero count), never persisted to <code>scrapedShowRatings.json</code> for downstream confidence-scaling. Persisting and using ` +
+        `it would mean touching this same extraction path, which the script's own docstring explicitly flags after 5 real production rounds of ` +
+        `guard-and-bypass bugs (<code>extract_next_data_user_score()</code>'s own docstring states a further attempt "should get an explicit go-ahead ` +
+        `rather than another autonomous guess, per this project's own 'no third blind attempt' discipline") — logged rather than built blind into that ` +
+        `same fragile code.`,
+      plain: `Two rating sources feed the engine's sense of "is this any good": TMDB's own average (which already discounts a title with only a ` +
+        `handful of votes) and Rotten Tomatoes/Metacritic's audience and critic scores (which currently don't). A show with a 95% audience score ` +
+        `from 8,000 real fans gets treated exactly the same as one with a 95% score from 8 people who happened to rate it — the second number is ` +
+        `much less trustworthy but the engine can't currently tell the difference, because the review count behind it is never saved. Fixing it ` +
+        `for real means touching a part of the scraper that's already been patched 5 times for a related bug, so it's flagged here for a deliberate ` +
+        `decision rather than a 6th quiet attempt.`,
+      impact: `Not measured yet — that's the point of the finding: without a stored review count, there's no way to even quantify how many of the ` +
+        `1,719 titles with a critic score or 1,396 with an audience score are riding on a thin sample. Bounded downside either way (±4/±6 points ` +
+        `out of a 100-point scale), but a real, previously-mis-assessed gap worth a conscious yes/no rather than another silent extraction change.`,
+    });
+  }
+
+  // Second survivor of the same review: BMTRE already computes real,
+  // per-title mood/register data (inferTones()/inferSubgenres()) that
+  // nothing on Discover lets Bill filter or steer by — the closest fit for
+  // the reviewing AI's "mood/context toggle" suggestion, but built from
+  // data this engine already has rather than a new embeddings/ranker
+  // layer, which is the part of that suggestion that didn't fit.
+  {
+    findings.push({
+      id: 'mood-filter-unbuilt',
+      severity: 'warning',
+      ratings: { ease: 5, dataQuality: 1, recEngine: 3, ui: 8 },
+      shortTitle: 'No Mood/Vibe Filter on Discover',
+      title: `inferTones()/inferSubgenres() already compute real per-title mood data (tones on 46.2%, subgenres on 69.6% of enriched titles) that no Discover feature lets Bill filter or steer recommendations by`,
+      technical: `<code>inferTones()</code> (14 canonical tags — tense, dark, heartwarming, funny, thoughtful, gritty, etc.) and <code>inferSubgenres()</code> ` +
+        `(65 canonical buckets) already run per-title and already feed real scoring signal (<code>toneSignal()</code>/<code>subgenreSignal()</code>), ` +
+        `but nothing on <code>trakt/discover.js</code> exposes them as an interactive filter — the You'll Love panels, Tonight's Top Pick, and Because ` +
+        `You Loved all show whatever the raw ranked list produces with no way to say "something light tonight" vs. "something dark and tense." This ` +
+        `is the buildable half of the reviewing AI's "mood/context toggle" suggestion — the un-buildable half (a trained re-weighting model) doesn't ` +
+        `apply here; this would just be a client-side filter over data the engine already computes, the same shape as the existing platform/status ` +
+        `checkboxes on the Streaming Top 10 page.`,
+      plain: `The engine already knows, for most titles, whether something is tense and dark or light and funny — it's just never offered as a way ` +
+        `to narrow down recommendations. A simple filter ("show me something light" / "show me something intense") would use data that's already ` +
+        `being computed today, not require anything new to be built underneath it.`,
+      impact: `Not yet built — a real, low-risk, UI-only feature idea (no scoring change, no new data pipeline) surfaced here for a decision rather ` +
+        `than shipped speculatively, since it's a product/UX choice about what Discover should look like, not a diagnosed bug or measured signal gap.`,
+    });
+  }
+
   const order = { critical: 0, serious: 1, warning: 2, good: 3 };
   findings.sort((a, b) => order[a.severity] - order[b.severity]);
   return findings;
