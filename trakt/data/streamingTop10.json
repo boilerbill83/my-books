@@ -1,250 +1,291 @@
 {
- "note": "Real, weekly editorial Top 10 (Bill, 2026-09-25: build a modern replacement for The Ringer's old Weekly Top 10). General-audience — NOT derived from Bill's own Trakt data or BMTRE's scoring engine, and not personalized to him (it happens to overlap with shows he watches since those are genuinely the biggest shows on TV right now too). Auto-refreshed daily via trakt/refresh_streaming_top10.py (.github/workflows/trakt-refresh-streaming-top10.yml) — a real Claude + web-search call does the research fresh each run (Nielsen/JustWatch/entertainment press/awards coverage), never fabricated. Each show's own status/predicted score/genre tags on the page are separately computed live from Bill's real Trakt data and BMTRE — display only, they never affect this list's editorial ranking.",
+ "note": "Real, weekly editorial Top 10 (Bill, 2026-09-25: build a modern replacement for The Ringer's old Weekly Top 10). General-audience — NOT derived from Bill's own Trakt data or BMTRE's scoring engine, and not personalized to him (it happens to overlap with shows he watches since those are genuinely the biggest shows on TV right now too). Auto-refreshed daily via trakt/refresh_streaming_top10.py (.github/workflows/trakt-refresh-streaming-top10.yml) — a real Claude + web-search call does the research fresh each run (Nielsen/JustWatch/entertainment press/awards coverage), never fabricated. Each show's own status/predicted score/genre tags on the page are separately computed live from Bill's real Trakt data and BMTRE — display only, they never affect this list's editorial ranking. Manual refresh this run: the automated pipeline (refresh_streaming_top10.py) is blocked on a real Anthropic API credits shortfall, so this week's research was done directly in-session (real WebSearch against Nielsen/Hollywood Reporter/Variety/JustWatch/NBC/Apple coverage, same methodology and currency-check standard as the script) rather than via the Claude API call — no additional API credits spent. TMDB ids resolved the same way: verified against real themoviedb.org pages via WebSearch, not the (also-reachable-only-via-CI) TMDB API directly.",
  "methodology": "Scored on four weighted dimensions, per Bill's own detailed brief: Audience 30% (is anyone actually watching — Nielsen minutes, JustWatch rank), Current Momentum 25% (is interest rising right now, not just sustained), Cultural Buzz 25% (is it being talked about — reviews, awards, entertainment press, viral moments), Watchability/Editorial Relevance 20% (is it actually a good recommendation this week — accessible, well-reviewed, worth starting). The raw score is an internal ranking mechanism only, never shown. Every entry keeps real, cited sources in the underlying data even though the page itself doesn't display them.",
  "weekOf": "2026-09-26",
- "generatedAt": "2026-09-26T00:30:22.000Z",
+ "generatedAt": "2026-09-26T14:11:21.000Z",
  "shows": [
   {
    "rank": 1,
-   "title": "Lanterns",
-   "platform": "HBO Max",
-   "tag": "HOT",
-   "whyHere": "The DC Studios series has grown its audience every week since premiere, hitting 10 million global viewers for episode three alone, and just delivered a massive mid-season death that has fans buzzing about where the story goes next.",
-   "whyWatch": "A 90%-fresh, True Detective-inspired take on Green Lantern lore anchored by career-best work from Kyle Chandler and Aaron Pierre.",
-   "vibe": "Cosmic cop drama that trades spandex for small-town dread.",
-   "commitment": "1 season, currently airing weekly | ~50 min episodes",
-   "sources": [
-    {
-     "label": "Forbes — Lanterns' 90% Rotten Tomatoes debut score",
-     "url": "https://www.forbes.com/sites/paultassi/2026/08/15/the-hbo-max-lanterns-rotten-tomatoes-review-score-is-in/"
-    },
-    {
-     "label": "Variety — Lanterns hits 10 million viewers by episode 3",
-     "url": "https://variety.com/2026/tv/news/lanterns-episode-3-ratings-10-million-viewers-hbo-max-1236850717/"
-    },
-    {
-     "label": "Future of the Force — Episode 6 review on Hal Jordan's death",
-     "url": "https://thefutureoftheforce.com/2026/09/21/tv-review-lanterns-episode-6-hbo-max/"
-    }
-   ],
-   "titleKey": "show:95350"
-  },
-  {
-   "rank": 2,
-   "title": "Widow's Bay",
-   "platform": "Apple TV+",
-   "tag": "HOT",
-   "whyHere": "Fresh off becoming the most-decorated freshman comedy in Emmy history with 14 total wins including Outstanding Comedy Series, this horror-comedy is having its victory-lap moment right now.",
-   "whyWatch": "Matthew Rhys leads a pitch-perfect blend of small-town horror and dry comedy that critics and the Television Academy can't stop rewarding.",
-   "vibe": "Jaws' mayor energy meets a haunted New England tourist trap.",
-   "commitment": "1 season (10 episodes) | ~35 min episodes",
-   "sources": [
-    {
-     "label": "Apple Newsroom — Widow's Bay's record Emmy haul",
-     "url": "https://www.apple.com/newsroom/2026/09/widows-bay-triumphs-as-most-decorated-freshman-comedy-in-emmy-history/"
-    },
-    {
-     "label": "NPR — 2026 Emmy winners recap",
-     "url": "https://www.npr.org/2026/09/14/nx-s1-5957565/emmys-2026-winners"
-    },
-    {
-     "label": "ScreenRant — Why Widow's Bay deserves a weekend binge",
-     "url": "https://screenrant.com/widows-bay-apple-tv-emmy-wins-weekend-binge/"
-    }
-   ],
-   "titleKey": "show:270476"
-  },
-  {
-   "rank": 3,
    "title": "Monster: The Lizzie Borden Story",
    "platform": "Netflix",
    "tag": "HOT",
-   "whyHere": "Debuted at No. 1 globally on Netflix with 12.1 million views and 80.1 million hours watched in four days, making it the most-watched title on the platform this week even as critics savaged it.",
-   "whyWatch": "The controversy itself is the draw: Ella Beatty and Rebecca Hall anchor Ryan Murphy's latest lightning-rod true-crime provocation.",
-   "vibe": "Axe murders, corsets, and maximum Ryan Murphy audacity.",
+   "whyHere": "Ryan Murphy's true-crime anthology returned to its biggest opening yet — all 8 episodes dropped September 17 and the show shot to #1 on Netflix's English TV chart with 12.1 million views in its first week (Sept 14-20).",
+   "whyWatch": "A genuinely unsettling dive into the 1892 axe-murder case that's obsessed America for over a century, anchored by a committed, unsettling lead performance.",
+   "vibe": "A quiet Massachusetts town, one gruesome night, and the woman everyone still argues about.",
    "commitment": "1 season (8 episodes) | ~50 min episodes",
    "sources": [
     {
-     "label": "Variety — Lizzie Borden Story ratings, 12.1M views",
-     "url": "https://variety.com/2026/tv/news/monster-the-lizzie-borden-story-ratings-netflix-views-1236872484/"
+     "label": "MovieWeb — Netflix's Monster hit claims the top spot",
+     "url": "https://movieweb.com/monster-the-lizzie-borden-story-netflix-hit-sept-2026/"
     },
     {
-     "label": "Forbes — Critics and audiences pan Lizzie Borden Story",
-     "url": "https://www.forbes.com/sites/timlammers/2026/09/18/monster-the-lizzie-borden-story-butchered-by-rotten-tomatoes-critics-and-audiences/"
-    },
-    {
-     "label": "The Statesman — 12.1 million views despite mixed reviews",
-     "url": "https://www.thestatesman.com/entertainment/ott/netflixs-true-crime-hit-monster-the-lizzie-borden-story-racks-up-12-1-million-views-despite-mixed-reviews-1503641917.html"
+     "label": "The TV Ratings Guide — What's Trending, Sept 13-19",
+     "url": "https://www.thetvratingsguide.com/2026/09/whats-trending-on-streaming-september.html"
     }
    ],
    "titleKey": "show:299939"
+  },
+  {
+   "rank": 2,
+   "title": "Neagley",
+   "platform": "Prime Video",
+   "tag": "HOT",
+   "whyHere": "The Reacher spinoff debuted September 16 and immediately knocked its own parent show out of Prime Video's #1 spot — a rare instant-hit launch for a first-time lead.",
+   "whyWatch": "Maria Sten steps out from Reacher's ensemble to lead her own case as a Chicago private investigator with her own rules.",
+   "vibe": "Reacher's most dangerous friend finally gets the spotlight.",
+   "commitment": "1 season | ~50 min episodes",
+   "sources": [
+    {
+     "label": "Collider — Reacher officially loses its streaming crown to Neagley",
+     "url": "https://collider.com/alan-ritchson-reacher-spin-off-neagley-streaming-hit-prime-video-september-2026/"
+    },
+    {
+     "label": "The TV Ratings Guide — What's Trending, Sept 13-19",
+     "url": "https://www.thetvratingsguide.com/2026/09/whats-trending-on-streaming-september.html"
+    }
+   ],
+   "titleKey": "show:273207"
+  },
+  {
+   "rank": 3,
+   "title": "Lanterns",
+   "platform": "HBO Max",
+   "tag": "HOT",
+   "whyHere": "HBO's big DC swing is mid-season and delivering — new episodes drop every Sunday, with episode 6 landing September 20 and the finale set for October 4.",
+   "whyWatch": "Aaron Pierre and Kyle Chandler play a murder-investigation duo who happen to also be Green Lanterns — grounded, weird, and confident about it.",
+   "vibe": "A heartland murder mystery that turns out to be a lot stranger than it looks.",
+   "commitment": "1 season (8 episodes) | ~55 min episodes",
+   "sources": [
+    {
+     "label": "Deadline — Lanterns release schedule",
+     "url": "https://deadline.com/2026/08/lanterns-release-schedule-new-episodes-streaming-1237033026/"
+    },
+    {
+     "label": "Forbes — Lanterns episode 5 release time",
+     "url": "https://www.forbes.com/sites/erikkain/2026/09/13/lanterns-episode-5-release-time-hbo-max/"
+    }
+   ],
+   "titleKey": "show:95350"
   },
   {
    "rank": 4,
    "title": "Reacher",
    "platform": "Prime Video",
    "tag": "ESTABLISHED",
-   "whyHere": "Season 4 topped 1 billion minutes of viewing for five consecutive weeks on Nielsen's streaming charts, making it the most consistently dominant show on any platform this month.",
-   "whyWatch": "Alan Ritchson delivers what critics are calling the bloodiest, most vulnerable season yet of Prime Video's reigning action juggernaut.",
-   "vibe": "A very large, very literal man solves crimes with his fists.",
-   "commitment": "1 season (8 episodes) | ~50 min episodes",
+   "whyHere": "Season 4's finale dropped September 16 after five straight weeks over a billion viewing minutes — and its own spinoff, Neagley, launched the very same week, keeping the whole franchise in the conversation.",
+   "whyWatch": "Big, simple, satisfying action — Alan Ritchson doing exactly what the role needs.",
+   "vibe": "A man, his fists, and a small town full of people who underestimated him.",
+   "commitment": "4 seasons | ~50 min episodes",
    "sources": [
     {
-     "label": "The Hollywood Reporter — Reacher tops 1B minutes for 5th straight week",
-     "url": "https://www.hollywoodreporter.com/h/charts/"
+     "label": "Hollywood Reporter — Reacher tops 1B minutes for a fifth straight week",
+     "url": "https://www.hollywoodreporter.com/tv/tv-news/streaming-ratings-sept-7-13-2026-1236709681/"
     },
     {
-     "label": "Variety — Reacher was most-watched title at 1.2B minutes",
-     "url": "https://variety.com/2026/tv/news/nielsen-streaming-top-10-update-delay-1236866094/"
-    },
-    {
-     "label": "The Week — Reacher Season 4 review, 'best season yet'",
-     "url": "https://www.theweek.in/review/movies/2026/09/17/reacher-season-4-review.html"
+     "label": "GamesRadar — Reacher season 4 release schedule",
+     "url": "https://www.gamesradar.com/entertainment/action-shows/reacher-season-4-release-date-time-schedule-prime-video/"
     }
    ],
    "titleKey": "show:108978"
   },
   {
    "rank": 5,
-   "title": "The Pitt",
-   "platform": "HBO Max",
-   "tag": "ESTABLISHED",
-   "whyHere": "Just won its second consecutive Outstanding Drama Series Emmy plus a Lead Actor trophy for Noah Wyle, making it the freshest prestige-TV story of the month even though the season wrapped in spring.",
-   "whyWatch": "The real-time ER format remains one of the most gripping, well-acted dramas on television, now with hardware to prove it.",
-   "vibe": "A 15-hour hospital shift that never lets you breathe.",
-   "commitment": "1 season (15 episodes) | ~45 min episodes",
-   "sources": [
-    {
-     "label": "Deadline — 2026 Emmy Awards winners list, The Pitt's back-to-back wins",
-     "url": "https://deadline.com/lists/2026-emmy-winners-list/"
-    },
-    {
-     "label": "Wikipedia — 78th Primetime Emmy Awards highlights",
-     "url": "https://en.wikipedia.org/wiki/78th_Primetime_Emmy_Awards"
-    }
-   ],
-   "titleKey": "show:250307"
-  },
-  {
-   "rank": 6,
    "title": "American Horror Story: 13",
-   "platform": "Hulu",
+   "platform": "FX / Hulu",
    "tag": "HOT",
-   "whyHere": "The franchise's most anticipated season in nearly a decade just premiered with a three-episode crossover event merging fan-favorite characters from across the entire AHS multiverse, generating the show's biggest buzz since Apocalypse.",
-   "whyWatch": "Jessica Lange, Sarah Paulson, and Evan Peters return for a gleefully unhinged victory-lap season built for superfans.",
-   "vibe": "Ryan Murphy's twisted universe finally collides with itself.",
-   "commitment": "1 season (13 episodes) | ~45 min episodes",
+   "whyHere": "Ryan Murphy's long-running horror anthology returned September 24 — just two days ago — with the first three episodes airing right out of the gate, timed for the run-up to Halloween.",
+   "whyWatch": "A fresh cast and concept every season means no prior viewing required — pure anthology horror as the nights get shorter.",
+   "vibe": "The Halloween-season anthology that reinvents itself every single year.",
+   "commitment": "New season underway (through Oct 29) | ~45 min episodes",
    "sources": [
     {
-     "label": "TVLine — AHS Season 13 premiere recap",
-     "url": "https://www.tvline.com/2268505/ahs-season-13-premiere-explained-full-recap-mr-nas/"
-    },
-    {
-     "label": "TheWrap — AHS 13 review, 'beautifully puzzling ode to superfans'",
-     "url": "https://www.thewrap.com/creative-content/reviews/ahs-13-review-jessica-lange-ryan-murphy/"
-    },
-    {
-     "label": "Wikipedia — American Horror Story: 13",
-     "url": "https://en.wikipedia.org/wiki/American_Horror_Story:_13"
+     "label": "TVInsider — American Horror Story: 13 premiere date and details",
+     "url": "https://www.tvinsider.com/1197859/american-horror-story-season-13-plot-cast-premiere-date-trailer/"
     }
    ],
    "titleKey": "show:1413"
   },
   {
-   "rank": 7,
+   "rank": 6,
    "title": "The Gentlemen",
    "platform": "Netflix",
-   "tag": "BUZZY",
-   "whyHere": "Season 2 landed in Netflix's global top 3 with 6 million views in its third chart week, and critics say Guy Ritchie's crime saga has 'fully hit its stride' even as reviews remain a bit divided.",
-   "whyWatch": "Theo James anchors a darker, more confident second season of posh gangster chaos.",
-   "vibe": "Aristocratic weed empire meets Guy Ritchie's greatest hits.",
-   "commitment": "1 season (8 episodes) | ~50 min episodes",
+   "tag": "RISING",
+   "whyHere": "Two weeks into its second season, The Gentlemen jumped 22% in viewership to 881 million minutes watched — real, rising momentum, not just a premiere bump.",
+   "whyWatch": "Guy Ritchie's crime-caper world gets a proper season 2, all wit and violence in equal measure.",
+   "vibe": "Posh British criminals, still hilariously out of their depth.",
+   "commitment": "Season 2 underway | ~55 min episodes",
    "sources": [
     {
-     "label": "Variety — The Gentlemen Season 2 ratings on Netflix's Top 10",
-     "url": "https://variety.com/2026/tv/news/monster-the-lizzie-borden-story-ratings-netflix-views-1236872484/"
-    },
-    {
-     "label": "Variety — Review: 'A Bold Gangster Thriller' that has 'hit its stride'",
-     "url": "https://variety.com/2026/tv/reviews/the-gentlemen-season-2-review-netflix-1236842633/"
-    },
-    {
-     "label": "Forbes — The Gentlemen Season 2 Rotten Tomatoes scores",
-     "url": "https://www.forbes.com/sites/paultassi/2026/09/04/netflixs-the-gentlemen-season-2-rotten-tomatoes-review-score-is-in/"
+     "label": "Hollywood Reporter — Streaming ratings, Sept 21-27",
+     "url": "https://www.hollywoodreporter.com/h/charts/"
     }
    ],
    "titleKey": "show:236235"
   },
   {
-   "rank": 8,
-   "title": "Pluribus",
-   "platform": "Apple TV+",
-   "tag": "UNDER-THE-RADAR",
-   "whyHere": "One of the most decorated new dramas of the year with 18 Emmy nominations, yet it remains a quieter conversation piece compared to flashier shows — perfect timing to catch up while Season 2 heads into production.",
-   "whyWatch": "Vince Gilligan and Rhea Seehorn deliver a slow-burn sci-fi meditation on happiness, loneliness, and what it costs to stay human.",
-   "vibe": "The most miserable woman on Earth has to save it from happiness.",
-   "commitment": "1 season (9 episodes) | ~55 min episodes",
+   "rank": 7,
+   "title": "Dancing with the Stars",
+   "platform": "Disney+ / Hulu / ABC",
+   "tag": "ESTABLISHED",
+   "whyHere": "Season 35 premiered September 15 to 6.67 million viewers — a 24% jump over last year and the show's most-watched season debut since 2020.",
+   "whyWatch": "Reliable, big-tent competition TV — new cast, same addictive weekly stakes.",
+   "vibe": "Celebrities, sequins, and a studio audience gasping on cue.",
+   "commitment": "New season underway | ~120 min episodes",
    "sources": [
     {
-     "label": "Apple Newsroom — Pluribus' 18 Emmy nominations",
-     "url": "https://www.apple.com/newsroom/2026/09/widows-bay-triumphs-as-most-decorated-freshman-comedy-in-emmy-history/"
-    },
-    {
-     "label": "But Why Tho? — Pluribus Season 1 review",
-     "url": "https://butwhytho.net/2026/01/pluribus-season-1-review-vince-gilligan/"
-    },
-    {
-     "label": "9to5Mac — Gilligan on Pluribus Season 2 progress",
-     "url": "https://9to5mac.com/2026/08/12/vince-gilligan-reveals-pluribus-season-2-just-hit-major-milestone/"
+     "label": "Deadline — Dancing With the Stars Season 35 premieres to a 24% audience boost",
+     "url": "https://deadline.com/2026/09/dancing-with-the-stars-season-35-premiere-ratings-abc-1237105724/"
     }
    ],
-   "titleKey": "show:225171"
+   "titleKey": "show:1508"
+  },
+  {
+   "rank": 8,
+   "title": "Stranger Things: Tales from '85",
+   "platform": "Netflix",
+   "tag": "RISING",
+   "whyHere": "The animated Stranger Things spinoff's second season premiered September 17, riding one of streaming's biggest franchises straight back onto the chart.",
+   "whyWatch": "A quicker, kid-friendlier bite of the Stranger Things universe — same 1980s dread, half the runtime.",
+   "vibe": "Hawkins, but make it a Saturday-morning cartoon with teeth.",
+   "commitment": "1 season (8 episodes) | ~30 min episodes",
+   "sources": [
+    {
+     "label": "Collider — Stranger Things: Tales from '85 returns in 3 weeks",
+     "url": "https://collider.com/stranger-things-tales-from-85-season-2-netflix-release-date-september-2026/"
+    }
+   ],
+   "titleKey": "show:224263"
   },
   {
    "rank": 9,
-   "title": "Task",
-   "platform": "HBO Max",
-   "tag": "ESTABLISHED",
-   "whyHere": "Renewed for a second season after becoming one of HBO's fastest-growing freshman dramas ever, and still generating awards-season conversation for Mark Ruffalo and Tom Pelphrey ahead of its next run.",
-   "whyWatch": "A 96%-fresh crime drama from Mare of Easttown creator Brad Ingelsby, built on career-best performances.",
-   "vibe": "A weary FBI agent and a desperate family man collide in working-class Philly.",
-   "commitment": "1 season (7 episodes) | ~60 min episodes",
-   "sources": [
-    {
-     "label": "CBR — Task's streaming success ahead of Season 2",
-     "url": "https://www.cbr.com/mark-ruffalo-task-streaming-hit-february-2026/"
-    },
-    {
-     "label": "Rotten Tomatoes — Task Season 1",
-     "url": "https://www.rottentomatoes.com/tv/task"
-    },
-    {
-     "label": "Hello Magazine — HBO confirms Task Season 2",
-     "url": "https://www.hellomagazine.com/film/868705/hbo-highly-anticipated-update-mark-ruffalo-drama-96-rating-on-rotten-tomatoes/"
-    }
-   ],
-   "titleKey": "show:228305"
-  },
-  {
-   "rank": 10,
    "title": "The Secret Lives of Mormon Wives",
    "platform": "Hulu",
    "tag": "RISING",
-   "whyHere": "Season 5 dropped all five episodes at once amid real off-camera scandal and immediately rejoined Nielsen's weekly streaming charts with 561 million viewing minutes.",
-   "whyWatch": "MomTok drama collides with real tabloid fallout in the shortest, most chaotic season yet.",
-   "vibe": "Utah influencer sisterhood meets reality-TV wildfire.",
-   "commitment": "1 season (5 episodes) | ~40-55 min episodes",
+   "whyHere": "A new season landed and put the show right back on the chart, pulling 561 million viewing minutes in its first week back.",
+   "whyWatch": "Real-life influencer drama with a genuinely strange, specific cultural backdrop most reality TV doesn't touch.",
+   "vibe": "Momfluencer drama, but the stakes are church, marriage, and Instagram all at once.",
+   "commitment": "New season underway | ~40 min episodes",
    "sources": [
     {
-     "label": "The Hollywood Reporter — Mormon Wives rejoins charts with 561M minutes",
+     "label": "Hollywood Reporter — Streaming ratings, Sept 21-27",
      "url": "https://www.hollywoodreporter.com/h/charts/"
-    },
-    {
-     "label": "Just Jared — Why Season 5 has only 5 episodes",
-     "url": "https://www.justjared.com/2026/09/10/secret-lives-mormon-wives-season-5-why-only-5-episodes-season-6-status/"
     }
    ],
    "titleKey": "show:261102"
+  },
+  {
+   "rank": 10,
+   "title": "The Traitors: New Blood",
+   "platform": "Peacock / NBC",
+   "tag": "BUZZY",
+   "whyHere": "The all-new-cast spinoff season premiered September 17 with a two-hour episode and has aired weekly since — a real reboot of the format, not just another season.",
+   "whyWatch": "Alan Cumming hosting 22 strangers lying to each other in a Scottish castle for $250,000 — reliably one of TV's best watercooler shows.",
+   "vibe": "Clue, if everyone playing was also a real person you'd trust with your secrets.",
+   "commitment": "New season underway | ~60 min episodes",
+   "sources": [
+    {
+     "label": "NBC Insider — Everything to know about The Traitors: New Blood",
+     "url": "https://www.nbc.com/nbc-insider/nbc-the-traitors-new-blood-premiere-date-cast-details"
+    }
+   ],
+   "titleKey": "show:215943"
+  },
+  {
+   "rank": 11,
+   "title": "The Pitt",
+   "platform": "HBO Max",
+   "tag": "ESTABLISHED",
+   "whyHere": "Fresh off a huge night at the September 14 Emmys — a second consecutive Outstanding Drama Series win, plus Noah Wyle's second straight lead-actor win — even though season 3 itself isn't back until 2027.",
+   "whyWatch": "The most acclaimed medical drama on TV right now, told in tense, unbroken real time.",
+   "vibe": "One brutal ER shift, stretched across a whole season, somehow never boring.",
+   "commitment": "2 seasons so far | ~50 min episodes",
+   "sources": [
+    {
+     "label": "Deadline — The Pitt cast on season 3 after Emmy wins",
+     "url": "https://deadline.com/2026/09/the-pitt-emmy-win-season-2-2026-outstanding-drama-1237103303/"
+    },
+    {
+     "label": "Variety — Noah Wyle wins second lead actor Emmy for The Pitt",
+     "url": "https://variety.com/2026/tv/news/noah-wyle-wins-emmy-lead-actor-in-a-drama-1236856072/"
+    }
+   ],
+   "titleKey": "show:250307"
+  },
+  {
+   "rank": 12,
+   "title": "Chad Powers",
+   "platform": "Hulu",
+   "tag": "RISING",
+   "whyHere": "Season 2 arrived this month after a well-reviewed first season, extending Glen Powell's sports-comedy hit into a real second run.",
+   "whyWatch": "A disgraced quarterback cons his way back onto the field in disguise — a dumb premise with genuinely funny execution.",
+   "vibe": "A grown man in a wig, somehow the emotional center of a real sports story.",
+   "commitment": "Season 2 underway | ~30 min episodes",
+   "sources": [
+    {
+     "label": "TV Guide — New on Hulu and Disney+ in September 2026",
+     "url": "https://www.tomsguide.com/entertainment/hulu/new-on-hulu-and-disney-in-september-2026-all-the-new-shows-and-movies-to-watch"
+    }
+   ],
+   "titleKey": "show:247168"
+  },
+  {
+   "rank": 13,
+   "title": "Crew Girl",
+   "platform": "Netflix",
+   "tag": "BUZZY",
+   "whyHere": "Netflix's new rowing dramedy premiered September 10 and has held real momentum into its second week, per weekly streaming-chart coverage.",
+   "whyWatch": "A fresh, specific high-school-sports setting (competitive rowing) that most teen dramas never touch.",
+   "vibe": "Mean Girls energy, but everyone's also training for a regatta.",
+   "commitment": "1 season (8 episodes) | ~30 min episodes",
+   "sources": [
+    {
+     "label": "The TV Ratings Guide — What's Trending, Sept 13-19",
+     "url": "https://www.thetvratingsguide.com/2026/09/whats-trending-on-streaming-september.html"
+    }
+   ],
+   "titleKey": "show:300507"
+  },
+  {
+   "rank": 14,
+   "title": "Widow's Bay",
+   "platform": "Apple TV+",
+   "tag": "BUZZY",
+   "whyHere": "Set an all-time record at the September 14 Emmys — 14 wins, the most ever for a freshman comedy series, including Outstanding Comedy Series itself.",
+   "whyWatch": "A genuinely funny, off-kilter mystery-comedy that swept its category for a reason.",
+   "vibe": "A cursed New England island, a skeptical mayor, and a town that won't stop believing in the curse.",
+   "commitment": "1 season so far, renewed for S2 | ~30 min episodes",
+   "sources": [
+    {
+     "label": "Apple Newsroom — Widow's Bay triumphs as most-decorated freshman comedy in Emmy history",
+     "url": "https://www.apple.com/newsroom/2026/09/widows-bay-triumphs-as-most-decorated-freshman-comedy-in-emmy-history/"
+    },
+    {
+     "label": "Hollywood Reporter — 2026 Emmy Best Comedy: Widow's Bay wins",
+     "url": "https://www.hollywoodreporter.com/tv/tv-news/2026-emmy-best-comedy-winner-widows-bay-sets-emmys-record-1236697070/"
+    }
+   ],
+   "titleKey": "show:270476"
+  },
+  {
+   "rank": 15,
+   "title": "Pluribus",
+   "platform": "Apple TV+",
+   "tag": "UNDER-THE-RADAR",
+   "whyHere": "Quietly the other real story of the September 14 Emmys — Rhea Seehorn's first-ever win, for Best Lead Actress in a Drama, on her fourth nomination overall.",
+   "whyWatch": "Vince Gilligan's follow-up to Breaking Bad and Better Call Saul: a slow-burn sci-fi meditation on happiness and what it costs to stay human.",
+   "vibe": "The most miserable woman on Earth has to save it from happiness.",
+   "commitment": "1 season (9 episodes) | ~55 min episodes — season 2 not expected before 2027-28",
+   "sources": [
+    {
+     "label": "Hollywood Reporter — 2026 Emmy Best Actress in Drama: Rhea Seehorn wins for Pluribus",
+     "url": "https://www.hollywoodreporter.com/tv/tv-news/2026-emmy-best-actress-rhea-seehorn-pluribus-1236701384/"
+    },
+    {
+     "label": "Deadline — Rhea Seehorn's Emmy win for Pluribus season 1",
+     "url": "https://deadline.com/2026/09/rhea-seehorn-emmy-win-pluribus-season-1-2026-1237102961/"
+    }
+   ],
+   "titleKey": "show:225171"
   }
  ]
 }
