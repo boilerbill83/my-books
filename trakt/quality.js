@@ -3312,25 +3312,47 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
       const b = movieRows.filter(t => enrichedMeta[t.titleKey].runtime >= lo && enrichedMeta[t.titleKey].runtime < hi);
       return b.length ? { avg: b.reduce((s, t) => s + t.myRating, 0) / b.length, n: b.length } : null;
     });
-    const showsWithEpRuntime = (library.titles || []).filter(t => t.type === 'show' && t.myRating != null && enrichedMeta[t.titleKey]?.episodeRunTime?.[0]).length;
+    // Real bug found and fixed this session: episodeRunTime is written by
+    // enrich_tmdb.py as a plain scalar number (`ert[0] if ert else None`
+    // — the array-to-scalar reduction already happens at write time), but
+    // this check was reading it back as `.episodeRunTime?.[0]` — indexing
+    // position 0 of a number, which is always undefined. That silently
+    // and permanently under-reported population as "effectively 0" no
+    // matter how much real data actually existed (deepdive.js/discover.js
+    // both already read this field correctly as a bare scalar — only this
+    // one live check had the wrong access pattern). Fixed to read the
+    // scalar directly, and now that real data is reachable, computed the
+    // actual show-side correlation this finding previously said couldn't
+    // even be checked.
+    const showRows = (library.titles || []).filter(t => t.type === 'show' && t.myRating != null && enrichedMeta[t.titleKey]?.episodeRunTime > 0);
+    const sxs = showRows.map(t => enrichedMeta[t.titleKey].episodeRunTime);
+    const sys = showRows.map(t => t.myRating);
+    const sn = sxs.length;
+    const smx = sn ? sxs.reduce((a, b) => a + b, 0) / sn : 0, smy = sn ? sys.reduce((a, b) => a + b, 0) / sn : 0;
+    let snum = 0, sdx = 0, sdy = 0;
+    for (let i = 0; i < sn; i++) { snum += (sxs[i] - smx) * (sys[i] - smy); sdx += (sxs[i] - smx) ** 2; sdy += (sys[i] - smy) ** 2; }
+    const showR = sn ? snum / Math.sqrt(sdx * sdy) : 0;
     findings.push({
       id: 'runtime-length-signal-tested',
       severity: 'warning',
       ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
       estTokens: 4000, // fully closed, nothing further proposed
       shortTitle: 'Runtime Length Idea Rejected',
-      title: `Tested: movie runtime has essentially no correlation with Bill's rating; show episode runtime isn't even populated — not a signal, not shipped`,
+      title: `Tested: neither movie runtime nor show episode length correlates with Bill's rating — not a signal, not shipped`,
       technical: `Live check, movies (n=${fmtNum(n)} rated+runtime-known): Pearson <code>r=${movieR.toFixed(3)}</code>, essentially zero. Bucket ` +
         `averages (myRating): ${buckets.map((b, i) => `${b[0]}-${b[1] === 999 ? '150+' : b[1]}min ${bucketAvgs[i] ? bucketAvgs[i].avg.toFixed(2) : 'n/a'} ` +
         `(n=${bucketAvgs[i]?.n ?? 0})`).join(', ')} — no clean monotonic trend either direction, consistent with this port's original design note ` +
-        `that runtime "isn't an analogous completion-risk signal" to the book engine's pages-fit bonus. Shows: <code>episodeRunTime</code> is ` +
-        `currently populated on ${fmtNum(showsWithEpRuntime)} rated shows — effectively zero, so there's no real data to even check a show-side ` +
-        `episode-length preference against yet.`,
-      plain: `Does Bill rate long movies differently from short ones? Checked the real numbers and found no — his ratings are essentially flat across ` +
-        `movies from under 90 minutes to over 150. The show-side version of this question (does episode length matter?) couldn't even be checked, ` +
-        `since that field isn't currently being captured from TMDB for shows at all.`,
-      impact: `A genuine negative result on the movie side (no signal to build), and an honest "can't tell yet" on the show side (a real data gap, ` +
-        `not a rejected idea) — worth keeping on record so a future session doesn't re-check the same correlation from scratch.`,
+        `that runtime "isn't an analogous completion-risk signal" to the book engine's pages-fit bonus. Shows: a real access-pattern bug in this ` +
+        `finding's own check (fixed this session, see comment above) had been misreporting <code>episodeRunTime</code> as "effectively 0% ` +
+        `populated" when it's actually real data on ${fmtNum(sn)} of ${fmtNum((library.titles || []).filter(t => t.type === 'show' && t.myRating != null).length)} ` +
+        `rated shows (${((100 * sn) / (library.titles || []).filter(t => t.type === 'show' && t.myRating != null).length).toFixed(1)}%). Now checked ` +
+        `for real: Pearson <code>r=${showR.toFixed(3)}</code> — also essentially zero, same negative result as the movie side.`,
+      plain: `Does Bill rate long movies differently from short ones, or shows with longer/shorter episodes differently? Checked the real numbers for ` +
+        `both and found no signal either way — ratings are essentially flat across runtime for movies, and (now that a real bug hiding the show-side ` +
+        `data has been fixed) flat across episode length for shows too.`,
+      impact: `A genuine negative result on both sides now, not one confirmed finding plus one honest "can't check yet" — worth keeping on record so a ` +
+        `future session doesn't re-check the same correlation from scratch, and the underlying access-pattern bug is fixed so this field's real ` +
+        `population is no longer silently invisible to this specific check.`,
     });
   }
 
