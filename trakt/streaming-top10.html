@@ -41,30 +41,7 @@
       .st10-rank-up { color: var(--status-good); background: color-mix(in srgb, var(--status-good) 15%, transparent); }
       .st10-rank-down { color: var(--status-critical); background: color-mix(in srgb, var(--status-critical) 12%, transparent); }
       .st10-rank-new { color: var(--accent-warm); background: var(--accent-warm-soft); }
-      /* Quick "Not interested" dismiss (Bill, 2026-09-26) — local-only
-         staging, see streaming-top10.js's LOCAL_DISMISS_KEY comment for
-         what it actually does. Pinned to the card's own top-right corner
-         (position: relative above) rather than inside the head-row, so it
-         never competes for space with the title/tag/score layout at any
-         viewport width. */
-      .st10-dismiss-btn { position: absolute; top: 10px; right: 10px; z-index: 3; width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); font-size: 0.8rem; line-height: 1; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
-      .st10-dismiss-btn:hover { background: var(--status-critical); color: #fff; border-color: var(--status-critical); }
       .st10-favorites-summary { font-size: 0.85rem; color: var(--text); background: var(--accent-warm-soft); border: 1px solid var(--accent-warm); border-radius: 8px; padding: 10px 14px; margin-bottom: 16px; }
-      .st10-dismiss-status { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 14px; flex-wrap: wrap; }
-      /* [hidden]'s own display:none from the UA stylesheet has equal
-         specificity to the class rule above and loses on source order —
-         the same real bug class watch-together.html's .wt-section[hidden]
-         already had to guard against. Without this, dismissStatusEl.hidden
-         = true silently has no visual effect. */
-      .st10-dismiss-status[hidden] { display: none; }
-      /* The shared .dialog (styles.css) has no max-height/overflow at
-         all — fine for index.html's own 9-option dismiss dialog, but this
-         page's real 14-code reason list genuinely overflows a mobile
-         viewport with the confirm button pushed below the fold and
-         unreachable (found via a real screenshot, not assumed). Scoped
-         to this page's own dialog only — doesn't touch the book side's
-         shared dismiss dialog, which never needed it. */
-      #st10DismissDialog { max-height: 85vh; overflow-y: auto; }
       .st10-poster { flex-shrink: 0; position: relative; }
       .st10-poster-img { width: 100px; height: 150px; border-radius: 8px; object-fit: cover; background: var(--bg-card); border: 1px solid var(--border); display: block; box-shadow: 0 2px 8px rgba(44,26,14,0.14); }
       /* Gold star favorite badge (Bill, 2026-09-26: "Reacher should have a
@@ -152,52 +129,10 @@
           <span class="st10-toolbar-count" id="st10FilterCount"></span>
         </div>
 
-        <div class="st10-dismiss-status" id="st10DismissStatus" hidden>
-          <span id="st10DismissCount"></span>
-          <button class="tk-btn" id="st10CopyDismissedBtn" type="button">Copy for pendingDismissals.md</button>
-          <button class="tk-btn" id="st10ClearDismissedBtn" type="button">Clear</button>
-        </div>
-
         <div class="st10-list" id="top10List"></div>
         <div class="st10-empty" id="st10EmptyMsg" hidden>Nothing to show this week.</div>
       </div>
     </div>
-
-    <!-- Dismiss-reason picker (Bill, 2026-09-26: "add reasons to help you
-         learn; use my current dismissal codes") — same <dialog>/.reason-list
-         pattern index.html's own #dismissDialog already established, using
-         Bill's real, currently-in-use trakt/data/feedbackData.json reason
-         codes (not invented ones) so a quick dismiss here carries the same
-         real signal as every other dismissal in this dataset. -->
-    <dialog id="st10DismissDialog" class="dialog">
-      <form id="st10DismissForm" method="dialog" class="dialog-body">
-        <div class="dialog-header">
-          <h3>Not interested</h3>
-          <button type="submit" value="" aria-label="Close">✕</button>
-        </div>
-        <p id="st10DismissLabel" style="font-weight:600;font-family:var(--font-serif)"></p>
-        <p class="dialog-copy">Why are you passing on this one?</p>
-        <div class="reason-list">
-          <label><input type="radio" name="st10Reason" value="not_interested" checked /> General pass, no specific reason</label>
-          <label><input type="radio" name="st10Reason" value="doesnt_look_good" /> Doesn't look good from the trailer/premise</label>
-          <label><input type="radio" name="st10Reason" value="too_boring" /> Looks boring/slow-paced</label>
-          <label><input type="radio" name="st10Reason" value="too_hokey" /> Too hokey/campy</label>
-          <label><input type="radio" name="st10Reason" value="too_comicbooky" /> Too comic-booky/superhero</label>
-          <label><input type="radio" name="st10Reason" value="too_low_brow" /> Feels lower-brow/network procedural</label>
-          <label><input type="radio" name="st10Reason" value="too_urban" /> Urban crime-drama fatigue</label>
-          <label><input type="radio" name="st10Reason" value="too_kiddish" /> Too young-skewing/juvenile</label>
-          <label><input type="radio" name="st10Reason" value="aimed_at_older_demographic" /> Skews toward an older demographic</label>
-          <label><input type="radio" name="st10Reason" value="too_old" /> Feels dated</label>
-          <label><input type="radio" name="st10Reason" value="looks_low_budget" /> Looks low-budget</label>
-          <label><input type="radio" name="st10Reason" value="not_english_language" /> Feels too foreign-language/subtitled</label>
-          <label><input type="radio" name="st10Reason" value="already_watched" /> Already watched (missing from your Trakt data)</label>
-          <label><input type="radio" name="st10Reason" value="already_have_version_rated" /> Already have a different version rated</label>
-        </div>
-        <div class="dialog-actions">
-          <button class="primary-button" value="dismiss" type="submit">Not interested</button>
-        </div>
-      </form>
-    </dialog>
 
     <script type="module" src="./streaming-top10.js"></script>
   </body>

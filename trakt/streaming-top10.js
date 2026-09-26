@@ -24,7 +24,15 @@
 // diffs against; (2) a platform checkbox filter alongside the existing
 // status one; (3) a one-line "N of this week's shows are already your
 // favorites" summary, reusing computeFavoriteStars(); (4) a local-only
-// "Not interested" quick-dismiss per card.
+// "Not interested" quick-dismiss per card, with a reason-picker dialog and
+// a trakt/data/pendingDismissals.md auto-commit pipeline built out over
+// several follow-ups — then fully removed the same day (Bill: "I changed
+// my mind; get rid of all dismissal functionality... I just want an
+// objective view of the hot shows"). The status badge showing "Dismissed"
+// for a title Bill has genuinely dismissed elsewhere in the app (a real,
+// already-committed feedbackData.json interaction) predates all of this
+// and stays — it's read-only reflection of his real data, not an
+// interactive dismiss action on this page.
 import { esc, posterImgHtml, initCollapsibleCards, STATUS_META, statusTag, SUBJECT_LABEL, displaySubgenre, loadAllData, computeFavoriteStars } from './dashboardShared.js';
 import { posterUrl, hydrateTitle, traktUrl, rankAll, matchScore, inferGenre, inferSubgenres, inferSubjects } from './engine.js';
 
@@ -47,65 +55,6 @@ const TAG_META = {
 };
 
 const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
-
-// Local-only "Not interested" dismissals (Bill, 2026-09-26) — a STAGING
-// layer only, same localStorage idea app.js's copyFeedbackBtn established
-// on the book side (LOCAL_FEEDBACK_KEY there, 'mybooks_feedback_v1').
-// Clicking the button hides the card immediately on this device (via
-// dismissedTitles below) and queues an interaction for later commit; it
-// never writes to the committed file itself (a static page genuinely
-// can't — see below), and it never marks the card's status badge
-// "Dismissed" (that stays reserved for a genuine committed interaction,
-// checked separately in enrichShow).
-//
-// How it actually gets committed (Bill, same day: "is there a way to do
-// this that doesn't require my intervention?"): a truly zero-intervention
-// path would need a write credential reachable from the browser, which
-// this PUBLIC repo can't safely hold client-side. Instead of new backend
-// infrastructure, Bill periodically copies the queued list (via the
-// button below) as plain `- Title | reasonCode` lines and pastes them
-// into trakt/data/pendingDismissals.md himself — real write access he
-// already has, no token exposure — and trakt/process_pending_
-// dismissals.py (triggered by that commit) converts them into real
-// feedbackData.json entries automatically from there.
-const LOCAL_DISMISS_KEY = 'st10_local_dismissals_v1';
-
-function loadLocalDismissals() {
-  try {
-    const parsed = JSON.parse(localStorage.getItem(LOCAL_DISMISS_KEY));
-    return Array.isArray(parsed) ? parsed : [];
-  } catch { return []; }
-}
-
-function saveLocalDismissals(list) {
-  try { localStorage.setItem(LOCAL_DISMISS_KEY, JSON.stringify(list)); }
-  catch { /* private browsing / storage full — dismissals last this page load only */ }
-}
-
-// Bill (2026-09-26): "add reasons to help you learn; use my current
-// dismissal codes" — pulled directly from a real audit of every reasonCode
-// already in trakt/data/feedbackData.json (14 general, reusable codes;
-// excludes declined_old_title_review, a one-off marker specific to a past
-// review-spreadsheet batch, not a real taste reason a future dismissal
-// would ever pick). Kept in sync with #st10DismissDialog's radio list —
-// values here are the source of truth for what gets written to the
-// interaction object, this map is only for the human-readable label.
-const REASON_LABELS = {
-  not_interested: 'General pass, no specific reason',
-  doesnt_look_good: "Doesn't look good from the trailer/premise",
-  too_boring: 'Looks boring/slow-paced',
-  too_hokey: 'Too hokey/campy',
-  too_comicbooky: 'Too comic-booky/superhero',
-  too_low_brow: 'Feels lower-brow/network procedural',
-  too_urban: 'Urban crime-drama fatigue',
-  too_kiddish: 'Too young-skewing/juvenile',
-  aimed_at_older_demographic: 'Skews toward an older demographic',
-  too_old: 'Feels dated',
-  looks_low_budget: 'Looks low-budget',
-  not_english_language: 'Feels too foreign-language/subtitled',
-  already_watched: 'Already watched (missing from your Trakt data)',
-  already_have_version_rated: 'Already have a different version rated',
-};
 
 // Finds the real record for a titleKey across Bill's own 3 real Trakt-
 // derived lists, same precedence every other page in this app already
@@ -221,7 +170,6 @@ function renderShow(show, displayRank) {
   const starHtml = show.starred ? '<div class="tk-star-badge" title="One of your real Trakt favorites">★</div>' : '';
   return `
   <article class="st10-card">
-    <button class="st10-dismiss-btn" data-title="${esc(show.title)}" title="Not interested — hide this from your view">✕</button>
     <div class="st10-rank">#${displayRank}${rankDeltaHtml(show.rankDelta)}</div>
     <div class="st10-poster${show.starred ? ' st10-poster-starred' : ''}">
       ${starHtml}
@@ -316,8 +264,6 @@ async function load() {
   const countEl = document.getElementById('st10FilterCount');
   const statusFilterEl = document.getElementById('st10StatusFilter');
   const platformFilterEl = document.getElementById('st10PlatformFilter');
-  const dismissStatusEl = document.getElementById('st10DismissStatus');
-  const dismissCountEl = document.getElementById('st10DismissCount');
 
   const statusCounts = new Map();
   const platformCounts = new Map();
@@ -333,99 +279,6 @@ async function load() {
   buildCheckboxGroup(statusFilterEl, statusCounts, STATUS_ORDER);
   buildCheckboxGroup(platformFilterEl, platformCounts, null);
 
-  // Local "Not interested" dismissals (Bill, 2026-09-26). dismissedTitles
-  // is the live, in-memory source of truth for what's hidden this session
-  // — seeded from localStorage on load, added to on every dismiss click,
-  // and reset by "Clear". Kept as a Set of titles (this page's own
-  // established identity key throughout, e.g. the rank-delta lookup
-  // above) rather than titleKey, since a not-yet-resolved stub has none.
-  let localDismissals = loadLocalDismissals();
-  const dismissedTitles = new Set(localDismissals.map(d => d.title));
-
-  function refreshDismissStatus() {
-    if (!localDismissals.length) {
-      dismissStatusEl.hidden = true;
-      return;
-    }
-    dismissStatusEl.hidden = false;
-    dismissCountEl.textContent = `✕ ${localDismissals.length} dismissed locally this session (not yet committed) — `;
-  }
-
-  function dismissShow(title, reasonCode) {
-    if (dismissedTitles.has(title)) return;
-    const show = shows.find(s => s.title === title);
-    if (!show) return;
-    dismissedTitles.add(title);
-    localDismissals.push({
-      titleKey: show.titleKey || null,
-      title: show.title,
-      year: show.year ?? null,
-      type: show.type,
-      interactionType: 'dismiss',
-      reasonCode,
-      reasonLabel: REASON_LABELS[reasonCode] || reasonCode,
-      timestamp: new Date().toISOString(),
-      excludeFromRecommendations: true,
-    });
-    saveLocalDismissals(localDismissals);
-    refreshDismissStatus();
-    renderFiltered();
-  }
-
-  // Reason-picker dialog (Bill, 2026-09-26: "add reasons to help you
-  // learn"). Clicking a card's ✕ no longer dismisses instantly — it opens
-  // #st10DismissDialog to ask why first, same two-step pattern index.html's
-  // #dismissDialog already established on the book side. pendingTitle
-  // tracks which card the dialog is currently open for; the dialog itself
-  // has no distinct "cancel" affordance (its own header ✕ still submits
-  // the form, same as the book side's dismissDialog), so any submit —
-  // header ✕ or the primary "Not interested" button — commits with
-  // whichever reason is currently selected.
-  const dismissDialogEl = document.getElementById('st10DismissDialog');
-  const dismissFormEl = document.getElementById('st10DismissForm');
-  const dismissLabelEl = document.getElementById('st10DismissLabel');
-  let pendingTitle = null;
-
-  dismissFormEl.addEventListener('submit', e => {
-    e.preventDefault();
-    dismissDialogEl.close();
-    if (pendingTitle) {
-      dismissShow(pendingTitle, new FormData(dismissFormEl).get('st10Reason'));
-    }
-    pendingTitle = null;
-  });
-
-  function clearLocalDismissals() {
-    localDismissals = [];
-    dismissedTitles.clear();
-    saveLocalDismissals(localDismissals);
-    refreshDismissStatus();
-    renderFiltered();
-  }
-
-  document.getElementById('st10CopyDismissedBtn').addEventListener('click', async () => {
-    // Plain `- Title | reasonCode` lines, one per queued dismissal — the
-    // exact format trakt/data/pendingDismissals.md's own header asks for,
-    // so pasting this straight below that file's `---` marker (via
-    // GitHub's own web editor) is all that's needed; no JSON, no chat.
-    const lines = localDismissals.map(d => `- ${d.title} | ${d.reasonCode}`).join('\n');
-    try {
-      await navigator.clipboard.writeText(lines);
-      document.getElementById('statusText').textContent = 'Copied — paste below the "---" in trakt/data/pendingDismissals.md on GitHub and commit.';
-    } catch {
-      document.getElementById('statusText').textContent = 'Clipboard unavailable — check browser permissions.';
-    }
-  });
-  document.getElementById('st10ClearDismissedBtn').addEventListener('click', clearLocalDismissals);
-  listEl.addEventListener('click', e => {
-    const btn = e.target.closest('.st10-dismiss-btn');
-    if (!btn) return;
-    pendingTitle = btn.dataset.title;
-    dismissLabelEl.textContent = pendingTitle;
-    dismissFormEl.reset();
-    dismissDialogEl.showModal();
-  });
-
   function renderFiltered() {
     const checkedStatuses = new Set([...statusFilterEl.querySelectorAll('input:checked')].map(cb => cb.value));
     const checkedPlatforms = new Set([...platformFilterEl.querySelectorAll('input:checked')].map(cb => cb.value));
@@ -436,8 +289,8 @@ async function load() {
     // unchecked category is never shown, full stop, no exceptions. The
     // only backfill that still happens is pulling in MORE real matches
     // from further down this week's ranked list (already-checked
-    // categories/platforms only, and never a locally-dismissed title)
-    // when the top 10 alone doesn't fill 10 slots.
+    // categories/platforms only) when the top 10 alone doesn't fill 10
+    // slots.
     //
     // Each filter GROUP independently treats "every box in this group
     // unchecked" as "no restriction from this group" (matches
@@ -445,14 +298,13 @@ async function load() {
     // state handling the original single-filter version had, now applied
     // per group so status and platform can't interfere with each other.
     const matching = shows.filter(s =>
-      !dismissedTitles.has(s.title) &&
       (checkedStatuses.size === 0 || checkedStatuses.has(s.statusLabel)) &&
       (checkedPlatforms.size === 0 || checkedPlatforms.has(s.platform))
     );
     const visible = matching.slice(0, TARGET_COUNT);
     listEl.innerHTML = visible.map((s, i) => renderShow(s, i + 1)).join('');
     emptyEl.hidden = visible.length > 0;
-    if (matching.length >= TARGET_COUNT || matching.length === shows.length - dismissedTitles.size) {
+    if (matching.length >= TARGET_COUNT || matching.length === shows.length) {
       countEl.textContent = '';
     } else if (matching.length === 0) {
       countEl.textContent = `Nothing this week matches your filters.`;
@@ -463,7 +315,6 @@ async function load() {
 
   statusFilterEl.addEventListener('change', renderFiltered);
   platformFilterEl.addEventListener('change', renderFiltered);
-  refreshDismissStatus();
   renderFiltered();
 
   initCollapsibleCards();
