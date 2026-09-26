@@ -38302,5 +38302,59 @@
   "director": null,
   "rated": "TV-MA",
   "fetchedAt": "2026-09-21"
+ },
+ "show:285418": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": null,
+  "rated": null,
+  "fetchedAt": "2026-09-26"
+ },
+ "show:295089": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": null,
+  "rated": null,
+  "fetchedAt": "2026-09-26"
+ },
+ "show:261102": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 1,
+   "totalWins": 0,
+   "totalNominations": 1,
+   "raw": "Nominated for 1 Primetime Emmy. 1 nomination total"
+  },
+  "imdbRating": 5.5,
+  "imdbVotes": 2637,
+  "director": null,
+  "rated": "TV-MA",
+  "fetchedAt": "2026-09-26"
  }
 }
