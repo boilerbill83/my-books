@@ -18373,5 +18373,44 @@
   "mcUrl": "https://www.metacritic.com/tv/echoes/",
   "mcUserAttempted": true,
   "checkedAt": "2026-09-21"
+ },
+ "show:285418": {
+  "rottenTomatoes": 96,
+  "rtAudience": null,
+  "rtUrl": "https://www.rottentomatoes.com/tv/youth",
+  "rtAttempted": "2026-09-26",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "mcUserAttempted": true,
+  "checkedAt": "2026-09-26"
+ },
+ "show:295089": {
+  "rottenTomatoes": 77,
+  "rtAudience": 77,
+  "rtUrl": "https://www.rottentomatoes.com/tv/the_doll",
+  "rtAttempted": "2026-09-26",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "mcUserAttempted": true,
+  "checkedAt": "2026-09-26"
+ },
+ "show:261102": {
+  "rottenTomatoes": null,
+  "rtAudience": 40,
+  "rtUrl": "https://www.rottentomatoes.com/tv/the_secret_lives_of_mormon_wives/s01",
+  "rtAttempted": "2026-09-26",
+  "rtAudienceAttempted": true,
+  "rtCandidatesTried": null,
+  "metacritic": 51,
+  "metacriticUser": 67,
+  "mcUrl": "https://www.metacritic.com/tv/the-secret-lives-of-mormon-wives/",
+  "mcUserAttempted": true,
+  "checkedAt": "2026-09-26"
  }
 }
