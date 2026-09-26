@@ -360,7 +360,7 @@
         font-variant-numeric: tabular-nums; flex-shrink: 0;
       }
       .tk-imp-header:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-      .tk-imp-title { font-weight: 700; font-size: 0.95rem; flex: 1 1 auto; min-width: 160px; }
+      .tk-imp-title { font-weight: 700; font-size: 0.95rem; flex: 1 1 auto; min-width: 160px; overflow-wrap: break-word; word-break: break-word; }
       .tk-imp-header .tk-collapse-chevron { font-size: 0.8rem; color: var(--text-muted); transition: transform 0.15s ease; margin-left: auto; }
       .tk-imp-card.tk-imp-collapsed .tk-collapse-chevron { transform: rotate(-90deg); }
       .tk-imp-card.tk-imp-collapsed .tk-imp-header { margin-bottom: 0; }
