@@ -87,6 +87,10 @@ Score candidates on these four weighted dimensions: {methodology}
 
 CURRENCY CHECK — apply this before including anything, this is the most common mistake to avoid: this list is titled "right now," so only include a show that has genuine, verifiable current activity — a new episode released within roughly the last 3-4 weeks, a season actively airing/streaming right now, a premiere within the next ~2 weeks, or a real, dated news event THIS WEEK (an award win, a major renewal/cancellation announcement, a viral moment). Before including any title, explicitly check: has its current season already fully concluded with nothing new happening? If so, LEAVE IT OUT even if it was a big hit a few months ago — being a good show is not the same as being current. Never assign HOT, RISING, or BUZZY to a show whose season already wrapped with no fresh news this week; if a still-relevant show is between seasons, either leave it out or use ESTABLISHED with an honest "why here" that says so plainly (e.g. "between seasons, but still the most-discussed drama of the year") rather than implying new episodes are dropping. Cite the specific recent date/event in "whyHere" so the currency is verifiable, not asserted.
 
+SOURCE CORROBORATION — for each show, actively search for a SECOND independent source (a different publication or dataset than your first find) before finalizing it, not just whatever you find first. It's fine to end up with only one if a second genuinely doesn't exist after a real search — don't fabricate one — but don't stop looking after the first hit either. Include every real source you find in the "sources" array, not just one.
+
+GOOD BUZZ vs. BAD BUZZ — high attention is not automatically a positive signal. Before tagging something HOT, RISING, or BUZZY, check whether the attention is because people are genuinely enjoying/recommending it (real positive momentum) or because of controversy, backlash, a production scandal, or widespread negative reviews (attention for the wrong reasons). A show trending for negative reasons should either be left out, or — if it's genuinely dominating the conversation regardless of sentiment — included with an honest "whyHere" that says so plainly (e.g. "the most-discussed show this week, largely over backlash to its finale") rather than implying broad acclaim it doesn't have. Never let "whyWatch" oversell something with a real negative-reception problem.
+
 Return exactly {pool_size} shows or limited series meeting the currency check above (a mix of platforms and genres is good — don't let one platform or genre dominate unless that's genuinely what the data shows). For each, assign exactly one tag: HOT (breakout, dominating conversation right now), RISING (real upward momentum right now), BUZZY (talked about this week, may not be #1 in raw viewership), ESTABLISHED (a proven, still-currently-relevant performer), or UNDER-THE-RADAR (genuinely good and currently active, deserves more attention than it's getting).
 
 Respond with ONLY a JSON object, no markdown fences, no preamble, in exactly this shape:
@@ -289,6 +293,16 @@ def main():
         key = resolve_show_titlekey(s['title'], known, pool['titles'], history_keys)
         s['titleKey'] = key
         s.setdefault('sources', [])
+        # Computed here from the real, already-collected sources list —
+        # never self-reported by the model — so this can't be gamed by an
+        # optimistic claim in the response text. A real gap flagged by an
+        # external AI review (2026-09-26): several entries carried only one
+        # citation with no visible confidence distinction from a
+        # well-corroborated one. Kept in the underlying data only (same
+        # "traceability, not display" precedent as sources themselves) —
+        # not rendered on the page, consistent with Bill's explicit "don't
+        # show sources" decision, which this field is adjacent to.
+        s['sourceConfidence'] = 'corroborated' if len(s['sources']) >= 2 else 'single-source'
         # Only exclude a title from Bill's personal You'll Love flow when
         # it's genuinely NOT his own real Trakt data — a pure
         # candidatePool-only discovery added just so this editorial page
