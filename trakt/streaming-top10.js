@@ -72,6 +72,31 @@ function saveLocalDismissals(list) {
   catch { /* private browsing / storage full — dismissals last this page load only */ }
 }
 
+// Bill (2026-09-26): "add reasons to help you learn; use my current
+// dismissal codes" — pulled directly from a real audit of every reasonCode
+// already in trakt/data/feedbackData.json (14 general, reusable codes;
+// excludes declined_old_title_review, a one-off marker specific to a past
+// review-spreadsheet batch, not a real taste reason a future dismissal
+// would ever pick). Kept in sync with #st10DismissDialog's radio list —
+// values here are the source of truth for what gets written to the
+// interaction object, this map is only for the human-readable label.
+const REASON_LABELS = {
+  not_interested: 'General pass, no specific reason',
+  doesnt_look_good: "Doesn't look good from the trailer/premise",
+  too_boring: 'Looks boring/slow-paced',
+  too_hokey: 'Too hokey/campy',
+  too_comicbooky: 'Too comic-booky/superhero',
+  too_low_brow: 'Feels lower-brow/network procedural',
+  too_urban: 'Urban crime-drama fatigue',
+  too_kiddish: 'Too young-skewing/juvenile',
+  aimed_at_older_demographic: 'Skews toward an older demographic',
+  too_old: 'Feels dated',
+  looks_low_budget: 'Looks low-budget',
+  not_english_language: 'Feels too foreign-language/subtitled',
+  already_watched: 'Already watched (missing from your Trakt data)',
+  already_have_version_rated: 'Already have a different version rated',
+};
+
 // Finds the real record for a titleKey across Bill's own 3 real Trakt-
 // derived lists, same precedence every other page in this app already
 // uses (library beats watchlist beats candidatePool — a title can
@@ -316,7 +341,7 @@ async function load() {
     dismissCountEl.textContent = `✕ ${localDismissals.length} dismissed locally this session (not yet committed) — `;
   }
 
-  function dismissShow(title) {
+  function dismissShow(title, reasonCode) {
     if (dismissedTitles.has(title)) return;
     const show = shows.find(s => s.title === title);
     if (!show) return;
@@ -327,8 +352,8 @@ async function load() {
       year: show.year ?? null,
       type: show.type,
       interactionType: 'dismiss',
-      reasonCode: 'not_interested',
-      reasonLabel: 'Not interested (dismissed from The Streaming Top 10 page)',
+      reasonCode,
+      reasonLabel: REASON_LABELS[reasonCode] || reasonCode,
       timestamp: new Date().toISOString(),
       excludeFromRecommendations: true,
     });
@@ -336,6 +361,29 @@ async function load() {
     refreshDismissStatus();
     renderFiltered();
   }
+
+  // Reason-picker dialog (Bill, 2026-09-26: "add reasons to help you
+  // learn"). Clicking a card's ✕ no longer dismisses instantly — it opens
+  // #st10DismissDialog to ask why first, same two-step pattern index.html's
+  // #dismissDialog already established on the book side. pendingTitle
+  // tracks which card the dialog is currently open for; the dialog itself
+  // has no distinct "cancel" affordance (its own header ✕ still submits
+  // the form, same as the book side's dismissDialog), so any submit —
+  // header ✕ or the primary "Not interested" button — commits with
+  // whichever reason is currently selected.
+  const dismissDialogEl = document.getElementById('st10DismissDialog');
+  const dismissFormEl = document.getElementById('st10DismissForm');
+  const dismissLabelEl = document.getElementById('st10DismissLabel');
+  let pendingTitle = null;
+
+  dismissFormEl.addEventListener('submit', e => {
+    e.preventDefault();
+    dismissDialogEl.close();
+    if (pendingTitle) {
+      dismissShow(pendingTitle, new FormData(dismissFormEl).get('st10Reason'));
+    }
+    pendingTitle = null;
+  });
 
   function clearLocalDismissals() {
     localDismissals = [];
@@ -357,7 +405,11 @@ async function load() {
   document.getElementById('st10ClearDismissedBtn').addEventListener('click', clearLocalDismissals);
   listEl.addEventListener('click', e => {
     const btn = e.target.closest('.st10-dismiss-btn');
-    if (btn) dismissShow(btn.dataset.title);
+    if (!btn) return;
+    pendingTitle = btn.dataset.title;
+    dismissLabelEl.textContent = pendingTitle;
+    dismissFormEl.reset();
+    dismissDialogEl.showModal();
   });
 
   function renderFiltered() {

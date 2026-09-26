@@ -57,6 +57,14 @@
          already had to guard against. Without this, dismissStatusEl.hidden
          = true silently has no visual effect. */
       .st10-dismiss-status[hidden] { display: none; }
+      /* The shared .dialog (styles.css) has no max-height/overflow at
+         all — fine for index.html's own 9-option dismiss dialog, but this
+         page's real 14-code reason list genuinely overflows a mobile
+         viewport with the confirm button pushed below the fold and
+         unreachable (found via a real screenshot, not assumed). Scoped
+         to this page's own dialog only — doesn't touch the book side's
+         shared dismiss dialog, which never needed it. */
+      #st10DismissDialog { max-height: 85vh; overflow-y: auto; }
       .st10-poster { flex-shrink: 0; position: relative; }
       .st10-poster-img { width: 100px; height: 150px; border-radius: 8px; object-fit: cover; background: var(--bg-card); border: 1px solid var(--border); display: block; box-shadow: 0 2px 8px rgba(44,26,14,0.14); }
       /* Gold star favorite badge (Bill, 2026-09-26: "Reacher should have a
@@ -154,6 +162,43 @@
         <div class="st10-empty" id="st10EmptyMsg" hidden>Nothing to show this week.</div>
       </div>
     </div>
+
+    <!-- Dismiss-reason picker (Bill, 2026-09-26: "add reasons to help you
+         learn; use my current dismissal codes") — same <dialog>/.reason-list
+         pattern index.html's own #dismissDialog already established, using
+         Bill's real, currently-in-use trakt/data/feedbackData.json reason
+         codes (not invented ones) so a quick dismiss here carries the same
+         real signal as every other dismissal in this dataset. -->
+    <dialog id="st10DismissDialog" class="dialog">
+      <form id="st10DismissForm" method="dialog" class="dialog-body">
+        <div class="dialog-header">
+          <h3>Not interested</h3>
+          <button type="submit" value="" aria-label="Close">✕</button>
+        </div>
+        <p id="st10DismissLabel" style="font-weight:600;font-family:var(--font-serif)"></p>
+        <p class="dialog-copy">Why are you passing on this one?</p>
+        <div class="reason-list">
+          <label><input type="radio" name="st10Reason" value="not_interested" checked /> General pass, no specific reason</label>
+          <label><input type="radio" name="st10Reason" value="doesnt_look_good" /> Doesn't look good from the trailer/premise</label>
+          <label><input type="radio" name="st10Reason" value="too_boring" /> Looks boring/slow-paced</label>
+          <label><input type="radio" name="st10Reason" value="too_hokey" /> Too hokey/campy</label>
+          <label><input type="radio" name="st10Reason" value="too_comicbooky" /> Too comic-booky/superhero</label>
+          <label><input type="radio" name="st10Reason" value="too_low_brow" /> Feels lower-brow/network procedural</label>
+          <label><input type="radio" name="st10Reason" value="too_urban" /> Urban crime-drama fatigue</label>
+          <label><input type="radio" name="st10Reason" value="too_kiddish" /> Too young-skewing/juvenile</label>
+          <label><input type="radio" name="st10Reason" value="aimed_at_older_demographic" /> Skews toward an older demographic</label>
+          <label><input type="radio" name="st10Reason" value="too_old" /> Feels dated</label>
+          <label><input type="radio" name="st10Reason" value="looks_low_budget" /> Looks low-budget</label>
+          <label><input type="radio" name="st10Reason" value="not_english_language" /> Feels too foreign-language/subtitled</label>
+          <label><input type="radio" name="st10Reason" value="already_watched" /> Already watched (missing from your Trakt data)</label>
+          <label><input type="radio" name="st10Reason" value="already_have_version_rated" /> Already have a different version rated</label>
+        </div>
+        <div class="dialog-actions">
+          <button class="primary-button" value="dismiss" type="submit">Not interested</button>
+        </div>
+      </form>
+    </dialog>
+
     <script type="module" src="./streaming-top10.js"></script>
   </body>
 </html>
