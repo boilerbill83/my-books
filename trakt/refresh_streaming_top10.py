@@ -23,19 +23,24 @@ ever leaking into Bill's personal You'll Love panels.
 Requires: ANTHROPIC_API_KEY, TMDB_API_KEY (both already real repo secrets
 used by audit_theme_tone.py / enrich_tmdb.py respectively).
 
-Cost note (read before scheduling this daily — see the workflow file):
-one run is one Claude call (~20-30 web searches, a few thousand output
-tokens — researching 15 shows instead of 10 since 2026-09-26, see
-POOL_SIZE below) plus up to 15 cheap TMDB search calls. That's a few
-cents to perhaps $0.60/run, not the "tens of dollars per pass" scale that got the
+Cost note — see the workflow file for the schedule itself: one run is one
+Claude call (~20-30 web searches, a few thousand output tokens —
+researching 15 shows instead of 10 since 2026-09-26, see POOL_SIZE below)
+plus up to 15 cheap TMDB search calls. That's a few cents to perhaps
+$0.60/run, not the "tens of dollars per pass" scale that got the
 theme/tone audit's own schedule turned off in Session 16f — but it is
-real, recurring, billed cost, and Nielsen's own numbers only actually
-change weekly, so a literal daily cadence will often re-research and land
-on a near-identical list. Disclosed plainly so Bill can dial the schedule
-down to weekly if he'd rather not pay for 6 redundant days.
+real, billed cost. Moved from daily to weekly (Bill, 2026-09-26: "find
+ways to minimize how many api credits this app uses") since Nielsen's own
+numbers only actually change about once a week — a daily cadence was
+mostly re-researching and landing on a near-identical list 6 days out of
+7, the exact redundancy this note already flagged as the reason to dial
+it back. This is now the only Claude-API script in the repo with any
+automatic schedule at all — audit_theme_tone.py, tag_with_haiku.py, and
+trakt/tag_llm.py are all workflow_dispatch-only, the same real-cost
+discipline Session 16f established.
 
 Run manually:  ANTHROPIC_API_KEY=... TMDB_API_KEY=... python3 trakt/refresh_streaming_top10.py
-GitHub Action: .github/workflows/trakt-refresh-streaming-top10.yml (daily + manual dispatch)
+GitHub Action: .github/workflows/trakt-refresh-streaming-top10.yml (weekly + manual dispatch)
 """
 
 import json, os, re, sys, time, urllib.request, urllib.parse

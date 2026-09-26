@@ -1,18 +1,24 @@
 name: Refresh Streaming Top 10 (Claude research)
 
-# Daily, per Bill's explicit ask. Real cost note: each run is one Claude
-# call (web search + editorial write-up) plus up to 10 cheap TMDB lookups
-# — a few cents to roughly $0.50/run, not the "tens of dollars per pass"
-# scale that got the theme/tone audit's own daily schedule turned off in
-# Session 16f — but it IS real, recurring, billed cost, and the
-# underlying data (Nielsen's weekly numbers) only actually changes about
-# once a week, so most days this will re-research and land on a
-# near-identical list. Dial the cron down to weekly (e.g. '0 13 * * 1')
-# if that redundancy isn't worth it.
+# Weekly (Bill, 2026-09-26: "find ways to minimize how many api credits
+# this app uses" — this was the one and only remaining automatic,
+# recurring Claude-API cost anywhere in the repo; every other Claude-API
+# script — audit_theme_tone.py, tag_with_haiku.py, trakt/tag_llm.py — is
+# already workflow_dispatch-only, the same precedent Session 16f
+# established for the book side's own theme/tone audit). Was daily until
+# this change; real cost note preserved: each run is one Claude call
+# (web search + editorial write-up) plus up to 15 cheap TMDB lookups — a
+# few cents to roughly $0.60/run, not the "tens of dollars per pass"
+# scale that got the theme/tone audit's own daily schedule turned off —
+# but it IS real, recurring, billed cost, and the underlying data
+# (Nielsen's weekly numbers) only actually changes about once a week, so
+# a daily cadence was mostly re-researching and landing on a near-
+# identical list 6 days out of 7. Monday, after the weekend's viewership
+# numbers settle and ahead of the other daily Trakt enrichment jobs.
 
 on:
   schedule:
-    - cron: '0 13 * * *'   # daily 1 PM UTC (after every other Trakt enrichment job)
+    - cron: '0 13 * * 1'   # weekly, Mondays 1 PM UTC
   workflow_dispatch: {}
 
 jobs:
