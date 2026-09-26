@@ -1,0 +1,77 @@
+name: Notify Streaming Top 10 changes (Twilio SMS)
+
+# Tuesdays noon Eastern (Bill, 2026-09-26: "a text alert when the page has
+# been refreshed that summarizes the changes... Tuesdays at noon") — a day
+# after the weekly refresh (trakt-refresh-streaming-top10.yml, Mondays 1 PM
+# UTC), same "run after the pipeline has had time to fully land and enrich"
+# reasoning trakt-notify-watchlist.yml's own after-enrichment scheduling
+# already established, just extended to next-day since this refresh is
+# weekly rather than daily.
+#
+# GitHub Actions cron is fixed UTC with no timezone field — 16:00 UTC is
+# noon Eastern under EDT (UTC-4), which is in effect as of this writing.
+# Once DST ends (~Nov 1, 2026) this drifts to 11 AM Eastern until DST
+# resumes (~mid-March 2027); flagged here rather than silently wrong,
+# same disclosure discipline as every other real caveat in this repo. Say
+# the word if the hour matters enough to want two seasonal cron entries.
+on:
+  schedule:
+    - cron: '0 16 * * 2'   # Tuesdays, 16:00 UTC = noon EDT
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Log what would be sent without actually texting (no Twilio call, no secrets required)'
+        type: boolean
+        default: false
+      test_send:
+        description: 'Send one fixed real test text via Twilio, skipping the real diff (use this to confirm credentials work)'
+        type: boolean
+        default: false
+      force:
+        description: 'Send even if already notified for the current week (for manual re-testing)'
+        type: boolean
+        default: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Diff this week's Streaming Top 10 and text a summary via Twilio
+        env:
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_FROM_NUMBER: ${{ secrets.TWILIO_FROM_NUMBER }}
+          TWILIO_TO_NUMBER: ${{ secrets.TWILIO_TO_NUMBER }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
+          TEST_SEND: ${{ inputs.test_send && '1' || '0' }}
+          FORCE_SEND: ${{ inputs.force && '1' || '0' }}
+        run: python3 trakt/notify_streaming_top10.py
+        timeout-minutes: 10
+      - name: Commit notify state if changed
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+          git add trakt/data/streamingTop10NotifyState.json
+          if git diff --staged --quiet; then
+            echo "No new notify state."
+            exit 0
+          fi
+          git commit -m "Update Streaming Top 10 notify state [automated]"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest $BRANCH."
+            git fetch origin "$BRANCH"
+            git rebase "origin/$BRANCH"
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1

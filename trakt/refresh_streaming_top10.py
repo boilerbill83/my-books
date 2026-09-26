@@ -50,6 +50,13 @@ from datetime import datetime, timezone
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / 'trakt' / 'data'
 OUT_FILE = DATA_DIR / 'streamingTop10.json'
+# Snapshot of whatever OUT_FILE held right before this run overwrote it —
+# lets notify_streaming_top10.py (Bill, 2026-09-26: "a text alert when the
+# page has been refreshed that summarizes the changes") diff this week
+# against last week without needing to parse git history. Written every
+# run, even when nothing meaningfully changed, so it always reflects
+# "the list as of the last refresh before this one."
+PREV_FILE = DATA_DIR / 'streamingTop10Previous.json'
 API_KEY = os.environ.get('ANTHROPIC_API_KEY', '')
 TMDB_KEY = os.environ.get('TMDB_API_KEY', '')
 MODEL = 'claude-sonnet-5'
@@ -307,24 +314,34 @@ def main():
                  "The Ringer's old Weekly Top 10). General-audience — NOT derived from Bill's own "
                  "Trakt data or BMTRE's scoring engine, and not personalized to him (it happens to "
                  "overlap with shows he watches since those are genuinely the biggest shows on TV "
-                 "right now too). Auto-refreshed daily via trakt/refresh_streaming_top10.py "
-                 "(.github/workflows/trakt-refresh-streaming-top10.yml) — a real Claude + web-search "
-                 "call does the research fresh each run (Nielsen/JustWatch/entertainment "
-                 "press/awards coverage), never fabricated. Each show's own status/predicted "
-                 "score/genre tags on the page are separately computed live from Bill's real Trakt "
-                 "data and BMTRE — display only, they never affect this list's editorial ranking. "
+                 "right now too). Auto-refreshed weekly via trakt/refresh_streaming_top10.py "
+                 "(.github/workflows/trakt-refresh-streaming-top10.yml, Mondays — moved from daily "
+                 "2026-09-26) — a real Claude + web-search call does the research fresh each run "
+                 "(Nielsen/JustWatch/entertainment press/awards coverage), never fabricated. Each "
+                 "show's own status/predicted score/genre tags on the page are separately computed "
+                 "live from Bill's real Trakt data and BMTRE — display only, they never affect this "
+                 "list's editorial ranking. "
                  f"Researches {POOL_SIZE} real, currency-verified shows/week (not just 10, since "
                  "2026-09-26) — the page itself always displays exactly 10, backfilling from the "
                  "rest of this list whenever Bill's own checkbox status filter narrows the visible "
                  "set below that. Every entry requires genuine current-week evidence (a recent "
                  "episode/premiere/news event, cited in whyHere) before qualifying — a show whose "
                  "season already wrapped with nothing new happening is excluded outright rather "
-                 "than kept around on reputation alone."),
+                 "than kept around on reputation alone. A text summary of what changed goes out "
+                 "every Tuesday via trakt/notify_streaming_top10.py."),
         'methodology': METHODOLOGY,
         'weekOf': now.strftime('%Y-%m-%d'),
         'generatedAt': now.strftime('%Y-%m-%dT%H:%M:%S.000Z'),
         'shows': shows,
     }
+
+    # Snapshot whatever was live before this run overwrites it, so
+    # notify_streaming_top10.py always has a real "last week" to diff
+    # against — written before OUT_FILE itself, so a mid-run crash never
+    # leaves the two files describing the same week.
+    if OUT_FILE.exists():
+        json.dump(json.load(open(OUT_FILE)), open(PREV_FILE, 'w'), indent=1, ensure_ascii=False)
+
     json.dump(output, open(OUT_FILE, 'w'), indent=1, ensure_ascii=False)
     print(f'Wrote {OUT_FILE} — {sum(1 for s in shows if s["titleKey"])}/{len(shows)} shows resolved to a real TMDB id.')
 

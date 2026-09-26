@@ -47,7 +47,7 @@ jobs:
           # documents hitting on 2026-09-03 when manually dispatched against
           # a feature branch.
           BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-          git add trakt/data/streamingTop10.json trakt/data/candidatePool.json trakt/data/discoveredHistory.json trakt/data/feedbackData.json
+          git add trakt/data/streamingTop10.json trakt/data/streamingTop10Previous.json trakt/data/candidatePool.json trakt/data/discoveredHistory.json trakt/data/feedbackData.json
           if git diff --staged --quiet; then
             echo "No changes."
             exit 0
