@@ -2036,6 +2036,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
   const KNOWN_SAME_PERSON_VARIANTS = new Set([
     'dave wilson|david s f wilson', // Bloodshot (2020) — sorted alphabetically, matching the pairKey below
     'raja collins|rj collins',      // American Sicario (2021)
+    'marius vaysberg|maryus vaysberg', // About Fate (2022) — real Russian name (Марюс), TMDB's "Maryus" matches his own Wikipedia page/native transliteration, OMDb/IMDb use the more anglicized "Marius"; both real, verified via WebSearch (his Wikipedia bio, IMDb), not a data error
   ]);
   {
     let bothPresent = 0, disagree = [];
