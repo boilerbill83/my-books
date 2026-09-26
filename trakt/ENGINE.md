@@ -1622,14 +1622,19 @@ build from):
   Bill: *"I want that level of specificity for all genres and
   subgenres"* — nests an even finer label under a subgenre when a
   confident keyword match exists (`historical` → WWII/Vietnam/Cold War
-  era buckets, `organized-crime` → Mafia/Cartel, etc.). Repurposed rather
-  than retired during the redesign: `sci-fi-fantasy`'s old detail groups
-  (Dystopia, Post-Apocalyptic, Alien Invasion, Time Travel) graduated into
-  real, independently-scored top-level Subgenre buckets since they proved
-  common enough to earn their own tier; `biopic`'s detail group was
-  renamed to `biography`; `supernatural-horror`/`techno-thriller` gained
-  new detail groups. Display-only — never wired into `matchScore()`.
-  Currently a partial pass: most subgenre categories don't have an
+  era buckets, `organized-crime` → Irish Mob/Mob Hitman/Drug Trafficking,
+  etc.). Repurposed rather than retired during the redesign:
+  `sci-fi-fantasy`'s old detail groups (Dystopia, Post-Apocalyptic, Alien
+  Invasion, Time Travel) graduated into real, independently-scored
+  top-level Subgenre buckets since they proved common enough to earn
+  their own tier; `biopic`'s detail group was renamed to `biography`;
+  `supernatural-horror`/`techno-thriller` gained new detail groups.
+  A later pass added detail groups to the 6 largest previously-undetailed
+  keyword-tier buckets (`murder-mystery`, `romance`, `police-procedural`,
+  `spy-espionage`, `organized-crime`, `heist`), each checked against real
+  keyword-frequency counts first (>=8 real titles per group) rather than
+  guessed. Display-only — never wired into `matchScore()`. Still a
+  partial pass overall: most remaining subgenre categories don't have an
   obvious further split the way `historical` naturally splits into eras
   (see the dashboard's own live-computed `remaining-subgenre-genre-
   specificity` Improvement Opportunities finding for current coverage).

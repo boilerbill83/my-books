@@ -2590,6 +2590,49 @@ const GENRE_DETAIL_KEYWORDS = {
   'superhero': {
     'Marvel / MCU': ['marvel cinematic universe (mcu)'],
   },
+  // remaining-subgenre-genre-specificity (dashboard finding): a bounded,
+  // real slice of the still-open detail-coverage gap, same keyword-
+  // frequency-verification discipline as historical/political/biography
+  // above — every group below checked against real enrichedMetadata.json
+  // keyword counts first (>=8 real titles per group, matching this
+  // file's existing bar for a real vs. invented split; a candidate that
+  // didn't clear it, e.g. medical's own sub-splits, was left alone
+  // rather than forced). Picked the 6 largest keyword-tier buckets with
+  // no existing detail entry (murder-mystery 297, romance 291, police-
+  // procedural 203, spy-espionage 125, organized-crime 101, heist 69
+  // real titles) rather than all 16 remaining ones in one pass.
+  'murder-mystery': {
+    'Serial Killer': ['serial killer'],
+    'True Crime / Based on a Real Case': ['true crime'],
+    'Whodunit / Amateur Sleuth': ['whodunit'],
+    'Missing Person': ['missing person'],
+  },
+  'romance': {
+    'LGBTQ Romance': ['lgbt', "boys' love (bl)", 'gay romance', 'gay theme', "girls' love (gl)"],
+    'Love Triangle': ['love triangle'],
+    'Historical / Period Romance': ['historical', 'costume drama'],
+    'First Love / Unrequited Love': ['first love', 'unrequited love'],
+  },
+  'police-procedural': {
+    'Serial Killer': ['serial killer'],
+    'Buddy Cop': ['buddy cop'],
+    'FBI': ['fbi'],
+    'Female Lead Detective': ['female detective'],
+  },
+  'spy-espionage': {
+    'CIA / American Intelligence': ['central intelligence agency (cia)'],
+    'Cold War Espionage': ['cold war'],
+    'Terrorism / Counter-Terrorism': ['terrorism'],
+  },
+  'organized-crime': {
+    'Irish Mob': ['irish-american', 'irish mob'],
+    'Mob Hitman': ['hitman'],
+    'Drug Trafficking': ['drug trafficking', 'drug dealer'],
+  },
+  'heist': {
+    'Bank Robbery': ['bank robbery'],
+    'Con Artist / Grifter': ['con artist'],
+  },
 };
 
 // Display-refinement only, not a scoring signal — subgenreBonus() still
