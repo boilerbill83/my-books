@@ -2633,6 +2633,25 @@ const GENRE_DETAIL_KEYWORDS = {
     'Bank Robbery': ['bank robbery'],
     'Con Artist / Grifter': ['con artist'],
   },
+  // Second real pass, same session: checked all 16 keyword-tier buckets
+  // still without a detail entry after the first pass above. Only 3 of
+  // the remaining 7 mid-size candidates (drug-trade 88, dystopian 87,
+  // post-apocalyptic 54 titles) had a sub-split clearing the >=8-real-
+  // titles bar; time-travel/romcom/assassin-hitman/prison were checked
+  // and genuinely didn't (either too thin, or the only candidate split —
+  // e.g. prison's "prisoner" keyword — was just a synonym of the parent
+  // tag itself, not a real further distinction) — left alone rather than
+  // forced, per this file's own standing discipline.
+  'drug-trade': {
+    'Drug Cartel / Trafficking': ['drug trafficking', 'drug cartel', 'drug smuggling'],
+    'Drug Addiction': ['drug addiction'],
+  },
+  'dystopian': {
+    'AI / Cyberpunk': ['artificial intelligence (a.i.)', 'cyberpunk', 'android', 'cyborg'],
+  },
+  'post-apocalyptic': {
+    'Zombie Apocalypse': ['zombie'],
+  },
 };
 
 // Display-refinement only, not a scoring signal — subgenreBonus() still
