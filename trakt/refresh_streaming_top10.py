@@ -105,7 +105,7 @@ def call_claude():
     body = json.dumps({
         'model': MODEL,
         'max_tokens': MAX_TOKENS,
-        'tools': [{'type': 'web_search_20250305', 'name': 'web_search', 'max_uses': 30}],
+        'tools': [{'type': 'web_search_20250305', 'name': 'web_search', 'max_uses': 25}],
         'messages': [{'role': 'user', 'content': PROMPT.format(
             today=datetime.now(timezone.utc).strftime('%B %d, %Y'), methodology=METHODOLOGY, pool_size=POOL_SIZE)}],
     }).encode()
@@ -113,8 +113,16 @@ def call_claude():
         'https://api.anthropic.com/v1/messages', data=body,
         headers={'x-api-key': API_KEY, 'anthropic-version': '2023-06-01',
                  'content-type': 'application/json'})
-    with urllib.request.urlopen(req, timeout=180) as resp:
-        data = json.loads(resp.read())
+    # Surface the real response body on a non-2xx status rather than a bare
+    # "HTTP Error 400" — the same lesson enrich_tmdb.py's get_json() already
+    # learned the hard way (Session 51's dead-TMDB-key incident: a bare 401
+    # gave no way to tell "revoked" from "malformed" without this).
+    try:
+        with urllib.request.urlopen(req, timeout=180) as resp:
+            data = json.loads(resp.read())
+    except urllib.error.HTTPError as e:
+        error_body = e.read().decode('utf-8', errors='replace')
+        raise ValueError(f'Anthropic API returned HTTP {e.code}: {error_body}') from e
     if data.get('stop_reason') == 'max_tokens':
         raise ValueError(f'response hit max_tokens ({MAX_TOKENS}) before finishing — raise the budget')
     text_blocks = [b.get('text', '') for b in data.get('content', []) if b.get('type') == 'text']
