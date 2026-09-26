@@ -19,8 +19,17 @@
       .st10-methodology { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 4px; }
       /* 2-column grid, per Bill's ask: rank 1 & 2 side by side on the same
          row, 3 & 4 below that, etc. Collapses to 1 column on mobile. */
-      .st10-list { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
-      .st10-card { display: flex; gap: 18px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+      .st10-list { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: stretch; }
+      /* Paired-card height discipline (CLAUDE.md's standing rule): cards in
+         a row stretch to match (align-items: stretch above), and since each
+         card's real written content varies a lot in length (some shows get
+         a two-line metabits wrap and a longer "why here," others don't),
+         the shorter card's poster + body both center vertically within the
+         extra height rather than hugging the top and leaving a bare gap at
+         the bottom — same "center within the remaining space" fix already
+         used for #dismissalsCard. .st10-rank keeps its own flex-start
+         override below so the rank number still pins near the top. */
+      .st10-card { display: flex; align-items: center; gap: 18px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
       .st10-rank { font-family: var(--font-serif); font-weight: 700; font-size: 1.7rem; color: var(--border); flex-shrink: 0; width: 38px; text-align: center; align-self: flex-start; }
       .st10-poster { flex-shrink: 0; }
       .st10-poster-img { width: 100px; height: 150px; border-radius: 8px; object-fit: cover; background: var(--bg-card); border: 1px solid var(--border); display: block; box-shadow: 0 2px 8px rgba(44,26,14,0.14); }

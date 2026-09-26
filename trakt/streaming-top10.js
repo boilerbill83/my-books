@@ -20,11 +20,17 @@
 import { esc, posterImgHtml, initCollapsibleCards, STATUS_META, statusTag, SUBJECT_LABEL, displaySubgenre, loadAllData } from './dashboardShared.js';
 import { posterUrl, hydrateTitle, traktUrl, rankAll, matchScore, inferGenre, inferSubgenres, inferSubjects } from './engine.js';
 
+// ESTABLISHED deliberately does NOT use a star emoji (Bill, 2026-09-26:
+// "why does dancing with the stars have a gold star?") — a real, confusing
+// visual collision with the unrelated gold-star Trakt-favorite indicator
+// used elsewhere in this app (computeFavoriteStars(), Discover's My Next
+// Watch). This page has no personal-favorite concept at all, but the tag
+// icon alone looked exactly like one.
 const TAG_META = {
   HOT: { emoji: '🔥', cssVar: '--status-critical' },
   RISING: { emoji: '📈', cssVar: '--status-warning' },
   BUZZY: { emoji: '💬', cssVar: '--accent-warm' },
-  ESTABLISHED: { emoji: '⭐', cssVar: '--status-good' },
+  ESTABLISHED: { emoji: '🛡️', cssVar: '--status-good' },
   'UNDER-THE-RADAR': { emoji: '🔎', cssVar: '--text-muted' },
 };
 
@@ -190,21 +196,34 @@ async function load() {
   function renderFiltered() {
     const checked = new Set([...filterEl.querySelectorAll('input:checked')].map(cb => cb.value));
     const matching = shows.filter(s => checked.has(s.statusLabel));
-    const backfill = shows.filter(s => !checked.has(s.statusLabel));
-    // Fill to exactly TARGET_COUNT, highest-ranked first, backfilling
-    // from outside the checked categories whenever the filter alone
-    // doesn't produce enough — so the page never goes sparse or empty
-    // just because Bill unchecked a category with few matches this week.
-    const visible = [...matching, ...backfill].slice(0, TARGET_COUNT);
+    // Bill (2026-09-26): unchecking a status must actually remove those
+    // shows — a real bug found live: unchecking "Candidate" still left
+    // one Candidate-status show on screen, silently pulled back in as a
+    // "backfill" from the very category being excluded. Fixed: an
+    // unchecked category is never shown, full stop, no exceptions. The
+    // only backfill that still happens is pulling in MORE real matches
+    // from further down this week's ranked list (already-checked
+    // categories only) when the top 10 alone doesn't fill 10 slots —
+    // e.g. unchecking "Watched" still shows up to 10 real non-Watched
+    // shows, reaching past the original top-10 cutoff if needed.
+    //
+    // The one deliberate exception: if EVERY box is unchecked, that's a
+    // meaningless filter state (not "exclude everything"), so it falls
+    // back to the unfiltered full list rather than showing a blank page.
+    const allUnchecked = checked.size === 0;
+    const visible = allUnchecked ? shows.slice(0, TARGET_COUNT) : matching.slice(0, TARGET_COUNT);
     listEl.innerHTML = visible.map((s, i) => renderShow(s, i + 1)).join('');
     emptyEl.hidden = visible.length > 0;
-    if (matching.length >= TARGET_COUNT || checked.size === presentStatuses.length) {
+    if (allUnchecked) {
+      countEl.textContent = `No filter selected — showing the full top ${TARGET_COUNT} instead.`;
+    } else if (checked.size === presentStatuses.length) {
+      countEl.textContent = '';
+    } else if (matching.length >= TARGET_COUNT) {
       countEl.textContent = '';
     } else if (matching.length === 0) {
-      countEl.textContent = `Nothing matches your filter this week — showing the full top ${TARGET_COUNT} instead.`;
+      countEl.textContent = `Nothing this week matches your filter.`;
     } else {
-      countEl.textContent = `${matching.length} match${matching.length === 1 ? 'es' : ''} your filter, ` +
-        `${TARGET_COUNT - matching.length} more filled in from the rest of this week's list.`;
+      countEl.textContent = `Only ${matching.length} show${matching.length === 1 ? '' : 's'} this week match${matching.length === 1 ? 'es' : ''} your filter.`;
     }
   }
 
