@@ -260,8 +260,8 @@
   ],
   "creatorCredits": [
    "Liz Tuccillo",
-   "Rodney Ferrell",
-   "Howard T. Owens"
+   "Jamie Babbit",
+   "Tyson Bidner"
   ],
   "title": "Best Medicine",
   "year": 2026,
@@ -516,7 +516,7 @@
   "creatorCredits": [
    "Jonathan Tropper",
    "Craig Gillespie",
-   "Jon Hamm"
+   "Connie Tavel"
   ],
   "title": "Your Friends & Neighbors",
   "year": 2025,
@@ -779,7 +779,7 @@
   ],
   "creatorCredits": [
    "Lee Sung Jin",
-   "Ali Wong",
+   "Steven Yeun",
    "Ravi Nandan"
   ],
   "title": "BEEF",
@@ -912,7 +912,7 @@
   "creatorCredits": [
    "Laura Kittrell",
    "Caroline Dries",
-   "Reese Witherspoon"
+   "Lauren Kisilevsky"
   ],
   "title": "Elle",
   "year": 2026,
@@ -1057,8 +1057,8 @@
   ],
   "creatorCredits": [
    "Graham Yost",
-   "Fred Golan",
-   "Remi Aubuchon"
+   "Nina Jack",
+   "Hugh Howey"
   ],
   "title": "Silo",
   "year": 2023,
@@ -1181,7 +1181,7 @@
   ],
   "creatorCredits": [
    "Elizabeth Meriwether",
-   "Sam Hoffman",
+   "Emmy Rossum",
    "Brian Kirk"
   ],
   "title": "Furious",
@@ -1561,8 +1561,8 @@
   ],
   "creatorCredits": [
    "Connor Hines",
-   "Nissa Diederich",
-   "D.V. DeVincentis"
+   "Eric Kovtun",
+   "Brad Simpson"
   ],
   "title": "Love Story",
   "year": 2026,
@@ -1825,7 +1825,7 @@
   "creatorCredits": [
    "Nick Santora",
    "Nicholas Wootton",
-   "Don Granger"
+   "Lee Child"
   ],
   "title": "Neagley",
   "year": 2026,
@@ -1961,8 +1961,8 @@
   ],
   "creatorCredits": [
    "Brad Caleb Kane",
-   "Marc Toberoff",
-   "Robert P. Barsamian"
+   "Michael Lennox",
+   "Robert M. Barsamian"
   ],
   "title": "Crystal Lake",
   "year": 2026,
@@ -2092,8 +2092,8 @@
   ],
   "creatorCredits": [
    "Louisa Levy",
-   "Neal Flaherty",
-   "Wyck Godfrey"
+   "James Seidman",
+   "Silver Tree"
   ],
   "title": "Off Campus",
   "year": 2026,
@@ -2125,31 +2125,31 @@
   ],
   "originalLanguage": "en",
   "imdbId": "tt10986410",
-  "voteAverage": 8.369,
-  "voteCount": 2690,
+  "voteAverage": 8.367,
+  "voteCount": 2691,
   "popularity": 243.8022,
   "posterPath": "/uRHsiw1wLxPHFXkkv4Ix1s0O6f4.jpg",
   "similarToIds": [
-   1021,
-   93169,
-   867,
-   890,
-   900,
-   903,
-   125910,
-   125935,
-   240360,
+   92648,
+   92685,
+   208146,
+   494,
+   497,
+   507,
+   59541,
    240150,
-   240213,
+   537,
+   306714,
+   208131,
+   208334,
+   125581,
+   59312,
+   125694,
    59674,
-   971,
-   208580,
-   208591,
-   918,
-   926,
-   1101,
-   1103,
-   1108
+   605,
+   606,
+   92930,
+   208397
   ],
   "recommendedIds": [
    62704,
@@ -2805,8 +2805,8 @@
   ],
   "creatorCredits": [
    "Nick Santora",
-   "Don Granger",
-   "Scott Sullivan"
+   "Lee Child",
+   "David Ellison"
   ],
   "title": "Reacher",
   "year": 2022,
@@ -2964,26 +2964,26 @@
   "popularity": 26.1276,
   "posterPath": "/h8GrwttOjjQEoQJ72W9ugkyIVaB.jpg",
   "similarToIds": [
-   3727,
-   3788,
-   3878,
-   4053,
-   96602,
-   4277,
-   4238,
-   32962,
-   336,
-   500,
-   503,
-   598,
-   603,
-   524,
    673,
-   29202,
    645,
-   125694,
+   59941,
+   29458,
+   93272,
+   93288,
    917,
-   29458
+   1085,
+   1088,
+   1336,
+   60839,
+   1400,
+   1417,
+   1420,
+   61118,
+   30309,
+   61343,
+   61429,
+   1668,
+   94548
   ],
   "recommendedIds": [
    138089,
@@ -3070,7 +3070,7 @@
   "creatorCredits": [
    "Ben Kronengold",
    "Rebecca Shaw",
-   "Jonathan Krisel"
+   "Alicia Van Couvering"
   ],
   "title": "Adults",
   "year": 2025,
@@ -3184,7 +3184,7 @@
   ],
   "creatorCredits": [
    "Sterlin Harjo",
-   "Ethan Hawke",
+   "Garrett Basch",
    "Ryan Hawke"
   ],
   "title": "The Lowdown",
@@ -3208,8 +3208,8 @@
   ],
   "originalLanguage": "en",
   "imdbId": "tt32159809",
-  "voteAverage": 7.14,
-  "voteCount": 100,
+  "voteAverage": 7.109,
+  "voteCount": 101,
   "popularity": 21.4523,
   "posterPath": "/ySA5MvhoxTdezNUMe0ifPmhxH4w.jpg",
   "similarToIds": [
@@ -3318,7 +3318,7 @@
   "creatorCredits": [
    "Michael Koman",
    "Greg Daniels",
-   "Howard Klein"
+   "Ricky Gervais"
   ],
   "title": "The Paper",
   "year": 2025,
@@ -3706,8 +3706,8 @@
   ],
   "creatorCredits": [
    "Spencer Hudnut",
-   "Art Linson",
-   "David C. Glasser"
+   "Ron Burkle",
+   "David Hutkin"
   ],
   "title": "Marshals",
   "year": 2026,
@@ -4923,8 +4923,8 @@
   ],
   "creatorCredits": [
    "Michael Schur",
-   "Marcela Santib\u00e1\u00f1ez",
-   "Maite Alberdi"
+   "Morgan Sackett",
+   "Julie Goldman"
   ],
   "title": "A Man on the Inside",
   "year": 2024,
@@ -5576,8 +5576,8 @@
   ],
   "creatorCredits": [
    "Quinta Brunson",
-   "Patrick Schumacker",
-   "Randall Einhorn"
+   "Randall Einhorn",
+   "Justin Halpern"
   ],
   "title": "Abbott Elementary",
   "year": 2021,
@@ -6871,9 +6871,9 @@
   "topCast": [
    "Sarah Paulson",
    "Evan Peters",
-   "Leslie Grossman",
-   "Emma Roberts",
-   "Kathy Bates"
+   "Angela Bassett",
+   "Kathy Bates",
+   "Emma Roberts"
   ],
   "topCastDetail": [
    {
@@ -6887,18 +6887,18 @@
     "gender": 2
    },
    {
-    "id": 1212123,
-    "name": "Leslie Grossman",
-    "gender": 1
-   },
-   {
-    "id": 34847,
-    "name": "Emma Roberts",
+    "id": 9780,
+    "name": "Angela Bassett",
     "gender": 1
    },
    {
     "id": 8534,
     "name": "Kathy Bates",
+    "gender": 1
+   },
+   {
+    "id": 34847,
+    "name": "Emma Roberts",
     "gender": 1
    }
   ],
@@ -8778,7 +8778,7 @@
   "creatorCredits": [
    "Bill Lawrence",
    "Jeff Ingold",
-   "Liza Katzer"
+   "Vince Vaughn"
   ],
   "title": "Bad Monkey",
   "year": 2024,
@@ -15019,8 +15019,8 @@
   ],
   "originalLanguage": "en",
   "imdbId": "tt19231492",
-  "voteAverage": 7.794,
-  "voteCount": 797,
+  "voteAverage": 7.792,
+  "voteCount": 799,
   "popularity": 73.2371,
   "posterPath": "/2DPmTlv8F0V1TQBPmlsGOVOhtWk.jpg",
   "similarToIds": [
@@ -15049,8 +15049,8 @@
    1705,
    54344,
    219,
-   128839,
    68421,
+   128839,
    86550,
    39510,
    108545,
@@ -15058,13 +15058,13 @@
    253372,
    134865,
    68507,
-   1410,
    86374,
+   1410,
    69061,
    79501,
    195339,
-   86382,
    72071,
+   86382,
    93784
   ],
   "productionCompanies": [
@@ -15136,8 +15136,8 @@
   ],
   "creatorCredits": [
    "Blake Crouch",
-   "Matt Tolmach",
-   "Joel Edgerton"
+   "Joel Edgerton",
+   "Matt Tolmach"
   ],
   "title": "Dark Matter",
   "year": 2024,
@@ -16750,7 +16750,7 @@
   "creatorCredits": [
    "Clyde Phillips",
    "Scott Reynolds",
-   "Lilly Burns"
+   "Marcos Siega"
   ],
   "title": "Dexter: Resurrection",
   "year": 2025,
@@ -18064,8 +18064,8 @@
   ],
   "creatorCredits": [
    "Chad Feehan",
-   "Keith Cox",
-   "Art Linson"
+   "Ron Burkle",
+   "David Hutkin"
   ],
   "title": "Dutton Ranch",
   "year": 2026,
@@ -18335,7 +18335,7 @@
   ],
   "creatorCredits": [
    "Darren Star",
-   "Lilly Burns",
+   "Andrew Fleming",
    "Tony Hernandez"
   ],
   "title": "Emily in Paris",
@@ -19534,7 +19534,7 @@
   "creatorCredits": [
    "Graham Wagner",
    "Geneva Robertson-Dworet",
-   "Jonathan Nolan"
+   "Todd Howard"
   ],
   "title": "Fallout",
   "year": 2024,
@@ -21211,7 +21211,7 @@
   "creatorCredits": [
    "James Gay-Rees",
    "Chad Mumm",
-   "Mark W. Olsen"
+   "Paul Martin"
   ],
   "title": "Full Swing",
   "year": 2023,
@@ -22012,7 +22012,7 @@
   ],
   "creatorCredits": [
    "Sarah Lampert",
-   "Armand Leo",
+   "Daniel Iron",
    "Debra J. Fisher"
   ],
   "title": "Ginny & Georgia",
@@ -24410,8 +24410,8 @@
   ],
   "creatorCredits": [
    "Drew Goddard",
-   "Jean Nainchrik",
-   "Todd Harthan"
+   "Todd Harthan",
+   "Sarah Esberg"
   ],
   "title": "High Potential",
   "year": 2024,
@@ -24552,7 +24552,7 @@
   "creatorCredits": [
    "George Kay",
    "Jim Field Smith",
-   "Kris Thykier"
+   "Hakan Kousetta"
   ],
   "title": "Hijack",
   "year": 2023,
@@ -25213,7 +25213,7 @@
   ],
   "creatorCredits": [
    "Rachel Sennott",
-   "Max Silvestri",
+   "Lorene Scafaria",
    "Aida Rodgers"
   ],
   "title": "I Love LA",
@@ -25944,7 +25944,7 @@
   "creatorCredits": [
    "Mickey Down",
    "Konrad Kay",
-   "Lachlan MacKinnon"
+   "Ben Irving"
   ],
   "title": "Industry",
   "year": 2020,
@@ -26761,8 +26761,8 @@
   ],
   "creatorCredits": [
    "Rob Mac",
-   "Charlie Day",
-   "Michael Rotenberg"
+   "Glenn Howerton",
+   "Charlie Day"
   ],
   "title": "It's Always Sunny in Philadelphia",
   "year": 2005,
@@ -28887,7 +28887,7 @@
   "creatorCredits": [
    "Taylor Sheridan",
    "Christian Wallace",
-   "J.K. Nickell"
+   "Ron Burkle"
   ],
   "title": "Landman",
   "year": 2024,
@@ -29014,8 +29014,8 @@
   ],
   "creatorCredits": [
    "Neil Forsyth",
-   "Ben Farrell",
-   "Richard Bradley"
+   "Richard Bradley",
+   "Ben Farrell"
   ],
   "title": "Legends",
   "year": 2026,
@@ -29413,8 +29413,8 @@
   ],
   "creatorCredits": [
    "Taylor Sheridan",
-   "Jill Wagner",
-   "David C. Glasser"
+   "Ron Burkle",
+   "David Hutkin"
   ],
   "title": "Lioness",
   "year": 2023,
@@ -30741,7 +30741,7 @@
   ],
   "creatorCredits": [
    "Chris Coelen",
-   "Ally Simpson",
+   "Brian Smith",
    "Eric Detwiler"
   ],
   "title": "Love is Blind",
@@ -33012,7 +33012,7 @@
   "creatorCredits": [
    "Taylor Sheridan",
    "Hugh Dillon",
-   "David C. Glasser"
+   "Ron Burkle"
   ],
   "title": "Mayor of Kingstown",
   "year": 2021,
@@ -33424,8 +33424,8 @@
   ],
   "creatorCredits": [
    "Ronan Bennett",
-   "Tom Hardy",
-   "David C. Glasser"
+   "Ron Burkle",
+   "David Hutkin"
   ],
   "title": "MobLand",
   "year": 2025,
@@ -35121,7 +35121,7 @@
   ],
   "creatorCredits": [
    "Erin Foster",
-   "Kristen Bell",
+   "Steven Levitan",
    "Danielle Stokdyk"
   ],
   "title": "Nobody Wants This",
@@ -36708,8 +36708,8 @@
   ],
   "creatorCredits": [
    "Dan Fogelman",
-   "Sterling K. Brown",
-   "Glenn Ficarra"
+   "Jess Rosenthal",
+   "John Requa"
   ],
   "title": "Paradise",
   "year": 2025,
@@ -37757,7 +37757,7 @@
   "creatorCredits": [
    "Nicholas Stoller",
    "Francesca Delbanco",
-   "Conor Welch"
+   "Rose Byrne"
   ],
   "title": "Platonic",
   "year": 2023,
@@ -37885,8 +37885,8 @@
   ],
   "creatorCredits": [
    "Vince Gilligan",
-   "Jeff Frost",
-   "Alison Tatlock"
+   "Alison Tatlock",
+   "Gordon Smith"
   ],
   "title": "Pluribus",
   "year": 2025,
@@ -38251,8 +38251,8 @@
   ],
   "creatorCredits": [
    "David E. Kelley",
-   "Anne Sewitsky",
-   "J.J. Abrams"
+   "Rachel Rusch Rich",
+   "Dustin Thomason"
   ],
   "title": "Presumed Innocent",
   "year": 2024,
@@ -39942,7 +39942,7 @@
   "creatorCredits": [
    "Steven Knight",
    "Martin Haines",
-   "Karen Wilson"
+   "Emma Kingsman-Lloyd"
   ],
   "title": "SAS: Rogue Heroes",
   "year": 2022,
@@ -40075,7 +40075,7 @@
   "creatorCredits": [
    "Elizabeth Sarnoff",
    "Patricia Cornwell",
-   "Chris McCumber"
+   "Jason Blum"
   ],
   "title": "Scarpetta",
   "year": 2026,
@@ -41403,7 +41403,7 @@
   "creatorCredits": [
    "Rachel Kondo",
    "Justin Marks",
-   "Michael De Luca"
+   "Michaela Clavell"
   ],
   "title": "Sh\u014dgun",
   "year": 2024,
@@ -43940,8 +43940,8 @@
   ],
   "creatorCredits": [
    "Jason Keller",
-   "Rodney Ferrell",
-   "Owen Wilson"
+   "Bill Callahan",
+   "Drew Buckley"
   ],
   "title": "Stick",
   "year": 2025,
@@ -44377,8 +44377,8 @@
   ],
   "originalLanguage": "en",
   "imdbId": "tt16418808",
-  "voteAverage": 7.147,
-  "voteCount": 384,
+  "voteAverage": 7.149,
+  "voteCount": 385,
   "popularity": 31.5499,
   "posterPath": "/tLmwLYiI7EpPbhgmdeivNGY0xw7.jpg",
   "similarToIds": [
@@ -44485,8 +44485,8 @@
   ],
   "creatorCredits": [
    "Mark Protosevich",
-   "Chip Vucelich",
-   "Scott Greenberg"
+   "Colin Farrell",
+   "Chip Vucelich"
   ],
   "title": "Sugar",
   "year": 2024,
@@ -45010,8 +45010,8 @@
   ],
   "creatorCredits": [
    "Brad Ingelsby",
-   "Mark Ruffalo",
-   "Ron Schmidt"
+   "Salli Richardson-Whitfield",
+   "David Crockett"
   ],
   "title": "Task",
   "year": 2025,
@@ -45666,7 +45666,7 @@
   "creatorCredits": [
    "Jez Butterworth",
    "John-Henry Butterworth",
-   "Alex Berger"
+   "Ron Burkle"
   ],
   "title": "The Agency",
   "year": 2024,
@@ -47664,8 +47664,8 @@
   ],
   "creatorCredits": [
    "Ronan Bennett",
-   "Eddie Redmayne",
-   "Sam Hoyle"
+   "Brian Kirk",
+   "Eddie Redmayne"
   ],
   "title": "The Day of the Jackal",
   "year": 2024,
@@ -48318,8 +48318,8 @@
   ],
   "creatorCredits": [
    "Bruno Stagnaro",
-   "Micky Buy\u00e9",
-   "Anal\u00eda Castro"
+   "Diego Copello",
+   "Ricardo Dar\u00edn"
   ],
   "title": "The Eternaut",
   "year": 2025,
@@ -49108,8 +49108,8 @@
   ],
   "creatorCredits": [
    "Guy Ritchie",
-   "Ivan Atkinson",
-   "Marc Helwig"
+   "Marc Helwig",
+   "Will Gould"
   ],
   "title": "The Gentlemen",
   "year": 2024,
@@ -51872,7 +51872,7 @@
   "creatorCredits": [
    "Neil Druckmann",
    "Craig Mazin",
-   "Rose Lam"
+   "Evan Wells"
   ],
   "title": "The Last of Us",
   "year": 2023,
@@ -52002,7 +52002,7 @@
   "creatorCredits": [
    "Laura Dave",
    "Josh Singer",
-   "Reese Witherspoon"
+   "Jennifer Garner"
   ],
   "title": "The Last Thing He Told Me",
   "year": 2023,
@@ -52167,26 +52167,26 @@
   "popularity": 60.5443,
   "posterPath": "/4jSaIqEU8CPBBNn4iVCK6wzPjSx.jpg",
   "similarToIds": [
-   918,
-   890,
-   896,
-   125816,
-   787,
-   790,
-   29204,
-   799,
-   29244,
-   29247,
-   92926,
-   306871,
-   276608,
-   276671,
-   59643,
-   240272,
-   208591,
-   240360,
-   59753,
-   240150
+   19,
+   30,
+   47,
+   306235,
+   239500,
+   92154,
+   276091,
+   306201,
+   239558,
+   239582,
+   58951,
+   28580,
+   28667,
+   28672,
+   92246,
+   92369,
+   58808,
+   28466,
+   28527,
+   207717
   ],
   "recommendedIds": [
    67384,
@@ -52270,7 +52270,7 @@
   ],
   "creatorCredits": [
    "David E. Kelley",
-   "Michael Connelly",
+   "Tana Jamieson",
    "Ross Fineman"
   ],
   "title": "The Lincoln Lawyer",
@@ -52407,8 +52407,8 @@
   ],
   "creatorCredits": [
    "Taylor Sheridan",
-   "Art Linson",
-   "David C. Glasser"
+   "Ron Burkle",
+   "Michelle Pfeiffer"
   ],
   "title": "The Madison",
   "year": 2026,
@@ -53051,8 +53051,8 @@
   ],
   "creatorCredits": [
    "Jay Carson",
-   "Reese Witherspoon",
-   "Kristin Hahn"
+   "Lauren Neustadter",
+   "Reese Witherspoon"
   ],
   "title": "The Morning Show",
   "year": 2019,
@@ -53707,8 +53707,8 @@
   ],
   "creatorCredits": [
    "Shawn Ryan",
-   "Seth Gordon",
-   "Marney Hochman"
+   "Nicole Tossou",
+   "William Sherak"
   ],
   "title": "The Night Agent",
   "year": 2023,
@@ -53733,31 +53733,31 @@
   ],
   "originalLanguage": "en",
   "imdbId": "tt1399664",
-  "voteAverage": 7.733,
-  "voteCount": 1387,
+  "voteAverage": 7.731,
+  "voteCount": 1388,
   "popularity": 26.2296,
   "posterPath": "/1MccRnw41qQjREuZkovqP2UX1i3.jpg",
   "similarToIds": [
-   1024,
-   125949,
-   307047,
-   307062,
-   125988,
-   93121,
-   93178,
-   208713,
-   240440,
-   240445,
-   240448,
-   93165,
-   208684,
-   208692,
-   240456,
-   240460,
-   240461,
-   59753,
-   896,
-   93046
+   28527,
+   92154,
+   19,
+   306207,
+   239500,
+   239582,
+   306201,
+   58808,
+   28580,
+   28672,
+   207717,
+   207712,
+   207713,
+   167,
+   92472,
+   239615,
+   276357,
+   207863,
+   306447,
+   92426
   ],
   "recommendedIds": [
    213306,
@@ -53841,8 +53841,8 @@
   ],
   "creatorCredits": [
    "David Farr",
-   "William D. Johnson",
-   "John le Carr\u00e9"
+   "Tom Hiddleston",
+   "Hugh Laurie"
   ],
   "title": "The Night Manager",
   "year": 2016,
@@ -54927,8 +54927,8 @@
   ],
   "creatorCredits": [
    "R. Scott Gemmill",
-   "Michael Hissrich",
-   "Erin Jontow"
+   "Erin Jontow",
+   "Noah Wyle"
   ],
   "title": "The Pitt",
   "year": 2025,
@@ -55844,31 +55844,31 @@
   ],
   "originalLanguage": "en",
   "imdbId": "tt7587890",
-  "voteAverage": 8.5,
+  "voteAverage": 8.539,
   "voteCount": 3549,
   "popularity": 261.2079,
   "posterPath": "/70kTz0OmjjZe7zHvIDrq2iKW7PJ.jpg",
   "similarToIds": [
-   32549,
-   3797,
-   32632,
-   3821,
-   3840,
-   243495,
-   211909,
-   63329,
-   3743,
-   3716,
-   3719,
-   3725,
-   3769,
-   3770,
-   3785,
-   63201,
-   63418,
-   3876,
-   3882,
-   3921
+   18,
+   26,
+   306189,
+   65,
+   28599,
+   276254,
+   58841,
+   28727,
+   194,
+   92308,
+   92246,
+   125258,
+   248,
+   239826,
+   424,
+   396,
+   400,
+   306563,
+   337,
+   346
   ],
   "recommendedIds": [
    1450,
@@ -55961,8 +55961,8 @@
   ],
   "creatorCredits": [
    "Alexi Hawley",
-   "Mark Gordon",
-   "Jon Steinberg"
+   "Bill Norcross",
+   "Nathan Fillion"
   ],
   "title": "The Rookie",
   "year": 2018,
@@ -57070,26 +57070,26 @@
   "popularity": 47.9089,
   "posterPath": "/xyFAzP7RKK8cARCSalIZ9A9T0jV.jpg",
   "similarToIds": [
-   62975,
-   309798,
-   128710,
-   128712,
-   128714,
-   128717,
-   63109,
-   211698,
-   211746,
-   211748,
-   128875,
-   3591,
-   3476,
-   279412,
-   95946,
-   95959,
-   279435,
-   279472,
-   243247,
-   32226
+   306627,
+   28913,
+   92646,
+   92689,
+   29004,
+   29055,
+   29063,
+   306871,
+   240150,
+   92739,
+   239993,
+   239946,
+   208257,
+   92599,
+   59643,
+   240272,
+   29244,
+   29247,
+   125816,
+   208459
   ],
   "recommendedIds": [
    219760,
@@ -57158,8 +57158,8 @@
   ],
   "creatorCredits": [
    "David DiGilio",
-   "Antoine Fuqua",
-   "Chris Pratt"
+   "Chris Pratt",
+   "Antoine Fuqua"
   ],
   "title": "The Terminal List",
   "year": 2022,
@@ -57270,7 +57270,7 @@
   "creatorCredits": [
    "Jack Carr",
    "David DiGilio",
-   "Jared Shaw"
+   "Chris Pratt"
   ],
   "title": "The Terminal List: Dark Wolf",
   "year": 2025,
@@ -59831,7 +59831,7 @@
   "creatorCredits": [
    "Nic Pizzolatto",
    "Issa L\u00f3pez",
-   "Steve Golin"
+   "Richard Brown"
   ],
   "title": "True Detective",
   "year": 2014,
@@ -59993,7 +59993,7 @@
   "originalLanguage": "en",
   "imdbId": "tt16358384",
   "voteAverage": 8.306,
-  "voteCount": 2798,
+  "voteCount": 2800,
   "popularity": 96.6281,
   "posterPath": "/rOYLWCdAifpUtPlTf1WHxyaxeMt.jpg",
   "similarToIds": [
@@ -60109,7 +60109,7 @@
   ],
   "creatorCredits": [
    "Taylor Sheridan",
-   "David C. Glasser",
+   "Ron Burkle",
    "Sylvester Stallone"
   ],
   "title": "Tulsa King",
@@ -62275,7 +62275,7 @@
   "originalLanguage": "en",
   "imdbId": "tt13443470",
   "voteAverage": 8.329,
-  "voteCount": 10835,
+  "voteCount": 10836,
   "popularity": 61.71,
   "posterPath": "/9PFonBhy4cQy7Jz20NpMygczOkv.jpg",
   "similarToIds": [
@@ -62384,7 +62384,7 @@
   "creatorCredits": [
    "Miles Millar",
    "Alfred Gough",
-   "Kayla Alpert"
+   "Andrew Mittman"
   ],
   "title": "Wednesday",
   "year": 2022,
@@ -63072,8 +63072,8 @@
   ],
   "creatorCredits": [
    "Katie Dippold",
-   "Carver Karaszewski",
-   "Claudia Shin"
+   "Hiro Murai",
+   "Matthew Rhys"
   ],
   "title": "Widow's Bay",
   "year": 2026,
@@ -63212,7 +63212,7 @@
   "creatorCredits": [
    "Daniel T. Thomsen",
    "Liz Heldens",
-   "Howard Deutch"
+   "Oly Obst"
   ],
   "title": "Will Trent",
   "year": 2023,
@@ -63757,7 +63757,7 @@
   "creatorCredits": [
    "Ashley Lyle",
    "Bart Nickerson",
-   "Karyn Kusama"
+   "Jonathan Lisco"
   ],
   "title": "Yellowjackets",
   "year": 2021,
@@ -67188,8 +67188,8 @@
   ],
   "creatorCredits": [
    "Graham Roland",
-   "George R.R. Martin",
-   "Robert Redford"
+   "Vince Gerardis",
+   "Anne Hillerman"
   ],
   "title": "Dark Winds",
   "year": 2022,
@@ -92947,26 +92947,26 @@
   "popularity": 9.2566,
   "posterPath": "/fQpJFVWX8MCdOkwoutDw7tjhvgp.jpg",
   "similarToIds": [
-   844,
+   92150,
+   92137,
+   383,
+   306614,
+   60574,
+   29746,
+   307624,
+   1095,
+   93544,
+   625,
    92930,
    307006,
    125949,
-   1095,
-   93544,
-   29746,
-   1409,
-   1438,
+   844,
    209332,
-   307624,
-   60574,
-   63464,
-   33004,
-   1621,
-   61068,
+   1398,
+   1409,
    61058,
-   30543,
-   241521,
-   61393
+   61068,
+   1438
   ],
   "recommendedIds": [
    75797,
@@ -93050,7 +93050,7 @@
   "creatorCredits": [
    "Stephen Butchard",
    "Jo McClellan",
-   "Saul Dibb"
+   "Sian McWilliams"
   ],
   "title": "This City Is Ours",
   "year": 2025,
@@ -106318,7 +106318,7 @@
   "creatorCredits": [
    "Jennie Snyder Urman",
    "Eric Christian Olsen",
-   "Kathy Bates"
+   "Kat Coiro"
   ],
   "title": "Matlock",
   "year": 2024,
@@ -107810,8 +107810,8 @@
   ],
   "creatorCredits": [
    "Ben Chanan",
-   "Rosie Alison",
-   "Tom Coan"
+   "Tom Coan",
+   "Rosie Alison"
   ],
   "title": "The Capture",
   "year": 2019,
@@ -130820,7 +130820,7 @@
   "creatorCredits": [
    "Michael Seitzman",
    "Jason Richman",
-   "Jason Blum"
+   "David Gernert"
   ],
   "title": "The Rainmaker",
   "year": 2025,
@@ -136178,8 +136178,8 @@
   ],
   "creatorCredits": [
    "Shonda Rhimes",
-   "Mark Gordon",
-   "Betsy Beers"
+   "Betsy Beers",
+   "Mark Gordon"
   ],
   "title": "Grey's Anatomy",
   "year": 2005,
@@ -159191,7 +159191,7 @@
   ],
   "creatorCredits": [
    "Chris Brancato",
-   "Michael Panes",
+   "Guillermo Navarro",
    "Nancy Cotton"
   ],
   "title": "Hotel Cocaine",
@@ -164593,8 +164593,8 @@
   ],
   "creatorCredits": [
    "Megan Park",
-   "Dani Gorin",
-   "Josh Schwartz"
+   "Tom Ackerley",
+   "Stephanie Savage"
   ],
   "title": "Sterling Point",
   "year": 2026,
@@ -188110,7 +188110,7 @@
   "originalLanguage": "en",
   "imdbId": "tt2085059",
   "voteAverage": 8.291,
-  "voteCount": 6539,
+  "voteCount": 6540,
   "popularity": 92.0678,
   "posterPath": "/seN6rRfN0I6n8iDXjlSMk1QjNcq.jpg",
   "similarToIds": [
@@ -189068,8 +189068,8 @@
   ],
   "originalLanguage": "en",
   "imdbId": "tt5875444",
-  "voteAverage": 8.026,
-  "voteCount": 998,
+  "voteAverage": 8.025,
+  "voteCount": 999,
   "popularity": 218.485,
   "posterPath": "/AdYr4DjOgXvDUMwu6vEhZy1Rnxk.jpg",
   "similarToIds": [
@@ -189182,7 +189182,7 @@
    "Apple TV"
   ],
   "creatorCredits": [
-   "Emile Sherman",
+   "Hakan Kousetta",
    "Iain Canning",
    "Jamie Laurenson"
   ],
@@ -191867,8 +191867,8 @@
   ],
   "originalLanguage": "en",
   "imdbId": "tt27995114",
-  "voteAverage": 7.879,
-  "voteCount": 489,
+  "voteAverage": 7.878,
+  "voteCount": 490,
   "popularity": 13.3478,
   "posterPath": "/8WdxigrmISyE84bxViHDX2hTI4T.jpg",
   "similarToIds": [
@@ -192821,7 +192821,7 @@
   "creatorCredits": [
    "Janice Hadlow",
    "Sarah Quintrell",
-   "Kate Crowther"
+   "Becca Kinder"
   ],
   "title": "The Other Bennet Sister",
   "year": 2026,
@@ -210932,7 +210932,7 @@
   "creatorCredits": [
    "Sian Ejiwunmi-Le Berre",
    "Paul Logue",
-   "Catherine Mackin"
+   "Lucy Raffety"
   ],
   "title": "Ellis",
   "year": 2024,
@@ -245235,7 +245235,7 @@
   "creatorCredits": [
    "David E. Kelley",
    "John-Henry Butterworth",
-   "Steve Hutensky"
+   "Molly Allen"
   ],
   "title": "Nine Perfect Strangers",
   "year": 2021,
@@ -247164,8 +247164,8 @@
   ],
   "creatorCredits": [
    "Yolanda Ramke",
-   "Thomas Jane",
-   "Jack Christian"
+   "Jack Christian",
+   "Thomas Jane"
   ],
   "title": "Troppo",
   "year": 2022,
@@ -255120,8 +255120,8 @@
   ],
   "creatorCredits": [
    "Katori Hall",
-   "Dante Di Loreto",
-   "Peter Chernin"
+   "Liz W. Garcia",
+   "Dante Di Loreto"
   ],
   "title": "P-Valley",
   "year": 2020,
@@ -300349,8 +300349,8 @@
   ],
   "creatorCredits": [
    "Dallas Jenkins",
-   "Derral Eves",
-   "Tyler Thompson"
+   "Ryan Swanson",
+   "Derral Eves"
   ],
   "title": "The Chosen",
   "year": 2019,
@@ -300849,8 +300849,8 @@
   ],
   "creatorCredits": [
    "Jacob Tierney",
-   "Justin Stockman",
-   "Brendan Brady"
+   "Brendan Brady",
+   "Justin Stockman"
   ],
   "title": "Heated Rivalry",
   "year": 2025,
@@ -387871,9 +387871,9 @@
    "Apple TV"
   ],
   "creatorCredits": [
+   "Hakan Kousetta",
    "Morwenna Banks",
-   "Jamie Laurenson",
-   "Tom Nash"
+   "Mick Herron"
   ],
   "title": "Down Cemetery Road",
   "year": 2025,
@@ -395705,8 +395705,8 @@
    "Prime Video"
   ],
   "creatorCredits": [
-   "Andy Wilman",
    "Zoe Brewer",
+   "Andy Wilman",
    "Peter Fincham"
   ],
   "title": "Clarkson's Farm",
@@ -397036,7 +397036,7 @@
   "creatorCredits": [
    "George R.R. Martin",
    "Ira Parker",
-   "Ryan J. Condal"
+   "Vince Gerardis"
   ],
   "title": "A Knight of the Seven Kingdoms",
   "year": 2026,
@@ -399654,7 +399654,7 @@
   "creatorCredits": [
    "George R.R. Martin",
    "Ryan J. Condal",
-   "Sara Hess"
+   "Vince Gerardis"
   ],
   "title": "House of the Dragon",
   "year": 2022,
@@ -399812,26 +399812,26 @@
   "popularity": 25.6097,
   "posterPath": "/i4eskPIEI5sK0IibHhWqBU9Ts0k.jpg",
   "similarToIds": [
-   62911,
-   62977,
-   3459,
-   128712,
-   63109,
-   309972,
-   243231,
-   128797,
-   95767,
-   211486,
-   3734,
-   96228,
-   63333,
-   211908,
-   96201,
-   310140,
-   96115,
-   3852,
-   63453,
-   129202
+   92689,
+   306700,
+   92893,
+   276835,
+   92931,
+   208407,
+   29310,
+   620,
+   93054,
+   126034,
+   60118,
+   208783,
+   886,
+   814,
+   93251,
+   209055,
+   93552,
+   93533,
+   1104,
+   93490
   ],
   "recommendedIds": [
    7343,
@@ -399916,8 +399916,8 @@
   ],
   "creatorCredits": [
    "Jon Erwin",
-   "Jonathan Walker",
-   "Chad Oakes"
+   "Chad Oakes",
+   "Jonathan Walker"
   ],
   "title": "House of David",
   "year": 2025,
@@ -411870,7 +411870,7 @@
   "creatorCredits": [
    "Alex Horne",
    "Andy Devonshire",
-   "Jon Thoday"
+   "Richard Allen-Turner"
   ],
   "title": "Taskmaster",
   "year": 2015,
@@ -418382,8 +418382,8 @@
   ],
   "creatorCredits": [
    "Katie Robbins",
-   "Niles Kirchner",
-   "Sarah Sutherland"
+   "Laura Holstein",
+   "Andrew Stearn"
   ],
   "title": "Good American Family",
   "year": 2025,
@@ -425030,7 +425030,7 @@
   "creatorCredits": [
    "Dick Wolf",
    "Matt Olmstead",
-   "Michael Waxman"
+   "Derek Haas"
   ],
   "title": "Chicago Med",
   "year": 2015,
@@ -431481,8 +431481,8 @@
    "BBC Scotland"
   ],
   "creatorCredits": [
-   "Tomas Axelsson",
    "Isabelle Hulten",
+   "Niall MacCormick",
    "Gregory Burke"
   ],
   "title": "Rebus",
@@ -464300,7 +464300,7 @@
   "creatorCredits": [
    "Matt Owens",
    "Steven Maeda",
-   "Marty Adelstein"
+   "Eiichiro Oda"
   ],
   "title": "ONE PIECE",
   "year": 2023,
@@ -465613,8 +465613,8 @@
   ],
   "creatorCredits": [
    "David Zabel",
-   "Brian Bockrath",
-   "Angela Kang"
+   "Angela Kang",
+   "Norman Reedus"
   ],
   "title": "The Walking Dead: Daryl Dixon",
   "year": 2023,
@@ -466998,7 +466998,7 @@
   "creatorCredits": [
    "Jenny Han",
    "Matt Kaplan",
-   "Jessica O'Toole"
+   "Sascha Rothchild"
   ],
   "title": "XO, Kitty",
   "year": 2023,
@@ -467738,8 +467738,8 @@
   ],
   "creatorCredits": [
    "Eli Jorn\u00e9",
-   "Jeffrey Dean Morgan",
-   "Gale Anne Hurd"
+   "Lauren Cohan",
+   "Brian Bockrath"
   ],
   "title": "The Walking Dead: Dead City",
   "year": 2023,
@@ -472596,8 +472596,8 @@
   ],
   "originalLanguage": "en",
   "imdbId": "tt17220216",
-  "voteAverage": 7.726,
-  "voteCount": 1405,
+  "voteAverage": 7.725,
+  "voteCount": 1406,
   "popularity": 40.0057,
   "posterPath": "/7LBbaEaLSbqdviBYaSS1rRPMnrs.jpg",
   "similarToIds": [
@@ -472706,7 +472706,7 @@
   "creatorCredits": [
    "Matt Fraction",
    "Chris Black",
-   "Jen Roskind"
+   "Takemasa Arita"
   ],
   "title": "Monarch: Legacy of Monsters",
   "year": 2023,
@@ -492583,7 +492583,7 @@
   "creatorCredits": [
    "Mark L. Smith",
    "Elle Smith",
-   "Steve Lee Jones"
+   "Cliff Roberts"
   ],
   "title": "UNTAMED",
   "year": 2025,
@@ -507241,7 +507241,7 @@
   ],
   "creatorCredits": [
    "Sharon Horgan",
-   "Jim Klever-Weis",
+   "Faye Dorn",
    "Dawn Shadforth"
   ],
   "title": "Youth",
@@ -507380,7 +507380,7 @@
   ],
   "creatorCredits": [
    "Bill Lawrence",
-   "Randall Keenan Winston",
+   "John C. McGinley",
    "Jeff Ingold"
   ],
   "title": "Scrubs",
@@ -519989,8 +519989,8 @@
    "Hulu"
   ],
   "creatorCredits": [
-   "Reinout Oerlemans",
    "Jeff Jenkins",
+   "Reinout Oerlemans",
    "Brandon Beck"
   ],
   "title": "The Secret Lives of Mormon Wives",
