@@ -17,7 +17,7 @@
 // slug for it — a title he's never watched/watchlisted correctly falls
 // back to a Trakt search instead of a guessed link, same as everywhere
 // else in this app.
-import { esc, posterImgHtml, initCollapsibleCards, STATUS_META, statusTag, SUBJECT_LABEL, displaySubgenre, loadAllData, computeFavoriteStars } from './dashboardShared.js';
+import { esc, posterImgHtml, initCollapsibleCards, STATUS_META, statusTag, SUBJECT_LABEL, displaySubgenre, loadAllData } from './dashboardShared.js';
 import { posterUrl, hydrateTitle, traktUrl, rankAll, matchScore, inferGenre, inferSubgenres, inferSubjects } from './engine.js';
 
 const TAG_META = {
@@ -60,7 +60,7 @@ function statusTagHtml(label) {
 }
 
 function enrichShow(show, ctx) {
-  const { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback, starredSet } = ctx;
+  const { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback } = ctx;
   const titleKey = show.titleKey;
   const meta = titleKey ? enrichedMeta[titleKey] : null;
   const type = titleKey ? titleKey.split(':')[0] : (show.type || 'show');
@@ -97,9 +97,8 @@ function enrichShow(show, ctx) {
 
   const traktCandidate = hydrateTitle({ type, titleKey, ids, title: show.title }, enrichedMeta);
   const poster = titleKey ? posterUrl(titleKey, enrichedMeta, 'w342') : null;
-  const starred = !!(titleKey && starredSet?.has(titleKey));
 
-  return { ...show, type, statusLabel, predictedScore, genreLabel, subgenreLabels, subjectLabels, traktLink: traktUrl(traktCandidate), poster, starred };
+  return { ...show, type, statusLabel, predictedScore, genreLabel, subgenreLabels, subjectLabels, traktLink: traktUrl(traktCandidate), poster };
 }
 
 // displayRank is the show's position in the CURRENT filtered/backfilled
@@ -114,11 +113,10 @@ function renderShow(show, displayRank) {
   const scoreHtml = show.predictedScore != null
     ? `<div class="st10-score"><div class="st10-score-num">${show.predictedScore}</div><div class="st10-score-label">predicted score</div></div>`
     : `<div class="st10-score st10-score-empty">not enough data yet</div>`;
-  const starHtml = show.starred ? '<div class="tk-star-badge" title="One of your real Trakt favorites">★</div>' : '';
   return `
-  <article class="st10-card${show.starred ? ' st10-card-starred' : ''}">
+  <article class="st10-card">
     <div class="st10-rank">#${displayRank}</div>
-    <div class="st10-poster">${starHtml}${posterImgHtml(show.poster, 'st10-poster-img', 120, 180)}</div>
+    <div class="st10-poster">${posterImgHtml(show.poster, 'st10-poster-img', 120, 180)}</div>
     <div class="st10-body">
       <div class="st10-head-row">
         <div>
@@ -143,7 +141,7 @@ function renderShow(show, displayRank) {
 }
 
 async function load() {
-  const [data, { library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, bookThemeCounts, manualStars: manualStarsData }] =
+  const [data, { library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, bookThemeCounts }] =
     await Promise.all([
       fetch('./data/streamingTop10.json').then(r => r.json()),
       loadAllData(),
@@ -156,8 +154,7 @@ async function load() {
   document.getElementById('statusText').textContent = 'Loaded';
 
   const { idx } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
-  const starredSet = computeFavoriteStars(library, watchlist, manualStarsData);
-  const ctx = { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback, starredSet };
+  const ctx = { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback };
 
   const shows = data.shows.map(s => enrichShow(s, ctx)).sort((a, b) => a.rank - b.rank);
   const TARGET_COUNT = 10;
