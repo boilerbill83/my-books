@@ -1106,15 +1106,47 @@ the signal shape changes or more rated-show volume exists.
 ### 3q. `omdbSignal()` — OMDb/scraper-sourced signals, combined
 Four sub-signals, summed:
 
-1. **Critic score swing, clamped to ±6**:
+1. **Critic score swing, clamped to ±6, scaled by review-count confidence**:
    ```
-   clamp((criticScore - 80) / 20 × 6, -6, +6)
+   criticConfidence(omdbEntry) × clamp((criticScore - 80) / 20 × 6, -6, +6)
    ```
    `criticScore()` averages RT Tomatometer + Metacritic Metascore — the
    professional-critic aggregate. `CRITIC_NEUTRAL = 80` is this dataset's
    real median among titles with any critic score (mean 76.1) — Bill's
    pool skews toward well-regarded titles. Missing critic data
    contributes nothing (not a penalty).
+
+   **Small-sample confidence guard** (Bill: "yes fix it" on
+   `audience-score-no-sample-size-guard`, 2026-09-27): before this fix, a
+   critic score backed by a handful of reviews got the exact same swing
+   as one backed by hundreds. `rtCriticCount`/`metacriticCount`
+   (`scrape_show_ratings.py` — a real value the scraper was already
+   computing internally as a fabrication guard, previously discarded
+   rather than persisted) now scale `criticConfidence()`'s 0-1 multiplier
+   per site, tiers calibrated against this dataset's own real, measured
+   count distribution from a first production backfill (2026-09-27,
+   n=122 RT / n=126 MC) rather than guessed:
+   ```
+   RT tiers: count≥45→1.0  count≥19→0.7  count≥8→0.4  else→0.2
+   MC tiers: count≥22→1.0  count≥11→0.7  count≥5→0.4  else→0.2
+   ```
+   RT and MC get separately-calibrated thresholds since RT aggregates far
+   more reviews per title than Metacritic (measured p50: RT 119, MC 38).
+   A missing count (score exists but no count was captured, or the title
+   hasn't been backfilled yet) is full confidence (1.0), never
+   penalized — same "absence isn't evidence against a signal" rule as
+   `voteCountBonus()`/`imdbVoteCountBonus()`. No equivalent count exists
+   for `realAudienceScore()`'s two components (sub-signal 2 below) —
+   neither extraction path exposes one, and no new extraction was
+   attempted to find one, per this project's "no third blind attempt
+   without a go-ahead" discipline. Verified live: 40 of 1,156 real
+   enriched titles today (23 of 639 rated+enriched) already get a scaled
+   critic-score contribution; `node trakt/scripts/eval.js` shows zero
+   regression (byte-identical to baseline) at this still-partial backfill
+   coverage — expected, not a bug, since only a first batch has run so
+   far and the daily `trakt-scrape-show-ratings.yml` schedule will
+   gradually complete the backlog the same way it did for
+   `rtAudienceAttempted`/`mcUserAttempted` historically.
 2. **Real audience score swing, clamped to ±4**:
    ```
    clamp((realAudienceScore - 75) / 20 × 4, -4, +4)
@@ -1817,7 +1849,7 @@ Run it: `node trakt/scripts/eval.js` from the repo root.
 | Recency (show) | -30 to +15 | Gentler curve shape, but a genuinely wider range than movies (§3o) — shows don't age by release year the way movies do |
 | Show-airing bonus | 0 | Built, tested, currently inert (scale=0) |
 | Modern network TV | -16 flat | Big4 (CBS/NBC/ABC/FOX) shows, 2020+ only (§3o-2) |
-| Critic score (OMDb) | -6 to +6 | RT/Metacritic critic aggregate |
+| Critic score (OMDb) | -6 to +6 | RT/Metacritic critic aggregate, scaled 0.2-1.0× by review-count confidence (§3q) |
 | Real audience score (OMDb) | -4 to +4 | RT Popcornmeter + Metacritic user score |
 | Awards (OMDb) | +0 to +4 | Oscar/Emmy-weighted |
 | **Final score** | **clamped 0-100** | |

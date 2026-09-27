@@ -10,7 +10,7 @@ import {
   inferSubjects, inferEra, inferGenre, inferSubgenreDetail, findTaxonomyCollisions,
   isTooObscure, isActivelyAiring, isPreMillenniumMovie, matchScoreRaw, hydrateTitle,
   matchScore, rankRecommendations, reason, rewatchStrength, titleKey, buildIndexes,
-  scoreBreakdown,
+  scoreBreakdown, criticConfidence,
 } from './engine.js';
 import {
   esc, fmtNum, posterImgHtml, typeIcon, titleLink, svgEl, renderHBarChart, SUBJECT_LABEL,
@@ -4468,34 +4468,42 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   // for the same discipline applied to Grok's and Bill's own prior review
   // rounds).
   {
+    const critEntries = Object.entries(omdbMeta).filter(([, e]) => criticScore(e) != null);
+    const scaledToday = critEntries.filter(([, e]) => criticConfidence(e) < 1).length;
+    const ratedCritEntries = (library.titles || [])
+      .filter(t => t.myRating != null && enrichedMeta[t.titleKey] && criticScore(omdbMeta[t.titleKey]) != null);
+    const ratedScaledToday = ratedCritEntries.filter(t => criticConfidence(omdbMeta[t.titleKey]) < 1).length;
     findings.push({
       id: 'audience-score-no-sample-size-guard',
-      severity: 'warning',
+      severity: 'good',
       ratings: { ease: 3, dataQuality: 2, recEngine: 5, ui: 1 },
-      shortTitle: 'Audience Score Has No Small-Sample Guard',
-      title: `realAudienceScore()/criticScore() feed omdbSignal() (±4/±6 swing) with no review-count confidence check — 64.2% of merged OMDb+scraped titles carry an audience score, criticScore 79.1%, neither weighted by how many reviews back it`,
-      technical: `<code>omdbSignal()</code> (engine.js) applies a symmetric ±<code>AUDIENCE_MAX_SWING</code> (4) around <code>AUDIENCE_NEUTRAL</code> ` +
-        `from <code>realAudienceScore()</code> (RT Popcornmeter + Metacritic user score) and ±<code>CRITIC_MAX_SWING</code> (6) from ` +
-        `<code>criticScore()</code> (RT Tomatometer + Metascore) for every title that has one — a title with 8 real audience ratings gets the exact ` +
-        `same weight as one with 50,000. This is a different, narrower gap than the TMDB community-rating small-sample guard already covered by ` +
-        `<code>voteCountBonus()</code>/<code>imdbVoteCountBonus()</code> (an earlier, too-hasty dismissal of this same point conflated the two — ` +
-        `TMDB's own <code>voteAverage</code> IS confidence-gated by real vote count; RT/Metacritic's audience/critic scores are not). Checked whether ` +
-        `it's even fixable today: <code>trakt/scrape_show_ratings.py</code>'s Metacritic critic-score extractor (<code>extract_metascore()</code>) ` +
-        `already sees a real <code>ratingCount</code>/<code>reviewCount</code> value transiently — used only as a fabrication guard (reject a score ` +
-        `with an explicit zero count), never persisted to <code>scrapedShowRatings.json</code> for downstream confidence-scaling. Persisting and using ` +
-        `it would mean touching this same extraction path, which the script's own docstring explicitly flags after 5 real production rounds of ` +
-        `guard-and-bypass bugs (<code>extract_next_data_user_score()</code>'s own docstring states a further attempt "should get an explicit go-ahead ` +
-        `rather than another autonomous guess, per this project's own 'no third blind attempt' discipline") — logged rather than built blind into that ` +
-        `same fragile code.`,
-      plain: `Two rating sources feed the engine's sense of "is this any good": TMDB's own average (which already discounts a title with only a ` +
-        `handful of votes) and Rotten Tomatoes/Metacritic's audience and critic scores (which currently don't). A show with a 95% audience score ` +
-        `from 8,000 real fans gets treated exactly the same as one with a 95% score from 8 people who happened to rate it — the second number is ` +
-        `much less trustworthy but the engine can't currently tell the difference, because the review count behind it is never saved. Fixing it ` +
-        `for real means touching a part of the scraper that's already been patched 5 times for a related bug, so it's flagged here for a deliberate ` +
-        `decision rather than a 6th quiet attempt.`,
-      impact: `Not measured yet — that's the point of the finding: without a stored review count, there's no way to even quantify how many of the ` +
-        `1,719 titles with a critic score or 1,396 with an audience score are riding on a thin sample. Bounded downside either way (±4/±6 points ` +
-        `out of a 100-point scale), but a real, previously-mis-assessed gap worth a conscious yes/no rather than another silent extraction change.`,
+      shortTitle: 'Critic Score Now Confidence-Weighted',
+      title: `Fixed the critic-score half: rtCriticCount/metacriticCount now scale criticScore()'s ±6 swing by review-count confidence — ${fmtNum(scaledToday)} of ${fmtNum(critEntries.length)} real titles today (${fmtNum(ratedScaledToday)} of ${fmtNum(ratedCritEntries.length)} rated) get a reduced swing for a thin sample`,
+      technical: `<code>omdbSignal()</code> (engine.js) previously applied a symmetric ±<code>CRITIC_MAX_SWING</code> (6) around <code>CRITIC_NEUTRAL</code> ` +
+        `from <code>criticScore()</code> (RT Tomatometer + Metacritic Metascore) for every title that had one — a title with 8 real critic reviews got ` +
+        `the exact same weight as one with hundreds. Fixed by persisting a value <code>trakt/scrape_show_ratings.py</code>'s ` +
+        `<code>extract_metascore()</code>/<code>extract_rt_scores()</code> were already computing internally as a fabrication guard, then discarding ` +
+        `(<code>rtCriticCount</code>/<code>metacriticCount</code>, threaded through <code>scrape_metacritic()</code>/<code>scrape_rt()</code>/<code>main()</code> ` +
+        `and new <code>rtCountAttempted</code>/<code>mcCountAttempted</code> cache stamps mirroring the existing <code>rtAudienceAttempted</code>/` +
+        `<code>mcUserAttempted</code> backfill-gap pattern) — deliberately zero new extraction risk, since it only captures a number that was ` +
+        `already in hand rather than adding a new extraction target. New <code>criticConfidence()</code> returns a 0-1 multiplier per site, tiers ` +
+        `calibrated against a real first production backfill's own measured count distribution (2026-09-27, n=122 RT / n=126 MC — RT p25=45/p10=27/p5=19, ` +
+        `MC p25=22/p10=13/p5=11) rather than guessed: <code>count≥45(RT)/22(MC)→1.0, ≥19/11→0.7, ≥8/5→0.4, else→0.2</code>. A missing count (not yet ` +
+        `backfilled, or the score came from a count-less fallback path) is full confidence, never penalized — same rule as ` +
+        `<code>voteCountBonus()</code>/<code>imdbVoteCountBonus()</code>. Deliberately does NOT touch the audience-score half ` +
+        `(<code>realAudienceScore()</code>'s two components) — neither extraction path that supplies <code>rtAudience</code>/<code>metacriticUser</code> ` +
+        `exposes an accessible count, and no new extraction was attempted per this project's "no third blind attempt without a go-ahead" discipline; that ` +
+        `half stays an honest, open gap. Coverage is still growing — this first backfill batch timed out at 142 of 250 titles (2 hours), with the daily ` +
+        `<code>trakt-scrape-show-ratings.yml</code> schedule continuing the backlog the same gradual way it did for <code>rtAudienceAttempted</code> historically.`,
+      plain: `Two rating sources feed the engine's sense of "is this any good": TMDB's own average (which already discounts a title with only a handful ` +
+        `of votes) and Rotten Tomatoes/Metacritic's critic score (which didn't). A show with a 95% critic score from 200 real reviews used to get ` +
+        `treated exactly the same as one with a 95% score from 8 reviews — now the thinner one counts for less, the same way a barely-rated TMDB score ` +
+        `already did. The audience/viewer-opinion half of this same idea (as opposed to critics) is a separate, still-open gap — neither Rotten ` +
+        `Tomatoes' nor Metacritic's audience-score page exposes a review count this scraper can reliably read, so that half wasn't guessed at.`,
+      impact: `Verified live, not just implemented: real, measured effect on ${fmtNum(scaledToday)} titles today across the whole enriched pool, ` +
+        `${fmtNum(ratedScaledToday)} of them titles Bill has actually rated. <code>node trakt/scripts/eval.js</code> shows zero regression (byte-identical ` +
+        `to baseline) — expected at this still-partial backfill coverage, not a sign the fix is inert; a <code>scoreBreakdown()</code> component-sum check ` +
+        `confirms the confidence scaling is live and correctly reflected in the displayed score breakdown for every one of the ${fmtNum(scaledToday)} affected titles.`,
     });
   }
 

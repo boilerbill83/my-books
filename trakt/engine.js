@@ -3225,6 +3225,54 @@ function communityScore(meta, omdbEntry) {
 const CRITIC_NEUTRAL = 80;
 const CRITIC_MAX_SWING = 6;
 
+// Small-sample confidence guard for the critic score (Bill: "yes fix it"
+// on audience-score-no-sample-size-guard) — until this fix, an RT
+// Tomatometer/Metacritic Metascore backed by a handful of reviews got
+// the exact same ±CRITIC_MAX_SWING as one backed by hundreds. rtCriticCount/
+// metacriticCount are captured by scrape_show_ratings.py (see its own
+// docstring history) and now scale the swing down when the sample is
+// thin, rather than treating every present score as equally trustworthy.
+// Tiers calibrated against this dataset's own real, measured count
+// distribution (a first production backfill batch, 2026-09-27) rather
+// than guessed — the two sites' scales are genuinely different (RT
+// aggregates far more reviews than Metacritic per title) so each gets
+// its own thresholds instead of one shared number:
+//   RT critic count  (n=122): p5=19  p10=27 p25=45 p50=119 p75=239
+//   MC critic count  (n=126): p5=11  p10=13 p25=22 p50=38  p75=54
+// Full confidence starts around each site's own real p25 (a comfortably
+// above-thin sample), tapering down through the lower percentiles —
+// never to zero, since even a handful of real reviews is still real
+// evidence, just weaker. A missing count (the score exists but no count
+// was captured, or hasn't been backfilled yet) is treated as FULL
+// confidence, never penalized — the same "absence of a signal is not
+// evidence against it" rule this project applies everywhere else
+// (voteCountBonus, imdbVoteCountBonus, every guard in
+// scrape_show_ratings.py itself). This is deliberately RT/MC-critic-only:
+// no count exists for realAudienceScore()'s two components
+// (rtAudience/metacriticUser) — neither extraction path exposes one —
+// so the audience half of omdbSignal() is unaffected by this fix.
+function countConfidence(count, tiers) {
+  if (count == null) return 1;
+  for (const [min, conf] of tiers) {
+    if (count >= min) return conf;
+  }
+  return tiers[tiers.length - 1][1];
+}
+const RT_CRITIC_COUNT_TIERS = [[45, 1], [19, 0.7], [8, 0.4], [0, 0.2]];
+const MC_CRITIC_COUNT_TIERS = [[22, 1], [11, 0.7], [5, 0.4], [0, 0.2]];
+// Exported (unlike most of omdbSignal()'s other internals) so
+// quality.js's audience-score-no-sample-size-guard finding can compute
+// its live "N titles scaled today" proof from the real function rather
+// than a second, driftable copy of these tiers.
+export function criticConfidence(omdbEntry) {
+  if (!omdbEntry) return 1;
+  const parts = [];
+  if (omdbEntry.rottenTomatoes != null) parts.push(countConfidence(omdbEntry.rtCriticCount, RT_CRITIC_COUNT_TIERS));
+  if (omdbEntry.metacritic != null) parts.push(countConfidence(omdbEntry.metacriticCount, MC_CRITIC_COUNT_TIERS));
+  if (!parts.length) return 1;
+  return parts.reduce((a, b) => a + b, 0) / parts.length;
+}
+
 // Awards score is real but heavily right-skewed in this dataset (206 of
 // 890 titles score exactly 0 — no recognition found, a legitimate answer
 // per awardsScore()'s own contract, not a gap — while p75/p90/p99 all
@@ -3277,7 +3325,8 @@ function omdbSignal(omdbEntry) {
   let score = 0;
   const crit = criticScore(omdbEntry);
   if (crit != null) {
-    score += Math.max(-CRITIC_MAX_SWING, Math.min(CRITIC_MAX_SWING,
+    const conf = criticConfidence(omdbEntry);
+    score += conf * Math.max(-CRITIC_MAX_SWING, Math.min(CRITIC_MAX_SWING,
       (crit - CRITIC_NEUTRAL) / 20 * CRITIC_MAX_SWING));
   }
   const aud = realAudienceScore(omdbEntry);
@@ -3932,9 +3981,12 @@ export function scoreBreakdown(candidate, idx, enrichedMeta, omdbMeta = {}) {
       : 'Not a Big4 broadcast network show (CBS/NBC/ABC/FOX).');
 
   const crit = criticScore(omdbEntry);
+  const critConf = crit != null ? criticConfidence(omdbEntry) : 1;
   add('criticScore', 'Critic score (OMDb)',
-    crit != null ? Math.max(-CRITIC_MAX_SWING, Math.min(CRITIC_MAX_SWING, (crit - CRITIC_NEUTRAL) / 20 * CRITIC_MAX_SWING)) : 0,
-    crit != null ? `${crit}/100 (neutral point ${CRITIC_NEUTRAL}).` : 'No critic score available.');
+    crit != null ? critConf * Math.max(-CRITIC_MAX_SWING, Math.min(CRITIC_MAX_SWING, (crit - CRITIC_NEUTRAL) / 20 * CRITIC_MAX_SWING)) : 0,
+    crit != null
+      ? `${crit}/100 (neutral point ${CRITIC_NEUTRAL})${critConf < 1 ? `, confidence ${Math.round(critConf * 100)}% — thin review sample` : ''}.`
+      : 'No critic score available.');
 
   const aud = realAudienceScore(omdbEntry);
   add('audienceScore', 'Audience score (RT/Metacritic)',
