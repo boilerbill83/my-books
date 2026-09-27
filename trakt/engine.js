@@ -3064,6 +3064,15 @@ export function mergeScrapedShowRatings(omdbMeta, scrapedShowRatings) {
     if (scraped.metacritic != null && existing?.metacritic == null) patch.metacritic = scraped.metacritic;
     if (scraped.rtAudience != null) patch.rtAudience = scraped.rtAudience;
     if (scraped.metacriticUser != null) patch.metacriticUser = scraped.metacriticUser;
+    // Real review counts backing the two critic scores above (Bill:
+    // "yes fix it" on audience-score-no-sample-size-guard) — only ever
+    // sourced from this scraper (same as rtAudience/metacriticUser),
+    // never OMDb, so an always-overwrite merge is correct here too. No
+    // equivalent count exists for metacriticUser/rtAudience themselves —
+    // neither extraction path that supplies those two scores exposes an
+    // accessible count (see scrape_show_ratings.py's own docstrings).
+    if (scraped.rtCriticCount != null) patch.rtCriticCount = scraped.rtCriticCount;
+    if (scraped.metacriticCount != null) patch.metacriticCount = scraped.metacriticCount;
     if (Object.keys(patch).length) merged[key] = { ...(existing || {}), ...patch };
   }
   return merged;

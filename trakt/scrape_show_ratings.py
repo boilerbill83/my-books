@@ -707,10 +707,27 @@ def extract_metascore(html, title, year, imdb_id=None):
     after a full data-quality audit found this exact code path producing
     confirmed-wrong scores for several real titles (see
     page_title_matches()'s docstring). Returns (metascore, userScore,
-    debug), either score possibly None; debug reports the
+    debug, metascoreCount), either score possibly None; debug reports the
     __NEXT_DATA__ extraction's own findings regardless of outcome (see
-    extract_next_data_user_score())."""
+    extract_next_data_user_score()). metascoreCount is the real critic
+    review/rating count backing the Metascore when the JSON-LD block
+    exposed one, else None (never guessed — no count field on the page
+    is a different, weaker signal than a confirmed low count, and this
+    function's own callers must be able to tell the two apart rather
+    than treating "unknown" as "zero"). There's no equivalent count for
+    the user score (userScore) — extract_user_score_title_attr()'s
+    `title="User score X.X out of 10"` attribute has no adjacent count
+    in its own markup, and no further extraction attempt was made here
+    per this project's "no third blind attempt without a go-ahead"
+    discipline (see this function's own module docstring history)."""
     metascore = user_score = None
+    # Captures the SAME ratingCount/reviewCount value that's already being
+    # computed a few lines below (originally used only as a fabrication
+    # guard, then discarded) — set only at the exact point the critic
+    # Metascore itself is accepted, so this can never be confused with a
+    # count belonging to a DIFFERENT, rejected block. No new extraction
+    # risk: this is capturing a number this function already had in hand.
+    metascore_count = None
     # Round 5, a real production re-scrape this session: rounds 3 and 4
     # (the ratingCount=0 guard, then the exact-97/98 guard) were BOTH
     # verified live and BOTH found not working — Elway/Ambitions/Thieves'
@@ -790,6 +807,7 @@ def extract_metascore(html, title, year, imdb_id=None):
                             rejected = True
                             continue
                         metascore = candidate
+                        metascore_count = int(count) if count is not None else None
                     elif best_num == 10:
                         user_score = round(val * 10)
         except Exception:
@@ -837,11 +855,11 @@ def extract_metascore(html, title, year, imdb_id=None):
     if metascore is not None or user_score is not None:
         imdb_check = page_imdb_matches(imdb_id, html)
         if imdb_check is False:
-            return None, None, nd_debug
+            return None, None, nd_debug, None
         if imdb_check is None and page_title_matches(title, year, html) is False:
-            return None, None, nd_debug
+            return None, None, nd_debug, None
 
-    return metascore, user_score, nd_debug
+    return metascore, user_score, nd_debug, metascore_count
 
 
 def _in_cooldown(entry):
@@ -937,7 +955,23 @@ def load_pending(cache):
     gate would mark every one of them permanently done and
     rtAudience would never backfill for any already-scraped title, only
     brand-new ones. One real attempt per title, ever, same as the other
-    two stamps."""
+    two stamps.
+
+    mcCountAttempted/rtCountAttempted (Bill: "yes fix it" on the real,
+    previously-mis-assessed audience-score-no-sample-size-guard finding)
+    are the same backfill-gap fix a third time: metacriticCount/
+    rtCriticCount didn't exist as extractable values until this session
+    persisted the review count extract_metascore()/extract_rt_scores()
+    were already computing internally (as a fabrication guard) but had
+    never returned outward. Every already-cached title gets exactly one
+    more visit to backfill these two new fields, at no extra network
+    cost — the same page fetch that already finds the score also carries
+    the count right next to it. This does NOT extend to a real count for
+    metacriticUser or rtAudience — neither extraction path that supplies
+    those two scores exposes an accessible count, and no new extraction
+    was attempted to find one, per this project's "no third blind
+    attempt without a go-ahead" discipline (see extract_metascore()'s own
+    module-docstring history)."""
     omdb = json.load(open(DATA_DIR / 'omdbMetadata.json')) if (DATA_DIR / 'omdbMetadata.json').exists() else {}
     enriched = json.load(open(DATA_DIR / 'enrichedMetadata.json')) if (DATA_DIR / 'enrichedMetadata.json').exists() else {}
 
@@ -970,12 +1004,20 @@ def load_pending(cache):
             needs_mc = not (cached and cached.get('confirmedNoCoverage')) and (
                 cached is None
                 or not cached.get('mcUserAttempted')
+                # Same backfill-gap shape as mcUserAttempted/rtAudienceAttempted
+                # themselves: metacriticCount didn't exist as an extractable
+                # value until this fix shipped, so an already-"done" title
+                # (real metacritic score already cached) still needs exactly
+                # one more visit to capture the count that now rides along
+                # with the same page fetch, at no extra network cost.
+                or not cached.get('mcCountAttempted')
                 or (cached.get('metacritic') is None and not _in_cooldown(cached))
             )
             needs_rt = SCRAPE_RT and not (cached and cached.get('confirmedNoCoverage')) and (
                 cached is None
                 or not cached.get('rtAttempted')
                 or not cached.get('rtAudienceAttempted')
+                or not cached.get('rtCountAttempted')  # same backfill-gap reasoning as mcCountAttempted above
             )
             if not needs_mc and not needs_rt:
                 continue  # fully resolved already (or a fresh miss still on cooldown)
@@ -1458,12 +1500,23 @@ def extract_rt_scores(html, title, year, imdb_id=None, require_imdb_match=False)
     curated verification batch cross-checked against outside sources is
     the actual test, not this function running without raising.
 
-    Returns (critic, audience, debug) — debug is a list of every
-    aggregateRating block seen (value/scale/name/whether it name-matched)
-    plus a raw-text Tomatometer mention scan and the score-board
-    extraction's own result, so a job log shows exactly what was on the
-    page even when nothing gets accepted."""
+    Returns (critic, audience, debug, criticCount) — debug is a list of
+    every aggregateRating block seen (value/scale/name/whether it
+    name-matched) plus a raw-text Tomatometer mention scan and the
+    score-board extraction's own result, so a job log shows exactly what
+    was on the page even when nothing gets accepted. criticCount is the
+    real rating/review count backing the JSON-LD critic block, captured
+    only when THAT specific path is the one that won (already computed
+    into `debug` below either way, just not previously kept as a usable
+    value) — None whenever critic came from the score-board or
+    media-scorecard-json fallback paths instead, or wasn't found at all.
+    No equivalent count exists for `audience` — neither fallback path
+    that can supply it exposes one, and this project's "no third blind
+    attempt without a go-ahead" discipline (see extract_metascore()'s
+    own module-docstring history) applies here too rather than guessing
+    at a new extraction target."""
     critic = audience = None
+    critic_count = None
     critic_name_matched = audience_name_matched = False
     debug = []
     ld_scripts = re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S)
@@ -1479,6 +1532,9 @@ def extract_rt_scores(html, title, year, imdb_id=None, require_imdb_match=False)
                     best_num = float(best) if best not in (None, '') else None
                     name = o.get('name')
                     name_match = name_field_matches_title(name, title)
+                    block_rating_count = ar.get('ratingCount')
+                    if block_rating_count is None:
+                        block_rating_count = ar.get('reviewCount')
                     # Full diagnostic tuple, not just the number — @type/name
                     # tell us whether this aggregateRating block actually
                     # belongs to the show itself or to something else
@@ -1487,7 +1543,7 @@ def extract_rt_scores(html, title, year, imdb_id=None, require_imdb_match=False)
                     debug.append({
                         'ratingValue': val, 'bestRating': best,
                         'type': o.get('@type'), 'name': name, 'nameMatch': name_match,
-                        'ratingCount': ar.get('ratingCount') or ar.get('reviewCount'),
+                        'ratingCount': block_rating_count,
                     })
                     if best_num == 100:
                         # A name-matched block always wins over a not-yet-
@@ -1512,6 +1568,7 @@ def extract_rt_scores(html, title, year, imdb_id=None, require_imdb_match=False)
                         if name_match is not False and (critic is None or (name_match and not critic_name_matched)):
                             critic = round(val)
                             critic_name_matched = bool(name_match)
+                            critic_count = int(block_rating_count) if block_rating_count is not None else None
                     elif best_num == 5:
                         if name_match is not False and (audience is None or (name_match and not audience_name_matched)):
                             audience = round(val * 20)
@@ -1608,17 +1665,17 @@ def extract_rt_scores(html, title, year, imdb_id=None, require_imdb_match=False)
     if critic is not None or audience is not None:
         imdb_check = page_imdb_matches(imdb_id, html)
         if imdb_check is False:
-            return None, None, debug
+            return None, None, debug, None
         if imdb_check is True:
-            return critic, audience, debug
+            return critic, audience, debug, critic_count
         name_confirmed = (critic is not None and critic_name_matched) or \
                           (audience is not None and audience_name_matched)
         if require_imdb_match and not name_confirmed:
-            return None, None, debug
+            return None, None, debug, None
         if page_title_matches(title, year, html) is False:
-            return None, None, debug
+            return None, None, debug, None
 
-    return critic, audience, debug
+    return critic, audience, debug, critic_count
 
 
 RT_SEARCH_CANDIDATES = 3   # how many /m//tv/ search-result links to try in order
@@ -1725,11 +1782,11 @@ def scrape_rt(page, title, year, kind, imdb_id=None):
             html = page.content()
         except PWTimeout:
             continue
-        critic, audience, debug = extract_rt_scores(html, title, year, imdb_id, require_imdb_match=False)
+        critic, audience, debug, critic_count = extract_rt_scores(html, title, year, imdb_id, require_imdb_match=False)
         diag = _page_diagnostics(resp, html)
         debug.append({'pageDiagnostics': diag, 'source': 'direct-slug-guess', 'candidateUrl': url})
         if critic is not None or audience is not None:
-            return {'critic': critic, 'audience': audience, 'url': url, 'debug': debug}
+            return {'critic': critic, 'audience': audience, 'url': url, 'debug': debug, 'criticCount': critic_count}
         time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
 
     # Fall back to RT's own search page only when neither direct guess
@@ -1777,10 +1834,10 @@ def scrape_rt(page, title, year, kind, imdb_id=None):
         # an IMDb id, not a strong name match, as the fallback confirmed_
         # signal — Brotherhood and Invasion, both real live production
         # results).
-        critic, audience, debug = extract_rt_scores(html, title, year, imdb_id, require_imdb_match=(i > 0))
+        critic, audience, debug, critic_count = extract_rt_scores(html, title, year, imdb_id, require_imdb_match=(i > 0))
         diag = _page_diagnostics(resp, html)
         debug.append({'pageDiagnostics': diag, 'candidatesTried': i + 1, 'candidateUrl': url})
-        last_result = {'critic': critic, 'audience': audience, 'url': url, 'debug': debug}
+        last_result = {'critic': critic, 'audience': audience, 'url': url, 'debug': debug, 'criticCount': critic_count}
 
         if critic is not None or audience is not None:
             return last_result
@@ -1943,10 +2000,10 @@ def scrape_metacritic(page, title, year, kind, imdb_id=None):
             html = page.content()
         except PWTimeout:
             continue
-        metascore, user_score, nd_debug = extract_metascore(html, title, year, imdb_id)
+        metascore, user_score, nd_debug, metascore_count = extract_metascore(html, title, year, imdb_id)
         nd_debug['pageDiagnostics'] = _page_diagnostics(resp, html)
         result = {'metascore': metascore, 'userScore': user_score, 'url': guess_url,
-                  'debug_link_count': debug_link_count, 'nextData': nd_debug}
+                  'debug_link_count': debug_link_count, 'nextData': nd_debug, 'metascoreCount': metascore_count}
         if metascore is not None or user_score is not None:
             return result
         time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
@@ -1981,11 +2038,12 @@ def scrape_metacritic(page, title, year, kind, imdb_id=None):
     except PWTimeout:
         return {'metascore': None, 'userScore': None, 'url': None, 'debug_link_count': debug_link_count}
 
-    metascore, user_score, nd_debug = extract_metascore(html, title, year, imdb_id)
+    metascore, user_score, nd_debug, metascore_count = extract_metascore(html, title, year, imdb_id)
     nd_debug['pageDiagnostics'] = _page_diagnostics(resp, html)
     if metascore is None and user_score is None:
         return {'metascore': None, 'userScore': None, 'url': None, 'debug_link_count': debug_link_count, 'nextData': nd_debug}
-    return {'metascore': metascore, 'userScore': user_score, 'url': url, 'debug_link_count': debug_link_count, 'nextData': nd_debug}
+    return {'metascore': metascore, 'userScore': user_score, 'url': url, 'debug_link_count': debug_link_count,
+            'nextData': nd_debug, 'metascoreCount': metascore_count}
 
 
 # ── Main ───────────────────────────────────────────────────────────────────
@@ -2071,6 +2129,16 @@ def main():
                 entry['rtUrl'] = rt.get('url') if rt else None
                 entry['rtAttempted'] = time.strftime('%Y-%m-%d')
                 entry['rtAudienceAttempted'] = True
+                entry['rtCountAttempted'] = True
+                # Real review count backing the Tomatometer critic score,
+                # threaded through from extract_rt_scores() (see its own
+                # docstring) — same unreleased guard as the score itself,
+                # since a count backing an impossible score is equally
+                # meaningless. None whenever the critic score came from a
+                # count-less fallback path or wasn't found at all — never
+                # coerced to 0, which would read as "confirmed zero
+                # reviews" rather than "unknown."
+                entry['rtCriticCount'] = None if unreleased else (rt.get('criticCount') if rt else None)
                 # Persisted (not just in the ephemeral debug list) so a
                 # future audit can tell which cached RT values came from
                 # RT's own top-ranked search result (candidate 1, the
@@ -2085,6 +2153,10 @@ def main():
                 entry['metacriticUser'] = None if unreleased else (mc.get('userScore') if mc else None)
                 entry['mcUrl'] = mc.get('url') if mc else None
                 entry['mcUserAttempted'] = True
+                entry['mcCountAttempted'] = True
+                # Real review count backing the Metascore critic score —
+                # same reasoning/unreleased guard as rtCriticCount above.
+                entry['metacriticCount'] = None if unreleased else (mc.get('metascoreCount') if mc else None)
             entry['checkedAt'] = time.strftime('%Y-%m-%d')
             cache[t['titleKey']] = entry
 
@@ -2100,6 +2172,15 @@ def main():
             aud_str = f"RTaud {entry.get('rtAudience')}" if entry.get('rtAudience') is not None else 'RTaud —'
             usr_str = f"MCuser {entry.get('metacriticUser')}" if entry.get('metacriticUser') is not None else 'MCuser —'
             print(f'         {rt_str}  |  {mc_str}  |  {aud_str}  |  {usr_str}')
+            # New this session (Bill: "yes fix it" on audience-score-no-
+            # sample-size-guard) — printed on every title, found or not,
+            # so a real job log makes visible right away how often a
+            # count is actually captured versus a real score with no
+            # count attached, rather than waiting until the next
+            # dashboard field-quality check to notice.
+            rtc_str = f"RTcount {entry.get('rtCriticCount')}" if entry.get('rtCriticCount') is not None else 'RTcount —'
+            mcc_str = f"MCcount {entry.get('metacriticCount')}" if entry.get('metacriticCount') is not None else 'MCcount —'
+            print(f'         {rtc_str}  |  {mcc_str}')
             if rt and rt.get('url'):
                 print(f"         RT url: {rt['url']}")
             if rt and rt.get('debug'):
