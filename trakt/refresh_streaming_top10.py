@@ -118,39 +118,60 @@ Rules:
 
 
 def call_claude():
-    body = json.dumps({
-        'model': MODEL,
-        'max_tokens': MAX_TOKENS,
-        'tools': [{'type': 'web_search_20250305', 'name': 'web_search', 'max_uses': 25}],
-        'messages': [{'role': 'user', 'content': PROMPT.format(
-            today=datetime.now(timezone.utc).strftime('%B %d, %Y'), methodology=METHODOLOGY, pool_size=POOL_SIZE)}],
-    }).encode()
-    req = urllib.request.Request(
-        'https://api.anthropic.com/v1/messages', data=body,
-        headers={'x-api-key': API_KEY, 'anthropic-version': '2023-06-01',
-                 'content-type': 'application/json'})
-    # Surface the real response body on a non-2xx status rather than a bare
-    # "HTTP Error 400" — the same lesson enrich_tmdb.py's get_json() already
-    # learned the hard way (Session 51's dead-TMDB-key incident: a bare 401
-    # gave no way to tell "revoked" from "malformed" without this).
-    try:
-        # 180s was fine at the original POOL_SIZE=10/MAX_TOKENS=8000 scale,
-        # but a real production run timed out here (2026-09-28) after both
-        # were raised (15 shows, 16000 tokens) without raising this to
-        # match — a longer real web_search + write-up genuinely takes
-        # longer. 340s leaves real headroom under the job step's own
-        # 10-minute (600s) ceiling.
-        with urllib.request.urlopen(req, timeout=340) as resp:
-            data = json.loads(resp.read())
-    except urllib.error.HTTPError as e:
-        error_body = e.read().decode('utf-8', errors='replace')
-        raise ValueError(f'Anthropic API returned HTTP {e.code}: {error_body}') from e
-    if data.get('stop_reason') == 'max_tokens':
-        raise ValueError(f'response hit max_tokens ({MAX_TOKENS}) before finishing — raise the budget')
-    text_blocks = [b.get('text', '') for b in data.get('content', []) if b.get('type') == 'text']
-    if not text_blocks:
+    messages = [{'role': 'user', 'content': PROMPT.format(
+        today=datetime.now(timezone.utc).strftime('%B %d, %Y'), methodology=METHODOLOGY, pool_size=POOL_SIZE)}]
+    # pause_turn is real, documented Anthropic API behavior for a long
+    # tool-use turn (many web_search calls) that needs more budget than one
+    # request allows — it is NOT a terminal response. A real production run
+    # (2026-09-28) hit it for the first time in this script's history: 20
+    # web_search calls, 970K input tokens, stop_reason 'pause_turn', zero
+    # text blocks — the code previously treated that as "no text block in
+    # response" and crashed, when the correct handling is to resume the
+    # SAME turn by appending the assistant's partial content and re-
+    # sending, exactly as Anthropic's docs describe. Capped at 2 extra
+    # continuations (3 requests total) rather than uncapped — each resend
+    # re-sends the whole growing conversation as input tokens, and this
+    # project has a standing "minimize API cost" discipline (CLAUDE.md);
+    # a model that's already done 20 searches needs at most one or two
+    # more turns to finish synthesizing, not unlimited retries.
+    for attempt in range(3):
+        body = json.dumps({
+            'model': MODEL,
+            'max_tokens': MAX_TOKENS,
+            'tools': [{'type': 'web_search_20250305', 'name': 'web_search', 'max_uses': 25}],
+            'messages': messages,
+        }).encode()
+        req = urllib.request.Request(
+            'https://api.anthropic.com/v1/messages', data=body,
+            headers={'x-api-key': API_KEY, 'anthropic-version': '2023-06-01',
+                     'content-type': 'application/json'})
+        # Surface the real response body on a non-2xx status rather than a
+        # bare "HTTP Error 400" — the same lesson enrich_tmdb.py's
+        # get_json() already learned the hard way (Session 51's dead-
+        # TMDB-key incident: a bare 401 gave no way to tell "revoked" from
+        # "malformed" without this).
+        try:
+            # 180s was fine at the original POOL_SIZE=10/MAX_TOKENS=8000
+            # scale, but a real production run timed out here (2026-09-28)
+            # after both were raised (15 shows, 16000 tokens) without
+            # raising this to match — a longer real web_search + write-up
+            # genuinely takes longer. 340s leaves real headroom under the
+            # job step's own 10-minute (600s) ceiling.
+            with urllib.request.urlopen(req, timeout=340) as resp:
+                data = json.loads(resp.read())
+        except urllib.error.HTTPError as e:
+            error_body = e.read().decode('utf-8', errors='replace')
+            raise ValueError(f'Anthropic API returned HTTP {e.code}: {error_body}') from e
+        if data.get('stop_reason') == 'max_tokens':
+            raise ValueError(f'response hit max_tokens ({MAX_TOKENS}) before finishing — raise the budget')
+        text_blocks = [b.get('text', '') for b in data.get('content', []) if b.get('type') == 'text']
+        if text_blocks:
+            return text_blocks[-1].strip()
+        if data.get('stop_reason') == 'pause_turn':
+            messages = messages + [{'role': 'assistant', 'content': data.get('content', [])}]
+            continue
         raise ValueError(f'no text block in response: {data}')
-    return text_blocks[-1].strip()
+    raise ValueError(f'gave up after {attempt + 1} pause_turn continuations with still no text block')
 
 
 def extract_json_object(text):
