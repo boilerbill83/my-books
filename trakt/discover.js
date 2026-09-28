@@ -192,11 +192,20 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
     const h = hydrateTitle(t, enrichedMeta);
     const meta = enrichedMeta[h.titleKey];
     const omdb = omdbMeta[h.titleKey];
-    // A dismissed title (feedbackData.json's excludeFromRecommendations) is
-    // no longer a real candidate — idx.excluded already keeps it out of
-    // every recommendation surface, so the table's own status label should
-    // say so too rather than still calling it "Candidate."
-    if (idx.excluded.has(h.titleKey)) status = 'Dismissed';
+    // A dismissed Watchlist/Candidate title (feedbackData.json's
+    // excludeFromRecommendations) is no longer a real candidate —
+    // idx.excluded already keeps it out of every recommendation surface,
+    // so the table's own status label should say so too rather than still
+    // calling it "Candidate." Never overrides an already-Watched/New
+    // Episodes status, though — a title Bill has genuinely watched (and
+    // possibly rated highly) must always show its real status, even if a
+    // now-stale exclusion record is still sitting in feedbackData.json
+    // (e.g. an already_watched bookkeeping dismissal logged before a
+    // title was confirmed in a fresh Trakt export — Generation Kill,
+    // caught live 2026-09-28: dismissed as "missing from the export," then
+    // confirmed myRating 10/10 in library.json 9 minutes earlier the same
+    // day, so it was displaying "Dismissed" over a real 10/10 watch).
+    if (status !== 'Watched' && status !== 'New Episodes' && idx.excluded.has(h.titleKey)) status = 'Dismissed';
     rows.push({
       titleKey: h.titleKey, posterUrl: posterUrl(h.titleKey, enrichedMeta, 'w92'), ids: h.ids,
       title: h.title || '(untitled — not yet enriched)', year: h.year, type: h.type, status,

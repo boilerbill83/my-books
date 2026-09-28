@@ -1,17 +1,6 @@
 {
   "interactions": [
     {
-      "titleKey": "movie:98",
-      "title": "Gladiator",
-      "year": 2000,
-      "type": "movie",
-      "interactionType": "dismiss",
-      "reasonCode": "already_watched",
-      "reasonLabel": "Already watched and rated 10/10 \u2014 missing from the Trakt export (pre-dates his Trakt account or wasn't logged there)",
-      "timestamp": "2026-08-21T19:15:00Z",
-      "excludeFromRecommendations": true
-    },
-    {
       "titleKey": "show:71694",
       "title": "Snowfall",
       "year": 2017,
@@ -151,39 +140,6 @@
       "interactionType": "dismiss",
       "reasonCode": "aimed_at_older_demographic",
       "reasonLabel": "The show's tone/target audience skews older, distinct from too_old (which is about the show itself feeling dated, not its audience)",
-      "timestamp": "2026-08-22T16:50:26.807Z",
-      "excludeFromRecommendations": true
-    },
-    {
-      "titleKey": "show:17035",
-      "title": "Generation Kill",
-      "year": 2008,
-      "type": "show",
-      "interactionType": "dismiss",
-      "reasonCode": "already_watched",
-      "reasonLabel": "Bill has already watched this \u2014 missing from the Trakt export (not logged there, same gap the Gladiator (2000) exclusion documented)",
-      "timestamp": "2026-08-22T16:50:26.807Z",
-      "excludeFromRecommendations": true
-    },
-    {
-      "titleKey": "show:113984",
-      "title": "Anatomy of a Scandal",
-      "year": 2022,
-      "type": "show",
-      "interactionType": "dismiss",
-      "reasonCode": "already_watched",
-      "reasonLabel": "Bill has already watched this \u2014 missing from the Trakt export (not logged there, same gap the Gladiator (2000) exclusion documented)",
-      "timestamp": "2026-08-22T16:50:26.807Z",
-      "excludeFromRecommendations": true
-    },
-    {
-      "titleKey": "show:64254",
-      "title": "Master of None",
-      "year": 2015,
-      "type": "show",
-      "interactionType": "dismiss",
-      "reasonCode": "already_watched",
-      "reasonLabel": "Bill has already watched this \u2014 missing from the Trakt export (not logged there, same gap the Gladiator (2000) exclusion documented)",
       "timestamp": "2026-08-22T16:50:26.807Z",
       "excludeFromRecommendations": true
     },

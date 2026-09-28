@@ -130,7 +130,12 @@ function enrichShow(show, ctx) {
     // see the family-watch-list precedent). Only a genuine dismiss
     // interaction should ever read as "Dismissed" here; a category_exclude
     // just falls through to its real library/watchlist/candidatePool status.
-    const isRealDismiss = (feedback?.interactions || []).some(
+    // Also never overrides an already-Watched/New Episodes status — a
+    // title Bill has genuinely watched must always show its real status,
+    // even for a stale already_watched-style bookkeeping dismissal still
+    // sitting in feedbackData.json (see discover.js's buildAllTitlesRows()
+    // comment for the real Generation Kill case this caught, 2026-09-28).
+    const isRealDismiss = status !== 'Watched' && status !== 'New Episodes' && (feedback?.interactions || []).some(
       e => e.titleKey === titleKey && e.interactionType === 'dismiss'
     );
     if (isRealDismiss) statusLabel = 'Dismissed';
