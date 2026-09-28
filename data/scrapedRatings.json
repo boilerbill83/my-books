@@ -4037,17 +4037,23 @@
   },
   "blood, bones, and butter|||gabrielle hamilton": {
     "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found",
-    "checkedAt": "2026-09-14"
+    "amazon": {
+      "rating": 4.3,
+      "count": 2552
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91muuXx3AOL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-09-28"
   },
   "kitchen confidential|||anthony bourdain": {
     "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found",
-    "checkedAt": "2026-09-14"
+    "amazon": {
+      "rating": 4.8,
+      "count": 8777
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/71yZeQIl1wL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-09-28"
   },
   "medium raw|||anthony bourdain": {
     "storyGraph": null,
