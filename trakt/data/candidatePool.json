@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-28T12:03:35.047Z",
+    "generatedAt": "2026-09-27T14:55:44.357Z",
     "count": 481,
     "capPerType": 200
   },
@@ -490,16 +490,6 @@
       "titleKey": "movie:631843",
       "ids": {
         "tmdb": 631843
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:798362",
-      "ids": {
-        "tmdb": 798362
       },
       "title": null,
       "year": null,
@@ -1377,16 +1367,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:130578",
-      "ids": {
-        "tmdb": 130578
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
       "titleKey": "show:202879",
       "ids": {
         "tmdb": 202879
@@ -2024,17 +2004,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:379170",
-      "ids": {
-        "tmdb": 379170
-      },
-      "title": "Sherlock: The Abominable Bride",
-      "year": 2016,
-      "source": "genre-explore",
-      "discoveredVia": "Thriller"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:470044",
       "ids": {
         "tmdb": 470044
@@ -2381,16 +2350,6 @@
       "titleKey": "movie:500664",
       "ids": {
         "tmdb": 500664
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 1
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:453395",
-      "ids": {
-        "tmdb": 453395
       },
       "title": null,
       "year": null,
@@ -3033,17 +2992,6 @@
       "year": 2015,
       "source": "genre-explore",
       "discoveredVia": "Crime"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:242575",
-      "ids": {
-        "tmdb": 242575
-      },
-      "title": "Good Day, Ramon",
-      "year": 2013,
-      "source": "genre-explore",
-      "discoveredVia": "Drama"
     },
     {
       "type": "movie",
@@ -3857,17 +3805,6 @@
       "discoveredVia": "book-theme:tech history"
     },
     {
-      "type": "movie",
-      "titleKey": "movie:339380",
-      "ids": {
-        "tmdb": 339380
-      },
-      "title": "On the Basis of Sex",
-      "year": 2018,
-      "source": "book-theme-explore",
-      "discoveredVia": "book-theme:legal"
-    },
-    {
       "type": "show",
       "titleKey": "show:4598",
       "ids": {
@@ -4530,17 +4467,6 @@
       "discoveredVia": "book-theme:tech history"
     },
     {
-      "type": "movie",
-      "titleKey": "movie:22683",
-      "ids": {
-        "tmdb": 22683
-      },
-      "title": "Gifted Hands: The Ben Carson Story",
-      "year": 2009,
-      "source": "book-theme-explore",
-      "discoveredVia": "book-theme:biography"
-    },
-    {
       "type": "show",
       "titleKey": "show:81747",
       "ids": {
@@ -4658,16 +4584,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:399440",
-      "ids": {
-        "tmdb": 399440
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 12
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:573435",
       "ids": {
         "tmdb": 573435
@@ -4720,17 +4636,6 @@
       "year": 2013,
       "source": "genre-explore",
       "discoveredVia": "Adventure"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:948713",
-      "ids": {
-        "tmdb": 948713
-      },
-      "title": "The Last Kingdom: Seven Kings Must Die",
-      "year": 2023,
-      "source": "genre-explore",
-      "discoveredVia": "War"
     },
     {
       "type": "movie",
@@ -4789,28 +4694,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:607259",
-      "ids": {
-        "tmdb": 607259
-      },
-      "title": "Fatherhood",
-      "year": 2021,
-      "source": "genre-explore",
-      "discoveredVia": "Comedy"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:818750",
-      "ids": {
-        "tmdb": 818750
-      },
-      "title": "The In Between",
-      "year": 2022,
-      "source": "genre-explore",
-      "discoveredVia": "Science Fiction"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:54138",
       "ids": {
         "tmdb": 54138
@@ -4819,39 +4702,6 @@
       "year": 2013,
       "source": "genre-explore",
       "discoveredVia": "Science Fiction"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:986056",
-      "ids": {
-        "tmdb": 986056
-      },
-      "title": "Thunderbolts*",
-      "year": 2025,
-      "source": "genre-explore",
-      "discoveredVia": "Science Fiction"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:411728",
-      "ids": {
-        "tmdb": 411728
-      },
-      "title": "The Professor and the Madman",
-      "year": 2019,
-      "source": "genre-explore",
-      "discoveredVia": "Mystery"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:504949",
-      "ids": {
-        "tmdb": 504949
-      },
-      "title": "The King",
-      "year": 2019,
-      "source": "genre-explore",
-      "discoveredVia": "War"
     },
     {
       "type": "movie",
@@ -4874,17 +4724,6 @@
       "year": 2022,
       "source": "genre-explore",
       "discoveredVia": "Comedy"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:860159",
-      "ids": {
-        "tmdb": 860159
-      },
-      "title": "Crush",
-      "year": 2022,
-      "source": "genre-explore",
-      "discoveredVia": "Romance"
     },
     {
       "type": "movie",
@@ -4927,17 +4766,6 @@
       },
       "title": "Most Dangerous Game",
       "year": 2020,
-      "source": "book-theme-explore",
-      "discoveredVia": "book-theme:psychological"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:129612",
-      "ids": {
-        "tmdb": 129612
-      },
-      "title": "Echoes",
-      "year": 2022,
       "source": "book-theme-explore",
       "discoveredVia": "book-theme:psychological"
     },
@@ -5020,6 +4848,181 @@
       "title": null,
       "year": null,
       "source": "streaming-top10"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:62172",
+      "ids": {
+        "tmdb": 62172
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 6
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1032863",
+      "ids": {
+        "tmdb": 1032863
+      },
+      "title": "The Love Hypothesis",
+      "year": 2026,
+      "source": "genre-explore",
+      "discoveredVia": "Comedy"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:416494",
+      "ids": {
+        "tmdb": 416494
+      },
+      "title": "Status Update",
+      "year": 2018,
+      "source": "genre-explore",
+      "discoveredVia": "Science Fiction"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:409447",
+      "ids": {
+        "tmdb": 409447
+      },
+      "title": "Hairspray Live!",
+      "year": 2016,
+      "source": "genre-explore",
+      "discoveredVia": "Music"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:437586",
+      "ids": {
+        "tmdb": 437586
+      },
+      "title": "mid90s",
+      "year": 2018,
+      "source": "genre-explore",
+      "discoveredVia": "Comedy"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:382748",
+      "ids": {
+        "tmdb": 382748
+      },
+      "title": "Stargirl",
+      "year": 2020,
+      "source": "genre-explore",
+      "discoveredVia": "Romance"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:870028",
+      "ids": {
+        "tmdb": 870028
+      },
+      "title": "The Accountant²",
+      "year": 2025,
+      "source": "genre-explore",
+      "discoveredVia": "Mystery"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:111969",
+      "ids": {
+        "tmdb": 111969
+      },
+      "title": "Stuck in Love",
+      "year": 2013,
+      "source": "genre-explore",
+      "discoveredVia": "Romance"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:610120",
+      "ids": {
+        "tmdb": 610120
+      },
+      "title": "Anima",
+      "year": 2019,
+      "source": "genre-explore",
+      "discoveredVia": "Music"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:799583",
+      "ids": {
+        "tmdb": 799583
+      },
+      "title": "The Ministry of Ungentlemanly Warfare",
+      "year": 2024,
+      "source": "genre-explore",
+      "discoveredVia": "War"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:843527",
+      "ids": {
+        "tmdb": 843527
+      },
+      "title": "The Idea of You",
+      "year": 2024,
+      "source": "genre-explore",
+      "discoveredVia": "Music"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:491926",
+      "ids": {
+        "tmdb": 491926
+      },
+      "title": "Resistance",
+      "year": 2020,
+      "source": "genre-explore",
+      "discoveredVia": "War"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:38922",
+      "ids": {
+        "tmdb": 38922
+      },
+      "title": "Boss",
+      "year": 2011,
+      "source": "genre-explore",
+      "discoveredVia": "War & Politics"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:241239",
+      "ids": {
+        "tmdb": 241239
+      },
+      "title": "A Most Violent Year",
+      "year": 2014,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:legal"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:467936",
+      "ids": {
+        "tmdb": 467936
+      },
+      "title": "The Children Act",
+      "year": 2018,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:legal"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:245913",
+      "ids": {
+        "tmdb": 245913
+      },
+      "title": "Pelé: Birth of a Legend",
+      "year": 2016,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:sports"
     }
   ]
 }

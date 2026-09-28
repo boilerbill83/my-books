@@ -38356,5 +38356,95 @@
   "director": null,
   "rated": "TV-MA",
   "fetchedAt": "2026-09-26"
+ },
+ "show:224263": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 5.8,
+  "imdbVotes": 6215,
+  "director": null,
+  "rated": "TV-PG",
+  "fetchedAt": "2026-09-27"
+ },
+ "show:215943": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 15,
+   "emmyNominations": 0,
+   "totalWins": 29,
+   "totalNominations": 26,
+   "raw": "Won 15 Primetime Emmys. 29 wins & 26 nominations total"
+  },
+  "imdbRating": 7.7,
+  "imdbVotes": 9004,
+  "director": null,
+  "rated": "TV-MA",
+  "fetchedAt": "2026-09-27"
+ },
+ "show:247168": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 4,
+   "raw": "1 win & 4 nominations total"
+  },
+  "imdbRating": 7.5,
+  "imdbVotes": 11432,
+  "director": null,
+  "rated": "TV-MA",
+  "fetchedAt": "2026-09-27"
+ },
+ "show:300507": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": null,
+  "rated": null,
+  "fetchedAt": "2026-09-27"
+ },
+ "show:1508": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 21,
+   "emmyNominations": 0,
+   "totalWins": 50,
+   "totalNominations": 222,
+   "raw": "Won 21 Primetime Emmys. 50 wins & 222 nominations total"
+  },
+  "imdbRating": 5.0,
+  "imdbVotes": 11308,
+  "director": null,
+  "rated": "TV-PG",
+  "fetchedAt": "2026-09-27"
  }
 }
