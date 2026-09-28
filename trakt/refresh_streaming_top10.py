@@ -178,7 +178,16 @@ def parse_shows():
     raw = call_claude()
     candidate = extract_json_object(raw)
     try:
-        parsed = json.loads(candidate)
+        # strict=False: a real production run (2026-09-28) failed with
+        # "Invalid control character" — the model's own JSON string values
+        # sometimes carry a literal unescaped control character (e.g. a raw
+        # newline inside a long whyHere/vibe field) instead of its escaped
+        # \n form. Python's default strict mode rejects that outright, even
+        # though the intent is unambiguous — strict=False is the standard
+        # library's own documented way to tolerate exactly this, treating
+        # a raw control character inside a string as its literal character
+        # rather than a syntax error.
+        parsed = json.loads(candidate, strict=False)
     except json.JSONDecodeError as e:
         raise ValueError(f'{e} — raw response tail: ...{raw[-300:]!r}') from e
     shows = parsed.get('shows')
