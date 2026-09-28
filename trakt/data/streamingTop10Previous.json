@@ -1,0 +1,306 @@
+{
+ "note": "Real, weekly editorial Top 10 (Bill, 2026-09-25: build a modern replacement for The Ringer's old Weekly Top 10). General-audience — NOT derived from Bill's own Trakt data or BMTRE's scoring engine, and not personalized to him (it happens to overlap with shows he watches since those are genuinely the biggest shows on TV right now too). Auto-refreshed daily via trakt/refresh_streaming_top10.py (.github/workflows/trakt-refresh-streaming-top10.yml) — a real Claude + web-search call does the research fresh each run (Nielsen/JustWatch/entertainment press/awards coverage), never fabricated. Each show's own status/predicted score/genre tags on the page are separately computed live from Bill's real Trakt data and BMTRE — display only, they never affect this list's editorial ranking. Manual refresh this run: the automated pipeline (refresh_streaming_top10.py) is blocked on a real Anthropic API credits shortfall, so this week's research was done directly in-session (real WebSearch against Nielsen/Hollywood Reporter/Variety/JustWatch/NBC/Apple coverage, same methodology and currency-check standard as the script) rather than via the Claude API call — no additional API credits spent. TMDB ids resolved the same way: verified against real themoviedb.org pages via WebSearch, not the (also-reachable-only-via-CI) TMDB API directly.",
+ "methodology": "Scored on four weighted dimensions, per Bill's own detailed brief: Audience 30% (is anyone actually watching — Nielsen minutes, JustWatch rank), Current Momentum 25% (is interest rising right now, not just sustained), Cultural Buzz 25% (is it being talked about — reviews, awards, entertainment press, viral moments), Watchability/Editorial Relevance 20% (is it actually a good recommendation this week — accessible, well-reviewed, worth starting). The raw score is an internal ranking mechanism only, never shown. Every entry keeps real, cited sources in the underlying data even though the page itself doesn't display them.",
+ "weekOf": "2026-09-26",
+ "generatedAt": "2026-09-26T14:11:21.000Z",
+ "shows": [
+  {
+   "rank": 1,
+   "title": "Monster: The Lizzie Borden Story",
+   "platform": "Netflix",
+   "tag": "HOT",
+   "whyHere": "Ryan Murphy's true-crime anthology returned to its biggest opening yet — all 8 episodes dropped September 17 and the show shot to #1 on Netflix's English TV chart with 12.1 million views in its first week (Sept 14-20).",
+   "whyWatch": "A genuinely unsettling dive into the 1892 axe-murder case that's obsessed America for over a century, anchored by a committed, unsettling lead performance.",
+   "vibe": "A quiet Massachusetts town, one gruesome night, and the woman everyone still argues about.",
+   "commitment": "1 season (8 episodes) | ~50 min episodes",
+   "sources": [
+    {
+     "label": "MovieWeb — Netflix's Monster hit claims the top spot",
+     "url": "https://movieweb.com/monster-the-lizzie-borden-story-netflix-hit-sept-2026/"
+    },
+    {
+     "label": "The TV Ratings Guide — What's Trending, Sept 13-19",
+     "url": "https://www.thetvratingsguide.com/2026/09/whats-trending-on-streaming-september.html"
+    }
+   ],
+   "titleKey": "show:299939",
+   "sourceConfidence": "corroborated"
+  },
+  {
+   "rank": 2,
+   "title": "Neagley",
+   "platform": "Prime Video",
+   "tag": "HOT",
+   "whyHere": "The Reacher spinoff debuted September 16 and immediately knocked its own parent show out of Prime Video's #1 spot — a rare instant-hit launch for a first-time lead.",
+   "whyWatch": "Maria Sten steps out from Reacher's ensemble to lead her own case as a Chicago private investigator with her own rules.",
+   "vibe": "Reacher's most dangerous friend finally gets the spotlight.",
+   "commitment": "1 season | ~50 min episodes",
+   "sources": [
+    {
+     "label": "Collider — Reacher officially loses its streaming crown to Neagley",
+     "url": "https://collider.com/alan-ritchson-reacher-spin-off-neagley-streaming-hit-prime-video-september-2026/"
+    },
+    {
+     "label": "The TV Ratings Guide — What's Trending, Sept 13-19",
+     "url": "https://www.thetvratingsguide.com/2026/09/whats-trending-on-streaming-september.html"
+    }
+   ],
+   "titleKey": "show:273207",
+   "sourceConfidence": "corroborated"
+  },
+  {
+   "rank": 3,
+   "title": "Lanterns",
+   "platform": "HBO Max",
+   "tag": "HOT",
+   "whyHere": "HBO's big DC swing is mid-season and delivering — new episodes drop every Sunday, with episode 6 landing September 20 and the finale set for October 4.",
+   "whyWatch": "Aaron Pierre and Kyle Chandler play a murder-investigation duo who happen to also be Green Lanterns — grounded, weird, and confident about it.",
+   "vibe": "A heartland murder mystery that turns out to be a lot stranger than it looks.",
+   "commitment": "1 season (8 episodes) | ~55 min episodes",
+   "sources": [
+    {
+     "label": "Deadline — Lanterns release schedule",
+     "url": "https://deadline.com/2026/08/lanterns-release-schedule-new-episodes-streaming-1237033026/"
+    },
+    {
+     "label": "Forbes — Lanterns episode 5 release time",
+     "url": "https://www.forbes.com/sites/erikkain/2026/09/13/lanterns-episode-5-release-time-hbo-max/"
+    }
+   ],
+   "titleKey": "show:95350",
+   "sourceConfidence": "corroborated"
+  },
+  {
+   "rank": 4,
+   "title": "Reacher",
+   "platform": "Prime Video",
+   "tag": "ESTABLISHED",
+   "whyHere": "Season 4's finale dropped September 16 after five straight weeks over a billion viewing minutes — and its own spinoff, Neagley, launched the very same week, keeping the whole franchise in the conversation.",
+   "whyWatch": "Big, simple, satisfying action — Alan Ritchson doing exactly what the role needs.",
+   "vibe": "A man, his fists, and a small town full of people who underestimated him.",
+   "commitment": "4 seasons | ~50 min episodes",
+   "sources": [
+    {
+     "label": "Hollywood Reporter — Reacher tops 1B minutes for a fifth straight week",
+     "url": "https://www.hollywoodreporter.com/tv/tv-news/streaming-ratings-sept-7-13-2026-1236709681/"
+    },
+    {
+     "label": "GamesRadar — Reacher season 4 release schedule",
+     "url": "https://www.gamesradar.com/entertainment/action-shows/reacher-season-4-release-date-time-schedule-prime-video/"
+    }
+   ],
+   "titleKey": "show:108978",
+   "sourceConfidence": "corroborated"
+  },
+  {
+   "rank": 5,
+   "title": "American Horror Story: 13",
+   "platform": "FX / Hulu",
+   "tag": "HOT",
+   "whyHere": "Ryan Murphy's long-running horror anthology returned September 24 — just two days ago — with the first three episodes airing right out of the gate, timed for the run-up to Halloween.",
+   "whyWatch": "A fresh cast and concept every season means no prior viewing required — pure anthology horror as the nights get shorter.",
+   "vibe": "The Halloween-season anthology that reinvents itself every single year.",
+   "commitment": "New season underway (through Oct 29) | ~45 min episodes",
+   "sources": [
+    {
+     "label": "TVInsider — American Horror Story: 13 premiere date and details",
+     "url": "https://www.tvinsider.com/1197859/american-horror-story-season-13-plot-cast-premiere-date-trailer/"
+    }
+   ],
+   "titleKey": "show:1413",
+   "sourceConfidence": "single-source"
+  },
+  {
+   "rank": 6,
+   "title": "The Gentlemen",
+   "platform": "Netflix",
+   "tag": "RISING",
+   "whyHere": "Two weeks into its second season, The Gentlemen jumped 22% in viewership to 881 million minutes watched — real, rising momentum, not just a premiere bump.",
+   "whyWatch": "Guy Ritchie's crime-caper world gets a proper season 2, all wit and violence in equal measure.",
+   "vibe": "Posh British criminals, still hilariously out of their depth.",
+   "commitment": "Season 2 underway | ~55 min episodes",
+   "sources": [
+    {
+     "label": "Hollywood Reporter — Streaming ratings, Sept 21-27",
+     "url": "https://www.hollywoodreporter.com/h/charts/"
+    }
+   ],
+   "titleKey": "show:236235",
+   "sourceConfidence": "single-source"
+  },
+  {
+   "rank": 7,
+   "title": "Dancing with the Stars",
+   "platform": "Disney+ / Hulu / ABC",
+   "tag": "ESTABLISHED",
+   "whyHere": "Season 35 premiered September 15 to 6.67 million viewers — a 24% jump over last year and the show's most-watched season debut since 2020.",
+   "whyWatch": "Reliable, big-tent competition TV — new cast, same addictive weekly stakes.",
+   "vibe": "Celebrities, sequins, and a studio audience gasping on cue.",
+   "commitment": "New season underway | ~120 min episodes",
+   "sources": [
+    {
+     "label": "Deadline — Dancing With the Stars Season 35 premieres to a 24% audience boost",
+     "url": "https://deadline.com/2026/09/dancing-with-the-stars-season-35-premiere-ratings-abc-1237105724/"
+    }
+   ],
+   "titleKey": "show:1508",
+   "sourceConfidence": "single-source"
+  },
+  {
+   "rank": 8,
+   "title": "Stranger Things: Tales from '85",
+   "platform": "Netflix",
+   "tag": "RISING",
+   "whyHere": "The animated Stranger Things spinoff's second season premiered September 17, riding one of streaming's biggest franchises straight back onto the chart.",
+   "whyWatch": "A quicker, kid-friendlier bite of the Stranger Things universe — same 1980s dread, half the runtime.",
+   "vibe": "Hawkins, but make it a Saturday-morning cartoon with teeth.",
+   "commitment": "1 season (8 episodes) | ~30 min episodes",
+   "sources": [
+    {
+     "label": "Collider — Stranger Things: Tales from '85 returns in 3 weeks",
+     "url": "https://collider.com/stranger-things-tales-from-85-season-2-netflix-release-date-september-2026/"
+    }
+   ],
+   "titleKey": "show:224263",
+   "sourceConfidence": "single-source"
+  },
+  {
+   "rank": 9,
+   "title": "The Secret Lives of Mormon Wives",
+   "platform": "Hulu",
+   "tag": "RISING",
+   "whyHere": "A new season landed and put the show right back on the chart, pulling 561 million viewing minutes in its first week back.",
+   "whyWatch": "Real-life influencer drama with a genuinely strange, specific cultural backdrop most reality TV doesn't touch.",
+   "vibe": "Momfluencer drama, but the stakes are church, marriage, and Instagram all at once.",
+   "commitment": "New season underway | ~40 min episodes",
+   "sources": [
+    {
+     "label": "Hollywood Reporter — Streaming ratings, Sept 21-27",
+     "url": "https://www.hollywoodreporter.com/h/charts/"
+    }
+   ],
+   "titleKey": "show:261102",
+   "sourceConfidence": "single-source"
+  },
+  {
+   "rank": 10,
+   "title": "The Traitors: New Blood",
+   "platform": "Peacock / NBC",
+   "tag": "BUZZY",
+   "whyHere": "The all-new-cast spinoff season premiered September 17 with a two-hour episode and has aired weekly since — a real reboot of the format, not just another season.",
+   "whyWatch": "Alan Cumming hosting 22 strangers lying to each other in a Scottish castle for $250,000 — reliably one of TV's best watercooler shows.",
+   "vibe": "Clue, if everyone playing was also a real person you'd trust with your secrets.",
+   "commitment": "New season underway | ~60 min episodes",
+   "sources": [
+    {
+     "label": "NBC Insider — Everything to know about The Traitors: New Blood",
+     "url": "https://www.nbc.com/nbc-insider/nbc-the-traitors-new-blood-premiere-date-cast-details"
+    }
+   ],
+   "titleKey": "show:215943",
+   "sourceConfidence": "single-source"
+  },
+  {
+   "rank": 11,
+   "title": "The Pitt",
+   "platform": "HBO Max",
+   "tag": "ESTABLISHED",
+   "whyHere": "Fresh off a huge night at the September 14 Emmys — a second consecutive Outstanding Drama Series win, plus Noah Wyle's second straight lead-actor win — even though season 3 itself isn't back until 2027.",
+   "whyWatch": "The most acclaimed medical drama on TV right now, told in tense, unbroken real time.",
+   "vibe": "One brutal ER shift, stretched across a whole season, somehow never boring.",
+   "commitment": "2 seasons so far | ~50 min episodes",
+   "sources": [
+    {
+     "label": "Deadline — The Pitt cast on season 3 after Emmy wins",
+     "url": "https://deadline.com/2026/09/the-pitt-emmy-win-season-2-2026-outstanding-drama-1237103303/"
+    },
+    {
+     "label": "Variety — Noah Wyle wins second lead actor Emmy for The Pitt",
+     "url": "https://variety.com/2026/tv/news/noah-wyle-wins-emmy-lead-actor-in-a-drama-1236856072/"
+    }
+   ],
+   "titleKey": "show:250307",
+   "sourceConfidence": "corroborated"
+  },
+  {
+   "rank": 12,
+   "title": "Chad Powers",
+   "platform": "Hulu",
+   "tag": "RISING",
+   "whyHere": "Season 2 arrived this month after a well-reviewed first season, extending Glen Powell's sports-comedy hit into a real second run.",
+   "whyWatch": "A disgraced quarterback cons his way back onto the field in disguise — a dumb premise with genuinely funny execution.",
+   "vibe": "A grown man in a wig, somehow the emotional center of a real sports story.",
+   "commitment": "Season 2 underway | ~30 min episodes",
+   "sources": [
+    {
+     "label": "TV Guide — New on Hulu and Disney+ in September 2026",
+     "url": "https://www.tomsguide.com/entertainment/hulu/new-on-hulu-and-disney-in-september-2026-all-the-new-shows-and-movies-to-watch"
+    }
+   ],
+   "titleKey": "show:247168",
+   "sourceConfidence": "single-source"
+  },
+  {
+   "rank": 13,
+   "title": "Crew Girl",
+   "platform": "Netflix",
+   "tag": "BUZZY",
+   "whyHere": "Netflix's new rowing dramedy premiered September 10 and has held real momentum into its second week, per weekly streaming-chart coverage.",
+   "whyWatch": "A fresh, specific high-school-sports setting (competitive rowing) that most teen dramas never touch.",
+   "vibe": "Mean Girls energy, but everyone's also training for a regatta.",
+   "commitment": "1 season (8 episodes) | ~30 min episodes",
+   "sources": [
+    {
+     "label": "The TV Ratings Guide — What's Trending, Sept 13-19",
+     "url": "https://www.thetvratingsguide.com/2026/09/whats-trending-on-streaming-september.html"
+    }
+   ],
+   "titleKey": "show:300507",
+   "sourceConfidence": "single-source"
+  },
+  {
+   "rank": 14,
+   "title": "Widow's Bay",
+   "platform": "Apple TV+",
+   "tag": "BUZZY",
+   "whyHere": "Set an all-time record at the September 14 Emmys — 14 wins, the most ever for a freshman comedy series, including Outstanding Comedy Series itself.",
+   "whyWatch": "A genuinely funny, off-kilter mystery-comedy that swept its category for a reason.",
+   "vibe": "A cursed New England island, a skeptical mayor, and a town that won't stop believing in the curse.",
+   "commitment": "1 season so far, renewed for S2 | ~30 min episodes",
+   "sources": [
+    {
+     "label": "Apple Newsroom — Widow's Bay triumphs as most-decorated freshman comedy in Emmy history",
+     "url": "https://www.apple.com/newsroom/2026/09/widows-bay-triumphs-as-most-decorated-freshman-comedy-in-emmy-history/"
+    },
+    {
+     "label": "Hollywood Reporter — 2026 Emmy Best Comedy: Widow's Bay wins",
+     "url": "https://www.hollywoodreporter.com/tv/tv-news/2026-emmy-best-comedy-winner-widows-bay-sets-emmys-record-1236697070/"
+    }
+   ],
+   "titleKey": "show:270476",
+   "sourceConfidence": "corroborated"
+  },
+  {
+   "rank": 15,
+   "title": "Pluribus",
+   "platform": "Apple TV+",
+   "tag": "UNDER-THE-RADAR",
+   "whyHere": "Quietly the other real story of the September 14 Emmys — Rhea Seehorn's first-ever win, for Best Lead Actress in a Drama, on her fourth nomination overall.",
+   "whyWatch": "Vince Gilligan's follow-up to Breaking Bad and Better Call Saul: a slow-burn sci-fi meditation on happiness and what it costs to stay human.",
+   "vibe": "The most miserable woman on Earth has to save it from happiness.",
+   "commitment": "1 season (9 episodes) | ~55 min episodes — season 2 not expected before 2027-28",
+   "sources": [
+    {
+     "label": "Hollywood Reporter — 2026 Emmy Best Actress in Drama: Rhea Seehorn wins for Pluribus",
+     "url": "https://www.hollywoodreporter.com/tv/tv-news/2026-emmy-best-actress-rhea-seehorn-pluribus-1236701384/"
+    },
+    {
+     "label": "Deadline — Rhea Seehorn's Emmy win for Pluribus season 1",
+     "url": "https://deadline.com/2026/09/rhea-seehorn-emmy-win-pluribus-season-1-2026-1237102961/"
+    }
+   ],
+   "titleKey": "show:225171",
+   "sourceConfidence": "corroborated"
+  }
+ ]
+}

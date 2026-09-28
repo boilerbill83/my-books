@@ -1,8 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-27T14:55:44.357Z",
-    "count": 481,
-    "capPerType": 200
+    "generatedAt": "2026-09-28T21:17:15Z",
+    "count": 481
   },
   "titles": [
     {
@@ -1701,7 +1700,7 @@
       "ids": {
         "tmdb": 1181678
       },
-      "title": "¿Quieres ser mi hijo?",
+      "title": "\u00bfQuieres ser mi hijo?",
       "year": 2023,
       "source": "genre-explore",
       "discoveredVia": "Comedy"
@@ -4920,7 +4919,7 @@
       "ids": {
         "tmdb": 870028
       },
-      "title": "The Accountant²",
+      "title": "The Accountant\u00b2",
       "year": 2025,
       "source": "genre-explore",
       "discoveredVia": "Mystery"
@@ -5019,7 +5018,7 @@
       "ids": {
         "tmdb": 245913
       },
-      "title": "Pelé: Birth of a Legend",
+      "title": "Pel\u00e9: Birth of a Legend",
       "year": 2016,
       "source": "book-theme-explore",
       "discoveredVia": "book-theme:sports"
