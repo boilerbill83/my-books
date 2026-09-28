@@ -738,6 +738,7 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
       const { rtAudience: rtAudTotal, metacriticUser: mcUserTotal } = scopedOmdbFieldCounts(['rtAudience', 'metacriticUser']);
       return {
         severity: 'warning',
+        blocked: true, // a real, deliberately large re-scrape barely moved this — the remaining gap is titles genuinely absent from RT/MC coverage, not a fixable pipeline issue
         ratings: { ease: 3, dataQuality: 6, recEngine: 2, ui: 2 },
         estTokens: 12000, // small: real ceiling largely reached, little left to automate
         shortTitle: 'Audience Ratings Almost Complete',
@@ -1602,6 +1603,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
   findings.push({
     id: 'rt-manual-url-needed',
     severity: 'warning',
+    blocked: true, // this sandbox can't fetch rottentomatoes.com — the automated path is genuinely exhausted, needs Bill to find and paste 5 real URLs
     ratings: { ease: 9, dataQuality: 3, recEngine: 1, ui: 1 },
     estTokens: 8000, // Bill's turn; trivial once the 5 URLs are in hand
     shortTitle: 'A Few Ratings Still Missing',
@@ -2739,6 +2741,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'flat-community-neutral-ignores-genre-bias',
       severity: 'warning',
+      blocked: true, // real bias confirmed, but every tested trust floor regressed precision — reverted in full, needs a fundamentally different (shrinkage/regularized) estimator not yet built
       ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
       estTokens: 25000, // a real shrinkage-estimator retry, the one untried angle
       shortTitle: 'Genre Rating Bias Tested',
@@ -3227,6 +3230,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'creator-critic-trust-gap-tested',
       severity: 'warning',
+      blocked: true, // regressed precision at every weight tested — blocked on more rated volume for under-the-radar creators, not more tuning
       ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
       estTokens: 15000, // re-run the already-built prototype once more rating volume exists
       shortTitle: 'Director Trust Idea Rejected',
@@ -3279,6 +3283,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'season-count-signal-tested',
       severity: 'warning',
+      blocked: true, // redundant with signals already scored (collinear with popularity/episode count) — no further angle proposed
       ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
       estTokens: 5000, // fully closed, nothing further proposed
       shortTitle: 'Season Count Idea Rejected',
@@ -3346,6 +3351,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'runtime-length-signal-tested',
       severity: 'warning',
+      blocked: true, // genuine negative result on both movie and show sides — no signal to build on, nothing further proposed
       ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
       estTokens: 4000, // fully closed, nothing further proposed
       shortTitle: 'Runtime Length Idea Rejected',
@@ -3384,6 +3390,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'premium-network-signal-tested',
       severity: 'warning',
+      blocked: true, // tested twice, including a version built around Bill's own specific hypothesis — the real advantage is already priced in through existing signals
       ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
       estTokens: 5000, // fully closed, tested twice already
       shortTitle: 'Premium Network Idea Rejected',
@@ -3450,6 +3457,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'mutual-citation-double-count-tested',
       severity: 'warning',
+      blocked: true, // real, confirmed mechanism — general fix regressed precision broadly; the one known bad case is already handled by exact-title dismissal instead
       ratings: { ease: 3, dataQuality: 2, recEngine: 3, ui: 1 },
       estTokens: 10000, // the one bad case is already handled; a narrower general fix is a small experiment
       shortTitle: 'Double-Counted Matches Found',
@@ -3731,6 +3739,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'citation-credit-thin-tone-vocab',
       severity: thinUnionCases.length ? 'warning' : 'good',
+      blocked: thinUnionCases.length > 0, // real cases still exist, but widening the fix to every citation (not just anomaly-linked ones) was re-tested and regressed precision@100 — this is the honest, by-design residual of a discount-not-exclude mechanism
       ratings: { ease: 5, dataQuality: 4, recEngine: 3, ui: 1 },
       estTokens: 80000, // its own writeup: richer tagging is a large, separate tracked effort
       shortTitle: 'Some Mood Tags Too Thin',
@@ -4378,6 +4387,7 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'prestige-bait-weak-personal-signal',
       severity: 'warning',
+      blocked: true, // two real fixes tested, both a no-op or a regression — needs a fundamentally different plot-level signal that doesn't currently exist
       ratings: { ease: 2, dataQuality: 2, recEngine: 2, ui: 1 },
       estTokens: 5000, // tested and rejected — nothing cheap left to try without a fundamentally different signal
       shortTitle: '"Prestige Bait" — Tested, Rejected',
@@ -5164,7 +5174,8 @@ async function load() {
       ? `OMDb fields (audience score, awards) are ${fmtNum(omdbEligible)} titles eligible but 0 enriched — needs the OMDB_API_KEY secret before that pipeline can run.`
       : `${fmtNum(omdbFound)}/${fmtNum(omdbEligible)} eligible titles have an OMDb record.`);
 
-  renderImprovementOpportunities(allFindings.filter(f => !f.backlog), 'improvementList', 'improvementResolvedNote', 10);
+  renderImprovementOpportunities(allFindings.filter(f => !f.backlog && !f.blocked), 'improvementList', 'improvementResolvedNote', 10);
+  renderImprovementOpportunities(allFindings.filter(f => f.blocked && !f.backlog), 'blockedList', null);
   renderImprovementOpportunities(allFindings.filter(f => f.backlog), 'backlogList', null);
   renderReleaseLog(releaseLog?.entries || []);
 }
