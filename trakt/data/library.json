@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-09-17T19:13:37.401Z",
-    "movieCount": 253,
-    "showCount": 392
+    "generatedAt": "2026-09-28T12:03:13.396Z",
+    "movieCount": 262,
+    "showCount": 394
   },
   "titles": [
     {
@@ -555,7 +555,7 @@
       "myRating": 9,
       "ratedAt": "2026-08-14T23:34:58.000Z",
       "plays": 9,
-      "airedEpisodes": 15,
+      "airedEpisodes": 17,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2026-08-01T01:21:00.000Z",
       "favorite": false,
@@ -860,8 +860,8 @@
       "myRating": 4,
       "ratedAt": "2026-08-13T13:30:48.000Z",
       "plays": 132,
-      "airedEpisodes": 132,
-      "completionStatus": "caught-up",
+      "airedEpisodes": 135,
+      "completionStatus": "in-progress",
       "lastWatchedAt": "2024-04-25T02:32:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": true
@@ -2950,7 +2950,7 @@
       "myRating": 9,
       "ratedAt": "2026-07-29T00:56:35.000Z",
       "plays": 9,
-      "airedEpisodes": 12,
+      "airedEpisodes": 14,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2024-06-26T03:02:00.000Z",
       "favorite": false,
@@ -4917,6 +4917,27 @@
       "hasConfirmedWatchDate": false
     },
     {
+      "type": "movie",
+      "titleKey": "movie:118340",
+      "ids": {
+        "imdb": "tt2015381",
+        "plex": {
+          "guid": "5d77696ef617c9002015f700",
+          "slug": "guardians-of-the-galaxy"
+        },
+        "slug": "guardians-of-the-galaxy-2014",
+        "tmdb": 118340,
+        "trakt": 82405
+      },
+      "title": "Guardians of the Galaxy",
+      "year": 2014,
+      "myRating": 4,
+      "ratedAt": "2026-09-19T18:34:48.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2014-08-01T00:00:00.000Z",
+      "favorite": false
+    },
+    {
       "type": "show",
       "titleKey": "show:83659",
       "ids": {
@@ -4982,13 +5003,13 @@
       },
       "title": "Halt and Catch Fire",
       "year": 2014,
-      "myRating": 8,
-      "ratedAt": "2017-10-14T00:00:00.000Z",
+      "myRating": 10,
+      "ratedAt": "2026-09-26T00:23:41.000Z",
       "plays": 40,
       "airedEpisodes": 40,
       "completionStatus": "caught-up",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
-      "favorite": false,
+      "favorite": true,
       "hasConfirmedWatchDate": false
     },
     {
@@ -5081,6 +5102,27 @@
       "ratedAt": "2016-08-12T00:00:00.000Z",
       "plays": 1,
       "lastWatchedAt": "2016-08-12T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:493922",
+      "ids": {
+        "imdb": "tt7784604",
+        "plex": {
+          "guid": "5d776d9947dd6e001f6f48ea",
+          "slug": "hereditary"
+        },
+        "slug": "hereditary-2018",
+        "tmdb": 493922,
+        "trakt": 340974
+      },
+      "title": "Hereditary",
+      "year": 2018,
+      "myRating": 3,
+      "ratedAt": "2026-09-19T18:36:05.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2018-06-08T00:00:00.000Z",
       "favorite": false
     },
     {
@@ -5787,7 +5829,7 @@
       "myRating": 9,
       "ratedAt": "2025-08-20T00:00:00.000Z",
       "plays": 177,
-      "airedEpisodes": 183,
+      "airedEpisodes": 184,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -6415,7 +6457,7 @@
       "myRating": 10,
       "ratedAt": "2026-09-11T23:50:02.000Z",
       "plays": 16,
-      "airedEpisodes": 23,
+      "airedEpisodes": 24,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -6641,6 +6683,31 @@
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:32962",
+      "ids": {
+        "imdb": "tt1492966",
+        "plex": {
+          "guid": "5d9c07f7ef619b002047ba63",
+          "slug": "louie-2010"
+        },
+        "slug": "louie",
+        "tmdb": 32962,
+        "tvdb": 155201,
+        "trakt": 32820
+      },
+      "title": "Louie",
+      "year": 2010,
+      "myRating": 10,
+      "ratedAt": "2026-09-25T13:30:44.000Z",
+      "plays": 61,
+      "airedEpisodes": 61,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2015-05-29T02:52:00.000Z",
+      "favorite": true,
+      "hasConfirmedWatchDate": true
     },
     {
       "type": "show",
@@ -7414,13 +7481,13 @@
       },
       "title": "MobLand",
       "year": 2025,
-      "myRating": 8,
-      "ratedAt": "2026-07-29T00:52:15.000Z",
+      "myRating": 10,
+      "ratedAt": "2026-09-21T01:56:00.000Z",
       "plays": 10,
-      "airedEpisodes": 10,
-      "completionStatus": "caught-up",
+      "airedEpisodes": 12,
+      "completionStatus": "in-progress",
       "lastWatchedAt": "2025-06-01T07:55:00.000Z",
-      "favorite": false,
+      "favorite": true,
       "hasConfirmedWatchDate": true
     },
     {
@@ -9833,7 +9900,7 @@
       "myRating": 8,
       "ratedAt": "2025-10-29T00:00:00.000Z",
       "plays": 30,
-      "airedEpisodes": 31,
+      "airedEpisodes": 32,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -9984,6 +10051,27 @@
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:502033",
+      "ids": {
+        "imdb": "tt5363618",
+        "plex": {
+          "guid": "5d776da696b655001fe4eaef",
+          "slug": "sound-of-metal"
+        },
+        "slug": "sound-of-metal-2020",
+        "tmdb": 502033,
+        "trakt": 348846
+      },
+      "title": "Sound of Metal",
+      "year": 2020,
+      "myRating": 3,
+      "ratedAt": "2026-09-25T13:44:12.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2026-09-25T13:44:00.000Z",
+      "favorite": false
     },
     {
       "type": "movie",
@@ -10401,7 +10489,7 @@
       "myRating": 9,
       "ratedAt": "2023-05-31T00:00:00.000Z",
       "plays": 34,
-      "airedEpisodes": 41,
+      "airedEpisodes": 42,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -11516,6 +11604,31 @@
     },
     {
       "type": "show",
+      "titleKey": "show:66573",
+      "ids": {
+        "imdb": "tt4955642",
+        "plex": {
+          "guid": "5d9c08190aaccd001f8ed6c9",
+          "slug": "the-good-place"
+        },
+        "slug": "the-good-place",
+        "tmdb": 66573,
+        "tvdb": 311711,
+        "trakt": 107700
+      },
+      "title": "The Good Place",
+      "year": 2016,
+      "myRating": 9,
+      "ratedAt": "2026-09-19T17:51:43.000Z",
+      "plays": 50,
+      "airedEpisodes": 50,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2020-01-31T02:24:00.000Z",
+      "favorite": false,
+      "hasConfirmedWatchDate": true
+    },
+    {
+      "type": "show",
       "titleKey": "show:1435",
       "ids": {
         "imdb": "tt1442462",
@@ -11884,6 +11997,27 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:570670",
+      "ids": {
+        "imdb": "tt1051906",
+        "plex": {
+          "guid": "5d776b987a53e9001e72a749",
+          "slug": "the-invisible-man-2020"
+        },
+        "slug": "the-invisible-man-2020",
+        "tmdb": 570670,
+        "trakt": 428130
+      },
+      "title": "The Invisible Man",
+      "year": 2020,
+      "myRating": 8,
+      "ratedAt": "2026-09-19T18:35:57.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2020-02-27T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:398978",
       "ids": {
         "imdb": "tt1302006",
@@ -12040,6 +12174,27 @@
       "lastWatchedAt": "2020-05-18T01:51:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": true
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:617653",
+      "ids": {
+        "imdb": "tt4244994",
+        "plex": {
+          "guid": "5e161923dedb97003d113e48",
+          "slug": "the-last-duel-2021"
+        },
+        "slug": "the-last-duel-2021",
+        "tmdb": 617653,
+        "trakt": 460727
+      },
+      "title": "The Last Duel",
+      "year": 2021,
+      "myRating": 5,
+      "ratedAt": "2026-09-19T17:51:58.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2021-10-15T00:00:00.000Z",
+      "favorite": false
     },
     {
       "type": "show",
@@ -12282,6 +12437,69 @@
       "lastWatchedAt": "2023-05-26T00:15:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": true
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:603",
+      "ids": {
+        "imdb": "tt0133093",
+        "plex": {
+          "guid": "5d776827880197001ec90904",
+          "slug": "the-matrix"
+        },
+        "slug": "the-matrix-1999",
+        "tmdb": 603,
+        "trakt": 481
+      },
+      "title": "The Matrix",
+      "year": 1999,
+      "myRating": 10,
+      "ratedAt": "2026-09-19T17:52:16.000Z",
+      "plays": 1,
+      "lastWatchedAt": "1999-03-31T00:00:00.000Z",
+      "favorite": true
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:604",
+      "ids": {
+        "imdb": "tt0234215",
+        "plex": {
+          "guid": "5d776827a091de001f2e62c9",
+          "slug": "the-matrix-reloaded"
+        },
+        "slug": "the-matrix-reloaded-2003",
+        "tmdb": 604,
+        "trakt": 482
+      },
+      "title": "The Matrix Reloaded",
+      "year": 2003,
+      "myRating": 8,
+      "ratedAt": "2026-09-19T17:52:42.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2003-05-15T00:00:00.000Z",
+      "favorite": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:605",
+      "ids": {
+        "imdb": "tt0242653",
+        "plex": {
+          "guid": "5d776827eb5d26001f1dd798",
+          "slug": "the-matrix-revolutions"
+        },
+        "slug": "the-matrix-revolutions-2003",
+        "tmdb": 605,
+        "trakt": 483
+      },
+      "title": "The Matrix Revolutions",
+      "year": 2003,
+      "myRating": 6,
+      "ratedAt": "2026-09-19T17:52:46.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2003-11-05T00:00:00.000Z",
+      "favorite": false
     },
     {
       "type": "movie",
@@ -12591,6 +12809,27 @@
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:27581",
+      "ids": {
+        "imdb": "tt1386588",
+        "plex": {
+          "guid": "5d776854594b2b001e688c03",
+          "slug": "the-other-guys"
+        },
+        "slug": "the-other-guys-2010",
+        "tmdb": 27581,
+        "trakt": 16984
+      },
+      "title": "The Other Guys",
+      "year": 2010,
+      "myRating": 7,
+      "ratedAt": "2026-09-19T18:34:35.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2010-08-06T00:00:00.000Z",
+      "favorite": false
     },
     {
       "type": "show",

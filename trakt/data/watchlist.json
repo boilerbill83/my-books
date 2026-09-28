@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-17T19:13:37.405Z",
-    "count": 47
+    "generatedAt": "2026-09-28T12:03:13.418Z",
+    "count": 54
   },
   "titles": [
     {
@@ -211,25 +211,6 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-07-31T13:56:18.000Z"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:273240",
-      "ids": {
-        "imdb": "tt33546863",
-        "plex": {
-          "guid": "670d3d01ea35b28bf307201f",
-          "slug": "off-campus"
-        },
-        "slug": "off-campus",
-        "tmdb": 273240,
-        "tvdb": 455086,
-        "trakt": 258304
-      },
-      "title": "Off Campus",
-      "year": 2026,
-      "watchlisted": true,
-      "watchlistedAt": "2026-07-31T22:55:12.000Z"
     },
     {
       "type": "show",
@@ -701,7 +682,7 @@
       "type": "show",
       "titleKey": "show:299939",
       "ids": {
-        "imdb": "tt13207736",
+        "imdb": null,
         "plex": {
           "guid": "606ef58bff5b43002ce0589a",
           "slug": "monster-2022"
@@ -868,6 +849,136 @@
       "watchlistedAt": "2026-09-17T13:25:07.000Z"
     },
     {
+      "type": "movie",
+      "titleKey": "movie:1433583",
+      "ids": {
+        "imdb": "tt10794054",
+        "plex": {
+          "guid": "5f4092bb1ae710004114f878",
+          "slug": "the-weight-2026"
+        },
+        "slug": "the-weight-2026",
+        "tmdb": 1433583,
+        "trakt": 1172770
+      },
+      "title": "The Weight",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-18T01:45:22.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:295778",
+      "ids": {
+        "imdb": "tt40197357",
+        "plex": {
+          "guid": "687d434c16e6d561559bef1e",
+          "slug": "scrubs-2026"
+        },
+        "slug": "scrubs-2026",
+        "tmdb": 295778,
+        "tvdb": 465690,
+        "trakt": 291441
+      },
+      "title": "Scrubs",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-18T21:19:29.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1228710",
+      "ids": {
+        "imdb": "tt30825738",
+        "plex": {
+          "guid": "659eea0148cee3ee85e48609",
+          "slug": "the-mandalorian-and-grogu-2026"
+        },
+        "slug": "the-mandalorian-and-grogu-2026",
+        "tmdb": 1228710,
+        "trakt": 993003
+      },
+      "title": "The Mandalorian and Grogu",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-18T23:13:03.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1423191",
+      "ids": {
+        "imdb": "tt35538033",
+        "plex": {
+          "guid": "67a23f4861078f9079534716",
+          "slug": "resident-evil-2026"
+        },
+        "slug": "resident-evil-2026",
+        "tmdb": 1423191,
+        "trakt": 1164118
+      },
+      "title": "Resident Evil",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-18T23:16:19.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:247718",
+      "ids": {
+        "imdb": "tt31510819",
+        "plex": {
+          "guid": "65e04d051f43644ac5a79a99",
+          "slug": "mobland"
+        },
+        "slug": "mobland",
+        "tmdb": 247718,
+        "tvdb": 446831,
+        "trakt": 228595
+      },
+      "title": "MobLand",
+      "year": 2025,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-21T01:56:01.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:258230",
+      "ids": {
+        "imdb": "tt6037988",
+        "plex": {
+          "guid": "66c479ce34f7a5fb641c17f4",
+          "slug": "last-seen"
+        },
+        "slug": "last-seen",
+        "tmdb": 258230,
+        "tvdb": 451782,
+        "trakt": 247058
+      },
+      "title": "Last Seen",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-24T19:31:25.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:239618",
+      "ids": {
+        "imdb": "tt30051064",
+        "plex": {
+          "guid": "65569bccb690e76d694bee11",
+          "slug": "american-hostage"
+        },
+        "slug": "american-hostage",
+        "tmdb": 239618,
+        "tvdb": 462907,
+        "trakt": 213280
+      },
+      "title": "American Hostage",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-25T23:26:03.000Z"
+    },
+    {
       "type": "show",
       "titleKey": "show:290856",
       "ids": {
@@ -885,6 +996,25 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-07-28T19:26:36.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:236235",
+      "ids": {
+        "imdb": "tt13210838",
+        "plex": {
+          "guid": "6365f4db354ca0d2edfad043",
+          "slug": "the-gentlemen"
+        },
+        "slug": "the-gentlemen",
+        "tmdb": 236235,
+        "tvdb": 426845,
+        "trakt": 211407
+      },
+      "title": "The Gentlemen",
+      "year": 2024,
+      "watchlisted": true,
+      "watchlistedAt": "2026-09-25T23:26:25.000Z"
     }
   ]
 }

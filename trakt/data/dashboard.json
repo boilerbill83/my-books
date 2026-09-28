@@ -1,35 +1,35 @@
 {
-  "generatedAt": "2026-09-17T19:13:23.214Z",
+  "generatedAt": "2026-09-28T12:03:07.131Z",
   "profile": {
     "username": "bill_stoltenberg_27166c",
     "joinedAt": "2026-07-27T14:49:58.000Z"
   },
   "summary": {
-    "moviesWatched": 253,
-    "moviesPlays": null,
-    "moviesRatings": 252,
-    "moviesMinutes": null,
-    "showsWatched": 392,
-    "showsRatings": 399,
-    "episodesWatched": null,
-    "episodesPlays": null,
-    "episodesMinutes": null,
-    "totalRatings": 651,
-    "totalMinutes": 0,
-    "totalHours": 0,
-    "avgRating": null
+    "moviesWatched": 262,
+    "moviesPlays": 262,
+    "moviesRatings": 261,
+    "moviesMinutes": 33156,
+    "showsWatched": 394,
+    "showsRatings": 401,
+    "episodesWatched": 11587,
+    "episodesPlays": 11587,
+    "episodesMinutes": 498648,
+    "totalRatings": 662,
+    "totalMinutes": 531804,
+    "totalHours": 8863,
+    "avgRating": 7.8
   },
   "ratingDistribution": {
     "1": 0,
-    "2": 0,
-    "3": 0,
-    "4": 0,
-    "5": 0,
-    "6": 0,
-    "7": 0,
-    "8": 0,
-    "9": 0,
-    "10": 0
+    "2": 6,
+    "3": 6,
+    "4": 24,
+    "5": 9,
+    "6": 60,
+    "7": 123,
+    "8": 234,
+    "9": 99,
+    "10": 101
   },
   "activityByYear": [
     {
@@ -54,7 +54,7 @@
     },
     {
       "year": 1999,
-      "movies": 0,
+      "movies": 1,
       "episodes": 31
     },
     {
@@ -74,7 +74,7 @@
     },
     {
       "year": 2003,
-      "movies": 2,
+      "movies": 4,
       "episodes": 41
     },
     {
@@ -109,18 +109,18 @@
     },
     {
       "year": 2010,
-      "movies": 6,
-      "episodes": 138
+      "movies": 7,
+      "episodes": 151
     },
     {
       "year": 2011,
       "movies": 6,
-      "episodes": 176
+      "episodes": 189
     },
     {
       "year": 2012,
       "movies": 6,
-      "episodes": 207
+      "episodes": 220
     },
     {
       "year": 2013,
@@ -129,42 +129,42 @@
     },
     {
       "year": 2014,
-      "movies": 9,
-      "episodes": 206
+      "movies": 10,
+      "episodes": 220
     },
     {
       "year": 2015,
       "movies": 18,
-      "episodes": 188
+      "episodes": 196
     },
     {
       "year": 2016,
       "movies": 17,
-      "episodes": 225
+      "episodes": 234
     },
     {
       "year": 2017,
       "movies": 18,
-      "episodes": 237
+      "episodes": 248
     },
     {
       "year": 2018,
-      "movies": 15,
-      "episodes": 237
+      "movies": 16,
+      "episodes": 251
     },
     {
       "year": 2019,
       "movies": 18,
-      "episodes": 251
+      "episodes": 263
     },
     {
       "year": 2020,
-      "movies": 5,
-      "episodes": 78
+      "movies": 6,
+      "episodes": 82
     },
     {
       "year": 2021,
-      "movies": 5,
+      "movies": 6,
       "episodes": 96
     },
     {
@@ -189,14 +189,14 @@
     },
     {
       "year": 2026,
-      "movies": 13,
+      "movies": 14,
       "episodes": 164
     }
   ],
   "dataCaveats": {
     "undatedEpisodePlays": 7489,
-    "datedEpisodePlays": 3987,
-    "undatedEpisodeSharePct": 65.3
+    "datedEpisodePlays": 4098,
+    "undatedEpisodeSharePct": 64.6
   },
   "topShowsByPlays": [
     {
@@ -221,7 +221,7 @@
       "title": "It's Always Sunny in Philadelphia",
       "year": 2005,
       "plays": 177,
-      "airedEpisodes": 183
+      "airedEpisodes": 184
     },
     {
       "title": "Mom",
@@ -287,10 +287,16 @@
       "title": "American Horror Story",
       "year": 2011,
       "plays": 132,
-      "airedEpisodes": 132
+      "airedEpisodes": 135
     }
   ],
   "topRatedMovies": [
+    {
+      "title": "The Matrix",
+      "year": 1999,
+      "rating": 10,
+      "ratedAt": "2026-09-19T17:52:16.000Z"
+    },
     {
       "title": "Inception",
       "year": 2010,
@@ -404,15 +410,27 @@
       "year": 2015,
       "rating": 10,
       "ratedAt": "2026-08-24T12:26:37.000Z"
-    },
-    {
-      "title": "Gladiator",
-      "year": 2000,
-      "rating": 10,
-      "ratedAt": "2026-08-24T12:26:02.000Z"
     }
   ],
   "topRatedShows": [
+    {
+      "title": "Halt and Catch Fire",
+      "year": 2014,
+      "rating": 10,
+      "ratedAt": "2026-09-26T00:23:41.000Z"
+    },
+    {
+      "title": "Louie",
+      "year": 2010,
+      "rating": 10,
+      "ratedAt": "2026-09-25T13:30:44.000Z"
+    },
+    {
+      "title": "MobLand",
+      "year": 2025,
+      "rating": 10,
+      "ratedAt": "2026-09-21T01:56:00.000Z"
+    },
     {
       "title": "1923",
       "year": 2022,
@@ -514,28 +532,10 @@
       "year": 2004,
       "rating": 10,
       "ratedAt": "2026-07-29T01:21:29.000Z"
-    },
-    {
-      "title": "Entourage",
-      "year": 2004,
-      "rating": 10,
-      "ratedAt": "2026-07-29T01:20:15.000Z"
-    },
-    {
-      "title": "Oz",
-      "year": 1997,
-      "rating": 10,
-      "ratedAt": "2026-07-29T01:19:58.000Z"
-    },
-    {
-      "title": "The Sopranos",
-      "year": 1999,
-      "rating": 10,
-      "ratedAt": "2026-07-29T01:19:25.000Z"
     }
   ],
   "watchlist": {
-    "count": 47,
+    "count": 54,
     "items": [
       {
         "type": "show",
@@ -626,12 +626,6 @@
         "title": "Crystal Lake",
         "year": 2026,
         "listedAt": "2026-07-31T13:56:18.000Z"
-      },
-      {
-        "type": "show",
-        "title": "Off Campus",
-        "year": 2026,
-        "listedAt": "2026-07-31T22:55:12.000Z"
       },
       {
         "type": "show",
@@ -818,11 +812,59 @@
         "title": "Hacks",
         "year": 2021,
         "listedAt": "2026-09-17T13:25:07.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "The Weight",
+        "year": 2026,
+        "listedAt": "2026-09-18T01:45:22.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Scrubs",
+        "year": 2026,
+        "listedAt": "2026-09-18T21:19:29.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "The Mandalorian and Grogu",
+        "year": 2026,
+        "listedAt": "2026-09-18T23:13:03.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Resident Evil",
+        "year": 2026,
+        "listedAt": "2026-09-18T23:16:19.000Z"
+      },
+      {
+        "type": "show",
+        "title": "MobLand",
+        "year": 2025,
+        "listedAt": "2026-09-21T01:56:01.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Last Seen",
+        "year": 2026,
+        "listedAt": "2026-09-24T19:31:25.000Z"
+      },
+      {
+        "type": "show",
+        "title": "American Hostage",
+        "year": 2026,
+        "listedAt": "2026-09-25T23:26:03.000Z"
+      },
+      {
+        "type": "show",
+        "title": "The Gentlemen",
+        "year": 2024,
+        "listedAt": "2026-09-25T23:26:25.000Z"
       }
     ]
   },
   "favorites": {
-    "count": 37,
+    "count": 41,
     "items": [
       {
         "type": "show",
@@ -1045,6 +1087,30 @@
         "title": "Inception",
         "year": 2010,
         "listedAt": "2026-09-12T00:40:43.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "The Matrix",
+        "year": 1999,
+        "listedAt": "2026-09-19T17:52:16.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Louie",
+        "year": 2010,
+        "listedAt": "2026-09-25T13:30:46.000Z"
+      },
+      {
+        "type": "show",
+        "title": "MobLand",
+        "year": 2025,
+        "listedAt": "2026-09-25T23:25:42.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Halt and Catch Fire",
+        "year": 2014,
+        "listedAt": "2026-09-26T00:23:43.000Z"
       }
     ]
   }

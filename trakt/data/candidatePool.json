@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-26T04:16:07.004Z",
-    "count": 484,
+    "generatedAt": "2026-09-28T12:03:35.047Z",
+    "count": 481,
     "capPerType": 200
   },
   "titles": [
@@ -1270,16 +1270,6 @@
       "titleKey": "movie:582218",
       "ids": {
         "tmdb": 582218
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:27581",
-      "ids": {
-        "tmdb": 27581
       },
       "title": null,
       "year": null,
@@ -2642,17 +2632,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:118340",
-      "ids": {
-        "tmdb": 118340
-      },
-      "title": "Guardians of the Galaxy",
-      "year": 2014,
-      "source": "genre-explore",
-      "discoveredVia": "Action"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:334543",
       "ids": {
         "tmdb": 334543
@@ -3076,17 +3055,6 @@
       "year": 2008,
       "source": "genre-explore",
       "discoveredVia": "Crime"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:502033",
-      "ids": {
-        "tmdb": 502033
-      },
-      "title": "Sound of Metal",
-      "year": 2020,
-      "source": "genre-explore",
-      "discoveredVia": "Music"
     },
     {
       "type": "movie",
@@ -3538,17 +3506,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:617653",
-      "ids": {
-        "tmdb": 617653
-      },
-      "title": "The Last Duel",
-      "year": 2021,
-      "source": "genre-explore",
-      "discoveredVia": "Thriller"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:1204680",
       "ids": {
         "tmdb": 1204680
@@ -3722,17 +3679,6 @@
       "year": 2023,
       "source": "genre-explore",
       "discoveredVia": "Action & Adventure"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:66573",
-      "ids": {
-        "tmdb": 66573
-      },
-      "title": "The Good Place",
-      "year": 2016,
-      "source": "genre-explore",
-      "discoveredVia": "Sci-Fi & Fantasy"
     },
     {
       "type": "show",
@@ -4411,26 +4357,6 @@
       "source": "bill-manual"
     },
     {
-      "type": "movie",
-      "titleKey": "movie:604",
-      "ids": {
-        "tmdb": 604
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:605",
-      "ids": {
-        "tmdb": 605
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
       "type": "show",
       "titleKey": "show:240558",
       "ids": {
@@ -4715,17 +4641,6 @@
       "titleKey": "show:95556",
       "ids": {
         "tmdb": 95556
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:295778",
-      "ids": {
-        "tmdb": 295778,
-        "imdb": "tt40197357"
       },
       "title": null,
       "year": null,
