@@ -2741,35 +2741,47 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     findings.push({
       id: 'flat-community-neutral-ignores-genre-bias',
       severity: 'warning',
-      blocked: true, // real bias confirmed, but every tested trust floor regressed precision — reverted in full, needs a fundamentally different (shrinkage/regularized) estimator not yet built
+      blocked: true, // real bias confirmed, TWO independent estimator designs (binary trust-floor, continuous shrinkage) both regressed precision at every tested strength — closed, not just deferred
       ratings: { ease: 2, dataQuality: 2, recEngine: 1, ui: 1 },
-      estTokens: 25000, // a real shrinkage-estimator retry, the one untried angle
+      estTokens: 0, // both realistic estimator designs are now tested and rejected; no further untried angle identified
       shortTitle: 'Genre Rating Bias Tested',
       title: highest && lowest
-        ? `Tested: a per-genre COMMUNITY_NEUTRAL (real ${spread.toFixed(2)}-point bias spread, ${highest.g} +${highest.delta.toFixed(2)} to ${lowest.g} ${lowest.delta.toFixed(2)}) regressed precision — reverted, kept as a documented dead end`
+        ? `Tested twice: a per-genre COMMUNITY_NEUTRAL (real ${spread.toFixed(2)}-point bias spread, ${highest.g} +${highest.delta.toFixed(2)} to ${lowest.g} ${lowest.delta.toFixed(2)}) regressed precision under BOTH a binary trust floor and a continuous shrinkage estimator — closed as a dead end`
         : 'Not enough rated volume per genre yet to measure a real genre-dependent crowd bias',
       technical: `Live per-canonical-genre delta (via <code>inferGenre()</code>, same single-valued classifier ` +
         `<code>genreBonus()</code> uses — Bill's own average rating minus TMDB's <code>voteAverage</code>, both on a 0-10 scale, genres ` +
         `with 15+ rated titles): ` + genreRows.map(r => `${esc(r.g)} ${r.delta >= 0 ? '+' : ''}${r.delta.toFixed(2)}`).join(', ') +
-        `. This real spread motivated actually building the fix — a <code>communityGenreNeutral</code> map in ` +
-        `<code>buildIndexes()</code> (per-genre mean of <code>myRating - voteAverage</code>, same shape as <code>genreProfile</code>) ` +
-        `substituting for the flat <code>COMMUNITY_NEUTRAL</code> in <code>baseSignals()</code>'s community-rating term. Swept the ` +
-        `per-genre trust floor 3 through 30 rated titles against <code>scripts/eval.js</code>: every value tested REGRESSED — ` +
-        `precision@25 96%->92% at floor<=10, precision@100 93%->88-90% at every floor from 3 to 30 — only disabling the mechanism ` +
-        `entirely recovered the pre-existing baseline (90/96/94/93, MAE 14.15). Root cause: the bias estimate itself is a ` +
-        `<i>difference</i> of two already-noisy values (Bill's own rating and TMDB's crowd average), carrying roughly double the ` +
-        `variance of a plain per-genre mean the way <code>genreProfile</code>/<code>toneProfile</code> compute theirs — even genres ` +
-        `with real volume don't estimate this specific quantity reliably enough to correct the neutral point without introducing more ` +
-        `noise than the correction removes. Reverted in full (not shipped inert) rather than left half-built.`,
+        `. <strong>Round 1</strong> (binary trust floor): a <code>communityGenreNeutral</code> map in <code>buildIndexes()</code> ` +
+        `(per-genre mean of <code>myRating - voteAverage</code>, same shape as <code>genreProfile</code>), gated on a minimum rated-` +
+        `title count, substituting for the flat <code>COMMUNITY_NEUTRAL</code>. Swept the trust floor 3 through 30 against ` +
+        `<code>scripts/eval.js</code>: every value REGRESSED — precision@25 96%->92% at floor<=10, precision@100 93%->88-90% at every ` +
+        `floor. <strong>Round 2</strong> (continuous shrinkage/regularized estimator — the specific untried angle this finding used to ` +
+        `flag): built a proper Empirical-Bayes/James-Stein blend instead of a hard gate — <code>shrunkDelta(g) = (n/(n+k)) × ` +
+        `rawDelta(g) + (k/(n+k)) × globalMeanDelta</code> (real measured global mean 0.22 across 655 rated+community-scored titles, ` +
+        `using the identical blended TMDB/IMDb <code>communityScore()</code> the live signal actually consumes, not a cruder voteAverage-` +
+        `only proxy). Swept k (the shrinkage strength) from 0 (no shrinkage — the noisiest raw per-genre mean) up through 1,000,000 ` +
+        `(so heavy it converges to a uniform, ranking-neutral shift) against <code>scripts/eval.js</code>: k=1,000,000 correctly ` +
+        `reproduced the true baseline exactly (100/100/98/88, confirming the harness itself is wired correctly), but EVERY finite k ` +
+        `tested — including k=50, a very conservative floor requiring substantial genre volume before trusting any correction at all — ` +
+        `regressed precision@50 (98%->92-94%) and precision@100 (88%->87%), with calibrated MAE getting monotonically WORSE, not ` +
+        `better, as the correction strength increased (11.66 at k=1,000,000 down to 11.76 at k=0) rather than the compensating gain a ` +
+        `real fix should show. Root cause confirmed identical to round 1's diagnosis, now doubly verified: the bias estimate itself — ` +
+        `a <i>difference</i> of two already-noisy values — carries too much variance relative to <code>COMMUNITY_WEIGHT</code>'s modest ` +
+        `8-point weight to correct the neutral point without destabilizing rank order at the precision@50 boundary, no matter how the ` +
+        `estimator smooths the per-genre estimate. Neither round shipped, even inert.`,
       plain: `This looked like a clean win on paper — Bill really does rate comedies higher and horror lower than the average crowd ` +
-        `does, by a real, measured amount. But building the actual fix and testing it against real held-out predictions showed it makes ` +
-        `the engine's picks measurably worse, not better, no matter how much data was required before trusting the correction. The most ` +
-        `likely reason: the correction itself is calculated by subtracting two already-imperfect numbers from each other, which stacks ` +
-        `up more noise than the fix removes. Tested honestly and reverted rather than shipped because it sounded reasonable.`,
-      impact: `A genuine negative result, not an unexplored idea — worth keeping on record so a future session doesn't re-propose the ` +
-        `same fix without the sweep data that already disproved it. If this is revisited, the real next step isn't a different trust ` +
-        `floor (all of 3-30 failed identically) but a less noise-prone way to estimate the bias itself — e.g. a shrinkage/regularized ` +
-        `estimate toward the global +0.18 bias rather than a raw per-genre difference-of-means.`,
+        `does, by a real, measured amount. Two different ways of building the correction were tried: a simple version that only ` +
+        `trusted a genre once enough data existed, and a more careful, statistically-standard version that blends a genre's own bias ` +
+        `estimate toward the overall average by how much data backs it (the same kind of technique used to avoid overreacting to a ` +
+        `small sample). Both were tested against real held-out predictions, and both made the engine's picks measurably worse, not ` +
+        `better — even the gentlest version. The most likely reason, confirmed twice now: the correction itself is calculated by ` +
+        `subtracting two already-imperfect numbers from each other, which stacks up more noise than the fix removes, regardless of how ` +
+        `carefully that noise is smoothed afterward.`,
+      impact: `A genuine negative result, confirmed independently twice with two structurally different estimator designs — worth ` +
+        `closing out rather than leaving open, so a future session doesn't re-propose either variant without the sweep data that ` +
+        `already disproved both. No further untried angle on this specific mechanism is identified; a real fix would need either a ` +
+        `less noisy way to measure the bias (a different data source entirely, not just a smarter blend of the same two noisy inputs) ` +
+        `or accepting that this particular signal isn't correctable at this dataset's scale.`,
     });
   }
 
@@ -3438,30 +3450,49 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     const lovedKeys = new Set(lovedTitles.map(t => t.titleKey));
     const pool = [...fromWatchlist, ...fromCandidates];
     let totalWithBoth = 0, mutualCount = 0;
+    // Round 2 (a narrower, distinct hypothesis from the blanket dedup
+    // above): among ALL real candidates with any loved-title match
+    // (forward or reverse, not just ones with both), how many rest on
+    // exactly ONE loved title cited mutually both directions — i.e. the
+    // candidate's ENTIRE citation-based credit is that one relationship,
+    // with no other independent corroborating loved title at all?
+    let anyMatchCount = 0, soleMutualCount = 0, franchiseLinkedSoleMutual = 0;
     for (const c of pool) {
       const m = enrichedMeta[c.titleKey];
       if (!m) continue;
       const cites = new Set([...(m.similarToIds || []), ...(m.recommendedIds || [])].map(id => titleKey(c.type, id)));
       const citingLoved = [...cites].filter(k => lovedKeys.has(k));
-      if (!citingLoved.length) continue;
       const citedByLoved = lovedTitles.filter(t => {
         const lm = enrichedMeta[t.titleKey];
         if (!lm) return false;
         const c2 = new Set([...(lm.similarToIds || []), ...(lm.recommendedIds || [])].map(id => titleKey(t.type, id)));
         return c2.has(c.titleKey);
       });
-      if (!citedByLoved.length) continue;
+      const allSources = new Set([...citingLoved, ...citedByLoved.map(t => t.titleKey)]);
+      if (allSources.size) {
+        anyMatchCount++;
+        if (allSources.size === 1) {
+          const only = [...allSources][0];
+          const isMutual = citingLoved.includes(only) && citedByLoved.some(t => t.titleKey === only);
+          if (isMutual) {
+            soleMutualCount++;
+            const otherMeta = enrichedMeta[only];
+            if (m.belongsToCollection?.id != null && m.belongsToCollection.id === otherMeta?.belongsToCollection?.id) franchiseLinkedSoleMutual++;
+          }
+        }
+      }
+      if (!citingLoved.length || !citedByLoved.length) continue;
       totalWithBoth++;
       if (citingLoved.some(k => citedByLoved.some(t => t.titleKey === k))) mutualCount++;
     }
     findings.push({
       id: 'mutual-citation-double-count-tested',
       severity: 'warning',
-      blocked: true, // real, confirmed mechanism — general fix regressed precision broadly; the one known bad case is already handled by exact-title dismissal instead
-      ratings: { ease: 3, dataQuality: 2, recEngine: 3, ui: 1 },
-      estTokens: 10000, // the one bad case is already handled; a narrower general fix is a small experiment
+      blocked: true, // real, confirmed mechanism — TWO fix designs tried (blanket dedup, narrower sole-source-only dedup); neither shipped. The one known bad case is already handled by exact-title dismissal + the separate, shipped citationCreditMultiplier() mechanism instead.
+      ratings: { ease: 3, dataQuality: 2, recEngine: 2, ui: 1 },
+      estTokens: 0, // both the blanket and the narrowed sole-source fix are now tested; the real bad cases are already handled elsewhere (citationCreditMultiplier(), exact-title dismissal)
       shortTitle: 'Double-Counted Matches Found',
-      title: `Root-caused the comic-book-movie complaint to a real mechanism (mutual citation double-counting) — confirmed it fixes the specific case, but a general fix regressed precision, so it wasn't shipped`,
+      title: `Root-caused the comic-book-movie complaint to a real mechanism (mutual citation double-counting) — confirmed it fixes the specific case, but two fix designs (blanket and narrowed) both came back with no real benefit, so neither shipped`,
       technical: `Live check: of the ${totalWithBoth} watchlist/candidate titles with both a forward AND reverse loved-title citation match, ` +
         `${mutualCount} (${totalWithBoth ? Math.round(mutualCount / totalWithBoth * 100) : 0}%) have the SAME loved title counted in both directions — ` +
         `TMDB's similar/recommendations endpoints are frequently symmetric for closely-related titles, so a single relationship (e.g. Deadpool↔` +
@@ -3473,18 +3504,41 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `precision@100 91%→90%, for only a marginal MAE gain (14.64→14.59). Root cause of the regression: most mutual citations in this dataset ` +
         `are genuine strong corroboration, not artifacts — e.g. "The Westies" cites and is cited back by 5 different loved crime dramas ` +
         `(Boardwalk Empire, Mayor of Kingstown, Mindhunter, Peaky Blinders, The Sopranos), a real, deep genre match the blanket fix would have ` +
-        `discounted right alongside the genuine Deadpool/Justice League anomaly.`,
+        `discounted right alongside the genuine Deadpool/Justice League anomaly. <strong>Round 2</strong> (a deliberately narrower hypothesis, ` +
+        `distinct from the blanket dedup above): of ${anyMatchCount} real candidates with ANY loved-title citation match at all, only ` +
+        `${soleMutualCount} (${anyMatchCount ? (100 * soleMutualCount / anyMatchCount).toFixed(1) : 0}%) rest on exactly ONE loved title cited ` +
+        `mutually both directions — i.e. the candidate's entire citation-based credit is that single relationship, with zero other independent ` +
+        `corroboration (vs. the ${totalWithBoth ? Math.round(mutualCount / totalWithBoth * 100) : 0}% figure above, which only required a title to ` +
+        `have both directions present at all, not be the SOLE source). Built a second, narrower scratch fix: a new <code>reverseCiters</code> ` +
+        `index tracking which specific loved titles back each candidate's reverse-match credit, discounting the reverse term only when it's this ` +
+        `sole-mutual case. Swept the discount weight 0 (fully zero the redundant reverse credit) through 1 (no change) against ` +
+        `<code>scripts/eval.js</code>: unlike the blanket version, precision held EXACTLY at every weight tested (100/100/98/88, matching the true ` +
+        `baseline bit-for-bit) — no regression. But there was no improvement either, and calibrated MAE crept monotonically WORSE as the discount ` +
+        `increased (11.67→11.69 from w=1 to w=0), the opposite of what a real fix should show. Investigated why: of the sole-mutual cases actually ` +
+        `present in the eval set, only ${franchiseLinkedSoleMutual} were caught by a literal <code>belongsToCollection</code> franchise check, but a ` +
+        `much larger share turned out to be genuine strong single-relationship matches even without sharing a literal TMDB collection — Creed↔The ` +
+        `Fighter (both boxing dramas), The Mandalorian↔Star Wars: Andor (same franchise universe, different collection ids), Sound of Metal↔` +
+        `Whiplash (both music-obsession dramas), The Martian↔Project Hail Mary (both hard-sci-fi survival stories). Discounting these removes real ` +
+        `signal, roughly canceling out whatever benefit comes from the smaller share of genuinely spurious pairs — netting to ~0 with a slight MAE ` +
+        `cost, not a clean win.`,
       plain: `Bill's real complaint: comic-book movies keep showing up as top picks despite him not caring for most of them. Traced the actual ` +
         `cause for one specific case (Zack Snyder's Justice League) and found something real and fixable: its high score came largely from citing ` +
         `Deadpool as "similar" AND being cited back by Deadpool — the same single relationship counted twice. Built a fix, confirmed it correctly ` +
         `pulled that title's score down by a real amount, then tested it against every other real recommendation before shipping it — and it made ` +
         `many other GOOD recommendations noticeably worse, because in most cases (unrelated to comic books) two titles citing each other back and ` +
         `forth really is a strong, legitimate sign they're alike. Fixing the Deadpool/Justice League case specifically would have broken a lot of ` +
-        `other correct ones.`,
-      impact: `A genuine negative result on a real, correctly-diagnosed mechanism — the anomaly itself is confirmed real (not a false lead), but ` +
-        `a general-purpose fix isn't safe here the same way it wasn't for the earlier superhero-genre attempts. The one bad case this investigation ` +
-        `was built around (Zack Snyder's Justice League) is already handled the safe way — an exact-title dismissal, same as Eurovision. Worth ` +
-        `keeping on record so a future session sees the real sweep numbers before re-attempting a broader version of this fix.`,
+        `other correct ones. Tried a second, much narrower version of the same idea — only discount the rare case where a title's ENTIRE match ` +
+        `credit comes from a single mutual relationship with nothing else backing it up. This time it didn't break anything (unlike the first ` +
+        `attempt), but it also didn't help — because most of those single-relationship matches turned out to be real, correct pairings too (a ` +
+        `boxing movie citing another boxing movie, a Star Wars show citing another Star Wars show), just narrower ones without other support yet. ` +
+        `Discounting them for being "sole" removes real signal about as often as it removes noise.`,
+      impact: `Two genuine negative results on a real, correctly-diagnosed mechanism now — a broad version that broke things, and a narrow, more ` +
+        `carefully targeted version that's safe but doesn't measurably help. The anomaly itself is confirmed real (not a false lead), but neither ` +
+        `attempted fix design earns its complexity. The one bad case this investigation was originally built around (Zack Snyder's Justice League) ` +
+        `is already handled two safe ways — an exact-title dismissal (same as Eurovision) and the separate, shipped <code>citationCreditMultiplier` +
+        `()</code> mechanism, which discounts exactly this pattern but only for citations touching a known statistical-outlier loved title, scaled ` +
+        `by real tone overlap rather than a blunt sole/not-sole split. Worth keeping on record so a future session sees both real sweeps before ` +
+        `re-attempting a third version of this fix.`,
     });
   }
 
