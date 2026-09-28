@@ -1665,11 +1665,25 @@ build from):
   keyword-tier buckets (`murder-mystery`, `romance`, `police-procedural`,
   `spy-espionage`, `organized-crime`, `heist`), each checked against real
   keyword-frequency counts first (>=8 real titles per group) rather than
-  guessed. Display-only — never wired into `matchScore()`. Still a
-  partial pass overall: most remaining subgenre categories don't have an
-  obvious further split the way `historical` naturally splits into eras
-  (see the dashboard's own live-computed `remaining-subgenre-genre-
-  specificity` Improvement Opportunities finding for current coverage).
+  guessed. A further pass (Bill: "start on" the dashboard's own
+  `remaining-subgenre-genre-specificity` finding) added `family-drama` —
+  by far the single largest zero-coverage bucket (395 titles, nearly as
+  big as every other missing bucket combined) — with 4 real relational
+  clusters (Sibling Dynamics, Marriage & Infidelity, Dysfunctional
+  Family, Parent-Child Bond), taking its real per-title hit rate from
+  0% to 59.0% (233/395); `legal`/`medical` and 3 small buckets
+  (`alien-invasion`/`neo-western`/`psychological-horror`) were checked
+  the same way and genuinely don't clear the >=8-real-titles bar — their
+  only candidate splits are synonyms of the parent tag itself (the same
+  trap already documented for `prison`'s "prisoner"). Display-only —
+  never wired into `matchScore()`. Still a partial pass overall: most
+  remaining subgenre categories don't have an obvious further split the
+  way `historical` naturally splits into eras (see the dashboard's own
+  live-computed `remaining-subgenre-genre-specificity` Improvement
+  Opportunities finding for current coverage — note its headline
+  "N of 30 buckets" count is a crude does-any-title-hit probe that
+  under-represents a fix concentrated in one very large bucket, like
+  this one).
 - **Tones** (`inferTones()`) — mood/craft descriptors (`gritty`, `dark`,
   `witty`, `satirical`, `hilarious`, `inspirational`, `intense`,
   `suspenseful`, `twisty`, `slow-burn`, `character-driven`, `nostalgic`,

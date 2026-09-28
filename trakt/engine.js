@@ -2652,6 +2652,28 @@ const GENRE_DETAIL_KEYWORDS = {
   'post-apocalyptic': {
     'Zombie Apocalypse': ['zombie'],
   },
+  // Third real pass (Bill: "start on" the dashboard's remaining-subgenre-
+  // genre-specificity finding). Checked the live probe's own full missing
+  // list this time (all 24 zero/near-zero-hit tags, not just the largest
+  // few), same >=8-real-titles bar throughout. family-drama (395 titles,
+  // by far the single largest gap — nearly as big as every other missing
+  // bucket combined) had 4 real, clearly distinct relational clusters;
+  // spot-checked 4 real titles per cluster (Oppenheimer/Anatomy of a Fall
+  // for husband-wife, Avatar: The Way of Water/Bloodline for dysfunctional
+  // family, etc.) and found no false positives. legal (119) and medical
+  // (102) were checked and genuinely didn't clear the bar — their only
+  // real candidate splits (courtroom/trial/judge for legal; hospital/
+  // doctor/surgeon for medical) are just synonyms of the parent tag
+  // itself, the same trap already documented for prison's "prisoner"
+  // above, not a real further distinction. alien-invasion (25), neo-
+  // western (15), and psychological-horror (10) were also checked and are
+  // too small for any sub-keyword to clear >=8 on its own.
+  'family-drama': {
+    'Sibling Dynamics': ['sibling relationship'],
+    'Marriage & Infidelity': ['husband wife relationship', 'infidelity', 'marriage'],
+    'Dysfunctional Family': ['dysfunctional family'],
+    'Parent-Child Bond': ['parent child relationship', 'father daughter relationship'],
+  },
 };
 
 // Display-refinement only, not a scoring signal — subgenreBonus() still

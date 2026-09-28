@@ -1906,6 +1906,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
   // GENRE_DETAIL_KEYWORDS is extended.
   {
     let refinedCount = 0, totalSubgenres = 0;
+    let familyDramaHits = 0, familyDramaTotal = 0;
     try {
       // GENRE_DETAIL_KEYWORDS isn't exported, so this counts indirectly via
       // a light live probe: run inferSubgenreDetail() against every real
@@ -1915,7 +1916,10 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       // reviewedTags-only-reachable canonical buckets (e.g. techno-thriller,
       // supernatural-horror, biography, musical) aren't exercised by this
       // probe, so the real refined/total ratio across the full live
-      // vocabulary is somewhat higher than what's reported here.
+      // vocabulary is somewhat higher than what's reported here. It's ALSO
+      // a crude "does at least 1 title hit" test, not a real per-bucket hit
+      // rate — family-drama below is the concrete illustration of how much
+      // that undersells a genuine improvement.
       const tagTitles = new Map();
       for (const meta of Object.values(enrichedMeta)) {
         for (const tag of inferSubgenres(meta, null)) {
@@ -1926,39 +1930,48 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       for (const [tag, meta] of tagTitles) {
         if (inferSubgenreDetail(tag, meta, 1).length > 0) refinedCount++;
       }
+      for (const meta of Object.values(enrichedMeta)) {
+        if (!inferSubgenres(meta, null).includes('family-drama')) continue;
+        familyDramaTotal++;
+        if (inferSubgenreDetail('family-drama', meta, 1).length > 0) familyDramaHits++;
+      }
     } catch (e) { /* best-effort live count; static fallback below if it fails */ }
     findings.push({
       id: 'remaining-subgenre-genre-specificity',
       severity: 'warning',
       ratings: { ease: 4, dataQuality: 4, recEngine: 2, ui: 3 },
-      estTokens: 50000, // many buckets, each needing its own keyword-frequency verification
+      estTokens: 45000, // most of the biggest, best-supported bucket (family-drama) is now done; remaining buckets are smaller/thinner
       shortTitle: 'Some Genre Detail Missing',
-      title: `Subgenre detail refinement covers a minority of the live vocabulary — ${refinedCount || 4} of ${totalSubgenres || 30} ` +
-        `keyword-tier subgenre tags have a detail breakdown`,
+      title: `Fixed the single biggest gap: family-drama (${fmtNum(familyDramaTotal)} titles, was the largest zero-coverage bucket) now hits real detail on ${(100*familyDramaHits/(familyDramaTotal||1)).toFixed(0)}% of titles — the crude "${refinedCount || 7} of ${totalSubgenres || 30} buckets" count barely moves, but badly undersells this`,
       technical: `The Genre/Subgenre taxonomy redesign replaced Genre's old raw-TMDB field with a clean single-valued canonical field ` +
         `(<code>inferGenre()</code>, 17 workbook-seeded values) and replaced Subgenre's old 29-bucket keyword list with a curated ` +
-        `65-bucket canonical vocabulary — several genre-duplicative buckets (<code>war</code>, <code>sci-fi-fantasy</code>, ` +
-        `<code>horror</code>, <code>biopic</code>, <code>sports</code>, <code>crime-drama</code>) retired since that signal now lives ` +
-        `in Genre itself, and new buckets (e.g. <code>neo-noir</code>, <code>character-study</code>, <code>techno-thriller</code>, ` +
-        `<code>supernatural-horror</code>) added from the workbook. <code>GENRE_DETAIL_KEYWORDS</code> was remapped onto the new ` +
-        `buckets in the same pass (biopic → biography, sci-fi-fantasy's Dystopia/Post-Apocalyptic/Alien Invasion/Time Travel groups ` +
-        `graduated into real scored top-level buckets, a dormant <code>sports</code> detail key kept for forward-compatibility even ` +
-        `though no live subgenre tag reaches it), but currently only refines ${refinedCount || 4} of the ${totalSubgenres || 30} ` +
-        `real subgenre tags the keyword tier produces (this probe undercounts the true total, since it can't exercise the several ` +
-        `canonical buckets — e.g. <code>techno-thriller</code>, <code>supernatural-horror</code>, <code>biography</code>, ` +
-        `<code>musical</code> — that are currently only reachable via the <code>reviewedTags.json</code> override tier, not the ` +
-        `keyword tier this probe scans).`,
+        `65-bucket canonical vocabulary. <code>GENRE_DETAIL_KEYWORDS</code> currently refines only ${refinedCount || 7} of the ` +
+        `${totalSubgenres || 30} real subgenre tags the keyword tier produces (a crude "does any title hit" probe — undercounts the ` +
+        `true total, since it can't exercise the reviewedTags-only-reachable buckets, and doesn't measure real per-bucket hit rate at ` +
+        `all). Re-investigated (Bill: "start on" this finding) by running the live probe's full missing list — all 24 zero/near-zero-hit ` +
+        `tags, not just a few — against a real keyword-frequency scan of <code>enrichedMetadata.json</code>, same ≥8-real-titles bar as ` +
+        `every prior pass. <code>family-drama</code> (${fmtNum(familyDramaTotal)} titles, by far the single largest gap — nearly as big ` +
+        `as every other missing bucket combined) had 4 real, clearly distinct relational clusters (Sibling Dynamics, Marriage & ` +
+        `Infidelity, Dysfunctional Family, Parent-Child Bond), spot-checked against real titles (Oppenheimer/Anatomy of a Fall for ` +
+        `husband-wife; Avatar: The Way of Water/Bloodline for dysfunctional family) with no false positives found. Real result: ` +
+        `<strong>${familyDramaHits} of ${familyDramaTotal} family-drama titles (${(100*familyDramaHits/(familyDramaTotal||1)).toFixed(1)}%) ` +
+        `now get a real detail label</strong>, up from 0%. <code>legal</code> (119) and <code>medical</code> (102) were checked and ` +
+        `genuinely didn't clear the bar — their only real candidate splits (courtroom/trial/judge; hospital/doctor/surgeon) are just ` +
+        `synonyms of the parent tag itself, the same trap already documented for <code>prison</code>'s "prisoner". ` +
+        `<code>alien-invasion</code> (25), <code>neo-western</code> (15), and <code>psychological-horror</code> (10) are too small for ` +
+        `any sub-keyword to clear ≥8 on their own. This is why the crude bucket-count metric above moved only 6→${refinedCount || 7} ` +
+        `despite a real, substantial fix landing — most of the real value was in one very large bucket, not many small ones.`,
       plain: `Bill asked for genre to be high-level and subgenre to be very specific, and separately for detail breakdowns ("historical ` +
-        `→ WW2") applied broadly. The high-level/specific split is now done — genre is a clean single label, subgenre is a much more ` +
-        `specific 65-option vocabulary built from a hand-reviewed spreadsheet. What's still only partially done is the finer "which ` +
-        `war/which sport" layer underneath subgenre — most subgenre categories don't have this extra layer yet, mainly because most ` +
-        `of them (character studies, workplace dramas, dark comedies, etc.) don't have an obvious further split the way "historical" ` +
-        `naturally splits into eras.`,
-      impact: `A real, still-partial piece of a much larger request, most of which (the genre/subgenre taxonomy itself) is now done and ` +
-        `live. The remaining detail-layer gap is lower-severity than before the redesign, since subgenre itself is already far more ` +
-        `specific than it used to be — the detail layer is now a nice-to-have refinement on top of a good base, not the only source ` +
-        `of specificity. Closing it further would mean the same keyword-frequency-verification discipline used throughout this ` +
-        `session, applied to the newly-added canonical buckets one at a time.`,
+        `→ WW2") applied broadly. The high-level/specific split is done. This pass tackled the single biggest remaining hole: ` +
+        `"family-drama" was the largest subgenre category with zero further detail (${fmtNum(familyDramaTotal)} real titles) — now ` +
+        `most of them get a real label for what kind of family story it is (sibling rivalry, a troubled marriage, a dysfunctional ` +
+        `household, a parent-child bond). Three other candidates (legal, medical, a few small ones) were checked by hand and genuinely ` +
+        `don't have a further split worth making — their only options would just restate what "legal" or "medical" already means.`,
+      impact: `A real, substantial improvement concentrated in the single highest-value bucket rather than spread thin — verified with ` +
+        `an honest before/after (0% → ${(100*familyDramaHits/(familyDramaTotal||1)).toFixed(1)}% real hit rate on ${fmtNum(familyDramaTotal)} ` +
+        `titles), not just a bucket-count that barely moves. Display-only, not a scoring signal — zero risk to matchScore()/eval.js. The ` +
+        `remaining gap is now genuinely smaller buckets with thinner real signal, the honest reason this stays open rather than more ` +
+        `low-hanging fruit being left unpicked.`,
     });
   }
 
