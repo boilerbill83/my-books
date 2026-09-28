@@ -134,7 +134,13 @@ def call_claude():
     # learned the hard way (Session 51's dead-TMDB-key incident: a bare 401
     # gave no way to tell "revoked" from "malformed" without this).
     try:
-        with urllib.request.urlopen(req, timeout=180) as resp:
+        # 180s was fine at the original POOL_SIZE=10/MAX_TOKENS=8000 scale,
+        # but a real production run timed out here (2026-09-28) after both
+        # were raised (15 shows, 16000 tokens) without raising this to
+        # match — a longer real web_search + write-up genuinely takes
+        # longer. 340s leaves real headroom under the job step's own
+        # 10-minute (600s) ceiling.
+        with urllib.request.urlopen(req, timeout=340) as resp:
             data = json.loads(resp.read())
     except urllib.error.HTTPError as e:
         error_body = e.read().decode('utf-8', errors='replace')

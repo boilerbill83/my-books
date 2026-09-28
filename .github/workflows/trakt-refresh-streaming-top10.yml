@@ -47,7 +47,20 @@ jobs:
           # documents hitting on 2026-09-03 when manually dispatched against
           # a feature branch.
           BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-          git add trakt/data/streamingTop10.json trakt/data/streamingTop10Previous.json trakt/data/candidatePool.json trakt/data/discoveredHistory.json trakt/data/feedbackData.json
+          # streamingTop10Previous.json is glob-matched, not named directly:
+          # it's only written on a run where streamingTop10.json already
+          # existed on disk beforehand (refresh_streaming_top10.py's own
+          # OUT_FILE.exists() gate), so it may genuinely not exist yet — a
+          # bare filename here would make `git add` abort with "pathspec
+          # did not match any files" (exit 128) and silently drop every
+          # OTHER real change this run made too, defeating the whole point
+          # of this step's own `if: always()` resiliency. Confirmed via a
+          # real production failure (2026-09-28): the script crashed
+          # before writing anything, and the git add for this exact
+          # filename aborted the whole step. The glob always matches at
+          # least streamingTop10.json itself, so it's never left
+          # unexpanded.
+          git add trakt/data/streamingTop10*.json trakt/data/candidatePool.json trakt/data/discoveredHistory.json trakt/data/feedbackData.json
           if git diff --staged --quiet; then
             echo "No changes."
             exit 0
