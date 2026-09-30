@@ -491,7 +491,10 @@ section { padding: 14px 0; }
 
 /* ── BOOK COVER ── */
 .book-cover {
-  width: 100%;
+  /* Slightly smaller than full card width so the cover art doesn't
+     dominate the card now that 8 recommendations show per page. */
+  width: 82%;
+  margin: 0 auto;
   aspect-ratio: 2 / 3;
   overflow: hidden;
   background: var(--bg-subtle);
@@ -905,3 +908,47 @@ section { padding: 14px 0; }
 .cr-meta   { font-size: 0.78rem; color: var(--text-muted); }
 .cr-scores { display: flex; gap: 5px; flex-wrap: wrap; }
 .cr-reason { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+.cr-facts {
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+}
+.cr-facts-heading {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.cr-facts-list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.cr-fact-source {
+  font-size: 0.68rem;
+  color: var(--accent);
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+/* ── SLACKER PLACEHOLDER (nothing currently reading) ── */
+.cr-slacker {
+  align-items: center;
+  border-left-color: var(--accent);
+  background: var(--bg-subtle);
+}
+.cr-slacker-emoji {
+  font-size: 2.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: grayscale(0.15);
+}
+.cr-slacker .cr-title { color: var(--accent); }

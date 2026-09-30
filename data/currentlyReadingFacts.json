@@ -1,0 +1,6 @@
+{
+  "note": "Real, sourced fun facts about whatever book is currently shown in the Currently Reading section (data/currentlyReading.json), matched by normalized title+author. Never fabricate a fact -- every entry needs a real source URL. Update this file whenever the currently-reading book changes; leave facts empty (not a guess) when nothing has been researched yet for the current book. Matching is normalized (lowercase, punctuation-insensitive) so a subtitle or series-notation difference doesn't break the lookup.",
+  "title": null,
+  "author": null,
+  "facts": []
+}

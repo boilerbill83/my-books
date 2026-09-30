@@ -8,6 +8,7 @@ const state = {
   history:          null,
   candidates:       null,
   currentlyReading: [],
+  currentlyReadingFacts: null,
   ranking:          null,
   pending:          null,
   page:             0,
@@ -353,9 +354,53 @@ async function fetchCurrentlyReading() {
   return (state.goodreads.books || []).filter(b => b.shelf === 'currently-reading');
 }
 
+const SLACKER_LINES = [
+  { headline: "You Absolute Slacker.",   sub: "Nothing on the nightstand? The to-read pile isn't going to read itself." },
+  { headline: "Reading Drought Alert.",  sub: "It's been a minute since you cracked a book. Just saying." },
+  { headline: "The Bookshelf Is Judging You.", sub: "Every unread spine on that shelf is staring at you right now." },
+  { headline: "Plot Twist: You Stopped Reading.", sub: "Even a bad book beats zero books. Pick something." },
+  { headline: "Currently Reading: Nothing.", sub: "Bold strategy. Not a good one, but bold." },
+];
+
+function normTitleAuthor(title, author) {
+  const n = s => String(s || '').toLowerCase().replace(/\s*\([^)]*\)/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  return `${n(title)}|${n(author)}`;
+}
+
+function funFactsHtml(book) {
+  const f = state.currentlyReadingFacts;
+  if (!f || !f.title || !Array.isArray(f.facts) || !f.facts.length) return '';
+  if (normTitleAuthor(f.title, f.author) !== normTitleAuthor(book.title, book.author)) return '';
+  const items = f.facts.map(fact => {
+    const text   = typeof fact === 'string' ? fact : fact.text;
+    const source = typeof fact === 'object' ? fact.source : null;
+    if (!text) return '';
+    return `<li>${esc(text)}${source ? ` <a href="${esc(source)}" target="_blank" rel="noreferrer" class="cr-fact-source">source</a>` : ''}</li>`;
+  }).join('');
+  if (!items) return '';
+  return `
+    <div class="cr-facts">
+      <div class="cr-facts-heading">🔎 Fun Facts</div>
+      <ul class="cr-facts-list">${items}</ul>
+    </div>`;
+}
+
+function renderSlackerPlaceholder() {
+  const pick = SLACKER_LINES[Math.floor(Math.random() * SLACKER_LINES.length)];
+  currentlyReadingGrid.innerHTML = `
+    <div class="cr-card cr-slacker card">
+      <div class="cr-slacker-emoji" aria-hidden="true">🛋️😴📚</div>
+      <div class="cr-info">
+        <div class="cr-eyebrow">Currently Reading</div>
+        <div class="cr-title">${esc(pick.headline)}</div>
+        <p class="cr-reason">${esc(pick.sub)}</p>
+      </div>
+    </div>`;
+}
+
 function renderCurrentlyReading(books) {
   if (!currentlyReadingGrid) return;
-  if (!books.length) { currentlyReadingGrid.innerHTML = ''; return; }
+  if (!books.length) { renderSlackerPlaceholder(); return; }
   const scored = scoreBooks(books, state.goodreads, state.feedback, state.history);
 
   currentlyReadingGrid.innerHTML = scored.map(book => {
@@ -385,6 +430,7 @@ function renderCurrentlyReading(books) {
           </div>
           <p class="cr-reason">${book.reason}</p>
           ${breakdownHtml(book.breakdown, book.matchScore)}
+          ${funFactsHtml(book)}
         </div>
       </div>`;
   }).join('');
@@ -706,7 +752,7 @@ function renderRecommendations() {
     return true;
   });
 
-  const pageSize = 4;
+  const pageSize = 8;
   const pages    = Math.ceil(all.length / pageSize);
   const start    = (state.page % pages) * pageSize;
   const slice    = all.slice(start, start + pageSize);
@@ -902,15 +948,17 @@ function saveLocalFeedback(local) {
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
   const getOpt = url => get(url).catch(() => null);  // optional data files
-  const [goodreads, feedback, history, candIndex, scraped, currentlyReading, enrichedMeta] = await Promise.all([
+  const [goodreads, feedback, history, candIndex, scraped, currentlyReading, enrichedMeta, currentlyReadingFacts] = await Promise.all([
     get('./data/goodreadsData.json'),
     get('./data/feedbackData.json'),
     get('./data/recommendationHistory.json'),
     get('./data/candidateIndex.json').catch(() => ['candidatePool.json']),
     get('./data/scrapedRatings.json').catch(() => ({})),
     get('./data/currentlyReading.json').catch(() => []),
-    getOpt('./data/enrichedMetadata.json')
+    getOpt('./data/enrichedMetadata.json'),
+    getOpt('./data/currentlyReadingFacts.json')
   ]);
+  state.currentlyReadingFacts = currentlyReadingFacts;
   state.enrichedMeta = enrichedMeta;
 
   // Merge scraped ratings into to-read books
