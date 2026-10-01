@@ -4,14 +4,25 @@ name: Trakt Full Auto-Refresh (export -> import -> enrich)
 # not a dealbreaker" - he triggers this himself via chat whenever he
 # wants a fresh update, rather than an unattended schedule). Chains the
 # full "Importing a fresh Trakt export" workflow CLAUDE.md documents
-# (steps 1-6) into one run, using a saved session instead of Bill
-# manually downloading and uploading the export zip. See CLAUDE.md's
-# "Automated Trakt Export" section for the full design and the one-time
-# TRAKT_SESSION setup.
+# (steps 1-6) into one run. See CLAUDE.md's "Automated Trakt Export"
+# section for the full design.
+#
+# Deliberately NOT a stored secret (Bill: "if I have to update the
+# cookie periodically, it's easier for me to send it to you directly
+# than update it in github") - the real session token only lives ~1
+# week regardless of where it's kept, so a persisted GitHub secret
+# barely saved any effort over passing a fresh one each time. Bill
+# pastes a fresh DevTools cookie dump into chat whenever he wants a
+# refresh; Claude converts it and passes it as this trakt_session
+# input for that one run only - nothing is ever stored in GitHub.
 
 on:
   workflow_dispatch:
     inputs:
+      trakt_session:
+        description: 'Playwright storageState JSON for this one run (converted from a fresh DevTools cookie dump - never stored)'
+        type: string
+        required: true
       tmdb_batch_size:
         description: 'How many newly-discovered titles to TMDB-enrich this run'
         type: number
@@ -36,10 +47,12 @@ jobs:
           playwright install chromium --with-deps
 
       # Step 0 (new): download a fresh export, replacing the manual
-      # "Bill clicks Export Now and uploads the zip" step.
+      # "Bill clicks Export Now and uploads the zip" step. Session comes
+      # from the one-off trakt_session input, not a stored secret - see
+      # the on.workflow_dispatch.inputs comment above for why.
       - name: Download fresh Trakt export
         env:
-          TRAKT_SESSION: ${{ secrets.TRAKT_SESSION }}
+          TRAKT_SESSION: ${{ inputs.trakt_session }}
         run: python3 trakt/fetch_trakt_export.py /tmp/trakt-export-raw.zip
         timeout-minutes: 10
 
