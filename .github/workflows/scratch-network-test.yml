@@ -1,0 +1,17 @@
+name: SCRATCH - network reachability test (temporary, to be deleted)
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check trakt.tv reachability
+        run: |
+          echo "trakt.tv:"
+          curl -s -o /dev/null -w "  HTTP %{http_code}\n" --max-time 15 https://trakt.tv/ || echo "  curl failed"
+          echo "trakt.tv/settings/data:"
+          curl -s -o /dev/null -w "  HTTP %{http_code}\n" --max-time 15 https://trakt.tv/settings/data || echo "  curl failed"
+          echo "api.trakt.tv (expected blocked per CLAUDE.md):"
+          curl -s -o /dev/null -w "  HTTP %{http_code}\n" --max-time 15 https://api.trakt.tv/ || echo "  curl failed"
