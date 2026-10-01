@@ -80,6 +80,13 @@ body {
   color: var(--text-muted);
   text-decoration: none;
   white-space: nowrap;
+  /* Real-only padding, not decorative: trakt/verify_paired_layouts.py's
+     mode 7 (WCAG 2.5.8 Target Size) measured every nav link dataset-wide
+     at 19px tall with zero padding - under the 24px minimum. 6px top/
+     bottom clears the bar (19 + 12 = 31px) without visibly changing the
+     link's look, since the header row already has gap between items. */
+  display: inline-block;
+  padding: 6px 2px;
 }
 .header-quality-link:hover { color: var(--accent); }
 .header-status {

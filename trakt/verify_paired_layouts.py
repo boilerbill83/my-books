@@ -1,38 +1,64 @@
 #!/usr/bin/env python3
 """
-Mechanically enforces CLAUDE.md's standing "when two cards/sections sit
-side by side in a row, check they render at the same height" rule across
-every .tk-row2/.tk-top-row layout on every trakt/*.html page.
+Mechanically enforces two related standing rules across every trakt/*.html
+page: (1) CLAUDE.md's "two cards side by side should render at the same
+height" rule, and (2) Bill's broader follow-up ask (2026-10-01) - "limiting
+white space and limiting horizontal and vertical scroll within a box/section
+unless it can't be avoided" - plus a couple of mechanically-checkable UI
+best practices pulled from real research (WCAG 1.4.10 Reflow, WCAG 2.5.8
+Target Size) rather than invented.
 
-This exists because the rule itself was never the gap - CLAUDE.md has
-documented it (with 3 named failure modes and worked examples) for a
-long time. The gap was enforcement: a session would write a one-off
-Playwright check for whichever failure mode seemed relevant to whatever
-was just reported, see it pass, and conclude the row was fine - without
-checking the other 2 modes. That's exactly how the Movies/Shows You'll
-Love content-fill gap (fixed here, same push as this script) slipped
-through an earlier "all 4 pairs match!" check that only measured mode 1
-(box height) and never measured mode 2 (content fill).
+This exists because the paired-row rule itself was never the gap - CLAUDE.md
+documented it (3 named failure modes, worked examples) for a long time. The
+gap was enforcement: a session would write a one-off check for whichever
+failure mode seemed relevant to whatever was just reported, see it pass, and
+conclude the row was fine - without checking the other modes, or anything
+outside a paired row at all. Bill's own words on why this has to be
+automatic rather than a discipline to remember: "automatically I shouldn't
+have to tell you."
 
-Checks all 3 documented failure modes, for every paired row, every time:
+Checks, run on every trakt/*.html page at a desktop (1400px) AND a mobile
+(375px) viewport (same loaded page, resized - not reloaded, so an expensive
+async computation like quality.html's BMTRE Accuracy Score only ever runs
+once per page):
 
-  1. Card BOXES not matching height - something is overriding CSS Grid's
-     default align-items:stretch (or the row isn't a real 2-column grid).
-  2. Boxes match, but one side's CONTENT doesn't fill its box, leaving a
-     visibly empty gap at the bottom while its sibling runs full height.
-  3. A .tk-shelf (horizontally-scrolling poster strip) inside a paired
-     row has real content hidden behind a horizontal scrollbar instead
-     of showing it - the specific anti-pattern CLAUDE.md's own history
-     flags twice (Shows You Watch Together, Family Watch List).
+  PAIRED-ROW checks (desktop viewport only - a .tk-row2/.tk-top-row
+  collapses to one column under 780px, so "do the two sides match" isn't a
+  meaningful question once they're stacked, not side by side):
+    1. Card BOXES not matching height - something overriding CSS Grid's
+       default align-items:stretch (or the row isn't a real 2-column grid).
+    2. Boxes match, but one side's CONTENT doesn't fill its box, leaving a
+       visible empty gap at the bottom while its sibling runs full height.
+    3. A .tk-shelf (horizontally-scrolling poster strip) inside a paired
+       row has real content hidden behind a horizontal scrollbar instead
+       of showing it.
+
+  WHITESPACE / SCROLL checks (both viewports - Bill's literal ask):
+    4. Page-level horizontal overflow (WCAG 1.4.10 Reflow) - the page
+       itself should never need 2-axis scroll at any real viewport width.
+    5. A STANDALONE card (not already covered by the paired-row content-
+       fill check above) with a large empty gap at its own bottom relative
+       to its own height - excess whitespace with no sibling needed to
+       prove it's excessive.
+    6. An UNJUSTIFIED scroll region - any element whose computed overflow
+       is auto/scroll and which actually has hidden content, that isn't on
+       the explicit SCROLL_ALLOWLIST_SELECTORS allowlist below. "Unless it
+       can't be avoided" (Bill's own phrasing) is exactly what the
+       allowlist encodes: each entry documents *why* that one is a
+       deliberate, necessary exception rather than a layout bug - mirroring
+       WCAG 1.4.10's own built-in exception for content that genuinely
+       needs 2D layout (data tables, toolbars, and the like).
+    7. A TAP TARGET smaller than WCAG 2.5.8's 24x24 CSS px minimum, scoped
+       to unambiguous controls (buttons, nav links, bare checkboxes/radios
+       with no wrapping <label>) so inline prose links - WCAG 2.5.8's own
+       documented exception - are never flagged.
 
 Run manually:
     python3 trakt/verify_paired_layouts.py
 
 Run in CI: .github/workflows/trakt-verify-layouts.yml, triggered on every
 push that touches trakt/*.html, trakt/*.css, trakt/*.js, or styles.css -
-fails the run (non-zero exit) on any violation, so a layout regression
-can't land without a visible red check, regardless of whether the
-session that pushed it happened to check by hand.
+fails the run (non-zero exit) on any violation.
 
 Needs Playwright: pip install playwright && playwright install chromium
 """
@@ -47,15 +73,63 @@ import functools
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = sorted(glob.glob(os.path.join(ROOT, 'trakt', '*.html')))
 
-# Thresholds - tuned against this project's real, already-fixed pairs
-# (see the commit this script shipped in): the pre-fix You'll Love gap
-# was 155px vs 31px (diff 124px, ratio 4.9x) and correctly trips both
-# bars below; the post-fix 31px/31px and every other real pair checked
-# clean at these settings, with no false positives found.
+# Thresholds - tuned against this project's real, already-fixed pairs (see
+# the commit this script first shipped in): the pre-fix You'll Love gap was
+# 155px vs 31px (diff 124px, ratio 4.9x) and correctly trips both bars
+# below; the post-fix 31px/31px and every other real pair checked clean at
+# these settings, with no false positives found.
 BOX_HEIGHT_TOLERANCE_PX = 4      # mode 1
 CONTENT_GAP_ABS_PX = 40          # mode 2: minimum absolute gap difference to flag
 CONTENT_GAP_RATIO = 2.5          # mode 2: AND the larger gap must be this many times the smaller
 SHELF_OVERFLOW_PX = 20           # mode 3: real hidden horizontal content beyond this is a violation
+
+PAGE_OVERFLOW_TOLERANCE_PX = 2   # mode 4: a couple px of scrollbar/rounding noise is not a violation
+
+# mode 5: a standalone card needs BOTH an absolute gap AND that gap being a
+# real fraction of its own height before it's flagged - normal card padding
+# (20-30px) alone must never trip this. Tuned against this project's real
+# cards (none at the time of writing cross this bar) rather than guessed;
+# re-tune here first if a future genuinely-short, genuinely-fine card ever
+# false-positives.
+STANDALONE_GAP_ABS_PX = 120
+STANDALONE_GAP_RATIO = 0.30
+STANDALONE_MIN_CARD_HEIGHT_PX = 80   # ignore tiny loading-placeholder/empty-state cards
+
+SCROLL_OVERFLOW_TOLERANCE_PX = 4     # mode 6
+
+MIN_TAP_TARGET_PX = 24                # mode 7 - WCAG 2.5.8's normative minimum (not the 44px AAA ideal)
+
+# mode 6 allowlist - CSS selectors for scroll regions that are a deliberate,
+# documented design choice, not a layout bug. Checked by ancestor walk, so
+# allowlisting a container covers everything inside it. Each one is already
+# explained inline at its own definition; the summary here is just enough
+# to say WHY it's exempt from "unless it can't be avoided."
+SCROLL_ALLOWLIST_SELECTORS = [
+    '.tk-table-wrap',       # wide sortable data tables - WCAG 1.4.10's own
+                            # reflow exception explicitly names tables as
+                            # content that genuinely needs 2D layout
+    '.tk-shelf',            # horizontal poster strip - mode 3 above already
+                            # owns this specific case (flags it INSIDE a
+                            # paired row, where a shorter sibling implies it
+                            # should wrap instead); outside a pairing it's a
+                            # deliberate browse-more affordance, not hidden
+                            # content - see trakt/index.html's own comment
+                            # at #coWatchCards about why #airingCards is
+                            # left as a normal horizontal-scroll shelf
+    '.tk-imp-modal .dialog-body',  # modal body, necessarily height-capped
+                                    # so it fits on screen regardless of
+                                    # finding length
+    '.tk-hero-facts',       # capped height + themed scrollbar, an
+                            # established precedent (trakt/index.html)
+    '#nextWatch',           # flex:1, capped by design - CLAUDE.md's own
+                            # worked example for wrapping-instead-of-
+                            # scrolling, itself has a scroll fallback only
+                            # if even the wrapped grid overflows its cap
+    '#familyWatchList',     # max-height:560px, same capped-shelf pattern
+    '#coWatchCards',        # same pattern, scoped to this one card
+    '.tk-picker-suggestions',  # autocomplete dropdown - bounded by design,
+                                # not page content at all
+]
 
 
 def start_server():
@@ -122,6 +196,208 @@ def wait_for_async_content(page, timeout_s=70, poll_s=1.0):
     print(f'  (warning: a loading placeholder was still visible after {timeout_s}s - measuring anyway)')
 
 
+def check_paired_rows(page, rel):
+    """Modes 1-3. Only meaningful at a viewport wide enough for the real
+    2-column grid to be live (.tk-row2/.tk-top-row collapse to 1 column
+    under 780px) - callers must only invoke this at a desktop-width
+    viewport, since at mobile both cards are still "visible" but simply
+    stacked in their own grid row, where unequal heights are completely
+    normal and would be a false positive for mode 1."""
+    violations = []
+    rows = page.query_selector_all('.tk-row2, .tk-top-row')
+    rows_checked = 0
+    for row_idx, row in enumerate(rows):
+        row_class = row.get_attribute('class')
+        cards = row.query_selector_all(':scope > *')
+        visible_cards = [c for c in cards if c.is_visible()]
+        # Only a real 2-up pair is this rule's concern - a single visible
+        # child (an empty-state collapse) isn't a "row".
+        if len(visible_cards) != 2:
+            continue
+        rows_checked += 1
+        a, b = visible_cards
+        box_a, box_b = a.bounding_box(), b.bounding_box()
+        if not box_a or not box_b:
+            continue
+        label_a, label_b = card_label(a), card_label(b)
+        row_label = f'{rel} row #{row_idx + 1} ({row_class}): "{label_a}" vs "{label_b}"'
+
+        # Mode 1: box heights should match (CSS Grid stretch default)
+        diff = abs(box_a['height'] - box_b['height'])
+        if diff > BOX_HEIGHT_TOLERANCE_PX:
+            violations.append(
+                f'{row_label} -- MODE 1 box height mismatch: '
+                f'{box_a["height"]:.0f}px vs {box_b["height"]:.0f}px (diff {diff:.0f}px)'
+            )
+        else:
+            # Mode 2 only makes sense once boxes actually match - if they
+            # don't, mode 1 is the real problem to fix first.
+            gap_a = content_bottom_gap(a, box_a)
+            gap_b = content_bottom_gap(b, box_b)
+            if gap_a is not None and gap_b is not None:
+                gdiff = abs(gap_a - gap_b)
+                ratio = (max(gap_a, gap_b) + 1) / (min(gap_a, gap_b) + 1)
+                if gdiff > CONTENT_GAP_ABS_PX and ratio > CONTENT_GAP_RATIO:
+                    violations.append(
+                        f'{row_label} -- MODE 2 content not filling box: '
+                        f'bottom gap {gap_a:.0f}px vs {gap_b:.0f}px'
+                    )
+
+        # Mode 3: independent of modes 1/2 - a shelf hiding real content
+        # behind horizontal scroll is bad regardless of whether the box
+        # heights happen to match.
+        for card, label in ((a, label_a), (b, label_b)):
+            for shelf in card.query_selector_all('.tk-shelf'):
+                overflow = shelf.evaluate('el => el.scrollWidth - el.clientWidth')
+                if overflow and overflow > SHELF_OVERFLOW_PX:
+                    violations.append(
+                        f'{row_label} -- MODE 3 horizontal-scroll shelf hides content: '
+                        f'"{label}" has {overflow:.0f}px of real content off-screen '
+                        f'(wrap into a multi-row grid instead, same shape as #nextWatch)'
+                    )
+    return violations, rows_checked
+
+
+def check_page_overflow(page, rel, viewport_label):
+    """Mode 4 - WCAG 1.4.10 Reflow: the page itself should never require
+    horizontal scroll to read its content."""
+    dims = page.evaluate('''() => ({
+        scrollWidth: document.documentElement.scrollWidth,
+        clientWidth: document.documentElement.clientWidth,
+    })''')
+    overflow = dims['scrollWidth'] - dims['clientWidth']
+    if overflow > PAGE_OVERFLOW_TOLERANCE_PX:
+        return [f'{rel} [{viewport_label}] -- MODE 4 page-level horizontal overflow: '
+                f'{overflow}px wider than the viewport (scrollWidth {dims["scrollWidth"]}px '
+                f'vs clientWidth {dims["clientWidth"]}px)']
+    return []
+
+
+def check_standalone_whitespace(page, rel, viewport_label):
+    """Mode 5 - a standalone card (no sibling to compare against, so this
+    uses an absolute+ratio heuristic instead of mode 2's sibling-ratio
+    one) with a large empty gap at its own bottom. Skips any card already
+    inside a .tk-row2/.tk-top-row pairing, since mode 2's sibling-relative
+    comparison is strictly more precise for that case and this would
+    otherwise just be a noisier duplicate of the same finding."""
+    results = page.evaluate('''([minHeight, absPx, ratio]) => {
+        const out = [];
+        for (const card of document.querySelectorAll('.tk-card, .tk-hero-card')) {
+            if (card.closest('.tk-row2, .tk-top-row')) continue;
+            if (getComputedStyle(card).display === 'none') continue;
+            const rect = card.getBoundingClientRect();
+            if (rect.height < minHeight || rect.width === 0) continue;
+            let maxBottom = rect.top;
+            const walk = (node) => {
+                for (const child of node.children) {
+                    const r = child.getBoundingClientRect();
+                    if (r.height > 0 && r.width > 0) maxBottom = Math.max(maxBottom, r.bottom);
+                    walk(child);
+                }
+            };
+            walk(card);
+            const gap = Math.max(0, (rect.top + rect.height) - maxBottom);
+            if (gap > absPx && (gap / rect.height) > ratio) {
+                let label = card.id ? ('#' + card.id) : '(unlabeled)';
+                const heading = card.querySelector('.tk-card-heading, .tk-hero-title, h2, h3');
+                if (heading && heading.textContent.trim()) label = heading.textContent.trim().slice(0, 50);
+                out.push({ label, gap: Math.round(gap), height: Math.round(rect.height) });
+            }
+        }
+        return out;
+    }''', [STANDALONE_MIN_CARD_HEIGHT_PX, STANDALONE_GAP_ABS_PX, STANDALONE_GAP_RATIO])
+    return [
+        f'{rel} [{viewport_label}] -- MODE 5 standalone card has excess whitespace: '
+        f'"{r["label"]}" is {r["height"]}px tall with a {r["gap"]}px empty gap at the bottom '
+        f'({round(100 * r["gap"] / r["height"])}% of the card is empty)'
+        for r in results
+    ]
+
+
+def check_unjustified_scroll(page, rel, viewport_label):
+    """Mode 6 - any element with real overflow:auto/scroll content that
+    isn't on the explicit SCROLL_ALLOWLIST_SELECTORS allowlist above."""
+    results = page.evaluate('''([allowlistSelectors, tolerance]) => {
+        const allowed = new Set();
+        for (const sel of allowlistSelectors) {
+            for (const el of document.querySelectorAll(sel)) allowed.add(el);
+        }
+        const isAllowed = (el) => {
+            let node = el;
+            while (node) {
+                if (allowed.has(node)) return true;
+                node = node.parentElement;
+            }
+            return false;
+        };
+        const out = [];
+        for (const el of document.querySelectorAll('*')) {
+            const style = getComputedStyle(el);
+            const scrollsY = (style.overflowY === 'auto' || style.overflowY === 'scroll');
+            const scrollsX = (style.overflowX === 'auto' || style.overflowX === 'scroll');
+            if (!scrollsY && !scrollsX) continue;
+            const rect = el.getBoundingClientRect();
+            if (rect.width === 0 || rect.height === 0) continue;
+            const overflowY = scrollsY ? (el.scrollHeight - el.clientHeight) : 0;
+            const overflowX = scrollsX ? (el.scrollWidth - el.clientWidth) : 0;
+            if (overflowY <= tolerance && overflowX <= tolerance) continue;
+            if (isAllowed(el)) continue;
+            let label = el.id ? ('#' + el.id) : (el.className ? ('.' + String(el.className).split(' ')[0]) : el.tagName.toLowerCase());
+            out.push({
+                label,
+                axis: (overflowY > tolerance && overflowX > tolerance) ? 'both' : (overflowY > tolerance ? 'vertical' : 'horizontal'),
+                overflowY: Math.round(overflowY),
+                overflowX: Math.round(overflowX),
+            });
+        }
+        return out;
+    }''', [SCROLL_ALLOWLIST_SELECTORS, SCROLL_OVERFLOW_TOLERANCE_PX])
+    return [
+        f'{rel} [{viewport_label}] -- MODE 6 unjustified {r["axis"]} scroll on "{r["label"]}": '
+        f'{r["overflowY"]}px hidden vertically, {r["overflowX"]}px hidden horizontally '
+        f'(add it to SCROLL_ALLOWLIST_SELECTORS with a reason if this is genuinely unavoidable, '
+        f'otherwise fix the layout)'
+        for r in results
+    ]
+
+
+def check_tap_targets(page, rel, viewport_label):
+    """Mode 7 - WCAG 2.5.8 Target Size (Minimum): a real click/tap control
+    smaller than 24x24 CSS px in either dimension. Scoped to unambiguous
+    controls (buttons, .tk-btn/nav links, bare checkboxes/radios) so an
+    inline prose link - WCAG 2.5.8's own documented exception - is never
+    flagged. A checkbox/radio wrapped in a <label> is measured as the
+    whole label, since that's its real clickable area, not the bare
+    native input box."""
+    results = page.evaluate('''(minPx) => {
+        const out = [];
+        const seen = new Set();
+        const controls = document.querySelectorAll(
+            'button, a.tk-btn, a.header-quality-link, input[type="checkbox"], input[type="radio"], [role="button"]'
+        );
+        for (const el of controls) {
+            const style = getComputedStyle(el);
+            if (style.display === 'none' || style.visibility === 'hidden') continue;
+            let target = el;
+            if (el.tagName === 'INPUT' && el.closest('label')) target = el.closest('label');
+            if (seen.has(target)) continue;
+            seen.add(target);
+            const rect = target.getBoundingClientRect();
+            if (rect.width === 0 || rect.height === 0) continue;
+            if (rect.width < minPx || rect.height < minPx) {
+                let label = (target.textContent || target.getAttribute('aria-label') || target.id || target.tagName).trim().slice(0, 40);
+                out.push({ label, width: Math.round(rect.width), height: Math.round(rect.height) });
+            }
+        }
+        return out;
+    }''', MIN_TAP_TARGET_PX)
+    return [
+        f'{rel} [{viewport_label}] -- MODE 7 tap target too small: '
+        f'"{r["label"]}" is {r["width"]}x{r["height"]}px (WCAG 2.5.8 minimum is {MIN_TAP_TARGET_PX}x{MIN_TAP_TARGET_PX}px)'
+        for r in results
+    ]
+
+
 def main():
     from playwright.sync_api import sync_playwright
 
@@ -140,8 +416,6 @@ def main():
         if chromium_path:
             launch_kwargs['executable_path'] = chromium_path
         browser = pw.chromium.launch(**launch_kwargs)
-        # .tk-row2/.tk-top-row both collapse to 1 column under 780px -
-        # need a desktop-width viewport for the 2-column grid to be live.
         page = browser.new_page(viewport={'width': 1400, 'height': 1200})
 
         for page_path in PAGES:
@@ -155,67 +429,41 @@ def main():
             page.wait_for_timeout(1800)  # let client-side render() calls finish
             wait_for_async_content(page)
 
-            rows = page.query_selector_all('.tk-row2, .tk-top-row')
-            for row_idx, row in enumerate(rows):
-                row_class = row.get_attribute('class')
-                cards = row.query_selector_all(':scope > *')
-                visible_cards = [c for c in cards if c.is_visible()]
-                # Only a real 2-up pair is this rule's concern - a single
-                # visible child (an empty-state collapse) isn't a "row".
-                if len(visible_cards) != 2:
-                    continue
-                checked_rows += 1
-                a, b = visible_cards
-                box_a, box_b = a.bounding_box(), b.bounding_box()
-                if not box_a or not box_b:
-                    continue
-                label_a, label_b = card_label(a), card_label(b)
-                row_label = f'{rel} row #{row_idx + 1} ({row_class}): "{label_a}" vs "{label_b}"'
+            # Desktop pass (1400px): the real 2-column grid is live, so the
+            # paired-row checks (modes 1-3) run here only. Everything else
+            # runs at both viewports.
+            row_violations, rows_checked = check_paired_rows(page, rel)
+            violations.extend(row_violations)
+            checked_rows += rows_checked
+            violations.extend(check_page_overflow(page, rel, 'desktop'))
+            violations.extend(check_standalone_whitespace(page, rel, 'desktop'))
+            violations.extend(check_unjustified_scroll(page, rel, 'desktop'))
+            violations.extend(check_tap_targets(page, rel, 'desktop'))
 
-                # Mode 1: box heights should match (CSS Grid stretch default)
-                diff = abs(box_a['height'] - box_b['height'])
-                if diff > BOX_HEIGHT_TOLERANCE_PX:
-                    violations.append(
-                        f'{row_label} -- MODE 1 box height mismatch: '
-                        f'{box_a["height"]:.0f}px vs {box_b["height"]:.0f}px (diff {diff:.0f}px)'
-                    )
-                else:
-                    # Mode 2 only makes sense once boxes actually match -
-                    # if they don't, mode 1 is the real problem to fix first.
-                    gap_a = content_bottom_gap(a, box_a)
-                    gap_b = content_bottom_gap(b, box_b)
-                    if gap_a is not None and gap_b is not None:
-                        gdiff = abs(gap_a - gap_b)
-                        ratio = (max(gap_a, gap_b) + 1) / (min(gap_a, gap_b) + 1)
-                        if gdiff > CONTENT_GAP_ABS_PX and ratio > CONTENT_GAP_RATIO:
-                            violations.append(
-                                f'{row_label} -- MODE 2 content not filling box: '
-                                f'bottom gap {gap_a:.0f}px vs {gap_b:.0f}px'
-                            )
-
-                # Mode 3: independent of modes 1/2 - a shelf hiding real
-                # content behind horizontal scroll is bad regardless of
-                # whether the box heights happen to match.
-                for card, label in ((a, label_a), (b, label_b)):
-                    for shelf in card.query_selector_all('.tk-shelf'):
-                        overflow = shelf.evaluate('el => el.scrollWidth - el.clientWidth')
-                        if overflow and overflow > SHELF_OVERFLOW_PX:
-                            violations.append(
-                                f'{row_label} -- MODE 3 horizontal-scroll shelf hides content: '
-                                f'"{label}" has {overflow:.0f}px of real content off-screen '
-                                f'(wrap into a multi-row grid instead, same shape as #nextWatch)'
-                            )
+            # Mobile pass (375px): resize the SAME already-loaded page
+            # rather than reloading - a reload would re-trigger any
+            # expensive async computation (e.g. quality.html's real
+            # leave-one-out eval pass, documented above as tens of real
+            # seconds) a second time for no benefit, since none of these
+            # checks depend on when the JS ran, only on the current layout.
+            page.set_viewport_size({'width': 375, 'height': 900})
+            page.wait_for_timeout(300)  # let the resize/reflow settle
+            violations.extend(check_page_overflow(page, rel, 'mobile'))
+            violations.extend(check_standalone_whitespace(page, rel, 'mobile'))
+            violations.extend(check_unjustified_scroll(page, rel, 'mobile'))
+            violations.extend(check_tap_targets(page, rel, 'mobile'))
+            page.set_viewport_size({'width': 1400, 'height': 1200})  # restore for the next page
 
         browser.close()
     httpd.shutdown()
 
-    print(f'Checked {checked_rows} paired rows across {len(PAGES)} pages.')
+    print(f'Checked {checked_rows} paired rows across {len(PAGES)} pages, at both desktop and mobile viewports.')
     if violations:
         print(f'\n{len(violations)} VIOLATION(S) FOUND:\n')
         for v in violations:
             print(f'  - {v}')
         sys.exit(1)
-    print('All paired rows pass: box heights match, content fills, no content hidden behind scroll.')
+    print('All checks pass: paired rows match and fill, no standalone whitespace, no unjustified scroll, no undersized tap targets.')
     sys.exit(0)
 
 

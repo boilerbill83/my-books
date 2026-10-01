@@ -73,7 +73,10 @@
       .st10-toolbar { display: flex; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
       .st10-toolbar-label { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; padding-top: 4px; }
       .st10-checkboxes { display: flex; flex-wrap: wrap; gap: 6px 14px; }
-      .st10-checkbox-label { display: flex; align-items: center; gap: 5px; font-size: 0.82rem; color: var(--text); cursor: pointer; user-select: none; }
+      /* padding: real-only, not decorative - verify_paired_layouts.py's
+         mode 7 (WCAG 2.5.8) measured these filter labels at 20px tall
+         with no padding at all, under the 24px minimum. */
+      .st10-checkbox-label { display: flex; align-items: center; gap: 5px; font-size: 0.82rem; color: var(--text); cursor: pointer; user-select: none; padding: 4px 2px; }
       .st10-checkbox-label input { margin: 0; cursor: pointer; }
       .st10-toolbar-count { font-size: 0.78rem; color: var(--text-muted); flex-basis: 100%; }
       .st10-empty { font-size: 0.88rem; color: var(--text-muted); font-style: italic; padding: 24px 0; text-align: center; }
