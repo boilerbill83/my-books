@@ -91,11 +91,25 @@ def main():
     watchlist = load_json('watchlist.json', {'titles': []})
     candidate_pool = load_json('candidatePool.json', {'titles': []})
     enriched = load_json('enrichedMetadata.json', {})
+    # Real gap found 2026-10-01: a title can land on the live Streaming
+    # Top 10 page (streamingTop10.json) without ever being added to
+    # candidatePool.json - e.g. a title that WAS a candidate once (so it
+    # still has a real enrichedMetadata.json entry) but has since been
+    # evicted by prune_candidate_pool.js's normal cap-eviction, or a title
+    # resolved directly by refresh_streaming_top10.py without going
+    # through the new-candidate-stub path at all. Confirmed via a real
+    # case: South Park (show:2190) and Outer Banks (show:100757) both
+    # render on Streaming Top 10 with a real posterPath in
+    # enrichedMetadata.json, but neither was in library/watchlist/
+    # candidatePool, so this script's old 3-source scope silently never
+    # saw them - they'd stay un-cached (blank poster) forever.
+    streaming_top10 = load_json('streamingTop10.json', {'shows': []})
 
     title_keys = {t['titleKey'] for t in
                   library.get('titles', []) + watchlist.get('titles', []) + candidate_pool.get('titles', [])
+                  + streaming_top10.get('shows', [])
                   if t.get('titleKey')}
-    print(f'{len(title_keys)} real (library+watchlist+candidatePool) title keys in scope')
+    print(f'{len(title_keys)} real (library+watchlist+candidatePool+streamingTop10) title keys in scope')
 
     POSTER_DIR.mkdir(parents=True, exist_ok=True)
 
