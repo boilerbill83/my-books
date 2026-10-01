@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-09-28T12:03:13.396Z",
-    "movieCount": 262,
-    "showCount": 394
+    "generatedAt": "2026-10-01T20:47:04.146Z",
+    "movieCount": 264,
+    "showCount": 395
   },
   "titles": [
     {
@@ -5829,7 +5829,7 @@
       "myRating": 9,
       "ratedAt": "2025-08-20T00:00:00.000Z",
       "plays": 177,
-      "airedEpisodes": 184,
+      "airedEpisodes": 185,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -7847,6 +7847,31 @@
     },
     {
       "type": "show",
+      "titleKey": "show:273207",
+      "ids": {
+        "imdb": "tt33539520",
+        "plex": {
+          "guid": "6995dd6b96c7221de9313980",
+          "slug": "neagley"
+        },
+        "slug": "neagley",
+        "tmdb": 273207,
+        "tvdb": 455064,
+        "trakt": 258222
+      },
+      "title": "Neagley",
+      "year": 2026,
+      "myRating": 10,
+      "ratedAt": "2026-09-28T12:23:53.000Z",
+      "plays": 8,
+      "airedEpisodes": 8,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-09-16T07:57:00.000Z",
+      "favorite": true,
+      "hasConfirmedWatchDate": true
+    },
+    {
+      "type": "show",
       "titleKey": "show:1420",
       "ids": {
         "imdb": "tt1826940",
@@ -8112,6 +8137,27 @@
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:395991",
+      "ids": {
+        "imdb": "tt3829920",
+        "plex": {
+          "guid": "5d776c3c51dd69001fe39180",
+          "slug": "only-the-brave-2017"
+        },
+        "slug": "only-the-brave-2017",
+        "tmdb": 395991,
+        "trakt": 238824
+      },
+      "title": "Only the Brave",
+      "year": 2017,
+      "myRating": 8,
+      "ratedAt": "2026-10-01T18:44:29.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2026-10-01T18:44:00.000Z",
+      "favorite": false
     },
     {
       "type": "movie",
@@ -8944,14 +8990,14 @@
       },
       "title": "Reacher",
       "year": 2022,
-      "myRating": 8,
-      "ratedAt": "2025-04-10T00:00:00.000Z",
-      "plays": 24,
+      "myRating": 10,
+      "ratedAt": "2026-09-28T12:24:04.000Z",
+      "plays": 32,
       "airedEpisodes": 32,
-      "completionStatus": "in-progress",
-      "lastWatchedAt": "1970-01-01T00:00:00.000Z",
-      "favorite": false,
-      "hasConfirmedWatchDate": false
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-09-16T07:56:00.000Z",
+      "favorite": true,
+      "hasConfirmedWatchDate": true
     },
     {
       "type": "movie",
@@ -9061,6 +9107,27 @@
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1423191",
+      "ids": {
+        "imdb": "tt35538033",
+        "plex": {
+          "guid": "67a23f4861078f9079534716",
+          "slug": "resident-evil-2026"
+        },
+        "slug": "resident-evil-2026",
+        "tmdb": 1423191,
+        "trakt": 1164118
+      },
+      "title": "Resident Evil",
+      "year": 2026,
+      "myRating": 9,
+      "ratedAt": "2026-09-30T14:28:26.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2026-09-30T14:28:00.000Z",
+      "favorite": false
     },
     {
       "type": "movie",
@@ -9807,10 +9874,10 @@
       "year": 2023,
       "myRating": 7,
       "ratedAt": "2026-08-13T13:32:00.000Z",
-      "plays": 20,
+      "plays": 30,
       "airedEpisodes": 30,
-      "completionStatus": "in-progress",
-      "lastWatchedAt": "2025-01-17T02:59:00.000Z",
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-09-04T02:01:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": true
     },
@@ -9900,7 +9967,7 @@
       "myRating": 8,
       "ratedAt": "2025-10-29T00:00:00.000Z",
       "plays": 30,
-      "airedEpisodes": 32,
+      "airedEpisodes": 33,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -10489,7 +10556,7 @@
       "myRating": 9,
       "ratedAt": "2023-05-31T00:00:00.000Z",
       "plays": 34,
-      "airedEpisodes": 42,
+      "airedEpisodes": 43,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -15254,10 +15321,10 @@
       "year": 2025,
       "myRating": 8,
       "ratedAt": "2026-07-29T00:12:49.000Z",
-      "plays": 9,
+      "plays": 19,
       "airedEpisodes": 19,
-      "completionStatus": "in-progress",
-      "lastWatchedAt": "2025-05-30T02:02:00.000Z",
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-06-05T01:56:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": true
     },

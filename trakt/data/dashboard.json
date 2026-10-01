@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-09-28T12:03:07.131Z",
+  "generatedAt": "2026-10-01T20:47:03.999Z",
   "profile": {
     "username": "bill_stoltenberg_27166c",
     "joinedAt": "2026-07-27T14:49:58.000Z"
   },
   "summary": {
-    "moviesWatched": 262,
-    "moviesPlays": 262,
-    "moviesRatings": 261,
-    "moviesMinutes": 33156,
-    "showsWatched": 394,
-    "showsRatings": 401,
-    "episodesWatched": 11587,
-    "episodesPlays": 11587,
-    "episodesMinutes": 498648,
-    "totalRatings": 662,
-    "totalMinutes": 531804,
-    "totalHours": 8863,
-    "avgRating": 7.8
+    "moviesWatched": 264,
+    "moviesPlays": 264,
+    "moviesRatings": 263,
+    "moviesMinutes": 33384,
+    "showsWatched": 395,
+    "showsRatings": 402,
+    "episodesWatched": 11623,
+    "episodesPlays": 11623,
+    "episodesMinutes": 500506,
+    "totalRatings": 665,
+    "totalMinutes": 533890,
+    "totalHours": 8898,
+    "avgRating": 7.81
   },
   "ratingDistribution": {
     "1": 0,
@@ -28,8 +28,8 @@
     "6": 60,
     "7": 123,
     "8": 234,
-    "9": 99,
-    "10": 101
+    "9": 100,
+    "10": 103
   },
   "activityByYear": [
     {
@@ -170,33 +170,33 @@
     {
       "year": 2022,
       "movies": 13,
-      "episodes": 200
+      "episodes": 208
     },
     {
       "year": 2023,
       "movies": 17,
-      "episodes": 141
+      "episodes": 146
     },
     {
       "year": 2024,
       "movies": 12,
-      "episodes": 115
+      "episodes": 118
     },
     {
       "year": 2025,
       "movies": 13,
-      "episodes": 267
+      "episodes": 275
     },
     {
       "year": 2026,
-      "movies": 14,
-      "episodes": 164
+      "movies": 16,
+      "episodes": 200
     }
   ],
   "dataCaveats": {
-    "undatedEpisodePlays": 7489,
-    "datedEpisodePlays": 4098,
-    "undatedEpisodeSharePct": 64.6
+    "undatedEpisodePlays": 7465,
+    "datedEpisodePlays": 4158,
+    "undatedEpisodeSharePct": 64.2
   },
   "topShowsByPlays": [
     {
@@ -221,7 +221,7 @@
       "title": "It's Always Sunny in Philadelphia",
       "year": 2005,
       "plays": 177,
-      "airedEpisodes": 184
+      "airedEpisodes": 185
     },
     {
       "title": "Mom",
@@ -414,6 +414,18 @@
   ],
   "topRatedShows": [
     {
+      "title": "Reacher",
+      "year": 2022,
+      "rating": 10,
+      "ratedAt": "2026-09-28T12:24:04.000Z"
+    },
+    {
+      "title": "Neagley",
+      "year": 2026,
+      "rating": 10,
+      "ratedAt": "2026-09-28T12:23:53.000Z"
+    },
+    {
       "title": "Halt and Catch Fire",
       "year": 2014,
       "rating": 10,
@@ -520,22 +532,10 @@
       "year": 2007,
       "rating": 10,
       "ratedAt": "2026-07-29T01:22:07.000Z"
-    },
-    {
-      "title": "Weeds",
-      "year": 2005,
-      "rating": 10,
-      "ratedAt": "2026-07-29T01:21:49.000Z"
-    },
-    {
-      "title": "Lost",
-      "year": 2004,
-      "rating": 10,
-      "ratedAt": "2026-07-29T01:21:29.000Z"
     }
   ],
   "watchlist": {
-    "count": 54,
+    "count": 51,
     "items": [
       {
         "type": "show",
@@ -569,12 +569,6 @@
       },
       {
         "type": "show",
-        "title": "Your Friends & Neighbors",
-        "year": 2025,
-        "listedAt": "2026-07-29T00:12:52.000Z"
-      },
-      {
-        "type": "show",
         "title": "Elsbeth",
         "year": 2024,
         "listedAt": "2026-07-29T00:14:28.000Z"
@@ -584,12 +578,6 @@
         "title": "Elle",
         "year": 2026,
         "listedAt": "2026-07-29T00:18:56.000Z"
-      },
-      {
-        "type": "show",
-        "title": "Silo",
-        "year": 2023,
-        "listedAt": "2026-07-29T00:29:21.000Z"
       },
       {
         "type": "show",
@@ -617,12 +605,6 @@
       },
       {
         "type": "show",
-        "title": "Neagley",
-        "year": 2026,
-        "listedAt": "2026-07-31T13:56:08.000Z"
-      },
-      {
-        "type": "show",
         "title": "Crystal Lake",
         "year": 2026,
         "listedAt": "2026-07-31T13:56:18.000Z"
@@ -638,12 +620,6 @@
         "title": "Lanterns",
         "year": 2026,
         "listedAt": "2026-08-11T00:07:34.000Z"
-      },
-      {
-        "type": "show",
-        "title": "Reacher",
-        "year": 2022,
-        "listedAt": "2026-08-11T00:08:04.000Z"
       },
       {
         "type": "show",
@@ -832,12 +808,6 @@
         "listedAt": "2026-09-18T23:13:03.000Z"
       },
       {
-        "type": "movie",
-        "title": "Resident Evil",
-        "year": 2026,
-        "listedAt": "2026-09-18T23:16:19.000Z"
-      },
-      {
         "type": "show",
         "title": "MobLand",
         "year": 2025,
@@ -860,11 +830,23 @@
         "title": "The Gentlemen",
         "year": 2024,
         "listedAt": "2026-09-25T23:26:25.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Slow Horses",
+        "year": 2022,
+        "listedAt": "2026-09-29T22:07:53.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Dexter: Resurrection",
+        "year": 2025,
+        "listedAt": "2026-09-30T17:53:31.000Z"
       }
     ]
   },
   "favorites": {
-    "count": 41,
+    "count": 43,
     "items": [
       {
         "type": "show",
@@ -1111,6 +1093,18 @@
         "title": "Halt and Catch Fire",
         "year": 2014,
         "listedAt": "2026-09-26T00:23:43.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Neagley",
+        "year": 2026,
+        "listedAt": "2026-09-28T12:23:55.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Reacher",
+        "year": 2022,
+        "listedAt": "2026-09-28T12:24:16.000Z"
       }
     ]
   }

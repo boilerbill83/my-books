@@ -168,7 +168,7 @@
     "myRating": 9,
     "ratedAt": "2025-08-20T00:00:00.000Z",
     "plays": 177,
-    "airedEpisodes": 184,
+    "airedEpisodes": 185,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -251,56 +251,6 @@
   },
   {
     "type": "show",
-    "titleKey": "show:108978",
-    "ids": {
-      "imdb": "tt9288030",
-      "plex": {
-        "guid": "5d9c09190aaccd001f8f42f0",
-        "slug": "reacher"
-      },
-      "slug": "reacher",
-      "tmdb": 108978,
-      "tvdb": 366924,
-      "trakt": 155536
-    },
-    "title": "Reacher",
-    "year": 2022,
-    "myRating": 8,
-    "ratedAt": "2025-04-10T00:00:00.000Z",
-    "plays": 24,
-    "airedEpisodes": 32,
-    "completionStatus": "in-progress",
-    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
-    "favorite": false,
-    "hasConfirmedWatchDate": false
-  },
-  {
-    "type": "show",
-    "titleKey": "show:125988",
-    "ids": {
-      "imdb": "tt14688458",
-      "plex": {
-        "guid": "61b180686bfb4feb48515e07",
-        "slug": "silo"
-      },
-      "slug": "silo",
-      "tmdb": 125988,
-      "tvdb": 403245,
-      "trakt": 180770
-    },
-    "title": "Silo",
-    "year": 2023,
-    "myRating": 7,
-    "ratedAt": "2026-08-13T13:32:00.000Z",
-    "plays": 20,
-    "airedEpisodes": 30,
-    "completionStatus": "in-progress",
-    "lastWatchedAt": "2025-01-17T02:59:00.000Z",
-    "favorite": false,
-    "hasConfirmedWatchDate": true
-  },
-  {
-    "type": "show",
     "titleKey": "show:95480",
     "ids": {
       "imdb": "tt5875444",
@@ -318,7 +268,7 @@
     "myRating": 8,
     "ratedAt": "2025-10-29T00:00:00.000Z",
     "plays": 30,
-    "airedEpisodes": 32,
+    "airedEpisodes": 33,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -368,7 +318,7 @@
     "myRating": 9,
     "ratedAt": "2023-05-31T00:00:00.000Z",
     "plays": 34,
-    "airedEpisodes": 42,
+    "airedEpisodes": 43,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -421,31 +371,6 @@
     "airedEpisodes": 20,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2025-09-04T10:33:00.000Z",
-    "favorite": false,
-    "hasConfirmedWatchDate": true
-  },
-  {
-    "type": "show",
-    "titleKey": "show:241609",
-    "ids": {
-      "imdb": "tt30459041",
-      "plex": {
-        "guid": "657dc33ef513062f56b44a23",
-        "slug": "your-friends-and-neighbors"
-      },
-      "slug": "your-friends-neighbors",
-      "tmdb": 241609,
-      "tvdb": 443433,
-      "trakt": 217691
-    },
-    "title": "Your Friends & Neighbors",
-    "year": 2025,
-    "myRating": 8,
-    "ratedAt": "2026-07-29T00:12:49.000Z",
-    "plays": 9,
-    "airedEpisodes": 19,
-    "completionStatus": "in-progress",
-    "lastWatchedAt": "2025-05-30T02:02:00.000Z",
     "favorite": false,
     "hasConfirmedWatchDate": true
   }
