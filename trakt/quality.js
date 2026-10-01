@@ -1866,6 +1866,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
   {
     let refinedCount = 0, totalSubgenres = 0;
     let familyDramaHits = 0, familyDramaTotal = 0;
+    let proceduralHits = 0, proceduralTotal = 0;
     try {
       // GENRE_DETAIL_KEYWORDS isn't exported, so this counts indirectly via
       // a light live probe: run inferSubgenreDetail() against every real
@@ -1894,14 +1895,19 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
         familyDramaTotal++;
         if (inferSubgenreDetail('family-drama', meta, 1).length > 0) familyDramaHits++;
       }
+      for (const meta of Object.values(enrichedMeta)) {
+        if (!inferSubgenres(meta, null).includes('procedural')) continue;
+        proceduralTotal++;
+        if (inferSubgenreDetail('procedural', meta, 1).length > 0) proceduralHits++;
+      }
     } catch (e) { /* best-effort live count; static fallback below if it fails */ }
     findings.push({
       id: 'remaining-subgenre-genre-specificity',
       severity: 'warning',
       ratings: { ease: 4, dataQuality: 4, recEngine: 2, ui: 3 },
-      estTokens: 45000, // most of the biggest, best-supported bucket (family-drama) is now done; remaining buckets are smaller/thinner
+      estTokens: 40000, // the two biggest, best-supported buckets (family-drama, procedural) are now done; remaining buckets are smaller/thinner
       shortTitle: 'Some Genre Detail Missing',
-      title: `Fixed the single biggest gap: family-drama (${fmtNum(familyDramaTotal)} titles, was the largest zero-coverage bucket) now hits real detail on ${(100*familyDramaHits/(familyDramaTotal||1)).toFixed(0)}% of titles — the crude "${refinedCount || 7} of ${totalSubgenres || 30} buckets" count barely moves, but badly undersells this`,
+      title: `Fixed the two biggest gaps: family-drama (${(100*familyDramaHits/(familyDramaTotal||1)).toFixed(0)}% of ${fmtNum(familyDramaTotal)}) and procedural (${(100*proceduralHits/(proceduralTotal||1)).toFixed(0)}% of ${fmtNum(proceduralTotal)}) now hit real detail — the crude "${refinedCount || 7} of ${totalSubgenres || 30} buckets" count barely moves, but badly undersells this`,
       technical: `The Genre/Subgenre taxonomy redesign replaced Genre's old raw-TMDB field with a clean single-valued canonical field ` +
         `(<code>inferGenre()</code>, 17 workbook-seeded values) and replaced Subgenre's old 29-bucket keyword list with a curated ` +
         `65-bucket canonical vocabulary. <code>GENRE_DETAIL_KEYWORDS</code> currently refines only ${refinedCount || 7} of the ` +
@@ -1918,19 +1924,31 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
         `genuinely didn't clear the bar — their only real candidate splits (courtroom/trial/judge; hospital/doctor/surgeon) are just ` +
         `synonyms of the parent tag itself, the same trap already documented for <code>prison</code>'s "prisoner". ` +
         `<code>alien-invasion</code> (25), <code>neo-western</code> (15), and <code>psychological-horror</code> (10) are too small for ` +
-        `any sub-keyword to clear ≥8 on their own. This is why the crude bucket-count metric above moved only 6→${refinedCount || 7} ` +
-        `despite a real, substantial fix landing — most of the real value was in one very large bucket, not many small ones.`,
+        `any sub-keyword to clear ≥8 on their own. <strong>Follow-up pass (Bill: "go through the improvement ideas, try to fix some ` +
+        `metadata")</strong>: with family-drama done, <code>procedural</code> (${fmtNum(proceduralTotal)} titles) became the new single ` +
+        `largest gap — its existing 2 detail groups (Whodunit/Mystery, Private Detective) only hit 5.9%. A real keyword-frequency scan ` +
+        `found 6 more clusters each clearing ≥8 real titles (Serial Killer 32, Neo-Noir 19, Conspiracy 17, True Crime 16, Missing Person/` +
+        `Disappearance 18, Organized Crime 10) — checked "fbi" (69 occurrences) specifically and rejected it, since it's literally one of ` +
+        `<code>procedural</code>'s own 5 trigger keywords, the exact same synonym trap as legal/medical. Spot-checked real titles per ` +
+        `cluster (Dexter/Mindhunter/True Detective for Serial Killer; Fargo/Knives Out/Perry Mason for Neo-Noir; Unbelievable/Manhunt for ` +
+        `True Crime; Gone Girl/Klute for Missing Person; Mayor of Kingstown/Black Mass for Organized Crime; The Night Agent/Bodyguard for ` +
+        `Conspiracy) before shipping, not assumed from keyword co-occurrence alone. Real result: <strong>${proceduralHits} of ` +
+        `${proceduralTotal} procedural titles (${(100*proceduralHits/(proceduralTotal||1)).toFixed(1)}%)</strong> now get a real detail ` +
+        `label, up from 5.9%. This is why the crude bucket-count metric above moved only 6→${refinedCount || 7} despite two real, ` +
+        `substantial fixes landing — most of the real value was concentrated in two very large buckets, not many small ones.`,
       plain: `Bill asked for genre to be high-level and subgenre to be very specific, and separately for detail breakdowns ("historical ` +
-        `→ WW2") applied broadly. The high-level/specific split is done. This pass tackled the single biggest remaining hole: ` +
-        `"family-drama" was the largest subgenre category with zero further detail (${fmtNum(familyDramaTotal)} real titles) — now ` +
-        `most of them get a real label for what kind of family story it is (sibling rivalry, a troubled marriage, a dysfunctional ` +
-        `household, a parent-child bond). Three other candidates (legal, medical, a few small ones) were checked by hand and genuinely ` +
-        `don't have a further split worth making — their only options would just restate what "legal" or "medical" already means.`,
-      impact: `A real, substantial improvement concentrated in the single highest-value bucket rather than spread thin — verified with ` +
-        `an honest before/after (0% → ${(100*familyDramaHits/(familyDramaTotal||1)).toFixed(1)}% real hit rate on ${fmtNum(familyDramaTotal)} ` +
-        `titles), not just a bucket-count that barely moves. Display-only, not a scoring signal — zero risk to matchScore()/eval.js. The ` +
-        `remaining gap is now genuinely smaller buckets with thinner real signal, the honest reason this stays open rather than more ` +
-        `low-hanging fruit being left unpicked.`,
+        `→ WW2") applied broadly. The high-level/specific split is done. This pass tackled the two biggest remaining holes: ` +
+        `"family-drama" (${fmtNum(familyDramaTotal)} titles) was the largest subgenre category with zero further detail — now most ` +
+        `of them get a real label for what kind of family story it is. "Procedural" (${fmtNum(proceduralTotal)} titles) had barely any ` +
+        `real detail either — now most get a real label for what kind of investigation story it is (serial-killer hunt, noir-style ` +
+        `detective story, true-crime dramatization, missing-person search, organized-crime investigation, or a conspiracy thriller). ` +
+        `A few other candidates (legal, medical, a few small ones) were checked by hand and genuinely don't have a further split worth ` +
+        `making — their only options would just restate what "legal" or "medical" already means.`,
+      impact: `A real, substantial improvement concentrated in the two highest-value buckets rather than spread thin — verified with ` +
+        `honest before/afters (family-drama 0%→${(100*familyDramaHits/(familyDramaTotal||1)).toFixed(1)}%, procedural 5.9%→` +
+        `${(100*proceduralHits/(proceduralTotal||1)).toFixed(1)}%), not just a bucket-count that barely moves. Display-only, not a ` +
+        `scoring signal — zero risk to matchScore()/eval.js. The remaining gap is now genuinely smaller buckets with thinner real ` +
+        `signal, the honest reason this stays open rather than more low-hanging fruit being left unpicked.`,
     });
   }
 

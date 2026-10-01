@@ -1675,15 +1675,25 @@ build from):
   (`alien-invasion`/`neo-western`/`psychological-horror`) were checked
   the same way and genuinely don't clear the >=8-real-titles bar — their
   only candidate splits are synonyms of the parent tag itself (the same
-  trap already documented for `prison`'s "prisoner"). Display-only —
-  never wired into `matchScore()`. Still a partial pass overall: most
-  remaining subgenre categories don't have an obvious further split the
-  way `historical` naturally splits into eras (see the dashboard's own
-  live-computed `remaining-subgenre-genre-specificity` Improvement
-  Opportunities finding for current coverage — note its headline
-  "N of 30 buckets" count is a crude does-any-title-hit probe that
-  under-represents a fix concentrated in one very large bucket, like
-  this one).
+  trap already documented for `prison`'s "prisoner"). A further pass
+  (Bill: "go through the improvement ideas, try to fix some metadata")
+  found `procedural` had become the single largest zero-coverage bucket
+  after the `family-drama` fix above (322 titles, only 5.9% hit rate
+  from its original 2 thin groups, Whodunit/Private Detective) — a real
+  keyword-frequency scan found 6 more clusters each clearing the
+  >=8-real-titles bar (Serial Killer, Neo-Noir, True Crime, Missing
+  Person, Organized Crime, Conspiracy), none of them one of
+  `procedural`'s own 5 trigger keywords (checked `fbi` specifically —
+  69 occurrences, but rejected as the exact same trigger-keyword-
+  restated-as-detail trap as `legal`/`medical`). Real per-title hit rate:
+  5.9% → 33.2% (107/322). Display-only — never wired into
+  `matchScore()`. Still a partial pass overall: most remaining subgenre
+  categories don't have an obvious further split the way `historical`
+  naturally splits into eras (see the dashboard's own live-computed
+  `remaining-subgenre-genre-specificity` Improvement Opportunities
+  finding for current coverage — note its headline "N of 30 buckets"
+  count is a crude does-any-title-hit probe that under-represents a fix
+  concentrated in one very large bucket, like both of these).
 - **Tones** (`inferTones()`) — mood/craft descriptors (`gritty`, `dark`,
   `witty`, `satirical`, `hilarious`, `inspirational`, `intense`,
   `suspenseful`, `twisty`, `slow-burn`, `character-driven`, `nostalgic`,

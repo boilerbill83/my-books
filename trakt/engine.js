@@ -2543,6 +2543,25 @@ const GENRE_DETAIL_KEYWORDS = {
   'procedural': {
     'Whodunit / Mystery': ['whodunit'],
     'Private Detective': ['private detective'],
+    // procedural was the single largest zero-detail bucket on the live
+    // dashboard check (322 titles, only 5.9% hit rate) — a real keyword-
+    // frequency scan of all 322 titles found 6 more clusters each clearing
+    // the >=8-real-titles bar, none of them one of procedural's own 5
+    // trigger keywords (detective/investigation/fbi/criminal investigation/
+    // crime investigation — 'fbi' at 69 occurrences was checked and
+    // rejected for exactly that reason, the same synonym-trap already
+    // documented for legal/medical). Spot-checked real titles per cluster
+    // before adding (Dexter/Mindhunter/True Detective for Serial Killer;
+    // Fargo/Knives Out/Perry Mason for Neo-Noir; Unbelievable/Manhunt for
+    // True Crime; Gone Girl/Klute for Missing Person; Mayor of Kingstown/
+    // Black Mass for Organized Crime; The Night Agent/Bodyguard for
+    // Conspiracy) — all genuine fits, not coincidental keyword overlap.
+    'Serial Killer': ['serial killer'],
+    'Neo-Noir': ['neo-noir'],
+    'True Crime': ['true crime'],
+    'Missing Person': ['missing person', 'disappearance'],
+    'Organized Crime': ['organized crime'],
+    'Conspiracy': ['conspiracy'],
   },
   'dark-comedy': {
     'Satire': ['satire'],
