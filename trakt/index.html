@@ -144,6 +144,21 @@
       #movieRecCard, #showRecCard { display: flex; flex-direction: column; }
       #movieRecCard .tk-rec-list, #showRecCard .tk-rec-list { flex: 1; justify-content: space-between; }
 
+      /* Genres You Rate Highest vs Most-Watched Actors (caught by
+         trakt/verify_paired_layouts.py, 2026-10-01): a real, visible
+         failure mode 2 — the genre chart was deliberately capped to its
+         top 12 rows at a bigger font size in an earlier session (Bill:
+         "cut out some of the bottom values so it isn't too tall"), which
+         is correct and shouldn't be reverted, but it means the chart's
+         real content is now often shorter than its sibling Actors list,
+         leaving dead space at the bottom of a box CSS Grid still
+         correctly stretches to match. Same #dismissalsCard pattern as
+         dashboard.css's own worked example: flex-fill and vertically
+         center the shorter content in the remaining space instead of
+         leaving it flush-top with a gap below. */
+      #genreChartCard { display: flex; flex-direction: column; }
+      #genreChartCard .tk-chart-wrap { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+
       /* My Next Watch redesigned (Bill, 2026-09-19: "make it visual... I
          want to be able to see everything, not just the top four") from a
          vertical list of 4 rich rows to a poster-card grid showing every
@@ -294,7 +309,7 @@
         <div class="tk-card-note" id="genreSectionScopeNote" style="margin-bottom:14px;"></div>
 
         <div class="tk-row2">
-          <div class="tk-card">
+          <div class="tk-card" id="genreChartCard">
             <div class="tk-card-heading">Genres You Rate Highest</div>
             <div class="tk-card-note">Average rating per subgenre (min. 3 rated titles), not TMDB's own broad genre list — "Drama" alone covers 75% of everything, so it can't tell you much. Sorted by taste, not volume.</div>
             <div class="tk-chart-wrap" id="genreChart"></div>

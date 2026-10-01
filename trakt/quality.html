@@ -14,6 +14,28 @@
     <style>
       /* Quality-only. */
       .tk-nav-current { font-weight: 700; color: var(--text); pointer-events: none; }
+
+      /* Metadata & Engine Quality vs BMTRE Accuracy Score (caught by
+         trakt/verify_paired_layouts.py, 2026-10-01): a real failure mode
+         2 — one dial has 5 component rows, the other 6 plus a longer
+         footnote, and either side can be the shorter one depending on
+         how many Known Issues are open or how eval.js's components come
+         out this run, so (unlike the one-directional genreChartCard fix)
+         both cards need the same symmetric treatment. Same
+         #dismissalsCard pattern: flex-fill and vertically center the
+         dial+meters block in the stretched box instead of leaving
+         whichever side is shorter flush-top with dead space below. */
+      /* .tk-quality-row is already display:flex (a ROW: dial beside the
+         meter list, dashboard.css) - flex:1 lets it grow to fill the
+         stretched card's remaining height, and align-items:center
+         (overriding the base rule's flex-start) vertically centers that
+         same row within its own now-taller box. Deliberately NOT
+         flex-direction:column here - that would turn the dial-beside-
+         meters layout into a vertical stack instead of just repositioning
+         it, a mistake caught by checking dashboard.css's existing rule
+         before shipping rather than copying #dismissalsCard verbatim. */
+      .tk-dial-card { display: flex; flex-direction: column; }
+      .tk-dial-card .tk-quality-row { flex: 1; align-items: center; }
     </style>
   </head>
   <body>
@@ -75,13 +97,13 @@
         </dialog>
 
         <div class="tk-row2" style="margin-bottom:14px;">
-          <div class="tk-card">
+          <div class="tk-card tk-dial-card">
             <div class="tk-card-heading">📈 Metadata &amp; Engine Quality</div>
             <div class="tk-card-note">How much real content data BMTRE actually has to work with — not data completeness in general, but whether the engine has what it needs to make good predictions.</div>
             <div class="tk-quality-row" id="qualitySection"></div>
             <div class="tk-quality-footnote" id="qualityFootnote"></div>
           </div>
-          <div class="tk-card">
+          <div class="tk-card tk-dial-card">
             <div class="tk-card-heading">🎯 BMTRE Accuracy Score</div>
             <div class="tk-card-note">Not data completeness — whether the engine's actual predictions are good. Leave-one-out evaluation (each watched+rated title scored by a version of the index that excludes it, so its own rating can never leak into its own signal) over every real watched+rated title, mirroring the book side's <code>scripts/eval.js</code>.</div>
             <div class="tk-quality-row" id="bmtreAccuracySection"></div>

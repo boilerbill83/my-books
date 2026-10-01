@@ -1,0 +1,41 @@
+name: Trakt Paired-Layout Check
+
+# Mechanically enforces CLAUDE.md's standing "when two cards/sections sit
+# side by side in a row, check they render at the same height" rule, so a
+# regression is caught automatically on every push instead of needing
+# Bill to notice and report it (his own explicit instruction, 2026-10-01:
+# "automatically I shouldn't have to tell you"). The rule itself existed
+# in CLAUDE.md for a long time before this workflow — the gap was
+# enforcement: a session would check whichever failure mode seemed
+# relevant to whatever was just reported and conclude a row was fine,
+# without checking the other 2 documented modes. This runs all 3, on
+# every paired row, on every push, and fails the run (red check) on any
+# violation.
+#
+# See trakt/verify_paired_layouts.py's own docstring for the full
+# mechanics and the real bugs it caught the day it was built.
+
+on:
+  push:
+    paths:
+      - 'trakt/*.html'
+      - 'trakt/*.css'
+      - 'trakt/*.js'
+      - 'trakt/verify_paired_layouts.py'
+      - 'styles.css'
+      - '.github/workflows/trakt-verify-layouts.yml'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Playwright + Chromium
+        run: |
+          pip install playwright
+          playwright install chromium --with-deps
+      - name: Check every paired row on every trakt page
+        run: python3 trakt/verify_paired_layouts.py

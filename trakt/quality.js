@@ -4171,6 +4171,42 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
+  // Found while building trakt/verify_paired_layouts.py (2026-10-01): the
+  // new automated layout check initially flagged this row as a content-
+  // fill bug, but the real root cause was upstream — the BMTRE Accuracy
+  // Score section hadn't finished computing yet, so the layout check was
+  // measuring a loading placeholder, not the final content. Once the
+  // check was fixed to wait for real completion, the computation itself
+  // turned out to be the actual problem: live-measured at 42.5s on this
+  // page's real current data (776 watched+rated+enriched titles), not
+  // the "a few seconds" the UI's own loading text still promises.
+  {
+    findings.push({
+      id: 'bmtre-accuracy-computation-slow-again',
+      severity: 'warning',
+      ratings: { ease: 5, dataQuality: 1, recEngine: 1, ui: 7 },
+      shortTitle: 'BMTRE Accuracy dial takes 42s to load, not "a few seconds"',
+      title: `Live-measured at 42.5s to compute (776 watched+rated+enriched titles) — Session 58's fix got this to ~2s, but it's regressed roughly 20x since, almost certainly from the many scoring signals (subgenre/tone/keyword/cast/franchise/description-similarity/show-popularity) added across Sessions 58-79, each adding its own per-title index-build cost inside the leave-one-out loop`,
+      technical: `<code>computeEvalMetrics()</code> (engine.js) runs a real leave-one-out pass: for each of the 776 rated titles, it rebuilds <code>buildIndexes()</code> ` +
+        `excluding that one title, then scores it. Session 58 fixed the single biggest cost (a fresh TF-IDF description-model rebuild per iteration) by sharing ` +
+        `one model across all non-loved held-out titles — that fix is still correctly in place (<code>sharedDescModel</code>/<code>descOverride</code>) and ` +
+        `<code>node --check</code>-verified unchanged this session. What's grown since is everything else <code>buildIndexes()</code> now also rebuilds fresh ` +
+        `on every iteration: <code>genreProfile</code>/<code>subgenreProfile</code>/<code>toneProfile</code>, <code>lovedKeywords</code>/<code>lovedActors</code>/ ` +
+        `<code>lovedCollections</code>/<code>lovedSubjects</code>, <code>titleAffinity</code> — none of these existed when the ~2s figure was measured; each ` +
+        `was added by a real, separately-validated <code>eval.js</code>-gated signal in a later session, and none of those additions re-measured this specific ` +
+        `page-load number against the real, now-much-larger dataset. The fix pattern already exists (the shared-desc-model precedent): most of these profile ` +
+        `maps are also unaffected by excluding a single non-loved held-out title, the same logic that justified sharing the desc model, and could likely be ` +
+        `shared the same way — not attempted this session, since it touches the same hot path <code>scripts/eval.js</code>'s own precision@k numbers depend on ` +
+        `and deserves its own careful before/after sweep rather than a rushed fix bundled into an unrelated layout-check session.`,
+      plain: `The "how good is the engine" number on the Data Quality page used to take about 2 seconds to show up. It now takes 42 — not broken, just a lot ` +
+        `slower than it should be, because a bunch of real improvements got added to the engine over many sessions and each one made this one specific ` +
+        `calculation a little slower, and nobody re-checked the total until now. The page still works, it's just a long wait for one number.`,
+      impact: `Real, live-measured (42.5s, not estimated) — found as a side effect of building the new automated paired-layout check, which had to learn to ` +
+        `wait out this exact delay to avoid misreading the loading placeholder as a layout bug. Not fixed this session (the likely fix touches the same hot ` +
+        `path the engine's own precision@k numbers depend on); flagged here with the real number rather than left as a silent slowdown.`,
+    });
+  }
+
   const order = { critical: 0, serious: 1, warning: 2, good: 3 };
   findings.sort((a, b) => order[a.severity] - order[b.severity]);
   return findings;
