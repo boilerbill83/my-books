@@ -2008,6 +2008,17 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     'raja collins|rj collins',      // American Sicario (2021)
     'marius vaysberg|maryus vaysberg', // About Fate (2022) — real Russian name (Марюс), TMDB's "Maryus" matches his own Wikipedia page/native transliteration, OMDb/IMDb use the more anglicized "Marius"; both real, verified via WebSearch (his Wikipedia bio, IMDb), not a data error
   ]);
+  // Distinct from KNOWN_SAME_PERSON_VARIANTS above: this is for a case
+  // where OMDb's own Director field is genuinely WRONG (not a different
+  // spelling of the same real person) — verified via real outside sources,
+  // never "corrected" by overwriting omdbMetadata.json's cached value
+  // with TMDB's, which would just make the cross-check agree with itself
+  // and defeat the point of keeping two independent sources. Suppressed
+  // here only so a confirmed, already-reviewed error doesn't keep
+  // re-surfacing as "needs manual review" on every future load.
+  const KNOWN_OMDB_DATA_ERRORS = new Set([
+    'movie:1433583', // The Weight (2026) — OMDb's Director field says "Leo Scherman", but he's the film's real story credit (story by Matthew Booi and Leo Scherman), not its director; TMDB's "Padraic McKinley" is correct, confirmed via Wikipedia/Letterboxd/TMDB's own page
+  ]);
   {
     let bothPresent = 0, disagree = [];
     for (const [key, meta] of Object.entries(enrichedMeta)) {
@@ -2017,6 +2028,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       const omdbDirector = omdbMeta[key]?.director;
       if (!omdbDirector) continue;
       bothPresent++;
+      if (KNOWN_OMDB_DATA_ERRORS.has(key)) continue;
       // OMDb sometimes lists multiple directors ("A, B") where TMDB
       // credits only one — a real disagreement is TMDB's name not
       // appearing anywhere in OMDb's (comma-separated) string at all,
@@ -2049,20 +2061,32 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
         `difference (Adrian Grünberg/Grunberg — now normalized away automatically) and two nickname/initials-vs-full-name pairs, each verified ` +
         `via a real outside source (David S. F. Wilson/Dave Wilson on Bloodshot; Raja Collins/RJ Collins on American Sicario — Rotten Tomatoes' ` +
         `own celebrity-page URL redirects "raja_collins" to the RJ Collins profile) and recorded in a small hand-verified allowlist so this ` +
-        `check doesn't keep re-flagging an already-confirmed non-issue. ${disagree.length ? `Remaining real disagreements: ` +
+        `check doesn't keep re-flagging an already-confirmed non-issue. <strong>Round 2 (2026-10-01)</strong>: the 2 disagreements that ` +
+        `surfaced after round 1 turned out to be two different kinds of problem, not the same kind twice. "The Accountant²" — TMDB: "Gavin ` +
+        `O'Connor", OMDb: "Gavin O&amp;apos;Connor" — wasn't a different person at all, just OMDb's own API returning the apostrophe as a raw, ` +
+        `un-decoded HTML entity (confirmed: the only "&...;" sequence anywhere in the whole cache, a one-off API quirk, not a systemic encoding ` +
+        `bug); fixed the cached value directly and added <code>html.unescape()</code> to <code>enrich_omdb.py</code>'s <code>extract_entry()</code> ` +
+        `so a future occurrence can't silently misread as a real disagreement again. "The Weight" (2026) was a genuinely different case: OMDb's ` +
+        `Director field says "Leo Scherman", but real outside sources (Wikipedia, Letterboxd, TMDB's own page) confirm Scherman is only this ` +
+        `film's story credit (story by Matthew Booi and Leo Scherman) — TMDB's "Padraic McKinley" is the real director. This is OMDb simply being ` +
+        `wrong, not a name-format variant, so — unlike the Diego Vicentini fix — the correction isn't "overwrite the cached OMDb value with ` +
+        `TMDB's," which would just make the cross-check agree with itself and defeat the point of keeping two independent sources; instead this ` +
+        `confirmed, already-reviewed case is suppressed from re-surfacing via a new, clearly-separate <code>KNOWN_OMDB_DATA_ERRORS</code> set ` +
+        `(distinct from <code>KNOWN_SAME_PERSON_VARIANTS</code>, which is only for a real same-person/different-spelling case). ${disagree.length ? `Remaining real disagreements: ` +
         `${disagree.slice(0, 5).map(d => `"${d.title}" (TMDB: ${d.tmdb}, OMDb: ${d.omdb})`).join('; ')}${disagree.length > 5 ? `, +${disagree.length - 5} more` : ''}.` : ``} ` +
         `Per the plan's own "log discrepancy for review" ask, a genuinely new disagreement still doesn't get auto-resolved by guessing which ` +
         `source is right — it needs the same real-source check before either a correction or an allowlist entry.`,
       plain: `The app fetches director info from two separate sources (TMDB and OMDb) and checks whether they agree on who directed each ` +
-        `movie. Investigated the real disagreements by hand instead of just listing them: turned out to be one genuine typo in TMDB's data ` +
-        `(now corrected) and a few cases where both sources are right, just using a different form of the same person's name (a nickname, or ` +
-        `an accent mark rendered differently) — verified against real outside sources for each one, not assumed. ${disagree.length ? `A ` +
-        `small number of real disagreements remain, listed above for review.` : `Everywhere both sources have an answer, they now agree — ` +
-        `either for real, or because the difference was already checked and confirmed harmless.`}`,
-      impact: `A real, low-cost validation layer using data already being fetched for another purpose. This pass found and fixed one genuine ` +
-        `wrong director credit (which would have silently misdirected creator-affinity scoring for Simón) and confirmed the rest of the raw ` +
-        `mismatches were false alarms from name formatting, not data errors — closing the loop on the original ask rather than leaving a bare ` +
-        `list of unexplained disagreements.`,
+        `movie. Investigated the real disagreements by hand instead of just listing them: round 1 turned out to be one genuine typo in TMDB's ` +
+        `data (now corrected) and a few cases where both sources are right, just using a different form of the same person's name. Round 2 found ` +
+        `two more real, different problems: one was OMDb's own system garbling an apostrophe into computer code instead of a real character (an ` +
+        `easy, safe fix), and one was OMDb's data simply being wrong about who directed a brand-new movie — real outside sources confirm TMDB had ` +
+        `it right all along. ${disagree.length ? `A small number of real disagreements remain, listed above for review.` : `Everywhere both ` +
+        `sources have an answer, they now agree — either for real, or because the difference was already checked and confirmed harmless.`}`,
+      impact: `A real, low-cost validation layer using data already being fetched for another purpose, now proven across two separate rounds of ` +
+        `real findings — a genuine TMDB typo (round 1), a genuine OMDb encoding bug (round 2, now guarded against recurring), and a genuine OMDb ` +
+        `factual error (round 2, confirmed via outside sources and correctly left uncorrected in the cache itself, since "fixing" an independent ` +
+        `source to match the other one would defeat the whole point of cross-checking two sources). Zero real disagreements remain today.`,
     });
   }
 

@@ -63,7 +63,7 @@ creates it himself and sets it as a repo secret; no tool here can do
 either step.
 """
 
-import json, os, re, sys, time, urllib.request, urllib.parse, urllib.error
+import html, json, os, re, sys, time, urllib.request, urllib.parse, urllib.error
 from pathlib import Path
 
 ROOT         = Path(__file__).resolve().parent.parent
@@ -220,7 +220,17 @@ def extract_entry(data):
     # OMDb responses, not errors — kept as-is (raw string), not parsed
     # further, since this is a manual-review cross-check, not a scoring
     # signal that needs a single canonical name.
-    director = data.get('Director')
+    # html.unescape() guards against a real, confirmed OMDb quirk (found
+    # via the dashboard's TMDB-vs-OMDb director cross-check, 2026-10-01):
+    # "The Accountant²"'s Director field came back as the literal string
+    # "Gavin O&apos;Connor" — an HTML-escaped apostrophe, not a different
+    # person — which read as a false disagreement against TMDB's correctly-
+    # apostrophed "Gavin O'Connor". A full-cache scan found this is a rare,
+    # one-off OMDb API response quirk (the only &-entity anywhere in the
+    # existing cache), not a systemic encoding bug, but unescaping defends
+    # against it recurring on a future title without needing a case-by-case
+    # allowlist entry.
+    director = html.unescape(data.get('Director')) if data.get('Director') else None
     # OMDb's own content-rating field (R/PG-13/TV-MA/TV-14/Not Rated/N/A).
     # 'Not Rated' is a real, distinct OMDb value (the title was genuinely
     # never submitted for a rating) — kept as-is, not coerced to None,
