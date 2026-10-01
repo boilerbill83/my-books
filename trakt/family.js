@@ -7,12 +7,13 @@
 // uses, so the two pages can never disagree about what's on the list,
 // the same drift-prevention discipline every other shared render
 // function in this project follows.
-import { loadAllData, renderFamilyWatchList, renderLovedMovies } from './dashboardShared.js';
+import { loadAllData, renderFamilyWatchList, renderLovedMovies, renderImportFreshness } from './dashboardShared.js';
 
 async function load() {
-  const { enrichedMeta, familyWatchlist } = await loadAllData();
+  const { dashboard, enrichedMeta, familyWatchlist } = await loadAllData();
 
   document.getElementById('statusText').textContent = 'Loaded from export';
+  renderImportFreshness(dashboard.generatedAt);
 
   renderFamilyWatchList(familyWatchlist, enrichedMeta, 'familyWatchList');
 

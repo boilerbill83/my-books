@@ -14,6 +14,7 @@ import {
   resolveCastAges, prestigeScore, prestigeQualityScore, isPrestigeFormat, computeBookThemeCounts,
   mergeManualRatings,
 } from './engine.js';
+import { renderImportFreshness } from './dashboardShared.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -42,7 +43,8 @@ async function load() {
   }
 
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [libraryRaw, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback, scrapedShowRatings, llmTags, reviewedTags, personMeta, goodreadsData, manualRatings] = await Promise.all([
+  const [dashboard, libraryRaw, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback, scrapedShowRatings, llmTags, reviewedTags, personMeta, goodreadsData, manualRatings] = await Promise.all([
+    get('./data/dashboard.json').catch(() => null),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
     get('./data/candidatePool.json').catch(() => ({ titles: [] })),
@@ -65,6 +67,7 @@ async function load() {
   const library = mergeManualRatings(libraryRaw, manualRatings);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
   const bookThemeCounts = computeBookThemeCounts(goodreadsData);
+  if (dashboard) renderImportFreshness(dashboard.generatedAt);
 
   let raw = library.titles.find(t => t.titleKey === key);
   let status = 'Watched';

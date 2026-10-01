@@ -21,7 +21,7 @@ import {
   predictedVsActualRows, computeWatchStatusRows, computeCoWatchRows, buildWatchRow,
   renderWatchCards, renderCoWatchCards, renderAiringCards, initCoWatchViewToggle, initAiringViewToggle,
   renderWatchStatusTable, fmtDate, renderFamilyWatchList,
-  computeFavoriteStars,
+  computeFavoriteStars, renderImportFreshness,
 } from './dashboardShared.js';
 
 // crowdCompare (computeCrowdCompare()'s output) folds in here as one more
@@ -917,6 +917,7 @@ async function load() {
     `Last refreshed ${generated.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} ` +
     `at ${generated.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`;
   document.getElementById('statusText').textContent = 'Loaded from export';
+  renderImportFreshness(d.generatedAt);
 
   // Picks first, per Bill's "make sure the main one is fun" ask — the one
   // shared pool (discoverPool) feeds the hero and both shelves below, so

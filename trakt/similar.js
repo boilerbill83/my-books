@@ -13,7 +13,7 @@ import {
 } from './engine.js';
 import {
   esc, fmtNum, posterImgHtml, typeIcon, typeLabel, titleLink, statusTag,
-  metaLine, downloadCSV, initCollapsibleCards, loadAllData,
+  metaLine, downloadCSV, initCollapsibleCards, loadAllData, renderImportFreshness,
 } from './dashboardShared.js';
 
 const TOP_N_DEFAULT = 50;
@@ -218,7 +218,8 @@ function renderResultsTable(allRows, enrichedMeta) {
 }
 
 async function load() {
-  const { library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, bookThemeCounts } = await loadAllData();
+  const { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, bookThemeCounts } = await loadAllData();
+  renderImportFreshness(dashboard.generatedAt);
 
   const idx = buildIndexes(library, enrichedMeta, feedback, llmTags, reviewedTags, undefined, bookThemeCounts, omdbMeta);
   const titleIndex = buildTitleIndex(library, watchlist, candidatePool, enrichedMeta);

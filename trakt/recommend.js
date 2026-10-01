@@ -1,4 +1,5 @@
 import { rankRecommendations, mergeScrapedShowRatings, traktUrl, computeBookThemeCounts, mergeManualRatings } from './engine.js';
+import { renderImportFreshness } from './dashboardShared.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -6,7 +7,8 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
 
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [libraryRaw, watchlist, enrichedMeta, feedback, omdbMetaRaw, scrapedShowRatings, llmTags, reviewedTags, goodreadsData, manualRatings] = await Promise.all([
+  const [dashboard, libraryRaw, watchlist, enrichedMeta, feedback, omdbMetaRaw, scrapedShowRatings, llmTags, reviewedTags, goodreadsData, manualRatings] = await Promise.all([
+    get('./data/dashboard.json').catch(() => null),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
     get('./data/enrichedMetadata.json').catch(() => ({})),
@@ -34,6 +36,7 @@ async function load() {
   document.getElementById('subtitleText').textContent =
     `${watchlist.titles?.length || 0} watchlist titles · ${enrichedCount} enriched with TMDB data`;
   document.getElementById('statusText').textContent = 'Scored';
+  if (dashboard) renderImportFreshness(dashboard.generatedAt);
 
   const { selected } = rankRecommendations(library, watchlist, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
 

@@ -15,6 +15,7 @@ import {
 import {
   esc, fmtNum, posterImgHtml, typeIcon, titleLink, svgEl, renderHBarChart, SUBJECT_LABEL,
   metaLine, scoreTier, initCollapsibleCards, loadAllData, predictedVsActualRows,
+  renderImportFreshness,
 } from './dashboardShared.js';
 import { descSimilarityBonus, tokenize } from './descSimilarity.js';
 
@@ -4710,6 +4711,7 @@ async function load() {
     `Last refreshed ${generated.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} ` +
     `at ${generated.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`;
   document.getElementById('statusText').textContent = 'Loaded from export';
+  renderImportFreshness(d.generatedAt);
 
   // Computed once, early, so both the Metadata & Engine Quality score
   // (which folds in a real penalty for open findings) and the Improvement

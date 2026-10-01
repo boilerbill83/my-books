@@ -90,6 +90,24 @@ body {
   color: var(--text-muted);
   white-space: nowrap;
 }
+/* Bill: "a tiny counter on the top ribbon that says how many days it has
+   been since a trakt import has been loaded" — a small pill, same visual
+   weight as the status text beside it. Past 14 days it switches to the
+   gold accent (same tone .status-dot.loading already uses for "needs
+   attention") — the text itself already says the real number either way,
+   so color is a reinforcement, never the only signal. */
+.header-freshness {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  background: var(--bg-subtle);
+  border-radius: 999px;
+  padding: 2px 9px;
+  white-space: nowrap;
+}
+.header-freshness-stale {
+  color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 14%, transparent);
+}
 .status-dot {
   width: 7px; height: 7px;
   border-radius: 50%;

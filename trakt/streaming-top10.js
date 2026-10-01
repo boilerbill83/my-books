@@ -33,7 +33,7 @@
 // already-committed feedbackData.json interaction) predates all of this
 // and stays — it's read-only reflection of his real data, not an
 // interactive dismiss action on this page.
-import { esc, posterImgHtml, initCollapsibleCards, STATUS_META, statusTag, SUBJECT_LABEL, displaySubgenre, loadAllData, computeFavoriteStars } from './dashboardShared.js';
+import { esc, posterImgHtml, initCollapsibleCards, STATUS_META, statusTag, SUBJECT_LABEL, displaySubgenre, loadAllData, computeFavoriteStars, renderImportFreshness } from './dashboardShared.js';
 import { posterUrl, hydrateTitle, traktUrl, rankAll, matchScore, inferGenre, inferSubgenres, inferSubjects } from './engine.js';
 
 // ESTABLISHED deliberately does NOT use a star emoji (Bill, 2026-09-26:
@@ -216,7 +216,7 @@ function buildCheckboxGroup(el, counts, order) {
 }
 
 async function load() {
-  const [data, prevData, { library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, bookThemeCounts, manualStars }] =
+  const [data, prevData, { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, bookThemeCounts, manualStars }] =
     await Promise.all([
       fetch('./data/streamingTop10.json').then(r => r.json()),
       fetch('./data/streamingTop10Previous.json').then(r => r.ok ? r.json() : null).catch(() => null),
@@ -228,6 +228,7 @@ async function load() {
     `Week of ${weekOf.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}`;
   document.getElementById('methodologyText').textContent = data.methodology;
   document.getElementById('statusText').textContent = 'Loaded';
+  renderImportFreshness(dashboard.generatedAt);
 
   const { idx } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
   const starredSet = computeFavoriteStars(library, watchlist, manualStars);

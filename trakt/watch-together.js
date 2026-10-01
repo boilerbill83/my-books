@@ -9,7 +9,7 @@
 // this page's whole purpose is being the nice one to hand someone else.
 import {
   loadAllData, computeCoWatchRows, esc, typeIcon, posterImgHtml, metaLine,
-  renderWatchStatusTable,
+  renderWatchStatusTable, renderImportFreshness,
 } from './dashboardShared.js';
 import { traktUrl, posterUrl } from './engine.js';
 
@@ -137,8 +137,9 @@ async function load() {
   const statusEl = document.getElementById('statusText');
   const subtitleEl = document.getElementById('subtitleText');
   try {
-    const { library, watchlist, candidatePool, enrichedMeta, omdbMeta,
+    const { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta,
             llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, coWatchProgress } = await loadAllData();
+    renderImportFreshness(dashboard.generatedAt);
 
     const coWatchKeys = [...new Set(Object.values(coWatchTags || {}).flat())];
     if (!coWatchKeys.length) {

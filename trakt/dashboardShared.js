@@ -1193,6 +1193,27 @@ function fmtDate(iso) {
   return new Date(iso + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 }
 
+// Bill: "add a tiny counter on the top ribbon that says how many days it
+// has been since a trakt import has been loaded." dashboard.json's own
+// generatedAt is exactly that signal - it's written by
+// build_trakt_dashboard.js, step 2 of every real import (manual or via
+// trakt-auto-refresh.yml), so its age IS the age of the whole imported
+// dataset, not a separate thing to track. Renders into #importFreshness
+// if that element exists on the page (a no-op otherwise, so a page that
+// hasn't added the header span yet doesn't error). A real color tier
+// (not just the text) kicks in past 14 days, since a counter that never
+// visually changes isn't much of a freshness signal - the number itself
+// is still the real information either way, never color alone.
+function renderImportFreshness(generatedAt, elementId = 'importFreshness') {
+  const el = document.getElementById(elementId);
+  if (!el || !generatedAt) return;
+  const days = Math.floor((Date.now() - new Date(generatedAt).getTime()) / 86400000);
+  const label = days <= 0 ? 'Trakt data: today' : days === 1 ? 'Trakt data: 1 day ago' : `Trakt data: ${days} days ago`;
+  el.textContent = label;
+  el.title = `Last Trakt import loaded ${new Date(generatedAt).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' })}`;
+  el.classList.toggle('header-freshness-stale', days > 14);
+}
+
 function renderFamilyWatchList(familyWatchlist, enrichedMeta, elementId = 'familyWatchList') {
   const el = document.getElementById(elementId);
   if (!el) return;
@@ -1285,5 +1306,5 @@ export {
   buildWatchRow, computeWatchStatusRows, computeCoWatchRows, isCoWatchReady, sortCoWatchReady,
   coWatchCardSubtitle, renderWatchCards, renderCoWatchCards, renderAiringCards, initCoWatchViewToggle, initAiringViewToggle,
   summarizeUpcoming, upcomingSortKey, renderWatchStatusTable, fmtDate, renderFamilyWatchList, renderLovedMovies,
-  computeFavoriteStars,
+  computeFavoriteStars, renderImportFreshness,
 };
