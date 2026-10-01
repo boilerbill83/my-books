@@ -1018,6 +1018,21 @@ def load_pending(cache):
                 or not cached.get('rtAttempted')
                 or not cached.get('rtAudienceAttempted')
                 or not cached.get('rtCountAttempted')  # same backfill-gap reasoning as mcCountAttempted above
+                # Real bug found 2026-10-01: once all 3 "attempted" stamps
+                # above are set, this gate used to go permanently False
+                # regardless of whether rottenTomatoes itself ever actually
+                # resolved to a real score - MC's sibling gate (needs_mc,
+                # above) already retries a null value after the cooldown
+                # via this exact clause; RT never had the equivalent. Found
+                # via a real production incident: a 120-min timeout run the
+                # same day scraped a null RT for 10 well-known, definitely-
+                # scored titles (Shōgun, Spotlight, TÁR, Sinners, Steve Jobs,
+                # The Iron Claw, Smile, The Crash, Sugar, Super Pumped) -
+                # almost certainly a transient site/rate-limit issue, not a
+                # real "no coverage" result - and without this clause those
+                # 10 would have been stuck at null forever, not just for the
+                # 14-day cooldown.
+                or (cached.get('rottenTomatoes') is None and not _in_cooldown(cached))
             )
             if not needs_mc and not needs_rt:
                 continue  # fully resolved already (or a fresh miss still on cooldown)
