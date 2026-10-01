@@ -4344,10 +4344,13 @@
   },
   "say you'll remember me|||abby jimenez": {
     "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found",
-    "checkedAt": "2026-09-17"
+    "amazon": {
+      "rating": 4.3,
+      "count": 98514
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81-pv197kqL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-10-01"
   },
   "the night we met|||abby jimenez": {
     "storyGraph": null,
@@ -4361,10 +4364,13 @@
   },
   "the law student|||john grisham": {
     "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found",
-    "checkedAt": "2026-09-17"
+    "amazon": {
+      "rating": 4.5,
+      "count": 2772
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/91ctciPLpnL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-10-01"
   },
   "in her defense|||philippa malicka": {
     "storyGraph": null,
@@ -4415,5 +4421,12 @@
     "coverUrl": "https://m.media-amazon.com/images/I/91N6ZkX-SSL._SX300_.jpg",
     "source": "amazon",
     "checkedAt": "2026-09-25"
+  },
+  "the kings of cool|||don winslow": {
+    "storyGraph": null,
+    "amazon": null,
+    "coverUrl": null,
+    "source": "not_found",
+    "checkedAt": "2026-10-01"
   }
 }
