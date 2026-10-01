@@ -1,32 +1,32 @@
 {
-  "titleKey": "show:240993",
-  "setAt": "2026-09-27T05:00:00.000Z",
-  "note": "Bill's own stated current watch, told directly in chat (2026-09-27: \"I'm currently watching random canyon\" — real title is Ransom Canyon, confirmed via library.json/watchlist.json exact match) — supersedes the prior pointer at show:108978 (Reacher). Ransom Canyon genuinely sits in BOTH library.json (in-progress, myRating 7, 10 of 18 aired episodes watched) and watchlist.json (watchlisted separately, real Trakt behavior — same overlap already documented for The Lowdown/Reacher). Note the show is a complete series now (canceled Sept 2026 after 2 seasons, all 18 episodes already aired) — there's no new-episode wait, just Bill's own remaining 8 unwatched episodes. Update or clear this file the next time Bill names a different current watch.",
+  "titleKey": "show:113962",
+  "setAt": "2026-10-01T00:00:00.000Z",
+  "note": "Bill's own stated current watch, told directly in chat (2026-10-01: \"I'm watching lioness\" — confirmed via an exact library.json/watchlist.json/currentlyWatching.json match, show:113962) — supersedes the prior pointer at show:240993 (Ransom Canyon). Lioness genuinely sits in BOTH library.json (in-progress, myRating 10, 16 of 24 aired episodes watched) and watchlist.json (watchlisted separately, real Trakt behavior — same overlap already documented for The Lowdown/Reacher/Ransom Canyon). Created by Taylor Sheridan, a real, strong anchor in Bill's loved-creator profile (Yellowstone/1883/Mayor of Kingstown). Season 3 (8 episodes) already finished airing (finale streamed Sept 20, 2026) by the time this was set, so there's no new-episode wait — just Bill's own remaining unwatched episodes. Update or clear this file the next time Bill names a different current watch.",
   "facts": [
     {
-      "text": "Ransom Canyon is based on a real novel series by Jodi Thomas, adapted for Netflix by showrunner April Blair (premiered April 17, 2025) — the show follows three ranching dynasties fighting over land, legacy, and each other in Texas Hill Country.",
-      "source": "https://en.wikipedia.org/wiki/Ransom_Canyon_(TV_series)",
-      "sourceLabel": "Wikipedia"
+      "text": "Lioness is loosely inspired by a real U.S. military program, \"Team Lioness\" — but the real one had nothing to do with the CIA. It was a Marine Corps initiative formed in 2003 that sent female support soldiers out alongside infantry in Iraq, since local custom barred male troops from searching Iraqi women.",
+      "source": "https://www.scmp.com/magazines/style/lifestyle/entertainment-news/article/3363245/explainer-did-team-lioness-exist-real-us-military-task-force-inspired-taylor-sheridans-series",
+      "sourceLabel": "South China Morning Post"
     },
     {
-      "text": "Season 2 premiered July 23, 2026 with all 8 episodes dropping at once — but Netflix canceled the series in September 2026 after two seasons, so the story is now complete at 18 total episodes, no more coming.",
-      "source": "https://deadline.com/2026/04/ransom-canyon-season-2-release-date-first-look-photos-1236875239/",
-      "sourceLabel": "Deadline"
+      "text": "Real veterans who served in the actual Team Lioness program have publicly criticized the show for fictionalizing their experience into a glamorized CIA-spy premise that bears little resemblance to what they actually did.",
+      "source": "https://movieweb.com/taylor-sheridan-lioness-real-veterans-criticism/",
+      "sourceLabel": "MovieWeb"
     },
     {
-      "text": "A real breakout hit for Netflix — the show spent four weeks in the platform's global Top 10 and charted in 77 countries.",
-      "source": "https://www.netflix.com/tudum/articles/ransom-canyon-season-2-news-photos-cast",
-      "sourceLabel": "Netflix Tudum"
+      "text": "Created by Taylor Sheridan — the same creator behind Yellowstone, 1883, and Mayor of Kingstown — Lioness was renewed for Season 3 on October 1, 2025.",
+      "source": "https://au.variety.com/2025/tv/news/lioness-renewed-season-3-paramount-28446",
+      "sourceLabel": "Variety"
     },
     {
-      "text": "Author Jodi Thomas says she genuinely \"loves\" what showrunner April Blair changed from her books — Blair added new subplots and twists and paced the central Quinn/Staten romance differently (they don't get together until Episode 7, during a tornado, unlike the first novel).",
-      "source": "https://www.today.com/popculture/books/ransom-canyon-books-jodi-thomas-interview-rcna202130",
-      "sourceLabel": "TODAY.com"
+      "text": "Season 3 (8 episodes, released weekly) premiered August 2, 2026 and finished its run with the finale on September 20, 2026 — the season is fully out now, so Bill's remaining episodes are all already available to watch.",
+      "source": "https://www.forbes.com/sites/timlammers/2026/08/02/taylor-sheridans-lioness-season-3-release-schedule-maps-out-new-episodes-for-hit-spy-series/",
+      "sourceLabel": "Forbes"
     },
     {
-      "text": "Season 2 raises the stakes on the central will-they-won't-they: Patricia Clarkson joins as Quinn's mother, and Ben Robson plays Oliver, a new love interest Quinn met in New York — six months after she left Staten (Josh Duhamel) and her hometown behind to chase her music career.",
-      "source": "https://www.netflix.com/tudum/articles/ransom-canyon-season-2-cast-guide",
-      "sourceLabel": "Netflix Tudum"
+      "text": "Zoe Saldaña stars as CIA station chief Joe McNamara and is also an executive producer; Season 3 brought in two more Oscar winners alongside her, Morgan Freeman (as Edwin Mullins) and Nicole Kidman.",
+      "source": "https://www.forbes.com/sites/timlammers/2026/08/02/taylor-sheridans-lioness-season-3-release-schedule-maps-out-new-episodes-for-hit-spy-series/",
+      "sourceLabel": "Forbes"
     }
   ]
 }
