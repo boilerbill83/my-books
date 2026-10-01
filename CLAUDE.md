@@ -28,6 +28,8 @@ Static GitHub Pages app that recommends books from Bill's personal to-read list 
 
 **Standing rule (Bill's explicit instruction, 2026-09-19): only add a new Improvement Opportunities finding to the trakt Data Quality page's Backlog section (`backlog: true` in `trakt/quality.js`) when Bill explicitly says to add it to the backlog.** A real, verified finding that doesn't come with that explicit instruction goes in the main actionable/severity-ranked list instead — being untested, needing more investigation, or being non-trivial to build is not by itself a reason to park it, since several items in the main list already carry those same qualities. Reserve backlog for findings Bill has actually asked to have parked (an open design question that's genuinely his call, something that needs his own curation work first, a deliberately-deferred phase). If in doubt about which list a new finding belongs in, default to the main list and ask, rather than defaulting to backlog.
 
+**Standing rule (Bill's explicit instruction, Oct 2026): the code word for triggering the automated Trakt refresh (`trakt-auto-refresh.yml`, see "Automated Trakt Export" below) is "Action!" — literally that word with the exclamation point.** Bill's own clarification: only the exclamation-pointed form counts as the trigger; the bare word "action" appearing naturally in conversation (e.g. discussing a movie, an action item, "my next action") must NOT be treated as a request to run the pipeline. When Bill says "Action!", ask him for a fresh DevTools cookie dump if this session doesn't already have a recent one, convert it, and dispatch the workflow — see "Automated Trakt Export" for the full flow.
+
 ---
 
 ## Project Structure
