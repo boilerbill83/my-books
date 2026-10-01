@@ -82,7 +82,12 @@ def main():
         page = ctx.new_page()
 
         try:
-            page.goto('https://trakt.tv/settings/data', wait_until='domcontentloaded', timeout=30_000)
+            # app.trakt.tv, not bare trakt.tv - confirmed via Bill's real
+            # captured session cookies (2026-10-01): the actual auth
+            # cookie (trakt-oidc-auth) is host-scoped to app.trakt.tv, not
+            # .trakt.tv, matching the platform migration CLAUDE.md already
+            # documents (trakt.tv -> app.trakt.tv, March-April 2026).
+            page.goto('https://app.trakt.tv/settings/data', wait_until='domcontentloaded', timeout=30_000)
             page.wait_for_timeout(2000)
 
             # Real login-expiry check before trying to click anything - a
