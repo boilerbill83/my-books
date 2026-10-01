@@ -1,0 +1,128 @@
+name: Trakt Full Auto-Refresh (export -> import -> enrich)
+
+# Manual-only (Bill: "I can just tell you to run it periodically; that's
+# not a dealbreaker" - he triggers this himself via chat whenever he
+# wants a fresh update, rather than an unattended schedule). Chains the
+# full "Importing a fresh Trakt export" workflow CLAUDE.md documents
+# (steps 1-6) into one run, using a saved session instead of Bill
+# manually downloading and uploading the export zip. See CLAUDE.md's
+# "Automated Trakt Export" section for the full design and the one-time
+# TRAKT_SESSION setup.
+
+on:
+  workflow_dispatch:
+    inputs:
+      tmdb_batch_size:
+        description: 'How many newly-discovered titles to TMDB-enrich this run'
+        type: number
+        default: 300
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Playwright + Chromium
+        run: |
+          pip install playwright
+          playwright install chromium --with-deps
+
+      # Step 0 (new): download a fresh export, replacing the manual
+      # "Bill clicks Export Now and uploads the zip" step.
+      - name: Download fresh Trakt export
+        env:
+          TRAKT_SESSION: ${{ secrets.TRAKT_SESSION }}
+        run: python3 trakt/fetch_trakt_export.py /tmp/trakt-export-raw.zip
+        timeout-minutes: 10
+
+      # Step 1 (CLAUDE.md): extract and verify the file count roughly
+      # matches what the zip itself claims - a real truncation happened
+      # once before (Session 43) from an interrupted extraction, not a
+      # bad zip.
+      - name: Extract export
+        run: |
+          mkdir -p /tmp/trakt-export
+          unzip -o -q /tmp/trakt-export-raw.zip -d /tmp/trakt-export
+          claimed=$(unzip -l /tmp/trakt-export-raw.zip | tail -1 | awk '{print $2}')
+          real=$(find /tmp/trakt-export -type f | wc -l)
+          echo "zip claims $claimed files, extracted $real"
+          if [ "$real" -lt "$((claimed - 2))" ]; then
+            echo "::error::Extraction looks truncated ($real of $claimed files) - aborting rather than importing a partial export."
+            exit 1
+          fi
+          # Raw export is never committed (CLAUDE.md) - it lives entirely
+          # under /tmp, outside the repo working directory, so there's no
+          # risk of it ending up in the commit below.
+
+      # Steps 2-3 (CLAUDE.md): rebuild the dashboard summary and the
+      # engine's own library/watchlist/currentlyWatching data. Same
+      # scripts, same invocation Bill's own manual imports have always
+      # used - nothing new here, just no longer requiring a human to
+      # run them.
+      - name: Rebuild dashboard summary
+        run: node scripts/build_trakt_dashboard.js /tmp/trakt-export
+      - name: Rebuild library + watchlist + currentlyWatching
+        run: node trakt/scripts/build_trakt_library.js /tmp/trakt-export
+
+      # Step 6 (CLAUDE.md): enrich newly-added titles via TMDB rather
+      # than waiting on the next scheduled run (which reads watchlist ->
+      # library -> candidatePool in priority order and could take a day
+      # or more to reach brand-new titles added by this import). A fixed,
+      # generous batch size replaces the "check pending count, decide
+      # whether to trigger a bigger batch" judgment call CLAUDE.md
+      # documents for a manual import - 300 comfortably covers a routine
+      # refresh (CLAUDE.md's own session history shows routine imports
+      # add tens of new titles, not hundreds).
+      - name: Enrich newly-added titles via TMDB
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: python3 trakt/enrich_tmdb.py ${{ inputs.tmdb_batch_size || 300 }}
+        timeout-minutes: 20
+
+      # Step 4 (CLAUDE.md): prune stale candidate-pool stubs (titles
+      # since watched/watchlisted directly) and keep the pool capped -
+      # prune_candidate_pool.js already does both in one pass, scored
+      # against the real engine.
+      - name: Prune candidate pool
+        run: node trakt/scripts/prune_candidate_pool.js
+
+      - name: Commit if changed
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+          git add trakt/data/
+          if git diff --staged --quiet; then
+            echo "No new data from this refresh."
+            exit 0
+          fi
+          git commit -m "Full Trakt auto-refresh: export + import + enrich [automated]"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest $BRANCH."
+            git fetch origin "$BRANCH"
+            git rebase "origin/$BRANCH"
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1
+
+      - name: Upload debug artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trakt-export-debug
+          path: |
+            /tmp/trakt-export-debug.png
+            /tmp/trakt-export-debug.txt
+          if-no-files-found: ignore

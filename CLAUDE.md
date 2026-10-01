@@ -333,6 +333,24 @@ The one and only place this is documented — the Trakt Dashboard section above 
 
 **Requires a `TMDB_API_KEY` repo secret** — Bill creates a free API key at themoviedb.org (instant approval, personal use), same pattern as `GOOGLE_BOOKS_API_KEY`/`ANTHROPIC_API_KEY`. Without it, `trakt/recommend.html` and the dashboard's recommendation panels still run correctly but every title shows an honest "not enough data yet" reason (verified in Session 44 with all 28 real watchlist titles pre-enrichment) — this has been set since Session 45 and shouldn't need re-doing, but if a fresh import's enrichment run fails with a 401, check this first before assuming a code bug.
 
+### Automated Trakt Export (`trakt-auto-refresh.yml`)
+
+Bill's explicit request (Oct 2026): he was manually doing Settings → Data → "Export Now" on trakt.tv, waiting 60-120 seconds, then uploading the resulting zip here every time he wanted BMTRE's data refreshed. This automates steps 1-6 of the "Importing a fresh Trakt export" workflow above — the fetch itself plus the full rebuild/enrich/prune chain — so Bill only has to ask for it, not do the click-and-upload dance himself.
+
+**This does NOT call the Trakt API** — the standing rule above still holds. `trakt/fetch_trakt_export.py` drives a real (headless) browser through the real website (`trakt.tv/settings/data`), the same as Bill clicking through it himself, just scripted. It's a different mechanism from the already-rejected OAuth/API approaches, not an exception to the rule against them.
+
+**Why this has to run via GitHub Actions, not interactively:** this sandbox's network policy blocks `trakt.tv` outright (confirmed via `curl` — connection failure), same as it already blocks `api.trakt.tv`/TMDB/OMDb/Google Books for interactive sessions. GitHub Actions runners can reach it fine (confirmed: 302/301 responses). So like every other external-API script in this project, the actual fetch can only run in CI, never live in a Claude Code session.
+
+**Authentication — no password stored, ever.** Bill logs into Trakt via "Continue with Google," so there's no separate Trakt password to store in the first place, and storing his actual Google credentials for unattended automation was explicitly ruled out (Google's bot detection actively fights scripted logins, and the blast radius of a leaked Google credential is far bigger than this one feature needs). Instead, `fetch_trakt_export.py` loads a saved Playwright `storageState` (cookies from an already-authenticated session) from the `TRAKT_SESSION` repo secret. This is lower-stakes than a password: it only grants whatever a logged-in trakt.tv session can already do, can't change his Google password, and he can revoke it independently just by logging out of that session on trakt.tv.
+
+**Capturing / refreshing `TRAKT_SESSION`** (one-time, and again whenever the session eventually expires): Claude drives a real, visible browser session with Bill present, has him complete the actual Google login himself (so credentials never pass through the conversation), then calls Playwright's `context.storage_state()` to capture the resulting cookies as JSON — Claude converts whatever raw cookie export Bill provides (e.g. a browser extension's JSON export) into this format, since the runtime script (`fetch_trakt_export.py`) only ever expects Playwright's native `storageState` shape, not whatever a given export tool happens to produce. Bill then pastes the resulting JSON into GitHub (Settings → Secrets and variables → Actions → `TRAKT_SESSION`) himself — same as every other secret in this project, never set by Claude directly (no tool here can write a GitHub secret).
+
+**Triggering it:** `workflow_dispatch`-only, no `schedule:` — Bill's explicit choice ("I can just tell you to run it periodically; that's not a dealbreaker"). He asks Claude to run it in chat; Claude dispatches the workflow the same way it dispatches every other manual Trakt job.
+
+**What it does, end to end:** downloads the export via the saved session → extracts + verifies the file count (same truncation check as the manual workflow) → `build_trakt_dashboard.js` + `build_trakt_library.js` → `enrich_tmdb.py` (fixed batch size of 300, replacing the manual "check pending count, decide batch size" judgment call — comfortably covers a routine refresh) → `prune_candidate_pool.js` → commits `trakt/data/` if anything changed. The raw export zip itself lives entirely under `/tmp` on the runner and is never committed, matching every other Trakt-export handling in this project. On failure (most likely: an expired `TRAKT_SESSION`), it uploads a screenshot + page-content dump as a workflow artifact for diagnosis, and the error message says plainly that the session needs recapturing.
+
+Still manual after this: OMDb/RT/Metacritic enrichment (already-scheduled daily jobs pick up new titles within a day — not worth cramming into this same run) and the step-7/8 "pull the commit back locally before touching `enrichedMetadata.json`" housekeeping, same as any other automated commit landing on `main`.
+
 ## Workflows
 
 - enrich-metadata.yml: daily 07:00 UTC; Google Books + Open Library →
@@ -380,6 +398,14 @@ The one and only place this is documented — the Trakt Dashboard section above 
   trakt/data/omdbMetadata.json. Needs an OMDB_API_KEY repo secret Bill must
   create (not yet set as of Session 49 — until it exists, the dashboard's
   Audience Score/Awards columns render blank, not an error).
+- trakt-auto-refresh.yml (Oct 2026): manual (workflow_dispatch) only, no
+  schedule — Bill asks Claude to run it whenever he wants a fresh Trakt
+  update. Runs trakt/fetch_trakt_export.py (downloads the export via a
+  saved browser session, no password stored) then chains the full
+  rebuild/enrich/prune pipeline in one run. See "Automated Trakt Export"
+  above for the full design. Needs a TRAKT_SESSION repo secret (captured
+  once from a real login, refreshed whenever it expires) and the existing
+  TMDB_API_KEY.
 - Data conflicts: sync + enrichment commit daily. Rebase carefully; prefer
   re-layering enrichment fields (themes/tones/similarToTitles) onto upstream.
 
