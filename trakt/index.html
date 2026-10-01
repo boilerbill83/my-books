@@ -80,6 +80,18 @@
          .tk-top-row's stretch match below to actually work, same scoped-
          scroll pattern already proven on #familyWatchList/#nextWatch. */
       .tk-hero-facts { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); max-height: 260px; overflow-y: auto; padding-right: 4px; }
+      /* Bill, 2026-10-01: "weird vertical scroll bar" — the plain OS-default
+         scrollbar this area's overflow-y:auto produces (unstyled anywhere
+         else on this site either, confirmed via a repo-wide grep) clashed
+         visibly against the warm cream/brown theme. Keeping the capped-
+         height scroll itself (it's load-bearing for .tk-top-row's stretch
+         match above — see that rule's own comment), just re-skinned it in
+         the site's own palette instead of removing it. */
+      .tk-hero-facts { scrollbar-width: thin; scrollbar-color: var(--accent-warm) var(--bg-subtle); }
+      .tk-hero-facts::-webkit-scrollbar { width: 7px; }
+      .tk-hero-facts::-webkit-scrollbar-track { background: var(--bg-subtle); border-radius: 4px; }
+      .tk-hero-facts::-webkit-scrollbar-thumb { background: var(--accent-warm); border-radius: 4px; }
+      .tk-hero-facts::-webkit-scrollbar-thumb:hover { background: var(--accent-warm-hover); }
       .tk-hero-facts-title { font-family: var(--font-serif); font-weight: 700; font-style: italic; font-size: 0.95rem; color: var(--text); margin-bottom: 8px; }
       .tk-hero-fact { font-size: 0.84rem; color: var(--text); line-height: 1.5; margin-bottom: 8px; }
       .tk-hero-fact-source { font-size: 0.72rem; color: var(--accent-warm); text-decoration: none; white-space: nowrap; font-weight: 600; }
@@ -108,6 +120,29 @@
       .tk-top-row { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 20px; align-items: stretch; }
       @media (max-width: 780px) { .tk-top-row { grid-template-columns: 1fr; } }
       .tk-nw-card-wrap { min-width: 0; display: flex; flex-direction: column; }
+
+      /* Movies/Shows You'll Love (Bill, 2026-10-01 screenshot: "this one
+         is still off"). The .tk-row2 pair's outer .tk-card boxes were
+         ALREADY matching height exactly (CSS Grid's default stretch, same
+         as every other .tk-row2 pair on this page) — confirmed via a real
+         measurement (1600px/1600px at one tested width). The real gap was
+         one level in: each card's own 8-item .tk-rec-list has a real,
+         organic total height difference (longer reason/metadata text on
+         one side wraps more lines) and, being plain block content inside
+         a now-taller-than-its-content box, that difference showed up as
+         dead space under the shorter list's last card — the exact
+         failure mode #2 this file's own standing rule documents (see
+         #dismissalsCard in dashboard.css for that pattern's first use).
+         Centering (the dismissalsCard fix) isn't right for a RANKED list
+         though — it would push rank #1 down off the top edge, misaligning
+         the two columns' first items instead of fixing anything.
+         justify-content:space-between on the already-flex-column
+         .tk-rec-list distributes any leftover height BETWEEN the 8 cards
+         instead, so #1 stays flush at the top and #8 flush at the bottom
+         in both columns, matching exactly regardless of per-item content
+         length. */
+      #movieRecCard, #showRecCard { display: flex; flex-direction: column; }
+      #movieRecCard .tk-rec-list, #showRecCard .tk-rec-list { flex: 1; justify-content: space-between; }
 
       /* My Next Watch redesigned (Bill, 2026-09-19: "make it visual... I
          want to be able to see everything, not just the top four") from a
@@ -221,11 +256,11 @@
         </div>
 
         <div class="tk-row2" style="margin-bottom:14px;">
-          <div class="tk-card">
+          <div class="tk-card" id="movieRecCard">
             <div class="tk-card-heading">🎬 Movies You'll Love</div>
             <div class="tk-rec-list" id="movieRecList"></div>
           </div>
-          <div class="tk-card">
+          <div class="tk-card" id="showRecCard">
             <div class="tk-card-heading">📺 Shows You'll Love</div>
             <div class="tk-card-note">Find something new — anything already on My Next Watch or Shows You Watch Together is left out, so this is only ever genuinely new ground.</div>
             <div class="tk-rec-list" id="showRecList"></div>
