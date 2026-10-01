@@ -1686,14 +1686,30 @@ build from):
   `procedural`'s own 5 trigger keywords (checked `fbi` specifically —
   69 occurrences, but rejected as the exact same trigger-keyword-
   restated-as-detail trap as `legal`/`medical`). Real per-title hit rate:
-  5.9% → 33.2% (107/322). Display-only — never wired into
-  `matchScore()`. Still a partial pass overall: most remaining subgenre
-  categories don't have an obvious further split the way `historical`
-  naturally splits into eras (see the dashboard's own live-computed
-  `remaining-subgenre-genre-specificity` Improvement Opportunities
-  finding for current coverage — note its headline "N of 30 buckets"
-  count is a crude does-any-title-hit probe that under-represents a fix
-  concentrated in one very large bucket, like both of these).
+  5.9% → 33.2% (107/322). A third pass, same instruction, continuing
+  autonomously: scanned every remaining zero-hit bucket's uncovered
+  titles (`character-study`, `ensemble`, `psychological-drama`,
+  `dramedy`, `political`, `satire`, `workplace-drama`, `military-drama`)
+  and found them all genuine dead ends — the only real keyword clusters
+  present are either format descriptors ("based on novel or book",
+  "miniseries", "sequel") or synonyms of the parent tag itself
+  (`political`'s "politics"/"corruption" are 2 of its own 6 trigger
+  keywords). `coming-of-age` was the one real exception: its own
+  trigger "coming of age" (23 occurrences) is unusable, but
+  "friendship"/"female friendship" combined for 13 real distinct titles
+  (Frances Ha, Pitch Perfect, Ghost World, Billy Elliot, I Am Not Okay
+  with This) clearing the >=8 bar as a genuinely separate
+  friendship-centered pattern from the existing High School detail.
+  Real per-title hit rate: 34.4% → 48.4% (45/93). Display-only — never
+  wired into `matchScore()`. Still a partial pass overall: most
+  remaining subgenre categories don't have an obvious further split the
+  way `historical` naturally splits into eras, and this third pass
+  confirms that's a checked conclusion, not an unexamined gap (see the
+  dashboard's own live-computed `remaining-subgenre-genre-specificity`
+  Improvement Opportunities finding for current coverage — note its
+  headline "N of 30 buckets" count is a crude does-any-title-hit probe
+  that under-represents a fix concentrated in one very large bucket,
+  like all three of these).
 - **Tones** (`inferTones()`) — mood/craft descriptors (`gritty`, `dark`,
   `witty`, `satirical`, `hilarious`, `inspirational`, `intense`,
   `suspenseful`, `twisty`, `slow-burn`, `character-driven`, `nostalgic`,

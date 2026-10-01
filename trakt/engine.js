@@ -2591,6 +2591,18 @@ const GENRE_DETAIL_KEYWORDS = {
   },
   'coming-of-age': {
     'High School': ['high school', 'high school student'],
+    // Added this pass (dashboard finding: "Some Genre Detail Missing",
+    // continuing the family-drama/procedural fixes): coming-of-age's
+    // uncovered titles were scanned for a second real cluster beyond
+    // High School. 'coming of age' itself (23 occurrences) is the tag's
+    // own trigger keyword, not usable as a detail split. 'friendship'/
+    // 'female friendship' (13 real distinct titles combined, well above
+    // the >=8 bar) is a genuine, separate cluster though - spot-checked
+    // against real titles (Frances Ha, Pitch Perfect, Ghost World, Billy
+    // Elliot, I Am Not Okay with This) and confirmed as a real
+    // friendship-centered coming-of-age pattern distinct from the
+    // academic/school setting High School already covers.
+    'Friendship-Driven': ['friendship', 'female friendship'],
   },
   'musical': {
     'Musical Comedy': ['musical comedy'],
