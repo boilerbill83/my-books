@@ -13,14 +13,25 @@ as if Bill clicked through it himself, just automated.
 AUTHENTICATION - deliberately does not store a password anywhere, since
 Bill logs in via "Continue with Google" and there's no separate Trakt
 password to store in the first place. Instead this loads a saved
-Playwright storageState (cookies from an already-authenticated session)
-from the TRAKT_SESSION secret. That session was captured once, manually,
-from Bill's own real login - see CLAUDE.md's "Automated Trakt Export"
-section for how it's captured and refreshed when it eventually expires.
-A session is lower-stakes than a password: it only grants whatever
-trakt.tv itself already allows a logged-in session to do, can't be used
-to change the Google account password, and can be revoked independently
-by logging out of that session on trakt.tv.
+Playwright storageState from the TRAKT_SESSION input. That session was
+captured once, manually, from Bill's own real login - see CLAUDE.md's
+"Automated Trakt Export" section for how it's captured and refreshed
+when it eventually expires. A session is lower-stakes than a password:
+it only grants whatever trakt.tv itself already allows a logged-in
+session to do, can't be used to change the Google account password, and
+can be revoked independently by logging out of that session on trakt.tv.
+
+IMPORTANT, confirmed via real failure (2026-10-01): storageState needs
+BOTH cookies AND localStorage (the `origins` field), not cookies alone.
+The first two real runs used cookies only and landed on the public,
+logged-out homepage (app.trakt.tv/, "Login"/"Get started") even though
+the cookies were fresh and complete - this app's client-side routing
+checks a cached OIDC user object in localStorage (key shape
+`oidc.user:<authority>:<client_id>`, an oidc-client-ts-style cache), not
+the cookies, to decide whether to render as logged in. The third run,
+with that localStorage entry added to `origins`, authenticated
+correctly on the first try. See CLAUDE.md's "Capturing a session" for
+the two-part DevTools capture this now requires.
 
 Usage:
     TRAKT_SESSION='<storageState JSON>' python3 trakt/fetch_trakt_export.py [output_path]
@@ -90,31 +101,35 @@ def main():
             page.goto('https://app.trakt.tv/settings/data', wait_until='domcontentloaded', timeout=30_000)
             page.wait_for_timeout(2000)
 
-            # Real login-expiry check before trying to click anything - a
-            # stale/expired session redirects to trakt.tv's login page
-            # (URL contains /auth/signin or /login depending on Trakt's
-            # own routing), and clicking blind at that point would just
-            # fail confusingly on a page with no "Export Now" button at
-            # all. Fail loud and specific instead.
+            # Real login-expiry check before trying to click anything.
+            # Two confirmed real failure shapes (2026-10-01): an explicit
+            # redirect to a login URL (/auth/signin, /login), AND - the
+            # one that actually bit twice - a silent redirect to the bare
+            # root '/' (the public, logged-out homepage), which the old
+            # signin/login/auth substring check didn't catch at all.
+            # Checking that we're still on /settings/data catches both.
             current_url = page.url
-            if 'signin' in current_url or '/login' in current_url or 'auth' in current_url:
-                print(f'ERROR: redirected to {current_url} - the saved session has likely '
-                      'expired. Bill needs to redo the one-time login capture and update the '
-                      'TRAKT_SESSION secret (see CLAUDE.md).', file=sys.stderr)
-                page.screenshot(path='/tmp/trakt-export-debug.png')
-                sys.exit(1)
-
-            # Real diagnostic (added after the first real run timed out
-            # waiting for "Export Now" with no login redirect - meaning
-            # the session was likely accepted, but something else was on
-            # the page instead). Printed straight to stdout (the job log),
-            # not just the screenshot artifact - the screenshot lives on
-            # Azure Blob Storage behind a signed URL this project's own
-            # interactive sandbox can't reach (confirmed: egress proxy
-            # rejects it), while the job log is always directly readable.
+            looks_logged_out = (
+                'signin' in current_url or '/login' in current_url or 'auth' in current_url
+                or '/settings/data' not in current_url
+            )
+            # Always print the diagnostic before deciding, not just on
+            # failure - the job log is always directly readable (unlike
+            # the screenshot artifact, which lives behind an Azure Blob
+            # Storage signed URL this project's own interactive sandbox
+            # can't reach), so this costs nothing and saves a round trip
+            # if something unexpected happens again in the future.
             body_text = page.inner_text('body')[:1500]
             print(f'DIAGNOSTIC: landed on {current_url!r}, page title={page.title()!r}')
             print(f'DIAGNOSTIC: first 1500 chars of visible body text:\n{body_text}')
+            if looks_logged_out:
+                print(f'ERROR: redirected away from /settings/data to {current_url} - the '
+                      'saved session has likely expired or was captured incompletely (cookies '
+                      'need the oidc.user:... localStorage entry too, not just cookies - see '
+                      "CLAUDE.md's \"Capturing a session\"). Bill needs to redo the capture.",
+                      file=sys.stderr)
+                page.screenshot(path='/tmp/trakt-export-debug.png')
+                sys.exit(1)
 
             # Text-based locator, not a CSS class/id guess - robust to
             # markup changes, matches Bill's own exact description of the
