@@ -104,6 +104,18 @@ def main():
                 page.screenshot(path='/tmp/trakt-export-debug.png')
                 sys.exit(1)
 
+            # Real diagnostic (added after the first real run timed out
+            # waiting for "Export Now" with no login redirect - meaning
+            # the session was likely accepted, but something else was on
+            # the page instead). Printed straight to stdout (the job log),
+            # not just the screenshot artifact - the screenshot lives on
+            # Azure Blob Storage behind a signed URL this project's own
+            # interactive sandbox can't reach (confirmed: egress proxy
+            # rejects it), while the job log is always directly readable.
+            body_text = page.inner_text('body')[:1500]
+            print(f'DIAGNOSTIC: landed on {current_url!r}, page title={page.title()!r}')
+            print(f'DIAGNOSTIC: first 1500 chars of visible body text:\n{body_text}')
+
             # Text-based locator, not a CSS class/id guess - robust to
             # markup changes, matches Bill's own exact description of the
             # button's label ("Export Now").
