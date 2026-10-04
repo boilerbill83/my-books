@@ -14,7 +14,29 @@ name: Trakt Paired-Layout Check
 #
 # See trakt/verify_paired_layouts.py's own docstring for the full
 # mechanics and the real bugs it caught the day it was built.
-
+#
+# Also runs on a daily SCHEDULE (added Oct 2026, per Bill's "add a daily
+# check to look for these kind of issues and fix them... only if it wont
+# use my claude API budget"). The push trigger above only re-checks when
+# trakt/*.html/*.css/*.js actually changes - but the real bug that
+# prompted this (the #nextWatch card's content not filling its stretched
+# height) was DATA-driven, not code-driven: the layout code hadn't
+# changed, the live watchlist had just drifted down to only 6 qualifying
+# picks that day. A pure code-push trigger can never catch that - only a
+# recurring re-check of the live page against whatever data exists today
+# can. This whole script is Playwright + plain DOM measurement, zero LLM
+# calls anywhere in it, so a daily run costs nothing against Bill's
+# Claude API budget - same "zero API cost" property every other
+# mechanical check in this project already has (data_quality_report.js,
+# the book side's eval.js, etc.). It still only DETECTS and fails loud
+# (red check + GitHub's own default failure-notification email) rather
+# than silently rewriting CSS - a genuine fix for an arbitrary future
+# violation needs real judgment about the right remedy (see today's
+# #nextWatch fix, which needed a specific align-content choice, not a
+# generic "shrink something" heuristic), and building a blind auto-
+# corrector for layout bugs without any intelligence in the loop isn't
+# realistically safe - that's exactly the kind of judgment call this
+# daily run can't make, so it reports clearly instead of guessing.
 on:
   push:
     paths:
@@ -24,6 +46,9 @@ on:
       - 'trakt/verify_paired_layouts.py'
       - 'styles.css'
       - '.github/workflows/trakt-verify-layouts.yml'
+  schedule:
+    - cron: '0 13 * * *'   # daily 1 PM UTC - after the morning enrich/export cascade (TMDB 8am, OMDb 9am, export-extract/cache-posters noon), so it's checking the day's freshest data
+  workflow_dispatch: {}
 
 jobs:
   verify:

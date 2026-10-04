@@ -167,12 +167,31 @@
          renderWatchCards() (dashboardShared.js), wrapped instead of
          horizontally scrolled since this list can now run well past a
          single scrollable row. flex:1 (not a fixed max-height) so the grid
-         fills whatever height .tk-top-row's stretch gives this card —
-         align-content:flex-start keeps a short card count anchored to the
-         top rather than spread out, and overflow-y:auto only engages if a
-         future large qualifying count would otherwise overflow the
-         stretched height. */
-      #nextWatch { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 14px; flex: 1; overflow-y: auto; padding-right: 4px; }
+         fills whatever height .tk-top-row's stretch gives this card;
+         overflow-y:auto only engages if a future large qualifying count
+         would otherwise overflow the stretched height.
+
+         align-items: flex-start + align-content: center - Bill flagged a
+         real "white space and misalignment" case live (2026-10-04), fixed
+         after actually measuring the live geometry rather than guessing:
+         .tk-shelf-card has no explicit height, so it was inheriting the
+         flexbox DEFAULT align-items:stretch - with only 6 qualifying picks
+         (one full row + a lone orphan on row 2) and this card stretched
+         tall to match the much-taller hero card beside it, that default
+         was splitting the whole available height evenly across the 2
+         rows, ballooning each card to ~318px (measured) when its real
+         content - poster + title + reason - only needs ~220px, leaving a
+         blank gap inside EVERY card, not just one gap at the very bottom.
+         align-items:flex-start stops that (each card now sizes to its own
+         content); align-content:center then distributes the now-correctly-
+         small leftover space evenly above+below the block of rows instead
+         of dumping it all at the bottom - same CLAUDE.md failure-mode-2
+         shape ("content not filling its stretched box"), not caught by
+         the existing paired-row checker because its content-gap
+         measurement had its own real bug (see verify_paired_layouts.py's
+         content_bottom_gap() fix, same commit). Both durable fixes for any
+         future item count, not a one-off patch for today's specific 6. */
+      #nextWatch { display: flex; flex-wrap: wrap; align-items: flex-start; align-content: center; gap: 14px; flex: 1; overflow-y: auto; padding-right: 4px; }
 
       /* Bill's live feedback, 2026-09-19: with the top row stretched to
          match Currently Watching's height, a short My Next Watch card

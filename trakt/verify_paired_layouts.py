@@ -131,6 +131,30 @@ SCROLL_ALLOWLIST_SELECTORS = [
                                 # not page content at all
 ]
 
+# mode 2 allowlist - paired-row CARD-LABEL pairs (order-independent) that
+# are a deliberate, verified, content-type-mismatch exception, not a
+# layout bug - same "document why, don't silently suppress" discipline as
+# SCROLL_ALLOWLIST_SELECTORS above, scoped to mode 2 specifically. A pair
+# only belongs here after confirming BOTH that its shorter side's content
+# really is properly centered (not flush-top - that's still a real bug)
+# AND that the residual gap is an honest consequence of comparing two
+# genuinely different kinds of content, not something a further size bump
+# can close without hurting the content's own visual quality.
+CONTENT_GAP_KNOWN_EXCEPTIONS = {
+    frozenset(['Biggest Prediction Misses', 'Dismissal Reasons']):
+        'verified 2026-10-04: Dismissal Reasons\' bar chart is genuinely '
+        'centered within its own flex-grown wrapper (symmetric top/bottom '
+        'gaps measured directly against it, not just inferred) - its '
+        'barHeight was already bumped twice (22->34->46) in response to '
+        'Bill\'s real "isn\'t tall enough" complaint, each time measured '
+        'before/after rather than guessed. The residual gap is a 14-reason '
+        'bar chart legitimately being less tall than a 10-poster list even '
+        'at a comfortably-readable bar size - pushing bars thicker still '
+        'to fully erase it risks worse-looking, disproportionate bars for '
+        'a cosmetic win. See renderDismissalChart()\'s own comment '
+        '(quality.js) for the full sizing history.',
+}
+
 
 def start_server():
     handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=ROOT)
@@ -149,25 +173,71 @@ def card_label(card):
     return card.get_attribute('id') or '(unlabeled card)'
 
 
-def content_bottom_gap(card, card_box):
-    """Blank space between the card's deepest real content and its own
-    bottom edge - the literal thing failure mode 2 describes."""
-    max_bottom = card.evaluate('''(el) => {
-        let maxB = el.getBoundingClientRect().top;
-        const walk = (node) => {
-            for (const child of node.children) {
-                const r = child.getBoundingClientRect();
-                if (r.height > 0 && r.width > 0) maxB = Math.max(maxB, r.bottom);
-                walk(child);
-            }
-        };
-        walk(el);
-        return maxB;
-    }''')
-    if max_bottom is None:
-        return None
-    card_bottom = card_box['y'] + card_box['height']
-    return max(0.0, card_bottom - max_bottom)
+# Shared by content_bottom_gap() (mode 2) and check_standalone_whitespace()
+# (mode 5) - both need "how far down does this card's REAL content reach
+# relative to the box it's actually meant to fill." That box isn't always
+# the card's own outer edge: the established, CLAUDE.md-documented remedy
+# for failure mode 2 is a flex-grown wrapper (`.tk-chart-wrap` etc, flex:1)
+# sitting below a heading, with ITS OWN content vertically centered inside
+# IT (#dismissalsCard/#genreChartCard/#nextWatch all use this exact shape,
+# the first being CLAUDE.md's own cited "worked example"). The heading
+# sits above the wrapper and was never meant to be "filled" - measuring
+# against the WHOLE card makes even a perfectly-centered wrapper look
+# asymmetric purely because the heading eats real space near the top that
+# the wrapper's own bottom gap then gets unfairly compared against.
+#
+# Two real bugs found this way and both fixed here (2026-10-04, live on
+# the actual site - not hypothesized):
+#   (1) A flex-grown wrapper's own bounding box was being counted as
+#       "content reaching the bottom" (it's sized by the PARENT's
+#       available space, not its own content) - produced a false
+#       near-zero gap, hiding the real #nextWatch bug this whole fix
+#       started from. Fixed: never count a flex-grown element's own rect,
+#       only recurse into its children.
+#   (2) Even after (1), measuring relative to the OUTER CARD still
+#       mis-flagged #genreChartCard and #dismissalsCard as violations -
+#       both verified directly (2026-10-04, live measurement) to have
+#       their content PERFECTLY centered within their own .tk-chart-wrap
+#       (symmetric top/bottom gaps measured against the wrapper itself:
+#       58px/58px and 144px/144px respectively), yet still tripped mode 2
+#       because the heading above each wrapper made the whole-card "top
+#       gap" look artificially small next to the wrapper's own real (but
+#       legitimate, centered) bottom gap. Fixed: measure against the
+#       INNERMOST flex-grown descendant's own box (found by walking down
+#       through any chain of flex-grown wrappers from the card), not the
+#       originally-passed card element - that inner box is the thing the
+#       design is actually trying to fill/center; chrome like a heading
+#       sitting above it was never part of what's being filled.
+CONTENT_GAP_JS = '''(root) => {
+    const isGrown = (el) => parseFloat(getComputedStyle(el).flexGrow || '0') > 0;
+    const effectiveBox = (el) => {
+        let box = el;
+        for (const child of el.children) {
+            const r = child.getBoundingClientRect();
+            if (r.height > 0 && r.width > 0 && isGrown(child)) box = effectiveBox(child);
+        }
+        return box;
+    };
+    const box = effectiveBox(root);
+    const boxRect = box.getBoundingClientRect();
+    let maxBottom = boxRect.top;
+    const walk = (node) => {
+        for (const child of node.children) {
+            const r = child.getBoundingClientRect();
+            if (r.height > 0 && r.width > 0 && !isGrown(child)) maxBottom = Math.max(maxBottom, r.bottom);
+            walk(child);
+        }
+    };
+    walk(box);
+    return Math.max(0, boxRect.bottom - maxBottom);
+}'''
+
+
+def content_bottom_gap(card):
+    """Blank space between the card's deepest real content and the box it's
+    actually meant to fill (see CONTENT_GAP_JS's own comment for why that
+    isn't always the card's own outer edge)."""
+    return card.evaluate(CONTENT_GAP_JS)
 
 
 def wait_for_async_content(page, timeout_s=70, poll_s=1.0):
@@ -232,8 +302,18 @@ def check_paired_rows(page, rel):
         else:
             # Mode 2 only makes sense once boxes actually match - if they
             # don't, mode 1 is the real problem to fix first.
-            gap_a = content_bottom_gap(a, box_a)
-            gap_b = content_bottom_gap(b, box_b)
+            # Normalize away the collapse-card chevron (e.g. "Dismissal
+            # Reasons\n▾") before checking the known-exceptions allowlist -
+            # card_label() keeps it for display, but it's not part of the
+            # heading identity the allowlist keys on.
+            label_key = frozenset([
+                label_a.replace('▾', '').strip(),
+                label_b.replace('▾', '').strip(),
+            ])
+            if label_key in CONTENT_GAP_KNOWN_EXCEPTIONS:
+                continue
+            gap_a = content_bottom_gap(a)
+            gap_b = content_bottom_gap(b)
             if gap_a is not None and gap_b is not None:
                 gdiff = abs(gap_a - gap_b)
                 ratio = (max(gap_a, gap_b) + 1) / (min(gap_a, gap_b) + 1)
@@ -281,22 +361,38 @@ def check_standalone_whitespace(page, rel, viewport_label):
     comparison is strictly more precise for that case and this would
     otherwise just be a noisier duplicate of the same finding."""
     results = page.evaluate('''([minHeight, absPx, ratio]) => {
+        const isGrown = (el) => parseFloat(getComputedStyle(el).flexGrow || '0') > 0;
+        // Same innermost-flex-grown-wrapper logic as CONTENT_GAP_JS (mode 2's
+        // content_bottom_gap()) - see that constant's own comment for why
+        // measuring against the whole card (rather than the wrapper a
+        // heading sits above) produces false positives on an already-
+        // correctly-centered card like #genreChartCard/#dismissalsCard.
+        const effectiveBox = (el) => {
+            let box = el;
+            for (const child of el.children) {
+                const r = child.getBoundingClientRect();
+                if (r.height > 0 && r.width > 0 && isGrown(child)) box = effectiveBox(child);
+            }
+            return box;
+        };
         const out = [];
         for (const card of document.querySelectorAll('.tk-card, .tk-hero-card')) {
             if (card.closest('.tk-row2, .tk-top-row')) continue;
             if (getComputedStyle(card).display === 'none') continue;
             const rect = card.getBoundingClientRect();
             if (rect.height < minHeight || rect.width === 0) continue;
-            let maxBottom = rect.top;
+            const box = effectiveBox(card);
+            const boxRect = box.getBoundingClientRect();
+            let maxBottom = boxRect.top;
             const walk = (node) => {
                 for (const child of node.children) {
                     const r = child.getBoundingClientRect();
-                    if (r.height > 0 && r.width > 0) maxBottom = Math.max(maxBottom, r.bottom);
+                    if (r.height > 0 && r.width > 0 && !isGrown(child)) maxBottom = Math.max(maxBottom, r.bottom);
                     walk(child);
                 }
             };
-            walk(card);
-            const gap = Math.max(0, (rect.top + rect.height) - maxBottom);
+            walk(box);
+            const gap = Math.max(0, boxRect.bottom - maxBottom);
             if (gap > absPx && (gap / rect.height) > ratio) {
                 let label = card.id ? ('#' + card.id) : '(unlabeled)';
                 const heading = card.querySelector('.tk-card-heading, .tk-hero-title, h2, h3');

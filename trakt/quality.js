@@ -274,14 +274,22 @@ function renderDismissalChart(stats) {
   // Biggest Prediction Misses (10 real rows) in a .tk-row2, which already
   // stretches both card BOXES to equal height by default, but the chart's
   // own bars (barHeight 22 at the shared default) left most of that
-  // stretched space empty below it. barHeight 34 here (bigger than the
-  // shared default, not tied to matching the sibling's exact row count —
-  // that's content-dependent and would drift) makes real, standalone use
-  // of the space; #dismissalsCard's CSS (dashboard.css) also centers
-  // whatever gap remains rather than dumping it all below the chart.
+  // stretched space empty below it. Bumped once already to barHeight 34
+  // (bigger than the shared default, not tied to matching the sibling's
+  // exact row count — that's content-dependent and would drift); still not
+  // enough per a real measurement (2026-10-04, verify_paired_layouts.py's
+  // refined content-gap check, which now correctly measures against this
+  // chart's own centered flex-grown wrapper rather than the whole card):
+  // with 14 real dismissal-reason categories, barHeight 34 left a genuine
+  // 144px centered gap on each side of a 777px-tall wrapper (chart content
+  // only 489px). barHeight 46 closes most of that real gap (not chasing an
+  // exact pixel match with the sibling, same reasoning as before — just
+  // meaningfully better use of the space); #dismissalsCard's CSS
+  // (dashboard.css) still centers whatever gap remains rather than
+  // dumping it all below the chart.
   renderHBarChart('dismissalChart',
     stats.byReason.map(r => ({ reason: `${r.label} (${r.count})`, count: r.count })),
-    { labelKey: 'reason', valueKey: 'count', maxScale: Math.max(...stats.byReason.map(r => r.count)), fmtValue: v => String(v), tooltipSuffix: ' dismissed', barHeight: 34 });
+    { labelKey: 'reason', valueKey: 'count', maxScale: Math.max(...stats.byReason.map(r => r.count)), fmtValue: v => String(v), tooltipSuffix: ' dismissed', barHeight: 46 });
 }
 
 
