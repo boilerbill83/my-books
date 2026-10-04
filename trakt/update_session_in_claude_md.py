@@ -51,6 +51,53 @@ def oidc_user_entry(storage_state):
     return None
 
 
+def read_current_block():
+    """Returns (claude_md_text, match_object, current_storage_state_dict_or_None)
+    for the "Current stored session" block, or (text, None, None) if the block
+    can't be found. Shared by this script's own main() and
+    refresh_trakt_session.py, so both read the same block the same way."""
+    claude_md = CLAUDE_MD_PATH.read_text()
+    m = BLOCK_RE.search(claude_md)
+    if not m:
+        return claude_md, None, None
+    current_json_match = re.search(r'```json\n(\{"cookies".*?\})\n```', m.group(0), re.DOTALL)
+    current_state = None
+    if current_json_match:
+        try:
+            current_state = json.loads(current_json_match.group(1))
+        except json.JSONDecodeError:
+            pass
+    return claude_md, m, current_state
+
+
+def write_session_block(claude_md, m, storage_state, source_note):
+    """Replaces the "Current stored session" block (prose + fenced JSON) in
+    `claude_md` (the full file text) at match `m` (from read_current_block)
+    with `storage_state`, dated today, with `source_note` describing how this
+    particular session was obtained (varies by caller - a manual DevTools
+    paste, a passive post-visit capture, or a real API refresh call).
+    Returns the new full file text. Extracted so refresh_trakt_session.py's
+    direct-API-refresh path writes CLAUDE.md the exact same way this script's
+    own passive-capture path does - one block format, not two to keep in sync.
+    """
+    oidc = oidc_user_entry(storage_state)
+    expires_at = oidc['expires_at']
+    expiry_dt = datetime.fromtimestamp(expires_at, tz=timezone.utc)
+    today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+    new_json_line = json.dumps(storage_state, separators=(', ', ': '))
+    new_prose = (
+        '**Current stored session** (Trakt-only — the Google/YouTube cookies from the same DevTools '
+        'copy are never included here, per the Authentication note above). Captured ' + today +
+        ' — ' + source_note + ' The embedded '
+        'token `exp`/`expires_at` is `' + str(expires_at) + '` (Unix seconds) — **' +
+        expiry_dt.isoformat().replace('+00:00', 'Z') + '**. When this has expired, ask Bill for a '
+        'fresh cookie + `oidc.user:...` localStorage paste (same two-part capture as always) and '
+        'replace the block below in the same commit:\n\n'
+    )
+    new_block = new_prose + f'```json\n{new_json_line}\n```'
+    return claude_md[:m.start()] + new_block + claude_md[m.end():]
+
+
 def main():
     if not REFRESHED_PATH.exists():
         print('No refreshed session captured this run (fetch_trakt_export.py '
@@ -73,25 +120,18 @@ def main():
         return 0
     refreshed_exp = refreshed_oidc['expires_at']
 
-    claude_md = CLAUDE_MD_PATH.read_text()
-    m = BLOCK_RE.search(claude_md)
-    if not m:
+    claude_md, m, current_state = read_current_block()
+    if m is None:
         print('WARNING: could not find the "Current stored session" block in '
               'CLAUDE.md to compare against - skipping (has the surrounding '
               'text changed? the regex may need updating).', file=sys.stderr)
         return 0
 
-    current_block_text = m.group(0)
-    current_json_match = re.search(r'```json\n(\{"cookies".*?\})\n```', current_block_text, re.DOTALL)
     current_exp = None
-    if current_json_match:
-        try:
-            current_state = json.loads(current_json_match.group(1))
-            current_oidc = oidc_user_entry(current_state)
-            if current_oidc:
-                current_exp = current_oidc.get('expires_at')
-        except json.JSONDecodeError:
-            pass
+    if current_state is not None:
+        current_oidc = oidc_user_entry(current_state)
+        if current_oidc:
+            current_exp = current_oidc.get('expires_at')
 
     if current_exp is not None and refreshed_exp <= current_exp:
         print(f'Refreshed session expires_at={refreshed_exp} is not later than the '
@@ -102,35 +142,15 @@ def main():
               'refresh - not an error).')
         return 0
 
-    expiry_dt = datetime.fromtimestamp(refreshed_exp, tz=timezone.utc)
-    today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
-    new_json_line = json.dumps(refreshed, separators=(', ', ': '))
-    new_block = (
-        m.group(1) +
-        f'```json\n{new_json_line}\n```'
-    ).replace(
-        # Swap in the fresh capture date + expiry inside group(1) itself -
-        # group(1) is the prose paragraph, which embeds the old date/exp.
-        '', ''
-    )
-    # group(1) contains the old "Captured <date>...expires...**<ts>**" text -
-    # rebuild it fresh rather than trying to regex-patch the old dates out.
-    new_prose = (
-        '**Current stored session** (Trakt-only — the Google/YouTube cookies from the same DevTools '
-        'copy are never included here, per the Authentication note above). Captured ' + today +
-        ' — self-extended by `trakt/fetch_trakt_export.py`/`update_session_in_claude_md.py` from a '
+    new_text = write_session_block(
+        claude_md, m, refreshed,
+        'self-extended by `trakt/fetch_trakt_export.py`/`update_session_in_claude_md.py` from a '
         'real authenticated page visit, not a fresh manual DevTools paste (see the '
-        '"SELF-EXTENDING SESSION" note in `fetch_trakt_export.py`\'s own docstring). The embedded '
-        'token `exp`/`expires_at` is `' + str(refreshed_exp) + '` (Unix seconds) — **' +
-        expiry_dt.isoformat().replace('+00:00', 'Z') + '**. When this has expired, ask Bill for a '
-        'fresh cookie + `oidc.user:...` localStorage paste (same two-part capture as always) and '
-        'replace the block below in the same commit:\n\n'
+        '"SELF-EXTENDING SESSION" note in `fetch_trakt_export.py`\'s own docstring).',
     )
-    new_block = new_prose + f'```json\n{new_json_line}\n```'
-
-    CLAUDE_MD_PATH.write_text(claude_md[:m.start()] + new_block + claude_md[m.end():])
+    CLAUDE_MD_PATH.write_text(new_text)
     print(f'CLAUDE.md session block self-extended: old expires_at={current_exp}, '
-          f'new expires_at={refreshed_exp} ({expiry_dt.isoformat()}). trakt.tv really did '
+          f'new expires_at={refreshed_exp}. trakt.tv really did '
           'rotate the token during this run - confirmed, not assumed.')
     return 0
 

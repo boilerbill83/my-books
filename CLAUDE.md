@@ -250,6 +250,8 @@ A read-only dashboard living alongside the book app in its own `trakt/` folder (
 
 **The Trakt API is never called by this project — a standing rule, not a preference.** Two earlier approaches were tried and rejected: Session 41's OAuth device-code live-sync (Trakt's live-import path needs VIP, Bill doesn't want any API dependency, and the sandbox's network policy blocks `api.trakt.tv` outright anyway), then Session 41-42's manual browser-based tracker + hand-built CSV import file. Both are now retired. **The current architecture only ever reads a file Bill exports and uploads himself** — Trakt's account-level "Data Export" feature (Settings → Data on trakt.tv; a zip of ~89 JSON files: watched history, ratings, watchlist, favorites, stats, profile — NOT the same thing as the CSV *import* format documented in Session 42's history below). Do not add a script or UI feature that calls `api.trakt.tv` without Bill explicitly asking for it.
 
+**One narrow, explicit exception exists (Oct 2026, `trakt/refresh_trakt_session.py` — see "Automated Trakt Export" below for the full design).** Bill explicitly asked whether a real API call was acceptable for the one purpose of refreshing the session TOKEN this project stores for `trakt-auto-refresh.yml`, given his real constraint was never "no API," just "no paying for Trakt VIP" — his exact words: *"I'm OK if you use an API; I just dont want to pay for premium Trakt which is how I get API access; if you can find another way, go for it."* This calls `auth.trakt.tv` (not `api.trakt.tv`), solely to rotate Bill's own already-authenticated session's token — it never fetches his watch/rating/history data, which still only ever comes from his own manually-uploaded export zip. The standing rule above still holds for everything else; this is not a reopening of it.
+
 **Folder layout:**
 ```
 trakt/
@@ -360,6 +362,11 @@ Claude parses the cookie paste plus the localStorage key/value into Playwright's
 
 **Real expiry is short — Bill re-pastes fresh cookies roughly weekly, when the token actually expires, not on every trigger.** Trakt's real auth cookie (`trakt-oidc-auth`, host-scoped to `app.trakt.tv`) carries its own long nominal cookie expiry (~1 year), but its *value* is a JSON blob with an embedded `expiresAt` field for the actual access token inside it — this has held at ~1 week out from capture time in every real session captured so far. A real browser keeps this fresh silently during normal use (the app's own JS re-issues it); a static saved snapshot can't do that, so periodic re-capture is unavoidable regardless of where the value is stored. `fetch_trakt_export.py` still detects an expired session generically (any redirect to a login page fails loud with a clear "recapture needed" message), so a stale stored session fails safely rather than silently breaking the pipeline.
 
+**Two automated mechanisms now try to keep the stored session below alive without Bill having to re-paste it, added the same day he asked "when youre done here lets see if we can find a way to automate that part":**
+
+1. **Passive self-extend (`trakt/fetch_trakt_export.py` + `trakt/update_session_in_claude_md.py`).** CLAUDE.md's own earlier investigation already established "a real browser keeps this fresh silently during normal use (the app's own JS re-issues it)" — so every real `trakt-auto-refresh.yml` run also captures the browser context's final `storage_state()` *after* its authenticated page visit, and a separate step overwrites the block below with that capture only if its embedded token genuinely expires *later* than what's already stored (never on a bare "it ran" — a no-op is the expected, non-error outcome whenever a single short automated visit doesn't happen to land in the ~1-minute pre-expiry window trakt.tv's own frontend uses to decide whether to silently refresh). Adds zero new API calls or hosts — it only reads back what the same already-approved browser visit's own cookies/localStorage ended up as. Whether this actually fires in a real run is unverified as of this writing — it's a free bonus on top of every `trakt-auto-refresh.yml` run, not a mechanism this project is depending on alone.
+2. **Direct API refresh (`trakt/refresh_trakt_session.py`, `.github/workflows/trakt-refresh-session.yml`), added Oct 2026 — a narrow, explicit, Bill-approved exception to the standing "never call the Trakt API" rule.** Bill was asked directly whether a real, deliberate API call for this one purpose (refreshing the session token only — never fetching his watch/rating/history data, which still only ever comes from his own manually-uploaded export) was acceptable given his one real constraint; his exact words: *"I'm OK if you use an API; I just dont want to pay for premium Trakt which is how I get API access; if you can find another way, go for it."* Real research (not guessed) confirms this needs neither: it POSTs a standard OIDC `refresh_token` grant to `https://auth.trakt.tv/oauth/token` (Trakt's own docs: use the `auth.trakt.tv` hostname for OAuth, not the API hostname) using Trakt's own public web-app `client_id` (already embedded in the session Bill himself captured from his real, already-logged-in browser — not a new app Claude registers) and the stored `refresh_token`; `client_secret` is confirmed optional/deprecated since Trakt's 2026-10-01 OAuth change (a real `trakt/trakt-android` PR, "stop sending client_secret on token exchange and refresh," confirms omitting it works even for an app that still technically has one on file) — so this reuses an existing, free, already-authenticated session rather than registering or paying for anything new. Runs on its own schedule (every 3 days, `trakt-refresh-session.yml`, plus `workflow_dispatch`), independent of whether Bill ever says "Action!". **Known, accepted residual risk, documented rather than hidden**: a refresh_token is single-use — whichever of (this automated call) or (Bill's own real browser tab silently renewing on its own) uses a given refresh_token value first invalidates the other's copy of it. The losing side just gets an ordinary "please sign in again" the next time it's used — never data loss, never anything destructive, the same category of risk Bill already explicitly accepted for storing the session here at all ("I dont care if someone tries to log in as me in Trakt; it's a free site"). The 3-day cadence (rather than daily) is specifically chosen to keep this collision window small, not to eliminate it. A failed refresh (most likely cause: the stored `refresh_token` already went stale from Bill's own browser rotating it first) fails that workflow run loudly on purpose, so a real, sustained failure surfaces via GitHub's own UI instead of rotting unnoticed — it does not touch CLAUDE.md on failure, and does not block `trakt-auto-refresh.yml`'s own independent passive self-extend step above.
+
 **Current stored session** (Trakt-only — the Google/YouTube cookies from the same DevTools copy are never included here, per the Authentication note above). Captured 2026-10-04; the embedded token `exp`/`expires_at` is `1791487595` (Unix seconds) — **2026-10-08T19:26:35Z**. When this has expired, ask Bill for a fresh cookie + `oidc.user:...` localStorage paste (same two-part capture as always) and replace the block below in the same commit:
 
 ```json
@@ -420,16 +427,30 @@ Still manual after this: OMDb/RT/Metacritic enrichment (already-scheduled daily 
   create (not yet set as of Session 49 — until it exists, the dashboard's
   Audience Score/Awards columns render blank, not an error).
 - trakt-auto-refresh.yml (Oct 2026): manual (workflow_dispatch) only, no
-  schedule — Bill asks Claude to run it whenever he wants a fresh Trakt
-  update. Runs trakt/fetch_trakt_export.py (downloads the export via a
-  browser session, no password stored) then chains the full
-  rebuild/enrich/prune pipeline in one run. See "Automated Trakt Export"
-  above for the full design. No stored secret — the session is a
-  one-off trakt_session workflow_dispatch input Claude passes in each
-  run from a fresh DevTools cookie dump Bill provides in chat (the real
-  token only lives ~1 week regardless, so Bill chose "send it to you
-  directly" over maintaining a GitHub secret). Also needs the existing
-  TMDB_API_KEY.
+  schedule — triggered when Bill says the code word ("Action!"). Runs
+  trakt/fetch_trakt_export.py (downloads the export via a browser
+  session, no password stored) then chains the full rebuild/enrich/prune
+  pipeline in one run. See "Automated Trakt Export" above for the full
+  design. No GitHub secret — the session is a one-off trakt_session
+  workflow_dispatch input Claude reads directly out of CLAUDE.md's own
+  "Current stored session" block and passes in each run (Bill's choice:
+  store it there rather than maintain a GitHub secret, since only he can
+  write a secret but Claude can write CLAUDE.md directly). Also runs a
+  passive self-extend step afterward (see "Two automated mechanisms"
+  above) that opportunistically pushes the stored session's expiry
+  further out when trakt.tv's own frontend happens to have silently
+  refreshed it during the run. Also needs the existing TMDB_API_KEY.
+- trakt-refresh-session.yml (Oct 2026): scheduled every 3 days, plus
+  workflow_dispatch. Runs trakt/refresh_trakt_session.py — a direct
+  auth.trakt.tv API call that proactively refreshes the stored session
+  token independent of whether Bill ever says "Action!". See "Two
+  automated mechanisms" above for the full design, the real research
+  behind it, and the known/accepted residual risk (an occasional,
+  harmless, re-login-only collision with Bill's own active browser
+  session). A narrow, explicit exception to the "Trakt API is never
+  called" rule (Trakt Dashboard section, above) — scoped strictly to
+  this one session-refresh purpose, never to fetching Bill's actual
+  watch/rating/history data.
 - trakt-verify-layouts.yml (Oct 2026): runs automatically on every push
   touching trakt/*.html, *.css, *.js, or styles.css (any branch, no
   manual trigger) — mechanically enforces the paired-card height-matching

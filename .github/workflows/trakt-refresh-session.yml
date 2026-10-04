@@ -1,0 +1,66 @@
+name: Trakt Session Token Refresh
+
+# A narrow, Bill-approved exception to the standing "never call the Trakt
+# API" rule - scoped strictly to refreshing the session token this project
+# stores in CLAUDE.md for trakt-auto-refresh.yml, never to fetching Bill's
+# own watch/rating/history data (that still only ever comes from his own
+# manually-uploaded export zip). See trakt/refresh_trakt_session.py's own
+# docstring for the full research, the exact go-ahead Bill gave, and the
+# known/accepted residual risk (an occasional, harmless, re-login-only
+# collision with Bill's own active browser session).
+#
+# Scheduled every 3 days (not daily) specifically to keep that collision
+# window small - the stored access token's own real-world lifespan has
+# measured at ~1 week, so this still refreshes comfortably before expiry
+# without refreshing so often that it's constantly racing Bill's own
+# browser's silent renewal.
+#
+# A failed run (most likely: the stored refresh_token already went stale
+# from Bill's own browser rotating it first) fails this workflow loudly
+# rather than silently - that's the intended behavior, so a real,
+# sustained failure surfaces instead of rotting unnoticed. It is not
+# fatal to anything else: trakt-auto-refresh.yml's own passive self-extend
+# step keeps working independently, and Bill can always just paste a
+# fresh DevTools capture as before.
+
+on:
+  schedule:
+    - cron: '0 14 */3 * *'
+  workflow_dispatch: {}
+
+jobs:
+  refresh-session:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Refresh the stored Trakt session via auth.trakt.tv
+        run: python3 trakt/refresh_trakt_session.py
+
+      - name: Commit if changed
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+          git add CLAUDE.md
+          if git diff --staged --quiet; then
+            echo "No change (shouldn't normally happen on a successful refresh, but not an error)."
+            exit 0
+          fi
+          git commit -m "Refresh stored Trakt session via direct API call [automated]"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest $BRANCH."
+            git fetch origin "$BRANCH"
+            git rebase "origin/$BRANCH"
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1
