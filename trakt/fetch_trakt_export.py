@@ -41,6 +41,26 @@ the repo working directory, since the raw export itself is never
 committed (CLAUDE.md: "the ~5.6MB/89-file export itself is never
 committed" - only the derived, built files are).
 
+SELF-EXTENDING SESSION (added Oct 2026, per Bill's "find a way to
+automate" ask once he'd started storing the session in CLAUDE.md
+rather than re-pasting it every trigger): CLAUDE.md's own earlier
+investigation already established that "a real browser keeps this
+fresh silently during normal use (the app's own JS re-issues it)" -
+so on a successful run, this also captures the context's final
+storage_state() (after the real, authenticated page visit) to
+/tmp/trakt-session-refreshed.json. If trakt.tv's own frontend silently
+rotated the token during that visit, the embedded expiresAt will be
+later than what was passed in; a separate workflow step compares the
+two and only updates CLAUDE.md's stored session when it genuinely is
+later, never blindly overwriting with an unverified capture. This adds
+zero new API calls or hosts - it only reads back what the same
+already-approved browser visit's own cookies/localStorage ended up as,
+the same mechanism `fetch_trakt_export.py` already uses to feed itself
+in. Whether trakt.tv's JS actually refreshes within a single short
+automated visit (versus only during longer, hours-long real human
+sessions) was unverified when this was written - the real workflow
+runs are the actual test, not a claim made in advance.
+
 On any failure (expired session, site changed, selector didn't match)
 this saves a screenshot + the page's visible text to /tmp/trakt-export-
 debug.png / .txt before exiting non-zero, so a failed run leaves
@@ -155,6 +175,23 @@ def main():
                 # export, not a genuinely tiny account.
                 print('WARNING: downloaded file is suspiciously small for a real Trakt export - '
                       'check it before trusting it.', file=sys.stderr)
+
+            # See the "SELF-EXTENDING SESSION" docstring note above - only
+            # captured after a real, confirmed-authenticated, successful
+            # run, never on a failure path (an errored page's cookies
+            # aren't trustworthy as "the good session").
+            try:
+                refreshed_path = Path('/tmp/trakt-session-refreshed.json')
+                refreshed_path.write_text(json.dumps(ctx.storage_state()))
+                print(f'Captured post-visit session state to {refreshed_path} '
+                      '(a later-expiring token here means trakt.tv silently refreshed it).')
+            except Exception as e:
+                # Non-fatal - the export itself already succeeded, which is
+                # the real point of this run. Losing the self-extend
+                # opportunity for one run just means the next trigger still
+                # works off whatever's already in CLAUDE.md.
+                print(f'WARNING: could not capture refreshed session state ({e}) - '
+                      'not fatal, export already succeeded.', file=sys.stderr)
 
         except Exception as e:
             print(f'ERROR: {e}', file=sys.stderr)

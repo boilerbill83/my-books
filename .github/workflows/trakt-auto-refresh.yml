@@ -107,13 +107,25 @@ jobs:
       - name: Prune candidate pool
         run: node trakt/scripts/prune_candidate_pool.js
 
+      # New (Oct 2026): the "SELF-EXTENDING SESSION" mechanism - see
+      # fetch_trakt_export.py's own docstring. Only updates CLAUDE.md's
+      # stored session when the one captured from this run's real
+      # authenticated visit genuinely expires later than what's already
+      # there; a no-op (exit 0, no file changes) otherwise. Runs even if
+      # a later step already failed, same reasoning as the commit step
+      # below - no reason to lose a successful self-extend over an
+      # unrelated downstream failure.
+      - name: Self-extend stored session if trakt.tv rotated it
+        if: always()
+        run: python3 trakt/update_session_in_claude_md.py
+
       - name: Commit if changed
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-          git add trakt/data/
+          git add trakt/data/ CLAUDE.md
           if git diff --staged --quiet; then
             echo "No new data from this refresh."
             exit 0
