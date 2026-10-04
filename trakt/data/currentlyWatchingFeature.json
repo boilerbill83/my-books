@@ -1,32 +1,32 @@
 {
-  "titleKey": "show:113962",
-  "setAt": "2026-10-01T00:00:00.000Z",
-  "note": "Bill's own stated current watch, told directly in chat (2026-10-01: \"I'm watching lioness\" — confirmed via an exact library.json/watchlist.json/currentlyWatching.json match, show:113962) — supersedes the prior pointer at show:240993 (Ransom Canyon). Lioness genuinely sits in BOTH library.json (in-progress, myRating 10, 16 of 24 aired episodes watched) and watchlist.json (watchlisted separately, real Trakt behavior — same overlap already documented for The Lowdown/Reacher/Ransom Canyon). Created by Taylor Sheridan, a real, strong anchor in Bill's loved-creator profile (Yellowstone/1883/Mayor of Kingstown). Season 3 (8 episodes) already finished airing (finale streamed Sept 20, 2026) by the time this was set, so there's no new-episode wait — just Bill's own remaining unwatched episodes. Update or clear this file the next time Bill names a different current watch.",
+  "titleKey": "show:95350",
+  "setAt": "2026-10-04T00:00:00.000Z",
+  "note": "Bill's own stated current watch, told directly in chat (2026-10-04: \"I am now watching Lanterns\" — confirmed via an exact watchlist.json match, show:95350, ids.imdb tt26545992). Supersedes the prior pointer at show:113962 (Lioness). Lanterns sits only in watchlist.json so far (watchlisted 2026-08-11), not yet in library.json/currentlyWatching.json — a real, expected gap since Bill just started it, same shape as The Westies (Session 68) and Lioness before it. The show airs weekly Sundays, 8 episodes, premiered Aug 16, 2026 — the Season 1 finale (episode 8) releases today, Oct 4, 2026, right as this was set. Update or clear this file the next time Bill names a different current watch.",
   "facts": [
     {
-      "text": "Lioness is loosely inspired by a real U.S. military program, \"Team Lioness\" — but the real one had nothing to do with the CIA. It was a Marine Corps initiative formed in 2003 that sent female support soldiers out alongside infantry in Iraq, since local custom barred male troops from searching Iraqi women.",
-      "source": "https://www.scmp.com/magazines/style/lifestyle/entertainment-news/article/3363245/explainer-did-team-lioness-exist-real-us-military-task-force-inspired-taylor-sheridans-series",
-      "sourceLabel": "South China Morning Post"
+      "text": "Lanterns was created by Chris Mundy (the Ozark showrunner), Damon Lindelof (Lost, Watchmen, The Leftovers), and comic writer Tom King — deliberately built as a grounded, True Detective-style murder mystery set in the American heartland rather than a cosmic superhero spectacle.",
+      "source": "https://collider.com/damon-lindelof-lanterns-lost-true-detective-replacement/",
+      "sourceLabel": "Collider"
     },
     {
-      "text": "Real veterans who served in the actual Team Lioness program have publicly criticized the show for fictionalizing their experience into a glamorized CIA-spy premise that bears little resemblance to what they actually did.",
-      "source": "https://movieweb.com/taylor-sheridan-lioness-real-veterans-criticism/",
-      "sourceLabel": "MovieWeb"
+      "text": "Kyle Chandler plays veteran Green Lantern Hal Jordan and Aaron Pierre plays rookie recruit John Stewart, the two intergalactic cops investigating an earthbound murder together.",
+      "source": "https://www.space.com/entertainment/space-movies-shows/how-to-watch-lanterns-hbos-gritty-new-green-lantern-show",
+      "sourceLabel": "Space.com"
     },
     {
-      "text": "Created by Taylor Sheridan — the same creator behind Yellowstone, 1883, and Mayor of Kingstown — Lioness was renewed for Season 3 on October 1, 2025.",
-      "source": "https://au.variety.com/2025/tv/news/lioness-renewed-season-3-paramount-28446",
-      "sourceLabel": "Variety"
+      "text": "Josh Brolin (Thanos in the MCU) was actually offered the Hal Jordan role first, back in 2024, but turned it down without ever publicly explaining why beyond saying it \"didn't work out\" — Kyle Chandler was cast after Brolin passed.",
+      "source": "https://www.tvline.com/2271664/marvel-actor-josh-brolin-hal-jordan-lanterns-kyle-chandler/",
+      "sourceLabel": "TVLine"
     },
     {
-      "text": "Season 3 (8 episodes, released weekly) premiered August 2, 2026 and finished its run with the finale on September 20, 2026 — the season is fully out now, so Bill's remaining episodes are all already available to watch.",
-      "source": "https://www.forbes.com/sites/timlammers/2026/08/02/taylor-sheridans-lioness-season-3-release-schedule-maps-out-new-episodes-for-hit-spy-series/",
+      "text": "The show releases weekly on Sundays rather than all at once — 8 episodes total, premiered August 16, 2026, with the Season 1 finale airing today, October 4, 2026.",
+      "source": "https://www.forbes.com/sites/erikkain/2026/10/04/lanterns-season-1-finale-episode-8-release-time-hbo-max/",
       "sourceLabel": "Forbes"
     },
     {
-      "text": "Zoe Saldaña stars as CIA station chief Joe McNamara and is also an executive producer; Season 3 brought in two more Oscar winners alongside her, Morgan Freeman (as Edwin Mullins) and Nicole Kidman.",
-      "source": "https://www.forbes.com/sites/timlammers/2026/08/02/taylor-sheridans-lioness-season-3-release-schedule-maps-out-new-episodes-for-hit-spy-series/",
-      "sourceLabel": "Forbes"
+      "text": "Critics have broadly praised it as \"an exciting synthesis of its creators' strengths\" — not as idea-dense as Lindelof's best work or as visually striking as True Detective's peak moments, but a genuine, well-executed blend of both.",
+      "source": "https://www.slashfilm.com/2115788/lanterns-trailer-dc-universe-hbo-series/",
+      "sourceLabel": "SlashFilm"
     }
   ]
 }
