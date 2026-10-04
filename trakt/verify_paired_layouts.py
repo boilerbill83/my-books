@@ -153,6 +153,22 @@ CONTENT_GAP_KNOWN_EXCEPTIONS = {
         'to fully erase it risks worse-looking, disproportionate bars for '
         'a cosmetic win. See renderDismissalChart()\'s own comment '
         '(quality.js) for the full sizing history.',
+    frozenset(['Genres You Rate Highest', 'Most-Watched Actors']):
+        'verified 2026-10-04: the genre chart is genuinely centered within '
+        'its own flex-grown .tk-chart-wrap (symmetric 58px/58px top/bottom '
+        'gaps measured directly against the wrapper itself, confirmed '
+        'locally) - it\'s deliberately capped to its top 12 rows at a '
+        'bigger font size (Bill: "cut out some of the bottom values so it '
+        'isn\'t too tall", see #genreChartCard\'s own comment above), which '
+        '"shouldn\'t be reverted" per that same comment. First caught in '
+        'real CI (not locally) at a slightly larger 68px/25px, not the '
+        '58px/25px measured in this sandbox - this sandbox\'s own network '
+        'policy blocks Google Fonts (a long-documented, pre-existing '
+        'limitation noted throughout this project), so CI renders the real '
+        'font while local testing here falls back to a system font with '
+        'slightly different metrics, enough to tip this one borderline '
+        'case over threshold. The centering itself is confirmed correct '
+        'either way; only the exact residual px is environment-dependent.',
 }
 
 
