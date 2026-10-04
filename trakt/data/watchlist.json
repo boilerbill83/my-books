@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-01T20:47:04.150Z",
-    "count": 51
+    "generatedAt": "2026-10-04T20:16:02.116Z",
+    "count": 54
   },
   "titles": [
     {
@@ -247,25 +247,6 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-07-28T19:26:36.000Z"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:240993",
-      "ids": {
-        "imdb": "tt28088031",
-        "plex": {
-          "guid": "656ff8021618e1eba2286daf",
-          "slug": "ransom-canyon"
-        },
-        "slug": "ransom-canyon",
-        "tmdb": 240993,
-        "tvdb": 443051,
-        "trakt": 216613
-      },
-      "title": "Ransom Canyon",
-      "year": 2025,
-      "watchlisted": true,
-      "watchlistedAt": "2026-08-13T13:32:56.000Z"
     },
     {
       "type": "movie",
@@ -699,25 +680,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:113962",
-      "ids": {
-        "imdb": "tt13111078",
-        "plex": {
-          "guid": "62ac863c44b73ea95829962c",
-          "slug": "lioness-1"
-        },
-        "slug": "lioness",
-        "tmdb": 113962,
-        "tvdb": 388589,
-        "trakt": 167187
-      },
-      "title": "Lioness",
-      "year": 2023,
-      "watchlisted": true,
-      "watchlistedAt": "2026-09-12T00:40:29.000Z"
-    },
-    {
-      "type": "show",
       "titleKey": "show:85552",
       "ids": {
         "imdb": "tt8772296",
@@ -789,25 +751,6 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-09-18T01:45:22.000Z"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:295778",
-      "ids": {
-        "imdb": "tt40197357",
-        "plex": {
-          "guid": "687d434c16e6d561559bef1e",
-          "slug": "scrubs-2026"
-        },
-        "slug": "scrubs-2026",
-        "tmdb": 295778,
-        "tvdb": 465690,
-        "trakt": 291441
-      },
-      "title": "Scrubs",
-      "year": 2026,
-      "watchlisted": true,
-      "watchlistedAt": "2026-09-18T21:19:29.000Z"
     },
     {
       "type": "movie",
@@ -886,6 +829,25 @@
     },
     {
       "type": "show",
+      "titleKey": "show:203857",
+      "ids": {
+        "imdb": "tt17491088",
+        "plex": {
+          "guid": "6274f781093e999f383e7197",
+          "slug": "the-diplomat-1"
+        },
+        "slug": "the-diplomat-2023",
+        "tmdb": 203857,
+        "tvdb": 415239,
+        "trakt": 196192
+      },
+      "title": "The Diplomat",
+      "year": 2023,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-01T23:05:21.000Z"
+    },
+    {
+      "type": "show",
       "titleKey": "show:258230",
       "ids": {
         "imdb": "tt6037988",
@@ -905,6 +867,25 @@
     },
     {
       "type": "show",
+      "titleKey": "show:298852",
+      "ids": {
+        "imdb": "tt37972251",
+        "plex": {
+          "guid": "68af9f683a2cf5507ddee977",
+          "slug": "war-2026-1"
+        },
+        "slug": "war-2026",
+        "tmdb": 298852,
+        "tvdb": 467092,
+        "trakt": 295637
+      },
+      "title": "WAR",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-01T23:30:17.000Z"
+    },
+    {
+      "type": "show",
       "titleKey": "show:239618",
       "ids": {
         "imdb": "tt30051064",
@@ -921,6 +902,25 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-09-25T23:26:03.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:331641",
+      "ids": {
+        "imdb": "tt45335545",
+        "plex": {
+          "guid": "6a9d68cd6c279106cf585f5e",
+          "slug": "the-detour-with-david-chang-1"
+        },
+        "slug": "the-detour-with-david-chang",
+        "tmdb": 331641,
+        "tvdb": 482184,
+        "trakt": 328921
+      },
+      "title": "The Detour with David Chang",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-02T01:03:34.000Z"
     },
     {
       "type": "show",
@@ -959,6 +959,61 @@
       "year": 2024,
       "watchlisted": true,
       "watchlistedAt": "2026-09-25T23:26:25.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1032863",
+      "ids": {
+        "imdb": "tt22526100",
+        "plex": {
+          "guid": "63431d1b569aac9831dcf041",
+          "slug": "the-love-hypothesis-2026"
+        },
+        "slug": "the-love-hypothesis-2026",
+        "tmdb": 1032863,
+        "trakt": 830859
+      },
+      "title": "The Love Hypothesis",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-02T14:14:22.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1375441",
+      "ids": {
+        "imdb": "tt34206385",
+        "plex": {
+          "guid": "67230da1ebb3c0191eb65296",
+          "slug": "primetime-2026"
+        },
+        "slug": "primetime-2026",
+        "tmdb": 1375441,
+        "trakt": 1123558
+      },
+      "title": "Primetime",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-02T14:14:32.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:295778",
+      "ids": {
+        "imdb": "tt40197357",
+        "plex": {
+          "guid": "687d434c16e6d561559bef1e",
+          "slug": "scrubs-2026"
+        },
+        "slug": "scrubs-2026",
+        "tmdb": 295778,
+        "tvdb": 465690,
+        "trakt": 291441
+      },
+      "title": "Scrubs",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-02T14:17:36.000Z"
     }
   ]
 }

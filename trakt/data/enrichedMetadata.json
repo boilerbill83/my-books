@@ -545185,5 +545185,351 @@
   "year": 2016,
   "type": "movie",
   "fetchedAt": "2026-10-04"
+ },
+ "show:298852": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "An anthology series set in the elite world of London law following two rival firms, Cathcarts and Taylor & Byrne, as they face off in a different headline-making legal battle each season.",
+  "keywords": [
+   "anthology",
+   "divorce",
+   "law firm",
+   "legal drama"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt37972251",
+  "voteAverage": 8.8,
+  "voteCount": 10,
+  "popularity": 66.3915,
+  "posterPath": "/AtCR5LMuvwepTi1kipKq878Rbuq.jpg",
+  "similarToIds": [
+   28571,
+   58951,
+   287,
+   250,
+   92708,
+   208307,
+   208367,
+   307156,
+   92829,
+   549,
+   92933,
+   208548,
+   93027,
+   29063,
+   126038,
+   30088,
+   1413,
+   1480,
+   60791,
+   60900
+  ],
+  "recommendedIds": [
+   32940,
+   205272,
+   67384,
+   202097,
+   116799,
+   4920,
+   1365,
+   73607,
+   90705,
+   60791,
+   7143,
+   226174,
+   93749,
+   111261,
+   10370,
+   72496,
+   64513,
+   90399,
+   259453,
+   113036
+  ],
+  "productionCompanies": [
+   "New Pictures",
+   "Observatory Pictures",
+   "Sky Studios"
+  ],
+  "topCast": [
+   "Dominic West",
+   "Sienna Miller",
+   "Phoebe Fox",
+   "James McArdle",
+   "Nina Sosanya"
+  ],
+  "topCastDetail": [
+   {
+    "id": 17287,
+    "name": "Dominic West",
+    "gender": 2
+   },
+   {
+    "id": 23459,
+    "name": "Sienna Miller",
+    "gender": 1
+   },
+   {
+    "id": 1320609,
+    "name": "Phoebe Fox",
+    "gender": 1
+   },
+   {
+    "id": 1256215,
+    "name": "James McArdle",
+    "gender": 2
+   },
+   {
+    "id": 7063,
+    "name": "Nina Sosanya",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2026-10-02",
+  "episodeRunTime": null,
+  "createdBy": [
+   "George Kay"
+  ],
+  "status": "Returning Series",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 8,
+  "nextEpisodeToAir": {
+   "airDate": "2026-10-09",
+   "seasonNumber": 1,
+   "episodeNumber": 2
+  },
+  "lastEpisodeToAir": {
+   "airDate": "2026-10-02",
+   "seasonNumber": 1,
+   "episodeNumber": 1,
+   "name": "It's Done"
+  },
+  "currentSeasonFinale": {
+   "seasonNumber": 1,
+   "episodeCount": 8,
+   "finaleEpisodeNumber": 8,
+   "finaleDate": "2026-11-20"
+  },
+  "networks": [
+   "Sky Atlantic"
+  ],
+  "creatorCredits": [
+   "George Kay",
+   "Ben Taylor",
+   "Andrea Dewsbery"
+  ],
+  "title": "WAR",
+  "year": 2026,
+  "type": "show",
+  "fetchedAt": "2026-10-04"
+ },
+ "show:331641": {
+  "genres": [
+   "Documentary"
+  ],
+  "overview": "In the age of influencers, algorithms and listicles, Chang cuts through the noise on a classic American road trip following local leads and friends\u2019 recommendations to his next meal. Each episode represents a different leg of Chang\u2019s journey, pairing him with a new travel companion and a new culinary adventure.",
+  "keywords": [],
+  "originalLanguage": "en",
+  "imdbId": "tt45335545",
+  "voteAverage": 1.0,
+  "voteCount": 1,
+  "popularity": 3.0414,
+  "posterPath": "/A7LOX1hhWmF8SUA5CMs1xsPfonb.jpg",
+  "similarToIds": [],
+  "recommendedIds": [
+   4498,
+   105288,
+   102905,
+   106871,
+   262594,
+   105763,
+   316992,
+   4994,
+   137735,
+   56305,
+   15948,
+   226135,
+   283367,
+   1292,
+   110818,
+   31677,
+   56304,
+   77416,
+   318880,
+   129035
+  ],
+  "productionCompanies": [
+   "Majordomo Media",
+   "Tremolo Productions"
+  ],
+  "topCast": [
+   "David Chang"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1983811,
+    "name": "David Chang",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2026-09-20",
+  "episodeRunTime": null,
+  "createdBy": [
+   "David Chang",
+   "Dominic Musacchio"
+  ],
+  "status": "Returning Series",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 6,
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2026-10-03",
+   "seasonNumber": 1,
+   "episodeNumber": 4,
+   "name": "Sonoma to the Pacific With Chris Ying"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "CNN"
+  ],
+  "creatorCredits": [
+   "David Chang",
+   "Dominic Musacchio",
+   "Christopher C. Chen"
+  ],
+  "title": "The Detour with David Chang",
+  "year": 2026,
+  "type": "show",
+  "fetchedAt": "2026-10-04"
+ },
+ "movie:1375441": {
+  "genres": [
+   "Thriller",
+   "Drama"
+  ],
+  "overview": "In 2006, To Catch a Predator host Chris Hansen sets out to make television history. When a high stakes operation goes fatally wrong, his veneered dream of fame curdles into a nightmare of performative justice.",
+  "keywords": [
+   "pedophilia",
+   "infidelity",
+   "florida",
+   "new york city",
+   "husband wife relationship",
+   "journalism",
+   "texas",
+   "surrealism",
+   "based on true story",
+   "connecticut",
+   "hidden camera",
+   "confrontation",
+   "sting operation",
+   "taunting",
+   "network"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt34206385",
+  "voteAverage": 7.0,
+  "voteCount": 82,
+  "popularity": 79.9785,
+  "posterPath": "/lmrulvLbmaejTix1YaMxo1oGhH1.jpg",
+  "similarToIds": [
+   19490,
+   19554,
+   19560,
+   648715,
+   281007,
+   464920,
+   465003,
+   648529,
+   465018,
+   841575,
+   841742,
+   19176,
+   19189,
+   19236,
+   1423316,
+   464905,
+   19415,
+   19616,
+   19661,
+   19662
+  ],
+  "recommendedIds": [
+   13250,
+   311667,
+   317744,
+   855263,
+   1920,
+   9357,
+   549514,
+   376004,
+   44945,
+   64639,
+   14112,
+   1957,
+   619979,
+   60631,
+   1592,
+   8999,
+   2652,
+   1659087,
+   241,
+   210577
+  ],
+  "productionCompanies": [
+   "A24",
+   "Icki Eneo Arlo",
+   "Square Peg"
+  ],
+  "topCast": [
+   "Robert Pattinson",
+   "Skyler Gisondo",
+   "Merritt Wever",
+   "Phoebe Bridgers",
+   "Matthew Maher"
+  ],
+  "topCastDetail": [
+   {
+    "id": 11288,
+    "name": "Robert Pattinson",
+    "gender": 2
+   },
+   {
+    "id": 61263,
+    "name": "Skyler Gisondo",
+    "gender": 2
+   },
+   {
+    "id": 28044,
+    "name": "Merritt Wever",
+    "gender": 1
+   },
+   {
+    "id": 2344346,
+    "name": "Phoebe Bridgers",
+    "gender": 1
+   },
+   {
+    "id": 1232599,
+    "name": "Matthew Maher",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2026-09-23",
+  "runtime": 110,
+  "director": "Lance Oppenheim",
+  "directors": [
+   "Lance Oppenheim"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Lance Oppenheim",
+   "Robert Pattinson",
+   "Ajon Singh"
+  ],
+  "title": "Primetime",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-10-04"
  }
 }

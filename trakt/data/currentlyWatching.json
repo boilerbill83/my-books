@@ -43,7 +43,7 @@
     "myRating": 4,
     "ratedAt": "2026-08-13T13:30:48.000Z",
     "plays": 132,
-    "airedEpisodes": 135,
+    "airedEpisodes": 138,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2024-04-25T02:32:00.000Z",
     "favorite": false,
@@ -93,7 +93,7 @@
     "myRating": 9,
     "ratedAt": "2026-07-29T00:56:35.000Z",
     "plays": 9,
-    "airedEpisodes": 14,
+    "airedEpisodes": 15,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2024-06-26T03:02:00.000Z",
     "favorite": false,
@@ -176,31 +176,6 @@
   },
   {
     "type": "show",
-    "titleKey": "show:113962",
-    "ids": {
-      "imdb": "tt13111078",
-      "plex": {
-        "guid": "62ac863c44b73ea95829962c",
-        "slug": "lioness-1"
-      },
-      "slug": "lioness",
-      "tmdb": 113962,
-      "tvdb": 388589,
-      "trakt": 167187
-    },
-    "title": "Lioness",
-    "year": 2023,
-    "myRating": 10,
-    "ratedAt": "2026-09-11T23:50:02.000Z",
-    "plays": 16,
-    "airedEpisodes": 24,
-    "completionStatus": "in-progress",
-    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
-    "favorite": false,
-    "hasConfirmedWatchDate": false
-  },
-  {
-    "type": "show",
     "titleKey": "show:247718",
     "ids": {
       "imdb": "tt31510819",
@@ -218,7 +193,7 @@
     "myRating": 10,
     "ratedAt": "2026-09-21T01:56:00.000Z",
     "plays": 10,
-    "airedEpisodes": 12,
+    "airedEpisodes": 13,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2025-06-01T07:55:00.000Z",
     "favorite": true,
@@ -226,26 +201,26 @@
   },
   {
     "type": "show",
-    "titleKey": "show:240993",
+    "titleKey": "show:295778",
     "ids": {
-      "imdb": "tt28088031",
+      "imdb": "tt40197357",
       "plex": {
-        "guid": "656ff8021618e1eba2286daf",
-        "slug": "ransom-canyon"
+        "guid": "687d434c16e6d561559bef1e",
+        "slug": "scrubs-2026"
       },
-      "slug": "ransom-canyon",
-      "tmdb": 240993,
-      "tvdb": 443051,
-      "trakt": 216613
+      "slug": "scrubs-2026",
+      "tmdb": 295778,
+      "tvdb": 465690,
+      "trakt": 291441
     },
-    "title": "Ransom Canyon",
-    "year": 2025,
-    "myRating": 7,
-    "ratedAt": "2026-08-13T13:32:59.000Z",
-    "plays": 10,
-    "airedEpisodes": 18,
+    "title": "Scrubs",
+    "year": 2026,
+    "myRating": 9,
+    "ratedAt": "2026-10-01T21:08:36.000Z",
+    "plays": 9,
+    "airedEpisodes": 11,
     "completionStatus": "in-progress",
-    "lastWatchedAt": "2025-04-17T08:53:00.000Z",
+    "lastWatchedAt": "2026-04-16T00:23:00.000Z",
     "favorite": false,
     "hasConfirmedWatchDate": true
   },

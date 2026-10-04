@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-10-01T20:47:04.146Z",
+    "generatedAt": "2026-10-04T20:16:02.111Z",
     "movieCount": 264,
-    "showCount": 395
+    "showCount": 396
   },
   "titles": [
     {
@@ -860,7 +860,7 @@
       "myRating": 4,
       "ratedAt": "2026-08-13T13:30:48.000Z",
       "plays": 132,
-      "airedEpisodes": 135,
+      "airedEpisodes": 138,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2024-04-25T02:32:00.000Z",
       "favorite": false,
@@ -2950,7 +2950,7 @@
       "myRating": 9,
       "ratedAt": "2026-07-29T00:56:35.000Z",
       "plays": 9,
-      "airedEpisodes": 14,
+      "airedEpisodes": 15,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2024-06-26T03:02:00.000Z",
       "favorite": false,
@@ -6456,12 +6456,12 @@
       "year": 2023,
       "myRating": 10,
       "ratedAt": "2026-09-11T23:50:02.000Z",
-      "plays": 16,
+      "plays": 24,
       "airedEpisodes": 24,
-      "completionStatus": "in-progress",
-      "lastWatchedAt": "1970-01-01T00:00:00.000Z",
-      "favorite": false,
-      "hasConfirmedWatchDate": false
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-09-20T08:10:00.000Z",
+      "favorite": true,
+      "hasConfirmedWatchDate": true
     },
     {
       "type": "show",
@@ -7484,7 +7484,7 @@
       "myRating": 10,
       "ratedAt": "2026-09-21T01:56:00.000Z",
       "plays": 10,
-      "airedEpisodes": 12,
+      "airedEpisodes": 13,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2025-06-01T07:55:00.000Z",
       "favorite": true,
@@ -8919,12 +8919,12 @@
       },
       "title": "Ransom Canyon",
       "year": 2025,
-      "myRating": 7,
-      "ratedAt": "2026-08-13T13:32:59.000Z",
-      "plays": 10,
+      "myRating": 8,
+      "ratedAt": "2026-10-04T19:54:55.000Z",
+      "plays": 18,
       "airedEpisodes": 18,
-      "completionStatus": "in-progress",
-      "lastWatchedAt": "2025-04-17T08:53:00.000Z",
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-07-23T08:58:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": true
     },
@@ -9475,6 +9475,31 @@
       "plays": 1,
       "lastWatchedAt": "2022-01-14T00:00:00.000Z",
       "favorite": false
+    },
+    {
+      "type": "show",
+      "titleKey": "show:295778",
+      "ids": {
+        "imdb": "tt40197357",
+        "plex": {
+          "guid": "687d434c16e6d561559bef1e",
+          "slug": "scrubs-2026"
+        },
+        "slug": "scrubs-2026",
+        "tmdb": 295778,
+        "tvdb": 465690,
+        "trakt": 291441
+      },
+      "title": "Scrubs",
+      "year": 2026,
+      "myRating": 9,
+      "ratedAt": "2026-10-01T21:08:36.000Z",
+      "plays": 9,
+      "airedEpisodes": 11,
+      "completionStatus": "in-progress",
+      "lastWatchedAt": "2026-04-16T00:23:00.000Z",
+      "favorite": false,
+      "hasConfirmedWatchDate": true
     },
     {
       "type": "show",

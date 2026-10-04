@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-04T15:03:54.452Z",
-    "count": 489,
+    "generatedAt": "2026-10-04T20:16:05.005Z",
+    "count": 488,
     "capPerType": 200
   },
   "titles": [
@@ -4817,17 +4817,6 @@
       "title": null,
       "year": null,
       "citedBy": 6
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:1032863",
-      "ids": {
-        "tmdb": 1032863
-      },
-      "title": "The Love Hypothesis",
-      "year": 2026,
-      "source": "genre-explore",
-      "discoveredVia": "Comedy"
     },
     {
       "type": "movie",
