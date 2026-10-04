@@ -65,14 +65,18 @@ every other trakt.tv subdomain (CLAUDE.md's standing note) - this can only
 really run via GitHub Actions.
 
 REAL PRODUCTION HISTORY (not a claim made in advance - see call_refresh's
-own docstring for the full diagnosis): the first real run (2026-10-04)
-used a bare `urllib` POST and was rejected outright by Cloudflare before
-ever reaching Trakt's OAuth logic (HTTP 403, "browser_signature_banned") -
-the stored refresh_token was never touched by that failed attempt, so
-nothing was lost. Fixed by routing the same POST through a real headless
-Chromium page instead (same engine fetch_trakt_export.py already proved
-passes Cloudflare for this site). The NEXT real run is the actual test of
-that fix - this docstring will be updated again once it's confirmed.
+own docstring for the full diagnosis): the first real run (2026-10-04,
+run 37232854482) used a bare `urllib` POST and was rejected outright by
+Cloudflare before ever reaching Trakt's OAuth logic (HTTP 403,
+"browser_signature_banned") - the stored refresh_token was never touched
+by that failed attempt, so nothing was lost. Fixed by routing the same
+POST through a real headless Chromium page instead. **Confirmed working
+in production the same day** (run 37233150208): the real refresh_token
+was accepted, CLAUDE.md's stored session was genuinely extended by a
+full week (old expires_at 1791487595 -> new 1791751403, i.e.
+2026-10-08T19:26:35Z -> 2026-10-11T20:43:23Z), and the commit pushed to
+`main` cleanly on the first try - this mechanism is proven, not just
+built.
 """
 import json
 import sys
