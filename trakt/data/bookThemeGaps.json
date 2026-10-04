@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T14:53:48.637Z",
+  "generatedAt": "2026-10-04T15:02:20.410Z",
   "methodology": "ratio = (theme's share of Bill's real 5-star-read theme tags) / (its mapped BMTRE genre/subgenre/subject tag's share of his real loved-title rating-weighted score). ratio > 1 means the theme is proportionally bigger in his book taste than his current screen taste (and therefore the citation-graph-seeded candidate pool) already reflects. Evidence floor: bookCount >= 15. Gap floor: ratio > 1.15.",
   "gaps": [
     {
@@ -9,7 +9,7 @@
         "courtroom"
       ],
       "bookCount": 48,
-      "ratio": 3.32,
+      "ratio": 3.38,
       "tags": [
         "subgenre:legal"
       ],
@@ -22,7 +22,7 @@
         "psychological"
       ],
       "bookCount": 35,
-      "ratio": 2.3,
+      "ratio": 2.35,
       "tags": [
         "subgenre:psychological-thriller",
         "subgenre:psychological-horror"
@@ -36,7 +36,7 @@
         "thriller"
       ],
       "bookCount": 109,
-      "ratio": 1.88,
+      "ratio": 1.92,
       "tags": [
         "genre:thriller"
       ],
@@ -52,7 +52,7 @@
         "business"
       ],
       "bookCount": 19,
-      "ratio": 1.64,
+      "ratio": 1.67,
       "tags": [
         "subject:corporate-power",
         "subject:class-wealth-corporate"
@@ -66,7 +66,7 @@
         "sports"
       ],
       "bookCount": 27,
-      "ratio": 1.4,
+      "ratio": 1.43,
       "tags": [
         "genre:sports"
       ],
@@ -79,7 +79,7 @@
         "tech history"
       ],
       "bookCount": 19,
-      "ratio": 1.28,
+      "ratio": 1.16,
       "tags": [
         "subject:technology-surveillance"
       ],
