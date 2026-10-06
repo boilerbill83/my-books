@@ -4207,10 +4207,13 @@
   },
   "galleria|||chuck palahniuk": {
     "storyGraph": null,
-    "amazon": null,
-    "coverUrl": null,
-    "source": "not_found",
-    "checkedAt": "2026-09-22"
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/716AxAk3KqL._SX300_.jpg",
+    "source": "cover_only",
+    "checkedAt": "2026-10-06"
   },
   "hollywood, ending|||john  green": {
     "storyGraph": null,
@@ -4435,5 +4438,35 @@
     "coverUrl": null,
     "source": "not_found",
     "checkedAt": "2026-10-04"
+  },
+  "the dark fields|||alan glynn": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.6,
+      "count": 89
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/41IAOrYUFiL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-10-05"
+  },
+  "the brightness|||chad harbach": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81WuM6oNO8L._SX300_.jpg",
+    "source": "cover_only",
+    "checkedAt": "2026-10-05"
+  },
+  "the art of fielding|||chad harbach": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.3,
+      "count": 5325
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/71SGqClFT-L._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-10-05"
   }
 }
