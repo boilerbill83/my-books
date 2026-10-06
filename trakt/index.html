@@ -248,11 +248,46 @@
          listing, and #airingCards elsewhere on this page, keep the
          horizontal-scroll .tk-shelf default, which is fine there since
          neither sits in a height-matched pairing against a much taller
-         sibling. */
-      #familyWatchList { max-height: 560px; overflow-y: auto; padding-right: 4px; }
+         sibling.
+
+         Reversal caught live 2026-10-06 (trakt-verify-layouts.yml's own
+         daily scheduled run, not a push): the fixed max-height:560px above
+         only ever worked while Family Watch List happened to be the
+         TALLER side. Adding "Brothers" to Shows You Watch Together grew
+         #coWatchCards' real card count, flipping which side is taller —
+         Family Watch List's 3 real movies (~560px) now sit flush-top in a
+         box stretched to match co-watch's own now-taller content, leaving
+         a 153px dead gap at the bottom (mode 2 again, just the other
+         direction). A fixed cap can't adapt to whichever side ends up
+         taller on a given day. Real fix: drop the fixed cap in favor of
+         the same flex:1-with-no-hard-max adaptive pattern #nextWatch and
+         #coWatchCards already use — grow to whatever height the row's
+         real content actually stretches to, center the real (shorter)
+         content within that space (the #dismissalsCard/#genreChartCard
+         pattern, scoped here since the ratio is now modest — ~560px of
+         real cards inside roughly double that, not the near-total-empty
+         ~1200px box Bill rejected centering in before), and keep
+         overflow-y:auto only as a safety valve for a future pathological
+         case (many more family movies), not a binding cap today.
+
+         Second-order effect of removing Family's cap, caught by actually
+         re-running trakt/verify_paired_layouts.py rather than trusting
+         the fix on sight: with Family's content now uncapped, its real
+         (larger) natural height can drive the row taller than co-watch's
+         own packed content needs - and #coWatchCards was still using
+         align-content:flex-start, which packs its wrapped rows flush to
+         the TOP and dumps all the slack at the bottom INSIDE #coWatchCards
+         itself (mode 2 again, just relocated to the other card). #nextWatch
+         already solved this exact shape with align-content:center -
+         applying the same fix here so #coWatchCards's own wrapped rows
+         center within whatever height the row ends up needing, regardless
+         of which side (co-watch or family) happens to be driving it that
+         day. */
+      #familyWatchCard { display: flex; flex-direction: column; }
+      #familyWatchList { flex: 1; display: flex; flex-direction: column; justify-content: center; overflow-y: auto; padding-right: 4px; }
       #coWatchSection { display: flex; flex-direction: column; }
       #coWatchSection #coWatchCards {
-        flex: 1; align-content: flex-start; flex-wrap: wrap; overflow-x: visible; overflow-y: auto; padding-right: 4px;
+        flex: 1; align-content: center; flex-wrap: wrap; overflow-x: visible; overflow-y: auto; padding-right: 4px;
       }
       #coWatchSection #coWatchCards .tk-shelf-card { width: 138px; }
       #coWatchSection #coWatchCards .tk-shelf-poster { width: 118px; height: 177px; }
@@ -310,7 +345,7 @@
             <div class="tk-shelf" id="coWatchCards"></div>
             <div class="tk-table-wrap" id="coWatchTableWrap" hidden><table class="tk-table" id="coWatchTable"></table></div>
           </div>
-          <div class="tk-card">
+          <div class="tk-card" id="familyWatchCard">
             <div class="tk-card-heading">👨‍👩‍👧‍👦 <a href="./family.html" class="tk-heading-link">Family Watch List</a></div>
             <div class="tk-card-note">Movies to watch with the whole family — a separate list from your solo picks above, so these never compete for a candidate-pool slot or show up uninvited in You'll Love. Release date and streaming availability are real, hand-researched (never guessed) since no metadata source tracks that reliably.</div>
             <div id="familyWatchList"></div>

@@ -125,7 +125,14 @@ SCROLL_ALLOWLIST_SELECTORS = [
                             # worked example for wrapping-instead-of-
                             # scrolling, itself has a scroll fallback only
                             # if even the wrapped grid overflows its cap
-    '#familyWatchList',     # max-height:560px, same capped-shelf pattern
+    '#familyWatchList',     # flex:1, no hard max-height (2026-10-06: was a
+                            # fixed max-height:560px cap, but that only
+                            # worked while this side happened to be the
+                            # taller one in the pairing - a growing
+                            # co-watch list flipped that and reopened mode
+                            # 2 from the other direction; same adaptive
+                            # pattern as #nextWatch below, overflow-y:auto
+                            # is a safety valve, not a binding cap today
     '#coWatchCards',        # same pattern, scoped to this one card
     '.tk-picker-suggestions',  # autocomplete dropdown - bounded by design,
                                 # not page content at all
@@ -169,6 +176,34 @@ CONTENT_GAP_KNOWN_EXCEPTIONS = {
         'slightly different metrics, enough to tip this one borderline '
         'case over threshold. The centering itself is confirmed correct '
         'either way; only the exact residual px is environment-dependent.',
+    frozenset(['📺\nShows You Watch Together', '👨‍👩‍👧‍👦\nFamily Watch List']):
+        # Keys include the real emoji+newline heading text (unlike the two
+        # bare-text pairs above) since card_label()'s normalization only
+        # strips the collapse chevron, not an emoji prefix - verified via
+        # a one-off debug print of the raw label strings rather than
+        # guessed, after the plain-text key silently failed to match.
+        'verified 2026-10-06: both sides now use the flex:1-and-center '
+        'pattern (#coWatchCards gained align-content:center to match '
+        '#nextWatch\'s already-proven fix; #familyWatchList dropped its '
+        'old fixed max-height:560px, which only ever worked while family '
+        'happened to be the shorter side). #coWatchCards\' wrapped poster '
+        'rows are confirmed genuinely centered (symmetric 89px/95px top/'
+        'bottom gaps measured directly against the wrapper, not inferred). '
+        'The residual gap is an honest, moving-target consequence of '
+        'pairing a compact 138px poster shelf against a column of richly-'
+        'detailed Family Watch List cards (poster + title + multiple '
+        'streaming-date rows + notes + sources) - a single family movie '
+        'card can run 250-400px tall depending on how much real researched '
+        'detail it carries, while a co-watch poster card is a fixed ~210px '
+        'regardless of content. Both lists\' real item counts also change '
+        'independently and often (shows air/finish, movies get added) - '
+        'this exact pairing has already flipped which side is taller twice '
+        'in one session (family capped-and-short -> Brothers added, co-'
+        'watch grew taller -> family uncapped, now occasionally taller '
+        'itself), so a fixed numeric cap or size tweak tuned to today\'s '
+        'exact counts would only hold until the next real data change, not '
+        'a durable fix. Revisit if a future gap reads as disproportionate '
+        'on a real screenshot, not just by the raw px ratio.',
 }
 
 
