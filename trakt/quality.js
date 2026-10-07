@@ -1918,7 +1918,7 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
     } catch (e) { /* best-effort live count; static fallback below if it fails */ }
     findings.push({
       id: 'remaining-subgenre-genre-specificity',
-      severity: 'warning',
+      severity: 'good',
       ratings: { ease: 4, dataQuality: 4, recEngine: 2, ui: 3 },
       estTokens: 35000, // the three best-supported remaining buckets are now done; what's left is a confirmed dead end (character-study/ensemble/psychological-drama/dramedy/political all checked and have no real keyword split)
       shortTitle: 'Some Genre Detail Missing',
@@ -1978,9 +1978,11 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
         `honest before/afters (family-drama 0%→${(100*familyDramaHits/(familyDramaTotal||1)).toFixed(1)}%, procedural 5.9%→` +
         `${(100*proceduralHits/(proceduralTotal||1)).toFixed(1)}%, coming-of-age 34.4%→` +
         `${(100*comingOfAgeHits/(comingOfAgeTotal||1)).toFixed(1)}%), not just a bucket-count that barely moves. Display-only, not a ` +
-        `scoring signal — zero risk to matchScore()/eval.js. The remaining gap is now a genuinely-checked dead end (format descriptors ` +
-        `and self-referential keywords, not an overlooked cluster) — this stays open as an honest record of that investigation, not ` +
-        `because more low-hanging fruit was left unpicked.`,
+        `scoring signal — zero risk to matchScore()/eval.js. <strong>Closed 2026-10-07</strong> (Bill: "make sure if it stays that it's ` +
+        `high impact") — the remaining gap is a genuinely-checked dead end, not an overlooked cluster, and was never high-impact to ` +
+        `begin with (${computeImpactScore({ recEngine: 2, dataQuality: 4 })} · ${IMP_SEV_META.warning.label.toLowerCase()} by this ` +
+        `dashboard's own formula, since it's display-only taxonomy detail, not a scoring signal) — kept open after that purely as a ` +
+        `record of the investigation; closing it now rather than leaving it as low-impact clutter.`,
     });
   }
 
@@ -4207,15 +4209,16 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   // this page's real current (and growing) data, not the "a few seconds"
   // the UI's own loading text still promises.
   //
-  // Partially fixed 2026-10-07 (Bill: "see what you can do to work
-  // through these") — see the finding's own technical/plain/impact text
-  // below for the full before/after.
+  // Partially fixed, then closed, 2026-10-07 (Bill: "see what you can do
+  // to work through these," then "make sure if it stays that it's high
+  // impact") — see the finding's own technical/plain/impact text below
+  // for the full before/after and the closure reasoning.
   {
     findings.push({
       id: 'bmtre-accuracy-computation-slow-again',
-      severity: 'warning',
+      severity: 'good',
       ratings: { ease: 5, dataQuality: 1, recEngine: 1, ui: 7 },
-      shortTitle: 'BMTRE Accuracy dial still slow (39s, down from 58s)',
+      shortTitle: 'BMTRE Accuracy Dial: 33% Faster (39s, down from 58s)',
       title: `Real-measured 58.0s → 38.7-39.6s (~33% faster) via 3 safe dedup fixes plus generalizing the Session 58 desc-model-sharing fix to loved-title ` +
         `holdouts too (provably exact, not an approximation) — still not "a few seconds," since the remaining cost (profile maps that genuinely depend on ` +
         `each held-out title) would need a riskier incremental-adjustment refactor, not attempted this round`,
@@ -4240,8 +4243,13 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
         `title individually to give an honest answer, and making that faster safely is a bigger, riskier job for a future session.`,
       impact: `Real, measured via <code>time node scripts/eval.js</code> (3 runs each side, consistent to within ~1s): 58.0s before, 38.7-39.6s after — a ` +
         `genuine ~33% reduction, with precision@10/25/50/100 and MAE confirmed byte-identical before and after (proving the fix changes nothing about what ` +
-        `the engine reports, only how long it takes). Partial fix — flagged as still open rather than resolved, since the remaining cost is real and the ` +
-        `safe part of the opportunity is now used up.`,
+        `the engine reports, only how long it takes). <strong>Closed 2026-10-07</strong> (Bill: "make sure if it stays that it's high impact") — by this ` +
+        `dashboard's own impact formula (weighted 75% recEngine, 25% dataQuality) this finding scores only ${computeImpactScore({ recEngine: 1, dataQuality: 1 })} ` +
+        `(${IMP_SEV_META.warning.label.toLowerCase()}), correctly: it's a page-load-time issue, not a recommendation-quality or data-correctness one — ` +
+        `nothing about what gets recommended changes either way. The remaining further fix (precompute-then-analytically-subtract each held-out title's ` +
+        `own contribution to genre/tone/subgenre profiles, rather than this round's flat reuse) is real but bigger and riskier for a win that's purely ` +
+        `"the Quality page's one dial loads faster" — not worth tracking as an open improvement idea at that impact level. Closing with the real 33% win ` +
+        `banked rather than leaving it open as low-impact clutter; revisit if a future session has reason to push BMTRE Accuracy page-load time further.`,
     });
   }
 
