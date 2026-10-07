@@ -495,10 +495,17 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
     cast: (m.topCast || []).slice(0, 5),
   });
   const dimRatingsForAnomaly = { subgenre: {}, tone: {}, subject: {}, keyword: {}, creator: {}, cast: {} };
+  // Cached so the loved-title loop below (a strict subset of this one -
+  // every title it visits already passed this loop's own guard) doesn't
+  // call the same 4 classifier functions a second time for the same
+  // title - part of the bmtre-accuracy-computation-slow-again fix, pure
+  // dedup, no change to any computed value.
+  const tagsByDimCache = new Map();
   for (const t of library.titles || []) {
     if (t.myRating == null || !enrichedMeta[t.titleKey]) continue;
     const m = enrichedMeta[t.titleKey];
     const tagsByDim = anomalyDimTagsFor(t.type, m, t.titleKey);
+    tagsByDimCache.set(t.titleKey, tagsByDim);
     for (const dim of ANOMALY_DIMS) {
       // Person dims carry {myRating, titleKey, collectionId} so a
       // title's own franchise can be excluded per-candidate below;
@@ -516,7 +523,10 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
     if (t.myRating == null || t.myRating < LOVED_THRESHOLD || !enrichedMeta[t.titleKey]) continue;
     const m = enrichedMeta[t.titleKey];
     const tCollectionId = m.belongsToCollection?.id ?? null;
-    const tagsByDim = anomalyDimTagsFor(t.type, m, t.titleKey);
+    // This loop's guard (myRating >= LOVED_THRESHOLD) is a strict subset of
+    // the loop above's (myRating != null), so every title here was already
+    // cached - reuse it instead of calling anomalyDimTagsFor() again.
+    const tagsByDim = tagsByDimCache.get(t.titleKey);
     let minEntry = null, maxEntry = null;
     const perDim = {};
     for (const dim of ANOMALY_DIMS) {
@@ -643,8 +653,14 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
     const w = Math.max(0, ratingWeight(t.myRating)) * rewatchStrength(t, meta);
     if (w > 0) {
       titleAffinity.set(t.titleKey, w);
-      const lovedGenre = inferGenre(meta, llmTags[t.titleKey], reviewedTags[t.titleKey]);
-      if (lovedGenre) lovedGenres.set(lovedGenre, (lovedGenres.get(lovedGenre) || 0) + w);
+      // Reuse genreForProfile (same call, same inputs, computed a few
+      // lines above for every rated title already) instead of calling
+      // inferGenre() a second time for the same title - pure dedup, part
+      // of the dashboard's bmtre-accuracy-computation-slow-again fix
+      // (this loop re-profiled as the single largest remaining cost in
+      // computeEvalMetrics()'s leave-one-out harness once Session 58's
+      // desc-model-sharing fix was already accounted for).
+      if (genreForProfile) lovedGenres.set(genreForProfile, (lovedGenres.get(genreForProfile) || 0) + w);
       for (const id of [...(meta?.similarToIds || []), ...(meta?.recommendedIds || [])]) {
         const key = titleKey(t.type, id);
         const citedMeta = enrichedMeta[key];
@@ -676,7 +692,9 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
         if (KEYWORD_STOPLIST.has(kw)) continue;
         lovedKeywords.set(kw, (lovedKeywords.get(kw) || 0) + w);
       }
-      for (const s of inferSubgenres(meta, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
+      // Reuse subgenresForProfile (same call/inputs, computed above for
+      // every rated title) rather than calling inferSubgenres() again.
+      for (const s of subgenresForProfile) {
         lovedSubgenres.set(s, (lovedSubgenres.get(s) || 0) + w);
       }
       for (const s of inferSubjects(meta, llmTags[t.titleKey], undefined, reviewedTags[t.titleKey])) {
@@ -835,13 +853,13 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   // per rated title (552 calls), and 552 x ~46ms was the entire delay.
   // descModelOverride lets a caller doing many buildIndexes() calls in a
   // row (only computeEvalMetrics() today) skip rebuilding this from
-  // scratch when it already knows the loved-title corpus is unchanged —
-  // excluding a title that ISN'T loved (myRating < LOVED_THRESHOLD) never
-  // changes lovedTitles, so the model built from the full corpus is
-  // exactly correct to reuse for that held-out title too. Never used for
-  // a genuinely held-out LOVED title (that would leak its own description
-  // into its own comparison corpus) — computeEvalMetrics() only passes an
-  // override for the non-loved majority of its loop.
+  // scratch every time. Safe even for a leave-one-out holdout of a LOVED
+  // title, not just a non-loved one: descSimilarityBonus()'s excludeKey
+  // parameter already strips a scored title's own doc out of the
+  // comparison set at query time, and this model's IDF never depends on
+  // lovedTitleKeys at all (df/N/idf() run over the whole enrichedMeta
+  // corpus regardless) — see computeEvalMetrics()'s own comment at its
+  // sharedDescModel build for the full reasoning and the eval.js proof.
   const descModel = descModelOverride !== undefined ? descModelOverride : buildDescModel(enrichedMeta, lovedTitles);
 
   return { watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, genreProfile, genrePairProfile, subgenreProfile, matureContentGenreProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel, anomalousLovedKeys, anomalyDetails, bookThemeCounts, enrichedMetaRef: enrichedMeta };
@@ -4670,21 +4688,37 @@ export async function computeEvalMetrics(library, enrichedMeta, feedback, omdbMe
   await new Promise(r => setTimeout(r, 0));
   const rated = (library.titles || []).filter(t => t.myRating != null && enrichedMeta[t.titleKey]);
 
-  // Real performance fix (Bill reported the live dashboard taking 20+
-  // seconds to load): buildIndexes() rebuilds a TF-IDF description model
-  // from every loved title's overview — by far its single most expensive
-  // step (~28ms of a ~46ms call, measured) — and this leave-one-out loop
-  // used to call buildIndexes() fresh 552 times (once per rated title),
-  // so that one step alone cost ~15 of the ~25 real seconds. Excluding a
-  // title that ISN'T loved (myRating < LOVED_THRESHOLD) never changes the
-  // loved-title corpus buildDescModel() reads, so the model built from
-  // the FULL corpus is exactly correct to reuse for every non-loved
-  // held-out title (the majority of this loop) — only a genuinely
-  // held-out LOVED title needs a real rebuild, to avoid leaking that
-  // title's own description into its own comparison corpus. Cuts the
-  // number of real buildDescModel() rebuilds from 552 to roughly the
-  // loved-title count (~159) + 1, with zero change to leave-one-out
-  // correctness for any title.
+  // Real performance fix (Bill reported the live dashboard taking 20+,
+  // then 42-50, seconds to load): buildIndexes() rebuilding a TF-IDF
+  // description model from every loved title's overview used to be by
+  // far its single most expensive step (~28ms of a ~46ms call measured
+  // when this fix was first built), and this leave-one-out loop used to
+  // call buildIndexes() fresh once per rated title.
+  //
+  // bmtre-accuracy-computation-slow-again (quality.js dashboard finding)
+  // re-profiled this after the loop grew other real costs too (the
+  // anomaly-detection pass, the liked-not-loved continuous-weight maps)
+  // and found the ORIGINAL version of this fix still left ~202 of the
+  // ~662 calls (every LOVED-title holdout) paying the full rebuild, since
+  // it assumed only a non-loved exclusion could safely reuse the shared
+  // model. That assumption was stricter than necessary — re-reading
+  // buildDescModel()/descSimilarityBonus() below shows the model's IDF
+  // (df/N/idf()) is computed from the ENTIRE enrichedMeta corpus, never
+  // filtered by lovedTitleKeys at all; lovedTitleKeys only decides which
+  // docs get precomputed into the `lovedDocs` comparison array. And
+  // descSimilarityBonus() already takes an `excludeKey` (always the
+  // scored title's own titleKey, every real call site) that filters that
+  // candidate's own doc OUT of `lovedDocs` at query time, before any
+  // similarity math runs. So whether a held-out loved title t's own doc
+  // is precomputed into `lovedDocs` or not, it NEVER actually
+  // participates in a real similarity comparison either way — the
+  // excludeKey filter strips it out regardless, and every other loved
+  // title's `.vec` is byte-identical either way (same idf(), same
+  // tokens). Building the model once from the FULL (unmodified) loved
+  // set and reusing it for every leave-one-out call — including loved
+  // holdouts — is therefore not an approximation, it's provably exactly
+  // equal output to rebuilding fresh each time. Verified via scripts/
+  // eval.js before/after: byte-identical precision@10/25/50/100 and MAE.
   const fullLovedTitles = new Set(
     (library.titles || []).filter(t => t.myRating >= LOVED_THRESHOLD).map(t => t.titleKey)
   );
@@ -4694,8 +4728,7 @@ export async function computeEvalMetrics(library, enrichedMeta, feedback, omdbMe
   let i = 0;
   for (const t of rated) {
     const looLibrary = { titles: (library.titles || []).filter(x => x.titleKey !== t.titleKey) };
-    const descOverride = t.myRating >= LOVED_THRESHOLD ? undefined : sharedDescModel;
-    const idx = buildIndexes(looLibrary, enrichedMeta, feedback, llmTags, reviewedTags, descOverride, bookThemeCounts, omdbMeta);
+    const idx = buildIndexes(looLibrary, enrichedMeta, feedback, llmTags, reviewedTags, sharedDescModel, bookThemeCounts, omdbMeta);
     const h = hydrateTitle(t, enrichedMeta);
     // predicted (clamped) still drives MAE below — a title well past the
     // 100 ceiling isn't a bigger real-world "error" than one just at it.
