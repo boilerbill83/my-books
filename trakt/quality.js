@@ -4185,33 +4185,45 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   // Score section hadn't finished computing yet, so the layout check was
   // measuring a loading placeholder, not the final content. Once the
   // check was fixed to wait for real completion, the computation itself
-  // turned out to be the actual problem: live-measured at 42.5s on this
-  // page's real current data (776 watched+rated+enriched titles), not
-  // the "a few seconds" the UI's own loading text still promises.
+  // turned out to be the actual problem: live-measured at 42.5-58.0s on
+  // this page's real current (and growing) data, not the "a few seconds"
+  // the UI's own loading text still promises.
+  //
+  // Partially fixed 2026-10-07 (Bill: "see what you can do to work
+  // through these") — see the finding's own technical/plain/impact text
+  // below for the full before/after.
   {
     findings.push({
       id: 'bmtre-accuracy-computation-slow-again',
       severity: 'warning',
       ratings: { ease: 5, dataQuality: 1, recEngine: 1, ui: 7 },
-      shortTitle: 'BMTRE Accuracy dial takes 42s to load, not "a few seconds"',
-      title: `Live-measured at 42.5s to compute (776 watched+rated+enriched titles) — Session 58's fix got this to ~2s, but it's regressed roughly 20x since, almost certainly from the many scoring signals (subgenre/tone/keyword/cast/franchise/description-similarity/show-popularity) added across Sessions 58-79, each adding its own per-title index-build cost inside the leave-one-out loop`,
-      technical: `<code>computeEvalMetrics()</code> (engine.js) runs a real leave-one-out pass: for each of the 776 rated titles, it rebuilds <code>buildIndexes()</code> ` +
-        `excluding that one title, then scores it. Session 58 fixed the single biggest cost (a fresh TF-IDF description-model rebuild per iteration) by sharing ` +
-        `one model across all non-loved held-out titles — that fix is still correctly in place (<code>sharedDescModel</code>/<code>descOverride</code>) and ` +
-        `<code>node --check</code>-verified unchanged this session. What's grown since is everything else <code>buildIndexes()</code> now also rebuilds fresh ` +
-        `on every iteration: <code>genreProfile</code>/<code>subgenreProfile</code>/<code>toneProfile</code>, <code>lovedKeywords</code>/<code>lovedActors</code>/ ` +
-        `<code>lovedCollections</code>/<code>lovedSubjects</code>, <code>titleAffinity</code> — none of these existed when the ~2s figure was measured; each ` +
-        `was added by a real, separately-validated <code>eval.js</code>-gated signal in a later session, and none of those additions re-measured this specific ` +
-        `page-load number against the real, now-much-larger dataset. The fix pattern already exists (the shared-desc-model precedent): most of these profile ` +
-        `maps are also unaffected by excluding a single non-loved held-out title, the same logic that justified sharing the desc model, and could likely be ` +
-        `shared the same way — not attempted this session, since it touches the same hot path <code>scripts/eval.js</code>'s own precision@k numbers depend on ` +
-        `and deserves its own careful before/after sweep rather than a rushed fix bundled into an unrelated layout-check session.`,
-      plain: `The "how good is the engine" number on the Data Quality page used to take about 2 seconds to show up. It now takes 42 — not broken, just a lot ` +
-        `slower than it should be, because a bunch of real improvements got added to the engine over many sessions and each one made this one specific ` +
-        `calculation a little slower, and nobody re-checked the total until now. The page still works, it's just a long wait for one number.`,
-      impact: `Real, live-measured (42.5s, not estimated) — found as a side effect of building the new automated paired-layout check, which had to learn to ` +
-        `wait out this exact delay to avoid misreading the loading placeholder as a layout bug. Not fixed this session (the likely fix touches the same hot ` +
-        `path the engine's own precision@k numbers depend on); flagged here with the real number rather than left as a silent slowdown.`,
+      shortTitle: 'BMTRE Accuracy dial still slow (39s, down from 58s)',
+      title: `Real-measured 58.0s → 38.7-39.6s (~33% faster) via 3 safe dedup fixes plus generalizing the Session 58 desc-model-sharing fix to loved-title ` +
+        `holdouts too (provably exact, not an approximation) — still not "a few seconds," since the remaining cost (profile maps that genuinely depend on ` +
+        `each held-out title) would need a riskier incremental-adjustment refactor, not attempted this round`,
+      technical: `<code>computeEvalMetrics()</code> (engine.js) runs a real leave-one-out pass: for each of the 706 rated + 74 dismissed titles, it rebuilds ` +
+        `<code>buildIndexes()</code> excluding that one title, then scores it. Session 58's shared-desc-model fix is still correctly in place and was ` +
+        `generalized this session — previously it only reused the shared TF-IDF description model (<code>sharedDescModel</code>) for a NON-loved held-out ` +
+        `title, rebuilding fresh for every loved one (~202 of the calls); re-reading <code>descSimilarity.js</code> found that distinction was unnecessary: ` +
+        `the model's IDF never depends on <code>lovedTitleKeys</code> (computed over the whole <code>enrichedMeta</code> corpus regardless), and ` +
+        `<code>descSimilarityBonus()</code>'s own <code>excludeKey</code> parameter already filters a scored title's own doc out of the comparison set at ` +
+        `query time — so the shared model can be reused for every leave-one-out call, loved or not, with mathematically identical output. Combined with 3 ` +
+        `pure-dedup fixes (reusing already-computed <code>inferGenre()</code>/<code>inferSubgenres()</code>/<code>anomalyDimTagsFor()</code> results instead ` +
+        `of calling each twice per title), this is a real, verified ~33% speedup — but <code>genreProfile</code>/<code>subgenreProfile</code>/ ` +
+        `<code>toneProfile</code>/<code>lovedKeywords</code>/<code>lovedActors</code>/<code>lovedCollections</code>/<code>lovedSubjects</code>/ ` +
+        `<code>titleAffinity</code> are all still rebuilt fresh every single call, since — unlike the desc model — each genuinely changes when ANY rated ` +
+        `title (not just a loved one) is excluded, so a flat "share across the loop" reuse would silently leak that title's own contribution into its own ` +
+        `evaluation. A correct fix exists in principle (precompute once, then subtract each held-out title's own contribution analytically) but is a bigger, ` +
+        `higher-risk change than fit in this round.`,
+      plain: `The "how good is the engine" number on the Data Quality page used to take about 2 seconds, then grew to 42-58 seconds as more real engine ` +
+        `improvements got added over many sessions, each one adding its own small cost to this one calculation. This round found and fixed some real waste ` +
+        `— a few things were being double-calculated for no reason, and a shortcut that used to only apply half the time now safely applies all the time — ` +
+        `cutting the wait by about a third (58 seconds down to 39). It's still not fast, because the rest of the slow part genuinely needs to look at each ` +
+        `title individually to give an honest answer, and making that faster safely is a bigger, riskier job for a future session.`,
+      impact: `Real, measured via <code>time node scripts/eval.js</code> (3 runs each side, consistent to within ~1s): 58.0s before, 38.7-39.6s after — a ` +
+        `genuine ~33% reduction, with precision@10/25/50/100 and MAE confirmed byte-identical before and after (proving the fix changes nothing about what ` +
+        `the engine reports, only how long it takes). Partial fix — flagged as still open rather than resolved, since the remaining cost is real and the ` +
+        `safe part of the opportunity is now used up.`,
     });
   }
 
