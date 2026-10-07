@@ -11,7 +11,7 @@
 
 import {
   rankAll, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore,
-  awardsScore, posterUrl, diversityRerank, inferSubgenres, inferSubjects, inferEra,
+  awardsScore, posterUrl, diversityRerank, inferSubgenres, inferSubjects, inferEra, inferTones,
   isActivelyAiring, traktUrl, prestigeScore, PRESTIGE_BADGE_THRESHOLD,
 } from './engine.js';
 import {
@@ -405,6 +405,56 @@ function renderAllTitlesTable(allRows) {
 }
 
 // ── Recommendations preview ─────────────────────────────────────────────
+
+// Mood/vibe filter on the You'll Love panels (dashboard's
+// mood-filter-unbuilt Improvement Opportunities finding: inferTones()
+// already computes real per-title mood data that nothing on Discover let
+// Bill filter by). Chips are built live from whichever tones the real
+// current pool actually has 2+ candidates for — never a hardcoded list —
+// so a chip can't ever point at an empty result, and the row naturally
+// grows or shrinks as real tone coverage changes.
+function toneLabel(tag) {
+  return tag.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
+}
+
+function buildMoodChipCounts(allItems, enrichedMeta, llmTags, reviewedTags) {
+  const counts = new Map();
+  for (const c of allItems) {
+    const meta = enrichedMeta[c.titleKey];
+    if (!meta) continue;
+    for (const tone of inferTones(meta, llmTags[c.titleKey], undefined, reviewedTags[c.titleKey])) {
+      counts.set(tone, (counts.get(tone) || 0) + 1);
+    }
+  }
+  return [...counts.entries()].filter(([, n]) => n >= 2).sort((a, b) => b[1] - a[1]);
+}
+
+function filterByMood(items, mood, enrichedMeta, llmTags, reviewedTags) {
+  if (!mood) return items;
+  return items.filter(c => {
+    const meta = enrichedMeta[c.titleKey];
+    return !!meta && inferTones(meta, llmTags[c.titleKey], undefined, reviewedTags[c.titleKey]).includes(mood);
+  });
+}
+
+let moodFilterWired = false;
+function wireMoodFilter(allRecItems, enrichedMeta, llmTags, reviewedTags, onMoodChange) {
+  const row = document.getElementById('moodFilterRow');
+  if (!row) return;
+  const counts = buildMoodChipCounts(allRecItems, enrichedMeta, llmTags, reviewedTags);
+  if (!counts.length) { row.closest('.tk-mood-filter-wrap')?.setAttribute('hidden', ''); return; }
+  row.innerHTML = [`<button type="button" class="tk-btn active" data-mood="">Any mood</button>`,
+    ...counts.map(([tag]) => `<button type="button" class="tk-btn" data-mood="${esc(tag)}">${esc(toneLabel(tag))}</button>`)]
+    .join('');
+  if (moodFilterWired) return; // chip set can be rebuilt on every load(), but the click listener only needs attaching once (delegated on the row, not per-button)
+  moodFilterWired = true;
+  row.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-mood]');
+    if (!btn) return;
+    row.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
+    onMoodChange(btn.dataset.mood || null);
+  });
+}
 
 // One line of real metadata under the title: genres, director/creator,
 // TMDB community rating — whatever's actually present, since candidate
@@ -961,8 +1011,16 @@ async function load() {
   // is shows-only), so movieRecList's pool is untouched.
   const nextWatchKeySet = new Set(nextWatchPicks.map(c => c.titleKey));
   const showWatchlistForRec = byType(soloWatchlist, 'show').filter(c => !nextWatchKeySet.has(c.titleKey));
-  renderRecPanel('movieRecList', byType(soloWatchlist, 'movie'), byType(soloCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
-  renderRecPanel('showRecList', showWatchlistForRec, byType(soloCandidates, 'show'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
+  const movieWl = byType(soloWatchlist, 'movie'), movieCand = byType(soloCandidates, 'movie');
+  const showWl = showWatchlistForRec, showCand = byType(soloCandidates, 'show');
+  const renderBothRecPanels = (mood) => {
+    renderRecPanel('movieRecList', filterByMood(movieWl, mood, enrichedMeta, llmTags, reviewedTags),
+      filterByMood(movieCand, mood, enrichedMeta, llmTags, reviewedTags), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
+    renderRecPanel('showRecList', filterByMood(showWl, mood, enrichedMeta, llmTags, reviewedTags),
+      filterByMood(showCand, mood, enrichedMeta, llmTags, reviewedTags), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
+  };
+  renderBothRecPanels(null);
+  wireMoodFilter([...movieWl, ...movieCand, ...showWl, ...showCand], enrichedMeta, llmTags, reviewedTags, renderBothRecPanels);
 
   const coWatchRows = computeCoWatchRows(coWatchKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress);
   renderCoWatchCards('coWatchCards', coWatchRows, enrichedMeta);
