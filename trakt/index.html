@@ -121,6 +121,15 @@
       @media (max-width: 780px) { .tk-top-row { grid-template-columns: 1fr; } }
       .tk-nw-card-wrap { min-width: 0; display: flex; flex-direction: column; }
 
+      /* Mood/vibe filter above Movies/Shows You'll Love (dashboard's
+         mood-filter-unbuilt Improvement Opportunities finding) — reuses
+         .tk-btn/.tk-btn.active (already WCAG-2.5.8-sized via its own
+         8px/15px padding) rather than inventing a new chip style, same
+         discipline as the Streaming Top10 checkbox filters. */
+      .tk-mood-filter-wrap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+      .tk-mood-filter-label { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; }
+      .tk-mood-filter { display: flex; flex-wrap: wrap; gap: 6px; }
+
       /* Movies/Shows You'll Love (Bill, 2026-10-01 screenshot: "this one
          is still off"). The .tk-row2 pair's outer .tk-card boxes were
          ALREADY matching height exactly (CSS Grid's default stretch, same
@@ -324,6 +333,10 @@
           </div>
         </div>
 
+        <div class="tk-mood-filter-wrap" style="margin-bottom:10px;">
+          <span class="tk-mood-filter-label">In the mood for:</span>
+          <div class="tk-mood-filter" id="moodFilterRow"></div>
+        </div>
         <div class="tk-row2" style="margin-bottom:14px;">
           <div class="tk-card" id="movieRecCard">
             <div class="tk-card-heading">🎬 Movies You'll Love</div>

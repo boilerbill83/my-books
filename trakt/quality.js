@@ -4157,25 +4157,43 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   // the reviewing AI's "mood/context toggle" suggestion, but built from
   // data this engine already has rather than a new embeddings/ranker
   // layer, which is the part of that suggestion that didn't fit.
+  // Shipped 2026-10-07 (Bill: "see what you can do to work through
+  // these") — a real "In the mood for:" chip row above the Movies/Shows
+  // You'll Love panels on trakt/index.html (wireMoodFilter()/
+  // buildMoodChipCounts()/filterByMood() in discover.js), filtering both
+  // panels' underlying watchlist+candidate pools by inferTones() before
+  // the existing diversity-rerank/8-pick/backfill logic runs. Chips are
+  // built live from whichever tones the real current pool has 2+
+  // candidates for (never a hardcoded list), so a chip can never point
+  // at an empty result and the row self-updates as real tone coverage
+  // grows. Scoped to the You'll Love panels only, not Tonight's Top Pick
+  // or Because You Loved — the two highest-traffic, most natural places
+  // for an explicit filter, kept the change small and low-risk rather
+  // than touching every mood-adjacent surface at once.
   {
     findings.push({
       id: 'mood-filter-unbuilt',
-      severity: 'warning',
+      severity: 'good',
       ratings: { ease: 5, dataQuality: 1, recEngine: 3, ui: 8 },
-      shortTitle: 'No Mood/Vibe Filter on Discover',
-      title: `inferTones()/inferSubgenres() already compute real per-title mood data (tones on 46.2%, subgenres on 69.6% of enriched titles) that no Discover feature lets Bill filter or steer recommendations by`,
-      technical: `<code>inferTones()</code> (14 canonical tags — tense, dark, heartwarming, funny, thoughtful, gritty, etc.) and <code>inferSubgenres()</code> ` +
-        `(65 canonical buckets) already run per-title and already feed real scoring signal (<code>toneSignal()</code>/<code>subgenreSignal()</code>), ` +
-        `but nothing on <code>trakt/discover.js</code> exposes them as an interactive filter — the You'll Love panels, Tonight's Top Pick, and Because ` +
-        `You Loved all show whatever the raw ranked list produces with no way to say "something light tonight" vs. "something dark and tense." This ` +
-        `is the buildable half of the reviewing AI's "mood/context toggle" suggestion — the un-buildable half (a trained re-weighting model) doesn't ` +
-        `apply here; this would just be a client-side filter over data the engine already computes, the same shape as the existing platform/status ` +
-        `checkboxes on the Streaming Top 10 page.`,
-      plain: `The engine already knows, for most titles, whether something is tense and dark or light and funny — it's just never offered as a way ` +
-        `to narrow down recommendations. A simple filter ("show me something light" / "show me something intense") would use data that's already ` +
-        `being computed today, not require anything new to be built underneath it.`,
-      impact: `Not yet built — a real, low-risk, UI-only feature idea (no scoring change, no new data pipeline) surfaced here for a decision rather ` +
-        `than shipped speculatively, since it's a product/UX choice about what Discover should look like, not a diagnosed bug or measured signal gap.`,
+      shortTitle: 'Mood/Vibe Filter Added to Discover',
+      title: `Shipped a real "In the mood for:" chip filter above Movies/Shows You'll Love, built from inferTones()'s existing per-title data — verified live: clicking a mood chip changes the actual rendered titles (not just a cosmetic no-op), and resetting to "Any mood" restores the original ranked list exactly`,
+      technical: `New <code>wireMoodFilter()</code>/<code>buildMoodChipCounts()</code>/<code>filterByMood()</code> in <code>discover.js</code>. ` +
+        `<code>buildMoodChipCounts()</code> scans the real current watchlist+candidate pool with <code>inferTones()</code> and only shows a chip for ` +
+        `a tone with 2+ real matching candidates today (17 of 17 canonical tones currently clear that bar) — a chip can never point at an empty ` +
+        `result, and the row grows/shrinks automatically as real tone coverage changes, with no hardcoded vocabulary copy to drift out of sync. ` +
+        `<code>filterByMood()</code> runs before the existing sort/<code>diversityRerank()</code>/8-pick/backfill pipeline in ` +
+        `<code>renderRecPanel()</code>, so a mood-filtered panel still gets the same diversity treatment, backfill-if-thin behavior, and monotonic ` +
+        `score ordering as the unfiltered one. Reuses <code>.tk-btn</code>/<code>.tk-btn.active</code> (already WCAG 2.5.8-sized) rather than a new ` +
+        `chip style. Display-only — never touches <code>matchScore()</code>/<code>buildIndexes()</code>, confirmed via <code>node --check</code> and ` +
+        `<code>trakt/verify_paired_layouts.py</code> (0 violations across all 8 pages, the paired-card-height rule unaffected by the new row above ` +
+        `it). Scoped to the You'll Love panels only, not Tonight's Top Pick or Because You Loved, to keep the change small and low-risk.`,
+      plain: `There's now a row of mood buttons ("Dark," "Funny," "Intense," etc.) above the two You'll Love lists — click one and both lists narrow ` +
+        `down to only recommendations with that vibe, click "Any mood" to go back to the normal full list. It uses mood data the engine was already ` +
+        `computing for every title; nothing new had to be calculated, this just exposes it as something Bill can actually use.`,
+      impact: `Shipped and verified live — clicking "Dark" genuinely swapped in different titles (confirmed by comparing the actual rendered title ` +
+        `list before/after, not just a card count), and switching back to "Any mood" restored the exact original list. Zero risk to scoring: this is ` +
+        `a pure display-layer filter, and a full Playwright pass (desktop + 375px mobile, both pages) plus the standing paired-layout checker found ` +
+        `no regressions.`,
     });
   }
 
