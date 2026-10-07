@@ -545663,5 +545663,248 @@
   "year": 2026,
   "type": "show",
   "fetchedAt": "2026-10-07"
+ },
+ "movie:578701": {
+  "genres": [
+   "Thriller",
+   "Action"
+  ],
+  "overview": "A young boy finds himself pursued by two assassins in the Montana wilderness, with a survival expert determined to protect him, and a forest fire threatening to consume them all.",
+  "keywords": [
+   "assassin",
+   "based on novel or book",
+   "older woman younger man relationship",
+   "neo-western",
+   "wildfire",
+   "distressing",
+   "tragic"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt3215824",
+  "voteAverage": 6.589,
+  "voteCount": 1929,
+  "popularity": 13.3079,
+  "posterPath": "/xCEg6KowNISWvMh8GvPSxtdf9TO.jpg",
+  "similarToIds": [
+   448095,
+   302,
+   320,
+   322,
+   345,
+   1573,
+   1592,
+   1619,
+   1620,
+   449992,
+   1700,
+   1717,
+   1729,
+   1251,
+   1359,
+   1212448,
+   1415,
+   1212597,
+   1642,
+   449756
+  ],
+  "recommendedIds": [
+   808023,
+   833425,
+   876969,
+   46528,
+   283384,
+   539885,
+   27342,
+   596161,
+   660335,
+   552688,
+   102629,
+   483906,
+   1530875,
+   574060,
+   419835,
+   1659087,
+   290729,
+   49021,
+   818397,
+   1128546
+  ],
+  "productionCompanies": [
+   "Bron Studios",
+   "New Line Cinema",
+   "Bosque Ranch Productions"
+  ],
+  "topCast": [
+   "Angelina Jolie",
+   "Finn Little",
+   "Jon Bernthal",
+   "Nicholas Hoult",
+   "Aidan Gillen"
+  ],
+  "topCastDetail": [
+   {
+    "id": 11701,
+    "name": "Angelina Jolie",
+    "gender": 1
+   },
+   {
+    "id": 1980651,
+    "name": "Finn Little",
+    "gender": 2
+   },
+   {
+    "id": 19498,
+    "name": "Jon Bernthal",
+    "gender": 2
+   },
+   {
+    "id": 3292,
+    "name": "Nicholas Hoult",
+    "gender": 2
+   },
+   {
+    "id": 49735,
+    "name": "Aidan Gillen",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2021-05-05",
+  "runtime": 100,
+  "director": "Taylor Sheridan",
+  "directors": [
+   "Taylor Sheridan"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Taylor Sheridan",
+   "Celia Khong",
+   "Daria Cercek"
+  ],
+  "title": "Those Who Wish Me Dead",
+  "year": 2021,
+  "type": "movie",
+  "fetchedAt": "2026-10-07"
+ },
+ "movie:1283515": {
+  "genres": [
+   "Mystery",
+   "Thriller"
+  ],
+  "overview": "Lowen Ashleigh is hired by Jeremy Crawford to ghostwrite novels for his bestselling author wife Verity, who is unable to finish following an accident. Lowen gradually uncovers Verity's disturbing truths while residing at the Crawfords' home to work.",
+  "keywords": [
+   "based on novel or book",
+   "psychological thriller",
+   "novelist",
+   "hidden truth",
+   "ghost writer",
+   "dreary",
+   "baffled",
+   "tragic"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt32261958",
+  "voteAverage": 6.4,
+  "voteCount": 120,
+  "popularity": 144.7575,
+  "posterPath": "/97y0RdzRIeZ2j6se98hRQpxz3eR.jpg",
+  "similarToIds": [
+   1407616,
+   1407582,
+   286565,
+   25720,
+   25736,
+   1043623,
+   25763,
+   1230185,
+   25680,
+   25699,
+   1230208,
+   25935,
+   26268,
+   26172,
+   26204,
+   26039,
+   1613330,
+   843843,
+   472269,
+   1430548
+  ],
+  "recommendedIds": [
+   916605,
+   294795,
+   9613,
+   570670,
+   343674,
+   77949,
+   1215918,
+   346685,
+   146015,
+   448095,
+   18801,
+   71373,
+   323368,
+   210577,
+   44026,
+   419835,
+   40821,
+   31652,
+   13549,
+   22473
+  ],
+  "productionCompanies": [
+   "Eat the Cat",
+   "Semi-Formal Productions",
+   "Somewhere Pictures"
+  ],
+  "topCast": [
+   "Anne Hathaway",
+   "Dakota Johnson",
+   "Josh Hartnett",
+   "Brady Wagner",
+   "Ismael Cruz Cordova"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1813,
+    "name": "Anne Hathaway",
+    "gender": 1
+   },
+   {
+    "id": 118545,
+    "name": "Dakota Johnson",
+    "gender": 1
+   },
+   {
+    "id": 2299,
+    "name": "Josh Hartnett",
+    "gender": 2
+   },
+   {
+    "id": 5269231,
+    "name": "Brady Wagner",
+    "gender": 2
+   },
+   {
+    "id": 1100144,
+    "name": "Ismael Cruz Cordova",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2026-09-30",
+  "runtime": 114,
+  "director": "Michael Showalter",
+  "directors": [
+   "Michael Showalter"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Michael Showalter",
+   "Alex Hedlund",
+   "Nick Antosca"
+  ],
+  "title": "Verity",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-10-07"
  }
 }

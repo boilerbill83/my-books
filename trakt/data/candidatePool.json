@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-04T20:16:05.005Z",
-    "count": 488,
+    "generatedAt": "2026-10-07T21:33:42.835Z",
+    "count": 486,
     "capPerType": 200
   },
   "titles": [
@@ -2736,17 +2736,6 @@
       "discoveredVia": "Drama"
     },
     {
-      "type": "show",
-      "titleKey": "show:89393",
-      "ids": {
-        "tmdb": 89393
-      },
-      "title": "9-1-1: Lone Star",
-      "year": 2020,
-      "source": "genre-explore",
-      "discoveredVia": "Crime"
-    },
-    {
       "type": "movie",
       "titleKey": "movie:766507",
       "ids": {
@@ -4948,28 +4937,6 @@
       "year": 2026,
       "source": "genre-explore",
       "discoveredVia": "Drama"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:1263337",
-      "ids": {
-        "tmdb": 1263337
-      },
-      "title": "Heart of the Beast",
-      "year": 2026,
-      "source": "genre-explore",
-      "discoveredVia": "Thriller"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:1377237",
-      "ids": {
-        "tmdb": 1377237
-      },
-      "title": "Runner",
-      "year": 2026,
-      "source": "genre-explore",
-      "discoveredVia": "Comedy"
     },
     {
       "type": "movie",

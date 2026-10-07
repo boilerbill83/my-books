@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-04T20:16:02.116Z",
-    "count": 54
+    "generatedAt": "2026-10-07T21:33:40.594Z",
+    "count": 59
   },
   "titles": [
     {
@@ -62,25 +62,6 @@
       "watchlistedAt": "2026-07-29T00:18:56.000Z"
     },
     {
-      "type": "show",
-      "titleKey": "show:287238",
-      "ids": {
-        "imdb": "tt36303968",
-        "plex": {
-          "guid": "68d30fff1190765ce3a96c77",
-          "slug": "furious"
-        },
-        "slug": "furious",
-        "tmdb": 287238,
-        "tvdb": 468000,
-        "trakt": 280335
-      },
-      "title": "Furious",
-      "year": 2026,
-      "watchlisted": true,
-      "watchlistedAt": "2026-07-29T00:30:04.000Z"
-    },
-    {
       "type": "movie",
       "titleKey": "movie:1318413",
       "ids": {
@@ -123,7 +104,7 @@
       "ids": {
         "imdb": "tt33270224",
         "plex": {
-          "guid": null,
+          "guid": "681c423d43269f79fcab28d1",
           "slug": null
         },
         "slug": "cupertino",
@@ -142,7 +123,7 @@
       "ids": {
         "imdb": "tt23148340",
         "plex": {
-          "guid": null,
+          "guid": "63616445efa3d5c0e05fcd0a",
           "slug": null
         },
         "slug": "crystal-lake",
@@ -154,25 +135,6 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-07-31T13:56:18.000Z"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:97546",
-      "ids": {
-        "imdb": "tt10986410",
-        "plex": {
-          "guid": "5e204251072b9e003ca5c140",
-          "slug": "ted-lasso"
-        },
-        "slug": "ted-lasso",
-        "tmdb": 97546,
-        "tvdb": 383203,
-        "trakt": 162639
-      },
-      "title": "Ted Lasso",
-      "year": 2020,
-      "watchlisted": true,
-      "watchlistedAt": "2026-08-06T01:26:21.000Z"
     },
     {
       "type": "movie",
@@ -980,6 +942,24 @@
     },
     {
       "type": "movie",
+      "titleKey": "movie:969681",
+      "ids": {
+        "imdb": "tt22084616",
+        "plex": {
+          "guid": "5ed8a6246e2d7200411126cf",
+          "slug": "spider-man-brand-new-day"
+        },
+        "slug": "spider-man-brand-new-day-2026",
+        "tmdb": 969681,
+        "trakt": 905132
+      },
+      "title": "Spider-Man: Brand New Day",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-07T21:29:51.000Z"
+    },
+    {
+      "type": "movie",
       "titleKey": "movie:1375441",
       "ids": {
         "imdb": "tt34206385",
@@ -995,6 +975,42 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-10-02T14:14:32.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:578701",
+      "ids": {
+        "imdb": "tt3215824",
+        "plex": {
+          "guid": "5d7770b4ad5437001f828fb1",
+          "slug": "those-who-wish-me-dead"
+        },
+        "slug": "those-who-wish-me-dead-2021",
+        "tmdb": 578701,
+        "trakt": 428432
+      },
+      "title": "Those Who Wish Me Dead",
+      "year": 2021,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-05T20:42:00.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1377237",
+      "ids": {
+        "imdb": "tt31349844",
+        "plex": {
+          "guid": "69c44f4bb85f1bd2734c7298",
+          "slug": "runner-72"
+        },
+        "slug": "runner-2026",
+        "tmdb": 1377237,
+        "trakt": 1125169
+      },
+      "title": "Runner",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-07T21:30:06.000Z"
     },
     {
       "type": "show",
@@ -1014,6 +1030,78 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-10-02T14:17:36.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1137844",
+      "ids": {
+        "imdb": "tt28014327",
+        "plex": {
+          "guid": "6488a8b8f542e5c273e5ae08",
+          "slug": "mayday-2026"
+        },
+        "slug": "mayday-2026",
+        "tmdb": 1137844,
+        "trakt": 916057
+      },
+      "title": "Mayday",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-07T21:30:11.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1283515",
+      "ids": {
+        "imdb": "tt32261958",
+        "plex": {
+          "guid": "66334c9ab9a6a4f733141e21",
+          "slug": "verity-2026"
+        },
+        "slug": "verity-2026",
+        "tmdb": 1283515,
+        "trakt": 1043653
+      },
+      "title": "Verity",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-07T21:30:14.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1307118",
+      "ids": {
+        "imdb": "tt32654916",
+        "plex": {
+          "guid": "66791f2d0049c99bf3f4ebe2",
+          "slug": "soulm8te-2025"
+        },
+        "slug": "soulm8te-2026",
+        "tmdb": 1307118,
+        "trakt": 1066241
+      },
+      "title": "Soulm8te",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-07T21:30:28.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1263337",
+      "ids": {
+        "imdb": "tt7526136",
+        "plex": {
+          "guid": "5f40d307bf3e560040d6b66e",
+          "slug": "heart-of-the-beast-2026"
+        },
+        "slug": "heart-of-the-beast-2026",
+        "tmdb": 1263337,
+        "trakt": 1025172
+      },
+      "title": "Heart of the Beast",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-07T21:30:37.000Z"
     }
   ]
 }

@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-10-04T20:16:01.958Z",
+  "generatedAt": "2026-10-07T21:33:40.444Z",
   "profile": {
     "username": "bill_stoltenberg_27166c",
     "joinedAt": "2026-07-27T14:49:58.000Z"
   },
   "summary": {
-    "moviesWatched": 264,
-    "moviesPlays": 264,
-    "moviesRatings": 263,
-    "moviesMinutes": 33384,
-    "showsWatched": 396,
-    "showsRatings": 403,
-    "episodesWatched": 11648,
-    "episodesPlays": 11648,
-    "episodesMinutes": 501317,
-    "totalRatings": 666,
-    "totalMinutes": 534701,
-    "totalHours": 8912,
+    "moviesWatched": 266,
+    "moviesPlays": 266,
+    "moviesRatings": 265,
+    "moviesMinutes": 33595,
+    "showsWatched": 397,
+    "showsRatings": 404,
+    "episodesWatched": 11666,
+    "episodesPlays": 11666,
+    "episodesMinutes": 502205,
+    "totalRatings": 669,
+    "totalMinutes": 535800,
+    "totalHours": 8930,
     "avgRating": 7.81
   },
   "ratingDistribution": {
@@ -24,12 +24,12 @@
     "2": 6,
     "3": 6,
     "4": 24,
-    "5": 9,
+    "5": 10,
     "6": 60,
     "7": 122,
-    "8": 235,
-    "9": 101,
-    "10": 103
+    "8": 236,
+    "9": 100,
+    "10": 105
   },
   "activityByYear": [
     {
@@ -160,12 +160,12 @@
     {
       "year": 2020,
       "movies": 6,
-      "episodes": 82
+      "episodes": 92
     },
     {
       "year": 2021,
       "movies": 6,
-      "episodes": 96
+      "episodes": 108
     },
     {
       "year": 2022,
@@ -175,7 +175,7 @@
     {
       "year": 2023,
       "movies": 17,
-      "episodes": 154
+      "episodes": 166
     },
     {
       "year": 2024,
@@ -189,14 +189,14 @@
     },
     {
       "year": 2026,
-      "movies": 16,
-      "episodes": 225
+      "movies": 18,
+      "episodes": 243
     }
   ],
   "dataCaveats": {
-    "undatedEpisodePlays": 7449,
-    "datedEpisodePlays": 4199,
-    "undatedEpisodeSharePct": 64
+    "undatedEpisodePlays": 7415,
+    "datedEpisodePlays": 4251,
+    "undatedEpisodeSharePct": 63.6
   },
   "topShowsByPlays": [
     {
@@ -221,7 +221,7 @@
       "title": "It's Always Sunny in Philadelphia",
       "year": 2005,
       "plays": 177,
-      "airedEpisodes": 185
+      "airedEpisodes": 186
     },
     {
       "title": "Mom",
@@ -414,6 +414,18 @@
   ],
   "topRatedShows": [
     {
+      "title": "Furious",
+      "year": 2026,
+      "rating": 10,
+      "ratedAt": "2026-10-07T21:23:23.000Z"
+    },
+    {
+      "title": "Ted Lasso",
+      "year": 2020,
+      "rating": 10,
+      "ratedAt": "2026-10-07T21:21:12.000Z"
+    },
+    {
       "title": "Reacher",
       "year": 2022,
       "rating": 10,
@@ -520,22 +532,10 @@
       "year": 2009,
       "rating": 10,
       "ratedAt": "2026-07-29T01:23:47.000Z"
-    },
-    {
-      "title": "Chappelle's Show",
-      "year": 2003,
-      "rating": 10,
-      "ratedAt": "2026-07-29T01:22:30.000Z"
-    },
-    {
-      "title": "Californication",
-      "year": 2007,
-      "rating": 10,
-      "ratedAt": "2026-07-29T01:22:07.000Z"
     }
   ],
   "watchlist": {
-    "count": 54,
+    "count": 59,
     "items": [
       {
         "type": "show",
@@ -580,12 +580,6 @@
         "listedAt": "2026-07-29T00:18:56.000Z"
       },
       {
-        "type": "show",
-        "title": "Furious",
-        "year": 2026,
-        "listedAt": "2026-07-29T00:30:04.000Z"
-      },
-      {
         "type": "movie",
         "title": "Pressure",
         "year": 2026,
@@ -608,12 +602,6 @@
         "title": "Crystal Lake",
         "year": 2026,
         "listedAt": "2026-07-31T13:56:18.000Z"
-      },
-      {
-        "type": "show",
-        "title": "Ted Lasso",
-        "year": 2020,
-        "listedAt": "2026-08-06T01:26:21.000Z"
       },
       {
         "type": "show",
@@ -860,11 +848,53 @@
         "title": "Scrubs",
         "year": 2026,
         "listedAt": "2026-10-02T14:17:36.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Those Who Wish Me Dead",
+        "year": 2021,
+        "listedAt": "2026-10-05T20:42:00.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Spider-Man: Brand New Day",
+        "year": 2026,
+        "listedAt": "2026-10-07T21:29:51.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Runner",
+        "year": 2026,
+        "listedAt": "2026-10-07T21:30:06.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Mayday",
+        "year": 2026,
+        "listedAt": "2026-10-07T21:30:11.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Verity",
+        "year": 2026,
+        "listedAt": "2026-10-07T21:30:14.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Soulm8te",
+        "year": 2026,
+        "listedAt": "2026-10-07T21:30:28.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Heart of the Beast",
+        "year": 2026,
+        "listedAt": "2026-10-07T21:30:37.000Z"
       }
     ]
   },
   "favorites": {
-    "count": 44,
+    "count": 46,
     "items": [
       {
         "type": "show",
@@ -1129,6 +1159,18 @@
         "title": "Lioness",
         "year": 2023,
         "listedAt": "2026-10-04T19:55:11.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Ted Lasso",
+        "year": 2020,
+        "listedAt": "2026-10-07T21:21:12.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Furious",
+        "year": 2026,
+        "listedAt": "2026-10-07T21:23:23.000Z"
       }
     ]
   }
