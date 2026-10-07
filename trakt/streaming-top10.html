@@ -61,6 +61,15 @@
       .st10-tag { font-size: 0.76rem; font-weight: 700; }
       .st10-platform-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 3px; margin-bottom: 6px; }
       .st10-platform { font-size: 0.82rem; color: var(--accent); font-weight: 600; }
+      /* Days since/until the season finale (Bill, 2026-10-07: wanted a
+         direct, at-a-glance signal of how stale a show's season actually
+         is, caught live via The Beast in Me - "NEW TO LIST" on this week's
+         researched pool despite having aired almost a year ago). Text
+         itself always states "days" with an explicit sign, so meaning
+         never depends on the muted/flagged color alone - the color is a
+         secondary reinforcement, not the only signal. */
+      .st10-finale-days { font-size: 0.72rem; color: var(--text-muted); padding: 1px 7px; border-radius: 999px; background: color-mix(in srgb, var(--text-muted) 12%, transparent); }
+      .st10-finale-days.st10-finale-past { color: var(--status-warning); background: color-mix(in srgb, var(--status-warning) 14%, transparent); }
       .st10-metabits { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px; }
       .st10-section { font-size: 0.85rem; line-height: 1.55; margin-bottom: 9px; }
       .st10-label { display: block; font-size: 0.64rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 2px; }

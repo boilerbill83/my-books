@@ -33,7 +33,7 @@
 // already-committed feedbackData.json interaction) predates all of this
 // and stays — it's read-only reflection of his real data, not an
 // interactive dismiss action on this page.
-import { esc, posterImgHtml, initCollapsibleCards, STATUS_META, statusTag, SUBJECT_LABEL, displaySubgenre, loadAllData, computeFavoriteStars, renderImportFreshness } from './dashboardShared.js';
+import { esc, posterImgHtml, initCollapsibleCards, STATUS_META, statusTag, SUBJECT_LABEL, displaySubgenre, loadAllData, computeFavoriteStars, renderImportFreshness, fmtDate } from './dashboardShared.js';
 import { posterUrl, hydrateTitle, traktUrl, rankAll, matchScore, inferGenre, inferSubgenres, inferSubjects } from './engine.js';
 
 // ESTABLISHED deliberately does NOT use a star emoji (Bill, 2026-09-26:
@@ -101,9 +101,43 @@ function computeRankDelta(show, prevRankByTitle) {
 
 function rankDeltaHtml(rankDelta) {
   if (rankDelta === null || rankDelta === undefined || rankDelta === 0) return '';
-  if (rankDelta === 'NEW') return `<div class="st10-rank-delta st10-rank-new" title="New to this week's researched pool">NEW</div>`;
+  // Label is "NEW TO LIST", not bare "NEW" (Bill, 2026-10-07: flagged
+  // live via The Beast in Me — genuinely first appeared on this week's
+  // researched pool off real current news (a Season 2 renewal + Matthew
+  // Rhys's Emmy win, both real and dated Sept 24), despite the show
+  // itself having aired almost a year earlier. The tooltip already said
+  // "new to this week's researched pool", but the bare 3-letter badge
+  // text reads as "newly released" at a glance - the ranking logic
+  // itself is correct (this dimension tracks real current momentum/buzz,
+  // not original air date), only the label was ambiguous.
+  if (rankDelta === 'NEW') return `<div class="st10-rank-delta st10-rank-new" title="New to this week's researched pool, not necessarily a new release">NEW TO LIST</div>`;
   const up = rankDelta > 0;
   return `<div class="st10-rank-delta ${up ? 'st10-rank-up' : 'st10-rank-down'}" title="${up ? 'Moved up' : 'Moved down'} ${Math.abs(rankDelta)} spot${Math.abs(rankDelta) === 1 ? '' : 's'} since last week">${up ? '↑' : '↓'}${Math.abs(rankDelta)}</div>`;
+}
+
+// Bill, 2026-10-07: caught live via The Beast in Me showing "NEW TO LIST"
+// despite having actually aired almost a year ago - asked for a direct,
+// visible signal of how stale a show's season really is, so this kind of
+// thing is obvious on the page itself rather than needing to dig into the
+// "why it's here" prose. Signed day count, matching how he described the
+// expected result ("negative XX days" for an already-aired finale) -
+// reuses the exact daysUntil(x) < 0 = past convention the Watch Status
+// pages already use for daysUntilFinale, just displayed as a literal
+// signed number here instead of their "Nd ago" phrasing, per his ask.
+// finaleDate prefers currentSeasonFinale.finaleDate (only ever populated
+// while a season is actively airing, per enrich_tmdb.py - gives a real
+// future date for a mid-season show) and falls back to
+// lastEpisodeToAir.airDate (always cached, and for an Ended/between-
+// seasons show - no active next_episode_to_air left to populate
+// currentSeasonFinale - the last episode that aired genuinely IS that
+// season's finale).
+function daysSinceFinale(meta) {
+  if (!meta) return null;
+  const finaleDate = meta.currentSeasonFinale?.finaleDate || meta.lastEpisodeToAir?.airDate;
+  if (!finaleDate) return null;
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const days = Math.round((new Date(finaleDate + 'T00:00:00') - today) / 86400000);
+  return { days, finaleDate };
 }
 
 function enrichShow(show, ctx) {
@@ -152,8 +186,9 @@ function enrichShow(show, ctx) {
   const traktCandidate = hydrateTitle({ type, titleKey, ids, title: show.title }, enrichedMeta);
   const poster = titleKey ? posterUrl(titleKey, enrichedMeta, 'w342') : null;
   const year = meta?.year ?? null;
+  const finale = daysSinceFinale(meta);
 
-  return { ...show, type, statusLabel, predictedScore, genreLabel, subgenreLabels, subjectLabels, traktLink: traktUrl(traktCandidate), poster, starred, rankDelta, year };
+  return { ...show, type, statusLabel, predictedScore, genreLabel, subgenreLabels, subjectLabels, traktLink: traktUrl(traktCandidate), poster, starred, rankDelta, year, finale };
 }
 
 // displayRank is the show's position in the CURRENT filtered/backfilled
@@ -173,6 +208,9 @@ function renderShow(show, displayRank) {
     ? `<div class="st10-score"><div class="st10-score-num">${show.predictedScore}</div><div class="st10-score-label">predicted score</div></div>`
     : `<div class="st10-score st10-score-empty">not enough data yet</div>`;
   const starHtml = show.starred ? '<div class="tk-star-badge" title="One of your real Trakt favorites">★</div>' : '';
+  const finaleHtml = show.finale
+    ? `<div class="st10-finale-days${show.finale.days <= 0 ? ' st10-finale-past' : ''}" title="Based on ${esc(fmtDate(show.finale.finaleDate))}">Season finale: ${show.finale.days > 0 ? '+' : ''}${show.finale.days} days</div>`
+    : '';
   return `
   <article class="st10-card">
     <div class="st10-rank">#${displayRank}${rankDeltaHtml(show.rankDelta)}</div>
@@ -190,6 +228,7 @@ function renderShow(show, displayRank) {
           <div class="st10-platform-row">
             <span class="st10-platform">${esc(show.platform)}</span>
             ${statusTagHtml(show.statusLabel)}
+            ${finaleHtml}
           </div>
           ${metaBits.length ? `<div class="st10-metabits">${metaBits.map(esc).join(' · ')}</div>` : ''}
         </div>
