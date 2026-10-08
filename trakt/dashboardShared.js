@@ -939,10 +939,26 @@ function renderWatchCards(elementId, rows, enrichedMeta, subtitleFn, emptyText, 
   }).join('');
 }
 
+// Bill, 2026-10-08 ("reduce the white space, maybe add more metadata to
+// the titles on the left?"): these cards were real but sparse next to
+// Family Watch List's denser cards (genre tags, release/streaming rows),
+// leaving a real empty-gap mismatch in that paired row. Reuses
+// renderWatchCards()'s existing reasonFn extension point (built for My
+// Next Watch's own "why this" line) rather than a new card shape — real
+// TMDB genres, the same simple meta.genres field (and slice/join pattern)
+// Family Watch List's own cards already use, so no new data dependency.
+function coWatchReasonFn(enrichedMeta) {
+  return r => {
+    const meta = enrichedMeta[r.titleKey];
+    return meta?.genres?.length ? meta.genres.slice(0, 2).join(', ') : null;
+  };
+}
+
 function renderCoWatchCards(elementId, rows, enrichedMeta) {
   const ready = sortCoWatchReady(rows.filter(isCoWatchReady));
   renderWatchCards(elementId, ready, enrichedMeta, coWatchCardSubtitle,
-    'Nothing ready to watch together right now — switch to the table view for the full tagged list.');
+    'Nothing ready to watch together right now — switch to the table view for the full tagged list.',
+    coWatchReasonFn(enrichedMeta));
 }
 
 // "What's Airing" card subtitle — the airing-table analog of
