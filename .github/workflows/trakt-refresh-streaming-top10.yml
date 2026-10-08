@@ -7,7 +7,7 @@ name: Refresh Streaming Top 10 (Claude research)
 # already workflow_dispatch-only, the same precedent Session 16f
 # established for the book side's own theme/tone audit). Was daily until
 # this change; real cost note preserved: each run is one Claude call
-# (web search + editorial write-up) plus up to 15 cheap TMDB lookups — a
+# (web search + editorial write-up) plus up to 25 cheap TMDB lookups — a
 # few cents to roughly $0.60/run, not the "tens of dollars per pass"
 # scale that got the theme/tone audit's own daily schedule turned off —
 # but it IS real, recurring, billed cost, and the underlying data
@@ -37,11 +37,12 @@ jobs:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: python3 trakt/refresh_streaming_top10.py
         # call_claude() can now make up to 3 sequential requests (pause_turn
-        # resume, each with its own 340s timeout) — worst case ~17 minutes,
-        # which the old 10-minute step ceiling would have killed outright
-        # before the Python-level retry logic ever got a chance to finish.
-        # 20 minutes leaves real headroom above that worst case.
-        timeout-minutes: 20
+        # resume, each with its own 450s timeout, raised from 340s
+        # alongside POOL_SIZE 15->25 on 2026-10-08) — worst case ~22.5
+        # minutes, which the old 20-minute step ceiling would have killed
+        # outright before the Python-level retry logic ever got a chance
+        # to finish. 25 minutes leaves real headroom above that worst case.
+        timeout-minutes: 25
       - name: Commit if changed
         if: always()
         run: |

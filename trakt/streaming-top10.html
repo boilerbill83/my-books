@@ -69,7 +69,13 @@
          never depends on the muted/flagged color alone - the color is a
          secondary reinforcement, not the only signal. */
       .st10-finale-days { font-size: 0.72rem; color: var(--text-muted); padding: 1px 7px; border-radius: 999px; background: color-mix(in srgb, var(--text-muted) 12%, transparent); }
-      .st10-finale-days.st10-finale-past { color: var(--status-warning); background: color-mix(in srgb, var(--status-warning) 14%, transparent); }
+      /* #8a5c00, not var(--status-warning) directly, for the text color —
+         same darker-amber-on-light-tint pattern .tk-status-warning/
+         .tk-prestige-badge already use (dashboard.css); the raw bright
+         yellow (#fab219) as text has poor contrast against this site's
+         warm cream/brown palette (Bill, 2026-10-08: "yellow text on
+         brown background is not a good combo"). */
+      .st10-finale-days.st10-finale-past { color: #8a5c00; background: color-mix(in srgb, var(--status-warning) 14%, transparent); }
       .st10-metabits { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px; }
       .st10-section { font-size: 0.85rem; line-height: 1.55; margin-bottom: 9px; }
       .st10-label { display: block; font-size: 0.64rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 2px; }

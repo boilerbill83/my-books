@@ -25,8 +25,9 @@ used by audit_theme_tone.py / enrich_tmdb.py respectively).
 
 Cost note — see the workflow file for the schedule itself: one run is one
 Claude call (~20-30 web searches, a few thousand output tokens —
-researching 15 shows instead of 10 since 2026-09-26, see POOL_SIZE below)
-plus up to 15 cheap TMDB search calls. That's a few cents to perhaps
+researching 25 shows instead of 10 since 2026-10-08 (originally bumped to
+15 on 2026-09-26, then to 25 per Bill's direct request), see POOL_SIZE
+below) plus up to 25 cheap TMDB search calls. That's a few cents to perhaps
 $0.60/run, not the "tens of dollars per pass" scale that got the
 theme/tone audit's own schedule turned off in Session 16f — but it is
 real, billed cost. Moved from daily to weekly (Bill, 2026-09-26: "find
@@ -60,15 +61,18 @@ PREV_FILE = DATA_DIR / 'streamingTop10Previous.json'
 API_KEY = os.environ.get('ANTHROPIC_API_KEY', '')
 TMDB_KEY = os.environ.get('TMDB_API_KEY', '')
 MODEL = 'claude-sonnet-5'
-MAX_TOKENS = 16000  # raised from 8000 alongside POOL_SIZE 10->15 — more shows means more output text
+MAX_TOKENS = 28000  # raised from 8000->16000 alongside POOL_SIZE 10->15, then 16000->28000 alongside 15->25 (Bill, 2026-10-08: "store the top 25 instead of 15") — more shows means more output text
 TMDB_HEADERS = {'User-Agent': 'my-books-trakt-streaming-top10 (personal watch-history app)'}
 # Researched pool size (Bill, 2026-09-26: "make the filter a checkbox so I
 # can choose what to include; it should always show 10 shows"). The page
 # itself only ever displays 10 at once, but a checkbox filter needs real
 # material to backfill from when it narrows below 10 — so this script
-# researches 15 real, verified-current shows/week instead of exactly 10,
-# and the frontend always slices its top 10 of whatever's checked.
-POOL_SIZE = 15
+# researches a larger real, verified-current pool of shows/week than
+# exactly 10, and the frontend always slices its top 10 of whatever's
+# checked. Raised 15->25 (Bill, 2026-10-08: "store the top 25 instead of
+# 15") for more backfill headroom when a filter narrows the pool hard
+# (e.g. checking only "Not on your Trakt").
+POOL_SIZE = 25
 
 METHODOLOGY = ("Scored on four weighted dimensions, per Bill's own detailed brief: Audience 30% "
                "(is anyone actually watching — Nielsen minutes, JustWatch rank), Current Momentum 25% "
@@ -155,9 +159,12 @@ def call_claude():
             # scale, but a real production run timed out here (2026-09-28)
             # after both were raised (15 shows, 16000 tokens) without
             # raising this to match — a longer real web_search + write-up
-            # genuinely takes longer. 340s leaves real headroom under the
-            # job step's own 10-minute (600s) ceiling.
-            with urllib.request.urlopen(req, timeout=340) as resp:
+            # genuinely takes longer. Raised again to 450s alongside
+            # POOL_SIZE 15->25/MAX_TOKENS 16000->28000 (2026-10-08), same
+            # reasoning pre-applied this time rather than waiting for the
+            # same failure to repeat — see the workflow file's own
+            # timeout-minutes, raised to match.
+            with urllib.request.urlopen(req, timeout=450) as resp:
                 data = json.loads(resp.read())
         except urllib.error.HTTPError as e:
             error_body = e.read().decode('utf-8', errors='replace')

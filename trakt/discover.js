@@ -11,7 +11,7 @@
 
 import {
   rankAll, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore,
-  awardsScore, posterUrl, diversityRerank, inferSubgenres, inferSubjects, inferEra, inferTones,
+  awardsScore, posterUrl, diversityRerank, inferSubgenres, inferSubjects, inferEra,
   isActivelyAiring, traktUrl, prestigeScore, PRESTIGE_BADGE_THRESHOLD,
 } from './engine.js';
 import {
@@ -418,56 +418,6 @@ function renderAllTitlesTable(allRows) {
 
 // ── Recommendations preview ─────────────────────────────────────────────
 
-// Mood/vibe filter on the You'll Love panels (dashboard's
-// mood-filter-unbuilt Improvement Opportunities finding: inferTones()
-// already computes real per-title mood data that nothing on Discover let
-// Bill filter by). Chips are built live from whichever tones the real
-// current pool actually has 2+ candidates for — never a hardcoded list —
-// so a chip can't ever point at an empty result, and the row naturally
-// grows or shrinks as real tone coverage changes.
-function toneLabel(tag) {
-  return tag.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
-}
-
-function buildMoodChipCounts(allItems, enrichedMeta, llmTags, reviewedTags) {
-  const counts = new Map();
-  for (const c of allItems) {
-    const meta = enrichedMeta[c.titleKey];
-    if (!meta) continue;
-    for (const tone of inferTones(meta, llmTags[c.titleKey], undefined, reviewedTags[c.titleKey])) {
-      counts.set(tone, (counts.get(tone) || 0) + 1);
-    }
-  }
-  return [...counts.entries()].filter(([, n]) => n >= 2).sort((a, b) => b[1] - a[1]);
-}
-
-function filterByMood(items, mood, enrichedMeta, llmTags, reviewedTags) {
-  if (!mood) return items;
-  return items.filter(c => {
-    const meta = enrichedMeta[c.titleKey];
-    return !!meta && inferTones(meta, llmTags[c.titleKey], undefined, reviewedTags[c.titleKey]).includes(mood);
-  });
-}
-
-let moodFilterWired = false;
-function wireMoodFilter(allRecItems, enrichedMeta, llmTags, reviewedTags, onMoodChange) {
-  const row = document.getElementById('moodFilterRow');
-  if (!row) return;
-  const counts = buildMoodChipCounts(allRecItems, enrichedMeta, llmTags, reviewedTags);
-  if (!counts.length) { row.closest('.tk-mood-filter-wrap')?.setAttribute('hidden', ''); return; }
-  row.innerHTML = [`<button type="button" class="tk-btn active" data-mood="">Any mood</button>`,
-    ...counts.map(([tag]) => `<button type="button" class="tk-btn" data-mood="${esc(tag)}">${esc(toneLabel(tag))}</button>`)]
-    .join('');
-  if (moodFilterWired) return; // chip set can be rebuilt on every load(), but the click listener only needs attaching once (delegated on the row, not per-button)
-  moodFilterWired = true;
-  row.addEventListener('click', (e) => {
-    const btn = e.target.closest('button[data-mood]');
-    if (!btn) return;
-    row.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
-    onMoodChange(btn.dataset.mood || null);
-  });
-}
-
 // One line of real metadata under the title: genres, director/creator,
 // TMDB community rating — whatever's actually present, since candidate
 // stubs may still be mid-enrichment.
@@ -653,35 +603,44 @@ function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, revi
   const audience = realAudienceScore(omdbEntry);
   const cast = castLine(meta);
   const scoreVal = meta.voteAverage != null ? meta.voteAverage.toFixed(1) : null;
+  // Facts moved OUT of .tk-hero-body to be a direct sibling of .tk-hero-top
+  // (poster+body+score) rather than nested inside body — see .tk-hero-facts'
+  // own CSS comment for why: nested inside body, it could only flex-grow
+  // within body's own (wrap-dependent, unpredictable) height, not the full
+  // card. As a sibling below a self-contained top row, it reliably gets
+  // "whatever's left" of the card's real (grid-stretched) height, no
+  // hard-coded cap needed.
   el.innerHTML = `
-    <div class="tk-hero-poster">${posterImgHtml(poster, 'tk-hero-img', 150, 225, true)}</div>
-    <div class="tk-hero-body">
-      <div class="tk-hero-kicker">📺 Currently Watching</div>
-      <div class="tk-hero-title">
-        ${typeIcon(pick.type)} ${titleLink(candidate)}${meta.year ? ` <span class="tk-hero-year">(${esc(meta.year)})</span>` : ''}
-        ${meta.networks?.length ? `<span class="tk-hero-badge">${esc(meta.networks[0])}</span>` : ''}
-      </div>
-      <div class="tk-hero-meta">${esc([runtimeLabel(candidate, enrichedMeta), metaLine(candidate, enrichedMeta, omdbMeta, llmTags, reviewedTags)].filter(Boolean).join(' · '))}</div>
-      ${cast ? `<div class="tk-hero-cast">Starring ${esc(cast)}</div>` : ''}
-      ${meta.overview ? `<div class="tk-hero-reason">${esc(meta.overview)}</div>` : ''}
-      <div class="tk-hero-actions">
-        <a class="tk-btn tk-btn-primary" href="./deepdive.html?key=${encodeURIComponent(pick.titleKey)}">🔎 Deep Dive</a>
-        <a class="tk-btn" href="${esc(traktUrl(candidate))}" target="_blank" rel="noopener">Open on Trakt ↗</a>
-      </div>
-      ${pick.facts?.length ? `
-        <div class="tk-hero-facts">
-          <div class="tk-hero-facts-title">The Real Story</div>
-          ${pick.facts.slice(0, HERO_FACTS_CAP).map(f => `<div class="tk-hero-fact">${esc(f.text)}${f.source ? ` <a href="${esc(f.source)}" target="_blank" rel="noopener" class="tk-hero-fact-source">${esc(f.sourceLabel || 'source')}</a>` : ''}</div>`).join('')}
+    <div class="tk-hero-top">
+      <div class="tk-hero-poster">${posterImgHtml(poster, 'tk-hero-img', 150, 225, true)}</div>
+      <div class="tk-hero-body">
+        <div class="tk-hero-kicker">📺 Currently Watching</div>
+        <div class="tk-hero-title">
+          ${typeIcon(pick.type)} ${titleLink(candidate)}${meta.year ? ` <span class="tk-hero-year">(${esc(meta.year)})</span>` : ''}
+          ${meta.networks?.length ? `<span class="tk-hero-badge">${esc(meta.networks[0])}</span>` : ''}
         </div>
-      ` : ''}
+        <div class="tk-hero-meta">${esc([runtimeLabel(candidate, enrichedMeta), metaLine(candidate, enrichedMeta, omdbMeta, llmTags, reviewedTags)].filter(Boolean).join(' · '))}</div>
+        ${cast ? `<div class="tk-hero-cast">Starring ${esc(cast)}</div>` : ''}
+        ${meta.overview ? `<div class="tk-hero-reason">${esc(meta.overview)}</div>` : ''}
+        <div class="tk-hero-actions">
+          <a class="tk-btn tk-btn-primary" href="./deepdive.html?key=${encodeURIComponent(pick.titleKey)}">🔎 Deep Dive</a>
+          <a class="tk-btn" href="${esc(traktUrl(candidate))}" target="_blank" rel="noopener">Open on Trakt ↗</a>
+        </div>
+      </div>
+      ${scoreVal ? `
+      <div class="tk-hero-score">
+        <div class="tk-hero-score-num">${scoreVal}</div>
+        <div class="tk-hero-score-label">TMDB rating</div>
+        ${critic != null ? `<div class="tk-hero-score-sub">${critic}/100 critics</div>` : ''}
+        ${audience != null ? `<div class="tk-hero-score-sub">${audience}/100 audience</div>` : ''}
+      </div>` : ''}
     </div>
-    ${scoreVal ? `
-    <div class="tk-hero-score">
-      <div class="tk-hero-score-num">${scoreVal}</div>
-      <div class="tk-hero-score-label">TMDB rating</div>
-      ${critic != null ? `<div class="tk-hero-score-sub">${critic}/100 critics</div>` : ''}
-      ${audience != null ? `<div class="tk-hero-score-sub">${audience}/100 audience</div>` : ''}
-    </div>` : ''}
+    ${pick.facts?.length ? `
+      <div class="tk-hero-facts">
+        <div class="tk-hero-facts-title">The Real Story</div>
+        ${pick.facts.slice(0, HERO_FACTS_CAP).map(f => `<div class="tk-hero-fact">${esc(f.text)}${f.source ? ` <a href="${esc(f.source)}" target="_blank" rel="noopener" class="tk-hero-fact-source">${esc(f.sourceLabel || 'source')}</a>` : ''}</div>`).join('')}
+      </div>
+    ` : ''}
   `;
 }
 
@@ -902,25 +861,31 @@ function renderHero(pool, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
   const otherType = pool.find(c => c.type !== top.type);
   const poster = posterUrl(top.titleKey, enrichedMeta, 'w342');
   const tier = scoreTier(top.bmtreScore);
+  // Wrapped in .tk-hero-top to match .tk-hero-card's new flex-column
+  // structure (see .tk-hero-facts' CSS comment — this hero has no facts
+  // box, so .tk-hero-top is its only row, but it still needs the wrapper
+  // for the row layout itself to apply).
   el.innerHTML = `
-    <div class="tk-hero-poster">${posterImgHtml(poster, 'tk-hero-img', 150, 225, true)}</div>
-    <div class="tk-hero-body">
-      <div class="tk-hero-kicker">🎯 Start here tonight</div>
-      <div class="tk-hero-title">
-        ${typeIcon(top.type)} ${titleLink(top)}${top.year ? ` <span class="tk-hero-year">(${esc(top.year)})</span>` : ''}
-        <span class="tk-hero-badge${top.origin === 'watchlist' ? '' : ' tk-hero-badge-new'}">${top.origin === 'watchlist' ? 'Watchlist' : 'New pick'}</span>
+    <div class="tk-hero-top">
+      <div class="tk-hero-poster">${posterImgHtml(poster, 'tk-hero-img', 150, 225, true)}</div>
+      <div class="tk-hero-body">
+        <div class="tk-hero-kicker">🎯 Start here tonight</div>
+        <div class="tk-hero-title">
+          ${typeIcon(top.type)} ${titleLink(top)}${top.year ? ` <span class="tk-hero-year">(${esc(top.year)})</span>` : ''}
+          <span class="tk-hero-badge${top.origin === 'watchlist' ? '' : ' tk-hero-badge-new'}">${top.origin === 'watchlist' ? 'Watchlist' : 'New pick'}</span>
+        </div>
+        <div class="tk-hero-meta">${esc([runtimeLabel(top, enrichedMeta), metaLine(top, enrichedMeta, omdbMeta, llmTags, reviewedTags)].filter(Boolean).join(' · '))}</div>
+        <div class="tk-hero-reason">${esc(top.reason)}</div>
+        <div class="tk-hero-actions">
+          <a class="tk-btn tk-btn-primary" href="./deepdive.html?key=${encodeURIComponent(top.titleKey)}">🔎 Deep Dive</a>
+          <a class="tk-btn" href="${esc(traktUrl(top))}" target="_blank" rel="noopener">Open on Trakt ↗</a>
+        </div>
+        ${otherType ? `<div class="tk-hero-alt">Not in the mood for a ${top.type === 'movie' ? 'movie' : 'show'}? The top ${otherType.type === 'movie' ? 'movie' : 'show'} is ${esc(otherType.title)} at ${Math.round(otherType.bmtreScore)}.</div>` : ''}
       </div>
-      <div class="tk-hero-meta">${esc([runtimeLabel(top, enrichedMeta), metaLine(top, enrichedMeta, omdbMeta, llmTags, reviewedTags)].filter(Boolean).join(' · '))}</div>
-      <div class="tk-hero-reason">${esc(top.reason)}</div>
-      <div class="tk-hero-actions">
-        <a class="tk-btn tk-btn-primary" href="./deepdive.html?key=${encodeURIComponent(top.titleKey)}">🔎 Deep Dive</a>
-        <a class="tk-btn" href="${esc(traktUrl(top))}" target="_blank" rel="noopener">Open on Trakt ↗</a>
+      <div class="tk-hero-score" style="color:${tier.color}">
+        <div class="tk-hero-score-num">${Math.round(top.bmtreScore)}</div>
+        <div class="tk-hero-score-label">predicted score</div>
       </div>
-      ${otherType ? `<div class="tk-hero-alt">Not in the mood for a ${top.type === 'movie' ? 'movie' : 'show'}? The top ${otherType.type === 'movie' ? 'movie' : 'show'} is ${esc(otherType.title)} at ${Math.round(otherType.bmtreScore)}.</div>` : ''}
-    </div>
-    <div class="tk-hero-score" style="color:${tier.color}">
-      <div class="tk-hero-score-num">${Math.round(top.bmtreScore)}</div>
-      <div class="tk-hero-score-label">predicted score</div>
     </div>
   `;
   return top;
@@ -1023,16 +988,8 @@ async function load() {
   // is shows-only), so movieRecList's pool is untouched.
   const nextWatchKeySet = new Set(nextWatchPicks.map(c => c.titleKey));
   const showWatchlistForRec = byType(soloWatchlist, 'show').filter(c => !nextWatchKeySet.has(c.titleKey));
-  const movieWl = byType(soloWatchlist, 'movie'), movieCand = byType(soloCandidates, 'movie');
-  const showWl = showWatchlistForRec, showCand = byType(soloCandidates, 'show');
-  const renderBothRecPanels = (mood) => {
-    renderRecPanel('movieRecList', filterByMood(movieWl, mood, enrichedMeta, llmTags, reviewedTags),
-      filterByMood(movieCand, mood, enrichedMeta, llmTags, reviewedTags), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
-    renderRecPanel('showRecList', filterByMood(showWl, mood, enrichedMeta, llmTags, reviewedTags),
-      filterByMood(showCand, mood, enrichedMeta, llmTags, reviewedTags), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
-  };
-  renderBothRecPanels(null);
-  wireMoodFilter([...movieWl, ...movieCand, ...showWl, ...showCand], enrichedMeta, llmTags, reviewedTags, renderBothRecPanels);
+  renderRecPanel('movieRecList', byType(soloWatchlist, 'movie'), byType(soloCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
+  renderRecPanel('showRecList', showWatchlistForRec, byType(soloCandidates, 'show'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
 
   const coWatchRows = computeCoWatchRows(coWatchKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress);
   renderCoWatchCards('coWatchCards', coWatchRows, enrichedMeta);
