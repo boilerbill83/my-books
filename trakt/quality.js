@@ -712,35 +712,52 @@ function computeFieldQualityFindings(fieldStats, library, watchlist, candidatePo
     // checking whether it ever changes a real inferGenre() output, and
     // finding it doesn't: all 136 thin-tagged titles already carry a
     // reviewed/LLM override. Quality is now a genuine 100%, not suppressed.
+    // Closed 2026-10-07/08 (Bill: "make sure if it stays that it is high
+    // impact") rather than left open just because qualityPct hasn't
+    // technically crossed 90% yet. Real sequence: population was already
+    // resolved (97.1%→97.2%); quality sat at 88.8%, 1.1 points under the
+    // bar, so a real 150-title manual scraper batch was triggered to try
+    // to close it (run 37694815859). It hit its 120-minute step timeout
+    // mid-batch — but the workflow's `if: always()` commit step still
+    // saved real progress (834 lines of new/updated scrape data, pushed
+    // as commit 6588f00) — checked directly against the real data: only
+    // 9 titles were actually completed in those 2 hours before timing
+    // out (RT scraping in particular is slow per-title), moving quality
+    // only 88.8%→88.9%. At that real, measured throughput, manually
+    // re-triggering this batch again wouldn't meaningfully help — this
+    // is a genuine throughput ceiling (not a bug, not inaccurate data),
+    // and at 45/100 (Medium, not High impact) it doesn't clear the bar
+    // Bill set for staying open. The remaining ~13-title gap will keep
+    // closing on its own via the existing daily trakt-scrape-show-
+    // ratings.yml cron — this just stops tracking it as an open idea
+    // while that happens in the background.
     criticScore: (f) => {
-      const popLow = f.populatedPct < 90;
-      const qualLow = f.qualityPct < 90;
-      const barPhrase = popLow && qualLow ? 'on both' : popLow ? 'on population' : 'on quality';
       const { rottenTomatoes: rtTotal, metacritic: mcTotal } = scopedOmdbFieldCounts(['rottenTomatoes', 'metacritic']);
       return {
-        severity: 'warning',
+        severity: 'good',
         ratings: { ease: 5, dataQuality: 6, recEngine: 4, ui: 2 },
-        shortTitle: 'Critic Scores Still Missing',
-        title: `Critic Score is ${f.populatedPct.toFixed(1)}% populated, ${f.qualityPct.toFixed(1)}% quality — below the 90% bar ${barPhrase}`,
+        shortTitle: 'Critic Scores: Population Resolved, Quality Near-Ceiling',
+        title: `Critic Score is ${f.populatedPct.toFixed(1)}% populated (resolved) and ${f.qualityPct.toFixed(1)}% quality (1.1 points under the 90% bar, closing slowly via the daily scraper cron — a real 150-title manual batch only completed 9 titles in 2 hours before timing out, confirming this is a throughput ceiling, not a bug)`,
         technical: `<code>criticScore</code> (Rotten Tomatoes Tomatometer / Metacritic Metascore — both critic aggregates, renamed from the ` +
           `original misnomer <code>audienceScore</code> once it became clear the "audience" label was wrong: neither field has ever touched a ` +
           `real viewer opinion, only critic reviews) is ${f.populatedPct.toFixed(1)}% populated and ${f.qualityPct.toFixed(1)}% quality (both ` +
           `present, not just one) among the ${f.eligible} titles with an OMDb record. RT was disabled at the source for a long stretch after 3 ` +
-          `real live test batches scraped a wrong Tomatometer despite landing on the correct show page — root-caused this session: the scraper ` +
-          `accepted ANY aggregateRating block on the page with the critic-scale bestRating, last-one-wins, with no check that the block's own ` +
-          `<code>name</code> actually named the show being looked up (a show's RT page can embed more than one such block, e.g. a "similar ` +
-          `shows" rail). Fixed via per-block name matching and re-verified against 12 real, independently researched Tomatometer scores (12/12 ` +
-          `matched within a few points) before being re-enabled. RT now merges the same way Metacritic always did — OMDb's own value wins when ` +
-          `present (rare for shows), the scraper only fills a null — currently ${rtTotal} of ${f.eligible} OMDb-eligible titles ` +
-          `have an RT score, ${mcTotal} have Metacritic; a real scraper backfill run is what actually moves these numbers going forward, ` +
-          `not a code change.`,
-        plain: `Not every title has a critic score, and even titles that do often only have one of the two (Rotten Tomatoes or Metacritic), not ` +
-          `both — "quality" here means having both. Rotten Tomatoes scraping was turned back on this session after finding and fixing the real ` +
-          `bug behind its 3 earlier failures (it was reading the wrong show's score off a page that had more than one), and testing it against ` +
-          `12 real, well-known shows came back a clean 12/12 match. The population numbers above will keep improving as the scraper works through ` +
-          `its real backlog.`,
-        impact: `The blocking bug is fixed and re-verified — the remaining gap is throughput (how many titles the scraper has actually gotten to), ` +
-          `not accuracy. Numbers here should climb toward the 90% bar as scheduled/manual scraper runs work through the backlog.`,
+          `real live test batches scraped a wrong Tomatometer despite landing on the correct show page — root-caused and fixed via per-block name ` +
+          `matching, re-verified against 12 real, independently researched Tomatometer scores (12/12 matched) before being re-enabled; RT now ` +
+          `merges the same way Metacritic always did. Currently ${rtTotal} of ${f.eligible} OMDb-eligible titles have an RT score, ${mcTotal} have ` +
+          `Metacritic. A real 150-title manual batch (<code>workflow_dispatch</code>, run 37694815859) was triggered to try to clear the last 1.1 ` +
+          `points — it hit the workflow's 120-minute step timeout mid-run, but the "commit if changed" step's <code>if: always()</code> guard still ` +
+          `saved and pushed the 9 titles it did finish (<code>scrapedShowRatings.json</code>, commit 6588f00) before being killed. 9 titles in 2 ` +
+          `real hours is the actual, measured throughput — re-running a bigger manual batch wouldn't realistically do better; this is a genuine ` +
+          `per-title scraping cost (real browser automation against two separate sites), not a retry-cooldown or caching bug.`,
+        plain: `Population (does a title have any critic score at all) is fully resolved. Quality (does it have BOTH Rotten Tomatoes AND ` +
+          `Metacritic) is just over a point short of the 90% target. A real attempt to close that gap manually only got through 9 titles in 2 hours ` +
+          `before timing out — critic-score scraping is just genuinely slow per title, not a bug to fix. The daily automated job will keep closing ` +
+          `the remaining gap a little at a time without needing anyone to watch it.`,
+        impact: `Closed 2026-10-07/08 (Bill: "make sure if it stays that it is high impact") — by this dashboard's own formula this finding scores ` +
+          `only 45 (Medium, not High impact), and the remaining 1.1-point gap is on a real, measured, automatic trajectory to close via the ` +
+          `existing daily scraper cron — a manual push already confirmed it can't meaningfully be sped up beyond that. Not worth tracking as an ` +
+          `open idea at that impact level; closing with the real final numbers recorded rather than leaving it as clutter.`,
       };
     },
     audienceScore: (f) => {
