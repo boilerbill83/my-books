@@ -46,9 +46,17 @@ import { posterUrl, hydrateTitle, traktUrl, rankAll, matchScore, inferGenre, inf
 // real Trakt favorite flags ∪ manualStars.json) wherever a card's title
 // is genuinely one of Bill's favorites, same visual language as My Next
 // Watch's badge, just placed on this page's own poster shape.
+// RISING's `color` is a literal hex, not `var(--status-warning)` like the
+// others — the raw --status-warning yellow (#fab219) has poor contrast as
+// text on this site's warm cream/brown background (Bill, 2026-10-08:
+// "yellow text on brown background is not a good combo" — the same real
+// bug already fixed for .st10-finale-days). #8a5c00 is the same darker-
+// amber substitute dashboard.css's own .tk-status-warning/.tk-prestige-
+// badge already use for this exact pairing. The other 4 tags' colors
+// (critical/accent-warm/good/muted) are all dark enough already.
 const TAG_META = {
   HOT: { emoji: '🔥', cssVar: '--status-critical' },
-  RISING: { emoji: '📈', cssVar: '--status-warning' },
+  RISING: { emoji: '📈', color: '#8a5c00' },
   BUZZY: { emoji: '💬', cssVar: '--accent-warm' },
   ESTABLISHED: { emoji: '🛡️', cssVar: '--status-good' },
   'UNDER-THE-RADAR': { emoji: '🔎', cssVar: '--text-muted' },
@@ -203,6 +211,7 @@ function enrichShow(show, ctx) {
 // page happens to be filtered right now.
 function renderShow(show, displayRank) {
   const tag = TAG_META[show.tag] || { emoji: '', cssVar: '--text' };
+  const tagColor = tag.color || `var(${tag.cssVar})`;
   const metaBits = [show.genreLabel, ...show.subgenreLabels, ...show.subjectLabels].filter(Boolean);
   const scoreHtml = show.predictedScore != null
     ? `<div class="st10-score"><div class="st10-score-num">${show.predictedScore}</div><div class="st10-score-label">predicted score</div></div>`
@@ -223,7 +232,7 @@ function renderShow(show, displayRank) {
         <div>
           <div class="st10-title-row">
             <a class="st10-title" href="${esc(show.traktLink)}" target="_blank" rel="noopener">${esc(show.title)}</a>
-            <span class="st10-tag" style="color:var(${tag.cssVar})">${tag.emoji} ${esc(show.tag)}</span>
+            <span class="st10-tag" style="color:${tagColor}">${tag.emoji} ${esc(show.tag)}</span>
           </div>
           <div class="st10-platform-row">
             <span class="st10-platform">${esc(show.platform)}</span>
