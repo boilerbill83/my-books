@@ -80,7 +80,16 @@ async function load() {
     return;
   }
 
-  const { idx } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
+  const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
+  // The type-normalized score shown everywhere else (You'll Love panels,
+  // All Titles table) - see normalizeScoresByType()'s comment in
+  // engine.js. Only present for a real watchlist/candidate title (not a
+  // Watched one, which isn't part of that normalization population at
+  // all). Shown here as a separate, clearly-labeled figure rather than
+  // replacing the real predicted score below, since this page's whole
+  // point is to prove the breakdown sums to the real, unclamped score -
+  // swapping in the normalized number would break that guarantee.
+  const normalizedMatch = [...fromWatchlist, ...fromCandidates].find(c => c.titleKey === key);
   const candidate = hydrateTitle(raw, enrichedMeta);
   const meta = enrichedMeta[key] || {};
   const omdbEntry = omdbMeta[key];
@@ -137,6 +146,7 @@ async function load() {
         <div class="dd-score-label">predicted score</div>
         <div class="dd-score-sub">confidence ${Math.round(conf)}</div>
         ${Math.round(rawScore) !== Math.round(clamped) ? `<div class="dd-score-sub">real (unclamped): ${Math.round(rawScore)}</div>` : ''}
+        ${normalizedMatch ? `<div class="dd-score-sub" title="How this title ranks against other ${candidate.type === 'movie' ? 'movies' : 'shows'} in the real candidate pool, mapped onto a normal distribution so movies and shows are directly comparable - the number shown on the You'll Love panels and All Titles table.">shown elsewhere as: ${Math.round(normalizedMatch.bmtreScore)}</div>` : ''}
       </div>
     </div>
 

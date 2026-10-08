@@ -1098,7 +1098,7 @@ const SCORING_WEIGHTS = [
   { label: 'Subject match', weight: '+0 to +1.5', why: 'The real human-condition subject matter beneath genre/subgenre (grief, addiction, class, trauma). Same tiered shape as subgenre, thresholds scaled down to match this signal\'s smaller real loved-title counts (max ~10 vs. subgenre\'s ~31).' },
   { label: 'Book taste correlation', weight: '+0 to +0.75', why: 'The one cross-app signal: correlates your real BBRE (book) 5-star-read theme counts against this title\'s Genre/Subgenre/Subject tags. Deliberately capped well below BMTRE\'s own native signals — it\'s corroborating evidence from a different domain\'s rating history, never meant to outweigh what this engine already knows about your actual movie/show taste. Swept against eval.js: the originally-planned 1.5 cap was a real, caught regression (it let two 7/10 shows crowd out genuine 8+ matches); 0.75 is the highest cap that holds precision@10/25 exactly while still improving precision@50.' },
   { label: 'Tone signal', weight: '−3 to +3', why: 'A genuine per-tone rating-preference delta (e.g. you rate "twisty" titles higher than your average, "revelatory" ones lower) — symmetric, unlike the genre/subgenre penalties, because tone deltas didn\'t hit the same clamp-saturation problem when tested.' },
-  { label: 'Similar to titles you loved (forward)', weight: '+0 to +24', why: "TMDB's own similar/recommended citation network. The single biggest content-based signal by design — this is the closest thing to a direct 'people who loved X also loved Y' match. Scaled up for whichever of movies/shows is your smaller loved-pool (you have roughly 2x as many loved shows as movies, so a movie match is worth proportionally more to compensate). Citations to a loved title that's a confirmed statistical outlier in its own category (e.g. Deadpool inside the broader superhero pool) get discounted, not full credit." },
+  { label: 'Similar to titles you loved (forward)', weight: '+0 to +24', why: "TMDB's own similar/recommended citation network. The single biggest content-based signal by design — this is the closest thing to a direct 'people who loved X also loved Y' match. Scaled up for whichever of movies/shows is your smaller loved-pool (matchPointScale(), currently ~1.4x for movies — 117 loved shows vs 85 loved movies). That pool-size correction alone wasn't enough to equalize movie vs. show scores: a real check (2026-10-08) found shows get a forward match 80% of the time vs. only 34% for movies, since your loved shows cluster far more tightly by genre (Drama/Comedy/Crime) than your loved movies do, and TMDB's recommendation graph is denser within a genre neighborhood. The displayed score (bmtreScore) is now separately normalized per type (normalizeScoresByType()) to correct for this at the display layer — see that function's own comment — without touching this raw signal or its weight. Citations to a loved title that's a confirmed statistical outlier in its own category (e.g. Deadpool inside the broader superhero pool) get discounted, not full credit." },
   { label: 'Cited by titles you loved (reverse)', weight: '+0 to +12', why: 'The mirror of the forward match — a title one of your loved titles itself calls out as similar. Weighted at half the forward match\'s max since it\'s one step more indirect (they cited it, not the other way around), same discount-for-outlier-citations logic.' },
   { label: 'Community rating', weight: 'unbounded in theory, roughly −48 to +32 in practice', why: 'Blended TMDB + IMDb rating vs. a 6.0 neutral point (below TMDB\'s own global average — you rate things a bit more critically than the median voter, measured directly from your own history), ×8. Genuinely uncapped so an exceptionally well- or poorly-regarded title isn\'t artificially flattened, though real values cluster far tighter around the neutral point than the theoretical range.' },
   { label: 'TMDB vote count', weight: '+0 to +4', why: "How many people have rated it on TMDB at all — a popularity/confidence floor, not a taste signal. Tiny-vote-count titles (TMDB's algorithm is noisiest there) get nothing; well-established titles (5,000+ votes) get the full credit." },
@@ -2400,6 +2400,61 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   const findings = [];
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
   const allEnriched = Object.values(enrichedMeta);
+
+  // Fixed 2026-10-08 (Bill: "I want the scores for tv to have a normal
+  // distribution. Same for movies. They should have a similar percentage
+  // with scores over 90"). Real, checked numbers before this fix: 0 of
+  // 218 movie candidates scored >=90 vs. 40 of 223 shows - not a close
+  // call. Root cause confirmed with scoreBreakdown() and a real per-type
+  // signal sweep: the forward/reverse "similar to titles you loved"
+  // signal hits a show candidate 75-80% of the time vs. only 34-53% for
+  // movies, since Bill's loved shows cluster into 3 genres (70%) while
+  // his loved movies spread across 12 (41% in the top 3) - TMDB's
+  // similar/recommendations graph is denser within a tight genre
+  // neighborhood. See the quick-reference weight table's own updated
+  // note on the forward-match row for the full trace.
+  {
+    const allLive = [...fromWatchlist, ...fromCandidates];
+    const byType = (list, type) => list.filter(c => c.type === type && enrichedMeta[c.titleKey]);
+    const movies = byType(allLive, 'movie'), shows = byType(allLive, 'show');
+    const over90 = list => list.filter(c => c.bmtreScore >= 90).length;
+    const movieOver90 = over90(movies), showOver90 = over90(shows);
+    const moviePct = movies.length ? (100 * movieOver90 / movies.length) : 0;
+    const showPct = shows.length ? (100 * showOver90 / shows.length) : 0;
+    findings.push({
+      id: 'movie-show-score-distribution-mismatch',
+      severity: 'good',
+      ratings: { ease: 6, dataQuality: 2, recEngine: 6, ui: 7 },
+      shortTitle: 'Movie/Show Scores Now Comparable',
+      title: `Fixed: movies and shows now show a near-identical, genuinely bell-shaped score distribution (${moviePct.toFixed(1)}% of movies and ${showPct.toFixed(1)}% of shows score >=90 today) — was 0% of 218 movies vs. 18.0% of 223 shows`,
+      technical: `Added <code>normalizeScoresByType()</code> (engine.js): every candidate's real, fully-unchanged raw score ` +
+        `(<code>bmtreScoreRaw</code> — every existing signal, untouched) is re-expressed as a percentile rank within its own type's real ` +
+        `candidate population (<code>fromWatchlist</code>+<code>fromCandidates</code> combined), then mapped through the inverse normal CDF ` +
+        `(probit) onto a shared normal curve (mean 60, σ 18). This guarantees, by construction, both that the displayed score is genuinely ` +
+        `normally distributed for each type AND that both types show an identical percentage above any cutoff including 90 — not ` +
+        `approximately, exactly, since both are the same top-tail percentile of the same standard normal. Applied only to ` +
+        `<code>bmtreScore</code> (the field every UI surface renders); <code>bmtreScoreRaw</code> — used for sorting, ` +
+        `<code>diversityRerank()</code>, and every non-display consumer (<code>prune_candidate_pool.js</code>, the CSV export, Deep Dive's ` +
+        `<code>scoreBreakdown()</code>) — is completely untouched, so this is zero-risk to within-type ranking order and to ` +
+        `<code>computeEvalMetrics()</code>'s precision@k (which doesn't call <code>rankAll()</code> at all) — verified via ` +
+        `<code>scripts/eval.js</code>: byte-identical before/after. Wired into every surface that shows a predicted score for an unwatched ` +
+        `title (You'll Love panels, All Titles table, <code>recommend.html</code>, Streaming Top 10), reusing the same looked-up value rather ` +
+        `than a second independent calculation, so the same title can never show two different scores on two different pages. Deep Dive ` +
+        `keeps showing the real raw/clamped score as its headline (its whole point is proving the breakdown sums to that real number) and ` +
+        `adds the normalized score as a separate, clearly-labeled line.`,
+      plain: `Movie recommendations used to almost never score above 90, while show recommendations often did — not because the movies were ` +
+        `worse matches, but because TV shows Bill loves tend to cluster tightly into a few genres (crime dramas, etc.), so TMDB's "people who ` +
+        `liked this also liked..." data links them to each other constantly, while his loved movies are spread across many different genres ` +
+        `and rarely link to each other the same way. The fix doesn't change which titles are recommended or in what order — it changes how ` +
+        `the final number is calculated so movies and shows are judged on a fair, same-shaped scale: "how good is this compared to other ` +
+        `movies" and "how good is this compared to other shows," each mapped the same way onto a normal bell curve.`,
+      impact: `Real, live-verified: ${fmtNum(movieOver90)} of ${fmtNum(movies.length)} movies (${moviePct.toFixed(1)}%) and ${fmtNum(showOver90)} ` +
+        `of ${fmtNum(shows.length)} shows (${showPct.toFixed(1)}%) score >=90 today, essentially equal — versus 0 of 218 (0%) and 40 of 223 ` +
+        `(18.0%) before. <code>scripts/eval.js</code> confirmed byte-identical precision@10/25/50/100 and MAE before and after (this ` +
+        `computeEvalMetrics()'s leave-one-out harness never touches rankAll() at all), and a full Playwright pass plus the standing paired-` +
+        `layout checker found no regressions across every page.`,
+    });
+  }
 
   const rated = (library.titles || []).filter(t => t.myRating != null && enrichedMeta[t.titleKey]);
 

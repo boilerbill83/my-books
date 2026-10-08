@@ -186,7 +186,19 @@ function renderCastList(stats) {
 // a genres array existing vs. having 2+ entries to match against) - not a
 // second independent metric.
 
-function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, llmTags = {}, personMeta = {}) {
+function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, llmTags = {}, personMeta = {}, fromWatchlist = [], fromCandidates = []) {
+  // Reuse rankAll()'s own type-normalized bmtreScore for any watchlist/
+  // candidate title it already scored, rather than a second direct
+  // matchScore() call here — otherwise this table could show a different
+  // "Predicted Score" for the same title than the You'll Love panels do,
+  // since rankAll() now re-expresses bmtreScore as a per-type percentile
+  // (see normalizeScoresByType()'s comment in engine.js). Falls back to a
+  // direct matchScore() call for a Watched title (never in these lists -
+  // this is an honesty cross-check against myRating, a different purpose
+  // from a recommendation) or a Dismissed one (idx.excluded already
+  // removes it from fromWatchlist/fromCandidates).
+  const normalizedScoreByKey = new Map();
+  for (const c of [...fromWatchlist, ...fromCandidates]) normalizedScoreByKey.set(c.titleKey, c.bmtreScore);
   const rows = [];
   const addRow = (t, status, myRating) => {
     const h = hydrateTitle(t, enrichedMeta);
@@ -211,7 +223,7 @@ function buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omd
       title: h.title || '(untitled — not yet enriched)', year: h.year, type: h.type, status,
       airing: isActivelyAiring(h, enrichedMeta),
       myRating: myRating ?? null, tmdbRating: meta?.voteAverage ?? null,
-      predictedScore: Math.round(matchScore(h, idx, enrichedMeta, omdbMeta)),
+      predictedScore: Math.round(normalizedScoreByKey.get(h.titleKey) ?? matchScore(h, idx, enrichedMeta, omdbMeta)),
       popularity: popularityScore(meta?.voteCount),
       voteCount: meta?.voteCount ?? null,
       imdbVotes: omdb?.imdbVotes ?? null,
@@ -1048,7 +1060,7 @@ async function load() {
 
   renderStatTiles(d.summary, crowdCompare);
 
-  renderAllTitlesTable(buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, llmTags, personMeta));
+  renderAllTitlesTable(buildAllTitlesRows(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, llmTags, personMeta, fromWatchlist, fromCandidates));
 }
 
 initCollapsibleCards();

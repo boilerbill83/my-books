@@ -141,7 +141,7 @@ function daysSinceFinale(meta) {
 }
 
 function enrichShow(show, ctx) {
-  const { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback, starredSet, prevRankByTitle } = ctx;
+  const { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback, starredSet, prevRankByTitle, normalizedScoreByKey } = ctx;
   const titleKey = show.titleKey;
   const meta = titleKey ? enrichedMeta[titleKey] : null;
   const type = titleKey ? titleKey.split(':')[0] : (show.type || 'show');
@@ -176,7 +176,7 @@ function enrichShow(show, ctx) {
     else if (status) statusLabel = status;
 
     if (meta) {
-      predictedScore = Math.round(matchScore({ type, titleKey }, idx, enrichedMeta, omdbMeta));
+      predictedScore = Math.round(normalizedScoreByKey.get(titleKey) ?? matchScore({ type, titleKey }, idx, enrichedMeta, omdbMeta));
       genreLabel = cap(inferGenre(meta, llmTags[titleKey], reviewedTags[titleKey]));
       subgenreLabels = inferSubgenres(meta, llmTags[titleKey], 2, reviewedTags[titleKey]).map(s => displaySubgenre(s, meta));
       subjectLabels = inferSubjects(meta, llmTags[titleKey], 2, reviewedTags[titleKey]).map(s => SUBJECT_LABEL[s] || s);
@@ -269,10 +269,16 @@ async function load() {
   document.getElementById('statusText').textContent = 'Loaded';
   renderImportFreshness(dashboard.generatedAt);
 
-  const { idx } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
+  const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
+  // Lookup for the type-normalized score shown everywhere else (You'll
+  // Love panels, All Titles table) — see normalizeScoresByType()'s
+  // comment in engine.js. Used below so a show's predicted score here
+  // matches what the rest of the app shows for the same title, rather
+  // than falling back to a raw matchScore() call on a different scale.
+  const normalizedScoreByKey = new Map([...fromWatchlist, ...fromCandidates].map(c => [c.titleKey, c.bmtreScore]));
   const starredSet = computeFavoriteStars(library, watchlist, manualStars);
   const prevRankByTitle = prevData ? new Map(prevData.shows.map(s => [s.title, s.rank])) : null;
-  const ctx = { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback, starredSet, prevRankByTitle };
+  const ctx = { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback, starredSet, prevRankByTitle, normalizedScoreByKey };
 
   const shows = data.shows.map(s => enrichShow(s, ctx)).sort((a, b) => a.rank - b.rank);
   const TARGET_COUNT = 10;

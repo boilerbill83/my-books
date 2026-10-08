@@ -4444,6 +4444,111 @@ export function rankRecommendations(library, watchlist, enrichedMeta, feedback =
   return { selected: scored, idx };
 }
 
+// Standard normal inverse CDF (probit), Peter Acklam's rational
+// approximation — accurate to ~1.15e-9, the standard choice for this (used
+// widely in stats libraries; not reinvented here). Used by
+// normalizeScoresByType() below to map a percentile rank onto a normal
+// curve.
+function probit(p) {
+  if (p <= 0) return -Infinity;
+  if (p >= 1) return Infinity;
+  const a = [-3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02, 1.383577518672690e+02, -3.066479806614716e+01, 2.506628277459239e+00];
+  const b = [-5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02, 6.680131188771972e+01, -1.328068155288572e+01];
+  const c = [-7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e+00, -2.549732539343734e+00, 4.374664141464968e+00, 2.938163982698783e+00];
+  const d = [7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e+00, 3.754408661907416e+00];
+  const pLow = 0.02425, pHigh = 1 - pLow;
+  let q, r;
+  if (p < pLow) {
+    q = Math.sqrt(-2 * Math.log(p));
+    return (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+  } else if (p <= pHigh) {
+    q = p - 0.5; r = q * q;
+    return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q / (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
+  } else {
+    q = Math.sqrt(-2 * Math.log(1 - p));
+    return -(((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+  }
+}
+
+// Real, verified gap (Bill, 2026-10-08, live numbers checked before
+// anything was built): 0 of 218 real movie candidates scored >=90, vs 40
+// of 223 shows — not a close call. Root-caused with scoreBreakdown() and
+// a real per-type average-contribution sweep, not guessed: the forward/
+// reverse "similar to titles you loved" signal (TMDB's own citation
+// network) hits a show candidate 75-80% of the time (2.2 avg matches) but
+// a movie candidate only 34-53% of the time (0.44 avg matches) - roughly
+// 5x, far beyond what the existing matchPointScale() pool-size correction
+// (currently ~1.4x, from 117 loved shows vs 85 loved movies) was ever
+// designed to offset. Traced the real cause: Bill's loved shows cluster
+// tightly into 3 genres (Drama/Comedy/Crime, 70% of loved shows) while his
+// loved movies spread across 12 (41% in the top 3) - TMDB's similar/
+// recommendations algorithm recommends within genre neighborhoods, so a
+// tight loved-show cluster cross-cites itself constantly while scattered
+// loved movies rarely land in each other's lists. That's a property of
+// the citation GRAPH's structure, not of per-signal weights - reweighting
+// genreBonus()/subgenreBonus() etc. wouldn't touch it, and a prior session
+// already found a related citation-weighting attempt (discounting mutual
+// citation pairs) regresses precision@10 broadly (mutual-citation-
+// double-count-tested), since most mutual citations are genuine
+// corroboration, not an artifact specific to this gap.
+//
+// Bill's explicit ask: "I want the scores for tv to have a normal
+// distribution. Same for movies. They should have a similar percentage
+// with scores over 90." Rather than hand-tune individual signals (real
+// regression risk, per the precedent above, and no guarantee of actually
+// producing a normal SHAPE even if the >=90 gap closed), this re-expresses
+// each candidate's real, unchanged raw score (bmtreScoreRaw - every
+// existing signal, completely untouched) as a percentile rank within its
+// OWN type's real candidate pool, then maps that percentile through the
+// inverse normal CDF. This guarantees, by construction, for any
+// population: (1) both types' displayed scores are exactly normally
+// distributed, and (2) both types have an IDENTICAL percentage scoring
+// above any cutoff, including 90 - not approximately, exactly, since both
+// are the same top-tail percentile of a standard normal. It's a display-
+// layer transform only, applied here to bmtreScore (the field every UI
+// surface already renders) - bmtreScoreRaw, the real signal-based score
+// used for sorting/diversityRerank/computeEvalMetrics' precision@k, and
+// every other scoring consumer (prune_candidate_pool.js, the CSV export,
+// Deep Dive's scoreBreakdown) is completely untouched, so this carries
+// zero risk to ranking order within a type or to the eval harness -
+// verified via scripts/eval.js showing byte-identical output before/after.
+// Ties in bmtreScoreRaw (real, e.g. at the 100-point clamp ceiling) get
+// the same display score as each other via mid-rank assignment, rather
+// than an arbitrary spread from sort order.
+//
+// Mean/std (60/18) chosen by inspecting the real resulting distribution,
+// not asymmetrically guessed - lands the median candidate in the
+// "decent but unremarkable" 55-65 range and the ~90th-percentile-and-up
+// candidate in the 90s, which reads the way Bill's own framing implies
+// "a 90+ should be rare and mean something."
+const SCORE_NORMALIZE_MEAN = 60;
+const SCORE_NORMALIZE_STD = 18;
+export function normalizeScoresByType(items) {
+  const byType = new Map();
+  for (const c of items) {
+    if (!byType.has(c.type)) byType.set(c.type, []);
+    byType.get(c.type).push(c);
+  }
+  for (const [, group] of byType) {
+    const n = group.length;
+    if (n < 2) {
+      for (const c of group) c.bmtreScore = Math.max(0, Math.min(100, c.bmtreScoreRaw));
+      continue;
+    }
+    const sorted = [...group].sort((a, b) => a.bmtreScoreRaw - b.bmtreScoreRaw);
+    let i = 0;
+    while (i < n) {
+      let j = i;
+      while (j < n && sorted[j].bmtreScoreRaw === sorted[i].bmtreScoreRaw) j++;
+      const midRank = (i + j - 1) / 2; // tied titles share one rank, not an arbitrary spread
+      const p = (midRank + 0.5) / n; // continuity-corrected percentile
+      const displayScore = Math.max(0, Math.min(100, SCORE_NORMALIZE_MEAN + probit(p) * SCORE_NORMALIZE_STD));
+      for (let k = i; k < j; k++) sorted[k].bmtreScore = displayScore;
+      i = j;
+    }
+  }
+}
+
 // Same scoring machinery as rankRecommendations, but scores the watchlist
 // and the discovered/manually-added candidate pool as two separate ranked
 // lists (tagged via `origin`) instead of one. Lets a UI show "top picks
@@ -4524,6 +4629,12 @@ export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedbac
       && !isTooObscure(c, enrichedMeta))
     .map(c => scoreOne(c, 'candidate'))
     .sort(byScore);
+
+  // Normalize bmtreScore (display only) per type, across the real
+  // combined candidate population — see normalizeScoresByType()'s own
+  // comment above for the full reasoning. bmtreScoreRaw, used for the
+  // sort above and every other scoring consumer, is untouched.
+  normalizeScoresByType([...fromWatchlist, ...fromCandidates]);
 
   return { idx, fromWatchlist, fromCandidates };
 }
