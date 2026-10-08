@@ -1,4 +1,4 @@
-import { rankRecommendations, mergeScrapedShowRatings, traktUrl, computeBookThemeCounts, mergeManualRatings } from './engine.js';
+import { rankAll, mergeScrapedShowRatings, traktUrl, computeBookThemeCounts, mergeManualRatings } from './engine.js';
 import { renderImportFreshness } from './dashboardShared.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
@@ -7,10 +7,18 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
 
 async function load() {
   const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
-  const [dashboard, libraryRaw, watchlist, enrichedMeta, feedback, omdbMetaRaw, scrapedShowRatings, llmTags, reviewedTags, goodreadsData, manualRatings] = await Promise.all([
+  const [dashboard, libraryRaw, watchlist, candidatePool, enrichedMeta, feedback, omdbMetaRaw, scrapedShowRatings, llmTags, reviewedTags, goodreadsData, manualRatings] = await Promise.all([
     get('./data/dashboard.json').catch(() => null),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
+    // rankAll() needs this even though this page only ever displays the
+    // watchlist half (fromWatchlist) — the candidate pool is still part
+    // of the real population bmtreScore is normalized against (see
+    // normalizeScoresByType()'s comment in engine.js), so the score shown
+    // here has to come from the same combined population the You'll Love
+    // panels and All Titles table use, or the same title would show a
+    // different predicted score on this page than everywhere else.
+    get('./data/candidatePool.json').catch(() => ({ titles: [] })),
     get('./data/enrichedMetadata.json').catch(() => ({})),
     get('./data/feedbackData.json').catch(() => ({ interactions: [] })),
     get('./data/omdbMetadata.json').catch(() => ({})),
@@ -38,7 +46,7 @@ async function load() {
   document.getElementById('statusText').textContent = 'Scored';
   if (dashboard) renderImportFreshness(dashboard.generatedAt);
 
-  const { selected } = rankRecommendations(library, watchlist, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
+  const { fromWatchlist: selected } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
 
   const el = document.getElementById('recList');
   if (!selected.length) {
