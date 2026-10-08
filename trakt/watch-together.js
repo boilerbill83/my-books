@@ -180,7 +180,10 @@ async function load() {
     document.getElementById('wtStatTotal').textContent = coWatchRows.length;
 
     // Full-list table stays available for anyone who wants every column.
-    renderWatchStatusTable('wtFullTable', coWatchRows, 'Nothing tagged yet.');
+    // enrichedMeta adds the same Cover column discover.js's tables now
+    // carry (renderWatchStatusTable()'s own optional 4th param) — no
+    // reason this page's table should look any different.
+    renderWatchStatusTable('wtFullTable', coWatchRows, 'Nothing tagged yet.', enrichedMeta);
 
     statusEl.textContent = 'Ready';
     const readyCount = tiers.readyToBinge.length + (pinned ? 1 : 0);

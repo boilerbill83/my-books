@@ -19,7 +19,7 @@ import {
   airingBadge, renderHBarChart, computeGenreStats, displaySubgenre, SUBJECT_LABEL,
   ERA_LABEL, downloadCSV, metaLine, scoreTier, initCollapsibleCards, loadAllData,
   predictedVsActualRows, computeWatchStatusRows, computeCoWatchRows, buildWatchRow,
-  renderWatchCards, renderCoWatchCards, renderAiringCards, initCoWatchViewToggle, initAiringViewToggle,
+  renderWatchCards, renderCoWatchCards, initCoWatchViewToggle,
   renderWatchStatusTable, fmtDate, renderFamilyWatchList,
   computeFavoriteStars, renderImportFreshness,
 } from './dashboardShared.js';
@@ -992,13 +992,17 @@ async function load() {
   renderRecPanel('showRecList', showWatchlistForRec, byType(soloCandidates, 'show'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
 
   const coWatchRows = computeCoWatchRows(coWatchKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress);
-  renderCoWatchCards('coWatchCards', coWatchRows, enrichedMeta);
-  renderWatchStatusTable('coWatchTable', coWatchRows, 'Nothing tagged yet.');
+  renderCoWatchCards('coWatchCards', coWatchRows, enrichedMeta, omdbMeta, llmTags, reviewedTags);
+  renderWatchStatusTable('coWatchTable', coWatchRows, 'Nothing tagged yet.', enrichedMeta);
   initCoWatchViewToggle();
-  renderAiringCards('airingCards', airingRows, enrichedMeta);
+  // Bill: "'What's Airing' show this as a table but still include the
+  // cover image" — the card/table toggle this section used to have is
+  // gone; it always renders as the table now (with a Cover column, via
+  // renderWatchStatusTable()'s own enrichedMeta param), same as the
+  // request's literal wording for this section specifically (co-watch,
+  // just above, keeps its card view since Bill didn't ask to change it).
   renderWatchStatusTable('airingStatusTable', airingRows,
-    'Nothing you\'re tracking or would love is currently mid-season or airing.');
-  initAiringViewToggle();
+    'Nothing you\'re tracking or would love is currently mid-season or airing.', enrichedMeta);
 
   const enrichedCount = Object.keys(enrichedMeta).length;
   document.getElementById('genreSectionScopeNote').textContent =

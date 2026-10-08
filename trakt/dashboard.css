@@ -323,6 +323,7 @@
       table.tk-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
       table.tk-table th, table.tk-table td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
       .tk-table-poster { width: 40px; height: 60px; border-radius: 4px; object-fit: cover; display: block; background: var(--bg-subtle); border: 1px solid var(--border); }
+      .tk-table-poster-empty { border: 1px dashed var(--border); }
       table.tk-table th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); cursor: pointer; user-select: none; white-space: nowrap; }
       table.tk-table th:hover { color: var(--accent); }
       table.tk-table th.sorted::after { content: ' ▾'; }
@@ -459,6 +460,17 @@
    exact same rules, so duplicating them per-page risked exactly this kind
    of silent drift. */
 .tk-shelf { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 6px; }
+/* Real bug, caught live while verifying the Shows You Watch Together
+   card/table toggle (2026-10-08): the bare HTML `hidden` attribute only
+   hides an element via the UA stylesheet's `[hidden] { display: none }`,
+   which this explicit `display: flex` above silently overrode — the
+   cards never actually disappeared on "Show table view," they just sat
+   stacked above the table. watch-together.html already carries the
+   identical fix for its own .wt-section toggle; this is the same pattern
+   applied here, where #coWatchCards hits it directly (visible by
+   default, hidden on toggle — .tk-table-wrap never had this problem
+   since it sets no conflicting display property of its own). */
+.tk-shelf[hidden] { display: none; }
 .tk-shelf-card { position: relative; flex-shrink: 0; width: 108px; text-decoration: none; color: inherit; }
 .tk-shelf-poster { width: 92px; height: 138px; border-radius: 8px; object-fit: cover; background: var(--bg-subtle); border: 1px solid var(--border); display: block; box-shadow: 0 2px 8px rgba(44,26,14,0.14); }
 .tk-shelf-poster-empty { border: 1px dashed var(--border); }
@@ -507,7 +519,14 @@
    row renderWatchStatusTable() inserts above the table) — was completely
    unstyled everywhere it's used (index.html's #coWatchTable/#airingStatusTable
    and now watch-together.html), relying on bare browser defaults. */
-.tk-watch-toolbar { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 10px; cursor: pointer; }
+/* padding: real-only, not decorative, same discipline as .st10-checkbox-
+   label — this toolbar was only ever measured at 20px tall with zero
+   padding (and thus happened to clear verify_paired_layouts.py's own
+   WCAG 2.5.8 tap-target check) while the Airing table sat behind a
+   hidden-by-default card/table toggle; making that table always-visible
+   (Bill, 2026-10-08) put this checkbox on-screen by default for the
+   first time and the check caught it for real. */
+.tk-watch-toolbar { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 10px; cursor: pointer; padding: 4px 2px; }
 .tk-watch-toolbar input { cursor: pointer; }
 
 /* Family Watch List cards (want-to-watch AND, on family.html only, the

@@ -239,74 +239,26 @@
          Movies We've Loved sections, same drift-prevention reasoning as
          the .tk-shelf/.tk-watch-toolbar move noted above. */
 
-      /* Shows You Watch Together / Family Watch List paired row: the
-         .tk-row2 box-height check (align-items: stretch, on by default)
-         passes fine — both boxes measure identical. But co-watch's own
-         content (a single row of poster cards, ~180px) is far shorter
-         than Family Watch List's richly-detailed entries (~1200px+ for 4
-         real entries), the SECOND failure mode CLAUDE.md's paired-row rule
-         calls out. First attempt centered the short content within the
-         full stretched height (the #dismissalsCard pattern on the Quality
-         page) — technically closed the gap, but Bill flagged it as still
-         looking bad: centering a small card row inside an ~1200px box
-         just reads as a huge empty margin above AND below, not "fixed."
-         Capping Family Watch List's own height helped, but with the real
-         tagged-show count now regularly running past what one horizontally-
-         scrolling row can show, the gap came back (Bill's live screenshot,
-         2026-09-20) — a big empty area above/below a single row PLUS a
-         horizontal scrollbar hiding real cards off-screen, the exact
-         "lots of white space and horizontal scroll" pattern now in
-         CLAUDE.md's own standing rule. Real fix, matching the one already
-         proven on My Next Watch: stop horizontally scrolling a shelf that
-         has room to wrap. #coWatchCards overrides .tk-shelf's horizontal-
-         scroll-strip layout with a wrapping grid (same shape as #nextWatch)
-         scoped to this card only — trakt/watch-together.html's own full-page
-         listing, and #airingCards elsewhere on this page, keep the
-         horizontal-scroll .tk-shelf default, which is fine there since
-         neither sits in a height-matched pairing against a much taller
-         sibling.
-
-         Reversal caught live 2026-10-06 (trakt-verify-layouts.yml's own
-         daily scheduled run, not a push): the fixed max-height:560px above
-         only ever worked while Family Watch List happened to be the
-         TALLER side. Adding "Brothers" to Shows You Watch Together grew
-         #coWatchCards' real card count, flipping which side is taller —
-         Family Watch List's 3 real movies (~560px) now sit flush-top in a
-         box stretched to match co-watch's own now-taller content, leaving
-         a 153px dead gap at the bottom (mode 2 again, just the other
-         direction). A fixed cap can't adapt to whichever side ends up
-         taller on a given day. Real fix: drop the fixed cap in favor of
-         the same flex:1-with-no-hard-max adaptive pattern #nextWatch and
-         #coWatchCards already use — grow to whatever height the row's
-         real content actually stretches to, center the real (shorter)
-         content within that space (the #dismissalsCard/#genreChartCard
-         pattern, scoped here since the ratio is now modest — ~560px of
-         real cards inside roughly double that, not the near-total-empty
-         ~1200px box Bill rejected centering in before), and keep
-         overflow-y:auto only as a safety valve for a future pathological
-         case (many more family movies), not a binding cap today.
-
-         Second-order effect of removing Family's cap, caught by actually
-         re-running trakt/verify_paired_layouts.py rather than trusting
-         the fix on sight: with Family's content now uncapped, its real
-         (larger) natural height can drive the row taller than co-watch's
-         own packed content needs - and #coWatchCards was still using
-         align-content:flex-start, which packs its wrapped rows flush to
-         the TOP and dumps all the slack at the bottom INSIDE #coWatchCards
-         itself (mode 2 again, just relocated to the other card). #nextWatch
-         already solved this exact shape with align-content:center -
-         applying the same fix here so #coWatchCards's own wrapped rows
-         center within whatever height the row ends up needing, regardless
-         of which side (co-watch or family) happens to be driving it that
-         day. */
-      #familyWatchCard { display: flex; flex-direction: column; }
-      #familyWatchList { flex: 1; display: flex; flex-direction: column; justify-content: center; overflow-y: auto; padding-right: 4px; }
-      #coWatchSection { display: flex; flex-direction: column; }
-      #coWatchSection #coWatchCards {
-        flex: 1; align-content: center; flex-wrap: wrap; overflow-x: visible; overflow-y: auto; padding-right: 4px;
-      }
+      /* Shows You Watch Together — moved out of its former paired row with
+         Family Watch List (Bill, 2026-10-08: "make this span the whole
+         page horizontally"), so the height-matching hacks that row's own
+         history accumulated (centering, adaptive flex, the earlier fixed-
+         cap reversal) no longer apply — there's no sibling box to match
+         anymore. Keeps the wrapping-grid card layout rather than reverting
+         to .tk-shelf's horizontal-scroll default, since CLAUDE.md's own
+         standing rule (mode 3) still prefers real rows of visible cards
+         over a scrollbar hiding content off-screen, and a full-width card
+         now has even more room to show multiple rows of cards at once than
+         it did squeezed into half the page. */
+      #coWatchSection #coWatchCards { flex-wrap: wrap; }
       #coWatchSection #coWatchCards .tk-shelf-card { width: 138px; }
       #coWatchSection #coWatchCards .tk-shelf-poster { width: 118px; height: 177px; }
+      /* Richer per-card info now that each card carries metaLine()'s full
+         genre/creator/rating/critic/awards string (Bill: "add a lot more
+         information for each show"), not just a 2-genre snippet — 3 lines
+         was cutting that string off mid-sentence on anything with more
+         than genre+director. */
+      #coWatchSection .tk-shelf-reason { -webkit-line-clamp: 5; }
     </style>
   </head>
   <body>
@@ -352,27 +304,24 @@
         </div>
         <div class="tk-rec-seeall" style="margin-bottom:24px;"><a href="./recommend.html">See the full ranked watchlist →</a></div>
 
-        <div class="tk-row2" style="margin-bottom:24px;">
-          <div class="tk-card" id="coWatchSection">
-            <div class="tk-card-heading">📺 <a href="./watch-together.html" class="tk-heading-link">Shows You Watch Together</a></div>
-            <div class="tk-card-note">Manually tagged — shows you only watch with your wife, kept out of the solo picks above and grouped here instead. This card view shows only what's actually airing or has an unwatched episode ready right now; switch to the table for the full tagged list and airing-schedule detail.</div>
-            <div class="tk-cowatch-toolbar"><button type="button" class="tk-btn" id="coWatchViewToggle">Show table view</button></div>
-            <div class="tk-shelf" id="coWatchCards"></div>
-            <div class="tk-table-wrap" id="coWatchTableWrap" hidden><table class="tk-table" id="coWatchTable"></table></div>
-          </div>
-          <div class="tk-card" id="familyWatchCard">
-            <div class="tk-card-heading">👨‍👩‍👧‍👦 <a href="./family.html" class="tk-heading-link">Family Watch List</a></div>
-            <div class="tk-card-note">Movies to watch with the whole family — a separate list from your solo picks above, so these never compete for a candidate-pool slot or show up uninvited in You'll Love. Release date and streaming availability are real, hand-researched (never guessed) since no metadata source tracks that reliably.</div>
-            <div id="familyWatchList"></div>
-          </div>
+        <div class="tk-card" style="margin-bottom:24px;" id="coWatchSection">
+          <div class="tk-card-heading">📺 <a href="./watch-together.html" class="tk-heading-link">Shows You Watch Together</a></div>
+          <div class="tk-card-note">Manually tagged — shows you only watch with your wife, kept out of the solo picks above and grouped here instead. This card view shows only what's actually airing or has an unwatched episode ready right now; switch to the table for the full tagged list and airing-schedule detail.</div>
+          <div class="tk-cowatch-toolbar"><button type="button" class="tk-btn" id="coWatchViewToggle">Show table view</button></div>
+          <div class="tk-shelf" id="coWatchCards"></div>
+          <div class="tk-table-wrap" id="coWatchTableWrap" hidden><table class="tk-table" id="coWatchTable"></table></div>
         </div>
 
         <div class="tk-card" style="margin-bottom: 24px;">
           <div class="tk-card-heading">📅 What's Airing &amp; When You Can Watch</div>
-          <div class="tk-card-note">Everything you're mid-season on, plus anything you'd love that's currently airing — episodes already waiting for you, the next episode date, the season finale date, and a countdown to it, all in one place. A show drops off this list the moment its season wraps and picks up in My Next Watch instead. Sort any column in the table view; defaults to the soonest next episode.</div>
-          <div class="tk-cowatch-toolbar"><button type="button" class="tk-btn" id="airingViewToggle">Show table view</button></div>
-          <div class="tk-shelf" id="airingCards"></div>
-          <div class="tk-table-wrap" id="airingTableWrap" hidden><table class="tk-table" id="airingStatusTable"></table></div>
+          <div class="tk-card-note">Everything you're mid-season on, plus anything you'd love that's currently airing — episodes already waiting for you, the next episode date, the season finale date, and a countdown to it, all in one place. A show drops off this list the moment its season wraps and picks up in My Next Watch instead. Sort any column; defaults to the soonest next episode.</div>
+          <div class="tk-table-wrap"><table class="tk-table" id="airingStatusTable"></table></div>
+        </div>
+
+        <div class="tk-card" id="familyWatchCard" style="margin-bottom: 24px;">
+          <div class="tk-card-heading">👨‍👩‍👧‍👦 <a href="./family.html" class="tk-heading-link">Family Watch List</a></div>
+          <div class="tk-card-note">Movies to watch with the whole family — a separate list from your solo picks above, so these never compete for a candidate-pool slot or show up uninvited in You'll Love. Release date and streaming availability are real, hand-researched (never guessed) since no metadata source tracks that reliably.</div>
+          <div id="familyWatchList"></div>
         </div>
 
         <div class="tk-card-note" id="genreSectionScopeNote" style="margin-bottom:14px;"></div>

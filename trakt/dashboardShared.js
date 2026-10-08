@@ -940,60 +940,26 @@ function renderWatchCards(elementId, rows, enrichedMeta, subtitleFn, emptyText, 
 }
 
 // Bill, 2026-10-08 ("reduce the white space, maybe add more metadata to
-// the titles on the left?"): these cards were real but sparse next to
-// Family Watch List's denser cards (genre tags, release/streaming rows),
-// leaving a real empty-gap mismatch in that paired row. Reuses
-// renderWatchCards()'s existing reasonFn extension point (built for My
-// Next Watch's own "why this" line) rather than a new card shape — real
-// TMDB genres, the same simple meta.genres field (and slice/join pattern)
-// Family Watch List's own cards already use, so no new data dependency.
-function coWatchReasonFn(enrichedMeta) {
-  return r => {
-    const meta = enrichedMeta[r.titleKey];
-    return meta?.genres?.length ? meta.genres.slice(0, 2).join(', ') : null;
-  };
+// the titles on the left?" then "add a lot more information for each
+// show"): these cards were real but sparse next to Family Watch List's
+// denser cards (genre tags, release/streaming rows) while still paired
+// side-by-side, and once Shows You Watch Together went full-width on its
+// own (same request), there was even more room to fill with real
+// information rather than whitespace. Reuses metaLine() — the exact same
+// genre/subgenre, director/creator, TMDB rating, critic/audience score,
+// and awards string the rec cards elsewhere on this dashboard already
+// show — via renderWatchCards()'s existing reasonFn extension point
+// (built for My Next Watch's own "why this" line), rather than inventing
+// a second, narrower metadata line that could drift from the real one.
+function coWatchReasonFn(enrichedMeta, omdbMeta, llmTags, reviewedTags) {
+  return r => metaLine(r, enrichedMeta, omdbMeta, llmTags, reviewedTags);
 }
 
-function renderCoWatchCards(elementId, rows, enrichedMeta) {
+function renderCoWatchCards(elementId, rows, enrichedMeta, omdbMeta = {}, llmTags = {}, reviewedTags = {}) {
   const ready = sortCoWatchReady(rows.filter(isCoWatchReady));
   renderWatchCards(elementId, ready, enrichedMeta, coWatchCardSubtitle,
     'Nothing ready to watch together right now — switch to the table view for the full tagged list.',
-    coWatchReasonFn(enrichedMeta));
-}
-
-// "What's Airing" card subtitle — the airing-table analog of
-// coWatchCardSubtitle() above, tailored to this table's own real fields
-// (no coWatchStatus override here, that's a co-watch-only concept). Same
-// priority as the table's own Ready Now / Next Episode / Season Finale
-// columns: episodes already waiting beats a future date, and a scheduled
-// next episode beats a bare "Now Airing" badge with no date yet.
-function airingCardSubtitle(row) {
-  if (row.episodesReady) {
-    return `${row.episodesReady} episode${row.episodesReady === 1 ? '' : 's'} ready to watch`;
-  }
-  if (row.isAiring && row.nextEpisodeDate) {
-    return `Next: S${row.season}E${row.nextEpisode} · ${fmtDaysOut(row.daysUntilNextEpisode)}`;
-  }
-  if (row.isAiring) return 'Airing now';
-  if (row.nextEpisodeDate) return `Premieres S${row.season}E${row.nextEpisode} · ${fmtDaysOut(row.daysUntilNextEpisode)}`;
-  if (row.finaleDate) return `Season finale ${fmtDaysOut(row.daysUntilFinale)}`;
-  return row.status;
-}
-
-// Sorted the same way the table's own default column (Next Episode) is:
-// soonest real "next watchable thing" first, whether that's an already-
-// scheduled episode or (lacking one) the season finale date.
-function sortAiringCards(rows) {
-  return [...rows].sort((a, b) => {
-    const da = a.daysUntilNextEpisode ?? a.daysUntilFinale ?? Infinity;
-    const db = b.daysUntilNextEpisode ?? b.daysUntilFinale ?? Infinity;
-    return da - db;
-  });
-}
-
-function renderAiringCards(elementId, rows, enrichedMeta) {
-  renderWatchCards(elementId, sortAiringCards(rows), enrichedMeta, airingCardSubtitle,
-    'Nothing you\'re tracking or would love is currently mid-season or airing — switch to the table view for the full list.');
+    coWatchReasonFn(enrichedMeta, omdbMeta, llmTags, reviewedTags));
 }
 
 // Button toggles which of the two pre-rendered views (cards / table) is
@@ -1018,9 +984,6 @@ function initViewToggle(btnId, cardsId, tableWrapId) {
 }
 function initCoWatchViewToggle() {
   initViewToggle('coWatchViewToggle', 'coWatchCards', 'coWatchTableWrap');
-}
-function initAiringViewToggle() {
-  initViewToggle('airingViewToggle', 'airingCards', 'airingTableWrap');
 }
 
 // Short table-cell label for an upcomingSeasons.json entry — reads the
@@ -1048,7 +1011,7 @@ function upcomingSortKey(u) {
   return { renewed: 0, uncertain: 1, unconfirmed: 2, canceled: 3, ended: 4 }[u.status] ?? 5;
 }
 
-function renderWatchStatusTable(elementId, rows, emptyText) {
+function renderWatchStatusTable(elementId, rows, emptyText, enrichedMeta = null) {
   const table = document.getElementById(elementId);
   if (!rows.length) {
     table.parentElement.innerHTML = `<div class="tk-empty">${esc(emptyText)}</div>`;
@@ -1061,7 +1024,18 @@ function renderWatchStatusTable(elementId, rows, emptyText) {
   // Hidden by default, toggle to reveal; keyed by string id rather than
   // array index so hiding/showing columns can't desync sort tracking
   // from a click on a column that's since moved or disappeared.
-  const columns = [
+  const columns = [];
+  // Cover column (Bill: "'What's Airing' show this as a table but still
+  // include the cover image") — same posterImgHtml()+.tk-table-poster
+  // pattern the All Titles table already established, so a shared table
+  // function doesn't invent a second poster-cell style. Optional (only
+  // added when a caller passes enrichedMeta) so a future caller that
+  // doesn't have it handy still renders correctly without one.
+  if (enrichedMeta) {
+    columns.push({ key: 'cover', label: 'Cover', get: () => '',
+      render: (td, r) => { td.innerHTML = posterImgHtml(posterUrl(r.titleKey, enrichedMeta), 'tk-table-poster', 40, 60); } });
+  }
+  columns.push(
     { key: 'show', label: 'Show', get: r => r.title,
       render: (td, r) => { td.innerHTML = `${typeIcon(r.type)} ${titleLink(r)}${r.year ? ` <span class="tk-metric-sub">(${esc(r.year)})</span>` : ''}`; } },
     { key: 'status', label: 'Status', get: r => r.status,
@@ -1120,7 +1094,7 @@ function renderWatchStatusTable(elementId, rows, emptyText) {
       } },
     { key: 'score', label: 'Score', get: r => r.score ?? -1, numeric: true,
       render: (td, r) => { td.className = 'num'; td.textContent = r.score != null ? Math.round(r.score) : '—'; } },
-  ];
+  );
 
   // Default sort: soonest NEXT EPISODE first (premiere or mid-season),
   // not soonest finale — was daysUntilFinale, which ranked a show that
@@ -1320,7 +1294,7 @@ export {
   displaySubgenre, SUBJECT_LABEL, ERA_LABEL, tableToCSV, downloadCSV, fmtCompact, metaLine,
   scoreTier, initCollapsibleCards, loadAllData, predictedVsActualRows,
   buildWatchRow, computeWatchStatusRows, computeCoWatchRows, isCoWatchReady, sortCoWatchReady,
-  coWatchCardSubtitle, renderWatchCards, renderCoWatchCards, renderAiringCards, initCoWatchViewToggle, initAiringViewToggle,
+  coWatchCardSubtitle, renderWatchCards, renderCoWatchCards, initCoWatchViewToggle,
   summarizeUpcoming, upcomingSortKey, renderWatchStatusTable, fmtDate, renderFamilyWatchList, renderLovedMovies,
   computeFavoriteStars, renderImportFreshness,
 };
