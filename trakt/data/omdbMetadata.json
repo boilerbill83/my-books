@@ -29591,7 +29591,7 @@
  },
  "show:225634": {
   "omdbError": "Error getting data.",
-  "checkedAt": "2026-09-24"
+  "checkedAt": "2026-10-08"
  },
  "movie:1398050": {
   "rottenTomatoes": null,
@@ -39188,5 +39188,95 @@
   "director": null,
   "rated": null,
   "fetchedAt": "2026-10-05"
+ },
+ "movie:578701": {
+  "rottenTomatoes": 63,
+  "metacritic": 59,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 1,
+   "raw": "1 nomination total"
+  },
+  "imdbRating": 6.0,
+  "imdbVotes": 82745,
+  "director": "Taylor Sheridan",
+  "rated": "R",
+  "fetchedAt": "2026-10-08"
+ },
+ "movie:1283515": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": "Michael Showalter",
+  "rated": "R",
+  "fetchedAt": "2026-10-08"
+ },
+ "movie:1307118": {
+  "rottenTomatoes": 39,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": "Kate Dolan",
+  "rated": "R",
+  "fetchedAt": "2026-10-08"
+ },
+ "movie:1083381": {
+  "rottenTomatoes": 86,
+  "metacritic": 76,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 16,
+   "raw": "16 nominations total"
+  },
+  "imdbRating": 6.7,
+  "imdbVotes": 221583,
+  "director": "Kane Parsons",
+  "rated": "R",
+  "fetchedAt": "2026-10-08"
+ },
+ "movie:1101383": {
+  "rottenTomatoes": 86,
+  "metacritic": 69,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 6.5,
+  "imdbVotes": 39062,
+  "director": "David Robert Mitchell",
+  "rated": "PG-13",
+  "fetchedAt": "2026-10-08"
  }
 }
