@@ -35,7 +35,11 @@
         background: linear-gradient(160deg, var(--bg-card) 0%, var(--accent-warm-soft) 130%);
         border: 2px solid var(--accent-warm); box-shadow: var(--shadow-card);
       }
-      .tk-hero-card { display: flex; gap: 22px; align-items: flex-start; flex-wrap: wrap; }
+      /* Column, not a row, so .tk-hero-facts below can flex-grow to fill
+         whatever's left of the card's real (grid-stretched) height — see
+         that rule's own comment for the real bug this restructure fixes. */
+      .tk-hero-card { display: flex; flex-direction: column; }
+      .tk-hero-top { display: flex; gap: 22px; align-items: flex-start; flex-wrap: wrap; }
       .tk-hero-poster { flex-shrink: 0; }
       .tk-hero-img { width: 150px; height: 225px; border-radius: 8px; object-fit: cover; background: var(--bg-subtle); border: 1px solid var(--border); box-shadow: 0 3px 10px rgba(44,26,14,0.16); }
       .tk-hero-img-empty { border: 1px dashed var(--border); }
@@ -73,13 +77,25 @@
       }
       .tk-hero-score-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 8px; font-weight: 600; }
       .tk-hero-score-sub { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
-      /* Capped + internally scrolled (Bill's live feedback on the top row,
-         2026-09-19: "make them the same height") rather than left to grow
-         unboundedly with however many sourced facts a given show has —
-         this is what makes the hero's total height predictable enough for
-         .tk-top-row's stretch match below to actually work, same scoped-
-         scroll pattern already proven on #familyWatchList/#nextWatch. */
-      .tk-hero-facts { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); max-height: 260px; overflow-y: auto; padding-right: 4px; }
+      /* Was a hard max-height:260px cap nested inside .tk-hero-body (Bill,
+         2026-09-19: "make them the same height") — Bill's live feedback
+         2026-10-08 ("way too much white space and there is vertical
+         scroll again") caught the exact bug #familyWatchList's own
+         comment already documents hitting once before: a fixed cap only
+         works while THIS side happens to be the taller one in the
+         pairing — once the Currently Watching feature (added after this
+         cap was written) made the hero routinely shorter than #nextWatch,
+         the grid still stretched the outer #heroPick box to match, but
+         the capped facts box left a real dead gap below it instead of
+         filling the extra height. Fixed two ways together: moved this to
+         be a direct sibling of .tk-hero-top (discover.js) instead of
+         nested inside .tk-hero-body, so it flexes against the whole
+         card's real height, not just body's own wrap-dependent one; and
+         flex:1 with no hard cap (same adaptive pattern as
+         #familyWatchList/#nextWatch) — overflow-y:auto stays only as a
+         rare safety valve for a show with an unusually long real fact
+         list, not a routine binding constraint. */
+      .tk-hero-facts { flex: 1; min-height: 0; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); overflow-y: auto; padding-right: 4px; }
       /* Bill, 2026-10-01: "weird vertical scroll bar" — the plain OS-default
          scrollbar this area's overflow-y:auto produces (unstyled anywhere
          else on this site either, confirmed via a repo-wide grep) clashed
@@ -97,7 +113,7 @@
       .tk-hero-fact-source { font-size: 0.72rem; color: var(--accent-warm); text-decoration: none; white-space: nowrap; font-weight: 600; }
       .tk-hero-fact-source:hover { text-decoration: underline; }
       @media (max-width: 640px) {
-        .tk-hero-card { flex-direction: column; align-items: center; text-align: center; }
+        .tk-hero-top { flex-direction: column; align-items: center; text-align: center; }
         .tk-hero-actions { justify-content: center; }
         .tk-hero-score { padding-left: 0; }
         .tk-hero-fact { text-align: left; }
@@ -120,15 +136,6 @@
       .tk-top-row { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 20px; align-items: stretch; }
       @media (max-width: 780px) { .tk-top-row { grid-template-columns: 1fr; } }
       .tk-nw-card-wrap { min-width: 0; display: flex; flex-direction: column; }
-
-      /* Mood/vibe filter above Movies/Shows You'll Love (dashboard's
-         mood-filter-unbuilt Improvement Opportunities finding) — reuses
-         .tk-btn/.tk-btn.active (already WCAG-2.5.8-sized via its own
-         8px/15px padding) rather than inventing a new chip style, same
-         discipline as the Streaming Top10 checkbox filters. */
-      .tk-mood-filter-wrap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-      .tk-mood-filter-label { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; }
-      .tk-mood-filter { display: flex; flex-wrap: wrap; gap: 6px; }
 
       /* Movies/Shows You'll Love (Bill, 2026-10-01 screenshot: "this one
          is still off"). The .tk-row2 pair's outer .tk-card boxes were
@@ -333,10 +340,6 @@
           </div>
         </div>
 
-        <div class="tk-mood-filter-wrap" style="margin-bottom:10px;">
-          <span class="tk-mood-filter-label">In the mood for:</span>
-          <div class="tk-mood-filter" id="moodFilterRow"></div>
-        </div>
         <div class="tk-row2" style="margin-bottom:14px;">
           <div class="tk-card" id="movieRecCard">
             <div class="tk-card-heading">🎬 Movies You'll Love</div>
@@ -344,7 +347,6 @@
           </div>
           <div class="tk-card" id="showRecCard">
             <div class="tk-card-heading">📺 Shows You'll Love</div>
-            <div class="tk-card-note">Find something new — anything already on My Next Watch or Shows You Watch Together is left out, so this is only ever genuinely new ground.</div>
             <div class="tk-rec-list" id="showRecList"></div>
           </div>
         </div>

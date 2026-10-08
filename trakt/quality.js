@@ -4231,42 +4231,37 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
   // the reviewing AI's "mood/context toggle" suggestion, but built from
   // data this engine already has rather than a new embeddings/ranker
   // layer, which is the part of that suggestion that didn't fit.
-  // Shipped 2026-10-07 (Bill: "see what you can do to work through
-  // these") — a real "In the mood for:" chip row above the Movies/Shows
-  // You'll Love panels on trakt/index.html (wireMoodFilter()/
-  // buildMoodChipCounts()/filterByMood() in discover.js), filtering both
-  // panels' underlying watchlist+candidate pools by inferTones() before
-  // the existing diversity-rerank/8-pick/backfill logic runs. Chips are
-  // built live from whichever tones the real current pool has 2+
-  // candidates for (never a hardcoded list), so a chip can never point
-  // at an empty result and the row self-updates as real tone coverage
-  // grows. Scoped to the You'll Love panels only, not Tonight's Top Pick
-  // or Because You Loved — the two highest-traffic, most natural places
-  // for an explicit filter, kept the change small and low-risk rather
-  // than touching every mood-adjacent surface at once.
+  // Shipped 2026-10-07, then REVERTED the same week (Bill, 2026-10-08:
+  // "I dont need these filters at the top") — the real "In the mood for:"
+  // chip row (wireMoodFilter()/buildMoodChipCounts()/filterByMood() in
+  // discover.js) worked exactly as designed (verified live: clicking a
+  // chip genuinely swapped in different titles, not a cosmetic no-op),
+  // but Bill's own direct feedback after seeing it in the real app was
+  // that he didn't want it — a product call, not a bug. Removed cleanly:
+  // the 3 helper functions, the wiring in load(), the HTML row, and its
+  // CSS are all gone from discover.js/index.html; inferTones() itself is
+  // untouched (still a real scoring signal via toneSignal()). Left here
+  // as an honest record that this was built, verified working, and then
+  // explicitly declined — not an unexamined idea or an unbuilt one.
   {
     findings.push({
       id: 'mood-filter-unbuilt',
       severity: 'good',
       ratings: { ease: 5, dataQuality: 1, recEngine: 3, ui: 8 },
-      shortTitle: 'Mood/Vibe Filter Added to Discover',
-      title: `Shipped a real "In the mood for:" chip filter above Movies/Shows You'll Love, built from inferTones()'s existing per-title data — verified live: clicking a mood chip changes the actual rendered titles (not just a cosmetic no-op), and resetting to "Any mood" restores the original ranked list exactly`,
-      technical: `New <code>wireMoodFilter()</code>/<code>buildMoodChipCounts()</code>/<code>filterByMood()</code> in <code>discover.js</code>. ` +
-        `<code>buildMoodChipCounts()</code> scans the real current watchlist+candidate pool with <code>inferTones()</code> and only shows a chip for ` +
-        `a tone with 2+ real matching candidates today (17 of 17 canonical tones currently clear that bar) — a chip can never point at an empty ` +
-        `result, and the row grows/shrinks automatically as real tone coverage changes, with no hardcoded vocabulary copy to drift out of sync. ` +
-        `<code>filterByMood()</code> runs before the existing sort/<code>diversityRerank()</code>/8-pick/backfill pipeline in ` +
-        `<code>renderRecPanel()</code>, so a mood-filtered panel still gets the same diversity treatment, backfill-if-thin behavior, and monotonic ` +
-        `score ordering as the unfiltered one. Reuses <code>.tk-btn</code>/<code>.tk-btn.active</code> (already WCAG 2.5.8-sized) rather than a new ` +
-        `chip style. Display-only — never touches <code>matchScore()</code>/<code>buildIndexes()</code>, confirmed via <code>node --check</code> and ` +
-        `<code>trakt/verify_paired_layouts.py</code> (0 violations across all 8 pages, the paired-card-height rule unaffected by the new row above ` +
-        `it). Scoped to the You'll Love panels only, not Tonight's Top Pick or Because You Loved, to keep the change small and low-risk.`,
-      plain: `There's now a row of mood buttons ("Dark," "Funny," "Intense," etc.) above the two You'll Love lists — click one and both lists narrow ` +
-        `down to only recommendations with that vibe, click "Any mood" to go back to the normal full list. It uses mood data the engine was already ` +
-        `computing for every title; nothing new had to be calculated, this just exposes it as something Bill can actually use.`,
-      impact: `Shipped and verified live — clicking "Dark" genuinely swapped in different titles (confirmed by comparing the actual rendered title ` +
-        `list before/after, not just a card count), and switching back to "Any mood" restored the exact original list. Zero risk to scoring: this is ` +
-        `a pure display-layer filter, and a full Playwright pass (desktop + 375px mobile, both pages) plus the standing paired-layout checker found ` +
+      shortTitle: 'Mood/Vibe Filter — Built, Then Declined',
+      title: `Built a working "In the mood for:" chip filter above Movies/Shows You'll Love (verified live: clicking a chip genuinely changed which titles rendered) — Bill reviewed it in the real app and asked to remove it, so it's gone again`,
+      technical: `<code>wireMoodFilter()</code>/<code>buildMoodChipCounts()</code>/<code>filterByMood()</code> (discover.js) built and shipped ` +
+        `2026-10-07, filtering both You'll Love panels' watchlist+candidate pools by <code>inferTones()</code> before the existing sort/` +
+        `<code>diversityRerank()</code>/8-pick/backfill pipeline ran — chips built live from whichever tones the real pool had 2+ candidates for, ` +
+        `verified to genuinely reorder rendered titles on click, not just a display no-op. Removed 2026-10-08 after Bill saw it live and asked for ` +
+        `it to go — no bug, a direct product preference. All 3 helper functions, the <code>load()</code> wiring, the HTML row, and its CSS are fully ` +
+        `removed, not just hidden; <code>inferTones()</code> itself is untouched and still feeds real scoring via <code>toneSignal()</code>.`,
+      plain: `A row of mood buttons ("Dark," "Funny," "Intense," etc.) was added above the two You'll Love lists and worked correctly — clicking one ` +
+        `really did narrow the list to that vibe. After seeing it in the real app, Bill asked for it to be taken back out, so it has been. Not a bug, ` +
+        `just not something he wanted there.`,
+      impact: `Built, verified working live, then removed at Bill's explicit request after review — recorded here so a future session doesn't ` +
+        `re-propose the exact same unbuilt idea without knowing it was already tried and declined. Zero risk either way: this was always a pure ` +
+        `display-layer filter, and a full Playwright pass (desktop + 375px mobile) plus the standing paired-layout checker found no regressions ` +
         `no regressions.`,
     });
   }
