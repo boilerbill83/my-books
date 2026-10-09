@@ -916,18 +916,12 @@ function coWatchCardSubtitle(row) {
 // for now it is everything I marked as a favorite in Trakt"),
 // currently wired up by My Next Watch only. Purely a live-computed
 // display badge, not a click target — see computeFavoriteStars().
-function renderWatchCards(elementId, rows, enrichedMeta, subtitleFn, emptyText, reasonFn, starredSet = null) {
-  const el = document.getElementById(elementId);
-  if (!rows.length) {
-    el.innerHTML = `<div class="tk-empty">${esc(emptyText)}</div>`;
-    return;
-  }
-  el.innerHTML = rows.map(r => {
-    const poster = posterUrl(r.titleKey, enrichedMeta, 'w154');
-    const reasonText = reasonFn ? reasonFn(r) : null;
-    const starred = starredSet?.has(r.titleKey);
-    const starHtml = starred ? '<div class="tk-star-badge" title="One of your real Trakt favorites">★</div>' : '';
-    return `
+function watchCardHtml(r, enrichedMeta, subtitleFn, reasonFn, starredSet) {
+  const poster = posterUrl(r.titleKey, enrichedMeta, 'w154');
+  const reasonText = reasonFn ? reasonFn(r) : null;
+  const starred = starredSet?.has(r.titleKey);
+  const starHtml = starred ? '<div class="tk-star-badge" title="One of your real Trakt favorites">★</div>' : '';
+  return `
     <a class="tk-shelf-card${starred ? ' tk-shelf-card-starred' : ''}" href="${esc(traktUrl(r))}" target="_blank" rel="noopener">
       ${starHtml}
       ${posterImgHtml(poster, 'tk-shelf-poster', 92, 138)}
@@ -936,7 +930,15 @@ function renderWatchCards(elementId, rows, enrichedMeta, subtitleFn, emptyText, 
       <div class="tk-shelf-runtime">${esc(subtitleFn(r))}</div>
       ${reasonText ? `<div class="tk-shelf-reason">${esc(reasonText)}</div>` : ''}
     </a>`;
-  }).join('');
+}
+
+function renderWatchCards(elementId, rows, enrichedMeta, subtitleFn, emptyText, reasonFn, starredSet = null) {
+  const el = document.getElementById(elementId);
+  if (!rows.length) {
+    el.innerHTML = `<div class="tk-empty">${esc(emptyText)}</div>`;
+    return;
+  }
+  el.innerHTML = rows.map(r => watchCardHtml(r, enrichedMeta, subtitleFn, reasonFn, starredSet)).join('');
 }
 
 // Bill, 2026-10-08 ("reduce the white space, maybe add more metadata to
@@ -955,11 +957,31 @@ function coWatchReasonFn(enrichedMeta, omdbMeta, llmTags, reviewedTags) {
   return r => metaLine(r, enrichedMeta, omdbMeta, llmTags, reviewedTags);
 }
 
+// Bill, 2026-10-09: "have two mini sections. One for ready to watch
+// meaning all episodes of the season have aired" — splits the single
+// "ready" card row into the exact two tiers watch-together.html's own
+// readiness() already defined (readyToBinge/airingNow), so the two pages
+// can't disagree about what "ready" means. A show with ready > 0 AND no
+// longer airing has its whole season out (readyToBinge); a show that's
+// isAiring (whether or not some episodes are already ready) still has
+// more coming (airingNow) — same split isCoWatchReady()/isAiring's own
+// Session 59 "episode 1 has actually aired" definition already supports.
 function renderCoWatchCards(elementId, rows, enrichedMeta, omdbMeta = {}, llmTags = {}, reviewedTags = {}) {
+  const el = document.getElementById(elementId);
   const ready = sortCoWatchReady(rows.filter(isCoWatchReady));
-  renderWatchCards(elementId, ready, enrichedMeta, coWatchCardSubtitle,
-    'Nothing ready to watch together right now — switch to the table view for the full tagged list.',
-    coWatchReasonFn(enrichedMeta, omdbMeta, llmTags, reviewedTags));
+  const readyToWatch = ready.filter(r => !r.isAiring);
+  const currentlyAiring = ready.filter(r => r.isAiring);
+  if (!readyToWatch.length && !currentlyAiring.length) {
+    el.innerHTML = '<div class="tk-empty">Nothing ready to watch together right now — switch to the table view for the full tagged list.</div>';
+    return;
+  }
+  const reasonFn = coWatchReasonFn(enrichedMeta, omdbMeta, llmTags, reviewedTags);
+  const group = (title, list) => list.length ? `
+    <div class="tk-cowatch-group">
+      <div class="tk-cowatch-group-title">${esc(title)} (${list.length})</div>
+      <div class="tk-shelf">${list.map(r => watchCardHtml(r, enrichedMeta, coWatchCardSubtitle, reasonFn)).join('')}</div>
+    </div>` : '';
+  el.innerHTML = group('✅ Ready to Watch — season complete', readyToWatch) + group('📡 Currently Airing', currentlyAiring);
 }
 
 // Button toggles which of the two pre-rendered views (cards / table) is

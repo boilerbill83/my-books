@@ -250,7 +250,7 @@
          over a scrollbar hiding content off-screen, and a full-width card
          now has even more room to show multiple rows of cards at once than
          it did squeezed into half the page. */
-      #coWatchSection #coWatchCards { flex-wrap: wrap; }
+      #coWatchSection #coWatchCards .tk-shelf { flex-wrap: wrap; overflow-x: visible; }
       #coWatchSection #coWatchCards .tk-shelf-card { width: 138px; }
       #coWatchSection #coWatchCards .tk-shelf-poster { width: 118px; height: 177px; }
       /* Richer per-card info now that each card carries metaLine()'s full
@@ -259,6 +259,16 @@
          was cutting that string off mid-sentence on anything with more
          than genre+director. */
       #coWatchSection .tk-shelf-reason { -webkit-line-clamp: 5; }
+      /* Bill, 2026-10-09: "have two mini sections. One for ready to watch
+         meaning all episodes of the season have aired" — #coWatchCards
+         itself dropped the .tk-shelf class (renderCoWatchCards() now
+         renders one .tk-shelf row PER mini-section, not a single flat
+         shelf across the whole card), so its own grouping/heading styles
+         live here instead of on a shared dashboard.css class only this
+         page's two-tier split uses. */
+      .tk-cowatch-group { margin-bottom: 18px; }
+      .tk-cowatch-group:last-child { margin-bottom: 0; }
+      .tk-cowatch-group-title { font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px; }
     </style>
   </head>
   <body>
@@ -308,7 +318,7 @@
           <div class="tk-card-heading">📺 <a href="./watch-together.html" class="tk-heading-link">Shows You Watch Together</a></div>
           <div class="tk-card-note">Manually tagged — shows you only watch with your wife, kept out of the solo picks above and grouped here instead. This card view shows only what's actually airing or has an unwatched episode ready right now; switch to the table for the full tagged list and airing-schedule detail.</div>
           <div class="tk-cowatch-toolbar"><button type="button" class="tk-btn" id="coWatchViewToggle">Show table view</button></div>
-          <div class="tk-shelf" id="coWatchCards"></div>
+          <div id="coWatchCards"></div>
           <div class="tk-table-wrap" id="coWatchTableWrap" hidden><table class="tk-table" id="coWatchTable"></table></div>
         </div>
 
