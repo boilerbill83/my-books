@@ -1,32 +1,32 @@
 {
-  "titleKey": "show:95350",
-  "setAt": "2026-10-04T00:00:00.000Z",
-  "note": "Bill's own stated current watch, told directly in chat (2026-10-04: \"I am now watching Lanterns\" — confirmed via an exact watchlist.json match, show:95350, ids.imdb tt26545992). Supersedes the prior pointer at show:113962 (Lioness). Lanterns sits only in watchlist.json so far (watchlisted 2026-08-11), not yet in library.json/currentlyWatching.json — a real, expected gap since Bill just started it, same shape as The Westies (Session 68) and Lioness before it. The show airs weekly Sundays, 8 episodes, premiered Aug 16, 2026 — the Season 1 finale (episode 8) releases today, Oct 4, 2026, right as this was set. Update or clear this file the next time Bill names a different current watch.",
+  "titleKey": "show:236235",
+  "setAt": "2026-10-09T00:00:00.000Z",
+  "note": "Bill's own stated current watch, told directly in chat (2026-10-09: \"I am now watching the gentlemen\" — confirmed via an exact match, show:236235, ids.imdb tt13210838). Supersedes the prior pointer at show:95350 (Lanterns). Already sits in both library.json and watchlist.json (the real, already-documented overlap case — watchlist/watched-history are independent Trakt lists) and in currentlyWatching.json with completionStatus in-progress, 8 of 16 aired episodes played — matching Season 1's 8 episodes (rated 8/10, ratedAt 2024-03-07, right when S1 premiered) plus Season 2's 8 new episodes (premiered Sept 3, 2026) not yet reflected as watched, so this read as him finishing S1 some time ago and now starting S2. lastWatchedAt carries the documented 1970-01-01 bulk-import placeholder, not a real date. Update or clear this file the next time Bill names a different current watch.",
   "facts": [
     {
-      "text": "Lanterns was created by Chris Mundy (the Ozark showrunner), Damon Lindelof (Lost, Watchmen, The Leftovers), and comic writer Tom King — deliberately built as a grounded, True Detective-style murder mystery set in the American heartland rather than a cosmic superhero spectacle.",
-      "source": "https://collider.com/damon-lindelof-lanterns-lost-true-detective-replacement/",
-      "sourceLabel": "Collider"
-    },
-    {
-      "text": "Kyle Chandler plays veteran Green Lantern Hal Jordan and Aaron Pierre plays rookie recruit John Stewart, the two intergalactic cops investigating an earthbound murder together.",
-      "source": "https://www.space.com/entertainment/space-movies-shows/how-to-watch-lanterns-hbos-gritty-new-green-lantern-show",
-      "sourceLabel": "Space.com"
-    },
-    {
-      "text": "Josh Brolin (Thanos in the MCU) was actually offered the Hal Jordan role first, back in 2024, but turned it down without ever publicly explaining why beyond saying it \"didn't work out\" — Kyle Chandler was cast after Brolin passed.",
-      "source": "https://www.tvline.com/2271664/marvel-actor-josh-brolin-hal-jordan-lanterns-kyle-chandler/",
-      "sourceLabel": "TVLine"
-    },
-    {
-      "text": "The show releases weekly on Sundays rather than all at once — 8 episodes total, premiered August 16, 2026, with the Season 1 finale airing today, October 4, 2026.",
-      "source": "https://www.forbes.com/sites/erikkain/2026/10/04/lanterns-season-1-finale-episode-8-release-time-hbo-max/",
-      "sourceLabel": "Forbes"
-    },
-    {
-      "text": "Critics have broadly praised it as \"an exciting synthesis of its creators' strengths\" — not as idea-dense as Lindelof's best work or as visually striking as True Detective's peak moments, but a genuine, well-executed blend of both.",
-      "source": "https://www.slashfilm.com/2115788/lanterns-trailer-dc-universe-hbo-series/",
+      "text": "The series is a direct continuation of Guy Ritchie's 2019 film of the same name — Theo James plays Eddie Horniman, the son of Matthew McConaughey's American drug lord Mickey Pearson from the movie.",
+      "source": "https://slashfilm.com/1085139/guy-ritchies-the-gentlemen-is-becoming-a-netflix-tv-series-theo-james-to-star",
       "sourceLabel": "SlashFilm"
+    },
+    {
+      "text": "Eddie Horniman becomes the 13th Duke of Halstead when his father's will passes him the family estate and title over his older brother Freddy (Daniel Ings) — skipped for his erratic behavior and drug habit — only to discover the estate is sitting on a massive cannabis farm.",
+      "source": "https://bravo-www.soapcentral.com/shows/the-gentlemen-cast-characters-here-s-brings-netflix-s-guy-ritchie-crime-drama-life",
+      "sourceLabel": "Soap Central"
+    },
+    {
+      "text": "Guy Ritchie co-wrote the pilot with Peaky Blinders producer Matthew Read and personally directed the first two episodes — a rare foray into television for the filmmaker, who otherwise stayed on as executive producer.",
+      "source": "https://slashfilm.com/1085139/guy-ritchies-the-gentlemen-is-becoming-a-netflix-tv-series-theo-james-to-star",
+      "sourceLabel": "SlashFilm"
+    },
+    {
+      "text": "Season 2 (Netflix, premiered September 3, 2026, 8 episodes) picks up a year later and moves the operation from the buried cannabis farm under Halstead to Italy's lakeside villas — Theo James, Kaya Scodelario, and Ray Winstone return, joined by new cast including Hugh Bonneville.",
+      "source": "https://www.whats-on-netflix.com/news/the-gentlemen-season-2-netflix-release-date-cast/",
+      "sourceLabel": "What's on Netflix"
+    },
+    {
+      "text": "Ray Winstone plays Bobby Glass, the incarcerated drug lord who actually runs the cannabis empire hidden on the estate, with his daughter Susie Glass (Kaya Scodelario) handling the day-to-day business Eddie gets pulled into.",
+      "source": "https://bravo-www.soapcentral.com/shows/the-gentlemen-cast-characters-here-s-brings-netflix-s-guy-ritchie-crime-drama-life",
+      "sourceLabel": "Soap Central"
     }
   ]
 }
