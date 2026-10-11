@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-07T21:33:42.835Z",
-    "count": 486,
+    "generatedAt": "2026-10-11T16:02:36.093Z",
+    "count": 489,
     "capPerType": 200
   },
   "titles": [
@@ -3248,17 +3248,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:316029",
-      "ids": {
-        "tmdb": 316029
-      },
-      "title": "The Greatest Showman",
-      "year": 2017,
-      "source": "genre-explore",
-      "discoveredVia": "Drama"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:537116",
       "ids": {
         "tmdb": 537116
@@ -3663,17 +3652,6 @@
       "year": 2024,
       "source": "genre-explore",
       "discoveredVia": "Action & Adventure"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:245902",
-      "ids": {
-        "tmdb": 245902
-      },
-      "title": "Quiet on Set: The Dark Side of Kids TV",
-      "year": 2024,
-      "source": "genre-explore",
-      "discoveredVia": "Documentary"
     },
     {
       "type": "show",
@@ -4371,17 +4349,6 @@
       "discoveredVia": "Romance"
     },
     {
-      "type": "movie",
-      "titleKey": "movie:433498",
-      "ids": {
-        "tmdb": 433498
-      },
-      "title": "Papillon",
-      "year": 2017,
-      "source": "genre-explore",
-      "discoveredVia": "Crime"
-    },
-    {
       "type": "show",
       "titleKey": "show:287620",
       "ids": {
@@ -4973,28 +4940,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:468224",
-      "ids": {
-        "tmdb": 468224
-      },
-      "title": "Tolkien",
-      "year": 2019,
-      "source": "genre-explore",
-      "discoveredVia": "War"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:454227",
-      "ids": {
-        "tmdb": 454227
-      },
-      "title": "Outlaw King",
-      "year": 2018,
-      "source": "genre-explore",
-      "discoveredVia": "War"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:369885",
       "ids": {
         "tmdb": 369885
@@ -5050,17 +4995,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:487291",
-      "ids": {
-        "tmdb": 487291
-      },
-      "title": "Ride Like a Girl",
-      "year": 2019,
-      "source": "book-theme-explore",
-      "discoveredVia": "book-theme:sports"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:567748",
       "ids": {
         "tmdb": 567748
@@ -5079,6 +5013,104 @@
       "title": null,
       "year": null,
       "source": "bill-manual"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:986966",
+      "ids": {
+        "tmdb": 986966
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 7
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1325678",
+      "ids": {
+        "tmdb": 1325678
+      },
+      "title": "Sarah's Oil",
+      "year": 2025,
+      "source": "genre-explore",
+      "discoveredVia": "Drama"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1148365",
+      "ids": {
+        "tmdb": 1148365
+      },
+      "title": "Matchbox the Movie",
+      "year": 2026,
+      "source": "genre-explore",
+      "discoveredVia": "Comedy"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:765897",
+      "ids": {
+        "tmdb": 765897
+      },
+      "title": "The Unbreakable Boy",
+      "year": 2025,
+      "source": "genre-explore",
+      "discoveredVia": "Drama"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1236045",
+      "ids": {
+        "tmdb": 1236045
+      },
+      "title": "Animals",
+      "year": 2026,
+      "source": "genre-explore",
+      "discoveredVia": "Thriller"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1248832",
+      "ids": {
+        "tmdb": 1248832
+      },
+      "title": "Digger",
+      "year": 2026,
+      "source": "genre-explore",
+      "discoveredVia": "Comedy"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:94813",
+      "ids": {
+        "tmdb": 94813
+      },
+      "title": "The Devil Next Door",
+      "year": 2019,
+      "source": "genre-explore",
+      "discoveredVia": "Documentary"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:823452",
+      "ids": {
+        "tmdb": 823452
+      },
+      "title": "The Boys in the Boat",
+      "year": 2023,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:sports"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:317557",
+      "ids": {
+        "tmdb": 317557
+      },
+      "title": "Queen of Katwe",
+      "year": 2016,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:sports"
     }
   ]
 }
