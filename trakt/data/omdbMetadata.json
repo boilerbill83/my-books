@@ -39278,5 +39278,167 @@
   "director": "David Robert Mitchell",
   "rated": "PG-13",
   "fetchedAt": "2026-10-08"
+ },
+ "movie:986966": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 5.3,
+  "imdbVotes": 248,
+  "director": "Kevin Fair",
+  "rated": "TV-14",
+  "fetchedAt": "2026-10-12"
+ },
+ "movie:1325678": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 6,
+   "totalNominations": 4,
+   "raw": "6 wins & 4 nominations total"
+  },
+  "imdbRating": 6.9,
+  "imdbVotes": 3646,
+  "director": "Cyrus Nowrasteh",
+  "rated": "PG",
+  "fetchedAt": "2026-10-12"
+ },
+ "movie:1148365": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": null,
+  "rated": "PG-13",
+  "fetchedAt": "2026-10-12"
+ },
+ "movie:765897": {
+  "rottenTomatoes": 43,
+  "metacritic": 35,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 0,
+   "raw": "2 wins total"
+  },
+  "imdbRating": 6.2,
+  "imdbVotes": 3013,
+  "director": "Jon Gunn",
+  "rated": "PG",
+  "fetchedAt": "2026-10-12"
+ },
+ "movie:1236045": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": "Ben Affleck",
+  "rated": "R",
+  "fetchedAt": "2026-10-12"
+ },
+ "movie:1248832": {
+  "rottenTomatoes": 52,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": "Alejandro G. I\u00f1\u00e1rritu",
+  "rated": null,
+  "fetchedAt": "2026-10-12"
+ },
+ "show:94813": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 1,
+   "raw": "1 nomination"
+  },
+  "imdbRating": 7.5,
+  "imdbVotes": 15460,
+  "director": null,
+  "rated": "TV-MA",
+  "fetchedAt": "2026-10-12"
+ },
+ "movie:823452": {
+  "rottenTomatoes": 57,
+  "metacritic": 54,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 3,
+   "totalNominations": 6,
+   "raw": "3 wins & 6 nominations total"
+  },
+  "imdbRating": 7.0,
+  "imdbVotes": 30934,
+  "director": "George Clooney",
+  "rated": "PG-13",
+  "fetchedAt": "2026-10-12"
+ },
+ "movie:317557": {
+  "rottenTomatoes": 94,
+  "metacritic": 73,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 4,
+   "totalNominations": 30,
+   "raw": "4 wins & 30 nominations total"
+  },
+  "imdbRating": 7.4,
+  "imdbVotes": 20302,
+  "director": "Mira Nair",
+  "rated": "PG",
+  "fetchedAt": "2026-10-12"
  }
 }
