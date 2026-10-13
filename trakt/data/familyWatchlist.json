@@ -103,6 +103,32 @@
         "https://www.netflix.com/title/81314956",
         "https://www.themoviedb.org/movie/726209-leave-the-world-behind"
       ]
+    },
+    {
+      "titleKey": "movie:913290",
+      "title": "Barbarian",
+      "year": 2022,
+      "addedAt": "2026-10-13T00:00:00Z",
+      "theatricalReleaseDate": "2022-09-09",
+      "streaming": {
+        "status": "released",
+        "digitalRentBuy": {
+          "date": null,
+          "confirmed": true,
+          "note": "Already available to rent/buy digitally on platforms including Amazon, Apple TV, YouTube, and Google Play"
+        },
+        "physicalMedia": null,
+        "subscriptionStreaming": {
+          "platform": "HBO Max",
+          "date": "2022-10-25",
+          "confirmed": true,
+          "note": "Streaming on HBO Max (now Max) since October 25, 2022 as part of a subscription"
+        }
+      },
+      "sources": [
+        "https://www.digitaltrends.com/movies/barbarian-where-to-watch-streaming-guide/",
+        "https://www.themoviedb.org/movie/913290-barbarian"
+      ]
     }
   ],
   "loved": {

@@ -1000,6 +1000,17 @@
       "reasonLabel": "Not a taste dismissal \u2014 an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
       "timestamp": "2026-09-28T21:17:12Z",
       "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:913290",
+      "title": "Barbarian",
+      "year": 2022,
+      "type": "movie",
+      "interactionType": "category_exclude",
+      "reasonCode": "family_watch_list",
+      "reasonLabel": "Not a taste dismissal \u2014 added to Bill's separate Family Watch List (movies to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
+      "timestamp": "2026-10-13T00:00:00Z",
+      "excludeFromRecommendations": true
     }
   ]
 }
