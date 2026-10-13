@@ -1260,6 +1260,10 @@ function renderFamilyWatchList(familyWatchlist, enrichedMeta, elementId = 'famil
     // availability note AND its Netflix-move note, a case that didn't
     // exist when this only ever picked one via `||`).
     const notes = [s.digitalRentBuy?.note, s.subscriptionStreaming?.note, s.physicalMedia?.note].filter(Boolean);
+    // t.sources deliberately not rendered (Bill, 2026-10-13: "don't show
+    // source 1 source 2 source 3 under the movies in this section") —
+    // same precedent as streamingTop10.json: the real cited URLs stay in
+    // the data for traceability, the card itself just doesn't show them.
     return `
       <div class="tk-fwl-card">
         ${posterImgHtml(poster, 'tk-fwl-poster', 60, 90)}
@@ -1268,7 +1272,6 @@ function renderFamilyWatchList(familyWatchlist, enrichedMeta, elementId = 'famil
           ${meta?.genres?.length ? `<div class="tk-fwl-meta">${esc(meta.genres.slice(0, 2).join(', '))}</div>` : ''}
           <div class="tk-fwl-streaming">${rows.join('')}</div>
           ${notes.map(n => `<div class="tk-fwl-estimate">${esc(n)}</div>`).join('')}
-          ${t.sources?.length ? `<div class="tk-fwl-sources">${t.sources.map((u, i) => `<a href="${esc(u)}" target="_blank" rel="noopener">source ${i + 1}</a>`).join('')}</div>` : ''}
         </div>
       </div>
     `;

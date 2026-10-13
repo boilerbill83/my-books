@@ -545,9 +545,6 @@
 .tk-fwl-streaming-row { display: flex; gap: 6px; align-items: baseline; flex-wrap: wrap; }
 .tk-fwl-streaming-label { font-weight: 600; color: var(--text); }
 .tk-fwl-estimate { font-size: 0.72rem; color: var(--text-muted); font-style: italic; }
-.tk-fwl-sources { margin-top: 8px; display: flex; gap: 10px; flex-wrap: wrap; }
-.tk-fwl-sources a { font-size: 0.72rem; color: var(--accent); text-decoration: none; }
-.tk-fwl-sources a:hover { text-decoration: underline; }
 @media (max-width: 640px) {
   .tk-fwl-card { flex-direction: column; align-items: center; text-align: center; }
   .tk-fwl-streaming-row { justify-content: center; }
