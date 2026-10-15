@@ -1,24 +1,27 @@
 name: Refresh Streaming Top 10 (Claude research)
 
-# Weekly (Bill, 2026-09-26: "find ways to minimize how many api credits
-# this app uses" — this was the one and only remaining automatic,
-# recurring Claude-API cost anywhere in the repo; every other Claude-API
-# script — audit_theme_tone.py, tag_with_haiku.py, trakt/tag_llm.py — is
-# already workflow_dispatch-only, the same precedent Session 16f
-# established for the book side's own theme/tone audit). Was daily until
-# this change; real cost note preserved: each run is one Claude call
-# (web search + editorial write-up) plus up to 25 cheap TMDB lookups — a
-# few cents to roughly $0.60/run, not the "tens of dollars per pass"
-# scale that got the theme/tone audit's own daily schedule turned off —
-# but it IS real, recurring, billed cost, and the underlying data
-# (Nielsen's weekly numbers) only actually changes about once a week, so
-# a daily cadence was mostly re-researching and landing on a near-
-# identical list 6 days out of 7. Monday, after the weekend's viewership
-# numbers settle and ahead of the other daily Trakt enrichment jobs.
+# DISABLED as a recurring schedule (Bill, 2026-10-15: "I dont want to add
+# API credits. from now on, let's find other ways to solve our
+# problems") — this workflow bills the Anthropic API (one Claude call
+# with the web_search tool per run, a few cents to ~$0.60), and the
+# account genuinely ran dry (a real HTTP 400 "credit balance too low" on
+# 2026-10-15), which is what surfaced this as a standing problem rather
+# than a one-off. Bill's call: don't keep this as an automatic recurring
+# cost at all, not even a cheap one — the real weekly freshness need is
+# now covered for free instead, via a recurring Claude Code scheduled
+# task that does the same research with the session's own (non-billed)
+# WebSearch tool and commits directly; see CLAUDE.md's "Streaming Top
+# 10 — No-Cost Refresh" section for that mechanism's full design.
+#
+# This workflow + refresh_streaming_top10.py are kept, not deleted —
+# workflow_dispatch still works for a one-off manual run on the rare
+# occasion Bill explicitly wants the Claude-API version specifically
+# (e.g. to compare against the free version, or if the free mechanism
+# is ever unavailable) — but nothing fires it automatically anymore.
+# Do not re-add a `schedule:` trigger here without Bill's fresh,
+# explicit go-ahead; see CLAUDE.md's standing policy.
 
 on:
-  schedule:
-    - cron: '0 13 * * 1'   # weekly, Mondays 1 PM UTC
   workflow_dispatch: {}
 
 jobs:

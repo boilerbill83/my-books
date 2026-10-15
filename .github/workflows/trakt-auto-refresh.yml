@@ -107,25 +107,19 @@ jobs:
       - name: Prune candidate pool
         run: node trakt/scripts/prune_candidate_pool.js
 
-      # New (Oct 2026, Bill: "when I import Trakt data, kick this off
-      # too"), piggybacking the Streaming Top 10's own real-research
-      # refresh onto a full Trakt re-import, the same way CLAUDE.md's
-      # manual import workflow's own step 10 does for this same reason.
-      # Real, recurring cost note (unchanged from
-      # trakt-refresh-streaming-top10.yml's own docstring, not
-      # introduced by this step): ~$0.60/run in Claude API usage - this
-      # was deliberately made weekly-only (not daily) specifically to
-      # minimize that cost, and this step adds a SECOND trigger for it
-      # on top of the weekly schedule, so a week where "Action!" gets
-      # used more than once now also means more than one Streaming Top
-      # 10 refresh that week. That's the explicit tradeoff Bill asked
-      # for here, not an oversight.
-      - name: Refresh The Streaming Top 10
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
-        run: python3 trakt/refresh_streaming_top10.py
-        timeout-minutes: 40
+      # REMOVED (Bill, 2026-10-15: "I dont want to add API credits. from
+      # now on, let's find other ways to solve our problems"). This step
+      # used to call trakt/refresh_streaming_top10.py here too, piggy-
+      # backing a Claude-API Streaming Top 10 refresh onto every "Action!"
+      # trigger - on top of that script's own weekly schedule. Both the
+      # weekly schedule and this step billed the Anthropic API, and the
+      # account genuinely ran out of credits, which is what surfaced this
+      # as a real, not hypothetical, problem. Streaming Top 10 freshness
+      # is now covered for free instead by a recurring Claude Code
+      # scheduled task using the session's own WebSearch tool - see
+      # CLAUDE.md's "Streaming Top 10 — No-Cost Refresh" section. Do not
+      # re-add a call to refresh_streaming_top10.py here without Bill's
+      # fresh, explicit go-ahead.
 
       # New (Oct 2026): the "SELF-EXTENDING SESSION" mechanism - see
       # fetch_trakt_export.py's own docstring. Only updates CLAUDE.md's
