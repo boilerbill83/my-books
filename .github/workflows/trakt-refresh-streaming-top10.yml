@@ -36,13 +36,15 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: python3 trakt/refresh_streaming_top10.py
-        # call_claude() can now make up to 3 sequential requests (pause_turn
-        # resume, each with its own 450s timeout, raised from 340s
-        # alongside POOL_SIZE 15->25 on 2026-10-08) — worst case ~22.5
-        # minutes, which the old 20-minute step ceiling would have killed
-        # outright before the Python-level retry logic ever got a chance
-        # to finish. 25 minutes leaves real headroom above that worst case.
-        timeout-minutes: 25
+        # call_claude() can make up to 3 pause_turn continuations, each of
+        # which can now itself retry up to 3 times on a bare transient
+        # network failure (added 2026-10-15 after a real run crashed
+        # outright with http.client.RemoteDisconnected and no retry at
+        # all) — a pathological worst case nests both, though in practice
+        # a dropped-connection retry fails fast rather than consuming the
+        # full 450s each time. 40 minutes leaves real headroom above even
+        # that worst case, up from 25.
+        timeout-minutes: 40
       - name: Commit if changed
         if: always()
         run: |

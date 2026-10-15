@@ -1216,14 +1216,23 @@ function fmtDate(iso) {
 // (not just the text) kicks in past 14 days, since a counter that never
 // visually changes isn't much of a freshness signal - the number itself
 // is still the real information either way, never color alone.
-function renderImportFreshness(generatedAt, elementId = 'importFreshness') {
+// staleDays/label defaults match this function's original sole use (the
+// Trakt export, nominally refreshed ad hoc, flagged past 14 days) — the
+// Streaming Top 10 page reuses this same badge+tooltip+stale-class
+// mechanism for a DIFFERENT, nominally-weekly dataset (via its own
+// `label`/`staleDays`) rather than inventing a parallel one, after a real
+// incident (2026-10-15) where that page's own refresh silently failed for
+// 2 consecutive weeks with nothing on the page calling it out — the exact
+// same "data went stale and nothing noticed" shape this function already
+// exists to prevent for the Trakt export.
+function renderImportFreshness(generatedAt, elementId = 'importFreshness', { label = 'Trakt data', staleDays = 14 } = {}) {
   const el = document.getElementById(elementId);
   if (!el || !generatedAt) return;
   const days = Math.floor((Date.now() - new Date(generatedAt).getTime()) / 86400000);
-  const label = days <= 0 ? 'Trakt data: today' : days === 1 ? 'Trakt data: 1 day ago' : `Trakt data: ${days} days ago`;
-  el.textContent = label;
-  el.title = `Last Trakt import loaded ${new Date(generatedAt).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' })}`;
-  el.classList.toggle('header-freshness-stale', days > 14);
+  const text = days <= 0 ? `${label}: today` : days === 1 ? `${label}: 1 day ago` : `${label}: ${days} days ago`;
+  el.textContent = text;
+  el.title = `Last refreshed ${new Date(generatedAt).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' })}`;
+  el.classList.toggle('header-freshness-stale', days > staleDays);
 }
 
 function renderFamilyWatchList(familyWatchlist, enrichedMeta, elementId = 'familyWatchList') {

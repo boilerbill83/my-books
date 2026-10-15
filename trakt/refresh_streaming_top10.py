@@ -154,21 +154,43 @@ def call_claude():
         # get_json() already learned the hard way (Session 51's dead-
         # TMDB-key incident: a bare 401 gave no way to tell "revoked" from
         # "malformed" without this).
-        try:
-            # 180s was fine at the original POOL_SIZE=10/MAX_TOKENS=8000
-            # scale, but a real production run timed out here (2026-09-28)
-            # after both were raised (15 shows, 16000 tokens) without
-            # raising this to match — a longer real web_search + write-up
-            # genuinely takes longer. Raised again to 450s alongside
-            # POOL_SIZE 15->25/MAX_TOKENS 16000->28000 (2026-10-08), same
-            # reasoning pre-applied this time rather than waiting for the
-            # same failure to repeat — see the workflow file's own
-            # timeout-minutes, raised to match.
-            with urllib.request.urlopen(req, timeout=450) as resp:
-                data = json.loads(resp.read())
-        except urllib.error.HTTPError as e:
-            error_body = e.read().decode('utf-8', errors='replace')
-            raise ValueError(f'Anthropic API returned HTTP {e.code}: {error_body}') from e
+        # Retries a bare TRANSIENT NETWORK failure (not an HTTP error
+        # response — this is a connection that never got a response at
+        # all) up to 3 times with backoff, before ever reaching the
+        # pause_turn continuation logic below. A real production run
+        # (2026-10-12) crashed outright with http.client.RemoteDisconnected
+        # after ~7 minutes with no retry at all — the whole ~$0.60,
+        # 20-web-search run was thrown away over a one-off network blip,
+        # the exact class of failure every git-push step in this project's
+        # other workflows already retries, just never applied here. Scoped
+        # tightly to connection-level failures (RemoteDisconnected is a
+        # ConnectionResetError subclass, so ConnectionError/TimeoutError/
+        # URLError together cover it) — a real HTTPError (a 4xx/5xx the
+        # server actually sent) is NOT blindly retried here, since that's
+        # a definitive response, not a dropped connection.
+        for net_attempt in range(3):
+            try:
+                # 180s was fine at the original POOL_SIZE=10/MAX_TOKENS=8000
+                # scale, but a real production run timed out here (2026-09-28)
+                # after both were raised (15 shows, 16000 tokens) without
+                # raising this to match — a longer real web_search + write-up
+                # genuinely takes longer. Raised again to 450s alongside
+                # POOL_SIZE 15->25/MAX_TOKENS 16000->28000 (2026-10-08), same
+                # reasoning pre-applied this time rather than waiting for the
+                # same failure to repeat — see the workflow file's own
+                # timeout-minutes, raised to match.
+                with urllib.request.urlopen(req, timeout=450) as resp:
+                    data = json.loads(resp.read())
+                break
+            except urllib.error.HTTPError as e:
+                error_body = e.read().decode('utf-8', errors='replace')
+                raise ValueError(f'Anthropic API returned HTTP {e.code}: {error_body}') from e
+            except (ConnectionError, TimeoutError, urllib.error.URLError) as e:
+                if net_attempt == 2:
+                    raise ValueError(f'Anthropic API connection failed 3 times in a row: {e!r}') from e
+                wait = 10 * (net_attempt + 1)
+                print(f'Transient network error ({e!r}), retrying in {wait}s (attempt {net_attempt + 2}/3)...', file=sys.stderr)
+                time.sleep(wait)
         if data.get('stop_reason') == 'max_tokens':
             raise ValueError(f'response hit max_tokens ({MAX_TOKENS}) before finishing — raise the budget')
         text_blocks = [b.get('text', '') for b in data.get('content', []) if b.get('type') == 'text']

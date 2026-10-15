@@ -277,6 +277,16 @@ async function load() {
   document.getElementById('methodologyText').textContent = data.methodology;
   document.getElementById('statusText').textContent = 'Loaded';
   renderImportFreshness(dashboard.generatedAt);
+  // This page's own editorial research has a separate freshness clock
+  // from the Trakt-export one above — a real incident (2026-10-15) found
+  // the weekly refresh had silently failed for 2 straight weeks (a dead
+  // network connection, then an unexplained cancellation) with nothing on
+  // the page calling it out, so a stale "Reacher is the hottest show
+  // right now" list from Sept 28 just sat there looking current. staleDays
+  // 10 (not the Trakt-export badge's 14) since this one is nominally
+  // refreshed weekly, not ad hoc — a few days' grace past 7 before it
+  // visibly flags, same style as the other badge.
+  renderImportFreshness(data.generatedAt, 'top10Freshness', { label: 'Top 10 research', staleDays: 10 });
 
   const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
   // Lookup for the type-normalized score shown everywhere else (You'll
