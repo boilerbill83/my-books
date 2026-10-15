@@ -3,19 +3,19 @@
     "title": "Your Friends & Neighbors",
     "status": "renewed",
     "season": 3,
-    "shortWindow": "no date yet",
-    "window": "no date announced; Seasons 1-2 both premiered in April, so April 2027 is a plausible guess, not confirmed",
-    "source": "Variety, Deadline, TVLine (Apr-Jun 2026) — renewed ahead of the Season 2 premiere; Joshua Jackson and Michelle Monaghan join the cast",
-    "researchedAt": "2026-09-03"
+    "shortWindow": "no date yet (spring/summer 2027 speculated)",
+    "window": "no date announced; renewed Feb 2, 2026 ahead of Season 2's April 3, 2026 premiere; outlets speculate spring/summer 2027 based on the prior seasons' pattern, not confirmed",
+    "source": "Apple TV press release (Feb 2, 2026), TVInsider, cartermatt (through Jul 2026)",
+    "researchedAt": "2026-10-15"
   },
   "show:247522": {
     "title": "Tires",
     "status": "renewed",
     "season": 4,
-    "shortWindow": "no date yet",
-    "window": "no date announced yet",
-    "source": "Variety, Deadline, Hollywood Reporter (Aug 2026) — renewed ~2 weeks after Season 3 premiered, following its record Netflix Top 10 run",
-    "researchedAt": "2026-09-03"
+    "shortWindow": "no date yet (Sept/Oct 2027 speculated)",
+    "window": "no date announced; renewed Aug 31, 2026 after Season 3's record Netflix Top 10 run (#5 globally); some outlets speculate a Sept/Oct 2027 premiere based on the gap between earlier seasons, unconfirmed",
+    "source": "Netflix (Aug 31, 2026 renewal), Variety, Deadline, whats-on-netflix.com",
+    "researchedAt": "2026-10-15"
   },
   "show:199318": {
     "title": "Bad Sisters",
@@ -24,16 +24,16 @@
     "shortWindow": "not renewed",
     "window": "not renewed as of this check; creator Sharon Horgan says she'll only return with a genuinely new story, not just \"women kill again\"",
     "source": "IMDb, ScreenRant, TheReviewGeek (through Feb 2026) — no Apple TV+ renewal announcement found",
-    "researchedAt": "2026-09-03"
+    "researchedAt": "2026-10-15"
   },
   "show:243316": {
     "title": "The Four Seasons",
     "status": "renewed",
     "season": 3,
-    "shortWindow": "no date yet",
-    "window": "no date announced yet",
-    "source": "Variety, TVLine, Netflix Tudum (mid-June 2026) — 8-episode Season 3 renewal announced after the Season 2 release",
-    "researchedAt": "2026-09-03"
+    "shortWindow": "no date yet (May 2027 speculated)",
+    "window": "no date announced; renewed June 15, 2026 for an 8-episode season; filming mid-Sep to mid-Dec 2026; Seasons 1-2 both dropped in May, so May 2027 is a plausible guess, though one outlet floats a possible slip into early 2028",
+    "source": "Netflix (June 15, 2026 renewal), Variety, whats-on-netflix.com, TVLine (through Aug 2026)",
+    "researchedAt": "2026-10-15"
   },
   "show:206828": {
     "title": "DTF St. Louis",
@@ -42,88 +42,88 @@
     "shortWindow": "none planned",
     "window": "no Season 2 confirmed — was billed as a single-season limited series; an EP has floated an anthology-style continuation as an idea, not an announcement",
     "source": "TVInsider, IMDb, cartermatt (through mid-2026)",
-    "researchedAt": "2026-09-03"
+    "researchedAt": "2026-10-15"
   },
   "show:254953": {
     "title": "Rooster",
     "status": "renewed",
     "season": 2,
-    "shortWindow": "no date yet (2027 possible)",
-    "window": "no date announced; filming began August 2026, a 2027 premiere is possible per reporting",
-    "source": "Deadline, Variety, TVInsider (Apr 2026 renewal)",
-    "researchedAt": "2026-09-03"
+    "shortWindow": "no date yet (Q1 2027 speculated)",
+    "window": "no date announced; HBO renewed in April 2026; speculative estimates range from Q1 2027 to a specific (unconfirmed) March 7, 2027 date from a countdown site — none confirmed by HBO",
+    "source": "Deadline, Variety, TVInsider (Apr 2026 renewal), comingsoon.net, releases.com (through Aug 2026)",
+    "researchedAt": "2026-10-15"
   },
   "show:250307": {
     "title": "The Pitt",
     "status": "renewed",
     "season": 3,
-    "shortWindow": "~January 2027 (unofficial)",
-    "window": "not yet officially dated by HBO Max, but multiple outlets expect Thursday, January 7, 2027 (Season 1 and 2 both premiered in January)",
-    "source": "TVLine, TVGuide, Forbes (renewed Jan 7, 2026, the same day the Season 2 finale aired)",
-    "researchedAt": "2026-09-03"
+    "shortWindow": "~January 7, 2027 (unofficial, trailer already out)",
+    "window": "not yet officially dated by HBO Max, but EP John Wells said the show returns 'the same week in January' with 15 episodes; widely reported as Thursday, Jan 7, 2027; HBO Max released the first Season 3 trailer Aug 21, 2026; story reportedly picks up Nov 12, 2026",
+    "source": "TVLine, TVGuide, Forbes, cartermatt (through Aug 2026) — renewed Jan 7, 2026, trailer dropped Aug 21, 2026",
+    "researchedAt": "2026-10-15"
   },
   "show:245927": {
     "title": "Paradise",
     "status": "renewed",
     "season": 3,
-    "shortWindow": "no date yet (final season)",
-    "window": "no date announced; confirmed as the intended final season",
-    "source": "Hollywood Reporter, TheWrap, Variety (renewed Mar 17, 2026, mid-way through Season 2's run)",
-    "researchedAt": "2026-09-03"
+    "shortWindow": "no date yet (early 2027 reported, final-season status unclear)",
+    "window": "no date announced; in production as of Apr 7, 2026; Marie Claire reports an early-2027 tentative window per Hulu, unconfirmed directly by Hulu; creator Dan Fogelman and EP John Hoberg describe a planned endpoint for Season 3, but whether Hulu is actually calling it the series finale remains unclear (walked back from the prior, more confident 'final season' framing)",
+    "source": "Hulu (Mar 17, 2026 renewal), Hollywood Reporter, TheWrap, Variety, Marie Claire (through mid-2026)",
+    "researchedAt": "2026-10-15"
   },
   "show:225171": {
     "title": "Pluribus",
     "status": "renewed",
     "season": 2,
-    "shortWindow": "no date yet (2027+ likely)",
-    "window": "no date announced; writing is done, filming expected to start fall 2026 — Season 1 took ~21 months from its own filming start to release, so a 2027 or later premiere is likely",
-    "source": "Forbes, Collider, ScreenRant (Aug 2026) — Apple TV committed to a 2-season order upfront; Vince Gilligan says he's planning 3-4 seasons total",
-    "researchedAt": "2026-09-03"
+    "shortWindow": "no date yet (late 2027 most likely, 2028 possible)",
+    "window": "no date announced; filming begins fall 2026 (cast-confirmed, Karolina Wydra); premiere estimates range from autumn 2027 (most likely, matching Season 1's Nov slot) to summer 2028 in a pessimistic case; Apple committed to a 2-season order upfront, and Vince Gilligan has said he's planning 3-4 seasons total",
+    "source": "Deadline's Crew Call podcast, TVInsider, TechRadar, Macworld, Forbes (through Aug 2026)",
+    "researchedAt": "2026-10-15"
   },
   "show:246386": {
     "title": "All Her Fault",
     "status": "renewed",
     "season": 2,
     "shortWindow": "no date yet",
-    "window": "no date announced; filming in New York, summer 2026",
-    "source": "TheCinemaholic, Parade, Yahoo (Dec 2025-ish renewal) — a genuine surprise, since it was originally billed as a miniseries adaptation of Andrea Mara's novel",
-    "researchedAt": "2026-09-03"
+    "window": "no date announced; renewed ~May 2026 (TheCinemaholic exclusive, corroborated by later coverage), filming in New York summer 2026; the show was originally billed as a miniseries adaptation of Andrea Mara's novel, so the renewal itself was a genuine surprise",
+    "source": "TheCinemaholic, Yahoo, TVInsider, Collider (through mid-2026)",
+    "researchedAt": "2026-10-15"
   },
   "show:271053": {
     "title": "I Love LA",
     "status": "renewed",
     "season": 2,
-    "shortWindow": "Fall 2026 (projected)",
-    "window": "no exact date; HBO has projected a Fall 2026 release",
-    "source": "TVInsider, Marie Claire, PrimeTimer (renewed Nov 20, 2025 at the HBO/HBO Max slate presentation, after only 3 of 8 Season 1 episodes had aired)",
-    "researchedAt": "2026-09-03"
+    "shortWindow": "early 2027 (pushed back from the earlier Fall 2026 projection)",
+    "window": "renewed Nov 20, 2025; as of June 2026 the team was still writing (confirmed by Rachel Sennott) and filming hadn't started, so the earlier 'Fall 2026' estimate no longer looks realistic — most current outlets now expect early 2027",
+    "source": "HBO (Nov 20, 2025 renewal), Marie Claire, HollywoodLife, SoapCentral (through mid-2026)",
+    "researchedAt": "2026-10-15"
   },
   "show:250923": {
     "title": "Nobody Wants This",
     "status": "renewed",
     "season": 3,
-    "shortWindow": "Fall 2026",
-    "window": "no exact date; Netflix says 2026, and Kristen Bell has teased \"September, October... sometime this fall\" — already in production as of spring 2026",
-    "source": "Deadline, Netflix Tudum, Newsweek (renewed Nov 2025)",
-    "researchedAt": "2026-09-03"
+    "shortWindow": "Oct 22, 2026 (confirmed)",
+    "window": "Netflix confirmed a Thursday, October 22, 2026 premiere for the 10-episode third season, which picks up with Joanne and Noah officially moving in together",
+    "source": "Variety, Entertainment Now, What's on Netflix (Sep 2026 announcement)",
+    "researchedAt": "2026-10-15"
   },
   "show:112211": {
     "title": "Platonic",
     "status": "renewed",
     "season": 3,
-    "shortWindow": "no date yet",
-    "window": "no date announced yet",
-    "source": "TVLine, Variety, Deadline, Apple TV Press (renewed Dec 5, 2025)",
-    "researchedAt": "2026-09-03"
+    "shortWindow": "no date yet (spring/summer 2027 speculated)",
+    "window": "no date announced; renewed Dec 2025; filming expected to begin summer 2026 per a May 2026 update; outlets estimate spring/summer 2027 for the premiere, unconfirmed by Apple",
+    "source": "TVLine, Variety, Deadline, Apple TV Press (Dec 2025 renewal), cartermatt (through May 2026)",
+    "researchedAt": "2026-10-15"
   },
   "show:117581": {
     "title": "Ginny & Georgia",
     "status": "renewed",
     "season": 4,
-    "shortWindow": "2027 (delayed from 2026)",
-    "window": "explicitly pushed to 2027, not 2026 — Netflix confirmed the delay with no specific window given; filming wrapped March 2026",
-    "source": "Netflix Life, EntertainmentNow, TheDirect (mid-2026)",
-    "researchedAt": "2026-09-03"
+    "shortWindow": "2027 (Netflix-confirmed, no month yet)",
+    "window": "Netflix's own press site slate update (mid-Aug 2026) groups Season 4 among its 2027 titles — superseding CEO Ted Sarandos' earlier Q3-earnings-call suggestion of a possible 2026 premiere; filming wrapped March 2026, no specific month set yet",
+    "source": "What's on Netflix (citing Netflix's press site, Aug 2026)",
+    "researchedAt": "2026-10-15"
   },
   "show:124101": {
     "title": "Hacks",
@@ -138,10 +138,10 @@
     "title": "The White Lotus",
     "status": "renewed",
     "season": 4,
-    "shortWindow": "~January 2027 (projected)",
-    "window": "no date announced; production began April 15, 2026 in Saint-Tropez, France — projections suggest late January 2027",
-    "source": "TVInsider, TVGuide, RobbReport (mid-2026)",
-    "researchedAt": "2026-09-03"
+    "shortWindow": "first half of 2027 (HBO-exec-confirmed window, no exact date)",
+    "window": "no exact date; HBO's Casey Bloys told Deadline at the 2026 Emmys the new season arrives in 'the first half of 2027'; production began April 15, 2026 in France (Cannes/St. Tropez/Monaco)",
+    "source": "Deadline (2026 Emmys), TVInsider, TVGuide (through 2026)",
+    "researchedAt": "2026-10-15"
   },
   "show:99353": {
     "title": "Love is Blind",

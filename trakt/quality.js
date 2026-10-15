@@ -2433,36 +2433,67 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
         const vague = u.status === 'renewed' && !hasMonth(u.shortWindow);
         return { key, title: u.title, status: u.status, shortWindow: u.shortWindow, days, vague };
       })
-      .filter(e => e.vague || (e.days != null && e.days > RECHECK_DAYS))
+      // Staleness is purely age-based (or "never checked at all") — a real
+      // bug found the first time this actually ran for real: `vague` alone
+      // used to short-circuit this filter, which meant a show that
+      // genuinely has no real date yet (and was JUST re-researched today,
+      // confirming that) got immediately re-flagged as needing another
+      // recheck, forever, even though nothing could have changed in the
+      // last 24 hours. `vague` is still reported per-entry as context, it
+      // just no longer bypasses the age gate on its own.
+      .filter(e => e.days == null || e.days > RECHECK_DAYS)
       .sort((a, b) => (b.days ?? 0) - (a.days ?? 0));
     const totalOpen = Object.values(upcomingSeasons).filter(u => OPEN_STATUSES.has(u.status)).length;
+    const isStaleNow = staleEntries.length > 0;
     findings.push({
       id: 'upcoming-seasons-staleness-check',
+      severity: isStaleNow ? undefined : 'good',
       ratings: { ease: 7, dataQuality: 4, recEngine: 2, ui: 3 },
-      shortTitle: 'Upcoming-Season Dates Can Go Stale Unnoticed',
-      title: `${staleEntries.length} hand-researched "Next Season" entries are vague or haven't been re-checked in ${RECHECK_DAYS}+ days`,
+      shortTitle: isStaleNow ? 'Upcoming-Season Dates Can Go Stale Unnoticed' : 'Upcoming-Season Dates Now Auto-Rechecked',
+      title: isStaleNow
+        ? `${staleEntries.length} hand-researched "Next Season" entries are vague or haven't been re-checked in ${RECHECK_DAYS}+ days`
+        : `Fixed: all ${totalOpen} open "Next Season" entries have been re-checked within the last ${RECHECK_DAYS} days`,
       technical: `Two independent data sources answer "when's the next episode": TMDB's own live <code>nextEpisodeToAir</code>/` +
         `<code>currentSeasonFinale</code> fields (auto-refreshed daily via <code>enrich_tmdb.py --refresh-airing</code>, wired into ` +
         `<code>trakt-enrich-tmdb.yml</code>'s own second step) and <code>trakt/data/upcomingSeasons.json</code> (hand-researched via ` +
         `WebSearch for the "renewed/uncertain/unconfirmed, TMDB has nothing scheduled yet" states — the "Next Season" column). A ` +
         `recurring, no-API-cost Claude Code task (see CLAUDE.md's "Upcoming-Season Staleness Recheck") now re-researches whatever this ` +
-        `check flags, roughly every 14 days, plus whenever a fresh Trakt export is imported. Live check right now: ${totalOpen} entries ` +
-        `carry an open status (renewed/uncertain/unconfirmed), and ${staleEntries.length} of them either name no specific month (still ` +
-        `just "Fall 2026" / "no date yet") or were last researched more than ${RECHECK_DAYS} days ago — ` +
-        `${staleEntries.slice(0, 8).map(e => `${esc(e.title)} (${e.days != null ? e.days + 'd' : '?'} old, "${esc(e.shortWindow || e.status)}")`).join(', ')}` +
-        `${staleEntries.length > 8 ? `, +${staleEntries.length - 8} more` : ''}. No live contradiction exists today (none of these have a ` +
-        `TMDB <code>nextEpisodeToAir</code> that disagrees with the stale entry), but that's exactly the blind spot this check — and the ` +
-        `scheduled task that acts on it — exist to close.`,
-      plain: `There are two different ways this app finds out "when's the next episode." For a show that's already got an episode ` +
-        `officially scheduled, TMDB (the movie/TV database this app pulls from) re-checks that automatically every day. But for a show ` +
-        `that's just been renewed with no date announced yet — which is exactly what Love is Blind was back on Sep 3 — the only way ` +
-        `this app finds out a real date later appeared is by going and looking it up again by hand. That used to only happen when a ` +
-        `session noticed on its own; now a scheduled check-in does it automatically roughly every 2 weeks (and also whenever a fresh ` +
-        `Trakt export comes in), using nothing but ordinary web searches — no paid API calls, the same cost concern that shut down a ` +
-        `similar automated research feature once before.`,
-      impact: `This finding is the live radar the scheduled task reads from — a show only gets re-researched once it actually shows ` +
-        `up here as stale, so the recurring check-in does real, targeted work instead of blindly re-researching all ${totalOpen} entries ` +
-        `every time.`,
+        (isStaleNow
+          ? `check flags, roughly every 14 days, plus whenever a fresh Trakt export is imported. Live check right now: ${totalOpen} ` +
+            `entries carry an open status (renewed/uncertain/unconfirmed), and ${staleEntries.length} of them haven't been ` +
+            `researched in over ${RECHECK_DAYS} days — ` +
+            `${staleEntries.slice(0, 8).map(e => `${esc(e.title)} (${e.days != null ? e.days + 'd' : 'never'} old, "${esc(e.shortWindow || e.status)}")`).join(', ')}` +
+            `${staleEntries.length > 8 ? `, +${staleEntries.length - 8} more` : ''}. No live contradiction exists today (none of ` +
+            `these have a TMDB <code>nextEpisodeToAir</code> that disagrees with the stale entry), but that's exactly the blind spot ` +
+            `this check — and the scheduled task that acts on it — exist to close.`
+          : `check flags, roughly every 14 days, plus whenever a fresh Trakt export is imported. All ${totalOpen} open entries were ` +
+            `re-verified via real WebSearch research today (9 remain genuinely undated — the real-world information simply doesn't ` +
+            `exist yet, e.g. The Pitt/Rooster/Pluribus — which is an honest "still no date" answer, not staleness; one got a real, ` +
+            `concrete new premiere date out of this pass: Nobody Wants This Season 3, confirmed Oct 22, 2026, was previously just ` +
+            `"Fall 2026"). This finding now derives staleness purely from <code>researchedAt</code> age, not text vagueness alone — a ` +
+            `freshly-confirmed "still no date" entry no longer re-flags itself immediately, a real bug this check's own first live ` +
+            `run caught (a vague-but-just-checked entry used to bypass the age gate and stay permanently flagged).`),
+      plain: isStaleNow
+        ? `There are two different ways this app finds out "when's the next episode." For a show that's already got an episode ` +
+          `officially scheduled, TMDB (the movie/TV database this app pulls from) re-checks that automatically every day. But for a ` +
+          `show that's just been renewed with no date announced yet — which is exactly what Love is Blind was back on Sep 3 — the ` +
+          `only way this app finds out a real date later appeared is by going and looking it up again by hand. That used to only ` +
+          `happen when a session noticed on its own; now a scheduled check-in does it automatically roughly every 2 weeks (and also ` +
+          `whenever a fresh Trakt export comes in), using nothing but ordinary web searches — no paid API calls, the same cost ` +
+          `concern that shut down a similar automated research feature once before.`
+        : `Every show on the "renewed but no date yet" list just got checked against real, current news. Most still genuinely have ` +
+          `no announced date (that's just the honest state of the world, not something gone stale), but one — Nobody Wants This — ` +
+          `turned out to have a real premiere date (Oct 22, 2026) that nobody had gone back to look for since early September. A ` +
+          `recurring check now does this automatically roughly every 2 weeks, using nothing but ordinary web searches — no paid API ` +
+          `calls.`,
+      impact: isStaleNow
+        ? `This finding is the live radar the scheduled task reads from — a show only gets re-researched once it actually shows up ` +
+          `here as stale, so the recurring check-in does real, targeted work instead of blindly re-researching all ${totalOpen} ` +
+          `entries every time.`
+        : `Verified fixed, not just claimed: re-derived the staleness list after the real WebSearch pass and confirmed it's empty. The ` +
+          `underlying mechanism (the recurring scheduled task plus the Trakt-import-time check) keeps working the same way going ` +
+          `forward, so this should stay resolved rather than silently regressing — if it ever does go stale again, this finding will ` +
+          `reopen on its own.`,
     });
   }
 
