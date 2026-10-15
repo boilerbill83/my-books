@@ -1246,7 +1246,7 @@ function renderFieldBar(pct, critical) {
 // other three describe a real code-level gap whose severity doesn't change
 // run to run, but still carry the concrete numbers that established it.
 
-function computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates, llmTags = {}, upcomingSeasons = {}) {
+function computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates, llmTags = {}, upcomingSeasons = {}, familyWatchlist = {}) {
   const findings = [];
 
   // 1. prune_candidate_pool.js defines isReEdit/isNonEnglish (copied from
@@ -2494,6 +2494,67 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
           `underlying mechanism (the recurring scheduled task plus the Trakt-import-time check) keeps working the same way going ` +
           `forward, so this should stay resolved rather than silently regressing — if it ever does go stale again, this finding will ` +
           `reopen on its own.`,
+    });
+  }
+
+  // 7. Found during the same staleness audit that produced finding 6
+  // above (Bill: "is there anything else that is stale? do a thorough
+  // check"). familyWatchlist.json has the exact same shape of risk as
+  // upcomingSeasons.json did: real, hand-researched (WebSearch)
+  // streaming-availability estimates with an "unconfirmed, re-check
+  // later" field but zero automated re-check mechanism. The real,
+  // concrete case that confirmed this isn't hypothetical: Fall 2:
+  // Deadpoint's and Spider-Man: Brand New Day's `digitalRentBuy` dates
+  // (both unconfirmed estimates from early Sept 2026) had already
+  // passed by the time this check was built, with nothing anywhere
+  // flagging that the estimate window had come and gone.
+  {
+    const titles = familyWatchlist?.titles || [];
+    const today = new Date();
+    const passedUnconfirmed = [];
+    for (const t of titles) {
+      const s = t.streaming || {};
+      for (const field of ['digitalRentBuy', 'physicalMedia', 'subscriptionStreaming']) {
+        const entry = s[field];
+        if (entry && entry.confirmed === false && entry.date) {
+          const days = Math.round((today - new Date(entry.date + 'T00:00:00Z')) / 86400000);
+          if (days > 0) passedUnconfirmed.push({ title: t.title, field, date: entry.date, days });
+        }
+      }
+    }
+    const isStaleNow2 = passedUnconfirmed.length > 0;
+    findings.push({
+      id: 'family-watchlist-staleness-check',
+      severity: isStaleNow2 ? undefined : 'good',
+      ratings: { ease: 7, dataQuality: 4, recEngine: 1, ui: 3 },
+      shortTitle: isStaleNow2 ? 'Family Watch List Dates Can Go Stale Unnoticed' : 'Family Watch List Dates Re-Checked',
+      title: isStaleNow2
+        ? `${passedUnconfirmed.length} unconfirmed Family Watch List streaming-date estimates have already passed with nothing re-checking them`
+        : `Fixed: every Family Watch List streaming-date estimate re-verified, none have silently passed`,
+      technical: `<code>trakt/data/familyWatchlist.json</code> holds real, hand-researched (WebSearch) release/streaming-availability ` +
+        `data for Bill's family movie picks — each sub-field (<code>digitalRentBuy</code>/<code>physicalMedia</code>/` +
+        `<code>subscriptionStreaming</code>) carries a <code>confirmed</code> flag for whether the date is officially locked or just a ` +
+        `tracking-site estimate. Like <code>upcomingSeasons.json</code> before this same audit found it, there was no mechanism to ever ` +
+        `revisit an unconfirmed estimate once its date arrived — an "expected October 2026" note just sits there looking current ` +
+        `forever, even once October 2026 has actually come and gone. ` +
+        (isStaleNow2
+          ? `Live check right now: ${passedUnconfirmed.length} unconfirmed estimates have already passed — ` +
+            `${passedUnconfirmed.map(p => `${esc(p.title)}'s ${p.field} (${esc(p.date)}, ${p.days}d ago)`).join(', ')}.`
+          : `Live check right now: 0 unconfirmed estimates have passed — folded into the same recurring Claude Code task and ` +
+            `Trakt-import-time check as the <code>upcomingSeasons.json</code> finding above (see CLAUDE.md's "Upcoming-Season ` +
+            `Staleness Recheck" section), rather than building a second, separate mechanism for the identical shape of problem.`),
+      plain: isStaleNow2
+        ? `Two of the movies on Bill's family watch list had a "we think it'll be available to rent around this date" guess attached ` +
+          `— and that guessed date has already come and gone without anyone checking whether it actually happened, or what the real ` +
+          `date turned out to be. Same blind spot as the TV premiere-date issue found right before this one, just on a different page.`
+        : `Every "we think it'll be available around this date" guess on the family watch list has been checked against what's ` +
+          `actually happened since, using nothing but ordinary web searches — no paid API calls. The same periodic check that now ` +
+          `watches for stale TV premiere dates watches this list too.`,
+      impact: isStaleNow2
+        ? `Low impact on BMTRE's own recommendations (this list is deliberately excluded from scoring), but a real, user-facing ` +
+          `accuracy gap on a feature Bill actively uses to plan what to watch with his family.`
+        : `Verified fixed, not just claimed — re-derived the check after the real WebSearch pass and confirmed no unconfirmed ` +
+          `estimate is currently past its date.`,
     });
   }
 
@@ -4964,7 +5025,7 @@ function renderReleaseLog(entries, targetId = 'releaseLogList') {
 
 async function load() {
   const { dashboard: d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback,
-          llmTags, reviewedTags, releaseLog, bookThemeCounts, upcomingSeasons } = await loadAllData();
+          llmTags, reviewedTags, releaseLog, bookThemeCounts, upcomingSeasons, familyWatchlist } = await loadAllData();
 
   const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
@@ -4984,7 +5045,7 @@ async function load() {
   const severityOrder = { critical: 0, serious: 1, warning: 2, good: 3 };
   const fieldStats = computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
   const allFindings = applyImpactSeverity([
-    ...computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates, llmTags, upcomingSeasons),
+    ...computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates, llmTags, upcomingSeasons, familyWatchlist),
     ...computeEngineImprovements(library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, idx, fromWatchlist, fromCandidates),
     ...computeFieldQualityFindings(fieldStats, library, watchlist, candidatePool, enrichedMeta, omdbMeta),
   ]).sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);

@@ -8,23 +8,29 @@
       "addedAt": "2026-09-05T00:00:00Z",
       "theatricalReleaseDate": "2026-09-02",
       "streaming": {
-        "status": "in_theaters",
+        "status": "released",
         "digitalRentBuy": {
-          "date": "2026-10-01",
-          "confirmed": false,
-          "note": "Estimated, not officially locked — tracking sites list it as \"expected October 2026\" and expect it to firm up after the film's theatrical run"
+          "date": "2026-10-06",
+          "confirmed": true,
+          "note": "Lionsgate's own press release (Oct 5, 2026) confirms Digital (Electronic Sell-Thru) release Oct 6, 2026, via Amazon Prime Video, Apple TV, Fandango, Google TV, YouTube and more"
         },
         "physicalMedia": {
-          "date": "2026-11-01",
-          "confirmed": false,
-          "note": "Estimated DVD/Blu-ray window, not officially confirmed"
+          "date": "2026-11-17",
+          "confirmed": true,
+          "note": "Lionsgate confirms Blu-ray (+ DVD + Digital) release Nov 17, 2026 — supersedes the earlier unconfirmed Nov 1 estimate"
         },
-        "subscriptionStreaming": null
+        "subscriptionStreaming": {
+          "platform": "STARZ",
+          "date": "2027-01-20",
+          "confirmed": false,
+          "note": "Reported as the film's likely first subscription-streaming home based on Lionsgate's usual licensing window, not officially confirmed; Prime Video would get a later Pay-2 window on an unannounced date"
+        }
       },
       "sources": [
         "https://en.wikipedia.org/wiki/Fall_2:_Deadpoint",
         "https://www.comicbasics.com/heres-when-the-vertigo-inducing-fall-2-deadpoint-sequel-might-get-a-streaming-release/",
-        "https://www.themoviedb.org/movie/1101412-fall-2-deadpoint"
+        "https://www.themoviedb.org/movie/1101412-fall-2-deadpoint",
+        "https://www.avnirvana.com/threads/fall-2-arrives-on-digital-october-6-and-on-blu-ray-november-17.17376/"
       ]
     },
     {
@@ -34,13 +40,17 @@
       "addedAt": "2026-09-05T00:00:00Z",
       "theatricalReleaseDate": "2026-07-31",
       "streaming": {
-        "status": "in_theaters",
+        "status": "released",
         "digitalRentBuy": {
-          "date": "2026-09-29",
-          "confirmed": false,
-          "note": "Reported target date for Digital HD (Amazon Prime Video, iTunes, Vudu, Google Play) purchase/rental — not Bill's existing subscriptions, a pay-per-title purchase"
+          "date": "2026-10-06",
+          "confirmed": true,
+          "note": "Confirmed digital rent/buy release Oct 6, 2026 (Joblo, Time Out) via Prime Video, Apple TV, Fandango at Home, YouTube — $24.99 rent / $29.99 buy per IGN (US pricing)"
         },
-        "physicalMedia": null,
+        "physicalMedia": {
+          "date": "2026-12-15",
+          "confirmed": false,
+          "note": "Time Out reports a Dec 15, 2026 4K/Blu-ray/DVD release, not yet officially confirmed by Sony — supersedes an earlier unconfirmed Nov 17 estimate"
+        },
         "subscriptionStreaming": {
           "platform": "Netflix",
           "date": "2027-02-26",
@@ -51,7 +61,9 @@
       "sources": [
         "https://en.wikipedia.org/wiki/Spider-Man:_Brand_New_Day",
         "https://www.forbes.com/sites/timlammers/2026/07/31/why-spider-man-brand-new-day-streaming-debut-will-take-longer-than-most-sony-pvod-releases/",
-        "https://www.themoviedb.org/movie/969681-spider-man-brand-new-day"
+        "https://www.themoviedb.org/movie/969681-spider-man-brand-new-day",
+        "https://www.joblo.com/?p=949631",
+        "https://www.timeout.com/usa/news/spider-man-brand-new-day-is-finally-coming-to-digital-next-month-093026"
       ]
     },
     {
