@@ -149,10 +149,21 @@ function daysSinceFinale(meta) {
 }
 
 function enrichShow(show, ctx) {
-  const { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback, starredSet, prevRankByTitle, normalizedScoreByKey } = ctx;
+  const { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback, starredSet, prevRankByTitle, normalizedScoreByKey, coWatchKeySet } = ctx;
   const titleKey = show.titleKey;
   const meta = titleKey ? enrichedMeta[titleKey] : null;
   const type = titleKey ? titleKey.split(':')[0] : (show.type || 'show');
+  // A show with no titleKey at all hasn't been resolved to a real TMDB id
+  // yet (e.g. WebSearch alone couldn't confidently match a brand-new
+  // title — see trakt/resolve_titles.py, which runs in CI where TMDB is
+  // actually reachable and is the real fix for this, not a guess made
+  // here). Every field below that depends on enrichment (poster, finale
+  // date, predicted score) is honestly blank for exactly this reason, so
+  // the UI should say so explicitly rather than leaving silent gaps that
+  // look like a bug (Bill, 2026-10-15: flagged missing cover images and
+  // missing finale countdowns on the same real pool of unresolved shows).
+  const pendingId = !titleKey;
+  const watchTogether = titleKey ? coWatchKeySet.has(titleKey) : false;
 
   let statusLabel = NOT_TRACKED_LABEL;
   let ids = null;
@@ -196,7 +207,7 @@ function enrichShow(show, ctx) {
   const year = meta?.year ?? null;
   const finale = daysSinceFinale(meta);
 
-  return { ...show, type, statusLabel, predictedScore, genreLabel, subgenreLabels, subjectLabels, traktLink: traktUrl(traktCandidate), poster, starred, rankDelta, year, finale };
+  return { ...show, type, statusLabel, predictedScore, genreLabel, subgenreLabels, subjectLabels, traktLink: traktUrl(traktCandidate), poster, starred, rankDelta, year, finale, pendingId, watchTogether };
 }
 
 // displayRank is the show's position in the CURRENT filtered/backfilled
@@ -217,8 +228,22 @@ function renderShow(show, displayRank) {
     ? `<div class="st10-score"><div class="st10-score-num">${show.predictedScore}</div><div class="st10-score-label">predicted score</div></div>`
     : `<div class="st10-score st10-score-empty">not enough data yet</div>`;
   const starHtml = show.starred ? '<div class="tk-star-badge" title="One of your real Trakt favorites">★</div>' : '';
+  // Always render something in the finale slot, never a silent gap — a
+  // show can land here for 3 different real reasons, and each gets its
+  // own honest label rather than letting all 3 look identical (blank):
+  // (1) a real countdown (the common case once enriched), (2) resolved
+  // and enriched but genuinely no finale data cached yet from TMDB,
+  // (3) not resolved to a TMDB id at all yet (pendingId).
   const finaleHtml = show.finale
     ? `<div class="st10-finale-days${show.finale.days <= 0 ? ' st10-finale-past' : ''}" title="Based on ${esc(fmtDate(show.finale.finaleDate))}">Season finale: ${show.finale.days > 0 ? '+' : ''}${show.finale.days} days</div>`
+    : show.pendingId
+      ? `<div class="st10-finale-days st10-finale-pending" title="Not yet resolved to a real TMDB id — see trakt/resolve_titles.py">Finale date: pending ID match</div>`
+      : `<div class="st10-finale-days st10-finale-pending" title="Title is resolved and enriched, but TMDB has no finale date cached for this show yet">No finale date yet</div>`;
+  const cowatchHtml = show.watchTogether
+    ? `<span class="st10-cowatch-badge" title="Tagged in your Shows You Watch Together list">👯 Watch Together</span>`
+    : '';
+  const posterPendingHtml = (show.pendingId && !show.poster)
+    ? `<div class="st10-poster-pending-label">Cover pending ID match</div>`
     : '';
   return `
   <article class="st10-card">
@@ -226,6 +251,7 @@ function renderShow(show, displayRank) {
     <div class="st10-poster${show.starred ? ' st10-poster-starred' : ''}">
       ${starHtml}
       ${posterImgHtml(show.poster, 'st10-poster-img', 120, 180)}
+      ${posterPendingHtml}
     </div>
     <div class="st10-body">
       <div class="st10-head-row">
@@ -233,6 +259,7 @@ function renderShow(show, displayRank) {
           <div class="st10-title-row">
             <a class="st10-title" href="${esc(show.traktLink)}" target="_blank" rel="noopener">${esc(show.title)}</a>
             <span class="st10-tag" style="color:${tagColor}">${tag.emoji} ${esc(show.tag)}</span>
+            ${cowatchHtml}
           </div>
           <div class="st10-platform-row">
             <span class="st10-platform">${esc(show.platform)}</span>
@@ -264,7 +291,7 @@ function buildCheckboxGroup(el, counts, order) {
 }
 
 async function load() {
-  const [data, prevData, { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, bookThemeCounts, manualStars }] =
+  const [data, prevData, { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, bookThemeCounts, manualStars, coWatchTags }] =
     await Promise.all([
       fetch('./data/streamingTop10.json').then(r => r.json()),
       fetch('./data/streamingTop10Previous.json').then(r => r.ok ? r.json() : null).catch(() => null),
@@ -297,7 +324,8 @@ async function load() {
   const normalizedScoreByKey = new Map([...fromWatchlist, ...fromCandidates].map(c => [c.titleKey, c.bmtreScore]));
   const starredSet = computeFavoriteStars(library, watchlist, manualStars);
   const prevRankByTitle = prevData ? new Map(prevData.shows.map(s => [s.title, s.rank])) : null;
-  const ctx = { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback, starredSet, prevRankByTitle, normalizedScoreByKey };
+  const coWatchKeySet = new Set(Object.values(coWatchTags || {}).flat());
+  const ctx = { library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags, idx, feedback, starredSet, prevRankByTitle, normalizedScoreByKey, coWatchKeySet };
 
   const shows = data.shows.map(s => enrichShow(s, ctx)).sort((a, b) => a.rank - b.rank);
   const TARGET_COUNT = 10;
