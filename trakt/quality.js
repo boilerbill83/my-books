@@ -1246,7 +1246,7 @@ function renderFieldBar(pct, critical) {
 // other three describe a real code-level gap whose severity doesn't change
 // run to run, but still carry the concrete numbers that established it.
 
-function computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates, llmTags = {}) {
+function computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates, llmTags = {}, upcomingSeasons = {}) {
   const findings = [];
 
   // 1. prune_candidate_pool.js defines isReEdit/isNonEnglish (copied from
@@ -2379,6 +2379,73 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
       impact: `Directly serves the goal Bill stated: more titles genuinely sharing a real, reusable subject means ` +
         `<code>subjectBonus()</code> can find a real "shared with a loved title" match far more often. Script/data-only change (no ` +
         `<code>engine.js</code> scoring-formula edit), so <code>scripts/eval.js</code> is unaffected by design — verified unchanged.`,
+    });
+  }
+
+  // 6. Bill: "how did [Love is Blind's premiere date] get missed? How do
+  // we prevent this from happening? What checks do you have to look for
+  // when new episodes are coming?" Root cause, confirmed by reading the
+  // real code rather than guessed: there are genuinely TWO separate
+  // "when's the next episode" data sources, and only one of them refreshes
+  // itself. TMDB's own live fields (nextEpisodeToAir/currentSeasonFinale,
+  // the "Now Airing"/"Next Episode"/"Season Finale" columns) ARE kept
+  // fresh automatically — trakt-enrich-tmdb.yml's "Refresh already-cached
+  // shows' next-episode/finale dates" step runs REFRESH_AIRING every
+  // single day (see that workflow's own comment: built after an identical
+  // gap, "why isn't Lioness one of my next shows to watch," 5 days stale).
+  // But upcomingSeasons.json (the "Next Season" column — real,
+  // hand-researched WebSearch findings for the "renewed but TMDB has
+  // nothing scheduled yet" state TMDB has no field for at all) has NO
+  // refresh mechanism whatsoever. It's a one-time snapshot written
+  // whenever a session happens to research a title, read forever after
+  // with no expiry — Love is Blind's entry was accurate the day it was
+  // written (Sep 3: no premiere date existed yet, "Fall 2026" was the
+  // honest answer) and simply never got revisited once Netflix actually
+  // announced Oct 14, because nothing ever re-checks it. This finding IS
+  // that check, built the same day it was asked for: flags any `renewed`
+  // entry whose own shortWindow is vague (no real month named) or whose
+  // researchedAt has aged past a re-check threshold, so a future session
+  // can work the list instead of waiting for Bill to notice a stale date
+  // and ask.
+  {
+    const RECHECK_DAYS = 30;
+    const hasMonth = s => /\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\w*\s+\d{4}/i.test(s || '');
+    const today = new Date();
+    const staleEntries = Object.entries(upcomingSeasons)
+      .filter(([, u]) => u.status === 'renewed')
+      .map(([key, u]) => {
+        const days = u.researchedAt ? Math.round((today - new Date(u.researchedAt)) / 86400000) : null;
+        return { key, title: u.title, shortWindow: u.shortWindow, days, vague: !hasMonth(u.shortWindow) };
+      })
+      .filter(e => e.vague || (e.days != null && e.days > RECHECK_DAYS))
+      .sort((a, b) => (b.days ?? 0) - (a.days ?? 0));
+    const totalRenewed = Object.values(upcomingSeasons).filter(u => u.status === 'renewed').length;
+    findings.push({
+      id: 'upcoming-seasons-staleness-check',
+      ratings: { ease: 7, dataQuality: 4, recEngine: 2, ui: 3 },
+      shortTitle: 'Upcoming-Season Dates Can Go Stale Unnoticed',
+      title: `${staleEntries.length} hand-researched "Next Season" entries are vague or haven't been re-checked in ${RECHECK_DAYS}+ days`,
+      technical: `Two independent data sources answer "when's the next episode": TMDB's own live <code>nextEpisodeToAir</code>/` +
+        `<code>currentSeasonFinale</code> fields (auto-refreshed daily via <code>enrich_tmdb.py --refresh-airing</code>, wired into ` +
+        `<code>trakt-enrich-tmdb.yml</code>'s own second step) and <code>trakt/data/upcomingSeasons.json</code> (hand-researched via ` +
+        `WebSearch for the "renewed but not yet scheduled" state TMDB has no field for — the "Next Season" column). Only the first has ` +
+        `any refresh mechanism; the second is written once per title and never revisited unless a session happens to re-research it. ` +
+        `Live check right now: ${totalRenewed} entries carry <code>status: "renewed"</code>, and ${staleEntries.length} of them either ` +
+        `name no specific month (still just "Fall 2026" / "no date yet") or were last researched more than ${RECHECK_DAYS} days ago — ` +
+        `${staleEntries.slice(0, 8).map(e => `${esc(e.title)} (${e.days != null ? e.days + 'd' : '?'} old, "${esc(e.shortWindow)}")`).join(', ')}` +
+        `${staleEntries.length > 8 ? `, +${staleEntries.length - 8} more` : ''}. No live contradiction exists today (none of these have a ` +
+        `TMDB <code>nextEpisodeToAir</code> that disagrees with the stale entry), but that's exactly the blind spot — nothing would ` +
+        `notice if one appeared.`,
+      plain: `There are two different ways this app finds out "when's the next episode." For a show that's already got an episode ` +
+        `officially scheduled, TMDB (the movie/TV database this app pulls from) re-checks that automatically every day. But for a show ` +
+        `that's just been renewed with no date announced yet — which is exactly what Love is Blind was back on Sep 3 — the only way ` +
+        `this app finds out a real date later appeared is if a session happens to go look it up again by hand. Nobody ever told it to ` +
+        `go look again, so it just sat there saying "Fall 2026" for 6 weeks until Bill noticed and asked. This check is the fix for ` +
+        `that: it now lists exactly which shows have a vague or old guess sitting unchecked, so a future session can work through the ` +
+        `list proactively instead of waiting to be asked.`,
+      impact: `Doesn't re-research anything itself (that still needs a real WebSearch per title, the same "never guessed" discipline ` +
+        `every entry in this file already follows) — it's the missing early-warning check Bill asked for, so staleness surfaces on the ` +
+        `dashboard on its own instead of only being caught when someone happens to notice a wrong date in the UI.`,
     });
   }
 
@@ -4849,7 +4916,7 @@ function renderReleaseLog(entries, targetId = 'releaseLogList') {
 
 async function load() {
   const { dashboard: d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback,
-          llmTags, reviewedTags, releaseLog, bookThemeCounts } = await loadAllData();
+          llmTags, reviewedTags, releaseLog, bookThemeCounts, upcomingSeasons } = await loadAllData();
 
   const { idx, fromWatchlist, fromCandidates } = rankAll(library, watchlist, candidatePool, enrichedMeta, feedback, omdbMeta, llmTags, reviewedTags, bookThemeCounts);
   const enrichedOnly = c => !!enrichedMeta[c.titleKey];
@@ -4869,7 +4936,7 @@ async function load() {
   const severityOrder = { critical: 0, serious: 1, warning: 2, good: 3 };
   const fieldStats = computeFieldQuality(library, watchlist, candidatePool, enrichedMeta, omdbMeta, llmTags, reviewedTags);
   const allFindings = applyImpactSeverity([
-    ...computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates, llmTags),
+    ...computeImprovementOpportunities(library, watchlist, candidatePool, enrichedMeta, omdbMeta, idx, fromWatchlist, fromCandidates, llmTags, upcomingSeasons),
     ...computeEngineImprovements(library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, idx, fromWatchlist, fromCandidates),
     ...computeFieldQualityFindings(fieldStats, library, watchlist, candidatePool, enrichedMeta, omdbMeta),
   ]).sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
