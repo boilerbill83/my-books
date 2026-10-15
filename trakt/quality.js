@@ -2419,7 +2419,11 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
   // of guessing what's stale.
   {
     const RECHECK_DAYS = 14;
-    const hasMonth = s => /\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\w*\s+\d{4}/i.test(s || '');
+    // Matches "Month Year" ("January 2027") AND "Month Day, Year"
+    // ("Oct 14, 2026") — the first version only handled the former, so a
+    // precisely-dated entry like Love is Blind's real "Oct 14, 2026"
+    // wrongly read as vague (caught live the first time this ran for real).
+    const hasMonth = s => /\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\w*\.?\s+(\d{1,2},?\s+)?\d{4}/i.test(s || '');
     const OPEN_STATUSES = new Set(['renewed', 'uncertain', 'unconfirmed']);
     const today = new Date();
     const staleEntries = Object.entries(upcomingSeasons)
