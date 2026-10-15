@@ -1,338 +1,230 @@
 {
- "note": "Real, weekly editorial Top 10 (Bill, 2026-09-25: build a modern replacement for The Ringer's old Weekly Top 10). General-audience — NOT derived from Bill's own Trakt data or BMTRE's scoring engine, and not personalized to him (it happens to overlap with shows he watches since those are genuinely the biggest shows on TV right now too). Auto-refreshed weekly via trakt/refresh_streaming_top10.py (.github/workflows/trakt-refresh-streaming-top10.yml, Mondays — moved from daily 2026-09-26) — a real Claude + web-search call does the research fresh each run (Nielsen/JustWatch/entertainment press/awards coverage), never fabricated. Each show's own status/predicted score/genre tags on the page are separately computed live from Bill's real Trakt data and BMTRE — display only, they never affect this list's editorial ranking. Researches 15 real, currency-verified shows/week (not just 10, since 2026-09-26) — the page itself always displays exactly 10, backfilling from the rest of this list whenever Bill's own checkbox status filter narrows the visible set below that. Every entry requires genuine current-week evidence (a recent episode/premiere/news event, cited in whyHere) before qualifying — a show whose season already wrapped with nothing new happening is excluded outright rather than kept around on reputation alone. A text summary of what changed goes out every Tuesday via trakt/notify_streaming_top10.py.",
+ "note": "Real, weekly editorial Top 10 (Bill, 2026-09-25: build a modern replacement for The Ringer's old Weekly Top 10). General-audience — NOT derived from Bill's own Trakt data or BMTRE's scoring engine, and not personalized to him (it happens to overlap with shows he watches since those are genuinely the biggest shows on TV right now too). Normally auto-refreshed weekly via trakt/refresh_streaming_top10.py (a real Claude + web-search API call) — but this refresh (Oct 15, 2026) was done manually, inside an interactive Claude Code session via its own ordinary WebSearch tool, after the Anthropic API account ran out of credits mid-session (a real, confirmed HTTP 400 \"credit balance too low\" error) and Bill asked for a way to refresh without spending API credits. Same methodology, same currency discipline, same TMDB-resolution rule (never guess an id — a title WebSearch couldn't confidently resolve to a TMDB id ships with titleKey: null rather than a guess) — just researched by hand this one time, with a smaller pool (11, not the usual 25) given the manual effort involved. Every show's own status/predicted score/genre tags on the page are separately computed live from Bill's real Trakt data and BMTRE — display only, they never affect this list's editorial ranking. Every entry requires genuine current-week evidence (a recent episode/premiere/news event, cited in whyHere) before qualifying — a show whose season already wrapped with nothing new happening is excluded outright rather than kept around on reputation alone (this is exactly the rule the prior stale Reacher-led list should have triggered once its own data went 17 days out of date — see CLAUDE.md's Streaming Top 10 reliability-fix entry for the root cause). The normal automated weekly refresh resumes once API credits are restored.",
  "methodology": "Scored on four weighted dimensions, per Bill's own detailed brief: Audience 30% (is anyone actually watching — Nielsen minutes, JustWatch rank), Current Momentum 25% (is interest rising right now, not just sustained), Cultural Buzz 25% (is it being talked about — reviews, awards, entertainment press, viral moments), Watchability/Editorial Relevance 20% (is it actually a good recommendation this week — accessible, well-reviewed, worth starting). The raw score is an internal ranking mechanism only, never shown. Every entry keeps real, cited sources in the underlying data even though the page itself doesn't display them.",
- "weekOf": "2026-09-28",
- "generatedAt": "2026-09-28T21:17:15.000Z",
+ "weekOf": "2026-10-15",
+ "generatedAt": "2026-10-15T21:13:01.000Z",
  "shows": [
   {
    "rank": 1,
-   "title": "Reacher",
-   "platform": "Prime Video",
-   "tag": "ESTABLISHED",
-   "whyHere": "Reacher crossed a billion viewing minutes for a fifth consecutive week and remained the No. 1 overall U.S. streaming title for the week of Sept. 7-13, 2026, per Nielsen.",
-   "whyWatch": "Alan Ritchson's hulking, wisecracking ex-military cop keeps solving small-town conspiracies with maximum violence and minimum fuss.",
-   "vibe": "A man, a toothbrush, and a trail of unconscious bad guys.",
-   "commitment": "4 seasons (32 episodes) | ~45-55 min episodes",
+   "title": "East of Eden",
+   "platform": "Netflix",
+   "tag": "HOT",
+   "titleKey": null,
+   "whyHere": "Netflix's 7-episode Florence Pugh limited series (premiered Oct 1) took the #1 spot on the Global Top 10 English TV list in its opening week, with ~6.5 million views and a reported 200% jump in sales of Steinbeck's novel.",
+   "whyWatch": "Pugh's turn as the manipulative, magnetic Cathy Ames anchors a handsome, faithful adaptation that critics have praised (85-89% on Rotten Tomatoes).",
+   "vibe": "A sprawling, sun-scorched family tragedy with a viper at its center.",
+   "commitment": "1 season (7 episodes) | ~55-65 min episodes",
    "sources": [
     {
-     "label": "Hollywood Reporter — Reacher tops 1 billion viewing minutes for fifth straight week",
-     "url": "https://www.hollywoodreporter.com/tv/tv-news/streaming-ratings-sept-7-13-2026-1236709681/"
+     "label": "What's on Netflix — East of Eden opening-week viewership analysis",
+     "url": "https://www.whats-on-netflix.com/news/east-of-eden-netflix-opening-weekend-views-analysis/"
     },
     {
-     "label": "Primetimer — Reacher crosses billion-minute threshold again",
-     "url": "https://www.primetimer.com/features/reacher-crosses-billion-minute-threshold-again-leading-weekly-streaming-charts"
+     "label": "Netflix Junkie — East of Eden opens at 89% on Rotten Tomatoes",
+     "url": "https://www.netflixjunkie.com/netflix-news-netflixs-east-of-eden-starring-florence-pugh-opens-strong-at-eithy-nine-per-cent-on-rotten-tomatoes/"
     }
    ],
-   "titleKey": "show:108978",
    "sourceConfidence": "corroborated"
   },
   {
    "rank": 2,
-   "title": "Neagley",
-   "platform": "Prime Video",
+   "title": "Love Is Blind: Boston",
+   "platform": "Netflix",
    "tag": "HOT",
-   "whyHere": "The Reacher spinoff dropped all eight episodes September 16 and immediately overtook its own parent show to become the No. 1 title on Prime Video, per FlixPatrol data cited by CBR.",
-   "whyWatch": "Maria Sten finally gets to be the badass lead, and the show earns it with a lean, well-reviewed mystery.",
-   "vibe": "Reacher's toughest ally goes solo and doesn't miss a beat.",
-   "commitment": "1 season (8 episodes) | ~45-57 min episodes, all released at once",
+   "titleKey": "show:99353",
+   "whyHere": "Season 11's first 5 episodes dropped Oct 14 (yesterday) — Netflix's reality-dating juggernaut is back with a Boston cast, always a huge opening-week draw for the platform.",
+   "whyWatch": "The same pods-to-altar format that's made every season a conversation piece, now with a new city's worth of drama.",
+   "vibe": "Strangers fall in love through a wall, then find out what that actually means.",
+   "commitment": "Season 11, 12 episodes total (5 out now) | ~45 min episodes",
    "sources": [
     {
-     "label": "ScreenRant — Reacher dethroned by Prime Video's new thriller Neagley",
-     "url": "https://screenrant.com/reacher-spinoff-neagley-streaming-success-september-2026/"
-    },
-    {
-     "label": "CBR — Prime Video's Reacher is No. 1 streaming show again",
-     "url": "https://www.cbr.com/prime-video-reacher-no-1-streaming-show-nielsen-september-2026/"
+     "label": "Boston.com — Love Is Blind Boston season premiere coverage",
+     "url": "https://www.boston.com/culture/streaming/2026/10/02/new-movies-tv-streaming-october-2026"
     }
    ],
-   "titleKey": "show:273207",
-   "sourceConfidence": "corroborated"
+   "sourceConfidence": "single-source"
   },
   {
    "rank": 3,
-   "title": "Lanterns",
-   "platform": "HBO Max",
+   "title": "Crystal Lake",
+   "platform": "Peacock",
    "tag": "HOT",
-   "whyHere": "Damon Lindelof's DCU detective drama is airing new weekly episodes right now (episode 7 dropped this weekend) and became HBO Max's most-watched show, adding 10 million views in its first three days.",
-   "whyWatch": "A True Detective-style murder mystery that happens to star two Green Lanterns — grounded, moody, and unexpectedly great.",
-   "vibe": "Superhero noir where the ring glows green but the mystery stays pitch black.",
-   "commitment": "1 season (8 episodes) | ~50-60 min episodes, airing weekly",
+   "titleKey": "show:213562",
+   "whyHere": "All 8 episodes of this Friday the 13th prequel from A24 drop today, Oct 15 — early reviews (86% on Rotten Tomatoes from 28 critics) call it the franchise's best-reviewed entry yet.",
+   "whyWatch": "Linda Cardellini's Pamela Voorhees is drawing universal praise, and it's a fun, gory horror-event premiere rather than a serious prestige drama.",
+   "vibe": "Camp-counselor horror with real teeth and a killer leading-lady performance.",
+   "commitment": "1 season (8 episodes) | ~45-55 min episodes",
    "sources": [
     {
-     "label": "The Movie Blog — Lanterns dominates HBO Max with 10 million views in three days",
-     "url": "https://www.themovieblog.com/2026/09/lanterns-dominates-hbo-max-with-10-million-views-in-three-days/"
+     "label": "Dread Central — All 8 episodes of Crystal Lake premiere Oct 15 on Peacock",
+     "url": "https://www.dreadcentral.com/streaming-home-video/580392/all-8-episodes-of-crystal-lake-premiere-october-15-on-peacock/"
     },
     {
-     "label": "Forbes — Lanterns episode 7 release time on HBO Max",
-     "url": "https://www.forbes.com/sites/erikkain/2026/09/27/lanterns-episode-7-release-time-hbo-max/"
+     "label": "ComicBookMovie — Crystal Lake's Rotten Tomatoes score is the franchise's best",
+     "url": "https://comicbookmovie.com/horror/crystal-lake-rotten-tomatoes-score-gives-friday-the-13th-prequel-series-the-highest-rating-of-the-franchise-a230393"
     }
    ],
-   "titleKey": "show:95350",
    "sourceConfidence": "corroborated"
   },
   {
    "rank": 4,
-   "title": "South Park",
-   "platform": "Paramount+",
-   "tag": "HOT",
-   "whyHere": "Season 29 (rebranded 'South America') premiered September 16 and jumped 33% in the ratings after four days, per a Variety exclusive, while the show also won a Creative Arts Emmy days earlier for its Trump-mocking season 27 premiere.",
-   "whyWatch": "Still the sharpest, fastest political satire on TV, now cheekily renamed to troll the news cycle itself.",
-   "vibe": "E-bikes, biker gangs, and a new theme song for a town suddenly called South America.",
-   "commitment": "Season 29, ongoing (6 episodes planned) | ~22-25 min episodes",
+   "title": "VisionQuest",
+   "platform": "Disney+",
+   "tag": "BUZZY",
+   "titleKey": null,
+   "whyHere": "Marvel's closing chapter of the WandaVision trilogy premiered Oct 14 with Paul Bettany and James Spader both back — a genuine MCU TV event generating heavy conversation this week, reviews split between \"one of Marvel's best shows\" and \"overstuffed.\"",
+   "whyWatch": "Bettany and Spader's performances are drawing near-universal praise even from critics who found the season bloated elsewhere.",
+   "vibe": "A synthezoid identity crisis wrapped in eight different film-genre homages.",
+   "commitment": "1 season (8 episodes) | ~40-50 min episodes",
    "sources": [
     {
-     "label": "Variety — South Park Season 29 premiere hits 4.2 million viewers, jumps 33%",
-     "url": "https://en.wikipedia.org/wiki/South_American_Biker_Gangs"
+     "label": "TheWrap — VisionQuest first reactions: \"one of Marvel's best shows\"",
+     "url": "https://www.thewrap.com/creative-content/tv-shows/visionquest-reactions-one-of-marvels-best-shows/"
     },
     {
-     "label": "Yahoo/Variety — South Park taunts Trump after winning Best Animated Series",
-     "url": "https://www.yahoo.com/entertainment/tv/articles/south-park-taunts-trump-winning-152350594.html"
+     "label": "ComicBookMovie — VisionQuest Rotten Tomatoes score revealed",
+     "url": "https://comicbookmovie.com/tv/marvel/vision/visionquest-rotten-tomatoes-score-revealed-as-first-reviews-for-latest-mcu-series-land-a230375"
     }
    ],
-   "titleKey": "show:2190",
    "sourceConfidence": "corroborated"
   },
   {
    "rank": 5,
-   "title": "The Gentlemen",
-   "platform": "Netflix",
+   "title": "War",
+   "platform": "HBO Max",
    "tag": "RISING",
-   "whyHere": "Season 2 premiered September 3 and its viewership climbed 22% week-over-week to 881 million minutes in its second week, per Nielsen data reported by The Hollywood Reporter.",
-   "whyWatch": "Guy Ritchie's aristocrats-turned-drug-lords saga gets darker and more confident in its second run.",
-   "vibe": "Posh manors, cannabis empires, and Theo James in a very nice suit doing very bad things.",
-   "commitment": "2 seasons (16 episodes) | ~60 min episodes, all released at once",
+   "titleKey": null,
+   "whyHere": "HBO's new 8-episode legal-drama anthology (Dominic West, Sienna Miller) premiered Oct 1 and, per German trade coverage, climbed rapidly to the top of the worldwide streaming charts; mostly positive reviews, particularly in the British press.",
+   "whyWatch": "A high-stakes celebrity-divorce legal battle between two rival London firms, anchored by two strong lead performances.",
+   "vibe": "A messy, glamorous divorce fought in the courtroom instead of the tabloids.",
+   "commitment": "1 season (8 episodes) | ~55-60 min episodes",
    "sources": [
     {
-     "label": "Hollywood Reporter — Streaming Ratings Sept 7-13, 2026",
-     "url": "https://www.hollywoodreporter.com/tv/tv-news/streaming-ratings-sept-7-13-2026-1236709681/"
+     "label": "TheWrap — War review: Sienna Miller and Dominic West excel in intricate HBO legal drama",
+     "url": "https://www.thewrap.com/creative-content/tv-shows/war-hbo-sky-review-sienna-miller-dominic-west/"
     },
     {
-     "label": "Netflix Tudum — The Gentlemen Season 2 release date and details",
-     "url": "https://www.netflix.com/tudum/articles/the-gentlemen-season-2-release-date-photos"
+     "label": "ComicBasics — War divorce drama wins over many critics, but not everyone",
+     "url": "https://www.comicbasics.com/?p=194558"
     }
    ],
-   "titleKey": "show:236235",
    "sourceConfidence": "corroborated"
   },
   {
    "rank": 6,
-   "title": "Slow Horses",
-   "platform": "Apple TV+",
-   "tag": "HOT",
-   "whyHere": "Season 6 began releasing new weekly episodes September 16, and the show topped JustWatch's weekly TV chart for two consecutive weeks through September 22, ahead of Lanterns and Lioness.",
-   "whyWatch": "Gary Oldman's cantankerous, flatulent spymaster leads MI5's rejects through the best-reviewed spy thriller on TV.",
-   "vibe": "Espionage as workplace comedy, with Gary Oldman's contempt doing most of the heavy lifting.",
-   "commitment": "6 seasons (36 episodes) | ~45 min episodes, airing weekly through Oct. 21",
+   "title": "Carrie",
+   "platform": "Prime Video",
+   "tag": "BUZZY",
+   "titleKey": null,
+   "whyHere": "Mike Flanagan's 8-episode Stephen King adaptation premiered Oct 7, all at once — real, dated reviews landed this week (85% on Rotten Tomatoes from 39 reviews), with newcomer Summer H. Howell singled out for a star-making performance.",
+   "whyWatch": "Flanagan's modernized, Gen-Z-set take on the classic premise, praised for its timeliness even where critics found it less scary than hoped.",
+   "vibe": "Teenage cruelty with real, bloody consequences, updated for today's high school.",
+   "commitment": "1 season (8 episodes) | ~50-55 min episodes",
    "sources": [
     {
-     "label": "Apple TV Press — Slow Horses Season 6 premiere details",
-     "url": "https://www.apple.com/tv-pr/news/2026/08/apple-tv-debuts-enthralling-trailer-for-season-six-of-emmy-and-bafta-award-winning-espionage-drama-slow-horses-starring-academy-award-winner-sir-gary-oldman/"
-    },
-    {
-     "label": "Media Play News — JustWatch weekly streaming charts through Sept. 27",
-     "url": "https://www.mediaplaynews.com/justwatch-hbo-maxs-backrooms-apple-tvs-slow-horses-topped-weekly-streaming-through-sept-27/"
+     "label": "ComicBookMovie — Carrie first reviews: critics praise \"daring\" reboot",
+     "url": "https://comicbookmovie.com/horror/carrie-first-reviews-critics-praise-daring-reboot-as-rotten-tomatoes-score-is-revealed-a230178"
     }
    ],
-   "titleKey": "show:95480",
-   "sourceConfidence": "corroborated"
+   "sourceConfidence": "single-source"
   },
   {
    "rank": 7,
-   "title": "Monster: The Lizzie Borden Story",
-   "platform": "Netflix",
-   "tag": "BUZZY",
-   "whyHere": "The fourth Monster installment premiered September 17 and hit No. 1 on Netflix's global chart with 12.1 million views in four days, per Variety — but this is buzz driven by curiosity more than acclaim, landing around a 39-50% critic score on Rotten Tomatoes.",
-   "whyWatch": "Worth watching for Rebecca Hall and Sarah Paulson's performances more than for historical accuracy — this is gothic camp, not a documentary.",
-   "vibe": "An axe, a nightgown, and Ryan Murphy's usual disregard for the historical record.",
-   "commitment": "1 season (8 episodes) | ~50-60 min episodes, all released at once",
+   "title": "Slow Horses",
+   "platform": "Apple TV+",
+   "tag": "ESTABLISHED",
+   "titleKey": "show:95480",
+   "whyHere": "Season 6 has been airing weekly since Sept 16 (through Oct 21) — Gary Oldman's spy-thriller has already been renewed for a 7th season, with an 8th reportedly in the works, the kind of durable prestige performer that stays relevant between its own splashiest moments.",
+   "whyWatch": "Consistently one of the best-reviewed shows on TV — dry, cynical spycraft with a note-perfect ensemble.",
+   "vibe": "Spies nobody wants, doing the job nobody else will.",
+   "commitment": "Season 6, 6 episodes (airing weekly) | ~50 min episodes",
    "sources": [
     {
-     "label": "Variety — Monster: The Lizzie Borden Story TV review",
-     "url": "https://variety.com/2026/tv/reviews/monster-the-lizzie-borden-story-review-netflix-1236858761/"
-    },
-    {
-     "label": "Forbes — Monster: The Lizzie Borden Story butchered by Rotten Tomatoes",
-     "url": "https://www.forbes.com/sites/timlammers/2026/09/18/monster-the-lizzie-borden-story-butchered-by-rotten-tomatoes-critics-and-audiences/"
+     "label": "9to5mac — Apple announces Slow Horses season 6 release date and first look",
+     "url": "https://9to5mac.com/2026/06/11/apple-announces-slow-horses-season-6-release-date-and-first-look/"
     }
    ],
-   "titleKey": "show:299939",
-   "sourceConfidence": "corroborated"
+   "sourceConfidence": "single-source"
   },
   {
    "rank": 8,
-   "title": "Chad Powers",
-   "platform": "Hulu",
+   "title": "MobLand",
+   "platform": "Paramount+",
    "tag": "RISING",
-   "whyHere": "Season 2 dropped all six episodes September 3 and Rotten Tomatoes critics are calling it 'another surprisingly great season,' keeping Glen Powell's sports comedy in the fall conversation.",
-   "whyWatch": "A dumb premise executed with real heart — Glen Powell in a wig, playing quarterback, somehow works.",
-   "vibe": "College football's answer to Mrs. Doubtfire, and it's funnier than it has any right to be.",
-   "commitment": "2 seasons (12 episodes) | ~30-40 min episodes",
+   "titleKey": "show:247718",
+   "whyHere": "Season 2 has been dropping weekly since Sept 18 (new episode most Fridays) with Tom Hardy, Pierce Brosnan, and Helen Mirren all back — real recent news too, with trade coverage this fall of a Hardy-related \"kerfuffle\" ahead of the premiere that kept the show in the conversation.",
+   "whyWatch": "A starry, brutal crime drama that's become one of Paramount+'s biggest real draws.",
+   "vibe": "Family-business crime, London-gangster flavor, A-list cast.",
+   "commitment": "Season 2, 10 episodes (airing weekly) | ~50-55 min episodes",
    "sources": [
     {
-     "label": "MovieWeb — Chad Powers Season 2 debuts to 100% and becomes streaming smash",
-     "url": "https://movieweb.com/chad-powers-season-2-glen-powell-streaming-hit-hulu-september-2026/"
-    },
-    {
-     "label": "Rotten Tomatoes — Chad Powers Season 2",
-     "url": "https://www.rottentomatoes.com/tv/chad_powers/s02"
+     "label": "TheWrap — MobLand Season 2 locks Paramount+ premiere date amid Tom Hardy kerfuffle",
+     "url": "https://www.thewrap.com/creative-content/tv-shows/mobland-season-2-premiere-date/"
     }
    ],
-   "titleKey": "show:247168",
-   "sourceConfidence": "corroborated"
+   "sourceConfidence": "single-source"
   },
   {
    "rank": 9,
-   "title": "The Beast in Me",
-   "platform": "Netflix",
+   "title": "American Horror Story: 13",
+   "platform": "FX / Hulu",
    "tag": "BUZZY",
-   "whyHere": "Netflix announced a second season on September 24, days after star Matthew Rhys won an Emmy for the role, keeping the thriller in the news even though it's between seasons.",
-   "whyWatch": "Claire Danes and Matthew Rhys circle each other in a tense cat-and-mouse thriller that earned genuine Emmy attention.",
-   "vibe": "A grieving novelist and her possibly-murderous new neighbor, staring each other down.",
-   "commitment": "1 season (8 episodes) | ~45-55 min episodes; Season 2 renewed, no date yet",
+   "titleKey": "show:1413",
+   "whyHere": "The franchise's 13th season just started airing, with Jessica Lange and the returning Coven cast — real, dated reception split hard this week: critics have outscored audiences for 11 straight seasons, but the gap (per a Rotten Tomatoes audience score of 39% as of Oct 12) is unusually wide this time, keeping the show a genuine topic of conversation either way.",
+   "whyWatch": "A nostalgia-heavy victory lap for longtime fans of the franchise's crossovers — divisive, but very much a reason people are talking this week.",
+   "vibe": "Camp horror anthology eating its own tail for its 13th go-round.",
+   "commitment": "Season 13, 13 episodes | ~45 min episodes",
    "sources": [
     {
-     "label": "Yahoo — All about The Beast in Me Season 2, including Claire Danes' return",
-     "url": "https://www.yahoo.com/entertainment/tv/articles/beast-season-2-including-claire-200000570.html"
+     "label": "Dread Central — American Horror Story: 13 review",
+     "url": "https://www.dreadcentral.com/reviews/590052/american-horror-story-13-review-kills-camp-cathartic-cameos-kick-off-a-bloody-new-chapter/"
     },
     {
-     "label": "Hollywood Reporter — Emmy Awards complete winners list",
-     "url": "https://www.hollywoodreporter.com/lists/emmy-winners-2026-list/"
+     "label": "Cinefilos — AHS 13 critic/audience Rotten Tomatoes scores diverge sharply",
+     "url": "https://cinefilos.it/serie-tv/news/american-horror-story-13-rotten-tomatoes-critica-pubblico-723825"
     }
    ],
-   "titleKey": "show:250504",
    "sourceConfidence": "corroborated"
   },
   {
    "rank": 10,
-   "title": "Outer Banks",
+   "title": "Nobody Wants This",
    "platform": "Netflix",
-   "tag": "ESTABLISHED",
-   "whyHere": "The series concluded its fifth and final season on August 20, and was still the second-most-streamed Netflix original the week of September 7-13 with 568 million minutes watched, per Nielsen data cited by CBR — a farewell that's still finding its audience weeks later, not a show with new episodes coming.",
-   "whyWatch": "A satisfying, treasure-hunting send-off for the Pogues, even if the ending split fans and critics.",
-   "vibe": "One last treasure hunt for a beach-town crew that's grown up on screen for six years.",
-   "commitment": "5 seasons (50 episodes, complete) | ~45-85 min episodes",
+   "tag": "RISING",
+   "titleKey": "show:250923",
+   "whyHere": "Season 3's trailer dropped in the past few weeks ahead of an Oct 22 premiere (one week out) — real, dated fan buzz this week around Joanne and Noah moving in together, with Netflix's own rom-com hit returning to a calmer, more stable season per early trailer reads.",
+   "whyWatch": "The rare rom-com that's actually funny and actually romantic, with real chemistry between its leads.",
+   "vibe": "A rabbi and a podcaster figure out how to actually live together.",
+   "commitment": "Season 3 premieres Oct 22, 10 episodes | ~30 min episodes",
    "sources": [
     {
-     "label": "CBR — Outer Banks is a major hit after series finale",
-     "url": "https://www.cbr.com/outer-banks-teen-drama-action-adventure-netflix-success-september-2026/"
+     "label": "AV Club — Nobody Wants This is still figuring things out in season 3 trailer",
+     "url": "https://www.avclub.com/nobody-wants-this-season-3-trailer"
     },
     {
-     "label": "Forbes — Outer Banks Season 5 sets an IMDb review record",
-     "url": "https://www.forbes.com/sites/paultassi/2026/08/21/netflixs-outer-banks-season-5-sets-an-imdb-review-score-record/"
+     "label": "The Viewer's Perspective — Nobody Wants This season 3 trailer is here ahead of its October return",
+     "url": "https://theviewersperspective.com/2026/09/24/nobody-wants-this-season-3-trailer-release-date/"
     }
    ],
-   "titleKey": "show:100757",
    "sourceConfidence": "corroborated"
   },
   {
    "rank": 11,
-   "title": "Lioness",
-   "platform": "Paramount+",
-   "tag": "ESTABLISHED",
-   "whyHere": "Season 3 wrapped its finale on September 20 and stayed on Nielsen's originals chart for a sixth consecutive week with 834 million minutes watched, and it's currently on JustWatch's weekly TV chart alongside Slow Horses and Lanterns.",
-   "whyWatch": "Zoe Saldaña, Nicole Kidman, and Morgan Freeman elevate a solid Taylor Sheridan espionage thriller.",
-   "vibe": "Female CIA operatives going undercover in the war on terror, Sheridan-style.",
-   "commitment": "3 seasons (24 episodes) | ~45-70 min episodes",
+   "title": "NCIS: New York",
+   "platform": "CBS / Paramount+",
+   "tag": "UNDER-THE-RADAR",
+   "titleKey": null,
+   "whyHere": "The new NCIS spinoff premiered Oct 6 with LL Cool J reprising his NCIS: Los Angeles role opposite Scott Caan, and a real 20-episode order from CBS — a genuine new broadcast launch this month that's flown under the radar of the streaming-native conversation.",
+   "whyWatch": "A reliable, well-cast procedural for anyone who wants NCIS's comfort-food case-of-the-week format in a new city.",
+   "vibe": "Familiar-badge procedural comfort food, now set in Manhattan.",
+   "commitment": "Season 1, 20-episode order (airing weekly Tuesdays) | ~45 min episodes",
    "sources": [
     {
-     "label": "Hollywood Reporter — Streaming Ratings Sept 7-13, 2026",
-     "url": "https://www.hollywoodreporter.com/tv/tv-news/streaming-ratings-sept-7-13-2026-1236709681/"
-    },
-    {
-     "label": "Media Play News — JustWatch weekly streaming charts through Sept. 27",
-     "url": "https://www.mediaplaynews.com/justwatch-hbo-maxs-backrooms-apple-tvs-slow-horses-topped-weekly-streaming-through-sept-27/"
+     "label": "TheWrap — NCIS: New York spinoff led by LL Cool J and Scott Caan greenlit at CBS for fall premiere",
+     "url": "https://www.thewrap.com/creative-content/tv-shows/ncis-new-york-spinoff-ll-cool-j-scott-caan-greenlight-cbs/"
     }
    ],
-   "titleKey": "show:113962",
-   "sourceConfidence": "corroborated"
-  },
-  {
-   "rank": 12,
-   "title": "Widow's Bay",
-   "platform": "Apple TV+",
-   "tag": "ESTABLISHED",
-   "whyHere": "Between seasons, but impossible to ignore: the supernatural comedy-horror swept the 2026 Emmys with a record 14 wins including Outstanding Comedy Series, announced September 14.",
-   "whyWatch": "A cursed New England island, a skeptical mayor, and the kind of genre-bending tone Apple does best.",
-   "vibe": "Small-town horror-comedy that just became the Emmys' new golden child.",
-   "commitment": "1 season (10 episodes, complete) | ~31-48 min episodes; Season 2 renewed",
-   "sources": [
-    {
-     "label": "Wikipedia — Widow's Bay, record 14 Emmy wins",
-     "url": "https://en.wikipedia.org/wiki/Widow%27s_Bay"
-    },
-    {
-     "label": "Deadline — DTF St. Louis caps limited series Emmy domination (Widow's Bay/Pitt reference)",
-     "url": "https://deadline.com/2026/09/dtf-st-louis-emmy-win-2026-limited-anthology-series-1237103013/"
-    }
-   ],
-   "titleKey": "show:270476",
-   "sourceConfidence": "corroborated"
-  },
-  {
-   "rank": 13,
-   "title": "Pluribus",
-   "platform": "Apple TV+",
-   "tag": "ESTABLISHED",
-   "whyHere": "Between seasons since its first-season finale, but very much in the conversation after Rhea Seehorn won Outstanding Lead Actress in a Drama and Vince Gilligan won his first individual Emmy for the show on September 14.",
-   "whyWatch": "Vince Gilligan's eerie, funny post-apocalyptic sci-fi is one of the smartest new shows of the year.",
-   "vibe": "The whole world becomes relentlessly happy, and one miserable woman has to save everyone from it.",
-   "commitment": "1 season (9 episodes, complete) | ~43-62 min episodes; renewed",
-   "sources": [
-    {
-     "label": "Hollywood Reporter — Emmy Awards complete winners list",
-     "url": "https://www.hollywoodreporter.com/lists/emmy-winners-2026-list/"
-    },
-    {
-     "label": "Yahoo — DTF St. Louis caps limited series Emmy domination (Gilligan Emmy reference)",
-     "url": "https://www.yahoo.com/entertainment/tv/articles/dtf-st-louis-caps-limited-023439098.html"
-    }
-   ],
-   "titleKey": "show:225171",
-   "sourceConfidence": "corroborated"
-  },
-  {
-   "rank": 14,
-   "title": "Task",
-   "platform": "HBO Max",
-   "tag": "ESTABLISHED",
-   "whyHere": "Between seasons with Season 2 still in production, but Tom Pelphrey's Emmy win for the show on September 14 kept it in the cultural conversation this month.",
-   "whyWatch": "Mark Ruffalo and Tom Pelphrey anchor a tense, blue-collar crime drama from the Mare of Easttown creator.",
-   "vibe": "An FBI task force and a family of robbers collide in Delco's underbelly.",
-   "commitment": "1 season (7 episodes, complete) | ~58-65 min episodes; Season 2 in production",
-   "sources": [
-    {
-     "label": "Hollywood Reporter — Emmy Awards complete winners list",
-     "url": "https://www.hollywoodreporter.com/lists/emmy-winners-2026-list/"
-    },
-    {
-     "label": "CBR — Task is a streaming hit ahead of Season 2",
-     "url": "https://www.cbr.com/mark-ruffalo-task-streaming-hit-february-2026/"
-    }
-   ],
-   "titleKey": "show:228305",
-   "sourceConfidence": "corroborated"
-  },
-  {
-   "rank": 15,
-   "title": "DTF St. Louis",
-   "platform": "HBO Max",
-   "tag": "ESTABLISHED",
-   "whyHere": "The dark comedy limited series capped a dominant Emmy run by winning Outstanding Limited or Anthology Series on September 14, ending Netflix's three-year hold on the category.",
-   "whyWatch": "Jason Bateman, David Harbour, and Linda Cardellini turn a suburban love triangle into the funniest, saddest show of the year.",
-   "vibe": "Midlife crises, marriage, and suburban secrets, dressed up as a comedy of manners.",
-   "commitment": "1 season (7 episodes, complete) | runtime varies",
-   "sources": [
-    {
-     "label": "IndieWire — DTF St. Louis wins 2026 Emmy for Best Limited Series",
-     "url": "https://www.indiewire.com/awards/results/dtf-st-louis-wins-emmy-best-limited-series-1235216849/"
-    },
-    {
-     "label": "Hollywood Reporter — DTF St. Louis wins Best Limited Series at 2026 Emmys",
-     "url": "https://www.hollywoodreporter.com/tv/tv-news/2026-emmy-limited-series-dtf-st-louis-1236699273/"
-    }
-   ],
-   "titleKey": "show:206828",
-   "sourceConfidence": "corroborated"
+   "sourceConfidence": "single-source"
   }
  ]
 }
