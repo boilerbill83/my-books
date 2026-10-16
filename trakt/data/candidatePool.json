@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-15T23:44:10Z",
-    "count": 511
+    "generatedAt": "2026-10-16T15:17:25Z",
+    "count": 512
   },
   "titles": [
     {
@@ -5326,6 +5326,16 @@
       "titleKey": "show:96677",
       "ids": {
         "tmdb": 96677
+      },
+      "title": null,
+      "year": null,
+      "source": "bill-manual"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1400837",
+      "ids": {
+        "tmdb": 1400837
       },
       "title": null,
       "year": null,
