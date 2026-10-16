@@ -1,5 +1,5 @@
 {
-  "note": "Bill's own curated list of movies to watch with his whole family — a separate category from the solo recommendation flow. Each entry's titleKey also exists in candidatePool.json (source: family-watch-list) so it gets real TMDB enrichment (poster/genre/overview) for free, and in feedbackData.json with excludeFromRecommendations so it never surfaces in the solo You'll Love panels or competes for a candidate-pool cap slot. releaseDate and streaming are real, hand-researched fields (via WebSearch against real outside sources, never guessed) — TMDB has no reliable field for either, especially forward-looking VOD/streaming dates, so this mirrors the same discipline trakt/data/upcomingSeasons.json already established for renewal status.",
+  "note": "Bill's own curated list of movies — and, since 2026-10-16, TV shows too (Bill: \"allow this to have TV shows too\") — to watch with his whole family, a separate category from the solo recommendation flow. Each entry's titleKey also exists in candidatePool.json (source: family-watch-list) so it gets real TMDB enrichment (poster/genre/overview) for free, and in feedbackData.json with excludeFromRecommendations so it never surfaces in the solo You'll Love panels or competes for a candidate-pool cap slot. A movie entry uses theatricalReleaseDate; a show entry (titleKey starts show:) uses premiereDate instead, since a show has no theatrical run — dashboardShared.js's renderFamilyWatchList() branches the display label (In theaters/Released vs Premieres/Premiered) on which one is present. streaming and both release-date fields are real, hand-researched fields (via WebSearch against real outside sources, never guessed) — TMDB has no reliable field for either, especially forward-looking VOD/streaming dates, so this mirrors the same discipline trakt/data/upcomingSeasons.json already established for renewal status.",
   "titles": [
     {
       "titleKey": "movie:1101412",
@@ -140,6 +140,55 @@
       "sources": [
         "https://www.digitaltrends.com/movies/barbarian-where-to-watch-streaming-guide/",
         "https://www.themoviedb.org/movie/913290-barbarian"
+      ]
+    },
+    {
+      "titleKey": "show:288673",
+      "title": "Carrie",
+      "year": 2026,
+      "addedAt": "2026-10-16T00:00:00Z",
+      "premiereDate": "2026-10-07",
+      "streaming": {
+        "status": "released",
+        "digitalRentBuy": null,
+        "physicalMedia": null,
+        "subscriptionStreaming": {
+          "platform": "Prime Video",
+          "date": "2026-10-07",
+          "confirmed": true,
+          "note": "Mike Flanagan's Prime Video Original adaptation of Stephen King's novel — all 8 episodes released at once on premiere day"
+        }
+      },
+      "sources": [
+        "https://www.themoviedb.org/tv/288673-carrie",
+        "https://showsnob.com/6-best-new-shows-stream-october-2026"
+      ]
+    },
+    {
+      "titleKey": "movie:1400837",
+      "title": "Other Mommy",
+      "year": 2026,
+      "addedAt": "2026-10-16T00:00:00Z",
+      "theatricalReleaseDate": "2026-10-09",
+      "streaming": {
+        "status": "in theaters",
+        "digitalRentBuy": {
+          "date": null,
+          "confirmed": false,
+          "note": "Not yet available on any digital platform as of mid-October 2026 — still a theatrical exclusive; a Prime Video PVOD window is projected for around November 2026, not yet confirmed"
+        },
+        "physicalMedia": null,
+        "subscriptionStreaming": {
+          "platform": "Peacock",
+          "date": "2026-11-23",
+          "confirmed": false,
+          "note": "Peacock is the most likely subscription-streaming home since this is a Universal release, but the exact date is unconfirmed and sources disagree (one estimate: ~Nov 23, 2026, followed by Netflix around March 2027; another: Peacock around February 2027) — treat any date before official confirmation with real skepticism"
+        }
+      },
+      "sources": [
+        "https://entertainmentnow.com/horror-movies-halloween/other-mommy-streaming-window-explained/",
+        "https://epicstream.com/article/where-to-watch-other-mommy",
+        "https://www.the-numbers.com/movie/Other-Mommy-%282026%29"
       ]
     }
   ],

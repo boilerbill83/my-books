@@ -1011,6 +1011,28 @@
       "reasonLabel": "Not a taste dismissal \u2014 added to Bill's separate Family Watch List (movies to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
       "timestamp": "2026-10-13T00:00:00Z",
       "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:288673",
+      "title": "Carrie",
+      "year": 2026,
+      "type": "show",
+      "interactionType": "category_exclude",
+      "reasonCode": "family_watch_list",
+      "reasonLabel": "Not a taste dismissal — added to Bill's separate Family Watch List (movies/shows to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
+      "timestamp": "2026-10-16T00:00:00Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "movie:1400837",
+      "title": "Other Mommy",
+      "year": 2026,
+      "type": "movie",
+      "interactionType": "category_exclude",
+      "reasonCode": "family_watch_list",
+      "reasonLabel": "Not a taste dismissal — added to Bill's separate Family Watch List (movies/shows to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
+      "timestamp": "2026-10-16T00:00:00Z",
+      "excludeFromRecommendations": true
     }
   ]
 }

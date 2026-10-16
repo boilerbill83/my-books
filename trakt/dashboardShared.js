@@ -1245,14 +1245,24 @@ function renderFamilyWatchList(familyWatchlist, enrichedMeta, elementId = 'famil
     const poster = posterUrl(t.titleKey, enrichedMeta, 'w342');
     const title = meta?.title || t.title;
     const year = meta?.year || t.year;
+    const isShow = t.titleKey?.startsWith('show:');
     const s = t.streaming || {};
     const rows = [];
-    if (t.theatricalReleaseDate) {
-      // "In theaters" only makes sense for an upcoming/current release —
-      // an already-released classic (e.g. Saw, 2004) needs "Released"
-      // instead, or the label reads as if it's still playing in cinemas.
-      const isUpcoming = new Date(t.theatricalReleaseDate + 'T00:00:00Z') > new Date();
-      rows.push(`<div class="tk-fwl-streaming-row"><span class="tk-fwl-streaming-label">${isUpcoming ? 'In theaters' : 'Released'}:</span> ${esc(fmtDate(t.theatricalReleaseDate))}</div>`);
+    // theatricalReleaseDate is movie-only (a show has no theatrical run);
+    // premiereDate is the show equivalent — same "In X / already happened"
+    // label split, just worded for a TV premiere instead of a cinema run
+    // (Bill, 2026-10-16: "allow this to have TV shows too").
+    const releaseDate = t.theatricalReleaseDate || t.premiereDate;
+    if (releaseDate) {
+      // "In theaters"/"Premieres" only make sense for an upcoming/current
+      // release — an already-released classic (e.g. Saw, 2004) needs
+      // "Released"/"Premiered" instead, or the label reads as if it's
+      // still playing in cinemas / hasn't aired yet.
+      const isUpcoming = new Date(releaseDate + 'T00:00:00Z') > new Date();
+      const label = isShow
+        ? (isUpcoming ? 'Premieres' : 'Premiered')
+        : (isUpcoming ? 'In theaters' : 'Released');
+      rows.push(`<div class="tk-fwl-streaming-row"><span class="tk-fwl-streaming-label">${label}:</span> ${esc(fmtDate(releaseDate))}</div>`);
     }
     if (s.digitalRentBuy) {
       const label = s.digitalRentBuy.date ? esc(fmtDate(s.digitalRentBuy.date)) : 'Already available';
@@ -1277,7 +1287,7 @@ function renderFamilyWatchList(familyWatchlist, enrichedMeta, elementId = 'famil
       <div class="tk-fwl-card">
         ${posterImgHtml(poster, 'tk-fwl-poster', 60, 90)}
         <div class="tk-fwl-body">
-          <div class="tk-fwl-title">${esc(title)}${year ? ` <span class="tk-hero-year">(${esc(year)})</span>` : ''}</div>
+          <div class="tk-fwl-title">${typeIcon(isShow ? 'show' : 'movie')} ${esc(title)}${year ? ` <span class="tk-hero-year">(${esc(year)})</span>` : ''}</div>
           ${meta?.genres?.length ? `<div class="tk-fwl-meta">${esc(meta.genres.slice(0, 2).join(', '))}</div>` : ''}
           <div class="tk-fwl-streaming">${rows.join('')}</div>
           ${notes.map(n => `<div class="tk-fwl-estimate">${esc(n)}</div>`).join('')}
