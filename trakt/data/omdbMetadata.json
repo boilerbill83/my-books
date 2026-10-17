@@ -39710,5 +39710,23 @@
   "director": null,
   "rated": "TV-MA",
   "fetchedAt": "2026-10-16"
+ },
+ "movie:1400837": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": "Rob Savage",
+  "rated": "R",
+  "fetchedAt": "2026-10-17"
  }
 }
