@@ -1,7 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-10-16T15:17:25Z",
-    "count": 512
+    "generatedAt": "2026-10-18T13:40:43.992Z",
+    "count": 492,
+    "capPerType": 200
   },
   "titles": [
     {
@@ -479,16 +480,6 @@
       "titleKey": "show:202097",
       "ids": {
         "tmdb": 202097
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 3
-    },
-    {
-      "type": "show",
-      "titleKey": "show:256711",
-      "ids": {
-        "tmdb": 256711
       },
       "title": null,
       "year": null,
@@ -1306,16 +1297,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:242054",
-      "ids": {
-        "tmdb": 242054
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
       "titleKey": "show:88989",
       "ids": {
         "tmdb": 88989
@@ -1680,7 +1661,7 @@
       "ids": {
         "tmdb": 1181678
       },
-      "title": "\u00bfQuieres ser mi hijo?",
+      "title": "¿Quieres ser mi hijo?",
       "year": 2023,
       "source": "genre-explore",
       "discoveredVia": "Comedy"
@@ -2909,16 +2890,6 @@
       "citedBy": 6
     },
     {
-      "type": "show",
-      "titleKey": "show:207411",
-      "ids": {
-        "tmdb": 207411
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 4
-    },
-    {
       "type": "movie",
       "titleKey": "movie:367412",
       "ids": {
@@ -3632,17 +3603,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:88329",
-      "ids": {
-        "tmdb": 88329
-      },
-      "title": "Hawkeye",
-      "year": 2021,
-      "source": "genre-explore",
-      "discoveredVia": "Action & Adventure"
-    },
-    {
-      "type": "show",
       "titleKey": "show:82452",
       "ids": {
         "tmdb": 82452
@@ -4220,16 +4180,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:240558",
-      "ids": {
-        "tmdb": 240558
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
       "titleKey": "show:285807",
       "ids": {
         "tmdb": 285807
@@ -4801,7 +4751,7 @@
       "ids": {
         "tmdb": 870028
       },
-      "title": "The Accountant\u00b2",
+      "title": "The Accountant²",
       "year": 2025,
       "source": "genre-explore",
       "discoveredVia": "Mystery"
@@ -4878,7 +4828,7 @@
       "ids": {
         "tmdb": 245913
       },
-      "title": "Pel\u00e9: Birth of a Legend",
+      "title": "Pelé: Birth of a Legend",
       "year": 2016,
       "source": "book-theme-explore",
       "discoveredVia": "book-theme:sports"
@@ -5036,28 +4986,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:1148365",
-      "ids": {
-        "tmdb": 1148365
-      },
-      "title": "Matchbox the Movie",
-      "year": 2026,
-      "source": "genre-explore",
-      "discoveredVia": "Comedy"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:765897",
-      "ids": {
-        "tmdb": 765897
-      },
-      "title": "The Unbreakable Boy",
-      "year": 2025,
-      "source": "genre-explore",
-      "discoveredVia": "Drama"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:1236045",
       "ids": {
         "tmdb": 1236045
@@ -5133,146 +5061,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:194741",
-      "ids": {
-        "tmdb": 194741
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:244243",
-      "ids": {
-        "tmdb": 244243
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:284605",
-      "ids": {
-        "tmdb": 284605
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:2093",
-      "ids": {
-        "tmdb": 2093
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:46381",
-      "ids": {
-        "tmdb": 46381
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:287450",
-      "ids": {
-        "tmdb": 287450
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:222026",
-      "ids": {
-        "tmdb": 222026
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:301498",
-      "ids": {
-        "tmdb": 301498
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:285970",
-      "ids": {
-        "tmdb": 285970
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:258742",
-      "ids": {
-        "tmdb": 258742
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:259200",
-      "ids": {
-        "tmdb": 259200
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:330540",
-      "ids": {
-        "tmdb": 330540
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:313172",
-      "ids": {
-        "tmdb": 313172
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:290193",
-      "ids": {
-        "tmdb": 290193
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
       "titleKey": "show:258165",
       "ids": {
         "tmdb": 258165
@@ -5302,36 +5090,6 @@
       "source": "bill-manual"
     },
     {
-      "type": "show",
-      "titleKey": "show:319800",
-      "ids": {
-        "tmdb": 319800
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:298505",
-      "ids": {
-        "tmdb": 298505
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:96677",
-      "ids": {
-        "tmdb": 96677
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
       "type": "movie",
       "titleKey": "movie:1400837",
       "ids": {
@@ -5340,6 +5098,49 @@
       "title": null,
       "year": null,
       "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:209332",
+      "ids": {
+        "tmdb": 209332
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 5
+    },
+    {
+      "type": "show",
+      "titleKey": "show:243360",
+      "ids": {
+        "tmdb": 243360
+      },
+      "title": "Ludwig",
+      "year": 2024,
+      "source": "genre-explore",
+      "discoveredVia": "Mystery"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:319888",
+      "ids": {
+        "tmdb": 319888
+      },
+      "title": "Eddie the Eagle",
+      "year": 2016,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:sports"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:49520",
+      "ids": {
+        "tmdb": 49520
+      },
+      "title": "The Change-Up",
+      "year": 2011,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:legal"
     }
   ]
 }
