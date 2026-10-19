@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-10-07T21:33:40.589Z",
-    "movieCount": 266,
-    "showCount": 397
+    "generatedAt": "2026-10-19T15:18:04.048Z",
+    "movieCount": 269,
+    "showCount": 398
   },
   "titles": [
     {
@@ -505,8 +505,8 @@
       "myRating": 4,
       "ratedAt": "2026-07-29T00:23:53.000Z",
       "plays": 92,
-      "airedEpisodes": 92,
-      "completionStatus": "caught-up",
+      "airedEpisodes": 94,
+      "completionStatus": "in-progress",
       "lastWatchedAt": "2026-04-23T00:52:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": true
@@ -860,7 +860,7 @@
       "myRating": 4,
       "ratedAt": "2026-08-13T13:30:48.000Z",
       "plays": 132,
-      "airedEpisodes": 138,
+      "airedEpisodes": 142,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2024-04-25T02:32:00.000Z",
       "favorite": false,
@@ -2971,7 +2971,7 @@
       "myRating": 9,
       "ratedAt": "2026-07-29T00:56:35.000Z",
       "plays": 9,
-      "airedEpisodes": 15,
+      "airedEpisodes": 17,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2024-06-26T03:02:00.000Z",
       "favorite": false,
@@ -3702,7 +3702,7 @@
       "myRating": 8,
       "ratedAt": "2026-05-21T00:00:00.000Z",
       "plays": 30,
-      "airedEpisodes": 50,
+      "airedEpisodes": 52,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -4267,6 +4267,27 @@
       "lastWatchedAt": "2026-01-22T09:30:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": true
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:550988",
+      "ids": {
+        "imdb": "tt6264654",
+        "plex": {
+          "guid": "5d777089ad5437001f824d31",
+          "slug": "free-guy"
+        },
+        "slug": "free-guy-2021",
+        "tmdb": 550988,
+        "trakt": 400704
+      },
+      "title": "Free Guy",
+      "year": 2021,
+      "myRating": 7,
+      "ratedAt": "2026-10-09T19:34:09.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2026-10-09T19:34:00.000Z",
+      "favorite": false
     },
     {
       "type": "show",
@@ -5875,7 +5896,7 @@
       "myRating": 9,
       "ratedAt": "2025-08-20T00:00:00.000Z",
       "plays": 177,
-      "airedEpisodes": 186,
+      "airedEpisodes": 187,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -6390,6 +6411,31 @@
     },
     {
       "type": "show",
+      "titleKey": "show:95350",
+      "ids": {
+        "imdb": "tt26545992",
+        "plex": {
+          "guid": "6475f4e274668225adb2c0e0",
+          "slug": "lanterns-1"
+        },
+        "slug": "lanterns",
+        "tmdb": 95350,
+        "tvdb": 376098,
+        "trakt": 157599
+      },
+      "title": "Lanterns",
+      "year": 2026,
+      "myRating": 8,
+      "ratedAt": "2026-10-09T15:03:49.000Z",
+      "plays": 8,
+      "airedEpisodes": 8,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-10-05T01:57:00.000Z",
+      "favorite": false,
+      "hasConfirmedWatchDate": true
+    },
+    {
+      "type": "show",
       "titleKey": "show:157732",
       "ids": {
         "imdb": "tt15399640",
@@ -6824,8 +6870,8 @@
       "myRating": 6,
       "ratedAt": "2026-03-11T00:00:00.000Z",
       "plays": 136,
-      "airedEpisodes": 136,
-      "completionStatus": "caught-up",
+      "airedEpisodes": 141,
+      "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": false
@@ -7530,7 +7576,7 @@
       "myRating": 10,
       "ratedAt": "2026-09-21T01:56:00.000Z",
       "plays": 10,
-      "airedEpisodes": 13,
+      "airedEpisodes": 15,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2025-06-01T07:55:00.000Z",
       "favorite": true,
@@ -9541,7 +9587,7 @@
       "myRating": 9,
       "ratedAt": "2026-10-01T21:08:36.000Z",
       "plays": 9,
-      "airedEpisodes": 11,
+      "airedEpisodes": 13,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2026-04-16T00:23:00.000Z",
       "favorite": false,
@@ -10038,7 +10084,7 @@
       "myRating": 8,
       "ratedAt": "2025-10-29T00:00:00.000Z",
       "plays": 30,
-      "airedEpisodes": 34,
+      "airedEpisodes": 35,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -10089,6 +10135,27 @@
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:107",
+      "ids": {
+        "imdb": "tt0208092",
+        "plex": {
+          "guid": "5d776824e6d55c002040ae62",
+          "slug": "snatch"
+        },
+        "slug": "snatch-2000",
+        "tmdb": 107,
+        "trakt": 76
+      },
+      "title": "Snatch",
+      "year": 2000,
+      "myRating": 9,
+      "ratedAt": "2026-10-15T15:10:28.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2026-10-15T15:10:00.000Z",
+      "favorite": false
     },
     {
       "type": "show",
@@ -11325,8 +11392,8 @@
       "myRating": 10,
       "ratedAt": "2026-07-29T00:18:45.000Z",
       "plays": 22,
-      "airedEpisodes": 22,
-      "completionStatus": "caught-up",
+      "airedEpisodes": 30,
+      "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": true,
       "hasConfirmedWatchDate": false
@@ -12495,8 +12562,8 @@
       "myRating": 9,
       "ratedAt": "2026-07-29T00:19:13.000Z",
       "plays": 8,
-      "airedEpisodes": 8,
-      "completionStatus": "caught-up",
+      "airedEpisodes": 10,
+      "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": false
@@ -12943,6 +13010,27 @@
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": false
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1082195",
+      "ids": {
+        "imdb": "tt26625693",
+        "plex": {
+          "guid": "63de9270b812591f32abf092",
+          "slug": "the-order-2024"
+        },
+        "slug": "the-order-2024",
+        "tmdb": 1082195,
+        "trakt": 869899
+      },
+      "title": "The Order",
+      "year": 2024,
+      "myRating": 4,
+      "ratedAt": "2026-10-09T15:04:06.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2026-10-09T15:04:00.000Z",
+      "favorite": false
     },
     {
       "type": "show",
@@ -14391,8 +14479,8 @@
       "myRating": 8,
       "ratedAt": "2025-11-23T00:00:00.000Z",
       "plays": 29,
-      "airedEpisodes": 29,
-      "completionStatus": "caught-up",
+      "airedEpisodes": 30,
+      "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": false

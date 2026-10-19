@@ -1,6 +1,31 @@
 [
   {
     "type": "show",
+    "titleKey": "show:125935",
+    "ids": {
+      "imdb": "tt14218830",
+      "plex": {
+        "guid": "60a69b7811abb9002d7adbb8",
+        "slug": "abbott-elementary"
+      },
+      "slug": "abbott-elementary",
+      "tmdb": 125935,
+      "tvdb": 402910,
+      "trakt": 180675
+    },
+    "title": "Abbott Elementary",
+    "year": 2021,
+    "myRating": 4,
+    "ratedAt": "2026-07-29T00:23:53.000Z",
+    "plays": 92,
+    "airedEpisodes": 94,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "2026-04-23T00:52:00.000Z",
+    "favorite": false,
+    "hasConfirmedWatchDate": true
+  },
+  {
+    "type": "show",
     "titleKey": "show:260458",
     "ids": {
       "imdb": "tt33049767",
@@ -43,7 +68,7 @@
     "myRating": 4,
     "ratedAt": "2026-08-13T13:30:48.000Z",
     "plays": 132,
-    "airedEpisodes": 138,
+    "airedEpisodes": 142,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2024-04-25T02:32:00.000Z",
     "favorite": false,
@@ -93,7 +118,7 @@
     "myRating": 9,
     "ratedAt": "2026-07-29T00:56:35.000Z",
     "plays": 9,
-    "airedEpisodes": 15,
+    "airedEpisodes": 17,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2024-06-26T03:02:00.000Z",
     "favorite": false,
@@ -118,7 +143,7 @@
     "myRating": 8,
     "ratedAt": "2026-05-21T00:00:00.000Z",
     "plays": 30,
-    "airedEpisodes": 50,
+    "airedEpisodes": 52,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -168,7 +193,32 @@
     "myRating": 9,
     "ratedAt": "2025-08-20T00:00:00.000Z",
     "plays": 177,
-    "airedEpisodes": 186,
+    "airedEpisodes": 187,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false,
+    "hasConfirmedWatchDate": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:99353",
+    "ids": {
+      "imdb": "tt11704040",
+      "plex": {
+        "guid": "5e4d2531ac7a780040af1e7f",
+        "slug": "love-is-blind-3"
+      },
+      "slug": "love-is-blind",
+      "tmdb": 99353,
+      "tvdb": 376459,
+      "trakt": 157822
+    },
+    "title": "Love is Blind",
+    "year": 2020,
+    "myRating": 6,
+    "ratedAt": "2026-03-11T00:00:00.000Z",
+    "plays": 136,
+    "airedEpisodes": 141,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -193,7 +243,7 @@
     "myRating": 10,
     "ratedAt": "2026-09-21T01:56:00.000Z",
     "plays": 10,
-    "airedEpisodes": 13,
+    "airedEpisodes": 15,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2025-06-01T07:55:00.000Z",
     "favorite": true,
@@ -218,7 +268,7 @@
     "myRating": 9,
     "ratedAt": "2026-10-01T21:08:36.000Z",
     "plays": 9,
-    "airedEpisodes": 11,
+    "airedEpisodes": 13,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2026-04-16T00:23:00.000Z",
     "favorite": false,
@@ -243,7 +293,7 @@
     "myRating": 8,
     "ratedAt": "2025-10-29T00:00:00.000Z",
     "plays": 30,
-    "airedEpisodes": 34,
+    "airedEpisodes": 35,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -276,6 +326,31 @@
   },
   {
     "type": "show",
+    "titleKey": "show:203857",
+    "ids": {
+      "imdb": "tt17491088",
+      "plex": {
+        "guid": "6274f781093e999f383e7197",
+        "slug": "the-diplomat-1"
+      },
+      "slug": "the-diplomat-2023",
+      "tmdb": 203857,
+      "tvdb": 415239,
+      "trakt": 196192
+    },
+    "title": "The Diplomat",
+    "year": 2023,
+    "myRating": 10,
+    "ratedAt": "2026-07-29T00:18:45.000Z",
+    "plays": 22,
+    "airedEpisodes": 30,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": true,
+    "hasConfirmedWatchDate": false
+  },
+  {
+    "type": "show",
     "titleKey": "show:236235",
     "ids": {
       "imdb": "tt13210838",
@@ -294,6 +369,31 @@
     "ratedAt": "2024-03-07T00:00:00.000Z",
     "plays": 8,
     "airedEpisodes": 16,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false,
+    "hasConfirmedWatchDate": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:273247",
+    "ids": {
+      "imdb": "tt31289994",
+      "plex": {
+        "guid": "6700d88decd8889ab8287d07",
+        "slug": "the-lowdown-2"
+      },
+      "slug": "the-lowdown-2025",
+      "tmdb": 273247,
+      "tvdb": 450085,
+      "trakt": 258223
+    },
+    "title": "The Lowdown",
+    "year": 2025,
+    "myRating": 9,
+    "ratedAt": "2026-07-29T00:19:13.000Z",
+    "plays": 8,
+    "airedEpisodes": 10,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -323,5 +423,30 @@
     "lastWatchedAt": "2025-09-04T10:33:00.000Z",
     "favorite": false,
     "hasConfirmedWatchDate": true
+  },
+  {
+    "type": "show",
+    "titleKey": "show:153312",
+    "ids": {
+      "imdb": "tt16358384",
+      "plex": {
+        "guid": "61af329023a999555e3ea541",
+        "slug": "tulsa-king"
+      },
+      "slug": "tulsa-king",
+      "tmdb": 153312,
+      "tvdb": 413215,
+      "trakt": 191758
+    },
+    "title": "Tulsa King",
+    "year": 2022,
+    "myRating": 8,
+    "ratedAt": "2025-11-23T00:00:00.000Z",
+    "plays": 29,
+    "airedEpisodes": 30,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false,
+    "hasConfirmedWatchDate": false
   }
 ]

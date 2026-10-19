@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-10-07T21:33:40.594Z",
+    "generatedAt": "2026-10-19T15:18:04.053Z",
     "count": 59
   },
   "titles": [
@@ -105,11 +105,11 @@
         "imdb": "tt33270224",
         "plex": {
           "guid": "681c423d43269f79fcab28d1",
-          "slug": null
+          "slug": "cupertino"
         },
         "slug": "cupertino",
         "tmdb": 303630,
-        "tvdb": null,
+        "tvdb": 463435,
         "trakt": 304435
       },
       "title": "Cupertino",
@@ -124,7 +124,7 @@
         "imdb": "tt23148340",
         "plex": {
           "guid": "63616445efa3d5c0e05fcd0a",
-          "slug": null
+          "slug": "crystal-lake-1"
         },
         "slug": "crystal-lake",
         "tmdb": 213562,
@@ -153,25 +153,6 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-08-21T15:27:10.000Z"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:95350",
-      "ids": {
-        "imdb": "tt26545992",
-        "plex": {
-          "guid": "6475f4e274668225adb2c0e0",
-          "slug": "lanterns-1"
-        },
-        "slug": "lanterns",
-        "tmdb": 95350,
-        "tvdb": 376098,
-        "trakt": 157599
-      },
-      "title": "Lanterns",
-      "year": 2026,
-      "watchlisted": true,
-      "watchlistedAt": "2026-08-11T00:07:34.000Z"
     },
     {
       "type": "movie",
@@ -1102,6 +1083,24 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-10-07T21:30:37.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:13809",
+      "ids": {
+        "imdb": "tt1032755",
+        "plex": {
+          "guid": "5d77683b8a7581001f12e27f",
+          "slug": "rocknrolla"
+        },
+        "slug": "rocknrolla-2008",
+        "tmdb": 13809,
+        "trakt": 8206
+      },
+      "title": "RocknRolla",
+      "year": 2008,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-15T15:11:42.000Z"
     }
   ]
 }
