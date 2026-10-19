@@ -38898,8 +38898,22 @@
   "fetchedAt": "2026-10-05"
  },
  "show:331641": {
-  "omdbError": "Incorrect IMDb ID.",
-  "checkedAt": "2026-10-05"
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 6.6,
+  "imdbVotes": 13,
+  "director": null,
+  "rated": null,
+  "fetchedAt": "2026-10-19"
  },
  "movie:1375441": {
   "rottenTomatoes": 95,
@@ -39728,5 +39742,149 @@
   "director": "Rob Savage",
   "rated": "R",
   "fetchedAt": "2026-10-17"
+ },
+ "movie:13809": {
+  "rottenTomatoes": 60,
+  "metacritic": 53,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 5,
+   "raw": "1 win & 5 nominations total"
+  },
+  "imdbRating": 7.2,
+  "imdbVotes": 277268,
+  "director": "Guy Ritchie",
+  "rated": "R",
+  "fetchedAt": "2026-10-19"
+ },
+ "movie:107": {
+  "rottenTomatoes": 74,
+  "metacritic": 55,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 4,
+   "totalNominations": 7,
+   "raw": "4 wins & 7 nominations total"
+  },
+  "imdbRating": 8.2,
+  "imdbVotes": 987575,
+  "director": "Guy Ritchie",
+  "rated": "R",
+  "fetchedAt": "2026-10-19"
+ },
+ "show:209332": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 20,
+   "totalNominations": 20,
+   "raw": "20 wins & 20 nominations total"
+  },
+  "imdbRating": 7.9,
+  "imdbVotes": 22993,
+  "director": null,
+  "rated": "TV-MA",
+  "fetchedAt": "2026-10-19"
+ },
+ "show:243360": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 6,
+   "totalNominations": 9,
+   "raw": "Nominated for 2 BAFTA Awards. 6 wins & 9 nominations total"
+  },
+  "imdbRating": 8.1,
+  "imdbVotes": 26176,
+  "director": null,
+  "rated": null,
+  "fetchedAt": "2026-10-19"
+ },
+ "movie:319888": {
+  "rottenTomatoes": 82,
+  "metacritic": 54,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 10,
+   "raw": "2 wins & 10 nominations total"
+  },
+  "imdbRating": 7.3,
+  "imdbVotes": 108747,
+  "director": "Dexter Fletcher",
+  "rated": "PG-13",
+  "fetchedAt": "2026-10-19"
+ },
+ "movie:49520": {
+  "rottenTomatoes": 26,
+  "metacritic": 39,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 1,
+   "raw": "1 nomination total"
+  },
+  "imdbRating": 6.3,
+  "imdbVotes": 207723,
+  "director": "David Dobkin",
+  "rated": "R",
+  "fetchedAt": "2026-10-19"
+ },
+ "show:285322": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 6.6,
+  "imdbVotes": 872,
+  "director": null,
+  "rated": "TV-MA",
+  "fetchedAt": "2026-10-19"
+ },
+ "show:335536": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": null,
+  "rated": null,
+  "fetchedAt": "2026-10-19"
  }
 }
