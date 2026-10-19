@@ -413,7 +413,10 @@ def load_titles():
     discovered candidates (trakt/scripts/discover_candidates.js) last —
     those are real TMDB ids but bare stubs with no title/year yet."""
     titles = []
-    for name in ('watchlist.json', 'library.json', 'candidatePool.json'):
+    # manualRatings.json: real ratings Bill gave in-app instead of via a Trakt
+    # export (mergeManualRatings() in engine.js folds them into library for
+    # scoring). Missing here, 44 of its 48 titles never got OMDb data.
+    for name in ('watchlist.json', 'library.json', 'manualRatings.json', 'candidatePool.json'):
         p = DATA_DIR / name
         if p.exists():
             titles += json.load(open(p)).get('titles', [])

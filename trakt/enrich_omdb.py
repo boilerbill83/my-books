@@ -276,7 +276,10 @@ def load_titles():
     enriched_path = DATA_DIR / 'enrichedMetadata.json'
     enriched = json.load(open(enriched_path)) if enriched_path.exists() else {}
     titles = []
-    for name in ('watchlist.json', 'library.json', 'candidatePool.json'):
+    # manualRatings.json: real ratings Bill gave in-app instead of via a Trakt
+    # export (mergeManualRatings() in engine.js folds them into library for
+    # scoring). Missing here, 44 of its 48 titles never got OMDb data.
+    for name in ('watchlist.json', 'library.json', 'manualRatings.json', 'candidatePool.json'):
         p = DATA_DIR / name
         if not p.exists():
             continue
