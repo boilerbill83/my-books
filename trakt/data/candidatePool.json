@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-10-18T13:40:43.992Z",
+    "generatedAt": "2026-10-19T15:18:05.417Z",
     "count": 492,
     "capPerType": 200
   },
@@ -580,16 +580,6 @@
       "titleKey": "movie:1433719",
       "ids": {
         "tmdb": 1433719
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:1082195",
-      "ids": {
-        "tmdb": 1082195
       },
       "title": null,
       "year": null,
@@ -4230,17 +4220,6 @@
       "year": 2011,
       "source": "genre-explore",
       "discoveredVia": "War"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:550988",
-      "ids": {
-        "tmdb": 550988
-      },
-      "title": "Free Guy",
-      "year": 2021,
-      "source": "genre-explore",
-      "discoveredVia": "Science Fiction"
     },
     {
       "type": "movie",

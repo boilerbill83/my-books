@@ -557750,5 +557750,127 @@
   "year": 2026,
   "type": "show",
   "fetchedAt": "2026-10-19"
+ },
+ "movie:13809": {
+  "genres": [
+   "Action",
+   "Crime",
+   "Thriller"
+  ],
+  "overview": "When a Russian mobster sets up a real estate scam that generates millions of pounds, various members of London's criminal underworld pursue their share of the fortune. Various shady characters, including Mr One-Two, Stella the accountant, and Johnny Quid, a druggie rock-star, try to claim their slice.",
+  "keywords": [
+   "drug dealer",
+   "london, england",
+   "gangster",
+   "gang leader",
+   "money",
+   "gang",
+   "duringcreditsstinger"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt1032755",
+  "voteAverage": 6.952,
+  "voteCount": 3460,
+  "popularity": 5.9093,
+  "posterPath": "/6mLXG2f7LBRpbZZgxsOFO5scgzd.jpg",
+  "similarToIds": [
+   272,
+   275,
+   379,
+   646,
+   650,
+   657,
+   658,
+   667,
+   668,
+   699,
+   707,
+   708,
+   714,
+   678,
+   768,
+   769,
+   682,
+   692,
+   793,
+   680
+  ],
+  "recommendedIds": [
+   9705,
+   13054,
+   4959,
+   241554,
+   8848,
+   10877,
+   342521,
+   974453,
+   1024627,
+   32678,
+   628847,
+   25006,
+   334527,
+   31932,
+   9275,
+   1146344,
+   668489,
+   1613,
+   79645,
+   1239193
+  ],
+  "productionCompanies": [
+   "StudioCanal",
+   "Dark Castle Entertainment",
+   "Toff Guy Films"
+  ],
+  "topCast": [
+   "Gerard Butler",
+   "Tom Wilkinson",
+   "Thandiwe Newton",
+   "Mark Strong",
+   "Idris Elba"
+  ],
+  "topCastDetail": [
+   {
+    "id": 17276,
+    "name": "Gerard Butler",
+    "gender": 2
+   },
+   {
+    "id": 207,
+    "name": "Tom Wilkinson",
+    "gender": 2
+   },
+   {
+    "id": 9030,
+    "name": "Thandiwe Newton",
+    "gender": 1
+   },
+   {
+    "id": 2983,
+    "name": "Mark Strong",
+    "gender": 2
+   },
+   {
+    "id": 17605,
+    "name": "Idris Elba",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2008-09-04",
+  "runtime": 114,
+  "director": "Guy Ritchie",
+  "directors": [
+   "Guy Ritchie"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Guy Ritchie",
+   "Susan Downey",
+   "Navid McIlhargey"
+  ],
+  "title": "RocknRolla",
+  "year": 2008,
+  "type": "movie",
+  "fetchedAt": "2026-10-19"
  }
 }
