@@ -19,7 +19,7 @@ import {
   airingBadge, renderHBarChart, computeGenreStats, displaySubgenre, SUBJECT_LABEL,
   ERA_LABEL, downloadCSV, metaLine, scoreTier, initCollapsibleCards, loadAllData,
   predictedVsActualRows, computeWatchStatusRows, computeCoWatchRows, buildWatchRow,
-  renderWatchCards, renderCoWatchCards, initCoWatchViewToggle,
+  renderWatchCards, renderCoWatchCards,
   renderWatchStatusTable, fmtDate, renderFamilyWatchList,
   computeFavoriteStars, renderImportFreshness,
 } from './dashboardShared.js';
@@ -993,16 +993,14 @@ async function load() {
 
   const coWatchRows = computeCoWatchRows(coWatchKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress);
   renderCoWatchCards('coWatchCards', coWatchRows, enrichedMeta, omdbMeta, llmTags, reviewedTags);
-  renderWatchStatusTable('coWatchTable', coWatchRows, 'Nothing tagged yet.', enrichedMeta);
-  initCoWatchViewToggle();
+  // Bill, 2026-10-19: "I dont want to toggle views anymore" — cards only.
   // Bill: "'What's Airing' show this as a table but still include the
   // cover image" — the card/table toggle this section used to have is
   // gone; it always renders as the table now (with a Cover column, via
   // renderWatchStatusTable()'s own enrichedMeta param), same as the
   // request's literal wording for this section specifically (co-watch,
   // just above, keeps its card view since Bill didn't ask to change it).
-  renderWatchStatusTable('airingStatusTable', airingRows,
-    'Nothing you\'re tracking or would love is currently mid-season or airing.', enrichedMeta);
+  renderAiringList('airingStatusList', airingRows, enrichedMeta);
 
   const enrichedCount = Object.keys(enrichedMeta).length;
   document.getElementById('genreSectionScopeNote').textContent =
@@ -1031,3 +1029,76 @@ load().catch(err => {
   document.getElementById('subtitleText').textContent = 'No export loaded yet.';
   console.error(err);
 });
+
+// Bill, 2026-10-19: the What's Airing table was "hard to read... what data
+// points can we remove? I dont want to toggle views anymore." Replaces the
+// 10-column sortable table with a scannable list, one row per show, sorted
+// by soonest next episode and split into "This week" / "Later". Dropped:
+// year, the separate Now Airing column (folded into the next-episode
+// line), Days Until Finale (folded into the finale line), Score, and Next
+// Season (only shown as a fallback when nothing is scheduled). ISO dates
+// become friendly ones ("Tue, Oct 20 · tomorrow").
+function shortDate(iso) {
+  if (!iso) return null;
+  return new Date(iso + 'T00:00:00Z').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' });
+}
+function relDays(d) {
+  if (d == null) return '';
+  if (d <= 0) return 'today';
+  if (d === 1) return 'tomorrow';
+  if (d < 7) return `in ${d} days`;
+  const w = Math.round(d / 7);
+  return d < 14 ? 'in 1 week' : `in ${w} weeks`;
+}
+function airingStatusLine(r) {
+  if (r.status === 'Watchlist') return 'On your watchlist';
+  if (r.status === 'Candidate') return 'Recommended for you';
+  const rating = r.myRating != null ? ` · ★${r.myRating}/10` : '';
+  return `You're watching${rating}`;
+}
+function renderAiringList(elementId, rows, enrichedMeta) {
+  const el = document.getElementById(elementId);
+  if (!rows.length) {
+    el.innerHTML = '<div class="tk-empty">Nothing you\'re tracking or would love is currently mid-season or airing.</div>';
+    return;
+  }
+  const sorted = [...rows].sort((a, b) =>
+    (a.daysUntilNextEpisode ?? 9999) - (b.daysUntilNextEpisode ?? 9999) ||
+    (a.daysUntilFinale ?? 9999) - (b.daysUntilFinale ?? 9999) ||
+    String(a.title).localeCompare(String(b.title)));
+  const rowHtml = r => {
+    const ready = r.episodesReady
+      ? `<span class="tk-air-ready">${r.episodesReady} ready</span>`
+      : '<span class="tk-air-ready tk-air-ready-none">Caught up</span>';
+    const isFinaleNext = r.nextEpisode != null && r.finaleEpisode != null && r.nextEpisode === r.finaleEpisode;
+    let next;
+    if (r.nextEpisodeDate) {
+      next = `<div class="tk-air-label">Next episode${r.season != null && r.nextEpisode != null ? ` · S${r.season}E${r.nextEpisode}` : ''}</div>
+        <div class="tk-air-value">${esc(shortDate(r.nextEpisodeDate))} <span class="tk-air-rel">${esc(relDays(r.daysUntilNextEpisode))}</span></div>`;
+    } else {
+      const up = r.upcoming?.shortWindow;
+      next = `<div class="tk-air-label">Next episode</div><div class="tk-air-value tk-air-muted">${esc(up || 'Not scheduled')}</div>`;
+    }
+    const finale = isFinaleNext
+      ? '<div class="tk-air-label">Season finale</div><div class="tk-air-value tk-air-finale">Next episode is the finale</div>'
+      : r.finaleDate
+        ? `<div class="tk-air-label">Season finale</div><div class="tk-air-value">${esc(shortDate(r.finaleDate))} <span class="tk-air-rel">${esc(relDays(r.daysUntilFinale))}</span></div>`
+        : '<div class="tk-air-label">Season finale</div><div class="tk-air-value tk-air-muted">Not announced</div>';
+    return `<div class="tk-air-row">
+      ${posterImgHtml(posterUrl(r.titleKey, enrichedMeta), 'tk-air-poster', 44, 66)}
+      <div class="tk-air-main">
+        <div class="tk-air-title">${titleLink(r)}</div>
+        <div class="tk-air-status">${esc(airingStatusLine(r))}${r.watchDateUnverified ? ' <span title="No confirmed watch date on record — worth a quick double-check.">⚠️</span>' : ''}</div>
+      </div>
+      <div class="tk-air-col tk-air-readycol">${ready}</div>
+      <div class="tk-air-col">${next}</div>
+      <div class="tk-air-col">${finale}</div>
+    </div>`;
+  };
+  const thisWeek = sorted.filter(r => r.daysUntilNextEpisode != null && r.daysUntilNextEpisode <= 7);
+  const later = sorted.filter(r => !thisWeek.includes(r));
+  const group = (title, list) => list.length
+    ? `<div class="tk-air-group"><div class="tk-cowatch-group-title">${esc(title)} (${list.length})</div>${list.map(rowHtml).join('')}</div>`
+    : '';
+  el.innerHTML = group('New episode this week', thisWeek) + group('Later', later);
+}

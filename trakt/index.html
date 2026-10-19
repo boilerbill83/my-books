@@ -268,7 +268,39 @@
          page's two-tier split uses. */
       .tk-cowatch-group { margin-bottom: 18px; }
       .tk-cowatch-group:last-child { margin-bottom: 0; }
+      /* Bill, 2026-10-19: "too much white space here" — each group is
+         usually a single short row of ~4-5 posters, so stacking them
+         left the right half of a full-width card empty. Lay the groups
+         side by side; auto-fit collapses to one full-width column when
+         only one group exists or the screen is too narrow for two. */
+      #coWatchCards:has(.tk-cowatch-group) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 620px), 1fr));
+        column-gap: 32px; row-gap: 18px; align-items: start;
+      }
+      #coWatchCards .tk-cowatch-group { margin-bottom: 0; min-width: 0; }
       .tk-cowatch-group-title { font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px; }
+      /* What's Airing list (Bill, 2026-10-19: table was hard to read). */
+      .tk-air-group + .tk-air-group { margin-top: 20px; }
+      .tk-air-row { display: grid; grid-template-columns: 44px minmax(0, 1.6fr) 100px minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: center; padding: 10px 0; border-top: 1px solid var(--border); }
+      .tk-air-poster { width: 44px; height: 66px; border-radius: 4px; object-fit: cover; }
+      .tk-air-title { font-weight: 600; font-size: 1rem; }
+      .tk-air-status { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
+      .tk-air-ready { display: inline-block; padding: 3px 10px; border-radius: 999px; background: color-mix(in srgb, #0ca30c 15%, transparent); color: #1d6b1d; font-size: 0.8rem; font-weight: 700; white-space: nowrap; }
+      .tk-air-ready-none { background: transparent; color: var(--text-muted); border: 1px solid var(--border); font-weight: 600; }
+      .tk-air-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); }
+      .tk-air-value { font-size: 0.92rem; font-weight: 600; }
+      .tk-air-rel { font-weight: 400; color: var(--text-muted); }
+      .tk-air-muted { font-weight: 400; color: var(--text-muted); }
+      .tk-air-finale { color: var(--accent); }
+      @media (max-width: 760px) {
+        .tk-air-row { grid-template-columns: 44px minmax(0, 1fr) auto; grid-template-areas: "p m r" "p n n" "p f f"; row-gap: 6px; }
+        .tk-air-row > .tk-air-poster { grid-area: p; align-self: start; }
+        .tk-air-row > .tk-air-main { grid-area: m; }
+        .tk-air-row > .tk-air-readycol { grid-area: r; }
+        .tk-air-row > .tk-air-col:nth-of-type(3) { grid-area: n; }
+        .tk-air-row > .tk-air-col:nth-of-type(4) { grid-area: f; }
+      }
     </style>
   </head>
   <body>
@@ -316,16 +348,14 @@
 
         <div class="tk-card" style="margin-bottom:24px;" id="coWatchSection">
           <div class="tk-card-heading">📺 <a href="./watch-together.html" class="tk-heading-link">Shows You Watch Together</a></div>
-          <div class="tk-card-note">Manually tagged — shows you only watch with your wife, kept out of the solo picks above and grouped here instead. This card view shows only what's actually airing or has an unwatched episode ready right now; switch to the table for the full tagged list and airing-schedule detail.</div>
-          <div class="tk-cowatch-toolbar"><button type="button" class="tk-btn" id="coWatchViewToggle">Show table view</button></div>
+          <div class="tk-card-note">Manually tagged — shows you only watch with your wife, kept out of the solo picks above and grouped here instead. Shows only what's airing or has an unwatched episode ready right now; the full tagged list lives on the Watch Together page.</div>
           <div id="coWatchCards"></div>
-          <div class="tk-table-wrap" id="coWatchTableWrap" hidden><table class="tk-table" id="coWatchTable"></table></div>
         </div>
 
         <div class="tk-card" style="margin-bottom: 24px;">
           <div class="tk-card-heading">📅 What's Airing &amp; When You Can Watch</div>
-          <div class="tk-card-note">Everything you're mid-season on, plus anything you'd love that's currently airing — episodes already waiting for you, the next episode date, the season finale date, and a countdown to it, all in one place. A show drops off this list the moment its season wraps and picks up in My Next Watch instead. Sort any column; defaults to the soonest next episode.</div>
-          <div class="tk-table-wrap"><table class="tk-table" id="airingStatusTable"></table></div>
+          <div class="tk-card-note">Shows you're mid-season on, plus airing shows you'd love, soonest next episode first. A show moves to My Next Watch once its season wraps.</div>
+          <div id="airingStatusList"></div>
         </div>
 
         <div class="tk-card" id="familyWatchCard" style="margin-bottom: 24px;">
