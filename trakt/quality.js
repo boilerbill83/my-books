@@ -4496,6 +4496,50 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
+  // Tested 2026-10-19 (Bill: "think deep about some more improvement
+  // ideas"), not shipped: the engine's worst misses were taste-dismissed
+  // shows scoring ~100 (Snowfall, Mr Inbetween, Insecure), so the obvious
+  // idea was a penalty for sitting near a dismissed title in TMDB's
+  // similar/recommended network. Live check says it would backfire.
+  {
+    const BOOKKEEPING = new Set(['already_watched', 'already_have_version_rated', 'family_watch_list', 'currently_watching_feature']);
+    const dismissedKeys = new Set((feedback?.interactions || [])
+      .filter(e => e.interactionType === 'dismiss' && e.excludeFromRecommendations && !BOOKKEEPING.has(e.reasonCode) && enrichedMeta[e.titleKey])
+      .map(e => e.titleKey));
+    const neighbors = k => {
+      const m = enrichedMeta[k] || {}, type = k.split(':')[0];
+      return [...(m.similarToIds || []), ...(m.recommendedIds || [])].map(id => `${type}:${id}`);
+    };
+    const incoming = {};
+    for (const k of Object.keys(enrichedMeta)) for (const n of neighbors(k)) (incoming[n] ||= []).push(k);
+    const buckets = { none: [], some: [] };
+    for (const t of (library?.titles || [])) {
+      if (!t.myRating || !enrichedMeta[t.titleKey]) continue;
+      const d = neighbors(t.titleKey).filter(n => dismissedKeys.has(n)).length + (incoming[t.titleKey] || []).filter(n => dismissedKeys.has(n)).length;
+      buckets[d >= 2 ? 'some' : 'none'].push(t.myRating);
+    }
+    const avg = a => a.length ? (a.reduce((s, v) => s + v, 0) / a.length).toFixed(2) : '—';
+    findings.push({
+      id: 'dismissed-neighbor-penalty-tested',
+      severity: 'good',
+      ratings: { ease: 7, dataQuality: 1, recEngine: 2, ui: 1 },
+      shortTitle: 'Dismissed-Neighbor Penalty: Tested, Would Backfire',
+      title: `Tested, not shipped: penalizing titles that sit near a dismissed title in TMDB's similar-title network — rated titles near 2+ dismissed ` +
+        `titles average ${avg(buckets.some)}/10, higher than the ${avg(buckets.none)}/10 for everything else`,
+      technical: `The engine's worst misses are taste-dismissed shows that score at the 100 cap (Snowfall, Mr Inbetween, Insecure, Seven Seconds), so ` +
+        `the natural idea was a penalty mirroring the forward/reverse similar-title bonus: count how many dismissed titles a candidate cites or is cited ` +
+        `by. Live check over ${fmtNum(dismissedKeys.size)} taste dismissals: rated titles with 2+ dismissed neighbors (n=${fmtNum(buckets.some.length)}) ` +
+        `average ${avg(buckets.some)}/10 vs. ${avg(buckets.none)}/10 for the rest (n=${fmtNum(buckets.none.length)}). Dismissals sit inside the same dense ` +
+        `crime-drama citation network Bill loves most, so the penalty would land hardest on his favorites. Also checked what separates dismissed titles ` +
+        `from loved ones: the clearest gap is IMDb vote count (dismissed median ~70k vs. loved ~287k), which <code>imdbVoteCountBonus()</code> already ` +
+        `scores. Most dismissal reasons (looks_low_budget, too_urban, too_boring) describe things TMDB metadata can't see.`,
+      plain: `I checked whether shows that are "near" ones you dismissed tend to be shows you dislike. They're the opposite: shows near your dismissals are ` +
+        `ones you rate higher than average, because you dismiss shows from the same neighborhood you love. A penalty would hurt your favorites, so it ` +
+        `wasn't built.`,
+      impact: `None shipped. Recorded so a future session doesn't rebuild and re-test the same idea.`,
+    });
+  }
+
   const order = { critical: 0, serious: 1, warning: 2, good: 3 };
   findings.sort((a, b) => order[a.severity] - order[b.severity]);
   return findings;

@@ -808,6 +808,21 @@
       "after": {
         "note": "precision@10 100%, precision@25 100% (a real gain), precision@50 96% (held), precision@100 90%, bottom-50 catch 29/50 \u2014 a genuine precision@25 win at a single-title cost each to two lower-priority, larger-n metrics, a favorable trade under this project's top-of-list-precision-first priority."
       }
+    },
+    {
+      "id": "manual-ratings-omdb-enrichment",
+      "date": "2026-10-19",
+      "session": "80",
+      "category": "data",
+      "outcome": "shipped",
+      "title": "In-app ratings now get OMDb data (IMDb rating, critic score, awards)",
+      "summary": "manualRatings.json (48 real ratings Bill gave in the app instead of via a Trakt export, e.g. Groundhog Day, Braveheart, Top Gun) was read by the engine but not by any enrichment script, so 44 of the 48 never got an OMDb record and scored with no IMDb rating, critic score, audience score or awards. Added it to enrich_omdb.py, enrich_tmdb.py, scrape_show_ratings.py and tag_llm.py's source lists and ran a real OMDb batch: 48 of 48 now enriched.",
+      "before": {
+        "note": "precision@10/25/50/100 100/100/96/89 (\"great match\", 8+/10); bottom-50 catch 27/50; raw MAE 16.38; 4 of 48 in-app ratings had OMDb data."
+      },
+      "after": {
+        "note": "precision@10/25/50/100 100/100/96/89 (held); bottom-50 catch 29/50; raw MAE 16.31; 48 of 48 in-app ratings have OMDb data."
+      }
     }
   ]
 }
