@@ -1033,6 +1033,28 @@
       "reasonLabel": "Not a taste dismissal — added to Bill's separate Family Watch List (movies/shows to watch with his whole family) instead of the solo You'll Love flow; excluded from recommendations/pruning so it stays a stable, curated pick rather than competing for a candidate-pool cap slot on unrelated personal-taste signals",
       "timestamp": "2026-10-16T00:00:00Z",
       "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:285322",
+      "title": "Below",
+      "year": 2026,
+      "type": "show",
+      "interactionType": "category_exclude",
+      "reasonCode": "streaming_top10_editorial",
+      "reasonLabel": "Not a taste dismissal \u2014 an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
+      "timestamp": "2026-10-19T00:00:00Z",
+      "excludeFromRecommendations": true
+    },
+    {
+      "titleKey": "show:335536",
+      "title": "TYSON",
+      "year": 2026,
+      "type": "show",
+      "interactionType": "category_exclude",
+      "reasonCode": "streaming_top10_editorial",
+      "reasonLabel": "Not a taste dismissal \u2014 an editorial pick on The Streaming Top 10 (trakt/streaming-top10.html), a general-audience \"what's happening on TV this week\" list, not a personal recommendation. Excluded so it never surfaces as a solo \"You'll Love\" pick now that it also has a candidatePool.json stub for real TMDB enrichment (poster/genre/score display on the Top 10 page).",
+      "timestamp": "2026-10-19T00:00:00Z",
+      "excludeFromRecommendations": true
     }
   ]
 }

@@ -1,389 +1,411 @@
 {
- "note": "Real, weekly editorial Top 10 (Bill, 2026-09-25: build a modern replacement for The Ringer's old Weekly Top 10). General-audience — NOT derived from Bill's own Trakt data or BMTRE's scoring engine, and not personalized to him (it happens to overlap with shows he watches since those are genuinely the biggest shows on TV right now too). Normally auto-refreshed weekly via trakt/refresh_streaming_top10.py (a real Claude + web-search API call) — but this refresh (Oct 15, 2026) was done manually, inside an interactive Claude Code session via its own ordinary WebSearch tool, after the Anthropic API account ran out of credits mid-session (a real, confirmed HTTP 400 \"credit balance too low\" error) and Bill asked for a way to refresh without spending API credits. Same methodology, same currency discipline, same TMDB-resolution rule (never guess an id — a title WebSearch couldn't confidently resolve to a TMDB id ships with titleKey: null rather than a guess) — just researched by hand this one time, with a smaller pool (11, not the usual 25) given the manual effort involved. Every show's own status/predicted score/genre tags on the page are separately computed live from Bill's real Trakt data and BMTRE — display only, they never affect this list's editorial ranking. Every entry requires genuine current-week evidence (a recent episode/premiere/news event, cited in whyHere) before qualifying — a show whose season already wrapped with nothing new happening is excluded outright rather than kept around on reputation alone (this is exactly the rule the prior stale Reacher-led list should have triggered once its own data went 17 days out of date — see CLAUDE.md's Streaming Top 10 reliability-fix entry for the root cause). The normal automated weekly refresh resumes once API credits are restored.",
+ "note": "Real, weekly editorial Top 10 (Bill, 2026-09-25: build a modern replacement for The Ringer's old Weekly Top 10). General-audience, NOT derived from Bill's own Trakt data or BMTRE's scoring engine. Refreshed Oct 19, 2026 inside an interactive Claude Code session using its own WebSearch tool, per the standing no-API-credits policy (CLAUDE.md, \"Streaming Top 10 — No-Cost Refresh\"). Sources: Netflix Tudum's weekly Top 10 (Oct 5-11), FlixPatrol daily charts (Oct 18), Nielsen (Sept 28-Oct 4), TelevisionStats attention scores, and entertainment-press schedule/review coverage. Every TMDB id is real (confirmed against themoviedb.org or the existing local cache), never guessed. Every entry needs current-week evidence (a premiere, new episode, finale, or real chart position this week); shows whose season wrapped with nothing new happening (e.g. Ted Lasso, Monster: The Lizzie Borden Story) were dropped. Each show's status/predicted score/genre tags on the page are computed live from Bill's Trakt data and BMTRE, for display only.",
  "methodology": "Scored on four weighted dimensions, per Bill's own detailed brief: Audience 30% (is anyone actually watching — Nielsen minutes, JustWatch rank), Current Momentum 25% (is interest rising right now, not just sustained), Cultural Buzz 25% (is it being talked about — reviews, awards, entertainment press, viral moments), Watchability/Editorial Relevance 20% (is it actually a good recommendation this week — accessible, well-reviewed, worth starting). The raw score is an internal ranking mechanism only, never shown. Every entry keeps real, cited sources in the underlying data even though the page itself doesn't display them.",
- "weekOf": "2026-10-15",
- "generatedAt": "2026-10-15T21:13:01.000Z",
+ "weekOf": "2026-10-19",
+ "generatedAt": "2026-10-19T00:00:00.000Z",
  "shows": [
   {
    "rank": 1,
-   "title": "East of Eden",
+   "title": "Below",
    "platform": "Netflix",
    "tag": "HOT",
-   "titleKey": "show:258165",
-   "whyHere": "Netflix's 7-episode Florence Pugh limited series (premiered Oct 1) took the #1 spot on the Global Top 10 English TV list in its opening week, with ~6.5 million views and a reported 200% jump in sales of Steinbeck's novel.",
-   "whyWatch": "Pugh's turn as the manipulative, magnetic Cathy Ames anchors a handsome, faithful adaptation that critics have praised (85-89% on Rotten Tomatoes).",
-   "vibe": "A sprawling, sun-scorched family tragedy with a viper at its center.",
-   "commitment": "1 season (7 episodes) | ~55-65 min episodes",
+   "titleKey": "show:285322",
+   "whyHere": "Netflix's Josh Hartnett sea-creature thriller premiered Oct 8 and was the #1 show on Netflix's global TV chart for Oct 5-11 with 17M views; FlixPatrol still had it at #1 worldwide on Oct 18.",
+   "whyWatch": "A tight, 6-episode creature mystery set in a Newfoundland fishing town, with Hartnett, Mackenzie Davis and Charlie Heaton. Easy to finish in a weekend.",
+   "vibe": "Jaws by way of a small-town family drama, in freezing North Atlantic water.",
+   "commitment": "1 season (6 episodes, limited series)",
    "sources": [
     {
-     "label": "What's on Netflix — East of Eden opening-week viewership analysis",
-     "url": "https://www.whats-on-netflix.com/news/east-of-eden-netflix-opening-weekend-views-analysis/"
+     "label": "What's on Netflix — Below and Animals top the Netflix Top 10s",
+     "url": "https://www.whats-on-netflix.com/news/top-10-reports/netflix-top-10s-josh-hartnetts-below-and-ben-afflecks-animals-top-the-charts/"
     },
     {
-     "label": "Netflix Junkie — East of Eden opens at 89% on Rotten Tomatoes",
-     "url": "https://www.netflixjunkie.com/netflix-news-netflixs-east-of-eden-starring-florence-pugh-opens-strong-at-eithy-nine-per-cent-on-rotten-tomatoes/"
+     "label": "TMDB — Below (2026)",
+     "url": "https://www.themoviedb.org/tv/285322-below"
     }
    ],
    "sourceConfidence": "corroborated"
   },
   {
    "rank": 2,
-   "title": "Love Is Blind: Boston",
+   "title": "The Diplomat",
    "platform": "Netflix",
    "tag": "HOT",
-   "titleKey": "show:99353",
-   "whyHere": "Season 11's first 5 episodes dropped Oct 14 (yesterday) — Netflix's reality-dating juggernaut is back with a Boston cast, always a huge opening-week draw for the platform.",
-   "whyWatch": "The same pods-to-altar format that's made every season a conversation piece, now with a new city's worth of drama.",
-   "vibe": "Strangers fall in love through a wall, then find out what that actually means.",
-   "commitment": "Season 11, 12 episodes total (5 out now) | ~45 min episodes",
+   "titleKey": "show:203857",
+   "whyHere": "Season 4 dropped all 8 episodes on Oct 15 and jumped straight to #2 on FlixPatrol's global Netflix TV chart by Oct 18.",
+   "whyWatch": "Critics are calling it the show's best season yet (Tom's Guide 4.5/5), with Allison Janney and Bradley Whitford pulled much further into the action.",
+   "vibe": "A marriage and a Western alliance coming apart at the same speed.",
+   "commitment": "Season 4 (8 episodes, all out) | ~50-60 min episodes",
    "sources": [
     {
-     "label": "Boston.com — Love Is Blind Boston season premiere coverage",
-     "url": "https://www.boston.com/culture/streaming/2026/10/02/new-movies-tv-streaming-october-2026"
+     "label": "TVLine — The Diplomat Season 4 premiere date",
+     "url": "https://tvline.com/2237550/the-diplomat-season-4-release-date-teaser-trailer-netflix/"
+    },
+    {
+     "label": "Tom's Guide — The Diplomat Season 4 review",
+     "url": "https://www.tomsguide.com/entertainment/netflix/the-diplomat-season-4-review-netflixs-best-drama-delivers-its-best-season-yet"
     }
    ],
-   "sourceConfidence": "single-source"
+   "sourceConfidence": "corroborated"
   },
   {
    "rank": 3,
-   "title": "Crystal Lake",
-   "platform": "Peacock",
-   "tag": "HOT",
-   "titleKey": "show:213562",
-   "whyHere": "All 8 episodes of this Friday the 13th prequel from A24 drop today, Oct 15 — early reviews (86% on Rotten Tomatoes from 28 critics) call it the franchise's best-reviewed entry yet.",
-   "whyWatch": "Linda Cardellini's Pamela Voorhees is drawing universal praise, and it's a fun, gory horror-event premiere rather than a serious prestige drama.",
-   "vibe": "Camp-counselor horror with real teeth and a killer leading-lady performance.",
-   "commitment": "1 season (8 episodes) | ~45-55 min episodes",
+   "title": "East of Eden",
+   "platform": "Netflix",
+   "tag": "ESTABLISHED",
+   "titleKey": "show:258165",
+   "whyHere": "Still #2 on Netflix's global TV chart for Oct 5-11 (12.6M views) in its second week, and #3 overall on Nielsen's streaming chart for Sept 28-Oct 4 with 782M minutes.",
+   "whyWatch": "Florence Pugh's Cathy Ames anchors a handsome, faithful Steinbeck adaptation that critics have praised. It's 7 episodes, so it's still easy to catch up.",
+   "vibe": "A sprawling, sun-scorched family tragedy with a viper at its center.",
+   "commitment": "1 season (7 episodes, limited series) | ~55-65 min episodes",
    "sources": [
     {
-     "label": "Dread Central — All 8 episodes of Crystal Lake premiere Oct 15 on Peacock",
-     "url": "https://www.dreadcentral.com/streaming-home-video/580392/all-8-episodes-of-crystal-lake-premiere-october-15-on-peacock/"
+     "label": "Netflix Tudum — Top 10 TV",
+     "url": "https://www.netflix.com/tudum/top10/tv"
     },
     {
-     "label": "ComicBookMovie — Crystal Lake's Rotten Tomatoes score is the franchise's best",
-     "url": "https://comicbookmovie.com/horror/crystal-lake-rotten-tomatoes-score-gives-friday-the-13th-prequel-series-the-highest-rating-of-the-franchise-a230393"
+     "label": "The Hollywood Reporter — streaming charts",
+     "url": "https://www.hollywoodreporter.com/h/charts/"
     }
    ],
    "sourceConfidence": "corroborated"
   },
   {
    "rank": 4,
-   "title": "VisionQuest",
-   "platform": "Disney+",
-   "tag": "BUZZY",
-   "titleKey": "show:213375",
-   "whyHere": "Marvel's closing chapter of the WandaVision trilogy premiered Oct 14 with Paul Bettany and James Spader both back — a genuine MCU TV event generating heavy conversation this week, reviews split between \"one of Marvel's best shows\" and \"overstuffed.\"",
-   "whyWatch": "Bettany and Spader's performances are drawing near-universal praise even from critics who found the season bloated elsewhere.",
-   "vibe": "A synthezoid identity crisis wrapped in eight different film-genre homages.",
-   "commitment": "1 season (8 episodes) | ~40-50 min episodes",
+   "title": "The Terminal List",
+   "platform": "Prime Video",
+   "tag": "RISING",
+   "titleKey": "show:120911",
+   "whyHere": "Season 2 drops all 8 episodes on Wednesday, Oct 21, adapting Jack Carr's second novel, True Believer.",
+   "whyWatch": "Chris Pratt's James Reece returns grieving and on the run toward Mozambique. If you liked Season 1's revenge-thriller pace, this is the same engine.",
+   "vibe": "A Navy SEAL with nothing left to lose and a very long list.",
+   "commitment": "Season 2 (8 episodes, all Oct 21)",
    "sources": [
     {
-     "label": "TheWrap — VisionQuest first reactions: \"one of Marvel's best shows\"",
-     "url": "https://www.thewrap.com/creative-content/tv-shows/visionquest-reactions-one-of-marvels-best-shows/"
+     "label": "Official Jack Carr — Prime Video announces Season 2 premiere date",
+     "url": "https://www.officialjackcarr.com/prime-video-announces-premiere-date-for-the-terminal-list-season-two-starring-chris-pratt/"
     },
     {
-     "label": "ComicBookMovie — VisionQuest Rotten Tomatoes score revealed",
-     "url": "https://comicbookmovie.com/tv/marvel/vision/visionquest-rotten-tomatoes-score-revealed-as-first-reviews-for-latest-mcu-series-land-a230375"
+     "label": "CarterMatt — Terminal List Season 2 premiere date",
+     "url": "https://cartermatt.com/722511/the-terminal-list-season-2-premiere-date-revealed-at-prime-video/"
     }
    ],
    "sourceConfidence": "corroborated"
   },
   {
    "rank": 5,
-   "title": "War",
-   "platform": "HBO Max",
-   "tag": "RISING",
-   "titleKey": "show:298852",
-   "whyHere": "HBO's new 8-episode legal-drama anthology (Dominic West, Sienna Miller) premiered Oct 1 and, per German trade coverage, climbed rapidly to the top of the worldwide streaming charts; mostly positive reviews, particularly in the British press.",
-   "whyWatch": "A high-stakes celebrity-divorce legal battle between two rival London firms, anchored by two strong lead performances.",
-   "vibe": "A messy, glamorous divorce fought in the courtroom instead of the tabloids.",
-   "commitment": "1 season (8 episodes) | ~55-60 min episodes",
+   "title": "Slow Horses",
+   "platform": "Apple TV",
+   "tag": "BUZZY",
+   "titleKey": "show:95480",
+   "whyHere": "The Season 6 finale, \"Judgement Day,\" lands Oct 21 (early in North America on the evening of Oct 20). Slow Horses also sat near the top of Apple TV's chart on FlixPatrol Oct 18.",
+   "whyWatch": "Still one of the best-reviewed spy shows on TV. With the finale out, the full season is ready to binge, and Season 7 is already renewed.",
+   "vibe": "Gary Oldman's MI5 rejects keep accidentally saving the day.",
+   "commitment": "Season 6 (6 episodes, finale Oct 21) | ~45 min episodes",
    "sources": [
     {
-     "label": "TheWrap — War review: Sienna Miller and Dominic West excel in intricate HBO legal drama",
-     "url": "https://www.thewrap.com/creative-content/tv-shows/war-hbo-sky-review-sienna-miller-dominic-west/"
+     "label": "Meaww — Slow Horses Season 6 release schedule",
+     "url": "https://meaww.com/when-does-slow-horses-season-6-come-out-release-date-episode-schedule-apple-tv-time-gary-oldman-kristin-scott-thomas-jack-lowden"
     },
     {
-     "label": "ComicBasics — War divorce drama wins over many critics, but not everyone",
-     "url": "https://www.comicbasics.com/?p=194558"
+     "label": "Boston Globe — Slow Horses Season 6",
+     "url": "https://www.bostonglobe.com/2026/10/06/arts/slow-horses-season-6/"
     }
    ],
    "sourceConfidence": "corroborated"
   },
   {
    "rank": 6,
-   "title": "Carrie",
-   "platform": "Prime Video",
+   "title": "VisionQuest",
+   "platform": "Disney+",
    "tag": "BUZZY",
-   "titleKey": "show:288673",
-   "whyHere": "Mike Flanagan's 8-episode Stephen King adaptation premiered Oct 7, all at once — real, dated reviews landed this week (85% on Rotten Tomatoes from 39 reviews), with newcomer Summer H. Howell singled out for a star-making performance.",
-   "whyWatch": "Flanagan's modernized, Gen-Z-set take on the classic premise, praised for its timeliness even where critics found it less scary than hoped.",
-   "vibe": "Teenage cruelty with real, bloody consequences, updated for today's high school.",
-   "commitment": "1 season (8 episodes) | ~50-55 min episodes",
+   "titleKey": "show:213375",
+   "whyHere": "Marvel's VisionQuest premiered Oct 13 with two episodes and ranked #1 on TelevisionStats' attention score on Oct 15. Episodes 3-4 arrive Oct 20.",
+   "whyWatch": "The direct follow-up to WandaVision's Vision story, rolling out in pairs. A good time to join while it's still early.",
+   "vibe": "A synthezoid looks for the parts of himself he lost.",
+   "commitment": "Season 1, 8 episodes (2 out, eps 3-4 on Oct 20, finale Nov 10)",
    "sources": [
     {
-     "label": "ComicBookMovie — Carrie first reviews: critics praise \"daring\" reboot",
-     "url": "https://comicbookmovie.com/horror/carrie-first-reviews-critics-praise-daring-reboot-as-rotten-tomatoes-score-is-revealed-a230178"
+     "label": "TheWrap — VisionQuest release schedule",
+     "url": "https://www.thewrap.com/creative-content/what-to-watch/visionquest-release-schedule-when-do-new-episodes-come-out/"
+    },
+    {
+     "label": "TelevisionStats — most popular TV shows",
+     "url": "https://televisionstats.com/top"
     }
    ],
-   "sourceConfidence": "single-source"
+   "sourceConfidence": "corroborated"
   },
   {
    "rank": 7,
-   "title": "Slow Horses",
-   "platform": "Apple TV+",
-   "tag": "ESTABLISHED",
-   "titleKey": "show:95480",
-   "whyHere": "Season 6 has been airing weekly since Sept 16 (through Oct 21) — Gary Oldman's spy-thriller has already been renewed for a 7th season, with an 8th reportedly in the works, the kind of durable prestige performer that stays relevant between its own splashiest moments.",
-   "whyWatch": "Consistently one of the best-reviewed shows on TV — dry, cynical spycraft with a note-perfect ensemble.",
-   "vibe": "Spies nobody wants, doing the job nobody else will.",
-   "commitment": "Season 6, 6 episodes (airing weekly) | ~50 min episodes",
+   "title": "Crystal Lake",
+   "platform": "Peacock",
+   "tag": "BUZZY",
+   "titleKey": "show:213562",
+   "whyHere": "The A24 Friday the 13th prequel series dropped its full season on Peacock this week, with 86% on Rotten Tomatoes (the franchise's best score ever), and ranked #2 on TelevisionStats' attention chart.",
+   "whyWatch": "Linda Cardellini gets near-universal praise as Pamela Voorhees. Critics call it a fun, gory franchise entry rather than a prestige reinvention.",
+   "vibe": "Summer camp, a grieving mother, and a body count. Just in time for Halloween.",
+   "commitment": "Season 1 (8 episodes, all out)",
    "sources": [
     {
-     "label": "9to5mac — Apple announces Slow Horses season 6 release date and first look",
-     "url": "https://9to5mac.com/2026/06/11/apple-announces-slow-horses-season-6-release-date-and-first-look/"
+     "label": "Dark Horizons — Crystal Lake reviews are in",
+     "url": "https://www.darkhorizons.com/the-crystal-lake-series-reviews-are-in/"
+    },
+    {
+     "label": "ComicBookMovie — Crystal Lake Rotten Tomatoes score",
+     "url": "https://comicbookmovie.com/horror/crystal-lake-rotten-tomatoes-gives-friday-the-13th-prequel-series-the-highest-rating-of-the-franchise-a230393"
     }
    ],
-   "sourceConfidence": "single-source"
+   "sourceConfidence": "corroborated"
   },
   {
    "rank": 8,
-   "title": "MobLand",
-   "platform": "Paramount+",
-   "tag": "RISING",
-   "titleKey": "show:247718",
-   "whyHere": "Season 2 has been dropping weekly since Sept 18 (new episode most Fridays) with Tom Hardy, Pierce Brosnan, and Helen Mirren all back — real recent news too, with trade coverage this fall of a Hardy-related \"kerfuffle\" ahead of the premiere that kept the show in the conversation.",
-   "whyWatch": "A starry, brutal crime drama that's become one of Paramount+'s biggest real draws.",
-   "vibe": "Family-business crime, London-gangster flavor, A-list cast.",
-   "commitment": "Season 2, 10 episodes (airing weekly) | ~50-55 min episodes",
+   "title": "Carrie",
+   "platform": "Prime Video",
+   "tag": "HOT",
+   "titleKey": "show:288673",
+   "whyHere": "Mike Flanagan's 8-episode Carrie (all out since Oct 7) was the #1 show on Prime Video's US TV chart on FlixPatrol Oct 18.",
+   "whyWatch": "Critics mostly praise it (85% RT at launch), especially Summer H. Howell's lead performance, though some reviewers say the ending doesn't fully land.",
+   "vibe": "Stephen King's prom-night nightmare, retold for Gen Z.",
+   "commitment": "1 season (8 episodes, all out)",
    "sources": [
     {
-     "label": "TheWrap — MobLand Season 2 locks Paramount+ premiere date amid Tom Hardy kerfuffle",
-     "url": "https://www.thewrap.com/creative-content/tv-shows/mobland-season-2-premiere-date/"
+     "label": "ComicBookMovie — Carrie first reviews",
+     "url": "https://comicbookmovie.com/horror/carrie-first-reviews-critics-praise-daring-reboot-as-rotten-tomatoes-score-is-revealed-a230178"
+    },
+    {
+     "label": "Gizmodo — Carrie review",
+     "url": "https://gizmodo.com/carrie-has-power-but-doesnt-quite-stick-the-landing-2000819035"
     }
    ],
-   "sourceConfidence": "single-source"
+   "sourceConfidence": "corroborated"
   },
   {
    "rank": 9,
-   "title": "American Horror Story: 13",
-   "platform": "FX / Hulu",
-   "tag": "BUZZY",
-   "titleKey": "show:1413",
-   "whyHere": "The franchise's 13th season just started airing, with Jessica Lange and the returning Coven cast — real, dated reception split hard this week: critics have outscored audiences for 11 straight seasons, but the gap (per a Rotten Tomatoes audience score of 39% as of Oct 12) is unusually wide this time, keeping the show a genuine topic of conversation either way.",
-   "whyWatch": "A nostalgia-heavy victory lap for longtime fans of the franchise's crossovers — divisive, but very much a reason people are talking this week.",
-   "vibe": "Camp horror anthology eating its own tail for its 13th go-round.",
-   "commitment": "Season 13, 13 episodes | ~45 min episodes",
+   "title": "Nobody Wants This",
+   "platform": "Netflix",
+   "tag": "RISING",
+   "titleKey": "show:250923",
+   "whyHere": "Season 3 premieres Oct 22. Netflix confirmed the date with first-look photos, almost exactly a year after Season 2.",
+   "whyWatch": "Kristen Bell and Adam Brody's rom-com moves into its \"after\" phase: Joanne and Noah moving in together. It's the easiest comfort watch of the week.",
+   "vibe": "A podcaster and a rabbi try to make it work, now under one roof.",
+   "commitment": "Season 3 (premieres Oct 22) | ~30 min episodes",
    "sources": [
     {
-     "label": "Dread Central — American Horror Story: 13 review",
-     "url": "https://www.dreadcentral.com/reviews/590052/american-horror-story-13-review-kills-camp-cathartic-cameos-kick-off-a-bloody-new-chapter/"
+     "label": "Variety AU — Nobody Wants This Season 3 release date",
+     "url": "https://au.variety.com/2026/tv/news/nobody-wants-this-season-3-release-date-40171/"
     },
     {
-     "label": "Cinefilos — AHS 13 critic/audience Rotten Tomatoes scores diverge sharply",
-     "url": "https://cinefilos.it/serie-tv/news/american-horror-story-13-rotten-tomatoes-critica-pubblico-723825"
+     "label": "TVLine — Nobody Wants This Season 3",
+     "url": "https://www.tvline.com/2017384/nobody-wants-this-season-3-everything-we-know/"
     }
    ],
    "sourceConfidence": "corroborated"
   },
   {
    "rank": 10,
-   "title": "Nobody Wants This",
-   "platform": "Netflix",
+   "title": "Tulsa King",
+   "platform": "Paramount+",
    "tag": "RISING",
-   "titleKey": "show:250923",
-   "whyHere": "Season 3's trailer dropped in the past few weeks ahead of an Oct 22 premiere (one week out) — real, dated fan buzz this week around Joanne and Noah moving in together, with Netflix's own rom-com hit returning to a calmer, more stable season per early trailer reads.",
-   "whyWatch": "The rare rom-com that's actually funny and actually romantic, with real chemistry between its leads.",
-   "vibe": "A rabbi and a podcaster figure out how to actually live together.",
-   "commitment": "Season 3 premieres Oct 22, 10 episodes | ~30 min episodes",
+   "titleKey": "show:153312",
+   "whyHere": "Season 4 premiered Oct 16, with new episodes every Friday, and Tulsa King sat near the top of Paramount+'s US chart on FlixPatrol Oct 18.",
+   "whyWatch": "Stallone's Dwight Manfredi tries to go legit with Terence Winter as head writer. Season 5 is already filming, so this one keeps going.",
+   "vibe": "An aging mobster builds an empire in the one place nobody expected: Oklahoma.",
+   "commitment": "Season 4 (weekly Fridays from Oct 16) | ~50 min episodes",
    "sources": [
     {
-     "label": "AV Club — Nobody Wants This is still figuring things out in season 3 trailer",
-     "url": "https://www.avclub.com/nobody-wants-this-season-3-trailer"
+     "label": "Advanced Television — Tulsa King Season 4 premieres on Paramount+ this October",
+     "url": "https://www.advanced-television.com/2026/09/02/tulsa-king-season-4-premires-on-paramount-this-october/"
     },
     {
-     "label": "The Viewer's Perspective — Nobody Wants This season 3 trailer is here ahead of its October return",
-     "url": "https://theviewersperspective.com/2026/09/24/nobody-wants-this-season-3-trailer-release-date/"
+     "label": "The Review Geek — Tulsa King Season 4 episode guide",
+     "url": "https://www.thereviewgeek.com/tulsaking-s4episodeguide/"
     }
    ],
    "sourceConfidence": "corroborated"
   },
   {
    "rank": 11,
-   "title": "NCIS: New York",
-   "platform": "CBS / Paramount+",
-   "tag": "UNDER-THE-RADAR",
-   "titleKey": "show:319800",
-   "whyHere": "The new NCIS spinoff premiered Oct 6 with LL Cool J reprising his NCIS: Los Angeles role opposite Scott Caan, and a real 20-episode order from CBS — a genuine new broadcast launch this month that's flown under the radar of the streaming-native conversation.",
-   "whyWatch": "A reliable, well-cast procedural for anyone who wants NCIS's comfort-food case-of-the-week format in a new city.",
-   "vibe": "Familiar-badge procedural comfort food, now set in Manhattan.",
-   "commitment": "Season 1, 20-episode order (airing weekly Tuesdays) | ~45 min episodes",
+   "title": "Love Is Blind: Boston",
+   "platform": "Netflix",
+   "tag": "HOT",
+   "titleKey": "show:99353",
+   "whyHere": "The Boston season (Season 11) premiered Oct 14 with Nick and Vanessa Lachey hosting.",
+   "whyWatch": "Netflix's flagship dating show in a new city. It's the reality pick that will be all over social feeds for the next few weeks.",
+   "vibe": "Engaged before they've seen each other, with Boston accents.",
+   "commitment": "Season 11 (rolling batches from Oct 14)",
    "sources": [
     {
-     "label": "TheWrap — NCIS: New York spinoff led by LL Cool J and Scott Caan greenlit at CBS for fall premiere",
-     "url": "https://www.thewrap.com/creative-content/tv-shows/ncis-new-york-spinoff-ll-cool-j-scott-caan-greenlight-cbs/"
+     "label": "NBC Boston — Netflix announces release date for Boston Love Is Blind season",
+     "url": "https://www.nbcboston.com/news/local/netflix-announces-release-date-for-boston-love-is-blind-season/4019530/"
     }
    ],
    "sourceConfidence": "single-source"
   },
   {
    "rank": 12,
-   "title": "Dexter: Resurrection",
-   "platform": "Paramount+",
-   "tag": "RISING",
-   "titleKey": "show:259909",
-   "whyHere": "Season 2 of the Dexter revival just got its Halloween premiere date confirmed (Oct 30) with a new teaser, picking up 3 years later with Harrison (21 now) working with the NYPD alongside two new serial killers played by Dan Stevens and Brian Cox.",
-   "whyWatch": "Michael C. Hall returns as Dexter opposite a genuinely stacked new cast, with episodes rolling out weekly through December.",
-   "vibe": "A serial killer's son grows up, and dad's old habits are still very much alive.",
-   "commitment": "Season 2, weekly episodes starting Oct 30 | ~50 min episodes",
+   "title": "TYSON",
+   "platform": "Netflix",
+   "tag": "BUZZY",
+   "titleKey": "show:335536",
+   "whyHere": "Netflix's four-part Mike Tyson docuseries premiered Oct 13 and was in Netflix's global top 10 TV chart on FlixPatrol Oct 18.",
+   "whyWatch": "Directed by Floyd Russ with Bill Simmons among the executive producers, it covers Brooklyn, the title run, prison, the money and the 2024 Jake Paul fight. It's 4 hours total.",
+   "vibe": "The youngest heavyweight champ ever tells it himself.",
+   "commitment": "1 season (4 episodes, ~60 min each)",
    "sources": [
     {
-     "label": "Variety AU — Dexter: Resurrection Season 2 premiere date",
-     "url": "https://au.variety.com/2026/tv/news/dexter-resurrection-season-2-release-date-40072/"
+     "label": "What's on Netflix — TYSON docuseries release date",
+     "url": "https://www.whats-on-netflix.com/news/mike-tyson-docuseries-release-date-netflix/"
+    },
+    {
+     "label": "Variety AU — Tyson trailer",
+     "url": "https://au.variety.com/2026/tv/news/mike-tyson-trailer-netflix-docuseries-40463/"
     }
    ],
-   "sourceConfidence": "single-source"
+   "sourceConfidence": "corroborated"
   },
   {
    "rank": 13,
-   "title": "The Lowdown",
-   "platform": "FX / Hulu",
-   "tag": "BUZZY",
-   "titleKey": "show:273247",
-   "whyHere": "Season 2 premiered Oct 14 (yesterday) with Tommy Lee Jones and Betty Gilpin joining Ethan Hawke — FX dropped two episodes on premiere night, with new ones every Wednesday through Nov 25.",
-   "whyWatch": "Sterlin Harjo's Tulsa-set journalist-noir already won real acclaim in Season 1; the new cast additions (an Oscar winner, a 4-time Emmy nominee) have real momentum behind them this week.",
-   "vibe": "A scruffy citizen-journalist digs where Tulsa's power brokers would rather he didn't.",
-   "commitment": "Season 2, 8 episodes (2 out now) | ~55 min episodes",
+   "title": "Lupin",
+   "platform": "Netflix",
+   "tag": "RISING",
+   "titleKey": "show:96677",
+   "whyHere": "Part 4 premieres Oct 23 after a three-year gap, with 8 new episodes.",
+   "whyWatch": "Omar Sy's gentleman thief returns, now out in the open after surrendering at the end of Part 3. It was one of Netflix's biggest non-English hits.",
+   "vibe": "A heist caper with a lot of heart and a Paris backdrop.",
+   "commitment": "Part 4 (8 episodes, Oct 23) | ~45 min episodes",
    "sources": [
     {
-     "label": "TV Series Finale — The Lowdown Season 2 premiere date/cast",
-     "url": "https://tvseriesfinale.com/tv-show/the-lowdown-season-two-fx-unveils-premiere-date-first-photos-for-ethan-hawke-series/"
+     "label": "What's on Netflix — Lupin Part 4 release date",
+     "url": "https://www.whats-on-netflix.com/news/lupin-part-4-netflix-release-date/"
+    },
+    {
+     "label": "The Week — Lupin Part 4 release date",
+     "url": "https://www.theweek.in/news/entertainment/2026/09/01/lupin-part-4-release-date.html"
     }
    ],
-   "sourceConfidence": "single-source"
+   "sourceConfidence": "corroborated"
   },
   {
    "rank": 14,
-   "title": "Tulsa King",
+   "title": "MobLand",
    "platform": "Paramount+",
-   "tag": "RISING",
-   "titleKey": "show:153312",
-   "whyHere": "Season 4 of Taylor Sheridan and Sylvester Stallone's mob drama is set to premiere Oct 16, right in this week's window, per multiple fall-2026 streaming guides.",
-   "whyWatch": "Stallone's Dwight Manfredi has become one of Paramount+'s most reliable original-series draws; a new season is always a real event for the platform.",
-   "vibe": "An aging mobster builds an empire in the one place nobody expected: Oklahoma.",
-   "commitment": "Season 4 premiere Oct 16 | ~50 min episodes",
+   "tag": "ESTABLISHED",
+   "titleKey": "show:247718",
+   "whyHere": "Season 2 is at its midpoint: episode 5 dropped Oct 16, episode 6 lands Oct 23, and the finale is Nov 20.",
+   "whyWatch": "Tom Hardy, Pierce Brosnan and Helen Mirren's London crime saga keeps raising the stakes week to week.",
+   "vibe": "Two crime families, one very bad week after another.",
+   "commitment": "Season 2 (10 episodes, weekly Fridays, finale Nov 20)",
    "sources": [
     {
-     "label": "Showsnob — 6 best new shows to stream October 2026",
-     "url": "https://showsnob.com/6-best-new-shows-stream-october-2026"
+     "label": "Meaww — MobLand Season 2 release schedule",
+     "url": "https://meaww.com/when-does-mobland-season-2-come-out-release-date-episode-schedule-time-pierce-brosnan-tom-hardy-helen-mirren-paramount-plus-series"
     }
    ],
    "sourceConfidence": "single-source"
   },
   {
    "rank": 15,
-   "title": "Coven Academy",
-   "platform": "Freeform / Disney+ / Hulu",
+   "title": "The Lowdown",
+   "platform": "FX / Hulu",
    "tag": "BUZZY",
-   "titleKey": "show:298505",
-   "whyHere": "Freeform's new teen-witch dramedy premiered Oct 1 as part of its 31 Nights of Halloween lineup, with the full season dropping the next day on Disney+ and Hulu — a real, fresh genre entry from the creator of High School Musical: The Musical: The Series.",
-   "whyWatch": "A New Orleans magic-boarding-school setting with Tiffani Thiessen and Devon Sawa in the adult cast, aimed at the same Halloween-season audience Coven Academy's own marketing is chasing.",
-   "vibe": "Teen witches-in-training guard their city from ancient forces, Disney-Channel style.",
-   "commitment": "Season 1, full season already out | ~25 min episodes",
+   "titleKey": "show:273247",
+   "whyHere": "Season 2 premiered Oct 14 with two episodes and continues weekly on Wednesdays, with Tommy Lee Jones and Betty Gilpin joining Ethan Hawke.",
+   "whyWatch": "Reviews call it an engaging, freewheeling mystery (Tom's Guide 3.5/5, Inverse \"eminently watchable\"), this time digging into Oklahoma's prison system.",
+   "vibe": "A scruffy citizen-journalist digs where Tulsa's power brokers would rather he didn't.",
+   "commitment": "Season 2 (weekly Wednesdays from Oct 14) | ~55 min episodes",
    "sources": [
     {
-     "label": "ABC7 — Coven Academy trailer/premiere coverage",
-     "url": "https://abc7.com/post/coven-academy-releases-official-trailer-ahead-premiere/19847240/"
+     "label": "Tom's Guide — The Lowdown Season 2 review",
+     "url": "https://www.tomsguide.com/entertainment/hulu/the-lowdown-season-2-review-one-of-my-favorite-tv-detectives-returns-with-another-funny-freewheeling-mystery"
+    },
+    {
+     "label": "Inverse — The Lowdown Season 2 review",
+     "url": "https://www.inverse.com/entertainment/the-lowdown-season-2-review-fx-noir-ethan-hawke"
     }
    ],
-   "sourceConfidence": "single-source"
+   "sourceConfidence": "corroborated"
   },
   {
    "rank": 16,
-   "title": "Lupin",
-   "platform": "Netflix",
-   "tag": "RISING",
-   "titleKey": "show:96677",
-   "whyHere": "Part 4 of Omar Sy's global Netflix hit is set for Oct 23 — almost 3 years after Part 3 — with Sy returning as co-showrunner alongside director Louis Leterrier, picking up right where Part 3's prison cliffhanger left off.",
-   "whyWatch": "One of Netflix's biggest-ever non-English hits returning after a long wait, with real new cast additions and the same gentleman-thief premise that made it a global phenomenon.",
-   "vibe": "A master thief in Paris turns every heist into a puzzle box with a grudge at its center.",
-   "commitment": "Part 4, 8 episodes, premieres Oct 23 | ~45 min episodes",
+   "title": "Youth",
+   "platform": "HBO / HBO Max",
+   "tag": "UNDER-THE-RADAR",
+   "titleKey": "show:285418",
+   "whyHere": "Sharon Horgan's comedy aired episode 6 of 8 on Oct 18, with the finale Nov 1, and holds a near-perfect Rotten Tomatoes score.",
+   "whyWatch": "One of the best-reviewed shows on TV right now that almost nobody is talking about. Short, sharp, funny episodes.",
+   "vibe": "A 50-year-old divorcee juggling dating, aging parents and a grown son who won't leave.",
+   "commitment": "Season 1 (8 episodes, finale Nov 1) | ~30 min episodes",
    "sources": [
     {
-     "label": "TheWeek — Lupin Part 4 release date, cast, what to expect",
-     "url": "https://www.theweek.in/news/entertainment/2026/09/01/lupin-part-4-release-date.amp.html"
+     "label": "Rotten Tomatoes — Youth Season 1",
+     "url": "https://www.rottentomatoes.com/tv/youth/s01"
+    },
+    {
+     "label": "Screen Rant — best new HBO Max shows this week",
+     "url": "https://screenrant.com/best-new-hbo-max-shows-to-watch-week-october-12-2026/"
     }
    ],
-   "sourceConfidence": "single-source"
+   "sourceConfidence": "corroborated"
   },
   {
    "rank": 17,
-   "title": "Monster: The Lizzie Borden Story",
-   "platform": "Hulu",
-   "tag": "BUZZY",
-   "titleKey": "show:299939",
-   "whyHere": "The latest season of Ryan Murphy's true-crime anthology (following the Dahmer and Menendez Brothers seasons) tackles the 1892 Lizzie Borden axe-murder case — a real, currently-airing new installment of a franchise that's repeatedly driven major conversation each time it returns.",
-   "whyWatch": "The Monster anthology has a track record of real awards attention and water-cooler buzz for each new season; this is the freshest one on the air.",
-   "vibe": "A 19th-century true-crime case gets the glossy, unsettling Ryan Murphy treatment.",
-   "commitment": "Limited series, currently airing | ~50 min episodes",
+   "title": "War",
+   "platform": "HBO / HBO Max",
+   "tag": "UNDER-THE-RADAR",
+   "titleKey": "show:298852",
+   "whyHere": "The Sky/HBO legal drama premiered Oct 1 and is airing weekly, already holding a two-season order before it debuted.",
+   "whyWatch": "An anthology built around a headline-making legal fight. If you like courtroom drama, it's a smart, low-noise pick.",
+   "vibe": "A courtroom battle where both sides are fighting dirty.",
+   "commitment": "Season 1 (8 episodes, weekly)",
    "sources": [
     {
-     "label": "HollywoodLife — 2026 horror/true-crime shows to stream",
-     "url": "https://hollywoodlife.com/feature/2026-horror-shows-scary-series-to-watch-5561758/"
+     "label": "Senal News — Sky sets October launch for two-season legal drama War",
+     "url": "https://senalnews.com/en/content/sky-sets-october-launch-for-two-season-legal-drama-war"
+    },
+    {
+     "label": "The Review Geek — War episode guide",
+     "url": "https://www.thereviewgeek.com/ultimateguide-war/"
     }
    ],
-   "sourceConfidence": "single-source"
+   "sourceConfidence": "corroborated"
   },
   {
    "rank": 18,
-   "title": "The Gentlemen",
-   "platform": "Netflix",
+   "title": "South Park",
+   "platform": "Comedy Central / Paramount+",
    "tag": "ESTABLISHED",
-   "titleKey": "show:236235",
-   "whyHere": "Season 2 of Guy Ritchie's aristocrat-turned-weed-kingpin drama premiered Sept 3 and has settled into a real, sustained run on Netflix's charts a month-plus into its release.",
-   "whyWatch": "A proven Netflix hit from Season 1, with Ritchie's same stylish-crime-caper voice carried through to a second season.",
-   "vibe": "A posh English estate hides a very unposh marijuana empire.",
-   "commitment": "Season 2, full season out | ~50 min episodes",
+   "titleKey": "show:2190",
+   "whyHere": "Season 29 is airing biweekly (new episode Oct 14, next Oct 28) and South Park sat near the top of Paramount+'s US chart on FlixPatrol Oct 18.",
+   "whyWatch": "Fresh off its sixth Emmy win, still the fastest-reacting satire on TV.",
+   "vibe": "Four kids, one small mountain town, and whatever the news did this week.",
+   "commitment": "Season 29 (every other Wednesday) | ~22 min episodes",
    "sources": [
     {
-     "label": "TV Guide — Fall Guide 2026",
-     "url": "https://www.tvguide.com/news/fall-guide-2026/"
+     "label": "South Park Studios — Season 29 premiere and schedule",
+     "url": "https://southpark.cc.com/news/sr1hsu/south-park-s-29th-season-to-premiere-wednesday-september-16th"
+    },
+    {
+     "label": "BroadwayWorld — South Park Season 29 premiere",
+     "url": "https://www.broadwayworld.com/article/SOUTH-PARK-Season-29-to-premiere-with-sixth-Emmy-win-20260915"
     }
    ],
-   "sourceConfidence": "single-source"
+   "sourceConfidence": "corroborated"
   },
   {
    "rank": 19,
-   "title": "9-1-1",
-   "platform": "ABC",
+   "title": "Neagley",
+   "platform": "Prime Video",
    "tag": "ESTABLISHED",
-   "titleKey": "show:75219",
-   "whyHere": "Season 10 of ABC's first-responder drama premieres tonight (Oct 15), part of the network's real Thursday-night fall lineup alongside 9-1-1: Nashville and Grey's Anatomy.",
-   "whyWatch": "A decade-long broadcast hit hitting a real milestone season premiere, same night as two other anchor ABC dramas.",
-   "vibe": "Every week, Los Angeles's first responders face the most dramatic possible version of their job.",
-   "commitment": "Season 10 premiere Oct 15 | ~45 min episodes",
+   "titleKey": "show:273207",
+   "whyHere": "The Reacher spinoff (all 8 episodes since Sept 16) was still #2 on Prime Video's US TV chart on FlixPatrol Oct 18, a month after launch.",
+   "whyWatch": "Maria Sten's Frances Neagley gets her own case, and critics mostly say it holds up next to Reacher.",
+   "vibe": "Reacher's sharpest ally takes the lead.",
+   "commitment": "1 season (8 episodes, all out)",
    "sources": [
     {
-     "label": "TVLine — 2026 Fall TV Schedule printable calendar",
-     "url": "https://tvline.com/2226545/2026-fall-tv-schedule-release-dates-premieres-calendar-printable/"
-    }
-   ],
-   "sourceConfidence": "single-source"
-  },
-  {
-   "rank": 20,
-   "title": "Grey's Anatomy",
-   "platform": "ABC",
-   "tag": "ESTABLISHED",
-   "titleKey": "show:1416",
-   "whyHere": "Season 23 premieres tonight (Oct 15) at 10pm on ABC, right after 9-1-1 and 9-1-1: Nashville — one of broadcast TV's longest-running dramas kicking off yet another season.",
-   "whyWatch": "A genuine TV institution at 23 seasons, still a real ratings anchor for ABC's Thursday lineup.",
-   "vibe": "Seattle's most dramatic hospital, 23 years and counting.",
-   "commitment": "Season 23 premiere Oct 15 | ~45 min episodes",
-   "sources": [
-    {
-     "label": "TVLine — 2026 Fall TV Schedule printable calendar",
-     "url": "https://tvline.com/2226545/2026-fall-tv-schedule-release-dates-premieres-calendar-printable/"
+     "label": "CinemaBlend — Neagley reviews",
+     "url": "https://www.cinemablend.com/streaming-news/neagley-reviews-reacher-spinoff-alan-ritchson-maria-sten"
     }
    ],
    "sourceConfidence": "single-source"
