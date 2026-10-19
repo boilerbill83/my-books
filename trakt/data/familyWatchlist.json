@@ -48,8 +48,8 @@
         },
         "physicalMedia": {
           "date": "2026-12-15",
-          "confirmed": false,
-          "note": "Time Out reports a Dec 15, 2026 4K/Blu-ray/DVD release, not yet officially confirmed by Sony — supersedes an earlier unconfirmed Nov 17 estimate"
+          "confirmed": true,
+          "note": "Sony Pictures Home Entertainment officially announced the 4K Ultra HD/Blu-ray/DVD release for Dec 15, 2026, now open for pre-order (re-verified 2026-10-19 via Laughing Place and Film Stories) — supersedes an earlier unconfirmed Nov 17 estimate"
         },
         "subscriptionStreaming": {
           "platform": "Netflix",
