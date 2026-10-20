@@ -4487,5 +4487,15 @@
     "coverUrl": "https://m.media-amazon.com/images/I/81ae6A7iK4L._SX300_.jpg",
     "source": "cover_only",
     "checkedAt": "2026-10-09"
+  },
+  "the most dangerous games|||mr.  beast": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": 4.0,
+      "count": 993
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81HHCRvyUBL._SX300_.jpg",
+    "source": "amazon",
+    "checkedAt": "2026-10-20"
   }
 }
