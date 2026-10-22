@@ -4496,6 +4496,26 @@ function computeEngineImprovements(library, watchlist, candidatePool, enrichedMe
     });
   }
 
+  // Tested 2026-10-22, not shipped: production-company rating preference.
+  {
+    findings.push({
+      id: 'production-company-signal-tested',
+      severity: 'good',
+      ratings: { ease: 6, dataQuality: 1, recEngine: 2, ui: 1 },
+      shortTitle: 'Production-Company Signal: Tested, No Gain',
+      title: `Tested, not shipped: a per-production-company rating preference (A24, Marvel, 101 Studios, etc.) found no gain over the current engine`,
+      technical: `Each company's mean rating minus the library mean (top 3 companies per title, >=4 rated titles) predicts a held-out title's rating ` +
+        `with leave-one-out correlation 0.18 (444 of 710 rated titles covered). Added as a capped adjustment in a scratch copy of the engine and swept ` +
+        `25 settings (symmetric and penalty-only, scale 1-3, cap 2-4, deadzone 0/0.5) against <code>scripts/eval.js</code>. Penalty-only settings were ` +
+        `inert (great-match precision@10/25/50/100 stayed 100/100/98/87). Symmetric settings moved precision@100 by one point at most (87 to 88) while ` +
+        `dropping precision@50 from 98 to 96 and sometimes precision@25 from 100 to 96. MAE moved by 0.02 or less. The raw correlation is mostly ` +
+        `already captured by genre, subgenre, creator and popularity signals.`,
+      plain: `Some studios clearly line up with what you like. But the engine already gets that from genre, director and popularity, so adding studio as ` +
+        `its own signal gave no better picks and sometimes slightly worse ones.`,
+      impact: `None shipped. Recorded so a future session doesn't rebuild and re-test it.`,
+    });
+  }
+
   // Tested 2026-10-19 (Bill: "think deep about some more improvement
   // ideas"), not shipped: the engine's worst misses were taste-dismissed
   // shows scoring ~100 (Snowfall, Mr Inbetween, Insecure), so the obvious

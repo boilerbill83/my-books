@@ -823,6 +823,21 @@
       "after": {
         "note": "precision@10/25/50/100 100/100/96/89 (held); bottom-50 catch 29/50; raw MAE 16.31; 48 of 48 in-app ratings have OMDb data."
       }
+    },
+    {
+      "id": "company-signal-tested",
+      "date": "2026-10-22",
+      "session": "80",
+      "category": "engine",
+      "outcome": "tested-not-shipped",
+      "title": "Production-company rating signal tested, no gain",
+      "summary": "25-setting sweep of a per-company rating preference (LOO correlation 0.18) found no improvement; symmetric versions cost precision@50 (98 to 96). Not shipped.",
+      "before": {
+        "note": "great-match precision@10/25/50/100 100/100/98/87; MAE 16.34."
+      },
+      "after": {
+        "note": "Unchanged (engine not modified)."
+      }
     }
   ]
 }
