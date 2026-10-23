@@ -1,32 +1,27 @@
 {
-  "titleKey": "show:236235",
-  "setAt": "2026-10-09T00:00:00.000Z",
-  "note": "Bill's own stated current watch, told directly in chat (2026-10-09: \"I am now watching the gentlemen\" — confirmed via an exact match, show:236235, ids.imdb tt13210838). Supersedes the prior pointer at show:95350 (Lanterns). Already sits in both library.json and watchlist.json (the real, already-documented overlap case — watchlist/watched-history are independent Trakt lists) and in currentlyWatching.json with completionStatus in-progress, 8 of 16 aired episodes played — matching Season 1's 8 episodes (rated 8/10, ratedAt 2024-03-07, right when S1 premiered) plus Season 2's 8 new episodes (premiered Sept 3, 2026) not yet reflected as watched, so this read as him finishing S1 some time ago and now starting S2. lastWatchedAt carries the documented 1970-01-01 bulk-import placeholder, not a real date. Update or clear this file the next time Bill names a different current watch.",
+  "titleKey": "show:203857",
+  "setAt": "2026-10-23T00:00:00.000Z",
+  "note": "Bill's own stated current watch, told directly in chat (2026-10-23: \"I am watching the diplomat now\" — exact match, show:203857, 4 seasons/30 episodes in TMDB). Supersedes the prior pointer at show:236235 (The Gentlemen). Already in library.json (rated 10/10, 22 of 30 episodes played, in-progress) and watchlist.json. Update or clear this file the next time Bill names a different current watch.",
   "facts": [
     {
-      "text": "The series is a direct continuation of Guy Ritchie's 2019 film of the same name — Theo James plays Eddie Horniman, the son of Matthew McConaughey's American drug lord Mickey Pearson from the movie.",
-      "source": "https://slashfilm.com/1085139/guy-ritchies-the-gentlemen-is-becoming-a-netflix-tv-series-theo-james-to-star",
-      "sourceLabel": "SlashFilm"
+      "text": "Season 4 premiered Thursday, October 15, 2026, with all eight episodes released at once. Kate Wyler is double-crossed after President Grace Penn and VP Hal Wyler plan to seize a Russian nuclear weapon, and forms an alliance with First Gentleman Todd Penn (Bradley Whitford).",
+      "source": "https://www.theweek.in/news/entertainment/2026/08/18/the-diplomat-season-4-premiere.html",
+      "sourceLabel": "The Week"
     },
     {
-      "text": "Eddie Horniman becomes the 13th Duke of Halstead when his father's will passes him the family estate and title over his older brother Freddy (Daniel Ings) — skipped for his erratic behavior and drug habit — only to discover the estate is sitting on a massive cannabis farm.",
-      "source": "https://bravo-www.soapcentral.com/shows/the-gentlemen-cast-characters-here-s-brings-netflix-s-guy-ritchie-crime-drama-life",
-      "sourceLabel": "Soap Central"
+      "text": "Creator Debora Cahn first developed a pilot set inside the US embassy in London in the early 2000s while working on The West Wing. Nobody bit, and she set it aside for almost 20 years.",
+      "source": "https://www.screendaily.com/features/the-diplomat-creator-debora-cahn-and-star-rufus-sewell-on-real-life-inspirations-and-making-brits-look-bad/5217609.article",
+      "sourceLabel": "Screen Daily"
     },
     {
-      "text": "Guy Ritchie co-wrote the pilot with Peaky Blinders producer Matthew Read and personally directed the first two episodes — a rare foray into television for the filmmaker, who otherwise stayed on as executive producer.",
-      "source": "https://slashfilm.com/1085139/guy-ritchies-the-gentlemen-is-becoming-a-netflix-tv-series-theo-james-to-star",
-      "sourceLabel": "SlashFilm"
+      "text": "Cahn credits Beth Jones, a former US ambassador to Kazakhstan, for reviving the idea. She called her \"a superhero in a pantsuit,\" and the unassuming, fallible Kate Wyler grew out of that meeting.",
+      "source": "https://www.looper.com/1274935/real-life-inspiration-behind-netflixs-the-diplomat",
+      "sourceLabel": "Looper"
     },
     {
-      "text": "Season 2 (Netflix, premiered September 3, 2026, 8 episodes) picks up a year later and moves the operation from the buried cannabis farm under Halstead to Italy's lakeside villas — Theo James, Kaya Scodelario, and Ray Winstone return, joined by new cast including Hugh Bonneville.",
-      "source": "https://www.whats-on-netflix.com/news/the-gentlemen-season-2-netflix-release-date-cast/",
+      "text": "Keri Russell was initially hesitant to take the role because of the upheaval it would bring to her life, so the series nearly ended after one season. Netflix has not announced a Season 5 renewal.",
+      "source": "https://www.whats-on-netflix.com/news/the-diplomat-season-4-netflix-release-date-trailer-photos/",
       "sourceLabel": "What's on Netflix"
-    },
-    {
-      "text": "Ray Winstone plays Bobby Glass, the incarcerated drug lord who actually runs the cannabis empire hidden on the estate, with his daughter Susie Glass (Kaya Scodelario) handling the day-to-day business Eddie gets pulled into.",
-      "source": "https://bravo-www.soapcentral.com/shows/the-gentlemen-cast-characters-here-s-brings-netflix-s-guy-ritchie-crime-drama-life",
-      "sourceLabel": "Soap Central"
     }
   ]
 }
