@@ -818,10 +818,6 @@ function sortWithStarsFirst(picks, starredSet) {
   return [...starred, ...rest];
 }
 
-// Capped so that, with more, this card grows well past
-// the Currently Watching hero beside it and leaves the hero a blank gap
-// (verify_paired_layouts.py mode 2).
-const NEXT_WATCH_MAX = 10;
 function renderNextWatch(picks, enrichedMeta, starredSet) {
   const subtitleFn = c => {
     if (c.inProgress) {
@@ -842,7 +838,7 @@ function renderNextWatch(picks, enrichedMeta, starredSet) {
     }
     return parts.join(' · ');
   };
-  renderWatchCards('nextWatch', sortWithStarsFirst(picks, starredSet).slice(0, NEXT_WATCH_MAX), enrichedMeta, subtitleFn,
+  renderWatchCards('nextWatch', sortWithStarsFirst(picks, starredSet), enrichedMeta, subtitleFn,
     'Nothing ready on your watchlist right now — everything\'s either mid-season, already watched, or hasn\'t aired an episode in the last six months.',
     c => c.inProgress ? 'You\'re already partway through this one.' : c.reason,
     starredSet);
