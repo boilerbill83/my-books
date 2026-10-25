@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-19T15:18:05.417Z",
-    "count": 492,
+    "generatedAt": "2026-10-25T14:01:23.149Z",
+    "count": 494,
     "capPerType": 200
   },
   "titles": [
@@ -1100,16 +1100,6 @@
       "titleKey": "show:14531",
       "ids": {
         "tmdb": 14531
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
-      "titleKey": "show:96608",
-      "ids": {
-        "tmdb": 96608
       },
       "title": null,
       "year": null,
@@ -3045,16 +3035,6 @@
       "discoveredVia": "Sci-Fi & Fantasy"
     },
     {
-      "type": "movie",
-      "titleKey": "movie:1011477",
-      "ids": {
-        "tmdb": 1011477
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 5
-    },
-    {
       "type": "show",
       "titleKey": "show:239946",
       "ids": {
@@ -3544,17 +3524,6 @@
       },
       "title": "Malcolm in the Middle: Life's Still Unfair",
       "year": 2026,
-      "source": "genre-explore",
-      "discoveredVia": "Comedy"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:71728",
-      "ids": {
-        "tmdb": 71728
-      },
-      "title": "Young Sheldon",
-      "year": 2017,
       "source": "genre-explore",
       "discoveredVia": "Comedy"
     },
@@ -5111,17 +5080,6 @@
       "discoveredVia": "book-theme:sports"
     },
     {
-      "type": "movie",
-      "titleKey": "movie:49520",
-      "ids": {
-        "tmdb": 49520
-      },
-      "title": "The Change-Up",
-      "year": 2011,
-      "source": "book-theme-explore",
-      "discoveredVia": "book-theme:legal"
-    },
-    {
       "type": "show",
       "titleKey": "show:285322",
       "ids": {
@@ -5140,6 +5098,70 @@
       "title": null,
       "year": null,
       "source": "streaming-top10"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:941019",
+      "ids": {
+        "tmdb": 941019
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 5
+    },
+    {
+      "type": "show",
+      "titleKey": "show:116174",
+      "ids": {
+        "tmdb": 116174
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 5
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1288069",
+      "ids": {
+        "tmdb": 1288069
+      },
+      "title": "Tenzing",
+      "year": 2026,
+      "source": "genre-explore",
+      "discoveredVia": "Drama"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:445954",
+      "ids": {
+        "tmdb": 445954
+      },
+      "title": "Acts of Vengeance",
+      "year": 2017,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:legal"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:451915",
+      "ids": {
+        "tmdb": 451915
+      },
+      "title": "Beautiful Boy",
+      "year": 2018,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:biography"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:72615",
+      "ids": {
+        "tmdb": 72615
+      },
+      "title": "Alias Grace",
+      "year": 2017,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:biography"
     }
   ]
 }

@@ -557873,5 +557873,5626 @@
   "year": 2008,
   "type": "movie",
   "fetchedAt": "2026-10-19"
+ },
+ "movie:404035": {
+  "genres": [
+   "Thriller",
+   "Drama"
+  ],
+  "overview": "Lee and Sol are hiding out on a beach in Southern India living a slacker life of sex, drugs and parties. Trouble comes to paradise when Vix, a beautiful girl from Lee's past, turns up. Things get worse when Lee accidentally kills a holy cow and the gang find themselves up against crooked cops, local hoodlums, gangsters.... and mysticism. How far do you have to go to get away?",
+  "keywords": [
+   "based on novel or book"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt3124210",
+  "voteAverage": 4.4,
+  "voteCount": 10,
+  "popularity": 2.3356,
+  "posterPath": "/muJo4aYm96jCdL9t3Y22W5ipAb9.jpg",
+  "similarToIds": [
+   457955,
+   458131,
+   273649,
+   644583,
+   1037669,
+   1037738,
+   1037749,
+   458568,
+   458488,
+   458490,
+   1028196,
+   1218850,
+   1028483,
+   450647,
+   450552,
+   1028547,
+   264606,
+   264391,
+   450322,
+   264940
+  ],
+  "recommendedIds": [
+   157351,
+   27874,
+   82631,
+   51997,
+   36342,
+   53712,
+   38042,
+   854467,
+   19345,
+   36459,
+   36786,
+   1212271,
+   422619,
+   17131,
+   16236,
+   785522,
+   36521,
+   60938,
+   565348,
+   1116488
+  ],
+  "productionCompanies": [
+   "Aimimage Productions",
+   "SUMS Film and Media",
+   "Bob & Co"
+  ],
+  "topCast": [
+   "Sofia Boutella",
+   "Robert Sheehan",
+   "Joelle Koissi",
+   "Craig Parkinson",
+   "Jasper P\u00e4\u00e4kk\u00f6nen"
+  ],
+  "topCastDetail": [
+   {
+    "id": 568657,
+    "name": "Sofia Boutella",
+    "gender": 1
+   },
+   {
+    "id": 118616,
+    "name": "Robert Sheehan",
+    "gender": 2
+   },
+   {
+    "id": 1403650,
+    "name": "Joelle Koissi",
+    "gender": 1
+   },
+   {
+    "id": 45050,
+    "name": "Craig Parkinson",
+    "gender": 2
+   },
+   {
+    "id": 82857,
+    "name": "Jasper P\u00e4\u00e4kk\u00f6nen",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2018-04-27",
+  "runtime": 86,
+  "director": "Charles Henri Belleville",
+  "directors": [
+   "Charles Henri Belleville"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Charles Henri Belleville",
+   "Andy Brunskill",
+   "Daniel Emmerson"
+  ],
+  "title": "Jet Trash",
+  "year": 2018,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:1686474": {
+  "genres": [
+   "Thriller",
+   "Mystery",
+   "Drama"
+  ],
+  "overview": "A man leaves a voicemail confession disguised as him worried for his partner, revealing himself as a murderer, but only after walking the audience through the entire crime scene of his partner\u2019s murder.",
+  "keywords": [
+   "murder",
+   "voicemail"
+  ],
+  "originalLanguage": "en",
+  "imdbId": null,
+  "voteAverage": 0.0,
+  "voteCount": 0,
+  "popularity": 1.0048,
+  "posterPath": "/2YTpL9MtO9xZTKGE4KIj8TW25LC.jpg",
+  "similarToIds": [
+   644495,
+   644462,
+   274146,
+   273481,
+   458294,
+   265000,
+   265265,
+   450545,
+   450274,
+   636005,
+   264555,
+   453296,
+   268209,
+   267992,
+   453276,
+   639408,
+   639049,
+   453655,
+   268866,
+   454056
+  ],
+  "recommendedIds": [
+   60938,
+   6028,
+   480853,
+   465294,
+   6107,
+   19846,
+   515696,
+   17131,
+   36342,
+   30943,
+   35404,
+   157351,
+   531158,
+   44902,
+   37635,
+   33423,
+   494466,
+   20298,
+   436398,
+   206192
+  ],
+  "productionCompanies": [],
+  "topCast": [
+   "Anastasia Wambeke",
+   "Clark Norton",
+   "Adam Hyde"
+  ],
+  "topCastDetail": [
+   {
+    "id": 5927571,
+    "name": "Anastasia Wambeke",
+    "gender": 1
+   },
+   {
+    "id": 6183541,
+    "name": "Clark Norton",
+    "gender": 0
+   },
+   {
+    "id": 6183543,
+    "name": "Adam Hyde",
+    "gender": 0
+   }
+  ],
+  "releaseDate": "2026-03-09",
+  "runtime": 4,
+  "director": "Anastasia Wambeke",
+  "directors": [
+   "Anastasia Wambeke"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Anastasia Wambeke"
+  ],
+  "title": "The Voicemail",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:387484": {
+  "genres": [
+   "Drama",
+   "Crime"
+  ],
+  "overview": "Frankie Thomas plays Bob Lewis, leader of a gang consisting of Sailor, Murph, Monk, Trouble and Yap. The son of disgraced police officer Lt. Lewis, Bob vows to clear his dad's name, and also to prove that accused murderer Tommy Shay is innocent.",
+  "keywords": [
+   "police",
+   "murder"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0031167",
+  "voteAverage": 7.7,
+  "voteCount": 3,
+  "popularity": 1.2507,
+  "posterPath": "/f0QTrqBNxMfHX1ky3CL47t3IzJN.jpg",
+  "similarToIds": [
+   1065705,
+   301592,
+   485036,
+   473205,
+   1053348,
+   855211,
+   855435,
+   289033,
+   288890,
+   473256,
+   473263,
+   288686,
+   288664,
+   660271,
+   1052897,
+   289344,
+   661374,
+   289456,
+   473716,
+   855962
+  ],
+  "recommendedIds": [
+   36521,
+   36342,
+   19846,
+   6028,
+   60938,
+   31556,
+   107380,
+   29365,
+   16958,
+   6107,
+   27899,
+   86616,
+   480853,
+   54392,
+   49334,
+   21594,
+   206192,
+   18684,
+   17131,
+   17687
+  ],
+  "productionCompanies": [
+   "Universal Pictures"
+  ],
+  "topCast": [
+   "Harry Carey",
+   "Frankie Thomas",
+   "James McCallion",
+   "Juanita Quigley",
+   "El Brendel"
+  ],
+  "topCastDetail": [
+   {
+    "id": 30212,
+    "name": "Harry Carey",
+    "gender": 2
+   },
+   {
+    "id": 89925,
+    "name": "Frankie Thomas",
+    "gender": 2
+   },
+   {
+    "id": 93741,
+    "name": "James McCallion",
+    "gender": 2
+   },
+   {
+    "id": 1011213,
+    "name": "Juanita Quigley",
+    "gender": 1
+   },
+   {
+    "id": 102502,
+    "name": "El Brendel",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1939-04-13",
+  "runtime": 72,
+  "director": "Harold Young",
+  "directors": [
+   "Harold Young"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Harold Young"
+  ],
+  "title": "Code of the Streets",
+  "year": 1939,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:1686640": {
+  "genres": [
+   "Comedy",
+   "Drama"
+  ],
+  "overview": "Dustin, a lunkheaded college student, curates an evening of letdowns and unmade promises all while battling himself and his people-pleasing behaviors.",
+  "keywords": [
+   "coming of age",
+   "unravel",
+   "anxious",
+   "anxiety",
+   "independent film",
+   "hilarious",
+   "bold",
+   "earnest",
+   "hopeful",
+   "tragic"
+  ],
+  "originalLanguage": "en",
+  "imdbId": null,
+  "voteAverage": 10.0,
+  "voteCount": 1,
+  "popularity": 0.8468,
+  "posterPath": "/w2IdbpXfGbg5Zbrf7C7Qz2dsuwD.jpg",
+  "similarToIds": [
+   483980,
+   484247,
+   301337,
+   301339,
+   301598,
+   871010,
+   674216,
+   485336,
+   485001,
+   485114,
+   301794,
+   1067485,
+   484852,
+   855258,
+   473033,
+   1052825,
+   854607,
+   855508,
+   1053801,
+   473706
+  ],
+  "recommendedIds": [
+   27834,
+   30309,
+   28059,
+   949838,
+   1161617,
+   253406,
+   2108,
+   986175,
+   776512,
+   41479,
+   259956,
+   13073,
+   208134,
+   419459,
+   915523,
+   244536,
+   24363,
+   489925,
+   46829,
+   34482
+  ],
+  "productionCompanies": [],
+  "topCast": [
+   "Donovan Hibbeln",
+   "Rudraneel Sinha",
+   "Elli Jones",
+   "Sydney Delisle",
+   "Dominic Padjen"
+  ],
+  "topCastDetail": [
+   {
+    "id": 5101401,
+    "name": "Donovan Hibbeln",
+    "gender": 0
+   },
+   {
+    "id": 6183903,
+    "name": "Rudraneel Sinha",
+    "gender": 0
+   },
+   {
+    "id": 6183905,
+    "name": "Elli Jones",
+    "gender": 0
+   },
+   {
+    "id": 6183909,
+    "name": "Sydney Delisle",
+    "gender": 0
+   },
+   {
+    "id": 6183911,
+    "name": "Dominic Padjen",
+    "gender": 0
+   }
+  ],
+  "releaseDate": "2026-04-30",
+  "runtime": 13,
+  "director": "Lucas Nierzwicki",
+  "directors": [
+   "Lucas Nierzwicki"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Lucas Nierzwicki",
+   "Jafet Gonzalez"
+  ],
+  "title": "One Stone",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:401896": {
+  "genres": [
+   "Romance",
+   "Drama",
+   "TV Movie"
+  ],
+  "overview": "Widow Jean Miller thinks she's ready for a new romance with her high school sweetheart, Sam Morrissey, a physician of considerable means. The only thing standing in the way of rekindling this first love is the presence of his very attractive, very together 39-year-old girlfriend, Claire.",
+  "keywords": [
+   "depression",
+   "jealousy",
+   "widow",
+   "ex-boyfriend",
+   "sadness",
+   "driving school",
+   "love",
+   "best friend",
+   "doctor",
+   "older man younger woman relationship",
+   "high school friends",
+   "anger",
+   "old flame",
+   "group of friends",
+   "high school reunion"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0095686",
+  "voteAverage": 9.5,
+  "voteCount": 2,
+  "popularity": 3.0515,
+  "posterPath": "/dPUh3cFvIROUg0xX5KYaIfhuJMK.jpg",
+  "similarToIds": [
+   1603506,
+   636029,
+   638980,
+   268554,
+   639409,
+   453652,
+   1031784,
+   268806,
+   453411,
+   639126,
+   832913,
+   268035,
+   268171,
+   458737,
+   839048,
+   274367,
+   1038339,
+   1038287,
+   643390,
+   643205
+  ],
+  "recommendedIds": [
+   913851,
+   72570,
+   15775,
+   11036,
+   666277,
+   661331,
+   10236,
+   18047,
+   10229,
+   9663,
+   214086,
+   43316,
+   228205,
+   15919,
+   38687,
+   635887,
+   24684,
+   47525,
+   31507,
+   10862
+  ],
+  "productionCompanies": [
+   "The Avnet/Kerner Company"
+  ],
+  "topCast": [
+   "Bea Arthur",
+   "Richard Kiley",
+   "Joan Van Ark",
+   "Barbara Barrie",
+   "Anne Francis"
+  ],
+  "topCastDetail": [
+   {
+    "id": 79473,
+    "name": "Bea Arthur",
+    "gender": 1
+   },
+   {
+    "id": 26660,
+    "name": "Richard Kiley",
+    "gender": 2
+   },
+   {
+    "id": 101947,
+    "name": "Joan Van Ark",
+    "gender": 1
+   },
+   {
+    "id": 1216876,
+    "name": "Barbara Barrie",
+    "gender": 1
+   },
+   {
+    "id": 12309,
+    "name": "Anne Francis",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "1988-12-04",
+  "runtime": 93,
+  "director": "Gilbert Cates",
+  "directors": [
+   "Gilbert Cates"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Gilbert Cates",
+   "Jon Avnet",
+   "Jordan Kerner"
+  ],
+  "title": "My First Love",
+  "year": 1988,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:152760": {
+  "genres": [
+   "War",
+   "Drama",
+   "History"
+  ],
+  "overview": "Based on the true story of the greatest treasure hunt in history, The Monuments Men is an action drama focusing on seven over-the-hill, out-of-shape museum directors, artists, architects, curators, and art historians who went to the front lines of WWII to rescue the world\u2019s artistic masterpieces from Nazi thieves and return them to their rightful owners.  With the art hidden behind enemy lines, how could these guys hope to succeed?",
+  "keywords": [
+   "nazi",
+   "world war ii",
+   "based on true story",
+   "art theft",
+   "post world war ii"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt2177771",
+  "voteAverage": 6.064,
+  "voteCount": 3920,
+  "popularity": 6.2479,
+  "posterPath": "/wiWAg4mKV2S4vImPxsPRIdj2R2B.jpg",
+  "similarToIds": [
+   268253,
+   832964,
+   268494,
+   1032194,
+   268839,
+   268852,
+   268856,
+   268263,
+   268271,
+   268340,
+   453489,
+   639514,
+   639558,
+   453201,
+   458510,
+   1037749,
+   274052,
+   1038132,
+   458755,
+   458717
+  ],
+  "recommendedIds": [
+   1083612,
+   14574,
+   44691,
+   1079244,
+   31010,
+   467244,
+   653851,
+   289222,
+   45614,
+   760336,
+   718235,
+   31094,
+   47536,
+   25553,
+   17360,
+   5925,
+   9289,
+   35583,
+   1061699,
+   59709
+  ],
+  "productionCompanies": [
+   "Columbia Pictures",
+   "Fox 2000 Pictures",
+   "Smokehouse Pictures"
+  ],
+  "topCast": [
+   "George Clooney",
+   "Matt Damon",
+   "Bill Murray",
+   "John Goodman",
+   "Cate Blanchett"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1461,
+    "name": "George Clooney",
+    "gender": 2
+   },
+   {
+    "id": 1892,
+    "name": "Matt Damon",
+    "gender": 2
+   },
+   {
+    "id": 1532,
+    "name": "Bill Murray",
+    "gender": 2
+   },
+   {
+    "id": 1230,
+    "name": "John Goodman",
+    "gender": 2
+   },
+   {
+    "id": 112,
+    "name": "Cate Blanchett",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2014-01-24",
+  "runtime": 118,
+  "director": "George Clooney",
+  "directors": [
+   "George Clooney"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "George Clooney",
+   "Grant Heslov",
+   "Barbara A. Hall"
+  ],
+  "title": "The Monuments Men",
+  "year": 2014,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:403450": {
+  "genres": [
+   "War",
+   "Drama",
+   "Comedy",
+   "Romance"
+  ],
+  "overview": "It's 1943 and World War II is raging in Europe. In New York, Arturo and Flora the daughter of a restaurant owner are in love, but she is promised in marriage to the son of a Mafia boss. There is a way around this, but to be able to marry Flora, Arturo needs to get permission from her father, who lives in a village in Sicily. Arturo doesn't have any money, so the only way he can get to Sicily is to enlist in the U.S. Army, which is preparing for a landing on the island.",
+  "keywords": [
+   "italy",
+   "sicily, italy",
+   "world war ii",
+   "mafia boss",
+   "mafia",
+   "1940s"
+  ],
+  "originalLanguage": "it",
+  "imdbId": "tt5263116",
+  "voteAverage": 7.252,
+  "voteCount": 522,
+  "popularity": 2.1007,
+  "posterPath": "/bmy7S1xTY9yLJTg48pxucx790xZ.jpg",
+  "similarToIds": [
+   265226,
+   265348,
+   268535,
+   832964,
+   268839,
+   833339,
+   268852,
+   268853,
+   268856,
+   268865,
+   453270,
+   268271,
+   268330,
+   268340,
+   453489,
+   639366,
+   639514,
+   639558,
+   453347,
+   458510
+  ],
+  "recommendedIds": [
+   25846,
+   661231,
+   30298,
+   239877,
+   8429,
+   61212,
+   525428,
+   474944,
+   307,
+   1026227,
+   36283,
+   121998,
+   44691,
+   43791,
+   38251,
+   152760,
+   810413,
+   31938,
+   1174246,
+   43100
+  ],
+  "productionCompanies": [
+   "Wildside",
+   "RAI Cinema",
+   "MiC"
+  ],
+  "topCast": [
+   "Pif",
+   "Miriam Leone",
+   "Andrea Di Stefano",
+   "Stella Egitto",
+   "David Mitchum Brown"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1274996,
+    "name": "Pif",
+    "gender": 2
+   },
+   {
+    "id": 1097436,
+    "name": "Miriam Leone",
+    "gender": 1
+   },
+   {
+    "id": 40541,
+    "name": "Andrea Di Stefano",
+    "gender": 2
+   },
+   {
+    "id": 1685265,
+    "name": "Stella Egitto",
+    "gender": 1
+   },
+   {
+    "id": 1685266,
+    "name": "David Mitchum Brown",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2016-10-27",
+  "runtime": 99,
+  "director": "Pif",
+  "directors": [
+   "Pif"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Pif",
+   "Mario Gianani",
+   "Lorenzo Mieli"
+  ],
+  "title": "At War for Love",
+  "year": 2016,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:941019": {
+  "genres": [
+   "Drama",
+   "Science Fiction",
+   "War"
+  ],
+  "overview": "Sussex, England, 1938. Shortly before the outbreak of World War II, Thomasina and Martha Hanbury, two ingenious sisters, create LOLA, a miraculous machine.",
+  "keywords": [
+   "sibling relationship",
+   "dystopia",
+   "world war ii",
+   "time machine",
+   "found footage",
+   "anti-nazi resistance",
+   "alternate timeline",
+   "orphan siblings",
+   "unintended consequences",
+   "anti-nazi",
+   "uchronia",
+   "whimsical"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt11366674",
+  "voteAverage": 6.447,
+  "voteCount": 122,
+  "popularity": 5.125,
+  "posterPath": "/6IQEDnHKMvzforhtQW9mwW5kSHB.jpg",
+  "similarToIds": [
+   838033,
+   1037644,
+   1037749,
+   458488,
+   274068,
+   1037264,
+   829308,
+   265047,
+   1028452,
+   265121,
+   636104,
+   635873,
+   1028374,
+   450587,
+   450807,
+   1218759,
+   450157,
+   267877,
+   267880,
+   832557
+  ],
+  "recommendedIds": [
+   13813,
+   7445,
+   11864,
+   334538,
+   765245,
+   528502,
+   256476,
+   636,
+   16241,
+   784993,
+   31623,
+   263115,
+   36583,
+   11372,
+   24559,
+   9314,
+   296523,
+   83542,
+   491854,
+   615658
+  ],
+  "productionCompanies": [
+   "Cowtown Pictures",
+   "ie ie productions"
+  ],
+  "topCast": [
+   "Emma Appleton",
+   "Stefanie Martini",
+   "Rory Fleck-Byrne",
+   "Aaron Monaghan",
+   "Theodora Brabazon Legge"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1770525,
+    "name": "Emma Appleton",
+    "gender": 1
+   },
+   {
+    "id": 1587318,
+    "name": "Stefanie Martini",
+    "gender": 1
+   },
+   {
+    "id": 1267122,
+    "name": "Rory Fleck-Byrne",
+    "gender": 2
+   },
+   {
+    "id": 210061,
+    "name": "Aaron Monaghan",
+    "gender": 2
+   },
+   {
+    "id": 4208659,
+    "name": "Theodora Brabazon Legge",
+    "gender": 0
+   }
+  ],
+  "releaseDate": "2023-04-07",
+  "runtime": 79,
+  "director": "Andrew Legge",
+  "directors": [
+   "Andrew Legge"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Andrew Legge",
+   "Stephen Kelliher",
+   "Bizzy Day"
+  ],
+  "title": "LOLA",
+  "year": 2023,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:1151534": {
+  "genres": [
+   "Thriller",
+   "Drama"
+  ],
+  "overview": "A young pregnant woman named Mia escapes from a country at war by hiding in a maritime container aboard a cargo ship. After a violent storm, Mia gives birth to the child while lost at sea, where she must fight to survive.",
+  "keywords": [
+   "lost at sea",
+   "survival at sea",
+   "awestruck",
+   "distressing",
+   "tragic"
+  ],
+  "originalLanguage": "es",
+  "imdbId": "tt15789472",
+  "voteAverage": 7.3,
+  "voteCount": 1643,
+  "popularity": 5.8449,
+  "posterPath": "/lncg31XDBdfYxrOnhrzVAUw8geT.jpg",
+  "similarToIds": [
+   1603505,
+   268238,
+   458723,
+   1035866,
+   274955,
+   1038812,
+   1039227,
+   923837,
+   1301198,
+   352161,
+   352002,
+   1307570,
+   352504,
+   1500099,
+   352275,
+   87825,
+   1309891,
+   1125510,
+   1312019,
+   1127166
+  ],
+  "recommendedIds": [
+   339849,
+   205775,
+   641,
+   109424,
+   4643,
+   864866,
+   760926,
+   1428862,
+   999205,
+   653658,
+   19052,
+   9693,
+   30888,
+   615658,
+   628922,
+   10847,
+   11324,
+   270771,
+   714195,
+   799882
+  ],
+  "productionCompanies": [
+   "Rock & Ruz"
+  ],
+  "topCast": [
+   "Anna Castillo",
+   "Tamar Novas",
+   "Irina Bravo",
+   "Victoria Teijeiro",
+   "Luc\u00eda Soria"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1031914,
+    "name": "Anna Castillo",
+    "gender": 1
+   },
+   {
+    "id": 33411,
+    "name": "Tamar Novas",
+    "gender": 2
+   },
+   {
+    "id": 2088920,
+    "name": "Irina Bravo",
+    "gender": 1
+   },
+   {
+    "id": 1076957,
+    "name": "Victoria Teijeiro",
+    "gender": 0
+   },
+   {
+    "id": 5900170,
+    "name": "Luc\u00eda Soria",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2023-09-29",
+  "runtime": 108,
+  "director": "Albert Pint\u00f3",
+  "directors": [
+   "Albert Pint\u00f3"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Albert Pint\u00f3",
+   "Miguel Ruz"
+  ],
+  "title": "Nowhere",
+  "year": 2023,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:1147416": {
+  "genres": [
+   "Animation",
+   "Family",
+   "Action",
+   "Adventure",
+   "Fantasy"
+  ],
+  "overview": "To save the future from a terrible fate, Marinette becomes Chronobug and teams up with Bunnyx to defeat a mysterious opponent who travels through time.",
+  "keywords": [
+   "london, england",
+   "paris, france",
+   "superhero",
+   "time travel",
+   "notebook",
+   "death of father",
+   "kids",
+   "based on tv series",
+   "3d animation"
+  ],
+  "originalLanguage": "fr",
+  "imdbId": "tt13701202",
+  "voteAverage": 7.6,
+  "voteCount": 331,
+  "popularity": 13.8669,
+  "posterPath": "/6AtoMpHvs9pxd30KsyK8QmJ9W9M.jpg",
+  "similarToIds": [
+   451025,
+   451044,
+   265520,
+   1031830,
+   268531,
+   268689,
+   1032093,
+   268092,
+   1031992,
+   268673,
+   453441,
+   832908,
+   1037858,
+   274389,
+   458897,
+   837763,
+   643376,
+   1036561,
+   457331,
+   459003
+  ],
+  "recommendedIds": [
+   1147400,
+   496450,
+   755812,
+   251768,
+   77459,
+   324849,
+   136793,
+   726684,
+   1147411,
+   664236,
+   116711,
+   309809,
+   1267,
+   730840,
+   1150537,
+   765172,
+   396330,
+   513736,
+   81188,
+   509080
+  ],
+  "productionCompanies": [
+   "ZAG Entertainment",
+   "Method Animation"
+  ],
+  "topCast": [
+   "Anouck Hautbois",
+   "Marie Nonnenmacher",
+   "Benjamin Bollen",
+   "Clara Soares",
+   "Marie Chevalot"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1762588,
+    "name": "Anouck Hautbois",
+    "gender": 1
+   },
+   {
+    "id": 1373143,
+    "name": "Marie Nonnenmacher",
+    "gender": 1
+   },
+   {
+    "id": 1558832,
+    "name": "Benjamin Bollen",
+    "gender": 2
+   },
+   {
+    "id": 5535460,
+    "name": "Clara Soares",
+    "gender": 1
+   },
+   {
+    "id": 1762591,
+    "name": "Marie Chevalot",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2024-11-14",
+  "runtime": 50,
+  "director": "Thomas Astruc",
+  "directors": [
+   "Thomas Astruc"
+  ],
+  "belongsToCollection": {
+   "id": 822306,
+   "name": "Miraculous World"
+  },
+  "creatorCredits": [
+   "Thomas Astruc",
+   "Jeremy Zag",
+   "Aton Soumache"
+  ],
+  "title": "Miraculous World: London, at the Edge of Time",
+  "year": 2024,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "show:21660": {
+  "genres": [
+   "Drama",
+   "Comedy"
+  ],
+  "overview": "Darkly comic series about life on a hospital ward and a nursing team who have to get on with the job despite challenges thrown up by the modern NHS.",
+  "keywords": [
+   "nurse",
+   "satire",
+   "dark comedy",
+   "hospital",
+   "elderly",
+   "sitcom",
+   "workplace comedy"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt1468773",
+  "voteAverage": 7.2,
+  "voteCount": 16,
+  "popularity": 13.3913,
+  "posterPath": "/xdNhdbHLhscgo9DVDr2J4Z3U7hj.jpg",
+  "similarToIds": [
+   21832,
+   21835,
+   116607,
+   116637,
+   21867,
+   21870,
+   21873,
+   83615,
+   197449,
+   21451,
+   21594,
+   116865,
+   21495,
+   21498,
+   21499,
+   21670,
+   197803,
+   83127,
+   21323,
+   197543
+  ],
+  "recommendedIds": [
+   1456,
+   72313,
+   295778,
+   18856,
+   74016,
+   1021,
+   133908,
+   5258,
+   2398,
+   95386,
+   60766,
+   1803,
+   10649,
+   124010,
+   1825,
+   154827,
+   44857,
+   3968,
+   1530,
+   94686
+  ],
+  "productionCompanies": [],
+  "topCast": [
+   "Jo Brand",
+   "Vicki Pepperdine",
+   "Joanna Scanlan",
+   "Ricky Grover"
+  ],
+  "topCastDetail": [
+   {
+    "id": 117352,
+    "name": "Jo Brand",
+    "gender": 1
+   },
+   {
+    "id": 1248292,
+    "name": "Vicki Pepperdine",
+    "gender": 1
+   },
+   {
+    "id": 33450,
+    "name": "Joanna Scanlan",
+    "gender": 1
+   },
+   {
+    "id": 109834,
+    "name": "Ricky Grover",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2009-07-08",
+  "episodeRunTime": 30,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 3,
+  "numberOfEpisodes": 15,
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2012-11-21",
+   "seasonNumber": 3,
+   "episodeNumber": 6,
+   "name": "Episode 6"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "BBC Four"
+  ],
+  "creatorCredits": [
+   "Simon Lupton"
+  ],
+  "title": "Getting On",
+  "year": 2009,
+  "type": "show",
+  "fetchedAt": "2026-10-25"
+ },
+ "show:116174": {
+  "genres": [
+   "Comedy",
+   "Drama"
+  ],
+  "overview": "A chronicle of five friends during a decade in which everything changed, including the rise of AIDS.",
+  "keywords": [
+   "london, england",
+   "aids",
+   "homophobia",
+   "hiv",
+   "miniseries",
+   "lgbt",
+   "angry",
+   "1980s",
+   "housemates",
+   "isle of wight",
+   "gay theme",
+   "hiv/aids epidemic",
+   "depressing",
+   "hopeful"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt9140342",
+  "voteAverage": 7.905,
+  "voteCount": 241,
+  "popularity": 15.7487,
+  "posterPath": "/tUaNS4b5TIiP1SwpHCYCbUoGpHG.jpg",
+  "similarToIds": [
+   67716,
+   103173,
+   287976,
+   287977,
+   288055,
+   217735,
+   217773,
+   217800,
+   217806,
+   217807,
+   287429,
+   102593,
+   102619,
+   217667,
+   249039,
+   249042,
+   248937,
+   67443,
+   134497,
+   67506
+  ],
+  "recommendedIds": [
+   11245,
+   216089,
+   81356,
+   67202,
+   815,
+   900,
+   100883,
+   216795,
+   7317,
+   61932,
+   261363,
+   79084,
+   123192,
+   196214,
+   212462,
+   62320,
+   61350,
+   7097,
+   206828,
+   260458
+  ],
+  "productionCompanies": [
+   "Red Production Company"
+  ],
+  "topCast": [
+   "Olly Alexander",
+   "Omari Douglas",
+   "Callum Scott Howells",
+   "Lydia West",
+   "Nathaniel Curtis"
+  ],
+  "topCastDetail": [
+   {
+    "id": 89823,
+    "name": "Olly Alexander",
+    "gender": 2
+   },
+   {
+    "id": 2600225,
+    "name": "Omari Douglas",
+    "gender": 2
+   },
+   {
+    "id": 2927236,
+    "name": "Callum Scott Howells",
+    "gender": 2
+   },
+   {
+    "id": 2317980,
+    "name": "Lydia West",
+    "gender": 1
+   },
+   {
+    "id": 3001039,
+    "name": "Nathaniel Curtis",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2021-01-22",
+  "episodeRunTime": 48,
+  "createdBy": [
+   "Russell T Davies"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 5,
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2021-02-19",
+   "seasonNumber": 1,
+   "episodeNumber": 5,
+   "name": "Episode 5"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Channel 4"
+  ],
+  "creatorCredits": [
+   "Russell T Davies",
+   "Nicola Shindler",
+   "Peter Hoar"
+  ],
+  "title": "It's a Sin",
+  "year": 2021,
+  "type": "show",
+  "fetchedAt": "2026-10-25"
+ },
+ "show:21323": {
+  "genres": [
+   "Comedy",
+   "Drama"
+  ],
+  "overview": "Monday Monday is an ITV, UTV comedy drama. It stars Fay Ripley, Jenny Agutter, Neil Stuke, Holly Aird, Morven Christie, Tom Ellis, and Miranda Hart.\n\nIt is set in the head office of a supermarket that has fallen on hard times and had to re-locate its staff from London to Leeds. The show was initially announced as part of ITV's Winter 2007 press pack, but was \"iced\" until 2009 due to falling advertising in the wake of the economic downturn.",
+  "keywords": [
+   "london, england",
+   "supermarket",
+   "northern england",
+   "workplace",
+   "yorkshire",
+   "workplace comedy"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt1253090",
+  "voteAverage": 8.5,
+  "voteCount": 2,
+  "popularity": 3.1908,
+  "posterPath": "/UgISffDVxpRT9C7Ngws8UW4fim.jpg",
+  "similarToIds": [
+   21699,
+   116823,
+   198102,
+   116174,
+   197449,
+   199908,
+   21660,
+   116799,
+   198004,
+   21681,
+   51898,
+   199925,
+   117536,
+   200949,
+   200952,
+   84475,
+   84743,
+   200868,
+   84282,
+   22493
+  ],
+  "recommendedIds": [
+   61916,
+   62649,
+   4277,
+   2316,
+   97,
+   66369,
+   4576,
+   380,
+   38210,
+   110,
+   4239,
+   43082,
+   2299,
+   1964,
+   2996,
+   32962,
+   905,
+   94686,
+   39340,
+   10118
+  ],
+  "productionCompanies": [],
+  "topCast": [
+   "Fay Ripley",
+   "Holly Aird",
+   "Morven Christie",
+   "Jenny Agutter",
+   "Miranda Hart"
+  ],
+  "topCastDetail": [
+   {
+    "id": 102754,
+    "name": "Fay Ripley",
+    "gender": 1
+   },
+   {
+    "id": 47590,
+    "name": "Holly Aird",
+    "gender": 1
+   },
+   {
+    "id": 147884,
+    "name": "Morven Christie",
+    "gender": 1
+   },
+   {
+    "id": 14464,
+    "name": "Jenny Agutter",
+    "gender": 1
+   },
+   {
+    "id": 62965,
+    "name": "Miranda Hart",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2009-07-13",
+  "episodeRunTime": 60,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 7,
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2009-08-24",
+   "seasonNumber": 1,
+   "episodeNumber": 7,
+   "name": "Episode 7"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "ITV1"
+  ],
+  "creatorCredits": [],
+  "title": "Monday Monday",
+  "year": 2009,
+  "type": "show",
+  "fetchedAt": "2026-10-25"
+ },
+ "show:60803": {
+  "genres": [
+   "Drama",
+   "Family"
+  ],
+  "overview": "April, an aspiring journalist, is balancing her ambitious career with her family and a new office romance. In an unexpected twist of fate, April learns that she has leukemia.",
+  "keywords": [
+   "journalist",
+   "friendship",
+   "leukemia",
+   "romance",
+   "cancer",
+   "death of father",
+   "family relationships",
+   "hospital",
+   "doctor",
+   "hospitalization",
+   "struggling",
+   "lesbian"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt2399794",
+  "voteAverage": 7.2,
+  "voteCount": 57,
+  "popularity": 13.7592,
+  "posterPath": "/divzwWoDznYdqn0FtwyPuQfacg6.jpg",
+  "similarToIds": [
+   1694,
+   61017,
+   61032,
+   1714,
+   1720,
+   61096,
+   94642,
+   1736,
+   1750,
+   94586,
+   94588,
+   1892,
+   1895,
+   1897,
+   94830,
+   94837,
+   94838,
+   94842,
+   94844,
+   94849
+  ],
+  "recommendedIds": [
+   1950,
+   18856,
+   81499,
+   881,
+   76818,
+   95004,
+   6467,
+   211564,
+   90254,
+   237748,
+   1054,
+   133908,
+   225891,
+   341,
+   81991,
+   223389,
+   2822,
+   1021,
+   1791,
+   70785
+  ],
+  "productionCompanies": [
+   "Televisa USA",
+   "Kapital Entertainment",
+   "Lionsgate Television"
+  ],
+  "topCast": [
+   "Italia Ricci",
+   "Mary Page Keller",
+   "Haley Ramm",
+   "Richard Brancatisano",
+   "Aisha Dee"
+  ],
+  "topCastDetail": [
+   {
+    "id": 212429,
+    "name": "Italia Ricci",
+    "gender": 1
+   },
+   {
+    "id": 82653,
+    "name": "Mary Page Keller",
+    "gender": 1
+   },
+   {
+    "id": 61555,
+    "name": "Haley Ramm",
+    "gender": 1
+   },
+   {
+    "id": 990513,
+    "name": "Richard Brancatisano",
+    "gender": 2
+   },
+   {
+    "id": 103390,
+    "name": "Aisha Dee",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2014-06-10",
+  "episodeRunTime": 60,
+  "createdBy": [
+   "Susanna Fogel",
+   "Joni Lefkowitz"
+  ],
+  "status": "Canceled",
+  "numberOfSeasons": 2,
+  "numberOfEpisodes": 34,
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2015-09-28",
+   "seasonNumber": 2,
+   "episodeNumber": 13,
+   "name": "La Dolce Vita"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "ABC Family"
+  ],
+  "creatorCredits": [
+   "Susanna Fogel",
+   "Joni Lefkowitz"
+  ],
+  "title": "Chasing Life",
+  "year": 2014,
+  "type": "show",
+  "fetchedAt": "2026-10-25"
+ },
+ "show:21728": {
+  "genres": [
+   "Crime",
+   "Mystery",
+   "Drama"
+  ],
+  "overview": "A continuation of the anthology series \u201cAlfred Hitchcock Presents\u201d, hosted by the master of suspense and featuring thrillers and mysteries.",
+  "keywords": [
+   "anthology",
+   "murder",
+   "horror",
+   "stalkers"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0055657",
+  "voteAverage": 7.9,
+  "voteCount": 85,
+  "popularity": 63.0298,
+  "posterPath": "/6bnJU1YmobWBNokjLruUsZ6cykC.jpg",
+  "similarToIds": [
+   94277,
+   60574,
+   1402,
+   60605,
+   60622,
+   60624,
+   127512,
+   60748,
+   94496,
+   94305,
+   94251,
+   60741,
+   127674,
+   1426,
+   60791,
+   94423,
+   29853,
+   29854,
+   29855,
+   60907
+  ],
+  "recommendedIds": [
+   5273,
+   2751,
+   130273,
+   4318,
+   6127,
+   1918,
+   74430,
+   126660,
+   130766,
+   62823,
+   925,
+   587,
+   248698,
+   254071,
+   241549,
+   229940,
+   244978,
+   156993,
+   4531,
+   34235
+  ],
+  "productionCompanies": [
+   "Shamley Productions",
+   "Revue Studios",
+   "Universal Television"
+  ],
+  "topCast": [
+   "Alfred Hitchcock"
+  ],
+  "topCastDetail": [
+   {
+    "id": 2636,
+    "name": "Alfred Hitchcock",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "1962-09-20",
+  "episodeRunTime": null,
+  "createdBy": [
+   "Alfred Hitchcock"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 3,
+  "numberOfEpisodes": 93,
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "1965-05-10",
+   "seasonNumber": 3,
+   "episodeNumber": 29,
+   "name": "Off Season"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "NBC",
+   "CBS"
+  ],
+  "creatorCredits": [
+   "Alfred Hitchcock",
+   "Norman Lloyd"
+  ],
+  "title": "The Alfred Hitchcock Hour",
+  "year": 1962,
+  "type": "show",
+  "fetchedAt": "2026-10-25"
+ },
+ "show:83639": {
+  "genres": [
+   "Drama",
+   "Mystery",
+   "Crime"
+  ],
+  "overview": "A mysterious, clever girl named Nanno transfers to different schools, exposing the lies and misdeeds of the students and faculty at every turn.",
+  "keywords": [
+   "rape",
+   "supernatural",
+   "high school",
+   "bullying",
+   "anthology",
+   "revenge",
+   "murder",
+   "betrayal",
+   "gore",
+   "school",
+   "death",
+   "social issues",
+   "transfer student",
+   "extreme violence",
+   "psychological horror"
+  ],
+  "originalLanguage": "th",
+  "imdbId": "tt8824648",
+  "voteAverage": 8.497,
+  "voteCount": 971,
+  "popularity": 15.9215,
+  "posterPath": "/kb3O6BtHw4duUGbXBpPskuPTzd2.jpg",
+  "similarToIds": [
+   94277,
+   60556,
+   60574,
+   1395,
+   1402,
+   60605,
+   60622,
+   60624,
+   127599,
+   127512,
+   127527,
+   60748,
+   94496,
+   94305,
+   94322,
+   1536,
+   94245,
+   94251,
+   60685,
+   60705
+  ],
+  "recommendedIds": [
+   288673,
+   3470,
+   94251,
+   66788,
+   120462,
+   73987,
+   10370,
+   31917,
+   113036,
+   12832,
+   310935,
+   39852,
+   82104,
+   19614,
+   71116,
+   7143,
+   75191,
+   249042,
+   60708,
+   65784
+  ],
+  "productionCompanies": [
+   "GMM BRAVO",
+   "GMM Grammy",
+   "Jungka Bangkok"
+  ],
+  "topCast": [
+   "Chicha Amatayakul"
+  ],
+  "topCastDetail": [
+   {
+    "id": 2278988,
+    "name": "Chicha Amatayakul",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2018-10-27",
+  "episodeRunTime": null,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 2,
+  "numberOfEpisodes": 21,
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2021-05-07",
+   "seasonNumber": 2,
+   "episodeNumber": 8,
+   "name": "The Judgment"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Netflix",
+   "GMM 25"
+  ],
+  "creatorCredits": [
+   "Nalina Chayasombat",
+   "Ekachai Uekrongtham"
+  ],
+  "title": "Girl from Nowhere",
+  "year": 2018,
+  "type": "show",
+  "fetchedAt": "2026-10-25"
+ },
+ "show:83207": {
+  "genres": [
+   "Drama",
+   "Mystery",
+   "Crime"
+  ],
+  "overview": "",
+  "keywords": [
+   "thriller",
+   "drama",
+   "action",
+   "crime"
+  ],
+  "originalLanguage": "es",
+  "imdbId": "tt9004294",
+  "voteAverage": 7.9,
+  "voteCount": 126,
+  "popularity": 8.2903,
+  "posterPath": "/h3BYTfbkXCHImrvMKoVRseNNVOB.jpg",
+  "similarToIds": [
+   127607,
+   1098,
+   242860,
+   242706,
+   279406,
+   309972,
+   94406,
+   94413,
+   242378,
+   127529,
+   242537,
+   279477,
+   310200,
+   210589,
+   310295,
+   279731,
+   210787,
+   1338,
+   242990,
+   1425
+  ],
+  "recommendedIds": [
+   246461,
+   241372,
+   201408,
+   106349,
+   80210,
+   86588,
+   213306,
+   121710,
+   4170,
+   126167,
+   197242,
+   244243,
+   138108,
+   104819,
+   85310,
+   263236,
+   259454,
+   278178,
+   90452,
+   157061
+  ],
+  "productionCompanies": [
+   "Televisa"
+  ],
+  "topCast": [
+   "Lizy Mart\u00ednez"
+  ],
+  "topCastDetail": [
+   {
+    "id": 6307004,
+    "name": "Lizy Mart\u00ednez",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2018-10-08",
+  "episodeRunTime": 60,
+  "createdBy": [
+   "Marcelo Strupini",
+   "Rub\u00e9n Galindo Jr."
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 3,
+  "numberOfEpisodes": 81,
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2020-04-12",
+   "seasonNumber": 3,
+   "episodeNumber": 35,
+   "name": "Episode 35"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Las Estrellas"
+  ],
+  "creatorCredits": [
+   "Marcelo Strupini",
+   "Rub\u00e9n Galindo Jr."
+  ],
+  "title": "Sin miedo a la verdad",
+  "year": 2018,
+  "type": "show",
+  "fetchedAt": "2026-10-25"
+ },
+ "show:60624": {
+  "genres": [
+   "Drama",
+   "Comedy"
+  ],
+  "overview": "An anthology of erotic stories by famous writers like Guy de Maupassant, Nicolas Edme Restif de La Bretonne, Marquis de Sade, Giovanni Boccaccio, Marquis de Foudras, Daniel Defoe, Anton Tchekov, Jin Ping Mei, and Aristophanes.",
+  "keywords": [
+   "france",
+   "based on novel or book",
+   "eroticism",
+   "literature",
+   "anthology",
+   "sexual attraction",
+   "softcore",
+   "nude",
+   "nudity",
+   "erotic anthology"
+  ],
+  "originalLanguage": "fr",
+  "imdbId": "tt0131187",
+  "voteAverage": 5.6,
+  "voteCount": 8,
+  "popularity": 13.408,
+  "posterPath": "/4fdYcPVqidr3fTvkfT72rDBMIEv.jpg",
+  "similarToIds": [
+   1737,
+   1741,
+   94834,
+   94842,
+   30427,
+   30327,
+   94997,
+   1941,
+   61289,
+   61290,
+   30504,
+   30381,
+   1918,
+   61352,
+   61431,
+   128331,
+   94559,
+   30110,
+   30088,
+   61138
+  ],
+  "recommendedIds": [
+   102316,
+   131142,
+   78950,
+   91602,
+   10370,
+   73607,
+   1386,
+   251608,
+   3470,
+   113036,
+   61746,
+   71116,
+   118303,
+   2391,
+   12832,
+   90705,
+   94251,
+   7143,
+   107119,
+   41875
+  ],
+  "productionCompanies": [
+   "FR3",
+   "Hamster Productions"
+  ],
+  "topCast": [
+   "Jean-Pierre Kalfon"
+  ],
+  "topCastDetail": [
+   {
+    "id": 16350,
+    "name": "Jean-Pierre Kalfon",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "1986-11-08",
+  "episodeRunTime": 28,
+  "createdBy": [
+   "Pierre Grimblat"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 26,
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "1991-07-06",
+   "seasonNumber": 1,
+   "episodeNumber": 26,
+   "name": "Episode 26"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "France 3"
+  ],
+  "creatorCredits": [
+   "Pierre Grimblat",
+   "Nicolas Traube",
+   "Gaspard de Chavagnac"
+  ],
+  "title": "Softly from Paris",
+  "year": 1986,
+  "type": "show",
+  "fetchedAt": "2026-10-25"
+ },
+ "show:60907": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "Anthology series of plays where various disparate characters meet in the city of London.",
+  "keywords": [
+   "london, england",
+   "anthology",
+   "miniseries"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0405601",
+  "voteAverage": 7.0,
+  "voteCount": 1,
+  "popularity": 2.6991,
+  "posterPath": null,
+  "similarToIds": [
+   1204,
+   1247,
+   1249,
+   127735,
+   1160,
+   94817,
+   94659,
+   30088,
+   30280,
+   1180,
+   1103,
+   60900,
+   242879,
+   1167,
+   60875,
+   60791,
+   279389,
+   279283,
+   210315,
+   94559
+  ],
+  "recommendedIds": [
+   2199,
+   90705,
+   73607,
+   33841,
+   7143,
+   10370,
+   63859,
+   119279,
+   21699,
+   73987,
+   4318,
+   5273,
+   108171,
+   113036,
+   12832,
+   34539,
+   107119,
+   1386,
+   131142,
+   213338
+  ],
+  "productionCompanies": [
+   "BBC"
+  ],
+  "topCast": [],
+  "topCastDetail": [],
+  "firstAirDate": "1961-04-04",
+  "episodeRunTime": 35,
+  "createdBy": [
+   "Hal Burton"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 5,
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "1961-04-25",
+   "seasonNumber": 1,
+   "episodeNumber": 5,
+   "name": "A Bride in the Morning"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "BBC One"
+  ],
+  "creatorCredits": [
+   "Hal Burton"
+  ],
+  "title": "They Met in a City",
+  "year": 1961,
+  "type": "show",
+  "fetchedAt": "2026-10-25"
+ },
+ "show:2140": {
+  "genres": [
+   "Comedy"
+  ],
+  "overview": "Ray Barone is a successful sportswriter living on Long Island with his wife Debra, daughter Ally, and twin sons, Geoffrey and Michael. Ray's meddling parents, Frank and Marie, and brother, Robert, live directly across the street.",
+  "keywords": [
+   "italian american",
+   "long island, new york",
+   "dysfunctional family",
+   "family conflict",
+   "sports writer",
+   "sitcom",
+   "meddling mother",
+   "hilarious"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0115167",
+  "voteAverage": 6.839,
+  "voteCount": 685,
+  "popularity": 71.6825,
+  "posterPath": "/dcCnVVggEBfNpzHrqzDJqhE6tGP.jpg",
+  "similarToIds": [
+   21832,
+   21835,
+   21867,
+   21870,
+   21873,
+   83615,
+   21594,
+   117030,
+   21495,
+   21498,
+   21499,
+   21660,
+   21670,
+   197803,
+   197588,
+   83121,
+   197548,
+   198156,
+   198004,
+   51960
+  ],
+  "recommendedIds": [
+   67117,
+   1964,
+   4238,
+   4599,
+   61381,
+   4239,
+   39331,
+   2191,
+   39297,
+   2016,
+   4277,
+   1922,
+   3968,
+   10118,
+   36473,
+   62999,
+   1400,
+   4454,
+   1530,
+   654
+  ],
+  "productionCompanies": [
+   "Worldwide Pants",
+   "Where's Lunch",
+   "HBO Independent Productions"
+  ],
+  "topCast": [
+   "Ray Romano",
+   "Patricia Heaton",
+   "Brad Garrett",
+   "Madylin Sweeten",
+   "Sawyer Sweeten"
+  ],
+  "topCastDetail": [
+   {
+    "id": 15757,
+    "name": "Ray Romano",
+    "gender": 2
+   },
+   {
+    "id": 26996,
+    "name": "Patricia Heaton",
+    "gender": 1
+   },
+   {
+    "id": 18,
+    "name": "Brad Garrett",
+    "gender": 2
+   },
+   {
+    "id": 1229502,
+    "name": "Madylin Sweeten",
+    "gender": 1
+   },
+   {
+    "id": 1229503,
+    "name": "Sawyer Sweeten",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "1996-09-13",
+  "episodeRunTime": 30,
+  "createdBy": [
+   "Phil Rosenthal"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 9,
+  "numberOfEpisodes": 210,
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2005-05-16",
+   "seasonNumber": 9,
+   "episodeNumber": 16,
+   "name": "The Finale"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "CBS"
+  ],
+  "creatorCredits": [
+   "Phil Rosenthal",
+   "Rory Rosegarten",
+   "David Letterman"
+  ],
+  "title": "Everybody Loves Raymond",
+  "year": 1996,
+  "type": "show",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:1288069": {
+  "genres": [
+   "Drama",
+   "History"
+  ],
+  "overview": "A determined man embarks on a high-stakes quest\u2014and defies seemingly impossible odds\u2014to fulfill his dream of being the first to reach the summit of Mount Everest.",
+  "keywords": [
+   "nepal",
+   "based on true story",
+   "mountaineering",
+   "mount everest",
+   "1950s",
+   "man vs nature",
+   "making history"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt6262770",
+  "voteAverage": 8.265,
+  "voteCount": 179,
+  "popularity": 82.5328,
+  "posterPath": "/eI0QW02PYqhnmIvLRdn9vrfVVP7.jpg",
+  "similarToIds": [
+   644495,
+   1037603,
+   458131,
+   644583,
+   458441,
+   273454,
+   1037264,
+   264754,
+   1028196,
+   264915,
+   829503,
+   264606,
+   264943,
+   450751,
+   450806,
+   450807,
+   450812,
+   1028574,
+   268134,
+   453201
+  ],
+  "recommendedIds": [
+   253412,
+   836009,
+   978,
+   760336,
+   424600,
+   7305,
+   28761,
+   547090,
+   589612,
+   753336,
+   1317149,
+   42222,
+   829503,
+   1078581,
+   1083612,
+   16391,
+   13554,
+   491480,
+   293646,
+   9664
+  ],
+  "productionCompanies": [
+   "Cross City Films",
+   "See-Saw Films",
+   "Apple Studios"
+  ],
+  "topCast": [
+   "Genden Phuntsok",
+   "Tom Hiddleston",
+   "Willem Dafoe",
+   "Samdrup Dorje Lama",
+   "Bhuchung Kata"
+  ],
+  "topCastDetail": [
+   {
+    "id": 2091969,
+    "name": "Genden Phuntsok",
+    "gender": 2
+   },
+   {
+    "id": 91606,
+    "name": "Tom Hiddleston",
+    "gender": 2
+   },
+   {
+    "id": 5293,
+    "name": "Willem Dafoe",
+    "gender": 2
+   },
+   {
+    "id": 6553324,
+    "name": "Samdrup Dorje Lama",
+    "gender": 2
+   },
+   {
+    "id": 6553325,
+    "name": "Bhuchung Kata",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2026-10-09",
+  "runtime": 126,
+  "director": "Jennifer Peedom",
+  "directors": [
+   "Jennifer Peedom"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Jennifer Peedom",
+   "Liz Watts",
+   "Emile Sherman"
+  ],
+  "title": "Tenzing",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:1400940": {
+  "genres": [
+   "Horror",
+   "Thriller",
+   "Science Fiction"
+  ],
+  "overview": "Matt Hagen's meteoric rise from Gotham street kid to Hollywood leading man is tragically cut short when a local crime boss's actions leave him horribly disfigured. Abandoned by his team and with nothing left, Matt seeks out a cutting edge treatment that miraculously returns him to his former self\u2026 but also unexpectedly affects his grip on reality, spiraling him down a destructive path of all-consuming revenge.",
+  "keywords": [
+   "monster",
+   "shapeshifting",
+   "based on comic",
+   "revenge",
+   "tragedy",
+   "female scientist",
+   "scientific experiment",
+   "body horror",
+   "dc universe (dcu)",
+   "hollywood actor",
+   "comic monster"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt34890576",
+  "voteAverage": 7.59,
+  "voteCount": 155,
+  "popularity": 273.1418,
+  "posterPath": "/9l1NuFjel2j89hiuiJbsxfblqjy.jpg",
+  "similarToIds": [
+   1037048,
+   838240,
+   644124,
+   644452,
+   273565,
+   1037578,
+   274083,
+   273481,
+   644265,
+   838075,
+   1037618,
+   1417120,
+   265265,
+   829241,
+   829410,
+   635910,
+   450603,
+   829357,
+   268060,
+   638901
+  ],
+  "recommendedIds": [
+   9383,
+   13059,
+   13220,
+   9426,
+   9556,
+   338676,
+   819876,
+   1141182,
+   48660,
+   1340110,
+   608654,
+   30694,
+   1320330,
+   33518,
+   1272837,
+   528985,
+   12476,
+   3145,
+   347548,
+   169
+  ],
+  "productionCompanies": [
+   "DC Studios",
+   "Domain Entertainment",
+   "6th & Idaho Motion Picture Company"
+  ],
+  "topCast": [
+   "Tom Rhys Harries",
+   "Naomi Ackie",
+   "Eddie Marsan",
+   "Max Minghella",
+   "David Dencik"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1327945,
+    "name": "Tom Rhys Harries",
+    "gender": 2
+   },
+   {
+    "id": 1537686,
+    "name": "Naomi Ackie",
+    "gender": 1
+   },
+   {
+    "id": 1665,
+    "name": "Eddie Marsan",
+    "gender": 2
+   },
+   {
+    "id": 2978,
+    "name": "Max Minghella",
+    "gender": 2
+   },
+   {
+    "id": 93236,
+    "name": "David Dencik",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2026-10-19",
+  "runtime": 109,
+  "director": "James Watkins",
+  "directors": [
+   "James Watkins"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "James Watkins",
+   "James Gunn",
+   "Peter Safran"
+  ],
+  "title": "Clayface",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:533444": {
+  "genres": [
+   "Romance",
+   "Drama"
+  ],
+  "overview": "A controlling father\u2019s attempts to ensure that his two children succeed in high school backfire after his son experiences a career-ending sports injury. Their familial bonds are eventually placed under severe strain by an unexpected tragedy.",
+  "keywords": [
+   "high school",
+   "florida",
+   "regret",
+   "forgiveness",
+   "wrestling",
+   "loss",
+   "coming of age",
+   "grief",
+   "tragedy",
+   "interracial relationship",
+   "break-up",
+   "dying father",
+   "healing process",
+   "family dynamics",
+   "generation z"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt8652728",
+  "voteAverage": 7.38,
+  "voteCount": 853,
+  "popularity": 8.004,
+  "posterPath": "/3xbjL0z8iH8e8L3USyeKGQrBfuZ.jpg",
+  "similarToIds": [
+   451052,
+   265347,
+   636360,
+   638980,
+   268493,
+   453663,
+   639609,
+   833135,
+   268774,
+   453270,
+   453274,
+   1031992,
+   1032260,
+   832643,
+   1031591,
+   268171,
+   458523,
+   1037768,
+   1037774,
+   274034
+  ],
+  "recommendedIds": [
+   334,
+   23169,
+   850165,
+   9469,
+   59437,
+   43922,
+   87492,
+   16619,
+   502122,
+   54752,
+   540023,
+   244536,
+   20,
+   891699,
+   1365,
+   14976,
+   244772,
+   45791,
+   32331,
+   795514
+  ],
+  "productionCompanies": [
+   "A24",
+   "Bron Studios",
+   "JW Films"
+  ],
+  "topCast": [
+   "Kelvin Harrison Jr.",
+   "Taylor Russell",
+   "Ren\u00e9e Elise Goldsberry",
+   "Sterling K. Brown",
+   "Lucas Hedges"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1344361,
+    "name": "Kelvin Harrison Jr.",
+    "gender": 2
+   },
+   {
+    "id": 1353827,
+    "name": "Taylor Russell",
+    "gender": 1
+   },
+   {
+    "id": 87932,
+    "name": "Ren\u00e9e Elise Goldsberry",
+    "gender": 1
+   },
+   {
+    "id": 1225953,
+    "name": "Sterling K. Brown",
+    "gender": 2
+   },
+   {
+    "id": 1105079,
+    "name": "Lucas Hedges",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2019-11-15",
+  "runtime": 136,
+  "director": "Trey Edward Shults",
+  "directors": [
+   "Trey Edward Shults"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Trey Edward Shults",
+   "Kevin Turen",
+   "Jacob Jaffke"
+  ],
+  "title": "Waves",
+  "year": 2019,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:361292": {
+  "genres": [
+   "Horror",
+   "Mystery",
+   "Drama"
+  ],
+  "overview": "A darkness swirls at the center of a world-renowned dance company, one that will engulf the artistic director, an ambitious young dancer, and a grieving psychotherapist. Some will succumb to the nightmare. Others will finally wake up.",
+  "keywords": [
+   "berlin, germany",
+   "dance performance",
+   "berlin wall",
+   "telepathy",
+   "1970s",
+   "fascism",
+   "paranormal phenomena",
+   "telekinesis",
+   "remake",
+   "ballet",
+   "female protagonist",
+   "demon",
+   "choreographer",
+   "witchcraft",
+   "occult"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt1034415",
+  "voteAverage": 6.889,
+  "voteCount": 2868,
+  "popularity": 9.7783,
+  "posterPath": "/bRpKFPb8CWKRQxVo9NzOuPPlO3Q.jpg",
+  "similarToIds": [
+   457955,
+   644452,
+   458033,
+   838209,
+   458131,
+   644613,
+   1218850,
+   1417120,
+   450654,
+   265095,
+   265177,
+   265189,
+   265066,
+   265067,
+   450274,
+   1603165,
+   829358,
+   450157,
+   268124,
+   1031784
+  ],
+  "recommendedIds": [
+   44214,
+   621707,
+   363126,
+   18196,
+   23827,
+   24740,
+   25329,
+   423108,
+   86825,
+   576845,
+   47474,
+   3035,
+   1339206,
+   11481,
+   345911,
+   41436,
+   409297,
+   474350,
+   2291,
+   270303
+  ],
+  "productionCompanies": [
+   "Frenesy Film",
+   "Videa",
+   "Mythology Entertainment"
+  ],
+  "topCast": [
+   "Dakota Johnson",
+   "Tilda Swinton",
+   "Mia Goth",
+   "Angela Winkler",
+   "Ingrid Caven"
+  ],
+  "topCastDetail": [
+   {
+    "id": 118545,
+    "name": "Dakota Johnson",
+    "gender": 1
+   },
+   {
+    "id": 3063,
+    "name": "Tilda Swinton",
+    "gender": 1
+   },
+   {
+    "id": 1137824,
+    "name": "Mia Goth",
+    "gender": 1
+   },
+   {
+    "id": 10255,
+    "name": "Angela Winkler",
+    "gender": 1
+   },
+   {
+    "id": 45195,
+    "name": "Ingrid Caven",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2018-10-26",
+  "runtime": 152,
+  "director": "Luca Guadagnino",
+  "directors": [
+   "Luca Guadagnino"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Luca Guadagnino",
+   "Paul Deason",
+   "Carlo Antonelli"
+  ],
+  "title": "Suspiria",
+  "year": 2018,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:1514026": {
+  "genres": [
+   "Horror",
+   "Comedy",
+   "Fantasy"
+  ],
+  "overview": "A magical, singing orange unicorn holds his cast hostage in a surreal TV-show dimension, as he becomes more and more demented.",
+  "keywords": [
+   "supernatural",
+   "dark comedy",
+   "gore",
+   "slasher",
+   "madness",
+   "burlesque",
+   "unicorn",
+   "tv host",
+   "aggressive",
+   "suburban",
+   "supernatural horror",
+   "independent film",
+   "tense",
+   "whimsical",
+   "farcical"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt37281055",
+  "voteAverage": 7.094,
+  "voteCount": 180,
+  "popularity": 185.8033,
+  "posterPath": "/1BdZbNvl1SfrrX8J9X5tQzN6Ivu.jpg",
+  "similarToIds": [
+   869647,
+   484240,
+   484247,
+   301598,
+   871010,
+   674255,
+   674324,
+   673958,
+   870994,
+   1067233,
+   673940,
+   288859,
+   855202,
+   855211,
+   855409,
+   855433,
+   855435,
+   1053155,
+   661374
+  ],
+  "recommendedIds": [
+   1153714,
+   58151,
+   539517,
+   21362,
+   11596,
+   11797,
+   184345,
+   25625,
+   20701,
+   670428,
+   324544,
+   1292695,
+   433941,
+   1312833,
+   956920,
+   675531,
+   24925,
+   929230,
+   765,
+   22244
+  ],
+  "productionCompanies": [
+   "BoulderLight Pictures",
+   "Low Spark Films",
+   "SIPUR"
+  ],
+  "topCast": [
+   "Keegan-Michael Key",
+   "Cristin Milioti",
+   "Delaney Quinn",
+   "Caleb Williams",
+   "Madison Skyy Polan"
+  ],
+  "topCastDetail": [
+   {
+    "id": 298410,
+    "name": "Keegan-Michael Key",
+    "gender": 2
+   },
+   {
+    "id": 204392,
+    "name": "Cristin Milioti",
+    "gender": 1
+   },
+   {
+    "id": 3484285,
+    "name": "Delaney Quinn",
+    "gender": 1
+   },
+   {
+    "id": 3173336,
+    "name": "Caleb Williams",
+    "gender": 2
+   },
+   {
+    "id": 4505121,
+    "name": "Madison Skyy Polan",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2026-08-27",
+  "runtime": 96,
+  "director": "Casper Kelly",
+  "directors": [
+   "Casper Kelly"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Casper Kelly",
+   "Tyler Davidson",
+   "J.D. Lifshitz"
+  ],
+  "title": "Buddy",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:19082": {
+  "genres": [
+   "Documentary",
+   "Music"
+  ],
+  "overview": "A chronicle of Bob Dylan's strange evolution between 1961 and 1966 from folk singer to protest singer to \"voice of a generation\" to rock star.",
+  "keywords": [
+   "singer-songwriter",
+   "rock singer",
+   "performance folk rock",
+   "retired singer",
+   "life and career",
+   "famous song",
+   "biographical",
+   "biographical documentary"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0367555",
+  "voteAverage": 7.77,
+  "voteCount": 150,
+  "popularity": 2.1738,
+  "posterPath": "/lqOo4nyRS56Goi8InZqLFKGEJR5.jpg",
+  "similarToIds": [
+   268547,
+   1031907,
+   272977,
+   275881,
+   275548,
+   278837,
+   844511,
+   651429,
+   1494114,
+   1116678,
+   79708,
+   85309,
+   1122169,
+   352628,
+   930333,
+   531033,
+   355387,
+   1502617,
+   934042,
+   1127632
+  ],
+  "recommendedIds": [
+   653567,
+   1400784,
+   957457,
+   1445363,
+   507256,
+   512191,
+   61488,
+   1447853,
+   1226841,
+   229296,
+   101267,
+   1642859,
+   1076708,
+   78192,
+   617773,
+   730009,
+   879805,
+   77448,
+   768141,
+   450945
+  ],
+  "productionCompanies": [
+   "Grey Water Park Productions",
+   "Spitfire Pictures",
+   "Thirteen"
+  ],
+  "topCast": [
+   "Bob Dylan",
+   "Allen Ginsberg",
+   "Joan Baez",
+   "Johnny Cash",
+   "Pete Seeger"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1487,
+    "name": "Bob Dylan",
+    "gender": 2
+   },
+   {
+    "id": 110589,
+    "name": "Allen Ginsberg",
+    "gender": 2
+   },
+   {
+    "id": 1490,
+    "name": "Joan Baez",
+    "gender": 1
+   },
+   {
+    "id": 84678,
+    "name": "Johnny Cash",
+    "gender": 2
+   },
+   {
+    "id": 44549,
+    "name": "Pete Seeger",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2005-07-21",
+  "runtime": 208,
+  "director": "Martin Scorsese",
+  "directors": [
+   "Martin Scorsese"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Martin Scorsese"
+  ],
+  "title": "No Direction Home: Bob Dylan",
+  "year": 2005,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:1272": {
+  "genres": [
+   "Thriller",
+   "Science Fiction",
+   "Horror"
+  ],
+  "overview": "Fifty years into the future, the sun is dying, and Earth is threatened by arctic temperatures. A team of astronauts is sent to revive the Sun \u2014 but the mission fails. Seven years later, a new team is sent to finish the mission as mankind\u2019s last hope.",
+  "keywords": [
+   "space marine",
+   "saving the world",
+   "bomb",
+   "sun",
+   "space suit",
+   "sunlight",
+   "space travel",
+   "space mission",
+   "earth",
+   "solar energy",
+   "expiration",
+   "introspective",
+   "grand",
+   "2050s",
+   "suspenseful"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0448134",
+  "voteAverage": 7.0,
+  "voteCount": 4491,
+  "popularity": 9.0711,
+  "posterPath": "/oKGGeJ8qvm0UmClz43VJ31fzPP7.jpg",
+  "similarToIds": [
+   268531,
+   1031928,
+   833200,
+   643532,
+   272692,
+   459698,
+   275420,
+   840464,
+   646593,
+   460279,
+   842942,
+   650033,
+   1042687,
+   280092,
+   80274,
+   1116201,
+   346364,
+   525200,
+   345940,
+   345911
+  ],
+  "recommendedIds": [
+   348,
+   296,
+   534,
+   605,
+   1196067,
+   218,
+   3072,
+   8413,
+   19898,
+   395,
+   2787,
+   1308757,
+   11683,
+   1140648,
+   1241470,
+   679,
+   597890,
+   338676,
+   1141182,
+   1323244
+  ],
+  "productionCompanies": [
+   "Ingenious Media",
+   "Moving Picture Company",
+   "UK Film Council"
+  ],
+  "topCast": [
+   "Cillian Murphy",
+   "Rose Byrne",
+   "Chris Evans",
+   "Michelle Yeoh",
+   "Cliff Curtis"
+  ],
+  "topCastDetail": [
+   {
+    "id": 2037,
+    "name": "Cillian Murphy",
+    "gender": 2
+   },
+   {
+    "id": 9827,
+    "name": "Rose Byrne",
+    "gender": 1
+   },
+   {
+    "id": 16828,
+    "name": "Chris Evans",
+    "gender": 2
+   },
+   {
+    "id": 1620,
+    "name": "Michelle Yeoh",
+    "gender": 1
+   },
+   {
+    "id": 7248,
+    "name": "Cliff Curtis",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2007-04-05",
+  "runtime": 108,
+  "director": "Danny Boyle",
+  "directors": [
+   "Danny Boyle"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Danny Boyle",
+   "Andrew Macdonald"
+  ],
+  "title": "Sunshine",
+  "year": 2007,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:1126934": {
+  "genres": [
+   "Thriller",
+   "Comedy",
+   "Horror"
+  ],
+  "overview": "A talented chef with gambling woes flees to a Latin American villa to visit an old friend who appears to be living an extraordinary life as a private chef. Envy soon turns to greed and then to something deeply unsettling for the chef when he assumes his friend's life and discovers the motives of his mysterious clients.",
+  "keywords": [
+   "suicide",
+   "gambling debt",
+   "detective",
+   "cooking",
+   "murder",
+   "dinner",
+   "chef",
+   "stolen identity",
+   "identity theft",
+   "cannibalism",
+   "didactic"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt13638858",
+  "voteAverage": 6.933,
+  "voteCount": 203,
+  "popularity": 3.5046,
+  "posterPath": "/bBbceiJHq4dqrKcFEAKolBhiDx0.jpg",
+  "similarToIds": [
+   639049,
+   639408,
+   268595,
+   453655,
+   268725,
+   453276,
+   1031905,
+   639486,
+   453296,
+   458723,
+   274283,
+   458594,
+   1038012,
+   458928,
+   1038378,
+   274146,
+   643550,
+   272420,
+   643866,
+   643532
+  ],
+  "recommendedIds": [
+   175291,
+   97051,
+   1330421,
+   11917,
+   186869,
+   285923,
+   20794,
+   787752,
+   257117,
+   22804,
+   13122,
+   510388,
+   227300,
+   680,
+   21407,
+   10299,
+   214,
+   926606,
+   190469,
+   663
+  ],
+  "productionCompanies": [
+   "Evergreen Avenue",
+   "Jaguar Bite",
+   "Freestyle Picture Company"
+  ],
+  "topCast": [
+   "Nick Stahl",
+   "Tamsin Topolski",
+   "Randy Vasquez",
+   "Penelope Mitchell",
+   "Brian Groh"
+  ],
+  "topCastDetail": [
+   {
+    "id": 6408,
+    "name": "Nick Stahl",
+    "gender": 2
+   },
+   {
+    "id": 1605791,
+    "name": "Tamsin Topolski",
+    "gender": 1
+   },
+   {
+    "id": 119883,
+    "name": "Randy Vasquez",
+    "gender": 2
+   },
+   {
+    "id": 1146114,
+    "name": "Penelope Mitchell",
+    "gender": 1
+   },
+   {
+    "id": 938029,
+    "name": "Brian Groh",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2024-05-31",
+  "runtime": 102,
+  "director": "Nicholas Tomnay",
+  "directors": [
+   "Nicholas Tomnay"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Nicholas Tomnay"
+  ],
+  "title": "What You Wish For",
+  "year": 2024,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "show:18408": {
+  "genres": [
+   "Documentary"
+  ],
+  "overview": "Life After People is a television series on which scientists, structural engineers, and other experts speculate about what might become of Earth should humanity instantly disappear. The featured experts also talk about the impact of human extinction on the environment, and the vestiges of civilization thus left behind.",
+  "keywords": [
+   "time",
+   "change",
+   "nature",
+   "extinction",
+   "speculative"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt1433058",
+  "voteAverage": 7.3,
+  "voteCount": 150,
+  "popularity": 6.8688,
+  "posterPath": "/2I7qpI6LSgNPWvhAXgN79jZgMwD.jpg",
+  "similarToIds": [
+   94695,
+   61346,
+   61362,
+   2023,
+   61409,
+   94555,
+   61253,
+   61254,
+   61478,
+   61505,
+   61403,
+   61404,
+   30306,
+   62800,
+   95974,
+   129905,
+   63122,
+   31776,
+   31786,
+   96449
+  ],
+  "recommendedIds": [
+   95171,
+   313298,
+   115391,
+   213609,
+   75782,
+   215344,
+   68595,
+   3562,
+   34381,
+   1430,
+   58703,
+   58474,
+   1966,
+   83880,
+   116156,
+   1044,
+   32900,
+   110818,
+   32062,
+   127700
+  ],
+  "productionCompanies": [
+   "Flight 33 Productions"
+  ],
+  "topCast": [
+   "James Lurie",
+   "Hakeem Muata Oluseyi",
+   "Don Wildman",
+   "Andrew Patrick Nelson",
+   "Dan Riskin"
+  ],
+  "topCastDetail": [
+   {
+    "id": 103417,
+    "name": "James Lurie",
+    "gender": 2
+   },
+   {
+    "id": 1962476,
+    "name": "Hakeem Muata Oluseyi",
+    "gender": 2
+   },
+   {
+    "id": 1321835,
+    "name": "Don Wildman",
+    "gender": 2
+   },
+   {
+    "id": 2404839,
+    "name": "Andrew Patrick Nelson",
+    "gender": 0
+   },
+   {
+    "id": 1385451,
+    "name": "Dan Riskin",
+    "gender": 0
+   }
+  ],
+  "firstAirDate": "2009-04-21",
+  "episodeRunTime": 60,
+  "createdBy": [
+   "David De Vries"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 3,
+  "numberOfEpisodes": 28,
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2025-09-13",
+   "seasonNumber": 3,
+   "episodeNumber": 8,
+   "name": "Ticking Time Bombs"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "History"
+  ],
+  "creatorCredits": [
+   "David De Vries"
+  ],
+  "title": "Life After People: The Series",
+  "year": 2009,
+  "type": "show",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:10562": {
+  "genres": [
+   "Thriller",
+   "Crime",
+   "Drama"
+  ],
+  "overview": "A lawyer is asked to come to the police station to clear up a few loose ends in his witness report of a foul murder. \"This will only take ten minutes\", they say, but it turns out to be one loose end after another, and the ten minutes he is away from his speech become longer and longer.",
+  "keywords": [
+   "rape",
+   "suspicion of murder",
+   "jogging",
+   "sexual murder",
+   "serial killer",
+   "lawyer",
+   "murder hunt",
+   "gaslighting"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0164212",
+  "voteAverage": 6.118,
+  "voteCount": 553,
+  "popularity": 3.229,
+  "posterPath": "/2snkCKKthT5S8Ua0aMZkeaXkmBi.jpg",
+  "similarToIds": [
+   672741,
+   300572,
+   484747,
+   485036,
+   301502,
+   301520,
+   673935,
+   855400,
+   855435,
+   473513,
+   288686,
+   288664,
+   288724,
+   472686,
+   472767,
+   289442,
+   855228,
+   473715,
+   473722,
+   289575
+  ],
+  "recommendedIds": [
+   11074,
+   1835,
+   63460,
+   240916,
+   14398,
+   457962,
+   13389,
+   1075519,
+   18587,
+   48129,
+   102362,
+   862552,
+   11707,
+   62835,
+   13252,
+   70577,
+   1245708,
+   1710,
+   1043565,
+   2768
+  ],
+  "productionCompanies": [
+   "TF1 International",
+   "Revelations Entertainment"
+  ],
+  "topCast": [
+   "Gene Hackman",
+   "Morgan Freeman",
+   "Thomas Jane",
+   "Monica Bellucci",
+   "Nydia Caro"
+  ],
+  "topCastDetail": [
+   {
+    "id": 193,
+    "name": "Gene Hackman",
+    "gender": 2
+   },
+   {
+    "id": 192,
+    "name": "Morgan Freeman",
+    "gender": 2
+   },
+   {
+    "id": 11155,
+    "name": "Thomas Jane",
+    "gender": 2
+   },
+   {
+    "id": 28782,
+    "name": "Monica Bellucci",
+    "gender": 1
+   },
+   {
+    "id": 555134,
+    "name": "Nydia Caro",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2000-08-24",
+  "runtime": 110,
+  "director": "Stephen Hopkins",
+  "directors": [
+   "Stephen Hopkins"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Stephen Hopkins",
+   "Maurice Leblond",
+   "Ross Grayson Bell"
+  ],
+  "title": "Under Suspicion",
+  "year": 2000,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:9766": {
+  "genres": [
+   "Crime",
+   "Drama"
+  ],
+  "overview": "Under the leadership of their counselor, teenagers at a juvenile detention center gain self-esteem by playing football together. Based on a true story.",
+  "keywords": [
+   "prison",
+   "prisoner",
+   "sports",
+   "competition",
+   "probation assistant ",
+   "american football",
+   "based on true story",
+   "los angeles, california",
+   "mother son relationship",
+   "juvenile delinquency",
+   "criminals"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0421206",
+  "voteAverage": 7.106,
+  "voteCount": 1155,
+  "popularity": 6.6906,
+  "posterPath": "/tTjDApg546wt8OWazvPbEhygu83.jpg",
+  "similarToIds": [
+   483983,
+   1066943,
+   484742,
+   1067395,
+   485114,
+   485046,
+   301805,
+   301841,
+   301351,
+   301502,
+   301513,
+   1053104,
+   473130,
+   855401,
+   473512,
+   660637,
+   855262,
+   855263,
+   289222,
+   288664
+  ],
+  "recommendedIds": [
+   500860,
+   23196,
+   9469,
+   801335,
+   1307373,
+   903,
+   278,
+   13633,
+   10474,
+   457799,
+   18533,
+   19092,
+   855263,
+   645886,
+   209276,
+   13573,
+   12888,
+   339395,
+   134411,
+   171337
+  ],
+  "productionCompanies": [
+   "Columbia Pictures",
+   "Original Film",
+   "Visual Arts Entertainment"
+  ],
+  "topCast": [
+   "Dwayne Johnson",
+   "Xzibit",
+   "L. Scott Caldwell",
+   "Leon Rippy",
+   "Kevin Dunn"
+  ],
+  "topCastDetail": [
+   {
+    "id": 18918,
+    "name": "Dwayne Johnson",
+    "gender": 2
+   },
+   {
+    "id": 336,
+    "name": "Xzibit",
+    "gender": 2
+   },
+   {
+    "id": 29051,
+    "name": "L. Scott Caldwell",
+    "gender": 1
+   },
+   {
+    "id": 15374,
+    "name": "Leon Rippy",
+    "gender": 2
+   },
+   {
+    "id": 14721,
+    "name": "Kevin Dunn",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2006-09-15",
+  "runtime": 125,
+  "director": "Phil Joanou",
+  "directors": [
+   "Phil Joanou"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Phil Joanou",
+   "Michael I. Rachmil",
+   "Ryan Kavanaugh"
+  ],
+  "title": "Gridiron Gang",
+  "year": 2006,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:12698": {
+  "genres": [
+   "Documentary"
+  ],
+  "overview": "Former corporate whiz kid Robert McNamara was the controversial Secretary of Defense in the Kennedy and Johnson administrations, during the height of the Vietnam War. Augmented by archival footage and cabinet conversation recordings, Errol Morris gives the conflicted McNamara a platform on which he attempts to confront his and the U.S. government's actions in Southeast Asia in light of the horrors of modern warfare, the end of ideology and the punitive judgment of history.",
+  "keywords": [
+   "vietnam",
+   "politics",
+   "biography",
+   "historical figure",
+   "historical society",
+   "secretary of defense",
+   "anti war protest",
+   "cuban missile crisis",
+   "cabinet position",
+   "armed forces",
+   "spin doctor",
+   "self immolation",
+   "auto industry",
+   "historical drama",
+   "semi-biographical"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0317910",
+  "voteAverage": 7.739,
+  "voteCount": 310,
+  "popularity": 3.9122,
+  "posterPath": "/m1dEnkrdJGBSLeAyJepuGrU9sNI.jpg",
+  "similarToIds": [
+   1037058,
+   1037168,
+   458080,
+   458139,
+   644560,
+   273665,
+   458271,
+   644996,
+   1037105,
+   273459,
+   458164,
+   458167,
+   1037630,
+   264765,
+   829056,
+   1218844,
+   1417102,
+   265046,
+   265115,
+   635853
+  ],
+  "recommendedIds": [
+   653579,
+   631143,
+   84330,
+   29047,
+   13003,
+   493106,
+   290802,
+   34015,
+   653610,
+   411020,
+   56224,
+   46697,
+   30966,
+   566368,
+   949808,
+   36724,
+   1123287,
+   380808,
+   576017,
+   26564
+  ],
+  "productionCompanies": [
+   "SenArt Films",
+   "RadicalMedia",
+   "Sony Pictures Classics"
+  ],
+  "topCast": [
+   "Robert McNamara",
+   "Errol Morris",
+   "Fidel Castro",
+   "Barry Goldwater",
+   "John F. Kennedy"
+  ],
+  "topCastDetail": [
+   {
+    "id": 73985,
+    "name": "Robert McNamara",
+    "gender": 2
+   },
+   {
+    "id": 18533,
+    "name": "Errol Morris",
+    "gender": 2
+   },
+   {
+    "id": 115863,
+    "name": "Fidel Castro",
+    "gender": 2
+   },
+   {
+    "id": 73987,
+    "name": "Barry Goldwater",
+    "gender": 2
+   },
+   {
+    "id": 21111,
+    "name": "John F. Kennedy",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2003-10-26",
+  "runtime": 107,
+  "director": "Errol Morris",
+  "directors": [
+   "Errol Morris"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Errol Morris",
+   "Jack Lechner",
+   "Jon Kamen"
+  ],
+  "title": "The Fog of War",
+  "year": 2003,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:445954": {
+  "genres": [
+   "Thriller",
+   "Action",
+   "Drama"
+  ],
+  "overview": "A fast-talking lawyer transforms his body and takes a vow of silence, not to be broken until he finds out who killed his wife and daughter and has his revenge.",
+  "keywords": [
+   "homeless person",
+   "fight",
+   "detective",
+   "child murder",
+   "talent show",
+   "revenge",
+   "murder",
+   "lawyer",
+   "drinking",
+   "underground fighting",
+   "murder investigation",
+   "homeless",
+   "death of wife"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt6288694",
+  "voteAverage": 6.0,
+  "voteCount": 624,
+  "popularity": 4.5032,
+  "posterPath": "/8dzAMMqEubPItk8EXrUXe0wyuzn.jpg",
+  "similarToIds": [
+   1036986,
+   644495,
+   644462,
+   273565,
+   644583,
+   274083,
+   274102,
+   274146,
+   273481,
+   458294,
+   458167,
+   450465,
+   264985,
+   265000,
+   264904,
+   265265,
+   450537,
+   450545,
+   450560,
+   264412
+  ],
+  "recommendedIds": [
+   13389,
+   14398,
+   651070,
+   24832,
+   1387382,
+   941,
+   619297,
+   32049,
+   25941,
+   17466,
+   4959,
+   9874,
+   39342,
+   74998,
+   17134,
+   62835,
+   500656,
+   891699,
+   1145725,
+   560016
+  ],
+  "productionCompanies": [
+   "Nu Boyana Film Studios"
+  ],
+  "topCast": [
+   "Antonio Banderas",
+   "Karl Urban",
+   "Paz Vega",
+   "Robert Forster",
+   "Cristina Serafini"
+  ],
+  "topCastDetail": [
+   {
+    "id": 3131,
+    "name": "Antonio Banderas",
+    "gender": 2
+   },
+   {
+    "id": 1372,
+    "name": "Karl Urban",
+    "gender": 2
+   },
+   {
+    "id": 3627,
+    "name": "Paz Vega",
+    "gender": 1
+   },
+   {
+    "id": 5694,
+    "name": "Robert Forster",
+    "gender": 2
+   },
+   {
+    "id": 1291220,
+    "name": "Cristina Serafini",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2017-10-27",
+  "runtime": 87,
+  "director": "Isaac Florentine",
+  "directors": [
+   "Isaac Florentine"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Isaac Florentine",
+   "Avi Lerner",
+   "Les Weldon"
+  ],
+  "title": "Acts of Vengeance",
+  "year": 2017,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:293310": {
+  "genres": [
+   "Documentary"
+  ],
+  "overview": "In June 2013, Laura Poitras and reporter Glenn Greenwald flew to Hong Kong for the first of many meetings with Edward Snowden. She brought her camera with her.",
+  "keywords": [
+   "biography",
+   "national security agency (nsa)",
+   "woman director",
+   "investigative journalism",
+   "whistleblower",
+   "surveillance state",
+   "observational documentary",
+   "mass surveillance",
+   "fbi surveillance"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt4044364",
+  "voteAverage": 7.738,
+  "voteCount": 1465,
+  "popularity": 4.4128,
+  "posterPath": "/nOVhX69EAxtSKEEnr5UcSd5UVci.jpg",
+  "similarToIds": [
+   869444,
+   300470,
+   300485,
+   483957,
+   300558,
+   1066975,
+   301571,
+   301738,
+   485048,
+   485102,
+   301808,
+   301818,
+   485250,
+   301854,
+   484780,
+   673853,
+   673857,
+   301396,
+   484960,
+   673865
+  ],
+  "recommendedIds": [
+   1516391,
+   393561,
+   576017,
+   1004663,
+   1061671,
+   473415,
+   1591516,
+   1723460,
+   1422166,
+   1114590,
+   1400780,
+   21710,
+   178862,
+   428501,
+   565276,
+   507618,
+   432976,
+   34015,
+   84330,
+   355254
+  ],
+  "productionCompanies": [
+   "Participant",
+   "HBO Documentary Films",
+   "The Bertha Foundation"
+  ],
+  "topCast": [
+   "Edward Snowden",
+   "Glenn Greenwald",
+   "Laura Poitras",
+   "William Binney",
+   "Barack Obama"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1386089,
+    "name": "Edward Snowden",
+    "gender": 2
+   },
+   {
+    "id": 1326448,
+    "name": "Glenn Greenwald",
+    "gender": 2
+   },
+   {
+    "id": 220691,
+    "name": "Laura Poitras",
+    "gender": 1
+   },
+   {
+    "id": 1417334,
+    "name": "William Binney",
+    "gender": 2
+   },
+   {
+    "id": 102786,
+    "name": "Barack Obama",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2014-10-10",
+  "runtime": 113,
+  "director": "Laura Poitras",
+  "directors": [
+   "Laura Poitras"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Laura Poitras",
+   "Mathilde Bonnefoy",
+   "Dirk Wilutzky"
+  ],
+  "title": "Citizenfour",
+  "year": 2014,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:11775": {
+  "genres": [
+   "Comedy",
+   "Romance"
+  ],
+  "overview": "A revenge-seeking gold digger marries a womanizing Beverly Hills lawyer with the intention of making a killing in the divorce.",
+  "keywords": [
+   "infidelity",
+   "california",
+   "assassin",
+   "court",
+   "hitman",
+   "fetish",
+   "dark comedy",
+   "satire",
+   "romcom",
+   "tycoon",
+   "lawyer",
+   "inheritance",
+   "divorce",
+   "screwball comedy",
+   "gold digger"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0138524",
+  "voteAverage": 5.966,
+  "voteCount": 1730,
+  "popularity": 4.5911,
+  "posterPath": "/7K8hDwOWsZv0MluyrB8nWlhJOgB.jpg",
+  "similarToIds": [
+   869647,
+   300484,
+   869831,
+   869835,
+   484247,
+   1067202,
+   871010,
+   674255,
+   485273,
+   1067545,
+   674324,
+   673958,
+   484940,
+   288836,
+   1053155,
+   855262,
+   660240,
+   661374,
+   661399,
+   289280
+  ],
+  "recommendedIds": [
+   37821,
+   5968,
+   346558,
+   13169,
+   1433842,
+   1618945,
+   193610,
+   28124,
+   449562,
+   245906,
+   30204,
+   32856,
+   24621,
+   10407,
+   981,
+   209406,
+   41463,
+   1218762,
+   931461,
+   12708
+  ],
+  "productionCompanies": [
+   "Universal Pictures",
+   "Imagine Entertainment",
+   "Alphaville Films"
+  ],
+  "topCast": [
+   "George Clooney",
+   "Catherine Zeta-Jones",
+   "Geoffrey Rush",
+   "Cedric the Entertainer",
+   "Edward Herrmann"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1461,
+    "name": "George Clooney",
+    "gender": 2
+   },
+   {
+    "id": 1922,
+    "name": "Catherine Zeta-Jones",
+    "gender": 1
+   },
+   {
+    "id": 118,
+    "name": "Geoffrey Rush",
+    "gender": 2
+   },
+   {
+    "id": 5726,
+    "name": "Cedric the Entertainer",
+    "gender": 2
+   },
+   {
+    "id": 52995,
+    "name": "Edward Herrmann",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2003-10-10",
+  "runtime": 100,
+  "director": "Joel Coen",
+  "directors": [
+   "Joel Coen"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Joel Coen",
+   "Jim Whitaker",
+   "Sean Daniel"
+  ],
+  "title": "Intolerable Cruelty",
+  "year": 2003,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:210024": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "Actor William Hartnell felt trapped by a succession of hard-man roles while wannabe producer Verity Lambert was frustrated by the TV industry's glass ceiling. Both of them were to find unlikely hope and unexpected challenges in the form of a Saturday tea-time drama. Allied with a team of unusual but brilliant people, they went on to create the longest running science fiction series ever made.",
+  "keywords": [
+   "time travel",
+   "biography",
+   "docudrama"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt2663812",
+  "voteAverage": 7.705,
+  "voteCount": 222,
+  "popularity": 2.5773,
+  "posterPath": "/lRrmdPMvCPGcLF6FrvS66STXAyU.jpg",
+  "similarToIds": [
+   1028711,
+   265520,
+   832964,
+   1032291,
+   1032194,
+   639434,
+   639277,
+   1031992,
+   458519,
+   458650,
+   458759,
+   458717,
+   458609,
+   1038263,
+   272923,
+   272647,
+   457585,
+   457588,
+   457232,
+   274479
+  ],
+  "recommendedIds": [
+   14914,
+   339145,
+   463158,
+   424600,
+   159389,
+   829503,
+   82631,
+   763144,
+   187541,
+   25208,
+   347123,
+   133557,
+   67809,
+   565341,
+   19851,
+   25527,
+   985617,
+   669666,
+   1317149,
+   860852
+  ],
+  "productionCompanies": [
+   "BBC"
+  ],
+  "topCast": [
+   "David Bradley",
+   "Jessica Raine",
+   "Sacha Dhawan",
+   "Brian Cox",
+   "Lesley Manville"
+  ],
+  "topCastDetail": [
+   {
+    "id": 11180,
+    "name": "David Bradley",
+    "gender": 2
+   },
+   {
+    "id": 1151410,
+    "name": "Jessica Raine",
+    "gender": 1
+   },
+   {
+    "id": 55472,
+    "name": "Sacha Dhawan",
+    "gender": 2
+   },
+   {
+    "id": 1248,
+    "name": "Brian Cox",
+    "gender": 2
+   },
+   {
+    "id": 72305,
+    "name": "Lesley Manville",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2013-11-21",
+  "runtime": 83,
+  "director": "Terry McDonough",
+  "directors": [
+   "Terry McDonough"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Terry McDonough",
+   "Steven Moffat",
+   "Matt Strevens"
+  ],
+  "title": "An Adventure in Space and Time",
+  "year": 2013,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:13018": {
+  "genres": [
+   "Thriller",
+   "Mystery"
+  ],
+  "overview": "As a corporate auditor who works in a number of different offices, Jonathan McQuarry wanders without an anchor among New York's power brokers. A chance meeting with charismatic lawyer Wyatt Bose leads to Jonathan's introduction to The List, an underground sex club. Jonathan begins an affair with a woman known only as S, who introduces Jonathan to a world of treachery and murder.",
+  "keywords": [
+   "deception",
+   "heist",
+   "lawyer"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0800240",
+  "voteAverage": 5.956,
+  "voteCount": 755,
+  "popularity": 10.3881,
+  "posterPath": "/lfkdTvfmaqlGiHymJl6EAdIaN1J.jpg",
+  "similarToIds": [
+   672741,
+   301608,
+   855400,
+   472899,
+   289344,
+   473715,
+   473722,
+   661322,
+   289522,
+   281565,
+   281992,
+   471880,
+   288313,
+   290541,
+   291805,
+   294652,
+   273187,
+   273020,
+   286249,
+   286144
+  ],
+  "recommendedIds": [
+   4566,
+   19345,
+   4780,
+   878183,
+   49527,
+   404733,
+   14979,
+   23210,
+   35404,
+   26712,
+   19017,
+   35006,
+   413362,
+   13195,
+   823625,
+   470897,
+   11718,
+   146223,
+   51997,
+   27590
+  ],
+  "productionCompanies": [
+   "Dune Entertainment III",
+   "KanZaman Productions",
+   "MRC"
+  ],
+  "topCast": [
+   "Ewan McGregor",
+   "Hugh Jackman",
+   "Michelle Williams",
+   "Natasha Henstridge",
+   "Charlotte Rampling"
+  ],
+  "topCastDetail": [
+   {
+    "id": 3061,
+    "name": "Ewan McGregor",
+    "gender": 2
+   },
+   {
+    "id": 6968,
+    "name": "Hugh Jackman",
+    "gender": 2
+   },
+   {
+    "id": 1812,
+    "name": "Michelle Williams",
+    "gender": 1
+   },
+   {
+    "id": 57395,
+    "name": "Natasha Henstridge",
+    "gender": 1
+   },
+   {
+    "id": 44079,
+    "name": "Charlotte Rampling",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2008-04-24",
+  "runtime": 107,
+  "director": "Marcel Langenegger",
+  "directors": [
+   "Marcel Langenegger"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Marcel Langenegger",
+   "Robbie Brenner",
+   "David L. Bushell"
+  ],
+  "title": "Deception",
+  "year": 2008,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:451915": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "After he and his first wife separate, journalist David Sheff struggles to help their teenage son, who goes from experimenting with drugs to becoming devastatingly addicted to methamphetamine.",
+  "keywords": [
+   "based on novel or book",
+   "san francisco, california",
+   "drug addiction",
+   "biography",
+   "based on true story",
+   "drug rehabilitation",
+   "based on memoir or autobiography",
+   "father son relationship",
+   "psychological drama",
+   "aimless youth"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt1226837",
+  "voteAverage": 7.6,
+  "voteCount": 2997,
+  "popularity": 7.9708,
+  "posterPath": "/u2Gfv0mz3xePsgyCPHovrnFL1sB.jpg",
+  "similarToIds": [
+   644495,
+   1037603,
+   458131,
+   273649,
+   644583,
+   1037669,
+   1037738,
+   1037749,
+   458560,
+   458568,
+   458441,
+   458488,
+   458490,
+   273454,
+   458294,
+   458167,
+   644754,
+   838059,
+   1037264,
+   450477
+  ],
+  "recommendedIds": [
+   499566,
+   13703,
+   285024,
+   641,
+   10474,
+   592984,
+   524635,
+   244536,
+   512263,
+   8092,
+   4836,
+   627,
+   823395,
+   1097311,
+   364223,
+   492452,
+   4133,
+   799546,
+   17736,
+   301502
+  ],
+  "productionCompanies": [
+   "Plan B Entertainment"
+  ],
+  "topCast": [
+   "Steve Carell",
+   "Timoth\u00e9e Chalamet",
+   "Maura Tierney",
+   "Amy Ryan",
+   "Christian Convery"
+  ],
+  "topCastDetail": [
+   {
+    "id": 4495,
+    "name": "Steve Carell",
+    "gender": 2
+   },
+   {
+    "id": 1190668,
+    "name": "Timoth\u00e9e Chalamet",
+    "gender": 2
+   },
+   {
+    "id": 16307,
+    "name": "Maura Tierney",
+    "gender": 1
+   },
+   {
+    "id": 39388,
+    "name": "Amy Ryan",
+    "gender": 1
+   },
+   {
+    "id": 1721268,
+    "name": "Christian Convery",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2018-10-12",
+  "runtime": 121,
+  "director": "Felix van Groeningen",
+  "directors": [
+   "Felix van Groeningen"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Felix van Groeningen",
+   "Brad Pitt",
+   "Dede Gardner"
+  ],
+  "title": "Beautiful Boy",
+  "year": 2018,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:10678": {
+  "genres": [
+   "Comedy",
+   "Drama"
+  ],
+  "overview": "Uptight lawyer Peter Sanderson wants to dive back into dating after his divorce and has a hard time meeting the right women. He tries online dating and lucks out when he starts chatting with a fellow lawyer. The two agree to meet in the flesh, but the woman he meets \u2014 an escaped African-American convict named Charlene \u2014 is not what he expected. Peter is freaked out, but Charlene tries to convince him to take her case and prove her innocence. Along the way, she wreaks havoc on his middle-class life as he gets a lesson in learning to lighten up.",
+  "keywords": [
+   "prison",
+   "workaholic",
+   "parent child relationship",
+   "love at first sight",
+   "ex-boyfriend",
+   "support",
+   "mistaken identity",
+   "prison escape",
+   "lawyer",
+   "female prisoner",
+   "racist remark",
+   "racism",
+   "los angeles, california",
+   "divorce",
+   "bank robbery"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0305669",
+  "voteAverage": 5.953,
+  "voteCount": 768,
+  "popularity": 5.3612,
+  "posterPath": "/jic0ULHTcqQQaCSIEw6SAhHhIPA.jpg",
+  "similarToIds": [
+   458131,
+   644583,
+   644201,
+   273482,
+   838720,
+   264731,
+   829051,
+   1028196,
+   1417185,
+   264904,
+   265177,
+   265071,
+   1417019,
+   450438,
+   264426,
+   450259,
+   268104,
+   268120,
+   639010,
+   1031580
+  ],
+  "recommendedIds": [
+   788,
+   491418,
+   677179,
+   28053,
+   15670,
+   28297,
+   1624,
+   47907,
+   1155828,
+   10377,
+   227159,
+   565348,
+   283235,
+   11485,
+   10994,
+   9583,
+   10950,
+   331588,
+   28313,
+   3172
+  ],
+  "productionCompanies": [
+   "Touchstone Pictures",
+   "Hyde Park Entertainment",
+   "Mandeville Films"
+  ],
+  "topCast": [
+   "Steve Martin",
+   "Queen Latifah",
+   "Eugene Levy",
+   "Joan Plowright",
+   "Jean Smart"
+  ],
+  "topCastDetail": [
+   {
+    "id": 67773,
+    "name": "Steve Martin",
+    "gender": 2
+   },
+   {
+    "id": 15758,
+    "name": "Queen Latifah",
+    "gender": 1
+   },
+   {
+    "id": 26510,
+    "name": "Eugene Levy",
+    "gender": 2
+   },
+   {
+    "id": 23709,
+    "name": "Joan Plowright",
+    "gender": 1
+   },
+   {
+    "id": 5376,
+    "name": "Jean Smart",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2003-03-07",
+  "runtime": 105,
+  "director": "Adam Shankman",
+  "directors": [
+   "Adam Shankman"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Adam Shankman",
+   "Ashok Amritraj",
+   "Jane Bartelme"
+  ],
+  "title": "Bringing Down the House",
+  "year": 2003,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:25527": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "Passionate and innovative teacher Ron Clark leaves his small hometown to teach in one of Harlem's toughest schools. But to break through to the students, he must use unconventional methods, including his ground-breaking classroom rules, to help them reach their potential. Based on a true story.",
+  "keywords": [
+   "biography",
+   "teacher",
+   "woman director",
+   "enthusiastic",
+   "gentle",
+   "optimistic"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0473389",
+  "voteAverage": 7.563,
+  "voteCount": 200,
+  "popularity": 5.0508,
+  "posterPath": "/2RJiZzzfG3dT6rNrJnNFTG8GQiQ.jpg",
+  "similarToIds": [
+   1065661,
+   869432,
+   869565,
+   301348,
+   673978,
+   301556,
+   485164,
+   485344,
+   301629,
+   485046,
+   485098,
+   301790,
+   301792,
+   301841,
+   674347,
+   673843,
+   484967,
+   301396,
+   484870,
+   301502
+  ],
+  "recommendedIds": [
+   274007,
+   1163,
+   187541,
+   339145,
+   333367,
+   207,
+   9909,
+   292011,
+   45806,
+   159389,
+   29989,
+   615466,
+   860852,
+   25934,
+   374461,
+   31074,
+   60587,
+   67809,
+   753336,
+   88875
+  ],
+  "productionCompanies": [
+   "Old Beantown Films",
+   "Alberta Film Entertainment",
+   "Granada Entertainment"
+  ],
+  "topCast": [
+   "Matthew Perry",
+   "Ernie Hudson",
+   "Melissa De Sousa",
+   "Hannah Hodson",
+   "Brandon Mychal Smith"
+  ],
+  "topCastDetail": [
+   {
+    "id": 14408,
+    "name": "Matthew Perry",
+    "gender": 2
+   },
+   {
+    "id": 8874,
+    "name": "Ernie Hudson",
+    "gender": 2
+   },
+   {
+    "id": 75696,
+    "name": "Melissa De Sousa",
+    "gender": 1
+   },
+   {
+    "id": 91755,
+    "name": "Hannah Hodson",
+    "gender": 1
+   },
+   {
+    "id": 427978,
+    "name": "Brandon Mychal Smith",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2006-08-13",
+  "runtime": 90,
+  "director": "Randa Haines",
+  "directors": [
+   "Randa Haines"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Randa Haines",
+   "Tom Cox",
+   "Craig McNeil"
+  ],
+  "title": "The Ron Clark Story",
+  "year": 2006,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:146223": {
+  "genres": [
+   "Mystery",
+   "Drama",
+   "Crime",
+   "Thriller"
+  ],
+  "overview": "A high-profile terrorism case unexpectedly binds together two ex-lovers on the defense team - testing the limits of their loyalties and placing their lives in jeopardy.",
+  "keywords": [
+   "ex-lover",
+   "lawyer",
+   "terrorism",
+   "bombing"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt2218003",
+  "voteAverage": 5.915,
+  "voteCount": 511,
+  "popularity": 3.9903,
+  "posterPath": "/keW2sLB9yJbdkRy9yHQjqUjmzbB.jpg",
+  "similarToIds": [
+   644583,
+   265000,
+   264904,
+   267860,
+   453201,
+   453437,
+   832643,
+   1039665,
+   276479,
+   461048,
+   450519,
+   1030613,
+   280184,
+   280039,
+   465024,
+   455221,
+   465914,
+   281565,
+   282176,
+   466622
+  ],
+  "recommendedIds": [
+   13291,
+   1077670,
+   14583,
+   37257,
+   13018,
+   1128547,
+   32080,
+   749395,
+   228968,
+   2207,
+   35404,
+   413362,
+   9559,
+   379170,
+   348631,
+   21594,
+   1310568,
+   854467,
+   492613,
+   35006
+  ],
+  "productionCompanies": [
+   "Focus Features",
+   "Working Title"
+  ],
+  "topCast": [
+   "Eric Bana",
+   "Rebecca Hall",
+   "Ciar\u00e1n Hinds",
+   "Jim Broadbent",
+   "Kenneth Cranham"
+  ],
+  "topCastDetail": [
+   {
+    "id": 8783,
+    "name": "Eric Bana",
+    "gender": 2
+   },
+   {
+    "id": 15556,
+    "name": "Rebecca Hall",
+    "gender": 1
+   },
+   {
+    "id": 8785,
+    "name": "Ciar\u00e1n Hinds",
+    "gender": 2
+   },
+   {
+    "id": 388,
+    "name": "Jim Broadbent",
+    "gender": 2
+   },
+   {
+    "id": 26258,
+    "name": "Kenneth Cranham",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2013-08-28",
+  "runtime": 96,
+  "director": "John Crowley",
+  "directors": [
+   "John Crowley"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "John Crowley",
+   "Tim Owen",
+   "Liza Chasin"
+  ],
+  "title": "Closed Circuit",
+  "year": 2013,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:169607": {
+  "genres": [
+   "Documentary"
+  ],
+  "overview": "Vivian Maier's photos were seemingly destined for obscurity, lost among the clutter of the countless objects she'd collected throughout her life. Instead these images have shaken the world of street photography and irrevocably changed the life of the man who brought them to the public eye. This film brings to life the interesting turns and travails of the improbable saga of John Maloof's discovery of Vivian Maier, unravelling this mysterious tale through her documentary films, photographs, odd collections and personal accounts from the people that knew her. What started as a blog to show her work quickly became a viral sensation in the photography world. Photos destined for the trash heap now line gallery exhibitions, a forthcoming book and this documentary film.",
+  "keywords": [
+   "photographer",
+   "photography",
+   "biography",
+   "photograph",
+   "art",
+   "discovery",
+   "film preservation",
+   "eccentric artist",
+   "art exhibition",
+   "art restoration",
+   "portrait of an artist",
+   "female photographer",
+   "famous people",
+   "photography studies",
+   "street photography"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt2714900",
+  "voteAverage": 7.562,
+  "voteCount": 339,
+  "popularity": 2.0356,
+  "posterPath": "/yaj9mpHNpns5j4ODP4352PgDWJM.jpg",
+  "similarToIds": [
+   450931,
+   450945,
+   265297,
+   265350,
+   268617,
+   639215,
+   453731,
+   1032211,
+   268826,
+   268839,
+   833146,
+   1032135,
+   453670,
+   453672,
+   268776,
+   453268,
+   268300,
+   639370,
+   453749,
+   453432
+  ],
+  "recommendedIds": [
+   376534,
+   465871,
+   653567,
+   717082,
+   42981,
+   1461714,
+   1400784,
+   1076708,
+   869250,
+   352197,
+   278086,
+   513650,
+   1492608,
+   180314,
+   957457,
+   1308619,
+   507256,
+   467062,
+   561325,
+   193645
+  ],
+  "productionCompanies": [
+   "Ravine Pictures"
+  ],
+  "topCast": [
+   "Vivian Maier",
+   "John Maloof",
+   "Daniel Arnaud",
+   "Simon Am\u00e9d\u00e9",
+   "Maren Baylaender"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1899368,
+    "name": "Vivian Maier",
+    "gender": 1
+   },
+   {
+    "id": 1271317,
+    "name": "John Maloof",
+    "gender": 2
+   },
+   {
+    "id": 1899369,
+    "name": "Daniel Arnaud",
+    "gender": 0
+   },
+   {
+    "id": 1899370,
+    "name": "Simon Am\u00e9d\u00e9",
+    "gender": 0
+   },
+   {
+    "id": 1899371,
+    "name": "Maren Baylaender",
+    "gender": 0
+   }
+  ],
+  "releaseDate": "2014-03-21",
+  "runtime": 83,
+  "director": "Charlie Siskel",
+  "directors": [
+   "Charlie Siskel",
+   "John Maloof"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Charlie Siskel",
+   "John Maloof",
+   "Jeff Garlin"
+  ],
+  "title": "Finding Vivian Maier",
+  "year": 2014,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:10092": {
+  "genres": [
+   "Horror",
+   "Thriller"
+  ],
+  "overview": "After a local woman is murdered, a group of teenage liars create a warning e-mail of a serial killer named \u201cThe Wolf\u201d, coming on the next full moon. The teens describe each death method The Wolf uses, but when the described victims actually do start turning up dead, suddenly no one knows where the lies end and the truth begins.",
+  "keywords": [
+   "liar",
+   "friends",
+   "murder",
+   "serial killer",
+   "school",
+   "lawyer",
+   "slasher",
+   "death",
+   "teacher student relationship",
+   "psycho killer",
+   "preparatory school",
+   "rumor",
+   "online predator",
+   "father son relationship"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0384286",
+  "voteAverage": 5.814,
+  "voteCount": 607,
+  "popularity": 7.067,
+  "posterPath": "/7OQ2McKYgnyfIHHkm0jBxQnu7ou.jpg",
+  "similarToIds": [
+   273544,
+   273565,
+   1037051,
+   458109,
+   838471,
+   644583,
+   274146,
+   273481,
+   273509,
+   264752,
+   829035,
+   265018,
+   265265,
+   450537,
+   450545,
+   1417052,
+   829410,
+   450274,
+   636005
+  ],
+  "recommendedIds": [
+   4232,
+   3597,
+   616820,
+   15714,
+   44247,
+   9877,
+   37936,
+   53459,
+   77949,
+   10225,
+   1476740,
+   11675,
+   628707,
+   39929,
+   287084,
+   934433,
+   16342,
+   948,
+   652004,
+   1165466
+  ],
+  "productionCompanies": [
+   "Universal Pictures",
+   "Rogue Films"
+  ],
+  "topCast": [
+   "Julian Morris",
+   "Lindy Booth",
+   "Jared Padalecki",
+   "Jesse Janzen",
+   "Paul James"
+  ],
+  "topCastDetail": [
+   {
+    "id": 47628,
+    "name": "Julian Morris",
+    "gender": 2
+   },
+   {
+    "id": 51936,
+    "name": "Lindy Booth",
+    "gender": 1
+   },
+   {
+    "id": 49623,
+    "name": "Jared Padalecki",
+    "gender": 2
+   },
+   {
+    "id": 63278,
+    "name": "Jesse Janzen",
+    "gender": 3
+   },
+   {
+    "id": 63277,
+    "name": "Paul James",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2005-09-16",
+  "runtime": 90,
+  "director": "Jeff Wadlow",
+  "directors": [
+   "Jeff Wadlow"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Jeff Wadlow",
+   "Beau Bauman",
+   "Seth Gordon"
+  ],
+  "title": "Cry_Wolf",
+  "year": 2005,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "movie:501": {
+  "genres": [
+   "Documentary"
+  ],
+  "overview": "Follows the story of \"Grizzly Man\" Timothy Treadwell and what the thirteen summers in a National Park in Alaska were like in his attempt to protect the grizzly bears. The film is full of unique images and a look into the spirit of a man who sacrificed himself for nature.",
+  "keywords": [
+   "self-abandonment",
+   "life and death",
+   "unsociability",
+   "grizzly bear",
+   "human animal relationship",
+   "interview",
+   "biography",
+   "based on true story",
+   "national park",
+   "historical figure",
+   "alaska",
+   "animal rights",
+   "wildlife",
+   "docudrama",
+   "ecology"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0427312",
+  "voteAverage": 7.542,
+  "voteCount": 1000,
+  "popularity": 3.8803,
+  "posterPath": "/zuZWpcuye25rpsiZ4XzsAvmLDHG.jpg",
+  "similarToIds": [
+   869434,
+   483957,
+   869756,
+   1066975,
+   301340,
+   301594,
+   1067606,
+   1067609,
+   1067613,
+   871082,
+   1067355,
+   485102,
+   301854,
+   484780,
+   673853,
+   301396,
+   484960,
+   870958,
+   660696,
+   660603
+  ],
+  "recommendedIds": [
+   1610413,
+   1114590,
+   565276,
+   1591516,
+   684700,
+   538002,
+   834027,
+   1400780,
+   653574,
+   576712,
+   881198,
+   30238,
+   222724,
+   319152,
+   1214488,
+   1022256,
+   17244,
+   1426518,
+   576017,
+   1246596
+  ],
+  "productionCompanies": [
+   "Discovery Docs",
+   "Real Big Production",
+   "Lions Gate Films"
+  ],
+  "topCast": [
+   "Timothy Treadwell",
+   "Werner Herzog",
+   "Warren Queeney",
+   "Willy Fulton",
+   "Sam Egli"
+  ],
+  "topCastDetail": [
+   {
+    "id": 6819,
+    "name": "Timothy Treadwell",
+    "gender": 2
+   },
+   {
+    "id": 6818,
+    "name": "Werner Herzog",
+    "gender": 2
+   },
+   {
+    "id": 6821,
+    "name": "Warren Queeney",
+    "gender": 2
+   },
+   {
+    "id": 6822,
+    "name": "Willy Fulton",
+    "gender": 2
+   },
+   {
+    "id": 6823,
+    "name": "Sam Egli",
+    "gender": 0
+   }
+  ],
+  "releaseDate": "2005-08-12",
+  "runtime": 103,
+  "director": "Werner Herzog",
+  "directors": [
+   "Werner Herzog"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Werner Herzog",
+   "Erik Nelson",
+   "Kevin L. Beggs"
+  ],
+  "title": "Grizzly Man",
+  "year": 2005,
+  "type": "movie",
+  "fetchedAt": "2026-10-25"
+ },
+ "show:72615": {
+  "genres": [
+   "Crime",
+   "Drama"
+  ],
+  "overview": "Based on the true story of Grace Marks, a housemaid and immigrant from Ireland who was imprisoned in 1843, perhaps wrongly, for the murder of her employer Thomas Kinnear. Grace claims to have no memory of the murder yet the facts are irrefutable. A decade after, Dr. Simon Jordan tries to help Grace recall her past.",
+  "keywords": [
+   "based on novel or book",
+   "immigrant",
+   "biography",
+   "miniseries",
+   "historical fiction",
+   "period drama",
+   "psychiatrist",
+   "historical",
+   "housemaid",
+   "19th century",
+   "murderess",
+   "psychological",
+   "slow burn",
+   "period piece",
+   "cerebral"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt1034007",
+  "voteAverage": 7.212,
+  "voteCount": 380,
+  "popularity": 13.2083,
+  "posterPath": "/m6ChYjCPMpzAPzR7jm0omLbu9hS.jpg",
+  "similarToIds": [
+   1686,
+   30119,
+   30214,
+   30217,
+   1741,
+   61231,
+   94834,
+   94842,
+   30427,
+   30324,
+   30327,
+   95041,
+   94971,
+   94997,
+   61289,
+   61290,
+   61299,
+   30503,
+   30381,
+   94857
+  ],
+  "recommendedIds": [
+   39852,
+   71769,
+   81358,
+   10370,
+   72750,
+   123192,
+   241372,
+   132016,
+   82883,
+   61014,
+   40008,
+   135868,
+   248416,
+   44037,
+   211358,
+   67384,
+   86588,
+   72742,
+   158083,
+   85385
+  ],
+  "productionCompanies": [
+   "Halfire Entertainment"
+  ],
+  "topCast": [
+   "Sarah Gadon",
+   "Edward Holcroft",
+   "Rebecca Liddiard",
+   "Zachary Levi",
+   "Kerr Logan"
+  ],
+  "topCastDetail": [
+   {
+    "id": 190895,
+    "name": "Sarah Gadon",
+    "gender": 1
+   },
+   {
+    "id": 1322314,
+    "name": "Edward Holcroft",
+    "gender": 2
+   },
+   {
+    "id": 1477962,
+    "name": "Rebecca Liddiard",
+    "gender": 1
+   },
+   {
+    "id": 69899,
+    "name": "Zachary Levi",
+    "gender": 2
+   },
+   {
+    "id": 1864983,
+    "name": "Kerr Logan",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2017-09-25",
+  "episodeRunTime": 46,
+  "createdBy": [
+   "Sarah Polley"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 6,
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2017-10-30",
+   "seasonNumber": 1,
+   "episodeNumber": 6,
+   "name": "Part 6"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "CBC Television"
+  ],
+  "creatorCredits": [
+   "Sarah Polley",
+   "Mary Harron",
+   "Noreen Halpern"
+  ],
+  "title": "Alias Grace",
+  "year": 2017,
+  "type": "show",
+  "fetchedAt": "2026-10-25"
+ },
+ "show:49157": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "Harry Houdini emerges as America's first bonafide world-renowned superstar.",
+  "keywords": [
+   "magic",
+   "biography",
+   "miniseries",
+   "historical drama",
+   "houdini"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt3132738",
+  "voteAverage": 7.033,
+  "voteCount": 330,
+  "popularity": 7.2107,
+  "posterPath": "/ba43f5KXfH01ipDmDR4lZSQyDkL.jpg",
+  "similarToIds": [
+   29642,
+   29650,
+   60557,
+   60574,
+   60580,
+   60602,
+   1401,
+   1406,
+   94523,
+   94536,
+   60649,
+   60699,
+   60743,
+   1457,
+   29989,
+   1565,
+   94406,
+   60807,
+   29853,
+   60907
+  ],
+  "recommendedIds": [
+   81131,
+   67118,
+   13862,
+   43899,
+   13555,
+   72743,
+   1706,
+   71722,
+   70128,
+   61729,
+   298505,
+   5256,
+   89572,
+   120317,
+   92053,
+   7225,
+   256711,
+   96230,
+   34531,
+   90872
+  ],
+  "productionCompanies": [
+   "Cypress Point Productions",
+   "Chains Productions",
+   "Lionsgate Television"
+  ],
+  "topCast": [
+   "Adrien Brody",
+   "Kristen Connolly",
+   "Evan Jones",
+   "Tim Pigott-Smith",
+   "Tom Benedict Knight"
+  ],
+  "topCastDetail": [
+   {
+    "id": 3490,
+    "name": "Adrien Brody",
+    "gender": 2
+   },
+   {
+    "id": 210824,
+    "name": "Kristen Connolly",
+    "gender": 1
+   },
+   {
+    "id": 333,
+    "name": "Evan Jones",
+    "gender": 2
+   },
+   {
+    "id": 11276,
+    "name": "Tim Pigott-Smith",
+    "gender": 2
+   },
+   {
+    "id": 1268984,
+    "name": "Tom Benedict Knight",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2014-09-01",
+  "episodeRunTime": null,
+  "createdBy": [
+   "Uli Edel"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 2,
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2014-09-02",
+   "seasonNumber": 1,
+   "episodeNumber": 2,
+   "name": "Part Two"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "History"
+  ],
+  "creatorCredits": [
+   "Uli Edel",
+   "Andr\u00e1s H\u00e1mori",
+   "Gerald W. Abrams"
+  ],
+  "title": "Houdini",
+  "year": 2014,
+  "type": "show",
+  "fetchedAt": "2026-10-25"
  }
 }

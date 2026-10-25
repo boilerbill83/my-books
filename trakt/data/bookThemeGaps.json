@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T13:39:21.547Z",
+  "generatedAt": "2026-10-25T13:59:57.286Z",
   "methodology": "ratio = (theme's share of Bill's real 5-star-read theme tags) / (its mapped BMTRE genre/subgenre/subject tag's share of his real loved-title rating-weighted score). ratio > 1 means the theme is proportionally bigger in his book taste than his current screen taste (and therefore the citation-graph-seeded candidate pool) already reflects. Evidence floor: bookCount >= 15. Gap floor: ratio > 1.15.",
   "gaps": [
     {
@@ -9,7 +9,7 @@
         "courtroom"
       ],
       "bookCount": 48,
-      "ratio": 3.4,
+      "ratio": 3.42,
       "tags": [
         "subgenre:legal"
       ],
@@ -22,7 +22,7 @@
         "psychological"
       ],
       "bookCount": 35,
-      "ratio": 2.28,
+      "ratio": 2.29,
       "tags": [
         "subgenre:psychological-thriller",
         "subgenre:psychological-horror"
@@ -36,7 +36,7 @@
         "thriller"
       ],
       "bookCount": 109,
-      "ratio": 1.93,
+      "ratio": 1.94,
       "tags": [
         "genre:thriller"
       ],
@@ -85,6 +85,19 @@
       ],
       "mode": "keyword",
       "searchQuery": "silicon valley"
+    },
+    {
+      "key": "biography",
+      "bookThemes": [
+        "biography"
+      ],
+      "bookCount": 19,
+      "ratio": 1.15,
+      "tags": [
+        "genre:biography"
+      ],
+      "mode": "keyword",
+      "searchQuery": "biography"
     }
   ]
 }
