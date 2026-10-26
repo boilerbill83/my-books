@@ -649,6 +649,21 @@ function fmtDaysOut(days) {
   return `${days}d`;
 }
 
+// Aired-episode total from TMDB metadata, or 0 if it can't be determined.
+// Exact when per-season counts are cached: earlier seasons in full plus the
+// latest aired episode number. Otherwise, with no upcoming episode listed,
+// every listed episode has aired.
+export function tmdbAiredEpisodes(meta) {
+  const last = meta?.lastEpisodeToAir;
+  const counts = meta?.seasonEpisodeCounts;
+  if (last?.seasonNumber && counts) {
+    let n = last.episodeNumber || 0;
+    for (const [sn, c] of Object.entries(counts)) if (Number(sn) < last.seasonNumber) n += c || 0;
+    return n;
+  }
+  return !meta?.nextEpisodeToAir && meta?.numberOfEpisodes ? meta.numberOfEpisodes : 0;
+}
+
 function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored }, enrichedMeta, upcomingSeasons = {}, coWatchProgress = {}) {
   const base = inLib || inWl || inCandidate || scored || { titleKey, type: titleKey.split(':')[0] };
   const h = hydrateTitle(base, enrichedMeta);
@@ -656,11 +671,11 @@ function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored },
 
   let status, episodesReady = null;
   // Trakt's airedEpisodes is frozen at export time, but TMDB metadata is
-  // refreshed daily. When TMDB lists no upcoming episode, every listed
-  // episode has aired, so numberOfEpisodes is the fresher aired count
+  // refreshed daily. Prefer TMDB's exact aired total when it's higher
   // (Slow Horses: export said 35 aired on Oct 19, the S6 finale aired Oct 21).
-  if (progress && !meta.nextEpisodeToAir && meta.numberOfEpisodes > progress.airedEpisodes) {
-    progress = { ...progress, airedEpisodes: meta.numberOfEpisodes };
+  const tmdbAired = tmdbAiredEpisodes(meta);
+  if (progress && tmdbAired > progress.airedEpisodes) {
+    progress = { ...progress, airedEpisodes: tmdbAired };
   }
   if (progress && progress.plays < progress.airedEpisodes) {
     // Bill: "I don't mark things as in progress. I watch the whole batch

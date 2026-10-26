@@ -263,6 +263,13 @@ def extract_entry(kind, data):
         entry['status'] = data.get('status')
         entry['numberOfSeasons'] = data.get('number_of_seasons')
         entry['numberOfEpisodes'] = data.get('number_of_episodes')
+        # Per-season episode counts (season 0 specials excluded) so the
+        # dashboard can derive an exact aired-episode total for a mid-season
+        # show: sum of earlier seasons + lastEpisodeToAir.episodeNumber.
+        entry['seasonEpisodeCounts'] = {
+            str(se['season_number']): se.get('episode_count')
+            for se in (data.get('seasons') or []) if se.get('season_number')
+        }
         # Bill: "I only watch a season once that season is complete" - a
         # show can sit at status="Returning Series" for years between
         # seasons while everything released so far is fully watchable, so

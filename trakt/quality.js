@@ -15,7 +15,7 @@ import {
 import {
   esc, fmtNum, posterImgHtml, typeIcon, titleLink, svgEl, renderHBarChart, SUBJECT_LABEL,
   metaLine, scoreTier, initCollapsibleCards, loadAllData, predictedVsActualRows,
-  renderImportFreshness,
+  renderImportFreshness, tmdbAiredEpisodes,
 } from './dashboardShared.js';
 import { descSimilarityBonus, tokenize } from './descSimilarity.js';
 
@@ -2494,6 +2494,38 @@ function computeImprovementOpportunities(library, watchlist, candidatePool, enri
           `underlying mechanism (the recurring scheduled task plus the Trakt-import-time check) keeps working the same way going ` +
           `forward, so this should stay resolved rather than silently regressing — if it ever does go stale again, this finding will ` +
           `reopen on its own.`,
+    });
+  }
+
+  // Trakt's airedEpisodes is frozen at export time; TMDB is refreshed daily.
+  // The "ready" counts on the airing tables now use TMDB's aired total when
+  // it's higher (Slow Horses showed 5 ready when 6 were out). This lists
+  // every in-progress show where the two sources still disagree, so drift
+  // is visible instead of silent.
+  {
+    const gaps = library.titles
+      .filter(t => t.type === 'show' && t.plays != null && t.airedEpisodes != null)
+      .map(t => ({ title: t.title, trakt: t.airedEpisodes, tmdb: tmdbAiredEpisodes(enrichedMeta[t.titleKey]) }))
+      .filter(g => g.tmdb > g.trakt)
+      .sort((a, b) => (b.tmdb - b.trakt) - (a.tmdb - a.trakt));
+    const hasGaps = gaps.length > 0;
+    findings.push({
+      id: 'trakt-aired-count-stale',
+      severity: hasGaps ? 'warning' : 'good',
+      ratings: { ease: 8, dataQuality: 6, recEngine: 1, ui: 6 },
+      shortTitle: 'Trakt Aired-Episode Counts Lag Behind TMDB',
+      title: hasGaps
+        ? `${gaps.length} shows have more aired episodes on TMDB than in the Trakt export`
+        : 'Trakt and TMDB aired-episode counts agree for every tracked show',
+      technical: `<code>library.json</code>'s <code>airedEpisodes</code> is frozen at export time, while <code>enrichedMetadata.json</code> ` +
+        `is refreshed daily (<code>seasonEpisodeCounts</code> + <code>lastEpisodeToAir</code>). <code>buildWatchRow()</code> now takes the ` +
+        `higher of the two. ` + (hasGaps
+          ? `Right now: ${gaps.slice(0, 8).map(g => `${esc(g.title)} (Trakt ${g.trakt}, TMDB ${g.tmdb})`).join(', ')}` +
+            `${gaps.length > 8 ? `, +${gaps.length - 8} more` : ''}. A gap that persists past the next export means TMDB's counts need a refresh.`
+          : 'No disagreement today.'),
+      plain: `The export is a snapshot, so a show that aired a new episode after it was taken shows too few episodes ready. ` +
+        `This app now checks the movie database's fresher count and uses it, and this list shows where the two still differ.`,
+      impact: `Keeps the "episodes ready" numbers honest between exports.`,
     });
   }
 
