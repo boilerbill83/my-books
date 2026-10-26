@@ -655,6 +655,13 @@ function buildWatchRow(titleKey, { inLib, inWl, inCandidate, progress, scored },
   const meta = enrichedMeta[titleKey] || {};
 
   let status, episodesReady = null;
+  // Trakt's airedEpisodes is frozen at export time, but TMDB metadata is
+  // refreshed daily. When TMDB lists no upcoming episode, every listed
+  // episode has aired, so numberOfEpisodes is the fresher aired count
+  // (Slow Horses: export said 35 aired on Oct 19, the S6 finale aired Oct 21).
+  if (progress && !meta.nextEpisodeToAir && meta.numberOfEpisodes > progress.airedEpisodes) {
+    progress = { ...progress, airedEpisodes: meta.numberOfEpisodes };
+  }
   if (progress && progress.plays < progress.airedEpisodes) {
     // Bill: "I don't mark things as in progress. I watch the whole batch
     // at once and don't update Trakt until I complete the whole season" —
