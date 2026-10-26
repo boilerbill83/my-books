@@ -18,7 +18,7 @@
     "myRating": 4,
     "ratedAt": "2026-07-29T00:23:53.000Z",
     "plays": 92,
-    "airedEpisodes": 94,
+    "airedEpisodes": 95,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2026-04-23T00:52:00.000Z",
     "favorite": false,
@@ -68,7 +68,7 @@
     "myRating": 4,
     "ratedAt": "2026-08-13T13:30:48.000Z",
     "plays": 132,
-    "airedEpisodes": 142,
+    "airedEpisodes": 144,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2024-04-25T02:32:00.000Z",
     "favorite": false,
@@ -118,7 +118,7 @@
     "myRating": 9,
     "ratedAt": "2026-07-29T00:56:35.000Z",
     "plays": 9,
-    "airedEpisodes": 17,
+    "airedEpisodes": 18,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2024-06-26T03:02:00.000Z",
     "favorite": false,
@@ -143,7 +143,7 @@
     "myRating": 8,
     "ratedAt": "2026-05-21T00:00:00.000Z",
     "plays": 30,
-    "airedEpisodes": 52,
+    "airedEpisodes": 53,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -218,7 +218,7 @@
     "myRating": 6,
     "ratedAt": "2026-03-11T00:00:00.000Z",
     "plays": 136,
-    "airedEpisodes": 141,
+    "airedEpisodes": 144,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -243,11 +243,36 @@
     "myRating": 10,
     "ratedAt": "2026-09-21T01:56:00.000Z",
     "plays": 10,
-    "airedEpisodes": 15,
+    "airedEpisodes": 16,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2025-06-01T07:55:00.000Z",
     "favorite": true,
     "hasConfirmedWatchDate": true
+  },
+  {
+    "type": "show",
+    "titleKey": "show:250923",
+    "ids": {
+      "imdb": "tt26933824",
+      "plex": {
+        "guid": "660d495735513de615d99203",
+        "slug": "nobody-wants-this"
+      },
+      "slug": "nobody-wants-this",
+      "tmdb": 250923,
+      "tvdb": 450093,
+      "trakt": 233797
+    },
+    "title": "Nobody Wants This",
+    "year": 2024,
+    "myRating": 8,
+    "ratedAt": "2025-10-22T00:00:00.000Z",
+    "plays": 20,
+    "airedEpisodes": 30,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false,
+    "hasConfirmedWatchDate": false
   },
   {
     "type": "show",
@@ -268,7 +293,7 @@
     "myRating": 9,
     "ratedAt": "2026-10-01T21:08:36.000Z",
     "plays": 9,
-    "airedEpisodes": 13,
+    "airedEpisodes": 14,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2026-04-16T00:23:00.000Z",
     "favorite": false,
@@ -293,7 +318,7 @@
     "myRating": 8,
     "ratedAt": "2025-10-29T00:00:00.000Z",
     "plays": 30,
-    "airedEpisodes": 35,
+    "airedEpisodes": 36,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -326,56 +351,6 @@
   },
   {
     "type": "show",
-    "titleKey": "show:203857",
-    "ids": {
-      "imdb": "tt17491088",
-      "plex": {
-        "guid": "6274f781093e999f383e7197",
-        "slug": "the-diplomat-1"
-      },
-      "slug": "the-diplomat-2023",
-      "tmdb": 203857,
-      "tvdb": 415239,
-      "trakt": 196192
-    },
-    "title": "The Diplomat",
-    "year": 2023,
-    "myRating": 10,
-    "ratedAt": "2026-07-29T00:18:45.000Z",
-    "plays": 22,
-    "airedEpisodes": 30,
-    "completionStatus": "in-progress",
-    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
-    "favorite": true,
-    "hasConfirmedWatchDate": false
-  },
-  {
-    "type": "show",
-    "titleKey": "show:236235",
-    "ids": {
-      "imdb": "tt13210838",
-      "plex": {
-        "guid": "6365f4db354ca0d2edfad043",
-        "slug": "the-gentlemen"
-      },
-      "slug": "the-gentlemen",
-      "tmdb": 236235,
-      "tvdb": 426845,
-      "trakt": 211407
-    },
-    "title": "The Gentlemen",
-    "year": 2024,
-    "myRating": 8,
-    "ratedAt": "2024-03-07T00:00:00.000Z",
-    "plays": 8,
-    "airedEpisodes": 16,
-    "completionStatus": "in-progress",
-    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
-    "favorite": false,
-    "hasConfirmedWatchDate": false
-  },
-  {
-    "type": "show",
     "titleKey": "show:273247",
     "ids": {
       "imdb": "tt31289994",
@@ -393,7 +368,7 @@
     "myRating": 9,
     "ratedAt": "2026-07-29T00:19:13.000Z",
     "plays": 8,
-    "airedEpisodes": 10,
+    "airedEpisodes": 11,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -426,6 +401,56 @@
   },
   {
     "type": "show",
+    "titleKey": "show:120911",
+    "ids": {
+      "imdb": "tt11743610",
+      "plex": {
+        "guid": "6050e8434e71c2002c6d9ab6",
+        "slug": "the-terminal-list"
+      },
+      "slug": "the-terminal-list",
+      "tmdb": 120911,
+      "tvdb": 399917,
+      "trakt": 170081
+    },
+    "title": "The Terminal List",
+    "year": 2022,
+    "myRating": 8,
+    "ratedAt": "2022-06-22T00:00:00.000Z",
+    "plays": 8,
+    "airedEpisodes": 16,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false,
+    "hasConfirmedWatchDate": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:255570",
+    "ids": {
+      "imdb": "tt31438328",
+      "plex": {
+        "guid": "66571cae035869c70e067eb8",
+        "slug": "this-city-is-ours"
+      },
+      "slug": "this-city-is-ours",
+      "tmdb": 255570,
+      "tvdb": 446897,
+      "trakt": 242111
+    },
+    "title": "This City Is Ours",
+    "year": 2025,
+    "myRating": 8,
+    "ratedAt": "2026-08-24T12:33:22.000Z",
+    "plays": 8,
+    "airedEpisodes": 9,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "2025-05-11T20:59:00.000Z",
+    "favorite": false,
+    "hasConfirmedWatchDate": true
+  },
+  {
+    "type": "show",
     "titleKey": "show:153312",
     "ids": {
       "imdb": "tt16358384",
@@ -443,7 +468,7 @@
     "myRating": 8,
     "ratedAt": "2025-11-23T00:00:00.000Z",
     "plays": 29,
-    "airedEpisodes": 30,
+    "airedEpisodes": 31,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,

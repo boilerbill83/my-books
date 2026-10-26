@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-19T15:18:04.053Z",
-    "count": 59
+    "generatedAt": "2026-10-26T19:43:22.704Z",
+    "count": 58
   },
   "titles": [
     {
@@ -772,25 +772,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:203857",
-      "ids": {
-        "imdb": "tt17491088",
-        "plex": {
-          "guid": "6274f781093e999f383e7197",
-          "slug": "the-diplomat-1"
-        },
-        "slug": "the-diplomat-2023",
-        "tmdb": 203857,
-        "tvdb": 415239,
-        "trakt": 196192
-      },
-      "title": "The Diplomat",
-      "year": 2023,
-      "watchlisted": true,
-      "watchlistedAt": "2026-10-01T23:05:21.000Z"
-    },
-    {
-      "type": "show",
       "titleKey": "show:258230",
       "ids": {
         "imdb": "tt6037988",
@@ -883,25 +864,6 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-07-28T19:26:36.000Z"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:236235",
-      "ids": {
-        "imdb": "tt13210838",
-        "plex": {
-          "guid": "6365f4db354ca0d2edfad043",
-          "slug": "the-gentlemen"
-        },
-        "slug": "the-gentlemen",
-        "tmdb": 236235,
-        "tvdb": 426845,
-        "trakt": 211407
-      },
-      "title": "The Gentlemen",
-      "year": 2024,
-      "watchlisted": true,
-      "watchlistedAt": "2026-09-25T23:26:25.000Z"
     },
     {
       "type": "movie",
@@ -1101,6 +1063,24 @@
       "year": 2008,
       "watchlisted": true,
       "watchlistedAt": "2026-10-15T15:11:42.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:522627",
+      "ids": {
+        "imdb": "tt8367814",
+        "plex": {
+          "guid": "5d77704aad5437001f81e604",
+          "slug": "the-gentlemen"
+        },
+        "slug": "the-gentlemen-2020",
+        "tmdb": 522627,
+        "trakt": 370883
+      },
+      "title": "The Gentlemen",
+      "year": 2020,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-21T23:58:47.000Z"
     }
   ]
 }

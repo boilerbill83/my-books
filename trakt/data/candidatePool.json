@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-25T14:01:23.149Z",
-    "count": 494,
+    "generatedAt": "2026-10-26T19:43:23.642Z",
+    "count": 493,
     "capPerType": 200
   },
   "titles": [
@@ -2716,17 +2716,6 @@
       "year": 2018,
       "source": "genre-explore",
       "discoveredVia": "Comedy"
-    },
-    {
-      "type": "movie",
-      "titleKey": "movie:522627",
-      "ids": {
-        "tmdb": 522627
-      },
-      "title": "The Gentlemen",
-      "year": 2020,
-      "source": "genre-explore",
-      "discoveredVia": "Crime"
     },
     {
       "type": "movie",
