@@ -4497,5 +4497,15 @@
     "coverUrl": "https://m.media-amazon.com/images/I/81HHCRvyUBL._SX300_.jpg",
     "source": "amazon",
     "checkedAt": "2026-10-20"
+  },
+  "feels like falling|||abby jimenez": {
+    "storyGraph": null,
+    "amazon": {
+      "rating": null,
+      "count": null
+    },
+    "coverUrl": "https://m.media-amazon.com/images/I/81r3Kiv+fPL._SX300_.jpg",
+    "source": "cover_only",
+    "checkedAt": "2026-10-26"
   }
 }
