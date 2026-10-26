@@ -40678,5 +40678,113 @@
   "director": null,
   "rated": "TV-PG",
   "fetchedAt": "2026-10-19"
+ },
+ "movie:941019": {
+  "rottenTomatoes": 98,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 6,
+   "totalNominations": 10,
+   "raw": "6 wins & 10 nominations"
+  },
+  "imdbRating": 6.4,
+  "imdbVotes": 3090,
+  "director": "Andrew Legge",
+  "rated": null,
+  "fetchedAt": "2026-10-26"
+ },
+ "show:116174": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 25,
+   "totalNominations": 50,
+   "raw": "Won 2 BAFTA Awards. 25 wins & 50 nominations total"
+  },
+  "imdbRating": 8.6,
+  "imdbVotes": 41300,
+  "director": null,
+  "rated": "TV-MA",
+  "fetchedAt": "2026-10-26"
+ },
+ "movie:1288069": {
+  "rottenTomatoes": 95,
+  "metacritic": 67,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 1,
+   "raw": "1 win & 1 nomination total"
+  },
+  "imdbRating": 7.7,
+  "imdbVotes": 289,
+  "director": "Jennifer Peedom",
+  "rated": "PG",
+  "fetchedAt": "2026-10-26"
+ },
+ "movie:445954": {
+  "rottenTomatoes": 64,
+  "metacritic": 49,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 5.7,
+  "imdbVotes": 14817,
+  "director": "Isaac Florentine",
+  "rated": "R",
+  "fetchedAt": "2026-10-26"
+ },
+ "movie:451915": {
+  "rottenTomatoes": 67,
+  "metacritic": 62,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 10,
+   "totalNominations": 31,
+   "raw": "Nominated for 1 BAFTA Award. 10 wins & 31 nominations total"
+  },
+  "imdbRating": 7.4,
+  "imdbVotes": 133262,
+  "director": "Felix van Groeningen",
+  "rated": "R",
+  "fetchedAt": "2026-10-26"
+ },
+ "show:72615": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 1,
+   "totalWins": 11,
+   "totalNominations": 19,
+   "raw": "Nominated for 1 Primetime Emmy. 11 wins & 19 nominations total"
+  },
+  "imdbRating": 7.6,
+  "imdbVotes": 42427,
+  "director": null,
+  "rated": "TV-MA",
+  "fetchedAt": "2026-10-26"
  }
 }
