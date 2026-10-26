@@ -1,27 +1,27 @@
 {
-  "titleKey": "show:203857",
-  "setAt": "2026-10-23T00:00:00.000Z",
-  "note": "Bill's own stated current watch, told directly in chat (2026-10-23: \"I am watching the diplomat now\" — exact match, show:203857, 4 seasons/30 episodes in TMDB). Supersedes the prior pointer at show:236235 (The Gentlemen). Already in library.json (rated 10/10, 22 of 30 episodes played, in-progress) and watchlist.json. Update or clear this file the next time Bill names a different current watch.",
+  "titleKey": "show:252107",
+  "setAt": "2026-10-26T00:00:00.000Z",
+  "note": "Bill's own stated current watch, told directly in chat (2026-10-26: \"I am watching star city now\" — show:252107, 1 season/8 episodes in TMDB, on his watchlist). Supersedes the prior pointer at show:203857 (The Diplomat). Update or clear this file the next time Bill names a different current watch.",
   "facts": [
     {
-      "text": "Season 4 premiered Thursday, October 15, 2026, with all eight episodes released at once. Kate Wyler is double-crossed after President Grace Penn and VP Hal Wyler plan to seize a Russian nuclear weapon, and forms an alliance with First Gentleman Todd Penn (Bradley Whitford).",
-      "source": "https://www.theweek.in/news/entertainment/2026/08/18/the-diplomat-season-4-premiere.html",
-      "sourceLabel": "The Week"
+      "text": "Star City is an Apple TV spinoff of For All Mankind, told from the Soviet side of the same alternate-history space race. It premiered May 29, 2026 with two episodes, then one new episode every Friday through the July 10 finale.",
+      "source": "https://www.apple.com/tv-pr/news/2026/02/apple-tv-unveils-a-first-look-at-star-city-the-gripping-new-space-race-drama-set-in-the-world-of-for-all-mankind-from-award-winning-creators-ben-nedivi-matt-wolpert-and-ronald-d-moore/",
+      "sourceLabel": "Apple TV Press"
     },
     {
-      "text": "Creator Debora Cahn first developed a pilot set inside the US embassy in London in the early 2000s while working on The West Wing. Nobody bit, and she set it aside for almost 20 years.",
-      "source": "https://www.screendaily.com/features/the-diplomat-creator-debora-cahn-and-star-rufus-sewell-on-real-life-inspirations-and-making-brits-look-bad/5217609.article",
-      "sourceLabel": "Screen Daily"
+      "text": "Ben Nedivi and Matt Wolpert created it and serve as showrunners, with For All Mankind creator Ronald D. Moore and Maril Davis of Tall Ship Productions among the executive producers.",
+      "source": "https://www.apple.com/tv-pr/news/2026/02/apple-tv-unveils-a-first-look-at-star-city-the-gripping-new-space-race-drama-set-in-the-world-of-for-all-mankind-from-award-winning-creators-ben-nedivi-matt-wolpert-and-ronald-d-moore/",
+      "sourceLabel": "Apple TV Press"
     },
     {
-      "text": "Cahn credits Beth Jones, a former US ambassador to Kazakhstan, for reviving the idea. She called her \"a superhero in a pantsuit,\" and the unassuming, fallible Kate Wyler grew out of that meeting.",
-      "source": "https://www.looper.com/1274935/real-life-inspiration-behind-netflixs-the-diplomat",
-      "sourceLabel": "Looper"
+      "text": "Rhys Ifans plays the Soviet chief designer and Anna Maxwell Martin plays Lyudmilla Raskova, the head of KGB surveillance.",
+      "source": "https://www.tvinsider.com/1183435/star-city-for-all-mankind-spinoff-cast-premiere-date-details/",
+      "sourceLabel": "TV Insider"
     },
     {
-      "text": "Keri Russell was initially hesitant to take the role because of the upheaval it would bring to her life, so the series nearly ended after one season. Netflix has not announced a Season 5 renewal.",
-      "source": "https://www.whats-on-netflix.com/news/the-diplomat-season-4-netflix-release-date-trailer-photos/",
-      "sourceLabel": "What's on Netflix"
+      "text": "Variety called it an intense, immaculate alt-history paranoid thriller, in contrast to the more optimistic tone of its parent show.",
+      "source": "https://variety.com/2026/tv/reviews/star-city-review-for-all-mankind-spinoff-1236761675/",
+      "sourceLabel": "Variety"
     }
   ]
 }
