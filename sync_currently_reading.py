@@ -87,7 +87,7 @@ def unescape_js_string(raw_js):
     """Pull the single-quoted `widget_code = '...'` JS string literal out
     and un-escape it back into real HTML (the server backslash-escapes
     double quotes, forward slashes in closing tags, and newlines)."""
-    m = re.search(r"var widget_code = '(.*?)';\s*\n\s*var widget_div", raw_js, re.DOTALL)
+    m = re.search(r"var widget_code = '(.*?)'\s*\n\s*var widget_div", raw_js, re.DOTALL)
     if not m:
         return None
     js_str = m.group(1)
