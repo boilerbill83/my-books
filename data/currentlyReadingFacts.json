@@ -1,24 +1,24 @@
 {
- "note": "Real, sourced fun facts about whatever book is currently shown in the Currently Reading section (data/currentlyReading.json), matched by normalized title+author. Never fabricate a fact -- every entry needs a real source URL. Update this file whenever the currently-reading book changes; leave facts empty (not a guess) when nothing has been researched yet for the current book. Matching is normalized (lowercase, punctuation-insensitive) so a subtitle or series-notation difference doesn't break the lookup.",
- "title": "Say You'll Remember Me (Say You'll Remember Me, #1)",
- "author": "Abby Jimenez",
- "facts": [
-  {
-   "text": "It debuted at #1 on the New York Times Best Seller list in both Hardcover Fiction and Combined Print & E-Book Fiction after its April 1, 2025 release from Forever.",
-   "source": "https://en.wikipedia.org/wiki/Say_You%27ll_Remember_Me"
-  },
-  {
-   "text": "The romance starts at a vet clinic: Xavier Rush is the veterinarian, and Samantha Diaz meets him when she brings in her kitten. The catch is that she's about to move 2,000 miles away.",
-   "source": "https://en.wikipedia.org/wiki/Say_You%27ll_Remember_Me"
-  },
-  {
-   "text": "It's book 1 of a series. Book 2 follows Xavier's friend Chris, and a third book about his friend Mike is set for 2027.",
-   "source": "https://en.wikipedia.org/wiki/Say_You%27ll_Remember_Me"
-  },
-  {
-   "text": "Abby Jimenez has sold over 1.5 million copies of her novels, translated into 28 languages.",
-   "source": "https://en.wikipedia.org/wiki/Abby_Jimenez_(writer)"
-  }
- ],
- "researchedAt": "2026-10-19"
+  "note": "Real, sourced fun facts about whatever book is currently shown in the Currently Reading section (data/currentlyReading.json), matched by normalized title+author. Never fabricate a fact -- every entry needs a real source URL. Update this file whenever the currently-reading book changes; leave facts empty (not a guess) when nothing has been researched yet for the current book. Matching is normalized (lowercase, punctuation-insensitive) so a subtitle or series-notation difference doesn't break the lookup.",
+  "title": "Sometimes I Scare Myself: A Collection of Horror",
+  "author": "Jeneva Rose",
+  "facts": [
+    {
+      "text": "This is Jeneva Rose's first horror book and first short story collection -- every one of her previous books (One of Us Is Dead, The Perfect Marriage and its sequel) was a thriller.",
+      "source": "https://www.upi.com/Entertainment_News/2026/09/22/Jeneva-Rose-Sometimes-I-Scare-Myself-horror-short-stories/8881789787104"
+    },
+    {
+      "text": "The collection has three stories: \"Never Kill the Medium\" (a 30th birthday dinner turns deadly after someone hires a medium for a playful seance), \"The Nightmare House\" (a family moves into a home with a secret past, and a mother's hauntings get dismissed because of her history with postpartum depression), and \"All Curses Are Final\" (set in Minnesota).",
+      "source": "https://www.upi.com/Entertainment_News/2026/09/22/Jeneva-Rose-Sometimes-I-Scare-Myself-horror-short-stories/8881789787104"
+    },
+    {
+      "text": "Rose has said the collection was directly inspired by her own experience -- including the birth of her first child -- and that it's the first time she let the violence \"sit fully on the page.\"",
+      "source": "https://gnofhorror.com/jeneva-rose-interview-sometimes-i-scare-myself/"
+    },
+    {
+      "text": "It published September 22, 2026 via Blackstone Publishing and picked up several notable best-of/pick lists right out of the gate, including a Publishers Weekly Pick and a 2026 Shelf Awareness Pick.",
+      "source": "https://www.upi.com/Entertainment_News/2026/09/22/Jeneva-Rose-Sometimes-I-Scare-Myself-horror-short-stories/8881789787104"
+    }
+  ],
+  "researchedAt": "2026-10-28"
 }
