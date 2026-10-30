@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-26T19:43:22.704Z",
-    "count": 58
+    "generatedAt": "2026-10-30T02:06:47.484Z",
+    "count": 59
   },
   "titles": [
     {
@@ -171,25 +171,6 @@
       "year": 2025,
       "watchlisted": true,
       "watchlistedAt": "2026-08-21T15:27:42.000Z"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:252107",
-      "ids": {
-        "imdb": "tt32140872",
-        "plex": {
-          "guid": "67a711656b1b8d167eb3f327",
-          "slug": "star-city-1"
-        },
-        "slug": "star-city",
-        "tmdb": 252107,
-        "tvdb": 449146,
-        "trakt": 235622
-      },
-      "title": "Star City",
-      "year": 2026,
-      "watchlisted": true,
-      "watchlistedAt": "2026-07-28T19:26:36.000Z"
     },
     {
       "type": "movie",
@@ -659,25 +640,6 @@
       "watchlistedAt": "2026-09-16T23:30:00.000Z"
     },
     {
-      "type": "show",
-      "titleKey": "show:124101",
-      "ids": {
-        "imdb": "tt11815682",
-        "plex": {
-          "guid": "608599a4ac0818002c5e0de3",
-          "slug": "hacks-1"
-        },
-        "slug": "hacks-2021",
-        "tmdb": 124101,
-        "tvdb": 401582,
-        "trakt": 179632
-      },
-      "title": "Hacks",
-      "year": 2021,
-      "watchlisted": true,
-      "watchlistedAt": "2026-09-17T13:25:07.000Z"
-    },
-    {
       "type": "movie",
       "titleKey": "movie:1433583",
       "ids": {
@@ -1011,6 +973,25 @@
       "watchlistedAt": "2026-10-07T21:30:14.000Z"
     },
     {
+      "type": "show",
+      "titleKey": "show:120911",
+      "ids": {
+        "imdb": "tt11743610",
+        "plex": {
+          "guid": "6050e8434e71c2002c6d9ab6",
+          "slug": "the-terminal-list"
+        },
+        "slug": "the-terminal-list",
+        "tmdb": 120911,
+        "tvdb": 399917,
+        "trakt": 170081
+      },
+      "title": "The Terminal List",
+      "year": 2022,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-30T01:42:36.000Z"
+    },
+    {
       "type": "movie",
       "titleKey": "movie:1307118",
       "ids": {
@@ -1027,6 +1008,25 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-10-07T21:30:28.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:292741",
+      "ids": {
+        "imdb": "tt26598805",
+        "plex": {
+          "guid": "63dd7fbc74d8c627e0fac4de",
+          "slug": "nocturne"
+        },
+        "slug": "nocturne",
+        "tmdb": 292741,
+        "tvdb": 430654,
+        "trakt": 287248
+      },
+      "title": "Nocturne",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-30T01:43:03.000Z"
     },
     {
       "type": "movie",
@@ -1063,6 +1063,25 @@
       "year": 2008,
       "watchlisted": true,
       "watchlistedAt": "2026-10-15T15:11:42.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:153312",
+      "ids": {
+        "imdb": "tt16358384",
+        "plex": {
+          "guid": "61af329023a999555e3ea541",
+          "slug": "tulsa-king"
+        },
+        "slug": "tulsa-king",
+        "tmdb": 153312,
+        "tvdb": 413215,
+        "trakt": 191758
+      },
+      "title": "Tulsa King",
+      "year": 2022,
+      "watchlisted": true,
+      "watchlistedAt": "2026-10-30T01:44:00.000Z"
     },
     {
       "type": "movie",

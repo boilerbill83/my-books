@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-26T19:43:23.642Z",
-    "count": 493,
+    "generatedAt": "2026-10-30T02:06:49.200Z",
+    "count": 492,
     "capPerType": 200
   },
   "titles": [
@@ -3427,17 +3427,6 @@
       "year": 2019,
       "source": "genre-explore",
       "discoveredVia": "Action & Adventure"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:313298",
-      "ids": {
-        "tmdb": 313298
-      },
-      "title": "The Dinosaurs",
-      "year": 2026,
-      "source": "genre-explore",
-      "discoveredVia": "Documentary"
     },
     {
       "type": "show",

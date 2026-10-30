@@ -566930,5 +566930,146 @@
   "year": 2014,
   "type": "show",
   "fetchedAt": "2026-10-25"
+ },
+ "show:292741": {
+  "genres": [
+   "Crime",
+   "Drama",
+   "Mystery"
+  ],
+  "overview": "When a victim of notorious serial killer Jurek Walter unexpectedly turns up alive, detective Jonah Lynn races against time to find the one person still missing, while his prot\u00e9g\u00e9 Saga Bauer goes undercover to get answers from the killer himself.",
+  "keywords": [
+   "based on novel or book",
+   "pennsylvania, usa",
+   "small town",
+   "serial killer",
+   "ex soldier",
+   "homicide detective",
+   "thriller"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt26598805",
+  "voteAverage": 10.0,
+  "voteCount": 2,
+  "popularity": 16.7405,
+  "posterPath": "/nyvXVcPnHEwVmqCdzjjCsu1jqhm.jpg",
+  "similarToIds": [
+   59753,
+   29055,
+   93553,
+   93463,
+   93481,
+   93524,
+   209846,
+   29204,
+   126725,
+   29004,
+   206,
+   156,
+   136,
+   59679,
+   93653,
+   209962,
+   93454,
+   126753,
+   28913,
+   59643
+  ],
+  "recommendedIds": [
+   213306,
+   106349,
+   39852,
+   218342,
+   65784,
+   71769,
+   244243,
+   258230,
+   72748,
+   115004,
+   241372,
+   40675,
+   91746,
+   287238,
+   244628,
+   137127,
+   70485,
+   220801,
+   2171,
+   7263
+  ],
+  "productionCompanies": [
+   "A+E Studios",
+   "Range Studios",
+   "Sleepy Poppy"
+  ],
+  "topCast": [
+   "Liev Schreiber",
+   "Zazie Beetz",
+   "Stephen Graham",
+   "Bill Camp",
+   "Rory Culkin"
+  ],
+  "topCastDetail": [
+   {
+    "id": 23626,
+    "name": "Liev Schreiber",
+    "gender": 2
+   },
+   {
+    "id": 1545693,
+    "name": "Zazie Beetz",
+    "gender": 1
+   },
+   {
+    "id": 1115,
+    "name": "Stephen Graham",
+    "gender": 2
+   },
+   {
+    "id": 121718,
+    "name": "Bill Camp",
+    "gender": 2
+   },
+   {
+    "id": 28042,
+    "name": "Rory Culkin",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2026-10-29",
+  "episodeRunTime": null,
+  "createdBy": [
+   "Rowan Joff\u00e9"
+  ],
+  "status": "Returning Series",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 10,
+  "seasonEpisodeCounts": {
+   "1": 10
+  },
+  "nextEpisodeToAir": {
+   "airDate": "2026-10-29",
+   "seasonNumber": 1,
+   "episodeNumber": 1
+  },
+  "lastEpisodeToAir": null,
+  "currentSeasonFinale": {
+   "seasonNumber": 1,
+   "episodeCount": 10,
+   "finaleEpisodeNumber": 10,
+   "finaleDate": "2026-12-24"
+  },
+  "networks": [
+   "Apple TV"
+  ],
+  "creatorCredits": [
+   "Rowan Joff\u00e9",
+   "\u00d8ystein Karlsen",
+   "Tana Jamieson"
+  ],
+  "title": "Nocturne",
+  "year": 2026,
+  "type": "show",
+  "fetchedAt": "2026-10-30"
  }
 }

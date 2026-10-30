@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-10-26T19:43:22.700Z",
+    "generatedAt": "2026-10-30T02:06:47.480Z",
     "movieCount": 270,
-    "showCount": 398
+    "showCount": 399
   },
   "titles": [
     {
@@ -505,7 +505,7 @@
       "myRating": 4,
       "ratedAt": "2026-07-29T00:23:53.000Z",
       "plays": 92,
-      "airedEpisodes": 95,
+      "airedEpisodes": 96,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2026-04-23T00:52:00.000Z",
       "favorite": false,
@@ -860,7 +860,7 @@
       "myRating": 4,
       "ratedAt": "2026-08-13T13:30:48.000Z",
       "plays": 132,
-      "airedEpisodes": 144,
+      "airedEpisodes": 145,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2024-04-25T02:32:00.000Z",
       "favorite": false,
@@ -2971,7 +2971,7 @@
       "myRating": 9,
       "ratedAt": "2026-07-29T00:56:35.000Z",
       "plays": 9,
-      "airedEpisodes": 18,
+      "airedEpisodes": 19,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2024-06-26T03:02:00.000Z",
       "favorite": false,
@@ -5045,14 +5045,14 @@
       },
       "title": "Hacks",
       "year": 2021,
-      "myRating": 8,
-      "ratedAt": "2026-05-28T00:00:00.000Z",
-      "plays": 37,
+      "myRating": 10,
+      "ratedAt": "2026-10-30T01:42:00.000Z",
+      "plays": 47,
       "airedEpisodes": 47,
-      "completionStatus": "in-progress",
-      "lastWatchedAt": "1970-01-01T00:00:00.000Z",
-      "favorite": false,
-      "hasConfirmedWatchDate": false
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-05-29T01:47:00.000Z",
+      "favorite": true,
+      "hasConfirmedWatchDate": true
     },
     {
       "type": "show",
@@ -6870,7 +6870,7 @@
       "myRating": 6,
       "ratedAt": "2026-03-11T00:00:00.000Z",
       "plays": 136,
-      "airedEpisodes": 144,
+      "airedEpisodes": 147,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -9608,7 +9608,7 @@
       "myRating": 9,
       "ratedAt": "2026-10-01T21:08:36.000Z",
       "plays": 9,
-      "airedEpisodes": 14,
+      "airedEpisodes": 15,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2026-04-16T00:23:00.000Z",
       "favorite": false,
@@ -10367,6 +10367,31 @@
       "airedEpisodes": 36,
       "completionStatus": "caught-up",
       "lastWatchedAt": "2026-04-07T00:22:00.000Z",
+      "favorite": false,
+      "hasConfirmedWatchDate": true
+    },
+    {
+      "type": "show",
+      "titleKey": "show:252107",
+      "ids": {
+        "imdb": "tt32140872",
+        "plex": {
+          "guid": "67a711656b1b8d167eb3f327",
+          "slug": "star-city-1"
+        },
+        "slug": "star-city",
+        "tmdb": 252107,
+        "tvdb": 449146,
+        "trakt": 235622
+      },
+      "title": "Star City",
+      "year": 2026,
+      "myRating": 4,
+      "ratedAt": "2026-10-30T01:42:22.000Z",
+      "plays": 8,
+      "airedEpisodes": 8,
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-07-10T02:05:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": true
     },
@@ -12583,7 +12608,7 @@
       "myRating": 9,
       "ratedAt": "2026-07-29T00:19:13.000Z",
       "plays": 8,
-      "airedEpisodes": 11,
+      "airedEpisodes": 12,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -14212,7 +14237,7 @@
       "myRating": 8,
       "ratedAt": "2026-08-24T12:33:22.000Z",
       "plays": 8,
-      "airedEpisodes": 9,
+      "airedEpisodes": 10,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2025-05-11T20:59:00.000Z",
       "favorite": false,
