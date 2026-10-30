@@ -1,27 +1,6 @@
 {
-  "titleKey": "show:252107",
-  "setAt": "2026-10-26T00:00:00.000Z",
-  "note": "Bill's own stated current watch, told directly in chat (2026-10-26: \"I am watching star city now\" — show:252107, 1 season/8 episodes in TMDB, on his watchlist). Supersedes the prior pointer at show:203857 (The Diplomat). Update or clear this file the next time Bill names a different current watch.",
-  "facts": [
-    {
-      "text": "Star City is an Apple TV spinoff of For All Mankind, told from the Soviet side of the same alternate-history space race. It premiered May 29, 2026 with two episodes, then one new episode every Friday through the July 10 finale.",
-      "source": "https://www.apple.com/tv-pr/news/2026/02/apple-tv-unveils-a-first-look-at-star-city-the-gripping-new-space-race-drama-set-in-the-world-of-for-all-mankind-from-award-winning-creators-ben-nedivi-matt-wolpert-and-ronald-d-moore/",
-      "sourceLabel": "Apple TV Press"
-    },
-    {
-      "text": "Ben Nedivi and Matt Wolpert created it and serve as showrunners, with For All Mankind creator Ronald D. Moore and Maril Davis of Tall Ship Productions among the executive producers.",
-      "source": "https://www.apple.com/tv-pr/news/2026/02/apple-tv-unveils-a-first-look-at-star-city-the-gripping-new-space-race-drama-set-in-the-world-of-for-all-mankind-from-award-winning-creators-ben-nedivi-matt-wolpert-and-ronald-d-moore/",
-      "sourceLabel": "Apple TV Press"
-    },
-    {
-      "text": "Rhys Ifans plays the Soviet chief designer and Anna Maxwell Martin plays Lyudmilla Raskova, the head of KGB surveillance.",
-      "source": "https://www.tvinsider.com/1183435/star-city-for-all-mankind-spinoff-cast-premiere-date-details/",
-      "sourceLabel": "TV Insider"
-    },
-    {
-      "text": "Variety called it an intense, immaculate alt-history paranoid thriller, in contrast to the more optimistic tone of its parent show.",
-      "source": "https://variety.com/2026/tv/reviews/star-city-review-for-all-mankind-spinoff-1236761675/",
-      "sourceLabel": "Variety"
-    }
-  ]
+  "titleKey": null,
+  "idle": true,
+  "setAt": "2026-10-30T00:00:00.000Z",
+  "note": "Bill said (2026-10-30) he isn't watching any show, so the Currently Watching hero shows a joke 'nothing on' graphic instead. Set titleKey to a show:<tmdbId> (and add facts) the next time he names a current watch; set idle to false or remove it."
 }

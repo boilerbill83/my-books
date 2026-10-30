@@ -574,6 +574,9 @@ function castLine(meta) {
 // bulk-import placeholder), (3) falls back to the original "top
 // recommendation" hero when neither exists, so the section is never empty.
 function pickCurrentlyWatching(feature, currentlyWatching, enrichedMeta) {
+  // Bill: "I'm not watching any show." An explicit idle flag skips both the
+  // in-progress fallback and the top-recommendation fallback.
+  if (feature?.idle) return { idle: true };
   if (feature?.titleKey && enrichedMeta[feature.titleKey]) {
     return { titleKey: feature.titleKey, type: feature.titleKey.split(':')[0], facts: feature.facts, progress: currentlyWatching.find(t => t.titleKey === feature.titleKey) };
   }
@@ -593,7 +596,41 @@ function pickCurrentlyWatching(feature, currentlyWatching, enrichedMeta) {
 // point of the section, just its length.
 const HERO_FACTS_CAP = 5;
 
+function renderIdleHero() {
+  const el = document.getElementById('heroPick');
+  el.innerHTML = `
+    <div class="tk-idle">
+
+      <div class="tk-idle-title">Currently watching: absolutely nothing</div>
+      <p class="tk-idle-sub">The couch has filed a missing-person report. The popcorn is going stale. The remote has stopped asking questions.</p>
+      <p class="tk-idle-sub">Pick something from My Next Watch and put us all out of our misery.</p>
+      <svg class="tk-idle-svg" viewBox="0 0 320 200" preserveAspectRatio="xMidYMax meet" role="img" aria-label="An empty couch with a lonely popcorn bucket, a tumbleweed rolling by, and a remote nobody is holding">
+        <rect x="0" y="168" width="320" height="32" fill="var(--border)" opacity="0.5"/>
+        <rect x="70" y="86" width="150" height="56" rx="14" fill="var(--accent)" opacity="0.85"/>
+        <rect x="52" y="104" width="34" height="62" rx="12" fill="var(--accent)"/>
+        <rect x="204" y="104" width="34" height="62" rx="12" fill="var(--accent)"/>
+        <rect x="76" y="128" width="136" height="36" rx="10" fill="var(--accent)" opacity="0.7"/>
+        <rect x="64" y="164" width="8" height="8" fill="var(--text-muted)"/>
+        <rect x="218" y="164" width="8" height="8" fill="var(--text-muted)"/>
+        <g transform="translate(108 96)">
+          <path d="M0 14 L6 44 H34 L40 14 Z" fill="#fff" stroke="var(--status-critical)" stroke-width="3"/>
+          <path d="M10 14 L13 44 M20 14 V44 M30 14 L27 44" stroke="var(--status-critical)" stroke-width="3"/>
+          <circle cx="8" cy="10" r="7" fill="#fff4c2"/><circle cx="19" cy="6" r="8" fill="#fff4c2"/><circle cx="31" cy="10" r="7" fill="#fff4c2"/>
+        </g>
+        <rect x="170" y="150" width="30" height="10" rx="3" fill="var(--text)" transform="rotate(-12 185 155)"/>
+        <circle cx="178" cy="153" r="1.6" fill="var(--status-critical)"/>
+        <g class="tk-idle-weed" fill="none" stroke="var(--text-muted)" stroke-width="1.6">
+          <circle cx="278" cy="146" r="16"/><path d="M266 138 q12 10 24 0 M264 150 q14 -8 28 2 M270 158 q10 -10 20 0 M278 130 v32"/>
+        </g>
+        <text x="262" y="60" font-size="16" fill="var(--text-muted)" font-weight="700">Z</text>
+        <text x="276" y="44" font-size="22" fill="var(--text-muted)" font-weight="700">Z</text>
+        <text x="294" y="24" font-size="28" fill="var(--text-muted)" font-weight="700">Z</text>
+      </svg>
+    </div>`;
+}
+
 function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
+  if (pick.idle) { renderIdleHero(); return; }
   const el = document.getElementById('heroPick');
   const meta = enrichedMeta[pick.titleKey];
   const candidate = { titleKey: pick.titleKey, type: pick.type, title: meta.title, year: meta.year };
