@@ -40786,5 +40786,23 @@
   "director": null,
   "rated": "TV-MA",
   "fetchedAt": "2026-10-26"
+ },
+ "show:292741": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": null,
+  "rated": null,
+  "fetchedAt": "2026-10-30"
  }
 }
