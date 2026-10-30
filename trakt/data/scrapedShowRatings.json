@@ -6702,7 +6702,7 @@
   "metacritic": null,
   "metacriticUser": null,
   "mcUrl": null,
-  "checkedAt": "2026-10-16",
+  "checkedAt": "2026-10-30",
   "rtAttempted": "2026-10-02",
   "rtAudienceAttempted": true,
   "mcUserAttempted": true,
@@ -24775,7 +24775,7 @@
   "mcUserAttempted": true,
   "mcCountAttempted": true,
   "metacriticCount": null,
-  "checkedAt": "2026-10-16"
+  "checkedAt": "2026-10-30"
  },
  "show:213375": {
   "rottenTomatoes": 79,
@@ -24809,7 +24809,7 @@
   "mcUserAttempted": true,
   "mcCountAttempted": true,
   "metacriticCount": null,
-  "checkedAt": "2026-10-16"
+  "checkedAt": "2026-10-30"
  },
  "show:319800": {
   "rottenTomatoes": null,
@@ -25864,5 +25864,22 @@
   "mcCountAttempted": true,
   "metacriticCount": 30,
   "checkedAt": "2026-10-26"
+ },
+ "show:292741": {
+  "rottenTomatoes": 81,
+  "rtAudience": null,
+  "rtUrl": "https://www.rottentomatoes.com/tv/nocturne",
+  "rtAttempted": "2026-10-30",
+  "rtAudienceAttempted": true,
+  "rtCountAttempted": true,
+  "rtCriticCount": 16,
+  "rtCandidatesTried": null,
+  "metacritic": null,
+  "metacriticUser": null,
+  "mcUrl": null,
+  "mcUserAttempted": true,
+  "mcCountAttempted": true,
+  "metacriticCount": null,
+  "checkedAt": "2026-10-30"
  }
 }
