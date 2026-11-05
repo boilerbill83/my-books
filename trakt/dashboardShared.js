@@ -1364,3 +1364,16 @@ export {
   summarizeUpcoming, upcomingSortKey, renderWatchStatusTable, fmtDate, renderFamilyWatchList, renderLovedMovies,
   computeFavoriteStars, renderImportFreshness,
 };
+
+// Trakt season-rating links for a hero card ("always include these" - Bill,
+// Nov 2026). Trakt lets you rate a whole season from its own page. Defaults
+// to every season except the latest (the one still being watched); pass
+// `seasons` to override. Returns '' when there is nothing to rate.
+export function seasonRateLinksHtml(cand, meta, seasons) {
+  const slug = cand?.ids?.slug || cand?.slug;
+  const n = meta?.numberOfSeasons || 0;
+  const list = seasons || Array.from({ length: Math.max(0, n - 1) }, (_, i) => i + 1);
+  if (!slug || !list.length) return '';
+  return `<div class="tk-rate-links"><span>Rate on Trakt:</span>${list.map(s =>
+    `<a class="tk-btn" href="https://app.trakt.tv/shows/${encodeURIComponent(slug)}/seasons/${s}" target="_blank" rel="noopener">Season ${s} ↗</a>`).join('')}</div>`;
+}

@@ -114,6 +114,9 @@
          height scroll itself (it's load-bearing for .tk-top-row's stretch
          match above — see that rule's own comment), just re-skinned it in
          the site's own palette instead of removing it. */
+      .tk-rate-links { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:10px; font-size:.85rem; }
+      .tk-rate-links .tk-btn { padding:4px 10px; }
+      #coWatchHero:not(:empty) { margin-bottom:16px; }
       .tk-hero-facts { scrollbar-width: thin; scrollbar-color: var(--accent-warm) var(--bg-subtle); }
       .tk-hero-facts::-webkit-scrollbar { width: 7px; }
       .tk-hero-facts::-webkit-scrollbar-track { background: var(--bg-subtle); border-radius: 4px; }
@@ -361,6 +364,7 @@
         <div class="tk-card" style="margin-bottom:24px;" id="coWatchSection">
           <div class="tk-card-heading">📺 <a href="./watch-together.html" class="tk-heading-link">Shows You Watch Together</a></div>
           <div class="tk-card-note">Manually tagged — shows you only watch with your wife, kept out of the solo picks above and grouped here instead. Shows only what's airing or has an unwatched episode ready right now; the full tagged list lives on the Watch Together page.</div>
+          <div id="coWatchHero"></div>
           <div id="coWatchCards"></div>
         </div>
 
