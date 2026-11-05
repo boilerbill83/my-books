@@ -1,6 +1,9 @@
 {
   "titleKey": null,
-  "idle": true,
-  "setAt": "2026-10-30T00:00:00.000Z",
-  "note": "Bill said (2026-10-30) he isn't watching any show, so the Currently Watching hero shows a joke 'nothing on' graphic instead. Set titleKey to a show:<tmdbId> (and add facts) the next time he names a current watch; set idle to false or remove it."
+  "titleKeys": [
+    "show:288673",
+    "show:95480"
+  ],
+  "setAt": "2026-11-05T00:00:00.000Z",
+  "note": "Bill said (2026-11-05) he is currently watching Carrie (show:288673) and Slow Horses (show:95480). With 2+ titleKeys the hero shows a compact card per show; a single titleKey uses the full hero with facts. Update or clear when he names a different current watch."
 }

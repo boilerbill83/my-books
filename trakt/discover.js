@@ -577,6 +577,8 @@ function pickCurrentlyWatching(feature, currentlyWatching, enrichedMeta) {
   // Bill: "I'm not watching any show." An explicit idle flag skips both the
   // in-progress fallback and the top-recommendation fallback.
   if (feature?.idle) return { idle: true };
+  const keys = (feature?.titleKeys || []).filter(k => enrichedMeta[k]);
+  if (keys.length > 1) return { multi: keys.map(k => ({ titleKey: k, type: k.split(':')[0], progress: currentlyWatching.find(t => t.titleKey === k) })) };
   if (feature?.titleKey && enrichedMeta[feature.titleKey]) {
     return { titleKey: feature.titleKey, type: feature.titleKey.split(':')[0], facts: feature.facts, progress: currentlyWatching.find(t => t.titleKey === feature.titleKey) };
   }
@@ -629,8 +631,39 @@ function renderIdleHero() {
     </div>`;
 }
 
+// Several simultaneous watches: one compact card per show, stacked to fill
+// the hero box.
+function renderMultiWatchingHero(picks, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
+  const el = document.getElementById('heroPick');
+  el.innerHTML = `
+    <div class="tk-hero-kicker">📺 Currently Watching</div>
+    <div class="tk-multi">
+      ${picks.map(p => {
+        const meta = enrichedMeta[p.titleKey];
+        const cand = { titleKey: p.titleKey, type: p.type, title: meta.title, year: meta.year };
+        const poster = posterUrl(p.titleKey, enrichedMeta, 'w342');
+        const cast = castLine(meta);
+        return `
+        <div class="tk-multi-card">
+          <div class="tk-hero-poster">${posterImgHtml(poster, 'tk-hero-img', 110, 165, true)}</div>
+          <div class="tk-hero-body">
+            <div class="tk-hero-title">${typeIcon(p.type)} ${titleLink(cand)}${meta.year ? ` <span class="tk-hero-year">(${esc(meta.year)})</span>` : ''}${meta.networks?.length ? `<span class="tk-hero-badge">${esc(meta.networks[0])}</span>` : ''}</div>
+            <div class="tk-hero-meta">${esc([runtimeLabel(cand, enrichedMeta), metaLine(cand, enrichedMeta, omdbMeta, llmTags, reviewedTags)].filter(Boolean).join(' · '))}</div>
+            ${cast ? `<div class="tk-hero-cast">Starring ${esc(cast)}</div>` : ''}
+            ${meta.overview ? `<div class="tk-hero-reason">${esc(meta.overview)}</div>` : ''}
+            <div class="tk-hero-actions">
+              <a class="tk-btn tk-btn-primary" href="./deepdive.html?key=${encodeURIComponent(p.titleKey)}">🔎 Deep Dive</a>
+              <a class="tk-btn" href="${esc(traktUrl(cand))}" target="_blank" rel="noopener">Open on Trakt ↗</a>
+            </div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
 function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
   if (pick.idle) { renderIdleHero(); return; }
+  if (pick.multi) { renderMultiWatchingHero(pick.multi, enrichedMeta, omdbMeta, llmTags, reviewedTags); return; }
   const el = document.getElementById('heroPick');
   const meta = enrichedMeta[pick.titleKey];
   const candidate = { titleKey: pick.titleKey, type: pick.type, title: meta.title, year: meta.year };
