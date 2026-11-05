@@ -84,6 +84,8 @@ jobs:
         run: node scripts/build_trakt_dashboard.js /tmp/trakt-export
       - name: Rebuild library + watchlist + currentlyWatching
         run: node trakt/scripts/build_trakt_library.js /tmp/trakt-export
+      - name: Queue newly finished shows for a congrats text
+        run: node trakt/scripts/detect_finished_shows.js
 
       # Step 6 (CLAUDE.md): enrich newly-added titles via TMDB rather
       # than waiting on the next scheduled run (which reads watchlist ->

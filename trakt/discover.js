@@ -99,11 +99,6 @@ function computeCrowdCompare(library, enrichedMeta) {
 // (see that constant's own comment), and both were wrong: "If a movie
 // is 7/10, that doesn't mean I didn't like it. Anything under 6 means I
 // didn't like it."
-function computeBestMatches(library, enrichedMeta, omdbMeta, idx) {
-  const rows = predictedVsActualRows(library, enrichedMeta, omdbMeta, idx);
-  const matches = rows.filter(r => r.predicted >= 70 && r.actual >= 60).sort((a, b) => b.predicted - a.predicted);
-  return { total: rows.length, matches };
-}
 
 // ── Predicted-score distribution (unwatched titles) ─────────────────────
 // Movies and shows are kept as separate small multiples rather than one
@@ -126,25 +121,6 @@ function renderGenreChart(stats) {
 // actually been watched and rated — the same "top" framing
 // computeGenreStats() above already uses for subgenres).
 
-function renderBestMatches(stats, enrichedMeta) {
-  const el = document.getElementById('bestMatchesList');
-  if (!stats.matches.length) { el.innerHTML = '<div class="tk-empty">Not enough enriched, rated titles yet.</div>'; return; }
-  el.innerHTML = stats.matches.slice(0, 12).map(r => {
-    // 'w92' (real TMDB size), not the default 'w154' — this renders as a
-    // 38x57 thumbnail, and every default-size posterUrl() call across
-    // this dashboard was fetching a needlessly large image relative to
-    // its real display size (real, measured contributor to "images are
-    // slow to load" — fixed at every call site, not just this one).
-    const poster = posterUrl(r.titleKey, enrichedMeta, 'w92');
-    return `
-    <div class="tk-metric-row">
-      ${posterImgHtml(poster, 'tk-metric-poster', 38, 57)}
-      <span class="tk-metric-name">${typeIcon(r.type)} ${titleLink(r)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
-      <span class="tk-metric-score">predicted ${Math.round(r.predicted)}, rated ${r.myRating}/10</span>
-    </div>
-  `;
-  }).join('');
-}
 
 // buildWatchRow()/computeWatchStatusRows()/computeCoWatchRows() and the
 // rest of the "what's airing" table-building logic moved to
@@ -1113,8 +1089,6 @@ async function load() {
   renderGenreChart(genreStats);
   renderCastList(castStats);
   renderTasteLine(genreStats, crowdCompare, castStats, tenRatedCount);
-
-  renderBestMatches(computeBestMatches(library, enrichedMeta, omdbMeta, idx), enrichedMeta);
 
   renderStatTiles(d.summary, crowdCompare);
 
