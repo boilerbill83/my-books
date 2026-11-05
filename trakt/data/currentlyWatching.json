@@ -18,7 +18,7 @@
     "myRating": 4,
     "ratedAt": "2026-07-29T00:23:53.000Z",
     "plays": 92,
-    "airedEpisodes": 96,
+    "airedEpisodes": 97,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2026-04-23T00:52:00.000Z",
     "favorite": false,
@@ -126,6 +126,31 @@
   },
   {
     "type": "show",
+    "titleKey": "show:259909",
+    "ids": {
+      "imdb": "tt33043892",
+      "plex": {
+        "guid": "66aaeee739a7f8cce575083a",
+        "slug": "dexter-resurrection-1"
+      },
+      "slug": "dexter-resurrection",
+      "tmdb": 259909,
+      "tvdb": 452595,
+      "trakt": 249647
+    },
+    "title": "Dexter: Resurrection",
+    "year": 2025,
+    "myRating": 9,
+    "ratedAt": "2025-09-05T00:00:00.000Z",
+    "plays": 10,
+    "airedEpisodes": 11,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+    "favorite": false,
+    "hasConfirmedWatchDate": false
+  },
+  {
+    "type": "show",
     "titleKey": "show:226285",
     "ids": {
       "imdb": "tt26591110",
@@ -193,7 +218,7 @@
     "myRating": 6,
     "ratedAt": "2026-03-11T00:00:00.000Z",
     "plays": 136,
-    "airedEpisodes": 147,
+    "airedEpisodes": 148,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -218,7 +243,7 @@
     "myRating": 10,
     "ratedAt": "2026-09-21T01:56:00.000Z",
     "plays": 10,
-    "airedEpisodes": 16,
+    "airedEpisodes": 17,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2025-06-01T07:55:00.000Z",
     "favorite": true,
@@ -268,7 +293,7 @@
     "myRating": 9,
     "ratedAt": "2026-10-01T21:08:36.000Z",
     "plays": 9,
-    "airedEpisodes": 15,
+    "airedEpisodes": 16,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2026-04-16T00:23:00.000Z",
     "favorite": false,
@@ -298,6 +323,56 @@
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
     "hasConfirmedWatchDate": false
+  },
+  {
+    "type": "show",
+    "titleKey": "show:251941",
+    "ids": {
+      "imdb": "tt21433690",
+      "plex": {
+        "guid": "6492c92d68bf0cad06459aec",
+        "slug": "st-denis-medical"
+      },
+      "slug": "st-denis-medical",
+      "tmdb": 251941,
+      "tvdb": 435916,
+      "trakt": 235514
+    },
+    "title": "St. Denis Medical",
+    "year": 2024,
+    "myRating": 6,
+    "ratedAt": "2026-07-29T00:17:59.000Z",
+    "plays": 36,
+    "airedEpisodes": 37,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "2026-04-07T00:22:00.000Z",
+    "favorite": false,
+    "hasConfirmedWatchDate": true
+  },
+  {
+    "type": "show",
+    "titleKey": "show:248830",
+    "ids": {
+      "imdb": "tt31710249",
+      "plex": {
+        "guid": "6716e308bba5f098a17fbd5b",
+        "slug": "stick"
+      },
+      "slug": "stick",
+      "tmdb": 248830,
+      "tvdb": 455562,
+      "trakt": 230595
+    },
+    "title": "Stick",
+    "year": 2025,
+    "myRating": 8,
+    "ratedAt": "2026-08-13T13:32:31.000Z",
+    "plays": 10,
+    "airedEpisodes": 12,
+    "completionStatus": "in-progress",
+    "lastWatchedAt": "2025-07-23T01:35:00.000Z",
+    "favorite": false,
+    "hasConfirmedWatchDate": true
   },
   {
     "type": "show",
@@ -343,7 +418,7 @@
     "myRating": 9,
     "ratedAt": "2026-07-29T00:19:13.000Z",
     "plays": 8,
-    "airedEpisodes": 12,
+    "airedEpisodes": 13,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,
@@ -418,7 +493,7 @@
     "myRating": 8,
     "ratedAt": "2026-08-24T12:33:22.000Z",
     "plays": 8,
-    "airedEpisodes": 10,
+    "airedEpisodes": 12,
     "completionStatus": "in-progress",
     "lastWatchedAt": "2025-05-11T20:59:00.000Z",
     "favorite": false,
@@ -443,7 +518,7 @@
     "myRating": 8,
     "ratedAt": "2025-11-23T00:00:00.000Z",
     "plays": 29,
-    "airedEpisodes": 31,
+    "airedEpisodes": 32,
     "completionStatus": "in-progress",
     "lastWatchedAt": "1970-01-01T00:00:00.000Z",
     "favorite": false,

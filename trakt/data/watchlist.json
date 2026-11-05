@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-30T02:06:47.484Z",
-    "count": 59
+    "generatedAt": "2026-11-05T16:31:36.654Z",
+    "count": 64
   },
   "titles": [
     {
@@ -851,7 +851,7 @@
       "ids": {
         "imdb": "tt22084616",
         "plex": {
-          "guid": "5ed8a6246e2d7200411126cf",
+          "guid": "6328b12fe57cbf75cce17c02",
           "slug": "spider-man-brand-new-day"
         },
         "slug": "spider-man-brand-new-day-2026",
@@ -1100,6 +1100,101 @@
       "year": 2020,
       "watchlisted": true,
       "watchlistedAt": "2026-10-21T23:58:47.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:248830",
+      "ids": {
+        "imdb": "tt31710249",
+        "plex": {
+          "guid": "6716e308bba5f098a17fbd5b",
+          "slug": "stick"
+        },
+        "slug": "stick",
+        "tmdb": 248830,
+        "tvdb": 455562,
+        "trakt": 230595
+      },
+      "title": "Stick",
+      "year": 2025,
+      "watchlisted": true,
+      "watchlistedAt": "2026-11-05T16:27:46.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:250203",
+      "ids": {
+        "imdb": "tt6773088",
+        "plex": {
+          "guid": "660287bde98021c154100e69",
+          "slug": "brothers-16"
+        },
+        "slug": "brothers-2026",
+        "tmdb": 250203,
+        "tvdb": 448114,
+        "trakt": 232728
+      },
+      "title": "Brothers",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-11-05T16:28:02.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:288673",
+      "ids": {
+        "imdb": "tt11540908",
+        "plex": {
+          "guid": "671e44f76f2f5c8e20f67374",
+          "slug": "carrie"
+        },
+        "slug": "carrie",
+        "tmdb": 288673,
+        "tvdb": 455755,
+        "trakt": 282156
+      },
+      "title": "Carrie",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-11-05T16:28:05.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:99353",
+      "ids": {
+        "imdb": "tt11704040",
+        "plex": {
+          "guid": "5e4d2531ac7a780040af1e7f",
+          "slug": "love-is-blind-3"
+        },
+        "slug": "love-is-blind",
+        "tmdb": 99353,
+        "tvdb": 376459,
+        "trakt": 157822
+      },
+      "title": "Love is Blind",
+      "year": 2020,
+      "watchlisted": true,
+      "watchlistedAt": "2026-11-05T16:28:18.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:285322",
+      "ids": {
+        "imdb": "tt35934755",
+        "plex": {
+          "guid": "6a5f5a75fbd7977c9a54b002",
+          "slug": "below"
+        },
+        "slug": "below-2026",
+        "tmdb": 285322,
+        "tvdb": 480205,
+        "trakt": 277897
+      },
+      "title": "Below",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-11-05T16:29:19.000Z"
     }
   ]
 }

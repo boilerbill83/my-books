@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-30T02:06:47.353Z",
+  "generatedAt": "2026-11-05T16:31:36.557Z",
   "profile": {
     "username": "bill_stoltenberg_27166c",
     "joinedAt": "2026-07-27T14:49:58.000Z"
@@ -8,14 +8,14 @@
     "moviesWatched": 270,
     "moviesPlays": 270,
     "moviesRatings": 270,
-    "moviesMinutes": 34022,
+    "moviesMinutes": 34021,
     "showsWatched": 399,
     "showsRatings": 406,
     "episodesWatched": 11708,
     "episodesPlays": 11708,
-    "episodesMinutes": 504337,
+    "episodesMinutes": 504336,
     "totalRatings": 676,
-    "totalMinutes": 538359,
+    "totalMinutes": 538357,
     "totalHours": 8973,
     "avgRating": 7.81
   },
@@ -269,7 +269,7 @@
       "title": "Love is Blind",
       "year": 2020,
       "plays": 136,
-      "airedEpisodes": 147
+      "airedEpisodes": 148
     },
     {
       "title": "Shameless",
@@ -535,7 +535,7 @@
     }
   ],
   "watchlist": {
-    "count": 59,
+    "count": 64,
     "items": [
       {
         "type": "show",
@@ -890,6 +890,36 @@
         "title": "Tulsa King",
         "year": 2022,
         "listedAt": "2026-10-30T01:44:00.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Stick",
+        "year": 2025,
+        "listedAt": "2026-11-05T16:27:46.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Brothers",
+        "year": 2026,
+        "listedAt": "2026-11-05T16:28:02.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Carrie",
+        "year": 2026,
+        "listedAt": "2026-11-05T16:28:05.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Love is Blind",
+        "year": 2020,
+        "listedAt": "2026-11-05T16:28:18.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Below",
+        "year": 2026,
+        "listedAt": "2026-11-05T16:29:19.000Z"
       }
     ]
   },
