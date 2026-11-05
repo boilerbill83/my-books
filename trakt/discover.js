@@ -19,7 +19,7 @@ import {
   airingBadge, renderHBarChart, computeGenreStats, displaySubgenre, SUBJECT_LABEL,
   ERA_LABEL, downloadCSV, metaLine, scoreTier, initCollapsibleCards, loadAllData,
   predictedVsActualRows, computeWatchStatusRows, computeCoWatchRows, buildWatchRow,
-  renderWatchCards, renderCoWatchCards, seasonRateLinksHtml,
+  renderWatchCards, renderCoWatchCards, rateOnTraktHtml, isCoWatchReady, sortCoWatchReady,
   renderWatchStatusTable, fmtDate, renderFamilyWatchList,
   computeFavoriteStars, renderImportFreshness,
 } from './dashboardShared.js';
@@ -655,37 +655,38 @@ function renderMultiWatchingHero(picks, enrichedMeta, omdbMeta, llmTags, reviewe
               <a class="tk-btn tk-btn-primary" href="./deepdive.html?key=${encodeURIComponent(p.titleKey)}">🔎 Deep Dive</a>
               <a class="tk-btn" href="${esc(traktUrl(cand))}" target="_blank" rel="noopener">Open on Trakt ↗</a>
             </div>
-            ${seasonRateLinksHtml(cand, meta)}
           </div>
         </div>`;
       }).join('')}
     </div>`;
 }
 
-// "Currently watching together" mini hero inside Shows You Watch Together
-// (Bill, Nov 2026). Keys come from currentlyWatchingFeature.json's
-// togetherKeys; each card carries Trakt season-rating links.
-function renderTogetherHero(keys, allTitles, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
+// "Currently watching together" mini hero inside Shows You Watch Together.
+// Shows the top 2 of the same ready list the cards below use (#1 and #2),
+// each with a Trakt rating link (Bill, Nov 2026: "give me a trakt link for
+// #1 & 2 so I can rate them ... always do this").
+function renderTogetherHero(rows, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
   const el = document.getElementById('coWatchHero');
   if (!el) return;
-  const byKey = new Map(allTitles.map(t => [t.titleKey, t]));
-  const cards = (keys || []).filter(k => enrichedMeta[k]).map(k => {
-    const meta = enrichedMeta[k];
-    const t = byKey.get(k) || {};
-    const cand = { titleKey: k, type: 'show', title: meta.title, year: meta.year, ids: t.ids };
-    const poster = posterUrl(k, enrichedMeta, 'w185');
+  const ready = sortCoWatchReady(rows.filter(isCoWatchReady));
+  // Same order the cards below render in: Ready to Watch group, then Currently Airing.
+  const top = [...ready.filter(r => !r.isAiring), ...ready.filter(r => r.isAiring)].slice(0, 2);
+  const cards = top.map(r => {
+    const meta = enrichedMeta[r.titleKey] || {};
+    const cand = { titleKey: r.titleKey, type: 'show', title: r.title, year: meta.year, ids: r.ids };
+    const poster = posterUrl(r.titleKey, enrichedMeta, 'w185');
     return `
       <div class="tk-multi-card">
         <div class="tk-hero-poster">${posterImgHtml(poster, 'tk-hero-img', 80, 120, true)}</div>
         <div class="tk-hero-body">
           <div class="tk-hero-title">${typeIcon('show')} ${titleLink(cand)}${meta.year ? ` <span class="tk-hero-year">(${esc(meta.year)})</span>` : ''}</div>
           <div class="tk-hero-meta">${esc(metaLine(cand, enrichedMeta, omdbMeta, llmTags, reviewedTags))}</div>
-          ${seasonRateLinksHtml(cand, meta)}
+          ${rateOnTraktHtml(cand)}
         </div>
       </div>`;
   });
   el.innerHTML = cards.length
-    ? `<div class="tk-hero-kicker">💑 Currently watching together</div><div class="tk-multi">${cards.join('')}</div>` : '';
+    ? `<div class="tk-hero-kicker">💑 Up next together — #1 &amp; #2</div><div class="tk-multi">${cards.join('')}</div>` : '';
 }
 
 function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
@@ -723,7 +724,6 @@ function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, revi
           <a class="tk-btn tk-btn-primary" href="./deepdive.html?key=${encodeURIComponent(pick.titleKey)}">🔎 Deep Dive</a>
           <a class="tk-btn" href="${esc(traktUrl(candidate))}" target="_blank" rel="noopener">Open on Trakt ↗</a>
         </div>
-        ${pick.type === 'show' ? seasonRateLinksHtml(candidate, meta) : ''}
       </div>
       ${scoreVal ? `
       <div class="tk-hero-score">
@@ -1091,7 +1091,7 @@ async function load() {
 
   const coWatchRows = computeCoWatchRows(coWatchKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress);
   renderCoWatchCards('coWatchCards', coWatchRows, enrichedMeta, omdbMeta, llmTags, reviewedTags);
-  renderTogetherHero(currentlyWatchingFeature?.togetherKeys, [...(library.titles || []), ...(watchlist.titles || []), ...(candidatePool.titles || [])], enrichedMeta, omdbMeta, llmTags, reviewedTags);
+  renderTogetherHero(coWatchRows, enrichedMeta, omdbMeta, llmTags, reviewedTags);
   // Bill, 2026-10-19: "I dont want to toggle views anymore" — cards only.
   // Bill: "'What's Airing' show this as a table but still include the
   // cover image" — the card/table toggle this section used to have is
