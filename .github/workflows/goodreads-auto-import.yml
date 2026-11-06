@@ -1,0 +1,161 @@
+name: Goodreads Auto-Import (export -> BBIP merge)
+
+# Scheduled weekly (Bill's explicit choice -- see CLAUDE.md's "Automated
+# Goodreads Export" section), plus workflow_dispatch for an on-demand
+# run. Downloads a fresh "Export Library" CSV via a saved Goodreads
+# login session (goodreads.com broke anonymous/RSS access entirely on
+# 2026-10-27 -- see Session 81 -- so, same as Trakt/TMDB/OMDb, this can
+# only run where there's real network access: a GitHub Actions runner,
+# never an interactive Claude Code session), then runs it through
+# scripts/bbip_auto_import.mjs, which only auto-applies unambiguous
+# scalar changes (shelf/rating/date/avgRating/top10/allTimeFave, plus
+# backfill-only bookId/pages/year/isbn when we currently have none) and
+# writes everything needing real judgment -- new books, missing books,
+# pages/year/isbn conflicts, bookId mismatches -- to a dated review file
+# instead of guessing. Bill's explicit choice (2026-11-06): auto-apply
+# the safe tier, flag the rest for a future session's real review.
+#
+# SESSION STORAGE (Bill's explicit choice, 2026-11-06): the saved
+# Goodreads login session lives in CLAUDE.md, not a GitHub secret --
+# same reasoning as the Trakt automation's stored session (only Claude
+# can write CLAUDE.md directly; only Bill can write a GitHub secret).
+# Because this workflow fires on `schedule:` (no human triggering each
+# run with a workflow_dispatch input the way "Action!" feeds Trakt's),
+# the "Extract Goodreads session from CLAUDE.md" step below reads the
+# stored session directly out of the checked-out CLAUDE.md at runtime.
+
+on:
+  schedule:
+    - cron: '0 13 * * 0'   # Sundays 1:00 PM UTC -- off-peak, clear of the
+                            # 9 AM-noon Eastern window this project avoids
+                            # for scheduled runs, and a day apart from the
+                            # Trakt-side Sunday discovery job's 10 AM UTC
+                            # slot so the two don't race for the same
+                            # "Commit if changed" push window.
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Playwright + Chromium
+        run: |
+          pip install playwright
+          playwright install chromium --with-deps
+
+      - name: Extract Goodreads session from CLAUDE.md
+        run: |
+          python3 - <<'PYEOF'
+          import json
+          import os
+          import re
+          import secrets
+          import sys
+
+          text = open('CLAUDE.md', encoding='utf-8').read()
+          m = re.search(
+              r'<!-- GOODREADS_SESSION_JSON_START -->\s*```json\s*\n(.*?)\n```\s*<!-- GOODREADS_SESSION_JSON_END -->',
+              text, re.S,
+          )
+          if not m:
+              print('::error::Could not find a GOODREADS_SESSION_JSON block in CLAUDE.md '
+                    '-- the stored session may have been removed or the markers renamed. '
+                    'See CLAUDE.md\'s "Automated Goodreads Export" section.', file=sys.stderr)
+              sys.exit(1)
+
+          session_json = m.group(1).strip()
+          try:
+              json.loads(session_json)
+          except json.JSONDecodeError as e:
+              print(f'::error::Stored Goodreads session in CLAUDE.md is not valid JSON: {e}',
+                    file=sys.stderr)
+              sys.exit(1)
+
+          delim = 'GOODREADS_SESSION_' + secrets.token_hex(8)
+          with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as f:
+              f.write(f'GOODREADS_SESSION<<{delim}\n{session_json}\n{delim}\n')
+
+          print('Extracted Goodreads session from CLAUDE.md.')
+          PYEOF
+
+      - name: Download fresh Goodreads export
+        run: python3 fetch_goodreads_export.py /tmp/goodreads-export-raw.csv
+        timeout-minutes: 15
+
+      # Baseline eval.js *before* the merge, purely for the commit
+      # message's own before/after transparency -- not a hard gate. The
+      # safe-tier changes this script applies are, by construction,
+      # unambiguous facts (a rating Bill actually gave, a shelf he
+      # actually moved a book to), so a real import legitimately SHOULD
+      # move these numbers sometimes; blocking the commit on any
+      # movement would be wrong, the same reasoning BBIP's manual rounds
+      # have always used ("verify eval.js is unaffected" is a check to
+      # report, not a pass/fail gate, per Session 35's informational-only
+      # precedent for validate_review.js).
+      - name: Record eval.js baseline
+        run: node scripts/eval.js > /tmp/eval-before.txt || true
+
+      - name: Run BBIP auto-import (safe changes only; rest -> review file)
+        run: node scripts/bbip_auto_import.mjs /tmp/goodreads-export-raw.csv --apply
+
+      - name: Record eval.js after
+        run: node scripts/eval.js > /tmp/eval-after.txt || true
+
+      - name: Show eval.js before/after in the job log
+        run: |
+          echo "--- eval.js BEFORE ---"
+          cat /tmp/eval-before.txt
+          echo "--- eval.js AFTER ---"
+          cat /tmp/eval-after.txt
+
+      - name: Commit if changed
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+          git add data/goodreadsData.json
+          if [ -d output ]; then
+            git add output/bbip-review-*.md 2>/dev/null || true
+          fi
+          if git diff --staged --quiet; then
+            echo "No safe changes this run -- nothing to commit."
+            exit 0
+          fi
+          REVIEW_COUNT=$(git diff --staged --name-only | grep -c 'bbip-review' || true)
+          git commit -m "Goodreads auto-import: safe changes applied [automated] (review file included if anything needs a human decision -- new/missing books and pages/year/isbn/bookId conflicts are never auto-applied, only flagged)"
+          # Same push-race hardening as the Trakt-side workflows (Session 50)
+          # and data-quality-report.yml (hit for real 2026-09-10) - rebase
+          # and retry rather than losing a real run's output.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $i/5) - fetching and rebasing onto latest $BRANCH."
+            git fetch origin "$BRANCH"
+            git rebase "origin/$BRANCH"
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1
+
+      - name: Upload debug artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: goodreads-export-debug
+          path: |
+            /tmp/goodreads-export-debug.png
+            /tmp/goodreads-export-debug.txt
+          if-no-files-found: ignore
