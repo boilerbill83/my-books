@@ -143,6 +143,37 @@ def main():
             # Text-based locator, not a CSS class/id guess -- robust to
             # markup changes, matches Goodreads' own documented button
             # label.
+            def matching_csv_hrefs():
+                # href containing "export" and ending .csv -- generic on
+                # purpose, since Goodreads' exact wording isn't documented
+                # anywhere official enough to hardcode.
+                hrefs = set()
+                candidates = page.locator('a[href*="export"]')
+                for i in range(candidates.count()):
+                    href = candidates.nth(i).get_attribute('href') or ''
+                    if '.csv' in href.lower():
+                        hrefs.add(href)
+                return hrefs
+
+            # Real, confirmed bug (first production run, 2026-11-06): this
+            # same /review/import page also carries a *static* sample/example
+            # CSV link (for the unrelated Import feature on the same page --
+            # four generic placeholder titles like "Dune"/"Blink") that
+            # already matches the a[href*="export"]+".csv" pattern BEFORE
+            # "Export Library" is ever clicked. The naive version of this
+            # poll grabbed that sample link immediately and downloaded it
+            # instead of Bill's real library export -- the merge script's own
+            # safety tier caught it downstream (0/4 rows matched, nothing
+            # auto-applied), but the run should never get that far. Fix:
+            # snapshot whatever already matches *before* clicking, and only
+            # ever accept a genuinely NEW href that shows up *after* the
+            # click -- the one Goodreads generates server-side in response
+            # to it, never a pre-existing static asset.
+            pre_click_hrefs = matching_csv_hrefs()
+            print(f'DIAGNOSTIC: {len(pre_click_hrefs)} pre-existing export-ish .csv link(s) on the '
+                  f'page before clicking "Export Library" (expected to be ignored, e.g. a static '
+                  f'sample/example file unrelated to the real generated export).')
+
             export_button = page.get_by_text('Export Library', exact=False).first
             export_button.wait_for(state='visible', timeout=15_000)
             print('Clicking "Export Library". Goodreads generates this server-side (seconds to a '
@@ -151,12 +182,10 @@ def main():
                   'than expecting an immediate download.')
             export_button.click()
 
-            # Poll for the dated download link. Goodreads' real UI shows
-            # text like "Your export from <date> is ready for download."
-            # with a link pointing at an exported CSV file -- matched
-            # generically by href containing "export" and ending .csv,
-            # since the exact wording isn't documented anywhere official
-            # enough to hardcode.
+            # Poll for the dated download link -- a href that is NEW
+            # relative to pre_click_hrefs (see above), not just any
+            # export-ish .csv href. Goodreads' real UI shows text like
+            # "Your export from <date> is ready for download."
             download_link = None
             deadline_ms = 600_000  # 10 minutes -- one guide's own "if nothing shows after ten
                                     # minutes, click Export Library again" ceiling; this script
@@ -168,7 +197,7 @@ def main():
                 count = candidates.count()
                 for i in range(count):
                     href = candidates.nth(i).get_attribute('href') or ''
-                    if '.csv' in href.lower():
+                    if '.csv' in href.lower() and href not in pre_click_hrefs:
                         download_link = candidates.nth(i)
                         break
                 if download_link:
@@ -176,11 +205,13 @@ def main():
                 page.wait_for_timeout(poll_interval_ms)
                 waited_ms += poll_interval_ms
                 page.reload(wait_until='domcontentloaded')
-                print(f'...still waiting for the export link ({waited_ms // 1000}s elapsed)')
+                print(f'...still waiting for a NEW export link ({waited_ms // 1000}s elapsed)')
 
             if not download_link:
-                print('ERROR: no download link appeared within 10 minutes. Goodreads may be '
-                      'slower than usual, or the page markup changed.', file=sys.stderr)
+                print('ERROR: no new download link appeared within 10 minutes (only the '
+                      f'{len(pre_click_hrefs)} pre-existing link(s) already on the page at load '
+                      'time, which are deliberately ignored). Goodreads may be slower than usual, '
+                      'or the page markup changed.', file=sys.stderr)
                 page.screenshot(path='/tmp/goodreads-export-debug.png')
                 Path('/tmp/goodreads-export-debug.txt').write_text(page.content())
                 sys.exit(1)
@@ -195,9 +226,22 @@ def main():
 
             first_line = output_path.read_text(encoding='utf-8', errors='replace').splitlines()[0] if size_kb > 0 else ''
             if 'Book Id' not in first_line:
-                print(f'WARNING: downloaded file\'s header doesn\'t look like a real Goodreads '
-                      f'export (expected a "Book Id" column). First line: {first_line[:200]!r}',
+                # Escalated from a soft WARNING to a hard failure after the
+                # real 2026-11-06 incident this exact check caught: a wrong
+                # file (Goodreads' own unrelated sample/example import CSV)
+                # downloaded clean and would have looked like a successful
+                # run if this had stayed a warning -- the bbip_auto_import.mjs
+                # merge step downstream only found 0/4 real matches because
+                # ITS OWN safety tier refused to guess, not because this
+                # script ever flagged anything as having gone wrong.
+                print(f'ERROR: downloaded file\'s header doesn\'t look like a real Goodreads '
+                      f'export (expected a "Book Id" column). First line: {first_line[:200]!r} -- '
+                      f'this is most likely the wrong file (e.g. Goodreads\' own unrelated sample/'
+                      f'example import CSV also on this page), not a real but malformed export.',
                       file=sys.stderr)
+                page.screenshot(path='/tmp/goodreads-export-debug.png')
+                Path('/tmp/goodreads-export-debug.txt').write_text(page.content())
+                sys.exit(1)
 
         except Exception as e:
             print(f'ERROR: {e}', file=sys.stderr)
