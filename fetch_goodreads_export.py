@@ -63,6 +63,7 @@ other external-export handling in this project).
 
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -85,6 +86,15 @@ def looks_logged_out(page):
 
 
 def main():
+    # Real debugging pain from the 2026-11-06 incident this file's own
+    # history documents: stdout is block-buffered when piped (as it is in
+    # GitHub Actions), so print() calls sat unflushed until exit while the
+    # one stderr ERROR line went out immediately -- making the real
+    # chronological order of the job log actively misleading when
+    # diagnosing a failure. Line-buffer stdout so prints interleave with
+    # stderr in true time order.
+    sys.stdout.reconfigure(line_buffering=True)
+
     output_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path('/tmp/goodreads-export-raw.csv')
 
     session_json = os.environ.get('GOODREADS_SESSION')
@@ -143,37 +153,6 @@ def main():
             # Text-based locator, not a CSS class/id guess -- robust to
             # markup changes, matches Goodreads' own documented button
             # label.
-            def matching_csv_hrefs():
-                # href containing "export" and ending .csv -- generic on
-                # purpose, since Goodreads' exact wording isn't documented
-                # anywhere official enough to hardcode.
-                hrefs = set()
-                candidates = page.locator('a[href*="export"]')
-                for i in range(candidates.count()):
-                    href = candidates.nth(i).get_attribute('href') or ''
-                    if '.csv' in href.lower():
-                        hrefs.add(href)
-                return hrefs
-
-            # Real, confirmed bug (first production run, 2026-11-06): this
-            # same /review/import page also carries a *static* sample/example
-            # CSV link (for the unrelated Import feature on the same page --
-            # four generic placeholder titles like "Dune"/"Blink") that
-            # already matches the a[href*="export"]+".csv" pattern BEFORE
-            # "Export Library" is ever clicked. The naive version of this
-            # poll grabbed that sample link immediately and downloaded it
-            # instead of Bill's real library export -- the merge script's own
-            # safety tier caught it downstream (0/4 rows matched, nothing
-            # auto-applied), but the run should never get that far. Fix:
-            # snapshot whatever already matches *before* clicking, and only
-            # ever accept a genuinely NEW href that shows up *after* the
-            # click -- the one Goodreads generates server-side in response
-            # to it, never a pre-existing static asset.
-            pre_click_hrefs = matching_csv_hrefs()
-            print(f'DIAGNOSTIC: {len(pre_click_hrefs)} pre-existing export-ish .csv link(s) on the '
-                  f'page before clicking "Export Library" (expected to be ignored, e.g. a static '
-                  f'sample/example file unrelated to the real generated export).')
-
             export_button = page.get_by_text('Export Library', exact=False).first
             export_button.wait_for(state='visible', timeout=15_000)
             print('Clicking "Export Library". Goodreads generates this server-side (seconds to a '
@@ -182,39 +161,69 @@ def main():
                   'than expecting an immediate download.')
             export_button.click()
 
-            # Poll for the dated download link -- a href that is NEW
-            # relative to pre_click_hrefs (see above), not just any
-            # export-ish .csv href. Goodreads' real UI shows text like
-            # "Your export from <date> is ready for download."
-            download_link = None
+            # Poll for the real, dated download link -- matched by its own
+            # visible text ("Your export from <date> - <time>", confirmed
+            # verbatim from this exact page in a real 2026-11-06 run), not
+            # by href pattern. Two real bugs this fixes, found via two
+            # separate real production runs rather than guessed up front:
+            # (1) this same /review/import page also carries a *static*
+            # sample/example CSV link (for the unrelated Import feature,
+            # four generic placeholder titles like "Dune"/"Blink") that
+            # matched a naive a[href*="export"]+".csv" selector immediately,
+            # before "Export Library" was ever clicked -- downloaded instead
+            # of Bill's real export (caught downstream by bbip_auto_import.mjs's
+            # own safety tier: 0/4 real matches, nothing auto-applied, but the
+            # run should never have gotten that far). (2) a follow-up fix that
+            # required the href to be genuinely NEW relative to a pre-click
+            # snapshot turned out to be the wrong invariant -- Goodreads can
+            # legitimately keep serving the SAME already-ready export link
+            # across multiple runs within the same session (confirmed live:
+            # a second run minutes later found "Your export from 11/06/2026 -
+            # 01:20" already on the page from the FIRST run's click), so
+            # requiring novelty would wait forever for a new href that may
+            # never come. Matching on this specific text sidesteps both: the
+            # sample link never carries this phrase, and a real, already-
+            # ready export (however it got there) is always correct to use.
+            download_pattern = re.compile(r'your export from', re.IGNORECASE)
+            download_trigger = None
             deadline_ms = 600_000  # 10 minutes -- one guide's own "if nothing shows after ten
                                     # minutes, click Export Library again" ceiling; this script
                                     # fails loud rather than silently re-clicking on a guess.
             poll_interval_ms = 10_000
             waited_ms = 0
             while waited_ms < deadline_ms:
-                candidates = page.locator('a[href*="export"]')
-                count = candidates.count()
-                for i in range(count):
-                    href = candidates.nth(i).get_attribute('href') or ''
-                    if '.csv' in href.lower() and href not in pre_click_hrefs:
-                        download_link = candidates.nth(i)
-                        break
-                if download_link:
+                candidate = page.get_by_text(download_pattern).first
+                if candidate.count() > 0:
+                    download_trigger = candidate
                     break
                 page.wait_for_timeout(poll_interval_ms)
                 waited_ms += poll_interval_ms
-                page.reload(wait_until='domcontentloaded')
-                print(f'...still waiting for a NEW export link ({waited_ms // 1000}s elapsed)')
+                try:
+                    # A generous explicit timeout, and a real reload timeout
+                    # is treated as transient (retry next cycle) rather than
+                    # fatal -- a real run hit exactly this (Page.reload:
+                    # Timeout 30000ms exceeded on Goodreads' default 30s)
+                    # and it killed the whole run on the very first poll.
+                    page.reload(wait_until='domcontentloaded', timeout=60_000)
+                except Exception as reload_err:
+                    print(f'...reload hit a transient error ({reload_err}); will retry next cycle')
+                print(f'...still waiting for a "Your export from..." link ({waited_ms // 1000}s elapsed)')
 
-            if not download_link:
-                print('ERROR: no new download link appeared within 10 minutes (only the '
-                      f'{len(pre_click_hrefs)} pre-existing link(s) already on the page at load '
-                      'time, which are deliberately ignored). Goodreads may be slower than usual, '
-                      'or the page markup changed.', file=sys.stderr)
+            if not download_trigger:
+                print('ERROR: no "Your export from..." link appeared within 10 minutes. Goodreads '
+                      'may be slower than usual, or the page markup/wording changed.', file=sys.stderr)
                 page.screenshot(path='/tmp/goodreads-export-debug.png')
                 Path('/tmp/goodreads-export-debug.txt').write_text(page.content())
                 sys.exit(1)
+
+            # The matched text node may be the <a> itself, or may sit inside
+            # one (e.g. wrapped in a <span>) -- resolve to the nearest real
+            # anchor so .click() reliably triggers the download rather than
+            # just clicking inert text.
+            download_link = download_trigger
+            anchor = download_trigger.locator('xpath=ancestor-or-self::a[1]')
+            if anchor.count() > 0:
+                download_link = anchor.first
 
             with page.expect_download(timeout=60_000) as download_info:
                 download_link.click()
