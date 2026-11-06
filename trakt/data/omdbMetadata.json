@@ -29591,7 +29591,7 @@
  },
  "show:225634": {
   "omdbError": "Error getting data.",
-  "checkedAt": "2026-10-22"
+  "checkedAt": "2026-11-05"
  },
  "movie:1398050": {
   "rottenTomatoes": null,
@@ -40786,5 +40786,113 @@
   "director": null,
   "rated": "TV-MA",
   "fetchedAt": "2026-10-26"
+ },
+ "show:292741": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": null,
+  "rated": null,
+  "fetchedAt": "2026-10-30"
+ },
+ "movie:464502": {
+  "rottenTomatoes": 19,
+  "metacritic": 32,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 1,
+   "raw": "1 win & 1 nomination total"
+  },
+  "imdbRating": 5.9,
+  "imdbVotes": 11032,
+  "director": "Tyler Perry",
+  "rated": "R",
+  "fetchedAt": "2026-11-02"
+ },
+ "movie:508763": {
+  "rottenTomatoes": 59,
+  "metacritic": 50,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 2,
+   "totalNominations": 0,
+   "raw": "2 wins total"
+  },
+  "imdbRating": 6.7,
+  "imdbVotes": 23118,
+  "director": "Charles Martin Smith",
+  "rated": "PG",
+  "fetchedAt": "2026-11-02"
+ },
+ "movie:1504358": {
+  "rottenTomatoes": 93,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": null,
+  "imdbVotes": null,
+  "director": "Julia Hart",
+  "rated": null,
+  "fetchedAt": "2026-11-02"
+ },
+ "show:108298": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 2,
+   "raw": "2 nominations total"
+  },
+  "imdbRating": 7.8,
+  "imdbVotes": 8736,
+  "director": null,
+  "rated": "TV-14",
+  "fetchedAt": "2026-11-02"
+ },
+ "movie:390051": {
+  "rottenTomatoes": 40,
+  "metacritic": 44,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 5.7,
+  "imdbVotes": 28907,
+  "director": "Elliott Lester",
+  "rated": "R",
+  "fetchedAt": "2026-11-02"
  }
 }

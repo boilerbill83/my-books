@@ -713,6 +713,14 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
       .filter(e => e.excludeFromRecommendations)
       .map(e => e.titleKey)
   );
+  // Streaming Top 10 editorial exclusions only keep a title out of the
+  // discovery pool; they must never hide a title Bill has put on his own
+  // Trakt watchlist (Trakt is the source of truth for the watchlist).
+  const editorialExcluded = new Set(
+    (feedback?.interactions || [])
+      .filter(e => e.excludeFromRecommendations && e.reasonCode === 'streaming_top10_editorial')
+      .map(e => e.titleKey)
+  );
 
   // Dismissal generalization (dashboard dismissal-generalization
   // finding) — the BMTRE equivalent of the book engine's dismissAdjust
@@ -862,7 +870,7 @@ export function buildIndexes(library, enrichedMeta, feedback, llmTags = {}, revi
   // sharedDescModel build for the full reasoning and the eval.js proof.
   const descModel = descModelOverride !== undefined ? descModelOverride : buildDescModel(enrichedMeta, lovedTitles);
 
-  return { watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, genreProfile, genrePairProfile, subgenreProfile, matureContentGenreProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel, anomalousLovedKeys, anomalyDetails, bookThemeCounts, enrichedMetaRef: enrichedMeta };
+  return { editorialExcluded, watched, lovedTitles, titleAffinity, lovedCreators, creatorRatingWeight, lovedGenres, reverseSimilar, lovedCollections, lovedActors, lovedKeywords, lovedSubgenres, lovedSubjects, toneProfile, genreProfile, genrePairProfile, subgenreProfile, matureContentGenreProfile, globalMeanRating, excluded, lovedCountByType, showAiringOverrep, dismissedCreators, dismissedGenreProfile, dismissedSubgenreProfile, styleDismissCount, llmTags, reviewedTags, descModel, anomalousLovedKeys, anomalyDetails, bookThemeCounts, enrichedMetaRef: enrichedMeta };
 }
 
 // Bill has roughly half as many loved movies as loved shows (measured:
@@ -4424,7 +4432,7 @@ export function rankRecommendations(library, watchlist, enrichedMeta, feedback =
 
   // See the matching comment on rankAll()'s fromWatchlist below for why
   // a watchlist entry also needs to check idx.watched, not just excluded.
-  const candidates = (watchlist.titles || []).filter(c => !idx.excluded.has(c.titleKey) && !idx.watched.has(c.titleKey));
+  const candidates = (watchlist.titles || []).filter(c => (!idx.excluded.has(c.titleKey) || idx.editorialExcluded.has(c.titleKey)) && !idx.watched.has(c.titleKey));
   const scored = candidates.map(c => {
     const { raw, clamped } = matchScorePair(c, idx, enrichedMeta, omdbMeta);
     return {
@@ -4590,7 +4598,7 @@ export function rankAll(library, watchlist, candidatePool, enrichedMeta, feedbac
   // in watchlist.json). Without this check it would show up as a "new
   // pick" for a show Bill has already seen and rated.
   const fromWatchlist = (watchlist.titles || [])
-    .filter(c => !idx.excluded.has(c.titleKey) && !idx.watched.has(c.titleKey))
+    .filter(c => (!idx.excluded.has(c.titleKey) || idx.editorialExcluded.has(c.titleKey)) && !idx.watched.has(c.titleKey))
     .map(c => scoreOne(c, 'watchlist'))
     .sort(byScore);
 

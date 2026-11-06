@@ -601,6 +601,15 @@ async function loadAllData() {
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
   const bookThemeCounts = computeBookThemeCounts(goodreadsData);
   const coWatchProgress = coWatchProgressRaw?.overrides || {};
+  // Give each Family Watch List title its real Trakt ids (slug) from the
+  // Trakt-derived lists so the title can link to its Trakt page.
+  const idsByKey = new Map();
+  for (const t of [...(candidatePool.titles || []), ...(watchlist.titles || []), ...(library.titles || [])]) {
+    if (t.ids && (t.ids.slug || !idsByKey.has(t.titleKey))) idsByKey.set(t.titleKey, t.ids);
+  }
+  if (familyWatchlist?.titles) {
+    familyWatchlist.titles = familyWatchlist.titles.map(t => ({ ...t, ids: t.ids || idsByKey.get(t.titleKey) }));
+  }
   return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog, bookThemeCounts, nextWatchFacts, nextWatchPins, coWatchProgress, manualStars };
 }
 
@@ -1309,7 +1318,7 @@ function renderFamilyWatchList(familyWatchlist, enrichedMeta, elementId = 'famil
       <div class="tk-fwl-card">
         ${posterImgHtml(poster, 'tk-fwl-poster', 60, 90)}
         <div class="tk-fwl-body">
-          <div class="tk-fwl-title">${typeIcon(isShow ? 'show' : 'movie')} ${esc(title)}${year ? ` <span class="tk-hero-year">(${esc(year)})</span>` : ''}</div>
+          <div class="tk-fwl-title">${typeIcon(isShow ? 'show' : 'movie')} ${titleLink({ titleKey: t.titleKey, type: isShow ? 'show' : 'movie', title, ids: t.ids })}${year ? ` <span class="tk-hero-year">(${esc(year)})</span>` : ''}</div>
           ${meta?.genres?.length ? `<div class="tk-fwl-meta">${esc(meta.genres.slice(0, 2).join(', '))}</div>` : ''}
           <div class="tk-fwl-streaming">${rows.join('')}</div>
           ${notes.map(n => `<div class="tk-fwl-estimate">${esc(n)}</div>`).join('')}
@@ -1364,3 +1373,10 @@ export {
   summarizeUpcoming, upcomingSortKey, renderWatchStatusTable, fmtDate, renderFamilyWatchList, renderLovedMovies,
   computeFavoriteStars, renderImportFreshness,
 };
+
+// "Rate on Trakt" link for a hero card (Bill, Nov 2026: always include it
+// for the top two). Points at the real show/movie page, where Trakt's own
+// rating control lives.
+export function rateOnTraktHtml(cand) {
+  return `<div class="tk-rate-links"><a class="tk-btn tk-btn-primary" href="${esc(traktUrl(cand))}" target="_blank" rel="noopener">⭐ Rate on Trakt ↗</a></div>`;
+}

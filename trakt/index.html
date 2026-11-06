@@ -95,7 +95,18 @@
          #familyWatchList/#nextWatch) — overflow-y:auto stays only as a
          rare safety valve for a show with an unusually long real fact
          list, not a routine binding constraint. */
-      .tk-hero-facts { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: space-between; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); overflow-y: auto; padding-right: 4px; }
+      .tk-idle { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; gap: 10px; padding: 8px 4px; }
+    .tk-idle-svg { flex: 1 1 auto; width: 100%; min-height: 160px; margin-top: 6px; }
+    .tk-idle-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.35rem; font-weight: 700; color: var(--text); }
+    .tk-idle-sub { margin: 0; max-width: 420px; color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
+    @keyframes tk-idle-roll { 0% { transform: translateX(0) rotate(0); } 100% { transform: translateX(-190px) rotate(-360deg); } }
+    .tk-idle-weed { transform-box: fill-box; transform-origin: center; animation: tk-idle-roll 7s linear infinite; }
+    @media (prefers-reduced-motion: reduce) { .tk-idle-weed { animation: none; } }
+    .tk-multi { flex: 1; display: flex; flex-direction: column; gap: 14px; margin-top: 10px; }
+    .tk-multi-card { flex: 1; display: flex; gap: 14px; align-items: flex-start; padding: 12px; border: 1px solid var(--border); border-radius: 10px; }
+    .tk-multi-card .tk-hero-body { flex: 1; min-width: 0; }
+    @media (max-width: 640px) { .tk-multi-card { flex-direction: column; align-items: center; text-align: center; } }
+    .tk-hero-facts { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: space-between; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); overflow-y: auto; padding-right: 4px; }
       /* Bill, 2026-10-01: "weird vertical scroll bar" — the plain OS-default
          scrollbar this area's overflow-y:auto produces (unstyled anywhere
          else on this site either, confirmed via a repo-wide grep) clashed
@@ -103,6 +114,9 @@
          height scroll itself (it's load-bearing for .tk-top-row's stretch
          match above — see that rule's own comment), just re-skinned it in
          the site's own palette instead of removing it. */
+      .tk-rate-links { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:10px; font-size:.85rem; }
+      .tk-rate-links .tk-btn { padding:4px 10px; }
+      #coWatchHero:not(:empty) { margin-bottom:16px; }
       .tk-hero-facts { scrollbar-width: thin; scrollbar-color: var(--accent-warm) var(--bg-subtle); }
       .tk-hero-facts::-webkit-scrollbar { width: 7px; }
       .tk-hero-facts::-webkit-scrollbar-track { background: var(--bg-subtle); border-radius: 4px; }
@@ -350,6 +364,7 @@
         <div class="tk-card" style="margin-bottom:24px;" id="coWatchSection">
           <div class="tk-card-heading">📺 <a href="./watch-together.html" class="tk-heading-link">Shows You Watch Together</a></div>
           <div class="tk-card-note">Manually tagged — shows you only watch with your wife, kept out of the solo picks above and grouped here instead. Shows only what's airing or has an unwatched episode ready right now; the full tagged list lives on the Watch Together page.</div>
+          <div id="coWatchHero"></div>
           <div id="coWatchCards"></div>
         </div>
 
@@ -378,12 +393,6 @@
             <div class="tk-card-note">Top-billed cast, counted across every enriched watched title.</div>
             <div class="tk-list" id="castList"></div>
           </div>
-        </div>
-
-        <div class="tk-card" style="margin-bottom: 24px;">
-          <div class="tk-card-heading">Best Matches</div>
-          <div class="tk-card-note">Watched titles where the engine's predicted score AND your actual rating both agree it's a great fit (predicted ≥ 70, rated ≥ 8/10) — the real evidence for "the engine gets it right." Its honest counterpart, the biggest misses, lives on the <a href="./quality.html">Data Quality</a> page.</div>
-          <div class="tk-list" id="bestMatchesList"></div>
         </div>
 
         <div class="tk-card-heading" style="margin: 8px 0 -4px;">Your Watching, by the Numbers</div>

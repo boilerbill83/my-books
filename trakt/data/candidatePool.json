@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-10-26T19:43:23.642Z",
+    "generatedAt": "2026-11-05T16:31:37.256Z",
     "count": 493,
     "capPerType": 200
   },
@@ -3331,17 +3331,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:1204680",
-      "ids": {
-        "tmdb": 1204680
-      },
-      "title": "Coyote vs. Acme",
-      "year": 2026,
-      "source": "genre-explore",
-      "discoveredVia": "Adventure"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:375262",
       "ids": {
         "tmdb": 375262
@@ -3427,17 +3416,6 @@
       "year": 2019,
       "source": "genre-explore",
       "discoveredVia": "Action & Adventure"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:313298",
-      "ids": {
-        "tmdb": 313298
-      },
-      "title": "The Dinosaurs",
-      "year": 2026,
-      "source": "genre-explore",
-      "discoveredVia": "Documentary"
     },
     {
       "type": "show",
@@ -4407,17 +4385,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:614409",
-      "ids": {
-        "tmdb": 614409
-      },
-      "title": "To All the Boys: Always and Forever",
-      "year": 2021,
-      "source": "genre-explore",
-      "discoveredVia": "Comedy"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:180",
       "ids": {
         "tmdb": 180
@@ -4891,16 +4858,6 @@
       "discoveredVia": "book-theme:psychological"
     },
     {
-      "type": "show",
-      "titleKey": "show:250203",
-      "ids": {
-        "tmdb": 250203
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
       "type": "movie",
       "titleKey": "movie:986966",
       "ids": {
@@ -5121,17 +5078,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:445954",
-      "ids": {
-        "tmdb": 445954
-      },
-      "title": "Acts of Vengeance",
-      "year": 2017,
-      "source": "book-theme-explore",
-      "discoveredVia": "book-theme:legal"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:451915",
       "ids": {
         "tmdb": 451915
@@ -5151,6 +5097,60 @@
       "year": 2017,
       "source": "book-theme-explore",
       "discoveredVia": "book-theme:biography"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:464502",
+      "ids": {
+        "tmdb": 464502
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 9
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:508763",
+      "ids": {
+        "tmdb": 508763
+      },
+      "title": "A Dog's Way Home",
+      "year": 2019,
+      "source": "genre-explore",
+      "discoveredVia": "Adventure"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1504358",
+      "ids": {
+        "tmdb": 1504358
+      },
+      "title": "Don't Say Good Luck",
+      "year": 2026,
+      "source": "genre-explore",
+      "discoveredVia": "Music"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:108298",
+      "ids": {
+        "tmdb": 108298
+      },
+      "title": "Challenger: The Final Flight",
+      "year": 2020,
+      "source": "genre-explore",
+      "discoveredVia": "Documentary"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:390051",
+      "ids": {
+        "tmdb": 390051
+      },
+      "title": "Aftermath",
+      "year": 2017,
+      "source": "book-theme-explore",
+      "discoveredVia": "book-theme:legal"
     }
   ]
 }

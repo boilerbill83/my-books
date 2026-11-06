@@ -19,7 +19,7 @@ import {
   airingBadge, renderHBarChart, computeGenreStats, displaySubgenre, SUBJECT_LABEL,
   ERA_LABEL, downloadCSV, metaLine, scoreTier, initCollapsibleCards, loadAllData,
   predictedVsActualRows, computeWatchStatusRows, computeCoWatchRows, buildWatchRow,
-  renderWatchCards, renderCoWatchCards,
+  renderWatchCards, renderCoWatchCards, rateOnTraktHtml, isCoWatchReady, sortCoWatchReady,
   renderWatchStatusTable, fmtDate, renderFamilyWatchList,
   computeFavoriteStars, renderImportFreshness,
 } from './dashboardShared.js';
@@ -99,11 +99,6 @@ function computeCrowdCompare(library, enrichedMeta) {
 // (see that constant's own comment), and both were wrong: "If a movie
 // is 7/10, that doesn't mean I didn't like it. Anything under 6 means I
 // didn't like it."
-function computeBestMatches(library, enrichedMeta, omdbMeta, idx) {
-  const rows = predictedVsActualRows(library, enrichedMeta, omdbMeta, idx);
-  const matches = rows.filter(r => r.predicted >= 70 && r.actual >= 60).sort((a, b) => b.predicted - a.predicted);
-  return { total: rows.length, matches };
-}
 
 // ── Predicted-score distribution (unwatched titles) ─────────────────────
 // Movies and shows are kept as separate small multiples rather than one
@@ -126,25 +121,6 @@ function renderGenreChart(stats) {
 // actually been watched and rated — the same "top" framing
 // computeGenreStats() above already uses for subgenres).
 
-function renderBestMatches(stats, enrichedMeta) {
-  const el = document.getElementById('bestMatchesList');
-  if (!stats.matches.length) { el.innerHTML = '<div class="tk-empty">Not enough enriched, rated titles yet.</div>'; return; }
-  el.innerHTML = stats.matches.slice(0, 12).map(r => {
-    // 'w92' (real TMDB size), not the default 'w154' — this renders as a
-    // 38x57 thumbnail, and every default-size posterUrl() call across
-    // this dashboard was fetching a needlessly large image relative to
-    // its real display size (real, measured contributor to "images are
-    // slow to load" — fixed at every call site, not just this one).
-    const poster = posterUrl(r.titleKey, enrichedMeta, 'w92');
-    return `
-    <div class="tk-metric-row">
-      ${posterImgHtml(poster, 'tk-metric-poster', 38, 57)}
-      <span class="tk-metric-name">${typeIcon(r.type)} ${titleLink(r)} <span class="tk-metric-sub">(${r.year || '—'})</span></span>
-      <span class="tk-metric-score">predicted ${Math.round(r.predicted)}, rated ${r.myRating}/10</span>
-    </div>
-  `;
-  }).join('');
-}
 
 // buildWatchRow()/computeWatchStatusRows()/computeCoWatchRows() and the
 // rest of the "what's airing" table-building logic moved to
@@ -574,6 +550,11 @@ function castLine(meta) {
 // bulk-import placeholder), (3) falls back to the original "top
 // recommendation" hero when neither exists, so the section is never empty.
 function pickCurrentlyWatching(feature, currentlyWatching, enrichedMeta) {
+  // Bill: "I'm not watching any show." An explicit idle flag skips both the
+  // in-progress fallback and the top-recommendation fallback.
+  if (feature?.idle) return { idle: true };
+  const keys = (feature?.titleKeys || []).filter(k => enrichedMeta[k]);
+  if (keys.length > 1) return { multi: keys.map(k => ({ titleKey: k, type: k.split(':')[0], progress: currentlyWatching.find(t => t.titleKey === k) })) };
   if (feature?.titleKey && enrichedMeta[feature.titleKey]) {
     return { titleKey: feature.titleKey, type: feature.titleKey.split(':')[0], facts: feature.facts, progress: currentlyWatching.find(t => t.titleKey === feature.titleKey) };
   }
@@ -593,10 +574,103 @@ function pickCurrentlyWatching(feature, currentlyWatching, enrichedMeta) {
 // point of the section, just its length.
 const HERO_FACTS_CAP = 5;
 
+function renderIdleHero() {
+  const el = document.getElementById('heroPick');
+  el.innerHTML = `
+    <div class="tk-idle">
+
+      <div class="tk-idle-title">Currently watching: absolutely nothing</div>
+      <p class="tk-idle-sub">The couch has filed a missing-person report. The popcorn is going stale. The remote has stopped asking questions.</p>
+      <p class="tk-idle-sub">Pick something from My Next Watch and put us all out of our misery.</p>
+      <svg class="tk-idle-svg" viewBox="0 0 320 200" preserveAspectRatio="xMidYMax meet" role="img" aria-label="An empty couch with a lonely popcorn bucket, a tumbleweed rolling by, and a remote nobody is holding">
+        <rect x="0" y="168" width="320" height="32" fill="var(--border)" opacity="0.5"/>
+        <rect x="70" y="86" width="150" height="56" rx="14" fill="var(--accent)" opacity="0.85"/>
+        <rect x="52" y="104" width="34" height="62" rx="12" fill="var(--accent)"/>
+        <rect x="204" y="104" width="34" height="62" rx="12" fill="var(--accent)"/>
+        <rect x="76" y="128" width="136" height="36" rx="10" fill="var(--accent)" opacity="0.7"/>
+        <rect x="64" y="164" width="8" height="8" fill="var(--text-muted)"/>
+        <rect x="218" y="164" width="8" height="8" fill="var(--text-muted)"/>
+        <g transform="translate(108 96)">
+          <path d="M0 14 L6 44 H34 L40 14 Z" fill="#fff" stroke="var(--status-critical)" stroke-width="3"/>
+          <path d="M10 14 L13 44 M20 14 V44 M30 14 L27 44" stroke="var(--status-critical)" stroke-width="3"/>
+          <circle cx="8" cy="10" r="7" fill="#fff4c2"/><circle cx="19" cy="6" r="8" fill="#fff4c2"/><circle cx="31" cy="10" r="7" fill="#fff4c2"/>
+        </g>
+        <rect x="170" y="150" width="30" height="10" rx="3" fill="var(--text)" transform="rotate(-12 185 155)"/>
+        <circle cx="178" cy="153" r="1.6" fill="var(--status-critical)"/>
+        <g class="tk-idle-weed" fill="none" stroke="var(--text-muted)" stroke-width="1.6">
+          <circle cx="278" cy="146" r="16"/><path d="M266 138 q12 10 24 0 M264 150 q14 -8 28 2 M270 158 q10 -10 20 0 M278 130 v32"/>
+        </g>
+        <text x="262" y="60" font-size="16" fill="var(--text-muted)" font-weight="700">Z</text>
+        <text x="276" y="44" font-size="22" fill="var(--text-muted)" font-weight="700">Z</text>
+        <text x="294" y="24" font-size="28" fill="var(--text-muted)" font-weight="700">Z</text>
+      </svg>
+    </div>`;
+}
+
+// Several simultaneous watches: one compact card per show, stacked to fill
+// the hero box.
+function renderMultiWatchingHero(picks, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
+  const el = document.getElementById('heroPick');
+  el.innerHTML = `
+    <div class="tk-hero-kicker">📺 Currently Watching</div>
+    <div class="tk-multi">
+      ${picks.map(p => {
+        const meta = enrichedMeta[p.titleKey];
+        const cand = { titleKey: p.titleKey, type: p.type, title: meta.title, year: meta.year, ids: p.progress?.ids };
+        const poster = posterUrl(p.titleKey, enrichedMeta, 'w342');
+        const cast = castLine(meta);
+        return `
+        <div class="tk-multi-card">
+          <div class="tk-hero-poster">${posterImgHtml(poster, 'tk-hero-img', 110, 165, true)}</div>
+          <div class="tk-hero-body">
+            <div class="tk-hero-title">${typeIcon(p.type)} ${titleLink(cand)}${meta.year ? ` <span class="tk-hero-year">(${esc(meta.year)})</span>` : ''}${meta.networks?.length ? `<span class="tk-hero-badge">${esc(meta.networks[0])}</span>` : ''}</div>
+            <div class="tk-hero-meta">${esc([runtimeLabel(cand, enrichedMeta), metaLine(cand, enrichedMeta, omdbMeta, llmTags, reviewedTags)].filter(Boolean).join(' · '))}</div>
+            ${cast ? `<div class="tk-hero-cast">Starring ${esc(cast)}</div>` : ''}
+            ${meta.overview ? `<div class="tk-hero-reason">${esc(meta.overview)}</div>` : ''}
+            <div class="tk-hero-actions">
+              <a class="tk-btn tk-btn-primary" href="./deepdive.html?key=${encodeURIComponent(p.titleKey)}">🔎 Deep Dive</a>
+              <a class="tk-btn" href="${esc(traktUrl(cand))}" target="_blank" rel="noopener">Open on Trakt ↗</a>
+            </div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
+// "Currently watching together" mini hero inside Shows You Watch Together.
+// Shows the top 2 of the same ready list the cards below use (#1 and #2),
+// each with a Trakt rating link (Bill, Nov 2026: "give me a trakt link for
+// #1 & 2 so I can rate them ... always do this").
+function renderTogetherHero(rows, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
+  const el = document.getElementById('coWatchHero');
+  if (!el) return;
+  const ready = sortCoWatchReady(rows.filter(isCoWatchReady));
+  // Same order the cards below render in: Ready to Watch group, then Currently Airing.
+  const top = [...ready.filter(r => !r.isAiring), ...ready.filter(r => r.isAiring)].slice(0, 2);
+  const cards = top.map(r => {
+    const meta = enrichedMeta[r.titleKey] || {};
+    const cand = { titleKey: r.titleKey, type: 'show', title: r.title, year: meta.year, ids: r.ids };
+    const poster = posterUrl(r.titleKey, enrichedMeta, 'w185');
+    return `
+      <div class="tk-multi-card">
+        <div class="tk-hero-poster">${posterImgHtml(poster, 'tk-hero-img', 80, 120, true)}</div>
+        <div class="tk-hero-body">
+          <div class="tk-hero-title">${typeIcon('show')} ${titleLink(cand)}${meta.year ? ` <span class="tk-hero-year">(${esc(meta.year)})</span>` : ''}</div>
+          <div class="tk-hero-meta">${esc(metaLine(cand, enrichedMeta, omdbMeta, llmTags, reviewedTags))}</div>
+          ${rateOnTraktHtml(cand)}
+        </div>
+      </div>`;
+  });
+  el.innerHTML = cards.length
+    ? `<div class="tk-hero-kicker">💑 Up next together — #1 &amp; #2</div><div class="tk-multi">${cards.join('')}</div>` : '';
+}
+
 function renderCurrentlyWatchingHero(pick, enrichedMeta, omdbMeta, llmTags, reviewedTags) {
+  if (pick.idle) { renderIdleHero(); return; }
+  if (pick.multi) { renderMultiWatchingHero(pick.multi, enrichedMeta, omdbMeta, llmTags, reviewedTags); return; }
   const el = document.getElementById('heroPick');
   const meta = enrichedMeta[pick.titleKey];
-  const candidate = { titleKey: pick.titleKey, type: pick.type, title: meta.title, year: meta.year };
+  const candidate = { titleKey: pick.titleKey, type: pick.type, title: meta.title, year: meta.year, ids: pick.progress?.ids };
   const poster = posterUrl(pick.titleKey, enrichedMeta, 'w342');
   const omdbEntry = omdbMeta?.[pick.titleKey];
   const critic = criticScore(omdbEntry);
@@ -993,6 +1067,7 @@ async function load() {
 
   const coWatchRows = computeCoWatchRows(coWatchKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress);
   renderCoWatchCards('coWatchCards', coWatchRows, enrichedMeta, omdbMeta, llmTags, reviewedTags);
+  renderTogetherHero(coWatchRows, enrichedMeta, omdbMeta, llmTags, reviewedTags);
   // Bill, 2026-10-19: "I dont want to toggle views anymore" — cards only.
   // Bill: "'What's Airing' show this as a table but still include the
   // cover image" — the card/table toggle this section used to have is
@@ -1014,8 +1089,6 @@ async function load() {
   renderGenreChart(genreStats);
   renderCastList(castStats);
   renderTasteLine(genreStats, crowdCompare, castStats, tenRatedCount);
-
-  renderBestMatches(computeBestMatches(library, enrichedMeta, omdbMeta, idx), enrichedMeta);
 
   renderStatTiles(d.summary, crowdCompare);
 
