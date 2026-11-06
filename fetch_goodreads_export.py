@@ -150,71 +150,83 @@ def main():
                 page.screenshot(path='/tmp/goodreads-export-debug.png')
                 sys.exit(1)
 
-            # Text-based locator, not a CSS class/id guess -- robust to
-            # markup changes, matches Goodreads' own documented button
-            # label.
-            export_button = page.get_by_text('Export Library', exact=False).first
-            export_button.wait_for(state='visible', timeout=15_000)
-            print('Clicking "Export Library". Goodreads generates this server-side (seconds to a '
-                  'few minutes for a library this size, per Goodreads\' own help docs) and shows '
-                  'a dated download link on this same page once ready -- polling for it rather '
-                  'than expecting an immediate download.')
-            export_button.click()
-
-            # Poll for the real, dated download link -- matched by its own
-            # visible text ("Your export from <date> - <time>", confirmed
-            # verbatim from this exact page in a real 2026-11-06 run), not
-            # by href pattern. Two real bugs this fixes, found via two
-            # separate real production runs rather than guessed up front:
-            # (1) this same /review/import page also carries a *static*
-            # sample/example CSV link (for the unrelated Import feature,
-            # four generic placeholder titles like "Dune"/"Blink") that
-            # matched a naive a[href*="export"]+".csv" selector immediately,
-            # before "Export Library" was ever clicked -- downloaded instead
-            # of Bill's real export (caught downstream by bbip_auto_import.mjs's
-            # own safety tier: 0/4 real matches, nothing auto-applied, but the
-            # run should never have gotten that far). (2) a follow-up fix that
-            # required the href to be genuinely NEW relative to a pre-click
-            # snapshot turned out to be the wrong invariant -- Goodreads can
-            # legitimately keep serving the SAME already-ready export link
-            # across multiple runs within the same session (confirmed live:
-            # a second run minutes later found "Your export from 11/06/2026 -
-            # 01:20" already on the page from the FIRST run's click), so
-            # requiring novelty would wait forever for a new href that may
-            # never come. Matching on this specific text sidesteps both: the
-            # sample link never carries this phrase, and a real, already-
-            # ready export (however it got there) is always correct to use.
+            # The real download trigger is matched by its own visible text
+            # ("Your export from <date> - <time>", confirmed verbatim from
+            # this exact page in real 2026-11-06 runs), not by href pattern
+            # -- the static sample-CSV link elsewhere on this page (for the
+            # unrelated Import feature) never carries this phrase, so this
+            # sidesteps that wrong-file bug entirely without needing any
+            # fragile pre-click/post-click href diffing.
             download_pattern = re.compile(r'your export from', re.IGNORECASE)
-            download_trigger = None
-            deadline_ms = 600_000  # 10 minutes -- one guide's own "if nothing shows after ten
-                                    # minutes, click Export Library again" ceiling; this script
-                                    # fails loud rather than silently re-clicking on a guess.
-            poll_interval_ms = 10_000
-            waited_ms = 0
-            while waited_ms < deadline_ms:
-                candidate = page.get_by_text(download_pattern).first
-                if candidate.count() > 0:
-                    download_trigger = candidate
-                    break
-                page.wait_for_timeout(poll_interval_ms)
-                waited_ms += poll_interval_ms
-                try:
-                    # A generous explicit timeout, and a real reload timeout
-                    # is treated as transient (retry next cycle) rather than
-                    # fatal -- a real run hit exactly this (Page.reload:
-                    # Timeout 30000ms exceeded on Goodreads' default 30s)
-                    # and it killed the whole run on the very first poll.
-                    page.reload(wait_until='domcontentloaded', timeout=60_000)
-                except Exception as reload_err:
-                    print(f'...reload hit a transient error ({reload_err}); will retry next cycle')
-                print(f'...still waiting for a "Your export from..." link ({waited_ms // 1000}s elapsed)')
 
-            if not download_trigger:
-                print('ERROR: no "Your export from..." link appeared within 10 minutes. Goodreads '
-                      'may be slower than usual, or the page markup/wording changed.', file=sys.stderr)
-                page.screenshot(path='/tmp/goodreads-export-debug.png')
-                Path('/tmp/goodreads-export-debug.txt').write_text(page.content())
-                sys.exit(1)
+            # Third real production run (2026-11-06) found this exact text
+            # ALREADY on the page on first load, from an earlier run's click
+            # ~65 minutes prior -- Goodreads genuinely took far longer than
+            # its own "seconds to a few minutes" guidance to finish
+            # generating for a library this size (900+ books), and it keeps
+            # serving that completed export indefinitely once ready. The
+            # earlier run that triggered it had itself already crashed
+            # (an unrelated bug, since fixed) before ever downloading it, so
+            # a real, valid, ready export sat unused. Checking for one
+            # FIRST -- before ever clicking "Export Library" again -- means
+            # a run never wastes its own 10-minute window re-requesting a
+            # fresh generation when a good one is already sitting there,
+            # and means a transient failure in one run doesn't throw away
+            # real server-side work a later run can still collect.
+            existing = page.get_by_text(download_pattern).first
+            if existing.count() > 0:
+                print('Found an already-ready export link on page load (no need to click '
+                      '"Export Library" again) -- using it directly.')
+                download_trigger = existing
+            else:
+                # Text-based locator, not a CSS class/id guess -- robust to
+                # markup changes, matches Goodreads' own documented button
+                # label.
+                export_button = page.get_by_text('Export Library', exact=False).first
+                export_button.wait_for(state='visible', timeout=15_000)
+                print('Clicking "Export Library". Goodreads generates this server-side (seconds '
+                      'to a few minutes per its own help docs, though a real run has taken far '
+                      'longer for a library this size) and shows a dated download link on this '
+                      'same page once ready -- polling for it rather than expecting an immediate '
+                      'download. If this run times out before it appears, the generation keeps '
+                      'running server-side regardless and a future run will find it ready (see '
+                      'the check just above).')
+                export_button.click()
+
+                download_trigger = None
+                deadline_ms = 600_000  # 10 minutes -- a real, deliberately generous-but-bounded
+                                        # window for THIS run to wait; see the note above for why a
+                                        # timeout here isn't a dead end.
+                poll_interval_ms = 10_000
+                waited_ms = 0
+                while waited_ms < deadline_ms:
+                    candidate = page.get_by_text(download_pattern).first
+                    if candidate.count() > 0:
+                        download_trigger = candidate
+                        break
+                    page.wait_for_timeout(poll_interval_ms)
+                    waited_ms += poll_interval_ms
+                    try:
+                        # A generous explicit timeout, and a real reload
+                        # timeout is treated as transient (retry next cycle)
+                        # rather than fatal -- a real run hit exactly this
+                        # (Page.reload: Timeout 30000ms exceeded on
+                        # Goodreads' default 30s) and it killed the whole
+                        # run on the very first poll.
+                        page.reload(wait_until='domcontentloaded', timeout=60_000)
+                    except Exception as reload_err:
+                        print(f'...reload hit a transient error ({reload_err}); will retry next cycle')
+                    print(f'...still waiting for a "Your export from..." link ({waited_ms // 1000}s elapsed)')
+
+                if not download_trigger:
+                    print('ERROR: no "Your export from..." link appeared within 10 minutes. '
+                          'Goodreads generation can genuinely take longer than this for a library '
+                          'this size -- it keeps running server-side, so a future run will likely '
+                          'find it ready on page load (see the check at the top of this step) '
+                          'without ever needing to click "Export Library" again.', file=sys.stderr)
+                    page.screenshot(path='/tmp/goodreads-export-debug.png')
+                    Path('/tmp/goodreads-export-debug.txt').write_text(page.content())
+                    sys.exit(1)
 
             # The matched text node may be the <a> itself, or may sit inside
             # one (e.g. wrapped in a <span>) -- resolve to the nearest real
