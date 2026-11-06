@@ -6,7 +6,7 @@ he just finished.
 
 Queue: trakt/data/finishedShowAlerts.json, filled by
 trakt/scripts/detect_finished_shows.js. An alert is sent only once it holds
-exactly three facts and has no sentAt. The facts are written by a Claude
+exactly three facts, a non-empty `nextSeason` line (when the next season is expected, speculation allowed and labelled as such) and has no sentAt. The facts are written by a Claude
 Code session with WebSearch (CLAUDE.md's no-API-credits policy rules out a
 billed API call here), so a finish detected by the export refresh is texted
 after the next session fills its facts in.
@@ -40,12 +40,14 @@ def main():
         if a.get('sentAt'):
             continue
         facts = a.get('facts') or []
-        if len(facts) != 3:
+        nxt = (a.get('nextSeason') or '').strip()
+        if len(facts) != 3 or not nxt:
             waiting += 1
-            print(f"  waiting on facts: {a['title']} (season {a.get('season')})")
+            print(f"  waiting on facts/nextSeason: {a['title']} (season {a.get('season')})")
             continue
         season = f" season {a['season']}" if a.get('season') else ''
         body = f"Congrats on finishing {a['title']}{season}!\n\n" + '\n'.join(f'{i}. {f}' for i, f in enumerate(facts, 1))
+        body += f"\n\nNext season: {nxt}"
         ok, info = nw.send_sms(body, nw.poster_url(meta.get(a['titleKey'])))
         print(f"  {'sent' if ok else 'FAILED'}: {a['title']} -> {info}")
         if ok and not nw.DRY_RUN:
