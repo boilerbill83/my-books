@@ -64,7 +64,7 @@
       "avgRating": 3.9,
       "pages": 393,
       "dateRead": "2026/05/28",
-      "dateAdded": "2026/05/28",
+      "dateAdded": "2022/03/14",
       "isbn": "1944083103",
       "isbn13": "9781944083106",
       "publisher": "Phoenix Flying Inc.",
@@ -107,7 +107,7 @@
       "avgRating": 3.95,
       "pages": 384,
       "dateRead": "2026/06/16",
-      "dateAdded": "2026/05/31",
+      "dateAdded": "2026/06/26",
       "isbn": "1480189871",
       "isbn13": "9781480189874",
       "publisher": "Phoenix Publishing",
@@ -637,7 +637,7 @@
         "funny"
       ],
       "themeToneReviewed": true,
-      "top10": true,
+      "top10": false,
       "coverUrl": "https://m.media-amazon.com/images/I/81XQpXyXRHL._SX300_.jpg"
     },
     {
@@ -1100,7 +1100,7 @@
       "avgRating": 3.8,
       "pages": 304,
       "dateRead": null,
-      "dateAdded": "2026/03/25",
+      "dateAdded": "2026/03/12",
       "isbn": null,
       "isbn13": "9798217046850",
       "publisher": "Riverhead Books",
@@ -2708,7 +2708,7 @@
       "myRating": 3,
       "avgRating": 4,
       "pages": 304,
-      "dateRead": null,
+      "dateRead": "2026/10/14",
       "dateAdded": "2025/11/28",
       "isbn": "0593490649",
       "isbn13": "9780593490648",
@@ -2790,7 +2790,7 @@
       "avgRating": 4.2,
       "pages": 443,
       "dateRead": null,
-      "dateAdded": "2025/11/06",
+      "dateAdded": "2025/09/10",
       "isbn": null,
       "isbn13": "9798217045136",
       "publisher": "Dutton",
@@ -15745,7 +15745,7 @@
       "avgRating": 3.5,
       "pages": 352,
       "dateRead": null,
-      "dateAdded": "2024/03/24",
+      "dateAdded": "2023/05/31",
       "isbn": "1368092993",
       "isbn13": "9781368092999",
       "publisher": "Hyperion Avenue",
@@ -16759,7 +16759,7 @@
       "avgRating": 3.6,
       "pages": 304,
       "dateRead": null,
-      "dateAdded": "2023/11/18",
+      "dateAdded": "2023/09/09",
       "isbn": "0593545877",
       "isbn13": "9780593545874",
       "publisher": "Berkley",
@@ -18330,7 +18330,7 @@
       "avgRating": 3.8,
       "pages": 362,
       "dateRead": null,
-      "dateAdded": "2023/06/28",
+      "dateAdded": "2023/03/18",
       "isbn": "0778334538",
       "isbn13": "9780778334538",
       "publisher": "MIRA",
@@ -32384,7 +32384,7 @@
       "avgRating": 3.84,
       "pages": 226,
       "dateRead": null,
-      "dateAdded": "2021-08-04",
+      "dateAdded": "2026/09/16",
       "isbn": "",
       "isbn13": "9781725563636",
       "publisher": "Joe Keith Bickett",
@@ -32777,7 +32777,7 @@
       "avgRating": 4.3,
       "pages": 849,
       "dateRead": null,
-      "dateAdded": "2021-04-08",
+      "dateAdded": "2026/09/16",
       "isbn": "1451627289",
       "isbn13": "9781451627282",
       "publisher": "Scribner",
@@ -33558,7 +33558,7 @@
       "avgRating": 3.57,
       "pages": 480,
       "dateRead": null,
-      "dateAdded": "2020-01-17",
+      "dateAdded": "2026/09/16",
       "isbn": "0062802771",
       "isbn13": "9780062802774",
       "publisher": "Ecco",
@@ -37403,7 +37403,7 @@
       "avgRating": 3.86,
       "pages": 96,
       "dateRead": null,
-      "dateAdded": "2018-05-15",
+      "dateAdded": "2026/09/16",
       "isbn": "0393060918",
       "isbn13": "9780393060911",
       "publisher": "W. W. Norton  Company",
@@ -38380,6 +38380,7 @@
         "Andrew Ross Sorkin"
       ],
       "bookKey": "house-of-fidelity-the-rise-of-the-johnson-dynasty-and-the-company-that-changed-american-investing|justin-baer",
+      "dateAdded": "2026/05/07",
       "bookId": "241039527"
     },
     {
@@ -38418,6 +38419,7 @@
         "Ray Bradbury"
       ],
       "bookKey": "the-body|stephen-king",
+      "dateAdded": "2023/12/10",
       "bookId": "38926465"
     },
     {
@@ -38456,6 +38458,7 @@
         "Jonathan Haidt"
       ],
       "bookKey": "how-to-know-a-person-the-art-of-seeing-others-deeply-and-being-deeply-seen|david-brooks",
+      "dateAdded": "2024/05/25",
       "bookId": "112974860"
     },
     {
@@ -38515,6 +38518,7 @@
       ],
       "dnf": false,
       "bookKey": "ding-dong-how-ring-went-from-shark-tank-reject-to-everyone-s-front-door|jamie-siminoff",
+      "dateAdded": "2026/06/13",
       "bookId": "243134278",
       "similarToTitles": [
         "Shoe Dog",
@@ -38554,6 +38558,7 @@
       ],
       "dnf": false,
       "bookKey": "thrilling-tales-of-modern-men-stories|danny-mcbride",
+      "dateAdded": "2026/06/20",
       "bookId": "242000546",
       "similarToTitles": [
         "Yearbook",
@@ -38593,6 +38598,7 @@
       ],
       "dnf": false,
       "bookKey": "the-american-way-of-killing-the-invention-of-an-epidemic|malcolm-gladwell",
+      "dateAdded": "2026/06/22",
       "bookId": "247255488",
       "similarToTitles": [
         "The Bomber Mafia: A Dream, a Temptation, and the Longest Night of the Second World War",
@@ -38634,6 +38640,7 @@
       ],
       "dnf": false,
       "bookKey": "endurance-shackleton-s-incredible-voyage|alfred-lansing",
+      "dateAdded": "2026/07/02",
       "bookId": "139069",
       "similarToTitles": [
         "Madhouse at the End of the Earth: The Belgica's Journey into the Dark Antarctic Night",
@@ -38655,6 +38662,7 @@
     },
     {
       "bookKey": "up-on-cove-mountain-adventure-tragedy-and-a-quest-for-meaning-on-the-appalachian-trail|earl-swift",
+      "dateAdded": "2026/07/11",
       "bookId": "244122402",
       "title": "Up on Cove Mountain: Adventure, Tragedy, and a Quest for Meaning on the Appalachian Trail",
       "publisher": "Mariner Books",
@@ -38693,6 +38701,7 @@
     },
     {
       "bookKey": "how-to-not-die-in-prison-a-survival-guide|taylor-sheridan",
+      "dateAdded": "2026/07/14",
       "bookId": "247948566",
       "title": "How to Not Die in Prison: A Survival Guide",
       "publisher": "Simon & Schuster",
@@ -38730,6 +38739,7 @@
     },
     {
       "bookKey": "the-munich-affair|james-patterson",
+      "dateAdded": "2026/07/15",
       "bookId": "246137709",
       "title": "The Munich Affair",
       "publisher": "Little, Brown and Company",
@@ -38770,6 +38780,7 @@
     },
     {
       "bookKey": "this-book-made-me-think-of-you|libby-page",
+      "dateAdded": "2026/07/15",
       "bookId": "232794526",
       "title": "This Book Made Me Think of You",
       "publisher": "Berkley",
@@ -38808,6 +38819,7 @@
     },
     {
       "bookKey": "operation-bounce-house|matt-dinniman",
+      "dateAdded": "2026/07/15",
       "bookId": "233717212",
       "title": "Operation Bounce House",
       "publisher": "Ace",
@@ -38847,6 +38859,7 @@
     },
     {
       "bookKey": "culpability|bruce-holsinger",
+      "dateAdded": "2026/07/17",
       "bookId": "222259253",
       "title": "Culpability",
       "publisher": "Spiegel & Grau",
@@ -38886,6 +38899,7 @@
     },
     {
       "bookKey": "rock-a-mainstream-alternative-history-of-alternative-mainstream-music|chuck-klosterman",
+      "dateAdded": "2026/07/28",
       "bookId": "249246420",
       "title": "Rock*: A Mainstream Alternative History of Alternative Mainstream Music",
       "publisher": "Da Capo",
@@ -38925,6 +38939,7 @@
     },
     {
       "bookKey": "cancel-me-if-you-can|dave-portnoy",
+      "dateAdded": "2026/07/29",
       "bookId": "243018874",
       "title": "Cancel Me If You Can",
       "publisher": "Gallery Books",
@@ -39098,7 +39113,7 @@
       "avgRating": 4.33,
       "pages": 369,
       "dateRead": "2026/08/03",
-      "dateAdded": null,
+      "dateAdded": "2026/07/24",
       "isbn": null,
       "isbn13": "9780547225470",
       "publisher": "Mariner Books",
@@ -39132,6 +39147,7 @@
     },
     {
       "bookKey": "the-dog-stars|peter-heller",
+      "dateAdded": "2026/08/07",
       "bookId": "13330761",
       "title": "The Dog Stars",
       "publisher": "Knopf",
@@ -39153,6 +39169,7 @@
     },
     {
       "bookKey": "my-husband-s-wife|alice-feeney",
+      "dateAdded": "2026/08/08",
       "bookId": "231127462",
       "title": "My Husband's Wife",
       "publisher": "Flatiron Books: Pine & Cedar",
@@ -39174,6 +39191,7 @@
     },
     {
       "bookKey": "galleria|chuck-palahniuk",
+      "dateAdded": "2026/08/11",
       "bookId": "252570605",
       "title": "Galleria",
       "publisher": "S&S/Saga Press",
@@ -39194,6 +39212,7 @@
     },
     {
       "bookKey": "hollywood-ending|john-green",
+      "dateAdded": "2026/08/20",
       "bookId": "250252723",
       "title": "Hollywood, Ending",
       "publisher": "Random House Large Print",
@@ -39232,6 +39251,7 @@
     },
     {
       "bookKey": "you-ll-love-it-here|natalie-sue",
+      "dateAdded": "2026/08/21",
       "bookId": "243820124",
       "title": "You\u2019ll Love It Here",
       "top10": true,
@@ -39270,6 +39290,7 @@
     },
     {
       "bookKey": "the-hard-thing-about-hard-things-building-a-business-when-there-are-no-easy-answers-straight-talk-on-the-challenges-of-entrepreneurship|ben-horowitz",
+      "dateAdded": "2026/08/22",
       "bookId": "18176747",
       "title": "The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers\u2015Straight Talk on the Challenges of Entrepreneurship",
       "top10": true,
@@ -39310,6 +39331,7 @@
     },
     {
       "bookKey": "the-outsiders-eight-unconventional-ceos-and-their-radically-rational-blueprint-for-success|william-n-thorndike-jr",
+      "dateAdded": "2026/08/22",
       "bookId": "13586932",
       "title": "The Outsiders: Eight Unconventional CEOs and Their Radically Rational Blueprint for Success",
       "publisher": "Harvard Business Review Press",
@@ -39348,6 +39370,7 @@
     },
     {
       "bookKey": "apple-in-china-the-capture-of-the-world-s-greatest-company|patrick-mcgee",
+      "dateAdded": "2026/08/22",
       "bookId": "217410343",
       "title": "Apple in China: The Capture of the World's Greatest Company",
       "publisher": "Simon & Schuster UK",
@@ -39387,6 +39410,7 @@
     },
     {
       "bookKey": "down-and-out-in-paradise-the-life-of-anthony-bourdain|charles-leerhsen",
+      "dateAdded": "2026/08/27",
       "bookId": "59366129",
       "title": "Down and Out in Paradise: The Life of Anthony Bourdain",
       "publisher": "Simon & Schuster",
@@ -39426,6 +39450,7 @@
     },
     {
       "bookKey": "sh-t-show|brian-o-sullivan",
+      "dateAdded": "2026/09/03",
       "bookId": "252172190",
       "title": "SH*T SHOW",
       "author": "Brian     O'Sullivan",
@@ -39466,6 +39491,7 @@
     },
     {
       "bookKey": "the-infinity-machine-demis-hassabis-deepmind-and-the-quest-for-superintelligence|sebastian-mallaby",
+      "dateAdded": "2026/09/10",
       "bookId": "241434373",
       "title": "The Infinity Machine: Demis Hassabis, DeepMind, and the Quest for Superintelligence",
       "publisher": "Penguin Press",
@@ -39505,6 +39531,7 @@
     },
     {
       "bookKey": "the-most-dangerous-games|mrbeast",
+      "dateAdded": "2026/09/10",
       "bookId": "247171845",
       "title": "The Most Dangerous Games",
       "top10": true,
@@ -39545,6 +39572,8 @@
     },
     {
       "bookKey": "sometimes-i-scare-myself-a-collection-of-horror|jeneva-rose",
+      "dateAdded": "2026/09/10",
+      "dateRead": "2026/11/02",
       "bookId": "248899390",
       "title": "Sometimes I Scare Myself: A Collection of Horror",
       "top10": true,
@@ -39557,8 +39586,8 @@
       "year": 2026,
       "pages": 288,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1773162223l/248899390._SY475_.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
+      "shelf": "read",
+      "myRating": 3,
       "type": "fiction",
       "themes": [
         "horror",
@@ -39586,6 +39615,8 @@
     },
     {
       "bookKey": "one-of-us-is-dead|jeneva-rose",
+      "dateAdded": "2026/09/10",
+      "dateRead": "2026/10/27",
       "bookId": "58482479",
       "title": "One of Us Is Dead",
       "top10": true,
@@ -39598,8 +39629,8 @@
       "year": 2022,
       "pages": 312,
       "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1636378079l/58482479.jpg",
-      "shelf": "to-read",
-      "myRating": 0,
+      "shelf": "read",
+      "myRating": 4,
       "type": "fiction",
       "themes": [
         "thriller",
@@ -39628,6 +39659,7 @@
     },
     {
       "bookKey": "blockers-rebels-in-the-deep-state|michael-lewis",
+      "dateAdded": "2026/09/10",
       "bookId": "250243861",
       "title": "Blockers: Rebels in the Deep State",
       "top10": true,
@@ -39668,6 +39700,7 @@
     },
     {
       "bookKey": "our-dumb-century-the-onion-presents-100-years-of-headlines-from-america-s-finest-news-source|scott-dikkers",
+      "dateAdded": "2026/09/16",
       "bookId": "579696",
       "title": "Our Dumb Century: The Onion Presents 100 Years of Headlines from America's Finest News Source",
       "publisher": "Three Rivers Press",
