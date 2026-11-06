@@ -186,7 +186,14 @@ if (!hasAvgRating) {
 
 // ─── Match rows -> books (one canonical match per book; Book Id wins) ───
 
-const matchedBookKeys = new Set();   // our books that got a match
+// Tracks matched books by object identity, not by bookKey string -- 17
+// real books in the live dataset (as of 2026-11-06) have no bookKey at
+// all, and deduping on `book.bookKey` would collapse every one of them
+// onto the same shared `undefined` Set entry, silently treating any
+// book past the first bookKey-less match as "already matched" and
+// dropping it into unmatchedBooks instead. Object identity has no such
+// collision risk, with or without a real bookKey.
+const matchedBooks = new Set();      // our books that got a match (by object identity)
 const matchedCsvRowIdx = new Set();  // csv rows consumed by a match
 const pairs = []; // {book, row}
 
@@ -195,9 +202,9 @@ rows.forEach((row, idx) => {
   const csvId = (row['Book Id'] || '').trim();
   if (!csvId) return;
   const book = byBookId.get(csvId);
-  if (book && !matchedBookKeys.has(book.bookKey)) {
+  if (book && !matchedBooks.has(book)) {
     pairs.push({ book, row });
-    matchedBookKeys.add(book.bookKey);
+    matchedBooks.add(book);
     matchedCsvRowIdx.add(idx);
   }
 });
@@ -206,17 +213,17 @@ rows.forEach((row, idx) => {
 rows.forEach((row, idx) => {
   if (matchedCsvRowIdx.has(idx)) return;
   const nt = normTitle(row['Title']);
-  const candidates = (byNormTitleAuthor.get(nt) || []).filter(b => !matchedBookKeys.has(b.bookKey));
+  const candidates = (byNormTitleAuthor.get(nt) || []).filter(b => !matchedBooks.has(b));
   const hit = candidates.find(b => authorsMatch(b.author, row['Author']));
   if (hit) {
     pairs.push({ book: hit, row });
-    matchedBookKeys.add(hit.bookKey);
+    matchedBooks.add(hit);
     matchedCsvRowIdx.add(idx);
   }
 });
 
 const newRows = rows.filter((_, idx) => !matchedCsvRowIdx.has(idx));
-const unmatchedBooks = books.filter(b => !matchedBookKeys.has(b.bookKey));
+const unmatchedBooks = books.filter(b => !matchedBooks.has(b));
 
 // Second-pass blind-spot check (BBIP.md matching strategy point 3): for
 // each unmatched book, see if its author has a plausible fuzzy-title
@@ -248,6 +255,25 @@ const safeChanges = []; // {bookKey, field, oldValue, newValue}
 const reviewFlags = []; // {bookKey, title, kind, detail}
 
 for (const { book, row } of pairs) {
+  // Real, pre-existing data gap (17 books in the live dataset as of
+  // 2026-11-06, predating the bookKey convention) -- bookKey is the one
+  // stable identity every downstream step anchors on (byte-span lookup
+  // below, feedbackData.json dismissals, everywhere else in this
+  // project), so a book with none can never be safely auto-applied to:
+  // the byte-span lookup has nothing reliable to key on and would either
+  // throw (confirmed via a real 2026-11-06 production crash: "Could not
+  // locate object span for bookKey \"undefined\"") or, worse, silently
+  // match the wrong book. Route it to the review file instead of ever
+  // touching it -- the same "never guess, flag for a human" rule this
+  // whole script already applies to everything else it can't be sure of.
+  if (!book.bookKey) {
+    reviewFlags.push({ bookKey: '(none)', title: book.title, kind: 'book-missing-bookkey',
+      detail: `Matched this CSV row (Book Id ${row['Book Id'] || '?'}) but this book has no ` +
+        `bookKey in the dataset at all -- can't safely auto-apply any change to it. Needs a ` +
+        `bookKey backfilled by hand (or a future session) before it's reachable by this pipeline.` });
+    continue;
+  }
+
   const csvId = (row['Book Id'] || '').trim();
 
   // shelf
