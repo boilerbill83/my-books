@@ -1,0 +1,66 @@
+name: Congrats text when a show is finished
+
+# Not a daily job (Bill: "send it as soon as you find out that I finished a
+# show"). Fires the moment a session pushes finishedShowAlerts.json - i.e.
+# right after it fills in the three facts for a freshly detected finish
+# (detect_finished_shows.js queues the alert during trakt-auto-refresh.yml
+# with empty facts; the notify script only sends alerts holding exactly three
+# facts and no sentAt). The sentAt commit below is made with GITHUB_TOKEN,
+# which never re-triggers workflows, so there is no loop. Also runnable by
+# hand.
+on:
+  push:
+    paths:
+      - 'trakt/data/finishedShowAlerts.json'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Log what would be sent without texting'
+        type: boolean
+        default: false
+
+concurrency:
+  group: trakt-notify-finished-shows
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Text finished-show alerts
+        env:
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_FROM_NUMBER: ${{ secrets.TWILIO_FROM_NUMBER }}
+          TWILIO_TO_NUMBER: ${{ secrets.TWILIO_TO_NUMBER }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
+        run: python3 trakt/notify_finished_shows.py
+        timeout-minutes: 10
+      - name: Commit sentAt
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add trakt/data/finishedShowAlerts.json
+          if git diff --staged --quiet; then
+            echo "Nothing new sent."
+            exit 0
+          fi
+          git commit -m "Mark finished-show alerts sent [automated]"
+          for i in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          echo "::error::Failed to push after 5 rebase attempts."
+          exit 1
