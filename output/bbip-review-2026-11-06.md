@@ -60,7 +60,7 @@ This run APPLIED the safe changes below.
 | one-of-us-is-dead|jeneva-rose | dateAdded | undefined | "2026/09/10" |
 | world-travel-an-irreverent-guide|anthony-bourdain | dateAdded | "2020-01-17" | "2026/09/16" |
 
-## Needs your review — 181
+## Needs your review — 181 (179 still open; 2 resolved below as a duplicate-book bug, not a real gap)
 
 Nothing in this section was touched. Each needs a human decision (research, a
 real outside source, or asking Bill directly) before anything gets written.
@@ -267,8 +267,12 @@ real outside source, or asking Bill directly) before anything gets written.
 - **In Her Defense** (`(none)`): Matched this CSV row (Book Id 235992293) but this book has no bookKey in the dataset at all -- can't safely auto-apply any change to it. Needs a bookKey backfilled by hand (or a future session) before it's reachable by this pipeline.
 - **The Law Student (The French Illusion #.5)** (`(none)`): Matched this CSV row (Book Id 256460510) but this book has no bookKey in the dataset at all -- can't safely auto-apply any change to it. Needs a bookKey backfilled by hand (or a future session) before it's reachable by this pipeline.
 
-### missing-from-export (2)
+### missing-from-export (2) -- RESOLVED, not actually missing
 
-- **Raised** (`undefined`): Was shelf="to-read" in our data, not dnf, no feedbackData.json dismissal on file, and absent from this export. Never guess a reason -- ask Bill directly, same as every prior BBIP round.
-- **The Most Dangerous Games** (`undefined`): Was shelf="to-read" in our data, not dnf, no feedbackData.json dismissal on file, and absent from this export. Never guess a reason -- ask Bill directly, same as every prior BBIP round.
+Investigated directly with Bill (2026-11-06) rather than left as an open question: both were duplicate-book bugs, not books removed from his shelves. Each physical book had TWO entries in `data/goodreadsData.json` -- a fully-tagged entry (with a real `bookKey`/`bookId`, matched correctly against this CSV via Book Id) and a bare, untagged duplicate left over from an earlier import round (no `bookKey`, `type: "unknown"`, empty themes/tones), under a slightly different title/author string:
+
+- **"Raised"** (bare duplicate, no bookKey) vs. the real entry **"Raised by a Serial Killer: Discovering the Truth About My Father"** by April Balascio -- same ISBN (9781982177034). The CSV row matched the real entry by Book Id; the bare duplicate was never going to match anything and got flagged here instead.
+- **"The Most Dangerous Games"** (bare duplicate, author "Mr.  Beast", no bookKey) vs. the real entry **"The Most Dangerous Games"** by MrBeast (`top10: true`) -- same ISBN (0063488760). Same mechanism.
+
+Both bare duplicates removed from `data/goodreadsData.json`; the real, richly-tagged entries (both already `shelf: "to-read"`) are untouched. Fixes this false flag for future runs too.
 
