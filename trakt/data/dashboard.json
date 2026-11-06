@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T16:31:36.557Z",
+  "generatedAt": "2026-11-06T19:45:10.988Z",
   "profile": {
     "username": "bill_stoltenberg_27166c",
     "joinedAt": "2026-07-27T14:49:58.000Z"
@@ -7,16 +7,16 @@
   "summary": {
     "moviesWatched": 270,
     "moviesPlays": 270,
-    "moviesRatings": 270,
-    "moviesMinutes": 34021,
-    "showsWatched": 399,
-    "showsRatings": 406,
-    "episodesWatched": 11708,
-    "episodesPlays": 11708,
-    "episodesMinutes": 504336,
-    "totalRatings": 676,
-    "totalMinutes": 538357,
-    "totalHours": 8973,
+    "moviesRatings": 271,
+    "moviesMinutes": 34022,
+    "showsWatched": 400,
+    "showsRatings": 407,
+    "episodesWatched": 11720,
+    "episodesPlays": 11720,
+    "episodesMinutes": 504975,
+    "totalRatings": 678,
+    "totalMinutes": 538997,
+    "totalHours": 8983,
     "avgRating": 7.81
   },
   "ratingDistribution": {
@@ -27,7 +27,7 @@
     "5": 10,
     "6": 60,
     "7": 123,
-    "8": 236,
+    "8": 238,
     "9": 101,
     "10": 108
   },
@@ -170,33 +170,33 @@
     {
       "year": 2022,
       "movies": 13,
-      "episodes": 216
+      "episodes": 228
     },
     {
       "year": 2023,
       "movies": 17,
-      "episodes": 174
+      "episodes": 180
     },
     {
       "year": 2024,
       "movies": 12,
-      "episodes": 141
+      "episodes": 153
     },
     {
       "year": 2025,
       "movies": 13,
-      "episodes": 293
+      "episodes": 299
     },
     {
       "year": 2026,
       "movies": 22,
-      "episodes": 293
+      "episodes": 299
     }
   ],
   "dataCaveats": {
-    "undatedEpisodePlays": 7348,
-    "datedEpisodePlays": 4360,
-    "undatedEpisodeSharePct": 62.8
+    "undatedEpisodePlays": 7318,
+    "datedEpisodePlays": 4402,
+    "undatedEpisodeSharePct": 62.4
   },
   "topShowsByPlays": [
     {
@@ -779,12 +779,6 @@
       },
       {
         "type": "show",
-        "title": "Slow Horses",
-        "year": 2022,
-        "listedAt": "2026-09-29T22:07:53.000Z"
-      },
-      {
-        "type": "show",
         "title": "Dexter: Resurrection",
         "year": 2025,
         "listedAt": "2026-09-30T17:53:31.000Z"
@@ -920,6 +914,12 @@
         "title": "Below",
         "year": 2026,
         "listedAt": "2026-11-05T16:29:19.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Black Doves",
+        "year": 2024,
+        "listedAt": "2026-11-05T16:39:39.000Z"
       }
     ]
   },

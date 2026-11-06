@@ -571493,5 +571493,147 @@
   "year": 2016,
   "type": "movie",
   "fetchedAt": "2026-11-01"
+ },
+ "show:225385": {
+  "genres": [
+   "Action & Adventure",
+   "Mystery",
+   "Crime"
+  ],
+  "overview": "When a spy posing as a politician's wife learns her lover has been murdered, an old assassin friend joins her on a quest for truth \u2014 and vengeance.",
+  "keywords": [
+   "holiday",
+   "london, england",
+   "spy",
+   "espionage",
+   "female protagonist",
+   "political",
+   "spies",
+   "thriller",
+   "intense",
+   "action",
+   "brisk",
+   "christmas thriller"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt27995113",
+  "voteAverage": 7.0,
+  "voteCount": 469,
+  "popularity": 72.6249,
+  "posterPath": "/srlsyEfIBz2MNWBndVc3opOaNGS.jpg",
+  "similarToIds": [
+   139169,
+   139061,
+   291634,
+   223346,
+   107113,
+   223276,
+   223277,
+   321833,
+   223326,
+   223294,
+   223447,
+   223452,
+   107306,
+   292153,
+   321956,
+   11398,
+   291508,
+   321532,
+   321709,
+   321559
+  ],
+  "recommendedIds": [
+   61859,
+   85021,
+   4046,
+   114922,
+   108978,
+   129552,
+   95480,
+   72748,
+   285807,
+   68006,
+   262280,
+   1973,
+   233629,
+   227318,
+   222766,
+   16343,
+   60855,
+   93166,
+   96450,
+   247732
+  ],
+  "productionCompanies": [
+   "SISTER",
+   "Noisy Bear (GB)"
+  ],
+  "topCast": [
+   "Keira Knightley",
+   "Ben Whishaw",
+   "Sarah Lancashire",
+   "Andrew Buchan",
+   "Ella Lily Hyland"
+  ],
+  "topCastDetail": [
+   {
+    "id": 116,
+    "name": "Keira Knightley",
+    "gender": 1
+   },
+   {
+    "id": 17064,
+    "name": "Ben Whishaw",
+    "gender": 2
+   },
+   {
+    "id": 115680,
+    "name": "Sarah Lancashire",
+    "gender": 1
+   },
+   {
+    "id": 1235008,
+    "name": "Andrew Buchan",
+    "gender": 2
+   },
+   {
+    "id": 3708146,
+    "name": "Ella Lily Hyland",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2024-12-05",
+  "episodeRunTime": null,
+  "createdBy": [
+   "Joe Barton"
+  ],
+  "status": "Returning Series",
+  "numberOfSeasons": 2,
+  "numberOfEpisodes": 12,
+  "seasonEpisodeCounts": {
+   "1": 6,
+   "2": 6
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2026-11-05",
+   "seasonNumber": 2,
+   "episodeNumber": 6,
+   "name": "Peace Summit"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Netflix"
+  ],
+  "creatorCredits": [
+   "Joe Barton",
+   "Jane Featherstone",
+   "Keira Knightley"
+  ],
+  "title": "Black Doves",
+  "year": 2024,
+  "type": "show",
+  "fetchedAt": "2026-11-06"
  }
 }

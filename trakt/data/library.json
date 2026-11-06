@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-11-05T16:31:36.650Z",
+    "generatedAt": "2026-11-06T19:45:11.123Z",
     "movieCount": 270,
-    "showCount": 399
+    "showCount": 400
   },
   "titles": [
     {
@@ -1770,6 +1770,31 @@
       "hasConfirmedWatchDate": false
     },
     {
+      "type": "show",
+      "titleKey": "show:225385",
+      "ids": {
+        "imdb": "tt27995113",
+        "plex": {
+          "guid": "644bcba7cdd599038e7bf263",
+          "slug": "black-doves"
+        },
+        "slug": "black-doves",
+        "tmdb": 225385,
+        "tvdb": 441315,
+        "trakt": 204762
+      },
+      "title": "Black Doves",
+      "year": 2024,
+      "myRating": 8,
+      "ratedAt": "2026-11-05T16:39:37.000Z",
+      "plays": 6,
+      "airedEpisodes": 12,
+      "completionStatus": "in-progress",
+      "lastWatchedAt": "2024-12-05T04:58:00.000Z",
+      "favorite": false,
+      "hasConfirmedWatchDate": true
+    },
+    {
       "type": "movie",
       "titleKey": "movie:855",
       "ids": {
@@ -3326,7 +3351,7 @@
       "myRating": 9,
       "ratedAt": "2025-09-05T00:00:00.000Z",
       "plays": 10,
-      "airedEpisodes": 11,
+      "airedEpisodes": 12,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -3543,8 +3568,8 @@
       },
       "title": "Drive",
       "year": 2011,
-      "myRating": null,
-      "ratedAt": null,
+      "myRating": 8,
+      "ratedAt": "2026-11-05T22:02:10.000Z",
       "plays": 1,
       "lastWatchedAt": "2011-09-16T00:00:00.000Z",
       "favorite": false
@@ -3702,7 +3727,7 @@
       "myRating": 8,
       "ratedAt": "2026-05-21T00:00:00.000Z",
       "plays": 30,
-      "airedEpisodes": 53,
+      "airedEpisodes": 54,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -7576,7 +7601,7 @@
       "myRating": 10,
       "ratedAt": "2026-09-21T01:56:00.000Z",
       "plays": 10,
-      "airedEpisodes": 17,
+      "airedEpisodes": 18,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2025-06-01T07:55:00.000Z",
       "favorite": true,
@@ -10104,12 +10129,12 @@
       "year": 2022,
       "myRating": 8,
       "ratedAt": "2025-10-29T00:00:00.000Z",
-      "plays": 30,
+      "plays": 36,
       "airedEpisodes": 36,
-      "completionStatus": "in-progress",
-      "lastWatchedAt": "1970-01-01T00:00:00.000Z",
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-10-21T21:02:00.000Z",
       "favorite": false,
-      "hasConfirmedWatchDate": false
+      "hasConfirmedWatchDate": true
     },
     {
       "type": "movie",
@@ -14525,7 +14550,7 @@
       "myRating": 8,
       "ratedAt": "2025-11-23T00:00:00.000Z",
       "plays": 29,
-      "airedEpisodes": 32,
+      "airedEpisodes": 33,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-11-05T16:31:36.654Z",
+    "generatedAt": "2026-11-06T19:45:11.128Z",
     "count": 64
   },
   "titles": [
@@ -696,25 +696,6 @@
     },
     {
       "type": "show",
-      "titleKey": "show:95480",
-      "ids": {
-        "imdb": "tt5875444",
-        "plex": {
-          "guid": "5e1622a54f2292003e912fcf",
-          "slug": "slow-horses"
-        },
-        "slug": "slow-horses",
-        "tmdb": 95480,
-        "tvdb": 372264,
-        "trakt": 155534
-      },
-      "title": "Slow Horses",
-      "year": 2022,
-      "watchlisted": true,
-      "watchlistedAt": "2026-09-29T22:07:53.000Z"
-    },
-    {
-      "type": "show",
       "titleKey": "show:259909",
       "ids": {
         "imdb": "tt33043892",
@@ -1195,6 +1176,25 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-11-05T16:29:19.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:225385",
+      "ids": {
+        "imdb": "tt27995113",
+        "plex": {
+          "guid": "644bcba7cdd599038e7bf263",
+          "slug": "black-doves"
+        },
+        "slug": "black-doves",
+        "tmdb": 225385,
+        "tvdb": 441315,
+        "trakt": 204762
+      },
+      "title": "Black Doves",
+      "year": 2024,
+      "watchlisted": true,
+      "watchlistedAt": "2026-11-05T16:39:39.000Z"
     }
   ]
 }
