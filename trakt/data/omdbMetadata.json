@@ -40894,5 +40894,23 @@
   "director": "Elliott Lester",
   "rated": "R",
   "fetchedAt": "2026-11-02"
+ },
+ "show:225385": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 1,
+   "totalNominations": 17,
+   "raw": "Nominated for 1 BAFTA Award. 1 win & 17 nominations total"
+  },
+  "imdbRating": 7.2,
+  "imdbVotes": 76581,
+  "director": null,
+  "rated": "TV-MA",
+  "fetchedAt": "2026-11-07"
  }
 }
