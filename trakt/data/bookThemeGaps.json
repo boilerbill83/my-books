@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T16:29:53.461Z",
+  "generatedAt": "2026-11-08T16:26:22.489Z",
   "methodology": "ratio = (theme's share of Bill's real 5-star-read theme tags) / (its mapped BMTRE genre/subgenre/subject tag's share of his real loved-title rating-weighted score). ratio > 1 means the theme is proportionally bigger in his book taste than his current screen taste (and therefore the citation-graph-seeded candidate pool) already reflects. Evidence floor: bookCount >= 15. Gap floor: ratio > 1.15.",
   "gaps": [
     {
@@ -9,7 +9,7 @@
         "courtroom"
       ],
       "bookCount": 48,
-      "ratio": 3.44,
+      "ratio": 3.45,
       "tags": [
         "subgenre:legal"
       ],
@@ -22,7 +22,7 @@
         "psychological"
       ],
       "bookCount": 35,
-      "ratio": 2.27,
+      "ratio": 2.28,
       "tags": [
         "subgenre:psychological-thriller",
         "subgenre:psychological-horror"
@@ -36,7 +36,7 @@
         "thriller"
       ],
       "bookCount": 109,
-      "ratio": 1.95,
+      "ratio": 1.96,
       "tags": [
         "genre:thriller"
       ],

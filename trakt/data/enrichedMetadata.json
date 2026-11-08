@@ -571667,5 +571667,2964 @@
   "year": 2024,
   "type": "show",
   "fetchedAt": "2026-11-08"
+ },
+ "movie:1700": {
+  "genres": [
+   "Drama",
+   "Thriller"
+  ],
+  "overview": "After an accident, acclaimed novelist Paul Sheldon is rescued by a nurse who claims to be his biggest fan.  Her obsession takes a dark turn when she holds him captive in her remote Colorado home and forces him to write back to life the popular literary character he killed off.",
+  "keywords": [
+   "based on novel or book",
+   "nurse",
+   "psychopath",
+   "colorado",
+   "car crash",
+   "author",
+   "slasher",
+   "psychological thriller",
+   "torture",
+   "obsessed fan",
+   "blizzard",
+   "psychotic",
+   "bedridden",
+   "psycho",
+   "lunatic"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0100157",
+  "voteAverage": 7.754,
+  "voteCount": 5514,
+  "popularity": 8.6348,
+  "posterPath": "/klPO5oh1LOxiPpdDXZo1ADgpKcw.jpg",
+  "similarToIds": [
+   1624520,
+   1432543,
+   8978,
+   8984,
+   8999,
+   9003,
+   9008,
+   9011,
+   9061,
+   9062,
+   9064,
+   9079,
+   272721,
+   9311,
+   1432706,
+   9272,
+   9278,
+   9281,
+   9282,
+   9104
+  ],
+  "recommendedIds": [
+   510,
+   274,
+   833425,
+   541134,
+   3594,
+   823766,
+   11324,
+   3558,
+   9458,
+   726209,
+   33408,
+   35052,
+   16056,
+   9437,
+   76812,
+   158011,
+   619979,
+   578701,
+   22473,
+   497
+  ],
+  "productionCompanies": [
+   "Castle Rock Entertainment",
+   "Nelson Entertainment"
+  ],
+  "topCast": [
+   "Kathy Bates",
+   "James Caan",
+   "Richard Farnsworth",
+   "Lauren Bacall",
+   "Frances Sternhagen"
+  ],
+  "topCastDetail": [
+   {
+    "id": 8534,
+    "name": "Kathy Bates",
+    "gender": 1
+   },
+   {
+    "id": 3085,
+    "name": "James Caan",
+    "gender": 2
+   },
+   {
+    "id": 5605,
+    "name": "Richard Farnsworth",
+    "gender": 2
+   },
+   {
+    "id": 7570,
+    "name": "Lauren Bacall",
+    "gender": 1
+   },
+   {
+    "id": 36926,
+    "name": "Frances Sternhagen",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "1990-11-30",
+  "runtime": 107,
+  "director": "Rob Reiner",
+  "directors": [
+   "Rob Reiner"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Rob Reiner",
+   "Andrew Scheinman"
+  ],
+  "title": "Misery",
+  "year": 1990,
+  "type": "movie",
+  "fetchedAt": "2026-11-08"
+ },
+ "movie:5916": {
+  "genres": [
+   "Action",
+   "Crime",
+   "Drama",
+   "Thriller"
+  ],
+  "overview": "A recently released ex-convict and his loyal wife go on the run after a heist goes wrong.",
+  "keywords": [
+   "robbery",
+   "based on novel or book",
+   "texas",
+   "heist",
+   "con artist",
+   "murder",
+   "organized crime",
+   "on the run",
+   "bag of money",
+   "gunfight",
+   "bank robbery",
+   "double cross",
+   "neo-noir"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0068638",
+  "voteAverage": 7.151,
+  "voteCount": 708,
+  "popularity": 2.9939,
+  "posterPath": "/8SvnGUJsr16zUJ2CN7ONX1ZWtZ8.jpg",
+  "similarToIds": [
+   9041,
+   9042,
+   9044,
+   9053,
+   9056,
+   273481,
+   647434,
+   9061,
+   9062,
+   9063,
+   9064,
+   9093,
+   9104,
+   1623418,
+   9260,
+   9268,
+   9270,
+   9272,
+   9275,
+   9277
+  ],
+  "recommendedIds": [
+   2112,
+   30941,
+   20287,
+   6723,
+   500682,
+   949,
+   11826,
+   13369,
+   23168,
+   475,
+   64689,
+   119283,
+   27725,
+   1140692,
+   11835,
+   1082195,
+   835112,
+   1619,
+   668489,
+   10651
+  ],
+  "productionCompanies": [
+   "Foster-Brower Productions",
+   "First Artists",
+   "Solar Productions"
+  ],
+  "topCast": [
+   "Steve McQueen",
+   "Ali MacGraw",
+   "Ben Johnson",
+   "Sally Struthers",
+   "Al Lettieri"
+  ],
+  "topCastDetail": [
+   {
+    "id": 13565,
+    "name": "Steve McQueen",
+    "gender": 2
+   },
+   {
+    "id": 46597,
+    "name": "Ali MacGraw",
+    "gender": 1
+   },
+   {
+    "id": 8258,
+    "name": "Ben Johnson",
+    "gender": 2
+   },
+   {
+    "id": 49352,
+    "name": "Sally Struthers",
+    "gender": 1
+   },
+   {
+    "id": 3091,
+    "name": "Al Lettieri",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1972-12-13",
+  "runtime": 123,
+  "director": "Sam Peckinpah",
+  "directors": [
+   "Sam Peckinpah"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Sam Peckinpah",
+   "David Foster",
+   "Steve McQueen"
+  ],
+  "title": "The Getaway",
+  "year": 1972,
+  "type": "movie",
+  "fetchedAt": "2026-11-08"
+ },
+ "movie:11222": {
+  "genres": [
+   "Drama",
+   "Thriller",
+   "Crime"
+  ],
+  "overview": "Tom Ripley, an American who deals in forged art, is slighted at an auction in Hamburg by picture framer Jonathan Zimmerman. When Ripley is asked by gangster Raoul Minot to kill a rival, he suggests Zimmerman, and the two, exploiting Zimmerman's terminal illness, coerce him into being a hitman.",
+  "keywords": [
+   "dying and death",
+   "new york city",
+   "friendship",
+   "husband wife relationship",
+   "paris, france",
+   "based on novel or book",
+   "hitman",
+   "munich, germany",
+   "male friendship",
+   "terminal illness",
+   "leukemia",
+   "murder",
+   "mafia",
+   "tape recorder",
+   "exploding car"
+  ],
+  "originalLanguage": "de",
+  "imdbId": "tt0075675",
+  "voteAverage": 7.1,
+  "voteCount": 469,
+  "popularity": 2.167,
+  "posterPath": "/pBi7QjQJbyEKK7Y5B1vHaEaO3BS.jpg",
+  "similarToIds": [
+   1035264,
+   453437,
+   640090,
+   453611,
+   453468,
+   266396,
+   266398,
+   266402,
+   266411,
+   266556,
+   835113,
+   318,
+   319,
+   320,
+   322,
+   334,
+   337,
+   338,
+   339,
+   341
+  ],
+  "recommendedIds": [
+   520663,
+   182,
+   10955,
+   10861,
+   47504,
+   3594,
+   13641,
+   346685,
+   9573,
+   59143,
+   31692,
+   169917,
+   9481,
+   311,
+   1962,
+   2142,
+   10337,
+   471506,
+   247,
+   16056
+  ],
+  "productionCompanies": [
+   "Road Movies",
+   "Wim Wenders Productions",
+   "Les Films du Losange"
+  ],
+  "topCast": [
+   "Dennis Hopper",
+   "Bruno Ganz",
+   "Lisa Kreuzer",
+   "G\u00e9rard Blain",
+   "Nicholas Ray"
+  ],
+  "topCastDetail": [
+   {
+    "id": 2778,
+    "name": "Dennis Hopper",
+    "gender": 2
+   },
+   {
+    "id": 2310,
+    "name": "Bruno Ganz",
+    "gender": 2
+   },
+   {
+    "id": 22612,
+    "name": "Lisa Kreuzer",
+    "gender": 1
+   },
+   {
+    "id": 24298,
+    "name": "G\u00e9rard Blain",
+    "gender": 2
+   },
+   {
+    "id": 2765,
+    "name": "Nicholas Ray",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1977-06-24",
+  "runtime": 125,
+  "director": "Wim Wenders",
+  "directors": [
+   "Wim Wenders"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Wim Wenders",
+   "Ren\u00e9e Gundelach",
+   "Joachim von Mengershausen"
+  ],
+  "title": "The American Friend",
+  "year": 1977,
+  "type": "movie",
+  "fetchedAt": "2026-11-08"
+ },
+ "movie:1725": {
+  "genres": [
+   "Crime",
+   "Drama",
+   "Romance"
+  ],
+  "overview": "In Manhattan\u2019s Upper West Side, rival gangs of Polish-Americans and newly arrived Puerto Ricans clash for control of the neighborhood, even as two young members from opposite sides fall dangerously in love.",
+  "keywords": [
+   "new york city",
+   "immigrant",
+   "showdown",
+   "street gang",
+   "slum",
+   "love at first sight",
+   "highway",
+   "forbidden love",
+   "musical",
+   "based on play or musical",
+   "rivalry",
+   "feud",
+   "interracial relationship",
+   "tragic love",
+   "attempted rape"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0055614",
+  "voteAverage": 7.219,
+  "voteCount": 2128,
+  "popularity": 4.3299,
+  "posterPath": "/nzCMu6D5q60i2bVrIQ0DxlRSgCZ.jpg",
+  "similarToIds": [
+   26405,
+   26425,
+   287587,
+   287499,
+   1060959,
+   26550,
+   26571,
+   26718,
+   26744,
+   1448914,
+   26606,
+   26647,
+   26652,
+   26663,
+   287765,
+   287855,
+   1645579,
+   26826,
+   26782,
+   27035
+  ],
+  "recommendedIds": [
+   511809,
+   454,
+   6003,
+   91745,
+   10056,
+   226857,
+   88,
+   14834,
+   25988,
+   9816,
+   18538,
+   9762,
+   353577,
+   28696,
+   354743,
+   20003,
+   16346,
+   508791,
+   41233,
+   275060
+  ],
+  "productionCompanies": [
+   "Seven Arts Productions",
+   "The Mirisch Company",
+   "Robert Wise Productions"
+  ],
+  "topCast": [
+   "Natalie Wood",
+   "Richard Beymer",
+   "Russ Tamblyn",
+   "Rita Moreno",
+   "George Chakiris"
+  ],
+  "topCastDetail": [
+   {
+    "id": 2769,
+    "name": "Natalie Wood",
+    "gender": 1
+   },
+   {
+    "id": 6679,
+    "name": "Richard Beymer",
+    "gender": 2
+   },
+   {
+    "id": 6725,
+    "name": "Russ Tamblyn",
+    "gender": 2
+   },
+   {
+    "id": 13299,
+    "name": "Rita Moreno",
+    "gender": 1
+   },
+   {
+    "id": 24880,
+    "name": "George Chakiris",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1961-12-13",
+  "runtime": 153,
+  "director": "Robert Wise",
+  "directors": [
+   "Robert Wise",
+   "Jerome Robbins"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Robert Wise",
+   "Jerome Robbins"
+  ],
+  "title": "West Side Story",
+  "year": 1961,
+  "type": "movie",
+  "fetchedAt": "2026-11-08"
+ },
+ "movie:641770": {
+  "genres": [
+   "Documentary",
+   "History",
+   "TV Movie",
+   "Drama"
+  ],
+  "overview": "Hamburg, Germany, 1939. Getting a passage aboard the passenger liner St. Louis seems to be the last hope of salvation for more than nine hundred German Jews who, desperate to escape the atrocious persecution to which they are subjected by the Nazi regime, intend to emigrate to Cuba.",
+  "keywords": [
+   "based on novel or book",
+   "holocaust (shoah)",
+   "jew persecution",
+   "based on true story",
+   "antisemitism",
+   "based on memoir or autobiography",
+   "docudrama",
+   "hamburg, germany",
+   "havana, cuba",
+   "boat captain",
+   "eve of world war ii"
+  ],
+  "originalLanguage": "de",
+  "imdbId": "tt10349952",
+  "voteAverage": 7.0,
+  "voteCount": 10,
+  "popularity": 0.5206,
+  "posterPath": "/rgLNT47Rtqv0gPJls4UDLxEeie9.jpg",
+  "similarToIds": [
+   9040,
+   9045,
+   9061,
+   9062,
+   9104,
+   9278,
+   1432543,
+   273020,
+   460400,
+   460437,
+   1234614,
+   8827,
+   8848,
+   8966,
+   8984,
+   273285,
+   1041540,
+   9311,
+   273649,
+   273454
+  ],
+  "recommendedIds": [
+   49671,
+   60378,
+   610643,
+   66150,
+   489493,
+   520789,
+   595841,
+   256876,
+   913838,
+   913868,
+   72694,
+   1457124,
+   14463,
+   549559,
+   189215,
+   848981,
+   26408,
+   259910,
+   1251636,
+   23676
+  ],
+  "productionCompanies": [
+   "UFA Fiction",
+   "nordmedia",
+   "ICA"
+  ],
+  "topCast": [
+   "Ulrich Noethen",
+   "Britta Hammelstein",
+   "Johannes Kienast",
+   "Florian Panzner",
+   "Golo Euler"
+  ],
+  "topCastDetail": [
+   {
+    "id": 8799,
+    "name": "Ulrich Noethen",
+    "gender": 2
+   },
+   {
+    "id": 1004832,
+    "name": "Britta Hammelstein",
+    "gender": 1
+   },
+   {
+    "id": 1444120,
+    "name": "Johannes Kienast",
+    "gender": 2
+   },
+   {
+    "id": 40634,
+    "name": "Florian Panzner",
+    "gender": 2
+   },
+   {
+    "id": 543327,
+    "name": "Golo Euler",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2019-10-21",
+  "runtime": 88,
+  "director": "Ben von Grafenstein",
+  "directors": [
+   "Ben von Grafenstein"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Ben von Grafenstein",
+   "Marc Lepetit"
+  ],
+  "title": "St. Louis",
+  "year": 2019,
+  "type": "movie",
+  "fetchedAt": "2026-11-08"
+ },
+ "movie:11412": {
+  "genres": [
+   "Crime",
+   "Action",
+   "Mystery",
+   "Thriller"
+  ],
+  "overview": "Samantha Caine is a small-town schoolteacher and mom with no memory of her life before washing up on a beach eight years ago. After a car accident and a violent home invasion trigger flashes of her past, she discovers she used to be a deadly CIA assassin. Teaming up with a wisecracking private investigator, Samantha must return to her old ways to take down the people who tried to erase her.",
+  "keywords": [
+   "martial arts",
+   "amnesia",
+   "assassination",
+   "strong woman",
+   "escape",
+   "chase",
+   "hostage",
+   "spy",
+   "new identity",
+   "dark comedy",
+   "teacher",
+   "beautiful woman",
+   "shootout",
+   "female protagonist",
+   "gunfight"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0116908",
+  "voteAverage": 6.588,
+  "voteCount": 1423,
+  "popularity": 5.2194,
+  "posterPath": "/yREdXX5lMFUKhTvb0ofI7mzUHlR.jpg",
+  "similarToIds": [
+   8978,
+   8982,
+   8987,
+   9005,
+   9008,
+   9009,
+   9074,
+   9275,
+   9278,
+   9280,
+   9282,
+   9093,
+   9103,
+   9104,
+   9208,
+   9404,
+   9405,
+   9414,
+   1432959,
+   9039
+  ],
+  "recommendedIds": [
+   539885,
+   808023,
+   976734,
+   249070,
+   23483,
+   8909,
+   278924,
+   127521,
+   574060,
+   818397,
+   21610,
+   1039690,
+   970347,
+   73499,
+   1217379,
+   945937,
+   1197306,
+   395990,
+   1007734,
+   93828
+  ],
+  "productionCompanies": [
+   "The Steve Tisch Company",
+   "New Line Cinema",
+   "Forge"
+  ],
+  "topCast": [
+   "Geena Davis",
+   "Samuel L. Jackson",
+   "Patrick Malahide",
+   "Craig Bierko",
+   "Brian Cox"
+  ],
+  "topCastDetail": [
+   {
+    "id": 16935,
+    "name": "Geena Davis",
+    "gender": 1
+   },
+   {
+    "id": 2231,
+    "name": "Samuel L. Jackson",
+    "gender": 2
+   },
+   {
+    "id": 8979,
+    "name": "Patrick Malahide",
+    "gender": 2
+   },
+   {
+    "id": 14886,
+    "name": "Craig Bierko",
+    "gender": 2
+   },
+   {
+    "id": 1248,
+    "name": "Brian Cox",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1996-10-11",
+  "runtime": 121,
+  "director": "Renny Harlin",
+  "directors": [
+   "Renny Harlin"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Renny Harlin",
+   "Shane Black",
+   "Stephanie Austin"
+  ],
+  "title": "The Long Kiss Goodnight",
+  "year": 1996,
+  "type": "movie",
+  "fetchedAt": "2026-11-08"
+ },
+ "movie:11231": {
+  "genres": [
+   "Action",
+   "Drama",
+   "Family",
+   "Adventure"
+  ],
+  "overview": "Mr. Miyagi decides to take Julie, a troubled teenager, under his wing after he learns that she blames herself for her parents' demise and struggles to adjust with her grandmother and fellow pupils.",
+  "keywords": [
+   "high school",
+   "martial arts",
+   "sports",
+   "buddhist monk",
+   "becoming an adult",
+   "karate",
+   "sequel",
+   "revenge",
+   "teen movie",
+   "los angeles, california",
+   "classmate",
+   "pathetic",
+   "absurd",
+   "depressing",
+   "ridiculous"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0110657",
+  "voteAverage": 5.39,
+  "voteCount": 1226,
+  "popularity": 3.883,
+  "posterPath": "/wI3gCi9w1cuUJCiwhviAy46we9Q.jpg",
+  "similarToIds": [
+   640094,
+   1226977,
+   453618,
+   1227026,
+   1226863,
+   266396,
+   318,
+   319,
+   320,
+   327,
+   330,
+   331,
+   334,
+   339,
+   342,
+   346,
+   364,
+   393,
+   400,
+   889
+  ],
+  "recommendedIds": [
+   1885,
+   10495,
+   38575,
+   64686,
+   1011477,
+   260514,
+   480530,
+   399579,
+   18224,
+   263341,
+   59387,
+   12837,
+   14012,
+   495193,
+   785522,
+   16690,
+   425104,
+   1506560,
+   522518,
+   566525
+  ],
+  "productionCompanies": [
+   "Columbia Pictures"
+  ],
+  "topCast": [
+   "Pat Morita",
+   "Hilary Swank",
+   "Michael Ironside",
+   "Constance Towers",
+   "Chris Conrad"
+  ],
+  "topCastDetail": [
+   {
+    "id": 23915,
+    "name": "Pat Morita",
+    "gender": 2
+   },
+   {
+    "id": 448,
+    "name": "Hilary Swank",
+    "gender": 1
+   },
+   {
+    "id": 11086,
+    "name": "Michael Ironside",
+    "gender": 2
+   },
+   {
+    "id": 20276,
+    "name": "Constance Towers",
+    "gender": 1
+   },
+   {
+    "id": 227199,
+    "name": "Chris Conrad",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1994-07-18",
+  "runtime": 107,
+  "director": "Christopher Cain",
+  "directors": [
+   "Christopher Cain"
+  ],
+  "belongsToCollection": {
+   "id": 8580,
+   "name": "The Karate Kid Collection"
+  },
+  "creatorCredits": [
+   "Christopher Cain",
+   "R.J. Louis",
+   "Jerry Weintraub"
+  ],
+  "title": "The Next Karate Kid",
+  "year": 1994,
+  "type": "movie",
+  "fetchedAt": "2026-11-08"
+ },
+ "movie:11416": {
+  "genres": [
+   "Adventure",
+   "Drama",
+   "Action",
+   "History"
+  ],
+  "overview": "When a Spanish Jesuit goes into the South American wilderness to build a mission in the hope of converting the Indians of the region, a slave hunter is converted and joins his mission. When Spain sells the colony to Portugal, they are forced to defend all they have built against the Portuguese aggressors.",
+  "keywords": [
+   "mission",
+   "resistance",
+   "christianity",
+   "religious conversion",
+   "based on true story",
+   "waterfall",
+   "jungle",
+   "argentina",
+   "colonisation",
+   "south america",
+   "18th century",
+   "aftercreditsstinger",
+   "jesuits (society of jesus)",
+   "indigenous peoples",
+   "assimilation"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0091530",
+  "voteAverage": 7.395,
+  "voteCount": 1623,
+  "popularity": 4.1813,
+  "posterPath": "/6K9cG6LOOtySZF4D4xBu1MApC1N.jpg",
+  "similarToIds": [
+   272797,
+   9279,
+   9281,
+   9096,
+   9403,
+   8967,
+   1624422,
+   1624428,
+   9040,
+   9045,
+   647361,
+   9545,
+   9549,
+   273307,
+   273315,
+   9502,
+   9396,
+   272920,
+   9443,
+   9444
+  ],
+  "recommendedIds": [
+   41784,
+   72241,
+   1492,
+   2712,
+   547090,
+   900409,
+   1079244,
+   1243381,
+   436270,
+   335778,
+   862557,
+   11120,
+   284054,
+   1724,
+   11532,
+   2207,
+   10733,
+   491480,
+   33201,
+   136797
+  ],
+  "productionCompanies": [
+   "Goldcrest Films International",
+   "Kingsmere",
+   "Enigma Productions"
+  ],
+  "topCast": [
+   "Robert De Niro",
+   "Jeremy Irons",
+   "Ray McAnally",
+   "Aidan Quinn",
+   "Liam Neeson"
+  ],
+  "topCastDetail": [
+   {
+    "id": 380,
+    "name": "Robert De Niro",
+    "gender": 2
+   },
+   {
+    "id": 16940,
+    "name": "Jeremy Irons",
+    "gender": 2
+   },
+   {
+    "id": 40008,
+    "name": "Ray McAnally",
+    "gender": 2
+   },
+   {
+    "id": 18992,
+    "name": "Aidan Quinn",
+    "gender": 2
+   },
+   {
+    "id": 3896,
+    "name": "Liam Neeson",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1986-09-06",
+  "runtime": 125,
+  "director": "Roland Joff\u00e9",
+  "directors": [
+   "Roland Joff\u00e9"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Roland Joff\u00e9",
+   "David Puttnam",
+   "Alejandro Azzano"
+  ],
+  "title": "The Mission",
+  "year": 1986,
+  "type": "movie",
+  "fetchedAt": "2026-11-08"
+ },
+ "movie:2265": {
+  "genres": [
+   "Comedy",
+   "Fantasy",
+   "Science Fiction",
+   "Family",
+   "Mystery"
+  ],
+  "overview": "Momo is a young orphan girl who lives in the ruins of an old Roman amphitheater and becomes friends with everybody in the neighborhood. But when a powerful international corporation starts stealing everybody\u2019s time, nobody has any time left for her, let alone their friends or families. Momo, together with Master Hora, the custodian of time, are the only ones who can go up against the time thieves before all is lost forever.",
+  "keywords": [
+   "future",
+   "friendship",
+   "race against time",
+   "based on novel or book",
+   "truth",
+   "rebel",
+   "bravery",
+   "greed",
+   "symbolism",
+   "surreal",
+   "child hero",
+   "time travel",
+   "surrealism",
+   "time",
+   "helplessness"
+  ],
+  "originalLanguage": "de",
+  "imdbId": "tt0091537",
+  "voteAverage": 7.0,
+  "voteCount": 80,
+  "popularity": 2.0033,
+  "posterPath": "/wth0MTgrfuekyrXxM0d6DjoTV7X.jpg",
+  "similarToIds": [
+   12127,
+   12140,
+   12178,
+   12182,
+   12205,
+   12155,
+   12207,
+   12223,
+   12225,
+   12227,
+   12229,
+   12233,
+   12244,
+   12245,
+   12254,
+   12256,
+   1436439,
+   12444,
+   12445,
+   12447
+  ],
+  "recommendedIds": [
+   926670,
+   105,
+   791155,
+   1175842,
+   20694,
+   262504,
+   412656,
+   41154,
+   668461,
+   36819,
+   9016,
+   621870,
+   11639,
+   10830,
+   1267,
+   8871,
+   123025,
+   696806,
+   9449,
+   308531
+  ],
+  "productionCompanies": [
+   "Cinecitt\u00e0 Studios",
+   "Iduna Film Produktiongesellschaft",
+   "SACIS"
+  ],
+  "topCast": [
+   "Radost Bokel",
+   "Mario Adorf",
+   "Armin Mueller-Stahl",
+   "Leopoldo Trieste",
+   "Ninetto Davoli"
+  ],
+  "topCastDetail": [
+   {
+    "id": 23366,
+    "name": "Radost Bokel",
+    "gender": 1
+   },
+   {
+    "id": 10254,
+    "name": "Mario Adorf",
+    "gender": 2
+   },
+   {
+    "id": 12647,
+    "name": "Armin Mueller-Stahl",
+    "gender": 2
+   },
+   {
+    "id": 14151,
+    "name": "Leopoldo Trieste",
+    "gender": 2
+   },
+   {
+    "id": 23367,
+    "name": "Ninetto Davoli",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1986-07-16",
+  "runtime": 101,
+  "director": "Johannes Schaaf",
+  "directors": [
+   "Johannes Schaaf"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Johannes Schaaf",
+   "Horst Wendlandt"
+  ],
+  "title": "Momo",
+  "year": 1986,
+  "type": "movie",
+  "fetchedAt": "2026-11-08"
+ },
+ "movie:455806": {
+  "genres": [
+   "TV Movie",
+   "Drama",
+   "Crime"
+  ],
+  "overview": "One late night in June 1942, Sakuma Seitaro dangles from the frame of a skylight in an isolation cell in Akita Prison. He forces open the glass window and breaks out of jail. This crime even reaches the ears of Urata Susumu, the chief warden of Kosuge Prison in Tokyo. Urata had been in charge of those sentenced to life in the prison until last year. Although Sakuma is a dangerous person who had also broken out of jail in Aomori, he submits to Urata who is the only person who had treated him kindly in the past. However, three months after escaping from jail, Sakuma shows up at Urata\u2019s house. He has come to complain about the inhumane Akita prison officers. But he is locked up again after Urata notifies the police during an unguarded moment. A year later, Sakuma is sent to Abashiri Prison and Urata is also ordered to transfer as the prison\u2019s chief warden.",
+  "keywords": [
+   "prison",
+   "prisoner",
+   "based on novel or book"
+  ],
+  "originalLanguage": "ja",
+  "imdbId": "tt6462032",
+  "voteAverage": 5.8,
+  "voteCount": 5,
+  "popularity": 0.8352,
+  "posterPath": "/j90PiutxZtCZdrI2PWwz7TGNzN3.jpg",
+  "similarToIds": [
+   457799,
+   457581,
+   4464,
+   4476,
+   4479,
+   4480,
+   4481,
+   4497,
+   4540,
+   4541,
+   4546,
+   4550,
+   4561,
+   270842,
+   1429715,
+   3070,
+   3084,
+   3085,
+   3090,
+   3092
+  ],
+  "recommendedIds": [
+   245527,
+   28297,
+   293879,
+   417161,
+   278,
+   416417,
+   457799,
+   90098,
+   800425,
+   122734,
+   481847,
+   466081,
+   6105,
+   157449,
+   903,
+   578561,
+   3112,
+   433498,
+   489932,
+   33357
+  ],
+  "productionCompanies": [
+   "TV Tokyo",
+   "Dreamax Television",
+   "Office Kitano"
+  ],
+  "topCast": [
+   "Takeshi Kitano",
+   "Takayuki Yamada",
+   "Hikari Mitsushima",
+   "Susumu Terajima",
+   "Yutaka Matsushige"
+  ],
+  "topCastDetail": [
+   {
+    "id": 3317,
+    "name": "Takeshi Kitano",
+    "gender": 2
+   },
+   {
+    "id": 74377,
+    "name": "Takayuki Yamada",
+    "gender": 2
+   },
+   {
+    "id": 100765,
+    "name": "Hikari Mitsushima",
+    "gender": 1
+   },
+   {
+    "id": 4990,
+    "name": "Susumu Terajima",
+    "gender": 2
+   },
+   {
+    "id": 27782,
+    "name": "Yutaka Matsushige",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2017-04-12",
+  "runtime": 108,
+  "director": "Yoshihiro Fukagawa",
+  "directors": [
+   "Yoshihiro Fukagawa"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Yoshihiro Fukagawa",
+   "Shoko Kawamura",
+   "Toshihiko Tabuchi"
+  ],
+  "title": "Prison Break",
+  "year": 2017,
+  "type": "movie",
+  "fetchedAt": "2026-11-08"
+ },
+ "show:93820": {
+  "genres": [
+   "Drama",
+   "Mystery",
+   "Crime"
+  ],
+  "overview": "Saeki Shuichi was a detective, but he quit his job. He now works at a detective agency. One day, a couple asks the detective agency to find a man named Sakagami. The man killed the couple's son and served at a youth detention center. Kogure Masato is the director of the detective agency. He tells Shuichi to work on the case. Shuichi is also part of a victim's family. When he was a child, his older sister was murdered. While Shuichi watches Sakagami, the couple asks him to find some materials which will allow them to forgive Sakagami or not.",
+  "keywords": [
+   "detective",
+   "based on novel or book",
+   "investigation",
+   "revenge",
+   "murder",
+   "private investigator",
+   "killer",
+   "detective agency",
+   "moral dilemma",
+   "suspense",
+   "crime"
+  ],
+  "originalLanguage": "ja",
+  "imdbId": "tt9778158",
+  "voteAverage": 8.4,
+  "voteCount": 7,
+  "popularity": 2.2521,
+  "posterPath": "/5xGLQO7UdOuppw0zScSk9Znd8DL.jpg",
+  "similarToIds": [
+   59861,
+   136,
+   93795,
+   93833,
+   93846,
+   210445,
+   210476,
+   29244,
+   29246,
+   29247,
+   127131,
+   29063,
+   19,
+   59983,
+   93972,
+   78,
+   93896,
+   93911,
+   93866,
+   93870
+  ],
+  "recommendedIds": [
+   241549,
+   6127,
+   34235,
+   76459,
+   1167,
+   4177,
+   587,
+   790,
+   4464,
+   45194,
+   3876,
+   130766,
+   248698,
+   85586,
+   3216,
+   13266,
+   1419,
+   6554,
+   23027,
+   130273
+  ],
+  "productionCompanies": [
+   "WOWOW FILMS",
+   "WOWOW",
+   "HUMAX CINEMA"
+  ],
+  "topCast": [
+   "Masahiro Higashide",
+   "Yutaka Matsushige",
+   "Ayumu Nakajima",
+   "Akana Ikeda",
+   "Toru Masuoka"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1185386,
+    "name": "Masahiro Higashide",
+    "gender": 2
+   },
+   {
+    "id": 27782,
+    "name": "Yutaka Matsushige",
+    "gender": 2
+   },
+   {
+    "id": 1505062,
+    "name": "Ayumu Nakajima",
+    "gender": 2
+   },
+   {
+    "id": 2414315,
+    "name": "Akana Ikeda",
+    "gender": 1
+   },
+   {
+    "id": 120804,
+    "name": "Toru Masuoka",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2019-05-12",
+  "episodeRunTime": 52,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 6,
+  "seasonEpisodeCounts": {
+   "1": 6
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2019-06-16",
+   "seasonNumber": 1,
+   "episodeNumber": 6,
+   "name": "Episode 6"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "WOWOW Prime"
+  ],
+  "creatorCredits": [],
+  "title": "Villain: Perpetrator Chase Investigation",
+  "year": 2019,
+  "type": "show",
+  "fetchedAt": "2026-11-08"
+ },
+ "show:280100": {
+  "genres": [
+   "Drama",
+   "Sci-Fi & Fantasy"
+  ],
+  "overview": "When an arrogant Alpha infiltrates a rival\u2019s company and falls for a seemingly delicate Omega, he\u2019s pulled into a dangerous game that challenges everything he knows.",
+  "keywords": [
+   "based on novel or book",
+   "supernatural",
+   "romance",
+   "attempted rape",
+   "employer employee relationship",
+   "bisexual man",
+   "hidden identity",
+   "virus",
+   "angst",
+   "sexual assault",
+   "male pregnancy",
+   "hidden agenda",
+   "possessive man",
+   "gay romance",
+   "pheromones"
+  ],
+  "originalLanguage": "zh",
+  "imdbId": "tt37547864",
+  "voteAverage": 8.455,
+  "voteCount": 33,
+  "popularity": 8.4447,
+  "posterPath": "/fKmsS7HRGvhSNiLysVIj1zoBHnt.jpg",
+  "similarToIds": [
+   286151,
+   286160,
+   35682,
+   101043,
+   249031,
+   134742,
+   317762,
+   317763,
+   6094,
+   134675,
+   67026,
+   67050,
+   35790,
+   66941,
+   66948,
+   66958,
+   35899,
+   318006,
+   317885,
+   286235
+  ],
+  "recommendedIds": [
+   204541,
+   292035,
+   130464,
+   130368,
+   288673,
+   79818,
+   97173,
+   279041,
+   125116,
+   243224,
+   130842,
+   69478,
+   61664,
+   31917,
+   93740,
+   95396,
+   18165,
+   253193,
+   85273,
+   253372
+  ],
+  "productionCompanies": [
+   "Durian Culture"
+  ],
+  "topCast": [
+   "Huang Xing",
+   "Qiu Dingjie",
+   "Li Peien",
+   "Jiang Heng"
+  ],
+  "topCastDetail": [
+   {
+    "id": 4284465,
+    "name": "Huang Xing",
+    "gender": 2
+   },
+   {
+    "id": 4686489,
+    "name": "Qiu Dingjie",
+    "gender": 2
+   },
+   {
+    "id": 3667313,
+    "name": "Li Peien",
+    "gender": 2
+   },
+   {
+    "id": 5144681,
+    "name": "Jiang Heng",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2025-07-12",
+  "episodeRunTime": 49,
+  "createdBy": [
+   "Nong Jian"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 16,
+  "seasonEpisodeCounts": {
+   "1": 16
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2025-10-11",
+   "seasonNumber": 1,
+   "episodeNumber": 16,
+   "name": "Unstoppable Desire and Love"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "GagaOOLala"
+  ],
+  "creatorCredits": [
+   "Nong Jian",
+   "Ears"
+  ],
+  "title": "ABO Desire",
+  "year": 2025,
+  "type": "show",
+  "fetchedAt": "2026-11-08"
+ },
+ "show:128003": {
+  "genres": [
+   "Drama",
+   "Action & Adventure"
+  ],
+  "overview": "Sky, a mafia heir, and Sun, his strict bodyguard, fall in love, but must confront Sky's father and his expectations for their relationship.",
+  "keywords": [
+   "trauma",
+   "bodyguard",
+   "friendship",
+   "revenge",
+   "unrequited love",
+   "mafia",
+   "miniseries",
+   "bromance",
+   "university",
+   "gun violence",
+   "long distance relationship",
+   "hidden identity",
+   "master servant relationship",
+   "housemates",
+   "college life"
+  ],
+  "originalLanguage": "th",
+  "imdbId": null,
+  "voteAverage": 6.625,
+  "voteCount": 8,
+  "popularity": 1.8445,
+  "posterPath": "/82tlYIQd5dJnM1kSJdJum8L9oN7.jpg",
+  "similarToIds": [
+   59991,
+   93998,
+   150,
+   152,
+   155,
+   93886,
+   93892,
+   93878,
+   93879,
+   127274,
+   127323,
+   210532,
+   29004,
+   93972,
+   93975,
+   93809,
+   93816,
+   93820,
+   127354,
+   127356
+  ],
+  "recommendedIds": [
+   217810,
+   117067,
+   252617,
+   271341,
+   106840,
+   2822,
+   95439,
+   215356,
+   114165,
+   272711,
+   217807,
+   95279,
+   167,
+   235199,
+   240975,
+   262352,
+   90795,
+   85552,
+   93975,
+   133908
+  ],
+  "productionCompanies": [
+   "WE tv"
+  ],
+  "topCast": [
+   "Napat Na Ranong",
+   "Tara Tipa",
+   "Teachapat Pinrat",
+   "Buntawit Tragulpanich",
+   "Jaytiya Naiwattanakul"
+  ],
+  "topCastDetail": [
+   {
+    "id": 2098566,
+    "name": "Napat Na Ranong",
+    "gender": 2
+   },
+   {
+    "id": 1348850,
+    "name": "Tara Tipa",
+    "gender": 2
+   },
+   {
+    "id": 4329327,
+    "name": "Teachapat Pinrat",
+    "gender": 2
+   },
+   {
+    "id": 3134025,
+    "name": "Buntawit Tragulpanich",
+    "gender": 2
+   },
+   {
+    "id": 4329331,
+    "name": "Jaytiya Naiwattanakul",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2021-06-23",
+  "episodeRunTime": 65,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 8,
+  "seasonEpisodeCounts": {
+   "1": 8
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2021-08-11",
+   "seasonNumber": 1,
+   "episodeNumber": 8,
+   "name": "Episode 8"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Channel 3",
+   "WeTV"
+  ],
+  "creatorCredits": [],
+  "title": "Golden Blood",
+  "year": 2021,
+  "type": "show",
+  "fetchedAt": "2026-11-08"
+ },
+ "show:93896": {
+  "genres": [
+   "Drama",
+   "Crime"
+  ],
+  "overview": "A woman\u2019s dead body is found in an apartment in Kokubunji, Tokyo. The decayed body seems like a half year has passed since its death and it is damaged by domestic cats that ate the body. The woman's death is thought to be a \"lonely death\" (someone died naturally without anyone noticing for a long period of time). Detective Ayano has doubts about that conclusion. The cats seemed like they were not house trained, which is odd for domestic cats. Detective Ayano wonders whether the cats were really owned by the dead woman. Detective Ayano then finds Suzuki Yoko\u2019s bankbook in an empty fishbowl. It seems like the dead woman is 36-year-old Yoko.",
+  "keywords": [
+   "based on novel or book",
+   "insurance fraud",
+   "investigation",
+   "police",
+   "murder",
+   "female protagonist",
+   "poverty",
+   "suspense",
+   "mystery",
+   "thriller",
+   "crime"
+  ],
+  "originalLanguage": "ja",
+  "imdbId": "tt10436538",
+  "voteAverage": 8.0,
+  "voteCount": 9,
+  "popularity": 2.331,
+  "posterPath": "/bdZpEIiBWAeL3WkOy1AQi4WORxc.jpg",
+  "similarToIds": [
+   19,
+   26,
+   59983,
+   59861,
+   93911,
+   93866,
+   93870,
+   93877,
+   93878,
+   93879,
+   93784,
+   93786,
+   29004,
+   93972,
+   93975,
+   95,
+   136,
+   93795,
+   93820,
+   93833
+  ],
+  "recommendedIds": [
+   120835,
+   126167,
+   226174,
+   3828,
+   40663,
+   10370,
+   84007,
+   58057,
+   925,
+   241549,
+   138181,
+   6964,
+   67384,
+   254071,
+   9573,
+   244978,
+   10305,
+   59134,
+   130464,
+   119845
+  ],
+  "productionCompanies": [
+   "WOWOW FILMS",
+   "WOWOW"
+  ],
+  "topCast": [
+   "Machiko Ono",
+   "Ken Yasuda",
+   "Manami Konishi",
+   "Jin Katagiri",
+   "Yasuyuki Maekawa"
+  ],
+  "topCastDetail": [
+   {
+    "id": 20705,
+    "name": "Machiko Ono",
+    "gender": 1
+   },
+   {
+    "id": 1039220,
+    "name": "Ken Yasuda",
+    "gender": 2
+   },
+   {
+    "id": 70122,
+    "name": "Manami Konishi",
+    "gender": 1
+   },
+   {
+    "id": 1060297,
+    "name": "Jin Katagiri",
+    "gender": 2
+   },
+   {
+    "id": 150717,
+    "name": "Yasuyuki Maekawa",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2019-03-24",
+  "episodeRunTime": 52,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 4,
+  "seasonEpisodeCounts": {
+   "1": 4
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2019-04-14",
+   "seasonNumber": 1,
+   "episodeNumber": 4,
+   "name": "Episode 4"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "WOWOW Prime"
+  ],
+  "creatorCredits": [],
+  "title": "Zekkyo",
+  "year": 2019,
+  "type": "show",
+  "fetchedAt": "2026-11-08"
+ },
+ "show:280110": {
+  "genres": [
+   "Animation",
+   "Action & Adventure",
+   "Drama",
+   "Sci-Fi & Fantasy"
+  ],
+  "overview": "After a life-changing incident, timid college student Koichi Haimawari accepts an offer from revered vigilante Knuckleduster to train as his prot\u00e9g\u00e9.",
+  "keywords": [
+   "vigilante",
+   "prequel",
+   "superhero",
+   "urban",
+   "coming of age",
+   "based on manga",
+   "spin off",
+   "super power",
+   "personal growth",
+   "shounen",
+   "college student",
+   "anime",
+   "superhuman abilities",
+   "vigilante justice"
+  ],
+  "originalLanguage": "ja",
+  "imdbId": "tt35636246",
+  "voteAverage": 7.708,
+  "voteCount": 96,
+  "popularity": 20.3421,
+  "posterPath": "/iv0cXt6uJGlTryWZNQMGyum4Pme.jpg",
+  "similarToIds": [
+   35678,
+   249031,
+   6242,
+   134742,
+   6046,
+   6065,
+   6066,
+   67034,
+   67037,
+   67041,
+   67042,
+   67043,
+   67048,
+   67049,
+   67052,
+   67054,
+   35790,
+   35794,
+   66938,
+   66941
+  ],
+  "recommendedIds": [
+   46260,
+   73223,
+   37858,
+   31910,
+   17149,
+   96884,
+   62430,
+   33217,
+   19253,
+   295999,
+   248947,
+   9152,
+   31572,
+   12971,
+   31714,
+   289324,
+   67466,
+   302051,
+   78462,
+   68098
+  ],
+  "productionCompanies": [
+   "BONES Film",
+   "TOHO",
+   "Yomiuri Telecasting Corporation"
+  ],
+  "topCast": [
+   "Shuichiro Umeda",
+   "Ikumi Hasegawa",
+   "Yasuhiro Mamiya"
+  ],
+  "topCastDetail": [
+   {
+    "id": 3128816,
+    "name": "Shuichiro Umeda",
+    "gender": 2
+   },
+   {
+    "id": 2103077,
+    "name": "Ikumi Hasegawa",
+    "gender": 1
+   },
+   {
+    "id": 1506816,
+    "name": "Yasuhiro Mamiya",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2025-04-07",
+  "episodeRunTime": 24,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 26,
+  "seasonEpisodeCounts": {
+   "1": 26
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2026-03-30",
+   "seasonNumber": 1,
+   "episodeNumber": 26,
+   "name": "Graduation and Career Path"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "TOKYO MX",
+   "BS Nippon TV"
+  ],
+  "creatorCredits": [
+   "Masahiko Minami",
+   "Kazutaka Yamanaka",
+   "Yusuke Nii"
+  ],
+  "title": "My Hero Academia: Vigilantes",
+  "year": 2025,
+  "type": "show",
+  "fetchedAt": "2026-11-08"
+ },
+ "show:93795": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "Tetsuhiko Toma is a surgeon who studied in the United States. He begins work at a private hospital in a rural area in Japan. He believes that people should receive the same level of care at all hospitals. Guided by those principles, he takes on challenging surgeries and saves the lives of patients. Tetsuhiko Toma attempts an internal organ transplant for the first time in Japan, but the health care system blocks him.",
+  "keywords": [
+   "based on novel or book",
+   "surgeon",
+   "hospital",
+   "conflict",
+   "doctor",
+   "organ transplant",
+   "surgery",
+   "1980s",
+   "medical",
+   "medical ethics",
+   "sh\u014dwa era (1926-89)",
+   "living donor"
+  ],
+  "originalLanguage": "ja",
+  "imdbId": null,
+  "voteAverage": 8.0,
+  "voteCount": 5,
+  "popularity": 2.1606,
+  "posterPath": "/31SIbFUsF5QUEVzJ0dxpTInHIPF.jpg",
+  "similarToIds": [
+   658,
+   128163,
+   60803,
+   60804,
+   128008,
+   211309,
+   29954,
+   29917,
+   60750,
+   128068,
+   280409,
+   128095,
+   243512,
+   1021,
+   1024,
+   1028,
+   1039,
+   211358,
+   311914,
+   896
+  ],
+  "recommendedIds": [
+   74016,
+   95004,
+   226174,
+   73199,
+   46052,
+   1028,
+   126167,
+   285807,
+   3172,
+   3213,
+   59134,
+   45976,
+   85547,
+   1039,
+   21021,
+   2625,
+   70112,
+   45298,
+   120835,
+   221310
+  ],
+  "productionCompanies": [
+   "WOWOW",
+   "Shochiku"
+  ],
+  "topCast": [
+   "Hideaki Takizawa",
+   "Toru Nakamura",
+   "Ky\u014dz\u014d Nagatsuka",
+   "Mizuki Yamamoto",
+   "Kanji Ishimaru"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1222352,
+    "name": "Hideaki Takizawa",
+    "gender": 2
+   },
+   {
+    "id": 74195,
+    "name": "Toru Nakamura",
+    "gender": 2
+   },
+   {
+    "id": 555190,
+    "name": "Ky\u014dz\u014d Nagatsuka",
+    "gender": 2
+   },
+   {
+    "id": 1257215,
+    "name": "Mizuki Yamamoto",
+    "gender": 1
+   },
+   {
+    "id": 1081482,
+    "name": "Kanji Ishimaru",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2019-01-13",
+  "episodeRunTime": 54,
+  "createdBy": [
+   "Roran Takayama"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 8,
+  "seasonEpisodeCounts": {
+   "1": 8
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2019-03-03",
+   "seasonNumber": 1,
+   "episodeNumber": 8,
+   "name": "Episode 8"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "WOWOW Prime"
+  ],
+  "creatorCredits": [
+   "Roran Takayama"
+  ],
+  "title": "A Lone Scalpel",
+  "year": 2019,
+  "type": "show",
+  "fetchedAt": "2026-11-08"
+ },
+ "show:243247": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "The Girls of Slender Means is a 1975 BBC television mini-series based on Muriel Spark's novel. The drama, aired in three parts, follows a group of young women living in a London boarding house in 1945, and is framed by a death that occurs in 1960.",
+  "keywords": [
+   "hotel",
+   "based on novel or book",
+   "world war ii",
+   "unrequited love",
+   "miniseries",
+   "post world war ii",
+   "told in flashback",
+   "1940s",
+   "unmarried woman"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0424119",
+  "voteAverage": 3.7,
+  "voteCount": 3,
+  "popularity": 1.2443,
+  "posterPath": "/frfJlFg2yPbZIXLiMxIi1VIjdKG.jpg",
+  "similarToIds": [
+   243512,
+   30119,
+   128292,
+   128301,
+   128331,
+   886,
+   887,
+   896,
+   128252,
+   128259,
+   211228,
+   280437,
+   94817,
+   280571,
+   1024,
+   211358,
+   311947,
+   918,
+   61009,
+   312027
+  ],
+  "recommendedIds": [
+   3437,
+   32675,
+   1867,
+   4613,
+   42240,
+   223313,
+   199001,
+   284605,
+   87049,
+   240667,
+   155421,
+   15724,
+   69129,
+   36737,
+   130464,
+   248416,
+   13269,
+   62084,
+   102904,
+   72787
+  ],
+  "productionCompanies": [
+   "BBC"
+  ],
+  "topCast": [
+   "Miriam Margolyes",
+   "Patricia Hodge",
+   "Mary Tamm",
+   "James Laurenson",
+   "Jack Shepherd"
+  ],
+  "topCastDetail": [
+   {
+    "id": 6199,
+    "name": "Miriam Margolyes",
+    "gender": 1
+   },
+   {
+    "id": 175977,
+    "name": "Patricia Hodge",
+    "gender": 1
+   },
+   {
+    "id": 1225428,
+    "name": "Mary Tamm",
+    "gender": 1
+   },
+   {
+    "id": 71248,
+    "name": "James Laurenson",
+    "gender": 2
+   },
+   {
+    "id": 45587,
+    "name": "Jack Shepherd",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "1975-05-03",
+  "episodeRunTime": 50,
+  "createdBy": [
+   "Ken Taylor"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 3,
+  "seasonEpisodeCounts": {
+   "1": 3
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "1975-05-17",
+   "seasonNumber": 1,
+   "episodeNumber": 3,
+   "name": "Episode 3"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "BBC Two"
+  ],
+  "creatorCredits": [
+   "Ken Taylor"
+  ],
+  "title": "The Girls of Slender Means",
+  "year": 1975,
+  "type": "show",
+  "fetchedAt": "2026-11-08"
+ },
+ "show:127948": {
+  "genres": [
+   "Drama",
+   "Mystery",
+   "Crime",
+   "Sci-Fi & Fantasy"
+  ],
+  "overview": "Set in three distinct points in time, follow a class of FBI agents who grapple with immense changes as the U.S. criminal justice system is altered by artificial intelligence.",
+  "keywords": [
+   "artificial intelligence (a.i.)",
+   "fbi",
+   "miniseries",
+   "fbi agent"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt14903834",
+  "voteAverage": 7.067,
+  "voteCount": 120,
+  "popularity": 6.4957,
+  "posterPath": "/5eCGq50CMloT2a1bMDB8JPpGuf2.jpg",
+  "similarToIds": [
+   844,
+   658,
+   660,
+   128003,
+   29954,
+   128061,
+   128066,
+   311708,
+   211178,
+   211179,
+   280511,
+   243545,
+   280437,
+   94813,
+   94817,
+   30119,
+   211358,
+   877,
+   60937,
+   60875
+  ],
+  "recommendedIds": [
+   4057,
+   287238,
+   51019,
+   1411,
+   213306,
+   61859,
+   2973,
+   50628,
+   4541,
+   7525,
+   36,
+   91962,
+   210916,
+   12832,
+   3470,
+   87773,
+   71146,
+   201992,
+   1486,
+   278178
+  ],
+  "productionCompanies": [
+   "FX Productions",
+   "Color Force"
+  ],
+  "topCast": [
+   "Kate Mara",
+   "Brian Tyree Henry",
+   "Sepideh Moafi",
+   "Brian J. Smith",
+   "Jon Jon Briones"
+  ],
+  "topCastDetail": [
+   {
+    "id": 51072,
+    "name": "Kate Mara",
+    "gender": 1
+   },
+   {
+    "id": 226366,
+    "name": "Brian Tyree Henry",
+    "gender": 2
+   },
+   {
+    "id": 1344374,
+    "name": "Sepideh Moafi",
+    "gender": 1
+   },
+   {
+    "id": 22541,
+    "name": "Brian J. Smith",
+    "gender": 2
+   },
+   {
+    "id": 1224010,
+    "name": "Jon Jon Briones",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2023-05-10",
+  "episodeRunTime": null,
+  "createdBy": [
+   "Tom Rob Smith"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 8,
+  "seasonEpisodeCounts": {
+   "1": 8
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2023-06-21",
+   "seasonNumber": 1,
+   "episodeNumber": 8,
+   "name": "Graduation"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Hulu"
+  ],
+  "creatorCredits": [
+   "Tom Rob Smith",
+   "Jessica Levin",
+   "Brad Simpson"
+  ],
+  "title": "Class of '09",
+  "year": 2023,
+  "type": "show",
+  "fetchedAt": "2026-11-08"
+ },
+ "show:66433": {
+  "genres": [
+   "Drama",
+   "Sci-Fi & Fantasy",
+   "War & Politics"
+  ],
+  "overview": "A story of a 25-year-old Go Hajin who is transported back in time to the Goryeo Dynasty. She then wakes up in the body of Lady Hae Soo and finds herself amongst the ruling princes of the Wang Family.",
+  "keywords": [
+   "love triangle",
+   "based on novel or book",
+   "obsession",
+   "forbidden love",
+   "palace",
+   "time travel",
+   "royal family",
+   "politics",
+   "rivalry",
+   "romance",
+   "royalty",
+   "family relationships",
+   "tragedy",
+   "historical fiction",
+   "king"
+  ],
+  "originalLanguage": "ko",
+  "imdbId": "tt5320412",
+  "voteAverage": 8.5,
+  "voteCount": 609,
+  "popularity": 10.7992,
+  "posterPath": "/sTW7wLyD95JRCyUEdTfxCWQWsvd.jpg",
+  "similarToIds": [
+   280531,
+   280549,
+   243512,
+   94707,
+   94659,
+   94664,
+   128351,
+   128365,
+   128301,
+   128309,
+   128319,
+   128331,
+   896,
+   899,
+   128252,
+   312062,
+   211217,
+   211224,
+   211228,
+   280422
+  ],
+  "recommendedIds": [
+   61148,
+   136733,
+   93846,
+   233205,
+   18165,
+   220076,
+   4734,
+   44821,
+   1399,
+   89641,
+   33852,
+   70528,
+   116605,
+   63333,
+   80752,
+   279323,
+   76692,
+   1386,
+   71914,
+   56570
+  ],
+  "productionCompanies": [
+   "YG Entertainment",
+   "NBCUniversal"
+  ],
+  "topCast": [
+   "IU",
+   "Lee Joon-gi",
+   "Kang Ha-neul",
+   "Hong Jong-hyun",
+   "Baekhyun"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1252318,
+    "name": "IU",
+    "gender": 1
+   },
+   {
+    "id": 122408,
+    "name": "Lee Joon-gi",
+    "gender": 2
+   },
+   {
+    "id": 1257899,
+    "name": "Kang Ha-neul",
+    "gender": 2
+   },
+   {
+    "id": 1254976,
+    "name": "Hong Jong-hyun",
+    "gender": 2
+   },
+   {
+    "id": 1574598,
+    "name": "Baekhyun",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2016-08-29",
+  "episodeRunTime": 60,
+  "createdBy": [
+   "Tong Hua"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 20,
+  "seasonEpisodeCounts": {
+   "1": 20
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2016-11-01",
+   "seasonNumber": 1,
+   "episodeNumber": 20,
+   "name": "The Letters"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "SBS"
+  ],
+  "creatorCredits": [
+   "Tong Hua"
+  ],
+  "title": "Scarlet Heart: Ryeo",
+  "year": 2016,
+  "type": "show",
+  "fetchedAt": "2026-11-08"
+ },
+ "show:243303": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "Mizushima Toru is a former literary youth who lives a dull office worker life. One day, he receives an invitation and visits Kaede Inno Flower Shop. The owner, Mochizuki Hayato, is curt and blunt, and suddenly offers three flowers, saying, \"choose what you like\". Toru chooses one, tears off the petals, and for some reason finds himself in a high school classroom! In a panic, he searched around to find out what was going on, and found a diploma with \"March 1, 2013\" written on it. \"Congratulations on your graduation\" is written on the blackboard. What a time leap 10 years ago. The woman who appeared there was Toru's first love, Shindo Kasumi. However, the bitter past cannot be changed, and only regret remains. Hayato said \"There are 7 tickets left for fate\". With 7 more time leaps, will he be able to redo past regrets and fulfill his first love?!",
+  "keywords": [
+   "romance",
+   "time loop",
+   "miniseries",
+   "second chance",
+   "web series"
+  ],
+  "originalLanguage": "ja",
+  "imdbId": null,
+  "voteAverage": 0.0,
+  "voteCount": 0,
+  "popularity": 1.1124,
+  "posterPath": "/kEXapBTtqgjSIFIKBcFdksPR1no.jpg",
+  "similarToIds": [
+   152,
+   93814,
+   93846,
+   127323,
+   210444,
+   29244,
+   29246,
+   29247,
+   29310,
+   171,
+   1,
+   59959,
+   59991,
+   93998,
+   93886,
+   93892,
+   93872,
+   93877,
+   93878,
+   59789
+  ],
+  "recommendedIds": [
+   210955,
+   232926,
+   260592,
+   223313,
+   240667,
+   75058,
+   259909,
+   67389,
+   2673,
+   273240,
+   95550,
+   105009,
+   288659,
+   3251,
+   199001,
+   253376,
+   70072,
+   323903,
+   129612,
+   156510
+  ],
+  "productionCompanies": [],
+  "topCast": [
+   "Takuya Kusakawa",
+   "Anna Ishii",
+   "Terunosuke Takezai"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1895290,
+    "name": "Takuya Kusakawa",
+    "gender": 2
+   },
+   {
+    "id": 1632067,
+    "name": "Anna Ishii",
+    "gender": 1
+   },
+   {
+    "id": 566167,
+    "name": "Terunosuke Takezai",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2023-03-28",
+  "episodeRunTime": 5,
+  "createdBy": [
+   "ito Nanoha"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 4,
+  "seasonEpisodeCounts": {
+   "1": 4
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2023-03-28",
+   "seasonNumber": 1,
+   "episodeNumber": 4,
+   "name": "Hitohira no Hatsukoi Episode 4"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "TV Tokyo",
+   "BS TV Tokyo"
+  ],
+  "creatorCredits": [
+   "ito Nanoha"
+  ],
+  "title": "Hitohira's First Love",
+  "year": 2023,
+  "type": "show",
+  "fetchedAt": "2026-11-08"
+ },
+ "movie:938150": {
+  "genres": [
+   "Thriller",
+   "Crime"
+  ],
+  "overview": "He\u2019s a Wardriver: a hacker who steals from banks, not people\u2014until he\u2019s noticed. Now the money turns violent, and the woman caught in it could save him or kill them both.",
+  "keywords": [
+   "tense"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt5095076",
+  "voteAverage": 7.4,
+  "voteCount": 150,
+  "popularity": 6.9037,
+  "posterPath": "/rBZA12Hf4yZZgud6iPuFU49L7zk.jpg",
+  "similarToIds": [
+   1544556,
+   140374,
+   1360873,
+   978783,
+   1542603,
+   1543082,
+   1525704,
+   575604,
+   1356807,
+   1357159,
+   1733254,
+   1746135,
+   1737462,
+   1148612,
+   1735480,
+   760158,
+   1534247,
+   1740456,
+   951491,
+   768724
+  ],
+  "recommendedIds": [
+   899294,
+   1659087,
+   1128377,
+   808023,
+   1530875,
+   1227816,
+   656940,
+   970347,
+   1024627,
+   1242501,
+   27004,
+   190955,
+   4959,
+   395458,
+   31932,
+   941109,
+   846956,
+   347548,
+   848123,
+   13483
+  ],
+  "productionCompanies": [
+   "Highland Film Group",
+   "Star Thrower Entertainment"
+  ],
+  "topCast": [
+   "Dane DeHaan",
+   "Sasha Calle",
+   "Mamoudou Athie",
+   "Jeffrey Donovan",
+   "William Belleau"
+  ],
+  "topCastDetail": [
+   {
+    "id": 122889,
+    "name": "Dane DeHaan",
+    "gender": 2
+   },
+   {
+    "id": 2542319,
+    "name": "Sasha Calle",
+    "gender": 1
+   },
+   {
+    "id": 1639848,
+    "name": "Mamoudou Athie",
+    "gender": 2
+   },
+   {
+    "id": 52886,
+    "name": "Jeffrey Donovan",
+    "gender": 2
+   },
+   {
+    "id": 222562,
+    "name": "William Belleau",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2026-03-04",
+  "runtime": 93,
+  "director": "Rebecca Thomas",
+  "directors": [
+   "Rebecca Thomas"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Rebecca Thomas",
+   "Allan Mandelbaum",
+   "David M. Wulf"
+  ],
+  "title": "Wardriver",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-11-08"
+ },
+ "show:114479": {
+  "genres": [
+   "Mystery",
+   "Sci-Fi & Fantasy",
+   "Action & Adventure",
+   "War & Politics"
+  ],
+  "overview": "A hundred years before the rise of the Empire, the Jedi Order and the Galactic Republic have prospered for centuries without war. During this time, an investigation into a shocking crime spree pits a Jedi Master against a dangerous warrior from his past.",
+  "keywords": [
+   "monk",
+   "witch",
+   "magic",
+   "female protagonist",
+   "twins",
+   "force",
+   "lgbt",
+   "murder investigation",
+   "based on movie",
+   "crime investigation",
+   "spaceship",
+   "mystery",
+   "bewildered"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt12262202",
+  "voteAverage": 5.324,
+  "voteCount": 941,
+  "popularity": 9.6445,
+  "posterPath": "/mztdt3y6GBsJR69zHtszFezTCLT.jpg",
+  "similarToIds": [
+   249031,
+   134742,
+   35790,
+   67116,
+   66991,
+   67325,
+   67340,
+   249545,
+   218363,
+   218364,
+   286559,
+   101609,
+   6732,
+   36247,
+   36250,
+   67575,
+   67576,
+   67580,
+   67429,
+   66931
+  ],
+  "recommendedIds": [
+   1981,
+   89572,
+   114461,
+   298505,
+   2432,
+   1706,
+   138501,
+   5690,
+   83867,
+   3868,
+   46331,
+   15741,
+   84773,
+   19654,
+   25406,
+   85271,
+   111837,
+   1469,
+   92830,
+   1449
+  ],
+  "productionCompanies": [
+   "Lucasfilm Ltd.",
+   "Shoot to Midnight"
+  ],
+  "topCast": [
+   "Amandla Stenberg",
+   "Lee Jung-jae"
+  ],
+  "topCastDetail": [
+   {
+    "id": 561869,
+    "name": "Amandla Stenberg",
+    "gender": 3
+   },
+   {
+    "id": 73249,
+    "name": "Lee Jung-jae",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2024-06-04",
+  "episodeRunTime": null,
+  "createdBy": [
+   "Leslye Headland"
+  ],
+  "status": "Canceled",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 8,
+  "seasonEpisodeCounts": {
+   "1": 8
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2024-07-16",
+   "seasonNumber": 1,
+   "episodeNumber": 8,
+   "name": "The Acolyte"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Disney+"
+  ],
+  "creatorCredits": [
+   "Leslye Headland",
+   "Kathleen Kennedy",
+   "Simon Emanuel"
+  ],
+  "title": "The Acolyte",
+  "year": 2024,
+  "type": "show",
+  "fetchedAt": "2026-11-08"
+ },
+ "show:62223": {
+  "genres": [
+   "Talk"
+  ],
+  "overview": "Once Craig Ferguson retires, James Corden will be taking over The Late Late Show. The show is a late night talk show that interviews celebrities and has its own bits. And of course, it's all hosted by James Corden.",
+  "keywords": [
+   "late night",
+   "late-night show"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt4280606",
+  "voteAverage": 5.133,
+  "voteCount": 150,
+  "popularity": 110.5227,
+  "posterPath": "/qPmVoG8G9tc1nN8ZwGV2zYcknit.jpg",
+  "similarToIds": [
+   59941,
+   128454,
+   128646,
+   212239,
+   129107,
+   281659,
+   131557,
+   4467,
+   40302,
+   10017,
+   37272,
+   219783,
+   71547,
+   76178,
+   102013,
+   217908,
+   249529,
+   8621,
+   251365,
+   39429
+  ],
+  "recommendedIds": [
+   42021,
+   80865
+  ],
+  "productionCompanies": [
+   "CBS Studios",
+   "Fulwell 73 Productions"
+  ],
+  "topCast": [
+   "James Corden",
+   "Reggie Watts"
+  ],
+  "topCastDetail": [
+   {
+    "id": 55466,
+    "name": "James Corden",
+    "gender": 2
+   },
+   {
+    "id": 223879,
+    "name": "Reggie Watts",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2015-03-23",
+  "episodeRunTime": 40,
+  "createdBy": [
+   "David Letterman",
+   "Peter Lassally"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 8,
+  "numberOfEpisodes": 1198,
+  "seasonEpisodeCounts": {
+   "1": 164,
+   "2": 207,
+   "3": 146,
+   "4": 146,
+   "5": 136,
+   "6": 153,
+   "7": 144,
+   "8": 102
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2023-04-27",
+   "seasonNumber": 8,
+   "episodeNumber": 102,
+   "name": "Will Ferrell, Harry Styles"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "CBS"
+  ],
+  "creatorCredits": [
+   "David Letterman",
+   "Peter Lassally",
+   "Ben Winston"
+  ],
+  "title": "The Late Late Show with James Corden",
+  "year": 2015,
+  "type": "show",
+  "fetchedAt": "2026-11-08"
  }
 }

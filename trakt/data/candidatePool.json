@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-11-06T19:45:12.696Z",
-    "count": 493,
+    "generatedAt": "2026-11-08T16:27:33.336Z",
+    "count": 494,
     "capPerType": 200
   },
   "titles": [
@@ -5100,16 +5100,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:464502",
-      "ids": {
-        "tmdb": 464502
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 9
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:508763",
       "ids": {
         "tmdb": 508763
@@ -5131,17 +5121,6 @@
       "discoveredVia": "Music"
     },
     {
-      "type": "show",
-      "titleKey": "show:108298",
-      "ids": {
-        "tmdb": 108298
-      },
-      "title": "Challenger: The Final Flight",
-      "year": 2020,
-      "source": "genre-explore",
-      "discoveredVia": "Documentary"
-    },
-    {
       "type": "movie",
       "titleKey": "movie:390051",
       "ids": {
@@ -5151,6 +5130,38 @@
       "year": 2017,
       "source": "book-theme-explore",
       "discoveredVia": "book-theme:legal"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:127948",
+      "ids": {
+        "tmdb": 127948
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 8
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:938150",
+      "ids": {
+        "tmdb": 938150
+      },
+      "title": "Wardriver",
+      "year": 2026,
+      "source": "genre-explore",
+      "discoveredVia": "Thriller"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:114479",
+      "ids": {
+        "tmdb": 114479
+      },
+      "title": "The Acolyte",
+      "year": 2024,
+      "source": "genre-explore",
+      "discoveredVia": "War & Politics"
     }
   ]
 }
