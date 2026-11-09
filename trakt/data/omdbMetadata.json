@@ -40912,5 +40912,59 @@
   "director": null,
   "rated": "TV-MA",
   "fetchedAt": "2026-11-07"
+ },
+ "show:127948": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 2,
+   "raw": "2 nominations total"
+  },
+  "imdbRating": 6.6,
+  "imdbVotes": 7888,
+  "director": null,
+  "rated": "TV-MA",
+  "fetchedAt": "2026-11-09"
+ },
+ "movie:938150": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 0,
+   "raw": "N/A"
+  },
+  "imdbRating": 5.6,
+  "imdbVotes": 2586,
+  "director": "Rebecca Thomas",
+  "rated": "R",
+  "fetchedAt": "2026-11-09"
+ },
+ "show:114479": {
+  "rottenTomatoes": null,
+  "metacritic": null,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 1,
+   "totalWins": 3,
+   "totalNominations": 7,
+   "raw": "Nominated for 1 Primetime Emmy. 3 wins & 7 nominations total"
+  },
+  "imdbRating": 4.3,
+  "imdbVotes": 146414,
+  "director": null,
+  "rated": "TV-14",
+  "fetchedAt": "2026-11-09"
  }
 }
