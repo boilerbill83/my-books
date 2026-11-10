@@ -945,7 +945,7 @@ function renderNextUp(pick, enrichedMeta, omdbMeta, starredSet, upcomingSeasons,
 // Watch eventually, from watchTiers.json. The first Favorite is featured in
 // the "Watch This Next" block; the rest render as card groups. A solo
 // watchlist show missing from the file falls into Watch eventually.
-function buildTierRows(watchTiers, library, watchlist, scoredList, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress, coWatchSet, excludeKey, idx, omdbMeta) {
+function buildTierRows(watchTiers, library, watchlist, scoredList, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress, coWatchSet, excludeKey, idx, omdbMeta, airingKeys = new Set()) {
   const libByKey = new Map((library.titles || []).map(t => [t.titleKey, t]));
   const wlByKey = new Map((watchlist.titles || []).map(t => [t.titleKey, t]));
   const progByKey = new Map((currentlyWatching || []).map(t => [t.titleKey, t]));
@@ -960,7 +960,8 @@ function buildTierRows(watchTiers, library, watchlist, scoredList, currentlyWatc
     const predicted = scored?.bmtreScore ?? matchScore(hydrateTitle(wlByKey.get(k) || lib || { titleKey: k, type: 'show' }, enrichedMeta), idx, enrichedMeta, omdbMeta);
     return { ...row, predicted, reason: scored?.reason, inProgress: !!(lib && lib.plays != null && lib.airedEpisodes != null && lib.plays < lib.airedEpisodes) };
   };
-  const ok = k => enrichedMeta[k] && k.startsWith('show:') && !coWatchSet.has(k) && k !== excludeKey && wlByKey.has(k);
+  const ok = k => enrichedMeta[k] && k.startsWith('show:') && !coWatchSet.has(k) && k !== excludeKey && wlByKey.has(k)
+    && !isActivelyAiring({ titleKey: k, type: 'show' }, enrichedMeta); // genuinely mid-season shows live in What's Airing until they wrap
   const listed = new Set([...(watchTiers.favorites || []), ...(watchTiers.excited || []), ...(watchTiers.eventually || [])]);
   const unlisted = [...wlByKey.keys()].filter(k => !listed.has(k));
   // Bill (Nov 2026): anything sitting in Excited for more than 3 months
@@ -1159,7 +1160,7 @@ async function load() {
   // (titles Bill has named directly), computed live off the full (not
   // co-watch-filtered) data — see computeFavoriteStars()'s own comment.
   const starredSet = computeFavoriteStars(library, watchlist, manualStars);
-  const tiers = buildTierRows(watchTiers || {}, soloLibrary, soloWatchlistData, [...soloWatchlist, ...soloCandidates], soloCurrentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress, coWatchSet, watchingNow?.titleKey ?? null, idx, omdbMeta);
+  const tiers = buildTierRows(watchTiers || {}, soloLibrary, soloWatchlistData, [...soloWatchlist, ...soloCandidates], soloCurrentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress, coWatchSet, watchingNow?.titleKey ?? null, idx, omdbMeta, airingKeys);
   const featured = tiers.favorites[0] || tiers.excited[0] || tiers.eventually[0];
   renderNextUp(featured, enrichedMeta, omdbMeta, starredSet, upcomingSeasons, nextWatchFacts, tiers.favorites[0] ? 'Favorite' : 'Excited for');
   const restTiers = { favorites: tiers.favorites.filter(r => r !== featured), excited: tiers.excited.filter(r => r !== featured), eventually: tiers.eventually.filter(r => r !== featured) };
