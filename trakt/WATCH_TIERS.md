@@ -8,7 +8,6 @@ Guess rules: **Favorites** = Trakt favorites, gold-starred, or rated 9+. **Excit
 
 - The Lowdown (2025) — in progress 8/13, rated 9
 - Dark Matter (2024) — in progress 9/19, rated 9
-- It's Always Sunny in Philadelphia (2005) — in progress 177/187, rated 9
 - MobLand (2025) — in progress 10/18, rated 10
 - Dexter: Resurrection (2025) — in progress 10/12, rated 9
 
@@ -49,3 +48,4 @@ Guess rules: **Favorites** = Trakt favorites, gold-starred, or rated 9+. **Excit
 - The Terminal List (2022) — in progress 8/16, rated 8
 - Tulsa King (2022) — in progress 29/33, rated 8
 - Stick (2025) — in progress 10/12, rated 8
+- It's Always Sunny in Philadelphia (2005) — in progress 177/187, rated 9
