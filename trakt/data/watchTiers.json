@@ -1,0 +1,46 @@
+{
+ "note": "Bill's watch tiers for the Discover page's My Next Watch card (Favorites / Excited for / Watch eventually). Order within a tier is display order. A watchlist show not listed here falls into Watch eventually. Human-readable copy: trakt/WATCH_TIERS.md. Edit by telling Claude what to move.",
+ "favorites": [
+  "show:273247",
+  "show:196322",
+  "show:247718",
+  "show:259909"
+ ],
+ "excited": [
+  "show:298852",
+  "show:292741",
+  "show:249565",
+  "show:213562",
+  "show:239618",
+  "show:131142",
+  "show:299939",
+  "show:258230"
+ ],
+ "eventually": [
+  "show:211169",
+  "show:67178",
+  "show:80307",
+  "show:73375",
+  "show:43982",
+  "show:99741",
+  "show:63646",
+  "show:303630",
+  "show:290856",
+  "show:254420",
+  "show:259453",
+  "show:285322",
+  "show:139099",
+  "show:312693",
+  "show:291084",
+  "show:331641",
+  "show:308007",
+  "show:254630",
+  "show:288673",
+  "show:336199",
+  "show:226285",
+  "show:120911",
+  "show:153312",
+  "show:248830",
+  "show:2710"
+ ]
+}

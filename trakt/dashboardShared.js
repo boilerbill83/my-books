@@ -511,7 +511,7 @@ async function loadAllData() {
   const [dashboard, libraryRaw, watchlist, candidatePool, enrichedMeta, omdbMetaRaw, feedback,
          scrapedShowRatings, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
          currentlyWatchingFeature, familyWatchlist, releaseLog, goodreadsData, manualRatings, nextWatchFacts, nextWatchPins,
-         coWatchProgressRaw, manualStars] = await Promise.all([
+         coWatchProgressRaw, manualStars, watchTiers] = await Promise.all([
     get('./data/dashboard.json'),
     get('./data/library.json').catch(() => ({ titles: [] })),
     get('./data/watchlist.json').catch(() => ({ titles: [] })),
@@ -596,6 +596,7 @@ async function loadAllData() {
     // own comment and the file's own "note" field. {titleKeys:[]} is a
     // safe empty default — no manual stars, pure Trakt-favorite-derived.
     get('./data/manualStars.json').catch(() => ({ titleKeys: [] })),
+    get('./data/watchTiers.json').catch(() => ({ favorites: [], excited: [], eventually: [] })),
   ]);
   const library = mergeManualRatings(libraryRaw, manualRatings);
   const omdbMeta = mergeScrapedShowRatings(omdbMetaRaw, scrapedShowRatings);
@@ -610,7 +611,7 @@ async function loadAllData() {
   if (familyWatchlist?.titles) {
     familyWatchlist.titles = familyWatchlist.titles.map(t => ({ ...t, ids: t.ids || idsByKey.get(t.titleKey) }));
   }
-  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog, bookThemeCounts, nextWatchFacts, nextWatchPins, coWatchProgress, manualStars };
+  return { dashboard, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback, llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta, currentlyWatchingFeature, familyWatchlist, releaseLog, bookThemeCounts, nextWatchFacts, nextWatchPins, coWatchProgress, manualStars, watchTiers };
 }
 
 // Best Matches (Discover) and Prediction Misses (Quality) are two views of
