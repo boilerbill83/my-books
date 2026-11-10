@@ -917,7 +917,7 @@ function renderNextUp(pick, enrichedMeta, omdbMeta, starredSet, upcomingSeasons,
     audience != null ? `${audience}/100 audience` : null,
     runtimeLabel(cand, enrichedMeta) || null,
     meta.networks?.[0] || null,
-    meta.status || null,
+    meta.status === 'Returning Series' ? 'Ongoing' : (meta.status || null),
   ].filter(Boolean);
   const up = upcomingSeasons?.[pick.titleKey]?.shortWindow;
   const facts = nextWatchFacts?.shows?.[pick.titleKey]?.facts || [];
@@ -945,6 +945,22 @@ function renderNextUp(pick, enrichedMeta, omdbMeta, starredSet, upcomingSeasons,
 // Watch eventually, from watchTiers.json. The first Favorite is featured in
 // the "Watch This Next" block; the rest render as card groups. A solo
 // watchlist show missing from the file falls into Watch eventually.
+// Bill (Nov 2026): Ready for Me / Watch Eventually only include a show once
+// the whole most recent season has aired. Incomplete when (a) the next
+// scheduled episode is mid-season (episode number > 1), (b) the show hasn't
+// premiered yet (future firstAirDate, or its next episode is S?E1 with no
+// episode aired before it). A next episode that is E1 of a NEW season after
+// an already-aired earlier season does not count: the latest aired season is
+// complete.
+function latestSeasonIncomplete(meta, today = new Date()) {
+  if (!meta) return true;
+  const next = meta.nextEpisodeToAir;
+  if (meta.firstAirDate && new Date(meta.firstAirDate + 'T00:00:00Z') > today) return true;
+  if (next && next.episodeNumber > 1) return true;
+  if (next && next.episodeNumber === 1 && !meta.lastEpisodeToAir) return true;
+  return false;
+}
+
 function buildTierRows(watchTiers, library, watchlist, scoredList, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress, coWatchSet, excludeKey, idx, omdbMeta, airingKeys = new Set()) {
   const libByKey = new Map((library.titles || []).map(t => [t.titleKey, t]));
   const wlByKey = new Map((watchlist.titles || []).map(t => [t.titleKey, t]));
@@ -961,7 +977,7 @@ function buildTierRows(watchTiers, library, watchlist, scoredList, currentlyWatc
     return { ...row, predicted, reason: scored?.reason, inProgress: !!(lib && lib.plays != null && lib.airedEpisodes != null && lib.plays < lib.airedEpisodes) };
   };
   const ok = k => enrichedMeta[k] && k.startsWith('show:') && !coWatchSet.has(k) && k !== excludeKey && wlByKey.has(k)
-    && !isActivelyAiring({ titleKey: k, type: 'show' }, enrichedMeta); // genuinely mid-season shows live in What's Airing until they wrap
+    && !latestSeasonIncomplete(enrichedMeta[k]); // Bill: only show once the whole most recent season has aired
   const listed = new Set([...(watchTiers.favorites || []), ...(watchTiers.excited || []), ...(watchTiers.eventually || [])]);
   const unlisted = [...wlByKey.keys()].filter(k => !listed.has(k));
   // Bill (Nov 2026): anything sitting in Excited for more than 3 months
