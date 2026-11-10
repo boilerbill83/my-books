@@ -897,7 +897,7 @@ function sortWithStarsFirst(picks, starredSet) {
 // It is simply the front of the same sorted list the grid shows (favorites
 // first, then pinned, in-progress, then live ranking), so it can never
 // disagree with the grid; the grid below omits it to avoid a duplicate.
-function renderNextUp(pick, enrichedMeta, omdbMeta, starredSet, upcomingSeasons) {
+function renderNextUp(pick, enrichedMeta, omdbMeta, starredSet, upcomingSeasons, nextWatchFacts) {
   const el = document.getElementById('nextUp');
   if (!el) return;
   if (!pick) { el.innerHTML = ''; return; }
@@ -923,6 +923,7 @@ function renderNextUp(pick, enrichedMeta, omdbMeta, starredSet, upcomingSeasons)
     meta.status || null,
   ].filter(Boolean);
   const up = upcomingSeasons?.[pick.titleKey]?.shortWindow;
+  const facts = nextWatchFacts?.shows?.[pick.titleKey]?.facts || [];
   el.innerHTML = `
     <div class="tk-nu">
       <div class="tk-nu-poster">${posterImgHtml(poster, 'tk-hero-img', 110, 165, true)}</div>
@@ -934,6 +935,7 @@ function renderNextUp(pick, enrichedMeta, omdbMeta, starredSet, upcomingSeasons)
         ${meta.overview ? `<div class="tk-nu-overview">${esc(meta.overview)}</div>` : ''}
         ${why ? `<div class="tk-nu-why">${esc(why)}</div>` : ''}
         ${up ? `<div class="tk-nu-stats">Next season: ${esc(up)}</div>` : ''}
+        ${facts.length ? `<div class="tk-nu-facts"><div class="tk-hero-facts-title">Fun facts (spoiler-free)</div>${facts.slice(0, 3).map(f => `<div class="tk-hero-fact">${esc(f.text)}${f.source ? ` <a href="${esc(f.source)}" target="_blank" rel="noopener" class="tk-hero-fact-source">${esc(f.sourceLabel || 'source')}</a>` : ''}</div>`).join('')}</div>` : ''}
         <div class="tk-hero-actions">
           <a class="tk-btn tk-btn-primary" href="./deepdive.html?key=${encodeURIComponent(pick.titleKey)}">🔎 Deep Dive</a>
           <a class="tk-btn" href="${esc(traktUrl(cand))}" target="_blank" rel="noopener">Open on Trakt ↗</a>
@@ -1042,7 +1044,7 @@ function renderTasteLine(genreStats, crowdCompare, castStats, tenRatedCount) {
 async function load() {
   const { dashboard: d, library, watchlist, candidatePool, enrichedMeta, omdbMeta, feedback,
           llmTags, reviewedTags, currentlyWatching, coWatchTags, upcomingSeasons, personMeta,
-          currentlyWatchingFeature, familyWatchlist, bookThemeCounts, nextWatchPins, coWatchProgress,
+          currentlyWatchingFeature, familyWatchlist, bookThemeCounts, nextWatchPins, nextWatchFacts, coWatchProgress,
           manualStars
         } = await loadAllData();
 
@@ -1100,7 +1102,7 @@ async function load() {
   // co-watch-filtered) data — see computeFavoriteStars()'s own comment.
   const starredSet = computeFavoriteStars(library, watchlist, manualStars);
   const orderedNext = sortWithStarsFirst(nextWatchPicks, starredSet);
-  renderNextUp(orderedNext[0], enrichedMeta, omdbMeta, starredSet, upcomingSeasons);
+  renderNextUp(orderedNext[0], enrichedMeta, omdbMeta, starredSet, upcomingSeasons, nextWatchFacts);
   renderNextWatch(orderedNext.slice(1), enrichedMeta, starredSet);
 
   renderFamilyWatchList(familyWatchlist, enrichedMeta);

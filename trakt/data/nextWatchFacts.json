@@ -1,6 +1,26 @@
 {
   "note": "Real, hand-researched 'fun facts about the newest season' for the Discover page's 'My Next Watch' panel (Bill, 2026-09-15: 'these should be shows from my watchlist that recently wrapped up a season... don't show scores, just the image, the title and a couple fun facts from the newest season'). Same sourced-never-fabricated discipline as currentlyWatchingFeature.json's own facts array. WHICH 4 shows the panel features is live-computed every page load (see discover.js's pickNextWatch()/isRecentlyWrappedSeason()) — this file only supplies facts for whichever shows have actually been researched. A show the live selection picks with no entry here simply renders without a facts block (poster + title only) rather than blocking or fabricating anything, the same graceful-degradation precedent currentlyWatchingFeature.json's own facts field established. Re-research and add an entry here whenever the live top-4 selection shifts to a new, not-yet-covered show.",
   "shows": {
+    "show:2710": {
+      "title": "It's Always Sunny in Philadelphia",
+      "facts": [
+        {
+          "text": "The pilot was famously shot for almost nothing. The popular legend says $200, though Rob McElhenney has said he doesn't know where that number came from; Glenn Howerton has admitted it may have cost as little as $85.",
+          "source": "https://screenrant.com/always-sunny-in-philadelphia-trivia-facts/",
+          "sourceLabel": "Screen Rant"
+        },
+        {
+          "text": "Danny DeVito wasn't in the original pitch. FX had no marketing money, so it pushed for a recognizable name, and he joined as Frank in the first episode of season two.",
+          "source": "https://en.wikipedia.org/wiki/It's_Always_Sunny_in_Philadelphia",
+          "sourceLabel": "Wikipedia"
+        },
+        {
+          "text": "The theme song and plenty of the early music are public domain, a leftover from the show's shoestring beginnings.",
+          "source": "https://www.sporcle.com/blog/2023/06/its-always-sunny-in-philadelphia-trivia-facts/",
+          "sourceLabel": "Sporcle"
+        }
+      ]
+    },
     "show:287238": {
       "title": "Furious",
       "facts": [
