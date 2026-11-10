@@ -958,10 +958,20 @@ function buildTierRows(watchTiers, library, watchlist, scoredList, currentlyWatc
   const ok = k => enrichedMeta[k] && k.startsWith('show:') && !coWatchSet.has(k) && k !== excludeKey && wlByKey.has(k);
   const listed = new Set([...(watchTiers.favorites || []), ...(watchTiers.excited || []), ...(watchTiers.eventually || [])]);
   const unlisted = [...wlByKey.keys()].filter(k => !listed.has(k));
+  // Bill (Nov 2026): anything sitting in Excited for more than 3 months
+  // (90 days) isn't really exciting him, so it bumps down to Watch
+  // eventually (placed first there, as the most recently demoted).
+  const EXCITED_MAX_DAYS = 90;
+  const stale = k => {
+    const since = watchTiers.excitedSince?.[k];
+    return since && (Date.now() - new Date(since + 'T00:00:00Z')) / 86400000 > EXCITED_MAX_DAYS;
+  };
+  const excitedKeys = (watchTiers.excited || []).filter(k => !stale(k));
+  const demoted = (watchTiers.excited || []).filter(stale);
   return {
     favorites: (watchTiers.favorites || []).filter(ok).map(mk),
-    excited: (watchTiers.excited || []).filter(ok).map(mk),
-    eventually: [...(watchTiers.eventually || []), ...unlisted].filter(ok).map(mk),
+    excited: excitedKeys.filter(ok).map(mk),
+    eventually: [...demoted, ...(watchTiers.eventually || []), ...unlisted].filter(ok).map(mk),
   };
 }
 
