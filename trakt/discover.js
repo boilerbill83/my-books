@@ -892,6 +892,56 @@ function sortWithStarsFirst(picks, starredSet) {
   return [...starred, ...rest];
 }
 
+// "⭐ Watch This Next" — Bill (Nov 2026): a single, recommended pick above
+// the My Next Watch grid, with a special badge and fuller show details.
+// It is simply the front of the same sorted list the grid shows (favorites
+// first, then pinned, in-progress, then live ranking), so it can never
+// disagree with the grid; the grid below omits it to avoid a duplicate.
+function renderNextUp(pick, enrichedMeta, omdbMeta, starredSet, upcomingSeasons) {
+  const el = document.getElementById('nextUp');
+  if (!el) return;
+  if (!pick) { el.innerHTML = ''; return; }
+  const meta = enrichedMeta[pick.titleKey] || {};
+  const cand = { titleKey: pick.titleKey, type: pick.type || 'show', title: pick.title || meta.title, year: pick.year || meta.year, ids: pick.ids };
+  const poster = posterUrl(pick.titleKey, enrichedMeta, 'w185');
+  const omdb = omdbMeta?.[pick.titleKey];
+  const critic = criticScore(omdb), audience = realAudienceScore(omdb);
+  const cast = castLine(meta);
+  const why = pick.inProgress
+    ? `You're already partway through this one${pick.episodesReady ? ` — ${pick.episodesReady} episode${pick.episodesReady === 1 ? '' : 's'} ready` : ''}${pick.myRating != null ? `, rated ${pick.myRating}/10 so far` : ''}.`
+    : (pick.reason || '');
+  const reasons = [];
+  if (starredSet?.has(pick.titleKey)) reasons.push('A Trakt favorite');
+  else if (pick.inProgress) reasons.push('In progress');
+  else reasons.push('Top match on your watchlist');
+  const stats = [
+    meta.voteAverage != null ? `${meta.voteAverage.toFixed(1)} TMDB` : null,
+    critic != null ? `${critic}/100 critics` : null,
+    audience != null ? `${audience}/100 audience` : null,
+    runtimeLabel(cand, enrichedMeta) || null,
+    meta.networks?.[0] || null,
+    meta.status || null,
+  ].filter(Boolean);
+  const up = upcomingSeasons?.[pick.titleKey]?.shortWindow;
+  el.innerHTML = `
+    <div class="tk-nu">
+      <div class="tk-nu-poster">${posterImgHtml(poster, 'tk-hero-img', 110, 165, true)}</div>
+      <div class="tk-nu-body">
+        <div class="tk-nu-badge">⭐ Watch This Next <span>· ${esc(reasons[0])}</span></div>
+        <div class="tk-nu-title">${typeIcon(cand.type)} ${titleLink(cand)}${cand.year ? ` <span class="tk-hero-year">(${esc(cand.year)})</span>` : ''}</div>
+        <div class="tk-nu-stats">${esc(stats.join(' · '))}</div>
+        ${cast ? `<div class="tk-hero-cast">Starring ${esc(cast)}</div>` : ''}
+        ${meta.overview ? `<div class="tk-nu-overview">${esc(meta.overview)}</div>` : ''}
+        ${why ? `<div class="tk-nu-why">${esc(why)}</div>` : ''}
+        ${up ? `<div class="tk-nu-stats">Next season: ${esc(up)}</div>` : ''}
+        <div class="tk-hero-actions">
+          <a class="tk-btn tk-btn-primary" href="./deepdive.html?key=${encodeURIComponent(pick.titleKey)}">🔎 Deep Dive</a>
+          <a class="tk-btn" href="${esc(traktUrl(cand))}" target="_blank" rel="noopener">Open on Trakt ↗</a>
+        </div>
+      </div>
+    </div>`;
+}
+
 function renderNextWatch(picks, enrichedMeta, starredSet) {
   const subtitleFn = c => {
     if (c.inProgress) {
@@ -1049,7 +1099,9 @@ async function load() {
   // (titles Bill has named directly), computed live off the full (not
   // co-watch-filtered) data — see computeFavoriteStars()'s own comment.
   const starredSet = computeFavoriteStars(library, watchlist, manualStars);
-  renderNextWatch(nextWatchPicks, enrichedMeta, starredSet);
+  const orderedNext = sortWithStarsFirst(nextWatchPicks, starredSet);
+  renderNextUp(orderedNext[0], enrichedMeta, omdbMeta, starredSet, upcomingSeasons);
+  renderNextWatch(orderedNext.slice(1), enrichedMeta, starredSet);
 
   renderFamilyWatchList(familyWatchlist, enrichedMeta);
 
