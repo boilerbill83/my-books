@@ -14,7 +14,18 @@ name: Deploy Site (GitHub Pages)
 #    which never triggers push workflows), deploying only if content changed.
 on:
   workflow_dispatch: {}
-  # TRIGGERS_PLACEHOLDER
+  push:
+    branches: [main]
+    paths:
+      - '**.html'
+      - '**.js'
+      - '**.css'
+      - 'data/**'
+      - 'trakt/data/**'
+      - 'output/data-quality-*.json'
+      - '.github/workflows/pages-deploy.yml'
+  schedule:
+    - cron: '7,37 * * * *'   # every 30 min: catches commits made by other workflows
 
 permissions:
   contents: read
