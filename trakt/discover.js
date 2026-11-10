@@ -11,7 +11,7 @@
 
 import {
   rankAll, matchScore, hydrateTitle, popularityScore, criticScore, realAudienceScore,
-  awardsScore, posterUrl, diversityRerank, inferSubgenres, inferSubjects, inferEra,
+  awardsScore, posterUrl, diversityRerank, inferGenre, inferSubgenres, inferSubjects, inferEra,
   isActivelyAiring, traktUrl, prestigeScore, PRESTIGE_BADGE_THRESHOLD,
 } from './engine.js';
 import {
@@ -398,7 +398,7 @@ function renderAllTitlesTable(allRows) {
 // TMDB community rating — whatever's actually present, since candidate
 // stubs may still be mid-enrichment.
 
-function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags = {}, personMeta = {}) {
+function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta, omdbMeta, llmTags = {}, reviewedTags = {}, personMeta = {}, perOrigin = 4) {
   const el = document.getElementById(sectionId);
   // Bill: "exclude it from the You'll Love panel but don't adjust the
   // actual predicted score." Pulled out here, at the display layer only -
@@ -438,7 +438,7 @@ function renderRecPanel(sectionId, watchlistItems, candidateItems, enrichedMeta,
   // below) has to match or it would silently re-introduce the same
   // clamped-tie-order problem at the display layer.
   const sortFn = (a, b) => (b.bmtreScoreRaw - a.bmtreScoreRaw) || (b.confidenceScore - a.confidenceScore);
-  const HALF = 4;
+  const HALF = perOrigin;
   const wlRanked = diversityRerank([...watchlistItems].sort(sortFn), enrichedMeta, { windowSize: HALF, maxPerGenre: 2 });
   const candRanked = diversityRerank([...candidateItems].sort(sortFn), enrichedMeta, { windowSize: HALF, maxPerGenre: 2 });
   let wlPicks = wlRanked.slice(0, HALF);
@@ -1203,17 +1203,15 @@ async function load() {
 
   renderFamilyWatchList(familyWatchlist, enrichedMeta);
 
-  // Bill: "the separate section for me to find new shows will be the
-  // existing Shows You'll Love. If I show on my 'watch next' or 'shows we
-  // watch together', it shouldn't show up here." Co-watch is already
-  // excluded (soloWatchlist/soloCandidates, above) — this adds the same
-  // exclusion for whatever My Next Watch just picked, so a title can never
-  // appear in both panels at once. Movies aren't affected (My Next Watch
-  // is shows-only), so movieRecList's pool is untouched.
-  const nextWatchKeySet = new Set(nextWatchPicks.map(c => c.titleKey));
-  const showWatchlistForRec = byType(soloWatchlist, 'show').filter(c => !nextWatchKeySet.has(c.titleKey));
-  renderRecPanel('movieRecList', byType(soloWatchlist, 'movie'), byType(soloCandidates, 'movie'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
-  renderRecPanel('showRecList', showWatchlistForRec, byType(soloCandidates, 'show'), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta);
+  // Shows You'll Love was removed (Bill, Nov 2026). Movies You'll Love is
+  // two columns: Action/Comedy (and its lighter siblings) vs. Drama (and
+  // everything heavier), split on the clean single-valued Genre field.
+  const LIGHT_GENRES = new Set(['action', 'comedy', 'adventure', 'science-fiction', 'fantasy']);
+  const movieGenre = c => inferGenre(enrichedMeta[c.titleKey], llmTags[c.titleKey], reviewedTags[c.titleKey]);
+  const isLight = c => LIGHT_GENRES.has(movieGenre(c));
+  const mvWl = byType(soloWatchlist, 'movie'), mvCand = byType(soloCandidates, 'movie');
+  renderRecPanel('movieRecLight', mvWl.filter(isLight), mvCand.filter(isLight), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta, 3);
+  renderRecPanel('movieRecDrama', mvWl.filter(c => !isLight(c)), mvCand.filter(c => !isLight(c)), enrichedMeta, omdbMeta, llmTags, reviewedTags, personMeta, 3);
 
   const coWatchRows = computeCoWatchRows(coWatchKeys, library, watchlist, candidatePool, fromWatchlist, fromCandidates, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress);
   renderCoWatchCards('coWatchCards', coWatchRows, enrichedMeta, omdbMeta, llmTags, reviewedTags);

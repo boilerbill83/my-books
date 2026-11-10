@@ -172,8 +172,9 @@
          instead, so #1 stays flush at the top and #8 flush at the bottom
          in both columns, matching exactly regardless of per-item content
          length. */
-      #movieRecCard, #showRecCard { display: flex; flex-direction: column; }
-      #movieRecCard .tk-rec-list, #showRecCard .tk-rec-list { flex: 1; justify-content: space-between; }
+      .tk-mv-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+      .tk-mv-cols > div { min-width: 0; }
+      @media (max-width: 800px) { .tk-mv-cols { grid-template-columns: 1fr; } }
 
       /* Genres You Rate Highest vs Most-Watched Actors (caught by
          trakt/verify_paired_layouts.py, 2026-10-01): a real, visible
@@ -371,18 +372,6 @@
           <div id="eventuallyWatch" class="tk-nw-grid"></div>
         </div>
 
-        <div class="tk-row2" style="margin-bottom:14px;">
-          <div class="tk-card" id="movieRecCard">
-            <div class="tk-card-heading">🎬 Movies You'll Love</div>
-            <div class="tk-rec-list" id="movieRecList"></div>
-          </div>
-          <div class="tk-card" id="showRecCard">
-            <div class="tk-card-heading">📺 Shows You'll Love</div>
-            <div class="tk-rec-list" id="showRecList"></div>
-          </div>
-        </div>
-        <div class="tk-rec-seeall" style="margin-bottom:24px;"><a href="./recommend.html">See the full ranked watchlist →</a></div>
-
         <div class="tk-card" style="margin-bottom:24px;" id="coWatchSection">
           <div class="tk-card-heading">📺 <a href="./watch-together.html" class="tk-heading-link">Shows You Watch Together</a></div>
           <div class="tk-card-note">Manually tagged — shows you only watch with your wife, kept out of the solo picks above and grouped here instead. Shows only what's airing or has an unwatched episode ready right now; the full tagged list lives on the Watch Together page.</div>
@@ -395,6 +384,21 @@
           <div class="tk-card-note">Shows you're mid-season on, plus airing shows you'd love, soonest next episode first. A show moves to Ready for Me once its season wraps.</div>
           <div id="airingStatusList"></div>
         </div>
+
+        <div class="tk-card" id="movieRecCard" style="margin-bottom: 14px;">
+          <div class="tk-card-heading">🎬 Movies You'll Love</div>
+          <div class="tk-mv-cols">
+            <div>
+              <div class="tk-nw-group-title">💥 Action &amp; Comedy</div>
+              <div class="tk-rec-list" id="movieRecLight"></div>
+            </div>
+            <div>
+              <div class="tk-nw-group-title">🎭 Drama</div>
+              <div class="tk-rec-list" id="movieRecDrama"></div>
+            </div>
+          </div>
+        </div>
+        <div class="tk-rec-seeall" style="margin-bottom:24px;"><a href="./recommend.html">See the full ranked watchlist →</a></div>
 
         <div class="tk-card" id="familyWatchCard" style="margin-bottom: 24px;">
           <div class="tk-card-heading">👨‍👩‍👧‍👦 <a href="./family.html" class="tk-heading-link">Family Watch List</a></div>
