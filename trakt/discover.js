@@ -998,7 +998,13 @@ function renderTierGroups(tiers, enrichedMeta, starredSet) {
   };
   const reasonFn = c => c.inProgress ? 'You\'re already partway through this one.' : (c.reason || '');
   const el = document.getElementById('nextWatch');
-  const groups = [['⭐ Favorites', 'nwFav', tiers.favorites], ['🔥 Excited for', 'nwExc', tiers.excited], ['🕰️ Watch eventually', 'nwEvt', tiers.eventually]];
+  const groups = [['⭐ Favorites', 'nwFav', tiers.favorites], ['🔥 Excited for', 'nwExc', tiers.excited]];
+  // Watch eventually gets its own box (Bill, Nov 2026) — every title, no cap.
+  const evtEl = document.getElementById('eventuallyWatch');
+  if (evtEl) {
+    document.getElementById('eventuallyCount').textContent = tiers.eventually.length;
+    renderWatchCards('eventuallyWatch', tiers.eventually, enrichedMeta, subtitleFn, 'Nothing in Watch eventually right now.', reasonFn, starredSet);
+  }
   // Bill: "this box has way too many items" — each tier shows its top
   // TIER_VISIBLE cards (already sorted by predicted score); the rest sit
   // behind a "Show all N" toggle.
