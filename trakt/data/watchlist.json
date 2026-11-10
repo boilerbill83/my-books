@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-11-06T19:45:11.128Z",
-    "count": 64
+    "generatedAt": "2026-11-10T01:58:04.124Z",
+    "count": 72
   },
   "titles": [
     {
@@ -1195,6 +1195,157 @@
       "year": 2024,
       "watchlisted": true,
       "watchlistedAt": "2026-11-05T16:39:39.000Z"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1757386",
+      "ids": {
+        "imdb": "tt23148884",
+        "plex": {
+          "guid": "63643985830afdbb044cfbd9",
+          "slug": "funny-money-the-dane-cook-story"
+        },
+        "slug": "funny-money-the-dane-cook-story-2026",
+        "tmdb": 1757386,
+        "trakt": 1395551
+      },
+      "title": "Funny Money: The Dane Cook Story",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-11-08T20:57:35.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:249565",
+      "ids": {
+        "imdb": "tt31842126",
+        "plex": {
+          "guid": "65fb48e6cc1db66cc28758ac",
+          "slug": null
+        },
+        "slug": "the-good-daughter-2026",
+        "tmdb": 249565,
+        "tvdb": 447848,
+        "trakt": 231566
+      },
+      "title": "The Good Daughter",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-11-10T01:41:20.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:290826",
+      "ids": {
+        "imdb": "tt36843594",
+        "plex": {
+          "guid": "681bd7542edf9a1d951eb2a3",
+          "slug": null
+        },
+        "slug": "dig-2026",
+        "tmdb": 290826,
+        "tvdb": 463422,
+        "trakt": 284854
+      },
+      "title": "Dig",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-11-10T01:41:39.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:308007",
+      "ids": {
+        "imdb": "tt36786185",
+        "plex": {
+          "guid": "683f0c3e34192c1096a45c9a",
+          "slug": null
+        },
+        "slug": "the-altruists",
+        "tmdb": 308007,
+        "tvdb": 464202,
+        "trakt": 310716
+      },
+      "title": "The Altruists",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-11-10T01:42:02.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:254630",
+      "ids": {
+        "imdb": "tt32375763",
+        "plex": {
+          "guid": "6647e95b5c60c923b730c93b",
+          "slug": null
+        },
+        "slug": "12-12-12",
+        "tmdb": 254630,
+        "tvdb": 450094,
+        "trakt": 240270
+      },
+      "title": "12 12 12",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-11-10T01:42:18.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:334470",
+      "ids": {
+        "imdb": "tt35926686",
+        "plex": {
+          "guid": "67c41c6815a9a838d44771ba",
+          "slug": "it-gets-worse"
+        },
+        "slug": "it-gets-worse",
+        "tmdb": 334470,
+        "tvdb": 460667,
+        "trakt": 328148
+      },
+      "title": "It Gets Worse",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-11-10T01:42:42.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:336199",
+      "ids": {
+        "imdb": "tt40939600",
+        "plex": {
+          "guid": null,
+          "slug": null
+        },
+        "slug": "crime-and-punishment-in-america",
+        "tmdb": 336199,
+        "tvdb": 387456,
+        "trakt": 328697
+      },
+      "title": "Crime and Punishment in America",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-11-10T01:43:04.000Z"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:312693",
+      "ids": {
+        "imdb": "tt38504111",
+        "plex": {
+          "guid": "685099582d3aaccc509abf21",
+          "slug": "small-prophets"
+        },
+        "slug": "small-prophets",
+        "tmdb": 312693,
+        "tvdb": 464815,
+        "trakt": 315488
+      },
+      "title": "Small Prophets",
+      "year": 2026,
+      "watchlisted": true,
+      "watchlistedAt": "2026-11-10T01:49:22.000Z"
     }
   ]
 }

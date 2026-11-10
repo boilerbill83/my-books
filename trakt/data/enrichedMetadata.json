@@ -574933,5 +574933,733 @@
   "year": 2026,
   "type": "show",
   "fetchedAt": "2026-11-10"
+ },
+ "movie:1757386": {
+  "genres": [
+   "Documentary"
+  ],
+  "overview": "At the height of his career, Dane Cook wasn't just selling out arenas; he was redefining what a stand-up comedian could be. Then, in a shocking betrayal, the person he trusted most stole millions of dollars, forever changing his life. FUNNY MONEY: THE DANECOOK STORY is a gripping documentary about fame, family, greed, and survival, revealing the extraordinary true story behind one of comedy's biggest icons.",
+  "keywords": [],
+  "originalLanguage": "en",
+  "imdbId": "tt23148884",
+  "voteAverage": 7.0,
+  "voteCount": 2,
+  "popularity": 3.9096,
+  "posterPath": "/5oKnnzzoOJk8v1wR4Qal8iRgllg.jpg",
+  "similarToIds": [],
+  "recommendedIds": [
+   159622,
+   603106,
+   446173,
+   1461714,
+   869250,
+   450945,
+   21925,
+   557646,
+   116167,
+   322506,
+   661289,
+   39333,
+   14201,
+   24348,
+   627133,
+   26594,
+   293262,
+   33470,
+   940075,
+   305091
+  ],
+  "productionCompanies": [],
+  "topCast": [
+   "Dane Cook",
+   "Al Del Bene",
+   "Kelsi Cook",
+   "Courtney Cook"
+  ],
+  "topCastDetail": [
+   {
+    "id": 31837,
+    "name": "Dane Cook",
+    "gender": 2
+   },
+   {
+    "id": 237291,
+    "name": "Al Del Bene",
+    "gender": 2
+   },
+   {
+    "id": 6440497,
+    "name": "Kelsi Cook",
+    "gender": 0
+   },
+   {
+    "id": 6440498,
+    "name": "Courtney Cook",
+    "gender": 0
+   }
+  ],
+  "releaseDate": "2026-09-29",
+  "runtime": 118,
+  "director": "Brett Harvey",
+  "directors": [
+   "Brett Harvey"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Brett Harvey"
+  ],
+  "title": "Funny Money: The Dane Cook Story",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-11-10"
+ },
+ "show:249565": {
+  "genres": [
+   "Drama",
+   "Mystery"
+  ],
+  "overview": "Sisters Charlotte and Samantha Quinn have spent the last twenty-eight years trying to piece together the lives that were fractured by a single night of violence. When another attack splinters the small town of Pikeville, Charlotte is the first witness on the scene. Now a lawyer like her father, she\u2019s forced to confront her own demons as the case twists through one shocking revelation after another. In the end, both she and Samantha find themselves wondering if the price of being the good daughter was worth it after all.",
+  "keywords": [
+   "based on novel or book",
+   "miniseries",
+   "psychological thriller",
+   "suspense thriller"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt31842126",
+  "voteAverage": 10.0,
+  "voteCount": 2,
+  "popularity": 5.9996,
+  "posterPath": "/qJPvyo9Pxz3MQndd3tKSocLz1Nt.jpg",
+  "similarToIds": [
+   210674,
+   29244,
+   29246,
+   29247,
+   29336,
+   29341,
+   243028,
+   29345,
+   210445,
+   60293,
+   310818,
+   60066,
+   93998,
+   94028,
+   19,
+   59983,
+   29055,
+   29063,
+   93896,
+   29004
+  ],
+  "recommendedIds": [
+   108181,
+   129612,
+   284605,
+   220801,
+   147050,
+   157395,
+   241372,
+   233256,
+   6127,
+   253376,
+   130464,
+   241549,
+   246461,
+   256585,
+   123192,
+   244244,
+   256711,
+   229940,
+   244243,
+   278178
+  ],
+  "productionCompanies": [
+   "Iron Ocean",
+   "Made Up Stories",
+   "Fifth Season"
+  ],
+  "topCast": [
+   "Rose Byrne",
+   "Meghann Fahy",
+   "Brendan Gleeson",
+   "Harper Steele",
+   "Michael Dorman"
+  ],
+  "topCastDetail": [
+   {
+    "id": 9827,
+    "name": "Rose Byrne",
+    "gender": 1
+   },
+   {
+    "id": 1028899,
+    "name": "Meghann Fahy",
+    "gender": 1
+   },
+   {
+    "id": 2039,
+    "name": "Brendan Gleeson",
+    "gender": 2
+   },
+   {
+    "id": 1215937,
+    "name": "Harper Steele",
+    "gender": 1
+   },
+   {
+    "id": 76068,
+    "name": "Michael Dorman",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2026-11-12",
+  "episodeRunTime": null,
+  "createdBy": [],
+  "status": "Returning Series",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 6,
+  "seasonEpisodeCounts": {
+   "1": 6
+  },
+  "nextEpisodeToAir": {
+   "airDate": "2026-11-12",
+   "seasonNumber": 1,
+   "episodeNumber": 1
+  },
+  "lastEpisodeToAir": null,
+  "currentSeasonFinale": {
+   "seasonNumber": 1,
+   "episodeCount": 6,
+   "finaleEpisodeNumber": 6,
+   "finaleDate": "2026-11-12"
+  },
+  "networks": [
+   "Peacock"
+  ],
+  "creatorCredits": [
+   "Bruna Papandrea",
+   "Rose Byrne",
+   "Michelle Purple"
+  ],
+  "title": "The Good Daughter",
+  "year": 2026,
+  "type": "show",
+  "fetchedAt": "2026-11-10"
+ },
+ "show:308007": {
+  "genres": [
+   "Drama",
+   "Crime"
+  ],
+  "overview": "The story of Sam Bankman-Fried and Caroline Ellison, two hyper-smart, ambitious young idealists who tried to remake the global financial system in the blink of an eye - before they were accused of stealing $8 billion and became Gen Z's own Bonnie & Clyde.",
+  "keywords": [
+   "miniseries",
+   "based on magazine, newspaper or article"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt36786185",
+  "voteAverage": 0.0,
+  "voteCount": 0,
+  "popularity": 4.6988,
+  "posterPath": "/foTyGlJ1jJh8QID5KwjsMytsJTV.jpg",
+  "similarToIds": [
+   210674,
+   29244,
+   29246,
+   29247,
+   29336,
+   29341,
+   29345,
+   60066,
+   93998,
+   94028,
+   29004,
+   93878,
+   93886,
+   93888,
+   232,
+   235,
+   352,
+   29289,
+   29204,
+   260
+  ],
+  "recommendedIds": [
+   67384,
+   284558,
+   10370,
+   108181,
+   280511,
+   248416,
+   197434,
+   241372,
+   323903,
+   226174,
+   158083,
+   255570,
+   80213,
+   129612,
+   87773,
+   135868,
+   64836,
+   2850,
+   218351,
+   234377
+  ],
+  "productionCompanies": [
+   "Vox Media Studios",
+   "Higher Ground",
+   "New York Magazine"
+  ],
+  "topCast": [
+   "Julia Garner",
+   "Anthony Boyle",
+   "Alex Lawther",
+   "Karan Soni",
+   "Naomi Okada"
+  ],
+  "topCastDetail": [
+   {
+    "id": 936970,
+    "name": "Julia Garner",
+    "gender": 1
+   },
+   {
+    "id": 1727213,
+    "name": "Anthony Boyle",
+    "gender": 2
+   },
+   {
+    "id": 1379277,
+    "name": "Alex Lawther",
+    "gender": 2
+   },
+   {
+    "id": 1109702,
+    "name": "Karan Soni",
+    "gender": 2
+   },
+   {
+    "id": 5652992,
+    "name": "Naomi Okada",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2026-11-19",
+  "episodeRunTime": null,
+  "createdBy": [
+   "Graham Moore"
+  ],
+  "status": "In Production",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 8,
+  "seasonEpisodeCounts": {
+   "1": 8
+  },
+  "nextEpisodeToAir": {
+   "airDate": "2026-11-19",
+   "seasonNumber": 1,
+   "episodeNumber": 1
+  },
+  "lastEpisodeToAir": null,
+  "currentSeasonFinale": {
+   "seasonNumber": 1,
+   "episodeCount": 8,
+   "finaleEpisodeNumber": 8,
+   "finaleDate": "2026-11-19"
+  },
+  "networks": [
+   "Netflix"
+  ],
+  "creatorCredits": [
+   "Graham Moore",
+   "Julia Garner",
+   "Jacqueline Hoyt"
+  ],
+  "title": "The Altruists",
+  "year": 2026,
+  "type": "show",
+  "fetchedAt": "2026-11-10"
+ },
+ "show:254630": {
+  "genres": [
+   "Action & Adventure",
+   "Crime",
+   "Drama"
+  ],
+  "overview": "A heist takes 12 months to plan, 12 hours to execute\u2014and a thief not caught within 12 days won't be caught at all. Across three pulse-pounding timelines, an FBI agent and a career criminal face off in a deadly game of cat and mouse through Europe.",
+  "keywords": [
+   "europe",
+   "heist",
+   "cat and mouse",
+   "fbi agent",
+   "thriller"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt32375763",
+  "voteAverage": 0.0,
+  "voteCount": 0,
+  "popularity": 7.6827,
+  "posterPath": "/8q6BvFQuKM1Rud4E9NQDaMGy9EL.jpg",
+  "similarToIds": [
+   211684,
+   211892,
+   244652,
+   95744,
+   312704,
+   312747,
+   211796,
+   211927,
+   95396,
+   1425,
+   1426,
+   1437,
+   95459,
+   281227,
+   280888,
+   61260,
+   95259,
+   244207,
+   95868,
+   244525
+  ],
+  "recommendedIds": [
+   227318,
+   156902,
+   278624,
+   285807,
+   64199,
+   225385,
+   46975,
+   218351,
+   262280,
+   222766,
+   85021,
+   247732,
+   79412,
+   68735,
+   87773,
+   1486,
+   287238,
+   129552,
+   262352,
+   108978
+  ],
+  "productionCompanies": [
+   "Make It With Gravy",
+   "Inspire Entertainment",
+   "Anonymous Content"
+  ],
+  "topCast": [
+   "Anthony Mackie",
+   "Jamie Dornan",
+   "Jack Kesy",
+   "Agathe Rousselle",
+   "Sallie Harmsen"
+  ],
+  "topCastDetail": [
+   {
+    "id": 53650,
+    "name": "Anthony Mackie",
+    "gender": 2
+   },
+   {
+    "id": 1254583,
+    "name": "Jamie Dornan",
+    "gender": 2
+   },
+   {
+    "id": 1292258,
+    "name": "Jack Kesy",
+    "gender": 2
+   },
+   {
+    "id": 2418333,
+    "name": "Agathe Rousselle",
+    "gender": 1
+   },
+   {
+    "id": 544096,
+    "name": "Sallie Harmsen",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2026-11-12",
+  "episodeRunTime": null,
+  "createdBy": [
+   "Dudi Appleton",
+   "Jim Keeble"
+  ],
+  "status": "Returning Series",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 8,
+  "seasonEpisodeCounts": {
+   "1": 8
+  },
+  "nextEpisodeToAir": {
+   "airDate": "2026-11-12",
+   "seasonNumber": 1,
+   "episodeNumber": 1
+  },
+  "lastEpisodeToAir": null,
+  "currentSeasonFinale": {
+   "seasonNumber": 1,
+   "episodeCount": 8,
+   "finaleEpisodeNumber": 8,
+   "finaleDate": "2026-12-24"
+  },
+  "networks": [
+   "Apple TV"
+  ],
+  "creatorCredits": [
+   "Dudi Appleton",
+   "Jim Keeble",
+   "Jason Spire"
+  ],
+  "title": "12 12 12",
+  "year": 2026,
+  "type": "show",
+  "fetchedAt": "2026-11-10"
+ },
+ "show:336199": {
+  "genres": [
+   "Documentary"
+  ],
+  "overview": "Explores the history of criminal justice in America \u2014 from the pre-colonial period to 21st century mass incarceration.",
+  "keywords": [
+   "miniseries",
+   "usa history",
+   "criminal justice system",
+   "united states of america (usa)"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt40939600",
+  "voteAverage": 0.0,
+  "voteCount": 0,
+  "popularity": 1.3881,
+  "posterPath": "/acfpMRRWRgVrsyA2Rb2gxV3BDgQ.jpg",
+  "similarToIds": [
+   94813,
+   852,
+   855,
+   857,
+   128182,
+   243545,
+   243002,
+   29692,
+   243348,
+   887,
+   311883,
+   243249,
+   60686,
+   211179,
+   211188,
+   1044,
+   282537,
+   213345,
+   245782,
+   97062
+  ],
+  "recommendedIds": [
+   1181,
+   214180,
+   209167,
+   81337,
+   316898,
+   328735,
+   60744,
+   72541,
+   38122,
+   15030,
+   15069,
+   102905,
+   105763,
+   19215,
+   229516,
+   83181,
+   36105,
+   1802,
+   274820,
+   133358
+  ],
+  "productionCompanies": [
+   "Skiff Mountain Films"
+  ],
+  "topCast": [
+   "Keith David"
+  ],
+  "topCastDetail": [
+   {
+    "id": 65827,
+    "name": "Keith David",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2026-11-16",
+  "episodeRunTime": null,
+  "createdBy": [],
+  "status": "Returning Series",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 1,
+  "seasonEpisodeCounts": {
+   "1": 1
+  },
+  "nextEpisodeToAir": {
+   "airDate": "2026-11-16",
+   "seasonNumber": 1,
+   "episodeNumber": 1
+  },
+  "lastEpisodeToAir": null,
+  "currentSeasonFinale": {
+   "seasonNumber": 1,
+   "episodeCount": 1,
+   "finaleEpisodeNumber": 1,
+   "finaleDate": "2026-11-16"
+  },
+  "networks": [
+   "PBS"
+  ],
+  "creatorCredits": [
+   "Sam Pollard",
+   "Ken Burns"
+  ],
+  "title": "Crime and Punishment in America",
+  "year": 2026,
+  "type": "show",
+  "fetchedAt": "2026-11-10"
+ },
+ "show:312693": {
+  "genres": [
+   "Comedy",
+   "Drama",
+   "Mystery"
+  ],
+  "overview": "The magical and mundane unfold in a suburban shed as a lonely man stumbles on the supernatural.",
+  "keywords": [
+   "magical realism",
+   "homunculus",
+   "garden shed"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt38504111",
+  "voteAverage": 7.971,
+  "voteCount": 69,
+  "popularity": 12.1565,
+  "posterPath": "/39pC4gr8GTD7dDcuoGLbbyZSyTk.jpg",
+  "similarToIds": [
+   286732,
+   290278,
+   253296,
+   106292,
+   219719,
+   293116,
+   114989,
+   87028,
+   83053,
+   278169,
+   127395,
+   127403,
+   127405,
+   127406,
+   127269,
+   127278,
+   228,
+   127283,
+   127470,
+   93839
+  ],
+  "recommendedIds": [
+   89572,
+   1895,
+   77493,
+   5273,
+   298505,
+   1432,
+   94686,
+   112945,
+   6127,
+   47813,
+   228241,
+   254897,
+   3216,
+   59134,
+   240932,
+   1205,
+   254071,
+   2751,
+   5084,
+   124010
+  ],
+  "productionCompanies": [
+   "Treasure Trove Productions",
+   "Blue House Productions",
+   "BBC"
+  ],
+  "topCast": [
+   "Pearce Quigley",
+   "Michael Palin",
+   "Lauren Patel",
+   "Mackenzie Crook",
+   "Shola Adewusi"
+  ],
+  "topCastDetail": [
+   {
+    "id": 119415,
+    "name": "Pearce Quigley",
+    "gender": 2
+   },
+   {
+    "id": 383,
+    "name": "Michael Palin",
+    "gender": 2
+   },
+   {
+    "id": 2555400,
+    "name": "Lauren Patel",
+    "gender": 1
+   },
+   {
+    "id": 1711,
+    "name": "Mackenzie Crook",
+    "gender": 2
+   },
+   {
+    "id": 1512451,
+    "name": "Shola Adewusi",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2026-02-09",
+  "episodeRunTime": null,
+  "createdBy": [],
+  "status": "Returning Series",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 6,
+  "seasonEpisodeCounts": {
+   "1": 6
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2026-03-16",
+   "seasonNumber": 1,
+   "episodeNumber": 6,
+   "name": "The Wise Man's Song"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "BBC Two",
+   "Apple TV"
+  ],
+  "creatorCredits": [
+   "Christine Gernon",
+   "Emma Lawson",
+   "Lisa Thomas"
+  ],
+  "title": "Small Prophets",
+  "year": 2026,
+  "type": "show",
+  "fetchedAt": "2026-11-10"
  }
 }

@@ -1,7 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-11-10T01:52:12Z",
-    "count": 513
+    "generatedAt": "2026-11-10T01:58:09.637Z",
+    "count": 494,
+    "capPerType": 200
   },
   "titles": [
     {
@@ -1640,7 +1641,7 @@
       "ids": {
         "tmdb": 1181678
       },
-      "title": "\u00bfQuieres ser mi hijo?",
+      "title": "¿Quieres ser mi hijo?",
       "year": 2023,
       "source": "genre-explore",
       "discoveredVia": "Comedy"
@@ -4654,7 +4655,7 @@
       "ids": {
         "tmdb": 870028
       },
-      "title": "The Accountant\u00b2",
+      "title": "The Accountant²",
       "year": 2025,
       "source": "genre-explore",
       "discoveredVia": "Mystery"
@@ -4731,7 +4732,7 @@
       "ids": {
         "tmdb": 245913
       },
-      "title": "Pel\u00e9: Birth of a Legend",
+      "title": "Pelé: Birth of a Legend",
       "year": 2016,
       "source": "book-theme-explore",
       "discoveredVia": "book-theme:sports"
@@ -5131,16 +5132,6 @@
       "discoveredVia": "book-theme:legal"
     },
     {
-      "type": "show",
-      "titleKey": "show:127948",
-      "ids": {
-        "tmdb": 127948
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 8
-    },
-    {
       "type": "movie",
       "titleKey": "movie:938150",
       "ids": {
@@ -5164,189 +5155,9 @@
     },
     {
       "type": "show",
-      "titleKey": "show:290826",
-      "ids": {
-        "tmdb": 290826
-      },
-      "title": "Dig",
-      "year": 2026,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:194741",
-      "ids": {
-        "tmdb": 194741
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:244243",
-      "ids": {
-        "tmdb": 244243
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
       "titleKey": "show:284605",
       "ids": {
         "tmdb": 284605
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:2093",
-      "ids": {
-        "tmdb": 2093
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:226633",
-      "ids": {
-        "tmdb": 226633
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:287450",
-      "ids": {
-        "tmdb": 287450
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:222026",
-      "ids": {
-        "tmdb": 222026
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:301498",
-      "ids": {
-        "tmdb": 301498
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:285970",
-      "ids": {
-        "tmdb": 285970
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:258742",
-      "ids": {
-        "tmdb": 258742
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:259200",
-      "ids": {
-        "tmdb": 259200
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:330540",
-      "ids": {
-        "tmdb": 330540
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:313172",
-      "ids": {
-        "tmdb": 313172
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:290193",
-      "ids": {
-        "tmdb": 290193
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:319800",
-      "ids": {
-        "tmdb": 319800
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:298505",
-      "ids": {
-        "tmdb": 298505
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:96677",
-      "ids": {
-        "tmdb": 96677
-      },
-      "title": null,
-      "year": null,
-      "source": "bill-manual"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:334470",
-      "ids": {
-        "tmdb": 334470
       },
       "title": null,
       "year": null,

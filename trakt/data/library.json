@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-11-06T19:45:11.123Z",
+    "generatedAt": "2026-11-10T01:58:04.120Z",
     "movieCount": 270,
     "showCount": 400
   },
@@ -6895,7 +6895,7 @@
       "myRating": 6,
       "ratedAt": "2026-03-11T00:00:00.000Z",
       "plays": 136,
-      "airedEpisodes": 148,
+      "airedEpisodes": 149,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -10389,7 +10389,7 @@
       "myRating": 6,
       "ratedAt": "2026-07-29T00:17:59.000Z",
       "plays": 36,
-      "airedEpisodes": 37,
+      "airedEpisodes": 38,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2026-04-07T00:22:00.000Z",
       "favorite": false,
@@ -12286,8 +12286,8 @@
       "myRating": 6,
       "ratedAt": "2026-07-29T00:18:22.000Z",
       "plays": 8,
-      "airedEpisodes": 8,
-      "completionStatus": "caught-up",
+      "airedEpisodes": 9,
+      "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": false
@@ -14262,7 +14262,7 @@
       "myRating": 8,
       "ratedAt": "2026-08-24T12:33:22.000Z",
       "plays": 8,
-      "airedEpisodes": 12,
+      "airedEpisodes": 15,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2025-05-11T20:59:00.000Z",
       "favorite": false,

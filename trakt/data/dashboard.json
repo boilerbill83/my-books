@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T19:45:10.988Z",
+  "generatedAt": "2026-11-10T01:58:03.989Z",
   "profile": {
     "username": "bill_stoltenberg_27166c",
     "joinedAt": "2026-07-27T14:49:58.000Z"
@@ -13,9 +13,9 @@
     "showsRatings": 407,
     "episodesWatched": 11720,
     "episodesPlays": 11720,
-    "episodesMinutes": 504975,
+    "episodesMinutes": 504954,
     "totalRatings": 678,
-    "totalMinutes": 538997,
+    "totalMinutes": 538976,
     "totalHours": 8983,
     "avgRating": 7.81
   },
@@ -269,7 +269,7 @@
       "title": "Love is Blind",
       "year": 2020,
       "plays": 136,
-      "airedEpisodes": 148
+      "airedEpisodes": 149
     },
     {
       "title": "Shameless",
@@ -535,7 +535,7 @@
     }
   ],
   "watchlist": {
-    "count": 64,
+    "count": 72,
     "items": [
       {
         "type": "show",
@@ -920,6 +920,54 @@
         "title": "Black Doves",
         "year": 2024,
         "listedAt": "2026-11-05T16:39:39.000Z"
+      },
+      {
+        "type": "movie",
+        "title": "Funny Money: The Dane Cook Story",
+        "year": 2026,
+        "listedAt": "2026-11-08T20:57:35.000Z"
+      },
+      {
+        "type": "show",
+        "title": "The Good Daughter",
+        "year": 2026,
+        "listedAt": "2026-11-10T01:41:20.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Dig",
+        "year": 2026,
+        "listedAt": "2026-11-10T01:41:39.000Z"
+      },
+      {
+        "type": "show",
+        "title": "The Altruists",
+        "year": 2026,
+        "listedAt": "2026-11-10T01:42:02.000Z"
+      },
+      {
+        "type": "show",
+        "title": "12 12 12",
+        "year": 2026,
+        "listedAt": "2026-11-10T01:42:18.000Z"
+      },
+      {
+        "type": "show",
+        "title": "It Gets Worse",
+        "year": 2026,
+        "listedAt": "2026-11-10T01:42:42.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Crime and Punishment in America",
+        "year": 2026,
+        "listedAt": "2026-11-10T01:43:04.000Z"
+      },
+      {
+        "type": "show",
+        "title": "Small Prophets",
+        "year": 2026,
+        "listedAt": "2026-11-10T01:49:22.000Z"
       }
     ]
   },
