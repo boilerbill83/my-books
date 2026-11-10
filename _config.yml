@@ -1,0 +1,28 @@
+# GitHub Pages build config. The site is deployed straight from this branch,
+# so every file here gets packaged and uploaded on each deploy unless listed
+# below. Nothing excluded here is fetched by any page (checked: the pages only
+# load ./data/*, ./trakt/data/*, and output/data-quality-index.json +
+# output/data-quality-report-*.json for the quality dashboard). Excluded files
+# stay in the repo, they're just not published.
+exclude:
+  # Daily CSV snapshots (~160 MB, grows ~1.5 MB/day)
+  - trakt/output
+  - output/all-books-*.csv
+  - output/*.csv
+  - output/*.md
+  - output/*.jsonl
+  # Scripts and working inputs
+  - scripts
+  - trakt/scripts
+  - input
+  - trakt/input
+  - "*.py"
+  - "trakt/*.py"
+  - "*.mjs"
+  - "trakt/*.mjs"
+  - "trakt/*.xlsx"
+  # Docs and notes
+  - CLAUDE.md
+  - BBIP.md
+  - trakt/ENGINE.md
+  - trakt/WATCH_TIERS.md
