@@ -999,8 +999,21 @@ function renderTierGroups(tiers, enrichedMeta, starredSet) {
   const reasonFn = c => c.inProgress ? 'You\'re already partway through this one.' : (c.reason || '');
   const el = document.getElementById('nextWatch');
   const groups = [['⭐ Favorites', 'nwFav', tiers.favorites], ['🔥 Excited for', 'nwExc', tiers.excited], ['🕰️ Watch eventually', 'nwEvt', tiers.eventually]];
-  el.innerHTML = groups.map(([label, id, rows]) => rows.length ? `<div class="tk-nw-group"><div class="tk-nw-group-title">${label} <span>${rows.length}</span></div><div class="tk-nw-grid" id="${id}"></div></div>` : '').join('');
-  for (const [, id, rows] of groups) if (rows.length) renderWatchCards(id, rows, enrichedMeta, subtitleFn, '', reasonFn, starredSet);
+  // Bill: "this box has way too many items" — each tier shows its top
+  // TIER_VISIBLE cards (already sorted by predicted score); the rest sit
+  // behind a "Show all N" toggle.
+  const TIER_VISIBLE = 5;
+  el.innerHTML = groups.map(([label, id, rows]) => rows.length ? `<div class="tk-nw-group"><div class="tk-nw-group-title">${label} <span>${rows.length}</span></div><div class="tk-nw-grid" id="${id}"></div>${rows.length > TIER_VISIBLE ? `<button type="button" class="tk-btn tk-nw-more" data-for="${id}">Show all ${rows.length}</button>` : ''}</div>` : '').join('');
+  for (const [, id, rows] of groups) if (rows.length) renderWatchCards(id, rows.slice(0, TIER_VISIBLE), enrichedMeta, subtitleFn, '', reasonFn, starredSet);
+  el.querySelectorAll('.tk-nw-more').forEach(btn => {
+    const [, , rows] = groups.find(g => g[1] === btn.dataset.for);
+    let open = false;
+    btn.addEventListener('click', () => {
+      open = !open;
+      renderWatchCards(btn.dataset.for, open ? rows : rows.slice(0, TIER_VISIBLE), enrichedMeta, subtitleFn, '', reasonFn, starredSet);
+      btn.textContent = open ? 'Show top ' + TIER_VISIBLE : 'Show all ' + rows.length;
+    });
+  });
 }
 
 function renderNextWatch(picks, enrichedMeta, starredSet) {
