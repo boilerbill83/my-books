@@ -1010,7 +1010,16 @@ function renderTierGroups(tiers, enrichedMeta, starredSet) {
       return parts.join(' · ') || 'Ready to continue';
     }
     const meta = enrichedMeta[c.titleKey] || {};
-    return [meta.genres?.[0], meta.voteAverage != null ? `${meta.voteAverage.toFixed(1)} TMDB` : null].filter(Boolean).join(' · ') || 'Ready to watch';
+    // Bill (Changes Requested): Excited for shows how many days since the
+    // finale. The season is complete by construction (see
+    // latestSeasonIncomplete()), so its last aired episode is the finale.
+    const finaleIso = meta.lastEpisodeToAir?.airDate || meta.currentSeasonFinale?.finaleDate;
+    let sinceFinale = null;
+    if (finaleIso) {
+      const d = Math.round((new Date(new Date().toDateString()) - new Date(finaleIso + 'T00:00:00')) / 86400000);
+      if (d >= 0) sinceFinale = d === 0 ? 'Finale aired today' : `Finale ${d} day${d === 1 ? '' : 's'} ago`;
+    }
+    return [meta.genres?.[0], meta.voteAverage != null ? `${meta.voteAverage.toFixed(1)} TMDB` : null, sinceFinale].filter(Boolean).join(' · ') || 'Ready to watch';
   };
   const reasonFn = c => c.inProgress ? 'You\'re already partway through this one.' : (c.reason || '');
   const el = document.getElementById('nextWatch');
@@ -1223,7 +1232,10 @@ async function load() {
   // renderWatchStatusTable()'s own enrichedMeta param), same as the
   // request's literal wording for this section specifically (co-watch,
   // just above, keeps its card view since Bill didn't ask to change it).
-  renderAiringList('airingStatusList', airingRows, enrichedMeta);
+  for (const r of airingRows) {
+    if (r.score == null) r.score = matchScore(hydrateTitle({ titleKey: r.titleKey, type: r.type, title: r.title, year: r.year, ids: r.ids }, enrichedMeta), idx, enrichedMeta, omdbMeta);
+  }
+  renderAiringList('airingStatusList', airingRows, enrichedMeta, omdbMeta);
 
   const enrichedCount = Object.keys(enrichedMeta).length;
   document.getElementById('genreSectionScopeNote').textContent =
@@ -1277,7 +1289,7 @@ function airingStatusLine(r) {
   const rating = r.myRating != null ? ` · ★${r.myRating}/10` : '';
   return `You're watching${rating}`;
 }
-function renderAiringList(elementId, rows, enrichedMeta) {
+function renderAiringList(elementId, rows, enrichedMeta, omdbMeta = {}) {
   const el = document.getElementById(elementId);
   if (!rows.length) {
     el.innerHTML = '<div class="tk-empty">Nothing you\'re tracking or would love is currently mid-season or airing.</div>';
@@ -1292,6 +1304,7 @@ function renderAiringList(elementId, rows, enrichedMeta) {
       ? `<span class="tk-air-ready">${r.episodesReady} ready</span>`
       : '<span class="tk-air-ready tk-air-ready-none">Caught up</span>';
     const isFinaleNext = r.nextEpisode != null && r.finaleEpisode != null && r.nextEpisode === r.finaleEpisode;
+    const critic = criticScore(omdbMeta?.[r.titleKey]), audience = realAudienceScore(omdbMeta?.[r.titleKey]);
     let next;
     if (r.nextEpisodeDate) {
       next = `<div class="tk-air-label">Next episode${r.season != null && r.nextEpisode != null ? ` · S${r.season}E${r.nextEpisode}` : ''}</div>
@@ -1314,6 +1327,11 @@ function renderAiringList(elementId, rows, enrichedMeta) {
       <div class="tk-air-col tk-air-readycol">${ready}</div>
       <div class="tk-air-col">${next}</div>
       <div class="tk-air-col">${finale}</div>
+      <div class="tk-air-scores">
+        <div class="tk-air-col tk-air-score"><div class="tk-air-label">Predicted</div><div class="tk-air-value">${r.score != null ? Math.round(r.score) : '—'}</div></div>
+        <div class="tk-air-col tk-air-score"><div class="tk-air-label">Critics</div><div class="tk-air-value">${critic != null ? critic : '—'}</div></div>
+        <div class="tk-air-col tk-air-score"><div class="tk-air-label">Audience</div><div class="tk-air-value">${audience != null ? audience : '—'}</div></div>
+      </div>
     </div>`;
   };
   const thisWeek = sorted.filter(r => r.daysUntilNextEpisode != null && r.daysUntilNextEpisode <= 7);

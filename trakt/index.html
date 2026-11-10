@@ -117,6 +117,15 @@
       .tk-rate-links { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:10px; font-size:.85rem; }
       .tk-rate-links .tk-btn { padding:4px 10px; }
       #coWatchHero:not(:empty) { margin-bottom:16px; }
+      /* Bill (Changes Requested): "too much white space" in Shows You Watch
+         Together — the two #1/#2 cards were each full-width with a huge
+         poster, and the 9th Ready card wrapped alone onto a second row.
+         Two-up cards with a smaller poster, and shelf cards narrow enough
+         for the whole Ready group to fit on one row at desktop width. */
+      #coWatchHero .tk-multi { flex-direction: row; margin-top: 6px; }
+      #coWatchHero .tk-multi-card { min-width: 0; }
+      #coWatchHero .tk-hero-img { width: 80px; height: 120px; }
+      @media (max-width: 800px) { #coWatchHero .tk-multi { flex-direction: column; } }
       .tk-hero-facts { scrollbar-width: thin; scrollbar-color: var(--accent-warm) var(--bg-subtle); }
       .tk-hero-facts::-webkit-scrollbar { width: 7px; }
       .tk-hero-facts::-webkit-scrollbar-track { background: var(--bg-subtle); border-radius: 4px; }
@@ -282,8 +291,8 @@
          now has even more room to show multiple rows of cards at once than
          it did squeezed into half the page. */
       #coWatchSection #coWatchCards .tk-shelf { flex-wrap: wrap; overflow-x: visible; }
-      #coWatchSection #coWatchCards .tk-shelf-card { width: 138px; }
-      #coWatchSection #coWatchCards .tk-shelf-poster { width: 118px; height: 177px; }
+      #coWatchSection #coWatchCards .tk-shelf-card { width: 122px; }
+      #coWatchSection #coWatchCards .tk-shelf-poster { width: 104px; height: 156px; }
       /* Richer per-card info now that each card carries metaLine()'s full
          genre/creator/rating/critic/awards string (Bill: "add a lot more
          information for each show"), not just a 2-genre snippet — 3 lines
@@ -313,7 +322,8 @@
       .tk-cowatch-group-title { font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px; }
       /* What's Airing list (Bill, 2026-10-19: table was hard to read). */
       .tk-air-group + .tk-air-group { margin-top: 20px; }
-      .tk-air-row { display: grid; grid-template-columns: 44px minmax(0, 1.6fr) 100px minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: center; padding: 10px 0; border-top: 1px solid var(--border); }
+      .tk-air-scores { display: contents; }
+      .tk-air-row { display: grid; grid-template-columns: 44px minmax(0, 1.6fr) 100px minmax(0, 1fr) minmax(0, 1fr) repeat(3, 62px); gap: 16px; align-items: center; padding: 10px 0; border-top: 1px solid var(--border); }
       .tk-air-poster { width: 44px; height: 66px; border-radius: 4px; object-fit: cover; }
       .tk-air-title { font-weight: 600; font-size: 1rem; }
       .tk-air-status { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
@@ -325,7 +335,8 @@
       .tk-air-muted { font-weight: 400; color: var(--text-muted); }
       .tk-air-finale { color: var(--accent); }
       @media (max-width: 760px) {
-        .tk-air-row { grid-template-columns: 44px minmax(0, 1fr) auto; grid-template-areas: "p m r" "p n n" "p f f"; row-gap: 6px; }
+        .tk-air-row { grid-template-columns: 44px minmax(0, 1fr) auto; grid-template-areas: "p m r" "p n n" "p f f" "p s s"; row-gap: 6px; }
+        .tk-air-row > .tk-air-scores { grid-area: s; display: flex; gap: 18px; }
         .tk-air-row > .tk-air-poster { grid-area: p; align-self: start; }
         .tk-air-row > .tk-air-main { grid-area: m; }
         .tk-air-row > .tk-air-readycol { grid-area: r; }
