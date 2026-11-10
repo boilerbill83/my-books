@@ -437,6 +437,11 @@ Bill's explicit request (Nov 6 2026): automate the "download the Goodreads expor
 
 On failure (most likely cause: an expired/missing `GOODREADS_SESSION`), it uploads a screenshot + page-content dump as a workflow artifact for diagnosis, same as every other Playwright-based automation in this project.
 
+## Site deploy and CSV snapshots (Nov 2026)
+
+- **Dated CSV snapshots live on the `data-snapshots` branch, not main.** `export-extract.yml` (weekly books) and `trakt-export-extract.yml` (daily Trakt) commit `output/all-books-*.csv` and `trakt/output/all-titles-*.csv` there. Main stays small and the published site never carries them. To read an old snapshot: `git fetch origin data-snapshots` then `git show origin/data-snapshots:trakt/output/all-titles-YYYY-MM-DD.csv`.
+- **Site deploy** is `.github/workflows/pages-deploy.yml` (requires Settings -> Pages -> Source = "GitHub Actions"): builds a trimmed copy of the site (no scripts, docs, CSVs, `.py`), hashes it, and deploys only if the hash differs from the live `build-hash.txt`. Push-triggered for site-file changes plus a 30-minute schedule that picks up commits from other workflows (those use GITHUB_TOKEN and never trigger push workflows). `_config.yml`'s exclude list mirrors the same exclusions for the old Jekyll path; keep both in sync if either changes.
+
 ## Workflows
 
 - enrich-metadata.yml: daily 07:00 UTC; Google Books + Open Library →

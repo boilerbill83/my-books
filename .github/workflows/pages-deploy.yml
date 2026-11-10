@@ -1,0 +1,97 @@
+name: Deploy Site (GitHub Pages)
+
+# Replaces GitHub's automatic "pages build and deployment" (Jekyll over the
+# whole repo, one deploy per commit). This builds a trimmed copy of the site,
+# hashes it, and only deploys when the hash differs from what's live, so the
+# many automated data commits that change nothing a visitor sees cost nothing.
+#
+# Requires Settings -> Pages -> Build and deployment -> Source = "GitHub Actions".
+#
+# Triggers:
+#  - workflow_dispatch: manual deploy (always deploys, ignores the hash check)
+#  - push to main touching site files: fast deploy after a human/Claude change
+#  - schedule: picks up commits made by other workflows (those use GITHUB_TOKEN,
+#    which never triggers push workflows), deploying only if content changed.
+on:
+  workflow_dispatch: {}
+  # TRIGGERS_PLACEHOLDER
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Build trimmed site into dist/
+        run: |
+          mkdir dist
+          # Everything a visitor's browser can request stays; scripts, docs,
+          # daily CSV snapshots and working inputs do not. Same list as
+          # _config.yml's exclude (kept for the old Jekyll path).
+          rsync -a ./ dist/ \
+            --exclude='.*' \
+            --exclude='dist' \
+            --exclude='node_modules' \
+            --exclude='__pycache__' \
+            --exclude='/scripts/' \
+            --exclude='/trakt/scripts/' \
+            --exclude='/input/' \
+            --exclude='/trakt/input/' \
+            --exclude='/trakt/output/' \
+            --exclude='/output/*.csv' \
+            --exclude='/output/*.md' \
+            --exclude='/output/*.jsonl' \
+            --exclude='*.py' \
+            --exclude='*.mjs' \
+            --exclude='*.xlsx' \
+            --exclude='CLAUDE.md' \
+            --exclude='BBIP.md' \
+            --exclude='ENGINE.md' \
+            --exclude='WATCH_TIERS.md' \
+            --exclude='_config.yml'
+          HASH="$(cd dist && find . -type f | LC_ALL=C sort | xargs sha256sum | sha256sum | cut -d' ' -f1)"
+          echo "$HASH" > dist/build-hash.txt
+          echo "BUILD_HASH=$HASH" >> "$GITHUB_ENV"
+          du -sh dist
+          find dist -type f | wc -l
+
+      - name: Compare with what is live
+        id: cmp
+        run: |
+          LIVE="$(curl -fsS --max-time 20 "https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/build-hash.txt?t=$(date +%s)" 2>/dev/null | tr -d '[:space:]' || true)"
+          echo "live=$LIVE new=$BUILD_HASH"
+          if [ "$LIVE" = "$BUILD_HASH" ] && [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Site content unchanged - skipping deploy."
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Configure Pages
+        if: steps.cmp.outputs.skip != 'true'
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        if: steps.cmp.outputs.skip != 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        if: steps.cmp.outputs.skip != 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4
