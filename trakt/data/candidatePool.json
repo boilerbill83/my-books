@@ -5162,6 +5162,16 @@
       "year": 2024,
       "source": "genre-explore",
       "discoveredVia": "War & Politics"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:290826",
+      "ids": {
+        "tmdb": 290826
+      },
+      "title": "Dig",
+      "year": 2026,
+      "source": "bill-manual"
     }
   ]
 }
