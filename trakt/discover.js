@@ -945,7 +945,7 @@ function renderNextUp(pick, enrichedMeta, omdbMeta, starredSet, upcomingSeasons,
 // Watch eventually, from watchTiers.json. The first Favorite is featured in
 // the "Watch This Next" block; the rest render as card groups. A solo
 // watchlist show missing from the file falls into Watch eventually.
-function buildTierRows(watchTiers, library, watchlist, scoredList, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress, coWatchSet, excludeKey) {
+function buildTierRows(watchTiers, library, watchlist, scoredList, currentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress, coWatchSet, excludeKey, idx, omdbMeta) {
   const libByKey = new Map((library.titles || []).map(t => [t.titleKey, t]));
   const wlByKey = new Map((watchlist.titles || []).map(t => [t.titleKey, t]));
   const progByKey = new Map((currentlyWatching || []).map(t => [t.titleKey, t]));
@@ -953,7 +953,12 @@ function buildTierRows(watchTiers, library, watchlist, scoredList, currentlyWatc
   const mk = k => {
     const lib = libByKey.get(k), scored = scoredByKey.get(k);
     const row = buildWatchRow(k, { inLib: lib, inWl: wlByKey.get(k), inCandidate: null, progress: progByKey.get(k), scored }, enrichedMeta, upcomingSeasons, coWatchProgress);
-    return { ...row, reason: scored?.reason, inProgress: !!(lib && lib.plays != null && lib.airedEpisodes != null && lib.plays < lib.airedEpisodes) };
+    // Same predicted score the All Titles table shows: rankAll()'s
+    // type-normalized bmtreScore when it scored the title, else a direct
+    // matchScore() (a show Bill's already started sits in library, which
+    // rankAll() excludes from its watchlist list).
+    const predicted = scored?.bmtreScore ?? matchScore(hydrateTitle(wlByKey.get(k) || lib || { titleKey: k, type: 'show' }, enrichedMeta), idx, enrichedMeta, omdbMeta);
+    return { ...row, predicted, reason: scored?.reason, inProgress: !!(lib && lib.plays != null && lib.airedEpisodes != null && lib.plays < lib.airedEpisodes) };
   };
   const ok = k => enrichedMeta[k] && k.startsWith('show:') && !coWatchSet.has(k) && k !== excludeKey && wlByKey.has(k);
   const listed = new Set([...(watchTiers.favorites || []), ...(watchTiers.excited || []), ...(watchTiers.eventually || [])]);
@@ -968,10 +973,14 @@ function buildTierRows(watchTiers, library, watchlist, scoredList, currentlyWatc
   };
   const excitedKeys = (watchTiers.excited || []).filter(k => !stale(k));
   const demoted = (watchTiers.excited || []).filter(stale);
+  // Within each tier, order by predicted score, highest first (Bill, Nov
+  // 2026). Tier membership still comes from watchTiers.json; only the
+  // order inside a tier is computed.
+  const byScore = rows => rows.sort((a, b) => (b.predicted ?? -1) - (a.predicted ?? -1));
   return {
-    favorites: (watchTiers.favorites || []).filter(ok).map(mk),
-    excited: excitedKeys.filter(ok).map(mk),
-    eventually: [...demoted, ...(watchTiers.eventually || []), ...unlisted].filter(ok).map(mk),
+    favorites: byScore((watchTiers.favorites || []).filter(ok).map(mk)),
+    excited: byScore(excitedKeys.filter(ok).map(mk)),
+    eventually: byScore([...demoted, ...(watchTiers.eventually || []), ...unlisted].filter(ok).map(mk)),
   };
 }
 
@@ -1150,7 +1159,7 @@ async function load() {
   // (titles Bill has named directly), computed live off the full (not
   // co-watch-filtered) data — see computeFavoriteStars()'s own comment.
   const starredSet = computeFavoriteStars(library, watchlist, manualStars);
-  const tiers = buildTierRows(watchTiers || {}, soloLibrary, soloWatchlistData, [...soloWatchlist, ...soloCandidates], soloCurrentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress, coWatchSet, watchingNow?.titleKey ?? null);
+  const tiers = buildTierRows(watchTiers || {}, soloLibrary, soloWatchlistData, [...soloWatchlist, ...soloCandidates], soloCurrentlyWatching, enrichedMeta, upcomingSeasons, coWatchProgress, coWatchSet, watchingNow?.titleKey ?? null, idx, omdbMeta);
   const featured = tiers.favorites[0] || tiers.excited[0] || tiers.eventually[0];
   renderNextUp(featured, enrichedMeta, omdbMeta, starredSet, upcomingSeasons, nextWatchFacts, tiers.favorites[0] ? 'Favorite' : 'Excited for');
   const restTiers = { favorites: tiers.favorites.filter(r => r !== featured), excited: tiers.excited.filter(r => r !== featured), eventually: tiers.eventually.filter(r => r !== featured) };
