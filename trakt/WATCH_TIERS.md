@@ -18,12 +18,12 @@ Guess rules: **Favorites** = Trakt favorites, gold-starred, or rated 9+. **Excit
 - The Good Daughter (2026) — not started, match 90
 - Crystal Lake (2026) — not started, match 88
 - American Hostage (2026) — not started, match 86
-- Love Story (2026) — not started, match 83
-- Monster: The Lizzie Borden Story (2026) — not started, match 82
 - Last Seen (2026) — not started, match 76
 
 ## 3. Watch eventually
 
+- Love Story (2026) — not started, match 83
+- Monster: The Lizzie Borden Story (2026) — not started, match 82
 - Hotel Cocaine (2024) — not started, match 111
 - Marvel's The Punisher (2017) — not started, match 103
 - Bodyguard (2018) — not started, match 100
