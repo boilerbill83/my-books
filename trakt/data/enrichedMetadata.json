@@ -575772,5 +575772,3110 @@
   "year": 2025,
   "type": "movie",
   "fetchedAt": "2026-11-15"
+ },
+ "movie:11327": {
+  "genres": [
+   "Drama",
+   "Crime"
+  ],
+  "overview": "Billy Hayes is caught attempting to smuggle drugs out of a country. The courts decide to make an example of him, sentencing him to more than 30 years in prison. Hayes has two opportunities for release: the appeals made by his lawyer, his family, and the American government, or the \"Midnight Express\".",
+  "keywords": [
+   "prison",
+   "airport",
+   "drug smuggling",
+   "escape",
+   "court",
+   "1970s",
+   "attempt to escape",
+   "based on true story",
+   "prison guard",
+   "lawyer",
+   "torture",
+   "hashish",
+   "brutality",
+   "prison sentence",
+   "masturbation"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0077928",
+  "voteAverage": 7.438,
+  "voteCount": 1982,
+  "popularity": 3.7403,
+  "posterPath": "/mIzGfVCSWmmYjLIIbA2BX3rlV56.jpg",
+  "similarToIds": [
+   641770,
+   612,
+   687,
+   240,
+   241,
+   249,
+   258,
+   259,
+   176,
+   388,
+   397,
+   398,
+   471,
+   476,
+   482,
+   497,
+   1039599,
+   1622688,
+   642434,
+   267284
+  ],
+  "recommendedIds": [
+   18533,
+   1307373,
+   336845,
+   9519,
+   638,
+   15414,
+   33357,
+   398175,
+   29381,
+   22021,
+   20411,
+   25318,
+   641,
+   38539,
+   10537,
+   308032,
+   534490,
+   14637,
+   4997,
+   10394
+  ],
+  "productionCompanies": [
+   "Columbia Pictures",
+   "Casablanca Filmworks"
+  ],
+  "topCast": [
+   "Brad Davis",
+   "Irene Miracle",
+   "Bo Hopkins",
+   "Paolo Bonacelli",
+   "Paul L. Smith"
+  ],
+  "topCastDetail": [
+   {
+    "id": 69010,
+    "name": "Brad Davis",
+    "gender": 2
+   },
+   {
+    "id": 69011,
+    "name": "Irene Miracle",
+    "gender": 1
+   },
+   {
+    "id": 12410,
+    "name": "Bo Hopkins",
+    "gender": 2
+   },
+   {
+    "id": 4819,
+    "name": "Paolo Bonacelli",
+    "gender": 2
+   },
+   {
+    "id": 39782,
+    "name": "Paul L. Smith",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1978-08-31",
+  "runtime": 121,
+  "director": "Alan Parker",
+  "directors": [
+   "Alan Parker"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Alan Parker",
+   "Alan Marshall",
+   "Peter Guber"
+  ],
+  "title": "Midnight Express",
+  "year": 1978,
+  "type": "movie",
+  "fetchedAt": "2026-11-15"
+ },
+ "movie:1786": {
+  "genres": [
+   "Drama",
+   "War"
+  ],
+  "overview": "Au revoir les enfants tells a heartbreaking story of friendship and devastating loss concerning two boys living in Nazi-occupied France. At a provincial Catholic boarding school, the precocious youths enjoy true camaraderie\u2014until a secret is revealed. Based on events from writer-director Malle\u2019s own childhood, the film is a subtle, precisely observed tale of courage, cowardice, and tragic awakening.",
+  "keywords": [
+   "france",
+   "parent child relationship",
+   "resistance",
+   "vichy regime",
+   "holocaust (shoah)",
+   "world war ii",
+   "deportation",
+   "jew persecution",
+   "auschwitz-birkenau concentration camp",
+   "national socialism",
+   "biography",
+   "antisemitism",
+   "best friend",
+   "catholicism",
+   "resistance fighter"
+  ],
+  "originalLanguage": "fr",
+  "imdbId": "tt0092593",
+  "voteAverage": 7.533,
+  "voteCount": 764,
+  "popularity": 2.6647,
+  "posterPath": "/lXP90Vx7OcviBfbbokcaG6zVnPG.jpg",
+  "similarToIds": [
+   13685,
+   13701,
+   13614,
+   280366,
+   13501,
+   13524,
+   654722,
+   13210,
+   654350,
+   13403,
+   13405,
+   1051002,
+   13752,
+   13917,
+   13919,
+   13920,
+   13922,
+   13935,
+   280939,
+   1636885
+  ],
+  "recommendedIds": [
+   779816,
+   5000,
+   398924,
+   45614,
+   1001435,
+   1083612,
+   842859,
+   467244,
+   14574,
+   203833,
+   1986,
+   468207,
+   1165369,
+   53457,
+   289222,
+   32054,
+   10110,
+   31010,
+   41131,
+   22509
+  ],
+  "productionCompanies": [
+   "Nouvelles \u00c9ditions de Films",
+   "Stella Film",
+   "N.E.F. Filmproduktion"
+  ],
+  "topCast": [
+   "Gaspard Manesse",
+   "Raphael Fejt\u00f6",
+   "Francine Racette",
+   "Stanislas Carr\u00e9 de Malberg",
+   "Philippe Morier-Genoud"
+  ],
+  "topCastDetail": [
+   {
+    "id": 19071,
+    "name": "Gaspard Manesse",
+    "gender": 2
+   },
+   {
+    "id": 19072,
+    "name": "Raphael Fejt\u00f6",
+    "gender": 2
+   },
+   {
+    "id": 19073,
+    "name": "Francine Racette",
+    "gender": 1
+   },
+   {
+    "id": 19074,
+    "name": "Stanislas Carr\u00e9 de Malberg",
+    "gender": 2
+   },
+   {
+    "id": 19075,
+    "name": "Philippe Morier-Genoud",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1987-10-07",
+  "runtime": 105,
+  "director": "Louis Malle",
+  "directors": [
+   "Louis Malle"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Louis Malle"
+  ],
+  "title": "Au Revoir les Enfants",
+  "year": 1987,
+  "type": "movie",
+  "fetchedAt": "2026-11-15"
+ },
+ "movie:1791": {
+  "genres": [
+   "Drama",
+   "Romance"
+  ],
+  "overview": "Erika Kohut, a sexually repressed piano teacher living with her domineering mother, meets a young man who starts romantically pursuing her.",
+  "keywords": [
+   "concert",
+   "based on novel or book",
+   "music teacher",
+   "fetish",
+   "conservatory",
+   "masochism",
+   "victim",
+   "piano lessons",
+   "teacher",
+   "perversion",
+   "loneliness",
+   "female protagonist",
+   "pianist",
+   "attraction",
+   "vienna, austria"
+  ],
+  "originalLanguage": "fr",
+  "imdbId": "tt0254686",
+  "voteAverage": 7.257,
+  "voteCount": 1376,
+  "popularity": 9.0656,
+  "posterPath": "/gNHKYQnP1RnqEhkivHJzBPb4MOP.jpg",
+  "similarToIds": [
+   13525,
+   13552,
+   13685,
+   13689,
+   13696,
+   13701,
+   13703,
+   13596,
+   13614,
+   13617,
+   654566,
+   13522,
+   13523,
+   13671,
+   654722,
+   654720,
+   654368,
+   13403,
+   13412,
+   13416
+  ],
+  "recommendedIds": [
+   250225,
+   454527,
+   337167,
+   249397,
+   258216,
+   3476,
+   884,
+   40652,
+   2251,
+   152584,
+   370663,
+   86331,
+   799546,
+   12537,
+   649,
+   1278,
+   46581,
+   11986,
+   426249,
+   451955
+  ],
+  "productionCompanies": [
+   "Wega Film",
+   "Les Films Alain Sarde",
+   "ARTE France Cin\u00e9ma"
+  ],
+  "topCast": [
+   "Isabelle Huppert",
+   "Annie Girardot",
+   "Beno\u00eet Magimel",
+   "Susanne Lothar",
+   "Udo Samel"
+  ],
+  "topCastDetail": [
+   {
+    "id": 17882,
+    "name": "Isabelle Huppert",
+    "gender": 1
+   },
+   {
+    "id": 6014,
+    "name": "Annie Girardot",
+    "gender": 1
+   },
+   {
+    "id": 5442,
+    "name": "Beno\u00eet Magimel",
+    "gender": 2
+   },
+   {
+    "id": 19123,
+    "name": "Susanne Lothar",
+    "gender": 1
+   },
+   {
+    "id": 6264,
+    "name": "Udo Samel",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2001-09-05",
+  "runtime": 131,
+  "director": "Michael Haneke",
+  "directors": [
+   "Michael Haneke"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Michael Haneke",
+   "Veit Heiduschka",
+   "Yvon Crenn"
+  ],
+  "title": "The Piano Teacher",
+  "year": 2001,
+  "type": "movie",
+  "fetchedAt": "2026-11-15"
+ },
+ "movie:11202": {
+  "genres": [
+   "War",
+   "Drama",
+   "History"
+  ],
+  "overview": "\"Patton\" tells the tale of General George S. Patton, famous tank commander of World War II. The film begins with Patton's career in North Africa and progresses through the invasion of Germany and the fall of the Third Reich. Side plots also speak of Patton's numerous faults such his temper and habit towards insubordination.",
+  "keywords": [
+   "general",
+   "steel helmet",
+   "allies",
+   "world war ii",
+   "normandy, france",
+   "dead soldier",
+   "tank",
+   "biography",
+   "historical figure",
+   "d-day",
+   "destiny",
+   "thoughtful",
+   "dramatic",
+   "commanding",
+   "dimension 150"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0066206",
+  "voteAverage": 7.436,
+  "voteCount": 1289,
+  "popularity": 5.8952,
+  "posterPath": "/rLM7jIEPTjj4CF7F1IrzzNjLUCu.jpg",
+  "similarToIds": [
+   13554,
+   13701,
+   13614,
+   280366,
+   13524,
+   13210,
+   654350,
+   280227,
+   1051002,
+   13752,
+   13763,
+   13917,
+   13920,
+   13922,
+   13935,
+   280939,
+   1636885,
+   654890,
+   13957,
+   1444505
+  ],
+  "recommendedIds": [
+   9289,
+   975,
+   944194,
+   26205,
+   12651,
+   399790,
+   810413,
+   438259,
+   10684,
+   13210,
+   763144,
+   42664,
+   17720,
+   118910,
+   16914,
+   1079244,
+   18712,
+   10911,
+   127372,
+   1318413
+  ],
+  "productionCompanies": [
+   "20th Century Fox"
+  ],
+  "topCast": [
+   "George C. Scott",
+   "Karl Malden",
+   "Stephen Young",
+   "Michael Strong",
+   "Carey Loftin"
+  ],
+  "topCastDetail": [
+   {
+    "id": 862,
+    "name": "George C. Scott",
+    "gender": 2
+   },
+   {
+    "id": 9857,
+    "name": "Karl Malden",
+    "gender": 2
+   },
+   {
+    "id": 40551,
+    "name": "Stephen Young",
+    "gender": 2
+   },
+   {
+    "id": 15650,
+    "name": "Michael Strong",
+    "gender": 2
+   },
+   {
+    "id": 12431,
+    "name": "Carey Loftin",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1970-01-25",
+  "runtime": 172,
+  "director": "Franklin J. Schaffner",
+  "directors": [
+   "Franklin J. Schaffner"
+  ],
+  "belongsToCollection": {
+   "id": 609766,
+   "name": "Patton Collection"
+  },
+  "creatorCredits": [
+   "Franklin J. Schaffner",
+   "Frank McCarthy"
+  ],
+  "title": "Patton",
+  "year": 1970,
+  "type": "movie",
+  "fetchedAt": "2026-11-15"
+ },
+ "movie:11307": {
+  "genres": [
+   "Drama",
+   "Comedy"
+  ],
+  "overview": "A struggling young writer finds his life and work dominated by his unfaithful wife and his radical feminist mother, whose best-selling manifesto turns her into a cultural icon.",
+  "keywords": [
+   "based on novel or book",
+   "pregnancy",
+   "wrestling",
+   "wrestler",
+   "childlessness",
+   "paternity",
+   "love",
+   "writer",
+   "typewriter",
+   "reflective",
+   "gay theme",
+   "homosexuality",
+   "wistful",
+   "complicated",
+   "vibrant"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0084917",
+  "voteAverage": 6.681,
+  "voteCount": 406,
+  "popularity": 2.3931,
+  "posterPath": "/9ItRFdSCb7Sz3AC9LRxAzbH73kG.jpg",
+  "similarToIds": [
+   38759,
+   38834,
+   682681,
+   39008,
+   39009,
+   39011,
+   39013,
+   39029,
+   879085,
+   38980,
+   38984,
+   38992,
+   878933,
+   1468570,
+   1082500,
+   1082508,
+   39039,
+   39041,
+   39056,
+   39060
+  ],
+  "recommendedIds": [
+   436459,
+   27265,
+   340666,
+   547017,
+   87492,
+   239678,
+   346681,
+   718633,
+   660609,
+   502122,
+   91767,
+   524635,
+   82532,
+   114155,
+   1033148,
+   1029955,
+   19119,
+   96973,
+   84316,
+   9685
+  ],
+  "productionCompanies": [
+   "Pan Arts",
+   "Warner Bros. Pictures"
+  ],
+  "topCast": [
+   "Robin Williams",
+   "Mary Beth Hurt",
+   "Glenn Close",
+   "John Lithgow",
+   "Hume Cronyn"
+  ],
+  "topCastDetail": [
+   {
+    "id": 2157,
+    "name": "Robin Williams",
+    "gender": 2
+   },
+   {
+    "id": 54782,
+    "name": "Mary Beth Hurt",
+    "gender": 1
+   },
+   {
+    "id": 515,
+    "name": "Glenn Close",
+    "gender": 1
+   },
+   {
+    "id": 12074,
+    "name": "John Lithgow",
+    "gender": 2
+   },
+   {
+    "id": 7668,
+    "name": "Hume Cronyn",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1982-07-23",
+  "runtime": 136,
+  "director": "George Roy Hill",
+  "directors": [
+   "George Roy Hill"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "George Roy Hill",
+   "Patrick Kelley",
+   "Robert Crawford Jr."
+  ],
+  "title": "The World According to Garp",
+  "year": 1982,
+  "type": "movie",
+  "fetchedAt": "2026-11-15"
+ },
+ "movie:11308": {
+  "genres": [
+   "Comedy",
+   "Drama"
+  ],
+  "overview": "Over the course of several years beginning in the 1950s, a man and his oddball family run hotels in New England and Vienna, as unexpected events change their lives forever.",
+  "keywords": [
+   "hotel",
+   "prostitute",
+   "rape",
+   "based on novel or book",
+   "bomb",
+   "fight",
+   "satire",
+   "stuffed animal",
+   "terrorism",
+   "vienna, austria",
+   "motley crew"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0087428",
+  "voteAverage": 5.7,
+  "voteCount": 141,
+  "popularity": 16.7069,
+  "posterPath": "/9XGGGniMtBqhox7JAV5JujlUqFz.jpg",
+  "similarToIds": [
+   39578,
+   39581,
+   39770,
+   40109,
+   40085,
+   40124,
+   40132,
+   876699,
+   1075644,
+   1075742,
+   304078,
+   39904,
+   1076212,
+   1468878,
+   40339,
+   40348,
+   40365,
+   40374,
+   40380,
+   1469242
+  ],
+  "recommendedIds": [
+   926008,
+   120467,
+   16056,
+   552532,
+   52936,
+   13552,
+   31644,
+   401743,
+   1161617,
+   436288,
+   501624,
+   290,
+   671318,
+   21500,
+   14262,
+   28059,
+   95755,
+   12900,
+   433503,
+   7516
+  ],
+  "productionCompanies": [
+   "Orion Pictures",
+   "Woodfall Film Productions",
+   "Filmline Productions"
+  ],
+  "topCast": [
+   "Jodie Foster",
+   "Beau Bridges",
+   "Rob Lowe",
+   "Nastassja Kinski",
+   "Wilford Brimley"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1038,
+    "name": "Jodie Foster",
+    "gender": 1
+   },
+   {
+    "id": 2222,
+    "name": "Beau Bridges",
+    "gender": 2
+   },
+   {
+    "id": 2879,
+    "name": "Rob Lowe",
+    "gender": 2
+   },
+   {
+    "id": 2630,
+    "name": "Nastassja Kinski",
+    "gender": 1
+   },
+   {
+    "id": 11065,
+    "name": "Wilford Brimley",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1984-03-09",
+  "runtime": 110,
+  "director": "Tony Richardson",
+  "directors": [
+   "Tony Richardson"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Tony Richardson",
+   "Neil Hartley",
+   "David J. Patterson"
+  ],
+  "title": "The Hotel New Hampshire",
+  "year": 1984,
+  "type": "movie",
+  "fetchedAt": "2026-11-15"
+ },
+ "movie:11365": {
+  "genres": [
+   "Drama",
+   "History"
+  ],
+  "overview": "Oscar Wilde is a married playwright who has occasionally indulged his weakness for male suitors. After much toil, Wilde debuts 'The Importance of Being Earnest' in London, and a chat at the theatre with Lord Alfred 'Bosie' Douglas leads to a full-fledged romance. However, this affair leads to a legal dispute with Lord Alfred's oppressive father, the Marquess of Queensberry, and, given the local anti-gay laws, Wilde is jailed. Wilde's vast intellect helps him survive until he regains his freedom.",
+  "keywords": [
+   "prison",
+   "coming out",
+   "london, england",
+   "wife",
+   "biography",
+   "victorian england",
+   "male homosexuality",
+   "author",
+   "playwright",
+   "ireland",
+   "lgbt",
+   "marriage problems",
+   "historical drama",
+   "19th century",
+   "1900s"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0120514",
+  "voteAverage": 6.593,
+  "voteCount": 301,
+  "popularity": 2.4762,
+  "posterPath": "/66ieZHIIOkeQAjAi4ekFpcCLozA.jpg",
+  "similarToIds": [
+   266337,
+   266195,
+   266285,
+   2,
+   14,
+   15,
+   16,
+   266374,
+   643449,
+   1598,
+   1623,
+   1677,
+   1232528,
+   1232533,
+   269297,
+   839471,
+   1811,
+   1816,
+   1826,
+   1833
+  ],
+  "recommendedIds": [
+   27857,
+   11703,
+   15185,
+   72899,
+   245168,
+   84316,
+   45938,
+   42603,
+   35052,
+   306819,
+   500860,
+   467952,
+   684281,
+   4975,
+   9361,
+   50032,
+   499566,
+   681022,
+   197,
+   88794
+  ],
+  "productionCompanies": [
+   "Dove International",
+   "Pandora Film",
+   "BBC Film"
+  ],
+  "topCast": [
+   "Stephen Fry",
+   "Jude Law",
+   "Vanessa Redgrave",
+   "Jennifer Ehle",
+   "Gemma Jones"
+  ],
+  "topCastDetail": [
+   {
+    "id": 11275,
+    "name": "Stephen Fry",
+    "gender": 2
+   },
+   {
+    "id": 9642,
+    "name": "Jude Law",
+    "gender": 2
+   },
+   {
+    "id": 13333,
+    "name": "Vanessa Redgrave",
+    "gender": 1
+   },
+   {
+    "id": 49971,
+    "name": "Jennifer Ehle",
+    "gender": 1
+   },
+   {
+    "id": 9138,
+    "name": "Gemma Jones",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "1997-09-01",
+  "runtime": 118,
+  "director": "Brian Gilbert",
+  "directors": [
+   "Brian Gilbert"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Brian Gilbert",
+   "Alex Graham",
+   "Marc Samuelson"
+  ],
+  "title": "Wilde",
+  "year": 1997,
+  "type": "movie",
+  "fetchedAt": "2026-11-15"
+ },
+ "movie:2381": {
+  "genres": [
+   "History",
+   "Drama"
+  ],
+  "overview": "1911. Lenin organizes the first Bolshevik party school near Paris, in the small town of Longjumeau. Through a chain of historical parallels and associations, this time is intertwined with the events of the Paris Commune, the October Revolution and the political struggles of the post-revolutionary years.",
+  "keywords": [
+   "paris, france",
+   "revolution",
+   "french revolution",
+   "biography",
+   "inessa armand",
+   "falling in love",
+   "extramarital affair",
+   "russian revolution (1917)"
+  ],
+  "originalLanguage": "ru",
+  "imdbId": "tt0081043",
+  "voteAverage": 4.7,
+  "voteCount": 14,
+  "popularity": 0.4692,
+  "posterPath": "/t68DlGnMS5xhGwWyjXfVrEMOjwc.jpg",
+  "similarToIds": [
+   1076101,
+   39806,
+   39851,
+   877093,
+   304699,
+   40633,
+   877812,
+   40723,
+   494826,
+   1076912,
+   41127,
+   41132,
+   40942,
+   40950,
+   878361,
+   41043,
+   679206,
+   4734,
+   4735,
+   4781
+  ],
+  "recommendedIds": [
+   82695,
+   11362,
+   495036,
+   149468,
+   429662,
+   33157,
+   943822,
+   149467,
+   587609,
+   10876,
+   643,
+   147371,
+   697,
+   10047,
+   520552,
+   13506,
+   157843,
+   848439,
+   427214,
+   245168
+  ],
+  "productionCompanies": [
+   "Mosfilm"
+  ],
+  "topCast": [
+   "Yuriy Kayurov",
+   "Claude Jade",
+   "Vladimir Antonik",
+   "Valentina Svetlova",
+   "Pavel Kadochnikov"
+  ],
+  "topCastDetail": [
+   {
+    "id": 24413,
+    "name": "Yuriy Kayurov",
+    "gender": 2
+   },
+   {
+    "id": 3507,
+    "name": "Claude Jade",
+    "gender": 1
+   },
+   {
+    "id": 24416,
+    "name": "Vladimir Antonik",
+    "gender": 2
+   },
+   {
+    "id": 5826789,
+    "name": "Valentina Svetlova",
+    "gender": 1
+   },
+   {
+    "id": 233375,
+    "name": "Pavel Kadochnikov",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "1981-11-01",
+  "runtime": 106,
+  "director": "Sergei Yutkevich",
+  "directors": [
+   "Sergei Yutkevich"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Sergei Yutkevich",
+   "Erik Waisberg"
+  ],
+  "title": "Lenin in Paris",
+  "year": 1981,
+  "type": "movie",
+  "fetchedAt": "2026-11-15"
+ },
+ "movie:1934": {
+  "genres": [
+   "Romance",
+   "History",
+   "Comedy",
+   "Drama"
+  ],
+  "overview": "Young William Shakespeare is forced to stage his latest comedy, 'Romeo and Ethel, the Pirate's Daughter', before it's even written. When lovely noblewoman Viola de Lesseps auditions for a role, they fall into forbidden love \u2014 and Shakespeare's play finds a new life (and title). As their relationship intensifies, the comedy soon transforms into tragedy.",
+  "keywords": [
+   "london, england",
+   "theater play",
+   "queen elizabeth i",
+   "playwright",
+   "cross dressing",
+   "false history",
+   "francis bacon",
+   "16th century",
+   "acting",
+   "elizabethan england",
+   "romantic"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0138097",
+  "voteAverage": 6.826,
+  "voteCount": 3325,
+  "popularity": 4.4111,
+  "posterPath": "/zdW7jdzPi4J9KZR3TyY2jn3Xh5e.jpg",
+  "similarToIds": [
+   1037905,
+   1429998,
+   98912,
+   360152,
+   1524609,
+   97697,
+   936594,
+   98632,
+   1319752,
+   1319190,
+   99210,
+   100113,
+   100124,
+   733009,
+   85985,
+   351281,
+   1515615,
+   85718,
+   85356,
+   95610
+  ],
+  "recommendedIds": [
+   16902,
+   4517,
+   22522,
+   12783,
+   42222,
+   454,
+   730047,
+   22874,
+   446131,
+   430158,
+   61891,
+   44705,
+   296360,
+   26949,
+   399440,
+   12614,
+   4348,
+   975043,
+   428836,
+   354743
+  ],
+  "productionCompanies": [
+   "Miramax",
+   "Universal Pictures",
+   "Bedford Falls Productions"
+  ],
+  "topCast": [
+   "Joseph Fiennes",
+   "Gwyneth Paltrow",
+   "Geoffrey Rush",
+   "Tom Wilkinson",
+   "Judi Dench"
+  ],
+  "topCastDetail": [
+   {
+    "id": 12763,
+    "name": "Joseph Fiennes",
+    "gender": 2
+   },
+   {
+    "id": 12052,
+    "name": "Gwyneth Paltrow",
+    "gender": 1
+   },
+   {
+    "id": 118,
+    "name": "Geoffrey Rush",
+    "gender": 2
+   },
+   {
+    "id": 207,
+    "name": "Tom Wilkinson",
+    "gender": 2
+   },
+   {
+    "id": 5309,
+    "name": "Judi Dench",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "1998-12-11",
+  "runtime": 124,
+  "director": "John Madden",
+  "directors": [
+   "John Madden"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "John Madden",
+   "Harvey Weinstein",
+   "Bob Weinstein"
+  ],
+  "title": "Shakespeare in Love",
+  "year": 1998,
+  "type": "movie",
+  "fetchedAt": "2026-11-15"
+ },
+ "movie:1227495": {
+  "genres": [
+   "History",
+   "Drama"
+  ],
+  "overview": "Set amidst the picturesque landscapes of 14th-century Gujarat's Shetrunjay Hills, against the backdrop of Allauddin Khilji's menacing intent to pillage the sacred temples and cultural heritage of Shetrunjay, Dadu Barot stands resolute, leading a meager band against overwhelming opposition.",
+  "keywords": [
+   "based on true story",
+   "historical drama",
+   "14th century"
+  ],
+  "originalLanguage": "gu",
+  "imdbId": "tt30322899",
+  "voteAverage": 10.0,
+  "voteCount": 1,
+  "popularity": 0.3718,
+  "posterPath": "/qVPi2al8xTqblfZazbmQB09sKVw.jpg",
+  "similarToIds": [
+   39019,
+   38978,
+   39043,
+   495278,
+   1666006,
+   39307,
+   39463,
+   1468536,
+   494974,
+   39486,
+   1082528,
+   39061,
+   303616,
+   273454,
+   462016,
+   1238198,
+   649394,
+   8349,
+   8665,
+   8696
+  ],
+  "recommendedIds": [
+   551271,
+   848439,
+   454227,
+   763144,
+   589612,
+   96399,
+   70925,
+   63639,
+   413337,
+   14120,
+   943822,
+   399440,
+   977942,
+   82631,
+   1214931,
+   1443940,
+   22638,
+   504949,
+   936946,
+   44691
+  ],
+  "productionCompanies": [
+   "Vijaygiri Films"
+  ],
+  "topCast": [
+   "Dharmendra Gohil",
+   "Darshan Pandya",
+   "Raunaq Kamdar",
+   "Monal Gajjar",
+   "Shraddha Dangar"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1059476,
+    "name": "Dharmendra Gohil",
+    "gender": 0
+   },
+   {
+    "id": 1247027,
+    "name": "Darshan Pandya",
+    "gender": 2
+   },
+   {
+    "id": 2299651,
+    "name": "Raunaq Kamdar",
+    "gender": 2
+   },
+   {
+    "id": 1172531,
+    "name": "Monal Gajjar",
+    "gender": 1
+   },
+   {
+    "id": 2081578,
+    "name": "Shraddha Dangar",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2024-02-16",
+  "runtime": 156,
+  "director": "Vijaygiri Bava",
+  "directors": [
+   "Vijaygiri Bava"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Vijaygiri Bava",
+   "Pravin Patel",
+   "Twinkle Vijaygiri"
+  ],
+  "title": "Kasoombo",
+  "year": 2024,
+  "type": "movie",
+  "fetchedAt": "2026-11-15"
+ },
+ "show:61161": {
+  "genres": [
+   "Comedy"
+  ],
+  "overview": "A TV series finds Jesus living in present day Compton, CA on a daily mission to spread love and kindness throughout the neighborhood with the help of his small but loyal group of downtrodden followers.",
+  "keywords": [
+   "california",
+   "religion",
+   "biting",
+   "sitcom",
+   "mischievous",
+   "playful",
+   "witty",
+   "hilarious",
+   "admiring",
+   "adoring",
+   "celebratory",
+   "comforting",
+   "enthusiastic",
+   "euphoric",
+   "inflammatory"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt3589872",
+  "voteAverage": 5.84,
+  "voteCount": 47,
+  "popularity": 4.5476,
+  "posterPath": "/4bc5xzWZZvUrbZD5oCQfvGz8Gak.jpg",
+  "similarToIds": [
+   29810,
+   29816,
+   128345,
+   29734,
+   29747,
+   60859,
+   60839,
+   670,
+   673,
+   719,
+   730,
+   731,
+   735,
+   738,
+   745,
+   211758,
+   846,
+   847,
+   815,
+   817
+  ],
+  "recommendedIds": [
+   112211,
+   76747,
+   1088,
+   60783,
+   90877,
+   1229,
+   4546,
+   4415,
+   18202,
+   129502,
+   71884,
+   2691,
+   1915,
+   610,
+   33922,
+   3948,
+   76345,
+   10420,
+   3002,
+   2710
+  ],
+  "productionCompanies": [
+   "Triage Entertainment",
+   "Levity Entertainment Group",
+   "5 Mutts Productions"
+  ],
+  "topCast": [
+   "Gerald 'Slink' Johnson",
+   "Kali Hawk",
+   "Corey Holcomb",
+   "John Witherspoon",
+   "Angela Elayne Gibbs"
+  ],
+  "topCastDetail": [
+   {
+    "id": 108085,
+    "name": "Gerald 'Slink' Johnson",
+    "gender": 2
+   },
+   {
+    "id": 89462,
+    "name": "Kali Hawk",
+    "gender": 1
+   },
+   {
+    "id": 215074,
+    "name": "Corey Holcomb",
+    "gender": 2
+   },
+   {
+    "id": 56902,
+    "name": "John Witherspoon",
+    "gender": 2
+   },
+   {
+    "id": 1305249,
+    "name": "Angela Elayne Gibbs",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2014-08-07",
+  "episodeRunTime": 22,
+  "createdBy": [
+   "Aaron McGruder"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 3,
+  "numberOfEpisodes": 31,
+  "seasonEpisodeCounts": {
+   "1": 10,
+   "2": 11,
+   "3": 10
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2019-11-29",
+   "seasonNumber": 3,
+   "episodeNumber": 10,
+   "name": "The Real Jesus of Compton"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Adult Swim"
+  ],
+  "creatorCredits": [
+   "Aaron McGruder"
+  ],
+  "title": "Black Jesus",
+  "year": 2014,
+  "type": "show",
+  "fetchedAt": "2026-11-15"
+ },
+ "show:61223": {
+  "genres": [
+   "Animation",
+   "Drama",
+   "Action & Adventure"
+  ],
+  "overview": "Young Tatsumi travels to the capital of the Empire in order to earn money for his starving people and encounters a world of unimaginable depravity, dominated by the ruthless Prime Minister who controls the child Emperor. Tatsumi is recruited by Night Raid, a group of assassins dedicated to eliminating corruption by mercilessly killing officials and privileged nobles.",
+  "keywords": [
+   "corruption",
+   "assassin",
+   "swordplay",
+   "revolution",
+   "dystopia",
+   "politics",
+   "murder",
+   "gore",
+   "tragedy",
+   "rebellion",
+   "dragon",
+   "based on manga",
+   "fighting",
+   "super power",
+   "military"
+  ],
+  "originalLanguage": "ja",
+  "imdbId": "tt3742982",
+  "voteAverage": 8.225,
+  "voteCount": 1283,
+  "popularity": 26.5931,
+  "posterPath": "/rMpvMbSlPbm5QYfFem9fx2Jnttq.jpg",
+  "similarToIds": [
+   94196,
+   94199,
+   94277,
+   127549,
+   60286,
+   127599,
+   127618,
+   29358,
+   29289,
+   29303,
+   29310,
+   60424,
+   60339,
+   29152,
+   29153,
+   29156,
+   29004,
+   194,
+   205,
+   132
+  ],
+  "recommendedIds": [
+   1429,
+   5894,
+   66390,
+   253811,
+   12634,
+   45790,
+   34791,
+   66053,
+   45502,
+   65931,
+   69346,
+   61461,
+   83100,
+   19849,
+   229858,
+   156898,
+   42503,
+   83054,
+   62255,
+   31911
+  ],
+  "productionCompanies": [
+   "White Fox",
+   "C-Station",
+   "TOHO"
+  ],
+  "topCast": [
+   "Soma Saito",
+   "Sora Amamiya",
+   "Yukari Tamura",
+   "Yuu Asakawa",
+   "Anri Katsu"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1388751,
+    "name": "Soma Saito",
+    "gender": 2
+   },
+   {
+    "id": 1325034,
+    "name": "Sora Amamiya",
+    "gender": 1
+   },
+   {
+    "id": 203268,
+    "name": "Yukari Tamura",
+    "gender": 1
+   },
+   {
+    "id": 148449,
+    "name": "Yuu Asakawa",
+    "gender": 1
+   },
+   {
+    "id": 1251007,
+    "name": "Anri Katsu",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2014-07-07",
+  "episodeRunTime": 24,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 24,
+  "seasonEpisodeCounts": {
+   "1": 24
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2014-12-15",
+   "seasonNumber": 1,
+   "episodeNumber": 24,
+   "name": "Akame ga Kill!"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "TOKYO MX"
+  ],
+  "creatorCredits": [
+   "Masanori Fujita"
+  ],
+  "title": "Akame ga Kill!",
+  "year": 2014,
+  "type": "show",
+  "fetchedAt": "2026-11-15"
+ },
+ "show:210955": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "Young, free and madly in love. As teenagers, the world was their oyster\u2014but, as adults, their lives seem dimmer, like a very important piece is missing.",
+  "keywords": [
+   "taxi driver",
+   "love",
+   "reunion",
+   "romance",
+   "miniseries",
+   "memory loss",
+   "first love",
+   "lost love",
+   "1990s",
+   "2000s",
+   "hokkaido, japan",
+   "romantic drama",
+   "heisei",
+   "life choices"
+  ],
+  "originalLanguage": "ja",
+  "imdbId": "tt15289042",
+  "voteAverage": 8.108,
+  "voteCount": 148,
+  "popularity": 6.3711,
+  "posterPath": "/yYCefcDMt5A5OJe8Q6iiU866Oxr.jpg",
+  "similarToIds": [
+   280822,
+   280784,
+   60956,
+   60957,
+   312257,
+   312264,
+   60875,
+   128409,
+   128365,
+   128547,
+   744,
+   211720,
+   211624,
+   211683,
+   211690,
+   211692,
+   95041,
+   95044,
+   95066,
+   94940
+  ],
+  "recommendedIds": [
+   223313,
+   260592,
+   258063,
+   240667,
+   197434,
+   123192,
+   129612,
+   285739,
+   279412,
+   229236,
+   108181,
+   284605,
+   323903,
+   72787,
+   199001,
+   248394,
+   248416,
+   280511,
+   31917,
+   18745
+  ],
+  "productionCompanies": [
+   "C&I entertainment",
+   "Netflix"
+  ],
+  "topCast": [
+   "Hikari Mitsushima",
+   "Takeru Satoh",
+   "Rikako Yagi",
+   "Taisei Kido",
+   "Kaho"
+  ],
+  "topCastDetail": [
+   {
+    "id": 100765,
+    "name": "Hikari Mitsushima",
+    "gender": 1
+   },
+   {
+    "id": 230659,
+    "name": "Takeru Satoh",
+    "gender": 2
+   },
+   {
+    "id": 1703056,
+    "name": "Rikako Yagi",
+    "gender": 1
+   },
+   {
+    "id": 3811388,
+    "name": "Taisei Kido",
+    "gender": 2
+   },
+   {
+    "id": 228079,
+    "name": "Kaho",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2022-11-24",
+  "episodeRunTime": null,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 9,
+  "seasonEpisodeCounts": {
+   "1": 9
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2022-11-24",
+   "seasonNumber": 1,
+   "episodeNumber": 9,
+   "name": "Hatsukoi"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Netflix"
+  ],
+  "creatorCredits": [
+   "Kaata Sakamoto"
+  ],
+  "title": "First Love",
+  "year": 2022,
+  "type": "show",
+  "fetchedAt": "2026-11-15"
+ },
+ "show:100126": {
+  "genres": [
+   "Soap",
+   "Drama",
+   "War & Politics"
+  ],
+  "overview": "The story of three kingdoms. Kasit ruled by King Rangsimun is the wealthiest and most powerful but they lack a sea route, for this reason King Rangsimun had planned to politically wed Princess Maneesala of Tanta in order to conveniently use their water route. However if both Kasit and Tanta were to unite that would cause Puntoolat to become isolated and for this reason the three kingdoms have longed lived with suspicion of one another.",
+  "keywords": [
+   "politics",
+   "romance",
+   "historical"
+  ],
+  "originalLanguage": "th",
+  "imdbId": null,
+  "voteAverage": 0.0,
+  "voteCount": 0,
+  "popularity": 1.6507,
+  "posterPath": "/hGKzgBtS9SOywsYEANL366Jk5dF.jpg",
+  "similarToIds": [
+   283961,
+   32993,
+   246803,
+   246808,
+   33072,
+   283989,
+   283995,
+   3504,
+   214994,
+   215000,
+   215001,
+   215003,
+   246827,
+   131614,
+   131622,
+   131673,
+   131688,
+   246739,
+   246741,
+   64487
+  ],
+  "recommendedIds": [
+   271855,
+   881,
+   1054,
+   85950,
+   111573,
+   1526,
+   46441,
+   104954,
+   63333,
+   57276,
+   3163,
+   2595,
+   1407,
+   71789,
+   80307,
+   13862,
+   60972,
+   62251,
+   113962,
+   86733
+  ],
+  "productionCompanies": [],
+  "topCast": [
+   "Jesdaporn Pholdee",
+   "Kimberly Ann Voltemas",
+   "Tarkoon Karntip",
+   "Matira Tantiprasut",
+   "Rinlanee Sripen"
+  ],
+  "topCastDetail": [
+   {
+    "id": 113949,
+    "name": "Jesdaporn Pholdee",
+    "gender": 2
+   },
+   {
+    "id": 1256399,
+    "name": "Kimberly Ann Voltemas",
+    "gender": 1
+   },
+   {
+    "id": 2395336,
+    "name": "Tarkoon Karntip",
+    "gender": 2
+   },
+   {
+    "id": 1342181,
+    "name": "Matira Tantiprasut",
+    "gender": 1
+   },
+   {
+    "id": 1259632,
+    "name": "Rinlanee Sripen",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2020-03-05",
+  "episodeRunTime": 110,
+  "createdBy": [
+   "Thommayanti"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 16,
+  "seasonEpisodeCounts": {
+   "1": 16
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2020-04-16",
+   "seasonNumber": 1,
+   "episodeNumber": 13,
+   "name": "Episode 13"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Channel 3"
+  ],
+  "creatorCredits": [
+   "Thommayanti"
+  ],
+  "title": "The Enchanted Tale",
+  "year": 2020,
+  "type": "show",
+  "fetchedAt": "2026-11-15"
+ },
+ "show:211178": {
+  "genres": [
+   "Drama",
+   "War & Politics",
+   "Action & Adventure"
+  ],
+  "overview": "The untold true story of four brave women who served as key espionage agents and turned the tide of the American Civil War in favor of the North, risking life and liberty to help win the war and preserve democracy. A Richmond Socialite and her daughter, a formerly enslaved African-American, and a courtesan build the first successful female spy ring.",
+  "keywords": [
+   "miniseries",
+   "nostalgic",
+   "american civil war",
+   "complex",
+   "dramatic",
+   "intense"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt22376294",
+  "voteAverage": 4.4,
+  "voteCount": 20,
+  "popularity": 4.0751,
+  "posterPath": "/wE5jZDeQuiulaAtjeaEq0y8tpey.jpg",
+  "similarToIds": [
+   281016,
+   29989,
+   61241,
+   29954,
+   61251,
+   61123,
+   61126,
+   61132,
+   958,
+   244207,
+   61245,
+   61247,
+   60907,
+   29650,
+   128554,
+   211624,
+   814,
+   95041,
+   312573,
+   30110
+  ],
+  "recommendedIds": [
+   57276,
+   32675,
+   113962,
+   16997,
+   120911,
+   11095,
+   129398,
+   17035,
+   4613,
+   46518,
+   126308,
+   138624,
+   216082,
+   32868,
+   114922,
+   62444,
+   1407,
+   114926,
+   114165,
+   262352
+  ],
+  "productionCompanies": [
+   "Territory Pictures",
+   "Revelations Entertainment",
+   "Big Dreams Entertainment"
+  ],
+  "topCast": [
+   "Mary-Louise Parker",
+   "Daisy Head",
+   "Amethyst Davis",
+   "Ben Vereen",
+   "Paul Anderson"
+  ],
+  "topCastDetail": [
+   {
+    "id": 18248,
+    "name": "Mary-Louise Parker",
+    "gender": 1
+   },
+   {
+    "id": 1070886,
+    "name": "Daisy Head",
+    "gender": 1
+   },
+   {
+    "id": 2088491,
+    "name": "Amethyst Davis",
+    "gender": 1
+   },
+   {
+    "id": 26664,
+    "name": "Ben Vereen",
+    "gender": 2
+   },
+   {
+    "id": 220448,
+    "name": "Paul Anderson",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2026-02-26",
+  "episodeRunTime": null,
+  "createdBy": [
+   "Roland Joff\u00e9",
+   "Darrell Fetty",
+   "Leslie Greif",
+   "John Sayles"
+  ],
+  "status": "Returning Series",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 8,
+  "seasonEpisodeCounts": {
+   "1": 8
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2026-02-26",
+   "seasonNumber": 1,
+   "episodeNumber": 8,
+   "name": "The Firestorm"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Prime Video"
+  ],
+  "creatorCredits": [
+   "Roland Joff\u00e9",
+   "Darrell Fetty",
+   "Leslie Greif"
+  ],
+  "title": "The Gray House",
+  "year": 2026,
+  "type": "show",
+  "fetchedAt": "2026-11-15"
+ },
+ "show:60627": {
+  "genres": [
+   "Drama"
+  ],
+  "overview": "The family Valadine has produced porno movies since years. But the golden age of the erotic film is over. The market, the business and the movies are getting harder. Nevertheless Alex Valadine refuses to go with the latest trends and gets in conflict with his sons, the next generation of porno maker. The family empire bursts under the consequences of intrigues and corruption. In this world of love and hate, sex and violence the family is facing a big challenge.",
+  "keywords": [
+   "family business ",
+   "business",
+   "family drama",
+   "porn industry"
+  ],
+  "originalLanguage": "fr",
+  "imdbId": "tt1915497",
+  "voteAverage": 4.5,
+  "voteCount": 9,
+  "popularity": 2.0891,
+  "posterPath": "/j8NJHVXA3x89zRb91r3KoSKgSEh.jpg",
+  "similarToIds": [
+   98445,
+   284196,
+   284370,
+   215472,
+   215491,
+   99645,
+   65863,
+   99693,
+   65805,
+   65817,
+   216224,
+   4550,
+   99931,
+   133372,
+   216260,
+   133007,
+   65746,
+   65752,
+   316401,
+   66008
+  ],
+  "recommendedIds": [
+   246246,
+   21762,
+   1274,
+   341,
+   84007,
+   100575,
+   3769,
+   259702,
+   881,
+   66830,
+   95004,
+   4392,
+   120835,
+   71715,
+   46441,
+   1054,
+   67384,
+   61733,
+   72002,
+   2595
+  ],
+  "productionCompanies": [
+   "Haut et Court"
+  ],
+  "topCast": [
+   "Jean-Baptiste Malartre",
+   "Julien Boisselier",
+   "Swann Arlaud",
+   "Nora Arnezeder",
+   "Judith Henry"
+  ],
+  "topCastDetail": [
+   {
+    "id": 131982,
+    "name": "Jean-Baptiste Malartre",
+    "gender": 2
+   },
+   {
+    "id": 32657,
+    "name": "Julien Boisselier",
+    "gender": 2
+   },
+   {
+    "id": 145120,
+    "name": "Swann Arlaud",
+    "gender": 2
+   },
+   {
+    "id": 453272,
+    "name": "Nora Arnezeder",
+    "gender": 1
+   },
+   {
+    "id": 136757,
+    "name": "Judith Henry",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2011-04-30",
+  "episodeRunTime": 50,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 8,
+  "seasonEpisodeCounts": {
+   "1": 8
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2011-05-21",
+   "seasonNumber": 1,
+   "episodeNumber": 8,
+   "name": "Episode 8"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "ARTE"
+  ],
+  "creatorCredits": [],
+  "title": "Xanadu",
+  "year": 2011,
+  "type": "show",
+  "fetchedAt": "2026-11-15"
+ },
+ "show:312474": {
+  "genres": [
+   "Animation",
+   "Drama",
+   "War & Politics"
+  ],
+  "overview": "A revolution sparked by nuclear war, natural disaster, and misrule leads to the collapse of Japanese society. The country splits into three nations vying for hegemony, and the Sangoku era begins. Aoteru Misumi, a former agricultural officer, vows to reunify Japan. He rises through the ranks with only his knowledge and eloquence. Witness the legend of the man later hailed as a genius strategist.",
+  "keywords": [
+   "japan",
+   "civil war",
+   "post-apocalyptic future",
+   "dystopia",
+   "based on manga",
+   "political intrigue\u00a0",
+   "military",
+   "shocking",
+   "zealous",
+   "anime",
+   "philosophical",
+   "desperate",
+   "near future",
+   "inspirational",
+   "tense"
+  ],
+  "originalLanguage": "ja",
+  "imdbId": "tt40548519",
+  "voteAverage": 8.655,
+  "voteCount": 74,
+  "popularity": 9.7343,
+  "posterPath": "/sM7zYE6xOmaNwC28LR7cEneAtuN.jpg",
+  "similarToIds": [
+   94196,
+   94252,
+   94277,
+   127549,
+   60286,
+   127599,
+   127618,
+   29358,
+   29310,
+   60424,
+   29152,
+   29153,
+   29156,
+   19,
+   60654,
+   60659,
+   60663,
+   60667,
+   29616,
+   60572
+  ],
+  "recommendedIds": [
+   69346,
+   61223,
+   56387,
+   126308,
+   56998,
+   103409,
+   65945,
+   90293,
+   117310,
+   67524,
+   30093,
+   101972,
+   64375,
+   256721,
+   21730,
+   42504,
+   31724,
+   20111,
+   74018,
+   65949
+  ],
+  "productionCompanies": [
+   "Studio Kafka",
+   "Amazon MGM Studios",
+   "Twin Engine"
+  ],
+  "topCast": [
+   "Kensho Ono",
+   "Jun Fukuyama",
+   "Takashi Nagasako",
+   "Asami Seto",
+   "Megumi Han"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1065297,
+    "name": "Kensho Ono",
+    "gender": 2
+   },
+   {
+    "id": 131563,
+    "name": "Jun Fukuyama",
+    "gender": 2
+   },
+   {
+    "id": 553794,
+    "name": "Takashi Nagasako",
+    "gender": 2
+   },
+   {
+    "id": 1254672,
+    "name": "Asami Seto",
+    "gender": 1
+   },
+   {
+    "id": 1164931,
+    "name": "Megumi Han",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2026-04-05",
+  "episodeRunTime": null,
+  "createdBy": [],
+  "status": "Returning Series",
+  "numberOfSeasons": 2,
+  "numberOfEpisodes": 13,
+  "seasonEpisodeCounts": {
+   "1": 12,
+   "2": 1
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2026-06-21",
+   "seasonNumber": 1,
+   "episodeNumber": 12,
+   "name": "The Fall of Seii"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Prime Video"
+  ],
+  "creatorCredits": [
+   "Koji Yamamoto"
+  ],
+  "title": "NIPPON SANGOKU: The Three Nations of the Crimson Sun",
+  "year": 2026,
+  "type": "show",
+  "fetchedAt": "2026-11-15"
+ },
+ "show:243512": {
+  "genres": [
+   "Sci-Fi & Fantasy",
+   "Drama"
+  ],
+  "overview": "In ancient times, the Human Emperor, Zhao Ming, petitioned on behalf of the people and sacrificed himself to resist the divine realm. After Zhao Ming's fall, his beloved, Hun Dunzhu, risked her life to save a wisp of his soul, setting up the cycle of reincarnation for eternity. In the distant future, Zhao Ming reincarnated as Xie Xuechen, the leader of the Immortal Alliance, while Hun Dunzhu became the Holy Maiden Mu Xuanling in the Dark Domain. The two finally reunited in the mortal realm but had forgotten their past, becoming adversaries in a \"righteous versus evil\" struggle. Mu Xuanling saved the heavily injured Xie Xuechen in the Dark Domain and coerced him to travel together in gratitude for saving his life.",
+  "keywords": [
+   "based on novel or book",
+   "romance",
+   "costume drama",
+   "xianxia",
+   "web series",
+   "romantic fantasy"
+  ],
+  "originalLanguage": "zh",
+  "imdbId": "tt31173719",
+  "voteAverage": 8.0,
+  "voteCount": 13,
+  "popularity": 6.8286,
+  "posterPath": "/lAFxsacfM8r4XMh6ZeP48l1gCRS.jpg",
+  "similarToIds": [
+   94940,
+   281032,
+   281034,
+   281163,
+   281185,
+   94904,
+   94892,
+   61138,
+   61148,
+   61149,
+   61150,
+   61158,
+   29954,
+   312371,
+   61118,
+   61136,
+   211984,
+   211986,
+   211908,
+   211927
+  ],
+  "recommendedIds": [
+   278275,
+   130270,
+   254476,
+   243084,
+   220269,
+   249972,
+   240686,
+   203367,
+   96128,
+   210524,
+   64197,
+   2275,
+   106159,
+   279388,
+   68358,
+   9922,
+   89572,
+   237918,
+   243081,
+   79611
+  ],
+  "productionCompanies": [
+   "Perfect World Pictures",
+   "Youku"
+  ],
+  "topCast": [
+   "Vin Zhang",
+   "Sun Zhenni",
+   "Wang Duo",
+   "Zhang Yaqin",
+   "Wu Yuheng"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1701963,
+    "name": "Vin Zhang",
+    "gender": 2
+   },
+   {
+    "id": 3287640,
+    "name": "Sun Zhenni",
+    "gender": 1
+   },
+   {
+    "id": 1892422,
+    "name": "Wang Duo",
+    "gender": 2
+   },
+   {
+    "id": 1971604,
+    "name": "Zhang Yaqin",
+    "gender": 1
+   },
+   {
+    "id": 3149730,
+    "name": "Wu Yuheng",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2025-01-02",
+  "episodeRunTime": null,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 40,
+  "seasonEpisodeCounts": {
+   "1": 40
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2025-01-23",
+   "seasonNumber": 1,
+   "episodeNumber": 40,
+   "name": "The Heavenly Will"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "Youku"
+  ],
+  "creatorCredits": [],
+  "title": "The Blossoming Love",
+  "year": 2025,
+  "type": "show",
+  "fetchedAt": "2026-11-15"
+ },
+ "show:94642": {
+  "genres": [
+   "Mystery",
+   "Drama"
+  ],
+  "overview": "The staff in charge of catering to the desires of a department store's top clientele try to keep their not-so-luxurious personal lives afloat.",
+  "keywords": [
+   "infidelity",
+   "investigation",
+   "romance",
+   "business",
+   "conglomerate",
+   "melodrama"
+  ],
+  "originalLanguage": "ko",
+  "imdbId": "tt11018750",
+  "voteAverage": 6.4,
+  "voteCount": 17,
+  "popularity": 4.6344,
+  "posterPath": "/bBIiRnCVOifc1eaW7sCbJHSWJ68.jpg",
+  "similarToIds": [
+   280822,
+   280784,
+   60956,
+   60957,
+   312257,
+   312264,
+   128406,
+   128409,
+   128365,
+   128547,
+   211683,
+   211690,
+   211692,
+   95041,
+   95044,
+   95066,
+   94940,
+   281163,
+   94892,
+   61054
+  ],
+  "recommendedIds": [
+   62933,
+   130464,
+   322055,
+   67384,
+   99480,
+   310800,
+   244416,
+   283297,
+   156933,
+   46441,
+   220102,
+   253376,
+   78191,
+   83851,
+   241372,
+   76715,
+   306603,
+   99489,
+   87773,
+   227975
+  ],
+  "productionCompanies": [
+   "Studio S"
+  ],
+  "topCast": [
+   "Jang Na-ra",
+   "Lee Sang-yun",
+   "Lee Jae-won",
+   "Shin Jae-ha",
+   "Lee Chung-ah"
+  ],
+  "topCastDetail": [
+   {
+    "id": 1234280,
+    "name": "Jang Na-ra",
+    "gender": 1
+   },
+   {
+    "id": 1257610,
+    "name": "Lee Sang-yun",
+    "gender": 2
+   },
+   {
+    "id": 1336800,
+    "name": "Lee Jae-won",
+    "gender": 2
+   },
+   {
+    "id": 1588284,
+    "name": "Shin Jae-ha",
+    "gender": 2
+   },
+   {
+    "id": 126743,
+    "name": "Lee Chung-ah",
+    "gender": 1
+   }
+  ],
+  "firstAirDate": "2019-10-28",
+  "episodeRunTime": 60,
+  "createdBy": [
+   "Hye Won",
+   "Lee Ok-gyu",
+   "Lee Jeong-lim"
+  ],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 16,
+  "seasonEpisodeCounts": {
+   "1": 16
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2019-12-24",
+   "seasonNumber": 1,
+   "episodeNumber": 16,
+   "name": "Sung Jun\u2019s Choice"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "SBS"
+  ],
+  "creatorCredits": [
+   "Hye Won",
+   "Lee Ok-gyu",
+   "Lee Jeong-lim"
+  ],
+  "title": "VIP",
+  "year": 2019,
+  "type": "show",
+  "fetchedAt": "2026-11-15"
+ },
+ "show:66390": {
+  "genres": [
+   "Drama",
+   "Action & Adventure",
+   "Animation",
+   "Crime"
+  ],
+  "overview": "In the crime-ridden, mafia-governed city of Ergastulum, Worick and Nicolas are two \u201chandymen\u201d known as \u201cBenriya\u201d who would take any dirty job from either police or mafia, for a good price. After an assignment from police the two met and later joined by Alex, a former prostitute who got interested in the mysterious background of the team, in particular of Nicolas\u2019 abilities.",
+  "keywords": [
+   "child abuse",
+   "underground",
+   "swordplay",
+   "katana",
+   "kidnapping",
+   "gangster",
+   "secret organization",
+   "dystopia",
+   "police",
+   "murder",
+   "betrayal",
+   "gore",
+   "mafia",
+   "conspiracy",
+   "tragedy"
+  ],
+  "originalLanguage": "ja",
+  "imdbId": "tt5025394",
+  "voteAverage": 7.3,
+  "voteCount": 139,
+  "popularity": 7.0162,
+  "posterPath": "/ly43ajQpjpYYnx3w5BgFtcflUTD.jpg",
+  "similarToIds": [
+   65332,
+   65333,
+   65336,
+   65337,
+   65354,
+   65356,
+   99110,
+   4376,
+   133387,
+   133424,
+   285260,
+   285278,
+   285291,
+   285295,
+   4330,
+   4335,
+   285312,
+   99294,
+   285166,
+   133359
+  ],
+  "recommendedIds": [
+   80564,
+   61223,
+   61374,
+   5894,
+   65931,
+   83054,
+   43865,
+   80623,
+   253811,
+   12598,
+   77529,
+   83097,
+   8974,
+   114410,
+   204412,
+   100436,
+   19849,
+   42410,
+   1409,
+   76231
+  ],
+  "productionCompanies": [
+   "Manglobe",
+   "Bandai Visual",
+   "Hakuhodo DY Media Partners"
+  ],
+  "topCast": [
+   "Kenjiro Tsuda",
+   "Junichi Suwabe",
+   "Mamiko Noto",
+   "Tetsuo Kanao",
+   "Kaito Ishikawa"
+  ],
+  "topCastDetail": [
+   {
+    "id": 135524,
+    "name": "Kenjiro Tsuda",
+    "gender": 2
+   },
+   {
+    "id": 9721,
+    "name": "Junichi Suwabe",
+    "gender": 2
+   },
+   {
+    "id": 89903,
+    "name": "Mamiko Noto",
+    "gender": 1
+   },
+   {
+    "id": 1324930,
+    "name": "Tetsuo Kanao",
+    "gender": 2
+   },
+   {
+    "id": 1324666,
+    "name": "Kaito Ishikawa",
+    "gender": 2
+   }
+  ],
+  "firstAirDate": "2015-07-02",
+  "episodeRunTime": 23,
+  "createdBy": [],
+  "status": "Ended",
+  "numberOfSeasons": 1,
+  "numberOfEpisodes": 12,
+  "seasonEpisodeCounts": {
+   "1": 12
+  },
+  "nextEpisodeToAir": null,
+  "lastEpisodeToAir": {
+   "airDate": "2015-09-24",
+   "seasonNumber": 1,
+   "episodeNumber": 12,
+   "name": "Odds and Ends"
+  },
+  "currentSeasonFinale": null,
+  "networks": [
+   "ABC TV"
+  ],
+  "creatorCredits": [
+   "Kenji Hamada",
+   "Kozue Kananiwa",
+   "Yuka Sakurai"
+  ],
+  "title": "Gangsta.",
+  "year": 2015,
+  "type": "show",
+  "fetchedAt": "2026-11-15"
+ },
+ "movie:891621": {
+  "genres": [
+   "Comedy",
+   "Crime",
+   "Thriller"
+  ],
+  "overview": "Shortly before the 1973 Chilean coup, CIA agents Chris and Lee are dispatched from Santiago to Easter Island by their bureau chief, MJ. Amongst the Island's iconic statues, and as the longtime partners wrestle with their dark pasts and present conspiracies, Chris's newfound bond with a pair of rebellious students threatens to send everyone\u2019s trip to this remote paradise sideways.",
+  "keywords": [
+   "central intelligence agency (cia)",
+   "1970s",
+   "easter island",
+   "joyous",
+   "amused",
+   "tragic"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt15799564",
+  "voteAverage": 7.9,
+  "voteCount": 199,
+  "popularity": 67.9229,
+  "posterPath": "/dNJFRtVg3xLQ7dbNIQ55cmmIniD.jpg",
+  "similarToIds": [
+   612,
+   258,
+   259,
+   378,
+   392,
+   475,
+   476,
+   496,
+   1039599,
+   433,
+   1039227,
+   9038,
+   9263,
+   9384,
+   9386,
+   9395,
+   9331,
+   9080,
+   9090,
+   1048241
+  ],
+  "recommendedIds": [
+   1138749,
+   1242501,
+   4959,
+   76640,
+   13483,
+   976734,
+   1024627,
+   250388,
+   497814,
+   648579,
+   254904,
+   337339,
+   27004,
+   13428,
+   1530875,
+   12535,
+   13054,
+   339095,
+   1535,
+   27561
+  ],
+  "productionCompanies": [
+   "Searchlight Pictures",
+   "Blueprint Pictures",
+   "Film4 Productions"
+  ],
+  "topCast": [
+   "John Malkovich",
+   "Sam Rockwell",
+   "Steve Buscemi",
+   "Mariana di Girolamo",
+   "Ail\u00edn Salas"
+  ],
+  "topCastDetail": [
+   {
+    "id": 6949,
+    "name": "John Malkovich",
+    "gender": 2
+   },
+   {
+    "id": 6807,
+    "name": "Sam Rockwell",
+    "gender": 2
+   },
+   {
+    "id": 884,
+    "name": "Steve Buscemi",
+    "gender": 2
+   },
+   {
+    "id": 2064168,
+    "name": "Mariana di Girolamo",
+    "gender": 1
+   },
+   {
+    "id": 96481,
+    "name": "Ail\u00edn Salas",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2026-10-30",
+  "runtime": 117,
+  "director": "Martin McDonagh",
+  "directors": [
+   "Martin McDonagh"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Martin McDonagh",
+   "Graham Broadbent",
+   "Peter Czernin"
+  ],
+  "title": "Wild Horse Nine",
+  "year": 2026,
+  "type": "movie",
+  "fetchedAt": "2026-11-15"
+ },
+ "movie:550231": {
+  "genres": [
+   "Drama",
+   "Romance"
+  ],
+  "overview": "A widow with three children hires a handyman to fix her house during a major storm. When not doing home repairs, he shares his philosophy of believing in the power of the universe to deliver what we want.",
+  "keywords": [
+   "based on novel or book",
+   "love"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt4411584",
+  "voteAverage": 7.4,
+  "voteCount": 702,
+  "popularity": 5.1487,
+  "posterPath": "/5mCqEeBA0MW7H6akFrFQXJu68rU.jpg",
+  "similarToIds": [
+   13,
+   19,
+   1653,
+   269305,
+   456688,
+   1818,
+   1824,
+   1829,
+   1623951,
+   1909,
+   457136,
+   269589,
+   1937,
+   1944,
+   1592,
+   1700,
+   1232449,
+   1629,
+   269287,
+   1791
+  ],
+  "recommendedIds": [
+   745376,
+   43818,
+   16022,
+   426203,
+   14834,
+   51384,
+   784391,
+   137321,
+   407445,
+   226857,
+   18093,
+   585244,
+   1921,
+   27874,
+   47525,
+   588787,
+   82631,
+   10399,
+   330483,
+   13610
+  ],
+  "productionCompanies": [
+   "Savvy Media Holdings",
+   "Covert Media",
+   "Roadside Attractions"
+  ],
+  "topCast": [
+   "Katie Holmes",
+   "Josh Lucas",
+   "Jerry O'Connell",
+   "Celia Weston",
+   "Sarah Hoffmeister"
+  ],
+  "topCastDetail": [
+   {
+    "id": 3897,
+    "name": "Katie Holmes",
+    "gender": 1
+   },
+   {
+    "id": 6164,
+    "name": "Josh Lucas",
+    "gender": 2
+   },
+   {
+    "id": 3035,
+    "name": "Jerry O'Connell",
+    "gender": 2
+   },
+   {
+    "id": 1989,
+    "name": "Celia Weston",
+    "gender": 1
+   },
+   {
+    "id": 1921279,
+    "name": "Sarah Hoffmeister",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2020-04-16",
+  "runtime": 107,
+  "director": "Andy Tennant",
+  "directors": [
+   "Andy Tennant"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Andy Tennant",
+   "Matthew George",
+   "Robert Katz"
+  ],
+  "title": "The Secret: Dare to Dream",
+  "year": 2020,
+  "type": "movie",
+  "fetchedAt": "2026-11-15"
+ },
+ "movie:327389": {
+  "genres": [
+   "Horror",
+   "TV Movie"
+  ],
+  "overview": "With a torrid past that haunts him, a movie theatre owner is hired to search for the only existing print of a film so notorious that its single screening caused the viewers to become homicidally insane.",
+  "keywords": [
+   "new york city",
+   "paris, france",
+   "angel",
+   "junkie",
+   "collector",
+   "flashback",
+   "debt",
+   "madness",
+   "evil",
+   "projectionist",
+   "film critic",
+   "wings",
+   "movie theater"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt0643109",
+  "voteAverage": 7.293,
+  "voteCount": 150,
+  "popularity": 1.3031,
+  "posterPath": "/7xKRzuWEeo8h2hMzGopxKuscMRr.jpg",
+  "similarToIds": [
+   1040593,
+   269516,
+   1730,
+   1877,
+   1560,
+   456255,
+   948,
+   1576,
+   561,
+   622,
+   628,
+   635,
+   805,
+   1621777,
+   1038901,
+   455141,
+   924,
+   964,
+   928,
+   176
+  ],
+  "recommendedIds": [
+   635,
+   913290,
+   335796,
+   807339,
+   86328,
+   44041,
+   930600,
+   29143,
+   29427,
+   460885,
+   20945,
+   11167,
+   13515,
+   1029281,
+   1199869,
+   11596,
+   16182,
+   621707,
+   18196,
+   1034541
+  ],
+  "productionCompanies": [
+   "Reunion Pictures",
+   "IDT Entertainment",
+   "Industry Works Entertainment"
+  ],
+  "topCast": [
+   "Norman Reedus",
+   "Udo Kier",
+   "Christopher Redman",
+   "Chris Gauthier",
+   "Zara Taylor"
+  ],
+  "topCastDetail": [
+   {
+    "id": 4886,
+    "name": "Norman Reedus",
+    "gender": 2
+   },
+   {
+    "id": 1646,
+    "name": "Udo Kier",
+    "gender": 2
+   },
+   {
+    "id": 32204,
+    "name": "Christopher Redman",
+    "gender": 2
+   },
+   {
+    "id": 53119,
+    "name": "Chris Gauthier",
+    "gender": 2
+   },
+   {
+    "id": 127812,
+    "name": "Zara Taylor",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2005-12-16",
+  "runtime": 59,
+  "director": "John Carpenter",
+  "directors": [
+   "John Carpenter"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "John Carpenter",
+   "Bo Altherr",
+   "Keith Addis"
+  ],
+  "title": "Cigarette Burns",
+  "year": 2005,
+  "type": "movie",
+  "fetchedAt": "2026-11-15"
+ },
+ "movie:934131": {
+  "genres": [
+   "Horror",
+   "Thriller"
+  ],
+  "overview": "Taking place in real time, elementary school teacher Emily organizes a mixer of like-minded women, but an altercation between a woman from Emily\u2019s past and the group leads to a volatile chain of events.",
+  "keywords": [
+   "rape",
+   "sexual violence",
+   "racism",
+   "psychological thriller",
+   "former best friend",
+   "hate group",
+   "real time",
+   "woman director",
+   "psychological",
+   "psychological horror",
+   "horror"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt14557188",
+  "voteAverage": 6.4,
+  "voteCount": 232,
+  "popularity": 1.2442,
+  "posterPath": "/atNLWJm8KO44xeVGxG4LAByr5tm.jpg",
+  "similarToIds": [
+   1082421,
+   39024,
+   494678,
+   1270673,
+   1082505,
+   39127,
+   39246,
+   1270452,
+   494716,
+   1665983,
+   494858,
+   1270916,
+   1271338,
+   1270891,
+   39166,
+   303129,
+   1270828,
+   461775,
+   1237860,
+   1629807
+  ],
+  "recommendedIds": [
+   24740,
+   1058710,
+   1029281,
+   543917,
+   44698,
+   1165466,
+   43947,
+   930600,
+   787761,
+   1241674,
+   814889,
+   34583,
+   1162858,
+   1083968,
+   979806,
+   257117,
+   916605,
+   713364,
+   913290,
+   502416
+  ],
+  "productionCompanies": [
+   "Second Grade Teacher Productions",
+   "Blumhouse Productions"
+  ],
+  "topCast": [
+   "Stefanie Estes",
+   "Olivia Luccardi",
+   "Eleanore Pienta",
+   "Dana Millican",
+   "Melissa Paulo"
+  ],
+  "topCastDetail": [
+   {
+    "id": 228618,
+    "name": "Stefanie Estes",
+    "gender": 1
+   },
+   {
+    "id": 1210610,
+    "name": "Olivia Luccardi",
+    "gender": 1
+   },
+   {
+    "id": 1279922,
+    "name": "Eleanore Pienta",
+    "gender": 1
+   },
+   {
+    "id": 1252505,
+    "name": "Dana Millican",
+    "gender": 1
+   },
+   {
+    "id": 1384191,
+    "name": "Melissa Paulo",
+    "gender": 1
+   }
+  ],
+  "releaseDate": "2022-11-04",
+  "runtime": 91,
+  "director": "Beth de Ara\u00fajo",
+  "directors": [
+   "Beth de Ara\u00fajo"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Beth de Ara\u00fajo",
+   "Robina Riccitiello",
+   "Jason Blum"
+  ],
+  "title": "Soft & Quiet",
+  "year": 2022,
+  "type": "movie",
+  "fetchedAt": "2026-11-15"
  }
 }

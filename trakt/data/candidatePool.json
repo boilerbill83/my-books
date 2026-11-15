@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-11-15T14:47:01.362Z",
+    "generatedAt": "2026-11-15T16:42:40.460Z",
     "count": 494,
     "capPerType": 200
   },
@@ -1300,16 +1300,6 @@
       "titleKey": "show:93544",
       "ids": {
         "tmdb": 93544
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 2
-    },
-    {
-      "type": "show",
-      "titleKey": "show:202879",
-      "ids": {
-        "tmdb": 202879
       },
       "title": null,
       "year": null,
@@ -4859,16 +4849,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:986966",
-      "ids": {
-        "tmdb": 986966
-      },
-      "title": null,
-      "year": null,
-      "citedBy": 7
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:1325678",
       "ids": {
         "tmdb": 1325678
@@ -5100,17 +5080,6 @@
     },
     {
       "type": "movie",
-      "titleKey": "movie:508763",
-      "ids": {
-        "tmdb": 508763
-      },
-      "title": "A Dog's Way Home",
-      "year": 2019,
-      "source": "genre-explore",
-      "discoveredVia": "Adventure"
-    },
-    {
-      "type": "movie",
       "titleKey": "movie:1504358",
       "ids": {
         "tmdb": 1504358
@@ -5162,6 +5131,38 @@
       "title": null,
       "year": null,
       "source": "bill-manual"
+    },
+    {
+      "type": "show",
+      "titleKey": "show:211178",
+      "ids": {
+        "tmdb": 211178
+      },
+      "title": null,
+      "year": null,
+      "citedBy": 6
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:891621",
+      "ids": {
+        "tmdb": 891621
+      },
+      "title": "Wild Horse Nine",
+      "year": 2026,
+      "source": "genre-explore",
+      "discoveredVia": "Thriller"
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:550231",
+      "ids": {
+        "tmdb": 550231
+      },
+      "title": "The Secret: Dare to Dream",
+      "year": 2020,
+      "source": "genre-explore",
+      "discoveredVia": "Romance"
     }
   ]
 }
