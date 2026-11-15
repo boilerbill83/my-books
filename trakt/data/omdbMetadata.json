@@ -41110,5 +41110,23 @@
   "director": null,
   "rated": null,
   "fetchedAt": "2026-11-10"
+ },
+ "movie:1242011": {
+  "rottenTomatoes": 89,
+  "metacritic": 75,
+  "awards": {
+   "oscarWins": 0,
+   "oscarNominations": 0,
+   "emmyWins": 0,
+   "emmyNominations": 0,
+   "totalWins": 0,
+   "totalNominations": 23,
+   "raw": "23 nominations total"
+  },
+  "imdbRating": 6.7,
+  "imdbVotes": 89469,
+  "director": "Michael Shanks",
+  "rated": "R",
+  "fetchedAt": "2026-11-15"
  }
 }
