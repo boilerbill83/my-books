@@ -974,7 +974,7 @@ function buildTierRows(watchTiers, library, watchlist, scoredList, currentlyWatc
     // matchScore() (a show Bill's already started sits in library, which
     // rankAll() excludes from its watchlist list).
     const predicted = scored?.bmtreScore ?? matchScore(hydrateTitle(wlByKey.get(k) || lib || { titleKey: k, type: 'show' }, enrichedMeta), idx, enrichedMeta, omdbMeta);
-    return { ...row, predicted, reason: scored?.reason, inProgress: !!(lib && lib.plays != null && lib.airedEpisodes != null && lib.plays < lib.airedEpisodes) };
+    return { ...row, predicted, score: row.score ?? predicted, reason: scored?.reason, inProgress: !!(lib && lib.plays != null && lib.airedEpisodes != null && lib.plays < lib.airedEpisodes) };
   };
   const ok = k => enrichedMeta[k] && k.startsWith('show:') && !coWatchSet.has(k) && k !== excludeKey && wlByKey.has(k)
     && !latestSeasonIncomplete(enrichedMeta[k]); // Bill: only show once the whole most recent season has aired
@@ -1003,13 +1003,20 @@ function buildTierRows(watchTiers, library, watchlist, scoredList, currentlyWatc
 
 function renderTierGroups(tiers, enrichedMeta, starredSet) {
   const subtitleFn = c => {
+    const meta = enrichedMeta[c.titleKey] || {};
+    const finaleIso0 = meta.lastEpisodeToAir?.airDate || meta.currentSeasonFinale?.finaleDate;
+    let since0 = null;
+    if (finaleIso0) {
+      const d0 = Math.round((new Date(new Date().toDateString()) - new Date(finaleIso0 + 'T00:00:00')) / 86400000);
+      if (d0 >= 0) since0 = d0 === 0 ? 'Finale aired today' : `Finale ${d0} day${d0 === 1 ? '' : 's'} ago`;
+    }
     if (c.inProgress) {
       const parts = [];
       if (c.episodesReady) parts.push(`${c.episodesReady} episode${c.episodesReady === 1 ? '' : 's'} ready`);
       if (c.myRating != null) parts.push(`rated ${c.myRating}/10 so far`);
+      if (since0) parts.push(since0);
       return parts.join(' · ') || 'Ready to continue';
     }
-    const meta = enrichedMeta[c.titleKey] || {};
     // Bill (Changes Requested): Excited for shows how many days since the
     // finale. The season is complete by construction (see
     // latestSeasonIncomplete()), so its last aired episode is the finale.
