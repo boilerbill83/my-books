@@ -575644,5 +575644,133 @@
   "year": 2026,
   "type": "show",
   "fetchedAt": "2026-11-14"
+ },
+ "movie:1242011": {
+  "genres": [
+   "Horror",
+   "Romance"
+  ],
+  "overview": "Years into their relationship, Tim and Millie find themselves at a crossroads as they move to the country, abandoning all that is familiar in their lives except each other. With tensions already flaring, a nightmarish encounter with a mysterious, unnatural force threatens to corrupt their lives, their love, and their flesh.",
+  "keywords": [
+   "countryside",
+   "musician",
+   "cave",
+   "cult",
+   "woods",
+   "romance",
+   "teacher",
+   "church",
+   "couple",
+   "psychotic",
+   "supernatural horror",
+   "body horror",
+   "psychological horror",
+   "baffled"
+  ],
+  "originalLanguage": "en",
+  "imdbId": "tt31184028",
+  "voteAverage": 6.901,
+  "voteCount": 1458,
+  "popularity": 6.1404,
+  "posterPath": "/80slKYVM5teFH3kz6ouWrZXveqj.jpg",
+  "similarToIds": [
+   876514,
+   39547,
+   1662591,
+   304281,
+   40064,
+   40065,
+   40231,
+   39844,
+   39858,
+   39900,
+   1468471,
+   876960,
+   40463,
+   40364,
+   1268123,
+   1469026,
+   40599,
+   305028,
+   40729,
+   1077198
+  ],
+  "recommendedIds": [
+   814889,
+   780609,
+   310131,
+   1089123,
+   901385,
+   110327,
+   9392,
+   2662,
+   9871,
+   201085,
+   830788,
+   547565,
+   1422011,
+   1339713,
+   433808,
+   1564614,
+   18801,
+   1368314,
+   1272837,
+   514593
+  ],
+  "productionCompanies": [
+   "Picturestart",
+   "Tango Entertainment",
+   "30WEST"
+  ],
+  "topCast": [
+   "Dave Franco",
+   "Alison Brie",
+   "Damon Herriman",
+   "Mia Morrissey",
+   "Karl Richmond"
+  ],
+  "topCastDetail": [
+   {
+    "id": 54697,
+    "name": "Dave Franco",
+    "gender": 2
+   },
+   {
+    "id": 88029,
+    "name": "Alison Brie",
+    "gender": 1
+   },
+   {
+    "id": 62752,
+    "name": "Damon Herriman",
+    "gender": 2
+   },
+   {
+    "id": 1871887,
+    "name": "Mia Morrissey",
+    "gender": 1
+   },
+   {
+    "id": 2746473,
+    "name": "Karl Richmond",
+    "gender": 2
+   }
+  ],
+  "releaseDate": "2025-07-14",
+  "runtime": 102,
+  "director": "Michael Shanks",
+  "directors": [
+   "Michael Shanks"
+  ],
+  "belongsToCollection": null,
+  "creatorCredits": [
+   "Michael Shanks",
+   "Alison Brie",
+   "Dave Franco"
+  ],
+  "title": "Together",
+  "year": 2025,
+  "type": "movie",
+  "fetchedAt": "2026-11-15"
  }
 }

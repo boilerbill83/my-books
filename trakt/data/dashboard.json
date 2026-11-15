@@ -1,35 +1,35 @@
 {
-  "generatedAt": "2026-11-10T01:58:03.989Z",
+  "generatedAt": "2026-11-15T14:46:59.432Z",
   "profile": {
     "username": "bill_stoltenberg_27166c",
     "joinedAt": "2026-07-27T14:49:58.000Z"
   },
   "summary": {
-    "moviesWatched": 270,
-    "moviesPlays": 270,
-    "moviesRatings": 271,
-    "moviesMinutes": 34022,
-    "showsWatched": 400,
-    "showsRatings": 407,
-    "episodesWatched": 11720,
-    "episodesPlays": 11720,
-    "episodesMinutes": 504954,
-    "totalRatings": 678,
-    "totalMinutes": 538976,
-    "totalHours": 8983,
-    "avgRating": 7.81
+    "moviesWatched": 0,
+    "moviesPlays": 0,
+    "moviesRatings": 0,
+    "moviesMinutes": 0,
+    "showsWatched": 0,
+    "showsRatings": 0,
+    "episodesWatched": 0,
+    "episodesPlays": 0,
+    "episodesMinutes": 0,
+    "totalRatings": 0,
+    "totalMinutes": 0,
+    "totalHours": 0,
+    "avgRating": null
   },
   "ratingDistribution": {
     "1": 0,
-    "2": 6,
-    "3": 6,
-    "4": 26,
-    "5": 10,
-    "6": 60,
-    "7": 123,
-    "8": 238,
-    "9": 101,
-    "10": 108
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0
   },
   "activityByYear": [
     {
@@ -189,7 +189,7 @@
     },
     {
       "year": 2026,
-      "movies": 22,
+      "movies": 23,
       "episodes": 299
     }
   ],

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-11-10T01:58:04.120Z",
-    "movieCount": 270,
+    "generatedAt": "2026-11-15T14:46:59.628Z",
+    "movieCount": 271,
     "showCount": 400
   },
   "titles": [
@@ -505,7 +505,7 @@
       "myRating": 4,
       "ratedAt": "2026-07-29T00:23:53.000Z",
       "plays": 92,
-      "airedEpisodes": 97,
+      "airedEpisodes": 98,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2026-04-23T00:52:00.000Z",
       "favorite": false,
@@ -3351,7 +3351,7 @@
       "myRating": 9,
       "ratedAt": "2025-09-05T00:00:00.000Z",
       "plays": 10,
-      "airedEpisodes": 12,
+      "airedEpisodes": 13,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -3727,7 +3727,7 @@
       "myRating": 8,
       "ratedAt": "2026-05-21T00:00:00.000Z",
       "plays": 30,
-      "airedEpisodes": 54,
+      "airedEpisodes": 55,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -7601,7 +7601,7 @@
       "myRating": 10,
       "ratedAt": "2026-09-21T01:56:00.000Z",
       "plays": 10,
-      "airedEpisodes": 18,
+      "airedEpisodes": 19,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2025-06-01T07:55:00.000Z",
       "favorite": true,
@@ -9633,7 +9633,7 @@
       "myRating": 9,
       "ratedAt": "2026-10-01T21:08:36.000Z",
       "plays": 9,
-      "airedEpisodes": 16,
+      "airedEpisodes": 17,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2026-04-16T00:23:00.000Z",
       "favorite": false,
@@ -10485,7 +10485,7 @@
       "myRating": 8,
       "ratedAt": "2026-08-13T13:32:31.000Z",
       "plays": 10,
-      "airedEpisodes": 12,
+      "airedEpisodes": 13,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2025-07-23T01:35:00.000Z",
       "favorite": false,
@@ -12633,7 +12633,7 @@
       "myRating": 9,
       "ratedAt": "2026-07-29T00:19:13.000Z",
       "plays": 8,
-      "airedEpisodes": 13,
+      "airedEpisodes": 14,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -14262,7 +14262,7 @@
       "myRating": 8,
       "ratedAt": "2026-08-24T12:33:22.000Z",
       "plays": 8,
-      "airedEpisodes": 15,
+      "airedEpisodes": 14,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2025-05-11T20:59:00.000Z",
       "favorite": false,
@@ -14384,6 +14384,27 @@
       "lastWatchedAt": "2026-08-13T04:28:00.000Z",
       "favorite": true,
       "hasConfirmedWatchDate": true
+    },
+    {
+      "type": "movie",
+      "titleKey": "movie:1242011",
+      "ids": {
+        "imdb": "tt31184028",
+        "plex": {
+          "guid": "65cc295216bb4db33e2cfef6",
+          "slug": "together-2025-1"
+        },
+        "slug": "together-2025",
+        "tmdb": 1242011,
+        "trakt": 1005421
+      },
+      "title": "Together",
+      "year": 2025,
+      "myRating": 8,
+      "ratedAt": "2026-11-10T02:01:39.000Z",
+      "plays": 1,
+      "lastWatchedAt": "2026-11-10T02:01:00.000Z",
+      "favorite": false
     },
     {
       "type": "show",
@@ -14550,7 +14571,7 @@
       "myRating": 8,
       "ratedAt": "2025-11-23T00:00:00.000Z",
       "plays": 29,
-      "airedEpisodes": 33,
+      "airedEpisodes": 34,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
