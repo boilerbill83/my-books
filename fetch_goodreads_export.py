@@ -226,7 +226,11 @@ def main():
                           'without ever needing to click "Export Library" again.', file=sys.stderr)
                     page.screenshot(path='/tmp/goodreads-export-debug.png')
                     Path('/tmp/goodreads-export-debug.txt').write_text(page.content())
-                    sys.exit(1)
+                    # Exit code 3 = "Goodreads is just slow, nothing is broken":
+                    # the workflow treats it as a warning and skips the import,
+                    # rather than a red failure (Nov 2026 -- a 10-minute wait
+                    # timed out on a normal Sunday run).
+                    sys.exit(3)
 
             # The matched text node may be the <a> itself, or may sit inside
             # one (e.g. wrapped in a <span>) -- resolve to the nearest real

@@ -91,7 +91,16 @@ jobs:
           PYEOF
 
       - name: Download fresh Goodreads export
-        run: python3 fetch_goodreads_export.py /tmp/goodreads-export-raw.csv
+        id: dl
+        run: |
+          rc=0
+          python3 fetch_goodreads_export.py /tmp/goodreads-export-raw.csv || rc=$?
+          if [ "$rc" -eq 3 ]; then
+            echo "::warning::Goodreads had not finished generating the export in time. Not an error: the next run will find it ready on page load."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          elif [ "$rc" -ne 0 ]; then
+            exit "$rc"
+          fi
         timeout-minutes: 15
 
       # Baseline eval.js *before* the merge, purely for the commit
@@ -105,15 +114,19 @@ jobs:
       # report, not a pass/fail gate, per Session 35's informational-only
       # precedent for validate_review.js).
       - name: Record eval.js baseline
+        if: steps.dl.outputs.skip != 'true'
         run: node scripts/eval.js > /tmp/eval-before.txt || true
 
       - name: Run BBIP auto-import (safe changes only; rest -> review file)
+        if: steps.dl.outputs.skip != 'true'
         run: node scripts/bbip_auto_import.mjs /tmp/goodreads-export-raw.csv --apply
 
       - name: Record eval.js after
+        if: steps.dl.outputs.skip != 'true'
         run: node scripts/eval.js > /tmp/eval-after.txt || true
 
       - name: Show eval.js before/after in the job log
+        if: steps.dl.outputs.skip != 'true'
         run: |
           echo "--- eval.js BEFORE ---"
           cat /tmp/eval-before.txt
