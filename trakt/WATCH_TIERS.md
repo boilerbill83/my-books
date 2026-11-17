@@ -7,7 +7,6 @@ Guess rules: **Favorites** = Trakt favorites, gold-starred, or rated 9+. **Excit
 ## 1. Favorites
 
 - The Lowdown (2025) — in progress 8/13, rated 9
-- Dark Matter (2024) — in progress 9/19, rated 9
 - MobLand (2025) — in progress 10/18, rated 10
 - Dexter: Resurrection (2025) — in progress 10/12, rated 9
 
