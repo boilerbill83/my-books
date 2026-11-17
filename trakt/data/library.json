@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generatedAt": "2026-11-15T14:46:59.628Z",
+    "generatedAt": "2026-11-17T14:58:05.710Z",
     "movieCount": 271,
-    "showCount": 400
+    "showCount": 401
   },
   "titles": [
     {
@@ -2377,6 +2377,31 @@
     },
     {
       "type": "show",
+      "titleKey": "show:288673",
+      "ids": {
+        "imdb": "tt11540908",
+        "plex": {
+          "guid": "671e44f76f2f5c8e20f67374",
+          "slug": "carrie"
+        },
+        "slug": "carrie",
+        "tmdb": 288673,
+        "tvdb": 455755,
+        "trakt": 282156
+      },
+      "title": "Carrie",
+      "year": 2026,
+      "myRating": 7,
+      "ratedAt": "2026-11-17T14:56:23.000Z",
+      "plays": 2,
+      "airedEpisodes": 8,
+      "completionStatus": "in-progress",
+      "lastWatchedAt": "2026-10-07T07:56:00.000Z",
+      "favorite": false,
+      "hasConfirmedWatchDate": true
+    },
+    {
+      "type": "show",
       "titleKey": "show:71116",
       "ids": {
         "imdb": "tt6548228",
@@ -2995,10 +3020,10 @@
       "year": 2024,
       "myRating": 9,
       "ratedAt": "2026-07-29T00:56:35.000Z",
-      "plays": 9,
+      "plays": 19,
       "airedEpisodes": 19,
-      "completionStatus": "in-progress",
-      "lastWatchedAt": "2024-06-26T03:02:00.000Z",
+      "completionStatus": "caught-up",
+      "lastWatchedAt": "2026-11-17T14:55:00.000Z",
       "favorite": false,
       "hasConfirmedWatchDate": true
     },
@@ -10389,7 +10414,7 @@
       "myRating": 6,
       "ratedAt": "2026-07-29T00:17:59.000Z",
       "plays": 36,
-      "airedEpisodes": 38,
+      "airedEpisodes": 39,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2026-04-07T00:22:00.000Z",
       "favorite": false,
@@ -12286,7 +12311,7 @@
       "myRating": 6,
       "ratedAt": "2026-07-29T00:18:22.000Z",
       "plays": 8,
-      "airedEpisodes": 9,
+      "airedEpisodes": 10,
       "completionStatus": "in-progress",
       "lastWatchedAt": "1970-01-01T00:00:00.000Z",
       "favorite": false,
@@ -14262,7 +14287,7 @@
       "myRating": 8,
       "ratedAt": "2026-08-24T12:33:22.000Z",
       "plays": 8,
-      "airedEpisodes": 14,
+      "airedEpisodes": 16,
       "completionStatus": "in-progress",
       "lastWatchedAt": "2025-05-11T20:59:00.000Z",
       "favorite": false,

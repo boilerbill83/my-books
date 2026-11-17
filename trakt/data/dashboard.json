@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T14:46:59.432Z",
+  "generatedAt": "2026-11-17T14:58:05.575Z",
   "profile": {
     "username": "bill_stoltenberg_27166c",
     "joinedAt": "2026-07-27T14:49:58.000Z"
@@ -190,12 +190,12 @@
     {
       "year": 2026,
       "movies": 23,
-      "episodes": 299
+      "episodes": 311
     }
   ],
   "dataCaveats": {
     "undatedEpisodePlays": 7318,
-    "datedEpisodePlays": 4402,
+    "datedEpisodePlays": 4414,
     "undatedEpisodeSharePct": 62.4
   },
   "topShowsByPlays": [
@@ -535,7 +535,7 @@
     }
   ],
   "watchlist": {
-    "count": 72,
+    "count": 70,
     "items": [
       {
         "type": "show",
@@ -725,12 +725,6 @@
       },
       {
         "type": "show",
-        "title": "Dark Matter",
-        "year": 2024,
-        "listedAt": "2026-09-12T00:40:23.000Z"
-      },
-      {
-        "type": "show",
         "title": "It's Always Sunny in Philadelphia",
         "year": 2005,
         "listedAt": "2026-09-12T00:40:26.000Z"
@@ -896,12 +890,6 @@
         "title": "Brothers",
         "year": 2026,
         "listedAt": "2026-11-05T16:28:02.000Z"
-      },
-      {
-        "type": "show",
-        "title": "Carrie",
-        "year": 2026,
-        "listedAt": "2026-11-05T16:28:05.000Z"
       },
       {
         "type": "show",

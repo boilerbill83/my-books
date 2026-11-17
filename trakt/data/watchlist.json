@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-11-15T14:46:59.655Z",
-    "count": 72
+    "generatedAt": "2026-11-17T14:58:05.715Z",
+    "count": 70
   },
   "titles": [
     {
@@ -544,25 +544,6 @@
       "year": 2022,
       "watchlisted": true,
       "watchlistedAt": "2026-09-03T19:46:55.000Z"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:196322",
-      "ids": {
-        "imdb": "tt19231492",
-        "plex": {
-          "guid": "5fd2a1b82de5fd002dd4c7b1",
-          "slug": "dark-matter-2024"
-        },
-        "slug": "dark-matter-2024",
-        "tmdb": 196322,
-        "tvdb": 393159,
-        "trakt": 170597
-      },
-      "title": "Dark Matter",
-      "year": 2024,
-      "watchlisted": true,
-      "watchlistedAt": "2026-09-12T00:40:23.000Z"
     },
     {
       "type": "show",
@@ -1119,25 +1100,6 @@
       "year": 2026,
       "watchlisted": true,
       "watchlistedAt": "2026-11-05T16:28:02.000Z"
-    },
-    {
-      "type": "show",
-      "titleKey": "show:288673",
-      "ids": {
-        "imdb": "tt11540908",
-        "plex": {
-          "guid": "671e44f76f2f5c8e20f67374",
-          "slug": "carrie"
-        },
-        "slug": "carrie",
-        "tmdb": 288673,
-        "tvdb": 455755,
-        "trakt": 282156
-      },
-      "title": "Carrie",
-      "year": 2026,
-      "watchlisted": true,
-      "watchlistedAt": "2026-11-05T16:28:05.000Z"
     },
     {
       "type": "show",
