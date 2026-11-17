@@ -80,6 +80,10 @@
   "lastPremiereSent": "2026-11-12"
  },
  "show:336199": {
-  "lastPremiereSent": "2026-11-16"
+  "lastPremiereSent": "2026-11-16",
+  "lastFinaleWarnSent": "2026-11-17"
+ },
+ "show:308007": {
+  "lastFinaleWarnSent": "2026-11-17"
  }
 }
