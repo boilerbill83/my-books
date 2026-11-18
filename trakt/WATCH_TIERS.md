@@ -7,7 +7,6 @@ Guess rules: **Favorites** = Trakt favorites, gold-starred, or rated 9+. **Excit
 ## 1. Favorites
 
 - The Lowdown (2025) — in progress 8/13, rated 9
-- MobLand (2025) — in progress 10/18, rated 10
 - Dexter: Resurrection (2025) — in progress 10/12, rated 9
 
 ## 2. Excited for
@@ -16,6 +15,7 @@ Guess rules: **Favorites** = Trakt favorites, gold-starred, or rated 9+. **Excit
 - Carrie (2026) — not started
 - The Terminal List (2022) — in progress 8/16, rated 8
 - WAR (2026) — not started, match 99
+- MobLand (2025) — in progress 10/18, rated 10
 - Nocturne (2026) — not started, match 99
 - The Good Daughter (2026) — not started, match 90
 - Crystal Lake (2026) — not started, match 88
