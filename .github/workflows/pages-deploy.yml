@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment_retry.outputs.page_url || steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -102,7 +102,21 @@ jobs:
         with:
           path: dist
 
+      # A 2026-11-21 run failed with "Found 0 artifact(s)" right after a
+      # successful upload (a GitHub-side lag, not a repo problem). So the first
+      # attempt may fail without failing the job; a second attempt follows
+      # after a pause, and only that one decides whether the run is red.
       - name: Deploy to GitHub Pages
         if: steps.cmp.outputs.skip != 'true'
         id: deployment
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+
+      - name: Wait before retrying deploy
+        if: steps.cmp.outputs.skip != 'true' && steps.deployment.outcome == 'failure'
+        run: sleep 45
+
+      - name: Deploy to GitHub Pages (retry)
+        if: steps.cmp.outputs.skip != 'true' && steps.deployment.outcome == 'failure'
+        id: deployment_retry
         uses: actions/deploy-pages@v4
